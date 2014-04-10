@@ -1,103 +1,79 @@
-wcproperty
-==========
+=== Easy Property Listings ===
+Author URI: http://realestateconnected.com.au
+Plugin URI: http://easypropertylistings.com.au
+Contributors: mervb, nishayNetworks
+Donate link: http://realestateconnected.com.au/support-the-site
+Tags: property, real estate, listings, houses, rentals, for sale, for rent, Merv Barrett, realestateconnected
+Requires at least: 3.5
+Tested up to: 3.9
 
-WebConnected Property - Premium WordPress Plugin
+Stable Tag: 1.0.0
 
+License: GNU Version 2 or Any Later Version
 
-WebConnected Property Plugin
-----------------------------------------------------------------------
+Sell digital downloads through WordPress with this complete digital downloads management plugin
 
-2.1 Merv Barrett
-	Added LowGrav file to concentate address lib/fn-lowgrav-google-geocode-con.php
+== Description ==
 
-
-
-
-2.13 Merv Barrett
-	Added LowGrav file to concentate address lib/fn-lowgrav-google-geocode-con.php
-
-2.14 Merv Barrett
-	Fixed Buttons to <form>
-	Added 1Form Optiopns to Setting to set custom iform ID
-	Tweaked Graphbox CSS
+Easy Digital Downloads is a complete e-commerce solution for selling digital products in a light, performant, and easy to use plugin. Rather that attempting to provide every feature under the sun, Easy Digital Downloads makes selling digital simple and complete by providing just the features you need.
 
 
-2.15 Merv Barrett
-	Changed Top Section Layout of templates/content-property-single.php
-	Property Meta Function created template/property-meta.php
-	Dynamic Description option
-	Updated Settings to Checkboxes
-	Fixed Geocode Option
+Features of the plugin include:
 
-2.16 Merv Barrett
-	Updated CSS Blog padding
-	Cleand up code and added more features to property-meta.php
-	Cleaned up divs in property_blog and property_single functions
+* Cart system for purchasing multiple downloads at once
+* Complete promotional code system
+* Many payment gateways. PayPal and Manual are included by default with Stripe, PayPal Pro, PayPal Express, and others available as [add-ons](https://easydigitaldownloads.com/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=edd_extensions)
+* Complete payment history
+* User purchase history and ability to redownload files
+* Multiple files per downloadable product
+* Variable prices for multiple price options per product
+* Bundled products
+* Customizable purchase receipts
+* Earnings and sales charts
+* Detailed purchase and file download logs
+* Data export options for CSV and PDF
+* Extensible with many [add-ons](https://easydigitaldownloads.com/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=edd_extensions)
+* Developer friendly with dozens of actions and filters. [View Codex](https://easydigitaldownloads.com/codex/index.html)
 
-2.17 Merv Barrett
-	Number of gallery thumbs option wc_gallery_number
-	Started Dev of Testimonial Widget
+More information at [Easy Property Listings.com.au](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=home_link&utm_campaign=epl_home).
 
-2.21 Merv Barrett
-	fixed property-meta.php not the_title() but get_the_title()
-	Testimonail Widget template function wc_property_testimonial_widget();
-	Added serveral customisation options to testimonial and property widget
-	PODS Added wc_debug option to wc_settings pod to remove or display geocode results
-	PODS Removed User Options
-	Added function wc_property_user
-	moved all from /templates to /lib/templates
-	
-2.22 Merv Barrett
-	Consolidation of files
-	Removed old templates and merged admin-property.php and admin-rental.php to >> admin-options.php
+[youtube http://www.youtube.com/watch?v=japHPcIFs4I]
 
-2.23 Merv Barrett
-	Added beds/bath options to widget property templates and added variable to property_meta.php => $property_icons_bb
-	Author Box Function - wc_property_author()
-		Widget Function - Created wc_author_widget()
-	Author Fields Added
-	User Photo Plugin if no Gravatar
+**Follow this plugin on [GitHub](https://github.com/easydigitaldownloads/Easy-Digital-Downloads)**
 
-	Testimonial Image option Alignment left right center none
+**Map Your Property Listings With Advanced Mapping**
 
-2.23 Merv Barrett
-	Started dev of Author Widget
-	PODS added Author option to post_type 'directory'. Removed meta 'staff_mobile' , 'staff_email', 'staff_title'
+[Advanced Mapping](http://easypropertylistings.com.au/extension/advanced-mapping/) for Easy Digital Downloads provides a complete license key generation, activation, and checking system. It allows you to provide license keys along with your digital products that can then be used to properly license and activate the buyer’s copy of the software.
 
-TODO -----------------
+Includes a complete integration pack for delivering automatic upgrades for premium WordPress plugins and themes.
 
-	ADMIN
-	Remove Geocode Field from Property/Rental
+**Languages**
 
-	Supermap
-		- Exclude from Supermap
-	
+Easy Property Listings has not been translated yet:
 
-	Property/Rental
-		- If no Suburb Profile/ Display Suburb...
-		- Custom Titles for Archive Pages
+1. English (and British English)
 
+Would you like to help translate the plugin into more languages? [Join our WP-Translations Community](https://www.transifex.com/projects/p/easy-digital-downloads/).
 
-	Layout Overide Options
+== Installation ==
 
-	Staff Directory
+1. Activate the plugin
+2. Go to Easy Property Listings > Settings and configure the options and enable the property listing types
+3. Create Property Lisitng products from the Downloads page
+4. For detailed setup instructions, vist the official [Documentation](http://easypropertylistings.com.au/documentation/) page.
 
-	Create Widgets
-		- Agent Sidebar Bio
-			-Second Agent (Select from List???)
-		- Contact Agent
-		- DONE - Featured Property / Rental
-		- DONE - Testimonial
-		- Suburb
-		- Search
-		- Strip (columns/responsive)
+== Frequently Asked Questions ==
 
-	
+= Getting a 404 error? =
 
+To get rid of the 404 error when viewing a download, you need to resave your permalink structure. Go to Settings > Permalinks and click "Save Changes".
 
-	Set PODS Defaults
-		- State selection from Admin (WA, VIC etc)
-	
-	Postcode Taxonomy
+== Screenshots ==
 
-	Integrate Table Press into Suburbs... 
+1. Add New Property Listing
+
+== Changelog ==
+
+= 1.0: Early April 2014 =
+
+* First offical release!
