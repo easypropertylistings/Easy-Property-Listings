@@ -1,0 +1,746 @@
+/*
+ * Gradient Styles
+ */
+
+/* orange */
+.orange > dl > dd span{
+	background: #ffa042;
+}
+.orange > dl > dd span:hover, .orange_bar:hover{
+	background: #ff8c19;
+}
+.orange_bar{
+	background: #ffa042 !important;
+}
+.orange_bar:hover{
+	background: #ff8c19 !important;
+}
+
+/* lite_grey */
+.lite_grey > dl > dd span{
+	background: #b4b4b4;
+}
+.lite_grey > dl > dd span:hover{
+	background: #c0c0c0;
+}
+.lite_grey_bar{
+	background: #b4b4b4 !important;
+}
+.lite_grey_bar:hover{
+	background: #c0c0c0 !important;
+}
+
+/* yellow */
+.yellow > dl > dd span{
+	background: #ffd65e;
+}
+.yellow > dl > dd span:hover{
+	background: #ffd043;
+}
+.yellow_bar{
+	background: #ffd65e !important; 
+}
+.yellow_bar:hover{
+	background: #ffd043 !important;
+}
+
+/* purple */
+.purple > dl > dd span{
+	background: #e470e8;   
+}
+.purple > dl > dd span:hover{
+	background: #e163e5;
+}
+.purple_bar{
+	background: #e470e8 !important;  
+}
+.purple_bar:hover{
+	background: #e163e5 !important;
+}
+
+/* red */
+.red > dl > dd span{
+	background: #ff6644;
+}
+
+.red > dl > dd span:hover{
+	background: #ff552f;
+}
+.red_bar{
+	background: #ff6644 !important;
+}
+
+.red_bar:hover{
+	background: #ff552f !important;
+}
+/* green */
+.green > dl > dd span{
+	background: #81ca46;
+}
+.green > dl > dd span:hover{
+	background: #73be36;
+}
+.green_bar{
+	background: #81ca46 !important;
+}
+.green_bar:hover{
+	background: #73be36 !important;
+}
+
+/* blue */
+.blue  > dl > dd span{
+	background: #499bea;
+}
+.blue > dl > dd span:hover{
+	background: #3491e8;
+}
+.blue_bar{
+	background: #499bea !important;
+}
+.blue_bar:hover{
+	background: #3491e8 !important;
+}
+
+/* lite_blue */
+.lite_blue > dl > dd span{
+	background: #55d5fc;
+}
+.lite_blue > dl > dd span:hover{
+	background: #35cdfb;
+}
+.lite_blue_bar{
+	background: #55d5fc !important;
+}
+.lite_blue_bar:hover{
+	background: #35cdfb !important;
+}
+
+/* pink */
+.pink  > dl > dd span{
+	background: #fb81d2;
+}
+.pink > dl > dd span:hover{
+	background: #fa60c7;
+}
+.pink_bar{
+	background: #fb81d2 !important;
+}
+.pink_bar:hover{
+	background: #fa60c7 !important;
+}
+
+/* brown */
+.brown > dl > dd span{
+	background: #c27556;
+}
+.brown > dl > dd span:hover{
+	background: #be6b4a;
+}
+.brown_bar{
+	background: #c27556 !important;
+}
+.brown_bar:hover{
+	background: #be6b4a !important;
+}
+
+
+/* effect configuration */
+
+.data0 { width: 0%; -webkit-animation-name:bar0; -moz-animation-name:bar0; -o-animation-name:bar0;}
+.data1 { width: 1%; -webkit-animation-name:bar1; -moz-animation-name:bar1; -o-animation-name:bar1;}
+.data2 { width: 2%; -webkit-animation-name:bar2; -moz-animation-name:bar2; -o-animation-name:bar2;}
+.data3 { width: 3%; -webkit-animation-name:bar3; -moz-animation-name:bar3; -o-animation-name:bar3;}
+.data4 { width: 4%; -webkit-animation-name:bar4; -moz-animation-name:bar4; -o-animation-name:bar4;}
+.data5 { width: 5%; -webkit-animation-name:bar5; -moz-animation-name:bar5; -o-animation-name:bar5;}
+.data6 { width: 6%; -webkit-animation-name:bar6; -moz-animation-name:bar6; -o-animation-name:bar6;}
+.data7 { width: 7%; -webkit-animation-name:bar7; -moz-animation-name:bar7; -o-animation-name:bar7;}
+.data8 { width: 8%; -webkit-animation-name:bar8; -moz-animation-name:bar8; -o-animation-name:bar8;}
+.data9 { width: 9%; -webkit-animation-name:bar9; -moz-animation-name:bar9; -o-animation-name:bar9;}
+.data10 { width: 10%; -webkit-animation-name:bar10; -moz-animation-name:bar10; -o-animation-name:bar10;}
+.data11{ width: 11%; -webkit-animation-name:bar11; -moz-animation-name:bar11; -o-animation-name:bar11;}
+.data12 { width: 12%; -webkit-animation-name:bar12; -moz-animation-name:bar12; -o-animation-name:bar12;}
+.data13 { width: 13%; -webkit-animation-name:bar13; -moz-animation-name:bar13; -o-animation-name:bar13;}
+.data14 { width: 14%; -webkit-animation-name:bar14; -moz-animation-name:bar14; -o-animation-name:bar14;}
+.data15 { width: 15%; -webkit-animation-name:bar15; -moz-animation-name:bar15; -o-animation-name:bar15;}
+.data16 { width: 16%; -webkit-animation-name:bar16; -moz-animation-name:bar16; -o-animation-name:bar16;}
+.data17 { width: 17%; -webkit-animation-name:bar17; -moz-animation-name:bar17; -o-animation-name:bar17;}
+.data18 { width: 18%; -webkit-animation-name:bar18; -moz-animation-name:bar18; -o-animation-name:bar18;}
+.data19 { width: 19%; -webkit-animation-name:bar19; -moz-animation-name:bar19; -o-animation-name:bar19;}
+.data20 { width: 20%; -webkit-animation-name:bar20; -moz-animation-name:bar20; -o-animation-name:bar20;}
+.data21 { width: 21%; -webkit-animation-name:bar21; -moz-animation-name:bar21; -o-animation-name:bar21;}
+.data22 { width: 22%; -webkit-animation-name:bar22; -moz-animation-name:bar22; -o-animation-name:bar22;}
+.data23 { width: 23%; -webkit-animation-name:bar23; -moz-animation-name:bar23; -o-animation-name:bar23;}
+.data24 { width: 24%; -webkit-animation-name:bar24; -moz-animation-name:bar24; -o-animation-name:bar24;}
+.data25 { width: 25%; -webkit-animation-name:bar25; -moz-animation-name:bar25; -o-animation-name:bar25;}
+.data26 { width: 26%; -webkit-animation-name:bar26; -moz-animation-name:bar26; -o-animation-name:bar26;}
+.data27 { width: 27%; -webkit-animation-name:bar27; -moz-animation-name:bar27; -o-animation-name:bar27;}
+.data28 { width: 28%; -webkit-animation-name:bar28; -moz-animation-name:bar28; -o-animation-name:bar28;}
+.data29 { width: 29%; -webkit-animation-name:bar29; -moz-animation-name:bar29; -o-animation-name:bar29;}
+.data30 { width: 30%; -webkit-animation-name:bar30; -moz-animation-name:bar30; -o-animation-name:bar30;}
+.data31 { width: 31%; -webkit-animation-name:bar31; -moz-animation-name:bar31; -o-animation-name:bar31;}
+.data32 { width: 32%; -webkit-animation-name:bar32; -moz-animation-name:bar32; -o-animation-name:bar32;}
+.data33 { width: 33%; -webkit-animation-name:bar33; -moz-animation-name:bar33; -o-animation-name:bar33;}
+.data34 { width: 34%; -webkit-animation-name:bar34; -moz-animation-name:bar34; -o-animation-name:bar34;}
+.data35 { width: 35%; -webkit-animation-name:bar35; -moz-animation-name:bar35; -o-animation-name:bar35;}
+.data36 { width: 36%; -webkit-animation-name:bar36; -moz-animation-name:bar36; -o-animation-name:bar36;}
+.data37 { width: 37%; -webkit-animation-name:bar37; -moz-animation-name:bar37; -o-animation-name:bar37;}
+.data38 { width: 38%; -webkit-animation-name:bar38; -moz-animation-name:bar38; -o-animation-name:bar38;}
+.data39 { width: 39%; -webkit-animation-name:bar39; -moz-animation-name:bar39; -o-animation-name:bar39;}
+.data40 { width: 40%; -webkit-animation-name:bar40; -moz-animation-name:bar40; -o-animation-name:bar40;}
+.data41 { width: 41%; -webkit-animation-name:bar41; -moz-animation-name:bar41; -o-animation-name:bar41;}
+.data42 { width: 42%; -webkit-animation-name:bar42; -moz-animation-name:bar42; -o-animation-name:bar42;}
+.data43 { width: 43%; -webkit-animation-name:bar43; -moz-animation-name:bar43; -o-animation-name:bar43;}
+.data44 { width: 44%; -webkit-animation-name:bar44; -moz-animation-name:bar44; -o-animation-name:bar44;}
+.data45 { width: 45%; -webkit-animation-name:bar45; -moz-animation-name:bar45; -o-animation-name:bar45;}
+.data46 { width: 46%; -webkit-animation-name:bar46; -moz-animation-name:bar46; -o-animation-name:bar46;}
+.data47 { width: 47%; -webkit-animation-name:bar47; -moz-animation-name:bar47; -o-animation-name:bar47;}
+.data48 { width: 48%; -webkit-animation-name:bar48; -moz-animation-name:bar48; -o-animation-name:bar48;}
+.data49 { width: 49%; -webkit-animation-name:bar49; -moz-animation-name:bar49; -o-animation-name:bar49;}
+.data50 { width: 50%; -webkit-animation-name:bar50; -moz-animation-name:bar50; -o-animation-name:bar50;}
+.data51 { width: 51%; -webkit-animation-name:bar51; -moz-animation-name:bar51; -o-animation-name:bar51;}
+.data52 { width: 52%; -webkit-animation-name:bar52; -moz-animation-name:bar52; -o-animation-name:bar52;}
+.data53 { width: 53%; -webkit-animation-name:bar53; -moz-animation-name:bar53; -o-animation-name:bar53;}
+.data54 { width: 54%; -webkit-animation-name:bar54; -moz-animation-name:bar54; -o-animation-name:bar54;}
+.data55 { width: 55%; -webkit-animation-name:bar55; -moz-animation-name:bar55; -o-animation-name:bar55;}
+.data56 { width: 56%; -webkit-animation-name:bar56; -moz-animation-name:bar56; -o-animation-name:bar56;}
+.data57 { width: 57%; -webkit-animation-name:bar57; -moz-animation-name:bar57; -o-animation-name:bar57;}
+.data58 { width: 58%; -webkit-animation-name:bar58; -moz-animation-name:bar58; -o-animation-name:bar58;}
+.data59 { width: 59%; -webkit-animation-name:bar59; -moz-animation-name:bar59; -o-animation-name:bar59;}
+.data60 { width: 60%; -webkit-animation-name:bar60; -moz-animation-name:bar60; -o-animation-name:bar60;}
+.data61 { width: 61%; -webkit-animation-name:bar61; -moz-animation-name:bar61; -o-animation-name:bar61;}
+.data62 { width: 62%; -webkit-animation-name:bar62; -moz-animation-name:bar62; -o-animation-name:bar62;}
+.data63 { width: 63%; -webkit-animation-name:bar63; -moz-animation-name:bar63; -o-animation-name:bar63;}
+.data64 { width: 64%; -webkit-animation-name:bar64; -moz-animation-name:bar64; -o-animation-name:bar64;}
+.data65 { width: 65%; -webkit-animation-name:bar65; -moz-animation-name:bar65; -o-animation-name:bar65;}
+.data66 { width: 66%; -webkit-animation-name:bar66; -moz-animation-name:bar66; -o-animation-name:bar66;}
+.data67 { width: 67%; -webkit-animation-name:bar67; -moz-animation-name:bar67; -o-animation-name:bar67;}
+.data68 { width: 68%; -webkit-animation-name:bar68; -moz-animation-name:bar68; -o-animation-name:bar68;}
+.data69 { width: 69%; -webkit-animation-name:bar69; -moz-animation-name:bar69; -o-animation-name:bar69;}
+.data70 { width: 70%; -webkit-animation-name:bar70; -moz-animation-name:bar70; -o-animation-name:bar70;}
+.data71 { width: 71%; -webkit-animation-name:bar71; -moz-animation-name:bar71; -o-animation-name:bar71;}
+.data72 { width: 72%; -webkit-animation-name:bar72; -moz-animation-name:bar72; -o-animation-name:bar72;}
+.data73 { width: 73%; -webkit-animation-name:bar73; -moz-animation-name:bar73; -o-animation-name:bar73;}
+.data74 { width: 74%; -webkit-animation-name:bar74; -moz-animation-name:bar74; -o-animation-name:bar74;}
+.data75 { width: 75%; -webkit-animation-name:bar75; -moz-animation-name:bar75; -o-animation-name:bar75;}
+.data76 { width: 76%; -webkit-animation-name:bar76; -moz-animation-name:bar76; -o-animation-name:bar76;}
+.data77 { width: 77%; -webkit-animation-name:bar77; -moz-animation-name:bar77; -o-animation-name:bar77;}
+.data78 { width: 78%; -webkit-animation-name:bar78; -moz-animation-name:bar78; -o-animation-name:bar78;}
+.data79 { width: 79%; -webkit-animation-name:bar79; -moz-animation-name:bar79; -o-animation-name:bar79;}
+.data80 { width: 80%; -webkit-animation-name:bar80; -moz-animation-name:bar80; -o-animation-name:bar80;}
+.data81 { width: 81%; -webkit-animation-name:bar81; -moz-animation-name:bar81; -o-animation-name:bar81;}
+.data82 { width: 82%; -webkit-animation-name:bar82; -moz-animation-name:bar82; -o-animation-name:bar82;}
+.data83 { width: 83%; -webkit-animation-name:bar83; -moz-animation-name:bar83; -o-animation-name:bar83;}
+.data84 { width: 84%; -webkit-animation-name:bar84; -moz-animation-name:bar84; -o-animation-name:bar84;}
+.data85 { width: 85%; -webkit-animation-name:bar85; -moz-animation-name:bar85; -o-animation-name:bar85;}
+.data86 { width: 86%; -webkit-animation-name:bar86; -moz-animation-name:bar86; -o-animation-name:bar86;}
+.data87 { width: 87%; -webkit-animation-name:bar87; -moz-animation-name:bar87; -o-animation-name:bar87;}
+.data88 { width: 88%; -webkit-animation-name:bar88; -moz-animation-name:bar88; -o-animation-name:bar88;}
+.data89 { width: 89%; -webkit-animation-name:bar89; -moz-animation-name:bar89; -o-animation-name:bar89;}
+.data90 { width: 90%; -webkit-animation-name:bar90; -moz-animation-name:bar90; -o-animation-name:bar90;}
+.data91 { width: 91%; -webkit-animation-name:bar91; -moz-animation-name:bar91; -o-animation-name:bar91;}
+.data92 { width: 92%; -webkit-animation-name:bar92; -moz-animation-name:bar92; -o-animation-name:bar92;}
+.data93 { width: 93%; -webkit-animation-name:bar93; -moz-animation-name:bar93; -o-animation-name:bar93;}
+.data94 { width: 94%; -webkit-animation-name:bar94; -moz-animation-name:bar94; -o-animation-name:bar94;}
+.data95 { width: 95%; -webkit-animation-name:bar95; -moz-animation-name:bar95; -o-animation-name:bar95;}
+.data96 { width: 96%; -webkit-animation-name:bar96; -moz-animation-name:bar96; -o-animation-name:bar96;}
+.data97 { width: 97%; -webkit-animation-name:bar97; -moz-animation-name:bar97; -o-animation-name:bar97;}
+.data98 { width: 98%; -webkit-animation-name:bar98; -moz-animation-name:bar98; -o-animation-name:bar98;}
+.data99 { width: 99%; -webkit-animation-name:bar99; -moz-animation-name:bar99; -o-animation-name:bar99;}
+.data100 { width: 100%;-webkit-animation-name:bar100; -moz-animation-name:bar100; -o-animation-name:bar100; }
+
+
+.data1, .data2, .data3, .data4, .data5, .data6, .data7, .data8, .data9, .data10, .data11, .data12, .data13, .data14, .data15, .data16, .data17
+, .data18, .data19, .data20, .data21, .data22, .data23, .data24, .data25, .data26, .data27, .data28, .data29, .data30, .data31, .data32, .data33
+, .data34, .data35, .data36, .data37, .data38, .data39, .data40, .data41, .data42, .data43, .data44, .data45, .data46, .data47, .data48, .data49
+, .data50, .data51, .data52, .data53, .data54, .data55, .data56, .data57, .data58, .data59, .data60, .data61, .data62, .data63, .data64, .data65
+, .data66, .data67, .data68, .data69, .data70, .data71, .data72, .data73, .data74, .data75, .data76, .data77, .data78, .data79, .data80, .data81
+, .data82, .data83, .data84, .data85, .data86, .data87, .data88, .data89, .data90, .data91, .data92, .data93, .data94, .data95, .data96, .data97
+, .data98, .data99, .data100
+{
+	-webkit-animation-duration:1.7s;
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-timing-function:ease-in-out;
+	
+	-moz-animation-duration:1.7s;
+	-moz-animation-iteration-count:1;
+	-moz-animation-timing-function:ease-in-out;
+	
+	-o-animation-duration:1.7s;
+	-o-animation-iteration-count:1;
+	-o-animation-timing-function:ease-in-out;
+}
+
+@-webkit-keyframes bar0{0%{width:100%;}100%{width:0%;}}
+@-webkit-keyframes bar1{0%{width:100%;}100%{width:1%;}}
+@-webkit-keyframes bar2{0%{width:100%;}100%{width:2%;}}
+@-webkit-keyframes bar3{0%{width:100%;}100%{width:3%;}}
+@-webkit-keyframes bar4{0%{width:100%;}100%{width:4%;}}
+@-webkit-keyframes bar5{0%{width:100%;}100%{width:5%;}}
+@-webkit-keyframes bar6{0%{width:100%;}100%{width:6%;}}
+@-webkit-keyframes bar7{0%{width:100%;}100%{width:7%;}}
+@-webkit-keyframes bar8{0%{width:100%;}100%{width:8%;}}
+@-webkit-keyframes bar9{0%{width:100%;}100%{width:9%;}}
+@-webkit-keyframes bar10{0%{width:100%;}100%{width:10%;}}
+@-webkit-keyframes bar11{0%{width:100%;}100%{width:11%;}}
+@-webkit-keyframes bar12{0%{width:100%;}100%{width:12%;}}
+@-webkit-keyframes bar13{0%{width:100%;}100%{width:13%;}}
+@-webkit-keyframes bar14{0%{width:100%;}100%{width:14%;}}
+@-webkit-keyframes bar15{0%{width:100%;}100%{width:15%;}}
+@-webkit-keyframes bar16{0%{width:100%;}100%{width:16%;}}
+@-webkit-keyframes bar17{0%{width:100%;}100%{width:17%;}}
+@-webkit-keyframes bar18{0%{width:100%;}100%{width:18%;}}
+@-webkit-keyframes bar19{0%{width:100%;}100%{width:19%;}}
+@-webkit-keyframes bar20{0%{width:100%;}100%{width:20%;}}
+@-webkit-keyframes bar21{0%{width:100%;}100%{width:21%;}}
+@-webkit-keyframes bar22{0%{width:100%;}100%{width:22%;}}
+@-webkit-keyframes bar23{0%{width:100%;}100%{width:23%;}}
+@-webkit-keyframes bar24{0%{width:100%;}100%{width:24%;}}
+@-webkit-keyframes bar25{0%{width:100%;}100%{width:25%;}}
+@-webkit-keyframes bar26{0%{width:100%;}100%{width:26%;}}
+@-webkit-keyframes bar27{0%{width:100%;}100%{width:27%;}}
+@-webkit-keyframes bar28{0%{width:100%;}100%{width:28%;}}
+@-webkit-keyframes bar29{0%{width:100%;}100%{width:29%;}}
+@-webkit-keyframes bar30{0%{width:100%;}100%{width:30%;}}
+@-webkit-keyframes bar31{0%{width:100%;}100%{width:31%;}}
+@-webkit-keyframes bar32{0%{width:100%;}100%{width:32%;}}
+@-webkit-keyframes bar33{0%{width:100%;}100%{width:33%;}}
+@-webkit-keyframes bar34{0%{width:100%;}100%{width:34%;}}
+@-webkit-keyframes bar35{0%{width:100%;}100%{width:35%;}}
+@-webkit-keyframes bar36{0%{width:100%;}100%{width:36%;}}
+@-webkit-keyframes bar37{0%{width:100%;}100%{width:37%;}}
+@-webkit-keyframes bar38{0%{width:100%;}100%{width:38%;}}
+@-webkit-keyframes bar39{0%{width:100%;}100%{width:39%;}}
+@-webkit-keyframes bar40{0%{width:100%;}100%{width:40%;}}
+@-webkit-keyframes bar41{0%{width:100%;}100%{width:41%;}}
+@-webkit-keyframes bar42{0%{width:100%;}100%{width:42%;}}
+@-webkit-keyframes bar43{0%{width:100%;}100%{width:43%;}}
+@-webkit-keyframes bar44{0%{width:100%;}100%{width:44%;}}
+@-webkit-keyframes bar45{0%{width:100%;}100%{width:45%;}}
+@-webkit-keyframes bar46{0%{width:100%;}100%{width:46%;}}
+@-webkit-keyframes bar47{0%{width:100%;}100%{width:47%;}}
+@-webkit-keyframes bar48{0%{width:100%;}100%{width:48%;}}
+@-webkit-keyframes bar49{0%{width:100%;}100%{width:49%;}}
+@-webkit-keyframes bar50{0%{width:100%;}100%{width:50%;}}
+@-webkit-keyframes bar51{0%{width:100%;}100%{width:51%;}}
+@-webkit-keyframes bar52{0%{width:100%;}100%{width:52%;}}
+@-webkit-keyframes bar53{0%{width:100%;}100%{width:53%;}}
+@-webkit-keyframes bar54{0%{width:100%;}100%{width:54%;}}
+@-webkit-keyframes bar55{0%{width:100%;}100%{width:55%;}}
+@-webkit-keyframes bar56{0%{width:100%;}100%{width:56%;}}
+@-webkit-keyframes bar57{0%{width:100%;}100%{width:57%;}}
+@-webkit-keyframes bar58{0%{width:100%;}100%{width:58%;}}
+@-webkit-keyframes bar59{0%{width:100%;}100%{width:59%;}}
+@-webkit-keyframes bar60{0%{width:100%;}100%{width:60%;}}
+@-webkit-keyframes bar61{0%{width:100%;}100%{width:61%;}}
+@-webkit-keyframes bar62{0%{width:100%;}100%{width:62%;}}
+@-webkit-keyframes bar63{0%{width:100%;}100%{width:63%;}}
+@-webkit-keyframes bar64{0%{width:100%;}100%{width:64%;}}
+@-webkit-keyframes bar65{0%{width:100%;}100%{width:65%;}}
+@-webkit-keyframes bar66{0%{width:100%;}100%{width:66%;}}
+@-webkit-keyframes bar67{0%{width:100%;}100%{width:67%;}}
+@-webkit-keyframes bar68{0%{width:100%;}100%{width:68%;}}
+@-webkit-keyframes bar69{0%{width:100%;}100%{width:69%;}}
+@-webkit-keyframes bar70{0%{width:100%;}100%{width:70%;}}
+@-webkit-keyframes bar71{0%{width:100%;}100%{width:71%;}}
+@-webkit-keyframes bar72{0%{width:100%;}100%{width:72%;}}
+@-webkit-keyframes bar73{0%{width:100%;}100%{width:73%;}}
+@-webkit-keyframes bar74{0%{width:100%;}100%{width:74%;}}
+@-webkit-keyframes bar75{0%{width:100%;}100%{width:75%;}}
+@-webkit-keyframes bar76{0%{width:100%;}100%{width:76%;}}
+@-webkit-keyframes bar77{0%{width:100%;}100%{width:77%;}}
+@-webkit-keyframes bar78{0%{width:100%;}100%{width:78%;}}
+@-webkit-keyframes bar79{0%{width:100%;}100%{width:79%;}}
+@-webkit-keyframes bar80{0%{width:100%;}100%{width:80%;}}
+@-webkit-keyframes bar81{0%{width:100%;}100%{width:81%;}}
+@-webkit-keyframes bar82{0%{width:100%;}100%{width:82%;}}
+@-webkit-keyframes bar83{0%{width:100%;}100%{width:83%;}}
+@-webkit-keyframes bar84{0%{width:100%;}100%{width:84%;}}
+@-webkit-keyframes bar85{0%{width:100%;}100%{width:85%;}}
+@-webkit-keyframes bar86{0%{width:100%;}100%{width:86%;}}
+@-webkit-keyframes bar87{0%{width:100%;}100%{width:87%;}}
+@-webkit-keyframes bar88{0%{width:100%;}100%{width:88%;}}
+@-webkit-keyframes bar89{0%{width:100%;}100%{width:89%;}}
+@-webkit-keyframes bar90{0%{width:100%;}100%{width:90%;}}
+@-webkit-keyframes bar91{0%{width:100%;}100%{width:91%;}}
+@-webkit-keyframes bar92{0%{width:100%;}100%{width:92%;}}
+@-webkit-keyframes bar93{0%{width:100%;}100%{width:93%;}}
+@-webkit-keyframes bar94{0%{width:100%;}100%{width:94%;}}
+@-webkit-keyframes bar95{0%{width:100%;}100%{width:95%;}}
+@-webkit-keyframes bar96{0%{width:100%;}100%{width:96%;}}
+@-webkit-keyframes bar97{0%{width:100%;}100%{width:97%;}}
+@-webkit-keyframes bar98{0%{width:100%;}100%{width:98%;}}
+@-webkit-keyframes bar99{0%{width:100%;}100%{width:99%;}}
+@-webkit-keyframes bar100{0%{width:100%;}100%{width:100%;}}
+
+@-moz-keyframes bar0{0%{width:100%;}100%{width:0%;}}
+@-moz-keyframes bar1{0%{width:100%;}100%{width:1%;}}
+@-moz-keyframes bar2{0%{width:100%;}100%{width:2%;}}
+@-moz-keyframes bar3{0%{width:100%;}100%{width:3%;}}
+@-moz-keyframes bar4{0%{width:100%;}100%{width:4%;}}
+@-moz-keyframes bar5{0%{width:100%;}100%{width:5%;}}
+@-moz-keyframes bar6{0%{width:100%;}100%{width:6%;}}
+@-moz-keyframes bar7{0%{width:100%;}100%{width:7%;}}
+@-moz-keyframes bar8{0%{width:100%;}100%{width:8%;}}
+@-moz-keyframes bar9{0%{width:100%;}100%{width:9%;}}
+@-moz-keyframes bar10{0%{width:100%;}100%{width:10%;}}
+@-moz-keyframes bar11{0%{width:100%;}100%{width:11%;}}
+@-moz-keyframes bar12{0%{width:100%;}100%{width:12%;}}
+@-moz-keyframes bar13{0%{width:100%;}100%{width:13%;}}
+@-moz-keyframes bar14{0%{width:100%;}100%{width:14%;}}
+@-moz-keyframes bar15{0%{width:100%;}100%{width:15%;}}
+@-moz-keyframes bar16{0%{width:100%;}100%{width:16%;}}
+@-moz-keyframes bar17{0%{width:100%;}100%{width:17%;}}
+@-moz-keyframes bar18{0%{width:100%;}100%{width:18%;}}
+@-moz-keyframes bar19{0%{width:100%;}100%{width:19%;}}
+@-moz-keyframes bar20{0%{width:100%;}100%{width:20%;}}
+@-moz-keyframes bar21{0%{width:100%;}100%{width:21%;}}
+@-moz-keyframes bar22{0%{width:100%;}100%{width:22%;}}
+@-moz-keyframes bar23{0%{width:100%;}100%{width:23%;}}
+@-moz-keyframes bar24{0%{width:100%;}100%{width:24%;}}
+@-moz-keyframes bar25{0%{width:100%;}100%{width:25%;}}
+@-moz-keyframes bar26{0%{width:100%;}100%{width:26%;}}
+@-moz-keyframes bar27{0%{width:100%;}100%{width:27%;}}
+@-moz-keyframes bar28{0%{width:100%;}100%{width:28%;}}
+@-moz-keyframes bar29{0%{width:100%;}100%{width:29%;}}
+@-moz-keyframes bar30{0%{width:100%;}100%{width:30%;}}
+@-moz-keyframes bar31{0%{width:100%;}100%{width:31%;}}
+@-moz-keyframes bar32{0%{width:100%;}100%{width:32%;}}
+@-moz-keyframes bar33{0%{width:100%;}100%{width:33%;}}
+@-moz-keyframes bar34{0%{width:100%;}100%{width:34%;}}
+@-moz-keyframes bar35{0%{width:100%;}100%{width:35%;}}
+@-moz-keyframes bar36{0%{width:100%;}100%{width:36%;}}
+@-moz-keyframes bar37{0%{width:100%;}100%{width:37%;}}
+@-moz-keyframes bar38{0%{width:100%;}100%{width:38%;}}
+@-moz-keyframes bar39{0%{width:100%;}100%{width:39%;}}
+@-moz-keyframes bar40{0%{width:100%;}100%{width:40%;}}
+@-moz-keyframes bar41{0%{width:100%;}100%{width:41%;}}
+@-moz-keyframes bar42{0%{width:100%;}100%{width:42%;}}
+@-moz-keyframes bar43{0%{width:100%;}100%{width:43%;}}
+@-moz-keyframes bar44{0%{width:100%;}100%{width:44%;}}
+@-moz-keyframes bar45{0%{width:100%;}100%{width:45%;}}
+@-moz-keyframes bar46{0%{width:100%;}100%{width:46%;}}
+@-moz-keyframes bar47{0%{width:100%;}100%{width:47%;}}
+@-moz-keyframes bar48{0%{width:100%;}100%{width:48%;}}
+@-moz-keyframes bar49{0%{width:100%;}100%{width:49%;}}
+@-moz-keyframes bar50{0%{width:100%;}100%{width:50%;}}
+@-moz-keyframes bar51{0%{width:100%;}100%{width:51%;}}
+@-moz-keyframes bar52{0%{width:100%;}100%{width:52%;}}
+@-moz-keyframes bar53{0%{width:100%;}100%{width:53%;}}
+@-moz-keyframes bar54{0%{width:100%;}100%{width:54%;}}
+@-moz-keyframes bar55{0%{width:100%;}100%{width:55%;}}
+@-moz-keyframes bar56{0%{width:100%;}100%{width:56%;}}
+@-moz-keyframes bar57{0%{width:100%;}100%{width:57%;}}
+@-moz-keyframes bar58{0%{width:100%;}100%{width:58%;}}
+@-moz-keyframes bar59{0%{width:100%;}100%{width:59%;}}
+@-moz-keyframes bar60{0%{width:100%;}100%{width:60%;}}
+@-moz-keyframes bar61{0%{width:100%;}100%{width:61%;}}
+@-moz-keyframes bar62{0%{width:100%;}100%{width:62%;}}
+@-moz-keyframes bar63{0%{width:100%;}100%{width:63%;}}
+@-moz-keyframes bar64{0%{width:100%;}100%{width:64%;}}
+@-moz-keyframes bar65{0%{width:100%;}100%{width:65%;}}
+@-moz-keyframes bar66{0%{width:100%;}100%{width:66%;}}
+@-moz-keyframes bar67{0%{width:100%;}100%{width:67%;}}
+@-moz-keyframes bar68{0%{width:100%;}100%{width:68%;}}
+@-moz-keyframes bar69{0%{width:100%;}100%{width:69%;}}
+@-moz-keyframes bar70{0%{width:100%;}100%{width:70%;}}
+@-moz-keyframes bar71{0%{width:100%;}100%{width:71%;}}
+@-moz-keyframes bar72{0%{width:100%;}100%{width:72%;}}
+@-moz-keyframes bar73{0%{width:100%;}100%{width:73%;}}
+@-moz-keyframes bar74{0%{width:100%;}100%{width:74%;}}
+@-moz-keyframes bar75{0%{width:100%;}100%{width:75%;}}
+@-moz-keyframes bar76{0%{width:100%;}100%{width:76%;}}
+@-moz-keyframes bar77{0%{width:100%;}100%{width:77%;}}
+@-moz-keyframes bar78{0%{width:100%;}100%{width:78%;}}
+@-moz-keyframes bar79{0%{width:100%;}100%{width:79%;}}
+@-moz-keyframes bar80{0%{width:100%;}100%{width:80%;}}
+@-moz-keyframes bar81{0%{width:100%;}100%{width:81%;}}
+@-moz-keyframes bar82{0%{width:100%;}100%{width:82%;}}
+@-moz-keyframes bar83{0%{width:100%;}100%{width:83%;}}
+@-moz-keyframes bar84{0%{width:100%;}100%{width:84%;}}
+@-moz-keyframes bar85{0%{width:100%;}100%{width:85%;}}
+@-moz-keyframes bar86{0%{width:100%;}100%{width:86%;}}
+@-moz-keyframes bar87{0%{width:100%;}100%{width:87%;}}
+@-moz-keyframes bar88{0%{width:100%;}100%{width:88%;}}
+@-moz-keyframes bar89{0%{width:100%;}100%{width:89%;}}
+@-moz-keyframes bar90{0%{width:100%;}100%{width:90%;}}
+@-moz-keyframes bar91{0%{width:100%;}100%{width:91%;}}
+@-moz-keyframes bar92{0%{width:100%;}100%{width:92%;}}
+@-moz-keyframes bar93{0%{width:100%;}100%{width:93%;}}
+@-moz-keyframes bar94{0%{width:100%;}100%{width:94%;}}
+@-moz-keyframes bar95{0%{width:100%;}100%{width:95%;}}
+@-moz-keyframes bar96{0%{width:100%;}100%{width:96%;}}
+@-moz-keyframes bar97{0%{width:100%;}100%{width:97%;}}
+@-moz-keyframes bar98{0%{width:100%;}100%{width:98%;}}
+@-moz-keyframes bar99{0%{width:100%;}100%{width:99%;}}
+@-moz-keyframes bar100{0%{width:100%;}100%{width:100%;}}
+
+@-o-keyframes bar0{0%{width:100%;}100%{width:0%;}}
+@-o-keyframes bar1{0%{width:100%;}100%{width:1%;}}
+@-o-keyframes bar2{0%{width:100%;}100%{width:2%;}}
+@-o-keyframes bar3{0%{width:100%;}100%{width:3%;}}
+@-o-keyframes bar4{0%{width:100%;}100%{width:4%;}}
+@-o-keyframes bar5{0%{width:100%;}100%{width:5%;}}
+@-o-keyframes bar6{0%{width:100%;}100%{width:6%;}}
+@-o-keyframes bar7{0%{width:100%;}100%{width:7%;}}
+@-o-keyframes bar8{0%{width:100%;}100%{width:8%;}}
+@-o-keyframes bar9{0%{width:100%;}100%{width:9%;}}
+@-o-keyframes bar10{0%{width:100%;}100%{width:10%;}}
+@-o-keyframes bar11{0%{width:100%;}100%{width:11%;}}
+@-o-keyframes bar12{0%{width:100%;}100%{width:12%;}}
+@-o-keyframes bar13{0%{width:100%;}100%{width:13%;}}
+@-o-keyframes bar14{0%{width:100%;}100%{width:14%;}}
+@-o-keyframes bar15{0%{width:100%;}100%{width:15%;}}
+@-o-keyframes bar16{0%{width:100%;}100%{width:16%;}}
+@-o-keyframes bar17{0%{width:100%;}100%{width:17%;}}
+@-o-keyframes bar18{0%{width:100%;}100%{width:18%;}}
+@-o-keyframes bar19{0%{width:100%;}100%{width:19%;}}
+@-o-keyframes bar20{0%{width:100%;}100%{width:20%;}}
+@-o-keyframes bar21{0%{width:100%;}100%{width:21%;}}
+@-o-keyframes bar22{0%{width:100%;}100%{width:22%;}}
+@-o-keyframes bar23{0%{width:100%;}100%{width:23%;}}
+@-o-keyframes bar24{0%{width:100%;}100%{width:24%;}}
+@-o-keyframes bar25{0%{width:100%;}100%{width:25%;}}
+@-o-keyframes bar26{0%{width:100%;}100%{width:26%;}}
+@-o-keyframes bar27{0%{width:100%;}100%{width:27%;}}
+@-o-keyframes bar28{0%{width:100%;}100%{width:28%;}}
+@-o-keyframes bar29{0%{width:100%;}100%{width:29%;}}
+@-o-keyframes bar30{0%{width:100%;}100%{width:30%;}}
+@-o-keyframes bar31{0%{width:100%;}100%{width:31%;}}
+@-o-keyframes bar32{0%{width:100%;}100%{width:32%;}}
+@-o-keyframes bar33{0%{width:100%;}100%{width:33%;}}
+@-o-keyframes bar34{0%{width:100%;}100%{width:34%;}}
+@-o-keyframes bar35{0%{width:100%;}100%{width:35%;}}
+@-o-keyframes bar36{0%{width:100%;}100%{width:36%;}}
+@-o-keyframes bar37{0%{width:100%;}100%{width:37%;}}
+@-o-keyframes bar38{0%{width:100%;}100%{width:38%;}}
+@-o-keyframes bar39{0%{width:100%;}100%{width:39%;}}
+@-o-keyframes bar40{0%{width:100%;}100%{width:40%;}}
+@-o-keyframes bar41{0%{width:100%;}100%{width:41%;}}
+@-o-keyframes bar42{0%{width:100%;}100%{width:42%;}}
+@-o-keyframes bar43{0%{width:100%;}100%{width:43%;}}
+@-o-keyframes bar44{0%{width:100%;}100%{width:44%;}}
+@-o-keyframes bar45{0%{width:100%;}100%{width:45%;}}
+@-o-keyframes bar46{0%{width:100%;}100%{width:46%;}}
+@-o-keyframes bar47{0%{width:100%;}100%{width:47%;}}
+@-o-keyframes bar48{0%{width:100%;}100%{width:48%;}}
+@-o-keyframes bar49{0%{width:100%;}100%{width:49%;}}
+@-o-keyframes bar50{0%{width:100%;}100%{width:50%;}}
+@-o-keyframes bar51{0%{width:100%;}100%{width:51%;}}
+@-o-keyframes bar52{0%{width:100%;}100%{width:52%;}}
+@-o-keyframes bar53{0%{width:100%;}100%{width:53%;}}
+@-o-keyframes bar54{0%{width:100%;}100%{width:54%;}}
+@-o-keyframes bar55{0%{width:100%;}100%{width:55%;}}
+@-o-keyframes bar56{0%{width:100%;}100%{width:56%;}}
+@-o-keyframes bar57{0%{width:100%;}100%{width:57%;}}
+@-o-keyframes bar58{0%{width:100%;}100%{width:58%;}}
+@-o-keyframes bar59{0%{width:100%;}100%{width:59%;}}
+@-o-keyframes bar60{0%{width:100%;}100%{width:60%;}}
+@-o-keyframes bar61{0%{width:100%;}100%{width:61%;}}
+@-o-keyframes bar62{0%{width:100%;}100%{width:62%;}}
+@-o-keyframes bar63{0%{width:100%;}100%{width:63%;}}
+@-o-keyframes bar64{0%{width:100%;}100%{width:64%;}}
+@-o-keyframes bar65{0%{width:100%;}100%{width:65%;}}
+@-o-keyframes bar66{0%{width:100%;}100%{width:66%;}}
+@-o-keyframes bar67{0%{width:100%;}100%{width:67%;}}
+@-o-keyframes bar68{0%{width:100%;}100%{width:68%;}}
+@-o-keyframes bar69{0%{width:100%;}100%{width:69%;}}
+@-o-keyframes bar70{0%{width:100%;}100%{width:70%;}}
+@-o-keyframes bar71{0%{width:100%;}100%{width:71%;}}
+@-o-keyframes bar72{0%{width:100%;}100%{width:72%;}}
+@-o-keyframes bar73{0%{width:100%;}100%{width:73%;}}
+@-o-keyframes bar74{0%{width:100%;}100%{width:74%;}}
+@-o-keyframes bar75{0%{width:100%;}100%{width:75%;}}
+@-o-keyframes bar76{0%{width:100%;}100%{width:76%;}}
+@-o-keyframes bar77{0%{width:100%;}100%{width:77%;}}
+@-o-keyframes bar78{0%{width:100%;}100%{width:78%;}}
+@-o-keyframes bar79{0%{width:100%;}100%{width:79%;}}
+@-o-keyframes bar80{0%{width:100%;}100%{width:80%;}}
+@-o-keyframes bar81{0%{width:100%;}100%{width:81%;}}
+@-o-keyframes bar82{0%{width:100%;}100%{width:82%;}}
+@-o-keyframes bar83{0%{width:100%;}100%{width:83%;}}
+@-o-keyframes bar84{0%{width:100%;}100%{width:84%;}}
+@-o-keyframes bar85{0%{width:100%;}100%{width:85%;}}
+@-o-keyframes bar86{0%{width:100%;}100%{width:86%;}}
+@-o-keyframes bar87{0%{width:100%;}100%{width:87%;}}
+@-o-keyframes bar88{0%{width:100%;}100%{width:88%;}}
+@-o-keyframes bar89{0%{width:100%;}100%{width:89%;}}
+@-o-keyframes bar90{0%{width:100%;}100%{width:90%;}}
+@-o-keyframes bar91{0%{width:100%;}100%{width:91%;}}
+@-o-keyframes bar92{0%{width:100%;}100%{width:92%;}}
+@-o-keyframes bar93{0%{width:100%;}100%{width:93%;}}
+@-o-keyframes bar94{0%{width:100%;}100%{width:94%;}}
+@-o-keyframes bar95{0%{width:100%;}100%{width:95%;}}
+@-o-keyframes bar96{0%{width:100%;}100%{width:96%;}}
+@-o-keyframes bar97{0%{width:100%;}100%{width:97%;}}
+@-o-keyframes bar98{0%{width:100%;}100%{width:98%;}}
+@-o-keyframes bar99{0%{width:100%;}100%{width:99%;}}
+@-o-keyframes bar100{0%{width:100%;}100%{width:100%;}}
+
+
+
+/********************************************************************
+	Graph Box
+********************************************************************/
+
+
+/* graph */
+.graphbox{
+	float: left;
+	margin: 10px;
+	padding: 10px;
+}
+
+/* sizes */
+.graphbox .small{ min-width: 200px; max-width:25%; font-size: 10px; }
+.graphbox .small > .title{ font-size: 12px; }
+.graphbox .small > dl > dt{ padding:1px 0;  margin-top: 2px;}
+.graphbox .small > dl > dd { margin-left: 10px;}
+.graphbox .small > dl > dd span{ padding:3px 0; }
+
+.graphbox .medium{ min-width: 300px; max-width:50%; font-size: 12px; }
+.graphbox .medium > .title{ font-size: 14px; }
+.graphbox .medium > dl > dt{ padding:4px 0; margin-top: 2px;}
+.graphbox .medium > dl > dd { margin-left: 10px;}
+.graphbox .medium > dl > dd span{ padding:4px 0; margin-top: 2px;}
+
+.graphbox .big {width: 100%}
+.graphbox .big{ width: 68%; font-size: 14px; }
+.graphbox .big > .title{ font-size: 16px; }
+.graphbox .big > dl > dt{ padding: 0 !important; margin-top: 0;}
+.graphbox .big > dl > dd { margin-left: 10px;}
+.graphbox .big > dl > dd span{ padding:6px 0;}
+
+/* title */
+.graphbox > .title {
+	width: 100%;
+	padding: 6px 0 3px 0;
+	border-bottom: solid 1px #ababab;
+}
+
+/* icon */
+.graphbox > .title  > .icon, .graphbox > dl  > .icon{
+	font-family: "ModernPictogramsNormal" !important;
+	font-size: 20px;
+	margin: auto 7px auto auto;
+}
+/* bar text */
+.graphbox dd a {
+	color: #fff;
+}
+.graphbox dd a:hover {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: underline;
+}
+/* bars */
+.graphbox > dl > dt{
+	float:left;
+	width: 100%;
+	text-align:left;
+}
+.graphbox  > dl > dd{
+	float:left;
+	width: 100%;
+	padding-bottom: 7px;
+	display:inline;	
+	position: relative;
+}
+.graphbox dd span{
+	text-align:left;
+	display:block;
+	padding-left: 0.5em;
+	line-height: 33px;
+	height: 33px !important;
+}
+.graphbox dd span:hover{
+	cursor: pointer;
+}
+.graph-sub-title {
+	margin-bottom: 0;
+}
+.graphbox dt,
+.graphbox dt.hentry {
+	margin-top: 0 !important;
+	margin-bottom:0 !important;
+	padding: 0 !important;
+}
+.graphbox dl {
+	overflow: visible;
+	width: 100%;
+	height: 393px;
+	margin:0;
+	padding:0;
+}
+.strong-bar a {
+	font-weight: bold;
+}
+.graphbox.big {
+   height: 420px;
+   float: right;
+   width: 60%;
+}
+/* Graph Box Info Panel */
+#graph-info {
+	margin-left: 1px;
+}
+#graph-info:nth-child(even) {
+}
+
+#graph-info:nth-child(2) > .graph-info-tab {
+    opacity: 1;
+    left: 0;
+    top: 0;
+}
+#graph-info:hover > .graph-info-tab{
+    opacity: 1;
+}
+.graph-info-tab {
+	/* must add page background color to hide first info box*/
+    background: #fff;
+    margin-left:-200px;
+	height: 363px;
+	border: 1px solid #ddd;
+	width: 150px;
+	padding: 1em;
+    position:absolute; 
+    opacity:0;
+}
+.info-tab-image {
+	margin-top: 0;
+	margin-bottom: 1em;
+}
+.graph-info-tab .info-tab-meta {
+	margin-bottom: 1em;
+}
+.graphbox dd:nth-child(2) .graph-info-tab {
+}
+.graphbox dd:nth-child(4) .graph-info-tab {
+	top: -40px;
+}
+.graphbox dd:nth-child(6) .graph-info-tab {
+	top: -80px;
+}
+.graphbox dd:nth-child(8) .graph-info-tab {
+	top: -120px;
+}
+.graphbox dd:nth-child(10) .graph-info-tab {
+	top: -160px;
+}
+.graphbox dd:nth-child(12) .graph-info-tab {
+	top: -200px;
+}
+.graphbox dd:nth-child(14) .graph-info-tab {
+	top: -240px;
+}
+.graphbox dd:nth-child(16) .graph-info-tab {
+	top: -280px;
+}
+.graphbox dd:nth-child(18) .graph-info-tab {
+	top: -320px;
+}
+.graphbox dd:nth-child(20) .graph-info-tab {
+	top: -360px;
+}
+.graphbox dd:nth-child(22) .graph-info-tab {
+	top: -400px;
+}
