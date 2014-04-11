@@ -3,7 +3,7 @@
  * Map Script
  */
 
-function supermap_elements_script() {
+function epl_supermap_elements_script() {
 
 	// Listings 
 	$map_args = array(

@@ -1,5 +1,5 @@
 <?php
-$fields = get_admin_option_fields();
+$fields = epl_get_admin_option_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
 		foreach($fields as $field_group) {
@@ -106,7 +106,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	</div>
 </div><?php
 
-function get_admin_option_fields() {
+function epl_get_admin_option_fields() {
 	$opts_epl_gallery_n = array();
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;

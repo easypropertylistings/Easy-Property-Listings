@@ -1,5 +1,5 @@
 <?php
-function get_property_price($post) {
+function epl_get_property_price($post) {
 	$d_bond = $epl_bond_display;
 	$property_status = get_post_meta($post->id, 'property_status', true);
 	$property_price_search = get_post_meta($post->id, 'property_price', true);
@@ -197,14 +197,14 @@ function get_property_price($post) {
 	return $return;
 }
 
-function is_builder_framework_theme() {
+function epl_is_builder_framework_theme() {
 	if(function_exists('it_classes_load')) {
 		return true;
 	}
 	return false;
 }
 
-function get_thumbnail_sizes() {
+function epl_get_thumbnail_sizes() {
 	global $_wp_additional_image_sizes;
 	$sizes = array();
 	foreach( get_intermediate_image_sizes() as $s ) {
@@ -221,7 +221,7 @@ function get_thumbnail_sizes() {
 	return $sizes;
 }
 
-function remote_url_get($url) {
+function epl_remote_url_get($url) {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 

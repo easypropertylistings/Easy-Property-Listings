@@ -87,7 +87,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 						
 								<?php
 									$arr = array();
-									$meta_vals = get_meta_values( 'property_category', $instance['property_type'], 'publish' );
+									$meta_vals = epl_get_meta_values( 'property_category', $instance['property_type'], 'publish' );
 									if(!empty($meta_vals)) {
 										$arr = array(
 											'House'					=>	'House',
@@ -454,12 +454,12 @@ class EPL_Widget_Property_Search extends WP_Widget {
 add_action( 'widgets_init', create_function('', 'return register_widget("EPL_Widget_Property_Search");') );
 
 //Property Search Query
-function epl_pre_get_posts( $query ) {
+function epl_search_pre_get_posts( $query ) {
 	if ( is_admin() || ! $query->is_main_query() ) {
 		return;
 	}
 	
-	if( is_epl_search() ) {
+	if( epl_is_search() ) {
 		$epl_search_page = get_option('epl_search_page');
 		if($epl_search_page > 0) {
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -587,25 +587,25 @@ function epl_pre_get_posts( $query ) {
 		}
 	}
 }
-add_action( 'pre_get_posts', 'epl_pre_get_posts' );
+add_action( 'pre_get_posts', 'epl_search_pre_get_posts' );
 
 //Property Search Template
-function epl_init() {
-	if( is_epl_search() ) {
+function epl_search_init() {
+	if( epl_is_search() ) {
 		load_template( dirname( __FILE__ ) . '/templates/content-property-card.php' );
 	}
 }
-add_filter('init', 'epl_init');
+add_filter('init', 'epl_search_init');
 
 //Is Property Search
-function is_epl_search() {
+function epl_is_search() {
 	if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_search') {
 		return true;
 	}
 	return false;
 }
 
-function get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 	if( empty($key) ) {
 		return;
 	}

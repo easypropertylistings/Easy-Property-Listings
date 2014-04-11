@@ -84,7 +84,7 @@ class EPL_Widget_Suburb_Profile extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('image'); ?>"><?php _e('Image Size'); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id('image'); ?>" name="<?php echo $this->get_field_name('image'); ?>">
 				<?php
-					$sizes = get_thumbnail_sizes();
+					$sizes = epl_get_thumbnail_sizes();
 					foreach ($sizes as $k=>$v) {
 						$v = implode(" x ", $v);
 						echo '<option class="widefat" value="' . $k . '" id="' . $k . '"', $instance['image'] == $k ? ' selected="selected"' : '', '>', $k . ' (' . $v . ' )', '</option>';

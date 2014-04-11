@@ -14,12 +14,12 @@ function epl_image_size_names_choose( $epl_sizes ) {
 }
 add_filter( 'image_size_names_choose', 'epl_image_size_names_choose' );
 
-function my_maps_init() {
-	add_feed('georss','my_georss_feed');
+function epl_maps_init() {
+	add_feed('georss','epl_georss_feed');
 }
-add_action('init', 'my_maps_init');
+add_action('init', 'epl_maps_init');
 
-function my_georss_feed() {
+function epl_georss_feed() {
 	include( 'templates/feed-georss.php' );
 }
 
@@ -35,18 +35,18 @@ function epl_property_author_archives($query) {
 add_action( 'pre_get_posts', 'epl_property_author_archives' );
 
 // Add Custom Post Types to Author Archive Page	
-function custom_post_author_archive($query) {
+function epl_custom_post_author_archive($query) {
 	if ($query->is_author)
 		$query->set( 'post_type', array('epl_property', 'epl_rental', 'epl_testimonial', 'post', 'epl_commercial' , 'epl_land') );
 	
-	remove_action( 'pre_get_posts', 'custom_post_author_archive' );
+	remove_action( 'pre_get_posts', 'epl_custom_post_author_archive' );
 }
-add_action('pre_get_posts', 'custom_post_author_archive');
+add_action('pre_get_posts', 'epl_custom_post_author_archive');
 
 // Gravity Forms Filter for populating contact form with author email address
-add_filter('gform_field_value_author_email', 'epl_populate_post_author_email');
 function epl_populate_post_author_email($value) {
 	global $post;    
 	$author_email = get_the_author_meta('user_email', $post->post_author);    
 	return $author_email;
 }
+add_filter('gform_field_value_author_email', 'epl_populate_post_author_email');

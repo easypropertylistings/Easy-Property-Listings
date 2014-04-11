@@ -46,12 +46,3 @@ function epl_get_youtube_id_from_url($youtube_url) {
 
 	return $youtube_id;
 }
-
-// Append Custom Post Types to Author Page
-function epl_custom_post_author_archive($query) {
-	if ($query->is_author)
-		$query->set( 'post_type', array('epl_property', 'epl_rental', 'epl_land' ,  'epl_testimonial' , 'epl_commercial' , 'post') );
-	
-	remove_action( 'pre_get_posts', 'epl_custom_post_author_archive' );
-}
-add_action('pre_get_posts', 'epl_custom_post_author_archive');

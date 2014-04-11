@@ -1330,7 +1330,7 @@ function epl_save_meta_boxes( $post_ID ) {
 												$address = $_POST['property_address_street_number'] . ' ' . $_POST['property_address_street'] . ' ' . $_POST['property_address_suburb'] . ' ' . $_POST['property_address_state'] . ' ' . $_POST['property_address_postal_code'];
 												$address = urlencode(strtolower(trim($address)));
 												$geourl = "http://maps.google.com/maps/api/geocode/json?address=". $address ."&sensor=false";
-												$response = remote_url_get($geourl);												
+												$response = epl_remote_url_get($geourl);												
 												$_POST[ $field['name'] ] = $response[0]->geometry->location->lat . ',' . $response[0]->geometry->location->lng;
 											}
 										} */
@@ -1408,7 +1408,7 @@ function epl_get_geocoordinates() {
 	$address = $_POST['property_address_street_number'] . ' ' . $_POST['property_address_street'] . ' ' . $_POST['property_address_suburb'] . ' ' . $_POST['property_address_state'] . ' ' . $_POST['property_address_postal_code'];
 	$address = urlencode(strtolower(trim($address)));
 	$geourl = "http://maps.google.com/maps/api/geocode/json?address=". $address ."&sensor=false";
-	$response = remote_url_get($geourl);	
+	$response = epl_remote_url_get($geourl);	
 	$geocoordinates = $response[0]->geometry->location->lat . ',' . $response[0]->geometry->location->lng;
 	echo $geocoordinates;
 	exit;

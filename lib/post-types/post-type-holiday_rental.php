@@ -42,7 +42,7 @@ function epl_register_custom_post_type_holiday_rental() {
 add_action( 'init', 'epl_register_custom_post_type_holiday_rental', 0 );
 
 // Manage Listing Columns
-function manage_epl_holiday_rental_columns_heading( $columns ) {
+function epl_manage_epl_holiday_rental_columns_heading( $columns ) {
 	$columns = array(
 		'cb' => '<input type="checkbox" />',
 		'property_thumb' => 'Featured Image',
@@ -64,9 +64,9 @@ function manage_epl_holiday_rental_columns_heading( $columns ) {
 	}
 	return $columns;
 }
-add_filter( 'manage_edit-epl_holiday_rental_columns', 'manage_epl_holiday_rental_columns_heading' ) ;
+add_filter( 'manage_edit-epl_holiday_rental_columns', 'epl_manage_epl_holiday_rental_columns_heading' ) ;
 
-function manage_epl_holiday_rental_columns_value( $column, $post_id ) {
+function epl_manage_epl_holiday_rental_columns_value( $column, $post_id ) {
 	global $post;
 	switch( $column ) {
 	
@@ -158,13 +158,13 @@ function manage_epl_holiday_rental_columns_value( $column, $post_id ) {
 			break;
 	}
 }
-add_action( 'manage_epl_holiday_rental_posts_custom_column', 'manage_epl_holiday_rental_columns_value', 10, 2 );
+add_action( 'manage_epl_holiday_rental_posts_custom_column', 'epl_manage_epl_holiday_rental_columns_value', 10, 2 );
 
 // Manage Columns Sorting
-function manage_epl_holiday_rental_sortable_columns( $columns ) {
+function epl_manage_epl_holiday_rental_sortable_columns( $columns ) {
 	$columns['property_status'] = 'property_status';
 	$columns['property_inspection_times'] = 'property_inspection_times';
 	$columns['property_address_suburb'] = 'property_address_suburb';
 	return $columns;
 }
-add_filter( 'manage_edit-epl_holiday_rental_sortable_columns', 'manage_epl_holiday_rental_sortable_columns' );
+add_filter( 'manage_edit-epl_holiday_rental_sortable_columns', 'epl_manage_epl_holiday_rental_sortable_columns' );

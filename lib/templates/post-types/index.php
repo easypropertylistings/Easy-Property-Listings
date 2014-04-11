@@ -6,7 +6,7 @@ Needs to work with other themes. These template files af a function that iThemes
 
 // Load Custom Template from Plugin Directory
 function epl_load_core_single_templates($single_template) {
-	if(is_builder_framework_theme()) {
+	if(epl_is_builder_framework_theme()) {
 		$template_path = dirname( __FILE__ ) . '/ithemes-builder/';
 	} else {
 		$template_path = dirname( __FILE__ ) . '/default/';
@@ -41,7 +41,7 @@ function epl_load_core_single_templates($single_template) {
 
 
 function epl_load_core_archive_templates( $archive_template ) {
-	if(is_builder_framework_theme()) {
+	if(epl_is_builder_framework_theme()) {
 		$template_path = dirname( __FILE__ ) . '/ithemes-builder/';
 	} else {
 		$template_path = dirname( __FILE__ ) . '/default/';
