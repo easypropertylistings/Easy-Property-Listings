@@ -1,3 +1,5 @@
 <?php
-include('tax-suburb.php');
-include('tax-features.php');
+
+/**
+ * Do not modify the files in this folder.
+ */

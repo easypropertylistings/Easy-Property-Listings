@@ -1,4 +1,17 @@
 <?php
+/**
+ * Adds filters for search and ordering to admin pages
+ *
+ * @package     EPL
+ * @subpackage  Meta
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 
 // Query filter for property_address_suburb custom field sortable in posts listing
 add_filter( 'request', 'epl_property_address_suburb_column_orderby' );
@@ -19,20 +32,20 @@ add_filter( 'parse_query', 'epl_admin_posts_filter' );
 
 function epl_custom_restrict_manage_posts() {
 	global $post_type;
-	if($post_type == 'epl_property' || $post_type == 'epl_rental' || $post_type == 'epl_land' || $post_type == 'epl_commercial' || $post_type == 'epl_rural' || $post_type == 'epl_business' || $post_type == 'epl_holiday_rental' || $post_type == 'epl_commercial_land') {
+	if($post_type == 'property' || $post_type == 'rental' || $post_type == 'land' || $post_type == 'commercial' || $post_type == 'rural' || $post_type == 'business' || $post_type == 'holiday_rental' || $post_type == 'commercial_land') {
 		//Filter by property_status
 		$fields = array(
-			'current'	=>	'Current',
-			'withdrawn'	=>	'Withdrawn',
-			'offmarket'	=>	'Off Market'
+			'current'	=>	__('Current', 'epl'),
+			'withdrawn'	=>	__('Withdrawn', 'epl'),
+			'offmarket'	=>	__('Off Market', 'epl')
 		);
 		
-		if($post_type != 'epl_rental' && $post_type != 'epl_holiday_rental') {
-			$fields['sold'] = 'Sold';
+		if($post_type != 'rental' && $post_type != 'holiday_rental') {
+			$fields['sold'] = __('Sold', 'epl');
 		}
 		
-		if($post_type == 'epl_rental' || $post_type == 'epl_holiday_rental' || $post_type == 'epl_commercial' || $post_type == 'epl_business' || $post_type == 'epl_commercial_land') {
-			$fields['leased'] = 'Leased';
+		if($post_type == 'rental' || $post_type == 'holiday_rental' || $post_type == 'commercial' || $post_type == 'business' || $post_type == 'commercial_land') {
+			$fields['leased'] = __('Leased', 'epl');
 		}
 		
 		if(!empty($fields)) {
@@ -46,7 +59,12 @@ function epl_custom_restrict_manage_posts() {
 		}
 		
 		//Filter by Suburb
-		echo '<input type="text" name="property_address_suburb" placeholder="Search Suburbs" value="'.stripslashes($_GET['property_address_suburb']).'" />';
+		if(isset($_GET['property_address_suburb'])) {
+			$val = stripslashes($_GET['property_address_suburb']);
+		} else {
+			$val = '';
+		}
+		echo '<input type="text" name="property_address_suburb" placeholder="'.__('Search Suburbs.', 'epl').'" value="'.$val.'" />';
 	}
 }
 

@@ -1,3 +1,5 @@
 <?php
-include 'shortcode-googlemap.php';
-include 'shortcode-epl-property-open.php';
+
+/**
+ * Do not modify the files in this folder.
+ */

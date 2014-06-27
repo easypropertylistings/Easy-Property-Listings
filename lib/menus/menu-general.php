@@ -1,21 +1,42 @@
 <?php
+/**
+ * General Menu Page options
+ *
+ * @since 1.0
+ * @return void
+ */
+ 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $fields = epl_get_admin_option_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
 		foreach($fields as $field_group) {
 			foreach($field_group['fields'] as $field) {
+				if( $field['type'] == 'radio' || $field['type'] == 'checkbox' ) {
+					if(!isset($_REQUEST[ $field['name'] ])) {
+						$_REQUEST[ $field['name'] ] = '';
+					}
+				}
+				
 				if($field['type'] == 'text') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
-				update_option($field['name'], $_REQUEST[ $field['name'] ]);
+				$epl_settings = get_option('epl_settings');
+				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+				update_option('epl_settings', $epl_settings);
 			}
 		}
 	}
-} ?>
+}
+
+global $epl_settings;
+?>
 
 <div class="wrap">
-	<h2><?php _e('General', 'epl'); ?></h2>
-	<p><?php _e('Enable your settings with the settings below', 'epl'); ?></p>
+	<h2><?php _e('General Settings', 'epl'); ?></h2>
+	<p><?php _e('Configure Easy Property Listings general settings. Visit ', 'epl'); ?><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a><?php _e(' for help.', 'epl');?></p>
 	<div class="epl-content">
 		<form action="" method="post">
 			<div class="epl-fields">
@@ -24,7 +45,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 						foreach($fields as $field_group) {
 							if( !empty($field_group['label']) ) { ?>
 								<div class="epl-field">
-									<strong><u><?php echo $field_group['label']; ?>:</u></strong>
+									<h3><?php _e($field_group['label'], 'epl'); ?></h3>
 								</div>
 								<?php
 							}
@@ -36,7 +57,10 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 									</div>
 									<div class="epl-half-right">
 										<?php
-											$val = get_option($field['name']);
+											$val = '';
+											if(isset($epl_settings[ $field['name'] ])) {
+												$val = $epl_settings[ $field['name'] ];
+											}
 											switch($field['type']) {
 												case 'select':
 													echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
@@ -104,7 +128,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 		
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
-				<p class="submit"><input type="submit" value="Save Changes" class="button button-primary" id="submit" name="submit"></p>
+				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
 	</div>
@@ -129,48 +153,56 @@ function epl_get_admin_option_fields() {
 		}
 	}
 	
+	$epl_currency_positions = array('before'=>'Before - $10', 'after'=>'After - 10$',);
+	$epl_currency_types = epl_get_currencies();
+	$epl_post_types = epl_get_post_types();
+	
 	$fields = array(
 		array(
 			'label'		=>	'',
 			'fields'	=>	array(
 				array(
-					'name'	=>	'epl_gallery_n',
-					'label'	=>	'Number of Gallery Images',
-					'type'	=>	'select',
-					'opts'	=>	$opts_epl_gallery_n
-				),
-		
-				array(
-					'name'	=>	'epl_activate_post_types',
-					'label'	=>	'Property Types to Enable',
+					'name'	=>	'activate_post_types',
+					'label'	=>	'Listing Types to Enable',
 					'type'	=>	'checkbox',
-					'opts'	=>	array(
-						'epl_commercial'=>	'Commercial',
-						'epl_land'		=>	'Land',
-						'epl_property'	=>	'Property',
-						'epl_rental'	=>	'Rental'
-					),
+					'opts'	=>	$epl_post_types,
+					'help'	=>	'You may need to refresh to view the new listing type in the admin menu.'
 				),
-
+				
 				array(
-					'name'	=>	'epl_enable_import_geocode',
-					'label'	=>	'Enable Auto Address Geocode',
-					'type'	=>	'radio',
-					'opts'	=>	array(			
-						1	=>	'On',
-						0	=>	'Off'
-					),
-					'help'	=>	'Leave Off if you are importing from REAXML'
+					'name'	=>	'currency',
+					'label'	=>	'Currency',
+					'type'	=>	'select',
+					'opts'	=>	$epl_currency_types
 				),
-
+				
 				array(
-					'name'	=>	'epl_xml_uri',
-					'label'	=>	'Directory URL for REAXML Feed',
+					'name'	=>	'currency_position',
+					'label'	=>	'Currency Symbol Position',
+					'type'	=>	'select',
+					'opts'	=>	$epl_currency_positions
+				),
+				
+				array(
+					'name'	=>	'currency_thousands_separator',
+					'label'	=>	'Thousands Separator',
 					'type'	=>	'text'
 				),
-
+				
 				array(
-					'name'	=>	'epl_debug',
+					'name'	=>	'currency_decimal_separator',
+					'label'	=>	'Decimal Separator',
+					'type'	=>	'text'
+				),
+				
+				array(
+					'name'	=>	'label_location',
+					'label'	=>	'Location label',
+					'type'	=>	'text'
+				),
+				
+				array(
+					'name'	=>	'debug',
 					'label'	=>	'Debug',
 					'type'	=>	'radio',
 					'opts'	=>	array(
@@ -178,14 +210,6 @@ function epl_get_admin_option_fields() {
 						0	=>	'Off'
 					),
 					'help'	=>	'Display Geocode Result in Admin'
-				),
-
-				array(
-					'name'	=>	'epl_search_page',
-					'label'	=>	'Search Page',
-					'type'	=>	'select',
-					'opts'	=>	$opts_pages,
-					'help'	=>	'Select page where you want to show search results'
 				),
 			),
 		),

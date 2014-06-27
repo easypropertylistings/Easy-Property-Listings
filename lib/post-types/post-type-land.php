@@ -1,7 +1,16 @@
 <?php
-/*
- * POST TYPE :: Land
+/**
+ * Register post type :: Land
+ *
+ * @package     EPL
+ * @subpackage  Meta
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 function epl_register_custom_post_type_land() {
 	$labels = array(
@@ -30,149 +39,140 @@ function epl_register_custom_post_type_land() {
 		'query_var'				=>	true,
 		'rewrite'				=>	array( 'slug' => 'land' ),
 		'menu_icon'				=>	'dashicons-image-crop',
-		//'menu_icon'				=>	plugins_url( 'post-types/icons/land.png' , dirname(__FILE__) ),
+		//'menu_icon'			=>	plugins_url( 'post-types/icons/land.png' , dirname(__FILE__) ),
 		'capability_type'		=>	'post',
 		'has_archive'			=>	true,
 		'hierarchical'			=>	false,
-		'menu_position'			=>	5,
-		'taxonomies'			=>	array( 'epl_tax_suburb', 'epl_tax_feature' ),
+		'menu_position'			=>	'26.3',
+		'taxonomies'			=>	array( 'location', 'tax_feature' ),
 		'supports'				=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
 	);
-	register_post_type( 'epl_land', $args );
+	epl_register_post_type( 'land', 'Land', $args );
 }
 add_action( 'init', 'epl_register_custom_post_type_land', 0 );
-
-// Manage Listing Columns
-function epl_manage_epl_land_columns_heading( $columns ) {
-	$columns = array(
-		'cb' => '<input type="checkbox" />',
-		'property_thumb' => 'Featured Image',
-		'title' => __( 'Address' ),
-		'property_address_suburb' => __( 'Suburb' ),
-		'property_heading' => __( 'Heading' ),
-		'property_price' => __( 'Price' ),
-		'under_offer' => __( 'U/O' ),
-		'geo' => __( 'Geo' ),
-		'property_price_view' => __( 'Price View' ),
-		'property_status' => ('Type'),
-		'author' => __( 'Agent' ),
-		'date' => __( 'Date' )
-	);
-	
-	$geo_debug = get_option('epl_debug');
-	if ( $geo_debug != 1 ) {
-		unset($columns['geo']);
+ 
+if ( is_admin() ) {
+	// Manage Listing Columns
+	function epl_manage_land_columns_heading( $columns ) {
+		$columns = array(
+			'cb' => '<input type="checkbox" />',
+			'property_thumb' => __('Featured Image', 'epl'),
+			'title' => __('Address', 'epl'),
+			'listing' => __('Listing Details', 'epl'),
+			'property_price' => __('Price', 'epl'),
+			'geo' => __('Geo', 'epl'),
+			'property_status' => __('Status', 'epl'),
+			'author' => __('Agent', 'epl'),
+			'date' => __('Date', 'epl')
+		);
+		
+		$geo_debug = 0;
+		global $epl_settings;
+		if(!empty($epl_settings) && isset($epl_settings['debug'])) {
+			$geo_debug = $epl_settings['debug'];
+		}
+		if ( $geo_debug != 1 ) {
+			unset($columns['geo']);
+		}
+		return $columns;
 	}
-	return $columns;
-}
-add_filter( 'manage_edit-epl_land_columns', 'epl_manage_epl_land_columns_heading' ) ;
+	add_filter( 'manage_edit-land_columns', 'epl_manage_land_columns_heading' ) ;
 
-function epl_manage_epl_land_columns_value( $column, $post_id ) {
-	global $post;
-	switch( $column ) {
-	
-		/* If displaying the 'Featured' image column. */
-		case 'property_thumb' :
-			/* Get the featured Image */
-			if( function_exists('the_post_thumbnail') )
-				echo the_post_thumbnail('admin-list-thumb');
-			break;
+	function epl_manage_land_columns_value( $column, $post_id ) {
+		global $post;
+		switch( $column ) {
+		
+			/* If displaying the 'Featured' image column. */
+			case 'property_thumb' :
+				/* Get the featured Image */
+				if( function_exists('the_post_thumbnail') )
+					echo the_post_thumbnail('admin-list-thumb');
+				break;
+				
+			case 'listing' :
+				/* Get the post meta. */
+				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
+				$heading = get_post_meta( $post_id, 'property_heading', true );
+				$homeopen = get_post_meta( $post_id, 'property_inspection_times', true );
+				
+				$land = get_post_meta( $post_id, 'property_land_area', true );
+				$land_unit = get_post_meta( $post_id, 'property_land_area_unit', true );
+
+				
+				if ( empty( $heading) ) {
+					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
+				} else {
+					echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
+				}		
+				
+				echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
+				
+				if ( !empty( $land) ) {
+					echo '<div class="epl_meta_land_details">';
+					echo '<span class="epl_meta_land">' , $land , '</span>';
+					echo '<span class="epl_meta_land_unit"> ' , $land_unit , '</span>';
+					echo '</div>';
+				}
+				
+				if ( !empty( $homeopen) ) {
+					echo '<div class="epl_meta_home_open_label"><strong>Open: <span class="epl_meta_home_open">' , $homeopen , '</strong></span></div>';
+				} 
 			
-		case 'property_address_suburb' :
-			/* Get the post meta. */
-			$property_address_suburb = stripslashes(get_post_meta( $post_id, 'property_address_suburb', true ));
-			echo $property_address_suburb;
-			break;
-	
-		/* If displaying the 'Heading' column. */
-		case 'property_heading' :
-			/* Get the post meta. */
-			$heading = get_post_meta( $post_id, 'property_heading', true );
+				break;
+				
+			/* If displaying the 'Geocoding Debug' column. */
+			case 'geo' :
+				/* Get the post meta. */
+				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
 
-			/* If no duration is found, output a default message. */
-			if ( empty( $heading) )
-				echo __( '<strong>Important! Set a Heading</strong>' );
+				/* If no duration is found, output a default message. */
+				if (  $property_address_coordinates == ',' )
+					echo 'NO' ;
 
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				 echo $heading;
-			break;
-			
-		/* If displaying the 'Under Offer' column. */
-		case 'under_offer' :
-			/* Get the post meta. */
-			$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
+				/* If there is a duration, append 'minutes' to the text string. */
+				else
+					// echo 'Yes';
+					echo $property_address_coordinates;
+				break;	
+				
+			/* If displaying the 'Price' column. */
+			case 'property_price' :
 
-			/* If no duration is found, output a default message. */
-			if ( empty( $property_under_offer) )
-				echo __( '' );
+				$price = get_post_meta( $post_id, 'property_price', true );
+				$view = get_post_meta( $post_id, 'property_price_view', true );
+				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
+				
+				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
+					echo '<div class="type_under_offer">Under Offer</div>';
+				}
 
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				 echo 'Yes';
-			break;
+				if ( empty ( $view ) ) {
+					echo '<div class="epl_meta_search_price">' , epl_currency_formatted_amount( $price ), '</div>';
+				} else {
+					echo '<div class="epl_meta_price">' , $view , '</div>'; 
+				}
+				break;
 
-		/* If displaying the 'Geocoding Debub' column. */
-		case 'geo' :
-			/* Get the post meta. */
-			$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
 
-			/* If no duration is found, output a default message. */
-			if (  $property_address_coordinates == ',' )
-				echo 'NO' ;
+			/* If displaying the 'real-estate' column. */
+			case 'property_status' :
+				/* Get the genres for the post. */
+				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
+				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
+				break;
 
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				// echo 'Yes';
-				echo $property_address_coordinates;
-			break;	
-			
-		/* If displaying the 'Price' column. */
-		case 'property_price' :
-			/* Get the post meta. */
-			$price = get_post_meta( $post_id, 'property_price', true );
-
-			/* If no duration is found, output a default message. */
-			if ( empty( $price) )
-				echo '';//echo __( '<strong>No Price Set</strong>' );
-
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				 echo '$' , $price;
-			break;
-
-		/* If displaying the 'Price View' column. */
-		case 'property_price_view' :
-			/* Get the post meta. */
-			$view = get_post_meta( $post_id, 'property_price_view', true );
-
-			/* If no duration is found, output a default message. */
-			if ( empty( $view) )
-				echo '';//echo __( '<strong>No Rent Set</strong>' );
-
-			/* If there is a duration, append 'minutes' to the text string. */
-			else
-				 echo $view;
-			break;
-
-		/* If displaying the 'real-estate' column. */
-		case 'property_status' :
-			/* Get the genres for the post. */
-			$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-			echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
-			break;
-
-		/* Just break out of the switch statement for everything else. */
-		default :
-			break;
+			/* Just break out of the switch statement for everything else. */
+			default :
+				break;
+		}
 	}
-}
-add_action( 'manage_epl_land_posts_custom_column', 'epl_manage_epl_land_columns_value', 10, 2 );
+	add_action( 'manage_land_posts_custom_column', 'epl_manage_land_columns_value', 10, 2 );
 
-// Manage Columns Sorting
-function epl_manage_epl_land_sortable_columns( $columns ) {
-	$columns['property_status'] = 'property_status';
-	$columns['property_address_suburb'] = 'property_address_suburb';
-	return $columns;
+	// Manage Columns Sorting
+	function epl_manage_land_sortable_columns( $columns ) {
+		$columns['property_status'] = 'property_status';
+		$columns['property_address_suburb'] = 'property_address_suburb';
+		return $columns;
+	}
+	add_filter( 'manage_edit-land_sortable_columns', 'epl_manage_land_sortable_columns' );
 }
-add_filter( 'manage_edit-epl_land_sortable_columns', 'epl_manage_epl_land_sortable_columns' );

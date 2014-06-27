@@ -1,21 +1,43 @@
 <?php
+/**
+ * Extensions General Options Menu page
+ *
+ * @since 1.0
+ * @return void
+ */
+ 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $fields = epl_get_admin_option_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
 		foreach($fields as $field_group) {
 			foreach($field_group['fields'] as $field) {
+				if( $field['type'] == 'radio' || $field['type'] == 'checkbox' ) {
+					if(!isset($_REQUEST[ $field['name'] ])) {
+						$_REQUEST[ $field['name'] ] = '';
+					}
+				}
+				
 				if($field['type'] == 'text') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
-				update_option($field['name'], $_REQUEST[ $field['name'] ]);
+				
+				$epl_settings = get_option('epl_settings');
+				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+				update_option('epl_settings', $epl_settings);
 			}
 		}
 	}
-} ?>
+}
+
+global $epl_settings;
+?>
 
 <div class="wrap">
-	<h2><?php _e('Extensions', 'epl'); ?></h2>
-	<p><?php _e('Enable your extensions by entering your license below', 'epl'); ?></p>
+	<h2><?php _e('Extension Options', 'epl'); ?></h2>
+	<p><?php _e('Enable your extensions options below', 'epl'); ?></p>
 	<div class="epl-content">
 		<form action="" method="post">
 			<div class="epl-fields">
@@ -24,7 +46,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 						foreach($fields as $field_group) {
 							if( !empty($field_group['label']) ) { ?>
 								<div class="epl-field">
-									<strong><u><?php echo $field_group['label']; ?>:</u></strong>
+									<h3><?php _e($field_group['label'], 'epl'); ?></h3>
 								</div>
 								<?php
 							}
@@ -36,7 +58,11 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 									</div>
 									<div class="epl-half-right">
 										<?php
-											$val = get_option($field['name']);
+											$val = '';
+											if(isset($epl_settings[ $field['name'] ])) {
+												$val = $epl_settings[ $field['name'] ];
+											}
+											
 											switch($field['type']) {
 												case 'select':
 													echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
@@ -104,42 +130,14 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 		
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
-				<p class="submit"><input type="submit" value="Save Changes" class="button button-primary" id="submit" name="submit"></p>
+				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
 	</div>
 </div><?php
 
 function epl_get_admin_option_fields() {
-	$opts_epl_gallery_n = array();
-	for($i=1; $i<=10; $i++) {
-		$opts_epl_gallery_n[$i] = $i;
-	}
-	
-	$opts_epl_property_card_excerpt_length = array();
-	for($i=10; $i<=55; $i++) {
-		$opts_epl_property_card_excerpt_length[$i] = $i;
-	}
-	
-	$opts_pages = array( '' => __('Select Page', 'epl') );
-	$pages = get_pages();
-	if(!empty($pages)) {
-		foreach($pages as $page) {
-			$opts_pages[$page->ID] = $page->post_title;
-		}
-	}
-	
-	$fields = array(
-		array(
-			'label'		=>	'',
-			'fields'	=>	array(
-				array(
-					'name'	=>	'epl_license',
-					'label'	=>	'Enter your license',
-					'type'	=>	'text'
-				),
-			),
-		),
-	);
+	$fields = array( );
+	$fields = apply_filters('epl_extensions_options_filter', $fields);
 	return $fields;
 }

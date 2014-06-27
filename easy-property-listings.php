@@ -1,11 +1,11 @@
 <?php
-/**
+/*
  * Plugin Name: Easy Property Listings
  * Plugin URI: http://www.easypropertylistings.com.au
  * Description:  Serve Property Listings Through WordPress
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.0.1
+ * Version: 1.1
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -25,212 +25,242 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 0.0.1
+ * @version 1.0.0
  */
+ 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-include('lib/index.php'); // Libraries
-
-if ( !is_admin() ) { // NOT IN ADMIN
-	// TEMPLATES
-
-	// Template - Templates (Various Ones)
-	if ( $epl_template_property_templates = locate_template( 'content-tab-templates.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_property_templates );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-tab-templates.php' );
-	}
-
-	//// Mapping Templates
-	// Template - Property Map
-	if ( $epl_template_property_map = locate_template( 'property-map.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_property_map );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/property-map.php' );
-	}
-	
-	// Template - GeoRSS Property Map Local
-	if ( $epl_template_property_map_local = locate_template( 'property-map-local.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_property_map_local );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/property-map-local.php' );
-	}
-	
-	// Template - Tabbed Property Map Local
-	if ( $epl_template_property_map_local_tabbed = locate_template( 'property-map-local-tabbed.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_property_map_local_tabbed );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/property-map-local-tabbed.php' );
-	}
-	
-	// Supermap Elements
-	if ( $epl_template_supermap_elements_script = locate_template( 'supermap-elements-script.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_supermap_elements_script );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/supermap-elements-script.php' );
-	}
-	//// END Map Templates
-
-	// Template - Testimonial Template Functions
-	if ( $epl_template_testimonial = locate_template( 'content-testimonial.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_testimonial );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-testimonial.php' );
-	}
-	
-	// Template - Suburb Profile Single
-	if ( $epl_template_suburb_profile_single = locate_template( 'content-suburb_profile-single.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_suburb_profile_single );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-suburb_profile-single.php' );
-	}
-	
-	// Template - Suburb Profile Single
-	if ( $epl_template_suburb_profile_blog = locate_template( 'content-suburb_profile-card.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_suburb_profile_blog );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-suburb_profile-card.php' );
-	}
-	
-	// Template - Single Property / Rental Page
-	if ( $epl_template_property_single = locate_template( 'content-property-single.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_property_single );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-property-single.php' );
-	}
-	
-	// Template - Property Cards
-	if ( $epl_template_property_card = locate_template( 'content-property-card.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_property_card );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-property-card.php' );
-	}
-	
-	// Template - Post Loops
-	if ( $epl_template_post_card = locate_template( 'content-post-card.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_post_card );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-post-card.php' );
-	}
-	
-	// Template - Author Bio
-	if ( $epl_template_property_card = locate_template( 'content-author.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_property_card );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-author.php' );
-	}
-
-	// Template - Author Cards
-	if ( $epl_template_property_card = locate_template( 'content-author-card.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_template_property_card );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-author-card.php' );
-	}
-	
-	// Template - Graphs
-	if ( $epl_property_graphs = locate_template( 'content-tab-graphs.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_property_graphs );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-tab-graphs.php' );
-	}
-
-	// Template - Supermap
-	if ( $epl_property_supermap = locate_template( 'property-supermap.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_property_supermap );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/property-supermap.php' );
-	}
-	
-	// Template - Supermap Schools
-	if ( $epl_property_map_schools = locate_template( 'property-map-schools.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_property_map_schools );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/property-map-schools.php' );
-	}
-
-	// Property and Rental Inspection Buttons 
-	// 1Form Application Form
-	if ( $epl_button_1form = locate_template( 'content-button-1form.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_button_1form );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-button-1form.php' );
-	}
-	
-	// 'Inspect Real Estate' Book Inspection Integration
-	if ( $epl_button_book_inspection = locate_template( 'content-button-book-inspection.php' ) ) {
-		// locate_template() returns path to file
-		// if either the child theme or the parent theme have overridden the template
-		load_template( $epl_button_book_inspection );
-	} else {
-		// If neither the child nor parent theme have overridden the template,
-		// we load the template from the 'templates' sub-directory of the directory this file is in
-		load_template( dirname( __FILE__ ) . '/lib/templates/content-button-book-inspection.php' );
-	}
+if( !session_id() ) {
+	session_start();
 }
+
+if ( ! class_exists( 'Easy_Property_Listings' ) ) :
+	/*
+	 * Main Easy_Property_Listings Class
+	 *
+	 * @since 1.0
+	 */
+	final class Easy_Property_Listings {
+		
+		/*
+		 * @var Easy_Property_Listings The one true Easy_Property_Listings
+		 * @since 1.0
+		 */
+		private static $instance;
+	
+		/*
+		 * Main Easy_Property_Listings Instance
+		 *
+		 * Insures that only one instance of Easy_Property_Listings exists in memory at any one time.
+		 * Also prevents needing to define globals all over the place.
+		 *
+		 * @since 1.0
+		 * @static
+		 * @staticvar array $instance
+		 * @uses Easy_Property_Listings::includes() Include the required files
+		 * @see EPL()
+		 * @return The one true Easy_Property_Listings
+		 */
+		public static function instance() {
+			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {
+				self::$instance = new Easy_Property_Listings;
+				self::$instance->setup_constants();
+				self::$instance->includes();
+			}
+			return self::$instance;
+		}
+		
+		/*
+		 * Setup plugin constants
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @return void
+		 */
+		private function setup_constants() {		
+			// Plugin version
+			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
+				define( 'EPL_PROPERTY_VER', '1.0.9.1' );
+			}
+			
+			// Plugin DB version
+			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
+				define( 'EPL_PROPERTY_DB_VER', '1.0.9.1' );
+			}
+			
+			// Current Page
+			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
+				define("EPL_CURRENT_PAGE", basename($_SERVER['PHP_SELF']));
+			}
+			
+			// Current Page
+			if ( ! defined( 'EPL_PLUGIN_FILE' ) ) {
+				define("EPL_PLUGIN_FILE", plugin_basename( __FILE__ ));
+			}
+
+			// Plugin Folder URL
+			if ( ! defined( 'EPL_PLUGIN_URL' ) ) {
+				define( 'EPL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+			}
+			
+			// Plugin Folder Path
+			if ( ! defined( 'EPL_PLUGIN_PATH' ) ) {
+				define( 'EPL_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+			}
+
+			// Plugin Sub-Directory Paths
+			if ( ! defined( 'EPL_PATH_LIB' ) ) {
+				define( 'EPL_PATH_LIB', EPL_PLUGIN_PATH . 'lib/' );
+			}
+			
+			if ( ! defined( 'EPL_PATH_TEMPLATES' ) ) {
+				define( 'EPL_PATH_TEMPLATES', EPL_PATH_LIB . 'templates/' );
+			}
+			
+			if ( ! defined( 'EPL_PATH_TEMPLATES_CONTENT' ) ) {
+				define( 'EPL_PATH_TEMPLATES_CONTENT', EPL_PATH_TEMPLATES . 'content/' );
+			}
+			
+			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES' ) ) {
+				define( 'EPL_PATH_TEMPLATES_POST_TYPES', EPL_PATH_TEMPLATES . 'themes/' );
+			}
+			
+			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT' ) ) {
+				define( 'EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT', EPL_PATH_TEMPLATES_POST_TYPES . 'default/' );
+			}
+			
+			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES' ) ) {
+				define( 'EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES', EPL_PATH_TEMPLATES_POST_TYPES . 'ithemes-builder/' );
+			}
+			
+			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS' ) ) {
+				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
+			}
+		}
+
+		/*
+		 * Include required files
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @return void
+		 */
+		private function includes() {
+		
+			global $epl_settings;
+
+			require_once EPL_PATH_LIB . 'includes/register-settings.php';
+			$epl_settings = epl_get_settings();
+		
+			require_once EPL_PATH_LIB . 'includes/functions.php';
+			require_once EPL_PATH_LIB . 'includes/options-global.php';
+			require_once EPL_PATH_LIB . 'includes/formatting.php';
+			require_once EPL_PATH_LIB . 'includes/plugins.php';
+			require_once EPL_PATH_LIB . 'includes/install.php';
+
+			require_once EPL_PATH_LIB . 'assets/assets.php';
+			
+			// Activate post types based on settings
+			$epl_activated_post_types = $epl_settings['activate_post_types'];
+			if( is_array( $epl_activated_post_types ) ) {
+				foreach ( $epl_activated_post_types as $key => $value) {
+					switch ( $value ) {
+					
+						case 'property' :
+							require_once EPL_PATH_LIB . 'post-types/post-type-property.php';
+							break;
+						
+						case 'land' :
+							require_once EPL_PATH_LIB . 'post-types/post-type-land.php';
+							break;
+						
+						case 'rental' :
+							require_once EPL_PATH_LIB . 'post-types/post-type-rental.php';
+							break;
+						
+						case 'rural' :
+							require_once EPL_PATH_LIB . 'post-types/post-type-rural.php';
+							break;
+						
+						case 'business' :
+							require_once EPL_PATH_LIB . 'post-types/post-type-business.php';
+							break;
+						
+						case 'commercial' :
+							require_once EPL_PATH_LIB . 'post-types/post-type-commercial.php';
+							break;
+						
+						case 'commercial_land' :
+							require_once EPL_PATH_LIB . 'post-types/post-type-commercial_land.php';
+							break;
+						
+						default :
+							break;
+
+					}
+				}
+				
+				require_once EPL_PATH_LIB . 'post-types/post-types.php';
+			}
+
+			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
+			require_once EPL_PATH_LIB . 'taxonomies/tax-features.php';
+			require_once EPL_PATH_LIB . 'taxonomies/tax-business_listings.php';
+
+			require_once EPL_PATH_LIB . 'widgets/widget-author.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
+
+			require_once EPL_PATH_LIB . 'hooks/hooks.php';
+						
+			require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
+		
+			if ( is_admin() ) {
+				require_once EPL_PATH_LIB . 'includes/user.php';
+				
+				require_once EPL_PATH_LIB . 'menus/menus.php';
+				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
+		
+				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
+			} else {
+				require_once EPL_PATH_LIB . 'templates/templates.php';
+				
+				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
+			
+				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-epl-property-open.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
+				
+				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
+				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
+				require_once EPL_PATH_LIB . 'hooks/hook-floorplan.php';
+				require_once EPL_PATH_LIB . 'hooks/hook-mini-web.php';
+				require_once EPL_PATH_LIB . 'hooks/hook-read-more.php';
+			
+			}
+		}
+	}
+endif; // End if class_exists check
+
+
+/*
+ * The main function responsible for returning the one true Easy_Property_Listings
+ * Instance to functions everywhere.
+ *
+ * Use this function like you would a global variable, except without needing
+ * to declare the global.
+ *
+ * Example: <?php $epl = EPL(); ?>
+ *
+ * @since 1.0
+ * @return object The one true Easy_Property_Listings Instance
+ */
+function EPL() {
+	return Easy_Property_Listings::instance();
+}
+
+// Get EPL Running
+EPL();

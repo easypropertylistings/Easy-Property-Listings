@@ -1,21 +1,43 @@
 <?php
+/**
+ * Display Menu Page
+ *
+ * @since 1.0
+ * @return void
+ */
+ 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $fields = epl_get_admin_option_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
 		foreach($fields as $field_group) {
 			foreach($field_group['fields'] as $field) {
+				if( $field['type'] == 'radio' || $field['type'] == 'checkbox' ) {
+					if(!isset($_REQUEST[ $field['name'] ])) {
+						$_REQUEST[ $field['name'] ] = '';
+					}
+				}
+			
 				if($field['type'] == 'text') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
-				update_option($field['name'], $_REQUEST[ $field['name'] ]);
+				
+				$epl_settings = get_option('epl_settings');
+				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+				update_option('epl_settings', $epl_settings);
 			}
 		}
 	}
-} ?>
+}
+
+global $epl_settings;
+?>
 
 <div class="wrap">
-	<h2><?php _e('Display', 'epl'); ?></h2>
-	<p><?php _e('Change the display options of Property Connected', 'epl'); ?></p>
+	<h2><?php _e('Display and Template Options', 'epl'); ?></h2>
+	<p><?php _e('Change the page layouts options for Easy Property Listings', 'epl'); ?></p>
 	<div class="epl-content">
 		<form action="" method="post">
 			<div class="epl-fields">
@@ -23,8 +45,8 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 					if(!empty($fields)) {
 						foreach($fields as $field_group) { ?>
 							<div class="epl-field">
-								<strong><u><?php echo $field_group['label']; ?>:</u></strong>
-							</div>							
+								<h3><?php _e($field_group['label'], 'epl'); ?></h3>
+							</div>						
 							<?php foreach($field_group['fields'] as $field) { ?>
 								<div class="epl-field">
 									<div class="epl-half-left">
@@ -32,7 +54,11 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 									</div>
 									<div class="epl-half-right">
 										<?php
-											$val = get_option($field['name']);
+											$val = '';
+											if(isset($epl_settings[ $field['name'] ])) {
+												$val = $epl_settings[ $field['name'] ];
+											}
+											
 											switch($field['type']) {
 												case 'select':
 													echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
@@ -100,7 +126,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 		
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
-				<p class="submit"><input type="submit" value="Save Changes" class="button button-primary" id="submit" name="submit"></p>
+				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
 	</div>
@@ -110,6 +136,11 @@ function epl_get_admin_option_fields() {
 	$opts_epl_gallery_n = array();
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;
+	}
+	
+	$opts_epl_features = array();
+	for($i=1; $i<=5; $i++) {
+		$opts_epl_features[$i] = $i;
 	}
 	
 	$opts_epl_property_card_excerpt_length = array();
@@ -125,153 +156,86 @@ function epl_get_admin_option_fields() {
 		}
 	}
 	
-	$fields = array(
+	$fields = array(	
 		array(
-			'label'		=>	'Single Property Page Display Options',
+			'label'		=>	'General',
 			'fields'	=>	array(
+		
 				array(
-					'name'	=>	'epl_display_single_property',
-					'label'	=>	'Property Single Display Style',
-					'type'	=>	'select',
-					'opts'	=>	array(
-						0	=>	'Expanded',
-						1	=>	'Condensed'
+					'name'	=>	'display_bond',
+					'label'	=>	'Bond Amount Display (Rental Listing Type)',
+					'type'	=>	'radio',
+					'opts'	=>	array(			
+						1	=>	'On',
+						0	=>	'Off'
 					),
+					'help'	=>	'Hide or show the bond on rental properties'
 				),
-
+				
 				array(
-					'name'	=>	'epl_display_single_gallery',
-					'label'	=>	'Property Single Display Gallery',
+					'name'	=>	'display_single_gallery',
+					'label'	=>	'Automatically display gallery of attached images on the single property page?',
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	'Yes',
 						0	=>	'No'
 					),
-					'help'	=>	'Enable the Gallerty on Single Property Pages'
-				),
-
-				array(
-					'name'	=>	'epl_display_single_map_position',
-					'label'	=>	'Property Single Display Map Location',
-					'type'	=>	'select',
-					'opts'	=>	array(
-						0	=>	'Separate Map',
-						1	=>	'Maps with Featured Image'
-					),
-				),
-			),
-		),
-		
-		array(
-			'label'		=>	'Card Display Options',
-			'fields'	=>	array(
-				array(
-					'name'	=>	'epl_property_card_excerpt_length',
-					'label'	=>	'Excerpt length on property archive pages',
-					'type'	=>	'select',
-					'opts'	=>	$opts_epl_property_card_excerpt_length
+					'help'	=>	'Enable the Gallery on Single Property Pages'
 				),
 				
 				array(
-					'name'	=>	'epl_property_card_style',
-					'label'	=>	'Property Card Style',
-					'type'	=>	'select',
-					'opts'	=>	array( 
-						0	=>	'(Default) Details Right',
-						1	=>	'Address Top',
-						2	=>	'Slim List',
-						3	=>	'Suburb Top'
-					),
-				),
-			),
-		),
-		
-		array(
-			'label'		=>	'Graph Comparison Options',
-			'fields'	=>	array(
-				array(
-					'name'	=>	'epl_gallery_n',
-					'label'	=>	'Number of Gallery Images',
+					'name'	=>	'display_gallery_n',
+					'label'	=>	'Number of columns on the property image gallery',
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_gallery_n
-				),				
-		
-				array(
-					'name'	=>	'epl_staff_link_to',
-					'label'	=>	'Staff Directory',
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						0	=>	'Link to Author Profile',
-						1	=>	'Link to Static Directory Page'
-					),
 				),
 
 				array(
-					'name'	=>	'epl_staff_image_type',
-					'label'	=>	'Staff Image Type',
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						0	=>	'Use Gravatar Image',
-						1	=>	'Use Staff Directory Image'
-					),
+					'name'	=>	'display_feature_columns',
+					'label'	=>	'Number of columns in the property features',
+					'type'	=>	'select',
+					'opts'	=>	$opts_epl_features
 				),
-		
+				
 				array(
-					'name'	=>	'epl_staff_excerpt',
-					'label'	=>	'Excerpt on Directory Archive Page',
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						0	=>	'No Excerpt',
-						1	=>	'Display Excerpt'
-					),
-				),
-		
-				array(
-					'name'	=>	'epl_dynamic_description',
-					'label'	=>	'Dynamic Property Description *beta',
-					'type'	=>	'radio',
-					'opts'	=>	array(			
-						1	=>	'On',
-						0	=>	'Off'
-					),
-					'help'	=>	'Enable Dynamic Description'
-				),
-		
-				array(
-					'name'	=>	'epl_bond_display',
-					'label'	=>	'Bond Display',
-					'type'	=>	'radio',
-					'opts'	=>	array(			
-						1	=>	'On',
-						0	=>	'Off'
-					),
-					'help'	=>	'Enable Bond Display'
-				),
-		
-				array(
-					'name'	=>	'epl_graph_on_off',
-					'label'	=>	'Graph Comparison',
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						1	=>	'On',
-						0	=>	'Off'
-					),
-					'help'	=>	'The graph system offers  a visual graph to allow the visitor to see comparable properties'
-				),
-
-				array(
-					'name'	=>	'epl_max_graph_property_price',
-					'label'	=>	'Max Graph Property Price',
-					'type'	=>	'text'
-				),
-
-				array(
-					'name'	=>	'epl_max_graph_rental_price',
-					'label'	=>	'Max Graph Rental Price',
-					'type'	=>	'text'
-				),
-			),
+					'name'	=>	'display_excerpt_length',
+					'label'	=>	'Excerpt word length for individual listings on property archive pages unless a manual excerpt is entered.',
+					'type'	=>	'select',
+					'opts'	=>	$opts_epl_property_card_excerpt_length
+				)
+			)
 		),
+		array(
+			'label'		=>	'Labels',
+			'fields'	=>	array(
+				
+				array(
+					'name'	=>	'label_suburb',
+					'label'	=>	'Suburb/City (default is: Suburb)',
+					'type'	=>	'text'
+				),
+				
+				array(
+					'name'	=>	'label_postcode',
+					'label'	=>	'Postcode Label (default is: Postcode)',
+					'type'	=>	'text'
+				),
+				
+				array(
+					'name'	=>	'label_home_open',
+					'label'	=>	'Home Open Label (default is: Home Open)',
+					'type'	=>	'text'
+				),
+				
+				array(
+					'name'	=>	'label_poa',
+					'label'	=>	'No Price Label (default is POA)',
+					'type'	=>	'text'
+				)
+			)
+		)
 	);
+	
+	$fields = apply_filters('epl_display_options_filter', $fields);
 	return $fields;
 }
