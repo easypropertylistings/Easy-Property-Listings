@@ -5,7 +5,7 @@
  * @since 1.0
  * @return void
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -19,11 +19,11 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 						$_REQUEST[ $field['name'] ] = '';
 					}
 				}
-			
+
 				if($field['type'] == 'text') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
-				
+
 				$epl_settings = get_option('epl_settings');
 				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
 				update_option('epl_settings', $epl_settings);
@@ -33,6 +33,9 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 }
 
 global $epl_settings;
+
+//get the updated saved settings
+$epl_settings = get_option('epl_settings');
 ?>
 
 <div class="wrap">
@@ -46,7 +49,7 @@ global $epl_settings;
 						foreach($fields as $field_group) { ?>
 							<div class="epl-field">
 								<h3><?php _e($field_group['label'], 'epl'); ?></h3>
-							</div>						
+							</div>
 							<?php foreach($field_group['fields'] as $field) { ?>
 								<div class="epl-field">
 									<div class="epl-half-left">
@@ -58,14 +61,14 @@ global $epl_settings;
 											if(isset($epl_settings[ $field['name'] ])) {
 												$val = $epl_settings[ $field['name'] ];
 											}
-											
+
 											switch($field['type']) {
 												case 'select':
 													echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
 														if(!empty($field['default'])) {
 															echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
 														}
-										
+
 														if(!empty($field['opts'])) {
 															foreach($field['opts'] as $k=>$v) {
 																$selected = '';
@@ -77,7 +80,7 @@ global $epl_settings;
 														}
 													echo '</select>';
 													break;
-									
+
 												case 'checkbox':
 													if(!empty($field['opts'])) {
 														foreach($field['opts'] as $k=>$v) {
@@ -91,7 +94,7 @@ global $epl_settings;
 														}
 													}
 													break;
-									
+
 												case 'radio':
 													if(!empty($field['opts'])) {
 														foreach($field['opts'] as $k=>$v) {
@@ -103,11 +106,11 @@ global $epl_settings;
 														}
 													}
 													break;
-									
+
 												default:
 													echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 											}
-							
+
 											if(isset($field['help'])) {
 												$field['help'] = trim($field['help']);
 												if(!empty($field['help'])) {
@@ -123,7 +126,7 @@ global $epl_settings;
 				?>
 			</div>
 			<div class="epl-clear"></div>
-		
+
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
@@ -137,17 +140,17 @@ function epl_get_admin_option_fields() {
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;
 	}
-	
+
 	$opts_epl_features = array();
 	for($i=1; $i<=5; $i++) {
 		$opts_epl_features[$i] = $i;
 	}
-	
+
 	$opts_epl_property_card_excerpt_length = array();
 	for($i=10; $i<=55; $i++) {
 		$opts_epl_property_card_excerpt_length[$i] = $i;
 	}
-	
+
 	$opts_pages = array( '' => __('Select Page', 'epl') );
 	$pages = get_pages();
 	if(!empty($pages)) {
@@ -155,23 +158,23 @@ function epl_get_admin_option_fields() {
 			$opts_pages[$page->ID] = $page->post_title;
 		}
 	}
-	
-	$fields = array(	
+
+	$fields = array(
 		array(
 			'label'		=>	'General',
 			'fields'	=>	array(
-		
+
 				array(
 					'name'	=>	'display_bond',
 					'label'	=>	'Bond Amount Display (Rental Listing Type)',
 					'type'	=>	'radio',
-					'opts'	=>	array(			
+					'opts'	=>	array(
 						1	=>	'On',
 						0	=>	'Off'
 					),
 					'help'	=>	'Hide or show the bond on rental properties'
 				),
-				
+
 				array(
 					'name'	=>	'display_single_gallery',
 					'label'	=>	'Automatically display gallery of attached images on the single property page?',
@@ -182,7 +185,7 @@ function epl_get_admin_option_fields() {
 					),
 					'help'	=>	'Enable the Gallery on Single Property Pages'
 				),
-				
+
 				array(
 					'name'	=>	'display_gallery_n',
 					'label'	=>	'Number of columns on the property image gallery',
@@ -196,7 +199,7 @@ function epl_get_admin_option_fields() {
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_features
 				),
-				
+
 				array(
 					'name'	=>	'display_excerpt_length',
 					'label'	=>	'Excerpt word length for individual listings on property archive pages unless a manual excerpt is entered.',
@@ -208,25 +211,25 @@ function epl_get_admin_option_fields() {
 		array(
 			'label'		=>	'Labels',
 			'fields'	=>	array(
-				
+
 				array(
 					'name'	=>	'label_suburb',
 					'label'	=>	'Suburb/City (default is: Suburb)',
 					'type'	=>	'text'
 				),
-				
+
 				array(
 					'name'	=>	'label_postcode',
 					'label'	=>	'Postcode Label (default is: Postcode)',
 					'type'	=>	'text'
 				),
-				
+
 				array(
 					'name'	=>	'label_home_open',
 					'label'	=>	'Home Open Label (default is: Home Open)',
 					'type'	=>	'text'
 				),
-				
+
 				array(
 					'name'	=>	'label_poa',
 					'label'	=>	'No Price Label (default is POA)',
@@ -235,7 +238,7 @@ function epl_get_admin_option_fields() {
 			)
 		)
 	);
-	
+
 	$fields = apply_filters('epl_display_options_filter', $fields);
 	return $fields;
 }
