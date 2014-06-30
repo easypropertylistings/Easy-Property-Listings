@@ -5,7 +5,7 @@
  * @since 1.0
  * @return void
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -19,7 +19,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 						$_REQUEST[ $field['name'] ] = '';
 					}
 				}
-				
+
 				if($field['type'] == 'text') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
@@ -32,6 +32,9 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 }
 
 global $epl_settings;
+
+//get the latest saved settings
+$epl_settings = get_option('epl_settings');
 ?>
 
 <div class="wrap">
@@ -49,7 +52,7 @@ global $epl_settings;
 								</div>
 								<?php
 							}
-							
+
 							foreach($field_group['fields'] as $field) { ?>
 								<div class="epl-field">
 									<div class="epl-half-left">
@@ -67,7 +70,7 @@ global $epl_settings;
 														if(!empty($field['default'])) {
 															echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
 														}
-										
+
 														if(!empty($field['opts'])) {
 															foreach($field['opts'] as $k=>$v) {
 																$selected = '';
@@ -79,7 +82,7 @@ global $epl_settings;
 														}
 													echo '</select>';
 													break;
-									
+
 												case 'checkbox':
 													if(!empty($field['opts'])) {
 														foreach($field['opts'] as $k=>$v) {
@@ -93,7 +96,7 @@ global $epl_settings;
 														}
 													}
 													break;
-									
+
 												case 'radio':
 													if(!empty($field['opts'])) {
 														foreach($field['opts'] as $k=>$v) {
@@ -105,11 +108,11 @@ global $epl_settings;
 														}
 													}
 													break;
-									
+
 												default:
 													echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 											}
-							
+
 											if(isset($field['help'])) {
 												$field['help'] = trim($field['help']);
 												if(!empty($field['help'])) {
@@ -125,7 +128,7 @@ global $epl_settings;
 				?>
 			</div>
 			<div class="epl-clear"></div>
-		
+
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
@@ -139,12 +142,12 @@ function epl_get_admin_option_fields() {
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;
 	}
-	
+
 	$opts_epl_property_card_excerpt_length = array();
 	for($i=10; $i<=55; $i++) {
 		$opts_epl_property_card_excerpt_length[$i] = $i;
 	}
-	
+
 	$opts_pages = array( '' => __('Select Page', 'epl') );
 	$pages = get_pages();
 	if(!empty($pages)) {
@@ -152,11 +155,11 @@ function epl_get_admin_option_fields() {
 			$opts_pages[$page->ID] = $page->post_title;
 		}
 	}
-	
+
 	$epl_currency_positions = array('before'=>'Before - $10', 'after'=>'After - 10$',);
 	$epl_currency_types = epl_get_currencies();
 	$epl_post_types = epl_get_post_types();
-	
+
 	$fields = array(
 		array(
 			'label'		=>	'',
@@ -168,39 +171,39 @@ function epl_get_admin_option_fields() {
 					'opts'	=>	$epl_post_types,
 					'help'	=>	'You may need to refresh to view the new listing type in the admin menu.'
 				),
-				
+
 				array(
 					'name'	=>	'currency',
 					'label'	=>	'Currency',
 					'type'	=>	'select',
 					'opts'	=>	$epl_currency_types
 				),
-				
+
 				array(
 					'name'	=>	'currency_position',
 					'label'	=>	'Currency Symbol Position',
 					'type'	=>	'select',
 					'opts'	=>	$epl_currency_positions
 				),
-				
+
 				array(
 					'name'	=>	'currency_thousands_separator',
 					'label'	=>	'Thousands Separator',
 					'type'	=>	'text'
 				),
-				
+
 				array(
 					'name'	=>	'currency_decimal_separator',
 					'label'	=>	'Decimal Separator',
 					'type'	=>	'text'
 				),
-				
+
 				array(
 					'name'	=>	'label_location',
 					'label'	=>	'Location label',
 					'type'	=>	'text'
 				),
-				
+
 				array(
 					'name'	=>	'debug',
 					'label'	=>	'Debug',
