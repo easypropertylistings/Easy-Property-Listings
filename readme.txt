@@ -131,6 +131,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+= 1.1.1: (In Progress )June 27, 2014 =
+* Fix: Settings were not showing up after saving, second refresh required setting variable to reload
+
+* First official release! 
+
+
 = 1.1: June 27, 2014 =
 
 * First official release! 
