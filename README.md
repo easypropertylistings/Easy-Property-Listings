@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 3.9.1
 
-Stable Tag: 1.1
+Stable Tag: 1.1.1
 
 License: GNU Version 2 or Any Later Version
 
@@ -131,7 +131,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
-= 1.1.1: (In Progress )June 27, 2014 =
+= 1.1.1: July 1, 2014 =
+
+* Feature: Created filters for listing meta select fields: property_category, property_rural_category, property_commercial_category, property_land_category
+* Feature: Created filters for each of the seven custom post types: labels, supports, slug, archive, rewrite, seven custom post types
+* Tweak: Updated search widget for filtered property_categories 
+* Fix: Listing categories were showing key, now showing value.
 * Fix: Settings were not showing up after saving, second refresh required setting variable to reload
+
+
+= 1.1: June 27, 2014 =
 
 * First official release! 
