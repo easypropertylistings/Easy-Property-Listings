@@ -11,20 +11,9 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
- 
-/**
- * Registers and sets up the Rural custom post type
- *
- * @since 1.0
- * @return void
- */
-function epl_register_custom_post_type_rural() {
 
-	$archives = defined( 'EPL_RURAL_DISABLE_ARCHIVE' ) && EPL_RURAL_DISABLE_ARCHIVE ? false : true;
-	$slug     = defined( 'EPL_RURAL_SLUG' ) ? EPL_RURAL_SLUG : 'rural';
-	$rewrite  = defined( 'EPL_RURAL_DISABLE_REWRITE' ) && EPL_RURAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
-	
-	$labels = apply_filters( 'epl_rural_labels', array(
+function epl_register_custom_post_type_rural() {
+	$labels = array(
 		'name'					=>	__('Rural', 'epl'),
 		'singular_name'			=>	__('Rural', 'epl'),
 		'menu_name'				=>	__('Rural', 'epl'),
@@ -39,42 +28,32 @@ function epl_register_custom_post_type_rural() {
 		'not_found'				=>	__('Rural Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Rural Listing Not Found in Trash', 'epl'),
 		'parent_item_colon'		=>	__('Parent Rural Listing:', 'epl')
-	) );
+	);
 
-	$rural_args = array(
+	$args = array(
 		'labels'				=>	$labels,
 		'public'				=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'				=>	true,
 		'show_in_menu'			=>	true,
 		'query_var'				=>	true,
-		'rewrite'				=>	$rewrite,
+		'rewrite'				=>	array( 'slug' => 'rural' ),
 		'menu_icon'				=>	'dashicons-location-alt',
 		//'menu_icon'			=>	plugins_url( 'post-types/icons/home.png' , dirname(__FILE__) ),
 		'capability_type'		=>	'post',
-		'has_archive'			=>	$archives,
+		'has_archive'			=>	true,
 		'hierarchical'			=>	false,
 		'menu_position'			=>	'26.4',
 		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	apply_filters( 'epl_rural_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
+		'supports'				=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
 	);
-	epl_register_post_type( 'rural', 'Rural', apply_filters( 'epl_rural_post_type_args', $rural_args ) );
+	epl_register_post_type( 'rural', 'Rural', $args );
 }
 add_action( 'init', 'epl_register_custom_post_type_rural', 0 );
+
  
-/**
- * Manage Admin Rural Post Type Columns
- *
- * @since 1.0
- * @return void
- */
 if ( is_admin() ) {
-	/**
-	 * Manage Admin Rural Post Type Columns: Heading
-	 *
-	 * @since 1.0
-	 * @return void
-	 */
+	// Manage Listing Columns
 	function epl_manage_rural_columns_heading( $columns ) {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
@@ -101,11 +80,6 @@ if ( is_admin() ) {
 	}
 	add_filter( 'manage_edit-rural_columns', 'epl_manage_rural_columns_heading' ) ;
 
-	/**
-	 * Manage Admin Rural Post Type Columns: Row Contents
-	 *
-	 * @since 1.0
-	 */
 	function epl_manage_rural_columns_value( $column, $post_id ) {
 		global $post;
 		switch( $column ) {	
@@ -203,11 +177,7 @@ if ( is_admin() ) {
 	}
 	add_action( 'manage_rural_posts_custom_column', 'epl_manage_rural_columns_value', 10, 2 );
 
-	/**
-	 * Manage Rural Columns Sorting
-	 *
-	 * @since 1.0
-	 */
+	// Manage Columns Sorting
 	function epl_manage_rural_sortable_columns( $columns ) {
 		$columns['property_status'] = 'property_status';
 		return $columns;
