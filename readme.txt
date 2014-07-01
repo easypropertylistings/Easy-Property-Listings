@@ -133,7 +133,6 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 == Changelog ==
 = 1.1.1: July 1, 2014 =
 
-* Feature: C
 * Feature: Created filters for listing meta select fields: property_category, property_rural_category, property_commercial_category, property_land_category
 * Feature: Created filters for each of the seven custom post types: labels, supports, slug, archive, rewrite, seven custom post types
 * Tweak: Updated search widget for filtered property_categories 
