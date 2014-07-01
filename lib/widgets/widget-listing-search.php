@@ -103,28 +103,9 @@ class EPL_Widget_Property_Search extends WP_Widget {
 									$arr = array();
 									$meta_vals = epl_get_meta_values( 'property_category', $instance['property_type'], 'publish' );
 									if(!empty($meta_vals)) {
-<<<<<<< HEAD
+
 										$arr = epl_listing_load_meta_property_category();
-=======
-										$arr = array(
-											'House'					=>	'House',
-											'Unit'					=>	'Unit',
-											'Townhouse'				=>	'Townhouse',
-											'Villa'					=>	'Villa',
-											'Apartment'				=>	'Apartment',
-											'Flat'					=>	'Flat',
-											'Studio'				=>	'Studio',
-											'Warehouse'				=>	'Warehouse',
-											'DuplexSemi-detached'	=>	'Duplex Semi-detached',
-											'Alpine'				=>	'Alpine',
-											'AcreageSemi-rural'		=>	'Acreage Semi-rural',
-											'Retirement'			=>	'Retirement',
-											'BlockOfUnits'			=>	'Block Of Units',
-											'Terrace'				=>	'Terrace',
-											'ServicedApartment'		=>	'Serviced Apartment',
-											'Other'					=>	'Other'
-										);
->>>>>>> 3e7b2fc115137eac6a071e357407b49275149436
+
 										foreach($arr as $k=>$v) {
 											if(!in_array($k, $meta_vals)) {
 												unset($arr[$k]);
