@@ -8,12 +8,23 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
-
+ 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
+ 
+/**
+ * Registers and sets up the Property custom post type
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_register_custom_post_type_property() {
-	$labels = array(
+
+	$archives = defined( 'EPL_PROPERTY_DISABLE_ARCHIVE' ) && EPL_PROPERTY_DISABLE_ARCHIVE ? false : true;
+	$slug     = defined( 'EPL_PROPERTY_SLUG' ) ? EPL_PROPERTY_SLUG : 'property';
+	$rewrite  = defined( 'EPL_PROPERTY_DISABLE_REWRITE' ) && EPL_PROPERTY_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+
+	$labels = apply_filters( 'epl_property_labels', array(
 		'name'					=>	__('Properties', 'epl'),
 		'singular_name'			=>	__('Property', 'epl'),
 		'menu_name'				=>	__('Property', 'epl'),
@@ -28,31 +39,42 @@ function epl_register_custom_post_type_property() {
 		'not_found'				=>	__('Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Listing Not Found in Trash', 'epl'),
 		'parent_item_colon'		=>	__('Parent Listing:', 'epl')
-	);
-
-	$args = array(
+	) );
+	
+	$property_args = array(
 		'labels'				=>	$labels,
 		'public'				=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'				=>	true,
 		'show_in_menu'			=>	true,
 		'query_var'				=>	true,
-		'rewrite'				=>	array( 'slug' => 'property' ),
+		'rewrite'				=>	$rewrite,
 		'menu_icon'				=>	'dashicons-admin-home',
 		//'menu_icon'			=>	plugins_url( 'post-types/icons/home.png' , dirname(__FILE__) ),
 		'capability_type'		=>	'post',
-		'has_archive'			=>	true,
+		'has_archive'			=>	$archives,
 		'hierarchical'			=>	false,
 		'menu_position'			=>	'26.2',
 		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
+		'supports'				=>	apply_filters( 'epl_property_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
-	epl_register_post_type( 'property', 'Property (Residential)', $args );
+	epl_register_post_type( 'property', 'Property (Residential)', apply_filters( 'epl_property_post_type_args', $property_args ) );
 }
 add_action( 'init', 'epl_register_custom_post_type_property', 0 );
-
+ 
+/**
+ * Manage Admin Property Post Type Columns 
+ *
+ * @since 1.0
+ * @return void
+ */
 if ( is_admin() ) {
-	// Manage Listing Columns
+	/**
+	 * Manage Admin Property Post Type Columns: Heading
+	 *
+	 * @since 1.0
+	 * @return void
+	 */
 	function epl_manage_property_columns_heading( $columns ) {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
@@ -76,8 +98,13 @@ if ( is_admin() ) {
 		}
 		return $columns;
 	}
-	add_filter( 'manage_edit-property_columns', 'epl_manage_property_columns_heading' ) ;
-
+	add_filter( 'manage_edit-property_columns', 'epl_manage_property_columns_heading' );
+	
+	/**
+	 * Manage Admin Property Post Type Columns: Row Contents
+	 *
+	 * @since 1.0
+	 */
 	function epl_manage_property_columns_value( $column, $post_id ) {
 		global $post;
 		switch( $column ) {	
@@ -99,7 +126,6 @@ if ( is_admin() ) {
 				
 				$land = get_post_meta( $post_id, 'property_land_area', true );
 				$land_unit = get_post_meta( $post_id, 'property_land_area_unit', true );
-
 				
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
@@ -108,7 +134,6 @@ if ( is_admin() ) {
 				}		
 				
 				echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
-
 				echo '<div class="epl_meta_beds_baths">';
 				echo '<span class="epl_meta_beds">' , $beds , ' Beds | </span>';
 				echo '<span class="epl_meta_baths">' , $baths , ' Baths</span>';
@@ -126,16 +151,13 @@ if ( is_admin() ) {
 				} 
 			
 				break;
-
 			/* If displaying the 'Geocoding Debug' column. */
 			case 'geo' :
 				/* Get the post meta. */
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
-
 				/* If no duration is found, output a default message. */
 				if (  $property_address_coordinates == ',' )
 					echo 'NO' ;
-
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					// echo 'Yes';
@@ -144,7 +166,6 @@ if ( is_admin() ) {
 				
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
-
 				$price = get_post_meta( $post_id, 'property_price', true );
 				$view = get_post_meta( $post_id, 'property_price_view', true );
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
@@ -152,21 +173,18 @@ if ( is_admin() ) {
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
 					echo '<div class="type_under_offer">Under Offer</div>';
 				}
-
 				if ( empty ( $view ) ) {
 					echo '<div class="epl_meta_search_price">' , epl_currency_formatted_amount( $price ), '</div>';
 				} else {
 					echo '<div class="epl_meta_price">' , $view , '</div>'; 
 				}
 				break;
-
 			/* If displaying the 'real-estate' column. */
 			case 'property_status' :
 				/* Get the genres for the post. */
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
 				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
 				break;
-
 			/* Just break out of the switch statement for everything else. */
 			default :
 				break;
@@ -174,7 +192,11 @@ if ( is_admin() ) {
 	}
 	add_action( 'manage_property_posts_custom_column', 'epl_manage_property_columns_value', 10, 2 );
 
-	// Manage Columns Sorting
+	/**
+	 * Manage Property Columns Sorting
+	 *
+	 * @since 1.0
+	 */
 	function epl_manage_property_sortable_columns( $columns ) {
 		//$columns['property_status'] = 'property_status';
 		$columns['property_inspection_times'] = 'property_inspection_times';

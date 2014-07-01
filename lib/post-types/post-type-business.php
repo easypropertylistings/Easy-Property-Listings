@@ -8,12 +8,23 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
-
+ 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
+ 
+/**
+ * Registers and sets up the Business custom post type
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_register_custom_post_type_business() {
-	$labels = array(
+
+	$archives = defined( 'EPL_BUSINESS_DISABLE_ARCHIVE' ) && EPL_BUSINESS_DISABLE_ARCHIVE ? false : true;
+	$slug     = defined( 'EPL_BUSINESS_SLUG' ) ? EPL_BUSINESS_SLUG : 'business';
+	$rewrite  = defined( 'EPL_BUSINESS_DISABLE_REWRITE' ) && EPL_BUSINESS_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+
+	$labels = apply_filters( 'epl_business_labels', array(
 		'name'					=>	__('Business Listings', 'epl'),
 		'singular_name'			=>	__('Business Listings', 'epl'),
 		'menu_name'				=>	__('Business', 'epl'),
@@ -28,34 +39,42 @@ function epl_register_custom_post_type_business() {
 		'not_found'				=>	__('Business Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Business Listing Not Found in Trash', 'epl'),
 		'parent_item_colon'		=>	__('Parent Business Listing:', 'epl')
-	);
+	) );
 
-	$args = array(
+	$business_args = array(
 		'labels'				=>	$labels,
 		'public'				=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'				=>	true,
 		'show_in_menu'			=>	true,
 		'query_var'				=>	true,
-		'rewrite'				=>	array( 'slug' => 'business' ),
+		'rewrite'				=>	$rewrite,
 		'menu_icon'				=>	'dashicons-cart',
 		//'menu_icon'			=>	plugins_url( 'post-types/icons/building.png' , dirname(__FILE__) ),
 		'capability_type'		=>	'post',
-		'has_archive'			=>	true,
+		'has_archive'			=>	$archives,
 		'hierarchical'			=>	false,
 		'menu_position'			=>	'26.6',
 		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
+		'supports'				=>	apply_filters( 'epl_business_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
-	epl_register_post_type( 'business', 'Business', $args );
+	epl_register_post_type( 'business', 'Business', apply_filters( 'epl_business_post_type_args', $business_args ) );
 }
 add_action( 'init', 'epl_register_custom_post_type_business', 0 );
  
+ 
+/**
+ * Manage Admin Business Post Type Columns
+ *
+ * @since 1.0
+ * @return void
+ */
 if ( is_admin() ) {
 	/**
-	 * Manage Business Listing Column Heading
+	 * Manage Admin Business Post Type Columns: Heading
 	 *
 	 * @since 1.0
+	 * @return void
 	 */
 	function epl_manage_business_columns_heading( $columns ) {
 		$columns = array(
@@ -82,9 +101,9 @@ if ( is_admin() ) {
 		return $columns;
 	}
 	add_filter( 'manage_edit-business_columns', 'epl_manage_business_columns_heading' ) ;
-
+ 
 	/**
-	 * Manage Business Listing Columns
+	 * Manage Admin Business Post Type Columns: Row Contents
 	 *
 	 * @since 1.0
 	 */
@@ -99,7 +118,7 @@ if ( is_admin() ) {
 					echo the_post_thumbnail('admin-list-thumb');
 				break;
 
-	case 'listing' :
+				case 'listing' :
 				/* Get the post meta. */
 				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 				$heading = get_post_meta( $post_id, 'property_heading', true );
@@ -146,7 +165,7 @@ if ( is_admin() ) {
 			
 				break;
 
-			/* If displaying the 'Geocoding Debub' column. */
+			/* If displaying the 'Geocoding Debug' column. */
 			case 'geo' :
 				/* Get the post meta. */
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
