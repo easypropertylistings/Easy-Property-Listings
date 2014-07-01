@@ -8,12 +8,23 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
-
+ 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
+ 
+/**
+ * Registers and sets up the Commercial Land custom post type
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_register_custom_post_type_commercial_land() {
-	$labels = array(
+
+	$archives = defined( 'EPL_COMMERCIAL_LAND_DISABLE_ARCHIVE' ) && EPL_COMMERCIAL_LAND_DISABLE_ARCHIVE ? false : true;
+	$slug     = defined( 'EPL_COMMERCIAL_LAND_SLUG' ) ? EPL_COMMERCIAL_LAND_SLUG : 'commercial-land';
+	$rewrite  = defined( 'EPL_COMMERCIAL_LAND_DISABLE_REWRITE' ) && EPL_COMMERCIAL_LAND_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+
+	$labels = apply_filters( 'epl_commercial_land_labels', array(
 		'name'					=>	__('Commercial Land Listings', 'epl'),
 		'singular_name'			=>	__('Commercial Land Listing', 'epl'),
 		'menu_name'				=>	__('Commercial Land', 'epl'),
@@ -28,30 +39,41 @@ function epl_register_custom_post_type_commercial_land() {
 		'not_found'				=>	__('Commercial Land Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Commercial Land Listing Not Found in Trash', 'epl'),
 		'parent_item_colon'		=>	__('Parent Commercial Land Listing:', 'epl')
-	);
-
-	$args = array(
+	) );
+	
+	$commercial_land_args = array(
 		'labels'				=>	$labels,
 		'public'				=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'				=>	true,
 		'show_in_menu'			=>	true,
 		'query_var'				=>	true,
-		'rewrite'				=>	array( 'slug' => 'commercial_land' ),
+		'rewrite'				=>	$rewrite,
 		'menu_icon'				=>	plugins_url( 'post-types/icons/building.png' , dirname(__FILE__) ),
 		'capability_type'		=>	'post',
-		'has_archive'			=>	true,
+		'has_archive'			=>	$archives,
 		'hierarchical'			=>	false,
 		'menu_position'			=>	'26.8',
 		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
+		'supports'				=>	apply_filters( 'epl_commercial_land_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
-	epl_register_post_type( 'commercial_land', 'Commercial Land', $args );
+	epl_register_post_type( 'commercial_land', 'Commercial Land', apply_filters( 'epl_commercial_land_post_type_args', $commercial_land_args ) );
 }
 add_action( 'init', 'epl_register_custom_post_type_commercial_land', 0 );
  
+/**
+ * Manage Admin Commercial Land Post Type Columns
+ *
+ * @since 1.0
+ * @return void
+ */
 if ( is_admin() ) {
-	// Manage Listing Columns
+	/**
+	 * Manage Admin Commercial Land Post Type Columns: Heading
+	 *
+	 * @since 1.0
+	 * @return void
+	 */
 	function epl_manage_commercial_land_columns_heading( $columns ) {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
@@ -80,7 +102,12 @@ if ( is_admin() ) {
 		return $columns;
 	}
 	add_filter( 'manage_edit-commercial_land_columns', 'epl_manage_commercial_land_columns_heading' ) ;
-
+	
+	/**
+	 * Manage Admin Commercial Land Post Type Columns: Row Contents
+	 *
+	 * @since 1.0
+	 */
 	function epl_manage_commercial_land_columns_value( $column, $post_id ) {
 		global $post;
 		switch( $column ) {
@@ -102,11 +129,9 @@ if ( is_admin() ) {
 			case 'property_heading' :
 				/* Get the post meta. */
 				$heading = get_post_meta( $post_id, 'property_heading', true );
-
 				/* If no duration is found, output a default message. */
 				if ( empty( $heading) )
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
-
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					 echo $heading;
@@ -116,25 +141,20 @@ if ( is_admin() ) {
 			case 'under_offer' :
 				/* Get the post meta. */
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-
 				/* If no duration is found, output a default message. */
 				if ( empty( $property_under_offer) )
 					echo __( '', 'epl' );
-
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					 echo 'Yes';
 				break;
-
 			/* If displaying the 'Geocoding Debub' column. */
 			case 'geo' :
 				/* Get the post meta. */
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
-
 				/* If no duration is found, output a default message. */
 				if (  $property_address_coordinates == ',' )
 					echo 'NO' ;
-
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					// echo 'Yes';
@@ -145,25 +165,20 @@ if ( is_admin() ) {
 			case 'property_price' :
 				/* Get the post meta. */
 				$price = get_post_meta( $post_id, 'property_price', true );
-
 				/* If no duration is found, output a default message. */
 				if ( empty( $price) )
 					echo ''; //'<strong>'.__( 'No Price Set', 'epl' ).'</strong>';
-
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					echo epl_currency_formatted_amount( $price );
 				break;
-
 			/* If displaying the 'Price View' column. */
 			case 'property_price_view' :
 				/* Get the post meta. */
 				$view = get_post_meta( $post_id, 'property_price_view', true );
-
 				/* If no duration is found, output a default message. */
 				if ( empty( $view) )
 					echo ''; //'<strong>'.__( 'No Rent Set', 'epl' ).'</strong>';
-
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					 echo $view;
@@ -173,11 +188,9 @@ if ( is_admin() ) {
 			case 'listing_type' :
 				/* Get the post meta. */
 				$listing_type = get_post_meta( $post_id, 'property_com_listing_type', true );
-
 				/* If no duration is found, output a default message. */
 				if ( empty( $listing_type) )
 					echo ''; //'<strong>'.__( 'No Price Set', 'epl' ).'</strong>';
-
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					 echo $listing_type;
@@ -189,7 +202,6 @@ if ( is_admin() ) {
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
 				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
 				break;
-
 			/* Just break out of the switch statement for everything else. */
 			default :
 				break;
@@ -197,7 +209,11 @@ if ( is_admin() ) {
 	}
 	add_action( 'manage_commercial_land_posts_custom_column', 'epl_manage_commercial_land_columns_value', 10, 2 );
 
-	// Manage Columns Sorting
+	/**
+	 * Manage Commercial Land Columns Sorting
+	 *
+	 * @since 1.0
+	 */
 	function epl_manage_commercial_land_sortable_columns( $columns ) {
 		$columns['property_status'] = 'property_status';
 		$columns['property_address_suburb'] = 'property_address_suburb';
