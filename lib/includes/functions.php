@@ -8,10 +8,9 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
-
+ 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 
 /**
  * Fetch and format property price
@@ -352,7 +351,6 @@ function epl_get_property_price($post) {
 	);
 	return $return;
 }
-
 /**
  * Determine if iThemes Builder framework is loaded
  *
@@ -364,7 +362,6 @@ function epl_is_builder_framework_theme() {
 	}
 	return false;
 }
-
 /**
  * Determine if Genesis framework is loaded
  *
@@ -376,7 +373,6 @@ function epl_is_genesis_framework_theme() {
 	}
 	return false;
 }
-
 /**
  * Used in the widgets by appending the registered image sizes
  *
@@ -398,7 +394,6 @@ function epl_get_thumbnail_sizes() {
 	}
 	return $sizes;
 }
-
 /**
  * Remote get function
  *
@@ -416,7 +411,6 @@ function epl_remote_url_get($url) {
 		}
 	}
 }
-
 /**
  * Register post type to EPL and wordpress
  *
@@ -447,7 +441,6 @@ function epl_register_post_type($post_type='', $post_type_label, $args=array()) 
 		$_SESSION['epl_actions']['epl_flush_rewrite_rules'] = true;
 	}
 }
-
 /**
  * Return all the post types that are selected as active by admin
  *
@@ -457,7 +450,6 @@ function epl_get_active_post_types() {
 	global $epl_active_post_types;
 	return $epl_active_post_types;
 }
-
 /**
  * Return all the post types doesn't matter if selected as active or not by admin
  *
@@ -528,7 +520,6 @@ function epl_get_currency() {
 	}
 	return apply_filters( 'epl_currency', $epl_currency );
 }
-
 function epl_get_currency_position() {
 	$epl_currency_position = '';
 	
@@ -538,7 +529,6 @@ function epl_get_currency_position() {
 	}
 	return apply_filters( 'epl_currency_position', $epl_currency_position );
 }
-
 function epl_get_thousands_separator() {
 	$epl_thousands_separator = '';
 	
@@ -548,7 +538,6 @@ function epl_get_thousands_separator() {
 	}
 	return apply_filters( 'epl_thousands_separator', $epl_thousands_separator );
 }
-
 function epl_get_decimal_separator() {
 	$epl_decimal_separator = '';
 	
@@ -558,11 +547,9 @@ function epl_get_decimal_separator() {
 	}
 	return apply_filters( 'epl_decimal_separator', $epl_decimal_separator );
 }
-
 function epl_currency_formatted_amount($price) {
 	return epl_currency_filter( epl_format_amount( $price ) );
 }
-
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
 	
@@ -572,7 +559,6 @@ function epl_display_label_suburb( ) {
 	}
 	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
 }
-
 function epl_display_label_postcode() {
 	$epl_display_label_postcode = '';
 	
@@ -582,7 +568,6 @@ function epl_display_label_postcode() {
 	}
 	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
 }
-
 /**
  * Get EPL author meta
  *
@@ -598,7 +583,6 @@ function epl_get_author_meta() {
 	require_once EPL_PATH_LIB . 'templates/content/author-meta.php';
 	$epl_author_meta_sent = true;
 }
-
 /**
  * Get EPL property address
  *
@@ -651,7 +635,6 @@ function epl_get_property_address($post_ID='') {
 	$address = trim($address); $address = trim($address, ","); $address = trim($address);
 	return apply_filters('epl_get_property_address_filter', $address);
 }
-
 /**
  * Print EPL property address
  *
@@ -662,7 +645,6 @@ function epl_the_property_address($post_ID='') {
 	$address = epl_get_property_address($post_ID);
 	echo apply_filters('epl_the_property_address_filter', $address);
 }
-
 /**
  * Get EPL property meta data
  *
@@ -681,7 +663,6 @@ function epl_get_property_meta($post_ID='', $meta_key='') {
 	}
 	return apply_filters('epl_get_property_meta_filter', $meta_value);
 }
-
 /**
  * Print EPL property meta data
  *
@@ -692,8 +673,6 @@ function epl_the_property_meta($post_ID='', $meta_key) {
 	$meta_value = epl_get_property_meta($post_ID, $meta_key);
 	echo apply_filters('epl_the_property_meta_filter', $meta_value);
 }
-
-
 /**
  * Taxonomy: Location Label
  *
@@ -710,4 +689,140 @@ function epl_tax_location_label() {
 		$label_location = 'City';
 	}	
 	return $label_location;
+}
+/**
+ * Custom Meta: House Categories
+ *
+ * @since 1.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_property_category() {
+	$defaults = array(
+		'House'					=>	'House',
+		'Unit'					=>	'Unit',
+		'Townhouse'				=>	'Townhouse',
+		'Villa'					=>	'Villa',
+		'Apartment'				=>	'Apartment',
+		'Flat'					=>	'Flat',
+		'Studio'				=>	'Studio',
+		'Warehouse'				=>	'Warehouse',
+		'DuplexSemi-detached'	=>	'Duplex Semi-detached',
+		'Alpine'				=>	'Alpine',
+		'AcreageSemi-rural'		=>	'Acreage Semi-rural',
+		'Retirement'			=>	'Retirement',
+		'BlockOfUnits'			=>	'Block Of Units',
+		'Terrace'				=>	'Terrace',
+		'ServicedApartment'		=>	'Serviced Apartment',
+		'Other'					=>	'Other'
+	);
+	return apply_filters( 'epl_listing_meta_property_category', $defaults );
+}
+
+/**
+ * Custom Meta: Return Value of House Category
+ *
+ * @since 1.1
+ * @return all the categories in array
+ */
+function epl_listing_meta_property_category_value( $key ) {
+	$array = epl_listing_load_meta_property_category();
+	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
+
+	return $value;
+}
+ 
+/**
+ * Custom Meta: Land Categories
+ *
+ * @since 1.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_land_category() {
+	$defaults = array(
+		'Commercial'	=>	'Commercial',
+		'Residential'	=>	'Residential'
+	);
+	return apply_filters( 'epl_listing_meta_land_category', $defaults );
+}
+
+/**
+ * Custom Meta: Return Value of Land Category
+ *
+ * @since 1.1
+ * @return all the categories in array
+ */
+function epl_listing_meta_land_category_value( $key ) {
+	$array = epl_listing_load_meta_land_category();
+	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
+
+	return $value;
+}
+ 
+/**
+ * Custom Meta: Commercial Categories
+ *
+ * @since 1.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_commercial_category() {
+	$defaults = array(
+		'Commercial Farming'	=>	'Commercial Farming',
+		'Land/Development'		=>	'Land/Development',
+		'Hotel/Leisure'			=>	'Hotel/Leisure',
+		'Industrial/Warehouse'	=>	'Industrial/Warehouse',
+		'Medical/Consulting'	=>	'Medical/Consulting',
+		'Offices'				=>	'Offices',
+		'Retail'				=>	'Retail',
+		'Showrooms/Bulky Goods'	=>	'Showrooms/Bulky Goods',
+		'Other'					=>	'Other'
+	);
+	return apply_filters( 'epl_listing_meta_commercial_category', $defaults );
+}
+ 
+/**
+ * Custom Meta: Return Value of Commercial Category
+ *
+ * @since 1.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_commercial_category_value( $key ) {
+	$array = epl_listing_load_meta_commercial_category();
+	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
+
+	return $value;
+}
+  
+/**
+ * Custom Meta: Rural Categories
+ *
+ * @since 1.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_rural_category() {
+	$defaults = array(
+		'Cropping'		=>	'Cropping',
+		'Dairy'			=>	'Dairy',
+		'Farmlet'		=>	'Farmlet',
+		'Horticulture'	=>	'Horticulture',
+		'Livestock'		=>	'Livestock',
+		'Viticulture'	=>	'Viticulture',
+		'MixedFarming'	=>	'Mixed Farming',
+		'Lifestyle'		=>	'Lifestyle',
+		'Other'			=>	'Other'
+	);
+	return apply_filters( 'epl_listing_meta_rural_category', $defaults );
+}
+ 
+  
+/**
+ * Custom Meta: Return Value of Rural Category
+ *
+ * @since 1.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_rural_category_value( $key ) {
+	$array = epl_listing_load_meta_rural_category();
+	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
+
+	return $value;
 }
