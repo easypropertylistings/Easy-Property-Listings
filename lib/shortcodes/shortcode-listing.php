@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Only load on front
 if( is_admin() ) {
-	return;
+	return; 
 }
 /**
  * This shortcode allows for you to specify the property type(s) using 
@@ -33,27 +33,26 @@ function epl_shortcode_listing_callback( $atts ) {
 		'limit'		=>	'10', // Number of maximum posts to show
 	), $atts ) );
 	
-	if(!empty($status)) {
-		if(!is_array($status)) {
-			$status = array($status);
-		}
-	}
-	
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'paged' 			=>	$paged,
-		'meta_key' 			=>	'property_status',
-		'meta_query' => array(
-			array(
+		'paged' 			=>	$paged
+	);
+	
+	if(!empty($status)) {
+		if(!is_array($status)) {
+			$status = explode(",", $status);
+			$status = array_map('trim', $status);
+			
+			$args['meta_query'][] = array(
 				'key' => 'property_status',
 				'value' => $status,
-				'compare' => 'IN',
-			)
-		)
-	);
+				'compare' => 'IN'
+			);
+		}
+	}
 	
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
