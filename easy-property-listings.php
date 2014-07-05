@@ -233,6 +233,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-epl-property-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
