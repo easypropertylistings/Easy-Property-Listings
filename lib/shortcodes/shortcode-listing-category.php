@@ -23,10 +23,10 @@ if( is_admin() ) {
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	extract( shortcode_atts( array(
-		'post_type' 	=>	'',
+		'post_type' 		=>	'',
 		'status'		=>	array('current' , 'sold' , 'leased' ),
-		'category_key'	=>	'',
-		'category'		=>	'',
+		'category_key'		=>	'',
+		'category_value'	=>	'',
 		'limit'			=>	'10', // Number of maximum posts to show
 	), $atts ) );
 	
@@ -39,7 +39,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'paged' 			=>	$paged
+		'paged' 		=>	$paged
 	);
 	
 	if(!empty($status)) {
