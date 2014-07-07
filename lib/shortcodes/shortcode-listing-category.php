@@ -55,14 +55,14 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		}
 	}
 	
-	if(!empty($category_key) && !empty($category)) {
-		if(!is_array($category)) {
-			$category = explode(",", $category);
-			$category = array_map('trim', $category);
+	if(!empty($category_key) && !empty($category_value)) {
+		if(!is_array($category_value)) {
+			$category_value = explode(",", $category_value);
+			$category_value = array_map('trim', $category_value);
 			
 			$args['meta_query'][] = array(
 				'key' => $category_key,
-				'value' => $category,
+				'value' => $category_value,
 				'compare' => 'IN'
 			);
 		}
