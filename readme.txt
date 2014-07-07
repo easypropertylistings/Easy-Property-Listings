@@ -131,10 +131,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
-= 1.1.1: July 1, 2014 =
+= 1.1.1: July 7, 2014 =
 
 * New: Created filters for listing meta select fields: property_category, property_rural_category, property_commercial_category, property_land_category
 * New: Created filters for each of the seven custom post types: labels, supports, slug, archive, rewrite, seven custom post types
+* New: Shortcode [listing_category] This shortcode allows for you to output a list of listings by type and filter them by any available meta key and value.
 * Tweak: Updated search widget for filtered property_categories 
 * Fix: Listing categories were showing key, now showing value.
 * Fix: Settings were not showing up after saving, second refresh required setting variable to reload
