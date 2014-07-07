@@ -18,7 +18,7 @@ if( is_admin() ) {
 }
 /**
  * This shortcode allows for you to specify the property type(s) using 
- * [listing_category post_type="property" status="current,sold,leased" category_key="property_rural_category" category="farm"] option. You can also 
+ * [listing_category post_type="property" status="current,sold,leased" category_key="property_rural_category" category_key="farm"] option. You can also 
  * limit the number of entries that display. using  [listing_category limit="5"]
  */
 function epl_shortcode_listing_category_callback( $atts ) {
