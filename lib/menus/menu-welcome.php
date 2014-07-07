@@ -213,7 +213,10 @@ class EPL_Welcome {
 				<div class="feature-section">
 					<h4><?php _e( 'Settings Not Updating when Saved', 'epl' );?></h4>
 					<p><?php _e( 'When saving the initial settings the page is refreshed but the old settings were still being shown. This has been fixed.', 'epl' );?></p>
-
+					<h4><?php _e( 'Tweak: Search Widget', 'epl' );?></h4>
+					<p><?php _e( 'Updated search widget to use custom filtered property_category.', 'epl' );?></p>
+					<h4><?php _e( 'Fix: Single Listing for property category', 'epl' );?></h4>
+					<p><?php _e( 'Listing categories were showing key, now showing value', 'epl' );?></p>
 				</div>
 				
 			</div>
