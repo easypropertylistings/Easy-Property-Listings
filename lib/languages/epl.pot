@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 1.1.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-"
 "listings\n"
-"POT-Creation-Date: 2014-07-22 00:53+0800\n"
-"PO-Revision-Date: 2014-07-22 00:58+0800\n"
+"POT-Creation-Date: 2014-07-22 01:12+0800\n"
+"PO-Revision-Date: 2014-07-22 01:12+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: it\n"
@@ -2383,6 +2383,16 @@ msgstr ""
 msgid "Parent Listing:"
 msgstr ""
 
+#: post-types/post-type-property.php:139 post-types/post-type-rental.php:137
+#: post-types/post-type-rural.php:142
+msgid "Beds"
+msgstr "Letti"
+
+#: post-types/post-type-property.php:140 post-types/post-type-rental.php:138
+#: post-types/post-type-rural.php:143
+msgid "Baths"
+msgstr "Bagni"
+
 #: post-types/post-type-rental.php:28 post-types/post-type-rental.php:30
 msgid "Rentals"
 msgstr ""
@@ -2995,19 +3005,16 @@ msgid "Bedroom"
 msgstr "Locali"
 
 #: widgets/widget-listing-search.php:511
-#, fuzzy
 msgid "Bathroom"
-msgstr "Bagni"
+msgstr "Bagno"
 
 #: widgets/widget-listing-search.php:515
-#, fuzzy
 msgid "Car"
 msgstr "Posto auto coperto"
 
 #: widgets/widget-listing-search.php:519
-#, fuzzy
 msgid "Other Search Options"
-msgstr "Opzioni di estensione"
+msgstr "Altre opzioni di ricerca"
 
 #: widgets/widget-listing.php:18
 msgid "EPL - Listing"
