@@ -91,7 +91,7 @@ function epl_meta_box_init() {
 		
 		array(
 			'id'		=>	'epl-property-listing-section-id',
-			'label'		=>	'Listing Details',
+			'label'		=>	__('Listing Details', 'epl'),
 			'post_type'	=>	array('property', 'rural', 'rental', 'land', 'commercial', 'commercial_land', 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
@@ -102,7 +102,7 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_heading',
-							'label'		=>	'Heading',
+							'label'		=>	__('Heading', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'150'
 						)
@@ -111,18 +111,18 @@ function epl_meta_box_init() {
 			
 				array(
 					'columns'	=>	'1',
-					'label'		=>	'Listing Agent(s)',
+					'label'		=>	__('Listing Agent(s)', 'epl'),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_agent',
-							'label'		=>	'Listing Agent',
+							'label'		=>	__('Listing Agent', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_second_agent',
-							'label'		=>	'Second Listing Agent',
+							'label'		=>	__('Second Listing Agent', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						)
@@ -131,18 +131,18 @@ function epl_meta_box_init() {
 			
 				array(
 					'columns'	=>	'2',
-					'label'		=>	'Listing Type',
+					'label'		=>	__('Listing Type', 'epl'),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_status',
-							'label'		=>	'Property Status',
+							'label'		=>	__('Property Status', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_status
 						),
 					
 						array(
 							'name'		=>	'property_authority',
-							'label'		=>	'Authority',
+							'label'		=>	__('Authority', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_authority,
 							'exclude'	=>	array('rental', 'commercial', 'commercial_land')
@@ -150,7 +150,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_category',
-							'label'		=>	'House Category',
+							'label'		=>	__('House Category', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	epl_listing_load_meta_property_category(),
 							'exclude'	=>	array('land', 'commercial', 'commercial_land', 'business', 'rural')
@@ -158,7 +158,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_rural_category',
-							'label'		=>	'Rural Category',
+							'label'		=>	__('Rural Category', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	epl_listing_load_meta_rural_category(),
 							'include'	=>	array('rural')
@@ -166,21 +166,21 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_unique_id',
-							'label'		=>	'Unique ID',
+							'label'		=>	__('Unique ID', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'50'
 						),
 					
 						array(
 							'name'		=>	'property_mod_date',
-							'label'		=>	'XML Importer Mod Date',
+							'label'		=>	__('XML Importer Mod Date', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'60'
 						),
 					
 						array(
 							'name'		=>	'property_com_authority',
-							'label'		=>	'Commercial Authority',
+							'label'		=>	__('Commercial Authority', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_com_authority,
 							'include'	=>	array('commercial', 'commercial_land', 'business')
@@ -188,7 +188,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_com_exclusivity',
-							'label'		=>	'Exclusivity',
+							'label'		=>	__('Exclusivity', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_exclusivity,
 							'include'	=>	array('commercial', 'commercial_land', 'business')
@@ -196,7 +196,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_com_listing_type',
-							'label'		=>	'Commercial Listing Type',
+							'label'		=>	__('Commercial Listing Type', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_com_listing_type,
 							'include'	=>	array('commercial', 'commercial_land')
@@ -204,7 +204,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_commercial_category',
-							'label'		=>	'Commercial Category',
+							'label'		=>	__('Commercial Category', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	epl_listing_load_meta_commercial_category(),
 							'include'	=>	array('commercial', 'commercial_land')
@@ -214,21 +214,21 @@ function epl_meta_box_init() {
 			
 				array(
 					'columns'	=>	'2',
-					'label'		=>	'Display Details',
+					'label'		=>	__('Display Details', 'epl'),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_featured',
-							'label'		=>	'Featured',
+							'label'		=>	__('Featured', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_inspection_times',
-							'label'		=>	'Inspection Times',
+							'label'		=>	__('Inspection Times', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'150'
 						)
@@ -240,93 +240,93 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-features-section-id',
-			'label'		=>	'Listing Features',
+			'label'		=>	__('Listing Features', 'epl'),
 			'post_type'	=>	array('property', 'rural', 'rental' ),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
 					'columns'	=>	'2',
-					'label'		=>	'House Features',
+					'label'		=>	__('House Features', 'epl'),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_bedrooms',
-							'label'		=>	'Bedrooms',
+							'label'		=>	__('Bedrooms', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
 					
 						array(
 							'name'		=>	'property_bathrooms',
-							'label'		=>	'Bathrooms',
+							'label'		=>	__('Bathrooms', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
 						array(
 							'name'		=>	'property_ensuite',
-							'label'		=>	'Ensuite',
+							'label'		=>	__('Ensuite', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
 						array(
 							'name'		=>	'property_toilet',
-							'label'		=>	'Toilet',
+							'label'		=>	__('Toilet', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
 					
 						array(
 							'name'		=>	'property_garage',
-							'label'		=>	'Garage',
+							'label'		=>	__('Garage', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
 					
 						array(
 							'name'		=>	'property_carport',
-							'label'		=>	'Carport',
+							'label'		=>	__('Carport', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
 					
 						array(
 							'name'		=>	'property_new_construction',
-							'label'		=>	'New Construction',
+							'label'		=>	__('New Construction', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 							'include'	=>	array('property', 'rental' )
 						),
 					
 						array(
 							'name'		=>	'property_pool',
-							'label'		=>	'Pool',
+							'label'		=>	__('Pool', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_air_conditioning',
-							'label'		=>	'Air Conditioning',
+							'label'		=>	__('Air Conditioning', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_security_system',
-							'label'		=>	'Security System',
+							'label'		=>	__('Security System', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -334,43 +334,43 @@ function epl_meta_box_init() {
 			
 				array(
 					'columns'	=>	'2',
-					'label'		=>	'Land Details',
+					'label'		=>	__('Land Details', 'epl'),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_land_area',
-							'label'		=>	'Land Area',
+							'label'		=>	__('Land Area', 'epl'),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'50'
 						),
 					
 						array(
 							'name'		=>	'property_land_area_unit',
-							'label'		=>	'Land Unit',
+							'label'		=>	__('Land Unit', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_area_unit
 						),
 					
 						array(
 							'name'		=>	'property_building_area',
-							'label'		=>	'Building Area',
+							'label'		=>	__('Building Area', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'50'
 						),
 					
 						array(
 							'name'		=>	'property_building_area_unit',
-							'label'		=>	'Building Unit',
+							'label'		=>	__('Building Unit', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_area_unit
 						),
 					
 						array(
 							'name'		=>	'property_land_fully_fenced',
-							'label'		=>	'Fully Fenced',
+							'label'		=>	__('Fully Fenced', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					)
@@ -380,151 +380,151 @@ function epl_meta_box_init() {
 	
 		array( // Additional Features
 			'id'		=>	'epl-additional-features-section-id',
-			'label'		=>	'Additional Features',
+			'label'		=>	__('Additional Features', 'epl'),
 			'post_type'	=>	array('property', 'rural', 'rental' ),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
 					'columns'	=>	'2',
-					'label'		=>	'Internal',
+					'label'		=>	__('Internal', 'epl'),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_remote_garage',
-							'label'		=>	'Remote Garage',
+							'label'		=>	__('Remote Garage', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_secure_parking',
-							'label'		=>	'Secure Parking',
+							'label'		=>	__('Secure Parking', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_study',
-							'label'		=>	'Study',
+							'label'		=>	__('Study', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_dishwasher',
-							'label'		=>	'Dishwasher',
+							'label'		=>	__('Dishwasher', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_built_in_robes',
-							'label'		=>	'Built In Robes',
+							'label'		=>	__('Built In Robes', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_gym',
-							'label'		=>	'Gym',
+							'label'		=>	__('Gym', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_workshop',
-							'label'		=>	'Workshop',
+							'label'		=>	__('Workshop', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_rumpus_room',
-							'label'		=>	'Rumpus Room',
+							'label'		=>	__('Rumpus Room', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_floor_boards',
-							'label'		=>	'Floor Boards',
+							'label'		=>	__('Floor Boards', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_broadband',
-							'label'		=>	'Broadband',
+							'label'		=>	__('Broadband', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_pay_tv',
-							'label'		=>	'Pay TV',
+							'label'		=>	__('Pay TV', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 						array(
 							'name'		=>	'property_vacuum_system',
-							'label'		=>	'Vacuum System',
+							'label'		=>	__('Vacuum System', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_intercom',
-							'label'		=>	'Intercom',
+							'label'		=>	__('Intercom', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_spa',
-							'label'		=>	'Spa',
+							'label'		=>	__('Spa', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -532,162 +532,162 @@ function epl_meta_box_init() {
 			
 				array(
 					'columns'	=>	'2',
-					'label'		=>	'External',
+					'label'		=>	__('External', 'epl'),
 					'fields'	=>	array(
 					
 						array(
 							'name'		=>	'property_tennis_court',
-							'label'		=>	'Tennis Court',
+							'label'		=>	__('Tennis Court', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_balcony',
-							'label'		=>	'Balcony',
+							'label'		=>	__('Balcony', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_deck',
-							'label'		=>	'Deck',
+							'label'		=>	__('Deck', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_courtyard',
-							'label'		=>	'Courtyard',
+							'label'		=>	__('Courtyard', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_outdoor_entertaining',
-							'label'		=>	'Outdoor Entertaining',
+							'label'		=>	__('Outdoor Entertaining', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_shed',
-							'label'		=>	'Shed',
+							'label'		=>	__('Shed', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
 				),
 				array(
 					'columns'	=>	'2',
-					'label'		=>	'Heating & Cooling',
+					'label'		=>	__('Heating & Cooling', 'epl'),
 					'fields'	=>	array(
 					
 						array(
 							'name'		=>	'property_ducted_heating',
-							'label'		=>	'Ducted Heating',
+							'label'		=>	__('Ducted Heating', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_ducted_cooling',
-							'label'		=>	'Ducted Cooling',
+							'label'		=>	__('Ducted Cooling', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_split_system_heating',
-							'label'		=>	'Split System Heating',
+							'label'		=>	__('Split System Heating', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_hydronic_heating',
-							'label'		=>	'Hydronic Heating',
+							'label'		=>	__('Hydronic Heating', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_split_system_aircon',
-							'label'		=>	'Split System Aircon',
+							'label'		=>	__('Split System Aircon', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_gas_heating',
-							'label'		=>	'Gas Heating',
+							'label'		=>	__('Gas Heating', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_reverse_cycle_aircon',
-							'label'		=>	'Reverse Cycle Aircon',
+							'label'		=>	__('Reverse Cycle Aircon', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_evaporative_cooling',
-							'label'		=>	'Evaporative Cooling',
+							'label'		=>	__('Evaporative Cooling', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_open_fire_place',
-							'label'		=>	'Open Fire Place',
+							'label'		=>	__('Open Fire Place', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -697,7 +697,7 @@ function epl_meta_box_init() {
 	
 		array( //Repeating most from above "epl-features-section-id" because on land it will be single column
 			'id'		=>	'epl-features-section-id-single-column',
-			'label'		=>	'Land Details',
+			'label'		=>	__('Land Details', 'epl'),
 			'post_type'	=>	array('land', 'commercial'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
@@ -708,21 +708,21 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_land_area',
-							'label'		=>	'Land Area',
+							'label'		=>	__('Land Area', 'epl'),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'50'
 						),
 					
 						array(
 							'name'		=>	'property_land_area_unit',
-							'label'		=>	'Land Unit',
+							'label'		=>	__('Land Unit', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_area_unit
 						),
 					
 						array(
 							'name'		=>	'property_building_area',
-							'label'		=>	'Building Area',
+							'label'		=>	__('Building Area', 'epl'),
 							'type'		=>	'number',
 							'include'	=>	array('commercial'),
 							'maxlength'	=>	'40'
@@ -730,7 +730,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_building_area_unit',
-							'label'		=>	'Building Unit',
+							'label'		=>	__('Building Unit', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_area_unit,
 							'include'	=>	array('commercial')
@@ -738,7 +738,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_land_category',
-							'label'		=>	'Land Category',
+							'label'		=>	__('Land Category', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	epl_listing_load_meta_land_category(),
 							'include'	=>	array('land')
@@ -746,11 +746,11 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_land_fully_fenced',
-							'label'		=>	'Fully Fenced',
+							'label'		=>	__('Fully Fenced', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					)
@@ -760,7 +760,7 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-property-address-section-id',
-			'label'		=>	'Property Address',
+			'label'		=>	__('Property Address', 'epl'),
 			'post_type'	=>	array('property', 'rural', 'rental', 'commercial', 'commercial_land', 'business', 'land'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
@@ -771,24 +771,24 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_address_display',
-							'label'		=>	'Display Address?',
+							'label'		=>	__('Display Address?', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_address_street_number',
-							'label'		=>	'Street Number',
+							'label'		=>	__('Street Number', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_address_street',
-							'label'		=>	'Street Name',
+							'label'		=>	__('Street Name', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
@@ -802,18 +802,18 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_address_state',
-							'label'		=>	'State',
+							'label'		=>	__('State', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_com_display_suburb',
-							'label'		=>	'Display Suburb',
+							'label'		=>	__('Display Suburb', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 							'include'	=>	array('commercial', 'commercial_land', 'business'),
 						),
@@ -827,7 +827,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_address_coordinates',
-							'label'		=>	'Coordinates',
+							'label'		=>	__('Coordinates', 'epl'),
 							'type'		=>	'text',
 							'geocoder'	=>	'true',
 							'maxlength'	=>	'40'
@@ -839,7 +839,7 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-pricing-section-id',
-			'label'		=>	'Pricing',
+			'label'		=>	__('Pricing', 'epl'),
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'land'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
@@ -850,52 +850,52 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_price',
-							'label'		=>	'Search Price',
+							'label'		=>	__('Search Price', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'50'
 						),
 					
 						array(
 							'name'		=>	'property_price_view',
-							'label'		=>	'Price Text',
+							'label'		=>	__('Price Text', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'50'
 						),
 					
 						array(
 							'name'		=>	'property_auction',
-							'label'		=>	'Auction Date / Details',
+							'label'		=>	__('Auction Date / Details', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'100'
 						),
 					
 						array(
 							'name'		=>	'property_price_display',
-							'label'		=>	'Display Price?',
+							'label'		=>	__('Display Price?', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_under_offer',
-							'label'		=>	'Under Offer',
+							'label'		=>	__('Under Offer', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_is_home_land_package',
-							'label'		=>	'House and Land Package',
+							'label'		=>	__('House and Land Package', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 							'exclude'	=>	array('land', 'rural', 'commercial', 'commercial_land' , 'business')
 						)
@@ -904,29 +904,29 @@ function epl_meta_box_init() {
 			
 				array(
 					'columns'	=>	'1',
-					'label'		=>	'Sale Details',
+					'label'		=>	__('Sale Details', 'epl'),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_sold_price',
-							'label'		=>	'Sale Price',
+							'label'		=>	__('Sale Price', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'50'
 						),
 					
 						array(
 							'name'		=>	'property_sold_date',
-							'label'		=>	'Sale Date',
+							'label'		=>	__('Sale Date', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'100'
 						),
 					
 						array(
 							'name'		=>	'property_sold_price_display',
-							'label'		=>	'Display Sale Price',
+							'label'		=>	__('Display Sale Price', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -936,7 +936,7 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-property-rent-id',
-			'label'		=>	'Rental Pricing',
+			'label'		=>	__('Rental Pricing', 'epl'),
 			'post_type'	=>	array('rental'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
@@ -947,59 +947,59 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_rent_display',
-							'label'		=>	'Display Rent?',
+							'label'		=>	__('Display Rent?', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_rent',
-							'label'		=>	'Rent Amount',
+							'label'		=>	__('Rent Amount', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_rent_period',
-							'label'		=>	'Rent Period',
+							'label'		=>	__('Rent Period', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_rent_period
 						),
 					
 						array(
 							'name'		=>	'property_bond',
-							'label'		=>	'Bond Amount',
+							'label'		=>	__('Bond Amount', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_date_available',
-							'label'		=>	'Date Available',
+							'label'		=>	__('Date Available', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'100'
 						),
 					
 						array(
 							'name'		=>	'property_furnished',
-							'label'		=>	'Furnished',
+							'label'		=>	__('Furnished', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_holiday_rental',
-							'label'		=>	'Holiday Rental',
+							'label'		=>	__('Holiday Rental', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 							'exclude'	=>	array('rental')
 						),
@@ -1010,7 +1010,7 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-rural-features-id',
-			'label'		=>	'Rural Features',
+			'label'		=>	__('Rural Features', 'epl'),
 			'post_type'	=>	array('rural'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
@@ -1021,56 +1021,56 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_rural_fencing',
-							'label'		=>	'Fencing',
+							'label'		=>	__('Fencing', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						),
 					
 						array(
 							'name'		=>	'property_rural_annual_rainfall',
-							'label'		=>	'Annual Rainfall',
+							'label'		=>	__('Annual Rainfall', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						),
 					
 						array(
 							'name'		=>	'property_rural_soil_types',
-							'label'		=>	'Soil Types',
+							'label'		=>	__('Soil Types', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						),
 					
 						array(
 							'name'		=>	'property_rural_improvements',
-							'label'		=>	'Improvements',
+							'label'		=>	__('Improvements', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						),
 					
 						array(
 							'name'		=>	'property_rural_council_rates',
-							'label'		=>	'Council Rates',
+							'label'		=>	__('Council Rates', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						),
 					
 						array(
 							'name'		=>	'property_rural_irrigation',
-							'label'		=>	'Irrigation',
+							'label'		=>	__('Irrigation', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						),
 					
 						array(
 							'name'		=>	'property_rural_carrying_capacity',
-							'label'		=>	'Carrying Capacity',
+							'label'		=>	__('Carrying Capacity', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						),
 					
 						array(
 							'name'		=>	'property_rural_services',
-							'label'		=>	'Services',
+							'label'		=>	__('Services', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						)
@@ -1081,7 +1081,7 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-commercial-leasing-id',
-			'label'		=>	'Commercial Leasing',
+			'label'		=>	__('Commercial Leasing', 'epl'),
 			'post_type'	=>	array('commercial', 'commercial_land'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
@@ -1092,35 +1092,35 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_com_rent',
-							'label'		=>	'Commercial Rent',
+							'label'		=>	__('Commercial Rent', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_com_rent_range_min',
-							'label'		=>	'Rent Range Min',
+							'label'		=>	__('Rent Range Min', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						),
 						 
 						array(
 							'name'		=>	'property_com_rent_range_max',
-							'label'		=>	'Rent Range Max',
+							'label'		=>	__('Rent Range Max', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_com_lease_end_date',
-							'label'		=>	'Lease End Date',
+							'label'		=>	__('Lease End Date', 'epl'),
 							'type'		=>	'date',
 							'maxlength'	=>	'100'
 						),
 					
 						array(
 							'name'		=>	'property_com_property_extent',
-							'label'		=>	'Property Extent',
+							'label'		=>	__('Property Extent', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_com_property_extent
 						)
@@ -1133,7 +1133,7 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_com_tenancy',
-							'label'		=>	'Tenant Status',
+							'label'		=>	__('Tenant Status', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_com_tenancy,
 							'exclude'	=>	array('commercial_land')
@@ -1141,7 +1141,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_com_outgoings',
-							'label'		=>	'Commercial Outgoings',
+							'label'		=>	__('Commercial Outgoings', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						)
@@ -1149,17 +1149,17 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_com_plus_outgoings',
-							'label'		=>	'Plus Outgoings',
+							'label'		=>	__('Plus Outgoings', 'epl'),
 							'type'		=>	'radio',
 							'opts'		=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_com_return',
-							'label'		=>	'Commercial Return',
+							'label'		=>	__('Commercial Return', 'epl'),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'6'
 						)
@@ -1170,7 +1170,7 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-commercial-features-id',
-			'label'		=>	'Commercial Features',
+			'label'		=>	__('Commercial Features', 'epl'),
 			'post_type'	=>	array('commercial'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
@@ -1181,21 +1181,21 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_com_further_options',
-							'label'		=>	'Further Options',
+							'label'		=>	__('Further Options', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'65535'
 						),
 					
 						array(
 							'name'		=>	'property_com_zone',
-							'label'		=>	'Zone',
+							'label'		=>	__('Zone', 'epl'),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'150'
 						),
 					
 						array(
 							'name'		=>	'property_com_car_spaces',
-							'label'		=>	'Car Spaces',
+							'label'		=>	__('Car Spaces', 'epl'),
 							'type'		=>	'number',
 							'type'		=>	'textarea',
 							'maxlength'	=>	'5'
@@ -1203,39 +1203,39 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_com_highlight_1',
-							'label'		=>	'Highlight 1',
+							'label'		=>	__('Highlight 1', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_com_highlight_2',
-							'label'		=>	'Highlight 2',
+							'label'		=>	__('Highlight 2', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_com_highlight_3',
-							'label'		=>	'Highlight 3',
+							'label'		=>	__('Highlight 3', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
 					
 						array(
 							'name'		=>	'property_com_parking_comments',
-							'label'		=>	'Parking Comments',
+							'label'		=>	__('Parking Comments', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'150'
 						),
 					
 						array(
 							'name'		=>	'property_com_is_multiple',
-							'label'		=>	'Is Multiple',
+							'label'		=>	__('Is Multiple', 'epl'),
 							'type'		=>	'radio',
 							'opts'	=>	array(
-								'yes'	=>	'Yes',
-								'no'	=>	'No'
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
 							)
 						)
 					)
@@ -1245,7 +1245,7 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-business-features-id',
-			'label'		=>	'Business Categories',
+			'label'		=>	__('Business Categories', 'epl'),
 			'post_type'	=>	array('business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
@@ -1256,7 +1256,7 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_bus_category',
-							'label'		=>	'Business Category',
+							'label'		=>	__('Business Category', 'epl'),
 							'type'		=>	'select',
 							'opt_args'	=>	array(
 								'type'	=>	'taxonomy',
@@ -1266,7 +1266,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_bus_sub_category',
-							'label'		=>	'Business Sub Category',
+							'label'		=>	__('Business Sub Category', 'epl'),
 							'type'		=>	'select',
 							'opt_args'	=>	array(
 								'type'	=>	'taxonomy',
@@ -1277,7 +1277,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_bus_category_2',
-							'label'		=>	'Business Category 2',
+							'label'		=>	__('Business Category 2', 'epl'),
 							'type'		=>	'select',
 							'opt_args'	=>	array(
 								'type'	=>	'taxonomy',
@@ -1287,7 +1287,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_bus_sub_category_2',
-							'label'		=>	'Business Sub Category 2',
+							'label'		=>	__('Business Sub Category 2', 'epl'),
 							'type'		=>	'select',
 							'opt_args'	=>	array(
 								'type'	=>	'taxonomy',
@@ -1298,7 +1298,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_bus_category_3',
-							'label'		=>	'Business Category 3',
+							'label'		=>	__('Business Category 3', 'epl'),
 							'type'		=>	'select',
 							'opt_args'	=>	array(
 								'type'	=>	'taxonomy',
@@ -1308,7 +1308,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_bus_sub_category_3',
-							'label'		=>	'Business Sub Category 3',
+							'label'		=>	__('Business Sub Category 3', 'epl'),
 							'type'		=>	'select',
 							'opt_args'	=>	array(
 								'type'	=>	'taxonomy',
@@ -1323,7 +1323,7 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-attachments-section-id',
-			'label'		=>	'Files and Links',
+			'label'		=>	__('Files and Links', 'epl'),
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
@@ -1334,54 +1334,54 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_video_url',
-							'label'		=>	'Video URL',
+							'label'		=>	__('Video URL', 'epl'),
 							'type'		=>	'url'
 						),
 					
 						array(
 							'name'		=>	'property_floorplan',
-							'label'		=>	'Floorplan',
+							'label'		=>	__('Floorplan', 'epl'),
 							'type'		=>	'url'
 						),
 						array(
 							'name'		=>	'property_floorplan_2',
-							'label'		=>	'Floorplan 2',
+							'label'		=>	__('Floorplan 2', 'epl'),
 							'type'		=>	'url'
 						),
 					
 						array(
 							'name'		=>	'property_external_link',
-							'label'		=>	'External Link',
+							'label'		=>	__('External Link', 'epl'),
 							'type'		=>	'url'
 						),
 					
 						array(
 							'name'		=>	'property_external_link_2',
-							'label'		=>	'External Link 2',
+							'label'		=>	__('External Link 2', 'epl'),
 							'type'		=>	'url'
 						),
 						array(
 							'name'		=>	'property_external_link_3',
-							'label'		=>	'External Link 3',
+							'label'		=>	__('External Link 3', 'epl'),
 							'type'		=>	'url',
 							'include'	=>	array('commercial', 'business')
 						),
 					
 						array(
 							'name'		=>	'property_com_mini_web',
-							'label'		=>	'Mini Website URL',
+							'label'		=>	__('Mini Website URL', 'epl'),
 							'type'		=>	'url',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
 						array(
 							'name'		=>	'property_com_mini_web_2',
-							'label'		=>	'Mini Website URL 2',
+							'label'		=>	__('Mini Website URL 2', 'epl'),
 							'type'		=>	'url',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),	
 						array(
 							'name'		=>	'property_com_mini_web_3',
-							'label'		=>	'Mini Website URL 3',
+							'label'		=>	__('Mini Website URL 3', 'epl'),
 							'type'		=>	'url',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),						
@@ -1806,7 +1806,7 @@ function epl_meta_box_init() {
 				});
 			});
 		</script>
-	<?php }
+	<?php } 
 	add_action( 'admin_head', 'epl_admin_head_scripts' );
 	/**
 	 * Addes geo coordinate button to the address meta box

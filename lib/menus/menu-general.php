@@ -156,7 +156,10 @@ function epl_get_admin_option_fields() {
 		}
 	}
 
-	$epl_currency_positions = array('before'=>'Before - $10', 'after'=>'After - 10$',);
+	$epl_currency_positions = array(
+			'before'	=> __('Before - $10', 'epl'), 
+			'after'		=> __('After - 10$', 'epl')
+			);
 	$epl_currency_types = epl_get_currencies();
 	$epl_post_types = epl_get_post_types();
 

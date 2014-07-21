@@ -161,78 +161,78 @@ function epl_get_admin_option_fields() {
 
 	$fields = array(
 		array(
-			'label'		=>	'General',
+			'label'		=>	__('General', 'epl'),
 			'fields'	=>	array(
 
 				array(
 					'name'	=>	'display_bond',
-					'label'	=>	'Bond Amount Display (Rental Listing Type)',
+					'label'	=>	__('Bond Amount Display (Rental Listing Type)', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
-						1	=>	'On',
-						0	=>	'Off'
+						1	=>	__('On', 'epl'),
+						0	=>	__('Off', 'epl')
 					),
-					'help'	=>	'Hide or show the bond on rental properties'
+					'help'	=>	__('Hide or show the bond on rental properties', 'epl')
 				),
 
 				array(
 					'name'	=>	'display_single_gallery',
-					'label'	=>	'Automatically display gallery of attached images on the single property page?',
+					'label'	=>	__('Automatically display gallery of attached images on the single property page?', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
-						1	=>	'Yes',
-						0	=>	'No'
+						1	=>	__('Yes', 'epl'),
+						0	=>	__('No', 'epl')
 					),
-					'help'	=>	'Enable the Gallery on Single Property Pages'
+					'help'	=>	__('Enable the Gallery on Single Property Pages', 'epl')
 				),
 
 				array(
 					'name'	=>	'display_gallery_n',
-					'label'	=>	'Number of columns on the property image gallery',
+					'label'	=>	__('Number of columns on the property image gallery', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_gallery_n
 				),
 
 				array(
 					'name'	=>	'display_feature_columns',
-					'label'	=>	'Number of columns in the property features',
+					'label'	=>	__('Number of columns in the property features', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_features
 				),
 
 				array(
 					'name'	=>	'display_excerpt_length',
-					'label'	=>	'Excerpt word length for individual listings on property archive pages unless a manual excerpt is entered.',
+					'label'	=>	__('Excerpt word length for individual listings on property archive pages unless a manual excerpt is entered.', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_property_card_excerpt_length
 				)
 			)
 		),
 		array(
-			'label'		=>	'Labels',
+			'label'		=>	__('Labels', 'epl'),
 			'fields'	=>	array(
 
 				array(
 					'name'	=>	'label_suburb',
-					'label'	=>	'Suburb/City (default is: Suburb)',
+					'label'	=>	__('Suburb/City (default is: Suburb)', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
 					'name'	=>	'label_postcode',
-					'label'	=>	'Postcode Label (default is: Postcode)',
+					'label'	=>	__('Postcode Label (default is: Postcode)', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
 					'name'	=>	'label_home_open',
-					'label'	=>	'Home Open Label (default is: Home Open)',
+					'label'	=>	__('Home Open Label (default is: Home Open)', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
 					'name'	=>	'label_poa',
-					'label'	=>	'No Price Label (default is POA)',
+					'label'	=>	__('No Price Label (default is POA)', 'epl'),
 					'type'	=>	'text'
 				)
 			)
