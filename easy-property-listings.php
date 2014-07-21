@@ -5,7 +5,7 @@
  * Description:  Serve Property Listings Through WordPress
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.1.1
+ * Version: 1.1.2
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -67,6 +67,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance = new Easy_Property_Listings;
 				self::$instance->setup_constants();
 				self::$instance->includes();
+				self::$instance->load_textdomain();
 			}
 			return self::$instance;
 		}
@@ -81,12 +82,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		private function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '1.1.1' );
+				define( 'EPL_PROPERTY_VER', '1.0.9.1' );
 			}
 			
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
-				define( 'EPL_PROPERTY_DB_VER', '1.1' );
+				define( 'EPL_PROPERTY_DB_VER', '1.0.9.1' );
 			}
 			
 			// Current Page
@@ -161,15 +162,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			
-			// Empty during plugin install
-			$epl_activated_post_types = '';
-				if(isset($epl_settings['activate_post_types'])) {
-					if(isset($epl_settings['activate_post_types'][0])) {
-						$epl_activated_post_types = $epl_settings['activate_post_types'];
-					}
-				}
-						
 			// Activate post types based on settings
+			$epl_activated_post_types = $epl_settings['activate_post_types'];
 			if( is_array( $epl_activated_post_types ) ) {
 				foreach ( $epl_activated_post_types as $key => $value) {
 					switch ( $value ) {
@@ -240,7 +234,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-epl-property-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
@@ -250,6 +243,40 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			
 			}
 		}
+		
+		/**
+		 * Loads the plugin language files
+		 *
+		 * @access public
+		 * @since 1.1.2
+		 * @return void
+		 */
+		public function load_textdomain() {
+			// Set filter for plugin's languages directory
+			$epl_lang_dir = EPL_PATH_LIB . 'languages/';
+			$epl_lang_dir = apply_filters( 'epl_languages_directory', $epl_lang_dir );
+
+			// Traditional WordPress plugin locale filter
+			$locale        = apply_filters( 'plugin_locale',  get_locale(), 'epl' );
+			$mofile        = sprintf( '%1$s-%2$s.mo', 'epl', $locale );
+
+			// Setup paths to current locale file
+			$mofile_local  = $epl_lang_dir . $mofile;
+			$mofile_global = WP_LANG_DIR . '/epl/' . $mofile;
+
+			if ( file_exists( $mofile_global ) ) {
+				// Look in global /wp-content/languages/epl folder
+				load_textdomain( 'epl', $mofile_global );
+			} elseif ( file_exists( $mofile_local ) ) {
+				// Look in local /wp-content/plugins/easy-property-listings/languages/ folder
+				load_textdomain( 'epl', $mofile_local );
+			} else {
+				// Load the default language files
+				load_plugin_textdomain( 'epl', false, $epl_lang_dir );
+			}
+		}
+	
+	
 	}
 endif; // End if class_exists check
 

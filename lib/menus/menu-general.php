@@ -166,53 +166,53 @@ function epl_get_admin_option_fields() {
 			'fields'	=>	array(
 				array(
 					'name'	=>	'activate_post_types',
-					'label'	=>	'Listing Types to Enable',
+					'label'	=>	__('Listing Types to Enable', 'epl'),
 					'type'	=>	'checkbox',
 					'opts'	=>	$epl_post_types,
-					'help'	=>	'You may need to refresh to view the new listing type in the admin menu.'
+					'help'	=>	__('You may need to refresh to view the new listing type in the admin menu.')
 				),
 
 				array(
 					'name'	=>	'currency',
-					'label'	=>	'Currency',
+					'label'	=>	__('Currency', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$epl_currency_types
 				),
 
 				array(
 					'name'	=>	'currency_position',
-					'label'	=>	'Currency Symbol Position',
+					'label'	=>	__('Currency Symbol Position', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$epl_currency_positions
 				),
 
 				array(
 					'name'	=>	'currency_thousands_separator',
-					'label'	=>	'Thousands Separator',
+					'label'	=>	__('Thousands Separator', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
 					'name'	=>	'currency_decimal_separator',
-					'label'	=>	'Decimal Separator',
+					'label'	=>	__('Decimal Separator', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
 					'name'	=>	'label_location',
-					'label'	=>	'Location label',
+					'label'	=>	__('Location label', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
 					'name'	=>	'debug',
-					'label'	=>	'Debug',
+					'label'	=>	__('Debug', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	'On',
 						0	=>	'Off'
 					),
-					'help'	=>	'Display Geocode Result in Admin'
+					'help'	=>	__('Display Geocode Result in Admin', 'epl')
 				),
 			),
 		),

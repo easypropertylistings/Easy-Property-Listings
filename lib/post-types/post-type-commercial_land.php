@@ -79,16 +79,13 @@ if ( is_admin() ) {
 			'cb' => '<input type="checkbox" />',
 			'property_thumb' => __('Featured Image', 'epl'),
 			'title' => __('Address', 'epl'),
-			'property_address_suburb' => __('Suburb', 'epl'),
-			'property_heading' => __('Heading', 'epl'),
+			'listing' => __('Listing Details', 'epl'),
 			'property_price' => __('Price', 'epl'),
-			'listing_type' => __('Type', 'epl'),
-			'under_offer' => __('U/O', 'epl'),
 			'geo' => __('Geo', 'epl'),
-			'property_price_view' => __('Price View', 'epl'),
 			'property_status' => __('Status', 'epl'),
+			'listing_type' => __('Sale/Lease', 'epl'),
 			'author' => __('Agent', 'epl'),
-			'date' => __('Date', 'epl'),
+			'date' => __('Date', 'epl')
 		);
 		
 		$geo_debug = 0;
@@ -118,36 +115,47 @@ if ( is_admin() ) {
 				if( function_exists('the_post_thumbnail') )
 					echo the_post_thumbnail('admin-list-thumb');
 				break;
-				
-			case 'property_address_suburb' :
+			
+			case 'listing' :
 				/* Get the post meta. */
-				$property_address_suburb = stripslashes(get_post_meta( $post_id, 'property_address_suburb', true ));
-				echo $property_address_suburb;
-				break;
-		
-			/* If displaying the 'Heading' column. */
-			case 'property_heading' :
-				/* Get the post meta. */
+				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 				$heading = get_post_meta( $post_id, 'property_heading', true );
-				/* If no duration is found, output a default message. */
-				if ( empty( $heading) )
-					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
-				/* If there is a duration, append 'minutes' to the text string. */
-				else
-					 echo $heading;
-				break;
 				
-			/* If displaying the 'Under Offer' column. */
-			case 'under_offer' :
-				/* Get the post meta. */
-				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-				/* If no duration is found, output a default message. */
-				if ( empty( $property_under_offer) )
-					echo __( '', 'epl' );
-				/* If there is a duration, append 'minutes' to the text string. */
-				else
-					 echo 'Yes';
+				$category = get_post_meta( $post_id, 'property_commercial_category', true );
+			
+				$outgoings = get_post_meta( $post_id, 'property_com_outgoings', true );
+				$return = get_post_meta( $post_id, 'property_com_return', true );
+				
+				$land = get_post_meta( $post_id, 'property_land_area', true );
+				$land_unit = get_post_meta( $post_id, 'property_land_area_unit', true );
+				if ( empty( $heading) ) {
+					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
+				} else {
+					echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
+				}		
+				
+				if ( !empty( $category ) ) {
+					echo '<div class="epl_meta_category">Category: ' , $category , '</div>';
+				}
+				
+				echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
+				if ( !empty( $outgoings ) ) {
+					echo '<div class="epl_meta_outgoings">Outgoings: ' , epl_currency_formatted_amount ( $outgoings ) , '</div>';
+				}
+				
+				if ( !empty( $return ) ) {
+					echo '<div class="epl_meta_baths">Return: ' , $return , '%</div>';
+				}
+				
+				if ( !empty( $land) ) {
+					echo '<div class="epl_meta_land_details">';
+					echo '<span class="epl_meta_land">Land: ' , $land , '</span>';
+					echo '<span class="epl_meta_land_unit"> ' , $land_unit , '</span>';
+					echo '</div>';
+				}
+			
 				break;
+			
 			/* If displaying the 'Geocoding Debub' column. */
 			case 'geo' :
 				/* Get the post meta. */
@@ -159,29 +167,34 @@ if ( is_admin() ) {
 				else
 					// echo 'Yes';
 					echo $property_address_coordinates;
-				break;	
-				
+				break;
+			
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
-				/* Get the post meta. */
 				$price = get_post_meta( $post_id, 'property_price', true );
-				/* If no duration is found, output a default message. */
-				if ( empty( $price) )
-					echo ''; //'<strong>'.__( 'No Price Set', 'epl' ).'</strong>';
-				/* If there is a duration, append 'minutes' to the text string. */
-				else
-					echo epl_currency_formatted_amount( $price );
-				break;
-			/* If displaying the 'Price View' column. */
-			case 'property_price_view' :
-				/* Get the post meta. */
 				$view = get_post_meta( $post_id, 'property_price_view', true );
-				/* If no duration is found, output a default message. */
-				if ( empty( $view) )
-					echo ''; //'<strong>'.__( 'No Rent Set', 'epl' ).'</strong>';
-				/* If there is a duration, append 'minutes' to the text string. */
-				else
-					 echo $view;
+				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
+				
+				$lease = get_post_meta( $post_id, 'property_com_rent', true );
+				$lease_date = get_post_meta( $post_id, 'property_com_lease_end_date', true );
+				
+				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
+					echo '<div class="type_under_offer">Under Offer</div>';
+				}
+				if ( empty ( $view ) ) {
+					echo '<div class="epl_meta_search_price">Sale: ' , epl_currency_formatted_amount( $price ), '</div>';
+				} else {
+					echo '<div class="epl_meta_price">' , $view , '</div>'; 
+				}
+				
+				if ( !empty ( $lease ) ) {
+					echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), '</div>';
+				}
+				
+				if ( !empty ( $lease_date ) ) {
+					echo '<div class="epl_meta_lease_date">Lease End: ' ,  $lease_date , '</div>';
+				}
+				
 				break;
 				
 			/* If displaying the 'Commercial Land Listing Type' column. */
