@@ -117,8 +117,7 @@ $epl_license = get_option('epl_license');
 															
 															if( $status == 'invalid' ) {
 																echo '<span class="license-status-text license-status-text-'.$status.'">';
-																	echo '<span class="license-status-text-label">' . __('Invalid or Expired Key :
-																	', 'epl') . '</span>';
+																	echo '<span class="license-status-text-label">' . __('Invalid or Expired Key :', 'epl') . '</span>';
 																	echo '<span class="license-status-text-value">' . __('Please make sure you have entered the correct value and that your key is not expired.', 'epl') . '</span>';
 																echo '</span>';
 															} else if( $status == 'valid' ) {
