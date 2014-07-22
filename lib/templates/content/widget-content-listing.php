@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<div class="entry-content">
 		<?php // Heading Options
 		if ($title == 'on') { ?>
-			<h5 class="property-heading"><a href="<?php the_permalink; ?>"><?php echo $the_property_heading; ?></a></h5>
+			<h5 class="property-heading"><a href="<?php the_permalink(); ?>"><?php echo $the_property_heading; ?></a></h5>
 		<?php } ?>
 		<?php if ( $d_excerpt == 'on' ) { 
 			the_excerpt(); 
