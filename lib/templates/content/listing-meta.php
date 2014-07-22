@@ -1197,25 +1197,25 @@ if ( 'rural' == $post_type ) {
 		}	
 	}
 	if($property_rural_fencing != '') {
-		$l_rural_fencing = '<div class="fencing">'.__('<h6>Fencing</h6>', 'epl').'<p>' .  $property_rural_fencing . '</p></div>';
+		$l_rural_fencing = '<div class="fencing"><h6>'.__('Fencing', 'epl').'</h6><p>' .  $property_rural_fencing . '</p></div>';
 	}
 	if($property_rural_annual_rainfall != '') {
-		$l_rural_annual_rainfall = '<div class="rainfall">'.__('<h6>Annual Rainfall</h6>', 'epl').'<p>' . $property_rural_annual_rainfall . '</p></div>';
+		$l_rural_annual_rainfall = '<div class="rainfall"><h6>'.__('Annual Rainfall', 'epl').'</h6><p>' . $property_rural_annual_rainfall . '</p></div>';
 	}	
 	if($property_rural_soil_types != '') {
-		$l_rural_soil_types = '<div class="soil">'.__('<h6>Soil Types</h6>', 'epl').'<p>' . $property_rural_soil_types . '</p></div>';
+		$l_rural_soil_types = '<div class="soil"><h6>'.__('Soil Types', 'epl').'</h6><p>' . $property_rural_soil_types . '</p></div>';
 	}	
 	if($property_rural_improvements != '') {
-		$l_rural_improvements = '<div class="improvements">'.__('<h6>Improvements</h6>', 'epl').'<p>' . $property_rural_improvements . '</p></div>';
+		$l_rural_improvements = '<div class="improvements"><h6>'.__('Improvements', 'epl').'</h6><p>' . $property_rural_improvements . '</p></div>';
 	}	
 	if($property_rural_council_rates != '') {
-		$l_rural_council_rates = '<div class="council-rates">'.__('<h6>Council Rates</h6>', 'epl').'<p>' . $property_rural_council_rates . '</p></div>';
+		$l_rural_council_rates = '<div class="council-rates"><h6>'.__('Council Rates', 'epl').'</h6><p>' . $property_rural_council_rates . '</p></div>';
 	}
 	if($property_rural_irrigation != '') {
-		$l_rural_irrigation = '<div class="irrigation">'.__('<h6>Irrigation</h6>', 'epl').'<p>' . $property_rural_irrigation . '</p></div>';
+		$l_rural_irrigation = '<div class="irrigation"><h6>'.__('Irrigation', 'epl').'</h6><p>' . $property_rural_irrigation . '</p></div>';
 	}
 	if($property_rural_carrying_capacity != '') {
-		$l_rural_carrying_capacity = '<div class="carrying-capacity">'.__('<h6>Carrying Capacity</h6>', 'epl').'<p>' . $property_rural_carrying_capacity . '</p></div>';
+		$l_rural_carrying_capacity = '<div class="carrying-capacity"><h6>'.__('Carrying Capacity', 'epl').'</h6><p>' . $property_rural_carrying_capacity . '</p></div>';
 	}
 	
 	// Append Rural Features to Features Tab

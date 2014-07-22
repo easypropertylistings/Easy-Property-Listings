@@ -132,8 +132,12 @@ if ( is_admin() ) {
 				
 				echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
 				
-					echo '<span class="epl_meta_beds">' , $beds , ' Beds | </span>';
-					echo '<span class="epl_meta_baths">' , $baths , ' Baths</span>';
+				if ( !empty( $beds ) || !empty( $baths ) ) {
+					echo '<div class="epl_meta_beds_baths">';
+						echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'epl' ) , ' | </span>';
+						echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'epl' ) , '</span>';
+					echo '</div>';
+				}
 					
 				if ( !empty( $homeopen) ) {
 					echo '<div class="epl_meta_home_open_label">Open: <span class="epl_meta_home_open">' , $homeopen , '</span></div>';
