@@ -210,8 +210,9 @@ function epl_property_author_card($display,$image,$title,$icons) {
 * Widget Templates
 */
 
+
 // WIDGET LISTING : Listing Card
-function epl_property_widget($display,$image,$title,$icons) {
+function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','epl')" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
 	// Get Listing Custom Values 
 	include( 'content/listing-meta.php' );	
 	
