@@ -1,6 +1,6 @@
 <?php
 /**
- * SHORTCODE :: Search [listing-search]
+ * SHORTCODE :: Search [listing_search]
  *
  * @package     EPL
  * @subpackage  Shotrcode/map
@@ -18,7 +18,7 @@ if( is_admin() ) {
 }
 /**
  * This shortcode allows for you to specify the property type(s) using 
- * [listing post_type="property,rental" status="current,sold,leased"] option. You can also 
+ * [listing_search post_type="property,rental" status="current,sold,leased"] option. You can also 
  * limit the number of entries that display. using  [listing limit="5"]
  */
 function epl_shortcode_listing_search_callback( $atts ) {
