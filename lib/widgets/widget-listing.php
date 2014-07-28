@@ -19,12 +19,36 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	}
 
 	function widget($args, $instance) {	
+	
+		$defaults = array(
+						'title'		=>	'',
+						'types'		=>	'property',
+						'featured'	=>	0,
+						'status'	=>	'any',
+						'display'	=>	'image',
+						'image'		=>	'thumbnail',
+						'archive'	=>	0,
+						'order_rand'=>	0,
+						'd_title'	=>	0,
+						
+						'more_text'	=>	'Read More',
+						'd_excerpt'	=>	0,
+						'd_suburb'	=>	'on',
+						'd_street'	=>	'on',
+						'd_price'	=>	'on',
+						'd_more'	=>	'on',
+
+						'd_icons'	=>	'none',
+						'p_number'	=>	1,
+						'p_skip'	=>	0
+					);
+		$instance = wp_parse_args( (array) $instance, $defaults ); 
+		
 		extract( $args );
 		$title 		= apply_filters('widget_title', $instance['title']);
 		$display	= $instance['display'];
 		$image		= $instance['image'];
 		$archive	= $instance['archive'];
-		
 		
 		$d_title	= $instance['d_title'];
 
@@ -185,6 +209,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
     }
  
     function form($instance) {	
+	
 		$defaults = array(
 						'title'		=>	'',
 						'types'		=>	'property',
@@ -196,12 +221,12 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						'order_rand'=>	0,
 						'd_title'	=>	0,
 						
-						'more_text'	=>	'Read More',
+						'more_text'	=>	__('Read More', 'epl'),
 						'd_excerpt'	=>	0,
-						'd_suburb'	=>	0,
-						'd_street'	=>	0,
-						'd_price'	=>	0,
-						'd_more'	=>	0,
+						'd_suburb'	=>	'on',
+						'd_street'	=>	'on',
+						'd_price'	=>	'on',
+						'd_more'	=>	'on',
 
 						'd_icons'	=>	'none',
 						'p_number'	=>	1,
@@ -360,30 +385,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_more'); ?>" name="<?php echo $this->get_field_name('d_more'); ?>" <?php if ($instance['d_more']) echo 'checked="checked"' ?> />
 			<label for="<?php echo $this->get_field_id('d_more'); ?>"><?php _e('Show Read More Button', 'epl'); ?></label>
 		</p>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('archive'); ?>" name="<?php echo $this->get_field_name('archive'); ?>" <?php if ($instance['archive']) echo 'checked="checked"' ?> />
 			<label for="<?php echo $this->get_field_id('archive'); ?>"><?php _e('Dynamic', 'epl'); ?></label>

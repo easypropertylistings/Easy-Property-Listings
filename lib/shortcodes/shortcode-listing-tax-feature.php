@@ -28,7 +28,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		'feature'			=>	'',
 		'feature_id'		=>	'',
 		'limit'				=>	'10', // Number of maximum posts to show
-		'template'			=>	false // Template, 
+		'template'			=>	false // template
 	), $atts ) );
 	
 	if(empty($post_type)) {
@@ -76,17 +76,10 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 				<?php
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						if ( $template == 'slim' ) {
-							epl_property_blog_slim();
-						} elseif ( $template == 'author-widget' ) {
-							// Defaults
-							$display = 'image';
-							$image = 'thumbnail';
-							$d_title = FALSE;
-							$d_icons = FALSE;
-							epl_property_author_card($display,$image,$d_title,$d_icons);
-						} else {
+						if ( $template ) {
 							epl_property_blog_default();
+						} else {
+							epl_property_blog_slim();
 						}
 					}
 				?>
