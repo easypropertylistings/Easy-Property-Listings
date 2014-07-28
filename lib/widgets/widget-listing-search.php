@@ -19,6 +19,20 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	}
 
 	function widget($args, $instance) {
+	
+		$defaults = array(
+						'title'						=>	'',
+						'property_type'				=>	'property',
+						'property_status'			=>	'any',
+						'disable_house_category'	=>	0,
+						'disable_price'				=>	0,
+						'disable_bed'				=>	0,
+						'disable_bath'				=>	0,
+						'disable_car'				=>	0,
+						'disable_other'				=>	0
+					);
+		$instance = wp_parse_args( (array) $instance, $defaults ); 
+		
 		extract( $args );
 		extract( $_GET );
 		$title 		= apply_filters('widget_title', $instance['title']);
