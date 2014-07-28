@@ -24,10 +24,11 @@ if( is_admin() ) {
 function epl_shortcode_listing_category_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' 		=>	'',
-		'status'		=>	array('current' , 'sold' , 'leased' ),
+		'status'			=>	array('current' , 'sold' , 'leased' ),
 		'category_key'		=>	'',
 		'category_value'	=>	'',
-		'limit'			=>	'10', // Number of maximum posts to show
+		'limit'				=>	'10', // Number of maximum posts to show
+		'template'			=>	false // template
 	), $atts ) );
 	
 	if(empty($post_type)) {
@@ -75,7 +76,11 @@ function epl_shortcode_listing_category_callback( $atts ) {
 				<?php
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						echo epl_property_blog_slim();
+						if ( $template ) {
+							epl_property_blog_default();
+						} else {
+							epl_property_blog_slim();
+						}
 					}
 				?>
 			</div>

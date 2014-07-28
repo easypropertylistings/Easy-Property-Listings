@@ -1,6 +1,6 @@
 <?php
 /**
- * SHORTCODE :: Open For Inspection [epl-property-open]
+ * SHORTCODE :: Open For Inspection [listing_open]
  *
  * @package     EPL
  * @subpackage  Shotrcode/map
@@ -18,13 +18,14 @@ if( is_admin() ) {
 }
 /**
  * This shortcode allows for you to specify the property type(s) using 
- * [epl-property-open post_type="property,rental"] option. You can also 
+ * [listing_open post_type="property,rental"] option. You can also 
  * limit the number of entries that display. using  [epl-property-open limit="5"]
  */
 function epl_shortcode_property_open_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' =>	array('property', 'rental', 'land', 'rural', 'commercial', 'commercial_land', 'business' ), //Post Type
 		'limit'		=>	'-1', // Number of maximum posts to show
+		'template'	=>	false // template
 	), $atts ) );
 	
 	ob_start();
@@ -52,7 +53,11 @@ function epl_shortcode_property_open_callback( $atts ) {
 			if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold' ) {
 				// Do Not Display Withdrawn or OffMarket listings
 			} else {
-				echo epl_property_blog_slim();
+				if ( $template ) {
+					epl_property_blog_default();
+				} else {
+					epl_property_blog_slim();
+				}
 				
 			} // End Status Removal
 		}
@@ -63,3 +68,4 @@ function epl_shortcode_property_open_callback( $atts ) {
 	return ob_get_clean();
 }
 add_shortcode( 'home_open_list', 'epl_shortcode_property_open_callback' );
+add_shortcode( 'listing_open', 'epl_shortcode_property_open_callback' );

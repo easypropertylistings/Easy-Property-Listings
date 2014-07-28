@@ -18,7 +18,7 @@ if( is_admin() ) {
 }
 /**
  * This shortcode allows for you to specify feature property type(s) using 
- * [listing_feature post_type="property" status="current,sold,leased" feature_id="" feature=""] option. You can also 
+ * [listing_feature post_type="property" status="current,sold,leased" feature_id="" feature="" template="default"] option. You can also 
  * limit the number of entries that display. using  [listing_category limit="5"]
  */
 function epl_shortcode_listing_tax_feature_callback( $atts ) {
@@ -28,6 +28,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		'feature'			=>	'',
 		'feature_id'		=>	'',
 		'limit'				=>	'10', // Number of maximum posts to show
+		'template'			=>	false // template
 	), $atts ) );
 	
 	if(empty($post_type)) {
@@ -75,7 +76,11 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 				<?php
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						echo epl_property_blog_slim();
+						if ( $template ) {
+							epl_property_blog_default();
+						} else {
+							epl_property_blog_slim();
+						}
 					}
 				?>
 			</div>
