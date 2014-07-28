@@ -43,26 +43,33 @@ function epl_shortcode_property_open_callback( $atts ) {
 		)
 	);
 	$query_open = new WP_Query( $args_open );
-	if ( $query_open->have_posts() ) {
-		while ( $query_open->have_posts() ) {
-			$query_open->the_post();
-			
-			$property_status = get_post_meta( get_the_ID(), 'property_status' , true ); 
+	if ( $query_open->have_posts() ) { ?>
+		<div class="loop epl-shortcode">
+			<div class="loop-content epl-shortcode-listing-open">
+				<?php
+					while ( $query_open->have_posts() ) {
+						$query_open->the_post();
+						
+						$property_status = get_post_meta( get_the_ID(), 'property_status' , true ); 
 
-			// Status Removal
-			if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold' ) {
-				// Do Not Display Withdrawn or OffMarket listings
-			} else {
-				if ( $template ) {
-					epl_property_blog_default();
-				} else {
-					epl_property_blog_slim();
-				}
-				
-			} // End Status Removal
-		}
+						// Status Removal
+						if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold' ) {
+							// Do Not Display Withdrawn or OffMarket listings
+						} else {
+							if ( $template ) {
+								epl_property_blog_default();
+							} else {
+								epl_property_blog_slim();
+							}
+							
+						} // End Status Removal
+					}
+				?>
+			</div>
+		</div>
+	<?php
 	} else {
-		echo '<h3>'.__('Nothing currently scheduled for inspection, please check back later.', 'epl').'</h3>';
+		echo '<h3 class="epl-shortcode-listing-open epl-alert">'.__('Nothing currently scheduled for inspection, please check back later.', 'epl').'</h3>';
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

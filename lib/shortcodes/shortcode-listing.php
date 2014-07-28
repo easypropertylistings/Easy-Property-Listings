@@ -57,8 +57,8 @@ function epl_shortcode_listing_callback( $atts ) {
 	
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
-		<div class="loop">
-			<div class="loop-content">
+		<div class="loop epl-shortcode">
+			<div class="loop-content epl-shortcode-listing">
 				<?php
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
