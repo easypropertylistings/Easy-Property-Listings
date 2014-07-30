@@ -1390,6 +1390,10 @@ function epl_meta_box_init() {
 			)
 		)
 	);
+	
+	$epl_meta_boxes = apply_filters('epl_listing_meta_boxes', $epl_meta_boxes);
+	
+	
 	/**
 	 * Add meta boxes to the post-edit page
 	 *
