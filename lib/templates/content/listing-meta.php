@@ -623,12 +623,12 @@ if ( $locations != '' ) {
 // DISPLAY Features
 // Property Icons / Dynamic Description
 if(isset($property_bedrooms) && $property_bedrooms != 0) {
-	$i_bed = '<span title="'.__('Bathrooms', 'epl').'" class="icon beds"><span class="icon-value">'. $property_bedrooms . '</span></span>'; 
+	$i_bed = '<span title="'.__('Bedrooms', 'epl').'" class="icon beds"><span class="icon-value">'. $property_bedrooms . '</span></span>'; 
 	$d_bed = $property_bedrooms . ' '.__('bed', 'epl').' ';
 	$l_bed = '<li class="bedrooms">' . $property_bedrooms . ' '.__('bed', 'epl').'</li>';
 }
 if(isset($property_bathrooms) && $property_bathrooms != 0) { 
-	$i_bath = '<span title="'.__('Bedrooms', 'epl').'" class="icon bath"><span class="icon-value">' . $property_bathrooms  . '</span></span>'; 
+	$i_bath = '<span title="'.__('Bathrooms', 'epl').'" class="icon bath"><span class="icon-value">' . $property_bathrooms  . '</span></span>'; 
 	$d_bath = $property_bathrooms . ' '.__('bath', 'epl').' ';
 	$l_bath = '<li class="bathrooms">' . $property_bathrooms . ' '.__('bath', 'epl').'</li>';
 }
