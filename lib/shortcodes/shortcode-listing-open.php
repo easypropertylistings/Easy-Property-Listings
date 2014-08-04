@@ -57,7 +57,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 							// Do Not Display Withdrawn or OffMarket listings
 						} else {
 							if ( $template ) {
-								epl_property_blog_default();
+								epl_property_blog();
 							} else {
 								epl_property_blog_slim();
 							}
