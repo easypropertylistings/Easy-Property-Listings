@@ -64,7 +64,7 @@ function epl_shortcode_listing_callback( $atts ) {
 						$query_open->the_post();
 						
 						if ( $template ) {
-							epl_property_blog_default();
+							epl_property_blog();
 						} else {
 							epl_property_blog_slim();
 						}
