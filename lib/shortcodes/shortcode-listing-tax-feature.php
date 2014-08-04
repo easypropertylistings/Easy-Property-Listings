@@ -77,7 +77,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
 						if ( $template ) {
-							epl_property_blog_default();
+							epl_property_blog();
 						} else {
 							epl_property_blog_slim();
 						}
