@@ -5,7 +5,7 @@
  * Description:  Serve Property Listings Through WordPress
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.1.18
+ * Version: 1.1.19
  * Text Domain: epl
  * Domain Path: languages
  *
