@@ -110,6 +110,12 @@ $epl_settings = get_option('epl_settings');
 														}
 													}
 													break;
+													
+												case 'editor':
+													echo '<span class="epl-field-row">';
+														wp_editor(stripslashes($val), $field['name'], array('wpautop'=>true, 'textarea_rows'=>5));
+													echo '</span>';
+													break;
 
 												default:
 													echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
