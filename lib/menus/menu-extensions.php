@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $fields = epl_get_admin_option_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
+		$epl_settings = get_option('epl_settings');
 		foreach($fields as $field_group) {
 			foreach($field_group['fields'] as $field) {
 				if( $field['type'] == 'radio' || $field['type'] == 'checkbox' ) {
@@ -24,11 +25,10 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
 
-				$epl_settings = get_option('epl_settings');
 				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
-				update_option('epl_settings', $epl_settings);
 			}
 		}
+		update_option('epl_settings', $epl_settings);
 	}
 }
 
@@ -68,7 +68,14 @@ $epl_settings = get_option('epl_settings');
 
 											switch($field['type']) {
 												case 'select':
-													echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
+													$multiple = '';
+													$field['id'] = $field['name'];
+													if( isset($field['multiple']) && $field['multiple'] ) {
+														$multiple = $field['multiple'];
+														$field['name'] = $field['name'].'[]';
+													}
+													
+													echo '<select name="'.$field['name'].'" id="'.$field['id'].'" '.((isset($field['multiple']) && $field['multiple']) ? 'multiple' : false).'>';
 														if(!empty($field['default'])) {
 															echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
 														}
@@ -76,8 +83,16 @@ $epl_settings = get_option('epl_settings');
 														if(!empty($field['opts'])) {
 															foreach($field['opts'] as $k=>$v) {
 																$selected = '';
-																if($val == $k) {
-																	$selected = 'selected="selected"';
+																if(is_array($val)) {
+																	if(!empty($val)) {
+																		if(in_array($k, $val)) {
+																			$selected = 'selected="selected"';
+																		}
+																	}
+																} else {
+																	if($val == $k) {
+																		$selected = 'selected="selected"';
+																	}
 																}
 																echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
 															}
@@ -114,6 +129,12 @@ $epl_settings = get_option('epl_settings');
 												case 'editor':
 													echo '<span class="epl-field-row">';
 														wp_editor(stripslashes($val), $field['name'], array('wpautop'=>true, 'textarea_rows'=>5));
+													echo '</span>';
+													break;
+													
+												case 'textarea':
+													echo '<span class="epl-field-row">';
+														echo '<textarea name="'.$field['name'].'" id="'.$field['name'].'">'.stripslashes($val).'</textarea>';
 													echo '</span>';
 													break;
 
