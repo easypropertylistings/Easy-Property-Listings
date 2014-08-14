@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 1.1.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-"
 "listings\n"
-"POT-Creation-Date: 2014-07-22 01:12+0800\n"
-"PO-Revision-Date: 2014-07-22 01:12+0800\n"
+"POT-Creation-Date: 2014-08-14 12:25+0800\n"
+"PO-Revision-Date: 2014-08-14 12:26+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: it\n"
@@ -448,7 +448,7 @@ msgstr ""
 #: templates/content/content-author-box.php:78
 #: templates/content/widget-content-author-tall.php:50
 #: templates/content/widget-content-author.php:75
-#: templates/content/widget-content-listing.php:72
+#: widgets/widget-listing.php:224
 msgid "Read More"
 msgstr ""
 
@@ -619,44 +619,44 @@ msgstr "Display e modelli Opzioni"
 msgid "Change the page layouts options for Easy Property Listings"
 msgstr "Modificare le opzioni di layout di pagina per Easy Property Listings"
 
-#: menus/menu-display.php:132 menus/menu-extensions.php:136
-#: menus/menu-general.php:134 menus/menu-licenses.php:151
+#: menus/menu-display.php:141 menus/menu-extensions.php:142
+#: menus/menu-general.php:143 menus/menu-licenses.php:151
 msgid "Save Changes"
 msgstr "Salva modifiche"
 
-#: menus/menu-display.php:154 menus/menu-general.php:151
+#: menus/menu-display.php:163 menus/menu-general.php:160
 #: menus/menu-licenses.php:168
 msgid "Select Page"
 msgstr "Seleziona pagina"
 
-#: menus/menu-display.php:164
+#: menus/menu-display.php:173
 msgid "General"
 msgstr "Generali"
 
-#: menus/menu-display.php:169
+#: menus/menu-display.php:180
 msgid "Bond Amount Display (Rental Listing Type)"
 msgstr "Legame Importo display (Tipo Affitti Listing)"
 
-#: menus/menu-display.php:172
+#: menus/menu-display.php:183
 msgid "On"
 msgstr "Su"
 
-#: menus/menu-display.php:173
+#: menus/menu-display.php:184
 msgid "Off"
 msgstr "Spento"
 
-#: menus/menu-display.php:175
+#: menus/menu-display.php:186
 msgid "Hide or show the bond on rental properties"
 msgstr "Nascondere o mostrare il legame su affitti"
 
-#: menus/menu-display.php:180
+#: menus/menu-display.php:191
 msgid ""
 "Automatically display gallery of attached images on the single property page?"
 msgstr ""
 "Visualizza automaticamente galleria di immagini allegate nella pagina "
 "singola proprietà?"
 
-#: menus/menu-display.php:183 meta-boxes/meta-boxes.php:224
+#: menus/menu-display.php:194 meta-boxes/meta-boxes.php:224
 #: meta-boxes/meta-boxes.php:297 meta-boxes/meta-boxes.php:308
 #: meta-boxes/meta-boxes.php:318 meta-boxes/meta-boxes.php:328
 #: meta-boxes/meta-boxes.php:372 meta-boxes/meta-boxes.php:397
@@ -683,7 +683,7 @@ msgstr ""
 msgid "Yes"
 msgstr "Sì"
 
-#: menus/menu-display.php:184 meta-boxes/meta-boxes.php:225
+#: menus/menu-display.php:195 meta-boxes/meta-boxes.php:225
 #: meta-boxes/meta-boxes.php:298 meta-boxes/meta-boxes.php:309
 #: meta-boxes/meta-boxes.php:319 meta-boxes/meta-boxes.php:329
 #: meta-boxes/meta-boxes.php:373 meta-boxes/meta-boxes.php:398
@@ -710,19 +710,19 @@ msgstr "Sì"
 msgid "No"
 msgstr "Non"
 
-#: menus/menu-display.php:186
+#: menus/menu-display.php:197
 msgid "Enable the Gallery on Single Property Pages"
 msgstr "Abilitare la Galleria sulla pagine delle proprietà singola"
 
-#: menus/menu-display.php:191
+#: menus/menu-display.php:202
 msgid "Number of columns on the property image gallery"
 msgstr "Numero di colonne sulla galleria di immagini di proprietà"
 
-#: menus/menu-display.php:198
+#: menus/menu-display.php:209
 msgid "Number of columns in the property features"
 msgstr "Numero di colonne nelle caratteristiche della struttura"
 
-#: menus/menu-display.php:205
+#: menus/menu-display.php:216
 msgid ""
 "Excerpt word length for individual listings on property archive pages unless "
 "a manual excerpt is entered."
@@ -730,23 +730,23 @@ msgstr ""
 "Lunghezza della parola stralcio per le inserzioni individuali su pagine di "
 "archivio di proprietà se non viene inserito un estratto manuale."
 
-#: menus/menu-display.php:212
+#: menus/menu-display.php:223
 msgid "Labels"
 msgstr "Etichette"
 
-#: menus/menu-display.php:217
+#: menus/menu-display.php:230
 msgid "Suburb/City (default is: Suburb)"
 msgstr "Periferia / City (di default è: Suburb)"
 
-#: menus/menu-display.php:223
+#: menus/menu-display.php:236
 msgid "Postcode Label (default is: Postcode)"
 msgstr "CAP Etichetta (di default è: Postcode)"
 
-#: menus/menu-display.php:229
+#: menus/menu-display.php:242
 msgid "Home Open Label (default is: Home Open)"
 msgstr "Casa Apri Etichettare (di default è: Home Open)"
 
-#: menus/menu-display.php:235
+#: menus/menu-display.php:248
 msgid "No Price Label (default is POA)"
 msgstr "Nessun prezzo etichetta (di default è POA)"
 
@@ -774,49 +774,49 @@ msgstr "Iniziare"
 msgid " for help."
 msgstr " aiuto."
 
-#: menus/menu-general.php:160
+#: menus/menu-general.php:169
 msgid "Before - $10"
 msgstr "Prima - $10"
 
-#: menus/menu-general.php:161
+#: menus/menu-general.php:170
 msgid "After - 10$"
 msgstr "Dopo - $ 10"
 
-#: menus/menu-general.php:172
+#: menus/menu-general.php:181
 msgid "Listing Types to Enable"
 msgstr "Listato Tipi di Attiva"
 
-#: menus/menu-general.php:175
+#: menus/menu-general.php:184
 msgid "You may need to refresh to view the new listing type in the admin menu."
 msgstr ""
 "Potrebbe essere necessario aggiornare per vedere il nuovo tipo di profilo "
 "nel menu di amministrazione."
 
-#: menus/menu-general.php:180
+#: menus/menu-general.php:189
 msgid "Currency"
 msgstr "Corrente"
 
-#: menus/menu-general.php:187
+#: menus/menu-general.php:196
 msgid "Currency Symbol Position"
 msgstr "Simbolo di valuta Position"
 
-#: menus/menu-general.php:194
+#: menus/menu-general.php:203
 msgid "Thousands Separator"
 msgstr "Migliaia separatore"
 
-#: menus/menu-general.php:200
+#: menus/menu-general.php:209
 msgid "Decimal Separator"
 msgstr "Separatore decimale"
 
-#: menus/menu-general.php:206
+#: menus/menu-general.php:215
 msgid "Location label"
 msgstr "Posizione dell'etichetta"
 
-#: menus/menu-general.php:212
+#: menus/menu-general.php:221
 msgid "Debug"
 msgstr ""
 
-#: menus/menu-general.php:218
+#: menus/menu-general.php:227
 msgid "Display Geocode Result in Admin"
 msgstr "Visualizzazione Geocode Risultato in Admin"
 
@@ -1526,7 +1526,7 @@ msgstr "Secondo Agente Profilo"
 msgid "Listing Type"
 msgstr "Tipo di annuncio"
 
-#: meta-boxes/meta-boxes.php:138 widgets/widget-listing.php:219
+#: meta-boxes/meta-boxes.php:138 widgets/widget-listing.php:279
 msgid "Property Status"
 msgstr "Stato immobile"
 
@@ -1534,7 +1534,7 @@ msgstr "Stato immobile"
 msgid "Authority"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:153 widgets/widget-listing-search.php:499
+#: meta-boxes/meta-boxes.php:153 widgets/widget-listing-search.php:513
 msgid "House Category"
 msgstr "Casa Categoria"
 
@@ -1586,11 +1586,11 @@ msgstr "Listato Caratteristiche"
 msgid "House Features"
 msgstr "Caratteristiche della casa"
 
-#: meta-boxes/meta-boxes.php:254 templates/content/listing-meta.php:631
+#: meta-boxes/meta-boxes.php:254 templates/content/listing-meta.php:626
 msgid "Bedrooms"
 msgstr "Locali"
 
-#: meta-boxes/meta-boxes.php:261 templates/content/listing-meta.php:626
+#: meta-boxes/meta-boxes.php:261 templates/content/listing-meta.php:631
 msgid "Bathrooms"
 msgstr "Bagni"
 
@@ -1616,12 +1616,12 @@ msgstr "Nuova costruzione"
 
 #: meta-boxes/meta-boxes.php:305 templates/content/listing-meta.php:643
 #: templates/content/listing-meta.php:644
-#: widgets/widget-listing-search.php:394
+#: widgets/widget-listing-search.php:408
 msgid "Pool"
 msgstr "Piscina"
 
 #: meta-boxes/meta-boxes.php:315 templates/content/listing-meta.php:639
-#: widgets/widget-listing-search.php:389
+#: widgets/widget-listing-search.php:403
 msgid "Air Conditioning"
 msgstr "Aria Condizionata"
 
@@ -2074,7 +2074,7 @@ msgstr ""
 msgid "Mini Website URL 3"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1571
+#: meta-boxes/meta-boxes.php:1575
 msgid "Add File"
 msgstr ""
 
@@ -2154,7 +2154,7 @@ msgstr "Indirizzo"
 #: post-types/post-type-business.php:85 post-types/post-type-commercial.php:83
 #: post-types/post-type-commercial_land.php:83
 #: post-types/post-type-land.php:84 post-types/post-type-property.php:84
-#: post-types/post-type-rural.php:84 widgets/widget-listing-search.php:503
+#: post-types/post-type-rural.php:84 widgets/widget-listing-search.php:517
 msgid "Price"
 msgstr "Prezzo"
 
@@ -2493,12 +2493,9 @@ msgstr ""
 msgid "Search Suburbs."
 msgstr ""
 
-#: shortcodes/shortcode-epl-property-open.php:60
-msgid "Nothing currently scheduled for inspection, please check back later."
-msgstr "Nulla attualmente previsto per l'ispezione, riprova più tardi."
-
-#: shortcodes/shortcode-listing-category.php:85
-#: shortcodes/shortcode-listing.php:71
+#: shortcodes/shortcode-listing-category.php:90
+#: shortcodes/shortcode-listing-tax-feature.php:90
+#: shortcodes/shortcode-listing.php:77
 #: templates/themes/default/archive-listing.php:53
 #: templates/themes/default/author.php:109
 #: templates/themes/genesis/archive-listing.php:91
@@ -2508,8 +2505,9 @@ msgstr "Nulla attualmente previsto per l'ispezione, riprova più tardi."
 msgid "&laquo; Previous Page"
 msgstr ""
 
-#: shortcodes/shortcode-listing-category.php:86
-#: shortcodes/shortcode-listing.php:72
+#: shortcodes/shortcode-listing-category.php:91
+#: shortcodes/shortcode-listing-tax-feature.php:91
+#: shortcodes/shortcode-listing.php:78
 #: templates/themes/default/archive-listing.php:54
 #: templates/themes/default/author.php:110
 #: templates/themes/genesis/archive-listing.php:92
@@ -2519,10 +2517,15 @@ msgstr ""
 msgid "Next Page &raquo;"
 msgstr ""
 
-#: shortcodes/shortcode-listing-category.php:92
-#: shortcodes/shortcode-listing.php:78
+#: shortcodes/shortcode-listing-category.php:97
+#: shortcodes/shortcode-listing-tax-feature.php:97
+#: shortcodes/shortcode-listing.php:84
 msgid "Nothing found, please check back later."
 msgstr ""
+
+#: shortcodes/shortcode-listing-open.php:72
+msgid "Nothing currently scheduled for inspection, please check back later."
+msgstr "Nulla attualmente previsto per l'ispezione, riprova più tardi."
 
 #: taxonomies/tax-business_listings.php:21
 msgid "Parent Business Listing"
@@ -2911,8 +2914,8 @@ msgstr ""
 msgid "EPL - Author"
 msgstr ""
 
-#: widgets/widget-author.php:78 widgets/widget-listing-gallery.php:55
-#: widgets/widget-listing-search.php:452 widgets/widget-listing.php:200
+#: widgets/widget-author.php:78 widgets/widget-listing-gallery.php:62
+#: widgets/widget-listing-search.php:466
 msgid "Title:"
 msgstr ""
 
@@ -2932,7 +2935,7 @@ msgstr ""
 msgid "EPL - Listing Gallery"
 msgstr ""
 
-#: widgets/widget-listing-gallery.php:60
+#: widgets/widget-listing-gallery.php:67
 msgid "Number of columns"
 msgstr ""
 
@@ -2940,79 +2943,79 @@ msgstr ""
 msgid "EPL - Listing Search"
 msgstr ""
 
-#: widgets/widget-listing-search.php:40
+#: widgets/widget-listing-search.php:54
 msgid ":"
 msgstr ""
 
-#: widgets/widget-listing-search.php:45 widgets/widget-listing-search.php:100
-#: widgets/widget-listing-search.php:210 widgets/widget-listing-search.php:228
-#: widgets/widget-listing-search.php:253 widgets/widget-listing-search.php:283
-#: widgets/widget-listing-search.php:328 widgets/widget-listing-search.php:355
+#: widgets/widget-listing-search.php:59 widgets/widget-listing-search.php:114
+#: widgets/widget-listing-search.php:224 widgets/widget-listing-search.php:242
+#: widgets/widget-listing-search.php:267 widgets/widget-listing-search.php:297
+#: widgets/widget-listing-search.php:342 widgets/widget-listing-search.php:369
 msgid "Any"
 msgstr ""
 
-#: widgets/widget-listing-search.php:97
+#: widgets/widget-listing-search.php:111
 msgid "House Category:"
 msgstr ""
 
-#: widgets/widget-listing-search.php:207
+#: widgets/widget-listing-search.php:221
 msgid "From"
 msgstr ""
 
-#: widgets/widget-listing-search.php:225
+#: widgets/widget-listing-search.php:239
 msgid "To"
 msgstr ""
 
-#: widgets/widget-listing-search.php:250
+#: widgets/widget-listing-search.php:264
 msgid "Min Bedrooms:"
 msgstr ""
 
-#: widgets/widget-listing-search.php:280
+#: widgets/widget-listing-search.php:294
 msgid "Max Bedrooms:"
 msgstr ""
 
-#: widgets/widget-listing-search.php:325
+#: widgets/widget-listing-search.php:339
 msgid "Car Spaces:"
 msgstr ""
 
-#: widgets/widget-listing-search.php:352
+#: widgets/widget-listing-search.php:366
 msgid "Bathrooms:"
 msgstr "Bagni:"
 
-#: widgets/widget-listing-search.php:399
+#: widgets/widget-listing-search.php:413
 msgid "Security System:"
 msgstr ""
 
-#: widgets/widget-listing-search.php:405
+#: widgets/widget-listing-search.php:419
 msgid "Find me a Property!"
 msgstr ""
 
-#: widgets/widget-listing-search.php:457
+#: widgets/widget-listing-search.php:471
 msgid "Property Type:"
 msgstr ""
 
-#: widgets/widget-listing-search.php:475
+#: widgets/widget-listing-search.php:489
 msgid "Status:"
 msgstr ""
 
-#: widgets/widget-listing-search.php:496
+#: widgets/widget-listing-search.php:510
 msgid "Tick to Remove from Search"
 msgstr ""
 
-#: widgets/widget-listing-search.php:507
+#: widgets/widget-listing-search.php:521
 #, fuzzy
 msgid "Bedroom"
 msgstr "Locali"
 
-#: widgets/widget-listing-search.php:511
+#: widgets/widget-listing-search.php:525
 msgid "Bathroom"
 msgstr "Bagno"
 
-#: widgets/widget-listing-search.php:515
+#: widgets/widget-listing-search.php:529
 msgid "Car"
 msgstr "Posto auto coperto"
 
-#: widgets/widget-listing-search.php:519
+#: widgets/widget-listing-search.php:533
 msgid "Other Search Options"
 msgstr "Altre opzioni di ricerca"
 
@@ -3020,45 +3023,81 @@ msgstr "Altre opzioni di ricerca"
 msgid "EPL - Listing"
 msgstr ""
 
-#: widgets/widget-listing.php:205
+#: widgets/widget-listing.php:260
+msgid "Title"
+msgstr ""
+
+#: widgets/widget-listing.php:265
 msgid "Property Type"
 msgstr "Tipo di proprietà"
 
-#: widgets/widget-listing.php:231
+#: widgets/widget-listing.php:291
 msgid "Display Style"
 msgstr "Stile di visualizzazione"
 
-#: widgets/widget-listing.php:243
+#: widgets/widget-listing.php:303
 msgid "Image Size"
 msgstr "Dimensione immagine"
 
-#: widgets/widget-listing.php:256
+#: widgets/widget-listing.php:316
 msgid "Icon Style"
 msgstr "Icona di stile"
 
-#: widgets/widget-listing.php:275
+#: widgets/widget-listing.php:335
 msgid "Number of Properties"
 msgstr "Numero di Proprietà"
 
-#: widgets/widget-listing.php:286
+#: widgets/widget-listing.php:346
 msgid "Properties to Skip"
 msgstr "Proprietà per Salta"
 
-#: widgets/widget-listing.php:291
+#: widgets/widget-listing.php:351
 msgid "Only Show Featured Properties"
 msgstr "Solo annunci in vetrina"
 
-#: widgets/widget-listing.php:296
+#: widgets/widget-listing.php:356
 msgid "Show Property Headline"
 msgstr "Mostra Proprietà Headline"
 
-#: widgets/widget-listing.php:301
-msgid "Dynamic Archive Page (Overrides Property Type)"
-msgstr "Dinamica Archive Pagina (Ereditato Tipo di casa)"
+#: widgets/widget-listing.php:361
+msgid "Show Excerpt"
+msgstr ""
 
-#: widgets/widget-listing.php:306
+#: widgets/widget-listing.php:366
+#, fuzzy
+msgid "Address Suburb"
+msgstr "Indirizzo"
+
+#: widgets/widget-listing.php:371
+#, fuzzy
+msgid "Street Address"
+msgstr "indirizzo immobili"
+
+#: widgets/widget-listing.php:376
+#, fuzzy
+msgid "Show Price"
+msgstr "Cerca Prezzo"
+
+#: widgets/widget-listing.php:380
+#, fuzzy
+msgid "Read More Label"
+msgstr "Per saperne di più"
+
+#: widgets/widget-listing.php:386
+#, fuzzy
+msgid "Show Read More Button"
+msgstr "Per saperne di più"
+
+#: widgets/widget-listing.php:391
+msgid "Dynamic"
+msgstr ""
+
+#: widgets/widget-listing.php:396
 msgid "Random Order"
 msgstr "Ordine casuale"
+
+#~ msgid "Dynamic Archive Page (Overrides Property Type)"
+#~ msgstr "Dinamica Archive Pagina (Ereditato Tipo di casa)"
 
 #~ msgid "Disable House Category:"
 #~ msgstr "Disabilitare House Categoria:"
