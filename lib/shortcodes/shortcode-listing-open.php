@@ -1,6 +1,6 @@
 <?php
 /**
- * SHORTCODE :: Open For Inspection [epl-property-open]
+ * SHORTCODE :: Open For Inspection [listing_open]
  *
  * @package     EPL
  * @subpackage  Shotrcode/map
@@ -18,13 +18,14 @@ if( is_admin() ) {
 }
 /**
  * This shortcode allows for you to specify the property type(s) using 
- * [epl-property-open post_type="property,rental"] option. You can also 
+ * [listing_open post_type="property,rental"] option. You can also 
  * limit the number of entries that display. using  [epl-property-open limit="5"]
  */
 function epl_shortcode_property_open_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' =>	array('property', 'rental', 'land', 'rural', 'commercial', 'commercial_land', 'business' ), //Post Type
 		'limit'		=>	'-1', // Number of maximum posts to show
+		'template'	=>	false // template
 	), $atts ) );
 	
 	ob_start();
@@ -42,24 +43,36 @@ function epl_shortcode_property_open_callback( $atts ) {
 		)
 	);
 	$query_open = new WP_Query( $args_open );
-	if ( $query_open->have_posts() ) {
-		while ( $query_open->have_posts() ) {
-			$query_open->the_post();
-			
-			$property_status = get_post_meta( get_the_ID(), 'property_status' , true ); 
+	if ( $query_open->have_posts() ) { ?>
+		<div class="loop epl-shortcode">
+			<div class="loop-content epl-shortcode-listing-open">
+				<?php
+					while ( $query_open->have_posts() ) {
+						$query_open->the_post();
+						
+						$property_status = get_post_meta( get_the_ID(), 'property_status' , true ); 
 
-			// Status Removal
-			if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold' ) {
-				// Do Not Display Withdrawn or OffMarket listings
-			} else {
-				echo epl_property_blog_slim();
-				
-			} // End Status Removal
-		}
+						// Status Removal
+						if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold' ) {
+							// Do Not Display Withdrawn or OffMarket listings
+						} else {
+							if ( $template ) {
+								epl_property_blog();
+							} else {
+								epl_property_blog_slim();
+							}
+							
+						} // End Status Removal
+					}
+				?>
+			</div>
+		</div>
+	<?php
 	} else {
-		echo '<h3>'.__('Nothing currently scheduled for inspection, please check back later.', 'epl').'</h3>';
+		echo '<h3 class="epl-shortcode-listing-open epl-alert">'.__('Nothing currently scheduled for inspection, please check back later.', 'epl').'</h3>';
 	}
 	wp_reset_postdata();
 	return ob_get_clean();
 }
 add_shortcode( 'home_open_list', 'epl_shortcode_property_open_callback' );
+add_shortcode( 'listing_open', 'epl_shortcode_property_open_callback' );

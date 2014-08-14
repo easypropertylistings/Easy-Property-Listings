@@ -112,6 +112,10 @@ width: 31%;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 }
+.epl-menu-page,
+.epl-section-content {
+	overflow: hidden;
+}
 .epl-fields {
 	float: left;
 	/*max-width:700px;*/

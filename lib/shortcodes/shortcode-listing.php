@@ -18,7 +18,7 @@ if( is_admin() ) {
 }
 /**
  * This shortcode allows for you to specify the property type(s) using 
- * [listing post_type="property,rental" status="current,sold,leased"] option. You can also 
+ * [listing post_type="property,rental" status="current,sold,leased" template="default"] option. You can also 
  * limit the number of entries that display. using  [listing limit="5"]
  */
 function epl_shortcode_listing_callback( $atts ) {
@@ -31,6 +31,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'post_type' =>	$property_types, //Post Type
 		'status'	=>	array('current' , 'sold' , 'leased' ),
 		'limit'		=>	'10', // Number of maximum posts to show
+		'template'	=>	false // template
 	), $atts ) );
 	
 	ob_start();
@@ -56,12 +57,17 @@ function epl_shortcode_listing_callback( $atts ) {
 	
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
-		<div class="loop">
-			<div class="loop-content">
+		<div class="loop epl-shortcode">
+			<div class="loop-content epl-shortcode-listing">
 				<?php
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						echo epl_property_blog_slim();
+						
+						if ( $template ) {
+							epl_property_blog();
+						} else {
+							epl_property_blog_slim();
+						}
 					}
 				?>
 			</div>

@@ -5,7 +5,7 @@
  * Description:  Serve Property Listings Through WordPress
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.1.15
+ * Version: 1.1.19
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -231,8 +231,10 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-epl-property-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
 				
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
