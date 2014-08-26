@@ -539,6 +539,7 @@ if ( 'property' == $post_type || 'land' == $post_type || 'rural' == $post_type) 
 			$property_commercial_category = epl_listing_load_meta_commercial_category_value( $property_commercial_category_id );
 		}
 	}
+	$the_property_commercial_category = '';
 	if ( $property_commercial_category != '' ) {
 		$the_property_commercial_category = '<div class="commercial-category">' . $property_commercial_category . '</div>';
 		$l_com_cat = '<li class="commercial-category">' . $property_commercial_category . ' '.__('Commercial Category', 'epl').'</li>';
