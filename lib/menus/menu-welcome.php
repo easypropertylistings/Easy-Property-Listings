@@ -159,6 +159,40 @@ class EPL_Welcome {
 			<div class="epl-badge"><?php printf( __( 'Version %s', 'epl' ), $display_version ); ?></div>
 
 			<?php $this->tabs(); ?>
+			
+			<div class="changelog">
+				<h3><?php _e( 'Version 1.2', 'epl' );?></h3>
+
+				<div class="feature-section">
+
+					<h4><?php _e( 'Filter By Specific Listing Meta Key and Value', 'epl' );?></h4>
+						<ul>
+						
+							
+							
+							<li><?php _e( 'New: Search Widget Options to enable or disable search parameters.', 'epl' );?></li>
+							<li><?php _e( 'New: Enabled WordPress editor ability for extensions page.', 'epl' );?></li>
+							
+							
+							
+							
+							
+							<li><?php _e( 'New: Added Shortcode new listing_feature', 'epl' );?></li>
+							<li><?php _e( 'New: Added template choice to all listing shortcodes', 'epl' );?></li>
+							<li><?php _e( 'Removes Listing Search as needs re-building', 'epl' );?></li>
+							<li><?php _e( 'Added Wrapper divs to shortcodes', 'epl' );?></li>
+							<li><?php _e( 'Added additional template option to shortcode', 'epl' );?></li>
+							<li><?php _e( 'Updated Widget defaults for backward compatability', 'epl' );?></li>
+							<li><?php _e( 'Adding CSS classes to admin menus', 'epl' );?></li>
+							<li><?php _e( 'Added Filter allowing custom meta boxes to listings', 'epl' );?></li>
+							<li><?php _e( 'Fixed Brdrooms / Bathrooms labels', 'epl' );?></li>
+							<li><?php _e( 'Function fixed for correct template', 'epl' );?></li>
+							<li><?php _e( 'Corrected Shortcodes Template Loader', 'epl' );?></li>
+						
+						</ul>
+				</div>
+			</div>
+			
 
 			<div class="changelog">
 				<h3><?php _e( 'Shortcode: [listing_category]', 'epl' );?></h3>
