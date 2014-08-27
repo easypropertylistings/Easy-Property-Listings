@@ -26,7 +26,7 @@ $property_heading = get_the_title();
 		}
 	}
 // Process Status 
-$property_status = $meta['property_status'][0];
+$property_status = '';
 	if(isset($meta['property_status'])) {
 		if(isset($meta['property_status'][0])) {
 			$property_status = $meta['property_status'][0];
@@ -50,8 +50,13 @@ if(isset($meta['property_date_available'])) {
 		$property_date_available = $meta['property_date_available'][0];
 	}
 }
-//inspection
-$property_inspection_times = $meta['property_inspection_times'][0];
+// Property inspection Times
+$property_inspection_times = '';
+	if(isset($meta['property_inspection_times'])) {
+		if(isset($meta['property_inspection_times'][0])) {
+			$property_inspection_times = $meta['property_inspection_times'][0];
+		}
+	}
 // Suburb Profile
 $profiles = get_the_terms( $post->ID, 'location' );
 if ( is_array ($profiles) ){
