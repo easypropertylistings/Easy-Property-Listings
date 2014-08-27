@@ -353,17 +353,17 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_title'); ?>" name="<?php echo $this->get_field_name('d_title'); ?>" <?php if ($instance['d_title']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_title'); ?>"><?php _e('Show Property Headline', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_title'); ?>"><?php _e('Property Headline', 'epl'); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_excerpt'); ?>" name="<?php echo $this->get_field_name('d_excerpt'); ?>" <?php if ($instance['d_excerpt']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_excerpt'); ?>"><?php _e('Show Excerpt', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_excerpt'); ?>"><?php _e('Excerpt', 'epl'); ?></label>
 		</p>
 		
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_suburb'); ?>" name="<?php echo $this->get_field_name('d_suburb'); ?>" <?php if ($instance['d_suburb']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_suburb'); ?>"><?php _e('Address Suburb', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_suburb'); ?>"><?php _e('Suburb', 'epl'); ?></label>
 		</p>
 		
 		<p>
@@ -373,7 +373,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_price'); ?>" name="<?php echo $this->get_field_name('d_price'); ?>" <?php if ($instance['d_price']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_price'); ?>"><?php _e('Show Price', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_price'); ?>"><?php _e('Price', 'epl'); ?></label>
 		</p>
 		
 		<p>
@@ -383,7 +383,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_more'); ?>" name="<?php echo $this->get_field_name('d_more'); ?>" <?php if ($instance['d_more']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_more'); ?>"><?php _e('Show Read More Button', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_more'); ?>"><?php _e('Read More Button', 'epl'); ?></label>
 		</p>
 
 		<p>
