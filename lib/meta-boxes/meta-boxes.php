@@ -70,7 +70,9 @@ function epl_meta_box_init() {
 	);
 	$opts_rent_period = array(
 		'week'		=>	__('Week', 'epl'),
-		'weekly'	=>	__('Weekly', 'epl')
+		'weekly'	=>	__('Weekly', 'epl'),
+		'month'		=>	__('Month', 'epl'),
+		'monthly'	=>	__('Monthly', 'epl')
 	);
 	$opts_property_com_listing_type = array(
 		'sale'	=>	__('Sale', 'epl'),
