@@ -55,7 +55,7 @@ function epl_single_listing_featured_image( $image_size = 'index_thumbnail' , $i
 				</a>
 			</div>
 		</div>
-	<?php }  ?>
+	<?php }
 
 }
 add_action( 'epl_single_featured_image' , 'epl_single_listing_featured_image' );
