@@ -515,7 +515,6 @@ li.tbhead.current {
 /****** Property Search Box ******/
 .epl-search-form { 
 	background: none repeat scroll 0 0 transparent; 
-	color: #FFFFFF; 
 	width: 300px; 
 	max-width:100%;
 }
