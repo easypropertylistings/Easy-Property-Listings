@@ -84,9 +84,10 @@ function epl_meta_box_init() {
 		'vacant'	=>	__('Vacant', 'epl'),
 		'tenanted'	=>	__('Tenanted', 'epl')
 	);
-	$opts_property_com_property_extent = array(
-		'whole'	=>	__('Whole', 'epl'),
-		'part'	=>	__('Part', 'epl')
+	$opts_property_com_property_extent = apply_filters (  'opts_property_com_property_extent_filter', array(
+			'whole'	=>	__('Whole', 'epl'),
+			'part'	=>	__('Part', 'epl')
+		);
 	);
 	global $epl_meta_boxes;
 	$epl_meta_boxes = array(
