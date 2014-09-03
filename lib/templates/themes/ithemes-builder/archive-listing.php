@@ -54,12 +54,11 @@ function render_content() {
 		//do_action( 'builder_template_show_not_found' );
 		?><div class="hentry">
 			<div class="entry-header clearfix">
-				<h3 class="entry-title"><?php _e('Page Not Found', 'epl'); ?></h3>
+				<h3 class="entry-title"><?php _e('Listing not Found', 'epl'); ?></h3>
 			</div>
 			
 			<div class="entry-content clearfix">
-				<p><?php _e('This area is now editable through our EPL plugin.', 'epl'); ?></p>
-				<p><?php _e('Try searching for the page you are looking for or using the navigation in the header or sidebar', 'epl'); ?></p>
+				<p><?php _e('Listing not found, expand your search criteria and try again.', 'epl'); ?></p>
 			</div>
 		</div><?php		
 	endif;
