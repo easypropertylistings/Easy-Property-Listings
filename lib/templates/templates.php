@@ -45,6 +45,11 @@ function epl_property_single() {
 	}
 }
 
+/**
+ * Featured Image template now loading through filter
+ *
+ * @since 1.2
+ */
 function epl_single_listing_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) { 
 	
 	if ( has_post_thumbnail() ) { ?>
