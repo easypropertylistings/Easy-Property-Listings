@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 1.0.0
+ * @version 1.2
  */
  
 // Exit if accessed directly
