@@ -22,15 +22,11 @@ function epl_property_single() {
 	if(!empty($epl_settings) && isset($epl_settings['epl_display_single_property'])) {
 		$d_option = $epl_settings['epl_display_single_property'];
 	}
-	if ($d_option == '' ) {
-		$d_option = 0;
-	}
 	
 	$action_check = has_action( 'epl_single_template' );
-	if ( $action_check != '' && $d_option != 0 ) {
+	if ( $action_check != '' && $d_option !== 0 ) {
 		do_action( 'epl_single_template' );
 	} else {
-		//include('content/epl-settings.php');
 		
 		$d_gallery = '';
 		if(!empty($epl_settings) && isset($epl_settings['display_single_gallery'])) {
@@ -101,16 +97,10 @@ function epl_property_blog() {
 	if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
 		$option = $epl_settings['epl_property_card_style'];
 	}
-	if ($option == '' ) {
-		$option = 0;
-	}
 	
 	$action_check = has_action( 'epl_loop_template' );
-
-	if ( $action_check != '' && $option != 0 ) {
-	
+	if ( $action_check != '' && $option !== 0 ) {
 		do_action( 'epl_loop_template' );
-		
 	} else {
 
 		// Default Template

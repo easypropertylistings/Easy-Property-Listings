@@ -163,7 +163,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			
 			// Activate post types based on settings
-			$epl_activated_post_types = $epl_settings['activate_post_types'];
+			if(isset($epl_settings['activate_post_types'])) {
+				$epl_activated_post_types = $epl_settings['activate_post_types'];
+			} else {
+				$epl_activated_post_types = '';
+			}
+			
 			if( is_array( $epl_activated_post_types ) ) {
 				foreach ( $epl_activated_post_types as $key => $value) {
 					switch ( $value ) {
@@ -232,6 +237,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
