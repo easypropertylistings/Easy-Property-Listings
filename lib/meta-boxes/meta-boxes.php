@@ -174,6 +174,13 @@ function epl_meta_box_init() {
 							'opts'		=>	epl_listing_load_meta_rural_category(),
 							'include'	=>	array('rural')
 						),
+						
+						array(
+							'name'		=>	'property_office_id',
+							'label'		=>	__('Office ID', 'epl'),
+							'type'		=>	'text',
+							'maxlength'	=>	'50'
+						),
 					
 						array(
 							'name'		=>	'property_unique_id',
