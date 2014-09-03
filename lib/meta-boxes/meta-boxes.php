@@ -27,66 +27,74 @@ function epl_meta_box_init() {
 		}
 	}
 
-	$opts_property_status = array(
-		'current'	=>	__('Current', 'epl'),
-		'withdrawn'	=>	__('Withdrawn', 'epl'),
-		'offmarket'	=>	__('Off Market', 'epl'),
-		'sold'		=>	array(
-			'label'		=>	__('Sold', 'epl'),
-			'exclude'	=>	array('rental')
-		),
-		'leased'		=>	array(
-			'label'		=>	__('Leased', 'epl'),
-			'include'	=>	array('rental', 'commercial', 'commercial_land', 'business')
+	$opts_property_status = apply_filters (  'epl_opts_property_status_filter', array(
+			'current'	=>	__('Current', 'epl'),
+			'withdrawn'	=>	__('Withdrawn', 'epl'),
+			'offmarket'	=>	__('Off Market', 'epl'),
+			'sold'		=>	array(
+				'label'		=>	__('Sold', 'epl'),
+				'exclude'	=>	array('rental')
+			),
+			'leased'		=>	array(
+				'label'		=>	__('Leased', 'epl'),
+				'include'	=>	array('rental', 'commercial', 'commercial_land', 'business')
+			)
 		)
 	);
-	$opts_property_authority = array(
-		'auction'		=>	__('Auction', 'epl'),
-		'exclusive'		=>	__('Exclusive', 'epl'),
-		'multilist'		=>	__('Multilist', 'epl'),
-		'conjunctional'	=>	__('Conjunctional', 'epl'),
-		'open'			=>	__('Open', 'epl'),
-		'sale'			=>	__('Sale', 'epl'),
-		'setsale'		=>	__('Set Sale', 'epl')
+	$opts_property_authority = apply_filters (  'epl_property_authority_filter', array(
+			'auction'	=>	__('Auction', 'epl'),
+			'exclusive'	=>	__('Exclusive', 'epl'),
+			'multilist'	=>	__('Multilist', 'epl'),
+			'conjunctional'	=>	__('Conjunctional', 'epl'),
+			'open'		=>	__('Open', 'epl'),
+			'sale'		=>	__('Sale', 'epl'),
+			'setsale'	=>	__('Set Sale', 'epl')
+		)
 	);
-	$opts_property_exclusivity = array(
-		'exclusive'	=>	__('Exclusive', 'epl'),
-		'open'		=>	__('Open', 'epl')
+	$opts_property_exclusivity = apply_filters (  'epl_opts_property_exclusivity_filter', array(
+			'exclusive'	=>	__('Exclusive', 'epl'),
+			'open'		=>	__('Open', 'epl')
+		)
 	);
-	$opts_property_com_authority = array(
-		'auction'	=>	__('Auction', 'epl'),
-		'tender'	=>	__('Tender', 'epl'),
-		'eoi'		=>	__('EOI', 'epl'),
-		'Sale'		=>	__('Sale', 'epl'),
-		'Forsale'	=>	__('For Sale', 'epl'),
-		'offers'	=>	__('Offers', 'epl')
+	$opts_property_com_authority = apply_filters (  'epl_opts_property_com_authority_filter', array(
+			'auction'	=>	__('Auction', 'epl'),
+			'tender'	=>	__('Tender', 'epl'),
+			'eoi'		=>	__('EOI', 'epl'),
+			'Sale'		=>	__('Sale', 'epl'),
+			'Forsale'	=>	__('For Sale', 'epl'),
+			'offers'	=>	__('Offers', 'epl')
+		)
 	);
-	$opts_area_unit = array(
-		'square'		=>	__('Square', 'epl'),
-		'squareMeter'	=>	__('Square Meter', 'epl'),
-		'acre'			=>	__('Acre', 'epl'),
-		'hectare'		=>	__('Hectare', 'epl'),
-		'sqft'			=>	__('Square Feet', 'epl')
+	$opts_area_unit = apply_filters (  'epl_opts_area_unit_filter', array(
+			'square'	=>	__('Square', 'epl'),
+			'squareMeter'	=>	__('Square Meter', 'epl'),
+			'acre'		=>	__('Acre', 'epl'),
+			'hectare'	=>	__('Hectare', 'epl'),
+			'sqft'		=>	__('Square Feet', 'epl')
+		)
 	);
-	$opts_rent_period = array(
-		'week'		=>	__('Week', 'epl'),
-		'weekly'	=>	__('Weekly', 'epl'),
-		'month'		=>	__('Month', 'epl'),
-		'monthly'	=>	__('Monthly', 'epl')
+	$opts_rent_period = apply_filters (  'epl_opts_rent_period_filter', array(
+			'week'		=>	__('Week', 'epl'),
+			'weekly'	=>	__('Weekly', 'epl'),
+			'month'		=>	__('Month', 'epl'),
+			'monthly'	=>	__('Monthly', 'epl')
+		)
 	);
-	$opts_property_com_listing_type = array(
-		'sale'	=>	__('Sale', 'epl'),
-		'lease'	=>	__('Lease', 'epl'),
-		'both'	=>	__('Both', 'epl')
+	$opts_property_com_listing_type = apply_filters (  'epl_opts_property_com_listing_type_filter', array(
+			'sale'		=>	__('Sale', 'epl'),
+			'lease'		=>	__('Lease', 'epl'),
+			'both'		=>	__('Both', 'epl')
+		)
 	);
-	$opts_property_com_tenancy = array(
-		'unknown'	=>	__('Unknown', 'epl'),
-		'vacant'	=>	__('Vacant', 'epl'),
-		'tenanted'	=>	__('Tenanted', 'epl')
+	$opts_property_com_tenancy = apply_filters (  'epl_opts_property_com_tenancy_filter', array(
+			'unknown'	=>	__('Unknown', 'epl'),
+			'vacant'	=>	__('Vacant', 'epl'),
+			'tenanted'	=>	__('Tenanted', 'epl')
+		)
 	);
-	$opts_property_com_property_extent = apply_filters (  'opts_property_com_property_extent_filter', array(
-			'whole'	=>	__('Whole', 'epl'),
-			'part'	=>	__('Part', 'epl')
+	$opts_property_com_property_extent = apply_filters (  'epl_opts_property_com_property_extent_filter', array(
+			'whole'		=>	__('Whole', 'epl'),
+			'part'		=>	__('Part', 'epl')
 		)
 	);
 	global $epl_meta_boxes;
