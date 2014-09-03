@@ -22,6 +22,7 @@ if( is_admin() ) {
  */
 function epl_shortcode_listing_search_callback( $atts ) {
 	$atts = shortcode_atts( array(
+		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
 		'title'						=>	'',
 		'property_type'				=>	'property',
 		'property_status'			=>	'any',
@@ -39,8 +40,10 @@ function epl_shortcode_listing_search_callback( $atts ) {
 	ob_start();	
 	?><div class="epl-search-form">
 		<?php
-			if(!empty($title)) {
-				?><h3><?php echo $title; ?></h3><?php
+			if($show_title) {
+				if(!empty($title)) {
+					?><h3><?php echo $title; ?></h3><?php
+				}
 			}
 		?>
 		<form action="" method="get">

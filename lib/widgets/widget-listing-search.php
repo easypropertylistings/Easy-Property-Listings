@@ -39,6 +39,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		if ( $title )
 			echo $before_title . $title . $after_title;			
 		
+		$instance['show_title'] = false;
 		echo epl_shortcode_listing_search_callback($instance);
 		
 		echo $after_widget;
