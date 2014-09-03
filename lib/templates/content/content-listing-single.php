@@ -70,15 +70,7 @@
 
 	<div class="entry-content epl-content epl-clearfix">
 	
-			<?php if ( has_post_thumbnail() ) { ?>
-				<div class="entry-image">
-					<div class="epl-featured-image it-featured-image">
-						<a href="<?php the_permalink(); ?>">
-							<?php the_post_thumbnail( 'index_thumbnail', array( 'class' => 'index-thumbnail' ) ); ?>
-						</a>
-					</div>
-				</div>
-			<?php }  ?>
+		<?php do_action( 'epl_featured_image_single_property' ); ?>
 		
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 
