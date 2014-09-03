@@ -45,6 +45,20 @@ function epl_property_single() {
 	}
 }
 
+function epl_single_listing_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) { 
+	
+	if ( has_post_thumbnail() ) { ?>
+		<div class="entry-image">
+			<div class="epl-featured-image it-featured-image">
+				<a href="<?php the_permalink(); ?>">
+					<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
+				</a>
+			</div>
+		</div>
+	<?php }  ?>
+
+}
+add_action( 'epl_single_featured_image' , 'epl_single_listing_featured_image' );
 
 /*
 * Single Listing Templates
