@@ -744,7 +744,8 @@ li.tbhead.current {
 		padding-left: 0;
 	}
 	/* Property Card Slim */
-	.epl-property-blog-slim .property-box-right {
+	.epl-property-blog-slim .property-box-right,
+	.epl-property-blog-slim .property-box-right-slim {
 		width:100%;
 	}
 	.property-box.slim  .property-box-right{
