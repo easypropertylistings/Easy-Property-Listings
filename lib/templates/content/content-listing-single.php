@@ -70,7 +70,7 @@
 
 	<div class="entry-content epl-content epl-clearfix">
 	
-		<?php do_action( 'epl_featured_image_single_property' ); ?>
+		<?php do_action( 'epl_single_featured_image' ); ?>
 		
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 
