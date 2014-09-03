@@ -262,8 +262,8 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_bathrooms',
 							'label'		=>	__('Bathrooms', 'epl'),
-							'type'		=>	'number',
-							'maxlength'	=>	'2'
+							'type'		=>	'decimal',
+							'maxlength'	=>	'3'
 						),
 						array(
 							'name'		=>	'property_ensuite',
