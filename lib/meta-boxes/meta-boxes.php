@@ -74,6 +74,8 @@ function epl_meta_box_init() {
 		)
 	);
 	$opts_rent_period = apply_filters (  'epl_opts_rent_period_filter', array(
+			'day'		=>	__('Day', 'epl'),
+			'daily'		=>	__('Daily', 'epl'),
 			'week'		=>	__('Week', 'epl'),
 			'weekly'	=>	__('Weekly', 'epl'),
 			'month'		=>	__('Month', 'epl'),
