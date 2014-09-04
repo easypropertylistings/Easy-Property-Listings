@@ -32,11 +32,10 @@ add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
  * Flush Rewrite Rules
  */
 function epl_flush_rewrite_rules() {
-	if(isset($_SESSION['epl_actions']) && !empty($_SESSION['epl_actions'])) {
-		if( isset($_SESSION['epl_actions']['epl_flush_rewrite_rules']) ) {
-			flush_rewrite_rules();
-			unset( $_SESSION['epl_actions']['epl_flush_rewrite_rules'] );
-		}
+	$epl_rewrite_rules = get_option('epl_rewrite_rules');
+	if(!$epl_rewrite_rules) {
+		flush_rewrite_rules();
+		update_option('epl_rewrite_rules', true);
 	}
 }
-add_action('init', 'epl_flush_rewrite_rules'); 
+add_action('admin_init', 'epl_flush_rewrite_rules'); 
