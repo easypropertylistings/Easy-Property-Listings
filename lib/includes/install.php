@@ -73,6 +73,30 @@ function epl_install() {
 register_activation_hook( EPL_PLUGIN_FILE, 'epl_install' );
 
 /**
+ * Un-Install
+ *
+ * Runs on plugin un-install by setting up the current version,
+ * flushing rewrite rules
+ */
+function epl_uninstall() {
+	update_option('epl_rewrite_rules', false);
+	flush_rewrite_rules();
+}
+register_deactivation_hook( EPL_PLUGIN_FILE, 'epl_uninstall' );
+
+/**
+ * Un-Install
+ *
+ * Runs on plugin un-install by setting up the current version,
+ * flushing rewrite rules
+ */
+function epl_uninstall() {
+	update_option('epl_rewrite_rules', false);
+	flush_rewrite_rules();
+}
+register_deactivation_hook( EPL_PLUGIN_FILE, 'epl_uninstall' );
+
+/**
  * Post-installation
  *
  * Runs just after plugin installation and exposes the
