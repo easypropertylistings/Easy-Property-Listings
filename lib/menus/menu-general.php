@@ -29,6 +29,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 			}
 		}
 	}
+	update_option('epl_rewrite_rules', false);
 }
 
 global $epl_settings;
