@@ -826,3 +826,21 @@ function epl_listing_load_meta_rural_category_value( $key ) {
 
 	return $value;
 }
+
+/**
+ * REAXML Date Processing Function for WP All Import and FeedSync
+ *
+ * @since 1.2
+ * @return formatted date
+ */
+function epl_feedsync_format_date( $date ) {
+    $date_example = '2014-07-22-16:45:56';
+     
+    $format = '%Y-%m-%d-%H:%M:%S';
+    $d = strptime($date, $format);
+    $time = mktime($d['tm_hour'],$d['tm_min'],$d['tm_sec'],1 + $d['tm_mon'],$d['tm_mday'], 1900 + $d['tm_year']);
+     
+    $result = date("Y-m-d H:i:s" , $time );
+     
+    return $result;
+}
