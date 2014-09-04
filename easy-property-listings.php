@@ -158,7 +158,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/options-global.php';
 			require_once EPL_PATH_LIB . 'includes/formatting.php';
 			require_once EPL_PATH_LIB . 'includes/plugins.php';
-			require_once EPL_PATH_LIB . 'includes/install.php';
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			
@@ -249,6 +248,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'hooks/hook-read-more.php';
 			
 			}
+			
+			require_once EPL_PATH_LIB . 'includes/install.php';
 		}
 		
 		/**
