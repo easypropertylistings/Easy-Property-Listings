@@ -7,7 +7,7 @@
  */
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-property-single view-expanded' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-post epl-property-single view-expanded' ); ?>>
 	<div class="entry-header epl-header epl-clearfix">
 		<div class="title-meta-wrapper">
 			<div class="entry-col property-details">
