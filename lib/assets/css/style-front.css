@@ -267,7 +267,10 @@ h3.property-address {
 	border-bottom: 3px double #ccc;
 	margin-bottom: 0.8em;
 }
-
+/* Twenty 13 CSS Fix */
+.sidebar .widget_epl_recent_property .entry-content {
+	padding: 0;
+}
 /* Author Styling */
 .epl-author-card {
 	margin-bottom: 2em;
