@@ -268,10 +268,18 @@ h3.property-address {
 	margin-bottom: 0.8em;
 }
 /* Twenty 13 CSS Fix */
+.sidebar .epl-widget .entry-header,
+.sidebar .epl-widget .entry-content,
 .sidebar .widget_epl_author .entry-header,
 .sidebar .widget_epl_author .entry-content,
 .sidebar .widget_epl_recent_property .entry-header,
-.sidebar .widget_epl_recent_property .entry-content{
+.sidebar .widget_epl_recent_property .entry-content,
+.sidebar .widget_epl_tm_author_testimonial .entry-header,
+.sidebar .widget_epl_tm_author_testimonial .entry-content,
+.sidebar .widget_epl_location_profile .entry-header,
+.sidebar .widget_epl_location_profile .entry-content,
+.sidebar .widget_epl_tm_testimonial .entry-header,
+.sidebar .widget_epl_tm_testimonial .entry-content {
 	padding: 0;
 }
 /* Author Styling */
