@@ -276,10 +276,13 @@ h3.property-address {
 .sidebar .widget_epl_recent_property .entry-content,
 .sidebar .widget_epl_tm_author_testimonial .entry-header,
 .sidebar .widget_epl_tm_author_testimonial .entry-content,
+.sidebar .widget_epl_tm_author_testimonial .entry-summary,
 .sidebar .widget_epl_location_profile .entry-header,
 .sidebar .widget_epl_location_profile .entry-content,
+.sidebar .widget_epl_location_profile .entry-summary,
 .sidebar .widget_epl_tm_testimonial .entry-header,
-.sidebar .widget_epl_tm_testimonial .entry-content {
+.sidebar .widget_epl_tm_testimonial .entry-content,
+.sidebar .widget_epl_tm_testimonial .entry-summary {
 	padding: 0;
 }
 /* Author Styling */
