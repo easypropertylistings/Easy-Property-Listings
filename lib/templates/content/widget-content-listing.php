@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<div id="post-<?php the_ID(); ?>" class="epl-listing-widget property-widget-image">
+<div id="post-<?php the_ID(); ?>" class="epl-widget epl-listing-widget property-widget-image">
 	<div class="entry-header">
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="epl-img-widget">
