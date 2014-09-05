@@ -1639,10 +1639,16 @@ function epl_meta_box_init() {
 															echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
 													}
 												
-													if( isset($field['geocoder']) && $field['geocoder'] == 'true' ) {
-														echo '<span class="epl-geocoder-button"></span>';
-													}												
-												
+													if( isset($field['geocoder']) ) {
+														if( $field['geocoder'] == 'true' ) {
+															echo '<span class="epl-geocoder-button"></span>';
+														}
+														
+														if( !empty($val) ) {
+															echo '<iframe width="100%" height="200" frameborder="0" scrolling="no" src="//maps.google.com/?q='.stripslashes($val).'&output=embed&z=14" style="margin:5px 0 0 0;"></iframe>';
+														}
+													}
+													
 													if(isset($field['help'])) {
 														$field['help'] = trim($field['help']);
 														if(!empty($field['help'])) {
@@ -1799,6 +1805,16 @@ function epl_meta_box_init() {
 						success: function(response) {
 							$obj.prev('input').val( response );
 							$obj.parent().removeClass('disabled');
+							
+							if( $obj.next('iframe').length ) {
+								if(response != '') {
+									$obj.next('iframe').attr('src', '//maps.google.com/?q='+response+'&output=embed&z=14');
+								} else {
+									$obj.next('iframe').remove();
+								}
+							} else {
+								$obj.after('<iframe width="100%" height="200" frameborder="0" scrolling="no" src="//maps.google.com/?q='+response+'&output=embed&z=14" style="margin:5px 0 0 0;"></iframe>');
+							}
 						}
 					});
 				});
@@ -1843,9 +1859,11 @@ function epl_meta_box_init() {
 		$address = $_POST['property_address_street_number'] . ' ' . $_POST['property_address_street'] . ' ' . $_POST['property_address_suburb'] . ' ' . $_POST['property_address_state'] . ' ' . $_POST['property_address_postal_code'];
 		$address = urlencode(strtolower(trim($address)));
 		$geourl = "http://maps.google.com/maps/api/geocode/json?address=". $address ."&sensor=false";
-		$response = epl_remote_url_get($geourl);	
-		$geocoordinates = $response[0]->geometry->location->lat . ',' . $response[0]->geometry->location->lng;
-		echo $geocoordinates;
+		$response = epl_remote_url_get($geourl);
+		if(!empty($response)) {
+			$geocoordinates = $response[0]->geometry->location->lat . ',' . $response[0]->geometry->location->lng;
+			echo $geocoordinates;
+		}
 		exit;
 	}
 	add_action( 'wp_ajax_epl_get_geocoordinates', 'epl_get_geocoordinates' );
