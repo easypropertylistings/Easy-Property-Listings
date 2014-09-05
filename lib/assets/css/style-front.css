@@ -268,6 +268,8 @@ h3.property-address {
 	margin-bottom: 0.8em;
 }
 /* Twenty 13 CSS Fix */
+.sidebar .widget_epl_author .entry-header,
+.sidebar .widget_epl_author .entry-content,
 .sidebar .widget_epl_recent_property .entry-header,
 .sidebar .widget_epl_recent_property .entry-content{
 	padding: 0;
