@@ -11,8 +11,8 @@ get_header(); ?>
 		<?php
 		if ( have_posts() ) : ?>
 			<div class="loop">
-				<header class="archive-header loop-header">
-					<h4 class="loop-title">
+				<header class="archive-header entry-header loop-header">
+					<h4 class="archive-title loop-title">
 						<?php
 							the_post();
 							
@@ -38,7 +38,7 @@ get_header(); ?>
 					</h4>
 				</header>
 				
-				<div class="loop-content">
+				<div class="entry-content loop-content">
 					<?php
 						while ( have_posts() ) : // The Loop
 							the_post();
