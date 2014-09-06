@@ -844,6 +844,13 @@ function epl_meta_box_init() {
 							'type'		=>	'text',
 							'maxlength'	=>	'20'
 						),
+						
+						array(
+							'name'		=>	'property_address_country',
+							'label'		=>	__('Country', 'epl'),
+							'type'		=>	'text',
+							'maxlength'	=>	'40'
+						),
 					
 						array(
 							'name'		=>	'property_address_coordinates',
