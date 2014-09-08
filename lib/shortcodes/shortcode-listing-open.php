@@ -25,7 +25,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' =>	array('property', 'rental', 'land', 'rural', 'commercial', 'commercial_land', 'business' ), //Post Type
 		'limit'		=>	'-1', // Number of maximum posts to show
-		'template'	=>	false // template
+		'template'	=>	false // Template true will display default listing template
 	), $atts ) );
 	
 	ob_start();
