@@ -32,7 +32,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						'd_title'	=>	0,
 						
 						'more_text'	=>	'Read More',
-						'd_excerpt'	=>	0,
+						'd_excerpt'	=>	'off',
 						'd_suburb'	=>	'on',
 						'd_street'	=>	'on',
 						'd_price'	=>	'on',
@@ -222,7 +222,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						'd_title'	=>	0,
 						
 						'more_text'	=>	__('Read More', 'epl'),
-						'd_excerpt'	=>	0,
+						'd_excerpt'	=>	'off',
 						'd_suburb'	=>	'on',
 						'd_street'	=>	'on',
 						'd_price'	=>	'on',
