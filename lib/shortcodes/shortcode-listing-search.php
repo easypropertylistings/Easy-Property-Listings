@@ -23,7 +23,7 @@ if( is_admin() ) {
 function epl_shortcode_listing_search_callback( $atts ) {
 	$atts = shortcode_atts( array(
 		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
-		'title'					=>	'',
+		'title'					=>	'', // Freeform text
 		'property_type'				=>	'property', // Post type name singular
 		'property_status'			=>	'', // Singular: current / sold / leased or '' for any
 		'search_house_category'			=>	'on', // on or off
