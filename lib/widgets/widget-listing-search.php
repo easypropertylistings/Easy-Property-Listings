@@ -20,8 +20,8 @@ class EPL_Widget_Property_Search extends WP_Widget {
 
 	function widget($args, $instance) {	
 		$defaults = array(
-			'title'			=>	'',
-			'property_type'		=>	'property',
+			'title'				=>	'',
+			'post_type'			=>	'property',
 			'property_status'	=>	'any',
 			'search_house_category'	=>	'on',
 			'search_price'		=>	'on',
@@ -48,7 +48,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	function update($new_instance, $old_instance) {		
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['property_type'] = strip_tags($new_instance['property_type']);
+		$instance['post_type'] = strip_tags($new_instance['post_type']);
 		$instance['property_status'] = strip_tags($new_instance['property_status']);
 		$instance['search_house_category'] = strip_tags($new_instance['search_house_category']);
 		$instance['search_price'] = strip_tags($new_instance['search_price']);
@@ -61,8 +61,8 @@ class EPL_Widget_Property_Search extends WP_Widget {
 
 	function form($instance) {
 		$defaults = array(
-			'title'			=>	'',
-			'property_type'		=>	'property',
+			'title'				=>	'',
+			'post_type'			=>	'property',
 			'property_status'	=>	'any',
 			'search_house_category'	=>	'on',
 			'search_price'		=>	'on',
@@ -73,14 +73,14 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 	
 	
-		$title			=	esc_attr($instance['title']);
-		$property_type		=	esc_attr($instance['property_type']);
+		$title				=	esc_attr($instance['title']);
+		$post_type			=	esc_attr($instance['post_type']);
 		$property_status	=	esc_attr($instance['property_status']);
 		$search_house_category	=	esc_attr($instance['search_house_category']);
 		$search_price		=	esc_attr($instance['search_price']);
-		$search_bed		=	esc_attr($instance['search_bed']);
+		$search_bed			=	esc_attr($instance['search_bed']);
 		$search_bath		=	esc_attr($instance['search_bath']);
-		$search_car		=	esc_attr($instance['search_car']);
+		$search_car			=	esc_attr($instance['search_car']);
 		$search_other		=	esc_attr($instance['search_other']);
 		?>
 		
@@ -90,14 +90,14 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('property_type'); ?>"><?php _e('Property Type:', 'epl'); ?></label> 
-			<select class="widefat" id="<?php echo $this->get_field_id('property_type'); ?>" name="<?php echo $this->get_field_name('property_type'); ?>">
+			<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php _e('Property Type:', 'epl'); ?></label> 
+			<select class="widefat" id="<?php echo $this->get_field_id('post_type'); ?>" name="<?php echo $this->get_field_name('post_type'); ?>">
 				<?php
-					$property_types = epl_get_active_post_types();
-					if(!empty($property_types)) {
-						foreach($property_types as $k=>$v) {
+					$post_types = epl_get_active_post_types();
+					if(!empty($post_types)) {
+						foreach($post_types as $k=>$v) {
 							$selected = '';
-							if($k == $property_type) {
+							if($k == $post_type) {
 								$selected = 'selected="selected"';
 							}
 							echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
@@ -173,8 +173,8 @@ function epl_search_pre_get_posts( $query ) {
 		$query->set('paged', $paged);
 		
 		extract($_REQUEST);
-		if(isset($property_type) && !empty($property_type)) {
-			$query->set('post_type', $property_type);
+		if(isset($post_type) && !empty($post_type)) {
+			$query->set('post_type', $post_type);
 		} else {
 			$epl_post_types = epl_get_active_post_types();
 			if(!empty($epl_post_types)) {
@@ -245,7 +245,7 @@ function epl_search_pre_get_posts( $query ) {
 			);
 		}
 		
-		if( isset($property_type) && ($property_type == 'rental' || $property_type == 'commercial' || $property_type == 'business' || $property_type == 'holiday_rental' || $property_type == 'commercial_land') ) {
+		if( isset($post_type) && ($post_type == 'rental' || $post_type == 'commercial' || $post_type == 'business' || $post_type == 'holiday_rental' || $post_type == 'commercial_land') ) {
 			$key = 'property_rent';
 		} else {
 			$key = 'property_price';
