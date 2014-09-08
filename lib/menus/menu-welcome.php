@@ -182,7 +182,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Wrapped Featured image in action to allow for easy removal and/or replacement', 'epl' );?></li>
 						<li><?php _e( 'Fix: Undefined errors when debug is active', 'epl' );?></li>
 						<li><?php _e( 'New: Added new CSS classes to widgets for consistent usage', 'epl' );?></li>
-						<li><?php _e( 'tweak: Admin CSS tweaks to define sections in admin', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Admin CSS tweaks to define sections in admin', 'epl' );?></li>
 						<li><?php _e( 'Fix: CSS for TwentyThirteen style CSS using .sidebar container', 'epl' );?></li>
 						<li><?php _e( 'Fix: CSS for responsive shortcode', 'epl' );?></li>
 						<li><?php _e( 'New: Added options to hide/ show various options to EPL - Listing widget: Property Headline, Excerpt, Suburb/Location Label, Street Address, Price, Read More Button', 'epl' );?></li>
@@ -191,18 +191,18 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Added options to remove search options from EPL - Listing Search widget', 'epl' );?></li>
 						<li><?php _e( 'New: Added consistent CSS classes to shortcodes for responsive shortcode', 'epl' );?></li>
 						<li><?php _e( 'New: Date processing function for use with WP All Import when importing REAXML files. Some imports set the current date instead of the date from the REAXML file. Usage in WP All Import Post Date is: [epl_feedsync_format_date({./@modTime})]', 'epl' );?></li>
-						<li><?php _e( 'tweak: Added additional CSS classes to admin menu pages to extensions can be better distinguished when installed and activated', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added additional CSS classes to admin menu pages to extensions can be better distinguished when installed and activated', 'epl' );?></li>
 						<li><?php _e( 'Fix: Registering custom template actions now works correctly', 'epl' );?></li>
 						<li><?php _e( 'New: Added additional CSS classes to template files', 'epl' );?></li>
 						<li><?php _e( 'Fix: Changed property not found wording when using search widget and listing not found. ', 'epl' );?></li>
-						<li><?php _e( 'tweak: Added defaults to widgets to prevent errors when debug is on', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added defaults to widgets to prevent errors when debug is on', 'epl' );?></li>
 						<li><?php _e( 'New: Added WordPress editor support in admin for use with extensions.', 'epl' );?></li>
 						<li><?php _e( 'New: Added textarea support in admin for use with extensions.', 'epl' );?></li>
 						<li><?php _e( 'New: Filters added for all select options on add listing pages which allows for full customisation through simple function', 'epl' );?></li>
 						<li><?php _e( 'New: Added rent period, Day, Daily, Month, Monthly to rental listing types', 'epl' );?></li>
 						<li><?php _e( 'New: Added property_office_id meta field', 'epl' );?></li>
 						<li><?php _e( 'New: Added property_address_country meta field', 'epl' );?></li>
-						<li><?php _e( 'tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5', 'epl' );?></li>
 						<li><?php _e( 'New: Added mini map to listing edit screen. Will display mini map in address block when pressing green coordinates button.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Updated admin columns for commercial_land listing type to match other listing type', 'epl' );?></li>
 						<li><?php _e( 'Fix: Swapped bedrooms/bathroom label on hover', 'epl' );?></li>
