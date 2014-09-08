@@ -18,13 +18,13 @@ if( is_admin() ) {
 }
 /**
  * This shortcode allows for you to specify the property type(s) using 
- * [listing_search title="" property_type="property" property_status="current/sold/leased" search_house_category="on/off" search_price="on/off" search_bed="on/off" search_bath="on/off" search_car="on/off" search_other="on/off"] option
+ * [listing_search title="" post_type="property" property_status="current/sold/leased" search_house_category="on/off" search_price="on/off" search_bed="on/off" search_bath="on/off" search_car="on/off" search_other="on/off"] option
  */
 function epl_shortcode_listing_search_callback( $atts ) {
 	$atts = shortcode_atts( array(
 		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
-		'title'					=>	'', // Freeform text
-		'property_type'				=>	'property', // Post type name singular
+		'title'						=>	'', // Freeform text
+		'post_type'					=>	'property', // Post type name singular
 		'property_status'			=>	'', // Singular: current / sold / leased or '' for any
 		'search_house_category'			=>	'on', // on or off
 		'search_price'				=>	'on', // on or off
@@ -49,7 +49,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		<form action="" method="get">
 			<input type="hidden" name="action" value="epl_search" />
 			<input type="hidden" name="property_status" value="<?php echo $property_status; ?>" />
-			<input type="hidden" name="property_type" value="<?php echo $property_type; ?>" />
+			<input type="hidden" name="post_type" value="<?php echo $post_type; ?>" />
 			
 			<div class="fm-block bdr-btm">
 				<label for="property_location" class="fm-label">
@@ -71,7 +71,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 									//For check if term has atleast one post for current post type - START
 									$args = array(
 										'posts_per_page'=> 1,
-										'post_type'		=>	$property_type,
+										'post_type'		=>	$post_type,
 										'tax_query'		=>	array(
 											array(
 												'taxonomy'	=>	'location',
@@ -120,7 +120,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					
 								<?php
 									$arr = array();
-									$meta_vals = epl_get_meta_values( 'property_category', $property_type, 'publish' );
+									$meta_vals = epl_get_meta_values( 'property_category', $post_type, 'publish' );
 									if(!empty($meta_vals)) {
 
 										$arr = epl_listing_load_meta_property_category();
@@ -147,7 +147,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				}
 			
 				if ( $search_price == 'on' ) {
-					if( $property_type == 'rental' || $property_type == 'holiday_rental' ) {
+					if( $post_type == 'rental' || $post_type == 'holiday_rental' ) {
 						$prices_arr = array(
 							50	=>	epl_currency_formatted_amount(50),
 							100	=>	epl_currency_formatted_amount(100),
