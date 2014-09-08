@@ -11,7 +11,7 @@ Stable Tag: 1.2
 
 License: GNU Version 2 or Any Later Version
 
-Display real estate listings through WordPress with this complete property listing management plugin platform for taday's real estate agent
+Display real estate listings through WordPress with this complete property listing management plugin platform for today's real estate agent
 
 == Description ==
 
