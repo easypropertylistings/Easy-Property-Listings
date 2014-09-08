@@ -785,79 +785,81 @@ function epl_meta_box_init() {
 			'context'	=>	'side',
 			'priority'	=>	'core',
 			'groups'	=>	array(
-				array(
-					'columns'	=>	'1',
-					'label'		=>	'',
-					'fields'	=>	array(
-						array(
-							'name'		=>	'property_address_display',
-							'label'		=>	__('Display Address?', 'epl'),
-							'type'		=>	'radio',
-							'opts'		=>	array(
-								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
+				apply_filters('epl_listing_meta_address_block', 
+					array(
+						'columns'	=>	'1',
+						'label'		=>	'',
+						'fields'	=>	array(
+							array(
+								'name'		=>	'property_address_display',
+								'label'		=>	__('Display Address?', 'epl'),
+								'type'		=>	'radio',
+								'opts'		=>	array(
+									'yes'	=>	__('Yes', 'epl'),
+									'no'	=>	__('No', 'epl')
+								),
 							),
-						),
 					
-						array(
-							'name'		=>	'property_address_street_number',
-							'label'		=>	__('Street Number', 'epl'),
-							'type'		=>	'text',
-							'maxlength'	=>	'40'
-						),
-					
-						array(
-							'name'		=>	'property_address_street',
-							'label'		=>	__('Street Name', 'epl'),
-							'type'		=>	'text',
-							'maxlength'	=>	'40'
-						),
-					
-						array(
-							'name'		=>	'property_address_suburb',
-							'label'		=>	epl_display_label_suburb(),
-							'type'		=>	'text',
-							'maxlength'	=>	'40'
-						),
-					
-						array(
-							'name'		=>	'property_address_state',
-							'label'		=>	__('State', 'epl'),
-							'type'		=>	'text',
-							'maxlength'	=>	'40'
-						),
-					
-						array(
-							'name'		=>	'property_com_display_suburb',
-							'label'		=>	__('Display Suburb', 'epl'),
-							'type'		=>	'radio',
-							'opts'		=>	array(
-								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
+							array(
+								'name'		=>	'property_address_street_number',
+								'label'		=>	__('Street Number', 'epl'),
+								'type'		=>	'text',
+								'maxlength'	=>	'40'
 							),
-							'include'	=>	array('commercial', 'commercial_land', 'business'),
-						),
 					
-						array(
-							'name'		=>	'property_address_postal_code',
-							'label'		=>	epl_display_label_postcode(),
-							'type'		=>	'text',
-							'maxlength'	=>	'20'
-						),
+							array(
+								'name'		=>	'property_address_street',
+								'label'		=>	__('Street Name', 'epl'),
+								'type'		=>	'text',
+								'maxlength'	=>	'40'
+							),
+					
+							array(
+								'name'		=>	'property_address_suburb',
+								'label'		=>	epl_display_label_suburb(),
+								'type'		=>	'text',
+								'maxlength'	=>	'40'
+							),
+					
+							array(
+								'name'		=>	'property_address_state',
+								'label'		=>	__('State', 'epl'),
+								'type'		=>	'text',
+								'maxlength'	=>	'40'
+							),
+					
+							array(
+								'name'		=>	'property_com_display_suburb',
+								'label'		=>	__('Display Suburb', 'epl'),
+								'type'		=>	'radio',
+								'opts'		=>	array(
+									'yes'	=>	__('Yes', 'epl'),
+									'no'	=>	__('No', 'epl')
+								),
+								'include'	=>	array('commercial', 'commercial_land', 'business'),
+							),
+					
+							array(
+								'name'		=>	'property_address_postal_code',
+								'label'		=>	epl_display_label_postcode(),
+								'type'		=>	'text',
+								'maxlength'	=>	'20'
+							),
 						
-						array(
-							'name'		=>	'property_address_country',
-							'label'		=>	__('Country', 'epl'),
-							'type'		=>	'text',
-							'maxlength'	=>	'40'
-						),
+							array(
+								'name'		=>	'property_address_country',
+								'label'		=>	__('Country', 'epl'),
+								'type'		=>	'text',
+								'maxlength'	=>	'40'
+							),
 					
-						array(
-							'name'		=>	'property_address_coordinates',
-							'label'		=>	__('Coordinates', 'epl'),
-							'type'		=>	'text',
-							'geocoder'	=>	'true',
-							'maxlength'	=>	'40'
+							array(
+								'name'		=>	'property_address_coordinates',
+								'label'		=>	__('Coordinates', 'epl'),
+								'type'		=>	'text',
+								'geocoder'	=>	'true',
+								'maxlength'	=>	'40'
+							)
 						)
 					)
 				)
