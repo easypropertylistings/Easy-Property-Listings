@@ -31,7 +31,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'post_type' =>	$property_types, //Post Type
 		'status'	=>	array('current' , 'sold' , 'leased' ),
 		'limit'		=>	'10', // Number of maximum posts to show
-		'template'	=>	false // template
+		'template'	=>	false // Template can be set to "slim" for home open style template
 	), $atts ) );
 	
 	ob_start();
@@ -63,10 +63,10 @@ function epl_shortcode_listing_callback( $atts ) {
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
 						
-						if ( $template ) {
-							epl_property_blog();
-						} else {
+						if ( $template == 'slim' ) {
 							epl_property_blog_slim();
+						} else {
+							epl_property_blog();
 						}
 					}
 				?>

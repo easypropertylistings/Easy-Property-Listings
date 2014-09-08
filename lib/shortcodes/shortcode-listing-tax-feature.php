@@ -28,7 +28,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		'feature'			=>	'',
 		'feature_id'		=>	'',
 		'limit'				=>	'10', // Number of maximum posts to show
-		'template'			=>	false // template
+		'template'			=>	false // Template can be set to "slim" for home open style template
 	), $atts ) );
 	
 	if(empty($post_type)) {
@@ -76,10 +76,10 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 				<?php
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						if ( $template ) {
-							epl_property_blog();
-						} else {
+						if ( $template == 'slim' ) {
 							epl_property_blog_slim();
+						} else {
+							epl_property_blog();
 						}
 					}
 				?>
