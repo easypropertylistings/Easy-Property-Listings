@@ -830,6 +830,9 @@ function epl_listing_load_meta_rural_category_value( $key ) {
 /**
  * REAXML Date Processing Function for WP All Import and FeedSync
  *
+ * Some imports set the current date instead of the date from the REAXML file. 
+ * Usage in WP All Import Post Date field is: [epl_feedsync_format_date({./@modTime})]
+ * 
  * @since 1.2
  * @return formatted date
  */
