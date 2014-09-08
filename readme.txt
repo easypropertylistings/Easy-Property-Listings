@@ -15,6 +15,8 @@ Display real estate listings through WordPress with this complete property listi
 
 == Description ==
 
+The complete real estate platform for today's agent to list property using any theme for WordPress fast, easy and free. Just enable the listing types you need add some properties, tweak your settings and you're done. Extend the core with cool dynamic add-on extensions that give your visitors more reasons to come back.
+
 Easy Property Listings is a complete real estate solution for property listings in a light, fast, and easy to use plugin. Rather that attempting to provide every feature under the sun, Easy Property Listings makes creating real estate websites simple and complete by providing just the features you need.
 
 * Easy Property Listings has been built developed on the REAXML (Realestate.com.au) format which has hundreds of custom fields with dozens of options. 
