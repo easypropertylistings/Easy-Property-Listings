@@ -24,14 +24,14 @@ function epl_shortcode_listing_search_callback( $atts ) {
 	$atts = shortcode_atts( array(
 		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
 		'title'					=>	'',
-		'property_type'				=>	'property',
-		'property_status'			=>	'any',
-		'search_house_category'			=>	'on',
-		'search_price'				=>	'on',
-		'search_bed'				=>	'on',
-		'search_bath'				=>	'on',
-		'search_car'				=>	'on',
-		'search_other'				=>	'on'
+		'property_type'				=>	'property', // Post type name singular
+		'property_status'			=>	'any', // Singular: current / sold / leased
+		'search_house_category'			=>	'on', // on or off
+		'search_price'				=>	'on', // on or off
+		'search_bed'				=>	'on', // on or off
+		'search_bath'				=>	'on', // on or off
+		'search_car'				=>	'on', // on or off
+		'search_other'				=>	'on'  // on or off
 	), $atts);
 	
 	extract($atts);
