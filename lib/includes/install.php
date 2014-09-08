@@ -41,6 +41,7 @@ function epl_install() {
 			'currency_position'				=>	'before',
 			'currency_thousands_separator'	=>	',',
 			'currency_decimal_separator'	=>	'.',
+			'label_location'				=>	'Suburb',
 			'debug'							=>	'0',
 			
 			'label_suburb'					=>	__('Suburb', 'epl'),

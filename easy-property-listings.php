@@ -5,7 +5,7 @@
  * Description:  Serve Property Listings Through WordPress
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.1
+ * Version: 1.1.1
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -81,12 +81,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		private function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '1.0.9.1' );
+				define( 'EPL_PROPERTY_VER', '1.1.1' );
 			}
 			
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
-				define( 'EPL_PROPERTY_DB_VER', '1.0.9.1' );
+				define( 'EPL_PROPERTY_DB_VER', '1.1' );
 			}
 			
 			// Current Page
@@ -161,8 +161,15 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			
+			// Empty during plugin install
+			$epl_activated_post_types = '';
+				if(isset($epl_settings['activate_post_types'])) {
+					if(isset($epl_settings['activate_post_types'][0])) {
+						$epl_activated_post_types = $epl_settings['activate_post_types'];
+					}
+				}
+						
 			// Activate post types based on settings
-			$epl_activated_post_types = $epl_settings['activate_post_types'];
 			if( is_array( $epl_activated_post_types ) ) {
 				foreach ( $epl_activated_post_types as $key => $value) {
 					switch ( $value ) {
@@ -233,6 +240,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-epl-property-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';

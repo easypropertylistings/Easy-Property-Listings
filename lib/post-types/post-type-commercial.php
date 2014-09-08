@@ -8,12 +8,22 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
+ 
+/**
+ * Registers and sets up the Commercial custom post type
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_register_custom_post_type_commercial() {
-	$labels = array(
+
+	$archives = defined( 'EPL_COMMERCIAL_DISABLE_ARCHIVE' ) && EPL_COMMERCIAL_DISABLE_ARCHIVE ? false : true;
+	$slug     = defined( 'EPL_COMMERCIAL_SLUG' ) ? EPL_COMMERCIAL_SLUG : 'commercial';
+	$rewrite  = defined( 'EPL_COMMERCIAL_DISABLE_REWRITE' ) && EPL_COMMERCIAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	
+	$labels = apply_filters( 'epl_commercial_labels', array(
 		'name'					=>	__('Commercial Listings', 'epl'),
 		'singular_name'			=>	__('Commercial Listing', 'epl'),
 		'menu_name'				=>	__('Commercial', 'epl'),
@@ -28,31 +38,42 @@ function epl_register_custom_post_type_commercial() {
 		'not_found'				=>	__('Commercial Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Commercial Listing Not Found in Trash', 'epl'),
 		'parent_item_colon'		=>	__('Parent Commercial Listing:', 'epl')
-	);
-
-	$args = array(
+	) );
+	
+	$commercial_args = array(
 		'labels'				=>	$labels,
 		'public'				=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'				=>	true,
 		'show_in_menu'			=>	true,
 		'query_var'				=>	true,
-		'rewrite'				=>	array( 'slug' => 'commercial' ),
+		'rewrite'				=>	$rewrite,
 		'menu_icon'				=>	'dashicons-welcome-widgets-menus',
 		//'menu_icon'			=>	plugins_url( 'post-types/icons/building.png' , dirname(__FILE__) ),
 		'capability_type'		=>	'post',
-		'has_archive'			=>	true,
+		'has_archive'			=>	$archives,
 		'hierarchical'			=>	false,
 		'menu_position'			=>	'26.7',
 		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
+		'supports'				=>	apply_filters( 'epl_commercial_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
-	epl_register_post_type( 'commercial', 'Commercial', $args );
+	epl_register_post_type( 'commercial', 'Commercial', apply_filters( 'epl_commercial_post_type_args', $commercial_args ) );
 }
 add_action( 'init', 'epl_register_custom_post_type_commercial', 0 );
  
+/**
+ * Manage Admin Commercial Post Type Columns
+ *
+ * @since 1.0
+ * @return void
+ */
 if ( is_admin() ) {
-	// Manage Listing Columns
+	/**
+	 * Manage Admin Business Post Type Columns: Heading
+	 *
+	 * @since 1.0
+	 * @return void
+	 */
 	function epl_manage_commercial_heading( $columns ) {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
@@ -78,7 +99,12 @@ if ( is_admin() ) {
 		return $columns;
 	}
 	add_filter( 'manage_edit-commercial_columns', 'epl_manage_commercial_heading' ) ;
-
+	
+	/**
+	 * Manage Admin Commercial Post Type Columns: Row Contents
+	 *
+	 * @since 1.0
+	 */
 	function epl_manage_commercial_columns_value( $column, $post_id ) {
 		global $post;
 		switch( $column ) {
@@ -89,7 +115,6 @@ if ( is_admin() ) {
 				if( function_exists('the_post_thumbnail') )
 					echo the_post_thumbnail('admin-list-thumb');
 				break;
-
 			case 'listing' :
 				/* Get the post meta. */
 				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
@@ -103,7 +128,6 @@ if ( is_admin() ) {
 				
 				$land = get_post_meta( $post_id, 'property_land_area', true );
 				$land_unit = get_post_meta( $post_id, 'property_land_area_unit', true );
-
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
 				} else {
@@ -115,7 +139,6 @@ if ( is_admin() ) {
 				}
 				
 				echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
-
 				if ( !empty( $outgoings ) ) {
 					echo '<div class="epl_meta_outgoings">Outgoings: ' , epl_currency_formatted_amount ( $outgoings ) , '</div>';
 				}
@@ -136,17 +159,13 @@ if ( is_admin() ) {
 				} 
 			
 				break;
-
-
 			/* If displaying the 'Geocoding Debub' column. */
 			case 'geo' :
 				/* Get the post meta. */
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
-
 				/* If no duration is found, output a default message. */
 				if (  $property_address_coordinates == ',' )
 					echo 'NO' ;
-
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					// echo 'Yes';
@@ -155,7 +174,6 @@ if ( is_admin() ) {
 				
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
-
 				$price = get_post_meta( $post_id, 'property_price', true );
 				$view = get_post_meta( $post_id, 'property_price_view', true );
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
@@ -166,7 +184,6 @@ if ( is_admin() ) {
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
 					echo '<div class="type_under_offer">Under Offer</div>';
 				}
-
 				if ( empty ( $view ) ) {
 					echo '<div class="epl_meta_search_price">Sale: ' , epl_currency_formatted_amount( $price ), '</div>';
 				} else {
@@ -187,7 +204,6 @@ if ( is_admin() ) {
 			case 'listing_type' :
 				/* Get the post meta. */
 				$listing_type = get_post_meta( $post_id, 'property_com_listing_type', true );
-
 				/* If no duration is found, output a default message. */
 				if ( ! empty( $listing_type) )
 					echo $listing_type;
@@ -200,15 +216,18 @@ if ( is_admin() ) {
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
 				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
 				break;
-
 			/* Just break out of the switch statement for everything else. */
 			default :
 				break;
 		}
 	}
 	add_action( 'manage_commercial_posts_custom_column', 'epl_manage_commercial_columns_value', 10, 2 );
-
-	// Manage Columns Sorting
+	
+	/**
+	 * Manage Commercial Columns Sorting
+	 *
+	 * @since 1.0
+	 */
 	function epl_manage_commercial_sortable_columns( $columns ) {
 		$columns['property_status'] = 'property_status';
 		return $columns;

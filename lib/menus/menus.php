@@ -5,7 +5,7 @@
  * @since 1.0
  * @return void
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -25,16 +25,16 @@ function epl_admin_menu() {
 	$icon = 'dashicons-portfolio';
 	$position = '25.9';
 	add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon, $position);
-	
+
 	$menu_title = __('Settings', 'epl');
     add_submenu_page($menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
-	
+
 	$page_title	= __('Display', 'epl');
 	$menu_title	= __('Display', 'epl');
 	$menu_slug	= 'epl-display';
 	$function	= 'epl_menu_display';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
-	
+
 	// Enable Menu if extension requires extension options
 	if ( has_filter( 'epl_extensions_options_filter' ) ) {
 		$page_title	= __('Extensions', 'epl');
@@ -43,7 +43,7 @@ function epl_admin_menu() {
 		$function	= 'epl_menu_extensions';
 		add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	}
-	
+
 	// Enable Menu if extension requires license options
 	if ( has_filter( 'epl_license_options_filter' ) ) {
 		$page_title	= __('Licenses', 'epl');
@@ -52,7 +52,7 @@ function epl_admin_menu() {
 		$function	= 'epl_menu_licenses';
 		add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	}
-	
+
 	$page_title	= __('Add Ons', 'epl');
 	$menu_title	= __('Add Ons', 'epl');
 	$menu_slug	= 'epl-addons';
