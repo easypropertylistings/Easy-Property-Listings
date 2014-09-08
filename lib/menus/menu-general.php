@@ -182,7 +182,7 @@ function epl_get_admin_option_fields() {
 					'label'	=>	__('Listing Types to Enable', 'epl'),
 					'type'	=>	'checkbox',
 					'opts'	=>	$epl_post_types,
-					'help'	=>	__('Refresh the page to see your new activated listing types. Note: If they are not visible on the front end Dashboard > Settings > Permalinks and press Save Changes.')
+					'help'	=>	__('Refresh the page to see your new activated listing types. Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.')
 				),
 
 				array(
