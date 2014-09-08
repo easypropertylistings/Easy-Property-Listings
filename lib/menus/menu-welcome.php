@@ -166,30 +166,46 @@ class EPL_Welcome {
 				<div class="feature-section">
 
 					<h4><?php _e( 'Filter By Specific Listing Meta Key and Value', 'epl' );?></h4>
-						<ul>
-						
-							
-							
-							<li><?php _e( 'New: Search Widget Options to enable or disable search parameters.', 'epl' );?></li>
-							<li><?php _e( 'New: Enabled WordPress editor ability for extensions page.', 'epl' );?></li>
-							
-							
-							
-							
-							
-							<li><?php _e( 'New: Added Shortcode new listing_feature', 'epl' );?></li>
-							<li><?php _e( 'New: Added template choice to all listing shortcodes', 'epl' );?></li>
-							<li><?php _e( 'Removes Listing Search as needs re-building', 'epl' );?></li>
-							<li><?php _e( 'Added Wrapper divs to shortcodes', 'epl' );?></li>
-							<li><?php _e( 'Added additional template option to shortcode', 'epl' );?></li>
-							<li><?php _e( 'Updated Widget defaults for backward compatability', 'epl' );?></li>
-							<li><?php _e( 'Adding CSS classes to admin menus', 'epl' );?></li>
-							<li><?php _e( 'Added Filter allowing custom meta boxes to listings', 'epl' );?></li>
-							<li><?php _e( 'Fixed Brdrooms / Bathrooms labels', 'epl' );?></li>
-							<li><?php _e( 'Function fixed for correct template', 'epl' );?></li>
-							<li><?php _e( 'Corrected Shortcodes Template Loader', 'epl' );?></li>
-						
-						</ul>
+					<ul>
+						<li><?php _e( 'New: Plugin Activation process flushes permalinks', 'epl' );?></li>
+						<li><?php _e( 'New: Plugin deactivation flushes permalinks', 'epl' );?></li>
+						<li><?php _e( 'New: Shortcode [listing_search]', 'epl' );?></li>
+						<li><?php _e( 'New: Shortcode [listing_feature]', 'epl' );?></li>
+						<li><?php _e( 'New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatability, however adjust your site. ', 'epl' );?></li>
+						<li><?php _e( 'New: Listing shortcodes allow for default template display if registered by adding template="slim" to the shortcode.', 'epl' );?></li>
+						<li><?php _e( 'New: Translation support now correctly loads text domain epl', 'epl' );?></li>
+						<li><?php _e( 'New: Added translation tags to all test elements for better translation support', 'epl' );?></li>
+						<li><?php _e( 'New: Updated source epl.pot translation file for translations', 'epl' );?></li>
+						<li><?php _e( 'New: Added very rough Italian translation', 'epl' );?></li>
+						<li><?php _e( 'New: Wrapped Featured image in action to allow for easy removal and/or replacement', 'epl' );?></li>
+						<li><?php _e( 'Fix: Undefined errors when debug is active', 'epl' );?></li>
+						<li><?php _e( 'New: Added new CSS classes to widgets for consistent usage', 'epl' );?></li>
+						<li><?php _e( 'tweak: Admin CSS tweaks to define sections in admin', 'epl' );?></li>
+						<li><?php _e( 'Fix: CSS for TwentyThirteen style CSS using .sidebar container', 'epl' );?></li>
+						<li><?php _e( 'Fix: CSS for responsive shortcode', 'epl' );?></li>
+						<li><?php _e( 'New: Added options to hide/ show various options to EPL - Listing widget: Property Headline, Excerpt, Suburb/Location Label, Street Address, Price, Read More Button', 'epl' );?></li>
+						<li><?php _e( 'New: Added customisable "Read More" label to EPL - Listing widget', 'epl' );?></li>
+						<li><?php _e( 'New: Added excerpt to EPL - Listing widget', 'epl' );?></li>
+						<li><?php _e( 'New: Added options to remove search options from EPL - Listing Search widget', 'epl' );?></li>
+						<li><?php _e( 'New: Added consistent CSS classes to shortcodes for responsive shortcode', 'epl' );?></li>
+						<li><?php _e( 'New: Date processing function for use with WP All Import when importing REAXML files. Some imports set the current date instead of the date from the REAXML file. Usage in WP All Import Post Date is: [epl_feedsync_format_date({./@modTime})]', 'epl' );?></li>
+						<li><?php _e( 'tweak: Added additional CSS classes to admin menu pages to extensions can be better distinguished when installed and activated', 'epl' );?></li>
+						<li><?php _e( 'Fix: Registering custom template actions now works correctly', 'epl' );?></li>
+						<li><?php _e( 'New: Added additional CSS classes to template files', 'epl' );?></li>
+						<li><?php _e( 'Fix: Changed property not found wording when using search widget and listing not found. ', 'epl' );?></li>
+						<li><?php _e( 'tweak: Added defaults to widgets to prevent errors when debug is on', 'epl' );?></li>
+						<li><?php _e( 'New: Added WordPress editor support in admin for use with extensions.', 'epl' );?></li>
+						<li><?php _e( 'New: Added textarea support in admin for use with extensions.', 'epl' );?></li>
+						<li><?php _e( 'New: Filters added for all select options on add listing pages which allows for full customisation through simple function', 'epl' );?></li>
+						<li><?php _e( 'New: Added rent period, Day, Daily, Month, Monthly to rental listing types', 'epl' );?></li>
+						<li><?php _e( 'New: Added property_office_id meta field', 'epl' );?></li>
+						<li><?php _e( 'New: Added property_address_country meta field', 'epl' );?></li>
+						<li><?php _e( 'tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5', 'epl' );?></li>
+						<li><?php _e( 'New: Added mini map to listing edit screen. Will display mini map in address block when pressing green coordinates button.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Updated admin columns for commercial_land listing type to match other listing type', 'epl' );?></li>
+						<li><?php _e( 'Fix: Swapped bedrooms/bathroom label on hover', 'epl' );?></li>
+						<li><?php _e( 'New: Added filter epl_listing_meta_boxes which allows additional meta boxes to be added through filter', 'epl' );?></li>
+					</ul>
 				</div>
 			</div>
 			
