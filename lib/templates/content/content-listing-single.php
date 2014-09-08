@@ -7,7 +7,7 @@
  */
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-property-single view-expanded' ); ?>>
 	<div class="entry-header epl-header epl-clearfix">
 		<div class="title-meta-wrapper">
 			<div class="entry-col property-details">
@@ -70,7 +70,15 @@
 
 	<div class="entry-content epl-content epl-clearfix">
 	
-		<?php do_action( 'epl_single_featured_image' ); ?>
+			<?php if ( has_post_thumbnail() ) { ?>
+				<div class="entry-image">
+					<div class="epl-featured-image it-featured-image">
+						<a href="<?php the_permalink(); ?>">
+							<?php the_post_thumbnail( 'index_thumbnail', array( 'class' => 'index-thumbnail' ) ); ?>
+						</a>
+					</div>
+				</div>
+			<?php }  ?>
 		
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 

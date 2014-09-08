@@ -267,28 +267,7 @@ h3.property-address {
 	border-bottom: 3px double #ccc;
 	margin-bottom: 0.8em;
 }
-/* Twenty 13 CSS Fix */
-.sidebar .epl-listing-post .entry-header,
-.sidebar .epl-listing-post .entry-content,
-.sidebar .epl-widget .entry-header,
-.sidebar .epl-widget .entry-content,
-.sidebar .epl-listing-widget .entry-header,
-.sidebar .epl-listing-widget .entry-content,
-.sidebar .widget_epl_author .entry-header,
-.sidebar .widget_epl_author .entry-content,
-.sidebar .widget_epl_recent_property .entry-header,
-.sidebar .widget_epl_recent_property .entry-content,
-.sidebar .widget_epl_tm_author_testimonial .entry-header,
-.sidebar .widget_epl_tm_author_testimonial .entry-content,
-.sidebar .widget_epl_tm_author_testimonial .entry-summary,
-.sidebar .widget_epl_location_profile .entry-header,
-.sidebar .widget_epl_location_profile .entry-content,
-.sidebar .widget_epl_location_profile .entry-summary,
-.sidebar .widget_epl_tm_testimonial .entry-header,
-.sidebar .widget_epl_tm_testimonial .entry-content,
-.sidebar .widget_epl_tm_testimonial .entry-summary {
-	padding: 0;
-}
+
 /* Author Styling */
 .epl-author-card {
 	margin-bottom: 2em;
@@ -536,6 +515,7 @@ li.tbhead.current {
 /****** Property Search Box ******/
 .epl-search-form { 
 	background: none repeat scroll 0 0 transparent; 
+	color: #FFFFFF; 
 	width: 300px; 
 	max-width:100%;
 }
@@ -764,8 +744,7 @@ li.tbhead.current {
 		padding-left: 0;
 	}
 	/* Property Card Slim */
-	.epl-property-blog-slim .property-box-right,
-	.epl-property-blog-slim .property-box-right-slim {
+	.epl-property-blog-slim .property-box-right {
 		width:100%;
 	}
 	.property-box.slim  .property-box-right{

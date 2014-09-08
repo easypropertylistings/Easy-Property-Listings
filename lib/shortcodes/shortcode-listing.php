@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Only load on front
 if( is_admin() ) {
-	return; 
+	return;
 }
 /**
  * This shortcode allows for you to specify the property type(s) using 
- * [listing post_type="property,rental" status="current,sold,leased" template="default"] option. You can also 
+ * [listing post_type="property,rental" status="current,sold,leased"] option. You can also 
  * limit the number of entries that display. using  [listing limit="5"]
  */
 function epl_shortcode_listing_callback( $atts ) {
@@ -31,43 +31,38 @@ function epl_shortcode_listing_callback( $atts ) {
 		'post_type' =>	$property_types, //Post Type
 		'status'	=>	array('current' , 'sold' , 'leased' ),
 		'limit'		=>	'10', // Number of maximum posts to show
-		'template'	=>	false // template
 	), $atts ) );
+	
+	if(!empty($status)) {
+		if(!is_array($status)) {
+			$status = array($status);
+		}
+	}
 	
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'paged' 			=>	$paged
-	);
-	
-	if(!empty($status)) {
-		if(!is_array($status)) {
-			$status = explode(",", $status);
-			$status = array_map('trim', $status);
-			
-			$args['meta_query'][] = array(
+		'paged' 			=>	$paged,
+		'meta_key' 			=>	'property_status',
+		'meta_query' => array(
+			array(
 				'key' => 'property_status',
 				'value' => $status,
-				'compare' => 'IN'
-			);
-		}
-	}
+				'compare' => 'IN',
+			)
+		)
+	);
 	
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
-		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing">
+		<div class="loop">
+			<div class="loop-content">
 				<?php
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						
-						if ( $template ) {
-							epl_property_blog();
-						} else {
-							epl_property_blog_slim();
-						}
+						echo epl_property_blog_slim();
 					}
 				?>
 			</div>

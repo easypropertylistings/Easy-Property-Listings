@@ -22,11 +22,15 @@ function epl_property_single() {
 	if(!empty($epl_settings) && isset($epl_settings['epl_display_single_property'])) {
 		$d_option = $epl_settings['epl_display_single_property'];
 	}
+	if ($d_option == '' ) {
+		$d_option = 0;
+	}
 	
 	$action_check = has_action( 'epl_single_template' );
-	if ( $action_check != '' && $d_option !== 0 ) {
+	if ( $action_check != '' && $d_option != 0 ) {
 		do_action( 'epl_single_template' );
 	} else {
+		//include('content/epl-settings.php');
 		
 		$d_gallery = '';
 		if(!empty($epl_settings) && isset($epl_settings['display_single_gallery'])) {
@@ -45,25 +49,6 @@ function epl_property_single() {
 	}
 }
 
-/**
- * Featured Image template now loading through filter
- *
- * @since 1.2
- */
-function epl_single_listing_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) { 
-	
-	if ( has_post_thumbnail() ) { ?>
-		<div class="entry-image">
-			<div class="epl-featured-image it-featured-image">
-				<a href="<?php the_permalink(); ?>">
-					<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
-				</a>
-			</div>
-		</div>
-	<?php }
-
-}
-add_action( 'epl_single_featured_image' , 'epl_single_listing_featured_image' );
 
 /*
 * Single Listing Templates
@@ -116,10 +101,16 @@ function epl_property_blog() {
 	if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
 		$option = $epl_settings['epl_property_card_style'];
 	}
+	if ($option == '' ) {
+		$option = 0;
+	}
 	
 	$action_check = has_action( 'epl_loop_template' );
-	if ( $action_check != '' && $option !== 0 ) {
+
+	if ( $action_check != '' && $option != 0 ) {
+	
 		do_action( 'epl_loop_template' );
+		
 	} else {
 
 		// Default Template
@@ -219,9 +210,8 @@ function epl_property_author_card($display,$image,$title,$icons) {
 * Widget Templates
 */
 
-
 // WIDGET LISTING : Listing Card
-function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','epl')" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
+function epl_property_widget($display,$image,$title,$icons) {
 	// Get Listing Custom Values 
 	include( 'content/listing-meta.php' );	
 	

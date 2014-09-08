@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog-slim epl-clearfix'); ?>>				
+<div id="post-<?php the_ID(); ?>" <?php post_class('epl-property-blog-slim epl-clearfix'); ?>>				
 	<div id="epl-property-blog-slim" class="epl-property-blog-slim-wrapper-container">		
 
 		<div class="entry-content">			

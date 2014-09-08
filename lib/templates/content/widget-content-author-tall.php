@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <!-- Author Box Tall Container -->
-<div class="epl-widget epl-author-card author">
+<div class="epl-author-card author">
 	<div class="entry-content">
 		<div class="author-box-tall author-image epl-clearfix">
 			<?php if ( 'on' == $d_image ) {

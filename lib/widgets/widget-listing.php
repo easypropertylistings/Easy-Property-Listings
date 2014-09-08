@@ -19,48 +19,13 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	}
 
 	function widget($args, $instance) {	
-	
-		$defaults = array(
-						'title'		=>	'',
-						'types'		=>	'property',
-						'featured'	=>	0,
-						'status'	=>	'any',
-						'display'	=>	'image',
-						'image'		=>	'thumbnail',
-						'archive'	=>	0,
-						'order_rand'=>	0,
-						'd_title'	=>	0,
-						
-						'more_text'	=>	'Read More',
-						'd_excerpt'	=>	0,
-						'd_suburb'	=>	'on',
-						'd_street'	=>	'on',
-						'd_price'	=>	'on',
-						'd_more'	=>	'on',
-
-						'd_icons'	=>	'none',
-						'p_number'	=>	1,
-						'p_skip'	=>	0
-					);
-		$instance = wp_parse_args( (array) $instance, $defaults ); 
-		
 		extract( $args );
 		$title 		= apply_filters('widget_title', $instance['title']);
 		$display	= $instance['display'];
 		$image		= $instance['image'];
 		$archive	= $instance['archive'];
-		
 		$d_title	= $instance['d_title'];
-
-		$more_text	= $instance['more_text'];
-		$d_excerpt	= $instance['d_excerpt'];
-		$d_suburb	= $instance['d_suburb'];
-		$d_street	= $instance['d_street'];
-		$d_price	= $instance['d_price'];
-		$d_more		= $instance['d_more'];
-		
 		$d_icons	= $instance['d_icons'];
-		
 		$p_number	= $instance['p_number'];
 		$p_skip		= $instance['p_skip'];
 		$types		= $instance['types'];
@@ -174,7 +139,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 					';
 				} else {
 					echo '<div class="property-widget-image">';
-						epl_property_widget( $display , $image , $d_title , $d_icons , $more_text , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  );
+						epl_property_widget($display,$image,$d_title,$d_icons);
 					echo '</div>';
 				}
 				wp_reset_query(); 
@@ -193,14 +158,6 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$instance['image'] = strip_tags($new_instance['image']);
 		$instance['archive'] = strip_tags($new_instance['archive']);
 		$instance['d_title'] = strip_tags($new_instance['d_title']);
-		
-		$instance['more_text'] = strip_tags($new_instance['more_text']);
-		$instance['d_excerpt'] = strip_tags($new_instance['d_excerpt']);
-		$instance['d_suburb'] = strip_tags($new_instance['d_suburb']);
-		$instance['d_street'] = strip_tags($new_instance['d_street']);
-		$instance['d_price'] = strip_tags($new_instance['d_price']);
-		$instance['d_more'] = strip_tags($new_instance['d_more']);
-		
 		$instance['d_icons'] = strip_tags($new_instance['d_icons']);
 		$instance['p_number'] = strip_tags($new_instance['p_number']);
 		$instance['p_skip'] = strip_tags($new_instance['p_skip']);
@@ -209,7 +166,6 @@ class EPL_Widget_Recent_Property extends WP_Widget {
     }
  
     function form($instance) {	
-	
 		$defaults = array(
 						'title'		=>	'',
 						'types'		=>	'property',
@@ -220,14 +176,6 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						'archive'	=>	0,
 						'order_rand'=>	0,
 						'd_title'	=>	0,
-						
-						'more_text'	=>	__('Read More', 'epl'),
-						'd_excerpt'	=>	0,
-						'd_suburb'	=>	'on',
-						'd_street'	=>	'on',
-						'd_price'	=>	'on',
-						'd_more'	=>	'on',
-
 						'd_icons'	=>	'none',
 						'p_number'	=>	1,
 						'p_skip'	=>	0
@@ -243,21 +191,13 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$image	 	= esc_attr($instance['image']);
 		$archive	= esc_attr($instance['archive']);
 		$d_title 	= esc_attr($instance['d_title']);
-		
-		$more_text 	= esc_attr($instance['more_text']);
-		$d_excerpt 	= esc_attr($instance['d_excerpt']);
-		$d_suburb 	= esc_attr($instance['d_suburb']);
-		$d_street 	= esc_attr($instance['d_street']);
-		$d_price 	= esc_attr($instance['d_price']);
-		$d_more 	= esc_attr($instance['d_more']);
-		
 		$d_icons 	= esc_attr($instance['d_icons']);
 		$p_number	= esc_attr($instance['p_number']);
 		$p_skip		= esc_attr($instance['p_skip']);
 		$order_rand	= esc_attr($instance['order_rand']); ?>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'epl'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
 		</p>
 		
@@ -353,42 +293,12 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_title'); ?>" name="<?php echo $this->get_field_name('d_title'); ?>" <?php if ($instance['d_title']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_title'); ?>"><?php _e('Property Headline', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_title'); ?>"><?php _e('Show Property Headline', 'epl'); ?></label>
 		</p>
-
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id('d_excerpt'); ?>" name="<?php echo $this->get_field_name('d_excerpt'); ?>" <?php if ($instance['d_excerpt']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_excerpt'); ?>"><?php _e('Excerpt', 'epl'); ?></label>
-		</p>
-		
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id('d_suburb'); ?>" name="<?php echo $this->get_field_name('d_suburb'); ?>" <?php if ($instance['d_suburb']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_suburb'); ?>"><?php _e('Suburb', 'epl'); ?></label>
-		</p>
-		
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id('d_street'); ?>" name="<?php echo $this->get_field_name('d_street'); ?>" <?php if ($instance['d_street']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_street'); ?>"><?php _e('Street Address', 'epl'); ?></label>
-		</p>
-		
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id('d_price'); ?>" name="<?php echo $this->get_field_name('d_price'); ?>" <?php if ($instance['d_price']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_price'); ?>"><?php _e('Price', 'epl'); ?></label>
-		</p>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id('more_text'); ?>"><?php _e('Read More Label', 'epl'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('more_text'); ?>" name="<?php echo $this->get_field_name('more_text'); ?>" type="text" value="<?php echo $more_text; ?>" />
-		</p>
-		
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id('d_more'); ?>" name="<?php echo $this->get_field_name('d_more'); ?>" <?php if ($instance['d_more']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_more'); ?>"><?php _e('Read More Button', 'epl'); ?></label>
-		</p>
-
+			
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('archive'); ?>" name="<?php echo $this->get_field_name('archive'); ?>" <?php if ($instance['archive']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('archive'); ?>"><?php _e('Dynamic', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('archive'); ?>"><?php _e('Dynamic Archive Page (Overrides Property Type)', 'epl'); ?></label>
 		</p>
 		
 		<p>

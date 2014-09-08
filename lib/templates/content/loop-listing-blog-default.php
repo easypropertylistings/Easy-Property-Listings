@@ -10,7 +10,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-clearfix'); ?>>				
+<div id="post-<?php the_ID(); ?>" <?php post_class('epl-property-blog epl-clearfix'); ?>>				
 	<div class="entry-content">
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="property-box property-box-left property-featured-image-wrapper">

@@ -37,17 +37,16 @@ function epl_install() {
 	$epl_settings = epl_settings();
 	if(empty($epl_settings)) {
 		$epl_settings = array(
-			'currency'			=>	'AUD',
-			'currency_position'		=>	'before',
+			'currency'						=>	'AUD',
+			'currency_position'				=>	'before',
 			'currency_thousands_separator'	=>	',',
 			'currency_decimal_separator'	=>	'.',
-			'label_location'		=>	'Suburb',
-			'debug'				=>	'0',
+			'debug'							=>	'0',
 			
-			'label_suburb'			=>	__('Suburb', 'epl'),
-			'label_postcode'		=>	__('Post Code', 'epl'),
-			'label_home_open'		=>	__('Home Open', 'epl'),
-			'label_poa'			=>	__('POA', 'epl'),
+			'label_suburb'					=>	__('Suburb', 'epl'),
+			'label_postcode'				=>	__('Post Code', 'epl'),
+			'label_home_open'				=>	__('Home Open', 'epl'),
+			'label_poa'						=>	__('POA', 'epl'),
 		);
 		update_option( 'epl_settings', $epl_settings );
 	}
@@ -71,18 +70,6 @@ function epl_install() {
 	set_transient( '_epl_activation_redirect', true, 30 );
 }
 register_activation_hook( EPL_PLUGIN_FILE, 'epl_install' );
-
-/**
- * Un-Install
- *
- * Runs on plugin un-install by setting up the current version,
- * flushing rewrite rules
- */
-function epl_uninstall() {
-	update_option('epl_rewrite_rules', false);
-	flush_rewrite_rules();
-}
-register_deactivation_hook( EPL_PLUGIN_FILE, 'epl_uninstall' );
 
 /**
  * Post-installation

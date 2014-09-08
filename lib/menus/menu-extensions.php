@@ -5,14 +5,13 @@
  * @since 1.0
  * @return void
  */
-
+ 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $fields = epl_get_admin_option_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
-		$epl_settings = get_option('epl_settings');
 		foreach($fields as $field_group) {
 			foreach($field_group['fields'] as $field) {
 				if( $field['type'] == 'radio' || $field['type'] == 'checkbox' ) {
@@ -20,22 +19,20 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 						$_REQUEST[ $field['name'] ] = '';
 					}
 				}
-
+				
 				if($field['type'] == 'text') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
-
+				
+				$epl_settings = get_option('epl_settings');
 				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+				update_option('epl_settings', $epl_settings);
 			}
 		}
-		update_option('epl_settings', $epl_settings);
 	}
 }
 
 global $epl_settings;
-
-//get the updated saved settings
-$epl_settings = get_option('epl_settings');
 ?>
 
 <div class="wrap">
@@ -53,7 +50,7 @@ $epl_settings = get_option('epl_settings');
 								</div>
 								<?php
 							}
-
+							
 							foreach($field_group['fields'] as $field) { ?>
 								<div class="epl-field">
 									<div class="epl-half-left">
@@ -65,41 +62,26 @@ $epl_settings = get_option('epl_settings');
 											if(isset($epl_settings[ $field['name'] ])) {
 												$val = $epl_settings[ $field['name'] ];
 											}
-
+											
 											switch($field['type']) {
 												case 'select':
-													$multiple = '';
-													$field['id'] = $field['name'];
-													if( isset($field['multiple']) && $field['multiple'] ) {
-														$multiple = $field['multiple'];
-														$field['name'] = $field['name'].'[]';
-													}
-													
-													echo '<select name="'.$field['name'].'" id="'.$field['id'].'" '.((isset($field['multiple']) && $field['multiple']) ? 'multiple' : false).'>';
+													echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
 														if(!empty($field['default'])) {
 															echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
 														}
-
+										
 														if(!empty($field['opts'])) {
 															foreach($field['opts'] as $k=>$v) {
 																$selected = '';
-																if(is_array($val)) {
-																	if(!empty($val)) {
-																		if(in_array($k, $val)) {
-																			$selected = 'selected="selected"';
-																		}
-																	}
-																} else {
-																	if($val == $k) {
-																		$selected = 'selected="selected"';
-																	}
+																if($val == $k) {
+																	$selected = 'selected="selected"';
 																}
 																echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
 															}
 														}
 													echo '</select>';
 													break;
-
+									
 												case 'checkbox':
 													if(!empty($field['opts'])) {
 														foreach($field['opts'] as $k=>$v) {
@@ -113,7 +95,7 @@ $epl_settings = get_option('epl_settings');
 														}
 													}
 													break;
-
+									
 												case 'radio':
 													if(!empty($field['opts'])) {
 														foreach($field['opts'] as $k=>$v) {
@@ -125,23 +107,11 @@ $epl_settings = get_option('epl_settings');
 														}
 													}
 													break;
-													
-												case 'editor':
-													echo '<span class="epl-field-row">';
-														wp_editor(stripslashes($val), $field['name'], array('wpautop'=>true, 'textarea_rows'=>5));
-													echo '</span>';
-													break;
-													
-												case 'textarea':
-													echo '<span class="epl-field-row">';
-														echo '<textarea name="'.$field['name'].'" id="'.$field['name'].'">'.stripslashes($val).'</textarea>';
-													echo '</span>';
-													break;
-
+									
 												default:
 													echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 											}
-
+							
 											if(isset($field['help'])) {
 												$field['help'] = trim($field['help']);
 												if(!empty($field['help'])) {
@@ -157,7 +127,7 @@ $epl_settings = get_option('epl_settings');
 				?>
 			</div>
 			<div class="epl-clear"></div>
-
+		
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>

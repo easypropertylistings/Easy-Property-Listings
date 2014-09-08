@@ -19,13 +19,6 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	}
 
 	function widget($args, $instance) {
-	
-		$defaults = array(
-						'title'		=>	'',
-						'd_columns'	=>	'4'
-					);
-		$instance = wp_parse_args( (array) $instance, $defaults );
-		
 		extract( $args );
 		$title 		= apply_filters('widget_title', $instance['title']);
 		$d_columns	= $instance['d_columns'];

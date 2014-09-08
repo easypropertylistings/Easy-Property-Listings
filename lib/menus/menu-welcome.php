@@ -159,100 +159,39 @@ class EPL_Welcome {
 			<div class="epl-badge"><?php printf( __( 'Version %s', 'epl' ), $display_version ); ?></div>
 
 			<?php $this->tabs(); ?>
-			
+
 			<div class="changelog">
-				<h3><?php _e( 'Version 1.2', 'epl' );?></h3>
+				<h3><?php _e( 'Fully Featured Listings Details Pages', 'epl' );?></h3>
 
 				<div class="feature-section">
 
-					<h4><?php _e( 'Filter By Specific Listing Meta Key and Value', 'epl' );?></h4>
-						<ul>
-						
-							
-							
-							<li><?php _e( 'New: Search Widget Options to enable or disable search parameters.', 'epl' );?></li>
-							<li><?php _e( 'New: Enabled WordPress editor ability for extensions page.', 'epl' );?></li>
-							
-							
-							
-							
-							
-							<li><?php _e( 'New: Added Shortcode new listing_feature', 'epl' );?></li>
-							<li><?php _e( 'New: Added template choice to all listing shortcodes', 'epl' );?></li>
-							<li><?php _e( 'Removes Listing Search as needs re-building', 'epl' );?></li>
-							<li><?php _e( 'Added Wrapper divs to shortcodes', 'epl' );?></li>
-							<li><?php _e( 'Added additional template option to shortcode', 'epl' );?></li>
-							<li><?php _e( 'Updated Widget defaults for backward compatability', 'epl' );?></li>
-							<li><?php _e( 'Adding CSS classes to admin menus', 'epl' );?></li>
-							<li><?php _e( 'Added Filter allowing custom meta boxes to listings', 'epl' );?></li>
-							<li><?php _e( 'Fixed Brdrooms / Bathrooms labels', 'epl' );?></li>
-							<li><?php _e( 'Function fixed for correct template', 'epl' );?></li>
-							<li><?php _e( 'Corrected Shortcodes Template Loader', 'epl' );?></li>
-						
-						</ul>
-				</div>
-			</div>
-			
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/listing-admin.png'; ?>" class="epl-welcome-screenshots"/>
 
-			<div class="changelog">
-				<h3><?php _e( 'Shortcode: [listing_category]', 'epl' );?></h3>
+					<h4><?php _e( 'Detailed Add Property Details Pages', 'epl' );?></h4>
+					<p><?php _e( 'The View and Edit payment screens have been combined into a single, more efficient, user-friendly screen. Add or remove products to an order, adjust amounts, add notes, or resend purchase receipts all at one time from the same screen.', 'epl' );?></p>
+					<p><?php _e( 'All data associated with a payment can now be edited as well, including the customer\'s billing address.', 'epl' );?></p>
 
-				<div class="feature-section">
-
-					<h4><?php _e( 'Filter By Specific Listing Meta Key and Value', 'epl' );?></h4>
-					<p><?php _e( 'This shortcode allows for you to output a list of listings by type and filter them by any available meta key and value. So you can display a list of </em>property</em> that are <em>House</em>, or perhaps by <em>4</em> bedrooms, all possible with this shortcode.', 'epl' );?></p>
-					<p><?php _e( 'The category_value accepts multiple values separated by commas. category_value="2,3,4" or category_value="House,Unit"', 'epl' );?></p>
-					<p><?php _e( '<strong>Example:</strong>', 'epl' );?></p>
-					<p><?php _e( '[listing_category post_type="property" category_key="property_category" category_value="House"]', 'epl' );?></p>
-					<p><?php _e( '<strong>Variables Available for this shortcode:</strong>', 'epl' );?></p>
-					<p><?php _e( '<ul><li>post_type="property" <em>// Single Listing Post Type</em></li>
-									<li>category_key="property_category" <em>// Available Listing Meta Key</em></li>
-									<li>category_value="House" <em>// Comma separated values</em></li>
-									<li>status="current,sold,leased" <em>// Comma separated status</em></li>
-									<li>limit="5" <em>// Single Number eg -1 to 99</em></li></ul>', 'epl' );?></p>
-					<p><?php _e( '<a href="http://easypropertylistings.com.au/docs/listing-category-short-code/">Additional documentation and usage instructions</a>', 'epl' );?></p>
-				</div>
-			</div>
-			
-			<div class="changelog">
-				<h3><?php _e( 'Customization Filters and Constants to Support Real Estate in any Country', 'epl' );?></h3>
-
-				<div class="feature-section">
-					<h4><?php _e( 'Listing Category Filters', 'epl' );?></h4>
-					<p><?php _e( 'Each Listing type has a category filter that allows you to replace the default categories with your own in your functions.php or mini plugin.', 'epl' );?></p>
+					<h4><?php _e( 'Separate Listing Pages for each Listing Type.', 'epl' );?></h4>
+					<p><?php _e( 'Each property type has different options because one size does not fit all when dealing with property and real estate. Business listings and residential sales are totally different so we have configured all the admin pages to work differently for each property type. With full entry pages for:
+					<ul>
+						<li>Property (Residential)</li>
+						<li>Rental</li>
+						<li>Land</li>
+						<li>Rural</li>
+						<li>Commercial</li>
+						<li>Commercial Land</li>
+						<li>Business</li>
+					</ul>', 'epl' );?></p>
 					
-					<p><?php _e( '<h4>Filters Added</h4>
-					<ul><li>epl_listing_meta_property_category <em>// Shared with rental listing type</em></li>
-					<li>epl_listing_meta_commercial_category</li>
-					<li>epl_listing_meta_rural_category</li>
-					<li>epl_listing_meta_land_category</li></ul>', 'epl' );?></p>
-					<p><?php _e( '<a href="http://easypropertylistings.com.au/docs/modify-listing-categories-filters/">Additional instructions</a>', 'epl' );?></p>
-				</div>
-				
-				<div class="feature-section">
-					<h4><?php _e( 'Constant to change Listing Post Types Slug', 'epl' );?></h4>
-					<p><?php _e( 'This constant allows you to change the post slug of each of the different listing types. Be default the slug for the <em>Property</em> Listing type is <em>property</em>, resulting is URLs that look like: http://yoursite.com/property/property-name, by using this constant, you can define the slug as anything you want.', 'epl' );?></p>
+					<h4><?php _e( 'Address Geocoding at the press of a button', 'epl' );?></h4>
+					<p><?php _e( 'Press the coordinates button to have the lat/lond details grabbed from the Google Maps API giving you exact positioning of your listing.', 'epl' );?></p>
 					
-					<p><?php _e( '<h4>Post Slug Constants Added</h4>
-					<ul><li>EPL_PROPERTY_SLUG</li>
-					<li>EPL_RENTAL_SLUG</li>
-					<li>EPL_RURAL_SLUG</li>
-					<li>EPL_LAND_SLUG</li>
-					<li>EPL_BUSINESS_SLUG</li>
-					<li>EPL_COMMERCIAL_SLUG</li>
-					<li>EPL_COMMERCIAL_LAND_SLUG</li></ul>', 'epl' );?></p>
-					<p><?php _e( '<a href="http://easypropertylistings.com.au/docs/change-slug-listing-post-types/">Additional instructions</a>', 'epl' );?></p>
+					<h4><?php _e( 'Post Type Supports WordPress Standards', 'epl' );?></h4>
+					<p><?php _e( 'Each listing type supports the following custom post type features along with the 30+ custom fields. You get support for revisions, title, editor, author, featured image, content and excerpt.', 'epl' );?></p>
+
+					<h4><?php _e( 'Responsive and Mobile Friendly', 'epl' );?></h4>
+					<p><?php _e( 'We have followed the introduction of a responsive Dashboard in WordPress 3.8 and made our own view/edit screen for orders fully responsive and easy to use on mobile devices.', 'epl' );?></p>
 				</div>
-				
-				<div class="feature-section">
-					<h4><?php _e( 'Settings Not Updating when Saved', 'epl' );?></h4>
-					<p><?php _e( 'When saving the initial settings the page is refreshed but the old settings were still being shown. This has been fixed.', 'epl' );?></p>
-					<h4><?php _e( 'Tweak: Search Widget', 'epl' );?></h4>
-					<p><?php _e( 'Updated search widget to use custom filtered property_category.', 'epl' );?></p>
-					<h4><?php _e( 'Fix: Single Listing for property category', 'epl' );?></h4>
-					<p><?php _e( 'Listing categories were showing key, now showing value', 'epl' );?></p>
-				</div>
-				
 			</div>
 
 			<div class="return-to-dashboard">

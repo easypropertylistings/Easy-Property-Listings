@@ -5,7 +5,7 @@
  * @since 1.0
  * @return void
  */
-
+ 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -19,7 +19,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 						$_REQUEST[ $field['name'] ] = '';
 					}
 				}
-
+				
 				if($field['type'] == 'text') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
@@ -29,116 +29,103 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 			}
 		}
 	}
-	update_option('epl_rewrite_rules', false);
 }
 
 global $epl_settings;
-
-//get the latest saved settings
-$epl_settings = get_option('epl_settings');
 ?>
 
 <div class="wrap">
 	<h2><?php _e('General Settings', 'epl'); ?></h2>
 	<p><?php _e('Configure Easy Property Listings general settings. Visit ', 'epl'); ?><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a><?php _e(' for help.', 'epl');?></p>
-	<div id="epl-menu-general" class="epl-content">
+	<div class="epl-content">
 		<form action="" method="post">
-			<div class="epl-fields epl-menu-page">
+			<div class="epl-fields">
 				<?php
-					if(!empty($fields)) { ?>
-						<div class="epl-field epl-menu-content">
-						
-							<?php foreach($fields as $field_group) {
-								$field_id 		= isset($field_group['id']) ? $field_group['id'] : 'extension';
-								$field_class 	= isset($field_group['class']) ? $field_group['class'] : 'extension';
-								?>
-									<div id="epl-<?php echo $field_id; ?>" class="epl-field epl-menu-section epl-<?php echo $field_class; ?>">
+					if(!empty($fields)) {
+						foreach($fields as $field_group) {
+							if( !empty($field_group['label']) ) { ?>
+								<div class="epl-field">
+									<h3><?php _e($field_group['label'], 'epl'); ?></h3>
+								</div>
+								<?php
+							}
+							
+							foreach($field_group['fields'] as $field) { ?>
+								<div class="epl-field">
+									<div class="epl-half-left">
+										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
+									</div>
+									<div class="epl-half-right">
 										<?php
-										if( !empty($field_group['label']) ) { ?>
-												<h3 class="epl-section-title"><?php _e($field_group['label'], 'epl'); ?></h3>
-											<?php
-										} ?>
+											$val = '';
+											if(isset($epl_settings[ $field['name'] ])) {
+												$val = $epl_settings[ $field['name'] ];
+											}
+											switch($field['type']) {
+												case 'select':
+													echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
+														if(!empty($field['default'])) {
+															echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
+														}
 										
-										<div class="epl-section-content">
-											<?php foreach($field_group['fields'] as $field) { ?>
-												<div class="epl-field">
-													<div class="epl-half-left">
-														<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
-													</div>
-													<div class="epl-half-right">
-														<?php
-															$val = '';
-															if(isset($epl_settings[ $field['name'] ])) {
-																$val = $epl_settings[ $field['name'] ];
+														if(!empty($field['opts'])) {
+															foreach($field['opts'] as $k=>$v) {
+																$selected = '';
+																if($val == $k) {
+																	$selected = 'selected="selected"';
+																}
+																echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
 															}
-															switch($field['type']) {
-																case 'select':
-																	echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
-																		if(!empty($field['default'])) {
-																			echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
-																		}
-
-																		if(!empty($field['opts'])) {
-																			foreach($field['opts'] as $k=>$v) {
-																				$selected = '';
-																				if($val == $k) {
-																					$selected = 'selected="selected"';
-																				}
-																				echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
-																			}
-																		}
-																	echo '</select>';
-																	break;
-
-																case 'checkbox':
-																	if(!empty($field['opts'])) {
-																		foreach($field['opts'] as $k=>$v) {
-																			$checked = '';
-																			if(!empty($val)) {
-																				if( in_array($k, $val) ) {
-																					$checked = 'checked="checked"';
-																				}
-																			}
-																			echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
-																		}
-																	}
-																	break;
-
-																case 'radio':
-																	if(!empty($field['opts'])) {
-																		foreach($field['opts'] as $k=>$v) {
-																			$checked = '';
-																			if($val == $k) {
-																				$checked = 'checked="checked"';
-																			}
-																			echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
-																		}
-																	}
-																	break;
-
-																default:
-																	echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
-															}
-
-															if(isset($field['help'])) {
-																$field['help'] = trim($field['help']);
-																if(!empty($field['help'])) {
-																	echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
+														}
+													echo '</select>';
+													break;
+									
+												case 'checkbox':
+													if(!empty($field['opts'])) {
+														foreach($field['opts'] as $k=>$v) {
+															$checked = '';
+															if(!empty($val)) {
+																if( in_array($k, $val) ) {
+																	$checked = 'checked="checked"';
 																}
 															}
-														?>
-													</div>
-												</div>
-											<?php } ?>
-										</div>
+															echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+														}
+													}
+													break;
+									
+												case 'radio':
+													if(!empty($field['opts'])) {
+														foreach($field['opts'] as $k=>$v) {
+															$checked = '';
+															if($val == $k) {
+																$checked = 'checked="checked"';
+															}
+															echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+														}
+													}
+													break;
+									
+												default:
+													echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
+											}
+							
+											if(isset($field['help'])) {
+												$field['help'] = trim($field['help']);
+												if(!empty($field['help'])) {
+													echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
+												}
+											}
+										?>
 									</div>
-							<?php } ?>
-						</div>
-					<?php }
+								</div>
+							<?php }
+						}
+					}
 				?>
 			</div>
 			<div class="epl-clear"></div>
-
+		
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
@@ -152,12 +139,12 @@ function epl_get_admin_option_fields() {
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;
 	}
-
+	
 	$opts_epl_property_card_excerpt_length = array();
 	for($i=10; $i<=55; $i++) {
 		$opts_epl_property_card_excerpt_length[$i] = $i;
 	}
-
+	
 	$opts_pages = array( '' => __('Select Page', 'epl') );
 	$pages = get_pages();
 	if(!empty($pages)) {
@@ -165,67 +152,64 @@ function epl_get_admin_option_fields() {
 			$opts_pages[$page->ID] = $page->post_title;
 		}
 	}
-
-	$epl_currency_positions = array(
-			'before'	=> __('Before - $10', 'epl'), 
-			'after'		=> __('After - 10$', 'epl')
-			);
+	
+	$epl_currency_positions = array('before'=>'Before - $10', 'after'=>'After - 10$',);
 	$epl_currency_types = epl_get_currencies();
 	$epl_post_types = epl_get_post_types();
-
+	
 	$fields = array(
 		array(
 			'label'		=>	'',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'activate_post_types',
-					'label'	=>	__('Listing Types to Enable', 'epl'),
+					'label'	=>	'Listing Types to Enable',
 					'type'	=>	'checkbox',
 					'opts'	=>	$epl_post_types,
-					'help'	=>	__('When adding or removing listing types make sure you visit Dashboard > Settings > Permalinks and press Save Changes.')
+					'help'	=>	'You may need to refresh to view the new listing type in the admin menu.'
 				),
-
+				
 				array(
 					'name'	=>	'currency',
-					'label'	=>	__('Currency', 'epl'),
+					'label'	=>	'Currency',
 					'type'	=>	'select',
 					'opts'	=>	$epl_currency_types
 				),
-
+				
 				array(
 					'name'	=>	'currency_position',
-					'label'	=>	__('Currency Symbol Position', 'epl'),
+					'label'	=>	'Currency Symbol Position',
 					'type'	=>	'select',
 					'opts'	=>	$epl_currency_positions
 				),
-
+				
 				array(
 					'name'	=>	'currency_thousands_separator',
-					'label'	=>	__('Thousands Separator', 'epl'),
+					'label'	=>	'Thousands Separator',
 					'type'	=>	'text'
 				),
-
+				
 				array(
 					'name'	=>	'currency_decimal_separator',
-					'label'	=>	__('Decimal Separator', 'epl'),
+					'label'	=>	'Decimal Separator',
 					'type'	=>	'text'
 				),
-
+				
 				array(
 					'name'	=>	'label_location',
-					'label'	=>	__('Location label', 'epl'),
+					'label'	=>	'Location label',
 					'type'	=>	'text'
 				),
-
+				
 				array(
 					'name'	=>	'debug',
-					'label'	=>	__('Debug', 'epl'),
+					'label'	=>	'Debug',
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	'On',
 						0	=>	'Off'
 					),
-					'help'	=>	__('Display Geocode Result in Admin', 'epl')
+					'help'	=>	'Display Geocode Result in Admin'
 				),
 			),
 		),
