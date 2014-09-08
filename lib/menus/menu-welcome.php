@@ -159,16 +159,18 @@ class EPL_Welcome {
 			<div class="epl-badge"><?php printf( __( 'Version %s', 'epl' ), $display_version ); ?></div>
 
 			<?php $this->tabs(); ?>
+		
 			
 			<div class="changelog">
-				<h3><?php _e( 'Version 1.2', 'epl' );?></h3>
-
+				<h3><?php _e( 'All changes to Easy Property Listings version 1.2', 'epl' );?></h3>
+				
+		
 				<div class="feature-section">
 
-					<h4><?php _e( 'Filter By Specific Listing Meta Key and Value', 'epl' );?></h4>
+					<h4><?php _e( 'Change Log', 'epl' );?></h4>
 					<ul>
-						<li><?php _e( 'New: Plugin Activation process flushes permalinks', 'epl' );?></li>
-						<li><?php _e( 'New: Plugin deactivation flushes permalinks', 'epl' );?></li>
+						<li><?php _e( 'New: Plug in Activation process flushes permalinks', 'epl' );?></li>
+						<li><?php _e( 'New: Plug in deactivation flushes permalinks', 'epl' );?></li>
 						<li><?php _e( 'New: Shortcode [listing_search]', 'epl' );?></li>
 						<li><?php _e( 'New: Shortcode [listing_feature]', 'epl' );?></li>
 						<li><?php _e( 'New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatability, however adjust your site. ', 'epl' );?></li>
@@ -207,68 +209,6 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Added filter epl_listing_meta_boxes which allows additional meta boxes to be added through filter', 'epl' );?></li>
 					</ul>
 				</div>
-			</div>
-			
-
-			<div class="changelog">
-				<h3><?php _e( 'Shortcode: [listing_category]', 'epl' );?></h3>
-
-				<div class="feature-section">
-
-					<h4><?php _e( 'Filter By Specific Listing Meta Key and Value', 'epl' );?></h4>
-					<p><?php _e( 'This shortcode allows for you to output a list of listings by type and filter them by any available meta key and value. So you can display a list of </em>property</em> that are <em>House</em>, or perhaps by <em>4</em> bedrooms, all possible with this shortcode.', 'epl' );?></p>
-					<p><?php _e( 'The category_value accepts multiple values separated by commas. category_value="2,3,4" or category_value="House,Unit"', 'epl' );?></p>
-					<p><?php _e( '<strong>Example:</strong>', 'epl' );?></p>
-					<p><?php _e( '[listing_category post_type="property" category_key="property_category" category_value="House"]', 'epl' );?></p>
-					<p><?php _e( '<strong>Variables Available for this shortcode:</strong>', 'epl' );?></p>
-					<p><?php _e( '<ul><li>post_type="property" <em>// Single Listing Post Type</em></li>
-									<li>category_key="property_category" <em>// Available Listing Meta Key</em></li>
-									<li>category_value="House" <em>// Comma separated values</em></li>
-									<li>status="current,sold,leased" <em>// Comma separated status</em></li>
-									<li>limit="5" <em>// Single Number eg -1 to 99</em></li></ul>', 'epl' );?></p>
-					<p><?php _e( '<a href="http://easypropertylistings.com.au/docs/listing-category-short-code/">Additional documentation and usage instructions</a>', 'epl' );?></p>
-				</div>
-			</div>
-			
-			<div class="changelog">
-				<h3><?php _e( 'Customization Filters and Constants to Support Real Estate in any Country', 'epl' );?></h3>
-
-				<div class="feature-section">
-					<h4><?php _e( 'Listing Category Filters', 'epl' );?></h4>
-					<p><?php _e( 'Each Listing type has a category filter that allows you to replace the default categories with your own in your functions.php or mini plugin.', 'epl' );?></p>
-					
-					<p><?php _e( '<h4>Filters Added</h4>
-					<ul><li>epl_listing_meta_property_category <em>// Shared with rental listing type</em></li>
-					<li>epl_listing_meta_commercial_category</li>
-					<li>epl_listing_meta_rural_category</li>
-					<li>epl_listing_meta_land_category</li></ul>', 'epl' );?></p>
-					<p><?php _e( '<a href="http://easypropertylistings.com.au/docs/modify-listing-categories-filters/">Additional instructions</a>', 'epl' );?></p>
-				</div>
-				
-				<div class="feature-section">
-					<h4><?php _e( 'Constant to change Listing Post Types Slug', 'epl' );?></h4>
-					<p><?php _e( 'This constant allows you to change the post slug of each of the different listing types. Be default the slug for the <em>Property</em> Listing type is <em>property</em>, resulting is URLs that look like: http://yoursite.com/property/property-name, by using this constant, you can define the slug as anything you want.', 'epl' );?></p>
-					
-					<p><?php _e( '<h4>Post Slug Constants Added</h4>
-					<ul><li>EPL_PROPERTY_SLUG</li>
-					<li>EPL_RENTAL_SLUG</li>
-					<li>EPL_RURAL_SLUG</li>
-					<li>EPL_LAND_SLUG</li>
-					<li>EPL_BUSINESS_SLUG</li>
-					<li>EPL_COMMERCIAL_SLUG</li>
-					<li>EPL_COMMERCIAL_LAND_SLUG</li></ul>', 'epl' );?></p>
-					<p><?php _e( '<a href="http://easypropertylistings.com.au/docs/change-slug-listing-post-types/">Additional instructions</a>', 'epl' );?></p>
-				</div>
-				
-				<div class="feature-section">
-					<h4><?php _e( 'Settings Not Updating when Saved', 'epl' );?></h4>
-					<p><?php _e( 'When saving the initial settings the page is refreshed but the old settings were still being shown. This has been fixed.', 'epl' );?></p>
-					<h4><?php _e( 'Tweak: Search Widget', 'epl' );?></h4>
-					<p><?php _e( 'Updated search widget to use custom filtered property_category.', 'epl' );?></p>
-					<h4><?php _e( 'Fix: Single Listing for property category', 'epl' );?></h4>
-					<p><?php _e( 'Listing categories were showing key, now showing value', 'epl' );?></p>
-				</div>
-				
 			</div>
 
 			<div class="return-to-dashboard">
