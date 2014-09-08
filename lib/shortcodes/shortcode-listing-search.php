@@ -25,7 +25,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
 		'title'					=>	'',
 		'property_type'				=>	'property', // Post type name singular
-		'property_status'			=>	'any', // Singular: current / sold / leased
+		'property_status'			=>	'', // Singular: current / sold / leased or '' for any
 		'search_house_category'			=>	'on', // on or off
 		'search_price'				=>	'on', // on or off
 		'search_bed'				=>	'on', // on or off
