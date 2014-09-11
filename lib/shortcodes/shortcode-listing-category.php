@@ -20,15 +20,17 @@ if( is_admin() ) {
  * This shortcode allows for you to specify the property type(s) using 
  * [listing_category post_type="property" status="current,sold,leased" category_key="property_rural_category" category_key="farm"] option. You can also 
  * limit the number of entries that display. using  [listing_category limit="5"]
+ * Added Commercial Category Support 
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' 		=>	'',
-		'status'			=>	array('current' , 'sold' , 'leased' ),
+		'status'		=>	array('current' , 'sold' , 'leased' ),
+		'commercial_category'	=>	'',
 		'category_key'		=>	'',
 		'category_value'	=>	'',
-		'limit'				=>	'10', // Number of maximum posts to show
-		'template'			=>	false // Template can be set to "slim" for home open style template
+		'limit'			=>	'10', // Number of maximum posts to show
+		'template'		=>	false // Template can be set to "slim" for home open style template
 	), $atts ) );
 	
 	if(empty($post_type)) {
@@ -51,6 +53,19 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			$args['meta_query'][] = array(
 				'key' => 'property_status',
 				'value' => $status,
+				'compare' => 'IN'
+			);
+		}
+	}
+	
+	if(!empty($commercial_category)) {
+		if(!is_array($commercial_category)) {
+			$commercial_category = explode(",", $commercial_category);
+			$commercial_category = array_map('trim', $commercial_category);
+			
+			$args['meta_query'][] = array(
+				'key' => 'property_commercial_category',
+				'value' => $commercial_category,
 				'compare' => 'IN'
 			);
 		}
