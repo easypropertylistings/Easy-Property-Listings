@@ -24,13 +24,13 @@ if( is_admin() ) {
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	extract( shortcode_atts( array(
-		'post_type' 		=>	'',
-		'status'		=>	array('current' , 'sold' , 'leased' ),
-		'commercial_category'	=>	'',
-		'category_key'		=>	'',
-		'category_value'	=>	'',
-		'limit'			=>	'10', // Number of maximum posts to show
-		'template'		=>	false // Template can be set to "slim" for home open style template
+		'post_type' 			=>	'',
+		'status'			=>	array('current' , 'sold' , 'leased' ),
+		'commercial_listing_type'	=>	'',
+		'category_key'			=>	'',
+		'category_value'		=>	'',
+		'limit'				=>	'10', // Number of maximum posts to show
+		'template'			=>	false // Template can be set to "slim" for home open style template
 	), $atts ) );
 	
 	if(empty($post_type)) {
@@ -58,14 +58,14 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		}
 	}
 	
-	if(!empty($commercial_category)) {
-		if(!is_array($commercial_category)) {
-			$commercial_category = explode(",", $commercial_category);
-			$commercial_category = array_map('trim', $commercial_category);
+	if(!empty($commercial_listing_type)) {
+		if(!is_array($commercial_listing_type)) {
+			$commercial_listing_type = explode(",", $commercial_listing_type);
+			$commercial_listing_type = array_map('trim', $commercial_listing_type);
 			
 			$args['meta_query'][] = array(
-				'key' => 'property_commercial_category',
-				'value' => $commercial_category,
+				'key' => 'property_com_listing_type',
+				'value' => $commercial_listing_type,
 				'compare' => 'IN'
 			);
 		}
