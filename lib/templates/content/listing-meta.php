@@ -196,14 +196,14 @@ if(isset($meta['property_address_coordinates'])) {
 	}
 }
 // Format Address
-$property_address_street 		= $property_address_street_number . ' ' . $property_address_street;
-$property_address 				= $property_address_street . ', ' . $property_address_suburb;
+$property_address_street 	= $property_address_street_number . ' ' . $property_address_street;
+$property_address 			= $property_address_street . ', ' . $property_address_suburb;
 $price_sticker	 			= '';
 $property_category 			= '';
 $property_bedrooms 			= '';
 $property_bathrooms 		= '';
 $property_toilet 			= '';
-$property_new_construction 			= '';
+$property_new_construction 	= '';
 $property_garage 			= '';
 $property_carport 			= '';
 $property_parking 			= '';
@@ -315,7 +315,7 @@ if(isset($meta['property_building_area_unit'])) {
 	}
 }
 if ( $building_area_unit == 'squareMeter') {
-	$building_area_unit = 'mÂ²';
+	$building_area_unit = 'm²';
 }
 $building_area = $building_area . ' ' . $building_area_unit;
 // Property Other Details
