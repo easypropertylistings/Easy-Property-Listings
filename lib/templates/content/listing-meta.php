@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
  * Function to retrieve property or rental custom fields.
  */
@@ -202,6 +202,8 @@ $price_sticker	 			= '';
 $property_category 			= '';
 $property_bedrooms 			= '';
 $property_bathrooms 		= '';
+$property_toilet 			= '';
+$property_new_construction 			= '';
 $property_garage 			= '';
 $property_carport 			= '';
 $property_parking 			= '';
@@ -228,7 +230,16 @@ if ( 'property' == $post_type || 'rental' == $post_type || 'rural' == $post_type
 			$property_bathrooms = $meta['property_bathrooms'][0];
 		}	
 	}
-	
+	if(isset($meta['property_toilet'])) {
+		if(isset($meta['property_toilet'][0])) {
+			$property_toilet = $meta['property_toilet'][0];
+		}	
+	}
+	if(isset($meta['property_new_construction'])) {
+		if(isset($meta['property_new_construction'][0])) {
+			$property_new_construction = $meta['property_new_construction'][0];
+		}	
+	}
 	if(isset($meta['property_garage'])) {
 		if(isset($meta['property_garage'][0])) {
 			$property_garage = $meta['property_garage'][0];
@@ -304,7 +315,7 @@ if(isset($meta['property_building_area_unit'])) {
 	}
 }
 if ( $building_area_unit == 'squareMeter') {
-	$building_area_unit = 'm²';
+	$building_area_unit = 'mÂ²';
 }
 $building_area = $building_area . ' ' . $building_area_unit;
 // Property Other Details
@@ -652,6 +663,12 @@ if( isset($property_pool) && ($property_pool == 1 || $property_pool == 'yes') ) 
 if(isset($property_category) && $property_category != '') { 
 	$l_htype = '<li class="type">' . $property_category . '</li>';
 }
+if(isset($property_toilet) && $property_toilet != 0) {
+	$l_toilet = '<li class="toilet">' . $property_toilet . ' '.__('Toilet', 'epl').'</li>';
+}
+if( isset($property_new_construction) && ($property_new_construction == 1 || $property_new_construction == 'yes') ) {
+	$l_new_construction = '<li class="new">'.__('New Construction', 'epl').'</li>';
+}
 if( isset($property_security_system) && ($property_security_system == 1 || $property_security_system == 'yes') ) {
 	$l_alarm = '<li class="alarm">'.__('Alarm system', 'epl').'</li>';
 }
@@ -986,6 +1003,12 @@ if(isset($l_bed)) {
 }
 if(isset($l_bath)) {
 	$the_property_feature_list .= $l_bath;
+}
+if(isset($l_toilet)) {
+	$the_property_feature_list .= $l_toilet;
+}
+if(isset($l_new_construction)) {
+	$the_property_feature_list .= $l_new_construction;
 }
 if(isset($l_land)) {
 	$the_property_feature_list .= $l_land;
