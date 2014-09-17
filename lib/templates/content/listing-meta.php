@@ -398,6 +398,9 @@ if ( 'property' == $post_type || 'land' == $post_type || 'rural' == $post_type) 
 			$price_plain_value .= $property_bond . ' bond';
 			$price .= '<span class="bond">' . $property_bond . ' bond</span>';
 		}
+		if ( $property_inspection_times != '' ){
+			$price_sticker = '<span class="status-sticker open">'.$home_open_label.'</span>';
+		}
 	} elseif ( $property_status == 'leased') {
 		$price_plain_value = __('Leased', 'epl');
 		$price = '<span class="page-price sold-status">'.__('Leased', 'epl').'</span>';
