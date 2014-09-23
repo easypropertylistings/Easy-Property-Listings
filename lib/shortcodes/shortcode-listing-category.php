@@ -3,7 +3,7 @@
  * SHORTCODE :: Listing Category [listing_category]
  *
  * @package     EPL
- * @subpackage  Shotrcode/map
+ * @subpackage  Shortcode/category
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.1.1
@@ -20,13 +20,15 @@ if( is_admin() ) {
  * This shortcode allows for you to specify the property type(s) using 
  * [listing_category post_type="property" status="current,sold,leased" category_key="property_rural_category" category_key="farm"] option. You can also 
  * limit the number of entries that display. using  [listing_category limit="5"]
+ * Added Commercial Category Support 
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	extract( shortcode_atts( array(
-		'post_type' 		=>	'',
+		'post_type' 			=>	'',
 		'status'			=>	array('current' , 'sold' , 'leased' ),
-		'category_key'		=>	'',
-		'category_value'	=>	'',
+		'commercial_listing_type'	=>	'',
+		'category_key'			=>	'',
+		'category_value'		=>	'',
 		'limit'				=>	'10', // Number of maximum posts to show
 		'template'			=>	false // Template can be set to "slim" for home open style template
 	), $atts ) );
@@ -51,6 +53,19 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			$args['meta_query'][] = array(
 				'key' => 'property_status',
 				'value' => $status,
+				'compare' => 'IN'
+			);
+		}
+	}
+	
+	if(!empty($commercial_listing_type)) {
+		if(!is_array($commercial_listing_type)) {
+			$commercial_listing_type = explode(",", $commercial_listing_type);
+			$commercial_listing_type = array_map('trim', $commercial_listing_type);
+			
+			$args['meta_query'][] = array(
+				'key' => 'property_com_listing_type',
+				'value' => $commercial_listing_type,
 				'compare' => 'IN'
 			);
 		}

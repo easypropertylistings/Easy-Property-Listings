@@ -46,7 +46,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				}
 			}
 		?>
-		<form action="" method="get">
+		<form method="get" action="<?php echo esc_url( home_url('/') ); ?>">
 			<input type="hidden" name="action" value="epl_search" />
 			<input type="hidden" name="property_status" value="<?php echo $property_status; ?>" />
 			<input type="hidden" name="post_type" value="<?php echo $post_type; ?>" />

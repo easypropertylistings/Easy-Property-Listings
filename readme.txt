@@ -1,13 +1,13 @@
 === Easy Property Listings ===
 Author URI: http://www.realestateconnected.com.au
 Plugin URI: http://easypropertylistings.com.au
-Contributors: mervb1
+Contributors: mervb1, MarionWante
 Donate link: http://easypropertylistings.com.au/support-the-site/
-Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, , wp property, wp rentals, wp-realestate, wp real estate, wp property, Merv Barrett, real estate connected
+Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, wp property, Merv Barrett, real estate connected
 Requires at least: 3.3
 Tested up to: 4.0
 
-Stable Tag: 1.2
+Stable Tag: 1.2.1
 
 License: GNU Version 2 or Any Later Version
 
@@ -79,6 +79,8 @@ With add-ons for [Suburb/City Profiles](http://easypropertylistings.com.au/exten
 Easy Property Listings needs help for translation:
 
 1. English (and British English)
+2. Italian (very rough translation, if you can assist please do)
+3. Dutch (partially complete)
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](http://easypropertylistings.com.au/support/forum/translations/).
 
@@ -133,12 +135,20 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+= 1.2.1: September 23, 2014 =
+* Fix: Search Widget not working on page 2 of archive page in some instances
+* Fix: Property feature list Toilet and New Construction now display in list when ticked
+* Fix: EPL - Listing widget was not displaying featured listings
+* Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode
+* Fix: Updated templates to display Search Results when performing search
+* New: Added initial Dutch translation.
+
 = 1.2: September 8, 2014 =
 * New: Plug in Activation process flushes permalinks
 * New: Plug in deactivation flushes permalinks
 * New: Shortcode [listing_search]
 * New: Shortcode [listing_feature]
-* New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatability, however adjust your site.
+* New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatibility, however adjust your site.
 * New: Listing shortcodes allow for default template display if registered by adding template="slim" to the shortcode.
 * New: Translation support now correctly loads text domain epl
 * New: Added translation tags to all test elements for better translation support

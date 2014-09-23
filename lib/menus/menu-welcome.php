@@ -162,12 +162,22 @@ class EPL_Welcome {
 		
 			
 			<div class="changelog">
-				<h3><?php _e( 'All changes to Easy Property Listings version 1.2', 'epl' );?></h3>
-				
-		
-				<div class="feature-section">
+				<h3><?php _e( 'All changes to Easy Property Listings version 1.2.1', 'epl' );?></h3>
 
-					<h4><?php _e( 'Change Log', 'epl' );?></h4>
+				<div class="feature-section">
+				
+					<h4><?php _e( 'Version 1.2.1', 'epl' );?></h4>
+
+					<ul>
+						<li><?php _e( 'Fix: Search Widget not working on page 2 of archive page in some instances', 'epl' );?></li>
+						<li><?php _e( 'Fix: Property feature list Toilet and New Construction now display in list when ticked', 'epl' );?></li>
+						<li><?php _e( 'Fix: EPL - Listing widget was not displaying featured listings', 'epl' );?></li>
+						<li><?php _e( 'Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode', 'epl' );?></li>
+						<li><?php _e( 'Fix: Updated templates to display Search Results when performing search', 'epl' );?></li>
+						<li><?php _e( 'New: Added initial Dutch translation.', 'epl' );?></li>
+					</ul>
+					
+					<h4><?php _e( 'Version 1.2', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Plug in Activation process flushes permalinks', 'epl' );?></li>
 						<li><?php _e( 'New: Plug in deactivation flushes permalinks', 'epl' );?></li>
