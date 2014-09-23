@@ -107,6 +107,7 @@ if ( is_admin() ) {
 	 */
 	function epl_manage_rental_columns_value( $column, $post_id ) {
 		global $post;
+		global $epl_settings;
 		switch( $column ) {	
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
@@ -161,14 +162,22 @@ if ( is_admin() ) {
 			case 'property_rent' :
 				/* Get the post meta. */
 				$rent = get_post_meta( $post_id, 'property_rent', true );
-				$bond = get_post_meta( $post_id, 'property_bond', true );
+						
+				$d_bond = '';
+				if( !empty($epl_settings) && isset( $epl_settings['display_bond'] )) {
+					$d_bond = $epl_settings['display_bond'];
+					$bond = get_post_meta( $post_id, 'property_bond', true );
+				}
+				
 				/* If no duration is found, output a default message. */
 				if ( empty( $rent) )
 					echo ''; //'<strong>'.__( 'No Rent Set', 'epl' ).'</strong>';
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					 echo '<div class="epl_meta_rent">' , epl_currency_formatted_amount( $rent ) , '</div>';
-					 echo '<div class="epl_meta_bond">Bond: ' , epl_currency_formatted_amount( $bond ) , '</div>';
+					if ( $d_bond == 1 ) { 
+						echo '<div class="epl_meta_bond">Bond: ' , epl_currency_formatted_amount( $bond ) , '</div>'; 
+					}
 				break;
 			/* If displaying the 'real-estate' column. */
 			case 'property_status' :
