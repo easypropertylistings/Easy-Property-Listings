@@ -175,6 +175,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode', 'epl' );?></li>
 						<li><?php _e( 'Fix: Updated templates to display Search Results when performing search', 'epl' );?></li>
 						<li><?php _e( 'Fix: No longer show Bond when viewing rental list in admin', 'epl' );?></li>
+						<li><?php _e( 'Fix: Open for inspection sticker now appears on rental properties', 'epl' );?></li>
 						<li><?php _e( 'New: Added initial Dutch translation.', 'epl' );?></li>
 					</ul>
 					
