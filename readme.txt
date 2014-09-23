@@ -3,7 +3,7 @@ Author URI: http://www.realestateconnected.com.au
 Plugin URI: http://easypropertylistings.com.au
 Contributors: mervb1, MarionWante
 Donate link: http://easypropertylistings.com.au/support-the-site/
-Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, , wp property, wp rentals, wp-realestate, wp real estate, wp property, Merv Barrett, real estate connected
+Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, wp property, Merv Barrett, real estate connected
 Requires at least: 3.3
 Tested up to: 4.0
 
@@ -140,13 +140,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Property feature list Toilet and New Construction now display in list when ticked
 * Fix: EPL - Listing widget was not displaying featured listings
 * Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode
+* Fix: Updated templates to display Search Results when performing search
+* New: Added initial Dutch translation.
 
 = 1.2: September 8, 2014 =
 * New: Plug in Activation process flushes permalinks
 * New: Plug in deactivation flushes permalinks
 * New: Shortcode [listing_search]
 * New: Shortcode [listing_feature]
-* New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatability, however adjust your site.
+* New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatibility, however adjust your site.
 * New: Listing shortcodes allow for default template display if registered by adding template="slim" to the shortcode.
 * New: Translation support now correctly loads text domain epl
 * New: Added translation tags to all test elements for better translation support
