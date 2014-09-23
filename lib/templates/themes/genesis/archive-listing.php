@@ -33,37 +33,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 									<h4 class="loop-title">
 										<?php
 											the_post();
-											
-											if ( is_category() ) { // Category Archive
-												$title = sprintf( __( '%s', 'it-l10n-Builder-Coverage' ), single_cat_title( '', false ) );
-											}
-											else if ( is_tag() ) { // Tag Archive
-												$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Coverage' ), single_tag_title( '', false ) );
-											}
-											else if ( is_tax() ) { // Tag Archive
+							 
+											if ( is_tax() && function_exists( 'epl_is_search' ) && false == epl_is_search() ) { // Tag Archive
 												$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-												$title = sprintf( __( 'Property in %s', 'it-l10n-Builder-Coverage' ), $term->name );
+												$title = sprintf( __( 'Property in %s', 'epl' ), $term->name );
 											}
+											else if ( function_exists( 'epl_is_search' ) && epl_is_search() ) { // Search Result
+												$title = __( 'Search Result', 'epl' );
+											}
+											
 											else if ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive
 												$title = post_type_archive_title( '', false );
-											}
-											else if ( is_author() ) { // Author Archive
-												$title = sprintf( __( 'Author Archive for %s', 'it-l10n-Builder-Coverage' ), get_the_author() );
-											}
-											else if ( is_year() ) { // Year-Specific Archive
-												$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Coverage' ), get_the_time( 'Y' ) );
-											}
-											else if ( is_month() ) { // Month-Specific Archive
-												$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Coverage' ), get_the_time( 'F Y' ) );
-											}
-											else if ( is_day() ) { // Day-Specific Archive
-												$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Coverage' ), get_the_date() );
-											}
-											else if ( is_time() ) { // Time-Specific Archive
-												$title = __( 'Time Archive', 'it-l10n-Builder-Coverage' );
-											}
+											} 
+											
 											else { // Default catchall just in case
-												$title = __( 'Archive', 'it-l10n-Builder-Coverage' );
+												$title = __( 'Listing', 'epl' );
 											}
 											
 											if ( is_paged() )
