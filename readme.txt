@@ -142,6 +142,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode
 * Fix: Updated templates to display Search Results when performing search
 * Fix: No longer show Bond when viewing rental list in admin
+* Fix: Open for inspection sticker now appears on rental properties
 * New: Added initial Dutch translation.
 
 = 1.2: September 8, 2014 =
