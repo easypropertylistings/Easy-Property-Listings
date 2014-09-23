@@ -86,7 +86,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				'meta_query' => array(
 					array(
 						'key' => 'property_featured',
-						'value' => 1
+						'value' => 'yes'
 					)
 				)
 			);
