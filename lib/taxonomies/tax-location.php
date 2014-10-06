@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function epl_register_taxonomy_location() {
 	$location_label = epl_tax_location_label();
 	$location_slug = sanitize_title($location_label);
+	$hierarchical = defined( 'EPL_LOCATION_HIERARCHICAL' ) && EPL_LOCATION_HIERARCHICAL ? true : false;
+		/* add define ('EPL_LOCATION_HIERARCHICAL', 'true'); into theme functions.php for hierarchical location taxonomy */
 	
 	$labels = array(
 		'name'							=> _x( $location_label, 'Taxonomy General Name', 'epl'),
@@ -34,15 +36,15 @@ function epl_register_taxonomy_location() {
 		'not_found'						=> __( $location_label.' Not Found', 'epl' ),
 	);
 	$rewrite = array(
-		'slug'							=> $location_slug,
+		'slug'						=> $location_slug,
 		'with_front'					=> true,
-		'hierarchical'					=> false,
+		'hierarchical'					=> $hierarchical,
 	);
 	$args = array(
-		'labels'						=> $labels,
-		'hierarchical'					=> false,
-		'public'						=> true,
-		'show_ui'						=> true,
+		'labels'					=> $labels,
+		'hierarchical'					=> $hierarchical,
+		'public'					=> true,
+		'show_ui'					=> true,
 		'show_admin_column'				=> true,
 		'show_in_nav_menus'				=> true,
 		'show_tagcloud'					=> true,
