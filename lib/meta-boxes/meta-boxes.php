@@ -250,7 +250,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_inspection_times',
 							'label'		=>	__('Inspection Times', 'epl'),
 							'type'		=>	'text',
-							'maxlength'	=>	'150'
+							'maxlength'	=>	'300'
 						)
 					
 					)
@@ -799,7 +799,22 @@ function epl_meta_box_init() {
 									'no'	=>	__('No', 'epl')
 								),
 							),
-					
+							
+							array(
+								'name'		=>	'property_address_lot_number',
+								'label'		=>	__('Lot', 'epl'),
+								'type'		=>	'text',
+								'maxlength'	=>	'40',
+								'include'	=>	array('land', 'commercial_land')
+							),
+							
+							array(
+								'name'		=>	'property_address_sub_number',
+								'label'		=>	__('Unit', 'epl'),
+								'type'		=>	'text',
+								'maxlength'	=>	'40'
+							),
+							
 							array(
 								'name'		=>	'property_address_street_number',
 								'label'		=>	__('Street Number', 'epl'),
@@ -852,7 +867,7 @@ function epl_meta_box_init() {
 								'type'		=>	'text',
 								'maxlength'	=>	'40'
 							),
-					
+							
 							array(
 								'name'		=>	'property_address_coordinates',
 								'label'		=>	__('Coordinates', 'epl'),
@@ -893,7 +908,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_auction',
-							'label'		=>	__('Auction Date / Details', 'epl'),
+							'label'		=>	__('Auction Date', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'100'
 						),
