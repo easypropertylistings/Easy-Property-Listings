@@ -814,7 +814,8 @@ function epl_meta_box_init() {
 								'name'		=>	'property_address_sub_number',
 								'label'		=>	__('Unit', 'epl'),
 								'type'		=>	'text',
-								'maxlength'	=>	'40'
+								'maxlength'	=>	'40',
+								'exclude'	=>	array('land', 'commercial_land')
 							),
 							
 							array(
