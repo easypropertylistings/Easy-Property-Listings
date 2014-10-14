@@ -123,9 +123,16 @@ function epl_meta_box_init() {
 				),
 			
 				array(
-					'columns'	=>	'1',
+					'columns'	=>	'1',a
 					'label'		=>	__('Listing Agent(s)', 'epl'),
 					'fields'	=>	array(
+						array(
+							'name'		=>	'property_office_id',
+							'label'		=>	__('Office ID', 'epl'),
+							'type'		=>	'text',
+							'maxlength'	=>	'50'
+						),
+						
 						array(
 							'name'		=>	'property_agent',
 							'label'		=>	__('Listing Agent', 'epl'),
@@ -138,7 +145,9 @@ function epl_meta_box_init() {
 							'label'		=>	__('Second Listing Agent', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
-						)
+						),
+						
+						
 					)
 				),
 			
@@ -177,13 +186,6 @@ function epl_meta_box_init() {
 							'include'	=>	array('rural')
 						),
 						
-						array(
-							'name'		=>	'property_office_id',
-							'label'		=>	__('Office ID', 'epl'),
-							'type'		=>	'text',
-							'maxlength'	=>	'50'
-						),
-					
 						array(
 							'name'		=>	'property_unique_id',
 							'label'		=>	__('Unique ID', 'epl'),
@@ -909,7 +911,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_auction',
 							'label'		=>	__('Auction Date', 'epl'),
-							'type'		=>	'text',
+							'type'		=>	'date',
 							'maxlength'	=>	'100'
 						),
 					
