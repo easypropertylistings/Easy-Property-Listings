@@ -27,18 +27,18 @@ $property_heading = get_the_title();
 	}
 // Process Status 
 $property_status = '';
-	if(isset($meta['property_status'])) {
-		if(isset($meta['property_status'][0])) {
-			$property_status = $meta['property_status'][0];
-		}
+if(isset($meta['property_status'])) {
+	if(isset($meta['property_status'][0])) {
+		$property_status = $meta['property_status'][0];
 	}
-	
+}
 // Process Property Features Taxonomy
 if ( taxonomy_exists('tax_feature') ) {
 	global $post;
 	$property_feature_taxonomy = get_the_term_list($post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' );
 }
 // Authority
+$property_authority = '';
 if(isset($meta['property_authority'])) {
 	if(isset($meta['property_authority'][0])) {
 		$property_authority = $meta['property_authority'][0];
@@ -106,6 +106,10 @@ if ( 'rental' != $post_type ) {
 		$property_price_search = $meta['property_price'][0];
 		$property_price = epl_currency_formatted_amount( $property_price_search );
 	}
+	// Auction Details and Price override
+	if ( $property_authority == 'auction' || $property_authority == 'Auction' ) {
+		$property_price = __( 'Auction' , 'epl') . ' ' . $property_auction;
+	}
 }
 // Rental / Leased Property Specifics
 if ( 'rental' == $post_type ) {
@@ -154,6 +158,20 @@ if(isset($meta['property_unique_id'])) {
 	}
 }
 //address
+$property_address_lot_number	 = '';
+$property_address_sub_number	 = '';
+
+if(isset($meta['property_address_lot_number'])) {
+	if(isset($meta['property_address_lot_number'][0])) {
+		$property_address_lot_number = $meta['property_address_lot_number'][0] . ' ';
+		
+	}
+}
+if(isset($meta['property_address_sub_number'])) {
+	if(isset($meta['property_address_sub_number'][0])) {
+		$property_address_sub_number = $meta['property_address_sub_number'][0] . '/';
+	}
+}
 if(isset($meta['property_address_street_number'])) {
 	if(isset($meta['property_address_street_number'][0])) {
 		$property_address_street_number = $meta['property_address_street_number'][0];
@@ -196,19 +214,19 @@ if(isset($meta['property_address_coordinates'])) {
 	}
 }
 // Format Address
-$property_address_street 	= $property_address_street_number . ' ' . $property_address_street;
-$property_address 			= $property_address_street . ', ' . $property_address_suburb;
-$price_sticker	 			= '';
-$property_category 			= '';
-$property_bedrooms 			= '';
+$property_address_street 	= $property_address_lot_number . $property_address_sub_number . $property_address_street_number . ' ' . $property_address_street;
+$property_address 		= $property_address_street . ', ' . $property_address_suburb;
+$price_sticker	 		= '';
+$property_category 		= '';
+$property_bedrooms 		= '';
 $property_bathrooms 		= '';
-$property_toilet 			= '';
+$property_toilet 		= '';
 $property_new_construction 	= '';
-$property_garage 			= '';
-$property_carport 			= '';
-$property_parking 			= '';
+$property_garage 		= '';
+$property_carport 		= '';
+$property_parking 		= '';
 $property_air_conditioning 	= '';
-$property_pool 				= '';
+$property_pool 			= '';
 $property_security_system 	= '';
 if ( 'property' == $post_type || 'rental' == $post_type || 'rural' == $post_type ) {
 	//house features
