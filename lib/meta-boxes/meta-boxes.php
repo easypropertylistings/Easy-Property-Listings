@@ -123,7 +123,7 @@ function epl_meta_box_init() {
 				),
 			
 				array(
-					'columns'	=>	'1',a
+					'columns'	=>	'1',
 					'label'		=>	__('Listing Agent(s)', 'epl'),
 					'fields'	=>	array(
 						array(
