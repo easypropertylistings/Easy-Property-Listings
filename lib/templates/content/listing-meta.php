@@ -163,13 +163,19 @@ $property_address_sub_number	 = '';
 
 if(isset($meta['property_address_lot_number'])) {
 	if(isset($meta['property_address_lot_number'][0])) {
-		$property_address_lot_number = $meta['property_address_lot_number'][0] . ' ';
+		$property_address_lot_number = $meta['property_address_lot_number'][0];
+			if ( '' != $property_address_lot_number ) {
+				$property_address_lot_number = $property_address_lot_number . ' ';
+			}
 		
 	}
 }
 if(isset($meta['property_address_sub_number'])) {
 	if(isset($meta['property_address_sub_number'][0])) {
-		$property_address_sub_number = $meta['property_address_sub_number'][0] . '/';
+		$property_address_sub_number = $meta['property_address_sub_number'][0];
+			if ( '' != $property_address_sub_number ) {
+				$property_address_sub_number = $property_address_sub_number . '/';
+			}
 	}
 }
 if(isset($meta['property_address_street_number'])) {
