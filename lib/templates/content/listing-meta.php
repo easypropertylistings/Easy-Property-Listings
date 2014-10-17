@@ -1,7 +1,7 @@
-﻿<?php
+<?php
 /*
- * Function to retrieve property or rental custom fields.
- */
+* Function to retrieve property or rental custom fields.
+*/
  
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -95,6 +95,9 @@ if ( 'rental' != $post_type ) {
 	if(isset($meta['property_auction'])) {
 		if(isset($meta['property_auction'][0])) {
 			$property_auction = $meta['property_auction'][0];
+				if ( '' != $property_auction ) {
+					$property_auction = date( 'l jS F \a\t H:i' , strtotime($property_auction) );
+				}
 		}	
 	}
 	// Property Price Display
