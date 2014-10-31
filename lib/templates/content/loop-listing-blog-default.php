@@ -8,33 +8,31 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+global $property;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-clearfix'); ?>>				
+<div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-clearfix'); ?>>
+	<?php do_action('listings_archive_before_content'); ?>				
 	<div class="entry-content">
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="property-box property-box-left property-featured-image-wrapper">
 				<a href="<?php the_permalink(); ?>">
 					<div class="epl-blog-image">
 						<?php
-							echo $price_sticker;
+							echo epl_get_price_sticker();
 							the_post_thumbnail( 'epl-image-medium-crop', array( 'class' => 'teaser-left-thumb' ) );
 						?>
 					</div>
 				</a>
 				
 				<!-- Home Open -->
-				<?php
-					if( $property_inspection_times != '') {
-						echo  '<div class="home-open"><strong>', $property_inspection_times, '</strong></div>';
-					}
-				?>
+				<?php epl_property_inspection_times() ?>
 			</div>
 		<?php endif; ?>
 
 		<div class="property-box property-box-right property-content">
 			<!-- Heading -->
-			<h3 class="entry-title"><a href="<?php the_permalink() ?>"><?php echo $the_property_heading; ?></a></h3>
+			<h3 class="entry-title"><a href="<?php the_permalink() ?>"><?php epl_the_property_heading(); ?></a></h3>
 			<div class="entry-content">
 				<?php echo the_excerpt(); ?>
 			</div>
@@ -42,60 +40,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<!-- Address -->
 			<div class="property-address">
 				<a href="<?php the_permalink(); ?>">
-					<?php
-					// Commercial and Business Address
-					if ($property_post_type == 'commercial' || $property_post_type == 'business' ) {
-						if ( $property_address_display == 'no' && $property_com_display_suburb == 'no') { ?>
-							<span class="street-address">
-								<span class="item-state"><?php echo $property_address_state . ' '; ?></span>
-								<span class="item-pcode"><?php echo $property_address_postal_code; ?></span>
-							</span>
-						<?php } elseif ( $property_address_display == 'no' && $property_com_display_suburb == 'yes') { ?>
-							<span class="street-address">
-								<span class="item-suburb"><?php echo $property_address_suburb . ', '; ?></span>
-								<span class="item-state"><?php echo $property_address_state . ' '; ?></span>
-								<span class="item-pcode"><?php echo $property_address_postal_code; ?></span>
-							</span>
-						<?php } elseif ( $property_address_display == 'yes' && $property_com_display_suburb == 'no') { ?>
-							<span class="street-address">
-								<span class="item-state"><?php echo $property_address_state . ' '; ?></span>
-								<span class="item-pcode"><?php echo $property_address_postal_code; ?></span>
-							</span>
-						<?php } else { ?>
-							<span class="street-address"><?php echo $property_address_street; ?></span>
-							<span class="entry-title-sub">
-								<span class="item-suburb"><?php echo $property_address_suburb . ', '; ?></span>
-								<span class="item-state"><?php echo $property_address_state . ' '; ?></span>
-								<span class="item-pcode"><?php echo $property_address_postal_code; ?></span>
-							</span>
-						<?php
-						}
-					} else {
-						// Address Display not Commercial or Business type
-						if ( $property_address_display == 'yes' ) { ?>
-							<span class="street-address"><?php echo $property_address_street; ?></span>
-							<span class="entry-title-sub">
-								<span class="item-suburb"><?php echo $property_address_suburb . ', '; ?></span>
-								<span class="item-state"><?php echo $property_address_state . ' '; ?></span>
-								<span class="item-pcode"><?php echo $property_address_postal_code; ?></span>
-							</span>
-						<?php } else { ?>
-							<span class="item-suburb"><?php echo $property_address_suburb; ?></span>
-							<span class="item-state"><?php echo $property_address_state . ' '; ?></span>
-							<span class="item-pcode"><?php echo $property_address_postal_code; ?></span>
-						<?php }
-					} ?>
+					<?php epl_the_listing_address() ?>
 				</a>
 			</div>
 	
 			<!-- Property Featured Icons -->
 			<div class="property-feature-icons">
-				<?php echo $property_icons_full; ?>					
+				<?php epl_property_icons(); ?>					
 			</div>
 			<!-- Price -->
 			<div class="address price">
-				<?php echo $price; ?>
+				<?php epl_property_price() ?>
 			</div>
 		</div>	
 	</div>
+	<?php do_action('listings_archive_after_content'); ?>
 </div>

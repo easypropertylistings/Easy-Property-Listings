@@ -108,7 +108,7 @@ function epl_meta_box_init() {
 			'post_type'	=>	array('property', 'rural', 'rental', 'land', 'commercial', 'commercial_land', 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'	=>	apply_filters ( 'epl_opts_property_listing_details_filter', array(
 				array(
 					'columns'	=>	'1',
 					'label'		=>	'',
@@ -250,14 +250,14 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_inspection_times',
-							'label'		=>	__('Inspection Times', 'epl'),
-							'type'		=>	'text',
-							'maxlength'	=>	'300'
+							'label'		=>	__('Inspection Times ( one per line )', 'epl'),
+							'type'		=>	'textarea',
+							'maxlength'	=>	'500'
 						)
 					
 					)
 				)
-			)
+			))
 		),
 	
 		array(

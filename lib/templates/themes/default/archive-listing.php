@@ -41,7 +41,7 @@ get_header(); ?>
 						?>
 					</h4>
 				</header>
-				
+				<?php do_action('epl_switch_views_sorting'); ?>
 				<div class="entry-content loop-content">
 					<?php
 						while ( have_posts() ) : // The Loop

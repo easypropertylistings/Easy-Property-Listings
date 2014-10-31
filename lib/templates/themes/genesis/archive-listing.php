@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		) );
 			do_action( 'genesis_before_loop' );
 				?>
-
+				
 				<div id="primary">
 					<div id="content" role="main">
 						<?php
@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 										?>
 									</h4>
 								</div>
-								
+								<?php do_action('epl_switch_views_sorting'); ?>
 								<div class="loop-content">
 									<?php
 										while ( have_posts() ) : // The Loop

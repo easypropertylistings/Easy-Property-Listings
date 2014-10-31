@@ -345,6 +345,7 @@ ul.map-tabs {
 	list-style: none;
 }
 ul.author-tabs li,
+ul.property_search-tabs li,
 ul.map-tabs li {
 	background: #eee;
 	color: #222;
@@ -353,10 +354,17 @@ ul.map-tabs li {
 	cursor: pointer;
 	margin: 0;
 }
+ul.property_search-tabs li{
+	text-transform:capitalize;
+	margin:0 0.5em;
+	font-weight:bold;
+}
 ul.author-tabs li.author-current,
+ul.property_search-tabs li.epl-sb-current,
 li.tbhead.current {
 	background: #fafafa;
 	color: #222;
+	border-bottom: 2px solid #999;
 }
 
 .author-tab-content{
@@ -533,11 +541,16 @@ li.tbhead.current {
 	margin-top: 1em;
 }
 
+
 /****** Property Search Box ******/
 .epl-search-form { 
 	background: none repeat scroll 0 0 transparent; 
 	width: 300px; 
 	max-width:100%;
+	display:none;
+}
+.epl-search-form.epl-sb-current {
+    display: inherit;
 }
 .epl-search-form .fm-block { 
 	clear: both; 
@@ -804,4 +817,65 @@ li.tbhead.current {
 #ie6 .epl-clearfix,
 #ie7 .epl-clearfix {
 	zoom: 1;
+}
+
+/* Switching view grid-list */
+.epl-switching-sorting-wrap{
+	text-align:right;
+}
+.epl-switch-view li {
+    float: left;
+    list-style: outside none none;
+    opacity: 0.5;
+    padding: 0 10px;
+    cursor:pointer;
+}
+.epl-current-view.view-list,.epl-current-view.view-grid {
+    opacity: 1;
+}
+.epl-switch-view li.view-list {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: url("../images/switch.png");
+    background-origin: padding-box;
+    background-position: -15px -14px;
+    background-repeat: no-repeat;
+    height: 18px;
+}
+.epl-switch-view li.view-grid {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: url("../images/switch.png");
+    background-origin: padding-box;
+    background-position: 5px -14px;
+    background-repeat: no-repeat;
+    height: 18px;
+}
+.epl-switch-view, .epl-properties-sorting {
+    display: inline-block;
+    float: none;
+    padding: 0 5px;
+    vertical-align: middle;
+}
+.epl-switch-view > ul {
+    margin: 0;
+}
+.epl-listing-grid-view.epl-listing-post {
+    box-shadow: 0 2px 2px 1px #ddd;
+    clear: none !important;
+    float: left;
+    margin: 1% 0.5%;
+    padding: 1% 0.5% !important;
+    -webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+    width: 31.2%;
+    min-width:200px;
+}
+.epl-listing-grid-view.epl-listing-post div {
+    clear: both;
+    display: block;
+    padding: 0;
+    width: 100%;
 }
