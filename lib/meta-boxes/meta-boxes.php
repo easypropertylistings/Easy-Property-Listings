@@ -108,8 +108,9 @@ function epl_meta_box_init() {
 			'post_type'	=>	array('property', 'rural', 'rental', 'land', 'commercial', 'commercial_land', 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	apply_filters ( 'epl_opts_property_listing_details_filter', array(
+			'groups'	=>	array(
 				array(
+					'id'		=>	'property_heading',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -123,6 +124,7 @@ function epl_meta_box_init() {
 				),
 			
 				array(
+					'id'		=>	'listing_agents',
 					'columns'	=>	'1',
 					'label'		=>	__('Listing Agent(s)', 'epl'),
 					'fields'	=>	array(
@@ -152,6 +154,7 @@ function epl_meta_box_init() {
 				),
 			
 				array(
+					'id'		=>	'listing_type',
 					'columns'	=>	'2',
 					'label'		=>	__('Listing Type', 'epl'),
 					'fields'	=>	array(
@@ -235,6 +238,7 @@ function epl_meta_box_init() {
 				),
 			
 				array(
+					'id'		=>	'display_details',
 					'columns'	=>	'2',
 					'label'		=>	__('Display Details', 'epl'),
 					'fields'	=>	array(
@@ -257,7 +261,7 @@ function epl_meta_box_init() {
 					
 					)
 				)
-			))
+			)
 		),
 	
 		array(
@@ -268,6 +272,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'house_features',
 					'columns'	=>	'2',
 					'label'		=>	__('House Features', 'epl'),
 					'fields'	=>	array(
@@ -355,6 +360,7 @@ function epl_meta_box_init() {
 				),
 			
 				array(
+					'id'		=>	'land_details',
 					'columns'	=>	'2',
 					'label'		=>	__('Land Details', 'epl'),
 					'fields'	=>	array(
@@ -408,6 +414,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'internal',
 					'columns'	=>	'2',
 					'label'		=>	__('Internal', 'epl'),
 					'fields'	=>	array(
@@ -553,6 +560,7 @@ function epl_meta_box_init() {
 				),
 			
 				array(
+					'id'		=>	'external',
 					'columns'	=>	'2',
 					'label'		=>	__('External', 'epl'),
 					'fields'	=>	array(
@@ -619,6 +627,7 @@ function epl_meta_box_init() {
 					)
 				),
 				array(
+					'id'		=>	'heating_cooling',
 					'columns'	=>	'2',
 					'label'		=>	__('Heating & Cooling', 'epl'),
 					'fields'	=>	array(
@@ -725,6 +734,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'land_details',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -789,6 +799,7 @@ function epl_meta_box_init() {
 			'groups'	=>	array(
 				apply_filters('epl_listing_meta_address_block', 
 					array(
+						'id'		=>	'address_block',
 						'columns'	=>	'1',
 						'label'		=>	'',
 						'fields'	=>	array(
@@ -892,6 +903,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'core',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'pricing',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -950,6 +962,7 @@ function epl_meta_box_init() {
 				),
 			
 				array(
+					'id'		=>	'sale_details',
 					'columns'	=>	'1',
 					'label'		=>	__('Sale Details', 'epl'),
 					'fields'	=>	array(
@@ -989,6 +1002,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'core',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'rental_pricing',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1063,6 +1077,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'rural_features',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1134,6 +1149,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'commercial_leasing',
 					'columns'	=>	'2',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1175,6 +1191,7 @@ function epl_meta_box_init() {
 				),
 			
 				array(
+					'id'		=>	'tenant_n_outgoings',
 					'columns'	=>	'2',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1223,6 +1240,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'commerial_features',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1298,6 +1316,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'business_categories',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1376,6 +1395,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
+					'id'		=>	'filen_n_links',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1437,10 +1457,24 @@ function epl_meta_box_init() {
 			)
 		)
 	);
-	
+	if(!empty($epl_meta_boxes)) {
+		foreach($epl_meta_boxes as &$epl_meta_box) {
+			if(!empty($epl_meta_box['groups'])) {
+				foreach($epl_meta_box['groups'] as &$group) {
+					$group = apply_filters('epl_meta_groups_'.$group['id'], $group);
+					if(!empty($group['fields'])) {
+						foreach($group['fields'] as &$fieldvalue) {
+							$fieldvalue = apply_filters('epl_meta_'.$fieldvalue['name'], $fieldvalue);
+						}
+					}
+					
+				}
+			}
+		}
+	}
+
 	$epl_meta_boxes = apply_filters('epl_listing_meta_boxes', $epl_meta_boxes);
-	
-	
+
 	/**
 	 * Add meta boxes to the post-edit page
 	 *
@@ -1467,6 +1501,7 @@ function epl_meta_box_init() {
 	 */
 	function epl_meta_box_inner_custom_box($post, $args) {
 		$groups = $args['args']['groups'];
+		$groups = array_filter($groups);
 		if(!empty($groups)) {
 			wp_nonce_field( 'epl_inner_custom_box', 'epl_inner_custom_box_nonce' );
 			foreach($groups as $group) { ?>
@@ -1481,6 +1516,7 @@ function epl_meta_box_init() {
 						<tbody>
 							<?php
 								$fields = $group['fields'];
+								$fields = array_filter($fields);
 								if(!empty($fields)) {
 									foreach($fields as $field) {
 										if(isset($field['exclude']) && !empty($field['exclude'])) {
