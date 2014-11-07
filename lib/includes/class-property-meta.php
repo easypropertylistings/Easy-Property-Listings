@@ -16,10 +16,6 @@ class Property_Meta {
         $this->property_post_type	= $this->post->post_type;
     }
     
-	public function get_instance($post) {
-		$c = __CLASS__;
-		return new $c($post);
-	}
 	
 	public function get_property_meta($meta_key,$allowzero=true) {
 		if(isset($this->meta[$meta_key])) {

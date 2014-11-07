@@ -104,7 +104,7 @@ function epl_property_sold_leased() {
 function get_property_meta_class_instance() {
 	if(!is_admin()){
 		global $post,$property;
-		return $property = Property_Meta::get_instance($post);
+		return $property = new Property_Meta($post);
 		
 	}
 	
@@ -113,7 +113,7 @@ add_action('wp','get_property_meta_class_instance');
 
 function reset_property_object( $post ) {
 	global $property;
-	$property = Property_Meta::get_instance($post);
+	$property = new Property_Meta($post);
 }
 add_action( 'the_post', 'reset_property_object' );
 
