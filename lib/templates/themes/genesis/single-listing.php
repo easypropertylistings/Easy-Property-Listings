@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 											the_post();
 											
 											if ( function_exists('epl_property_single') ) {
-												echo epl_property_single();
+												epl_property_single();
 											}
 											
 											comments_template(); // include comments template

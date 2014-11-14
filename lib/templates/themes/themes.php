@@ -7,7 +7,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 // Load Custom Template from Plugin Directory
 function epl_load_core_single_templates($single_template) {
 	if( epl_is_builder_framework_theme() ) {
@@ -64,6 +63,7 @@ function epl_load_core_single_templates($single_template) {
 
 // Archive Templates
 function epl_load_core_archive_templates( $archive_template ) {
+	
 	if(epl_is_builder_framework_theme()) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES;
 	} elseif ( epl_is_genesis_framework_theme() ) {	
@@ -75,7 +75,6 @@ function epl_load_core_archive_templates( $archive_template ) {
 	
 	// Load Template from Child Theme Directory
 	if ( $archive_template_child = locate_template( 'archive-listing.php' ) ) {
-	
 		global $post;
 		if (  $post->post_type == 'property'  ) {
 			$archive_template = $archive_template_child;
@@ -92,10 +91,9 @@ function epl_load_core_archive_templates( $archive_template ) {
 		} elseif (  $post->post_type == 'commercial_land'  ) {
 			$archive_template = $archive_template_child;
 		}
-		
+		echo $archive_template; die;
 		return $archive_template;
 	} else {
-
 		global $post;
 		if ( is_post_type_archive ( 'property' ) ) {
 			$archive_template = $template_path.'archive-listing.php';
