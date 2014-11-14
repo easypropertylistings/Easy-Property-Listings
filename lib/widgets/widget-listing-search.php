@@ -21,14 +21,15 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	function widget($args, $instance) {	
 		$defaults = array(
 			'title'				=>	'',
-			'post_type'			=>	'property',
+			'post_type'			=>	array('property'),
 			'property_status'	=>	'any',
 			'search_house_category'	=>	'on',
 			'search_price'		=>	'on',
 			'search_bed'		=>	'on',
 			'search_bath'		=>	'on',
 			'search_car'		=>	'on',
-			'search_other'		=>	'on'
+			'search_other'		=>	'on',
+			'search_id'			=>	'on',
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
 		extract( $args );
@@ -45,16 +46,17 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		echo $after_widget;
 	}
 
-	function update($new_instance, $old_instance) {		
+	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['post_type'] = strip_tags($new_instance['post_type']);
+		$instance['post_type'] = $new_instance['post_type'];
 		$instance['property_status'] = strip_tags($new_instance['property_status']);
 		$instance['search_house_category'] = strip_tags($new_instance['search_house_category']);
 		$instance['search_price'] = strip_tags($new_instance['search_price']);
 		$instance['search_bed'] = strip_tags($new_instance['search_bed']);
 		$instance['search_bath'] = strip_tags($new_instance['search_bath']);
 		$instance['search_car'] = strip_tags($new_instance['search_car']);
+		$instance['search_id'] = strip_tags($new_instance['search_id']);
 		$instance['search_other'] = strip_tags($new_instance['search_other']);
 		return $instance;
 	}
@@ -62,25 +64,28 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	function form($instance) {
 		$defaults = array(
 			'title'				=>	'',
-			'post_type'			=>	'property',
+			'post_type'			=>	array('property'),
 			'property_status'	=>	'any',
 			'search_house_category'	=>	'on',
 			'search_price'		=>	'on',
 			'search_bed'		=>	'on',
 			'search_bath'		=>	'on',
 			'search_car'		=>	'on',
+			'search_id'			=>	'on',
 			'search_other'		=>	'on'
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 	
 	
 		$title				=	esc_attr($instance['title']);
-		$post_type			=	esc_attr($instance['post_type']);
+		$post_types			=	$instance['post_type'];
+
 		$property_status	=	esc_attr($instance['property_status']);
 		$search_house_category	=	esc_attr($instance['search_house_category']);
 		$search_price		=	esc_attr($instance['search_price']);
 		$search_bed			=	esc_attr($instance['search_bed']);
 		$search_bath		=	esc_attr($instance['search_bath']);
 		$search_car			=	esc_attr($instance['search_car']);
+		$search_id			=	esc_attr($instance['search_id']);
 		$search_other		=	esc_attr($instance['search_other']);
 		?>
 		
@@ -91,13 +96,13 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		
 		<p>
 			<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php _e('Property Type:', 'epl'); ?></label> 
-			<select class="widefat" id="<?php echo $this->get_field_id('post_type'); ?>" name="<?php echo $this->get_field_name('post_type'); ?>">
+			<select multiple class="widefat" id="<?php echo $this->get_field_id('post_type'); ?>" name="<?php echo $this->get_field_name('post_type'); ?>[]">
 				<?php
-					$post_types = epl_get_active_post_types();
-					if(!empty($post_types)) {
-						foreach($post_types as $k=>$v) {
+					$supported_post_types = epl_get_active_post_types();
+					if(!empty($supported_post_types)) {
+						foreach($supported_post_types as $k=>$v) {
 							$selected = '';
-							if($k == $post_type) {
+							if(in_array($k,$post_types)) {
 								$selected = 'selected="selected"';
 							}
 							echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
@@ -128,7 +133,11 @@ class EPL_Widget_Property_Search extends WP_Widget {
 				?>
 			</select>
 		</p>
-
+		
+		<p>
+			<input id="<?php echo $this->get_field_id('search_id'); ?>" name="<?php echo $this->get_field_name('search_id'); ?>" type="checkbox" <?php if(isset($search_id) && $search_id == 'on') { echo 'checked="checked"'; } ?> />
+			<label for="<?php echo $this->get_field_id('search_id'); ?>"><?php _e('Allow Search By Property Id', 'epl'); ?></label>
+		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id('search_house_category'); ?>" name="<?php echo $this->get_field_name('search_house_category'); ?>" type="checkbox" <?php if(isset($search_house_category) && $search_house_category == 'on') { echo 'checked="checked"'; } ?> />
 			<label for="<?php echo $this->get_field_id('search_house_category'); ?>"><?php _e('House Category', 'epl'); ?></label>
@@ -173,6 +182,10 @@ function epl_search_pre_get_posts( $query ) {
 		$query->set('paged', $paged);
 		
 		extract($_REQUEST);
+		if(isset($property_id) && intval($property_id) != 0) {
+			$query->set( 'post__in', array(intval($property_id)) );
+		}
+		
 		if(isset($post_type) && !empty($post_type)) {
 			$query->set('post_type', $post_type);
 		} else {

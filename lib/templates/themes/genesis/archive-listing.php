@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		) );
 			do_action( 'genesis_before_loop' );
 				?>
-
+				
 				<div id="primary">
 					<div id="content" role="main">
 						<?php
@@ -59,14 +59,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 										?>
 									</h4>
 								</div>
-								
+
 								<div class="loop-content">
-									<?php
-										while ( have_posts() ) : // The Loop
+									<?php do_action( 'epl_template_before_property_loop' ); ?>
+									<?php while ( have_posts() ) : // The Loop
 											the_post();
-											echo epl_property_blog();
+											epl_property_blog();
 										endwhile; // end of one post
 									?>
+									<?php do_action( 'epl_template_after_property_loop' ); ?>
 								</div>
 								
 								<div class="loop-footer">

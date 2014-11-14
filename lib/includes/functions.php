@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 1.0
  */
+ /*
 function epl_get_property_price($post) {
 	global $epl_settings;
 	
@@ -351,6 +352,7 @@ function epl_get_property_price($post) {
 	);
 	return $return;
 }
+*/
 /**
  * Determine if iThemes Builder framework is loaded
  *
@@ -684,6 +686,23 @@ function epl_tax_location_label() {
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['label_location'])) {
 		$label_location = trim($epl_settings['label_location']);
+	}
+	if(empty($label_location)) {
+		$label_location = 'City';
+	}	
+	return $label_location;
+}
+/**
+ * Custom Meta: Location Label
+ *
+ * @since 1.0
+ * @return all the settings in array
+ */
+function epl_meta_location_label() {
+	$label_location = '';
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
+		$label_location = trim($epl_settings['label_suburb']);
 	}
 	if(empty($label_location)) {
 		$label_location = 'City';
