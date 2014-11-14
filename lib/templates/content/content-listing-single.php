@@ -23,13 +23,13 @@
 	
 			<div class="entry-col property-pricing-details">
 			
-				<?php do_action('before_property_price'); ?>
+				<?php do_action('epl_before_property_price'); ?>
 				<div class="property-meta pricing">
-					<?php do_action('property_price'); ?>
+					<?php do_action('epl_property_price'); ?>
 				</div>
-				<?php do_action('after_property_price'); ?>
+				<?php do_action('epl_after_property_price'); ?>
 				<div class="property-feature-icons epl-clearfix">
-					<?php do_action('property_icons'); ?>				
+					<?php do_action('epl_property_icons'); ?>				
 				</div>
 				
 			</div>
@@ -48,18 +48,18 @@
 				<div class="tab-content">
 					<div class="tab-content property-details">
 						<h3 class="tab-address">
-							<?php do_action('property_tab_address'); ?>
+							<?php do_action('epl_property_tab_address'); ?>
 						</h3>
-						<?php do_action('property_land_category'); ?>
-						<?php do_action('property_price_content'); ?>
-						<?php do_action('property_commercial_category'); ?>
+						<?php do_action('epl_property_land_category'); ?>
+						<?php do_action('epl_property_price_content'); ?>
+						<?php do_action('epl_property_commercial_category'); ?>
 					</div>
 					
 						<div class="property-meta">
 							<?php
-								do_action('property_available_dates');		// meant for rent only
+								do_action('epl_property_available_dates');		// meant for rent only
 								
-								do_action('property_inspection_times');	
+								do_action('epl_property_inspection_times');	
 								
 							?>
 						</div>
@@ -72,25 +72,25 @@
 				<h5 class="tab-title"><?php _e('Description', 'epl'); ?></h5>
 				<div class="tab-content">
 					<!-- heading -->
-					<h2 class="entry-title"><?php do_action('the_property_heading'); ?></h2>
+					<h2 class="entry-title"><?php do_action('epl_the_property_heading'); ?></h2>
 			
 					<?php
 						echo '<h3>';
-							do_action('property_secondary_heading');
+							do_action('epl_property_secondary_heading');
 						echo '</h3>';
 					
 						echo get_the_content();
-						do_action('property_after_content');
+						do_action('epl_property_after_content');
 						
 					?>
 				</div>
 			</div>
 
-			<?php do_action('property_before_tab_section'); ?>
+			<?php do_action('epl_property_before_tab_section'); ?>
 			<div class="epl-tab-section">
-					<?php do_action('property_the_tab_section'); ?>
+					<?php do_action('epl_property_the_tab_section'); ?>
 			</div>
-			<?php do_action('property_after_tab_section'); 
+			<?php do_action('epl_property_after_tab_section'); 
 			
 			$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
 			if ( $attachments && $d_gallery == 1 ) { ?>

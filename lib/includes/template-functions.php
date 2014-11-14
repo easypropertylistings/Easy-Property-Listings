@@ -100,22 +100,26 @@ function epl_property_sold_leased() {
 	}
 	wp_reset_postdata();
 }
-
-function get_property_meta_class_instance() {
-	if(!is_admin()){
-		global $post,$property;
-		return $property = new Property_Meta($post);
-		
-	}
-	
-}
-add_action('wp','get_property_meta_class_instance');
-
+// superglobal object $property for posts 'property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural'
 function reset_property_object( $post ) {
-	global $property;
-	$property = new Property_Meta($post);
+	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+	if(in_array($post->post_type,$epl_posts)){
+		global $property;
+		$property = new Property_Meta($post);
+	}
 }
 add_action( 'the_post', 'reset_property_object' );
+
+// make $property global available for hooks before the_post
+function create_property_object() {
+	global $post;
+	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+	if(in_array($post->post_type,$epl_posts)){
+		global $property;
+		$property = new Property_Meta($post);
+	}
+}
+add_action( 'wp', 'create_property_object' );
 
 // Selecting Card Display Style
 function epl_property_single() {	
@@ -418,7 +422,7 @@ function epl_the_listing_address(){
 	} 
 }
 add_action('epl_single_the_title','epl_the_listing_address');
-add_action('property_tab_address','epl_the_listing_address');
+add_action('epl_property_tab_address','epl_the_listing_address');
 
 /**
 	@hooked property_price
@@ -427,8 +431,8 @@ add_action('property_tab_address','epl_the_listing_address');
 function epl_property_price () {
 	echo epl_get_property_price ();
 }
-add_action('property_price','epl_property_price');
-add_action('property_price_content','epl_property_price');
+add_action('epl_property_price','epl_property_price');
+add_action('epl_property_price_content','epl_property_price');
 
 /** 
 	@hooked property_price
@@ -445,7 +449,7 @@ function epl_get_property_icons() {
 function epl_property_icons() {
 	echo epl_get_property_icons();
 }
-add_action('property_icons','epl_property_icons');
+add_action('epl_property_icons','epl_property_icons');
 
 function epl_get_property_bb_icons() {
 	global $property;
@@ -460,7 +464,7 @@ function epl_property_land_category(){
 	global $property;
 	echo $property->get_property_land_category();
 }
-add_action('property_land_category','epl_property_land_category');
+add_action('epl_property_land_category','epl_property_land_category');
 
 /** 
 	@hooked property_commercial_category
@@ -474,7 +478,7 @@ function epl_property_commercial_category(){
 		echo $property->get_property_commercial_category();
 	}
 }
-add_action('property_commercial_category','epl_property_commercial_category');
+add_action('epl_property_commercial_category','epl_property_commercial_category');
 
 /** 
 	@hooked property_available_dates
@@ -486,7 +490,7 @@ function epl_property_available_dates() {
 		echo '<div class="property-meta date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
 	}
 }
-add_action('property_available_dates','epl_property_available_dates');
+add_action('epl_property_available_dates','epl_property_available_dates');
 
 /** 
 	@hooked property_inspection_times
@@ -504,7 +508,7 @@ function epl_property_inspection_times(){
 	<?php 
 	}
 }
-add_action('property_inspection_times','epl_property_inspection_times');
+add_action('epl_property_inspection_times','epl_property_inspection_times');
 
 /** 
 	@hooked the_property_heading
@@ -513,7 +517,7 @@ function epl_the_property_heading(){
 	global $property;
 	echo $property->get_property_meta('property_heading');
 }
-add_action('the_property_heading','epl_the_property_heading');
+add_action('epl_the_property_heading','epl_the_property_heading');
 
 /** 
 	@hooked property_secondary_heading
@@ -528,7 +532,7 @@ function epl_property_secondary_heading() {
 	echo ' <span class="state">' . $property->get_property_meta('property_address_state') . '</span>';	
 
 }
-add_action('property_secondary_heading','epl_property_secondary_heading');
+add_action('epl_property_secondary_heading','epl_property_secondary_heading');
 
 /** 
 	@hooked property_after_content
@@ -544,25 +548,31 @@ function epl_property_after_content() {
 		echo '</div>';
 	}
 }
-add_action('property_after_content','epl_property_after_content');
+add_action('epl_property_after_content','epl_property_after_content');
 
 /** 
 	@hooked property_the_tab_section
 **/
 function epl_property_the_tab_section() {
 	global $property;
+	$post_type = $property->post_type;
 	$the_property_feature_list = '';
+	
+	if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
+		$the_property_feature_list .= $property->get_property_commercial_category('li');
+	}
+	
 	$the_property_feature_list .= $property->get_property_bed('l').' '.$property->get_property_bath('l').' '.$property->get_property_parking('l').' ';
 	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
 	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
 	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_new_construction('l');
 	$common_features 	= array(
-							'property_category',
 							'property_toilet',
 							'property_garage',
-							'property_carport'
-							
-							
+							'property_carport',
+							'property_com_parking_comments',
+							'property_com_car_spaces',
+							'property_category',
 						);
 	foreach($common_features as $common_feature){
 		$the_property_feature_list .= $property->get_additional_features_html($common_feature);
@@ -599,6 +609,7 @@ function epl_property_the_tab_section() {
 
 	);
 	$specific_features = apply_filters('property_specific_features_list',$specific_features);
+	
 	if ( 'property' == $property->post_type || 'rental' == $property->post_type || 'rural' == $property->post_type){
 		foreach($specific_features as $specific_feature){
 			$the_property_feature_list .= $property->get_additional_features_html($specific_feature);
@@ -622,7 +633,7 @@ function epl_property_the_tab_section() {
 			}
 			
 			//Availability
-			if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->property_status != 'leased' ) {
+			if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) {
 				echo '<div class="date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
 			}
 
@@ -637,7 +648,7 @@ function epl_property_the_tab_section() {
 	</div>
 	<?php
 }
-add_action('property_the_tab_section','epl_property_the_tab_section');
+add_action('epl_property_the_tab_section','epl_property_the_tab_section');
 
 /** 
 	@hooked property_after_tab_section
@@ -671,7 +682,7 @@ function epl_property_after_tab_section() {
 		</div>
 	<?php }
 }
-add_action('property_after_tab_section','epl_property_after_tab_section');
+add_action('epl_property_after_tab_section','epl_property_after_tab_section');
 
 function epl_get_price_sticker() {
 	global $property;
@@ -721,13 +732,13 @@ function epl_widget_listing_address ($d_suburb='',$d_street='') {
 }
 
 function epl_switch_views_sorting() {
-	$orderby = '';
-	if(isset($_GET['orderby']) && trim($_GET['orderby']) != ''){
-		$orderby = sanitize_text_field(trim($_GET['orderby']));
+	$sortby = '';
+	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
+		$sortby = sanitize_text_field(trim($_GET['sortby']));
 	}
 	?>
-	<div class="epl-switching-sorting-wrap  epl-clearfix">
-		<div class="epl-switch-view  epl-clearfix">
+	<div class="epl-switching-sorting-wrap epl-clearfix">
+		<div class="epl-switch-view epl-clearfix">
 			<ul>
 				<li title="<?php _e('List','epl'); ?>" class="epl-current-view view-list" data-view="list">
 				</li>
@@ -735,25 +746,29 @@ function epl_switch_views_sorting() {
 				</li data-view="grid">
 			</ul>
 		</div>
-		<div class="epl-properties-sorting  epl-clearfix">
+		<div class="epl-properties-sorting epl-clearfix">
 			<select id="epl-sort-price">
-				<option <?php selected( $orderby, '' ); ?> value=""><?php _e('Sort By Price','epl'); ?></option>
-				<option <?php selected( $orderby, 'high' ); ?> value="high"><?php _e('High to Low','epl'); ?></option>
-				<option <?php selected( $orderby, 'low' ); ?> value="low"><?php _e('Low to High','epl'); ?></option>
+				<option <?php selected( $sortby, '' ); ?> value=""><?php _e('Sort By Price','epl'); ?></option>
+				<option <?php selected( $sortby, 'high' ); ?> value="high"><?php _e('High to Low','epl'); ?></option>
+				<option <?php selected( $sortby, 'low' ); ?> value="low"><?php _e('Low to High','epl'); ?></option>
 			</select>
 		</div>
 	</div>
 	<?php
 }
-add_action('epl_switch_views_sorting','epl_switch_views_sorting');
+add_action( 'epl_template_before_property_loop' , 'epl_switch_views_sorting' , 20 );
 
 function epl_archive_sorting($query) {
-	$post_types_sold 	= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile');
+	$post_types_sold 	= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rural');
 	$post_types_rental 	= array('rental');
 	$post_type = get_query_var( 'post_type' );
 	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental )){
-		if(isset($_GET['orderby']) && trim($_GET['orderby']) != ''){
-			$orderby = sanitize_text_field(trim($_GET['orderby']));
+		if(!$query->is_main_query()){
+			return;
+		}
+
+		if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
+			$orderby = sanitize_text_field(trim($_GET['sortby']));
 			if(in_array($post_type,$post_types_sold) ){ // properties other than rental
 				if($orderby == 'high'){
 					$query->set( 'orderby', 'meta_value_num' );

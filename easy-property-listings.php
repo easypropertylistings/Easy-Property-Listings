@@ -70,6 +70,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->load_textdomain();
 			}
 			return self::$instance;
+
 		}
 		
 		/*

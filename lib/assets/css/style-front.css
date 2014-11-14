@@ -866,12 +866,17 @@ li.tbhead.current {
     float: left;
     margin: 1% 0.5%;
     padding: 1% 0.5% !important;
-    -webkit-transition: all 0.4s ease-in-out;
-	-moz-transition: all 0.4s ease-in-out;
-	-o-transition: all 0.4s ease-in-out;
-	transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
     width: 31.2%;
-    min-width:200px;
+}
+.epl-listing-post{
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 }
 .epl-listing-grid-view.epl-listing-post div {
     clear: both;
