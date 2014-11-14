@@ -509,7 +509,8 @@ function epl_listing_load_meta_rural_category_value( $key ) {
  * REAXML Date Processing Function for WP All Import and FeedSync
  *
  * Some imports set the current date instead of the date from the REAXML file. 
- * Usage in WP All Import Post Date field is: [epl_feedsync_format_date({./@modTime})]
+ * Usage in WP All Import Post Date field is: 
+ * [epl_feedsync_format_date({./@modTime})]
  * 
  * @since 1.2
  * @return formatted date
@@ -524,4 +525,22 @@ function epl_feedsync_format_date( $date ) {
     $result = date("Y-m-d H:i:s" , $time );
      
     return $result;
+}
+/**
+ * REAXML Address Sub Number field for title import 
+ * processing Function for WP All Import and FeedSync
+ *
+ * This function adds a / after the $value else returns false. 
+ * Usage in WP All Import Post Date field is: 
+ * [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})]
+ * 
+ * @since 1.3
+ * @return formatted sub number/
+ */
+function epl_feedsync_format_sub_number( $sub_value ) {
+	if ( $sub_value ) {
+		$sub_value = $sub_value . '/';
+		return $sub_value;
+	}
+	return;
 }
