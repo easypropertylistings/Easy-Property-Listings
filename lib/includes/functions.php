@@ -122,8 +122,8 @@ function epl_get_post_types() {
 		'land'			=>	__('Land', 'epl'),
 		'rental'		=>	__('Rental', 'epl'),
 		'rural'			=>	__('Rural', 'epl'),
-		'commercial'	=>	__('Commercial', 'epl'),
-		'commercial_land'=>	__('Commercial Land', 'epl'),
+		'commercial'		=>	__('Commercial', 'epl'),
+		'commercial_land'	=>	__('Commercial Land', 'epl'),
 		'business'		=>	__('Business', 'epl'),
 	);
 	return $epl_post_types;
@@ -376,22 +376,22 @@ function epl_meta_location_label() {
  */
 function epl_listing_load_meta_property_category() {
 	$defaults = array(
-		'House'					=>	__('House', 'epl'),
-		'Unit'					=>	__('Unit', 'epl'),
-		'Townhouse'				=>	__('Townhouse', 'epl'),
-		'Villa'					=>	__('Villa', 'epl'),
-		'Apartment'				=>	__('Apartment', 'epl'),
-		'Flat'					=>	__('Flat', 'epl'),
-		'Studio'				=>	__('Studio', 'epl'),
-		'Warehouse'				=>	__('Warehouse', 'epl'),
-		'DuplexSemi-detached'	=>	__('Duplex Semi-detached', 'epl'),
-		'Alpine'				=>	__('Alpine', 'epl'),
+		'House'				=>	__('House', 'epl'),
+		'Unit'				=>	__('Unit', 'epl'),
+		'Townhouse'			=>	__('Townhouse', 'epl'),
+		'Villa'				=>	__('Villa', 'epl'),
+		'Apartment'			=>	__('Apartment', 'epl'),
+		'Flat'				=>	__('Flat', 'epl'),
+		'Studio'			=>	__('Studio', 'epl'),
+		'Warehouse'			=>	__('Warehouse', 'epl'),
+		'DuplexSemi-detached'		=>	__('Duplex Semi-detached', 'epl'),
+		'Alpine'			=>	__('Alpine', 'epl'),
 		'AcreageSemi-rural'		=>	__('Acreage Semi-rural', 'epl'),
 		'Retirement'			=>	__('Retirement', 'epl'),
 		'BlockOfUnits'			=>	__('Block Of Units', 'epl'),
-		'Terrace'				=>	__('Terrace', 'epl'),
+		'Terrace'			=>	__('Terrace', 'epl'),
 		'ServicedApartment'		=>	__('Serviced Apartment', 'epl'),
-		'Other'					=>	__('Other', 'epl')
+		'Other'				=>	__('Other', 'epl')
 	);
 	return apply_filters( 'epl_listing_meta_property_category', $defaults );
 }
@@ -417,8 +417,8 @@ function epl_listing_meta_property_category_value( $key ) {
  */
 function epl_listing_load_meta_land_category() {
 	$defaults = array(
-		'Commercial'	=>	__('Commercial', 'epl'),
-		'Residential'	=>	__('Residential', 'epl')
+		'Commercial'			=>	__('Commercial', 'epl'),
+		'Residential'			=>	__('Residential', 'epl')
 	);
 	return apply_filters( 'epl_listing_meta_land_category', $defaults );
 }
@@ -444,15 +444,15 @@ function epl_listing_meta_land_category_value( $key ) {
  */
 function epl_listing_load_meta_commercial_category() {
 	$defaults = array(
-		'Commercial Farming'	=>	__('Commercial Farming', 'epl'),
+		'Commercial Farming'		=>	__('Commercial Farming', 'epl'),
 		'Land/Development'		=>	__('Land/Development', 'epl'),
 		'Hotel/Leisure'			=>	__('Hotel/Leisure', 'epl'),
-		'Industrial/Warehouse'	=>	__('Industrial/Warehouse', 'epl'),
-		'Medical/Consulting'	=>	__('Medical/Consulting', 'epl'),
-		'Offices'				=>	__('Offices', 'epl'),
-		'Retail'				=>	__('Retail', 'epl'),
-		'Showrooms/Bulky Goods'	=>	__('Showrooms/Bulky Goods', 'epl'),
-		'Other'					=>	__('Other', 'epl')
+		'Industrial/Warehouse'		=>	__('Industrial/Warehouse', 'epl'),
+		'Medical/Consulting'		=>	__('Medical/Consulting', 'epl'),
+		'Offices'			=>	__('Offices', 'epl'),
+		'Retail'			=>	__('Retail', 'epl'),
+		'Showrooms/Bulky Goods'		=>	__('Showrooms/Bulky Goods', 'epl'),
+		'Other'				=>	__('Other', 'epl')
 	);
 	return apply_filters( 'epl_listing_meta_commercial_category', $defaults );
 }
@@ -478,15 +478,15 @@ function epl_listing_load_meta_commercial_category_value( $key ) {
  */
 function epl_listing_load_meta_rural_category() {
 	$defaults = array(
-		'Cropping'		=>	__('Cropping', 'epl'),
-		'Dairy'			=>	__('Dairy', 'epl'),
-		'Farmlet'		=>	__('Farmlet', 'epl'),
-		'Horticulture'	=>	__('Horticulture', 'epl'),
-		'Livestock'		=>	__('Livestock', 'epl'),
-		'Viticulture'	=>	__('Viticulture', 'epl'),
-		'MixedFarming'	=>	__('Mixed Farming', 'epl'),
-		'Lifestyle'		=>	__('Lifestyle', 'epl'),
-		'Other'			=>	__('Other', 'epl')
+		'Cropping'			=>	__('Cropping', 'epl'),
+		'Dairy'				=>	__('Dairy', 'epl'),
+		'Farmlet'			=>	__('Farmlet', 'epl'),
+		'Horticulture'			=>	__('Horticulture', 'epl'),
+		'Livestock'			=>	__('Livestock', 'epl'),
+		'Viticulture'			=>	__('Viticulture', 'epl'),
+		'MixedFarming'			=>	__('Mixed Farming', 'epl'),
+		'Lifestyle'			=>	__('Lifestyle', 'epl'),
+		'Other'				=>	__('Other', 'epl')
 	);
 	return apply_filters( 'epl_listing_meta_rural_category', $defaults );
 }
