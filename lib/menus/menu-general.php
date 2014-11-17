@@ -227,6 +227,21 @@ function epl_get_admin_option_fields() {
 					),
 					'help'	=>	__('Display Geocode Result in Admin', 'epl')
 				),
+				
+				array(
+					'name'	=>	'epl_max_graph_sales_price',
+					'label'	=>	__('Maximum Sales Price', 'epl'),
+					'type'	=>	'text',
+					'help'	=>	__('Will be used by epl bars & charts to determine bar width', 'epl')
+				),
+				
+				array(
+					'name'	=>	'epl_max_graph_rent_price',
+					'label'	=>	__('Maximum Rent Price', 'epl'),
+					'type'	=>	'text',
+					'help'	=>	__('Will be used by epl bars & charts to determine bar width', 'epl')
+				),
+
 			),
 		),
 	);
