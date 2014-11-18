@@ -218,6 +218,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-dashboard-epl-status.php';
 
 			require_once EPL_PATH_LIB . 'hooks/hooks.php';
 						
