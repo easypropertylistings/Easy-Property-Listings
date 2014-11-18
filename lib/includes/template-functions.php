@@ -798,6 +798,8 @@ function epl_archive_sorting($query) {
 	}
 }
 add_action('pre_get_posts','epl_archive_sorting');
+
+/*
 function my_add_meta_box_epl_listings_callback($meta_fields) {
 	$custom_field = array(
 						'id'		=>	'epl-property-listing-custom-data-id',
@@ -825,3 +827,4 @@ function my_add_meta_box_epl_listings_callback($meta_fields) {
 	return $meta_fields;
 }
 add_filter( 'epl_listing_meta_boxes' , 'my_add_meta_box_epl_listings_callback' );
+*/
