@@ -50,18 +50,14 @@
 	width:100%
 }
 #epl-add-ons .epl-extension .third-party {
-	display:none
+	display:none;
 }
-
 .epl-meta-box {
-
 }
 .epl-meta-box ul,
 .epl-meta-box li {
 	list-style: none;
-
 }
-
 .epl-half-left,
 .epl-third-left {
 	float: left;
@@ -84,26 +80,12 @@
 .epl-third-right {
 	width: 31%;
 }
-
-
 .epl-third-middle {
 float: left;
 clear: none !important;
 margin-left: 2% !important;
 width: 31%;
 }
-
-
-#epl-meta-box-address {
-
-}
-#meta-box
-
-#epl-meta-box-display-details .inside  {
-
-}
-
-
 .epl-content {
 	padding:10px;
 	background:#fff;
@@ -137,8 +119,6 @@ width: 31%;
 .epl-clear {
 	clear:both;
 }
-
-
 .epl-half-left {
 	/* width: 20%; */
 	float: left;
@@ -147,20 +127,15 @@ width: 31%;
 	width: 49.5%;
 	float: right;
 }
-
-
 .epl-form-table .quicktags-toolbar input.ed_button {
 	width:auto;
 }
-
 .epl-form-table th {
 	font-weight:normal;
 }
-
 .epl-media-row {
 	width:100%;
 }
-
 .epl-media-row input[type="text"] {
 	width:60%;
 	display:block;
@@ -176,9 +151,7 @@ width: 31%;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 }
-
 .epl-inner-div {
-	
 }
 .epl-inner-div h3 {
 	padding-left:0 !important;
@@ -197,7 +170,6 @@ width: 31%;
 .epl-inner-div.col-2 td, #side-sortables .epl-form-table td {
 	padding:0; 
 }
-
 .epl-inner-div.col-2 span.epl-field-row,
 #side-sortables .epl-form-table span.epl-field-row {
 	display:inline-block;
@@ -216,12 +188,10 @@ width: 31%;
 .epl-inner-div input[type="radio"], .epl-inner-div input[type="checkbox"] {
 	width:auto;
 }
-
 /* Post Type List Admin Styles */
 .column-listing {
 	width: 25%
 }
-
 .column-property_thumb {
 	width: 100px;
 }
@@ -248,7 +218,6 @@ width: 31%;
 	background:url(../images/refresh.png) no-repeat;
 	cursor:pointer;
 }
-
 .epl-form-table .disabled {
 	opacity: 0.5;
 }
@@ -265,7 +234,6 @@ width: 31%;
 	display:block;
 	padding:0; 
 }
-
 .license-status {
 	position:absolute;
 	margin:5px 0 0 5px;
@@ -278,7 +246,6 @@ width: 31%;
 .license-status.license-status-invalid {
 	background:url(../images/invalid.gif) no-repeat;
 }
-
 .license-status-text {
 	display:block;
 	clear:both;
