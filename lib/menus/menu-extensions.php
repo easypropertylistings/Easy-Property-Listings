@@ -46,14 +46,26 @@ $epl_settings = get_option('epl_settings');
 			<div class="epl-fields">
 				<?php
 					if(!empty($fields)) {
+						$counter = 1;
+						echo '<div class="epl-fields-tab-menu"><ul>';
 						foreach($fields as $field_group) {
+							$current_class = $counter == 1? 'epl-fields-menu-current':'';
 							if( !empty($field_group['label']) ) { ?>
-								<div class="epl-field">
-									<h3><?php _e($field_group['label'], 'epl'); ?></h3>
-								</div>
+								<li class="<?php echo $current_class;?>" data-tab="<?php echo 'tab-menu-'.sanitize_title($field_group['label']); ?>">
+									<?php _e($field_group['label'], 'epl'); ?>
+								</li>
 								<?php
 							}
-
+							$counter++;
+						}
+						echo '</ul></div>';
+						echo '<div class="epl-fields-tab-content">';
+						$counter = 1;
+						foreach($fields as $field_group) { 
+							$current_class = $counter == 1? 'epl-fields-field-current':''; ?>
+						
+							<div class="<?php echo $current_class; ?> epl-fields-single-menu" id="<?php echo 'tab-menu-'.sanitize_title($field_group['label']); ?>"><?php
+							
 							foreach($field_group['fields'] as $field) { ?>
 								<div class="epl-field">
 									<div class="epl-half-left">
@@ -152,7 +164,10 @@ $epl_settings = get_option('epl_settings');
 									</div>
 								</div>
 							<?php }
+							echo '</div>';
+							$counter++;
 						}
+						echo '</div>';
 					}
 				?>
 			</div>

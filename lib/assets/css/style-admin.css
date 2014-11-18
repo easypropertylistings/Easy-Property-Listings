@@ -384,3 +384,117 @@ width: 31%;
 	100% {opacity: 0; width: 95%;}
 }
 
+/* extension menu tabs */
+.epl-fields-tab-menu ul li {
+    background: none repeat scroll 0 0 #eeeeee;
+    border-bottom: 2px solid #eeeeee;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    margin: 4px 2px;
+    padding: 10px 15px;
+    transition: all 0.4s ease-in-out 0s;
+}
+
+.epl-fields-tab-menu ul li.epl-fields-menu-current {
+   background: none repeat scroll 0 0 #fafafa;
+    border-bottom: 2px solid #999999;
+    color: #222222;
+    transition: all 0.4s ease-in-out 0s;
+}
+
+.epl-fields-field-current.epl-fields-single-menu{
+	
+	-webkit-transition: all 0.6s ease-in-out;
+	-moz-transition: all 0.6s ease-in-out;
+	-o-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
+	display:block;
+}
+.epl-fields-single-menu{
+	
+	-webkit-transition: all 0.6s ease-in-out;
+	-moz-transition: all 0.6s ease-in-out;
+	-o-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
+	display:none;
+}
+
+/* Dashboard Widget */
+#epl_status_dashboard_widget .epl_status_list {
+    margin: 0;
+    overflow: hidden;
+}
+
+#epl_status_dashboard_widget .epl_status_list li {
+    border-top: 1px solid #ececec;
+    box-sizing: border-box;
+    color: #aaaaaa;
+    float: left;
+    margin-bottom: 5px;
+    padding: 0;
+    width: 50%;
+}
+#epl_status_dashboard_widget .epl_status_list li a:before {
+    color: #21759b;
+    content: "";
+    float: left;
+    font-family: dashicons;
+    font-size: 2em;
+    font-variant: normal;
+    font-weight: 400;
+    height: 100%;
+    left: 0;
+    line-height: 1.2em;
+    margin: 0 12px 12px 0;
+    position: relative;
+    text-align: center;
+    text-indent: 0;
+    text-transform: none;
+    top: 0;
+    width: auto;
+    opacity:0.7;
+}
+#epl_status_dashboard_widget .epl_status_list li.epl_type_property a:before{
+	 content: "";
+	 color:#00755e;
+}
+#epl_status_dashboard_widget .epl_status_list li.epl_type_rental a:before{
+	 content: "";
+	 color:#7ad03a;
+}
+#epl_status_dashboard_widget .epl_status_list li.epl_type_land a:before{
+	 content: "";
+	 color:#4b0082;
+}
+#epl_status_dashboard_widget .epl_status_list li.epl_type_rural a:before{
+	  content: "";
+	  color:#aa0000;
+}
+#epl_status_dashboard_widget .epl_status_list li.epl_type_commercial a:before{
+	  content: "";
+	  color:#ffba00;
+}
+#epl_status_dashboard_widget .epl_status_list li:nth-child(2n+1) {
+    border-right: 1px solid #ececec;
+}
+#epl_status_dashboard_widget .epl_status_list li a {
+    color: #aaaaaa;
+    display: block;
+    font-size: 12px;
+    padding: 9px 12px;
+    position: relative;
+}
+
+#epl_status_dashboard_widget .epl_status_list li a strong {
+    color: #21759b;
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.2em;
+}
+
+.epl_posts_highlights span {
+    margin-right: 5px;
+    padding: 2px 5px;
+}

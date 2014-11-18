@@ -113,6 +113,9 @@ add_action( 'the_post', 'reset_property_object' );
 // make $property global available for hooks before the_post
 function create_property_object() {
 	global $post;
+	if(is_null($post)){
+		return;
+	}
 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
 	if(in_array($post->post_type,$epl_posts)){
 		global $property;
