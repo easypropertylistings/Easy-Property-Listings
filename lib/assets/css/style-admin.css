@@ -394,11 +394,11 @@ width: 31%;
 }
 
 #epl_status_dashboard_widget .epl_status_list li {
-    border-top: 1px solid #ececec;
+    border-left: 2px solid #eeeeee;
     box-sizing: border-box;
     color: #aaaaaa;
     float: left;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     padding: 0;
     width: 50%;
 }
@@ -422,28 +422,42 @@ width: 31%;
     width: auto;
     opacity:0.7;
 }
+#epl_status_dashboard_widget .epl_status_list li.epl_type_property{
+	border-color:#00755e;
+}
 #epl_status_dashboard_widget .epl_status_list li.epl_type_property a:before{
 	 content: "";
 	 color:#00755e;
+}
+#epl_status_dashboard_widget .epl_status_list li.epl_type_rental{
+	border-color:#7ad03a;
 }
 #epl_status_dashboard_widget .epl_status_list li.epl_type_rental a:before{
 	 content: "";
 	 color:#7ad03a;
 }
+#epl_status_dashboard_widget .epl_status_list li.epl_type_land{
+	border-color:#4b0082;
+}
 #epl_status_dashboard_widget .epl_status_list li.epl_type_land a:before{
 	 content: "";
 	 color:#4b0082;
 }
+#epl_status_dashboard_widget .epl_status_list li.epl_type_rural{
+	border-color:#aa0000;
+}
 #epl_status_dashboard_widget .epl_status_list li.epl_type_rural a:before{
 	  content: "";
 	  color:#aa0000;
+}
+#epl_status_dashboard_widget .epl_status_list li.epl_type_commercial{
+	border-color:#ffba00;
 }
 #epl_status_dashboard_widget .epl_status_list li.epl_type_commercial a:before{
 	  content: "";
 	  color:#ffba00;
 }
 #epl_status_dashboard_widget .epl_status_list li:nth-child(2n+1) {
-    border-right: 1px solid #ececec;
 }
 #epl_status_dashboard_widget .epl_status_list li a {
     color: #aaaaaa;
@@ -461,7 +475,11 @@ width: 31%;
     line-height: 1.2em;
 }
 
-.epl_posts_highlights span {
-    margin-right: 5px;
-    padding: 2px 5px;
+#epl_status_dashboard_widget .epl_status_list li a span {
+	display:block;
+}
+@media screen and (max-width: 360px)  { 
+    #epl_status_dashboard_widget .epl_status_list li{
+    	width:100%;
+    }
 }
