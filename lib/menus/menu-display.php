@@ -25,6 +25,13 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 				}
 
 				$epl_settings = get_option('epl_settings');
+				
+				if( isset($field['default']) ) {
+					if($_REQUEST[ $field['name'] ] == '') {
+						$_REQUEST[ $field['name'] ] = $field['default'];
+					}
+				}
+
 				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
 				update_option('epl_settings', $epl_settings);
 			}
@@ -112,7 +119,9 @@ $epl_settings = get_option('epl_settings');
 																	}
 																}
 																break;
-
+															case 'number':
+																	echo '<input class="validate[custom[onlyNumber]]" type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.intval($val).'" />';
+																	break;
 															default:
 																echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 														}
@@ -243,6 +252,13 @@ function epl_get_admin_option_fields() {
 					'type'	=>	'text'
 				),
 
+				array(
+					'name'	=>	'label_new',
+					'label'	=>	__('New Home Label (default is NEW)', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'new'
+				),
+				
 				array(
 					'name'	=>	'label_poa',
 					'label'	=>	__('No Price Label (default is POA)', 'epl'),

@@ -256,6 +256,13 @@ function epl_get_admin_option_fields() {
 					
 				),
 
+				array(
+					'name'	=>	'sticker_new_range',
+					'label'	=>	__('Keep Listings tagged "New" for', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'7',
+					'help'	=>	__('listings will have a "NEW" Sticker for the defined number of days', 'epl')
+				),
 			),
 		),
 	);

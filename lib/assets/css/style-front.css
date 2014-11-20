@@ -520,6 +520,9 @@ li.tbhead.current {
 .epl-property-blog .status-sticker.open {
 	background: #7FAF1B;
 }
+.epl-property-blog .status-sticker.new {
+	background: #800080;
+}
 /* Property Card Slim */
 .epl-property-blog-slim .property-box-left-slim {
 	margin-right: 1em;

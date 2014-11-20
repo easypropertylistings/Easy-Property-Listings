@@ -377,10 +377,12 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 		if ( '' != $property_second_agent ) {
 			
 			$second_author = get_user_by( 'login' , $property_second_agent );
-			$author_id = $second_author->ID;
+			if($second_author !== FALSE) {
+				$author_id = $second_author->ID;
+				include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
+				include( EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php' );
 			
-			include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
-			include( EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php' );
+			}
 		}
 		
 	}
