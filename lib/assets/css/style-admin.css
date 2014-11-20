@@ -93,6 +93,7 @@ width: 31%;
 	border-radius:5px;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
+	float:left;
 }
 .epl-menu-page,
 .epl-section-content {
@@ -410,7 +411,7 @@ width: 31%;
     font-size: 2em;
     font-variant: normal;
     font-weight: 400;
-    height: 100%;
+    height: 80px;
     left: 0;
     line-height: 1.2em;
     margin: 0 12px 12px 0;
@@ -482,4 +483,7 @@ width: 31%;
     #epl_status_dashboard_widget .epl_status_list li{
     	width:100%;
     }
+}
+.epl-nav-tab-wrapper{
+	border-bottom:none;
 }

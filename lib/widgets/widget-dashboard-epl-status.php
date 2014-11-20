@@ -27,15 +27,18 @@ function epl_status_dashboard_widget_callback() {
 		<ul class="epl_status_list">
 		<?php
 			if(!empty($activate_post_types)) {
+				$counter = 0;
 				foreach($activate_post_types as $activate_post_type){
+					$clear = ($counter%2==0 && $counter!= 0)?'epl-clearfix':'';
 					$count = wp_count_posts( $activate_post_type );?>
-					<li class="epl_type_<?php echo $activate_post_type; ?>">
+					<li class="epl_type_<?php echo $activate_post_type.' '.$clear; ?>">
 						<a href="edit.php?post_type=<?php echo $activate_post_type; ?>">
 							<strong><?php echo epl_get_plural($count->publish,$activate_post_type); ?></strong>
 							<?php epl_posts_highlights($activate_post_type);?>
 						</a>
 						
 					</li><?php
+					$counter++;
 				}
 			}
 		?>
