@@ -1240,7 +1240,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
-					'id'		=>	'commerial_features',
+					'id'		=>	'commercial_features',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
