@@ -1395,7 +1395,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
-					'id'		=>	'filen_n_links',
+					'id'		=>	'files_n_links',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
