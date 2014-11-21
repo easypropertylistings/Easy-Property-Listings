@@ -48,6 +48,8 @@ function epl_install() {
 			'label_postcode'		=>	__('Post Code', 'epl'),
 			'label_home_open'		=>	__('Home Open', 'epl'),
 			'label_poa'			=>	__('POA', 'epl'),
+			'epl_max_graph_sales_price'			=>	__('2000000', 'epl'),
+			'epl_max_graph_rent_price'			=>	__('2000', 'epl'),
 		);
 		update_option( 'epl_settings', $epl_settings );
 	}

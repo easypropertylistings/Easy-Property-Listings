@@ -148,7 +148,13 @@ if ( is_admin() ) {
 				}
 				
 				if ( !empty( $homeopen) ) {
-					echo '<div class="epl_meta_home_open_label"><strong>Open: <span class="epl_meta_home_open">' , $homeopen , '</strong></span></div>';
+					$homeopen = array_filter(explode("\n", $homeopen));
+						$pit =  "<ul>";
+						foreach ($homeopen as $num => $item) {
+						  $pit .= "<li>" . htmlspecialchars($item) . "</li>";
+						}
+						$pit .= "</ul>";
+					echo '<div class="epl_meta_home_open_label"><strong>Open: <span class="epl_meta_home_open">' , $pit , '</strong></span></div>';
 				} 
 			
 				break;

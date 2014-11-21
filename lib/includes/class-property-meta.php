@@ -35,11 +35,15 @@ class Property_Meta {
 	public function get_property_inspection_times($meta_key='property_inspection_times') {
 		$pit = $this->get_property_meta($meta_key);
 		if($pit != ''){
-			$list = explode("\n", $pit);
+			$list = array_filter(explode("\n", $pit));
 			if(!empty($list)){
 				$return =  "<ul>";
 				foreach ($list as $num => $item) {
-				  $return .= "<li>" . htmlspecialchars($item) . "</li>";
+					$timearr = explode(' ',$item);
+					$endtime = current($timearr).' '.end($timearr);
+					if(strtotime($endtime) > time()){
+						$return .= "<li>" . htmlspecialchars($item) . "</li>";
+					}
 				}
 				$return .= "</ul>";
 				return  $return;
