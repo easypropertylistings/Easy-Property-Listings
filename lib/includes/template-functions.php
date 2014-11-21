@@ -582,7 +582,7 @@ function epl_property_the_tab_section() {
 	foreach($common_features as $common_feature){
 		$the_property_feature_list .= $property->get_additional_features_html($common_feature);
 	}
-	$specific_features 	= array (
+	$additional_features 	= array (
 		'property_remote_garage',
 		'property_secure_parking',
 		'property_study',
@@ -613,11 +613,11 @@ function epl_property_the_tab_section() {
 		'property_evaporative_cooling'
 
 	);
-	$specific_features = apply_filters('property_specific_features_list',$specific_features);
+	$additional_features = apply_filters('epl_property_additional_features_list',$additional_features);
 	
 	if ( 'property' == $property->post_type || 'rental' == $property->post_type || 'rural' == $property->post_type){
-		foreach($specific_features as $specific_feature){
-			$the_property_feature_list .= $property->get_additional_features_html($specific_feature);
+		foreach($additional_features as $additional_feature){
+			$the_property_feature_list .= $property->get_additional_features_html($additional_feature);
 		}
 	}
 	

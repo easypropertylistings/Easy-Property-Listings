@@ -25,14 +25,16 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
 		'title'						=>	'', // Freeform text
 		'post_type'					=>	array('property'), // Post type name array
-		'property_status'			=>	'', // Singular: current / sold / leased or '' for any
-		'search_house_category'		=>	'on', // on or off
-		'search_price'				=>	'on', // on or off
-		'search_bed'				=>	'on', // on or off
-		'search_bath'				=>	'on', // on or off
-		'search_car'				=>	'on', // on or off
-		'search_id'					=>	'on', // on or off
-		'search_other'				=>	'on'  // on or off
+		'property_status'			=>	'', 	// Singular: current / sold / leased or '' for any
+		'search_house_category'		=>	'on', 	// on or off
+		'search_price'				=>	'on', 	// on or off
+		'search_bed'				=>	'on', 	// on or off
+		'search_bath'				=>	'on', 	// on or off
+		'search_car'				=>	'on', 	// on or off
+		'search_id'					=>	'on', 	// on or off
+		'search_other'				=>	'on',  	// on or off
+		'search_land_area'			=>	'on',	// on or off
+		'search_building_area'		=>	'on',	// on or off
 	), $atts);
 	extract($atts);
 	extract( $_GET );
@@ -365,7 +367,97 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						</div>
 						<?php
 					}
+					
+					if ( $search_land_area == 'on' ) { ?>
+					
+						<div class="fm-block bdr-btm">
+							<div class="fm-block-third">
+								<label for="property_land_area_min" class="fm-label"><?php _e('Min Land Area:', 'epl'); ?></label>
+								<div class="field">
+									<input type="number" name="property_land_area_min" id="property_land_area_min" class="in-field field-width" value="<?php echo isset($property_land_area_min) ? intval($property_land_area_min) : ''; ?>"/>
+								</div>
+							</div>
+							
+							<div class="fm-block-third">
+								<label for="property_land_area_max" class="fm-label"><?php _e('Max Land Area:', 'epl'); ?></label>
+								<div class="field">
+									<input type="number"  name="property_land_area_max" id="property_land_area_max" class="in-field field-width" value="<?php echo isset($property_land_area_max) ? intval($property_land_area_max) : ''; ?>"/>
+								</div>
+							</div>
+							
+							<div class="fm-block-third">
+								<label for="property_land_area_unit" class="fm-label"><?php _e('Land Area Unit:', 'epl'); ?></label>
+								<div class="field">
+									<select name="property_land_area_unit" id="property_land_area_unit" class="in-field field-width">
+								
+										<?php
+											$arr = array(
+												'square'				=>	'Square',
+												'squareMeter'			=>	'Square Meter',
+												'acre'					=>	'Acre',
+												'hectare'				=>	'Hectare',
+												'sqft'					=>	'Square Feet',
+											);
+											foreach($arr as $k=>$v) {
+												$selected = '';
+												if(isset($property_land_area_unit) && $k == $property_land_area_unit) {
+													$selected = 'selected="selected"';
+												}
+												echo '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+											}
+										?>
+									</select>
+								</div>
+							</div>
+						</div>
+						<?php
+					}
 				
+					if ( $search_building_area == 'on' ) { ?>
+					
+						<div class="fm-block bdr-btm">
+							<div class="fm-block-third">
+								<label for="property_building_area_min" class="fm-label"><?php _e('Min building Area:', 'epl'); ?></label>
+								<div class="field">
+									<input type="number" name="property_building_area_min" id="property_building_area_min" class="in-field field-width" value="<?php echo isset($property_building_area_min) ? intval($property_building_area_min) : ''; ?>"/>
+								</div>
+							</div>
+							
+							<div class="fm-block-third">
+								<label for="property_building_area_max" class="fm-label"><?php _e('Max Building Area:', 'epl'); ?></label>
+								<div class="field">
+									<input type="number"  name="property_building_area_max" id="property_Building_area_max" class="in-field field-width" value="<?php echo isset($property_building_area_max) ? intval($property_building_area_max) : ''; ?>"/>
+								</div>
+							</div>
+							
+							<div class="fm-block-third">
+								<label for="property_building_area_unit" class="fm-label"><?php _e('Building Area Unit:', 'epl'); ?></label>
+								<div class="field">
+									<select name="property_building_area_unit" id="property_building_area_unit" class="in-field field-width">
+								
+										<?php
+											$arr = array(
+												'square'				=>	'Square',
+												'squareMeter'			=>	'Square Meter',
+												'acre'					=>	'Acre',
+												'hectare'				=>	'Hectare',
+												'sqft'					=>	'Square Feet',
+											);
+											foreach($arr as $k=>$v) {
+												$selected = '';
+												if(isset($property_building_area_unit) && $k == $property_building_area_unit) {
+													$selected = 'selected="selected"';
+												}
+												echo '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+											}
+										?>
+									</select>
+								</div>
+							</div>
+						</div>
+						<?php
+					}
+					
 					$search_row = '';					
 					if ( $search_car == 'on' ) {
 						$search_row .= '
