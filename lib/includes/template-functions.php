@@ -104,22 +104,23 @@ function epl_property_sold_leased() {
 function reset_property_object( $post ) {
 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
 	if(in_array($post->post_type,$epl_posts)){
-		global $property;
-		$property = new Property_Meta($post);
+		global $property,$epl_author;
+		$property 		= new Property_Meta($post);
+		$epl_author 	= new Author_Meta($post->post_author);
 	}
 }
 add_action( 'the_post', 'reset_property_object' );
 
 // make $property global available for hooks before the_post
 function create_property_object() {
-	global $post;
+	global $post,$property,$epl_author;
 	if(is_null($post)){
 		return;
 	}
 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
 	if(in_array($post->post_type,$epl_posts)){
-		global $property;
-		$property = new Property_Meta($post);
+		$property 	= new Property_Meta($post);
+		$epl_author = new Author_Meta($post->post_author);
 	}
 }
 add_action( 'wp', 'create_property_object' );
@@ -277,19 +278,6 @@ add_action( 'epl_single_author' , 'epl_property_author_box' , 1 );
 // AUTHOR CARD : Standard
 function epl_property_author_box_simple_card() {
 	include(EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
-	
-	global $epl_settings;
-	
-	$author_style = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_staff_link_to'])) {
-		$author_style = $epl_settings['epl_staff_link_to'];
-	}
-	
-	$epl_staff_excerpt = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_staff_excerpt'])) {
-		$epl_staff_excerpt = $epl_settings['epl_staff_excerpt'];
-	}
-	
 	include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box-simple-card.php' );
 	
 }
@@ -801,32 +789,83 @@ function epl_archive_sorting($query) {
 }
 add_action('pre_get_posts','epl_archive_sorting');
 
-/*
-function my_add_meta_box_epl_listings_callback($meta_fields) {
-	$custom_field = array(
-						'id'		=>	'epl-property-listing-custom-data-id',
-						'label'		=>	__('Custom Details', 'epl'),
-						'post_type'	=>	array('property', 'rural', 'rental', 'land', 'commercial', 'commercial_land', 'business'),
-						'context'	=>	'normal',
-						'priority'	=>	'default',
-						'groups'	=>	array(
-							array(
-								'id'		=>	'property_custom_data',
-								'columns'	=>	'1',
-								'label'		=>	'custom property data',
-								'fields'	=>	array(
-									array(
-										'name'		=>	'property_custom_data',
-										'label'		=>	__('custom property data', 'epl'),
-										'type'		=>	'text',
-										'maxlength'	=>	'150'
-									)
-								)
-							)
-						)
+/*==== Author functions ==*/
+
+function epl_author_tabs () {
+	global $epl_author;
+	$author_tabs	= array(
+						'author_id'				=>	__('About','epl'),
+						'description'			=>	__('Bio','epl'),
+						'video'					=>	__('Video','epl'),
+						'contact'				=>	__('Contact','epl')
 					);
-	$meta_fields[] = $custom_field;
-	return $meta_fields;
+	foreach($author_tabs as $k	=>	$author_tab) {
+		if($epl_author->{$k} == ''){
+			unset($author_tabs[$k]);
+		}
+	}
+	return $author_tabs = apply_filters('epl_author_tabs',$author_tabs);
 }
-add_filter( 'epl_listing_meta_boxes' , 'my_add_meta_box_epl_listings_callback' );
-*/
+
+function epl_author_class ($classes) {
+	$classes 		=	explode(' ',$classes.' author-box');
+	$classes		= 	array_filter(array_unique($classes));
+	$classes 		=	apply_filters('epl_author_class',$classes);
+	if(!empty($classes)){
+		echo $classes 	= 	implode(' ',$classes);
+	}
+}
+
+function epl_author_tab_about() { 
+	global $epl_author, $epl_settings;
+	
+	$author_style = '';
+	if(!empty($epl_settings) && isset($epl_settings['epl_staff_link_to'])) {
+		$author_style = $epl_settings['epl_staff_link_to'];
+	}
+	
+	$epl_staff_excerpt = '';
+	if(!empty($epl_settings) && isset($epl_settings['epl_staff_excerpt'])) {
+		$epl_staff_excerpt = $epl_settings['epl_staff_excerpt'];
+	}
+?>
+	<div class="author-contact-details">
+		<?php if ( $author_style == 1) { ?>
+			<h5 class="author-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+		<?php } else { ?>
+			<h5 class="author-title"><?php the_author_posts_link(); ?></h5>
+		<?php } ?>
+		<div class="author-contact">
+			<span class="label-mobile"></span>
+			<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
+		</div>
+	</div>
+	<div class="author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
+	<div class="epl-clearfix"></div>
+	<div class="author-social-buttons">
+		<?php
+			$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
+			foreach($social_icons as $social_icon){
+				echo call_user_func(array($epl_author,'get_'.$social_icon.'_html')); 
+			}
+		?>
+	</div>
+<?php	
+}
+
+function epl_author_tab_bio() { 
+	global $epl_author; 
+	echo $epl_author->get_description_html();
+}
+
+function epl_author_tab_video() {
+	global $epl_author;
+	echo '<div class="author-video">'.$epl_author->get_video_html().'</div>';
+}
+
+function epl_author_tab_contact() {
+	global $epl_author;?>
+	<h6 class="author-box-title"><?php _e('Contact', 'epl'); ?></h6><?php
+	echo $epl_author->get_author_contact_form();
+}
+

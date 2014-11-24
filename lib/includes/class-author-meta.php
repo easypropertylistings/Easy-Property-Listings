@@ -19,9 +19,10 @@ class Author_Meta {
 	private $position;
 	private $video;
 	private $contact_form;
+	private $description;
 	
-	function __construct() {
-		$this->author_id 			= get_the_author_meta( 'ID' );
+	function __construct($author_id) {
+		$this->author_id 			= $author_id;
 		$this->name 				= get_the_author_meta( 'display_name' , $this->author_id);
 		$this->mobile 				= get_the_author_meta( 'mobile' , $this->author_id);
 		$this->facebook 			= get_the_author_meta( 'facebook' , $this->author_id);
@@ -34,6 +35,14 @@ class Author_Meta {
 		$this->position 			= get_the_author_meta( 'position' , $this->author_id);
 		$this->video 				= get_the_author_meta( 'video' , $this->author_id);
 		$this->contact_form 		= get_the_author_meta( 'contact-form' , $this->author_id);
+		$this->description 			= get_the_author_meta( 'description' , $this->author_id);
+    }
+    
+    
+    function __get($property) {
+    	if(isset($this->{$property}) && $this->{$property} != ''){
+    		return $this->{$property};
+    	}
     }
     
 	/*
@@ -45,7 +54,7 @@ class Author_Meta {
     	if ( $this->email != '' ) {
 			$html = '
 						<a class="author-icon email-icon-24" 
-							href="mailto:' . $email . '" title="'.__('Contact', 'epl').' '.$name.' '.__('by Email', 'epl').'">'.
+							href="mailto:' . $this->email . '" title="'.__('Contact', 'epl').' '.$this->name.' '.__('by Email', 'epl').'">'.
 							__('Email', 'epl').
 						'</a>';
 		}
@@ -138,10 +147,31 @@ class Author_Meta {
 	* @since version 1.3
 	*/
     function get_video_html($html = '') {
-    	if($this->video != '')
-    		$html = apply_filters('epl_author_video_html'wp_oembed_get($this->video));
+    	if($this->video != '') {
+    		$video 	= apply_filters('epl_author_video',$this->video);
+    		$html 	= wp_oembed_get($video);
+		}
 		return $html;
     }
+    
+    /*
+	* Author description html
+	* @since version 1.3
+	*/
+    function get_description_html($html = '') {
+    	if ( $this->description != '' ) { 
+			$html =     '
+						<div class="author-content">'.$this->description.'</div>
+							<span class="bio-more">
+								<a href="'.get_author_posts_url($this->author_id).'">'.
+									__('Read More', 'epl').'
+								</a>
+							</span>
+			';		
+		}
+		return $html;
+	}
+    
     
    /*
 	* Author mobile

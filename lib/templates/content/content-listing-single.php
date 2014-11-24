@@ -5,7 +5,6 @@
  * @package easy-property-listings
  * @subpackage Theme
  */
-
 ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded' ); ?>>
