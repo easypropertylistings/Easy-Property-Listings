@@ -491,7 +491,7 @@ add_action('epl_property_available_dates','epl_property_available_dates');
 function epl_property_inspection_times(){
 	global $property;
 	$property_inspection_times = $property->get_property_inspection_times();
-	if($property_inspection_times != '') {
+	if(trim($property_inspection_times) != '') {
 		$label_home_open = $property->get_epl_settings('label_home_open');	
 	?>
 	<div class="home-open">
@@ -729,6 +729,7 @@ function epl_switch_views_sorting() {
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 		$sortby = sanitize_text_field(trim($_GET['sortby']));
 	}
+	do_action('epl_buttons_single_property_start');
 	?>
 	<div class="epl-switching-sorting-wrap epl-clearfix">
 		<div class="epl-switch-view epl-clearfix">
@@ -748,6 +749,7 @@ function epl_switch_views_sorting() {
 		</div>
 	</div>
 	<?php
+	do_action('epl_buttons_single_property_end');
 }
 add_action( 'epl_template_before_property_loop' , 'epl_switch_views_sorting' , 20 );
 

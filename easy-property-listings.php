@@ -76,11 +76,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		/*
 		 * Setup plugin constants
 		 *
-		 * @access private
+		 * @access public
 		 * @since 1.0
 		 * @return void
 		 */
-		private function setup_constants() {		
+		public function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
 				define( 'EPL_PROPERTY_VER', '1.3' );
@@ -154,7 +154,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		private function includes() {
 		
 			global $epl_settings;
-
+			
 			require_once EPL_PATH_LIB . 'includes/register-settings.php';
 			$epl_settings = epl_get_settings();
 		
@@ -289,8 +289,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				load_plugin_textdomain( 'epl', false, $epl_lang_dir );
 			}
 		}
-	
-	
 	}
 endif; // End if class_exists check
 

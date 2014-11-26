@@ -18,8 +18,10 @@ global $property;
 			<div class="property-box property-box-left property-featured-image-wrapper">
 				<a href="<?php the_permalink(); ?>">
 					<div class="epl-blog-image">
+						<div class="epl-stickers-wrapper">
+							<?php	echo epl_get_price_sticker(); ?>
+						</div>
 						<?php
-							echo epl_get_price_sticker();
 							the_post_thumbnail( 'epl-image-medium-crop', array( 'class' => 'teaser-left-thumb' ) );
 						?>
 					</div>
