@@ -34,19 +34,30 @@ class Property_Meta {
 	
 	public function get_property_inspection_times($meta_key='property_inspection_times') {
 		$pit = $this->get_property_meta($meta_key);
-		if($pit != ''){
+		if($pit != '') {
 			$list = array_filter(explode("\n", $pit));
 			if(!empty($list)){
-				$return =  "<ul>";
+				$inspectarray = array();
 				foreach ($list as $num => $item) {
 					$timearr = explode(' ',$item);
 					$endtime = current($timearr).' '.end($timearr);
-					if(strtotime($endtime) > time()){
-						$return .= "<li>" . htmlspecialchars($item) . "</li>";
+					if(strtotime($endtime) > time()) {
+						$item = trim($item);
+						$inspectarray[strtotime($endtime)] = $item;
+						
 					}
 				}
-				$return .= "</ul>";
-				return  $return;
+				ksort($inspectarray);
+				$return =  "";
+				foreach ($inspectarray as $key => $element) {
+					if(!empty($element)) {
+						$return .= "<li>" . htmlspecialchars($element) . "</li>";
+					}
+				}
+				if(!empty($return)) {
+					$return = '<ul>'.$return.'</ul>';
+					return  $return;
+				}
 			}
 		}
 	}
@@ -305,42 +316,59 @@ class Property_Meta {
 	// price sticker
 	public function get_price_sticker() {
 		$price_sticker = '';
+		$date = new DateTime($this->post->post_date);
+		$now = new DateTime();
+		$diff = $now->diff($date);
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
-				$price_sticker = '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
+				$price_sticker .= '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
 			} 
-			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
+			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {
+				// Property
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					$price_sticker = '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
+					if($this->get_epl_settings('sticker_new_range') >=  $diff->days) 
+						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
+						
+					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
-			} else {
-				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					$price_sticker = '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
-				}
+			
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$price_sticker = '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
+			
+				if($this->get_epl_settings('sticker_new_range') >=  $diff->days)
+						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
+						
+				$price_sticker .= '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
 			}
 			
 			
 		} elseif('rental' == $this->post_type) { 
 		
-			if('leased' == $this->get_property_meta('property_status')) { 
-				$price_sticker = '<span class="status-sticker leased">'.__('Leased', 'epl').'</span>';
+			if('leased' == $this->get_property_meta('property_status')) {
+				
+				$price_sticker .= '<span class="status-sticker leased">'.__('Leased', 'epl').'</span>';
 				
 			} else {
 			
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					$price_sticker = '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
+					
+					if($this->get_epl_settings('sticker_new_range') >=  $diff->days)
+						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
+						
+					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
 			}
 			
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type) {
 			if ( 'sold' == $this->get_property_meta('property_status') ){
-				$price_sticker = '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
+				$price_sticker .= '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
 			} 
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$price_sticker = '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
+			
+				if($this->get_epl_settings('sticker_new_range') >=  $diff->days)
+						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
+						
+				$price_sticker .= '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
 			}
 			
 		}

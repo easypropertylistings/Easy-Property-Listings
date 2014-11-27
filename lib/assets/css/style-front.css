@@ -504,15 +504,20 @@ li.tbhead.current {
 .epl-blog-image {
 	position: relative;
 }
+.epl-stickers-wrapper {
+    left: 0;
+    position: absolute;
+    top: 20px;
+}
+
 .epl-property-blog .status-sticker {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	background: #F00;
 	padding: 0 0.4em;
+	margin-right:0.4em;
 	text-transform: uppercase;
 	color: #fff;
-	position: absolute;
-	top: 20px;
 }
 .epl-property-blog .status-sticker.under-offer {
 	background: #FFA500;
@@ -885,3 +890,4 @@ li.tbhead.current {
 #ie7 .epl-clearfix {
 	zoom: 1;
 }
+

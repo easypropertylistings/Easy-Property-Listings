@@ -12,6 +12,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
 // Only load on front
 if( is_admin() ) {
 	return; 
@@ -21,6 +22,7 @@ if( is_admin() ) {
  * [listing_search title="" post_type="property" property_status="current/sold/leased" search_house_category="on/off" search_price="on/off" search_bed="on/off" search_bath="on/off" search_car="on/off" search_other="on/off"] option
  */
 function epl_shortcode_listing_search_callback( $atts ) {
+	
 	$atts = shortcode_atts( array(
 		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
 		'title'						=>	'', // Freeform text
@@ -43,13 +45,15 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		$post_type = array_map('trim', $post_type);
 	}
 	$post_types = $post_type;
+	global $epl_settings;
 	ob_start();	
 	$tabcounter = 1;
 	if(!empty($post_types)):
 	echo '<ul class="property_search-tabs">';
 	foreach($post_types as $post_type):
+	
 		$is_sb_current = $tabcounter == 1?'epl-sb-current':'';
-		echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.$post_type.'</li>';
+		echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.$epl_settings['widget_label_'.$post_type].'</li>';
 		$tabcounter++;
 	endforeach;
 	echo '</ul>';
@@ -102,37 +106,10 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							<option value=""><?php _e('Any', 'epl'); ?></option>
 					
 							<?php
-								$locations = get_terms('location');
+								$locations = get_terms('location',array('hide_empty'	=> true));
 								if(!empty($locations)) {
 									$arr = array();
 									foreach($locations as $location) {
-								
-										//For check if term has atleast one post for current post type - START
-										$args = array(
-											'posts_per_page'=> 1,
-											'post_type'		=>	$post_type,
-											'tax_query'		=>	array(
-												array(
-													'taxonomy'	=>	'location',
-													'field'		=>	'id',
-													'terms'		=>	$location->term_id
-												)
-											)
-										);
-									
-										if(isset($property_status) && !empty($property_status)) {
-											$args['meta_query'][] = array(
-												'key'		=>	'property_status',
-												'value'		=>	$property_status,
-												'compare'	=>	'='
-											);
-										}
-
-										$results = get_posts($args);
-										if(empty($results)) {
-											continue;
-										}
-										//For check if term has atleast one post for current post type - END
 									
 										$arr[$location->term_id] = $location->name;
 									}
@@ -150,7 +127,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				</div>
 			
 				<?php
-					if($search_house_category == 'on') { ?>
+					if($search_house_category == 'on' && $post_type != 'land') { ?>
 						<div class="fm-block bdr-btm">
 							<label for="property_category" class="fm-label"><?php _e('House Category:', 'epl'); ?></label>
 							<div class="field">
@@ -161,14 +138,16 @@ function epl_shortcode_listing_search_callback( $atts ) {
 										$arr = array();
 										$meta_vals = epl_get_meta_values( 'property_category', $post_type, 'publish' );
 										if(!empty($meta_vals)) {
-
+						
 											$arr = epl_listing_load_meta_property_category();
-
-											foreach($arr as $k=>$v) {
-												if(!in_array($k, $meta_vals)) {
-													unset($arr[$k]);
+											if(!empty($arr)) {
+												foreach($arr as $k=>$v) {
+													if(!in_array($k, $meta_vals)) {
+														unset($arr[$k]);
+													}
 												}
 											}
+											
 										}
 							
 										foreach($arr as $k=>$v) {
@@ -302,7 +281,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						<?php
 					}
 			
-					if ( $search_bed == 'on' ) { ?>
+					if ( $search_bed == 'on' &&  $post_type != 'land' ) { ?>
 						<div class="fm-block bdr-btm">
 							<div class="fm-block-half">
 								<label for="property_bedrooms_min" class="fm-label"><?php _e('Min Bedrooms:', 'epl'); ?></label>
@@ -368,6 +347,64 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						<?php
 					}
 					
+					$search_row = '';	
+					if ( $search_bath == 'on' &&  $post_type != 'land'  ) {
+						$search_row .= '
+							<div class="fm-block-half">
+								<label for="property_bathrooms" class="fm-label">'.__('Bathrooms:', 'epl').'</label>
+								<div class="field">
+									<select name="property_bathrooms" id="property_bathrooms" class="in-field field-width">
+										<option value="">'.__('Any', 'epl').'</option>';
+										
+											$arr = array(
+												'1'	=>	'1+',
+												'2'	=>	'2+',
+												'3'	=>	'3+'
+											);
+											foreach($arr as $k=>$v) {
+												$selected = '';
+												if(isset($property_bathrooms) && $k == $property_bathrooms) {
+													$selected = 'selected="selected"';
+												}
+												$search_row .= '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+											}
+											$search_row .= '
+									</select>
+								</div>
+							</div>
+						';
+					}
+					
+									
+					if ( $search_car == 'on' &&  $post_type != 'land'  ) {
+						$search_row .= '
+							<div class="fm-block-half">
+								<label for="property_carport" class="fm-label">'.__('Car Spaces:', 'epl').'</label>
+								<div class="field">
+									<select name="property_carport" id="property_carport" class="in-field field-width">
+										<option value="">'.__('Any', 'epl').'</option>';
+							
+										$arr = array(
+											'1'	=>	'1+',
+											'2'	=>	'2+'
+										);
+										foreach($arr as $k=>$v) {
+											$selected = '';
+											if(isset($property_carport) && $k == $property_carport) {
+												$selected = 'selected="selected"';
+											}
+											$search_row .= '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+										}
+										$search_row .= '
+									</select>
+								</div>
+							</div>
+						';
+					}
+					if ( !empty($search_row) ) {
+						echo '<div class="fm-block bdr-btm">'.$search_row.'</div>';
+					}
+					
 					if ( $search_land_area == 'on' ) { ?>
 					
 						<div class="fm-block bdr-btm">
@@ -413,7 +450,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						<?php
 					}
 				
-					if ( $search_building_area == 'on' ) { ?>
+					if ( $search_building_area == 'on' &&  $post_type != 'land'  ) { ?>
 					
 						<div class="fm-block bdr-btm">
 							<div class="fm-block-third">
@@ -458,63 +495,6 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						<?php
 					}
 					
-					$search_row = '';					
-					if ( $search_car == 'on' ) {
-						$search_row .= '
-							<div class="fm-block-half">
-								<label for="property_carport" class="fm-label">'.__('Car Spaces:', 'epl').'</label>
-								<div class="field">
-									<select name="property_carport" id="property_carport" class="in-field field-width">
-										<option value="">'.__('Any', 'epl').'</option>';
-							
-										$arr = array(
-											'1'	=>	'1+',
-											'2'	=>	'2+'
-										);
-										foreach($arr as $k=>$v) {
-											$selected = '';
-											if(isset($property_carport) && $k == $property_carport) {
-												$selected = 'selected="selected"';
-											}
-											$search_row .= '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
-										}
-										$search_row .= '
-									</select>
-								</div>
-							</div>
-						';
-					}
-			
-					if ( $search_bath == 'on' ) {
-						$search_row .= '
-							<div class="fm-block-half">
-								<label for="property_bathrooms" class="fm-label">'.__('Bathrooms:', 'epl').'</label>
-								<div class="field">
-									<select name="property_bathrooms" id="property_bathrooms" class="in-field field-width">
-										<option value="">'.__('Any', 'epl').'</option>';
-										
-											$arr = array(
-												'1'	=>	'1+',
-												'2'	=>	'2+',
-												'3'	=>	'3+'
-											);
-											foreach($arr as $k=>$v) {
-												$selected = '';
-												if(isset($property_bathrooms) && $k == $property_bathrooms) {
-													$selected = 'selected="selected"';
-												}
-												$search_row .= '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
-											}
-											$search_row .= '
-									</select>
-								</div>
-							</div>
-						';
-					}
-				
-					if ( !empty($search_row) ) {
-						echo '<div class="fm-block bdr-btm">'.$search_row.'</div>';
-					}
 				
 					if ( $search_other == 'on' ) { ?>
 						<div class="fm-block bdr-btm">

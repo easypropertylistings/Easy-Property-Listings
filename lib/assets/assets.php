@@ -35,7 +35,10 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
  */
 function epl_wp_enqueue_scripts() {
 	$current_dir_path = plugins_url('', __FILE__ );
-	
+	$listings = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+	if ( is_post_type_archive($listings) ) {
+		wp_enqueue_script( 'jquery-masonry');
+	}
 	wp_enqueue_style( 'epl-front-styles', $current_dir_path . '/css/style-front.css' );
 	wp_enqueue_script( 'epl-front-scripts', $current_dir_path . '/js/jquery-front-scripts.js', array('jquery') );
 }
