@@ -78,10 +78,10 @@ if ( is_admin() ) {
 		// Geocode Debug Option
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
-			'property_thumb' => __('Featured Image', 'epl'),
+			'property_thumb' => __('Image', 'epl'),
+			'property_rent' => __('Rent', 'epl'),
 			'title' => __('Address', 'epl'),
 			'listing' => __('Listing Details', 'epl'),
-			'property_rent' => __('Rent', 'epl'),
 			'geo' => __('Geocoded', 'epl'),
 			'property_status' => __('Status', 'epl'),
 			'author' => __('Agent', 'epl'),
@@ -169,6 +169,35 @@ if ( is_admin() ) {
 					$bond = get_post_meta( $post_id, 'property_bond', true );
 				}
 				
+				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
+					$max_price =$epl_settings['epl_max_graph_rent_price' ];
+				}
+
+				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
+				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
+				
+				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
+					$class = 'bar-under-offer';
+				}elseif ( $property_status == 'Current' ) {
+					$class = 'bar-home-open';
+				}elseif($property_status == 'Sold'){
+					$class = 'bar-home-sold';
+				}elseif($property_status == 'Leased'){
+					$class = 'bar-home-sold';
+				}else{
+					$class = '';
+				}
+				if($sold_price != ''){
+					$barwidth = $sold_price/$max_price * 100;
+				} else {
+					$barwidth = $rent/$max_price * 100;
+				}
+				echo '
+					<div class="epl-price-bar '.$class.'">
+						<span style="width:'.$barwidth.'%"></span>
+					</div>';
+
+
 				/* If no duration is found, output a default message. */
 				if ( empty( $rent) )
 					echo ''; //'<strong>'.__( 'No Rent Set', 'epl' ).'</strong>';

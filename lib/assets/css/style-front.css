@@ -760,7 +760,7 @@ li.tbhead.current {
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
-	width: 31.2%;
+	width: 200px;
 }
 .epl-listing-post{
 	-webkit-transition: all 0.2s ease-in-out;

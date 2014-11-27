@@ -729,7 +729,7 @@ function epl_switch_views_sorting() {
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 		$sortby = sanitize_text_field(trim($_GET['sortby']));
 	}
-	do_action('epl_buttons_single_property_start');
+	do_action('epl_archive_utility_wrap_start');
 	?>
 	<div class="epl-switching-sorting-wrap epl-clearfix">
 		<div class="epl-switch-view epl-clearfix">
@@ -749,7 +749,7 @@ function epl_switch_views_sorting() {
 		</div>
 	</div>
 	<?php
-	do_action('epl_buttons_single_property_end');
+	do_action('epl_archive_utility_wrap_end');
 }
 add_action( 'epl_template_before_property_loop' , 'epl_switch_views_sorting' , 20 );
 
@@ -870,4 +870,15 @@ function epl_author_tab_contact() {
 	<h6 class="author-box-title"><?php _e('Contact', 'epl'); ?></h6><?php
 	echo $epl_author->get_author_contact_form();
 }
+
+function epl_archive_utility_wrap_before() {
+	echo '<div class="epl-archive-utility-wrapper epl-clearfix">';
+}
+
+function epl_archive_utility_wrap_after() {
+	echo '</div>';
+}
+
+add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
+add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
