@@ -106,7 +106,7 @@ if ( is_admin() ) {
 	 * @since 1.0
 	 */
 	function epl_manage_property_columns_value( $column, $post_id ) {
-		global $post;
+		global $post,$epl_settings;
 		switch( $column ) {	
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
@@ -122,7 +122,6 @@ if ( is_admin() ) {
 				$homeopen = get_post_meta( $post_id, 'property_inspection_times', true );
 				$beds = get_post_meta( $post_id, 'property_bedrooms', true );
 				$baths = get_post_meta( $post_id, 'property_bathrooms', true );
-				
 				$land = get_post_meta( $post_id, 'property_land_area', true );
 				$land_unit = get_post_meta( $post_id, 'property_land_area_unit', true );
 				
@@ -173,23 +172,14 @@ if ( is_admin() ) {
 				
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
-				global $epl_settings;
 				$price = get_post_meta( $post_id, 'property_price', true );
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price =$epl_settings['epl_max_graph_sales_price' ];
 				}
 				$view = get_post_meta( $post_id, 'property_price_view', true );
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-				$property_status = get_post_meta( $post_id, 'property_under_offer', true );
-				$homeopen = get_post_meta( $post_id, 'property_inspection_times', true );
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
 				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
-				
-				if ( empty ( $view ) ) {
-					$show_price =  '<div class="epl_meta_search_price">' . epl_currency_formatted_amount( $price ). '</div>';
-				} else {
-					$show_price =  '<div class="epl_meta_price">' . $view . '</div>'; 
-				}
 				
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
 					$class = 'bar-under-offer';
@@ -205,11 +195,16 @@ if ( is_admin() ) {
 				} else {
 					$barwidth = $price/$max_price * 100;
 				}
-				
 				echo '
 					<div class="epl-price-bar '.$class.'">
 						<span style="width:'.$barwidth.'%"></span>
 					</div>';
+					
+				if ( empty ( $view ) ) {
+					$show_price =  '<div class="epl_meta_search_price">' . epl_currency_formatted_amount( $price ). '</div>';
+				} else {
+					$show_price =  '<div class="epl_meta_price">' . $view . '</div>'; 
+				}
 				echo $show_price;
 				break;
 			/* If displaying the 'real-estate' column. */

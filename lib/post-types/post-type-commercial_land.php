@@ -77,10 +77,10 @@ if ( is_admin() ) {
 	function epl_manage_commercial_land_columns_heading( $columns ) {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
-			'property_thumb' => __('Featured Image', 'epl'),
+			'property_thumb' => __('Image', 'epl'),
+			'property_price' => __('Price', 'epl'),
 			'title' => __('Address', 'epl'),
 			'listing' => __('Listing Details', 'epl'),
-			'property_price' => __('Price', 'epl'),
 			'geo' => __('Geo', 'epl'),
 			'property_status' => __('Status', 'epl'),
 			'listing_type' => __('Sale/Lease', 'epl'),
@@ -106,7 +106,7 @@ if ( is_admin() ) {
 	 * @since 1.0
 	 */
 	function epl_manage_commercial_land_columns_value( $column, $post_id ) {
-		global $post;
+		global $post,$epl_settings;
 		switch( $column ) {
 		
 			/* If displaying the 'Featured' image column. */
@@ -178,6 +178,33 @@ if ( is_admin() ) {
 				$lease = get_post_meta( $post_id, 'property_com_rent', true );
 				$lease_date = get_post_meta( $post_id, 'property_com_lease_end_date', true );
 				
+				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
+					$max_price =$epl_settings['epl_max_graph_sales_price' ];
+				}
+
+				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
+				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
+				
+				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
+					$class = 'bar-under-offer';
+				}elseif ( $property_status == 'Current' ) {
+					$class = 'bar-home-open';
+				}elseif($property_status == 'Sold'){
+					$class = 'bar-home-sold';
+				}else{
+					$class = '';
+				}
+				if($sold_price != ''){
+					$barwidth = $sold_price/$max_price * 100;
+				} else {
+					$barwidth = $price/$max_price * 100;
+				}
+				echo '
+					<div class="epl-price-bar '.$class.'">
+						<span style="width:'.$barwidth.'%"></span>
+					</div>';
+
+
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
 					echo '<div class="type_under_offer">Under Offer</div>';
 				}

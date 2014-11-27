@@ -78,7 +78,7 @@
 							do_action('epl_property_secondary_heading');
 						echo '</h3>';
 					
-						echo get_the_content();
+						the_content();
 						do_action('epl_property_after_content');
 						
 					?>
