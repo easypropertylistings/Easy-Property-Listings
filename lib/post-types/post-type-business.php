@@ -108,7 +108,7 @@ if ( is_admin() ) {
 	 * @since 1.0
 	 */
 	function epl_manage_business_columns_value( $column, $post_id ) {
-		global $post,$epl_sttings;
+		global $post,$epl_settings;
 		switch( $column ) {
 		
 			/* If displaying the 'Featured' image column. */
@@ -190,7 +190,6 @@ if ( is_admin() ) {
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price =$epl_settings['epl_max_graph_sales_price' ];
 				}
-
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
 				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
 				

@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <!-- Author Box Container Tabbed -->
-<div id="epl-box" class="epl-author-box">		
+<div id="epl-box<?php echo $epl_author->author_id; ?>" class="epl-author-box">		
 	<ul class="author-tabs">
 		<?php
 			$author_tabs = epl_author_tabs();
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<?php
 		
 				if ( function_exists('get_avatar') ) {
-					echo get_avatar( get_the_author_meta('email') , '150' );
+					echo get_avatar( $epl_author->email , '150' );
 				}
 			?>
 		</div>

@@ -70,7 +70,7 @@ class Author_Meta {
     	if ( $this->twitter != '' ) {
 			$html = '
 						<a class="author-icon twitter-icon-24" 
-							href="http://twitter.com/' . $twitter . '" title="'.__('Follow', 'epl').' '.$name.' '.__('on Twitter', 'epl').'">'.
+							href="http://twitter.com/' . $this->twitter . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Twitter', 'epl').'">'.
 							__('Twitter', 'epl').
 						'</a>';
 		}
@@ -86,7 +86,7 @@ class Author_Meta {
     	if ( $this->google != '' ) {
 			$html = '
 						<a class="author-icon google-icon-24" 
-							href="https://plus.google.com/' . $google . '" title="'.__('Follow', 'epl').' '.$name.' '.__('on Google', 'epl').'">'.
+							href="https://plus.google.com/' . $this->google . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Google', 'epl').'">'.
 							__('Google', 'epl').
 						'</a>';
 		}
@@ -102,7 +102,7 @@ class Author_Meta {
     	if ( $this->facebook != '' ) {
 			$html = '
 						<a class="author-icon facebook-icon-24" 
-							href="http://facebook.com/' . $facebook . '" title="'.__('Follow', 'epl').' '.$name.' '.__('on Facebook', 'epl').'">'.
+							href="http://facebook.com/' . $this->facebook . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Facebook', 'epl').'">'.
 							__('Facebook', 'epl').
 						'</a>';
 		}
@@ -117,8 +117,8 @@ class Author_Meta {
     function get_linkedin_html($html = '') {
     	if ( $this->linkedin != '' ) {
 			$html = '
-							<a class="author-icon linkedin-icon-24" href="http://au.linkedin.com/in/' . $linkedin . '" 
-								title="'.__('Follow', 'epl').' '.$name.' '.__('on Linkedin', 'epl').'">'.
+							<a class="author-icon linkedin-icon-24" href="http://au.linkedin.com/in/' . $this->linkedin . '" 
+								title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Linkedin', 'epl').'">'.
 								__('Linkedin', 'epl').
 							'</a>';
 		}
@@ -133,8 +133,8 @@ class Author_Meta {
     function get_skype_html($html = '') {
     	if ( $this->skype != '' ) {
 			$html = '
-						<a class="author-icon skype-icon-24" href="http://skype.com/' . $skype . '" 
-							title="'.__('Follow', 'epl').' '.$name.' '.__('on Skype', 'epl').'">'.
+						<a class="author-icon skype-icon-24" href="http://skype.com/' . $this->skype . '" 
+							title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Skype', 'epl').'">'.
 							__('Skype', 'epl').
 						'</a>';
 		}

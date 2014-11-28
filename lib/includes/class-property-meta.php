@@ -320,11 +320,13 @@ class Property_Meta {
 		$now = new DateTime();
 		$diff = $now->diff($date);
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
+			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
 				$price_sticker .= '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
 			} 
 			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {
 				// Property
+				$price_sticker = '';
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
 					if($this->get_epl_settings('sticker_new_range') >=  $diff->days) 
 						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
@@ -334,7 +336,7 @@ class Property_Meta {
 			
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-			
+				$price_sticker = '';
 				$price_sticker .= '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
 			}
 			
@@ -342,11 +344,11 @@ class Property_Meta {
 		} elseif('rental' == $this->post_type) { 
 		
 			if('leased' == $this->get_property_meta('property_status')) {
-				
+				$price_sticker = '';
 				$price_sticker .= '<span class="status-sticker leased">'.__('Leased', 'epl').'</span>';
 				
 			} else {
-			
+				$price_sticker = '';
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
 					
 					if($this->get_epl_settings('sticker_new_range') >=  $diff->days)
@@ -357,6 +359,7 @@ class Property_Meta {
 			}
 			
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type) {
+			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ){
 				$price_sticker .= '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
 			} 
@@ -510,7 +513,7 @@ class Property_Meta {
 		if ( $property_land_area_unit == 'squareMeter' ) {
 			$property_land_area_unit = 'sqm';
 		}
-		if($this->get_property_meta('property_land_area') != '') {
+		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			return '
 				<li class="land-size">'.
 					__('Land is', 'epl').' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'
@@ -525,10 +528,13 @@ class Property_Meta {
 		if ( $building_unit == 'squareMeter' ) {
 			$building_unit = 'm²';
 		}
-		return '
+		if(intval($this->get_property_meta('property_building_area')) != 0 ) { 
+			return '
 			<li class="land-size">'.__('Floor Area is', 'epl').' ' .
 		 		$this->get_property_meta('property_building_area') .' '.$building_unit.
 	 		'</li>';
+		}
+		
 	}
 	
 	// new construction
@@ -551,6 +557,9 @@ class Property_Meta {
 				}
 				
 				if( (is_numeric($metavalue))|| $metavalue == 'yes' ) {
+					if($metavalue == 0)
+						return;
+						
 					// toggle field types -- yes or 1 for toggle true
 					if($metavalue == 'yes' || $metavalue == 1){ 
 						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';	
@@ -582,6 +591,18 @@ class Property_Meta {
 			}
 	}
 	
+	// additional commerical features html
+	public function get_additional_commerical_features_html($metakey) {
+			$metavalue = $this->get_property_meta($metakey);
+			if( isset($metavalue) && $metavalue != '' ) {
+				return '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
+							<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'epl').'</h6>'.
+							'<p>'.$metavalue.'</p>'.
+						'</div>';
+			}
+	}
+	
+	
 	public function get_class_from_metakey($key,$search= 'property_'){
 		 return str_replace("property_", "", $key);
 		
@@ -589,6 +610,15 @@ class Property_Meta {
 	
 	public function get_label_from_metakey($key,$search= 'property_'){
 		 return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
+	}
+	
+	public function get_features_from_taxonomy() {
+		$property_feature_taxonomy = '';
+		if ( taxonomy_exists('tax_feature') ) {
+			global $post;
+			$property_feature_taxonomy = get_the_term_list($this->post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' );
+		}
+		return $property_feature_taxonomy;
 	}
 }
 

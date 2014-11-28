@@ -42,14 +42,23 @@ function epl_install() {
 			'currency_thousands_separator'	=>	',',
 			'currency_decimal_separator'	=>	'.',
 			'label_location'		=>	'Suburb',
-			'debug'				=>	'0',
+			'label_new'				=>	__('New', 'epl'),
+			'widget_label_property'	=>	__('Property', 'epl'),
+			'widget_label_land'		=>	__('Land', 'epl'),
+			'widget_label_rural'	=>	__('Rural', 'epl'),
+			'widget_label_business'	=>	__('Business', 'epl'),
+			'widget_label_rental'	=>	__('rental', 'epl'),
+			'widget_label_commerical'	=>	__('Commercial', 'epl'),
+			'widget_label_commerical_land'	=>	__('Commercial Land', 'epl'),
+			'debug'					=>	'0',
 			
 			'label_suburb'			=>	__('Suburb', 'epl'),
 			'label_postcode'		=>	__('Post Code', 'epl'),
 			'label_home_open'		=>	__('Home Open', 'epl'),
 			'label_poa'			=>	__('POA', 'epl'),
-			'epl_max_graph_sales_price'			=>	__('2000000', 'epl'),
-			'epl_max_graph_rent_price'			=>	__('2000', 'epl'),
+			'epl_max_graph_sales_price'			=>	2000000,
+			'epl_max_graph_rent_price'			=>	2000,
+			'sticker_new_range'					=>	7,
 		);
 		update_option( 'epl_settings', $epl_settings );
 	}

@@ -268,11 +268,32 @@ function epl_property_blog_slim() {
 
 // AUTHOR CARD : Tabbed Style
 function epl_property_author_box() {
+	global $property,$epl_author;
 	$author_id = get_the_author_meta( 'ID' );
-
 	include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php' );
 	include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box.php' );
+	
+	$property_second_agent = $property->get_property_meta('property_second_agent');
+		if ( '' != $property_second_agent ) {
+			$second_author = get_user_by( 'login' , $property_second_agent );
+			if($second_author !== false){
+					$epl_author = new Author_Meta($second_author->ID);
+					include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php' );
+					include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box.php' );
+
+			}
+			epl_reset_post_author();
+		}
 }
+
+function epl_reset_post_author() {
+	global $post,$epl_author;
+	if(class_exists('Author_Meta')) {
+		$epl_author = new Author_Meta($post->post_author);
+	}
+	
+}
+
 add_action( 'epl_single_author' , 'epl_property_author_box' , 1 );
  
 // AUTHOR CARD : Standard
@@ -613,7 +634,7 @@ function epl_property_the_tab_section() {
 	<h5 class="tab-title"><?php _e('Property Features', 'epl'); ?></h5>
 		<div class="tab-content">
 			<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
-				<?php echo $the_property_feature_list; ?>							
+				<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>							
 			</ul>
 		</div>
 	<?php } ?>
@@ -648,6 +669,32 @@ add_action('epl_property_the_tab_section','epl_property_the_tab_section');
 **/
 function epl_property_after_tab_section() {
 	global $property;
+	$post_type = $property->post_type;
+	if ( 'commercial' == $post_type || 'business' == $post_type || 'commercial_land' == $post_type) {
+		
+		$the_property_commercial_feature_list = '';
+		$features_lists = array(
+			'property_com_further_options',
+			'property_com_highlight_1',
+			'property_com_highlight_2',
+			'property_com_highlight_3',
+			'property_com_zone',
+
+		);
+		foreach($features_lists as $features_list){
+			$the_property_commercial_feature_list .= $property->get_additional_commerical_features_html($features_list);
+		}
+	
+	?>
+		<div class="epl-tab-section">
+			<h5 class="tab-title"><?php _e('Commercial Features', 'epl'); ?></h5>
+			<div class="tab-content">
+				<div class="listing-info">
+					<?php echo $the_property_commercial_feature_list; ?>							
+				</div>
+			</div>
+		</div> <?php
+	}
 	
 	if ( $property->post_type == 'rural') { 
 		$the_property_rural_feature_list = '';
