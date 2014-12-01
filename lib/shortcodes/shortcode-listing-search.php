@@ -22,7 +22,7 @@ if( is_admin() ) {
  * [listing_search title="" post_type="property" property_status="current/sold/leased" search_house_category="on/off" search_price="on/off" search_bed="on/off" search_bath="on/off" search_car="on/off" search_other="on/off"] option
  */
 function epl_shortcode_listing_search_callback( $atts ) {
-	
+	global $wpdb;
 	$atts = shortcode_atts( array(
 		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
 		'title'						=>	'', // Freeform text
@@ -88,7 +88,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 									?>
 								</label>
 								<div class="field">
-									<input type="text" class="in-field field-width" name="property_id" value="<?php echo isset($property_id) ? intval($property_id) : ''; ?>" />
+									<input type="text" class="in-field field-width" name="property_id" value="<?php echo (isset($property_id) && $property_id != '')? intval($property_id) : ''; ?>" />
 								</div>
 							</div>
 						<?php
@@ -102,17 +102,35 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						?>
 					</label>
 					<div class="field">
-						<select name="property_location" id="property_location" class="in-field field-width">
-							<option value=""><?php _e('Any', 'epl'); ?></option>
-					
 							<?php
-								$locations = get_terms('location',array('hide_empty'	=> true));
+								$available_loc_query = "
+									SELECT DISTINCT (
+										tt.term_id
+									)
+									FROM {$wpdb->prefix}posts p
+									LEFT JOIN {$wpdb->prefix}postmeta pm ON ( p.ID = pm.post_id )
+									LEFT JOIN {$wpdb->prefix}term_relationships tr ON ( p.ID = tr.object_id )
+									LEFT JOIN {$wpdb->prefix}term_taxonomy tt ON ( tr.term_taxonomy_id = tt.term_taxonomy_id ) WHERE
+									tt.taxonomy 			= 'location'
+									AND p.post_status 		= 'publish'
+									AND p.post_type 		= '{$post_type}'";
+									if($property_status != '') {
+										$available_loc_query .= "
+											AND pm.meta_key 		= 'property_status'
+											AND pm.meta_value 		= '{$property_status}'";
+									}
+								$available_locs = $wpdb->get_col($available_loc_query);
+								$locations = get_terms('location',array('hide_empty'	=> true,'include'	=>	$available_locs));
 								if(!empty($locations)) {
 									$arr = array();
 									foreach($locations as $location) {
-									
 										$arr[$location->term_id] = $location->name;
 									}
+							?>
+							<select name="property_location" id="property_location" class="in-field field-width">
+								<option value=""><?php _e('Any', 'epl'); ?></option>
+					
+							<?php
 									foreach($arr as $k=>$v) {
 										$selected = '';
 										if(isset($property_location) && $k == $property_location) {
@@ -131,25 +149,26 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						<div class="fm-block bdr-btm">
 							<label for="property_category" class="fm-label"><?php _e('House Category:', 'epl'); ?></label>
 							<div class="field">
+								<?php
+									$arr = array();
+									$meta_vals = epl_get_meta_values( 'property_category', $post_type, 'publish' );
+									if(!empty($meta_vals)) {
+					
+										$arr = epl_listing_load_meta_property_category();
+										if(!empty($arr)) {
+											foreach($arr as $k=>$v) {
+												if(!in_array($k, $meta_vals)) {
+													unset($arr[$k]);
+												}
+											}
+										}
+									}
+
+								?>
 								<select name="property_category" id="property_category" class="in-field field-width">
 									<option value=""><?php _e('Any', 'epl'); ?></option>
 					
 									<?php
-										$arr = array();
-										$meta_vals = epl_get_meta_values( 'property_category', $post_type, 'publish' );
-										if(!empty($meta_vals)) {
-						
-											$arr = epl_listing_load_meta_property_category();
-											if(!empty($arr)) {
-												foreach($arr as $k=>$v) {
-													if(!in_array($k, $meta_vals)) {
-														unset($arr[$k]);
-													}
-												}
-											}
-											
-										}
-							
 										foreach($arr as $k=>$v) {
 											$selected = '';
 											if(isset($property_category) && $k == $property_category) {
@@ -411,14 +430,14 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							<div class="fm-block-third">
 								<label for="property_land_area_min" class="fm-label"><?php _e('Min Land Area:', 'epl'); ?></label>
 								<div class="field">
-									<input type="number" name="property_land_area_min" id="property_land_area_min" class="in-field field-width" value="<?php echo isset($property_land_area_min) ? intval($property_land_area_min) : ''; ?>"/>
+									<input type="number" name="property_land_area_min" id="property_land_area_min" class="in-field field-width" value="<?php echo (isset($property_land_area_min) && $property_land_area_min != '')? intval($property_land_area_min) : ''; ?>"/>
 								</div>
 							</div>
 							
 							<div class="fm-block-third">
 								<label for="property_land_area_max" class="fm-label"><?php _e('Max Land Area:', 'epl'); ?></label>
 								<div class="field">
-									<input type="number"  name="property_land_area_max" id="property_land_area_max" class="in-field field-width" value="<?php echo isset($property_land_area_max) ? intval($property_land_area_max) : ''; ?>"/>
+									<input type="number"  name="property_land_area_max" id="property_land_area_max" class="in-field field-width" value="<?php echo (isset($property_land_area_max) && $property_land_area_max != '') ? intval($property_land_area_max) : ''; ?>"/>
 								</div>
 							</div>
 							
@@ -456,14 +475,14 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							<div class="fm-block-third">
 								<label for="property_building_area_min" class="fm-label"><?php _e('Min building Area:', 'epl'); ?></label>
 								<div class="field">
-									<input type="number" name="property_building_area_min" id="property_building_area_min" class="in-field field-width" value="<?php echo isset($property_building_area_min) ? intval($property_building_area_min) : ''; ?>"/>
+									<input type="number" name="property_building_area_min" id="property_building_area_min" class="in-field field-width" value="<?php echo (isset($property_building_area_min) && $property_building_area_min != '') ? intval($property_building_area_min) : ''; ?>"/>
 								</div>
 							</div>
 							
 							<div class="fm-block-third">
 								<label for="property_building_area_max" class="fm-label"><?php _e('Max Building Area:', 'epl'); ?></label>
 								<div class="field">
-									<input type="number"  name="property_building_area_max" id="property_Building_area_max" class="in-field field-width" value="<?php echo isset($property_building_area_max) ? intval($property_building_area_max) : ''; ?>"/>
+									<input type="number"  name="property_building_area_max" id="property_Building_area_max" class="in-field field-width" value="<?php echo (isset($property_building_area_max) && $property_building_area_max != '') ? intval($property_building_area_max) : ''; ?>"/>
 								</div>
 							</div>
 							
