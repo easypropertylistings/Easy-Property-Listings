@@ -161,7 +161,7 @@ function epl_property_single() {
  *
  * @since 1.2
  */
-function epl_single_listing_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) { 
+function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) { 
 	
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
@@ -174,7 +174,7 @@ function epl_single_listing_featured_image( $image_size = 'index_thumbnail' , $i
 	<?php }
 
 }
-add_action( 'epl_single_featured_image' , 'epl_single_listing_featured_image' );
+add_action( 'epl_property_featured_image' , 'epl_property_featured_image' );
 
 /*
 * Single Listing Templates
@@ -527,11 +527,11 @@ add_action('epl_property_inspection_times','epl_property_inspection_times');
 /** 
 	@hooked the_property_heading
 **/
-function epl_the_property_heading(){
+function epl_property_heading(){
 	global $property;
 	echo $property->get_property_meta('property_heading');
 }
-add_action('epl_the_property_heading','epl_the_property_heading');
+add_action('epl_property_heading','epl_property_heading');
 
 /** 
 	@hooked property_secondary_heading
@@ -551,7 +551,7 @@ add_action('epl_property_secondary_heading','epl_property_secondary_heading');
 /** 
 	@hooked property_after_content
 **/
-function epl_property_after_content() {
+function epl_property_content_after() {
 	global $property;
 	$property_video_url = $property->get_property_meta('property_video_url');
 	if($property_video_url != '') {
@@ -562,12 +562,12 @@ function epl_property_after_content() {
 		echo '</div>';
 	}
 }
-add_action('epl_property_after_content','epl_property_after_content');
+add_action('epl_property_content_after','epl_property_content_after');
 
 /** 
 	@hooked property_the_tab_section
 **/
-function epl_property_the_tab_section() {
+function epl_property_tab_section() {
 	global $property;
 	$post_type = $property->post_type;
 	$the_property_feature_list = '';
@@ -667,7 +667,7 @@ add_action('epl_property_the_tab_section','epl_property_the_tab_section');
 /** 
 	@hooked property_after_tab_section
 **/
-function epl_property_after_tab_section() {
+function epl_property_tab_section_after() {
 	global $property;
 	$post_type = $property->post_type;
 	if ( 'commercial' == $post_type || 'business' == $post_type || 'commercial_land' == $post_type) {
@@ -929,3 +929,19 @@ function epl_archive_utility_wrap_after() {
 add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
 add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
+function epl_property_gallery () {
+	$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
+	if ( $attachments && $d_gallery == 1 ) { ?>
+		<div class="property-gallery">
+			<!-- Gallery -->
+			<div class="entry-gallery epl-clearfix">
+				<?php 
+					$d_gallery_n = '[gallery columns="'. $d_gallery_n . '" link="file"]';
+					echo do_shortcode( $d_gallery_n );
+				?>					
+			</div>
+		</div>
+		<?php
+	}
+}
+add_action('epl_property_gallery','epl_property_gallery');
