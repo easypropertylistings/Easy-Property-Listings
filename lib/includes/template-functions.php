@@ -175,10 +175,7 @@ function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_c
 
 }
 add_action( 'epl_property_featured_image' , 'epl_property_featured_image' );
-<<<<<<< HEAD
-=======
 add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
->>>>>>> upstream/1.3-Beta-3
 
 /*
 * Single Listing Templates
@@ -569,7 +566,7 @@ function epl_property_content_after() {
 add_action('epl_property_content_after','epl_property_content_after');
 
 /** 
-	@hooked property_the_tab_section
+	@hooked property_tab_section
 **/
 function epl_property_tab_section() {
 	global $property;
@@ -666,7 +663,7 @@ function epl_property_tab_section() {
 	</div>
 	<?php
 }
-add_action('epl_property_the_tab_section','epl_property_the_tab_section');
+add_action('epl_property_tab_section','epl_property_tab_section');
 
 /** 
 	@hooked property_after_tab_section
@@ -683,7 +680,6 @@ function epl_property_tab_section_after() {
 			'property_com_highlight_2',
 			'property_com_highlight_3',
 			'property_com_zone',
-
 		);
 		foreach($features_lists as $features_list){
 			$the_property_commercial_feature_list .= $property->get_additional_commerical_features_html($features_list);
@@ -726,7 +722,7 @@ function epl_property_tab_section_after() {
 		</div>
 	<?php }
 }
-add_action('epl_property_after_tab_section','epl_property_after_tab_section');
+add_action('epl_property_tab_section_after','epl_property_tab_section_after');
 
 function epl_get_price_sticker() {
 	global $property;
@@ -934,9 +930,6 @@ add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
 add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
 function epl_property_gallery () {
-<<<<<<< HEAD
-	$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
-=======
 
 	global $epl_settings;
 	
@@ -952,7 +945,6 @@ function epl_property_gallery () {
 		$d_gallery_n		= $epl_settings['display_gallery_n'];
 	}
 	
->>>>>>> upstream/1.3-Beta-3
 	if ( $attachments && $d_gallery == 1 ) { ?>
 		<div class="property-gallery">
 			<!-- Gallery -->

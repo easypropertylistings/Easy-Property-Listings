@@ -75,18 +75,9 @@
 			
 					<h3 class="secondary-heading"><?php do_action('epl_property_secondary_heading'); ?></h3>
 					<?php
-<<<<<<< HEAD
-						echo '<h3>';
-							do_action('epl_property_secondary_heading');
-						echo '</h3>';
-						do_action('epl_property_content_before');
-						the_content();
-						do_action('epl_property_content_after');
-=======
 						do_action('epl_property_content_before');
 						
 						the_content();
->>>>>>> upstream/1.3-Beta-3
 						
 						do_action('epl_property_content_after');
 					?>

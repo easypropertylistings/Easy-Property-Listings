@@ -133,19 +133,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 		function compatible_extensions () {
 			$extensions = array(
-<<<<<<< HEAD
-				'Easy Property Listings - Listing Alerts'					=>	'1.0.1',
-				'Easy Property Listings - Listing Unlimited'				=>	'1.1',
-				'Easy Property Listings - Location Profiles'				=>	'1.1.6',
-				'Easy Property Listings - 1Form Integration'				=>	'1.1.2',
-				'Easy Property Listings - Advanced Mapping'					=>	'1.1.6',
-				'Easy Property Listings - Award Manager'					=>	'1.1.1',
-				'Easy Property Listings - Business Directory'				=>	'1.1.3',
-				'Easy Property Listings - Inspect Real Estate'				=>	'1.1.2',
-				'Easy Property Listings - Listing Templates'				=>	'1.2',
-				'Easy Property Listings - Market Research'					=>	'1.0.0',
-				'Easy Property Listings - Staff Directory'					=>	'1.2',
-=======
 				'Easy Property Listings - Listing Alerts'				=>	'1.0.1',
 				'Easy Property Listings - Listing Unlimited'				=>	'1.1',
 				'Easy Property Listings - Location Profiles'				=>	'1.1.6',
@@ -157,7 +144,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				'Easy Property Listings - Listing Templates'				=>	'1.2',
 				'Easy Property Listings - Market Research'				=>	'1.0.0',
 				'Easy Property Listings - Staff Directory'				=>	'1.2',
->>>>>>> upstream/1.3-Beta-3
 				'Easy Property Listings - Testimonial Management'			=>	'1.1.4',
 			);
 			return apply_filters('epl_compatible_extensions',$extensions);
