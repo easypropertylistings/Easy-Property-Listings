@@ -175,6 +175,7 @@ function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_c
 
 }
 add_action( 'epl_property_featured_image' , 'epl_property_featured_image' );
+add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
 
 /*
 * Single Listing Templates

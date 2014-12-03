@@ -976,7 +976,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_sold_date',
 							'label'		=>	__('Sale Date', 'epl'),
-							'type'		=>	'text',
+							'type'		=>	'sold-date',
 							'maxlength'	=>	'100'
 						),
 					
@@ -1693,7 +1693,10 @@ function epl_meta_box_init() {
 														case 'auction-date':
 															echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
 															break;
-														
+															
+														case 'sold-date':
+															echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+															break;
 														
 														case 'url':
 															echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[url]]" />';
@@ -1814,6 +1817,15 @@ function epl_meta_box_init() {
 												} else {
 													$epl_date = DateTime::createFromFormat('Y-m-d-H:i:s', $epl_date);
 													$epl_date = $epl_date->format('Y-m-d\TH:i');
+												}
+												$_POST[ $field['name'] ] = $epl_date;
+											} else if( $field['type'] == 'sold-date' && $_POST[ $field['name'] ] != '') {
+												$epl_date = $_POST[ $field['name'] ];
+												if(strpos($epl_date, 'T') !== FALSE){
+													$epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
+												} else {
+													$epl_date = DateTime::createFromFormat('Y-m-d-H:i:s', $epl_date);
+													$epl_date = $epl_date->format('Y-m-d');
 												}
 												$_POST[ $field['name'] ] = $epl_date;
 											}

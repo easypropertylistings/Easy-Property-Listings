@@ -20,18 +20,18 @@ class EPL_Widget_Property_Search extends WP_Widget {
 
 	function widget($args, $instance) {	
 		$defaults = array(
-			'title'				=>	'',
-			'post_type'			=>	array('property'),
-			'property_status'	=>	'any',
+			'title'					=>	'',
+			'post_type'				=>	array('property'),
+			'property_status'		=>	'any',
 			'search_house_category'	=>	'on',
-			'search_price'		=>	'on',
-			'search_bed'		=>	'on',
-			'search_bath'		=>	'on',
-			'search_car'		=>	'on',
-			'search_other'		=>	'on',
-			'search_id'			=>	'on',
-			'search_land_area'		=>	'on',
-			'search_building_area'		=>	'on',
+			'search_price'			=>	'on',
+			'search_bed'			=>	'on',
+			'search_bath'			=>	'on',
+			'search_car'			=>	'on',
+			'search_other'			=>	'on',
+			'search_id'				=>	'off',
+			'search_land_area'		=>	'off',
+			'search_building_area'	=>	'off',
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
 		extract( $args );
@@ -67,18 +67,18 @@ class EPL_Widget_Property_Search extends WP_Widget {
 
 	function form($instance) {
 		$defaults = array(
-			'title'				=>	'',
-			'post_type'			=>	array('property'),
-			'property_status'	=>	'any',
+			'title'					=>	'',
+			'post_type'				=>	array('property'),
+			'property_status'		=>	'any',
 			'search_house_category'	=>	'on',
-			'search_price'		=>	'on',
-			'search_bed'		=>	'on',
-			'search_bath'		=>	'on',
-			'search_car'		=>	'on',
-			'search_id'			=>	'on',
-			'search_other'		=>	'on',
-			'search_land_area'		=>	'on',
-			'search_building_area'		=>	'on',
+			'search_price'			=>	'on',
+			'search_bed'			=>	'on',
+			'search_bath'			=>	'on',
+			'search_car'			=>	'on',
+			'search_other'			=>	'on',
+			'search_id'				=>	'off',
+			'search_land_area'		=>	'off',
+			'search_building_area'	=>	'off',
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 	
 	
@@ -103,7 +103,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php _e('Property Type:', 'epl'); ?></label> 
+			<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php _e('Listing Type, hold CTRL to select multiple and enable tabs', 'epl'); ?></label> 
 			<select multiple class="widefat" id="<?php echo $this->get_field_id('post_type'); ?>" name="<?php echo $this->get_field_name('post_type'); ?>[]">
 				<?php
 					$supported_post_types = epl_get_active_post_types();
