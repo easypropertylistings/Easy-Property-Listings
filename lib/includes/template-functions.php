@@ -772,9 +772,12 @@ function epl_widget_listing_address ($d_suburb='',$d_street='') {
 }
 
 function epl_switch_views_sorting() {
-	$sortby = '';
+	$sortby = ''; $show = '';
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 		$sortby = sanitize_text_field(trim($_GET['sortby']));
+	}
+	if(isset($_GET['show']) && trim($_GET['show']) != ''){
+		$show = sanitize_text_field(trim($_GET['show']));
 	}
 	do_action('epl_archive_utility_wrap_start');
 	?>
@@ -793,6 +796,11 @@ function epl_switch_views_sorting() {
 				<option <?php selected( $sortby, 'high' ); ?> value="high"><?php _e('High to Low','epl'); ?></option>
 				<option <?php selected( $sortby, 'low' ); ?> value="low"><?php _e('Low to High','epl'); ?></option>
 			</select>
+			<select id="epl-sort-date">
+				<option <?php selected( $sortby, '' ); ?> value=""><?php _e('Sort By Date','epl'); ?></option>
+				<option <?php selected( $sortby, 'new' ); ?> value="new"><?php _e('Newest First','epl'); ?></option>
+				<option <?php selected( $sortby, 'old' ); ?> value="old"><?php _e('Oldest First','epl'); ?></option>
+			</select>
 		</div>
 	</div>
 	<?php
@@ -803,7 +811,7 @@ add_action( 'epl_template_before_property_loop' , 'epl_switch_views_sorting' , 2
 function epl_archive_sorting($query) {
 	$post_types_sold 	= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rural');
 	$post_types_rental 	= array('rental');
-	$post_type = get_query_var( 'post_type' );
+	$post_type 			= get_query_var( 'post_type' );
 	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental )){
 		if(!$query->is_main_query()){
 			return;
@@ -837,6 +845,30 @@ function epl_archive_sorting($query) {
 	}
 }
 add_action('pre_get_posts','epl_archive_sorting');
+
+function epl_listings_order_by ($query) {
+	global $wpdb;
+	$orderby = ''; $show = 'DESC';
+	if((isset($_GET['sortby']) && trim($_GET['sortby']) != '') && (isset($_GET['show']) && trim($_GET['show']) != '')){
+			// both orderby are set
+			$orderby 	= sanitize_text_field(trim($_GET['sortby']));
+			$show 		= sanitize_text_field(trim($_GET['show']));
+			$show		= 	$show == 'old'?'ASC':'DESC';
+			$query		= $query.' , '.$wpdb->prefix.'posts.post_date '.$show;
+			
+	} elseif((isset($_GET['sortby']) && trim($_GET['sortby']) != '') && (!isset($_GET['show']) || trim($_GET['show']) == '')) {
+		// orderby price
+	
+	} elseif((isset($_GET['show']) && trim($_GET['show']) != '') && (!isset($_GET['sortby']) || trim($_GET['sortby']) == '')) {
+		// orderby post date
+		$show 		= sanitize_text_field(trim($_GET['show']));
+		$show		= 	$show == 'old'?'ASC':'DESC';
+		$query 		= $wpdb->prefix.'posts.post_date '.$show;
+	
+	}
+    return $query;
+}
+add_action('posts_orderby','epl_listings_order_by');
 
 /*==== Author functions ==*/
 
@@ -882,7 +914,11 @@ function epl_author_tab_about() {
 		<?php if ( $author_style == 1) { ?>
 			<h5 class="author-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
 		<?php } else { ?>
-			<h5 class="author-title"><?php the_author_posts_link(); ?></h5>
+			<h5 class="author-title">
+				<a href="<?php echo get_author_posts_url( $epl_author->author_id ); ?>">
+					<?php the_author_meta( 'display_name',$epl_author->author_id ); ?>
+				</a>
+			</h5>
 		<?php } ?>
 		<div class="author-contact">
 			<span class="label-mobile"></span>
