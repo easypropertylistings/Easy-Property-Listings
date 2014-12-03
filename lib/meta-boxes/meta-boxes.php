@@ -1240,7 +1240,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
-					'id'		=>	'commercial_features',
+					'id'		=>	'commerial_features',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1395,7 +1395,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
-					'id'		=>	'files_n_links',
+					'id'		=>	'filen_n_links',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(

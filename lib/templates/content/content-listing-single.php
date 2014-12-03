@@ -22,11 +22,11 @@
 	
 			<div class="entry-col property-pricing-details">
 			
-				<?php do_action('epl_before_property_price'); ?>
+				<?php do_action('epl_property_price_before'); ?>
 				<div class="property-meta pricing">
 					<?php do_action('epl_property_price'); ?>
 				</div>
-				<?php do_action('epl_after_property_price'); ?>
+				<?php do_action('epl_property_price_after'); ?>
 				<div class="property-feature-icons epl-clearfix">
 					<?php do_action('epl_property_icons'); ?>				
 				</div>
@@ -37,7 +37,7 @@
 
 	<div class="entry-content epl-content epl-clearfix">
 	
-		<?php do_action( 'epl_single_featured_image' ); ?>
+		<?php do_action( 'epl_property_featured_image' ); ?>
 		
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 
@@ -71,44 +71,32 @@
 				<h5 class="tab-title"><?php _e('Description', 'epl'); ?></h5>
 				<div class="tab-content">
 					<!-- heading -->
-					<h2 class="entry-title"><?php do_action('epl_the_property_heading'); ?></h2>
+					<h2 class="entry-title"><?php do_action('epl_property_heading'); ?></h2>
 			
 					<?php
 						echo '<h3>';
 							do_action('epl_property_secondary_heading');
 						echo '</h3>';
-					
+						do_action('epl_property_content_before');
 						the_content();
-						do_action('epl_property_after_content');
+						do_action('epl_property_content_after');
 						
 					?>
 				</div>
 			</div>
 
-			<?php do_action('epl_property_before_tab_section'); ?>
+			<?php do_action('epl_property_tab_section_before'); ?>
 			<div class="epl-tab-section">
-					<?php do_action('epl_property_the_tab_section'); ?>
+					<?php do_action('epl_property_tab_section'); ?>
 			</div>
-			<?php do_action('epl_property_after_tab_section'); 
+			<?php do_action('epl_property_tab_section_after'); ?>
 			
-			$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
-			if ( $attachments && $d_gallery == 1 ) { ?>
-				<div class="property-gallery">
-					<!-- Gallery -->
-					<div class="entry-gallery epl-clearfix">
-						<?php 
-							$d_gallery_n = '[gallery columns="'. $d_gallery_n . '" link="file"]';
-							echo do_shortcode( $d_gallery_n );
-						?>					
-					</div>
-				</div>
-				<?php
-			} ?>
-			
+			<?php do_action( 'epl_property_gallery' ); ?>
 			
 			<?php do_action( 'epl_property_map' ); ?>
 			
 			<?php do_action( 'epl_single_extensions' ); ?>
+			
 			
 			<!-- Agent -->
 			<?php

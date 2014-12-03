@@ -135,10 +135,6 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
-= 1.3: November 18, 2014 =
-* Major Features being introduced
-* New: Dashboard Widget
-
 = 1.2.1: September 23, 2014 =
 * Fix: Search Widget not working on page 2 of archive page in some instances
 * Fix: Property feature list Toilet and New Construction now display in list when ticked
