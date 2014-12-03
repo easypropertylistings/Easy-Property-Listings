@@ -566,7 +566,7 @@ function epl_property_content_after() {
 add_action('epl_property_content_after','epl_property_content_after');
 
 /** 
-	@hooked property_the_tab_section
+	@hooked property_tab_section
 **/
 function epl_property_tab_section() {
 	global $property;
@@ -663,7 +663,7 @@ function epl_property_tab_section() {
 	</div>
 	<?php
 }
-add_action('epl_property_the_tab_section','epl_property_the_tab_section');
+add_action('epl_property_tab_section','epl_property_tab_section');
 
 /** 
 	@hooked property_after_tab_section
@@ -680,7 +680,6 @@ function epl_property_tab_section_after() {
 			'property_com_highlight_2',
 			'property_com_highlight_3',
 			'property_com_zone',
-
 		);
 		foreach($features_lists as $features_list){
 			$the_property_commercial_feature_list .= $property->get_additional_commerical_features_html($features_list);
@@ -723,7 +722,7 @@ function epl_property_tab_section_after() {
 		</div>
 	<?php }
 }
-add_action('epl_property_after_tab_section','epl_property_after_tab_section');
+add_action('epl_property_tab_section_after','epl_property_tab_section_after');
 
 function epl_get_price_sticker() {
 	global $property;
