@@ -277,8 +277,7 @@ class Property_Meta {
 								<span class="rent-period">/' . $this->get_property_meta('property_rent_period') . '</span>
 							</span>
 						';
-				$yo = $this->get_property_bond();
-				if($this->get_property_bond() != '' && in_array($this->epl_settings['display_bond'],array(1,'yes')))
+				if($this->get_property_bond() != '' && in_array($this->get_epl_settings('display_bond'),array(1,'yes')))
 					$price .= '<span class="bond">' . $this->get_property_bond() . ' bond</span>';
 					
 			} elseif('leased' == $this->get_property_meta('property_status')) {
