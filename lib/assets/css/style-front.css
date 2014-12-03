@@ -508,6 +508,7 @@ li.tbhead.current {
     left: 0;
     position: absolute;
     top: 20px;
+    width: 100%;
 }
 
 .epl-property-blog .status-sticker {

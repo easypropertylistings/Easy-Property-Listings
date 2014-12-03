@@ -28,13 +28,13 @@ global $property;
 				</a>
 				
 				<!-- Home Open -->
-				<?php epl_property_inspection_times() ?>
+				<?php do_action('epl_property_inspection_times'); ?>
 			</div>
 		<?php endif; ?>
 
 		<div class="property-box property-box-right property-content">
 			<!-- Heading -->
-			<h3 class="entry-title"><a href="<?php the_permalink() ?>"><?php epl_the_property_heading(); ?></a></h3>
+			<h3 class="entry-title"><a href="<?php the_permalink() ?>"><?php do_action('epl_property_heading'); ?></a></h3>
 			<div class="entry-content">
 				<?php echo the_excerpt(); ?>
 			</div>

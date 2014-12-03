@@ -73,14 +73,13 @@
 					<!-- heading -->
 					<h2 class="entry-title"><?php do_action('epl_property_heading'); ?></h2>
 			
+					<h3 class="secondary-heading"><?php do_action('epl_property_secondary_heading'); ?></h3>
 					<?php
-						echo '<h3>';
-							do_action('epl_property_secondary_heading');
-						echo '</h3>';
 						do_action('epl_property_content_before');
-						the_content();
-						do_action('epl_property_content_after');
 						
+						the_content();
+						
+						do_action('epl_property_content_after');
 					?>
 				</div>
 			</div>

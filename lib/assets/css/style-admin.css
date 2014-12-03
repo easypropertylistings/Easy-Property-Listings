@@ -58,6 +58,13 @@
 .epl-meta-box li {
 	list-style: none;
 }
+.epl_meta_home_open_label {
+	margin: 0.5em 0;
+}
+.epl_meta_home_open_label ul,
+.epl_meta_home_open_label ul li {
+	margin: 0;
+}
 .epl-half-left,
 .epl-third-left {
 	float: left;

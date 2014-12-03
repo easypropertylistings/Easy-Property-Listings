@@ -50,7 +50,6 @@ function epl_register_custom_post_type_property() {
 		'query_var'				=>	true,
 		'rewrite'				=>	$rewrite,
 		'menu_icon'				=>	'dashicons-admin-home',
-		//'menu_icon'			=>	plugins_url( 'post-types/icons/home.png' , dirname(__FILE__) ),
 		'capability_type'		=>	'post',
 		'has_archive'			=>	$archives,
 		'hierarchical'			=>	false,
@@ -77,15 +76,15 @@ if ( is_admin() ) {
 	 */
 	function epl_manage_property_columns_heading( $columns ) {
 		$columns = array(
-			'cb' => '<input type="checkbox" />',
-			'property_thumb' => __('Image', 'epl'),
-			'property_price' => __('Price', 'epl'),
-			'title' => __('Address', 'epl'),
-			'listing' => __('Listing Details', 'epl'),
-			'geo' => __('Geo', 'epl'),
-			'property_status' => __('Status', 'epl'),
-			'author' => __('Agent', 'epl'),
-			'date' => __('Date', 'epl')
+			'cb' 				=> '<input type="checkbox" />',
+			'property_thumb'	=> __('Image', 'epl'),
+			'property_price'	=> __('Price', 'epl'),
+			'title' 			=> __('Address', 'epl'),
+			'listing'			=> __('Listing Details', 'epl'),
+			'geo'				=> __('Geo', 'epl'),
+			'property_status'	=> __('Status', 'epl'),
+			'author'			=> __('Agent', 'epl'),
+			'date'				=> __('Date', 'epl')
 		);
 		
 		$geo_debug = 0;
@@ -117,13 +116,13 @@ if ( is_admin() ) {
 				
 			case 'listing' :
 				/* Get the post meta. */
-				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading = get_post_meta( $post_id, 'property_heading', true );
-				$homeopen = get_post_meta( $post_id, 'property_inspection_times', true );
-				$beds = get_post_meta( $post_id, 'property_bedrooms', true );
-				$baths = get_post_meta( $post_id, 'property_bathrooms', true );
-				$land = get_post_meta( $post_id, 'property_land_area', true );
-				$land_unit = get_post_meta( $post_id, 'property_land_area_unit', true );
+				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
+				$heading 					= get_post_meta( $post_id, 'property_heading', true );
+				$homeopen 					= get_post_meta( $post_id, 'property_inspection_times', true );
+				$beds 						= get_post_meta( $post_id, 'property_bedrooms', true );
+				$baths 						= get_post_meta( $post_id, 'property_bathrooms', true );
+				$land 						= get_post_meta( $post_id, 'property_land_area', true );
+				$land_unit 					= get_post_meta( $post_id, 'property_land_area_unit', true );
 				
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
@@ -147,13 +146,13 @@ if ( is_admin() ) {
 				}
 				
 				if ( !empty( $homeopen) ) {
-					$homeopen = array_filter(explode("\n", $homeopen));
-						$pit =  "<ul>";
-						foreach ($homeopen as $num => $item) {
-						  $pit .= "<li>" . htmlspecialchars($item) . "</li>";
+					$homeopen = array_filter(explode( "\n", $homeopen ));
+						$homeopen_list =  '<ul class="epl_meta_home_open">';
+						foreach ( $homeopen as $num => $item ) {
+						  $homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 						}
-						$pit .= "</ul>";
-					echo '<div class="epl_meta_home_open_label"><strong>Open: <span class="epl_meta_home_open">' , $pit , '</strong></span></div>';
+						$homeopen_list .= '</ul>';
+					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>Open:</strong></span>' , $homeopen_list , '</div>';
 				} 
 			
 				break;

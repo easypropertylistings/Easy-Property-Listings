@@ -267,49 +267,56 @@ function epl_get_admin_option_fields() {
 			)
 		),
 		array(
-			'label'		=>	__('Widget Labels', 'epl'),
+			'label'		=>	__('Search Widget Tab Labels', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'labels',
 			'fields'	=>	array(
 
 				array(
 					'name'	=>	'widget_label_property',
-					'label'	=>	__('Property Label', 'epl'),
+					'label'	=>	__('Property', 'epl'),
 					'type'	=>	'text',
 					'default'	=>	'Property',
 					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - property', 'epl')
 				),
 				array(
 					'name'	=>	'widget_label_land',
-					'label'	=>	__('Land Label', 'epl'),
+					'label'	=>	__('Land', 'epl'),
 					'type'	=>	'text',
 					'default'	=>	'Land',
 					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - land', 'epl')
 				),
 				array(
 					'name'	=>	'widget_label_rental',
-					'label'	=>	__('Rental Label', 'epl'),
+					'label'	=>	__('Rental', 'epl'),
 					'type'	=>	'text',
 					'default'	=>	'Rental',
 					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - rental', 'epl')
 				),
 				array(
+					'name'	=>	'widget_label_rural',
+					'label'	=>	__('Rural', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Rural',
+					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - rural', 'epl')
+				),
+				array(
 					'name'	=>	'widget_label_commercial',
-					'label'	=>	__('Commercial Label', 'epl'),
+					'label'	=>	__('Commercial', 'epl'),
 					'type'	=>	'text',
 					'default'	=>	'Commercial',
 					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - commercial', 'epl')
 				),
 				array(
 					'name'	=>	'widget_label_commercial_land',
-					'label'	=>	__('Commercial Land Label', 'epl'),
+					'label'	=>	__('Commercial Land', 'epl'),
 					'type'	=>	'text',
 					'default'	=>	'Commercial Land',
 					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - commercial land', 'epl')
 				),
 				array(
 					'name'	=>	'widget_label_business',
-					'label'	=>	__('Business Label', 'epl'),
+					'label'	=>	__('Business', 'epl'),
 					'type'	=>	'text',
 					'default'	=>	'Business',
 					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - business', 'epl')
