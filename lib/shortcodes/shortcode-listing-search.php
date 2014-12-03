@@ -33,8 +33,8 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		'search_bed'				=>	'on', 	// on or off
 		'search_bath'				=>	'on', 	// on or off
 		'search_car'				=>	'on', 	// on or off
-		'search_id'					=>	'on', 	// on or off
 		'search_other'				=>	'on',  	// on or off
+		'search_id'					=>	'on', 	// on or off
 		'search_land_area'			=>	'on',	// on or off
 		'search_building_area'		=>	'on',	// on or off
 	), $atts);

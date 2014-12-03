@@ -227,16 +227,6 @@ function epl_get_admin_option_fields() {
 					'label'	=>	__('Location label', 'epl'),
 					'type'	=>	'text'
 				),
-				array(
-					'name'	=>	'debug',
-					'label'	=>	__('Debug', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						1	=>	'On',
-						0	=>	'Off'
-					),
-					'help'	=>	__('Display Geocode Result in Admin', 'epl')
-				),
 				
 				array(
 					'name'	=>	'epl_max_graph_sales_price',
@@ -252,7 +242,6 @@ function epl_get_admin_option_fields() {
 					'type'	=>	'number',
 					'default'	=>	'2000',
 					'help'	=>	__('Will be used by epl bars & charts to determine bar width', 'epl'),
-					
 				),
 
 				array(
@@ -261,6 +250,17 @@ function epl_get_admin_option_fields() {
 					'type'	=>	'number',
 					'default'	=>	'7',
 					'help'	=>	__('listings will have a "NEW" Sticker for the defined number of days', 'epl')
+				),
+				
+				array(
+					'name'	=>	'debug',
+					'label'	=>	__('Debug', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	'On',
+						0	=>	'Off'
+					),
+					'help'	=>	__('Display Lat/Long coordinates on listing pages in admin', 'epl')
 				),
 			),
 		),

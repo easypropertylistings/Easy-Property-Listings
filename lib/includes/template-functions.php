@@ -175,6 +175,10 @@ function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_c
 
 }
 add_action( 'epl_property_featured_image' , 'epl_property_featured_image' );
+<<<<<<< HEAD
+=======
+add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
+>>>>>>> upstream/1.3-Beta-3
 
 /*
 * Single Listing Templates
@@ -930,7 +934,25 @@ add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
 add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
 function epl_property_gallery () {
+<<<<<<< HEAD
 	$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
+=======
+
+	global $epl_settings;
+	
+	$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
+	
+	$d_gallery = '';
+	if(!empty($epl_settings) && isset($epl_settings['display_single_gallery'])) {
+		$d_gallery		= $epl_settings['display_single_gallery'];
+	}
+	
+	$d_gallery_n = '';
+	if(!empty($epl_settings) && isset($epl_settings['display_gallery_n'])) {
+		$d_gallery_n		= $epl_settings['display_gallery_n'];
+	}
+	
+>>>>>>> upstream/1.3-Beta-3
 	if ( $attachments && $d_gallery == 1 ) { ?>
 		<div class="property-gallery">
 			<!-- Gallery -->
