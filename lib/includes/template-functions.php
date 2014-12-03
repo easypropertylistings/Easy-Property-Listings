@@ -438,6 +438,7 @@ function epl_the_listing_address(){
 }
 add_action('epl_single_the_title','epl_the_listing_address');
 add_action('epl_property_tab_address','epl_the_listing_address');
+add_action('epl_property_address','epl_the_listing_address');
 
 /**
 	@hooked property_price

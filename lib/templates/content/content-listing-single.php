@@ -47,23 +47,16 @@
 				<div class="tab-content">
 					<div class="tab-content property-details">
 						<h3 class="tab-address">
-							<?php do_action('epl_property_tab_address'); ?>
+							<?php do_action('epl_property_address'); ?>
 						</h3>
 						<?php do_action('epl_property_land_category'); ?>
 						<?php do_action('epl_property_price_content'); ?>
 						<?php do_action('epl_property_commercial_category'); ?>
 					</div>
-					
-						<div class="property-meta">
-							<?php
-								do_action('epl_property_available_dates');		// meant for rent only
-								
-								do_action('epl_property_inspection_times');	
-								
-							?>
-						</div>
-					
-					
+					<div class="property-meta">
+						<?php do_action('epl_property_available_dates');// meant for rent only ?>								
+						<?php do_action('epl_property_inspection_times'); ?>
+					</div>
 				</div>
 			</div>
 
