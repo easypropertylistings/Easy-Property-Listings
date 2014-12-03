@@ -91,7 +91,7 @@ class Property_Meta {
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
-						return date( 'l jS F \a\t H:i' , strtotime($this->meta['property_auction'][0]) );
+						return date( 'l jS F \a\t h:i a' , strtotime($this->meta['property_auction'][0]) );
 					}
 			}	
 		}

@@ -101,10 +101,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * @return void
 		 */
 		function check_installed_extensions_compatibility() {
-		
 			$outdated = array();
 			$activated_plugins = wp_get_active_and_valid_plugins();
-			
 			foreach($activated_plugins as $activated_plugin) {
 			
 				$plugin_data = get_plugin_data($activated_plugin);
