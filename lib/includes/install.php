@@ -57,6 +57,7 @@ function epl_install() {
 			'widget_label_commercial'		=> __('Commercial', 'epl'),
 			'widget_label_commercial_land'	=> __('Commercial Land', 'epl'),
 			
+			'label_bond'					=> __('Bond', 'epl'),
 			'label_location'				=> __('Suburb', 'epl'),
 			'label_suburb'					=> __('Suburb', 'epl'),
 			'label_postcode'				=> __('Post Code', 'epl'),

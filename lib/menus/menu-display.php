@@ -186,13 +186,13 @@ function epl_get_admin_option_fields() {
 
 				array(
 					'name'	=>	'display_bond',
-					'label'	=>	__('Bond Amount Display (Rental Listing Type)', 'epl'),
+					'label'	=>	__('Rental Bond/Deposit Amount Display (Rental Listing Type)', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	__('On', 'epl'),
 						0	=>	__('Off', 'epl')
 					),
-					'help'	=>	__('Hide or show the bond on rental properties', 'epl')
+					'help'	=>	__('Hide or show the bond/deposit on rental listings', 'epl')
 				),
 
 				array(
@@ -234,6 +234,12 @@ function epl_get_admin_option_fields() {
 			'id'		=>	'labels',
 			'fields'	=>	array(
 
+				array(
+					'name'	=>	'label_bond',
+					'label'	=>	__('Rental Bond or Deposit(default is: Bond)', 'epl'),
+					'type'	=>	'text'
+				),
+				
 				array(
 					'name'	=>	'label_suburb',
 					'label'	=>	__('Suburb/City (default is: Suburb)', 'epl'),
