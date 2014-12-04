@@ -295,7 +295,7 @@ function epl_reset_post_author() {
 	
 }
 
-add_action( 'epl_single_author' , 'epl_property_author_box' , 1 );
+add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
  
 // AUTHOR CARD : Standard
 function epl_property_author_box_simple_card() {
