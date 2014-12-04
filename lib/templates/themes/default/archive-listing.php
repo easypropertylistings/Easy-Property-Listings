@@ -60,6 +60,17 @@ get_header(); ?>
 					</div>
 				</div>
 			</div>
+		<?php 
+		else :
+			?><div class="hentry">
+				<div class="entry-header clearfix">
+					<h3 class="entry-title"><?php _e('Listing not Found', 'epl'); ?></h3>
+				</div>
+				
+				<div class="entry-content clearfix">
+					<p><?php _e('Listing not found, expand your search criteria and try again.', 'epl'); ?></p>
+				</div>
+			</div>
 		<?php endif; ?>
 	</div>
 </section>

@@ -295,7 +295,7 @@ function epl_reset_post_author() {
 	
 }
 
-add_action( 'epl_single_author' , 'epl_property_author_box' , 1 );
+add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
  
 // AUTHOR CARD : Standard
 function epl_property_author_box_simple_card() {
@@ -315,7 +315,7 @@ function epl_property_author_box_simple_grav() {
 		$author_style = $epl_settings['epl_staff_link_to'];
 	}
 	
-	include( 'content/content-author-box-simple-grav.php' );
+	include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box-simple-grav.php' );
 }
 
 // AUTHOR LISTING CARDS : Listing Card

@@ -73,9 +73,20 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 								<div class="loop-footer">
 									<!-- Previous/Next page navigation -->
 									<div class="loop-utility clearfix">
-										<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'it-l10n-Builder-Coverage' ) ); ?></div>
-										<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'it-l10n-Builder-Coverage' ) ); ?></div>
+										<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
+										<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
 									</div>
+								</div>
+							</div>
+						<?php 
+						else : ?>
+							<div class="hentry">
+								<div class="entry-header clearfix">
+									<h3 class="entry-title"><?php _e('Listing not Found', 'epl'); ?></h3>
+								</div>
+								
+								<div class="entry-content clearfix">
+									<p><?php _e('Listing not found, expand your search criteria and try again.', 'epl'); ?></p>
 								</div>
 							</div>
 						<?php endif; ?>

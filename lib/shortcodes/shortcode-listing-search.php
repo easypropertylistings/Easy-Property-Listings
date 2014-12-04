@@ -25,18 +25,18 @@ function epl_shortcode_listing_search_callback( $atts ) {
 	global $wpdb;
 	$atts = shortcode_atts( array(
 		'show_title'				=>	true, //For disable title in case of widget calling (true/false)
-		'title'						=>	'', // Freeform text
-		'post_type'					=>	array('property'), // Post type name array
+		'title'					=>	'', // Freeform text
+		'post_type'				=>	array('property'), // Post type name array
 		'property_status'			=>	'', 	// Singular: current / sold / leased or '' for any
-		'search_house_category'		=>	'on', 	// on or off
+		'search_house_category'			=>	'on', 	// on or off
 		'search_price'				=>	'on', 	// on or off
 		'search_bed'				=>	'on', 	// on or off
 		'search_bath'				=>	'on', 	// on or off
 		'search_car'				=>	'on', 	// on or off
 		'search_other'				=>	'on',  	// on or off
-		'search_id'					=>	'on', 	// on or off
-		'search_land_area'			=>	'on',	// on or off
-		'search_building_area'		=>	'on',	// on or off
+		'search_id'				=>	'off', 	// on or off
+		'search_land_area'			=>	'off',	// on or off
+		'search_building_area'			=>	'off',	// on or off
 	), $atts);
 	extract($atts);
 	extract( $_GET );
