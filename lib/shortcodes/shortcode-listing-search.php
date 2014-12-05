@@ -49,15 +49,17 @@ function epl_shortcode_listing_search_callback( $atts ) {
 	ob_start();	
 	$tabcounter = 1;
 	if(!empty($post_types)):
-	echo '<ul class="property_search-tabs">';
-	foreach($post_types as $post_type):
+		if(count($post_types) > 1):
+			echo '<ul class="property_search-tabs">';
+			foreach($post_types as $post_type):
 	
-		$is_sb_current = $tabcounter == 1?'epl-sb-current':'';
-		echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.$epl_settings['widget_label_'.$post_type].'</li>';
-		//echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.isset($epl_settings['widget_label_'.$post_type])?$epl_settings['widget_label_'.$post_type]:$post_type.'</li>';
-		$tabcounter++;
-	endforeach;
-	echo '</ul>';
+				$is_sb_current = $tabcounter == 1?'epl-sb-current':'';
+				$post_type_label = isset($epl_settings['widget_label_'.$post_type])?$epl_settings['widget_label_'.$post_type]:$post_type;
+				echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.$post_type_label.'</li>';
+				$tabcounter++;
+			endforeach;
+			echo '</ul>';
+		endif;
 	?>
 	<div class="epl-search-forms-wrapper">
 		<?php
@@ -80,7 +82,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				<input type="hidden" name="post_type" value="<?php echo $post_type; ?>" />
 				
 				<?php
-					if ( $search_id == 'on' ) {
+					if ( $search_id == 'on' && $post_type != 'land' ) {
 						?>
 							<div class="fm-block bdr-btm">
 								<label for="property_id" class="fm-label">
@@ -516,7 +518,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					}
 					
 				
-					if ( $search_other == 'on' ) { ?>
+					if ( $search_other == 'on' && $post_type != 'land' ) { ?>
 						<div class="fm-block bdr-btm">
 							<span class="checkbox">
 								<input type="checkbox" name="property_air_conditioning" id="property_air_conditioning" class="in-field" <?php if(isset($property_air_conditioning) && !empty($property_air_conditioning)) { echo 'checked="checked"'; } ?> />

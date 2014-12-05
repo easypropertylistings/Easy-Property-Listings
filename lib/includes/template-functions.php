@@ -793,15 +793,12 @@ function epl_switch_views_sorting() {
 			</ul>
 		</div>
 		<div class="epl-properties-sorting epl-clearfix">
-			<select id="epl-sort-price">
-				<option <?php selected( $sortby, '' ); ?> value=""><?php _e('Sort By Price','epl'); ?></option>
-				<option <?php selected( $sortby, 'high' ); ?> value="high"><?php _e('High to Low','epl'); ?></option>
-				<option <?php selected( $sortby, 'low' ); ?> value="low"><?php _e('Low to High','epl'); ?></option>
-			</select>
-			<select id="epl-sort-date">
-				<option <?php selected( $sortby, '' ); ?> value=""><?php _e('Sort By Date','epl'); ?></option>
-				<option <?php selected( $sortby, 'new' ); ?> value="new"><?php _e('Newest First','epl'); ?></option>
-				<option <?php selected( $sortby, 'old' ); ?> value="old"><?php _e('Oldest First','epl'); ?></option>
+			<select id="epl-sort-listings">
+				<option <?php selected( $sortby, '' ); ?> value=""><?php _e('Sort','epl'); ?></option>
+				<option <?php selected( $sortby, 'high' ); ?> value="high"><?php _e('Price: High to Low','epl'); ?></option>
+				<option <?php selected( $sortby, 'low' ); ?> value="low"><?php _e('Price: Low to High','epl'); ?></option>
+				<option <?php selected( $sortby, 'new' ); ?> value="new"><?php _e('Date: Newest First','epl'); ?></option>
+				<option <?php selected( $sortby, 'old' ); ?> value="old"><?php _e('Date: Oldest First','epl'); ?></option>
 			</select>
 		</div>
 	</div>
@@ -830,6 +827,12 @@ function epl_archive_sorting($query) {
 					$query->set( 'orderby', 'meta_value_num' );
 					$query->set( 'meta_key', 'property_price' );
 					$query->set( 'order', 'ASC' );
+				}elseif($orderby == 'new') {
+					$query->set( 'orderby', 'post_date' );
+					$query->set( 'order', 'DESC' );
+				} elseif($orderby == 'old') {
+					$query->set( 'orderby', 'post_date' );
+					$query->set( 'order', 'ASC' );
 				}
 			}
 			elseif(in_array($post_type,$post_types_rental)) { // rental property
@@ -841,36 +844,18 @@ function epl_archive_sorting($query) {
 					$query->set( 'orderby', 'meta_value_num' );
 					$query->set( 'meta_key', 'property_rent' );
 					$query->set( 'order', 'ASC' );
+				}elseif($orderby == 'new') {
+					$query->set( 'orderby', 'post_date' );
+					$query->set( 'order', 'DESC' );
+				} elseif($orderby == 'old') {
+					$query->set( 'orderby', 'post_date' );
+					$query->set( 'order', 'ASC' );
 				}
 			}
 		} 
 	}
 }
 add_action('pre_get_posts','epl_archive_sorting');
-
-function epl_listings_order_by ($query) {
-	global $wpdb;
-	$orderby = ''; $show = 'DESC';
-	if((isset($_GET['sortby']) && trim($_GET['sortby']) != '') && (isset($_GET['show']) && trim($_GET['show']) != '')){
-			// both orderby are set
-			$orderby 	= sanitize_text_field(trim($_GET['sortby']));
-			$show 		= sanitize_text_field(trim($_GET['show']));
-			$show		= 	$show == 'old'?'ASC':'DESC';
-			$query		= $query.' , '.$wpdb->prefix.'posts.post_date '.$show;
-			
-	} elseif((isset($_GET['sortby']) && trim($_GET['sortby']) != '') && (!isset($_GET['show']) || trim($_GET['show']) == '')) {
-		// orderby price
-	
-	} elseif((isset($_GET['show']) && trim($_GET['show']) != '') && (!isset($_GET['sortby']) || trim($_GET['sortby']) == '')) {
-		// orderby post date
-		$show 		= sanitize_text_field(trim($_GET['show']));
-		$show		= 	$show == 'old'?'ASC':'DESC';
-		$query 		= $wpdb->prefix.'posts.post_date '.$show;
-	
-	}
-    return $query;
-}
-add_action('posts_orderby','epl_listings_order_by');
 
 /*==== Author functions ==*/
 

@@ -20,7 +20,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Easy Digital Downloads. If not, see <http://www.gnu.org/licenses/>.
+ * along with Easy Property Listings. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package EPL
  * @category Core
@@ -125,33 +125,18 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 		function compatible_extensions () {
 			$extensions = array(
-<<<<<<< HEAD
-				'Easy Property Listings - Listing Alerts'				=>	'1.0.1',
-				'Easy Property Listings - Listing Unlimited'			=>	'1.1',
-				'Easy Property Listings - Location Profiles'			=>	'1.1.6',
-				'Easy Property Listings - 1Form Integration'			=>	'1.1.2',
-				'Easy Property Listings - Advanced Mapping'				=>	'1.1.6',
-				'Easy Property Listings - Award Manager'				=>	'1.1.1',
-				'Easy Property Listings - Business Directory'			=>	'1.1.3',
-				'Easy Property Listings - Inspect Real Estate'			=>	'1.1.2',
-				'Easy Property Listings - Listing Templates'			=>	'1.2',
-				'Easy Property Listings - Market Research'				=>	'1.0.0',
-				'Easy Property Listings - Staff Directory'				=>	'1.2',
-				'Easy Property Listings - Testimonial Management'		=>	'1.1.4',
-=======
-				'Easy Property Listings - Listing Alerts'				=>	'1.0',
-				'Easy Property Listings - Listing Unlimited'			=>	'1.1',
-				'Easy Property Listings - Location Profiles'			=>	'1.1',
-				'Easy Property Listings - 1Form Integration'			=>	'1.1',
-				'Easy Property Listings - Advanced Mapping'				=>	'1.1',
-				'Easy Property Listings - Award Manager'				=>	'1.1',
-				'Easy Property Listings - Business Directory'			=>	'1.1',
-				'Easy Property Listings - Inspect Real Estate'			=>	'1.1',
-				'Easy Property Listings - Listing Templates'			=>	'1.2',
-				'Easy Property Listings - Market Research'				=>	'1.0',
-				'Easy Property Listings - Staff Directory'				=>	'1.2',
-				'Easy Property Listings - Testimonial Management'		=>	'1.1',
->>>>>>> 1bfb04e3e7b23a31a1a51d34d64daf1cf2373069
+				'Easy Property Listings - Listing Alerts'					=>	'1.0.1',
+				'Easy Property Listings - Listing Unlimited'				=>	'1.1',
+				'Easy Property Listings - Location Profiles'				=>	'1.1.6',
+				'Easy Property Listings - 1Form Integration'				=>	'1.1.2',
+				'Easy Property Listings - Advanced Mapping'					=>	'1.1.6',
+				'Easy Property Listings - Award Manager'					=>	'1.1.1',
+				'Easy Property Listings - Business Directory'				=>	'1.1.3',
+				'Easy Property Listings - Inspect Real Estate'				=>	'1.1.2',
+				'Easy Property Listings - Listing Templates'				=>	'1.2',
+				'Easy Property Listings - Market Research'					=>	'1.0.0',
+				'Easy Property Listings - Staff Directory'					=>	'1.2',
+				'Easy Property Listings - Testimonial Management'			=>	'1.1.4',
 			);
 			return apply_filters('epl_compatible_extensions',$extensions);
 		}
@@ -167,7 +152,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if( isset($outdated) && !empty($outdated)){
 					foreach($outdated as $extension_name	=>	$extension_version) {
 						echo '<div class="error"><p>';
-						_e('Currently installed version : '.$extension_version.' of '.$extension_name.' is not compatible with current version of <strong>Easy Property Listings</strong> Please update it','epl');
+						_e('Currently installed version : '.$extension_version.' of '.$extension_name.' is outdated, you should consider updating it','epl');
 						echo '</p></div>';
 					}
 			}
