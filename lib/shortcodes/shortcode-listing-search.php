@@ -53,7 +53,8 @@ function epl_shortcode_listing_search_callback( $atts ) {
 	foreach($post_types as $post_type):
 	
 		$is_sb_current = $tabcounter == 1?'epl-sb-current':'';
-		echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.isset($epl_settings['widget_label_'.$post_type])?$epl_settings['widget_label_'.$post_type]:$post_type.'</li>';
+		echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.$epl_settings['widget_label_'.$post_type].'</li>';
+		//echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.isset($epl_settings['widget_label_'.$post_type])?$epl_settings['widget_label_'.$post_type]:$post_type.'</li>';
 		$tabcounter++;
 	endforeach;
 	echo '</ul>';
