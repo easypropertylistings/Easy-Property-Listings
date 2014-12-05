@@ -288,20 +288,19 @@ function epl_property_author_box() {
 }
 
 function epl_reset_post_author() {
-	global $post,$epl_author;
+	global $post, $epl_author;
 	if(class_exists('Author_Meta')) {
 		$epl_author = new Author_Meta($post->post_author);
 	}
 	
 }
 
-add_action( 'epl_single_author' , 'epl_property_author_box' , 1 );
+add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
  
 // AUTHOR CARD : Standard
 function epl_property_author_box_simple_card() {
-	include(EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
+	include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
 	include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box-simple-card.php' );
-	
 }
 
 // AUTHOR CARD : Gravatar
@@ -315,12 +314,14 @@ function epl_property_author_box_simple_grav() {
 		$author_style = $epl_settings['epl_staff_link_to'];
 	}
 	
-	include( 'content/content-author-box-simple-grav.php' );
+	include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box-simple-grav.php' );
 }
 
 // AUTHOR LISTING CARDS : Listing Card
-function epl_property_author_card($display,$image,$title,$icons) {
+function epl_property_author_card( $display , $image , $title , $icons) {
+
 	global $property;
+	
 	$property_status = $property->get_property_meta('property_status');	
 	
 	// Status Removal
@@ -735,7 +736,7 @@ function epl_get_property_price () {
 	return $property->get_price();
 }
 
-function epl_widget_listing_address ($d_suburb='',$d_street='') {
+function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
 	global $property;
 	if ($property->post_type == 'commercial' || $property->post_type == 'business' ){
 		if ( $property->get_property_meta('property_address_display') == 'no' && $property->get_property_meta('property_com_display_suburb') == 'no') { ?>

@@ -31,9 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		<!-- Address -->
 		<div class="property-address">
-			<?php 
-				epl_widget_listing_address($d_suburb,$d_street);
-			 ?>
+			<?php do_action('epl_property_address'); ?>
 		</div>
 		<!-- END Address -->
 		
