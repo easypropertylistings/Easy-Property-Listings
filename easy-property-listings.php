@@ -66,17 +66,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {
 				self::$instance = new Easy_Property_Listings;
 				self::$instance->hooks();
+				self::$instance->setup_constants();
+				self::$instance->includes();
+				self::$instance->load_textdomain();
+				update_option('epl_running',true);
 				$outdated = get_option('epl_outdated_extensions');
-				if(isset($outdated) && !empty($outdated)) {
-					// outdated extensions exists
-					update_option('epl_running',false);
-				} else {
-					// everything is good !
-					self::$instance->setup_constants();
-					self::$instance->includes();
-					self::$instance->load_textdomain();
-					update_option('epl_running',true);
-				}
 			}
 			return self::$instance;
 
