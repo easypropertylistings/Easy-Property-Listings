@@ -492,6 +492,14 @@ width: 31%;
     	width:100%;
     }
 }
+@media screen and (max-width: 500px)  { 
+	.fixed .column-listing {
+		display:none;
+	}
+	.fixed .column-listing, .fixed .column-property_status {
+		display:none;
+	}
+}
 .epl-nav-tab-wrapper{
 	border-bottom:none;
 }
