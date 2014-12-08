@@ -1880,10 +1880,18 @@ function epl_meta_box_init() {
 				$('.epl-geocoder-button').click(function() {
 					var $obj = $(this);
 					$obj.parent().addClass('disabled');
+					if($obj.closest('form').find('#property_address_sub_number').length) {
+						listingUnit = $obj.closest('form').find('#property_address_sub_number').val();
+					} else if($obj.closest('form').find('#property_address_lot_number').length) {
+						listingUnit = $obj.closest('form').find('#property_address_lot_number').val();
+					} else {
+						listingUnit = '';
+					}
 					$.ajax({
 						type: "POST",
 						url: ajaxurl,
 						data: {
+							'property_address_sub_number'	:	listingUnit,
 							'property_address_street_number':	$obj.closest('form').find('#property_address_street_number').val(),
 							'property_address_street'		:	$obj.closest('form').find('#property_address_street').val(),
 							'property_address_suburb'		:	$obj.closest('form').find('#property_address_suburb').val(),
@@ -1945,9 +1953,13 @@ function epl_meta_box_init() {
 	 * @since 1.0
 	 */
 	function epl_get_geocoordinates() {
-		$address = $_POST['property_address_street_number'] . ' ' . $_POST['property_address_street'] . ' ' . $_POST['property_address_suburb'] . ' ' . $_POST['property_address_state'] . ' ' . $_POST['property_address_postal_code'];
+		$address = '';
+		if(trim($_POST['property_address_sub_number']) != '') {
+			$address .= $_POST['property_address_sub_number'].'/';
+		}
+		$address .= $_POST['property_address_street_number'] . ' ' . $_POST['property_address_street'] . ' ' . $_POST['property_address_suburb'] . ' ' . $_POST['property_address_state'] . ' ' . $_POST['property_address_postal_code'];
 		$address = urlencode(strtolower(trim($address)));
-		$geourl = "http://maps.google.com/maps/api/geocode/json?address=". $address ."&sensor=false";
+		$geourl = "http://maps.google.com/maps/api/geocode/json?address=". urlencode($address) ."&sensor=false";
 		$response = epl_remote_url_get($geourl);
 		if(!empty($response)) {
 			$geocoordinates = $response[0]->geometry->location->lat . ',' . $response[0]->geometry->location->lng;

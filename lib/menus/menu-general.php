@@ -26,7 +26,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 				$epl_settings = get_option('epl_settings');
 				
 				if( isset($field['default']) ) {
-					if($_REQUEST[ $field['name'] ] == '') {
+					if($_REQUEST[ $field['name'] ] == '' || $_REQUEST[ $field['name'] ] == 0) {
 						$_REQUEST[ $field['name'] ] = $field['default'];
 					}
 				}
