@@ -103,6 +103,13 @@ width: 31%;
 	float:left;
 	width:98%;
 }
+.epl-general-form{
+	width:75%;
+	float:left;
+}
+.epl-content-sidebar {
+	float:left;
+}
 .epl-menu-page,
 .epl-section-content {
 	overflow: hidden;

@@ -49,7 +49,7 @@ $epl_settings = get_option('epl_settings');
 	<h2><?php _e('General Settings', 'epl'); ?></h2>
 	<p><?php _e('Configure Easy Property Listings general settings. Visit ', 'epl'); ?><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a><?php _e(' for help.', 'epl');?></p>
 	<div id="epl-menu-general" class="epl-content">
-		<form action="" method="post">
+		<form action="" method="post" class="epl-general-form">
 			<div class="epl-fields epl-menu-page">
 				<?php
 					if(!empty($fields)) { ?>
@@ -155,6 +155,11 @@ $epl_settings = get_option('epl_settings');
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
+		<div class="epl-content-sidebar">
+			<?php epl_admin_sidebar (); ?>
+		</div>
+
+
 	</div>
 </div><?php
 
