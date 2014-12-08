@@ -9,6 +9,7 @@ class Property_Meta {
 	public $property_post_type;
 	
 	 public function __construct($post) {
+	 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
         $this->post 				= $post;
         $this->epl_settings 		= epl_settings();
         $this->meta 				= get_post_custom();
@@ -33,15 +34,30 @@ class Property_Meta {
 	
 	public function get_property_inspection_times($meta_key='property_inspection_times') {
 		$pit = $this->get_property_meta($meta_key);
-		if($pit != ''){
-			$list = explode("\n", $pit);
+		if($pit != '') {
+			$list = array_filter(explode("\n", $pit));
 			if(!empty($list)){
-				$return =  "<ul>";
+				$inspectarray = array();
 				foreach ($list as $num => $item) {
-				  $return .= "<li>" . htmlspecialchars($item) . "</li>";
+					$timearr = explode(' ',$item);
+					$endtime = current($timearr).' '.end($timearr);
+					if(strtotime($endtime) > time()) {
+						$item = trim($item);
+						$inspectarray[strtotime($endtime)] = $item;
+						
+					}
 				}
-				$return .= "</ul>";
-				return  $return;
+				ksort($inspectarray);
+				$return =  "";
+				foreach ($inspectarray as $key => $element) {
+					if(!empty($element)) {
+						$return .= "<li>" . htmlspecialchars($element) . "</li>";
+					}
+				}
+				if(!empty($return)) {
+					$return = '<ul>'.$return.'</ul>';
+					return  $return;
+				}
 			}
 		}
 	}
@@ -75,7 +91,7 @@ class Property_Meta {
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
-						return date( 'l jS F \a\t H:i' , strtotime($this->meta['property_auction'][0]) );
+						return date( 'l jS F \a\t g:i a' , strtotime($this->meta['property_auction'][0]) );
 					}
 			}	
 		}
@@ -97,7 +113,7 @@ class Property_Meta {
 			$property_price = epl_currency_formatted_amount( $property_price_search );
 		}
 		// Auction Details and Price override
-		if ( $this->get_property_meta('property_authority') == 'auction' || $this->get_property_meta('property_authority') == 'Auction' ) {
+		if ( $this->get_property_meta('property_authority') == 'auction') {
 			$property_price = __( 'Auction' , 'epl') . ' ' . $this->get_property_auction();
 		}
 		return $property_price;
@@ -141,8 +157,8 @@ class Property_Meta {
 					$street .= $this->get_property_meta('property_address_sub_number').'/';
 					
 				$street .= $this->get_property_meta('property_address_street_number').' ';
-				$this->get_property_meta('property_address_street').' '.
-				$this->get_property_meta('property_address_suburb');
+				$street .=$this->get_property_meta('property_address_street').' ';
+				//$street .=$this->get_property_meta('property_address_suburb');
 		return $street;
 	}
 	
@@ -233,12 +249,13 @@ class Property_Meta {
 	// get price 
 	public function get_price() {
 		$price = '';
-		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){ 
+		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
 				$price = '<span class="page-price sold-status">'.__('Sold', 'epl').'</span>';
-			} 
+			}
 			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 				$price = '<span class="page-price">'. $this->get_property_price_display() . '</span>';
+				
 			} else {
 				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
 					$price_plain_value = $this->epl_settings['label_poa'];
@@ -260,8 +277,7 @@ class Property_Meta {
 								<span class="rent-period">/' . $this->get_property_meta('property_rent_period') . '</span>
 							</span>
 						';
-		
-				if($this->get_property_bond() != '' && $this->epl_settings['display_bond'] == 'yes')
+				if($this->get_property_bond() != '' && in_array($this->get_epl_settings('display_bond'),array(1,'yes')))
 					$price .= '<span class="bond">' . $this->get_property_bond() . ' bond</span>';
 					
 			} elseif('leased' == $this->get_property_meta('property_status')) {
@@ -299,45 +315,56 @@ class Property_Meta {
 	// price sticker
 	public function get_price_sticker() {
 		$price_sticker = '';
+		$date = new DateTime($this->post->post_date);
+		$now = new DateTime();
+		$diff = $now->diff($date);
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
+			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
-				$price_sticker = '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
+				$price_sticker .= '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
 			} 
-			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
+			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {
+				// Property
+				$price_sticker = '';
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					$price_sticker = '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
+					if($this->get_epl_settings('sticker_new_range') >=  $diff->days) 
+						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
+						
+					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
-			} else {
-				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					$price_sticker = '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
-				}
+			
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$price_sticker = '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
+				$price_sticker = '';
+				$price_sticker .= '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
 			}
 			
 			
 		} elseif('rental' == $this->post_type) { 
 		
-			if( '' != $this->get_property_rent() && 'yes' == $this->get_property_meta('property_rent_display') && 'leased' != $this->get_property_meta('property_status') ) {
-					
-				$price_sticker = '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
-					
-			} elseif('leased' == $this->get_property_meta('property_status')) {
-				$price_sticker = '<span class="status-sticker leased">'.__('Leased', 'epl').'</span>';
+			if('leased' == $this->get_property_meta('property_status')) {
+				$price_sticker = '';
+				$price_sticker .= '<span class="status-sticker leased">'.__('Leased', 'epl').'</span>';
 				
 			} else {
+				$price_sticker = '';
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					$price_sticker = '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
+					
+					if($this->get_epl_settings('sticker_new_range') >=  $diff->days)
+						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
+						
+					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
 			}
 			
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type) {
+			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ){
-				$price_sticker = '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
+				$price_sticker .= '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
 			} 
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$price_sticker = '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
+			
+				$price_sticker .= '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
 			}
 			
 		}
@@ -406,15 +433,17 @@ class Property_Meta {
 	}
 	
 	// property commercial category
-	public function get_property_commercial_category() {
+	public function get_property_commercial_category($tag='div') {
 		$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta('property_commercial_category') );
-		$property_commercial_category = '<div class="commercial-category">' . $property_commercial_category . '</div>';
+		$property_commercial_category = '<'.$tag.' class="commercial-category">' . $property_commercial_category . '</'.$tag.'>';
 		return $property_commercial_category;
 	}
 	
 	// property bed
 	
 	public function get_property_bed($returntype = 'i') {
+		if($this->get_property_meta('property_bedrooms') == '')
+			return;
 		$bed['i'] = '<span title="'.__('Bedrooms', 'epl').'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>'; 
 		$bed['d'] = $this->get_property_meta('property_bedrooms') . ' '.__('bed', 'epl').' ';
 		$bed['l'] = '<li class="bedrooms">' . $this->get_property_meta('property_bedrooms') . ' '.__('bed', 'epl').'</li>';
@@ -424,6 +453,8 @@ class Property_Meta {
 	// property bathrooms
 	
 	public function get_property_bath($returntype = 'i') {
+		if($this->get_property_meta('property_bathrooms') == '')
+			return;
 		$bath['i'] = '<span title="'.__('Bathrooms', 'epl').'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>'; 
 		$bath['d'] = $this->get_property_meta('property_bedrooms') . ' '.__('bath', 'epl').' ';
 		$bath['l'] = '<li class="bathrooms">' . $this->get_property_meta('property_bathrooms') . ' '.__('bath', 'epl').'</li>';
@@ -432,6 +463,8 @@ class Property_Meta {
 	
 	// property parking
 	public function get_property_parking() {
+		if($this->get_property_meta('property_parking') == '')
+			return;
 		if($this->get_property_meta('property_parking') != ''){
 			return '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' . $this->get_property_meta('property_parking') . '</span></span>';
 		}
@@ -439,6 +472,8 @@ class Property_Meta {
 	
 	// property ac
 	public function get_property_air_conditioning($returntype = 'i') {
+		if($this->get_property_meta('property_air_conditioning') == '')
+			return;
 		$property_air_conditioning = $this->get_property_meta('property_air_conditioning');
 		if( isset($property_air_conditioning) && ($property_air_conditioning == 1 || $property_air_conditioning == 'yes') ) { 
 			$air['i'] = '<span title="'.__('Air Conditioning', 'epl').'" class="icon air"></span>'; 
@@ -449,6 +484,8 @@ class Property_Meta {
 	
 	// property pool
 	public function get_property_pool($returntype = 'i') {
+		if($this->get_property_meta('property_pool') == '')
+			return;
 		$property_pool = $this->get_property_meta('property_pool');
 		if( isset($property_pool) && ($property_pool == 1 || $property_pool == 'yes') ) { 
 			$pool['i'] = '<span title="'.__('Pool', 'epl').'" class="icon pool"></span>'; 
@@ -459,6 +496,8 @@ class Property_Meta {
 	
 	// property security system
 	public function get_property_security_system($returntype = 'i') {
+		if($this->get_property_meta('property_security_system') == '')
+			return;
 		$property_security_system = $this->get_property_meta('property_security_system');
 		if( isset($property_security_system) && ($property_security_system == 1 || $property_security_system == 'yes') ) { 
 			$security_system['i'] = '<span title="'.__('Alarm System', 'epl').'" class="icon alarm"></span>'; 
@@ -469,29 +508,74 @@ class Property_Meta {
 	
 	// property land value
 	public function get_property_land_value($returntype = 'i') {
-		return '<li class="land-size">'.__('Land is', 'epl').' ' . $this->get_property_meta('property_land_area') . '</li>';
+		$property_land_area_unit = $this->get_property_meta('property_land_area_unit');
+		if ( $property_land_area_unit == 'squareMeter' ) {
+			$property_land_area_unit = 'sqm';
+		}
+		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
+			return '
+				<li class="land-size">'.
+					__('Land is', 'epl').' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'
+			
+				</li>';
+		}
 	}
 	
 	// property building area
 	public function get_property_building_area_value($returntype = 'i') {
-		return '<li class="land-size">'.__('Floor Area is', 'epl').' ' . $this->get_property_meta('property_building_area') . '</li>';
+		$building_unit = $this->get_property_meta('property_building_area_unit');
+		if ( $building_unit == 'squareMeter' ) {
+			$building_unit = 'm²';
+		}
+		if(intval($this->get_property_meta('property_building_area')) != 0 ) { 
+			return '
+			<li class="land-size">'.__('Floor Area is', 'epl').' ' .
+		 		$this->get_property_meta('property_building_area') .' '.$building_unit.
+	 		'</li>';
+		}
+		
 	}
 	
 	// new construction
 	public function get_property_new_construction($returntype = 'i') {
 		$property_new_construction = $this->get_property_meta('property_new_construction');
 		if( isset($property_new_construction) && ($property_new_construction == 1 || $property_new_construction == 'yes') ) { 
-			$property_new_construction['i'] = '<span title="'.__('New Construction', 'epl').'" class="icon new_construction"></span>'; 
-			$property_new_construction['l'] = '<li class="pool">'.__('New Construction', 'epl').'</li>';
-			return $property_new_construction[$returntype];
+			$return_construction = array();
+			$return_construction['i'] = '<span title="'.__('New Construction', 'epl').'" class="icon new_construction"></span>'; 
+			$return_construction['l'] = '<li class="pool">'.__('New Construction', 'epl').'</li>';
+			return $return_construction[$returntype];
 		}
 	}
 	
 	// additional features html
 	public function get_additional_features_html($metakey) {
 			$metavalue = $this->get_property_meta($metakey);
-			if( isset($metavalue) && ($metavalue == 1 || $metavalue == 'yes') ) {
-				return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+			if( $metavalue != '' || intval($metavalue) != 0) {
+				if($metakey == 'property_com_car_spaces'){
+					$metavalue = $metavalue.__(' Car Spaces', 'epl');
+				}
+				
+				if( (is_numeric($metavalue))|| $metavalue == 'yes' ) {
+					if($metavalue == 0)
+						return;
+						
+					// toggle field types -- yes or 1 for toggle true
+					if($metavalue == 'yes' || $metavalue == 1){ 
+						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';	
+					} elseif(is_numeric($metavalue)) {
+						// numbered field types 
+						return '
+								<li class="'.$this->get_class_from_metakey($metakey).'">'.
+									$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').
+								'</li>';
+					} else {
+						// others
+						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.'</li>';
+					}
+					
+				}
+				// string value field types
+				return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.'</li>';
 			}
 	}
 	
@@ -500,11 +584,23 @@ class Property_Meta {
 			$metavalue = $this->get_property_meta($metakey);
 			if( isset($metavalue) && $metavalue != '' ) {
 				return '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
-							<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'epl').'<h6>'.
+							<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'epl').'</h6>'.
 							'<p>'.$metavalue.'</p>'.
 						'</div>';
 			}
 	}
+	
+	// additional commerical features html
+	public function get_additional_commerical_features_html($metakey) {
+			$metavalue = $this->get_property_meta($metakey);
+			if( isset($metavalue) && $metavalue != '' ) {
+				return '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
+							<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'epl').'</h6>'.
+							'<p>'.$metavalue.'</p>'.
+						'</div>';
+			}
+	}
+	
 	
 	public function get_class_from_metakey($key,$search= 'property_'){
 		 return str_replace("property_", "", $key);
@@ -513,6 +609,15 @@ class Property_Meta {
 	
 	public function get_label_from_metakey($key,$search= 'property_'){
 		 return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
+	}
+	
+	public function get_features_from_taxonomy() {
+		$property_feature_taxonomy = '';
+		if ( taxonomy_exists('tax_feature') ) {
+			global $post;
+			$property_feature_taxonomy = get_the_term_list($this->post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' );
+		}
+		return $property_feature_taxonomy;
 	}
 }
 

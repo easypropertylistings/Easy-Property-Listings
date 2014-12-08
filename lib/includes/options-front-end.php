@@ -64,20 +64,9 @@ if( is_admin() ) {
  *
  * @since 1.0
  */
-function epl_get_youtube_id_from_url($youtube_url) {
-	$url = parse_url($youtube_url);
-	if( $url['host'] !== 'youtube.com' && $url['host'] !== 'www.youtube.com'&& $url['host'] !== 'youtu.be'&& $url['host'] !== 'www.youtu.be') {
-		return '';
-	}
-
-	if( $url['host'] === 'youtube.com' || $url['host'] === 'www.youtube.com' ) :
-		parse_str(parse_url($youtube_url, PHP_URL_QUERY), $query_string);
-		return $query_string["v"];
-	endif;
-
-	$youtube_id = substr( $url['path'], 1 );
-	if( strpos( $youtube_id, '/' ) )
-		$youtube_id = substr( $youtube_id, 0, strpos( $youtube_id, '/' ) );
-
-	return $youtube_id;
+ function epl_get_youtube_id_from_url($text) {
+	$text = preg_replace("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", "$1", $text);
+	$text = explode('?',$text);
+	return $text[0];
 }
+

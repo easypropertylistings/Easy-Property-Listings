@@ -24,7 +24,14 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
 				$epl_settings = get_option('epl_settings');
+				
+				if( isset($field['default']) ) {
+					if($_REQUEST[ $field['name'] ] == '') {
+						$_REQUEST[ $field['name'] ] = $field['default'];
+					}
+				}
 				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+				
 				update_option('epl_settings', $epl_settings);
 			}
 		}
@@ -115,7 +122,11 @@ $epl_settings = get_option('epl_settings');
 																		}
 																	}
 																	break;
-
+																
+																case 'number':
+																	echo '<input class="validate[custom[onlyNumber]]" type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.intval($val).'" />';
+																	break;
+																	
 																default:
 																	echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 															}
@@ -216,7 +227,31 @@ function epl_get_admin_option_fields() {
 					'label'	=>	__('Location label', 'epl'),
 					'type'	=>	'text'
 				),
+				
+				array(
+					'name'	=>	'epl_max_graph_sales_price',
+					'label'	=>	__('Maximum Sales Price', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'2000000',
+					'help'	=>	__('Will be used by epl bars & charts to determine bar width', 'epl')
+				),
+				
+				array(
+					'name'	=>	'epl_max_graph_rent_price',
+					'label'	=>	__('Maximum Rent Price', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'2000',
+					'help'	=>	__('Will be used by epl bars & charts to determine bar width', 'epl'),
+				),
 
+				array(
+					'name'	=>	'sticker_new_range',
+					'label'	=>	__('Keep Listings tagged "New" for', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'7',
+					'help'	=>	__('listings will have a "NEW" Sticker for the defined number of days', 'epl')
+				),
+				
 				array(
 					'name'	=>	'debug',
 					'label'	=>	__('Debug', 'epl'),
@@ -225,7 +260,18 @@ function epl_get_admin_option_fields() {
 						1	=>	'On',
 						0	=>	'Off'
 					),
-					'help'	=>	__('Display Geocode Result in Admin', 'epl')
+					'help'	=>	__('Display Lat/Long coordinates on listing pages in admin', 'epl')
+				),
+				
+				array(
+					'name'	=>	'listings_masonry',
+					'label'	=>	__('Listings Masonry', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	'On',
+						0	=>	'Off'
+					),
+					'help'	=>	__('enable masonry effect on grid view of listing archives', 'epl')
 				),
 			),
 		),

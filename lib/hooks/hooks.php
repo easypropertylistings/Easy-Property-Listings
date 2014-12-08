@@ -27,7 +27,6 @@ function epl_buttons_wrapper_after() {
 
 add_action('epl_buttons_single_property', 'epl_buttons_wrapper_before' , 1);
 add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
-
 /**
  * Flush Rewrite Rules
  */

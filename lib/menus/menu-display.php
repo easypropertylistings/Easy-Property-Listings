@@ -25,6 +25,13 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 				}
 
 				$epl_settings = get_option('epl_settings');
+				
+				if( isset($field['default']) ) {
+					if($_REQUEST[ $field['name'] ] == '') {
+						$_REQUEST[ $field['name'] ] = $field['default'];
+					}
+				}
+
 				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
 				update_option('epl_settings', $epl_settings);
 			}
@@ -112,7 +119,9 @@ $epl_settings = get_option('epl_settings');
 																	}
 																}
 																break;
-
+															case 'number':
+																	echo '<input class="validate[custom[onlyNumber]]" type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.intval($val).'" />';
+																	break;
 															default:
 																echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 														}
@@ -177,13 +186,13 @@ function epl_get_admin_option_fields() {
 
 				array(
 					'name'	=>	'display_bond',
-					'label'	=>	__('Bond Amount Display (Rental Listing Type)', 'epl'),
+					'label'	=>	__('Rental Bond/Deposit Amount Display (Rental Listing Type)', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	__('On', 'epl'),
 						0	=>	__('Off', 'epl')
 					),
-					'help'	=>	__('Hide or show the bond on rental properties', 'epl')
+					'help'	=>	__('Hide or show the bond/deposit on rental listings', 'epl')
 				),
 
 				array(
@@ -226,6 +235,12 @@ function epl_get_admin_option_fields() {
 			'fields'	=>	array(
 
 				array(
+					'name'	=>	'label_bond',
+					'label'	=>	__('Rental Bond or Deposit(default is: Bond)', 'epl'),
+					'type'	=>	'text'
+				),
+				
+				array(
 					'name'	=>	'label_suburb',
 					'label'	=>	__('Suburb/City (default is: Suburb)', 'epl'),
 					'type'	=>	'text'
@@ -244,9 +259,73 @@ function epl_get_admin_option_fields() {
 				),
 
 				array(
+					'name'	=>	'label_new',
+					'label'	=>	__('New Home Label (default is NEW)', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'new'
+				),
+				
+				array(
 					'name'	=>	'label_poa',
 					'label'	=>	__('No Price Label (default is POA)', 'epl'),
 					'type'	=>	'text'
+				)
+			)
+		),
+		array(
+			'label'		=>	__('Search Widget Tab Labels', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'labels',
+			'fields'	=>	array(
+
+				array(
+					'name'	=>	'widget_label_property',
+					'label'	=>	__('Property', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Property',
+					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - property', 'epl')
+				),
+				array(
+					'name'	=>	'widget_label_land',
+					'label'	=>	__('Land', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Land',
+					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - land', 'epl')
+				),
+				array(
+					'name'	=>	'widget_label_rental',
+					'label'	=>	__('Rental', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Rental',
+					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - rental', 'epl')
+				),
+				array(
+					'name'	=>	'widget_label_rural',
+					'label'	=>	__('Rural', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Rural',
+					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - rural', 'epl')
+				),
+				array(
+					'name'	=>	'widget_label_commercial',
+					'label'	=>	__('Commercial', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Commercial',
+					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - commercial', 'epl')
+				),
+				array(
+					'name'	=>	'widget_label_commercial_land',
+					'label'	=>	__('Commercial Land', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Commercial Land',
+					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - commercial land', 'epl')
+				),
+				array(
+					'name'	=>	'widget_label_business',
+					'label'	=>	__('Business', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Business',
+					'help'	=>	__('Will be used by search widget for the tab headings of the listing type - business', 'epl')
 				)
 			)
 		)

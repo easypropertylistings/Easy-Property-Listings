@@ -46,7 +46,7 @@ function epl_add_custom_user_profile_fields( $user ) {
 	$video 				= get_the_author_meta( 'video', $user->ID );
 	$contact_form 		= get_the_author_meta( 'contact-form', $user->ID ); ?>
 	
-	<h3><?php _e('Author Box Profile Information', 'epl'); ?></h3>
+	<h3><?php _e('Easy Property Listings: Author Box Profile', 'epl'); ?></h3>
 	<p><?php _e('The following details will appear in your author box and widgets.', 'epl'); ?></p>
 	
 	<table class="form-table">

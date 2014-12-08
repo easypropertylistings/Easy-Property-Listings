@@ -24,27 +24,27 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	
 			<div class="property-box slim property-box-right-slim property-content">
 				<!-- Heading -->
-				<h3 class="entry-title"><a href="<?php the_permalink() ?>"><?php epl_the_property_heading() ?></a></h3>
+				<h3 class="entry-title"><a href="<?php the_permalink() ?>"><?php do_action('epl_property_heading'); ?></a></h3>
 				
 				<?php //the_excerpt(); ?>
 			
 			<!-- Address -->
 			<div class="property-address">
 				<a href="<?php the_permalink(); ?>">
-					<?php epl_the_listing_address() ?>
+					<?php do_action('epl_property_tab_address'); ?>
 				</a>
 			</div>
 			
 				<!-- Home Open -->
-				<?php epl_property_inspection_times() ?>
+				<?php do_action('epl_property_inspection_times'); ?>
 				
 				<!-- Property Featured Icons -->
 				<div class="property-feature-icons">
-					<?php epl_property_icons(); ?>					
+					<?php do_action('epl_property_icons'); ?>						
 				</div>
 				
 				<div class="address">
-					<?php epl_property_price() ?>
+					<?php do_action('epl_property_price'); ?>
 				</div>
 			</div>
 		</div>

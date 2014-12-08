@@ -5,7 +5,6 @@
  * @package easy-property-listings
  * @subpackage Theme
  */
-
 ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded' ); ?>>
@@ -23,13 +22,13 @@
 	
 			<div class="entry-col property-pricing-details">
 			
-				<?php do_action('before_property_price'); ?>
+				<?php do_action('epl_property_price_before'); ?>
 				<div class="property-meta pricing">
-					<?php do_action('property_price'); ?>
+					<?php do_action('epl_property_price'); ?>
 				</div>
-				<?php do_action('after_property_price'); ?>
+				<?php do_action('epl_property_price_after'); ?>
 				<div class="property-feature-icons epl-clearfix">
-					<?php do_action('property_icons'); ?>				
+					<?php do_action('epl_property_icons'); ?>				
 				</div>
 				
 			</div>
@@ -38,7 +37,7 @@
 
 	<div class="entry-content epl-content epl-clearfix">
 	
-		<?php do_action( 'epl_single_featured_image' ); ?>
+		<?php do_action( 'epl_property_featured_image' ); ?>
 		
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 
@@ -48,23 +47,16 @@
 				<div class="tab-content">
 					<div class="tab-content property-details">
 						<h3 class="tab-address">
-							<?php do_action('property_tab_address'); ?>
+							<?php do_action('epl_property_address'); ?>
 						</h3>
-						<?php do_action('property_land_category'); ?>
-						<?php do_action('property_price_content'); ?>
-						<?php do_action('property_commercial_category'); ?>
+						<?php do_action('epl_property_land_category'); ?>
+						<?php do_action('epl_property_price_content'); ?>
+						<?php do_action('epl_property_commercial_category'); ?>
 					</div>
-					
-						<div class="property-meta">
-							<?php
-								do_action('property_available_dates');		// meant for rent only
-								
-								do_action('property_inspection_times');	
-								
-							?>
-						</div>
-					
-					
+					<div class="property-meta">
+						<?php do_action('epl_property_available_dates');// meant for rent only ?>								
+						<?php do_action('epl_property_inspection_times'); ?>
+					</div>
 				</div>
 			</div>
 
@@ -72,44 +64,31 @@
 				<h5 class="tab-title"><?php _e('Description', 'epl'); ?></h5>
 				<div class="tab-content">
 					<!-- heading -->
-					<h2 class="entry-title"><?php do_action('the_property_heading'); ?></h2>
+					<h2 class="entry-title"><?php do_action('epl_property_heading'); ?></h2>
 			
+					<h3 class="secondary-heading"><?php do_action('epl_property_secondary_heading'); ?></h3>
 					<?php
-						echo '<h3>';
-							do_action('property_secondary_heading');
-						echo '</h3>';
-					
-						echo get_the_content();
-						do_action('property_after_content');
+						do_action('epl_property_content_before');
 						
+						the_content();
+						
+						do_action('epl_property_content_after');
 					?>
 				</div>
 			</div>
 
-			<?php do_action('property_before_tab_section'); ?>
+			<?php do_action('epl_property_tab_section_before'); ?>
 			<div class="epl-tab-section">
-					<?php do_action('property_the_tab_section'); ?>
+					<?php do_action('epl_property_tab_section'); ?>
 			</div>
-			<?php do_action('property_after_tab_section'); 
+			<?php do_action('epl_property_tab_section_after'); ?>
 			
-			$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
-			if ( $attachments && $d_gallery == 1 ) { ?>
-				<div class="property-gallery">
-					<!-- Gallery -->
-					<div class="entry-gallery epl-clearfix">
-						<?php 
-							$d_gallery_n = '[gallery columns="'. $d_gallery_n . '" link="file"]';
-							echo do_shortcode( $d_gallery_n );
-						?>					
-					</div>
-				</div>
-				<?php
-			} ?>
-			
+			<?php do_action( 'epl_property_gallery' ); ?>
 			
 			<?php do_action( 'epl_property_map' ); ?>
 			
 			<?php do_action( 'epl_single_extensions' ); ?>
+			
 			
 			<!-- Agent -->
 			<?php

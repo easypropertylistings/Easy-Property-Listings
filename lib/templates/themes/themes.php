@@ -91,7 +91,6 @@ function epl_load_core_archive_templates( $archive_template ) {
 		} elseif (  $post->post_type == 'commercial_land'  ) {
 			$archive_template = $archive_template_child;
 		}
-		echo $archive_template; die;
 		return $archive_template;
 	} else {
 		global $post;
