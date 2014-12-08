@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.0
 
-Stable Tag: 1.2.99
+Stable Tag: 1.2.1208
 
 License: GNU Version 2 or Any Later Version
 
@@ -131,10 +131,303 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 2. Admin view of Property listing type
 3. Custom fields configured for a Property Listing type
 4. User Profile options for author box
-5. Search Widget adaps to child theme style 
+5. Search Widget adapts to child theme style 
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 1.3: December 9, 2014 =
+
+* New: Extension validator.
+* New: Moved listing-meta.php into compatibility folder.
+* New: Global $property variable.
+* New: Property custom meta re-written into class. This was the big change to 1.3 where we completely re-wrote the output of the meta values which are now accessible using global $property variable.
+* New: Property meta can now can be output using new actions for easy and quick custom template creation.
+* New: API for extensions now support WordPress editor with validation. 
+* New: jQuery date time picker formatting added to improve support for auction and sold listing, support for 30+ languages support.
+* New: Inspection time auto-formats REAXML date eg "13-Dec-2014 11:00am to 11:45am" and will no longer show past inspection times.
+* New: Inspection time support multiple dates written one per line.
+* New: CSS improved with better commenting and size reduction.
+* New: Dashboard widget now lists all listing status so at a glance you can see your property stock.
+* New: Display: To enable grid, list and sorter your custom archive-listing.php template requires the new action hook 'epl_template_before_property_loop' before the WordPress loop.
+* New: Display: Utility hook action hook added 'epl_template_after_property_loop' for future updates.
+* New: Display: List and grid view with optional masonry effect. 
+* New: Display: Sorter added for price high/low and date newest/oldest. 
+* New: Auction Date formats nicely. EG "Auction Saturday 28th December at 2:00pm".
+* New: Tabbed extensions page support in admin for advanced extensions like "Listing Alerts".
+* New: Multiple author support in Author Box.
+* New: Search Widget now supports multiple listing types, hold Ctrl to enable tabbed front end display. 
+* New: Search Widget Labels are configurable from the Display settings allowing you to set for example: "Property" to "Buy" and "Rental" to "Rent" and use a single widget to search multiple types.
+* New: Search widget and short code supports search by property ID, Land Area and Building Area.
+* New: Customise the 
+* New: Author CLASS.
+* New: Search short code supports array of property types.
+* New: REAXML date format function to format date correctly when using WP All Import Pro. Usage [epl_feedsync_format_date({./@modTime})]. 
+* New: REAXML Unit and lot formatting function for usage in the title when using WP All Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})].
+* New: Global $epl_settings settings variable adds new default values on plugin update.
+* New: Display: Added customisable label for rental Bond/Deposit.
+* New: Template functions completely re-written and can now be output using hooks.
+* New: Added NEW sticker with customisable label and ability to set how long a listing displays the new label.
+* New: Display: jQuery Masonry effect can be enabled from display settings.
+* New: Bar Graph API added.
+* New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 sale) and (2,000 rental).
+* New: Graph visually displays price and status.
+* New: Price graph now appears in admin pages quickly highlighting price and status visually. 
+* New: Meta Fields: Support for unit number, lot number (land).
+
+
+* Tweak: More YouTube URL formats supported.
+* Tweak: Global $epl_author. 
+* Tweak: Renamed user profile options section to "Easy Property Listings: Author Box Profile".
+* Tweak: Added better Bond/Deposit for rentals. 
+* Tweak: author-meta.php depreciated and moved to compatibility directory. Variables globally available using $epl_author variable.
+* Tweak: listing-meta.php depreciated and moved to compatibility directory.  Variables globally available with $property variable.
+* Tweak: Added "Listing not Found" to default templates when search performed with no results.
+* Tweak: Improved Google maps address output for addresses containing # and /.
+
+
+* Fix: Listing Pages now have better responsive support for small screen devices like iPhone.
+* Fix: Default templates for Genesis and TwentyTwelve now show "Listing Not Found" when a search result returns empty.
+* Fix: Purged translations in epl.pot file.
+* Fix: Search Widget and short code drastically reduces database queries.
+* Fix: 
+* Fix: 
+* Fix: 
+* Fix: 
+
+
+
+
+
+**PROPERTY**
+property_price_class
+
+
+
+NEW CLASS
+
+class Author_Meta
+class Property_Meta
+
+
+
+
+
+
+
+NEW Actions:
+
+**archive-listing.php**
+
+epl_template_before_property_loop
+epl_template_after_property_loop
+
+
+
+NEW FILTERS:
+-------------------
+
+**AUTHOR**
+epl_author_email_html
+epl_author_twitter_html
+epl_author_google_html
+epl_author_facebook_html
+epl_author_linkedin_html
+epl_author_skype_html
+epl_author_video
+
+epl_listing_search_price_rental
+epl_listing_search_price_sale
+
+
+ADMIN
+epl_listing_meta_address_block
+epl_listing_meta_boxes
+
+FILTERS
+-----------------------------
+epl_listing_meta_property_category
+epl_listing_meta_land_category
+epl_listing_meta_commercial_category
+epl_listing_meta_rural_category
+
+epl_archive_custom_excerpt_length
+
+
+epl_property_additional_features_list
+
+epl_author_tabs
+epl_display_author_social_icons
+
+
+NEW Functions
+---------------------------------
+**lib/includes/template-functions.php**
+reset_property_object( $post )
+create_property_object
+
+epl_author_tabs
+
+FUNCTIONS
+**lib/includes/template-functions.php**
+epl_property_sold_leased
+epl_property_single
+epl_property_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' )
+epl_property_single_default($d_gallery , $d_gallery_n, $d_map_position)
+epl_archive_custom_excerpt_length( $length ) 
+
+epl_property_blog
+epl_property_blog_default
+epl_property_blog_slim
+
+epl_reset_post_author
+
+
+epl_property_author_box
+epl_property_author_box_simple_card
+epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
+epl_property_author_box_simple_grav
+epl_property_author_card( $display , $image , $title , $icons)
+
+
+
+epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','epl')" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more )
+epl_property_widget_list_option()
+epl_property_widget_image_only_option( $image )
+
+
+
+epl_the_listing_address   <<<<<<< RENAME 
+
+
+epl_get_property_price
+epl_property_price
+
+epl_get_price_sticker
+
+epl_get_property_icons
+epl_property_icons
+
+epl_get_property_bb_icons
+
+epl_property_land_category
+
+epl_property_commercial_category
+epl_property_available_dates
+epl_property_inspection_times
+
+epl_property_heading
+epl_property_secondary_heading
+
+epl_property_content_after
+
+epl_property_tab_section
+epl_property_tab_section_after
+
+
+
+epl_widget_listing_address
+
+epl_switch_views_sorting
+
+epl_archive_sorting($query)
+
+
+
+epl_author_tabs
+
+epl_author_class ($classes)
+epl_author_tab_about
+epl_author_tab_video
+epl_author_tab_contact
+
+
+
+epl_archive_utility_wrap_before
+epl_archive_utility_wrap_after
+
+
+epl_property_gallery
+
+
+ACTIONS
+**lib/includes/template-functions.php**
+epl_single_author
+
+
+epl_property_author_box
+
+epl_property_featured_image
+epl_property_address
+epl_property_tab_address	DUPLICATE of epl_property_address
+epl_single_the_title		DUPLICATE of epl_property_address
+
+CONFLICTS to RENAME:
+
+_inline_js_vars
+
+
+
+
+
+TEMPLATE Actions
+--------------------------
+epl_single_before_title
+epl_single_the_title
+epl_single_after_title
+
+epl_property_price_before
+epl_property_price
+
+epl_property_icons
+
+epl_property_featured_image
+
+epl_property_address
+epl_property_land_category
+epl_property_price_content
+epl_property_commercial_category
+
+epl_property_available_dates
+epl_property_inspection_times
+
+epl_property_heading
+epl_property_secondary_heading
+
+
+epl_property_content_before
+epl_property_content_after
+
+
+epl_property_tab_section_before
+epl_property_tab_section
+epl_property_tab_section_after
+
+epl_property_gallery
+epl_property_map
+
+epl_single_extensions
+
+
+
+epl_property_loop_entry_before_content
+epl_property_loop_entry_after_content
+
+
+
+listings_archive_before_content
+listings_archive_after_content
+
+
+epl_template_before_property_loop
+epl_template_after_property_loop
+
+
+TEMPLATE FILTERS
+--------------------------
+property_tab_title
+
+
 = 1.2.1: September 23, 2014 =
 * Fix: Search Widget not working on page 2 of archive page in some instances
 * Fix: Property feature list Toilet and New Construction now display in list when ticked
