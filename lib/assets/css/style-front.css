@@ -31,6 +31,9 @@ h3.property-address {
 }
 .price-timeframe {
 }
+.epl-archive-utility-wrapper {
+	margin: 1em 0;	
+}
 /* Property Status */
 .property-under-offer,
 .property-sold,
@@ -752,16 +755,15 @@ li.tbhead.current {
 	margin: 0;
 }
 .epl-listing-grid-view.epl-listing-post {
-	box-shadow: 0 2px 2px 1px #ddd;
 	clear: none !important;
 	float: left;
-	margin: 1% 0.5%;
-	padding: 1% 0.5% !important;
+	margin: 0 2% 2%;
+	padding: 0 3% 0 1% !important;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
-	width: 200px;
+	width: 24.5%;
 }
 .epl-listing-post{
 	-webkit-transition: all 0.2s ease-in-out;
