@@ -37,15 +37,21 @@ class Property_Meta {
 		if($pit != '') {
 			$list = array_filter(explode("\n", $pit));
 			if(!empty($list)){
+				// there are inspection times
 				$inspectarray = array();
 				foreach ($list as $num => $item) {
-					$timearr = explode(' ',$item);
-					$endtime = current($timearr).' '.end($timearr);
-					if(strtotime($endtime) > time()) {
-						$item = trim($item);
-						$inspectarray[strtotime($endtime)] = $item;
-						
-					}
+				
+					if(is_numeric($item[0])) {
+						$timearr = explode(' ',$item);
+						$endtime = current($timearr).' '.end($timearr);
+						if(strtotime($endtime) > time()) {
+							$item = trim($item);
+							$inspectarray[strtotime($endtime)] = $item;
+						}
+
+					}	else	{
+						$inspectarray[$num]	=	$item;
+					}				
 				}
 				ksort($inspectarray);
 				$return =  "";
@@ -463,11 +469,12 @@ class Property_Meta {
 	
 	// property parking
 	public function get_property_parking() {
-		if($this->get_property_meta('property_parking') == '')
+		if($this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '')
 			return;
-		if($this->get_property_meta('property_parking') != ''){
-			return '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' . $this->get_property_meta('property_parking') . '</span></span>';
-		}
+		$property_garage 	= intval($this->get_property_meta('property_garage'));
+		$property_carport 	= intval($this->get_property_meta('property_carport'));
+		$property_parking 	= $property_carport + $property_garage;
+			return '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' .$property_parking. '</span></span>';
 	}
 	
 	// property ac
