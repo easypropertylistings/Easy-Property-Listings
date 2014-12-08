@@ -31,6 +31,9 @@ h3.property-address {
 }
 .price-timeframe {
 }
+.epl-archive-utility-wrapper {
+	margin: 1em 0;	
+}
 /* Property Status */
 .property-under-offer,
 .property-sold,
