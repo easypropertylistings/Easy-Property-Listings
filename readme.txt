@@ -174,6 +174,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Graph visually displays price and status.
 * New: Price graph now appears in admin pages quickly highlighting price and status visually. 
 * New: Meta Fields: Support for unit number, lot number (land).
+* New: South African ZAR currency support.
 
 
 * Tweak: More YouTube URL formats supported.
