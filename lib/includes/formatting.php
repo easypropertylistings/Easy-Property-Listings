@@ -135,6 +135,9 @@ function epl_currency_filter( $price ) {
 			case "BRL" :
 				$formatted = $price . 'R&#36;';
 				break;
+			case "ZAR" :
+				$formatted = 'R ' . $price;
+				break;
 			case "EUR" :
 				$formatted = $price . '&euro;';
 				break;
