@@ -544,3 +544,23 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 	}
 	return;
 }
+
+function epl_admin_sidebar () {
+	$service_banners = array(
+		array(
+			'url' => '#',
+			'img' => 'bannertwo.png',
+			'alt' => 'Website Review banner',
+		),
+		array(
+			'url' => '#',
+			'img' => 'bannerone.png',
+			'alt' => 'Banner WordPress SEO Premium',
+		),
+	);
+	$i = 0;
+	foreach ( $service_banners as $banner ) {
+		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="261" src="' .plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) .'" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
+		$i ++;
+	}
+}
