@@ -182,7 +182,7 @@ function epl_get_admin_option_fields() {
 
 	$fields = array(
 		array(
-			'label'		=>	__('General Front Side Display Options', 'epl'),
+			'label'		=>	__('Display Options', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
 			'help'		=>	__('After adding a listing adjust how you want them to display to the user.', 'epl'),
@@ -243,7 +243,7 @@ function epl_get_admin_option_fields() {
 			)
 		),
 		array(
-			'label'		=>	__('General Labels', 'epl'),
+			'label'		=>	__('Labels', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'labels',
 			'fields'	=>	array(

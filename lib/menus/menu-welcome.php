@@ -162,7 +162,7 @@ class EPL_Welcome {
 		
 			
 			<div class="changelog">
-				<h3><?php _e( 'All changes to Easy Property Listings version 1.2.1', 'epl' );?></h3>
+				<h3><?php _e( 'All changes to Easy Property Listings v1.3', 'epl' );?></h3>
 
 				<div class="feature-section">
 				
@@ -369,33 +369,13 @@ class EPL_Welcome {
 			</div>
 
 			<div class="changelog">
-				<h3><?php _e( 'Pricing and Auction Listings', 'epl' );?></h3>
-				<div class="feature-section">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-property-pricing.png'; ?>" class="epl-welcome-screenshots"/>
-					<h4><?php _e( 'Listing Pricing','epl' );?></h4>
-					<p><?php _e( 'Property pricing can be a nightmare with so many options available like: No Price, Under Offer, Fixed Pricing, Ranges, Under Offer, Auctions. We have created a function that handles all the different options for you. You can customise the labels for No Price from the Display Settings.', 'epl' );?></p>
-					
-					
-				</div>
-			</div>
-
-			<div class="changelog">
 				<h3><?php _e( 'Widgets', 'epl' );?></h3>
 				<div class="feature-section">
 					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-listing.png'; ?>" class="epl-welcome-screenshots"/>
-					<h4><?php _e( 'Recent Property','epl' );?></h4>
-					<p><?php _e( 'Property pricing can be a nightmare with so many options available like: No Price, Under Offer, Fixed Pricing, Ranges, Under Offer, Auctions. We have created a function that handles all the different options for you. You can customise the labels for No Price from the Display Settings.', 'epl' );?></p>
+					<h4><?php _e( 'EPL - Listing','epl' );?></h4>
+					<p><?php _e( 'Display Settings.', 'epl' );?></p>
 					
-					<h4><?php _e( 'Author Box', 'epl' );?></h4>
-					<p><?php _e( 'When a property has an inspection time or date set that information is displayed on the property templates. The "Home Open" label can be customised also from the display settings page.', 'epl' );?></p>
-				</div>
-			</div>
-
-			<div class="changelog">
-				<h3><?php _e( 'Author Profiles', 'epl' );?></h3>
-				<div class="feature-section">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-author.png'; ?>" class="epl-welcome-screenshots"/>
-					<h4><?php _e( 'Author Box', 'epl' );?></h4>
+					<h4><?php _e( 'EPL - Author', 'epl' );?></h4>
 					<p><?php _e( 'When a property has an inspection time or date set that information is displayed on the property templates. The "Home Open" label can be customised also from the display settings page.', 'epl' );?></p>
 				</div>
 			</div>
@@ -430,11 +410,11 @@ class EPL_Welcome {
 			<div class="changelog">
 				<h3><?php _e( 'Extensions directory is Growing', 'epl' );?></h3>
 				<div class="feature-section">
-					<h4><?php _e( '10 Extensions and many more coming','epl' );?></h4>
-					<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for advanced Google mapping, extensions for testimonials, suburb profiles, and many, many more.', 'epl' );?></p>
+					<h4><?php _e( '12 Extensions and many more coming','epl' );?></h4>
+					<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for Advanced mapping, testimonials, listing alerts, CMA Market Reports, Location Profiles, and many, many more.', 'epl' );?></p>
 					
 					<h4><?php _e( 'Visit the Extension Store', 'epl' );?></h4>
-					<p><a href="http://easypropertylistings.com.au/extensions" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions, including convenient category filters so you can find exactly what you are looking for.', 'epl' );?></p>
+					<p><a href="http://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions, including convenient category filters so you can find exactly what you are looking for.', 'epl' );?></p>
 				</div>
 			</div>
 		</div>
