@@ -549,14 +549,14 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 function epl_admin_sidebar () {
 	$service_banners = array(
 		array(
-			'url' => '#',
+			'url' => 'http://easypropertylistings.com.au/extensions/prospector-license/',
 			'img' => 'bannertwo.png',
-			'alt' => 'Website Review banner',
+			'alt' => 'Prospector for Easy Property Listings',
 		),
 		array(
-			'url' => '#',
+			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
 			'img' => 'bannerone.png',
-			'alt' => 'Banner WordPress SEO Premium',
+			'alt' => 'Developer Bundle for Easy Property Listings',
 		),
 	);
 	$i = 0;
