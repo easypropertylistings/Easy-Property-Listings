@@ -45,11 +45,11 @@ function epl_wp_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
 
-function _inline_js_vars () { 
+function epl_inline_js_vars () { 
 	global $epl_settings; ?>
 	<script>
 		var listingsMasonEnabled = <?php echo isset($epl_settings['listings_masonry'])?$epl_settings['listings_masonry']:0 ?>;
 	</script>
 <?php
 }
-add_action( 'wp_head', '_inline_js_vars' );
+add_action( 'wp_head', 'epl_inline_js_vars' );

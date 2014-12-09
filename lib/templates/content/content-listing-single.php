@@ -12,11 +12,11 @@
 		<div class="title-meta-wrapper">
 			<div class="entry-col property-details">
 			
-				<?php do_action('epl_single_before_title'); ?>
+				<?php do_action('epl_property_before_title'); ?>
 				<h1 class="entry-title">
-					<?php do_action('epl_single_the_title'); ?>
+					<?php do_action('epl_property_title'); ?>
 				</h1>
-				<?php do_action('epl_single_after_title'); ?>
+				<?php do_action('epl_property_after_title'); ?>
 				
 			</div>
 	

@@ -106,7 +106,7 @@ if ( is_admin() ) {
 	 * @since 1.0
 	 */
 	function epl_manage_commercial_land_columns_value( $column, $post_id ) {
-		global $post,$epl_settings;
+		global $post,$property,$epl_settings;
 		switch( $column ) {
 		
 			/* If displaying the 'Featured' image column. */
@@ -175,7 +175,7 @@ if ( is_admin() ) {
 				$price = get_post_meta( $post_id, 'property_price', true );
 				$view = get_post_meta( $post_id, 'property_price_view', true );
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-				
+				$property_authority = get_post_meta( $post_id, 'property_com_authority', true );
 				$lease = get_post_meta( $post_id, 'property_com_rent', true );
 				$lease_date = get_post_meta( $post_id, 'property_com_lease_end_date', true );
 				
@@ -222,7 +222,10 @@ if ( is_admin() ) {
 				if ( !empty ( $lease_date ) ) {
 					echo '<div class="epl_meta_lease_date">Lease End: ' ,  $lease_date , '</div>';
 				}
-				
+				if($property_authority == 'auction' ) {
+					_e('Auction ','epl');
+					echo '<br>'.$property->get_property_auction(true);
+				}
 				break;
 				
 			/* If displaying the 'Commercial Land Listing Type' column. */

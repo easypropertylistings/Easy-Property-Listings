@@ -107,7 +107,7 @@ if ( is_admin() ) {
 	 * @since 1.0
 	 */
 	function epl_manage_business_columns_value( $column, $post_id ) {
-		global $post,$epl_settings;
+		global $post,$property,$epl_settings;
 		switch( $column ) {
 		
 			/* If displaying the 'Featured' image column. */
@@ -165,7 +165,7 @@ if ( is_admin() ) {
 						  $homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 						}
 						$homeopen_list .= '</ul>';
-					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>Open:</strong></span>' , $homeopen_list , '</div>';
+					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
 				}
 			
 				break;
@@ -196,6 +196,7 @@ if ( is_admin() ) {
 					$max_price =$epl_settings['epl_max_graph_sales_price' ];
 				}
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
+				$property_authority = get_post_meta( $post_id, 'property_authority', true );
 				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
 				
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
@@ -234,7 +235,11 @@ if ( is_admin() ) {
 				if ( !empty ( $lease_date ) ) {
 					echo '<div class="epl_meta_lease_date">Lease End: ' ,  $lease_date , '</div>';
 				}
-				
+				if($property_authority == 'auction' ) {
+					_e('Auction ','epl');
+					
+					echo '<br>'.$property->get_property_auction(true);
+				}
 				break;
 				
 			/* If displaying the 'Commercial Listing Type' column. */

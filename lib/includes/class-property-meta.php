@@ -33,6 +33,9 @@ class Property_Meta {
 	}
 	
 	public function get_property_inspection_times($meta_key='property_inspection_times') {
+		if('leased' == $this->get_property_meta('property_status') || 'sold' == $this->get_property_meta('property_status'))
+			return;
+			
 		$pit = $this->get_property_meta($meta_key);
 		if($pit != '') {
 			$list = array_filter(explode("\n", $pit));
@@ -55,15 +58,22 @@ class Property_Meta {
 				}
 				ksort($inspectarray);
 				$return =  "";
-				foreach ($inspectarray as $key => $element) {
-					if(!empty($element)) {
-						$return .= "<li>" . htmlspecialchars($element) . "</li>";
+				if(count($inspectarray) > 1) {
+					// unordered list for multiple inspection times
+					foreach ($inspectarray as $key => $element) {
+						if(!empty($element)) {
+							$return .= "<li class='home-open-date'>" . htmlspecialchars($element) . "</li>";
+						}
 					}
+					if(!empty($return)) {
+						$return = '<ul class="home-open-wrapper">'.$return.'</ul>';
+					}
+
+				} else {
+					// no lists for single inspection time
+					$return = htmlspecialchars(current($inspectarray));
 				}
-				if(!empty($return)) {
-					$return = '<ul>'.$return.'</ul>';
-					return  $return;
-				}
+				return apply_filters('epl_property_inspection_time', $return);
 			}
 		}
 	}
@@ -93,11 +103,12 @@ class Property_Meta {
 	}
 	
 	// property auction
-	public function get_property_auction() {
+	public function get_property_auction($admin=false) {
+		$format = $admin == true?'l jS M \a\t g:i a': 'l jS F \a\t g:i a';
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
-						return date( 'l jS F \a\t g:i a' , strtotime($this->meta['property_auction'][0]) );
+						return date( $format, strtotime($this->meta['property_auction'][0]) );
 					}
 			}	
 		}

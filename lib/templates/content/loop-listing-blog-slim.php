@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog-slim epl-clearfix'); ?>>				
 	<div id="epl-property-blog-slim" class="epl-property-blog-slim-wrapper-container">		
-		<?php do_action('listings_archive_before_content'); ?>			
+		<?php do_action('epl_property_loop_before_content'); ?>			
 		<div class="entry-content">			
 			<?php if ( has_post_thumbnail() ) : ?>
 				<div class="property-box slim property-box-left-slim property-featured-image-wrapper">
@@ -48,6 +48,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				</div>
 			</div>
 		</div>
-		<?php do_action('listings_archive_after_content'); ?>			
+		<?php do_action('epl_property_loop_after_content'); ?>			
 	</div>
 </div>

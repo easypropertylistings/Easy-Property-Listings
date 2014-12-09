@@ -12,7 +12,7 @@ global $property;
 ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-clearfix'); ?>>
-	<?php do_action('epl_property_loop_entry_before_content'); ?>				
+	<?php do_action('epl_property_before_content'); ?>				
 	<div class="entry-content">
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="property-box property-box-left property-featured-image-wrapper">
@@ -51,5 +51,5 @@ global $property;
 			</div>
 		</div>	
 	</div>
-	<?php do_action('epl_property_loop_entry_after_content'); ?>
+	<?php do_action('epl_property_after_content'); ?>
 </div>

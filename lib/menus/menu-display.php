@@ -61,7 +61,9 @@ $epl_settings = get_option('epl_settings');
 								<div id="epl-<?php echo $field_id; ?>" class="epl-field epl-menu-section epl-<?php echo $field_class; ?>">
 										
 									<h3 class="epl-section-title"><?php _e($field_group['label'], 'epl'); ?></h3>
-									
+									<p  class="">
+										<?php if(isset($field_group['help'])) _e($field_group['help'], 'epl'); ?>
+									</p>
 									<div class="epl-section-content">
 										<?php foreach($field_group['fields'] as $field ) { ?>
 											<div class="epl-field">
@@ -185,6 +187,7 @@ function epl_get_admin_option_fields() {
 			'label'		=>	__('General', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
+			'help'		=>	'help text general',
 			'fields'	=>	array(
 
 				array(
@@ -228,7 +231,18 @@ function epl_get_admin_option_fields() {
 					'label'	=>	__('Excerpt word length for individual listings on property archive pages unless a manual excerpt is entered.', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_property_card_excerpt_length
-				)
+				),
+				array(
+					'name'	=>	'listings_masonry',
+					'label'	=>	__('Listings Masonry', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	'On',
+						0	=>	'Off'
+					),
+					'help'	=>	__('enable masonry effect on grid view of listing archives', 'epl')
+				),
+
 			)
 		),
 		array(

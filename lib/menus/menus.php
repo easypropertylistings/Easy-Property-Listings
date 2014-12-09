@@ -46,8 +46,8 @@ function epl_admin_menu() {
 
 	if ( has_filter( 'epl_extensions_options_filter' ) ) {
 		// show their menu on seperate page
-		$page_title_old	= __('Extensions Old', 'epl');
-		$menu_title_old	= __('Extensions Old', 'epl');
+		$page_title_old	= __('Update Extensions', 'epl');
+		$menu_title_old	= '<span style="color:#ff0000">'.__('Update Extensions', 'epl').'</span>';
 		$menu_slug_old	= 'epl-extensions-old';
 		$function_old	= 'epl_menu_extensions_old';
 		add_submenu_page($main_menu_slug, $page_title_old, $menu_title_old, $capability, $menu_slug_old, $function_old);

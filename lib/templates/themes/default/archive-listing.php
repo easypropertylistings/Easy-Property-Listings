@@ -43,13 +43,13 @@ get_header(); ?>
 				</header>
 				
 				<div class="entry-content loop-content">
-					<?php do_action( 'epl_template_before_property_loop' ); ?>
+					<?php do_action( 'epl_property_loop_start' ); ?>
 					<?php while ( have_posts() ) : // The Loop
 							the_post();
 							epl_property_blog();
 						endwhile; // end of one post
 					?>
-					<?php do_action( 'epl_template_after_property_loop' ); ?>
+					<?php do_action( 'epl_property_loop_end' ); ?>
 				</div>
 				
 				<div class="loop-footer">
