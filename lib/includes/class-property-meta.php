@@ -446,7 +446,6 @@ class Property_Meta {
 	}
 	
 	// property bed
-	
 	public function get_property_bed($returntype = 'i') {
 		if($this->get_property_meta('property_bedrooms') == '')
 			return;
@@ -457,7 +456,6 @@ class Property_Meta {
 	}
 	
 	// property bathrooms
-	
 	public function get_property_bath($returntype = 'i') {
 		if($this->get_property_meta('property_bathrooms') == '')
 			return;
@@ -466,15 +464,39 @@ class Property_Meta {
 		$bath['l'] = '<li class="bathrooms">' . $this->get_property_meta('property_bathrooms') . ' '.__('bath', 'epl').'</li>';
 		return $bath[$returntype];
 	}
-	
-	// property parking
-	public function get_property_parking() {
+
+	// property parking for single icon
+	public function get_property_parking($returntype = 'i') {
 		if($this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '')
 			return;
 		$property_garage 	= intval($this->get_property_meta('property_garage'));
 		$property_carport 	= intval($this->get_property_meta('property_carport'));
 		$property_parking 	= $property_carport + $property_garage;
-			return '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' .$property_parking. '</span></span>';
+		$parking['i'] = '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' .$property_parking. '</span></span>';
+		$parking['d'] = $property_parking . ' '.__('Parking Spaces', 'epl').' ';
+		$parking['l'] = '<li class="parking">' . $property_parking . ' '.__('Parking Spaces', 'epl').'</li>';
+		return $parking[$returntype];
+	}
+
+	// property garage
+	public function get_property_garage($returntype = 'i') {
+		if($this->get_property_meta('property_garage') == '')
+			return;
+		$garage['i'] = '<span title="'.__('Garage', 'epl').'" class="icon parking"><span class="icon-value">'. $this->get_property_meta('property_garage') . '</span></span>'; 
+		$garage['l'] = '<li class="garage">' . $this->get_property_meta('property_garage') . ' '.__('garage', 'epl').'</li>';
+		$garage['d'] = $this->get_property_meta('property_garage') . ' '.__('garage', 'epl').' '; 
+		return $garage[$returntype];
+	}
+
+	// property cargport
+	public function get_property_carport($returntype = 'i') {
+		if($this->get_property_meta('property_carport') == '')
+			return;
+		$carport['i'] = '<span title="'.__('Carport', 'epl').'" class="icon parking"><span class="icon-value">'. $this->get_property_meta('property_carport') . '</span></span>'; 
+		$carport['l'] = '<li class="carport">' . $this->get_property_meta('property_carport') . ' '.__('carport', 'epl').'</li>';
+		$carport['d'] = $this->get_property_meta('property_carport') . ' '.__('Carport', 'epl').' ';
+		
+		return $carport[$returntype];
 	}
 	
 	// property ac
@@ -521,10 +543,7 @@ class Property_Meta {
 		}
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			return '
-				<li class="land-size">'.
-					__('Land is', 'epl').' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'
-			
-				</li>';
+				<li class="land-size">'. __('Land is', 'epl').' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'</li>';
 		}
 	}
 	
@@ -562,25 +581,28 @@ class Property_Meta {
 					$metavalue = $metavalue.__(' Car Spaces', 'epl');
 				}
 				
-				if( (is_numeric($metavalue))|| $metavalue == 'yes' ) {
+				if( (is_numeric($metavalue)) ) {
 					if($metavalue == 0)
 						return;
-						
-					// toggle field types -- yes or 1 for toggle true
-					if($metavalue == 'yes' || $metavalue == 1){ 
-						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';	
+					// toggle field types -- 1 for toggle true
+					if( $metavalue == 1 ){ 
+						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
 					} elseif(is_numeric($metavalue)) {
 						// numbered field types 
-						return '
-								<li class="'.$this->get_class_from_metakey($metakey).'">'.
-									$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').
-								'</li>';
+						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
 					} else {
 						// others
 						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.'</li>';
 					}
 					
 				}
+				if( ( $metavalue == 'yes' ) ) {
+					return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+				}
+				
+				if( $metavalue == 'no' )
+						return;
+
 				// string value field types
 				return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.'</li>';
 			}
@@ -627,5 +649,3 @@ class Property_Meta {
 		return $property_feature_taxonomy;
 	}
 }
-
-
