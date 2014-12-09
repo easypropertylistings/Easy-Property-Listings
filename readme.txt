@@ -5,7 +5,7 @@ Contributors: mervb1, MarionWante
 Donate link: http://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, wp property, Merv Barrett, real estate connected
 Requires at least: 3.3
-Tested up to: 4.0
+Tested up to: 4.0.1
 
 Stable Tag: 1.2.1208
 
