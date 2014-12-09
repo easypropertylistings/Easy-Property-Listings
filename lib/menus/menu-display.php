@@ -49,7 +49,7 @@ $epl_settings = get_option('epl_settings');
 	<h2><?php _e('Display and Template Options', 'epl'); ?></h2>
 	<p><?php _e('Change the page layouts options for Easy Property Listings', 'epl'); ?></p>
 	<div id="epl-menu-display" class="epl-content">
-		<form action="" method="post">
+		<form action="" method="post" class="epl-general-form">
 			<div class="epl-fields epl-menu-page">
 				<?php
 					if(!empty($fields)) { ?>
@@ -150,6 +150,9 @@ $epl_settings = get_option('epl_settings');
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
+		<div class="epl-content-sidebar">
+			<?php epl_admin_sidebar (); ?>
+		</div>
 	</div>
 </div><?php
 

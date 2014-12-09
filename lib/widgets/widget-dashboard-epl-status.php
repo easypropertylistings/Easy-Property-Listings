@@ -14,7 +14,7 @@ function example_add_dashboard_widgets() {
 
 	wp_add_dashboard_widget(
                  'epl_status_dashboard_widget',
-                 'Easy Property Listing Status',
+                 'Listings',
                  'epl_status_dashboard_widget_callback'
         );	
 }
@@ -54,14 +54,20 @@ function epl_get_plural($count,$singular) {
 		case 'land':
 			return sprintf( _n( '1 Land', '%s Land', $count, 'epl' ), $count );
 		break;
+		case 'rental':
+			return sprintf( _n( '1 Rental', '%s Rental', $count, 'epl' ), $count );
+		break;
 		case 'rural':
 			return sprintf( _n( '1 Rural', '%s Rural', $count, 'epl' ), $count );
 		break;
 		case 'commercial':
 			return sprintf( _n( '1 Commercial', '%s Commercial', $count, 'epl' ), $count );
 		break;
-		case 'rental':
-			return sprintf( _n( '1 Rental', '%s Rental', $count, 'epl' ), $count );
+		case 'commercial_land':
+			return sprintf( _n( '1 Commercial Land', '%s Commercial Land', $count, 'epl' ), $count );
+		break;
+		case 'business':
+			return sprintf( _n( '1 Business', '%s Business', $count, 'epl' ), $count );
 		break;
 		default:
 			return sprintf( _n( '1 '.$singular, '%s '.$singular, $count, 'epl' ), $count );
@@ -87,13 +93,13 @@ function epl_get_post_count($type,$meta_key,$meta_value) {
 
 function epl_posts_highlights($type) {
 	switch($type){
-		case 'commercial':
+
 		case 'rental':
 			$filters = array(
-							'property_status'		=>	array('value'	=>	'sold','string'	=>	__('Sold','epl')),
+							'property_status'		=>	array('value'	=>	'current','string'	=>	__('Current','epl')),
 							'property_status'		=>	array('value'	=>	'leased','string'	=>	__('Leased','epl')),
-							'property_authority'	=>	array('value'	=>	'sale','string'	=>	__('On Sale','epl')),
-							'property_under_offer'	=>	array('value'	=>	'yes','string'	=>	__('Under Offer','epl')),
+							'property_status'		=>	array('value'	=>	'withdrawn','string'=>	__('Withdrawn','epl')),
+							'property_status'		=>	array('value'	=>	'offmarket','string'=>	__('Off Market','epl')),
 						);
 			foreach($filters as $filter_key 	=>	$filter_value){
 				$count = epl_get_post_count($type,$filter_key,$filter_value['value']);
@@ -103,14 +109,37 @@ function epl_posts_highlights($type) {
 				
 			}
 		break;
+		
+		case 'commercial':
+			$filters = array(
+							'property_status'		=>	array('value'	=>	'current','string'	=>	__('Current','epl')),
+							'property_authority'	=>	array('value'	=>	'auction','string'	=>	__('Auction','epl')), // ONLY if == current
+							'property_under_offer'	=>	array('value'	=>	'yes','string'		=>	__('Under Offer','epl')),
+							'property_status'		=>	array('value'	=>	'sold','string'		=>	__('Sold','epl')),
+							'property_status'		=>	array('value'	=>	'leased','string'	=>	__('Leased','epl')),
+							'property_status'		=>	array('value'	=>	'withdrawn','string'=>	__('Withdrawn','epl')),
+							'property_status'		=>	array('value'	=>	'offmarket','string'=>	__('Off Market','epl')),
+						);
+			foreach($filters as $filter_key 	=>	$filter_value){
+				$count = epl_get_post_count($type,$filter_key,$filter_value['value']);
+				if($count != 0){
+					echo '<span>'.$count.' '.$filter_value['string'].' </span>';
+				}
+				
+			}
+		break;
+		
 		case 'property':
 		case 'land':
 		case 'rural':
 		default:
 			$filters = array(
-							'property_status'		=>	array('value'	=>	'sold','string'	=>	__('Sold','epl')),
-							'property_authority'	=>	array('value'	=>	'sale','string'	=>	__('On Sale','epl')),
-							'property_under_offer'	=>	array('value'	=>	'yes','string'	=>	__('Under Offer','epl')),
+							'property_status'		=>	array('value'	=>	'current','string'	=>	__('Current','epl')),
+							'property_authority'	=>	array('value'	=>	'auction','string'	=>	__('Auction','epl')), // ONLY if == current
+							'property_under_offer'	=>	array('value'	=>	'yes','string'		=>	__('Under Offer','epl')),
+							'property_status'		=>	array('value'	=>	'sold','string'		=>	__('Sold','epl')),
+							'property_status'		=>	array('value'	=>	'withdrawn','string'=>	__('Withdrawn','epl')),
+							'property_status'		=>	array('value'	=>	'offmarket','string'=>	__('Off Market','epl')),
 						);
 			foreach($filters as $filter_key 	=>	$filter_value){
 				$count = epl_get_post_count($type,$filter_key,$filter_value['value']);

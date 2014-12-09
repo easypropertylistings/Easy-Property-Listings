@@ -118,13 +118,13 @@ function epl_get_active_post_types() {
  */
 function epl_get_post_types() {
 	$epl_post_types = array(
-		'property'		=>	__('Property (Residential)', 'epl'),
-		'land'			=>	__('Land', 'epl'),
-		'rental'		=>	__('Rental', 'epl'),
-		'rural'			=>	__('Rural', 'epl'),
+		'property'			=>	__('Property (Residential)', 'epl'),
+		'land'				=>	__('Land', 'epl'),
+		'rental'			=>	__('Rental', 'epl'),
+		'rural'				=>	__('Rural', 'epl'),
 		'commercial'		=>	__('Commercial', 'epl'),
 		'commercial_land'	=>	__('Commercial Land', 'epl'),
-		'business'		=>	__('Business', 'epl'),
+		'business'			=>	__('Business', 'epl'),
 	);
 	return $epl_post_types;
 }
@@ -155,6 +155,7 @@ function epl_get_currencies() {
 		'PHP'  => __( 'Philippine Pesos', 'epl' ),
 		'PLN'  => __( 'Polish Zloty', 'epl' ),
 		'SGD'  => __( 'Singapore Dollar (&#36;)', 'epl' ),
+		'ZAR'  => __( 'South African Rand (R)', 'epl' ),
 		'SEK'  => __( 'Swedish Krona', 'epl' ),
 		'CHF'  => __( 'Swiss Franc', 'epl' ),
 		'TWD'  => __( 'Taiwan New Dollars', 'epl' ),
