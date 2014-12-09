@@ -119,10 +119,10 @@ if ( is_admin() ) {
 				/* Get the post meta. */
 				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
 				$heading					= get_post_meta( $post_id, 'property_heading', true );
-				$homeopen					= get_post_meta( $post_id, 'property_inspection_times', true );
 				$beds						= get_post_meta( $post_id, 'property_bedrooms', true );
 				$baths						= get_post_meta( $post_id, 'property_bathrooms', true );
-				
+				$homeopen 					= get_post_meta( $post_id, 'property_inspection_times', true );
+
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
 				} else {
@@ -145,7 +145,7 @@ if ( is_admin() ) {
 						  $homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 						}
 						$homeopen_list .= '</ul>';
-					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>Open:</strong></span>' , $homeopen_list , '</div>';
+					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
 				} 
 			
 				break;

@@ -105,7 +105,7 @@ if ( is_admin() ) {
 	 * @since 1.0
 	 */
 	function epl_manage_property_columns_value( $column, $post_id ) {
-		global $post,$epl_settings;
+		global $post,$epl_settings,$property;
 		switch( $column ) {	
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
@@ -152,7 +152,7 @@ if ( is_admin() ) {
 						  $homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 						}
 						$homeopen_list .= '</ul>';
-					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>Open:</strong></span>' , $homeopen_list , '</div>';
+					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
 				} 
 			
 				break;
@@ -178,6 +178,7 @@ if ( is_admin() ) {
 				$view = get_post_meta( $post_id, 'property_price_view', true );
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
+				$property_authority = get_post_meta( $post_id, 'property_authority', true );
 				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
 				
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
@@ -207,6 +208,10 @@ if ( is_admin() ) {
 					$show_price =  '<div class="epl_meta_price">' . $view . '</div>'; 
 				}
 				echo $show_price;
+				if($property_authority == 'auction' ) {
+					_e('Auction ','epl');
+					echo '<br>'.$property->get_property_auction(true);
+				}
 				break;
 			/* If displaying the 'real-estate' column. */
 			case 'property_status' :

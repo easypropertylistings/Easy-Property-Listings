@@ -26,6 +26,11 @@
 #epl-add-ons h2 {
 	margin:0 0 15px
 }
+.epl-extension {
+    background: none repeat scroll 0 0 rgba(0, 116, 162, 0.1);
+    border: 1px solid rgba(0, 116, 162, 0.3);
+    padding: 1em;
+}
 #epl-add-ons .epl-extension {
 	float:left;
 	margin:0 15px 15px 0;
@@ -509,4 +514,18 @@ width: 31%;
 }
 .epl-nav-tab-wrapper{
 	border-bottom:none;
+}
+.status-sticker {
+    background: none repeat scroll 0 0 #ff0000;
+    color: #ffffff;
+    font-size: 12px;
+    margin-right: 0.4em;
+    padding: 0 0.4em;
+    text-transform: uppercase;
+}
+.status-sticker.new {
+    background: none repeat scroll 0 0 #800080;
+}
+.status-sticker.open {
+    background: none repeat scroll 0 0 #7faf1b;
 }

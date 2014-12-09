@@ -268,16 +268,6 @@ function epl_get_admin_option_fields() {
 					'help'	=>	__('Display Lat/Long coordinates on listing pages in admin', 'epl')
 				),
 				
-				array(
-					'name'	=>	'listings_masonry',
-					'label'	=>	__('Listings Masonry', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						1	=>	'On',
-						0	=>	'Off'
-					),
-					'help'	=>	__('enable masonry effect on grid view of listing archives', 'epl')
-				),
 			),
 		),
 	);

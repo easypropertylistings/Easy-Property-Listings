@@ -38,7 +38,7 @@ function render_content() {
 			</div>
 
 			<div class="loop-content">
-				<?php do_action( 'epl_template_before_property_loop' ); ?>
+				<?php do_action( 'epl_property_loop_start' ); ?>
 				<?php while ( have_posts() ) : // The Loop
 						the_post();
 						if ( function_exists('epl_property_blog') ) {
@@ -46,7 +46,7 @@ function render_content() {
 						}
 					endwhile; // end of one post
 				?>
-				<?php do_action( 'epl_template_after_property_loop' ); ?>
+				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div>
 			
 			<div class="loop-footer">

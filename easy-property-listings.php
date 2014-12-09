@@ -245,6 +245,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			$epl_settings = epl_get_settings();
 		
 			require_once EPL_PATH_LIB . 'includes/functions.php';
+			require_once EPL_COMPATABILITY . 'functions-compat.php';
 			require_once EPL_PATH_LIB . 'includes/options-global.php';
 			require_once EPL_PATH_LIB . 'includes/formatting.php';
 			require_once EPL_PATH_LIB . 'includes/plugins.php';

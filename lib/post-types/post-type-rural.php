@@ -106,7 +106,7 @@ if ( is_admin() ) {
 	 * @since 1.0
 	 */
 	function epl_manage_rural_columns_value( $column, $post_id ) {
-		global $post,$epl_settings;
+		global $post,$property,$epl_settings;
 		switch( $column ) {	
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
@@ -119,13 +119,11 @@ if ( is_admin() ) {
 				/* Get the post meta. */
 				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
 				$heading					= get_post_meta( $post_id, 'property_heading', true );
-				$homeopen					= get_post_meta( $post_id, 'property_inspection_times', true );
-			
 				$beds						= get_post_meta( $post_id, 'property_bedrooms', true );
 				$baths						= get_post_meta( $post_id, 'property_bathrooms', true );
-				
 				$land						= get_post_meta( $post_id, 'property_land_area', true );
 				$land_unit					= get_post_meta( $post_id, 'property_land_area_unit', true );
+				$homeopen 					= get_post_meta( $post_id, 'property_inspection_times', true );
 
 				
 				if ( empty( $heading) ) {
@@ -157,8 +155,8 @@ if ( is_admin() ) {
 						  $homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 						}
 						$homeopen_list .= '</ul>';
-					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>Open:</strong></span>' , $homeopen_list , '</div>';
-				} 
+					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
+				}
 			
 				break;
 
@@ -183,6 +181,7 @@ if ( is_admin() ) {
 				$price = get_post_meta( $post_id, 'property_price', true );
 				$view = get_post_meta( $post_id, 'property_price_view', true );
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
+				$property_authority = get_post_meta( $post_id, 'property_authority', true );
 				
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price 	=	$epl_settings['epl_max_graph_sales_price' ];
@@ -219,6 +218,10 @@ if ( is_admin() ) {
 					echo '<div class="epl_meta_search_price">' , epl_currency_formatted_amount( $price ), '</div>';
 				} else {
 					echo '<div class="epl_meta_price">' , $view , '</div>'; 
+				}
+				if($property_authority == 'auction' ) {
+					_e('Auction ','epl');
+					echo '<br>'.$property->get_property_auction(true);
 				}
 				break;
 

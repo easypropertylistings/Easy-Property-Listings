@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		<div class="author-box author-image">
 			<?php
 				if (function_exists('get_avatar')) { 
-					echo get_avatar( get_the_author_meta('email') , '180' );
+					echo get_avatar( $epl_author->email , '180' );
 				}
 			?>
 		</div>
