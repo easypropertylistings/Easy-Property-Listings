@@ -162,7 +162,6 @@ function epl_property_single() {
  * @since 1.2
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) { 
-	
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
 			<div class="epl-featured-image it-featured-image">
@@ -172,7 +171,6 @@ function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_c
 			</div>
 		</div>
 	<?php }
-
 }
 add_action( 'epl_property_featured_image' , 'epl_property_featured_image' );
 add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
@@ -235,7 +233,6 @@ function epl_property_blog() {
 		echo epl_property_blog_default();
 		
 	}
-
 }
 
 // Listing Function for paged card display 
@@ -249,7 +246,6 @@ function epl_property_blog_default() {
 		include ( EPL_PATH_TEMPLATES_CONTENT . 'loop-listing-blog-default.php' );
 	} // End Status Removal
 }
-
 
 // Listing Function for paged card display 
 function epl_property_blog_slim() {
@@ -269,7 +265,7 @@ function epl_property_blog_slim() {
 
 // AUTHOR CARD : Tabbed Style
 function epl_property_author_box() {
-	global $property,$epl_author;
+	global $property, $epl_author;
 	$author_id = get_the_author_meta( 'ID' );
 	include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php' );
 	include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box.php' );
@@ -281,12 +277,10 @@ function epl_property_author_box() {
 					$epl_author = new Author_Meta($second_author->ID);
 					include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php' );
 					include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box.php' );
-
 			}
 			epl_reset_post_author();
 		}
 }
-
 function epl_reset_post_author() {
 	global $post, $epl_author;
 	if(class_exists('Author_Meta')) {
@@ -294,7 +288,6 @@ function epl_reset_post_author() {
 	}
 	
 }
-
 add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
  
 // AUTHOR CARD : Standard
@@ -335,8 +328,6 @@ function epl_property_author_card( $display , $image , $title , $icons) {
 /*
 * Widget Templates
 */
-
-
 // WIDGET LISTING : Listing Card
 function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','epl')" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
 	global $property;
