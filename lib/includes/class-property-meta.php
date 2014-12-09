@@ -581,25 +581,28 @@ class Property_Meta {
 					$metavalue = $metavalue.__(' Car Spaces', 'epl');
 				}
 				
-				if( (is_numeric($metavalue))|| $metavalue == 'yes' ) {
+				if( (is_numeric($metavalue)) ) {
 					if($metavalue == 0)
 						return;
-						
-					// toggle field types -- yes or 1 for toggle true
-					if($metavalue == 'yes' || $metavalue == 1){ 
-						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';	
+					// toggle field types -- 1 for toggle true
+					if( $metavalue == 1 ){ 
+						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
 					} elseif(is_numeric($metavalue)) {
 						// numbered field types 
-						return '
-								<li class="'.$this->get_class_from_metakey($metakey).'">'.
-									$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').
-								'</li>';
+						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
 					} else {
 						// others
 						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.'</li>';
 					}
 					
 				}
+				if( ( $metavalue == 'yes' ) ) {
+					return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+				}
+				
+				if( $metavalue == 'no' )
+						return;
+
 				// string value field types
 				return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.'</li>';
 			}
