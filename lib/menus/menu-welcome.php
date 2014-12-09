@@ -159,14 +159,86 @@ class EPL_Welcome {
 			<div class="epl-badge"><?php printf( __( 'Version %s', 'epl' ), $display_version ); ?></div>
 
 			<?php $this->tabs(); ?>
-		
 			
 			<div class="changelog">
-				<h3><?php _e( 'All changes to Easy Property Listings v1.3', 'epl' );?></h3>
-
+				<h3><?php _e( 'Listing Management Pages', 'epl' );?></h3>
 				<div class="feature-section">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-listing-admin-list.png'; ?>" class="epl-welcome-screenshots"/>
+					
+					<h4><?php _e( 'Graph API','epl' );?></h4>
+					<p><?php _e( 'Visual graph indicating listing prices so you can at a glance visually see what price your listings. Customise the max price to suit your price range from the Settings page. Default max for for sale listings is 2,000,000 and rental listing 2,000.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Listing Details','epl' );?></h4>
+					<p><?php _e( 'Get quick access to important details like what the property has and the scheduled inspection times.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Auction Listings','epl' );?></h4>
+					<p><?php _e( 'Keep track of your coming Auction dates from the Price column.', 'epl' );?></p>
+				</div>
+			</div>
+
+			<div class="changelog">
+				<h3><?php _e( 'Widgets', 'epl' );?></h3>
+				<div class="feature-section">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-listing.png'; ?>" class="epl-welcome-screenshots"/>
+					<h4><?php _e( 'EPL - Listing','epl' );?></h4>
+					<p><?php _e( 'Added additional options giving you greater control to customise your "featured" listings using a widget. Everything is now customisable even the button label.', 'epl' );?></p>
+					
+					<h4><?php _e( 'EPL - Listing Search','epl' );?></h4>
+					<p><?php _e( 'Tabbed search supports multiple listing types from one widget with customisable labels. Also added are land and building size search fields. Performance improved by reducing the number of database queries to keep your site fast.', 'epl' );?></p>
 				
-					<h4><?php _e( 'Version 1.3', 'epl' );?></h4>
+				</div>
+			</div>
+		
+			<div class="changelog">
+				<h3><?php _e( 'Dashboard Widget', 'epl' );?></h3>
+				<div class="feature-section">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-dashboard-widget.png'; ?>" class="epl-welcome-screenshots"/>
+					<h4><?php _e( 'Dashboard Widget','epl' );?></h4>
+					<p><?php _e( 'Dashboard widget now lists all listings and status so at a glance you can see what you have.', 'epl' );?></p>
+					
+				</div>
+			</div>
+
+			<div class="changelog">
+				<h3><?php _e( 'Other Changes', 'epl' );?></h3>
+				<div class="feature-section">
+					
+					<h4><?php _e( 'Inspection times','epl' );?></h4>
+					<p><?php _e( 'Inspection time support multiple dates written one per line.', 'epl' );?></p>
+					
+					<h4><?php _e( 'New Label','epl' );?></h4>
+					<p><?php _e( 'Set how many days you want your newly added listings to appear new for. Adjust the number of days from the settings.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Auction Date','epl' );?></h4>
+					<p><?php _e( 'Calendar to select auction date and outputs nicely.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Sale Date','epl' );?></h4>
+					<p><?php _e( 'Calendar to select sold date.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Grid & List View','epl' );?></h4>
+					<p><?php _e( 'Display Settings.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Date and Price Sorter','epl' );?></h4>
+					<p><?php _e( 'Display Settings.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Easier to create custom templates','epl' );?></h4>
+					<p><?php _e( 'Display Settings.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Author Box','epl' );?></h4>
+					<p><?php _e( 'Supports multiple real estate agents per listing.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Meta Fields','epl' );?></h4>
+					<p><?php _e( 'Property unit/lot number, office id, .', 'epl' );?></p>
+					
+					<h4><?php _e( 'Additional hooks and filters for customising','epl' );?></h4>
+					<p><?php _e( 'Property unit/lot number, office id, .', 'epl' );?></p>
+
+				</div>
+			</div>
+			
+			<div class="changelog">
+				<div class="feature-section">
+					<h4><?php _e( 'Full change log of version 1.3', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Extension validator.', 'epl' );?></li>
 						<li><?php _e( 'New: Moved listing-meta.php into compatibility folder.', 'epl' );?></li>
@@ -188,9 +260,9 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Multiple author support in Author Box.', 'epl' );?></li>
 						<li><?php _e( 'New: Search Widget now supports multiple listing types, hold Ctrl to enable tabbed front end display.', 'epl' );?></li>
 						<li><?php _e( 'New: Search Widget Labels are configurable from the Display settings allowing you to set for example: "Property" to "Buy" and "Rental" to "Rent" and use a single widget to search multiple types.', 'epl' );?></li>
-						<li><?php _e( 'New: Search widget and short code supports search by property ID, Land Area and Building Area.', 'epl' );?></li>
-						<li><?php _e( 'New: Author variables accessible using new CLASS.', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget and short code supports search by property ID, Land Area and Building Area.', 'epl' );?></li>
 						<li><?php _e( 'New: Search short code supports array of property types.', 'epl' );?></li>
+						<li><?php _e( 'New: Author variables accessible using new CLASS.', 'epl' );?></li>
 						<li><?php _e( 'New: REAXML Unit and lot formatting function for usage in the title when using WP All Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})].', 'epl' );?></li>
 						<li><?php _e( 'New: Global $epl_settings settings variable adds new default values on plug-in update.', 'epl' );?></li>
 						<li><?php _e( 'New: Display: Added customisable label for rental Bond/Deposit.', 'epl' );?></li>
@@ -350,36 +422,7 @@ class EPL_Welcome {
 
 				</div>
 			</div>
-		
-			<div class="changelog">
-				<h3><?php _e( 'Listing Management Pages', 'epl' );?></h3>
-				<div class="feature-section">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-listing-admin-list.png'; ?>" class="epl-welcome-screenshots"/>
-					
-					<h4><?php _e( 'Graph API','epl' );?></h4>
-					<p><?php _e( 'Visual graph indicating listing prices so you can at a glance visually see what price your listings. Customise the max price to suit your price range from the Settings page. Default max for for sale listings is 2,000,000 and rental listing 2,000.', 'epl' );?></p>
-				
-					<h4><?php _e( 'Auction Listings','epl' );?></h4>
-					<p><?php _e( 'Keep track of your coming Auction dates from the Price column.', 'epl' );?></p>
-					
-					<h4><?php _e( 'Listing Details','epl' );?></h4>
-					<p><?php _e( 'Get quick access to important details like what the property has and the scheduled inspection times.', 'epl' );?></p>
-				
-				</div>
-			</div>
 
-			<div class="changelog">
-				<h3><?php _e( 'Widgets', 'epl' );?></h3>
-				<div class="feature-section">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-listing.png'; ?>" class="epl-welcome-screenshots"/>
-					<h4><?php _e( 'EPL - Listing','epl' );?></h4>
-					<p><?php _e( 'Display Settings.', 'epl' );?></p>
-					
-					<h4><?php _e( 'EPL - Author', 'epl' );?></h4>
-					<p><?php _e( 'When a property has an inspection time or date set that information is displayed on the property templates. The "Home Open" label can be customised also from the display settings page.', 'epl' );?></p>
-				</div>
-			</div>
-			
 			<div class="changelog">
 				<h3><?php _e( 'Need Help?', 'epl' );?></h3>
 				<div class="feature-section">
