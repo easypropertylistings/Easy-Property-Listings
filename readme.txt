@@ -430,54 +430,54 @@ property_tab_title
 
 
 = 1.2.1: September 23, 2014 =
-* Fix: Search Widget not working on page 2 of archive page in some instances
-* Fix: Property feature list Toilet and New Construction now display in list when ticked
-* Fix: EPL - Listing widget was not displaying featured listings
-* Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode
-* Fix: Updated templates to display Search Results when performing search
-* Fix: No longer show Bond when viewing rental list in admin
-* Fix: Open for inspection sticker now appears on rental properties
+* Fix: Search Widget not working on page 2 of archive page in some instances.
+* Fix: Property feature list Toilet and New Construction now display in list when ticked.
+* Fix: EPL - Listing widget was not displaying featured listings.
+* Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode.
+* Fix: Updated templates to display Search Results when performing search.
+* Fix: No longer show Bond when viewing rental list in admin.
+* Fix: Open for inspection sticker now appears on rental properties.
 * New: Added initial Dutch translation.
 
 = 1.2: September 8, 2014 =
-* New: Plug in Activation process flushes permalinks
-* New: Plug in deactivation flushes permalinks
+* New: Plug in Activation process flushes permalinks.
+* New: Plug in deactivation flushes permalinks.
 * New: Shortcode [listing_search]
 * New: Shortcode [listing_feature]
 * New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatibility, however adjust your site.
 * New: Listing shortcodes allow for default template display if registered by adding template="slim" to the shortcode.
-* New: Translation support now correctly loads text domain epl
-* New: Added translation tags to all test elements for better translation support
-* New: Updated source epl.pot translation file for translations
-* New: Added very rough Italian translation
-* New: Wrapped Featured image in action to allow for easy removal and/or replacement
-* Fix: Undefined errors when debug is active
-* New: Added new CSS classes to widgets for consistent usage
-* Tweak: Admin CSS tweaks to define sections in admin
-* Fix: CSS for TwentyThirteen style CSS using .sidebar container
-* Fix: CSS for responsive shortcode
-* New: Added options to hide/ show various options to EPL - Listing widget: Property Headline, Excerpt, Suburb/Location Label, Street Address, Price, Read More Button
-* New: Added customisable "Read More" label to EPL - Listing widget
-* New: Added excerpt to EPL - Listing widget
-* New: Added options to remove search options from EPL - Listing Search widget
-* New: Added consistent CSS classes to shortcodes for responsive shortcode
+* New: Translation support now correctly loads text domain epl.
+* New: Added translation tags to all test elements for better translation support.
+* New: Updated source epl.pot translation file for translations.
+* New: Added very rough Italian translation.
+* New: Wrapped Featured image in action to allow for easy removal and/or replacement.
+* New: Added new CSS classes to widgets for consistent usage.
+* New: Added options to hide/ show various options to EPL - Listing widget: Property Headline, Excerpt, Suburb/Location Label, Street Address, Price, Read More Button.
+* New: Added customisable "Read More" label to EPL - Listing widget.
+* New: Added excerpt to EPL - Listing widget.
+* New: Added options to remove search options from EPL - Listing Search widget.
+* New: Added consistent CSS classes to shortcodes for responsive shortcode.
 * New: Date processing function for use with WP All Import when importing REAXML files. Some imports set the current date instead of the date from the REAXML file. Usage in WP All Import Post Date is: [epl_feedsync_format_date({./@modTime})]
-* Tweak: Added additional CSS classes to admin menu pages to extensions can be better distinguished when installed and activated
-* Fix: Registering custom template actions now works correctly
-* New: Added additional CSS classes to template files
-* Fix: Changed property not found wording when using search widget and listing not found.
-* Tweak: Added defaults to widgets to prevent errors when debug is on
+* New: Added additional CSS classes to template files.
 * New: Added WordPress editor support in admin for use with extensions.
 * New: Added textarea support in admin for use with extensions.
-* New: Filters added for all select options on add listing pages which allows for full customisation through simple function
-* New: Added rent period, Day, Daily, Month, Monthly to rental listing types
-* New: Added property_office_id meta field
-* New: Added property_address_country meta field
-* Tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5
+* New: Filters added for all select options on add listing pages which allows for full customisation through simple function.
+* New: Added rent period, Day, Daily, Month, Monthly to rental listing types.
+* New: Added property_office_id meta field.
+* New: Added property_address_country meta field.
+* New: Added filter epl_listing_meta_boxes which allows additional meta boxes to be added through filter.
 * New: Added mini map to listing edit screen. Will display mini map in address block when pressing green coordinates button.
-* Fix: Updated admin columns for commercial_land listing type to match other listing type
-* Fix: Swapped bedrooms/bathroom label on hover
-* New: Added filter epl_listing_meta_boxes which allows additional meta boxes to be added through filter
+* Tweak: Admin CSS tweaks to define sections in admin.
+* Tweak: Added additional CSS classes to admin menu pages to extensions can be better distinguished when installed and activated.
+* Tweak: Added defaults to widgets to prevent errors when debug is on.
+* Tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5.
+* Fix: Undefined errors when debug is active.
+* Fix: CSS for TwentyThirteen style CSS using .sidebar container.
+* Fix: CSS for responsive shortcode.
+* Fix: Registering custom template actions now works correctly.
+* Fix: Changed property not found wording when using search widget and listing not found.
+* Fix: Updated admin columns for commercial_land listing type to match other listing type.
+* Fix: Swapped bedrooms/bathroom label on hover.
 
 = 1.1.1: July 7, 2014 =
 
@@ -487,8 +487,7 @@ property_tab_title
 * New: Shortcode [listing_category] This shortcode allows for you to output a list of listings by type and filter them by any available meta key and value.
 * Tweak: Updated search widget for filtered property_categories 
 * Fix: Listing categories were showing key, now showing value.
-* Fix: Settings were not showing up after saving, second refresh required setting variable to reload
-
+* Fix: Settings were not showing up after saving, second refresh required setting variable to reload.
 
 = 1.1: June 27, 2014 =
 
