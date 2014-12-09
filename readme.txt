@@ -159,7 +159,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Search Widget now supports multiple listing types, hold Ctrl to enable tabbed front end display. 
 * New: Search Widget Labels are configurable from the Display settings allowing you to set for example: "Property" to "Buy" and "Rental" to "Rent" and use a single widget to search multiple types.
 * New: Search widget and short code supports search by property ID, Land Area and Building Area.
-* New: Author variables accessable usign new CLASS.
+* New: Author variables accessible using new CLASS.
 * New: Search short code supports array of property types.
 * New: REAXML date format function to format date correctly when using WP All Import Pro. Usage [epl_feedsync_format_date({./@modTime})]. 
 * New: REAXML Unit and lot formatting function for usage in the title when using WP All Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})].
