@@ -579,14 +579,12 @@ function epl_property_tab_section() {
 		$the_property_feature_list .= $property->get_property_commercial_category('li');
 	}
 	
-	$the_property_feature_list .= $property->get_property_bed('l').' '.$property->get_property_bath('l').' '.$property->get_property_parking('l').' ';
+	$the_property_feature_list .= $property->get_property_bed('l').' '.$property->get_property_bath('l').' '.$property->get_property_garage('l').' '.$property->get_property_carport('l').' ';
 	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
 	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
 	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_new_construction('l');
 	$common_features 	= array(
 							'property_toilet',
-							'property_garage',
-							'property_carport',
 							'property_com_parking_comments',
 							'property_com_car_spaces',
 							'property_category',
