@@ -122,6 +122,9 @@ function epl_currency_filter( $price ) {
 			case "JPY" :
 				$formatted = '&yen;' . $price;
 				break;
+			case "ZAR" :
+				$formatted = 'R' . $price;
+				break;
 			default :
 			    $formatted = $currency . ' ' . $price;
 				break;
@@ -134,9 +137,6 @@ function epl_currency_filter( $price ) {
 				break;
 			case "BRL" :
 				$formatted = $price . 'R&#36;';
-				break;
-			case "ZAR" :
-				$formatted = 'R ' . $price;
 				break;
 			case "EUR" :
 				$formatted = $price . '&euro;';
