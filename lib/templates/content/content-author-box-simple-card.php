@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				if ( has_post_thumbnail() ) { 
 					the_post_thumbnail( 'index_thumbnail', array( 'class' => 'index-thumbnail' ) );
 				} elseif (function_exists('get_avatar')) {
-					echo get_avatar( get_the_author_meta('email') , '180' );
+					echo get_avatar( $epl_author->email , '180' );
 				}
 			?>
 		</div>

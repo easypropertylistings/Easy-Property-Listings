@@ -271,7 +271,6 @@ function epl_property_blog_slim() {
 function epl_property_author_box() {
 	global $property,$epl_author;
 	$author_id = get_the_author_meta( 'ID' );
-	include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php' );
 	include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box.php' );
 	
 	$property_second_agent = $property->get_property_meta('property_second_agent');
@@ -279,7 +278,6 @@ function epl_property_author_box() {
 			$second_author = get_user_by( 'login' , $property_second_agent );
 			if($second_author !== false){
 					$epl_author = new Author_Meta($second_author->ID);
-					include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php' );
 					include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box.php' );
 
 			}
@@ -299,16 +297,13 @@ add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
  
 // AUTHOR CARD : Standard
 function epl_property_author_box_simple_card() {
-	include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
+	global $epl_author;
 	include( EPL_PATH_TEMPLATES_CONTENT.'content-author-box-simple-card.php' );
 }
 
 // AUTHOR CARD : Gravatar
 function epl_property_author_box_simple_grav() {
-	include(EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
-	
-	global $epl_settings;
-	
+	global $epl_settings,$epl_author;
 	$author_style = '';
 	if(!empty($epl_settings) && isset($epl_settings['epl_staff_link_to'])) {
 		$author_style = $epl_settings['epl_staff_link_to'];
@@ -319,11 +314,9 @@ function epl_property_author_box_simple_grav() {
 
 // AUTHOR LISTING CARDS : Listing Card
 function epl_property_author_card( $display , $image , $title , $icons) {
-
-	global $property;
+	global $property,$epl_author;
 	
 	$property_status = $property->get_property_meta('property_status');	
-	
 	// Status Removal
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
@@ -374,26 +367,20 @@ function epl_property_widget_image_only_option( $image ) {
 
 // WIDGET AUTHOR : Widget Tall Card
 function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio) {
-
-	$author_id = get_the_author_meta( 'ID' );
-
-	include(EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
+	global $property,$epl_author;
 	include( EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php' );
 	
 	// Second Author
 	if ( is_single() ) {
-	
-		$property_second_agent = get_post_meta( get_the_ID() , 'property_second_agent', true);
-		
+		$property_second_agent = $property->get_property_meta('property_second_agent');
 		if ( '' != $property_second_agent ) {
-			
 			$second_author = get_user_by( 'login' , $property_second_agent );
-			if($second_author !== FALSE) {
-				$author_id = $second_author->ID;
-				include( EPL_PATH_TEMPLATES_CONTENT.'author-meta.php');
-				include( EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php' );
-			
+			if($second_author !== false){
+					$epl_author = new Author_Meta($second_author->ID);
+					include( EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php' );
+
 			}
+			epl_reset_post_author();
 		}
 		
 	}
