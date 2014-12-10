@@ -5,7 +5,7 @@
  * Description:  The complete real estate plug-in for today's agent to display listings using any WordPress theme. Extend the plug-in with cool dynamic add-on extensions that give your visitors more reasons to come back.
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.3 (dev Beta 4)
+ * Version: 1.3 (Public Beta 1)
  * Text Domain: epl
  * Domain Path: languages
  *
