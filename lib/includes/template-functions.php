@@ -126,34 +126,17 @@ function create_property_object() {
 add_action( 'wp', 'create_property_object' );
 
 // Selecting Card Display Style
-function epl_property_single() {	
+function epl_property_single() {
 	global $epl_settings;
+	$d_option 		= isset($epl_settings['epl_display_single_property'])?$epl_settings['epl_display_single_property']:'';
+	$action_check 	= has_action( 'epl_single_template' );
 	
-	$d_option = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_display_single_property'])) {
-		$d_option = $epl_settings['epl_display_single_property'];
-	}
-	
-	$action_check = has_action( 'epl_single_template' );
 	if ( $action_check != '' && $d_option !== 0 ) {
-		do_action( 'epl_single_template' );
+		do_action( 'epl_single_template' );	
 	} else {
-		
-		$d_gallery = '';
-		if(!empty($epl_settings) && isset($epl_settings['display_single_gallery'])) {
-			$d_gallery		= $epl_settings['display_single_gallery'];
-		}
-		
-		$d_gallery_n = '';
-		if(!empty($epl_settings) && isset($epl_settings['display_gallery_n'])) {
-			$d_gallery_n		= $epl_settings['display_gallery_n'];
-		}
-		
-		$d_map_position = '';
-
-		// Default Template
-		echo epl_property_single_default($d_gallery , $d_gallery_n , $d_map_position);
+		epl_property_single_default();
 	}
+	
 }
 
 /**
@@ -190,7 +173,7 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
 	*/
 
 // Single Listing Expanded Templates
-function epl_property_single_default($d_gallery , $d_gallery_n, $d_map_position) {
+function epl_property_single_default() {
 	include( EPL_PATH_TEMPLATES_CONTENT . 'content-listing-single.php' );	
 }
 
@@ -218,27 +201,32 @@ function epl_archive_custom_excerpt_length( $length ) {
 function epl_property_blog() {
 
 	add_filter( 'excerpt_length', 'epl_archive_custom_excerpt_length', 999 );
-
-	global $epl_settings;
-	
+	global $epl_settings,$property;
 	$option = '';
 	if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
 		$option = $epl_settings['epl_property_card_style'];
 	}
-	
-	$action_check = has_action( 'epl_loop_template' );
-	if ( $action_check != '' && $option !== 0 ) {
-		do_action( 'epl_loop_template' );
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal Do Not Display Withdrawn or OffMarket listings
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
 	} else {
-
-		// Default Template
-		echo epl_property_blog_default();
-		
-	}
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			include ( EPL_PATH_TEMPLATES_CONTENT . 'loop-listing-blog-default.php' );
+		}
+	} // End Status Removal
+	
+	
 
 }
 
-// Listing Function for paged card display 
+/*
+** Listing Function for paged card display 
+* not being used @since 1.3 in core, but still kept for extensions which may be using this function
+*/
 function epl_property_blog_default() {
 	global $property;
 	$property_status = $property->get_property_meta('property_status');
