@@ -161,9 +161,35 @@ class EPL_Welcome {
 			<?php $this->tabs(); ?>
 			
 			<div class="changelog">
+				<h3><?php _e( 'Dashboard Widget', 'epl' );?></h3>
+				<div class="feature-section">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-dashboard-widget.png'; ?>" class="epl-welcome-screenshots"/>
+					<h4><?php _e( 'Dashboard Widget','epl' );?></h4>
+					<p><?php _e( 'Dashboard widget now lists all listings and status so at a glance you can see what you have.', 'epl' );?></p>
+					
+				</div>
+			</div>
+			
+			<div class="changelog">
 				<h3><?php _e( 'Listing Management Pages', 'epl' );?></h3>
 				<div class="feature-section">
 					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-listing-admin-list.png'; ?>" class="epl-welcome-screenshots"/>
+					
+					<h4><?php _e( 'Overview of your listings','epl' );?></h4>
+					<p><?php _e( 'Once you have activated your listing types from settings they will appear in the main dashboard menu to the left. Each activated listing type has its own menu giving you quick access to your property, rentals, land...', 'epl' );?></p>
+					
+				</div>
+			</div>
+			
+			<div class="changelog">
+				<h3><?php _e( 'Listing Management Pages', 'epl' );?></h3>
+				<div class="feature-section">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-grid-list-sort.png'; ?>" class="epl-welcome-screenshots"/>
+					
+					<h4><?php _e( 'List & Grid view toggle with Sort','epl' );?></h4>
+					<p><?php _e( 'Your website users can now swap between list & grid view. Also added is the ability to enable a tiled Masonry jQuery effect.', 'epl' );?></p>
+					<p><?php _e( 'On the listing archive pages, your users can now sort their search by price and date.', 'epl' );?></p>
+					
 					
 					<h4><?php _e( 'Graph API','epl' );?></h4>
 					<p><?php _e( 'Visual graph indicating listing prices so you can at a glance visually see what price your listings. Customise the max price to suit your price range from the Settings page. Default max for for sale listings is 2,000,000 and rental listing 2,000.', 'epl' );?></p>
@@ -180,22 +206,19 @@ class EPL_Welcome {
 				<h3><?php _e( 'Widgets', 'epl' );?></h3>
 				<div class="feature-section">
 					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-listing.png'; ?>" class="epl-welcome-screenshots"/>
+
 					<h4><?php _e( 'EPL - Listing','epl' );?></h4>
 					<p><?php _e( 'Added additional options giving you greater control to customise your "featured" listings using a widget. Everything is now customisable even the button label.', 'epl' );?></p>
+					<p><?php _e( 'This gives you the ability to dynamically.', 'epl' );?></p>
+					
+					<div class="epl-clear"></div>
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search.png'; ?>" class="epl-welcome-screenshots"/>
 					
 					<h4><?php _e( 'EPL - Listing Search','epl' );?></h4>
 					<p><?php _e( 'Tabbed search supports multiple listing types from one widget with customisable labels. Also added are land and building size search fields. Performance improved by reducing the number of database queries to keep your site fast.', 'epl' );?></p>
+					<p><?php _e( 'The Listing Search widget now lets you add multiple tabs to one widget. Its also smart enough to hide unused fields like bedrooms on land and the rental price range is automatically adjusted for you.', 'epl' );?></p>
+					<p><?php _e( 'Another great thing about our the Listing Search widget is you can search by property id, handy if you have a lot of listing and give publish the property id on marketing.', 'epl' );?></p>
 				
-				</div>
-			</div>
-		
-			<div class="changelog">
-				<h3><?php _e( 'Dashboard Widget', 'epl' );?></h3>
-				<div class="feature-section">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-dashboard-widget.png'; ?>" class="epl-welcome-screenshots"/>
-					<h4><?php _e( 'Dashboard Widget','epl' );?></h4>
-					<p><?php _e( 'Dashboard widget now lists all listings and status so at a glance you can see what you have.', 'epl' );?></p>
-					
 				</div>
 			</div>
 
@@ -214,12 +237,6 @@ class EPL_Welcome {
 					
 					<h4><?php _e( 'Sale Date','epl' );?></h4>
 					<p><?php _e( 'Calendar to select sold date.', 'epl' );?></p>
-					
-					<h4><?php _e( 'Grid & List View','epl' );?></h4>
-					<p><?php _e( 'Display Settings.', 'epl' );?></p>
-					
-					<h4><?php _e( 'Date and Price Sorter','epl' );?></h4>
-					<p><?php _e( 'Display Settings.', 'epl' );?></p>
 					
 					<h4><?php _e( 'Easier to create custom templates','epl' );?></h4>
 					<p><?php _e( 'Display Settings.', 'epl' );?></p>
@@ -295,7 +312,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Plug in deactivation flushes permalinks', 'epl' );?></li>
 						<li><?php _e( 'New: Shortcode [listing_search]', 'epl' );?></li>
 						<li><?php _e( 'New: Shortcode [listing_feature]', 'epl' );?></li>
-						<li><?php _e( 'New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatability, however adjust your site. ', 'epl' );?></li>
+						<li><?php _e( 'New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatibility, however adjust your site. ', 'epl' );?></li>
 						<li><?php _e( 'New: Listing shortcodes allow for default template display if registered by adding template="slim" to the shortcode.', 'epl' );?></li>
 						<li><?php _e( 'New: Translation support now correctly loads text domain epl', 'epl' );?></li>
 						<li><?php _e( 'New: Added translation tags to all test elements for better translation support', 'epl' );?></li>
@@ -380,13 +397,24 @@ class EPL_Welcome {
 					
 					<h4><?php _e( 'Create a page for each activated listing type', 'epl' );?></h4>
 					<p><?php _e( 'Next add a new page for each listing type you activated.', 'epl' );?></p>
-					<p><?php _e( 'For example, lets say you have activated: Property, Rental and Land. Create 3 pages, one called "Property", another "Land" and the third "Rental" these will be the custom post type slugs eg: property, rental and land. Once created then they can be renamed but leave the page slugs as property, rental and land.', 'epl' );?></p>
+					<p><?php _e( 'For example, lets say you have activated: Property, Rental and Land. Create three pages, one called "Property", another "Land" and the third "Rental" these will be the custom post type slugs eg: property, rental and land. Once created then they can be renamed but leave the page slugs as property, rental and land.', 'epl' );?></p>
 					<p><?php _e( 'Publish a test "Property" and visit your new Property page and you will see the new property and others you have created.', 'epl' );?></p>
 					<p><?php _e( 'Doing this allows you to add "Property", "Land" and "Rental" pages to your WordPress menu and you can rename them to whatever you like eg: "For Sale", "For Rent" etc.', 'epl' );?></p>
 				</div>
 				
+				<div class="changelog">
+					<h3><?php _e( 'Listing Management Pages', 'epl' );?></h3>
+					<div class="feature-section">
+						<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-listing-admin-list.png'; ?>" class="epl-welcome-screenshots"/>
+						
+						<h4><?php _e( 'Overview of your listings','epl' );?></h4>
+						<p><?php _e( 'Once you have activated your listing types from settings they will appear in the main dashboard menu to the left. Each activated listing type has its own menu giving you quick access to your property, rentals, land...', 'epl' );?></p>
+						
+					</div>
+				</div>
+				
 				<h3><?php _e( 'Add Your First Listing', 'epl' );?></h3>
-				<p><?php _e( 'Once you have activated your listing types you can now add a listing. Enter the listing details and press publish.', 'epl' );?></p>
+				<p><?php _e( 'you can now add a listing. Enter the listing details and press publish.', 'epl' );?></p>
 					
 				<div class="feature-section">
 					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-listing-admin.png'; ?>" class="epl-welcome-screenshots"/>
