@@ -133,7 +133,7 @@ function epl_property_single() {
 	epl_property_single_default();
 	
 }
-
+add_action('epl_property_single','epl_property_single');
 /**
  * Featured Image template now loading through filter
  *
@@ -170,16 +170,6 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
 // Single Listing Expanded Templates
 function epl_property_single_default() {
 
-	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
-	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
-	
-		$common_tpl		= 'single-listing.php';
-		$post_tpl 		= 'single-'.get_post_type().'.php';
-		$find[] 		=  $post_tpl;
-		$find[] 		= epl_template_path() . $post_tpl;
-		$find[] 		= epl_template_path() . $common_tpl;
-		
-	}
 	epl_get_template_part('content-listing-single.php');
 }
 
@@ -236,6 +226,7 @@ function epl_property_blog() {
 	
 
 }
+add_action('epl_property_blog','epl_property_blog');
 
 /*
 ** Listing Function for paged card display 

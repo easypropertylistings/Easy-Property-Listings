@@ -46,7 +46,7 @@ get_header(); ?>
 					<?php do_action( 'epl_property_loop_start' ); ?>
 					<?php while ( have_posts() ) : // The Loop
 							the_post();
-							epl_property_blog();
+							do_action('epl_property_blog');
 						endwhile; // end of one post
 					?>
 					<?php do_action( 'epl_property_loop_end' ); ?>
