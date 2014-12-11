@@ -63,6 +63,7 @@ $epl_settings = get_option('epl_settings');
 										<?php
 										if( !empty($field_group['label']) ) { ?>
 												<h3 class="epl-section-title"><?php _e($field_group['label'], 'epl'); ?></h3>
+												<p class=""><?php if(isset($field_group['help'])) _e($field_group['help'], 'epl'); ?></p>
 											<?php
 										} ?>
 										
@@ -191,16 +192,40 @@ function epl_get_admin_option_fields() {
 
 	$fields = array(
 		array(
-			'label'		=>	'',
+			'label'		=>	__('Listing Types and Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'help'		=>	__('Select the listing types you want to enable and press Save Changes. Refresh the page to see your new activated listing types.' , 'epl'),
 			'fields'	=>	array(
 				array(
 					'name'	=>	'activate_post_types',
 					'label'	=>	__('Listing Types to Enable', 'epl'),
 					'type'	=>	'checkbox',
 					'opts'	=>	$epl_post_types,
-					'help'	=>	__('Refresh the page to see your new activated listing types. Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.')
+					'help'	=>	__('Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.' , 'epl')
 				),
-
+				
+				array(
+					'name'	=>	'label_location',
+					'label'	=>	__('Location Taxonomy', 'epl'),
+					'type'	=>	'text'
+				),
+				
+				array(
+					'name'	=>	'sticker_new_range',
+					'label'	=>	__('Keep Listings flagged "New" for', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'7',
+					'help'	=>	__('Listings will have a "NEW" Sticker for the defined number of days.', 'epl')
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Currency' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'fields'	=>	array(
 				array(
 					'name'	=>	'currency',
 					'label'	=>	__('Currency', 'epl'),
@@ -225,37 +250,37 @@ function epl_get_admin_option_fields() {
 					'name'	=>	'currency_decimal_separator',
 					'label'	=>	__('Decimal Separator', 'epl'),
 					'type'	=>	'text'
-				),
-
-				array(
-					'name'	=>	'label_location',
-					'label'	=>	__('Location label', 'epl'),
-					'type'	=>	'text'
-				),
-				
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Graph Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'help'		=>	__('Will be used to calculate bars charts and determine width.' , 'epl'),
+			'fields'	=>	array(
 				array(
 					'name'	=>	'epl_max_graph_sales_price',
 					'label'	=>	__('Maximum Sales Price', 'epl'),
 					'type'	=>	'number',
-					'default'	=>	'2000000',
-					'help'	=>	__('Will be used by epl bars & charts to determine bar width', 'epl')
+					'default'	=>	'2000000'
 				),
 				
 				array(
 					'name'	=>	'epl_max_graph_rent_price',
 					'label'	=>	__('Maximum Rent Price', 'epl'),
 					'type'	=>	'number',
-					'default'	=>	'2000',
-					'help'	=>	__('Will be used by epl bars & charts to determine bar width', 'epl'),
-				),
-
-				array(
-					'name'	=>	'sticker_new_range',
-					'label'	=>	__('Keep Listings tagged "New" for', 'epl'),
-					'type'	=>	'number',
-					'default'	=>	'7',
-					'help'	=>	__('listings will have a "NEW" Sticker for the defined number of days', 'epl')
-				),
+					'default'	=>	'2000'
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Other' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'fields'	=>	array(
 				
 				array(
 					'name'	=>	'debug',
