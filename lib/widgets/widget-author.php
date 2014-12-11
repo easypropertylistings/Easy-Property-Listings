@@ -40,7 +40,6 @@ class EPL_Widget_Author extends WP_Widget {
 		echo $before_widget;
 		if ( $title )
 			echo $before_title . $title . $after_title;
-			
 		epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
 
 		echo $after_widget;
