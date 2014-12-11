@@ -529,3 +529,8 @@ width: 31%;
 .status-sticker.open {
     background: none repeat scroll 0 0 #7faf1b;
 }
+.epl_la_hide_notice {
+    float: right;
+    font-size: 14px;
+    line-height: 19px;
+}

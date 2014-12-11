@@ -148,13 +148,23 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * @since 1.0
 		*/
 		public function admin_notices() {
+			global $pagenow;		
 			$outdated = get_option('epl_outdated_extensions');
+			$page = ($pagenow == 'admin.php' && isset($_GET['page']) && $_GET['page'] == 'epl-extensions-old')?'all':'one';
 			if( isset($outdated) && !empty($outdated)){
+				if($page == 'all' ) {
 					foreach($outdated as $extension_name	=>	$extension_version) {
 						echo '<div class="error"><p>';
 						_e('Currently installed version : '.$extension_version.' of '.$extension_name.' is outdated, you should consider updating it','epl');
 						echo '</p></div>';
 					}
+				} else {
+					echo '<div class="error"><p>';
+						_e('Your Easy Property Listings Extensions need an update','epl');
+						echo '<a class="epl_la_hide_notice" href="'.admin_url('admin.php?page=epl-extensions-old').'">'.__('Please update now','epl').'</a>';
+						echo '</p></div>';
+				}
+					
 			}
 		}
 		
