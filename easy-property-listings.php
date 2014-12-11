@@ -2,10 +2,10 @@
 /*
  * Plugin Name: Easy Property Listings
  * Plugin URI: http://www.easypropertylistings.com.au
- * Description:  The complete real estate plug-in for today's agent to display listings using any WordPress theme. Extend the plug-in with cool dynamic add-on extensions that give your visitors more reasons to come back.
+ * Description:  The complete real estate platform for today's agent to list property using any theme for WordPress fast, easy and free. Just enable the listing types you need add some properties, tweak your settings and you're done. Extend the core with cool dynamic add-on extensions that give your visitors more reasons to come back.
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.3 (Public Beta 1)
+ * Version: 1.3 (dev Beta 4)
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -239,7 +239,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
 		}
-
+		
+		
+	
 		/*
 		 * Include required files
 		 *

@@ -507,13 +507,10 @@
 .status-sticker.open {
     background: none repeat scroll 0 0 #7faf1b;
 }
-<<<<<<< HEAD
+
 .epl_la_hide_notice {
     float: right;
-    font-size: 14px;
-    line-height: 19px;
-=======
-
+}
 .epl-clearfix {
 	clear:  both !important;
 }
@@ -529,8 +526,9 @@
 	clear:both;
 }
 /* Use this stylesheet for problems with IE7 and below */
+
 #ie6 .epl-clearfix,
 #ie7 .epl-clearfix {
 	zoom: 1;
->>>>>>> 82af2120e4937b05a8f30613cf47646a9f80314a
+
 }
