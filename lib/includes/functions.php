@@ -483,14 +483,14 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 function epl_admin_sidebar () {
 	$service_banners = array(
 		array(
-			'url' => 'http://easypropertylistings.com.au/extensions/prospector-license/',
+			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
 			'img' => 'bannertwo.png',
-			'alt' => 'Prospector for Easy Property Listings',
+			'alt' => __('Developer bundle Prospector for Easy Property Listings', 'epl')
 		),
 		array(
-			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
+			'url' => 'http://easypropertylistings.com.au/extensions/prospector-license/',
 			'img' => 'bannerone.png',
-			'alt' => 'Developer Bundle for Easy Property Listings',
+			'alt' => __('Prospector pack for Easy Property Listings', 'epl')
 		),
 	);
 	$i = 0;
