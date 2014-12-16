@@ -69,8 +69,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->setup_constants();
 				self::$instance->includes();
 				self::$instance->load_textdomain();
-				update_option('epl_running',true);
-				$outdated = get_option('epl_outdated_extensions');
+				define('EPL_RUNNING',true);
 			}
 			return self::$instance;
 
