@@ -416,13 +416,12 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 
 }
 
-/*=== Callback functions for template hooks ====*/
-
 /**
-	@hooked epl_property_title
-	@hooked property_tab_address
+ * Callback functions for template hooks
+ * 
+ * @hooked epl_property_title
+ * @hooked property_tab_address
 **/
-
 function epl_property_the_address(){
 	global $property;
 	// Commercial and Business Address
@@ -483,8 +482,8 @@ function epl_property_suburb () {
 add_action('epl_property_suburb','epl_property_suburb');
 
 /**
-	@hooked property_price
-	@hooked property_price_content
+ * @hooked property_price
+ * @hooked property_price_content
 **/
 function epl_property_price () {
 	echo epl_get_property_price ();
@@ -492,9 +491,9 @@ function epl_property_price () {
 add_action('epl_property_price','epl_property_price');
 add_action('epl_property_price_content','epl_property_price');
 
-/** 
-	@hooked property_price
-	@hooked property_price_content
+/**
+ * @hooked property_price
+ * @hooked property_price_content
 **/
 function epl_get_property_icons() {
 	global $property;
@@ -515,8 +514,8 @@ function epl_get_property_bb_icons() {
 		$property->get_property_bath();
 }
 
-/** 
-	@hooked property_land_category
+/**
+ * @hooked property_land_category
 **/
 function epl_property_land_category(){
 	global $property;
@@ -525,7 +524,7 @@ function epl_property_land_category(){
 add_action('epl_property_land_category','epl_property_land_category');
 
 /** 
-	@hooked property_commercial_category
+ * @hooked property_commercial_category
 **/
 function epl_property_commercial_category(){
 	global $property;
@@ -538,8 +537,8 @@ function epl_property_commercial_category(){
 }
 add_action('epl_property_commercial_category','epl_property_commercial_category');
 
-/** 
-	@hooked property_available_dates
+/**
+ * @hooked property_available_dates
 **/
 function epl_property_available_dates() {
 	global $property;
@@ -550,8 +549,8 @@ function epl_property_available_dates() {
 }
 add_action('epl_property_available_dates','epl_property_available_dates');
 
-/** 
-	@hooked property_inspection_times
+/**
+ * @hooked property_inspection_times
 **/
 function epl_property_inspection_times(){
 	global $property;
@@ -567,8 +566,8 @@ function epl_property_inspection_times(){
 }
 add_action('epl_property_inspection_times','epl_property_inspection_times');
 
-/** 
-	@hooked the_property_heading
+/**
+ * @hooked the_property_heading
 **/
 function epl_property_heading(){
 	global $property;
@@ -576,8 +575,8 @@ function epl_property_heading(){
 }
 add_action('epl_property_heading','epl_property_heading');
 
-/** 
-	@hooked property_secondary_heading
+/**
+ * @hooked property_secondary_heading
 **/
 function epl_property_secondary_heading() {
 	global $property;
@@ -595,8 +594,8 @@ function epl_property_category() {
 	global $property;
 	echo $property->get_property_category();
 }
-/** 
-	@hooked property_after_content
+/**
+ * @hooked property_after_content
 **/
 function epl_property_content_after() {
 	global $property;
@@ -611,8 +610,8 @@ function epl_property_content_after() {
 }
 add_action('epl_property_content_after','epl_property_content_after');
 
-/** 
-	@hooked property_tab_section
+/**
+ * @hooked property_tab_section
 **/
 function epl_property_tab_section() {
 	global $property;
@@ -712,7 +711,7 @@ function epl_property_tab_section() {
 add_action('epl_property_tab_section','epl_property_tab_section');
 
 /** 
-	@hooked property_after_tab_section
+ * @hooked property_after_tab_section
 **/
 function epl_property_tab_section_after() {
 	global $property;
