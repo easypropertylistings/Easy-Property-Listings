@@ -229,7 +229,12 @@ function epl_property_blog() {
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
-		epl_get_template_part('loop-listing-blog-default.php');
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-default.php');
+		}
 	} // End Status Removal
 	
 	
@@ -452,6 +457,31 @@ add_action('epl_property_title','epl_property_the_address');
 add_action('epl_property_tab_address','epl_property_the_address');
 add_action('epl_property_address','epl_property_the_address');
 
+function epl_property_suburb () {
+	global $property;
+	// Commercial and Business Address
+	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) {
+		if ( $property->get_property_meta('property_address_display') == 'yes' && $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
+			<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
+			
+		<?php } 
+		echo '<span class="entry-title-sub">';
+		if ( $property->get_property_meta('property_address_display') == 'yes') { ?>
+			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . ', '; ?></span>
+		<?php } ?>
+				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
+				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
+			</span>
+		<?php 
+	} else { ?>
+		<span class="entry-title-sub">
+			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb')?></span>
+		</span> <?php
+	}
+}
+
+add_action('epl_property_suburb','epl_property_suburb');
+
 /**
 	@hooked property_price
 	@hooked property_price_content
@@ -561,6 +591,10 @@ function epl_property_secondary_heading() {
 }
 add_action('epl_property_secondary_heading','epl_property_secondary_heading');
 
+function epl_property_category() {
+	global $property;
+	echo $property->get_property_category();
+}
 /** 
 	@hooked property_after_content
 **/
