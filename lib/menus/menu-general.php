@@ -24,7 +24,14 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
 				$epl_settings = get_option('epl_settings');
+				
+				if( isset($field['default']) ) {
+					if($_REQUEST[ $field['name'] ] == '' || $_REQUEST[ $field['name'] ] == 0) {
+						$_REQUEST[ $field['name'] ] = $field['default'];
+					}
+				}
 				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+				
 				update_option('epl_settings', $epl_settings);
 			}
 		}
@@ -42,7 +49,7 @@ $epl_settings = get_option('epl_settings');
 	<h2><?php _e('General Settings', 'epl'); ?></h2>
 	<p><?php _e('Configure Easy Property Listings general settings. Visit ', 'epl'); ?><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a><?php _e(' for help.', 'epl');?></p>
 	<div id="epl-menu-general" class="epl-content">
-		<form action="" method="post">
+		<form action="" method="post" class="epl-general-form">
 			<div class="epl-fields epl-menu-page">
 				<?php
 					if(!empty($fields)) { ?>
@@ -56,6 +63,7 @@ $epl_settings = get_option('epl_settings');
 										<?php
 										if( !empty($field_group['label']) ) { ?>
 												<h3 class="epl-section-title"><?php _e($field_group['label'], 'epl'); ?></h3>
+												<p class=""><?php if(isset($field_group['help'])) _e($field_group['help'], 'epl'); ?></p>
 											<?php
 										} ?>
 										
@@ -115,7 +123,11 @@ $epl_settings = get_option('epl_settings');
 																		}
 																	}
 																	break;
-
+																
+																case 'number':
+																	echo '<input class="validate[custom[onlyNumber]]" type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.intval($val).'" />';
+																	break;
+																	
 																default:
 																	echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 															}
@@ -144,6 +156,11 @@ $epl_settings = get_option('epl_settings');
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
+		<div class="epl-content-sidebar">
+			<?php epl_admin_sidebar (); ?>
+		</div>
+
+
 	</div>
 </div><?php
 
@@ -175,16 +192,40 @@ function epl_get_admin_option_fields() {
 
 	$fields = array(
 		array(
-			'label'		=>	'',
+			'label'		=>	__('Listing Types and Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'help'		=>	__('Select the listing types you want to enable and press Save Changes. Refresh the page to see your new activated listing types.' , 'epl'),
 			'fields'	=>	array(
 				array(
 					'name'	=>	'activate_post_types',
 					'label'	=>	__('Listing Types to Enable', 'epl'),
 					'type'	=>	'checkbox',
 					'opts'	=>	$epl_post_types,
-					'help'	=>	__('Refresh the page to see your new activated listing types. Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.')
+					'help'	=>	__('Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.' , 'epl')
 				),
-
+				
+				array(
+					'name'	=>	'label_location',
+					'label'	=>	__('Location Taxonomy', 'epl'),
+					'type'	=>	'text'
+				),
+				
+				array(
+					'name'	=>	'sticker_new_range',
+					'label'	=>	__('Keep Listings flagged "New" for', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'7',
+					'help'	=>	__('Listings will have a "NEW" Sticker for the defined number of days.', 'epl')
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Currency' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'fields'	=>	array(
 				array(
 					'name'	=>	'currency',
 					'label'	=>	__('Currency', 'epl'),
@@ -209,14 +250,38 @@ function epl_get_admin_option_fields() {
 					'name'	=>	'currency_decimal_separator',
 					'label'	=>	__('Decimal Separator', 'epl'),
 					'type'	=>	'text'
-				),
-
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Graph Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'help'		=>	__('Will be used to calculate bars charts and determine width.' , 'epl'),
+			'fields'	=>	array(
 				array(
-					'name'	=>	'label_location',
-					'label'	=>	__('Location label', 'epl'),
-					'type'	=>	'text'
+					'name'	=>	'epl_max_graph_sales_price',
+					'label'	=>	__('Maximum Sales Price', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'2000000'
 				),
-
+				
+				array(
+					'name'	=>	'epl_max_graph_rent_price',
+					'label'	=>	__('Maximum Rent Price', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'2000'
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Other' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'fields'	=>	array(
+				
 				array(
 					'name'	=>	'debug',
 					'label'	=>	__('Debug', 'epl'),
@@ -225,8 +290,9 @@ function epl_get_admin_option_fields() {
 						1	=>	'On',
 						0	=>	'Off'
 					),
-					'help'	=>	__('Display Geocode Result in Admin', 'epl')
+					'help'	=>	__('Display Lat/Long coordinates on listing pages in admin', 'epl')
 				),
+				
 			),
 		),
 	);

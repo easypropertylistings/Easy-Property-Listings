@@ -3,31 +3,389 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 1.1.2\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-"
-"listings\n"
-"POT-Creation-Date: 2014-09-08 16:49+0800\n"
-"PO-Revision-Date: 2014-09-08 16:49+0800\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
+"POT-Creation-Date: 2014-12-11 21:57+0800\n"
+"PO-Revision-Date: 2014-12-11 21:57+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
-"Language: it\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:57
+#: includes/template-functions.php:848 includes/template-functions.php:920
+msgid "Contact"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:57
+msgid "by Email"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:58
+msgid "Email"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:33 compatibility/author-meta-compat.php:38
+#: compatibility/author-meta-compat.php:43 compatibility/author-meta-compat.php:48
+#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:73
+#: includes/class-author-meta.php:89 includes/class-author-meta.php:105
+#: includes/class-author-meta.php:121 includes/class-author-meta.php:137
+msgid "Follow"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:33 includes/class-author-meta.php:73
+msgid "on Twitter"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:33 includes/class-author-meta.php:74
+#: includes/user.php:29
+msgid "Twitter"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:38 includes/class-author-meta.php:89
+msgid "on Google"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:38 includes/class-author-meta.php:90
+msgid "Google"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:43 includes/class-author-meta.php:105
+msgid "on Facebook"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:43 includes/class-author-meta.php:106
+#: includes/user.php:30
+msgid "Facebook"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:48 includes/class-author-meta.php:121
+msgid "on Linkedin"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:48 includes/class-author-meta.php:122
+msgid "Linkedin"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:137
+msgid "on Skype"
+msgstr ""
+
+#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:138
+#: includes/user.php:28
+msgid "Skype"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:343 compatibility/listing-meta-compat.php:344
+#: compatibility/listing-meta-compat.php:345 compatibility/listing-meta-compat.php:346
+#: compatibility/listing-meta-compat.php:591 compatibility/listing-meta-compat.php:593
+#: compatibility/listing-meta-compat.php:594 compatibility/listing-meta-compat.php:595
+#: includes/class-property-meta.php:214 includes/class-property-meta.php:246
+#: includes/class-property-meta.php:271 includes/class-property-meta.php:309
+#: includes/class-property-meta.php:341 includes/class-property-meta.php:380
+#: includes/class-property-meta.php:396 includes/class-property-meta.php:429
+#: includes/template-functions.php:526 meta-boxes/meta-boxes.php:35
+#: post-types/post-types.php:44 widgets/widget-dashboard-epl-status.php:119
+#: widgets/widget-dashboard-epl-status.php:141
+msgid "Sold"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:368 compatibility/listing-meta-compat.php:369
+#: compatibility/listing-meta-compat.php:370 compatibility/listing-meta-compat.php:371
+#: compatibility/listing-meta-compat.php:376 compatibility/listing-meta-compat.php:612
+#: compatibility/listing-meta-compat.php:613 compatibility/listing-meta-compat.php:614
+#: compatibility/listing-meta-compat.php:615 compatibility/listing-meta-compat.php:629
+#: includes/class-property-meta.php:224 includes/class-property-meta.php:255
+#: includes/class-property-meta.php:283 includes/class-property-meta.php:320
+#: includes/class-property-meta.php:356 includes/class-property-meta.php:384
+#: includes/class-property-meta.php:407 includes/class-property-meta.php:440
+#: meta-boxes/meta-boxes.php:943 widgets/widget-dashboard-epl-status.php:118
+#: widgets/widget-dashboard-epl-status.php:140
+msgid "Under Offer"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:405 compatibility/listing-meta-compat.php:406
+#: compatibility/listing-meta-compat.php:407 compatibility/listing-meta-compat.php:408
+#: includes/class-property-meta.php:238 includes/class-property-meta.php:301
+#: includes/class-property-meta.php:364 includes/class-property-meta.php:423
+#: meta-boxes/meta-boxes.php:39 post-types/post-types.php:48
+#: widgets/widget-dashboard-epl-status.php:100
+#: widgets/widget-dashboard-epl-status.php:120
+msgid "Leased"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:410 compatibility/listing-meta-compat.php:411
+#: includes/class-property-meta.php:241 includes/class-property-meta.php:304
+msgid "TBA"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:564 meta-boxes/meta-boxes.php:232
+msgid "Commercial Category"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:568 meta-boxes/meta-boxes.php:1263
+msgid "Car Spaces"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:581 compatibility/listing-meta-compat.php:583
+#: includes/class-property-meta.php:198 includes/class-property-meta.php:200
+msgid "Inc. GST"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:585 includes/class-property-meta.php:202
+msgid "GST"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:597 compatibility/listing-meta-compat.php:598
+#: compatibility/listing-meta-compat.php:599 includes/class-property-meta.php:248
+#: includes/class-property-meta.php:311 includes/class-property-meta.php:431
+#: meta-boxes/meta-boxes.php:64
+msgid "For Sale"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:618 compatibility/listing-meta-compat.php:619
+#: compatibility/listing-meta-compat.php:620 compatibility/listing-meta-compat.php:622
+#: compatibility/listing-meta-compat.php:623 compatibility/listing-meta-compat.php:624
+#: includes/class-property-meta.php:258 includes/class-property-meta.php:260
+#: includes/class-property-meta.php:324 includes/class-property-meta.php:326
+#: includes/class-property-meta.php:444 includes/class-property-meta.php:446
+msgid "For Lease"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:618 compatibility/listing-meta-compat.php:619
+#: compatibility/listing-meta-compat.php:620 compatibility/listing-meta-compat.php:622
+#: compatibility/listing-meta-compat.php:623 compatibility/listing-meta-compat.php:624
+#: includes/class-property-meta.php:258 includes/class-property-meta.php:260
+#: includes/class-property-meta.php:324 includes/class-property-meta.php:326
+#: includes/class-property-meta.php:444 includes/class-property-meta.php:446
+msgid "P.A."
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:646 includes/class-property-meta.php:463
+#: meta-boxes/meta-boxes.php:281
+msgid "Bedrooms"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:647 compatibility/listing-meta-compat.php:648
+#: includes/class-property-meta.php:464 includes/class-property-meta.php:465
+msgid "bed"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:651 includes/class-property-meta.php:473
+#: meta-boxes/meta-boxes.php:288
+msgid "Bathrooms"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:652 compatibility/listing-meta-compat.php:653
+#: includes/class-property-meta.php:474 includes/class-property-meta.php:475
+msgid "bath"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:656 includes/class-property-meta.php:486
+#: includes/class-property-meta.php:487 includes/class-property-meta.php:488
+msgid "Parking Spaces"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:659 includes/class-property-meta.php:519
+#: meta-boxes/meta-boxes.php:342 shortcodes/shortcode-listing-search.php:525
+msgid "Air Conditioning"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:660 includes/class-property-meta.php:520
+msgid "Air conditioning"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:663 compatibility/listing-meta-compat.php:664
+#: includes/class-property-meta.php:531 includes/class-property-meta.php:532
+#: meta-boxes/meta-boxes.php:332 shortcodes/shortcode-listing-search.php:530
+msgid "Pool"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:670 meta-boxes/meta-boxes.php:300
+msgid "Toilet"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:673 includes/class-property-meta.php:581
+#: includes/class-property-meta.php:582 meta-boxes/meta-boxes.php:321
+msgid "New Construction"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:676
+msgid "Alarm system"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:679 includes/class-property-meta.php:496
+#: meta-boxes/meta-boxes.php:307
+msgid "Garage"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:682 includes/class-property-meta.php:506
+#: includes/class-property-meta.php:508 meta-boxes/meta-boxes.php:314
+msgid "Carport"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:687 includes/class-property-meta.php:557
+msgid "Land is"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:690 includes/class-property-meta.php:569
+msgid "Floor Area is"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:700 meta-boxes/meta-boxes.php:423
+msgid "Remote Garage"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:710 meta-boxes/meta-boxes.php:433
+msgid "Secure Parking"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:720 meta-boxes/meta-boxes.php:443
+msgid "Study"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:730 meta-boxes/meta-boxes.php:453
+msgid "Dishwasher"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:740 meta-boxes/meta-boxes.php:463
+msgid "Built In Robes"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:750 meta-boxes/meta-boxes.php:473
+msgid "Gym"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:760 meta-boxes/meta-boxes.php:483
+msgid "Workshop"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:770 meta-boxes/meta-boxes.php:493
+msgid "Rumpus Room"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:780 meta-boxes/meta-boxes.php:503
+msgid "Floor Boards"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:790 meta-boxes/meta-boxes.php:513
+msgid "Broadband"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:800 meta-boxes/meta-boxes.php:523
+msgid "Pay TV"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:810 meta-boxes/meta-boxes.php:532
+msgid "Vacuum System"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:820 meta-boxes/meta-boxes.php:542
+msgid "Intercom"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:830 meta-boxes/meta-boxes.php:552
+msgid "Spa"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:840 meta-boxes/meta-boxes.php:570
+msgid "Tennis Court"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:850 meta-boxes/meta-boxes.php:580
+msgid "Balcony"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:860 meta-boxes/meta-boxes.php:590
+msgid "Deck"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:870 meta-boxes/meta-boxes.php:600
+msgid "Courtyard"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:880 meta-boxes/meta-boxes.php:610
+msgid "Outdoor Entertaining"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:890 meta-boxes/meta-boxes.php:620
+msgid "Shed"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:900 meta-boxes/meta-boxes.php:717
+msgid "Open Fire Place"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:910 meta-boxes/meta-boxes.php:647
+msgid "Ducted Cooling"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:920 meta-boxes/meta-boxes.php:657
+msgid "Split System Heating"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:930 meta-boxes/meta-boxes.php:667
+msgid "Hydronic Heating"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:940 meta-boxes/meta-boxes.php:677
+msgid "Split System Aircon"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:950 meta-boxes/meta-boxes.php:687
+msgid "Gas Heating"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:960 meta-boxes/meta-boxes.php:697
+msgid "Reverse Cycle Aircon"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:970 meta-boxes/meta-boxes.php:707
+msgid "Evaporative Cooling"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:1232 meta-boxes/meta-boxes.php:1086
+msgid "Fencing"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:1235 meta-boxes/meta-boxes.php:1093
+msgid "Annual Rainfall"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:1238 meta-boxes/meta-boxes.php:1100
+msgid "Soil Types"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:1241 meta-boxes/meta-boxes.php:1107
+msgid "Improvements"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:1244 meta-boxes/meta-boxes.php:1114
+msgid "Council Rates"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:1247 meta-boxes/meta-boxes.php:1121
+msgid "Irrigation"
+msgstr ""
+
+#: compatibility/listing-meta-compat.php:1250 meta-boxes/meta-boxes.php:1128
+msgid "Carrying Capacity"
+msgstr ""
+
 #: hooks/hook-external-links.php:44
 msgid "Tour "
 msgstr ""
 
 #: hooks/hook-floorplan.php:40
-#, fuzzy
 msgid "Floor Plan "
-msgstr "Superficie è"
+msgstr ""
 
 #: hooks/hook-mini-web.php:44
 msgid "Mini Web "
@@ -35,7 +393,7 @@ msgstr ""
 
 #: hooks/hook-read-more.php:20
 msgid "Read More "
-msgstr "Per saperne di più"
+msgstr ""
 
 #: includes/EPL_License_Handler.php:138
 #, php-format
@@ -44,444 +402,445 @@ msgstr ""
 
 #: includes/EPL_License_Handler.php:271
 msgid "Deactivate License"
-msgstr "Disattivare licenza"
-
-#: includes/functions.php:113 includes/functions.php:114
-#: includes/functions.php:115 includes/functions.php:116
-#: includes/functions.php:292 includes/functions.php:294
-#: includes/functions.php:295 includes/functions.php:296
-#: meta-boxes/meta-boxes.php:35 post-types/post-types.php:44
-#: templates/content/content-listing-single.php:148
-#: templates/content/listing-meta.php:332
-#: templates/content/listing-meta.php:333
-#: templates/content/listing-meta.php:334
-#: templates/content/listing-meta.php:335
-#: templates/content/listing-meta.php:577
-#: templates/content/listing-meta.php:579
-#: templates/content/listing-meta.php:580
-#: templates/content/listing-meta.php:581
-msgid "Sold"
-msgstr "Venduto"
-
-#: includes/functions.php:122 includes/functions.php:129
-#: includes/functions.php:162
-#, fuzzy
-msgid "Open House"
-msgstr "Casa"
-
-#: includes/functions.php:133 includes/functions.php:134
-#: includes/functions.php:135 includes/functions.php:136
-#: includes/functions.php:307 includes/functions.php:308
-#: includes/functions.php:309 includes/functions.php:310
-#: meta-boxes/meta-boxes.php:913 templates/content/listing-meta.php:357
-#: templates/content/listing-meta.php:358
-#: templates/content/listing-meta.php:359
-#: templates/content/listing-meta.php:360
-#: templates/content/listing-meta.php:365
-#: templates/content/listing-meta.php:598
-#: templates/content/listing-meta.php:599
-#: templates/content/listing-meta.php:600
-#: templates/content/listing-meta.php:601
-#: templates/content/listing-meta.php:615
-msgid "Under Offer"
-msgstr "In Offerta"
-
-#: includes/functions.php:150 includes/functions.php:151
-msgid "bond"
-msgstr "Deposito Doganale"
-
-#: includes/functions.php:154 includes/functions.php:155
-#: includes/functions.php:156 includes/functions.php:157
-#: meta-boxes/meta-boxes.php:39 post-types/post-types.php:48
-#: templates/content/listing-meta.php:391
-#: templates/content/listing-meta.php:392
-#: templates/content/listing-meta.php:393
-#: templates/content/listing-meta.php:394
-msgid "Leased"
-msgstr "Leasing"
-
-#: includes/functions.php:159 includes/functions.php:160
-#: templates/content/listing-meta.php:396
-#: templates/content/listing-meta.php:397
-msgid "TBA"
 msgstr ""
 
-#: includes/functions.php:268 includes/functions.php:269
-#: meta-boxes/meta-boxes.php:1227 templates/content/listing-meta.php:554
-#, fuzzy
-msgid "Car Spaces"
-msgstr "Posto auto coperto"
-
-#: includes/functions.php:282 includes/functions.php:284
-#: templates/content/listing-meta.php:567
-#: templates/content/listing-meta.php:569
-msgid "Inc. GST"
+#: includes/class-author-meta.php:167 includes/options-front-end.php:56
+#: templates/content/widget-content-author.php:48 widgets/widget-listing.php:224
+msgid "Read More"
 msgstr ""
 
-#: includes/functions.php:286 templates/content/listing-meta.php:571
-msgid "GST"
+#: includes/class-property-meta.php:134 meta-boxes/meta-boxes.php:45
+#: meta-boxes/meta-boxes.php:60 widgets/widget-dashboard-epl-status.php:117
+#: widgets/widget-dashboard-epl-status.php:139
+msgid "Auction"
 msgstr ""
 
-#: includes/functions.php:298 includes/functions.php:299
-#: includes/functions.php:300 meta-boxes/meta-boxes.php:64
-#: templates/content/listing-meta.php:583
-#: templates/content/listing-meta.php:584
-#: templates/content/listing-meta.php:585
-msgid "For Sale"
-msgstr "Vendita"
-
-#: includes/functions.php:302 includes/functions.php:303
-#: includes/functions.php:304 includes/install.php:50
-#, fuzzy
-msgid "POA"
-msgstr "Nessun prezzo etichetta (di default è POA)"
-
-#: includes/functions.php:314 includes/functions.php:315
-#: includes/functions.php:316 includes/functions.php:319
-#: includes/functions.php:320 includes/functions.php:321
-#: templates/content/listing-meta.php:604
-#: templates/content/listing-meta.php:605
-#: templates/content/listing-meta.php:606
-#: templates/content/listing-meta.php:608
-#: templates/content/listing-meta.php:609
-#: templates/content/listing-meta.php:610
-msgid "For Lease"
-msgstr "Per i leasing"
-
-#: includes/functions.php:314 includes/functions.php:315
-#: includes/functions.php:316 includes/functions.php:319
-#: includes/functions.php:320 includes/functions.php:321
-#: templates/content/listing-meta.php:604
-#: templates/content/listing-meta.php:605
-#: templates/content/listing-meta.php:606
-#: templates/content/listing-meta.php:608
-#: templates/content/listing-meta.php:609
-#: templates/content/listing-meta.php:610
-msgid "P.A."
+#: includes/class-property-meta.php:235
+msgid " bond"
 msgstr ""
 
-#: includes/functions.php:460
+#: includes/class-property-meta.php:497 includes/class-property-meta.php:498
+msgid "garage"
+msgstr ""
+
+#: includes/class-property-meta.php:507
+msgid "carport"
+msgstr ""
+
+#: includes/class-property-meta.php:543 includes/class-property-meta.php:544
+msgid "Alarm System"
+msgstr ""
+
+#: includes/class-property-meta.php:592
+msgid " Car Spaces"
+msgstr ""
+
+#: includes/functions.php:121 menus/menu-welcome.php:389
 msgid "Property (Residential)"
-msgstr "Proprietà (Residenziale)"
+msgstr ""
 
-#: includes/functions.php:461 post-types/post-type-land.php:28
-#: post-types/post-type-land.php:29 post-types/post-type-land.php:30
+#: includes/functions.php:122 includes/install.php:59 includes/install.php:74
+#: menus/menu-display.php:304 menus/menu-welcome.php:391
+#: post-types/post-type-land.php:28 post-types/post-type-land.php:29
+#: post-types/post-type-land.php:30
 msgid "Land"
-msgstr "Terra"
+msgstr ""
 
-#: includes/functions.php:462 post-types/post-type-rental.php:29
+#: includes/functions.php:123 includes/install.php:75 menus/menu-display.php:310
+#: menus/menu-welcome.php:390 post-types/post-type-rental.php:29
 msgid "Rental"
-msgstr "Noleggio"
+msgstr ""
 
-#: includes/functions.php:463 post-types/post-type-rural.php:28
-#: post-types/post-type-rural.php:29 post-types/post-type-rural.php:30
+#: includes/functions.php:124 includes/install.php:61 includes/install.php:76
+#: menus/menu-display.php:316 menus/menu-welcome.php:392
+#: post-types/post-type-rural.php:28 post-types/post-type-rural.php:29
+#: post-types/post-type-rural.php:30
 msgid "Rural"
-msgstr "Rurale"
+msgstr ""
 
-#: includes/functions.php:464 includes/functions.php:742
+#: includes/functions.php:125 includes/functions.php:355 includes/install.php:63
+#: includes/install.php:78 menus/menu-display.php:322 menus/menu-welcome.php:393
 #: post-types/post-type-commercial.php:29
 msgid "Commercial"
-msgstr "Commerciale"
+msgstr ""
 
-#: includes/functions.php:465 post-types/post-type-commercial_land.php:30
+#: includes/functions.php:126 includes/install.php:64 includes/install.php:79
+#: menus/menu-display.php:328 menus/menu-welcome.php:394
+#: post-types/post-type-commercial_land.php:30
 msgid "Commercial Land"
-msgstr "Terreno Commerciale"
+msgstr ""
 
-#: includes/functions.php:466 post-types/post-type-business.php:30
+#: includes/functions.php:127 includes/install.php:62 includes/install.php:77
+#: menus/menu-display.php:334 menus/menu-welcome.php:395
+#: post-types/post-type-business.php:30
 msgid "Business"
-msgstr "Azienda"
+msgstr ""
 
-#: includes/functions.php:478
+#: includes/functions.php:139
 msgid "Australian Dollars (&#36;)"
 msgstr ""
 
-#: includes/functions.php:479
+#: includes/functions.php:140
 msgid "US Dollars (&#36;)"
 msgstr ""
 
-#: includes/functions.php:480
+#: includes/functions.php:141
 msgid "Euros (&euro;)"
 msgstr ""
 
-#: includes/functions.php:481
+#: includes/functions.php:142
 msgid "Pounds Sterling (&pound;)"
 msgstr ""
 
-#: includes/functions.php:482
+#: includes/functions.php:143
 msgid "Brazilian Real (R&#36;)"
 msgstr ""
 
-#: includes/functions.php:483
+#: includes/functions.php:144
 msgid "Canadian Dollars (&#36;)"
 msgstr ""
 
-#: includes/functions.php:484
+#: includes/functions.php:145
 msgid "Czech Koruna"
 msgstr ""
 
-#: includes/functions.php:485
+#: includes/functions.php:146
 msgid "Danish Krone"
 msgstr ""
 
-#: includes/functions.php:486
+#: includes/functions.php:147
 msgid "Hong Kong Dollar (&#36;)"
 msgstr ""
 
-#: includes/functions.php:487
+#: includes/functions.php:148
 msgid "Hungarian Forint"
 msgstr ""
 
-#: includes/functions.php:488
+#: includes/functions.php:149
 msgid "Israeli Shekel (&#8362;)"
 msgstr ""
 
-#: includes/functions.php:489
+#: includes/functions.php:150
 msgid "Japanese Yen (&yen;)"
 msgstr ""
 
-#: includes/functions.php:490
+#: includes/functions.php:151
 msgid "Malaysian Ringgits"
 msgstr ""
 
-#: includes/functions.php:491
+#: includes/functions.php:152
 msgid "Mexican Peso (&#36;)"
 msgstr ""
 
-#: includes/functions.php:492
+#: includes/functions.php:153
 msgid "New Zealand Dollar (&#36;)"
 msgstr ""
 
-#: includes/functions.php:493
+#: includes/functions.php:154
 msgid "Norwegian Krone"
 msgstr ""
 
-#: includes/functions.php:494
+#: includes/functions.php:155
 msgid "Philippine Pesos"
 msgstr ""
 
-#: includes/functions.php:495
+#: includes/functions.php:156
 msgid "Polish Zloty"
 msgstr ""
 
-#: includes/functions.php:496
+#: includes/functions.php:157
 msgid "Singapore Dollar (&#36;)"
 msgstr ""
 
-#: includes/functions.php:497
+#: includes/functions.php:158
+msgid "South African Rand (R)"
+msgstr ""
+
+#: includes/functions.php:159
 msgid "Swedish Krona"
 msgstr ""
 
-#: includes/functions.php:498
+#: includes/functions.php:160
 msgid "Swiss Franc"
 msgstr ""
 
-#: includes/functions.php:499
-#, fuzzy
+#: includes/functions.php:161
 msgid "Taiwan New Dollars"
-msgstr "Cosa c'è di nuovo"
+msgstr ""
 
-#: includes/functions.php:500
+#: includes/functions.php:162
 msgid "Thai Baht (&#3647;)"
 msgstr ""
 
-#: includes/functions.php:501
+#: includes/functions.php:163
 msgid "Indian Rupee (&#8377;)"
 msgstr ""
 
-#: includes/functions.php:502
+#: includes/functions.php:164
 msgid "Turkish Lira (&#8378;)"
 msgstr ""
 
-#: includes/functions.php:503
+#: includes/functions.php:165
 msgid "Iranian Rial (&#65020;)"
 msgstr ""
 
-#: includes/functions.php:504
+#: includes/functions.php:166
 msgid "Russian Rubles"
 msgstr ""
 
-#: includes/functions.php:701
+#: includes/functions.php:314
 msgid "House"
-msgstr "Casa"
+msgstr ""
 
-#: includes/functions.php:702
-#, fuzzy
+#: includes/functions.php:315 meta-boxes/meta-boxes.php:826
 msgid "Unit"
-msgstr "Unità di terra"
+msgstr ""
 
-#: includes/functions.php:703
+#: includes/functions.php:316
 msgid "Townhouse"
-msgstr "Residenza"
+msgstr ""
 
-#: includes/functions.php:704
+#: includes/functions.php:317
 msgid "Villa"
 msgstr ""
 
-#: includes/functions.php:705
+#: includes/functions.php:318
 msgid "Apartment"
-msgstr "Appartamento"
+msgstr ""
 
-#: includes/functions.php:706
+#: includes/functions.php:319
 msgid "Flat"
 msgstr ""
 
-#: includes/functions.php:707
-#, fuzzy
+#: includes/functions.php:320
 msgid "Studio"
-msgstr "Studio"
+msgstr ""
 
-#: includes/functions.php:708
+#: includes/functions.php:321
 msgid "Warehouse"
-msgstr "Magazzino"
+msgstr ""
 
-#: includes/functions.php:709
+#: includes/functions.php:322
 msgid "Duplex Semi-detached"
-msgstr "Duplex a schiera"
+msgstr ""
 
-#: includes/functions.php:710
+#: includes/functions.php:323
 msgid "Alpine"
-msgstr "Alpino"
+msgstr ""
 
-#: includes/functions.php:711
+#: includes/functions.php:324
 msgid "Acreage Semi-rural"
-msgstr "Superficie semi-rurale"
+msgstr ""
 
-#: includes/functions.php:712
+#: includes/functions.php:325
 msgid "Retirement"
-msgstr "Pensionamento"
+msgstr ""
 
-#: includes/functions.php:713
+#: includes/functions.php:326
 msgid "Block Of Units"
-msgstr "Blocco di unità"
+msgstr ""
 
-#: includes/functions.php:714
+#: includes/functions.php:327
 msgid "Terrace"
-msgstr "Terrazza"
+msgstr ""
 
-#: includes/functions.php:715
+#: includes/functions.php:328
 msgid "Serviced Apartment"
-msgstr "Residence"
+msgstr ""
 
-#: includes/functions.php:716 includes/functions.php:777
-#: includes/functions.php:811
+#: includes/functions.php:329 includes/functions.php:390 includes/functions.php:424
+#: menus/menu-general.php:280
 msgid "Other"
-msgstr "Altro"
+msgstr ""
 
-#: includes/functions.php:743
-#, fuzzy
+#: includes/functions.php:356
 msgid "Residential"
-msgstr "Proprietà (Residenziale)"
+msgstr ""
 
-#: includes/functions.php:769
-#, fuzzy
+#: includes/functions.php:382
 msgid "Commercial Farming"
-msgstr "Agricoltura mista"
+msgstr ""
 
-#: includes/functions.php:770
+#: includes/functions.php:383
 msgid "Land/Development"
-msgstr "Terra / Sviluppo"
+msgstr ""
 
-#: includes/functions.php:771
+#: includes/functions.php:384
 msgid "Hotel/Leisure"
 msgstr ""
 
-#: includes/functions.php:772
+#: includes/functions.php:385
 msgid "Industrial/Warehouse"
-msgstr "Industriale / Magazzino"
+msgstr ""
 
-#: includes/functions.php:773
+#: includes/functions.php:386
 msgid "Medical/Consulting"
-msgstr "Medical / Consulting"
+msgstr ""
 
-#: includes/functions.php:774
+#: includes/functions.php:387
 msgid "Offices"
-msgstr "Uffici"
+msgstr ""
 
-#: includes/functions.php:775
+#: includes/functions.php:388
 msgid "Retail"
-msgstr "Al dettaglio"
+msgstr ""
 
-#: includes/functions.php:776
+#: includes/functions.php:389
 msgid "Showrooms/Bulky Goods"
-msgstr "Showroom / Ingombrante"
+msgstr ""
 
-#: includes/functions.php:803
+#: includes/functions.php:416
 msgid "Cropping"
-msgstr "Ritaglio"
+msgstr ""
 
-#: includes/functions.php:804
+#: includes/functions.php:417
 msgid "Dairy"
-msgstr "Latteria"
+msgstr ""
 
-#: includes/functions.php:805
+#: includes/functions.php:418
 msgid "Farmlet"
 msgstr ""
 
-#: includes/functions.php:806
+#: includes/functions.php:419
 msgid "Horticulture"
-msgstr "Orticoltura"
+msgstr ""
 
-#: includes/functions.php:807
+#: includes/functions.php:420
 msgid "Livestock"
-msgstr "Bestiame"
+msgstr ""
 
-#: includes/functions.php:808
+#: includes/functions.php:421
 msgid "Viticulture"
 msgstr ""
 
-#: includes/functions.php:809
+#: includes/functions.php:422
 msgid "Mixed Farming"
-msgstr "Agricoltura mista"
+msgstr ""
 
-#: includes/functions.php:810
+#: includes/functions.php:423
 msgid "Lifestyle"
-msgstr "Stile di vita"
+msgstr ""
 
-#: includes/install.php:47 widgets/widget-listing.php:366
-#, fuzzy
+#: includes/functions.php:488
+msgid "Developer bundle Prospector for Easy Property Listings"
+msgstr ""
+
+#: includes/functions.php:493
+msgid "Prospector pack for Easy Property Listings"
+msgstr ""
+
+#: includes/install.php:51 includes/install.php:83
+msgid "Bond"
+msgstr ""
+
+#: includes/install.php:52 includes/install.php:53 widgets/widget-listing.php:366
 msgid "Suburb"
-msgstr "Periferia / City (di default è: Suburb)"
+msgstr ""
 
-#: includes/install.php:48
-#, fuzzy
+#: includes/install.php:54
 msgid "Post Code"
-msgstr "Modulo di contatto shortcode"
+msgstr ""
 
-#: includes/install.php:49 menus/menu-welcome.php:329
-#, fuzzy
+#: includes/install.php:55
 msgid "Home Open"
-msgstr "Casa Apri Etichettare (di default è: Home Open)"
+msgstr ""
 
-#: includes/options-front-end.php:57
-#: templates/content/content-author-box.php:78
-#: templates/content/widget-content-author-tall.php:50
-#: templates/content/widget-content-author.php:75
-#: widgets/widget-listing.php:224
-#, fuzzy
-msgid "Read More"
-msgstr "Per saperne di più"
+#: includes/install.php:56
+msgid "POA"
+msgstr ""
+
+#: includes/install.php:57 includes/install.php:84
+msgid "New"
+msgstr ""
+
+#: includes/install.php:58
+msgid "Buy"
+msgstr ""
+
+#: includes/install.php:60 post-types/post-type-rental.php:81
+msgid "Rent"
+msgstr ""
+
+#: includes/install.php:73 menus/menu-display.php:298
+#: post-types/post-type-property.php:29 post-types/post-type-property.php:30
+msgid "Property"
+msgstr ""
 
 #: includes/options-global.php:35
 msgid "Medium 300x200 hard Crop"
 msgstr ""
 
-#: includes/user.php:27
-#: templates/content/content-author-box-simple-card.php:38
-#: templates/content/content-author-box-simple-grav.php:35
-#: templates/content/widget-content-author-tall.php:29
+#: includes/template-functions.php:81
+msgid "Recently Sold"
+msgstr ""
+
+#: includes/template-functions.php:83
+msgid "Recently Leased"
+msgstr ""
+
+#: includes/template-functions.php:474 includes/template-functions.php:640
+#: meta-boxes/meta-boxes.php:1216
+msgid "Plus Outgoings"
+msgstr ""
+
+#: includes/template-functions.php:488 includes/template-functions.php:634
+msgid "Available from"
+msgstr ""
+
+#: includes/template-functions.php:617
+msgid "Property Features"
+msgstr ""
+
+#: includes/template-functions.php:672 meta-boxes/meta-boxes.php:1237
+msgid "Commercial Features"
+msgstr ""
+
+#: includes/template-functions.php:698 meta-boxes/meta-boxes.php:1074
+msgid "Rural Features"
+msgstr ""
+
+#: includes/template-functions.php:769
+msgid "List"
+msgstr ""
+
+#: includes/template-functions.php:771
+msgid "Grid"
+msgstr ""
+
+#: includes/template-functions.php:777
+msgid "Sort"
+msgstr ""
+
+#: includes/template-functions.php:778
+msgid "Price: High to Low"
+msgstr ""
+
+#: includes/template-functions.php:779
+msgid "Price: Low to High"
+msgstr ""
+
+#: includes/template-functions.php:780
+msgid "Date: Newest First"
+msgstr ""
+
+#: includes/template-functions.php:781
+msgid "Date: Oldest First"
+msgstr ""
+
+#: includes/template-functions.php:845
+msgid "About"
+msgstr ""
+
+#: includes/template-functions.php:846
+msgid "Bio"
+msgstr ""
+
+#: includes/template-functions.php:847
+msgid "Video"
+msgstr ""
+
+#: includes/user.php:27 templates/content/widget-content-author-tall.php:33
 msgid "Mobile"
-msgstr ""
-
-#: includes/user.php:28 templates/content/author-meta.php:55
-msgid "Skype"
-msgstr ""
-
-#: includes/user.php:29 templates/content/author-meta.php:35
-msgid "Twitter"
-msgstr ""
-
-#: includes/user.php:30 templates/content/author-meta.php:45
-msgid "Facebook"
 msgstr ""
 
 #: includes/user.php:31
@@ -493,50 +852,48 @@ msgid "LinkedIn"
 msgstr ""
 
 #: includes/user.php:49
-msgid "Author Box Profile Information"
-msgstr "Autore Box Informazioni sul profilo"
+msgid "Easy Property Listings: Author Box Profile"
+msgstr ""
 
 #: includes/user.php:50
 msgid "The following details will appear in your author box and widgets."
-msgstr "I seguenti dettagli appariranno nella tua casella di autore e widget."
+msgstr ""
 
 #: includes/user.php:54
 msgid "Position"
-msgstr "Posizione"
+msgstr ""
 
 #: includes/user.php:57
 msgid "Please enter your title/position."
-msgstr "Inserisci il tuo titolo / posizione."
+msgstr ""
 
 #: includes/user.php:62
-#, fuzzy
 msgid "Slogan"
-msgstr "Inserisci il tuo slogan."
+msgstr ""
 
 #: includes/user.php:65
 msgid "Please enter your slogan."
-msgstr "Inserisci il tuo slogan."
+msgstr ""
 
 #: includes/user.php:70
-#, fuzzy
 msgid "YouTube Video Url"
-msgstr "Inserisci il tuo profilo YouTube Video URL."
+msgstr ""
 
 #: includes/user.php:73
 msgid "Please enter your YouTube Profile Video URL."
-msgstr "Inserisci il tuo profilo YouTube Video URL."
+msgstr ""
 
 #: includes/user.php:78
 msgid "Contact Form short code"
-msgstr "Modulo di contatto shortcode"
+msgstr ""
 
 #: includes/user.php:81
 msgid "Please enter your form short code for author contact tab"
-msgstr "Inserisci il tuo modulo shortcode per scheda contatto autore"
+msgstr ""
 
 #: menus/changelog.php:5
 msgid "Additional Updates"
-msgstr "Ulteriori Aggiornamenti"
+msgstr ""
 
 #: menus/changelog.php:9
 msgid "Improved Product Creation / Editing"
@@ -544,9 +901,8 @@ msgstr ""
 
 #: menus/changelog.php:10
 msgid ""
-"The interface for creating / editing Download products has been dramatically "
-"improved by separating the UI out into sections that are easier to use and "
-"less cluttered."
+"The interface for creating / editing Download products has been dramatically improved "
+"by separating the UI out into sections that are easier to use and less cluttered."
 msgstr ""
 
 #: menus/changelog.php:12
@@ -555,22 +911,19 @@ msgstr ""
 
 #: menus/changelog.php:13
 msgid ""
-"Along with per-product earnings / sales graphs, we have introduced an "
-"EPL_Graph class that makes it exceptionally simple to generate your own "
-"custom graphs. Simply build an array of data and let the class work its "
-"magic."
+"Along with per-product earnings / sales graphs, we have introduced an EPL_Graph class "
+"that makes it exceptionally simple to generate your own custom graphs. Simply build "
+"an array of data and let the class work its magic."
 msgstr ""
 
 #: menus/changelog.php:17
-#, fuzzy
 msgid "Payment Date Filters"
-msgstr "Data"
+msgstr ""
 
 #: menus/changelog.php:18
 msgid ""
-"A new section has been added to the Payment History screen that allows you "
-"to filter payments by date, making it much easier to locate payments for a "
-"particular period."
+"A new section has been added to the Payment History screen that allows you to filter "
+"payments by date, making it much easier to locate payments for a particular period."
 msgstr ""
 
 #: menus/changelog.php:20
@@ -579,8 +932,8 @@ msgstr ""
 
 #: menus/changelog.php:21
 msgid ""
-"A new API has been introduced for easily adding new template tags to "
-"purchase receipts and admin sale notifications."
+"A new API has been introduced for easily adding new template tags to purchase "
+"receipts and admin sale notifications."
 msgstr ""
 
 #: menus/changelog.php:25
@@ -589,8 +942,8 @@ msgstr ""
 
 #: menus/changelog.php:26
 msgid ""
-"A new action has been added to the Bulk Actions menu in the Payment History "
-"screen that allows you to resend purchase receipt emails in bulk."
+"A new action has been added to the Bulk Actions menu in the Payment History screen "
+"that allows you to resend purchase receipt emails in bulk."
 msgstr ""
 
 #: menus/changelog.php:28
@@ -599,870 +952,1272 @@ msgstr ""
 
 #: menus/changelog.php:29
 msgid ""
-"Along with being able to assign discounts to specific products, you can also "
-"now exclude products from discount codes."
+"Along with being able to assign discounts to specific products, you can also now "
+"exclude products from discount codes."
 msgstr ""
 
 #: menus/menu-addons.php:45
 msgid ""
-"There was an error retrieving the extensions list from the server. Please "
-"try again later."
+"There was an error retrieving the extensions list from the server. Please try again "
+"later."
 msgstr ""
 
 #: menus/menu-addons.php:63
 msgid "Add Ons for Easy Property Listings"
-msgstr "Aggiungi Ons per Easy Property Listings"
+msgstr ""
 
 #: menus/menu-addons.php:64
 msgid "Browse All Extensions"
-msgstr "Sfoglia tutte le estensioni"
+msgstr ""
 
 #: menus/menu-addons.php:66
 msgid "These add-ons extend the functionality of Easy Property Listings."
 msgstr ""
-"Questi componenti aggiuntivi estendono le funzionalità di Easy Property "
-"Listings."
 
-#: menus/menu-display.php:42
-msgid "Display and Template Options"
-msgstr "Display e modelli Opzioni"
-
-#: menus/menu-display.php:43
-msgid "Change the page layouts options for Easy Property Listings"
-msgstr "Modificare le opzioni di layout di pagina per Easy Property Listings"
-
-#: menus/menu-display.php:141 menus/menu-extensions.php:163
-#: menus/menu-general.php:144 menus/menu-licenses.php:151
-msgid "Save Changes"
-msgstr "Salva modifiche"
-
-#: menus/menu-display.php:163 menus/menu-general.php:161
-#: menus/menu-licenses.php:168
-msgid "Select Page"
-msgstr "Seleziona pagina"
-
-#: menus/menu-display.php:173
-msgid "General"
-msgstr "Generali"
-
-#: menus/menu-display.php:180
-msgid "Bond Amount Display (Rental Listing Type)"
-msgstr "Legame Importo display (Tipo Affitti Listing)"
-
-#: menus/menu-display.php:183
-msgid "On"
-msgstr "Su"
-
-#: menus/menu-display.php:184
-msgid "Off"
-msgstr "Spento"
-
-#: menus/menu-display.php:186
-msgid "Hide or show the bond on rental properties"
-msgstr "Nascondere o mostrare il legame su affitti"
-
-#: menus/menu-display.php:191
-msgid ""
-"Automatically display gallery of attached images on the single property page?"
+#: menus/menu-display.php:49 menus/menu-display.php:185
+msgid "Display Options"
 msgstr ""
-"Visualizza automaticamente galleria di immagini allegate nella pagina "
-"singola proprietà?"
 
-#: menus/menu-display.php:194 meta-boxes/meta-boxes.php:244
-#: meta-boxes/meta-boxes.php:317 meta-boxes/meta-boxes.php:328
-#: meta-boxes/meta-boxes.php:338 meta-boxes/meta-boxes.php:348
-#: meta-boxes/meta-boxes.php:392 meta-boxes/meta-boxes.php:417
-#: meta-boxes/meta-boxes.php:427 meta-boxes/meta-boxes.php:437
-#: meta-boxes/meta-boxes.php:447 meta-boxes/meta-boxes.php:457
-#: meta-boxes/meta-boxes.php:467 meta-boxes/meta-boxes.php:477
-#: meta-boxes/meta-boxes.php:487 meta-boxes/meta-boxes.php:497
-#: meta-boxes/meta-boxes.php:507 meta-boxes/meta-boxes.php:517
-#: meta-boxes/meta-boxes.php:526 meta-boxes/meta-boxes.php:536
-#: meta-boxes/meta-boxes.php:546 meta-boxes/meta-boxes.php:563
-#: meta-boxes/meta-boxes.php:573 meta-boxes/meta-boxes.php:583
-#: meta-boxes/meta-boxes.php:593 meta-boxes/meta-boxes.php:603
-#: meta-boxes/meta-boxes.php:613 meta-boxes/meta-boxes.php:629
-#: meta-boxes/meta-boxes.php:639 meta-boxes/meta-boxes.php:649
-#: meta-boxes/meta-boxes.php:659 meta-boxes/meta-boxes.php:669
-#: meta-boxes/meta-boxes.php:679 meta-boxes/meta-boxes.php:689
-#: meta-boxes/meta-boxes.php:699 meta-boxes/meta-boxes.php:709
-#: meta-boxes/meta-boxes.php:772 meta-boxes/meta-boxes.php:798
-#: meta-boxes/meta-boxes.php:836 meta-boxes/meta-boxes.php:906
-#: meta-boxes/meta-boxes.php:916 meta-boxes/meta-boxes.php:926
-#: meta-boxes/meta-boxes.php:957 meta-boxes/meta-boxes.php:982
-#: meta-boxes/meta-boxes.php:1020 meta-boxes/meta-boxes.php:1030
-#: meta-boxes/meta-boxes.php:1184 meta-boxes/meta-boxes.php:1266
+#: menus/menu-display.php:50
+msgid ""
+"Adjust the display options, customise your labels and adjust added extension settings."
+msgstr ""
+
+#: menus/menu-display.php:150 menus/menu-extensions-old.php:163
+#: menus/menu-extensions.php:201 menus/menu-general.php:156 menus/menu-licenses.php:151
+msgid "Save Changes"
+msgstr ""
+
+#: menus/menu-display.php:175 menus/menu-general.php:178 menus/menu-licenses.php:168
+msgid "Select Page"
+msgstr ""
+
+#: menus/menu-display.php:188
+msgid "After adding a listing adjust how you want them to display to the user."
+msgstr ""
+
+#: menus/menu-display.php:192
+msgid "Rental Bond/Deposit?"
+msgstr ""
+
+#: menus/menu-display.php:195
+msgid "On"
+msgstr ""
+
+#: menus/menu-display.php:196
+msgid "Off"
+msgstr ""
+
+#: menus/menu-display.php:198
+msgid "Display the bond/deposit on rental listings."
+msgstr ""
+
+#: menus/menu-display.php:203
+msgid "Automatically display image gallery?"
+msgstr ""
+
+#: menus/menu-display.php:206 meta-boxes/meta-boxes.php:250
+#: meta-boxes/meta-boxes.php:324 meta-boxes/meta-boxes.php:335
+#: meta-boxes/meta-boxes.php:345 meta-boxes/meta-boxes.php:355
+#: meta-boxes/meta-boxes.php:400 meta-boxes/meta-boxes.php:426
+#: meta-boxes/meta-boxes.php:436 meta-boxes/meta-boxes.php:446
+#: meta-boxes/meta-boxes.php:456 meta-boxes/meta-boxes.php:466
+#: meta-boxes/meta-boxes.php:476 meta-boxes/meta-boxes.php:486
+#: meta-boxes/meta-boxes.php:496 meta-boxes/meta-boxes.php:506
+#: meta-boxes/meta-boxes.php:516 meta-boxes/meta-boxes.php:526
+#: meta-boxes/meta-boxes.php:535 meta-boxes/meta-boxes.php:545
+#: meta-boxes/meta-boxes.php:555 meta-boxes/meta-boxes.php:573
+#: meta-boxes/meta-boxes.php:583 meta-boxes/meta-boxes.php:593
+#: meta-boxes/meta-boxes.php:603 meta-boxes/meta-boxes.php:613
+#: meta-boxes/meta-boxes.php:623 meta-boxes/meta-boxes.php:640
+#: meta-boxes/meta-boxes.php:650 meta-boxes/meta-boxes.php:660
+#: meta-boxes/meta-boxes.php:670 meta-boxes/meta-boxes.php:680
+#: meta-boxes/meta-boxes.php:690 meta-boxes/meta-boxes.php:700
+#: meta-boxes/meta-boxes.php:710 meta-boxes/meta-boxes.php:720
+#: meta-boxes/meta-boxes.php:784 meta-boxes/meta-boxes.php:811
+#: meta-boxes/meta-boxes.php:865 meta-boxes/meta-boxes.php:936
+#: meta-boxes/meta-boxes.php:946 meta-boxes/meta-boxes.php:956
+#: meta-boxes/meta-boxes.php:988 meta-boxes/meta-boxes.php:1014
+#: meta-boxes/meta-boxes.php:1052 meta-boxes/meta-boxes.php:1062
+#: meta-boxes/meta-boxes.php:1219 meta-boxes/meta-boxes.php:1302
 msgid "Yes"
-msgstr "Sì"
+msgstr ""
 
-#: menus/menu-display.php:195 meta-boxes/meta-boxes.php:245
-#: meta-boxes/meta-boxes.php:318 meta-boxes/meta-boxes.php:329
-#: meta-boxes/meta-boxes.php:339 meta-boxes/meta-boxes.php:349
-#: meta-boxes/meta-boxes.php:393 meta-boxes/meta-boxes.php:418
-#: meta-boxes/meta-boxes.php:428 meta-boxes/meta-boxes.php:438
-#: meta-boxes/meta-boxes.php:448 meta-boxes/meta-boxes.php:458
-#: meta-boxes/meta-boxes.php:468 meta-boxes/meta-boxes.php:478
-#: meta-boxes/meta-boxes.php:488 meta-boxes/meta-boxes.php:498
-#: meta-boxes/meta-boxes.php:508 meta-boxes/meta-boxes.php:518
-#: meta-boxes/meta-boxes.php:527 meta-boxes/meta-boxes.php:537
-#: meta-boxes/meta-boxes.php:547 meta-boxes/meta-boxes.php:564
-#: meta-boxes/meta-boxes.php:574 meta-boxes/meta-boxes.php:584
-#: meta-boxes/meta-boxes.php:594 meta-boxes/meta-boxes.php:604
-#: meta-boxes/meta-boxes.php:614 meta-boxes/meta-boxes.php:630
-#: meta-boxes/meta-boxes.php:640 meta-boxes/meta-boxes.php:650
-#: meta-boxes/meta-boxes.php:660 meta-boxes/meta-boxes.php:670
-#: meta-boxes/meta-boxes.php:680 meta-boxes/meta-boxes.php:690
-#: meta-boxes/meta-boxes.php:700 meta-boxes/meta-boxes.php:710
-#: meta-boxes/meta-boxes.php:773 meta-boxes/meta-boxes.php:799
-#: meta-boxes/meta-boxes.php:837 meta-boxes/meta-boxes.php:907
-#: meta-boxes/meta-boxes.php:917 meta-boxes/meta-boxes.php:927
-#: meta-boxes/meta-boxes.php:958 meta-boxes/meta-boxes.php:983
-#: meta-boxes/meta-boxes.php:1021 meta-boxes/meta-boxes.php:1031
-#: meta-boxes/meta-boxes.php:1185 meta-boxes/meta-boxes.php:1267
+#: menus/menu-display.php:207 meta-boxes/meta-boxes.php:251
+#: meta-boxes/meta-boxes.php:325 meta-boxes/meta-boxes.php:336
+#: meta-boxes/meta-boxes.php:346 meta-boxes/meta-boxes.php:356
+#: meta-boxes/meta-boxes.php:401 meta-boxes/meta-boxes.php:427
+#: meta-boxes/meta-boxes.php:437 meta-boxes/meta-boxes.php:447
+#: meta-boxes/meta-boxes.php:457 meta-boxes/meta-boxes.php:467
+#: meta-boxes/meta-boxes.php:477 meta-boxes/meta-boxes.php:487
+#: meta-boxes/meta-boxes.php:497 meta-boxes/meta-boxes.php:507
+#: meta-boxes/meta-boxes.php:517 meta-boxes/meta-boxes.php:527
+#: meta-boxes/meta-boxes.php:536 meta-boxes/meta-boxes.php:546
+#: meta-boxes/meta-boxes.php:556 meta-boxes/meta-boxes.php:574
+#: meta-boxes/meta-boxes.php:584 meta-boxes/meta-boxes.php:594
+#: meta-boxes/meta-boxes.php:604 meta-boxes/meta-boxes.php:614
+#: meta-boxes/meta-boxes.php:624 meta-boxes/meta-boxes.php:641
+#: meta-boxes/meta-boxes.php:651 meta-boxes/meta-boxes.php:661
+#: meta-boxes/meta-boxes.php:671 meta-boxes/meta-boxes.php:681
+#: meta-boxes/meta-boxes.php:691 meta-boxes/meta-boxes.php:701
+#: meta-boxes/meta-boxes.php:711 meta-boxes/meta-boxes.php:721
+#: meta-boxes/meta-boxes.php:785 meta-boxes/meta-boxes.php:812
+#: meta-boxes/meta-boxes.php:866 meta-boxes/meta-boxes.php:937
+#: meta-boxes/meta-boxes.php:947 meta-boxes/meta-boxes.php:957
+#: meta-boxes/meta-boxes.php:989 meta-boxes/meta-boxes.php:1015
+#: meta-boxes/meta-boxes.php:1053 meta-boxes/meta-boxes.php:1063
+#: meta-boxes/meta-boxes.php:1220 meta-boxes/meta-boxes.php:1303
 msgid "No"
-msgstr "Non"
-
-#: menus/menu-display.php:197
-msgid "Enable the Gallery on Single Property Pages"
-msgstr "Abilitare la Galleria sulla pagine delle proprietà singola"
-
-#: menus/menu-display.php:202
-msgid "Number of columns on the property image gallery"
-msgstr "Numero di colonne sulla galleria di immagini di proprietà"
+msgstr ""
 
 #: menus/menu-display.php:209
-msgid "Number of columns in the property features"
-msgstr "Numero di colonne nelle caratteristiche della struttura"
-
-#: menus/menu-display.php:216
 msgid ""
-"Excerpt word length for individual listings on property archive pages unless "
-"a manual excerpt is entered."
+"When enabled, images uploaded to the listing using the Add Media button will "
+"automatically display on the single listing."
 msgstr ""
-"Lunghezza della parola stralcio per le inserzioni individuali su pagine di "
-"archivio di proprietà se non viene inserito un estratto manuale."
 
-#: menus/menu-display.php:223
+#: menus/menu-display.php:214
+msgid "Number of gallery image columns?"
+msgstr ""
+
+#: menus/menu-display.php:221
+msgid "Number of columns in the property features?"
+msgstr ""
+
+#: menus/menu-display.php:228
+msgid "Number of words to display on the listing archive page?"
+msgstr ""
+
+#: menus/menu-display.php:231
+msgid "This is ignored when using manual excerpts."
+msgstr ""
+
+#: menus/menu-display.php:235
+msgid "Masonry Effect?"
+msgstr ""
+
+#: menus/menu-display.php:241
+msgid "Enable jQuery masonry effect when using grid view on listing archive pages."
+msgstr ""
+
+#: menus/menu-display.php:246
 msgid "Labels"
-msgstr "Etichette"
-
-#: menus/menu-display.php:230
-msgid "Suburb/City (default is: Suburb)"
-msgstr "Periferia / City (di default è: Suburb)"
-
-#: menus/menu-display.php:236
-msgid "Postcode Label (default is: Postcode)"
-msgstr "CAP Etichetta (di default è: Postcode)"
-
-#: menus/menu-display.php:242
-msgid "Home Open Label (default is: Home Open)"
-msgstr "Casa Apri Etichettare (di default è: Home Open)"
-
-#: menus/menu-display.php:248
-msgid "No Price Label (default is POA)"
-msgstr "Nessun prezzo etichetta (di default è POA)"
-
-#: menus/menu-extensions.php:42
-msgid "Extension Options"
-msgstr "Opzioni di estensione"
-
-#: menus/menu-extensions.php:43
-msgid "Enable your extensions options below"
-msgstr "Attivare le opzioni di estensioni di seguito"
-
-#: menus/menu-general.php:42
-msgid "General Settings"
-msgstr "Impostazioni generali"
-
-#: menus/menu-general.php:43
-msgid "Configure Easy Property Listings general settings. Visit "
-msgstr "Configurare Facile annunci immobiliari impostazioni generali. Visita "
-
-#: menus/menu-general.php:43 menus/menu-welcome.php:137
-msgid "Getting Started"
-msgstr "Iniziare"
-
-#: menus/menu-general.php:43
-msgid " for help."
-msgstr " aiuto."
-
-#: menus/menu-general.php:170
-msgid "Before - $10"
-msgstr "Prima - $10"
-
-#: menus/menu-general.php:171
-msgid "After - 10$"
-msgstr "Dopo - $ 10"
-
-#: menus/menu-general.php:182
-msgid "Listing Types to Enable"
-msgstr "Listato Tipi di Attiva"
-
-#: menus/menu-general.php:185
-msgid ""
-"Refresh the page to see your new activated listing types. Note: If they are "
-"not visible on the front end visit Dashboard > Settings > Permalinks and "
-"press Save Changes."
 msgstr ""
 
-#: menus/menu-general.php:190
-msgid "Currency"
-msgstr "Corrente"
+#: menus/menu-display.php:253
+msgid "Rental Bond/Deposit (default: Bond)"
+msgstr ""
 
-#: menus/menu-general.php:197
-msgid "Currency Symbol Position"
-msgstr "Simbolo di valuta Position"
+#: menus/menu-display.php:259
+msgid "Suburb/City (default: Suburb)"
+msgstr ""
 
-#: menus/menu-general.php:204
-msgid "Thousands Separator"
-msgstr "Migliaia separatore"
+#: menus/menu-display.php:265
+msgid "Postcode Label (default: Postcode)"
+msgstr ""
+
+#: menus/menu-display.php:271
+msgid "Home Open Label (default: Home Open)"
+msgstr ""
+
+#: menus/menu-display.php:277
+msgid "New Home Label (default: New)"
+msgstr ""
+
+#: menus/menu-display.php:284
+msgid "No Price Label (default: POA)"
+msgstr ""
+
+#: menus/menu-display.php:290
+msgid "Search Widget Tab Labels"
+msgstr ""
+
+#: menus/menu-display.php:293
+msgid "Customise the tab labels of the EPL - Search Widget."
+msgstr ""
+
+#: menus/menu-extensions-old.php:42
+msgid "Extension Options"
+msgstr ""
+
+#: menus/menu-extensions-old.php:43
+msgid "Enable your extensions options below"
+msgstr ""
+
+#: menus/menu-general.php:49
+msgid "General Settings"
+msgstr ""
+
+#: menus/menu-general.php:50
+msgid "Configure Easy Property Listings general settings. Visit "
+msgstr ""
+
+#: menus/menu-general.php:50 menus/menu-welcome.php:137
+msgid "Getting Started"
+msgstr ""
+
+#: menus/menu-general.php:50
+msgid " for help."
+msgstr ""
+
+#: menus/menu-general.php:187
+msgid "Before - $10"
+msgstr ""
+
+#: menus/menu-general.php:188
+msgid "After - 10$"
+msgstr ""
+
+#: menus/menu-general.php:195
+msgid "Listing Types and Settings"
+msgstr ""
+
+#: menus/menu-general.php:198
+msgid ""
+"Select the listing types you want to enable and press Save Changes. Refresh the page "
+"to see your new activated listing types."
+msgstr ""
+
+#: menus/menu-general.php:202
+msgid "Listing Types to Enable"
+msgstr ""
+
+#: menus/menu-general.php:205
+msgid ""
+"Note: If they are not visible on the front end visit Dashboard > Settings > "
+"Permalinks and press Save Changes."
+msgstr ""
 
 #: menus/menu-general.php:210
-msgid "Decimal Separator"
-msgstr "Separatore decimale"
+msgid "Location Taxonomy"
+msgstr ""
 
 #: menus/menu-general.php:216
-msgid "Location label"
-msgstr "Posizione dell'etichetta"
+msgid "Keep Listings flagged \"New\" for"
+msgstr ""
 
-#: menus/menu-general.php:222
+#: menus/menu-general.php:219
+msgid "Listings will have a \"NEW\" Sticker for the defined number of days."
+msgstr ""
+
+#: menus/menu-general.php:225 menus/menu-general.php:231
+msgid "Currency"
+msgstr ""
+
+#: menus/menu-general.php:238
+msgid "Currency Symbol Position"
+msgstr ""
+
+#: menus/menu-general.php:245
+msgid "Thousands Separator"
+msgstr ""
+
+#: menus/menu-general.php:251
+msgid "Decimal Separator"
+msgstr ""
+
+#: menus/menu-general.php:258
+msgid "Graph Settings"
+msgstr ""
+
+#: menus/menu-general.php:261
+msgid "Will be used to calculate bars charts and determine width."
+msgstr ""
+
+#: menus/menu-general.php:265
+msgid "Maximum Sales Price"
+msgstr ""
+
+#: menus/menu-general.php:272
+msgid "Maximum Rent Price"
+msgstr ""
+
+#: menus/menu-general.php:287
 msgid "Debug"
 msgstr ""
 
-#: menus/menu-general.php:228
-msgid "Display Geocode Result in Admin"
-msgstr "Visualizzazione Geocode Risultato in Admin"
+#: menus/menu-general.php:293
+msgid "Display Lat/Long coordinates on listing pages in admin"
+msgstr ""
 
-#: menus/menu-licenses.php:39 menus/menus.php:49 menus/menus.php:50
+#: menus/menu-licenses.php:39 menus/menus.php:61 menus/menus.php:62
 msgid "Licenses"
-msgstr "Licenze"
+msgstr ""
 
 #: menus/menu-licenses.php:40
 msgid "Enable your extensions by entering your license below"
-msgstr "Abilitare le estensioni inserendo la tua licenza qui sotto"
+msgstr ""
 
 #: menus/menu-licenses.php:120
 msgid "Invalid or Expired Key :"
-msgstr "Non valido o scaduto chiave:"
+msgstr ""
 
 #: menus/menu-licenses.php:121
 msgid ""
-"Please make sure you have entered the correct value and that your key is not "
-"expired."
+"Please make sure you have entered the correct value and that your key is not expired."
 msgstr ""
-"Si prega di assicurarsi di aver inserito il valore corretto e che la chiave "
-"non è scaduto."
 
 #: menus/menu-licenses.php:125
 msgid "Valid Key :"
-msgstr "Chiave valida:"
+msgstr ""
 
 #: menus/menu-licenses.php:126
 msgid "Your license key has been successfully validated."
-msgstr "La chiave di licenza è stato convalidato correttamente."
+msgstr ""
 
 #: menus/menu-welcome.php:51 menus/menu-welcome.php:52
 msgid "Welcome to Easy Property Listings"
-msgstr "Benvenuti a Easy Property Listings"
+msgstr ""
 
 #: menus/menu-welcome.php:60 menus/menu-welcome.php:61
 msgid "Getting started with Easy Property Listings"
-msgstr "Iniziare con Easy Property Listings"
+msgstr ""
 
 #: menus/menu-welcome.php:69 menus/menu-welcome.php:70
 msgid "The people that build Easy Property Listings"
-msgstr "Le persone che costruiscono Easy Property Listings"
+msgstr ""
 
 #: menus/menu-welcome.php:134
 msgid "What's New"
-msgstr "Cosa c'è di nuovo"
+msgstr ""
 
 #: menus/menu-welcome.php:140
 msgid "Credits"
 msgstr ""
 
-#: menus/menu-welcome.php:157 menus/menu-welcome.php:232
-#: menus/menu-welcome.php:421
+#: menus/menu-welcome.php:157 menus/menu-welcome.php:371 menus/menu-welcome.php:506
 #, php-format
 msgid "Welcome to Easy Property Listings %s"
-msgstr "Benvenuti a Easy Property Listings %s"
+msgstr ""
 
-#: menus/menu-welcome.php:158 menus/menu-welcome.php:233
-#: menus/menu-welcome.php:422
+#: menus/menu-welcome.php:158 menus/menu-welcome.php:372 menus/menu-welcome.php:507
 #, php-format
 msgid ""
-"Thank you for updating to the latest version! Easy Property Listings %s is "
-"ready to make your real estate website faster, safer and better!"
+"Thank you for updating to the latest version! Easy Property Listings %s is ready to "
+"make your real estate website faster, safer and better!"
 msgstr ""
-"Grazie per l'aggiornamento alla versione più recente! Easy Property Listings "
-"% s è pronto a rendere il vostro sito web immobiliare più veloce, più sicuro "
-"e migliore!"
 
-#: menus/menu-welcome.php:159 menus/menu-welcome.php:234
-#: menus/menu-welcome.php:423
+#: menus/menu-welcome.php:159 menus/menu-welcome.php:373 menus/menu-welcome.php:508
 #, php-format
 msgid "Version %s"
-msgstr "Versione %s"
-
-#: menus/menu-welcome.php:165
-#, fuzzy
-msgid "All changes to Easy Property Listings version 1.2"
-msgstr "Benvenuti a Easy Property Listings %s"
-
-#: menus/menu-welcome.php:170
-msgid "Change Log"
 msgstr ""
 
-#: menus/menu-welcome.php:172
-msgid "New: Plug in Activation process flushes permalinks"
+#: menus/menu-welcome.php:164 menus/menu-welcome.php:167
+msgid "Dashboard Widget"
 msgstr ""
 
-#: menus/menu-welcome.php:173
-msgid "New: Plug in deactivation flushes permalinks"
-msgstr ""
-
-#: menus/menu-welcome.php:174
-msgid "New: Shortcode [listing_search]"
-msgstr ""
-
-#: menus/menu-welcome.php:175
-msgid "New: Shortcode [listing_feature]"
-msgstr ""
-
-#: menus/menu-welcome.php:176
+#: menus/menu-welcome.php:168
 msgid ""
-"New: Shortcode [listing_open] replaces [home_open] shortcode. Retained "
-"[home_open] for backward compatability, however adjust your site. "
+"Dashboard widget now lists all listings and status so at a glance you can see what "
+"you have."
 msgstr ""
 
-#: menus/menu-welcome.php:177
+#: menus/menu-welcome.php:174 menus/menu-welcome.php:185 menus/menu-welcome.php:406
+msgid "Listing Management Pages"
+msgstr ""
+
+#: menus/menu-welcome.php:178 menus/menu-welcome.php:410
+msgid "Overview of your listings"
+msgstr ""
+
+#: menus/menu-welcome.php:179 menus/menu-welcome.php:411
 msgid ""
-"New: Listing shortcodes allow for default template display if registered by "
-"adding template=\"slim\" to the shortcode."
-msgstr ""
-
-#: menus/menu-welcome.php:178
-msgid "New: Translation support now correctly loads text domain epl"
-msgstr ""
-
-#: menus/menu-welcome.php:179
-msgid ""
-"New: Added translation tags to all test elements for better translation "
-"support"
-msgstr ""
-
-#: menus/menu-welcome.php:180
-msgid "New: Updated source epl.pot translation file for translations"
-msgstr ""
-
-#: menus/menu-welcome.php:181
-msgid "New: Added very rough Italian translation"
-msgstr ""
-
-#: menus/menu-welcome.php:182
-msgid ""
-"New: Wrapped Featured image in action to allow for easy removal and/or "
-"replacement"
-msgstr ""
-
-#: menus/menu-welcome.php:183
-msgid "Fix: Undefined errors when debug is active"
-msgstr ""
-
-#: menus/menu-welcome.php:184
-msgid "New: Added new CSS classes to widgets for consistent usage"
-msgstr ""
-
-#: menus/menu-welcome.php:185
-msgid "Tweak: Admin CSS tweaks to define sections in admin"
-msgstr ""
-
-#: menus/menu-welcome.php:186
-msgid "Fix: CSS for TwentyThirteen style CSS using .sidebar container"
-msgstr ""
-
-#: menus/menu-welcome.php:187
-msgid "Fix: CSS for responsive shortcode"
-msgstr ""
-
-#: menus/menu-welcome.php:188
-msgid ""
-"New: Added options to hide/ show various options to EPL - Listing widget: "
-"Property Headline, Excerpt, Suburb/Location Label, Street Address, Price, "
-"Read More Button"
+"Once you have activated your listing types from settings they will appear in the main "
+"dashboard menu to the left. Each activated listing type has its own menu giving you "
+"quick access to your property, rentals, land..."
 msgstr ""
 
 #: menus/menu-welcome.php:189
-msgid "New: Added customisable \"Read More\" label to EPL - Listing widget"
+msgid "List & Grid view toggle with Sort"
 msgstr ""
 
 #: menus/menu-welcome.php:190
-msgid "New: Added excerpt to EPL - Listing widget"
+msgid ""
+"Your website users can now swap between list & grid view. Also added is the ability "
+"to enable a tiled Masonry jQuery effect."
 msgstr ""
 
 #: menus/menu-welcome.php:191
 msgid ""
-"New: Added options to remove search options from EPL - Listing Search widget"
-msgstr ""
-
-#: menus/menu-welcome.php:192
-msgid ""
-"New: Added consistent CSS classes to shortcodes for responsive shortcode"
-msgstr ""
-
-#: menus/menu-welcome.php:193
-msgid ""
-"New: Date processing function for use with WP All Import when importing "
-"REAXML files. Some imports set the current date instead of the date from the "
-"REAXML file. Usage in WP All Import Post Date is: "
-"[epl_feedsync_format_date({./@modTime})]"
+"On the listing archive pages, your users can now sort their search by price and date."
 msgstr ""
 
 #: menus/menu-welcome.php:194
-msgid ""
-"Tweak: Added additional CSS classes to admin menu pages to extensions can be "
-"better distinguished when installed and activated"
+msgid "Graph API"
 msgstr ""
 
 #: menus/menu-welcome.php:195
-msgid "Fix: Registering custom template actions now works correctly"
-msgstr ""
-
-#: menus/menu-welcome.php:196
-msgid "New: Added additional CSS classes to template files"
-msgstr ""
-
-#: menus/menu-welcome.php:197
 msgid ""
-"Fix: Changed property not found wording when using search widget and listing "
-"not found. "
+"Visual graph indicating listing prices so you can at a glance visually see what price "
+"your listings. Customise the max price to suit your price range from the Settings "
+"page. Default max for for sale listings is 2,000,000 and rental listing 2,000."
+msgstr ""
+
+#: menus/menu-welcome.php:197 menus/menu-welcome.php:425 meta-boxes/meta-boxes.php:107
+#: post-types/post-type-business.php:84 post-types/post-type-commercial.php:82
+#: post-types/post-type-commercial_land.php:83 post-types/post-type-land.php:83
+#: post-types/post-type-property.php:83 post-types/post-type-rental.php:83
+#: post-types/post-type-rural.php:83
+msgid "Listing Details"
 msgstr ""
 
 #: menus/menu-welcome.php:198
-msgid "Tweak: Added defaults to widgets to prevent errors when debug is on"
-msgstr ""
-
-#: menus/menu-welcome.php:199
-msgid "New: Added WordPress editor support in admin for use with extensions."
+msgid ""
+"Get quick access to important details like what the property has and the scheduled "
+"inspection times."
 msgstr ""
 
 #: menus/menu-welcome.php:200
-msgid "New: Added textarea support in admin for use with extensions."
+msgid "Auction Listings"
 msgstr ""
 
 #: menus/menu-welcome.php:201
-msgid ""
-"New: Filters added for all select options on add listing pages which allows "
-"for full customisation through simple function"
-msgstr ""
-
-#: menus/menu-welcome.php:202
-msgid ""
-"New: Added rent period, Day, Daily, Month, Monthly to rental listing types"
-msgstr ""
-
-#: menus/menu-welcome.php:203
-msgid "New: Added property_office_id meta field"
-msgstr ""
-
-#: menus/menu-welcome.php:204
-msgid "New: Added property_address_country meta field"
-msgstr ""
-
-#: menus/menu-welcome.php:205
-msgid "Tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5"
+msgid "Keep track of your coming Auction dates from the Price column."
 msgstr ""
 
 #: menus/menu-welcome.php:206
-msgid ""
-"New: Added mini map to listing edit screen. Will display mini map in address "
-"block when pressing green coordinates button."
+msgid "Widgets"
 msgstr ""
 
-#: menus/menu-welcome.php:207
-msgid ""
-"Fix: Updated admin columns for commercial_land listing type to match other "
-"listing type"
+#: menus/menu-welcome.php:210 widgets/widget-listing.php:18
+msgid "EPL - Listing"
 msgstr ""
 
-#: menus/menu-welcome.php:208
-msgid "Fix: Swapped bedrooms/bathroom label on hover"
+#: menus/menu-welcome.php:211
+msgid ""
+"Added additional options giving you greater control to customise your \"featured\" "
+"listings using a widget. Everything is now customisable even the button label."
 msgstr ""
 
-#: menus/menu-welcome.php:209
-msgid ""
-"New: Added filter epl_listing_meta_boxes which allows additional meta boxes "
-"to be added through filter"
+#: menus/menu-welcome.php:212
+msgid "This gives you the ability to dynamically."
 msgstr ""
 
-#: menus/menu-welcome.php:215
-#, fuzzy
-msgid "Go to Easy Property Listings Settings"
-msgstr "Configurare Facile annunci immobiliari impostazioni generali. Visita"
+#: menus/menu-welcome.php:217 widgets/widget-listing-search.php:18
+msgid "EPL - Listing Search"
+msgstr ""
 
-#: menus/menu-welcome.php:238
+#: menus/menu-welcome.php:218
 msgid ""
-"Use the tips below to get started using Easy Property Listings. You will be "
-"up and running in no time!"
+"Tabbed search supports multiple listing types from one widget with customisable "
+"labels. Also added are land and building size search fields. Performance improved by "
+"reducing the number of database queries to keep your site fast."
+msgstr ""
+
+#: menus/menu-welcome.php:219
+msgid ""
+"The Listing Search widget now lets you add multiple tabs to one widget. Its also "
+"smart enough to hide unused fields like bedrooms on land and the rental price range "
+"is automatically adjusted for you."
+msgstr ""
+
+#: menus/menu-welcome.php:220
+msgid ""
+"Another great thing about our the Listing Search widget is you can search by property "
+"id, handy if you have a lot of listing and give publish the property id on marketing."
+msgstr ""
+
+#: menus/menu-welcome.php:226
+msgid "Other Changes"
+msgstr ""
+
+#: menus/menu-welcome.php:229
+msgid "Inspection times"
+msgstr ""
+
+#: menus/menu-welcome.php:230
+msgid "Inspection time support multiple dates written one per line."
+msgstr ""
+
+#: menus/menu-welcome.php:232
+msgid "New Label"
+msgstr ""
+
+#: menus/menu-welcome.php:233
+msgid ""
+"Set how many days you want your newly added listings to appear new for. Adjust the "
+"number of days from the settings."
+msgstr ""
+
+#: menus/menu-welcome.php:235 meta-boxes/meta-boxes.php:926
+msgid "Auction Date"
+msgstr ""
+
+#: menus/menu-welcome.php:236
+msgid "Calendar to select auction date and outputs nicely."
+msgstr ""
+
+#: menus/menu-welcome.php:238 meta-boxes/meta-boxes.php:978
+msgid "Sale Date"
+msgstr ""
+
+#: menus/menu-welcome.php:239
+msgid "Calendar to select sold date."
 msgstr ""
 
 #: menus/menu-welcome.php:241
-msgid "Configure the Property Types You Need"
+msgid "Easier to create custom templates"
+msgstr ""
+
+#: menus/menu-welcome.php:242
+msgid "Display Settings."
+msgstr ""
+
+#: menus/menu-welcome.php:244
+msgid "Author Box"
+msgstr ""
+
+#: menus/menu-welcome.php:245
+msgid "Supports multiple real estate agents per listing."
 msgstr ""
 
 #: menus/menu-welcome.php:247
-msgid "Property Types"
+msgid "Meta Fields"
 msgstr ""
 
-#: menus/menu-welcome.php:248
-msgid ""
-"Instead of classifying everything as a property, Easy Property Listings "
-"allows you to separate the different property types which is better for SEO "
-"and RSS feeds."
+#: menus/menu-welcome.php:248 menus/menu-welcome.php:251
+msgid "Property unit/lot number, office id, ."
 msgstr ""
 
-#: menus/menu-welcome.php:249
-msgid ""
-"Visit the general settings page and enable the listing types you need. Once "
-"you have pressed save visit the Permalinks page to re-fresh your sites "
-"permalinks."
+#: menus/menu-welcome.php:250
+msgid "Additional hooks and filters for customising"
 msgstr ""
 
-#: menus/menu-welcome.php:253
+#: menus/menu-welcome.php:258
+msgid "Full change log of version 1.3"
+msgstr ""
+
+#: menus/menu-welcome.php:260
+msgid "New: Extension validator."
+msgstr ""
+
+#: menus/menu-welcome.php:261
+msgid "New: Moved listing-meta.php into compatibility folder."
+msgstr ""
+
+#: menus/menu-welcome.php:262
+msgid "New: Global $property variable."
+msgstr ""
+
+#: menus/menu-welcome.php:263
 msgid ""
-"<strong>Supported Listing Types</strong>\n"
-"\t\t\t\t\t<ul>\n"
-"\t\t\t\t\t\t<li>Property (Residential)</li>\n"
-"\t\t\t\t\t\t<li>Rental</li>\n"
-"\t\t\t\t\t\t<li>Land</li>\n"
-"\t\t\t\t\t\t<li>Rural</li>\n"
-"\t\t\t\t\t\t<li>Commercial</li>\n"
-"\t\t\t\t\t\t<li>Commercial Land</li>\n"
-"\t\t\t\t\t\t<li>Business</li>\n"
-"\t\t\t\t\t</ul>"
+"New: Property custom meta re-written into class. This was the big change to 1.3 where "
+"we completely re-wrote the output of the meta values which are now accessible using "
+"global $property variable."
+msgstr ""
+
+#: menus/menu-welcome.php:264
+msgid ""
+"New: Property meta can now can be output using new actions for easy and quick custom "
+"template creation."
+msgstr ""
+
+#: menus/menu-welcome.php:265
+msgid "New: API for extensions now support WordPress editor with validation."
 msgstr ""
 
 #: menus/menu-welcome.php:266
-#, fuzzy
-msgid "Add Your First Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgid ""
+"New: jQuery date time picker formatting added to improve support for auction and sold "
+"listing, support for 30+ languages support."
+msgstr ""
+
+#: menus/menu-welcome.php:267
+msgid ""
+"New: Inspection time auto-formats REAXML date eg \"13-Dec-2014 11:00am to 11:45am\" "
+"and will no longer show past inspection times."
+msgstr ""
+
+#: menus/menu-welcome.php:268
+msgid "New: Inspection time support multiple dates written one per line."
+msgstr ""
+
+#: menus/menu-welcome.php:269
+msgid "New: CSS improved with better commenting and size reduction."
+msgstr ""
+
+#: menus/menu-welcome.php:270
+msgid ""
+"New: Dashboard widget now lists all listing status so at a glance you can see your "
+"property stock."
+msgstr ""
+
+#: menus/menu-welcome.php:271
+msgid ""
+"New: Display: To enable grid, list and sorter your custom archive-listing.php "
+"template requires the new action hook \"epl_template_before_property_loop\" before "
+"the WordPress loop."
+msgstr ""
 
 #: menus/menu-welcome.php:272
 msgid ""
-"Once you have re-set the WordPress permalinks you can now add a listing to "
-"the post type you have enabled. Enter the listing details and press publish."
+"New: Display: Utility hook action hook added \"epl_template_after_property_loop\" for "
+"future updates."
+msgstr ""
+
+#: menus/menu-welcome.php:273
+msgid "New: Display: List and grid view with optional masonry effect."
 msgstr ""
 
 #: menus/menu-welcome.php:274
+msgid "New: Display: Sorter added for price high/low and date newest/oldest."
+msgstr ""
+
+#: menus/menu-welcome.php:275
 msgid ""
-"You now can view the listing using the default template included with Easy "
-"Property Listings. Once you have added a listing and previewed the single "
-"view of the page you can review the archive page. Each post type created has "
-"a slug associated with that, so just by adding /property or /rental to your "
-"browser address you should see any listings that you have saved."
+"New: Auction Date formats nicely. EG \"Auction Saturday 28th December at 2:00pm\"."
 msgstr ""
 
 #: menus/menu-welcome.php:276
-msgid "Listing Title"
+msgid ""
+"New: Tabbed extensions page support in admin for advanced extensions like \"Listing "
+"Alerts\"."
 msgstr ""
 
 #: menus/menu-welcome.php:277
+msgid "New: Multiple author support in Author Box."
+msgstr ""
+
+#: menus/menu-welcome.php:278
 msgid ""
-"Note that the Title can either be the property address or the text heading. "
-"For an SEO advantage we suggest to use the property address, as this also "
-"becomes the website page address. Also, using the address will keep you from "
-"breaking the permalinks if you need to change the text heading."
+"New: Search Widget now supports multiple listing types, hold Ctrl to enable tabbed "
+"front end display."
 msgstr ""
 
 #: menus/menu-welcome.php:279
-#, fuzzy
-msgid "Gallery"
-msgstr "Abilitare la Galleria sulla pagine delle proprietà singola"
+msgid ""
+"New: Search Widget Labels are configurable from the Display settings allowing you to "
+"set for example: \"Property\" to \"Buy\" and \"Rental\" to \"Rent\" and use a single "
+"widget to search multiple types."
+msgstr ""
 
 #: menus/menu-welcome.php:280
 msgid ""
-"To add a gallery of images to your listings use the standard WordPress Add "
-"Media button. If you have enabled the automatic gallery display option then "
-"you do not need to create a gallery just upload the images without pressing "
-"<strong>insert into post</strong>."
+"New: Search Widget and short code supports search by property ID, Land Area and "
+"Building Area."
+msgstr ""
+
+#: menus/menu-welcome.php:281
+msgid "New: Search short code supports array of property types."
 msgstr ""
 
 #: menus/menu-welcome.php:282
+msgid "New: Author variables accessible using new CLASS."
+msgstr ""
+
+#: menus/menu-welcome.php:283
 msgid ""
-"When your listing has more than one image attached they will be displayed "
-"with the number of columns you have specified in the display options. When "
-"Automatic gallery is off you can use the EPL - Property Gallery widget to "
-"display your images or manually insert them into the content area."
+"New: REAXML Unit and lot formatting function for usage in the title when using WP All "
+"Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})]."
 msgstr ""
 
 #: menus/menu-welcome.php:284
-msgid "Gallery Lightbox"
+msgid ""
+"New: Global $epl_settings settings variable adds new default values on plug-in update."
 msgstr ""
 
 #: menus/menu-welcome.php:285
-msgid ""
-"We have not included a lightbox gallery pop-over as there are some excellent "
-"lighbox plugins available. Install and activate one like the free Easy Fancy "
-"Box."
+msgid "New: Display: Added customisable label for rental Bond/Deposit."
 msgstr ""
 
-#: menus/menu-welcome.php:287 taxonomies/tax-features.php:19
-#, fuzzy
-msgid "Features"
-msgstr "Listato Caratteristiche"
+#: menus/menu-welcome.php:286
+msgid "New: Template functions completely re-written and can now be output using hooks."
+msgstr ""
+
+#: menus/menu-welcome.php:287
+msgid ""
+"New: Added NEW sticker with customisable label and ability to set how long a listing "
+"displays the new label."
+msgstr ""
 
 #: menus/menu-welcome.php:288
-msgid ""
-"Fill in the house and land features to display the standard house features. "
-"For additional features simply add them to the features box."
+msgid "New: Display: jQuery Masonry effect can be enabled from display settings."
+msgstr ""
+
+#: menus/menu-welcome.php:289
+msgid "New: Bar Graph API added."
 msgstr ""
 
 #: menus/menu-welcome.php:290
-#, fuzzy
-msgid "Author"
-msgstr "Autore Box"
-
-#: menus/menu-welcome.php:291
 msgid ""
-"Set the author to show the name of the agent who has listed the property "
-"with their contact details. See Author Box below for instructions on how to "
-"modify the individual user profiles."
+"New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 "
+"sale) and (2,000 rental)."
 msgstr ""
 
-#: menus/menu-welcome.php:293 meta-boxes/meta-boxes.php:1355
-msgid "Files and Links"
+#: menus/menu-welcome.php:291
+msgid "New: Graph visually displays price and status."
+msgstr ""
+
+#: menus/menu-welcome.php:292
+msgid ""
+"New: Price graph now appears in admin pages quickly highlighting price and status "
+"visually."
+msgstr ""
+
+#: menus/menu-welcome.php:293
+msgid "New: Meta Fields: Support for unit number, lot number (land)."
 msgstr ""
 
 #: menus/menu-welcome.php:294
-msgid ""
-"Add your floorplan, property video or mini property website links to add a "
-"button with a link to these pages."
+msgid "New: South African ZAR currency support."
+msgstr ""
+
+#: menus/menu-welcome.php:297
+msgid "Version 1.2.1"
+msgstr ""
+
+#: menus/menu-welcome.php:299
+msgid "Fix: Search Widget not working on page 2 of archive page in some instances"
 msgstr ""
 
 #: menus/menu-welcome.php:300
-#, fuzzy
-msgid "Short Codes"
-msgstr "Modulo di contatto shortcode"
+msgid ""
+"Fix: Property feature list Toilet and New Construction now display in list when ticked"
+msgstr ""
+
+#: menus/menu-welcome.php:301
+msgid "Fix: EPL - Listing widget was not displaying featured listings"
+msgstr ""
+
+#: menus/menu-welcome.php:302
+msgid ""
+"Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode"
+msgstr ""
+
+#: menus/menu-welcome.php:303
+msgid "Fix: Updated templates to display Search Results when performing search"
+msgstr ""
 
 #: menus/menu-welcome.php:304
-msgid "Open Home List"
+msgid "Fix: No longer show Bond when viewing rental list in admin"
 msgstr ""
 
 #: menus/menu-welcome.php:305
-msgid ""
-"Easily add a short code to a page or post and it will always only show "
-"properties that have a current home open so your posts and pages will always "
-"be up-to date"
+msgid "Fix: Open for inspection sticker now appears on rental properties"
 msgstr ""
 
 #: menus/menu-welcome.php:306
-msgid "The short code accepts a few optional parameters:"
+msgid "New: Added initial Dutch translation."
 msgstr ""
 
-#: menus/menu-welcome.php:307
-msgid ""
-"<ul>\n"
-"\t\t\t\t\t\t\t\t\t<li><em>post_type</em> - the listing type; property, "
-"rental, commercial, business, land, rural</li>\n"
-"\t\t\t\t\t\t\t\t\t<li><em>limit</em> - the number of listings to display, "
-"default is -1 which means all</li>\n"
-"\t\t\t\t\t\t\t\t</ul>"
+#: menus/menu-welcome.php:309
+msgid "Version 1.2"
 msgstr ""
 
 #: menus/menu-welcome.php:311
-msgid "Example"
+msgid "New: Plug in Activation process flushes permalinks"
+msgstr ""
+
+#: menus/menu-welcome.php:312
+msgid "New: Plug in deactivation flushes permalinks"
 msgstr ""
 
 #: menus/menu-welcome.php:313
-msgid "Only Show 5 Rental Listings Example"
+msgid "New: Shortcode [listing_search]"
+msgstr ""
+
+#: menus/menu-welcome.php:314
+msgid "New: Shortcode [listing_feature]"
+msgstr ""
+
+#: menus/menu-welcome.php:315
+msgid ""
+"New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] "
+"for backward compatibility, however adjust your site. "
+msgstr ""
+
+#: menus/menu-welcome.php:316
+msgid ""
+"New: Listing shortcodes allow for default template display if registered by adding "
+"template=\"slim\" to the shortcode."
+msgstr ""
+
+#: menus/menu-welcome.php:317
+msgid "New: Translation support now correctly loads text domain epl"
+msgstr ""
+
+#: menus/menu-welcome.php:318
+msgid "New: Added translation tags to all test elements for better translation support"
+msgstr ""
+
+#: menus/menu-welcome.php:319
+msgid "New: Updated source epl.pot translation file for translations"
 msgstr ""
 
 #: menus/menu-welcome.php:320
-msgid "Template Pricing and Home Open Label Options"
+msgid "New: Added very rough Italian translation"
+msgstr ""
+
+#: menus/menu-welcome.php:321
+msgid ""
+"New: Wrapped Featured image in action to allow for easy removal and/or replacement"
+msgstr ""
+
+#: menus/menu-welcome.php:322
+msgid "Fix: Undefined errors when debug is active"
+msgstr ""
+
+#: menus/menu-welcome.php:323
+msgid "New: Added new CSS classes to widgets for consistent usage"
+msgstr ""
+
+#: menus/menu-welcome.php:324
+msgid "Tweak: Admin CSS tweaks to define sections in admin"
+msgstr ""
+
+#: menus/menu-welcome.php:325
+msgid "Fix: CSS for TwentyThirteen style CSS using .sidebar container"
 msgstr ""
 
 #: menus/menu-welcome.php:326
-#, fuzzy
-msgid "Property Pricing"
-msgstr "Prezzi"
-
-#: menus/menu-welcome.php:327 menus/menu-welcome.php:343
-msgid ""
-"Property pricing can be a nightmare with so many options available like: No "
-"Price, Under Offer, Fixed Pricing, Ranges, Under Offer, Auctions. We have "
-"created a function that handles all the different options for you. You can "
-"customise the labels for No Price from the Display Settings."
+msgid "Fix: CSS for responsive shortcode"
 msgstr ""
 
-#: menus/menu-welcome.php:330 menus/menu-welcome.php:346
-#: menus/menu-welcome.php:359
+#: menus/menu-welcome.php:327
 msgid ""
-"When a property has an inspection time or date set that information is "
-"displayed on the property templates. The \"Home Open\" label can be "
-"customised also from the display settings page."
+"New: Added options to hide/ show various options to EPL - Listing widget: Property "
+"Headline, Excerpt, Suburb/Location Label, Street Address, Price, Read More Button"
+msgstr ""
+
+#: menus/menu-welcome.php:328
+msgid "New: Added customisable \"Read More\" label to EPL - Listing widget"
+msgstr ""
+
+#: menus/menu-welcome.php:329
+msgid "New: Added excerpt to EPL - Listing widget"
+msgstr ""
+
+#: menus/menu-welcome.php:330
+msgid "New: Added options to remove search options from EPL - Listing Search widget"
+msgstr ""
+
+#: menus/menu-welcome.php:331
+msgid "New: Added consistent CSS classes to shortcodes for responsive shortcode"
+msgstr ""
+
+#: menus/menu-welcome.php:332
+msgid ""
+"New: Date processing function for use with WP All Import when importing REAXML files. "
+"Some imports set the current date instead of the date from the REAXML file. Usage in "
+"WP All Import Post Date is: [epl_feedsync_format_date({./@modTime})]"
+msgstr ""
+
+#: menus/menu-welcome.php:333
+msgid ""
+"Tweak: Added additional CSS classes to admin menu pages to extensions can be better "
+"distinguished when installed and activated"
+msgstr ""
+
+#: menus/menu-welcome.php:334
+msgid "Fix: Registering custom template actions now works correctly"
+msgstr ""
+
+#: menus/menu-welcome.php:335
+msgid "New: Added additional CSS classes to template files"
 msgstr ""
 
 #: menus/menu-welcome.php:336
-#, fuzzy
-msgid "Widgets"
-msgstr "I seguenti dettagli appariranno nella tua casella di autore e widget."
+msgid ""
+"Fix: Changed property not found wording when using search widget and listing not "
+"found. "
+msgstr ""
+
+#: menus/menu-welcome.php:337
+msgid "Tweak: Added defaults to widgets to prevent errors when debug is on"
+msgstr ""
+
+#: menus/menu-welcome.php:338
+msgid "New: Added WordPress editor support in admin for use with extensions."
+msgstr ""
+
+#: menus/menu-welcome.php:339
+msgid "New: Added textarea support in admin for use with extensions."
+msgstr ""
+
+#: menus/menu-welcome.php:340
+msgid ""
+"New: Filters added for all select options on add listing pages which allows for full "
+"customisation through simple function"
+msgstr ""
+
+#: menus/menu-welcome.php:341
+msgid "New: Added rent period, Day, Daily, Month, Monthly to rental listing types"
+msgstr ""
 
 #: menus/menu-welcome.php:342
-msgid "Recent Property"
-msgstr "Recenti Proprietà"
-
-#: menus/menu-welcome.php:345 menus/menu-welcome.php:358
-msgid "Author Box"
-msgstr "Autore Box"
-
-#: menus/menu-welcome.php:352
-msgid "Author Profiles"
-msgstr "Autore profili"
-
-#: menus/menu-welcome.php:365
-msgid "Need Help?"
-msgstr "Hai bisogno di aiuto?"
-
-#: menus/menu-welcome.php:369
-msgid "Phenomenal Support"
+msgid "New: Added property_office_id meta field"
 msgstr ""
 
-#: menus/menu-welcome.php:370
+#: menus/menu-welcome.php:343
+msgid "New: Added property_address_country meta field"
+msgstr ""
+
+#: menus/menu-welcome.php:344
+msgid "Tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5"
+msgstr ""
+
+#: menus/menu-welcome.php:345
 msgid ""
-"We do our best to provide the best support we can. If you encounter a "
-"problem or have a question, post a question in the <a href=\"http://"
-"easypropertylistings.com.au/support\">support forums</a>."
+"New: Added mini map to listing edit screen. Will display mini map in address block "
+"when pressing green coordinates button."
 msgstr ""
 
-#: menus/menu-welcome.php:372
-msgid "Need Even Faster Support?"
-msgstr ""
-
-#: menus/menu-welcome.php:373
+#: menus/menu-welcome.php:346
 msgid ""
-"Our <a href=\"http://easypropertylistings.com.au/support/pricing/\">Priority "
-"Support forums</a> are there for customers that need faster and/or more in-"
-"depth assistance."
+"Fix: Updated admin columns for commercial_land listing type to match other listing "
+"type"
+msgstr ""
+
+#: menus/menu-welcome.php:347
+msgid "Fix: Swapped bedrooms/bathroom label on hover"
+msgstr ""
+
+#: menus/menu-welcome.php:348
+msgid ""
+"New: Added filter epl_listing_meta_boxes which allows additional meta boxes to be "
+"added through filter"
+msgstr ""
+
+#: menus/menu-welcome.php:354
+msgid "Go to Easy Property Listings Settings"
+msgstr ""
+
+#: menus/menu-welcome.php:377
+msgid ""
+"Use the tips below to get started using Easy Property Listings. You will be up and "
+"running in no time!"
 msgstr ""
 
 #: menus/menu-welcome.php:379
-#, fuzzy
-msgid "Stay Up to Date"
-msgstr "Data"
+msgid "Quick Start Guide"
+msgstr ""
 
 #: menus/menu-welcome.php:383
-msgid "Get Notified of Extension Releases"
+msgid "Activate the Listing Types You Need"
 msgstr ""
 
 #: menus/menu-welcome.php:384
 msgid ""
-"New extensions that make Easy Property Listings even more powerful are "
-"released nearly every single week. Subscribe to the newsletter to stay up to "
-"date with our latest releases. <a href=\"http://eepurl.com/TRO9f\" target="
-"\"_blank\">Sign up now</a> to ensure you do not miss a release!"
+"Instead of classifying everything as a property, Easy Property Listings allows you to "
+"separate the different listing types which is better for SEO and RSS feeds."
 msgstr ""
 
-#: menus/menu-welcome.php:386
-msgid "Get Alerted About New Tutorials"
+#: menus/menu-welcome.php:385
+msgid ""
+"Visit the general settings page and enable the listing types you need. Once you have "
+"pressed save visit the Permalinks page to re-fresh your sites permalinks."
 msgstr ""
 
 #: menus/menu-welcome.php:387
-msgid ""
-"<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to "
-"hear about the latest tutorial releases that explain how to take Easy "
-"Property Listings further."
-msgstr ""
-
-#: menus/menu-welcome.php:393
-#, fuzzy
-msgid "Extensions directory is Growing"
-msgstr "Estensioni"
-
-#: menus/menu-welcome.php:397
-msgid "10 Extensions and many more coming"
+msgid "Supported Listing Types"
 msgstr ""
 
 #: menus/menu-welcome.php:398
-msgid ""
-"Add-on plug ins are available that greatly extend the default functionality "
-"of Easy Property Listings. There are extensions for advanced Google mapping, "
-"extensions for testimonials, suburb profiles, and many, many more."
+msgid "Create a page for each activated listing type"
+msgstr ""
+
+#: menus/menu-welcome.php:399
+msgid "Next add a new page for each listing type you activated."
 msgstr ""
 
 #: menus/menu-welcome.php:400
-#, fuzzy
-msgid "Visit the Extension Store"
-msgstr "Opzioni di estensione"
+msgid ""
+"For example, lets say you have activated: Property, Rental and Land. Create three "
+"pages, one called \"Property\", another \"Land\" and the third \"Rental\" these will "
+"be the custom post type slugs eg: property, rental and land. Once created then they "
+"can be renamed but leave the page slugs as property, rental and land."
+msgstr ""
 
 #: menus/menu-welcome.php:401
 msgid ""
-"<a href=\"http://easypropertylistings.com.au/extensions\" target=\"_blank"
-"\">The Extensions store</a> has a list of all available extensions, "
-"including convenient category filters so you can find exactly what you are "
-"looking for."
+"Publish a test \"Property\" and visit your new Property page and you will see the new "
+"property and others you have created."
+msgstr ""
+
+#: menus/menu-welcome.php:402
+msgid ""
+"Doing this allows you to add \"Property\", \"Land\" and \"Rental\" pages to your "
+"WordPress menu and you can rename them to whatever you like eg: \"For Sale\", \"For "
+"Rent\" etc."
+msgstr ""
+
+#: menus/menu-welcome.php:416
+msgid "Add Your First Listing"
+msgstr ""
+
+#: menus/menu-welcome.php:417
+msgid "you can now add a listing. Enter the listing details and press publish."
+msgstr ""
+
+#: menus/menu-welcome.php:422 widgets/widget-listing.php:260
+msgid "Title"
+msgstr ""
+
+#: menus/menu-welcome.php:423
+msgid ""
+"Best practice is to Using the listing address as the title is better than a heading "
+"that frequently changes, add your text heading \"Great Property\" to the Heading "
+"field in the Listing Details box. Using the address as that does not change and "
+"offers SEO and link sharing advantages."
+msgstr ""
+
+#: menus/menu-welcome.php:427 meta-boxes/meta-boxes.php:119
+msgid "Heading"
 msgstr ""
 
 #: menus/menu-welcome.php:427
-msgid ""
-"Easy Property Listings is created by a worldwide team of developers who aim "
-"to provide the #1 property listings platform for managing your real estate "
-"business through WordPress."
+msgid "is where you can place your fancy heading \"Best View Of Sydney Harbour\"."
 msgstr ""
-"Facile annunci immobiliari è stato creato da un team internazionale di "
-"sviluppatori che mirano a fornire la piattaforma # 1 annunci immobiliari per "
-"la gestione del business immobiliare attraverso WordPress."
 
-#: menus/menu-welcome.php:454
+#: menus/menu-welcome.php:428 meta-boxes/meta-boxes.php:147
+msgid "Second Listing Agent"
+msgstr ""
+
+#: menus/menu-welcome.php:428
+msgid ""
+"If you have two real estate agents marketing a listing, enter their WordPress user "
+"name here. The primary agent is the Author like posts."
+msgstr ""
+
+#: menus/menu-welcome.php:429
+msgid "Inspection Times"
+msgstr ""
+
+#: menus/menu-welcome.php:429
+msgid ""
+"now supports multiple inspection times, add one per line. When importing from REAXML "
+"past inspection dates will not display."
+msgstr ""
+
+#: menus/menu-welcome.php:432
+msgid "Gallery"
+msgstr ""
+
+#: menus/menu-welcome.php:433
+msgid "Add a gallery of images to your listings with the WordPress Add Media button."
+msgstr ""
+
+#: menus/menu-welcome.php:434
+msgid ""
+"You can automatically output a gallery from the Display options page. When set to "
+"automatic, upload your images to the listing and press x to close the media upload "
+"box."
+msgstr ""
+
+#: menus/menu-welcome.php:435
+msgid ""
+"When using the automatic gallery you can adjust the number of image columns from the "
+"Display options."
+msgstr ""
+
+#: menus/menu-welcome.php:437
+msgid "Gallery Light Box"
+msgstr ""
+
+#: menus/menu-welcome.php:438
+msgid ""
+"The gallery can be configured to use a light box plug-in like Easy FancyBox. Just "
+"install that plugin and activate and your gallery images will use the light box "
+"effect."
+msgstr ""
+
+#: menus/menu-welcome.php:440
+msgid "Listing Features & Additional Features"
+msgstr ""
+
+#: menus/menu-welcome.php:441
+msgid ""
+"Enter your listing details like bedrooms, bathrooms, land size etc. Tick the "
+"additional features that apply to your listing. For even more features you can add as "
+"many as you like using the Features taxonomy box. It works just like WordPress post "
+"tags."
+msgstr ""
+
+#: menus/menu-welcome.php:443
+msgid "Author"
+msgstr ""
+
+#: menus/menu-welcome.php:444
+msgid ""
+"Set the author to show the name of the agent who has listed the property with their "
+"contact details. See Author Box below for instructions on how to modify the "
+"individual user profiles."
+msgstr ""
+
+#: menus/menu-welcome.php:446 meta-boxes/meta-boxes.php:1392
+msgid "Files and Links"
+msgstr ""
+
+#: menus/menu-welcome.php:447
+msgid "Add your floor plan, listing YouTube video or mini property website links."
+msgstr ""
+
+#: menus/menu-welcome.php:455
+msgid "Need Help?"
+msgstr ""
+
+#: menus/menu-welcome.php:457
+msgid "Phenomenal Support"
+msgstr ""
+
+#: menus/menu-welcome.php:458
+msgid ""
+"We do our best to provide the best support we can. If you encounter a problem or have "
+"a question, post a question in the <a href=\"http://easypropertylistings.com.au/"
+"support/\">support forums</a>."
+msgstr ""
+
+#: menus/menu-welcome.php:460
+msgid "Need Even Faster Support?"
+msgstr ""
+
+#: menus/menu-welcome.php:461
+msgid ""
+"Visit the <a href=\"http://easypropertylistings.com.au/support/pricing/\">Priority "
+"Support forums</a> are there for customers that need faster and/or more in-depth "
+"assistance."
+msgstr ""
+
+#: menus/menu-welcome.php:463
+msgid "Documentation and Short Codes"
+msgstr ""
+
+#: menus/menu-welcome.php:464
+msgid "Read the"
+msgstr ""
+
+#: menus/menu-welcome.php:464
+msgid "documentation"
+msgstr ""
+
+#: menus/menu-welcome.php:464
+msgid " and instructions on how to use the included"
+msgstr ""
+
+#: menus/menu-welcome.php:464
+msgid "shortcodes"
+msgstr ""
+
+#: menus/menu-welcome.php:471
+msgid "Stay Up to Date"
+msgstr ""
+
+#: menus/menu-welcome.php:473
+msgid "Get Notified of Extension Releases"
+msgstr ""
+
+#: menus/menu-welcome.php:474
+msgid ""
+"New extensions that make Easy Property Listings even more powerful are released "
+"nearly every single week. Subscribe to the newsletter to stay up to date with our "
+"latest releases. <a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</"
+"a> to ensure you do not miss a release!"
+msgstr ""
+
+#: menus/menu-welcome.php:476
+msgid "Get Alerted About New Tutorials"
+msgstr ""
+
+#: menus/menu-welcome.php:477
+msgid ""
+"<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to hear about "
+"the latest tutorial releases that explain how to take Easy Property Listings further."
+msgstr ""
+
+#: menus/menu-welcome.php:482
+msgid "Extensions directory is Growing"
+msgstr ""
+
+#: menus/menu-welcome.php:484
+msgid "12 Extensions and many more coming"
+msgstr ""
+
+#: menus/menu-welcome.php:485
+msgid ""
+"Add-on plug ins are available that greatly extend the default functionality of Easy "
+"Property Listings. There are extensions for Advanced mapping, testimonials, listing "
+"alerts, CMA Market Reports, Location Profiles, and many, many more."
+msgstr ""
+
+#: menus/menu-welcome.php:487
+msgid "Visit the Extension Store"
+msgstr ""
+
+#: menus/menu-welcome.php:488
+msgid "The Extensions store"
+msgstr ""
+
+#: menus/menu-welcome.php:488
+msgid ""
+"has a list of all available extensions, including convenient category filters so you "
+"can find exactly what you are looking for."
+msgstr ""
+
+#: menus/menu-welcome.php:512
+msgid ""
+"Easy Property Listings is created by a worldwide team of developers who aim to "
+"provide the #1 property listings platform for managing your real estate business "
+"through WordPress."
+msgstr ""
+
+#: menus/menu-welcome.php:539
 #, php-format
 msgid "View %s"
 msgstr ""
 
 #: menus/menus.php:20 menus/menus.php:21
-#, fuzzy
 msgid "Easy Property Listings"
-msgstr "Benvenuti a Easy Property Listings"
+msgstr ""
 
 #: menus/menus.php:29
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr ""
 
 #: menus/menus.php:32 menus/menus.php:33
 msgid "Display"
-msgstr "Visualizza"
+msgstr ""
 
 #: menus/menus.php:40 menus/menus.php:41
 msgid "Extensions"
-msgstr "Estensioni"
+msgstr ""
 
-#: menus/menus.php:56 menus/menus.php:57
+#: menus/menus.php:49 menus/menus.php:50
+msgid "Update Extensions"
+msgstr ""
+
+#: menus/menus.php:68 menus/menus.php:69
 msgid "Add Ons"
-msgstr "Aggiungi Ons"
+msgstr ""
 
-#: menus/menus.php:66 menus/menus.php:74 menus/menus.php:82 menus/menus.php:91
-#: menus/menus.php:99
+#: menus/menus.php:78 menus/menus.php:86 menus/menus.php:94 menus/menus.php:103
+#: menus/menus.php:112 menus/menus.php:120
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
-"Non si dispone di autorizzazioni sufficienti per accedere a questa pagina."
 
 #: meta-boxes/meta-boxes.php:31 post-types/post-types.php:38
+#: widgets/widget-dashboard-epl-status.php:99
+#: widgets/widget-dashboard-epl-status.php:116
+#: widgets/widget-dashboard-epl-status.php:138
 msgid "Current"
-msgstr "Corrente"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:32 post-types/post-types.php:39
+#: widgets/widget-dashboard-epl-status.php:101
+#: widgets/widget-dashboard-epl-status.php:121
+#: widgets/widget-dashboard-epl-status.php:142
 msgid "Withdrawn"
-msgstr "Levare"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:33 post-types/post-types.php:40
+#: widgets/widget-dashboard-epl-status.php:102
+#: widgets/widget-dashboard-epl-status.php:122
+#: widgets/widget-dashboard-epl-status.php:143
 msgid "Off Market"
-msgstr "Off Mercato"
-
-#: meta-boxes/meta-boxes.php:45 meta-boxes/meta-boxes.php:60
-msgid "Auction"
-msgstr "Vendita all'asta"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:46 meta-boxes/meta-boxes.php:55
 msgid "Exclusive"
-msgstr "Esclusivo"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:47
 msgid "Multilist"
@@ -1473,21 +2228,17 @@ msgid "Conjunctional"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:49 meta-boxes/meta-boxes.php:56
-#: templates/content/loop-listing-blog-slim.php:83
-#, fuzzy
 msgid "Open"
-msgstr "Casa Apri Etichettare (di default è: Home Open)"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:50 meta-boxes/meta-boxes.php:63
 #: meta-boxes/meta-boxes.php:86
-#, fuzzy
 msgid "Sale"
-msgstr "Vendita"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:51
-#, fuzzy
 msgid "Set Sale"
-msgstr "Vendita"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:61
 msgid "Tender"
@@ -1502,30 +2253,28 @@ msgid "Offers"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:69
-#, fuzzy
 msgid "Square"
-msgstr "Metro Quadrato"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:70
 msgid "Square Meter"
-msgstr "Metro Quadrato"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:71
 msgid "Acre"
-msgstr "Acro"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:72
 msgid "Hectare"
-msgstr "Ettaro"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:73
 msgid "Square Feet"
-msgstr "Piedi quadrati"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:77
-#, fuzzy
 msgid "Day"
-msgstr "Latteria"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:78
 msgid "Daily"
@@ -1533,11 +2282,11 @@ msgstr ""
 
 #: meta-boxes/meta-boxes.php:79
 msgid "Week"
-msgstr "Settimana"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:80
 msgid "Weekly"
-msgstr "Settimanale"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:81
 msgid "Month"
@@ -1549,7 +2298,7 @@ msgstr ""
 
 #: meta-boxes/meta-boxes.php:87
 msgid "Lease"
-msgstr "Affitto"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:88
 msgid "Both"
@@ -1575,1226 +2324,916 @@ msgstr ""
 msgid "Part"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:107 post-types/post-type-business.php:84
-#: post-types/post-type-commercial.php:82
-#: post-types/post-type-commercial_land.php:82
-#: post-types/post-type-land.php:83 post-types/post-type-property.php:83
-#: post-types/post-type-rental.php:83 post-types/post-type-rural.php:83
-msgid "Listing Details"
-msgstr "Dettagli del Link"
-
-#: meta-boxes/meta-boxes.php:118
-msgid "Heading"
-msgstr "Titolo"
-
-#: meta-boxes/meta-boxes.php:127
+#: meta-boxes/meta-boxes.php:129
 msgid "Listing Agent(s)"
-msgstr "Listato agente"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:131
-msgid "Listing Agent"
-msgstr "Listato agente"
-
-#: meta-boxes/meta-boxes.php:138
-msgid "Second Listing Agent"
-msgstr "Secondo Agente Profilo"
-
-#: meta-boxes/meta-boxes.php:147
-msgid "Listing Type"
-msgstr "Tipo di annuncio"
-
-#: meta-boxes/meta-boxes.php:151 widgets/widget-listing.php:279
-msgid "Property Status"
-msgstr "Stato immobile"
-
-#: meta-boxes/meta-boxes.php:158
-#, fuzzy
-msgid "Authority"
-msgstr "Autorità per uso professionale"
-
-#: meta-boxes/meta-boxes.php:166 widgets/widget-listing-search.php:134
-msgid "House Category"
-msgstr "Casa Categoria"
-
-#: meta-boxes/meta-boxes.php:174
-msgid "Rural Category"
-msgstr "Rurale Categoria"
-
-#: meta-boxes/meta-boxes.php:182
-#, fuzzy
+#: meta-boxes/meta-boxes.php:133
 msgid "Office ID"
-msgstr "Uffici"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:189
+#: meta-boxes/meta-boxes.php:140
+msgid "Listing Agent"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:159
+msgid "Listing Type"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:163 widgets/widget-listing.php:279
+msgid "Property Status"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:170
+msgid "Authority"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:178 widgets/widget-listing-search.php:151
+msgid "House Category"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:186
+msgid "Rural Category"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:194
 msgid "Unique ID"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:196
+#: meta-boxes/meta-boxes.php:201
 msgid "XML Importer Mod Date"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:203
+#: meta-boxes/meta-boxes.php:208
 msgid "Commercial Authority"
-msgstr "Autorità per uso professionale"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:211
+#: meta-boxes/meta-boxes.php:216
 msgid "Exclusivity"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:219
+#: meta-boxes/meta-boxes.php:224
 msgid "Commercial Listing Type"
-msgstr "Commercial Tipo di annuncio"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:227 templates/content/listing-meta.php:550
-#, fuzzy
-msgid "Commercial Category"
-msgstr "Casa Categoria"
-
-#: meta-boxes/meta-boxes.php:237
+#: meta-boxes/meta-boxes.php:243
 msgid "Display Details"
-msgstr "Mostra dettagli"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:241
+#: meta-boxes/meta-boxes.php:247
 msgid "Featured"
-msgstr "In primo piano"
-
-#: meta-boxes/meta-boxes.php:251
-msgid "Inspection Times"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:263
+#: meta-boxes/meta-boxes.php:257
+msgid "Inspection Times ( one per line )"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:269
 msgid "Listing Features"
-msgstr "Listato Caratteristiche"
-
-#: meta-boxes/meta-boxes.php:270
-msgid "House Features"
-msgstr "Caratteristiche della casa"
-
-#: meta-boxes/meta-boxes.php:274 templates/content/listing-meta.php:632
-msgid "Bedrooms"
-msgstr "Locali"
-
-#: meta-boxes/meta-boxes.php:281 templates/content/listing-meta.php:637
-msgid "Bathrooms"
-msgstr "Bagni"
-
-#: meta-boxes/meta-boxes.php:287
-msgid "Ensuite"
-msgstr "Bagno"
-
-#: meta-boxes/meta-boxes.php:293
-msgid "Toilet"
-msgstr "Toilette"
-
-#: meta-boxes/meta-boxes.php:300 templates/content/listing-meta.php:659
-msgid "Garage"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:307 templates/content/listing-meta.php:662
-msgid "Carport"
-msgstr "Posto auto coperto"
+#: meta-boxes/meta-boxes.php:277
+msgid "House Features"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:314
-msgid "New Construction"
-msgstr "Nuova costruzione"
+#: meta-boxes/meta-boxes.php:294
+msgid "Ensuite"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:325 shortcodes/shortcode-listing-search.php:399
-#: templates/content/listing-meta.php:649
-#: templates/content/listing-meta.php:650
-msgid "Pool"
-msgstr "Piscina"
-
-#: meta-boxes/meta-boxes.php:335 shortcodes/shortcode-listing-search.php:394
-#: templates/content/listing-meta.php:645
-msgid "Air Conditioning"
-msgstr "Aria Condizionata"
-
-#: meta-boxes/meta-boxes.php:345
+#: meta-boxes/meta-boxes.php:352
 msgid "Security System"
-msgstr "Sistema di Sicurezza"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:357 meta-boxes/meta-boxes.php:720
+#: meta-boxes/meta-boxes.php:365 meta-boxes/meta-boxes.php:731
 msgid "Land Details"
-msgstr "Terreno Dettagli"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:361 meta-boxes/meta-boxes.php:731
+#: meta-boxes/meta-boxes.php:369 meta-boxes/meta-boxes.php:743
+#: widgets/widget-listing-search.php:171
 msgid "Land Area"
-msgstr "Terra"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:368 meta-boxes/meta-boxes.php:738
+#: meta-boxes/meta-boxes.php:376 meta-boxes/meta-boxes.php:750
 msgid "Land Unit"
-msgstr "Unità di terra"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:375 meta-boxes/meta-boxes.php:745
-#, fuzzy
+#: meta-boxes/meta-boxes.php:383 meta-boxes/meta-boxes.php:757
+#: widgets/widget-listing-search.php:175
 msgid "Building Area"
-msgstr "Terra"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:382 meta-boxes/meta-boxes.php:753
-#, fuzzy
+#: meta-boxes/meta-boxes.php:390 meta-boxes/meta-boxes.php:765
 msgid "Building Unit"
-msgstr "Unità di terra"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:389 meta-boxes/meta-boxes.php:769
+#: meta-boxes/meta-boxes.php:397 meta-boxes/meta-boxes.php:781
 msgid "Fully Fenced"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:403
+#: meta-boxes/meta-boxes.php:411
 msgid "Additional Features"
-msgstr "Caratteristiche aggiuntive"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:410
+#: meta-boxes/meta-boxes.php:419
 msgid "Internal"
-msgstr "Interno"
-
-#: meta-boxes/meta-boxes.php:414 templates/content/listing-meta.php:680
-msgid "Remote Garage"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:424 templates/content/listing-meta.php:690
-#, fuzzy
-msgid "Secure Parking"
-msgstr "Parcheggi"
-
-#: meta-boxes/meta-boxes.php:434 templates/content/listing-meta.php:700
-msgid "Study"
-msgstr "Studio"
-
-#: meta-boxes/meta-boxes.php:444 templates/content/listing-meta.php:710
-msgid "Dishwasher"
-msgstr "Lavastoviglie"
-
-#: meta-boxes/meta-boxes.php:454 templates/content/listing-meta.php:720
-msgid "Built In Robes"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:464 templates/content/listing-meta.php:730
-msgid "Gym"
-msgstr "Palestra"
-
-#: meta-boxes/meta-boxes.php:474 templates/content/listing-meta.php:740
-msgid "Workshop"
-msgstr "Laboratorio"
-
-#: meta-boxes/meta-boxes.php:484 templates/content/listing-meta.php:750
-msgid "Rumpus Room"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:494 templates/content/listing-meta.php:760
-#, fuzzy
-msgid "Floor Boards"
-msgstr "Superficie è"
-
-#: meta-boxes/meta-boxes.php:504 templates/content/listing-meta.php:770
-msgid "Broadband"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:514 templates/content/listing-meta.php:780
-msgid "Pay TV"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:523 templates/content/listing-meta.php:790
-#, fuzzy
-msgid "Vacuum System"
-msgstr "Sistema di Sicurezza"
-
-#: meta-boxes/meta-boxes.php:533 templates/content/listing-meta.php:800
-msgid "Intercom"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:543 templates/content/listing-meta.php:810
-msgid "Spa"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:555
+#: meta-boxes/meta-boxes.php:565
 msgid "External"
-msgstr "Esterno"
-
-#: meta-boxes/meta-boxes.php:560 templates/content/listing-meta.php:820
-msgid "Tennis Court"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:570 templates/content/listing-meta.php:830
-msgid "Balcony"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:580 templates/content/listing-meta.php:840
-msgid "Deck"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:590 templates/content/listing-meta.php:850
-msgid "Courtyard"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:600 templates/content/listing-meta.php:860
-msgid "Outdoor Entertaining"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:610 templates/content/listing-meta.php:870
-msgid "Shed"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:621
+#: meta-boxes/meta-boxes.php:632
 msgid "Heating & Cooling"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:626
+#: meta-boxes/meta-boxes.php:637
 msgid "Ducted Heating"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:636 templates/content/listing-meta.php:890
-msgid "Ducted Cooling"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:646 templates/content/listing-meta.php:900
-#, fuzzy
-msgid "Split System Heating"
-msgstr "Sistema di Sicurezza"
-
-#: meta-boxes/meta-boxes.php:656 templates/content/listing-meta.php:910
-msgid "Hydronic Heating"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:666 templates/content/listing-meta.php:920
-#, fuzzy
-msgid "Split System Aircon"
-msgstr "Sistema di Sicurezza"
-
-#: meta-boxes/meta-boxes.php:676 templates/content/listing-meta.php:930
-msgid "Gas Heating"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:686 templates/content/listing-meta.php:940
-msgid "Reverse Cycle Aircon"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:696 templates/content/listing-meta.php:950
-msgid "Evaporative Cooling"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:706 templates/content/listing-meta.php:880
-msgid "Open Fire Place"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:761
-#, fuzzy
+#: meta-boxes/meta-boxes.php:773
 msgid "Land Category"
-msgstr "Terra"
-
-#: meta-boxes/meta-boxes.php:783
-msgid "Property Address"
-msgstr "indirizzo immobili"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:795
+msgid "Property Address"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:808
 msgid "Display Address?"
-msgstr "Visualizza Indirizzo"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:805
+#: meta-boxes/meta-boxes.php:818
+msgid "Lot"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:834
 msgid "Street Number"
-msgstr "Via N."
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:812
+#: meta-boxes/meta-boxes.php:841
 msgid "Street Name"
-msgstr "Nome Via"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:826
+#: meta-boxes/meta-boxes.php:855
 msgid "State"
-msgstr "Provincia"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:833
+#: meta-boxes/meta-boxes.php:862
 msgid "Display Suburb"
-msgstr "Visualizza Province"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:851
+#: meta-boxes/meta-boxes.php:880
 msgid "Country"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:858
+#: meta-boxes/meta-boxes.php:887
 msgid "Coordinates"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:871
+#: meta-boxes/meta-boxes.php:900
 msgid "Pricing"
-msgstr "Prezzi"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:882
+#: meta-boxes/meta-boxes.php:912
 msgid "Search Price"
-msgstr "Cerca Prezzo"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:889
+#: meta-boxes/meta-boxes.php:919
 msgid "Price Text"
-msgstr "Prezzo di testo"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:896
-#, fuzzy
-msgid "Auction Date / Details"
-msgstr "Vendita all'asta"
-
-#: meta-boxes/meta-boxes.php:903
+#: meta-boxes/meta-boxes.php:933
 msgid "Display Price?"
-msgstr "Visualizza prezzo?"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:923
-#, fuzzy
+#: meta-boxes/meta-boxes.php:953
 msgid "House and Land Package"
-msgstr "Casa"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:936
+#: meta-boxes/meta-boxes.php:967
 msgid "Sale Details"
-msgstr "Vendita Dettagli"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:940
+#: meta-boxes/meta-boxes.php:971
 msgid "Sale Price"
-msgstr "Prezzo di vendita"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:947
-msgid "Sale Date"
-msgstr "Vendita Data"
-
-#: meta-boxes/meta-boxes.php:954
+#: meta-boxes/meta-boxes.php:985
 msgid "Display Sale Price"
-msgstr "Visualizzazione Prezzo di vendita"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:968
+#: meta-boxes/meta-boxes.php:999
 msgid "Rental Pricing"
-msgstr "Affitto Prezzi"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:979
+#: meta-boxes/meta-boxes.php:1011
 msgid "Display Rent?"
-msgstr "Visualizza Rent Prezzo?"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:989
+#: meta-boxes/meta-boxes.php:1021
 msgid "Rent Amount"
-msgstr "Affittare Importo"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:996
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1028
 msgid "Rent Period"
-msgstr "Visualizza Rent Prezzo?"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1003
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1035
 msgid "Bond Amount"
-msgstr "Legame Importo display (Tipo Affitti Listing)"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1010
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1042
 msgid "Date Available"
-msgstr "Data"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1017
+#: meta-boxes/meta-boxes.php:1049
 msgid "Furnished"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1027
+#: meta-boxes/meta-boxes.php:1059
 msgid "Holiday Rental"
-msgstr "Vacanze"
-
-#: meta-boxes/meta-boxes.php:1042
-#: templates/content/content-listing-single.php:210
-#, fuzzy
-msgid "Rural Features"
-msgstr "Rurale"
-
-#: meta-boxes/meta-boxes.php:1053 templates/content/listing-meta.php:1206
-msgid "Fencing"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1060 templates/content/listing-meta.php:1209
-msgid "Annual Rainfall"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:1067 templates/content/listing-meta.php:1212
-#, fuzzy
-msgid "Soil Types"
-msgstr "Listato Tipi di Attiva"
-
-#: meta-boxes/meta-boxes.php:1074 templates/content/listing-meta.php:1215
-msgid "Improvements"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:1081 templates/content/listing-meta.php:1218
-msgid "Council Rates"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:1088 templates/content/listing-meta.php:1221
-msgid "Irrigation"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:1095 templates/content/listing-meta.php:1224
-msgid "Carrying Capacity"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:1102
+#: meta-boxes/meta-boxes.php:1135
 msgid "Services"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1113
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1146
 msgid "Commercial Leasing"
-msgstr "Commerciale"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1124
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1158
 msgid "Commercial Rent"
-msgstr "Visualizza Rent Prezzo?"
-
-#: meta-boxes/meta-boxes.php:1131
-#, fuzzy
-msgid "Rent Range Min"
-msgstr "Visualizza Rent Prezzo?"
-
-#: meta-boxes/meta-boxes.php:1138
-#, fuzzy
-msgid "Rent Range Max"
-msgstr "Visualizza Rent Prezzo?"
-
-#: meta-boxes/meta-boxes.php:1145
-#, fuzzy
-msgid "Lease End Date"
-msgstr "Data"
-
-#: meta-boxes/meta-boxes.php:1152
-#, fuzzy
-msgid "Property Extent"
-msgstr "Proprietà"
+msgstr ""
 
 #: meta-boxes/meta-boxes.php:1165
-#, fuzzy
+msgid "Rent Range Min"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1172
+msgid "Rent Range Max"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1179
+msgid "Lease End Date"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1186
+msgid "Property Extent"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1200
 msgid "Tenant Status"
-msgstr "Stato"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1173
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1208
 msgid "Commercial Outgoings"
-msgstr "Commerciale"
-
-#: meta-boxes/meta-boxes.php:1181
-#: templates/content/content-listing-single.php:107
-#: templates/content/content-listing-single.php:200
-msgid "Plus Outgoings"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1191
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1226
 msgid "Commercial Return"
-msgstr "Commerciale"
-
-#: meta-boxes/meta-boxes.php:1202
-#, fuzzy
-msgid "Commercial Features"
-msgstr "Commerciale"
-
-#: meta-boxes/meta-boxes.php:1213
-#, fuzzy
-msgid "Further Options"
-msgstr "Opzioni di estensione"
-
-#: meta-boxes/meta-boxes.php:1220
-msgid "Zone"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:1235
-msgid "Highlight 1"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:1242
-msgid "Highlight 2"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:1249
-msgid "Highlight 3"
+msgid "Further Options"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:1256
-#, fuzzy
+msgid "Zone"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1271
+msgid "Highlight 1"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1278
+msgid "Highlight 2"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1285
+msgid "Highlight 3"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1292
 msgid "Parking Comments"
-msgstr "Parcheggi"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1263
+#: meta-boxes/meta-boxes.php:1299
 msgid "Is Multiple"
-msgstr "Is Multiple"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1277
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1313
 msgid "Business Categories"
-msgstr "Azienda"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1288
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1325
 msgid "Business Category"
-msgstr "Azienda"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1298
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1335
 msgid "Business Sub Category"
-msgstr "Azienda"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1309
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1346
 msgid "Business Category 2"
-msgstr "Azienda"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1319
+#: meta-boxes/meta-boxes.php:1356
 msgid "Business Sub Category 2"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1330
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1367
 msgid "Business Category 3"
-msgstr "Azienda"
-
-#: meta-boxes/meta-boxes.php:1340
-msgid "Business Sub Category 3"
-msgstr ""
-
-#: meta-boxes/meta-boxes.php:1366
-#, fuzzy
-msgid "Video URL"
-msgstr "Inserisci il tuo profilo YouTube Video URL."
-
-#: meta-boxes/meta-boxes.php:1372
-msgid "Floorplan"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:1377
+msgid "Business Sub Category 3"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1404
+msgid "Video URL"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1410
+msgid "Floorplan"
+msgstr ""
+
+#: meta-boxes/meta-boxes.php:1415
 msgid "Floorplan 2"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1383
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1421
 msgid "External Link"
-msgstr "Esterno"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1389
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1427
 msgid "External Link 2"
-msgstr "Esterno"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1394
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1432
 msgid "External Link 3"
-msgstr "Esterno"
+msgstr ""
 
-#: meta-boxes/meta-boxes.php:1401
+#: meta-boxes/meta-boxes.php:1439
 msgid "Mini Website URL"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1407
+#: meta-boxes/meta-boxes.php:1445
 msgid "Mini Website URL 2"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1413
+#: meta-boxes/meta-boxes.php:1451
 msgid "Mini Website URL 3"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:1604
-#, fuzzy
+#: meta-boxes/meta-boxes.php:1658
 msgid "Add File"
-msgstr "Aggiungi Ons"
+msgstr ""
 
 #: post-types/post-type-business.php:28 post-types/post-type-business.php:29
 #: taxonomies/tax-business_listings.php:19
-#, fuzzy
 msgid "Business Listings"
-msgstr "Azienda"
+msgstr ""
 
 #: post-types/post-type-business.php:31 post-types/post-type-commercial.php:30
-#: post-types/post-type-commercial_land.php:31
-#: post-types/post-type-land.php:31 post-types/post-type-property.php:31
-#: post-types/post-type-rental.php:31 post-types/post-type-rural.php:31
-#, fuzzy
+#: post-types/post-type-commercial_land.php:31 post-types/post-type-land.php:31
+#: post-types/post-type-property.php:31 post-types/post-type-rental.php:31
+#: post-types/post-type-rural.php:31
 msgid "Add New"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
-#: post-types/post-type-business.php:32
-#: taxonomies/tax-business_listings.php:24
-#, fuzzy
+#: post-types/post-type-business.php:32 taxonomies/tax-business_listings.php:24
 msgid "Add New Business Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
-#: post-types/post-type-business.php:33
-#: taxonomies/tax-business_listings.php:25
-#, fuzzy
+#: post-types/post-type-business.php:33 taxonomies/tax-business_listings.php:25
 msgid "Edit Business Listing"
-msgstr "Modificare Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-business.php:34
-#, fuzzy
 msgid "New Business Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
-#: post-types/post-type-business.php:35
-#: taxonomies/tax-business_listings.php:26
-#, fuzzy
+#: post-types/post-type-business.php:35 taxonomies/tax-business_listings.php:26
 msgid "Update Business Listing"
-msgstr "Aggiornamento Listing Commerciale"
+msgstr ""
 
-#: post-types/post-type-business.php:36
-#: taxonomies/tax-business_listings.php:20
-#, fuzzy
+#: post-types/post-type-business.php:36 taxonomies/tax-business_listings.php:20
 msgid "All Business Listings"
-msgstr "Tutti gli annunci commerciali"
+msgstr ""
 
 #: post-types/post-type-business.php:37
 msgid "View Business Listing"
 msgstr ""
 
-#: post-types/post-type-business.php:38
-#: taxonomies/tax-business_listings.php:28
-#, fuzzy
+#: post-types/post-type-business.php:38 taxonomies/tax-business_listings.php:28
 msgid "Search Business Listing"
-msgstr "Azienda"
+msgstr ""
 
-#: post-types/post-type-business.php:39
-#: taxonomies/tax-business_listings.php:31
-#, fuzzy
+#: post-types/post-type-business.php:39 taxonomies/tax-business_listings.php:31
 msgid "Business Listing Not Found"
-msgstr "Azienda"
+msgstr ""
 
 #: post-types/post-type-business.php:40
 msgid "Business Listing Not Found in Trash"
 msgstr ""
 
-#: post-types/post-type-business.php:41
-#: taxonomies/tax-business_listings.php:22
-#, fuzzy
+#: post-types/post-type-business.php:41 taxonomies/tax-business_listings.php:22
 msgid "Parent Business Listing:"
-msgstr "Azienda"
+msgstr ""
+
+#: post-types/post-type-business.php:81 post-types/post-type-commercial_land.php:80
+#: post-types/post-type-land.php:80 post-types/post-type-property.php:80
+#: post-types/post-type-rental.php:80 post-types/post-type-rural.php:80
+msgid "Image"
+msgstr ""
 
 #: post-types/post-type-business.php:82 post-types/post-type-commercial.php:80
-#: post-types/post-type-commercial_land.php:80
-#: post-types/post-type-land.php:81 post-types/post-type-property.php:81
-#: post-types/post-type-rental.php:81 post-types/post-type-rural.php:81
-msgid "Featured Image"
-msgstr "Foto di presentazione"
+#: post-types/post-type-commercial_land.php:81 post-types/post-type-land.php:81
+#: post-types/post-type-property.php:81 post-types/post-type-rural.php:81
+#: widgets/widget-listing-search.php:155 widgets/widget-listing.php:376
+msgid "Price"
+msgstr ""
 
 #: post-types/post-type-business.php:83 post-types/post-type-commercial.php:81
-#: post-types/post-type-commercial_land.php:81
-#: post-types/post-type-land.php:82 post-types/post-type-property.php:82
-#: post-types/post-type-rental.php:82 post-types/post-type-rural.php:82
+#: post-types/post-type-commercial_land.php:82 post-types/post-type-land.php:82
+#: post-types/post-type-property.php:82 post-types/post-type-rental.php:82
+#: post-types/post-type-rural.php:82
 msgid "Address"
-msgstr "Indirizzo"
+msgstr ""
 
 #: post-types/post-type-business.php:85 post-types/post-type-commercial.php:83
-#: post-types/post-type-commercial_land.php:83
-#: post-types/post-type-land.php:84 post-types/post-type-property.php:84
-#: post-types/post-type-rural.php:84 widgets/widget-listing-search.php:138
-#: widgets/widget-listing.php:376
-msgid "Price"
-msgstr "Prezzo"
-
-#: post-types/post-type-business.php:86 post-types/post-type-commercial.php:84
-#: post-types/post-type-commercial_land.php:84
-#: post-types/post-type-land.php:85 post-types/post-type-property.php:85
-#: post-types/post-type-rural.php:85
+#: post-types/post-type-commercial_land.php:84 post-types/post-type-land.php:84
+#: post-types/post-type-property.php:84 post-types/post-type-rural.php:84
 msgid "Geo"
 msgstr ""
 
-#: post-types/post-type-business.php:87 post-types/post-type-commercial.php:85
-#: post-types/post-type-commercial_land.php:85
-#: post-types/post-type-land.php:86 post-types/post-type-property.php:86
-#: post-types/post-type-rental.php:86 post-types/post-type-rural.php:86
+#: post-types/post-type-business.php:86 post-types/post-type-commercial.php:84
+#: post-types/post-type-commercial_land.php:85 post-types/post-type-land.php:85
+#: post-types/post-type-property.php:85 post-types/post-type-rental.php:85
+#: post-types/post-type-rural.php:85
 msgid "Status"
-msgstr "Stato"
+msgstr ""
 
-#: post-types/post-type-business.php:88 post-types/post-type-commercial.php:86
+#: post-types/post-type-business.php:87 post-types/post-type-commercial.php:85
 #: post-types/post-type-commercial_land.php:86
 msgid "Sale/Lease"
-msgstr "Vendita / Affitto"
+msgstr ""
+
+#: post-types/post-type-business.php:88 post-types/post-type-commercial.php:86
+#: post-types/post-type-commercial_land.php:87 post-types/post-type-land.php:86
+#: post-types/post-type-property.php:86 post-types/post-type-rental.php:86
+#: post-types/post-type-rural.php:86
+msgid "Agent"
+msgstr ""
 
 #: post-types/post-type-business.php:89 post-types/post-type-commercial.php:87
-#: post-types/post-type-commercial_land.php:87
-#: post-types/post-type-land.php:87 post-types/post-type-property.php:87
-#: post-types/post-type-rental.php:87 post-types/post-type-rural.php:87
-msgid "Agent"
-msgstr "Agente"
-
-#: post-types/post-type-business.php:90 post-types/post-type-commercial.php:88
-#: post-types/post-type-commercial_land.php:88
-#: post-types/post-type-land.php:88 post-types/post-type-property.php:88
-#: post-types/post-type-rental.php:88 post-types/post-type-rural.php:88
+#: post-types/post-type-commercial_land.php:88 post-types/post-type-land.php:87
+#: post-types/post-type-property.php:87 post-types/post-type-rental.php:87
+#: post-types/post-type-rural.php:87
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
-#: post-types/post-type-business.php:136
-#: post-types/post-type-commercial.php:132
-#: post-types/post-type-commercial_land.php:132
-#: post-types/post-type-land.php:129 post-types/post-type-property.php:131
-#: post-types/post-type-rental.php:128 post-types/post-type-rural.php:133
+#: post-types/post-type-business.php:135 post-types/post-type-commercial.php:129
+#: post-types/post-type-commercial_land.php:133 post-types/post-type-land.php:126
+#: post-types/post-type-property.php:128 post-types/post-type-rental.php:127
+#: post-types/post-type-rural.php:130
 msgid "Important! Set a Heading"
-msgstr "Importante! Impostare un Colpo di testa"
+msgstr ""
+
+#: post-types/post-type-business.php:239 post-types/post-type-commercial.php:231
+#: post-types/post-type-commercial_land.php:226 post-types/post-type-land.php:207
+#: post-types/post-type-property.php:212 post-types/post-type-rural.php:223
+msgid "Auction "
+msgstr ""
 
 #: post-types/post-type-commercial.php:27
 msgid "Commercial Listings"
-msgstr "Annunci Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:28
 msgid "Commercial Listing"
-msgstr "Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:31
 msgid "Add New Commercial Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:32
 msgid "Edit Commercial Listing"
-msgstr "Modificare Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:33
 msgid "New Commercial Listing"
-msgstr "Nuovo elenco per uso Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:34
 msgid "Update Commercial Listing"
-msgstr "Aggiornamento Listing Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:35
 msgid "All Commercial Listings"
-msgstr "Tutti gli annunci commerciali"
+msgstr ""
 
 #: post-types/post-type-commercial.php:36
 msgid "View Commercial Listing"
 msgstr ""
 
 #: post-types/post-type-commercial.php:37
-#, fuzzy
 msgid "Search Commercial Listing"
-msgstr "Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:38
-#, fuzzy
 msgid "Commercial Listing Not Found"
-msgstr "Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:39
-#, fuzzy
 msgid "Commercial Listing Not Found in Trash"
-msgstr "Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial.php:40
-#, fuzzy
 msgid "Parent Commercial Listing:"
-msgstr "Profilo Commerciale"
+msgstr ""
+
+#: post-types/post-type-commercial.php:79
+msgid "Featured Image"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:28
-#, fuzzy
 msgid "Commercial Land Listings"
-msgstr "Terreno Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:29
-#, fuzzy
 msgid "Commercial Land Listing"
-msgstr "Terreno Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:32
-#, fuzzy
 msgid "Add New Commercial Land Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:33
-#, fuzzy
 msgid "Edit Commercial Land Listing"
-msgstr "Modificare Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:34
-#, fuzzy
 msgid "New Commercial Land Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:35
-#, fuzzy
 msgid "Update Commercial Land Listing"
-msgstr "Aggiornamento Listing Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:36
-#, fuzzy
 msgid "All Commercial Land Listings"
-msgstr "Tutti gli annunci commerciali"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:37
-#, fuzzy
 msgid "View Commercial Land Listing"
-msgstr "Terreno Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:38
-#, fuzzy
 msgid "Search Commercial Land Listing"
-msgstr "Terreno Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:39
-#, fuzzy
 msgid "Commercial Land Listing Not Found"
-msgstr "Terreno Commerciale"
+msgstr ""
 
 #: post-types/post-type-commercial_land.php:40
 msgid "Commercial Land Listing Not Found in Trash"
 msgstr ""
 
 #: post-types/post-type-commercial_land.php:41
-#, fuzzy
 msgid "Parent Commercial Land Listing:"
-msgstr "Terreno Commerciale"
+msgstr ""
 
 #: post-types/post-type-land.php:32
-#, fuzzy
 msgid "Add New Land Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: post-types/post-type-land.php:33
-#, fuzzy
 msgid "Edit Land Listing"
-msgstr "Modificare Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-land.php:34
-#, fuzzy
 msgid "New Land Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: post-types/post-type-land.php:35
-#, fuzzy
 msgid "Update Land Listing"
-msgstr "Aggiornamento Listing Commerciale"
+msgstr ""
 
 #: post-types/post-type-land.php:36
-#, fuzzy
 msgid "All Land Listings"
-msgstr "Tutti gli annunci commerciali"
+msgstr ""
 
 #: post-types/post-type-land.php:37
 msgid "View Land Listing"
 msgstr ""
 
 #: post-types/post-type-land.php:38
-#, fuzzy
 msgid "Search Land Listing"
-msgstr "Cerca Prezzo"
+msgstr ""
 
 #: post-types/post-type-land.php:39
-#, fuzzy
 msgid "Land Listing Not Found"
-msgstr "Terra"
+msgstr ""
 
 #: post-types/post-type-land.php:40
 msgid "Land Listing Not Found in Trash"
 msgstr ""
 
 #: post-types/post-type-land.php:41
-#, fuzzy
 msgid "Parent Land Listing:"
-msgstr "Terra"
+msgstr ""
 
 #: post-types/post-type-property.php:28
 msgid "Properties"
-msgstr "Proprietà"
-
-#: post-types/post-type-property.php:29 post-types/post-type-property.php:30
-msgid "Property"
-msgstr "Proprietà"
+msgstr ""
 
 #: post-types/post-type-property.php:32
 msgid "Add New Listing"
-msgstr "Aggiungi nuovo elenco"
+msgstr ""
 
 #: post-types/post-type-property.php:33
-#, fuzzy
 msgid "Edit Listing"
-msgstr "Modificare Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-property.php:34
-#, fuzzy
 msgid "New Listing"
-msgstr "Aggiungi nuovo elenco"
+msgstr ""
 
 #: post-types/post-type-property.php:35
-#, fuzzy
 msgid "Update Listing"
-msgstr "Aggiornamento Listing Commerciale"
+msgstr ""
 
 #: post-types/post-type-property.php:36
-#, fuzzy
 msgid "All Listings"
-msgstr "Tutti gli annunci commerciali"
+msgstr ""
 
 #: post-types/post-type-property.php:37
 msgid "View Listing"
 msgstr ""
 
 #: post-types/post-type-property.php:38
-#, fuzzy
 msgid "Search Listing"
-msgstr "Cerca Prezzo"
+msgstr ""
 
 #: post-types/post-type-property.php:39
-#, fuzzy
 msgid "Listing Not Found"
-msgstr "Dettagli del Link"
+msgstr ""
 
 #: post-types/post-type-property.php:40
-#, fuzzy
 msgid "Listing Not Found in Trash"
-msgstr "Dettagli del Link"
+msgstr ""
 
 #: post-types/post-type-property.php:41
-#, fuzzy
 msgid "Parent Listing:"
-msgstr "Dettagli del Link"
+msgstr ""
 
-#: post-types/post-type-property.php:139 post-types/post-type-rental.php:137
-#: post-types/post-type-rural.php:142
+#: post-types/post-type-property.php:136 post-types/post-type-rental.php:136
+#: post-types/post-type-rural.php:139
 msgid "Beds"
-msgstr "Letti"
+msgstr ""
 
-#: post-types/post-type-property.php:140 post-types/post-type-rental.php:138
-#: post-types/post-type-rural.php:143
+#: post-types/post-type-property.php:137 post-types/post-type-rental.php:137
+#: post-types/post-type-rural.php:140
 msgid "Baths"
-msgstr "Bagni"
+msgstr ""
 
 #: post-types/post-type-rental.php:28 post-types/post-type-rental.php:30
 msgid "Rentals"
 msgstr ""
 
 #: post-types/post-type-rental.php:32
-#, fuzzy
 msgid "Add New Rental"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: post-types/post-type-rental.php:33
-#, fuzzy
 msgid "Edit Rental"
-msgstr "Noleggio"
+msgstr ""
 
 #: post-types/post-type-rental.php:34
-#, fuzzy
 msgid "New Rental"
-msgstr "Noleggio"
+msgstr ""
 
 #: post-types/post-type-rental.php:35
-#, fuzzy
 msgid "Update Rental"
-msgstr "Noleggio"
+msgstr ""
 
 #: post-types/post-type-rental.php:36
-#, fuzzy
 msgid "All Rentals"
-msgstr "Sfoglia tutte le estensioni"
+msgstr ""
 
 #: post-types/post-type-rental.php:37
-#, fuzzy
 msgid "View Rental"
-msgstr "Noleggio"
+msgstr ""
 
 #: post-types/post-type-rental.php:38
-#, fuzzy
 msgid "Search Rentals"
-msgstr "Cerca Prezzo"
+msgstr ""
 
 #: post-types/post-type-rental.php:39
-#, fuzzy
 msgid "Rental Not Found"
-msgstr "Noleggio"
+msgstr ""
 
 #: post-types/post-type-rental.php:40
-#, fuzzy
 msgid "Rental Not Found in Trash"
-msgstr "Noleggio"
+msgstr ""
 
 #: post-types/post-type-rental.php:41
-#, fuzzy
 msgid "Parent Rental:"
-msgstr "Noleggio"
+msgstr ""
 
 #: post-types/post-type-rental.php:84
-#, fuzzy
-msgid "Rent"
-msgstr "Visualizza Rent Prezzo?"
-
-#: post-types/post-type-rental.php:85
 msgid "Geocoded"
 msgstr ""
 
 #: post-types/post-type-rural.php:32
-#, fuzzy
 msgid "Add New Rural Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: post-types/post-type-rural.php:33
-#, fuzzy
 msgid "Edit Rural Listing"
-msgstr "Modificare Profilo Commerciale"
+msgstr ""
 
 #: post-types/post-type-rural.php:34
-#, fuzzy
 msgid "New Rural Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: post-types/post-type-rural.php:35
-#, fuzzy
 msgid "Update Rural Listing"
-msgstr "Aggiornamento Listing Commerciale"
+msgstr ""
 
 #: post-types/post-type-rural.php:36
-#, fuzzy
 msgid "All Rural Listings"
-msgstr "Tutti gli annunci commerciali"
+msgstr ""
 
 #: post-types/post-type-rural.php:37
 msgid "View Rural Listing"
 msgstr ""
 
 #: post-types/post-type-rural.php:38
-#, fuzzy
 msgid "Search Rural Listing"
-msgstr "Rurale"
+msgstr ""
 
 #: post-types/post-type-rural.php:39
-#, fuzzy
 msgid "Rural Listing Not Found"
-msgstr "Rurale"
+msgstr ""
 
 #: post-types/post-type-rural.php:40
 msgid "Rural Listing Not Found in Trash"
 msgstr ""
 
 #: post-types/post-type-rural.php:41
-#, fuzzy
 msgid "Parent Rural Listing:"
-msgstr "Rurale"
+msgstr ""
 
 #: post-types/post-types.php:53
 msgid "Filter By Type"
 msgstr ""
 
 #: post-types/post-types.php:67
-#, fuzzy
 msgid "Search Suburbs."
-msgstr "Cerca Prezzo"
+msgstr ""
 
-#: shortcodes/shortcode-listing-category.php:91
-#: shortcodes/shortcode-listing-tax-feature.php:90
-#: shortcodes/shortcode-listing.php:77
-#: templates/themes/default/archive-listing.php:53
+#: shortcodes/shortcode-listing-category.php:106
+#: shortcodes/shortcode-listing-tax-feature.php:90 shortcodes/shortcode-listing.php:77
+#: templates/themes/default/archive-listing.php:58
 #: templates/themes/default/author.php:109
-#: templates/themes/genesis/archive-listing.php:91
+#: templates/themes/genesis/archive-listing.php:76
 #: templates/themes/genesis/author.php:109
-#: templates/themes/ithemes-builder/archive-listing.php:47
+#: templates/themes/ithemes-builder/archive-listing.php:53
 #: templates/themes/ithemes-builder/author.php:103
-#, fuzzy
 msgid "&laquo; Previous Page"
-msgstr "Seleziona pagina"
+msgstr ""
 
-#: shortcodes/shortcode-listing-category.php:92
-#: shortcodes/shortcode-listing-tax-feature.php:91
-#: shortcodes/shortcode-listing.php:78
-#: templates/themes/default/archive-listing.php:54
+#: shortcodes/shortcode-listing-category.php:107
+#: shortcodes/shortcode-listing-tax-feature.php:91 shortcodes/shortcode-listing.php:78
+#: templates/themes/default/archive-listing.php:59
 #: templates/themes/default/author.php:110
-#: templates/themes/genesis/archive-listing.php:92
+#: templates/themes/genesis/archive-listing.php:77
 #: templates/themes/genesis/author.php:110
-#: templates/themes/ithemes-builder/archive-listing.php:48
+#: templates/themes/ithemes-builder/archive-listing.php:54
 #: templates/themes/ithemes-builder/author.php:104
-#, fuzzy
 msgid "Next Page &raquo;"
-msgstr "Seleziona pagina"
+msgstr ""
 
-#: shortcodes/shortcode-listing-category.php:98
-#: shortcodes/shortcode-listing-tax-feature.php:97
-#: shortcodes/shortcode-listing.php:84
-#, fuzzy
+#: shortcodes/shortcode-listing-category.php:113
+#: shortcodes/shortcode-listing-tax-feature.php:97 shortcodes/shortcode-listing.php:84
 msgid "Nothing found, please check back later."
-msgstr "Nulla attualmente previsto per l'ispezione, riprova più tardi."
+msgstr ""
 
 #: shortcodes/shortcode-listing-open.php:72
 msgid "Nothing currently scheduled for inspection, please check back later."
-msgstr "Nulla attualmente previsto per l'ispezione, riprova più tardi."
+msgstr ""
 
-#: shortcodes/shortcode-listing-search.php:58
+#: shortcodes/shortcode-listing-search.php:90
+msgid "Search by Property ID"
+msgstr ""
+
+#: shortcodes/shortcode-listing-search.php:104
 msgid ":"
 msgstr ""
 
-#: shortcodes/shortcode-listing-search.php:63
-#: shortcodes/shortcode-listing-search.php:119
-#: shortcodes/shortcode-listing-search.php:230
-#: shortcodes/shortcode-listing-search.php:248
-#: shortcodes/shortcode-listing-search.php:272
-#: shortcodes/shortcode-listing-search.php:302
-#: shortcodes/shortcode-listing-search.php:339
-#: shortcodes/shortcode-listing-search.php:365
-#, fuzzy
+#: shortcodes/shortcode-listing-search.php:134
+#: shortcodes/shortcode-listing-search.php:172
+#: shortcodes/shortcode-listing-search.php:270
+#: shortcodes/shortcode-listing-search.php:288
+#: shortcodes/shortcode-listing-search.php:312
+#: shortcodes/shortcode-listing-search.php:342
+#: shortcodes/shortcode-listing-search.php:379
+#: shortcodes/shortcode-listing-search.php:407
 msgid "Any"
 msgstr ""
-"Filtri di personalizzazione e costanti per Sostenere Immobiliare in "
-"qualsiasi Paese"
 
-#: shortcodes/shortcode-listing-search.php:116
-#, fuzzy
+#: shortcodes/shortcode-listing-search.php:153
 msgid "House Category:"
-msgstr "Casa Categoria"
+msgstr ""
 
-#: shortcodes/shortcode-listing-search.php:227
-#, fuzzy
+#: shortcodes/shortcode-listing-search.php:267
 msgid "From"
-msgstr "Disponibile da"
+msgstr ""
 
-#: shortcodes/shortcode-listing-search.php:245
+#: shortcodes/shortcode-listing-search.php:285
 msgid "To"
 msgstr ""
 
-#: shortcodes/shortcode-listing-search.php:269
-#, fuzzy
+#: shortcodes/shortcode-listing-search.php:309
 msgid "Min Bedrooms:"
-msgstr "Locali"
+msgstr ""
 
-#: shortcodes/shortcode-listing-search.php:299
-#, fuzzy
+#: shortcodes/shortcode-listing-search.php:339
 msgid "Max Bedrooms:"
-msgstr "Locali"
+msgstr ""
 
-#: shortcodes/shortcode-listing-search.php:336
-#, fuzzy
-msgid "Car Spaces:"
-msgstr "Posto auto coperto"
-
-#: shortcodes/shortcode-listing-search.php:362
+#: shortcodes/shortcode-listing-search.php:376
 msgid "Bathrooms:"
-msgstr "Bagni:"
+msgstr ""
 
 #: shortcodes/shortcode-listing-search.php:404
-#, fuzzy
-msgid "Security System:"
-msgstr "Sistema di Sicurezza"
+msgid "Car Spaces:"
+msgstr ""
 
-#: shortcodes/shortcode-listing-search.php:413
-#, fuzzy
+#: shortcodes/shortcode-listing-search.php:434
+msgid "Min Land Area:"
+msgstr ""
+
+#: shortcodes/shortcode-listing-search.php:441
+msgid "Max Land Area:"
+msgstr ""
+
+#: shortcodes/shortcode-listing-search.php:448
+msgid "Land Area Unit:"
+msgstr ""
+
+#: shortcodes/shortcode-listing-search.php:479
+msgid "Min building Area:"
+msgstr ""
+
+#: shortcodes/shortcode-listing-search.php:486
+msgid "Max Building Area:"
+msgstr ""
+
+#: shortcodes/shortcode-listing-search.php:493
+msgid "Building Area Unit:"
+msgstr ""
+
+#: shortcodes/shortcode-listing-search.php:535
+msgid "Security System:"
+msgstr ""
+
+#: shortcodes/shortcode-listing-search.php:544
 msgid "Find me a Property!"
-msgstr "Proprietà"
+msgstr ""
 
 #: taxonomies/tax-business_listings.php:21
-#, fuzzy
 msgid "Parent Business Listing"
-msgstr "Azienda"
+msgstr ""
 
 #: taxonomies/tax-business_listings.php:23
-#, fuzzy
 msgid "New Business Listing Name"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: taxonomies/tax-business_listings.php:27
 msgid "Separate Business Listing with commas"
 msgstr ""
 
 #: taxonomies/tax-business_listings.php:29
-#, fuzzy
 msgid "Add or remove Business Listing"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: taxonomies/tax-business_listings.php:30
 msgid "Choose from the most used Business Listing"
 msgstr ""
 
+#: taxonomies/tax-features.php:19
+msgid "Features"
+msgstr ""
+
 #: taxonomies/tax-features.php:20
-#, fuzzy
 msgid "All Features"
-msgstr "Listato Caratteristiche"
+msgstr ""
 
 #: taxonomies/tax-features.php:21
 msgid "Parent Feature"
@@ -2805,38 +3244,32 @@ msgid "Parent Feature:"
 msgstr ""
 
 #: taxonomies/tax-features.php:23
-#, fuzzy
 msgid "New Feature Name"
-msgstr "Nome Via"
+msgstr ""
 
 #: taxonomies/tax-features.php:24
-#, fuzzy
 msgid "Add New Feature"
-msgstr "Aggiungi nuovo elenco Commerciale"
+msgstr ""
 
 #: taxonomies/tax-features.php:25
-#, fuzzy
 msgid "Edit Feature"
-msgstr "Modificare Profilo Commerciale"
+msgstr ""
 
 #: taxonomies/tax-features.php:26
-#, fuzzy
 msgid "Update Feature"
-msgstr "Aggiornamento Listing Commerciale"
+msgstr ""
 
 #: taxonomies/tax-features.php:27
 msgid "Separate Feature with commas"
 msgstr ""
 
 #: taxonomies/tax-features.php:28
-#, fuzzy
 msgid "Search Feature"
-msgstr "Cerca Prezzo"
+msgstr ""
 
 #: taxonomies/tax-features.php:29
-#, fuzzy
 msgid "Add or remove Feature"
-msgstr "Aggiungi Ons"
+msgstr ""
 
 #: taxonomies/tax-features.php:30
 msgid "Choose from the most used Feature"
@@ -2846,548 +3279,354 @@ msgstr ""
 msgid "Feature Not Found"
 msgstr ""
 
-#: taxonomies/tax-location.php:23
-#, fuzzy
+#: taxonomies/tax-location.php:25
 msgid "All "
-msgstr "Sfoglia tutte le estensioni"
+msgstr ""
 
-#: taxonomies/tax-location.php:24 taxonomies/tax-location.php:25
+#: taxonomies/tax-location.php:26 taxonomies/tax-location.php:27
 msgid "Parent "
 msgstr ""
 
-#: taxonomies/tax-location.php:26
-#, fuzzy
-msgid "New "
-msgstr "Cosa c'è di nuovo"
-
-#: taxonomies/tax-location.php:27
-#, fuzzy
-msgid "Add New "
-msgstr "Aggiungi nuovo elenco Commerciale"
-
 #: taxonomies/tax-location.php:28
-#, fuzzy
-msgid "Edit "
-msgstr "Modificare Profilo Commerciale"
+msgid "New "
+msgstr ""
 
 #: taxonomies/tax-location.php:29
-#, fuzzy
-msgid "Update "
-msgstr "Aggiornamento Listing Commerciale"
+msgid "Add New "
+msgstr ""
 
 #: taxonomies/tax-location.php:30
-msgid "Separate "
+msgid "Edit "
 msgstr ""
 
 #: taxonomies/tax-location.php:31
-#, fuzzy
-msgid "Search "
-msgstr "Cerca Prezzo"
+msgid "Update "
+msgstr ""
 
 #: taxonomies/tax-location.php:32
-#, fuzzy
-msgid "Add or remove "
-msgstr "Aggiungi Ons"
+msgid "Separate "
+msgstr ""
 
 #: taxonomies/tax-location.php:33
-msgid "Choose from the most used "
+msgid "Search "
 msgstr ""
 
 #: taxonomies/tax-location.php:34
+msgid "Add or remove "
+msgstr ""
+
+#: taxonomies/tax-location.php:35
+msgid "Choose from the most used "
+msgstr ""
+
+#: taxonomies/tax-location.php:36
 msgid " Not Found"
 msgstr ""
 
-#: templates/content/author-meta.php:30
-#: templates/content/content-author-box.php:27
-#: templates/content/content-author-box.php:97
-#, fuzzy
-msgid "Contact"
-msgstr "Modulo di contatto shortcode"
-
-#: templates/content/author-meta.php:30
-#, fuzzy
-msgid "by Email"
-msgstr "E-mail"
-
-#: templates/content/author-meta.php:30
-msgid "Email"
-msgstr "E-mail"
-
-#: templates/content/author-meta.php:35 templates/content/author-meta.php:40
-#: templates/content/author-meta.php:45 templates/content/author-meta.php:50
-#: templates/content/author-meta.php:55
-msgid "Follow"
-msgstr ""
-
-#: templates/content/author-meta.php:35
-msgid "on Twitter"
-msgstr ""
-
-#: templates/content/author-meta.php:40
-msgid "on Google"
-msgstr ""
-
-#: templates/content/author-meta.php:40
-msgid "Google"
-msgstr ""
-
-#: templates/content/author-meta.php:45
-msgid "on Facebook"
-msgstr ""
-
-#: templates/content/author-meta.php:50
-msgid "on Linkedin"
-msgstr ""
-
-#: templates/content/author-meta.php:50
-msgid "Linkedin"
-msgstr ""
-
-#: templates/content/author-meta.php:55
-msgid "on Skype"
-msgstr ""
-
-#: templates/content/content-author-box.php:16
-msgid "About"
-msgstr "Circa"
-
-#: templates/content/content-author-box.php:19
-msgid "Bio"
-msgstr ""
-
-#: templates/content/content-author-box.php:23
-#, fuzzy
-msgid "Video"
-msgstr "Inserisci il tuo profilo YouTube Video URL."
-
-#: templates/content/content-author-box.php:94
-msgid "Social"
-msgstr ""
-
-#: templates/content/content-listing-single.php:79
+#: templates/content/content-listing-single.php:46
 msgid "Property Details"
-msgstr "Dettagli della Proprietà"
+msgstr ""
 
-#: templates/content/content-listing-single.php:118
-#: templates/content/content-listing-single.php:194
-msgid "Available from"
-msgstr "Disponibile da"
-
-#: templates/content/content-listing-single.php:136
+#: templates/content/content-listing-single.php:64
 msgid "Description"
-msgstr "Descrizione"
+msgstr ""
 
-#: templates/content/content-listing-single.php:155
-msgid "Read More &rarr;"
-msgstr "Per saperne di più &rarr;"
-
-#: templates/content/content-listing-single.php:171
-msgid "Property Features"
-msgstr "Caratteristiche della struttura"
-
-#: templates/content/content-listing-single.php:244
+#: templates/content/content-listing-single.php:97
 msgid "Real Estate Agent"
-msgstr "Agente Immobiliare"
+msgstr ""
 
-#: templates/content/content-listing-single.php:251
+#: templates/content/content-listing-single.php:104
 msgid "Property Manager"
-msgstr "Trovarobe"
+msgstr ""
 
-#: templates/content/content-listing-single.php:262
+#: templates/content/content-listing-single.php:115
 msgid "Pages:"
-msgstr "Pagine:"
-
-#: templates/content/content-listing-sold-leased.php:76
-msgid "Recently Sold"
-msgstr "Venduto recente"
-
-#: templates/content/content-listing-sold-leased.php:78
-msgid "Recently Leased"
-msgstr "Leasing di recente"
-
-#: templates/content/listing-meta.php:633
-#: templates/content/listing-meta.php:634
-msgid "bed"
-msgstr "letto"
-
-#: templates/content/listing-meta.php:638
-#: templates/content/listing-meta.php:639
-msgid "bath"
-msgstr "bagno"
-
-#: templates/content/listing-meta.php:642
-msgid "Parking Spaces"
-msgstr "Parcheggi"
-
-#: templates/content/listing-meta.php:646
-msgid "Air conditioning"
-msgstr "Aria condizionata"
-
-#: templates/content/listing-meta.php:656
-msgid "Alarm system"
-msgstr "Sistema di allarme"
-
-#: templates/content/listing-meta.php:667
-msgid "Land is"
-msgstr "La terra è"
-
-#: templates/content/listing-meta.php:670
-msgid "Floor Area is"
-msgstr "Superficie è"
+msgstr ""
 
 #: templates/themes/default/archive-listing.php:21
-#: templates/themes/genesis/archive-listing.php:45
-#: templates/themes/ithemes-builder/archive-listing.php:15
-#, fuzzy, php-format
+#: templates/themes/genesis/archive-listing.php:39
+#: templates/themes/ithemes-builder/archive-listing.php:16
+#, php-format
 msgid "Property in %s"
-msgstr "Benvenuti a Easy Property Listings %s"
+msgstr ""
 
-#: templates/themes/default/archive-listing.php:28
-#, fuzzy
+#: templates/themes/default/archive-listing.php:24
+#: templates/themes/genesis/archive-listing.php:42
+#: templates/themes/ithemes-builder/archive-listing.php:19
+msgid "Search Result"
+msgstr ""
+
+#: templates/themes/default/archive-listing.php:32
+#: templates/themes/genesis/archive-listing.php:50
+#: templates/themes/ithemes-builder/archive-listing.php:27
 msgid "Listing"
-msgstr "Dettagli del Link"
+msgstr ""
 
-#: templates/themes/default/author.php:22
-#: templates/themes/default/author.php:25
-#: templates/themes/default/author.php:28
-#: templates/themes/default/author.php:37
-#: templates/themes/default/author.php:40
-#: templates/themes/default/author.php:43
-#: templates/themes/genesis/archive-listing.php:41
-#: templates/themes/genesis/archive-listing.php:54
-#: templates/themes/genesis/archive-listing.php:57
-#: templates/themes/genesis/archive-listing.php:60
-#: templates/themes/genesis/author.php:22
-#: templates/themes/genesis/author.php:25
-#: templates/themes/genesis/author.php:28
-#: templates/themes/genesis/author.php:37
-#: templates/themes/genesis/author.php:40
-#: templates/themes/genesis/author.php:43
+#: templates/themes/default/archive-listing.php:67
+#: templates/themes/genesis/archive-listing.php:85
+#: templates/themes/ithemes-builder/archive-listing.php:63
+msgid "Listing not Found"
+msgstr ""
+
+#: templates/themes/default/archive-listing.php:71
+#: templates/themes/genesis/archive-listing.php:89
+#: templates/themes/ithemes-builder/archive-listing.php:67
+msgid "Listing not found, expand your search criteria and try again."
+msgstr ""
+
+#: templates/themes/default/author.php:22 templates/themes/default/author.php:25
+#: templates/themes/default/author.php:28 templates/themes/default/author.php:37
+#: templates/themes/default/author.php:40 templates/themes/default/author.php:43
+#: templates/themes/genesis/author.php:22 templates/themes/genesis/author.php:25
+#: templates/themes/genesis/author.php:28 templates/themes/genesis/author.php:37
+#: templates/themes/genesis/author.php:40 templates/themes/genesis/author.php:43
 #: templates/themes/ithemes-builder/author.php:16
 #: templates/themes/ithemes-builder/author.php:19
 #: templates/themes/ithemes-builder/author.php:22
 #: templates/themes/ithemes-builder/author.php:31
 #: templates/themes/ithemes-builder/author.php:34
 #: templates/themes/ithemes-builder/author.php:37
-#, fuzzy, php-format
+#, php-format
 msgid "Archive for %s"
-msgstr "Versione %s"
+msgstr ""
 
-#: templates/themes/default/author.php:34
-#: templates/themes/genesis/archive-listing.php:51
-#: templates/themes/genesis/author.php:34
+#: templates/themes/default/author.php:34 templates/themes/genesis/author.php:34
 #: templates/themes/ithemes-builder/author.php:28
-#, fuzzy, php-format
+#, php-format
 msgid "Author Archive for %s"
-msgstr "Versione %s"
+msgstr ""
 
-#: templates/themes/default/author.php:46
-#: templates/themes/genesis/archive-listing.php:63
-#: templates/themes/genesis/author.php:46
+#: templates/themes/default/author.php:46 templates/themes/genesis/author.php:46
 #: templates/themes/ithemes-builder/author.php:40
 msgid "Time Archive"
 msgstr ""
 
-#: templates/themes/default/author.php:49
-#: templates/themes/genesis/archive-listing.php:66
-#: templates/themes/genesis/author.php:49
-#: templates/themes/ithemes-builder/archive-listing.php:21
+#: templates/themes/default/author.php:49 templates/themes/genesis/author.php:49
 #: templates/themes/ithemes-builder/author.php:43
-#, fuzzy
 msgid "Archive"
-msgstr "Dinamica Archive Pagina (Ereditato Tipo di casa)"
+msgstr ""
 
-#: templates/themes/default/author.php:72
-#: templates/themes/genesis/author.php:72
+#: templates/themes/default/author.php:72 templates/themes/genesis/author.php:72
 #: templates/themes/ithemes-builder/author.php:67
-#, fuzzy, php-format
+#, php-format
 msgid "By %s"
-msgstr "Versione %s"
+msgstr ""
 
-#: templates/themes/default/author.php:73
-#: templates/themes/default/author.php:92
-#: templates/themes/genesis/author.php:73
-#: templates/themes/genesis/author.php:92
+#: templates/themes/default/author.php:73 templates/themes/default/author.php:92
+#: templates/themes/genesis/author.php:73 templates/themes/genesis/author.php:92
 #: templates/themes/ithemes-builder/author.php:68
 #: templates/themes/ithemes-builder/author.php:86
-#, fuzzy, php-format
+#, php-format
 msgid "Comments %s"
-msgstr "Versione %s"
+msgstr ""
 
-#: templates/themes/default/author.php:73
-#: templates/themes/default/author.php:92
-#: templates/themes/genesis/author.php:73
-#: templates/themes/genesis/author.php:92
+#: templates/themes/default/author.php:73 templates/themes/default/author.php:92
+#: templates/themes/genesis/author.php:73 templates/themes/genesis/author.php:92
 #: templates/themes/ithemes-builder/author.php:68
 #: templates/themes/ithemes-builder/author.php:86
 msgid "(0)"
 msgstr ""
 
-#: templates/themes/default/author.php:73
-#: templates/themes/default/author.php:92
-#: templates/themes/genesis/author.php:73
-#: templates/themes/genesis/author.php:92
+#: templates/themes/default/author.php:73 templates/themes/default/author.php:92
+#: templates/themes/genesis/author.php:73 templates/themes/genesis/author.php:92
 #: templates/themes/ithemes-builder/author.php:68
 #: templates/themes/ithemes-builder/author.php:86
-#, fuzzy
 msgid "(1)"
 msgstr ""
-"Facile annunci immobiliari è stato creato da un team internazionale di "
-"sviluppatori che mirano a fornire la piattaforma # 1 annunci immobiliari per "
-"la gestione del business immobiliare attraverso WordPress."
 
-#: templates/themes/default/author.php:73
-#: templates/themes/default/author.php:92
-#: templates/themes/genesis/author.php:73
-#: templates/themes/genesis/author.php:92
+#: templates/themes/default/author.php:73 templates/themes/default/author.php:92
+#: templates/themes/genesis/author.php:73 templates/themes/genesis/author.php:92
 #: templates/themes/ithemes-builder/author.php:68
 #: templates/themes/ithemes-builder/author.php:86
 msgid "(%)"
 msgstr ""
 
-#: templates/themes/default/author.php:94
-#: templates/themes/genesis/author.php:94
+#: templates/themes/default/author.php:94 templates/themes/genesis/author.php:94
 #: templates/themes/ithemes-builder/author.php:88
-#, fuzzy, php-format
+#, php-format
 msgid "Categories : %s"
-msgstr "Versione %s"
+msgstr ""
 
-#: templates/themes/default/author.php:95
-#: templates/themes/genesis/author.php:95
+#: templates/themes/default/author.php:95 templates/themes/genesis/author.php:95
 #: templates/themes/ithemes-builder/author.php:89
 msgid "Tags : "
 msgstr ""
 
-#: templates/themes/genesis/archive-listing.php:38
-#, fuzzy, php-format
-msgid "%s"
-msgstr "Versione %s"
-
-#: templates/themes/ithemes-builder/archive-listing.php:57
-#, fuzzy
-msgid "Listing not Found"
-msgstr "Dettagli del Link"
-
-#: templates/themes/ithemes-builder/archive-listing.php:61
-msgid "Listing not found, expand your search criteria and try again."
+#: widgets/widget-author.php:18
+msgid "EPL - Author"
 msgstr ""
 
-#: widgets/widget-author.php:18
-#, fuzzy
-msgid "EPL - Author"
-msgstr "Autore Box"
-
-#: widgets/widget-author.php:78 widgets/widget-listing-gallery.php:62
-#: widgets/widget-listing-search.php:88
-#, fuzzy
+#: widgets/widget-author.php:77 widgets/widget-listing-gallery.php:62
+#: widgets/widget-listing-search.php:101
 msgid "Title:"
-msgstr "Inserisci il tuo titolo / posizione."
+msgstr ""
 
-#: widgets/widget-author.php:84
-#, fuzzy
+#: widgets/widget-author.php:83
 msgid "Display Author Gravatar"
-msgstr "Visualizza"
+msgstr ""
 
-#: widgets/widget-author.php:89
-#, fuzzy
+#: widgets/widget-author.php:88
 msgid "Display Icons"
-msgstr "Visualizza"
+msgstr ""
 
-#: widgets/widget-author.php:94
-#, fuzzy
+#: widgets/widget-author.php:93
 msgid "Display Bio"
-msgstr "Visualizza"
+msgstr ""
 
 #: widgets/widget-listing-gallery.php:18
-#, fuzzy
 msgid "EPL - Listing Gallery"
-msgstr "Abilitare la Galleria sulla pagine delle proprietà singola"
+msgstr ""
 
 #: widgets/widget-listing-gallery.php:67
-#, fuzzy
 msgid "Number of columns"
-msgstr "Numero di colonne nelle caratteristiche della struttura"
+msgstr ""
 
-#: widgets/widget-listing-search.php:18
-#, fuzzy
-msgid "EPL - Listing Search"
-msgstr "Cerca Prezzo"
+#: widgets/widget-listing-search.php:106
+msgid "Listing Type, hold CTRL to select multiple and enable tabs"
+msgstr ""
 
-#: widgets/widget-listing-search.php:93
-#, fuzzy
-msgid "Property Type:"
-msgstr "Tipo di proprietà"
-
-#: widgets/widget-listing-search.php:111
-#, fuzzy
+#: widgets/widget-listing-search.php:124
 msgid "Status:"
-msgstr "Stato"
+msgstr ""
 
-#: widgets/widget-listing-search.php:142
-#, fuzzy
+#: widgets/widget-listing-search.php:147
+msgid "Allow Search By Property Id"
+msgstr ""
+
+#: widgets/widget-listing-search.php:159
 msgid "Bedroom"
-msgstr "Locali"
+msgstr ""
 
-#: widgets/widget-listing-search.php:146
+#: widgets/widget-listing-search.php:163
 msgid "Bathroom"
-msgstr "Bagno"
+msgstr ""
 
-#: widgets/widget-listing-search.php:150
+#: widgets/widget-listing-search.php:167
 msgid "Car"
-msgstr "Posto auto coperto"
+msgstr ""
 
-#: widgets/widget-listing-search.php:154
+#: widgets/widget-listing-search.php:180
 msgid "Other Search Options"
-msgstr "Altre opzioni di ricerca"
-
-#: widgets/widget-listing.php:18
-#, fuzzy
-msgid "EPL - Listing"
-msgstr "Dettagli del Link"
-
-#: widgets/widget-listing.php:260
-#, fuzzy
-msgid "Title"
-msgstr "Inserisci il tuo titolo / posizione."
+msgstr ""
 
 #: widgets/widget-listing.php:265
 msgid "Property Type"
-msgstr "Tipo di proprietà"
+msgstr ""
 
 #: widgets/widget-listing.php:291
 msgid "Display Style"
-msgstr "Stile di visualizzazione"
+msgstr ""
 
 #: widgets/widget-listing.php:303
 msgid "Image Size"
-msgstr "Dimensione immagine"
+msgstr ""
 
 #: widgets/widget-listing.php:316
 msgid "Icon Style"
-msgstr "Icona di stile"
+msgstr ""
 
 #: widgets/widget-listing.php:335
 msgid "Number of Properties"
-msgstr "Numero di Proprietà"
+msgstr ""
 
 #: widgets/widget-listing.php:346
 msgid "Properties to Skip"
-msgstr "Proprietà per Salta"
+msgstr ""
 
 #: widgets/widget-listing.php:351
 msgid "Only Show Featured Properties"
-msgstr "Solo annunci in vetrina"
+msgstr ""
 
 #: widgets/widget-listing.php:356
-#, fuzzy
 msgid "Property Headline"
-msgstr "Mostra Proprietà Headline"
+msgstr ""
 
 #: widgets/widget-listing.php:361
-#, fuzzy
 msgid "Excerpt"
 msgstr ""
-"Lunghezza della parola stralcio per le inserzioni individuali su pagine di "
-"archivio di proprietà se non viene inserito un estratto manuale."
 
 #: widgets/widget-listing.php:371
-#, fuzzy
 msgid "Street Address"
-msgstr "Indirizzo"
+msgstr ""
 
 #: widgets/widget-listing.php:380
-#, fuzzy
 msgid "Read More Label"
-msgstr "Per saperne di più"
+msgstr ""
 
 #: widgets/widget-listing.php:386
-#, fuzzy
 msgid "Read More Button"
-msgstr "Per saperne di più"
+msgstr ""
 
 #: widgets/widget-listing.php:391
-#, fuzzy
 msgid "Dynamic"
-msgstr "Dinamica Archive Pagina (Ereditato Tipo di casa)"
+msgstr ""
 
 #: widgets/widget-listing.php:396
 msgid "Random Order"
-msgstr "Ordine casuale"
-
-#, fuzzy
-#~ msgid "Version 1.2"
-#~ msgstr "Versione %s"
+msgstr ""
 
 #~ msgid "Filter By Specific Listing Meta Key and Value"
 #~ msgstr "Filtra per specifici Listing Meta Key e Value"
 
 #~ msgid ""
-#~ "This shortcode allows for you to output a list of listings by type and "
-#~ "filter them by any available meta key and value. So you can display a "
-#~ "list of </em>property</em> that are <em>House</em>, or perhaps by <em>4</"
-#~ "em> bedrooms, all possible with this shortcode."
+#~ "This shortcode allows for you to output a list of listings by type and filter them "
+#~ "by any available meta key and value. So you can display a list of </em>property</"
+#~ "em> that are <em>House</em>, or perhaps by <em>4</em> bedrooms, all possible with "
+#~ "this shortcode."
 #~ msgstr ""
-#~ "Questo shortcode permette per l'output di un elenco di annunci per "
-#~ "tipologia e filtrare da un tasto qualsiasi meta a disposizione e valore. "
-#~ "Così si può visualizzare una lista di </ em> proprietà </ em> che sono "
-#~ "<em> Casa </ em>, o forse da <em> 4 </ em> camere da letto, tutto è "
-#~ "possibile con questo shortcode."
+#~ "Questo shortcode permette per l'output di un elenco di annunci per tipologia e "
+#~ "filtrare da un tasto qualsiasi meta a disposizione e valore. Così si può "
+#~ "visualizzare una lista di </ em> proprietà </ em> che sono <em> Casa </ em>, o "
+#~ "forse da <em> 4 </ em> camere da letto, tutto è possibile con questo shortcode."
 
 #~ msgid ""
-#~ "The category_value accepts multiple values separated by commas. "
-#~ "category_value=\"2,3,4\" or category_value=\"House,Unit\""
+#~ "The category_value accepts multiple values separated by commas. category_value="
+#~ "\"2,3,4\" or category_value=\"House,Unit\""
 #~ msgstr ""
-#~ "Il category_value accetta più valori separati da virgole. category_value ="
-#~ "\"2,3,4 \" o category_value =\"House,Unit\""
+#~ "Il category_value accetta più valori separati da virgole. category_value =\"2,3,4 "
+#~ "\" o category_value =\"House,Unit\""
+
+#~ msgid "Customization Filters and Constants to Support Real Estate in any Country"
+#~ msgstr ""
+#~ "Filtri di personalizzazione e costanti per Sostenere Immobiliare in qualsiasi Paese"
 
 #~ msgid ""
-#~ "Customization Filters and Constants to Support Real Estate in any Country"
+#~ "Each Listing type has a category filter that allows you to replace the default "
+#~ "categories with your own in your functions.php or mini plugin."
 #~ msgstr ""
-#~ "Filtri di personalizzazione e costanti per Sostenere Immobiliare in "
-#~ "qualsiasi Paese"
+#~ "Ogni tipo di immobile dispone di un filtro di categoria che consente di sostituire "
+#~ "le categorie predefinite con la vostra nel vostro functions.php o mini plugin."
 
 #~ msgid ""
-#~ "Each Listing type has a category filter that allows you to replace the "
-#~ "default categories with your own in your functions.php or mini plugin."
+#~ "This constant allows you to change the post slug of each of the different listing "
+#~ "types. Be default the slug for the <em>Property</em> Listing type is <em>property</"
+#~ "em>, resulting is URLs that look like: http://yoursite.com/property/property-name, "
+#~ "by using this constant, you can define the slug as anything you want."
 #~ msgstr ""
-#~ "Ogni tipo di immobile dispone di un filtro di categoria che consente di "
-#~ "sostituire le categorie predefinite con la vostra nel vostro functions."
-#~ "php o mini plugin."
-
-#~ msgid ""
-#~ "This constant allows you to change the post slug of each of the different "
-#~ "listing types. Be default the slug for the <em>Property</em> Listing type "
-#~ "is <em>property</em>, resulting is URLs that look like: http://yoursite."
-#~ "com/property/property-name, by using this constant, you can define the "
-#~ "slug as anything you want."
-#~ msgstr ""
-#~ "Questa costante permette di cambiare il posto sorso di ciascuno dei "
-#~ "diversi tipi di quotazione. Essere di default la lumaca per <em> "
-#~ "proprietà </ em> tipo di immobile è di proprietà <em> </ em>, con "
-#~ "conseguente è URL che assomigliano: http://yoursite.com/property/property-"
-#~ "name, utilizzando questo costante, è possibile definire la lumaca, come "
-#~ "tutto quello che vuoi."
+#~ "Questa costante permette di cambiare il posto sorso di ciascuno dei diversi tipi "
+#~ "di quotazione. Essere di default la lumaca per <em> proprietà </ em> tipo di "
+#~ "immobile è di proprietà <em> </ em>, con conseguente è URL che assomigliano: "
+#~ "http://yoursite.com/property/property-name, utilizzando questo costante, è "
+#~ "possibile definire la lumaca, come tutto quello che vuoi."
 
 #~ msgid "Settings Not Updating when Saved"
 #~ msgstr "Impostazioni Non Aggiornamento quando Salvato"
 
 #~ msgid ""
-#~ "When saving the initial settings the page is refreshed but the old "
-#~ "settings were still being shown. This has been fixed."
+#~ "When saving the initial settings the page is refreshed but the old settings were "
+#~ "still being shown. This has been fixed."
 #~ msgstr ""
-#~ "Quando si salvano le impostazioni iniziali la pagina viene aggiornata, ma "
-#~ "le vecchie impostazioni erano ancora viene mostrato. Questo è stato "
-#~ "risolto."
+#~ "Quando si salvano le impostazioni iniziali la pagina viene aggiornata, ma le "
+#~ "vecchie impostazioni erano ancora viene mostrato. Questo è stato risolto."
 
 #, fuzzy
 #~ msgid "Tweak: Search Widget"
 #~ msgstr "Cerca Prezzo"
 
-#~ msgid ""
-#~ "You may need to refresh to view the new listing type in the admin menu."
+#~ msgid "You may need to refresh to view the new listing type in the admin menu."
 #~ msgstr ""
-#~ "Potrebbe essere necessario aggiornare per vedere il nuovo tipo di profilo "
-#~ "nel menu di amministrazione."
+#~ "Potrebbe essere necessario aggiornare per vedere il nuovo tipo di profilo nel menu "
+#~ "di amministrazione."
 
 #, fuzzy
 #~ msgid "Address Suburb"

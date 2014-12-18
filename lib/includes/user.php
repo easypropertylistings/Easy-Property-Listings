@@ -41,12 +41,12 @@ add_filter ('user_contactmethods','epl_property_admin_contact',10,1);
  * @since 1.0
  */
 function epl_add_custom_user_profile_fields( $user ) {
-	$position 			= esc_attr( get_the_author_meta( 'position', $user->ID ) );
-	$slogan 			= esc_attr( get_the_author_meta( 'slogan', $user->ID ) );
-	$video 				= get_the_author_meta( 'video', $user->ID );
+	$position 		= esc_attr( get_the_author_meta( 'position', $user->ID ) );
+	$slogan 		= esc_attr( get_the_author_meta( 'slogan', $user->ID ) );
+	$video 			= get_the_author_meta( 'video', $user->ID );
 	$contact_form 		= get_the_author_meta( 'contact-form', $user->ID ); ?>
 	
-	<h3><?php _e('Author Box Profile Information', 'epl'); ?></h3>
+	<h3><?php _e('Easy Property Listings: Author Box Profile', 'epl'); ?></h3>
 	<p><?php _e('The following details will appear in your author box and widgets.', 'epl'); ?></p>
 	
 	<table class="form-table">

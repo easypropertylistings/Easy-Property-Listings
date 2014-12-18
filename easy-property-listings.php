@@ -5,7 +5,7 @@
  * Description:  The complete real estate platform for today's agent to list property using any theme for WordPress fast, easy and free. Just enable the listing types you need add some properties, tweak your settings and you're done. Extend the core with cool dynamic add-on extensions that give your visitors more reasons to come back.
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.3 (dev)
+ * Version: 1.3 (dev Beta 4)
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -20,7 +20,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Easy Digital Downloads. If not, see <http://www.gnu.org/licenses/>.
+ * along with Easy Property Listings. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package EPL
  * @category Core
@@ -65,29 +65,125 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {
 				self::$instance = new Easy_Property_Listings;
+				self::$instance->hooks();
 				self::$instance->setup_constants();
 				self::$instance->includes();
 				self::$instance->load_textdomain();
+				define('EPL_RUNNING',true);
 			}
 			return self::$instance;
+
 		}
+		
+		/**
+		 * Setup the default hooks and actions
+		 *
+		 * @since 1.0
+		 *
+		 * @return void
+		 */
+		private function hooks() {
+			// activation
+			add_action( 'admin_init', array( $this, 'check_installed_extensions_compatibility' ) );
+		}
+		
+		/**
+		 * Check if all installed extensions are compatible with current version of the plugin
+		 * @access public
+		 * @since 1.3.1
+		 * @return void
+		 */
+		function check_installed_extensions_compatibility() {
+			$outdated = array();
+			$activated_plugins = wp_get_active_and_valid_plugins();
+			foreach($activated_plugins as $activated_plugin) {
+			
+				$plugin_data = get_plugin_data($activated_plugin);
+				$compatible_extensions = $this->compatible_extensions ();
+				if(array_key_exists($plugin_data['Name'],$compatible_extensions)) {
+					if (version_compare($plugin_data['Version'], $compatible_extensions[$plugin_data['Name']]) >= 0) {
+						// extension is compatible with current version of epl
+					} else {
+						$outdated[$plugin_data['Name']] = $plugin_data['Version'];
+					}
+				}
+			}
+			if(count($outdated)>0) {
+				// is this plugin active?
+				if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
+			 		// unset activation notice
+			 		unset( $_GET[ 'activate' ] );
+			 		// display notice
+			 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+				}
+				
+			}
+			update_option('epl_outdated_extensions',$outdated);
+
+		}
+
+		function compatible_extensions () {
+			$extensions = array(
+				'Easy Property Listings - Listing Alerts'					=>	'1.0.1',
+				'Easy Property Listings - Listing Unlimited'				=>	'1.1',
+				'Easy Property Listings - Location Profiles'				=>	'1.1.6',
+				'Easy Property Listings - 1Form Integration'				=>	'1.1.2',
+				'Easy Property Listings - Advanced Mapping'					=>	'1.1.6',
+				'Easy Property Listings - Award Manager'					=>	'1.1.1',
+				'Easy Property Listings - Business Directory'				=>	'1.1.3',
+				'Easy Property Listings - Inspect Real Estate'				=>	'1.1.2',
+				'Easy Property Listings - Listing Templates'				=>	'1.2',
+				'Easy Property Listings - Market Research'					=>	'1.0.0',
+				'Easy Property Listings - Staff Directory'					=>	'1.2',
+				'Easy Property Listings - Testimonial Management'			=>	'1.1.4',
+			);
+			return apply_filters('epl_compatible_extensions',$extensions);
+		}
+		
+		
+		/**
+		 * Admin notices
+		 *
+		 * @since 1.0
+		*/
+		public function admin_notices() {
+			global $pagenow;		
+			$outdated = get_option('epl_outdated_extensions');
+			$page = ($pagenow == 'admin.php' && isset($_GET['page']) && $_GET['page'] == 'epl-extensions-old')?'all':'one';
+			if( isset($outdated) && !empty($outdated)){
+				if($page == 'all' ) {
+					foreach($outdated as $extension_name	=>	$extension_version) {
+						echo '<div class="error"><p>';
+						_e('Currently installed version : '.$extension_version.' of '.$extension_name.' is outdated, you should consider updating it','epl');
+						echo '</p></div>';
+					}
+				} else {
+					echo '<div class="error"><p>';
+						_e('Your Easy Property Listings Extensions need an update','epl');
+						echo '<a class="epl_la_hide_notice" href="'.admin_url('admin.php?page=epl-extensions-old').'">'.__('Please update now','epl').'</a>';
+						echo '</p></div>';
+				}
+					
+			}
+		}
+		
 		
 		/*
 		 * Setup plugin constants
 		 *
-		 * @access private
+		 * @access public
 		 * @since 1.0
 		 * @return void
 		 */
-		private function setup_constants() {		
+		public function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '1.2.99' );
+				define( 'EPL_PROPERTY_VER', '1.3' );
 			}
 			
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
-				define( 'EPL_PROPERTY_DB_VER', '1.0.9.1' );
+				define( 'EPL_PROPERTY_DB_VER', '1.3' );
 			}
 			
 			// Current Page
@@ -118,6 +214,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_TEMPLATES' ) ) {
 				define( 'EPL_PATH_TEMPLATES', EPL_PATH_LIB . 'templates/' );
 			}
+			if ( ! defined( 'EPL_COMPATABILITY' ) ) {
+				define( 'EPL_COMPATABILITY', EPL_PATH_LIB . 'compatibility/' );
+			}
 			
 			if ( ! defined( 'EPL_PATH_TEMPLATES_CONTENT' ) ) {
 				define( 'EPL_PATH_TEMPLATES_CONTENT', EPL_PATH_TEMPLATES . 'content/' );
@@ -139,7 +238,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
 		}
-
+		
+		
+	
 		/*
 		 * Include required files
 		 *
@@ -150,11 +251,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		private function includes() {
 		
 			global $epl_settings;
-
+			
 			require_once EPL_PATH_LIB . 'includes/register-settings.php';
 			$epl_settings = epl_get_settings();
 		
 			require_once EPL_PATH_LIB . 'includes/functions.php';
+			require_once EPL_COMPATABILITY . 'functions-compat.php';
 			require_once EPL_PATH_LIB . 'includes/options-global.php';
 			require_once EPL_PATH_LIB . 'includes/formatting.php';
 			require_once EPL_PATH_LIB . 'includes/plugins.php';
@@ -217,12 +319,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-dashboard-epl-status.php';
 
 			require_once EPL_PATH_LIB . 'hooks/hooks.php';
 						
 			require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
-		
-			require_once EPL_PATH_LIB . 'templates/templates.php';
+			require_once EPL_PATH_LIB . 'includes/class-property-meta.php';
+			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
+			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/user.php';
 				
@@ -251,6 +355,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			
 			require_once EPL_PATH_LIB . 'includes/install.php';
 		}
+		
+
 		
 		/**
 		 * Loads the plugin language files
@@ -283,8 +389,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				load_plugin_textdomain( 'epl', false, $epl_lang_dir );
 			}
 		}
-	
-	
 	}
 endif; // End if class_exists check
 
