@@ -298,19 +298,19 @@ function epl_property_blog_slim() {
 // AUTHOR CARD : Tabbed Style
 function epl_property_author_box() {
 	global $property,$epl_author;
-	$author_id = get_the_author_meta( 'ID' );
 	epl_get_template_part('content-author-box.php');
-	
-	$property_second_agent = $property->get_property_meta('property_second_agent');
-		if ( '' != $property_second_agent ) {
-			$second_author = get_user_by( 'login' , $property_second_agent );
-			if($second_author !== false){
-					$epl_author = new Author_Meta($second_author->ID);
-					epl_get_template_part('content-author-box.php');
+    if($property != NULL) {
+        $property_second_agent = $property->get_property_meta('property_second_agent');
+            if ( '' != $property_second_agent ) {
+                $second_author = get_user_by( 'login' , $property_second_agent );
+                if($second_author !== false){
+                        $epl_author = new Author_Meta($second_author->ID);
+                        epl_get_template_part('content-author-box.php');
 
-			}
-			epl_reset_post_author();
-		}
+                }
+                epl_reset_post_author();
+            }
+    }
 }
 
 function epl_reset_post_author() {
@@ -828,14 +828,7 @@ function epl_switch_views_sorting() {
 	do_action('epl_archive_utility_wrap_start');
 	?>
 	<div class="epl-switching-sorting-wrap epl-clearfix">
-		<div class="epl-switch-view epl-clearfix">
-			<ul>
-				<li title="<?php _e('List','epl'); ?>" class="epl-current-view view-list" data-view="list">
-				</li>
-				<li title="<?php _e('Grid','epl'); ?>" class="view-grid" data-view="grid">
-				</li data-view="grid">
-			</ul>
-		</div>
+		<?php do_action('epl_add_custom_menus'); ?>
 		<div class="epl-properties-sorting epl-clearfix">
 			<select id="epl-sort-listings">
 				<option <?php selected( $sortby, '' ); ?> value=""><?php _e('Sort','epl'); ?></option>
@@ -912,7 +905,7 @@ function epl_author_tabs () {
 						'contact'				=>	__('Contact','epl')
 					);
 	foreach($author_tabs as $k	=>	$author_tab) {
-		if($epl_author->{$k} == ''){
+		if(	$epl_author->{$k} == ''){
 			unset($author_tabs[$k]);
 		}
 	}

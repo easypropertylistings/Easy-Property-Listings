@@ -50,6 +50,8 @@ class Property_Meta {
 						if(strtotime($endtime) > time()) {
 							$item = trim($item);
 							$inspectarray[strtotime($endtime)] = $item;
+						} else {
+							
 						}
 
 					}	else	{
@@ -57,6 +59,10 @@ class Property_Meta {
 					}				
 				}
 				ksort($inspectarray);
+				// update inspection times by removing past dates
+				$new_inspection_meta = implode("\n", $inspectarray);
+				update_post_meta($this->post->ID,'property_inspection_times',$new_inspection_meta);
+				
 				$return =  "";
 				if(count($inspectarray) > 1) {
 					// unordered list for multiple inspection times

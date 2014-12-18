@@ -541,7 +541,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				?>
 		
 				<div class="property-type-search">
-					<input type="submit" value="<?php _e('Find me a Property!', 'epl'); ?>" class="search-btn" />
+					<input type="submit" value="<?php echo isset($epl_settings['search_widget_submit_label']) ? $epl_settings['search_widget_submit_label'] : __('Find me a Property!', 'epl'); ?>" class="search-btn" />
 				</div>
 			</form>
 		</div>
