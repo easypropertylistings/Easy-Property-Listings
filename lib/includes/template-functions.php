@@ -962,6 +962,13 @@ function epl_author_tab_about() {
 <?php	
 }
 
+function epl_author_tab_image () {
+	global $epl_author; 
+	if ( function_exists('get_avatar') ) {
+		return get_avatar( $epl_author->email , '150' );
+	}
+}
+
 function epl_author_tab_bio() { 
 	global $epl_author; 
 	echo $epl_author->get_description_html();
