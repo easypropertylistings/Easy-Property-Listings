@@ -508,6 +508,9 @@
     background: none repeat scroll 0 0 #7faf1b;
 }
 
+.epl_la_hide_notice {
+    float: right;
+}
 .epl-clearfix {
 	clear:  both !important;
 }
@@ -523,7 +526,10 @@
 	clear:both;
 }
 /* Use this stylesheet for problems with IE7 and below */
+
 #ie6 .epl-clearfix,
 #ie7 .epl-clearfix {
 	zoom: 1;
+
 }
+
