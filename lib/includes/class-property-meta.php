@@ -293,11 +293,12 @@ class Property_Meta {
 		} elseif('rental' == $this->post_type) { 
 		
 			if( '' != $this->get_property_rent() && 'yes' == $this->get_property_meta('property_rent_display') && 'leased' != $this->get_property_meta('property_status') ) {
-					
+				
+				$epl_property_rice_rent_separator	= apply_filters('epl_property_rice_rent_separator','/');
 				$price = '
 							<span class="page-price-rent">
 								<span class="page-price" style="margin-right:0;">'. $this->get_property_rent() . '</span>
-								<span class="rent-period">/' . $this->get_property_meta('property_rent_period') . '</span>
+								<span class="rent-period">' .$epl_property_rice_rent_separator.''. $this->get_property_meta('property_rent_period') . '</span>
 							</span>
 						';
 				if($this->get_property_bond() != '' && in_array($this->get_epl_settings('display_bond'),array(1,'yes')))

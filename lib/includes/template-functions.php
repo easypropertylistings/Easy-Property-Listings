@@ -1036,3 +1036,16 @@ add_action('epl_property_gallery','epl_property_gallery');
 function epl_template_path() {
 	return apply_filters( 'epl_template_path', 'easypropertylistings/' );
 }
+
+function epl_temp_switch_views () { ?>
+	<div class="epl-switch-view epl-clearfix">
+		<ul>
+			<li title="<?php _e('List','epl'); ?>" class="epl-current-view view-list" data-view="list">
+			</li>
+			<li title="<?php _e('Grid','epl'); ?>" class="view-grid" data-view="grid">
+			</li data-view="grid">
+		</ul>
+	</div> <?php
+
+}
+add_action('epl_add_custom_menus','epl_temp_switch_views',1);
