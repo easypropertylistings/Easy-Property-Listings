@@ -185,6 +185,21 @@ class Property_Meta {
 		return $street;
 	}
 	
+	// formatted full adress property 
+	public function get_formatted_property_full_address() {
+		$street =  $this->get_property_meta('property_address_lot_number').' ';
+		
+				if($this->get_property_meta('property_address_sub_number') != '')
+					$street .= $this->get_property_meta('property_address_sub_number').'/';
+					
+				$street .= $this->get_property_meta('property_address_street_number').' ';
+				$street .=$this->get_property_meta('property_address_street').' ';
+				$street .=$this->get_property_meta('property_address_suburb').' ';
+				$street .=$this->get_property_meta('property_address_state').' ';
+				$street .=$this->get_property_meta('property_address_postcode');
+		return $street;
+	}
+	
 	public function get_property_category () {
 		return epl_listing_meta_property_category_value( $this->get_property_meta('property_category') );
 	}
