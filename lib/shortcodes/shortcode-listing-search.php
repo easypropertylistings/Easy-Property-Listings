@@ -37,6 +37,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		'search_id'				=>	'off', 	// on or off
 		'search_land_area'			=>	'off',	// on or off
 		'search_building_area'			=>	'off',	// on or off
+		'submit_label'			=>	__('Find me a Property!','epl')
 	), $atts);
 	extract($atts);
 	extract( $_GET );
@@ -541,7 +542,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				?>
 		
 				<div class="property-type-search">
-					<input type="submit" value="<?php echo isset($epl_settings['search_widget_submit_label']) ? $epl_settings['search_widget_submit_label'] : __('Find me a Property!', 'epl'); ?>" class="search-btn" />
+					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __('Find me a Property!', 'epl'); ?>" class="search-btn" />
 				</div>
 			</form>
 		</div>

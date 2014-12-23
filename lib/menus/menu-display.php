@@ -324,12 +324,6 @@ function epl_get_admin_option_fields() {
 					'label'	=>	__('Business', 'epl'),
 					'type'	=>	'text',
 					'default'	=>	'Business'
-				),
-				array(
-					'name'	=>	'search_widget_submit_label',
-					'label'	=>	__('Search Widget Submit Label', 'epl'),
-					'type'	=>	'text',
-					'default'	=>	'Find me a Property!'
 				)
 			)
 		)

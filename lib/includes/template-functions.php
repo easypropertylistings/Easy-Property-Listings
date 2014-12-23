@@ -439,6 +439,7 @@ function epl_property_get_the_full_address(){
 **/
 
 function epl_property_the_address(){
+	$epl_property_address_seperator	= apply_filters('epl_property_address_seperator',',');
 	global $property;
 	// Commercial and Business Address
 	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) {
@@ -448,7 +449,7 @@ function epl_property_the_address(){
 		<?php } 
 		echo '<span class="entry-title-sub">';
 		if ( $property->get_property_meta('property_address_display') == 'yes') { ?>
-			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . ', '; ?></span>
+			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . $epl_property_address_seperator; ?></span>
 		<?php } ?>
 				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
 				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
@@ -461,7 +462,7 @@ function epl_property_the_address(){
 			
 		<?php } ?>
 		<span class="entry-title-sub">
-			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . ', '; ?></span>
+			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . $epl_property_address_seperator; ?></span>
 			<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
 			<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
 		</span>
@@ -1052,7 +1053,7 @@ function epl_template_path() {
 	return apply_filters( 'epl_template_path', 'easypropertylistings/' );
 }
 
-function epl_temp_switch_views () { ?>
+function epl_switch_views () { ?>
 	<div class="epl-switch-view epl-clearfix">
 		<ul>
 			<li title="<?php _e('List','epl'); ?>" class="epl-current-view view-list" data-view="list">
@@ -1063,4 +1064,4 @@ function epl_temp_switch_views () { ?>
 	</div> <?php
 
 }
-add_action('epl_add_custom_menus','epl_temp_switch_views',1);
+add_action('epl_add_custom_menus','epl_switch_views',1);

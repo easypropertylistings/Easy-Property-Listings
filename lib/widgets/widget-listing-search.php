@@ -32,6 +32,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			'search_id'				=>	'off',
 			'search_land_area'		=>	'off',
 			'search_building_area'	=>	'off',
+			'submit_label'			=>	__('Find me a Property!','epl')
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
 		extract( $args );
@@ -179,7 +180,10 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			<input id="<?php echo $this->get_field_id('search_other'); ?>" name="<?php echo $this->get_field_name('search_other'); ?>" type="checkbox" <?php if(isset($search_other) && $search_other == 'on') { echo 'checked="checked"'; } ?> />
 			<label for="<?php echo $this->get_field_id('search_other'); ?>"><?php _e('Other Search Options', 'epl'); ?></label>
 		</p>
-		
+		<p>
+			<label for="<?php echo $this->get_field_id('submit_label'); ?>"><?php _e('Submit Label:', 'epl'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('submit_label'); ?>" name="<?php echo $this->get_field_name('submit_label'); ?>" type="text" value="<?php echo $submit_label; ?>" />
+		</p>
 		<?php 
 	}
 }

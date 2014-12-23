@@ -823,6 +823,68 @@ li.tbhead.current {
 		text-align: left;
 	}
 }
+/* Switching view grid-list */
+
+.epl-switch-view li {
+	float: left;
+	list-style: outside none none;
+	opacity: 0.5;
+	padding: 0 10px;
+	cursor:pointer;
+}
+.epl-current-view.view-list,.epl-current-view.view-grid {
+	opacity: 1;
+}
+.epl-switch-view li.view-list {
+	background-attachment: scroll;
+	background-clip: border-box;
+	background-image: url("../images/switch.png");
+	background-origin: padding-box;
+	background-position: -15px -14px;
+	background-repeat: no-repeat;
+	height: 18px;
+}
+.epl-switch-view li.view-grid {
+	background-attachment: scroll;
+	background-clip: border-box;
+	background-image: url("../images/switch.png");
+	background-origin: padding-box;
+	background-position: 5px -14px;
+	background-repeat: no-repeat;
+	height: 18px;
+}
+.epl-switch-view {
+	display: inline-block;
+	float: none;
+	padding: 0 5px;
+	vertical-align: middle;
+}
+.epl-switch-view > ul {
+	margin: 0;
+}
+.epl-listing-grid-view.epl-property-blog {
+	clear: none !important;
+	float: left;
+	margin: 0 2% 2%;
+	padding: 0 3% 0 1% !important;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	width: 24.5%;
+}
+.epl-property-blog {
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+.epl-listing-grid-view.epl-property-blog div {
+	clear: both;
+	display: block;
+	padding: 0;
+	width: 100%;
+}
 /*****************************
 	EPL Clear Floating Div's
 ******************************/
