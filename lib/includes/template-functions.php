@@ -560,7 +560,7 @@ function epl_property_available_dates() {
 	global $property;
 	if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) { 
 		// Rental Specifics
-		echo '<div class="property-meta date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
+		echo '<div class="property-meta date-available">'.__('Available from', 'epl').' ', $property->get_property_available() , '</div>';
 	}
 }
 add_action('epl_property_available_dates','epl_property_available_dates');
