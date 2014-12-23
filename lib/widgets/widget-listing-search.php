@@ -63,6 +63,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$instance['search_other'] = strip_tags($new_instance['search_other']);
 		$instance['search_land_area'] = strip_tags($new_instance['search_land_area']);
 		$instance['search_building_area'] = strip_tags($new_instance['search_building_area']);
+		$instance['submit_label'] = strip_tags($new_instance['submit_label']);
 		return $instance;
 	}
 
