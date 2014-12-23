@@ -68,34 +68,36 @@ class EPL_Widget_Property_Search extends WP_Widget {
 
 	function form($instance) {
 		$defaults = array(
-			'title'					=>	'',
-			'post_type'				=>	array('property'),
+			'title'				=>	'',
+			'post_type'			=>	array('property'),
 			'property_status'		=>	'any',
-			'search_house_category'	=>	'on',
+			'search_house_category'		=>	'on',
 			'search_price'			=>	'on',
 			'search_bed'			=>	'on',
 			'search_bath'			=>	'on',
 			'search_car'			=>	'on',
 			'search_other'			=>	'on',
-			'search_id'				=>	'off',
+			'search_id'			=>	'off',
 			'search_land_area'		=>	'off',
-			'search_building_area'	=>	'off',
+			'search_building_area'		=>	'off',
+			'submit_label'			=>	__('Find me a Property!','epl')
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 	
 	
-		$title				=	esc_attr($instance['title']);
-		$post_types			=	$instance['post_type'];
+		$title			=	esc_attr($instance['title']);
+		$post_types		=	$instance['post_type'];
 
 		$property_status	=	esc_attr($instance['property_status']);
 		$search_house_category	=	esc_attr($instance['search_house_category']);
 		$search_price		=	esc_attr($instance['search_price']);
-		$search_bed			=	esc_attr($instance['search_bed']);
+		$search_bed		=	esc_attr($instance['search_bed']);
 		$search_bath		=	esc_attr($instance['search_bath']);
-		$search_car			=	esc_attr($instance['search_car']);
-		$search_id			=	esc_attr($instance['search_id']);
+		$search_car		=	esc_attr($instance['search_car']);
+		$search_id		=	esc_attr($instance['search_id']);
 		$search_other		=	esc_attr($instance['search_other']);
-		$search_land_area			=	esc_attr($instance['search_land_area']);
-		$search_building_area			=	esc_attr($instance['search_building_area']);
+		$search_land_area	=	esc_attr($instance['search_land_area']);
+		$search_building_area	=	esc_attr($instance['search_building_area']);
+		$submit_label		=	esc_attr($instance['submit_label']);
 		?>
 		
 		<p>
