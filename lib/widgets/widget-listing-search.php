@@ -148,7 +148,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		
 		<p>
 			<input id="<?php echo $this->get_field_id('search_id'); ?>" name="<?php echo $this->get_field_name('search_id'); ?>" type="checkbox" <?php if(isset($search_id) && $search_id == 'on') { echo 'checked="checked"'; } ?> />
-			<label for="<?php echo $this->get_field_id('search_id'); ?>"><?php _e('Allow Search By Property Id', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('search_id'); ?>"><?php _e('Property ID', 'epl'); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id('search_house_category'); ?>" name="<?php echo $this->get_field_name('search_house_category'); ?>" type="checkbox" <?php if(isset($search_house_category) && $search_house_category == 'on') { echo 'checked="checked"'; } ?> />
