@@ -13,7 +13,7 @@ License: GNU Version 2 or Any Later Version
 
 Display real estate listings through WordPress with this complete property listing management plugin platform for today's real estate agent
 
-=== Description ===
+== Description ==
 
 The complete real estate platform for today's agent to list property using any theme for WordPress fast, easy and free. Just enable the listing types you need add some properties, tweak your settings and you're done. Extend the core with cool dynamic add-on extensions that give your visitors more reasons to come back.
 
