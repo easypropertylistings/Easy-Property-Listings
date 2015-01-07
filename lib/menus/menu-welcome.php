@@ -259,8 +259,6 @@ class EPL_Welcome {
 
 					<p><?php _e( 'In the previous release, custom meta values were loaded just before the template file and stored in hundreds of individual php variables. The old listing-meta.php file has been moved to a compatibility folder so you should not have any issues updating your sites to 1.3. Your custom templates will still work with the new version.', 'epl' );?></p>
 					
-					<p><?php _e( '', 'epl' );?></p>
-					
 					<p><?php _e( 'The new way allows you to create custom templates and allows us to expand the Listing Tempalte extensions with many more designs to select from.', 'epl' );?></p>
 					
 					<p><?php _e( 'is much easier to  older sites will still work fine.processed you would use php variables to output the values, these have all been replaced with easy to use actions.', 'epl' );?></p>
