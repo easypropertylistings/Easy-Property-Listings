@@ -161,78 +161,122 @@ class EPL_Welcome {
 			<?php $this->tabs(); ?>
 			
 			<div class="changelog">
-				
-			</div>
-			
-			<div class="changelog">
 
 				<div class="feature-section">
-
+					<h2><?php _e( 'Easier for you to keep track of your listings', 'epl' );?></h2>
+					
+					<p><?php _e( 'We have made several changes to the listing management dashboard pages so you can better monitor and manage your listings.', 'epl' );?></p>
+					
 					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-listing-admin-list.png'; ?>" class="epl-welcome-screenshots"/>
-					<h4><?php _e( 'Listing Management Pages', 'epl' );?></h4>
-					<p><?php _e( 'Once you have activated your listing types from settings they will appear in the main dashboard menu to the left. Each activated listing type has its own menu giving you quick access to your property, rentals, land...', 'epl' );?></p>
-						
+					
 					<h4><?php _e( 'Listing Details','epl' );?></h4>
 					<p><?php _e( 'Get quick access to important details like what the property has and the scheduled inspection times.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Multiple Inspection Times','epl' );?></h4>
+					<p><?php _e( 'Inspection time supports multiple times and dates. When importing from REAXML it will automatically hide past inspection times.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Graph API','epl' );?></h4>
+					<p><?php _e( 'Visual graph indicates listing prices so you can see what price your listings are. Handy when on the phone with a buyer and you have a lot of property to look through. Customise the max price to suit your price range from the Easy Property Listings > Settings page.', 'epl' );?></p>
 					
 					<h4><?php _e( 'Auction Listings','epl' );?></h4>
 					<p><?php _e( 'Keep track of your coming Auction dates from the Price column.', 'epl' );?></p>
 					
-					<h4><?php _e( 'Graph API','epl' );?></h4>
-					<p><?php _e( 'Visual graph indicating listing prices so you can at a glance visually see what price your listings. Customise the max price to suit your price range from the Settings page. Default max for for sale listings is 2,000,000 and rental listing 2,000.', 'epl' );?></p>
-					
-					<h4><?php _e( 'Inspection times','epl' );?></h4>
-					<p><?php _e( 'Inspection time support multiple dates written one per line.', 'epl' );?></p>
-					
 					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-dashboard-widget.png'; ?>" class="epl-welcome-screenshots"/>
+					
 					<h4><?php _e( 'Dashboard Widget','epl' );?></h4>
-					<p><?php _e( 'Dashboard widget now lists all listings and status so at a glance you can see what you have.', 'epl' );?></p>
+					<p><?php _e( 'From the Dashboard you can now track all your listings and status and it will only displays the listing types you have activated.', 'epl' );?></p>
+					
+					<p><?php _e( 'Works like a mini KPI tracker that shows you haw many listings are current, auction, under offer, sold and leased.', 'epl' );?></p>
+				</div>
+			</div>
+					
+			<div class="changelog">
+				<div class="feature-section">
+					<h2><?php _e( 'Major Updates to Search Widget','epl' );?></h2>
+					
+					<p><?php _e( 'Lots of user requests have been addressed with the Search Widget and short code. Performance has been significantly improved by reducing the number of database queries.', 'epl' );?></p>
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search.png'; ?>" class="epl-welcome-screenshots"/>
+					
+					<h4><?php _e( 'Tabbed Search', 'epl' );?></h4>
+					
+					<p><?php _e( 'The widget now lets you add multiple tabs to one widget, just hold Ctrl and select more than one. It is also smart enough to hide unused fields like bedrooms on land and automatically adjusts the rental price.', 'epl' );?></p> 
+					
+					<h4><?php _e( 'Customise Labels', 'epl' );?></h4>
+					
+					<p><?php _e( 'You can easily change the default labels from Easy Property Listings > Display. For example you can change Property to Buy, and the Find me a Property button can also be easily customised.', 'epl' );?></p>
+					
+					<h4><?php _e( 'New Search Fields', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Property ID', 'epl' );?></li>
+						<li><?php _e( 'Land size', 'epl' );?></li>
+						<li><?php _e( 'Building Area', 'epl' );?></li>
+					</ul>
+					
+					<h4><?php _e( 'Additional CSS Classes', 'epl' );?></h4>
+					
+					<p><?php _e( 'Both the search widget and shortcode have better named CSS classes for easier customising.', 'epl' );?></p>
+				</div>
+			</div>
+					
+			<div class="changelog">
+				<div class="feature-section">
+					<h2><?php _e( 'Other Changes','epl' );?></h2>
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-grid-list-sort.png'; ?>" class="epl-welcome-screenshots"/>
+					
+					<h4><?php _e( 'List & Grid view toggle','epl' );?></h4>
+					<p><?php _e( 'Your visitors can now toggle between list & grid view.', 'epl' );?></p>
+					
+					<p><?php _e( 'If you are updating from a previous version of Easy Property Listings and have created a custom template, you will need to add the new hook to your archive-listing template.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Sorting','epl' );?></h4>
+					<p><?php _e( 'On the listing archive pages, your users can now sort by price and date.', 'epl' );?></p>
 					
 					<h4><?php _e( 'New Label','epl' );?></h4>
 					<p><?php _e( 'Set how many days you want your newly added listings to appear new for. Adjust the number of days from the settings.', 'epl' );?></p>
 					
-					<h4><?php _e( 'Auction Date','epl' );?></h4>
-					<p><?php _e( 'Calendar to select auction date and outputs nicely.', 'epl' );?></p>
-					
-					<h4><?php _e( 'Sale Date','epl' );?></h4>
-					<p><?php _e( 'Calendar to select sold date.', 'epl' );?></p>
-					
-					<h4><?php _e( 'Easier to create custom templates','epl' );?></h4>
-					<p><?php _e( 'Display Settings.', 'epl' );?></p>
-					
 					<h4><?php _e( 'Author Box','epl' );?></h4>
-					<p><?php _e( 'Supports multiple real estate agents per listing.', 'epl' );?></p>
+					<p><?php _e( 'Now supports multiple agents correctly in line with the author widget.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Easier to configure extensions','epl' );?></h4>
+					<p><?php _e( 'We have improved the visibility of the extension settings.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Listing Widget has More Options','epl' );?></h4>
+					<p><?php _e( 'Customise your "featured" listings using a widget. Everything is now customisable even the button label.', 'epl' );?></p>
+
+					<h4><?php _e( 'Auction Date','epl' );?></h4>
+					<p><?php _e( 'Nifty calendar to select auction date and time. The date is processed and output in a nice format. EG: Auction Saturday 12th January at 2pm.', 'epl' );?></p>
 					
 					<h4><?php _e( 'Additional Meta Fields','epl' );?></h4>
-					<p><?php _e( 'Property unit/lot number and office id', 'epl' );?></p>
-					
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-grid-list-sort.png'; ?>" class="epl-welcome-screenshots"/>
-				
-					<h4><?php _e( 'List & Grid view toggle with Sort','epl' );?></h4>
-					<p><?php _e( 'Your website users can now swap between list & grid view. Also added is the ability to enable a tiled Masonry jQuery effect.', 'epl' );?></p>
-					<p><?php _e( 'On the listing archive pages, your users can now sort their search by price and date.', 'epl' );?></p>
-					
-					<h4><?php _e( 'Listing Widget has More Display Options','epl' );?></h4>
-					<p><?php _e( 'Added additional options giving you greater control to customise your "featured" listings using a widget. Everything is now customisable even the button label.', 'epl' );?></p>
-					<p><?php _e( 'This gives you the ability to dynamically.', 'epl' );?></p>
-
+					<p><?php _e( 'Unit has been added to listings which is Lot for Land. Also have added office ID.', 'epl' );?></p>
 				</div>
 			</div>
 			
 			<div class="changelog">
 				<div class="feature-section">
-
-					<div class="epl-clear"></div>
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search.png'; ?>" class="epl-welcome-screenshots"/>
+					<h2><?php _e( 'Complete re-write of several key files','epl' );?></h2>
 					
-					<h4><?php _e( 'EPL - Listing Search','epl' );?></h4>
-					<p><?php _e( 'Tabbed search supports multiple listing types from one widget with customisable labels. Also added are land and building size search fields. Performance improved by reducing the number of database queries to keep your site fast.', 'epl' );?></p>
-					<p><?php _e( 'The Listing Search widget now lets you add multiple tabs to one widget. Its also smart enough to hide unused fields like bedrooms on land and the rental price range is automatically adjusted for you.', 'epl' );?></p>
-					<p><?php _e( 'Another great thing about our the Listing Search widget is you can search by property id, handy if you have a lot of listing and give publish the property id on marketing.', 'epl' );?></p>
+					<p><?php _e( 'Its taken us a bit longer than expected to release this latest version of Easy Property Listings as we had to re-write several files that handled the hundreds of meta variables.', 'epl' );?></p>
+
+					<p><?php _e( 'In the previous release, custom meta values were loaded just before the template file and stored in hundreds of individual php variables. The old listing-meta.php file has been moved to a compatibility folder so you should not have any issues updating your sites to 1.3. Your custom templates will still work with the new version.', 'epl' );?></p>
+					
+					<p><?php _e( '', 'epl' );?></p>
+					
+					<p><?php _e( 'The new way allows you to create custom templates and allows us to expand the Listing Tempalte extensions with many more designs to select from.', 'epl' );?></p>
+					
+					<p><?php _e( 'is much easier to  older sites will still work fine.processed you would use php variables to output the values, these have all been replaced with easy to use actions.', 'epl' );?></p>
+					
+					<p><?php _e( 'your own template files and these were not very self explanatory they have all been replaced with actions. A lot of the variables that were output eg the Price required a significant amount of if then statements to validate and allow for multiple price types..', 'epl' );?></p>						
+					
+
+					<h4><?php _e( 'Create custom templates much faster with hooks.','epl' );?></h4>
+					<p><?php _e( 'Display Settings.', 'epl' );?></p>
+					
+					<h4><?php _e( 'Hundreds of new filters and actions','epl' );?></h4>
+					<p><?php _e( 'Display Settings.', 'epl' );?></p>
 				
 				</div>
 			</div>
-
+			
 			<div class="changelog">
 				<div class="feature-section">
 					<h4><?php _e( 'Full change log of version 1.3', 'epl' );?></h4>
