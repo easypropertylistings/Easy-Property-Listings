@@ -50,6 +50,8 @@ class Property_Meta {
 						if(strtotime($endtime) > time()) {
 							$item = trim($item);
 							$inspectarray[strtotime($endtime)] = $item;
+						} else {
+							
 						}
 
 					}	else	{
@@ -57,6 +59,10 @@ class Property_Meta {
 					}				
 				}
 				ksort($inspectarray);
+				// update inspection times by removing past dates
+				$new_inspection_meta = implode("\n", $inspectarray);
+				update_post_meta($this->post->ID,'property_inspection_times',$new_inspection_meta);
+				
 				$return =  "";
 				if(count($inspectarray) > 1) {
 					// unordered list for multiple inspection times
@@ -155,7 +161,17 @@ class Property_Meta {
 			return epl_currency_formatted_amount($this->get_property_meta('property_bond'));
 		}
 	}
-	
+	// property rental available
+	public function get_property_available( $admin = false ) {
+		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F' ;
+		if(isset($this->meta['property_date_available'])) {
+			if(isset($this->meta['property_date_available'][0])) {
+					if ( '' != $this->meta['property_date_available'][0] ) {
+						return date( $format, strtotime($this->meta['property_date_available'][0]) );
+					}
+			}	
+		}
+	}
 	// property land category
 	public function get_property_land_category() {
 		if ( 'land' != $this->post_type || 'commercial_land' != $this->post_type )
@@ -174,7 +190,7 @@ class Property_Meta {
 					$street .= $this->get_property_meta('property_address_sub_number').'/';
 					
 				$street .= $this->get_property_meta('property_address_street_number').' ';
-				$street .=$this->get_property_meta('property_address_street').' ';
+				$street .= $this->get_property_meta('property_address_street').' ';
 				//$street .=$this->get_property_meta('property_address_suburb');
 		return $street;
 	}
@@ -287,11 +303,12 @@ class Property_Meta {
 		} elseif('rental' == $this->post_type) { 
 		
 			if( '' != $this->get_property_rent() && 'yes' == $this->get_property_meta('property_rent_display') && 'leased' != $this->get_property_meta('property_status') ) {
-					
+				
+				$epl_property_price_rent_separator	= apply_filters('epl_property_price_rent_separator','/');
 				$price = '
 							<span class="page-price-rent">
 								<span class="page-price" style="margin-right:0;">'. $this->get_property_rent() . '</span>
-								<span class="rent-period">/' . $this->get_property_meta('property_rent_period') . '</span>
+								<span class="rent-period">' .$epl_property_price_rent_separator.''. $this->get_property_meta('property_rent_period') . '</span>
 							</span>
 						';
 				if($this->get_property_bond() != '' && in_array($this->get_epl_settings('display_bond'),array(1,'yes')))

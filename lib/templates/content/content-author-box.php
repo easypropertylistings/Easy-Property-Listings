@@ -27,10 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<div class="author-box-outer-wrapper epl-clearfix">			
 		<div class="author-box author-image">
 			<?php
-		
-				if ( function_exists('get_avatar') ) {
-					echo get_avatar( $epl_author->email , '150' );
-				}
+				echo apply_filters('epl_author_tab_image',epl_author_tab_image());
 			?>
 		</div>
 		

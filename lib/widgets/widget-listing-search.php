@@ -32,6 +32,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			'search_id'				=>	'off',
 			'search_land_area'		=>	'off',
 			'search_building_area'	=>	'off',
+			'submit_label'			=>	__('Find me a Property!','epl')
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
 		extract( $args );
@@ -62,39 +63,42 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$instance['search_other'] = strip_tags($new_instance['search_other']);
 		$instance['search_land_area'] = strip_tags($new_instance['search_land_area']);
 		$instance['search_building_area'] = strip_tags($new_instance['search_building_area']);
+		$instance['submit_label'] = strip_tags($new_instance['submit_label']);
 		return $instance;
 	}
 
 	function form($instance) {
 		$defaults = array(
-			'title'					=>	'',
-			'post_type'				=>	array('property'),
+			'title'				=>	'',
+			'post_type'			=>	array('property'),
 			'property_status'		=>	'any',
-			'search_house_category'	=>	'on',
+			'search_house_category'		=>	'on',
 			'search_price'			=>	'on',
 			'search_bed'			=>	'on',
 			'search_bath'			=>	'on',
 			'search_car'			=>	'on',
 			'search_other'			=>	'on',
-			'search_id'				=>	'off',
+			'search_id'			=>	'off',
 			'search_land_area'		=>	'off',
-			'search_building_area'	=>	'off',
+			'search_building_area'		=>	'off',
+			'submit_label'			=>	__('Find me a Property!','epl')
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 	
 	
-		$title				=	esc_attr($instance['title']);
-		$post_types			=	$instance['post_type'];
+		$title			=	esc_attr($instance['title']);
+		$post_types		=	$instance['post_type'];
 
 		$property_status	=	esc_attr($instance['property_status']);
 		$search_house_category	=	esc_attr($instance['search_house_category']);
 		$search_price		=	esc_attr($instance['search_price']);
-		$search_bed			=	esc_attr($instance['search_bed']);
+		$search_bed		=	esc_attr($instance['search_bed']);
 		$search_bath		=	esc_attr($instance['search_bath']);
-		$search_car			=	esc_attr($instance['search_car']);
-		$search_id			=	esc_attr($instance['search_id']);
+		$search_car		=	esc_attr($instance['search_car']);
+		$search_id		=	esc_attr($instance['search_id']);
 		$search_other		=	esc_attr($instance['search_other']);
-		$search_land_area			=	esc_attr($instance['search_land_area']);
-		$search_building_area			=	esc_attr($instance['search_building_area']);
+		$search_land_area	=	esc_attr($instance['search_land_area']);
+		$search_building_area	=	esc_attr($instance['search_building_area']);
+		$submit_label		=	esc_attr($instance['submit_label']);
 		?>
 		
 		<p>
@@ -144,7 +148,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		
 		<p>
 			<input id="<?php echo $this->get_field_id('search_id'); ?>" name="<?php echo $this->get_field_name('search_id'); ?>" type="checkbox" <?php if(isset($search_id) && $search_id == 'on') { echo 'checked="checked"'; } ?> />
-			<label for="<?php echo $this->get_field_id('search_id'); ?>"><?php _e('Allow Search By Property Id', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('search_id'); ?>"><?php _e('Property ID', 'epl'); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id('search_house_category'); ?>" name="<?php echo $this->get_field_name('search_house_category'); ?>" type="checkbox" <?php if(isset($search_house_category) && $search_house_category == 'on') { echo 'checked="checked"'; } ?> />
@@ -179,7 +183,10 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			<input id="<?php echo $this->get_field_id('search_other'); ?>" name="<?php echo $this->get_field_name('search_other'); ?>" type="checkbox" <?php if(isset($search_other) && $search_other == 'on') { echo 'checked="checked"'; } ?> />
 			<label for="<?php echo $this->get_field_id('search_other'); ?>"><?php _e('Other Search Options', 'epl'); ?></label>
 		</p>
-		
+		<p>
+			<label for="<?php echo $this->get_field_id('submit_label'); ?>"><?php _e('Submit Label:', 'epl'); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id('submit_label'); ?>" name="<?php echo $this->get_field_name('submit_label'); ?>" type="text" value="<?php echo $submit_label; ?>" />
+		</p>
 		<?php 
 	}
 }

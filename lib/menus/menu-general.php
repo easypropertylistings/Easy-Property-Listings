@@ -192,7 +192,7 @@ function epl_get_admin_option_fields() {
 
 	$fields = array(
 		array(
-			'label'		=>	__('Listing Types and Settings' , 'epl'),
+			'label'		=>	__('Listing Settings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
 			'help'		=>	__('Select the listing types you want to enable and press Save Changes. Refresh the page to see your new activated listing types.' , 'epl'),
@@ -258,7 +258,7 @@ function epl_get_admin_option_fields() {
 			'label'		=>	__('Graph Settings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Will be used to calculate bars charts and determine width.' , 'epl'),
+			'help'		=>	__('Will be used to calculate bar charts and determine width.' , 'epl'),
 			'fields'	=>	array(
 				array(
 					'name'	=>	'epl_max_graph_sales_price',

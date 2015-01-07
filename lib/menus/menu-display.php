@@ -185,7 +185,7 @@ function epl_get_admin_option_fields() {
 			'label'		=>	__('Display Options', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('After adding a listing adjust how you want them to display to the user.', 'epl'),
+			'help'		=>	__('After adding a listing adjust how you want them to display to visitors.', 'epl'),
 			'fields'	=>	array(
 				array(
 					'name'	=>	'display_bond',
@@ -206,7 +206,7 @@ function epl_get_admin_option_fields() {
 						1	=>	__('Yes', 'epl'),
 						0	=>	__('No', 'epl')
 					),
-					'help'	=>	__('When enabled, images uploaded to the listing using the Add Media button will automatically display on the single listing.', 'epl')
+					'help'	=>	__('When enabled, any images uploaded to the listing using the WordPress Add Media button will automatically attach and display on the single listing page.', 'epl')
 				),
 
 				array(
@@ -229,17 +229,7 @@ function epl_get_admin_option_fields() {
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_property_card_excerpt_length,
 					'help'	=>	__('This is ignored when using manual excerpts.', 'epl')
-				),
-				array(
-					'name'	=>	'listings_masonry',
-					'label'	=>	__('Masonry Effect?', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						1	=>	'On',
-						0	=>	'Off'
-					),
-					'help'	=>	__('Enable jQuery masonry effect when using grid view on listing archive pages.', 'epl')
-				),
+				)
 			)
 		),
 		array(
