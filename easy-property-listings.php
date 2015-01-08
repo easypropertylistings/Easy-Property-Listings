@@ -240,7 +240,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
 			} else {
-				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 			
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
