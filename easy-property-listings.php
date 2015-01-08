@@ -65,7 +65,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {
 				self::$instance = new Easy_Property_Listings;
-				self::$instance->hooks();
 				self::$instance->setup_constants();
 				self::$instance->includes();
 				self::$instance->load_textdomain();
