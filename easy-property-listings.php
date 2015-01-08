@@ -72,73 +72,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				define('EPL_RUNNING',true);
 			}
 			return self::$instance;
-
 		}
-		
-		/**
-		 * Setup the default hooks and actions
-		 *
-		 * @since 1.0
-		 *
-		 * @return void
-		 */
-		private function hooks() {
-			// activation
-			add_action( 'admin_init', array( $this, 'check_installed_extensions_compatibility' ) );
-		}
-		
-		/**
-		 * Check if all installed extensions are compatible with current version of the plugin
-		 * @access public
-		 * @since 1.3.1
-		 * @return void
-		 */
-		function check_installed_extensions_compatibility() {
-			$outdated = array();
-			$activated_plugins = wp_get_active_and_valid_plugins();
-			foreach($activated_plugins as $activated_plugin) {
-			
-				$plugin_data = get_plugin_data($activated_plugin);
-				$compatible_extensions = $this->compatible_extensions ();
-				if(array_key_exists($plugin_data['Name'],$compatible_extensions)) {
-					if (version_compare($plugin_data['Version'], $compatible_extensions[$plugin_data['Name']]) >= 0) {
-						// extension is compatible with current version of epl
-					} else {
-						$outdated[$plugin_data['Name']] = $plugin_data['Version'];
-					}
-				}
-			}
-			if(count($outdated)>0) {
-				// is this plugin active?
-				if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
-			 		// unset activation notice
-			 		unset( $_GET[ 'activate' ] );
-			 		// display notice
-				}
-				
-			}
-			update_option('epl_outdated_extensions',$outdated);
-
-		}
-
-		function compatible_extensions () {
-			$extensions = array(
-				'Easy Property Listings - Listing Alerts'					=>	'1.0.1',
-				'Easy Property Listings - Listing Unlimited'				=>	'1.1',
-				'Easy Property Listings - Location Profiles'				=>	'1.1.6',
-				'Easy Property Listings - 1Form Integration'				=>	'1.1.2',
-				'Easy Property Listings - Advanced Mapping'					=>	'1.1.6',
-				'Easy Property Listings - Award Manager'					=>	'1.1.1',
-				'Easy Property Listings - Business Directory'				=>	'1.1.3',
-				'Easy Property Listings - Inspect Real Estate'				=>	'1.1.2',
-				'Easy Property Listings - Listing Templates'				=>	'1.2',
-				'Easy Property Listings - Market Research'					=>	'1.0.0',
-				'Easy Property Listings - Staff Directory'					=>	'1.2',
-				'Easy Property Listings - Testimonial Management'			=>	'1.1.4',
-			);
-			return apply_filters('epl_compatible_extensions',$extensions);
-		}
-		
 		
 		/*
 		 * Setup plugin constants
