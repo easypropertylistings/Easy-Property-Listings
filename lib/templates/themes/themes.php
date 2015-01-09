@@ -18,11 +18,7 @@ function epl_load_core_templates($template) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT;
 	}
 	$post_tpl	=	'';
-<<<<<<< HEAD
-	$epl_posts 	= array('property','land', 'commercial', 'business', 'commercial_land','rental','rural');
-=======
 	$epl_posts 	= array( 'property' , 'land' , 'rental' , 'rural' , 'commercial' , 'business' , 'commercial_land' );
->>>>>>> a39f8a6976c2e9d9cafe8bdf4d76537fa8c83521
 	
 	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
 	
