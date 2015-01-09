@@ -18,7 +18,7 @@ function epl_load_core_templates($template) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT;
 	}
 	$post_tpl	=	'';
-	$epl_posts 	= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+	$epl_posts 	= array('property','land', 'commercial', 'business', 'commercial_land','rental','rural');
 	
 	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
 	
@@ -57,6 +57,7 @@ function epl_load_core_templates($template) {
 			$template	=	$template_path . $common_tpl;
 		}
 	}
+	
 	return $template;
 
 }
