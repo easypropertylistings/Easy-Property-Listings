@@ -102,7 +102,7 @@ function epl_property_sold_leased() {
 }
 
 // superglobal object $property for posts 'property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural'
-function reset_property_object( $post ) {
+function epl_reset_property_object( $post ) {
 	$epl_author 	= new Author_Meta($post->post_author);
 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
 	if(in_array($post->post_type,$epl_posts)){
@@ -110,10 +110,10 @@ function reset_property_object( $post ) {
 		$property 		= new Property_Meta($post);
 	}
 }
-add_action( 'the_post', 'reset_property_object' );
+add_action( 'the_post', 'epl_reset_property_object' );
 
 // make $property global available for hooks before the_post
-function create_property_object() {
+function epl_create_property_object() {
 	global $post,$property,$epl_author;
 	$epl_author = new Author_Meta($post->post_author);
 	if(is_null($post)){
@@ -125,7 +125,7 @@ function create_property_object() {
 	}
 }
 
-add_action( 'wp', 'create_property_object' );
+add_action( 'wp', 'epl_create_property_object' );
 
 // Selecting Card Display Style
 function epl_property_single() {
@@ -1065,3 +1065,26 @@ function epl_switch_views () { ?>
 
 }
 add_action('epl_add_custom_menus','epl_switch_views',1);
+
+/**
+ * Outputs a wrapper div before the first button
+ *
+ * @since easy-property-listings 1.3
+ * @return string
+ */
+function epl_buttons_wrapper_before() {
+	echo '<div class="epl-button-wrapper epl-clearfix">';
+}
+
+/**
+ * Outputs a wrapper div after the last button
+ *
+ * @since easy-property-listings 1.3
+ * @return string
+ */
+function epl_buttons_wrapper_after() {
+	echo '</div>';
+}
+
+add_action('epl_buttons_single_property', 'epl_buttons_wrapper_before' , 1);
+add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
