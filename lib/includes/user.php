@@ -12,11 +12,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Only load in admin
-if( !is_admin() ) {
-	return;
-}
-
 /**
  * Add Additional Contact methods to author pages. These links 
  * are used in the author widgets and profile boxes
@@ -44,7 +39,7 @@ function epl_add_custom_user_profile_fields( $user ) {
 	$position 		= esc_attr( get_the_author_meta( 'position', $user->ID ) );
 	$slogan 		= esc_attr( get_the_author_meta( 'slogan', $user->ID ) );
 	$video 			= get_the_author_meta( 'video', $user->ID );
-	$contact_form 		= get_the_author_meta( 'contact-form', $user->ID ); ?>
+	$contact_form 	= get_the_author_meta( 'contact-form', $user->ID ); ?>
 	
 	<h3><?php _e('Easy Property Listings: Author Box Profile', 'epl'); ?></h3>
 	<p><?php _e('The following details will appear in your author box and widgets.', 'epl'); ?></p>

@@ -1065,3 +1065,26 @@ function epl_switch_views () { ?>
 
 }
 add_action('epl_add_custom_menus','epl_switch_views',1);
+
+/**
+ * Outputs a wrapper div before the first button
+ *
+ * @since easy-property-listings 1.3
+ * @return string
+ */
+function epl_buttons_wrapper_before() {
+	echo '<div class="epl-button-wrapper epl-clearfix">';
+}
+
+/**
+ * Outputs a wrapper div after the last button
+ *
+ * @since easy-property-listings 1.3
+ * @return string
+ */
+function epl_buttons_wrapper_after() {
+	echo '</div>';
+}
+
+add_action('epl_buttons_single_property', 'epl_buttons_wrapper_before' , 1);
+add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
