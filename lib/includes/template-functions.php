@@ -102,7 +102,7 @@ function epl_property_sold_leased() {
 }
 
 // superglobal object $property for posts 'property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural'
-function reset_property_object( $post ) {
+function epl_reset_property_object( $post ) {
 	$epl_author 	= new Author_Meta($post->post_author);
 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
 	if(in_array($post->post_type,$epl_posts)){
@@ -110,10 +110,10 @@ function reset_property_object( $post ) {
 		$property 		= new Property_Meta($post);
 	}
 }
-add_action( 'the_post', 'reset_property_object' );
+add_action( 'the_post', 'epl_reset_property_object' );
 
 // make $property global available for hooks before the_post
-function create_property_object() {
+function epl_create_property_object() {
 	global $post,$property,$epl_author;
 	$epl_author = new Author_Meta($post->post_author);
 	if(is_null($post)){
@@ -125,7 +125,7 @@ function create_property_object() {
 	}
 }
 
-add_action( 'wp', 'create_property_object' );
+add_action( 'wp', 'epl_create_property_object' );
 
 // Selecting Card Display Style
 function epl_property_single() {
@@ -416,11 +416,26 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 
 }
 
+function epl_property_get_the_full_address(){
+	global $property;
+	
+		$address = '';
+		$address .= $property->get_property_meta('property_address_sub_number') . '/'; 
+		$address .= $property->get_property_meta('property_address_street_number') . ' '; 
+		$address .= $property->get_property_meta('property_address_street') . ' '; 
+		$address .= $property->get_property_meta('property_address_suburb') . ', '; 
+		$address .= $property->get_property_meta('property_address_state') . ' '; 
+		$address .= $property->get_property_meta('property_address_postal_code'); 
+	
+	return $address;
+	
+}
+
 /*=== Callback functions for template hooks ====*/
 
 /**
-	@hooked epl_property_title
-	@hooked property_tab_address
+ * @hooked epl_property_title
+ * @hooked property_tab_address
 **/
 
 function epl_property_the_address(){
@@ -484,8 +499,8 @@ function epl_property_suburb () {
 add_action('epl_property_suburb','epl_property_suburb');
 
 /**
-	@hooked property_price
-	@hooked property_price_content
+ * @hooked property_price
+ * @hooked property_price_content
 **/
 function epl_property_price () {
 	echo epl_get_property_price ();
@@ -494,8 +509,8 @@ add_action('epl_property_price','epl_property_price');
 add_action('epl_property_price_content','epl_property_price');
 
 /** 
-	@hooked property_price
-	@hooked property_price_content
+ * @hooked property_price
+ * @hooked property_price_content
 **/
 function epl_get_property_icons() {
 	global $property;
@@ -517,7 +532,7 @@ function epl_get_property_bb_icons() {
 }
 
 /** 
-	@hooked property_land_category
+ * @hooked property_land_category
 **/
 function epl_property_land_category(){
 	global $property;
@@ -526,7 +541,7 @@ function epl_property_land_category(){
 add_action('epl_property_land_category','epl_property_land_category');
 
 /** 
-	@hooked property_commercial_category
+ * @hooked property_commercial_category
 **/
 function epl_property_commercial_category(){
 	global $property;
@@ -540,19 +555,19 @@ function epl_property_commercial_category(){
 add_action('epl_property_commercial_category','epl_property_commercial_category');
 
 /** 
-	@hooked property_available_dates
+ * @hooked property_available_dates
 **/
 function epl_property_available_dates() {
 	global $property;
 	if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) { 
 		// Rental Specifics
-		echo '<div class="property-meta date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
+		echo '<div class="property-meta date-available">'.__('Available from', 'epl').' ', $property->get_property_available() , '</div>';
 	}
 }
 add_action('epl_property_available_dates','epl_property_available_dates');
 
 /** 
-	@hooked property_inspection_times
+ * @hooked property_inspection_times
 **/
 function epl_property_inspection_times(){
 	global $property;
@@ -569,7 +584,7 @@ function epl_property_inspection_times(){
 add_action('epl_property_inspection_times','epl_property_inspection_times');
 
 /** 
-	@hooked the_property_heading
+ * @hooked the_property_heading
 **/
 function epl_property_heading(){
 	global $property;
@@ -578,7 +593,7 @@ function epl_property_heading(){
 add_action('epl_property_heading','epl_property_heading');
 
 /** 
-	@hooked property_secondary_heading
+ * @hooked property_secondary_heading
 **/
 function epl_property_secondary_heading() {
 	global $property;
@@ -597,7 +612,7 @@ function epl_property_category() {
 	echo $property->get_property_category();
 }
 /** 
-	@hooked property_after_content
+ * @hooked property_after_content
 **/
 function epl_property_content_after() {
 	global $property;
@@ -613,7 +628,7 @@ function epl_property_content_after() {
 add_action('epl_property_content_after','epl_property_content_after');
 
 /** 
-	@hooked property_tab_section
+ * @hooked property_tab_section
 **/
 function epl_property_tab_section() {
 	global $property;
@@ -713,7 +728,7 @@ function epl_property_tab_section() {
 add_action('epl_property_tab_section','epl_property_tab_section');
 
 /** 
-	@hooked property_after_tab_section
+ * @hooked property_after_tab_section
 **/
 function epl_property_tab_section_after() {
 	global $property;
@@ -1050,3 +1065,26 @@ function epl_switch_views () { ?>
 
 }
 add_action('epl_add_custom_menus','epl_switch_views',1);
+
+/**
+ * Outputs a wrapper div before the first button
+ *
+ * @since easy-property-listings 1.3
+ * @return string
+ */
+function epl_buttons_wrapper_before() {
+	echo '<div class="epl-button-wrapper epl-clearfix">';
+}
+
+/**
+ * Outputs a wrapper div after the last button
+ *
+ * @since easy-property-listings 1.3
+ * @return string
+ */
+function epl_buttons_wrapper_after() {
+	echo '</div>';
+}
+
+add_action('epl_buttons_single_property', 'epl_buttons_wrapper_before' , 1);
+add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
