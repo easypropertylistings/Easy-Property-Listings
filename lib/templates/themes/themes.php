@@ -58,9 +58,6 @@ function epl_load_core_templates($template) {
 			$template	=	$template_path . $common_tpl;
 		}
 	}
-	echo "<pre>";
-	print_r($find);
-	die;
 	return $template;
 
 }

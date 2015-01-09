@@ -115,7 +115,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_LIB' ) ) {
 				define( 'EPL_PATH_LIB', EPL_PLUGIN_PATH . 'lib/' );
 			}
-			
+			if ( ! defined( 'EPL_PATH_UPDATES' ) ) {
+				define( 'EPL_PATH_UPDATES', EPL_PATH_LIB . 'updates/' );
+			}
 			if ( ! defined( 'EPL_PATH_TEMPLATES' ) ) {
 				define( 'EPL_PATH_TEMPLATES', EPL_PATH_LIB . 'templates/' );
 			}

@@ -99,10 +99,11 @@ function epl_install() {
 
 	// Add Upgraded From Option
 	$current_version = get_option( 'epl_version' );
-	if ( $current_version ) {
+	if ( $current_version != '' ) {
 		update_option( 'epl_version_upgraded_from', $current_version );
+			
 	} else {
-		$epl_data = get_plugin_data(EPL_PLUGIN_PATH);
+		$epl_data = get_plugin_data(EPL_PLUGIN_PATH.'/easy-property-listings.php');
 		update_option( 'epl_version', $epl_data['Version'] );
 	}
 
@@ -156,4 +157,15 @@ function epl_after_install() {
 	do_action( 'epl_after_install', $activation_pages );
 }
 add_action( 'admin_init', 'epl_after_install' );
+
+function epl_plugin_updates() {
+
+	$current_version = get_option( 'epl_version' );
+	if ( version_compare( $current_version, '1.3', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-1.3.1.php' );
+	}
+}
+add_action( 'admin_init', 'epl_plugin_updates' );
+
+
 
