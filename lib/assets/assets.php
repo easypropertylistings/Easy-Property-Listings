@@ -17,15 +17,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_admin_enqueue_scripts($screen) {
 	$current_dir_path = plugins_url('', __FILE__ );
-	wp_enqueue_script( 'jquery-datetime-picke',$current_dir_path . '/js/jquery-datetime-picker.js', array('jquery') );
-	wp_enqueue_style('jquery-ui-style',  $current_dir_path . '/css/jquery-ui.min.css');
-	wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin.css' );
-	wp_enqueue_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts.js', array('jquery') );
 	
-	if( $screen == 'post.php' || $screen == 'post-new.php' || $screen='toplevel_page_epl-general' ) {
-		wp_enqueue_style( 'epl-jquery-validation-engine-style', $current_dir_path . '/css/validationEngine-jquery.css' );
-		wp_enqueue_script( 'epl-jquery-validation-engine-lang-scripts', $current_dir_path . '/js/jquery-validationEngine-en.js', array('jquery') );
-		wp_enqueue_script( 'epl-jquery-validation-engine-scripts', $current_dir_path . '/js/jquery-validationEngine.js', array('jquery') );
+	wp_enqueue_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts.js', array('jquery') );
+	wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin.css' );
+	
+	if( $screen == 'post.php' || $screen == 'post-new.php' || $screen == 'toplevel_page_epl-general' ) {
+		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin.css' );
+		
+		wp_enqueue_style(	'epl-jquery-validation-engine-style', $current_dir_path . '/css/validationEngine-jquery.css' );
+		wp_enqueue_script(	'epl-jquery-validation-engine-lang-scripts', $current_dir_path . '/js/jquery-validationEngine-en.js', array('jquery') );
+		wp_enqueue_script(	'epl-jquery-validation-engine-scripts', $current_dir_path . '/js/jquery-validationEngine.js', array('jquery') );
+		
+		wp_enqueue_script(	'jquery-datetime-picker',$current_dir_path . '/js/jquery-datetime-picker.js', array('jquery') );
+		wp_enqueue_style(	'jquery-ui-datetime-picker-style',  $current_dir_path . '/css/jquery-ui.min.css');
 	}	
 }
 add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
