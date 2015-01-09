@@ -57,6 +57,7 @@ function epl_load_core_templates($template) {
 			$template	=	$template_path . $common_tpl;
 		}
 	}
+	
 	return $template;
 
 }
