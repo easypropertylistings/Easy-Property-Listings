@@ -8,12 +8,14 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+
 ?>
 
 <!-- Author Box Container Tabbed -->
 <div id="epl-box<?php echo $epl_author->author_id; ?>" class="epl-author-box">		
 	<ul class="author-tabs">
 		<?php
+			
 			$author_tabs = epl_author_tabs();
 			$counter = 1;
 			foreach($author_tabs as $author_tab){
