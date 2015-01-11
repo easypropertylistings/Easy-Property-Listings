@@ -103,11 +103,11 @@ function epl_property_sold_leased() {
 
 // superglobal object $property for posts 'property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural'
 function epl_reset_property_object( $post ) {
-	$epl_author 	= new Author_Meta($post->post_author);
+	$epl_author 	= new EPL_Author_meta($post->post_author);
 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
 	if(in_array($post->post_type,$epl_posts)){
 		global $property,$epl_author;
-		$property 		= new Property_Meta($post);
+		$property 		= new EPL_Property_Meta($post);
 	}
 }
 add_action( 'the_post', 'epl_reset_property_object' );
@@ -115,13 +115,13 @@ add_action( 'the_post', 'epl_reset_property_object' );
 // make $property global available for hooks before the_post
 function epl_create_property_object() {
 	global $post,$property,$epl_author;
-	$epl_author = new Author_Meta($post->post_author);
+	$epl_author = new EPL_Author_meta($post->post_author);
 	if(is_null($post)){
 		return;
 	}
 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
 	if(in_array($post->post_type,$epl_posts)){
-		$property 	= new Property_Meta($post);
+		$property 	= new EPL_Property_Meta($post);
 	}
 }
 
@@ -304,7 +304,7 @@ function epl_property_author_box() {
             if ( '' != $property_second_agent ) {
                 $second_author = get_user_by( 'login' , $property_second_agent );
                 if($second_author !== false){
-                        $epl_author = new Author_Meta($second_author->ID);
+                        $epl_author = new EPL_Author_meta($second_author->ID);
                         epl_get_template_part('content-author-box.php');
 
                 }
@@ -315,8 +315,8 @@ function epl_property_author_box() {
 
 function epl_reset_post_author() {
 	global $post, $epl_author;
-	if(class_exists('Author_Meta')) {
-		$epl_author = new Author_Meta($post->post_author);
+	if(class_exists('EPL_Author_meta')) {
+		$epl_author = new EPL_Author_meta($post->post_author);
 	}
 	
 }
@@ -405,7 +405,7 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 		if ( '' != $property_second_agent ) {
 			$second_author = get_user_by( 'login' , $property_second_agent );
 			if($second_author !== false){
-					$epl_author = new Author_Meta($second_author->ID);
+					$epl_author = new EPL_Author_meta($second_author->ID);
 					include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php');
 
 			}
