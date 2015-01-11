@@ -4,7 +4,7 @@
 *	@since version 1.3
 */
 
-class Author_Meta {
+class EPL_Author_Meta {
 	
 	private $author_id;
 	private $name;

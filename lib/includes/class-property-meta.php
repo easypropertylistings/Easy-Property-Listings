@@ -1,5 +1,5 @@
 <?php
-class Property_Meta {
+class EPL_Property_Meta {
 
 	static $instance;
 	public $post;
