@@ -24,9 +24,10 @@ function epl_load_core_templates($template) {
 	
 		$common_tpl		= 'single-listing.php';
 		$post_tpl 		= 'single-'.get_post_type().'.php';
-		$find[] 		=  $post_tpl;
+		$find[] 		= $post_tpl;
 		$find[] 		= epl_template_path() . $post_tpl;
 		$find[] 		=  $common_tpl;
+		$find[] 		= $common_tpl;
 		$find[] 		= epl_template_path() . $common_tpl;
 		
 	} elseif ( is_post_type_archive( $epl_posts ) ) {

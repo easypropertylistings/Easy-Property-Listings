@@ -1,5 +1,5 @@
 <?php
-class Property_Meta {
+class EPL_Property_Meta {
 
 	static $instance;
 	public $post;
@@ -488,7 +488,7 @@ class Property_Meta {
 		if($this->get_property_meta('property_bathrooms') == '')
 			return;
 		$bath['i'] = '<span title="'.__('Bathrooms', 'epl').'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>'; 
-		$bath['d'] = $this->get_property_meta('property_bedrooms') . ' '.__('bath', 'epl').' ';
+		$bath['d'] = $this->get_property_meta('property_bathrooms') . ' '.__('bath', 'epl').' ';
 		$bath['l'] = '<li class="bathrooms">' . $this->get_property_meta('property_bathrooms') . ' '.__('bath', 'epl').'</li>';
 		return $bath[$returntype];
 	}
