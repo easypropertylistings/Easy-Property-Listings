@@ -163,6 +163,7 @@ function epl_plugin_updates() {
 	$current_version = get_option( 'epl_version' );
 	if ( version_compare( $current_version, '1.3', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-1.3.1.php' );
+		update_option( 'epl_version' ,$current_version);
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
