@@ -115,10 +115,10 @@ add_action( 'the_post', 'epl_reset_property_object' );
 // make $property global available for hooks before the_post
 function epl_create_property_object() {
 	global $post,$property,$epl_author;
-	$epl_author = new EPL_Author_meta($post->post_author);
 	if(is_null($post)){
 		return;
 	}
+	$epl_author = new EPL_Author_meta($post->post_author);
 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
 	if(in_array($post->post_type,$epl_posts)){
 		$property 	= new EPL_Property_Meta($post);
