@@ -432,14 +432,25 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							<div class="epl-search-row-third epl-search-left-third fm-block-third">
 								<label for="property_land_area_min" class="fm-label"><?php _e('Land Min', 'epl'); ?></label>
 								<div class="field">
+									<?php 
+										if(has_filter('epl_property_land_area_min')) {
+											apply_filters('epl_property_land_area_min','');
+										} else {?>
 									<input type="number" name="property_land_area_min" id="property_land_area_min" class="in-field field-width" value="<?php echo (isset($property_land_area_min) && $property_land_area_min != '')? intval($property_land_area_min) : ''; ?>"/>
+									<?php } ?>
 								</div>
 							</div>
 							
 							<div class="epl-search-row-third epl-search-middle-third fm-block-third">
 								<label for="property_land_area_max" class="fm-label"><?php _e('Max', 'epl'); ?></label>
 								<div class="field">
+								<?php 
+										if(has_filter('epl_property_land_area_max')) {
+											apply_filters('epl_property_land_area_max','');
+										} else {?>
+									
 									<input type="number"  name="property_land_area_max" id="property_land_area_max" class="in-field field-width" value="<?php echo (isset($property_land_area_max) && $property_land_area_max != '') ? intval($property_land_area_max) : ''; ?>"/>
+									<?php } ?>
 								</div>
 							</div>
 							
@@ -479,14 +490,24 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							<div class="epl-search-row-third epl-search-left-third fm-block-third">
 								<label for="property_building_area_min" class="fm-label"><?php _e('Building Min', 'epl'); ?></label>
 								<div class="field">
+									<?php
+									if(has_filter('epl_property_building_area_min')) {
+											apply_filters('epl_property_building_area_min','');
+										} else {?>
 									<input type="number" name="property_building_area_min" id="property_building_area_min" class="in-field field-width" value="<?php echo (isset($property_building_area_min) && $property_building_area_min != '') ? intval($property_building_area_min) : ''; ?>"/>
+									<?php } ?>
 								</div>
 							</div>
 							
 							<div class="epl-search-row-third epl-search-middle-third fm-block-third">
 								<label for="property_building_area_max" class="fm-label"><?php _e('Max', 'epl'); ?></label>
 								<div class="field">
+									<?php
+									if(has_filter('epl_property_building_area_max')) {
+											apply_filters('epl_property_building_area_max','');
+										} else {?>
 									<input type="number"  name="property_building_area_max" id="property_Building_area_max" class="in-field field-width" value="<?php echo (isset($property_building_area_max) && $property_building_area_max != '') ? intval($property_building_area_max) : ''; ?>"/>
+									<?php } ?>
 								</div>
 							</div>
 							
