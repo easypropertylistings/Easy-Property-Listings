@@ -19,7 +19,7 @@ function epl_shortcode_googlemap_callback($atts, $content = null) {
 		'zoom' => '12',
 		'q' => ''
 	), $atts) );
-	
+
 	if(!empty($q)) {
 		return '<div class="epl-tab-section"><iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?q='.$q.'&amp;output=embed&amp;&z='.$zoom.'"></iframe></div>';
 	}
