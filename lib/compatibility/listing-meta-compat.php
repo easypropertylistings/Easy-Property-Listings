@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
  * Function to retrieve property or rental custom fields.
  */
@@ -201,6 +201,7 @@ $property_address 			= $property_address_street . ', ' . $property_address_subur
 $price_sticker	 			= '';
 $property_category 			= '';
 $property_bedrooms 			= '';
+$property_rooms 			= '';
 $property_bathrooms 		= '';
 $property_toilet 			= '';
 $property_new_construction 	= '';
@@ -269,6 +270,11 @@ if ( 'property' == $post_type || 'rental' == $post_type || 'rural' == $post_type
 	if(isset($meta['property_security_system'])) {
 		if(isset($meta['property_security_system'][0])) {
 			$property_security_system = $meta['property_security_system'][0];
+		}	
+	}
+	if(isset($meta['property_rooms'])) {
+		if(isset($meta['property_rooms'][0])) {
+			$property_rooms = $meta['property_rooms'][0];
 		}	
 	}
 }
@@ -652,6 +658,11 @@ if(isset($property_bathrooms) && $property_bathrooms != 0) {
 	$d_bath = $property_bathrooms . ' '.__('bath', 'epl').' ';
 	$l_bath = '<li class="bathrooms">' . $property_bathrooms . ' '.__('bath', 'epl').'</li>';
 }
+if(isset($property_rooms) && $property_rooms != 0) {
+	$i_rooms = '<span title="'.__('Rooms', 'epl').'" class="icon rooms"><span class="icon-value">' . $property_rooms  . '</span></span>'; 
+	$d_rooms = $property_rooms . ' '.__('rooms', 'epl').' ';
+	$l_rooms = '<li class="rooms">' . $property_rooms . ' '.__('rooms', 'epl').'</li>';
+}
 if(isset($property_parking) && $property_parking != 0) { 
 	$i_park = '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' . $property_parking . '</span></span>';
 }
@@ -977,6 +988,9 @@ $property_icons_full = '';
 if(isset($i_bed)) {
 	$property_icons_full .= $i_bed;
 }
+if(isset($i_room)) {
+	$property_icons_full .= $i_room;
+}
 if(isset($i_bath)) {
 	$property_icons_full .= $i_bath;
 }
@@ -1003,6 +1017,9 @@ if(isset($l_htype)) {
 }
 if(isset($l_bed)) {
 	$the_property_feature_list .= $l_bed;
+}
+if(isset($l_room)) {
+	$the_property_feature_list .= $l_room;
 }
 if(isset($l_bath)) {
 	$the_property_feature_list .= $l_bath;

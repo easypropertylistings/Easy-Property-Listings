@@ -41,6 +41,13 @@ if(!empty($property_bedrooms)) {
 		'compare'	=>	'>='
 	);
 }
+if(!empty($property_rooms)) {
+	$meta_query[] = array(
+		'key'		=>	'property_rooms',
+		'value'		=>	$property_rooms,
+		'compare'	=>	'>='
+	);
+}
 if(!empty($property_bathrooms)) {
 	$meta_query[] = array(
 		'key'		=>	'property_bathrooms',

@@ -26,6 +26,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			'search_house_category'	=>	'on',
 			'search_price'			=>	'on',
 			'search_bed'			=>	'on',
+			'search_rooms'			=>	'on',
 			'search_bath'			=>	'on',
 			'search_car'			=>	'on',
 			'search_other'			=>	'on',
@@ -57,6 +58,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$instance['search_house_category'] = strip_tags($new_instance['search_house_category']);
 		$instance['search_price'] = strip_tags($new_instance['search_price']);
 		$instance['search_bed'] = strip_tags($new_instance['search_bed']);
+		$instance['search_rooms'] = strip_tags($new_instance['search_rooms']);
 		$instance['search_bath'] = strip_tags($new_instance['search_bath']);
 		$instance['search_car'] = strip_tags($new_instance['search_car']);
 		$instance['search_id'] = strip_tags($new_instance['search_id']);
@@ -75,6 +77,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			'search_house_category'		=>	'on',
 			'search_price'			=>	'on',
 			'search_bed'			=>	'on',
+			'search_rooms'			=>	'on',
 			'search_bath'			=>	'on',
 			'search_car'			=>	'on',
 			'search_other'			=>	'on',
@@ -92,6 +95,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$search_house_category	=	esc_attr($instance['search_house_category']);
 		$search_price		=	esc_attr($instance['search_price']);
 		$search_bed		=	esc_attr($instance['search_bed']);
+		$search_rooms		=	esc_attr($instance['search_rooms']);
 		$search_bath		=	esc_attr($instance['search_bath']);
 		$search_car		=	esc_attr($instance['search_car']);
 		$search_id		=	esc_attr($instance['search_id']);
@@ -161,6 +165,10 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		<p>
 			<input id="<?php echo $this->get_field_id('search_bed'); ?>" name="<?php echo $this->get_field_name('search_bed'); ?>" type="checkbox" <?php if(isset($search_bed) && $search_bed == 'on') { echo 'checked="checked"'; } ?> />
 			<label for="<?php echo $this->get_field_id('search_bed'); ?>"><?php _e('Bedroom', 'epl'); ?></label>
+		</p>
+		<p>
+			<input id="<?php echo $this->get_field_id('search_rooms'); ?>" name="<?php echo $this->get_field_name('search_rooms'); ?>" type="checkbox" <?php if(isset($search_rooms) && $search_rooms == 'on') { echo 'checked="checked"'; } ?> />
+			<label for="<?php echo $this->get_field_id('search_rooms'); ?>"><?php _e('Rooms', 'epl'); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id('search_bath'); ?>" name="<?php echo $this->get_field_name('search_bath'); ?>" type="checkbox" <?php if(isset($search_bath) && $search_bath == 'on') { echo 'checked="checked"'; } ?> />

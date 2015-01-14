@@ -31,6 +31,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		'search_house_category'		=>	'on', 	// on or off
 		'search_price'				=>	'on', 	// on or off
 		'search_bed'				=>	'on', 	// on or off
+		'search_room'				=>	'on', 	// on or off
 		'search_bath'				=>	'on', 	// on or off
 		'search_car'				=>	'on', 	// on or off
 		'search_other'				=>	'on',  	// on or off
@@ -295,7 +296,37 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						<?php
 					}
 			
-					if ( $search_bed == 'on' &&  $post_type != 'land' ) { ?>
+					if ( $search_rooms == 'on' &&  $post_type != 'land' ) {  ?>
+						<div class="fm-block bdr-btm">
+								<label for="property_rooms" class="fm-label"><?php _e('Rooms:', 'epl'); ?></label>
+								<div class="field">
+									<select name="property_rooms" id="property_rooms" class="in-field field-width">
+										<option value=""><?php _e('Any', 'epl'); ?></option>
+								
+										<?php
+											$room_arr = array(
+												'1'	=>	'1',
+												'2'	=>	'2',
+												'3'	=>	'3',
+												'4'	=>	'4',
+												'5'	=>	'5',
+											);
+											foreach($room_arr as $k=>$v) {
+												$selected = '';
+												if(isset($property_rooms) && $k == $property_rooms) {
+													$selected = 'selected="selected"';
+												}
+												echo '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+											}
+										?>
+                                                                       </select>
+								</div>
+						</div>
+						<?php
+					}
+				?>
+
+				<?php	if ( $search_bed == 'on' &&  $post_type != 'land' ) { ?>
 						<div class="epl-search-row epl-search-bed fm-block">
 							<div class="epl-search-row-half epl-search-left-half fm-block-half">
 								<label for="property_bedrooms_min" class="fm-label"><?php _e('Bedrooms Min', 'epl'); ?></label>

@@ -123,6 +123,7 @@ if ( is_admin() ) {
 				$baths 						= get_post_meta( $post_id, 'property_bathrooms', true );
 				$land 						= get_post_meta( $post_id, 'property_land_area', true );
 				$land_unit 					= get_post_meta( $post_id, 'property_land_area_unit', true );
+				$rooms  					= get_post_meta( $post_id, 'property_rooms', true );
 				
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
@@ -131,10 +132,11 @@ if ( is_admin() ) {
 				}		
 				
 				echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
-				if ( !empty( $beds ) || !empty( $baths ) ) {
+				if ( !empty( $beds ) || !empty( $baths ) || !empty( $rooms ) ) {
 					echo '<div class="epl_meta_beds_baths">';
 						echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'epl' ) , ' | </span>';
-						echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'epl' ) , '</span>';
+						echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'epl' ) , ' | </span>';
+						echo '<span class="epl_meta_rooms">' , $rooms , ' ' , __( 'Rooms', 'epl' ) , '</span>';
 					echo '</div>';
 				}
 				

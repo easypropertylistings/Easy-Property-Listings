@@ -482,6 +482,16 @@ class EPL_Property_Meta {
 		$bed['l'] = '<li class="bedrooms">' . $this->get_property_meta('property_bedrooms') . ' '.__('bed', 'epl').'</li>';
 		return $bed[$returntype];
 	}
+
+	// property rooms
+	public function get_property_rooms($returntype = 'i') {
+		if($this->get_property_meta('property_rooms') == '')
+			return;
+		$rooms['i'] = '<span title="'.__('Rooms', 'epl').'" class="icon rooms"><span class="icon-value">'. $this->get_property_meta('property_rooms') . '</span></span>'; 
+		$rooms['d'] = $this->get_property_meta('property_rooms') . ' '.__('rooms', 'epl').' ';
+		$rooms['l'] = '<li class="rooms">' . $this->get_property_meta('property_rooms') . ' '.__('rooms', 'epl').'</li>';
+		return $rooms[$returntype];
+	}
 	
 	// property bathrooms
 	public function get_property_bath($returntype = 'i') {

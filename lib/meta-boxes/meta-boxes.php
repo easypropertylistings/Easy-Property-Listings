@@ -277,6 +277,12 @@ function epl_meta_box_init() {
 					'label'		=>	__('House Features', 'epl'),
 					'fields'	=>	array(
 						array(
+							'name'		=>	'property_rooms',
+							'label'		=>	__('Rooms', 'epl'),
+							'type'		=>	'number',
+							'maxlength'	=>	'2'
+						),
+						array(
 							'name'		=>	'property_bedrooms',
 							'label'		=>	__('Bedrooms', 'epl'),
 							'type'		=>	'number',

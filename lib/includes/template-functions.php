@@ -650,6 +650,7 @@ function epl_property_tab_section() {
 							'property_com_parking_comments',
 							'property_com_car_spaces',
 							'property_category',
+							'property_rooms',
 						);
 	foreach($common_features as $common_feature){
 		$the_property_feature_list .= $property->get_additional_features_html($common_feature);
