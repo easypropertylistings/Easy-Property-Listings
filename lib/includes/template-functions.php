@@ -420,7 +420,9 @@ function epl_property_get_the_full_address(){
 	global $property;
 	
 		$address = '';
-		$address .= $property->get_property_meta('property_address_sub_number') . '/'; 
+		if($property->get_property_meta('property_address_sub_number') != '') {
+			$address .= $property->get_property_meta('property_address_sub_number') . '/'; 
+		}
 		$address .= $property->get_property_meta('property_address_street_number') . ' '; 
 		$address .= $property->get_property_meta('property_address_street') . ' '; 
 		$address .= $property->get_property_meta('property_address_suburb') . ', '; 
@@ -1088,3 +1090,55 @@ function epl_buttons_wrapper_after() {
 
 add_action('epl_buttons_single_property', 'epl_buttons_wrapper_before' , 1);
 add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
+
+/**
+* Used to mark home inspection on apple devices 
+*
+**/
+function epl_create_ical_file($start='',$end='',$name='',$description='',$location='') {
+
+     $data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:".date("Ymd\THis\Z",strtotime($start))."\nDTEND:".date("Ymd\THis\Z",strtotime($end))."\nLOCATION:".$location."\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:\nDTSTAMP:".date("Ymd\THis\Z")."\nSUMMARY:".$name."\nDESCRIPTION:".$description."\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
+	     
+	header("Content-type:text/calendar");
+	header('Content-Disposition: attachment; filename="'.$name.'.ics"');
+	Header('Content-Length: '.strlen($data));
+	Header('Connection: close');
+	echo $data;
+	die;
+
+}
+
+function epl_process_event_cal_request () {
+	global $epl_settings;
+	if(isset($_GET['epl_cal_dl']) && (int) $_GET['epl_cal_dl'] == 1 && intval($_GET['propid']) > 0) {
+		if(isset($_GET['cal']) ) { 
+			$type = sanitize_text_field($_GET['cal']);
+			switch($type) {
+				case 'ical':
+					$item = base64_decode($_GET['dt']);
+					if(is_numeric($item[0])) {
+						$post_id	= intval($_GET['propid']) ;
+						$timearr 	= explode(' ',$item);
+						$starttime 	= current($timearr).' '.$timearr[1];
+						$endtime 	= current($timearr).' '.end($timearr);
+						$post		= get_post($post_id);
+						$subject	= $epl_settings['label_home_open'].' - '.get_post_meta($post_id,'property_heading',true);
+						
+						$address = '';
+						if(get_post_meta($post_id,'property_address_sub_number',true) != '') {
+							$address .= $get_post_meta($post_id,'property_address_sub_number',true) . '/'; 
+						}
+						$address .= get_post_meta($post_id,'property_address_street_number',true) . ' '; 
+						$address .= get_post_meta($post_id,'property_address_street',true) . ' '; 
+						$address .= get_post_meta($post_id,'property_address_suburb',true) . ', '; 
+						$address .= get_post_meta($post_id,'property_address_state',true) . ' '; 
+						$address .= get_post_meta($post_id,'property_address_postal_code',true); 
+						
+						epl_create_ical_file($starttime,$endtime,$subject,strip_tags($post->post_content),$address);
+					}
+				break;
+			}
+		}
+	}
+}
+add_action('init','epl_process_event_cal_request');
