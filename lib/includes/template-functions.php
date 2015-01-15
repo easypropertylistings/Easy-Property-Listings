@@ -577,7 +577,7 @@ function epl_property_inspection_times(){
 	if(trim($property_inspection_times) != '') {
 		$label_home_open = $property->get_epl_settings('label_home_open');	
 	?>
-	<div class="home-open">
+	<div class="epl-inspection-times">
 		<?php echo $property_inspection_times; ?>
 	</div>
 	<?php 
