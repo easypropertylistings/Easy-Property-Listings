@@ -206,8 +206,13 @@ function epl_search_pre_get_posts( $query ) {
 		$query->set('paged', $paged);
 		
 		extract($_REQUEST);
-		if(isset($property_id) && intval($property_id) != 0) {
-			$query->set( 'post__in', array(intval($property_id)) );
+		if(isset($property_id) ) {
+			if(is_numeric($property_id)) {
+				$query->set( 'post__in', array(intval($property_id)) );
+			} else {
+				$query->set( 'epl_post_title', sanitize_text_field($property_id) );
+			}
+				
 		}
 		
 		if(isset($post_type) && !empty($post_type)) {
@@ -406,3 +411,15 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		return $return;
 	}
 }
+
+function epl_esc_like ($text) {
+	 return addcslashes( $text, '_%\\' );
+}
+function epl_listings_where( $where, &$wp_query ) {
+    global $wpdb;
+    if ( $epl_post_title = $wp_query->get( 'epl_post_title' ) ) {
+        $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql( epl_esc_like( $epl_post_title ) ) . '%\'';
+    }
+    return $where;
+}
+add_filter( 'posts_where', 'epl_listings_where', 10, 2 );

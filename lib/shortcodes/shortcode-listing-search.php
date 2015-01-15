@@ -86,9 +86,11 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					if ( $search_id == 'on' && $post_type != 'land' ) {
 						?>
 							<div class="epl-search-row epl-search-property-id fm-block">
-								<label for="property_id" class="fm-label"><?php	_e('Search by Property ID', 'epl');	?></label>
+								<label for="property_id" class="fm-label">
+									<?php	echo apply_filters('epl_search_widget_label_property_id',__('Search by Property ID / Address', 'epl'));	?>
+								</label>
 								<div class="field">
-									<input type="text" class="in-field field-width" name="property_id" value="<?php echo (isset($property_id) && $property_id != '')? intval($property_id) : ''; ?>" />
+									<input type="text" class="in-field field-width" name="property_id" value="<?php echo (isset($property_id) && $property_id != '')? sanitize_text_field($property_id) : ''; ?>" />
 								</div>
 							</div>
 						<?php
@@ -96,7 +98,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				?>
 				<div class="epl-search-row epl-search-location fm-block">
 					<?php $label_location = epl_tax_location_label(); ?>
-					<label for="property_location" class="fm-label"><?php _e( $label_location , 'epl'); ?></label>
+					<label for="property_location" class="fm-label">
+						<?php echo apply_filters('epl_search_widget_label_property_location',__( $label_location , 'epl') ); ?>
+					</label>
 					<div class="field">
 							<?php
 								$available_loc_query = "
@@ -124,7 +128,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 									}
 							?>
 							<select name="property_location" id="property_location" class="in-field field-width">
-								<option value=""><?php _e('Any', 'epl'); ?></option>
+								<option value=""><?php echo apply_filters('epl_search_widget_label_any',__('Any', 'epl') ); ?></option>
 					
 							<?php
 									foreach($arr as $k=>$v) {
@@ -143,7 +147,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				<?php
 					if($search_house_category == 'on' && $post_type != 'land') { ?>
 						<div class="epl-search-row epl-search-category fm-block">
-							<label for="property_category" class="fm-label"><?php _e('House Category', 'epl'); ?></label>
+							<label for="property_category" class="fm-label">
+								<?php echo apply_filters('epl_search_widget_label_property_category',__('House Category', 'epl') ); ?>
+							</label>
 							<div class="field">
 								<?php
 									$arr = array();
@@ -161,7 +167,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 									}
 								?>
 								<select name="property_category" id="property_category" class="in-field field-width">
-									<option value=""><?php _e('Any', 'epl'); ?></option>
+									<option value=""><?php echo apply_filters('epl_search_widget_label_any',__('Any', 'epl') ); ?></option>
 					
 									<?php
 										foreach($arr as $k=>$v) {
@@ -256,10 +262,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 			
 						<div class="epl-search-row epl-search-price fm-block">
 							<div class="epl-search-row-half epl-search-left-half fm-block-half">
-								<label for="property_price_from" class="fm-label"><?php _e('Price From', 'epl'); ?></label>
+								<label for="property_price_from" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_price_from',__('Price From', 'epl') ); ?>
+								</label>
 								<div class="field">
 									<select name="property_price_from" id="property_price_from" class="in-field field-width">
-										<option value=""><?php _e('Any', 'epl'); ?></option>
+										<option value=""><?php echo apply_filters('epl_search_widget_label_any',__('Any', 'epl')); ?></option>
 								
 										<?php
 											foreach($prices_arr as $k=>$v) {
@@ -274,10 +282,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 								</div>
 							</div>
 							<div class="epl-search-row-half epl-search-right-half fm-block-half">
-								<label for="property_price_to" class="fm-label"><?php _e('To', 'epl'); ?></label>
+								<label for="property_price_to" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_price_to',__('To', 'epl') ); ?>
+								</label>
 								<div class="field">
 									<select name="property_price_to" id="property_price_to" class="in-field field-width">
-										<option value=""><?php _e('Any', 'epl'); ?></option>
+										<option value=""><?php echo apply_filters('epl_search_widget_label_any',__('Any', 'epl')); ?></option>
 								
 										<?php
 											foreach($prices_arr as $k=>$v) {
@@ -298,10 +308,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					if ( $search_bed == 'on' &&  $post_type != 'land' ) { ?>
 						<div class="epl-search-row epl-search-bed fm-block">
 							<div class="epl-search-row-half epl-search-left-half fm-block-half">
-								<label for="property_bedrooms_min" class="fm-label"><?php _e('Bedrooms Min', 'epl'); ?></label>
+								<label for="property_bedrooms_min" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_bedrooms_min',__('Bedrooms Min', 'epl') ); ?>
+								</label>
 								<div class="field">
 									<select name="property_bedrooms_min" id="property_bedrooms_min" class="in-field field-width">
-										<option value=""><?php _e('Any', 'epl'); ?></option>
+										<option value=""><?php echo apply_filters('epl_search_widget_label_any',__('Any', 'epl')) ?></option>
 								
 										<?php
 											$bed_min_array = array(
@@ -330,10 +342,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 								</div>
 							</div>
 							<div class="epl-search-row-half epl-search-right-half fm-block-half">
-								<label for="property_bedrooms_max" class="fm-label"><?php _e('Max', 'epl'); ?></label>
+								<label for="property_bedrooms_max" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_bedrooms_max',__('Max', 'epl') ); ?>
+								</label>
 								<div class="field">
 									<select name="property_bedrooms_max" id="property_bedrooms_max" class="in-field field-width">
-										<option value=""><?php _e('Any', 'epl'); ?></option>
+										<option value=""><?php  echo apply_filters('epl_search_widget_label_any',__('Any', 'epl')) ?></option>
 								
 										<?php
 											$bed_max_array = array(
@@ -369,10 +383,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					if ( $search_bath == 'on' &&  $post_type != 'land'  ) {
 						$search_row .= '
 							<div class="epl-search-row-half epl-search-left-half epl-search-bath fm-block-half">
-								<label for="property_bathrooms" class="fm-label">'.__('Bathrooms', 'epl').'</label>
+								<label for="property_bathrooms" class="fm-label">'.
+									 apply_filters('epl_search_widget_label_property_bathrooms',__('Bathrooms', 'epl')).
+								'</label>
 								<div class="field">
 									<select name="property_bathrooms" id="property_bathrooms" class="in-field field-width">
-										<option value="">'.__('Any', 'epl').'</option>';
+										<option value="">'. apply_filters('epl_search_widget_label_any',__('Any', 'epl')).'</option>';
 											$bath_array = array(
 												'1'	=>	'1+',
 												'2'	=>	'2+',
@@ -397,10 +413,10 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					if ( $search_car == 'on' &&  $post_type != 'land'  ) {
 						$search_row .= '
 							<div class="epl-search-row-third epl-search-right-half epl-search-parking fm-block-half">
-								<label for="property_carport" class="fm-label">'.__('Car Spaces', 'epl').'</label>
+								<label for="property_carport" class="fm-label">'.apply_filters('epl_search_widget_label_property_carport',__('Car Spaces', 'epl')).'</label>
 								<div class="field">
 									<select name="property_carport" id="property_carport" class="in-field field-width">
-										<option value="">'.__('Any', 'epl').'</option>';
+										<option value="">'.apply_filters('epl_search_widget_label_any',__('Any', 'epl')).'</option>';
 							
 										$parking_array = array(
 											'1'	=>	'1+',
@@ -430,7 +446,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					
 						<div class="epl-search-row epl-search-land-area fm-block">
 							<div class="epl-search-row-third epl-search-left-third fm-block-third">
-								<label for="property_land_area_min" class="fm-label"><?php _e('Land Min', 'epl'); ?></label>
+								<label for="property_land_area_min" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_land_area_min',__('Land Min', 'epl')); ?>
+								</label>
 								<div class="field">
 									<?php 
 										if(has_filter('epl_property_land_area_min')) {
@@ -442,7 +460,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							</div>
 							
 							<div class="epl-search-row-third epl-search-middle-third fm-block-third">
-								<label for="property_land_area_max" class="fm-label"><?php _e('Max', 'epl'); ?></label>
+								<label for="property_land_area_max" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_land_area_max',__('Max', 'epl')); ?>
+								</label>
 								<div class="field">
 								<?php 
 										if(has_filter('epl_property_land_area_max')) {
@@ -455,7 +475,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							</div>
 							
 							<div class="epl-search-row-third epl-search-right-third fm-block-third">
-								<label for="property_land_area_unit" class="fm-label"><?php _e('Area Unit', 'epl'); ?></label>
+								<label for="property_land_area_unit" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_land_area_unit',__('Area Unit', 'epl')); ?>
+								</label>
 								<div class="field">
 									<select name="property_land_area_unit" id="property_land_area_unit" class="in-field field-width">
 								
@@ -488,7 +510,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					
 						<div class="epl-search-row epl-search-building-area fm-block">
 							<div class="epl-search-row-third epl-search-left-third fm-block-third">
-								<label for="property_building_area_min" class="fm-label"><?php _e('Building Min', 'epl'); ?></label>
+								<label for="property_building_area_min" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_building_area_min',__('Building Min', 'epl') ); ?>
+								</label>
 								<div class="field">
 									<?php
 									if(has_filter('epl_property_building_area_min')) {
@@ -500,7 +524,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							</div>
 							
 							<div class="epl-search-row-third epl-search-middle-third fm-block-third">
-								<label for="property_building_area_max" class="fm-label"><?php _e('Max', 'epl'); ?></label>
+								<label for="property_building_area_max" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_building_area_max',__('Max', 'epl') ); ?>
+								</label>
 								<div class="field">
 									<?php
 									if(has_filter('epl_property_building_area_max')) {
@@ -512,7 +538,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							</div>
 							
 							<div class="epl-search-row-third epl-search-right-third fm-block-third">
-								<label for="property_building_area_unit" class="fm-label"><?php _e('Area Unit', 'epl'); ?></label>
+								<label for="property_building_area_unit" class="fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_building_area_unit',__('Area Unit', 'epl') ); ?>
+								</label>
 								<div class="field">
 									<select name="property_building_area_unit" id="property_building_area_unit" class="in-field field-width">
 								
@@ -546,17 +574,23 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						<div class="epl-search-row epl-search-other fm-block">
 							<span class="checkbox">
 								<input type="checkbox" name="property_air_conditioning" id="property_air_conditioning" class="in-field" <?php if(isset($property_air_conditioning) && !empty($property_air_conditioning)) { echo 'checked="checked"'; } ?> />
-								<label for="property_air_conditioning" class="check-label"><?php _e('Air Conditioning', 'epl'); ?></label>
+								<label for="property_air_conditioning" class="check-label">
+									<?php echo apply_filters('epl_search_widget_label_property_air_conditioning',__('Air Conditioning', 'epl') ); ?>
+								</label>
 								<span class="epl-clearfix"></span>
 							</span>
 							<span class="checkbox top-mrgn">
 								<input type="checkbox" name="property_pool" id="property_pool" class="in-field" <?php if(isset($property_pool) && !empty($property_pool)) { echo 'checked="checked"'; } ?> />
-								<label for="property_pool" class="check-label"><?php _e('Pool', 'epl'); ?></label>
+								<label for="property_pool" class="check-label">
+									<?php echo apply_filters('epl_search_widget_label_property_pool',__('Pool', 'epl') ); ?>
+								</label>
 								<span class="epl-clearfix"></span>
 							</span>
 							<span class="checkbox top-mrgn">
 								<input type="checkbox" name="property_security_system" id="property_security_system" class="in-field" <?php if(isset($property_security_system) && !empty($property_security_system)) { echo 'checked="checked"'; } ?> />
-								<label for="property_security_system" class="check-label"><?php _e('Security System:', 'epl'); ?></label>
+								<label for="property_security_system" class="check-label">
+									<?php echo apply_filters('epl_search_widget_label_property_security_system',__('Security System:', 'epl') ); ?>
+								</label>
 								<span class="epl-clearfix"></span>
 							</span>
 						</div>

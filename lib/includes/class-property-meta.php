@@ -43,7 +43,6 @@ class EPL_Property_Meta {
 				// there are inspection times
 				$inspectarray = array();
 				foreach ($list as $num => $item) {
-				
 					if(is_numeric($item[0])) {
 						$timearr = explode(' ',$item);
 						$endtime = current($timearr).' '.end($timearr);
@@ -68,7 +67,13 @@ class EPL_Property_Meta {
 					// unordered list for multiple inspection times
 					foreach ($inspectarray as $key => $element) {
 						if(!empty($element)) {
-							$return .= "<li class='home-open-date'>" . htmlspecialchars($element) . "</li>";
+							$return .= "<li class='home-open-date'>
+											<a 
+												class ='epl_inspection_calendar'
+												href='".get_bloginfo('url')."?epl_cal_dl=1&cal=ical&dt=".base64_encode(htmlspecialchars($element))."&propid=".$this->post->ID."' >" 
+													. htmlspecialchars($element) ."
+											</a>
+										</li>";
 						}
 					}
 					if(!empty($return)) {
@@ -77,7 +82,13 @@ class EPL_Property_Meta {
 
 				} else {
 					// no lists for single inspection time
-					$return = htmlspecialchars(current($inspectarray));
+					$return = "
+						<a 
+							class ='epl_inspection_calendar'
+							href='".get_bloginfo('url')."?epl_cal_dl=1&cal=ical&dt=".base64_encode(htmlspecialchars($element))."&propid=".$this->post->ID."' >" 
+								. htmlspecialchars($element) ."
+						</a>
+					";
 				}
 				return apply_filters('epl_property_inspection_time', $return);
 			}
