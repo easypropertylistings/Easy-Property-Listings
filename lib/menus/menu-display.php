@@ -25,6 +25,13 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 				}
 
 				$epl_settings = get_option('epl_settings');
+				
+				if( isset($field['default']) ) {
+					if($_REQUEST[ $field['name'] ] == '') {
+						$_REQUEST[ $field['name'] ] = $field['default'];
+					}
+				}
+
 				$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
 				update_option('epl_settings', $epl_settings);
 			}
@@ -39,10 +46,10 @@ $epl_settings = get_option('epl_settings');
 ?>
 
 <div class="wrap">
-	<h2><?php _e('Display and Template Options', 'epl'); ?></h2>
-	<p><?php _e('Change the page layouts options for Easy Property Listings', 'epl'); ?></p>
+	<h2><?php _e('Display Options', 'epl'); ?></h2>
+	<p><?php _e('Adjust the display options, customise your labels and adjust added extension settings.', 'epl'); ?></p>
 	<div id="epl-menu-display" class="epl-content">
-		<form action="" method="post">
+		<form action="" method="post" class="epl-general-form">
 			<div class="epl-fields epl-menu-page">
 				<?php
 					if(!empty($fields)) { ?>
@@ -54,7 +61,7 @@ $epl_settings = get_option('epl_settings');
 								<div id="epl-<?php echo $field_id; ?>" class="epl-field epl-menu-section epl-<?php echo $field_class; ?>">
 										
 									<h3 class="epl-section-title"><?php _e($field_group['label'], 'epl'); ?></h3>
-									
+									<p class=""><?php if(isset($field_group['help'])) _e($field_group['help'], 'epl'); ?></p>
 									<div class="epl-section-content">
 										<?php foreach($field_group['fields'] as $field ) { ?>
 											<div class="epl-field">
@@ -112,7 +119,9 @@ $epl_settings = get_option('epl_settings');
 																	}
 																}
 																break;
-
+															case 'number':
+																	echo '<input class="validate[custom[onlyNumber]]" type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.intval($val).'" />';
+																	break;
 															default:
 																echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 														}
@@ -141,6 +150,9 @@ $epl_settings = get_option('epl_settings');
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
+		<div class="epl-content-sidebar">
+			<?php epl_admin_sidebar (); ?>
+		</div>
 	</div>
 </div><?php
 
@@ -170,52 +182,53 @@ function epl_get_admin_option_fields() {
 
 	$fields = array(
 		array(
-			'label'		=>	__('General', 'epl'),
+			'label'		=>	__('Display Options', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
+			'help'		=>	__('After adding a listing adjust how you want them to display to visitors.', 'epl'),
 			'fields'	=>	array(
-
 				array(
 					'name'	=>	'display_bond',
-					'label'	=>	__('Bond Amount Display (Rental Listing Type)', 'epl'),
+					'label'	=>	__('Rental Bond/Deposit?', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	__('On', 'epl'),
 						0	=>	__('Off', 'epl')
 					),
-					'help'	=>	__('Hide or show the bond on rental properties', 'epl')
+					'help'	=>	__('Display the bond/deposit on rental listings.', 'epl')
 				),
 
 				array(
 					'name'	=>	'display_single_gallery',
-					'label'	=>	__('Automatically display gallery of attached images on the single property page?', 'epl'),
+					'label'	=>	__('Automatically display image gallery?', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	__('Yes', 'epl'),
 						0	=>	__('No', 'epl')
 					),
-					'help'	=>	__('Enable the Gallery on Single Property Pages', 'epl')
+					'help'	=>	__('When enabled, any images uploaded to the listing using the WordPress Add Media button will automatically attach and display on the single listing page.', 'epl')
 				),
 
 				array(
 					'name'	=>	'display_gallery_n',
-					'label'	=>	__('Number of columns on the property image gallery', 'epl'),
+					'label'	=>	__('Number of gallery image columns?', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_gallery_n
 				),
 
 				array(
 					'name'	=>	'display_feature_columns',
-					'label'	=>	__('Number of columns in the property features', 'epl'),
+					'label'	=>	__('Number of columns in the property features?', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_features
 				),
 
 				array(
 					'name'	=>	'display_excerpt_length',
-					'label'	=>	__('Excerpt word length for individual listings on property archive pages unless a manual excerpt is entered.', 'epl'),
+					'label'	=>	__('Number of words to display on the listing archive page?', 'epl'),
 					'type'	=>	'select',
-					'opts'	=>	$opts_epl_property_card_excerpt_length
+					'opts'	=>	$opts_epl_property_card_excerpt_length,
+					'help'	=>	__('This is ignored when using manual excerpts.', 'epl')
 				)
 			)
 		),
@@ -226,27 +239,91 @@ function epl_get_admin_option_fields() {
 			'fields'	=>	array(
 
 				array(
+					'name'	=>	'label_bond',
+					'label'	=>	__('Rental Bond/Deposit (default: Bond)', 'epl'),
+					'type'	=>	'text'
+				),
+				
+				array(
 					'name'	=>	'label_suburb',
-					'label'	=>	__('Suburb/City (default is: Suburb)', 'epl'),
+					'label'	=>	__('Suburb/City (default: Suburb)', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
 					'name'	=>	'label_postcode',
-					'label'	=>	__('Postcode Label (default is: Postcode)', 'epl'),
+					'label'	=>	__('Postcode Label (default: Postcode)', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
 					'name'	=>	'label_home_open',
-					'label'	=>	__('Home Open Label (default is: Home Open)', 'epl'),
+					'label'	=>	__('Home Open Label (default: Home Open)', 'epl'),
 					'type'	=>	'text'
 				),
 
 				array(
+					'name'	=>	'label_new',
+					'label'	=>	__('New Home Label (default: New)', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'new'
+				),
+				
+				array(
 					'name'	=>	'label_poa',
-					'label'	=>	__('No Price Label (default is POA)', 'epl'),
+					'label'	=>	__('No Price Label (default: POA)', 'epl'),
 					'type'	=>	'text'
+				)
+			)
+		),
+		array(
+			'label'		=>	__('Search Widget Tab Labels', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'labels',
+			'help'		=>	__('Customise the tab labels of the EPL - Search Widget.', 'epl'),
+			'fields'	=>	array(
+
+				array(
+					'name'	=>	'widget_label_property',
+					'label'	=>	__('Property', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Property'
+				),
+				array(
+					'name'	=>	'widget_label_land',
+					'label'	=>	__('Land', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Land'
+				),
+				array(
+					'name'	=>	'widget_label_rental',
+					'label'	=>	__('Rental', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Rental'
+				),
+				array(
+					'name'	=>	'widget_label_rural',
+					'label'	=>	__('Rural', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Rural'
+				),
+				array(
+					'name'	=>	'widget_label_commercial',
+					'label'	=>	__('Commercial', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Commercial'
+				),
+				array(
+					'name'	=>	'widget_label_commercial_land',
+					'label'	=>	__('Commercial Land', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Commercial Land'
+				),
+				array(
+					'name'	=>	'widget_label_business',
+					'label'	=>	__('Business', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Business'
 				)
 			)
 		)
