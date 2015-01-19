@@ -227,7 +227,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
-			require_once EPL_PATH_LIB . 'widgets/widget-dashboard-epl-status.php';
 
 			require_once EPL_PATH_LIB . 'includes/class-property-meta.php';
 			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
@@ -240,6 +239,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'menus/menus.php';
 				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
+				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 			
