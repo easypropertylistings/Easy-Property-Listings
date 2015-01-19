@@ -63,7 +63,7 @@ class EPL_Property_Meta {
 				update_post_meta($this->post->ID,'property_inspection_times',$new_inspection_meta);
 				
 				$return =  "";
-				if(count($inspectarray) > 1) {
+				if(count($inspectarray) >= 1) {
 					// unordered list for multiple inspection times
 					foreach ($inspectarray as $key => $element) {
 						if(!empty($element)) {
@@ -80,16 +80,7 @@ class EPL_Property_Meta {
 						$return = '<ul class="home-open-wrapper">'.$return.'</ul>';
 					}
 
-				} else {
-					// no lists for single inspection time
-					$return = "
-						<a 
-							class ='epl_inspection_calendar'
-							href='".get_bloginfo('url')."?epl_cal_dl=1&cal=ical&dt=".base64_encode(htmlspecialchars($element))."&propid=".$this->post->ID."' >" 
-								. htmlspecialchars($element) ."
-						</a>
-					";
-				}
+				} 
 				return apply_filters('epl_property_inspection_time', $return);
 			}
 		}
