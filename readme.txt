@@ -136,60 +136,98 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 1.3: December 9, 2014 =
+= 2.0: January 20, 2015 =
 
 * New: Extension validator.
-* New: Moved listing-meta.php into compatibility folder.
-* New: Global $property variable.
-* New: Property custom meta re-written into class. This was the big change to 1.3 where we completely re-wrote the output of the meta values which are now accessible using global $property variable.
+* New: Depreciated listing-meta.php into compatibility folder.
+* New: Depreciated author-meta.php into compatibility folder.
+* New: Global variables: $property, $epl_author and $epl_settings.
+* New: Added filters for fields and groups in /lib/meta-boxes.php
+* New: Property custom meta re-written into class. This was the big change to 2.0 where we completely re-wrote the output of the meta values which are now accessible using global $property variable and easy template actions.
 * New: Property meta can now can be output using new actions for easy and quick custom template creation.
-* New: API for extensions now support WordPress editor with validation. 
+* New: Reconstructed templates for single, archive & author pages
+* Tweak: Removed unused price script
+* Fix: Fixed warning related to static instance in strict standard modes
+* New: API for extensions now support WordPress editor with validation.
 * New: jQuery date time picker formatting added to improve support for auction and sold listing, support for 30+ languages support.
 * New: Inspection time auto-formats REAXML date eg "13-Dec-2014 11:00am to 11:45am" and will no longer show past inspection times.
 * New: Inspection time support multiple dates written one per line.
-* New: CSS improved with better commenting and size reduction.
+* Tweak: CSS improved with better commenting and size reduction.
 * New: Dashboard widget now lists all listing status so at a glance you can see your property stock.
 * New: Display: To enable grid, list and sorter your custom archive-listing.php template requires the new action hook 'epl_template_before_property_loop' before the WordPress loop.
 * New: Display: Utility hook action hook added 'epl_template_after_property_loop' for future updates.
-* New: Display: List and grid view with optional masonry effect. 
-* New: Display: Sorter added for price high/low and date newest/oldest. 
+* New: Display: List and grid view with optional masonry effect.
+* New: Display: Sorter added for price high/low and date newest/oldest.
 * New: Auction Date formats nicely. EG "Auction Saturday 28th December at 2:00pm".
 * New: Tabbed extensions page support in admin for advanced extensions like "Listing Alerts".
 * New: Multiple author support in Author Box.
-* New: Search Widget now supports multiple listing types, hold Ctrl to enable tabbed front end display. 
-* New: Search Widget Labels are configurable from the Display settings allowing you to set for example: "Property" to "Buy" and "Rental" to "Rent" and use a single widget to search multiple types.
-* New: Search widget and short code supports search by property ID, Land Area and Building Area.
+* New: Search Widget - Supports multiple listing types, hold Ctrl to enable tabbed front end display.
+* New: Search Widget - Labels are configurable from the Display settings allowing you to set for example: "Property" to "Buy" and "Rental" to "Rent" and use a single widget to search multiple types.
+* New: Search Widget and shortcode supports search by property ID, post Title, Land Area and Building Area.
+* New: Search Widget - removed extra fields from land, added labels for each property type to be shown as tab heading in search widget
+* Fix: Search Widget - Optimized total queries due to search widget from 1500 + to ~40
 * New: Author variables accessible using new CLASS.
 * New: Search short code supports array of property types.
-* New: REAXML date format function to format date correctly when using WP All Import Pro. Usage [epl_feedsync_format_date({./@modTime})]. 
+* New: REAXML date format function to format date correctly when using WP All Import Pro. Usage [epl_feedsync_format_date({./@modTime})].
 * New: REAXML Unit and lot formatting function for usage in the title when using WP All Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})].
 * New: Global $epl_settings settings variable adds new default values on plugin update.
 * New: Display: Added customisable label for rental Bond/Deposit.
-* New: Template functions completely re-written and can now be output using hooks.
+* New: Template functions completely re-written and can now be output using actions.
 * New: Added NEW sticker with customisable label and ability to set how long a listing displays the new label.
-* New: Display: jQuery Masonry effect can be enabled from display settings.
+* Tweak: Compatability fixes
 * New: Bar Graph API added.
 * New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 sale) and (2,000 rental).
 * New: Graph visually displays price and status.
-* New: Price graph now appears in admin pages quickly highlighting price and status visually. 
+* New: Price graph now appears in admin pages quickly highlighting price and status visually.
 * New: Meta Fields: Support for unit number, lot number (land).
 * New: South African ZAR currency support.
-
-
-* Tweak: More YouTube URL formats supported.
-* Tweak: Global $epl_author. 
+* Fix: Corrected Commercial Features ID Spelling
+* Tweak: YouTube video src to id function is replaced with better method which handles multiple YouTube video formats including shortened & embedded format
+* New: Adding Sold Date processing
+* Tweak: Updated shortcode templates
+* Tweak: Global $epl_author.
+* Tweak: Fixed content/ into EPL_PATH_TEMPLATES_CONTENT
+* New: Support for older extensions added
+* New: Extension offers in menus general tab
 * Tweak: Renamed user profile options section to "Easy Property Listings: Author Box Profile".
-* Tweak: Added better Bond/Deposit for rentals. 
-* Tweak: author-meta.php depreciated and moved to compatibility directory. Variables globally available using $epl_author variable.
-* Tweak: listing-meta.php depreciated and moved to compatibility directory.  Variables globally available with $property variable.
+* Tweak: Added better Bond/Deposit for rentals labels.
+* Fix: Deprecated author-meta.php in compatibility folder, class-author-meta.php has been created which will be used in place of author-meta.php & its variables in all author templates
+* New: Added template functions for author meta class, modified templates lib/templates/content/content-author-box-simple-card.php lib/templates/content/content-author-box-simple-grav.php lib/templates/content/content-author-box.php to use the template functions based on author meta class instead of variables from author-meta.php
+* New: author-meta.php depreciated and moved to compatibility directory. Variables globally available using $epl_author variable.
+* Tweak: listing-meta.php depreciated and moved to compatibility directory. Variables globally available with $property variable.
 * Tweak: Added "Listing not Found" to default templates when search performed with no results.
 * Tweak: Improved Google maps address output for addresses containing # and /.
-
-
 * Fix: Listing Pages now have better responsive support for small screen devices like iPhone.
 * Fix: Default templates for Genesis and TwentyTwelve now show "Listing Not Found" when a search result returns empty.
 * Fix: Purged translations in epl.pot file.
 * Fix: Search Widget and short code drastically reduces database queries.
+* New: Templates are now able to be saved in active theme folder /easypropertylistings and edited. Plugin will use these first and fall back to plugin if not located in theme folder.
+* Fix: Extensions Notification and checker updated
+* New: updated author templates to use new author meta class
+* Fix: Added prefix to CSS tab-content class. Now epl-tab-content for compatibility.
+* New: Update user.php
+* Tweak: Improved internal documentation and updated screens.
+* Tweak: Improved descriptions on author pages.
+* Tweak: Better permalink flushing on activation, deactivation and install.
+* Tweak: Extensive changes to admin descriptions and labels.
+* Tweak: Optimising the php loading of files and scripts.
+* New: Define EPL_RUNNING added for extensions to check if plugin is active.
+* New: New options added to setting array when plugin is updated.
+* New: Old functions and files moved to plug-in /compatibility folder to ensure old code still works.
+* New: Meta Location Label.
+* New: Service banners on settings page.
+* New: Saving version number so when updating new settings are added.
+* New: iCal functionality for REAXML formatted inspection dates. Futher improvements coming for manual date entry. 
+* New: Extensions options pages now with tabs for easier usage.
+* New: Added ID classes to admin pages and meta fields.
+* New: Filters to adjust land and building sizes from number to select fields.
+* Tweak: Moved old extensions options page to compatibility folder so older extensions still work as expected.
+* New: Search Widget - Added filter for land min & max fields in listing search widget
+* New: Search Widget - Added filter for building min & max fields in listing search widget
+* Fix: For session start effecting certain themes
+* New: Land sizes now allow upto 5 decimal places
+* New: Search Widget - Custom submit label
+* New: Search Widget - Can search by title in property ID / Address field
 
 = 1.2.1: September 23, 2014 =
 * Fix: Search Widget not working on page 2 of archive page in some instances.
