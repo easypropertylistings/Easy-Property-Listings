@@ -25,4 +25,3 @@
 		}
 	}
 	update_option( 'epl_settings', $epl_settings );
-?>
