@@ -36,13 +36,25 @@ function epl_admin_menu() {
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 
 	// Enable Menu if extension requires extension options
-	if ( has_filter( 'epl_extensions_options_filter' ) ) {
+	if ( has_filter( 'epl_extensions_options_filter_new' ) ) {
 		$page_title	= __('Extensions', 'epl');
 		$menu_title	= __('Extensions', 'epl');
 		$menu_slug	= 'epl-extensions';
 		$function	= 'epl_menu_extensions';
 		add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	}
+
+	if ( has_filter( 'epl_extensions_options_filter' ) ) {
+		// show their menu on seperate page
+		$page_title_old	= __('Update Extensions', 'epl');
+		$menu_title_old	= '<span style="color:#ff0000">'.__('Update Extensions', 'epl').'</span>';
+		$menu_slug_old	= 'epl-extensions-old';
+		$function_old	= 'epl_menu_extensions_old';
+		add_submenu_page($main_menu_slug, $page_title_old, $menu_title_old, $capability, $menu_slug_old, $function_old);
+
+	}
+
+
 
 	// Enable Menu if extension requires license options
 	if ( has_filter( 'epl_license_options_filter' ) ) {
@@ -83,6 +95,15 @@ function epl_menu_extensions() {
 	}
 
 	require_once 'menu-extensions.php';
+
+}
+
+function epl_menu_extensions_old() {
+	if(!current_user_can('manage_options')) {
+		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
+	}
+
+	require_once 'menu-extensions-old.php';
 
 }
 

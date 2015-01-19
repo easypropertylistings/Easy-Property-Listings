@@ -49,7 +49,6 @@ function epl_register_custom_post_type_rental() {
 		'query_var'				=>	true,
 		'rewrite'				=>	$rewrite,
 		'menu_icon'				=>	'dashicons-admin-home',
-		//'menu_icon'			=>	plugins_url( 'post-types/icons/home.png' , dirname(__FILE__) ),
 		'capability_type'		=>	'post',
 		'has_archive'			=>	$archives,
 		'hierarchical'			=>	false,
@@ -77,15 +76,15 @@ if ( is_admin() ) {
 	function epl_manage_rental_columns_heading( $columns ) {
 		// Geocode Debug Option
 		$columns = array(
-			'cb' => '<input type="checkbox" />',
-			'property_thumb' => __('Featured Image', 'epl'),
-			'title' => __('Address', 'epl'),
-			'listing' => __('Listing Details', 'epl'),
-			'property_rent' => __('Rent', 'epl'),
-			'geo' => __('Geocoded', 'epl'),
-			'property_status' => __('Status', 'epl'),
-			'author' => __('Agent', 'epl'),
-			'date' => __('Date', 'epl')
+			'cb' 				=> '<input type="checkbox" />',
+			'property_thumb'	=> __('Image', 'epl'),
+			'property_rent'		=> __('Rent', 'epl'),
+			'title'				=> __('Address', 'epl'),
+			'listing'			=> __('Listing Details', 'epl'),
+			'geo'				=> __('Geocoded', 'epl'),
+			'property_status'	=> __('Status', 'epl'),
+			'author'			=> __('Agent', 'epl'),
+			'date'				=> __('Date', 'epl')
 		);
 		
 		$geo_debug = 0;
@@ -118,13 +117,12 @@ if ( is_admin() ) {
 				
 			case 'listing' :
 				/* Get the post meta. */
-				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading = get_post_meta( $post_id, 'property_heading', true );
-				$homeopen = get_post_meta( $post_id, 'property_inspection_times', true );
-			
-				$beds = get_post_meta( $post_id, 'property_bedrooms', true );
-				$baths = get_post_meta( $post_id, 'property_bathrooms', true );
-				
+				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
+				$heading					= get_post_meta( $post_id, 'property_heading', true );
+				$beds						= get_post_meta( $post_id, 'property_bedrooms', true );
+				$baths						= get_post_meta( $post_id, 'property_bathrooms', true );
+				$homeopen 					= get_post_meta( $post_id, 'property_inspection_times', true );
+
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
 				} else {
@@ -141,7 +139,13 @@ if ( is_admin() ) {
 				}
 					
 				if ( !empty( $homeopen) ) {
-					echo '<div class="epl_meta_home_open_label">Open: <span class="epl_meta_home_open">' , $homeopen , '</span></div>';
+					$homeopen = array_filter(explode( "\n", $homeopen ));
+						$homeopen_list =  '<ul class="epl_meta_home_open">';
+						foreach ( $homeopen as $num => $item ) {
+						  $homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
+						}
+						$homeopen_list .= '</ul>';
+					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
 				} 
 			
 				break;
@@ -169,6 +173,35 @@ if ( is_admin() ) {
 					$bond = get_post_meta( $post_id, 'property_bond', true );
 				}
 				
+				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
+					$max_price =$epl_settings['epl_max_graph_rent_price' ];
+				}
+
+				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
+				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
+				
+				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
+					$class = 'bar-under-offer';
+				}elseif ( $property_status == 'Current' ) {
+					$class = 'bar-home-open';
+				}elseif($property_status == 'Sold'){
+					$class = 'bar-home-sold';
+				}elseif($property_status == 'Leased'){
+					$class = 'bar-home-sold';
+				}else{
+					$class = '';
+				}
+				if($sold_price != ''){
+					$barwidth = $sold_price/$max_price * 100;
+				} else {
+					$barwidth = $rent/$max_price * 100;
+				}
+				echo '
+					<div class="epl-price-bar '.$class.'">
+						<span style="width:'.$barwidth.'%"></span>
+					</div>';
+
+
 				/* If no duration is found, output a default message. */
 				if ( empty( $rent) )
 					echo ''; //'<strong>'.__( 'No Rent Set', 'epl' ).'</strong>';
