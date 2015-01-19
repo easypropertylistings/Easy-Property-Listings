@@ -277,43 +277,98 @@ class EPL_Welcome {
 			
 			<div class="changelog">
 				<div class="feature-section">
-					<h4><?php _e( 'Full change log of version 1.3', 'epl' );?></h4>
+					<h4><?php _e( 'Full change log of version 2.0', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Extension validator.', 'epl' );?></li>
-						<li><?php _e( 'New: Moved listing-meta.php into compatibility folder.', 'epl' );?></li>
-						<li><?php _e( 'New: Global $property variable.', 'epl' );?></li>
-						<li><?php _e( 'New: Property custom meta re-written into class. This was the big change to 1.3 where we completely re-wrote the output of the meta values which are now accessible using global $property variable.', 'epl' );?></li>
+						<li><?php _e( 'New: Depreciated listing-meta.php into compatibility folder.', 'epl' );?></li>
+						<li><?php _e( 'New: Depreciated author-meta.php into compatibility folder.', 'epl' );?></li>
+						<li><?php _e( 'New: Global variables: $property, $epl_author and $epl_settings.', 'epl' );?></li>
+						<li><?php _e( 'New: Added filters for fields and groups in /lib/meta-boxes.php', 'epl' );?></li>
+						<li><?php _e( 'New: Property custom meta re-written into class. This was the big change to 2.0 where we completely re-wrote the output of the meta values which are now accessible using global $property variable and easy template actions.', 'epl' );?></li>
 						<li><?php _e( 'New: Property meta can now can be output using new actions for easy and quick custom template creation.', 'epl' );?></li>
+						<li><?php _e( 'New: Reconstructed templates for single, archive & author pages', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Removed unused price script', 'epl' );?></li>
+						<li><?php _e( 'Fix: Fixed warning related to static instance in strict standard modes', 'epl' );?></li>
 						<li><?php _e( 'New: API for extensions now support WordPress editor with validation.', 'epl' );?></li>
 						<li><?php _e( 'New: jQuery date time picker formatting added to improve support for auction and sold listing, support for 30+ languages support.', 'epl' );?></li>
-						<li><?php _e( 'New: Inspection time auto-formats REAXML date eg "13-Dec-2014 11:00am to 11:45am" and will no longer show past inspection times.', 'epl' );?></li>
+						<li><?php _e( 'New: Inspection time auto-formats REAXML date eg [13-Dec-2014 11:00am to 11:45am] and will no longer show past inspection times.', 'epl' );?></li>
 						<li><?php _e( 'New: Inspection time support multiple dates written one per line.', 'epl' );?></li>
-						<li><?php _e( 'New: CSS improved with better commenting and size reduction.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: CSS improved with better commenting and size reduction.', 'epl' );?></li>
 						<li><?php _e( 'New: Dashboard widget now lists all listing status so at a glance you can see your property stock.', 'epl' );?></li>
-						<li><?php _e( 'New: Display: To enable grid, list and sorter your custom archive-listing.php template requires the new action hook "epl_template_before_property_loop" before the WordPress loop.', 'epl' );?></li>
-						<li><?php _e( 'New: Display: Utility hook action hook added "epl_template_after_property_loop" for future updates.', 'epl' );?></li>
+						<li><?php _e( 'New: Display: To enable grid, list and sorter your custom archive-listing.php template requires the new action hook epl_template_before_property_loop before the WordPress loop.', 'epl' );?></li>
+						<li><?php _e( 'New: Display: Utility hook action hook added epl_template_after_property_loop for future updates.', 'epl' );?></li>
 						<li><?php _e( 'New: Display: List and grid view with optional masonry effect.', 'epl' );?></li>
 						<li><?php _e( 'New: Display: Sorter added for price high/low and date newest/oldest.', 'epl' );?></li>
-						<li><?php _e( 'New: Auction Date formats nicely. EG "Auction Saturday 28th December at 2:00pm".', 'epl' );?></li>
-						<li><?php _e( 'New: Tabbed extensions page support in admin for advanced extensions like "Listing Alerts".', 'epl' );?></li>
+						<li><?php _e( 'New: Auction Date formats nicely. EG [Auction Saturday 28th December at 2:00pm].', 'epl' );?></li>
+						<li><?php _e( 'New: Tabbed extensions page support in admin for advanced extensions like Listing Alerts.', 'epl' );?></li>
 						<li><?php _e( 'New: Multiple author support in Author Box.', 'epl' );?></li>
-						<li><?php _e( 'New: Search Widget now supports multiple listing types, hold Ctrl to enable tabbed front end display.', 'epl' );?></li>
-						<li><?php _e( 'New: Search Widget Labels are configurable from the Display settings allowing you to set for example: "Property" to "Buy" and "Rental" to "Rent" and use a single widget to search multiple types.', 'epl' );?></li>
-						<li><?php _e( 'New: Search Widget and short code supports search by property ID, Land Area and Building Area.', 'epl' );?></li>
-						<li><?php _e( 'New: Search short code supports array of property types.', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget - Supports multiple listing types, hold Ctrl to enable tabbed front end display.', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget - Labels are configurable from the Display settings allowing you to set for example: Property to Buy and Rental to Rent and use a single widget to search multiple types.', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget and shortcode supports search by property ID, post Title, Land Area and Building Area.', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget - removed extra fields from land, added labels for each property type to be shown as tab heading in search widget', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search Widget - Optimized total queries due to search widget from 1500 + to ~40', 'epl' );?></li>
 						<li><?php _e( 'New: Author variables accessible using new CLASS.', 'epl' );?></li>
+						<li><?php _e( 'New: Search short code supports array of property types.', 'epl' );?></li>
+						<li><?php _e( 'New: REAXML date format function to format date correctly when using WP All Import Pro. Usage [epl_feedsync_format_date({./@modTime})].', 'epl' );?></li>
 						<li><?php _e( 'New: REAXML Unit and lot formatting function for usage in the title when using WP All Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})].', 'epl' );?></li>
-						<li><?php _e( 'New: Global $epl_settings settings variable adds new default values on plug-in update.', 'epl' );?></li>
+						<li><?php _e( 'New: Global $epl_settings settings variable adds new default values on plugin update.', 'epl' );?></li>
 						<li><?php _e( 'New: Display: Added customisable label for rental Bond/Deposit.', 'epl' );?></li>
-						<li><?php _e( 'New: Template functions completely re-written and can now be output using hooks.', 'epl' );?></li>
+						<li><?php _e( 'New: Template functions completely re-written and can now be output using actions.', 'epl' );?></li>
 						<li><?php _e( 'New: Added NEW sticker with customisable label and ability to set how long a listing displays the new label.', 'epl' );?></li>
-						<li><?php _e( 'New: Display: jQuery Masonry effect can be enabled from display settings.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Compatability fixes', 'epl' );?></li>
 						<li><?php _e( 'New: Bar Graph API added.', 'epl' );?></li>
 						<li><?php _e( 'New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 sale) and (2,000 rental).', 'epl' );?></li>
 						<li><?php _e( 'New: Graph visually displays price and status.', 'epl' );?></li>
 						<li><?php _e( 'New: Price graph now appears in admin pages quickly highlighting price and status visually.', 'epl' );?></li>
 						<li><?php _e( 'New: Meta Fields: Support for unit number, lot number (land).', 'epl' );?></li>
 						<li><?php _e( 'New: South African ZAR currency support.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Corrected Commercial Features ID Spelling', 'epl' );?></li>
+						<li><?php _e( 'Tweak: YouTube video src to id function is replaced with better method which handles multiple YouTube video formats including shortened & embedded format', 'epl' );?></li>
+						<li><?php _e( 'New: Adding Sold Date processing', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Updated shortcode templates', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Global $epl_author.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Fixed content/ into EPL_PATH_TEMPLATES_CONTENT', 'epl' );?></li>
+						<li><?php _e( 'New: Support for older extensions added', 'epl' );?></li>
+						<li><?php _e( 'New: Extension offers in menus general tab', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Renamed user profile options section to [Easy Property Listings: Author Box Profile].', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added better Bond/Deposit for rentals labels.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Deprecated author-meta.php in compatibility folder, class-author-meta.php has been created which will be used in place of author-meta.php & its variables in all author templates', 'epl' );?></li>
+						<li><?php _e( 'New: Added template functions for author meta class, modified templates lib/templates/content/content-author-box-simple-card.php lib/templates/content/content-author-box-simple-grav.php lib/templates/content/content-author-box.php to use the template functions based on author meta class instead of variables from author-meta.php', 'epl' );?></li>
+						<li><?php _e( 'New: author-meta.php depreciated and moved to compatibility directory. Variables globally available using $epl_author variable.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: listing-meta.php depreciated and moved to compatibility directory. Variables globally available with $property variable.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added Listing not Found to default templates when search performed with no results.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved Google maps address output for addresses containing # and /.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Listing Pages now have better responsive support for small screen devices like iPhone.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Default templates for Genesis and TwentyTwelve now show Listing Not Found when a search result returns empty.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Purged translations in epl.pot file.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search Widget and short code drastically reduces database queries.', 'epl' );?></li>
+						<li><?php _e( 'New: Templates are now able to be saved in active theme folder /easypropertylistings and edited. Plugin will use these first and fall back to plugin if not located in theme folder.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Extensions Notification and checker updated', 'epl' );?></li>
+						<li><?php _e( 'New: updated author templates to use new author meta class', 'epl' );?></li>
+						<li><?php _e( 'Fix: Added prefix to CSS tab-content class. Now epl-tab-content for compatibility.', 'epl' );?></li>
+						<li><?php _e( 'New: Update user.php', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved internal documentation and updated screens.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved descriptions on author pages.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Better permalink flushing on activation, deactivation and install.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Extensive changes to admin descriptions and labels.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Optimising the php loading of files and scripts.', 'epl' );?></li>
+						<li><?php _e( 'New: Define EPL_RUNNING added for extensions to check if plugin is active.', 'epl' );?></li>
+						<li><?php _e( 'New: New options added to setting array when plugin is updated.', 'epl' );?></li>
+						<li><?php _e( 'New: Old functions and files moved to plug-in /compatibility folder to ensure old code still works.', 'epl' );?></li>
+						<li><?php _e( 'New: Meta Location Label.', 'epl' );?></li>
+						<li><?php _e( 'New: Service banners on settings page.', 'epl' );?></li>
+						<li><?php _e( 'New: Saving version number so when updating new settings are added.', 'epl' );?></li>
+						<li><?php _e( 'New: iCal functionality for REAXML formatted inspection dates. Futher improvements coming for manual date entry. ', 'epl' );?></li>
+						<li><?php _e( 'New: Extensions options pages now with tabs for easier usage.', 'epl' );?></li>
+						<li><?php _e( 'New: Added ID classes to admin pages and meta fields.', 'epl' );?></li>
+						<li><?php _e( 'New: Filters to adjust land and building sizes from number to select fields.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Moved old extensions options page to compatibility folder so older extensions still work as expected.', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget - Added filter for land min & max fields in listing search widget', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget - Added filter for building min & max fields in listing search widget', 'epl' );?></li>
+						<li><?php _e( 'Fix: For session start effecting certain themes', 'epl' );?></li>
+						<li><?php _e( 'New: Land sizes now allow upto 5 decimal places', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget - Custom submit label', 'epl' );?></li>
+						<li><?php _e( 'New: Search Widget - Can search by title in property ID / Address field', 'epl' );?></li>
 					</ul>
 				
 					<h4><?php _e( 'Version 1.2.1', 'epl' );?></h4>
