@@ -5,7 +5,7 @@
  * Description:  The complete real estate platform for today's agent to list property using any theme for WordPress fast, easy and free. Just enable the listing types you need add some properties, tweak your settings and you're done. Extend the core with cool dynamic add-on extensions that give your visitors more reasons to come back.
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 1.3 (dev)
+ * Version: 1.3
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -20,7 +20,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Easy Digital Downloads. If not, see <http://www.gnu.org/licenses/>.
+ * along with Easy Property Listings. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package EPL
  * @category Core
@@ -31,7 +31,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( !session_id() ) {
+if( !session_id() && ! headers_sent() ) {
 	session_start();
 }
 
@@ -68,6 +68,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->setup_constants();
 				self::$instance->includes();
 				self::$instance->load_textdomain();
+				define('EPL_RUNNING',true);
 			}
 			return self::$instance;
 		}
@@ -75,19 +76,19 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		/*
 		 * Setup plugin constants
 		 *
-		 * @access private
+		 * @access public
 		 * @since 1.0
 		 * @return void
 		 */
-		private function setup_constants() {		
+		public function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '1.2.99' );
+				define( 'EPL_PROPERTY_VER', '1.3' );
 			}
 			
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
-				define( 'EPL_PROPERTY_DB_VER', '1.0.9.1' );
+				define( 'EPL_PROPERTY_DB_VER', '1.3' );
 			}
 			
 			// Current Page
@@ -114,9 +115,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_LIB' ) ) {
 				define( 'EPL_PATH_LIB', EPL_PLUGIN_PATH . 'lib/' );
 			}
-			
+			if ( ! defined( 'EPL_PATH_UPDATES' ) ) {
+				define( 'EPL_PATH_UPDATES', EPL_PATH_LIB . 'updates/' );
+			}
 			if ( ! defined( 'EPL_PATH_TEMPLATES' ) ) {
 				define( 'EPL_PATH_TEMPLATES', EPL_PATH_LIB . 'templates/' );
+			}
+			if ( ! defined( 'EPL_COMPATABILITY' ) ) {
+				define( 'EPL_COMPATABILITY', EPL_PATH_LIB . 'compatibility/' );
 			}
 			
 			if ( ! defined( 'EPL_PATH_TEMPLATES_CONTENT' ) ) {
@@ -139,7 +145,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
 		}
-
+		
+		
+	
 		/*
 		 * Include required files
 		 *
@@ -150,11 +158,13 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		private function includes() {
 		
 			global $epl_settings;
-
+			
 			require_once EPL_PATH_LIB . 'includes/register-settings.php';
 			$epl_settings = epl_get_settings();
 		
 			require_once EPL_PATH_LIB . 'includes/functions.php';
+			require_once EPL_COMPATABILITY . 'functions-compat.php';
+			require_once EPL_COMPATABILITY . 'extensions.php';
 			require_once EPL_PATH_LIB . 'includes/options-global.php';
 			require_once EPL_PATH_LIB . 'includes/formatting.php';
 			require_once EPL_PATH_LIB . 'includes/plugins.php';
@@ -217,18 +227,18 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-dashboard-epl-status.php';
 
-			require_once EPL_PATH_LIB . 'hooks/hooks.php';
-						
-			require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
-		
-			require_once EPL_PATH_LIB . 'templates/templates.php';
+			require_once EPL_PATH_LIB . 'includes/class-property-meta.php';
+			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
+			require_once EPL_PATH_LIB . 'includes/template-functions.php';
+			
 			if ( is_admin() ) {
+				require_once EPL_PATH_LIB . 'includes/admin.php';
+				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
-				
 				require_once EPL_PATH_LIB . 'menus/menus.php';
 				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
-		
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
@@ -251,6 +261,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			
 			require_once EPL_PATH_LIB . 'includes/install.php';
 		}
+		
+
 		
 		/**
 		 * Loads the plugin language files
@@ -283,8 +295,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				load_plugin_textdomain( 'epl', false, $epl_lang_dir );
 			}
 		}
-	
-	
 	}
 endif; // End if class_exists check
 

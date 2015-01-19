@@ -51,4 +51,3 @@ function epl_settings($meta_key='') {
 	}
 	return $epl_settings;
 }
-

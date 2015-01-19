@@ -13,22 +13,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Outputs a wrapper div before the first button
- */
-function epl_buttons_wrapper_before() {
-	echo '<div class="epl-button-wrapper epl-clearfix">';
-}
-/**
- * Outputs a wrapper div after the last button
- */
-function epl_buttons_wrapper_after() {
-	echo '</div>';
-}
-
-add_action('epl_buttons_single_property', 'epl_buttons_wrapper_before' , 1);
-add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
-
-/**
  * Flush Rewrite Rules
  */
 function epl_flush_rewrite_rules() {
@@ -38,5 +22,5 @@ function epl_flush_rewrite_rules() {
 		update_option('epl_rewrite_rules', true);
 	}
 }
-add_action('admin_init', 'epl_flush_rewrite_rules'); 
-add_action('init', 'epl_flush_rewrite_rules'); 
+add_action('admin_init', 'epl_flush_rewrite_rules');
+add_action('init', 'epl_flush_rewrite_rules');

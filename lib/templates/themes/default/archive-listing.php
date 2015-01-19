@@ -43,12 +43,13 @@ get_header(); ?>
 				</header>
 				
 				<div class="entry-content loop-content">
-					<?php
-						while ( have_posts() ) : // The Loop
+					<?php do_action( 'epl_property_loop_start' ); ?>
+					<?php while ( have_posts() ) : // The Loop
 							the_post();
-							echo epl_property_blog();
+							do_action('epl_property_blog');
 						endwhile; // end of one post
 					?>
+					<?php do_action( 'epl_property_loop_end' ); ?>
 				</div>
 				
 				<div class="loop-footer">
@@ -57,6 +58,17 @@ get_header(); ?>
 						<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
 						<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
 					</div>
+				</div>
+			</div>
+		<?php 
+		else :
+			?><div class="hentry">
+				<div class="entry-header clearfix">
+					<h3 class="entry-title"><?php _e('Listing not Found', 'epl'); ?></h3>
+				</div>
+				
+				<div class="entry-content clearfix">
+					<p><?php _e('Listing not found, expand your search criteria and try again.', 'epl'); ?></p>
 				</div>
 			</div>
 		<?php endif; ?>
