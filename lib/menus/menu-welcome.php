@@ -271,7 +271,7 @@ class EPL_Welcome {
 			<hr>
 			
 			<div class="changelog feature-list ">
-			<h2>Other Changes</h2>
+			<h2><?php _e( 'Other Changes','epl' );?></h2>
 
 				<div class="feature-section col two-col">
 				
@@ -531,15 +531,15 @@ class EPL_Welcome {
 				
 				<div class="feature-section">
 					<ul style="text-align: center;">
-						<li><a href="#guide-configure">Activate the listing types you need & configure the plugin general settings</a></li>
-						<li><a href="#guide-page">Create a blank page for each activated listing type</a></li>
-						<li><a href="#guide-first-listing">Publish your first listing for testing your theme setup</a></li>
+						<li><a href="#guide-configure"><?php _e( 'Activate the listing types you need & configure the plugin general settings', 'epl' ); ?></a></li>
+						<li><a href="#guide-page"><?php _e( 'Create a blank page for each activated listing type', 'epl' ); ?></a></li>
+						<li><a href="#guide-first-listing"><?php _e( 'Publish your first listing for testing your theme setup', 'epl' ); ?></a></li>
 						
-						<li><a href="#guide-theme">Setup your theme to work perfectly with the plugin</a></li>
+						<li><a href="#guide-theme"><?php _e( 'Setup your theme to work perfectly with the plugin', 'epl' ); ?></a></li>
 						
-						<li><a href="#guide-display">Adjust the plugin display settings</a></li>
-						<li><a href="#guide-support">Support the project</a></li>
-						<li><a href="#guide-help">Visit Support</a></li>
+						<li><a href="#guide-display"><?php _e( 'Adjust the plugin display settings', 'epl' ); ?></a></li>
+						<li><a href="#guide-support"><?php _e( 'Support the project', 'epl' ); ?></a></li>
+						<li><a href="#guide-help"><?php _e( 'Visit Support', 'epl' ); ?></a></li>
 					</ul>
 				</div>
 			</div>
@@ -572,8 +572,6 @@ class EPL_Welcome {
 					<div class="col">
 						<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-general-settings.png'; ?>" class="epl-welcome-screenshots"/>
 					</div>
-					
-					
 				</div>
 			</div>
 			<hr>
@@ -634,7 +632,7 @@ class EPL_Welcome {
 				<h2 id="guide-first-listing" class="epl-welcome-sub-heading"><?php _e( 'Publish Your First Listing', 'epl' );?></h2>
 				
 				<div class="featured-image">
-					DISABLED<?php //echo wp_oembed_get('https://www.youtube.com/watch?v=h6B8LLecfbw', array('width'=>600)); ?>
+					<?php //echo wp_oembed_get('https://www.youtube.com/watch?v=h6B8LLecfbw', array('width'=>600)); ?>
 				</div>
 				<h3 class="epl-welcome-sub-heading"><?php _e( 'Title & Author', 'epl' );?></h3>
 				
@@ -705,49 +703,47 @@ class EPL_Welcome {
 					</div>
 					
 				</div>
-				
 			</div>
 			<hr>
-
 			
 			<div class="changelog headline-feature">
 			
 				<h2 id="guide-first-listing" class="epl-welcome-sub-heading"><?php _e( 'Configure your theme', 'epl' );?></h2>
-				<h3 class="about-description" style="text-align: center;">If you have never looked at a line of code in your life and you can copy and paste you can do this.<br/>We have made this process as easy as possible.</h3>
+				<h3 class="about-description" style="text-align: center;"><?php _e( 'If you have never looked at a line of code in your life and you can copy and paste you can do this.<br/>We have made this process as easy as possible.', 'epl' );?></h3>
 
 				<div class="feature-section col two-col">
 
 					<div>
-						<h4>Overview</h4>
+						<h4><?php _e( 'Overview', 'epl' );?></h4>
 						
-						<p>WordPress has filters and hooks for "the_title" and "the_content" but these are not applicable for real estate websites where the address, price bed/bath icons and maps are much more important than categories, date and published by info.</p>
+						<p><?php _e( 'WordPress has filters and hooks for "the_title" and "the_content" but these are not applicable for real estate websites where the address, price bed/bath icons and maps are much more important than categories, date and published by info.', 'epl' );?></p>
 						
-						<p>Not performing the setup steps may cause your sidebar to appear in the wrong place or the listing pages appear too wide.</p>
+						<p><?php _e( 'Not performing the setup steps may cause your sidebar to appear in the wrong place or the listing pages appear too wide.', 'epl' );?></p>
 					</div>
 					
 					<div class="last-feature">
 					
-						<h4>Solution</h4>
+						<h4><?php _e( 'Solution', 'epl' );?></h4>
 
-						<p>All you have to do is duplicate some files and copy and paste into them. If all else fails you can use the included shortcodes but these are not nearly as good as implementing the following steps.</p>
+						<p><?php _e( 'All you have to do is duplicate some files and copy and paste into them. If all else fails you can use the included shortcodes but these are not nearly as good as implementing the following steps.</p>
 						
-						<h4>No Setup Required For These Themes</h4>
-						<p><a href="http://ithemes.com/member/go.php?r=15200&i=l37">iThemes Builder Theme</a>, Genesis Framework by StudioPress, Twenty 12, 13, 14 & 15 by WordPress.</p>
+						<h4>No Setup Required For These Themes', 'epl' );?></h4>
+						<p><a href="http://ithemes.com/member/go.php?r=15200&i=l37">iThemes Builder Theme</a>, Genesis Framework by StudioPress, Twenty 12, 13, 14 &#38; 15 by WordPress.</p>
 						
-						<p>We have a selection of pre configured templates here for many popular themes <a href="http://easypropertylistings.com.au/support/forum/theme-support/">here</a>.</p>
+						<p><?php _e( 'We have a selection of pre configured templates here for many popular themes', 'epl' );?> <a href="http://easypropertylistings.com.au/support/forum/theme-support/"><?php _e( 'here', 'epl' );?></a>.</p>
 					</div>
 				</div>
 				
 				<div class="feature-section col two-col">
 
 					<div>
-						<h4>Stuck?</h4>
-						<p>Not all themes follow WordPress coding standards and these may take a little more time and experience to get working. If you just can't get it to work, visit our <a href="http://easypropertylistings.com.au/support/">support</a> desk and fill out a priority request.</em></p>
+						<h4><?php _e( 'Stuck?', 'epl' );?></h4>
+						<p><?php _e( 'Not all themes follow WordPress coding standards and these may take a little more time and experience to get working. If you just can not get it to work, visit', 'epl' );?> <a href="http://easypropertylistings.com.au/support/"><?php _e( 'support', 'epl' );?></a> <?php _e( 'desk and fill out a priority request.', 'epl' );?></em></p>
 					</div>
 					
 					<div class="last-feature">
-						<h4>Future</h4>
-						<p>We hope a future WordPress release adds filter so this can be automatic, but until that happens you are going to have to perform the following steps using copy and paste.</p>
+						<h4><?php _e( 'Future', 'epl' );?></h4>
+						<p><?php _e( 'We hope a future WordPress release adds filter so this can be automatic, but until that happens you are going to have to perform the following steps using copy and paste.', 'epl' );?></p>
 					</div>
 				</div>
 
@@ -758,76 +754,74 @@ class EPL_Welcome {
 			
 			<div class="changelog headline-feature">
 			
-				<h3 class="about-description" style="text-align: center;">Before attempting the following steps add a <a href="#guide-first-listing">test listing</a> and preview it as your theme may already work with Easy Property Listings.</h3>
+				<h3 class="about-description" style="text-align: center;"><?php _e( 'Before attempting the following steps add a', 'epl' );?> <a href="#guide-first-listing"><?php _e( 'test listing', 'epl' );?></a> <?php _e( 'and preview it as your theme may already work with Easy Property Listings.', 'epl' );?></h3>
 
 				<div class="feature-section col two-col">
 					<div>
-						<h4>1. Take a backup of your theme and a copy of the files to edit.</h4>
+						<h4><?php _e( '1. Take a backup of your theme and a copy of the files to edit.', 'epl' );?></h4>
 						
-						<p>Open your favourite FTP program or access the file manager via your hosting panel.</p>
+						<p><?php _e( 'Open your favourite FTP program or access the file manager via your hosting panel.', 'epl' );?></p>
 						
-						<p>Take a backup before you start of your current theme.</p>
+						<p><?php _e( 'Take a backup before you start of your current theme.', 'epl' );?></p>
 
-						<p>Download the single.php file and archive.php from your theme folder and save it to your computer.</p>
-						<p style="margin-left: 2em;"><em>If these files are not present in your child theme then copy them from your parent theme folder. If there is no archive.php file use the index.php file.</em></p>
+						<p><?php _e( 'Download the single.php file and archive.php from your theme folder and save it to your computer.', 'epl' );?></p>
+						<p style="margin-left: 2em;"><em><?php _e( 'If these files are not present in your child theme then copy them from your parent theme folder. If there is no archive.php file use the index.php file.', 'epl' );?></em></p>
 						
 						
-						<p>On your computer rename single.php to single-listing.php and rename archive.php to archive-listing.php</p>
+						<p><?php _e( 'On your computer rename single.php to single-listing.php and rename archive.php to archive-listing.php', 'epl' );?></p>
 						
-						<p style="margin-left: 2em;"><em>If using index.php, rename that to archive-listing.php</em></p>
+						<p style="margin-left: 2em;"><em><?php _e( 'If using index.php, rename that to archive-listing.php', 'epl' );?></em></p>
 
-						<p>Upload these new files back into your <strong>theme</strong> folder.</p>
+						<p><?php _e( 'Upload these new files back into your theme folder.', 'epl' );?></p>
 					</div>
 					
 					<div class="last-feature">
-						<h4>2. Edit your single-listing.php file</h4>
+						<h4><?php _e( '2. Edit your single-listing.php file.', 'epl' );?></h4>
 						
-						<p>Open your new single-listing.php file in your text editor like Notepad++</strong></p>
-						<p>Look for <strong>&#60;? get_template_part( &#39;SOME_STUFF&#39; , &#39;MORE_STUFF&#39; ); ?&#62;</strong> which appears after <strong>the_post();</strong></p>
-						<p>Replace:</p>
+						<p><?php _e( 'Open your new single-listing.php file in your text editor like Notepad++.', 'epl' );?></strong></p>
+						<p><?php _e( 'Look for', 'epl' );?>:</p>
+						<p><strong>&#60;? get_template_part( &#39;SOME_STUFF&#39; , &#39;MORE_STUFF&#39; ); ?&#62;</strong> <?php _e( 'which appears after', 'epl' );?> <strong>the_post();</strong></p>
+						<p><?php _e( 'Replace', 'epl' );?>:</p>
 							
 						<p><strong>&#60;?php get_template_part( &#39;ALL_THE_STUFF&#39; ); ?&#62;</strong></p>
-						<p>with</p>
+						<p><?php _e( 'with', 'epl' );?></p>
 						<p><strong>&#60;?php do_action( &#39;epl_property_single&#39; ); ?&#62;</strong></p>
 
-						<p>Save the file and make sure you have sent it to the server.</p>
-						<p>View the test listing you created and you should be done.</p>
-						
-						<p>Video Example XXXXXXXXXXXXXXX</p>
+						<p><?php _e( 'Save the file and make sure you have sent it to the server.', 'epl' );?></p>
+						<p><?php _e( 'View the test listing you created and you should be done.', 'epl' );?></p>
 
 					</div>
 					
 					<div>
-						<h4>3. Edit your archive-listing.php file</h4>
+						<h4><?php _e( '3. Edit your archive-listing.php file.', 'epl' );?></h4>
 						
-						<p>Open archive-listing.php</strong></p>
-						<p>Look for &#60;? get_template_part( &#39;SOME_STUFF&#39; , &#39;MORE_STUFF&#39; ); ?&#62; which appears after the second <strong>the_post();</strong></p>
-						<p style="margin-left: 2em;"><em>The first one is usually the page title.</em></p>
+						<p><?php _e( 'Open archive-listing.php', 'epl' );?></p>
+						<p><?php _e( 'Look for', 'epl' );?> &#60;? get_template_part( &#39;SOME_STUFF&#39; , &#39;MORE_STUFF&#39; ); ?&#62; <?php _e( 'which appears after the second', 'epl' );?>  <strong>the_post();</strong></p>
+						<p style="margin-left: 2em;"><em><?php _e( 'The first one is usually the page title.', 'epl' );?></em></p>
 						
-						<p>Replace:</p>
+						<p><?php _e( 'Replace', 'epl' );?>:</p>
 									
 						<p><strong>&#60;?php get_template_part( &#39;ALL_THE_STUFF&#39; ); ?&#62;</strong></p>
 						<p>with</p>
 						<p><strong>&#60;?php do_action( &#39;epl_property_blog&#39; ); ?&#62;</strong></p>
 	
-						<p>Save the file and make sure you have sent it to the server.</p>
-						<p>Check the main property page http://YOUR_SITE_URL/property/ and you should be done.</p>
+						<p><?php _e( 'Save the file and make sure you have sent it to the server.', 'epl' );?></p>
+						<p><?php _e( 'Check the main property page http://YOUR_SITE_URL/property/ and you should be done.', 'epl' );?></p>
 							
 							
 					</div>
 					
 					<div class="last-feature">
 							
-						<h4>4. Optional for grid and sorter. Edit your archive-listing.php file again.</h4>
+						<h4><?php _e( '4. Optional for grid and sorter. Edit your archive-listing.php file again.', 'epl' );?></h4>
 						
-						<p>Insert &#60;?php do_action( &#39;epl_property_loop_start&#39; ); ?&#62;</p>
-						<p>Before the second &#60;?php the_post(); ?&#62;</p>
+						<p><?php _e( 'Insert', 'epl' );?> &#60;?php do_action( &#39;epl_property_loop_start&#39; ); ?&#62;</p>
+						<p><?php _e( 'Before the second', 'epl' );?> &#60;?php the_post(); ?&#62;</p>
 								
-						<p>Check your main property page, if the buttons are in the incorrect place move them until they are in the correct place.</p>
+						<p><?php _e( 'Check your main property page, if the buttons are in the incorrect place move them until they are in the correct place.', 'epl' );?></p>
 
-						<p>Insert &#60;?php do_action( &#39;epl_property_loop_end&#39; ); ?&#62;</p>
-						<p>After the second &#60;?php endwhile(); ?&#62;</p>
-						<p><strong></strong></p>
+						<p><?php _e( 'Insert', 'epl' );?> &#60;?php do_action( &#39;epl_property_loop_end&#39; ); ?&#62;</p>
+						<p><?php _e( 'After the second', 'epl' );?> &#60;?php endwhile(); ?&#62;</p>
 					
 					</div>
 					
@@ -874,12 +868,6 @@ class EPL_Welcome {
 					<p><a href="http://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions, including convenient category filters so you can find exactly what you are looking for.', 'epl' );?></p>
 				</div>
 			</div>
-			
-			
-			
-			
-			
-			
 			
 		</div>
 		<?php
