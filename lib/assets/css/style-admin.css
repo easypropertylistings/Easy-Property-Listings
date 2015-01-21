@@ -6,13 +6,30 @@
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
 */
+
+
+.about-wrap img.epl-welcome-screenshots {
+	margin-top: 1.4em;
+}
+h3.epl-welcome-sub-heading {
+	font-size: 1.8em;
+	text-align: center;
+}
+.epl-welcome-video-container {
+	margin: 0 auto;
+	max-width: 82%;
+}
+.epl-welcome-video {
+	margin: 0 ;
+	max-width: 600px;
+}
 #epl-add-ons h2 {
-	margin:0 0 15px
+	margin:0 0 15px;
 }
 .epl-extension {
-    background: none repeat scroll 0 0 rgba(0, 116, 162, 0.1);
-    border: 1px solid rgba(0, 116, 162, 0.3);
-    padding: 1em;
+	background: none repeat scroll 0 0 rgba(0, 116, 162, 0.1);
+	border: 1px solid rgba(0, 116, 162, 0.3);
+	padding: 1em;
 }
 #epl-add-ons .epl-extension {
 	float:left;
