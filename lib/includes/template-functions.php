@@ -1126,7 +1126,7 @@ function epl_process_event_cal_request () {
 						
 						$address = '';
 						if(get_post_meta($post_id,'property_address_sub_number',true) != '') {
-							$address .= $get_post_meta($post_id,'property_address_sub_number',true) . '/'; 
+							$address .= get_post_meta($post_id,'property_address_sub_number',true) . '/'; 
 						}
 						$address .= get_post_meta($post_id,'property_address_street_number',true) . ' '; 
 						$address .= get_post_meta($post_id,'property_address_street',true) . ' '; 
