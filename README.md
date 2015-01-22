@@ -6,7 +6,7 @@ Properties listed for rent or sale is something that not a single one of the lar
 
 More information can be found at [easypropertylistings.com.au](http://easypropertylistings.com.au/).
 
-## Installation ##
+### Installation ###
 
 For detailed setup instructions, visit the official [Documentation](http://easypropertylistings.com.au/documentation/) page.
 

@@ -36,15 +36,15 @@ function render_content() {
 					?>
 				</h4>
 			</div>
-			
+
 			<div class="loop-content">
-				<?php
-					while ( have_posts() ) : // The Loop
+				<?php do_action( 'epl_property_loop_start' ); ?>
+				<?php while ( have_posts() ) : // The Loop
 						the_post();
-						
-						echo epl_property_blog();
+						do_action('epl_property_blog');
 					endwhile; // end of one post
 				?>
+				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div>
 			
 			<div class="loop-footer">
