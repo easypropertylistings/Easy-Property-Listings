@@ -418,6 +418,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Land sizes now allow upto 5 decimal places', 'epl' );?></li>
 						<li><?php _e( 'New: Search Widget - Custom submit label', 'epl' );?></li>
 						<li><?php _e( 'New: Search Widget - Can search by title in property ID / Address field', 'epl' );?></li>
+						<li><?php _e( 'New: Added Russian Translation', 'epl' );?></li>
 					</ul>
 				
 					<h4><?php _e( 'Version 1.2.1', 'epl' );?></h4>
