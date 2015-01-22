@@ -229,6 +229,15 @@ function epl_get_admin_option_fields() {
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_property_card_excerpt_length,
 					'help'	=>	__('This is ignored when using manual excerpts.', 'epl')
+				),
+				array(
+					'name'	=>	'display_archive_view_type',
+					'label'	=>	__('Archive listing view type', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'list'	=>	__('List', 'epl'),
+						'grid'	=>	__('Grid', 'epl')
+					)
 				)
 			)
 		),

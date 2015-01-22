@@ -37,6 +37,7 @@ class EPL_Property_Meta {
 			return;
 			
 		$pit = $this->get_property_meta($meta_key);
+		$pit = trim($pit);
 		if($pit != '') {
 			$list = array_filter(explode("\n", $pit));
 			if(!empty($list)){

@@ -53,7 +53,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 						$property_status = get_post_meta( get_the_ID(), 'property_status' , true ); 
 
 						// Status Removal
-						if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold' ) {
+						if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold'  || $property_status == 'leased') {
 							// Do Not Display Withdrawn or OffMarket listings
 						} else {
 							if ( $template ) {
