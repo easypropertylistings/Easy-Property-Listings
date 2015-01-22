@@ -104,7 +104,7 @@ class EPL_Welcome {
 			background: url('<?php echo $badge_url; ?>') no-repeat;
 		}
 
-		.about-wrap .epl-badge {
+		.epl-about-wrap .epl-badge {
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -153,7 +153,7 @@ class EPL_Welcome {
 	public function about_screen() {
 		list( $display_version ) = explode( '-', EPL_PROPERTY_VER );
 		?>
-		<div class="wrap about-wrap">
+		<div class="wrap about-wrap epl-about-wrap">
 			<h1><?php printf( __( 'Welcome to Easy Property Listings %s', 'epl' ), $display_version ); ?></h1>
 			<div class="about-text"><?php printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'epl' ), $display_version ); ?></div>
 			<div class="epl-badge"><?php printf( __( 'Version %s', 'epl' ), $display_version ); ?></div>
@@ -270,7 +270,7 @@ class EPL_Welcome {
 			</div>
 			<hr>
 			
-			<div class="changelog feature-list ">
+			<div class="changelog headline-feature feature-list ">
 			<h2><?php _e( 'Other Changes','epl' );?></h2>
 
 				<div class="feature-section col two-col">
@@ -324,7 +324,7 @@ class EPL_Welcome {
 			</div>
 			<hr>
 
-			<div class="changelog">
+			<div class="changelog headline-feature">
 				<div class="feature-section">
 					<h4><?php _e( 'Full change log of version 2.0', 'epl' );?></h4>
 					<ul>
@@ -509,7 +509,7 @@ class EPL_Welcome {
 	public function getting_started_screen() {
 		list( $display_version ) = explode( '-', EPL_PROPERTY_VER );
 		?>
-		<div class="wrap about-wrap">
+		<div class="wrap about-wrap epl-about-wrap">
 			<h1><?php printf( __( 'Welcome to Easy Property Listings %s', 'epl' ), $display_version ); ?></h1>
 			<div class="about-text"><?php printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'epl' ), $display_version ); ?></div>
 			<div class="epl-badge"><?php printf( __( 'Version %s', 'epl' ), $display_version ); ?></div>
@@ -829,46 +829,50 @@ class EPL_Welcome {
 			</div>
 			<hr>
 			
-			<div class="changelog">
+			<div class="changelog headline-feature">
 				<h2 id="guide-help"><?php _e( 'Need Help?', 'epl' );?></h2>
 				
-				<div class="feature-section">
-
-					<h4><?php _e( 'Phenomenal Support','epl' );?></h4>
-					<p><?php _e( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="http://easypropertylistings.com.au/support/">support forums</a>.', 'epl' );?></p>
+				<div class="feature-section col three-col">
+					<div>
+						<h3 class="about-description" style="text-align: center;"></h3>
+						<h4><?php _e( 'Phenomenal Support','epl' );?></h4>
+						<p><?php sprintf( _e( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'epl' ), esc_url( 'http://easypropertylistings.com.au/support/' ) );?></p>
+					</div>
 					
-					<h4><?php _e( 'Need Even Faster Support?', 'epl' );?></h4>
-					<p><?php _e( 'Visit the <a href="http://easypropertylistings.com.au/support/pricing/">Priority Support forums</a> are there for customers that need faster and/or more in-depth assistance.', 'epl' );?></p>
+					<div>
+						<h4><?php _e( 'Need Even Faster Support?', 'epl' );?></h4>
+						<p><?php _e( 'Visit the <a href="http://easypropertylistings.com.au/support/pricing/">Priority Support forums</a> are there for customers that need faster and/or more in-depth assistance.', 'epl' );?></p>
+					</div>
 					
-					<h4><?php _e( 'Documentation and Short Codes','epl' );?></h4>
-					<p><?php _e( 'Read the','epl' );?> <a href="http://easypropertylistings.com.au/documentation/"><?php _e( 'documentation','epl' );?></a> <?php _e( ' and instructions on how to use the included','epl' );?> <a href="http://easypropertylistings.com.au/section/short-codes/"><?php _e( 'shortcodes','epl' );?></a>.</p>
+					<div class="last-feature">
+						<h4><?php _e( 'Documentation and Short Codes','epl' );?></h4>
+						<p><?php _e( 'Read the','epl' );?> <a href="http://easypropertylistings.com.au/documentation/"><?php _e( 'documentation','epl' );?></a> <?php _e( ' and instructions on how to use the included','epl' );?> <a href="http://easypropertylistings.com.au/section/short-codes/"><?php _e( 'shortcodes','epl' );?></a>.</p>
+					</div>
 				</div>	
 			</div>	
 				
-			<div class="changelog">
-				<h3><?php _e( 'Stay Up to Date', 'epl' );?></h3>
-				
-				<div class="feature-section">
-					<h4><?php _e( 'Get Notified of Extension Releases','epl' );?></h4>
-					<p><?php _e( 'New extensions that make Easy Property Listings even more powerful are released nearly every single week. Subscribe to the newsletter to stay up to date with our latest releases. <a href="http://eepurl.com/TRO9f" target="_blank">Sign up now</a> to ensure you do not miss a release!', 'epl' );?></p>
+			<div class="changelog headline-feature">
 
-					<h4><?php _e( 'Get Alerted About New Tutorials', 'epl' );?></h4>
-					<p><?php _e( '<a href="http://eepurl.com/TRO9f" target="_blank">Sign up now</a> to hear about the latest tutorial releases that explain how to take Easy Property Listings further.', 'epl' );?></p>
-				</div>	
-			</div>	
+				<div class="feature-section col two-col">
+					<div>
+						<h3><?php _e( 'Stay Up to Date', 'epl' );?></h3>
+						<h4><?php _e( 'Get Notified of Extension Releases','epl' );?></h4>
+						<p><?php _e( 'New extensions that make Easy Property Listings even more powerful are released nearly every single week. Subscribe to the newsletter to stay up to date with our latest releases. <a href="http://eepurl.com/TRO9f" target="_blank">Sign up now</a> to ensure you do not miss a release!', 'epl' );?></p>
 
-			<div class="changelog">
-				<h3><?php _e( 'Extend With Extensions', 'epl' );?></h3>
-				
-				<div class="feature-section">
-					<h4><?php _e( '12 Extensions and many more coming','epl' );?></h4>
-					<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for Advanced mapping, testimonials, listing alerts, CMA Market Reports, Location Profiles, and many, many more.', 'epl' );?></p>
+						<h4><?php _e( 'Get Alerted About New Tutorials', 'epl' );?></h4>
+						<p><?php _e( '<a href="http://eepurl.com/TRO9f" target="_blank">Sign up now</a> to hear about the latest tutorial releases that explain how to take Easy Property Listings further.', 'epl' );?></p>
+					</div>
 					
-					<h4><?php _e( 'Visit the Extension Store', 'epl' );?></h4>
-					<p><a href="http://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions, including convenient category filters so you can find exactly what you are looking for.', 'epl' );?></p>
+					<div class="last-feature">
+						<h3><?php _e( 'Extend With Extensions', 'epl' );?></h3>
+						<h4><?php _e( '12 Extensions and many more coming','epl' );?></h4>
+						<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for Advanced mapping, testimonials, listing alerts, CMA Market Reports, Location Profiles, and many, many more.', 'epl' );?></p>
+						
+						<h4><?php _e( 'Visit the Extension Store', 'epl' );?></h4>
+						<p><a href="http://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions, including convenient category filters so you can find exactly what you are looking for.', 'epl' );?></p>
+					</div>
 				</div>
 			</div>
-			
 		</div>
 		<?php
 	}
@@ -883,7 +887,7 @@ class EPL_Welcome {
 	public function credits_screen() {
 		list( $display_version ) = explode( '-', EPL_PROPERTY_VER );
 		?>
-		<div class="wrap about-wrap">
+		<div class="wrap about-wrap epl-about-wrap">
 			<h1><?php printf( __( 'Welcome to Easy Property Listings %s', 'epl' ), $display_version ); ?></h1>
 			<div class="about-text"><?php printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'epl' ), $display_version ); ?></div>
 			<div class="epl-badge"><?php printf( __( 'Version %s', 'epl' ), $display_version ); ?></div>
