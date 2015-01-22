@@ -212,7 +212,7 @@ if ( is_admin() ) {
 			case 'property_status' :
 				/* Get the genres for the post. */
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
+				echo '<span class="type_'.strtolower($property_status).'">'.__($property_status,'epl').'</span>';
 				break;
 			/* Just break out of the switch statement for everything else. */
 			default :
