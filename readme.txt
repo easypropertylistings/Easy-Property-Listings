@@ -81,6 +81,7 @@ Easy Property Listings needs help for translation:
 1. English (and British English)
 2. Italian (very rough translation, if you can assist please do)
 3. Dutch (partially complete)
+4. Russian
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](http://easypropertylistings.com.au/support/forum/translations/).
 
@@ -228,6 +229,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Land sizes now allow upto 5 decimal places
 * New: Search Widget - Custom submit label
 * New: Search Widget - Can search by title in property ID / Address field
+* New: Added Russian Translation
 
 = 1.2.1: September 23, 2014 =
 * Fix: Search Widget not working on page 2 of archive page in some instances.
