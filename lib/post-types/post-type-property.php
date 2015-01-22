@@ -200,7 +200,7 @@ if ( is_admin() ) {
 						<span style="width:'.$barwidth.'%"></span>
 					</div>';
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
-					echo '<div class="type_under_offer">Under Offer</div>';
+					echo '<div class="type_under_offer">' . __('Under Offer' , 'epl') . '</div>';
 				}
 				if ( empty ( $view ) ) {
 					$show_price =  '<div class="epl_meta_search_price">' . epl_currency_formatted_amount( $price ). '</div>';

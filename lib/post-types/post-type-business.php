@@ -219,7 +219,7 @@ if ( is_admin() ) {
 					</div>';
 
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
-					echo '<div class="type_under_offer">Under Offer</div>';
+					echo '<div class="type_under_offer">' . __('Under Offer' , 'epl') . '</div>';
 				}
 
 				if ( empty ( $view ) ) {
