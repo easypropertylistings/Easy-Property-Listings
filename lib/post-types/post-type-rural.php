@@ -167,7 +167,7 @@ if ( is_admin() ) {
 
 				/* If no duration is found, output a default message. */
 				if (  $property_address_coordinates == ',' )
-					echo 'NO' ;
+					_e('NO','epl') ;
 
 				/* If there is a duration, append 'minutes' to the text string. */
 				else

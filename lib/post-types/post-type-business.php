@@ -223,17 +223,17 @@ if ( is_admin() ) {
 				}
 
 				if ( empty ( $view ) ) {
-					echo '<div class="epl_meta_search_price">Sale: ' , epl_currency_formatted_amount( $price ), '</div>';
+					echo '<div class="epl_meta_search_price">'.__('Sale','epl').': ' , epl_currency_formatted_amount( $price ), '</div>';
 				} else {
 					echo '<div class="epl_meta_price">' , $view , '</div>'; 
 				}
 				
 				if ( !empty ( $lease ) ) {
-					echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), '</div>';
+					echo '<div class="epl_meta_lease_price">'.__('Lease','epl').': ' , epl_currency_formatted_amount( $lease ), '</div>';
 				}
 				
 				if ( !empty ( $lease_date ) ) {
-					echo '<div class="epl_meta_lease_date">Lease End: ' ,  $lease_date , '</div>';
+					echo '<div class="epl_meta_lease_date">'.__('Lease End','epl').': ' ,  $lease_date , '</div>';
 				}
 				if($property_authority == 'auction' ) {
 					_e('Auction ','epl');
@@ -257,7 +257,7 @@ if ( is_admin() ) {
 			case 'property_status' :
 				/* Get the genres for the post. */
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
+				echo '<span class="type_'.strtolower($property_status).'">'.__($property_status,'epl').'</span>';
 				break;
 
 			/* Just break out of the switch statement for everything else. */

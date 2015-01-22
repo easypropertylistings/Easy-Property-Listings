@@ -168,7 +168,7 @@ if ( is_admin() ) {
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
 				/* If no duration is found, output a default message. */
 				if (  $property_address_coordinates == ',' )
-					echo 'NO' ;
+					_e('NO','epl') ;
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					// echo 'Yes';
@@ -247,7 +247,7 @@ if ( is_admin() ) {
 			case 'property_status' :
 				/* Get the genres for the post. */
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
+				echo '<span class="type_'.strtolower($property_status).'">'.__($property_status,'epl').'</span>';
 				break;
 			/* Just break out of the switch statement for everything else. */
 			default :
