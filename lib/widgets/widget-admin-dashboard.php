@@ -49,28 +49,28 @@ function epl_status_dashboard_widget_callback() {
 function epl_get_plural($count,$singular) {
 	switch($singular){
 		case 'property':
-			return sprintf( _n( '1 Property', '%s Property', $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__('Property','epl'), '%s '.__('Property','epl'), $count, 'epl' ), $count );
 		break;
 		case 'land':
-			return sprintf( _n( '1 Land', '%s Land', $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__('Land','epl'), '%s '.__('Land','epl'), $count, 'epl' ), $count );
 		break;
 		case 'rental':
-			return sprintf( _n( '1 Rental', '%s Rental', $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__('Rental','epl'), '%s '.__('Rental','epl'), $count, 'epl' ), $count );
 		break;
 		case 'rural':
-			return sprintf( _n( '1 Rural', '%s Rural', $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__('Rural','epl'), '%s '.__('Rural','epl'), $count, 'epl' ), $count );
 		break;
 		case 'commercial':
-			return sprintf( _n( '1 Commercial', '%s Commercial', $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__('Commercial','epl'), '%s '.__('Commercial','epl'), $count, 'epl' ), $count );
 		break;
 		case 'commercial_land':
-			return sprintf( _n( '1 Commercial Land', '%s Commercial Land', $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__('Commercial Land','epl'), '%s '.__('Commercial Land','epl'), $count, 'epl' ), $count );
 		break;
 		case 'business':
-			return sprintf( _n( '1 Business', '%s Business', $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__('Business','epl'), '%s '.__('Business','epl'), $count, 'epl' ), $count );
 		break;
 		default:
-			return sprintf( _n( '1 '.$singular, '%s '.$singular, $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__($singular,'epl'), '%s '.__($singular,'epl'), $count, 'epl' ), $count );
 		break;
 	}
 	
