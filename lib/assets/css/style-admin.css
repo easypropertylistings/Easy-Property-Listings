@@ -589,7 +589,7 @@ h3.epl-welcome-sub-heading {
 }
 /* inspection markup css */
 
-.epl-inspection-markup select {
+#epl-inspection-markup select {
     font-size: 12px;
     height: 20px;
     line-height: 14px;
@@ -598,7 +598,7 @@ h3.epl-welcome-sub-heading {
     width:3.6em;
 }
 
-.epl-inspection-markup input {
+#epl-inspection-markup input {
     border-style: solid;
     border-width: 1px;
     font-size: 12px;
@@ -624,7 +624,7 @@ h3.epl-welcome-sub-heading {
     font-weight: 700;
     padding: 0 5px;
 }
-.epl-inspection-markup {
+#epl-inspection-markup {
     margin: 10px 0;
 }
 #epl-inspection-add {
