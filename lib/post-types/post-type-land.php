@@ -155,7 +155,7 @@ if ( is_admin() ) {
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
 				/* If no duration is found, output a default message. */
 				if (  $property_address_coordinates == ',' )
-					echo 'NO' ;
+					_e('NO','epl') ;
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					// echo 'Yes';
@@ -211,8 +211,17 @@ if ( is_admin() ) {
 			/* If displaying the 'real-estate' column. */
 			case 'property_status' :
 				/* Get the genres for the post. */
-				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
+				$property_status = get_post_meta( $post_id, 'property_status', true );
+				$labels_property_status = apply_filters (  'epl_labels_property_status_filter', array(
+					'current' 	=> __('Current', 'epl'),
+					'withdrawn' => __('Withdrawn', 'epl'),
+					'offmarket' => __('Off Market', 'epl'),
+					'sold'  	=> __('Sold', 'epl'),
+					'leased'  	=> __('Leased', 'epl')
+					)
+				);
+				echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
+
 				break;
 			/* Just break out of the switch statement for everything else. */
 			default :
