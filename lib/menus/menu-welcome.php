@@ -24,7 +24,7 @@ class EPL_Welcome {
 	/**
 	 * @var string The capability users should have to view the page
 	 */
-	public $minimum_capability = 'manage_options';
+	public $minimum_capability = 'edit_published_posts';
 
 	/**
 	 * Get things started
@@ -536,10 +536,8 @@ class EPL_Welcome {
 						<li><a href="#guide-page"><?php _e( 'Create a blank page for each activated listing type', 'epl' ); ?></a></li>
 						<li><a href="#guide-first-listing"><?php _e( 'Publish your first listing for testing your theme setup', 'epl' ); ?></a></li>
 						
-						<li><a href="#guide-theme"><?php _e( 'Setup your theme to work perfectly with the plugin', 'epl' ); ?></a></li>
+						<li><a href="#guide-theme"><?php _e( 'Setup your theme to work with the plugin', 'epl' ); ?></a></li>
 						
-						<li><a href="#guide-display"><?php _e( 'Adjust the plugin display settings', 'epl' ); ?></a></li>
-						<li><a href="#guide-support"><?php _e( 'Support the project', 'epl' ); ?></a></li>
 						<li><a href="#guide-help"><?php _e( 'Visit Support', 'epl' ); ?></a></li>
 					</ul>
 				</div>
@@ -579,32 +577,6 @@ class EPL_Welcome {
 			
 			<div class="changelog headline-feature">
 			
-				<h2 id="guide-configure"><?php _e( 'Configure the plugin general settings', 'epl' );?></h2>
-			
-				<div class="feature-section">
-				
-					<div class="col">
-					
-						<p><strong><?php _e( 'Supported Listing Types', 'epl'); ?></strong></p>
-						<ul>
-							<li><?php _e( 'Location Taxonomy Name', 'epl'); ?></li>
-							<li><?php _e( 'Set your currency', 'epl'); ?></li>
-							<li><?php _e( 'Increase or decrease the default graph range', 'epl'); ?></li>
-						</ul>
-						
-					</div>
-					
-					<div class="col">
-						<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-general-settings.png'; ?>" class="epl-welcome-screenshots"/>
-					</div>
-					
-					
-				</div>
-			</div>
-			<hr>
-			
-			<div class="changelog headline-feature">
-			
 				<h2 id="guide-page"><?php _e( 'Create a blank page for each activated listing type', 'epl' );?></h2>
 			
 				<div class="feature-section">
@@ -633,7 +605,7 @@ class EPL_Welcome {
 				<h2 id="guide-first-listing" class="epl-welcome-sub-heading"><?php _e( 'Publish Your First Listing', 'epl' );?></h2>
 				
 				<div class="featured-image">
-					<?php //echo wp_oembed_get('https://www.youtube.com/watch?v=h6B8LLecfbw', array('width'=>600)); ?>
+					<?php echo wp_oembed_get('https://www.youtube.com/watch?v=h6B8LLecfbw', array('width'=>600)); ?>
 				</div>
 				<h3 class="epl-welcome-sub-heading"><?php _e( 'Title & Author', 'epl' );?></h3>
 				
@@ -644,7 +616,7 @@ class EPL_Welcome {
 						<h4><?php _e( 'Title', 'epl' );?></h4>
 						<p><?php _e( 'Use the full listing address as the title.', 'epl' );?>
 						
-						<p><?php _e( 'When a property is being sold the "heading" is frequently changed and can cause permalink issues. Not to mention the benefits of using the address for local search engine benefits.', 'epl' );?></p>
+						<p><?php _e( 'When a property is being sold the "heading" is frequently changed and can cause permalink issues. Not to mention the search engine benefits.', 'epl' );?></p>
 						
 						<h4><?php _e( 'Author or Primary Real Estate Agent', 'epl' );?></h4>
 						<p><?php _e( 'Select the author to show the name of the agent who has listed the property with their contact details. For best results each real estate agent should have their own WordPress user profile which allows for the output of their details on the listing and in widgets.', 'epl' );?></p>
@@ -709,7 +681,7 @@ class EPL_Welcome {
 			
 			<div class="changelog headline-feature">
 			
-				<h2 id="guide-first-listing" class="epl-welcome-sub-heading"><?php _e( 'Configure your theme', 'epl' );?></h2>
+				<h2 id="guide-theme" class="epl-welcome-sub-heading"><?php _e( 'Configure your theme', 'epl' );?></h2>
 				<h3 class="about-description" style="text-align: center;"><?php _e( 'If you have never looked at a line of code in your life and you can copy and paste you can do this.<br/>We have made this process as easy as possible.', 'epl' );?></h3>
 
 				<div class="feature-section col two-col">

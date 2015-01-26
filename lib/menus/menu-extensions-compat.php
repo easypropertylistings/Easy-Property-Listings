@@ -39,8 +39,8 @@ $epl_settings = get_option('epl_settings');
 ?>
 
 <div class="wrap">
-	<h2><?php _e('Extension Options', 'epl'); ?></h2>
-	<p><?php _e('Enable your extensions options below', 'epl'); ?></p>
+	<h2><?php _e('Update your extensions for new features', 'epl'); ?></h2>
+	<p><?php _e('Every extension has been updated to use the code base of 2.0. Adjust non supported extension settings here.', 'epl'); ?></p>
 	<div class="epl-content">
 		<form action="" method="post">
 			<div class="epl-fields">
@@ -139,7 +139,7 @@ $epl_settings = get_option('epl_settings');
 													break;
 
 												default:
-													echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
+													echo '<input class="wide" type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 											}
 
 											if(isset($field['help'])) {

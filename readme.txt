@@ -5,74 +5,72 @@ Contributors: mervb1, MarionWante
 Donate link: http://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, wp property, Merv Barrett, real estate connected
 Requires at least: 3.3
-Tested up to: 4.0.1
+Tested up to: 4.1
 
-Stable Tag: 1.2.20150107
+Stable Tag: 2.0
 
 License: GNU Version 2 or Any Later Version
 
-Display real estate listings through WordPress with this complete property listing management plugin platform for today's real estate agent
+Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is built for scale, extendible and works with any WordPress theme. Install Today!
 
 == Description ==
 
-The complete real estate platform for today's agent to list property using any theme for WordPress fast, easy and free. Just enable the listing types you need add some properties, tweak your settings and you're done. Extend the core with cool dynamic add-on extensions that give your visitors more reasons to come back.
+Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. But who cares for features, we know you care about what benefits those features present to you. We totally understand that and below you will find out why you should be using Easy Property Listing to manage your listings on your real estate website:
 
-Easy Property Listings is a complete real estate solution for property listings in a light, fast, and easy to use plugin. Rather that attempting to provide every feature under the sun, Easy Property Listings makes creating real estate websites simple and complete by providing just the features you need.
+* Ease of use and quick setup means you spend less time developing and more about with getting properties on your website.
+* Multiple listing types are supported because we know not everyone is a residential properties specialist. You can list commercial and rural properties just as easily.
+* Easy Property Listing is highly customizable to such an extent that you will barely know if you looked at some of the websites running the plugin here.
+* You have the freedom to display property price as a price range or a fixed price giving you the flexibility to attract buyers with various budgets falling within your desired range.
+* It does not matter what theme you use for your site, Easy Property Listing 99% of all WordPress themes.
+* This plugin is location independent and whether you are selling properties in Miami beach or Russia, you can list the properties in the local currency.
+* This is more than just a listing plugin, you can also have your sales agent profiles next to the properties for sale with their contact details. This makes it so much easier for a client to find a property they want and then make a viewing appointment all from the same page on your website.
+* This Real Estate plugin for has been designed to complement your skill and design and to set you free to do what you do best.
+* Developers save time because its pre-configured to support every country, in any market.
+* Fast. Flexible. Forward-thinking solution for real estate agents using WordPress.
 
-* Easy Property Listings has been built developed on the REAXML (Realestate.com.au) format which has hundreds of custom fields with dozens of options. 
+Features:
+* Author Box and Widget: Easy to customise, multiple agents, tabbed and extendable. Supports video, bio, social media links and much more.
+* Listing Widget to easily add properties anywhere to your theme. Dozens of options with random, ordered and offset and no code.
+* Search Widget: Supports tabs, location, land, price, address and more. It's all here, search everything. Its super fast.
+* Extend with Advanced Mapping extension that handles hundreds of listings, dozens of options added with a simple shortcode.
+* iCal calendar appointment support for inspection times. Just click and add to your calender.
+* Geo-locate the property coordinates with a press of a button and display Google Maps. 
+* Works with any theme and popular frameworks like Genesis and iThemes Builder.
+* Buttons for multiple floor plans, and multiple external links.
 
-We want to expand Easy Property Listings to support real estate formats used around the world. So help us help you build websites for real estate agents in your city, state and country. Supply us with the feed format you use so we can build support into Easy Property Listings making your real estate development much easier... we hope!
-
-Let us know which real estate feed you use and provide a few sample files of the format you need supported. We can then add support to the plugin and import scripts for your real estate feed because you too will configure "Listings" in minutes. 
-
-
-Features of the plugin include:
-
-* Separate post types for each listing type; property, rental, land, rural, business, commercial, commercial land
-* Use the separate post types and MailChimp RSS feed to create property, rental, commercial, etc. alerts
-* Listing Search widget with price range, bedrooms range, restrict to current available
-* Many extensions to add additional features that dynamically link to property listings by area
-* Minimal configuration required so you can get a dynamic real estate site with full property support finished in minutes not hours
-* Listing widget to easily add properties to themes
-* Short codes for scheduled home opens and listings so you can show all your sales in one place
-* Over 30 custom meta fields each listing types pre-configured saving you time
-* Custom Labels for POA (Price on Application), Home Open, (Suburb) City, (Postcode) Zip
-* Automatically insert galleries on the page or through a widget
-* Customise the columns for galleries and features
-* Custom excerpt length on listing archive pages
-* Support for Under Offer and no price listings
-* Author profiles add support for mobile phone and social media contacts; FaceBook, Twitter, Google Plus, Skype, LinkedIn
-* Use your favourite contact form plugin short in the author box contact tab
-* Lightbox support, just add your favourite plugin that uses link="file on the gallery short code
-* Hide listing and property addresses
-* Land and Building size support
-* Standard WordPress functions to use custom meta fields to create your own custom templates
-* Geo-locate the property coordinates with a press of a button
-* Use your own bedrooms, bathrooms, garage, air conditioning, parking, pool icons with a few lines of CSS in your theme
-* Metric and Imperial measurements support
-* Quickly see important listing information and filter sold, current, withdrawn, off market listings
-* Buttons for multiple floor plans, and multiple external links
+* Support for Under Offer and no price listings, you name it, it works.
 * Currency support for non dollar currencies
-* Google map on listings
-* Minimal CSS styling so it will integrate with any theme
-* Works with any theme
-* Works with Genesis Framework and iThemes Builder
-* Built in tabbed Author Box for listings
-* Author widget with support for multiple agents per property
+
+
 * Extensible with many [add-ons](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions)
-* Developer friendly with dozens of actions and filters. 
+
+Developer Features:
+* Over 50 custom meta fields per listing type. Everything is pre-configured saving hundreds of hours. Want more, add more all extendible.
+* Build better real estate websites faster with advanced extensions saving you even more time. Flexible and forward-thinking.
+* Separate post types for each listing type; property, rental, land, rural, business, commercial, commercial land.
+* Lightbox support, just add your favourite plugin that uses link="file on the gallery short code.
+* Create your own custom templates using standard WordPress and included functions.
+* Minimal CSS styling so it will integrate with any theme
+* Developer friendly with dozens of actions and filters
+* Custom labels for everything and full translation support
+* Supports REAXML, JUPIX and worldwide MLS systems
 
 More information at [Easy Property Listings.com.au](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions).
 
 **Follow this plugin on [GitHub](https://github.com/easypropertylistings/Easy-Property-Listings)**
 
-**Advanced Listing and Property Map**
+**Advanced Mapping**
 
-[Advanced Map](http://easypropertylistings.com.au/extensions/advanced-mapping/) Create a beautiful map showcasing all your listings or just some types with a powerful short code.
+[Advanced Map](http://easypropertylistings.com.au/extensions/advanced-mapping/) Create a beautiful map showcasing your listings with a powerful shortcode.
+
+**Listing Alerts**
+
+[Listing Alerts](http://easypropertylistings.com.au/extensions/advanced-mapping/) Schedule email alerts to subscribers with HTML email support and customisable messages.
+
 
 **Link listings with other types of content**
 
-With add-ons for [Suburb/City Profiles](http://easypropertylistings.com.au/extensions/suburb-profiles/), [Testimonials](http://easypropertylistings.com.au/extensions/testimonial-manager/), and [Staff Directory](http://easypropertylistings.com.au/extensions/staff-directory/), [Listing Templates](http://easypropertylistings.com.au/extensions/listing-templates/), [Awards](http://easypropertylistings.com.au/extensions/awards/), [Business Directory](http://easypropertylistings.com.au/extensions/business-directory/), [FeedSync REAXML](http://easypropertylistings.com.au/extensions/feedsync/), and more, Easy Property Listings can enhance your listings by dynamically linking content and you offering opportunities to build a deep real estate website.
+With add-ons for [Listing Templates](http://easypropertylistings.com.au/extensions/listing-templates/), [Suburb/City Profiles](http://easypropertylistings.com.au/extensions/suburb-profiles/), [Testimonials](http://easypropertylistings.com.au/extensions/testimonial-manager/), and [Staff Directory](http://easypropertylistings.com.au/extensions/staff-directory/), [Awards](http://easypropertylistings.com.au/extensions/awards/), [Business Directory](http://easypropertylistings.com.au/extensions/business-directory/), [FeedSync REAXML](http://easypropertylistings.com.au/extensions/feedsync/), and more, Easy Property Listings can enhance your listings by dynamically linking content and you offering opportunities to build a deep real estate website.
 
 **Languages**
 
@@ -87,12 +85,12 @@ Would you like to help translate the plugin into more languages? [Join our Trans
 
 == Installation ==
 
-1. Upload plugin zip contents to wp-contents/plugin directory and activate the plugin
-2. Go to Easy Property Listings > Settings and enable your property types and other options then go-to Settings > Permalinks and press save
-3. Set your custom labels and configure galleries and excerpt lengths by going to Easy Property Listings > Display
-4. Create listings from enabled listing types
+1. Upload plugin zip contents to wp-contents/plugin directory and activate the plugin.
+2. Go to Easy Property Listings > Settings and enable your listing types and press save.
+3. Customise your labels, tweak the display, all in minutes.
+4. Add a listing as you would a post
 5. Create blank pages for each listing type you enable so you can easily add the archive page to your WordPress menus
-6. Insert short codes where needed buttons for any download via the "Insert Download" button next the Upload Media buttons
+6. Insert short codes, add widgets, read the guide.
 7. For detailed setup instructions, visit the official [Documentation](http://easypropertylistings.com.au/documentation/) page.
 
 == Frequently Asked Questions ==
@@ -101,15 +99,13 @@ Would you like to help translate the plugin into more languages? [Join our Trans
 
 The easiest way to display the archive page for your listing:
 
-1. Create a blank page for each listing type you enable; property, rental, land, business, rural, commercial, commercial-land.
+1. Create a blank page for each listing type you enable called; property, rental, land, business, rural, commercial, commercial-land. You can rename them after.
 
-2. Now these pages will display any of the listings you have added.
-
-3. Add the pages to the menu and configure the name eg For Sale but this will use the property slug:
+2. Now these pages will display listings of that type as long as you have added one.
 
 = Is there a sample import file I can use to setup a demo real estate web site? =
 
-Yes! Simply go to Tools > Import and install the WordPress Importer, then navigate to wp-content/plugins/easy-property-listing/assets/ and select the sample-property-import.xml file. This will create several sample properties for yo, make sure "property" is activated.
+Yes! Simply go to Tools > Import and install the WordPress Importer, then navigate to wp-content/plugins/easy-property-listing/assets/ and select the sample-property-import.xml file. This will create several sample properties for you, make sure the "property" type is activated.
 
 = Getting a 404 error? =
 
