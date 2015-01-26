@@ -1,7 +1,7 @@
 === Easy Property Listings ===
 Author URI: http://www.realestateconnected.com.au
 Plugin URI: http://easypropertylistings.com.au
-Contributors: mervb1, MarionWante
+Contributors: mervb1
 Donate link: http://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, wp property, Merv Barrett, real estate connected
 Requires at least: 3.3

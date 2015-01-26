@@ -2,7 +2,7 @@
 /**
  * Extensions General Options Menu page
  *
- * @since 1.0
+ * @since 2.0
  * @return void
  */
 
@@ -42,8 +42,8 @@ $epl_settings = get_option('epl_settings');
 
 ?>
 <div class="wrap">
-	<h2>Extensions Settings</h2>
-	<p>Extension settings</p>
+	<h2><?php _e( 'Extensions Settings', 'epl'); ?></h2>
+	<p><?php _e( 'Configure your extension settings here. Visit the main settings page for more extension settings.', 'epl'); ?></p>
 	<h2 class="nav-tab-wrapper epl-nav-tab-wrapper">
 		<?php
 			foreach($epl_extensions as $ext_key	=>	$epl_extension){

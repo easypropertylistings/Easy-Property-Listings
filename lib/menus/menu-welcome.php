@@ -809,7 +809,7 @@ class EPL_Welcome {
 					<div>
 						<h3 class="about-description" style="text-align: center;"></h3>
 						<h4><?php _e( 'Phenomenal Support','epl' );?></h4>
-						<p><?php sprintf( _e( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'epl' ), esc_url( 'http://easypropertylistings.com.au/support/' ) );?></p>
+						<p><?php echo $link = sprintf( __( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'epl' ), esc_url( 'http://easypropertylistings.com.au/support/' ) );?></p>
 					</div>
 					
 					<div>

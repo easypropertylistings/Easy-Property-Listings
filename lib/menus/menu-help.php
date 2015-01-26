@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				?>
 				<div id="links" class="epl-section-content">
 					<div class="epl-feature-section">
-						<h2 class="epl-section-title">Important Links</h2>
+						<h2 class="epl-section-title"><?php _e( 'Important Links', 'epl'); ?></h2>
 						<ul>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-theme"><?php _e( 'What\'s New', 'epl' ); ?></a></li>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a></li>
@@ -44,10 +44,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				<div id="add-listing" class="epl-section-content">
 				
 					<div class="epl-feature-section">
-						<h1 class="epl-section-title">Adding Listings</h1>
+						<h1 class="epl-section-title"><?php _e( 'Adding Listings', 'epl'); ?></h1>
 						<div class="epl-col">
-							<h2>The video will show you how to add a listing quickly and easily.</h2>
-							<p>Use the tips below to get started using Easy Property Listings. You will be up and running in no time!</p>
+							<h2><?php _e( 'The video will show you how to add a listing quickly and easily.', 'epl'); ?></h2>
+							<p><?php _e( 'Use the tips below to get started using Easy Property Listings. You will be up and running in no time!', 'epl'); ?></p>
 						</div>
 						<div class="epl-col-last">
 							<div class="featured-image">
@@ -110,17 +110,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						<div class="epl-col epl-half-right">
 							<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-details.png'; ?>" class="epl-welcome-screenshots"/>
 						</div>
-						
 					</div>
-
 				<hr>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
-	
-
 </div>
 
