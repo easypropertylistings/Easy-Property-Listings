@@ -223,17 +223,17 @@ if ( is_admin() ) {
 				}
 
 				if ( empty ( $view ) ) {
-					echo '<div class="epl_meta_search_price">Sale: ' , epl_currency_formatted_amount( $price ), '</div>';
+					echo '<div class="epl_meta_search_price">'.__('Sale','epl').': ' , epl_currency_formatted_amount( $price ), '</div>';
 				} else {
 					echo '<div class="epl_meta_price">' , $view , '</div>'; 
 				}
 				
 				if ( !empty ( $lease ) ) {
-					echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), '</div>';
+					echo '<div class="epl_meta_lease_price">'.__('Lease','epl').': ' , epl_currency_formatted_amount( $lease ), '</div>';
 				}
 				
 				if ( !empty ( $lease_date ) ) {
-					echo '<div class="epl_meta_lease_date">Lease End: ' ,  $lease_date , '</div>';
+					echo '<div class="epl_meta_lease_date">'.__('Lease End','epl').': ' ,  $lease_date , '</div>';
 				}
 				if($property_authority == 'auction' ) {
 					_e('Auction ','epl');
@@ -256,8 +256,17 @@ if ( is_admin() ) {
 			/* If displaying the 'real-estate' column. */
 			case 'property_status' :
 				/* Get the genres for the post. */
-				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				echo '<span class="type_'.strtolower($property_status).'">'.$property_status.'</span>';
+				$property_status = get_post_meta( $post_id, 'property_status', true );
+				$labels_property_status = apply_filters (  'epl_labels_property_status_filter', array(
+					'current' 	=> __('Current', 'epl'),
+					'withdrawn' => __('Withdrawn', 'epl'),
+					'offmarket' => __('Off Market', 'epl'),
+					'sold'  	=> __('Sold', 'epl'),
+					'leased'  	=> __('Leased', 'epl')
+					)
+				);
+				echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
+
 				break;
 
 			/* Just break out of the switch statement for everything else. */
