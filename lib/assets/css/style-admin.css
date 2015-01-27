@@ -711,6 +711,13 @@ h3.epl-welcome-sub-heading {
 	.fixed .column-listing, .fixed .column-property_status {
 		display:none;
 	}
+	.epl-col,
+	.epl-left-half,
+	.epl-right-half,
+	.epl-half-right,
+	.epl-half-left {
+		width: 100% !important;
+	}
 }
 /* Clear Floats */
 .epl-clearfix {
