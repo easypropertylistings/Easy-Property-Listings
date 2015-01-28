@@ -2,6 +2,7 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+$_REQUEST = array_map('sanitize_text_field',$_REQUEST);
 
 extract($_REQUEST);
 
@@ -13,45 +14,45 @@ if(!empty($property_type)) {
 }
 
 $meta_query = array();
-if(isset($property_security_system) && !empty($property_security_system)) {
+if(isset($property_security_system) && in_array($property_security_system, array('yes', '1')) ) {
 	$meta_query[] = array(
 		'key'		=>	'property_security_system',
 		'value'		=>	array('yes', '1'),
 		'compare'	=>	'IN'
 	);
 }
-if(isset($property_air_conditioning) && !empty($property_air_conditioning)) {
+if(isset($property_air_conditioning) && in_array($property_air_conditioning, array('yes', '1')) ) {
 	$meta_query[] = array(
 		'key'		=>	'property_air_conditioning',
 		'value'		=>	array('yes', '1'),
 		'compare'	=>	'IN'
 	);
 }
-if(isset($property_pool) && !empty($property_pool)) {
+if(isset($property_pool) && in_array($property_pool, array('yes', '1')) ) {
 	$meta_query[] = array(
 		'key'		=>	'property_pool',
 		'value'		=>	array('yes', '1'),
 		'compare'	=>	'IN'
 	);
 }
-if(!empty($property_bedrooms)) {
+if(intval($property_bedrooms) > 0) {
 	$meta_query[] = array(
 		'key'		=>	'property_bedrooms',
-		'value'		=>	$property_bedrooms,
+		'value'		=>	intval($property_bedrooms),
 		'compare'	=>	'>='
 	);
 }
-if(!empty($property_bathrooms)) {
+if(intval($property_bathrooms) > 0) {
 	$meta_query[] = array(
 		'key'		=>	'property_bathrooms',
-		'value'		=>	$property_bathrooms,
+		'value'		=>	intval($property_bathrooms),
 		'compare'	=>	'>='
 	);
 }
-if(!empty($property_carport)) {
+if(!empty(intval($property_carport) > 0)) {
 	$meta_query[] = array(
 		'key'		=>	'property_carport',
-		'value'		=>	$property_carport,
+		'value'		=>	intval($property_carport),
 		'compare'	=>	'>='
 	);
 }
