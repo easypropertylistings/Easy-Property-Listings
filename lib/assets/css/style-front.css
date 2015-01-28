@@ -469,6 +469,13 @@ li.tbhead.current {
 	margin-top: 0.5em;
 	line-height: 1;
 }
+/* Inspection Times */
+.epl-inspection-times {
+    margin: 1em 0;
+}
+ul.home-open-wrapper {
+    margin: 0.5em 1em;
+}
 .epl-property-blog .entry-content .property-price {
 	float: right;
 }
@@ -885,6 +892,7 @@ li.tbhead.current {
 	padding: 0;
 	width: 100%;
 }
+
 /*****************************
 	EPL Clear Floating Div's
 ******************************/
