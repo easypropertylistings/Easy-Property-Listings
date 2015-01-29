@@ -1,19 +1,15 @@
 /*
  * EPL Front CSS
  */
- 
 h3.property-address {
 	margin-top:0;
 }
-
-
 .epl-featured-image img {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	max-width: 100%;
 	height: auto !important;
 }
-
 /* Property Blog Price Settings */
 .epl-property-blog .address {
 	/* margin-top: 0.3em; */
@@ -255,11 +251,6 @@ h3.property-address {
 .property-widget-image {
 	margin-bottom: 2em;
 }
-.property-widget-image img {
-	/* border: 4px solid #ccc; */
-	/* -webkit-box-shadow: 0px 2px 8px #999; */
-	/* box-shadow: 0px 2px 8px #999; */
-}
 .property-widget-image .entry-header {
 	margin-bottom: 0;
 }
@@ -291,6 +282,15 @@ h3.property-address {
 .sidebar .widget_epl_tm_testimonial .entry-content,
 .sidebar .widget_epl_tm_testimonial .entry-summary {
 	padding: 0;
+}
+/* Twenty 15 */
+#primary.epl-single-default,
+section#primary.epl-archive-default {
+	margin: 0;
+	width: 100%;
+}
+.hentry.epl-listing-grid-view + .hentry.epl-listing-grid-view {
+	margin-top: 0;
 }
 /* Author Styling */
 .epl-author-card {
@@ -473,8 +473,8 @@ li.tbhead.current {
 .epl-inspection-times {
     margin: 1em 0;
 }
-ul.home-open-wrapper {
-    margin: 0.5em 1em;
+.epl-inspection-times ul {
+    margin: 0.5em 1.2em;
 }
 .epl-property-blog .entry-content .property-price {
 	float: right;
@@ -520,7 +520,6 @@ ul.home-open-wrapper {
     top: 20px;
     width: 100%;
 }
-
 .epl-property-blog .status-sticker {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12px;
@@ -543,7 +542,6 @@ ul.home-open-wrapper {
 .epl-property-blog-slim .property-box-left-slim {
 	margin-right: 1em;
 }
-
 /* Tab Sections */
 .epl-tab-section {
 	overflow: hidden;
@@ -606,7 +604,6 @@ ul.home-open-wrapper {
 	display: inline-block; 
 	width: 32%; 
 }
-
 .epl-search-form .fm-block-half .top-mrgn { 
 	margin-top: 0; 
 }
@@ -620,7 +617,6 @@ ul.home-open-wrapper {
 .epl-search-form .checkbox .check-label { 
 	margin-top:-1px; 
 }
-
 /* Fix Twenty Twelve Styling */
 .entry-content #map1 img,
 .entry-content #map2 img,
@@ -724,15 +720,12 @@ ul.home-open-wrapper {
 .epl-switching-sorting-wrap{
 	text-align:right;
 }
-
 .epl-properties-sorting {
 	display: inline-block;
 	float: none;
 	padding: 0 5px;
 	vertical-align: middle;
 }
-
-
 /*****************************
 	EPL Responsive Design
 ******************************/
@@ -795,8 +788,7 @@ ul.home-open-wrapper {
 		float: left;
 		width: 100%;
 		text-align:left;
-	}	
-
+	}
 	.epl-property-single .entry-col {
 		float:none;
 	}
@@ -912,4 +904,3 @@ ul.home-open-wrapper {
 #ie7 .epl-clearfix {
 	zoom: 1;
 }
-
