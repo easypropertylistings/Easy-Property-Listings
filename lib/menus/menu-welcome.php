@@ -326,7 +326,16 @@ class EPL_Welcome {
 
 			<div class="changelog headline-feature">
 				<div class="feature-section">
-					<h4><?php _e( 'Full change log of version 2.0', 'epl' );?></h4>
+				
+					<h4><?php _e( 'Version 2.0.1', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'New: Added CSS to Default template containers for Twenty 15 CSS Fix.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Restored Display of Inspection Label for properties with scheduled inspection times.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search Widget security fix.', 'epl' );?></li>
+					</ul>
+					
+				
+					<h4><?php _e( 'Version 2.0', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Extension validator.', 'epl' );?></li>
 						<li><?php _e( 'New: Depreciated listing-meta.php into compatibility folder.', 'epl' );?></li>
