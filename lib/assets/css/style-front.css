@@ -283,11 +283,11 @@ h3.property-address {
 .sidebar .widget_epl_tm_testimonial .entry-summary {
 	padding: 0;
 }
-/* Twenty 15 */
+/* Twenty 15 Fix Attempt */
 #primary.epl-single-default,
 section#primary.epl-archive-default {
-	margin: 0;
-	width: 100%;
+	/* margin: 0; */
+	/* width: 100%; */
 }
 .hentry.epl-listing-grid-view + .hentry.epl-listing-grid-view {
 	margin-top: 0;
