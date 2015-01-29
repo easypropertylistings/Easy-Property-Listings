@@ -325,16 +325,18 @@ class EPL_Welcome {
 			<hr>
 
 			<div class="changelog headline-feature">
+			
+			<h2><?php _e( 'Full Change Log','epl' );?></h2>
+			
 				<div class="feature-section">
-				
+								
 					<h4><?php _e( 'Version 2.0.1', 'epl' );?></h4>
 					<ul>
-						<li><?php _e( 'New: Added CSS to Default template containers for Twenty 15 CSS Fix.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: Copy CSS from style-front.css to correct, margins and grid/sorter.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Restored Display of Inspection Label for properties with scheduled inspection times.', 'epl' );?></li>
-						<li><?php _e( 'Fix: Search Widget security fix.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search Widget security fix and performance improvements.', 'epl' );?></li>
 					</ul>
 					
-				
 					<h4><?php _e( 'Version 2.0', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Extension validator.', 'epl' );?></li>

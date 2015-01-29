@@ -135,9 +135,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 2.0.1: January 29, 2015 =
 
-* New: Added CSS to Default template containers for Twenty 15 CSS Fix.
+* Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: Copy CSS from style-front.css to correct, margins and grid/sorter.
 * Fix: Restored Display of Inspection Label for properties with scheduled inspection times.
-* Fix: Search Widget security fix.
+* Fix: Search Widget security fix and performance improvements.
 
 = 2.0: January 27, 2015 =
 
