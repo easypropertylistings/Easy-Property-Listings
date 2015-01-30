@@ -354,7 +354,15 @@ class EPL_Property_Meta {
 		$price_sticker = '';
 		$date = new DateTime($this->post->post_date);
 		$now = new DateTime();
-		$diff = $now->diff($date);
+		
+		// php > 5.3
+		if( method_exists($now,'diff') ) {
+		
+			$diff = $now->diff($date);
+			$diff = $diff->days;
+		} else {
+			$diff = '';
+		}
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
 			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
@@ -364,7 +372,7 @@ class EPL_Property_Meta {
 				// Property
 				$price_sticker = '';
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					if($this->get_epl_settings('sticker_new_range') >=  $diff->days) 
+					if($this->get_epl_settings('sticker_new_range') >=  $diff) 
 						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
 						
 					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
