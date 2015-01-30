@@ -325,8 +325,19 @@ class EPL_Welcome {
 			<hr>
 
 			<div class="changelog headline-feature">
+			
+			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
+			
 				<div class="feature-section">
-					<h4><?php _e( 'Full change log of version 2.0', 'epl' );?></h4>
+								
+					<h4><?php _e( 'Version 2.0.1', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: Copy CSS from style-front.css to correct, margins and grid/sorter.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Restored Display of Inspection Label for properties with scheduled inspection times.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search Widget security fix and performance improvements.', 'epl' );?></li>
+					</ul>
+					
+					<h4><?php _e( 'Version 2.0', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Extension validator.', 'epl' );?></li>
 						<li><?php _e( 'New: Depreciated listing-meta.php into compatibility folder.', 'epl' );?></li>
@@ -537,7 +548,7 @@ class EPL_Welcome {
 						<li><a href="#guide-first-listing"><?php _e( 'Publish your first listing for testing your theme setup', 'epl' ); ?></a></li>
 						
 						<li><a href="#guide-theme"><?php _e( 'Setup your theme to work with the plugin', 'epl' ); ?></a></li>
-						
+						<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-changelog"><?php _e( 'Full Change Log', 'epl' ); ?></a></li>
 						<li><a href="#guide-help"><?php _e( 'Visit Support', 'epl' ); ?></a></li>
 					</ul>
 				</div>

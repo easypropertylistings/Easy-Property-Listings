@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.0
+Stable Tag: 2.0.1
 
 License: GNU Version 2 or Any Later Version
 
@@ -133,7 +133,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.0: January 20, 2015 =
+= 2.0.1: January 29, 2015 =
+
+* Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: Copy CSS from style-front.css to correct, margins and grid/sorter.
+* Fix: Restored Display of Inspection Label for properties with scheduled inspection times.
+* Fix: Search Widget security fix and performance improvements.
+
+= 2.0: January 27, 2015 =
 
 * New: Extension validator.
 * New: Depreciated listing-meta.php into compatibility folder.

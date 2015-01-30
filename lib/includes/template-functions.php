@@ -574,10 +574,12 @@ add_action('epl_property_available_dates','epl_property_available_dates');
 function epl_property_inspection_times(){
 	global $property;
 	$property_inspection_times = $property->get_property_inspection_times();
+	$label_home_open = '';
 	if(trim($property_inspection_times) != '') {
 		$label_home_open = $property->get_epl_settings('label_home_open');	
 	?>
 	<div class="epl-inspection-times">
+		<span class="epl-inspection-times-label"><?php echo $label_home_open; ?></span>
 		<?php echo $property_inspection_times; ?>
 	</div>
 	<?php 
