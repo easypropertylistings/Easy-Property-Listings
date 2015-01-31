@@ -329,7 +329,13 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
-								
+					
+					<h4><?php _e( 'Version 2.0.2', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Added fallback diff() function which is not present in PHP 5.2 or earlier used with the New label.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Restored missing contact form tab on author box.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.0.1', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: Copy CSS from style-front.css to correct, margins and grid/sorter.', 'epl' );?></li>
