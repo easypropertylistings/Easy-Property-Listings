@@ -133,6 +133,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+
+= 2.0.2: January 31, 2015 =
+
+* Fix: Added fallback diff() function which is not present in PHP 5.2 or earlier used with the New label. 
+* Fix: Restored missing contact form tab on author box.
+
 = 2.0.1: January 29, 2015 =
 
 * Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: Copy CSS from style-front.css to correct, margins and grid/sorter.

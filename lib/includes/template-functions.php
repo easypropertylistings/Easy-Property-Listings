@@ -919,16 +919,11 @@ add_action('pre_get_posts','epl_archive_sorting');
 function epl_author_tabs () {
 	global $epl_author;
 	$author_tabs	= array(
-						'author_id'				=>	__('About','epl'),
-						'description'			=>	__('Bio','epl'),
-						'video'					=>	__('Video','epl'),
-						'contact'				=>	__('Contact','epl')
+						'author_id'		=>	__('About','epl'),
+						'description'		=>	__('Bio','epl'),
+						'video'			=>	__('Video','epl'),
+						'contact'		=>	__('Contact','epl')
 					);
-	foreach($author_tabs as $k	=>	$author_tab) {
-		if(	$epl_author->{$k} == ''){
-			unset($author_tabs[$k]);
-		}
-	}
 	return $author_tabs = apply_filters('epl_author_tabs',$author_tabs);
 }
 
