@@ -49,7 +49,7 @@ if(intval($property_bathrooms) > 0) {
 		'compare'	=>	'>='
 	);
 }
-if(!empty(intval($property_carport) > 0)) {
+if(intval($property_carport) > 0) {
 	$meta_query[] = array(
 		'key'		=>	'property_carport',
 		'value'		=>	intval($property_carport),

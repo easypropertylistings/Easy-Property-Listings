@@ -33,9 +33,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						<ul>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-theme"><?php _e( 'What\'s New', 'epl' ); ?></a></li>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a></li>
+							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-changelog"><?php _e( 'Full Change Log', 'epl' ); ?></a></li>
 							<li><a href="http://easypropertylistings.com.au/documentation/"><?php _e('Documentation', 'epl'); ?></a></li>
 							<li><a href="http://easypropertylistings.com.au/support-the-site/"><?php _e( 'Support the project', 'epl' ); ?></a></li>
 							<li><a href="http://easypropertylistings.com.au/support/"><?php _e( 'Visit Support', 'epl' ); ?></a></li>
+							<li><a href="https://wordpress.org/support/view/plugin-reviews/easy-property-listings"><strong><?php _e( 'Write a Review', 'epl' ); ?></strong></a></li>
 						</ul>
 					</div>
 				</div>
