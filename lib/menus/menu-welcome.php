@@ -334,6 +334,7 @@ class EPL_Welcome {
 					<ul>
 						<li><?php _e( 'Fix: Added fallback diff() function which is not present in PHP 5.2 or earlier used with the New label.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Restored missing contact form tab on author box.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added CSS versioning to admin CSS and front end CSS.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.0.1', 'epl' );?></h4>
