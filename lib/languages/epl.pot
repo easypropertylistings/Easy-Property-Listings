@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 1.1.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-01-27 03:09+0800\n"
-"PO-Revision-Date: 2015-01-27 03:09+0800\n"
+"POT-Creation-Date: 2015-02-02 18:02+0800\n"
+"PO-Revision-Date: 2015-02-02 18:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: en\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:57
-#: includes/template-functions.php:923 includes/template-functions.php:1002
+#: includes/template-functions.php:925
 msgid "Contact"
 msgstr ""
 
@@ -89,9 +89,9 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:594 compatibility/listing-meta-compat.php:595
 #: includes/class-property-meta.php:233 includes/class-property-meta.php:265
 #: includes/class-property-meta.php:290 includes/class-property-meta.php:329
-#: includes/class-property-meta.php:361 includes/class-property-meta.php:400
-#: includes/class-property-meta.php:416 includes/class-property-meta.php:449
-#: includes/template-functions.php:604 meta-boxes/meta-boxes.php:35
+#: includes/class-property-meta.php:371 includes/class-property-meta.php:410
+#: includes/class-property-meta.php:426 includes/class-property-meta.php:459
+#: includes/template-functions.php:606 meta-boxes/meta-boxes.php:35
 #: post-types/post-type-business.php:264 post-types/post-type-commercial.php:254
 #: post-types/post-type-commercial_land.php:251 post-types/post-type-land.php:219
 #: post-types/post-type-property.php:224 post-types/post-type-rental.php:223
@@ -107,8 +107,8 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:615 compatibility/listing-meta-compat.php:629
 #: includes/class-property-meta.php:243 includes/class-property-meta.php:274
 #: includes/class-property-meta.php:302 includes/class-property-meta.php:340
-#: includes/class-property-meta.php:376 includes/class-property-meta.php:404
-#: includes/class-property-meta.php:427 includes/class-property-meta.php:460
+#: includes/class-property-meta.php:386 includes/class-property-meta.php:414
+#: includes/class-property-meta.php:437 includes/class-property-meta.php:470
 #: meta-boxes/meta-boxes.php:943 post-types/post-type-business.php:222
 #: post-types/post-type-commercial.php:215 post-types/post-type-commercial_land.php:210
 #: post-types/post-type-land.php:199 post-types/post-type-property.php:203
@@ -120,7 +120,7 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:405 compatibility/listing-meta-compat.php:406
 #: compatibility/listing-meta-compat.php:407 compatibility/listing-meta-compat.php:408
 #: includes/class-property-meta.php:257 includes/class-property-meta.php:321
-#: includes/class-property-meta.php:384 includes/class-property-meta.php:443
+#: includes/class-property-meta.php:394 includes/class-property-meta.php:453
 #: meta-boxes/meta-boxes.php:39 post-types/post-type-business.php:265
 #: post-types/post-type-commercial.php:255 post-types/post-type-commercial_land.php:252
 #: post-types/post-type-land.php:220 post-types/post-type-property.php:225
@@ -155,7 +155,7 @@ msgstr ""
 
 #: compatibility/listing-meta-compat.php:597 compatibility/listing-meta-compat.php:598
 #: compatibility/listing-meta-compat.php:599 includes/class-property-meta.php:267
-#: includes/class-property-meta.php:331 includes/class-property-meta.php:451
+#: includes/class-property-meta.php:331 includes/class-property-meta.php:461
 #: meta-boxes/meta-boxes.php:64
 msgid "For Sale"
 msgstr ""
@@ -165,7 +165,7 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:623 compatibility/listing-meta-compat.php:624
 #: includes/class-property-meta.php:277 includes/class-property-meta.php:279
 #: includes/class-property-meta.php:344 includes/class-property-meta.php:346
-#: includes/class-property-meta.php:464 includes/class-property-meta.php:466
+#: includes/class-property-meta.php:474 includes/class-property-meta.php:476
 msgid "For Lease"
 msgstr ""
 
@@ -174,46 +174,46 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:623 compatibility/listing-meta-compat.php:624
 #: includes/class-property-meta.php:277 includes/class-property-meta.php:279
 #: includes/class-property-meta.php:344 includes/class-property-meta.php:346
-#: includes/class-property-meta.php:464 includes/class-property-meta.php:466
+#: includes/class-property-meta.php:474 includes/class-property-meta.php:476
 msgid "P.A."
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:646 includes/class-property-meta.php:483
+#: compatibility/listing-meta-compat.php:646 includes/class-property-meta.php:493
 #: meta-boxes/meta-boxes.php:281
 msgid "Bedrooms"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:647 compatibility/listing-meta-compat.php:648
-#: includes/class-property-meta.php:484 includes/class-property-meta.php:485
+#: includes/class-property-meta.php:494 includes/class-property-meta.php:495
 msgid "bed"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:651 includes/class-property-meta.php:493
+#: compatibility/listing-meta-compat.php:651 includes/class-property-meta.php:503
 #: meta-boxes/meta-boxes.php:288 shortcodes/shortcode-listing-search.php:387
 msgid "Bathrooms"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:652 compatibility/listing-meta-compat.php:653
-#: includes/class-property-meta.php:494 includes/class-property-meta.php:495
+#: includes/class-property-meta.php:504 includes/class-property-meta.php:505
 msgid "bath"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:656 includes/class-property-meta.php:506
-#: includes/class-property-meta.php:507 includes/class-property-meta.php:508
+#: compatibility/listing-meta-compat.php:656 includes/class-property-meta.php:516
+#: includes/class-property-meta.php:517 includes/class-property-meta.php:518
 msgid "Parking Spaces"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:659 includes/class-property-meta.php:539
+#: compatibility/listing-meta-compat.php:659 includes/class-property-meta.php:549
 #: meta-boxes/meta-boxes.php:342 shortcodes/shortcode-listing-search.php:578
 msgid "Air Conditioning"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:660 includes/class-property-meta.php:540
+#: compatibility/listing-meta-compat.php:660 includes/class-property-meta.php:550
 msgid "Air conditioning"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:663 compatibility/listing-meta-compat.php:664
-#: includes/class-property-meta.php:551 includes/class-property-meta.php:552
+#: includes/class-property-meta.php:561 includes/class-property-meta.php:562
 #: meta-boxes/meta-boxes.php:332 shortcodes/shortcode-listing-search.php:585
 msgid "Pool"
 msgstr ""
@@ -222,8 +222,8 @@ msgstr ""
 msgid "Toilet"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:673 includes/class-property-meta.php:601
-#: includes/class-property-meta.php:602 meta-boxes/meta-boxes.php:321
+#: compatibility/listing-meta-compat.php:673 includes/class-property-meta.php:611
+#: includes/class-property-meta.php:612 meta-boxes/meta-boxes.php:321
 msgid "New Construction"
 msgstr ""
 
@@ -231,21 +231,21 @@ msgstr ""
 msgid "Alarm system"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:679 includes/class-property-meta.php:516
+#: compatibility/listing-meta-compat.php:679 includes/class-property-meta.php:526
 #: meta-boxes/meta-boxes.php:307
 msgid "Garage"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:682 includes/class-property-meta.php:526
-#: includes/class-property-meta.php:528 meta-boxes/meta-boxes.php:314
+#: compatibility/listing-meta-compat.php:682 includes/class-property-meta.php:536
+#: includes/class-property-meta.php:538 meta-boxes/meta-boxes.php:314
 msgid "Carport"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:687 includes/class-property-meta.php:577
+#: compatibility/listing-meta-compat.php:687 includes/class-property-meta.php:587
 msgid "Land is"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:690 includes/class-property-meta.php:589
+#: compatibility/listing-meta-compat.php:690 includes/class-property-meta.php:599
 msgid "Floor Area is"
 msgstr ""
 
@@ -462,28 +462,28 @@ msgstr ""
 msgid " bond"
 msgstr ""
 
-#: includes/class-property-meta.php:517 includes/class-property-meta.php:518
+#: includes/class-property-meta.php:527 includes/class-property-meta.php:528
 msgid "garage"
 msgstr ""
 
-#: includes/class-property-meta.php:527
+#: includes/class-property-meta.php:537
 msgid "carport"
 msgstr ""
 
-#: includes/class-property-meta.php:563 includes/class-property-meta.php:564
+#: includes/class-property-meta.php:573 includes/class-property-meta.php:574
 msgid "Alarm System"
 msgstr ""
 
-#: includes/class-property-meta.php:612
+#: includes/class-property-meta.php:622
 msgid " Car Spaces"
 msgstr ""
 
-#: includes/functions.php:121 menus/menu-welcome.php:561
+#: includes/functions.php:121 menus/menu-welcome.php:580
 msgid "Property (Residential)"
 msgstr ""
 
 #: includes/functions.php:122 includes/install.php:59 includes/install.php:74
-#: menus/menu-general.php:418 menus/menu-welcome.php:563
+#: menus/menu-general.php:418 menus/menu-welcome.php:582
 #: post-types/post-type-land.php:28 post-types/post-type-land.php:29
 #: post-types/post-type-land.php:30 updates/epl-1.3.1.php:5
 #: widgets/widget-admin-dashboard.php:55
@@ -491,13 +491,13 @@ msgid "Land"
 msgstr ""
 
 #: includes/functions.php:123 includes/install.php:75 menus/menu-general.php:424
-#: menus/menu-welcome.php:562 post-types/post-type-rental.php:29
+#: menus/menu-welcome.php:581 post-types/post-type-rental.php:29
 #: updates/epl-1.3.1.php:6 widgets/widget-admin-dashboard.php:58
 msgid "Rental"
 msgstr ""
 
 #: includes/functions.php:124 includes/install.php:61 includes/install.php:76
-#: menus/menu-general.php:430 menus/menu-welcome.php:564
+#: menus/menu-general.php:430 menus/menu-welcome.php:583
 #: post-types/post-type-rural.php:28 post-types/post-type-rural.php:29
 #: post-types/post-type-rural.php:30 updates/epl-1.3.1.php:7
 #: widgets/widget-admin-dashboard.php:61
@@ -505,21 +505,21 @@ msgid "Rural"
 msgstr ""
 
 #: includes/functions.php:125 includes/functions.php:355 includes/install.php:63
-#: includes/install.php:78 menus/menu-general.php:436 menus/menu-welcome.php:565
+#: includes/install.php:78 menus/menu-general.php:436 menus/menu-welcome.php:584
 #: post-types/post-type-commercial.php:29 updates/epl-1.3.1.php:9
 #: widgets/widget-admin-dashboard.php:64
 msgid "Commercial"
 msgstr ""
 
 #: includes/functions.php:126 includes/install.php:64 includes/install.php:79
-#: menus/menu-general.php:442 menus/menu-welcome.php:566
+#: menus/menu-general.php:442 menus/menu-welcome.php:585
 #: post-types/post-type-commercial_land.php:30 updates/epl-1.3.1.php:10
 #: widgets/widget-admin-dashboard.php:67
 msgid "Commercial Land"
 msgstr ""
 
 #: includes/functions.php:127 includes/install.php:62 includes/install.php:77
-#: menus/menu-general.php:448 menus/menu-welcome.php:567
+#: menus/menu-general.php:448 menus/menu-welcome.php:586
 #: post-types/post-type-business.php:30 updates/epl-1.3.1.php:8
 #: widgets/widget-admin-dashboard.php:70
 msgid "Business"
@@ -827,64 +827,64 @@ msgstr ""
 msgid "Recently Leased"
 msgstr ""
 
-#: includes/template-functions.php:552 includes/template-functions.php:722
+#: includes/template-functions.php:552 includes/template-functions.php:724
 #: meta-boxes/meta-boxes.php:1216
 msgid "Plus Outgoings"
 msgstr ""
 
-#: includes/template-functions.php:566 includes/template-functions.php:716
+#: includes/template-functions.php:566 includes/template-functions.php:718
 msgid "Available from"
 msgstr ""
 
-#: includes/template-functions.php:699
+#: includes/template-functions.php:701
 msgid "Property Features"
 msgstr ""
 
-#: includes/template-functions.php:754 meta-boxes/meta-boxes.php:1237
+#: includes/template-functions.php:756 meta-boxes/meta-boxes.php:1237
 msgid "Commercial Features"
 msgstr ""
 
-#: includes/template-functions.php:780 meta-boxes/meta-boxes.php:1074
+#: includes/template-functions.php:782 meta-boxes/meta-boxes.php:1074
 msgid "Rural Features"
 msgstr ""
 
-#: includes/template-functions.php:852
+#: includes/template-functions.php:854
 msgid "Sort"
 msgstr ""
 
-#: includes/template-functions.php:853
+#: includes/template-functions.php:855
 msgid "Price: High to Low"
 msgstr ""
 
-#: includes/template-functions.php:854
+#: includes/template-functions.php:856
 msgid "Price: Low to High"
 msgstr ""
 
-#: includes/template-functions.php:855
+#: includes/template-functions.php:857
 msgid "Date: Newest First"
 msgstr ""
 
-#: includes/template-functions.php:856
+#: includes/template-functions.php:858
 msgid "Date: Oldest First"
 msgstr ""
 
-#: includes/template-functions.php:920
+#: includes/template-functions.php:922
 msgid "About"
 msgstr ""
 
-#: includes/template-functions.php:921
+#: includes/template-functions.php:923
 msgid "Bio"
 msgstr ""
 
-#: includes/template-functions.php:922
+#: includes/template-functions.php:924
 msgid "Video"
 msgstr ""
 
-#: includes/template-functions.php:1061 menus/menu-general.php:351
+#: includes/template-functions.php:1064 menus/menu-general.php:351
 msgid "List"
 msgstr ""
 
-#: includes/template-functions.php:1063 menus/menu-general.php:352
+#: includes/template-functions.php:1066 menus/menu-general.php:352
 msgid "Grid"
 msgstr ""
 
@@ -1211,86 +1211,94 @@ msgstr ""
 msgid "What's New"
 msgstr ""
 
-#: menus/menu-help.php:36
-msgid "Documentation"
+#: menus/menu-help.php:36 menus/menu-welcome.php:329 menus/menu-welcome.php:559
+msgid "Full Change Log"
 msgstr ""
 
 #: menus/menu-help.php:37
+msgid "Documentation"
+msgstr ""
+
+#: menus/menu-help.php:38
 msgid "Support the project"
 msgstr ""
 
-#: menus/menu-help.php:38 menus/menu-welcome.php:541
+#: menus/menu-help.php:39 menus/menu-welcome.php:560
 msgid "Visit Support"
 msgstr ""
 
-#: menus/menu-help.php:47
-msgid "Adding Listings"
+#: menus/menu-help.php:40
+msgid "Write a Review"
 msgstr ""
 
 #: menus/menu-help.php:49
+msgid "Adding Listings"
+msgstr ""
+
+#: menus/menu-help.php:51
 msgid "The video will show you how to add a listing quickly and easily."
 msgstr ""
 
-#: menus/menu-help.php:50 menus/menu-welcome.php:531
+#: menus/menu-help.php:52 menus/menu-welcome.php:550
 msgid ""
 "Use the tips below to get started using Easy Property Listings. You will be up and "
 "running in no time!"
 msgstr ""
 
-#: menus/menu-help.php:62 menus/menu-welcome.php:616 widgets/widget-listing.php:260
+#: menus/menu-help.php:64 menus/menu-welcome.php:635 widgets/widget-listing.php:260
 msgid "Title"
 msgstr ""
 
-#: menus/menu-help.php:63
+#: menus/menu-help.php:65
 msgid ""
 "When a property is being sold the \"heading\" is frequently changed and can cause "
 "link issues. Not to mention the search engine benefits. Use the full listing address "
 "as the title."
 msgstr ""
 
-#: menus/menu-help.php:65
+#: menus/menu-help.php:67
 msgid "Content Editor"
 msgstr ""
 
-#: menus/menu-help.php:66
+#: menus/menu-help.php:68
 msgid ""
 "Enter your descriptive text for your listing here. Add images, insert shortcodes, or "
 "plain text."
 msgstr ""
 
-#: menus/menu-help.php:68
+#: menus/menu-help.php:70
 msgid "Author"
 msgstr ""
 
-#: menus/menu-help.php:69
+#: menus/menu-help.php:71
 msgid ""
 "Set the primary listing agent as the author. Update your contact details, bio and "
 "social media links from your profile."
 msgstr ""
 
-#: menus/menu-help.php:80 post-types/post-type-commercial.php:79
+#: menus/menu-help.php:82 post-types/post-type-commercial.php:79
 msgid "Featured Image"
 msgstr ""
 
-#: menus/menu-help.php:81
+#: menus/menu-help.php:83
 msgid "Set your featured property image."
 msgstr ""
 
-#: menus/menu-help.php:83
+#: menus/menu-help.php:85
 msgid "Listing Image Gallery"
 msgstr ""
 
-#: menus/menu-help.php:84 menus/menu-welcome.php:637
+#: menus/menu-help.php:86 menus/menu-welcome.php:656
 msgid "Add a gallery of images to your listings with the WordPress Add Media button."
 msgstr ""
 
-#: menus/menu-help.php:86
+#: menus/menu-help.php:88
 msgid ""
 "If set to automatic, just upload your images to the listing and press x to close the "
 "media upload box once the images are attached to the listing."
 msgstr ""
 
-#: menus/menu-help.php:97 menus/menu-welcome.php:171 menus/menu-welcome.php:655
+#: menus/menu-help.php:99 menus/menu-welcome.php:171 menus/menu-welcome.php:674
 #: meta-boxes/meta-boxes.php:107 post-types/post-type-business.php:84
 #: post-types/post-type-commercial.php:82 post-types/post-type-commercial_land.php:83
 #: post-types/post-type-land.php:83 post-types/post-type-property.php:83
@@ -1298,29 +1306,29 @@ msgstr ""
 msgid "Listing Details"
 msgstr ""
 
-#: menus/menu-help.php:99 menus/menu-welcome.php:661 meta-boxes/meta-boxes.php:119
+#: menus/menu-help.php:101 menus/menu-welcome.php:680 meta-boxes/meta-boxes.php:119
 msgid "Heading"
 msgstr ""
 
-#: menus/menu-help.php:100 menus/menu-welcome.php:662
+#: menus/menu-help.php:102 menus/menu-welcome.php:681
 msgid "Enter the descriptive listing headline like \"Great Property with Views\"."
 msgstr ""
 
-#: menus/menu-help.php:102 menus/menu-welcome.php:664 meta-boxes/meta-boxes.php:147
+#: menus/menu-help.php:104 menus/menu-welcome.php:683 meta-boxes/meta-boxes.php:147
 msgid "Second Listing Agent"
 msgstr ""
 
-#: menus/menu-help.php:103 menus/menu-welcome.php:665
+#: menus/menu-help.php:105 menus/menu-welcome.php:684
 msgid ""
 "If the listing has two real estate agents marketing it, enter their WordPress user "
 "name here. The primary agent is the post Author."
 msgstr ""
 
-#: menus/menu-help.php:105 menus/menu-welcome.php:667
+#: menus/menu-help.php:107 menus/menu-welcome.php:686
 msgid "Inspection Times"
 msgstr ""
 
-#: menus/menu-help.php:106
+#: menus/menu-help.php:108
 msgid "Add your inspection dates. "
 msgstr ""
 
@@ -1367,19 +1375,19 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
-#: menus/menu-welcome.php:157 menus/menu-welcome.php:514 menus/menu-welcome.php:864
+#: menus/menu-welcome.php:157 menus/menu-welcome.php:533 menus/menu-welcome.php:883
 #, php-format
 msgid "Welcome to Easy Property Listings %s"
 msgstr ""
 
-#: menus/menu-welcome.php:158 menus/menu-welcome.php:515 menus/menu-welcome.php:865
+#: menus/menu-welcome.php:158 menus/menu-welcome.php:534 menus/menu-welcome.php:884
 #, php-format
 msgid ""
 "Thank you for updating to the latest version! Easy Property Listings %s is ready to "
 "make your real estate website faster, safer and better!"
 msgstr ""
 
-#: menus/menu-welcome.php:159 menus/menu-welcome.php:516 menus/menu-welcome.php:866
+#: menus/menu-welcome.php:159 menus/menu-welcome.php:535 menus/menu-welcome.php:885
 #, php-format
 msgid "Version %s"
 msgstr ""
@@ -1632,274 +1640,318 @@ msgid ""
 "easypropertylistings.com.au/blog/\">blog</a>, subscribe and get notified."
 msgstr ""
 
-#: menus/menu-welcome.php:329
-msgid "Full change log of version 2.0"
-msgstr ""
-
-#: menus/menu-welcome.php:331
-msgid "New: Extension validator."
-msgstr ""
-
-#: menus/menu-welcome.php:332
-msgid "New: Depreciated listing-meta.php into compatibility folder."
-msgstr ""
-
 #: menus/menu-welcome.php:333
-msgid "New: Depreciated author-meta.php into compatibility folder."
-msgstr ""
-
-#: menus/menu-welcome.php:334
-msgid "New: Global variables: $property, $epl_author and $epl_settings."
+msgid "Version 2.0.2"
 msgstr ""
 
 #: menus/menu-welcome.php:335
-msgid "New: Added filters for fields and groups in /lib/meta-boxes.php"
+msgid ""
+"Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used "
+"with the New label."
 msgstr ""
 
 #: menus/menu-welcome.php:336
+msgid ""
+"Fix: Some Labels in settings were not saving correctly particularly the search widget "
+"labels."
+msgstr ""
+
+#: menus/menu-welcome.php:337
+msgid "Fix: Restored missing author profile contact form tab on author box."
+msgstr ""
+
+#: menus/menu-welcome.php:338
+msgid "Tweak: Added CSS version to admin CSS and front end CSS."
+msgstr ""
+
+#: menus/menu-welcome.php:341
+msgid "Version 2.0.1"
+msgstr ""
+
+#: menus/menu-welcome.php:343
+msgid ""
+"Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: "
+"Copy CSS from style-front.css to correct, margins and grid/sorter."
+msgstr ""
+
+#: menus/menu-welcome.php:344
+msgid ""
+"Fix: Restored Display of Inspection Label for properties with scheduled inspection "
+"times."
+msgstr ""
+
+#: menus/menu-welcome.php:345
+msgid "Fix: Search Widget security fix and performance improvements."
+msgstr ""
+
+#: menus/menu-welcome.php:348
+msgid "Version 2.0"
+msgstr ""
+
+#: menus/menu-welcome.php:350
+msgid "New: Extension validator."
+msgstr ""
+
+#: menus/menu-welcome.php:351
+msgid "New: Depreciated listing-meta.php into compatibility folder."
+msgstr ""
+
+#: menus/menu-welcome.php:352
+msgid "New: Depreciated author-meta.php into compatibility folder."
+msgstr ""
+
+#: menus/menu-welcome.php:353
+msgid "New: Global variables: $property, $epl_author and $epl_settings."
+msgstr ""
+
+#: menus/menu-welcome.php:354
+msgid "New: Added filters for fields and groups in /lib/meta-boxes.php"
+msgstr ""
+
+#: menus/menu-welcome.php:355
 msgid ""
 "New: Property custom meta re-written into class. This was the big change to 2.0 where "
 "we completely re-wrote the output of the meta values which are now accessible using "
 "global $property variable and easy template actions."
 msgstr ""
 
-#: menus/menu-welcome.php:337
+#: menus/menu-welcome.php:356
 msgid ""
 "New: Property meta can now can be output using new actions for easy and quick custom "
 "template creation."
 msgstr ""
 
-#: menus/menu-welcome.php:338
+#: menus/menu-welcome.php:357
 msgid "New: Reconstructed templates for single, archive & author pages"
 msgstr ""
 
-#: menus/menu-welcome.php:339
+#: menus/menu-welcome.php:358
 msgid "Tweak: Removed unused price script"
 msgstr ""
 
-#: menus/menu-welcome.php:340
+#: menus/menu-welcome.php:359
 msgid "Fix: Fixed warning related to static instance in strict standard modes"
 msgstr ""
 
-#: menus/menu-welcome.php:341
+#: menus/menu-welcome.php:360
 msgid "New: API for extensions now support WordPress editor with validation."
 msgstr ""
 
-#: menus/menu-welcome.php:342
+#: menus/menu-welcome.php:361
 msgid ""
 "New: jQuery date time picker formatting added to improve support for auction and sold "
 "listing, support for 30+ languages support."
 msgstr ""
 
-#: menus/menu-welcome.php:343
+#: menus/menu-welcome.php:362
 msgid ""
 "New: Inspection time auto-formats REAXML date eg [13-Dec-2014 11:00am to 11:45am] and "
 "will no longer show past inspection times."
 msgstr ""
 
-#: menus/menu-welcome.php:344
+#: menus/menu-welcome.php:363
 msgid "New: Inspection time support multiple dates written one per line."
 msgstr ""
 
-#: menus/menu-welcome.php:345
+#: menus/menu-welcome.php:364
 msgid "Tweak: CSS improved with better commenting and size reduction."
 msgstr ""
 
-#: menus/menu-welcome.php:346
+#: menus/menu-welcome.php:365
 msgid ""
 "New: Dashboard widget now lists all listing status so at a glance you can see your "
 "property stock."
 msgstr ""
 
-#: menus/menu-welcome.php:347
+#: menus/menu-welcome.php:366
 msgid ""
 "New: Display: To enable grid, list and sorter your custom archive-listing.php "
 "template requires the new action hook epl_template_before_property_loop before the "
 "WordPress loop."
 msgstr ""
 
-#: menus/menu-welcome.php:348
+#: menus/menu-welcome.php:367
 msgid ""
 "New: Display: Utility hook action hook added epl_template_after_property_loop for "
 "future updates."
 msgstr ""
 
-#: menus/menu-welcome.php:349
+#: menus/menu-welcome.php:368
 msgid "New: Display: List and grid view with optional masonry effect."
 msgstr ""
 
-#: menus/menu-welcome.php:350
+#: menus/menu-welcome.php:369
 msgid "New: Display: Sorter added for price high/low and date newest/oldest."
 msgstr ""
 
-#: menus/menu-welcome.php:351
+#: menus/menu-welcome.php:370
 msgid "New: Auction Date formats nicely. EG [Auction Saturday 28th December at 2:00pm]."
 msgstr ""
 
-#: menus/menu-welcome.php:352
+#: menus/menu-welcome.php:371
 msgid ""
 "New: Tabbed extensions page support in admin for advanced extensions like Listing "
 "Alerts."
 msgstr ""
 
-#: menus/menu-welcome.php:353
+#: menus/menu-welcome.php:372
 msgid "New: Multiple author support in Author Box."
 msgstr ""
 
-#: menus/menu-welcome.php:354
+#: menus/menu-welcome.php:373
 msgid ""
 "New: Search Widget - Supports multiple listing types, hold Ctrl to enable tabbed "
 "front end display."
 msgstr ""
 
-#: menus/menu-welcome.php:355
+#: menus/menu-welcome.php:374
 msgid ""
 "New: Search Widget - Labels are configurable from the Display settings allowing you "
 "to set for example: Property to Buy and Rental to Rent and use a single widget to "
 "search multiple types."
 msgstr ""
 
-#: menus/menu-welcome.php:356
+#: menus/menu-welcome.php:375
 msgid ""
 "New: Search Widget and shortcode supports search by property ID, post Title, Land "
 "Area and Building Area."
 msgstr ""
 
-#: menus/menu-welcome.php:357
+#: menus/menu-welcome.php:376
 msgid ""
 "New: Search Widget - removed extra fields from land, added labels for each property "
 "type to be shown as tab heading in search widget"
 msgstr ""
 
-#: menus/menu-welcome.php:358
+#: menus/menu-welcome.php:377
 msgid ""
 "Fix: Search Widget - Optimized total queries due to search widget from 1500 + to ~40"
 msgstr ""
 
-#: menus/menu-welcome.php:359
+#: menus/menu-welcome.php:378
 msgid "New: Author variables accessible using new CLASS."
 msgstr ""
 
-#: menus/menu-welcome.php:360
+#: menus/menu-welcome.php:379
 msgid "New: Search short code supports array of property types."
 msgstr ""
 
-#: menus/menu-welcome.php:361
+#: menus/menu-welcome.php:380
 msgid ""
 "New: REAXML date format function to format date correctly when using WP All Import "
 "Pro. Usage [epl_feedsync_format_date({./@modTime})]."
 msgstr ""
 
-#: menus/menu-welcome.php:362
+#: menus/menu-welcome.php:381
 msgid ""
 "New: REAXML Unit and lot formatting function for usage in the title when using WP All "
 "Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})]."
 msgstr ""
 
-#: menus/menu-welcome.php:363
+#: menus/menu-welcome.php:382
 msgid ""
 "New: Global $epl_settings settings variable adds new default values on plugin update."
 msgstr ""
 
-#: menus/menu-welcome.php:364
+#: menus/menu-welcome.php:383
 msgid "New: Display: Added customisable label for rental Bond/Deposit."
 msgstr ""
 
-#: menus/menu-welcome.php:365
+#: menus/menu-welcome.php:384
 msgid ""
 "New: Template functions completely re-written and can now be output using actions."
 msgstr ""
 
-#: menus/menu-welcome.php:366
+#: menus/menu-welcome.php:385
 msgid ""
 "New: Added NEW sticker with customisable label and ability to set how long a listing "
 "displays the new label."
 msgstr ""
 
-#: menus/menu-welcome.php:367
+#: menus/menu-welcome.php:386
 msgid "Tweak: Compatibilityalow fixes"
 msgstr ""
 
-#: menus/menu-welcome.php:368
+#: menus/menu-welcome.php:387
 msgid "New: Bar Graph API added."
 msgstr ""
 
-#: menus/menu-welcome.php:369
+#: menus/menu-welcome.php:388
 msgid ""
 "New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 "
 "sale) and (2,000 rental)."
 msgstr ""
 
-#: menus/menu-welcome.php:370
+#: menus/menu-welcome.php:389
 msgid "New: Graph visually displays price and status."
 msgstr ""
 
-#: menus/menu-welcome.php:371
+#: menus/menu-welcome.php:390
 msgid ""
 "New: Price graph now appears in admin pages quickly highlighting price and status "
 "visually."
 msgstr ""
 
-#: menus/menu-welcome.php:372
+#: menus/menu-welcome.php:391
 msgid "New: Meta Fields: Support for unit number, lot number (land)."
 msgstr ""
 
-#: menus/menu-welcome.php:373
+#: menus/menu-welcome.php:392
 msgid "New: South African ZAR currency support."
 msgstr ""
 
-#: menus/menu-welcome.php:374
+#: menus/menu-welcome.php:393
 msgid "Fix: Corrected Commercial Features ID Spelling"
 msgstr ""
 
-#: menus/menu-welcome.php:375
+#: menus/menu-welcome.php:394
 msgid ""
 "Tweak: YouTube video src to id function is replaced with better method which handles "
 "multiple YouTube video formats including shortened & embedded format"
 msgstr ""
 
-#: menus/menu-welcome.php:376
+#: menus/menu-welcome.php:395
 msgid "New: Adding Sold Date processing"
 msgstr ""
 
-#: menus/menu-welcome.php:377
+#: menus/menu-welcome.php:396
 msgid "Tweak: Updated shortcode templates"
 msgstr ""
 
-#: menus/menu-welcome.php:378
+#: menus/menu-welcome.php:397
 msgid "Tweak: Global $epl_author."
 msgstr ""
 
-#: menus/menu-welcome.php:379
+#: menus/menu-welcome.php:398
 msgid "Tweak: Fixed content/ into EPL_PATH_TEMPLATES_CONTENT"
 msgstr ""
 
-#: menus/menu-welcome.php:380
+#: menus/menu-welcome.php:399
 msgid "New: Support for older extensions added"
 msgstr ""
 
-#: menus/menu-welcome.php:381
+#: menus/menu-welcome.php:400
 msgid "New: Extension offers in menus general tab"
 msgstr ""
 
-#: menus/menu-welcome.php:382
+#: menus/menu-welcome.php:401
 msgid ""
 "Tweak: Renamed user profile options section to [Easy Property Listings: Author Box "
 "Profile]."
 msgstr ""
 
-#: menus/menu-welcome.php:383
+#: menus/menu-welcome.php:402
 msgid "Tweak: Added better Bond/Deposit for rentals labels."
 msgstr ""
 
-#: menus/menu-welcome.php:384
+#: menus/menu-welcome.php:403
 msgid ""
 "Fix: Deprecated author-meta.php in compatibility folder, class-author-meta.php has "
 "been created which will be used in place of author-meta.php & its variables in all "
 "author templates"
 msgstr ""
 
-#: menus/menu-welcome.php:385
+#: menus/menu-welcome.php:404
 msgid ""
 "New: Added template functions for author meta class, modified templates lib/templates/"
 "content/content-author-box-simple-card.php lib/templates/content/content-author-box-"
@@ -1907,539 +1959,539 @@ msgid ""
 "functions based on author meta class instead of variables from author-meta.php"
 msgstr ""
 
-#: menus/menu-welcome.php:386
+#: menus/menu-welcome.php:405
 msgid ""
 "New: author-meta.php depreciated and moved to compatibility directory. Variables "
 "globally available using $epl_author variable."
 msgstr ""
 
-#: menus/menu-welcome.php:387
+#: menus/menu-welcome.php:406
 msgid ""
 "Tweak: listing-meta.php depreciated and moved to compatibility directory. Variables "
 "globally available with $property variable."
 msgstr ""
 
-#: menus/menu-welcome.php:388
+#: menus/menu-welcome.php:407
 msgid ""
 "Tweak: Added Listing not Found to default templates when search performed with no "
 "results."
 msgstr ""
 
-#: menus/menu-welcome.php:389
+#: menus/menu-welcome.php:408
 msgid "Tweak: Improved Google maps address output for addresses containing # and /."
 msgstr ""
 
-#: menus/menu-welcome.php:390
+#: menus/menu-welcome.php:409
 msgid ""
 "Fix: Listing Pages now have better responsive support for small screen devices like "
 "iPhone."
 msgstr ""
 
-#: menus/menu-welcome.php:391
+#: menus/menu-welcome.php:410
 msgid ""
 "Fix: Default templates for Genesis and TwentyTwelve now show Listing Not Found when a "
 "search result returns empty."
 msgstr ""
 
-#: menus/menu-welcome.php:392
+#: menus/menu-welcome.php:411
 msgid "Fix: Purged translations in epl.pot file."
 msgstr ""
 
-#: menus/menu-welcome.php:393
+#: menus/menu-welcome.php:412
 msgid "Fix: Search Widget and short code drastically reduces database queries."
 msgstr ""
 
-#: menus/menu-welcome.php:394
+#: menus/menu-welcome.php:413
 msgid ""
 "New: Templates are now able to be saved in active theme folder /easypropertylistings "
 "and edited. Plugin will use these first and fall back to plugin if not located in "
 "theme folder."
 msgstr ""
 
-#: menus/menu-welcome.php:395
+#: menus/menu-welcome.php:414
 msgid "Fix: Extensions Notification and checker updated"
 msgstr ""
 
-#: menus/menu-welcome.php:396
+#: menus/menu-welcome.php:415
 msgid "New: updated author templates to use new author meta class"
 msgstr ""
 
-#: menus/menu-welcome.php:397
+#: menus/menu-welcome.php:416
 msgid ""
 "Fix: Added prefix to CSS tab-content class. Now epl-tab-content for compatibility."
 msgstr ""
 
-#: menus/menu-welcome.php:398
+#: menus/menu-welcome.php:417
 msgid "New: Update user.php"
 msgstr ""
 
-#: menus/menu-welcome.php:399
+#: menus/menu-welcome.php:418
 msgid "Tweak: Improved internal documentation and updated screens."
 msgstr ""
 
-#: menus/menu-welcome.php:400
+#: menus/menu-welcome.php:419
 msgid "Tweak: Improved descriptions on author pages."
 msgstr ""
 
-#: menus/menu-welcome.php:401
+#: menus/menu-welcome.php:420
 msgid "Tweak: Better permalink flushing on activation, deactivation and install."
 msgstr ""
 
-#: menus/menu-welcome.php:402
+#: menus/menu-welcome.php:421
 msgid "Tweak: Extensive changes to admin descriptions and labels."
 msgstr ""
 
-#: menus/menu-welcome.php:403
+#: menus/menu-welcome.php:422
 msgid "Tweak: Optimising the php loading of files and scripts."
 msgstr ""
 
-#: menus/menu-welcome.php:404
+#: menus/menu-welcome.php:423
 msgid "New: Define EPL_RUNNING added for extensions to check if plugin is active."
 msgstr ""
 
-#: menus/menu-welcome.php:405
+#: menus/menu-welcome.php:424
 msgid "New: New options added to setting array when plugin is updated."
 msgstr ""
 
-#: menus/menu-welcome.php:406
+#: menus/menu-welcome.php:425
 msgid ""
 "New: Old functions and files moved to plug-in /compatibility folder to ensure old "
 "code still works."
 msgstr ""
 
-#: menus/menu-welcome.php:407
+#: menus/menu-welcome.php:426
 msgid "New: Meta Location Label."
 msgstr ""
 
-#: menus/menu-welcome.php:408
+#: menus/menu-welcome.php:427
 msgid "New: Service banners on settings page."
 msgstr ""
 
-#: menus/menu-welcome.php:409
+#: menus/menu-welcome.php:428
 msgid "New: Saving version number so when updating new settings are added."
 msgstr ""
 
-#: menus/menu-welcome.php:410
+#: menus/menu-welcome.php:429
 msgid ""
 "New: iCal functionality for REAXML formatted inspection dates. Futher improvements "
 "coming for manual date entry. "
 msgstr ""
 
-#: menus/menu-welcome.php:411
+#: menus/menu-welcome.php:430
 msgid "New: Extensions options pages now with tabs for easier usage."
 msgstr ""
 
-#: menus/menu-welcome.php:412
+#: menus/menu-welcome.php:431
 msgid "New: Added ID classes to admin pages and meta fields."
 msgstr ""
 
-#: menus/menu-welcome.php:413
+#: menus/menu-welcome.php:432
 msgid "New: Filters to adjust land and building sizes from number to select fields."
 msgstr ""
 
-#: menus/menu-welcome.php:414
+#: menus/menu-welcome.php:433
 msgid ""
 "Tweak: Moved old extensions options page to compatibility folder so older extensions "
 "still work as expected."
 msgstr ""
 
-#: menus/menu-welcome.php:415
+#: menus/menu-welcome.php:434
 msgid ""
 "New: Search Widget - Added filter for land min & max fields in listing search widget"
 msgstr ""
 
-#: menus/menu-welcome.php:416
+#: menus/menu-welcome.php:435
 msgid ""
 "New: Search Widget - Added filter for building min & max fields in listing search "
 "widget"
 msgstr ""
 
-#: menus/menu-welcome.php:417
+#: menus/menu-welcome.php:436
 msgid "Fix: For session start effecting certain themes"
 msgstr ""
 
-#: menus/menu-welcome.php:418
+#: menus/menu-welcome.php:437
 msgid "New: Land sizes now allow upto 5 decimal places"
 msgstr ""
 
-#: menus/menu-welcome.php:419
+#: menus/menu-welcome.php:438
 msgid "New: Search Widget - Custom submit label"
 msgstr ""
 
-#: menus/menu-welcome.php:420
+#: menus/menu-welcome.php:439
 msgid "New: Search Widget - Can search by title in property ID / Address field"
 msgstr ""
 
-#: menus/menu-welcome.php:421
+#: menus/menu-welcome.php:440
 msgid "New: Added Russian Translation"
 msgstr ""
 
-#: menus/menu-welcome.php:424
+#: menus/menu-welcome.php:443
 msgid "Version 1.2.1"
 msgstr ""
 
-#: menus/menu-welcome.php:426
+#: menus/menu-welcome.php:445
 msgid "Fix: Search Widget not working on page 2 of archive page in some instances"
 msgstr ""
 
-#: menus/menu-welcome.php:427
+#: menus/menu-welcome.php:446
 msgid ""
 "Fix: Property feature list Toilet and New Construction now display in list when ticked"
 msgstr ""
 
-#: menus/menu-welcome.php:428
+#: menus/menu-welcome.php:447
 msgid "Fix: EPL - Listing widget was not displaying featured listings"
 msgstr ""
 
-#: menus/menu-welcome.php:429
+#: menus/menu-welcome.php:448
 msgid ""
 "Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode"
 msgstr ""
 
-#: menus/menu-welcome.php:430
+#: menus/menu-welcome.php:449
 msgid "Fix: Updated templates to display Search Results when performing search"
 msgstr ""
 
-#: menus/menu-welcome.php:431
+#: menus/menu-welcome.php:450
 msgid "Fix: No longer show Bond when viewing rental list in admin"
 msgstr ""
 
-#: menus/menu-welcome.php:432
+#: menus/menu-welcome.php:451
 msgid "Fix: Open for inspection sticker now appears on rental properties"
 msgstr ""
 
-#: menus/menu-welcome.php:433
+#: menus/menu-welcome.php:452
 msgid "New: Added initial Dutch translation."
 msgstr ""
 
-#: menus/menu-welcome.php:436
+#: menus/menu-welcome.php:455
 msgid "Version 1.2"
 msgstr ""
 
-#: menus/menu-welcome.php:438
+#: menus/menu-welcome.php:457
 msgid "New: Plug in Activation process flushes permalinks"
 msgstr ""
 
-#: menus/menu-welcome.php:439
+#: menus/menu-welcome.php:458
 msgid "New: Plug in deactivation flushes permalinks"
 msgstr ""
 
-#: menus/menu-welcome.php:440
+#: menus/menu-welcome.php:459
 msgid "New: Shortcode [listing_search]"
 msgstr ""
 
-#: menus/menu-welcome.php:441
+#: menus/menu-welcome.php:460
 msgid "New: Shortcode [listing_feature]"
 msgstr ""
 
-#: menus/menu-welcome.php:442
+#: menus/menu-welcome.php:461
 msgid ""
 "New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] "
 "for backward compatibility, however adjust your site. "
 msgstr ""
 
-#: menus/menu-welcome.php:443
+#: menus/menu-welcome.php:462
 msgid ""
 "New: Listing shortcodes allow for default template display if registered by adding "
 "template=\"slim\" to the shortcode."
 msgstr ""
 
-#: menus/menu-welcome.php:444
+#: menus/menu-welcome.php:463
 msgid "New: Translation support now correctly loads text domain epl"
 msgstr ""
 
-#: menus/menu-welcome.php:445
+#: menus/menu-welcome.php:464
 msgid "New: Added translation tags to all test elements for better translation support"
 msgstr ""
 
-#: menus/menu-welcome.php:446
+#: menus/menu-welcome.php:465
 msgid "New: Updated source epl.pot translation file for translations"
 msgstr ""
 
-#: menus/menu-welcome.php:447
+#: menus/menu-welcome.php:466
 msgid "New: Added very rough Italian translation"
 msgstr ""
 
-#: menus/menu-welcome.php:448
+#: menus/menu-welcome.php:467
 msgid ""
 "New: Wrapped Featured image in action to allow for easy removal and/or replacement"
 msgstr ""
 
-#: menus/menu-welcome.php:449
+#: menus/menu-welcome.php:468
 msgid "Fix: Undefined errors when debug is active"
 msgstr ""
 
-#: menus/menu-welcome.php:450
+#: menus/menu-welcome.php:469
 msgid "New: Added new CSS classes to widgets for consistent usage"
 msgstr ""
 
-#: menus/menu-welcome.php:451
+#: menus/menu-welcome.php:470
 msgid "Tweak: Admin CSS tweaks to define sections in admin"
 msgstr ""
 
-#: menus/menu-welcome.php:452
+#: menus/menu-welcome.php:471
 msgid "Fix: CSS for TwentyThirteen style CSS using .sidebar container"
 msgstr ""
 
-#: menus/menu-welcome.php:453
+#: menus/menu-welcome.php:472
 msgid "Fix: CSS for responsive shortcode"
 msgstr ""
 
-#: menus/menu-welcome.php:454
+#: menus/menu-welcome.php:473
 msgid ""
 "New: Added options to hide/ show various options to EPL - Listing widget: Property "
 "Headline, Excerpt, Suburb/Location Label, Street Address, Price, Read More Button"
 msgstr ""
 
-#: menus/menu-welcome.php:455
+#: menus/menu-welcome.php:474
 msgid "New: Added customisable \"Read More\" label to EPL - Listing widget"
 msgstr ""
 
-#: menus/menu-welcome.php:456
+#: menus/menu-welcome.php:475
 msgid "New: Added excerpt to EPL - Listing widget"
 msgstr ""
 
-#: menus/menu-welcome.php:457
+#: menus/menu-welcome.php:476
 msgid "New: Added options to remove search options from EPL - Listing Search widget"
 msgstr ""
 
-#: menus/menu-welcome.php:458
+#: menus/menu-welcome.php:477
 msgid "New: Added consistent CSS classes to shortcodes for responsive shortcode"
 msgstr ""
 
-#: menus/menu-welcome.php:459
+#: menus/menu-welcome.php:478
 msgid ""
 "New: Date processing function for use with WP All Import when importing REAXML files. "
 "Some imports set the current date instead of the date from the REAXML file. Usage in "
 "WP All Import Post Date is: [epl_feedsync_format_date({./@modTime})]"
 msgstr ""
 
-#: menus/menu-welcome.php:460
+#: menus/menu-welcome.php:479
 msgid ""
 "Tweak: Added additional CSS classes to admin menu pages to extensions can be better "
 "distinguished when installed and activated"
 msgstr ""
 
-#: menus/menu-welcome.php:461
+#: menus/menu-welcome.php:480
 msgid "Fix: Registering custom template actions now works correctly"
 msgstr ""
 
-#: menus/menu-welcome.php:462
+#: menus/menu-welcome.php:481
 msgid "New: Added additional CSS classes to template files"
 msgstr ""
 
-#: menus/menu-welcome.php:463
+#: menus/menu-welcome.php:482
 msgid ""
 "Fix: Changed property not found wording when using search widget and listing not "
 "found. "
 msgstr ""
 
-#: menus/menu-welcome.php:464
+#: menus/menu-welcome.php:483
 msgid "Tweak: Added defaults to widgets to prevent errors when debug is on"
 msgstr ""
 
-#: menus/menu-welcome.php:465
+#: menus/menu-welcome.php:484
 msgid "New: Added WordPress editor support in admin for use with extensions."
 msgstr ""
 
-#: menus/menu-welcome.php:466
+#: menus/menu-welcome.php:485
 msgid "New: Added textarea support in admin for use with extensions."
 msgstr ""
 
-#: menus/menu-welcome.php:467
+#: menus/menu-welcome.php:486
 msgid ""
 "New: Filters added for all select options on add listing pages which allows for full "
 "customisation through simple function"
 msgstr ""
 
-#: menus/menu-welcome.php:468
+#: menus/menu-welcome.php:487
 msgid "New: Added rent period, Day, Daily, Month, Monthly to rental listing types"
 msgstr ""
 
-#: menus/menu-welcome.php:469
+#: menus/menu-welcome.php:488
 msgid "New: Added property_office_id meta field"
 msgstr ""
 
-#: menus/menu-welcome.php:470
+#: menus/menu-welcome.php:489
 msgid "New: Added property_address_country meta field"
 msgstr ""
 
-#: menus/menu-welcome.php:471
+#: menus/menu-welcome.php:490
 msgid "Tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5"
 msgstr ""
 
-#: menus/menu-welcome.php:472
+#: menus/menu-welcome.php:491
 msgid ""
 "New: Added mini map to listing edit screen. Will display mini map in address block "
 "when pressing green coordinates button."
 msgstr ""
 
-#: menus/menu-welcome.php:473
+#: menus/menu-welcome.php:492
 msgid ""
 "Fix: Updated admin columns for commercial_land listing type to match other listing "
 "type"
 msgstr ""
 
-#: menus/menu-welcome.php:474
+#: menus/menu-welcome.php:493
 msgid "Fix: Swapped bedrooms/bathroom label on hover"
 msgstr ""
 
-#: menus/menu-welcome.php:475
+#: menus/menu-welcome.php:494
 msgid ""
 "New: Added filter epl_listing_meta_boxes which allows additional meta boxes to be "
 "added through filter"
 msgstr ""
 
-#: menus/menu-welcome.php:478
+#: menus/menu-welcome.php:497
 msgid "Version 1.1.1"
 msgstr ""
 
-#: menus/menu-welcome.php:480
+#: menus/menu-welcome.php:499
 msgid ""
 "New: Internationalisation support to enable customizing of post types: slug, archive, "
 "rewrite, labels, listing categories for meta_types."
 msgstr ""
 
-#: menus/menu-welcome.php:481
+#: menus/menu-welcome.php:500
 msgid ""
 "New: Created filters for listing meta select fields: property_category, "
 "property_rural_category, property_commercial_category, property_land_category."
 msgstr ""
 
-#: menus/menu-welcome.php:482
+#: menus/menu-welcome.php:501
 msgid ""
 "New: Created filters for each of the seven custom post types: labels, supports, slug, "
 "archive, rewrite, seven custom post types."
 msgstr ""
 
-#: menus/menu-welcome.php:483
+#: menus/menu-welcome.php:502
 msgid ""
 "New: Shortcode [listing_category] This shortcode allows for you to output a list of "
 "listings by type and filter them by any available meta key and value."
 msgstr ""
 
-#: menus/menu-welcome.php:484
+#: menus/menu-welcome.php:503
 msgid "Tweak: Updated search widget for filtered property_categories."
 msgstr ""
 
-#: menus/menu-welcome.php:485
+#: menus/menu-welcome.php:504
 msgid "Fix: Listing categories were showing key, now showing value."
 msgstr ""
 
-#: menus/menu-welcome.php:486
+#: menus/menu-welcome.php:505
 msgid ""
 "Fix: Settings were not showing up after saving, second refresh required setting "
 "variable to reload."
 msgstr ""
 
-#: menus/menu-welcome.php:489
+#: menus/menu-welcome.php:508
 msgid "Version 1.1"
 msgstr ""
 
-#: menus/menu-welcome.php:491
+#: menus/menu-welcome.php:510
 msgid "First official release!"
 msgstr ""
 
-#: menus/menu-welcome.php:497
+#: menus/menu-welcome.php:516
 msgid "Go to Easy Property Listings Settings"
 msgstr ""
 
-#: menus/menu-welcome.php:521
+#: menus/menu-welcome.php:540
 msgid "Real Estate Tools for WordPress"
 msgstr ""
 
-#: menus/menu-welcome.php:529
+#: menus/menu-welcome.php:548
 msgid "Quick Start Guide"
 msgstr ""
 
-#: menus/menu-welcome.php:535
+#: menus/menu-welcome.php:554
 msgid "Activate the listing types you need & configure the plugin general settings"
 msgstr ""
 
-#: menus/menu-welcome.php:536 menus/menu-welcome.php:580
+#: menus/menu-welcome.php:555 menus/menu-welcome.php:599
 msgid "Create a blank page for each activated listing type"
 msgstr ""
 
-#: menus/menu-welcome.php:537
+#: menus/menu-welcome.php:556
 msgid "Publish your first listing for testing your theme setup"
 msgstr ""
 
-#: menus/menu-welcome.php:539
+#: menus/menu-welcome.php:558
 msgid "Setup your theme to work with the plugin"
 msgstr ""
 
-#: menus/menu-welcome.php:549
+#: menus/menu-welcome.php:568
 msgid "Activate the listing types you need"
 msgstr ""
 
-#: menus/menu-welcome.php:555
+#: menus/menu-welcome.php:574
 msgid ""
 "Visit the general settings page and enable the listing types you need. Once you have "
 "pressed save visit the Permalinks page to re-fresh your sites permalinks."
 msgstr ""
 
-#: menus/menu-welcome.php:557
+#: menus/menu-welcome.php:576
 msgid ""
 "Instead of classifying everything as a property, Easy Property Listings allows you to "
 "separate the different listing types which is better for SEO and RSS feeds."
 msgstr ""
 
-#: menus/menu-welcome.php:559
+#: menus/menu-welcome.php:578
 msgid "Supported Listing Types"
 msgstr ""
 
-#: menus/menu-welcome.php:585
+#: menus/menu-welcome.php:604
 msgid ""
 "Doing this allows you to add \"Property\", \"Land\" and \"Rental\" pages to your "
 "WordPress menu. Add a new page for each listing type you activated."
 msgstr ""
 
-#: menus/menu-welcome.php:587
+#: menus/menu-welcome.php:606
 msgid ""
 "For example, lets say you have activated: Property, Rental and Land. Create three "
 "pages, one called \"Property\", another \"Land\" and the third \"Rental\" these will "
 "be the custom post type slugs/permalinks eg: property, rental and land."
 msgstr ""
 
-#: menus/menu-welcome.php:589
+#: menus/menu-welcome.php:608
 msgid ""
 "Publish a test \"Property Listing\" and visit your new property page and you will see "
 "the new property and others you have created."
 msgstr ""
 
-#: menus/menu-welcome.php:591
+#: menus/menu-welcome.php:610
 msgid ""
 "Now you can rename them to whatever you like eg: \"For Sale\", \"For Rent\" etc, but "
 "leave the slug/permalink as it was,"
 msgstr ""
 
-#: menus/menu-welcome.php:591
+#: menus/menu-welcome.php:610
 msgid "this is very important."
 msgstr ""
 
-#: menus/menu-welcome.php:605
+#: menus/menu-welcome.php:624
 msgid "Publish Your First Listing"
 msgstr ""
 
-#: menus/menu-welcome.php:610
+#: menus/menu-welcome.php:629
 msgid "Title & Author"
 msgstr ""
 
-#: menus/menu-welcome.php:617
+#: menus/menu-welcome.php:636
 msgid "Use the full listing address as the title."
 msgstr ""
 
-#: menus/menu-welcome.php:619
+#: menus/menu-welcome.php:638
 msgid ""
 "When a property is being sold the \"heading\" is frequently changed and can cause "
 "permalink issues. Not to mention the search engine benefits."
 msgstr ""
 
-#: menus/menu-welcome.php:621
+#: menus/menu-welcome.php:640
 msgid "Author or Primary Real Estate Agent"
 msgstr ""
 
-#: menus/menu-welcome.php:622
+#: menus/menu-welcome.php:641
 msgid ""
 "Select the author to show the name of the agent who has listed the property with "
 "their contact details. For best results each real estate agent should have their own "
@@ -2447,79 +2499,79 @@ msgid ""
 "and in widgets."
 msgstr ""
 
-#: menus/menu-welcome.php:631
+#: menus/menu-welcome.php:650
 msgid "Gallery and Featured Image"
 msgstr ""
 
-#: menus/menu-welcome.php:636
+#: menus/menu-welcome.php:655
 msgid "Gallery"
 msgstr ""
 
-#: menus/menu-welcome.php:639
+#: menus/menu-welcome.php:658
 msgid "You can automatically output a gallery from the Display options page."
 msgstr ""
 
-#: menus/menu-welcome.php:641
+#: menus/menu-welcome.php:660
 msgid ""
 "If set to automatic, just upload your images to the listing and press x to close the "
 "media upload box once the images are attached to the listing. You can also easily "
 "adjust the number of gallery columns from the plugin Display options."
 msgstr ""
 
-#: menus/menu-welcome.php:643
+#: menus/menu-welcome.php:662
 msgid "Gallery Light Box"
 msgstr ""
 
-#: menus/menu-welcome.php:644
+#: menus/menu-welcome.php:663
 msgid ""
 "Using a light box plug-in like Easy FancyBox, your automatic gallery images will use "
 "the light box effect."
 msgstr ""
 
-#: menus/menu-welcome.php:668
+#: menus/menu-welcome.php:687
 msgid ""
 "Now supports multiple inspection times, add one per line. Past inspection dates will "
 "not display when using the new format."
 msgstr ""
 
-#: menus/menu-welcome.php:670
+#: menus/menu-welcome.php:689
 msgid ""
 "The output is now wrapped in an iCal format so clicking on the date will open the "
 "users calendar."
 msgstr ""
 
-#: menus/menu-welcome.php:684
+#: menus/menu-welcome.php:703
 msgid "Configure your theme"
 msgstr ""
 
-#: menus/menu-welcome.php:685
+#: menus/menu-welcome.php:704
 msgid ""
 "If you have never looked at a line of code in your life and you can copy and paste "
 "you can do this.<br/>We have made this process as easy as possible."
 msgstr ""
 
-#: menus/menu-welcome.php:690
+#: menus/menu-welcome.php:709
 msgid "Overview"
 msgstr ""
 
-#: menus/menu-welcome.php:692
+#: menus/menu-welcome.php:711
 msgid ""
 "WordPress has filters and hooks for \"the_title\" and \"the_content\" but these are "
 "not applicable for real estate websites where the address, price bed/bath icons and "
 "maps are much more important than categories, date and published by info."
 msgstr ""
 
-#: menus/menu-welcome.php:694
+#: menus/menu-welcome.php:713
 msgid ""
 "Not performing the setup steps may cause your sidebar to appear in the wrong place or "
 "the listing pages appear too wide."
 msgstr ""
 
-#: menus/menu-welcome.php:699
+#: menus/menu-welcome.php:718
 msgid "Solution"
 msgstr ""
 
-#: menus/menu-welcome.php:701
+#: menus/menu-welcome.php:720
 msgid ""
 "All you have to do is duplicate some files and copy and paste into them. If all else "
 "fails you can use the included shortcodes but these are not nearly as good as "
@@ -2528,224 +2580,224 @@ msgid ""
 "\t\t\t\t\t\t<h4>No Setup Required For These Themes"
 msgstr ""
 
-#: menus/menu-welcome.php:706
+#: menus/menu-welcome.php:725
 msgid "We have a selection of pre configured templates here for many popular themes"
 msgstr ""
 
-#: menus/menu-welcome.php:706
+#: menus/menu-welcome.php:725
 msgid "here"
 msgstr ""
 
-#: menus/menu-welcome.php:713
+#: menus/menu-welcome.php:732
 msgid "Stuck?"
 msgstr ""
 
-#: menus/menu-welcome.php:714
+#: menus/menu-welcome.php:733
 msgid ""
 "Not all themes follow WordPress coding standards and these may take a little more "
 "time and experience to get working. If you just can not get it to work, visit"
 msgstr ""
 
-#: menus/menu-welcome.php:714
+#: menus/menu-welcome.php:733
 msgid "support"
 msgstr ""
 
-#: menus/menu-welcome.php:714
+#: menus/menu-welcome.php:733
 msgid "desk and fill out a priority request."
 msgstr ""
 
-#: menus/menu-welcome.php:718
+#: menus/menu-welcome.php:737
 msgid "Future"
 msgstr ""
 
-#: menus/menu-welcome.php:719
+#: menus/menu-welcome.php:738
 msgid ""
 "We hope a future WordPress release adds filter so this can be automatic, but until "
 "that happens you are going to have to perform the following steps using copy and "
 "paste."
 msgstr ""
 
-#: menus/menu-welcome.php:730
+#: menus/menu-welcome.php:749
 msgid "Before attempting the following steps add a"
 msgstr ""
 
-#: menus/menu-welcome.php:730
+#: menus/menu-welcome.php:749
 msgid "test listing"
 msgstr ""
 
-#: menus/menu-welcome.php:730
+#: menus/menu-welcome.php:749
 msgid "and preview it as your theme may already work with Easy Property Listings."
 msgstr ""
 
-#: menus/menu-welcome.php:734
+#: menus/menu-welcome.php:753
 msgid "1. Take a backup of your theme and a copy of the files to edit."
 msgstr ""
 
-#: menus/menu-welcome.php:736
+#: menus/menu-welcome.php:755
 msgid ""
 "Open your favourite FTP program or access the file manager via your hosting panel."
 msgstr ""
 
-#: menus/menu-welcome.php:738
+#: menus/menu-welcome.php:757
 msgid "Take a backup before you start of your current theme."
 msgstr ""
 
-#: menus/menu-welcome.php:740
+#: menus/menu-welcome.php:759
 msgid ""
 "Download the single.php file and archive.php from your theme folder and save it to "
 "your computer."
 msgstr ""
 
-#: menus/menu-welcome.php:741
+#: menus/menu-welcome.php:760
 msgid ""
 "If these files are not present in your child theme then copy them from your parent "
 "theme folder. If there is no archive.php file use the index.php file."
 msgstr ""
 
-#: menus/menu-welcome.php:744
+#: menus/menu-welcome.php:763
 msgid ""
 "On your computer rename single.php to single-listing.php and rename archive.php to "
 "archive-listing.php"
 msgstr ""
 
-#: menus/menu-welcome.php:746
+#: menus/menu-welcome.php:765
 msgid "If using index.php, rename that to archive-listing.php"
 msgstr ""
 
-#: menus/menu-welcome.php:748
+#: menus/menu-welcome.php:767
 msgid "Upload these new files back into your theme folder."
 msgstr ""
 
-#: menus/menu-welcome.php:752
+#: menus/menu-welcome.php:771
 msgid "2. Edit your single-listing.php file."
 msgstr ""
 
-#: menus/menu-welcome.php:754
+#: menus/menu-welcome.php:773
 msgid "Open your new single-listing.php file in your text editor like Notepad++."
 msgstr ""
 
-#: menus/menu-welcome.php:755 menus/menu-welcome.php:772
+#: menus/menu-welcome.php:774 menus/menu-welcome.php:791
 msgid "Look for"
 msgstr ""
 
-#: menus/menu-welcome.php:756
+#: menus/menu-welcome.php:775
 msgid "which appears after"
 msgstr ""
 
-#: menus/menu-welcome.php:757 menus/menu-welcome.php:775
+#: menus/menu-welcome.php:776 menus/menu-welcome.php:794
 msgid "Replace"
 msgstr ""
 
-#: menus/menu-welcome.php:760
+#: menus/menu-welcome.php:779
 msgid "with"
 msgstr ""
 
-#: menus/menu-welcome.php:763 menus/menu-welcome.php:781
+#: menus/menu-welcome.php:782 menus/menu-welcome.php:800
 msgid "Save the file and make sure you have sent it to the server."
 msgstr ""
 
-#: menus/menu-welcome.php:764
+#: menus/menu-welcome.php:783
 msgid "View the test listing you created and you should be done."
 msgstr ""
 
-#: menus/menu-welcome.php:769
+#: menus/menu-welcome.php:788
 msgid "3. Edit your archive-listing.php file."
 msgstr ""
 
-#: menus/menu-welcome.php:771
+#: menus/menu-welcome.php:790
 msgid "Open archive-listing.php"
 msgstr ""
 
-#: menus/menu-welcome.php:772
+#: menus/menu-welcome.php:791
 msgid "which appears after the second"
 msgstr ""
 
-#: menus/menu-welcome.php:773
+#: menus/menu-welcome.php:792
 msgid "The first one is usually the page title."
 msgstr ""
 
-#: menus/menu-welcome.php:782
+#: menus/menu-welcome.php:801
 msgid ""
 "Check the main property page http://YOUR_SITE_URL/property/ and you should be done."
 msgstr ""
 
-#: menus/menu-welcome.php:789
+#: menus/menu-welcome.php:808
 msgid "4. Optional for grid and sorter. Edit your archive-listing.php file again."
 msgstr ""
 
-#: menus/menu-welcome.php:791 menus/menu-welcome.php:796
+#: menus/menu-welcome.php:810 menus/menu-welcome.php:815
 msgid "Insert"
 msgstr ""
 
-#: menus/menu-welcome.php:792
+#: menus/menu-welcome.php:811
 msgid "Before the second"
 msgstr ""
 
-#: menus/menu-welcome.php:794
+#: menus/menu-welcome.php:813
 msgid ""
 "Check your main property page, if the buttons are in the incorrect place move them "
 "until they are in the correct place."
 msgstr ""
 
-#: menus/menu-welcome.php:797
+#: menus/menu-welcome.php:816
 msgid "After the second"
 msgstr ""
 
-#: menus/menu-welcome.php:806
+#: menus/menu-welcome.php:825
 msgid "Need Help?"
 msgstr ""
 
-#: menus/menu-welcome.php:811
+#: menus/menu-welcome.php:830
 msgid "Phenomenal Support"
 msgstr ""
 
-#: menus/menu-welcome.php:812
+#: menus/menu-welcome.php:831
 #, php-format
 msgid ""
 "We do our best to provide the best support we can. If you encounter a problem or have "
 "a question, post a question in the <a href=\"%s\">support forums</a>."
 msgstr ""
 
-#: menus/menu-welcome.php:816
+#: menus/menu-welcome.php:835
 msgid "Need Even Faster Support?"
 msgstr ""
 
-#: menus/menu-welcome.php:817
+#: menus/menu-welcome.php:836
 msgid ""
 "Visit the <a href=\"http://easypropertylistings.com.au/support/pricing/\">Priority "
 "Support forums</a> are there for customers that need faster and/or more in-depth "
 "assistance."
 msgstr ""
 
-#: menus/menu-welcome.php:821
+#: menus/menu-welcome.php:840
 msgid "Documentation and Short Codes"
 msgstr ""
 
-#: menus/menu-welcome.php:822
+#: menus/menu-welcome.php:841
 msgid "Read the"
 msgstr ""
 
-#: menus/menu-welcome.php:822
+#: menus/menu-welcome.php:841
 msgid "documentation"
 msgstr ""
 
-#: menus/menu-welcome.php:822
+#: menus/menu-welcome.php:841
 msgid " and instructions on how to use the included"
 msgstr ""
 
-#: menus/menu-welcome.php:822
+#: menus/menu-welcome.php:841
 msgid "shortcodes"
 msgstr ""
 
-#: menus/menu-welcome.php:831
+#: menus/menu-welcome.php:850
 msgid "Stay Up to Date"
 msgstr ""
 
-#: menus/menu-welcome.php:832
+#: menus/menu-welcome.php:851
 msgid "Get Notified of Extension Releases"
 msgstr ""
 
-#: menus/menu-welcome.php:833
+#: menus/menu-welcome.php:852
 msgid ""
 "New extensions that make Easy Property Listings even more powerful are released "
 "nearly every single week. Subscribe to the newsletter to stay up to date with our "
@@ -2753,53 +2805,53 @@ msgid ""
 "a> to ensure you do not miss a release!"
 msgstr ""
 
-#: menus/menu-welcome.php:835
+#: menus/menu-welcome.php:854
 msgid "Get Alerted About New Tutorials"
 msgstr ""
 
-#: menus/menu-welcome.php:836
+#: menus/menu-welcome.php:855
 msgid ""
 "<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to hear about "
 "the latest tutorial releases that explain how to take Easy Property Listings further."
 msgstr ""
 
-#: menus/menu-welcome.php:840
+#: menus/menu-welcome.php:859
 msgid "Extend With Extensions"
 msgstr ""
 
-#: menus/menu-welcome.php:841
+#: menus/menu-welcome.php:860
 msgid "12 Extensions and many more coming"
 msgstr ""
 
-#: menus/menu-welcome.php:842
+#: menus/menu-welcome.php:861
 msgid ""
 "Add-on plug ins are available that greatly extend the default functionality of Easy "
 "Property Listings. There are extensions for Advanced mapping, testimonials, listing "
 "alerts, CMA Market Reports, Location Profiles, and many, many more."
 msgstr ""
 
-#: menus/menu-welcome.php:844
+#: menus/menu-welcome.php:863
 msgid "Visit the Extension Store"
 msgstr ""
 
-#: menus/menu-welcome.php:845
+#: menus/menu-welcome.php:864
 msgid "The Extensions store"
 msgstr ""
 
-#: menus/menu-welcome.php:845
+#: menus/menu-welcome.php:864
 msgid ""
 "has a list of all available extensions, including convenient category filters so you "
 "can find exactly what you are looking for."
 msgstr ""
 
-#: menus/menu-welcome.php:870
+#: menus/menu-welcome.php:889
 msgid ""
 "Easy Property Listings is created by a worldwide team of developers who aim to "
 "provide the #1 property listings platform for managing your real estate business "
 "through WordPress."
 msgstr ""
 
-#: menus/menu-welcome.php:897
+#: menus/menu-welcome.php:916
 #, php-format
 msgid "View %s"
 msgstr ""

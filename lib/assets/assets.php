@@ -19,10 +19,9 @@ function epl_admin_enqueue_scripts($screen) {
 	$current_dir_path = plugins_url('', __FILE__ );
 	
 	wp_enqueue_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts.js', array('jquery') );
-	wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin.css' );
+	wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin.css',FALSE,EPL_PROPERTY_VER );
 	
 	if( $screen == 'post.php' || $screen == 'post-new.php' || $screen == 'toplevel_page_epl-general' ) {
-		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin.css' );
 		
 		wp_enqueue_style(	'epl-jquery-validation-engine-style', $current_dir_path . '/css/validationEngine-jquery.css' );
 		wp_enqueue_script(	'epl-jquery-validation-engine-lang-scripts', $current_dir_path . '/js/jquery-validationEngine-en.js', array('jquery') );
@@ -42,7 +41,7 @@ function epl_wp_enqueue_scripts() {
 	$epl_default_view_type = isset($epl_settings['display_archive_view_type'])?$epl_settings['display_archive_view_type'] : 'list';
 	$current_dir_path = plugins_url('', __FILE__ );
 	wp_register_script( 'epl-front-scripts', $current_dir_path . '/js/jquery-front-scripts.js', array('jquery') );
-	wp_enqueue_style( 'epl-front-styles', $current_dir_path . '/css/style-front.css' );
+	wp_enqueue_style( 'epl-front-styles', $current_dir_path . '/css/style-front.css' ,FALSE,EPL_PROPERTY_VER);
 	$js_vars = array( 'epl_default_view_type' => $epl_default_view_type );
 	wp_localize_script( 'epl-front-scripts', 'epl_frontend_vars', $js_vars);
 	wp_enqueue_script( 'epl-front-scripts');

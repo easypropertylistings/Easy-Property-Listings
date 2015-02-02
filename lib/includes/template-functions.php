@@ -919,11 +919,17 @@ add_action('pre_get_posts','epl_archive_sorting');
 function epl_author_tabs () {
 	global $epl_author;
 	$author_tabs	= array(
-						'author_id'		=>	__('About','epl'),
-						'description'		=>	__('Bio','epl'),
-						'video'			=>	__('Video','epl'),
-						'contact'		=>	__('Contact','epl')
-					);
+				'author_id'		=>	__('About','epl'),
+				'description'		=>	__('Bio','epl'),
+				'video'			=>	__('Video','epl'),
+				'contact_form'		=>	__('Contact','epl'),
+			);
+					
+	 foreach($author_tabs as $k	=>	$author_tab) { 	
+	 	if( $epl_author->{$k} == ''){ 	
+	 		unset($author_tabs[$k]); 	
+	 	} 	
+	 }
 	return $author_tabs = apply_filters('epl_author_tabs',$author_tabs);
 }
 
@@ -995,8 +1001,7 @@ function epl_author_tab_video() {
 }
 
 function epl_author_tab_contact() {
-	global $epl_author;?>
-	<h6 class="author-box-title"><?php _e('Contact', 'epl'); ?></h6><?php
+	global $epl_author;
 	echo $epl_author->get_author_contact_form();
 }
 
@@ -1010,6 +1015,7 @@ function epl_archive_utility_wrap_after() {
 
 add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
 add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
+
 
 function epl_property_gallery () {
 
