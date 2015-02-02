@@ -5,7 +5,7 @@
 // Exit if accessed directly
 
 get_header(); ?>
- <div id="primary" class="site-content">
+ <div id="primary" class="site-content epl-single-default">
 	 <div id="content" role="main">
 		<?php
 		if ( have_posts() ) : ?>

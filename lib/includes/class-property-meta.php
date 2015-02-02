@@ -361,7 +361,9 @@ class EPL_Property_Meta {
 			$diff = $now->diff($date);
 			$diff = $diff->days;
 		} else {
-			$diff = '';
+			$diff = strtotime($date->format('M d Y ')) - strtotime($now->format('M d Y ') ) ;
+			$diff = floor($diff/3600/24);
+			
 		}
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
 			$price_sticker = '';
