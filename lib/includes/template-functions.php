@@ -1017,6 +1017,7 @@ function epl_archive_utility_wrap_after() {
 add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
 add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
+
 function epl_property_gallery () {
 
 	global $epl_settings;
