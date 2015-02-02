@@ -579,7 +579,7 @@ function epl_property_inspection_times(){
 		$label_home_open = $property->get_epl_settings('label_home_open');	
 	?>
 	<div class="epl-inspection-times">
-		<span class="epl-inspection-times-label" ><?php echo $label_home_open; ?></span>
+		<span class="epl-inspection-times-label"><?php echo $label_home_open; ?></span>
 		<?php echo $property_inspection_times; ?>
 	</div>
 	<?php 
@@ -919,12 +919,11 @@ add_action('pre_get_posts','epl_archive_sorting');
 function epl_author_tabs () {
 	global $epl_author;
 	$author_tabs	= array(
-						'author_id'					=>	__('About','epl'),
-						'description'				=>	__('Bio','epl'),
-						'video'						=>	__('Video','epl'),
-						'contact_form'				=>	__('Contact','epl'),
-
-					);
+				'author_id'		=>	__('About','epl'),
+				'description'		=>	__('Bio','epl'),
+				'video'			=>	__('Video','epl'),
+				'contact_form'		=>	__('Contact','epl'),
+			);
 					
 	 foreach($author_tabs as $k	=>	$author_tab) { 	
 	 	if( $epl_author->{$k} == ''){ 	
