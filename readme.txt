@@ -134,10 +134,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 == Changelog ==
 
 
-= 2.0.2: January 31, 2015 =
+= 2.0.2: February 2, 2015 =
 
-* Fix: Added fallback diff() function which is not present in PHP 5.2 or earlier used with the New label. 
+* Fix: Added fallback diff() function which is not present in PHP 5.2 or earlier used with the New label.
 * Fix: Restored missing contact form tab on author box.
+* Tweak: Added CSS versioning to admin CSS and front end CSS.
 
 = 2.0.1: January 29, 2015 =
 
