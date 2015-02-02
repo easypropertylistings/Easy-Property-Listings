@@ -921,8 +921,9 @@ function epl_author_tabs () {
 	$author_tabs	= array(
 						'author_id'					=>	__('About','epl'),
 						'description'				=>	__('Bio','epl'),
-						'contact_form'				=>	__('Contact','epl'),
 						'video'						=>	__('Video','epl'),
+						'contact_form'				=>	__('Contact','epl'),
+
 					);
 					
 	 foreach($author_tabs as $k	=>	$author_tab) { 	
@@ -1001,8 +1002,7 @@ function epl_author_tab_video() {
 }
 
 function epl_author_tab_contact() {
-	global $epl_author;?>
-	<h6 class="author-box-title"><?php _e('Contact', 'epl'); ?></h6><?php
+	global $epl_author;
 	echo $epl_author->get_author_contact_form();
 }
 
