@@ -11,7 +11,7 @@ Stable Tag: 2.0.2
 
 License: GNU Version 2 or Any Later Version
 
-Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is built for scale, extendible and works with any WordPress theme. Install Today!
+Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, extendible and works with any WordPress theme. Install Today!
 
 == Description ==
 
@@ -133,6 +133,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+
+= 2.0.3: February 6, 2015 =
+
+Fix: Manually entered inspection time corrected from pM to PM
 
 = 2.0.2: February 2, 2015 =
 
