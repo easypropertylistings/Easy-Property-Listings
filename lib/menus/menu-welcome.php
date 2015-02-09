@@ -330,6 +330,11 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 					
+					<h4><?php _e( 'Version 2.0.3', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Manually entered inspection capitalization fixed pM to PM.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.0.2', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used with the New label.', 'epl' );?></li>
