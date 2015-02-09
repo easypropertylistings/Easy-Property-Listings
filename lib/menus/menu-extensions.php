@@ -83,10 +83,17 @@ $epl_settings = get_option('epl_settings');
 			
 				if(!empty($ext_field_groups['fields'])) {
 					echo '<div class="epl-fields-tab-content">';
+						if( isset($ext_field_groups['intro']) && !empty($ext_field_groups['intro']) ) {
+							echo '<div class="epl-field epl-field-intro">';
+							_e($ext_field_groups['intro'],'epl');
+							echo '</div>';
+						}
+
 					$counter = 1;
 					foreach($ext_field_groups['fields'] as $field_group) {
 						$current_class = $counter == 1? 'epl-fields-field-current':''; ?>
 			
+						
 						<div class="<?php echo $current_class; ?> epl-fields-single-menu" id="<?php echo 'tab-menu-'.sanitize_title($field_group['label']); ?>"><?php
 
 						foreach($field_group['fields'] as $field) {?>
@@ -184,7 +191,7 @@ $epl_settings = get_option('epl_settings');
 												break;
 
 											default:
-												echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
+												echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 										}
 									?>
 								</div>
