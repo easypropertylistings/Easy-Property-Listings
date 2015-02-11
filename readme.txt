@@ -29,7 +29,7 @@ Easy Property Listing is one of the most dynamic and feature rich Real Estate pl
 * Fast. Flexible. Forward-thinking solution for real estate agents using WordPress.
 
 Features:
-* Author Box and Widget: Easy to customise, multiple agents, tabbed and extendable. Supports video, bio, social media links and much more.
+* Author Box and Widget: Easy to customise, multiple agents, tabbed and extendible. Supports video, bio, social media links and much more.
 * Listing Widget to easily add properties anywhere to your theme. Dozens of options with random, ordered and offset and no code.
 * Search Widget: Supports tabs, location, land, price, address and more. It's all here, search everything. Its super-fast.
 * Extend with Advanced Mapping extension that handles hundreds of listings, dozens of options added with a simple shortcode.
@@ -80,6 +80,7 @@ Easy Property Listings needs help for translation:
 4. Russian
 5. French
 6. Finnish
+7. Bulgarian
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](http://easypropertylistings.com.au/support/forum/translations/).
 
@@ -139,19 +140,23 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 2.0.4: February 12, 2015 =
+
+* Fix: Bulgarian Translation (Thanks to Slavcho Aangeliev)
+* Tweak: Finnish translation updated
 
 = 2.0.3: February 9, 2015 =
 
-Fix: Manually entered inspection time corrected from pM to PM
-New: French translation (Thanks to Thomas Grimaud)
-New: Finnish translation (Thanks to Turo)
+* Fix: Manually entered inspection time corrected from pM to PM
+* New: French translation (Thanks to Thomas Grimaud)
+* New: Finnish translation (Thanks to Turo)
 
 = 2.0.2: February 2, 2015 =
 
-Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used with the New label.
-Fix: Some Labels in settings were not saving correctly particularly the search widget labels.
-Fix: Restored missing author profile contact form tab on author box.
-Tweak: Added CSS version to admin CSS and front end CSS.
+* Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used with the New label.
+* Fix: Some Labels in settings were not saving correctly particularly the search widget labels.
+* Fix: Restored missing author profile contact form tab on author box.
+* Tweak: Added CSS version to admin CSS and front end CSS.
 
 = 2.0.1: January 29, 2015 =
 
