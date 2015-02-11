@@ -904,3 +904,7 @@ li.tbhead.current {
 #ie7 .epl-clearfix {
 	zoom: 1;
 }
+
+#epl-default-map img {
+	max-width:none;
+}

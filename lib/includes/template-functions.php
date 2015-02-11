@@ -1146,4 +1146,15 @@ function epl_process_event_cal_request () {
 }
 add_action('init','epl_process_event_cal_request');
 
-
+function epl_update_listing_coordinates() {
+	if( intval($_POST['listid']) == 0 || $_POST['coordinates'] == '')
+		return;
+		$coordinates = rtrim( ltrim($_POST['coordinates'] , '(') , ')');
+		if( update_post_meta(intval($_POST['listid']),'property_address_coordinates',$coordinates) ) {
+			die('success');
+		} else {
+			die('fail');
+		}
+}
+add_action('wp_ajax_epl_update_listing_coordinates','epl_update_listing_coordinates');
+add_action('wp_ajax_nopriv_epl_update_listing_coordinates','epl_update_listing_coordinates');

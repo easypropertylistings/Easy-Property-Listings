@@ -17,33 +17,20 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Pulls the address details so the map can be generated
  */
 function epl_property_map_default_callback() {
-	$address = '';
+	global $property;
 	
-	$property_address_street_number = get_post_meta(get_the_ID(), 'property_address_street_number', true);
-	if(!empty($property_address_street_number)) {
-		$address .= $property_address_street_number . ' ';
+	// only show map if address display is set to true
+	if ( $property->get_property_meta('property_address_display') == 'yes' ) {
+	
+		$address = epl_property_get_the_full_address();
+		
+		// use coordinates if they are already present
+		$coordinates = $property->get_property_meta('property_address_coordinates');
+		
+		echo do_shortcode('[listing_map zoom=14 cord="'.$coordinates.'" q="'.$address.'"]');
 	}
+
 	
-	$property_address_street = get_post_meta(get_the_ID(), 'property_address_street', true);
-	if(!empty($property_address_street)) {
-		$address .= $property_address_street . ' ';
-	}
 	
-	$property_address_suburb = get_post_meta(get_the_ID(), 'property_address_suburb', true);
-	if(!empty($property_address_suburb)) {
-		$address .= $property_address_suburb . ',';
-	}
-	
-	$property_address_state = get_post_meta(get_the_ID(), 'property_address_state', true);
-	if(!empty($property_address_state)) {
-		$address .= $property_address_state . ',';
-	}
-	
-	$property_address_postal_code = get_post_meta(get_the_ID(), 'property_address_postal_code', true);
-	if(!empty($property_address_postal_code)) {		
-		$address .= $property_address_postal_code;
-	}
-	
-	echo do_shortcode('[listing_map zoom=14 q="'.$address.'"]');
 }
 add_action('epl_property_map', 'epl_property_map_default_callback');
