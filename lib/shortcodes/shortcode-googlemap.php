@@ -13,15 +13,18 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 function epl_shortcode_googlemap_callback($atts, $content = null) {
+	global $property;
 	extract( shortcode_atts( array(
-		'width' => '100%',
-		'height' => '350',
-		'zoom' => '12',
-		'q' => ''
+		'width' 		=> '100%',
+		'height' 		=> '350',
+		'zoom' 			=> '17',
+		'q' 			=> '',
+		'cord'			=>	'',
+		'suburb_mode'	=>	0
 	), $atts) );
 
-	if(!empty($q)) {
-		return '<div class="epl-tab-section"><iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?q='.$q.'&amp;output=embed&amp;&z='.$zoom.'"></iframe></div>';
-	}
+	return '<div class="epl-tab-section">
+				<div style="width:'.$width.'; height:'.$height.'px" data-suburb_mode="'.$suburb_mode.'" data-cord="'.$cord.'" data-zoom="'.$zoom.'" data-id="'.$property->post->ID.'" data-address="'.$q.'" id="epl-default-map">
+			</div>';
 }
 add_shortcode('listing_map', 'epl_shortcode_googlemap_callback');
