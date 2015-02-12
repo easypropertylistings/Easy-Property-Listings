@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Load and enqueue admin scripts and stylesheets
  */
 function epl_admin_enqueue_scripts($screen) {
+	
 	$current_dir_path = plugins_url('', __FILE__ );
 	
 	if( $screen == 'post.php' || $screen == 'post-new.php' || $screen == 'easy-property-listings_page_epl-extensions' ||  $screen == 'easy-property-listings_page_epl-settings') {
@@ -28,7 +29,12 @@ function epl_admin_enqueue_scripts($screen) {
 		wp_enqueue_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts.js', array('jquery') );
 		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin.css',FALSE,EPL_PROPERTY_VER );
 
-	}	
+	} 
+	
+	// load admin style on help & documentation pages as well
+	if($screen = 'edit.php' || $screen == 'toplevel_page_epl-general' || $screen == 'dashboard_page_epl-about' || $screen == 'dashboard_page_epl-getting-started')	{
+		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin.css',FALSE,EPL_PROPERTY_VER );
+	}
 }
 add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 

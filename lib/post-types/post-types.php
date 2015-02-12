@@ -93,3 +93,34 @@ function epl_admin_posts_filter( $query ) {
 		}
 	}
 }
+
+/**
+ * Manage Property Columns Sorting
+ *
+ * @since 1.0
+ */
+function epl_manage_listings_sortable_columns( $columns ) {
+	$columns['property_price'] = __('property_price', 'epl');
+	return $columns;
+}
+
+$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+
+foreach($epl_posts  as $epl_post ) {
+	add_filter( 'manage_edit-'.$epl_post.'_sortable_columns', 'epl_manage_listings_sortable_columns' );
+}
+
+function epl_custom_orderby( $query ) {
+	if( ! is_admin() )  
+	return;  
+
+	$orderby = $query->get( 'orderby');  
+
+	if( 'property_price' == $orderby ) {  
+		$query->set('meta_key','property_price');  
+		$query->set('orderby','meta_value_num');  
+	}  
+	
+}
+// handle sorting of admin columns
+add_filter( 'pre_get_posts', 'epl_custom_orderby' );
