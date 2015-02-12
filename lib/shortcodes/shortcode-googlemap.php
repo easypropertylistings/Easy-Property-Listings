@@ -15,15 +15,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function epl_shortcode_googlemap_callback($atts, $content = null) {
 	global $property;
 	extract( shortcode_atts( array(
-		'width' => '100%',
-		'height' => '350',
-		'zoom' => '17',
-		'q' => '',
-		'cord'	=>	''
+		'width' 		=> '100%',
+		'height' 		=> '350',
+		'zoom' 			=> '17',
+		'q' 			=> '',
+		'cord'			=>	'',
+		'suburb_mode'	=>	0
 	), $atts) );
 
 	return '<div class="epl-tab-section">
-				<div style="width:'.$width.'; height:'.$height.'px" data-cord="'.$cord.'" data-zoom="'.$zoom.'" data-id="'.$property->post->ID.'" data-address="'.$q.'" id="epl-default-map">
+				<div style="width:'.$width.'; height:'.$height.'px" data-suburb_mode="'.$suburb_mode.'" data-cord="'.$cord.'" data-zoom="'.$zoom.'" data-id="'.$property->post->ID.'" data-address="'.$q.'" id="epl-default-map">
 			</div>';
 }
 add_shortcode('listing_map', 'epl_shortcode_googlemap_callback');
