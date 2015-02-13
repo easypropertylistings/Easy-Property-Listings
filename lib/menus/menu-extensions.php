@@ -60,6 +60,24 @@ $epl_settings = get_option('epl_settings');
 	if(array_key_exists($active_tab, $epl_extensions)):
 		$ext_field_groups = $epl_extensions[$active_tab];?>
 		<div class="epl-content">
+			<?php
+			echo '
+				<div class="epl-fields-help-content">';
+						foreach($ext_field_groups['fields'] as $ext_field_group) {
+							
+							if( isset($ext_field_group['intro']) && !empty($ext_field_group['intro']) ) {
+								echo '<div class="epl-field epl-field-intro" data-help="tab-menu-'.sanitize_title($ext_field_group['label']).'">';
+								_e($ext_field_group['intro'],'epl');
+								echo '</div>';
+							}
+
+						}
+						echo '
+				</div>
+			';
+				
+			?>
+
 			<form action="" method="post">
 				<div class="epl-fields"><?php
 				$counter = 1;
@@ -82,13 +100,8 @@ $epl_settings = get_option('epl_settings');
 				';
 			
 				if(!empty($ext_field_groups['fields'])) {
+				
 					echo '<div class="epl-fields-tab-content">';
-						if( isset($ext_field_groups['intro']) && !empty($ext_field_groups['intro']) ) {
-							echo '<div class="epl-field epl-field-intro">';
-							_e($ext_field_groups['intro'],'epl');
-							echo '</div>';
-						}
-
 					$counter = 1;
 					foreach($ext_field_groups['fields'] as $field_group) {
 						$current_class = $counter == 1? 'epl-fields-field-current':''; ?>
@@ -104,12 +117,6 @@ $epl_settings = get_option('epl_settings');
 								<div class="epl-half-left">
 									<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
 									
-									<?php if(isset($field['help'])) {
-											$field['help'] = trim($field['help']);
-											if(!empty($field['help'])) {
-												echo '<p class="epl-help-text">'.__($field['help'], 'epl').'</p>';
-											}
-									} ?>
 								</div>
 								<div class="epl-half-right">
 									<?php

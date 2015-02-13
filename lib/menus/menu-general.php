@@ -78,13 +78,6 @@ $epl_settings = get_option('epl_settings');
 													<div class="epl-half-left">
 														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php _e($field['label'], 'epl'); ?></h4>
 														
-														<?php if(isset($field['help'])) {
-															$field['help'] = trim($field['help']);
-															if(!empty($field['help'])) {
-																echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
-															}
-														} ?>
-															
 													</div>
 													<div class="epl-half-right">
 														<?php
@@ -209,6 +202,18 @@ function epl_get_admin_option_fields() {
 					'type'	=>	'number',
 					'default'	=>	'2000',
 					'help'		=>	__('Rental range.' , 'epl')
+				),
+				
+				array(
+					'name'	=>	'epl_admin_thumb_size',
+					'label'	=>	__('Image size', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'admin-list-thumb'	=>	__('100 X 100', 'epl'),
+						'epl-image-medium-crop'	=>	__('300 X 200', 'epl'),
+					),
+					'default'	=>	'admin-list-thumb',
+					'help'		=>	__('size of the image shown in listing columns in admin area' , 'epl')
 				)
 			)
 		),

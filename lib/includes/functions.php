@@ -631,7 +631,7 @@ function epl_admin_sidebar () {
 
 		case 'textarea':
 			$atts = '';
-			if($field['maxlength'] > 0) {
+			if(isset($field['maxlength'] ) && $field['maxlength'] > 0) {
 				$atts = ' maxlength="'.$field['maxlength'].'"';
 			}
 			echo '<textarea name="'.$field['name'].'" id="'.$field['name'].'" '.$atts.'>'.stripslashes($val).'</textarea>';
