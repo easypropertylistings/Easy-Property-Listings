@@ -20,6 +20,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			$counter = 1;
 			foreach($author_tabs as $author_tab){
 				$current_class = $counter == 1? 'author-current':''; ?>
+				<?php 
+					ob_start();
+					apply_filters('epl_author_tab_'.$author_tab.'_callback',call_user_func('epl_author_tab_'.str_replace(' ','_',$author_tab)));
+					$op = ob_get_clean();
+					// remove tab if callback function output is ''
+					if($op == '')  {
+						continue;
+					}
+					
+				?>
+
 				<li class="tab-link <?php echo $current_class; ?>" data-tab="tab-<?php echo $counter;?>"><?php _e($author_tab, 'epl'); ?></li><?php
 				$counter ++;
 			}
