@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			
 			$author_tabs = epl_author_tabs();
 			$counter = 1;
-			foreach($author_tabs as $author_tab){
+			foreach($author_tabs as $k	=>	$author_tab){
 				$current_class = $counter == 1? 'author-current':''; ?>
 				<?php 
 					ob_start();

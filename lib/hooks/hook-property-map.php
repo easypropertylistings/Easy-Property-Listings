@@ -23,7 +23,8 @@ function epl_property_map_default_callback() {
 	if ( $property->get_property_meta('property_address_display') == 'yes' ) {
 	
 		$address = epl_property_get_the_full_address();
-		
+		$address = apply_filters('epl_map_address',$address);
+
 		// use coordinates if they are already present
 		$coordinates = $property->get_property_meta('property_address_coordinates');
 		
@@ -31,6 +32,8 @@ function epl_property_map_default_callback() {
 	} else {
 	
 		$address = $property->get_property_meta('property_address_suburb');
+		
+		$address = apply_filters('epl_map_address',$address);
 		echo do_shortcode('[listing_map zoom=14 suburb_mode=1 q="'.$address.'"]');
 	}
 

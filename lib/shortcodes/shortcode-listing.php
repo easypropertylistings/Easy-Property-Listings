@@ -28,12 +28,16 @@ function epl_shortcode_listing_callback( $atts ) {
 	}
 	
 	extract( shortcode_atts( array(
-		'post_type' =>	$property_types, //Post Type
-		'status'	=>	array('current' , 'sold' , 'leased' ),
-		'limit'		=>	'10', // Number of maximum posts to show
-		'template'	=>	false // Template can be set to "slim" for home open style template
+		'post_type' 	=>	$property_types, //Post Type
+		'status'		=>	array('current' , 'sold' , 'leased' ),
+		'limit'			=>	'10', // Number of maximum posts to show
+		'template'		=>	false, // Template can be set to "slim" for home open style template
+		'sortby'		=>	'',
+		'sort_order'	=>	'DESC'
+		
 	), $atts ) );
 	
+	$sort_options = array('price'	=>	'property_price',	'date'	=>	'post_date');
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(
@@ -54,6 +58,21 @@ function epl_shortcode_listing_callback( $atts ) {
 			);
 		}
 	}
+
+	if(!empty($sortby) && isset($sort_options[$sortby])) {
+		
+		if($sortby == 'date') {
+			$args['orderby']	=	$sort_options[$sortby];
+			$args['order']		=	sanitize_text_field($sort_order);
+		
+		} else {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	$sort_options[$sortby];
+			$args['order']		=	sanitize_text_field($sort_order);
+		
+		}
+	}
+
 	
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
