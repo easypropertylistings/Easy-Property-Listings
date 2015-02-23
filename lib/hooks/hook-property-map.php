@@ -30,8 +30,7 @@ function epl_property_map_default_callback() {
 		echo do_shortcode('[listing_map zoom=14 cord="'.$coordinates.'" q="'.$address.'"]');
 	} else {
 	
-		$address = $property->get_property_meta('property_suburb');
-
+		$address = $property->get_property_meta('property_address_suburb');
 		echo do_shortcode('[listing_map zoom=14 suburb_mode=1 q="'.$address.'"]');
 	}
 

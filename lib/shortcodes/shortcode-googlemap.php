@@ -25,6 +25,6 @@ function epl_shortcode_googlemap_callback($atts, $content = null) {
 
 	return '<div class="epl-tab-section">
 				<div style="width:'.$width.'; height:'.$height.'px" data-suburb_mode="'.$suburb_mode.'" data-cord="'.$cord.'" data-zoom="'.$zoom.'" data-id="'.$property->post->ID.'" data-address="'.$q.'" id="epl-default-map">
-			</div>';
+			</div> </div>';
 }
 add_shortcode('listing_map', 'epl_shortcode_googlemap_callback');
