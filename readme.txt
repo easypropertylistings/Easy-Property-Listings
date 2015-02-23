@@ -3,15 +3,15 @@ Author URI: http://www.realestateconnected.com.au
 Plugin URI: http://easypropertylistings.com.au
 Contributors: mervb1
 Donate link: http://easypropertylistings.com.au/support-the-site/
-Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, wp property, Merv Barrett, real estate connected
+Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.0.2
+Stable Tag: 2.0.3
 
 License: GNU Version 2 or Any Later Version
 
-Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is built for scale, extendible and works with any WordPress theme. Install Today!
+Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, extendible and works with any WordPress theme.
 
 == Description ==
 
@@ -22,25 +22,23 @@ Easy Property Listing is one of the most dynamic and feature rich Real Estate pl
 * Easy Property Listing is highly customizable to such an extent that you will barely know if you looked at some of the websites running the plugin here.
 * You have the freedom to display property price as a price range or a fixed price giving you the flexibility to attract buyers with various budgets falling within your desired range.
 * It does not matter what theme you use for your site, Easy Property Listing 99% of all WordPress themes.
-* This plugin is location independent and whether you are selling properties in Miami beach or Russia, you can list the properties in the local currency.
+* This plugin is location independent and whether you are selling properties in Miami Beach or Russia, you can list the properties in the local currency.
 * This is more than just a listing plugin, you can also have your sales agent profiles next to the properties for sale with their contact details. This makes it so much easier for a client to find a property they want and then make a viewing appointment all from the same page on your website.
 * This Real Estate plugin for has been designed to complement your skill and design and to set you free to do what you do best.
-* Developers save time because its pre-configured to support every country, in any market.
+* Developers save time because it's pre-configured to support every country, in any market.
 * Fast. Flexible. Forward-thinking solution for real estate agents using WordPress.
 
 Features:
 * Author Box and Widget: Easy to customise, multiple agents, tabbed and extendable. Supports video, bio, social media links and much more.
 * Listing Widget to easily add properties anywhere to your theme. Dozens of options with random, ordered and offset and no code.
-* Search Widget: Supports tabs, location, land, price, address and more. It's all here, search everything. Its super fast.
+* Search Widget: Supports tabs, location, land, price, address and more. It's all here, search everything. Its super-fast.
 * Extend with Advanced Mapping extension that handles hundreds of listings, dozens of options added with a simple shortcode.
-* iCal calendar appointment support for inspection times. Just click and add to your calender.
+* iCal calendar appointment support for inspection times. Just click and add to your calendar.
 * Geo-locate the property coordinates with a press of a button and display Google Maps. 
 * Works with any theme and popular frameworks like Genesis and iThemes Builder.
 * Buttons for multiple floor plans, and multiple external links.
-
 * Support for Under Offer and no price listings, you name it, it works.
-* Currency support for non dollar currencies
-
+* Currency support for non-dollar currencies
 
 * Extensible with many [add-ons](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions)
 
@@ -77,9 +75,11 @@ With add-ons for [Listing Templates](http://easypropertylistings.com.au/extensio
 Easy Property Listings needs help for translation:
 
 1. English (and British English)
-2. Italian (very rough translation, if you can assist please do)
-3. Dutch (partially complete)
+2. Italian (Rough translation, if you can assist please do)
+3. Dutch
 4. Russian
+5. French
+6. Finnish
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](http://easypropertylistings.com.au/support/forum/translations/).
 
@@ -87,13 +87,19 @@ Would you like to help translate the plugin into more languages? [Join our Trans
 
 1. Upload plugin zip contents to wp-contents/plugin directory and activate the plugin.
 2. Go to Easy Property Listings > Settings and enable your listing types and press save.
-3. Customise your labels, tweak the display, all in minutes.
-4. Add a listing as you would a post
+3. Customise your labels, tweak the display, all in minutes from Easy Property Listings > Setting page.
+4. Add a listing as you would a post. Check the help guide inside the plugin. Dashboard > Easy Property Listings > Help. These instructions are also accessible to authors.
 5. Create blank pages for each listing type you enable so you can easily add the archive page to your WordPress menus
 6. Insert short codes, add widgets, read the guide.
 7. For detailed setup instructions, visit the official [Documentation](http://easypropertylistings.com.au/documentation/) page.
 
 == Frequently Asked Questions ==
+
+= How do I setup my WordPress theme to work with Easy Property Listings 2.0 =
+
+In order for correct integration with your WordPress theme please follow these instructions [WordPress Theme configuration instructions](http://easypropertylistings.com.au/section/theming/).
+
+These instructions are also located inside the plugin. Visit Dashboard > Easy Property Listings > Help > Getting Started > Setup your theme to work with the plugin
 
 = How do I Show My List of Listings? =
 
@@ -134,12 +140,18 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 == Changelog ==
 
 
+= 2.0.3: February 9, 2015 =
+
+* Fix: Manually entered inspection time corrected from pM to PM
+* New: French translation (Thanks to Thomas Grimaud)
+* New: Finnish translation (Thanks to Turo)
+
 = 2.0.2: February 2, 2015 =
 
-Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used with the New label.
-Fix: Some Labels in settings were not saving correctly particularly the search widget labels.
-Fix: Restored missing author profile contact form tab on author box.
-Tweak: Added CSS version to admin CSS and front end CSS.
+* Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used with the New label.
+* Fix: Some Labels in settings were not saving correctly particularly the search widget labels.
+* Fix: Restored missing author profile contact form tab on author box.
+* Tweak: Added CSS version to admin CSS and front end CSS.
 
 = 2.0.1: January 29, 2015 =
 
@@ -185,7 +197,7 @@ Tweak: Added CSS version to admin CSS and front end CSS.
 * New: Display: Added customisable label for rental Bond/Deposit.
 * New: Template functions completely re-written and can now be output using actions.
 * New: Added NEW sticker with customisable label and ability to set how long a listing displays the new label.
-* Tweak: Compatability fixes
+* Tweak: Compatibility fixes
 * New: Bar Graph API added.
 * New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 sale) and (2,000 rental).
 * New: Graph visually displays price and status.
@@ -236,7 +248,7 @@ Tweak: Added CSS version to admin CSS and front end CSS.
 * New: Search Widget - Added filter for land min & max fields in listing search widget
 * New: Search Widget - Added filter for building min & max fields in listing search widget
 * Fix: For session start effecting certain themes
-* New: Land sizes now allow upto 5 decimal places
+* New: Land sizes now allow up to 5 decimal places
 * New: Search Widget - Custom submit label
 * New: Search Widget - Can search by title in property ID / Address field
 * New: Added Russian Translation

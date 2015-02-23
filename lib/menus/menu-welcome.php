@@ -330,6 +330,13 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 					
+					<h4><?php _e( 'Version 2.0.3', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Manually entered inspection capitalization fixed pM to PM.', 'epl' );?></li>
+						<li><?php _e( 'New: French translation (Thanks to Thomas Grimaud)', 'epl' );?></li>
+						<li><?php _e( 'New: Finnish translation (Thanks to Turo)', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.0.2', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used with the New label.', 'epl' );?></li>
@@ -383,7 +390,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Display: Added customisable label for rental Bond/Deposit.', 'epl' );?></li>
 						<li><?php _e( 'New: Template functions completely re-written and can now be output using actions.', 'epl' );?></li>
 						<li><?php _e( 'New: Added NEW sticker with customisable label and ability to set how long a listing displays the new label.', 'epl' );?></li>
-						<li><?php _e( 'Tweak: Compatibilityalow fixes', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Compatibility fixes', 'epl' );?></li>
 						<li><?php _e( 'New: Bar Graph API added.', 'epl' );?></li>
 						<li><?php _e( 'New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 sale) and (2,000 rental).', 'epl' );?></li>
 						<li><?php _e( 'New: Graph visually displays price and status.', 'epl' );?></li>
@@ -426,7 +433,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Meta Location Label.', 'epl' );?></li>
 						<li><?php _e( 'New: Service banners on settings page.', 'epl' );?></li>
 						<li><?php _e( 'New: Saving version number so when updating new settings are added.', 'epl' );?></li>
-						<li><?php _e( 'New: iCal functionality for REAXML formatted inspection dates. Futher improvements coming for manual date entry. ', 'epl' );?></li>
+						<li><?php _e( 'New: iCal functionality for REAXML formatted inspection dates. Further improvements coming for manual date entry. ', 'epl' );?></li>
 						<li><?php _e( 'New: Extensions options pages now with tabs for easier usage.', 'epl' );?></li>
 						<li><?php _e( 'New: Added ID classes to admin pages and meta fields.', 'epl' );?></li>
 						<li><?php _e( 'New: Filters to adjust land and building sizes from number to select fields.', 'epl' );?></li>
@@ -434,7 +441,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Search Widget - Added filter for land min & max fields in listing search widget', 'epl' );?></li>
 						<li><?php _e( 'New: Search Widget - Added filter for building min & max fields in listing search widget', 'epl' );?></li>
 						<li><?php _e( 'Fix: For session start effecting certain themes', 'epl' );?></li>
-						<li><?php _e( 'New: Land sizes now allow upto 5 decimal places', 'epl' );?></li>
+						<li><?php _e( 'New: Land sizes now allow up to 5 decimal places', 'epl' );?></li>
 						<li><?php _e( 'New: Search Widget - Custom submit label', 'epl' );?></li>
 						<li><?php _e( 'New: Search Widget - Can search by title in property ID / Address field', 'epl' );?></li>
 						<li><?php _e( 'New: Added Russian Translation', 'epl' );?></li>
@@ -754,7 +761,7 @@ class EPL_Welcome {
 						
 						<p><?php _e( 'Open your favourite FTP program or access the file manager via your hosting panel.', 'epl' );?></p>
 						
-						<p><?php _e( 'Take a backup before you start of your current theme.', 'epl' );?></p>
+						<p style="margin-left: 2em;"><em><?php _e( 'Take a backup of your theme before you start.', 'epl' );?></em></p>
 
 						<p><?php _e( 'Download the single.php file and archive.php from your theme folder and save it to your computer.', 'epl' );?></p>
 						<p style="margin-left: 2em;"><em><?php _e( 'If these files are not present in your child theme then copy them from your parent theme folder. If there is no archive.php file use the index.php file.', 'epl' );?></em></p>
