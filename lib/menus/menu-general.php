@@ -78,13 +78,6 @@ $epl_settings = get_option('epl_settings');
 													<div class="epl-half-left">
 														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php _e($field['label'], 'epl'); ?></h4>
 														
-														<?php if(isset($field['help'])) {
-															$field['help'] = trim($field['help']);
-															if(!empty($field['help'])) {
-																echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
-															}
-														} ?>
-															
 													</div>
 													<div class="epl-half-right">
 														<?php
@@ -92,58 +85,7 @@ $epl_settings = get_option('epl_settings');
 															if(isset($epl_settings[ $field['name'] ])) {
 																$val = $epl_settings[ $field['name'] ];
 															}
-															switch($field['type']) {
-																case 'select':
-																	echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
-																		if(!empty($field['default'])) {
-																			echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
-																		}
-
-																		if(!empty($field['opts'])) {
-																			foreach($field['opts'] as $k=>$v) {
-																				$selected = '';
-																				if($val == $k) {
-																					$selected = 'selected="selected"';
-																				}
-																				echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
-																			}
-																		}
-																	echo '</select>';
-																	break;
-
-																case 'checkbox':
-																	if(!empty($field['opts'])) {
-																		foreach($field['opts'] as $k=>$v) {
-																			$checked = '';
-																			if(!empty($val)) {
-																				if( in_array($k, $val) ) {
-																					$checked = 'checked="checked"';
-																				}
-																			}
-																			echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
-																		}
-																	}
-																	break;
-
-																case 'radio':
-																	if(!empty($field['opts'])) {
-																		foreach($field['opts'] as $k=>$v) {
-																			$checked = '';
-																			if($val == $k) {
-																				$checked = 'checked="checked"';
-																			}
-																			echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
-																		}
-																	}
-																	break;
-																
-																case 'number':
-																	echo '<input class="validate[custom[onlyNumber]]" type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.intval($val).'" />';
-																	break;
-																	
-																default:
-																	echo '<input class="epl-input-normal" type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
-															}
+															epl_render_html_fields ($field,$val);
 														?>
 													</div>
 												</div>
@@ -260,6 +202,18 @@ function epl_get_admin_option_fields() {
 					'type'	=>	'number',
 					'default'	=>	'2000',
 					'help'		=>	__('Rental range.' , 'epl')
+				),
+				
+				array(
+					'name'	=>	'epl_admin_thumb_size',
+					'label'	=>	__('Image size', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'admin-list-thumb'	=>	__('100 X 100', 'epl'),
+						'epl-image-medium-crop'	=>	__('300 X 200', 'epl'),
+					),
+					'default'	=>	'admin-list-thumb',
+					'help'		=>	__('size of the image shown in listing columns in admin area' , 'epl')
 				)
 			)
 		),

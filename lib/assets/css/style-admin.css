@@ -205,27 +205,32 @@ h3.epl-welcome-sub-heading {
 .epl-fields-tab-menu ul {
 	margin: 0;
 	padding: 0;
-	border-bottom: 1px solid #ccc;
 }
 .epl-fields-tab-menu ul li {
-	background: #e4e4e4;
+	background: #fff;
     cursor: pointer;
     display: inline-block;
-    margin: 0 0 -1px 0.5em;
+    margin: 0 0 1em 0.5em;
     padding: 10px 15px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #ccc;
     border-bottom: none;
    	border-radius: 2px;
     transition: all 0.1s ease-in-out 0s;
+    border-bottom: 3px solid #0074a2;
 }
 .epl-fields-tab-menu ul li:hover{
-	background: orange;
+	background: #0074a2;
+    color: #FFFFFF;
+}
+
+.epl-fields-tab-menu ul li.epl-fields-menu-current:hover {
+	background:#7ad03a;
     color: #FFFFFF;
 }
 .epl-fields-tab-menu ul li.epl-fields-menu-current {
    background: #FFFFFF;
    color: #000000;
-   border-bottom: 1px solid #ffffff;
+   border-bottom:3px solid #7ad03a;
 }
 .epl-fields-tab-content {
 	background: #FFFFFF;
@@ -385,10 +390,10 @@ h3.epl-welcome-sub-heading {
 }
 /* Post Type List Admin Styles */
 .column-listing {
-	width: 25%
+	
 }
 .column-property_thumb {
-	width: 100px;
+	
 }
 .type_current {
 	font-weight:normal;
@@ -739,4 +744,19 @@ h3.epl-welcome-sub-heading {
 #ie6 .epl-clearfix,
 #ie7 .epl-clearfix {
 	zoom: 1;
+}
+
+/* help tabs for extensions */
+.epl-field-intro {
+	display:none;
+}
+.epl-field-intro.active{
+	display:block;
+}
+.epl-show-help {
+    background: none repeat scroll 0 0 #ffffff;
+    border-bottom: 4px solid #7ad03a;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    margin: 0 5px 15px 2px;
+    padding: 12px;
 }
