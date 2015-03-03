@@ -10,15 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // Load Custom Template from Plugin Directory
 function epl_load_core_templates($template) {
 
-	if( epl_is_builder_framework_theme() ) {
-		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES;
-	} elseif ( epl_is_genesis_framework_theme() ) {	
-		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
-	} else {
-		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT;
-	}
+	$template_path = EPL_PATH_TEMPLATES_CONTENT;
+	
 	$post_tpl	=	'';
-	$epl_posts 	= array( 'property' , 'land' , 'rental' , 'rural' , 'commercial' , 'business' , 'commercial_land' );
+	$epl_posts 	= epl_get_active_post_types();
+	$epl_posts 	= array_keys($epl_posts);
 	
 	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
 	
@@ -65,3 +61,34 @@ function epl_load_core_templates($template) {
 
 add_filter( 'template_include', 'epl_load_core_templates' );
 
+function epl_render_single_post() {
+
+	if( epl_is_builder_framework_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES;
+	} elseif ( epl_is_genesis_framework_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
+	} else {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT;
+	}
+	$common_tpl		= 'single-listing.php';
+	$template		=	$template_path . $common_tpl;
+	include($template);
+}
+
+add_action('epl_render_single_post','epl_render_single_post');
+
+function epl_render_archive_post() {
+
+	if( epl_is_builder_framework_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES;
+	} elseif ( epl_is_genesis_framework_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
+	} else {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT;
+	}
+	$common_tpl		= 'archive-listing.php';
+	$template		=	$template_path . $common_tpl;
+	include($template);
+}
+
+add_action('epl_render_archive_post','epl_render_archive_post');
