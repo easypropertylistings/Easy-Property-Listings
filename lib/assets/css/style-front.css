@@ -908,3 +908,19 @@ li.tbhead.current {
 #epl-default-map img {
 	max-width:none;
 }
+
+/* responsive youtube videos */
+.epl-video-container { 
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+.epl-video-container iframe, .epl-video-container object, .epl-video-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

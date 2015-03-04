@@ -1013,7 +1013,7 @@ function epl_author_tab_bio() {
 
 function epl_author_tab_video() {
 	global $epl_author;
-	echo '<div class="author-video">'.$epl_author->get_video_html().'</div>';
+	echo '<div class="author-video epl-video-container">'.$epl_author->get_video_html().'</div>';
 }
 
 function epl_author_tab_contact() {
