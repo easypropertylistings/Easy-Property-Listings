@@ -22,18 +22,31 @@ if( is_admin() ) {
  * limit the number of entries that display. using  [listing_category limit="5"]
  */
 function epl_shortcode_listing_tax_feature_callback( $atts ) {
+	$property_types = epl_get_active_post_types();
+	if(!empty($property_types)) {
+		 $property_types = array_keys($property_types);
+	}
+	
 	extract( shortcode_atts( array(
-		'post_type' 		=>	'',
-		'status'			=>	array('current' , 'sold' , 'leased' ),
-		'feature'			=>	'',
+		'post_type' 		=>	$property_types, //Post Type
+		'status'		=>	array('current' , 'sold' , 'leased' ),
+		'feature'		=>	'',
 		'feature_id'		=>	'',
-		'limit'				=>	'10', // Number of maximum posts to show
-		'template'			=>	false // Template can be set to "slim" for home open style template
+		'limit'			=>	'10', // Number of maximum posts to show
+		'template'		=>	false, // Template can be set to "slim" for home open style template
+		'location'		=>	'', // Location slug. Should be a name like sorrento
+		'sortby'		=>	'', // Options: price, date : Default date
+		'sort_order'		=>	'DESC'
 	), $atts ) );
 	
 	if(empty($post_type)) {
 		return;
 	}
+	
+	$sort_options = array(
+		'price'			=>	'property_price',
+		'date'			=>	'post_date'
+	);
 	
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
@@ -49,9 +62,35 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 			$feature = array_map('trim', $feature);
 			
 			$args['tax_query'][] = array(
-				'taxonomy' => 'tax_feature',
+				'taxonomy'	=> 'tax_feature',
+				'field' 	=> 'slug',
+				'terms' 	=> $feature
+			);
+		}
+	}
+	
+	if(!empty($feature_id) ) {
+		if( !is_array( $feature_id ) ) {
+			$feature_id = explode(",", $feature_id);
+			$feature_id = array_map('trim', $feature_id);
+			
+			$args['tax_query'][] = array(
+				'taxonomy'	=> 'tax_feature',
+				'field'		=> 'id',
+				'terms' 	=> $feature_id
+			);
+		}
+	}
+	
+	if(!empty($location) ) {
+		if( !is_array( $location ) ) {
+			$location = explode(",", $location);
+			$location = array_map('trim', $location);
+			
+			$args['tax_query'][] = array(
+				'taxonomy' => 'location',
 				'field' => 'slug',
-				'terms' => $feature
+				'terms' => $location
 			);
 		}
 	}
@@ -66,6 +105,20 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 				'value' => $status,
 				'compare' => 'IN'
 			);
+		}
+	}
+	
+	if(!empty($sortby) && isset($sort_options[$sortby])) {
+		
+		if($sortby == 'date') {
+			$args['orderby']	=	$sort_options[$sortby];
+			$args['order']		=	sanitize_text_field($sort_order);
+		
+		} else {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	$sort_options[$sortby];
+			$args['order']		=	sanitize_text_field($sort_order);
+		
 		}
 	}
 	

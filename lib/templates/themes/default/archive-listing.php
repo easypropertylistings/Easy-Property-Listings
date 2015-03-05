@@ -6,11 +6,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
  
 get_header(); ?>
-<section id="primary" class="site-content epl-archive-default">
+<section id="primary" class="site-content content epl-archive-default">
 	<div id="content" role="main">
 		<?php
 		if ( have_posts() ) : ?>
-			<div class="loop">
+			<div class="loop pad">
 				<header class="archive-header entry-header loop-header">
 					<h4 class="archive-title loop-title">
 						<?php

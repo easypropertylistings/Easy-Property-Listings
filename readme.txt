@@ -29,7 +29,7 @@ Easy Property Listing is one of the most dynamic and feature rich Real Estate pl
 * Fast. Flexible. Forward-thinking solution for real estate agents using WordPress.
 
 Features:
-* Author Box and Widget: Easy to customise, multiple agents, tabbed and extendable. Supports video, bio, social media links and much more.
+* Author Box and Widget: Easy to customise, multiple agents, tabbed and extendible. Supports video, bio, social media links and much more.
 * Listing Widget to easily add properties anywhere to your theme. Dozens of options with random, ordered and offset and no code.
 * Search Widget: Supports tabs, location, land, price, address and more. It's all here, search everything. Its super-fast.
 * Extend with Advanced Mapping extension that handles hundreds of listings, dozens of options added with a simple shortcode.
@@ -80,6 +80,7 @@ Easy Property Listings needs help for translation:
 4. Russian
 5. French
 6. Finnish
+7. Bulgarian
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](http://easypropertylistings.com.au/support/forum/translations/).
 
@@ -139,6 +140,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 2.0.4: February 12, 2015 =
+
+* Fix: Bulgarian Translation (Thanks to Slavcho Aangeliev)
+* Tweak: Finnish translation updated
 
 = 2.0.3: February 9, 2015 =
 

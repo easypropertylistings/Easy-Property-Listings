@@ -108,6 +108,19 @@ h3.epl-welcome-sub-heading {
 #epl-add-ons .epl-extension .third-party {
 	display:none;
 }
+/* help tabs for extensions */
+.epl-field-intro {
+	display:none;
+}
+.epl-field-intro.active{
+	display:block;
+}
+.epl-show-help.epl-field {
+	margin: 1.5em 0.6em;
+	font-size: 1.2em;
+	line-height: 1.5
+}
+/* Meta Boxes */
 .epl-meta-box {
 }
 .epl-meta-box ul,
@@ -207,37 +220,38 @@ h3.epl-welcome-sub-heading {
 	padding: 0;
 }
 .epl-fields-tab-menu ul li {
-	background: #fff;
+	background: #e4e4e4;
     cursor: pointer;
     display: inline-block;
-    margin: 0 0 1em 0.5em;
+    margin: 0 0 -1px 0.5em;
     padding: 10px 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #CCCCCC;
     border-bottom: none;
    	border-radius: 2px;
     transition: all 0.1s ease-in-out 0s;
-    border-bottom: 3px solid #0074a2;
 }
 .epl-fields-tab-menu ul li:hover{
-	background: #0074a2;
+	background: orange;
     color: #FFFFFF;
 }
-
-.epl-fields-tab-menu ul li.epl-fields-menu-current:hover {
-	background:#7ad03a;
-    color: #FFFFFF;
+.epl-fields-tab-menu ul li {
+	border-bottom: 1px solid #ccc;
 }
 .epl-fields-tab-menu ul li.epl-fields-menu-current {
-   background: #FFFFFF;
-   color: #000000;
-   border-bottom:3px solid #7ad03a;
+	background: #FFFFFF;
+	color: #000000;
+	border-bottom: 1px solid #ffffff;
+}
+.epl-fields-tab-menu ul li.epl-fields-menu-current:hover {
+	background: orange;
+    color: #FFFFFF;
+    border-bottom: 1px solid orange;
 }
 .epl-fields-tab-content {
 	background: #FFFFFF;
 	overflow: hidden;
 	padding: 1em;
 	border: 1px solid #ccc;
-	border-top: none;
 }
 .epl-fields-field-current.epl-fields-single-menu{
 	-webkit-transition: all 0.6s ease-in-out;
@@ -744,19 +758,4 @@ h3.epl-welcome-sub-heading {
 #ie6 .epl-clearfix,
 #ie7 .epl-clearfix {
 	zoom: 1;
-}
-
-/* help tabs for extensions */
-.epl-field-intro {
-	display:none;
-}
-.epl-field-intro.active{
-	display:block;
-}
-.epl-show-help {
-    background: none repeat scroll 0 0 #ffffff;
-    border-bottom: 4px solid #7ad03a;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-    margin: 0 5px 15px 2px;
-    padding: 12px;
 }

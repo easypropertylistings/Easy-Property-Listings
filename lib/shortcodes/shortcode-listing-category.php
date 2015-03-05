@@ -23,19 +23,32 @@ if( is_admin() ) {
  * Added Commercial Category Support 
  */
 function epl_shortcode_listing_category_callback( $atts ) {
+	$property_types = epl_get_active_post_types();
+	if(!empty($property_types)) {
+		 $property_types = array_keys($property_types);
+	}
+	
 	extract( shortcode_atts( array(
-		'post_type' 			=>	'',
+		'post_type' 			=>	$property_types,
 		'status'			=>	array('current' , 'sold' , 'leased' ),
 		'commercial_listing_type'	=>	'',
 		'category_key'			=>	'',
 		'category_value'		=>	'',
 		'limit'				=>	'10', // Number of maximum posts to show
-		'template'			=>	false // Template can be set to "slim" for home open style template
+		'template'			=>	false, // Template can be set to "slim" for home open style template
+		'location'			=>	'', // Location slug. Should be a name like sorrento
+		'sortby'			=>	'', // Options: price, date : Default date
+		'sort_order'			=>	'DESC'
 	), $atts ) );
 	
 	if(empty($post_type)) {
 		return;
 	}
+	
+	$sort_options = array(
+		'price'			=>	'property_price',
+		'date'			=>	'post_date'
+	);
 	
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
@@ -44,6 +57,19 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'posts_per_page'	=>	$limit,
 		'paged' 		=>	$paged
 	);
+	
+	if(!empty($location) ) {
+		if( !is_array( $location ) ) {
+			$location = explode(",", $location);
+			$location = array_map('trim', $location);
+			
+			$args['tax_query'][] = array(
+				'taxonomy' => 'location',
+				'field' => 'slug',
+				'terms' => $location
+			);
+		}
+	}
 	
 	if(!empty($status)) {
 		if(!is_array($status)) {
@@ -81,6 +107,20 @@ function epl_shortcode_listing_category_callback( $atts ) {
 				'value' => $category_value,
 				'compare' => 'IN'
 			);
+		}
+	}
+	
+	if(!empty($sortby) && isset($sort_options[$sortby])) {
+		
+		if($sortby == 'date') {
+			$args['orderby']	=	$sort_options[$sortby];
+			$args['order']		=	sanitize_text_field($sort_order);
+		
+		} else {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	$sort_options[$sortby];
+			$args['order']		=	sanitize_text_field($sort_order);
+		
 		}
 	}
 	
