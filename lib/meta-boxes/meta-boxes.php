@@ -1156,10 +1156,18 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_com_rent',
 							'label'		=>	__('Commercial Rent', 'epl'),
-							'type'		=>	'number',
+							'type'		=>	'decimal',
 							'maxlength'	=>	'40'
 						),
-					
+						array(
+							'name'		=>	'property_com_rent_lease_type',
+							'label'		=>	__('Lease Type', 'epl'),
+							'type'		=>	'select',
+							'opts'		=>	array(
+								'P.A.'	=>	__('P.A', 'epl'),
+								'NNN'	=>	__('NNN', 'epl'),
+							),
+						),
 						array(
 							'name'		=>	'property_com_rent_range_min',
 							'label'		=>	__('Rent Range Min', 'epl'),
@@ -1459,6 +1467,8 @@ function epl_meta_box_init() {
 	);
 	if(!empty($epl_meta_boxes)) {
 		foreach($epl_meta_boxes as &$epl_meta_box) {
+			$meta_box_block_id = str_replace("-","_",$epl_meta_box['id']);
+			$epl_meta_box = apply_filters('epl_meta_box_block_'.$meta_box_block_id,$epl_meta_box);
 			if(!empty($epl_meta_box['groups'])) {
 				foreach($epl_meta_box['groups'] as &$group) {
 					$group = apply_filters('epl_meta_groups_'.$group['id'], $group);

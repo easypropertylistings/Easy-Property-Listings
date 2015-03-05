@@ -104,7 +104,15 @@ function epl_property_sold_leased() {
 // superglobal object $property for posts 'property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural'
 function epl_reset_property_object( $post ) {
 	$epl_author 	= new EPL_Author_meta($post->post_author);
-	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+	$epl_posts 		= epl_get_active_post_types();
+	$epl_posts 		= array_keys($epl_posts);
+	
+	/*
+	** @TODO implement filter/hook to fetch custom posts 
+	*/
+	
+	$epl_posts[] 	= 'location_profile';
+	
 	if(in_array($post->post_type,$epl_posts)){
 		global $property,$epl_author;
 		$property 		= new EPL_Property_Meta($post);
@@ -119,7 +127,14 @@ function epl_create_property_object() {
 		return;
 	}
 	$epl_author = new EPL_Author_meta($post->post_author);
-	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+	$epl_posts 		= epl_get_active_post_types();
+	$epl_posts 		= array_keys($epl_posts);
+	
+	/*
+	** @TODO implement filter/hook to fetch custom posts 
+	*/
+	
+	$epl_posts[] 	= 'location_profile';
 	if(in_array($post->post_type,$epl_posts)){
 		$property 	= new EPL_Property_Meta($post);
 	}
@@ -187,11 +202,12 @@ function epl_property_single_default() {
 */
 function epl_get_template_part($template) {
 	global $epl_author;
+	$base_path		= apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
 	$default		= $template;
 	$find[] 		= epl_template_path() . $template;
 	$template       = locate_template( array_unique( $find ) );
 	if(!$template) {
-		$template	=	EPL_PATH_TEMPLATES_CONTENT . $default;
+		$template	=	$base_path . $default;
 	}
 	include( $template);
 }
@@ -997,7 +1013,7 @@ function epl_author_tab_bio() {
 
 function epl_author_tab_video() {
 	global $epl_author;
-	echo '<div class="author-video">'.$epl_author->get_video_html().'</div>';
+	echo '<div class="author-video epl-video-container">'.$epl_author->get_video_html().'</div>';
 }
 
 function epl_author_tab_contact() {

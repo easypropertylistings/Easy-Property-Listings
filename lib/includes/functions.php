@@ -85,7 +85,6 @@ function epl_register_post_type($post_type='', $post_type_label, $args=array()) 
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['activate_post_types'])) {
 		$epl_activate_post_types = $epl_settings['activate_post_types'];
-		
 		if(!empty($epl_activate_post_types)) {
 			if( in_array($post_type, $epl_activate_post_types) ) {
 				global $epl_active_post_types;
@@ -126,7 +125,8 @@ function epl_get_post_types() {
 		'commercial_land'	=>	__('Commercial Land', 'epl'),
 		'business'			=>	__('Business', 'epl'),
 	);
-	return $epl_post_types;
+	// allow 3rd party extensions to add custom posts as a part of epl
+	return apply_filters('epl_post_types',$epl_post_types);
 }
 /**
  * Get Currencies
@@ -210,7 +210,7 @@ function epl_get_decimal_separator() {
 	return apply_filters( 'epl_decimal_separator', $epl_decimal_separator );
 }
 function epl_currency_formatted_amount($price) {
-	return epl_currency_filter( epl_format_amount( $price ) );
+	return epl_currency_filter( epl_format_amount( $price , true ) );
 }
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
@@ -450,17 +450,15 @@ function epl_listing_load_meta_rural_category_value( $key ) {
  * @since 1.2
  * @return formatted date
  */
+ 
 function epl_feedsync_format_date( $date ) {
     $date_example = '2014-07-22-16:45:56';
      
-    $format = '%Y-%m-%d-%H:%M:%S';
-    $d = strptime($date, $format);
-    $time = mktime($d['tm_hour'],$d['tm_min'],$d['tm_sec'],1 + $d['tm_mon'],$d['tm_mday'], 1900 + $d['tm_year']);
-     
-    $result = date("Y-m-d H:i:s" , $time );
-     
-    return $result;
+    $tempdate = explode('-',$date);
+	$date = $tempdate[0].'-'.$tempdate[1].'-'.$tempdate[2].' '.$tempdate[3];
+    return  date("Y-m-d H:i:s",strtotime($date));
 }
+
 /**
  * REAXML Address Sub Number field for title import 
  * processing Function for WP All Import and FeedSync
