@@ -144,12 +144,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * Tweak: Optimised loading of admin scripts and styles to pages where required.
 * Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.
+
+
 * New: Ability to select larger listing image sizes in admin.
 
 
 
 
-* Fix: 
+* Fix: Text domain fixes on template files
 
 
 * New: Shortcode [listing_location]

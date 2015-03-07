@@ -108,7 +108,7 @@ h3.epl-welcome-sub-heading {
 #epl-add-ons .epl-extension .third-party {
 	display:none;
 }
-/* help tabs for extensions */
+/* Extensions: Help Tabs */
 .epl-field-intro {
 	display:none;
 }
@@ -167,11 +167,6 @@ h3.epl-welcome-sub-heading {
 }
 .epl-content {
 	padding:1em 0;
-	/* background:#fff; */
-	/* border:1px #DDDDDD solid; */
-	/* border-radius:5px; */
-	/* -moz-border-radius:5px; */
-	/* -webkit-border-radius:5px; */
 	float:left;
 	width:98%;
 }
@@ -221,18 +216,18 @@ h3.epl-welcome-sub-heading {
 }
 .epl-fields-tab-menu ul li {
 	background: #e4e4e4;
-    cursor: pointer;
-    display: inline-block;
-    margin: 0 0 -1px 0.5em;
-    padding: 10px 15px;
-    border: 1px solid #CCCCCC;
-    border-bottom: none;
-   	border-radius: 2px;
-    transition: all 0.1s ease-in-out 0s;
+	cursor: pointer;
+	display: inline-block;
+	margin: 0 0 -1px 0.5em;
+	padding: 10px 15px;
+	border: 1px solid #CCCCCC;
+	border-bottom: none;
+	border-radius: 2px;
+	transition: all 0.1s ease-in-out 0s;
 }
 .epl-fields-tab-menu ul li:hover{
-	background: orange;
-    color: #FFFFFF;
+	background: #FFA500;
+	color: #FFFFFF;
 }
 .epl-fields-tab-menu ul li {
 	border-bottom: 1px solid #ccc;
@@ -243,9 +238,9 @@ h3.epl-welcome-sub-heading {
 	border-bottom: 1px solid #ffffff;
 }
 .epl-fields-tab-menu ul li.epl-fields-menu-current:hover {
-	background: orange;
-    color: #FFFFFF;
-    border-bottom: 1px solid orange;
+	background: #FFA500;
+	color: #FFFFFF;
+	border-bottom: 1px solid #FFA500;
 }
 .epl-fields-tab-content {
 	background: #FFFFFF;
@@ -419,7 +414,7 @@ h3.epl-welcome-sub-heading {
 }
 .type_under_offer {
 	font-weight:bold;
-	color:orange;
+	color:#FFA500;
 }
 .epl-form-table .epl-geocoder-button {
 	width: 24px;
@@ -472,16 +467,16 @@ h3.epl-welcome-sub-heading {
 .license-status-text.license-status-text-valid {
 	color:green;
 }
-/* =====price bars for properties ====*/
+/* Graph: Price bars */
 .epl-price-bar {
 }
 .epl-price-bar span {
-    display: inline-block;
+	display: inline-block;
 	background-color: #777;
-    -moz-border-radius: 3px;
+	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
 	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
 	box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
 	-webkit-transition: width .4s ease-in-out;
@@ -532,11 +527,11 @@ h3.epl-welcome-sub-heading {
 	bottom: 0;
 	left: 0;
 	background: #fff;
-    -moz-border-radius: 3px;
+	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;			
-    -webkit-animation: animate-shine 2s ease-out infinite;
-    -moz-animation: animate-shine 2s ease-out infinite; 			
+	-webkit-animation: animate-shine 2s ease-out infinite;
+	-moz-animation: animate-shine 2s ease-out infinite; 			
 }
 @-webkit-keyframes animate-shine { 
 	0% {opacity: 0; width: 0;}
@@ -549,44 +544,43 @@ h3.epl-welcome-sub-heading {
 	100% {opacity: 0; width: 95%;}
 }
 /* extension menu tabs */
-
 .epl-nav-tab-wrapper .nav-tab:hover {
-	background: orange;
+	background: #FFA500;
 	color: #FFFFFF;
 }
 /* Dashboard Widget */
 #epl_status_dashboard_widget .epl_status_list {
-    margin: 0;
-    overflow: hidden;
+	margin: 0;
+	overflow: hidden;
 }
 #epl_status_dashboard_widget .epl_status_list li {
-    border-left: 2px solid #eeeeee;
-    box-sizing: border-box;
-    color: #aaaaaa;
-    float: left;
-    margin-bottom: 15px;
-    padding: 0;
-    width: 50%;
+	border-left: 2px solid #eeeeee;
+	box-sizing: border-box;
+	color: #aaaaaa;
+	float: left;
+	margin-bottom: 15px;
+	padding: 0;
+	width: 50%;
 }
 #epl_status_dashboard_widget .epl_status_list li a:before {
-    color: #21759b;
-    content: "\f102";
-    float: left;
-    font-family: dashicons;
-    font-size: 2em;
-    font-variant: normal;
-    font-weight: 400;
-    height: 80px;
-    left: 0;
-    line-height: 1.2em;
-    margin: 0 12px 12px 0;
-    position: relative;
-    text-align: center;
-    text-indent: 0;
-    text-transform: none;
-    top: 0;
-    width: auto;
-    opacity:0.7;
+	color: #21759b;
+	content: "\f102";
+	float: left;
+	font-family: dashicons;
+	font-size: 2em;
+	font-variant: normal;
+	font-weight: 400;
+	height: 80px;
+	left: 0;
+	line-height: 1.2em;
+	margin: 0 12px 12px 0;
+	position: relative;
+	text-align: center;
+	text-indent: 0;
+	text-transform: none;
+	top: 0;
+	width: auto;
+	opacity:0.7;
 }
 #epl_status_dashboard_widget .epl_status_list li.epl_type_property{
 	border-color:#00755e;
@@ -640,18 +634,18 @@ h3.epl-welcome-sub-heading {
 #epl_status_dashboard_widget .epl_status_list li:nth-child(2n+1) {
 }
 #epl_status_dashboard_widget .epl_status_list li a {
-    color: #aaaaaa;
-    display: block;
-    font-size: 12px;
-    padding: 9px 12px;
-    position: relative;
+	color: #aaaaaa;
+	display: block;
+	font-size: 12px;
+	padding: 9px 12px;
+	position: relative;
 }
 #epl_status_dashboard_widget .epl_status_list li a strong {
-    color: #21759b;
-    display: block;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.2em;
+	color: #21759b;
+	display: block;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.2em;
 }
 #epl_status_dashboard_widget .epl_status_list li a span {
 	display:block;
@@ -660,62 +654,61 @@ h3.epl-welcome-sub-heading {
 	border-bottom:none;
 }
 .status-sticker {
-    background: none repeat scroll 0 0 #ff0000;
-    color: #ffffff;
-    font-size: 12px;
-    margin-right: 0.4em;
-    padding: 0 0.4em;
-    text-transform: uppercase;
+	background: #ff0000;
+	color: #ffffff;
+	font-size: 12px;
+	margin-right: 0.4em;
+	padding: 0 0.4em;
+	text-transform: uppercase;
 }
 .status-sticker.new {
-    background: none repeat scroll 0 0 #800080;
+	background: #800080;
 }
 .status-sticker.open {
-    background: none repeat scroll 0 0 #7faf1b;
+	background: #7faf1b;
 }
-
 .epl_la_hide_notice {
-    float: right;
+	float: right;
 }
 /* Inspection Markup */
 #epl-inspection-markup select {
-    font-size: 12px;
-    height: 20px;
-    line-height: 14px;
-    padding: 0;
-    vertical-align: top;
-    width:3.6em;
+	font-size: 12px;
+	height: 20px;
+	line-height: 14px;
+	padding: 0;
+	vertical-align: top;
+	width:3.6em;
 }
 #epl-inspection-markup input {
-    border-style: solid;
-    border-width: 1px;
-    font-size: 12px;
-    margin: 0 5px;
-    padding: 1px;
-    width: 1.7em;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 12px;
+	margin: 0 5px;
+	padding: 1px;
+	width: 1.7em;
 }
 .epl-added-inspection > span {
-    background: none repeat scroll 0 0 #f5f5f5;
-    border: 1px solid #eee;
-    box-shadow: 0 1px 3px 0 #f5f5f5 inset;
-    display: block;
-    margin: 5px 0;
-    padding: 2px;
-    width: auto;
+	background: none repeat scroll 0 0 #f5f5f5;
+	border: 1px solid #eee;
+	box-shadow: 0 1px 3px 0 #f5f5f5 inset;
+	display: block;
+	margin: 5px 0;
+	padding: 2px;
+	width: auto;
 }
 .del-inspection-time {
-    background: none repeat scroll 0 0 #33aaff;
-    color: #ffffff;
-    cursor: pointer;
-    float: right;
-    font-weight: 700;
-    padding: 0 5px;
+	background: none repeat scroll 0 0 #33aaff;
+	color: #ffffff;
+	cursor: pointer;
+	float: right;
+	font-weight: 700;
+	padding: 0 5px;
 }
 #epl-inspection-markup {
-    margin: 10px 0;
+	margin: 10px 0;
 }
 #epl-inspection-add {
-    margin: 10px 0;
+	margin: 10px 0;
 }
 /* Responsive */
 @media screen and (max-width: 360px)  { 
@@ -739,6 +732,9 @@ h3.epl-welcome-sub-heading {
 	}
 }
 /* Clear Floats */
+.epl-clear {
+	clear:both;
+}
 .epl-clearfix {
 	clear:  both !important;
 }
@@ -750,11 +746,7 @@ h3.epl-welcome-sub-heading {
 	clear: both;
 	height: 0;
 }
-.epl-clear {
-	clear:both;
-}
 /* Use this stylesheet for problems with IE7 and below */
-
 #ie6 .epl-clearfix,
 #ie7 .epl-clearfix {
 	zoom: 1;
