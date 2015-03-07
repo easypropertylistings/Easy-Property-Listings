@@ -1045,7 +1045,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_date_available',
 							'label'		=>	__('Date Available', 'epl'),
-							'type'		=>	'text',
+							'type'		=>	'available-date',
 							'maxlength'	=>	'100'
 						),
 					
@@ -1649,6 +1649,15 @@ function epl_meta_box_init() {
 												}
 												$_POST[ $field['name'] ] = $epl_date;
 											} else if( $field['type'] == 'sold-date' && $_POST[ $field['name'] ] != '') {
+												$epl_date = $_POST[ $field['name'] ];
+												if(strpos($epl_date, 'T') !== FALSE){
+													$epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
+												} else {
+													$epl_date = DateTime::createFromFormat('Y-m-d-H:i:s', $epl_date);
+													$epl_date = $epl_date->format('Y-m-d');
+												}
+												$_POST[ $field['name'] ] = $epl_date;
+											} else if( $field['type'] == 'available-date' && $_POST[ $field['name'] ] != '') {
 												$epl_date = $_POST[ $field['name'] ];
 												if(strpos($epl_date, 'T') !== FALSE){
 													$epl_date = date("Y-m-d\TH:i",strtotime($epl_date));

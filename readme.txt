@@ -146,7 +146,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.
 * Tweak: Tidy up of admin CSS.
 
-* Tweak: Increased characters possible in address block.
+* Tweak: Increased characters possible in address block fields from 40 to 80 characters.
 * Tweak: Increased characters possible in heading block to 200.
 
 * Tweak: Coordinates now correctly being used to generate map.
@@ -154,7 +154,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * New: Ability to select larger listing image sizes in admin.
 
+* New: New function that combines all meta box options into one global function.
 
+* New: Display second agent name in admin listing lists.
 
 
 * Fix: Text domain fixes on template files
