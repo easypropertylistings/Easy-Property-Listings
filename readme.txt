@@ -140,6 +140,35 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 2.1 March 7, 2015 =
+
+* Tweak: Optimised loading of admin scripts and styles to pages where required.
+* Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.
+* New: Ability to select larger listing image sizes in admin.
+
+
+
+
+* Fix: 
+
+
+* New: Shortcode [listing_location]
+
+* New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]
+* New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].
+
+
+
+
+
+
+
+
+
+
+
+
+
 = 2.0.4: February 12, 2015 =
 
 * Fix: Bulgarian Translation (Thanks to Slavcho Aangeliev)
