@@ -43,13 +43,58 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				</div>
 				<hr>
 				
+				
+				<?php
+				/**
+				 * Managing Users: Visible to Editor and Administrators only as the video goes into more detail about managing users.
+				 *
+				 * @since 2.1
+				**/
+				
+				if ( current_user_can( 'edit_others_posts' ) ) :
+				?>
+				<div id="add-listing" class="epl-section-content epl-section-admin-tutorial">
+					<div class="epl-feature-section">
+						<div class="epl-col">
+							<strong><?php _e( 'Administrator tutorial', 'epl'); ?></strong>
+							<h1 class="epl-section-title"><?php _e( 'Managing authors and their profiles', 'epl'); ?></h1>
+							<p><?php _e( 'You can add new users and assign them to listings or they can add their own. The user can also updated and eidt the information displayed in their profile and make changes from their profile page.', 'epl'); ?></p>
+						</div>
+						<div class="epl-col-last">
+							<div class="featured-image">
+								<?php echo wp_oembed_get('https://www.youtube.com/watch?v=FX1eXeWQAis', array('width'=>475)); ?>
+							</div>
+						</div>
+					</div>
+					
+				<hr>
+				</div>
+				<?php endif;?>
+				
+				<div id="add-listing" class="epl-section-content epl-section-author-tutorial">
+					<div class="epl-feature-section">
+						<div class="epl-col">
+							<h1 class="epl-section-title"><?php _e( 'Your profile and author box', 'epl'); ?></h1>
+							<p><?php _e( 'Managing your profile is very important to help you connect with your visitors and gives you an opportunity to tell them about how you can help them.', 'epl'); ?></p>
+
+							<p><?php _e( 'You can quickly edit your profile and update and add your phone number, social media links and bio or even add a video.', 'epl'); ?></p>
+						</div>
+						<div class="epl-col-last">
+							<div class="featured-image">
+								<?php echo wp_oembed_get('https://www.youtube.com/watch?v=FX1eXeWQAis', array('width'=>475)); ?>
+							</div>
+						</div>
+					</div>
+					
+				<hr>
+				</div>
+				
 				<div id="add-listing" class="epl-section-content">
 				
 					<div class="epl-feature-section">
-						<h1 class="epl-section-title"><?php _e( 'Adding Listings', 'epl'); ?></h1>
 						<div class="epl-col">
-							<h2><?php _e( 'The video will show you how to add a listing quickly and easily.', 'epl'); ?></h2>
-							<p><?php _e( 'Use the tips below to get started using Easy Property Listings. You will be up and running in no time!', 'epl'); ?></p>
+							<h1 class="epl-section-title"><?php _e( 'Adding Listings', 'epl'); ?></h1>
+							<p><?php _e( 'The video will show you how to add a listing quickly and easily.', 'epl'); ?></p>
 						</div>
 						<div class="epl-col-last">
 							<div class="featured-image">
@@ -115,6 +160,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					</div>
 				<hr>
 				</div>
+
 			</div>
 		</div>
 	</div>
