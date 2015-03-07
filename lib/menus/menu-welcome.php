@@ -330,6 +330,33 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 					
+					<h4><?php _e( 'Version 2.1', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'New: Coordinates now added to listing if not set prior which speeds future loading.', 'epl' );?></li>
+						<li><?php _e( 'New: Ability to select larger listing image sizes in admin.', 'epl' );?></li>
+						<li><?php _e( 'New: Added date picker for Available date on rental listing.', 'epl' );?></li>
+						<li><?php _e( 'New: New function that combines all meta box options into one global function for admin pages.', 'epl' );?></li>
+						<li><?php _e( 'New: Display second agent name in admin listing lists.', 'epl' );?></li>
+						<li><?php _e( 'New: Additional admin option to filter by agent/author.', 'epl' );?></li>
+						<li><?php _e( 'New: Shortcode [listing_location]', 'epl' );?></li>
+						<li><?php _e( 'New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]', 'epl' );?></li>
+						<li><?php _e( 'New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].', 'epl' );?></li>
+						<li><?php _e( 'New: Function to get all active post types.', 'epl' );?></li>
+						<li><?php _e( 'New: Extensions now have additional help text ability.', 'epl' );?></li>
+						<li><?php _e( 'New: All menus now use global function to render fields.', 'epl' );?></li>
+						<li><?php _e( 'New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Text domain fixes on template files.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Optimised loading of admin scripts and styles to pages where required.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Tidy up of admin CSS.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Increased characters possible in address block fields from 40 to 80 characters.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Increased characters possible in heading block to 200.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Coordinates now correctly being used to generate map.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Inspection times improved style in admin.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Commercial rental rate now accepts decimal numbers.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved google map output.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.0.3', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Manually entered inspection capitalization fixed pM to PM.', 'epl' );?></li>
