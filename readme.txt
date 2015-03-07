@@ -144,7 +144,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * Tweak: Optimised loading of admin scripts and styles to pages where required.
 * Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.
+* Tweak: Tidy up of admin CSS.
 
+* Tweak: Increased characters possible in address block.
+* Tweak: Increased characters possible in heading block to 200.
+
+* Tweak: Coordinates now correctly being used to generate map.
+* New: Coordinates now added to listing if not set prior which speeds future loading.
 
 * New: Ability to select larger listing image sizes in admin.
 
