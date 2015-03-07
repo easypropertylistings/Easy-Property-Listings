@@ -83,7 +83,7 @@ if ( is_admin() ) {
 			'geo'				=> __('Geo', 'epl'),
 			'property_status'	=> __('Status', 'epl'),
 			'listing_type'		=> __('Sale/Lease', 'epl'),
-			'agent'			=> __('Agent', 'epl'),
+			'agent'				=> __('Agent', 'epl'),
 			'date'				=> __('Date', 'epl')
 		);
 		

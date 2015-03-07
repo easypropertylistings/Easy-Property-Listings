@@ -126,7 +126,7 @@ function epl_create_property_object() {
 	if(is_null($post)){
 		return;
 	}
-	$epl_author = new EPL_Author_meta($post->post_author);
+	$epl_author		= new EPL_Author_meta($post->post_author);
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
@@ -252,9 +252,6 @@ function epl_property_blog() {
 			epl_get_template_part('loop-listing-blog-default.php');
 		}
 	} // End Status Removal
-	
-	
-
 }
 add_action('epl_property_blog','epl_property_blog');
 
@@ -322,7 +319,6 @@ function epl_property_author_box() {
                 if($second_author !== false){
                         $epl_author = new EPL_Author_meta($second_author->ID);
                         epl_get_template_part('content-author-box.php');
-
                 }
                 epl_reset_post_author();
             }
@@ -1162,6 +1158,11 @@ function epl_process_event_cal_request () {
 }
 add_action('init','epl_process_event_cal_request');
 
+/**
+ * Add coordinates to meta for faster loading on second view
+ *
+ * @since version 2.1
+**/
 function epl_update_listing_coordinates() {
 	if( intval($_POST['listid']) == 0 || $_POST['coordinates'] == '')
 		return;

@@ -478,6 +478,11 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 	return;
 }
 
+/**
+ * Offers presented on settings page
+ *
+ * @since 2.0
+ */
 function epl_admin_sidebar () {
 	$service_banners = array(
 		array(
@@ -499,8 +504,9 @@ function epl_admin_sidebar () {
 }
 
 /**
- * renders field array to html 
+ * Renders field array to html 
  *
+ * @since 2.1
  */
  function epl_render_html_fields ($field=array(),$val='') {
  	switch($field['type']) {
