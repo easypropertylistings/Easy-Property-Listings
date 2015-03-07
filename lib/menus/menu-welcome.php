@@ -346,6 +346,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: All menus now use global function to render fields.', 'epl' );?></li>
 						<li><?php _e( 'New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Text domain fixes on template files.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Finnish translation file renamed.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Optimised loading of admin scripts and styles to pages where required.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Tidy up of admin CSS.', 'epl' );?></li>

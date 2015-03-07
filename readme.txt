@@ -156,6 +156,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: All menus now use global function to render fields.
 * New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.
 * Fix: Text domain fixes on template files.
+* Fix: Finnish translation file renamed.
 * Tweak: Optimised loading of admin scripts and styles to pages where required.
 * Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.
 * Tweak: Tidy up of admin CSS.
