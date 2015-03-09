@@ -99,14 +99,7 @@ function epl_meta_box_init() {
 			'part'		=>	__('Part', 'epl')
 		)
 	);
-	$opts_property_com_rent_period = apply_filters (  'epl_opts_property_com_rent_period_filter', array(
-			'annual'		=>	__('P.A.', 'epl'),
-			'nnn'			=>	__('NNN', 'epl'),
-			'full-service'		=>	__('Full Service', 'epl'),
-			'gross-lease-rates'	=>	__('Gross Lease Rates', 'epl')
-		)
-	);
-	
+
 	global $epl_meta_boxes;
 	$epl_meta_boxes = array(
 		
