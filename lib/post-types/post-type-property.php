@@ -119,12 +119,13 @@ if ( is_admin() ) {
 			case 'listing' :
 				/* Get the post meta. */
 				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading 					= get_post_meta( $post_id, 'property_heading', true );
-				$homeopen 					= get_post_meta( $post_id, 'property_inspection_times', true );
-				$beds 						= get_post_meta( $post_id, 'property_bedrooms', true );
-				$baths 						= get_post_meta( $post_id, 'property_bathrooms', true );
-				$land 						= get_post_meta( $post_id, 'property_land_area', true );
-				$land_unit 					= get_post_meta( $post_id, 'property_land_area_unit', true );
+				$heading 			= get_post_meta( $post_id, 'property_heading', true );
+				$homeopen 			= get_post_meta( $post_id, 'property_inspection_times', true );
+				$beds 				= get_post_meta( $post_id, 'property_bedrooms', true );
+				$baths 				= get_post_meta( $post_id, 'property_bathrooms', true );
+				$rooms 				= get_post_meta( $post_id, 'property_rooms', true );
+				$land 				= get_post_meta( $post_id, 'property_land_area', true );
+				$land_unit 			= get_post_meta( $post_id, 'property_land_area_unit', true );
 				
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
@@ -137,6 +138,7 @@ if ( is_admin() ) {
 					echo '<div class="epl_meta_beds_baths">';
 						echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'epl' ) , ' | </span>';
 						echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'epl' ) , '</span>';
+						echo '<span class="epl_meta_rooms">' , $rooms , ' ' , __( 'Rooms', 'epl' ) , '</span>';
 					echo '</div>';
 				}
 				
