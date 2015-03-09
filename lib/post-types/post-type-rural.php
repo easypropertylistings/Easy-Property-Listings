@@ -143,8 +143,15 @@ if ( is_admin() ) {
 					echo '<div class="epl_meta_beds_baths">';
 						echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'epl' ) , ' | </span>';
 						echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'epl' ) , '</span>';
-						echo '<span class="epl_meta_rooms">' , $baths , ' ' , __( 'Rooms', 'epl' ) , '</span>';
 					echo '</div>';
+				}
+				
+				if ( !empty( $rooms ) ) {
+					if ( $rooms == 1 ) {
+						echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Room', 'epl' ) , '</div>';
+					} else {
+						echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Rooms', 'epl' ) , '</div>';
+					}
 				}
 				
 				if ( !empty( $land) ) {
