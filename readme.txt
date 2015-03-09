@@ -19,7 +19,7 @@ Easy Property Listing is one of the most dynamic and feature rich Real Estate pl
 
 * Ease of use and quick setup means you spend less time developing and more about with getting properties on your website.
 * Multiple listing types are supported because we know not everyone is a residential properties specialist. You can list commercial and rural properties just as easily.
-* Easy Property Listing is highly customizable to such an extent that you will barely know if you looked at some of the websites running the plugin here.
+* Easy Property Listing is highly customisable to such an extent that you will barely know if you looked at some of the websites running the plugin here.
 * You have the freedom to display property price as a price range or a fixed price giving you the flexibility to attract buyers with various budgets falling within your desired range.
 * It does not matter what theme you use for your site, Easy Property Listing 99% of all WordPress themes.
 * This plugin is location independent and whether you are selling properties in Miami Beach or Russia, you can list the properties in the local currency.
@@ -140,6 +140,39 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 2.1 March 9, 2015 =
+
+* New: Coordinates now added to listing if not set prior which speeds future loading.
+* New: Ability to select larger listing image sizes in admin.
+* New: Added date picker for Available date on rental listing.
+* New: New function that combines all meta box options into one global function for admin pages.
+* New: Display second agent name in admin listing lists.
+* New: Additional admin option to filter by agent/author. 
+* New: Shortcode [listing_location]
+* New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]
+* New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].
+* New: Function to get all active post types.
+* New: Ability to register additional custom post types.
+* New: Extensions now have additional help text ability.
+* New: All menus now use global function to render fields.
+* New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.
+* New: Commercial rental lease duration now selectable.
+* New: Able to set the number of rooms that the listing has.
+* New: Date listed field all listing types.
+* New: Year built field added to property, rental, rural listing types.
+* Fix: Text domain fixes on template files.
+* Fix: Finnish translation file renamed.
+* Tweak: Optimised loading of admin scripts and styles to pages where required.
+* Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.
+* Tweak: Tidy up of admin CSS.
+* Tweak: Increased characters possible in address block fields from 40 to 80 characters.
+* Tweak: Increased characters possible in heading block to 200.
+* Tweak: Coordinates now correctly being used to generate map.
+* Tweak: Inspection times improved style in admin.
+* Tweak: Commercial rental rate now accepts decimal numbers.
+* Tweak: Improved google map output.
+* Tweak: Improved default settings on upgrade, install and multisite.
+
 = 2.0.4: February 12, 2015 =
 
 * Fix: Bulgarian Translation (Thanks to Slavcho Aangeliev)
@@ -245,7 +278,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Meta Location Label.
 * New: Service banners on settings page.
 * New: Saving version number so when updating new settings are added.
-* New: iCal functionality for REAXML formatted inspection dates. Futher improvements coming for manual date entry. 
+* New: iCal functionality for REAXML formatted inspection dates. Further improvements coming for manual date entry. 
 * New: Extensions options pages now with tabs for easier usage.
 * New: Added ID classes to admin pages and meta fields.
 * New: Filters to adjust land and building sizes from number to select fields.

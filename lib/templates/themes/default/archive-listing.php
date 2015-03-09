@@ -1,7 +1,8 @@
 <?php
-/*
- * Archive Template for Property Custom Post Type : property
- */
+/**
+ * Archive Template for Custom Post Types
+**/
+ 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
  

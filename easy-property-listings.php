@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for Wordpress available on the market today. Built for scale, extendible and suitable with any WordPress theme. Install Today!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 2.0.99
+ * Version: 2.1
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 1.2
+ * @version 2.1
  */
  
 // Exit if accessed directly
@@ -83,7 +83,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '2.0.99' );
+				define( 'EPL_PROPERTY_VER', '2.1' );
 			}
 			
 			// Plugin DB version
@@ -242,21 +242,21 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
-			
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
+				
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-location.php';
 				
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-floorplan.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-mini-web.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-read-more.php';
-			
 			}
 			
 			require_once EPL_PATH_LIB . 'includes/install.php';
