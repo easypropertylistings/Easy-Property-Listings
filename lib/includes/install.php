@@ -65,14 +65,32 @@ function epl_install() {
 			'epl_max_graph_sales_price'		=> 2000000,
 			'epl_max_graph_rent_price'		=> 2000,
 			'sticker_new_range'			=> 7,
+			'epl_admin_thumb_size'			=> 'admin-list-thumb'
 		);
 	} else {
 	
 		// possible upgrade
 		$new_fields_defaults = array(
-			'widget_label_property'			=> __('Property', 'epl'),
+			'currency'				=> 'AUD',
+			'currency_position'			=> 'before',
+			'currency_thousands_separator'		=> ',',
+			'currency_decimal_separator'		=> '.',
+			'debug'					=> 0,
+			'display_bond'				=> 0,
+			'display_single_gallery'		=> 0,
+			'display_gallery_n'			=> 4,
+			'display_feature_columns'		=> 2,
+			'display_excerpt_length'		=> 10,
+			'label_bond'				=> __('Bond', 'epl'),
+			'label_location'			=> __('Suburb', 'epl'),
+			'label_suburb'				=> __('Suburb', 'epl'),
+			'label_postcode'			=> __('Post Code', 'epl'),
+			'label_home_open'			=> __('Home Open', 'epl'),
+			'label_poa'				=> __('POA', 'epl'),
+			'label_new'				=> __('New', 'epl'),
+			'widget_label_property'			=> __('Buy', 'epl'),
 			'widget_label_land'			=> __('Land', 'epl'),
-			'widget_label_rental'			=> __('Rental', 'epl'),
+			'widget_label_rental'			=> __('Rent', 'epl'),
 			'widget_label_rural'			=> __('Rural', 'epl'),
 			'widget_label_business'			=> __('Business', 'epl'),
 			'widget_label_commercial'		=> __('Commercial', 'epl'),
@@ -80,12 +98,8 @@ function epl_install() {
 			'epl_max_graph_sales_price'		=> 2000000,
 			'epl_max_graph_rent_price'		=> 2000,
 			'sticker_new_range'			=> 7,
-			'label_bond'				=> __('Bond', 'epl'),
-			'label_new'				=> __('New', 'epl')
-
-
+			'epl_admin_thumb_size'			=> 'admin-list-thumb'
 		);
-		
 		
 		foreach($new_fields_defaults as $key	=>	$value) {
 			if(!isset($epl_settings[$key])) {
@@ -95,7 +109,6 @@ function epl_install() {
 		}
 	}
 	update_option( 'epl_settings', $epl_settings );
-	
 
 	// Add Upgraded From Option
 	$current_version = get_option( 'epl_version' );

@@ -393,7 +393,7 @@ function epl_listing_load_meta_commercial_category() {
 	);
 	return apply_filters( 'epl_listing_meta_commercial_category', $defaults );
 }
- 
+
 /**
  * Custom Meta: Return Value of Commercial Category
  *
@@ -402,6 +402,35 @@ function epl_listing_load_meta_commercial_category() {
  */
 function epl_listing_load_meta_commercial_category_value( $key ) {
 	$array = epl_listing_load_meta_commercial_category();
+	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
+
+	return $value;
+}
+
+/**
+ * Custom Meta: Commercial Rental Period
+ *
+ * @since 2.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_commercial_rent_period() {
+	$defaults = array(
+		'annual'		=>	__('P.A.', 'epl'),
+		'nnn'			=>	__('NNN', 'epl'),
+		'full-service'		=>	__('Full Service', 'epl'),
+		'gross-lease-rates'	=>	__('Gross Lease Rates', 'epl')
+	);
+	return apply_filters( 'epl_listing_meta_commercial_rent_period', $defaults );
+}
+
+/**
+ * Custom Meta: Return Value of Commercial Rental Period
+ *
+ * @since 2.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_commercial_rent_period_value( $key ) {
+	$array = epl_listing_load_meta_commercial_rent_period();
 	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
 
 	return $value;
@@ -480,6 +509,11 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 	return;
 }
 
+/**
+ * Offers presented on settings page
+ *
+ * @since 2.0
+ */
 function epl_admin_sidebar () {
 	$service_banners = array(
 		array(
@@ -501,8 +535,9 @@ function epl_admin_sidebar () {
 }
 
 /**
- * renders field array to html 
+ * Renders field array to html 
  *
+ * @since 2.1
  */
  function epl_render_html_fields ($field=array(),$val='') {
  	switch($field['type']) {

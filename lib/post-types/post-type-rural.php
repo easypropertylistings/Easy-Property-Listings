@@ -25,37 +25,37 @@ function epl_register_custom_post_type_rural() {
 	$rewrite  = defined( 'EPL_RURAL_DISABLE_REWRITE' ) && EPL_RURAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 	
 	$labels = apply_filters( 'epl_rural_labels', array(
-		'name'					=>	__('Rural', 'epl'),
-		'singular_name'			=>	__('Rural', 'epl'),
-		'menu_name'				=>	__('Rural', 'epl'),
-		'add_new'				=>	__('Add New', 'epl'),
-		'add_new_item'			=>	__('Add New Rural Listing', 'epl'),
-		'edit_item'				=>	__('Edit Rural Listing', 'epl'),
-		'new_item'				=>	__('New Rural Listing', 'epl'),
-		'update_item'			=>	__('Update Rural Listing', 'epl'),
-		'all_items'				=>	__('All Rural Listings', 'epl'),
-		'view_item'				=>	__('View Rural Listing', 'epl'),
-		'search_items'			=>	__('Search Rural Listing', 'epl'),
-		'not_found'				=>	__('Rural Listing Not Found', 'epl'),
+		'name'			=>	__('Rural', 'epl'),
+		'singular_name'		=>	__('Rural', 'epl'),
+		'menu_name'		=>	__('Rural', 'epl'),
+		'add_new'		=>	__('Add New', 'epl'),
+		'add_new_item'		=>	__('Add New Rural Listing', 'epl'),
+		'edit_item'		=>	__('Edit Rural Listing', 'epl'),
+		'new_item'		=>	__('New Rural Listing', 'epl'),
+		'update_item'		=>	__('Update Rural Listing', 'epl'),
+		'all_items'		=>	__('All Rural Listings', 'epl'),
+		'view_item'		=>	__('View Rural Listing', 'epl'),
+		'search_items'		=>	__('Search Rural Listing', 'epl'),
+		'not_found'		=>	__('Rural Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Rural Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'		=>	__('Parent Rural Listing:', 'epl')
+		'parent_item_colon'	=>	__('Parent Rural Listing:', 'epl')
 	) );
 
 	$rural_args = array(
-		'labels'				=>	$labels,
-		'public'				=>	true,
+		'labels'		=>	$labels,
+		'public'		=>	true,
 		'publicly_queryable'	=>	true,
-		'show_ui'				=>	true,
-		'show_in_menu'			=>	true,
-		'query_var'				=>	true,
-		'rewrite'				=>	$rewrite,
-		'menu_icon'				=>	'dashicons-location-alt',
-		'capability_type'		=>	'post',
-		'has_archive'			=>	$archives,
-		'hierarchical'			=>	false,
-		'menu_position'			=>	'26.4',
-		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	apply_filters( 'epl_rural_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
+		'show_ui'		=>	true,
+		'show_in_menu'		=>	true,
+		'query_var'		=>	true,
+		'rewrite'		=>	$rewrite,
+		'menu_icon'		=>	'dashicons-location-alt',
+		'capability_type'	=>	'post',
+		'has_archive'		=>	$archives,
+		'hierarchical'		=>	false,
+		'menu_position'		=>	'26.4',
+		'taxonomies'		=>	array( 'location', 'tax_feature' ),
+		'supports'		=>	apply_filters( 'epl_rural_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
 	epl_register_post_type( 'rural', 'Rural', apply_filters( 'epl_rural_post_type_args', $rural_args ) );
 }
@@ -76,15 +76,15 @@ if ( is_admin() ) {
 	 */
 	function epl_manage_rural_columns_heading( $columns ) {
 		$columns = array(
-			'cb'				=> '<input type="checkbox" />',
+			'cb'			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Image', 'epl'),
 			'property_price'	=> __('Price', 'epl'),
-			'title'				=> __('Address', 'epl'),
-			'listing'			=> __('Listing Details', 'epl'),
-			'geo'				=> __('Geo', 'epl'),
+			'title'			=> __('Address', 'epl'),
+			'listing'		=> __('Listing Details', 'epl'),
+			'geo'			=> __('Geo', 'epl'),
 			'property_status'	=> __('Status', 'epl'),
 			'agent'			=> __('Agent', 'epl'),
-			'date'				=> __('Date', 'epl')
+			'date'			=> __('Date', 'epl')
 		);
 		
 		$geo_debug = 0;
@@ -122,12 +122,13 @@ if ( is_admin() ) {
 			case 'listing' :
 				/* Get the post meta. */
 				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading					= get_post_meta( $post_id, 'property_heading', true );
-				$beds						= get_post_meta( $post_id, 'property_bedrooms', true );
-				$baths						= get_post_meta( $post_id, 'property_bathrooms', true );
-				$land						= get_post_meta( $post_id, 'property_land_area', true );
-				$land_unit					= get_post_meta( $post_id, 'property_land_area_unit', true );
-				$homeopen 					= get_post_meta( $post_id, 'property_inspection_times', true );
+				$heading			= get_post_meta( $post_id, 'property_heading', true );
+				$beds				= get_post_meta( $post_id, 'property_bedrooms', true );
+				$baths				= get_post_meta( $post_id, 'property_bathrooms', true );
+				$rooms				= get_post_meta( $post_id, 'property_rooms', true );
+				$land				= get_post_meta( $post_id, 'property_land_area', true );
+				$land_unit			= get_post_meta( $post_id, 'property_land_area_unit', true );
+				$homeopen 			= get_post_meta( $post_id, 'property_inspection_times', true );
 
 				
 				if ( empty( $heading) ) {
@@ -143,6 +144,14 @@ if ( is_admin() ) {
 						echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'epl' ) , ' | </span>';
 						echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'epl' ) , '</span>';
 					echo '</div>';
+				}
+				
+				if ( !empty( $rooms ) ) {
+					if ( $rooms == 1 ) {
+						echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Room', 'epl' ) , '</div>';
+					} else {
+						echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Rooms', 'epl' ) , '</div>';
+					}
 				}
 				
 				if ( !empty( $land) ) {

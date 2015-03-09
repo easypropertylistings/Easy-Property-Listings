@@ -2,8 +2,10 @@
 /*
  * Single Template for Property Custom Post Type : property
  */
+ 
 // Exit if accessed directly
-
+if ( ! defined( 'ABSPATH' ) ) exit;
+ 
 get_header(); ?>
  <div id="primary" class="site-content content-area epl-single-default">
 	<section class="content">

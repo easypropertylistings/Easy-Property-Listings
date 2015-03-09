@@ -99,6 +99,14 @@ function epl_meta_box_init() {
 			'part'		=>	__('Part', 'epl')
 		)
 	);
+	$opts_property_com_rent_period = apply_filters (  'epl_opts_property_com_rent_period_filter', array(
+			'annual'		=>	__('P.A.', 'epl'),
+			'nnn'			=>	__('NNN', 'epl'),
+			'full-service'		=>	__('Full Service', 'epl'),
+			'gross-lease-rates'	=>	__('Gross Lease Rates', 'epl')
+		)
+	);
+	
 	global $epl_meta_boxes;
 	$epl_meta_boxes = array(
 		
@@ -118,7 +126,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_heading',
 							'label'		=>	__('Heading', 'epl'),
 							'type'		=>	'text',
-							'maxlength'	=>	'150'
+							'maxlength'	=>	'200'
 						)
 					)
 				),
@@ -148,8 +156,6 @@ function epl_meta_box_init() {
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
-						
-						
 					)
 				),
 			
@@ -163,6 +169,13 @@ function epl_meta_box_init() {
 							'label'		=>	__('Property Status', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_status
+						),
+						
+						array(
+							'name'		=>	'property_list_date',
+							'label'		=>	__('Date Listed', 'epl'),
+							'type'		=>	'date',
+							'maxlength'	=>	'100'
 						),
 					
 						array(
@@ -258,7 +271,6 @@ function epl_meta_box_init() {
 							'type'		=>	'textarea',
 							'maxlength'	=>	'500'
 						)
-					
 					)
 				)
 			)
@@ -282,19 +294,28 @@ function epl_meta_box_init() {
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
-					
+						
 						array(
 							'name'		=>	'property_bathrooms',
 							'label'		=>	__('Bathrooms', 'epl'),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'3'
 						),
+						
+						array(
+							'name'		=>	'property_rooms',
+							'label'		=>	__('Rooms', 'epl'),
+							'type'		=>	'number',
+							'maxlength'	=>	'3'
+						),
+						
 						array(
 							'name'		=>	'property_ensuite',
 							'label'		=>	__('Ensuite', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
+						
 						array(
 							'name'		=>	'property_toilet',
 							'label'		=>	__('Toilet', 'epl'),
@@ -314,6 +335,13 @@ function epl_meta_box_init() {
 							'label'		=>	__('Carport', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
+						),
+						
+						array(
+							'name'		=>	'property_year_built',
+							'label'		=>	__('Year Built', 'epl'),
+							'type'		=>	'text',
+							'maxlength'	=>	'4'
 						),
 					
 						array(
@@ -400,7 +428,7 @@ function epl_meta_box_init() {
 								'yes'	=>	__('Yes', 'epl'),
 								'no'	=>	__('No', 'epl')
 							),
-						),
+						)
 					)
 				)
 			)
@@ -626,6 +654,7 @@ function epl_meta_box_init() {
 						)
 					)
 				),
+				
 				array(
 					'id'		=>	'heating_cooling',
 					'columns'	=>	'2',
@@ -784,7 +813,7 @@ function epl_meta_box_init() {
 								'yes'	=>	__('Yes', 'epl'),
 								'no'	=>	__('No', 'epl')
 							),
-						),
+						)
 					)
 				)
 			)
@@ -796,8 +825,7 @@ function epl_meta_box_init() {
 			'post_type'	=>	array('property', 'rural', 'rental', 'commercial', 'commercial_land', 'business', 'land'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
-			'groups'	=>	array(
-				apply_filters('epl_listing_meta_address_block', 
+			'groups'	=>	array(	apply_filters('epl_listing_meta_address_block',
 					array(
 						'id'		=>	'address_block',
 						'columns'	=>	'1',
@@ -840,21 +868,21 @@ function epl_meta_box_init() {
 								'name'		=>	'property_address_street',
 								'label'		=>	__('Street Name', 'epl'),
 								'type'		=>	'text',
-								'maxlength'	=>	'40'
+								'maxlength'	=>	'80'
 							),
 					
 							array(
 								'name'		=>	'property_address_suburb',
 								'label'		=>	epl_display_label_suburb(),
 								'type'		=>	'text',
-								'maxlength'	=>	'40'
+								'maxlength'	=>	'80'
 							),
 					
 							array(
 								'name'		=>	'property_address_state',
 								'label'		=>	__('State', 'epl'),
 								'type'		=>	'text',
-								'maxlength'	=>	'40'
+								'maxlength'	=>	'80'
 							),
 					
 							array(
@@ -872,7 +900,7 @@ function epl_meta_box_init() {
 								'name'		=>	'property_address_postal_code',
 								'label'		=>	epl_display_label_postcode(),
 								'type'		=>	'text',
-								'maxlength'	=>	'20'
+								'maxlength'	=>	'30'
 							),
 						
 							array(
@@ -1040,7 +1068,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_date_available',
 							'label'		=>	__('Date Available', 'epl'),
-							'type'		=>	'text',
+							'type'		=>	'date',
 							'maxlength'	=>	'100'
 						),
 					
@@ -1160,13 +1188,10 @@ function epl_meta_box_init() {
 							'maxlength'	=>	'40'
 						),
 						array(
-							'name'		=>	'property_com_rent_lease_type',
-							'label'		=>	__('Lease Type', 'epl'),
+							'name'		=>	'property_com_rent_period',
+							'label'		=>	__('Lease Period', 'epl'),
 							'type'		=>	'select',
-							'opts'		=>	array(
-								'P.A.'	=>	__('P.A', 'epl'),
-								'NNN'	=>	__('NNN', 'epl'),
-							),
+							'opts'		=>	epl_listing_load_meta_commercial_rent_period()
 						),
 						array(
 							'name'		=>	'property_com_rent_range_min',
@@ -1655,7 +1680,7 @@ function epl_meta_box_init() {
 													$epl_date = $epl_date->format('Y-m-d');
 												}
 												$_POST[ $field['name'] ] = $epl_date;
-											}
+											} 
 											
 											update_post_meta( $post_ID, $field['name'], $_POST[ $field['name'] ] );
 										}

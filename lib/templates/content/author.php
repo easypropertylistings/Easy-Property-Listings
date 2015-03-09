@@ -19,34 +19,34 @@ get_header(); ?>
 						the_post();
 						
 						if ( is_category() ) { // Category Archive
-							$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Threads' ), single_cat_title( '', false ) );
+							$title = sprintf( __( 'Archive for %s', 'epl' ), single_cat_title( '', false ) );
 						}
 						else if ( is_tag() ) { // Tag Archive
-							$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Threads' ), single_tag_title( '', false ) );
+							$title = sprintf( __( 'Archive for %s', 'epl' ), single_tag_title( '', false ) );
 						}
 						else if ( is_tax() ) { // Tag Archive
-							$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Threads' ), builder_get_tax_term_title() );
+							$title = sprintf( __( 'Archive for %s', 'epl' ), builder_get_tax_term_title() );
 						}
 						else if ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive
 							$title = post_type_archive_title( '', false );
 						}
 						else if ( is_author() ) { // Author Archive
-							$title = sprintf( __( 'Author Archive for %s', 'it-l10n-Builder-Threads' ), get_the_author() );
+							$title = sprintf( __( 'Author Archive for %s', 'epl' ), get_the_author() );
 						}
 						else if ( is_year() ) { // Year-Specific Archive
-							$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Threads' ), get_the_time( 'Y' ) );
+							$title = sprintf( __( 'Archive for %s', 'epl' ), get_the_time( 'Y' ) );
 						}
 						else if ( is_month() ) { // Month-Specific Archive
-							$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Threads' ), get_the_time( 'F Y' ) );
+							$title = sprintf( __( 'Archive for %s', 'epl' ), get_the_time( 'F Y' ) );
 						}
 						else if ( is_day() ) { // Day-Specific Archive
-							$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Threads' ), get_the_date() );
+							$title = sprintf( __( 'Archive for %s', 'epl' ), get_the_date() );
 						}
 						else if ( is_time() ) { // Time-Specific Archive
-							$title = __( 'Time Archive', 'it-l10n-Builder-Threads' );
+							$title = __( 'Time Archive', 'epl' );
 						}
 						else { // Default catchall just in case
-							$title = __( 'Archive', 'it-l10n-Builder-Threads' );
+							$title = __( 'Archive', 'epl' );
 						}
 						
 						if ( is_paged() )
@@ -69,8 +69,8 @@ get_header(); ?>
 								<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 								<div class="entry-meta">
 									<?php
-										printf( __( 'By %s', 'it-l10n-Builder-Threads' ), '<span class="meta-author">' . builder_get_author_link() . '</span>' );
-										do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', __( 'Comments %s', 'it-l10n-Builder-Threads' ), __( '(0)', 'it-l10n-Builder-Threads' ), __( '(1)', 'it-l10n-Builder-Threads' ), __( '(%)', 'it-l10n-Builder-Threads' ) );
+										printf( __( 'By %s', 'epl' ), '<span class="meta-author">' . builder_get_author_link() . '</span>' );
+										do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', __( 'Comments %s', 'epl' ), __( '(0)', 'epl' ), __( '(1)', 'epl' ), __( '(%)', 'epl' ) );
 									?>
 								</div>
 						
@@ -89,10 +89,10 @@ get_header(); ?>
 					
 							<!-- categories, tags and comments -->
 							<div class="entry-footer clearfix">
-								<?php do_action( 'builder_comments_popup_link', '<div class="entry-meta alignright"><span class="comments">', '</span></div>', __( 'Comments %s', 'it-l10n-Builder-Threads' ), __( '(0)', 'it-l10n-Builder-Threads' ), __( '(1)', 'it-l10n-Builder-Threads' ), __( '(%)', 'it-l10n-Builder-Threads' ) ); ?>
+								<?php do_action( 'builder_comments_popup_link', '<div class="entry-meta alignright"><span class="comments">', '</span></div>', __( 'Comments %s', 'epl' ), __( '(0)', 'epl' ), __( '(1)', 'epl' ), __( '(%)', 'epl' ) ); ?>
 								<div class="entry-meta alignleft">
-									<div class="categories"><?php printf( __( 'Categories : %s', 'it-l10n-Builder-Threads' ), get_the_category_list( ', ' ) ); ?></div>
-									<?php the_tags( '<div class="tags">' . __( 'Tags : ', 'it-l10n-Builder-Threads' ), ', ', '</div>' ); ?>
+									<div class="categories"><?php printf( __( 'Categories : %s', 'epl' ), get_the_category_list( ', ' ) ); ?></div>
+									<?php the_tags( '<div class="tags">' . __( 'Tags : ', 'epl' ), ', ', '</div>' ); ?>
 								</div>
 							</div>
 						</div>
@@ -106,8 +106,8 @@ get_header(); ?>
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
-					<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'it-l10n-Builder-Threads' ) ); ?></div>
-					<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'it-l10n-Builder-Threads' ) ); ?></div>
+					<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
+					<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
 				</div>
 			</div>
 		</div>
