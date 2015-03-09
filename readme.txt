@@ -166,6 +166,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Inspection times improved style in admin.
 * Tweak: Commercial rental rate now accepts decimal numbers.
 * Tweak: Improved google map output.
+* Tweak: Improved default settings on upgrade and multisite.
 
 = 2.0.4: February 12, 2015 =
 
