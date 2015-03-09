@@ -100,8 +100,10 @@ function epl_meta_box_init() {
 		)
 	);
 	$opts_property_com_rent_period = apply_filters (  'epl_opts_property_com_rent_period_filter', array(
-			'annual'	=>	__('P.A.', 'epl'),
-			'NNN'		=>	__('NNN', 'epl')
+			'annual'		=>	__('P.A.', 'epl'),
+			'nnn'			=>	__('NNN', 'epl'),
+			'full-service'		=>	__('Full Service', 'epl'),
+			'gross-lease-rates'	=>	__('Gross Lease Rates', 'epl')
 		)
 	);
 	
@@ -167,6 +169,13 @@ function epl_meta_box_init() {
 							'label'		=>	__('Property Status', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_status
+						),
+						
+						array(
+							'name'		=>	'property_list_date',
+							'label'		=>	__('Date Listed', 'epl'),
+							'type'		=>	'date',
+							'maxlength'	=>	'100'
 						),
 					
 						array(
@@ -326,6 +335,13 @@ function epl_meta_box_init() {
 							'label'		=>	__('Carport', 'epl'),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
+						),
+						
+						array(
+							'name'		=>	'property_year_built',
+							'label'		=>	__('Year Built', 'epl'),
+							'type'		=>	'text',
+							'maxlength'	=>	'4'
 						),
 					
 						array(
@@ -1175,7 +1191,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_com_rent_period',
 							'label'		=>	__('Lease Period', 'epl'),
 							'type'		=>	'select',
-							'opts'		=>	$opts_property_com_rent_period
+							'opts'		=>	epl_listing_load_meta_commercial_rent_period()
 						),
 						array(
 							'name'		=>	'property_com_rent_range_min',

@@ -26,8 +26,6 @@ class EPL_Property_Meta {
 				}	elseif(intval($this->meta[$meta_key][0]) == 0) {
 					return;
 				}
-			
-				
 			}
 		}
 	}
@@ -69,12 +67,12 @@ class EPL_Property_Meta {
 					foreach ($inspectarray as $key => $element) {
 						if(!empty($element)) {
 							$return .= "<li class='home-open-date'>
-											<a 
-												class ='epl_inspection_calendar'
-												href='".get_bloginfo('url')."?epl_cal_dl=1&cal=ical&dt=".base64_encode(htmlspecialchars($element))."&propid=".$this->post->ID."' >" 
-													. htmlspecialchars($element) ."
-											</a>
-										</li>";
+										<a 
+											class ='epl_inspection_calendar'
+											href='".get_bloginfo('url')."?epl_cal_dl=1&cal=ical&dt=".base64_encode(htmlspecialchars($element))."&propid=".$this->post->ID."' >" 
+												. htmlspecialchars($element) ."
+										</a>
+									</li>";
 						}
 					}
 					if(!empty($return)) {
@@ -262,8 +260,7 @@ class EPL_Property_Meta {
 			
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type) {
 			$rent_lease_type = 
-				$this->get_property_meta('property_com_rent_lease_type') == ''?'P.A':$this->get_property_meta('property_com_rent_lease_type');
-
+				$this->get_property_meta('property_com_rent_period') != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta('property_com_rent_period') ) : 'P.A.';
 
 			if ( 'sold' == $this->get_property_meta('property_status') ){
 				$price_plain_value = __('Sold', 'epl');
@@ -334,7 +331,8 @@ class EPL_Property_Meta {
 			
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type) {
 			$rent_lease_type = 
-				$this->get_property_meta('property_com_rent_lease_type') == ''?'P.A':$this->get_property_meta('property_com_rent_lease_type');
+				$this->get_property_meta('property_com_rent_period') != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta('property_com_rent_period') ) : 'P.A.';
+
 			if ( 'sold' == $this->get_property_meta('property_status') ){
 				$price = '<span class="page-price sold-status">'.__('Sold', 'epl').'</span>';
 			} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
@@ -466,7 +464,7 @@ class EPL_Property_Meta {
 			
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type) {
 			$rent_lease_type = 
-				$this->get_property_meta('property_com_rent_lease_type') == ''?'P.A':$this->get_property_meta('property_com_rent_lease_type');
+				$this->get_property_meta('property_com_rent_period') != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta('property_com_rent_period') ) : 'P.A.';
 			if ( 'sold' == $this->get_property_meta('property_status') ){
 				$l_price = '<li class="status-sticker sold">'.__('Sold', 'epl').'</li>';
 			} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
@@ -496,6 +494,16 @@ class EPL_Property_Meta {
 		$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta('property_commercial_category') );
 		$property_commercial_category = '<'.$tag.' class="commercial-category">' . $property_commercial_category . '</'.$tag.'>';
 		return $property_commercial_category;
+	}
+	
+	// property year built
+	public function get_property_year_built($returntype = 'i') {
+		if($this->get_property_meta('property_year_built') == '')
+			return;
+		$year_built['i'] = '<span title="'.__('Built', 'epl').'" class="icon year-built"><span class="icon-value">'. $this->get_property_meta('property_year_built') . '</span></span>'; 
+		$year_built['d'] = __('Built', 'epl') . ' ' . $this->get_property_meta('property_year_built') . ' ';
+		$year_built['l'] = '<li class="year-built">'.__('Built', 'epl') . ' ' . $this->get_property_meta('property_year_built') . '</li>';
+		return $year_built[$returntype];
 	}
 	
 	// property bed

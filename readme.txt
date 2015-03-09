@@ -158,6 +158,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.
 * New: Commercial rental lease duration now selectable.
 * New: Able to set the number of rooms that the listing has.
+* New: Date listed field all listing types.
+* New: Year built field added to property, rental, rural listing types.
 * Fix: Text domain fixes on template files.
 * Fix: Finnish translation file renamed.
 * Tweak: Optimised loading of admin scripts and styles to pages where required.
