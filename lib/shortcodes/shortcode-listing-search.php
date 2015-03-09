@@ -24,20 +24,21 @@ if( is_admin() ) {
 function epl_shortcode_listing_search_callback( $atts ) {
 	global $wpdb;
 	$atts = shortcode_atts( array(
-		'show_title'				=>	true,	//For disable title in case of widget calling (true/false)
-		'title'						=>	'', 	// Freeform text
-		'post_type'					=>	array('property'), // Post type name array
-		'property_status'			=>	'', 	// Singular: current / sold / leased or '' for any
+		'show_title'			=>	true,	//For disable title in case of widget calling (true/false)
+		'title'				=>	'', 	// Freeform text
+		'post_type'			=>	array('property'), // Post type name array
+		'property_status'		=>	'', 	// Singular: current / sold / leased or '' for any
 		'search_house_category'		=>	'on', 	// on or off
-		'search_price'				=>	'on', 	// on or off
-		'search_bed'				=>	'on', 	// on or off
-		'search_bath'				=>	'on', 	// on or off
-		'search_car'				=>	'on', 	// on or off
-		'search_other'				=>	'on',  	// on or off
-		'search_id'					=>	'off', 	// on or off
-		'search_land_area'			=>	'off',	// on or off
+		'search_price'			=>	'on', 	// on or off
+		'search_bed'			=>	'on', 	// on or off
+		'search_bath'			=>	'on', 	// on or off
+		'search_rooms'			=>	'off', 	// on or off
+		'search_car'			=>	'on', 	// on or off
+		'search_other'			=>	'on',  	// on or off
+		'search_id'			=>	'off', 	// on or off
+		'search_land_area'		=>	'off',	// on or off
 		'search_building_area'		=>	'off',	// on or off
-		'submit_label'				=>	__('Find me a Property!','epl')
+		'submit_label'			=>	__('Find me a Property!','epl')
 	), $atts);
 	extract($atts);
 	extract( $_GET );
@@ -54,7 +55,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 			echo '<ul class="property_search-tabs">';
 			foreach($post_types as $post_type):
 	
-				$is_sb_current = $tabcounter == 1?'epl-sb-current':'';
+				$is_sb_current = $tabcounter == 1 ? 'epl-sb-current' : '';
 				$post_type_label = isset($epl_settings['widget_label_'.$post_type])?$epl_settings['widget_label_'.$post_type]:$post_type;
 				echo '<li data-tab="epl_ps_tab_'.$tabcounter.'" class="tab-link '.$is_sb_current.'">'.$post_type_label.'</li>';
 				$tabcounter++;
@@ -206,23 +207,23 @@ function epl_shortcode_listing_search_callback( $atts ) {
 								850	=>	epl_currency_formatted_amount(850),
 								900	=>	epl_currency_formatted_amount(900),
 								950	=>	epl_currency_formatted_amount(950),
-								1000=>	epl_currency_formatted_amount(1000),
-								1100=>	epl_currency_formatted_amount(1100),
-								1200=>	epl_currency_formatted_amount(1200),
-								1300=>	epl_currency_formatted_amount(1300),
-								1400=>	epl_currency_formatted_amount(1400),
-								1500=>	epl_currency_formatted_amount(1500),
-								1600=>	epl_currency_formatted_amount(1600),
-								1700=>	epl_currency_formatted_amount(1700),
-								1800=>	epl_currency_formatted_amount(1800),
-								1900=>	epl_currency_formatted_amount(1900),
-								2000=>	epl_currency_formatted_amount(2000),
-								2500=>	epl_currency_formatted_amount(2500),
-								3000=>	epl_currency_formatted_amount(3000),
-								3500=>	epl_currency_formatted_amount(3500),
-								4000=>	epl_currency_formatted_amount(4000),
-								4500=>	epl_currency_formatted_amount(4500),
-								5000=>	epl_currency_formatted_amount(5000),
+								1000	=>	epl_currency_formatted_amount(1000),
+								1100	=>	epl_currency_formatted_amount(1100),
+								1200	=>	epl_currency_formatted_amount(1200),
+								1300	=>	epl_currency_formatted_amount(1300),
+								1400	=>	epl_currency_formatted_amount(1400),
+								1500	=>	epl_currency_formatted_amount(1500),
+								1600	=>	epl_currency_formatted_amount(1600),
+								1700	=>	epl_currency_formatted_amount(1700),
+								1800	=>	epl_currency_formatted_amount(1800),
+								1900	=>	epl_currency_formatted_amount(1900),
+								2000	=>	epl_currency_formatted_amount(2000),
+								2500	=>	epl_currency_formatted_amount(2500),
+								3000	=>	epl_currency_formatted_amount(3000),
+								3500	=>	epl_currency_formatted_amount(3500),
+								4000	=>	epl_currency_formatted_amount(4000),
+								4500	=>	epl_currency_formatted_amount(4500),
+								5000	=>	epl_currency_formatted_amount(5000),
 							);
 							$prices_arr = apply_filters('epl_listing_search_price_rental', $prices_arr);
 						} else {
@@ -409,7 +410,37 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						';
 					}
 					
-									
+					if ( $search_bath == 'on' &&  $post_type != 'land'  ) {
+						$search_row .= '
+							<div class="epl-search-row-half epl-search-left-half epl-search-rooms fm-block-half">
+								<label for="property_rooms" class="fm-label">'.
+									 apply_filters('epl_search_widget_label_property_rooms',__('Rooms', 'epl')).
+								'</label>
+								<div class="field">
+									<select name="property_rooms" id="property_rooms" class="in-field field-width">
+										<option value="">'. apply_filters('epl_search_widget_label_any',__('Any', 'epl')).'</option>';
+											$rooms_array = array(
+												'1'	=>	'1+',
+												'2'	=>	'2+',
+												'3'	=>	'3+',
+												'4'	=>	'4+',
+												'5'	=>	'5+'
+											);
+											$rooms_array = apply_filters('epl_listing_search_rooms_select', $rooms_array);
+											foreach( $rooms_array as $k=>$v ) {
+												$selected = '';
+												if(isset($property_rooms) && $k == $property_rooms) {
+													$selected = 'selected="selected"';
+												}
+												$search_row .= '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+											}
+											$search_row .= '
+									</select>
+								</div>
+							</div>
+						';
+					}
+					
 					if ( $search_car == 'on' &&  $post_type != 'land'  ) {
 						$search_row .= '
 							<div class="epl-search-row-third epl-search-right-half epl-search-parking fm-block-half">

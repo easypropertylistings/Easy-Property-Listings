@@ -197,18 +197,19 @@ if(isset($meta['property_address_coordinates'])) {
 }
 // Format Address
 $property_address_street 	= $property_address_street_number . ' ' . $property_address_street;
-$property_address 			= $property_address_street . ', ' . $property_address_suburb;
-$price_sticker	 			= '';
-$property_category 			= '';
-$property_bedrooms 			= '';
+$property_address 		= $property_address_street . ', ' . $property_address_suburb;
+$price_sticker	 		= '';
+$property_category 		= '';
+$property_bedrooms 		= '';
 $property_bathrooms 		= '';
-$property_toilet 			= '';
+$property_rooms 		= '';
+$property_toilet 		= '';
 $property_new_construction 	= '';
-$property_garage 			= '';
-$property_carport 			= '';
-$property_parking 			= '';
+$property_garage 		= '';
+$property_carport 		= '';
+$property_parking 		= '';
 $property_air_conditioning 	= '';
-$property_pool 				= '';
+$property_pool 			= '';
 $property_security_system 	= '';
 if ( 'property' == $post_type || 'rental' == $post_type || 'rural' == $post_type ) {
 	//house features
@@ -218,16 +219,19 @@ if ( 'property' == $post_type || 'rental' == $post_type || 'rural' == $post_type
 			$property_category = epl_listing_meta_property_category_value( $property_category_id );
 		}	
 	}
-	
 	if(isset($meta['property_bedrooms'])) {
 		if(isset($meta['property_bedrooms'][0])) {
 			$property_bedrooms = $meta['property_bedrooms'][0];
 		}	
 	}
-	
 	if(isset($meta['property_bathrooms'])) {
 		if(isset($meta['property_bathrooms'][0])) {
 			$property_bathrooms = $meta['property_bathrooms'][0];
+		}	
+	}
+	if(isset($meta['property_rooms'])) {
+		if(isset($meta['property_rooms'][0])) {
+			$property_rooms = $meta['property_rooms'][0];
 		}	
 	}
 	if(isset($meta['property_toilet'])) {
@@ -652,6 +656,11 @@ if(isset($property_bathrooms) && $property_bathrooms != 0) {
 	$d_bath = $property_bathrooms . ' '.__('bath', 'epl').' ';
 	$l_bath = '<li class="bathrooms">' . $property_bathrooms . ' '.__('bath', 'epl').'</li>';
 }
+if(isset($property_rooms) && $property_rooms != 0) { 
+	$i_bath = '<span title="'.__('Rooms', 'epl').'" class="icon rooms"><span class="icon-value">' . $property_rooms  . '</span></span>'; 
+	$d_bath = $property_rooms . ' '.__('rooms', 'epl').' ';
+	$l_bath = '<li class="rooms">' . $property_rooms . ' '.__('rooms', 'epl').'</li>';
+}
 if(isset($property_parking) && $property_parking != 0) { 
 	$i_park = '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' . $property_parking . '</span></span>';
 }
@@ -980,6 +989,9 @@ if(isset($i_bed)) {
 if(isset($i_bath)) {
 	$property_icons_full .= $i_bath;
 }
+if(isset($i_room)) {
+	$property_icons_full .= $i_room;
+}
 if(isset($i_park)) {
 	$property_icons_full .= $i_park;
 }
@@ -1133,6 +1145,9 @@ if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business'
 	if(isset($l_bath)) {
 		$the_property_feature_list .= $l_bath;
 	}
+	if(isset($l_room)) {
+		$the_property_feature_list .= $l_room;
+	}
 	if(isset($l_land)) {
 		$the_property_feature_list .= $l_land;
 	}
@@ -1175,13 +1190,13 @@ if(isset($d_bath)) {
 if ( 'rural' == $post_type ) {
 	// Rural features Load Meta
 	
-	$property_rural_category 			= '';
-	$property_rural_fencing 			= '';
+	$property_rural_category 		= '';
+	$property_rural_fencing 		= '';
 	$property_rural_annual_rainfall 	= '';
-	$property_rural_soil_types 			= '';
+	$property_rural_soil_types 		= '';
 	$property_rural_improvements 		= '';
 	$property_rural_council_rates 		= '';
-	$property_rural_irrigation 			= '';
+	$property_rural_irrigation 		= '';
 	$property_rural_carrying_capacity 	= '';
 	
 	

@@ -285,11 +285,18 @@ function epl_meta_box_init() {
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
 						),
-					
+						
 						array(
 							'name'		=>	'property_bathrooms',
 							'label'		=>	__('Bathrooms', 'epl'),
 							'type'		=>	'decimal',
+							'maxlength'	=>	'3'
+						),
+						
+						array(
+							'name'		=>	'property_rooms',
+							'label'		=>	__('Rooms', 'epl'),
+							'type'		=>	'number',
 							'maxlength'	=>	'3'
 						),
 						
