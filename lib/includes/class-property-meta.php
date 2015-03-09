@@ -383,10 +383,11 @@ class EPL_Property_Meta {
 			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {
 				// Property
 				$price_sticker = '';
+				
+				if($this->get_epl_settings('sticker_new_range') >=  $diff) 
+					$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
+
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					if($this->get_epl_settings('sticker_new_range') >=  $diff) 
-						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
-						
 					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
 			
@@ -405,11 +406,10 @@ class EPL_Property_Meta {
 				
 			} else {
 				$price_sticker = '';
+				if($this->get_epl_settings('sticker_new_range') >=  $diff->days)
+					$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
+
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
-					
-					if($this->get_epl_settings('sticker_new_range') >=  $diff->days)
-						$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
-						
 					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
 			}
