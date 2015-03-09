@@ -31,8 +31,9 @@ function epl_property_map_default_callback() {
 		echo do_shortcode('[listing_map zoom=14 cord="'.$coordinates.'" q="'.$address.'"]');
 	} else {
 	
-		$address = $property->get_property_meta('property_address_suburb');
-		
+		$address = $property->get_property_meta('property_address_suburb').', ';
+		$address .= $property->get_property_meta('property_address_state'),', ';
+		$address .= $property->get_property_meta('property_address_postal_code');
 		$address = apply_filters('epl_map_address',$address);
 		echo do_shortcode('[listing_map zoom=14 suburb_mode=1 q="'.$address.'"]');
 	}
