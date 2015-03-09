@@ -333,7 +333,7 @@ class EPL_Welcome {
 					<h4><?php _e( 'Version 2.1', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Coordinates now added to listing if not set prior which speeds future loading.', 'epl' );?></li>
-						<li><?php _e( 'New: Ability to select larger listing image sizes in admin.', 'epl' );?></li>
+						<li><?php _e( 'New: Ability to select larger listing image sizes in admin 100x100 or 300x200.', 'epl' );?></li>
 						<li><?php _e( 'New: Added date picker for Available date on rental listing.', 'epl' );?></li>
 						<li><?php _e( 'New: New function that combines all meta box options into one global function for admin pages.', 'epl' );?></li>
 						<li><?php _e( 'New: Display second agent name in admin listing lists.', 'epl' );?></li>
@@ -342,9 +342,12 @@ class EPL_Welcome {
 						<li><?php _e( 'New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]', 'epl' );?></li>
 						<li><?php _e( 'New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].', 'epl' );?></li>
 						<li><?php _e( 'New: Function to get all active post types.', 'epl' );?></li>
+						<li><?php _e( 'New: Ability to register additional custom post types.', 'epl' );?></li>
 						<li><?php _e( 'New: Extensions now have additional help text ability.', 'epl' );?></li>
 						<li><?php _e( 'New: All menus now use global function to render fields.', 'epl' );?></li>
 						<li><?php _e( 'New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.', 'epl' );?></li>
+						<li><?php _e( 'New: Commercial rental lease duration now selectable.', 'epl' );?></li>
+						<li><?php _e( 'New: Able to set the number of rooms that the listing has.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Text domain fixes on template files.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Finnish translation file renamed.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Optimised loading of admin scripts and styles to pages where required.', 'epl' );?></li>
@@ -356,6 +359,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Inspection times improved style in admin.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Commercial rental rate now accepts decimal numbers.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved google map output.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved default settings on upgrade, install and multisite.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.0.3', 'epl' );?></h4>

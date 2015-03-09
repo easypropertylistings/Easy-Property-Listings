@@ -152,9 +152,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]
 * New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].
 * New: Function to get all active post types.
+* New: Ability to register additional custom post types.
 * New: Extensions now have additional help text ability.
 * New: All menus now use global function to render fields.
 * New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.
+* New: Commercial rental lease duration now selectable.
+* New: Able to set the number of rooms that the listing has.
 * Fix: Text domain fixes on template files.
 * Fix: Finnish translation file renamed.
 * Tweak: Optimised loading of admin scripts and styles to pages where required.
@@ -166,7 +169,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Inspection times improved style in admin.
 * Tweak: Commercial rental rate now accepts decimal numbers.
 * Tweak: Improved google map output.
-* Tweak: Improved default settings on upgrade and multisite.
+* Tweak: Improved default settings on upgrade, install and multisite.
 
 = 2.0.4: February 12, 2015 =
 
