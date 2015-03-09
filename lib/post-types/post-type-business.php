@@ -25,37 +25,37 @@ function epl_register_custom_post_type_business() {
 	$rewrite  = defined( 'EPL_BUSINESS_DISABLE_REWRITE' ) && EPL_BUSINESS_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_business_labels', array(
-		'name'					=>	__('Business Listings', 'epl'),
-		'singular_name'			=>	__('Business Listings', 'epl'),
-		'menu_name'				=>	__('Business', 'epl'),
-		'add_new'				=>	__('Add New', 'epl'),
-		'add_new_item'			=>	__('Add New Business Listing', 'epl'),
-		'edit_item'				=>	__('Edit Business Listing', 'epl'),
-		'new_item'				=>	__('New Business Listing', 'epl'),
-		'update_item'			=>	__('Update Business Listing', 'epl'),
-		'all_items'				=>	__('All Business Listings', 'epl'),
-		'view_item'				=>	__('View Business Listing', 'epl'),
-		'search_items'			=>	__('Search Business Listing', 'epl'),
-		'not_found'				=>	__('Business Listing Not Found', 'epl'),
+		'name'			=>	__('Business Listings', 'epl'),
+		'singular_name'		=>	__('Business Listings', 'epl'),
+		'menu_name'		=>	__('Business', 'epl'),
+		'add_new'		=>	__('Add New', 'epl'),
+		'add_new_item'		=>	__('Add New Business Listing', 'epl'),
+		'edit_item'		=>	__('Edit Business Listing', 'epl'),
+		'new_item'		=>	__('New Business Listing', 'epl'),
+		'update_item'		=>	__('Update Business Listing', 'epl'),
+		'all_items'		=>	__('All Business Listings', 'epl'),
+		'view_item'		=>	__('View Business Listing', 'epl'),
+		'search_items'		=>	__('Search Business Listing', 'epl'),
+		'not_found'		=>	__('Business Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Business Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'		=>	__('Parent Business Listing:', 'epl')
+		'parent_item_colon'	=>	__('Parent Business Listing:', 'epl')
 	) );
 
 	$business_args = array(
-		'labels'				=>	$labels,
-		'public'				=>	true,
+		'labels'		=>	$labels,
+		'public'		=>	true,
 		'publicly_queryable'	=>	true,
-		'show_ui'				=>	true,
-		'show_in_menu'			=>	true,
-		'query_var'				=>	true,
-		'rewrite'				=>	$rewrite,
-		'menu_icon'				=>	'dashicons-cart',
-		'capability_type'		=>	'post',
-		'has_archive'			=>	$archives,
-		'hierarchical'			=>	false,
-		'menu_position'			=>	'26.6',
-		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	apply_filters( 'epl_business_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
+		'show_ui'		=>	true,
+		'show_in_menu'		=>	true,
+		'query_var'		=>	true,
+		'rewrite'		=>	$rewrite,
+		'menu_icon'		=>	'dashicons-cart',
+		'capability_type'	=>	'post',
+		'has_archive'		=>	$archives,
+		'hierarchical'		=>	false,
+		'menu_position'		=>	'26.6',
+		'taxonomies'		=>	array( 'location', 'tax_feature' ),
+		'supports'		=>	apply_filters( 'epl_business_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
 	epl_register_post_type( 'business', 'Business', apply_filters( 'epl_business_post_type_args', $business_args ) );
 }
@@ -77,16 +77,16 @@ if ( is_admin() ) {
 	 */
 	function epl_manage_business_columns_heading( $columns ) {
 		$columns = array(
-			'cb'				=> '<input type="checkbox" />',
+			'cb'			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Image', 'epl'),
 			'property_price'	=> __('Price', 'epl'),
-			'title'				=> __('Address', 'epl'),
-			'listing'			=> __('Listing Details', 'epl'),
-			'geo'				=> __('Geo', 'epl'),
+			'title'			=> __('Address', 'epl'),
+			'listing'		=> __('Listing Details', 'epl'),
+			'geo'			=> __('Geo', 'epl'),
 			'property_status'	=> __('Status', 'epl'),
 			'listing_type'		=> __('Sale/Lease', 'epl'),
-			'agent'				=> __('Agent', 'epl'),
-			'date'				=> __('Date', 'epl')
+			'agent'			=> __('Agent', 'epl'),
+			'date'			=> __('Date', 'epl')
 		);
 		
 		$geo_debug = 0;
@@ -189,11 +189,13 @@ if ( is_admin() ) {
 				
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
-				$price = get_post_meta( $post_id, 'property_price', true );
-				$view = get_post_meta( $post_id, 'property_price_view', true );
-				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-				$lease = get_post_meta( $post_id, 'property_com_rent', true );
-				$lease_date = get_post_meta( $post_id, 'property_com_lease_end_date', true );
+				$price 			= get_post_meta( $post_id, 'property_price', true );
+				$view			= get_post_meta( $post_id, 'property_price_view', true );
+				$property_under_offer 	= get_post_meta( $post_id, 'property_under_offer', true );
+				$lease 			= get_post_meta( $post_id, 'property_com_rent', true );
+				$lease_period		= get_post_meta( $post_id, 'property_com_rent_period', true );
+				$lease_date 		= get_post_meta( $post_id, 'property_com_lease_end_date', true );
+				
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price =$epl_settings['epl_max_graph_sales_price' ];
 				}
@@ -231,7 +233,10 @@ if ( is_admin() ) {
 				}
 				
 				if ( !empty ( $lease ) ) {
-					echo '<div class="epl_meta_lease_price">'.__('Lease','epl').': ' , epl_currency_formatted_amount( $lease ), '</div>';
+					if ( empty ( $lease_period ) ) {
+						$lease_period = 'annual';
+					}
+					echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), ' ' ,epl_listing_load_meta_commercial_rent_period_value( $lease_period ) ,'</div>';
 				}
 				
 				if ( !empty ( $lease_date ) ) {

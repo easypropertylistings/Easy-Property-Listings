@@ -25,37 +25,37 @@ function epl_register_custom_post_type_commercial_land() {
 	$rewrite  = defined( 'EPL_COMMERCIAL_LAND_DISABLE_REWRITE' ) && EPL_COMMERCIAL_LAND_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_commercial_land_labels', array(
-		'name'					=>	__('Commercial Land Listings', 'epl'),
-		'singular_name'			=>	__('Commercial Land Listing', 'epl'),
-		'menu_name'				=>	__('Commercial Land', 'epl'),
-		'add_new'				=>	__('Add New', 'epl'),
-		'add_new_item'			=>	__('Add New Commercial Land Listing', 'epl'),
-		'edit_item'				=>	__('Edit Commercial Land Listing', 'epl'),
-		'new_item'				=>	__('New Commercial Land Listing', 'epl'),
-		'update_item'			=>	__('Update Commercial Land Listing', 'epl'),
-		'all_items'				=>	__('All Commercial Land Listings', 'epl'),
-		'view_item'				=>	__('View Commercial Land Listing', 'epl'),
-		'search_items'			=>	__('Search Commercial Land Listing', 'epl'),
-		'not_found'				=>	__('Commercial Land Listing Not Found', 'epl'),
+		'name'			=>	__('Commercial Land Listings', 'epl'),
+		'singular_name'		=>	__('Commercial Land Listing', 'epl'),
+		'menu_name'		=>	__('Commercial Land', 'epl'),
+		'add_new'		=>	__('Add New', 'epl'),
+		'add_new_item'		=>	__('Add New Commercial Land Listing', 'epl'),
+		'edit_item'		=>	__('Edit Commercial Land Listing', 'epl'),
+		'new_item'		=>	__('New Commercial Land Listing', 'epl'),
+		'update_item'		=>	__('Update Commercial Land Listing', 'epl'),
+		'all_items'		=>	__('All Commercial Land Listings', 'epl'),
+		'view_item'		=>	__('View Commercial Land Listing', 'epl'),
+		'search_items'		=>	__('Search Commercial Land Listing', 'epl'),
+		'not_found'		=>	__('Commercial Land Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Commercial Land Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'		=>	__('Parent Commercial Land Listing:', 'epl')
+		'parent_item_colon'	=>	__('Parent Commercial Land Listing:', 'epl')
 	) );
 	
 	$commercial_land_args = array(
-		'labels'				=>	$labels,
-		'public'				=>	true,
+		'labels'		=>	$labels,
+		'public'		=>	true,
 		'publicly_queryable'	=>	true,
-		'show_ui'				=>	true,
-		'show_in_menu'			=>	true,
-		'query_var'				=>	true,
-		'rewrite'				=>	$rewrite,
-		'menu_icon'				=>	'dashicons-image-crop',
-		'capability_type'		=>	'post',
-		'has_archive'			=>	$archives,
-		'hierarchical'			=>	false,
-		'menu_position'			=>	'26.8',
-		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	apply_filters( 'epl_commercial_land_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
+		'show_ui'		=>	true,
+		'show_in_menu'		=>	true,
+		'query_var'		=>	true,
+		'rewrite'		=>	$rewrite,
+		'menu_icon'		=>	'dashicons-image-crop',
+		'capability_type'	=>	'post',
+		'has_archive'		=>	$archives,
+		'hierarchical'		=>	false,
+		'menu_position'		=>	'26.8',
+		'taxonomies'		=>	array( 'location', 'tax_feature' ),
+		'supports'		=>	apply_filters( 'epl_commercial_land_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
 	epl_register_post_type( 'commercial_land', 'Commercial Land', apply_filters( 'epl_commercial_land_post_type_args', $commercial_land_args ) );
 }
@@ -76,16 +76,16 @@ if ( is_admin() ) {
 	 */
 	function epl_manage_commercial_land_columns_heading( $columns ) {
 		$columns = array(
-			'cb'				=> '<input type="checkbox" />',
+			'cb'			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Image', 'epl'),
 			'property_price'	=> __('Price', 'epl'),
-			'title'				=> __('Address', 'epl'),
-			'listing'			=> __('Listing Details', 'epl'),
-			'geo'				=> __('Geo', 'epl'),
+			'title'			=> __('Address', 'epl'),
+			'listing'		=> __('Listing Details', 'epl'),
+			'geo'			=> __('Geo', 'epl'),
 			'property_status'	=> __('Status', 'epl'),
 			'listing_type'		=> __('Sale/Lease', 'epl'),
-			'agent'				=> __('Agent', 'epl'),
-			'date'				=> __('Date', 'epl')
+			'agent'			=> __('Agent', 'epl'),
+			'date'			=> __('Date', 'epl')
 		);
 		
 		$geo_debug = 0;
@@ -122,15 +122,15 @@ if ( is_admin() ) {
 			case 'listing' :
 				/* Get the post meta. */
 				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading					= get_post_meta( $post_id, 'property_heading', true );
+				$heading			= get_post_meta( $post_id, 'property_heading', true );
 				
-				$category					= get_post_meta( $post_id, 'property_commercial_category', true );
+				$category			= get_post_meta( $post_id, 'property_commercial_category', true );
 			
-				$outgoings					= get_post_meta( $post_id, 'property_com_outgoings', true );
-				$return						= get_post_meta( $post_id, 'property_com_return', true );
+				$outgoings			= get_post_meta( $post_id, 'property_com_outgoings', true );
+				$return				= get_post_meta( $post_id, 'property_com_return', true );
 				
-				$land						= get_post_meta( $post_id, 'property_land_area', true );
-				$land_unit					= get_post_meta( $post_id, 'property_land_area_unit', true );
+				$land				= get_post_meta( $post_id, 'property_land_area', true );
+				$land_unit			= get_post_meta( $post_id, 'property_land_area_unit', true );
 				
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
