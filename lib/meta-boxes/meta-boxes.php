@@ -99,8 +99,8 @@ function epl_meta_box_init() {
 			'part'		=>	__('Part', 'epl')
 		)
 	);
-	$opts_property_com_rent_lease_type = apply_filters (  'epl_opts_property_com_rent_lease_type_filter', array(
-			'P.A.'		=>	__('P.A', 'epl'),
+	$opts_property_com_rent_period = apply_filters (  'epl_opts_property_com_rent_period_filter', array(
+			'annual'	=>	__('P.A.', 'epl'),
 			'NNN'		=>	__('NNN', 'epl')
 		)
 	);
@@ -1045,7 +1045,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_date_available',
 							'label'		=>	__('Date Available', 'epl'),
-							'type'		=>	'available-date',
+							'type'		=>	'date',
 							'maxlength'	=>	'100'
 						),
 					
@@ -1165,10 +1165,10 @@ function epl_meta_box_init() {
 							'maxlength'	=>	'40'
 						),
 						array(
-							'name'		=>	'property_com_rent_lease_type',
-							'label'		=>	__('Lease Type', 'epl'),
+							'name'		=>	'property_com_rent_period',
+							'label'		=>	__('Lease Period', 'epl'),
 							'type'		=>	'select',
-							'opts'		=>	$opts_property_com_rent_lease_type
+							'opts'		=>	$opts_property_com_rent_period
 						),
 						array(
 							'name'		=>	'property_com_rent_range_min',
@@ -1657,16 +1657,7 @@ function epl_meta_box_init() {
 													$epl_date = $epl_date->format('Y-m-d');
 												}
 												$_POST[ $field['name'] ] = $epl_date;
-											} else if( $field['type'] == 'available-date' && $_POST[ $field['name'] ] != '') {
-												$epl_date = $_POST[ $field['name'] ];
-												if(strpos($epl_date, 'T') !== FALSE){
-													$epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
-												} else {
-													$epl_date = DateTime::createFromFormat('Y-m-d-H:i:s', $epl_date);
-													$epl_date = $epl_date->format('Y-m-d');
-												}
-												$_POST[ $field['name'] ] = $epl_date;
-											}
+											} 
 											
 											update_post_meta( $post_ID, $field['name'], $_POST[ $field['name'] ] );
 										}

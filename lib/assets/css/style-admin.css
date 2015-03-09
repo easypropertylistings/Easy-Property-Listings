@@ -717,10 +717,16 @@ h3.epl-welcome-sub-heading {
 	height: auto;
 }
 /* Responsive */
-@media screen and (max-width: 360px)  { 
-    #epl_status_dashboard_widget .epl_status_list li{
-    	width:100%;
-    }
+@media screen and (max-width: 782px) {
+	.form-table td .epl-inspection-markup input[type=text],
+	.form-table td .epl-inspection-markup select {
+		display: inline-block;
+		height: 40px;
+		line-height: 14px;
+	}
+	.form-table td  input[type=text]#epl-inspection-date {
+		display: block;
+	}
 }
 @media screen and (max-width: 500px)  { 
 	.fixed .column-listing {
@@ -736,6 +742,11 @@ h3.epl-welcome-sub-heading {
 	.epl-half-left {
 		width: 100% !important;
 	}
+}
+@media screen and (max-width: 360px)  { 
+    #epl_status_dashboard_widget .epl_status_list li{
+    	width:100%;
+    }
 }
 /* Clear Floats */
 .epl-clear {
