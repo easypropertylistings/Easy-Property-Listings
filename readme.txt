@@ -163,6 +163,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Text domain fixes on template files.
 * Fix: Finnish translation file renamed.
 * Fix: FeedSync date processor strptime function corrected.
+* Fix: Bug in parking search field. Was only searching carports and not garages. Now searches both.
 * Tweak: Optimised loading of admin scripts and styles to pages where required.
 * Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.
 * Tweak: Tidy up of admin CSS.

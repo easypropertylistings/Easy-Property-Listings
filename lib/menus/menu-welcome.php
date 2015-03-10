@@ -353,6 +353,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Fix: Text domain fixes on template files.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Finnish translation file renamed.', 'epl' );?></li>
 						<li><?php _e( 'Fix: FeedSync date processor strptime function corrected.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Bug in parking search field. Was only searching carports and not garages. Now searches both.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Optimised loading of admin scripts and styles to pages where required.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Tidy up of admin CSS.', 'epl' );?></li>
