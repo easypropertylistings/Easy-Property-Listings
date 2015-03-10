@@ -331,10 +331,19 @@ function epl_search_pre_get_posts( $query ) {
 		}
 		if(isset($property_carport) && !empty($property_carport)) {
 			$meta_query[] = array(
-				'key'		=>	'property_carport',
-				'value'		=>	$property_carport,
-				'type'		=>	'numeric',
-				'compare'	=>	'>='
+				'relation' => 'OR',
+				array(
+					'key'		=>	'property_carport',
+					'value'		=>	$property_carport,
+					'type'		=>	'numeric',
+					'compare'	=>	'>='
+				),
+				array(
+					'key'		=>	'property_garage',
+					'value'		=>	$property_carport,
+					'type'		=>	'numeric',
+					'compare'	=>	'>='
+				)
 			);
 		}
 		if(isset($property_category) && !empty($property_category)) {
