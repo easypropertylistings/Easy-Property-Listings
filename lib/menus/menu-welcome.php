@@ -356,6 +356,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Optimised loading of admin scripts and styles to pages where required.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Tidy up of admin CSS.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Contributors can now access Easy Property Listings Help page.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Increased characters possible in address block fields from 40 to 80 characters.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Increased characters possible in heading block to 200.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Coordinates now correctly being used to generate map.', 'epl' );?></li>
