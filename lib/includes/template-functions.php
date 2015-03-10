@@ -233,9 +233,12 @@ function epl_archive_custom_excerpt_length( $length ) {
 // Selecting Card Display Style
 // Allows the use of one function where we can then select a different template when needed 
 function epl_property_blog() {
-
 	add_filter( 'excerpt_length', 'epl_archive_custom_excerpt_length', 999 );
 	global $epl_settings,$property;
+
+	if(	is_null($property) ) {
+		return;
+	}
 	$option = '';
 	if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
 		$option = $epl_settings['epl_property_card_style'];
@@ -285,6 +288,9 @@ function epl_property_blog_default() {
 // Listing Function for paged card display 
 function epl_property_blog_slim() {
 	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
 	$property_status = $property->get_property_meta('property_status');
 	// Status Removal
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {

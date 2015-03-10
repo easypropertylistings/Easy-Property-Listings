@@ -33,8 +33,6 @@ function epl_shortcode_listing_callback( $atts ) {
 		'limit'			=>	'10', // Number of maximum posts to show
 		'template'		=>	false, // Template can be set to "slim" for home open style template
 		'location'		=>	'', // Location slug. Should be a name like sorrento
-		'sortby'		=>	'', // Options: price, date : Default date
-		'sort_order'		=>	'DESC'
 	), $atts ) );
 	
 	$sort_options = array(
@@ -76,26 +74,32 @@ function epl_shortcode_listing_callback( $atts ) {
 		}
 	}
 
-	if(!empty($sortby) && isset($sort_options[$sortby])) {
-		
-		if($sortby == 'date') {
-			$args['orderby']	=	$sort_options[$sortby];
-			$args['order']		=	sanitize_text_field($sort_order);
-		
-		} else {
+	if( isset( $_GET['sortby'] ) ) {
+		$orderby = sanitize_text_field( trim($_GET['sortby']) );
+		if($orderby == 'high') {
 			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$sort_options[$sortby];
-			$args['order']		=	sanitize_text_field($sort_order);
-		
+			$args['meta_key']	=	'property_price';
+			$args['order']		=	'DESC';
+		} elseif($orderby == 'low') {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	'property_price';
+			$args['order']		=	'ASC';
+		} elseif($orderby == 'new') {
+			$args['orderby']	=	'post_date';
+			$args['order']		=	'DESC';
+		} elseif($orderby == 'old') {
+			$args['orderby']	=	'post_date';
+			$args['order']		=	'ASC';
 		}
+		
 	}
-
 	
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing">
 				<?php
+					do_action( 'epl_property_loop_start' );
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
 						
@@ -105,6 +109,7 @@ function epl_shortcode_listing_callback( $atts ) {
 							epl_property_blog();
 						}
 					}
+					do_action( 'epl_property_loop_end' );
 				?>
 			</div>
 			<div class="loop-footer">

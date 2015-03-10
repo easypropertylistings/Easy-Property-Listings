@@ -108,6 +108,8 @@ function epl_register_post_type($post_type='', $post_type_label, $args=array()) 
  */
 function epl_get_active_post_types() {
 	global $epl_active_post_types;
+	if(is_null($epl_active_post_types))
+		$epl_active_post_types = array();
 	return $epl_active_post_types;
 }
 /**
