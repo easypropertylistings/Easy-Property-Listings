@@ -200,7 +200,7 @@ function epl_property_single_default() {
 /*
 * Attempts to load templates in order of priority
 */
-function epl_get_template_part($template) {
+function epl_get_template_part($template,$arguments=array()) {
 	global $epl_author;
 	$base_path		= apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
 	$default		= $template;
@@ -209,6 +209,7 @@ function epl_get_template_part($template) {
 	if(!$template) {
 		$template	=	$base_path . $default;
 	}
+	extract($arguments);
 	include( $template);
 }
 /*
@@ -367,7 +368,8 @@ function epl_property_author_card( $display , $image , $title , $icons) {
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
-		include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-author.php');
+		$arg_list = get_defined_vars();
+		epl_get_template_part('widget-content-author.php',$arg_list);
 	} // End Status Removal
 }
 
@@ -385,7 +387,8 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
-		include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-listing.php');
+		$arg_list = get_defined_vars();
+		epl_get_template_part('widget-content-listing.php',$arg_list);
 	} // End Status Removal
 }
 
@@ -407,14 +410,16 @@ function epl_property_widget_image_only_option( $image ) {
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
-		include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-listing-image.php');
+		$arg_list = get_defined_vars();
+		epl_get_template_part('widget-content-listing-image.php',$arg_list);
 	} // End Status Removal
 }
 
 // WIDGET AUTHOR : Widget Tall Card
 function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio) {
 	global $property,$epl_author;
-	include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php');
+	$arg_list = get_defined_vars();
+	epl_get_template_part('widget-content-author-tall.php',$arg_list);
 	//epl_get_template_part('widget-content-author-tall.php');
 	
 	// Second Author
@@ -424,7 +429,8 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 			$second_author = get_user_by( 'login' , $property_second_agent );
 			if($second_author !== false){
 					$epl_author = new EPL_Author_meta($second_author->ID);
-					include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php');
+					$arg_list = get_defined_vars();
+					epl_get_template_part('widget-content-author-tall.php',$arg_list);
 
 			}
 			epl_reset_post_author();
@@ -937,12 +943,12 @@ add_action('pre_get_posts','epl_archive_sorting');
 
 function epl_author_tabs () {
 	global $epl_author;
-	$author_tabs	= array(
-				'author_id'		=>	__('About','epl'),
-				'description'		=>	__('Bio','epl'),
-				'video'			=>	__('Video','epl'),
-				'contact_form'		=>	__('Contact','epl'),
-			);
+	$author_tabs	=	array(
+		'author_id'			=>	__('About','epl'),
+		'description'		=>	__('Bio','epl'),
+		'video'				=>	__('Video','epl'),
+		'contact_form'		=>	__('Contact','epl'),
+	);
 					
 	 foreach($author_tabs as $k	=>	$author_tab) { 	
 	 	if( $epl_author->{$k} == ''){ 	
@@ -961,7 +967,7 @@ function epl_author_class ($classes) {
 	}
 }
 
-function epl_author_tab_about() { 
+function epl_author_tab_author_id() { 
 	global $epl_author, $epl_settings;
 	
 	$author_style = '';
@@ -1009,7 +1015,7 @@ function epl_author_tab_image () {
 	}
 }
 
-function epl_author_tab_bio() { 
+function epl_author_tab_description() { 
 	global $epl_author; 
 	echo $epl_author->get_description_html();
 }
@@ -1019,7 +1025,7 @@ function epl_author_tab_video() {
 	echo '<div class="author-video epl-video-container">'.$epl_author->get_video_html().'</div>';
 }
 
-function epl_author_tab_contact() {
+function epl_author_tab_contact_form() {
 	global $epl_author;
 	echo $epl_author->get_author_contact_form();
 }
