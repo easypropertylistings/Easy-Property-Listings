@@ -1188,3 +1188,42 @@ function epl_update_listing_coordinates() {
 }
 add_action('wp_ajax_epl_update_listing_coordinates','epl_update_listing_coordinates');
 add_action('wp_ajax_nopriv_epl_update_listing_coordinates','epl_update_listing_coordinates');
+
+/*
+** Adapted from wp core to add additional filters
+*/
+function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+	$terms = get_the_terms( $id, $taxonomy );
+
+	if ( is_wp_error( $terms ) )
+		return $terms;
+
+	if ( empty( $terms ) )
+		return false;
+
+	foreach ( $terms as $term ) {
+		$link = get_term_link( $term, $taxonomy );
+		if ( is_wp_error( $link ) )
+			return $link;
+			
+		if( apply_filters('epl_features_taxonomy_link_filter' , true)  == true ) {
+		
+			$term_links[] = '<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>';
+			
+		} else {
+		
+			$term_links[] = $term->name;
+		
+		}
+	}
+
+	$term_links = apply_filters( "term_links-$taxonomy", $term_links );
+
+	return $before . join( $sep, $term_links ) . $after;
+}
+
+function epl_features_taxonomy_link_filter() {
+	return false;
+}
+
+add_filter('epl_features_taxonomy_link_filter','epl_features_taxonomy_link_filter');
