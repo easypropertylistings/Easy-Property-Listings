@@ -306,7 +306,7 @@ function epl_property_blog_slim() {
 		if ( $action_check != '' && $option !== 0 ) {
 			do_action( 'epl_loop_template' );
 		} else {
-			epl_get_template_part('loop-listing-blog-default.php');
+			epl_get_template_part('loop-listing-blog-slim.php');
 		}
 	} // End Status Removal
 }
@@ -1227,3 +1227,13 @@ function epl_features_taxonomy_link_filter() {
 }
 
 add_filter('epl_features_taxonomy_link_filter','epl_features_taxonomy_link_filter');
+
+function get_property_meta($key) {
+	global $property;
+	return $property->get_property_meta($key);
+}
+
+function the_property_meta($key) {
+	global 	$property;
+	echo  	$property->get_property_meta($key);
+}
