@@ -76,10 +76,15 @@ function epl_shortcode_property_open_callback( $atts ) {
 						if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold'  || $property_status == 'leased') {
 							// Do Not Display Withdrawn or OffMarket listings
 						} else {
-							if ( $template ) {
+							if ( $template == false ) {
 								epl_property_blog();
 							} else {
-								epl_property_blog_slim();
+						
+								if( function_exists( 'epl_property_blog_'.$template ) ) {
+							
+									call_user_func( 'epl_property_blog_'.$template );
+								
+								}
 							}
 							
 						} // End Status Removal

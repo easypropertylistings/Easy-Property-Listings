@@ -311,6 +311,30 @@ function epl_property_blog_slim() {
 	} // End Status Removal
 }
 
+// Listing Function for paged card display 
+function epl_property_blog_table() {
+	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-table.php');
+		}
+	} // End Status Removal
+}
 /*
 * Author Card Templates
 */
