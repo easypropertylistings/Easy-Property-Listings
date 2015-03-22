@@ -305,7 +305,7 @@ function epl_property_blog_slim() {
 		if ( $action_check != '' && $option !== 0 ) {
 			do_action( 'epl_loop_template' );
 		} else {
-			epl_get_template_part('loop-listing-blog-default.php');
+			epl_get_template_part('loop-listing-blog-slim.php');
 		}
 	} // End Status Removal
 }
