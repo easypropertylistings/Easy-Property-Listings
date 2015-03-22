@@ -715,7 +715,7 @@ class EPL_Property_Meta {
 		$property_feature_taxonomy = '';
 		if ( taxonomy_exists('tax_feature') ) {
 			global $post;
-			$property_feature_taxonomy = get_the_term_list($this->post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' );
+			$property_feature_taxonomy = epl_get_the_term_list($this->post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' );
 		}
 		return $property_feature_taxonomy;
 	}
