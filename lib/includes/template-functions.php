@@ -200,7 +200,7 @@ function epl_property_single_default() {
 /*
 * Attempts to load templates in order of priority
 */
-function epl_get_template_part($template) {
+function epl_get_template_part($template,$arguments=array()) {
 	global $epl_author;
 	$base_path		= apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
 	$default		= $template;
@@ -209,6 +209,7 @@ function epl_get_template_part($template) {
 	if(!$template) {
 		$template	=	$base_path . $default;
 	}
+	extract($arguments);
 	include( $template);
 }
 /*
@@ -310,6 +311,30 @@ function epl_property_blog_slim() {
 	} // End Status Removal
 }
 
+// Listing Function for paged card display 
+function epl_property_blog_table() {
+	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-table.php');
+		}
+	} // End Status Removal
+}
 /*
 * Author Card Templates
 */
@@ -367,7 +392,8 @@ function epl_property_author_card( $display , $image , $title , $icons) {
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
-		include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-author.php');
+		$arg_list = get_defined_vars();
+		epl_get_template_part('widget-content-author.php',$arg_list);
 	} // End Status Removal
 }
 
@@ -385,7 +411,8 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
-		include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-listing.php');
+		$arg_list = get_defined_vars();
+		epl_get_template_part('widget-content-listing.php',$arg_list);
 	} // End Status Removal
 }
 
@@ -407,14 +434,16 @@ function epl_property_widget_image_only_option( $image ) {
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
-		include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-listing-image.php');
+		$arg_list = get_defined_vars();
+		epl_get_template_part('widget-content-listing-image.php',$arg_list);
 	} // End Status Removal
 }
 
 // WIDGET AUTHOR : Widget Tall Card
 function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio) {
 	global $property,$epl_author;
-	include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php');
+	$arg_list = get_defined_vars();
+	epl_get_template_part('widget-content-author-tall.php',$arg_list);
 	//epl_get_template_part('widget-content-author-tall.php');
 	
 	// Second Author
@@ -424,7 +453,8 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 			$second_author = get_user_by( 'login' , $property_second_agent );
 			if($second_author !== false){
 					$epl_author = new EPL_Author_meta($second_author->ID);
-					include(EPL_PATH_TEMPLATES_CONTENT.'widget-content-author-tall.php');
+					$arg_list = get_defined_vars();
+					epl_get_template_part('widget-content-author-tall.php',$arg_list);
 
 			}
 			epl_reset_post_author();
@@ -937,12 +967,12 @@ add_action('pre_get_posts','epl_archive_sorting');
 
 function epl_author_tabs () {
 	global $epl_author;
-	$author_tabs	= array(
-				'author_id'		=>	__('About','epl'),
-				'description'		=>	__('Bio','epl'),
-				'video'			=>	__('Video','epl'),
-				'contact_form'		=>	__('Contact','epl'),
-			);
+	$author_tabs	=	array(
+		'author_id'			=>	__('About','epl'),
+		'description'		=>	__('Bio','epl'),
+		'video'				=>	__('Video','epl'),
+		'contact_form'		=>	__('Contact','epl'),
+	);
 					
 	 foreach($author_tabs as $k	=>	$author_tab) { 	
 	 	if( $epl_author->{$k} == ''){ 	
@@ -961,7 +991,7 @@ function epl_author_class ($classes) {
 	}
 }
 
-function epl_author_tab_about() { 
+function epl_author_tab_author_id() { 
 	global $epl_author, $epl_settings;
 	
 	$author_style = '';
@@ -1009,7 +1039,7 @@ function epl_author_tab_image () {
 	}
 }
 
-function epl_author_tab_bio() { 
+function epl_author_tab_description() { 
 	global $epl_author; 
 	echo $epl_author->get_description_html();
 }
@@ -1019,7 +1049,7 @@ function epl_author_tab_video() {
 	echo '<div class="author-video epl-video-container">'.$epl_author->get_video_html().'</div>';
 }
 
-function epl_author_tab_contact() {
+function epl_author_tab_contact_form() {
 	global $epl_author;
 	echo $epl_author->get_author_contact_form();
 }
@@ -1182,3 +1212,52 @@ function epl_update_listing_coordinates() {
 }
 add_action('wp_ajax_epl_update_listing_coordinates','epl_update_listing_coordinates');
 add_action('wp_ajax_nopriv_epl_update_listing_coordinates','epl_update_listing_coordinates');
+
+/*
+** Adapted from wp core to add additional filters
+*/
+function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
+	$terms = get_the_terms( $id, $taxonomy );
+
+	if ( is_wp_error( $terms ) )
+		return $terms;
+
+	if ( empty( $terms ) )
+		return false;
+
+	foreach ( $terms as $term ) {
+		$link = get_term_link( $term, $taxonomy );
+		if ( is_wp_error( $link ) )
+			return $link;
+			
+		if( apply_filters('epl_features_taxonomy_link_filter' , true)  == true ) {
+		
+			$term_links[] = '<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>';
+			
+		} else {
+		
+			$term_links[] = $term->name;
+		
+		}
+	}
+
+	$term_links = apply_filters( "term_links-$taxonomy", $term_links );
+
+	return $before . join( $sep, $term_links ) . $after;
+}
+
+function epl_features_taxonomy_link_filter() {
+	return false;
+}
+
+add_filter('epl_features_taxonomy_link_filter','epl_features_taxonomy_link_filter');
+
+function get_property_meta($key) {
+	global $property;
+	return $property->get_property_meta($key);
+}
+
+function the_property_meta($key) {
+	global 	$property;
+	echo  	$property->get_property_meta($key);
+}

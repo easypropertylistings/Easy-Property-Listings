@@ -70,13 +70,32 @@ function epl_custom_restrict_manage_posts() {
 			)
 		); 
 		
+		$custom_search_fields = array(
+			'property_address_suburb'		=>	__('Suburbs', 'epl'),
+			'property_office_id'			=>	__('Office ID', 'epl'),
+			'property_agent'				=>	__('Listing Agent', 'epl'),
+			'property_second_agent'			=>	__('Second Listing Agent', 'epl'),
+		);
+		$custom_search_fields = apply_filters('epl_admin_search_fields',$custom_search_fields);
+		
+		if(!empty($custom_search_fields)) {
+			$_GET['property_custom_fields'] = isset($_GET['property_custom_fields'])?sanitize_text_field($_GET['property_custom_fields']):'';
+			echo '<select name="property_custom_fields">';
+				echo '<option value="">'.__('Search For :', 'epl').'</option>';
+				foreach($custom_search_fields as $k=>$v) {
+					$selected = ($_GET['property_custom_fields'] == $k ? 'selected="selected"' : '');
+					echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+				}
+			echo '</select>';
+		}
+		
 		//Filter by Suburb
-		if(isset($_GET['property_address_suburb'])) {
-			$val = stripslashes($_GET['property_address_suburb']);
+		if(isset($_GET['property_custom_value'])) {
+			$val = stripslashes($_GET['property_custom_value']);
 		} else {
 			$val = '';
 		}
-		echo '<input type="text" name="property_address_suburb" placeholder="'.__('Search Suburbs.', 'epl').'" value="'.$val.'" />';
+		echo '<input type="text" name="property_custom_value" placeholder="'.__('Search Value.', 'epl').'" value="'.$val.'" />';
 	}
 }
 
@@ -97,12 +116,14 @@ function epl_admin_posts_filter( $query ) {
 		}
 
 
-		if(isset($_GET['property_address_suburb']) && trim($_GET['property_address_suburb']) != '') {
+		if( isset($_GET['property_custom_fields']) && trim($_GET['property_custom_fields']) != '' && isset($_GET['property_custom_value']) && trim($_GET['property_custom_value']) != '') {
+		
 			$meta_query[] = array(
-				'key'       => 'property_address_suburb',
-				'value'     => $_GET['property_address_suburb'],
-				'compare'   => 'LIKE'
+				'key'       => sanitize_text_field( $_GET['property_custom_fields'] ),
+				'value'     => sanitize_text_field( $_GET['property_custom_value'] ),
+				'compare'   => 'LIKE',
 			);
+			
 		}
 		
 		if(!empty($meta_query)) {

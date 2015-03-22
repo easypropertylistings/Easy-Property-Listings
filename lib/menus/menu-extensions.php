@@ -28,8 +28,10 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 					if($field['type'] == 'text') {
 						$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 					}
-
-					$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+					
+					if( isset($_REQUEST[ $field['name'] ]) ) {
+						$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+					}
 				}
 			}
 			update_option('epl_settings', $epl_settings);
