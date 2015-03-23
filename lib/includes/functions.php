@@ -212,7 +212,7 @@ function epl_get_decimal_separator() {
 	return apply_filters( 'epl_decimal_separator', $epl_decimal_separator );
 }
 function epl_currency_formatted_amount($price) {
-	return epl_currency_filter( epl_format_amount( $price , true ) );
+	return epl_currency_filter( epl_format_amount( $price , false ) );
 }
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
