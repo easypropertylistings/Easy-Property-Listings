@@ -64,17 +64,17 @@ function epl_custom_restrict_manage_posts() {
 		// filter by authors
 		wp_dropdown_users(
 			array(
-				'name' 					=> 'property_author',
-				'selected'				=> $property_author,
-				'show_option_all'		=> 	__('All Users','epl')
+				'name' 			=> 'property_author',
+				'selected'		=> $property_author,
+				'show_option_all'	=> __('All Users','epl')
 			)
 		); 
 		
 		$custom_search_fields = array(
-			'property_address_suburb'		=>	__('Suburbs', 'epl'),
-			'property_office_id'			=>	__('Office ID', 'epl'),
-			'property_agent'				=>	__('Listing Agent', 'epl'),
-			'property_second_agent'			=>	__('Second Listing Agent', 'epl'),
+			'property_address_suburb'	=>	epl_display_label_suburb(),
+			'property_office_id'		=>	__('Office ID', 'epl'),
+			'property_agent'		=>	__('Listing Agent', 'epl'),
+			'property_second_agent'		=>	__('Second Listing Agent', 'epl'),
 		);
 		$custom_search_fields = apply_filters('epl_admin_search_fields',$custom_search_fields);
 		

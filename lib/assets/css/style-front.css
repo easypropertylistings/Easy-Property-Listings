@@ -688,6 +688,9 @@ li.tbhead.current {
 }
 .property-feature-icons .icon {
 	padding: 0px 10px 4px 25px;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
 }
 .icon.beds {
 	background: transparent url(../images/icon-sprites.png) 0 -120px no-repeat;

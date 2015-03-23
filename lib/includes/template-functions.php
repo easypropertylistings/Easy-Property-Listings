@@ -968,13 +968,13 @@ add_action('pre_get_posts','epl_archive_sorting');
 function epl_author_tabs () {
 	global $epl_author;
 	$author_tabs	=	array(
-		'author_id'			=>	__('About','epl'),
+		'author_id'		=>	__('About','epl'),
 		'description'		=>	__('Bio','epl'),
-		'video'				=>	__('Video','epl'),
+		'video'			=>	__('Video','epl'),
 		'contact_form'		=>	__('Contact','epl'),
 	);
 					
-	 foreach($author_tabs as $k	=>	$author_tab) { 	
+	 foreach($author_tabs as $k => $author_tab) { 	
 	 	if( $epl_author->{$k} == ''){ 	
 	 		unset($author_tabs[$k]); 	
 	 	} 	
@@ -1144,9 +1144,11 @@ add_action('epl_buttons_single_property', 'epl_buttons_wrapper_before' , 1);
 add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
 
 /**
-* Used to mark home inspection on apple devices 
-*
-**/
+ * Used to mark home inspection on apple devices 
+ *
+ * @since version 2.0
+ *
+ **/
 function epl_create_ical_file($start='',$end='',$name='',$description='',$location='') {
 
      $data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:".date("Ymd\THis",strtotime($start))."\nDTEND:".date("Ymd\THis",strtotime($end))."\nLOCATION:".$location."\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:\nDTSTAMP:".date("Ymd\THis\Z")."\nSUMMARY:".$name."\nDESCRIPTION:".$description."\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
