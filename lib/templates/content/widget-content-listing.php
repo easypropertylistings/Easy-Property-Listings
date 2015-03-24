@@ -8,7 +8,6 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-echo get_user_meta(get_current_user_id(),'epl_la_price_min_sale',true);
 ?>
 
 <div id="post-<?php the_ID(); ?>" class="epl-widget epl-listing-widget property-widget-image">
