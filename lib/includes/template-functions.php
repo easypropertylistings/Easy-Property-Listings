@@ -445,10 +445,9 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 	global $property,$epl_author;
 	$arg_list = get_defined_vars();
 	epl_get_template_part('widget-content-author-tall.php',$arg_list);
-	//epl_get_template_part('widget-content-author-tall.php');
 	
 	// Second Author
-	if ( is_single() ) {
+	if ( is_single() && !is_null($property) ) {
 		$property_second_agent = $property->get_property_meta('property_second_agent');
 		if ( '' != $property_second_agent ) {
 			$second_author = get_user_by( 'login' , $property_second_agent );
@@ -1229,6 +1228,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 		return false;
 
 	foreach ( $terms as $term ) {
+
 		$link = get_term_link( $term, $taxonomy );
 		if ( is_wp_error( $link ) )
 			return $link;
