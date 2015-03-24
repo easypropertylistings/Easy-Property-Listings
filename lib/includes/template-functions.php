@@ -103,6 +103,7 @@ function epl_property_sold_leased() {
 
 // superglobal object $property for posts 'property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural'
 function epl_reset_property_object( $post ) {
+	global $epl_author;
 	$epl_author 	= new EPL_Author_meta($post->post_author);
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
@@ -114,7 +115,7 @@ function epl_reset_property_object( $post ) {
 	$epl_posts[] 	= 'location_profile';
 	
 	if(in_array($post->post_type,$epl_posts)){
-		global $property,$epl_author;
+		global $property;
 		$property 		= new EPL_Property_Meta($post);
 	}
 }
