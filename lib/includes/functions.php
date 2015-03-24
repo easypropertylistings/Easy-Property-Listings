@@ -540,6 +540,7 @@ function epl_admin_sidebar () {
  * @since 2.1
  */
  function epl_render_html_fields ($field=array(),$val='') {
+ 	global $post;
  	switch($field['type']) {
 		case 'select':
 			$dependency = 'false'; 

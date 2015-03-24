@@ -376,8 +376,8 @@ function epl_property_author_box_simple_card() {
 function epl_property_author_box_simple_grav() {
 	global $epl_settings,$epl_author;
 	$author_style = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_staff_link_to'])) {
-		$author_style = $epl_settings['epl_staff_link_to'];
+	if(!empty($epl_settings) && isset($epl_settings['epl_sd_link_to'])) {
+		$author_style = $epl_settings['epl_sd_link_to'];
 	}
 	
 	epl_get_template_part('content-author-box-simple-grav.php');
@@ -995,13 +995,13 @@ function epl_author_tab_author_id() {
 	global $epl_author, $epl_settings;
 	
 	$author_style = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_staff_link_to'])) {
-		$author_style = $epl_settings['epl_staff_link_to'];
+	if(!empty($epl_settings) && isset($epl_settings['epl_sd_link_to'])) {
+		$author_style = $epl_settings['epl_sd_link_to'];
 	}
 	
 	$epl_staff_excerpt = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_staff_excerpt'])) {
-		$epl_staff_excerpt = $epl_settings['epl_staff_excerpt'];
+	if(!empty($epl_settings) && isset($epl_settings['epl_sd_archive_excerpt'])) {
+		$epl_staff_excerpt = $epl_settings['epl_sd_archive_excerpt'];
 	}
 ?>
 	<div class="author-contact-details">
@@ -1247,12 +1247,6 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 
 	return $before . join( $sep, $term_links ) . $after;
 }
-
-function epl_features_taxonomy_link_filter() {
-	return false;
-}
-
-add_filter('epl_features_taxonomy_link_filter','epl_features_taxonomy_link_filter');
 
 function get_property_meta($key) {
 	global $property;

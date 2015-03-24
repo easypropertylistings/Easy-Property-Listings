@@ -404,7 +404,7 @@ class EPL_Property_Meta {
 				
 			} else {
 				$price_sticker = '';
-				if($this->get_epl_settings('sticker_new_range') >=  $diff->days)
+				if($this->get_epl_settings('sticker_new_range') >=  $diff)
 					$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
 
 				if ( $this->get_property_meta('property_inspection_times') != '' ){
