@@ -376,11 +376,6 @@ function epl_property_author_box_simple_card() {
 // AUTHOR CARD : Gravatar
 function epl_property_author_box_simple_grav() {
 	global $epl_settings,$epl_author;
-	$author_style = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_sd_link_to'])) {
-		$author_style = $epl_settings['epl_sd_link_to'];
-	}
-	
 	epl_get_template_part('content-author-box-simple-grav.php');
 }
 
@@ -991,29 +986,22 @@ function epl_author_class ($classes) {
 	}
 }
 
-function epl_author_tab_author_id() { 
+function epl_author_tab_author_id() {
+
 	global $epl_author, $epl_settings;
 	
-	$author_style = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_sd_link_to'])) {
-		$author_style = $epl_settings['epl_sd_link_to'];
-	}
-	
-	$epl_staff_excerpt = '';
-	if(!empty($epl_settings) && isset($epl_settings['epl_sd_archive_excerpt'])) {
-		$epl_staff_excerpt = $epl_settings['epl_sd_archive_excerpt'];
-	}
+	$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) );
+	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) );
+		
 ?>
 	<div class="author-contact-details">
-		<?php if ( $author_style == 1) { ?>
-			<h5 class="author-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-		<?php } else { ?>
-			<h5 class="author-title">
-				<a href="<?php echo get_author_posts_url( $epl_author->author_id ); ?>">
-					<?php the_author_meta( 'display_name',$epl_author->author_id ); ?>
-				</a>
-			</h5>
-		<?php } ?>
+	
+		<h5 class="author-title">
+			<a href="<?php echo $permalink ?>">
+				<?php echo $author_title;  ?>
+			</a>
+		</h5>
+		
 		<div class="author-contact">
 			<span class="label-mobile"></span>
 			<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
