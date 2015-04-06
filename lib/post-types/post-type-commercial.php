@@ -216,7 +216,7 @@ if ( is_admin() ) {
 
 
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
-					echo '<div class="type_under_offer">' . __('Under Offer' , 'epl') . '</div>';
+					echo '<div class="type_under_offer">' .$property->label_under_offer. '</div>';
 				}
 				if ( empty ( $view ) ) {
 					echo '<div class="epl_meta_search_price">Sale: ' , epl_currency_formatted_amount( $price ), '</div>';
@@ -259,7 +259,7 @@ if ( is_admin() ) {
 					'withdrawn' => __('Withdrawn', 'epl'),
 					'offmarket' => __('Off Market', 'epl'),
 					'sold'  	=> __('Sold', 'epl'),
-					'leased'  	=> __('Leased', 'epl')
+					'leased'  	=> $property->label_leased
 					)
 				);
 				echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
