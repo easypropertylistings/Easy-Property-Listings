@@ -1246,3 +1246,17 @@ function the_property_meta($key) {
 	global 	$property;
 	echo  	$property->get_property_meta($key);
 }
+
+/**
+ * Template Class
+ *
+ * @since version 2.1
+**/
+function epl_template_class( $class = false ) {
+
+	if ( $class != false ) {
+		return 'epl-template-'.$class;
+	} else {
+		return 'epl-template-blog';
+	}
+}

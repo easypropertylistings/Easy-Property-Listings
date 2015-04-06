@@ -30,7 +30,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
 		'limit'			=>	'-1', // Number of maximum posts to show
-		'template'		=>	false, // Template true will display default template
+		'template'		=>	false, // Template. slim, table
 		'location'		=>	'' // Location slug. Should be a name like sorrento
 	), $atts ) );
 	
@@ -39,7 +39,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'meta_key' 			=>	'property_inspection_times',
+		'meta_key' 		=>	'property_inspection_times',
 		'meta_query' => array(
 			array(
 				'key' => 'property_inspection_times',
@@ -76,8 +76,10 @@ function epl_shortcode_property_open_callback( $atts ) {
 						if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold'  || $property_status == 'leased') {
 							// Do Not Display Withdrawn or OffMarket listings
 						} else {
-							if ( $template == false ) {
+							if ( $template == true ) {
 								epl_property_blog();
+							} elseif ( $template == false ) {
+								epl_property_blog_slim();
 							} else {
 						
 								if( function_exists( 'epl_property_blog_'.$template ) ) {
