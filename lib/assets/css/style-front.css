@@ -604,6 +604,17 @@ li.tbhead.current {
 	display: inline-block; 
 	width: 32%; 
 }
+.epl-search-form .epl-search-left-third {
+	width: 26.5%;
+	margin-right: 15px;
+}
+.epl-search-form .epl-search-middle-third {
+	width: 26.5%;
+	margin-right: 15px;
+}
+.epl-search-form .epl-search-right-third {
+	width: 30%;
+}
 .epl-search-form .fm-block-half .top-mrgn { 
 	margin-top: 0; 
 }
@@ -737,8 +748,10 @@ li.tbhead.current {
 	opacity: 0.5;
 	padding: 0 10px;
 	cursor:pointer;
+	margin: 0;
 }
-.epl-current-view.view-list,.epl-current-view.view-grid {
+.epl-current-view.view-list,
+.epl-current-view.view-grid {
 	opacity: 1;
 }
 .epl-switch-view li.view-list {
@@ -758,6 +771,7 @@ li.tbhead.current {
 	background-position: 5px -14px;
 	background-repeat: no-repeat;
 	height: 18px;
+	margin: 0;
 }
 .epl-switch-view {
 	display: inline-block;
@@ -791,8 +805,6 @@ li.tbhead.current {
 	padding: 0;
 	width: 100%;
 }
-
-
 .epl-property-table {
 	font-size: 0.8em;
 	border-bottom: 1px solid #aaa;

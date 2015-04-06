@@ -306,6 +306,23 @@ function epl_meta_location_label() {
 	return $label_location;
 }
 /**
+ * Custom Meta: Under Offer Label
+ *
+ * @since 2.1
+ * @return label
+ */
+function epl_meta_under_offer_label() {
+	$under_offer = '';
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_under_offer'])) {
+		$under_offer = trim($epl_settings['label_under_offer']);
+	}
+	if(empty($under_offer)) {
+		$under_offer = __('Under Offer' , 'epl');
+	}	
+	return $under_offer;
+}
+/**
  * Custom Meta: House Categories
  *
  * @since 1.1
