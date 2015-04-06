@@ -62,9 +62,10 @@ function epl_wp_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
 
 function epl_admin_styles() {
+
 	global $current_screen,$epl_settings;
-	
-	if($current_screen->base != 'edit')
+
+	if(!is_null($current_screen) && $current_screen->base != 'edit')
 		return; 
 		
 	$active_size = isset($epl_settings['epl_admin_thumb_size'])? $epl_settings['epl_admin_thumb_size'] : 'admin-list-thumb';

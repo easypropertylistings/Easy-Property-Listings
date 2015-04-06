@@ -77,18 +77,18 @@ function epl_get_plural($count,$singular) {
 }
 
 function epl_get_post_count($type,$meta_key,$meta_value) {
-	$args = array(
-		'post_type'			=> $type,
-		'posts_per_page'	=>	-1,
-		'meta_query'		=> array(
-			array(
-				'key'		=> $meta_key,
-				'value'		=> $meta_value,
-			)
-		)
-	);
-	$postslist = get_posts( $args );
-	return count($postslist);
+	global $wpdb;
+	$sql = "
+		SELECT count( * ) AS count
+		FROM {$wpdb->prefix}posts AS p
+		INNER JOIN {$wpdb->prefix}postmeta AS pm
+		WHERE p.post_type = '{$type}'
+		AND p.ID = pm.post_id
+		AND pm.meta_key = '{$meta_key}'
+		AND pm.meta_value = '{$meta_value}'
+	";
+	$count = $wpdb->get_row($sql);
+	return $count->count;
 }
 
 function epl_posts_highlights($type) {
