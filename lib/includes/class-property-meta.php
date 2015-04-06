@@ -9,14 +9,43 @@ class EPL_Property_Meta {
 	public $property_post_type;
 	
 	 public function __construct($post) {
-	 	$epl_posts = array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+	 
+	 	$epl_posts 					= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
         $this->post 				= $post;
         $this->epl_settings 		= epl_settings();
         $this->meta 				= get_post_custom();
         $this->post_type 			= $this->post->post_type;
         $this->property_post_type	= $this->post->post_type;
+        
+        $this->epl_labels();
+        
     }
     
+	public function epl_labels() {
+	
+		$field_groups = epl_get_admin_option_fields();
+		
+		foreach($field_groups as $field_group) {
+			if($field_group['id']	==	'labels') {
+				$epl_labels = $field_group['fields'];
+				break;
+			}
+		}
+		
+		foreach($epl_labels as $label_key	=>	$label) {
+		
+			$label_key 	= $label['name'];
+			$default	= $label['default'];
+			
+			if( isset( $this->epl_settings[$label_key]) && $this->epl_settings[$label_key] != '') {
+				$this->{$label_key}	= $this->epl_settings[$label_key];
+			} else {
+				$this->{$label_key} = $default;
+			}
+		}
+		
+	}
+	
 	
 	public function get_property_meta($meta_key,$allowzero=true) {
 		if(isset($this->meta[$meta_key])) {
@@ -238,7 +267,8 @@ class EPL_Property_Meta {
 				}
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$price_plain_value = __('Under Offer', 'epl');
+				
+				$price_plain_value = $this->label_under_offer;
 			}
 			
 			
@@ -252,7 +282,7 @@ class EPL_Property_Meta {
 					$price_plain_value = $this->get_property_bond().__(' bond','epl');
 				
 			} elseif('leased' == $this->get_property_meta('property_status')) {
-				$price_plain_value = __('Leased', 'epl');
+				$price_plain_value = $this->label_leased;
 				
 			} else {
 				$price_plain_value = __('TBA', 'epl');
@@ -272,7 +302,7 @@ class EPL_Property_Meta {
 				}
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$price_plain_value = __('Under Offer', 'epl');
+				$price_plain_value = $this->label_under_offer;
 			}
 			if( $this->get_property_com_rent() != '' && $this->get_property_meta('property_com_listing_type') == 'both') {
 				$price_plain_value .= 
@@ -304,7 +334,7 @@ class EPL_Property_Meta {
 				$price = '<span class="page-price">' . $price_plain_value . '</span>';
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$price = '<span class="page-price under-offer-status">'.__('Under Offer', 'epl').'</span>';
+				$price = '<span class="page-price under-offer-status">'.$this->label_under_offer.'</span>';
 			}
 			
 			
@@ -323,7 +353,7 @@ class EPL_Property_Meta {
 					$price .= '<span class="bond">' . $this->get_property_bond() . ' bond</span>';
 					
 			} elseif('leased' == $this->get_property_meta('property_status')) {
-				$price = '<span class="page-price sold-status">'.__('Leased', 'epl').'</span>';
+				$price = '<span class="page-price sold-status">'.$this->label_leased.'</span>';
 				
 			} else {
 				$price = '<span class="page-price">'.__('TBA', 'epl').'</span>';
@@ -345,7 +375,7 @@ class EPL_Property_Meta {
 				$price = '<span class="page-price">' . $price_plain_value . '</span>';
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$price = '<div class="page-price under-offer-status">'.__('Under Offer', 'epl').'</div>';
+				$price = '<div class="page-price under-offer-status">'.$this->label_under_offer.'</div>';
 			}
 			if( $this->get_property_com_rent() != '' && $this->get_property_meta('property_com_listing_type') == 'both') {
 				
@@ -392,7 +422,7 @@ class EPL_Property_Meta {
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
 				$price_sticker = '';
-				$price_sticker .= '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
+				$price_sticker .= '<span class="status-sticker under-offer">'.$this->label_under_offer.'</span>';
 			}
 			
 			
@@ -400,7 +430,7 @@ class EPL_Property_Meta {
 		
 			if('leased' == $this->get_property_meta('property_status')) {
 				$price_sticker = '';
-				$price_sticker .= '<span class="status-sticker leased">'.__('Leased', 'epl').'</span>';
+				$price_sticker .= '<span class="status-sticker leased">'.$this->label_leased.'</span>';
 				
 			} else {
 				$price_sticker = '';
@@ -419,7 +449,7 @@ class EPL_Property_Meta {
 			} 
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
 			
-				$price_sticker .= '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
+				$price_sticker .= '<span class="status-sticker under-offer">'.$this->label_under_offer.'</span>';
 			}
 			
 		}
@@ -442,7 +472,7 @@ class EPL_Property_Meta {
 				$l_price = '<li class="page-price">' . $price_plain_value . '</li>';
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$l_price = '<li class="page-price under-offer-status">'.__('Under Offer', 'epl').'</li>';
+				$l_price = '<li class="page-price under-offer-status">'.$this->label_under_offer.'</li>';
 			}
 			
 			
@@ -458,7 +488,7 @@ class EPL_Property_Meta {
 							';
 					
 			} elseif('leased' == $this->get_property_meta('property_status')) {
-				$l_price = '<li class="page-price sold-status">'.__('Leased', 'epl').'</li>';
+				$l_price = '<li class="page-price sold-status">'.$this->label_leased.'</li>';
 				
 			}
 			
@@ -477,7 +507,7 @@ class EPL_Property_Meta {
 				$l_price = '<li class="page-price">' . $price_plain_value . '</li>';
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
-				$l_price = '<li class="page-price under-offer-status">'.__('Under Offer', 'epl').'</li>';
+				$l_price = '<li class="page-price under-offer-status">'.$this->label_under_offer.'</li>';
 			}
 			if( $this->get_property_com_rent() != '' && $this->get_property_meta('property_com_listing_type') == 'both') {
 				

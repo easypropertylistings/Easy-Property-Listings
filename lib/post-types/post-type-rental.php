@@ -232,7 +232,7 @@ if ( is_admin() ) {
 					'withdrawn' => __('Withdrawn', 'epl'),
 					'offmarket' => __('Off Market', 'epl'),
 					'sold'  	=> __('Sold', 'epl'),
-					'leased'  	=> __('Leased', 'epl')
+					'leased'  	=> $property->label_leased
 					)
 				);
 				echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
