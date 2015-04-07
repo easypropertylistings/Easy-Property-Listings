@@ -93,11 +93,11 @@ function epl_shortcode_listing_callback( $atts ) {
 		}
 		
 	}
-	
+
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing">
+			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template ); ?>">
 				<?php
 					do_action( 'epl_property_loop_start' );
 					while ( $query_open->have_posts() ) {

@@ -961,7 +961,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_under_offer',
-							'label'		=>	__('Under Offer', 'epl'),
+							'label'		=>	epl_meta_under_offer_label(),
 							'type'		=>	'radio',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),

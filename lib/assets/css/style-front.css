@@ -604,6 +604,17 @@ li.tbhead.current {
 	display: inline-block; 
 	width: 32%; 
 }
+.epl-search-form .epl-search-left-third {
+	width: 26.5%;
+	margin-right: 15px;
+}
+.epl-search-form .epl-search-middle-third {
+	width: 26.5%;
+	margin-right: 15px;
+}
+.epl-search-form .epl-search-right-third {
+	width: 30%;
+}
 .epl-search-form .fm-block-half .top-mrgn { 
 	margin-top: 0; 
 }
@@ -729,7 +740,6 @@ li.tbhead.current {
 	padding: 0 5px;
 	vertical-align: middle;
 }
-
 /* Switching view grid-list */
 
 .epl-switch-view li {
@@ -738,8 +748,10 @@ li.tbhead.current {
 	opacity: 0.5;
 	padding: 0 10px;
 	cursor:pointer;
+	margin: 0;
 }
-.epl-current-view.view-list,.epl-current-view.view-grid {
+.epl-current-view.view-list,
+.epl-current-view.view-grid {
 	opacity: 1;
 }
 .epl-switch-view li.view-list {
@@ -759,6 +771,7 @@ li.tbhead.current {
 	background-position: 5px -14px;
 	background-repeat: no-repeat;
 	height: 18px;
+	margin: 0;
 }
 .epl-switch-view {
 	display: inline-block;
@@ -779,7 +792,6 @@ li.tbhead.current {
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 	width: 24.5%;
-	min-width:170px;
 }
 .epl-property-blog {
 	-webkit-transition: all 0.2s ease-in-out;
@@ -793,31 +805,54 @@ li.tbhead.current {
 	padding: 0;
 	width: 100%;
 }
-
-/*****************************
-	EPL Clear Floating Div's
-******************************/
-.epl-clearfix {
-	clear:  both !important;
+.epl-property-table {
+	font-size: 0.8em;
+	border-bottom: 1px solid #aaa;
 }
-.epl-clearfix:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
+.epl-property-table .property-box,
+.epl-property-table .epl-table-box {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	float:left;
 }
-/* Use this stylesheet for problems with IE7 and below */
-#ie6 .epl-clearfix,
-#ie7 .epl-clearfix {
-	zoom: 1;
+.epl-property-table .property-box img {
+	max-width: 100%;
+	padding-right: 1em;
 }
-
+.epl-property-table .property-box-left {
+	width:12%;
+	padding-right: 0;
+}
+.epl-property-table .property-box-right {
+	width:88%;
+	float: right;
+}
+.epl-property-table .property-address {
+	width: 50%;
+}
+.epl-property-table .property-feature-icons {
+	width: 20%;
+}
+.epl-property-table .price {
+	width: 25%;
+	float: right;
+	text-align: right;
+}
+.epl-property-table .icon.pool,
+.epl-property-table .icon.air {
+	display: none;
+}
+.epl-property-table.epl-listing-grid-view .price{
+	float: left;
+	text-align: left;
+}
 #epl-default-map img {
 	max-width:none;
 }
 
+/*****************************
+	EPL Responsive Design
+******************************/
 /* responsive youtube videos */
 .epl-video-container { 
 	position: relative;
@@ -833,13 +868,17 @@ li.tbhead.current {
 	width: 100%;
 	height: 100%;
 }
-
-/*****************************
-	EPL Responsive Design
-******************************/
 @media screen and (max-width: 830px) {
 	.author-box {
 	width: 60%;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.epl-listing-grid-view.epl-property-blog {
+		margin: 0 2% 2%;
+		padding: 0 3% 0 1% !important;
+		width: 42%;
 	}
 }
 @media screen and (max-width: 500px) {
@@ -877,8 +916,7 @@ li.tbhead.current {
 	.directory-page-dynamic .directory-section .hentry{
 		width: 31% !important;
 	}
-}
-@media screen and (max-width: 500px) {
+
 	.property-box {
 		float:none;
 	}
@@ -929,14 +967,37 @@ li.tbhead.current {
 		float: none;
 		text-align: left;
 	}
-}
 
-@media screen and (max-width: 320px) { 
 	.epl-listing-grid-view.epl-property-blog {
-		width:98%;
+		float: none;
+		margin: 0 2% 2%;
+		padding: 0 3% 0 1% !important;
+		width: 100%;
+	}
+	.epl-property-table .property-address,
+	.epl-property-table .property-feature-icons,
+	.epl-property-table .price {
+		width: 100%;
+		float: left;
+		text-align: left;
 	}
 }
-
 /*****************************
-	EPL Responsive Design - END
+	EPL Clear Floating Div's
 ******************************/
+.epl-clearfix {
+	clear:  both !important;
+}
+.epl-clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+/* Use this stylesheet for problems with IE7 and below */
+#ie6 .epl-clearfix,
+#ie7 .epl-clearfix {
+	zoom: 1;
+}

@@ -13,7 +13,6 @@ global $property;
 
 <div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-clearfix'); ?>>
 	<?php do_action('epl_property_before_content'); ?>				
-	<div class="entry-content">
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="property-box property-box-left property-featured-image-wrapper">
 				<a href="<?php the_permalink(); ?>">
@@ -46,10 +45,9 @@ global $property;
 				<?php do_action('epl_property_icons'); ?>				
 			</div>
 			<!-- Price -->
-			<div class="address price">
+			<div class="price">
 				<?php do_action('epl_property_price'); ?>
 			</div>
 		</div>	
-	</div>
 	<?php do_action('epl_property_after_content'); ?>
 </div>
