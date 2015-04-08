@@ -1639,18 +1639,7 @@ function epl_meta_box_init() {
 													continue;
 												}
 											}
-										
-											/* if( isset($field['geocoder']) && $field['geocoder'] == 'true' ) {
-												if($epl_enable_import_geocode == 1 || $epl_enable_import_geocode == 'yes') {
-													$address = $_POST['property_address_street_number'] . ' ' . $_POST['property_address_street'] . ' ' . $_POST['property_address_suburb'] . ' ' . $_POST['property_address_state'] . ' ' . $_POST['property_address_postal_code'];
-													$address = urlencode(strtolower(trim($address)));
-													$geourl = "http://maps.google.com/maps/api/geocode/json?address=". $address ."&sensor=false";
-													$response = epl_remote_url_get($geourl);												
-													$_POST[ $field['name'] ] = $response[0]->geometry->location->lat . ',' . $response[0]->geometry->location->lng;
-												}
-											} */
-										
-										
+
 											if( $field['type'] == 'radio' ) {
 												if(!isset($_POST[ $field['name'] ])) {
 													continue;
@@ -1693,7 +1682,7 @@ function epl_meta_box_init() {
 	add_action( 'save_post', 'epl_save_meta_boxes' );
 
 	/**
-	 * Addes geo coordinate button to the address meta box
+	 * Adds geo-coordinate button to the address meta box
 	 * If you are importing from XML you can use FeedSync 
 	 * to pre-geocode the property elements
 	 *

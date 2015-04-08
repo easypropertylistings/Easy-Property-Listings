@@ -572,7 +572,7 @@ li.tbhead.current {
 .epl-search-form .fm-block { 
 	clear: both; 
 	display: block; 
-	padding: 10px; 
+	padding: 10px 0; 
 	border-bottom:1px #B7B7B7 solid; 
 }
 .epl-search-form .fm-label { 
@@ -588,6 +588,9 @@ li.tbhead.current {
 .epl-search-form .field-width { 
 	width: 100%; 
 }
+.epl-search-property-id .field-width{
+	width: 94%;
+}
 .epl-search-form .fm-block .top-mrgn { 
 	margin-top: 10px; 
 	display: block; 
@@ -598,22 +601,20 @@ li.tbhead.current {
 }
 .epl-search-form .fm-block-half { 
 	display: inline-block; 
-	width: 48.8%; 
+	width: 48.7%; 
 }
 .epl-search-form .fm-block-third { 
 	display: inline-block; 
 	width: 32%; 
 }
-.epl-search-form .epl-search-left-third {
-	width: 26.5%;
-	margin-right: 15px;
+.epl-search-form .epl-search-left-third .in-field{
+	width: 80%;
 }
-.epl-search-form .epl-search-middle-third {
-	width: 26.5%;
-	margin-right: 15px;
+.epl-search-form .epl-search-middle-third .in-field {
+	width: 80%;
 }
-.epl-search-form .epl-search-right-third {
-	width: 30%;
+.epl-search-form .epl-search-right-third .in-field {
+	width: 95%;
 }
 .epl-search-form .fm-block-half .top-mrgn { 
 	margin-top: 0; 
@@ -626,7 +627,7 @@ li.tbhead.current {
 	float:left; 
 }
 .epl-search-form .checkbox .check-label { 
-	margin-top:-1px; 
+	margin-top:3px; 
 }
 /* Fix Twenty Twelve Styling */
 .entry-content #map1 img,
@@ -831,10 +832,10 @@ li.tbhead.current {
 	width: 50%;
 }
 .epl-property-table .property-feature-icons {
-	width: 20%;
+	width: 25%;
 }
 .epl-property-table .price {
-	width: 25%;
+	width: 20%;
 	float: right;
 	text-align: right;
 }
