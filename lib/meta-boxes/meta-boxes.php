@@ -1661,7 +1661,9 @@ function epl_meta_box_init() {
 													$epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
 												} else {
 													$epl_date = DateTime::createFromFormat('Y-m-d-H:i:s', $epl_date);
-													$epl_date = $epl_date->format('Y-m-d\TH:i');
+													
+													if($epl_date)
+														$epl_date = $epl_date->format('Y-m-d\TH:i');
 												}
 												$_POST[ $field['name'] ] = $epl_date;
 											} else if( $field['type'] == 'sold-date' && $_POST[ $field['name'] ] != '') {
@@ -1669,8 +1671,10 @@ function epl_meta_box_init() {
 												if(strpos($epl_date, 'T') !== FALSE){
 													$epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
 												} else {
-													$epl_date = DateTime::createFromFormat('Y-m-d-H:i:s', $epl_date);
-													$epl_date = $epl_date->format('Y-m-d');
+													$epl_date = DateTime::createFromFormat('Y-m-d', $epl_date);
+													
+													if($epl_date)
+														$epl_date = $epl_date->format('Y-m-d');
 												}
 												$_POST[ $field['name'] ] = $epl_date;
 											} 
