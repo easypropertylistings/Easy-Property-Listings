@@ -37,6 +37,10 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'limit'				=>	'10', // Number of maximum posts to show
 		'template'			=>	false, // Template can be set to "slim" for home open style template
 		'location'			=>	'', // Location slug. Should be a name like sorrento
+		'tools_top'			=>	'on', // Tools before the loop like Sorter and Grid on or off
+		'tools_bottom'			=>	'on', // Tools after the loop like pagination on or off
+		'sortby'			=>	'', // Options: price, date : Default date
+		'sort_order'			=>	'DESC'
 	), $atts ) );
 	
 	if(empty($post_type)) {
@@ -133,7 +137,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-category <?php echo epl_template_class( $template ); ?>">
 				<?php
-					do_action( 'epl_property_loop_start' );
+					if ( $tools_top == 'on' ) {
+						do_action( 'epl_property_loop_start' );
+					}
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
 						
@@ -148,7 +154,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 							}
 						}
 					}
-					do_action( 'epl_property_loop_end' );
+					if ( $tools_bottom == 'on' ) {
+						do_action( 'epl_property_loop_end' );
+					}
 				?>
 			</div>
 			<div class="loop-footer">
