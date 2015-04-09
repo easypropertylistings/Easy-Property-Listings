@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.0.3
+Stable Tag: 2.1
 
 License: GNU Version 2 or Any Later Version
 
@@ -29,7 +29,8 @@ Easy Property Listing is one of the most dynamic and feature rich Real Estate pl
 * Fast. Flexible. Forward-thinking solution for real estate agents using WordPress.
 * Create your own real estate lead generation system around your listings and location.
 
-Features:
+**Features:**
+
 * Author Box and Widget: Easy to customise, multiple agents, tabbed and extendible. Supports video, bio, social media links and much more.
 * Listing Widget to easily add properties anywhere to your theme. Dozens of options with random, ordered and offset and no code.
 * Search Widget: Supports tabs, location, land, price, address and more. It's all here, search everything. Its super-fast.
@@ -41,9 +42,10 @@ Features:
 * Support for Under Offer and no price listings, you name it, it works.
 * Currency support for non-dollar currencies
 
-* Extensible with many [add-ons](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions)
+* Extend with many [add-ons](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions)
 
-Developer Features:
+**Developer Features:**
+
 * Over 50 custom meta fields per listing type. Everything is pre-configured saving hundreds of hours. Want more, add more all extendible.
 * Build better real estate websites faster with advanced extensions saving you even more time. Flexible and forward-thinking.
 * Separate post types for each listing type; property, rental, land, rural, business, commercial, commercial land.
