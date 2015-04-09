@@ -86,7 +86,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				<?php
 					if ( $search_id == 'on' && $post_type != 'land' ) {
 						?>
-							<div class="epl-search-row epl-search-property-id fm-block">
+							<div class="epl-search-row epl-search-row-full-wrapper epl-search-property-id fm-block">
 								<label for="property_id" class="fm-label">
 									<?php	echo apply_filters('epl_search_widget_label_property_id',__('Search by Property ID / Address', 'epl'));	?>
 								</label>
@@ -97,7 +97,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						<?php
 					}
 				?>
-				<div class="epl-search-row epl-search-location fm-block">
+				<div class="epl-search-row epl-search-row-full-wrapper epl-search-location fm-block">
 					<?php $label_location = epl_tax_location_label(); ?>
 					<label for="property_location" class="fm-label">
 						<?php echo apply_filters('epl_search_widget_label_property_location',__( $label_location , 'epl') ); ?>
@@ -147,7 +147,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 			
 				<?php
 					if($search_house_category == 'on' && $post_type != 'land') { ?>
-						<div class="epl-search-row epl-search-category fm-block">
+						<div class="epl-search-row epl-search-row-full-wrapper epl-search-category fm-block">
 							<label for="property_category" class="fm-label">
 								<?php echo apply_filters('epl_search_widget_label_property_category',__('House Category', 'epl') ); ?>
 							</label>
@@ -261,7 +261,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							$prices_arr = apply_filters('epl_listing_search_price_sale', $prices_arr);
 						} ?>
 			
-						<div class="epl-search-row epl-search-price fm-block">
+						<div class="epl-search-row epl-search-row-half-wrapper epl-search-price fm-block">
 							<div class="epl-search-row-half epl-search-left-half fm-block-half">
 								<label for="property_price_from" class="fm-label">
 									<?php echo apply_filters('epl_search_widget_label_property_price_from',__('Price From', 'epl') ); ?>
@@ -307,7 +307,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					}
 			
 					if ( $search_bed == 'on' &&  $post_type != 'land' ) { ?>
-						<div class="epl-search-row epl-search-bed fm-block">
+						<div class="epl-search-row epl-search-row-half-wrapper epl-search-bed fm-block">
 							<div class="epl-search-row-half epl-search-left-half fm-block-half">
 								<label for="property_bedrooms_min" class="fm-label">
 									<?php echo apply_filters('epl_search_widget_label_property_bedrooms_min',__('Bedrooms Min', 'epl') ); ?>
@@ -470,12 +470,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						';
 					}
 					if ( !empty($search_row) ) {
-						echo '<div class="epl-search-row epl-search-bath-parking fm-block">'.$search_row.'</div>';
+						echo '<div class="epl-search-row epl-search-row-half-wrapper epl-search-bath-parking fm-block">'.$search_row.'</div>';
 					}
 					
 					if ( $search_land_area == 'on' ) { ?>
 					
-						<div class="epl-search-row epl-search-land-area fm-block">
+						<div class="epl-search-row epl-search-row-third-wrapper epl-search-land-area fm-block">
 							<div class="epl-search-row-third epl-search-left-third fm-block-third">
 								<label for="property_land_area_min" class="fm-label">
 									<?php echo apply_filters('epl_search_widget_label_property_land_area_min',__('Land Min', 'epl')); ?>
@@ -514,11 +514,11 @@ function epl_shortcode_listing_search_callback( $atts ) {
 								
 										<?php
 											$land_label_array = array(
-												'square'				=>	'Square',
-												'squareMeter'			=>	'Square Meter',
-												'acre'					=>	'Acre',
-												'hectare'				=>	'Hectare',
-												'sqft'					=>	'Square Feet',
+												'square'		=>	'Square',
+												'squareMeter'		=>	'Square Meter',
+												'acre'			=>	'Acre',
+												'hectare'		=>	'Hectare',
+												'sqft'			=>	'Square Feet',
 											);
 											$land_label_array = apply_filters('epl_listing_search_land_unit_label', $land_label_array);
 											
@@ -539,7 +539,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				
 					if ( $search_building_area == 'on' &&  $post_type != 'land'  ) { ?>
 					
-						<div class="epl-search-row epl-search-building-area fm-block">
+						<div class="epl-search-row epl-search-row-third-wrapper epl-search-building-area fm-block">
 							<div class="epl-search-row-third epl-search-left-third fm-block-third">
 								<label for="property_building_area_min" class="fm-label">
 									<?php echo apply_filters('epl_search_widget_label_property_building_area_min',__('Building Min', 'epl') ); ?>

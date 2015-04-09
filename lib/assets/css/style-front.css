@@ -591,6 +591,9 @@ li.tbhead.current {
 .epl-search-property-id .field-width{
 	width: 94%;
 }
+.epl-search-row-full-wrapper .field  {
+	width: 99%;
+}
 .epl-search-form .fm-block .top-mrgn { 
 	margin-top: 10px; 
 	display: block; 
@@ -618,6 +621,15 @@ li.tbhead.current {
 }
 .epl-search-form .fm-block-half .top-mrgn { 
 	margin-top: 0; 
+}
+/* Land and Building fields*/
+.epl-search-form .epl-search-land-area .fm-block-third,
+.epl-search-form .epl-search-building-area .fm-block-third  { 
+	width: 29%; 
+}
+.epl-search-form .epl-search-land-area .epl-search-right-third,
+.epl-search-form .epl-search-building-area  .epl-search-right-third  { 
+	width: 39%; 
 }
 .epl-search-form .search-btn { 
 	width: 100%; 
