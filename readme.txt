@@ -143,6 +143,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 2.1 April 9, 2015 =
 
+* New: Fancy pagination option which can be enabled in settings.
 * New: Coordinates now added to listing if not set prior.
 * New: Ability to select larger listing image sizes in admin.
 * New: Added date picker for available date on rental listing.

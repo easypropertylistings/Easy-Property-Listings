@@ -171,6 +171,9 @@ class EPL_Welcome {
 						<h4><?php _e( 'Map Coordinates','epl' );?></h4>
 						<p><?php _e( 'Map now uses coordinates and if they are not set, it will locate the listing and save the coordinates for faster display and map loading.', 'epl' );?></p>
 						
+						<h4><?php _e( 'Fancy Pagination','epl' );?></h4>
+						<p><?php _e( 'You can now enable page numbers from settings for pagination which apply to templates and shortcodes.', 'epl' );?></p>
+						
 						<h4><?php _e( 'Meta Fields','epl' );?></h4>
 						<ul>
 							<li><?php _e( 'Rooms outputs in the feature list.', 'epl' );?></li>
@@ -237,6 +240,7 @@ class EPL_Welcome {
 					
 					<h4><?php _e( 'Version 2.1', 'epl' );?></h4>
 					<ul>
+						<li><?php _e( 'New: Fancy pagination option which can be enabled in settings.', 'epl' );?></li>
 						<li><?php _e( 'New: Coordinates now added to listing if not set prior.', 'epl' );?></li>
 						<li><?php _e( 'New: Ability to select larger listing image sizes in admin.', 'epl' );?></li>
 						<li><?php _e( 'New: Added date picker for available date on rental listing.', 'epl' );?></li>
