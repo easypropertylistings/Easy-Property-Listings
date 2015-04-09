@@ -24,37 +24,37 @@ function epl_register_custom_post_type_commercial() {
 	$rewrite  = defined( 'EPL_COMMERCIAL_DISABLE_REWRITE' ) && EPL_COMMERCIAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 	
 	$labels = apply_filters( 'epl_commercial_labels', array(
-		'name'					=>	__('Commercial Listings', 'epl'),
-		'singular_name'			=>	__('Commercial Listing', 'epl'),
-		'menu_name'				=>	__('Commercial', 'epl'),
-		'add_new'				=>	__('Add New', 'epl'),
-		'add_new_item'			=>	__('Add New Commercial Listing', 'epl'),
-		'edit_item'				=>	__('Edit Commercial Listing', 'epl'),
-		'new_item'				=>	__('New Commercial Listing', 'epl'),
-		'update_item'			=>	__('Update Commercial Listing', 'epl'),
-		'all_items'				=>	__('All Commercial Listings', 'epl'),
-		'view_item'				=>	__('View Commercial Listing', 'epl'),
-		'search_items'			=>	__('Search Commercial Listing', 'epl'),
-		'not_found'				=>	__('Commercial Listing Not Found', 'epl'),
+		'name'			=>	__('Commercial Listings', 'epl'),
+		'singular_name'		=>	__('Commercial Listing', 'epl'),
+		'menu_name'		=>	__('Commercial', 'epl'),
+		'add_new'		=>	__('Add New', 'epl'),
+		'add_new_item'		=>	__('Add New Commercial Listing', 'epl'),
+		'edit_item'		=>	__('Edit Commercial Listing', 'epl'),
+		'new_item'		=>	__('New Commercial Listing', 'epl'),
+		'update_item'		=>	__('Update Commercial Listing', 'epl'),
+		'all_items'		=>	__('All Commercial Listings', 'epl'),
+		'view_item'		=>	__('View Commercial Listing', 'epl'),
+		'search_items'		=>	__('Search Commercial Listing', 'epl'),
+		'not_found'		=>	__('Commercial Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Commercial Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'		=>	__('Parent Commercial Listing:', 'epl')
+		'parent_item_colon'	=>	__('Parent Commercial Listing:', 'epl')
 	) );
 	
 	$commercial_args = array(
-		'labels'				=>	$labels,
-		'public'				=>	true,
+		'labels'		=>	$labels,
+		'public'		=>	true,
 		'publicly_queryable'	=>	true,
-		'show_ui'				=>	true,
-		'show_in_menu'			=>	true,
-		'query_var'				=>	true,
-		'rewrite'				=>	$rewrite,
-		'menu_icon'				=>	'dashicons-welcome-widgets-menus',
-		'capability_type'		=>	'post',
-		'has_archive'			=>	$archives,
-		'hierarchical'			=>	false,
-		'menu_position'			=>	'26.7',
-		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	apply_filters( 'epl_commercial_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
+		'show_ui'		=>	true,
+		'show_in_menu'		=>	true,
+		'query_var'		=>	true,
+		'rewrite'		=>	$rewrite,
+		'menu_icon'		=>	'dashicons-welcome-widgets-menus',
+		'capability_type'	=>	'post',
+		'has_archive'		=>	$archives,
+		'hierarchical'		=>	false,
+		'menu_position'		=>	'26.7',
+		'taxonomies'		=>	array( 'location', 'tax_feature' ),
+		'supports'		=>	apply_filters( 'epl_commercial_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
 	epl_register_post_type( 'commercial', 'Commercial', apply_filters( 'epl_commercial_post_type_args', $commercial_args ) );
 }
@@ -75,16 +75,16 @@ if ( is_admin() ) {
 	 */
 	function epl_manage_commercial_heading( $columns ) {
 		$columns = array(
-			'cb'				=> '<input type="checkbox" />',
+			'cb'			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Featured Image', 'epl'),
 			'property_price'	=> __('Price', 'epl'),
-			'title'				=> __('Address', 'epl'),
-			'listing'			=> __('Listing Details', 'epl'),
-			'geo'				=> __('Geo', 'epl'),
+			'title'			=> __('Address', 'epl'),
+			'listing'		=> __('Listing Details', 'epl'),
+			'geo'			=> __('Geo', 'epl'),
 			'property_status'	=> __('Status', 'epl'),
 			'listing_type'		=> __('Sale/Lease', 'epl'),
-			'author'			=> __('Agent', 'epl'),
-			'date'				=> __('Date', 'epl')
+			'agent'			=> __('Agent', 'epl'),
+			'date'			=> __('Date', 'epl')
 		);
 		
 		$geo_debug = 0;
@@ -111,19 +111,22 @@ if ( is_admin() ) {
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
 				/* Get the featured Image */
-				if( function_exists('the_post_thumbnail') )
-					echo the_post_thumbnail('admin-list-thumb');
+				if( function_exists('the_post_thumbnail') ) {
+					$thumb_size = isset($epl_settings['epl_admin_thumb_size'])? $epl_settings['epl_admin_thumb_size'] : 'admin-list-thumb';
+					the_post_thumbnail($thumb_size);
+				}
 				break;
+
 			case 'listing' :
 				/* Get the post meta. */
 				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading					= get_post_meta( $post_id, 'property_heading', true );
-				$homeopen 					= get_post_meta( $post_id, 'property_inspection_times', true );
-				$category					= get_post_meta( $post_id, 'property_commercial_category', true );
-				$outgoings					= get_post_meta( $post_id, 'property_com_outgoings', true );
-				$return						= get_post_meta( $post_id, 'property_com_return', true );
-				$land 						= get_post_meta( $post_id, 'property_land_area', true );
-				$land_unit					= get_post_meta( $post_id, 'property_land_area_unit', true );
+				$heading			= get_post_meta( $post_id, 'property_heading', true );
+				$homeopen 			= get_post_meta( $post_id, 'property_inspection_times', true );
+				$category			= get_post_meta( $post_id, 'property_commercial_category', true );
+				$outgoings			= get_post_meta( $post_id, 'property_com_outgoings', true );
+				$return				= get_post_meta( $post_id, 'property_com_return', true );
+				$land 				= get_post_meta( $post_id, 'property_land_area', true );
+				$land_unit			= get_post_meta( $post_id, 'property_land_area_unit', true );
 				
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
@@ -177,12 +180,13 @@ if ( is_admin() ) {
 				
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
-				$price = get_post_meta( $post_id, 'property_price', true );
-				$view = get_post_meta( $post_id, 'property_price_view', true );
-				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-				$property_authority = get_post_meta( $post_id, 'property_com_authority', true );
-				$lease = get_post_meta( $post_id, 'property_com_rent', true );
-				$lease_date = get_post_meta( $post_id, 'property_com_lease_end_date', true );
+				$price 			= get_post_meta( $post_id, 'property_price', true );
+				$view 			= get_post_meta( $post_id, 'property_price_view', true );
+				$property_under_offer	= get_post_meta( $post_id, 'property_under_offer', true );
+				$property_authority 	= get_post_meta( $post_id, 'property_com_authority', true );
+				$lease 			= get_post_meta( $post_id, 'property_com_rent', true );
+				$lease_period		= get_post_meta( $post_id, 'property_com_rent_period', true );
+				$lease_date 		= get_post_meta( $post_id, 'property_com_lease_end_date', true );
 				
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price =	$epl_settings['epl_max_graph_sales_price' ];
@@ -212,7 +216,7 @@ if ( is_admin() ) {
 
 
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
-					echo '<div class="type_under_offer">' . __('Under Offer' , 'epl') . '</div>';
+					echo '<div class="type_under_offer">' .$property->label_under_offer. '</div>';
 				}
 				if ( empty ( $view ) ) {
 					echo '<div class="epl_meta_search_price">Sale: ' , epl_currency_formatted_amount( $price ), '</div>';
@@ -221,7 +225,10 @@ if ( is_admin() ) {
 				}
 				
 				if ( !empty ( $lease ) ) {
-					echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), '</div>';
+					if ( empty ( $lease_period ) ) {
+						$lease_period = 'annual';
+					}
+					echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), ' ' ,epl_listing_load_meta_commercial_rent_period_value( $lease_period ) ,'</div>';
 				}
 				
 				if ( !empty ( $lease_date ) ) {
@@ -252,12 +259,33 @@ if ( is_admin() ) {
 					'withdrawn' => __('Withdrawn', 'epl'),
 					'offmarket' => __('Off Market', 'epl'),
 					'sold'  	=> __('Sold', 'epl'),
-					'leased'  	=> __('Leased', 'epl')
+					'leased'  	=> $property->label_leased
 					)
 				);
 				echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
 
 				break;
+				
+				case 'agent':
+				printf( '<a href="%s">%s</a>',
+					esc_url( add_query_arg( array( 'post_type' => $post->post_type, 'author' => get_the_author_meta( 'ID' ) ), 'edit.php' )),
+					get_the_author()
+				);
+				
+				$property_second_agent = $property->get_property_meta('property_second_agent');
+				if ( '' != $property_second_agent ) {
+					$second_author = get_user_by( 'login' , $property_second_agent );
+					if($second_author !== false){
+						printf( '<br><a href="%s">%s</a>',
+							esc_url( add_query_arg( array( 'post_type' => $post->post_type, 'author' => $second_author->ID ), 'edit.php' )),
+							get_the_author_meta('display_name', $second_author->ID) 
+						);
+
+					}
+					epl_reset_post_author();
+				}
+				break;
+
 			/* Just break out of the switch statement for everything else. */
 			default :
 				break;

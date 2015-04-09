@@ -17,9 +17,10 @@ if( !is_admin() ) {
 add_action('admin_menu', 'epl_admin_menu');
 
 function epl_admin_menu() {
+	// Contributors and above can access these options
 	$menu_title	= __('Easy Property Listings', 'epl');
 	$page_title	= __('Easy Property Listings', 'epl');
-	$capability	= 'edit_published_posts';
+	$capability	= 'edit_posts';
 	$main_menu_slug = $menu_slug	= 'epl-general';
 	$function	= 'epl_menu_general';
 	$icon 		= 'dashicons-portfolio';
@@ -30,6 +31,7 @@ function epl_admin_menu() {
 	$menu_title	= __('Help', 'epl');
 	add_submenu_page($menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 
+	// Administrator and above can see these options
 	$page_title	= __('Settings', 'epl');
 	$menu_title 	= __('Settings', 'epl');
 	$capability	= 'manage_options';
@@ -37,9 +39,7 @@ function epl_admin_menu() {
 	$menu_slug	= 'epl-settings';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	
-	// Enable Menu if extension requires extension options
-	$capability	= 'manage_options';
-	
+	// Enable Menu if extension requires extension options	
 	if ( has_filter( 'epl_extensions_options_filter_new' ) ) {
 		$page_title	= __('Extensions', 'epl');
 		$menu_title	= __('Extensions', 'epl');
@@ -49,7 +49,7 @@ function epl_admin_menu() {
 	}
 
 	if ( has_filter( 'epl_extensions_options_filter' ) ) {
-		// show their menu on seperate page
+		// show their menu on separate page
 		$page_title_old	= __('Extensions Updates', 'epl');
 		$menu_title_old	= '<span style="color:#ff0000">'.__('Update Extensions', 'epl').'</span>';
 		$menu_slug_old	= 'epl-extensions-compat';
@@ -66,6 +66,7 @@ function epl_admin_menu() {
 		add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	}
 
+	// Editor level and above can see these options
 	$page_title	= __('Add Ons', 'epl');
 	$menu_title	= __('Add Ons', 'epl');
 	$capability	= 'edit_published_posts';
@@ -86,13 +87,6 @@ function epl_menu_settings() {
 		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
 	}
 	require_once 'menu-general.php';
-}
-
-function epl_menu_display() {
-	if(!current_user_can('manage_options')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
-	}
-	require_once 'menu-display.php';
 }
 
 function epl_menu_extensions() {
@@ -125,7 +119,7 @@ function epl_menu_addons() {
 
 
 function epl_menu_help() {
-	if(!current_user_can('edit_published_posts')) {
+	if(!current_user_can('edit_posts')) {
 		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
 	}
 	require_once 'menu-help.php';

@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		</div>
 		
 		<div class="author-box author-details">	
-			<?php apply_filters('epl_author_tab_about_callback',epl_author_tab_about())	?>	
+			<?php apply_filters('epl_author_tab_about_callback',epl_author_tab_author_id())	?>	
 		</div>
 	</div>
 </div>

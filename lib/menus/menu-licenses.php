@@ -9,7 +9,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$fields = epl_get_admin_option_fields();
+$fields = epl_get_admin_option_licence_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
 		$epl_license = array();
@@ -155,7 +155,7 @@ $epl_license = get_option('epl_license');
 	</div>
 </div><?php
 
-function epl_get_admin_option_fields() {
+function epl_get_admin_option_licence_fields() {
 	$opts_epl_gallery_n = array();
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;

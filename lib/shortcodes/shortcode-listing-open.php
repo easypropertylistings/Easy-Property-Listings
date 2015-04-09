@@ -22,18 +22,24 @@ if( is_admin() ) {
  * limit the number of entries that display. using  [epl-property-open limit="5"]
  */
 function epl_shortcode_property_open_callback( $atts ) {
+	$property_types = epl_get_active_post_types();
+	if(!empty($property_types)) {
+		 $property_types = array_keys($property_types);
+	}
+	
 	extract( shortcode_atts( array(
-		'post_type' =>	array('property', 'rental', 'land', 'rural', 'commercial', 'commercial_land', 'business' ), //Post Type
-		'limit'		=>	'-1', // Number of maximum posts to show
-		'template'	=>	false // Template true will display default listing template
+		'post_type' 		=>	$property_types, //Post Type
+		'limit'			=>	'-1', // Number of maximum posts to show
+		'template'		=>	false, // Template. slim, table
+		'location'		=>	'' // Location slug. Should be a name like sorrento
 	), $atts ) );
 	
 	ob_start();
 	
-	$args_open = array(
+	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'meta_key' 			=>	'property_inspection_times',
+		'meta_key' 		=>	'property_inspection_times',
 		'meta_query' => array(
 			array(
 				'key' => 'property_inspection_times',
@@ -42,7 +48,21 @@ function epl_shortcode_property_open_callback( $atts ) {
 			)
 		)
 	);
-	$query_open = new WP_Query( $args_open );
+	
+	if(!empty($location) ) {
+		if( !is_array( $location ) ) {
+			$location = explode(",", $location);
+			$location = array_map('trim', $location);
+			
+			$args['tax_query'][] = array(
+				'taxonomy' => 'location',
+				'field' => 'slug',
+				'terms' => $location
+			);
+		}
+	}
+	
+	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-open">
@@ -56,10 +76,17 @@ function epl_shortcode_property_open_callback( $atts ) {
 						if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold'  || $property_status == 'leased') {
 							// Do Not Display Withdrawn or OffMarket listings
 						} else {
-							if ( $template ) {
+							if ( $template == true ) {
 								epl_property_blog();
-							} else {
+							} elseif ( $template == false ) {
 								epl_property_blog_slim();
+							} else {
+						
+								if( function_exists( 'epl_property_blog_'.$template ) ) {
+							
+									call_user_func( 'epl_property_blog_'.$template );
+								
+								}
 							}
 							
 						} // End Status Removal
