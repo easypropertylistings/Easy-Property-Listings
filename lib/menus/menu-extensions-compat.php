@@ -9,7 +9,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$fields = epl_get_admin_option_fields();
+$fields = epl_get_admin_option_fields_extensions_compat();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
 		$epl_settings = get_option('epl_settings');
@@ -40,7 +40,7 @@ $epl_settings = get_option('epl_settings');
 
 <div class="wrap">
 	<h2><?php _e('Update your extensions for new features', 'epl'); ?></h2>
-	<p><?php _e('Every extension has been updated to use the code base of 2.0. Adjust non supported extension settings here.', 'epl'); ?></p>
+	<p><?php _e('Every extension has been updated to use the code base of 2.0 please update. Adjust non supported extension settings on this page.', 'epl'); ?></p>
 	<div class="epl-content">
 		<form action="" method="post">
 			<div class="epl-fields">
@@ -166,7 +166,7 @@ $epl_settings = get_option('epl_settings');
 	</div>
 </div><?php
 
-function epl_get_admin_option_fields() {
+function epl_get_admin_option_fields_extensions_compat() {
 	$fields = array( );
 	$fields = apply_filters('epl_extensions_options_filter', $fields);
 	return $fields;

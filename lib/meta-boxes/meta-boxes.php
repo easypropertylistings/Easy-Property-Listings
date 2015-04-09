@@ -42,8 +42,8 @@ function epl_meta_box_init() {
 		)
 	);
 	$opts_property_authority = apply_filters (  'epl_property_authority_filter', array(
-			'auction'	=>	__('Auction', 'epl'),
 			'exclusive'	=>	__('Exclusive', 'epl'),
+			'auction'	=>	__('Auction', 'epl'),
 			'multilist'	=>	__('Multilist', 'epl'),
 			'conjunctional'	=>	__('Conjunctional', 'epl'),
 			'open'		=>	__('Open', 'epl'),
