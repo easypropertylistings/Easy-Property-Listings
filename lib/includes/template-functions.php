@@ -1260,3 +1260,15 @@ function epl_template_class( $class = false ) {
 		return 'epl-template-blog';
 	}
 }
+
+function epl_pagination ($query = array() ) {
+	global $epl_settings;
+	$fancy_on = ( isset($epl_settings['use_fancy_navigation'] ) && $epl_settings['use_fancy_navigation'] == 1) ? 1 : 0;
+	if($fancy_on) {
+		epl_fancy_pagination($query);
+	} else {
+		epl_wp_default_pagination($query);
+	}
+}
+
+add_action('epl_pagination','epl_pagination');

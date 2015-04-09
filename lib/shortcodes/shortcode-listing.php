@@ -118,11 +118,7 @@ function epl_shortcode_listing_callback( $atts ) {
 				?>
 			</div>
 			<div class="loop-footer">
-				<!-- Previous/Next page navigation -->
-				<div class="loop-utility clearfix">
-					<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ), $query_open->max_num_pages ); ?></div>
-					<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ), $query_open->max_num_pages ); ?></div>
-				</div>
+					<?php do_action('epl_pagination',array('query'	=>	$query_open)); ?>
 			</div>
 		</div>
 		<?php

@@ -65,36 +65,32 @@ function epl_shortcode_property_open_callback( $atts ) {
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-open">
+			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template ); ?>">
 				<?php
+					do_action( 'epl_property_loop_start' );
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
 						
-						$property_status = get_post_meta( get_the_ID(), 'property_status' , true ); 
-
-						// Status Removal
-						if ( $property_status == 'withdrawn' || $property_status == 'offmarket' || $property_status == 'sold'  || $property_status == 'leased') {
-							// Do Not Display Withdrawn or OffMarket listings
+						if ( $template == false ) {
+							epl_property_blog();
 						} else {
-							if ( $template == true ) {
-								epl_property_blog();
-							} elseif ( $template == false ) {
-								epl_property_blog_slim();
-							} else {
 						
-								if( function_exists( 'epl_property_blog_'.$template ) ) {
+							if( function_exists( 'epl_property_blog_'.$template ) ) {
 							
-									call_user_func( 'epl_property_blog_'.$template );
+								call_user_func( 'epl_property_blog_'.$template );
 								
-								}
 							}
-							
-						} // End Status Removal
+						}
 					}
+					do_action( 'epl_property_loop_end' );
+
 				?>
 			</div>
+			<div class="loop-footer">
+				<?php do_action('epl_pagination',array('query'	=>	$query_open)); ?>
+			</div>
 		</div>
-	<?php
+		<?php
 	} else {
 		echo '<h3 class="epl-shortcode-listing-open epl-alert">'.__('Nothing currently scheduled for inspection, please check back later.', 'epl').'</h3>';
 	}

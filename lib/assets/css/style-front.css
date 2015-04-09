@@ -1002,3 +1002,26 @@ li.tbhead.current {
 #ie7 .epl-clearfix {
 	zoom: 1;
 }
+
+/**************************************
+Epl fancy pagination
+**************************************/
+
+.epl-pagination {
+	clear: both;
+}
+
+.epl-pagination a, .epl-pagination span {
+	text-decoration: none;
+	border: 1px solid #BFBFBF;
+	padding: 3px 5px;
+	margin: 2px;
+}
+
+.epl-pagination a:hover, .epl-pagination span.current {
+	border-color: #000;
+}
+
+.epl-pagination span.current {
+	font-weight: bold;
+}
