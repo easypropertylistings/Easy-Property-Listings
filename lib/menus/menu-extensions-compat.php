@@ -40,7 +40,7 @@ $epl_settings = get_option('epl_settings');
 
 <div class="wrap">
 	<h2><?php _e('Update your extensions for new features', 'epl'); ?></h2>
-	<p><?php _e('Every extension has been updated to use the code base of 2.0 please update. Adjust non supported extension settings on this page.', 'epl'); ?></p>
+	<p><?php _e('Every extension has been updated to use the code base of 2.1 please update. Adjust non supported extension settings on this page.', 'epl'); ?></p>
 	<div class="epl-content">
 		<form action="" method="post">
 			<div class="epl-fields">

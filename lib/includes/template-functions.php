@@ -123,7 +123,9 @@ add_action( 'the_post', 'epl_reset_property_object' );
 
 // make $property global available for hooks before the_post
 function epl_create_property_object() {
+
 	global $post,$property,$epl_author;
+	
 	if(is_null($post)){
 		return;
 	}
@@ -382,7 +384,8 @@ function epl_property_author_box_simple_grav() {
 // AUTHOR LISTING CARDS : Listing Card
 function epl_property_author_card( $display , $image , $title , $icons) {
 	global $property,$epl_author;
-	
+	if( is_null($epl_author) )
+	return; 
 	$property_status = $property->get_property_meta('property_status');	
 	// Status Removal
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
@@ -438,6 +441,9 @@ function epl_property_widget_image_only_option( $image ) {
 // WIDGET AUTHOR : Widget Tall Card
 function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio) {
 	global $property,$epl_author;
+	if( is_null($epl_author) )
+		return; 
+		
 	$arg_list = get_defined_vars();
 	epl_get_template_part('widget-content-author-tall.php',$arg_list);
 	
