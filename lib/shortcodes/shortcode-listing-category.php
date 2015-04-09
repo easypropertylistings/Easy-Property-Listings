@@ -37,8 +37,8 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'limit'				=>	'10', // Number of maximum posts to show
 		'template'			=>	false, // Template can be set to "slim" for home open style template
 		'location'			=>	'', // Location slug. Should be a name like sorrento
-		'tools_top'			=>	'on', // Tools before the loop like Sorter and Grid on or off
-		'tools_bottom'			=>	'on', // Tools after the loop like pagination on or off
+		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
+		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
 		'sortby'			=>	'', // Options: price, date : Default date
 		'sort_order'			=>	'DESC'
 	), $atts ) );

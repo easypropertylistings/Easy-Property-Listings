@@ -153,7 +153,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Shortcode [listing_location] to display listings by specific location.
 * New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]
 * New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].
-* New: Sorter added to shortcodes which can be disabled by adding tools_top="off" to your shortcode options.
+* New: Sorter added to shortcodes which can be enabled by adding tools_top="on" to your shortcode options.
 * New: Template added in table format for use in shortcodes template="table".
 * New: Function to get all active post types.
 * New: Ability to register additional custom post types.
@@ -167,7 +167,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Media upload function for use in extensions.
 * New: Ability to customise Under Offer and Leased labels in settings.
 * New: Lease type label loaded from dropdown select. So you can have NNN, P.A., Full Service, Gross Lease Rates, on commercial listing types. Also has a filter to enable customisation of the options.
-* New: Ability to disable links in the feature list.
+* New: Disable links in the feature list.
 * Fix: Text domain fixes on template files.
 * Fix: Finnish translation file renamed.
 * Fix: FeedSync date processor strptime function corrected.
@@ -176,7 +176,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Optimised loading of admin scripts and styles to pages where required.
 * Tweak: Added version to CSS and JS so new versions are automatically used when plugin is updated.
 * Tweak: Tidy up of admin CSS.
-* Tweak: Video in authorbox now responsive.
+* Tweak: Video in author box now responsive.
 * Tweak: Increased characters possible in address block fields from 40 to 80 characters and heading block to 200.
 * Tweak: Coordinates now correctly being used to generate map.
 * Tweak: Inspection times improved style in admin.
