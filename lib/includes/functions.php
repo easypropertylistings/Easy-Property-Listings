@@ -918,6 +918,7 @@ function epl_admin_sidebar () {
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_features
 				)
+
 			)
 		),
 		
@@ -942,7 +943,18 @@ function epl_admin_sidebar () {
 						'list'	=>	__('List', 'epl'),
 						'grid'	=>	__('Grid', 'epl')
 					)
+				),
+				
+				array(
+					'name'	=>	'use_fancy_navigation',
+					'label'	=>	__('Archive View: use fancy pagination ?', 'epl'),
+					'type'	=>	'select',
+					'opts'	=>	array(
+						'0'		=>	__('No, use wordpress default pagination', 'epl'),
+						'1'		=>	__('Yes, use fancy navigation', 'epl')
+					)
 				)
+
 			)
 		),
 		
