@@ -176,7 +176,7 @@ h3.epl-welcome-sub-heading {
 }
 .epl-content-sidebar {
 	float:left;
-	margin: 2.2em 2em;
+	margin-top: 2.2em;
 }
 .epl-menu-page,
 .epl-section-content,
@@ -299,6 +299,10 @@ h3.epl-welcome-sub-heading {
 .epl-half-right input[type=text].epl-field-license {
 	width: 92%;
 	max-width: 98%;
+}
+#epl-menu-general {
+	margin-right: 2em;
+	max-width: 780px;
 }
 .epl-menu-content-wrapper,
 .epl-content {
