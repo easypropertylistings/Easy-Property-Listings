@@ -359,7 +359,7 @@ ul.map-tabs li {
 }
 ul.property_search-tabs li{
 	text-transform:capitalize;
-	margin:0 0.5em;
+	margin:0 0.3em 0 0;
 	font-weight:bold;
 }
 ul.author-tabs li.author-current,
@@ -369,7 +369,6 @@ li.tbhead.current {
 	color: #222;
 	border-bottom: 2px solid #999;
 }
-
 .author-tab-content{
 	display: none;
 }
