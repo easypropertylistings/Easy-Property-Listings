@@ -231,6 +231,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-property-meta.php';
 			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
+			require_once EPL_PATH_LIB . 'includes/pagination.php';
 			
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/admin.php';
