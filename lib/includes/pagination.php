@@ -1,4 +1,13 @@
 <?php
+/**
+ * Pagination option
+ *
+ * @package     EPL
+ * @subpackage  Pagination
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       2.1
+*/
 
 function epl_fancy_pagination( $args = array() ) {
 	if ( !is_array( $args ) ) {
@@ -323,14 +332,14 @@ function epl_wp_default_pagination($query = array() ) {
 	if(empty($query)) {
 	
 	?>
-	<div class="loop-utility clearfix">
+	<div class="epl-paginate-default-wrapper epl-clearfix">
 		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
 		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
 	</div> <?php  } else {
 		
 		$query_open = $query['query']; ?>
 
-	<div class="loop-utility clearfix">
+	<div class="epl-paginate-default-wrapper epl-clearfix">
 		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ), $query_open->max_num_pages ); ?></div>
 		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ), $query_open->max_num_pages ); ?></div>
 	</div> <?php }
