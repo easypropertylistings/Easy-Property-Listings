@@ -149,7 +149,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Added date picker for sold date.
 * New: New function that combines all meta box options into one global function for admin pages.
 * New: Display second agent name in admin listing lists.
-* New: Additional admin option to filter by agent/author. 
+* New: Additional admin option to filter by agent/author.
 * New: Shortcode [listing_location] to display listings by specific location.
 * New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]
 * New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].
