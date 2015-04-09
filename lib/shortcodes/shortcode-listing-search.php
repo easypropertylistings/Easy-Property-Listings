@@ -410,7 +410,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						';
 					}
 					
-					if ( $search_bath == 'on' &&  $post_type != 'land'  ) {
+					if ( $search_rooms == 'on' &&  $post_type != 'land'  ) {
 						$search_row .= '
 							<div class="epl-search-row-half epl-search-left-half epl-search-rooms fm-block-half">
 								<label for="property_rooms" class="fm-label">'.
