@@ -359,7 +359,7 @@ ul.map-tabs li {
 }
 ul.property_search-tabs li{
 	text-transform:capitalize;
-	margin:0 0.5em;
+	margin:0 0.3em 0 0;
 	font-weight:bold;
 }
 ul.author-tabs li.author-current,
@@ -369,7 +369,6 @@ li.tbhead.current {
 	color: #222;
 	border-bottom: 2px solid #999;
 }
-
 .author-tab-content{
 	display: none;
 }
@@ -569,6 +568,9 @@ li.tbhead.current {
 .epl-search-form.epl-sb-current {
 	display: inherit;
 }
+.widget_epl_property_search ul.property_search-tabs li.tab-link {
+	margin-right: 0.3em;
+}
 .epl-search-form .fm-block { 
 	clear: both; 
 	display: block; 
@@ -590,6 +592,9 @@ li.tbhead.current {
 }
 .epl-search-property-id .field-width{
 	width: 94%;
+}
+.epl-search-row-full-wrapper .field  {
+	width: 99%;
 }
 .epl-search-form .fm-block .top-mrgn { 
 	margin-top: 10px; 
@@ -618,6 +623,15 @@ li.tbhead.current {
 }
 .epl-search-form .fm-block-half .top-mrgn { 
 	margin-top: 0; 
+}
+/* Land and Building fields*/
+.epl-search-form .epl-search-land-area .fm-block-third,
+.epl-search-form .epl-search-building-area .fm-block-third  { 
+	width: 29%; 
+}
+.epl-search-form .epl-search-land-area .epl-search-right-third,
+.epl-search-form .epl-search-building-area  .epl-search-right-third  { 
+	width: 39%; 
 }
 .epl-search-form .search-btn { 
 	width: 100%; 
@@ -851,6 +865,28 @@ li.tbhead.current {
 	max-width:none;
 }
 
+/**************************************
+Epl fancy pagination
+**************************************/
+.epl-pagination {
+	clear: both;
+}
+
+.epl-pagination a, .epl-pagination span {
+	text-decoration: none;
+	border: 1px solid #BFBFBF;
+	padding: 3px 5px;
+	margin: 2px;
+}
+
+.epl-pagination a:hover, .epl-pagination span.current {
+	border-color: #000;
+}
+
+.epl-pagination span.current {
+	font-weight: bold;
+}
+
 /*****************************
 	EPL Responsive Design
 ******************************/
@@ -1001,27 +1037,4 @@ li.tbhead.current {
 #ie6 .epl-clearfix,
 #ie7 .epl-clearfix {
 	zoom: 1;
-}
-
-/**************************************
-Epl fancy pagination
-**************************************/
-
-.epl-pagination {
-	clear: both;
-}
-
-.epl-pagination a, .epl-pagination span {
-	text-decoration: none;
-	border: 1px solid #BFBFBF;
-	padding: 3px 5px;
-	margin: 2px;
-}
-
-.epl-pagination a:hover, .epl-pagination span.current {
-	border-color: #000;
-}
-
-.epl-pagination span.current {
-	font-weight: bold;
 }

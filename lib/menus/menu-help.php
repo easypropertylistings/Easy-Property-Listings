@@ -51,14 +51,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				 * @since 2.1
 				**/
 				
-				if ( current_user_can( 'edit_others_posts' ) ) :
+				if ( current_user_can( 'edit_others_posts_not_ready' ) ) :
 				?>
 				<div id="add-listing" class="epl-section-content epl-section-admin-tutorial">
 					<div class="epl-feature-section">
 						<div class="epl-col">
 							<strong><?php _e( 'Administrator tutorial', 'epl'); ?></strong>
 							<h1 class="epl-section-title"><?php _e( 'Managing authors and their profiles', 'epl'); ?></h1>
-							<p><?php _e( 'You can add new users and assign them to listings or they can add their own. The user can also updated and eidt the information displayed in their profile and make changes from their profile page.', 'epl'); ?></p>
+							<p><?php _e( 'You can add new users and assign them to listings or they can add their own. The user can also updated and edit the information displayed in their profile and make changes from their profile page.', 'epl'); ?></p>
+							<p><?php _e( 'Fast forward video to 5:00 minutes to see how you can quickly update your profile.', 'epl'); ?></p>
 						</div>
 						<div class="epl-col-last">
 							<div class="featured-image">
@@ -78,6 +79,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							<p><?php _e( 'Managing your profile is very important to help you connect with your visitors and gives you an opportunity to tell them about how you can help them.', 'epl'); ?></p>
 
 							<p><?php _e( 'You can quickly edit your profile and update and add your phone number, social media links and bio or even add a video.', 'epl'); ?></p>
+							
+							<p><?php _e( 'Fast forward video to 5:00 minutes to see how you can quickly update your profile, update your contact details, edit your bio and add a YouTube video.', 'epl'); ?></p>
 						</div>
 						<div class="epl-col-last">
 							<div class="featured-image">
@@ -158,6 +161,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-details.png'; ?>" class="epl-welcome-screenshots"/>
 						</div>
 					</div>
+					
 				<hr>
 				</div>
 

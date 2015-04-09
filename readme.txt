@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.1
+Stable Tag: 2.0.3
 
 License: GNU Version 2 or Any Later Version
 
@@ -143,13 +143,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 2.1 April 9, 2015 =
 
+* New: Fancy pagination option which can be enabled in settings.
 * New: Coordinates now added to listing if not set prior.
 * New: Ability to select larger listing image sizes in admin.
 * New: Added date picker for available date on rental listing.
 * New: Added date picker for sold date.
 * New: New function that combines all meta box options into one global function for admin pages.
 * New: Display second agent name in admin listing lists.
-* New: Additional admin option to filter by agent/author. 
+* New: Additional admin option to filter by agent/author.
 * New: Shortcode [listing_location] to display listings by specific location.
 * New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]
 * New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].
