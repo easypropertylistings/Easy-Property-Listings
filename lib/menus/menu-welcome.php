@@ -207,7 +207,7 @@ class EPL_Welcome {
 						<p><?php _e( 'Need to change Under Offer or Leased? Customise the labels from the settings page.', 'epl' );?></p>
 						
 						<h4><?php _e( 'Commercial Lease Rate','epl' );?></h4>
-						<p><?php _e( 'Decimal value and lease period for options like NNN, P.A., Full Service, Gross Lease Rates, .', 'epl' );?></p>
+						<p><?php _e( 'Decimal value and lease period for options like NNN, P.A., Full Service, Gross Lease Rates.', 'epl' );?></p>
 						
 						<h4><?php _e( 'Loading speed improvements','epl' );?></h4>
 						<p><?php _e( 'Changes to only load scripts and CSS when they are needed. Many other optimisations to the code to reduce load times. Dashboard widget loads much faster.', 'epl' );?></p>
