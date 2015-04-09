@@ -7,11 +7,11 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.0.3
+Stable Tag: 2.1
 
 License: GNU Version 2 or Any Later Version
 
-Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, extendible and works with any WordPress theme.
+Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and lead generation and works with any WordPress theme.
 
 == Description ==
 
@@ -27,6 +27,7 @@ Easy Property Listing is one of the most dynamic and feature rich Real Estate pl
 * This Real Estate plugin for has been designed to complement your skill and design and to set you free to do what you do best.
 * Developers save time because it's pre-configured to support every country, in any market.
 * Fast. Flexible. Forward-thinking solution for real estate agents using WordPress.
+* Create your own real estate lead generation system around your listings and location.
 
 Features:
 * Author Box and Widget: Easy to customise, multiple agents, tabbed and extendible. Supports video, bio, social media links and much more.
@@ -140,40 +141,51 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.1 March 9, 2015 =
+= 2.1 April 9, 2015 =
 
-* New: Coordinates now added to listing if not set prior which speeds future loading.
+* New: Coordinates now added to listing if not set prior.
 * New: Ability to select larger listing image sizes in admin.
-* New: Added date picker for Available date on rental listing.
+* New: Added date picker for available date on rental listing.
+* New: Added date picker for sold date.
 * New: New function that combines all meta box options into one global function for admin pages.
 * New: Display second agent name in admin listing lists.
 * New: Additional admin option to filter by agent/author. 
-* New: Shortcode [listing_location]
+* New: Shortcode [listing_location] to display listings by specific location.
 * New: The following shortcodes can now be filtered by location taxonomy: [listing location="perth"], [listing_open location="sydney"], [listing_category location="melbourne"], [listing_category location="brisbane"], [listing_feature feature="terrace" location="new-york"]
 * New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby="price" sort_order="ASC"].
+* New: Sorter added to shortcodes which can be enabled by adding tools_top="on" to your shortcode options.
+* New: Template added in table format for use in shortcodes template="table".
 * New: Function to get all active post types.
 * New: Ability to register additional custom post types.
 * New: Extensions now have additional help text ability.
 * New: All menus now use global function to render fields.
 * New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.
 * New: Commercial rental lease duration now selectable.
-* New: Able to set the number of rooms that the listing has.
-* New: Date listed field all listing types.
+* New: Rooms field added to set the number of rooms that the listing has.
+* New: Date listed field added to all listing types.
 * New: Year built field added to property, rental, rural listing types.
+* New: Media upload function for use in extensions.
+* New: Ability to customise Under Offer and Leased labels in settings.
+* New: Lease type label loaded from dropdown select. So you can have NNN, P.A., Full Service, Gross Lease Rates, on commercial listing types. Also has a filter to enable customisation of the options.
+* New: Disable links in the feature list.
 * Fix: Text domain fixes on template files.
 * Fix: Finnish translation file renamed.
 * Fix: FeedSync date processor strptime function corrected.
 * Fix: Bug in parking search field. Was only searching carports and not garages. Now searches both.
+* Fix: New label now appears on listings not just with an inspection time saved.
 * Tweak: Optimised loading of admin scripts and styles to pages where required.
-* Tweak: Added versioning to CSS and JS so new versions are automatically used when plugin is updated.
+* Tweak: Added version to CSS and JS so new versions are automatically used when plugin is updated.
 * Tweak: Tidy up of admin CSS.
-* Tweak: Increased characters possible in address block fields from 40 to 80 characters.
-* Tweak: Increased characters possible in heading block to 200.
+* Tweak: Video in author box now responsive.
+* Tweak: Increased characters possible in address block fields from 40 to 80 characters and heading block to 200.
 * Tweak: Coordinates now correctly being used to generate map.
 * Tweak: Inspection times improved style in admin.
 * Tweak: Commercial rental rate now accepts decimal numbers.
 * Tweak: Improved google map output.
 * Tweak: Improved default settings on upgrade, install and multisite.
+* Tweak: Scripts improve site speed.
+* Tweak: Dashboard widget improved query.
+* Tweak: Front end CSS tweaks for better responsiveness. 
 
 = 2.0.4: February 12, 2015 =
 

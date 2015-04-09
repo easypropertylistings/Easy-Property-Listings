@@ -34,6 +34,10 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		'location_id'		=>	'',
 		'limit'			=>	'10', // Number of maximum posts to show
 		'template'		=>	false, // Template can be set to "slim" for home open style template
+		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
+		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
+		'sortby'		=>	'', // Options: price, date : Default date
+		'sort_order'		=>	'DESC'
 	), $atts ) );
 	
 	if(empty($post_type)) {
@@ -117,7 +121,9 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template ); ?>">
 				<?php
-					do_action( 'epl_property_loop_start' );
+					if ( $tools_top == 'on' ) {
+						do_action( 'epl_property_loop_start' );
+					}
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
 						
@@ -132,7 +138,9 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 							}
 						}
 					}
-					do_action( 'epl_property_loop_end' );
+					if ( $tools_bottom == 'on' ) {
+						do_action( 'epl_property_loop_end' );
+					}
 
 				?>
 			</div>
