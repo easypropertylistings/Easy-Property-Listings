@@ -50,8 +50,7 @@ function render_content() {
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
-					<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
-					<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
+					<?php do_action('epl_pagination'); ?>
 				</div>
 			</div>
 		</div>
