@@ -329,6 +329,17 @@ function epl_search_pre_get_posts( $query ) {
 				'compare'	=>	'>='
 			);
 		}
+		
+		if(isset($property_rooms) && !empty($property_rooms)) {
+			$meta_query[] = array(
+				'key'		=>	'property_rooms',
+				'value'		=>	$property_rooms,
+				'type'		=>	'numeric',
+				'compare'	=>	'>='
+			);
+		}
+		
+		
 		if(isset($property_carport) && !empty($property_carport)) {
 			$meta_query[] = array(
 				'relation' => 'OR',

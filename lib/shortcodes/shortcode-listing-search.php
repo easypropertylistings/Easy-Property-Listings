@@ -640,3 +640,4 @@ function epl_shortcode_listing_search_callback( $atts ) {
 	return ob_get_clean();
 }
 add_shortcode( 'listing_search', 'epl_shortcode_listing_search_callback' );
+
