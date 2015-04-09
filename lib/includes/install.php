@@ -177,9 +177,15 @@ add_action( 'admin_init', 'epl_after_install' );
 
 function epl_plugin_updates() {
 	$current_version = get_option( 'epl_version' );
+
 	if ( version_compare( $current_version, '1.3', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-1.3.1.php' );
 		update_option( 'epl_version' ,'1.3');
+	}
+	
+	if ( version_compare( $current_version, '2.1', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-2.1.php' );
+		update_option( 'epl_version' ,'2.1');
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
