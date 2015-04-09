@@ -183,7 +183,7 @@ if ( is_admin() ) {
 				$lease_date = get_post_meta( $post_id, 'property_com_lease_end_date', true );
 				
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
-					$max_price =$epl_settings['epl_max_graph_sales_price' ];
+					$max_price = (int) $epl_settings['epl_max_graph_sales_price' ];
 				}
 
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
@@ -199,9 +199,9 @@ if ( is_admin() ) {
 					$class = '';
 				}
 				if($sold_price != ''){
-					$barwidth = $sold_price/$max_price * 100;
+					$barwidth = $max_price == 0 ? 0: $sold_price/$max_price * 100;
 				} else {
-					$barwidth = $price/$max_price * 100;
+					$barwidth = $max_price == 0 ? 0: $price/$max_price * 100;
 				}
 				echo '
 					<div class="epl-price-bar '.$class.'">

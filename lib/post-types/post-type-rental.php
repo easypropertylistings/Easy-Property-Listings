@@ -185,7 +185,7 @@ if ( is_admin() ) {
 				}
 				
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
-					$max_price =$epl_settings['epl_max_graph_rent_price' ];
+					$max_price = (int) $epl_settings['epl_max_graph_rent_price' ];
 				}
 
 				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
@@ -203,9 +203,9 @@ if ( is_admin() ) {
 					$class = '';
 				}
 				if($sold_price != ''){
-					$barwidth = $sold_price/$max_price * 100;
+					$barwidth = $max_price == 0 ? 0: $sold_price/$max_price * 100;
 				} else {
-					$barwidth = $rent/$max_price * 100;
+					$barwidth = $max_price == 0 ? 0: $rent/$max_price * 100;
 				}
 				echo '
 					<div class="epl-price-bar '.$class.'">
