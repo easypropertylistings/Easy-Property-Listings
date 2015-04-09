@@ -568,6 +568,9 @@ li.tbhead.current {
 .epl-search-form.epl-sb-current {
 	display: inherit;
 }
+.widget_epl_property_search ul.property_search-tabs li.tab-link {
+	margin-right: 0.3em;
+}
 .epl-search-form .fm-block { 
 	clear: both; 
 	display: block; 
