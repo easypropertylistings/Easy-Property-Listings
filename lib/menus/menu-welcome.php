@@ -237,6 +237,11 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
+				
+					<h4><?php _e( 'Version 2.1.1', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Max price defaults set for graph calculations when upgrading from pre 2.0 version.', 'epl' );?></li>
+					</ul>
 					
 					<h4><?php _e( 'Version 2.1', 'epl' );?></h4>
 					<ul>
