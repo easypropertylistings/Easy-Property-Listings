@@ -143,7 +143,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.1 April 10, 2015 =
+= 2.1.1 April 10, 2015 =
 
 * Fix: Max price defaults set for graph calculations when upgrading from pre 2.0 version.
 
