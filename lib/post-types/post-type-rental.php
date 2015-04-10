@@ -183,7 +183,7 @@ if ( is_admin() ) {
 					$d_bond = $epl_settings['display_bond'];
 					$bond = get_post_meta( $post_id, 'property_bond', true );
 				}
-				
+				$max_price = '2000';
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price =$epl_settings['epl_max_graph_rent_price' ];
 				}
