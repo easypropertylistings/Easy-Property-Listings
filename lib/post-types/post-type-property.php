@@ -183,6 +183,8 @@ if ( is_admin() ) {
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
 				$price = get_post_meta( $post_id, 'property_price', true );
+				
+				$max_price = '2000000';
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price =$epl_settings['epl_max_graph_sales_price' ];
 				}
