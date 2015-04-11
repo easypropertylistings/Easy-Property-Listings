@@ -238,6 +238,13 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 				
+					<h4><?php _e( 'Version 2.1.2', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Improved Responsive CSS for grid style.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Twenty Fifteen, Twenty Fourteen, Twenty Thirteen, Twenty Twelve CSS styles for better display.', 'epl' );?></li>
+						<li><?php _e( 'New: Added CSS class theme name output to archive and single templates.', 'epl' );?></li>
+					</ul>
+				
 					<h4><?php _e( 'Version 2.1.1', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Max price defaults set for graph calculations when upgrading from pre 2.0 version.', 'epl' );?></li>

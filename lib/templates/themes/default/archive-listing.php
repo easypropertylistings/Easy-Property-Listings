@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
  
 get_header(); ?>
-<section id="primary" class="site-content content epl-archive-default">
+<section id="primary" class="site-content content epl-archive-default <?php echo epl_get_active_theme_name(); ?>">
 	<div id="content" role="main">
 		<?php
 		if ( have_posts() ) : ?>
