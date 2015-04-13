@@ -1279,3 +1279,22 @@ function epl_pagination ($query = array() ) {
 }
 
 add_action('epl_pagination','epl_pagination');
+
+/**
+ * Returns active theme name as a css class for use in default templates
+ *
+ * @since 2.1.2
+ */
+function epl_get_active_theme_name() {
+
+	$epl_class_prefix = 'epl-active-theme-';
+	$epl_class_unknown = 'unknown';
+	
+	if ( function_exists( 'wp_get_theme' ) ) {
+		$active_theme = wp_get_theme();
+		$active_theme = preg_replace('/\W+/','',strtolower(strip_tags($active_theme)));
+		return $epl_class_prefix . $active_theme;
+	} else {
+		return $epl_class_prefix . $epl_class_unknown;
+	}
+}

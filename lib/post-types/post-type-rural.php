@@ -196,6 +196,7 @@ if ( is_admin() ) {
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
 				$property_authority = get_post_meta( $post_id, 'property_authority', true );
 				
+				$max_price  = '2000000';
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price 	=	(int) $epl_settings['epl_max_graph_sales_price' ];
 				}

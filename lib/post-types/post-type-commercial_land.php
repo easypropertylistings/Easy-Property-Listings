@@ -182,6 +182,7 @@ if ( is_admin() ) {
 				$lease = get_post_meta( $post_id, 'property_com_rent', true );
 				$lease_date = get_post_meta( $post_id, 'property_com_lease_end_date', true );
 				
+				$max_price = '2000000';
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price = (int) $epl_settings['epl_max_graph_sales_price' ];
 				}
