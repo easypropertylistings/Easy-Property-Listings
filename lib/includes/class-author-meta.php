@@ -164,7 +164,7 @@ class EPL_Author_Meta {
 				<div class="author-content">'.$this->description.'</div>
 					<span class="bio-more">
 						<a href="'.get_author_posts_url($this->author_id).'">'.
-							__('Read More', 'epl').'
+							apply_filters('epl_author_read_more_label',__('Read More', 'epl') ).'
 						</a>
 					</span>
 			';		

@@ -186,7 +186,7 @@ if ( is_admin() ) {
 				
 				$max_price = '2000000';
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
-					$max_price =$epl_settings['epl_max_graph_sales_price' ];
+					$max_price = (int) $epl_settings['epl_max_graph_sales_price' ];
 				}
 				$view = get_post_meta( $post_id, 'property_price_view', true );
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
@@ -204,9 +204,9 @@ if ( is_admin() ) {
 					$class = '';
 				}
 				if($sold_price != ''){
-					$barwidth = $sold_price/$max_price * 100;
+					$barwidth = $max_price == 0 ? 0 : $sold_price/$max_price * 100;
 				} else {
-					$barwidth = $price/$max_price * 100;
+					$barwidth = $max_price == 0 ? 0 : $price/$max_price * 100;
 				}
 				echo '
 					<div class="epl-price-bar '.$class.'">
