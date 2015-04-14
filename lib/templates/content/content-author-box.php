@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				$current_class = $counter == 1? 'author-current':''; ?>
 				<?php 
 					ob_start();
-					apply_filters('epl_author_tab_'.$k.'_callback',call_user_func('epl_author_tab_'.str_replace(' ','_',$k)));
+					apply_filters('epl_author_tab_'.$k.'_callback',call_user_func('epl_author_tab_'.str_replace(' ','_',$k), $epl_author ));
 					$op = ob_get_clean();
 					// remove tab if callback function output is ''
 					if($op == '')  {
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<div class="author-box-outer-wrapper epl-clearfix">			
 		<div class="author-box author-image">
 			<?php
-				echo apply_filters('epl_author_tab_image',epl_author_tab_image());
+				echo apply_filters('epl_author_tab_image',epl_author_tab_image(), $epl_author );
 			?>
 		</div>
 		
@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				$current_tab 	= strtolower('author-'.$k);
 				$current_class	= $counter == 1? 'author-current':''; ?>
 				<div id="tab-<?php echo $counter; ?>" class="<?php epl_author_class ($current_tab .' author-tab-content '.$current_class) ?>">
-					<?php apply_filters('epl_author_tab_'.$k.'_callback',call_user_func('epl_author_tab_'.str_replace(' ','_',$k)))  ?>
+					<?php apply_filters('epl_author_tab_'.$k.'_callback',call_user_func('epl_author_tab_'.str_replace(' ','_',$k), $epl_author ))  ?>
 				</div>
 				<?php
 				$counter ++;
