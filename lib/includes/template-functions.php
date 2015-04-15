@@ -1005,11 +1005,6 @@ function epl_author_tabs () {
 		'contact_form'		=>	__('Contact','epl'),
 	);
 					
-	 foreach($author_tabs as $k => $author_tab) { 	
-	 	if( $epl_author->{$k} == ''){ 	
-	 		unset($author_tabs[$k]); 	
-	 	} 	
-	 }
 	return $author_tabs = apply_filters('epl_author_tabs',$author_tabs);
 }
 
@@ -1028,8 +1023,8 @@ function epl_author_tab_author_id($epl_author = array() ) {
 		global $epl_author;
 	}
 	
-	$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) );
-	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author,'aa' );
+	$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
+	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
 		
 ?>
 	<div class="author-contact-details">
@@ -1062,6 +1057,7 @@ function epl_author_tab_image ($epl_author = array() ) {
 	if(empty($epl_author)) {
 		global $epl_author;
 	}
+
 	if ( function_exists('get_avatar') ) {
 		return get_avatar( $epl_author->email , '150' );
 	}
@@ -1078,7 +1074,9 @@ function epl_author_tab_video($epl_author = array() ) {
 	if(empty($epl_author)) {
 		global $epl_author;
 	}
-	echo '<div class="author-video epl-video-container">'.$epl_author->get_video_html().'</div>';
+	$video_html = $epl_author->get_video_html();
+	if($video_html != '')
+		echo '<div class="author-video epl-video-container">'.$video_html.'</div>';
 }
 
 function epl_author_tab_contact_form( $epl_author = array() ) {
