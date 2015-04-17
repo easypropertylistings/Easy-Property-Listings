@@ -378,6 +378,10 @@ h3.property-address {
 .epl-author-card {
 	margin-bottom: 2em;
 }
+.author-box-contact-details.author-contact-details {
+	width:100%;
+}
+
 .epl-author-box .author-title {
 	margin-top: 0;
 	margin-bottom: 0.5em;
@@ -397,9 +401,21 @@ h3.property-address {
 #tab-1.author-details {
 	padding-top: 0.5em;
 }
+
 .author-box.author-image {
-	width: 150px;
-	padding-right: 1em;
+    min-width: 150px;
+    padding-right: 1em;
+    width: 30%;
+}
+.author-box.author-details {
+    min-width: 150px;
+    padding-right: 1em;
+    width: 30%;
+}
+
+.author-box.author-bio {
+    padding-right: 1em;
+    width: 38%;
 }
 .author-image img {
 	margin:0;
@@ -990,7 +1006,7 @@ Epl fancy pagination
 }
 @media screen and (max-width: 830px) {
 	.author-box {
-	width: 60%;
+	width: 60%!important;
 	}
 }
 @media screen and (max-width: 1200px) {
@@ -1023,6 +1039,7 @@ Epl fancy pagination
 		width: 44%;
 	}
 }
+
 @media screen and (max-width: 500px) {
 	/* Property Card Slim */
 	.epl-property-blog-slim .property-box-left {
@@ -1044,7 +1061,7 @@ Epl fancy pagination
 		display: none;
 	}
 	.author-box {
-		width: 100%;
+		width: 100%!important; 
 	}
 	.author-contact-details {
 		clear:right;

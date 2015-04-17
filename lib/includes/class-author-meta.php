@@ -159,15 +159,18 @@ class EPL_Author_Meta {
 	* @since version 1.3
 	*/
     function get_description_html($html = '') {
-    	if ( $this->description != '' ) { 
-			$html =     '
-				<div class="author-content">'.$this->description.'</div>
-					<span class="bio-more">
-						<a href="'.get_author_posts_url($this->author_id).'">'.
-							__('Read More', 'epl').'
-						</a>
-					</span>
-			';		
+    	if ( $this->description != '' ) {
+    	
+		$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($this->author_id) ,$this);
+
+		$html =     '
+			<div class="author-content">'.$this->description.'</div>
+				<span class="bio-more">
+					<a href="'.$permalink.'">'.
+						apply_filters('epl_author_read_more_label',__('Read More', 'epl') ).'
+					</a>
+				</span>
+		';		
 		}
 		return $html;
 	}
