@@ -16,15 +16,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		<div class="author-box-tall author-image epl-clearfix">
 			<?php if ( 'on' == $d_image ) {
 					if ( function_exists('get_avatar') ) { 
-						echo get_avatar( $epl_author->email , '180' );
+						echo apply_filters('epl_author_tab_image',epl_author_tab_image($epl_author),$epl_author );
 					}
 				} ?>
 		</div>
 		
-		<div class="author-box-tall author-details epl-clearfix">
+		<div class="author-box-tall author-details epl-clearfix"> <?php
+			$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
+			$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author ); ?>
+				
 				<h5 class="author-title">
-					<a href="<?php echo get_author_posts_url( $epl_author->author_id ); ?>">
-						<?php the_author_meta( 'display_name',$epl_author->author_id ); ?>
+					<a href="<?php echo $permalink; ?>">
+						<?php echo $author_title; ?>
 					</a>
 				</h5>
 				<div class="author-position"><?php echo $epl_author->get_author_position() ?></div>

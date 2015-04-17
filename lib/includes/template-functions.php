@@ -209,7 +209,7 @@ function epl_property_single_default() {
 * Attempts to load templates in order of priority
 */
 function epl_get_template_part($template,$arguments=array()) {
-	global $epl_author;
+
 	$base_path		= apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
 	$default		= $template;
 	$find[] 		= epl_template_path() . $template;
@@ -217,6 +217,9 @@ function epl_get_template_part($template,$arguments=array()) {
 	if(!$template) {
 		$template	=	$base_path . $default;
 	}
+	if( !isset($arguments['epl_author']) ) {
+		global $epl_author;
+	} 
 	extract($arguments);
 	include( $template);
 }
@@ -349,15 +352,15 @@ function epl_property_blog_table() {
 
 // AUTHOR CARD : Tabbed Style
 function epl_property_author_box() {
-	global $property,$epl_author;
+	global $property,$epl_author,$epl_author_secondary;
 	epl_get_template_part('content-author-box.php');
     if($property != NULL) {
         $property_second_agent = $property->get_property_meta('property_second_agent');
             if ( '' != $property_second_agent ) {
                 $second_author = get_user_by( 'login' , $property_second_agent );
                 if($second_author !== false){
-                        $epl_author = new EPL_Author_meta($second_author->ID);
-                        epl_get_template_part('content-author-box.php');
+                        $epl_author_secondary = new EPL_Author_meta($second_author->ID);
+                        epl_get_template_part('content-author-box.php',array('epl_author'	=>	$epl_author_secondary));
                 }
                 epl_reset_post_author();
             }
@@ -366,7 +369,6 @@ function epl_property_author_box() {
 
 function epl_reset_post_author() {
 	global $post, $epl_author;
-	wp_reset_postdata();
 	if(class_exists('EPL_Author_meta')) {
 		$epl_author = new EPL_Author_meta($post->post_author);
 	}
@@ -377,14 +379,36 @@ add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
  
 // AUTHOR CARD : Standard
 function epl_property_author_box_simple_card() {
-	global $epl_author;
+	global $property,$epl_author,$epl_author_secondary;
 	epl_get_template_part('content-author-box-simple-card.php');
+    if($property != NULL) {
+        $property_second_agent = $property->get_property_meta('property_second_agent');
+            if ( '' != $property_second_agent ) {
+                $second_author = get_user_by( 'login' , $property_second_agent );
+                if($second_author !== false){
+                        $epl_author_secondary = new EPL_Author_meta($second_author->ID);
+                        epl_get_template_part('content-author-box-simple-card.php',array('epl_author'	=>	$epl_author_secondary));
+                }
+                epl_reset_post_author();
+            }
+    }
 }
 
 // AUTHOR CARD : Gravatar
 function epl_property_author_box_simple_grav() {
-	global $epl_settings,$epl_author;
+	global $property,$epl_author,$epl_author_secondary;
 	epl_get_template_part('content-author-box-simple-grav.php');
+    if($property != NULL) {
+        $property_second_agent = $property->get_property_meta('property_second_agent');
+            if ( '' != $property_second_agent ) {
+                $second_author = get_user_by( 'login' , $property_second_agent );
+                if($second_author !== false){
+                        $epl_author_secondary = new EPL_Author_meta($second_author->ID);
+                        epl_get_template_part('content-author-box-simple-grav.php',array('epl_author'	=>	$epl_author_secondary));
+                }
+                epl_reset_post_author();
+            }
+    }
 }
 
 // AUTHOR LISTING CARDS : Listing Card
@@ -981,11 +1005,6 @@ function epl_author_tabs () {
 		'contact_form'		=>	__('Contact','epl'),
 	);
 					
-	 foreach($author_tabs as $k => $author_tab) { 	
-	 	if( $epl_author->{$k} == ''){ 	
-	 		unset($author_tabs[$k]); 	
-	 	} 	
-	 }
 	return $author_tabs = apply_filters('epl_author_tabs',$author_tabs);
 }
 
@@ -998,12 +1017,14 @@ function epl_author_class ($classes) {
 	}
 }
 
-function epl_author_tab_author_id() {
+function epl_author_tab_author_id($epl_author = array() ) {
 
-	global $epl_author, $epl_settings;
+	if(empty($epl_author)) {
+		global $epl_author;
+	}
 	
-	$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) );
-	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) );
+	$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
+	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
 		
 ?>
 	<div class="author-contact-details">
@@ -1013,7 +1034,11 @@ function epl_author_tab_author_id() {
 				<?php echo $author_title;  ?>
 			</a>
 		</h5>
-		
+		<div class="author-position">
+			<span class="label-position"></span>
+			<span class="mobile"><?php echo $epl_author->get_author_position() ?></span>
+		</div>
+
 		<div class="author-contact">
 			<span class="label-mobile"></span>
 			<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
@@ -1032,25 +1057,36 @@ function epl_author_tab_author_id() {
 <?php	
 }
 
-function epl_author_tab_image () {
-	global $epl_author; 
+function epl_author_tab_image ($epl_author = array() ) {
+	if(empty($epl_author)) {
+		global $epl_author;
+	}
+
 	if ( function_exists('get_avatar') ) {
 		return get_avatar( $epl_author->email , '150' );
 	}
 }
 
-function epl_author_tab_description() { 
-	global $epl_author; 
+function epl_author_tab_description($epl_author = array() ) { 
+	if(empty($epl_author)) {
+		global $epl_author;
+	}
 	echo $epl_author->get_description_html();
 }
 
-function epl_author_tab_video() {
-	global $epl_author;
-	echo '<div class="author-video epl-video-container">'.$epl_author->get_video_html().'</div>';
+function epl_author_tab_video($epl_author = array() ) {
+	if(empty($epl_author)) {
+		global $epl_author;
+	}
+	$video_html = $epl_author->get_video_html();
+	if($video_html != '')
+		echo '<div class="author-video epl-video-container">'.$video_html.'</div>';
 }
 
-function epl_author_tab_contact_form() {
-	global $epl_author;
+function epl_author_tab_contact_form( $epl_author = array() ) {
+	if(empty($epl_author)) {
+		global $epl_author;
+	}
 	echo $epl_author->get_author_contact_form();
 }
 
