@@ -375,6 +375,18 @@ h3.property-address {
 	margin-top: 0;
 }
 /* Author Styling */
+.epl-author-archive {
+	overflow: hidden;
+}
+.epl-author-archive .author-box.author-details {
+	width: 70%;
+}
+.epl-author-archive .author-info,
+.epl-author-archive .author-title {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
 .epl-author-card {
 	margin-bottom: 2em;
 }
