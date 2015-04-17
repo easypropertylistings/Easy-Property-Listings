@@ -407,11 +407,11 @@ h3.property-address {
 	/* width: 150px; */
 	height: auto;
 }
-.author-slogan {
+.epl-author-box .author-slogan {
 	font-size: 1.2em;
-	/* float: left; */
+	float: left;
 	line-height: 1.1;
-	/* width: 50%; */
+	width: 50%;
 	text-align: center;
 	margin-top: 1em;
 }
@@ -423,10 +423,10 @@ h6.author-box-title {
 	margin-top:0;
 	margin-bottom: 0;
 }
-ul.author-tabs,
-ul.map-tabs {
-	margin: 0px;
-	padding: 0px;
+.epl-author-box ul.author-tabs,
+.epl-author-box ul.map-tabs {
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 ul.author-tabs li,
