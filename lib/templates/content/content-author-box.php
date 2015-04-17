@@ -48,12 +48,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		<?php
 			$counter = 1;
-			foreach($author_tabs as $k	=>	$author_tab) {
+			foreach($author_tabs as $k=>$tab) {
 				$current_tab 	= strtolower('author-'.$k);
 				$current_class	= $counter == 1? 'author-current':''; ?>
 				<div id="tab-<?php echo $counter; ?>" class="<?php epl_author_class ($current_tab .' author-tab-content '.$current_class) ?>">
 					<?php
-						echo $author_tab['content'];
+						echo $tab['content'];
 					?>
 				</div>
 				<?php
