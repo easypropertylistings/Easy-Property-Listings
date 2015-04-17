@@ -369,7 +369,6 @@ function epl_property_author_box() {
 
 function epl_reset_post_author() {
 	global $post, $epl_author;
-	wp_reset_postdata();
 	if(class_exists('EPL_Author_meta')) {
 		$epl_author = new EPL_Author_meta($post->post_author);
 	}
