@@ -212,7 +212,13 @@ function epl_get_decimal_separator() {
 	return apply_filters( 'epl_decimal_separator', $epl_decimal_separator );
 }
 function epl_currency_formatted_amount($price) {
-	return epl_currency_filter( epl_format_amount( $price , false ) );
+	$price_format = apply_filters('epl_price_number_format','number');
+	
+	if($price_format == 'decimal' && ( get_post_type() == 'rental' || is_post_type_archive('rental') ) )
+		return epl_currency_filter( epl_format_amount( $price , true ) );
+	else
+		return epl_currency_filter( epl_format_amount( $price , false ) );
+		
 }
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
