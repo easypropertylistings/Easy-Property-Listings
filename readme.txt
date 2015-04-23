@@ -148,6 +148,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Pagination optimised and no longer loads in admin.
 * Tweak: New filter epl_price_number_format added for decimal rental rates.
 * Tweak: Customise bond label from settings.
+* Tweak: Added filter epl_floorplan_button_label_filter to adjust Floor Plan button label. 
 
 = 2.1.3 April 17, 2015 =
 

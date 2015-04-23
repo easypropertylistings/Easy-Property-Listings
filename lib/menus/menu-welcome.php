@@ -286,6 +286,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Pagination optimised and no longer loads in admin.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: New filter epl_price_number_format added for decimal rental rates.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Display custom bond label when viewing listings.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added filter epl_floorplan_button_label_filter to adjust Floor Plan button label.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.1.3', 'epl' );?></h4>
