@@ -161,6 +161,25 @@ class EPL_Welcome {
 			<?php $this->tabs(); ?>
 			
 			<div class="changelog headline-feature">
+				<h2><?php _e( 'Extensions updated and minor tweaks' , 'epl' );?></h2>
+				
+				<div class="feature-section">
+				
+					<?php $lp_link = '<a href="http://easypropertylistings.com.au/extensions/location-profiles/">' . __('Location Profiles' , 'epl') . '</a>'; ?>
+					<?php $tm_link = '<a href="http://easypropertylistings.com.au/extensions/testimonial-manager/">' . __('Testimonial Manager' , 'epl') . '</a>'; ?>
+					<?php $am_link = '<a href="http://easypropertylistings.com.au/extensions/advanced-mapping/">' . __('Advanced Mapping' , 'epl') . '</a>'; ?>
+					<?php $sd_link = '<a href="http://easypropertylistings.com.au/extensions/staff-directory/">' . __('Staff Directory' , 'epl') . '</a>'; ?>
+					
+					<p><?php printf( __( 'We have just released the much awaited update to the %s and %s extension and are working on the others. These updates follow the massive upgrade to %s and the major update to the %s extensions.', 'epl' ), $lp_link, $tm_link , $am_link , $sd_link  ); ?></p>
+					
+					<?php $support_link = '<a href="http://easypropertylistings.com.au/support/">' . __('Support Forum' , 'epl') . '</a>'; ?>
+					
+					<p><?php printf( __( 'After a challenging week with server issues that caused the %s notification to not be sent, this is now back to normal... for now... we hope.', 'epl' ), $support_link  ); ?></p>
+				</div>
+			</div>
+			<hr>
+			
+			<div class="changelog headline-feature">
 				<h2><?php _e( 'The week where if it could go wrong... it did' , 'epl' );?></h2>
 				
 				<div class="feature-section">
