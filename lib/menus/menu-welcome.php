@@ -279,6 +279,14 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
+				
+					<h4><?php _e( 'Version 2.1.4', 'epl' );?></h4>
+					
+					<ul>
+						<li><?php _e( 'Tweak: Pagination optimised and no longer loads in admin.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: New filter epl_price_number_format added for decimal rental rates.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Display custom bond label when viewing listings.', 'epl' );?></li>
+					</ul>
 					
 					<h4><?php _e( 'Version 2.1.3', 'epl' );?></h4>
 					
