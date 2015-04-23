@@ -161,6 +161,25 @@ class EPL_Welcome {
 			<?php $this->tabs(); ?>
 			
 			<div class="changelog headline-feature">
+				<h2><?php _e( 'Extensions updated and minor tweaks' , 'epl' );?></h2>
+				
+				<div class="feature-section">
+				
+					<?php $lp_link = '<a href="http://easypropertylistings.com.au/extensions/location-profiles/">' . __('Location Profiles' , 'epl') . '</a>'; ?>
+					<?php $tm_link = '<a href="http://easypropertylistings.com.au/extensions/testimonial-manager/">' . __('Testimonial Manager' , 'epl') . '</a>'; ?>
+					<?php $am_link = '<a href="http://easypropertylistings.com.au/extensions/advanced-mapping/">' . __('Advanced Mapping' , 'epl') . '</a>'; ?>
+					<?php $sd_link = '<a href="http://easypropertylistings.com.au/extensions/staff-directory/">' . __('Staff Directory' , 'epl') . '</a>'; ?>
+					
+					<p><?php printf( __( 'We have just released the much awaited update to the %s and %s extension and are working on the others. These updates follow the massive upgrade to %s and the major update to the %s extensions.', 'epl' ), $lp_link, $tm_link , $am_link , $sd_link  ); ?></p>
+					
+					<?php $support_link = '<a href="http://easypropertylistings.com.au/support/">' . __('Support Forum' , 'epl') . '</a>'; ?>
+					
+					<p><?php printf( __( 'After a challenging week with server issues causing %s notifications not being delivered, this is now back to normal now... we hope.', 'epl' ), $support_link  ); ?></p>
+				</div>
+			</div>
+			<hr>
+			
+			<div class="changelog headline-feature">
 				<h2><?php _e( 'The week where if it could go wrong... it did' , 'epl' );?></h2>
 				
 				<div class="feature-section">
@@ -279,6 +298,15 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
+				
+					<h4><?php _e( 'Version 2.1.4', 'epl' );?></h4>
+					
+					<ul>
+						<li><?php _e( 'Tweak: Pagination optimised and no longer loads in admin.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: New filter epl_price_number_format added for decimal rental rates.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Display custom bond label when viewing listings.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added filter epl_floorplan_button_label_filter to adjust Floor Plan button label.', 'epl' );?></li>
+					</ul>
 					
 					<h4><?php _e( 'Version 2.1.3', 'epl' );?></h4>
 					

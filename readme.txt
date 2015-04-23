@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.1.3
+Stable Tag: 2.1.4
 
 License: GNU Version 2 or Any Later Version
 
@@ -143,15 +143,22 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 2.1.4 April 22, 2015 =
+
+* Tweak: Pagination optimised and no longer loads in admin.
+* Tweak: New filter epl_price_number_format added for decimal rental rates.
+* Tweak: Customise bond label from settings.
+* Tweak: Added filter epl_floorplan_button_label_filter to adjust Floor Plan button label. 
+
 = 2.1.3 April 17, 2015 =
 
-* Fix: Author box upgrated to allow for custom tabs.
-* Fix: Author box upgrated to allow for better staff directory integration with authorbox and widget.
+* Fix: Author box upgraded to allow for custom tabs.
+* Fix: Author box upgraded to allow for better staff directory integration with authorbox and widget.
 * Fix: Added CSS class for author archive pages.
 * Fix: Improved CSS classes for author box with better responsive support.
 * Fix: Added additional filters for author contact information.
 * Fix: Added secondary global author function for simpler integration for extensions like the Staff Directory.
-* Fix: Changes to author tempaltes and restored author position variable.
+* Fix: Changes to author templates and restored author position variable.
 * Fix: Further improved max and min graph values when in listing admin.
 
 = 2.1.2 April 11, 2015 =
@@ -190,7 +197,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Year built field added to property, rental, rural listing types.
 * New: Media upload function for use in extensions.
 * New: Ability to customise Under Offer and Leased labels in settings.
-* New: Lease type label loaded from dropdown select. So you can have NNN, P.A., Full Service, Gross Lease Rates, on commercial listing types. Also has a filter to enable customisation of the options.
+* New: Lease type label loaded from drop-down select. So you can have NNN, P.A., Full Service, Gross Lease Rates, on commercial listing types. Also has a filter to enable customisation of the options.
 * New: Disable links in the feature list.
 * Fix: Text domain fixes on template files.
 * Fix: Finnish translation file renamed.
