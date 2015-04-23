@@ -188,7 +188,7 @@ class EPL_Property_Meta {
 			return;
 			
 		if ( $this->get_property_meta('property_bond') !='' ) {
-			return epl_currency_formatted_amount($this->get_property_meta('property_bond'));
+			return epl_currency_formatted_amount($this->get_property_meta('property_bond')).' '.$this->label_bond;
 		}
 	}
 	// property rental available
@@ -279,7 +279,7 @@ class EPL_Property_Meta {
 				$price_plain_value = $this->get_property_rent(). '/' . $this->get_property_meta('property_rent_period');
 				
 				if($this->get_property_bond() != '' && $this->epl_settings['display_bond'] == 'yes')
-					$price_plain_value = $this->get_property_bond().__(' bond','epl');
+					$price_plain_value = $this->get_property_bond();
 				
 			} elseif('leased' == $this->get_property_meta('property_status')) {
 				$price_plain_value = $this->label_leased;
@@ -350,7 +350,7 @@ class EPL_Property_Meta {
 							</span>
 						';
 				if($this->get_property_bond() != '' && in_array($this->get_epl_settings('display_bond'),array(1,'yes')))
-					$price .= '<span class="bond">' . $this->get_property_bond() . ' bond</span>';
+					$price .= '<span class="bond">' . $this->get_property_bond() . '</span>';
 					
 			} elseif('leased' == $this->get_property_meta('property_status')) {
 				$price = '<span class="page-price sold-status">'.$this->label_leased.'</span>';
