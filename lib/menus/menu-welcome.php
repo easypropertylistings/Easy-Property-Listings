@@ -174,7 +174,7 @@ class EPL_Welcome {
 					
 					<?php $support_link = '<a href="http://easypropertylistings.com.au/support/">' . __('Support Forum' , 'epl') . '</a>'; ?>
 					
-					<p><?php printf( __( 'After a challenging week with server issues that caused the %s notification to not be sent, this is now back to normal... for now... we hope.', 'epl' ), $support_link  ); ?></p>
+					<p><?php printf( __( 'After a challenging week with server issues causing %s notifications not being delivered, this is now back to normal now... we hope.', 'epl' ), $support_link  ); ?></p>
 				</div>
 			</div>
 			<hr>
