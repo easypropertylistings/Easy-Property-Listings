@@ -212,9 +212,12 @@ function epl_get_decimal_separator() {
 	return apply_filters( 'epl_decimal_separator', $epl_decimal_separator );
 }
 function epl_currency_formatted_amount($price) {
-	$price_format = apply_filters('epl_price_number_format','number');
+	$price_format 			= apply_filters('epl_price_number_format','number');
+	$price_format_com_lease 	= apply_filters('epl_price_number_format_commercial_lease','number');
 	
 	if($price_format == 'decimal' && ( get_post_type() == 'rental' || is_post_type_archive('rental') ) )
+		return epl_currency_filter( epl_format_amount( $price , true ) );
+	elseif($price_format_com_lease == 'decimal' && ( get_post_type() == 'commercial' || is_post_type_archive('commercial') ) )
 		return epl_currency_filter( epl_format_amount( $price , true ) );
 	else
 		return epl_currency_filter( epl_format_amount( $price , false ) );
