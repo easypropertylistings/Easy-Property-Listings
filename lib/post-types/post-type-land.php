@@ -25,37 +25,37 @@ function epl_register_custom_post_type_land() {
 	$rewrite  = defined( 'EPL_LAND_DISABLE_REWRITE' ) && EPL_LAND_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_land_labels', array(
-		'name'					=>	__('Land', 'epl'),
-		'singular_name'			=>	__('Land', 'epl'),
-		'menu_name'				=>	__('Land', 'epl'),
-		'add_new'				=>	__('Add New', 'epl'),
-		'add_new_item'			=>	__('Add New Land Listing', 'epl'),
-		'edit_item'				=>	__('Edit Land Listing', 'epl'),
-		'new_item'				=>	__('New Land Listing', 'epl'),
-		'update_item'			=>	__('Update Land Listing', 'epl'),
-		'all_items'				=>	__('All Land Listings', 'epl'),
-		'view_item'				=>	__('View Land Listing', 'epl'),
-		'search_items'			=>	__('Search Land Listing', 'epl'),
-		'not_found'				=>	__('Land Listing Not Found', 'epl'),
+		'name'			=>	__('Land', 'epl'),
+		'singular_name'		=>	__('Land', 'epl'),
+		'menu_name'		=>	__('Land', 'epl'),
+		'add_new'		=>	__('Add New', 'epl'),
+		'add_new_item'		=>	__('Add New Land Listing', 'epl'),
+		'edit_item'		=>	__('Edit Land Listing', 'epl'),
+		'new_item'		=>	__('New Land Listing', 'epl'),
+		'update_item'		=>	__('Update Land Listing', 'epl'),
+		'all_items'		=>	__('All Land Listings', 'epl'),
+		'view_item'		=>	__('View Land Listing', 'epl'),
+		'search_items'		=>	__('Search Land Listing', 'epl'),
+		'not_found'		=>	__('Land Listing Not Found', 'epl'),
 		'not_found_in_trash'	=>	__('Land Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'		=>	__('Parent Land Listing:', 'epl')
+		'parent_item_colon'	=>	__('Parent Land Listing:', 'epl')
 	) );
 	
 	$land_args = array(
-		'labels'				=>	$labels,
-		'public'				=>	true,
+		'labels'		=>	$labels,
+		'public'		=>	true,
 		'publicly_queryable'	=>	true,
-		'show_ui'				=>	true,
-		'show_in_menu'			=>	true,
-		'query_var'				=>	true,
-		'rewrite'				=>	$rewrite,
-		'menu_icon'				=>	'dashicons-image-crop',
-		'capability_type'		=>	'post',
-		'has_archive'			=>	$archives,
-		'hierarchical'			=>	false,
-		'menu_position'			=>	'26.3',
-		'taxonomies'			=>	array( 'location', 'tax_feature' ),
-		'supports'				=>	apply_filters( 'epl_land_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
+		'show_ui'		=>	true,
+		'show_in_menu'		=>	true,
+		'query_var'		=>	true,
+		'rewrite'		=>	$rewrite,
+		'menu_icon'		=>	'dashicons-image-crop',
+		'capability_type'	=>	'post',
+		'has_archive'		=>	$archives,
+		'hierarchical'		=>	false,
+		'menu_position'		=>	'26.3',
+		'taxonomies'		=>	array( 'location', 'tax_feature' ),
+		'supports'		=>	apply_filters( 'epl_land_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
 	epl_register_post_type( 'land', 'Land', apply_filters( 'epl_land_post_type_args', $land_args ) );
 }
@@ -75,26 +75,33 @@ if ( is_admin() ) {
 	 * @return void
 	 */
 	function epl_manage_land_columns_heading( $columns ) {
+		global $epl_settings;
+		
 		$columns = array(
-			'cb'				=> '<input type="checkbox" />',
+			'cb'			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Image', 'epl'),
 			'property_price'	=> __('Price', 'epl'),
-			'title'				=> __('Address', 'epl'),
-			'listing'			=> __('Listing Details', 'epl'),
-			'geo'				=> __('Geo', 'epl'),
+			'title'			=> __('Address', 'epl'),
+			'listing'		=> __('Listing Details', 'epl'),
+			'listing_id'		=> __('Unique ID' , 'epl'),
+			'geo'			=> __('Geo', 'epl'),
 			'property_status'	=> __('Status', 'epl'),
 			'agent'			=> __('Agent', 'epl'),
-			'date'				=> __('Date', 'epl')
+			'date'			=> __('Date', 'epl')
 		);
 		
-		$geo_debug = 0;
-		global $epl_settings;
-		if(!empty($epl_settings) && isset($epl_settings['debug'])) {
-			$geo_debug = $epl_settings['debug'];
-		}
+		// Geocode Column
+		$geo_debug = !empty($epl_settings) && isset($epl_settings['debug']) ? $epl_settings['debug'] : 0;
 		if ( $geo_debug != 1 ) {
 			unset($columns['geo']);
 		}
+		
+		// Listing ID Column		
+		$admin_unique_id = !empty($epl_settings) && isset($epl_settings['admin_unique_id']) ? $epl_settings['admin_unique_id'] : 0;
+		if ( $admin_unique_id != 1 ) {
+			unset($columns['listing_id']);
+		}
+		
 		return $columns;
 	}
 	add_filter( 'manage_edit-land_columns', 'epl_manage_land_columns_heading' ) ;
@@ -120,10 +127,11 @@ if ( is_admin() ) {
 			case 'listing' :
 				/* Get the post meta. */
 				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading					= get_post_meta( $post_id, 'property_heading', true );
-				$land						= get_post_meta( $post_id, 'property_land_area', true );
-				$land_unit					= get_post_meta( $post_id, 'property_land_area_unit', true );
-				$homeopen 					= get_post_meta( $post_id, 'property_inspection_times', true );
+				$heading			= get_post_meta( $post_id, 'property_heading', true );
+				$land				= get_post_meta( $post_id, 'property_land_area', true );
+				$land_unit			= get_post_meta( $post_id, 'property_land_area_unit', true );
+				$homeopen 			= get_post_meta( $post_id, 'property_inspection_times', true );
+				
 				if ( empty( $heading) ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
 				} else {
@@ -150,19 +158,27 @@ if ( is_admin() ) {
 				}
 			
 				break;
+			
+			/* If displaying the 'Listing ID' column. */
+			case 'listing_id' :
+				/* Get the post meta. */
+				$unique_id	= get_post_meta( $post_id, 'property_unique_id', true );
+				/* If no duration is found, output a default message. */
+				if (  !empty( $unique_id ) )
+					echo $unique_id;
+				break;
 				
-			/* If displaying the 'Geocoding Debug' column. */
+			/* If displaying the 'Geocoding' column. */
 			case 'geo' :
 				/* Get the post meta. */
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
 				/* If no duration is found, output a default message. */
-				if (  $property_address_coordinates == ',' )
-					_e('NO','epl') ;
+				if (  $property_address_coordinates == ',' || empty($property_address_coordinates ) )
+					_e('No','epl') ;
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
-					// echo 'Yes';
 					echo $property_address_coordinates;
-				break;	
+				break;
 				
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
@@ -218,8 +234,8 @@ if ( is_admin() ) {
 				$property_status = get_post_meta( $post_id, 'property_status', true );
 				$labels_property_status = apply_filters (  'epl_labels_property_status_filter', array(
 					'current' 	=> __('Current', 'epl'),
-					'withdrawn' => __('Withdrawn', 'epl'),
-					'offmarket' => __('Off Market', 'epl'),
+					'withdrawn' 	=> __('Withdrawn', 'epl'),
+					'offmarket' 	=> __('Off Market', 'epl'),
 					'sold'  	=> __('Sold', 'epl'),
 					'leased'  	=> $property->label_leased
 					)
@@ -247,8 +263,6 @@ if ( is_admin() ) {
 					epl_reset_post_author();
 				}
 				break;
-
-
 
 			/* Just break out of the switch statement for everything else. */
 			default :

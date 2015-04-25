@@ -74,27 +74,33 @@ if ( is_admin() ) {
 	 * @return void
 	 */
 	function epl_manage_rental_columns_heading( $columns ) {
-		// Geocode Debug Option
+		global $epl_settings;
+		
 		$columns = array(
 			'cb' 			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Image', 'epl'),
 			'property_rent'		=> __('Rent', 'epl'),
 			'title'			=> __('Address', 'epl'),
 			'listing'		=> __('Listing Details', 'epl'),
+			'listing_id'		=> __('Unique ID' , 'epl'),
 			'geo'			=> __('Geocoded', 'epl'),
 			'property_status'	=> __('Status', 'epl'),
 			'agent'			=> __('Agent', 'epl'),
 			'date'			=> __('Date', 'epl')
 		);
 		
-		$geo_debug = 0;
-		global $epl_settings;
-		if(!empty($epl_settings) && isset($epl_settings['debug'])) {
-			$geo_debug = $epl_settings['debug'];
-		}
+		// Geocode Column
+		$geo_debug = !empty($epl_settings) && isset($epl_settings['debug']) ? $epl_settings['debug'] : 0;
 		if ( $geo_debug != 1 ) {
 			unset($columns['geo']);
 		}
+		
+		// Listing ID Column		
+		$admin_unique_id = !empty($epl_settings) && isset($epl_settings['admin_unique_id']) ? $epl_settings['admin_unique_id'] : 0;
+		if ( $admin_unique_id != 1 ) {
+			unset($columns['listing_id']);
+		}
+		
 		return $columns;
 	}
 	add_filter( 'manage_edit-rental_columns', 'epl_manage_rental_columns_heading' ) ;
@@ -130,7 +136,7 @@ if ( is_admin() ) {
 					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
 				} else {
 					echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
-				}		
+				}	
 				
 				echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
 				
@@ -157,17 +163,26 @@ if ( is_admin() ) {
 						}
 						$homeopen_list .= '</ul>';
 					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
-				} 
+				}
 			
 				break;
-		
+			
+			/* If displaying the 'Listing ID' column. */
+			case 'listing_id' :
+				/* Get the post meta. */
+				$unique_id	= get_post_meta( $post_id, 'property_unique_id', true );
+				/* If no duration is found, output a default message. */
+				if (  !empty( $unique_id ) )
+					echo $unique_id;
+				break;
+
 			/* If displaying the 'Geocoding' column. */
 			case 'geo' :
 				/* Get the post meta. */
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
 				/* If no duration is found, output a default message. */
-				if (  $property_address_coordinates == ',' )
-					_e('NO','epl') ;
+				if (  $property_address_coordinates == ',' || empty($property_address_coordinates ) )
+					_e('No','epl') ;
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					echo $property_address_coordinates;
@@ -220,7 +235,7 @@ if ( is_admin() ) {
 				else
 					 echo '<div class="epl_meta_rent">' , epl_currency_formatted_amount( $rent ) , '</div>';
 					if ( $d_bond == 1 ) { 
-						echo '<div class="epl_meta_bond">Bond: ' , epl_currency_formatted_amount( $bond ) , '</div>'; 
+						echo '<div class="epl_meta_bond">' , epl_display_label_bond() , ' ' , epl_currency_formatted_amount( $bond ) , '</div>'; 
 					}
 				break;
 			/* If displaying the 'real-estate' column. */
@@ -229,8 +244,8 @@ if ( is_admin() ) {
 				$property_status = get_post_meta( $post_id, 'property_status', true );
 				$labels_property_status = apply_filters (  'epl_labels_property_status_filter', array(
 					'current' 	=> __('Current', 'epl'),
-					'withdrawn' => __('Withdrawn', 'epl'),
-					'offmarket' => __('Off Market', 'epl'),
+					'withdrawn'	=> __('Withdrawn', 'epl'),
+					'offmarket'	=> __('Off Market', 'epl'),
 					'sold'  	=> __('Sold', 'epl'),
 					'leased'  	=> $property->label_leased
 					)

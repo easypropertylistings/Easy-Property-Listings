@@ -181,13 +181,17 @@ class EPL_Property_Meta {
 			return epl_currency_formatted_amount($this->get_property_meta('property_rent'));
 		}
 	}
-	
+
 	// Rental Bond
-	public function get_property_bond () {
+	public function get_property_bond ( ) {
 		if($this->post_type != 'rental')
 			return;
-			
-		if ( $this->get_property_meta('property_bond') !='' ) {
+		
+		$bond_position = apply_filters('epl_property_bond_position','after');
+		
+		if ( $this->get_property_meta('property_bond') !='' && $bond_position == 'before' ) {
+			return $this->label_bond . ' ' . epl_currency_formatted_amount($this->get_property_meta('property_bond'));
+		} elseif ( $this->get_property_meta('property_bond') !='' ) {
 			return epl_currency_formatted_amount($this->get_property_meta('property_bond')).' '.$this->label_bond;
 		}
 	}

@@ -232,6 +232,15 @@ function epl_display_label_suburb( ) {
 	}
 	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
 }
+function epl_display_label_bond( ) {
+	$epl_display_label_bond = '';
+	
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
+		$epl_display_label_bond = $epl_settings['label_bond'];
+	}
+	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
+}
 function epl_display_label_postcode() {
 	$epl_display_label_postcode = '';
 	
@@ -1091,22 +1100,33 @@ function epl_admin_sidebar () {
 		),
 
 		array(
-			'label'		=>	__('Debug' , 'epl'),
+			'label'		=>	__('Managing Listings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
 			'fields'	=>	array(
 				
 				array(
-					'name'	=>	'debug',
-					'label'	=>	__('Display Listing Coordinate results', 'epl'),
+					'name'	=>	'admin_unique_id',
+					'label'	=>	__('Display the Unique ID column', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	'Enable',
 						0	=>	'Disable'
 					),
-					'help'	=>	__('This will listing lat/long results on listing pages.', 'epl')
+					'help'	=>	__('This will display the Unique Listing ID column.', 'epl'),
+					'default'	=> 0
 				),
-				
+				array(
+					'name'	=>	'debug',
+					'label'	=>	__('Display Geocoded column', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	'Enable',
+						0	=>	'Disable'
+					),
+					'help'	=>	__('This will listing lat/long results in a new column.', 'epl'),
+					'default'	=> 0
+				),
 			),
 		)
 	);
