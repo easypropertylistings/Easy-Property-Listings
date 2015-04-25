@@ -74,12 +74,15 @@ if ( is_admin() ) {
 	 * @return void
 	 */
 	function epl_manage_commercial_heading( $columns ) {
+		global $epl_settings;
+		
 		$columns = array(
 			'cb'			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Featured Image', 'epl'),
 			'property_price'	=> __('Price', 'epl'),
 			'title'			=> __('Address', 'epl'),
 			'listing'		=> __('Listing Details', 'epl'),
+			'listing_id'		=> __('Unique ID' , 'epl'),
 			'geo'			=> __('Geo', 'epl'),
 			'property_status'	=> __('Status', 'epl'),
 			'listing_type'		=> __('Sale/Lease', 'epl'),
@@ -87,14 +90,18 @@ if ( is_admin() ) {
 			'date'			=> __('Date', 'epl')
 		);
 		
-		$geo_debug = 0;
-		global $epl_settings;
-		if(!empty($epl_settings) && isset($epl_settings['debug'])) {
-			$geo_debug = $epl_settings['debug'];
-		}
+		// Geocode Column
+		$geo_debug = !empty($epl_settings) && isset($epl_settings['debug']) ? $epl_settings['debug'] : 0;
 		if ( $geo_debug != 1 ) {
 			unset($columns['geo']);
 		}
+		
+		// Listing ID Column		
+		$admin_unique_id = !empty($epl_settings) && isset($epl_settings['admin_unique_id']) ? $epl_settings['admin_unique_id'] : 0;
+		if ( $admin_unique_id != 1 ) {
+			unset($columns['listing_id']);
+		}
+		
 		return $columns;
 	}
 	add_filter( 'manage_edit-commercial_columns', 'epl_manage_commercial_heading' ) ;
@@ -165,18 +172,27 @@ if ( is_admin() ) {
 				}
 			
 				break;
-			/* If displaying the 'Geocoding Debub' column. */
+				
+			/* If displaying the 'Listing ID' column. */
+			case 'listing_id' :
+				/* Get the post meta. */
+				$unique_id	= get_post_meta( $post_id, 'property_unique_id', true );
+				/* If no duration is found, output a default message. */
+				if (  !empty( $unique_id ) )
+					echo $unique_id;
+				break;
+
+			/* If displaying the 'Geocoding' column. */
 			case 'geo' :
 				/* Get the post meta. */
 				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
 				/* If no duration is found, output a default message. */
-				if (  $property_address_coordinates == ',' )
-					_e('NO','epl') ;
+				if (  $property_address_coordinates == ',' || empty($property_address_coordinates ) )
+					_e('No','epl') ;
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
-					// echo 'Yes';
 					echo $property_address_coordinates;
-				break;	
+				break;
 				
 			/* If displaying the 'Price' column. */
 			case 'property_price' :

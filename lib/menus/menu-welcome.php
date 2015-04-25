@@ -177,7 +177,6 @@ class EPL_Welcome {
 					<p><?php printf( __( 'After a challenging week with server issues causing %s notifications not being delivered, this is now back to normal now... we hope.', 'epl' ), $support_link  ); ?></p>
 				</div>
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 				<h2><?php _e( 'The week where if it could go wrong... it did' , 'epl' );?></h2>
@@ -209,7 +208,6 @@ class EPL_Welcome {
 					<p><?php printf( __( 'Let us know how Easy Property Listings helps you by %s. We love the feedback!', 'epl' ), $support_change , $support_change_2 ); ?></p>
 				</div>
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 				<h2><?php _e( 'Advanced Map extension major update released' , 'epl' );?></h2>
@@ -225,7 +223,6 @@ class EPL_Welcome {
 										
 				</div>
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 			
@@ -291,7 +288,6 @@ class EPL_Welcome {
 				</div>
 
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 			
@@ -299,6 +295,20 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 				
+					<h4><?php _e( 'Version 2.1.5', 'epl' );?></h4>
+					
+					<ul>
+						<li><?php _e( 'Tweak: Commercial listing: Ability to set commercial lease rate to a decimal value using the epl_price_number_format_commercial_lease filter.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Updated epl.pot translation file.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Removed horizontal line elements in the help section to match WordPress 4.2 admin page styles.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Rental Listing: Added epl_property_bond_position filter to adjust the position of the Bond/Deposit to appear either before or after the value.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Rental Listing: Removed CSS padding before bond value.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Rental Listing: Adjusting the Bond/Deposit label will now show your custom label in the Rental Price box.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Rural Listing: Undefined label_leased variable.', 'epl' );?></li>
+						<li><?php _e( 'Note: Confirmed Easy Property Listings is not vulnerable to recent WordPress exploit.', 'epl' );?></li>
+						<li><?php _e( 'New: Added setting to show/hide Listing Unique ID column when managing listings.', 'epl' );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 2.1.4', 'epl' );?></h4>
 					
 					<ul>
@@ -618,7 +628,6 @@ class EPL_Welcome {
 					</ul>
 				</div>
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 			
@@ -649,7 +658,6 @@ class EPL_Welcome {
 					</div>
 				</div>
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 			
@@ -674,7 +682,6 @@ class EPL_Welcome {
 				</div>
 				
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 			
@@ -753,7 +760,6 @@ class EPL_Welcome {
 					
 				</div>
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 			
@@ -788,10 +794,8 @@ class EPL_Welcome {
 						<p><?php _e( 'We hope a future WordPress release adds filter so this can be automatic, but until that happens you are going to have to perform the following steps using copy and paste.', 'epl' );?></p>
 					</div>
 				</div>
-
 			</div>
 
-			
 			<div class="changelog headline-feature">
 				<h2 id="theme-instructions" class="epl-welcome-sub-heading"><?php _e( 'Manual configuration instructions', 'epl' );?></h2>
 				<h3 class="about-description" style="text-align: center;"><?php _e( 'Before attempting the following steps add a', 'epl' );?> <a href="#guide-first-listing"><?php _e( 'test listing', 'epl' );?></a> <?php _e( 'and preview it. Your theme may already work with Easy Property Listings.', 'epl' );?></h3>
@@ -867,7 +871,6 @@ class EPL_Welcome {
 					</div>
 				</div>
 			</div>
-			<hr>
 			
 			<div class="changelog headline-feature">
 			
