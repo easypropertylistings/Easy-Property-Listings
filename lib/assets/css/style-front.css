@@ -1,5 +1,6 @@
 /*
  * EPL Front CSS
+ * @since 1.0
  */
 h3.property-address {
 	margin-top:0;
@@ -216,7 +217,7 @@ h3.property-address {
 	font-weight: bold;
 }
 .bond {
-	padding-left: 0.3em;
+	/* padding-left: 0.3em; */
 }
 .tab-content .rent-period,
 .tab-content  .bond {

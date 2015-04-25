@@ -143,6 +143,18 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 2.1.5 April 25, 2015 =
+
+* Tweak: Commercial listing: Ability to set commercial lease rate to a decimal value using the epl_price_number_format_commercial_lease filter.
+* Tweak: Updated epl.pot translation file.
+* Tweak: Removed horizontal line elements in the help section to match WordPress 4.2 admin page styles.
+* Tweak: Rental Listing: Added epl_property_bond_position filter to adjust the position of the Bond/Deposit to appear either before or after the value.
+* Tweak: Rental Listing: Removed CSS padding before bond value.
+* Fix: Rental Listing: Adjusting the Bond/Deposit label will now show your custom label in the Rental Price box.
+* Fix: Rural Listing: Undefined label_leased variable.
+* Note: Confirmed Easy Property Listings is not vulnerable to recent WordPress exploit.
+* New: Added setting to show/hide Listing Unique ID column when managing listings.
+
 = 2.1.4 April 22, 2015 =
 
 * Tweak: Pagination optimised and no longer loads in admin.
