@@ -1040,7 +1040,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_rent',
 							'label'		=>	__('Rent Amount', 'epl'),
-							'type'		=>	'number',
+							'type'		=>	apply_filters('epl_price_number_format','number'),
 							'maxlength'	=>	'40'
 						),
 					
@@ -1053,7 +1053,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_bond',
-							'label'		=>	__('Bond Amount', 'epl'),
+							'label'		=>	epl_display_label_bond(),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						),

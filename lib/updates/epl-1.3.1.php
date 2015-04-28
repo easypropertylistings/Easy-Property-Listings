@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$epl_settings = epl_settings();
 	$new_fields_defaults = array(
 		'widget_label_property'			=> __('Property', 'epl'),

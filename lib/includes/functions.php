@@ -212,7 +212,16 @@ function epl_get_decimal_separator() {
 	return apply_filters( 'epl_decimal_separator', $epl_decimal_separator );
 }
 function epl_currency_formatted_amount($price) {
-	return epl_currency_filter( epl_format_amount( $price , false ) );
+	$price_format 			= apply_filters('epl_price_number_format','number');
+	$price_format_com_lease 	= apply_filters('epl_price_number_format_commercial_lease','number');
+	
+	if($price_format == 'decimal' && ( get_post_type() == 'rental' || is_post_type_archive('rental') ) )
+		return epl_currency_filter( epl_format_amount( $price , true ) );
+	elseif($price_format_com_lease == 'decimal' && ( get_post_type() == 'commercial' || is_post_type_archive('commercial') ) )
+		return epl_currency_filter( epl_format_amount( $price , true ) );
+	else
+		return epl_currency_filter( epl_format_amount( $price , false ) );
+		
 }
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
@@ -222,6 +231,15 @@ function epl_display_label_suburb( ) {
 		$epl_display_label_suburb = $epl_settings['label_suburb'];
 	}
 	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
+}
+function epl_display_label_bond( ) {
+	$epl_display_label_bond = '';
+	
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
+		$epl_display_label_bond = $epl_settings['label_bond'];
+	}
+	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
 }
 function epl_display_label_postcode() {
 	$epl_display_label_postcode = '';
@@ -1082,22 +1100,33 @@ function epl_admin_sidebar () {
 		),
 
 		array(
-			'label'		=>	__('Debug' , 'epl'),
+			'label'		=>	__('Managing Listings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
 			'fields'	=>	array(
 				
 				array(
-					'name'	=>	'debug',
-					'label'	=>	__('Display Listing Coordinate results', 'epl'),
+					'name'	=>	'admin_unique_id',
+					'label'	=>	__('Display the Unique ID column', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	'Enable',
 						0	=>	'Disable'
 					),
-					'help'	=>	__('This will listing lat/long results on listing pages.', 'epl')
+					'help'	=>	__('This will display the Unique Listing ID column.', 'epl'),
+					'default'	=> 0
 				),
-				
+				array(
+					'name'	=>	'debug',
+					'label'	=>	__('Display Geocoded column', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	'Enable',
+						0	=>	'Disable'
+					),
+					'help'	=>	__('This will listing lat/long results in a new column.', 'epl'),
+					'default'	=> 0
+				),
 			),
 		)
 	);

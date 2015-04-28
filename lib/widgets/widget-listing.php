@@ -21,27 +21,27 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	function widget($args, $instance) {	
 	
 		$defaults = array(
-						'title'		=>	'',
-						'types'		=>	'property',
-						'featured'	=>	0,
-						'status'	=>	'any',
-						'display'	=>	'image',
-						'image'		=>	'thumbnail',
-						'archive'	=>	0,
-						'order_rand'=>	0,
-						'd_title'	=>	0,
-						
-						'more_text'	=>	'Read More',
-						'd_excerpt'	=>	'off',
-						'd_suburb'	=>	'on',
-						'd_street'	=>	'on',
-						'd_price'	=>	'on',
-						'd_more'	=>	'on',
+			'title'		=>	'',
+			'types'		=>	'property',
+			'featured'	=>	0,
+			'status'	=>	'any',
+			'display'	=>	'image',
+			'image'		=>	'thumbnail',
+			'archive'	=>	0,
+			'order_rand'	=>	0,
+			'd_title'	=>	0,
+			
+			'more_text'	=>	'Read More',
+			'd_excerpt'	=>	'off',
+			'd_suburb'	=>	'on',
+			'd_street'	=>	'on',
+			'd_price'	=>	'on',
+			'd_more'	=>	'on',
 
-						'd_icons'	=>	'none',
-						'p_number'	=>	1,
-						'p_skip'	=>	0
-					);
+			'd_icons'	=>	'none',
+			'p_number'	=>	1,
+			'p_skip'	=>	0
+		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
 		
 		extract( $args );
@@ -80,30 +80,41 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		
 		if ( $featured == 'on' ) {
 			$args = array(
-				'post_type' => $types, 
-				'showposts' => $p_number,
+				'post_type' 	=> $types, 
+				'showposts' 	=> $p_number,
 				'offset'	=> $p_skip,
-				'meta_query' => array(
+				'meta_query' 	=> array(
 					array(
-						'key' => 'property_featured',
-						'value' => 'yes'
+						'key' 	=> 'property_featured',
+						'value'	=> 'yes'
 					)
 				)
 			);
 		} elseif ( $archive == 'on' && is_post_type_archive() ) {
-			$get_types = get_post_type( $post );
-			$args = array(
-				'post_type' => $get_types, 
-				'showposts' => $p_number,
-				'offset'	=> $p_skip
-			);
+			$get_current_type 	= get_post_type();
+			$active_types 		= epl_get_active_post_types();
+			
+			if ( !array_key_exists( $get_current_type , $active_types  ) ) {
+				$args = array(
+					'post_type' 	=> $types, 
+					'showposts' 	=> $p_number,
+					'offset'	=> $p_skip
+				);
+			} else {
+				$args = array(
+					'post_type' 	=> $get_current_type, 
+					'showposts' 	=> $p_number,
+					'offset'	=> $p_skip
+				);
+			}
+			
 		} else {
 			if ( $status == 'Current' ) {
 				$args = array(
-					'post_type' => $types, 
-					'showposts' => $p_number,
+					'post_type' 	=> $types, 
+					'showposts' 	=> $p_number,
 					'offset'	=> $p_skip,
-					'meta_query' => array(
+					'meta_query' 	=> array(
 						array(
 							'key' => 'property_status',
 							'value' => 'current'
@@ -113,10 +124,10 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 			} elseif ( $status == 'Sold' ) {
 				$args = array(
-					'post_type' => $types, 
-					'showposts' => $p_number,
+					'post_type' 	=> $types, 
+					'showposts' 	=> $p_number,
 					'offset'	=> $p_skip,
-					'meta_query' => array(
+					'meta_query' 	=> array(
 						array(
 							'key' => 'property_status',
 							'value' => 'sold'
@@ -211,27 +222,27 @@ class EPL_Widget_Recent_Property extends WP_Widget {
     function form($instance) {	
 	
 		$defaults = array(
-						'title'		=>	'',
-						'types'		=>	'property',
-						'featured'	=>	0,
-						'status'	=>	'any',
-						'display'	=>	'image',
-						'image'		=>	'thumbnail',
-						'archive'	=>	0,
-						'order_rand'=>	0,
-						'd_title'	=>	0,
-						
-						'more_text'	=>	__('Read More', 'epl'),
-						'd_excerpt'	=>	'off',
-						'd_suburb'	=>	'on',
-						'd_street'	=>	'on',
-						'd_price'	=>	'on',
-						'd_more'	=>	'on',
+			'title'		=>	'',
+			'types'		=>	'property',
+			'featured'	=>	0,
+			'status'	=>	'any',
+			'display'	=>	'image',
+			'image'		=>	'thumbnail',
+			'archive'	=>	0,
+			'order_rand'=>	0,
+			'd_title'	=>	0,
+			
+			'more_text'	=>	__('Read More', 'epl'),
+			'd_excerpt'	=>	'off',
+			'd_suburb'	=>	'on',
+			'd_street'	=>	'on',
+			'd_price'	=>	'on',
+			'd_more'	=>	'on',
 
-						'd_icons'	=>	'none',
-						'p_number'	=>	1,
-						'p_skip'	=>	0
-					);
+			'd_icons'	=>	'none',
+			'p_number'	=>	1,
+			'p_skip'	=>	0
+		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
 
 		$title 		= esc_attr($instance['title']);
