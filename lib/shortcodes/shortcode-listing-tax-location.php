@@ -96,6 +96,19 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		}
 	}
 	
+	if( $sortby != '' ) {
+
+		if($sortby == 'price') {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	'property_price';
+		} else {
+			$args['orderby']	=	'post_date';
+			$args['order']		=	'DESC';
+
+		}
+		$args['order']			=	$sort_order;
+	}
+	
 	if( isset( $_GET['sortby'] ) ) {
 		$orderby = sanitize_text_field( trim($_GET['sortby']) );
 		if($orderby == 'high') {
