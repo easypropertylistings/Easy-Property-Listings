@@ -322,7 +322,7 @@ function epl_get_multipage_link( $page = 1 ) {
 			$url = trailingslashit( get_permalink() ) . user_trailingslashit( $page, 'single_paged' );
 	}
 
-	return $url;
+	return esc_url($url);
 }
 endif;
 
