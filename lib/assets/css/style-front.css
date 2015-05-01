@@ -216,6 +216,9 @@ h3.property-address {
 	color: #ffffff;
 	font-weight: bold;
 }
+.epl-property-blog .bond {
+	padding-left: 0.3em;
+}
 .bond {
 	/* padding-left: 0.3em; */
 }
