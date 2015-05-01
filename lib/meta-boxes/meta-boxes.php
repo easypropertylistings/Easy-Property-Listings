@@ -1050,6 +1050,13 @@ function epl_meta_box_init() {
 							'type'		=>	'select',
 							'opts'		=>	$opts_rent_period
 						),
+						
+						array(
+							'name'		=>	'property_rent_view',
+							'label'		=>	__('Rent Text', 'epl'),
+							'type'		=>	'text',
+							'maxlength'	=>	'50'
+						),
 					
 						array(
 							'name'		=>	'property_bond',
