@@ -368,20 +368,31 @@ h3.epl-welcome-sub-heading {
 	width:50%;
 	float:left;
 }
-.epl-inner-div.col-2 th, #side-sortables .epl-form-table th {
+.epl-inner-div.col-3 {
+	width:33%;
+	float:left;
+}
+.epl-inner-div.col-2 th,
+.epl-inner-div.col-3 th,
+#side-sortables .epl-form-table th {
 	padding-top:5px;
 	padding-bottom:2px;
 }
-.epl-inner-div.col-2 td, #side-sortables .epl-form-table td {
+.epl-inner-div.col-2 td,
+.epl-inner-div.col-3 td,
+#side-sortables .epl-form-table td {
 	padding:0; 
 }
 .epl-inner-div.col-2 span.epl-field-row,
+.epl-inner-div.col-3 span.epl-field-row,
 #side-sortables .epl-form-table span.epl-field-row {
 	display:inline-block;
 	margin-right:15px;
 }
 .epl-inner-div.col-2 span.epl-field-row input[type="radio"],
 .epl-inner-div.col-2 span.epl-field-row input[type="checkbox"],
+.epl-inner-div.col-3 span.epl-field-row input[type="radio"],
+.epl-inner-div.col-3 span.epl-field-row input[type="checkbox"],
 #side-sortables .epl-form-table span.epl-field-row input[type="radio"],
 #side-sortables .epl-form-table span.epl-field-row input[type="checkbox"] {
 	margin-right:0;
@@ -398,7 +409,9 @@ h3.epl-welcome-sub-heading {
 .epl-form-table label {
 	font-size:13px !important;
 }
-.epl-inner-div input[type="radio"], 
+.epl-inner-div input[type="radio"] {
+	
+} 
 .epl-inner-div input[type="checkbox"] {
 	width:auto;
 }
@@ -711,10 +724,9 @@ h3.epl-welcome-sub-heading {
 }
 #epl-inspection-markup {
 	margin: 0.3em 0;
-	padding: 0.3em 0;
+	padding: 0.5em;
 	background: #fcfcfc;
 	border: 1px solid #ddd;
-	
 }
 #epl-inspection-add {
 	margin-left: 0.5em;
@@ -731,15 +743,55 @@ h3.epl-welcome-sub-heading {
 	}
 	.form-table td  input[type=text]#epl-inspection-date {
 		display: block;
+	} 
+	.fixed .column-listing,
+	.fixed .column-property_status,
+	.fixed .column-property_price,
+	.fixed .column-listing_id,
+	.fixed .column-geo,
+	.fixed .column-agent {
+		display:none;
 	}
+	.epl-col,
+	.epl-left-half,
+	.epl-right-half,
+	.epl-half-right,
+	.epl-half-left {
+		width: 100% !important;
+	}
+	#property_address_coordinates {
+		float: left  !important;
+		width: 93%;
+	}
+	.epl-geocoder-button {
+		
+	}
+	.epl-form-table .epl-geocoder-button {
+		float: right !important;
+		margin-left: -30px !important;
+		margin-top: 7px !important;
+		position: relative;
+	}
+	.epl-inner-div input[type=text] {
+		
+	}
+	.epl-inner-div.col-2,
+	.epl-inner-div.col-3 {
+		width:98%;
+		float:none;
+	}
+	#epl-additional-features-section-id .epl-inner-div.col-2,
+	#epl-additional-features-section-id .epl-inner-div.col-3 {
+		width:50%;
+		float:left;
+	}
+	
+	#epl-pricing-section-id {
+	
+	}
+	
 }
 @media screen and (max-width: 500px)  { 
-	.fixed .column-listing {
-		display:none;
-	}
-	.fixed .column-listing, .fixed .column-property_status {
-		display:none;
-	}
 	.epl-col,
 	.epl-left-half,
 	.epl-right-half,

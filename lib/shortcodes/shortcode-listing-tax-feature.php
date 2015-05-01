@@ -45,8 +45,14 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		return;
 	}
 	
+	if(is_string($post_type) && $post_type == 'rental') {
+		$meta_key_price = 'property_rent';
+	} else {
+		$meta_key_price = 'property_price';
+	}
+	
 	$sort_options = array(
-		'price'			=>	'property_price',
+		'price'			=>	$meta_key_price,
 		'date'			=>	'post_date'
 	);
 	
@@ -109,16 +115,29 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 			);
 		}
 	}
-	
+	if( $sortby != '' ) {
+
+		if($sortby == 'price') {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	$meta_key_price;
+		} else {
+			$args['orderby']	=	'post_date';
+			$args['order']		=	'DESC';
+
+		}
+		$args['order']			=	$sort_order;
+	}
+
+
 	if( isset( $_GET['sortby'] ) ) {
 		$orderby = sanitize_text_field( trim($_GET['sortby']) );
 		if($orderby == 'high') {
 			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	'property_price';
+			$args['meta_key']	=	$meta_key_price;
 			$args['order']		=	'DESC';
 		} elseif($orderby == 'low') {
 			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	'property_price';
+			$args['meta_key']	=	$meta_key_price;
 			$args['order']		=	'ASC';
 		} elseif($orderby == 'new') {
 			$args['orderby']	=	'post_date';
