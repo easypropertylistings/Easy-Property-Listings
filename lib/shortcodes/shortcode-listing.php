@@ -39,6 +39,12 @@ function epl_shortcode_listing_callback( $atts ) {
 		'sort_order'		=>	'DESC'
 	), $atts ) );
 	
+	if(is_string($post_type) && $post_type == 'rental') {
+		$meta_key_price = 'property_rent';
+	} else {
+		$meta_key_price = 'property_price';
+	}
+	
 	$sort_options = array(
 		'price'			=>	'property_price',
 		'date'			=>	'post_date'
@@ -78,6 +84,19 @@ function epl_shortcode_listing_callback( $atts ) {
 		}
 	}
 
+	if( $sortby != '' ) {
+	
+		if($sortby == 'price') {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	$meta_key_price;
+		} else {
+			$args['orderby']	=	'post_date';
+			$args['order']		=	'DESC';
+
+		}
+		$args['order']			=	$sort_order;
+	}
+	
 	if( isset( $_GET['sortby'] ) ) {
 		$orderby = sanitize_text_field( trim($_GET['sortby']) );
 		if($orderby == 'high') {

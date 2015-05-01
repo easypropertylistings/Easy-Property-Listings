@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.1.5
+Stable Tag: 2.1.6
 
 License: GNU Version 2 or Any Later Version
 
@@ -15,48 +15,63 @@ Fast. Flexible. Forward-thinking solution for real estate agents using WordPress
 
 == Description ==
 
-Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. But who cares for features, we know you care about what benefits those features present to you. We totally understand that and below you will find out why you should be using Easy Property Listing to manage your listings on your real estate website:
+Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today.
 
-* Ease of use and quick setup means you spend less time developing and more about with getting properties on your website.
-* Multiple listing types are supported because we know not everyone is a residential properties specialist. You can list commercial and rural properties just as easily.
-* Easy Property Listing is highly customisable to such an extent that you will barely know if you looked at some of the websites running the plugin here.
-* You have the freedom to display property price as a price range or a fixed price giving you the flexibility to attract buyers with various budgets falling within your desired range.
-* It does not matter what theme you use for your site, Easy Property Listing 99% of all WordPress themes.
-* This plugin is location independent and whether you are selling properties in Miami Beach or Russia, you can list the properties in the local currency.
-* This is more than just a listing plugin, you can also have your sales agent profiles next to the properties for sale with their contact details. This makes it so much easier for a client to find a property they want and then make a viewing appointment all from the same page on your website.
-* This Real Estate plugin for has been designed to complement your skill and design and to set you free to do what you do best.
-* Developers save time because it's pre-configured to support every country, in any market.
-* Fast. Flexible. Forward-thinking solution for real estate agents using WordPress.
-* Create your own real estate lead generation system around your listings and location.
+An easy to use plugin that provides the needed functions to configure a dynamic real estate website in minutes. Packed with advanced features, shortcodes and templates letting you create real estate websites fast. 
 
 **Features:**
 
-* Author Box and Widget: Easy to customise, multiple agents, tabbed and extendible. Supports video, bio, social media links and much more.
-* Listing Widget to easily add properties anywhere to your theme. Dozens of options with random, ordered and offset and no code.
-* Search Widget: Supports tabs, location, land, price, address and more. It's all here, search everything. Its super-fast.
-* Extend with Advanced Mapping extension that handles hundreds of listings, dozens of options added with a simple shortcode.
+* Multiple listing types are supported because not everyone is a residential properties specialist. You can list rentals, commercial, land, rural and businesses just as easily.
+* Flexible pricing options like "no price", POA and necessary real estate options like under offer & auction. 
+* A fast and efficient plugin written using WordPress standards.
+* A plugin that works with any WordPress any theme giving you the flexibility to have the site design that suits you. Support for popular frameworks like Genesis and iThemes Builder, just activate and add your listings.
+* Developed from a real estate agents perspective to make it easy and quick to add and update listings.
+* Completely location independent with extensive currency support, so it doesn’t matter where listing are in the world.
+* Geo-locate the property coordinates with a press of a button and display a Google Map.
 * iCal calendar appointment support for inspection times. Just click and add to your calendar.
-* Geo-locate the property coordinates with a press of a button and display Google Maps. 
-* Works with any theme and popular frameworks like Genesis and iThemes Builder.
-* Buttons for multiple floor plans, and multiple external links.
+* Search Widget: Supports tabs, location, land, price, address and more; search everything.
+* Extend with [Advanced Mapping](http://easypropertylistings.com.au/extensions/advanced-mapping/) extension that handles hundreds of listings, dozens of options added with a simple shortcode.
+* Buttons for floor plans, and external links.
+* Manage listings with ease and check prices with the graph.
 * Support for Under Offer and no price listings, you name it, it works.
-* Currency support for non-dollar currencies
-
+* Currency support for non-dollar currencies.
+* Lots of filters and developer hooks allowing you to add additional information and make changes quickly and easily.
+* Responsive CSS with grid and list views.
+* Sort listings by price and date.
+* Create your own real estate lead generation system around your listings and location.
 * Extend with many [add-ons](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions)
+
+**Widgets**
+
+* Listing widget with options for image size, order, random, status and more which means you can quickly setup featured listings that dynamically change saving you hours of custom query coding or needing separate plug-ins.
+* Search widget with price range, location, bedrooms bathrooms and a feature search which means you will limit the dreaded "property not found" page that many real estate sites show when searching an area where you don't have an active listing.
+* Author Box that is easy to customise: multiple agents, tabbed, video, bio, social media links and extendible with the Staff Directory extension.
+* Author widget supporting multiple authors. 
+
+**Shortcodes**
+
+Several shortcodes to insert your listings into posts and pages with lots of options. The [listing_open] shortcode quickly outputs listings that have scheduled open for inspection times. Filter listings by location, features, custom fields and they are easy to use.
+
+**Use any theme**
+
+Use any theme you want which means you can use your creativity and build beautiful websites the way you want. We’ve kept CSS to a minimum so it looks great on any theme you choose.
 
 **Developer Features:**
 
 * Over 50 custom meta fields per listing type. Everything is pre-configured saving hundreds of hours. Want more, add more all extendible.
-* Build better real estate websites faster with advanced extensions saving you even more time. Flexible and forward-thinking.
 * Separate post types for each listing type; property, rental, land, rural, business, commercial, commercial land.
 * Lightbox support, just add your favourite plugin that uses link="file on the gallery short code.
 * Create your own custom templates using standard WordPress and included functions.
-* Minimal CSS styling so it will integrate with any theme
-* Developer friendly with dozens of actions and filters
-* Custom labels for everything and full translation support
-* Supports REAXML, JUPIX and worldwide MLS systems
+* Minimal CSS styling so it will integrate with any theme.
+* Developer friendly with dozens of actions and filters.
+* Custom labels for everything and full translation support.
+* Supports REAXML, JUPIX and worldwide MLS systems.
 
-More information at [Easy Property Listings.com.au](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions).
+**Extensions and add-ons**
+
+You get cool optional [extensions](http://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions) which means you can grow your site and content and offer additional options to your clients and customers with features they will love.
+
+More information at [Easy Property Listings.com.au](http://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions).
 
 **Follow this plugin on [GitHub](https://github.com/easypropertylistings/Easy-Property-Listings)**
 
@@ -66,8 +81,7 @@ More information at [Easy Property Listings.com.au](http://easypropertylistings.
 
 **Listing Alerts**
 
-[Listing Alerts](http://easypropertylistings.com.au/extensions/advanced-mapping/) Schedule email alerts to subscribers with HTML email support and customisable messages.
-
+[Listing Alerts](http://easypropertylistings.com.au/extensions/listing-alerts/) Schedule email alerts to subscribers with HTML email support and customisable messages.
 
 **Link listings with other types of content**
 
@@ -143,6 +157,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 2.1.6 May 1, 2015 =
+
+* Fix: Fancy pagination paging works correctly when shortcodes used on home page.
+* Fix: Wrapped new pagination feature in esc_url to prevent vulnerability.
+* Fix: Corrected sorting by price when using shortcodes. Note: Rental sorting works on post_type="rental" in all shortcodes.
+* Tweak: Added rental rate view for text entry of rental rates for REAXML compatibility.
+* Tweak: Corrected admin display columns and edit listing pages for better display on mobile devices.
+
 = 2.1.5 April 25, 2015 =
 
 * Tweak: Commercial listing: Ability to set commercial lease rate to a decimal value using the epl_price_number_format_commercial_lease filter.
@@ -165,7 +187,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 = 2.1.3 April 17, 2015 =
 
 * Fix: Author box upgraded to allow for custom tabs.
-* Fix: Author box upgraded to allow for better staff directory integration with authorbox and widget.
+* Fix: Author box upgraded to allow for better staff directory integration with author box and widget.
 * Fix: Added CSS class for author archive pages.
 * Fix: Improved CSS classes for author box with better responsive support.
 * Fix: Added additional filters for author contact information.
