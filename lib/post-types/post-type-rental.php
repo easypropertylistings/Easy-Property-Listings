@@ -202,9 +202,10 @@ if ( is_admin() ) {
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price = (int) $epl_settings['epl_max_graph_rent_price' ];
 				}
-
-				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
+				
+				$view 			= get_post_meta( $post_id, 'property_rent_view', true );
+				$property_status 	= ucfirst( get_post_meta( $post_id, 'property_status', true ) );
+				$sold_price 		= get_post_meta( $post_id, 'property_sold_price', true );
 				
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
 					$class = 'bar-under-offer';
@@ -227,16 +228,22 @@ if ( is_admin() ) {
 						<span style="width:'.$barwidth.'%"></span>
 					</div>';
 
-
-				/* If no duration is found, output a default message. */
-				if ( empty( $rent) )
-					echo ''; //'<strong>'.__( 'No Rent Set', 'epl' ).'</strong>';
-				/* If there is a duration, append 'minutes' to the text string. */
-				else
-					 echo '<div class="epl_meta_rent">' , epl_currency_formatted_amount( $rent ) , '</div>';
+				/* Rent view. */
+				if ( empty ( $view ) ) {
+					$show_price =  '<div class="epl_meta_search_price">' . epl_currency_formatted_amount( $rent ). '</div>';
+					echo $show_price;
 					if ( $d_bond == 1 ) { 
 						echo '<div class="epl_meta_bond">' , epl_display_label_bond() , ' ' , epl_currency_formatted_amount( $bond ) , '</div>'; 
 					}
+					
+				} else {
+					$show_price =  '<div class="epl_meta_price">' . $view . '</div>';
+					echo $show_price;
+					if ( $d_bond == 1 ) { 
+						echo '<div class="epl_meta_bond">' , epl_display_label_bond() , ' ' , epl_currency_formatted_amount( $bond ) , '</div>'; 
+					}
+				}
+
 				break;
 			/* If displaying the 'real-estate' column. */
 			case 'property_status' :
