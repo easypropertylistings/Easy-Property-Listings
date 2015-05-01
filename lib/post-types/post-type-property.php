@@ -204,11 +204,11 @@ if ( is_admin() ) {
 				if(isset($epl_settings['epl_max_graph_sales_price' ])) {
 					$max_price = (int) $epl_settings['epl_max_graph_sales_price' ];
 				}
-				$view = get_post_meta( $post_id, 'property_price_view', true );
-				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-				$property_status = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				$property_authority = get_post_meta( $post_id, 'property_authority', true );
-				$sold_price = get_post_meta( $post_id, 'property_sold_price', true );
+				$view 			= get_post_meta( $post_id, 'property_price_view', true );
+				$property_under_offer	= get_post_meta( $post_id, 'property_under_offer', true );
+				$property_status	= ucfirst( get_post_meta( $post_id, 'property_status', true ) );
+				$property_authority	= get_post_meta( $post_id, 'property_authority', true );
+				$sold_price		= get_post_meta( $post_id, 'property_sold_price', true );
 				
 				if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
 					$class = 'bar-under-offer';
@@ -237,6 +237,7 @@ if ( is_admin() ) {
 					$show_price =  '<div class="epl_meta_price">' . $view . '</div>'; 
 				}
 				echo $show_price;
+				
 				if($property_authority == 'auction' ) {
 					_e('Auction ','epl');
 					echo '<br>'.$property->get_property_auction(true);

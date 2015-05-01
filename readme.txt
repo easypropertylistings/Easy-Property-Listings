@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.1.5
+Stable Tag: 2.1.6
 
 License: GNU Version 2 or Any Later Version
 
@@ -142,6 +142,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.1.6 May 1, 2015 =
+
+* Fix: Fancy pagination feature works correctly when used in shortcodes on home page.
+* Tweak: Added rental rate view for text entry of rental rates for REAXML compatibility.
+* Fix: Wrapped new pagination feature in esc_url to prevent vulnerability.
 
 = 2.1.5 April 25, 2015 =
 
