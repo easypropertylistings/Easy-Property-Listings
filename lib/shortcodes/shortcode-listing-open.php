@@ -31,7 +31,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'post_type' 		=>	$property_types, //Post Type
 		'limit'			=>	'-1', // Number of maximum posts to show
 		'template'		=>	false, // Template. slim, table
-		'location'		=>	'' // Location slug. Should be a name like sorrento
+		'location'		=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
 		'sortby'			=>	'', // Options: price, date : Default date
