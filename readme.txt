@@ -145,9 +145,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 2.1.6 May 1, 2015 =
 
-* Fix: Fancy pagination feature works correctly when used in shortcodes on home page.
-* Tweak: Added rental rate view for text entry of rental rates for REAXML compatibility.
+* Fix: Fancy pagination paging works correctly when shortcodes used on home page.
 * Fix: Wrapped new pagination feature in esc_url to prevent vulnerability.
+* Fix: Corrected sorting by price when using shortcodes. Note: Rental sorting works on post_type="rental" in all shortcodes.
+* Tweak: Added rental rate view for text entry of rental rates for REAXML compatibility.
+* Tweak: Corrected admin display columns and edit listing pages for better display on mobile devices.
 
 = 2.1.5 April 25, 2015 =
 
