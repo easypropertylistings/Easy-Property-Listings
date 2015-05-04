@@ -653,7 +653,7 @@ class EPL_Property_Meta {
 	public function get_property_land_value($returntype = 'i') {
 		$property_land_area_unit = $this->get_property_meta('property_land_area_unit');
 		if ( $property_land_area_unit == 'squareMeter' ) {
-			$property_land_area_unit = 'sqm';
+			$property_land_area_unit = __('sqm' , 'epl');
 		}
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			return '
