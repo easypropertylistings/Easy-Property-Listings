@@ -135,6 +135,10 @@ h3.property-address {
 	text-decoration: none;
 	background: #888888;
 }
+.epl-floor-plan-button-wrapper {
+	display: inline-block;
+	margin-right: 0.3em;
+}
 /*** Override theme button styles ***/
 .epl-button a,
 .epl-button input[type='submit'], 
