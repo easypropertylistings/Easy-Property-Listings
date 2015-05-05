@@ -108,11 +108,7 @@ function epl_reset_property_object( $post ) {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
-	/*
-	** @TODO implement filter/hook to fetch custom posts 
-	*/
-	
-	$epl_posts[] 	= 'location_profile';
+	$epl_posts 	= apply_filters('epl_additional_post_types',$epl_posts);
 	
 	if(in_array($post->post_type,$epl_posts)){
 		global $property;
@@ -138,11 +134,7 @@ function epl_create_property_object() {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
-	/*
-	** @TODO implement filter/hook to fetch custom posts 
-	*/
-	
-	$epl_posts[] 	= 'location_profile';
+	$epl_posts 	= apply_filters('epl_additional_post_types',$epl_posts);
 	if(in_array($post->post_type,$epl_posts)){
 		$property 	= new EPL_Property_Meta($post);
 	}
