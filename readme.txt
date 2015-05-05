@@ -163,6 +163,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Updated translation epl.pot and added missing sqm translation element.
 * Tweak: Allowed for hundredths decimal in bathrooms field.
 * Tweak: Floor plan button CSS.
+* Tweak: Address and price responsive CSS.
 * Fix: Auction listing price set to no displays auction date correctly.
 
 = 2.1.6 May 1, 2015 =

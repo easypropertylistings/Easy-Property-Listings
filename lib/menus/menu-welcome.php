@@ -302,6 +302,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Updated translation and added missing sqm translation element.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Allowed for hundredths decimal in bathrooms field.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Floor plan button CSS.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Address and price responsive CSS.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Auction listing price set to no displays auction date correctly.', 'epl' );?></li>
 					</ul>
 					

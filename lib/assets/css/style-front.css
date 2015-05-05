@@ -1223,10 +1223,11 @@ Epl fancy pagination
 		padding-top: 0.5em;
 		padding-left: 0;
 	}
-	
+	.epl-property-single.view-expanded .entry-header .property-details,
 	.epl-property-single.view-expanded .property-details {
 	width: 100%;
 	}
+	.epl-property-single.view-expanded .entry-header .property-pricing-details,
 	.epl-property-single.view-expanded .property-pricing-details{
 		width: 100%;
 	}
