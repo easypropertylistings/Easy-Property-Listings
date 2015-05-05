@@ -292,7 +292,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_bathrooms',
 							'label'		=>	__('Bathrooms', 'epl'),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'3'
+							'maxlength'	=>	'4'
 						),
 						
 						array(
@@ -1049,6 +1049,13 @@ function epl_meta_box_init() {
 							'label'		=>	__('Rent Period', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_rent_period
+						),
+						
+						array(
+							'name'		=>	'property_rent_view',
+							'label'		=>	__('Rent Text', 'epl'),
+							'type'		=>	'text',
+							'maxlength'	=>	'50'
 						),
 					
 						array(

@@ -296,7 +296,7 @@ if(isset($meta['property_land_area_unit'])) {
 	}
 }
 if ( $property_land_unit == 'squareMeter' ) {
-	$property_land_unit = 'sqm';
+	$property_land_unit = __('sqm' , 'epl');
 }
 $property_land = $property_land . ' ' . $property_land_unit;
 // Building Area

@@ -295,6 +295,27 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 				
+					<h4><?php _e( 'Version 2.1.7', 'epl' );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: listing_search shortcode now has style option for adjusting the width. You can add style="slim" or style="wide" to the shortcode to adjust the appearance.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Updated translation and added missing sqm translation element.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Allowed for hundredths decimal in bathrooms field.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Floor plan button CSS.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Address and price responsive CSS.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Auction listing price set to no displays auction date correctly.', 'epl' );?></li>
+					</ul>
+					
+					<h4><?php _e( 'Version 2.1.6', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'Fix: Fancy pagination paging works correctly when shortcodes used on home page.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Wrapped new pagination feature in esc_url to prevent vulnerability.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Corrected sorting by price when using shortcodes. Note: Rental sorting works on post_type="rental" in all shortcodes.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added rental rate view for text entry of rental rates for REAXML compatibility.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Corrected admin display columns and edit listing pages for better display on mobile devices.', 'epl' );?></li>
+					</ul>
+										
 					<h4><?php _e( 'Version 2.1.5', 'epl' );?></h4>
 					
 					<ul>

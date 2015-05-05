@@ -28,6 +28,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		'title'				=>	'', 	// Freeform text
 		'post_type'			=>	array('property'), // Post type name array
 		'property_status'		=>	'', 	// Singular: current / sold / leased or '' for any
+		'style'				=>	'', 	// Singular: blank value or "wide" or "slim"
 		'search_house_category'		=>	'on', 	// on or off
 		'search_price'			=>	'on', 	// on or off
 		'search_bed'			=>	'on', 	// on or off
@@ -47,12 +48,24 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		$post_type = array_map('trim', $post_type);
 	}
 	$post_types = $post_type;
+	
+	// Search Widget Class
+	if ( isset( $style ) ) {
+		if ( $style == 'wide' )
+			$search_class = 'epl-search-wide';
+			
+		elseif ( $style == 'slim' )
+			$search_class = 'epl-search-slim';
+			
+		else $search_class = '';
+	}
+	
 	global $epl_settings;
 	ob_start();	
 	$tabcounter = 1;
 	if(!empty($post_types)):
 		if(count($post_types) > 1):
-			echo '<ul class="property_search-tabs">';
+			echo "<ul class='epl-search-tabs property_search-tabs $search_class'>";
 			foreach($post_types as $post_type):
 	
 				$is_sb_current = $tabcounter == 1 ? 'epl-sb-current' : '';
@@ -62,8 +75,9 @@ function epl_shortcode_listing_search_callback( $atts ) {
 			endforeach;
 			echo '</ul>';
 		endif;
+
 	?>
-	<div class="epl-search-forms-wrapper">
+	<div class="epl-search-forms-wrapper <?php echo $search_class; ?>">
 		<?php
 			$tabcounter = 1; // reset tab counter
 			foreach($post_types as $post_type):
@@ -620,7 +634,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 							<span class="checkbox top-mrgn">
 								<input type="checkbox" name="property_security_system" id="property_security_system" class="in-field" <?php if(isset($property_security_system) && !empty($property_security_system)) { echo 'checked="checked"'; } ?> />
 								<label for="property_security_system" class="check-label">
-									<?php echo apply_filters('epl_search_widget_label_property_security_system',__('Security System:', 'epl') ); ?>
+									<?php echo apply_filters('epl_search_widget_label_property_security_system',__('Security System', 'epl') ); ?>
 								</label>
 								<span class="epl-clearfix"></span>
 							</span>

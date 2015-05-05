@@ -10,11 +10,11 @@ class EPL_Property_Meta {
 	
 	 public function __construct($post) {
 	 
-	 	$epl_posts 					= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
-        $this->post 				= $post;
+	 $epl_posts 			= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural');
+        $this->post 			= $post;
         $this->epl_settings 		= epl_settings();
-        $this->meta 				= get_post_custom();
-        $this->post_type 			= $this->post->post_type;
+        $this->meta 			= get_post_custom();
+        $this->post_type 		= $this->post->post_type;
         $this->property_post_type	= $this->post->post_type;
         
         $this->epl_labels();
@@ -45,7 +45,6 @@ class EPL_Property_Meta {
 		}
 		
 	}
-	
 	
 	public function get_property_meta($meta_key,$allowzero=true) {
 		if(isset($this->meta[$meta_key])) {
@@ -156,7 +155,7 @@ class EPL_Property_Meta {
 	
 	// price display
 	public function get_property_price_display() {
-		$property_price_search =  $this->get_property_meta('property_price');
+		$property_price_search	= $this->get_property_meta('property_price');
 		$property_price_view	= $this->get_property_meta('property_price_view');
 		if ( $property_price_search == '') {
 			$property_price = '';
@@ -176,10 +175,18 @@ class EPL_Property_Meta {
 	public function get_property_rent () {
 		if($this->post_type != 'rental')
 			return;
-			
-		if ( $this->get_property_meta('property_rent') !='' ) {
-			return epl_currency_formatted_amount($this->get_property_meta('property_rent'));
+		
+		$property_rent_search	= $this->get_property_meta('property_rent');
+		$property_rent_view	= $this->get_property_meta('property_rent_view');
+		
+		if ( $property_rent_search == '') {
+			$rental_price = '';
+		} elseif( $property_rent_view != '' ) {
+			$rental_price = $property_rent_view; 
+		} else {
+			$rental_price = epl_currency_formatted_amount( $property_rent_search );
 		}
+		return $rental_price;
 	}
 
 	// Rental Bond
@@ -331,7 +338,11 @@ class EPL_Property_Meta {
 			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 				$price = '<span class="page-price">'. $this->get_property_price_display() . '</span>';
 				
-			} else {
+			}
+			elseif ( $this->get_property_meta('property_authority') == 'auction' && 'no' == $this->get_property_meta('property_price_display') ) {	// Auction
+				$price = '<span class="page-price auction">' . __( 'Auction' , 'epl') . ' ' . $this->get_property_auction() . '</span>';
+			}
+			else {
 				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
 					$price_plain_value = $this->epl_settings['label_poa'];
 				}
@@ -347,12 +358,14 @@ class EPL_Property_Meta {
 			if( '' != $this->get_property_rent() && 'yes' == $this->get_property_meta('property_rent_display') && 'leased' != $this->get_property_meta('property_status') ) {
 				
 				$epl_property_price_rent_separator	= apply_filters('epl_property_price_rent_separator','/');
-				$price = '
-							<span class="page-price-rent">
-								<span class="page-price" style="margin-right:0;">'. $this->get_property_rent() . '</span>
-								<span class="rent-period">' .$epl_property_price_rent_separator.''. $this->get_property_meta('property_rent_period') . '</span>
-							</span>
-						';
+				
+				$price = '<span class="page-price-rent">';
+				$price .=		'<span class="page-price" style="margin-right:0;">'. $this->get_property_rent() . '</span>';
+				if( '' == $this->get_property_meta('property_rent_view') ) {
+					$price .=	'<span class="rent-period">' .$epl_property_price_rent_separator.' '. $this->get_property_meta('property_rent_period') . '</span>';
+				}	
+				$price .= '</span>';
+				
 				if($this->get_property_bond() != '' && in_array($this->get_epl_settings('display_bond'),array(1,'yes')))
 					$price .= '<span class="bond">' . $this->get_property_bond() . '</span>';
 					
@@ -644,7 +657,7 @@ class EPL_Property_Meta {
 	public function get_property_land_value($returntype = 'i') {
 		$property_land_area_unit = $this->get_property_meta('property_land_area_unit');
 		if ( $property_land_area_unit == 'squareMeter' ) {
-			$property_land_area_unit = 'sqm';
+			$property_land_area_unit = __('sqm' , 'epl');
 		}
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			return '
