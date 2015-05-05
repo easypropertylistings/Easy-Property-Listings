@@ -292,7 +292,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_bathrooms',
 							'label'		=>	__('Bathrooms', 'epl'),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'3'
+							'maxlength'	=>	'4'
 						),
 						
 						array(
