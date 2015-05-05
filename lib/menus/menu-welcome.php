@@ -295,6 +295,15 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 				
+					<h4><?php _e( 'Version 2.1.7', 'epl' );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: listing_search shortcode now has style option for adjusting the width. You can add style="slim" or style="wide" to the shortcode to adjust the appearance.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Updated translation and added missing sqm translation element.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Allowed for hundredths decimal in bathrooms field.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Auction listing price set to no displays auction date correctly.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.1.6', 'epl' );?></h4>
 				
 					<ul>
