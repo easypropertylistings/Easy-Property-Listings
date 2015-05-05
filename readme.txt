@@ -157,6 +157,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 2.1.7 May 5, 2015 =
+
+* New: listing_search shortcode now has style option for adjusting the width. You can add style="slim" or style="wide" to the shortcode to adjust the appearance.
+* Tweak: Updated translation and added missing sqm translation element.
+
 = 2.1.6 May 1, 2015 =
 
 * Fix: Fancy pagination paging works correctly when shortcodes used on home page.
