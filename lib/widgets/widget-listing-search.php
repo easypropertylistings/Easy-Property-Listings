@@ -22,6 +22,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$defaults = array(
 			'title'				=>	'',
 			'post_type'			=>	array('property'),
+			'style'				=>	'default',
 			'property_status'		=>	'any',
 			'search_house_category'		=>	'on',
 			'search_price'			=>	'on',
@@ -55,6 +56,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$instance['title'] = strip_tags($new_instance['title']);
 		$instance['post_type'] = $new_instance['post_type'];
 		$instance['property_status'] = strip_tags($new_instance['property_status']);
+		$instance['style'] = strip_tags($new_instance['style']);
 		$instance['search_house_category'] = strip_tags($new_instance['search_house_category']);
 		$instance['search_price'] = strip_tags($new_instance['search_price']);
 		$instance['search_bed'] = strip_tags($new_instance['search_bed']);
@@ -73,6 +75,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$defaults = array(
 			'title'				=>	'',
 			'post_type'			=>	array('property'),
+			'style'				=>	'default',
 			'property_status'		=>	'any',
 			'search_house_category'		=>	'on',
 			'search_price'			=>	'on',
@@ -92,6 +95,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$post_types		=	$instance['post_type'];
 
 		$property_status	=	esc_attr($instance['property_status']);
+		$style			=	esc_attr($instance['style']);
 		$search_house_category	=	esc_attr($instance['search_house_category']);
 		$search_price		=	esc_attr($instance['search_price']);
 		$search_bed		=	esc_attr($instance['search_bed']);
@@ -108,6 +112,27 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'epl'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+		</p>
+		
+		<p>
+			<label for="<?php echo $this->get_field_id('style'); ?>"><?php _e('Style', 'epl'); ?></label> 
+			<select class="widefat" id="<?php echo $this->get_field_id('style'); ?>" name="<?php echo $this->get_field_name('style'); ?>">
+				<?php
+					$status_list = array(
+						'default'	=>	__('Default' , 'epl'),
+						'wide'		=>	__('Wide' , 'epl'),
+						'slim'		=>	__('Slim' , 'epl')
+					);
+					
+					foreach($status_list as $k=>$v) {
+						$selected = '';
+						if(isset($style) && $k == $style) {
+							$selected = 'selected="selected"';
+						}
+						echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+					}
+				?>
+			</select>
 		</p>
 		
 		<p>
@@ -133,10 +158,10 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			<select class="widefat" id="<?php echo $this->get_field_id('property_status'); ?>" name="<?php echo $this->get_field_name('property_status'); ?>">
 				<?php
 					$status_list = array(
-						''		=>	'Any',
-						'current'	=>	'Current',
-						'sold'		=>	'Sold',
-						'leased'	=>	'Leased'
+						''		=>	__('Any' , 'epl'),
+						'current'	=>	__('Current' , 'epl'),
+						'sold'		=>	__('Sold' , 'epl'),
+						'leased'	=>	__('Leased' , 'epl')
 					);
 					
 					foreach($status_list as $k=>$v) {

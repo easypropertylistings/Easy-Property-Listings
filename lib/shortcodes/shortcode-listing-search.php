@@ -28,7 +28,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		'title'				=>	'', 	// Freeform text
 		'post_type'			=>	array('property'), // Post type name array
 		'property_status'		=>	'', 	// Singular: current / sold / leased or '' for any
-		'style'				=>	'', 	// Singular: blank value or "wide" or "slim"
+		'style'				=>	'default', 	// Singular: "default", "wide" or "slim"
 		'search_house_category'		=>	'on', 	// on or off
 		'search_price'			=>	'on', 	// on or off
 		'search_bed'			=>	'on', 	// on or off
@@ -51,23 +51,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		$selected_post_types = array_map('trim', $selected_post_types);
 	}
 	
-	// Search Widget Class
-	if ( isset( $style ) ) {
-		if ( $style == 'wide' )
-			$search_class = 'epl-search-wide';
-			
-		elseif ( $style == 'slim' )
-			$search_class = 'epl-search-slim';
-			
-		else $search_class = '';
-	}
-	
 	global $epl_settings;
 	ob_start();	
 	$tabcounter = 1;
 	if(!empty($selected_post_types)):
 		if(count($selected_post_types) > 1):
-			echo "<ul class='epl-search-tabs property_search-tabs $search_class'>";
+			echo "<ul class='epl-search-tabs property_search-tabs epl-search-$style'>";
 			foreach($selected_post_types as $post_type):
 	
 				if( isset($_GET['action'] ) && $_GET['action'] == 'epl_search' ) {
@@ -89,7 +78,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		endif;
 
 	?>
-	<div class="epl-search-forms-wrapper <?php echo $search_class; ?>">
+	<div class="epl-search-forms-wrapper epl-search-<?php echo $style; ?>">
 		<?php
 			$tabcounter = 1; // reset tab counter
 
