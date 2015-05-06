@@ -1028,7 +1028,7 @@ function epl_author_tab_author_id($epl_author = array() ) {
 		</h5>
 		<div class="author-position">
 			<span class="label-position"></span>
-			<span class="mobile"><?php echo $epl_author->get_author_position() ?></span>
+			<span class="position"><?php echo $epl_author->get_author_position() ?></span>
 		</div>
 
 		<div class="author-contact">

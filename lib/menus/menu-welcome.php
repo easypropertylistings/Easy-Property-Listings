@@ -304,6 +304,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Floor plan button CSS.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Address and price responsive CSS.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Auction listing price set to no displays auction date correctly.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Fix: Author position css class.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.1.6', 'epl' );?></h4>
