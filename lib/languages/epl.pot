@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 1.1.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-05-06 17:51+0800\n"
-"PO-Revision-Date: 2015-05-06 17:51+0800\n"
+"POT-Creation-Date: 2015-05-08 01:09+0800\n"
+"PO-Revision-Date: 2015-05-08 01:09+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: en\n"
@@ -19,66 +19,66 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:57
+#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:56
 #: includes/template-functions.php:997
 msgid "Contact"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:57
+#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:56
 msgid "by Email"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:58
+#: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:57
 msgid "Email"
 msgstr ""
 
 #: compatibility/author-meta-compat.php:33 compatibility/author-meta-compat.php:38
 #: compatibility/author-meta-compat.php:43 compatibility/author-meta-compat.php:48
-#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:73
-#: includes/class-author-meta.php:89 includes/class-author-meta.php:105
-#: includes/class-author-meta.php:121 includes/class-author-meta.php:137
+#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:72
+#: includes/class-author-meta.php:88 includes/class-author-meta.php:104
+#: includes/class-author-meta.php:120 includes/class-author-meta.php:136
 msgid "Follow"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:33 includes/class-author-meta.php:73
+#: compatibility/author-meta-compat.php:33 includes/class-author-meta.php:72
 msgid "on Twitter"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:33 includes/class-author-meta.php:74
+#: compatibility/author-meta-compat.php:33 includes/class-author-meta.php:73
 #: includes/user.php:24
 msgid "Twitter"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:38 includes/class-author-meta.php:89
+#: compatibility/author-meta-compat.php:38 includes/class-author-meta.php:88
 msgid "on Google"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:38 includes/class-author-meta.php:90
+#: compatibility/author-meta-compat.php:38 includes/class-author-meta.php:89
 msgid "Google"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:43 includes/class-author-meta.php:105
+#: compatibility/author-meta-compat.php:43 includes/class-author-meta.php:104
 msgid "on Facebook"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:43 includes/class-author-meta.php:106
+#: compatibility/author-meta-compat.php:43 includes/class-author-meta.php:105
 #: includes/user.php:25
 msgid "Facebook"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:48 includes/class-author-meta.php:121
+#: compatibility/author-meta-compat.php:48 includes/class-author-meta.php:120
 msgid "on Linkedin"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:48 includes/class-author-meta.php:122
+#: compatibility/author-meta-compat.php:48 includes/class-author-meta.php:121
 msgid "Linkedin"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:137
+#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:136
 msgid "on Skype"
 msgstr ""
 
-#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:138
+#: compatibility/author-meta-compat.php:53 includes/class-author-meta.php:137
 #: includes/user.php:23
 msgid "Skype"
 msgstr ""
@@ -438,21 +438,21 @@ msgstr ""
 msgid "Deactivate License"
 msgstr ""
 
-#: includes/EPL_SL_Plugin_Updater.php:175
+#: includes/EPL_SL_Plugin_Updater.php:174
 #, php-format
 msgid ""
 "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" "
 "href=\"%2$s\">View version %3$s details</a>."
 msgstr ""
 
-#: includes/EPL_SL_Plugin_Updater.php:182
+#: includes/EPL_SL_Plugin_Updater.php:181
 #, php-format
 msgid ""
 "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" "
 "href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s\">update now</a>."
 msgstr ""
 
-#: includes/class-author-meta.php:170 includes/options-front-end.php:56
+#: includes/class-author-meta.php:169 includes/options-front-end.php:56
 #: templates/content/widget-content-author.php:48 widgets/widget-listing.php:235
 msgid "Read More"
 msgstr ""
