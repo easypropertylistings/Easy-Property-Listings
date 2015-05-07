@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Author Box: Advanced Style
  *
  * @package EPL

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Loop Property Template: Table
  *
  * @package easy-property-listings

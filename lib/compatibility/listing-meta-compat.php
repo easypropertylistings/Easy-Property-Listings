@@ -1,11 +1,11 @@
 ﻿<?php
-/*
+/**
  * Function to retrieve property or rental custom fields.
  */
  
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
- 
+
 //Global
 global $post;
 $epl_settings = epl_settings(); 
@@ -296,7 +296,7 @@ if(isset($meta['property_land_area_unit'])) {
 	}
 }
 if ( $property_land_unit == 'squareMeter' ) {
-	$property_land_unit = 'sqm';
+	$property_land_unit = __('sqm' , 'epl');
 }
 $property_land = $property_land . ' ' . $property_land_unit;
 // Building Area

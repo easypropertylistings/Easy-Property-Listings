@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.1
 
-Stable Tag: 2.1.6
+Stable Tag: 2.1.7
 
 License: GNU Version 2 or Any Later Version
 
@@ -156,6 +156,17 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.1.7 May 6, 2015 =
+
+* New: listing_search shortcode now has style option for adjusting the width. You can add style="slim" or style="wide" to the shortcode to adjust the appearance.
+* New: Listing Search widget now has style options for adjusting the width.
+* Tweak: Updated translation epl.pot and added missing sqm translation element.
+* Tweak: Allowed for hundredths decimal in bathrooms field.
+* Tweak: Floor plan button CSS.
+* Tweak: Address and price responsive CSS.
+* Fix: Auction listing price set to no displays auction date correctly.
+* Fix: Fix: Author position css class.
 
 = 2.1.6 May 1, 2015 =
 

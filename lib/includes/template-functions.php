@@ -108,11 +108,7 @@ function epl_reset_property_object( $post ) {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
-	/*
-	** @TODO implement filter/hook to fetch custom posts 
-	*/
-	
-	$epl_posts[] 	= 'location_profile';
+	$epl_posts 	= apply_filters('epl_additional_post_types',$epl_posts);
 	
 	if(in_array($post->post_type,$epl_posts)){
 		global $property;
@@ -138,11 +134,7 @@ function epl_create_property_object() {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
-	/*
-	** @TODO implement filter/hook to fetch custom posts 
-	*/
-	
-	$epl_posts[] 	= 'location_profile';
+	$epl_posts 	= apply_filters('epl_additional_post_types',$epl_posts);
 	if(in_array($post->post_type,$epl_posts)){
 		$property 	= new EPL_Property_Meta($post);
 	}
@@ -1036,7 +1028,7 @@ function epl_author_tab_author_id($epl_author = array() ) {
 		</h5>
 		<div class="author-position">
 			<span class="label-position"></span>
-			<span class="mobile"><?php echo $epl_author->get_author_position() ?></span>
+			<span class="position"><?php echo $epl_author->get_author_position() ?></span>
 		</div>
 
 		<div class="author-contact">
