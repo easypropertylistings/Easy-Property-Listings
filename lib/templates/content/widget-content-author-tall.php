@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Author Card used in Widget
  *
  * @package easy-property-listings

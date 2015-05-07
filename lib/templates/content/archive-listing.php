@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Archive Template for Property Custom Post Type : property
  */
 

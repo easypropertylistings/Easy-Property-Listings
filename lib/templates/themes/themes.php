@@ -1,5 +1,5 @@
 <?php
-/* 
+/**
  * Loading the templates
  * Needs to work with other themes. These template files af a function that iThemes Builder needs to render the template.
  */

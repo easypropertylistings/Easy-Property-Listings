@@ -338,7 +338,11 @@ class EPL_Property_Meta {
 			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 				$price = '<span class="page-price">'. $this->get_property_price_display() . '</span>';
 				
-			} else {
+			}
+			elseif ( $this->get_property_meta('property_authority') == 'auction' && 'no' == $this->get_property_meta('property_price_display') ) {	// Auction
+				$price = '<span class="page-price auction">' . __( 'Auction' , 'epl') . ' ' . $this->get_property_auction() . '</span>';
+			}
+			else {
 				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
 					$price_plain_value = $this->epl_settings['label_poa'];
 				}
@@ -653,7 +657,7 @@ class EPL_Property_Meta {
 	public function get_property_land_value($returntype = 'i') {
 		$property_land_area_unit = $this->get_property_meta('property_land_area_unit');
 		if ( $property_land_area_unit == 'squareMeter' ) {
-			$property_land_area_unit = 'sqm';
+			$property_land_area_unit = __('sqm' , 'epl');
 		}
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			return '

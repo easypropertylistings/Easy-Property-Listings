@@ -1,8 +1,7 @@
 <?php
-
 /*
-*	@since version 1.3
-*/
+ * @since version 1.3
+ */
 
 class EPL_Author_Meta {
 	
