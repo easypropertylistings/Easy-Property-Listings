@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Author Box: Simple Card
  *
  * @package easy-property-listings

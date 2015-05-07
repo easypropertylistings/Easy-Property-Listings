@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Archive Template for Author Profile : author.php
  */
 
