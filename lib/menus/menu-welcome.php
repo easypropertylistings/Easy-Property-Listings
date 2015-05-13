@@ -294,6 +294,15 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
+					<h4><?php _e( 'Version 2.1.8', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template="table"] or [listing template="table_open"]. You can copy these new templates into your theme/easypropertylistings folder to further customize.', 'epl' );?></li>
+						<li><?php _e( 'Fix: New/Open Sticker now appear on listings with the price display set to no.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.', 'epl' );?></li>
+						<li><?php _e( 'New: Added translation Belgian (Dutch) thanks to pascal.beyens.', 'epl' );?></li>
+						<li><?php _e( 'New: Polish translation thanks to Weronika.urbanczyk.', 'epl' );?></li>
+					</ul>
 				
 					<h4><?php _e( 'Version 2.1.7', 'epl' );?></h4>
 

@@ -119,13 +119,13 @@ function epl_get_active_post_types() {
  */
 function epl_get_post_types() {
 	$epl_post_types = array(
-		'property'			=>	__('Property (Residential)', 'epl'),
-		'land'				=>	__('Land', 'epl'),
-		'rental'			=>	__('Rental', 'epl'),
-		'rural'				=>	__('Rural', 'epl'),
+		'property'		=>	__('Property (Residential)', 'epl'),
+		'land'			=>	__('Land', 'epl'),
+		'rental'		=>	__('Rental', 'epl'),
+		'rural'			=>	__('Rural', 'epl'),
 		'commercial'		=>	__('Commercial', 'epl'),
 		'commercial_land'	=>	__('Commercial Land', 'epl'),
-		'business'			=>	__('Business', 'epl'),
+		'business'		=>	__('Business', 'epl'),
 	);
 	// allow 3rd party extensions to add custom posts as a part of epl
 	return apply_filters('epl_post_types',$epl_post_types);
@@ -148,6 +148,8 @@ function epl_get_currencies() {
 		'DKK'  => __( 'Danish Krone', 'epl' ),
 		'HKD'  => __( 'Hong Kong Dollar (&#36;)', 'epl' ),
 		'HUF'  => __( 'Hungarian Forint', 'epl' ),
+		'INR'  => __( 'Indian Rupee (&#8377;)', 'epl' ),
+		'RIAL' => __( 'Iranian Rial (&#65020;)', 'epl' ),
 		'ILS'  => __( 'Israeli Shekel (&#8362;)', 'epl' ),
 		'JPY'  => __( 'Japanese Yen (&yen;)', 'epl' ),
 		'MYR'  => __( 'Malaysian Ringgits', 'epl' ),
@@ -156,16 +158,18 @@ function epl_get_currencies() {
 		'NOK'  => __( 'Norwegian Krone', 'epl' ),
 		'PHP'  => __( 'Philippine Pesos', 'epl' ),
 		'PLN'  => __( 'Polish Zloty', 'epl' ),
+		'QAR'  => __( 'Qatar Riyal (QAR)', 'epl' ),
 		'SGD'  => __( 'Singapore Dollar (&#36;)', 'epl' ),
 		'ZAR'  => __( 'South African Rand (R)', 'epl' ),
 		'SEK'  => __( 'Swedish Krona', 'epl' ),
 		'CHF'  => __( 'Swiss Franc', 'epl' ),
 		'TWD'  => __( 'Taiwan New Dollars', 'epl' ),
 		'THB'  => __( 'Thai Baht (&#3647;)', 'epl' ),
-		'INR'  => __( 'Indian Rupee (&#8377;)', 'epl' ),
 		'TRY'  => __( 'Turkish Lira (&#8378;)', 'epl' ),
-		'RIAL' => __( 'Iranian Rial (&#65020;)', 'epl' ),
-		'RUB'  => __( 'Russian Rubles', 'epl' )
+		'RUB'  => __( 'Russian Rubles', 'epl' ),
+		'AED'  => __( 'United Arab Emirates, Dirham (AED)', 'epl' ),
+		'UAH'  => __( 'Ukrainian Hryvnia (&#8372;)', 'epl' ),
+		'VND'  => __( 'Vietnamese đồng (&#8363;)', 'epl' )
 	);
 	return apply_filters( 'epl_get_currencies', $currencies );
 }
@@ -968,7 +972,7 @@ function epl_admin_sidebar () {
 					'label'	=>	__('Archive View: use fancy pagination ?', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	array(
-						'0'		=>	__('No, use wordpress default pagination', 'epl'),
+						'0'		=>	__('No, use WordPress default pagination', 'epl'),
 						'1'		=>	__('Yes, use fancy navigation', 'epl')
 					)
 				)

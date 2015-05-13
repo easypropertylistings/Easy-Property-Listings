@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 1.1.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-05-08 01:09+0800\n"
-"PO-Revision-Date: 2015-05-08 01:09+0800\n"
+"POT-Creation-Date: 2015-05-13 22:09+0800\n"
+"PO-Revision-Date: 2015-05-13 22:09+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: en\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: compatibility/author-meta-compat.php:28 includes/class-author-meta.php:56
-#: includes/template-functions.php:997
+#: includes/template-functions.php:1032
 msgid "Contact"
 msgstr ""
 
@@ -83,7 +83,7 @@ msgstr ""
 msgid "Skype"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:299 includes/class-property-meta.php:660
+#: compatibility/listing-meta-compat.php:299 includes/class-property-meta.php:659
 msgid "sqm"
 msgstr ""
 
@@ -93,9 +93,9 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:598 compatibility/listing-meta-compat.php:599
 #: includes/class-property-meta.php:271 includes/class-property-meta.php:307
 #: includes/class-property-meta.php:336 includes/class-property-meta.php:384
-#: includes/class-property-meta.php:426 includes/class-property-meta.php:465
-#: includes/class-property-meta.php:481 includes/class-property-meta.php:516
-#: includes/template-functions.php:677 meta-boxes/meta-boxes.php:35
+#: includes/class-property-meta.php:426 includes/class-property-meta.php:464
+#: includes/class-property-meta.php:480 includes/class-property-meta.php:515
+#: includes/template-functions.php:712 meta-boxes/meta-boxes.php:35
 #: post-types/post-type-business.php:285 post-types/post-type-commercial.php:278
 #: post-types/post-type-commercial_land.php:270 post-types/post-type-land.php:239
 #: post-types/post-type-property.php:254 post-types/post-type-rental.php:256
@@ -150,7 +150,7 @@ msgstr ""
 
 #: compatibility/listing-meta-compat.php:601 compatibility/listing-meta-compat.php:602
 #: compatibility/listing-meta-compat.php:603 includes/class-property-meta.php:309
-#: includes/class-property-meta.php:386 includes/class-property-meta.php:518
+#: includes/class-property-meta.php:386 includes/class-property-meta.php:517
 #: meta-boxes/meta-boxes.php:64
 msgid "For Sale"
 msgstr ""
@@ -160,7 +160,7 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:627 compatibility/listing-meta-compat.php:628
 #: includes/class-property-meta.php:321 includes/class-property-meta.php:325
 #: includes/class-property-meta.php:399 includes/class-property-meta.php:401
-#: includes/class-property-meta.php:531 includes/class-property-meta.php:533
+#: includes/class-property-meta.php:530 includes/class-property-meta.php:532
 msgid "For Lease"
 msgstr ""
 
@@ -171,27 +171,27 @@ msgstr ""
 msgid "P.A."
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:650 includes/class-property-meta.php:560
+#: compatibility/listing-meta-compat.php:650 includes/class-property-meta.php:559
 #: meta-boxes/meta-boxes.php:286
 msgid "Bedrooms"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:651 compatibility/listing-meta-compat.php:652
-#: includes/class-property-meta.php:561 includes/class-property-meta.php:562
+#: includes/class-property-meta.php:560 includes/class-property-meta.php:561
 msgid "bed"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:655 includes/class-property-meta.php:570
+#: compatibility/listing-meta-compat.php:655 includes/class-property-meta.php:569
 #: meta-boxes/meta-boxes.php:293 shortcodes/shortcode-listing-search.php:414
 msgid "Bathrooms"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:656 compatibility/listing-meta-compat.php:657
-#: includes/class-property-meta.php:571 includes/class-property-meta.php:572
+#: includes/class-property-meta.php:570 includes/class-property-meta.php:571
 msgid "bath"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:660 includes/class-property-meta.php:580
+#: compatibility/listing-meta-compat.php:660 includes/class-property-meta.php:579
 #: meta-boxes/meta-boxes.php:300 post-types/post-type-property.php:155
 #: post-types/post-type-rental.php:154 post-types/post-type-rural.php:158
 #: shortcodes/shortcode-listing-search.php:443 widgets/widget-listing-search.php:200
@@ -199,26 +199,26 @@ msgid "Rooms"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:661 compatibility/listing-meta-compat.php:662
-#: includes/class-property-meta.php:581 includes/class-property-meta.php:582
+#: includes/class-property-meta.php:580 includes/class-property-meta.php:581
 msgid "rooms"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:665 includes/class-property-meta.php:593
-#: includes/class-property-meta.php:594 includes/class-property-meta.php:595
+#: compatibility/listing-meta-compat.php:665 includes/class-property-meta.php:592
+#: includes/class-property-meta.php:593 includes/class-property-meta.php:594
 msgid "Parking Spaces"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:668 includes/class-property-meta.php:626
+#: compatibility/listing-meta-compat.php:668 includes/class-property-meta.php:625
 #: meta-boxes/meta-boxes.php:363 shortcodes/shortcode-listing-search.php:635
 msgid "Air Conditioning"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:669 includes/class-property-meta.php:627
+#: compatibility/listing-meta-compat.php:669 includes/class-property-meta.php:626
 msgid "Air conditioning"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:672 compatibility/listing-meta-compat.php:673
-#: includes/class-property-meta.php:638 includes/class-property-meta.php:639
+#: includes/class-property-meta.php:637 includes/class-property-meta.php:638
 #: meta-boxes/meta-boxes.php:353 shortcodes/shortcode-listing-search.php:642
 msgid "Pool"
 msgstr ""
@@ -227,8 +227,8 @@ msgstr ""
 msgid "Toilet"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:682 includes/class-property-meta.php:688
-#: includes/class-property-meta.php:689 meta-boxes/meta-boxes.php:342
+#: compatibility/listing-meta-compat.php:682 includes/class-property-meta.php:687
+#: includes/class-property-meta.php:688 meta-boxes/meta-boxes.php:342
 msgid "New Construction"
 msgstr ""
 
@@ -236,21 +236,21 @@ msgstr ""
 msgid "Alarm system"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:688 includes/class-property-meta.php:603
+#: compatibility/listing-meta-compat.php:688 includes/class-property-meta.php:602
 #: meta-boxes/meta-boxes.php:321
 msgid "Garage"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:691 includes/class-property-meta.php:613
-#: includes/class-property-meta.php:615 meta-boxes/meta-boxes.php:328
+#: compatibility/listing-meta-compat.php:691 includes/class-property-meta.php:612
+#: includes/class-property-meta.php:614 meta-boxes/meta-boxes.php:328
 msgid "Carport"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:696 includes/class-property-meta.php:664
+#: compatibility/listing-meta-compat.php:696 includes/class-property-meta.php:663
 msgid "Land is"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:699 includes/class-property-meta.php:676
+#: compatibility/listing-meta-compat.php:699 includes/class-property-meta.php:675
 msgid "Floor Area is"
 msgstr ""
 
@@ -463,24 +463,24 @@ msgstr ""
 msgid "Auction"
 msgstr ""
 
-#: includes/class-property-meta.php:550 includes/class-property-meta.php:551
-#: includes/class-property-meta.php:552
+#: includes/class-property-meta.php:549 includes/class-property-meta.php:550
+#: includes/class-property-meta.php:551
 msgid "Built"
 msgstr ""
 
-#: includes/class-property-meta.php:604 includes/class-property-meta.php:605
+#: includes/class-property-meta.php:603 includes/class-property-meta.php:604
 msgid "garage"
 msgstr ""
 
-#: includes/class-property-meta.php:614
+#: includes/class-property-meta.php:613
 msgid "carport"
 msgstr ""
 
-#: includes/class-property-meta.php:650 includes/class-property-meta.php:651
+#: includes/class-property-meta.php:649 includes/class-property-meta.php:650
 msgid "Alarm System"
 msgstr ""
 
-#: includes/class-property-meta.php:699
+#: includes/class-property-meta.php:698
 msgid " Car Spaces"
 msgstr ""
 
@@ -952,11 +952,11 @@ msgstr ""
 msgid "Archive View: listing view type"
 msgstr ""
 
-#: includes/functions.php:961 includes/template-functions.php:1141
+#: includes/functions.php:961 includes/template-functions.php:1176
 msgid "List"
 msgstr ""
 
-#: includes/functions.php:962 includes/template-functions.php:1143
+#: includes/functions.php:962 includes/template-functions.php:1178
 msgid "Grid"
 msgstr ""
 
@@ -1125,56 +1125,56 @@ msgstr ""
 msgid "Recently Leased"
 msgstr ""
 
-#: includes/template-functions.php:623 includes/template-functions.php:796
+#: includes/template-functions.php:658 includes/template-functions.php:831
 #: meta-boxes/meta-boxes.php:1249
 msgid "Plus Outgoings"
 msgstr ""
 
-#: includes/template-functions.php:637 includes/template-functions.php:790
+#: includes/template-functions.php:672 includes/template-functions.php:825
 msgid "Available from"
 msgstr ""
 
-#: includes/template-functions.php:773
+#: includes/template-functions.php:808
 msgid "Property Features"
 msgstr ""
 
-#: includes/template-functions.php:828 meta-boxes/meta-boxes.php:1270
+#: includes/template-functions.php:863 meta-boxes/meta-boxes.php:1270
 msgid "Commercial Features"
 msgstr ""
 
-#: includes/template-functions.php:854 meta-boxes/meta-boxes.php:1102
+#: includes/template-functions.php:889 meta-boxes/meta-boxes.php:1102
 msgid "Rural Features"
 msgstr ""
 
-#: includes/template-functions.php:926
+#: includes/template-functions.php:961
 msgid "Sort"
 msgstr ""
 
-#: includes/template-functions.php:927
+#: includes/template-functions.php:962
 msgid "Price: High to Low"
 msgstr ""
 
-#: includes/template-functions.php:928
+#: includes/template-functions.php:963
 msgid "Price: Low to High"
 msgstr ""
 
-#: includes/template-functions.php:929
+#: includes/template-functions.php:964
 msgid "Date: Newest First"
 msgstr ""
 
-#: includes/template-functions.php:930
+#: includes/template-functions.php:965
 msgid "Date: Oldest First"
 msgstr ""
 
-#: includes/template-functions.php:994
+#: includes/template-functions.php:1029
 msgid "About"
 msgstr ""
 
-#: includes/template-functions.php:995
+#: includes/template-functions.php:1030
 msgid "Bio"
 msgstr ""
 
-#: includes/template-functions.php:996
+#: includes/template-functions.php:1031
 msgid "Video"
 msgstr ""
 
@@ -4553,7 +4553,7 @@ msgstr ""
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: shortcodes/shortcode-listing-open.php:148
+#: shortcodes/shortcode-listing-open.php:145
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 

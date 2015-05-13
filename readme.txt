@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.2.2
 
-Stable Tag: 2.1.7
+Stable Tag: 2.1.8
 
 License: GNU Version 2 or Any Later Version
 
@@ -180,6 +180,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.1.8 May 13, 2015 =
+
+* New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template="table"] or [listing template="table_open"]. You can copy these new templates into your theme/easypropertylistings folder to further customize.
+* Fix: New/Open Sticker now appear on listings with the price display set to no.
+* Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.
+* New: Added translation Belgian (Dutch) thanks to pascal.beyens
+* New: Polish translation thanks to Weronika.urbanczyk
 
 = 2.1.7 May 6, 2015 =
 
