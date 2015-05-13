@@ -183,11 +183,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 2.1.8 May 13, 2015 =
 
-* New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template="table"] or [listing template="table_open"]. You can copy these new templates into your theme/easypropertylistings folder to further customize.
-* Fix: New/Open Sticker now appear on listings with the price display set to no.
-* Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.
 * New: Added translation Belgian (Dutch) thanks to pascal.beyens
 * New: Polish translation thanks to Weronika.urbanczyk
+* New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template="table"] or [listing template="table_open"]. You can copy these new templates into your theme/easypropertylistings folder to further customize.
+* New: Added currency support for Qatar Riyal (QAR), United Arab Emirates (AED), Ukrainian Hryvnia (UAH), Vietnamese đồng (VND)
+* Tweak: Updated currency symbols for: Israeli Shekel, Thai Baht, Indian Rupee, Turkish Lira, Iranian Rial, 
+* Fix: New/Open Sticker now appear on listings with the price display set to no.
+* Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.
 
 = 2.1.7 May 6, 2015 =
 
