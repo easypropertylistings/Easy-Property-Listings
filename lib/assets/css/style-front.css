@@ -1029,51 +1029,64 @@ li.tbhead.current {
 	padding: 0;
 	width: 100%;
 }
-.epl-property-table {
+/** Table **/
+.epl-table,
+.page .epl-table.hentry {
+	padding-bottom: 0.5em;
+	margin-bottom: 1em;
 	font-size: 0.8em;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid #ddd;
 }
-.epl-property-table .property-box,
-.epl-property-table .epl-table-box {
+.epl-table .epl-table-column-image,
+.epl-table .epl-table-column-content,
+.epl-table .epl-table-box {
 	box-sizing:border-box;
 	-moz-box-sizing:border-box; /* Firefox */
 	float:left;
 }
-.epl-property-table .property-box img {
-	max-width: 100%;
-	padding-right: 1em;
-}
-.epl-property-table .property-box-left {
+.epl-table .epl-table-column-image {
 	width:12%;
 	padding-right: 0;
 }
-.epl-property-table .property-box-right {
+.epl-table .epl-table-column-image img {
+	max-width: 100%;
+	padding-right: 1em;
+}
+.epl-table .epl-table-column-content {
 	width:88%;
 	float: right;
 }
-.epl-property-table .property-address {
+.epl-table .epl-table-column-left {
 	width: 50%;
 }
-.epl-property-table .property-feature-icons {
+.epl-table .epl-table-column-middle {
 	width: 25%;
 }
-.epl-property-table .price {
+.epl-table .epl-table-column-right {
 	width: 20%;
 	float: right;
-	text-align: right;
 }
-.epl-property-table .icon.pool,
-.epl-property-table .icon.air {
+.epl-table .epl-inspection-times,
+.epl-table .home-open-wrapper {
+	margin: 0;
+}
+.epl-table .home-open-wrapper {
+	list-style: none;
+}
+.epl-table .epl-inspection-times .epl-inspection-times-label {
 	display: none;
 }
-.epl-property-table.epl-listing-grid-view .price{
+.epl-table .icon.pool,
+.epl-table .icon.air {
+	display: none;
+}
+.epl-table.epl-listing-grid-view .price{
 	float: left;
 	text-align: left;
 }
 #epl-default-map img {
 	max-width:none;
 }
-
 /**************************************
 Epl fancy pagination
 **************************************/
@@ -1252,9 +1265,10 @@ Epl fancy pagination
 		min-height: 200px;
 		margin-bottom: 2em;
 	}
-	.epl-property-table .property-address,
-	.epl-property-table .property-feature-icons,
-	.epl-property-table .price {
+	.epl-table .epl-table-column-image,
+	.epl-table .epl-table-column-left,
+	.epl-table .epl-table-column-middle,
+	.epl-table .epl-table-column-right {
 		width: 100%;
 		float: left;
 		text-align: left;

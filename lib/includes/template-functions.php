@@ -205,9 +205,9 @@ function epl_get_template_part($template,$arguments=array()) {
 	$base_path		= apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
 	$default		= $template;
 	$find[] 		= epl_template_path() . $template;
-	$template       = locate_template( array_unique( $find ) );
+	$template       	= locate_template( array_unique( $find ) );
 	if(!$template) {
-		$template	=	$base_path . $default;
+		$template	= $base_path . $default;
 	}
 	if( !isset($arguments['epl_author']) ) {
 		global $epl_author;
@@ -288,8 +288,11 @@ function epl_property_blog_default() {
 	} // End Status Removal
 }
 
-
-// Listing Function for paged card display 
+/*
+ * Listing Function for slim view
+ *
+ * @since 1.2
+ */
 function epl_property_blog_slim() {
 	global $property,$epl_settings;
 	if( is_null($property) ) {
@@ -314,7 +317,11 @@ function epl_property_blog_slim() {
 	} // End Status Removal
 }
 
-// Listing Function for paged card display 
+/*
+ * Listing Function for table open
+ *
+ * @since 2.1.6
+ */
 function epl_property_blog_table() {
 	global $property,$epl_settings;
 	if( is_null($property) ) {
@@ -335,6 +342,34 @@ function epl_property_blog_table() {
 			do_action( 'epl_loop_template' );
 		} else {
 			epl_get_template_part('loop-listing-blog-table.php');
+		}
+	} // End Status Removal
+}
+/*
+ * Listing Function for table open
+ *
+ * @since 2.1.8
+ */
+function epl_property_blog_table_open() {
+	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-table-open.php');
 		}
 	} // End Status Removal
 }
