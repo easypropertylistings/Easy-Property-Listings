@@ -424,8 +424,7 @@ class EPL_Property_Meta {
 			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
 				$price_sticker .= '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
-			} 
-			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {
+			} else {
 				// Property
 				$price_sticker = '';
 				
