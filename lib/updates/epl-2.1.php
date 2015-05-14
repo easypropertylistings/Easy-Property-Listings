@@ -4,7 +4,6 @@
 	$new_fields_defaults = array(
 		'label_leased'				=>	__('Leased','epl'),
 		'label_under_offer'			=>	__('Under Offer','epl'),
-		'epl_use_core_css'			=>	'true',
 	);
 	
 	
