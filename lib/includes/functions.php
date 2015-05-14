@@ -1132,6 +1132,27 @@ function epl_admin_sidebar () {
 					'default'	=> 0
 				),
 			),
+		),
+		
+		array(
+			'label'		=>	__('Advanced Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'advanced',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'epl_use_core_css',
+					'label'	=>	__('Use plugin css', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'true'	=>	__('Yes', 'epl'),
+						'false'	=>	__('No', 'epl'),
+					),
+					'default'	=>	'true',
+					'help'		=>	__('Use plugin css ?  ( default : yes ) ' , 'epl')
+					
+				)
+			)
+
 		)
 	);
 	
