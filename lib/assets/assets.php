@@ -52,8 +52,11 @@ function epl_wp_enqueue_scripts() {
 	
 		wp_enqueue_script('google-map-v-3','https://maps.googleapis.com/maps/api/js?v=3.exp');
 	}
-
-	wp_enqueue_style(	'epl-front-styles', $current_dir_path . '/css/style-front.css' ,FALSE,EPL_PROPERTY_VER);
+	if( isset($epl_settings['epl_use_core_css']) &&  $epl_settings['epl_use_core_css'] == 'false') {
+	
+	} else {
+			wp_enqueue_style(	'epl-front-styles', $current_dir_path . '/css/style-front.css' ,FALSE,EPL_PROPERTY_VER);
+	}
 	$js_vars = array( 	'epl_default_view_type' => $epl_default_view_type ,'ajaxurl'	=>	admin_url('admin-ajax.php') );
 	wp_localize_script( 	'epl-front-scripts', 'epl_frontend_vars', $js_vars);
 	wp_enqueue_script( 	'epl-front-scripts');
