@@ -1142,12 +1142,11 @@ function epl_admin_sidebar () {
 				array(
 					'name'	=>	'epl_use_core_css',
 					'label'	=>	__('Disable Styles', 'epl'),
-					'type'	=>	'radio',
+					'type'	=>	'checkbox',
 					'opts'	=>	array(
-						'true'	=>	__('Yes', 'epl'),
-						'false'	=>	__('No', 'epl'),
+						'on'	=>	__('Yes', 'epl')
 					),
-					'default'	=>	'true',
+					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'epl')
 					
 				)
