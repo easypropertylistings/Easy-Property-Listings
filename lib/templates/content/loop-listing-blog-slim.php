@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Loop Property Template: Slim home open list
  *
  * @package easy-property-listings

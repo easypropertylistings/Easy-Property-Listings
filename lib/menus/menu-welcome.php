@@ -294,16 +294,36 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
+					<h4><?php _e( 'Version 2.1.8', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'New: Ability to disable all plugin CSS from Advanced Settings section.', 'epl' );?></li>
+						<li><?php _e( 'New: Search widget and shortcode now have the option to turn of Location search.', 'epl' );?></li>
+						<li><?php _e( 'New: Search widget and shortcode now have filters to control the display of "Any". Each field has a unique filter which will allow you to hide the label using CSS and for example change the Location "Any" label to "Location" this will allow you to create super slim search boxes.', 'epl' );?></li>
+						<li><?php _e( 'New: Added translation Belgian (Dutch) thanks to pascal.beyens', 'epl' );?></li>
+						<li><?php _e( 'New: Polish translation thanks to Weronika.urbanczyk', 'epl' );?></li>
+						<li><?php _e( 'New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template="table"] or [listing template="table_open"]. You can copy these new templates into your theme/easypropertylistings folder to further customize.', 'epl' );?></li>
+						<li><?php _e( 'New: Added currency support for Qatar Riyal (QAR), United Arab Emirates (AED), Ukrainian Hryvnia (UAH), Vietnamese đồng (VND)', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Updated currency symbols for: Israeli Shekel, Thai Baht, Indian Rupee, Turkish Lira, Iranian Rial.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved CSS and added additional classes with epl- prefix in templates and search.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added filters for commercial titles to allow you to change "For Lease" and "For Sale" using epl_commercial_for_lease_label, and epl_commercial_for_sale_label filters.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Additional CSS classes for Land, Commercial and Rural special features.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Gallery CSS classes added.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.', 'epl' );?></li>
+						<li><?php _e( 'Fix: New/Open Sticker now appear on listings with the price display set to no.', 'epl' );?></li>
+					</ul>
 				
 					<h4><?php _e( 'Version 2.1.7', 'epl' );?></h4>
 
 					<ul>
 						<li><?php _e( 'New: listing_search shortcode now has style option for adjusting the width. You can add style="slim" or style="wide" to the shortcode to adjust the appearance.', 'epl' );?></li>
+						<li><?php _e( 'New: Listing Search widget now has style options for adjusting the width.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Updated translation and added missing sqm translation element.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Allowed for hundredths decimal in bathrooms field.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Floor plan button CSS.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Address and price responsive CSS.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Auction listing price set to no displays auction date correctly.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Fix: Author position css class.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.1.6', 'epl' );?></h4>

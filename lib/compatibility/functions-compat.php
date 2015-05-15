@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Get EPL author meta
  *

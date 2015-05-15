@@ -1,4 +1,7 @@
 <?php
+/*
+ * Search Widget Content.
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
