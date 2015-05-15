@@ -830,7 +830,7 @@ function epl_property_tab_section() {
 				if ( $property->get_property_meta('property_com_plus_outgoings') == 1) {
 					echo '<div class="price-type">'.__('Plus Outgoings', 'epl').'</div>';
 				}
-				echo $property->get_property_commercial_category();						
+				// echo $property->get_property_commercial_category();						
 			}
 		?>
 	</div>
