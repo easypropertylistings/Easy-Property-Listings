@@ -664,7 +664,7 @@ li.tbhead.current {
 	overflow: hidden;
 	margin-top: 1.5em;
 }
-.tab-title {
+.epl-tab-title {
 	margin-top: 1em;
 	margin-bottom: 0em;
 	border-bottom: 1px solid #ccc;
