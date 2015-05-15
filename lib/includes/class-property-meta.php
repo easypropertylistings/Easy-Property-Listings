@@ -709,7 +709,7 @@ class EPL_Property_Meta {
 						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
 					} else {
 						// others
-						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.'</li>';
+						return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
 					}
 					
 				}
@@ -721,7 +721,7 @@ class EPL_Property_Meta {
 						return;
 
 				// string value field types
-				return '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.'</li>';
+				return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
 			}
 	}
 	
@@ -731,7 +731,7 @@ class EPL_Property_Meta {
 			if( isset($metavalue) && $metavalue != '' ) {
 				return '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
 							<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'epl').'</h6>'.
-							'<p>'.$metavalue.'</p>'.
+							'<p>'.__($metavalue,'epl').'</p>'.
 						'</div>';
 			}
 	}
@@ -742,7 +742,7 @@ class EPL_Property_Meta {
 			if( isset($metavalue) && $metavalue != '' ) {
 				return '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
 							<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'epl').'</h6>'.
-							'<p>'.$metavalue.'</p>'.
+							'<p>'.__($metavalue,'epl').'</p>'.
 						'</div>';
 			}
 	}

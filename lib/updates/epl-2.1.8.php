@@ -2,7 +2,7 @@
 	$epl_settings = epl_settings();
 	
 	$new_fields_defaults = array(
-		'epl_use_core_css'			=>	'true',
+		'epl_use_core_css'			=>	'off',
 	);
 	
 	
