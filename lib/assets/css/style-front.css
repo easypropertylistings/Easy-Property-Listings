@@ -689,13 +689,13 @@ li.tbhead.current {
 .widget_epl_property_search ul.property_search-tabs li.tab-link {
 	margin-right: 0.3em;
 }
-.epl-search-form .fm-block { 
+.epl-search-form .epl-search-row { 
 	clear: both; 
 	display: block; 
 	padding: 10px 0; 
 	border-bottom:1px #B7B7B7 solid; 
 }
-.epl-search-form .fm-label { 
+.epl-search-form .epl-search-label { 
 	color: #555555; 
 	display: block; 
 	font-size: 11px; 
@@ -714,7 +714,7 @@ li.tbhead.current {
 .epl-search-row-full-wrapper .field  {
 	width: 99%;
 }
-.epl-search-form .fm-block .top-mrgn { 
+.epl-search-form .epl-search-row .top-mrgn { 
 	margin-top: 10px; 
 	display: block; 
 }
@@ -722,11 +722,11 @@ li.tbhead.current {
 	font-size: 11px; 
 	color: #555555; 
 }
-.epl-search-form .fm-block-half { 
+.epl-search-form .epl-search-row-half { 
 	display: inline-block; 
 	width: 48.7%; 
 }
-.epl-search-form .fm-block-third { 
+.epl-search-form .epl-search-row-third { 
 	display: inline-block; 
 	width: 32%; 
 }
@@ -739,12 +739,12 @@ li.tbhead.current {
 .epl-search-form .epl-search-right-third .in-field {
 	width: 95%;
 }
-.epl-search-form .fm-block-half .top-mrgn { 
+.epl-search-form .epl-search-row-half .top-mrgn { 
 	margin-top: 0; 
 }
 /* Land and Building fields*/
-.epl-search-form .epl-search-land-area .fm-block-third,
-.epl-search-form .epl-search-building-area .fm-block-third  { 
+.epl-search-form .epl-search-land-area .epl-search-row-third,
+.epl-search-form .epl-search-building-area .epl-search-row-third  { 
 	width: 29%; 
 }
 .epl-search-form .epl-search-land-area .epl-search-right-third,
@@ -791,8 +791,8 @@ li.tbhead.current {
 .epl-search-slim .epl-search-form {
 	width: 100%;
 }
-.epl-search-wide .fm-block, 
-.epl-search-slim .fm-block { 
+.epl-search-wide .epl-search-row, 
+.epl-search-slim .epl-search-row { 
 	clear: none;
 	display: block; 
 	padding: 0; 
