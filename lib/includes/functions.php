@@ -671,6 +671,20 @@ function epl_admin_sidebar () {
 				}
 			}
 			break;
+			
+		case 'checkbox_single':
+			if(!empty($field['opts'])) {
+				foreach($field['opts'] as $k=>$v) {
+					$checked = '';
+					if(!empty($val)) {
+						if( $k == $val ) {
+							$checked = 'checked="checked"';
+						}
+					}
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+				}
+			}
+			break;
 
 		case 'radio':
 			if(!empty($field['opts'])) {
@@ -1142,9 +1156,9 @@ function epl_admin_sidebar () {
 				array(
 					'name'	=>	'epl_use_core_css',
 					'label'	=>	__('Disable Styles', 'epl'),
-					'type'	=>	'checkbox',
+					'type'	=>	'checkbox_single',
 					'opts'	=>	array(
-						'on'	=>	__('Yes', 'epl')
+						'on'	=>	__('Yes', 'epl'),
 					),
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'epl')
