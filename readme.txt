@@ -181,15 +181,22 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.1.8 May 13, 2015 =
+= 2.1.8 May 15, 2015 =
 
+* New: Ability to disable all plugin CSS from Advanced Settings section.
+* New: Search widget and shortcode now have the option to turn of Location search.
+* New: Search widget and shortcode now have filters to control the display of "Any". Each field has a unique filter which will allow you to hide the label using CSS and for example change the Location "Any" label to "Location" this will allow you to create super slim search boxes. 
 * New: Added translation Belgian (Dutch) thanks to pascal.beyens
 * New: Polish translation thanks to Weronika.urbanczyk
 * New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template="table"] or [listing template="table_open"]. You can copy these new templates into your theme/easypropertylistings folder to further customize.
 * New: Added currency support for Qatar Riyal (QAR), United Arab Emirates (AED), Ukrainian Hryvnia (UAH), Vietnamese đồng (VND)
-* Tweak: Updated currency symbols for: Israeli Shekel, Thai Baht, Indian Rupee, Turkish Lira, Iranian Rial, 
-* Fix: New/Open Sticker now appear on listings with the price display set to no.
+* Tweak: Updated currency symbols for: Israeli Shekel, Thai Baht, Indian Rupee, Turkish Lira, Iranian Rial.
+* Tweak: Improved CSS and added additional classes with epl- prefix in templates and search.
+* Tweak: Added filters for commercial titles to allow you to change "For Lease" and "For Sale" using epl_commercial_for_lease_label, and epl_commercial_for_sale_label filters.
+* Tweak: Additional CSS classes for Land, Commercial and Rural special features.
+* Tweak: Gallery CSS classes added.
 * Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.
+* Fix: New/Open Sticker now appear on listings with the price display set to no.
 
 = 2.1.7 May 6, 2015 =
 

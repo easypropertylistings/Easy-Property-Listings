@@ -914,11 +914,11 @@ function epl_admin_sidebar () {
 			'label'		=>	__('Listing Single View', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Configure the default options for the single listing and archive view.', 'epl'),
+			'help'		=>	__('Configure the default options when viewing a single listing.', 'epl'),
 			'fields'	=>	array(
 				array(
 					'name'	=>	'display_single_gallery',
-					'label'	=>	__('Single Listing: Automatically display image gallery?', 'epl'),
+					'label'	=>	__('Automatically display image gallery?', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	__('Enable', 'epl'),
@@ -929,14 +929,14 @@ function epl_admin_sidebar () {
 
 				array(
 					'name'	=>	'display_gallery_n',
-					'label'	=>	__('Single Listing: Gallery columns?', 'epl'),
+					'label'	=>	__('Gallery columns?', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_gallery_n
 				),
 
 				array(
 					'name'	=>	'display_feature_columns',
-					'label'	=>	__('Single Listing: Feature list columns?', 'epl'),
+					'label'	=>	__('Feature list columns?', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_features
 				)
@@ -948,18 +948,18 @@ function epl_admin_sidebar () {
 			'label'		=>	__('Listing Archive View', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Configure the default options for the single listing and archive view.', 'epl'),
+			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'epl'),
 			'fields'	=>	array(
 				array(
 					'name'	=>	'display_excerpt_length',
-					'label'	=>	__('Archive View: Excerpt word count?', 'epl'),
+					'label'	=>	__('Excerpt words', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_property_card_excerpt_length,
 					'help'	=>	__('This is ignored when using manual excerpts.', 'epl')
 				),
 				array(
 					'name'	=>	'display_archive_view_type',
-					'label'	=>	__('Archive View: listing view type', 'epl'),
+					'label'	=>	__('Listing view type', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						'list'	=>	__('List', 'epl'),
@@ -969,7 +969,7 @@ function epl_admin_sidebar () {
 				
 				array(
 					'name'	=>	'use_fancy_navigation',
-					'label'	=>	__('Archive View: use fancy pagination ?', 'epl'),
+					'label'	=>	__('Fancy pagination', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	array(
 						'0'		=>	__('No, use WordPress default pagination', 'epl'),
@@ -1141,14 +1141,14 @@ function epl_admin_sidebar () {
 			'fields'	=>	array(
 				array(
 					'name'	=>	'epl_use_core_css',
-					'label'	=>	__('Use plugin css', 'epl'),
+					'label'	=>	__('Disable Styles', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						'true'	=>	__('Yes', 'epl'),
 						'false'	=>	__('No', 'epl'),
 					),
 					'default'	=>	'true',
-					'help'		=>	__('Use plugin css ?  ( default : yes ) ' , 'epl')
+					'help'		=>	__('Check this to disable all elements.' , 'epl')
 					
 				)
 			)
