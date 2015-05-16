@@ -119,13 +119,13 @@ function epl_get_active_post_types() {
  */
 function epl_get_post_types() {
 	$epl_post_types = array(
-		'property'			=>	__('Property (Residential)', 'epl'),
-		'land'				=>	__('Land', 'epl'),
-		'rental'			=>	__('Rental', 'epl'),
-		'rural'				=>	__('Rural', 'epl'),
+		'property'		=>	__('Property (Residential)', 'epl'),
+		'land'			=>	__('Land', 'epl'),
+		'rental'		=>	__('Rental', 'epl'),
+		'rural'			=>	__('Rural', 'epl'),
 		'commercial'		=>	__('Commercial', 'epl'),
 		'commercial_land'	=>	__('Commercial Land', 'epl'),
-		'business'			=>	__('Business', 'epl'),
+		'business'		=>	__('Business', 'epl'),
 	);
 	// allow 3rd party extensions to add custom posts as a part of epl
 	return apply_filters('epl_post_types',$epl_post_types);
@@ -148,6 +148,8 @@ function epl_get_currencies() {
 		'DKK'  => __( 'Danish Krone', 'epl' ),
 		'HKD'  => __( 'Hong Kong Dollar (&#36;)', 'epl' ),
 		'HUF'  => __( 'Hungarian Forint', 'epl' ),
+		'INR'  => __( 'Indian Rupee (&#8377;)', 'epl' ),
+		'RIAL' => __( 'Iranian Rial (&#65020;)', 'epl' ),
 		'ILS'  => __( 'Israeli Shekel (&#8362;)', 'epl' ),
 		'JPY'  => __( 'Japanese Yen (&yen;)', 'epl' ),
 		'MYR'  => __( 'Malaysian Ringgits', 'epl' ),
@@ -156,16 +158,18 @@ function epl_get_currencies() {
 		'NOK'  => __( 'Norwegian Krone', 'epl' ),
 		'PHP'  => __( 'Philippine Pesos', 'epl' ),
 		'PLN'  => __( 'Polish Zloty', 'epl' ),
+		'QAR'  => __( 'Qatar Riyal (QAR)', 'epl' ),
 		'SGD'  => __( 'Singapore Dollar (&#36;)', 'epl' ),
 		'ZAR'  => __( 'South African Rand (R)', 'epl' ),
 		'SEK'  => __( 'Swedish Krona', 'epl' ),
 		'CHF'  => __( 'Swiss Franc', 'epl' ),
 		'TWD'  => __( 'Taiwan New Dollars', 'epl' ),
 		'THB'  => __( 'Thai Baht (&#3647;)', 'epl' ),
-		'INR'  => __( 'Indian Rupee (&#8377;)', 'epl' ),
 		'TRY'  => __( 'Turkish Lira (&#8378;)', 'epl' ),
-		'RIAL' => __( 'Iranian Rial (&#65020;)', 'epl' ),
-		'RUB'  => __( 'Russian Rubles', 'epl' )
+		'RUB'  => __( 'Russian Rubles', 'epl' ),
+		'AED'  => __( 'United Arab Emirates, Dirham (AED)', 'epl' ),
+		'UAH'  => __( 'Ukrainian Hryvnia (&#8372;)', 'epl' ),
+		'VND'  => __( 'Vietnamese đồng (&#8363;)', 'epl' )
 	);
 	return apply_filters( 'epl_get_currencies', $currencies );
 }
@@ -667,6 +671,20 @@ function epl_admin_sidebar () {
 				}
 			}
 			break;
+			
+		case 'checkbox_single':
+			if(!empty($field['opts'])) {
+				foreach($field['opts'] as $k=>$v) {
+					$checked = '';
+					if(!empty($val)) {
+						if( $k == $val ) {
+							$checked = 'checked="checked"';
+						}
+					}
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+				}
+			}
+			break;
 
 		case 'radio':
 			if(!empty($field['opts'])) {
@@ -910,11 +928,11 @@ function epl_admin_sidebar () {
 			'label'		=>	__('Listing Single View', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Configure the default options for the single listing and archive view.', 'epl'),
+			'help'		=>	__('Configure the default options when viewing a single listing.', 'epl'),
 			'fields'	=>	array(
 				array(
 					'name'	=>	'display_single_gallery',
-					'label'	=>	__('Single Listing: Automatically display image gallery?', 'epl'),
+					'label'	=>	__('Automatically display image gallery?', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						1	=>	__('Enable', 'epl'),
@@ -925,14 +943,14 @@ function epl_admin_sidebar () {
 
 				array(
 					'name'	=>	'display_gallery_n',
-					'label'	=>	__('Single Listing: Gallery columns?', 'epl'),
+					'label'	=>	__('Gallery columns?', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_gallery_n
 				),
 
 				array(
 					'name'	=>	'display_feature_columns',
-					'label'	=>	__('Single Listing: Feature list columns?', 'epl'),
+					'label'	=>	__('Feature list columns?', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_features
 				)
@@ -944,18 +962,18 @@ function epl_admin_sidebar () {
 			'label'		=>	__('Listing Archive View', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Configure the default options for the single listing and archive view.', 'epl'),
+			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'epl'),
 			'fields'	=>	array(
 				array(
 					'name'	=>	'display_excerpt_length',
-					'label'	=>	__('Archive View: Excerpt word count?', 'epl'),
+					'label'	=>	__('Excerpt words', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	$opts_epl_property_card_excerpt_length,
 					'help'	=>	__('This is ignored when using manual excerpts.', 'epl')
 				),
 				array(
 					'name'	=>	'display_archive_view_type',
-					'label'	=>	__('Archive View: listing view type', 'epl'),
+					'label'	=>	__('Listing view type', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						'list'	=>	__('List', 'epl'),
@@ -965,10 +983,10 @@ function epl_admin_sidebar () {
 				
 				array(
 					'name'	=>	'use_fancy_navigation',
-					'label'	=>	__('Archive View: use fancy pagination ?', 'epl'),
+					'label'	=>	__('Fancy pagination', 'epl'),
 					'type'	=>	'select',
 					'opts'	=>	array(
-						'0'		=>	__('No, use wordpress default pagination', 'epl'),
+						'0'		=>	__('No, use WordPress default pagination', 'epl'),
 						'1'		=>	__('Yes, use fancy navigation', 'epl')
 					)
 				)
@@ -1128,6 +1146,26 @@ function epl_admin_sidebar () {
 					'default'	=> 0
 				),
 			),
+		),
+		
+		array(
+			'label'		=>	__('Advanced Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'advanced',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'epl_use_core_css',
+					'label'	=>	__('Disable Styles', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to disable all elements.' , 'epl')
+					
+				)
+			)
+
 		)
 	);
 	
