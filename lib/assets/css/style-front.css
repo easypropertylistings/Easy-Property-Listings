@@ -664,7 +664,7 @@ li.tbhead.current {
 	overflow: hidden;
 	margin-top: 1.5em;
 }
-.tab-title {
+.epl-tab-title {
 	margin-top: 1em;
 	margin-bottom: 0em;
 	border-bottom: 1px solid #ccc;
@@ -689,13 +689,13 @@ li.tbhead.current {
 .widget_epl_property_search ul.property_search-tabs li.tab-link {
 	margin-right: 0.3em;
 }
-.epl-search-form .fm-block { 
+.epl-search-form .epl-search-row { 
 	clear: both; 
 	display: block; 
 	padding: 10px 0; 
 	border-bottom:1px #B7B7B7 solid; 
 }
-.epl-search-form .fm-label { 
+.epl-search-form .epl-search-label { 
 	color: #555555; 
 	display: block; 
 	font-size: 11px; 
@@ -714,7 +714,7 @@ li.tbhead.current {
 .epl-search-row-full-wrapper .field  {
 	width: 99%;
 }
-.epl-search-form .fm-block .top-mrgn { 
+.epl-search-form .epl-search-row .top-mrgn { 
 	margin-top: 10px; 
 	display: block; 
 }
@@ -722,11 +722,11 @@ li.tbhead.current {
 	font-size: 11px; 
 	color: #555555; 
 }
-.epl-search-form .fm-block-half { 
+.epl-search-form .epl-search-row-half { 
 	display: inline-block; 
 	width: 48.7%; 
 }
-.epl-search-form .fm-block-third { 
+.epl-search-form .epl-search-row-third { 
 	display: inline-block; 
 	width: 32%; 
 }
@@ -739,12 +739,12 @@ li.tbhead.current {
 .epl-search-form .epl-search-right-third .in-field {
 	width: 95%;
 }
-.epl-search-form .fm-block-half .top-mrgn { 
+.epl-search-form .epl-search-row-half .top-mrgn { 
 	margin-top: 0; 
 }
 /* Land and Building fields*/
-.epl-search-form .epl-search-land-area .fm-block-third,
-.epl-search-form .epl-search-building-area .fm-block-third  { 
+.epl-search-form .epl-search-land-area .epl-search-row-third,
+.epl-search-form .epl-search-building-area .epl-search-row-third  { 
 	width: 29%; 
 }
 .epl-search-form .epl-search-land-area .epl-search-right-third,
@@ -791,8 +791,8 @@ li.tbhead.current {
 .epl-search-slim .epl-search-form {
 	width: 100%;
 }
-.epl-search-wide .fm-block, 
-.epl-search-slim .fm-block { 
+.epl-search-wide .epl-search-row, 
+.epl-search-slim .epl-search-row { 
 	clear: none;
 	display: block; 
 	padding: 0; 
@@ -950,6 +950,31 @@ li.tbhead.current {
 	margin-right: 1em;
 	float: left;
 }
+.epl-sd-location-profile .epl-location-profile-card.hentry {
+	width: 100%;
+	margin-right: 1em;
+	float: left;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-header,
+.epl-sd-location-profile .epl-location-profile-card .entry-content{
+	box-sizing: border-box;
+	float: left;
+	clear: none;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-header {
+	width: 30%;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-content{
+	width: 70%;
+}
+.epl-location-profile-widget-image {
+	padding-right: 1em;
+}
+.epl-sd-location-profile .epl-location-profile-card {
+	width: 100%;
+	margin-right: 1em;
+	float: left;
+}
 .directory-page-dynamic .bond {
 	display: none;
 }
@@ -1029,51 +1054,64 @@ li.tbhead.current {
 	padding: 0;
 	width: 100%;
 }
-.epl-property-table {
+/** Table **/
+.epl-table,
+.page .epl-table.hentry {
+	padding-bottom: 0.5em;
+	margin-bottom: 1em;
 	font-size: 0.8em;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid #ddd;
 }
-.epl-property-table .property-box,
-.epl-property-table .epl-table-box {
+.epl-table .epl-table-column-image,
+.epl-table .epl-table-column-content,
+.epl-table .epl-table-box {
 	box-sizing:border-box;
 	-moz-box-sizing:border-box; /* Firefox */
 	float:left;
 }
-.epl-property-table .property-box img {
-	max-width: 100%;
-	padding-right: 1em;
-}
-.epl-property-table .property-box-left {
+.epl-table .epl-table-column-image {
 	width:12%;
 	padding-right: 0;
 }
-.epl-property-table .property-box-right {
+.epl-table .epl-table-column-image img {
+	max-width: 100%;
+	padding-right: 1em;
+}
+.epl-table .epl-table-column-content {
 	width:88%;
 	float: right;
 }
-.epl-property-table .property-address {
+.epl-table .epl-table-column-left {
 	width: 50%;
 }
-.epl-property-table .property-feature-icons {
+.epl-table .epl-table-column-middle {
 	width: 25%;
 }
-.epl-property-table .price {
+.epl-table .epl-table-column-right {
 	width: 20%;
 	float: right;
-	text-align: right;
 }
-.epl-property-table .icon.pool,
-.epl-property-table .icon.air {
+.epl-table .epl-inspection-times,
+.epl-table .home-open-wrapper {
+	margin: 0;
+}
+.epl-table .home-open-wrapper {
+	list-style: none;
+}
+.epl-table .epl-inspection-times .epl-inspection-times-label {
 	display: none;
 }
-.epl-property-table.epl-listing-grid-view .price{
+.epl-table .icon.pool,
+.epl-table .icon.air {
+	display: none;
+}
+.epl-table.epl-listing-grid-view .price{
 	float: left;
 	text-align: left;
 }
 #epl-default-map img {
 	max-width:none;
 }
-
 /**************************************
 Epl fancy pagination
 **************************************/
@@ -1183,9 +1221,12 @@ Epl fancy pagination
 	width: 120px;
 	}
 	.directory-page-dynamic .directory-section .hentry{
-		width: 31% !important;
+		width: 31%;
 	}
-
+	.epl-sd-location-profile .epl-location-profile-card.hentry {
+		width: 100%;
+	}
+	
 	.property-box {
 		float:none;
 	}
@@ -1252,12 +1293,19 @@ Epl fancy pagination
 		min-height: 200px;
 		margin-bottom: 2em;
 	}
-	.epl-property-table .property-address,
-	.epl-property-table .property-feature-icons,
-	.epl-property-table .price {
+	.epl-table .epl-table-column-image,
+	.epl-table .epl-table-column-left,
+	.epl-table .epl-table-column-middle,
+	.epl-table .epl-table-column-right {
 		width: 100%;
 		float: left;
 		text-align: left;
+	}
+}
+@media screen and (max-width: 400px) {
+	.epl-sd-location-profile .epl-location-profile-card .entry-header,
+	.epl-sd-location-profile .epl-location-profile-card .entry-content{
+		width: 100%;
 	}
 }
 /*****************************
