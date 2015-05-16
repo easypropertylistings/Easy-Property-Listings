@@ -304,13 +304,17 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Polish translation thanks to Weronika.urbanczyk', 'epl' );?></li>
 						<li><?php _e( 'New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template="table"] or [listing template="table_open"]. You can copy these new templates into your theme/easypropertylistings folder to further customize.', 'epl' );?></li>
 						<li><?php _e( 'New: Added currency support for Qatar Riyal (QAR), United Arab Emirates (AED), Ukrainian Hryvnia (UAH), Vietnamese đồng (VND)', 'epl' );?></li>
+						<li><?php _e( 'New: checkbox_single ability for plugin and extensions.', 'epl' );?></li>
+						<li><?php _e( 'New: Ability to disable map on each listing.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Updated currency symbols for: Israeli Shekel, Thai Baht, Indian Rupee, Turkish Lira, Iranian Rial.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved CSS and added additional classes with epl- prefix in templates and search.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved CSS for Location Profiles and Staff Directory extensions.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Added filters for commercial titles to allow you to change "For Lease" and "For Sale" using epl_commercial_for_lease_label, and epl_commercial_for_sale_label filters.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Additional CSS classes for Land, Commercial and Rural special features.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Gallery CSS classes added.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.', 'epl' );?></li>
 						<li><?php _e( 'Fix: New/Open Sticker now appear on listings with the price display set to no.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Translations work correctly for categories.', 'epl' );?></li>
 					</ul>
 				
 					<h4><?php _e( 'Version 2.1.7', 'epl' );?></h4>
