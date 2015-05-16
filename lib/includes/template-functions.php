@@ -1374,13 +1374,18 @@ function epl_home_pagination_fix( $query) {
 
 add_action('pre_get_posts','epl_home_pagination_fix');
 
+/**
+* Ability to hide map on single listings
+*
+* @since 2.1.8
+*/
 function epl_hide_map_from_front() {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
 	global $post,$property;
 	
-	if( in_array($post->post_type,$epl_posts) ) {
+	if( is_single() && in_array($post->post_type,$epl_posts) ) {
 		
 		$hide_map = get_post_meta($post->ID,'property_address_hide_map',true);
 		if($hide_map == 'yes') {
