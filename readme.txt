@@ -190,6 +190,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Polish translation thanks to Weronika.urbanczyk
 * New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template="table"] or [listing template="table_open"]. You can copy these new templates into your theme/easypropertylistings folder to further customize.
 * New: Added currency support for Qatar Riyal (QAR), United Arab Emirates (AED), Ukrainian Hryvnia (UAH), Vietnamese đồng (VND)
+* New: checkbox_single ability for plugin and extensions.
 * Tweak: Updated currency symbols for: Israeli Shekel, Thai Baht, Indian Rupee, Turkish Lira, Iranian Rial.
 * Tweak: Improved CSS and added additional classes with epl- prefix in templates and search.
 * Tweak: Added filters for commercial titles to allow you to change "For Lease" and "For Sale" using epl_commercial_for_lease_label, and epl_commercial_for_sale_label filters.
@@ -197,6 +198,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Gallery CSS classes added.
 * Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.
 * Fix: New/Open Sticker now appear on listings with the price display set to no.
+* Fix: Translations for categories now translates correctly.
 
 = 2.1.7 May 6, 2015 =
 
