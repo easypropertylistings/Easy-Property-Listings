@@ -950,6 +950,31 @@ li.tbhead.current {
 	margin-right: 1em;
 	float: left;
 }
+.epl-sd-location-profile .epl-location-profile-card.hentry {
+	width: 100%;
+	margin-right: 1em;
+	float: left;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-header,
+.epl-sd-location-profile .epl-location-profile-card .entry-content{
+	box-sizing: border-box;
+	float: left;
+	clear: none;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-header {
+	width: 30%;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-content{
+	width: 70%;
+}
+.epl-location-profile-widget-image {
+	padding-right: 1em;
+}
+.epl-sd-location-profile .epl-location-profile-card {
+	width: 100%;
+	margin-right: 1em;
+	float: left;
+}
 .directory-page-dynamic .bond {
 	display: none;
 }
@@ -1196,9 +1221,12 @@ Epl fancy pagination
 	width: 120px;
 	}
 	.directory-page-dynamic .directory-section .hentry{
-		width: 31% !important;
+		width: 31%;
 	}
-
+	.epl-sd-location-profile .epl-location-profile-card.hentry {
+		width: 100%;
+	}
+	
 	.property-box {
 		float:none;
 	}
@@ -1272,6 +1300,12 @@ Epl fancy pagination
 		width: 100%;
 		float: left;
 		text-align: left;
+	}
+}
+@media screen and (max-width: 400px) {
+	.epl-sd-location-profile .epl-location-profile-card .entry-header,
+	.epl-sd-location-profile .epl-location-profile-card .entry-content{
+		width: 100%;
 	}
 }
 /*****************************
