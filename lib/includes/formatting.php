@@ -122,6 +122,27 @@ function epl_currency_filter( $price ) {
 			case "JPY" :
 				$formatted = '&yen;' . $price;
 				break;
+			case "ILS" :
+				$formatted = '&#8362;' . $price;
+				break;
+			case "THB" :
+				$formatted = '&#3647;' . $price;
+				break;
+			case "INR" :
+				$formatted = '&#8377;' . $price;
+				break;
+			case "TRY" :
+				$formatted = '&#8378;' . $price;
+				break;
+			case "RIAL" :
+				$formatted = '&#65020;' . $price;
+				break;
+			case "UAH" :
+				$formatted = '&#8372;' . $price;
+				break;
+			case "VND" :
+				$formatted = '&#8363;' . $price;
+				break;
 			case "ZAR" :
 				$formatted = 'R' . $price;
 				break;
@@ -152,6 +173,30 @@ function epl_currency_filter( $price ) {
 			case "JPY" :
 				$formatted = $price . '&yen;';
 				break;
+			case "ILS" :
+				$formatted = $price . '&#8362;';
+				break;
+			case "THB" :
+				$formatted = $price . '&#3647;';
+				break;
+			case "INR" :
+				$formatted = $price . '&#8377;';
+				break;
+			case "TRY" :
+				$formatted = $price . '&#8378;';
+				break;
+			case "RIAL" :
+				$formatted = $price . '&#65020;';
+				break;
+			case "UAH" :
+				$formatted = $price . '&#8372;';
+				break;
+			case "VND" :
+				$formatted = $price . '&#8363;';
+				break;
+			case "ZAR" :
+				$formatted = $price . 'R';
+				break;
 			default :
 			    $formatted = $price . ' ' . $currency;
 				break;
@@ -160,7 +205,7 @@ function epl_currency_filter( $price ) {
 	endif;
 
 	if( $negative ) {
-		// Prepend the mins sign before the currency sign
+		// Prepend the minus sign before the currency sign
 		$formatted = '-' . $formatted;
 	}
 

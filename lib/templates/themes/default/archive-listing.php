@@ -1,7 +1,7 @@
 <?php
 /**
  * Archive Template for Custom Post Types
-**/
+ */
  
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;

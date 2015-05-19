@@ -912,10 +912,10 @@ function epl_meta_box_init() {
 							),
 							array(
 								'name'		=>	'property_address_hide_map',
-								'label'		=>	__('Hide Map', 'epl'),
+								'label'		=>	__('', 'epl'),
 								'type'		=>	'checkbox_single',
 								'opts'		=>	array(
-									'yes'	=>	__('Yes', 'epl'),
+									'yes'	=>	__('Hide Map', 'epl'),
 								)
 							)
 

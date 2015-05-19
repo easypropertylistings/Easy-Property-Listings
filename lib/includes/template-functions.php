@@ -76,11 +76,11 @@ function epl_property_sold_leased() {
 	}
 	
 	if ( $query->have_posts() ) { ?>
-		<div class="epl-tab-section">
+		<div class="epl-tab-section epl-tab-section-listing-history">
 			<?php if ( 'property' == $post_type || 'land' == $post_type || 'rural' == $post_type) { ?>
-				<h5 class="tab-title"><?php _e('Recently Sold', 'epl'); ?></h5>
+				<h5 class="epl-tab-title epl-tab-title-sales tab-title"><?php _e('Recently Sold', 'epl'); ?></h5>
 			<?php } else { ?>
-				<h5 class="tab-title"><?php _e('Recently Leased', 'epl'); ?></h5>
+				<h5 class="epl-tab-title epl-tab-title-leased tab-title"><?php _e('Recently Leased', 'epl'); ?></h5>
 			<?php } ?>
 			<div class="tab-content">
 				<ul>
@@ -205,9 +205,9 @@ function epl_get_template_part($template,$arguments=array()) {
 	$base_path		= apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
 	$default		= $template;
 	$find[] 		= epl_template_path() . $template;
-	$template       = locate_template( array_unique( $find ) );
+	$template       	= locate_template( array_unique( $find ) );
 	if(!$template) {
-		$template	=	$base_path . $default;
+		$template	= $base_path . $default;
 	}
 	if( !isset($arguments['epl_author']) ) {
 		global $epl_author;
@@ -288,8 +288,11 @@ function epl_property_blog_default() {
 	} // End Status Removal
 }
 
-
-// Listing Function for paged card display 
+/*
+ * Listing Function for slim view
+ *
+ * @since 1.2
+ */
 function epl_property_blog_slim() {
 	global $property,$epl_settings;
 	if( is_null($property) ) {
@@ -314,7 +317,11 @@ function epl_property_blog_slim() {
 	} // End Status Removal
 }
 
-// Listing Function for paged card display 
+/*
+ * Listing Function for table open
+ *
+ * @since 2.1.6
+ */
 function epl_property_blog_table() {
 	global $property,$epl_settings;
 	if( is_null($property) ) {
@@ -335,6 +342,34 @@ function epl_property_blog_table() {
 			do_action( 'epl_loop_template' );
 		} else {
 			epl_get_template_part('loop-listing-blog-table.php');
+		}
+	} // End Status Removal
+}
+/*
+ * Listing Function for table open
+ *
+ * @since 2.1.8
+ */
+function epl_property_blog_table_open() {
+	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-table-open.php');
 		}
 	} // End Status Removal
 }
@@ -770,32 +805,32 @@ function epl_property_tab_section() {
 	}
 	
 	if ( $property->post_type != 'land' || $property->post_type != 'business') { ?>
-	<h5 class="tab-title"><?php _e('Property Features', 'epl'); ?></h5>
-		<div class="tab-content">
-			<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
-				<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>							
-			</ul>
-		</div>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php _e('Property Features', 'epl'); ?></h5>
+			<div class="epl-tab-content tab-content">
+				<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
+					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>							
+				</ul>
+			</div>
 	<?php } ?>
 
-	<div class="tab-content">
+	<div class="epl-tab-content epl-tab-content-additional tab-content">
 		<?php
 			//Land Category
 			if( 'land' == $property->post_type || 'commercial_land' == $property->post_type ) {
-				echo $property->get_property_land_category(); //Land Category
+				echo '<div class="epl-land-category">' . $property->get_property_land_category() . '</div>';
 			}
 			
-			//Availability
-			if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) {
-				echo '<div class="date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
-			}
+			// Availability
+			//	if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) {
+			//		echo '<div class="date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
+			//	}
 
 			//Commercial Options
 			if ( $property->post_type == 'commercial' ) {
 				if ( $property->get_property_meta('property_com_plus_outgoings') == 1) {
-					echo '<div class="price-type">'.__('Plus Outgoings', 'epl').'</div>';
+					echo '<div class="epl-commercial-outgoings price-type">'.__('Plus Outgoings', 'epl').'</div>';
 				}
-				echo $property->get_property_commercial_category();						
+				// echo $property->get_property_commercial_category();						
 			}
 		?>
 	</div>
@@ -824,10 +859,10 @@ function epl_property_tab_section_after() {
 		}
 	
 	?>
-		<div class="epl-tab-section">
-			<h5 class="tab-title"><?php _e('Commercial Features', 'epl'); ?></h5>
-			<div class="tab-content">
-				<div class="listing-info">
+		<div class="epl-tab-section epl-tab-section-commercial-features">
+			<h5 class="epl-tab-title epl-tab-title-commercial-features tab-title"><?php _e('Commercial Features', 'epl'); ?></h5>
+			<div class="epl-tab-content tab-content">
+				<div class="epl-commercial-features listing-info">
 					<?php echo $the_property_commercial_feature_list; ?>							
 				</div>
 			</div>
@@ -850,10 +885,10 @@ function epl_property_tab_section_after() {
 		}
 	
 	?>
-		<div class="epl-tab-section">
-			<h5 class="tab-title"><?php _e('Rural Features', 'epl'); ?></h5>
-			<div class="tab-content">
-				<div class="listing-info">
+		<div class="epl-tab-section epl-tab-section-rural-features">
+			<h5 class="epl-tab-title epl-tab-title-rural-features tab-title"><?php _e('Rural Features', 'epl'); ?></h5>
+			<div class="epl-tab-content tab-content">
+				<div class="epl-rural-features listing-info">
 					<?php echo $the_property_rural_feature_list; ?>							
 				</div>
 			</div>
@@ -1015,7 +1050,7 @@ function epl_author_tab_author_id($epl_author = array() ) {
 		global $epl_author;
 	}
 	
-	$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
+	$permalink 	= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
 		
 ?>
@@ -1111,9 +1146,9 @@ function epl_property_gallery () {
 	}
 	
 	if ( $attachments && $d_gallery == 1 ) { ?>
-		<div class="property-gallery">
+		<div class="epl-gallery property-gallery">
 			<!-- Gallery -->
-			<div class="entry-gallery epl-clearfix">
+			<div class="epl-gallery-entry entry-gallery epl-clearfix">
 				<?php 
 					$d_gallery_n = '[gallery columns="'. $d_gallery_n . '" link="file"]';
 					echo do_shortcode( $d_gallery_n );

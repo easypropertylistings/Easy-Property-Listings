@@ -52,7 +52,8 @@ function epl_wp_enqueue_scripts() {
 	
 		wp_enqueue_script('google-map-v-3','https://maps.googleapis.com/maps/api/js?v=3.exp');
 	}
-	if( isset($epl_settings['epl_use_core_css']) &&  $epl_settings['epl_use_core_css'] == 'false') {
+	
+	if( isset($epl_settings['epl_use_core_css']) &&  $epl_settings['epl_use_core_css'] == 'on') {
 	
 	} else {
 			wp_enqueue_style(	'epl-front-styles', $current_dir_path . '/css/style-front.css' ,FALSE,EPL_PROPERTY_VER);

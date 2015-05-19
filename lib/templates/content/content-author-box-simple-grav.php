@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Author Box: Simple Card Gravatar Image
  *
  * @package easy-property-listings
