@@ -213,6 +213,7 @@ function epl_get_template_part($template,$arguments=array()) {
 		global $epl_author;
 	} 
 	extract($arguments);
+	
 	include( $template);
 }
 /*
@@ -1389,3 +1390,96 @@ function epl_hide_map_from_front() {
 	}
 }
 add_action('wp','epl_hide_map_from_front',10);
+
+function epl_the_content() {
+
+    if ( !has_filter( 'epl_the_content', 'wptexturize' ) ) {
+    
+        add_filter( 'epl_the_content', 'wptexturize'        );
+        add_filter( 'epl_the_content', 'convert_smilies'    );
+        add_filter( 'epl_the_content', 'convert_chars'      );
+        add_filter( 'epl_the_content', 'wpautop'            );
+        add_filter( 'epl_the_content', 'shortcode_unautop'  );
+        add_filter( 'epl_the_content', 'prepend_attachment' );
+        $vidembed = new WP_Embed();
+        add_filter( 'epl_the_content', array( &$vidembed, 'run_shortcode'), 8 );
+        add_filter( 'epl_the_content', array( &$vidembed, 'autoembed'), 8 );
+        add_filter( 'epl_the_content', 'do_shortcode', 11);
+    } 
+    
+    add_filter( 'epl_get_the_excerpt', 'epl_trim_excerpt'  );
+}
+
+add_action('init','epl_the_content',1);
+
+function epl_property_the_content() {
+
+	global $property;
+	$content = apply_filters('epl_the_content',get_the_content());
+	echo str_replace( ']]>', ']]&gt;', $content );
+}
+
+add_action('epl_property_the_content','epl_property_the_content');
+
+function epl_feeling_lucky($content) {
+	
+	global $epl_settings;
+	
+	if( !isset($epl_settings['epl_feeling_lucky']) || $epl_settings['epl_feeling_lucky'] != 'on') {
+		return $content;
+	}
+	
+	$epl_posts 	= epl_get_active_post_types();
+	$epl_posts 	= array_keys($epl_posts);
+
+	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
+		do_action('epl_property_single');
+	} elseif( is_post_type_archive($epl_posts) ) {
+		do_action('epl_property_blog');
+	} else {
+		return $content;
+	}
+	
+}
+
+add_filter('the_content','epl_feeling_lucky');
+
+function epl_trim_excerpt($text = '') {
+
+	$raw_excerpt = $text;
+	if ( '' == $text ) {
+		$text = get_the_content('');
+
+		$text = strip_shortcodes( $text );
+
+		$text = apply_filters( 'epl_the_content', $text );
+		$text = str_replace(']]>', ']]&gt;', $text);
+
+		$excerpt_length = apply_filters( 'excerpt_length', 55 );
+		$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
+		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
+	}
+	return apply_filters( 'epl_trim_excerpt', $text, $raw_excerpt );
+}
+
+
+function epl_the_excerpt() {
+
+	echo apply_filters( 'epl_the_excerpt', epl_get_the_excerpt() );
+}
+
+function epl_get_the_excerpt( $deprecated = '' ) {
+	if ( !empty( $deprecated ) )
+		_deprecated_argument( __FUNCTION__, '2.3' );
+
+	$post = get_post();
+	if ( empty( $post ) ) {
+		return '';
+	}
+
+	if ( post_password_required() ) {
+		return __( 'There is no excerpt because this is a protected post.' );
+	}
+
+	return apply_filters( 'epl_get_the_excerpt', $post->post_excerpt );
+}

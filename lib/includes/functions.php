@@ -1163,6 +1163,17 @@ function epl_admin_sidebar () {
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'epl')
 					
+				),
+				array(
+					'name'	=>	'epl_feeling_lucky',
+					'label'	=>	__('Feeling lucky', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('force epl to adapt current theme & styling.' , 'epl')
+					
 				)
 			)
 
