@@ -1174,6 +1174,28 @@ function epl_admin_sidebar () {
 					'default'	=>	'off',
 					'help'		=>	__('force epl to adapt current theme & styling.' , 'epl')
 					
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_single_thumb',
+					'label'	=>	__('Disable single featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Disable single feature image in feeling lucky mode.' , 'epl')
+					
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_archive_thumb',
+					'label'	=>	__('Disable archive featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Disable archive feature image in feeling lucky mode.' , 'epl')
+					
 				)
 			)
 

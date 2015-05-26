@@ -1407,10 +1407,58 @@ function epl_the_content() {
         add_filter( 'epl_the_content', 'do_shortcode', 11);
     } 
     
+
+
     add_filter( 'epl_get_the_excerpt', 'epl_trim_excerpt'  );
+    
 }
 
 add_action('init','epl_the_content',1);
+
+function apply_feeling_lucky_config() {
+	
+	global $epl_settings;
+	
+	$epl_posts 	= epl_get_active_post_types();
+	$epl_posts 	= array_keys($epl_posts);
+
+    // remove featured image on single pages in lucky mode
+    if( isset($epl_settings['epl_lucky_disable_single_thumb']) && $epl_settings['epl_lucky_disable_single_thumb'] == 'on') {
+    
+		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) { 
+			remove_all_actions( 'epl_property_featured_image' );
+		}
+
+	}
+	
+    // remove featured image on archive pages in lucky mode
+    if( isset($epl_settings['epl_lucky_disable_archive_thumb']) && $epl_settings['epl_lucky_disable_archive_thumb'] == 'on') {
+    
+    	if( is_post_type_archive($epl_posts) ) {
+			add_filter('post_thumbnail_html','epl_remove_archive_thumbnail',20,5);
+		}
+	}
+
+
+}
+
+add_action('wp','apply_feeling_lucky_config',1);
+
+/**
+* A workaround to avoid duplicate thumbnails for single listings being disaplyed on archive pages via theme & epl
+* attempts to null the post thumbnail image called from theme & display thumbnail image called from epl
+*/
+function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size, $attr) {
+
+	if( strpos($html, 'teaser-left-thumb') === FALSE ) {
+		
+		// the post thumbnail is probably theme's default . remove it
+		$html = '';
+	} 
+	
+	return $html;
+}
+
 
 function epl_property_the_content() {
 
