@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <!-- Author Box Container Tabbed -->
-<div id="epl-box<?php echo $epl_author->author_id; ?>" class="epl-author-box">		
+<div id="epl-box<?php echo $epl_author->author_id; ?>" class="epl-author-box-container">		
 	<ul class="epl-author-tabs">
 		<?php
 			
