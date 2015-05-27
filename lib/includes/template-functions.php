@@ -1394,3 +1394,14 @@ function epl_hide_map_from_front() {
 	}
 }
 add_action('wp','epl_hide_map_from_front',10);
+
+function epl_nopaging($query) {
+
+	$restrict_paging = $query->get('epl_nopaging');
+	if($restrict_paging == true) {
+		$query->set('paged',1);
+	} 
+
+}
+
+add_action('pre_get_posts','epl_nopaging');
