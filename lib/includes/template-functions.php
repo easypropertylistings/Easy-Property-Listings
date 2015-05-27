@@ -1375,13 +1375,18 @@ function epl_home_pagination_fix( $query) {
 
 add_action('pre_get_posts','epl_home_pagination_fix');
 
+/**
+* Ability to hide map on single listings
+*
+* @since 2.1.8
+*/
 function epl_hide_map_from_front() {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
 	global $post,$property;
 	
-	if( in_array($post->post_type,$epl_posts) ) {
+	if( is_single() && in_array($post->post_type,$epl_posts) ) {
 		
 		$hide_map = get_post_meta($post->ID,'property_address_hide_map',true);
 		if($hide_map == 'yes') {
@@ -1391,6 +1396,24 @@ function epl_hide_map_from_front() {
 }
 add_action('wp','epl_hide_map_from_front',10);
 
+/**
+ * Disable paging on listing widget
+ *
+ * @since 2.1.8
+ */
+function epl_nopaging($query) {
+	$restrict_paging = $query->get('epl_nopaging');
+	if($restrict_paging == true) {
+		$query->set('paged',1);
+	}
+}
+add_action('pre_get_posts','epl_nopaging');
+
+/**
+ * Custom the_content filter
+ *
+ * @since 2.2
+ */
 function epl_the_content() {
 
     if ( !has_filter( 'epl_the_content', 'wptexturize' ) ) {
@@ -1406,16 +1429,17 @@ function epl_the_content() {
         add_filter( 'epl_the_content', array( &$vidembed, 'autoembed'), 8 );
         add_filter( 'epl_the_content', 'do_shortcode', 11);
     } 
-    
-
 
     add_filter( 'epl_get_the_excerpt', 'epl_trim_excerpt'  );
-    
 }
-
 add_action('init','epl_the_content',1);
 
-function apply_feeling_lucky_config() {
+/**
+ * Apply the i'm feeling lucky theme options
+ *
+ * @since 2.2
+ */
+function epl_apply_feeling_lucky_config() {
 	
 	global $epl_settings;
 	
@@ -1439,14 +1463,14 @@ function apply_feeling_lucky_config() {
 		}
 	}
 
-
 }
-
-add_action('wp','apply_feeling_lucky_config',1);
+add_action('wp','epl_apply_feeling_lucky_config',1);
 
 /**
-* A workaround to avoid duplicate thumbnails for single listings being disaplyed on archive pages via theme & epl
-* attempts to null the post thumbnail image called from theme & display thumbnail image called from epl
+ * A workaround to avoid duplicate thumbnails for single listings being displayed on archive pages via theme & epl
+ * attempts to null the post thumbnail image called from theme & display thumbnail image called from epl
+ *
+ * @since 2.2
 */
 function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size, $attr) {
 
@@ -1459,16 +1483,24 @@ function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size
 	return $html;
 }
 
-
+/**
+ * Custom property the_content
+ *
+ * @since 2.2
+ */
 function epl_property_the_content() {
 
 	global $property;
 	$content = apply_filters('epl_the_content',get_the_content());
 	echo str_replace( ']]>', ']]&gt;', $content );
 }
-
 add_action('epl_property_the_content','epl_property_the_content');
 
+/**
+ * Custom property the_content
+ *
+ * @since 2.2
+ */
 function epl_feeling_lucky($content) {
 	
 	global $epl_settings;
@@ -1487,11 +1519,15 @@ function epl_feeling_lucky($content) {
 	} else {
 		return $content;
 	}
-	
 }
 
 add_filter('the_content','epl_feeling_lucky');
 
+/**
+ * Custom property the_excerpt
+ *
+ * @since 2.2
+ */
 function epl_trim_excerpt($text = '') {
 
 	$raw_excerpt = $text;
@@ -1510,12 +1546,20 @@ function epl_trim_excerpt($text = '') {
 	return apply_filters( 'epl_trim_excerpt', $text, $raw_excerpt );
 }
 
-
+/**
+ * Custom property the_excerpt
+ *
+ * @since 2.2
+ */
 function epl_the_excerpt() {
-
 	echo apply_filters( 'epl_the_excerpt', epl_get_the_excerpt() );
 }
 
+/**
+ * Custom property the_excerpt
+ *
+ * @since 2.2
+ */
 function epl_get_the_excerpt( $deprecated = '' ) {
 	if ( !empty( $deprecated ) )
 		_deprecated_argument( __FUNCTION__, '2.3' );
