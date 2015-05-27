@@ -200,12 +200,12 @@ h3.property-address {
 }
 .epl-property-blog .page-price.sold-status,
 .epl-property-blog .page-price.under-offer-status{
-	/* display: none
- */}
+	/* display: none */
+}
 .epl-property-blog.suburb-top .page-price.sold-status,
 .epl-property-blog.suburb-top .page-price.under-offer-status{
 	display: block
- }
+}
 .under-offer-status {
 	color: #FFA500;
 }
@@ -1053,6 +1053,10 @@ li.tbhead.current {
 	display: block;
 	padding: 0;
 	width: 100%;
+}
+.epl-listing-grid-view.epl-property-blog.masonry-brick {
+	min-height: 0;
+	
 }
 /** Table **/
 .epl-table,
