@@ -70,7 +70,7 @@
 					<?php
 						do_action('epl_property_content_before');
 						
-						the_content();
+						do_action('epl_property_the_content');
 						
 						do_action('epl_property_content_after');
 					?>
