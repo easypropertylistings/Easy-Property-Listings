@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <!-- Author Box Container -->
 <div class="epl-author-card author">
 	<div class="entry-content">
-		<div class="author-box author-image">
+		<div class="epl-author-box epl-author-image">
 			<?php
 				if (function_exists('get_avatar')) { 
 					echo get_avatar( $epl_author->email , '180' );
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			?>
 		</div>
 		
-		<div class="author-box author-details">	
+		<div class="epl-author-box epl-author-details">	
 			<?php apply_filters('epl_author_tab_about_callback',epl_author_tab_author_id($epl_author))	?>	
 		</div>
 	</div>
