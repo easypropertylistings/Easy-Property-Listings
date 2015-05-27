@@ -61,7 +61,6 @@ function epl_load_core_templates($template) {
 			$template	=	$template_path . $common_tpl;
 		}
 	}
-	die($template);
 	return $template;
 
 }
