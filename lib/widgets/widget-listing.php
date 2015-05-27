@@ -137,10 +137,10 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 			} elseif ( $status == 'leased' ) {
 				$args = array(
-					'post_type' => $types, 
-					'showposts' => $p_number,
+					'post_type'	=> $types, 
+					'showposts'	=> $p_number,
 					'offset'	=> $p_skip,
-					'meta_query' => array(
+					'meta_query'	=> array(
 						array(
 							'key' => 'property_status',
 							'value' => 'leased'
@@ -150,9 +150,11 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 			} else {
 				$args = array(
-					'post_type' => $types, 
-					'showposts' => $p_number,
-					'offset'	=> $p_skip
+					'post_type' 	=> $types, 
+					'showposts' 	=> $p_number,
+					'offset'	=> $p_skip,
+					'paged'		=> '1',
+					'epl_nopaging'	=> 'true'
 				);
 			}
 		}
@@ -162,7 +164,6 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		}
 		
 		$query = new WP_Query ( $args );
-
 		if( $query->have_posts() ) :
 			while($query->have_posts()) : $query->the_post();
 				if ( $display == 'list' ) {
@@ -196,24 +197,24 @@ class EPL_Widget_Recent_Property extends WP_Widget {
  
     function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['types'] = strip_tags($new_instance['types']);
-		$instance['featured'] = strip_tags($new_instance['featured']);
-		$instance['status'] = strip_tags($new_instance['status']);
-		$instance['display'] = strip_tags($new_instance['display']);
-		$instance['image'] = strip_tags($new_instance['image']);
-		$instance['archive'] = strip_tags($new_instance['archive']);
-		$instance['d_title'] = strip_tags($new_instance['d_title']);
+		$instance['title'] 	= strip_tags($new_instance['title']);
+		$instance['types'] 	= strip_tags($new_instance['types']);
+		$instance['featured'] 	= strip_tags($new_instance['featured']);
+		$instance['status'] 	= strip_tags($new_instance['status']);
+		$instance['display'] 	= strip_tags($new_instance['display']);
+		$instance['image'] 	= strip_tags($new_instance['image']);
+		$instance['archive'] 	= strip_tags($new_instance['archive']);
+		$instance['d_title'] 	= strip_tags($new_instance['d_title']);
 		
-		$instance['more_text'] = strip_tags($new_instance['more_text']);
-		$instance['d_excerpt'] = strip_tags($new_instance['d_excerpt']);
-		$instance['d_suburb'] = strip_tags($new_instance['d_suburb']);
-		$instance['d_street'] = strip_tags($new_instance['d_street']);
-		$instance['d_price'] = strip_tags($new_instance['d_price']);
-		$instance['d_more'] = strip_tags($new_instance['d_more']);
+		$instance['more_text'] 	= strip_tags($new_instance['more_text']);
+		$instance['d_excerpt'] 	= strip_tags($new_instance['d_excerpt']);
+		$instance['d_suburb'] 	= strip_tags($new_instance['d_suburb']);
+		$instance['d_street'] 	= strip_tags($new_instance['d_street']);
+		$instance['d_price'] 	= strip_tags($new_instance['d_price']);
+		$instance['d_more'] 	= strip_tags($new_instance['d_more']);
 		
-		$instance['d_icons'] = strip_tags($new_instance['d_icons']);
-		$instance['p_number'] = strip_tags($new_instance['p_number']);
+		$instance['d_icons'] 	= strip_tags($new_instance['d_icons']);
+		$instance['p_number'] 	= strip_tags($new_instance['p_number']);
 		$instance['p_skip'] = strip_tags($new_instance['p_skip']);
 		$instance['order_rand'] = strip_tags($new_instance['order_rand']);
 		return $instance;
@@ -229,7 +230,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'display'	=>	'image',
 			'image'		=>	'thumbnail',
 			'archive'	=>	0,
-			'order_rand'=>	0,
+			'order_rand'	=>	0,
 			'd_title'	=>	0,
 			
 			'more_text'	=>	__('Read More', 'epl'),

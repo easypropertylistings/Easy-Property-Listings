@@ -294,6 +294,14 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
+				
+					<h4><?php _e( 'Version 2.1.9', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'Fix: Fixed paging issues in listing widget.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Fix shortcodes when using multiple listing post types.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.1.8', 'epl' );?></h4>
 				
 					<ul>
