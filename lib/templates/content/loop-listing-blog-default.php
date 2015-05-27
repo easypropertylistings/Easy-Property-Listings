@@ -32,7 +32,7 @@ global $property;
 			<!-- Heading -->
 			<h3 class="entry-title"><a href="<?php the_permalink() ?>"><?php do_action('epl_property_heading'); ?></a></h3>
 			<div class="entry-content">
-				<?php the_excerpt(); ?>
+				<?php epl_the_excerpt(); ?>
 			</div>
 			<!-- Address -->
 			<div class="property-address">
