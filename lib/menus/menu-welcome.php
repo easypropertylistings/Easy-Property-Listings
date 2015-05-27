@@ -295,6 +295,15 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 				
+					<h4><?php _e( 'Version 2.1.10', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'Tweak: Improved CSS wrappers for listing widget and added dynamic class depending on widget display style.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added classes to widget list list items.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Additional paging issues fixed in listing widget for other options.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Widget leased selection displays rentals correctly.', 'epl' );?></li>
+					</ul>
+				
 					<h4><?php _e( 'Version 2.1.9', 'epl' );?></h4>
 				
 					<ul>
