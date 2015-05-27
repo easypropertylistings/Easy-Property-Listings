@@ -51,7 +51,10 @@ function epl_shortcode_property_open_callback( $atts ) {
 	);
 	
 	ob_start();
-	
+	if( !is_array($post_type) ) {
+		$post_type 			= array_map('trim',explode(',',$post_type) );
+	}
+
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
