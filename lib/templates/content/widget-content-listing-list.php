@@ -10,4 +10,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+<li id="post-<?php the_ID(); ?>" class="epl-widget-list-item">
+	<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+</li>
