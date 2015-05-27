@@ -56,7 +56,11 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		'date'			=>	'post_date'
 	);
 	
+	if( !is_array($post_type) ) {
+		$post_type 			= array_map('trim',explode(',',$post_type) );
+	}
 	ob_start();
+	
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(
 		'post_type' 		=>	$post_type,
