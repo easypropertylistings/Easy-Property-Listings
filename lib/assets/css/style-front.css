@@ -233,27 +233,27 @@ h3.property-address {
 .tab-content ul {
 	margin-top: 0;
 }
-.tab-content .author-col {
+.tab-content .epl-author-col {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	float:left;
 }
-.tab-content .author-col.author-photo {
+.tab-content .epl-author-col.epl-author-photo {
 	width: 10%;
 	min-width: 100px;
 }
-.tab-content .author-col.author-photo img {
+.tab-content .epl-author-col.epl-author-photo img {
 	margin: 0;
 }
-.tab-content .author-col.author-text{
+.tab-content .epl-author-col.epl-author-text{
 	width: 80%;
 	float:right;
 }
-.tab-content .author-col.author-text h6{
+.tab-content .epl-author-col.epl-author-text h6{
 	margin: 0;
 }
-.tab-content .author-col.author-text p{
+.tab-content .epl-author-col.epl-author-text p{
 	margin: 0;
 }
 /* epl Property Widget */
@@ -386,11 +386,11 @@ h3.property-address {
 .epl-author-archive {
 	overflow: hidden;
 }
-.epl-author-archive .author-box.author-details {
+.epl-author-archive .epl-author-box.epl-author-details {
 	width: 70%;
 }
-.epl-author-archive .author-info,
-.epl-author-archive .author-title {
+.epl-author-archive .epl-author-info,
+.epl-author-archive .epl-author-title {
 	border: none;
 	margin: 0;
 	padding: 0;
@@ -398,52 +398,52 @@ h3.property-address {
 .epl-author-card {
 	margin-bottom: 2em;
 }
-.author-box-contact-details.author-contact-details {
+.epl-author-box-contact-details.epl-author-contact-details {
 	width:100%;
 }
 
-.epl-author-box .author-title {
+.epl-author-box .epl-author-title {
 	margin-top: 0;
 	margin-bottom: 0.5em;
 }
-.author-box-outer-wrapper {
+.epl-author-box-outer-wrapper {
 	background: #fafafa;
 	/*border: 1px solid #dddddd; */
 	padding: 0.5em;
 	margin-bottom: 2em;
 }
-.author-box {
+.epl-author-box {
 	width: 70%;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	float: left;
 }
-#tab-1.author-details {
+#tab-1.epl-author-details {
 	padding-top: 0.5em;
 }
 
-.author-box.author-image {
+.epl-author-box.epl-author-image {
     min-width: 150px;
     padding-right: 1em;
     width: 30%;
 }
-.author-box.author-details {
+.epl-author-box.epl-author-details {
     min-width: 150px;
     padding-right: 1em;
     width: 30%;
 }
 
-.author-box.author-bio {
+.epl-author-box.epl-author-bio {
     padding-right: 1em;
     width: 38%;
 }
-.author-image img {
+.epl-author-image img {
 	margin:0;
 	padding:0;
 	/* width: 150px; */
 	height: auto;
 }
-.epl-author-box .author-slogan {
+.epl-author-box .epl-author-slogan {
 	font-size: 1.2em;
 	float: left;
 	line-height: 1.1;
@@ -451,21 +451,21 @@ h3.property-address {
 	text-align: center;
 	margin-top: 1em;
 }
-.author-contact-details {
+.epl-author-contact-details {
 	width: 50%;
 	float: left;
 }
-h6.author-box-title {
+h6.epl-author-box-title {
 	margin-top:0;
 	margin-bottom: 0;
 }
-.epl-author-box ul.author-tabs,
+.epl-author-box ul.epl-author-tabs,
 .epl-author-box ul.map-tabs {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
-ul.author-tabs li,
+ul.epl-author-tabs li,
 ul.property_search-tabs li,
 ul.map-tabs li {
 	background: #eee;
@@ -480,24 +480,24 @@ ul.property_search-tabs li{
 	margin:0 0.3em 0 0;
 	font-weight:bold;
 }
-ul.author-tabs li.author-current,
+ul.epl-author-tabs li.epl-author-current,
 ul.property_search-tabs li.epl-sb-current,
 li.tbhead.current {
 	background: #fafafa;
 	color: #222;
 	border-bottom: 2px solid #999;
 }
-.author-tab-content{
+.epl-author-tab-content{
 	display: none;
 }
-.author-tab-content.author-current{
+.epl-author-tab-content.epl-author-current{
 	display: inherit;
 }
 /* Author Social Icons */
-.author-social-buttons {
+.epl-author-social-buttons {
 	margin-top: 1em;
 }
-.author-icon  {
+.epl-author-icon  {
 	display: inline-block; 
 	text-indent: -999em;
 	height:24px; 
@@ -506,7 +506,7 @@ li.tbhead.current {
 	vertical-align:middle;
 	margin-right: 3px;
 }
-.author-icon:hover  {
+.epl-author-icon:hover  {
 	opacity: 0.7;
 }
 .email-icon-24 {
@@ -1157,7 +1157,7 @@ Epl fancy pagination
 	height: 100%;
 }
 @media screen and (max-width: 830px) {
-	.author-box {
+	.epl-author-box {
 	width: 60%!important;
 	}
 }
@@ -1212,16 +1212,16 @@ Epl fancy pagination
 	.map-entry-image {
 		display: none;
 	}
-	.author-box {
+	.epl-author-box {
 		width: 100%!important; 
 	}
-	.author-contact-details {
+	.epl-author-contact-details {
 		clear:right;
 	}
-	.author-slogan {
+	.epl-author-slogan {
 	width: 100%;
 	}
-	.author-box.author-image {
+	.epl-author-box.epl-author-image {
 	width: 120px;
 	}
 	.directory-page-dynamic .directory-section .hentry{
