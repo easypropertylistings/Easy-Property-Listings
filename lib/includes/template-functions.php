@@ -194,7 +194,15 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
 // Single Listing Expanded Templates
 function epl_property_single_default() {
 
-	epl_get_template_part('content-listing-single.php');
+	global $epl_settings;
+	if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
+	
+		epl_get_template_part('content-listing-single-lucky.php');
+		
+	} else {
+	
+		epl_get_template_part('content-listing-single.php');
+	}
 }
 
 /*
@@ -257,7 +265,16 @@ function epl_property_blog() {
 		if ( $action_check != '' && $option !== 0 ) {
 			do_action( 'epl_loop_template' );
 		} else {
-			epl_get_template_part('loop-listing-blog-default.php');
+			
+			if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
+	
+				epl_get_template_part('loop-listing-blog-default-lucky.php');
+		
+			} else {
+	
+				epl_get_template_part('loop-listing-blog-default.php');
+			}
+			
 		}
 	} // End Status Removal
 }
@@ -1474,6 +1491,10 @@ add_action('wp','epl_apply_feeling_lucky_config',1);
 */
 function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size, $attr) {
 
+	if( is_admin() ) {
+		return $html;
+	}
+	
 	if( strpos($html, 'teaser-left-thumb') === FALSE ) {
 		
 		// the post thumbnail is probably theme's default . remove it
