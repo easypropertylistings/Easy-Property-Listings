@@ -43,14 +43,9 @@
 
 		<div class="tab-wrapper">
 			<div class="epl-tab-section">
-				<h5 class="tab-title"><?php echo apply_filters('property_tab_title',__('Property Details', 'epl')); ?></h5>
 				<div class="tab-content">
 					<div class="tab-content property-details">
-						<h3 class="tab-address">
-							<?php do_action('epl_property_address'); ?>
-						</h3>
 						<?php do_action('epl_property_land_category'); ?>
-						<?php do_action('epl_property_price_content'); ?>
 						<?php do_action('epl_property_commercial_category'); ?>
 					</div>
 					<div class="property-meta">
