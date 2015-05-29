@@ -181,7 +181,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.1.10 May 27, 2015 =
+= 2.1.10 May 29, 2015 =
 
 * Tweak: Improved CSS wrappers for listing widget and added dynamic class depending on widget display style.
 * Tweak: Added classes to widget list list items.
