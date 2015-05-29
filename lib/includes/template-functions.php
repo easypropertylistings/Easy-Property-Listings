@@ -1375,6 +1375,17 @@ function epl_home_pagination_fix( $query) {
 add_action('pre_get_posts','epl_home_pagination_fix');
 
 /**
+ * Returns status class
+ *
+ * @since 2.1.10
+ */
+function epl_property_widget_status_class() {
+	global $property;
+	echo 'epl-widget-status-' . $property->get_property_meta('property_status');
+}
+add_action('epl_property_widget_status_class','epl_property_widget_status_class');
+
+/**
 * Ability to hide map on single listings
 *
 * @since 2.1.8
