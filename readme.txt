@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.2.2
 
-Stable Tag: 2.1.9
+Stable Tag: 2.1.10
 
 License: GNU Version 2 or Any Later Version
 
@@ -180,6 +180,16 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.1.10 May 31, 2015 =
+
+* New: Email field validation added.
+* New: Added status classes to widgets for better targeting of CSS styles.
+* Tweak: Improved video embed and added a filter to adjust video container size.
+* Tweak: Improved CSS wrappers for listing widget and added dynamic class depending on widget display style.
+* Tweak: Added additional classes to Listing Widget list variant style list items.
+* Fix: Additional paging issues fixed in listing widget for other options.
+* Fix: Widget leased selection displays rentals correctly.
 
 = 2.1.9 May 27, 2015 =
 
