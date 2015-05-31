@@ -721,21 +721,25 @@ function epl_property_category() {
 	global $property;
 	echo $property->get_property_category();
 }
-/** 
+/**
+ * Video Output Function
  * @hooked property_after_content
 **/
-function epl_property_content_after() {
+function epl_property_video_callback( $width = 600 ) {
 	global $property;
-	$property_video_url = $property->get_property_meta('property_video_url');
+	
+	$video_width 		= $width != '' ? $width : 600;
+	$property_video_url	= $property->get_property_meta('property_video_url');
+	
 	if($property_video_url != '') {
 		$videoID = epl_get_youtube_id_from_url($property_video_url);
-		echo '<div class="videoContainer">';
+		echo '<div class="epl-video-container videoContainer">';
 			// Echo the embed code via oEmbed
-			echo wp_oembed_get( ('http://www.youtube.com/watch?v=' . $videoID) , array('width'=>600)  ); 
+			echo wp_oembed_get( ('http://www.youtube.com/watch?v=' . $videoID ) , array( 'width' => apply_filters( 'epl_property_video_width', $video_width  ) )  ); 
 		echo '</div>';
 	}
 }
-add_action('epl_property_content_after','epl_property_content_after');
+add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
 
 /** 
  * @hooked property_tab_section
