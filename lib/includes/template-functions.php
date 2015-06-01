@@ -721,21 +721,25 @@ function epl_property_category() {
 	global $property;
 	echo $property->get_property_category();
 }
-/** 
+/**
+ * Video Output Function
  * @hooked property_after_content
 **/
-function epl_property_content_after() {
+function epl_property_video_callback( $width = 600 ) {
 	global $property;
-	$property_video_url = $property->get_property_meta('property_video_url');
+	
+	$video_width 		= $width != '' ? $width : 600;
+	$property_video_url	= $property->get_property_meta('property_video_url');
+	
 	if($property_video_url != '') {
 		$videoID = epl_get_youtube_id_from_url($property_video_url);
-		echo '<div class="videoContainer">';
+		echo '<div class="epl-video-container videoContainer">';
 			// Echo the embed code via oEmbed
-			echo wp_oembed_get( ('http://www.youtube.com/watch?v=' . $videoID) , array('width'=>600)  ); 
+			echo wp_oembed_get( ('http://www.youtube.com/watch?v=' . $videoID ) , array( 'width' => apply_filters( 'epl_property_video_width', $video_width  ) )  ); 
 		echo '</div>';
 	}
 }
-add_action('epl_property_content_after','epl_property_content_after');
+add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
 
 /** 
  * @hooked property_tab_section
@@ -1374,13 +1378,29 @@ function epl_home_pagination_fix( $query) {
 
 add_action('pre_get_posts','epl_home_pagination_fix');
 
+/**
+ * Returns status class
+ *
+ * @since 2.1.10
+ */
+function epl_property_widget_status_class() {
+	global $property;
+	echo 'epl-widget-status-' . $property->get_property_meta('property_status');
+}
+add_action('epl_property_widget_status_class','epl_property_widget_status_class');
+
+/**
+* Ability to hide map on single listings
+*
+* @since 2.1.8
+*/
 function epl_hide_map_from_front() {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
 	global $post,$property;
 	
-	if( in_array($post->post_type,$epl_posts) ) {
+	if( is_single() && in_array($post->post_type,$epl_posts) ) {
 		
 		$hide_map = get_post_meta($post->ID,'property_address_hide_map',true);
 		if($hide_map == 'yes') {
@@ -1390,13 +1410,15 @@ function epl_hide_map_from_front() {
 }
 add_action('wp','epl_hide_map_from_front',10);
 
+/**
+ * Disable paging on listing widget
+ *
+ * @since 2.1.8
+ */
 function epl_nopaging($query) {
-
 	$restrict_paging = $query->get('epl_nopaging');
 	if($restrict_paging == true) {
 		$query->set('paged',1);
-	} 
-
+	}
 }
-
 add_action('pre_get_posts','epl_nopaging');

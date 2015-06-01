@@ -294,6 +294,26 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
+				
+					<h4><?php _e( 'Version 2.1.10', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'New: Email field validation added.', 'epl' );?></li>
+						<li><?php _e( 'New: Added status classes to widgets for better targeting of CSS styles.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved video embed and added a filter to adjust video container size.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved CSS wrappers for listing widget and added dynamic class depending on widget display style.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added additional classes to Listing Widget list variant style list items.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Additional paging issues fixed in listing widget for other options.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Widget leased selection displays rentals correctly.', 'epl' );?></li>
+					</ul>
+				
+					<h4><?php _e( 'Version 2.1.9', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'Fix: Fixed paging issues in listing widget.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Fix shortcodes when using multiple listing post types.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.1.8', 'epl' );?></h4>
 				
 					<ul>
