@@ -1063,6 +1063,13 @@ function epl_admin_sidebar () {
 					'type'		=>	'text',
 					'default'	=>	'Leased',
 
+				),
+				array(
+					'name'		=>	'label_sold',
+					'label'		=>	__('Sold Label (default: Sold)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'Sold',
+
 				)
 
 
