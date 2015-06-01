@@ -71,7 +71,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// Setup hooks
 			$this->includes();
 			$this->hooks();
-			$this->auto_updater();
+			//$this->auto_updater();
 		}
 
 		/**
@@ -100,6 +100,11 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			// Deactivate license key
 			add_action( 'admin_init', array( $this, 'deactivate_license' ) );
+			
+			// Updater
+			add_action( 'admin_init', array( $this, 'auto_updater' ), 0 );
+
+			add_action( 'admin_notices', array( $this, 'notices' ) );
 		}
 
 		/**
@@ -109,7 +114,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 * @global  array $epl_options
 		 * @return  void
 		 */
-		private function auto_updater() {
+		public function auto_updater() {
 			// Setup the updater
 			$epl_updater = new EPL_SL_Plugin_Updater(
 				$this->api_url,
@@ -163,8 +168,12 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			if ( ! isset( $_POST['epl_license'][ $this->item_shortname ] ) )
 				return;
 		
-			/*if ( 'valid' == get_option( $this->item_shortname . '_license_active' ) )
-				return;*/
+			foreach( $_POST as $key => $value ) {
+				if( false !== strpos( $key, 'license_key_deactivate' ) ) {
+					// Don't activate a key when deactivating a different key
+					return;
+				}
+			}
 
 			$license = sanitize_text_field( $_POST['epl_license'][ $this->item_shortname ] );
 		
@@ -189,10 +198,19 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// Make sure there are no errors
 			if ( is_wp_error( $response ) )
 				return;
+				
+			// Tell WordPress to look for updates
+			set_site_transient( 'update_plugins', null );
 
 			// Decode license data
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 			update_option( $this->item_shortname . '_license_active', $license_data->license );
+			
+			if( ! (bool) $license_data->success ) {
+				set_transient( 'epl_license_error', $license_data, 1000 );
+			} else {
+				delete_transient( 'epl_license_error' );
+			}
 		}
 
 
@@ -241,7 +259,71 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 				if ( $license_data->license == 'deactivated' )
 					delete_option( $this->item_shortname . '_license_active' );
+					
+				if( ! (bool) $license_data->success ) {
+					set_transient( 'epl_license_error', $license_data, 1000 );
+				} else {
+					delete_transient( 'epl_license_error' );
+				}
 			}
+		}
+		
+		/**
+		 * Admin notices for errors
+		 *
+		 * @access  public
+		 * @return  void
+		 */
+		public function notices() {
+
+			if( ! isset( $_GET['page'] ) || 'epl-licenses' !== $_GET['page'] ) {
+				return;
+			}
+
+			$license_error = get_transient( 'epl_license_error' );
+
+			if( false === $license_error ) {
+				return;
+			}
+
+			if( ! empty( $license_error->error ) ) {
+
+				switch( $license_error->error ) {
+
+					case 'item_name_mismatch' :
+
+						$message = __( 'This license does not belong to the product you have entered it for.', 'epl' );
+						break;
+
+					case 'no_activations_left' :
+
+						$message = __( 'This license does not have any activations left', 'epl' );
+						break;
+
+					case 'expired' :
+
+						$message = __( 'This license key is expired. Please renew it.', 'epl' );
+						break;
+
+					default :
+
+						$message = sprintf( __( 'There was a problem activating your license key, please try again or contact support. Error code: %s', 'epl' ), $license_error->error );
+						break;
+
+				}
+
+			}
+
+			if( ! empty( $message ) ) {
+
+				echo '<div class="error">';
+					echo '<p>' . $message . '</p>';
+				echo '</div>';
+
+			}
+
+			delete_transient( 'epl_license_error' );
+
 		}
 	}
 

@@ -13,345 +13,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Fetch and format property price
- *
- * @since 1.0
- */
-function epl_get_property_price($post) {
-	global $epl_settings;
-	
-	$d_bond = '';
-	if(!empty($epl_settings) && isset($epl_settings['display_bond'])) {
-		$d_bond = $epl_settings['display_bond'];
-	}
-	
-	$property_tax = '';
-	$price_class = '';
-	$price_sticker = '';
-	$l_price = '';
-	
-	$property_meta = epl_get_property_meta($post->id);
-	
-	$property_price = '';
-	if(isset($property_meta['property_price']) && !empty($property_meta['property_price'])) {
-		$property_price = $property_meta['property_price'][0];
-	}
-	
-	$property_status = '';
-	if(isset($property_meta['property_status']) && !empty($property_meta['property_status'])) {
-		$property_status = $property_meta['property_status'][0];
-	}
-	
-	$property_price_search = '';
-	if(isset($property_meta['property_price']) && !empty($property_meta['property_price'])) {
-		$property_price_search = $property_meta['property_price'][0];
-	}
-	
-	$property_price_view = '';
-	if(isset($property_meta['property_price_view']) && !empty($property_meta['property_price_view'])) {
-		$property_price_view = $property_meta['property_price_view'][0];
-	}
-	
-	$property_inspection_times = '';
-	if(isset($property_meta['property_inspection_times']) && !empty($property_meta['property_inspection_times'])) {
-		$property_inspection_times = $property_meta['property_inspection_times'][0];
-	}
-	
-	$property_price_display = '';
-	if(isset($property_meta['property_price_display']) && !empty($property_meta['property_price_display'])) {
-		$property_price_display = $property_meta['property_price_display'][0];
-		if( $property_price_display == 'yes') {
-			$property_price_display = 1;
-		}
-	}
-	
-	$property_under_offer = '';
-	if(isset($property_meta['property_under_offer']) && !empty($property_meta['property_under_offer'])) {
-		$property_under_offer = $property_meta['property_under_offer'][0];
-		if( $property_under_offer == 'yes') {
-			$property_under_offer = 1;
-		}
-	}
-	
-	$property_rent_display = '';
-	if(isset($property_meta['property_rent_display']) && !empty($property_meta['property_rent_display'])) {
-		$property_rent_display = $property_meta['property_rent_display'][0];
-		if( $property_rent_display == 'yes') {
-			$property_rent_display = 1;
-		}
-	}
-	
-	$property_rent = '';
-	if(isset($property_meta['property_rent']) && !empty($property_meta['property_rent'])) {
-		$property_rent = $property_meta['property_rent'][0];
-		if ( $property_rent !='' ) {
-			$property_rent = epl_currency_formatted_amount($property_rent);
-		}
-	}
-	
-	$property_rent_period = '';
-	if(isset($property_meta['property_rent_period']) && !empty($property_meta['property_rent_period'])) {
-		$property_rent_period = $property_meta['property_rent_period'][0];
-	}
-	
-	$property_bond = '';
-	if(isset($property_meta['property_bond']) && !empty($property_meta['property_bond'])) {
-		$property_bond = $property_meta['property_bond'][0];
-	}
-	
-	// Property Price Display
-	if ( $property_price_search == '') {
-	
-	} elseif($property_price_view != '') {
-		$property_price = $property_price_view; 
-	} else  {
-		$property_price = epl_currency_formatted_amount($property_price_search);
-	}
-	if ( $post->post_type == 'property' || $post->post_type == 'land') {
-		if ( 'sold' == $property_status ) {
-			$price_class = 'epl-price sold';
-			$price_plain_value = __('Sold', 'epl');
-			$price = '<span class="page-price sold-status">'.__('Sold', 'epl').'</span>';
-			$price_sticker = '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
-			$l_price = '<li class="page-price sold-status">'.__('Sold', 'epl').'</li>';
-		} elseif ( $property_price != '' && $property_price_display == 1 ) {
-			$price_plain_value = $property_price . $property_tax;
-			$price = '<span class="page-price">'. $property_price . $property_tax . '</span>';
-			$l_price = '<li class="page-price">'. $property_price . $property_tax . '</li>';
-			if ( $property_inspection_times != '' ){
-				$price_sticker = '<span class="status-sticker open">'.__('Open House', 'epl').'</span>';
-			}
-		} else {
-			$price_plain_value = 'POA';
-			$price = '<span class="page-price">POA</span>';
-			$l_price = '<li class="page-price">POA</li>';
-			if ( $property_inspection_times != '' ){
-				$price_sticker = '<span class="status-sticker open">'.__('Open House', 'epl').'</span>';
-			}
-		}
-		if ( $property_under_offer == 1 && 'sold' != $property_status) {
-			$price_plain_value = __('Under Offer', 'epl');
-			$price = '<span class="page-price under-offer-status">'.__('Under Offer', 'epl').'</span>';
-			$price_sticker = '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
-			$l_price = '<li class="page-price under-offer-status">'.__('Under Offer', 'epl').'</li>';
-		}
-	} elseif ( $post->post_type == 'rental' ) {
-		if( $property_rent != '' && $property_rent_display == 1 && $property_status != 'leased') {		
-			$price_plain_value = $property_rent . '/' . $property_rent_period;
-			$price = '<span class="page-price-rent">';
-			$price .= '<span class="page-price" style="margin-right:0;">'. $property_rent . '</span>';
-			$price .= '<span class="rent-period">/' . $property_rent_period . '</span>';
-			$price .= '</span>';
-			$l_price = '<li class="page-price-rent">';
-			$l_price .= '<span class="page-price" style="margin-right:0;">'. $property_rent . '</span>';
-			$l_price .= '<span class="rent-period">/' . $property_rent_period . '</span>';
-			$l_price .= '</li>';
-			if ($property_bond != 0 && $d_bond == 1) {
-				$price_plain_value .= ' $' . $property_bond . ' '.__('bond', 'epl');
-				$price .= '<span class="bond">$' . $property_bond . ' '.__('bond', 'epl').'</span>';
-			}		
-		} elseif ( $property_status == 'leased') {
-			$price_plain_value = __('Leased', 'epl');
-			$price = '<span class="page-price sold-status">'.__('Leased', 'epl').'</span>';
-			$price_sticker = '<span class="status-sticker leased">'.__('Leased', 'epl').'</span>';
-			$l_price = '<li class="page-price sold-status">'.__('Leased', 'epl').'</li>';
-		} else {
-			$price_plain_value = __('TBA', 'epl');
-			$price = '<span class="page-price">'.__('TBA', 'epl').'</span>';
-			if ( $property_inspection_times != '' ){
-				$price_sticker = '<span class="status-sticker open">'.__('Open House', 'epl').'</span>';
-			}
-		}
-	} elseif ( $post->post_type == 'commercial' ) {
-		$property_com_authority = '';
-		if(isset($property_meta['property_com_authority']) && !empty($property_meta['property_com_authority'])) {
-			$property_com_authority = $property_meta['property_com_authority'][0];
-		}
-		
-		$property_exclusivity = '';
-		if(isset($property_meta['property_exclusivity']) && !empty($property_meta['property_exclusivity'])) {
-			$property_exclusivity = $property_meta['property_exclusivity'][0];
-		}
-		
-		$property_com_listing_types = '';
-		if(isset($property_meta['property_com_listing_types']) && !empty($property_meta['property_com_listing_types'])) {
-			$property_com_listing_types = $property_meta['property_com_listing_types'][0];
-		}
-		
-		$property_com_rent = '';
-		if(isset($property_meta['property_com_rent']) && !empty($property_meta['property_com_rent'])) {
-			$property_com_rent = $property_meta['property_com_rent'][0];
-		}
-		
-		$property_com_is_multiple = '';
-		if(isset($property_meta['property_com_is_multiple']) && !empty($property_meta['property_com_is_multiple'])) {
-			$property_com_is_multiple = $property_meta['property_com_is_multiple'][0];
-		}
-		
-		$property_com_rent_range_min = '';
-		if(isset($property_meta['property_com_rent_range_min']) && !empty($property_meta['property_com_rent_range_min'])) {
-			$property_com_rent_range_min = $property_meta['property_com_rent_range_min'][0];
-		}
-		
-		$property_com_rent_range_max = '';
-		if(isset($property_meta['property_com_rent_range_max']) && !empty($property_meta['property_com_rent_range_max'])) {
-			$property_com_rent_range_max = $property_meta['property_com_rent_range_max'][0];
-		}
-		
-		$property_com_outgoings = '';
-		if(isset($property_meta['property_com_outgoings']) && !empty($property_meta['property_com_outgoings'])) {
-			$property_com_outgoings = $property_meta['property_com_outgoings'][0];
-		}
-		
-		$property_com_plus_outgoings = '';
-		if(isset($property_meta['property_com_plus_outgoings']) && !empty($property_meta['property_com_plus_outgoings'])) {
-			$property_com_plus_outgoings = $property_meta['property_com_plus_outgoings'][0];
-		}
-		
-		$property_com_return = '';
-		if(isset($property_meta['property_com_return']) && !empty($property_meta['property_com_return'])) {
-			$property_com_return = $property_meta['property_com_return'][0];
-		}
-		
-		$property_com_lease_end_date = '';
-		if(isset($property_meta['property_com_lease_end_date']) && !empty($property_meta['property_com_lease_end_date'])) {
-			$property_com_lease_end_date = $property_meta['property_com_lease_end_date'][0];
-		}
-		
-		$property_com_tenancy = '';
-		if(isset($property_meta['property_com_tenancy']) && !empty($property_meta['property_com_tenancy'])) {
-			$property_com_tenancy = $property_meta['property_com_tenancy'][0];
-		}
-		
-		$property_com_further_options = '';
-		if(isset($property_meta['property_com_further_options']) && !empty($property_meta['property_com_further_options'])) {
-			$property_com_further_options = $property_meta['property_com_further_options'][0];
-		}
-		
-		$property_commercial_category = '';
-		$the_property_commercial_category = '';
-		if(isset($property_meta['property_commercial_category']) && !empty($property_meta['property_commercial_category'])) {
-			$property_commercial_category = $property_meta['property_commercial_category'][0];
-			if ( $property_commercial_category != '' ) {
-				//$the_property_commercial_category = implode(", ", $property_commercial_category);
-				$the_property_commercial_category = '<div class="commercial-category">' . $the_property_commercial_category . '</div>';
-			}
-		}
-		
-		$property_com_car_spaces = '';
-		if(isset($property_meta['property_com_car_spaces']) && !empty($property_meta['property_com_car_spaces'])) {
-			$property_com_car_spaces = $property_meta['property_com_car_spaces'][0];
-		}
-		
-		$property_com_parking_comments = '';
-		if(isset($property_meta['property_com_parking_comments']) && !empty($property_meta['property_com_parking_comments'])) {
-			$property_com_parking_comments = $property_meta['property_com_parking_comments'][0];
-		}
-		
-		$property_com_zone = '';
-		if(isset($property_meta['property_com_zone']) && !empty($property_meta['property_com_zone'])) {
-			$property_com_zone = $property_meta['property_com_zone'][0];
-		}
-		
-		$property_com_external_link = '';
-		if(isset($property_meta['property_com_external_link']) && !empty($property_meta['property_com_external_link'])) {
-			$property_com_external_link = $property_meta['property_com_external_link'][0];
-		}
-		
-		$property_com_mini_web = '';
-		if(isset($property_meta['property_com_mini_web']) && !empty($property_meta['property_com_mini_web'])) {
-			$property_com_mini_web = $property_meta['property_com_mini_web'][0];
-		}
-		
-		$d_car_spaces = ''; $l_car_spaces = '';
-		if ( $property_com_car_spaces != '' && $property_com_car_spaces != 0 ) {
-			$d_car_spaces = $property_com_car_spaces . ' '.__('Car Spaces', 'epl').', ';
-			$l_car_spaces = '<li class="car-spaces">' . $property_com_car_spaces . ' '.__('Car Spaces', 'epl').'</li>';
-		}
-		$l_car_comments = '';
-		if ($property_com_parking_comments != '' ) {
-			$l_car_comments = '<p class="car-comments">' . $property_com_parking_comments . '</p>';
-		}
-		
-		$property_tax = '';
-		if(isset($property_meta['property_tax']) && !empty($property_meta['property_tax'])) {
-			$property_tax = $property_meta['property_tax'][0];
-		}
-		
-		if ( $property_tax == 'exempt' ) {
-			$property_tax = ' '.__('Inc. GST', 'epl');
-		} elseif ( $property_tax == 'inclusive' ) {
-			$property_tax = ' '.__('Inc. GST', 'epl');
-		} elseif ( $property_tax == 'exclusive' ) {
-			$property_tax = '+ '.__('GST', 'epl');
-		} else {
-			$property_tax = '';
-		}
-		
-		if ( 'sold' == $property_status ) {
-			$price_plain_value = __('Sold', 'epl');
-			$price_class = 'epl-price sold';
-			$price = '<span class="page-price sold-status">'.__('Sold', 'epl').'</span>';
-			$price_sticker = '<span class="status-sticker sold">'.__('Sold', 'epl').'</span>';
-			$l_price = '<li class="status-sticker sold">'.__('Sold', 'epl').'</li>';
-		} elseif ( $property_price != '' && $property_price_display == 1 ) {
-			$price_plain_value = __('For Sale', 'epl').' ' . $property_price . $property_tax;
-			$price = '<span class="page-price">'.__('For Sale', 'epl').' '. $property_price . $property_tax . '</span>';
-			$l_price = '<li class="page-price">'.__('For Sale', 'epl').' '. $property_price . $property_tax . '</li>';		
-		} else {
-			$price = '<span class="page-price">'.__('POA', 'epl').'</span>';
-			$price_plain_value = __('POA', 'epl');
-			$l_price = '<li class="page-price">'.__('POA', 'epl').'</li>';
-		}
-		if ( $property_under_offer == 1 && 'sold' != $property_status) {
-			$price_plain_value = __('Under Offer', 'epl');
-			$price = '<div class="page-price under-offer-status">'.__('Under Offer', 'epl').'</div>';
-			$price_sticker = '<span class="status-sticker under-offer">'.__('Under Offer', 'epl').'</span>';
-			$l_price = '<li class="page-price under-offer-status">'.__('Under Offer', 'epl').'</li>';
-		}
-		if( $property_com_rent != 0 && $property_com_listing_types == 'both') {
-			$price_com_rent = number_format($property_com_rent);
-			$price_plain_value .= '</br>'.__('For Lease', 'epl').' $' . $price_com_rent . ' '.__('P.A.', 'epl');
-			$price .= '<div class="epl-clear"></div><span class="page-price">'.__('For Lease', 'epl').' $' . $price_com_rent . ' '.__('P.A.', 'epl').'</span>';
-			$l_price .= '<li class="page-price">'.__('For Lease', 'epl').' $' . $price_com_rent . ' '.__('P.A.', 'epl').'</li>';
-		} elseif( $property_com_rent != 0 && $property_com_listing_types == 'lease') {
-			$price_com_rent = number_format($property_com_rent);
-			$price_plain_value = __('For Lease', 'epl').' $' . $price_com_rent . ' '.__('P.A.', 'epl');
-			$price = '<span class="page-price">'.__('For Lease', 'epl').' $' . $price_com_rent . ' '.__('P.A.', 'epl').'</span>';
-			$l_price = '<li class="page-price">'.__('For Lease', 'epl').' $' . $price_com_rent . ' '.__('P.A.', 'epl').'</li>';
-		}
-	}
-	
-	if(!isset($price_class)) {
-		$price_class = '';
-	}
-	
-	if(!isset($price_plain_value)) {
-		$price_plain_value = '';
-	}
-	
-	if(!isset($price)) {
-		$price = '';
-	}
-	
-	if(!isset($price_sticker)) {
-		$price_sticker = '';
-	}
-	
-	if(!isset($l_price)) {
-		$l_price = '';
-	}
-	
-	$return = array(
-		'price_class'		=>	$price_class,
-		'price_plain_value'	=>	$price_plain_value,
-		'price'				=>	$price,
-		'price_sticker'		=>	$price_sticker,
-		'l_price'			=>	$l_price
-	);
-	return $return;
-}
-/**
  * Determine if iThemes Builder framework is loaded
  *
  * @since 1.0
@@ -424,7 +85,6 @@ function epl_register_post_type($post_type='', $post_type_label, $args=array()) 
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['activate_post_types'])) {
 		$epl_activate_post_types = $epl_settings['activate_post_types'];
-		
 		if(!empty($epl_activate_post_types)) {
 			if( in_array($post_type, $epl_activate_post_types) ) {
 				global $epl_active_post_types;
@@ -448,6 +108,8 @@ function epl_register_post_type($post_type='', $post_type_label, $args=array()) 
  */
 function epl_get_active_post_types() {
 	global $epl_active_post_types;
+	if(is_null($epl_active_post_types))
+		$epl_active_post_types = array();
 	return $epl_active_post_types;
 }
 /**
@@ -461,11 +123,12 @@ function epl_get_post_types() {
 		'land'			=>	__('Land', 'epl'),
 		'rental'		=>	__('Rental', 'epl'),
 		'rural'			=>	__('Rural', 'epl'),
-		'commercial'	=>	__('Commercial', 'epl'),
-		'commercial_land'=>	__('Commercial Land', 'epl'),
+		'commercial'		=>	__('Commercial', 'epl'),
+		'commercial_land'	=>	__('Commercial Land', 'epl'),
 		'business'		=>	__('Business', 'epl'),
 	);
-	return $epl_post_types;
+	// allow 3rd party extensions to add custom posts as a part of epl
+	return apply_filters('epl_post_types',$epl_post_types);
 }
 /**
  * Get Currencies
@@ -485,6 +148,8 @@ function epl_get_currencies() {
 		'DKK'  => __( 'Danish Krone', 'epl' ),
 		'HKD'  => __( 'Hong Kong Dollar (&#36;)', 'epl' ),
 		'HUF'  => __( 'Hungarian Forint', 'epl' ),
+		'INR'  => __( 'Indian Rupee (&#8377;)', 'epl' ),
+		'RIAL' => __( 'Iranian Rial (&#65020;)', 'epl' ),
 		'ILS'  => __( 'Israeli Shekel (&#8362;)', 'epl' ),
 		'JPY'  => __( 'Japanese Yen (&yen;)', 'epl' ),
 		'MYR'  => __( 'Malaysian Ringgits', 'epl' ),
@@ -493,15 +158,18 @@ function epl_get_currencies() {
 		'NOK'  => __( 'Norwegian Krone', 'epl' ),
 		'PHP'  => __( 'Philippine Pesos', 'epl' ),
 		'PLN'  => __( 'Polish Zloty', 'epl' ),
+		'QAR'  => __( 'Qatar Riyal (QAR)', 'epl' ),
 		'SGD'  => __( 'Singapore Dollar (&#36;)', 'epl' ),
+		'ZAR'  => __( 'South African Rand (R)', 'epl' ),
 		'SEK'  => __( 'Swedish Krona', 'epl' ),
 		'CHF'  => __( 'Swiss Franc', 'epl' ),
 		'TWD'  => __( 'Taiwan New Dollars', 'epl' ),
 		'THB'  => __( 'Thai Baht (&#3647;)', 'epl' ),
-		'INR'  => __( 'Indian Rupee (&#8377;)', 'epl' ),
 		'TRY'  => __( 'Turkish Lira (&#8378;)', 'epl' ),
-		'RIAL' => __( 'Iranian Rial (&#65020;)', 'epl' ),
-		'RUB'  => __( 'Russian Rubles', 'epl' )
+		'RUB'  => __( 'Russian Rubles', 'epl' ),
+		'AED'  => __( 'United Arab Emirates, Dirham (AED)', 'epl' ),
+		'UAH'  => __( 'Ukrainian Hryvnia (&#8372;)', 'epl' ),
+		'VND'  => __( 'Vietnamese đồng (&#8363;)', 'epl' )
 	);
 	return apply_filters( 'epl_get_currencies', $currencies );
 }
@@ -548,7 +216,16 @@ function epl_get_decimal_separator() {
 	return apply_filters( 'epl_decimal_separator', $epl_decimal_separator );
 }
 function epl_currency_formatted_amount($price) {
-	return epl_currency_filter( epl_format_amount( $price ) );
+	$price_format 			= apply_filters('epl_price_number_format','number');
+	$price_format_com_lease 	= apply_filters('epl_price_number_format_commercial_lease','number');
+	
+	if($price_format == 'decimal' && ( get_post_type() == 'rental' || is_post_type_archive('rental') ) )
+		return epl_currency_filter( epl_format_amount( $price , true ) );
+	elseif($price_format_com_lease == 'decimal' && ( get_post_type() == 'commercial' || is_post_type_archive('commercial') ) )
+		return epl_currency_filter( epl_format_amount( $price , true ) );
+	else
+		return epl_currency_filter( epl_format_amount( $price , false ) );
+		
 }
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
@@ -559,6 +236,15 @@ function epl_display_label_suburb( ) {
 	}
 	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
 }
+function epl_display_label_bond( ) {
+	$epl_display_label_bond = '';
+	
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
+		$epl_display_label_bond = $epl_settings['label_bond'];
+	}
+	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
+}
 function epl_display_label_postcode() {
 	$epl_display_label_postcode = '';
 	
@@ -568,73 +254,7 @@ function epl_display_label_postcode() {
 	}
 	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
 }
-/**
- * Get EPL author meta
- *
- * @since 1.0
- * @return the list of author meta variables
- */
-function epl_get_author_meta() {
-	global $epl_author_meta_sent;
-	if($epl_author_meta_sent) {
-		return;
-	}
-	
-	require_once EPL_PATH_LIB . 'templates/content/author-meta.php';
-	$epl_author_meta_sent = true;
-}
-/**
- * Get EPL property address
- *
- * @since 1.0
- * @return the string for address
- */
-function epl_get_property_address($post_ID='') {
-	if($post_ID == '') {
-		$post_ID = get_the_ID();
-	}	
-	$property_meta = epl_get_property_meta($post_ID);
-	
-	$address = '';
-	
-	if(isset($property_meta['property_address_street_number']) && !empty($property_meta['property_address_street_number'])) {
-		$property_address_street_number = $property_meta['property_address_street_number'][0];
-		if( $property_address_street_number != '' ) {
-			$address .= $property_address_street_number . ", ";
-		}
-	}
-	
-	if(isset($property_meta['property_address_street']) && !empty($property_meta['property_address_street'])) {
-		$property_address_street = $property_meta['property_address_street'][0];
-		if( $property_address_street != '' ) {
-			$address .= $property_address_street . ", ";
-		}
-	}
-	
-	if(isset($property_meta['property_address_suburb']) && !empty($property_meta['property_address_suburb'])) {
-		$property_address_suburb = $property_meta['property_address_suburb'][0];
-		if( $property_address_suburb != '' ) {
-			$address .= $property_address_suburb . ", ";
-		}
-	}
-	
-	if(isset($property_meta['property_address_state']) && !empty($property_meta['property_address_state'])) {
-		$property_address_state = $property_meta['property_address_state'][0];
-		if( $property_address_state != '' ) {
-			$address .= $property_address_state . ", ";
-		}
-	}
-	
-	if(isset($property_meta['property_address_postal_code']) && !empty($property_meta['property_address_postal_code'])) {
-		$property_address_postal_code = $property_meta['property_address_postal_code'][0];
-		if( $property_address_postal_code != '' ) {
-			$address .= $property_address_postal_code . ", ";
-		}
-	}
-	
-	$address = trim($address); $address = trim($address, ","); $address = trim($address);
-	return apply_filters('epl_get_property_address_filter', $address);
-}
+
 /**
  * Print EPL property address
  *
@@ -691,6 +311,40 @@ function epl_tax_location_label() {
 	return $label_location;
 }
 /**
+ * Custom Meta: Location Label
+ *
+ * @since 1.0
+ * @return all the settings in array
+ */
+function epl_meta_location_label() {
+	$label_location = '';
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
+		$label_location = trim($epl_settings['label_suburb']);
+	}
+	if(empty($label_location)) {
+		$label_location = 'City';
+	}	
+	return $label_location;
+}
+/**
+ * Custom Meta: Under Offer Label
+ *
+ * @since 2.1
+ * @return label
+ */
+function epl_meta_under_offer_label() {
+	$under_offer = '';
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_under_offer'])) {
+		$under_offer = trim($epl_settings['label_under_offer']);
+	}
+	if(empty($under_offer)) {
+		$under_offer = __('Under Offer' , 'epl');
+	}	
+	return $under_offer;
+}
+/**
  * Custom Meta: House Categories
  *
  * @since 1.1
@@ -698,22 +352,22 @@ function epl_tax_location_label() {
  */
 function epl_listing_load_meta_property_category() {
 	$defaults = array(
-		'House'					=>	__('House', 'epl'),
-		'Unit'					=>	__('Unit', 'epl'),
-		'Townhouse'				=>	__('Townhouse', 'epl'),
-		'Villa'					=>	__('Villa', 'epl'),
-		'Apartment'				=>	__('Apartment', 'epl'),
-		'Flat'					=>	__('Flat', 'epl'),
-		'Studio'				=>	__('Studio', 'epl'),
-		'Warehouse'				=>	__('Warehouse', 'epl'),
-		'DuplexSemi-detached'	=>	__('Duplex Semi-detached', 'epl'),
-		'Alpine'				=>	__('Alpine', 'epl'),
+		'House'				=>	__('House', 'epl'),
+		'Unit'				=>	__('Unit', 'epl'),
+		'Townhouse'			=>	__('Townhouse', 'epl'),
+		'Villa'				=>	__('Villa', 'epl'),
+		'Apartment'			=>	__('Apartment', 'epl'),
+		'Flat'				=>	__('Flat', 'epl'),
+		'Studio'			=>	__('Studio', 'epl'),
+		'Warehouse'			=>	__('Warehouse', 'epl'),
+		'DuplexSemi-detached'		=>	__('Duplex Semi-detached', 'epl'),
+		'Alpine'			=>	__('Alpine', 'epl'),
 		'AcreageSemi-rural'		=>	__('Acreage Semi-rural', 'epl'),
 		'Retirement'			=>	__('Retirement', 'epl'),
 		'BlockOfUnits'			=>	__('Block Of Units', 'epl'),
-		'Terrace'				=>	__('Terrace', 'epl'),
+		'Terrace'			=>	__('Terrace', 'epl'),
 		'ServicedApartment'		=>	__('Serviced Apartment', 'epl'),
-		'Other'					=>	__('Other', 'epl')
+		'Other'				=>	__('Other', 'epl')
 	);
 	return apply_filters( 'epl_listing_meta_property_category', $defaults );
 }
@@ -739,8 +393,8 @@ function epl_listing_meta_property_category_value( $key ) {
  */
 function epl_listing_load_meta_land_category() {
 	$defaults = array(
-		'Commercial'	=>	__('Commercial', 'epl'),
-		'Residential'	=>	__('Residential', 'epl')
+		'Commercial'			=>	__('Commercial', 'epl'),
+		'Residential'			=>	__('Residential', 'epl')
 	);
 	return apply_filters( 'epl_listing_meta_land_category', $defaults );
 }
@@ -766,19 +420,19 @@ function epl_listing_meta_land_category_value( $key ) {
  */
 function epl_listing_load_meta_commercial_category() {
 	$defaults = array(
-		'Commercial Farming'	=>	__('Commercial Farming', 'epl'),
+		'Commercial Farming'		=>	__('Commercial Farming', 'epl'),
 		'Land/Development'		=>	__('Land/Development', 'epl'),
 		'Hotel/Leisure'			=>	__('Hotel/Leisure', 'epl'),
-		'Industrial/Warehouse'	=>	__('Industrial/Warehouse', 'epl'),
-		'Medical/Consulting'	=>	__('Medical/Consulting', 'epl'),
-		'Offices'				=>	__('Offices', 'epl'),
-		'Retail'				=>	__('Retail', 'epl'),
-		'Showrooms/Bulky Goods'	=>	__('Showrooms/Bulky Goods', 'epl'),
-		'Other'					=>	__('Other', 'epl')
+		'Industrial/Warehouse'		=>	__('Industrial/Warehouse', 'epl'),
+		'Medical/Consulting'		=>	__('Medical/Consulting', 'epl'),
+		'Offices'			=>	__('Offices', 'epl'),
+		'Retail'			=>	__('Retail', 'epl'),
+		'Showrooms/Bulky Goods'		=>	__('Showrooms/Bulky Goods', 'epl'),
+		'Other'				=>	__('Other', 'epl')
 	);
 	return apply_filters( 'epl_listing_meta_commercial_category', $defaults );
 }
- 
+
 /**
  * Custom Meta: Return Value of Commercial Category
  *
@@ -787,6 +441,35 @@ function epl_listing_load_meta_commercial_category() {
  */
 function epl_listing_load_meta_commercial_category_value( $key ) {
 	$array = epl_listing_load_meta_commercial_category();
+	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
+
+	return $value;
+}
+
+/**
+ * Custom Meta: Commercial Rental Period
+ *
+ * @since 2.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_commercial_rent_period() {
+	$defaults = array(
+		'annual'		=>	__('P.A.', 'epl'),
+		'nnn'			=>	__('NNN', 'epl'),
+		'full-service'		=>	__('Full Service', 'epl'),
+		'gross-lease-rates'	=>	__('Gross Lease Rates', 'epl')
+	);
+	return apply_filters( 'epl_listing_meta_commercial_rent_period', $defaults );
+}
+
+/**
+ * Custom Meta: Return Value of Commercial Rental Period
+ *
+ * @since 2.1
+ * @return all the categories in array
+ */
+function epl_listing_load_meta_commercial_rent_period_value( $key ) {
+	$array = epl_listing_load_meta_commercial_rent_period();
 	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
 
 	return $value;
@@ -800,15 +483,15 @@ function epl_listing_load_meta_commercial_category_value( $key ) {
  */
 function epl_listing_load_meta_rural_category() {
 	$defaults = array(
-		'Cropping'		=>	__('Cropping', 'epl'),
-		'Dairy'			=>	__('Dairy', 'epl'),
-		'Farmlet'		=>	__('Farmlet', 'epl'),
-		'Horticulture'	=>	__('Horticulture', 'epl'),
-		'Livestock'		=>	__('Livestock', 'epl'),
-		'Viticulture'	=>	__('Viticulture', 'epl'),
-		'MixedFarming'	=>	__('Mixed Farming', 'epl'),
-		'Lifestyle'		=>	__('Lifestyle', 'epl'),
-		'Other'			=>	__('Other', 'epl')
+		'Cropping'			=>	__('Cropping', 'epl'),
+		'Dairy'				=>	__('Dairy', 'epl'),
+		'Farmlet'			=>	__('Farmlet', 'epl'),
+		'Horticulture'			=>	__('Horticulture', 'epl'),
+		'Livestock'			=>	__('Livestock', 'epl'),
+		'Viticulture'			=>	__('Viticulture', 'epl'),
+		'MixedFarming'			=>	__('Mixed Farming', 'epl'),
+		'Lifestyle'			=>	__('Lifestyle', 'epl'),
+		'Other'				=>	__('Other', 'epl')
 	);
 	return apply_filters( 'epl_listing_meta_rural_category', $defaults );
 }
@@ -831,19 +514,665 @@ function epl_listing_load_meta_rural_category_value( $key ) {
  * REAXML Date Processing Function for WP All Import and FeedSync
  *
  * Some imports set the current date instead of the date from the REAXML file. 
- * Usage in WP All Import Post Date field is: [epl_feedsync_format_date({./@modTime})]
+ * Usage in WP All Import Post Date field is: 
+ * [epl_feedsync_format_date({./@modTime})]
  * 
  * @since 1.2
  * @return formatted date
  */
+ 
 function epl_feedsync_format_date( $date ) {
     $date_example = '2014-07-22-16:45:56';
      
-    $format = '%Y-%m-%d-%H:%M:%S';
-    $d = strptime($date, $format);
-    $time = mktime($d['tm_hour'],$d['tm_min'],$d['tm_sec'],1 + $d['tm_mon'],$d['tm_mday'], 1900 + $d['tm_year']);
-     
-    $result = date("Y-m-d H:i:s" , $time );
-     
-    return $result;
+    $tempdate = explode('-',$date);
+	$date = $tempdate[0].'-'.$tempdate[1].'-'.$tempdate[2].' '.$tempdate[3];
+    return  date("Y-m-d H:i:s",strtotime($date));
+}
+
+/**
+ * REAXML Address Sub Number field for title import 
+ * processing Function for WP All Import and FeedSync
+ *
+ * This function adds a / after the $value else returns false. 
+ * Usage in WP All Import Post Date field is: 
+ * [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})]
+ * 
+ * @since 1.3
+ * @return formatted sub number/
+ */
+function epl_feedsync_format_sub_number( $sub_value ) {
+	if ( $sub_value ) {
+		$sub_value = $sub_value . '/';
+		return $sub_value;
+	}
+	return;
+}
+
+/**
+ * Offers presented on settings page
+ *
+ * @since 2.0
+ */
+function epl_admin_sidebar () {
+	$service_banners = array(
+		array(
+			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
+			'img' => 'bannertwo.png',
+			'alt' => __('Developer bundle Prospector for Easy Property Listings', 'epl')
+		),
+		array(
+			'url' => 'http://easypropertylistings.com.au/extensions/prospector-license/',
+			'img' => 'bannerone.png',
+			'alt' => __('Prospector pack for Easy Property Listings', 'epl')
+		),
+	);
+	$i = 0;
+	foreach ( $service_banners as $banner ) {
+		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="261" src="' .plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) .'" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
+		$i ++;
+	}
+}
+
+/**
+ * Renders field array to html 
+ *
+ * @since 2.1
+ */
+ function epl_render_html_fields ($field=array(),$val='') {
+ 	global $post;
+ 	switch($field['type']) {
+		case 'select':
+			$dependency = 'false'; 
+			if(isset($field['opt_args']) && !empty($field['opt_args'])) {
+				if( isset($field['opt_args']['type']) ) {
+					switch($field['opt_args']['type']) {
+						case 'taxonomy':
+							$terms = get_terms(
+								$field['opt_args']['slug'],
+								array(
+									'hide_empty'	=>	0,
+									'parent'		=>	0
+								)
+							);
+						
+							if(!isset($field['opt_args']['parent']) || $field['opt_args']['parent'] == '') {
+								$var = sanitize_title( $field['opt_args']['slug'] );
+								$var = 'var_'.str_replace("-", "_", $var);
+						
+								if(!isset($$var)) {
+									$$var = array();
+									if ( !empty($terms) && !is_wp_error($terms) ) {
+										$arr = array('' => '');
+										foreach ( $terms as $term ) {
+											$arr[$term->term_id] = $term->name;
+										}
+									}
+									$$var = $arr;
+								}
+								$field['opts'] = $$var;
+							} else {
+								$dependency = 'true';
+							}
+							break;
+					}
+				}
+			}
+		
+			$field_atts = '';
+			if($dependency == 'true') {
+				$field_atts = 'data-dependency="true" data-type="taxonomy" data-type-name="'.$field['opt_args']['slug'].'" data-parent="'.$field['opt_args']['parent'].'" data-default="'.$val.'"';
+			}
+		
+			echo '<select name="'.$field['name'].'" id="'.$field['name'].'" '.$field_atts.' class="dependency-'.$dependency.'">';
+				if(!empty($field['default'])) {
+					echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
+				}
+			
+				if(isset($field['opts']) && !empty($field['opts'])) {
+					foreach($field['opts'] as $k=>$v) {
+						$selected = '';
+						if($val == $k) {
+							$selected = 'selected="selected"';
+						}
+					
+						if(is_array($v)) {
+							if(isset($v['exclude']) && !empty($v['exclude'])) {
+								if( in_array($post->post_type, $v['exclude']) ) {
+									continue;
+								}
+							}
+						
+							if(isset($v['include']) && !empty($v['include'])) {
+								if( !in_array($post->post_type, $v['include']) ) {
+									continue;
+								}
+							}
+							$v = $v['label'];
+						}
+					
+						echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+					}
+				} else {
+					echo '<option value=""> </option>';
+				}
+			echo '</select>';
+			break;
+
+		case 'checkbox':
+			if(!empty($field['opts'])) {
+				foreach($field['opts'] as $k=>$v) {
+					$checked = '';
+					if(!empty($val)) {
+						if( in_array($k, $val) ) {
+							$checked = 'checked="checked"';
+						}
+					}
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+				}
+			}
+			break;
+			
+		case 'checkbox_single':
+			if(!empty($field['opts'])) {
+				foreach($field['opts'] as $k=>$v) {
+					$checked = '';
+					if(!empty($val)) {
+						if( $k == $val ) {
+							$checked = 'checked="checked"';
+						}
+					}
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+				}
+			}
+			break;
+
+		case 'radio':
+			if(!empty($field['opts'])) {
+				foreach($field['opts'] as $k=>$v) {
+					$checked = '';
+					if($val == $k) {
+						$checked = 'checked="checked"';
+					}
+					echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+				}
+			}
+			break;
+
+		case 'image':
+			if($val != '') {
+				$img = $val;
+			} else {
+				$img = plugin_dir_url( __FILE__ ).'images/no_image.jpg';
+			}
+			echo '
+				<div class="epl-media-row">
+					<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />
+					&nbsp;&nbsp;<input type="button" name="epl_upload_button" class="button" value="'.__('Add File', 'epl').'" />
+					&nbsp;&nbsp;<img src="'.$img.'" alt="" />
+					<div class="epl-clear"></div>
+				</div>
+			';
+			break;
+
+		case 'editor':
+			wp_editor(stripslashes($val), $field['name'], $settings = array('textarea_rows'=>5));
+			break;
+
+		case 'textarea':
+			$atts = '';
+			if(isset($field['maxlength'] ) && $field['maxlength'] > 0) {
+				$atts = ' maxlength="'.$field['maxlength'].'"';
+			}
+			echo '<textarea name="'.$field['name'].'" id="'.$field['name'].'" '.$atts.'>'.stripslashes($val).'</textarea>';
+			break;
+	
+		case'decimal':
+			$atts = '';
+			if($field['maxlength'] > 0) {
+				$atts = ' maxlength="'.$field['maxlength'].'"';
+			}
+			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[onlyNumberWithDecimal]]" '.$atts.' />';
+			break;
+		
+		case 'number':
+			$atts = '';
+			if(isset($field['maxlength']) && $field['maxlength'] > 0) {
+				$atts = ' maxlength="'.$field['maxlength'].'"';
+			}
+			echo '<input type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[onlyNumber]]" '.$atts.' />';
+			break;
+			
+		case 'date':
+			$atts = '';
+			echo '<input type="text" class="epldatepicker" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+			break;
+
+
+		case 'auction-date':
+			$atts = '';
+			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+			break;
+			
+		case 'sold-date':
+			$atts = '';
+			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+			break;
+		
+		case 'email':
+			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[email]]" />';
+			break;
+			
+		case 'url':
+			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[url]]" />';
+			break;
+		
+		default:
+			$atts = '';
+			if(isset($field['maxlength']) &&  $field['maxlength'] > 0) {
+				$atts = ' maxlength="'.$field['maxlength'].'"';
+			}
+			echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+	}
+
+	if( isset($field['geocoder']) ) {
+		if( $field['geocoder'] == 'true' ) {
+			echo '<span class="epl-geocoder-button"></span>';
+		}
+		
+		if( !empty($val) ) {
+			echo '<iframe width="100%" height="200" frameborder="0" scrolling="no" src="//maps.google.com/?q='.stripslashes($val).'&output=embed&z=14" style="margin:5px 0 0 0;"></iframe>';
+		}
+	}
+	
+	if(isset($field['help'])) {
+		$field['help'] = trim($field['help']);
+		if(!empty($field['help'])) {
+			echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
+		}
+	}
+ 	
+ }
+ 
+ function epl_get_admin_option_fields() {
+	$opts_epl_gallery_n = array();
+	for($i=1; $i<=10; $i++) {
+		$opts_epl_gallery_n[$i] = $i;
+	}
+
+	$opts_epl_property_card_excerpt_length = array();
+	for($i=10; $i<=55; $i++) {
+		$opts_epl_property_card_excerpt_length[$i] = $i;
+	}
+
+	$opts_epl_features = array();
+	for($i=1; $i<=5; $i++) {
+		$opts_epl_features[$i] = $i;
+	}
+
+	$opts_pages = array( '' => __('Select Page', 'epl') );
+	$pages = get_pages();
+	
+	if(!empty($pages)) {
+		foreach($pages as $page) {
+			$opts_pages[$page->ID] = $page->post_title;
+		}
+	}
+
+	$epl_currency_positions = array(
+			'before'	=> __('Before - $10', 'epl'), 
+			'after'		=> __('After - 10$', 'epl')
+			);
+	$epl_currency_types = epl_get_currencies();
+	$epl_post_types = epl_get_post_types();
+
+	$fields = array(
+		array(
+			'label'		=>	__('Listing Types and Location Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'help'		=>	__('Select the listing types you want to enable and press Save Changes. Refresh the page to see your new activated listing types.' , 'epl'),
+			'fields'	=>	array(
+				array(
+					'name'	=>	'activate_post_types',
+					'label'	=>	__('Listing Types to Enable', 'epl'),
+					'type'	=>	'checkbox',
+					'opts'	=>	$epl_post_types,
+					'help'	=>	__('Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.' , 'epl')
+				),
+				
+				array(
+					'name'	=>	'label_location',
+					'label'	=>	__('Location Taxonomy', 'epl'),
+					'type'	=>	'text'
+				),
+				
+				array(
+					'name'	=>	'sticker_new_range',
+					'label'	=>	__('Keep Listings flagged "New" for', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'7',
+					'help'	=>	__('Listings will have a "NEW" Sticker for the defined number of days.', 'epl')
+				),
+				
+				array(
+					'name'	=>	'display_bond',
+					'label'	=>	__('Rental Bond/Deposit?', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	__('Enable', 'epl'),
+						0	=>	__('Disable', 'epl')
+					),
+					'help'	=>	__('Display the bond/deposit on rental listings.', 'epl')
+				),
+
+				array(
+					'name'	=>	'epl_max_graph_sales_price',
+					'label'	=>	__('Graph Max', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'2000000',
+					'help'		=>	__('Used for bar chart display on listings for sale.' , 'epl')
+				),
+				
+				array(
+					'name'	=>	'epl_max_graph_rent_price',
+					'label'	=>	__('Graph Rental Max', 'epl'),
+					'type'	=>	'number',
+					'default'	=>	'2000',
+					'help'		=>	__('Rental range.' , 'epl')
+				),
+				
+				array(
+					'name'	=>	'epl_admin_thumb_size',
+					'label'	=>	__('Image size', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'admin-list-thumb'	=>	__('100 X 100', 'epl'),
+						'epl-image-medium-crop'	=>	__('300 X 200', 'epl'),
+					),
+					'default'	=>	'admin-list-thumb',
+					'help'		=>	__('size of the image shown in listing columns in admin area' , 'epl')
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Currency' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'currency',
+					'label'	=>	__('Currency Type', 'epl'),
+					'type'	=>	'select',
+					'opts'	=>	$epl_currency_types
+				),
+
+				array(
+					'name'	=>	'currency_position',
+					'label'	=>	__('Symbol Position', 'epl'),
+					'type'	=>	'select',
+					'opts'	=>	$epl_currency_positions
+				),
+
+				array(
+					'name'	=>	'currency_thousands_separator',
+					'label'	=>	__('Thousands Separator', 'epl'),
+					'type'	=>	'text'
+				),
+
+				array(
+					'name'	=>	'currency_decimal_separator',
+					'label'	=>	__('Decimal Separator', 'epl'),
+					'type'	=>	'text'
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Listing Single View', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'help'		=>	__('Configure the default options when viewing a single listing.', 'epl'),
+			'fields'	=>	array(
+				array(
+					'name'	=>	'display_single_gallery',
+					'label'	=>	__('Automatically display image gallery?', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	__('Enable', 'epl'),
+						0	=>	__('Disable', 'epl')
+					),
+					'help'	=>	__('Images uploaded and attached to a listing will automatically display on the single listing page.', 'epl')
+				),
+
+				array(
+					'name'	=>	'display_gallery_n',
+					'label'	=>	__('Gallery columns?', 'epl'),
+					'type'	=>	'select',
+					'opts'	=>	$opts_epl_gallery_n
+				),
+
+				array(
+					'name'	=>	'display_feature_columns',
+					'label'	=>	__('Feature list columns?', 'epl'),
+					'type'	=>	'select',
+					'opts'	=>	$opts_epl_features
+				)
+
+			)
+		),
+		
+		array(
+			'label'		=>	__('Listing Archive View', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'epl'),
+			'fields'	=>	array(
+				array(
+					'name'	=>	'display_excerpt_length',
+					'label'	=>	__('Excerpt words', 'epl'),
+					'type'	=>	'select',
+					'opts'	=>	$opts_epl_property_card_excerpt_length,
+					'help'	=>	__('This is ignored when using manual excerpts.', 'epl')
+				),
+				array(
+					'name'	=>	'display_archive_view_type',
+					'label'	=>	__('Listing view type', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'list'	=>	__('List', 'epl'),
+						'grid'	=>	__('Grid', 'epl')
+					)
+				),
+				
+				array(
+					'name'	=>	'use_fancy_navigation',
+					'label'	=>	__('Fancy pagination', 'epl'),
+					'type'	=>	'select',
+					'opts'	=>	array(
+						'0'		=>	__('No, use WordPress default pagination', 'epl'),
+						'1'		=>	__('Yes, use fancy navigation', 'epl')
+					)
+				)
+
+			)
+		),
+		
+		array(
+			'label'		=>	__('Labels', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'labels',
+			'fields'	=>	array(
+
+				array(
+					'name'		=>	'label_bond',
+					'label'		=>	__('Rental Bond/Deposit (default: Bond)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'Bond',
+				),
+				
+				array(
+					'name'		=>	'label_suburb',
+					'label'		=>	__('Suburb/City (default: Suburb)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'Suburb',
+
+				),
+
+				array(
+					'name'		=>	'label_postcode',
+					'label'		=>	__('Postcode Label (default: Postcode)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'Postcode',
+
+				),
+
+				array(
+					'name'		=>	'label_home_open',
+					'label'		=>	__('Home Open Label (default: Home Open)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'Home Open',
+
+				),
+
+				array(
+					'name'		=>	'label_new',
+					'label'		=>	__('New Home Label (default: New)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'new'
+
+				),
+				
+				array(
+					'name'		=>	'label_poa',
+					'label'		=>	__('No Price Label (default: POA)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'POA',
+
+				),
+				array(
+					'name'		=>	'label_under_offer',
+					'label'		=>	__('Under Offer Label (default: Under Offer)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'Under Offer',
+
+				),
+				array(
+					'name'		=>	'label_leased',
+					'label'		=>	__('Leased Label (default: Leased)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'Leased',
+
+				)
+
+
+			)
+		),
+		
+		array(
+			'label'		=>	__('Search Widget: Tab Labels', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'labels',
+			'help'		=>	__('Customise the tab labels of the EPL - Search Widget.', 'epl'),
+			'fields'	=>	array(
+
+				array(
+					'name'	=>	'widget_label_property',
+					'label'	=>	__('Property', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Property'
+				),
+				array(
+					'name'	=>	'widget_label_land',
+					'label'	=>	__('Land', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Land'
+				),
+				array(
+					'name'	=>	'widget_label_rental',
+					'label'	=>	__('Rental', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Rental'
+				),
+				array(
+					'name'	=>	'widget_label_rural',
+					'label'	=>	__('Rural', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Rural'
+				),
+				array(
+					'name'	=>	'widget_label_commercial',
+					'label'	=>	__('Commercial', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Commercial'
+				),
+				array(
+					'name'	=>	'widget_label_commercial_land',
+					'label'	=>	__('Commercial Land', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Commercial Land'
+				),
+				array(
+					'name'	=>	'widget_label_business',
+					'label'	=>	__('Business', 'epl'),
+					'type'	=>	'text',
+					'default'	=>	'Business'
+				)
+			)
+		),
+
+		array(
+			'label'		=>	__('Managing Listings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'fields'	=>	array(
+				
+				array(
+					'name'	=>	'admin_unique_id',
+					'label'	=>	__('Display the Unique ID column', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	'Enable',
+						0	=>	'Disable'
+					),
+					'help'	=>	__('This will display the Unique Listing ID column.', 'epl'),
+					'default'	=> 0
+				),
+				array(
+					'name'	=>	'debug',
+					'label'	=>	__('Display Geocoded column', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	'Enable',
+						0	=>	'Disable'
+					),
+					'help'	=>	__('This will listing lat/long results in a new column.', 'epl'),
+					'default'	=> 0
+				),
+			),
+		),
+		
+		array(
+			'label'		=>	__('Advanced Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'advanced',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'epl_use_core_css',
+					'label'	=>	__('Disable Styles', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to disable all elements.' , 'epl')
+					
+				)
+			)
+
+		)
+	);
+	
+	$fields = apply_filters('epl_display_options_filter', $fields);
+	return $fields;
 }

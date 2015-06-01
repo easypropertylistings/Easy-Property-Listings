@@ -36,30 +36,94 @@ function epl_install() {
 	// Add default EPL Settings
 	$epl_settings = epl_settings();
 	if(empty($epl_settings)) {
+		// first time install . load with default values.
 		$epl_settings = array(
-			'currency'			=>	'AUD',
-			'currency_position'		=>	'before',
-			'currency_thousands_separator'	=>	',',
-			'currency_decimal_separator'	=>	'.',
-			'label_location'		=>	'Suburb',
-			'debug'				=>	'0',
-			
-			'label_suburb'			=>	__('Suburb', 'epl'),
-			'label_postcode'		=>	__('Post Code', 'epl'),
-			'label_home_open'		=>	__('Home Open', 'epl'),
-			'label_poa'			=>	__('POA', 'epl'),
+			'currency'				=> 'AUD',
+			'currency_position'			=> 'before',
+			'currency_thousands_separator'		=> ',',
+			'currency_decimal_separator'		=> '.',
+			'admin_unique_id'			=> 0,
+			'debug'					=> 0,
+			'display_bond'				=> 0,
+			'display_single_gallery'		=> 0,
+			'display_gallery_n'			=> 4,
+			'display_feature_columns'		=> 2,
+			'display_excerpt_length'		=> 10,
+			'label_bond'				=> __('Bond', 'epl'),
+			'label_location'			=> __('Suburb', 'epl'),
+			'label_suburb'				=> __('Suburb', 'epl'),
+			'label_postcode'			=> __('Post Code', 'epl'),
+			'label_home_open'			=> __('Home Open', 'epl'),
+			'label_poa'				=> __('POA', 'epl'),
+			'label_new'				=> __('New', 'epl'),
+			'label_under_offer'			=> __('Under Offer', 'epl'),
+			'label_leased'				=> __('Leased', 'epl'),
+			'widget_label_property'			=> __('Buy', 'epl'),
+			'widget_label_land'			=> __('Land', 'epl'),
+			'widget_label_rental'			=> __('Rent', 'epl'),
+			'widget_label_rural'			=> __('Rural', 'epl'),
+			'widget_label_business'			=> __('Business', 'epl'),
+			'widget_label_commercial'		=> __('Commercial', 'epl'),
+			'widget_label_commercial_land'		=> __('Commercial Land', 'epl'),
+			'epl_max_graph_sales_price'		=> 2000000,
+			'epl_max_graph_rent_price'		=> 2000,
+			'sticker_new_range'			=> 7,
+			'epl_admin_thumb_size'			=> 'admin-list-thumb'
 		);
-		update_option( 'epl_settings', $epl_settings );
-	}
+	} else {
 	
-	if ( $current_version ) {
-		update_option( 'epl_version_upgraded_from', $current_version );
+		// possible upgrade
+		$new_fields_defaults = array(
+			'currency'				=> 'AUD',
+			'currency_position'			=> 'before',
+			'currency_thousands_separator'		=> ',',
+			'currency_decimal_separator'		=> '.',
+			'admin_unique_id'			=> 0,
+			'debug'					=> 0,
+			'display_bond'				=> 0,
+			'display_single_gallery'		=> 0,
+			'display_gallery_n'			=> 4,
+			'display_feature_columns'		=> 2,
+			'display_excerpt_length'		=> 10,
+			'label_bond'				=> __('Bond', 'epl'),
+			'label_location'			=> __('Suburb', 'epl'),
+			'label_suburb'				=> __('Suburb', 'epl'),
+			'label_postcode'			=> __('Post Code', 'epl'),
+			'label_home_open'			=> __('Home Open', 'epl'),
+			'label_poa'				=> __('POA', 'epl'),
+			'label_new'				=> __('New', 'epl'),
+			'label_under_offer'			=> __('Under Offer', 'epl'),
+			'label_leased'				=> __('Leased', 'epl'),
+			'widget_label_property'			=> __('Buy', 'epl'),
+			'widget_label_land'			=> __('Land', 'epl'),
+			'widget_label_rental'			=> __('Rent', 'epl'),
+			'widget_label_rural'			=> __('Rural', 'epl'),
+			'widget_label_business'			=> __('Business', 'epl'),
+			'widget_label_commercial'		=> __('Commercial', 'epl'),
+			'widget_label_commercial_land'		=> __('Commercial Land', 'epl'),
+			'epl_max_graph_sales_price'		=> 2000000,
+			'epl_max_graph_rent_price'		=> 2000,
+			'sticker_new_range'			=> 7,
+			'epl_admin_thumb_size'			=> 'admin-list-thumb'
+		);
+		
+		foreach($new_fields_defaults as $key	=>	$value) {
+			if(!isset($epl_settings[$key])) {
+				// sure upgrade, fields are not set lets set them for very first time
+				$epl_settings[$key] = $value;
+			}
+		}
 	}
+	update_option( 'epl_settings', $epl_settings );
 
 	// Add Upgraded From Option
 	$current_version = get_option( 'epl_version' );
-	if ( $current_version ) {
+	if ( $current_version != '' ) {
 		update_option( 'epl_version_upgraded_from', $current_version );
+			
+	} else {
+		$epl_data = get_plugin_data(EPL_PLUGIN_PATH.'/easy-property-listings.php');
+		update_option( 'epl_version', $epl_data['Version'] );
 	}
 
 	// Bail if activating from network, or bulk
@@ -112,4 +176,26 @@ function epl_after_install() {
 	do_action( 'epl_after_install', $activation_pages );
 }
 add_action( 'admin_init', 'epl_after_install' );
+
+function epl_plugin_updates() {
+	$current_version = get_option( 'epl_version' );
+
+	if ( version_compare( $current_version, '1.3', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-1.3.1.php' );
+		update_option( 'epl_version' ,'1.3');
+	}
+	
+	if ( version_compare( $current_version, '2.1', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-2.1.php' );
+		update_option( 'epl_version' ,'2.1');
+	}
+	
+	if ( version_compare( $current_version, '2.1.8', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-2.1.8.php' );
+		update_option( 'epl_version' ,'2.1.8');
+	}
+}
+add_action( 'admin_init', 'epl_plugin_updates' );
+
+
 

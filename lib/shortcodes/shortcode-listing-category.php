@@ -23,20 +23,43 @@ if( is_admin() ) {
  * Added Commercial Category Support 
  */
 function epl_shortcode_listing_category_callback( $atts ) {
+	$property_types = epl_get_active_post_types();
+	if(!empty($property_types)) {
+		 $property_types = array_keys($property_types);
+	}
+	
 	extract( shortcode_atts( array(
-		'post_type' 			=>	'',
+		'post_type' 			=>	$property_types,
 		'status'			=>	array('current' , 'sold' , 'leased' ),
 		'commercial_listing_type'	=>	'',
 		'category_key'			=>	'',
 		'category_value'		=>	'',
 		'limit'				=>	'10', // Number of maximum posts to show
-		'template'			=>	false // Template can be set to "slim" for home open style template
+		'template'			=>	false, // Template can be set to "slim" for home open style template
+		'location'			=>	'', // Location slug. Should be a name like sorrento
+		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
+		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
+		'sortby'			=>	'', // Options: price, date : Default date
+		'sort_order'			=>	'DESC'
 	), $atts ) );
 	
 	if(empty($post_type)) {
 		return;
 	}
 	
+	if(is_string($post_type) && $post_type == 'rental') {
+		$meta_key_price = 'property_rent';
+	} else {
+		$meta_key_price = 'property_price';
+	}
+	
+	$sort_options = array(
+		'price'			=>	$meta_key_price,
+		'date'			=>	'post_date'
+	);
+	if( !is_array($post_type) ) {
+		$post_type 			= array_map('trim',explode(',',$post_type) );
+	}
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(
@@ -44,6 +67,19 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'posts_per_page'	=>	$limit,
 		'paged' 		=>	$paged
 	);
+	
+	if(!empty($location) ) {
+		if( !is_array( $location ) ) {
+			$location = explode(",", $location);
+			$location = array_map('trim', $location);
+			
+			$args['tax_query'][] = array(
+				'taxonomy' => 'location',
+				'field' => 'slug',
+				'terms' => $location
+			);
+		}
+	}
 	
 	if(!empty($status)) {
 		if(!is_array($status)) {
@@ -84,28 +120,69 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		}
 	}
 	
+	if( $sortby != '' ) {
+	
+		if($sortby == 'price') {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	$meta_key_price;
+		} else {
+			$args['orderby']	=	'post_date';
+			$args['order']		=	'DESC';
+
+		}
+		$args['order']			=	$sort_order;
+	}
+	
+	
+	if( isset( $_GET['sortby'] ) ) {
+		$orderby = sanitize_text_field( trim($_GET['sortby']) );
+		if($orderby == 'high') {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	$meta_key_price;
+			$args['order']		=	'DESC';
+		} elseif($orderby == 'low') {
+			$args['orderby']	=	'meta_value_num';
+			$args['meta_key']	=	$meta_key_price;
+			$args['order']		=	'ASC';
+		} elseif($orderby == 'new') {
+			$args['orderby']	=	'post_date';
+			$args['order']		=	'DESC';
+		} elseif($orderby == 'old') {
+			$args['orderby']	=	'post_date';
+			$args['order']		=	'ASC';
+		}
+		
+	}
+	
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-category">
+			<div class="loop-content epl-shortcode-listing-category <?php echo epl_template_class( $template ); ?>">
 				<?php
+					if ( $tools_top == 'on' ) {
+						do_action( 'epl_property_loop_start' );
+					}
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
 						
-						if ( $template == 'slim' ) {
-							epl_property_blog_slim();
-						} else {
+						if ( $template == false ) {
 							epl_property_blog();
+						} else {
+						
+							if( function_exists( 'epl_property_blog_'.$template ) ) {
+							
+								call_user_func( 'epl_property_blog_'.$template );
+								
+							}
 						}
+					}
+					if ( $tools_bottom == 'on' ) {
+						do_action( 'epl_property_loop_end' );
 					}
 				?>
 			</div>
 			<div class="loop-footer">
-				<!-- Previous/Next page navigation -->
-				<div class="loop-utility clearfix">
-					<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ), $query_open->max_num_pages ); ?></div>
-					<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ), $query_open->max_num_pages ); ?></div>
-				</div>
+				<?php do_action('epl_pagination',array('query'	=>	$query_open)); ?>
 			</div>
 		</div>
 		<?php

@@ -1,16 +1,17 @@
 <?php
-/*
- * Archive Template for Property Custom Post Type : property
+/**
+ * Archive Template for Custom Post Types
  */
+ 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
  
 get_header(); ?>
-<section id="primary" class="site-content">
+<section id="primary" class="site-content content epl-archive-default <?php echo epl_get_active_theme_name(); ?>">
 	<div id="content" role="main">
 		<?php
 		if ( have_posts() ) : ?>
-			<div class="loop">
+			<div class="loop pad">
 				<header class="archive-header entry-header loop-header">
 					<h4 class="archive-title loop-title">
 						<?php
@@ -43,20 +44,31 @@ get_header(); ?>
 				</header>
 				
 				<div class="entry-content loop-content">
-					<?php
-						while ( have_posts() ) : // The Loop
+					<?php do_action( 'epl_property_loop_start' ); ?>
+					<?php while ( have_posts() ) : // The Loop
 							the_post();
-							echo epl_property_blog();
+							do_action('epl_property_blog');
 						endwhile; // end of one post
 					?>
+					<?php do_action( 'epl_property_loop_end' ); ?>
 				</div>
 				
 				<div class="loop-footer">
 					<!-- Previous/Next page navigation -->
 					<div class="loop-utility clearfix">
-						<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
-						<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
+						<?php do_action('epl_pagination'); ?>
 					</div>
+				</div>
+			</div>
+		<?php 
+		else :
+			?><div class="hentry">
+				<div class="entry-header clearfix">
+					<h3 class="entry-title"><?php _e('Listing not Found', 'epl'); ?></h3>
+				</div>
+				
+				<div class="entry-content clearfix">
+					<p><?php _e('Listing not found, expand your search criteria and try again.', 'epl'); ?></p>
 				</div>
 			</div>
 		<?php endif; ?>

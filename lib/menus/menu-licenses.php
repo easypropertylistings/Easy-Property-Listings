@@ -9,7 +9,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$fields = epl_get_admin_option_fields();
+$fields = epl_get_admin_option_licence_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
 		$epl_license = array();
@@ -36,112 +36,113 @@ $epl_license = get_option('epl_license');
 ?>
 
 <div class="wrap">
-	<h2><?php _e('Licenses', 'epl'); ?></h2>
-	<p><?php _e('Enable your extensions by entering your license below', 'epl'); ?></p>
-	<div class="epl-content">
-		<form action="" method="post">
-			<div class="epl-fields">
-				<?php
-					if(!empty($fields)) {
-						foreach($fields as $field_group) {
-							if( !empty($field_group['label']) ) { ?>
-								<div class="epl-field">
-									<h3><?php _e($field_group['label'], 'epl'); ?></h3>
-								</div>
-								<?php
-							}
+	<h2><?php _e('Licenses Keys For Extensions', 'epl'); ?></h2>
+	<p><?php _e('Activate extension updates by entering your license key below. Thanks for purchasing software for Easy Property Listings. You\'re awesome!', 'epl'); ?></p>
+	
+	<div id="epl-menu-licences" class="epl-content metabox-holder">
+		<form action="" method="post" class="tba-epl-general-form">
+			<div class="epl-fields epl-menu-page">
+				<?php if(!empty($fields)) { ?>
+					<div id="meta-sortables" class="meta-box-sortables tba-ui-sortable epl-menu-content">
+						<div id="epl-<?php echo $field_id; ?>" class="postbox epl-menu-section epl-<?php echo $field_class; ?>">
+					
+						<!--<div class="handlediv" title="Click to toggle"><br></div>-->
+						<h3 class="hndle ui-sortable-handle epl-section-title"><?php _e( 'Enter Your Activated Extension License Keys' , 'epl'); ?></h3>
 							
-							foreach($field_group['fields'] as $field) { ?>
-								<div class="epl-field">
-									<div class="epl-half-left">
-										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
-									</div>
-									<div class="epl-half-right">
-										<?php
-											$val = get_option($field['name']);
-											switch($field['type']) {
-												case 'select':
-													echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
-														if(!empty($field['default'])) {
-															echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
-														}
+							<?php foreach($fields as $field_group) { ?>
+								<?php foreach($field_group['fields'] as $field) { ?>
+									<div class="inside epl-field">
+										<div class="epl-half-left">
+											<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
+										</div>
+										<div class="epl-half-right">
+											<?php
+												$val = get_option($field['name']);
+												switch($field['type']) {
+													case 'select':
+														echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
+															if(!empty($field['default'])) {
+																echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
+															}
+											
+															if(!empty($field['opts'])) {
+																foreach($field['opts'] as $k=>$v) {
+																	$selected = '';
+																	if($val == $k) {
+																		$selected = 'selected="selected"';
+																	}
+																	echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+																}
+															}
+														echo '</select>';
+														break;
 										
+													case 'checkbox':
 														if(!empty($field['opts'])) {
 															foreach($field['opts'] as $k=>$v) {
-																$selected = '';
-																if($val == $k) {
-																	$selected = 'selected="selected"';
+																$checked = '';
+																if(!empty($val)) {
+																	if( in_array($k, $val) ) {
+																		$checked = 'checked="checked"';
+																	}
 																}
-																echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+																echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
 															}
 														}
-													echo '</select>';
-													break;
-									
-												case 'checkbox':
-													if(!empty($field['opts'])) {
-														foreach($field['opts'] as $k=>$v) {
-															$checked = '';
-															if(!empty($val)) {
-																if( in_array($k, $val) ) {
+														break;
+										
+													case 'radio':
+														if(!empty($field['opts'])) {
+															foreach($field['opts'] as $k=>$v) {
+																$checked = '';
+																if($val == $k) {
 																	$checked = 'checked="checked"';
 																}
-															}
-															echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
-														}
-													}
-													break;
-									
-												case 'radio':
-													if(!empty($field['opts'])) {
-														foreach($field['opts'] as $k=>$v) {
-															$checked = '';
-															if($val == $k) {
-																$checked = 'checked="checked"';
-															}
-															echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
-														}
-													}
-													break;
-									
-												default:
-													$val = '';
-													if( !empty($epl_license) && isset($epl_license[$field['name']]) ) {
-														$val = $epl_license[$field['name']];
-													}
-													echo '<input type="text" name="epl_license[epl_'.$field['name'].']" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
-													$status = get_option( 'epl_'.$field['name'].'_license_active' );
-													if(stripslashes($val) != '') {
-														if(!empty($status)) {
-															echo '<span class="license-status license-status-'.$status.'"></span>';
-															
-															if( $status == 'invalid' ) {
-																echo '<span class="license-status-text license-status-text-'.$status.'">';
-																	echo '<span class="license-status-text-label">' . __('Invalid or Expired Key :', 'epl') . '</span>';
-																	echo '<span class="license-status-text-value">' . __('Please make sure you have entered the correct value and that your key is not expired.', 'epl') . '</span>';
-																echo '</span>';
-															} else if( $status == 'valid' ) {
-																echo '<span class="license-status-text license-status-text-'.$status.'">';
-																	echo '<span class="license-status-text-label">' . __('Valid Key :', 'epl') . '</span>';
-																	echo '<span class="license-status-text-value">' . __('Your license key has been successfully validated.', 'epl') . '</span>';
-																echo '</span>';
+																echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
 															}
 														}
-													}
-											}
-							
-											if(isset($field['help'])) {
-												$field['help'] = trim($field['help']);
-												if(!empty($field['help'])) {
-													echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
+														break;
+										
+													default:
+														$val = '';
+														if( !empty($epl_license) && isset($epl_license[$field['name']]) ) {
+															$val = $epl_license[$field['name']];
+														}
+														echo '<input type="text" class="epl-field-license" name="epl_license[epl_'.$field['name'].']" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
+														$status = get_option( 'epl_'.$field['name'].'_license_active' );
+														if(stripslashes($val) != '') {
+															if(!empty($status)) {
+																echo '<span class="license-status license-status-'.$status.'"></span>';
+																
+																if( $status == 'invalid' ) {
+																	echo '<span class="license-status-text license-status-text-'.$status.'">';
+																		echo '<span class="license-status-text-label">' . __('Invalid or Expired Key :', 'epl') . '</span>';
+																		echo '<span class="license-status-text-value">' . __('Please make sure you have entered the correct value and that your key is not expired.', 'epl') . '</span>';
+																	echo '</span>';
+																} else if( $status == 'valid' ) {
+																	echo '<span class="license-status-text license-status-text-'.$status.'">';
+																		echo '<span class="license-status-text-label">' . __('Valid Key :', 'epl') . '</span>';
+																		echo '<span class="license-status-text-value">' . __('Your license key has been successfully validated.', 'epl') . '</span>';
+																	echo '</span>';
+																}
+															}
+														}
 												}
-											}
-										?>
+								
+												if(isset($field['help'])) {
+													$field['help'] = trim($field['help']);
+													if(!empty($field['help'])) {
+														echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
+													}
+												}
+											?>
+										</div>
 									</div>
-								</div>
-							<?php }
-						}
-					}
+								<?php }
+							} ?>
+						</div>
+					</div>
+					<?php }
 				?>
 			</div>
 			<div class="epl-clear"></div>
@@ -154,7 +155,7 @@ $epl_license = get_option('epl_license');
 	</div>
 </div><?php
 
-function epl_get_admin_option_fields() {
+function epl_get_admin_option_licence_fields() {
 	$opts_epl_gallery_n = array();
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;

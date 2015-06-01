@@ -1,5 +1,4 @@
 <?php
-
 // uncomment this line for testing
 //set_site_transient( 'update_plugins', null );
 
@@ -34,7 +33,7 @@ class EPL_SL_Plugin_Updater {
 		$this->version  = $_api_data['version'];
 
 		// Set up hooks.
-		$this->hook();
+		$this->init();
 	}
 
 	/**
@@ -44,41 +43,155 @@ class EPL_SL_Plugin_Updater {
 	 *
 	 * @return void
 	 */
-	private function hook() {
-		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'pre_set_site_transient_update_plugins_filter' ) );
-		add_filter( 'plugins_api', array( $this, 'plugins_api_filter' ), 10, 3 );
-		add_filter( 'http_request_args', array( $this, 'http_request_args' ), 10, 2 );
+	private function init() {
+		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
+        add_filter( 'plugins_api', array( $this, 'plugins_api_filter' ), 10, 3 );
+        add_action( 'after_plugin_row_' . $this->name, array( $this, 'show_update_notification' ), 10, 2 );
 	}
 
 	/**
-	 * Check for Updates at the defined API endpoint and modify the update array.
-	 *
-	 * This function dives into the update api just when Wordpress creates its update array,
-	 * then adds a custom API call and injects the custom plugin data retrieved from the API.
-	 * It is reassembled from parts of the native Wordpress plugin update code.
-	 * See wp-includes/update.php line 121 for the original wp_update_plugins() function.
-	 *
-	 * @uses api_request()
-	 *
-	 * @param array $_transient_data Update array build by Wordpress.
-	 * @return array Modified update array with custom plugin data.
-	 */
-	function pre_set_site_transient_update_plugins_filter( $_transient_data ) {
-		if( empty( $_transient_data ) ) return $_transient_data;
+     * Check for Updates at the defined API endpoint and modify the update array.
+     *
+     * This function dives into the update API just when WordPress creates its update array,
+     * then adds a custom API call and injects the custom plugin data retrieved from the API.
+     * It is reassembled from parts of the native WordPress plugin update code.
+     * See wp-includes/update.php line 121 for the original wp_update_plugins() function.
+     *
+     * @uses api_request()
+     *
+     * @param array   $_transient_data Update array build by WordPress.
+     * @return array Modified update array with custom plugin data.
+     */
+    function check_update( $_transient_data ) {
 
-		$to_send = array( 'slug' => $this->slug );
+        global $pagenow;
 
-		$api_response = $this->api_request( 'plugin_latest_version', $to_send );
+        if( ! is_object( $_transient_data ) ) {
+            $_transient_data = new stdClass;
+        }
 
-		if( false !== $api_response && is_object( $api_response ) && isset( $api_response->new_version ) ) {
-			if( version_compare( $this->version, $api_response->new_version, '<' ) )
-				$_transient_data->response[$this->name] = $api_response;
-		}
-		return $_transient_data;
-	}
+        if( 'plugins.php' == $pagenow && is_multisite() ) {
+            return $_transient_data;
+        }
+
+        if ( empty( $_transient_data->response ) || empty( $_transient_data->response[ $this->name ] ) ) {
+
+            $version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
+
+            if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
+
+                $this->did_check = true;
+
+                if( version_compare( $this->version, $version_info->new_version, '<' ) ) {
+
+                    $_transient_data->response[ $this->name ] = $version_info;
+
+                }
+
+                $_transient_data->last_checked = time();
+                $_transient_data->checked[ $this->name ] = $this->version;
+
+            }
+
+        }
+
+        return $_transient_data;
+    }
 
 
 	/**
+     * show update nofication row -- needed for multisite subsites, because WP won't tell you otherwise!
+     *
+     * @param string  $file
+     * @param array   $plugin
+     */
+    public function show_update_notification( $file, $plugin ) {
+
+        if( ! current_user_can( 'update_plugins' ) ) {
+            return;
+        }
+
+        if( ! is_multisite() ) {
+            return;
+        }
+
+        if ( $this->name != $file ) {
+            return;
+        }
+
+        // Remove our filter on the site transient
+        remove_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ), 10 );
+
+        $update_cache = get_site_transient( 'update_plugins' );
+
+        if ( ! is_object( $update_cache ) || empty( $update_cache->response ) || empty( $update_cache->response[ $this->name ] ) ) {
+
+            $cache_key    = md5( 'epl_plugin_' .sanitize_key( $this->name ) . '_version_info' );
+            $version_info = get_transient( $cache_key );
+
+            if( false === $version_info ) {
+
+                $version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
+
+                set_transient( $cache_key, $version_info, 3600 );
+            }
+
+
+            if( ! is_object( $version_info ) ) {
+                return;
+            }
+
+            if( version_compare( $this->version, $version_info->new_version, '<' ) ) {
+
+                $update_cache->response[ $this->name ] = $version_info;
+
+            }
+
+            $update_cache->last_checked = time();
+            $update_cache->checked[ $this->name ] = $this->version;
+
+            set_site_transient( 'update_plugins', $update_cache );
+
+        } else {
+
+            $version_info = $update_cache->response[ $this->name ];
+
+        }
+
+        // Restore our filter
+        add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
+
+        if ( ! empty( $update_cache->response[ $this->name ] ) && version_compare( $this->version, $version_info->new_version, '<' ) ) {
+
+            // build a plugin list row, with update notification
+            $wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
+            echo '<tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange"><div class="update-message">';
+
+            $changelog_link = self_admin_url( 'index.php?epl_sl_action=view_plugin_changelog&plugin=' . $this->name . '&slug=' . $this->slug . '&TB_iframe=true&width=772&height=911' );
+
+            if ( empty( $version_info->download_link ) ) {
+                printf(
+                    __( 'There is a new version of %1$s available. <a target="_blank" class="thickbox" href="%2$s">View version %3$s details</a>.', 'epl' ),
+                    esc_html( $version_info->name ),
+                    esc_url( $changelog_link ),
+                    esc_html( $version_info->new_version )
+                );
+            } else {
+                printf(
+                    __( 'There is a new version of %1$s available. <a target="_blank" class="thickbox" href="%2$s">View version %3$s details</a> or <a href="%4$s">update now</a>.', 'epl' ),
+                    esc_html( $version_info->name ),
+                    esc_url( $changelog_link ),
+                    esc_html( $version_info->new_version ),
+                    esc_url( wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $this->name, 'upgrade-plugin_' . $this->name ) )
+                );
+            }
+
+            echo '</div></td></tr>';
+        }
+    }
+    
+    
+    /**
 	 * Updates information on the "View version x.x details" page with custom data.
 	 *
 	 * @uses api_request()
@@ -89,14 +202,26 @@ class EPL_SL_Plugin_Updater {
 	 * @return object $_data
 	 */
 	function plugins_api_filter( $_data, $_action = '', $_args = null ) {
-		if ( ( $_action != 'plugin_information' ) || !isset( $_args->slug ) || ( $_args->slug != $this->slug ) ) return $_data;
+		if ( $_action != 'plugin_information' ) {
+            return $_data;
+        }
 
-		$to_send = array( 'slug' => $this->slug );
+        if ( ! isset( $_args->slug ) || ( $_args->slug != $this->slug ) ) {
+            return $_data;
+        }
+       
+		$to_send = array(
+            'slug'   => $this->slug,
+            'is_ssl' => is_ssl()
+        );
 
-		$api_response = $this->api_request( 'plugin_information', $to_send );
-		if ( false !== $api_response ) $_data = $api_response;
+        $api_response = $this->api_request( 'plugin_information', $to_send );
 
-		return $_data;
+        if ( false !== $api_response ) {
+            $_data = $api_response;
+        }
+
+        return $_data;
 	}
 
 
@@ -147,14 +272,17 @@ class EPL_SL_Plugin_Updater {
 			'url'           => home_url()
 		);
 		$request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+		
+		if ( ! is_wp_error( $request ) ) {
+            $request = json_decode( wp_remote_retrieve_body( $request ) );
+        }
 
-		if ( ! is_wp_error( $request ) ):
-			$request = json_decode( wp_remote_retrieve_body( $request ) );
-			if( $request && isset( $request->sections ) )
-				$request->sections = maybe_unserialize( $request->sections );
-			return $request;
-		else:
-			return false;
-		endif;
-	}
+        if ( $request && isset( $request->sections ) ) {
+            $request->sections = maybe_unserialize( $request->sections );
+        } else {
+            $request = false;
+        }
+
+        return $request;
+    }
 }

@@ -36,22 +36,21 @@ function render_content() {
 					?>
 				</h4>
 			</div>
-			
+
 			<div class="loop-content">
-				<?php
-					while ( have_posts() ) : // The Loop
+				<?php do_action( 'epl_property_loop_start' ); ?>
+				<?php while ( have_posts() ) : // The Loop
 						the_post();
-						
-						echo epl_property_blog();
+						do_action('epl_property_blog');
 					endwhile; // end of one post
 				?>
+				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div>
 			
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
-					<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
-					<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
+					<?php do_action('epl_pagination'); ?>
 				</div>
 			</div>
 		</div>
