@@ -758,6 +758,10 @@ function epl_admin_sidebar () {
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
 			break;
 		
+		case 'email':
+			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[email]]" />';
+			break;
+			
 		case 'url':
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[url]]" />';
 			break;
@@ -1059,6 +1063,13 @@ function epl_admin_sidebar () {
 					'type'		=>	'text',
 					'default'	=>	'Leased',
 
+				),
+				array(
+					'name'		=>	'label_sold',
+					'label'		=>	__('Sold Label (default: Sold)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'Sold',
+
 				)
 
 
@@ -1205,3 +1216,15 @@ function epl_admin_sidebar () {
 	$fields = apply_filters('epl_display_options_filter', $fields);
 	return $fields;
 }
+
+/**
+ * Sold status filter
+ *
+ * @since 2.1.11
+ */
+function epl_sold_label_status_filter_callback() {
+	global $epl_settings;
+	$sold_label	= $epl_settings['label_sold'] != 'Sold' || $epl_settings['label_sold'] != '' ? $epl_settings['label_sold'] : 'Sold';
+	return $sold_label;
+}
+add_filter('epl_sold_label_status_filter', 'epl_sold_label_status_filter_callback' );

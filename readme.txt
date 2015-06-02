@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.2.2
 
-Stable Tag: 2.1.9
+Stable Tag: 2.1.11
 
 License: GNU Version 2 or Any Later Version
 
@@ -114,14 +114,17 @@ With add-ons for [Listing Templates](http://easypropertylistings.com.au/extensio
 Easy Property Listings needs help for translation:
 
 1. English (and British English)
-2. Italian (Rough translation, if you can assist please do)
-3. Dutch
-4. Russian
-5. French
+2. Belgian (Dutch)
+3. Bulgarian
+4. Danish
+5. Dutch
 6. Finnish
-7. Bulgarian
-8. Belgian (Dutch)
-9. Polish
+7. French
+8. German
+9. Italian
+10. Polish
+11. Russian
+12. Ukrainian
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](http://easypropertylistings.com.au/support/forum/translations/).
 
@@ -180,6 +183,30 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.1.11 June 2, 2015 =
+
+* Tweak: Tweak: Added epl- prefix to all author-box and widget css. If you customised the author-box classes prefix your custom css with epl-
+* Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.
+* Tweak: Improved author box responsive CSS.
+* Fix: Undefined status if importing listings not using current status.
+* New: Several author widget filters added to enable additional content through extensions or custom functions.
+* New: Sold label filter which uses the label setting.
+* New: Sold label making Sold STC possible or other Sold label variant.
+* New: Danish language thanks to pascal.
+* New: German language thanks to ChriKn.
+* New: Ukrainian language thanks to Alex.
+
+
+= 2.1.10 May 31, 2015 =
+
+* New: Email field validation added.
+* New: Added status classes to widgets for better targeting of CSS styles.
+* Tweak: Improved video embed and added a filter to adjust video container size.
+* Tweak: Improved CSS wrappers for listing widget and added dynamic class depending on widget display style.
+* Tweak: Added additional classes to Listing Widget list variant style list items.
+* Fix: Additional paging issues fixed in listing widget for other options.
+* Fix: Widget leased selection displays rentals correctly.
 
 = 2.1.9 May 27, 2015 =
 

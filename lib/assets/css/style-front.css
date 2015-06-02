@@ -459,8 +459,8 @@ h6.epl-author-box-title {
 	margin-top:0;
 	margin-bottom: 0;
 }
-.epl-author-box ul.epl-author-tabs,
-.epl-author-box ul.map-tabs {
+.epl-author-box-container ul.epl-author-tabs,
+.epl_adv_map_list  ul.map-tabs {
 	margin: 0;
 	padding: 0;
 	list-style: none;
