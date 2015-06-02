@@ -17,16 +17,18 @@
 		<div class="epl-tab-section">
 			<div class="tab-content">
 
-					<?php do_action('epl_property_price_before'); ?>
-					<div class="property-meta pricing-compatibility">
-						<?php do_action('epl_property_price'); ?>
-					</div>
-					<?php do_action('epl_property_price_after'); ?>
-					<div class="property-feature-icons epl-clearfix">
-						<?php do_action('epl_property_icons'); ?>				
-					</div>
-
-
+				<?php do_action('epl_property_price_before'); ?>
+				<div class="property-meta pricing-compatibility">
+					<?php do_action('epl_property_price'); ?>
+				</div>
+				<?php do_action('epl_property_price_after'); ?>
+				<div class="property-feature-icons epl-clearfix">
+					<?php do_action('epl_property_icons'); ?>				
+				</div>
+				<?php do_action('epl_property_land_category'); ?>
+				<?php do_action('epl_property_commercial_category'); ?>
+				<?php do_action('epl_property_available_dates');// meant for rent only ?>								
+				<?php do_action('epl_property_inspection_times'); ?>
 			</div>
 		</div>
 	</div>
@@ -34,18 +36,6 @@
 	<div class="entry-content epl-content epl-clearfix">
 
 		<div class="tab-wrapper">
-			<div class="epl-tab-section">
-				<div class="tab-content">
-					<div class="tab-content property-details">
-						<?php do_action('epl_property_land_category'); ?>
-						<?php do_action('epl_property_commercial_category'); ?>
-					</div>
-					<div class="property-meta">
-						<?php do_action('epl_property_available_dates');// meant for rent only ?>								
-						<?php do_action('epl_property_inspection_times'); ?>
-					</div>
-				</div>
-			</div>
 
 			<div class="epl-tab-section">
 				<div class="tab-content">
