@@ -32,7 +32,7 @@ function epl_meta_box_init() {
 			'withdrawn'	=>	__('Withdrawn', 'epl'),
 			'offmarket'	=>	__('Off Market', 'epl'),
 			'sold'		=>	array(
-				'label'		=>	__('Sold', 'epl'),
+				'label'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') ),
 				'exclude'	=>	array('rental')
 			),
 			'leased'		=>	array(
