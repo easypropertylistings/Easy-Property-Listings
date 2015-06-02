@@ -263,7 +263,9 @@ if ( is_admin() ) {
 					'leased'  	=> $property->label_leased
 					)
 				);
-				echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
+				if ( ! empty ( $property_status ) ) {
+					echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
+				}
 				break;
 
 				case 'agent':
