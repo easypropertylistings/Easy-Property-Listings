@@ -295,6 +295,21 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 				
+					<h4><?php _e( 'Version 2.1.11', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'Tweak: Added epl- prefix to all author-box and widget css. If you customised the author-box classes prefix your custom css with epl-', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved author box responsive CSS.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Undefined status if importing listings not using current status.', 'epl' );?></li>
+						<li><?php _e( 'New: Several author widget filters added to enable additional content through extensions or custom functions.', 'epl' );?></li>
+						<li><?php _e( 'New: Sold label filter which uses the label setting.', 'epl' );?></li>
+						<li><?php _e( 'New: Sold label making Sold STC possible or other Sold label variant.', 'epl' );?></li>
+						<li><?php _e( 'New: Danish language thanks to pascal.', 'epl' );?></li>
+						<li><?php _e( 'New: German language thanks to ChriKn.', 'epl' );?></li>
+						<li><?php _e( 'New: Ukrainian language thanks to Alex.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.1.10', 'epl' );?></h4>
 				
 					<ul>
