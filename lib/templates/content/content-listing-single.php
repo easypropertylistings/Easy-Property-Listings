@@ -87,7 +87,9 @@
 			
 			<?php do_action( 'epl_single_extensions' ); ?>
 			
+			<?php do_action( 'epl_single_before_author_box' ); ?>
 			<?php do_action( 'epl_single_author' ); ?>
+			<?php do_action( 'epl_single_after_author_box' ); ?>
 		</div>
 	</div>
 	<!-- categories, tags and comments -->
