@@ -1040,7 +1040,7 @@ function epl_author_tabs () {
 }
 
 function epl_author_class ($classes) {
-	$classes 		=	explode(' ',$classes.' author-box');
+	$classes 		=	explode(' ',$classes.' epl-author-box');
 	$classes		= 	array_filter(array_unique($classes));
 	$classes 		=	apply_filters('epl_author_class',$classes);
 	if(!empty($classes)){
@@ -1058,26 +1058,26 @@ function epl_author_tab_author_id($epl_author = array() ) {
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
 		
 ?>
-	<div class="author-contact-details">
+	<div class="epl-author-contact-details">
 	
-		<h5 class="author-title">
+		<h5 class="epl-author-title">
 			<a href="<?php echo $permalink ?>">
 				<?php echo $author_title;  ?>
 			</a>
 		</h5>
-		<div class="author-position">
+		<div class="epl-author-position">
 			<span class="label-position"></span>
 			<span class="position"><?php echo $epl_author->get_author_position() ?></span>
 		</div>
 
-		<div class="author-contact">
+		<div class="epl-author-contact">
 			<span class="label-mobile"></span>
 			<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
 		</div>
 	</div>
-	<div class="author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
+	<div class="epl-author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
 	<div class="epl-clearfix"></div>
-	<div class="author-social-buttons">
+	<div class="epl-author-social-buttons">
 		<?php
 			$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
 			foreach($social_icons as $social_icon){
@@ -1111,7 +1111,7 @@ function epl_author_tab_video($epl_author = array() ) {
 	}
 	$video_html = $epl_author->get_video_html();
 	if($video_html != '')
-		echo '<div class="author-video epl-video-container">'.$video_html.'</div>';
+		echo '<div class="epl-author-video epl-video-container">'.$video_html.'</div>';
 }
 
 function epl_author_tab_contact_form( $epl_author = array() ) {
