@@ -2,8 +2,7 @@
 	$epl_settings = epl_settings();
 	
 	$new_fields_defaults = array(
-		'label_leased'				=>	__('Leased','epl'),
-		'label_under_offer'			=>	__('Under Offer','epl'),
+		'label_sold'				=>	__('Sold','epl'),
 	);
 	
 	
