@@ -282,7 +282,6 @@ if ( is_admin() ) {
 				if ( ! empty ( $property_status ) ) {
 					echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
 				}
-
 				break;
 				
 				case 'agent':
