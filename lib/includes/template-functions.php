@@ -725,7 +725,7 @@ add_action('epl_property_heading','epl_property_heading');
 **/
 function epl_property_secondary_heading() {
 	global $property;
-	echo $property->get_property_category();
+	echo '<span class="epl-property-category">'.$property->get_property_category().'</span> ';
 	if($property->get_property_meta('property_status') == 'sold'){
 		echo '<span class="sold-status">'.$property->label_sold.'</span>';
 	}
