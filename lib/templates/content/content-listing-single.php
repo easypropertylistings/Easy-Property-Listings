@@ -43,7 +43,6 @@
 
 		<div class="tab-wrapper">
 			<div class="epl-tab-section">
-				<h5 class="tab-title"><?php echo apply_filters('property_tab_title',__('Property Details', 'epl')); ?></h5>
 				<div class="tab-content">
 					<div class="tab-content property-details">
 						<h3 class="tab-address">
@@ -61,7 +60,6 @@
 			</div>
 
 			<div class="epl-tab-section">
-				<h5 class="tab-title"><?php _e('Description', 'epl'); ?></h5>
 				<div class="tab-content">
 					<!-- heading -->
 					<h2 class="entry-title"><?php do_action('epl_property_heading'); ?></h2>
@@ -89,24 +87,7 @@
 			
 			<?php do_action( 'epl_single_extensions' ); ?>
 			
-			
-			<!-- Agent -->
-			<?php
-			if ( get_post_type() != 'rental' ) { ?>
-				<div class="epl-tab-section">
-					<h5 class="tab-title"><?php _e('Real Estate Agent', 'epl'); ?></h5>
-					<div class="tab-content">
-						<?php do_action( 'epl_single_author' ); ?>
-					</div>
-				</div>
-			<?php } else { ?>
-				<div class="epl-tab-section">
-					<h5 class="tab-title"><?php _e('Property Manager', 'epl'); ?></h5>
-					<div class="tab-content">
-						<?php do_action( 'epl_single_author' ); ?>
-					</div>
-				</div>				
-			<?php } ?>
+			<?php do_action( 'epl_single_author' ); ?>
 		</div>
 	</div>
 	<!-- categories, tags and comments -->

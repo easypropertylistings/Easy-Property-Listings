@@ -197,7 +197,7 @@ function epl_property_single_default() {
 	global $epl_settings;
 	if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
 	
-		epl_get_template_part('content-listing-single-lucky.php');
+		epl_get_template_part('content-listing-single-compatibility.php');
 		
 	} else {
 	
@@ -268,7 +268,7 @@ function epl_property_blog() {
 			
 			if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
 	
-				epl_get_template_part('loop-listing-blog-default-lucky.php');
+				epl_get_template_part('loop-listing-blog-default-compatibility.php');
 		
 			} else {
 	
@@ -1427,6 +1427,27 @@ function epl_hide_map_from_front() {
 	}
 }
 add_action('wp','epl_hide_map_from_front',10);
+
+/**
+* Ability to hide author box on single listings
+*
+* @since 2.2
+*/
+function epl_hide_author_box_from_front() {
+	$epl_posts 		= epl_get_active_post_types();
+	$epl_posts 		= array_keys($epl_posts);
+	
+	global $post,$property;
+	
+	if( is_single() && in_array($post->post_type,$epl_posts) ) {
+		
+		$hide_author_box = get_post_meta($post->ID,'property_agent_hide_author_box',true);
+		if($hide_author_box == 'yes') {
+			remove_all_actions( 'epl_single_author' );
+		}
+	}
+}
+add_action('wp','epl_hide_author_box_from_front',10);
 
 /**
  * Disable paging on listing widget

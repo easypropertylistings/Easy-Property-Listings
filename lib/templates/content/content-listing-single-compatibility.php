@@ -7,39 +7,31 @@
  */
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded epl-property-single-theme-compatibility' ); ?>>
 	<div class="entry-header epl-header epl-clearfix">
-		<div class="title-meta-wrapper">
-			<div class="entry-col property-details">
-			
-				<?php do_action('epl_property_before_title'); ?>
-				<h1 class="entry-title">
-					<?php do_action('epl_property_title'); ?>
-				</h1>
-				<?php do_action('epl_property_after_title'); ?>
-				
-			</div>
 	
-			<div class="entry-col property-pricing-details">
-			
-				<?php do_action('epl_property_price_before'); ?>
-				<div class="property-meta pricing">
-					<?php do_action('epl_property_price'); ?>
-				</div>
-				<?php do_action('epl_property_price_after'); ?>
-				<div class="property-feature-icons epl-clearfix">
-					<?php do_action('epl_property_icons'); ?>				
-				</div>
-				
+		<?php do_action( 'epl_property_featured_image' ); ?>
+		
+		<?php do_action( 'epl_buttons_single_property' ); ?>
+		
+		<div class="epl-tab-section">
+			<div class="tab-content">
+
+					<?php do_action('epl_property_price_before'); ?>
+					<div class="property-meta pricing-compatibility">
+						<?php do_action('epl_property_price'); ?>
+					</div>
+					<?php do_action('epl_property_price_after'); ?>
+					<div class="property-feature-icons epl-clearfix">
+						<?php do_action('epl_property_icons'); ?>				
+					</div>
+
+
 			</div>
 		</div>
 	</div>
 
 	<div class="entry-content epl-content epl-clearfix">
-	
-		<?php do_action( 'epl_property_featured_image' ); ?>
-		
-		<?php do_action( 'epl_buttons_single_property' ); ?>
 
 		<div class="tab-wrapper">
 			<div class="epl-tab-section">
@@ -56,7 +48,6 @@
 			</div>
 
 			<div class="epl-tab-section">
-				<h5 class="tab-title"><?php _e('Description', 'epl'); ?></h5>
 				<div class="tab-content">
 					<!-- heading -->
 					<h2 class="entry-title"><?php do_action('epl_property_heading'); ?></h2>
@@ -74,7 +65,7 @@
 
 			<?php do_action('epl_property_tab_section_before'); ?>
 			<div class="epl-tab-section">
-					<?php do_action('epl_property_tab_section'); ?>
+				<?php do_action('epl_property_tab_section'); ?>
 			</div>
 			<?php do_action('epl_property_tab_section_after'); ?>
 			
@@ -84,24 +75,8 @@
 			
 			<?php do_action( 'epl_single_extensions' ); ?>
 			
-			
-			<!-- Agent -->
-			<?php
-			if ( get_post_type() != 'rental' ) { ?>
-				<div class="epl-tab-section">
-					<h5 class="tab-title"><?php _e('Real Estate Agent', 'epl'); ?></h5>
-					<div class="tab-content">
-						<?php do_action( 'epl_single_author' ); ?>
-					</div>
-				</div>
-			<?php } else { ?>
-				<div class="epl-tab-section">
-					<h5 class="tab-title"><?php _e('Property Manager', 'epl'); ?></h5>
-					<div class="tab-content">
-						<?php do_action( 'epl_single_author' ); ?>
-					</div>
-				</div>				
-			<?php } ?>
+			<?php do_action( 'epl_single_author' ); ?>
+
 		</div>
 	</div>
 	<!-- categories, tags and comments -->
