@@ -49,9 +49,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				<?php }
 			
 				if ( $d_bio == 'on' ) {
-					$epl_author->get_description_html(); 
+					echo $epl_author->get_description_html(); 
 				}
 			?>
-		</div>	
+		</div>
+		<?php do_action('epl_author_widget_extension'); ?>
 	</div>
 </div>
