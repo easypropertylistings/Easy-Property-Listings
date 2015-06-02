@@ -267,12 +267,13 @@ if ( is_admin() ) {
 					'current' 	=> __('Current', 'epl'),
 					'withdrawn' 	=> __('Withdrawn', 'epl'),
 					'offmarket' 	=> __('Off Market', 'epl'),
-					'sold'  	=> __('Sold', 'epl'),
+					'sold'  	=> apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') ),
 					'leased'  	=> $property->label_leased
 					)
 				);
-				echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
-
+				if ( ! empty ( $property_status ) ) {
+					echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
+				}
 				break;
 				
 				case 'agent':
