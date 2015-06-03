@@ -1422,3 +1422,22 @@ function epl_nopaging($query) {
 	}
 }
 add_action('pre_get_posts','epl_nopaging');
+
+/**
+ * Retain user grid/list view
+ *
+ * @since 2.1.11
+ */
+function epl_update_default_view() {
+	global $epl_settings;
+	$view 		= isset( $_POST['view'] ) ? trim( $_POST['view'] ) : '';
+
+	if( in_array($view,array('list','grid') ) ) {
+		$epl_settings['display_archive_view_type'] = $view;	
+		update_option('epl_settings',$epl_settings);
+		
+	}
+	wp_die('success');	
+}
+add_action('wp_ajax_epl_update_default_view','epl_update_default_view');
+add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');
