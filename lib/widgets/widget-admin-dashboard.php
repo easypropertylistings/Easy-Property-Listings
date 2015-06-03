@@ -97,7 +97,7 @@ function epl_posts_highlights($type) {
 		case 'rental':
 			$filters = array(
 				array('key'	=>	'property_status','value'	=>	'current','string'	=>	__('Current','epl')),
-				array('key'	=>	'property_status','value'	=>	'leased','string'	=>	__('Leased','epl')),
+				array('key'	=>	'property_status','value'	=>	'leased','string'	=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'epl') ) ),
 				array('key'	=>	'property_status','value'	=>	'withdrawn','string'	=>	__('Withdrawn','epl')),
 				array('key'	=>	'property_status','value'	=>	'offmarket','string'	=>	__('Off Market','epl')),
 			);
@@ -115,9 +115,9 @@ function epl_posts_highlights($type) {
 			$filters = array(
 				array('key'	=>	'property_status','value'	=>	'current','string'	=>	__('Current','epl')),
 				array('key'	=>	'property_authority','value'	=>	'auction','string'	=>	__('Auction','epl')), // ONLY if == current
-				array('key'	=>	'property_under_offer','value'	=>	'yes','string'		=>	__('Under Offer','epl')),
+				array('key'	=>	'property_under_offer','value'	=>	'yes','string'		=>	apply_filters( 'epl_under_offer_label_status_filter' , __('Under Offer', 'epl') ) ),
 				array('key'	=>	'property_status','value'	=>	'sold','string'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') ) ),
-				array('key'	=>	'property_status','value'	=>	'leased','string'	=>	__('Leased','epl')),
+				array('key'	=>	'property_status','value'	=>	'leased','string'	=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'epl') ) ),
 				array('key'	=>	'property_status','value'	=>	'withdrawn','string'	=>	__('Withdrawn','epl')),
 				array('key'	=>	'property_status','value'	=>	'offmarket','string'	=>	__('Off Market','epl')),
 			);
@@ -137,7 +137,7 @@ function epl_posts_highlights($type) {
 			$filters = array(
 				array('key'	=>	'property_status','value'	=>	'current','string'	=>	__('Current','epl')),
 				array('key'	=>	'property_authority','value'	=>	'auction','string'	=>	__('Auction','epl')), // ONLY if == current
-				array('key'	=>	'property_under_offer','value'	=>	'yes','string'		=>	__('Under Offer','epl')),
+				array('key'	=>	'property_under_offer','value'	=>	'yes','string'		=>	apply_filters( 'epl_under_offer_label_status_filter' , __('Under Offer', 'epl') ) ),
 				array('key'	=>	'property_status','value'	=>	'sold','string'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') ) ),
 				array('key'	=>	'property_status','value'	=>	'withdrawn','string'	=>	__('Withdrawn','epl')),
 				array('key'	=>	'property_status','value'	=>	'offmarket','string'	=>	__('Off Market','epl')),

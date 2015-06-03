@@ -36,7 +36,7 @@ function epl_meta_box_init() {
 				'exclude'	=>	array('rental')
 			),
 			'leased'		=>	array(
-				'label'		=>	__('Leased', 'epl'),
+				'label'		=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'epl') ),
 				'include'	=>	array('rental', 'commercial', 'commercial_land', 'business')
 			)
 		)
