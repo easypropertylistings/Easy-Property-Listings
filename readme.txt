@@ -186,7 +186,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 2.1.11 June 2, 2015 =
 
-* Tweak: Tweak: Added epl- prefix to all author-box and widget css.
+* Tweak: Added epl- prefix to all author-box and widget css.
 * Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.
 * Tweak: Improved author box responsive CSS.
 * Tweak: Leased label when adding a property will use custom label.
