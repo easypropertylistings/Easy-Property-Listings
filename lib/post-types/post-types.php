@@ -46,7 +46,7 @@ function epl_custom_restrict_manage_posts() {
 		}
 		
 		if($post_type == 'rental' || $post_type == 'holiday_rental' || $post_type == 'commercial' || $post_type == 'business' || $post_type == 'commercial_land') {
-			$fields['leased'] = __('Leased', 'epl');
+			$fields['leased'] = apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'epl') );
 		}
 		
 		if(!empty($fields)) {

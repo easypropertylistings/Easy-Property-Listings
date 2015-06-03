@@ -253,7 +253,7 @@ if ( is_admin() ) {
 					'current' 	=> __('Current', 'epl'),
 					'withdrawn'	=> __('Withdrawn', 'epl'),
 					'offmarket'	=> __('Off Market', 'epl'),
-					'sold'  	=> apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') ),
+					'sold'  	=> $property->label_sold,
 					'leased'  	=> $property->label_leased
 					)
 				);
