@@ -301,13 +301,17 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Added epl- prefix to all author-box and widget css.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved author box responsive CSS.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Updated extension updater for multisite and other improvements.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Leased label when adding a property will use custom label.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Wrapper class for property category.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Undefined status if importing listings not using current status.', 'epl' );?></li>
 						<li><?php _e( 'Fix: When user selects grid/list option and pages the user selected view is retained.', 'epl' );?></li>
 						<li><?php _e( 'Fix: [listing post_type="rental"] shortcode price sorting for rental.', 'epl' );?></li>
+						<li><?php _e( 'New: Author box is now able to be hidden on a per listing basis.', 'epl' );?></li>
+						<li><?php _e( 'New: Added filters for author box social links.', 'epl' );?></li>
 						<li><?php _e( 'New: Inspection filter to adjust the inspection date/time format.', 'epl' );?></li>
 						<li><?php _e( 'New: Several author widget filters added to enable additional content through extensions or custom functions.', 'epl' );?></li>
-						<li><?php _e( 'New: Sold, leased, under offer label filter which uses the label setting and label changes dashboard widget.', 'epl' );?></li>
+						<li><?php _e( 'New: Sold, leased, under offer label filter which uses the label setting and label changes dashboard widget, admin category filters and search widget.', 'epl' );?></li>
 						<li><?php _e( 'New: Sold label making Sold STC possible or other Sold label variant.', 'epl' );?></li>
 						<li><?php _e( 'New: Danish language thanks to pascal.', 'epl' );?></li>
 						<li><?php _e( 'New: German language thanks to ChriKn.', 'epl' );?></li>

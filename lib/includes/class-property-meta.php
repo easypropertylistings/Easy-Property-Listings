@@ -94,12 +94,12 @@ class EPL_Property_Meta {
 					// unordered list for multiple inspection times
 					foreach ($inspectarray as $key => &$element) {
 						if(!empty($element)) {
-							$element = apply_filters('epl_inspection_format',$element);
+							$element_formatted = apply_filters('epl_inspection_format',$element);
 							$return .= "<li class='home-open-date'>
 										<a 
 											class ='epl_inspection_calendar'
 											href='".get_bloginfo('url')."?epl_cal_dl=1&cal=ical&dt=".base64_encode(htmlspecialchars($element))."&propid=".$this->post->ID."' >" 
-												. htmlspecialchars($element) ."
+												. $element_formatted ."
 										</a>
 									</li>";
 						}
