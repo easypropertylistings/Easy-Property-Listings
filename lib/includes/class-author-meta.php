@@ -52,7 +52,7 @@ class EPL_Author_Meta {
     	
     	if ( $this->email != '' ) {
 			$html = '
-				<a class="epl-author-icon email-icon-24" 
+				<a class="epl-author-icon author-icon email-icon-24" 
 					href="mailto:' . $this->email . '" title="'.__('Contact', 'epl').' '.$this->name.' '.__('by Email', 'epl').'">'.
 					__('Email', 'epl').
 				'</a>';
@@ -68,7 +68,7 @@ class EPL_Author_Meta {
     function get_twitter_html($html = ''){
     	if ( $this->twitter != '' ) {
 			$html = '
-				<a class="epl-author-icon twitter-icon-24" 
+				<a class="epl-author-icon author-icon twitter-icon-24" 
 					href="http://twitter.com/' . $this->twitter . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Twitter', 'epl').'">'.
 					__('Twitter', 'epl').
 				'</a>';
@@ -84,7 +84,7 @@ class EPL_Author_Meta {
     function get_google_html($html = ''){
     	if ( $this->google != '' ) {
 			$html = '
-				<a class="epl-author-icon google-icon-24" 
+				<a class="epl-author-icon author-icon google-icon-24" 
 					href="https://plus.google.com/' . $this->google . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Google', 'epl').'">'.
 					__('Google', 'epl').
 				'</a>';
@@ -100,7 +100,7 @@ class EPL_Author_Meta {
     function get_facebook_html($html = ''){
     	if ( $this->facebook != '' ) {
 			$html = '
-				<a class="epl-author-icon facebook-icon-24" 
+				<a class="epl-author-icon author-icon facebook-icon-24" 
 					href="http://facebook.com/' . $this->facebook . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Facebook', 'epl').'">'.
 					__('Facebook', 'epl').
 				'</a>';
@@ -116,7 +116,7 @@ class EPL_Author_Meta {
     function get_linkedin_html($html = '') {
     	if ( $this->linkedin != '' ) {
 			$html = '
-				<a class="epl-author-icon linkedin-icon-24" href="http://au.linkedin.com/in/' . $this->linkedin . '" 
+				<a class="epl-author-icon author-icon linkedin-icon-24" href="http://au.linkedin.com/in/' . $this->linkedin . '" 
 					title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Linkedin', 'epl').'">'.
 					__('Linkedin', 'epl').
 				'</a>';
@@ -132,7 +132,7 @@ class EPL_Author_Meta {
     function get_skype_html($html = '') {
     	if ( $this->skype != '' ) {
 			$html = '
-				<a class="epl-author-icon skype-icon-24" href="http://skype.com/' . $this->skype . '" 
+				<a class="epl-author-icon author-icon skype-icon-24" href="http://skype.com/' . $this->skype . '" 
 					title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Skype', 'epl').'">'.
 					__('Skype', 'epl').
 				'</a>';
@@ -163,7 +163,7 @@ class EPL_Author_Meta {
 		$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($this->author_id) ,$this);
 
 		$html =     '
-			<div class="epl-author-content">'.$this->description.'</div>
+			<div class="epl-author-content author-content">'.$this->description.'</div>
 				<span class="bio-more">
 					<a href="'.$permalink.'">'.
 						apply_filters('epl_author_read_more_label',__('Read More', 'epl') ).'

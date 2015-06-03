@@ -11,10 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <!-- Author Box Tall Container -->
-<div class="epl-widget epl-author-card author">
+<div class="epl-widget epl-author-card epl-author author-card author">
 	<div class="entry-content">
 		<?php do_action('epl_author_widget_before_image'); ?>
-		<div class="author-box-tall author-image epl-clearfix">
+		<div class="epl-author-box-tall epl-author-image author-box-tall author-image epl-clearfix">
 			<?php if ( 'on' == $d_image ) {
 					if ( function_exists('get_avatar') ) { 
 						echo apply_filters('epl_author_tab_image',epl_author_tab_image($epl_author),$epl_author );
@@ -24,18 +24,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		<?php do_action('epl_author_widget_after_image'); ?>
 		
 		<?php do_action('epl_author_widget_before_content'); ?>
-		<div class="author-box-tall author-details epl-clearfix"> <?php
+		<div class="epl-author-box-tall epl-author-details author-box-tall author-details epl-clearfix"> <?php
 			$permalink 	= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
 			$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author ); ?>
 				
 			<?php do_action('epl_author_widget_before_title'); ?>
-			<h5 class="author-title"><a href="<?php echo $permalink; ?>"><?php echo $author_title; ?></a></h5>
+			<h5 class="epl-author-title author-title"><a href="<?php echo $permalink; ?>"><?php echo $author_title; ?></a></h5>
 			<?php do_action('epl_author_widget_after_title'); ?>
 			
-			<div class="author-position"><?php echo $epl_author->get_author_position() ?></div>
+			<div class="epl-author-position author-position"><?php echo $epl_author->get_author_position() ?></div>
 			
 			<?php do_action('epl_author_widget_before_contact'); ?>
-			<div class="author-contact">
+			<div class="epl-author-contact author-contact">
 				<?php if ( $epl_author->get_author_mobile() != '' ) { ?>
 					<span class="label-mobile"><?php _e('Mobile', 'epl'); ?> </span>
 					<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			
 			<?php do_action('epl_author_widget_before_icons'); ?>
 			<?php if ( $d_icons == 'on' ) { ?>
-				<div class="author-social-buttons">
+				<div class="epl-author-social-buttons author-social-buttons">
 					<?php
 						$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
 						foreach($social_icons as $social_icon){
