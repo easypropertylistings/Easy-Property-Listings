@@ -186,22 +186,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 2.1.11 June 2, 2015 =
 
-* Tweak: Tweak: Added epl- prefix to all author-box and widget css. If you customised the author-box classes prefix your custom css with epl-
+* Tweak: Tweak: Added epl- prefix to all author-box and widget css.
 * Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.
 * Tweak: Improved author box responsive CSS.
 * Tweak: Leased label when adding a property will use custom label.
-
-
 * Fix: Undefined status if importing listings not using current status.
 * Fix: When user selects grid/list option and pages the user selected view is retained.
-
-
-
+* Fix: [listing post_type="rental"] shortcode price sorting for rental.
 * New: Inspection filter to adjust the inspection date/time format.
-
-
-
-
 * New: Several author widget filters added to enable additional content through extensions or custom functions.
 * New: Sold, leased, under offer label filter which uses the label setting and label changes dashboard widget.
 * New: Sold label making Sold STC possible or other Sold label variant.

@@ -165,7 +165,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 						''		=>	__('Any' , 'epl'),
 						'current'	=>	__('Current' , 'epl'),
 						'sold'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') ),
-						'leased'	=>	__('Leased' , 'epl')
+						'leased'	=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'epl') )
 					);
 					
 					foreach($status_list as $k=>$v) {
