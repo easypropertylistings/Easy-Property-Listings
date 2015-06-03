@@ -189,6 +189,16 @@ function epl_plugin_updates() {
 		include( EPL_PATH_UPDATES.'epl-2.1.php' );
 		update_option( 'epl_version' ,'2.1');
 	}
+	
+	if ( version_compare( $current_version, '2.1.8', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-2.1.8.php' );
+		update_option( 'epl_version' ,'2.1.8');
+	}
+	
+	if ( version_compare( $current_version, '2.1.11', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-2.1.11.php' );
+		update_option( 'epl_version' ,'2.1.11');
+	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
 

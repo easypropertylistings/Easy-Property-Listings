@@ -46,10 +46,12 @@ function epl_shortcode_listing_callback( $atts ) {
 	}
 	
 	$sort_options = array(
-		'price'			=>	'property_price',
+		'price'			=>	$meta_key_price,
 		'date'			=>	'post_date'
 	);
-	
+	if( !is_array($post_type) ) {
+		$post_type 			= array_map('trim',explode(',',$post_type) );
+	}
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(
@@ -101,11 +103,11 @@ function epl_shortcode_listing_callback( $atts ) {
 		$orderby = sanitize_text_field( trim($_GET['sortby']) );
 		if($orderby == 'high') {
 			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	'property_price';
+			$args['meta_key']	=	$meta_key_price;
 			$args['order']		=	'DESC';
 		} elseif($orderby == 'low') {
 			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	'property_price';
+			$args['meta_key']	=	$meta_key_price;
 			$args['order']		=	'ASC';
 		} elseif($orderby == 'new') {
 			$args['orderby']	=	'post_date';

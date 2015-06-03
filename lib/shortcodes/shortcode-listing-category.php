@@ -57,7 +57,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'price'			=>	$meta_key_price,
 		'date'			=>	'post_date'
 	);
-	
+	if( !is_array($post_type) ) {
+		$post_type 			= array_map('trim',explode(',',$post_type) );
+	}
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(

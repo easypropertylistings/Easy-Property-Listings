@@ -8,6 +8,9 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+
 ?>
 
-<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+<li id="post-<?php the_ID(); ?>" class="epl-widget-list-item <?php do_action('epl_property_widget_status_class'); ?>">
+	<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+</li>

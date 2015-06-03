@@ -1,6 +1,6 @@
 <?php
 /**
- * Loop Property Template: Table
+ * Loop Property Template: Table Open
  *
  * @package easy-property-listings
  * @subpackage Theme
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 global $property;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-property-table epl-table epl-clearfix'); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-property-table epl-table epl-table-open epl-clearfix'); ?>>
 	<?php do_action('epl_property_before_content'); ?>				
 		<div class="epl-table-column-image property-featured-image-wrapper">
 			<a href="<?php the_permalink(); ?>">
@@ -24,19 +24,18 @@ global $property;
 		<div class="epl-table-column-content property-box property-box-right property-content">
 			<!-- Address -->
 			<div class="epl-table-box epl-table-column epl-table-column-left">
-				<a href="<?php the_permalink(); ?>">
-					<?php do_action('epl_property_address'); ?>
-				</a>
+				<div class="epl-table-address"><a href="<?php the_permalink(); ?>"><?php do_action('epl_property_address'); ?></a></div>
+				<div class="property-feature-icons">
+					<?php do_action('epl_property_icons'); ?>				
+				</div>
 			</div>
 			<!-- Property Featured Icons -->
-			<div class="epl-table-box epl-table-column epl-table-column-middle"> 
-				<div class="property-feature-icons">
-					<?php do_action('epl_property_icons'); ?>			
-				</div>
+			<div class="epl-table-box epl-table-column epl-table-column-middle">
+				<?php do_action('epl_property_price'); ?>	
 			</div>
 			<!-- Price -->
 			<div class="epl-table-box epl-table-column epl-table-column-right">
-				<?php do_action('epl_property_price'); ?>
+				<?php do_action('epl_property_inspection_times'); ?>
 			</div>
 		</div>	
 	<?php do_action('epl_property_after_content'); ?>

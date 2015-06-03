@@ -32,11 +32,11 @@ function epl_meta_box_init() {
 			'withdrawn'	=>	__('Withdrawn', 'epl'),
 			'offmarket'	=>	__('Off Market', 'epl'),
 			'sold'		=>	array(
-				'label'		=>	__('Sold', 'epl'),
+				'label'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') ),
 				'exclude'	=>	array('rental')
 			),
 			'leased'		=>	array(
-				'label'		=>	__('Leased', 'epl'),
+				'label'		=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'epl') ),
 				'include'	=>	array('rental', 'commercial', 'commercial_land', 'business')
 			)
 		)
@@ -909,7 +909,16 @@ function epl_meta_box_init() {
 								'type'		=>	'text',
 								'geocoder'	=>	'true',
 								'maxlength'	=>	'40'
+							),
+							array(
+								'name'		=>	'property_address_hide_map',
+								'label'		=>	__('', 'epl'),
+								'type'		=>	'checkbox_single',
+								'opts'		=>	array(
+									'yes'	=>	__('Hide Map', 'epl'),
+								)
 							)
+
 						)
 					)
 				)
