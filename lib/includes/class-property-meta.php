@@ -92,8 +92,9 @@ class EPL_Property_Meta {
 				$return =  "";
 				if(count($inspectarray) >= 1) {
 					// unordered list for multiple inspection times
-					foreach ($inspectarray as $key => $element) {
+					foreach ($inspectarray as $key => &$element) {
 						if(!empty($element)) {
+							$element = apply_filters('epl_inspection_format',$element);
 							$return .= "<li class='home-open-date'>
 										<a 
 											class ='epl_inspection_calendar'
