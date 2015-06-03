@@ -1439,5 +1439,5 @@ function epl_update_default_view() {
 	}
 	wp_die('success');	
 }
-add_action('wp_ajax_epl_update_default_view','epl_update_default_view');
-add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');
+//add_action('wp_ajax_epl_update_default_view','epl_update_default_view');
+//add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');
