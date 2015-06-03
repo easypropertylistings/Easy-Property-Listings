@@ -707,7 +707,7 @@ add_action('epl_property_heading','epl_property_heading');
 **/
 function epl_property_secondary_heading() {
 	global $property;
-	echo $property->get_property_category();
+	echo '<span class="epl-property-category">' . $property->get_property_category() . '</span> ';
 	if($property->get_property_meta('property_status') == 'sold'){
 		echo '<span class="sold-status">'.$property->label_sold.'</span>';
 	}
@@ -1422,6 +1422,27 @@ function epl_nopaging($query) {
 	}
 }
 add_action('pre_get_posts','epl_nopaging');
+
+/**
+ * Ability to hide author box on single listings
+ *
+ * @since 2.1.11
+ */
+function epl_hide_author_box_from_front() {
+	$epl_posts 		= epl_get_active_post_types();
+	$epl_posts 		= array_keys($epl_posts);
+	
+	global $post,$property;
+	
+	if( is_single() && in_array($post->post_type,$epl_posts) ) {
+		
+		$hide_author_box = get_post_meta($post->ID,'property_agent_hide_author_box',true);
+		if($hide_author_box == 'yes') {
+			remove_all_actions( 'epl_single_author' );
+		}
+	}
+}
+add_action('wp','epl_hide_author_box_from_front',10);
 
 /**
  * Retain user grid/list view
