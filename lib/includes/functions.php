@@ -1191,7 +1191,31 @@ function epl_admin_sidebar () {
  */
 function epl_sold_label_status_filter_callback() {
 	global $epl_settings;
-	$sold_label	= $epl_settings['label_sold'] != 'Sold' || $epl_settings['label_sold'] != '' ? $epl_settings['label_sold'] : 'Sold';
+	$sold_label	= $epl_settings['label_sold'] != 'Sold' || $epl_settings['label_sold'] != '' ? $epl_settings['label_sold'] : __('Sold' , 'epl');
 	return $sold_label;
 }
 add_filter('epl_sold_label_status_filter', 'epl_sold_label_status_filter_callback' );
+
+/**
+ * Under Offer status filter
+ *
+ * @since 2.1.11
+ */
+function epl_under_offer_label_status_filter_callback() {
+	global $epl_settings;
+	$under_offer_label	= $epl_settings['label_under_offer'] != 'Under Offer' || $epl_settings['label_under_offer'] != '' ? $epl_settings['label_under_offer'] : __('Under Offer' , 'epl');
+	return $under_offer_label;
+}
+add_filter('epl_under_offer_label_status_filter', 'epl_under_offer_label_status_filter_callback' );
+
+/**
+ * Leased status filter
+ *
+ * @since 2.1.11
+ */
+function epl_leased_label_status_filter_callback() {
+	global $epl_settings;
+	$leased_label	= $epl_settings['label_leased'] != 'Leased' || $epl_settings['label_leased'] != '' ? $epl_settings['label_leased'] : __('Leased' , 'epl');
+	return $leased_label;
+}
+add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_callback' );

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <!-- Author Box Container Tabbed -->
 <div id="epl-box<?php echo $epl_author->author_id; ?>" class="epl-author-box-container">		
-	<ul class="epl-author-tabs">
+	<ul class="epl-author-tabs author-tabs">
 		<?php
 			
 			$author_tabs = epl_author_tabs();
@@ -39,8 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		?>
 	</ul>
 
-	<div class="epl-author-box-outer-wrapper epl-clearfix">			
-		<div class="epl-author-box epl-author-image">
+	<div class="epl-author-box-outer-wrapper author-box-outer-wrapper epl-clearfix">			
+		<div class="epl-author-box epl-author-image author-box author-image">
 			<?php
 				echo apply_filters('epl_author_tab_image',epl_author_tab_image($epl_author),$epl_author );
 			?>
