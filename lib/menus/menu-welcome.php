@@ -298,12 +298,16 @@ class EPL_Welcome {
 					<h4><?php _e( 'Version 2.1.11', 'epl' );?></h4>
 				
 					<ul>
-						<li><?php _e( 'Tweak: Added epl- prefix to all author-box and widget css. If you customised the author-box classes prefix your custom css with epl-', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added epl- prefix to all author-box and widget css.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved author box responsive CSS.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Leased label when adding a property will use custom label.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Undefined status if importing listings not using current status.', 'epl' );?></li>
+						<li><?php _e( 'Fix: When user selects grid/list option and pages the user selected view is retained.', 'epl' );?></li>
+						<li><?php _e( 'Fix: [listing post_type="rental"] shortcode price sorting for rental.', 'epl' );?></li>
+						<li><?php _e( 'New: Inspection filter to adjust the inspection date/time format.', 'epl' );?></li>
 						<li><?php _e( 'New: Several author widget filters added to enable additional content through extensions or custom functions.', 'epl' );?></li>
-						<li><?php _e( 'New: Sold label filter which uses the label setting.', 'epl' );?></li>
+						<li><?php _e( 'New: Sold, leased, under offer label filter which uses the label setting and label changes dashboard widget.', 'epl' );?></li>
 						<li><?php _e( 'New: Sold label making Sold STC possible or other Sold label variant.', 'epl' );?></li>
 						<li><?php _e( 'New: Danish language thanks to pascal.', 'epl' );?></li>
 						<li><?php _e( 'New: German language thanks to ChriKn.', 'epl' );?></li>
