@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 2.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-06-03 20:21+0800\n"
-"PO-Revision-Date: 2015-06-03 20:21+0800\n"
+"POT-Creation-Date: 2015-06-04 15:14+0800\n"
+"PO-Revision-Date: 2015-06-04 15:14+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: en\n"
@@ -5086,23 +5086,7 @@ msgstr ""
 msgid "Tags : "
 msgstr ""
 
-#: templates/content/content-listing-single.php:46
-msgid "Property Details"
-msgstr ""
-
-#: templates/content/content-listing-single.php:64
-msgid "Description"
-msgstr ""
-
-#: templates/content/content-listing-single.php:97
-msgid "Real Estate Agent"
-msgstr ""
-
-#: templates/content/content-listing-single.php:104
-msgid "Property Manager"
-msgstr ""
-
-#: templates/content/content-listing-single.php:115
+#: templates/content/content-listing-single.php:98
 #: templates/themes/heuman/single-listing.php:23
 msgid "Pages:"
 msgstr ""
