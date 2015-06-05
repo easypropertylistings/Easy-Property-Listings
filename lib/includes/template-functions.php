@@ -707,9 +707,9 @@ add_action('epl_property_heading','epl_property_heading');
 **/
 function epl_property_secondary_heading() {
 	global $property;
-	echo $property->get_property_category();
+	echo '<span class="epl-property-category">' . $property->get_property_category() . '</span> ';
 	if($property->get_property_meta('property_status') == 'sold'){
-		echo '<span class="sold-status">'.__('Sold', 'epl').'</span>';
+		echo '<span class="sold-status">'.$property->label_sold.'</span>';
 	}
 	echo ' <span class="suburb"> - ' . $property->get_property_meta('property_address_suburb') . ' </span>';
 	echo ' <span class="state">' . $property->get_property_meta('property_address_state') . '</span>';	
@@ -1040,7 +1040,7 @@ function epl_author_tabs () {
 }
 
 function epl_author_class ($classes) {
-	$classes 		=	explode(' ',$classes.' author-box');
+	$classes 		=	explode(' ',$classes.' epl-author-box author-box');
 	$classes		= 	array_filter(array_unique($classes));
 	$classes 		=	apply_filters('epl_author_class',$classes);
 	if(!empty($classes)){
@@ -1058,26 +1058,26 @@ function epl_author_tab_author_id($epl_author = array() ) {
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
 		
 ?>
-	<div class="author-contact-details">
+	<div class="epl-author-contact-details author-contact-details">
 	
-		<h5 class="author-title">
+		<h5 class="epl-author-title author-title">
 			<a href="<?php echo $permalink ?>">
 				<?php echo $author_title;  ?>
 			</a>
 		</h5>
-		<div class="author-position">
+		<div class="epl-author-position author-position">
 			<span class="label-position"></span>
 			<span class="position"><?php echo $epl_author->get_author_position() ?></span>
 		</div>
 
-		<div class="author-contact">
+		<div class="epl-author-contact author-contact">
 			<span class="label-mobile"></span>
 			<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
 		</div>
 	</div>
-	<div class="author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
+	<div class="epl-author-slogan author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
 	<div class="epl-clearfix"></div>
-	<div class="author-social-buttons">
+	<div class="epl-author-social-buttons author-social-buttons">
 		<?php
 			$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
 			foreach($social_icons as $social_icon){
@@ -1111,7 +1111,7 @@ function epl_author_tab_video($epl_author = array() ) {
 	}
 	$video_html = $epl_author->get_video_html();
 	if($video_html != '')
-		echo '<div class="author-video epl-video-container">'.$video_html.'</div>';
+		echo '<div class="epl-author-video author-video epl-video-container">'.$video_html.'</div>';
 }
 
 function epl_author_tab_contact_form( $epl_author = array() ) {
@@ -1422,3 +1422,42 @@ function epl_nopaging($query) {
 	}
 }
 add_action('pre_get_posts','epl_nopaging');
+
+/**
+ * Ability to hide author box on single listings
+ *
+ * @since 2.1.11
+ */
+function epl_hide_author_box_from_front() {
+	$epl_posts 		= epl_get_active_post_types();
+	$epl_posts 		= array_keys($epl_posts);
+	
+	global $post,$property;
+	
+	if( is_single() && in_array($post->post_type,$epl_posts) ) {
+		
+		$hide_author_box = get_post_meta($post->ID,'property_agent_hide_author_box',true);
+		if($hide_author_box == 'yes') {
+			remove_all_actions( 'epl_single_author' );
+		}
+	}
+}
+add_action('wp','epl_hide_author_box_from_front',10);
+
+/**
+ * Retain user grid/list view
+ *
+ * @since 2.1.11
+ */
+function epl_update_default_view() {
+
+	$view 		= isset( $_POST['view'] ) ? trim( $_POST['view'] ) : '';
+
+	if( in_array($view,array('list','grid') ) ) {
+	
+		setcookie("preferredView", $view,0,'/');
+	}
+	wp_die('success');	
+}
+add_action('wp_ajax_epl_update_default_view','epl_update_default_view');
+add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');

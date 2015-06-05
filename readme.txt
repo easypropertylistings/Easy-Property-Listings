@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.2.2
 
-Stable Tag: 2.1.10
+Stable Tag: 2.1.11
 
 License: GNU Version 2 or Any Later Version
 
@@ -20,7 +20,12 @@ Easy Property Listing is one of the most dynamic and feature rich Real Estate pl
 An easy to use plugin that provides the needed functions to configure a dynamic real estate website in minutes. Packed with advanced features, shortcodes and templates letting you create real estate websites fast.
 
 > <strong>Theme Setup</strong><br>
-> To get the best result from Easy Property Listings on your real estate website you need to [configure your theme](http://easypropertylistings.com.au/docs/setup-wordpress-theme-easy-property-listings-2-0/) using some copy and paste. This will enable a better display and will make the plugin look great on any WordPress theme. If you need theme setup assistance hop over to our [theme support forum.](http://easypropertylistings.com.au/support/forum/theme-support/) many templates are already available.
+> To get the best result from Easy Property Listings on your real estate website you need to [configure your theme](http://easypropertylistings.com.au/docs/setup-wordpress-theme-easy-property-listings-2-0/) using some copy and paste. This will enable a better display and will make the plugin look great on any WordPress theme. If you need theme setup assistance first check the [theme support forum](http://easypropertylistings.com.au/support/forum/theme-support/) as many templates are already available.
+
+> <strong>Premium Support</strong><br>
+> The Easy Property Listings team does not provide support for the real estate plugin on the WordPress.org forums. One on one forum support is available to people who bought [Premium support](http://easypropertylistings.com.au/support/pricing/?utm_source=readme&utm_medium=description_tab&utm_content=premium_support&utm_campaign=wordpressorg) only. Note that Premium Support also includes the [Advanced Mapping](http://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=wordpressorg) extension and theme setup assistance so it might be well worth your investment!
+
+You should also check out the Local SEO, News SEO and Video SEO extensions to WordPress SEO, these of course come with support too.
 
 **Features:**
 
@@ -114,14 +119,18 @@ With add-ons for [Listing Templates](http://easypropertylistings.com.au/extensio
 Easy Property Listings needs help for translation:
 
 1. English (and British English)
-2. Italian (Rough translation, if you can assist please do)
-3. Dutch
-4. Russian
-5. French
+2. Belgian (Dutch)
+3. Bulgarian
+4. Danish
+5. Dutch
 6. Finnish
-7. Bulgarian
-8. Belgian (Dutch)
-9. Polish
+7. French
+8. German
+9. Italian
+10. Polish
+11. Russian
+12. Swedish
+13. Ukrainian
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](http://easypropertylistings.com.au/support/forum/translations/).
 
@@ -180,6 +189,29 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.1.11 June 2, 2015 =
+
+* Tweak: Removed sub titles "Property Description" and "Real Estate Agent" from the single listing template for better display, language support and to facilitate the hiding of the author box.
+* Tweak: Added epl- prefix to all author-box and widget css.
+* Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.
+* Tweak: Improved author box responsive CSS.
+* Tweak: Updated extension updater for multisite and other improvements.
+* Tweak: Leased label when adding a property will use custom label.
+* Tweak: Wrapper class for property category.
+* Fix: Undefined status if importing listings not using current status.
+* Fix: When user selects grid/list option and pages the user selected view is retained.
+* Fix: [listing post_type="rental"] shortcode price sorting for rental.
+* New: Author box is now able to be hidden on a per listing basis.
+* New: Added filters for author box social links.
+* New: Inspection filter to adjust the inspection date/time format.
+* New: Several author widget filters added to enable additional content through extensions or custom functions.
+* New: Sold, leased, under offer label filter which uses the label setting and label changes dashboard widget, admin category filters and search widget.
+* New: Sold label making Sold STC possible or other Sold label variant.
+* New: Danish language thanks to pascal.
+* New: German language thanks to ChriKn.
+* New: Ukrainian language thanks to Alex.
+* New: Swedish language thanks to Roland J.
 
 = 2.1.10 May 31, 2015 =
 
