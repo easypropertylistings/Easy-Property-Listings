@@ -172,20 +172,20 @@ class EPL_Welcome {
 				<h2><?php _e( 'Support Changes' , 'epl' );?></h2>
 				
 				<div class="feature-section">
-					<?php $support_change = '<a href="http://easypropertylistings.com.au/support/topic/support-desk-changes/">' . __('premium support' , 'epl') . '</a>'; ?>
+					<?php $support_change = '<a href="http://easypropertylistings.com.au/support/pricing/">' . __('premium support' , 'epl') . '</a>'; ?>
 					
 					<p><?php _e( 'The support forums on WordPress.org and on our support forum are rather busy. Having reached over 20,000 downloads with support requests increasing dramatically, where some are simple, others are harder and require going back and forth a few times. Some are just plain bugs, but are hard to reproduce. All of them together cost more time than we can spend on it while continuing to improve the plugin and keep it free at the same time.', 'epl' ); ?></p>
 					
-					<p><?php _e( "I’m saying officially now what’s been the case for quite a while already:", 'epl' ); ?><em> <?php _e( "we don't offer support for this advanced real estate plugin for free.", 'epl' ); ?> </em><?php _e( 'It’s easier to just state it like that than to hop in every once in a while and get people’s hopes up when we might not have much time.', 'epl' ); ?></p>
+					<p><?php _e( "I’m saying officially now what’s been the case for quite a while already:", 'epl' ); ?><em> <?php _e( "we are unable to offer support for this advanced real estate plugin for free.", 'epl' ); ?> </em><?php _e( 'It’s easier to just state it like that than to hop in every once in a while and get people’s hopes up when we might not have much time.', 'epl' ); ?></p>
 				</div>
 			</div>
 			
 			<div class="changelog headline-feature">
-				<h2><?php _e( 'Premium Support' , 'epl' );?></h2>
+				<h2><?php _e( 'Premium Support includes Advanced Mapping' , 'epl' );?></h2>
 			
 				<div class="feature-section">
 
-					<p><?php printf( __('To make premium support even better for you, we have decided to include our most popular extension, %s as part of your %s purchase. So now you can enhance your real estate website with a dynamic map that can display 300 listing on a single map with a simple shortcode. It also adds tabs to the map on a single listing, showing bike, transit, satellite, street view, comparable listings and much more.', 'epl' ), $am_link , $support_change ); ?></p>
+					<p><?php printf( __('We have introduced premium support which is valid for one site for a year, and to make it even better for you, we have decided to include our most popular extension, %s as part of your %s purchase. So now you can enhance your real estate website with a dynamic map that can display 300 listing on a single map with a simple shortcode. It also adds tabs to the map on a single listings, showing bike, transit, satellite, street view, comparable listings and much more.', 'epl' ), $am_link , $support_change ); ?></p>
 				</div>
 			</div>
 
@@ -943,7 +943,7 @@ class EPL_Welcome {
 					
 					<div>
 						<h4><?php _e( 'Need Even Faster Support?', 'epl' );?></h4>
-						<p><?php _e( 'Visit the <a href="http://easypropertylistings.com.au/support/pricing/">Priority Support forums</a> are there for customers that need faster and/or more in-depth assistance.', 'epl' );?></p>
+						<p><?php _e( '<a href="http://easypropertylistings.com.au/support/pricing/">Priority Support forums</a> are there for customers that need faster and/or more in-depth assistance.', 'epl' );?></p>
 					</div>
 					
 					<div class="last-feature">
@@ -971,7 +971,7 @@ class EPL_Welcome {
 						<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for Advanced mapping, testimonials, listing alerts, CMA Market Reports, Location Profiles, and many, many more.', 'epl' );?></p>
 						
 						<h4><?php _e( 'Visit the Extension Store', 'epl' );?></h4>
-						<p><a href="http://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions, including convenient category filters so you can find exactly what you are looking for.', 'epl' );?></p>
+						<p><a href="http://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions to make your real estate website even better.', 'epl' );?></p>
 					</div>
 				</div>
 			</div>
