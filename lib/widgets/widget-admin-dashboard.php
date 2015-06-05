@@ -22,7 +22,7 @@ add_action( 'wp_dashboard_setup', 'example_add_dashboard_widgets' );
 
 function epl_status_dashboard_widget_callback() {
 	global $epl_settings;
-	$activate_post_types = $epl_settings['activate_post_types'];?>
+	$activate_post_types = isset($epl_settings['activate_post_types'])?$epl_settings['activate_post_types'] : array();?>
 	<div class="main">
 		<ul class="epl_status_list">
 		<?php

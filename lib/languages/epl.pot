@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 2.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-06-05 11:31+0800\n"
-"PO-Revision-Date: 2015-06-05 11:31+0800\n"
+"POT-Creation-Date: 2015-06-05 15:37+0800\n"
+"PO-Revision-Date: 2015-06-05 15:37+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: en\n"
@@ -91,8 +91,8 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:349 compatibility/listing-meta-compat.php:350
 #: compatibility/listing-meta-compat.php:595 compatibility/listing-meta-compat.php:597
 #: compatibility/listing-meta-compat.php:598 compatibility/listing-meta-compat.php:599
-#: includes/functions.php:1194 meta-boxes/meta-boxes.php:35
-#: post-types/post-types.php:45 updates/epl-2.1.11.php:5
+#: includes/functions.php:1194 includes/install.php:61 includes/install.php:98
+#: meta-boxes/meta-boxes.php:35 post-types/post-types.php:45 updates/epl-2.1.11.php:5
 #: widgets/widget-admin-dashboard.php:119 widgets/widget-admin-dashboard.php:141
 #: widgets/widget-listing-search.php:167
 msgid "Sold"
@@ -104,14 +104,14 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:617 compatibility/listing-meta-compat.php:618
 #: compatibility/listing-meta-compat.php:619 compatibility/listing-meta-compat.php:633
 #: includes/functions.php:343 includes/functions.php:1206 includes/install.php:59
-#: includes/install.php:95 updates/epl-2.1.php:6 widgets/widget-admin-dashboard.php:118
+#: includes/install.php:96 updates/epl-2.1.php:6 widgets/widget-admin-dashboard.php:118
 #: widgets/widget-admin-dashboard.php:140
 msgid "Under Offer"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:409 compatibility/listing-meta-compat.php:410
 #: compatibility/listing-meta-compat.php:411 compatibility/listing-meta-compat.php:412
-#: includes/functions.php:1218 includes/install.php:60 includes/install.php:96
+#: includes/functions.php:1218 includes/install.php:60 includes/install.php:97
 #: meta-boxes/meta-boxes.php:39 post-types/post-types.php:49 updates/epl-2.1.php:5
 #: widgets/widget-admin-dashboard.php:100 widgets/widget-admin-dashboard.php:120
 #: widgets/widget-listing-search.php:168
@@ -493,8 +493,8 @@ msgstr ""
 msgid "Property (Residential)"
 msgstr ""
 
-#: includes/functions.php:123 includes/functions.php:1094 includes/install.php:62
-#: includes/install.php:98 menus/menu-welcome.php:703 post-types/post-type-land.php:28
+#: includes/functions.php:123 includes/functions.php:1094 includes/install.php:63
+#: includes/install.php:100 menus/menu-welcome.php:703 post-types/post-type-land.php:28
 #: post-types/post-type-land.php:29 post-types/post-type-land.php:30
 #: updates/epl-1.3.1.php:5 widgets/widget-admin-dashboard.php:55
 msgid "Land"
@@ -506,8 +506,8 @@ msgstr ""
 msgid "Rental"
 msgstr ""
 
-#: includes/functions.php:125 includes/functions.php:1106 includes/install.php:64
-#: includes/install.php:100 menus/menu-welcome.php:704
+#: includes/functions.php:125 includes/functions.php:1106 includes/install.php:65
+#: includes/install.php:102 menus/menu-welcome.php:704
 #: post-types/post-type-rural.php:28 post-types/post-type-rural.php:29
 #: post-types/post-type-rural.php:30 updates/epl-1.3.1.php:7
 #: widgets/widget-admin-dashboard.php:61
@@ -515,21 +515,21 @@ msgid "Rural"
 msgstr ""
 
 #: includes/functions.php:126 includes/functions.php:396 includes/functions.php:1112
-#: includes/install.php:66 includes/install.php:102 menus/menu-welcome.php:705
+#: includes/install.php:67 includes/install.php:104 menus/menu-welcome.php:705
 #: post-types/post-type-commercial.php:29 updates/epl-1.3.1.php:9
 #: widgets/widget-admin-dashboard.php:64
 msgid "Commercial"
 msgstr ""
 
-#: includes/functions.php:127 includes/functions.php:1118 includes/install.php:67
-#: includes/install.php:103 menus/menu-welcome.php:706
+#: includes/functions.php:127 includes/functions.php:1118 includes/install.php:68
+#: includes/install.php:105 menus/menu-welcome.php:706
 #: post-types/post-type-commercial_land.php:30 updates/epl-1.3.1.php:10
 #: widgets/widget-admin-dashboard.php:67
 msgid "Commercial Land"
 msgstr ""
 
-#: includes/functions.php:128 includes/functions.php:1124 includes/install.php:65
-#: includes/install.php:101 menus/menu-welcome.php:707
+#: includes/functions.php:128 includes/functions.php:1124 includes/install.php:66
+#: includes/install.php:103 menus/menu-welcome.php:707
 #: post-types/post-type-business.php:30 updates/epl-1.3.1.php:8
 #: widgets/widget-admin-dashboard.php:70
 msgid "Business"
@@ -1110,36 +1110,36 @@ msgstr ""
 msgid "Check this to disable all elements."
 msgstr ""
 
-#: includes/install.php:52 includes/install.php:88 updates/epl-1.3.1.php:14
+#: includes/install.php:52 includes/install.php:89 updates/epl-1.3.1.php:14
 msgid "Bond"
 msgstr ""
 
-#: includes/install.php:53 includes/install.php:54 includes/install.php:89
-#: includes/install.php:90 widgets/widget-listing.php:382
+#: includes/install.php:53 includes/install.php:54 includes/install.php:90
+#: includes/install.php:91 widgets/widget-listing.php:382
 msgid "Suburb"
 msgstr ""
 
-#: includes/install.php:55 includes/install.php:91
+#: includes/install.php:55 includes/install.php:92
 msgid "Post Code"
 msgstr ""
 
-#: includes/install.php:56 includes/install.php:92
+#: includes/install.php:56 includes/install.php:93
 msgid "Home Open"
 msgstr ""
 
-#: includes/install.php:57 includes/install.php:93
+#: includes/install.php:57 includes/install.php:94
 msgid "POA"
 msgstr ""
 
-#: includes/install.php:58 includes/install.php:94 updates/epl-1.3.1.php:15
+#: includes/install.php:58 includes/install.php:95 updates/epl-1.3.1.php:15
 msgid "New"
 msgstr ""
 
-#: includes/install.php:61 includes/install.php:97
+#: includes/install.php:62 includes/install.php:99
 msgid "Buy"
 msgstr ""
 
-#: includes/install.php:63 includes/install.php:99 post-types/post-type-rental.php:82
+#: includes/install.php:64 includes/install.php:101 post-types/post-type-rental.php:82
 msgid "Rent"
 msgstr ""
 
