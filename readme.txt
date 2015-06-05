@@ -129,7 +129,8 @@ Easy Property Listings needs help for translation:
 9. Italian
 10. Polish
 11. Russian
-12. Ukrainian
+12. Swedish
+13. Ukrainian
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](http://easypropertylistings.com.au/support/forum/translations/).
 
@@ -210,6 +211,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Danish language thanks to pascal.
 * New: German language thanks to ChriKn.
 * New: Ukrainian language thanks to Alex.
+* New: Swedish language thanks to Roland J.
 
 = 2.1.10 May 31, 2015 =
 

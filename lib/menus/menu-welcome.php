@@ -282,6 +282,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Danish language thanks to pascal.', 'epl' );?></li>
 						<li><?php _e( 'New: German language thanks to ChriKn.', 'epl' );?></li>
 						<li><?php _e( 'New: Ukrainian language thanks to Alex.', 'epl' );?></li>
+						<li><?php _e( 'New: Swedish language thanks to Roland J.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.1.10', 'epl' );?></h4>
