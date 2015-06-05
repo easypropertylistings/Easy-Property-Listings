@@ -401,7 +401,9 @@ h3.property-address {
 .epl-author-box-contact-details.epl-author-contact-details {
 	width:100%;
 }
-
+.epl-author-box-container {
+	margin: 1em 0;
+}
 .epl-author-box .epl-author-title {
 	margin-top: 0;
 	margin-bottom: 0.5em;

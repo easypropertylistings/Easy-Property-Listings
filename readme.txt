@@ -190,9 +190,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.1.11 June 2, 2015 =
+= 2.1.11 June 5, 2015 =
 
-* Tweak: Removed sub titles "Property Description" and "Real Estate Agent" from the single listing template for better display, language support and to facilitate the hiding of the author box.
+* Tweak: Removed sub titles "Property Manager" and "Real Estate Agent" from the single listing template for better language support and to facilitate the hiding of the author box.
 * Tweak: Added epl- prefix to all author-box and widget css.
 * Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.
 * Tweak: Improved author box responsive CSS.

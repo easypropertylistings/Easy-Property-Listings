@@ -42,9 +42,10 @@
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 
 		<div class="tab-wrapper">
-			<div class="epl-tab-section">
+			<div class="epl-tab-section epl-section-property-details">
+				<h5 class="tab-title"><?php echo apply_filters('property_tab_title',__('Property Details', 'epl')); ?></h5>
 				<div class="tab-content">
-					<div class="tab-content property-details">
+					<div class="property-details">
 						<h3 class="tab-address">
 							<?php do_action('epl_property_address'); ?>
 						</h3>
@@ -59,7 +60,8 @@
 				</div>
 			</div>
 
-			<div class="epl-tab-section">
+			<div class="epl-tab-section epl-section-description">
+				<h5 class="tab-title"><?php echo apply_filters('epl_property_tab_title_description',__('Description', 'epl')); ?></h5>
 				<div class="tab-content">
 					<!-- heading -->
 					<h2 class="entry-title"><?php do_action('epl_property_heading'); ?></h2>
@@ -76,7 +78,7 @@
 			</div>
 
 			<?php do_action('epl_property_tab_section_before'); ?>
-			<div class="epl-tab-section">
+			<div class="epl-tab-section epl-tab-section-features">
 				<?php do_action('epl_property_tab_section'); ?>
 			</div>
 			<?php do_action('epl_property_tab_section_after'); ?>

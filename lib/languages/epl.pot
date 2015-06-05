@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 2.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-06-05 15:37+0800\n"
-"PO-Revision-Date: 2015-06-05 15:37+0800\n"
+"POT-Creation-Date: 2015-06-05 16:09+0800\n"
+"PO-Revision-Date: 2015-06-05 16:09+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: en\n"
@@ -1816,9 +1816,9 @@ msgstr ""
 
 #: menus/menu-welcome.php:266
 msgid ""
-"Tweak: Removed sub titles \"Property Description\" and \"Real Estate Agent\" from the "
-"single listing template for better display, language support and to facilitate the "
-"hiding of the author box."
+"Tweak: Removed sub titles \"Property Manager\" and \"Real Estate Agent\" from the "
+"single listing template for better language support and to facilitate the hiding of "
+"the author box."
 msgstr ""
 
 #: menus/menu-welcome.php:267
@@ -4992,7 +4992,15 @@ msgstr ""
 msgid "Tags : "
 msgstr ""
 
-#: templates/content/content-listing-single.php:98
+#: templates/content/content-listing-single.php:46
+msgid "Property Details"
+msgstr ""
+
+#: templates/content/content-listing-single.php:64
+msgid "Description"
+msgstr ""
+
+#: templates/content/content-listing-single.php:100
 #: templates/themes/heuman/single-listing.php:23
 msgid "Pages:"
 msgstr ""
