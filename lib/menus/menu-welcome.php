@@ -263,7 +263,7 @@ class EPL_Welcome {
 					<h4><?php _e( 'Version 2.1.11', 'epl' );?></h4>
 				
 					<ul>
-						<li><?php _e( 'Tweak: Removed sub titles "Property Description" and "Real Estate Agent" from the single listing template for better display, language support and to facilitate the hiding of the author box.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Removed sub titles "Property Manager" and "Real Estate Agent" from the single listing template for better language support and to facilitate the hiding of the author box.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Added epl- prefix to all author-box and widget css.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved author box responsive CSS.', 'epl' );?></li>
