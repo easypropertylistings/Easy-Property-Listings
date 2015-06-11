@@ -76,11 +76,11 @@ function epl_property_sold_leased() {
 	}
 	
 	if ( $query->have_posts() ) { ?>
-		<div class="epl-tab-section">
+		<div class="epl-tab-section epl-tab-section-listing-history">
 			<?php if ( 'property' == $post_type || 'land' == $post_type || 'rural' == $post_type) { ?>
-				<h5 class="tab-title"><?php _e('Recently Sold', 'epl'); ?></h5>
+				<h5 class="epl-tab-title epl-tab-title-sales tab-title"><?php _e('Recently Sold', 'epl'); ?></h5>
 			<?php } else { ?>
-				<h5 class="tab-title"><?php _e('Recently Leased', 'epl'); ?></h5>
+				<h5 class="epl-tab-title epl-tab-title-leased tab-title"><?php _e('Recently Leased', 'epl'); ?></h5>
 			<?php } ?>
 			<div class="tab-content">
 				<ul>
@@ -108,11 +108,7 @@ function epl_reset_property_object( $post ) {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
-	/*
-	** @TODO implement filter/hook to fetch custom posts 
-	*/
-	
-	$epl_posts[] 	= 'location_profile';
+	$epl_posts 	= apply_filters('epl_additional_post_types',$epl_posts);
 	
 	if(in_array($post->post_type,$epl_posts)){
 		global $property;
@@ -138,11 +134,7 @@ function epl_create_property_object() {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
 	
-	/*
-	** @TODO implement filter/hook to fetch custom posts 
-	*/
-	
-	$epl_posts[] 	= 'location_profile';
+	$epl_posts 	= apply_filters('epl_additional_post_types',$epl_posts);
 	if(in_array($post->post_type,$epl_posts)){
 		$property 	= new EPL_Property_Meta($post);
 	}
@@ -213,9 +205,9 @@ function epl_get_template_part($template,$arguments=array()) {
 	$base_path		= apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
 	$default		= $template;
 	$find[] 		= epl_template_path() . $template;
-	$template       = locate_template( array_unique( $find ) );
+	$template       	= locate_template( array_unique( $find ) );
 	if(!$template) {
-		$template	=	$base_path . $default;
+		$template	= $base_path . $default;
 	}
 	if( !isset($arguments['epl_author']) ) {
 		global $epl_author;
@@ -296,8 +288,11 @@ function epl_property_blog_default() {
 	} // End Status Removal
 }
 
-
-// Listing Function for paged card display 
+/*
+ * Listing Function for slim view
+ *
+ * @since 1.2
+ */
 function epl_property_blog_slim() {
 	global $property,$epl_settings;
 	if( is_null($property) ) {
@@ -322,7 +317,11 @@ function epl_property_blog_slim() {
 	} // End Status Removal
 }
 
-// Listing Function for paged card display 
+/*
+ * Listing Function for table open
+ *
+ * @since 2.1.6
+ */
 function epl_property_blog_table() {
 	global $property,$epl_settings;
 	if( is_null($property) ) {
@@ -343,6 +342,34 @@ function epl_property_blog_table() {
 			do_action( 'epl_loop_template' );
 		} else {
 			epl_get_template_part('loop-listing-blog-table.php');
+		}
+	} // End Status Removal
+}
+/*
+ * Listing Function for table open
+ *
+ * @since 2.1.8
+ */
+function epl_property_blog_table_open() {
+	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-table-open.php');
 		}
 	} // End Status Removal
 }
@@ -680,9 +707,9 @@ add_action('epl_property_heading','epl_property_heading');
 **/
 function epl_property_secondary_heading() {
 	global $property;
-	echo $property->get_property_category();
+	echo '<span class="epl-property-category">' . $property->get_property_category() . '</span> ';
 	if($property->get_property_meta('property_status') == 'sold'){
-		echo '<span class="sold-status">'.__('Sold', 'epl').'</span>';
+		echo '<span class="sold-status">'.$property->label_sold.'</span>';
 	}
 	echo ' <span class="suburb"> - ' . $property->get_property_meta('property_address_suburb') . ' </span>';
 	echo ' <span class="state">' . $property->get_property_meta('property_address_state') . '</span>';	
@@ -694,21 +721,25 @@ function epl_property_category() {
 	global $property;
 	echo $property->get_property_category();
 }
-/** 
+/**
+ * Video Output Function
  * @hooked property_after_content
 **/
-function epl_property_content_after() {
+function epl_property_video_callback( $width = 600 ) {
 	global $property;
-	$property_video_url = $property->get_property_meta('property_video_url');
+	
+	$video_width 		= $width != '' ? $width : 600;
+	$property_video_url	= $property->get_property_meta('property_video_url');
+	
 	if($property_video_url != '') {
 		$videoID = epl_get_youtube_id_from_url($property_video_url);
-		echo '<div class="videoContainer">';
+		echo '<div class="epl-video-container videoContainer">';
 			// Echo the embed code via oEmbed
-			echo wp_oembed_get( ('http://www.youtube.com/watch?v=' . $videoID) , array('width'=>600)  ); 
+			echo wp_oembed_get( ('http://www.youtube.com/watch?v=' . $videoID ) , array( 'width' => apply_filters( 'epl_property_video_width', $video_width  ) )  ); 
 		echo '</div>';
 	}
 }
-add_action('epl_property_content_after','epl_property_content_after');
+add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
 
 /** 
  * @hooked property_tab_section
@@ -778,32 +809,32 @@ function epl_property_tab_section() {
 	}
 	
 	if ( $property->post_type != 'land' || $property->post_type != 'business') { ?>
-	<h5 class="tab-title"><?php _e('Property Features', 'epl'); ?></h5>
-		<div class="tab-content">
-			<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
-				<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>							
-			</ul>
-		</div>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php _e('Property Features', 'epl'); ?></h5>
+			<div class="epl-tab-content tab-content">
+				<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
+					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>							
+				</ul>
+			</div>
 	<?php } ?>
 
-	<div class="tab-content">
+	<div class="epl-tab-content epl-tab-content-additional tab-content">
 		<?php
 			//Land Category
 			if( 'land' == $property->post_type || 'commercial_land' == $property->post_type ) {
-				echo $property->get_property_land_category(); //Land Category
+				echo '<div class="epl-land-category">' . $property->get_property_land_category() . '</div>';
 			}
 			
-			//Availability
-			if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) {
-				echo '<div class="date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
-			}
+			// Availability
+			//	if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) {
+			//		echo '<div class="date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
+			//	}
 
 			//Commercial Options
 			if ( $property->post_type == 'commercial' ) {
 				if ( $property->get_property_meta('property_com_plus_outgoings') == 1) {
-					echo '<div class="price-type">'.__('Plus Outgoings', 'epl').'</div>';
+					echo '<div class="epl-commercial-outgoings price-type">'.__('Plus Outgoings', 'epl').'</div>';
 				}
-				echo $property->get_property_commercial_category();						
+				// echo $property->get_property_commercial_category();						
 			}
 		?>
 	</div>
@@ -832,10 +863,10 @@ function epl_property_tab_section_after() {
 		}
 	
 	?>
-		<div class="epl-tab-section">
-			<h5 class="tab-title"><?php _e('Commercial Features', 'epl'); ?></h5>
-			<div class="tab-content">
-				<div class="listing-info">
+		<div class="epl-tab-section epl-tab-section-commercial-features">
+			<h5 class="epl-tab-title epl-tab-title-commercial-features tab-title"><?php _e('Commercial Features', 'epl'); ?></h5>
+			<div class="epl-tab-content tab-content">
+				<div class="epl-commercial-features listing-info">
 					<?php echo $the_property_commercial_feature_list; ?>							
 				</div>
 			</div>
@@ -858,10 +889,10 @@ function epl_property_tab_section_after() {
 		}
 	
 	?>
-		<div class="epl-tab-section">
-			<h5 class="tab-title"><?php _e('Rural Features', 'epl'); ?></h5>
-			<div class="tab-content">
-				<div class="listing-info">
+		<div class="epl-tab-section epl-tab-section-rural-features">
+			<h5 class="epl-tab-title epl-tab-title-rural-features tab-title"><?php _e('Rural Features', 'epl'); ?></h5>
+			<div class="epl-tab-content tab-content">
+				<div class="epl-rural-features listing-info">
 					<?php echo $the_property_rural_feature_list; ?>							
 				</div>
 			</div>
@@ -1009,7 +1040,7 @@ function epl_author_tabs () {
 }
 
 function epl_author_class ($classes) {
-	$classes 		=	explode(' ',$classes.' author-box');
+	$classes 		=	explode(' ',$classes.' epl-author-box author-box');
 	$classes		= 	array_filter(array_unique($classes));
 	$classes 		=	apply_filters('epl_author_class',$classes);
 	if(!empty($classes)){
@@ -1023,30 +1054,30 @@ function epl_author_tab_author_id($epl_author = array() ) {
 		global $epl_author;
 	}
 	
-	$permalink 		= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
+	$permalink 	= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
 		
 ?>
-	<div class="author-contact-details">
+	<div class="epl-author-contact-details author-contact-details">
 	
-		<h5 class="author-title">
+		<h5 class="epl-author-title author-title">
 			<a href="<?php echo $permalink ?>">
 				<?php echo $author_title;  ?>
 			</a>
 		</h5>
-		<div class="author-position">
+		<div class="epl-author-position author-position">
 			<span class="label-position"></span>
-			<span class="mobile"><?php echo $epl_author->get_author_position() ?></span>
+			<span class="position"><?php echo $epl_author->get_author_position() ?></span>
 		</div>
 
-		<div class="author-contact">
+		<div class="epl-author-contact author-contact">
 			<span class="label-mobile"></span>
 			<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
 		</div>
 	</div>
-	<div class="author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
+	<div class="epl-author-slogan author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
 	<div class="epl-clearfix"></div>
-	<div class="author-social-buttons">
+	<div class="epl-author-social-buttons author-social-buttons">
 		<?php
 			$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
 			foreach($social_icons as $social_icon){
@@ -1080,7 +1111,7 @@ function epl_author_tab_video($epl_author = array() ) {
 	}
 	$video_html = $epl_author->get_video_html();
 	if($video_html != '')
-		echo '<div class="author-video epl-video-container">'.$video_html.'</div>';
+		echo '<div class="epl-author-video author-video epl-video-container">'.$video_html.'</div>';
 }
 
 function epl_author_tab_contact_form( $epl_author = array() ) {
@@ -1119,9 +1150,9 @@ function epl_property_gallery () {
 	}
 	
 	if ( $attachments && $d_gallery == 1 ) { ?>
-		<div class="property-gallery">
+		<div class="epl-gallery property-gallery">
 			<!-- Gallery -->
-			<div class="entry-gallery epl-clearfix">
+			<div class="epl-gallery-entry entry-gallery epl-clearfix">
 				<?php 
 					$d_gallery_n = '[gallery columns="'. $d_gallery_n . '" link="file"]';
 					echo do_shortcode( $d_gallery_n );
@@ -1346,3 +1377,87 @@ function epl_home_pagination_fix( $query) {
 }
 
 add_action('pre_get_posts','epl_home_pagination_fix');
+
+/**
+ * Returns status class
+ *
+ * @since 2.1.10
+ */
+function epl_property_widget_status_class() {
+	global $property;
+	echo 'epl-widget-status-' . $property->get_property_meta('property_status');
+}
+add_action('epl_property_widget_status_class','epl_property_widget_status_class');
+
+/**
+* Ability to hide map on single listings
+*
+* @since 2.1.8
+*/
+function epl_hide_map_from_front() {
+	$epl_posts 		= epl_get_active_post_types();
+	$epl_posts 		= array_keys($epl_posts);
+	
+	global $post,$property;
+	
+	if( is_single() && in_array($post->post_type,$epl_posts) ) {
+		
+		$hide_map = get_post_meta($post->ID,'property_address_hide_map',true);
+		if($hide_map == 'yes') {
+			remove_all_actions( 'epl_property_map' );
+		}
+	}
+}
+add_action('wp','epl_hide_map_from_front',10);
+
+/**
+ * Disable paging on listing widget
+ *
+ * @since 2.1.8
+ */
+function epl_nopaging($query) {
+	$restrict_paging = $query->get('epl_nopaging');
+	if($restrict_paging == true) {
+		$query->set('paged',1);
+	}
+}
+add_action('pre_get_posts','epl_nopaging');
+
+/**
+ * Ability to hide author box on single listings
+ *
+ * @since 2.1.11
+ */
+function epl_hide_author_box_from_front() {
+	$epl_posts 		= epl_get_active_post_types();
+	$epl_posts 		= array_keys($epl_posts);
+	
+	global $post,$property;
+	
+	if( is_single() && in_array($post->post_type,$epl_posts) ) {
+		
+		$hide_author_box = get_post_meta($post->ID,'property_agent_hide_author_box',true);
+		if($hide_author_box == 'yes') {
+			remove_all_actions( 'epl_single_author' );
+		}
+	}
+}
+add_action('wp','epl_hide_author_box_from_front',10);
+
+/**
+ * Retain user grid/list view
+ *
+ * @since 2.1.11
+ */
+function epl_update_default_view() {
+
+	$view 		= isset( $_POST['view'] ) ? trim( $_POST['view'] ) : '';
+
+	if( in_array($view,array('list','grid') ) ) {
+	
+		setcookie("preferredView", $view,0,'/');
+	}
+	wp_die('success');	
+}
+add_action('wp_ajax_epl_update_default_view','epl_update_default_view');
+add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');

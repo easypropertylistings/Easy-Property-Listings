@@ -32,10 +32,10 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'limit'			=>	'-1', // Number of maximum posts to show
 		'template'		=>	false, // Template. slim, table
 		'location'		=>	'', // Location slug. Should be a name like sorrento
-		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
-		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
-		'sortby'			=>	'', // Options: price, date : Default date
-		'sort_order'			=>	'DESC'
+		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
+		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
+		'sortby'		=>	'', // Options: price, date : Default date
+		'sort_order'		=>	'DESC'
 
 	), $atts ) );
 	
@@ -51,7 +51,10 @@ function epl_shortcode_property_open_callback( $atts ) {
 	);
 	
 	ob_start();
-	
+	if( !is_array($post_type) ) {
+		$post_type 			= array_map('trim',explode(',',$post_type) );
+	}
+
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
@@ -125,11 +128,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 						if ( $template == false ) {
 							epl_property_blog();
 						} else {
-						
 							if( function_exists( 'epl_property_blog_'.$template ) ) {
-							
 								call_user_func( 'epl_property_blog_'.$template );
-								
 							}
 						}
 					}

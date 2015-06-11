@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Single Template for Property Custom Post Type : property
  */
 

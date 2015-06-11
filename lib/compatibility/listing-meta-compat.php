@@ -1,11 +1,11 @@
 ﻿<?php
-/*
+/**
  * Function to retrieve property or rental custom fields.
  */
  
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
- 
+
 //Global
 global $post;
 $epl_settings = epl_settings(); 

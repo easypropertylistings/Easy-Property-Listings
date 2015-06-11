@@ -58,6 +58,7 @@ function epl_install() {
 			'label_new'				=> __('New', 'epl'),
 			'label_under_offer'			=> __('Under Offer', 'epl'),
 			'label_leased'				=> __('Leased', 'epl'),
+			'label_sold'				=> __('Sold', 'epl'),
 			'widget_label_property'			=> __('Buy', 'epl'),
 			'widget_label_land'			=> __('Land', 'epl'),
 			'widget_label_rental'			=> __('Rent', 'epl'),
@@ -94,6 +95,7 @@ function epl_install() {
 			'label_new'				=> __('New', 'epl'),
 			'label_under_offer'			=> __('Under Offer', 'epl'),
 			'label_leased'				=> __('Leased', 'epl'),
+			'label_sold'				=> __('Sold', 'epl'),
 			'widget_label_property'			=> __('Buy', 'epl'),
 			'widget_label_land'			=> __('Land', 'epl'),
 			'widget_label_rental'			=> __('Rent', 'epl'),
@@ -188,6 +190,16 @@ function epl_plugin_updates() {
 	if ( version_compare( $current_version, '2.1', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.php' );
 		update_option( 'epl_version' ,'2.1');
+	}
+	
+	if ( version_compare( $current_version, '2.1.8', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-2.1.8.php' );
+		update_option( 'epl_version' ,'2.1.8');
+	}
+	
+	if ( version_compare( $current_version, '2.1.11', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-2.1.11.php' );
+		update_option( 'epl_version' ,'2.1.11');
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
