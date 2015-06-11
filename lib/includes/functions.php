@@ -929,6 +929,48 @@ function epl_admin_sidebar () {
 		),
 		
 		array(
+			'label'		=>	__('Theme Setup' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'theme_setup',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'epl_feeling_lucky',
+					'label'	=>	__('Enable Theme Compatibility', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Adapt to theme framework which will improve sidebar position however removes sorting and grid options which can be added through shortcodes. If using iThemes, Genesis frameworks or Twenty Twelve and Twenty Fifteen based themes leave un-checked.' , 'epl')
+					
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_single_thumb',
+					'label'	=>	__('Disable single featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images on a listing. Used with theme compatibility mode only.' , 'epl')
+					
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_archive_thumb',
+					'label'	=>	__('Disable archive featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images on archive pages. Used with theme compatibility mode only.' , 'epl')
+					
+				)
+			)
+
+		),
+		
+		array(
 			'label'		=>	__('Listing Single View', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
@@ -1071,8 +1113,6 @@ function epl_admin_sidebar () {
 					'default'	=>	'Sold',
 
 				)
-
-
 			)
 		),
 		
@@ -1176,7 +1216,6 @@ function epl_admin_sidebar () {
 					
 				)
 			)
-
 		)
 	);
 	
