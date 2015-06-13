@@ -201,7 +201,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id('search_postcode'); ?>" name="<?php echo $this->get_field_name('search_postcode'); ?>" type="checkbox" <?php if(isset($search_postcode) && $search_postcode == 'on') { echo 'checked="checked"'; } ?> />
-			<label for="<?php echo $this->get_field_id('search_postcode'); ?>"><?php _e('Postcode', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('search_postcode'); ?>"><?php echo epl_display_label_postcode(); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id('search_house_category'); ?>" name="<?php echo $this->get_field_name('search_house_category'); ?>" type="checkbox" <?php if(isset($search_house_category) && $search_house_category == 'on') { echo 'checked="checked"'; } ?> />

@@ -194,12 +194,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 												<option value=""><?php echo apply_filters('epl_search_widget_option_label_state',__('Any', 'epl') ); ?></option>
 											<?php
 												$states = epl_get_unique_post_meta_values('property_address_state', $post_type ); 
-												foreach($states as $k=>$v) {
+												foreach($states as $state) {
 													$selected = '';
-													if(isset($property_address_state) && $k == $property_address_state) {
+													if(isset($property_address_state) && $state == $property_address_state) {
 														$selected = 'selected="selected"';
 													}
-													echo '<option value="'.$v.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+													echo '<option value="'.$state.'" '.$selected.'>'. $state .'</option>';
 												}										
 											?>
 										</select>
@@ -208,19 +208,19 @@ function epl_shortcode_listing_search_callback( $atts ) {
 								
 								<div class="epl-search-row-half epl-search-left-right fm-block-half">
 									<label for="property_address_postal_code" class="epl-search-label fm-label">
-										<?php echo apply_filters('epl_search_widget_label_property_postal_code',__( 'Postcode' , 'epl') ); ?>
+										<?php echo epl_display_label_postcode(); ?>
 									</label>
 									<div class="field">
 											<select name="property_address_postal_code" id="property_address_postal_code" class="in-field field-width">
 												<option value=""><?php echo apply_filters('epl_search_widget_option_label_postcode',__('Any', 'epl') ); ?></option>
 											<?php
 												$postcodes = epl_get_unique_post_meta_values('property_address_postal_code', $post_type ); 
-												foreach($postcodes as $k=>$v) {
+												foreach($postcodes as $postcode) {
 													$selected = '';
-													if(isset($property_address_postal_code) && $k == $property_address_postal_code) {
+													if(isset($property_address_postal_code) && $postcode == $property_address_postal_code) {
 														$selected = 'selected="selected"';
 													}
-													echo '<option value="'.$v.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+													echo '<option value="'.$postcode.'" '.$selected.'>'. $postcode .'</option>';
 												}										
 											?>
 										</select>
@@ -243,12 +243,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
 											<option value=""><?php echo apply_filters('epl_search_widget_option_label_state',__('Any', 'epl') ); ?></option>
 										<?php
 											$states = epl_get_unique_post_meta_values('property_address_state', $post_type ); 
-											foreach($states as $k=>$v) {
+											foreach($states as $state) {
 												$selected = '';
-												if(isset($property_address_state) && $k == $property_address_state) {
+												if(isset($property_address_state) && $state == $property_address_state) {
 													$selected = 'selected="selected"';
 												}
-												echo '<option value="'.$v.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+												echo '<option value="'.$state.'" '.$selected.'>'. $state .'</option>';
 											}										
 										?>
 									</select>
@@ -263,19 +263,19 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						?>
 							<div class="epl-search-row epl-search-row-full-wrapper epl-search-state fm-block">
 								<label for="property_address_postal_code" class="epl-search-label fm-label">
-									<?php echo apply_filters('epl_search_widget_label_property_postal_code',__( 'Postcode' , 'epl') ); ?>
+									<?php echo epl_display_label_postcode(); ?>
 								</label>
 								<div class="field">
 										<select name="property_address_postal_code" id="property_address_postal_code" class="in-field field-width">
 											<option value=""><?php echo apply_filters('epl_search_widget_option_label_postcode',__('Any', 'epl') ); ?></option>
 										<?php
 											$postcodes = epl_get_unique_post_meta_values('property_address_postal_code', $post_type ); 
-											foreach($postcodes as $k=>$v) {
+											foreach($postcodes as $postcode) {
 												$selected = '';
-												if(isset($property_address_postal_code) && $k == $property_address_postal_code) {
+												if(isset($property_address_postal_code) && $postcode == $property_address_postal_code) {
 													$selected = 'selected="selected"';
 												}
-												echo '<option value="'.$v.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+												echo '<option value="'.$postcode.'" '.$selected.'>'. $postcode .'</option>';
 											}										
 										?>
 									</select>
