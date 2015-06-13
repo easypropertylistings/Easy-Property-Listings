@@ -38,7 +38,7 @@
 		<div class="tab-wrapper">
 
 			<div class="epl-tab-section epl-section-description">
-				<h5 class="tab-title"><?php echo apply_filters('epl_property_tab_title_description',__('Description', 'epl')); ?></h5>
+				<h5 class="epl-tab-title"><?php echo apply_filters('epl_property_tab_title_description',__('Description', 'epl')); ?></h5>
 				<div class="tab-content">
 					<!-- heading -->
 					<h2 class="entry-title"><?php do_action('epl_property_heading'); ?></h2>
