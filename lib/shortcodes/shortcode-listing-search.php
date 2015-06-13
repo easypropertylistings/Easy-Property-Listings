@@ -30,6 +30,8 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		'property_status'		=>	'', 	// Singular: current / sold / leased or '' for any
 		'style'				=>	'default', 	// Singular: "default", "wide" or "slim"
 		'search_location'		=>	'on', 	// on or off
+		'search_state'			=>	'off', 	// on or off
+		'search_postcode'		=>	'off', 	// on or off
 		'search_house_category'		=>	'on', 	// on or off
 		'search_price'			=>	'on', 	// on or off
 		'search_bed'			=>	'on', 	// on or off
@@ -171,6 +173,110 @@ function epl_shortcode_listing_search_callback( $atts ) {
 													echo '<option value="'.$k.'" '.$selected.'>'. __($v, 'epl') .'</option>';
 												}
 											}											
+										?>
+									</select>
+								</div>
+							</div>
+						<?php
+					}
+				?>
+				
+				<?php
+					if ( $search_state == 'on' && $search_postcode == 'on' ) {
+						?>
+							<div class="epl-search-row epl-search-row-full-wrapper epl-search-state fm-block">
+								<div class="epl-search-row-half epl-search-left-half fm-block-half">
+									<label for="property_address_state" class="epl-search-label fm-label">
+										<?php echo apply_filters('epl_search_widget_label_property_state',__( 'State' , 'epl') ); ?>
+									</label>
+									<div class="field">
+											<select name="property_address_state" id="property_address_state" class="in-field field-width">
+												<option value=""><?php echo apply_filters('epl_search_widget_option_label_state',__('Any', 'epl') ); ?></option>
+											<?php
+												$states = epl_get_unique_post_meta_values('property_address_state', $post_type ); 
+												foreach($states as $k=>$v) {
+													$selected = '';
+													if(isset($property_address_state) && $k == $property_address_state) {
+														$selected = 'selected="selected"';
+													}
+													echo '<option value="'.$v.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+												}										
+											?>
+										</select>
+									</div>
+								</div>
+								
+								<div class="epl-search-row-half epl-search-left-right fm-block-half">
+									<label for="property_address_postal_code" class="epl-search-label fm-label">
+										<?php echo apply_filters('epl_search_widget_label_property_postal_code',__( 'Postcode' , 'epl') ); ?>
+									</label>
+									<div class="field">
+											<select name="property_address_postal_code" id="property_address_postal_code" class="in-field field-width">
+												<option value=""><?php echo apply_filters('epl_search_widget_option_label_postcode',__('Any', 'epl') ); ?></option>
+											<?php
+												$postcodes = epl_get_unique_post_meta_values('property_address_postal_code', $post_type ); 
+												foreach($postcodes as $k=>$v) {
+													$selected = '';
+													if(isset($property_address_postal_code) && $k == $property_address_postal_code) {
+														$selected = 'selected="selected"';
+													}
+													echo '<option value="'.$v.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+												}										
+											?>
+										</select>
+									</div>
+								</div>
+							</div>
+						<?php
+					}
+				?>
+				
+				<?php
+					if ( $search_state == 'on' && ( $search_postcode == 'off' || $search_postcode == '' ) ) {
+						?>
+							<div class="epl-search-row epl-search-row-full-wrapper epl-search-state fm-block">
+								<label for="property_address_state" class="epl-search-label fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_state',__( 'State' , 'epl') ); ?>
+								</label>
+								<div class="field">
+										<select name="property_address_state" id="property_address_state" class="in-field field-width">
+											<option value=""><?php echo apply_filters('epl_search_widget_option_label_state',__('Any', 'epl') ); ?></option>
+										<?php
+											$states = epl_get_unique_post_meta_values('property_address_state', $post_type ); 
+											foreach($states as $k=>$v) {
+												$selected = '';
+												if(isset($property_address_state) && $k == $property_address_state) {
+													$selected = 'selected="selected"';
+												}
+												echo '<option value="'.$v.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+											}										
+										?>
+									</select>
+								</div>								
+							</div>
+						<?php
+					}
+				?>
+				
+				<?php
+					if ( ( $search_state == 'off' || $search_state == '' ) && $search_postcode == 'on' ) {
+						?>
+							<div class="epl-search-row epl-search-row-full-wrapper epl-search-state fm-block">
+								<label for="property_address_postal_code" class="epl-search-label fm-label">
+									<?php echo apply_filters('epl_search_widget_label_property_postal_code',__( 'Postcode' , 'epl') ); ?>
+								</label>
+								<div class="field">
+										<select name="property_address_postal_code" id="property_address_postal_code" class="in-field field-width">
+											<option value=""><?php echo apply_filters('epl_search_widget_option_label_postcode',__('Any', 'epl') ); ?></option>
+										<?php
+											$postcodes = epl_get_unique_post_meta_values('property_address_postal_code', $post_type ); 
+											foreach($postcodes as $k=>$v) {
+												$selected = '';
+												if(isset($property_address_postal_code) && $k == $property_address_postal_code) {
+													$selected = 'selected="selected"';
+												}
+												echo '<option value="'.$v.'" '.$selected.'>'. __($v, 'epl') .'</option>';
+											}										
 										?>
 									</select>
 								</div>

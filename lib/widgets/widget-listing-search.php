@@ -25,6 +25,8 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			'style'				=>	'default',
 			'property_status'		=>	'any',
 			'search_location'		=>	'on',
+			'search_state'			=>	'off',
+			'search_postcode'		=>	'off',
 			'search_house_category'		=>	'on',
 			'search_price'			=>	'on',
 			'search_bed'			=>	'on',
@@ -59,6 +61,8 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$instance['property_status'] 		= strip_tags($new_instance['property_status']);
 		$instance['style'] 			= strip_tags($new_instance['style']);
 		$instance['search_location'] 		= strip_tags($new_instance['search_location']);
+		$instance['search_state'] 		= strip_tags($new_instance['search_state']);
+		$instance['search_postcode'] 		= strip_tags($new_instance['search_postcode']);
 		$instance['search_house_category'] 	= strip_tags($new_instance['search_house_category']);
 		$instance['search_price'] 		= strip_tags($new_instance['search_price']);
 		$instance['search_bed'] 		= strip_tags($new_instance['search_bed']);
@@ -80,6 +84,8 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			'style'				=>	'default',
 			'property_status'		=>	'any',
 			'search_location'		=>	'on',
+			'search_state'			=>	'off',
+			'search_postcode'		=>	'off',
 			'search_house_category'		=>	'on',
 			'search_price'			=>	'on',
 			'search_bed'			=>	'on',
@@ -100,6 +106,8 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$property_status	=	esc_attr($instance['property_status']);
 		$style			=	esc_attr($instance['style']);
 		$search_location	=	esc_attr($instance['search_location']);
+		$search_state		=	esc_attr($instance['search_state']);
+		$search_postcode	=	esc_attr($instance['search_postcode']);
 		$search_house_category	=	esc_attr($instance['search_house_category']);
 		$search_price		=	esc_attr($instance['search_price']);
 		$search_bed		=	esc_attr($instance['search_bed']);
@@ -186,6 +194,14 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		<p>
 			<input id="<?php echo $this->get_field_id('search_location'); ?>" name="<?php echo $this->get_field_name('search_location'); ?>" type="checkbox" <?php if(isset($search_location) && $search_location == 'on') { echo 'checked="checked"'; } ?> />
 			<label for="<?php echo $this->get_field_id('search_location'); ?>"><?php _e('Location', 'epl'); ?></label>
+		</p>
+		<p>
+			<input id="<?php echo $this->get_field_id('search_state'); ?>" name="<?php echo $this->get_field_name('search_state'); ?>" type="checkbox" <?php if(isset($search_state) && $search_state == 'on') { echo 'checked="checked"'; } ?> />
+			<label for="<?php echo $this->get_field_id('search_state'); ?>"><?php _e('State', 'epl'); ?></label>
+		</p>
+		<p>
+			<input id="<?php echo $this->get_field_id('search_postcode'); ?>" name="<?php echo $this->get_field_name('search_postcode'); ?>" type="checkbox" <?php if(isset($search_postcode) && $search_postcode == 'on') { echo 'checked="checked"'; } ?> />
+			<label for="<?php echo $this->get_field_id('search_postcode'); ?>"><?php _e('Postcode', 'epl'); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id('search_house_category'); ?>" name="<?php echo $this->get_field_name('search_house_category'); ?>" type="checkbox" <?php if(isset($search_house_category) && $search_house_category == 'on') { echo 'checked="checked"'; } ?> />
@@ -424,6 +440,22 @@ function epl_search_pre_get_posts( $query ) {
 			$meta_query[] = array(
 				'key'		=>	'property_status',
 				'value'		=>	$property_status,
+				'compare'	=>	'='
+			);
+		}
+		
+		if(isset($property_address_state) && !empty($property_address_state)) {
+			$meta_query[] = array(
+				'key'		=>	'property_address_state',
+				'value'		=>	$property_address_state,
+				'compare'	=>	'='
+			);
+		}
+		
+		if(isset($property_address_postal_code) && !empty($property_address_postal_code)) {
+			$meta_query[] = array(
+				'key'		=>	'property_address_postal_code',
+				'value'		=>	$property_address_postal_code,
 				'compare'	=>	'='
 			);
 		}
