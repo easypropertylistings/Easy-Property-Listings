@@ -549,11 +549,15 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 }
 
 /**
- * Offers presented on settings page
+ * Offers presented on settings page, removed if extension is present and activated
  *
  * @since 2.0
  */
 function epl_admin_sidebar () {
+
+	if ( has_filter( 'epl_extensions_options_filter_new' ) ) 
+		return;
+		
 	$service_banners = array(
 		array(
 			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
