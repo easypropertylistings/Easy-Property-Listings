@@ -941,30 +941,38 @@ function epl_admin_sidebar () {
 						'on'	=>	__('Yes', 'epl'),
 					),
 					'default'	=>	'off',
-					'help'		=>	__('Adapt to theme framework which will improve sidebar position however removes sorting and grid options which can be added through shortcodes. If using iThemes, Genesis frameworks or Twenty Twelve and Twenty Fifteen based themes leave un-checked.' , 'epl')
+					'help'		=>	__('Adapt to theme framework which will improve sidebar position however removes sorting and grid options which can be added through shortcodes like [listing post_type="property" tools_top="on"]. If using iThemes, Genesis frameworks or Twenty Twelve and Twenty Fifteen based themes leave un-checked.' , 'epl')
 					
 				),
 				array(
 					'name'	=>	'epl_lucky_disable_single_thumb',
-					'label'	=>	__('Disable single featured image', 'epl'),
+					'label'	=>	__('Single Listing: Disable featured image', 'epl'),
 					'type'	=>	'checkbox_single',
 					'opts'	=>	array(
 						'on'	=>	__('Yes', 'epl'),
 					),
 					'default'	=>	'off',
 					'help'		=>	__('Tick this if your theme displays two images on a listing. Used with theme compatibility mode only.' , 'epl')
-					
 				),
 				array(
 					'name'	=>	'epl_lucky_disable_archive_thumb',
-					'label'	=>	__('Disable archive featured image', 'epl'),
+					'label'	=>	__('Archive: Disable featured image', 'epl'),
 					'type'	=>	'checkbox_single',
 					'opts'	=>	array(
 						'on'	=>	__('Yes', 'epl'),
 					),
 					'default'	=>	'off',
 					'help'		=>	__('Tick this if your theme displays two images on archive pages. Used with theme compatibility mode only.' , 'epl')
-					
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_epl_archive_thumb',
+					'label'	=>	__('Archive: Disable EPL featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images on archive pages. Used with theme compatibility mode only.' , 'epl')
 				)
 			)
 

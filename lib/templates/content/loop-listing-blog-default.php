@@ -15,14 +15,7 @@ global $property;
 	<?php do_action('epl_property_before_content'); ?>				
 		<?php if ( has_post_thumbnail() ) : ?>
 			<div class="property-box property-box-left property-featured-image-wrapper">
-				<a href="<?php the_permalink(); ?>">
-					<div class="epl-blog-image">
-						<div class="epl-stickers-wrapper">
-							<?php echo epl_get_price_sticker(); ?>
-						</div>
-						<?php the_post_thumbnail( 'epl-image-medium-crop', array( 'class' => 'teaser-left-thumb' ) ); ?>
-					</div>
-				</a>
+				<?php do_action('epl_property_archive_featured_image'); ?>
 				<!-- Home Open -->
 				<?php do_action('epl_property_inspection_times'); ?>
 			</div>

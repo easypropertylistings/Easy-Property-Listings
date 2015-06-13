@@ -1,20 +1,20 @@
 <?php
 /*
- * Single Property Template: Expanded
+ * Single Property Template: Expanded Compatibility
  *
  * @package easy-property-listings
  * @subpackage Theme
  */
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded epl-property-single-theme-compatibility' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded epl-property-single-compatibility' ); ?>>
 	<div class="entry-header epl-header epl-clearfix">
 	
 		<?php do_action( 'epl_property_featured_image' ); ?>
 		
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 		
-		<div class="epl-tab-section">
+		<div class="epl-tab-section epl-section-property-details">
 			<div class="tab-content">
 
 				<?php do_action('epl_property_price_before'); ?>
@@ -37,7 +37,8 @@
 
 		<div class="tab-wrapper">
 
-			<div class="epl-tab-section">
+			<div class="epl-tab-section epl-section-description">
+				<h5 class="tab-title"><?php echo apply_filters('epl_property_tab_title_description',__('Description', 'epl')); ?></h5>
 				<div class="tab-content">
 					<!-- heading -->
 					<h2 class="entry-title"><?php do_action('epl_property_heading'); ?></h2>
@@ -54,7 +55,7 @@
 			</div>
 
 			<?php do_action('epl_property_tab_section_before'); ?>
-			<div class="epl-tab-section">
+			<div class="epl-tab-section epl-tab-section-features">
 				<?php do_action('epl_property_tab_section'); ?>
 			</div>
 			<?php do_action('epl_property_tab_section_after'); ?>
