@@ -172,7 +172,9 @@ if ( is_admin() ) {
 						$homeopen_list .= '</ul>';
 					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
 				} 
-			
+				
+				do_action('epl_manage_listing_column_details');
+				
 				break;
 			
 			/* If displaying the 'Listing ID' column. */
@@ -182,6 +184,9 @@ if ( is_admin() ) {
 				/* If no duration is found, output a default message. */
 				if (  !empty( $unique_id ) )
 					echo $unique_id;
+				
+				do_action('epl_manage_listing_column_id');
+				
 				break;
 
 			/* If displaying the 'Geocoding' column. */
@@ -194,6 +199,7 @@ if ( is_admin() ) {
 				/* If there is a duration, append 'minutes' to the text string. */
 				else
 					echo $property_address_coordinates;
+					do_action('epl_manage_listing_column_geo');
 				break;
 				
 			/* If displaying the 'Price' column. */
@@ -242,6 +248,7 @@ if ( is_admin() ) {
 					_e('Auction ','epl');
 					echo '<br>'.$property->get_property_auction(true);
 				}
+				do_action('epl_manage_listing_column_price');
 				break;
 			/* If displaying the 'real-estate' column. */
 			case 'property_status' :
@@ -258,6 +265,7 @@ if ( is_admin() ) {
 				if ( ! empty ( $property_status ) ) {
 					echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
 				}
+				do_action('epl_manage_listing_column_status');
 				break;
 				
 			case 'agent':
@@ -278,6 +286,7 @@ if ( is_admin() ) {
 					}
 					epl_reset_post_author();
 				}
+				do_action('epl_manage_listing_column_agent');
 				break;
 				
 			/* Just break out of the switch statement for everything else. */
