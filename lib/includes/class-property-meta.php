@@ -585,11 +585,13 @@ class EPL_Property_Meta {
 
 	// property parking for single icon
 	public function get_property_parking($returntype = 'i') {
-		if($this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '')
+		if( $this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '' )
 			return;
 		$property_garage 	= intval($this->get_property_meta('property_garage'));
 		$property_carport 	= intval($this->get_property_meta('property_carport'));
 		$property_parking 	= $property_carport + $property_garage;
+		if ( $property_parking == 0)
+			return;
 		$parking['i'] = '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' .$property_parking. '</span></span>';
 		$parking['d'] = $property_parking . ' '.__('Parking Spaces', 'epl').' ';
 		$parking['l'] = '<li class="parking">' . $property_parking . ' '.__('Parking Spaces', 'epl').'</li>';
