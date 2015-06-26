@@ -699,6 +699,10 @@ class EPL_Property_Meta {
 					$metavalue = $metavalue.__(' Car Spaces', 'epl');
 				}
 				
+				if($metakey == 'property_category'){
+					$metavalue = $this->get_property_category();
+				}
+				
 				if( (is_numeric($metavalue)) ) {
 					if($metavalue == 0)
 						return;
