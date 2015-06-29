@@ -158,6 +158,7 @@ function epl_property_single() {
 	}
 }
 add_action('epl_property_single','epl_property_single');
+
 /**
  * Featured Image template now loading through filter
  *
@@ -176,8 +177,31 @@ function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_c
 	<?php }
 
 }
-add_action( 'epl_property_featured_image' , 'epl_property_featured_image' );
-add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
+add_action( 'epl_property_featured_image' , 'epl_property_featured_image' , 10 , 2);
+add_action( 'epl_single_featured_image' , 'epl_property_featured_image' , 10 , 2 );
+
+/**
+ * Featured Image on archive template now loading through filter
+ *
+ * @since 2.2
+ */
+function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) { 
+	
+	if ( has_post_thumbnail() ) { ?>
+		<div class="epl-archive-entry-image">
+			<a href="<?php the_permalink(); ?>">
+				<div class="epl-blog-image">
+					<div class="epl-stickers-wrapper">
+						<?php echo epl_get_price_sticker(); ?>
+					</div>
+					<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
+				</div>
+			</a>
+		</div>
+	<?php }
+
+}
+add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featured_image' , 10 , 2 );
 
 /*
 * Single Listing Templates
@@ -194,7 +218,15 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' );
 // Single Listing Expanded Templates
 function epl_property_single_default() {
 
-	epl_get_template_part('content-listing-single.php');
+	global $epl_settings;
+	if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
+	
+		epl_get_template_part('content-listing-single-compatibility.php');
+		
+	} else {
+	
+		epl_get_template_part('content-listing-single.php');
+	}
 }
 
 /*
@@ -213,6 +245,7 @@ function epl_get_template_part($template,$arguments=array()) {
 		global $epl_author;
 	} 
 	extract($arguments);
+	
 	include( $template);
 }
 /*
@@ -256,7 +289,16 @@ function epl_property_blog() {
 		if ( $action_check != '' && $option !== 0 ) {
 			do_action( 'epl_loop_template' );
 		} else {
-			epl_get_template_part('loop-listing-blog-default.php');
+			
+			if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
+	
+				epl_get_template_part('loop-listing-blog-default-compatibility.php');
+		
+			} else {
+	
+				epl_get_template_part('loop-listing-blog-default.php');
+			}
+			
 		}
 	} // End Status Removal
 }
@@ -1461,3 +1503,195 @@ function epl_update_default_view() {
 }
 add_action('wp_ajax_epl_update_default_view','epl_update_default_view');
 add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');
+/**
+ * Custom the_content filter
+ *
+ * @since 2.2
+ */
+function epl_the_content() {
+
+    if ( !has_filter( 'epl_the_content', 'wptexturize' ) ) {
+    
+        add_filter( 'epl_the_content', 'wptexturize'        );
+        add_filter( 'epl_the_content', 'convert_smilies'    );
+        add_filter( 'epl_the_content', 'convert_chars'      );
+        add_filter( 'epl_the_content', 'wpautop'            );
+        add_filter( 'epl_the_content', 'shortcode_unautop'  );
+        add_filter( 'epl_the_content', 'prepend_attachment' );
+        $vidembed = new WP_Embed();
+        add_filter( 'epl_the_content', array( &$vidembed, 'run_shortcode'), 8 );
+        add_filter( 'epl_the_content', array( &$vidembed, 'autoembed'), 8 );
+        add_filter( 'epl_the_content', 'do_shortcode', 11);
+    } 
+
+    add_filter( 'epl_get_the_excerpt', 'epl_trim_excerpt'  );
+}
+add_action('init','epl_the_content',1);
+
+/**
+ * Disable property-box left and right class
+ *
+ * @since 2.2
+ */
+function epl_compatibility_archive_class_callback() {
+	$class = '-disable';
+	echo $class;
+}
+
+/**
+ * Apply the i'm feeling lucky theme options
+ *
+ * @since 2.2
+ */
+function epl_apply_feeling_lucky_config() {
+	
+	global $epl_settings;
+	
+	$epl_posts 	= epl_get_active_post_types();
+	$epl_posts 	= array_keys($epl_posts);
+
+	
+    // remove featured image on single pages in lucky mode
+    if( isset($epl_settings['epl_lucky_disable_single_thumb']) && $epl_settings['epl_lucky_disable_single_thumb'] == 'on') {
+    
+		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) { 
+			remove_all_actions( 'epl_property_featured_image' );
+		}
+
+	}
+	
+    // remove featured image on archive pages in lucky mode
+    if( isset($epl_settings['epl_lucky_disable_archive_thumb']) && $epl_settings['epl_lucky_disable_archive_thumb'] == 'on') {
+    
+    	if( is_post_type_archive($epl_posts) ) {
+			add_filter('post_thumbnail_html','epl_remove_archive_thumbnail',20,5);
+		}
+	}
+	
+    // remove epl featured image on archive pages in lucky mode
+    if( isset($epl_settings['epl_lucky_disable_epl_archive_thumb']) && $epl_settings['epl_lucky_disable_epl_archive_thumb'] == 'on') {
+    
+    	if( is_post_type_archive($epl_posts) ) {
+			remove_all_actions( 'epl_property_archive_featured_image' );
+			
+			// Adds class to disable property-box right and left
+			add_action('epl_compatibility_archive_class' , 'epl_compatibility_archive_class_callback');
+		}
+	}
+
+}
+add_action('wp','epl_apply_feeling_lucky_config',1);
+
+/**
+ * A workaround to avoid duplicate thumbnails for single listings being displayed on archive pages via theme & epl
+ * attempts to null the post thumbnail image called from theme & display thumbnail image called from epl
+ *
+ * @since 2.2
+*/
+function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size, $attr) {
+
+	if( is_admin() ) {
+		return $html;
+	}
+	
+	if( strpos($html, 'teaser-left-thumb') === FALSE ) {
+		
+		// the post thumbnail is probably theme's default . remove it
+		$html = '';
+	} 
+	
+	return $html;
+}
+
+/**
+ * Custom property the_content
+ *
+ * @since 2.2
+ */
+function epl_property_the_content() {
+
+	global $property;
+	$content = apply_filters('epl_the_content',get_the_content());
+	echo str_replace( ']]>', ']]&gt;', $content );
+}
+add_action('epl_property_the_content','epl_property_the_content');
+
+/**
+ * Custom property the_content
+ *
+ * @since 2.2
+ */
+function epl_feeling_lucky($content) {
+	
+	global $epl_settings;
+	
+	if( !isset($epl_settings['epl_feeling_lucky']) || $epl_settings['epl_feeling_lucky'] != 'on') {
+		return $content;
+	}
+	
+	$epl_posts 	= epl_get_active_post_types();
+	$epl_posts 	= array_keys($epl_posts);
+
+	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
+		do_action('epl_property_single');
+	} elseif( is_post_type_archive($epl_posts) ) {
+		do_action('epl_property_blog');
+	} else {
+		return $content;
+	}
+}
+
+add_filter('the_content','epl_feeling_lucky');
+
+/**
+ * Custom property the_excerpt
+ *
+ * @since 2.2
+ */
+function epl_trim_excerpt($text = '') {
+
+	$raw_excerpt = $text;
+	if ( '' == $text ) {
+		$text = get_the_content('');
+
+		$text = strip_shortcodes( $text );
+
+		$text = apply_filters( 'epl_the_content', $text );
+		$text = str_replace(']]>', ']]&gt;', $text);
+
+		$excerpt_length = apply_filters( 'excerpt_length', 55 );
+		$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
+		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
+	}
+	return apply_filters( 'epl_trim_excerpt', $text, $raw_excerpt );
+}
+
+/**
+ * Custom property the_excerpt
+ *
+ * @since 2.2
+ */
+function epl_the_excerpt() {
+	echo apply_filters( 'epl_the_excerpt', epl_get_the_excerpt() );
+}
+
+/**
+ * Custom property the_excerpt
+ *
+ * @since 2.2
+ */
+function epl_get_the_excerpt( $deprecated = '' ) {
+	if ( !empty( $deprecated ) )
+		_deprecated_argument( __FUNCTION__, '2.3' );
+
+	$post = get_post();
+	if ( empty( $post ) ) {
+		return '';
+	}
+
+	if ( post_password_required() ) {
+		return __( 'There is no excerpt because this is a protected post.' );
+	}
+
+	return apply_filters( 'epl_get_the_excerpt', $post->post_excerpt );
+}

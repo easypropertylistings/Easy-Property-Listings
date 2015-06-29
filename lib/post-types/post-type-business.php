@@ -119,14 +119,13 @@ if ( is_admin() ) {
 		
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
-				/* Get the featured Image */
-				if( function_exists('the_post_thumbnail') ) {
-					$thumb_size = isset($epl_settings['epl_admin_thumb_size'])? $epl_settings['epl_admin_thumb_size'] : 'admin-list-thumb';
-					the_post_thumbnail($thumb_size);
-				}
+				do_action('epl_manage_listing_column_property_thumb_before');
+				do_action('epl_manage_listing_column_property_thumb');
+				do_action('epl_manage_listing_column_property_thumb_after');
+				
 				break;
 
-				case 'listing' :
+			case 'listing' :
 				/* Get the post meta. */
 				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
 				$heading			= get_post_meta( $post_id, 'property_heading', true );
@@ -181,23 +180,18 @@ if ( is_admin() ) {
 
 			/* If displaying the 'Listing ID' column. */
 			case 'listing_id' :
-				/* Get the post meta. */
-				$unique_id	= get_post_meta( $post_id, 'property_unique_id', true );
-				/* If no duration is found, output a default message. */
-				if (  !empty( $unique_id ) )
-					echo $unique_id;
+				do_action('epl_manage_listing_column_listing_id_before');
+				do_action('epl_manage_listing_column_listing_id');
+				do_action('epl_manage_listing_column_listing_id_after');
+				
 				break;
 
 			/* If displaying the 'Geocoding' column. */
 			case 'geo' :
-				/* Get the post meta. */
-				$property_address_coordinates = get_post_meta( $post_id, 'property_address_coordinates', true );
-				/* If no duration is found, output a default message. */
-				if (  $property_address_coordinates == ',' || empty($property_address_coordinates ) )
-					_e('No','epl') ;
-				/* If there is a duration, append 'minutes' to the text string. */
-				else
-					echo $property_address_coordinates;
+				do_action('epl_manage_listing_column_geo_before');
+				do_action('epl_manage_listing_column_geo');
+				do_action('epl_manage_listing_column_geo_after');
+				
 				break;
 				
 			/* If displaying the 'Price' column. */
@@ -274,43 +268,20 @@ if ( is_admin() ) {
 					 
 				break;
 				
-			/* If displaying the 'real-estate' column. */
+			/* If displaying the 'property_status' column. */
 			case 'property_status' :
-				/* Get the genres for the post. */
-				$property_status = get_post_meta( $post_id, 'property_status', true );
-				$labels_property_status = apply_filters (  'epl_labels_property_status_filter', array(
-					'current' 	=> __('Current', 'epl'),
-					'withdrawn' 	=> __('Withdrawn', 'epl'),
-					'offmarket' 	=> __('Off Market', 'epl'),
-					'sold'  	=> $property->label_sold,
-					'leased'  	=> $property->label_leased
-					)
-				);
-				if ( ! empty ( $property_status ) ) {
-					echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
-				}
-				break;
-
-				case 'agent':
-				printf( '<a href="%s">%s</a>',
-					esc_url( add_query_arg( array( 'post_type' => $post->post_type, 'author' => get_the_author_meta( 'ID' ) ), 'edit.php' )),
-					get_the_author()
-				);
+				do_action('epl_manage_listing_column_property_status_before');
+				do_action('epl_manage_listing_column_property_status');
+				do_action('epl_manage_listing_column_property_status_after');
 				
-				$property_second_agent = $property->get_property_meta('property_second_agent');
-				if ( '' != $property_second_agent ) {
-					$second_author = get_user_by( 'login' , $property_second_agent );
-					if($second_author !== false){
-						printf( '<br><a href="%s">%s</a>',
-							esc_url( add_query_arg( array( 'post_type' => $post->post_type, 'author' => $second_author->ID ), 'edit.php' )),
-							get_the_author_meta('display_name', $second_author->ID) 
-						);
-
-					}
-					epl_reset_post_author();
-				}
 				break;
 
+			case 'agent':
+				do_action('epl_manage_listing_column_agent_before');
+				do_action('epl_manage_listing_column_agent');
+				do_action('epl_manage_listing_column_agent_after');
+				
+				break;
 
 			/* Just break out of the switch statement for everything else. */
 			default :
