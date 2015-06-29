@@ -216,7 +216,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 					}
 				}
 				
-				require_once EPL_PATH_LIB . 'post-types/post-types.php';
+				
 			}
 
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
@@ -233,6 +233,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			
 			if ( is_admin() ) {
+				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
 				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
