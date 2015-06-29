@@ -239,7 +239,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('Commercial Listing Type', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_com_listing_type,
-							'include'	=>	array('commercial', 'commercial_land')
+							'include'	=>	array('commercial', 'commercial_land' , 'business' )
 						),
 					
 						array(
@@ -760,7 +760,7 @@ function epl_meta_box_init() {
 		array( //Repeating most from above "epl-features-section-id" because on land it will be single column
 			'id'		=>	'epl-features-section-id-single-column',
 			'label'		=>	__('Land Details', 'epl'),
-			'post_type'	=>	array('land', 'commercial'),
+			'post_type'	=>	array('land', 'commercial', 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
@@ -787,7 +787,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_building_area',
 							'label'		=>	__('Building Area', 'epl'),
 							'type'		=>	'number',
-							'include'	=>	array('commercial'),
+							'include'	=>	array('commercial','business'),
 							'maxlength'	=>	'40'
 						),
 					
@@ -796,7 +796,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('Building Unit', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_area_unit,
-							'include'	=>	array('commercial')
+							'include'	=>	array('commercial','business')
 						),
 					
 						array(
@@ -815,6 +815,7 @@ function epl_meta_box_init() {
 								'yes'	=>	__('Yes', 'epl'),
 								'no'	=>	__('No', 'epl')
 							),
+							'include'	=>	array('land')
 						)
 					)
 				)
@@ -1189,8 +1190,8 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-commercial-leasing-id',
-			'label'		=>	__('Commercial Leasing', 'epl'),
-			'post_type'	=>	array('commercial', 'commercial_land'),
+			'label'		=>	__('Leasing', 'epl'),
+			'post_type'	=>	array('commercial', 'commercial_land' , 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
@@ -1251,16 +1252,16 @@ function epl_meta_box_init() {
 							'label'		=>	__('Tenant Status', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_com_tenancy,
-							'exclude'	=>	array('commercial_land')
+							'include'	=>	array('commercial')
 						),
 					
 						array(
 							'name'		=>	'property_com_outgoings',
 							'label'		=>	__('Commercial Outgoings', 'epl'),
 							'type'		=>	'number',
-							'maxlength'	=>	'40'
-						)
-						,
+							'maxlength'	=>	'40',
+							'exclude'	=>	array('business')
+						),
 					
 						array(
 							'name'		=>	'property_com_plus_outgoings',
@@ -1270,13 +1271,39 @@ function epl_meta_box_init() {
 								'yes'	=>	__('Yes', 'epl'),
 								'no'	=>	__('No', 'epl')
 							),
+							'exclude'	=>	array('business')
 						),
-					
+						
+						array(
+							'name'		=>	'property_bus_takings',
+							'label'		=>	__('Takings', 'epl'),
+							'type'		=>	'number',
+							'maxlength'	=>	'40',
+							'include'	=>	array('business')
+						),
+						
+						array(
+							'name'		=>	'property_bus_franchise',
+							'label'		=>	__('Franchise', 'epl'),
+							'type'		=>	'radio',
+							'opts'		=>	array(
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
+							),
+							'include'	=>	array('business')
+						),
+						
 						array(
 							'name'		=>	'property_com_return',
-							'label'		=>	__('Commercial Return', 'epl'),
+							'label'		=>	__('Return', 'epl'),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'6'
+						),
+						
+						array(
+							'name'		=>	'property_bus_terms',
+							'label'		=>	__('Terms', 'epl'),
+							'type'		=>	'textarea'
 						)
 					)
 				)
@@ -1482,7 +1509,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_external_link_3',
 							'label'		=>	__('External Link 3', 'epl'),
 							'type'		=>	'url',
-							'include'	=>	array('commercial', 'business')
+							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
 					
 						array(

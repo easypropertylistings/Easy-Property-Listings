@@ -138,7 +138,9 @@ function epl_admin_posts_filter( $query ) {
  * @since 1.0
  */
 function epl_manage_listings_sortable_columns( $columns ) {
-	$columns['property_price'] = __('property_price', 'epl');
+	$columns['property_price']	= 'property_price';
+	$columns['property_status'] 	= 'property_status';
+	$columns['agent'] 		= 'agent';
 	return $columns;
 }
 
@@ -148,6 +150,11 @@ foreach($epl_posts  as $epl_post ) {
 	add_filter( 'manage_edit-'.$epl_post.'_sortable_columns', 'epl_manage_listings_sortable_columns' );
 }
 
+/**
+ * Manage Listing Columns Sorting
+ *
+ * @since 1.0
+ */
 function epl_custom_orderby( $query ) {
 	if( ! is_admin() )  
 	return;  
@@ -162,3 +169,265 @@ function epl_custom_orderby( $query ) {
 }
 // handle sorting of admin columns
 add_filter( 'pre_get_posts', 'epl_custom_orderby' );
+
+
+/**
+ * Functions for post column contents
+ *
+ * @since 2.2
+ */
+function epl_manage_listing_column_property_thumb_callback() {
+	global $epl_settings;
+	
+	if( function_exists('the_post_thumbnail') ) {
+		$thumb_size = isset($epl_settings['epl_admin_thumb_size'])? $epl_settings['epl_admin_thumb_size'] : 'admin-list-thumb';
+		the_post_thumbnail($thumb_size);
+	}
+}
+add_action( 'epl_manage_listing_column_property_thumb' , 'epl_manage_listing_column_property_thumb_callback' );
+
+function epl_manage_listing_column_listing_callback() {
+	global $post,$epl_settings,$property;
+	
+	$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
+	$heading 			= get_post_meta( $post->ID, 'property_heading', true );
+	$homeopen 			= get_post_meta( $post->ID, 'property_inspection_times', true );
+	$beds 				= get_post_meta( $post->ID, 'property_bedrooms', true );
+	$baths 				= get_post_meta( $post->ID, 'property_bathrooms', true );
+	$rooms 				= get_post_meta( $post->ID, 'property_rooms', true );
+	$land 				= get_post_meta( $post->ID, 'property_land_area', true );
+	$land_unit 			= get_post_meta( $post->ID, 'property_land_area_unit', true );
+	
+	$category			= get_post_meta( $post->ID, 'property_commercial_category', true );
+	$outgoings			= get_post_meta( $post->ID, 'property_com_outgoings', true );
+	$return				= get_post_meta( $post->ID, 'property_com_return', true );
+	
+	if ( empty( $heading) ) {
+		echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
+	} else {
+		echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
+	}		
+	
+	/* Commercial Listing Type */
+	if ( !empty( $category ) ) {
+		echo '<div class="epl_meta_category">Category: ' , $category , '</div>';
+	}
+	
+	echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
+	
+	/* Commercial Listing Type */	
+	if ( !empty( $outgoings ) ) {
+		echo '<div class="epl_meta_outgoings">Outgoings: ' , epl_currency_formatted_amount ( $outgoings ) , '</div>';
+	}
+	
+	/* Commercial Listing Type */
+	if ( !empty( $return ) ) {
+		echo '<div class="epl_meta_baths">Return: ' , $return , '%</div>';
+	}
+	
+	if ( !empty( $beds ) || !empty( $baths ) ) {
+		echo '<div class="epl_meta_beds_baths">';
+			echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'epl' ) , ' | </span>';
+			echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'epl' ) , '</span>';
+		echo '</div>';
+	}
+	
+	if ( !empty( $rooms ) ) {
+		if ( $rooms == 1 ) {
+			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Room', 'epl' ) , '</div>';
+		} else {
+			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Rooms', 'epl' ) , '</div>';
+		}
+	}
+	
+	if ( !empty( $land) ) {
+		echo '<div class="epl_meta_land_details">';
+		echo '<span class="epl_meta_land">' , $land , '</span>';
+		echo '<span class="epl_meta_land_unit"> ' , $land_unit , '</span>';
+		echo '</div>';
+	}
+	
+	if ( !empty( $homeopen) ) {
+		$homeopen = array_filter(explode( "\n", $homeopen ));
+			$homeopen_list =  '<ul class="epl_meta_home_open">';
+			foreach ( $homeopen as $num => $item ) {
+			  $homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
+			}
+			$homeopen_list .= '</ul>';
+		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
+	} 
+}
+add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_listing_callback' );
+
+function epl_manage_listing_column_listing_id_callback() {
+	global $post;
+	
+	$unique_id	= get_post_meta( $post->ID, 'property_unique_id', true );
+	/* If no duration is found, output a default message. */
+	if (  !empty( $unique_id ) )
+		echo $unique_id;
+}
+add_action( 'epl_manage_listing_column_listing_id' , 'epl_manage_listing_column_listing_id_callback' );
+
+
+function epl_manage_listing_column_geo_callback() {
+	global $post;
+	
+	$property_address_coordinates = get_post_meta( $post->ID, 'property_address_coordinates', true );
+	/* If no duration is found, output a default message. */
+	if (  $property_address_coordinates == ',' || empty($property_address_coordinates ) )
+		_e('No','epl') ;
+	/* If there is a duration, append 'minutes' to the text string. */
+	else
+		echo $property_address_coordinates;
+}
+add_action( 'epl_manage_listing_column_geo' , 'epl_manage_listing_column_geo_callback' );
+
+
+function epl_manage_listing_column_price_callback() {
+	global $post, $property, $epl_settings;
+	
+	$price 			= get_post_meta( $post->ID, 'property_price', true );
+	$view 			= get_post_meta( $post->ID, 'property_price_view', true );
+	$property_status	= ucfirst( get_post_meta( $post->ID, 'property_status', true ) );
+	$property_authority	= get_post_meta( $post->ID, 'property_authority', true );
+	$sold_price		= get_post_meta( $post->ID, 'property_sold_price', true );
+	$property_under_offer	= get_post_meta( $post->ID, 'property_under_offer', true );
+	$lease 			= get_post_meta( $post->ID, 'property_com_rent', true );
+	$lease_period		= get_post_meta( $post->ID, 'property_com_rent_period', true );
+	$lease_date 		= get_post_meta( $post->ID, 'property_com_lease_end_date', true );
+	$d_bond 		= '';
+	$bond 			= '';
+	
+	$max_price 		= '2000000';
+	
+	if(isset($epl_settings['epl_max_graph_sales_price' ])) {
+		$max_price = (int) $epl_settings['epl_max_graph_sales_price' ];
+	}
+	
+	/* Rental Listing Type Custom Values */
+	if ( 'rental' == $post->post_type ) {
+
+		$price 			= get_post_meta( $post->ID, 'property_rent', true );
+		$view 			= get_post_meta( $post->ID, 'property_rent_view', true );
+
+		$d_bond 		= $epl_settings['display_bond'];
+		$bond 			= get_post_meta( $post->ID, 'property_bond', true );
+		
+		$max_price 		= '2000';
+		if(isset($epl_settings['epl_max_graph_rent_price' ])) {
+			$max_price = (int) $epl_settings['epl_max_graph_rent_price' ];
+		}
+				
+	}
+	
+	if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
+		$class = 'bar-under-offer';
+	}elseif ( $property_status == 'Current' ) {
+		$class = 'bar-home-open';
+	}elseif($property_status == 'Sold'){
+		$class = 'bar-home-sold';
+	}elseif($property_status == 'Leased'){
+		$class = 'bar-home-sold';
+	}else{
+		$class = '';
+	}
+	if($sold_price != ''){
+		$barwidth = $max_price == 0 ? 0 : $sold_price/$max_price * 100;
+	} else {
+		$barwidth = $max_price == 0 ? 0 : $price/$max_price * 100;
+	}
+	echo '<div class="epl-price-bar '.$class.'">
+			<span style="width:'.$barwidth.'%"></span>
+		</div>';
+		
+	if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
+		echo '<div class="type_under_offer">' .$property->label_under_offer. '</div>';
+	}
+	
+	if ( empty ( $view ) ) {
+		echo '<div class="epl_meta_search_price">' . $property->get_price_plain_value() . '</div>';
+	} else {
+		echo '<div class="epl_meta_price">' . $property->get_price_plain_value() . '</div>';
+	}
+	
+	/* Rental Listing Type */
+	if ( $d_bond == 1 ) {
+		echo '<div class="epl_meta_bond">' , epl_display_label_bond() , ' ' , epl_currency_formatted_amount( $bond ) , '</div>';
+	}
+	
+	if ( !empty ( $lease ) ) {
+		if ( empty ( $lease_period ) ) {
+			$lease_period = 'annual';
+		}
+		echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), ' ' ,epl_listing_load_meta_commercial_rent_period_value( $lease_period ) ,'</div>';
+	}
+				
+	/* Commercial Listing Type */
+	if ( !empty ( $lease_date ) ) {
+		echo '<div class="epl_meta_lease_date">Lease End: ' ,  $lease_date , '</div>';
+	}
+	
+	if($property_authority == 'auction' ) {
+		_e('Auction ','epl');
+		echo '<br>'.$property->get_property_auction(true);
+	}
+
+}
+add_action( 'epl_manage_listing_column_price' , 'epl_manage_listing_column_price_callback' );
+
+function epl_manage_listing_column_property_status_callback() {
+	global $post, $property;
+	
+	$property_status = get_post_meta( $post->ID, 'property_status', true );
+	$labels_property_status = apply_filters (  'epl_labels_property_status_filter', array(
+		'current' 	=> __('Current', 'epl'),
+		'withdrawn' 	=> __('Withdrawn', 'epl'),
+		'offmarket' 	=> __('Off Market', 'epl'),
+		'sold'  	=> $property->label_sold,
+		'leased'  	=> $property->label_leased
+		)
+	);
+	if ( ! empty ( $property_status ) ) {
+		echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
+	}
+
+}
+add_action( 'epl_manage_listing_column_property_status' , 'epl_manage_listing_column_property_status_callback' );
+
+function epl_manage_listing_column_listing_type_callback() {
+	global $post;
+	
+	/* Get the post meta. */
+	$listing_type = get_post_meta( $post->ID, 'property_com_listing_type', true );
+	/* If no duration is found, output a default message. */
+	if ( ! empty( $listing_type) )
+		echo $listing_type;
+
+}
+add_action( 'epl_manage_listing_column_listing_type' , 'epl_manage_listing_column_listing_type_callback' );
+
+function epl_manage_listing_column_agent_callback() {
+	global $post, $property;
+	
+	printf( '<a href="%s">%s</a>',
+		esc_url( add_query_arg( array( 'post_type' => $post->post_type, 'author' => get_the_author_meta( 'ID' ) ), 'edit.php' )),
+		get_the_author()
+	);
+	
+	$property_second_agent = $property->get_property_meta('property_second_agent');
+	if ( '' != $property_second_agent ) {
+		$second_author = get_user_by( 'login' , $property_second_agent );
+		if($second_author !== false){
+			printf( '<br><a href="%s">%s</a>',
+				esc_url( add_query_arg( array( 'post_type' => $post->post_type, 'author' => $second_author->ID ), 'edit.php' )),
+				get_the_author_meta('display_name', $second_author->ID) 
+			);
+
+		}
+		epl_reset_post_author();
+	}
+
+}
+add_action( 'epl_manage_listing_column_agent' , 'epl_manage_listing_column_agent_callback' );
+
