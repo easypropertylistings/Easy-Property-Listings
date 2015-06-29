@@ -549,11 +549,15 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 }
 
 /**
- * Offers presented on settings page
+ * Offers presented on settings page, removed if extension is present and activated
  *
  * @since 2.0
  */
 function epl_admin_sidebar () {
+
+	if ( has_filter( 'epl_extensions_options_filter_new' ) ) 
+		return;
+		
 	$service_banners = array(
 		array(
 			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
@@ -843,7 +847,8 @@ function epl_admin_sidebar () {
 				array(
 					'name'	=>	'label_location',
 					'label'	=>	__('Location Taxonomy', 'epl'),
-					'type'	=>	'text'
+					'type'	=>	'text',
+					'help'	=>	__('After changing this setting visit Dashboard > Settings > Permalinks to save the settings.', 'epl')
 				),
 				
 				array(
@@ -890,7 +895,7 @@ function epl_admin_sidebar () {
 						'epl-image-medium-crop'	=>	__('300 X 200', 'epl'),
 					),
 					'default'	=>	'admin-list-thumb',
-					'help'		=>	__('size of the image shown in listing columns in admin area' , 'epl')
+					'help'		=>	__('Size of the image shown in listing columns in admin area' , 'epl')
 				)
 			)
 		),
@@ -1269,3 +1274,35 @@ function epl_leased_label_status_filter_callback() {
 	return $leased_label;
 }
 add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_callback' );
+
+/**
+* Description: Getting all the values associated with a specific custom post meta key, across all posts
+* Author: Chinmoy Paul
+* Author URL: http://pwdtechnology.com
+*
+* @param string $key Post Meta Key.
+*
+* @param string $type Post Type. Default is post. You can pass custom post type here.
+*
+* @param string $status Post Status like Publish, draft, future etc. default is publish
+*
+* @return array
+*/
+ 
+ function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+
+    global $wpdb;
+
+    if( empty( $key ) )
+        return;
+
+    $res = $wpdb->get_col( $wpdb->prepare( "
+SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+WHERE pm.meta_key = '%s'
+AND p.post_status = '%s'
+AND p.post_type = '%s'
+", $key, $status, $type ) );
+
+    return $res;
+}
