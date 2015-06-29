@@ -149,7 +149,7 @@ function epl_meta_box_init() {
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
-						
+
 						array(
 							'name'		=>	'property_agent_hide_author_box',
 							'label'		=>	__('', 'epl'),

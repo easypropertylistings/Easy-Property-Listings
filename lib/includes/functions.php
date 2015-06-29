@@ -934,6 +934,56 @@ function epl_admin_sidebar () {
 		),
 		
 		array(
+			'label'		=>	__('Theme Setup' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'theme_setup',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'epl_feeling_lucky',
+					'label'	=>	__('Enable Theme Compatibility', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Adapt to theme framework which will improve sidebar position however removes sorting and grid options which can be added through shortcodes like [listing post_type="property" tools_top="on"]. If using iThemes, Genesis frameworks or Twenty Twelve and Twenty Fifteen based themes leave un-checked.' , 'epl')
+					
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_single_thumb',
+					'label'	=>	__('Single Listing: Disable featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images on a listing. Used with theme compatibility mode only.' , 'epl')
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_archive_thumb',
+					'label'	=>	__('Archive: Disable featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images on archive pages. Used with theme compatibility mode only.' , 'epl')
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_epl_archive_thumb',
+					'label'	=>	__('Archive: Disable EPL featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images on archive pages. Used with theme compatibility mode only.' , 'epl')
+				)
+			)
+
+		),
+		
+		array(
 			'label'		=>	__('Listing Single View', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
@@ -1076,8 +1126,6 @@ function epl_admin_sidebar () {
 					'default'	=>	'Sold',
 
 				)
-
-
 			)
 		),
 		
@@ -1181,7 +1229,6 @@ function epl_admin_sidebar () {
 					
 				)
 			)
-
 		)
 	);
 	
@@ -1196,6 +1243,7 @@ function epl_admin_sidebar () {
  */
 function epl_sold_label_status_filter_callback() {
 	global $epl_settings;
+	$epl_settings['label_sold'] = !isset($epl_settings['label_sold']) ? '' : $epl_settings['label_sold'];
 	$sold_label	= $epl_settings['label_sold'] != 'Sold' || $epl_settings['label_sold'] != '' ? $epl_settings['label_sold'] : __('Sold' , 'epl');
 	return $sold_label;
 }
@@ -1208,6 +1256,7 @@ add_filter('epl_sold_label_status_filter', 'epl_sold_label_status_filter_callbac
  */
 function epl_under_offer_label_status_filter_callback() {
 	global $epl_settings;
+	$epl_settings['label_under_offer'] = !isset($epl_settings['label_under_offer']) ? '' : $epl_settings['label_under_offer'];
 	$under_offer_label	= $epl_settings['label_under_offer'] != 'Under Offer' || $epl_settings['label_under_offer'] != '' ? $epl_settings['label_under_offer'] : __('Under Offer' , 'epl');
 	return $under_offer_label;
 }
@@ -1220,6 +1269,7 @@ add_filter('epl_under_offer_label_status_filter', 'epl_under_offer_label_status_
  */
 function epl_leased_label_status_filter_callback() {
 	global $epl_settings;
+	$epl_settings['label_leased'] = !isset($epl_settings['label_leased']) ? '' : $epl_settings['label_leased'];
 	$leased_label	= $epl_settings['label_leased'] != 'Leased' || $epl_settings['label_leased'] != '' ? $epl_settings['label_leased'] : __('Leased' , 'epl');
 	return $leased_label;
 }
