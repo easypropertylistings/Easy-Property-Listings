@@ -1046,16 +1046,6 @@ function epl_meta_box_init() {
 					'label'		=>	'',
 					'fields'	=>	array(
 						array(
-							'name'		=>	'property_rent_display',
-							'label'		=>	__('Display Rent?', 'epl'),
-							'type'		=>	'radio',
-							'opts'		=>	array(
-								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
-							),
-						),
-					
-						array(
 							'name'		=>	'property_rent',
 							'label'		=>	__('Rent Amount', 'epl'),
 							'type'		=>	apply_filters('epl_price_number_format','number'),
@@ -1074,6 +1064,16 @@ function epl_meta_box_init() {
 							'label'		=>	__('Rent Text', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'50'
+						),
+						
+						array(
+							'name'		=>	'property_rent_display',
+							'label'		=>	__('Display Rent?', 'epl'),
+							'type'		=>	'radio',
+							'opts'		=>	array(
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
+							),
 						),
 					
 						array(
