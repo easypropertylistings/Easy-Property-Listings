@@ -9,108 +9,12 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-//include( EPL_PATH_TEMPLATES_CONTENT . 'listing-meta-dev.php' );
 
-// TEMPLATE - Leased/sold property list
-function epl_property_sold_leased() {
-	$property_suburb = get_post_custom_values('property_address_suburb');
-	$post_id = $property_suburb[0]['ID'];
-	$terms = get_the_terms( $post->ID, 'location' );
-	if( $terms != '' ) {
-		global $post;
-		foreach($terms as $term){
-			$term->slug;
-		}
-	}
-	
-	$post_type = get_post_type();
-
-	if ( 'property' == $post_type ) {
-		$query = new WP_Query( array (
-			'post_type' => 'property',
-			'location' => $term->slug,
-			'meta_query' => array(
-				array(
-					'key' => 'property_status',
-					'value' => 'sold'
-				)
-			),
-			'posts_per_page' => '5'
-		) );
-	} elseif ( 'land' == $post_type ) {
-		$query = new WP_Query( array (
-			'post_type' => 'land',
-			'meta_query' => array(
-				array(
-					'key' => 'property_status',
-					'value' => 'sold'
-				)
-			),
-			'property_status' => 'sold',
-			'posts_per_page' => '5'
-		) );
-	} elseif ( 'rural' == $post_type ) {
-		$query = new WP_Query( array (
-			'post_type' => 'rural',
-			'location' => $term->slug,
-			'meta_query' => array(
-				array(
-					'key' => 'property_status',
-					'value' => 'sold'
-				)
-			),
-			'posts_per_page' => '5'
-		) );
-	} else {
-		$query = new WP_Query( array (
-			'post_type' => 'rental',
-			'location' => $term->slug,
-			'meta_query' => array(
-				array(
-					'key' => 'property_status',
-					'value' => 'leased'
-				)
-			),
-			'posts_per_page' => '5'
-		) );
-	}
-	
-	if ( $query->have_posts() ) { ?>
-		<div class="epl-tab-section epl-tab-section-listing-history">
-			<?php if ( 'property' == $post_type || 'land' == $post_type || 'rural' == $post_type) { ?>
-				<h5 class="epl-tab-title epl-tab-title-sales tab-title"><?php _e('Recently Sold', 'epl'); ?></h5>
-			<?php } else { ?>
-				<h5 class="epl-tab-title epl-tab-title-leased tab-title"><?php _e('Recently Leased', 'epl'); ?></h5>
-			<?php } ?>
-			<div class="tab-content">
-				<ul>
-					<?php
-						while ( $query->have_posts() ) {
-							$query->the_post(); ?>
-					
-							<!-- Suburb Tab -->
-							<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?><?php echo $suburb[0]; ?></a></li>
-							<?php
-						}
-					?>
-				</ul>
-			</div>
-		</div>
-		<?php
-	}
-	wp_reset_postdata();
-}
-
-// superglobal object $property for posts 'property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rental','rural'
 function epl_reset_property_object( $post ) {
 	global $epl_author;
 	$epl_author 	= new EPL_Author_meta($post->post_author);
-	$epl_posts 		= epl_get_active_post_types();
-	$epl_posts 		= array_keys($epl_posts);
-	
-	$epl_posts 	= apply_filters('epl_additional_post_types',$epl_posts);
-	
-	if(in_array($post->post_type,$epl_posts)){
+
+	if( is_epl_post() ){
 		global $property;
 		$property 		= new EPL_Property_Meta($post);
 	}
@@ -131,11 +35,8 @@ function epl_create_property_object() {
 		return;
 	}
 	$epl_author		= new EPL_Author_meta($post->post_author);
-	$epl_posts 		= epl_get_active_post_types();
-	$epl_posts 		= array_keys($epl_posts);
-	
-	$epl_posts 	= apply_filters('epl_additional_post_types',$epl_posts);
-	if(in_array($post->post_type,$epl_posts)){
+
+	if( is_epl_post() ){
 		$property 	= new EPL_Property_Meta($post);
 	}
 }
@@ -207,15 +108,6 @@ add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featur
 * Single Listing Templates
 */
 
-	/*Template - Default
-	*	if ( $epl_property_single_expanded = locate_template( 'content-listing-single.php' ) ) {
-	*		load_template( $epl_property_single_expanded );
-	*	} else {
-	*		load_template( EPL_PATH_TEMPLATES_CONTENT . 'content-listing-single.php' );
-	*	}
-	*/
-
-// Single Listing Expanded Templates
 function epl_property_single_default() {
 
 	global $epl_settings;
@@ -251,21 +143,6 @@ function epl_get_template_part($template,$arguments=array()) {
 /*
 * Loop Listing Templates
 */
-
-// Modify the Excerpt length on Archive pages
-function epl_archive_custom_excerpt_length( $length ) {
-	global $epl_settings;
-	
-	$excerpt = '';
-	if(!empty($epl_settings) && isset($epl_settings['display_excerpt_length'])) {
-		$excerpt = $epl_settings['display_excerpt_length'];
-	}
-	if ( $excerpt == '') {
-		return 22;
-	} else {
-		return $excerpt;
-	}
-}
 
 // Selecting Card Display Style
 // Allows the use of one function where we can then select a different template when needed 
@@ -309,32 +186,6 @@ function epl_property_blog($template='') {
 	} // End Status Removal
 }
 add_action('epl_property_blog','epl_property_blog');
-
-/*
-** Listing Function for paged card display 
-* not being used @since 1.3 in core, but still kept for extensions which may be using this function
-*/
-function epl_property_blog_default() {
-
-	global $property,$epl_settings;
-	$property_status = $property->get_property_meta('property_status');
-	// Status Removal Do Not Display Withdrawn or OffMarket listings
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
-		// Do Not Display Withdrawn or OffMarket listings
-	} else {
-		$option = '';
-		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
-			$option = $epl_settings['epl_property_card_style'];
-		}
-	
-		$action_check = has_action( 'epl_loop_template' );
-		if ( $action_check != '' && $option !== 0 ) {
-			do_action( 'epl_loop_template' );
-		} else {
-			epl_get_template_part('loop-listing-blog-default.php');
-		}
-	} // End Status Removal
-}
 
 /*
 * Author Card Templates
@@ -494,9 +345,11 @@ function epl_property_get_the_full_address(){
 		}
 		$address .= $property->get_property_meta('property_address_street_number') . ' '; 
 		$address .= $property->get_property_meta('property_address_street') . ' '; 
-		$address .= $property->get_property_meta('property_address_suburb') . ', '; 
+		$address .= $property->get_property_meta('property_address_suburb') . ' '; 
+		$address .= $property->get_property_meta('property_address_city') . ', '; 
 		$address .= $property->get_property_meta('property_address_state') . ' '; 
-		$address .= $property->get_property_meta('property_address_postal_code'); 
+		$address .= $property->get_property_meta('property_address_postal_code').' '; 
+		$address .= $property->get_property_meta('property_address_country'); 
 	
 	return $address;
 	
@@ -509,65 +362,65 @@ function epl_property_get_the_full_address(){
  * @hooked property_tab_address
 **/
 
-function epl_property_the_address(){
+function epl_property_the_address() {
+
 	$epl_property_address_seperator	= apply_filters('epl_property_address_seperator',',');
 	global $property;
-	// Commercial and Business Address
-	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) {
-		if ( $property->get_property_meta('property_address_display') == 'yes' && $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
-			<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
-			
-		<?php } 
-		echo '<span class="entry-title-sub">';
-		if ( $property->get_property_meta('property_address_display') == 'yes') { ?>
-			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . $epl_property_address_seperator; ?></span>
-		<?php } ?>
-				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
-				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
-			</span>
+	
+	if ( $property->get_property_meta('property_address_display' != 'yes') )
+		return;
+	?>
+	<span class="item-street">
 		<?php 
-	} else {
-		// Address Display not Commercial or Business type
-		if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
-			<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
-			
-		<?php } ?>
-		<span class="entry-title-sub">
-			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . $epl_property_address_seperator; ?></span>
-			<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
-			<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
+			echo $property->get_formatted_property_address();
+		?>
+	</span>
+	<span class="entry-title-sub">
+		<?php 
+			if( $property->get_property_meta('property_com_display_suburb') != 'no' ) { ?>
+				<span class="item-suburb">
+					<?php 
+						echo $property->get_property_meta('property_address_suburb'); 
+					?>
+				</span> <?php
+			}
+		?>
+		<?php 
+			if( $property->get_property_meta('property_com_display_city') == 'yes' ) { ?>
+				<span class="item-city">
+					<?php 
+						echo $property->get_property_meta('property_address_city') ; 
+					?>
+				</span> <?php
+			}
+			echo $epl_property_address_seperator;
+		?>
+
+		<span class="item-state">
+			<?php 
+				echo $property->get_property_meta('property_address_state') . ' ';
+			?>
 		</span>
-		<?php
-	} 
+		<span class="item-pcode">
+			<?php 
+				echo $property->get_property_meta('property_address_postal_code');
+			?>
+		</span>
+		<?php 
+			if( $property->get_property_meta('property_com_display_country') == 'yes' ) { ?>
+				<span class="item-country">
+					<?php 
+						echo $property->get_property_meta('property_address_country'); 
+					?>
+				</span> <?php
+			}
+		?>
+
+	</span> <?php
 }
 add_action('epl_property_title','epl_property_the_address');
 add_action('epl_property_tab_address','epl_property_the_address');
 add_action('epl_property_address','epl_property_the_address');
-
-function epl_property_suburb () {
-	global $property;
-	// Commercial and Business Address
-	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) {
-		if ( $property->get_property_meta('property_address_display') == 'yes' && $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
-			<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
-			
-		<?php } 
-		echo '<span class="entry-title-sub">';
-		if ( $property->get_property_meta('property_address_display') == 'yes') { ?>
-			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . ', '; ?></span>
-		<?php } ?>
-				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
-				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
-			</span>
-		<?php 
-	} else { ?>
-		<span class="entry-title-sub">
-			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb')?></span>
-		</span> <?php
-	}
-}
-
-add_action('epl_property_suburb','epl_property_suburb');
 
 /**
  * @hooked property_price
@@ -648,7 +501,9 @@ function epl_property_inspection_times(){
 		$label_home_open = $property->get_epl_settings('label_home_open');	
 	?>
 	<div class="epl-inspection-times">
-		<span class="epl-inspection-times-label"><?php echo $label_home_open; ?></span>
+		<span class="epl-inspection-times-label">
+			<?php echo $label_home_open; ?>
+		</span>
 		<?php echo $property_inspection_times; ?>
 	</div>
 	<?php 
@@ -787,11 +642,6 @@ function epl_property_tab_section() {
 				echo '<div class="epl-land-category">' . $property->get_property_land_category() . '</div>';
 			}
 			
-			// Availability
-			//	if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) {
-			//		echo '<div class="date-available">'.__('Available from', 'epl').' ', $property->get_property_meta('property_date_available'), '</div>';
-			//	}
-
 			//Commercial Options
 			if ( $property->post_type == 'commercial' ) {
 				if ( $property->get_property_meta('property_com_plus_outgoings') == 1) {
@@ -1616,3 +1466,25 @@ function epl_get_the_excerpt( $deprecated = '' ) {
 
 	return apply_filters( 'epl_get_the_excerpt', $post->post_excerpt );
 }
+
+function epl_syntax_highlight($str='',$class='') {
+
+	return '<pre><code class="'.$class.'">'.htmlentities($str).'</code></pre>';
+}
+
+function epl_strip_tags($value) {
+	
+	if( !is_array($value) )  {
+		return strip_tags($value);	
+	}
+	return $value;
+}
+
+function epl_esc_attr($value) {
+	
+	if( !is_array($value) )  {
+		return esc_attr($value);
+	}
+	return $value;
+}
+

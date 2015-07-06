@@ -882,12 +882,30 @@ function epl_meta_box_init() {
 							),
 					
 							array(
+								'name'		=>	'property_address_city',
+								'label'		=>	__('City', 'epl'),
+								'type'		=>	'text',
+								'maxlength'	=>	'80'
+							),
+					
+							array(
+								'name'		=>	'property_address_display_city',
+								'label'		=>	__('Display City ?', 'epl'),
+								'type'		=>	'radio',
+								'opts'		=>	array(
+									'yes'	=>	__('Yes', 'epl'),
+									'no'	=>	__('No', 'epl')
+								),
+							),
+
+							array(
 								'name'		=>	'property_address_state',
 								'label'		=>	__('State', 'epl'),
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							),
-					
+
+
 							array(
 								'name'		=>	'property_com_display_suburb',
 								'label'		=>	__('Display Suburb', 'epl'),
@@ -912,6 +930,17 @@ function epl_meta_box_init() {
 								'type'		=>	'text',
 								'maxlength'	=>	'40'
 							),
+							
+							array(
+								'name'		=>	'property_address_display_country',
+								'label'		=>	__('Display Country ?', 'epl'),
+								'type'		=>	'radio',
+								'opts'		=>	array(
+									'yes'	=>	__('Yes', 'epl'),
+									'no'	=>	__('No', 'epl')
+								),
+							),
+							
 							
 							array(
 								'name'		=>	'property_address_coordinates',
