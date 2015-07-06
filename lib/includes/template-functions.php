@@ -144,6 +144,20 @@ function epl_get_template_part($template,$arguments=array()) {
 * Loop Listing Templates
 */
 
+// Modify the Excerpt length on Archive pages
+function epl_archive_custom_excerpt_length( $length ) {
+	global $epl_settings;
+	$excerpt = '';
+	if(!empty($epl_settings) && isset($epl_settings['display_excerpt_length'])) {
+		$excerpt = $epl_settings['display_excerpt_length'];
+	}
+	if ( $excerpt == '') {
+		return 22;
+	} else {
+		return $excerpt;
+	}
+}
+
 // Selecting Card Display Style
 // Allows the use of one function where we can then select a different template when needed 
 function epl_property_blog($template='') {
