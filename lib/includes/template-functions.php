@@ -379,7 +379,7 @@ function epl_property_get_the_full_address(){
 function epl_property_the_address() {
 
 	$epl_property_address_seperator	= apply_filters('epl_property_address_seperator',',');
-	global $property;
+	global $property,$epl_settings;
 	
 	if ( $property->get_property_meta('property_address_display' != 'yes') )
 		return;
@@ -400,7 +400,7 @@ function epl_property_the_address() {
 			}
 		?>
 		<?php 
-			if( $property->get_property_meta('property_com_display_city') == 'yes' ) { ?>
+			if( $property->get_epl_settings('epl_enable_city_field') == 'yes' ) { ?>
 				<span class="item-city">
 					<?php 
 						echo $property->get_property_meta('property_address_city') ; 
@@ -1336,7 +1336,7 @@ function epl_apply_feeling_lucky_config() {
 	$epl_posts 	= array_keys($epl_posts);
 
 	
-    // remove featured image on single pages in lucky mode
+    // remove epl featured image on single pages in lucky mode
     if( isset($epl_settings['epl_lucky_disable_single_thumb']) && $epl_settings['epl_lucky_disable_single_thumb'] == 'on') {
     
 		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) { 
@@ -1345,6 +1345,15 @@ function epl_apply_feeling_lucky_config() {
 
 	}
 	
+    // remove active theme's featured image on single pages in lucky mode
+    if( isset($epl_settings['epl_lucky_disable_theme_single_thumb']) && $epl_settings['epl_lucky_disable_theme_single_thumb'] == 'on') {
+    
+		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) { 
+			add_filter('post_thumbnail_html','epl_remove_single_thumbnail',20,5);
+		}
+
+	}
+
     // remove featured image on archive pages in lucky mode
     if( isset($epl_settings['epl_lucky_disable_archive_thumb']) && $epl_settings['epl_lucky_disable_archive_thumb'] == 'on') {
     
@@ -1388,6 +1397,20 @@ function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size
 	return $html;
 }
 
+function epl_remove_single_thumbnail($html, $post_id, $post_thumbnail_id, $size, $attr) {
+
+	if( is_admin() ) {
+		return $html;
+	}
+	
+	if( doing_action('epl_property_featured_image') ) {
+			
+	} else {
+		$html = '';
+	}
+	
+	return $html;
+}
 /**
  * Custom property the_content
  *

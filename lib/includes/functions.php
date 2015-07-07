@@ -902,7 +902,20 @@ function epl_admin_sidebar () {
 					),
 					'default'	=>	'admin-list-thumb',
 					'help'		=>	__('Size of the image shown in listing columns in admin area' , 'epl')
+				),
+				
+				array(
+					'name'	=>	'epl_enable_city_field',
+					'label'	=>	__('Enable City Field', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'no'	=>	__('No', 'epl'),
+						'yes'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'no',
+					'help'		=>	__('helpful in case listings have seperate city & suburb area' , 'epl')
 				)
+
 			)
 		),
 		
@@ -945,6 +958,11 @@ function epl_admin_sidebar () {
 			'id'		=>	'theme_setup',
 			'fields'	=>	array(
 				array(
+					'name'	=>	'epl_feeling_lucky_help',
+					'type'	=>	'help',
+					'content'		=>	__('Adapt to theme framework which will improve sidebar position however removes sorting and grid options which can be added through shortcodes like [listing post_type="property" tools_top="on"]. If using iThemes, Genesis frameworks or Twenty Twelve and Twenty Fifteen based themes leave un-checked.' , 'epl')
+					
+				),array(
 					'name'	=>	'epl_feeling_lucky',
 					'label'	=>	__('Enable Theme Compatibility', 'epl'),
 					'type'	=>	'checkbox_single',
@@ -957,13 +975,23 @@ function epl_admin_sidebar () {
 				),
 				array(
 					'name'	=>	'epl_lucky_disable_single_thumb',
+					'label'	=>	__('Single Listing: Disable Epl featured image', 'epl'),
+					'type'	=>	'checkbox_single',
+					'opts'	=>	array(
+						'on'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images on a listing. Used with theme compatibility mode only.removes featured image from EPL' , 'epl')
+				),
+				array(
+					'name'	=>	'epl_lucky_disable_theme_single_thumb',
 					'label'	=>	__('Single Listing: Disable featured image', 'epl'),
 					'type'	=>	'checkbox_single',
 					'opts'	=>	array(
 						'on'	=>	__('Yes', 'epl'),
 					),
 					'default'	=>	'off',
-					'help'		=>	__('Tick this if your theme displays two images on a listing. Used with theme compatibility mode only.' , 'epl')
+					'help'		=>	__('Tick this if your theme displays two images on a listing. Used with theme compatibility mode only.removes featured image from active theme' , 'epl')
 				),
 				array(
 					'name'	=>	'epl_lucky_disable_archive_thumb',
@@ -1310,5 +1338,5 @@ AND p.post_status = '%s'
 AND p.post_type = '%s'
 ", $key, $status, $type ) );
 
-    return $res;
+    return array_combine($res,$res);
 }

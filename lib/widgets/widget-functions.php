@@ -258,7 +258,8 @@
 				'label'			=>	__('Housing Category','epl'),
 				'options'		=>	epl_get_meta_values( 'property_category', $post_type),
 				'type'			=>	'select',
-				'query'			=>	array('query'	=>	'meta')
+				'multiple'		=>	true,
+				'query'			=>	array('query'	=>	'meta','compare'	=>	'IN' )
 			),
 			array(
 				'key'			=>	'search_price',
@@ -460,7 +461,6 @@
 				'query'			=>	array('query'	=>	'meta','compare'	=>	'IN', 'value'	=>	array('yes','1') )
 			)
 		) );
-		
 		return $fields;
 	}
 	/**
@@ -536,7 +536,7 @@
 						<?php echo isset($field['multiple']) ? ' multiple ':' '; ?>
 						class="widefat" 
 						id="<?php echo $object->get_field_id($field['key']); ?>" 
-						name="<?php echo $object->get_field_name($field['key']); echo isset($field['multiple']) ? '[]':' '; ?>">
+						name="<?php echo $object->get_field_name($field['key']); echo isset($field['multiple']) ? '[]':''; ?>">
 						
 						<?php
 							foreach($field['options'] as $k=>$v) {
@@ -653,7 +653,11 @@
 					</label>
 					
 					<div class="field">
-							<select name="<?php echo $field['meta_key']; ?>" id="<?php echo $field['meta_key']; ?>" class="in-field field-width">
+							<select
+								<?php echo isset($field['multiple']) ? ' multiple ':' '; ?>
+								name="<?php echo $field['meta_key']; echo isset($field['multiple']) ? '[]':''; ?>" 
+								id="<?php echo $field['meta_key']; ?>" 
+								class="in-field field-width">
 								<option value="">
 									<?php echo apply_filters('epl_search_widget_option_label_'.$field['meta_key'],__('Any', 'epl') ); ?>
 								</option>
@@ -791,8 +795,9 @@ function epl_search_pre_get_posts( $query ) {
 				}
 			}
 		}
-		
-		if(!empty($meta_query)) {
+		echo "<pre>";
+		print_r($epl_meta_query); die;
+		if(!empty($epl_meta_query)) {
 			$query->set('meta_query', $epl_meta_query);
 		}
 		
@@ -833,7 +838,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		foreach($results as $result) {
 			$return[] = $result->meta_value;
 		}
-		return $return;
+		return array_combine($return,$return);
 	}
 }
 

@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_action('init', 'epl_meta_box_init'); 
 function epl_meta_box_init() {
+	global $epl_settings;
 	$opts_users = array();
 	$users = get_users('orderby=display_name&order=ASC');
 	if(!empty($users)) {
@@ -880,24 +881,13 @@ function epl_meta_box_init() {
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							),
-					
+							( isset($epl_settings['epl_enable_city_field'] ) &&  $epl_settings['epl_enable_city_field'] == 'yes' ) ?
 							array(
 								'name'		=>	'property_address_city',
 								'label'		=>	__('City', 'epl'),
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
-							),
-					
-							array(
-								'name'		=>	'property_address_display_city',
-								'label'		=>	__('Display City ?', 'epl'),
-								'type'		=>	'radio',
-								'opts'		=>	array(
-									'yes'	=>	__('Yes', 'epl'),
-									'no'	=>	__('No', 'epl')
-								),
-							),
-
+							) : array() ,
 							array(
 								'name'		=>	'property_address_state',
 								'label'		=>	__('State', 'epl'),
@@ -1572,7 +1562,9 @@ function epl_meta_box_init() {
 				foreach($epl_meta_box['groups'] as &$group) {
 					$group = apply_filters('epl_meta_groups_'.$group['id'], $group);
 					if(!empty($group['fields'])) {
+						$group['fields'] = array_filter($group['fields']);
 						foreach($group['fields'] as &$fieldvalue) {
+							
 							$fieldvalue = apply_filters('epl_meta_'.$fieldvalue['name'], $fieldvalue);
 						}
 					}
