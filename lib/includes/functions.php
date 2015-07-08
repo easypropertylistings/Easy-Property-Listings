@@ -227,6 +227,33 @@ function epl_currency_formatted_amount($price) {
 		return epl_currency_filter( epl_format_amount( $price , false ) );
 		
 }
+
+function epl_labels($key) {
+	global $epl_settings;
+	$field_groups = epl_get_admin_option_fields();
+	
+	foreach($field_groups as $field_group) {
+		if($field_group['id']	==	'labels') {
+			$epl_labels = $field_group['fields'];
+			break;
+		}
+	}
+	
+	foreach($epl_labels as $label_key	=>	$label) {
+	
+		if( $key == $label['name'] ) {
+			
+			$label =  ( $epl_settings[$key] != '' ) ? $epl_settings[$key] : $label['default'];
+			
+			return apply_filters( 'epl_display_'.$key, $label );
+		}
+	}
+	
+}
+
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
 	
@@ -236,6 +263,10 @@ function epl_display_label_suburb( ) {
 	}
 	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
 }
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+
 function epl_display_label_bond( ) {
 	$epl_display_label_bond = '';
 	
@@ -245,6 +276,9 @@ function epl_display_label_bond( ) {
 	}
 	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
 }
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
 function epl_display_label_postcode() {
 	$epl_display_label_postcode = '';
 	
@@ -703,6 +737,7 @@ function epl_admin_sidebar () {
 			break;
 
 		case 'image':
+		case 'file':
 			if($val != '') {
 				$img = $val;
 			} else {
@@ -711,9 +746,13 @@ function epl_admin_sidebar () {
 			echo '
 				<div class="epl-media-row">
 					<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />
-					&nbsp;&nbsp;<input type="button" name="epl_upload_button" class="button" value="'.__('Add File', 'epl').'" />
-					&nbsp;&nbsp;<img src="'.$img.'" alt="" />
-					<div class="epl-clear"></div>
+					&nbsp;&nbsp;<input type="button" name="epl_upload_button" class="button" value="'.__('Add File', 'epl').'" />';
+					
+					if( in_array( pathinfo($img, PATHINFO_EXTENSION), array('jpg','jpeg','png','gif') ) ) {
+						echo '&nbsp;&nbsp;<img src="'.$img.'" alt="" />';
+					}
+			echo		
+					'<div class="epl-clear"></div>
 				</div>
 			';
 			break;
@@ -804,6 +843,7 @@ function epl_admin_sidebar () {
  }
  
  function epl_get_admin_option_fields() {
+ 	global $epl_settings;
 	$opts_epl_gallery_n = array();
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;
@@ -848,13 +888,6 @@ function epl_admin_sidebar () {
 					'type'	=>	'checkbox',
 					'opts'	=>	$epl_post_types,
 					'help'	=>	__('Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.' , 'epl')
-				),
-				
-				array(
-					'name'	=>	'label_location',
-					'label'	=>	__('Location Taxonomy', 'epl'),
-					'type'	=>	'text',
-					'help'	=>	__('After changing this setting visit Dashboard > Settings > Permalinks to save the settings.', 'epl')
 				),
 				
 				array(
@@ -904,18 +937,6 @@ function epl_admin_sidebar () {
 					'help'		=>	__('Size of the image shown in listing columns in admin area' , 'epl')
 				),
 				
-				array(
-					'name'	=>	'epl_enable_city_field',
-					'label'	=>	__('Enable City Field', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						'no'	=>	__('No', 'epl'),
-						'yes'	=>	__('Yes', 'epl'),
-					),
-					'default'	=>	'no',
-					'help'		=>	__('helpful in case listings have seperate city & suburb area' , 'epl')
-				)
-
 			)
 		),
 		
@@ -1094,6 +1115,38 @@ function epl_admin_sidebar () {
 			'fields'	=>	array(
 
 				array(
+					'name'	=>	'epl_enable_city_field',
+					'label'	=>	__('Enable City Field', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'no'	=>	__('No', 'epl'),
+						'yes'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'no',
+					'help'		=>	__('helpful in case listings have seperate city & suburb area' , 'epl')
+				),
+
+				array(
+					'name'	=>	'epl_enable_country_field',
+					'label'	=>	__('Enable Country Field', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'no'	=>	__('No', 'epl'),
+						'yes'	=>	__('Yes', 'epl'),
+					),
+					'default'	=>	'no',
+					'help'		=>	__('use country field for listing addresses' , 'epl')
+				),
+
+				array(
+					'name'	=>	'label_location',
+					'label'	=>	__('Location Taxonomy', 'epl'),
+					'type'	=>	'text',
+					'help'	=>	__('After changing this setting visit Dashboard > Settings > Permalinks to save the settings.', 'epl'),
+					'default'	=>	'Location'
+				),
+
+				array(
 					'name'		=>	'label_bond',
 					'label'		=>	__('Rental Bond/Deposit (default: Bond)', 'epl'),
 					'type'		=>	'text',
@@ -1107,6 +1160,14 @@ function epl_admin_sidebar () {
 					'default'	=>	'Suburb',
 
 				),
+				( isset($epl_settings['epl_enable_city_field'] ) &&  $epl_settings['epl_enable_city_field'] == 'yes' ) ?
+				array(
+					'name'		=>	'label_city',
+					'label'		=>	__('City (default: City)', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	'City',
+
+				) : array() ,
 
 				array(
 					'name'		=>	'label_postcode',
@@ -1337,6 +1398,6 @@ WHERE pm.meta_key = '%s'
 AND p.post_status = '%s'
 AND p.post_type = '%s'
 ", $key, $status, $type ) );
-
-    return array_combine($res,$res);
+	
+    return array_combine(array_filter($res),array_filter($res) );
 }

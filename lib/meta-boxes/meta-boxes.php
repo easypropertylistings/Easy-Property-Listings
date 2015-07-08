@@ -877,14 +877,14 @@ function epl_meta_box_init() {
 					
 							array(
 								'name'		=>	'property_address_suburb',
-								'label'		=>	epl_display_label_suburb(),
+								'label'		=>	epl_labels('label_suburb'),
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							),
 							( isset($epl_settings['epl_enable_city_field'] ) &&  $epl_settings['epl_enable_city_field'] == 'yes' ) ?
 							array(
 								'name'		=>	'property_address_city',
-								'label'		=>	__('City', 'epl'),
+								'label'		=>	epl_labels('label_city'),
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							) : array() ,
@@ -909,28 +909,17 @@ function epl_meta_box_init() {
 					
 							array(
 								'name'		=>	'property_address_postal_code',
-								'label'		=>	epl_display_label_postcode(),
+								'label'		=>	epl_labels('label_postcode'),
 								'type'		=>	'text',
 								'maxlength'	=>	'30'
 							),
-						
+							( isset($epl_settings['epl_enable_country_field'] ) &&  $epl_settings['epl_enable_country_field'] == 'yes' ) ?
 							array(
 								'name'		=>	'property_address_country',
 								'label'		=>	__('Country', 'epl'),
 								'type'		=>	'text',
 								'maxlength'	=>	'40'
-							),
-							
-							array(
-								'name'		=>	'property_address_display_country',
-								'label'		=>	__('Display Country ?', 'epl'),
-								'type'		=>	'radio',
-								'opts'		=>	array(
-									'yes'	=>	__('Yes', 'epl'),
-									'no'	=>	__('No', 'epl')
-								),
-							),
-							
+							) : array() ,
 							
 							array(
 								'name'		=>	'property_address_coordinates',
@@ -1098,7 +1087,7 @@ function epl_meta_box_init() {
 					
 						array(
 							'name'		=>	'property_bond',
-							'label'		=>	epl_display_label_bond(),
+							'label'		=>	epl_labels('label_bond'),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						),

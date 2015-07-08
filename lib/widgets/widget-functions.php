@@ -258,8 +258,7 @@
 				'label'			=>	__('Housing Category','epl'),
 				'options'		=>	epl_get_meta_values( 'property_category', $post_type),
 				'type'			=>	'select',
-				'multiple'		=>	true,
-				'query'			=>	array('query'	=>	'meta','compare'	=>	'IN' )
+				'query'			=>	array('query'	=>	'meta')
 			),
 			array(
 				'key'			=>	'search_price',
@@ -795,8 +794,7 @@ function epl_search_pre_get_posts( $query ) {
 				}
 			}
 		}
-		echo "<pre>";
-		print_r($epl_meta_query); die;
+
 		if(!empty($epl_meta_query)) {
 			$query->set('meta_query', $epl_meta_query);
 		}
@@ -883,4 +881,19 @@ function epl_get_available_locations($post_type='',$property_status='') {
 
 }
 
+/** example to enable multiple house category via filter 
+
+function epl_filter_search_widget_fields_frontend($fields) {
 	
+	foreach($fields as &$field) {
+		if($field['key'] == 'search_house_category') {
+			$field['multiple'] 	= true;
+			$field['query'] 	= array('query'	=>	'meta','compare'	=>	'IN' );
+			break;
+		}
+	}
+	
+	return $fields;
+}
+add_filter('epl_search_widget_fields_frontend','epl_filter_search_widget_fields_frontend');
+ **/
