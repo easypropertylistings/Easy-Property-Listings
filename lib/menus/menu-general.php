@@ -75,11 +75,13 @@ $epl_settings = get_option('epl_settings');
 										<?php foreach($field_group['fields'] as $field) { ?>
 											<div class="epl-field-wrapper epl-clearfix">
 												<div class="epl-field">
+													<?php if($field['type'] != 'help') {?>
 													<div class="epl-half-left">
 														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php _e($field['label'], 'epl'); ?></h4>
 														
 													</div>
-													<div class="epl-half-right">
+													<?php } ?>
+													<div class="<?php echo $field['type'] == 'help' ? 'epl-full': 'epl-half-right'; ?>">
 														<?php
 															$val = '';
 															if(isset($epl_settings[ $field['name'] ])) {

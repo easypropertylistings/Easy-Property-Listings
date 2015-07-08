@@ -116,11 +116,13 @@ $epl_settings = get_option('epl_settings');
 								<div class="epl-help-entry-header">
 									<div class="epl_help_entry_content<?php //echo $field['name']; ?>"><?php //_e($field['help'], 'epl'); ?></div>
 								</div>
-								<div class="epl-half-left">
-									<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
+								<?php if($field['type'] != 'help') {?>
+									<div class="epl-half-left">
+										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
 									
-								</div>
-								<div class="epl-half-right">
+									</div>
+								<?php } ?>
+								<div class="<?php echo $field['type'] == 'help' ? 'epl-full': 'epl-half-right'; ?>">
 									<?php
 										$val = '';
 										if(isset($epl_settings[ $field['name'] ])) {

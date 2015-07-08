@@ -29,14 +29,15 @@ function epl_shortcode_listing_callback( $atts ) {
 	
 	extract( shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
-		'status'		=>	array('current' , 'sold' , 'leased' ),
-		'limit'			=>	'10', // Number of maximum posts to show
-		'template'		=>	false, // Template can be set to "slim" for home open style template
-		'location'		=>	'', // Location slug. Should be a name like sorrento
-		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
+		'status'			=>	array('current' , 'sold' , 'leased' ),
+		'limit'				=>	'10', // Number of maximum posts to show
+		'template'			=>	false, // Template can be set to "slim" for home open style template
+		'location'			=>	'', // Location slug. Should be a name like sorrento
+		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
-		'sortby'		=>	'', // Options: price, date : Default date
-		'sort_order'		=>	'DESC'
+		'sortby'			=>	'', // Options: price, date : Default date
+		'sort_order'		=>	'DESC',
+		'query_object'		=>	'' // only for internal use . if provided use it instead of custom query 
 	), $atts ) );
 	
 	if(is_string($post_type) && $post_type == 'rental') {
@@ -120,6 +121,11 @@ function epl_shortcode_listing_callback( $atts ) {
 	}
 
 	$query_open = new WP_Query( $args );
+	
+	if( is_object($query_object) ) {
+		$query_open = $query_object;
+	}
+	
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template ); ?>">
@@ -129,17 +135,8 @@ function epl_shortcode_listing_callback( $atts ) {
 					}
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						
-						if ( $template == false ) {
-							epl_property_blog();
-						} else {
-						
-							if( function_exists( 'epl_property_blog_'.$template ) ) {
-							
-								call_user_func( 'epl_property_blog_'.$template );
-								
-							}
-						}
+						$template = str_replace('_','-',$template);
+						epl_property_blog($template);
 					}
 					if ( $tools_bottom == 'on' ) {
 						do_action( 'epl_property_loop_end' );

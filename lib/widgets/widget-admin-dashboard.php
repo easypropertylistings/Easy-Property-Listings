@@ -70,6 +70,7 @@ function epl_get_plural($count,$singular) {
 			return sprintf( _n( '1 '.__('Business','epl'), '%s '.__('Business','epl'), $count, 'epl' ), $count );
 		break;
 		default:
+			$singular = ucwords( str_replace('-',' ',str_replace('_',' ',$singular) ) );
 			return sprintf( _n( '1 '.__($singular,'epl'), '%s '.__($singular,'epl'), $count, 'epl' ), $count );
 		break;
 	}

@@ -947,11 +947,7 @@ li.tbhead.current {
 	background: transparent url(../images/icon-sprites.png) 0 -200px no-repeat;
 }
 /* Author Directory Page */
-.directory-page-dynamic .directory-section .hentry{
-	width: 20%;
-	margin-right: 1em;
-	float: left;
-}
+
 .epl-sd-location-profile .epl-location-profile-card.hentry {
 	width: 100%;
 	margin-right: 1em;
@@ -1326,4 +1322,30 @@ Epl fancy pagination
 #ie6 .epl-clearfix,
 #ie7 .epl-clearfix {
 	zoom: 1;
+}
+/* grid column styles */
+
+.epl-container-grid-1 {
+	width:100%;
+	float:left;
+}
+.epl-container-grid-2 {
+	width:50%;
+	float:left;
+}
+.epl-container-grid-3 {
+	width:33%;
+	float:left;
+}
+.epl-container-grid-4 {
+	width:25%;
+	float:left;
+}
+.epl-container-grid-5 {
+	width:20%;
+	float:left;
+}
+.epl-container-grid-6 {
+	width:16.6%;
+	float:left;
 }

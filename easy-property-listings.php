@@ -216,13 +216,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 					}
 				}
 				
-				require_once EPL_PATH_LIB . 'post-types/post-types.php';
+				
 			}
 
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-features.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-business_listings.php';
 
+			require_once EPL_PATH_LIB . 'widgets/widget-functions.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-author.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
@@ -230,9 +231,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'includes/class-property-meta.php';
 			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
+			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			
 			if ( is_admin() ) {
+				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
 				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
