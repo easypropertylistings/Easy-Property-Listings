@@ -808,7 +808,10 @@ function epl_admin_sidebar () {
 		case 'url':
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[url]]" />';
 			break;
-		
+		case 'locked':
+			$atts = '';
+			echo '<span>'.stripslashes($val).'</span>';
+			break;
 		case 'help':
 			echo '<div class="epl-help-container" id="'.isset($field['name']) ? $field['name'] : ''.'">
 					'.isset($field['content']) ? $field['content'] : ''.'
