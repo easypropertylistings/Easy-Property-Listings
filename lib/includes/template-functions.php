@@ -291,12 +291,29 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 	global $property;
 	$property_status = $property->get_property_meta('property_status');	
 	
+	switch($display) {
+		case 'list':
+			$tpl = 'widget-content-listing-list.php';
+		break;
+		case 'image-only':
+			$tpl = 'widget-content-listing-image.php';
+		break;
+		case 'image':
+			$tpl = 'widget-content-listing.php';
+		break;
+		default:
+			$tpl = $display;
+		break;
+		
+	}
+	
+	
 	// Status Removal
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$arg_list = get_defined_vars();
-		epl_get_template_part('widget-content-listing.php',$arg_list);
+		epl_get_template_part($tpl,$arg_list);
 	} // End Status Removal
 }
 

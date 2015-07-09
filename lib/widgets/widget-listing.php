@@ -182,13 +182,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						echo '<ul>';
 				}
 				while($query->have_posts()) : $query->the_post();
-					if ( $display == 'list' ) {
-						epl_property_widget_list_option(); 
-					} elseif ( $display == 'image-only' ) {
-						epl_property_widget_image_only_option($image); 
-					} else {
-						epl_property_widget( $display , $image , $d_title , $d_icons , $more_text , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  );
-					}
+					epl_property_widget( $display , $image , $d_title , $d_icons , $more_text , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  );
 					wp_reset_query(); 
 				endwhile;
 				if ( $display == 'list' ) {
@@ -307,9 +301,21 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('display'); ?>"><?php _e('Display Style', 'epl'); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id('display'); ?>" name="<?php echo $this->get_field_name('display'); ?>">
 				<?php
-					$options = array('image', 'image-only' , 'list' );
-					foreach ($options as $option) {
-						echo '<option value="' . $option . '" id="' . $option . '"', $instance['display'] == $option ? ' selected="selected"' : '', '>', __($option, 'epl'), '</option>';
+					/** usage **
+					 *
+					 *  add more templates to this by add key pair values to this array,
+					 *  key will be name of template example 'my-custom-widget-template.php' and value will be label for tpl, example 'My Template'
+					 */
+					$options = apply_filters(
+									'epl_listing_widget_templates', 
+									array(
+										'image'			=>	__('Image','epl'),
+										'image-only' 	=>	__('Image Only','epl'), 
+										'list' 			=>	__('List','epl') 
+									) 
+								);
+					foreach ($options as $option_key	=>	$option_label) {
+						echo '<option value="' . $option_key . '" id="' . $option_key . '"', $instance['display'] == $option_key ? ' selected="selected"' : '', '>', __($option_label, 'epl'), '</option>';
 					}
 				?>
 			</select>

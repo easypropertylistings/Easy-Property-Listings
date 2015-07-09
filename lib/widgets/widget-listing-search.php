@@ -29,7 +29,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		
 		$title	= apply_filters('widget_title', $instance['title']);
 		
-		if ( $instance['show_title'] == 'true' && $title ) {
+		if ( $title ) {
 			echo $before_title . $title . $after_title;			
 		}
 		
@@ -39,7 +39,12 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	}
 
 	function update($new_instance, $old_instance) {
-		return array_map('epl_strip_tags',$new_instance);
+		$instance 	= $old_instance;
+		$all_fields = epl_search_widget_fields();
+		foreach($all_fields as $all_field) {
+			$instance[$all_field['key']] 			= epl_strip_tags($new_instance[$all_field['key']]);	
+		}
+		return $instance;
 	}
 
 	function form($instance) {
