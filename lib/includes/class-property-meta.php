@@ -35,7 +35,7 @@ class EPL_Property_Meta {
 		foreach($epl_labels as $label_key	=>	$label) {
 		
 			$label_key 	= $label['name'];
-			$default	= $label['default'];
+			$default	= isset($label['default']) ? $label['default'] : '';
 			
 			if( isset( $this->epl_settings[$label_key]) && $this->epl_settings[$label_key] != '') {
 				$this->{$label_key}	= $this->epl_settings[$label_key];

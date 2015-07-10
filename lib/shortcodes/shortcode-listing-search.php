@@ -82,7 +82,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 		</ul>
 		<div class="epl-search-form <?php echo $is_sb_current; ?>" id="epl_ps_tab_<?php echo $tabcounter; ?>">
 			<?php
-				if( $show_title == 'true') {
+				if( isset($show_title) && $show_title == 'true') {
 					if(!empty($title)) {
 						?><h3><?php echo $title; ?></h3><?php
 					}

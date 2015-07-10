@@ -71,7 +71,7 @@ function epl_custom_restrict_manage_posts() {
 		); 
 		
 		$custom_search_fields = array(
-			'property_address_suburb'	=>	epl_display_label_suburb(),
+			'property_address_suburb'	=>	epl_labels('label_suburb'),
 			'property_office_id'		=>	__('Office ID', 'epl'),
 			'property_agent'		=>	__('Listing Agent', 'epl'),
 			'property_second_agent'		=>	__('Second Listing Agent', 'epl'),
@@ -346,14 +346,16 @@ function epl_manage_listing_column_price_callback() {
 	}
 	
 	if ( empty ( $view ) ) {
-		echo '<div class="epl_meta_search_price">' . $property->get_price_plain_value() . '</div>';
+		echo '<div class="epl_meta_search_price">' . $property->get_price_plain_value().' ';
+		echo $property_status == 'Sold' ? 	epl_currency_formatted_amount( $sold_price) : '';	
+		echo '</div>';
 	} else {
 		echo '<div class="epl_meta_price">' . $property->get_price_plain_value() . '</div>';
 	}
 	
 	/* Rental Listing Type */
 	if ( $d_bond == 1 ) {
-		echo '<div class="epl_meta_bond">' , epl_display_label_bond() , ' ' , epl_currency_formatted_amount( $bond ) , '</div>';
+		echo '<div class="epl_meta_bond">' , epl_labels('label_bond') , ' ' , epl_currency_formatted_amount( $bond ) , '</div>';
 	}
 	
 	if ( !empty ( $lease ) ) {

@@ -291,12 +291,29 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 	global $property;
 	$property_status = $property->get_property_meta('property_status');	
 	
+	switch($display) {
+		case 'list':
+			$tpl = 'widget-content-listing-list.php';
+		break;
+		case 'image-only':
+			$tpl = 'widget-content-listing-image.php';
+		break;
+		case 'image':
+			$tpl = 'widget-content-listing.php';
+		break;
+		default:
+			$tpl = $display;
+		break;
+		
+	}
+	
+	
 	// Status Removal
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$arg_list = get_defined_vars();
-		epl_get_template_part('widget-content-listing.php',$arg_list);
+		epl_get_template_part($tpl,$arg_list);
 	} // End Status Removal
 }
 
@@ -401,11 +418,7 @@ function epl_property_the_address() {
 		?>
 		<?php 
 			if( $property->get_epl_settings('epl_enable_city_field') == 'yes' ) { ?>
-				<span class="item-city">
-					<?php 
-						echo $property->get_property_meta('property_address_city') ; 
-					?>
-				</span> <?php
+				<span class="item-city"><?php echo $property->get_property_meta('property_address_city'); ?></span><?php
 			}
 			echo $epl_property_address_seperator;
 		?>
@@ -421,7 +434,7 @@ function epl_property_the_address() {
 			?>
 		</span>
 		<?php 
-			if( $property->get_property_meta('property_com_display_country') == 'yes' ) { ?>
+			if(  $property->get_epl_settings('epl_enable_country_field') == 'yes' ) { ?>
 				<span class="item-country">
 					<?php 
 						echo $property->get_property_meta('property_address_country'); 
@@ -775,25 +788,84 @@ function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
 	} 
 }
 
+function epl_sorting_options() {
+
+	return apply_filters('epl_sorting_options',array(
+		array(
+			'id'		=>	'high',
+			'label'		=>	__('Price: High to Low','epl'),
+			'type'		=>	'meta',
+			'key'		=>	is_post_type_archive( array('rental') ) ? 'property_rent':'property_price',
+			'order'		=>	'DESC',
+			'orderby'	=>	'meta_value_num',
+		),
+		array(
+			'id'	=>	'low',
+			'label'	=>	__('Price: Low to High','epl'),
+			'type'	=>	'meta',
+			'key'	=>	is_post_type_archive( array('rental') ) ? 'property_rent':'property_price',
+			'order'	=>	'ASC',
+			'orderby'	=>	'meta_value_num',
+
+		),
+		array(
+			'id'	=>	'new',
+			'label'	=>	__('Date: Newest First','epl'),
+			'type'	=>	'post',
+			'key'	=>	'post_date',
+			'order'	=>	'DESC'
+
+
+		),
+		array(
+			'id'	=>	'old',
+			'label'	=>	__('Date: Oldest First','epl'),
+			'type'	=>	'post',
+			'key'	=>	'post_date',
+			'order'	=>	'ASC'
+		),
+		array(
+			'id'	=>	'status_asc',
+			'label'	=>	__('Status : Current First','epl'),
+			'type'	=>	'meta',
+			'key'	=>	'property_status',
+			'order'	=>	'ASC',
+			'orderby'	=>	'meta_value',
+
+		),
+		array(
+			'id'	=>	'status_desc',
+			'label'	=>	__('Status : Sold/Leased First','epl'),
+			'type'	=>	'meta',
+			'key'	=>	'property_status',
+			'order'	=>	'DESC',
+			'orderby'	=>	'meta_value',
+
+		),
+
+
+	) );
+}
 function epl_switch_views_sorting() {
-	$sortby = ''; $show = '';
+	$sortby = '';
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 		$sortby = sanitize_text_field(trim($_GET['sortby']));
 	}
-	if(isset($_GET['show']) && trim($_GET['show']) != ''){
-		$show = sanitize_text_field(trim($_GET['show']));
-	}
 	do_action('epl_archive_utility_wrap_start');
+	$sorters = epl_sorting_options();
 	?>
 	<div class="epl-switching-sorting-wrap epl-clearfix">
 		<?php do_action('epl_add_custom_menus'); ?>
 		<div class="epl-properties-sorting epl-clearfix">
 			<select id="epl-sort-listings">
 				<option <?php selected( $sortby, '' ); ?> value=""><?php _e('Sort','epl'); ?></option>
-				<option <?php selected( $sortby, 'high' ); ?> value="high"><?php _e('Price: High to Low','epl'); ?></option>
-				<option <?php selected( $sortby, 'low' ); ?> value="low"><?php _e('Price: Low to High','epl'); ?></option>
-				<option <?php selected( $sortby, 'new' ); ?> value="new"><?php _e('Date: Newest First','epl'); ?></option>
-				<option <?php selected( $sortby, 'old' ); ?> value="old"><?php _e('Date: Oldest First','epl'); ?></option>
+				<?php
+					foreach($sorters as $sorter) { ?>
+						<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
+							<?php echo $sorter['label']; ?>
+						</option> <?php
+					}
+				?>
 			</select>
 		</div>
 	</div>
@@ -805,47 +877,32 @@ add_action( 'epl_property_loop_start' , 'epl_switch_views_sorting' , 20 );
 function epl_archive_sorting($query) {
 	$post_types_sold 	= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rural');
 	$post_types_rental 	= array('rental');
-	$post_type 			= get_query_var( 'post_type' );
+
 	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental )){
+
 		if(!$query->is_main_query()){
 			return;
 		}
 
 		if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
+
 			$orderby = sanitize_text_field(trim($_GET['sortby']));
-			if(in_array($post_type,$post_types_sold) ){ // properties other than rental
-				if($orderby == 'high'){
-					$query->set( 'orderby', 'meta_value_num' );
-					$query->set( 'meta_key', 'property_price' );
-					$query->set( 'order', 'DESC' );
-				} elseif($orderby == 'low') {
-					$query->set( 'orderby', 'meta_value_num' );
-					$query->set( 'meta_key', 'property_price' );
-					$query->set( 'order', 'ASC' );
-				}elseif($orderby == 'new') {
-					$query->set( 'orderby', 'post_date' );
-					$query->set( 'order', 'DESC' );
-				} elseif($orderby == 'old') {
-					$query->set( 'orderby', 'post_date' );
-					$query->set( 'order', 'ASC' );
+			$sorters = epl_sorting_options();
+			
+			foreach($sorters as $sorter) {
+				
+				if($orderby == $sorter['id']){
+					
+					if($sorter['type'] == 'meta') {
+						$query->set( 'orderby', $sorter['orderby'] );
+						$query->set( 'meta_key', $sorter['key'] );
+					} else {
+						$query->set( 'orderby', $sorter['key'] );
+					}
+					$query->set( 'order', $sorter['order'] );
+					break;
 				}
-			}
-			elseif(in_array($post_type,$post_types_rental)) { // rental property
-				if($orderby == 'high'){
-					$query->set( 'orderby', 'meta_value_num' );
-					$query->set( 'meta_key', 'property_rent' );
-					$query->set( 'order', 'DESC' );
-				} elseif($orderby == 'low') {
-					$query->set( 'orderby', 'meta_value_num' );
-					$query->set( 'meta_key', 'property_rent' );
-					$query->set( 'order', 'ASC' );
-				}elseif($orderby == 'new') {
-					$query->set( 'orderby', 'post_date' );
-					$query->set( 'order', 'DESC' );
-				} elseif($orderby == 'old') {
-					$query->set( 'orderby', 'post_date' );
-					$query->set( 'order', 'ASC' );
-				}
+			
 			}
 		} 
 	}

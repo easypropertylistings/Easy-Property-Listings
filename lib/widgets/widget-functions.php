@@ -14,16 +14,6 @@
 				'default'		=>	''
 			),
 			array(
-				'key'			=>	'show_title',
-				'label'			=>	__('Show Title ?','epl'),
-				'type'			=>	'select',
-				'default'		=>	'true',
-				'options'		=>	array(
-					'true'		=>	__('Yes','epl'),
-					'false'		=>	__('No','epl')
-				)
-			),
-			array(
 				'key'			=>	'post_type',
 				'label'			=>	__('Post Type','epl'),
 				'default'		=>	array('property'),
@@ -216,8 +206,10 @@
 				'meta_key'		=>	'property_location',
 				'label'			=>	epl_tax_location_label(),
 				'type'			=>	'select',
+				'option_filter'	=>	'location',
 				'options'		=>	epl_get_available_locations($post_type,$property_status),
-				'query'			=>	array('query'	=>	'tax')
+				'query'			=>	array('query'	=>	'tax'),
+				'class'			=>	'epl-search-row-half',
 
 			),
 			array(
@@ -225,50 +217,65 @@
 				'meta_key'		=>	'property_address_city',
 				'label'			=>	__( 'City' , 'epl'),
 				'type'			=>	'select',
+				'option_filter'	=>	'city',
 				'options'		=>	epl_get_unique_post_meta_values('property_address_city', $post_type ),
-				'query'			=>	array('query'	=>	'meta')
+				'query'			=>	array('query'	=>	'meta'),
+				'class'			=>	'epl-search-row-half',
+
 			),
 			array(
 				'key'			=>	'search_state',
 				'meta_key'		=>	'property_address_state',	
 				'label'			=>	__( 'State' , 'epl'),
 				'type'			=>	'select',
+				'option_filter'	=>	'state',
 				'options'		=>	epl_get_unique_post_meta_values('property_address_state', $post_type ),
-				'query'			=>	array('query'	=>	'meta')
+				'query'			=>	array('query'	=>	'meta'),
+				'class'			=>	'epl-search-row-half',
+
 			),
 			array(
 				'key'			=>	'search_country',
 				'meta_key'		=>	'property_address_country'	,
 				'label'			=>	__( 'Country' , 'epl'),
 				'type'			=>	'select',
+				'option_filter'	=>	'country',
 				'options'		=>	epl_get_unique_post_meta_values('property_address_country', $post_type ),
-				'query'			=>	array('query'	=>	'meta')
+				'query'			=>	array('query'	=>	'meta'),
+				'class'			=>	'epl-search-row-half',
+
 			),
 			array(
 				'key'			=>	'search_postcode',
 				'meta_key'		=>	'property_address_postal_code'	,
 				'label'			=>	__( 'Post Code' , 'epl'),
 				'type'			=>	'select',
+				'option_filter'	=>	'postcode',
 				'options'		=>	epl_get_unique_post_meta_values('property_address_postal_code', $post_type ),
-				'query'			=>	array('query'	=>	'meta')
+				'query'			=>	array('query'	=>	'meta'),
+				'class'			=>	'epl-search-row-half',
+
 			),
 			array(
 				'key'			=>	'search_house_category',
 				'meta_key'		=>  'property_category',
 				'label'			=>	__('Housing Category','epl'),
+				'option_filter'	=>	'category',
 				'options'		=>	epl_get_meta_values( 'property_category', $post_type),
 				'type'			=>	'select',
-				'multiple'		=>	true,
-				'query'			=>	array('query'	=>	'meta','compare'	=>	'IN' )
+				'query'			=>	array('query'	=>	'meta'),
+				'class'			=>	'epl-search-row-half',
 			),
 			array(
 				'key'			=>	'search_price',
 				'meta_key'		=>	'property_price_from',
 				'label'			=>	__('Price From','epl'),
 				'type'			=>	'select',
+				'option_filter'	=>	'price_from',
 				'options'		=>	$price_array,
 				'type'			=>	'select',
-				'query'			=>	array('query'	=>	'meta', 'key'	=>	$price_meta_key, 'type'		=>	'numeric', 'compare'	=>	'>=' )
+				'query'			=>	array('query'	=>	'meta', 'key'	=>	$price_meta_key, 'type'		=>	'numeric', 'compare'	=>	'>=' ),
+				'class'			=>	'epl-search-row-half',
 
 			),
 			array(
@@ -276,22 +283,26 @@
 				'meta_key'		=>	'property_price_to',
 				'label'			=>	__('Price To','epl'),
 				'type'			=>	'select',
+				'option_filter'	=>	'price_to',
 				'options'		=>	$price_array,
 				'type'			=>	'select',
-				'query'			=>	array('query'	=>	'meta', 'key'	=>	$price_meta_key, 'type'		=>	'numeric', 'compare'	=>	'<=' )
+				'query'			=>	array('query'	=>	'meta', 'key'	=>	$price_meta_key, 'type'		=>	'numeric', 'compare'	=>	'<=' ),
+				'class'			=>	'epl-search-row-half',
 
 			),
 			array(
 				'key'			=>	'search_bed',
 				'meta_key'		=>	'property_bedrooms_min',
 				'label'			=>	__('Bedrooms Min', 'epl'),
+				'option_filter'	=>	'bedrooms_min',
 				'options'		=>	apply_filters(
 										'epl_listing_search_bed_select_min',
 										array_combine(range(1,10),array_map('epl_number_suffix_callback',range(1,10)) )
 									),
 				'type'			=>	'select',
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta', 'key'	=>	'property_bedrooms', 'type'		=>	'numeric', 'compare'	=>	'>=' )
+				'query'			=>	array('query'	=>	'meta', 'key'	=>	'property_bedrooms', 'type'		=>	'numeric', 'compare'	=>	'>=' ),
+				'class'			=>	'epl-search-row-half',
 
 
 			),
@@ -299,39 +310,45 @@
 				'key'			=>	'search_bed',
 				'meta_key'		=>	'property_bedrooms_max',
 				'label'			=>	__('Bedrooms Max', 'epl'),
+				'option_filter'	=>	'bedrooms_max',
 				'options'		=>	apply_filters(
 										'epl_listing_search_bed_select_max',
 										array_combine(range(1,10),array_map('epl_number_suffix_callback',range(1,10)) )
 									),
 				'type'			=>	'select',
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta', 'key'	=>	'property_bedrooms', 'type'		=>	'numeric', 'compare'	=>	'<=' )
+				'query'			=>	array('query'	=>	'meta', 'key'	=>	'property_bedrooms', 'type'		=>	'numeric', 'compare'	=>	'<=' ),
+				'class'			=>	'epl-search-row-half',
 
 			),
 			array(
 				'key'			=>	'search_bath',
 				'meta_key'		=>	'property_bathrooms',
 				'label'			=>	__('Bathrooms', 'epl'),
+				'option_filter'	=>	'bathrooms',
 				'options'		=>	apply_filters(
 										'epl_listing_search_bath_select',
 										array_combine(range(1,3),array_map('epl_number_suffix_callback',range(1,3)) )
 									),
 				'type'			=>	'select',
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=' )
+				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=' ),
+				'class'			=>	'epl-search-row-half',
 
 		),
 			array(
 				'key'			=>	'search_rooms',
 				'meta_key'		=>	'property_rooms',
 				'label'			=>	__('Rooms', 'epl'),
+				'option_filter'	=>	'rooms',
 				'options'		=>	apply_filters(
 										'epl_listing_search_room_select',
 										array_combine(range(1,3),array_map('epl_number_suffix_callback',range(1,3)) )
 									),
 				'type'			=>	'select',
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=' )
+				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=' ),
+				'class'			=>	'epl-search-row-half',
 
 
 			), 
@@ -339,11 +356,13 @@
 				'key'			=>	'search_car',
 				'meta_key'		=>	'property_carport',
 				'label'			=>	__('Car Spaces', 'epl'),
+				'option_filter'	=>	'carport',
 				'options'		=>	apply_filters(
 										'epl_listing_search_parking_select',
 										array_combine(range(1,3),array_map('epl_number_suffix_callback',range(1,3)) )
 									),
 				'type'			=>	'select',
+				'class'			=>	'epl-search-row-half',
 				'exclude'		=>	array('land'),
 				'query'			=>	array(
 										'multiple'	=>	true,
@@ -369,13 +388,15 @@
 				'meta_key'		=>	'property_land_area_min',
 				'label'			=>	__('Land Min','epl'),
 				'type'			=>	has_filter('epl_property_land_area_min') ? apply_filters('epl_property_land_area_min','') : 'number',
-				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=', 'key'	=>	'property_land_area' )
+				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=', 'key'	=>	'property_land_area' ),
+				'class'			=>	'epl-search-row-third',
 				
 			),
 			array(
 				'key'			=>	'search_land_area',
 				'meta_key'		=>	'property_land_area_max',
 				'label'			=>	__('Land Max','epl'),
+				'class'			=>	'epl-search-row-third',
 				'type'			=>	has_filter('epl_property_land_area_max') ? apply_filters('epl_property_land_area_max','') : 'number',
 				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'<=', 'key'	=>	'property_land_area' )
 
@@ -384,7 +405,9 @@
 				'key'			=>	'search_land_area',
 				'meta_key'		=>	'property_land_area_unit',
 				'label'			=>	__('Area Unit', 'epl'),
+				'class'			=>	'epl-search-row-third',
 				'type'			=>	'select',
+				'option_filter'	=>	'land_area_unit',
 				'options'		=>	apply_filters(
 										'epl_listing_search_land_unit_label',
 										array(
@@ -402,6 +425,7 @@
 				'key'			=>	'search_building_area',
 				'meta_key'		=>	'property_building_area_min',
 				'label'			=>	__('Building Min','epl'),
+				'class'			=>	'epl-search-row-third',
 				'type'			=>	has_filter('epl_property_building_area_min') ? apply_filters('epl_property_building_area_min','') : 'number',
 				'exclude'		=>	array('land'),
 				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=', 'key'	=>	'property_building_area' )
@@ -411,6 +435,7 @@
 				'key'			=>	'search_building_area',
 				'meta_key'		=>	'property_building_area_max',
 				'label'			=>	__('Building Max','epl'),
+				'class'			=>	'epl-search-row-third',
 				'type'			=>	has_filter('epl_property_building_area_max') ? apply_filters('epl_property_building_area_max','') : 'number',
 				'exclude'		=>	array('land'),
 				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'<=', 'key'	=>	'property_building_area' )
@@ -420,7 +445,9 @@
 				'key'			=>	'search_building_area',
 				'meta_key'		=>	'property_building_area_unit',
 				'label'			=>	__('Area Unit', 'epl'),
+				'class'			=>	'epl-search-row-third',
 				'type'			=>	'select',
+				'option_filter'	=>	'building_area_unit',
 				'options'		=>	apply_filters(
 										'epl_listing_search_building_unit_label',
 										array(
@@ -442,7 +469,8 @@
 				'label'			=>	__('Air Conditioning', 'epl'),
 				'type'			=>	'checkbox',
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta', 'compare'	=>	'IN', 'value'	=>	array('yes','1') )
+				'query'			=>	array('query'	=>	'meta', 'compare'	=>	'IN', 'value'	=>	array('yes','1') ),
+				'class'			=>	'epl-search-row-half',
 			),
 			array(
 				'key'			=>	'search_other',
@@ -450,7 +478,8 @@
 				'label'			=>	__('Pool', 'epl'),
 				'type'			=>	'checkbox',
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta','compare'	=>	'IN', 'value'	=>	array('yes','1') )
+				'query'			=>	array('query'	=>	'meta','compare'	=>	'IN', 'value'	=>	array('yes','1') ),
+				'class'			=>	'epl-search-row-half',
 			),
 			array(
 				'key'			=>	'search_other',
@@ -458,7 +487,8 @@
 				'label'			=>	__('Security', 'epl'),
 				'type'			=>	'checkbox',
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta','compare'	=>	'IN', 'value'	=>	array('yes','1') )
+				'query'			=>	array('query'	=>	'meta','compare'	=>	'IN', 'value'	=>	array('yes','1') ),
+				'class'			=>	'epl-search-row-half',
 			)
 		) );
 		return $fields;
@@ -586,20 +616,26 @@
 		
 			// checkbox
 			case "checkbox": ?>
-				<span class="checkbox top-mrgn">
-					<input type="checkbox" name="<?php echo $field['meta_key']; ?>" id="<?php echo $field['meta_key']; ?>" class="in-field" 
+				<span class="checkbox top-mrgn <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
+				
+					<div class="field">
+						<input type="checkbox" name="<?php echo $field['meta_key']; ?>" id="<?php echo $field['meta_key']; ?>" class="in-field" 
 						<?php if(isset($value) && !empty($value)) { echo 'checked="checked"'; } ?> />
+					</div>
+					
 					<label for="<?php echo $field['meta_key']; ?>" class="check-label">
 						<?php echo apply_filters('epl_search_widget_label_'.$field['meta_key'],__($field['label'], 'epl') ); ?>
 					</label>
+					
 					<span class="epl-clearfix"></span>
+					
 				</span> <?php
 			
 			break;
 			
 			// text
 			case "text": ?>
-				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block">
+				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
 				
 					<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
 						<?php 
@@ -622,7 +658,7 @@
 			
 			// number
 			case "number": ?>
-				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block">
+				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
 				
 					<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
 						<?php 
@@ -645,7 +681,7 @@
 			
 			// select
 			case "select": ?>
-				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block">
+				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
 				
 					<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
 						<?php 
@@ -659,7 +695,7 @@
 								id="<?php echo $field['meta_key']; ?>" 
 								class="in-field field-width">
 								<option value="">
-									<?php echo apply_filters('epl_search_widget_option_label_'.$field['meta_key'],__('Any', 'epl') ); ?>
+									<?php echo apply_filters('epl_search_widget_option_label_'.$field['option_filter'],__('Any', 'epl') ); ?>
 								</option>
 							<?php
 								foreach($field['options'] as $k=>$v) {
@@ -795,8 +831,7 @@ function epl_search_pre_get_posts( $query ) {
 				}
 			}
 		}
-		echo "<pre>";
-		print_r($epl_meta_query); die;
+
 		if(!empty($epl_meta_query)) {
 			$query->set('meta_query', $epl_meta_query);
 		}
@@ -883,4 +918,19 @@ function epl_get_available_locations($post_type='',$property_status='') {
 
 }
 
+/** example to enable multiple house category via filter 
+
+function epl_filter_search_widget_fields_frontend($fields) {
 	
+	foreach($fields as &$field) {
+		if($field['key'] == 'search_house_category') {
+			$field['multiple'] 	= true;
+			$field['query'] 	= array('query'	=>	'meta','compare'	=>	'IN' );
+			break;
+		}
+	}
+	
+	return $fields;
+}
+add_filter('epl_search_widget_fields_frontend','epl_filter_search_widget_fields_frontend');
+ **/
