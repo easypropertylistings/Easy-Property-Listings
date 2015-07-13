@@ -1350,25 +1350,25 @@ add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');
  *
  * @since 2.2
  */
-function epl_the_content() {
+function epl_property_the_content() {
 
-    if ( !has_filter( 'epl_the_content', 'wptexturize' ) ) {
+    if ( !has_filter( 'epl_get_the_content', 'wptexturize' ) ) {
     
-        add_filter( 'epl_the_content', 'wptexturize'        );
-        add_filter( 'epl_the_content', 'convert_smilies'    );
-        add_filter( 'epl_the_content', 'convert_chars'      );
-        add_filter( 'epl_the_content', 'wpautop'            );
-        add_filter( 'epl_the_content', 'shortcode_unautop'  );
-        add_filter( 'epl_the_content', 'prepend_attachment' );
+        add_filter( 'epl_get_the_content', 'wptexturize'        );
+        add_filter( 'epl_get_the_content', 'convert_smilies'    );
+        add_filter( 'epl_get_the_content', 'convert_chars'      );
+        add_filter( 'epl_get_the_content', 'wpautop'            );
+        add_filter( 'epl_get_the_content', 'shortcode_unautop'  );
+        add_filter( 'epl_get_the_content', 'prepend_attachment' );
         $vidembed = new WP_Embed();
-        add_filter( 'epl_the_content', array( &$vidembed, 'run_shortcode'), 8 );
-        add_filter( 'epl_the_content', array( &$vidembed, 'autoembed'), 8 );
-        add_filter( 'epl_the_content', 'do_shortcode', 11);
+        add_filter( 'epl_get_the_content', array( &$vidembed, 'run_shortcode'), 8 );
+        add_filter( 'epl_get_the_content', array( &$vidembed, 'autoembed'), 8 );
+        add_filter( 'epl_get_the_content', 'do_shortcode', 11);
     } 
 
     add_filter( 'epl_get_the_excerpt', 'epl_trim_excerpt'  );
 }
-add_action('init','epl_the_content',1);
+add_action('init','epl_property_the_content',1);
 
 /**
  * Disable property-box left and right class
@@ -1473,13 +1473,13 @@ function epl_remove_single_thumbnail($html, $post_id, $post_thumbnail_id, $size,
  *
  * @since 2.2
  */
-function epl_property_the_content() {
+function epl_the_content() {
 
 	global $property;
-	$content = apply_filters('epl_the_content',get_the_content());
+	$content = apply_filters('epl_get_the_content',get_the_content());
 	echo str_replace( ']]>', ']]&gt;', $content );
 }
-add_action('epl_property_the_content','epl_property_the_content');
+add_action('epl_the_content','epl_the_content');
 
 /**
  * Custom property the_content
@@ -1585,15 +1585,19 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	global $wpdb;
 	
 	$sql = "
-		SELECT count( * ) AS count
+		SELECT count( Distinct p.ID ) AS count
 		FROM {$wpdb->prefix}posts AS p
-		INNER JOIN $wpdb->postmeta pm  ON ($wpdb->posts.ID = $wpdb->postmeta.post_id)
-		INNER JOIN $wpdb->postmeta pm2  ON ($wpdb->posts.ID = $wpdb->postmeta.post_id) ";
+		INNER JOIN $wpdb->postmeta pm  ON (p.ID = pm.post_id)
+		INNER JOIN $wpdb->postmeta pm2  ON (p.ID = pm2.post_id) 
+		WHERE p.post_status = 'publish' ";
 		
 		if($type == ''){
-			$sql .=" WHERE p.post_type != ''";
+			$epl_posts 	= epl_get_active_post_types();
+			$epl_posts 		= '"'.implode('","',array_keys($epl_posts) ).'"';
+			
+			$sql .=" AND p.post_type IN ( {$epl_posts} )";
 		} else {
-			$sql .=" WHERE p.post_type = '{$type}'";
+			$sql .=" AND p.post_type = '{$type}'";
 		}
 		
 		if($author_id != '') {
@@ -1612,8 +1616,6 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 		AND pm.meta_key = '{$meta_key}'
 		AND pm.meta_value = '{$meta_value}'
 	";
-	echo $sql; die;
-	
 	$count = $wpdb->get_row($sql);
 	return $count->count;
 }

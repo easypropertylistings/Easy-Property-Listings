@@ -52,6 +52,12 @@
 				'type'			=>	'checkbox',
 			),
 			array(
+				'key'			=>	'search_agent',
+				'label'			=>	__('Property Agent','epl'),
+				'default'		=>	'off',
+				'type'			=>	'checkbox',
+			),
+			array(
 				'key'			=>	'search_location',
 				'label'			=>	epl_tax_location_label(),
 				'default'		=>	'on',
@@ -206,6 +212,12 @@
 				'label'			=>	__('Search by Property ID / Address', 'epl'),
 				'type'			=>	'text',
 				'exclude'		=>	array('land')
+			),
+			array(
+				'key'			=>	'search_agent',
+				'meta_key'		=>	'property_agent',
+				'label'			=>	__('Search by Property Agent', 'epl'),
+				'type'			=>	'text',
 			),
 			array(
 				'key'			=>	'search_location',
@@ -757,12 +769,23 @@ function epl_search_pre_get_posts( $query ) {
 		$query->set('posts_per_page', get_option('posts_per_page'));
 		$query->set('paged', $paged);
 		extract($_REQUEST);
+		
 		if(isset($property_id) ) {
 			if(is_numeric($property_id)) {
 				$query->set( 'post__in', array(intval($property_id)) );
 			} else {
 				$query->set( 'epl_post_title', sanitize_text_field($property_id) );
 			}
+				
+		}
+		
+		if(isset($property_agent) ) {
+			$property_agent = sanitize_title_with_dashes($property_agent);
+				
+				if( $property_agent = get_user_by('slug',$property_agent) ) {
+			
+					$query->set( 'post_author', $property_agent->ID );
+				}
 				
 		}
 		
@@ -837,7 +860,6 @@ function epl_search_pre_get_posts( $query ) {
 				}
 			}
 		}
-
 		if(!empty($epl_meta_query)) {
 			$query->set('meta_query', $epl_meta_query);
 		}
