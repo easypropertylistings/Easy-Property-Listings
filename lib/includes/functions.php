@@ -234,7 +234,7 @@ function epl_labels($key) {
 	
 	foreach($field_groups as $field_group) {
 		if($field_group['id']	==	'labels') {
-			$epl_labels = $field_group['fields'];
+			$epl_labels = array_filter($field_group['fields']);
 			break;
 		}
 	}

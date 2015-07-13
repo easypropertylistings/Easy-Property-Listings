@@ -1581,4 +1581,39 @@ function epl_esc_attr($value) {
 	}
 	return $value;
 }
-
+function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
+	global $wpdb;
+	
+	$sql = "
+		SELECT count( * ) AS count
+		FROM {$wpdb->prefix}posts AS p
+		INNER JOIN $wpdb->postmeta pm  ON ($wpdb->posts.ID = $wpdb->postmeta.post_id)
+		INNER JOIN $wpdb->postmeta pm2  ON ($wpdb->posts.ID = $wpdb->postmeta.post_id) ";
+		
+		if($type == ''){
+			$sql .=" WHERE p.post_type != ''";
+		} else {
+			$sql .=" WHERE p.post_type = '{$type}'";
+		}
+		
+		if($author_id != '') {
+			$user_info 		= get_userdata($author_id);
+			$sql .=" AND (
+						p.post_author =  $author_id
+						OR (
+							pm2.meta_key 	= 'property_second_agent' 
+							AND 
+							pm2.meta_value 	= '$user_info->user_login'
+						)
+					)";
+		}
+	$sql .="	
+		AND p.ID = pm.post_id
+		AND pm.meta_key = '{$meta_key}'
+		AND pm.meta_value = '{$meta_value}'
+	";
+	echo $sql; die;
+	
+	$count = $wpdb->get_row($sql);
+	return $count->count;
+}

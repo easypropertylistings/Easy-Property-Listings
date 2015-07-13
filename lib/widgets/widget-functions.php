@@ -88,6 +88,12 @@
 				'type'			=>	'checkbox',
 			),
 			array(
+				'key'			=>	'house_category_multiple',
+				'label'			=>	__('Allow House categories','epl'),
+				'default'		=>	'off',
+				'type'			=>	'checkbox',
+			),
+			array(
 				'key'			=>	'search_price',
 				'label'			=>	__('Price','epl'),
 				'default'		=>	'on',
