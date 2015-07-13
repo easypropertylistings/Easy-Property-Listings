@@ -94,6 +94,13 @@ function epl_shortcode_listing_search_callback( $atts ) {
 					$epl_frontend_fields = epl_search_widget_fields_frontend($post_type,$property_status);
 
 					foreach($epl_frontend_fields as $epl_frontend_field) {
+					
+						if($epl_frontend_field['key'] == 'search_house_category' && isset($house_category_multiple) && $house_category_multiple == 'on') {
+						
+							$epl_frontend_field['multiple'] 	= true;
+							$epl_frontend_field['query'] 		= array('query'	=>	'meta','compare'	=>	'IN' );
+							
+						}
 						
 						$config	=	isset(${$epl_frontend_field['key']}) ? ${$epl_frontend_field['key']} : '';
 						$value	=	isset(${$epl_frontend_field['meta_key']}) ? ${$epl_frontend_field['meta_key']} : '';

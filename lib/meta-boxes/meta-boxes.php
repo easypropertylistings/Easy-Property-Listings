@@ -1706,6 +1706,10 @@ function epl_meta_box_init() {
 												if(!isset($_POST[ $field['name'] ])) {
 													continue;
 												}
+											} else if( $field['type'] == 'checkbox_single') {
+												if(!isset($_POST[ $field['name'] ])) {
+													$_POST[ $field['name'] ] = '';
+												}
 											} else if( $field['type'] == 'auction-date' && $_POST[ $field['name'] ] != '') {
 												$epl_date = $_POST[ $field['name'] ];
 												if(strpos($epl_date, 'T') !== FALSE){

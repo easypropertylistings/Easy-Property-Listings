@@ -84,6 +84,15 @@ function epl_shortcode_listing_callback( $atts ) {
 				'value' => $status,
 				'compare' => 'IN'
 			);
+			
+			add_filter('epl_sorting_options',function($sorters) {
+				foreach($sorters as $key	=>	 &$sorter) {
+					if($sorter['id'] == 'status_asc' || $sorter['id'] == 'status_desc') {
+						unset($sorters[$key]);
+					}	
+				}
+				return $sorters;
+			});
 		}
 	}
 
@@ -115,6 +124,14 @@ function epl_shortcode_listing_callback( $atts ) {
 			$args['order']		=	'DESC';
 		} elseif($orderby == 'old') {
 			$args['orderby']	=	'post_date';
+			$args['order']		=	'ASC';
+		} elseif($orderby == 'status_desc') {
+			$args['orderby']	=	'meta_value';
+			$args['meta_key']	=	'property_status';
+			$args['order']		=	'DESC';
+		} elseif($orderby == 'status_asc') {
+			$args['orderby']	=	'meta_value';
+			$args['meta_key']	=	'property_status';
 			$args['order']		=	'ASC';
 		}
 		
