@@ -1521,7 +1521,7 @@ function epl_trim_excerpt($text = '') {
 
 		$text = strip_shortcodes( $text );
 
-		$text = apply_filters( 'epl_the_content', $text );
+		$text = apply_filters( 'epl_get_the_content', $text );
 		$text = str_replace(']]>', ']]&gt;', $text);
 
 		$excerpt_length = apply_filters( 'excerpt_length', 55 );
