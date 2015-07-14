@@ -1402,5 +1402,6 @@ AND p.post_status = '%s'
 AND p.post_type = '%s'
 ", $key, $status, $type ) );
 	
-    return array_combine(array_filter($res),array_filter($res) );
+	if(!empty(array_filter($res)))
+    	return array_combine(array_filter($res),array_filter($res) );
 }
