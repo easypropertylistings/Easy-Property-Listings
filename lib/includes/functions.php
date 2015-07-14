@@ -1401,6 +1401,7 @@ WHERE pm.meta_key = '%s'
 AND p.post_status = '%s'
 AND p.post_type = '%s'
 ", $key, $status, $type ) );
+
 	$res = array_filter($res);
 	if(!empty($res))
     	return array_combine(array_filter($res),array_filter($res) );
