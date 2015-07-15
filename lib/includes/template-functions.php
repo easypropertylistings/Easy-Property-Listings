@@ -189,7 +189,16 @@ function epl_property_blog($template='') {
 			
 			if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
 	
-				epl_get_template_part('loop-listing-blog-'.$template.'-compatibility.php');
+				if( locate_template( array('loop-listing-blog-'.$template.'-compatibility.php') ) ) {
+				
+					epl_get_template_part('loop-listing-blog-'.$template.'-compatibility.php');
+					
+				} else {
+					
+					epl_get_template_part('loop-listing-blog-'.$template.'.php');
+					
+				}
+				
 		
 			} else {
 	
@@ -1350,7 +1359,7 @@ add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');
  *
  * @since 2.2
  */
-function epl_property_the_content() {
+function epl_the_content_filters() {
 
     if ( !has_filter( 'epl_get_the_content', 'wptexturize' ) ) {
     
@@ -1368,7 +1377,7 @@ function epl_property_the_content() {
 
     add_filter( 'epl_get_the_excerpt', 'epl_trim_excerpt'  );
 }
-add_action('init','epl_property_the_content',1);
+add_action('init','epl_the_content_filters',1);
 
 /**
  * Disable property-box left and right class
@@ -1479,7 +1488,7 @@ function epl_the_content() {
 	$content = apply_filters('epl_get_the_content',get_the_content());
 	echo str_replace( ']]>', ']]&gt;', $content );
 }
-add_action('epl_the_content','epl_the_content');
+add_action('epl_property_the_content','epl_the_content');
 
 /**
  * Custom property the_content
