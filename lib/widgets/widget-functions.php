@@ -282,7 +282,7 @@
 				'options'		=>	epl_get_meta_values( 'property_category', $post_type),
 				'type'			=>	'select',
 				'query'			=>	array('query'	=>	'meta'),
-				'class'			=>	'epl-search-row-half',
+				'class'			=>	'epl-search-row',
 			),
 			array(
 				'key'			=>	'search_price',
@@ -408,6 +408,7 @@
 				'type'			=>	has_filter('epl_property_land_area_min') ? apply_filters('epl_property_land_area_min','') : 'number',
 				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=', 'key'	=>	'property_land_area' ),
 				'class'			=>	'epl-search-row-third',
+				'wrap_start'	=>	'epl-search-row'
 				
 			),
 			array(
@@ -436,7 +437,8 @@
 											'sqft'			=>	'Square Feet',
 										)
 									),
-				'query'			=>	array('query'	=>	'meta')
+				'query'			=>	array('query'	=>	'meta'),
+				'wrap_end'		=>	true
 
 			),
 			array(
@@ -446,7 +448,9 @@
 				'class'			=>	'epl-search-row-third',
 				'type'			=>	has_filter('epl_property_building_area_min') ? apply_filters('epl_property_building_area_min','') : 'number',
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=', 'key'	=>	'property_building_area' )
+				'query'			=>	array('query'	=>	'meta', 'type'		=>	'numeric', 'compare'	=>	'>=', 'key'	=>	'property_building_area' ),
+				'wrap_start'	=>	'epl-search-row'
+
 
 			),
 			array(
@@ -477,7 +481,9 @@
 										)
 									),
 				'exclude'		=>	array('land'),
-				'query'			=>	array('query'	=>	'meta')
+				'query'			=>	array('query'	=>	'meta'),
+				'wrap_end'	=>	true
+
 
 			),
 
@@ -630,6 +636,10 @@
 		if( !empty($field['exclude']) && in_array($post_type,$field['exclude']) )
 			return; 
 			
+		if( isset($field['wrap_start']) ) {
+			echo '<div class="'.$field['wrap_start'].'">';
+		}
+		
 		switch ($field['type']) {
 		
 			// checkbox
@@ -752,6 +762,10 @@
 			break;
 			
 		}
+		if( isset($field['wrap_end']) ) {
+			echo '</div>';
+		}
+
 	
 	}
 	
