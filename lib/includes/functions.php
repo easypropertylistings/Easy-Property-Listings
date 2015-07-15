@@ -702,6 +702,7 @@ function epl_admin_sidebar () {
 					$checked = '';
 					if(!empty($val)) {
 						if( in_array($k, $val) ) {
+							$val = (array) $val;
 							$checked = 'checked="checked"';
 						}
 					}
