@@ -35,7 +35,7 @@
 			array(
 				'key'			=>	'property_status',
 				'label'			=>	__('Status','epl'),
-				'default'		=>	'any',
+				'default'		=>	'',
 				'type'			=>	'select',
 				'options'		=>	array(
 					''			=>	__('Any' , 'epl'),
