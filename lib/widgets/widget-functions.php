@@ -227,7 +227,7 @@
 				'option_filter'	=>	'location',
 				'options'		=>	epl_get_available_locations($post_type,$property_status),
 				'query'			=>	array('query'	=>	'tax'),
-				'class'			=>	'epl-search-row-half',
+				'class'			=>	'epl-search-row',
 
 			),
 			array(

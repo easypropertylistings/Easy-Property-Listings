@@ -241,9 +241,9 @@ function epl_labels($key) {
 	
 	foreach($epl_labels as $label_key	=>	$label) {
 	
-		if( $key == $label['name'] ) {
+		if( isset($label['default']) && $key == $label['name'] ) {
 			
-			$label =  ( $epl_settings[$key] != '' ) ? $epl_settings[$key] : $label['default'];
+			$label =  isset($epl_settings[$key]) ? $epl_settings[$key] : isset($label['default']) ? $label['default'] : '';
 			
 			return apply_filters( 'epl_display_'.$key, $label );
 		}
@@ -1096,7 +1096,8 @@ function epl_admin_sidebar () {
 					'opts'	=>	array(
 						'list'	=>	__('List', 'epl'),
 						'grid'	=>	__('Grid', 'epl')
-					)
+					),
+					'default'	=>	'list',
 				),
 				
 				array(
@@ -1106,7 +1107,8 @@ function epl_admin_sidebar () {
 					'opts'	=>	array(
 						'0'		=>	__('No, use WordPress default pagination', 'epl'),
 						'1'		=>	__('Yes, use fancy navigation', 'epl')
-					)
+					),
+					'default'	=>	'0',
 				)
 
 			)
