@@ -649,17 +649,26 @@ h3.epl-welcome-sub-heading {
 	content: "\f174";
 	color:#1494dd;
 }
+#epl_status_dashboard_widget li.epl_type_testimonial,
+#epl_status_dashboard_widget li.epl_type_directory,
+#epl_status_dashboard_widget li.epl_type_location_profile {
+	
+}
+#epl_status_dashboard_widget .epl_status_list li.epl_type_testimonial a:before,
+#epl_status_dashboard_widget .epl_status_list li.epl_type_directory a:before,
+#epl_status_dashboard_widget .epl_status_list li.epl_type_location_profile a:before{
+	color:#1494dd;
+	height: 40px;
+	margin-bottom: 0;
+}
 #epl_status_dashboard_widget .epl_status_list li.epl_type_testimonial a:before{
 	content: "\f125";
-	color:#1494dd;
 }
 #epl_status_dashboard_widget .epl_status_list li.epl_type_directory a:before{
 	content: "\f307";
-	color:#1494dd;
 }
 #epl_status_dashboard_widget .epl_status_list li.epl_type_location_profile a:before{
 	content: "\f183";
-	color:#1494dd;
 }
 #epl_status_dashboard_widget .epl_status_list li:nth-child(2n+1) {
 }

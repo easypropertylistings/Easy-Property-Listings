@@ -1076,7 +1076,18 @@ li.tbhead.current {
 }
 .epl-listing-grid-view.epl-property-blog.masonry-brick {
 	min-height: 0;
-	
+}
+/** Card **/
+.epl-property-blog-card {
+	width: 25%;
+	float: left;
+	clear: none;
+}
+.epl-property-blog-card .epl-entry-content {
+	padding: 0.3em;
+}
+.epl-property-blog-card .epl-entry-content {
+	padding: 0.3em;
 }
 /** Table **/
 .epl-table,
