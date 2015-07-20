@@ -813,9 +813,15 @@ li.tbhead.current {
 .epl-search-slim .epl-search-row-full-wrapper,
 .epl-search-slim .epl-search-row-half-wrapper,
 .epl-search-slim .epl-search-submit-row {
-	width: 33%;
+	width: 20%;
 	float: left;
 	clear: none;
+}
+.epl-search-slim .epl-search-row-full-wrapper.epl-search-row-half {
+	width: 10%;
+}
+.epl-search-slim .epl-search-form .epl-search-row-third {
+	width: 6.6%; 
 }
 .epl-search-wide .epl-search-submit-row {
 	margin-top: 0.5em;
