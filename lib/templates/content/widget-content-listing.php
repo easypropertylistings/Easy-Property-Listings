@@ -27,7 +27,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<h5 class="property-heading"><a href="<?php the_permalink(); ?>"><?php do_action('epl_property_heading'); ?></a></h5>
 		<?php } ?>
 		<?php if ( $d_excerpt == 'on' ) { 
-			the_excerpt();
+			if( function_exists('epl_the_excerpt') ) { 
+        		epl_the_content(); 
+    		} else {
+				the_content();
+    		}
 		} ?>
 		
 		<!-- Address -->
