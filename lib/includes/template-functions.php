@@ -1465,16 +1465,18 @@ function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size
 
 function epl_remove_single_thumbnail($html, $post_id, $post_thumbnail_id, $size, $attr) {
 
+	
 	if( is_admin() ) {
 		return $html;
 	}
 	
-	if( doing_action('epl_property_featured_image') ) {
+	if( is_epl_post() ) {
+		if( doing_action('epl_property_featured_image') ) {
 			
-	} else {
-		$html = '';
+		} else {
+			$html = '';
+		}
 	}
-	
 	return $html;
 }
 /**
