@@ -981,65 +981,84 @@ function epl_admin_sidebar () {
 			'label'		=>	__('Theme Setup' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'theme_setup',
+			'help'		=>	__('Configure your theme to work with Easy Property Listings... Are you feeling lucky?', 'epl'),
 			'fields'	=>	array(
 				array(
-					'name'	=>	'epl_feeling_lucky_help',
-					'type'	=>	'help',
-					'content'		=>	__('Adapt to theme framework which will improve sidebar position however removes sorting and grid options which can be added through shortcodes like [listing post_type="property" tools_top="on"]. If using iThemes, Genesis frameworks or Twenty Twelve and Twenty Fifteen based themes leave un-checked.' , 'epl')
+					'name'		=>	'epl_feeling_lucky_help',
+					'type'		=>	'help',
+					'content'	=>	__('<p style="font-size: 1em">The following settings attempt to adapt Easy Property Listings to your theme which will improve sidebar position and overall listing display. When using this setting we recommend using shortcodes like [listing post_type="property" tools_top="on"] on pages so will still have sorting and grid options. If using iThemes, Genesis frameworks or Twenty Twelve and Twenty Fifteen based themes leave un-checked.</p>' , 'epl')
+				),
+				array(
+					'name'		=>	'epl_feeling_lucky',
+					'label'		=>	__('Theme Compatibility', 'epl'),
+					'type'		=>	'checkbox_single',
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						'on'	=>	__('Enable', 'epl'),
+						'off'	=>	__('Disable', 'epl')
+					),
+					'default'	=>	'off',
+					'help'		=>	__('If using iThemes, Genesis frameworks or your theme looks right, leave this disabled.' , 'epl')
 					
-				),array(
-					'name'	=>	'epl_feeling_lucky',
-					'label'	=>	__('Enable Theme Compatibility', 'epl'),
-					'type'	=>	'checkbox_single',
-					'opts'	=>	array(
-						'on'	=>	__('Yes', 'epl'),
-					),
-					'default'	=>	'off',
-					'help'		=>	__('Adapt to theme framework which will improve sidebar position however removes sorting and grid options which can be added through shortcodes like [listing post_type="property" tools_top="on"]. If using iThemes, Genesis frameworks or Twenty Twelve and Twenty Fifteen based themes leave un-checked.' , 'epl')
-					
 				),
 				array(
-					'name'	=>	'epl_lucky_disable_single_thumb',
-					'label'	=>	__('Single Listing: Disable Epl featured image', 'epl'),
-					'type'	=>	'checkbox_single',
-					'opts'	=>	array(
-						'on'	=>	__('Yes', 'epl'),
-					),
-					'default'	=>	'off',
-					'help'		=>	__('Tick this if your theme displays two images on a listing. Used with theme compatibility mode only.removes featured image from EPL' , 'epl')
+					'name'		=>	'epl_feeling_lucky_help',
+					'type'		=>	'help',
+					'content'	=>	__('<p style="font-size: 1em"><strong>The following settings only take effect when theme compatibility is enabled.</strong></p>' , 'epl')
 				),
 				array(
-					'name'	=>	'epl_lucky_disable_theme_single_thumb',
-					'label'	=>	__('Single Listing: Disable featured image', 'epl'),
-					'type'	=>	'checkbox_single',
-					'opts'	=>	array(
-						'on'	=>	__('Yes', 'epl'),
-					),
-					'default'	=>	'off',
-					'help'		=>	__('Tick this if your theme displays two images on a listing. Used with theme compatibility mode only.removes featured image from active theme' , 'epl')
+					'name'		=>	'epl_feeling_lucky_theme_settings',
+					'type'		=>	'help',
+					'content'	=>	__('<hr/><p><strong style="font-size: 1em;">Theme elements</strong></p>' , 'epl')
 				),
 				array(
-					'name'	=>	'epl_lucky_disable_archive_thumb',
-					'label'	=>	__('Archive: Disable featured image', 'epl'),
-					'type'	=>	'checkbox_single',
-					'opts'	=>	array(
-						'on'	=>	__('Yes', 'epl'),
+					'name'		=>	'epl_lucky_disable_theme_single_thumb',
+					'label'		=>	__('Listing Single View', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Disable theme featured image', 'epl'),
 					),
 					'default'	=>	'off',
-					'help'		=>	__('Tick this if your theme displays two images on archive pages. Used with theme compatibility mode only.' , 'epl')
+					'help'		=>	__('Tick this if your theme displays two images when viewing a single listing.' , 'epl')
+				),
+				
+				array(
+					'name'		=>	'epl_lucky_disable_archive_thumb',
+					'label'		=>	__('Listing Archive View', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Disable theme featured image', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images when viewing your archive pages eg /property/, /rental/ etc.' , 'epl')
+				),
+				
+				array(
+					'name'		=>	'epl_feeling_lucky_epl_theme_settings',
+					'type'		=>	'help',
+					'content'	=>	__('<hr/><p><strong style="font-size: 1em;">Easy Property Listings elements</strong></p>' , 'epl')
 				),
 				array(
-					'name'	=>	'epl_lucky_disable_epl_archive_thumb',
-					'label'	=>	__('Archive: Disable EPL featured image', 'epl'),
-					'type'	=>	'checkbox_single',
-					'opts'	=>	array(
-						'on'	=>	__('Yes', 'epl'),
+					'name'		=>	'epl_lucky_disable_single_thumb',
+					'label'		=>	__('Listing Single View', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Disable EPL featured image', 'epl'),
 					),
 					'default'	=>	'off',
-					'help'		=>	__('Tick this if your theme displays two images on archive pages. Used with theme compatibility mode only.' , 'epl')
+					'help'		=>	__('Tick this if your theme displays two images when viewing a single listing.' , 'epl')
+				),
+				array(
+					'name'		=>	'epl_lucky_disable_epl_archive_thumb',
+					'label'		=>	__('Listing Archive View', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Disable EPL featured image', 'epl'),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Tick this if your theme displays two images when viewing your archive pages eg /property/, /rental/ etc.' , 'epl')
 				)
 			)
-
 		),
 		
 		array(
