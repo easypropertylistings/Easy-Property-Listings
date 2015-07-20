@@ -264,7 +264,7 @@ h3.epl-welcome-sub-heading {
 	display:none;
 }
 .epl-field {
-	margin: 2em 0;
+	margin: 1em 0;
 	overflow: hidden;
 }
 .epl-setting-heading {
@@ -316,7 +316,7 @@ h3.epl-welcome-sub-heading {
 }
 .epl-help-text {
 	display:block;
-	margin:1em 0;
+	margin:  0 0 1em;
 	font-style:italic;
 }
 .epl-half-left {
