@@ -680,7 +680,7 @@ li.tbhead.current {
 ******************************/
 .epl-search-form { 
 	background: none repeat scroll 0 0 transparent; 
-	width: 300px; 
+	max-width: 380px; 
 	max-width:100%;
 	display:none;
 }
@@ -693,10 +693,9 @@ li.tbhead.current {
 .epl-search-form .epl-search-row {
 }
 .epl-search-form .epl-search-label { 
-	color: #555555; 
 	display: block; 
 	font-size: 11px; 
-	margin-bottom: 5px; 
+	margin-bottom: 3px; 
 }
 .epl-search-form .in-field { 
 	border: 1px solid #B7B7B7; 
