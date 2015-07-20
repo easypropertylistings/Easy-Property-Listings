@@ -35,86 +35,66 @@ function epl_install() {
 	
 	// Add default EPL Settings
 	$epl_settings = epl_settings();
-	if(empty($epl_settings)) {
-		// first time install . load with default values.
-		$epl_settings = array(
-			'currency'				=> 'AUD',
-			'currency_position'			=> 'before',
-			'currency_thousands_separator'		=> ',',
-			'currency_decimal_separator'		=> '.',
-			'admin_unique_id'			=> 0,
-			'debug'					=> 0,
-			'display_bond'				=> 0,
-			'display_single_gallery'		=> 0,
-			'display_gallery_n'			=> 4,
-			'display_feature_columns'		=> 2,
-			'display_excerpt_length'		=> 10,
-			'label_bond'				=> __('Bond', 'epl'),
-			'label_location'			=> __('Suburb', 'epl'),
-			'label_suburb'				=> __('Suburb', 'epl'),
-			'label_postcode'			=> __('Post Code', 'epl'),
-			'label_home_open'			=> __('Home Open', 'epl'),
-			'label_poa'				=> __('POA', 'epl'),
-			'label_new'				=> __('New', 'epl'),
-			'label_under_offer'			=> __('Under Offer', 'epl'),
-			'label_leased'				=> __('Leased', 'epl'),
-			'label_sold'				=> __('Sold', 'epl'),
-			'widget_label_property'			=> __('Buy', 'epl'),
-			'widget_label_land'			=> __('Land', 'epl'),
-			'widget_label_rental'			=> __('Rent', 'epl'),
-			'widget_label_rural'			=> __('Rural', 'epl'),
-			'widget_label_business'			=> __('Business', 'epl'),
-			'widget_label_commercial'		=> __('Commercial', 'epl'),
-			'widget_label_commercial_land'		=> __('Commercial Land', 'epl'),
-			'epl_max_graph_sales_price'		=> 2000000,
-			'epl_max_graph_rent_price'		=> 2000,
-			'sticker_new_range'			=> 7,
-			'epl_admin_thumb_size'			=> 'admin-list-thumb'
-		);
-	} else {
 	
-		// possible upgrade
-		$new_fields_defaults = array(
-			'currency'				=> 'AUD',
-			'currency_position'			=> 'before',
-			'currency_thousands_separator'		=> ',',
-			'currency_decimal_separator'		=> '.',
-			'admin_unique_id'			=> 0,
-			'debug'					=> 0,
-			'display_bond'				=> 0,
-			'display_single_gallery'		=> 0,
-			'display_gallery_n'			=> 4,
-			'display_feature_columns'		=> 2,
-			'display_excerpt_length'		=> 10,
-			'label_bond'				=> __('Bond', 'epl'),
-			'label_location'			=> __('Suburb', 'epl'),
-			'label_suburb'				=> __('Suburb', 'epl'),
-			'label_postcode'			=> __('Post Code', 'epl'),
-			'label_home_open'			=> __('Home Open', 'epl'),
-			'label_poa'				=> __('POA', 'epl'),
-			'label_new'				=> __('New', 'epl'),
-			'label_under_offer'			=> __('Under Offer', 'epl'),
-			'label_leased'				=> __('Leased', 'epl'),
-			'label_sold'				=> __('Sold', 'epl'),
-			'widget_label_property'			=> __('Buy', 'epl'),
-			'widget_label_land'			=> __('Land', 'epl'),
-			'widget_label_rental'			=> __('Rent', 'epl'),
-			'widget_label_rural'			=> __('Rural', 'epl'),
-			'widget_label_business'			=> __('Business', 'epl'),
-			'widget_label_commercial'		=> __('Commercial', 'epl'),
-			'widget_label_commercial_land'		=> __('Commercial Land', 'epl'),
-			'epl_max_graph_sales_price'		=> 2000000,
-			'epl_max_graph_rent_price'		=> 2000,
-			'sticker_new_range'			=> 7,
-			'epl_admin_thumb_size'			=> 'admin-list-thumb'
-		);
+	$new_fields_defaults = array(
+		'currency'				=> 'AUD',
+		'currency_position'			=> 'before',
+		'currency_thousands_separator'		=> ',',
+		'currency_decimal_separator'		=> '.',
+		'admin_unique_id'			=> 0,
+		'debug'					=> 0,
+		'display_bond'				=> 0,
+		'display_single_gallery'		=> 0,
+		'display_gallery_n'			=> 4,
+		'display_feature_columns'		=> 2,
+		'display_excerpt_length'		=> 10,
+		'label_bond'				=> __('Bond', 'epl'),
+		'label_location'			=> __('Suburb', 'epl'),
+		'label_suburb'				=> __('Suburb', 'epl'),
+		'label_postcode'			=> __('Post Code', 'epl'),
+		'label_home_open'			=> __('Home Open', 'epl'),
+		'label_poa'				=> __('POA', 'epl'),
+		'label_new'				=> __('New', 'epl'),
+		'label_under_offer'			=> __('Under Offer', 'epl'),
+		'label_leased'				=> __('Leased', 'epl'),
+		'label_sold'				=> __('Sold', 'epl'),
+		'widget_label_property'			=> __('Buy', 'epl'),
+		'widget_label_land'			=> __('Land', 'epl'),
+		'widget_label_rental'			=> __('Rent', 'epl'),
+		'widget_label_rural'			=> __('Rural', 'epl'),
+		'widget_label_business'			=> __('Business', 'epl'),
+		'widget_label_commercial'		=> __('Commercial', 'epl'),
+		'widget_label_commercial_land'		=> __('Commercial Land', 'epl'),
+		'epl_max_graph_sales_price'		=> 2000000,
+		'epl_max_graph_rent_price'		=> 2000,
+		'sticker_new_range'				=> 7,
+		'epl_admin_thumb_size'			=> 'admin-list-thumb',
+		'epl_feeling_lucky'						=>	'off',
+		'epl_lucky_disable_single_thumb'		=>	'off',
+		'epl_lucky_disable_theme_single_thumb'	=>	'off',
+		'epl_lucky_disable_archive_thumb'		=>	'off',
+		'epl_lucky_disable_epl_archive_thumb'	=>	'off',
+		'display_archive_view_type'				=>	'list',
+		'use_fancy_navigation'					=>	'0',
+		'epl_enable_city_field'					=>	'no',
+		'epl_enable_country_field'				=>	'no',
+		'label_city'							=>	'City'
 		
+		
+	);
+	
+	if(!empty($epl_settings)) {
+		
+		// possible upgrade
 		foreach($new_fields_defaults as $key	=>	$value) {
 			if(!isset($epl_settings[$key])) {
 				// sure upgrade, fields are not set lets set them for very first time
 				$epl_settings[$key] = $value;
 			}
 		}
+	} else {
+		// first time install . load with default values.
+		$epl_settings = $new_fields_defaults;
 	}
 	update_option( 'epl_settings', $epl_settings );
 

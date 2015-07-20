@@ -35,7 +35,7 @@
 			array(
 				'key'			=>	'property_status',
 				'label'			=>	__('Status','epl'),
-				'default'		=>	'any',
+				'default'		=>	'',
 				'type'			=>	'select',
 				'options'		=>	array(
 					''			=>	__('Any' , 'epl'),
@@ -227,7 +227,7 @@
 				'option_filter'	=>	'location',
 				'options'		=>	epl_get_available_locations($post_type,$property_status),
 				'query'			=>	array('query'	=>	'tax'),
-				'class'			=>	'epl-search-row-half',
+				'class'			=>	'epl-search-row',
 
 			),
 			array(

@@ -25,10 +25,8 @@ function epl_admin_enqueue_scripts($screen) {
 		wp_enqueue_script(	'epl-jquery-validation-engine-lang-scripts', 	$current_dir_path . '/js/jquery-validationEngine-en.js', array('jquery') );
 		wp_enqueue_script(	'epl-jquery-validation-engine-scripts', 	$current_dir_path . '/js/jquery-validationEngine.js', 	array('jquery') );
 		wp_enqueue_script(	'jquery-datetime-picker',			$current_dir_path . '/js/jquery-datetime-picker.js', 	array('jquery') );
-		wp_enqueue_script(	'epl-syntax-highlighter',			$current_dir_path . '/js/highlight.min.js', 	array('jquery') );
 		wp_enqueue_style(	'jquery-ui-datetime-picker-style',  		$current_dir_path . '/css/jquery-ui.min.css');
 		wp_enqueue_script( 	'epl-admin-scripts', 				$current_dir_path . '/js/jquery-admin-scripts.js', 	array('jquery'),	EPL_PROPERTY_VER );
-		wp_enqueue_style( 	'epl-highlight-styles', 				$current_dir_path . '/css/highlight.css',		FALSE,			EPL_PROPERTY_VER );
 		wp_enqueue_style( 	'epl-admin-styles', 				$current_dir_path . '/css/style-admin.css',		FALSE,			EPL_PROPERTY_VER );
 
 	} 
