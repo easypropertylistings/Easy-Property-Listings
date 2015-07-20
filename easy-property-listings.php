@@ -156,6 +156,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * @return void
 		 */
 		private function includes() {
+			
+			// Wordpress core functions for keeping compatibility.
+			require_once EPL_COMPATABILITY . 'wp-functions-compat.php';
 		
 			global $epl_settings;
 			
