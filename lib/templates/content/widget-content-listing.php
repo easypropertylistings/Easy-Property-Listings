@@ -28,9 +28,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		<?php } ?>
 		<?php if ( $d_excerpt == 'on' ) { 
 			if( function_exists('epl_the_excerpt') ) { 
-        		epl_the_content(); 
+        		epl_the_excerpt(); 
     		} else {
-				the_content();
+				the_excerpt();
     		}
 		} ?>
 		
