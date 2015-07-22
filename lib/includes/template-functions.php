@@ -104,6 +104,26 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 }
 add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featured_image' , 10 , 2 );
 
+/**
+ * Featured Image in widgets
+ *
+ * @since 2.2
+ */
+function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) { 
+	
+	if ( has_post_thumbnail() ) { ?>
+		<div class="epl-archive-entry-image">
+			<a href="<?php the_permalink(); ?>">
+				<div class="epl-blog-image">
+					<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
+				</div>
+			</a>
+		</div>
+	<?php }
+
+}
+add_action( 'epl_property_widgets_featured_image' , 'epl_property_widgets_featured_image' , 10 , 2 );
+
 /*
 * Single Listing Templates
 */
@@ -273,21 +293,6 @@ function epl_property_author_box_simple_grav() {
                 epl_reset_post_author();
             }
     }
-}
-
-// AUTHOR LISTING CARDS : Listing Card
-function epl_property_author_card( $display , $image , $title , $icons) {
-	global $property,$epl_author;
-	if( is_null($epl_author) )
-	return; 
-	$property_status = $property->get_property_meta('property_status');	
-	// Status Removal
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
-		// Do Not Display Withdrawn or OffMarket listings
-	} else {
-		$arg_list = get_defined_vars();
-		epl_get_template_part('widget-content-author.php',$arg_list);
-	} // End Status Removal
 }
 
 /*
@@ -982,14 +987,17 @@ function epl_author_tab_author_id($epl_author = array() ) {
 }
 
 function epl_author_tab_image ($epl_author = array() ) {
+	
 	if(empty($epl_author)) {
 		global $epl_author;
 	}
 
 	if ( function_exists('get_avatar') ) {
-		return get_avatar( $epl_author->email , '150' );
+		echo  apply_filters('epl_author_tab_image',get_avatar( $epl_author->email , '150' ),$epl_author );
 	}
 }
+
+add_action('epl_author_thumbnail','epl_author_tab_image',10,2);
 
 function epl_author_tab_description($epl_author = array() ) { 
 	if(empty($epl_author)) {
@@ -1454,11 +1462,19 @@ function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size
 		return $html;
 	}
 	
-	if( strpos($html, 'teaser-left-thumb') === FALSE ) {
-		
-		// the post thumbnail is probably theme's default . remove it
-		$html = '';
-	} 
+	if( is_epl_post_archive() ) {
+		// allow archive listing images as well as widget images
+		if( 
+			doing_action('epl_property_archive_featured_image') || 
+			doing_action('epl_property_widgets_featured_image') || 
+			doing_action('epl_author_thumbnail') || 
+			doing_action('epl_author_widget_thumbnail') 
+		) {
+			
+		} else {
+			$html = '';
+		}
+	}
 	
 	return $html;
 }
@@ -1471,7 +1487,8 @@ function epl_remove_single_thumbnail($html, $post_id, $post_thumbnail_id, $size,
 	}
 	
 	if( is_epl_post() ) {
-		if( doing_action('epl_property_featured_image') ) {
+		// allow single listing images as well as widget images
+		if( doing_action('epl_property_featured_image') || doing_action('epl_property_widgets_featured_image') ) {
 			
 		} else {
 			$html = '';
