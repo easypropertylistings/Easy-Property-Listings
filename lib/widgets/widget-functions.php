@@ -52,12 +52,6 @@
 				'type'			=>	'checkbox',
 			),
 			array(
-				'key'			=>	'search_agent',
-				'label'			=>	__('Property Agent','epl'),
-				'default'		=>	'off',
-				'type'			=>	'checkbox',
-			),
-			array(
 				'key'			=>	'search_location',
 				'label'			=>	epl_tax_location_label(),
 				'default'		=>	'on',
@@ -95,7 +89,7 @@
 			),
 			array(
 				'key'			=>	'house_category_multiple',
-				'label'			=>	__('Allow House categories','epl'),
+				'label'			=>	__('House categories: Multi select','epl'),
 				'default'		=>	'off',
 				'type'			=>	'checkbox',
 			),
@@ -492,11 +486,11 @@
 				'option_filter'		=>	'building_area_unit',
 				'options'		=>	apply_filters( 'epl_listing_search_building_unit_label',
 									array(
-										'square'		=>	'Square',
+										'square'	=>	'Square',
 										'squareMeter'	=>	'Square Meter',
-										'acre'			=>	'Acre',
-										'hectare'		=>	'Hectare',
-										'sqft'			=>	'Square Feet',
+										'acre'		=>	'Acre',
+										'hectare'	=>	'Hectare',
+										'sqft'		=>	'Square Feet',
 									)
 								),
 				'exclude'		=>	array('land'),
@@ -544,13 +538,7 @@
 								),
 				'class'			=>	'epl-search-row-half',
 				'wrap_end'		=>	true
-			),
-			array(
-				'key'			=>	'search_agent',
-				'meta_key'		=>	'property_agent',
-				'label'			=>	__('Search by Property Agent', 'epl'),
-				'type'			=>	'text',
-			),
+			)
 		) );
 		return $fields;
 	}
@@ -652,24 +640,20 @@
 				</p> <?php
 
 			break;
-			
 		}
-	
 	}
 	
 	/**
 	 * render widget field blocks -- for front-end form
 	 * @since 2.2
 	 */
-	
 	function epl_widget_render_frontend_fields($field,$config='',$value='',$post_type='',$property_status='') {
 
 		if( $field['type'] != 'hidden') {
 			if( $config != 'on' )
 				return;
 		}
-			
-			
+		
 		if( !empty($field['exclude']) && in_array($post_type,$field['exclude']) )
 			return; 
 			
@@ -884,11 +868,7 @@ function epl_search_pre_get_posts( $query ) {
 							isset($epl_search_form_field['query']['value']) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
 							$epl_meta_query[] = $this_meta_query;
 						}
-
 					}
-					
-					
-					
 				}
 			}
 		}
