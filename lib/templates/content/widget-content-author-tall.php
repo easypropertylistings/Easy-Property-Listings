@@ -16,9 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		<?php do_action('epl_author_widget_before_image'); ?>
 		<div class="epl-author-box-tall epl-author-image author-box-tall author-image epl-clearfix">
 			<?php if ( 'on' == $d_image ) {
-					if ( function_exists('get_avatar') ) { 
-						echo apply_filters('epl_author_tab_image',epl_author_tab_image($epl_author),$epl_author );
-					}
+					do_action('epl_author_thumbnail',$epl_author);
 				} ?>
 		</div>
 		<?php do_action('epl_author_widget_after_image'); ?>
