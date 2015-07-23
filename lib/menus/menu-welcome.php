@@ -168,7 +168,12 @@ class EPL_Welcome {
 			
 
 			<div class="changelog headline-feature">
+			
 				<h2><?php _e( 'Theme Compatibility Mode' , 'epl' );?></h2>
+				
+				<div class="featured-image">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-themes.jpg'; ?>" class="epl-welcome-featured-image"/>
+				</div>
 				
 				<div class="feature-section">
 					<p><?php _e( 'We have been hard at work to improve theme compatibility in this version of Easy Property Listings which required a huge amount of new code and adjustments to make this possible. Many users were unable to get listings to display correctly on their WordPress theme without having to dive in an edit some code.', 'epl' ); ?></p>
@@ -182,7 +187,12 @@ class EPL_Welcome {
 			</div>
 			
 			<div class="changelog headline-feature">
-				<h2><?php _e( 'Rebuilt Search' , 'epl' );?></h2>
+
+				<h2><?php _e( 'Powerful Search Remastered' , 'epl' );?></h2>
+				
+				<div class="featured-image">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search.png'; ?>" class="epl-welcome-featured-image"/>
+				</div>
 				
 				<div class="feature-section">
 
@@ -1021,8 +1031,8 @@ class EPL_Welcome {
 					
 					<div class="last-feature">
 						<h3><?php _e( 'Extend With Extensions', 'epl' );?></h3>
-						<h4><?php _e( '15 Extensions and many more coming','epl' );?></h4>
-						<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for Advanced mapping, testimonials, listing alerts, CMA Market Reports, Location Profiles, and many, many more.', 'epl' );?></p>
+						<h4><?php _e( '18 Extensions and many more coming','epl' );?></h4>
+						<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for Sliders, Brochires, Advanced mapping, Testimonials, Agent Staff Directory, Listing alerts, CMA Market Reports, Location Profiles, and many, many more.', 'epl' );?></p>
 						
 						<h4><?php _e( 'Visit the Extension Store', 'epl' );?></h4>
 						<p><a href="http://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions to make your real estate website even better.', 'epl' );?></p>
