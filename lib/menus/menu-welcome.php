@@ -310,7 +310,9 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Listing widget now allows for additional selectable templates to be added through custom plug-ins, hooks and themes.', 'epl' );?></li>
 						<li><?php _e( 'New: Replaced widget image with a dynamic action.', 'epl' );?></li>
 						<li><?php _e( 'New: Filter added for Gravatar image.', 'epl' );?></li>
-						<li><?php _e( 'New: Replaced widget and authorbox image functions with actions.', 'epl' );?></li>
+						<li><?php _e( 'New: Replaced widget and author box image functions with actions.', 'epl' );?></li>
+						<li><?php _e( 'New: Uninstall function to remove all Easy Property Listings content.', 'epl' );?></li>
+						<li><?php _e( 'New: Get option function.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.1.11', 'epl' );?></h4>
