@@ -13,6 +13,21 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Get an option
+ *
+ * Looks to see if the specified setting exists, returns default if not
+ *
+ * @since 2.2
+ * @return mixed
+ */
+function epl_get_option( $key = '', $default = false ) {
+	global $epl_settings;
+	$value = ! empty( $epl_settings[ $key ] ) ? $epl_settings[ $key ] : $default;
+	$value = apply_filters( 'epl_get_option', $value, $key, $default );
+	return apply_filters( 'epl_get_option_' . $key, $value, $key, $default );
+}
+
+/**
  * Determine if iThemes Builder framework is loaded
  *
  * @since 1.0
@@ -991,7 +1006,6 @@ function epl_admin_sidebar () {
 				array(
 					'name'		=>	'epl_feeling_lucky',
 					'label'		=>	__('Theme Compatibility', 'epl'),
-					'type'		=>	'checkbox_single',
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						'on'	=>	__('Enable', 'epl'),
@@ -1318,6 +1332,7 @@ function epl_admin_sidebar () {
 					'help'	=>	__('This will display the Unique Listing ID column.', 'epl'),
 					'default'	=> 0
 				),
+
 				array(
 					'name'	=>	'debug',
 					'label'	=>	__('Display Geocoded column', 'epl'),
@@ -1346,7 +1361,18 @@ function epl_admin_sidebar () {
 					),
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'epl')
-					
+				),
+				
+				array(
+					'name'	=>	'uninstall_on_delete',
+					'label'	=>	__('Remove Data on Uninstall?', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	__('Enable', 'epl'),
+						0	=>	__('Disable', 'epl')
+					),
+					'help'	=>	__('Check this box if you would like EPL to completely remove all of its data when the plugin is deleted.', 'epl'),
+					'default'	=> 0
 				)
 			)
 		)

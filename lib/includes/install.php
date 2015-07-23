@@ -52,6 +52,7 @@ function epl_install() {
 		'label_location'			=> __('Suburb', 'epl'),
 		'label_suburb'				=> __('Suburb', 'epl'),
 		'label_postcode'			=> __('Post Code', 'epl'),
+		'label_city'				=> __('City', 'epl'),
 		'label_home_open'			=> __('Home Open', 'epl'),
 		'label_poa'				=> __('POA', 'epl'),
 		'label_new'				=> __('New', 'epl'),
@@ -67,20 +68,18 @@ function epl_install() {
 		'widget_label_commercial_land'		=> __('Commercial Land', 'epl'),
 		'epl_max_graph_sales_price'		=> 2000000,
 		'epl_max_graph_rent_price'		=> 2000,
-		'sticker_new_range'				=> 7,
+		'sticker_new_range'			=> 7,
 		'epl_admin_thumb_size'			=> 'admin-list-thumb',
-		'epl_feeling_lucky'						=>	'off',
-		'epl_lucky_disable_single_thumb'		=>	'off',
-		'epl_lucky_disable_theme_single_thumb'	=>	'off',
-		'epl_lucky_disable_archive_thumb'		=>	'off',
-		'epl_lucky_disable_epl_archive_thumb'	=>	'off',
-		'display_archive_view_type'				=>	'list',
-		'use_fancy_navigation'					=>	'0',
-		'epl_enable_city_field'					=>	'no',
-		'epl_enable_country_field'				=>	'no',
-		'label_city'							=>	'City'
-		
-		
+		'epl_feeling_lucky'			=> 'off',
+		'epl_lucky_disable_single_thumb'	=> 'off',
+		'epl_lucky_disable_theme_single_thumb'	=> 'off',
+		'epl_lucky_disable_archive_thumb'	=> 'off',
+		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
+		'display_archive_view_type'		=> 'list',
+		'use_fancy_navigation'			=> '0',
+		'epl_enable_city_field'			=> 'no',
+		'epl_enable_country_field'		=> 'no',
+		'uninstall_on_delete'			=> 0,
 	);
 	
 	if(!empty($epl_settings)) {
