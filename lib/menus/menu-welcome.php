@@ -308,6 +308,9 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Actions added to enable extensions to better hook into listings types and optimised functions for admin column details.', 'epl' );?></li>
 						<li><?php _e( 'New: Dashboard widget now displays other extensions content counts.', 'epl' );?></li>
 						<li><?php _e( 'New: Listing widget now allows for additional selectable templates to be added through custom plug-ins, hooks and themes.', 'epl' );?></li>
+						<li><?php _e( 'New: Replaced widget image with a dynamic action.', 'epl' );?></li>
+						<li><?php _e( 'New: Filter added for Gravatar image.', 'epl' );?></li>
+						<li><?php _e( 'New: Replaced widget and authorbox image functions with actions.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.1.11', 'epl' );?></h4>
