@@ -24,7 +24,7 @@
 			array(
 				'key'			=>	'style',
 				'label'			=>	__('Style','epl'),
-				'default'		=>	array('property'),
+				'default'		=>	'default',
 				'type'			=>	'select',
 				'options'		=>	array(
 					'default'	=>	__('Default' , 'epl'),
