@@ -237,6 +237,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Actions added to enable extensions to better hook into listings types and optimised functions for admin column details.
 * New: Dashboard widget now displays other extensions content counts.
 * New: Listing widget now allows for additional selectable templates to be added through custom plug-ins, hooks and themes.
+* New: Replaced widget image with a dynamic action.
+* New: Filter added for Gravatar image.
+* New: Replaced widget and authorbox image functions with actions.
 
 
 = 2.1.11 June 5, 2015 =
