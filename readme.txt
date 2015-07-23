@@ -190,22 +190,17 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.2 July 22, 2015 =
+= 2.2 July 23, 2015 =
 
-* Tweak: Increased search widget to 380px max-width.
-* New: Rebuilt search shortcode and widget to enable adding additional fields through filters and hooks.
+* New: Search shortcode and widget rebuilt to enable adding additional fields through filters and hooks.
 * New: Search shortcode and widget added additional search fields for City, State, Postcode and Country.
 * New: Search shortcode and widget allows for optional multi select of house category.
 * New: Search shortcode and widget improved responsive CSS.
 * New: Grid styles included in main CSS for use in extensions.
-* New: Upload button added for ruse in custom plug-ins and extensions to upload files.
-* Fix: Shortcode compatibility for WordPress 3.3.
-* Fix: Saving listing when in debug mode and ticking hide map or hide author box.
+* New: Upload button added for use in custom plug-ins and extensions to upload files.
 * New: Filter to adjust tour labels.
 * New: Filters to adjust Floor Plan labels.
 * New: Filters to adjust External Link labels.
-* Fix: Listings house categories correctly display labels instead of values.
-* Fix: Listings with carport, garage or values set to zero no longer display.
 * New: Sold prices now display when set on front end and manage listings pages.
 * New: Label function for returning meta labels.
 * New: Ads on settings no longer display when there is an activated extension present.
@@ -213,24 +208,16 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Theme compatibility mode which enables all themes to display correctly with options to disable featured images for themes that automatically add featured images.
 * New: City setting to allow addresses in countries that need more than a suburb Label is customisable from settings.
 * New: Country setting to allow the country to display with the listing address.
-* Tweak: Improved under offer, sold and leased labels.
-* New: Function to get all the values associated with a specific post meta key.
-* Tweak: Improved install function to reduce code and allow for new settings to be added.
 * New: Able to adjust or add more registered thumbnail sizes through a filter.
-* Tweak: Removed redundant code and streamlined templates.
-* Tweak: Improved reset query function.
+* New: Function to get all the values associated with a specific post meta key.
 * New: Replaced the_post_thumbnail on archive pages and shortcodes with a customisable hook allowing for additional customisation with themes.
 * New: Specific templates for theme compatibility mode for archive and single listings.
 * New: Template loading system allowing for additional templates to be added to shortcodes and widgets from themes, custom plug-ins and extensions. This allows you to create an unlimited number of templates and load them from your theme.
-* Tweak: Removed old functions improving plugin code.
-* Tweak: Rebuilt address function to allow for city and country.
 * New: Sorter allows for sorting by current/sold leased.
 * New: Ability to add additional sorter via filter.
-* Tweak: Improved sorter function in all shortcodes.
 * New: Post counter function for use in extensions and custom plug-ins.
 * New: User fields re-built which allows for adding on new fields through filter.
 * New: Help meta type allowing for better internal documentation in extensions.
-* Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.
 * New: City meta field added to all listing types when enabled.
 * New: Rental display or hide rental price.
 * New: Check-box single field type.
@@ -242,7 +229,20 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Replaced widget and author box image functions with actions.
 * New: Uninstall function to remove all Easy Property Listings content.
 * New: Get option function.
-
+* New: When saving settings on extensions sub tabs you are no longer taken to the first tab.
+* Tweak: Improved under offer, sold and leased labels.
+* Tweak: Increased search widget to 380px max-width.
+* Tweak: Improved install function to reduce code and allow for new settings to be added.
+* Tweak: Removed redundant code and streamlined templates.
+* Tweak: Improved reset query function.
+* Tweak: Removed old functions improving plugin code.
+* Tweak: Rebuilt address function to allow for city and country.
+* Tweak: Improved sorter function in all shortcodes.
+* Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.
+* Fix: Listings house categories correctly display labels instead of values.
+* Fix: Listings with carport, garage or values set to zero no longer display.
+* Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp.
+* Fix: Saving listing when in debug mode and ticking hide map or hide author box.
 
 = 2.1.11 June 5, 2015 =
 

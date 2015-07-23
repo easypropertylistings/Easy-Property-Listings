@@ -98,7 +98,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 						if($epl_frontend_field['key'] == 'search_house_category' && isset($house_category_multiple) && $house_category_multiple == 'on') {
 						
 							$epl_frontend_field['multiple'] 	= true;
-							$epl_frontend_field['query'] 		= array('query'	=>	'meta','compare'	=>	'IN' );
+							$epl_frontend_field['query'] 		= array('query'	=> 'meta','compare' => 'IN' );
 							
 						}
 						
@@ -109,7 +109,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				?>
 		
 				<div class="epl-search-submit-row epl-search-submit property-type-search">
-					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __('Find me a Property!', 'epl'); ?>" class="search-btn" />
+					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __('Find me a Property!', 'epl'); ?>" class="epl-search-btn" />
 				</div>
 			</form>
 		</div>
