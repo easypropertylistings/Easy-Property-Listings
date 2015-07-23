@@ -1006,7 +1006,6 @@ function epl_admin_sidebar () {
 				array(
 					'name'		=>	'epl_feeling_lucky',
 					'label'		=>	__('Theme Compatibility', 'epl'),
-					'type'		=>	'checkbox_single',
 					'type'	=>	'radio',
 					'opts'	=>	array(
 						'on'	=>	__('Enable', 'epl'),
@@ -1345,18 +1344,6 @@ function epl_admin_sidebar () {
 					'help'	=>	__('This will listing lat/long results in a new column.', 'epl'),
 					'default'	=> 0
 				),
-				
-				array(
-					'name'	=>	'uninstall_on_delete',
-					'label'	=>	__('Remove Data on Uninstall?', 'epl'),
-					'type'	=>	'checkbox',
-					'opts'	=>	array(
-						1	=>	__('Enable', 'epl'),
-						0	=>	__('Disable', 'epl')
-					),
-					'help'	=>	__('Check this box if you would like EDD to completely remove all of its data when the plugin is deleted.', 'epl'),
-					'default'	=> 0
-				),
 			),
 		),
 		
@@ -1374,7 +1361,18 @@ function epl_admin_sidebar () {
 					),
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'epl')
-					
+				),
+				
+				array(
+					'name'	=>	'uninstall_on_delete',
+					'label'	=>	__('Remove Data on Uninstall?', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						1	=>	__('Enable', 'epl'),
+						0	=>	__('Disable', 'epl')
+					),
+					'help'	=>	__('Check this box if you would like EPL to completely remove all of its data when the plugin is deleted.', 'epl'),
+					'default'	=> 0
 				)
 			)
 		)

@@ -52,6 +52,7 @@ function epl_install() {
 		'label_location'			=> __('Suburb', 'epl'),
 		'label_suburb'				=> __('Suburb', 'epl'),
 		'label_postcode'			=> __('Post Code', 'epl'),
+		'label_city'				=> __('City', 'epl'),
 		'label_home_open'			=> __('Home Open', 'epl'),
 		'label_poa'				=> __('POA', 'epl'),
 		'label_new'				=> __('New', 'epl'),
@@ -78,9 +79,7 @@ function epl_install() {
 		'use_fancy_navigation'			=> '0',
 		'epl_enable_city_field'			=> 'no',
 		'epl_enable_country_field'		=> 'no',
-		'label_city'				=> 'City'
-		
-		
+		'uninstall_on_delete'			=> 0,
 	);
 	
 	if(!empty($epl_settings)) {
