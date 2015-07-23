@@ -29,7 +29,8 @@
 				'options'		=>	array(
 					'default'	=>	__('Default' , 'epl'),
 					'wide'		=>	__('Wide' , 'epl'),
-					'slim'		=>	__('Slim' , 'epl')
+					'slim'		=>	__('Slim' , 'epl'),
+					'fixed'		=>	__('Fixed Width' , 'epl'),
 				)
 			),
 			array(
@@ -43,7 +44,6 @@
 					'sold'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') ),
 					'leased'	=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'epl') )
 				),
-
 			),
 			array(
 				'key'			=>	'search_id',
@@ -153,7 +153,6 @@
 				'type'			=>	'text',
 				'default'		=>	__('Find me a Property!','epl')
 			),
-
 		) );
 		
 		return $fields;
@@ -204,20 +203,13 @@
 				'meta_key'		=>	'property_status',
 				'type'			=>	'hidden',
 				'query'			=>	array('query'	=>	'meta')
-
 			),
 			array(
 				'key'			=>	'search_id',
 				'meta_key'		=>	'property_id',
 				'label'			=>	__('Search by Property ID / Address', 'epl'),
 				'type'			=>	'text',
-				'exclude'		=>	array('land')
-			),
-			array(
-				'key'			=>	'search_agent',
-				'meta_key'		=>	'property_agent',
-				'label'			=>	__('Search by Property Agent', 'epl'),
-				'type'			=>	'text',
+				'class'			=>	'epl-search-row-full',
 			),
 			array(
 				'key'			=>	'search_location',
@@ -227,7 +219,7 @@
 				'option_filter'		=>	'location',
 				'options'		=>	epl_get_available_locations($post_type,$property_status),
 				'query'			=>	array('query'	=>	'tax'),
-				'class'			=>	'epl-search-row',
+				'class'			=>	'epl-search-row-full',
 			),
 			array(
 				'key'			=>	'search_city',
@@ -272,12 +264,12 @@
 			array(
 				'key'			=>	'search_house_category',
 				'meta_key'		=>	'property_category',
-				'label'			=>	__('Housing Category','epl'),
+				'label'			=>	__('House Category','epl'),
 				'option_filter'		=>	'category',
 				'options'		=>	epl_get_meta_values( 'property_category', $post_type),
 				'type'			=>	'select',
 				'query'			=>	array('query'	=>	'meta'),
-				'class'			=>	'epl-search-row',
+				'class'			=>	'epl-search-row-full',
 			),
 			array(
 				'key'			=>	'search_price',
@@ -427,7 +419,7 @@
 									'key'		=>	'property_land_area' 
 								),
 				'class'			=>	'epl-search-row-third',
-				'wrap_start'		=>	'epl-search-row'
+				'wrap_start'		=>	'epl-search-row epl-search-land-area'
 			),
 			array(
 				'key'			=>	'search_land_area',
@@ -475,7 +467,7 @@
 									'compare'	=>	'>=', 
 									'key'		=>	'property_building_area' 
 								),
-				'wrap_start'		=>	'epl-search-row'
+				'wrap_start'		=>	'epl-search-row epl-search-building-area'
 			),
 			array(
 				'key'			=>	'search_building_area',
@@ -524,6 +516,7 @@
 									'value'		=>	array('yes','1') 
 								),
 				'class'			=>	'epl-search-row-half',
+				'wrap_start'		=>	'epl-search-row epl-search-other'
 			),
 			array(
 				'key'			=>	'search_other',
@@ -550,7 +543,14 @@
 									'value'		=>	array('yes','1') 
 								),
 				'class'			=>	'epl-search-row-half',
-			)
+				'wrap_end'		=>	true
+			),
+			array(
+				'key'			=>	'search_agent',
+				'meta_key'		=>	'property_agent',
+				'label'			=>	__('Search by Property Agent', 'epl'),
+				'type'			=>	'text',
+			),
 		) );
 		return $fields;
 	}
@@ -678,33 +678,23 @@
 		}
 		
 		switch ($field['type']) {
-		
 			// checkbox
 			case "checkbox": ?>
-				<span class="checkbox top-mrgn <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
-				
-					<div class="field">
+				<span class="epl-search-row epl-search-row-checkbox <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
 						<input type="checkbox" name="<?php echo $field['meta_key']; ?>" id="<?php echo $field['meta_key']; ?>" class="in-field" 
 						<?php if(isset($value) && !empty($value)) { echo 'checked="checked"'; } ?> />
-					</div>
-					
-					<label for="<?php echo $field['meta_key']; ?>" class="check-label">
+						<label for="<?php echo $field['meta_key']; ?>" class="check-label">
 						<?php echo apply_filters('epl_search_widget_label_'.$field['meta_key'],__($field['label'], 'epl') ); ?>
-					</label>
-					
-					<span class="epl-clearfix"></span>
-					
+						</label>
 				</span> <?php
-			
 			break;
 			
 			// text
 			case "text": ?>
-				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
+				<div class="epl-search-row epl-search-row-text epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
 				
 					<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
-						<?php 
-							echo apply_filters('epl_search_widget_label_'.$field['meta_key'], $field['label'] ); ?>
+						<?php echo apply_filters('epl_search_widget_label_'.$field['meta_key'], $field['label'] ); ?>
 					</label>
 
 					<div class="field">
@@ -716,18 +706,15 @@
 							value="<?php echo $value; ?>" 
 						/>
 					</div>
-					
 				</div> <?php
-			
 			break;
 			
 			// number
 			case "number": ?>
-				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
+				<div class="epl-search-row epl-search-row-number epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
 				
 					<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
-						<?php 
-							echo apply_filters('epl_search_widget_label_'.$field['meta_key'], $field['label'] ); ?>
+						<?php echo apply_filters('epl_search_widget_label_'.$field['meta_key'], $field['label'] ); ?>
 					</label>
 
 					<div class="field">
@@ -741,16 +728,14 @@
 					</div>
 					
 				</div> <?php
-			
 			break;
 			
 			// select
 			case "select": ?>
-				<div class="epl-search-row epl-search-row-full-wrapper epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
+				<div class="epl-search-row epl-search-row-select epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset($field['class']) ? $field['class'] : ''; ?>">
 				
 					<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
-						<?php 
-							echo apply_filters('epl_search_widget_label_'.$field['meta_key'], $field['label'] ); ?>
+						<?php echo apply_filters('epl_search_widget_label_'.$field['meta_key'], $field['label'] ); ?>
 					</label>
 					
 					<div class="field">
@@ -783,7 +768,6 @@
 						</select>
 					</div>								
 				</div> <?php
-
 			break;
 			
 			// hidden
@@ -797,13 +781,10 @@
 				/> <?php
 			
 			break;
-			
 		}
 		if( isset($field['wrap_end']) ) {
 			echo '</div>';
 		}
-
-	
 	}
 	
 //Property Search Query

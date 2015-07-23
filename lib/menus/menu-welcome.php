@@ -186,7 +186,7 @@ class EPL_Welcome {
 				
 				<div class="feature-section">
 
-					<p><?php _e( 'We totally rebuilt the search capabilities of Easy Property Listings and added additional search fields for your to use on your real estate website. We have enabled an additional customisable City field and this is great for use in many countries that need an additional location field on their listings.', 'epl' ); ?></p>
+					<p><?php _e( 'We totally rebuilt the search capabilities of Easy Property Listings and added additional search fields for you to use on your real estate website. We have enabled an additional customisable City field and this is great for use in many countries that need an additional location field on their listings.', 'epl' ); ?></p>
 					
 					<p><?php _e( 'For power users you now can add any number of custom search fields to the search widget using the new filters and hooks. Along with the search improvements we have improved the widget display and improved the responsive display.', 'epl' ); ?></p>
 					
@@ -203,7 +203,9 @@ class EPL_Welcome {
 				<h2><?php _e( 'Developer Features' , 'epl' );?></h2>
 				
 				<div class="feature-section">
-					<p><?php _e( 'Many under the hood improvements have been made to increase the extendibility of Easy PRoperty Listings and allow for the creation of additional extensions and features. We have taken the time to add additional filters and hooks which will open the door for a whole lot more features.', 'epl' ); ?></p>
+					<p><?php _e( 'We have taken the time to add many additional filters and hooks which will open the door for a whole lot more cool features and real estate tools.', 'epl' ); ?></p>
+					
+					<p><?php _e( 'Many under the hood improvements have been made to increase the extendibility of Easy Property Listings and allow for the creation of additional extensions and features. ', 'epl' ); ?></p>
 
 					<h3><?php _e( 'Custom Templates' , 'epl' );?></h3>
 					<p><?php _e( 'Easy Property Listings 2.2 introduces a custom template system allowing you to create any number of templates and use them in shortcodes and widgets allowing you and theme developers to create an unlimited number of templates and load them from your theme.', 'epl' ); ?></p>
@@ -220,7 +222,6 @@ class EPL_Welcome {
 						<h4><?php _e( 'Sold Price Display','epl' );?></h4>
 						<p><?php _e( 'With Easy Property Listings 2.2 you can now display your sold prices and show off your real estate success to your visitors.', 'epl' );?></p>
 						
-					
 						<h4><?php _e( 'Adjustable Image Sizes','epl' );?></h4>
 						<p><?php _e( 'Edit the image sizes and add more using the new filter allowing for endless possibilities with your WordPress theme.', 'epl' );?></p>
 						
@@ -880,7 +881,7 @@ class EPL_Welcome {
 
 					<div>
 						<h4><?php _e( 'Theme Compatibility', 'epl' );?></h4>
-						<p><?php _e( 'Once you active the plugin and add a listing and if your page is really wide or your sidebar is under the content enable Theme Compatibility mode from settings.', 'epl' );?></p>
+						<p><?php _e( 'Once you add a listing and if your page is really wide or your sidebar is under the content enable Theme Compatibility mode from settings.', 'epl' );?></p>
 						
 						<p><?php _e( 'Review your listing and if you are seeing double images, hop back over to Settings page and either disable the theme feature image or the one provided by Easy Property Listings.', 'epl' );?></p>
 						
