@@ -913,13 +913,13 @@ function epl_meta_box_init() {
 								'type'		=>	'text',
 								'maxlength'	=>	'30'
 							),
-							( isset($epl_settings['epl_enable_country_field'] ) &&  $epl_settings['epl_enable_country_field'] == 'yes' ) ?
+
 							array(
 								'name'		=>	'property_address_country',
 								'label'		=>	__('Country', 'epl'),
 								'type'		=>	'text',
 								'maxlength'	=>	'40'
-							) : array() ,
+							),
 							
 							array(
 								'name'		=>	'property_address_coordinates',
