@@ -269,7 +269,13 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
-					
+					<h4><?php _e( 'Version 2.2.1', 'epl' );?></h4>
+				
+					<ul>
+						<li><?php _e( 'Tweak: Set padding for search tabs for better display on some themes.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search function fix checking for empty option when using custom filters.', 'epl' );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 2.2', 'epl' );?></h4>
 				
 					<ul>
