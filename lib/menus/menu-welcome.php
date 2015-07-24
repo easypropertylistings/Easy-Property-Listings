@@ -323,6 +323,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Reorganised settings page.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Translations updated and additional tags added.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Search button default label changed from "Find Me A Property!" to "Search".', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Applied custom suburb label to EPL - Listing Widget.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Listings house categories correctly display labels instead of values.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Listings with carport, garage or values set to zero no longer display.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp', 'epl' );?></li>

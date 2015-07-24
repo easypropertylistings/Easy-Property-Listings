@@ -309,9 +309,9 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 					$options = apply_filters(
 									'epl_listing_widget_templates', 
 									array(
-										'image'			=>	__('Image','epl'),
+										'image'		=>	__('Image','epl'),
 										'image-only' 	=>	__('Image Only','epl'), 
-										'list' 			=>	__('List','epl') 
+										'list' 		=>	__('List','epl') 
 									) 
 								);
 					foreach ($options as $option_key	=>	$option_label) {
@@ -385,7 +385,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_suburb'); ?>" name="<?php echo $this->get_field_name('d_suburb'); ?>" <?php if ($instance['d_suburb']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_suburb'); ?>"><?php _e('Suburb', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_suburb'); ?>"><?php echo epl_labels('label_suburb'); ?></label>
 		</p>
 		
 		<p>
