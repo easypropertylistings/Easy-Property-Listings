@@ -59,13 +59,13 @@
 			),
 			array(
 				'key'			=>	'search_city',
-				'label'			=>	__('City','epl'),
+				'label'			=>	epl_labels('label_city'),
 				'default'		=>	'off',
 				'type'			=>	'checkbox',
 			),
 			array(
 				'key'			=>	'search_state',
-				'label'			=>	__('State','epl'),
+				'label'			=>	epl_labels('label_state'),
 				'default'		=>	'off',
 				'type'			=>	'checkbox',
 			),
@@ -77,7 +77,7 @@
 			),
 			array(
 				'key'			=>	'search_postcode',
-				'label'			=>	__('Post Code','epl'),
+				'label'			=>	epl_labels('label_postcode'),
 				'default'		=>	'off',
 				'type'			=>	'checkbox',
 			),
@@ -218,7 +218,7 @@
 			array(
 				'key'			=>	'search_city',
 				'meta_key'		=>	'property_address_city',
-				'label'			=>	__( 'City' , 'epl'),
+				'label'			=>	epl_labels('label_city'),
 				'type'			=>	'select',
 				'option_filter'		=>	'city',
 				'options'		=>	epl_get_unique_post_meta_values('property_address_city', $post_type ),
@@ -228,7 +228,7 @@
 			array(
 				'key'			=>	'search_state',
 				'meta_key'		=>	'property_address_state',	
-				'label'			=>	__( 'State' , 'epl'),
+				'label'			=>	epl_labels('label_state'),
 				'type'			=>	'select',
 				'option_filter'		=>	'state',
 				'options'		=>	epl_get_unique_post_meta_values('property_address_state', $post_type ),
@@ -248,7 +248,7 @@
 			array(
 				'key'			=>	'search_postcode',
 				'meta_key'		=>	'property_address_postal_code'	,
-				'label'			=>	__( 'Post Code' , 'epl'),
+				'label'			=>	epl_labels('label_postcode'),
 				'type'			=>	'select',
 				'option_filter'		=>	'postcode',
 				'options'		=>	epl_get_unique_post_meta_values('property_address_postal_code', $post_type ),
