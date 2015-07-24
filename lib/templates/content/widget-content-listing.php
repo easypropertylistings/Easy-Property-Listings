@@ -12,13 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <div id="post-<?php the_ID(); ?>" class="epl-widget epl-listing-widget property-widget-image <?php do_action('epl_property_widget_status_class'); ?>">
 	<div class="entry-header">
-		<?php if ( has_post_thumbnail() ) : ?>
-			<div class="epl-img-widget">
-				<a href="<?php the_permalink(); ?>">
-					<?php the_post_thumbnail( $image ); ?>
-				</a>
-			</div>
-		<?php endif; ?>
+		<?php do_action('epl_property_widgets_featured_image' , $image); ?>
 	</div>
 	
 	<div class="entry-content">
@@ -27,7 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<h5 class="property-heading"><a href="<?php the_permalink(); ?>"><?php do_action('epl_property_heading'); ?></a></h5>
 		<?php } ?>
 		<?php if ( $d_excerpt == 'on' ) { 
-			the_excerpt();
+			if( function_exists('epl_the_excerpt') ) { 
+        		epl_the_excerpt(); 
+    		} else {
+				the_excerpt();
+    		}
 		} ?>
 		
 		<!-- Address -->

@@ -27,20 +27,21 @@ class EPL_Property_Meta {
 		
 		foreach($field_groups as $field_group) {
 			if($field_group['id']	==	'labels') {
-				$epl_labels = $field_group['fields'];
+				$epl_labels = array_filter($field_group['fields']);
 				break;
 			}
 		}
 		
 		foreach($epl_labels as $label_key	=>	$label) {
 		
-			$label_key 	= $label['name'];
-			$default	= $label['default'];
+			if( $label_key 	= $label['name']) {
+				$default	= isset($label['default']) ? $label['default'] : '';
 			
-			if( isset( $this->epl_settings[$label_key]) && $this->epl_settings[$label_key] != '') {
-				$this->{$label_key}	= $this->epl_settings[$label_key];
-			} else {
-				$this->{$label_key} = $default;
+				if( isset( $this->epl_settings[$label_key]) && $this->epl_settings[$label_key] != '') {
+					$this->{$label_key}	= $this->epl_settings[$label_key];
+				} else {
+					$this->{$label_key} = $default;
+				}
 			}
 		}
 		
@@ -51,8 +52,10 @@ class EPL_Property_Meta {
 			if(isset($this->meta[$meta_key][0])) {
 				if($allowzero === true){
 					return  $this->meta[$meta_key][0];
-				}	elseif(intval($this->meta[$meta_key][0]) == 0) {
+				} elseif(intval($this->meta[$meta_key][0]) == 0) {
 					return;
+				} else {
+					return $this->meta[$meta_key][0];
 				}
 			}
 		}
@@ -170,6 +173,32 @@ class EPL_Property_Meta {
 			$property_price = __( 'Auction' , 'epl') . ' ' . $this->get_property_auction();
 		}
 		return $property_price;
+	}
+	
+	// Sold price display
+	public function get_property_price_sold_display( $admin = false ) {
+		$property_sold_price	= $this->get_property_meta('property_sold_price', false );
+		$property_sold_display	= $this->get_property_meta('property_sold_price_display');
+		
+		if ( $property_sold_price != '' ) {
+			if ( $property_sold_display == 'yes' || $admin == true ) {
+				$property_sold_price = ' ' . epl_currency_formatted_amount( $property_sold_price );
+				return $property_sold_price;
+			}
+		}
+	}
+	
+	// Sold date display xxxx
+	public function get_property_price_sold_date( $sold_price = null ) {
+	
+		if ( $sold_price == null ) 
+			return;
+			
+		$property_sold_date	= $this->get_property_meta('property_sold_date' );
+		
+		if ( $property_sold_date != '' ) {
+			return $sold_price . ' ' . $property_sold_date;
+		}
 	}
 	
 	// Rental Price XE Format
@@ -334,7 +363,7 @@ class EPL_Property_Meta {
 		$price = '';
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
-				$price = '<span class="page-price sold-status">'.$this->label_sold.'</span>';
+				$price = '<span class="page-price sold-status">'.$this->label_sold . $this->get_property_price_sold_display() . '</span>';
 			}
 			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 				$price = '<span class="page-price">'. $this->get_property_price_display() . '</span>';
@@ -585,11 +614,13 @@ class EPL_Property_Meta {
 
 	// property parking for single icon
 	public function get_property_parking($returntype = 'i') {
-		if($this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '')
+		if( $this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '' )
 			return;
 		$property_garage 	= intval($this->get_property_meta('property_garage'));
 		$property_carport 	= intval($this->get_property_meta('property_carport'));
 		$property_parking 	= $property_carport + $property_garage;
+		if ( $property_parking == 0)
+			return;
 		$parking['i'] = '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' .$property_parking. '</span></span>';
 		$parking['d'] = $property_parking . ' '.__('Parking Spaces', 'epl').' ';
 		$parking['l'] = '<li class="parking">' . $property_parking . ' '.__('Parking Spaces', 'epl').'</li>';
@@ -697,6 +728,10 @@ class EPL_Property_Meta {
 			if( $metavalue != '' || intval($metavalue) != 0) {
 				if($metakey == 'property_com_car_spaces'){
 					$metavalue = $metavalue.__(' Car Spaces', 'epl');
+				}
+				
+				if($metakey == 'property_category'){
+					$metavalue = $this->get_property_category();
 				}
 				
 				if( (is_numeric($metavalue)) ) {

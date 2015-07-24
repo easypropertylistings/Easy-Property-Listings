@@ -12,8 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $fields = epl_get_admin_option_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 	if(!empty($fields)) {
-		foreach($fields as $field_group) {
+		foreach($fields as &$field_group) {
+			$field_group['fields'] = array_filter($field_group['fields']);
 			foreach($field_group['fields'] as $field) {
+			
+				if($field['type'] == 'help')
+					continue;
+					
 				if( $field['type'] == 'radio' || $field['type'] == 'checkbox' ) {
 					if(!isset($_REQUEST[ $field['name'] ])) {
 						$_REQUEST[ $field['name'] ] = '';
@@ -21,7 +26,8 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 				}
 
 				if($field['type'] == 'text') {
-					$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
+					if (isset($_REQUEST[ $field['name'] ]))
+						$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 				}
 				$epl_settings = get_option('epl_settings');
 				
@@ -54,7 +60,7 @@ $epl_settings = get_option('epl_settings');
 			<div class="epl-fields epl-menu-page  metabox-holder">
 				<?php if(!empty($fields)) { ?>
 						<div id="meta-sortables" class="meta-box-sortables ui-sortable epl-menu-content">
-							<?php foreach($fields as $field_group) {
+							<?php foreach($fields as &$field_group) {
 								$field_id 	= isset($field_group['id']) ? $field_group['id'] : 'extension';
 								$field_class 	= isset($field_group['class']) ? $field_group['class'] : 'extension';
 								?>
@@ -72,14 +78,18 @@ $epl_settings = get_option('epl_settings');
 											<p><?php if(isset($field_group['help'])) _e($field_group['help'], 'epl'); ?></p>
 										<?php
 										} ?>
-										<?php foreach($field_group['fields'] as $field) { ?>
+										<?php 
+										$field_group['fields'] = array_filter($field_group['fields']); 
+										foreach($field_group['fields'] as $field) { ?>
 											<div class="epl-field-wrapper epl-clearfix">
 												<div class="epl-field">
+													<?php if($field['type'] != 'help') {?>
 													<div class="epl-half-left">
 														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php _e($field['label'], 'epl'); ?></h4>
 														
 													</div>
-													<div class="epl-half-right">
+													<?php } ?>
+													<div class="<?php echo $field['type'] == 'help' ? 'epl-full': 'epl-half-right'; ?>">
 														<?php
 															$val = '';
 															if(isset($epl_settings[ $field['name'] ])) {
