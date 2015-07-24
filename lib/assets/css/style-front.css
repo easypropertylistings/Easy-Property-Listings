@@ -683,7 +683,8 @@ li.tbhead.current {
 	overflow: hidden;
 }
 .epl-search-tabs {
-	margin-bottom: 0;
+	margin: 0;
+	padding: 0;
 }
 .epl-search-form { 
 	background: transparent; 
