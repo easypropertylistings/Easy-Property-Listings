@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.2.3
 
-Stable Tag: 2.2
+Stable Tag: 2.2.1
 
 License: GNU Version 2 or Any Later Version
 
@@ -189,6 +189,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.2.1 July 24, 2015 =
+
+* Tweak: Set padding for search tabs for better display on some themes.
+* Fix: Search function fix checking for empty option when using custom filters.
 
 = 2.2 July 24, 2015 =
 
