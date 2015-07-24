@@ -17,6 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  */
 function epl_button_read_more() {
-	?><button type="button" class="epl-button epl-read-more" onclick="location.href='<?php the_permalink(); ?>'"><?php echo __('Read More ', 'epl'); ?></button><?php
+	?><button type="button" class="epl-button epl-read-more" onclick="location.href='<?php the_permalink(); ?>'"><?php echo apply_filters( 'epl_button_label_read_more' , __('Read More ', 'epl') ); ?></button><?php
 
 }

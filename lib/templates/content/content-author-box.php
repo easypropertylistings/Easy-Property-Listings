@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<div class="epl-author-box-outer-wrapper author-box-outer-wrapper epl-clearfix">			
 		<div class="epl-author-box epl-author-image author-box author-image">
 			<?php
-				echo apply_filters('epl_author_tab_image',epl_author_tab_image($epl_author),$epl_author );
+				do_action('epl_author_thumbnail',$epl_author);
 			?>
 		</div>
 		

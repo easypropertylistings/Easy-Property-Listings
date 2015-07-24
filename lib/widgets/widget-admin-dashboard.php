@@ -22,11 +22,12 @@ add_action( 'wp_dashboard_setup', 'example_add_dashboard_widgets' );
 
 function epl_status_dashboard_widget_callback() {
 	global $epl_settings;
-	$activate_post_types = isset($epl_settings['activate_post_types'])?$epl_settings['activate_post_types'] : array();?>
+	$activate_post_types = isset($epl_settings['activate_post_types'])?$epl_settings['activate_post_types'] : array();
+	$activate_post_types = apply_filters('epl_filter_dashboard_widget_posts',$activate_post_types); ?>
 	<div class="main">
 		<ul class="epl_status_list">
 		<?php
-			if(!empty($activate_post_types)) {
+			if( !empty($activate_post_types) ) {
 				$counter = 0;
 				foreach($activate_post_types as $activate_post_type){
 					$clear = ($counter%2==0 && $counter!= 0)?'epl-clearfix':'';
@@ -70,25 +71,11 @@ function epl_get_plural($count,$singular) {
 			return sprintf( _n( '1 '.__('Business','epl'), '%s '.__('Business','epl'), $count, 'epl' ), $count );
 		break;
 		default:
+			$singular = ucwords( str_replace('epl','',str_replace('-',' ',str_replace('_',' ',$singular) ) ) );
 			return sprintf( _n( '1 '.__($singular,'epl'), '%s '.__($singular,'epl'), $count, 'epl' ), $count );
 		break;
 	}
 	
-}
-
-function epl_get_post_count($type,$meta_key,$meta_value) {
-	global $wpdb;
-	$sql = "
-		SELECT count( * ) AS count
-		FROM {$wpdb->prefix}posts AS p
-		INNER JOIN {$wpdb->prefix}postmeta AS pm
-		WHERE p.post_type = '{$type}'
-		AND p.ID = pm.post_id
-		AND pm.meta_key = '{$meta_key}'
-		AND pm.meta_value = '{$meta_value}'
-	";
-	$count = $wpdb->get_row($sql);
-	return $count->count;
 }
 
 function epl_posts_highlights($type) {

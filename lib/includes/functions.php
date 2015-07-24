@@ -13,6 +13,21 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Get an option
+ *
+ * Looks to see if the specified setting exists, returns default if not
+ *
+ * @since 2.2
+ * @return mixed
+ */
+function epl_get_option( $key = '', $default = false ) {
+	global $epl_settings;
+	$value = ! empty( $epl_settings[ $key ] ) ? $epl_settings[ $key ] : $default;
+	$value = apply_filters( 'epl_get_option', $value, $key, $default );
+	return apply_filters( 'epl_get_option_' . $key, $value, $key, $default );
+}
+
+/**
  * Determine if iThemes Builder framework is loaded
  *
  * @since 1.0
@@ -227,6 +242,32 @@ function epl_currency_formatted_amount($price) {
 		return epl_currency_filter( epl_format_amount( $price , false ) );
 		
 }
+
+function epl_labels($key) {
+	global $epl_settings;
+	$field_groups = epl_get_admin_option_fields();
+	$epl_labels = array();
+	foreach($field_groups as $field_group) {
+		if($field_group['id']	==	'labels' || $field_group['id']	==	'address') {
+			$epl_labels = array_merge ( $epl_labels, array_filter($field_group['fields']) );
+			
+		}
+	}
+	foreach($epl_labels as $label_key	=>	$label) {
+	
+		if( isset($label['default']) && $key == $label['name'] ) {
+			
+			$label =  isset($epl_settings[$key]) ? $epl_settings[$key] : $label['default'];
+			
+			return apply_filters( 'epl_display_'.$key, $label );
+		}
+	}
+	
+}
+
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
 	
@@ -236,6 +277,10 @@ function epl_display_label_suburb( ) {
 	}
 	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
 }
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+
 function epl_display_label_bond( ) {
 	$epl_display_label_bond = '';
 	
@@ -245,6 +290,9 @@ function epl_display_label_bond( ) {
 	}
 	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
 }
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
 function epl_display_label_postcode() {
 	$epl_display_label_postcode = '';
 	
@@ -549,11 +597,15 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 }
 
 /**
- * Offers presented on settings page
+ * Offers presented on settings page, removed if extension is present and activated
  *
  * @since 2.0
  */
 function epl_admin_sidebar () {
+
+	if ( has_filter( 'epl_extensions_options_filter_new' ) ) 
+		return;
+		
 	$service_banners = array(
 		array(
 			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
@@ -664,6 +716,7 @@ function epl_admin_sidebar () {
 					$checked = '';
 					if(!empty($val)) {
 						if( in_array($k, $val) ) {
+							$val = (array) $val;
 							$checked = 'checked="checked"';
 						}
 					}
@@ -699,6 +752,7 @@ function epl_admin_sidebar () {
 			break;
 
 		case 'image':
+		case 'file':
 			if($val != '') {
 				$img = $val;
 			} else {
@@ -707,9 +761,13 @@ function epl_admin_sidebar () {
 			echo '
 				<div class="epl-media-row">
 					<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />
-					&nbsp;&nbsp;<input type="button" name="epl_upload_button" class="button" value="'.__('Add File', 'epl').'" />
-					&nbsp;&nbsp;<img src="'.$img.'" alt="" />
-					<div class="epl-clear"></div>
+					&nbsp;&nbsp;<input type="button" name="epl_upload_button" class="button" value="'.__('Add File', 'epl').'" />';
+					
+					if( in_array( pathinfo($img, PATHINFO_EXTENSION), array('jpg','jpeg','png','gif') ) ) {
+						echo '&nbsp;&nbsp;<img src="'.$img.'" alt="" />';
+					}
+			echo		
+					'<div class="epl-clear"></div>
 				</div>
 			';
 			break;
@@ -765,6 +823,15 @@ function epl_admin_sidebar () {
 		case 'url':
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[url]]" />';
 			break;
+		case 'locked':
+			$atts = '';
+			echo '<span>'.stripslashes($val).'</span>';
+			break;
+		case 'help':
+			echo '<div class="epl-help-container" id="'.isset($field['name']) ? $field['name'] : ''.'">
+					'.isset($field['content']) ? $field['content'] : ''.'
+				</div>';
+			break;
 		
 		default:
 			$atts = '';
@@ -794,6 +861,7 @@ function epl_admin_sidebar () {
  }
  
  function epl_get_admin_option_fields() {
+ 	global $epl_settings;
 	$opts_epl_gallery_n = array();
 	for($i=1; $i<=10; $i++) {
 		$opts_epl_gallery_n[$i] = $i;
@@ -827,78 +895,436 @@ function epl_admin_sidebar () {
 
 	$fields = array(
 		array(
-			'label'		=>	__('Listing Types and Location Settings' , 'epl'),
+			'label'		=>	__('Listing Types and Location Taxonomy' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Select the listing types you want to enable and press Save Changes. Refresh the page to see your new activated listing types.' , 'epl'),
+			'help'		=>	__('Select the listing types you want to enable and press Save Changes. Refresh the page to see your new activated listing types.' , 'epl') . '<hr/>',
 			'fields'	=>	array(
 				array(
-					'name'	=>	'activate_post_types',
-					'label'	=>	__('Listing Types to Enable', 'epl'),
-					'type'	=>	'checkbox',
-					'opts'	=>	$epl_post_types,
-					'help'	=>	__('Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.' , 'epl')
+					'name'		=>	'activate_post_types',
+					'label'		=>	__('Listing Types to Enable', 'epl'),
+					'type'		=>	'checkbox',
+					'opts'		=>	$epl_post_types,
+					'help'		=>	__('Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.' , 'epl')
 				),
 				
 				array(
-					'name'	=>	'label_location',
-					'label'	=>	__('Location Taxonomy', 'epl'),
-					'type'	=>	'text'
-				),
-				
-				array(
-					'name'	=>	'sticker_new_range',
-					'label'	=>	__('Keep Listings flagged "New" for', 'epl'),
-					'type'	=>	'number',
-					'default'	=>	'7',
-					'help'	=>	__('Listings will have a "NEW" Sticker for the defined number of days.', 'epl')
-				),
-				
-				array(
-					'name'	=>	'display_bond',
-					'label'	=>	__('Rental Bond/Deposit?', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						1	=>	__('Enable', 'epl'),
-						0	=>	__('Disable', 'epl')
-					),
-					'help'	=>	__('Display the bond/deposit on rental listings.', 'epl')
-				),
-
-				array(
-					'name'	=>	'epl_max_graph_sales_price',
-					'label'	=>	__('Graph Max', 'epl'),
-					'type'	=>	'number',
-					'default'	=>	'2000000',
-					'help'		=>	__('Used for bar chart display on listings for sale.' , 'epl')
-				),
-				
-				array(
-					'name'	=>	'epl_max_graph_rent_price',
-					'label'	=>	__('Graph Rental Max', 'epl'),
-					'type'	=>	'number',
-					'default'	=>	'2000',
-					'help'		=>	__('Rental range.' , 'epl')
-				),
-				
-				array(
-					'name'	=>	'epl_admin_thumb_size',
-					'label'	=>	__('Image size', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						'admin-list-thumb'	=>	__('100 X 100', 'epl'),
-						'epl-image-medium-crop'	=>	__('300 X 200', 'epl'),
-					),
-					'default'	=>	'admin-list-thumb',
-					'help'		=>	__('size of the image shown in listing columns in admin area' , 'epl')
+					'name'		=>	'label_location',
+					'label'		=>	__('Location Taxonomy', 'epl'),
+					'type'		=>	'text',
+					'help'		=>	__('After changing this setting visit Dashboard > Settings > Permalinks to save the settings.', 'epl'),
+					'default'	=>	__('Location' , 'epl')
 				)
 			)
 		),
 		
 		array(
-			'label'		=>	__('Currency' , 'epl'),
+			'label'		=>	__('Address', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'address',
+			'fields'	=>	array(
+
+				array(
+					'name'		=>	'label_suburb',
+					'label'		=>	__('Suburb/Town/City Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Suburb', 'epl')
+				),
+				
+				array(
+					'name'		=>	'epl_enable_city_field',
+					'label'		=>	__('Additional Address Field', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						'yes'	=>	__('Enable', 'epl'),
+						'no'	=>	__('Disable', 'epl'),
+					),
+					'default'	=>	'no',
+					'help'		=>	__('Use when you need an additional Municipality/Town/City/Region.' , 'epl')
+				),
+				
+				array(
+					'name'		=>	'label_city',
+					'label'		=>	__('Additional Address Field Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('City', 'epl')
+				),
+				
+				array(
+					'name'		=>	'label_state',
+					'label'		=>	__('State/Province/Region Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('State', 'epl')
+				),
+
+				array(
+					'name'		=>	'label_postcode',
+					'label'		=>	__('Postcode/ZIP Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Postcode', 'epl')
+				),
+				
+				array(
+					'name'		=>	'epl_enable_country_field',
+					'label'		=>	__('Display Country', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						'yes'	=>	__('Enable', 'epl'),
+						'no'	=>	__('Disable', 'epl'),
+					),
+					'default'	=>	'no',
+					'help'		=>	__('Display country with listing address.' , 'epl')
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Labels', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'labels',
+			'fields'	=>	array(
+			
+				array(
+					'name'		=>	'sticker_new_range',
+					'label'		=>	__('Keep Listings flagged "New" for', 'epl'),
+					'type'		=>	'number',
+					'default'	=>	'7',
+					'help'		=>	__('Listings will have a "NEW" Sticker for the defined number of days.', 'epl')
+				),
+				
+				array(
+					'name'		=>	'label_new',
+					'label'		=>	__('New/Just Listed Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('New' , 'epl' )
+				),
+
+				array(
+					'name'		=>	'label_home_open',
+					'label'		=>	__('Home Open Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Home Open', 'epl')
+				),
+	
+				array(
+					'name'		=>	'label_poa',
+					'label'		=>	__('No Price Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('POA', 'epl')
+				),
+				
+				array(
+					'name'		=>	'label_under_offer',
+					'label'		=>	__('Under Offer Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Under Offer', 'epl')
+				),
+
+				array(
+					'name'		=>	'label_sold',
+					'label'		=>	__('Sold Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Sold', 'epl')
+				),
+				
+				array(
+					'name'		=>	'label_leased',
+					'label'		=>	__('Leased Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Leased', 'epl')
+				),
+				
+				array(
+					'name'		=>	'display_bond',
+					'label'		=>	__('Rental Bond/Deposit Display', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+							1	=>	__('Enable', 'epl'),
+							0	=>	__('Disable', 'epl')
+					),
+					'help'		=>	__('Display the Bond/Deposit on rental listings.', 'epl')
+				),
+				
+				array(
+					'name'		=>	'label_bond',
+					'label'		=>	__('Rental Bond/Deposit Label', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Bond', 'epl')
+				),
+			)
+		),
+
+		array(
+			'label'		=>	__('Listing Single View', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'general',
+			'help'		=>	__('Configure the default options when viewing a single listing.', 'epl'),
+			'fields'	=>	array(
+				array(
+					'name'		=>	'display_single_gallery',
+					'label'		=>	__('Automatically display image gallery?', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						1	=>	__('Enable', 'epl'),
+						0	=>	__('Disable', 'epl')
+					),
+					'default'	=>	0,
+					'help'		=>	__('Images uploaded and attached to a listing will automatically display on the single listing page.', 'epl')
+				),
+
+				array(
+					'name'		=>	'display_gallery_n',
+					'label'		=>	__('Gallery columns?', 'epl'),
+					'type'		=>	'select',
+					'opts'		=>	$opts_epl_gallery_n,
+					'default'	=>	4
+				),
+
+				array(
+					'name'		=>	'display_feature_columns',
+					'label'		=>	__('Feature list columns?', 'epl'),
+					'type'		=>	'select',
+					'opts'		=>	$opts_epl_features,
+					'default'	=>	2
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Listing Archive View', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'general',
+			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'epl'),
+			'fields'	=>	array(
+				array(
+					'name'		=>	'display_excerpt_length',
+					'label'		=>	__('Excerpt words', 'epl'),
+					'type'		=>	'select',
+					'opts'		=>	$opts_epl_property_card_excerpt_length,
+					'default'	=>	10,
+					'help'		=>	__('This is ignored when using manual excerpts.', 'epl')
+				),
+				array(
+					'name'		=>	'display_archive_view_type',
+					'label'		=>	__('Listing view type', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						'list'	=>	__('List', 'epl'),
+						'grid'	=>	__('Grid', 'epl')
+					),
+					'default'	=>	'list'
+				),
+				
+				array(
+					'name'		=>	'use_fancy_navigation',
+					'label'		=>	__('Fancy pagination', 'epl'),
+					'type'		=>	'select',
+					'opts'		=>	array(
+						0		=>	__('No, use WordPress default pagination', 'epl'),
+						1		=>	__('Yes, use fancy navigation', 'epl')
+					),
+					'default'	=>	0
+				)
+			)
+		),
+		
+		array(
+			'label'		=>	__('Search Widget: Tab Labels', 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'labels',
+			'help'		=>	__('Customise the tab labels of the EPL - Search Widget.', 'epl'),
+			'fields'	=>	array(
+
+				array(
+					'name'		=>	'widget_label_property',
+					'label'		=>	__('Property', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Property', 'epl')
+				),
+				array(
+					'name'		=>	'widget_label_land',
+					'label'		=>	__('Land', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Land', 'epl')
+				),
+				array(
+					'name'		=>	'widget_label_rental',
+					'label'		=>	__('Rental', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Rental', 'epl')
+				),
+				array(
+					'name'		=>	'widget_label_rural',
+					'label'		=>	__('Rural', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Rural', 'epl')
+				),
+				array(
+					'name'		=>	'widget_label_commercial',
+					'label'		=>	__('Commercial', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Commercial', 'epl')
+				),
+				array(
+					'name'		=>	'widget_label_commercial_land',
+					'label'		=>	__('Commercial Land', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Commercial Land', 'epl')
+				),
+				array(
+					'name'		=>	'widget_label_business',
+					'label'		=>	__('Business', 'epl'),
+					'type'		=>	'text',
+					'default'	=>	__('Business', 'epl')
+				)
+			)
+		),
+
+		array(
+			'label'		=>	__('Dashboard Listing Columns' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'admin_general',
+			'fields'	=>	array(
+			
+				array(
+					'name'		=>	'epl_max_graph_sales_price',
+					'label'		=>	__('Graph Max', 'epl'),
+					'type'		=>	'number',
+					'default'	=>	'2000000',
+					'help'		=>	__('Used for bar chart display on listings for sale.' , 'epl')
+				),
+				
+				array(
+					'name'		=>	'epl_max_graph_rent_price',
+					'label'		=>	__('Graph Rental Max', 'epl'),
+					'type'		=>	'number',
+					'default'	=>	'2000',
+					'help'		=>	__('Rental range.' , 'epl')
+				),
+				
+				array(
+					'name'		=>	'epl_admin_thumb_size',
+					'label'		=>	__('Image size', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						'admin-list-thumb'	=>	__('100 X 100', 'epl'),
+						'epl-image-medium-crop'	=>	__('300 X 200', 'epl'),
+					),
+					'default'	=>	'admin-list-thumb',
+					'help'		=>	__('Size of the image shown in listing columns in admin area' , 'epl')
+				),
+				
+				array(
+					'name'		=>	'admin_unique_id',
+					'label'		=>	__('Unique Listing ID column', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						1	=>	__('Enable', 'epl'),
+						0	=>	__('Disable', 'epl')
+					),
+					'default'	=>	0
+				),
+
+				array(
+					'name'		=>	'debug',
+					'label'		=>	__('Geocode Lat/Long results column', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						1	=>	__('Enable', 'epl'),
+						0	=>	__('Disable', 'epl')
+					),
+					'default'	=>	0
+				),
+			),
+		),
+		
+		array(
+			'label'		=>	__('Theme Setup' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'theme_setup',
+			'help'		=>	__('The following settings will use your theme templates to generate your listing pages. If your listings appear too wide or your sidebar is in the wrong place enable theme compatibility. When this is enabled you can use the included shortcodes like [listing post_type="property" tools_top="on"] to display your listings with sorting and grid options.', 'epl') . '<hr/>',
+			'fields'	=>	array(
+				
+				array(
+					'name'		=>	'epl_feeling_lucky',
+					'label'		=>	__('Theme Compatibility', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'epl'),
+						'off'	=>	__('Disable', 'epl')
+					),
+					'default'	=>	'off',
+					'help'		=>	__('When using iThemes, Genesis frameworks or your listings look good, leave this disabled.' , 'epl')
+				)
+			)
+		),
+
+		array(
+			'label'		=>	__('Theme Setup: Featured Images' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'theme_setup_featured_images',
+			'help'		=>	__('Some WordPress themes automatically display featured images on posts and pages which may cause you to see double on your listings. Use the following settings to adjust the featured image behaviour.', 'epl') . '<hr/>',
+			'fields'	=>	array(
+
+				array(
+					'name'		=>	'help_lucky_theme_featured_image',
+					'type'		=>	'help',
+					'content'	=>	__('Theme Featured Image Settings' , 'epl')
+				),
+				
+				array(
+					'name'		=>	'epl_lucky_disable_theme_single_thumb',
+					'label'		=>	__('Single Listing', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Disable', 'epl'),
+					),
+					'default'	=>	'off'
+				),
+				
+				array(
+					'name'		=>	'epl_lucky_disable_archive_thumb',
+					'label'		=>	__('Archive Listing', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Disable', 'epl'),
+					),
+					'default'	=>	'off'
+				),
+				
+				array(
+					'name'		=>	'help_lucky_epl_featured_image',
+					'type'		=>	'help',
+					'content'	=>	'<hr/>' . __('Easy Property Listings Featured Image Settings' , 'epl')
+				),
+				
+				array(
+					'name'		=>	'epl_lucky_disable_single_thumb',
+					'label'		=>	__('Single Listing', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Disable', 'epl'),
+					),
+					'default'	=>	'off'
+				),
+				
+				array(
+					'name'		=>	'epl_lucky_disable_epl_archive_thumb',
+					'label'		=>	__('Archive Listing', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Disable', 'epl'),
+					),
+					'default'	=>	'off'
+				)
+			)
+		),
+		
+				
+		array(
+			'label'		=>	__('Currency' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'currency',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'currency',
@@ -929,254 +1355,33 @@ function epl_admin_sidebar () {
 		),
 		
 		array(
-			'label'		=>	__('Listing Single View', 'epl'),
-			'class'		=>	'core',
-			'id'		=>	'general',
-			'help'		=>	__('Configure the default options when viewing a single listing.', 'epl'),
-			'fields'	=>	array(
-				array(
-					'name'	=>	'display_single_gallery',
-					'label'	=>	__('Automatically display image gallery?', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						1	=>	__('Enable', 'epl'),
-						0	=>	__('Disable', 'epl')
-					),
-					'help'	=>	__('Images uploaded and attached to a listing will automatically display on the single listing page.', 'epl')
-				),
-
-				array(
-					'name'	=>	'display_gallery_n',
-					'label'	=>	__('Gallery columns?', 'epl'),
-					'type'	=>	'select',
-					'opts'	=>	$opts_epl_gallery_n
-				),
-
-				array(
-					'name'	=>	'display_feature_columns',
-					'label'	=>	__('Feature list columns?', 'epl'),
-					'type'	=>	'select',
-					'opts'	=>	$opts_epl_features
-				)
-
-			)
-		),
-		
-		array(
-			'label'		=>	__('Listing Archive View', 'epl'),
-			'class'		=>	'core',
-			'id'		=>	'general',
-			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'epl'),
-			'fields'	=>	array(
-				array(
-					'name'	=>	'display_excerpt_length',
-					'label'	=>	__('Excerpt words', 'epl'),
-					'type'	=>	'select',
-					'opts'	=>	$opts_epl_property_card_excerpt_length,
-					'help'	=>	__('This is ignored when using manual excerpts.', 'epl')
-				),
-				array(
-					'name'	=>	'display_archive_view_type',
-					'label'	=>	__('Listing view type', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						'list'	=>	__('List', 'epl'),
-						'grid'	=>	__('Grid', 'epl')
-					)
-				),
-				
-				array(
-					'name'	=>	'use_fancy_navigation',
-					'label'	=>	__('Fancy pagination', 'epl'),
-					'type'	=>	'select',
-					'opts'	=>	array(
-						'0'		=>	__('No, use WordPress default pagination', 'epl'),
-						'1'		=>	__('Yes, use fancy navigation', 'epl')
-					)
-				)
-
-			)
-		),
-		
-		array(
-			'label'		=>	__('Labels', 'epl'),
-			'class'		=>	'core',
-			'id'		=>	'labels',
-			'fields'	=>	array(
-
-				array(
-					'name'		=>	'label_bond',
-					'label'		=>	__('Rental Bond/Deposit (default: Bond)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'Bond',
-				),
-				
-				array(
-					'name'		=>	'label_suburb',
-					'label'		=>	__('Suburb/City (default: Suburb)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'Suburb',
-
-				),
-
-				array(
-					'name'		=>	'label_postcode',
-					'label'		=>	__('Postcode Label (default: Postcode)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'Postcode',
-
-				),
-
-				array(
-					'name'		=>	'label_home_open',
-					'label'		=>	__('Home Open Label (default: Home Open)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'Home Open',
-
-				),
-
-				array(
-					'name'		=>	'label_new',
-					'label'		=>	__('New Home Label (default: New)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'new'
-
-				),
-				
-				array(
-					'name'		=>	'label_poa',
-					'label'		=>	__('No Price Label (default: POA)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'POA',
-
-				),
-				array(
-					'name'		=>	'label_under_offer',
-					'label'		=>	__('Under Offer Label (default: Under Offer)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'Under Offer',
-
-				),
-				array(
-					'name'		=>	'label_leased',
-					'label'		=>	__('Leased Label (default: Leased)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'Leased',
-
-				),
-				array(
-					'name'		=>	'label_sold',
-					'label'		=>	__('Sold Label (default: Sold)', 'epl'),
-					'type'		=>	'text',
-					'default'	=>	'Sold',
-
-				)
-
-
-			)
-		),
-		
-		array(
-			'label'		=>	__('Search Widget: Tab Labels', 'epl'),
-			'class'		=>	'core',
-			'id'		=>	'labels',
-			'help'		=>	__('Customise the tab labels of the EPL - Search Widget.', 'epl'),
-			'fields'	=>	array(
-
-				array(
-					'name'	=>	'widget_label_property',
-					'label'	=>	__('Property', 'epl'),
-					'type'	=>	'text',
-					'default'	=>	'Property'
-				),
-				array(
-					'name'	=>	'widget_label_land',
-					'label'	=>	__('Land', 'epl'),
-					'type'	=>	'text',
-					'default'	=>	'Land'
-				),
-				array(
-					'name'	=>	'widget_label_rental',
-					'label'	=>	__('Rental', 'epl'),
-					'type'	=>	'text',
-					'default'	=>	'Rental'
-				),
-				array(
-					'name'	=>	'widget_label_rural',
-					'label'	=>	__('Rural', 'epl'),
-					'type'	=>	'text',
-					'default'	=>	'Rural'
-				),
-				array(
-					'name'	=>	'widget_label_commercial',
-					'label'	=>	__('Commercial', 'epl'),
-					'type'	=>	'text',
-					'default'	=>	'Commercial'
-				),
-				array(
-					'name'	=>	'widget_label_commercial_land',
-					'label'	=>	__('Commercial Land', 'epl'),
-					'type'	=>	'text',
-					'default'	=>	'Commercial Land'
-				),
-				array(
-					'name'	=>	'widget_label_business',
-					'label'	=>	__('Business', 'epl'),
-					'type'	=>	'text',
-					'default'	=>	'Business'
-				)
-			)
-		),
-
-		array(
-			'label'		=>	__('Managing Listings' , 'epl'),
-			'class'		=>	'core',
-			'id'		=>	'general',
-			'fields'	=>	array(
-				
-				array(
-					'name'	=>	'admin_unique_id',
-					'label'	=>	__('Display the Unique ID column', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						1	=>	'Enable',
-						0	=>	'Disable'
-					),
-					'help'	=>	__('This will display the Unique Listing ID column.', 'epl'),
-					'default'	=> 0
-				),
-				array(
-					'name'	=>	'debug',
-					'label'	=>	__('Display Geocoded column', 'epl'),
-					'type'	=>	'radio',
-					'opts'	=>	array(
-						1	=>	'Enable',
-						0	=>	'Disable'
-					),
-					'help'	=>	__('This will listing lat/long results in a new column.', 'epl'),
-					'default'	=> 0
-				),
-			),
-		),
-		
-		array(
 			'label'		=>	__('Advanced Settings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'advanced',
 			'fields'	=>	array(
 				array(
-					'name'	=>	'epl_use_core_css',
-					'label'	=>	__('Disable Styles', 'epl'),
-					'type'	=>	'checkbox_single',
-					'opts'	=>	array(
+					'name'		=>	'epl_use_core_css',
+					'label'		=>	__('Disable Styles', 'epl'),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
 						'on'	=>	__('Yes', 'epl'),
 					),
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'epl')
-					
+				),
+				
+				array(
+					'name'		=>	'uninstall_on_delete',
+					'label'		=>	__('Remove Data on Uninstall?', 'epl'),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						1	=>	__('Enable', 'epl'),
+						0	=>	__('Disable', 'epl')
+					),
+					'help'		=>	__('Check this box if you would like EPL to completely remove all of its data when the plugin is deleted.', 'epl'),
+					'default'	=>	0
 				)
 			)
-
 		)
 	);
 	
@@ -1191,6 +1396,7 @@ function epl_admin_sidebar () {
  */
 function epl_sold_label_status_filter_callback() {
 	global $epl_settings;
+	$epl_settings['label_sold'] = !isset($epl_settings['label_sold']) ? '' : $epl_settings['label_sold'];
 	$sold_label	= $epl_settings['label_sold'] != 'Sold' || $epl_settings['label_sold'] != '' ? $epl_settings['label_sold'] : __('Sold' , 'epl');
 	return $sold_label;
 }
@@ -1203,6 +1409,7 @@ add_filter('epl_sold_label_status_filter', 'epl_sold_label_status_filter_callbac
  */
 function epl_under_offer_label_status_filter_callback() {
 	global $epl_settings;
+	$epl_settings['label_under_offer'] = !isset($epl_settings['label_under_offer']) ? '' : $epl_settings['label_under_offer'];
 	$under_offer_label	= $epl_settings['label_under_offer'] != 'Under Offer' || $epl_settings['label_under_offer'] != '' ? $epl_settings['label_under_offer'] : __('Under Offer' , 'epl');
 	return $under_offer_label;
 }
@@ -1215,7 +1422,42 @@ add_filter('epl_under_offer_label_status_filter', 'epl_under_offer_label_status_
  */
 function epl_leased_label_status_filter_callback() {
 	global $epl_settings;
+	$epl_settings['label_leased'] = !isset($epl_settings['label_leased']) ? '' : $epl_settings['label_leased'];
 	$leased_label	= $epl_settings['label_leased'] != 'Leased' || $epl_settings['label_leased'] != '' ? $epl_settings['label_leased'] : __('Leased' , 'epl');
 	return $leased_label;
 }
 add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_callback' );
+
+/**
+* Description: Getting all the values associated with a specific custom post meta key, across all posts
+* Author: Chinmoy Paul
+* Author URL: http://pwdtechnology.com
+*
+* @param string $key Post Meta Key.
+*
+* @param string $type Post Type. Default is post. You can pass custom post type here.
+*
+* @param string $status Post Status like Publish, draft, future etc. default is publish
+*
+* @return array
+*/
+ 
+ function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+
+    global $wpdb;
+
+    if( empty( $key ) )
+        return;
+
+    $res = $wpdb->get_col( $wpdb->prepare( "
+SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+WHERE pm.meta_key = '%s'
+AND p.post_status = '%s'
+AND p.post_type = '%s'
+", $key, $status, $type ) );
+
+	$res = array_filter($res);
+	if(!empty($res))
+    	return array_combine(array_filter($res),array_filter($res) );
+}
