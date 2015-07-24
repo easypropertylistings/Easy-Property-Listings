@@ -712,21 +712,12 @@ li.tbhead.current {
 .epl-search-form .field-width,
 .epl-search-form .epl-search-row,
 .epl-search-form .epl-search-row-full,
+.epl-search-form .epl-search-row-half,
+.epl-search-form .epl-search-row-third,
 .epl-search-form .epl-search-submit-row,
 .epl-search-form .epl-search-btn { 
 	width: 100%;
-}
-.epl-search-form .epl-search-row-full,
-.epl-search-form .epl-search-row-half,
-.epl-search-form .epl-search-row-third,
-.epl-search-form .epl-property_id,
-.epl-search-form .epl-property_location,
-.epl-search-form .epl-property_category,
-.epl-search-form .epl-search-land-area,
-.epl-search-form .epl-search-building-area,
-.epl-search-form .epl-search-other,
-.epl-search-form .epl-search-row-checkbox,
-.epl-search-form .epl-search-submit-row {
+	box-sizing: border-box;
 	display: inline-block;
 }
 .epl-search-form .epl-search-submit-row {
