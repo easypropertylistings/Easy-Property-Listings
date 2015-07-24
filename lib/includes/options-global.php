@@ -20,8 +20,27 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 1.0
  */
 function epl_image_sizes() {
-	add_image_size( 'admin-list-thumb', 100, 100, true );
-	add_image_size( 'epl-image-medium-crop', 300, 200, true );
+
+	$epl_sizes = apply_filters(
+		'epl_image_sizes',
+		array(
+			array(
+				'id'			=>	'admin-list-thumb',
+				'height'		=>	100,
+				'width'			=>	100,
+				'crop'			=>	true
+			),
+			array(
+				'id'			=>	'epl-image-medium-crop',
+				'height'		=>	200,
+				'width'			=>	300,
+				'crop'			=>	true
+			)
+		)
+	);
+	foreach($epl_sizes as $epl_size) {
+		add_image_size( $epl_size['id'], $epl_size['width'], $epl_size['height'], $epl_size['crop'] );
+	}
 }
 add_action( 'after_setup_theme', 'epl_image_sizes' );
 

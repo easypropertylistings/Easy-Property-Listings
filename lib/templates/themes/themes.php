@@ -10,6 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // Load Custom Template from Plugin Directory
 function epl_load_core_templates($template) {
 
+	global $epl_settings;
+	
+	if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
+		return $template;
+	}
+	
 	$template_path = EPL_PATH_TEMPLATES_CONTENT;
 	
 	$post_tpl	=	'';

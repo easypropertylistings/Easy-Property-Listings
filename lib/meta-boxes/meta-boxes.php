@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_action('init', 'epl_meta_box_init'); 
 function epl_meta_box_init() {
+	global $epl_settings;
 	$opts_users = array();
 	$users = get_users('orderby=display_name&order=ASC');
 	if(!empty($users)) {
@@ -149,10 +150,10 @@ function epl_meta_box_init() {
 							'type'		=>	'text',
 							'maxlength'	=>	'40'
 						),
-						
+
 						array(
 							'name'		=>	'property_agent_hide_author_box',
-							'label'		=>	__('', 'epl'),
+							'label'		=>	'',
 							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Hide Author Box', 'epl'),
@@ -239,7 +240,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('Commercial Listing Type', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_com_listing_type,
-							'include'	=>	array('commercial', 'commercial_land')
+							'include'	=>	array('commercial', 'commercial_land' , 'business' )
 						),
 					
 						array(
@@ -760,7 +761,7 @@ function epl_meta_box_init() {
 		array( //Repeating most from above "epl-features-section-id" because on land it will be single column
 			'id'		=>	'epl-features-section-id-single-column',
 			'label'		=>	__('Land Details', 'epl'),
-			'post_type'	=>	array('land', 'commercial'),
+			'post_type'	=>	array('land', 'commercial', 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
@@ -787,7 +788,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_building_area',
 							'label'		=>	__('Building Area', 'epl'),
 							'type'		=>	'number',
-							'include'	=>	array('commercial'),
+							'include'	=>	array('commercial','business'),
 							'maxlength'	=>	'40'
 						),
 					
@@ -796,7 +797,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('Building Unit', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_area_unit,
-							'include'	=>	array('commercial')
+							'include'	=>	array('commercial','business')
 						),
 					
 						array(
@@ -815,6 +816,7 @@ function epl_meta_box_init() {
 								'yes'	=>	__('Yes', 'epl'),
 								'no'	=>	__('No', 'epl')
 							),
+							'include'	=>	array('land')
 						)
 					)
 				)
@@ -875,18 +877,25 @@ function epl_meta_box_init() {
 					
 							array(
 								'name'		=>	'property_address_suburb',
-								'label'		=>	epl_display_label_suburb(),
+								'label'		=>	epl_labels('label_suburb'),
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							),
-					
+							( isset($epl_settings['epl_enable_city_field'] ) &&  $epl_settings['epl_enable_city_field'] == 'yes' ) ?
+							array(
+								'name'		=>	'property_address_city',
+								'label'		=>	epl_labels('label_city'),
+								'type'		=>	'text',
+								'maxlength'	=>	'80'
+							) : array() ,
 							array(
 								'name'		=>	'property_address_state',
-								'label'		=>	__('State', 'epl'),
+								'label'		=>	epl_labels('label_state'),
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							),
-					
+
+
 							array(
 								'name'		=>	'property_com_display_suburb',
 								'label'		=>	__('Display Suburb', 'epl'),
@@ -900,11 +909,11 @@ function epl_meta_box_init() {
 					
 							array(
 								'name'		=>	'property_address_postal_code',
-								'label'		=>	epl_display_label_postcode(),
+								'label'		=>	epl_labels('label_postcode'),
 								'type'		=>	'text',
 								'maxlength'	=>	'30'
 							),
-						
+
 							array(
 								'name'		=>	'property_address_country',
 								'label'		=>	__('Country', 'epl'),
@@ -921,7 +930,7 @@ function epl_meta_box_init() {
 							),
 							array(
 								'name'		=>	'property_address_hide_map',
-								'label'		=>	__('', 'epl'),
+								'label'		=>	'',
 								'type'		=>	'checkbox_single',
 								'opts'		=>	array(
 									'yes'	=>	__('Hide Map', 'epl'),
@@ -1046,16 +1055,6 @@ function epl_meta_box_init() {
 					'label'		=>	'',
 					'fields'	=>	array(
 						array(
-							'name'		=>	'property_rent_display',
-							'label'		=>	__('Display Rent?', 'epl'),
-							'type'		=>	'radio',
-							'opts'		=>	array(
-								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
-							),
-						),
-					
-						array(
 							'name'		=>	'property_rent',
 							'label'		=>	__('Rent Amount', 'epl'),
 							'type'		=>	apply_filters('epl_price_number_format','number'),
@@ -1075,10 +1074,20 @@ function epl_meta_box_init() {
 							'type'		=>	'text',
 							'maxlength'	=>	'50'
 						),
+						
+						array(
+							'name'		=>	'property_rent_display',
+							'label'		=>	__('Display Rent?', 'epl'),
+							'type'		=>	'radio',
+							'opts'		=>	array(
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
+							),
+						),
 					
 						array(
 							'name'		=>	'property_bond',
-							'label'		=>	epl_display_label_bond(),
+							'label'		=>	epl_labels('label_bond'),
 							'type'		=>	'number',
 							'maxlength'	=>	'40'
 						),
@@ -1189,8 +1198,8 @@ function epl_meta_box_init() {
 	
 		array(
 			'id'		=>	'epl-commercial-leasing-id',
-			'label'		=>	__('Commercial Leasing', 'epl'),
-			'post_type'	=>	array('commercial', 'commercial_land'),
+			'label'		=>	__('Leasing', 'epl'),
+			'post_type'	=>	array('commercial', 'commercial_land' , 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
@@ -1251,16 +1260,16 @@ function epl_meta_box_init() {
 							'label'		=>	__('Tenant Status', 'epl'),
 							'type'		=>	'select',
 							'opts'		=>	$opts_property_com_tenancy,
-							'exclude'	=>	array('commercial_land')
+							'include'	=>	array('commercial')
 						),
 					
 						array(
 							'name'		=>	'property_com_outgoings',
 							'label'		=>	__('Commercial Outgoings', 'epl'),
 							'type'		=>	'number',
-							'maxlength'	=>	'40'
-						)
-						,
+							'maxlength'	=>	'40',
+							'exclude'	=>	array('business')
+						),
 					
 						array(
 							'name'		=>	'property_com_plus_outgoings',
@@ -1270,13 +1279,39 @@ function epl_meta_box_init() {
 								'yes'	=>	__('Yes', 'epl'),
 								'no'	=>	__('No', 'epl')
 							),
+							'exclude'	=>	array('business')
 						),
-					
+						
+						array(
+							'name'		=>	'property_bus_takings',
+							'label'		=>	__('Takings', 'epl'),
+							'type'		=>	'number',
+							'maxlength'	=>	'40',
+							'include'	=>	array('business')
+						),
+						
+						array(
+							'name'		=>	'property_bus_franchise',
+							'label'		=>	__('Franchise', 'epl'),
+							'type'		=>	'radio',
+							'opts'		=>	array(
+								'yes'	=>	__('Yes', 'epl'),
+								'no'	=>	__('No', 'epl')
+							),
+							'include'	=>	array('business')
+						),
+						
 						array(
 							'name'		=>	'property_com_return',
-							'label'		=>	__('Commercial Return', 'epl'),
+							'label'		=>	__('Return', 'epl'),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'6'
+						),
+						
+						array(
+							'name'		=>	'property_bus_terms',
+							'label'		=>	__('Terms', 'epl'),
+							'type'		=>	'textarea'
 						)
 					)
 				)
@@ -1482,7 +1517,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_external_link_3',
 							'label'		=>	__('External Link 3', 'epl'),
 							'type'		=>	'url',
-							'include'	=>	array('commercial', 'business')
+							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
 					
 						array(
@@ -1516,7 +1551,9 @@ function epl_meta_box_init() {
 				foreach($epl_meta_box['groups'] as &$group) {
 					$group = apply_filters('epl_meta_groups_'.$group['id'], $group);
 					if(!empty($group['fields'])) {
+						$group['fields'] = array_filter($group['fields']);
 						foreach($group['fields'] as &$fieldvalue) {
+							
 							$fieldvalue = apply_filters('epl_meta_'.$fieldvalue['name'], $fieldvalue);
 						}
 					}
@@ -1668,6 +1705,10 @@ function epl_meta_box_init() {
 											if( $field['type'] == 'radio' ) {
 												if(!isset($_POST[ $field['name'] ])) {
 													continue;
+												}
+											} else if( $field['type'] == 'checkbox_single') {
+												if(!isset($_POST[ $field['name'] ])) {
+													$_POST[ $field['name'] ] = '';
 												}
 											} else if( $field['type'] == 'auction-date' && $_POST[ $field['name'] ] != '') {
 												$epl_date = $_POST[ $field['name'] ];

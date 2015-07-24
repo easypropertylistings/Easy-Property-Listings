@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, lead generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 2.1.11
+ * Version: 2.2
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 2.1.11
+ * @version 2.2
  */
  
 // Exit if accessed directly
@@ -83,7 +83,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '2.1.11' );
+				define( 'EPL_PROPERTY_VER', '2.2' );
 			}
 			
 			// Plugin DB version
@@ -219,13 +219,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 					}
 				}
 				
-				require_once EPL_PATH_LIB . 'post-types/post-types.php';
+				
 			}
 
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-features.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-business_listings.php';
 
+			require_once EPL_PATH_LIB . 'widgets/widget-functions.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-author.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
@@ -233,9 +234,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'includes/class-property-meta.php';
 			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
+			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			
 			if ( is_admin() ) {
+				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
 				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';

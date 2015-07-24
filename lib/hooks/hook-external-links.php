@@ -41,7 +41,7 @@ function epl_button_external_link() {
 				if($k > 0) {
 					$number_string = ' ' . $k + 1;
 				}
-				?><button type="button" class="epl-button epl-external-link" onclick="location.href='<?php echo $link; ?>'"><?php echo __('Tour ', 'epl') . $number_string; ?></button><?php
+				?><button type="button" class="epl-button epl-external-link" onclick="location.href='<?php echo $link; ?>'"><?php echo apply_filters( 'epl_button_label_tour' , __('Tour ', 'epl') ) . $number_string; ?></button><?php
 			}
 		}
 	}

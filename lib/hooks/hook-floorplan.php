@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * has floor plans links they will be output on the template
  */
 function epl_button_floor_plan() {
-	$floor_plan		= get_post_meta( get_the_ID() , 'property_floorplan' , true );
+	$floor_plan	= get_post_meta( get_the_ID() , 'property_floorplan' , true );
 	$floor_plan_2	= get_post_meta( get_the_ID() , 'property_floorplan_2' , true );
 	
 	$links = array();
@@ -38,7 +38,7 @@ function epl_button_floor_plan() {
 					$number_string = ' ' . $k + 1;
 				}
 				?><span class="epl-floor-plan-button-wrapper<?php echo $number_string; ?>">
-				<button type="button" class="epl-button epl-floor-plan" onclick="location.href='<?php echo $link; ?>'"><?php echo apply_filters( 'epl_floorplan_button_label_filter' , __('Floor Plan', 'epl') ) . $number_string; ?></button></span><?php
+				<button type="button" class="epl-button epl-floor-plan" onclick="location.href='<?php echo $link; ?>'"><?php echo apply_filters( 'epl_button_label_floorplan' , __('Floor Plan', 'epl') ) . $number_string; ?></button></span><?php
 			}
 		}
 	}

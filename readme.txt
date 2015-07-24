@@ -1,13 +1,13 @@
-=== Easy Property Listings ===
+﻿=== Easy Property Listings ===
 Author URI: http://www.realestateconnected.com.au
 Plugin URI: http://easypropertylistings.com.au
 Contributors: mervb1
 Donate link: http://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.3
-Tested up to: 4.2.2
+Tested up to: 4.2.3
 
-Stable Tag: 2.1.11
+Stable Tag: 2.2
 
 License: GNU Version 2 or Any Later Version
 
@@ -189,6 +189,65 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.2 July 24, 2015 =
+
+* New: Search shortcode and widget rebuilt to enable adding additional fields through filters and hooks.
+* New: Search shortcode and widget added additional search fields for City, State, Postcode and Country.
+* New: Search shortcode and widget allows for optional multi select of house category.
+* New: Search shortcode and widget improved responsive CSS.
+* New: Grid styles included in main CSS for use in extensions.
+* New: Upload button added for use in custom plug-ins and extensions to upload files.
+* New: Filter to adjust tour labels.
+* New: Filters to adjust Floor Plan labels.
+* New: Filters to adjust External Link labels.
+* New: Sold prices now display when set on front end and manage listings pages.
+* New: Label function for returning meta labels.
+* New: Ads on settings no longer display when there is an activated extension present.
+* New: Locked and help cases options for use in extensions and custom plugins.
+* New: Theme compatibility mode which enables all themes to display correctly with options to disable featured images for themes that automatically add featured images.
+* New: City setting to allow addresses in countries that need more than a suburb Label is customisable from settings.
+* New: Country setting to allow the country to display with the listing address.
+* New: Able to adjust or add more registered thumbnail sizes through a filter.
+* New: Function to get all the values associated with a specific post meta key.
+* New: Replaced the_post_thumbnail on archive pages and shortcodes with a customisable hook allowing for additional customisation with themes.
+* New: Specific templates for theme compatibility mode for archive and single listings.
+* New: Template loading system allowing for additional templates to be added to shortcodes and widgets from themes, custom plug-ins and extensions. This allows you to create an unlimited number of templates and load them from your theme.
+* New: Sorter allows for sorting by current/sold leased.
+* New: Ability to add additional sorter via filter.
+* New: Post counter function for use in extensions and custom plug-ins.
+* New: User fields re-built which allows for adding on new fields through filter.
+* New: Help meta type allowing for better internal documentation in extensions.
+* New: City meta field added to all listing types when enabled.
+* New: Rental display or hide rental price.
+* New: Check-box single field type.
+* New: Actions added to enable extensions to better hook into listings types and optimised functions for admin column details.
+* New: Dashboard widget now displays other extensions content counts.
+* New: Listing widget now allows for additional selectable templates to be added through custom plug-ins, hooks and themes.
+* New: Replaced widget image with a dynamic action.
+* New: Filter added for Gravatar image.
+* New: Replaced widget and author box image functions with actions.
+* New: Uninstall function to remove all Easy Property Listings content.
+* New: Get option function.
+* New: When saving settings on extensions sub tabs you are no longer taken to the first tab.
+* New: Customisable state label.
+* Tweak: Improved under offer, sold and leased labels.
+* Tweak: Improved install function to reduce code and allow for new settings to be added.
+* Tweak: Removed redundant code and streamlined templates.
+* Tweak: Improved reset query function.
+* Tweak: Removed old functions improving plugin code.
+* Tweak: Rebuilt address function to allow for city and country.
+* Tweak: Improved sorter function in all shortcodes.
+* Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.
+* Tweak: Reorganised settings page.
+* Tweak: Translations updated and additional tags added.
+* Tweak: Search button default label changed from "Find Me A Property!" to "Search".
+* Tweak: Applied custom suburb label to EPL - Listing Widget.
+* Fix: Listings house categories correctly display labels instead of values.
+* Fix: Listings with carport, garage or values set to zero no longer display.
+* Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp.
+* Fix: Saving listing when in debug mode and ticking hide map or hide author box.
+* Fix: New Zealand currency now displays a dollar sign.
 
 = 2.1.11 June 5, 2015 =
 
