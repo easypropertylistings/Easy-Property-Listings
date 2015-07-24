@@ -304,6 +304,9 @@ h3.epl-welcome-sub-heading {
 	margin-right: 2em;
 	max-width: 780px;
 }
+#epl-menu-general p {
+	font-size: 13px
+}
 .epl-menu-content-wrapper,
 .epl-content {
 	max-width: 990px;

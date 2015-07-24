@@ -113,6 +113,7 @@ function epl_currency_filter( $price ) {
 				break;
 			case "USD" :
 			case "AUD" :
+			case "NZD" :
 			case "CAD" :
 			case "HKD" :
 			case "MXN" :
@@ -164,6 +165,7 @@ function epl_currency_filter( $price ) {
 				break;
 			case "USD" :
 			case "AUD" :
+			case "NZD" :
 			case "CAD" :
 			case "HKD" :
 			case "MXN" :
