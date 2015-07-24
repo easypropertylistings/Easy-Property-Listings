@@ -242,6 +242,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Reorganised settings page.
 * Tweak: Translations updated and additional tags added.
 * Tweak: Search button default label changed from "Find Me A Property!" to "Search".
+* Tweak: Applied custom suburb label to EPL - Listing Widget.
 * Fix: Listings house categories correctly display labels instead of values.
 * Fix: Listings with carport, garage or values set to zero no longer display.
 * Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp.
