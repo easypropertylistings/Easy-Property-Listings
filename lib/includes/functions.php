@@ -246,19 +246,18 @@ function epl_currency_formatted_amount($price) {
 function epl_labels($key) {
 	global $epl_settings;
 	$field_groups = epl_get_admin_option_fields();
-	
+	$epl_labels = array();
 	foreach($field_groups as $field_group) {
-		if($field_group['id']	==	'labels') {
-			$epl_labels = array_filter($field_group['fields']);
-			break;
+		if($field_group['id']	==	'labels' || $field_group['id']	==	'address') {
+			$epl_labels = array_merge ( $epl_labels, array_filter($field_group['fields']) );
+			
 		}
 	}
-	
 	foreach($epl_labels as $label_key	=>	$label) {
 	
 		if( isset($label['default']) && $key == $label['name'] ) {
 			
-			$label =  isset($epl_settings[$key]) ? $epl_settings[$key] : isset($label['default']) ? $label['default'] : '';
+			$label =  isset($epl_settings[$key]) ? $epl_settings[$key] : $label['default'];
 			
 			return apply_filters( 'epl_display_'.$key, $label );
 		}

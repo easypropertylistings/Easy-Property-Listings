@@ -890,7 +890,7 @@ function epl_meta_box_init() {
 							) : array() ,
 							array(
 								'name'		=>	'property_address_state',
-								'label'		=>	__('State', 'epl'),
+								'label'		=>	epl_labels('label_state'),
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							),
