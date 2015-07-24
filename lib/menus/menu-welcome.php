@@ -191,7 +191,7 @@ class EPL_Welcome {
 				<h2><?php _e( 'Powerful Search Remastered' , 'epl' );?></h2>
 				
 				<div class="featured-image">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search.png'; ?>" class="epl-welcome-featured-image"/>
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search-remastered.png'; ?>" class="epl-welcome-featured-image"/>
 				</div>
 				
 				<div class="feature-section">
