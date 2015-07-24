@@ -70,14 +70,14 @@
 				'type'			=>	'checkbox',
 			),
 			array(
-				'key'			=>	'search_country',
-				'label'			=>	__('Country','epl'),
+				'key'			=>	'search_postcode',
+				'label'			=>	epl_labels('label_postcode'),
 				'default'		=>	'off',
 				'type'			=>	'checkbox',
 			),
 			array(
-				'key'			=>	'search_postcode',
-				'label'			=>	epl_labels('label_postcode'),
+				'key'			=>	'search_country',
+				'label'			=>	__('Country','epl'),
 				'default'		=>	'off',
 				'type'			=>	'checkbox',
 			),
@@ -145,7 +145,7 @@
 				'key'			=>	'submit_label',
 				'label'			=>	__('Submit Label','epl'),
 				'type'			=>	'text',
-				'default'		=>	__('Find me a Property!','epl')
+				'default'		=>	__('Search','epl')
 			),
 		) );
 		
@@ -236,22 +236,22 @@
 				'class'			=>	'epl-search-row-half',
 			),
 			array(
-				'key'			=>	'search_country',
-				'meta_key'		=>	'property_address_country'	,
-				'label'			=>	__( 'Country' , 'epl'),
-				'type'			=>	'select',
-				'option_filter'		=>	'country',
-				'options'		=>	epl_get_unique_post_meta_values('property_address_country', $post_type ),
-				'query'			=>	array('query'	=>	'meta'),
-				'class'			=>	'epl-search-row-half',
-			),
-			array(
 				'key'			=>	'search_postcode',
-				'meta_key'		=>	'property_address_postal_code'	,
+				'meta_key'		=>	'property_address_postal_code',
 				'label'			=>	epl_labels('label_postcode'),
 				'type'			=>	'select',
 				'option_filter'		=>	'postcode',
 				'options'		=>	epl_get_unique_post_meta_values('property_address_postal_code', $post_type ),
+				'query'			=>	array('query'	=>	'meta'),
+				'class'			=>	'epl-search-row-half',
+			),
+			array(
+				'key'			=>	'search_country',
+				'meta_key'		=>	'property_address_country',
+				'label'			=>	__( 'Country' , 'epl'),
+				'type'			=>	'select',
+				'option_filter'		=>	'country',
+				'options'		=>	epl_get_unique_post_meta_values('property_address_country', $post_type ),
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-half',
 			),

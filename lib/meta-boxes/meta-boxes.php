@@ -153,7 +153,7 @@ function epl_meta_box_init() {
 
 						array(
 							'name'		=>	'property_agent_hide_author_box',
-							'label'		=>	__('', 'epl'),
+							'label'		=>	'',
 							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Hide Author Box', 'epl'),
@@ -930,7 +930,7 @@ function epl_meta_box_init() {
 							),
 							array(
 								'name'		=>	'property_address_hide_map',
-								'label'		=>	__('', 'epl'),
+								'label'		=>	'',
 								'type'		=>	'checkbox_single',
 								'opts'		=>	array(
 									'yes'	=>	__('Hide Map', 'epl'),

@@ -1,11 +1,11 @@
-=== Easy Property Listings ===
+﻿=== Easy Property Listings ===
 Author URI: http://www.realestateconnected.com.au
 Plugin URI: http://easypropertylistings.com.au
 Contributors: mervb1
 Donate link: http://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.3
-Tested up to: 4.2.2
+Tested up to: 4.2.3
 
 Stable Tag: 2.2
 
@@ -190,7 +190,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.2 July 23, 2015 =
+= 2.2 July 24, 2015 =
 
 * New: Search shortcode and widget rebuilt to enable adding additional fields through filters and hooks.
 * New: Search shortcode and widget added additional search fields for City, State, Postcode and Country.
@@ -230,8 +230,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Uninstall function to remove all Easy Property Listings content.
 * New: Get option function.
 * New: When saving settings on extensions sub tabs you are no longer taken to the first tab.
+* New: Customisable state label.
 * Tweak: Improved under offer, sold and leased labels.
-* Tweak: Increased search widget to 380px max-width.
 * Tweak: Improved install function to reduce code and allow for new settings to be added.
 * Tweak: Removed redundant code and streamlined templates.
 * Tweak: Improved reset query function.
@@ -239,10 +239,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Rebuilt address function to allow for city and country.
 * Tweak: Improved sorter function in all shortcodes.
 * Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.
+* Tweak: Reorganised settings page.
+* Tweak: Translations updated and additional tags added.
+* Tweak: Search button default label changed from "Find Me A Property!" to "Search".
 * Fix: Listings house categories correctly display labels instead of values.
 * Fix: Listings with carport, garage or values set to zero no longer display.
 * Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp.
 * Fix: Saving listing when in debug mode and ticking hide map or hide author box.
+Fix: New Zealand currency now displays a dollar sign.
 
 = 2.1.11 June 5, 2015 =
 
