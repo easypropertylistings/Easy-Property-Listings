@@ -53,7 +53,7 @@
 			),
 			array(
 				'key'			=>	'search_location',
-				'label'			=>	epl_labels('label_suburb'),
+				'label'			=>	epl_tax_location_label(),
 				'default'		=>	'on',
 				'type'			=>	'checkbox',
 			),
@@ -208,7 +208,7 @@
 			array(
 				'key'			=>	'search_location',
 				'meta_key'		=>	'property_location',
-				'label'			=>	epl_labels('label_suburb'),
+				'label'			=>	epl_tax_location_label(),
 				'type'			=>	'select',
 				'option_filter'		=>	'location',
 				'options'		=>	epl_get_available_locations($post_type,$property_status),
