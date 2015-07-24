@@ -48,11 +48,14 @@ function epl_install() {
 		'display_gallery_n'			=> 4,
 		'display_feature_columns'		=> 2,
 		'display_excerpt_length'		=> 10,
+		'display_archive_view_type'		=> 'list',
+		'use_fancy_navigation'			=> 0,
 		'label_bond'				=> __('Bond', 'epl'),
 		'label_location'			=> __('Suburb', 'epl'),
 		'label_suburb'				=> __('Suburb', 'epl'),
-		'label_postcode'			=> __('Post Code', 'epl'),
 		'label_city'				=> __('City', 'epl'),
+		'label_state'				=> __('State', 'epl'),
+		'label_postcode'			=> __('Post Code', 'epl'),
 		'label_home_open'			=> __('Home Open', 'epl'),
 		'label_poa'				=> __('POA', 'epl'),
 		'label_new'				=> __('New', 'epl'),
@@ -70,16 +73,15 @@ function epl_install() {
 		'epl_max_graph_rent_price'		=> 2000,
 		'sticker_new_range'			=> 7,
 		'epl_admin_thumb_size'			=> 'admin-list-thumb',
+		'epl_enable_city_field'			=> 'no',
+		'epl_enable_country_field'		=> 'no',
 		'epl_feeling_lucky'			=> 'off',
 		'epl_lucky_disable_single_thumb'	=> 'off',
 		'epl_lucky_disable_theme_single_thumb'	=> 'off',
 		'epl_lucky_disable_archive_thumb'	=> 'off',
-		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
-		'display_archive_view_type'		=> 'list',
-		'use_fancy_navigation'			=> '0',
-		'epl_enable_city_field'			=> 'no',
-		'epl_enable_country_field'		=> 'no',
-		'uninstall_on_delete'			=> 0,
+		'epl_lucky_disable_epl_archive_thumb'	=> 'off',	
+		'epl_use_core_css'			=> 'off', // Means Enable CSS
+		'uninstall_on_delete'			=> 0
 	);
 	
 	if(!empty($epl_settings)) {
@@ -179,6 +181,11 @@ function epl_plugin_updates() {
 	if ( version_compare( $current_version, '2.1.11', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.11.php' );
 		update_option( 'epl_version' ,'2.1.11');
+	}
+	
+	if ( version_compare( $current_version, '2.2', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-2.2.php' );
+		update_option( 'epl_version' ,'2.2');
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
