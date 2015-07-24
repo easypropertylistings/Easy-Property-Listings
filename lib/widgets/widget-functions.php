@@ -732,21 +732,23 @@
 									<?php echo apply_filters('epl_search_widget_option_label_'.$field['option_filter'],__('Any', 'epl') ); ?>
 								</option>
 							<?php
-								foreach($field['options'] as $k=>$v) {
-									$selected = '';
-									if( isset($field['multiple']) ) {
+								if( isset($field['options']) && !empty($field['options'])  ) {
+									foreach($field['options'] as $k=>$v) {
+										$selected = '';
+										if( isset($field['multiple']) ) {
 								
-										if(in_array( $k, $value) ) {
-											$selected = 'selected="selected"';
-										}
+											if(in_array( $k, $value) ) {
+												$selected = 'selected="selected"';
+											}
 									
-									} else {
+										} else {
 								
-										if(isset($value) && $k == $value) {
-											$selected = 'selected="selected"';
+											if(isset($value) && $k == $value) {
+												$selected = 'selected="selected"';
+											}
 										}
+										echo '<option value="'.$k.'" '.$selected.'>'.$v.'</option>';
 									}
-									echo '<option value="'.$k.'" '.$selected.'>'.$v.'</option>';
 								}
 							?>
 						</select>
