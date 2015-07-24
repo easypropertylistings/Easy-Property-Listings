@@ -247,7 +247,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Listings with carport, garage or values set to zero no longer display.
 * Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp.
 * Fix: Saving listing when in debug mode and ticking hide map or hide author box.
-Fix: New Zealand currency now displays a dollar sign.
+* Fix: New Zealand currency now displays a dollar sign.
 
 = 2.1.11 June 5, 2015 =
 
