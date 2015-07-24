@@ -145,7 +145,7 @@
 				'key'			=>	'submit_label',
 				'label'			=>	__('Submit Label','epl'),
 				'type'			=>	'text',
-				'default'		=>	__('Find me a Property!','epl')
+				'default'		=>	__('Search','epl')
 			),
 		) );
 		

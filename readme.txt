@@ -232,7 +232,6 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: When saving settings on extensions sub tabs you are no longer taken to the first tab.
 * New: Customisable state label.
 * Tweak: Improved under offer, sold and leased labels.
-* Tweak: Increased search widget to 380px max-width.
 * Tweak: Improved install function to reduce code and allow for new settings to be added.
 * Tweak: Removed redundant code and streamlined templates.
 * Tweak: Improved reset query function.
@@ -242,6 +241,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.
 * Tweak: Reorganised settings page.
 * Tweak: Translations updated and additional tags added.
+* Tweak: Search button default label changed from "Find Me A Property!" to "Search".
 * Fix: Listings house categories correctly display labels instead of values.
 * Fix: Listings with carport, garage or values set to zero no longer display.
 * Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp.

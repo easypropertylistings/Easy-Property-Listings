@@ -313,7 +313,6 @@ class EPL_Welcome {
 						<li><?php _e( 'New: When saving settings on extensions sub tabs you are no longer taken to the first tab.', 'epl' );?></li>
 						<li><?php _e( 'New: Customisable state label.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved under offer, sold and leased labels.', 'epl' );?></li>
-						<li><?php _e( 'Tweak: Increased search widget to 380px max-width.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved install function to reduce code and allow for new settings to be added.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Removed redundant code and streamlined templates.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improved reset query function.', 'epl' );?></li>
@@ -323,6 +322,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Reorganised settings page.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Translations updated and additional tags added.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Search button default label changed from "Find Me A Property!" to "Search".', 'epl' );?></li>
 						<li><?php _e( 'Fix: Listings house categories correctly display labels instead of values.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Listings with carport, garage or values set to zero no longer display.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp', 'epl' );?></li>

@@ -109,7 +109,7 @@ function epl_shortcode_listing_search_callback( $atts ) {
 				?>
 		
 				<div class="epl-search-submit-row epl-search-submit property-type-search">
-					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __('Find me a Property!', 'epl'); ?>" class="epl-search-btn" />
+					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __('Search', 'epl'); ?>" class="epl-search-btn" />
 				</div>
 			</form>
 		</div>
@@ -119,5 +119,3 @@ function epl_shortcode_listing_search_callback( $atts ) {
 	return ob_get_clean();
 }
 add_shortcode( 'listing_search', 'epl_shortcode_listing_search_callback' );
-
-
