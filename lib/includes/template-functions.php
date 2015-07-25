@@ -87,7 +87,10 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' , 10 , 2
  * @since 2.2
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) { 
-	
+	if($image_size == '') {
+		$image_size = 'epl-image-medium-crop';
+	} 
+
 	if ( has_post_thumbnail() ) { ?>
 		<div class="epl-archive-entry-image">
 			<a href="<?php the_permalink(); ?>">
@@ -412,14 +415,14 @@ function epl_property_the_address() {
 	$epl_property_address_seperator	= apply_filters('epl_property_address_seperator',',');
 	global $property,$epl_settings;
 	
-	if ( $property->get_property_meta('property_address_display' != 'yes') )
-		return;
 	?>
-	<span class="item-street">
-		<?php 
-			echo $property->get_formatted_property_address();
-		?>
-	</span>
+	<?php if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+		<span class="item-street">
+			<?php 
+				echo $property->get_formatted_property_address();
+			?>
+		</span>
+	<?php } ?>
 	<span class="entry-title-sub">
 		<?php 
 			if( $property->get_property_meta('property_com_display_suburb') != 'no' ) { ?>
