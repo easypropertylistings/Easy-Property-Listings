@@ -418,11 +418,13 @@ function epl_property_the_address() {
 	if ( $property->get_property_meta('property_address_display') != 'yes' )
 		return;
 	?>
-	<span class="item-street">
-		<?php 
-			echo $property->get_formatted_property_address();
-		?>
-	</span>
+	<?php if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+		<span class="item-street">
+			<?php 
+				echo $property->get_formatted_property_address();
+			?>
+		</span>
+	<?php } ?>
 	<span class="entry-title-sub">
 		<?php 
 			if( $property->get_property_meta('property_com_display_suburb') != 'no' ) { ?>
