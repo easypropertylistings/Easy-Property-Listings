@@ -538,6 +538,7 @@ li.tbhead.current {
 }
 .property-box img {
 	max-width: 100%;
+	height: auto;
 }
 .property-box-left {
 	width:50%;
