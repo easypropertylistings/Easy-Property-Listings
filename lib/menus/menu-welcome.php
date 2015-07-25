@@ -269,15 +269,22 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
-					<h4><?php _e( 'Version 2.2.1', 'epl' );?></h4>
 				
+					<h4><?php _e( 'Version 2.2.2', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: CSS tweak for image size to retain proportion on some themes.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Adjusted position of show/hide suburb on Commercial/Business listing types.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Archive image correctly loading 300x200 image.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Listing address display settings fixed.', 'epl' );?></li>
+					</ul>
+				
+					<h4><?php _e( 'Version 2.2.1', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Tweak: Set padding for search tabs for better display on some themes.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Search function fix checking for empty option when using custom filters.', 'epl' );?></li>
 					</ul>
 
 					<h4><?php _e( 'Version 2.2', 'epl' );?></h4>
-				
 					<ul>
 						<li><?php _e( 'New: Search shortcode and widget rebuilt to enable adding additional fields through filters and hooks.', 'epl' );?></li>
 						<li><?php _e( 'New: Search shortcode and widget added additional search fields for City, State, Postcode and Country.', 'epl' );?></li>
