@@ -837,7 +837,7 @@ function epl_meta_box_init() {
 						'fields'	=>	array(
 							array(
 								'name'		=>	'property_address_display',
-								'label'		=>	__('Display Address?', 'epl'),
+								'label'		=>	__('Display Street Address?', 'epl'),
 								'type'		=>	'radio',
 								'opts'		=>	array(
 									'yes'	=>	__('Yes', 'epl'),
@@ -881,24 +881,10 @@ function epl_meta_box_init() {
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							),
-							( isset($epl_settings['epl_enable_city_field'] ) &&  $epl_settings['epl_enable_city_field'] == 'yes' ) ?
-							array(
-								'name'		=>	'property_address_city',
-								'label'		=>	epl_labels('label_city'),
-								'type'		=>	'text',
-								'maxlength'	=>	'80'
-							) : array() ,
-							array(
-								'name'		=>	'property_address_state',
-								'label'		=>	epl_labels('label_state'),
-								'type'		=>	'text',
-								'maxlength'	=>	'80'
-							),
-
-
+							
 							array(
 								'name'		=>	'property_com_display_suburb',
-								'label'		=>	__('Display Suburb', 'epl'),
+								'label'		=>	__('Display', 'epl') . ' ' .epl_labels('label_suburb'),
 								'type'		=>	'radio',
 								'opts'		=>	array(
 									'yes'	=>	__('Yes', 'epl'),
@@ -906,14 +892,29 @@ function epl_meta_box_init() {
 								),
 								'include'	=>	array('commercial', 'commercial_land', 'business'),
 							),
-					
+							
+							( isset($epl_settings['epl_enable_city_field'] ) &&  $epl_settings['epl_enable_city_field'] == 'yes' ) ?
+							array(
+								'name'		=>	'property_address_city',
+								'label'		=>	epl_labels('label_city'),
+								'type'		=>	'text',
+								'maxlength'	=>	'80'
+							) : array(),
+							
+							array(
+								'name'		=>	'property_address_state',
+								'label'		=>	epl_labels('label_state'),
+								'type'		=>	'text',
+								'maxlength'	=>	'80'
+							),
+							
 							array(
 								'name'		=>	'property_address_postal_code',
 								'label'		=>	epl_labels('label_postcode'),
 								'type'		=>	'text',
 								'maxlength'	=>	'30'
 							),
-
+							
 							array(
 								'name'		=>	'property_address_country',
 								'label'		=>	__('Country', 'epl'),
@@ -936,7 +937,6 @@ function epl_meta_box_init() {
 									'yes'	=>	__('Hide Map', 'epl'),
 								)
 							)
-
 						)
 					)
 				)

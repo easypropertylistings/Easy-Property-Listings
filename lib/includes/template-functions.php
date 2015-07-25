@@ -87,7 +87,10 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' , 10 , 2
  * @since 2.2
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) { 
-	
+	if($image_size == '') {
+		$image_size = 'epl-image-medium-crop';
+	} 
+
 	if ( has_post_thumbnail() ) { ?>
 		<div class="epl-archive-entry-image">
 			<a href="<?php the_permalink(); ?>">
@@ -410,54 +413,34 @@ function epl_property_get_the_full_address(){
 function epl_property_the_address() {
 
 	$epl_property_address_seperator	= apply_filters('epl_property_address_seperator',',');
+	
+	
 	global $property,$epl_settings;
 	
-	if ( $property->get_property_meta('property_address_display' != 'yes') )
-		return;
 	?>
-	<span class="item-street">
-		<?php 
-			echo $property->get_formatted_property_address();
-		?>
-	</span>
+	<?php if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+		<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
+	<?php } ?>
 	<span class="entry-title-sub">
 		<?php 
-			if( $property->get_property_meta('property_com_display_suburb') != 'no' ) { ?>
-				<span class="item-suburb">
-					<?php 
-						echo $property->get_property_meta('property_address_suburb'); 
-					?>
-				</span> <?php
+			if( $property->get_property_meta('property_com_display_suburb') != 'no' || $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+				<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb'); ?></span><?php
 			}
+			echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
 		?>
 		<?php 
 			if( $property->get_epl_settings('epl_enable_city_field') == 'yes' ) { ?>
 				<span class="item-city"><?php echo $property->get_property_meta('property_address_city'); ?></span><?php
 			}
-			echo $epl_property_address_seperator;
 		?>
-
-		<span class="item-state">
-			<?php 
-				echo $property->get_property_meta('property_address_state') . ' ';
-			?>
-		</span>
-		<span class="item-pcode">
-			<?php 
-				echo $property->get_property_meta('property_address_postal_code');
-			?>
-		</span>
+		<span class="item-state"><?php echo $property->get_property_meta('property_address_state'); ?></span>
+		<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
 		<?php 
-			if(  $property->get_epl_settings('epl_enable_country_field') == 'yes' ) { ?>
-				<span class="item-country">
-					<?php 
-						echo $property->get_property_meta('property_address_country'); 
-					?>
-				</span> <?php
+			if( $property->get_epl_settings('epl_enable_country_field') == 'yes' ) { ?>
+				<span class="item-country"><?php echo $property->get_property_meta('property_address_country'); ?></span><?php
 			}
 		?>
-
-	</span> <?php
+	</span><?php
 }
 add_action('epl_property_title','epl_property_the_address');
 add_action('epl_property_tab_address','epl_property_the_address');
