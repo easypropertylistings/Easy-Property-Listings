@@ -415,8 +415,6 @@ function epl_property_the_address() {
 	$epl_property_address_seperator	= apply_filters('epl_property_address_seperator',',');
 	global $property,$epl_settings;
 	
-	if ( $property->get_property_meta('property_address_display') != 'yes' )
-		return;
 	?>
 	<?php if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
 		<span class="item-street">
