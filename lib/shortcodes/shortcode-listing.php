@@ -85,12 +85,7 @@ function epl_shortcode_listing_callback( $atts ) {
 				'compare' => 'IN'
 			);
 			
-			add_filter('epl_sorting_options',function($sorters) {
-				foreach($sorters as $key	=>	 &$sorter) {
-					if($sorter['id'] == 'status_asc' || $sorter['id'] == 'status_desc') {
-						unset($sorters[$key]);
-					}	
-				}
+			add_filter('epl_sorting_options','epl_sorting_options_Callback');
 				return $sorters;
 			});
 		}
@@ -172,3 +167,13 @@ function epl_shortcode_listing_callback( $atts ) {
 	return ob_get_clean();
 }
 add_shortcode( 'listing', 'epl_shortcode_listing_callback' );
+
+function epl_sorting_options_Callback($sorters) {
+	foreach($sorters as $key	=>	 &$sorter) {
+		if($sorter['id'] == 'status_asc' || $sorter['id'] == 'status_desc') {
+			unset($sorters[$key]);
+		}	
+	}
+	return $sorters;
+}
+
