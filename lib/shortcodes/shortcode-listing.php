@@ -29,13 +29,13 @@ function epl_shortcode_listing_callback( $atts ) {
 	
 	extract( shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
-		'status'			=>	array('current' , 'sold' , 'leased' ),
-		'limit'				=>	'10', // Number of maximum posts to show
-		'template'			=>	false, // Template can be set to "slim" for home open style template
-		'location'			=>	'', // Location slug. Should be a name like sorrento
-		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
+		'status'		=>	array('current' , 'sold' , 'leased' ),
+		'limit'			=>	'10', // Number of maximum posts to show
+		'template'		=>	false, // Template can be set to "slim" for home open style template
+		'location'		=>	'', // Location slug. Should be a name like sorrento
+		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
-		'sortby'			=>	'', // Options: price, date : Default date
+		'sortby'		=>	'', // Options: price, date : Default date
 		'sort_order'		=>	'DESC',
 		'query_object'		=>	'' // only for internal use . if provided use it instead of custom query 
 	), $atts ) );
@@ -67,9 +67,9 @@ function epl_shortcode_listing_callback( $atts ) {
 			$location = array_map('trim', $location);
 			
 			$args['tax_query'][] = array(
-				'taxonomy' => 'location',
-				'field' => 'slug',
-				'terms' => $location
+				'taxonomy'	=> 'location',
+				'field'		=> 'slug',
+				'terms' 	=> $location
 			);
 		}
 	}
@@ -80,12 +80,12 @@ function epl_shortcode_listing_callback( $atts ) {
 			$status = array_map('trim', $status);
 			
 			$args['meta_query'][] = array(
-				'key' => 'property_status',
-				'value' => $status,
-				'compare' => 'IN'
+				'key'		=> 'property_status',
+				'value'		=> $status,
+				'compare'	=> 'IN'
 			);
 			
-			add_filter('epl_sorting_options','epl_sorting_options_Callback');
+			add_filter('epl_sorting_options','epl_sorting_options_callback');
 		}
 	}
 
@@ -166,7 +166,7 @@ function epl_shortcode_listing_callback( $atts ) {
 }
 add_shortcode( 'listing', 'epl_shortcode_listing_callback' );
 
-function epl_sorting_options_Callback($sorters) {
+function epl_sorting_options_callback($sorters) {
 	foreach($sorters as $key	=>	 &$sorter) {
 		if($sorter['id'] == 'status_asc' || $sorter['id'] == 'status_desc') {
 			unset($sorters[$key]);
