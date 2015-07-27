@@ -180,3 +180,60 @@ function epl_property_suburb () {
 		</span> <?php
 	}
 }
+
+function epl_property_author_card( $display , $image , $title , $icons) {		
+	global $property,$epl_author;		
+	if( is_null($epl_author) )		
+		return; 		
+	$property_status = $property->get_property_meta('property_status');	      		
+	// Status Removal		
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {	
+		// Do Not Display Withdrawn or OffMarket listings		
+	} else {	
+		//$arg_list = get_defined_vars();	
+		//epl_get_template_part('widget-content-author.php',$arg_list);
+
+		?>
+			<div id="post-<?php the_ID(); ?>" class="epl-widget property-widget-image hentry" <?php //post_class('property-widget-image'); ?>>
+				<div class="entry-header">
+					<?php if ( has_post_thumbnail() ) : ?>
+						<div class="epl-img-widget">
+							<a href="<?php the_permalink(); ?>">
+								<?php the_post_thumbnail( $image ); ?>
+							</a>
+						</div>
+					<?php endif; ?>		
+				</div>
+				
+				<div class="entry-content">
+					<?php
+						// Heading Options
+						if ($title == 'on') { ?>
+							<h5 class="property-meta heading"><?php echo $the_property_heading; ?></h5>
+						<?php }
+					?>
+					
+					<!-- Address -->
+					<div class="property-address">
+						<?php do_action('epl_property_address'); ?>
+					</div>
+					<!-- END Address -->
+					
+					<?php
+						// Icon Options
+						if ( $icons == 'all' ) { ?>
+							<div class="property-meta property-feature-icons"><?php epl_property_icons(); ?></div>
+						<?php } elseif ($icons == 'bb') { ?>
+							<div class="property-meta property-feature-icons"><?php echo epl_get_property_bb_icons(); ?></div>
+						<?php } ?>
+
+					<div class="property-meta price"><?php epl_property_price() ?></div>
+					<form class="epl-property-button" action="<?php the_permalink(); ?>" method="post">
+						<input type=submit value="<?php _e('Read More', 'epl'); ?>" />
+					</form>
+				</div>
+			</div>
+
+	<?php
+	} // End Status Removal		
+}
