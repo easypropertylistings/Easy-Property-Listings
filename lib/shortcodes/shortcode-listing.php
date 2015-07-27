@@ -86,8 +86,6 @@ function epl_shortcode_listing_callback( $atts ) {
 			);
 			
 			add_filter('epl_sorting_options','epl_sorting_options_Callback');
-				return $sorters;
-			});
 		}
 	}
 
