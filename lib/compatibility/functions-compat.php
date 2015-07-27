@@ -180,17 +180,3 @@ function epl_property_suburb () {
 		</span> <?php
 	}
 }
-
-function epl_property_author_card( $display , $image , $title , $icons) {		
-	global $property,$epl_author;		
-	if( is_null($epl_author) )		
-	return; 		
-	$property_status = $property->get_property_meta('property_status');			
-	// Status Removal		
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {		
-		// Do Not Display Withdrawn or OffMarket listings		
-	} else {		
-		$arg_list = get_defined_vars();		
-		epl_get_template_part('widget-content-author.php',$arg_list);		
-	} // End Status Removal		
-}
