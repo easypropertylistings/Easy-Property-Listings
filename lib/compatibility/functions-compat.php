@@ -68,7 +68,135 @@ function epl_get_property_address($post_ID='') {
 }
 
 
-// TEMPLATE - Leased/sold property list
+
+
+// Front End Functions
+if ( ! is_admin() )
+	return;
+
+/**
+ * Listing Function for paged card display 
+ * 
+ * @compat	not being used @since 1.3 in core, but still kept for extensions which may be using this function
+ * @since	1.3
+ */
+function epl_property_blog_default() {
+
+	global $property,$epl_settings;
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal Do Not Display Withdrawn or OffMarket listings
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-default.php');
+		}
+	} // End Status Removal
+}
+
+/**
+ * Listing Function for slim view
+ *
+ * @compat	not being used @since 1.3 in core, but still kept for extensions which may be using this function
+ * @since	1.3
+ */
+function epl_property_blog_slim() {
+	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-slim.php');
+		}
+	} // End Status Removal
+}
+
+/*
+ * Listing Function for table open
+ *
+ * @since 2.1.6
+ */
+function epl_property_blog_table() {
+	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-table.php');
+		}
+	} // End Status Removal
+}
+
+/*
+ * Listing Function for table open
+ * Kept for extensions which may be using this function
+ *
+ * @since 2.1.8
+ */
+function epl_property_blog_table_open() {
+	global $property,$epl_settings;
+	if( is_null($property) ) {
+		return;
+	}
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		$option = '';
+		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
+			$option = $epl_settings['epl_property_card_style'];
+		}
+	
+		$action_check = has_action( 'epl_loop_template' );
+		if ( $action_check != '' && $option !== 0 ) {
+			do_action( 'epl_loop_template' );
+		} else {
+			epl_get_template_part('loop-listing-blog-table-open.php');
+		}
+	} // End Status Removal
+}
+
+/*
+ * TEMPLATE - Leased/sold property list
+ * Kept for extensions which may be using this function
+ *
+ * @since 1.3
+ */
 function epl_property_sold_leased() {
 	$property_suburb = get_post_custom_values('property_address_suburb');
 	$post_id = $property_suburb[0]['ID'];
@@ -158,7 +286,13 @@ function epl_property_sold_leased() {
 	wp_reset_postdata();
 }
 
-function epl_property_suburb () {
+/*
+ * Suburb Name
+ * Kept for extensions which may be using this function
+ *
+ * @since 1.3
+ */
+function epl_property_suburb() {
 	global $property;
 	// Commercial and Business Address
 	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) {
@@ -181,6 +315,12 @@ function epl_property_suburb () {
 	}
 }
 
+/*
+ * Staff Directory Card
+ * Kept for extensions which may be using this function
+ *
+ * @since 1.3
+ */
 function epl_property_author_card( $display , $image , $title , $icons) {		
 	global $property,$epl_author;		
 	if( is_null($epl_author) )		
@@ -194,7 +334,7 @@ function epl_property_author_card( $display , $image , $title , $icons) {
 		//epl_get_template_part('widget-content-author.php',$arg_list);
 
 		?>
-			<div id="post-<?php the_ID(); ?>" class="epl-widget property-widget-image hentry" <?php //post_class('property-widget-image'); ?>>
+			<div id="post-<?php the_ID(); ?>" style="width: 20%;margin-right: 1em;float: left;" class="epl-widget property-widget-image hentry">
 				<div class="entry-header">
 					<?php if ( has_post_thumbnail() ) : ?>
 						<div class="epl-img-widget">
