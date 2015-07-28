@@ -274,6 +274,7 @@ class EPL_Welcome {
 					<ul>
 						<li><?php _e( 'Tweak: Adjusted new sorter function to work on lower than PHP version 5.3.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Moved old template functions to theme compatibility, will be removed in future version.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Set sorter list style to none to prevent some themes from displaying a list bullet.', 'epl' );?></li>
 					</ul>
 
 					<h4><?php _e( 'Version 2.2.2', 'epl' );?></h4>

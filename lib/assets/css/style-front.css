@@ -1202,11 +1202,9 @@ li.tbhead.current {
 	padding: 0 5px;
 	vertical-align: middle;
 }
-/* Switching view grid-list */
-
 .epl-switch-view li {
 	float: left;
-	list-style: outside none none;
+	list-style: none !important;
 	opacity: 0.5;
 	padding: 0 10px;
 	cursor:pointer;
