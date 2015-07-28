@@ -194,6 +194,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * Tweak: Adjusted new sorter function to work on lower than PHP version 5.3.
 * Tweak: Moved old template functions to theme compatibility, will be removed in future version.
+* Tweak: Set sorter list style to none to prevent some themes from displaying a list bullet.
 
 = 2.2.2 July 25, 2015 =
 
