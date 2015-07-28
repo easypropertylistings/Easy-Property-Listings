@@ -272,7 +272,7 @@ class EPL_Welcome {
 				
 					<h4><?php _e( 'Version 2.2.3', 'epl' );?></h4>
 					<ul>
-						<li><?php _e( 'Tweak: Adjusted new sorter function to work on less than PHP version 5.3.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Adjusted new sorter function to work on lower than PHP version 5.3.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Moved old template functions to theme compatibility, will be removed in future version.', 'epl' );?></li>
 					</ul>
 

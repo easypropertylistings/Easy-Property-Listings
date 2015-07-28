@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 2.2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-07-28 09:09+0800\n"
-"PO-Revision-Date: 2015-07-28 09:09+0800\n"
+"POT-Creation-Date: 2015-07-28 09:12+0800\n"
+"PO-Revision-Date: 2015-07-28 09:12+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: en\n"
@@ -1933,7 +1933,7 @@ msgid "Version 2.2.3"
 msgstr ""
 
 #: menus/menu-welcome.php:275
-msgid "Tweak: Adjusted new sorter function to work on less than PHP version 5.3."
+msgid "Tweak: Adjusted new sorter function to work on lower than PHP version 5.3."
 msgstr ""
 
 #: menus/menu-welcome.php:276
