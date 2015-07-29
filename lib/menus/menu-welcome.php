@@ -270,6 +270,12 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 				
+					<h4><?php _e( 'Version 2.2.4', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Improvements to Commercial/Commercial Land/Business pricing when set to Lease type to display free form price text.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Bar graph in dashboard will no longer cover address if set to low.', 'epl' );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 2.2.3', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Tweak: Adjusted new sorter function to work on lower than PHP version 5.3.', 'epl' );?></li>

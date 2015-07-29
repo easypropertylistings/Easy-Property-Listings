@@ -1212,7 +1212,8 @@ function epl_meta_box_init() {
 							'name'		=>	'property_com_rent',
 							'label'		=>	__('Commercial Rent', 'epl'),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'40'
+							'maxlength'	=>	'40',
+							'help'		=>	__('Price Text in Pricing box over-rides displayed price' , 'epl')
 						),
 						array(
 							'name'		=>	'property_com_rent_period',

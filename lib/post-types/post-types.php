@@ -357,13 +357,7 @@ function epl_manage_listing_column_price_callback() {
 	if ( $d_bond == 1 ) {
 		echo '<div class="epl_meta_bond">' , epl_labels('label_bond') , ' ' , epl_currency_formatted_amount( $bond ) , '</div>';
 	}
-	
-	if ( !empty ( $lease ) ) {
-		if ( empty ( $lease_period ) ) {
-			$lease_period = 'annual';
-		}
-		echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), ' ' ,epl_listing_load_meta_commercial_rent_period_value( $lease_period ) ,'</div>';
-	}
+
 				
 	/* Commercial Listing Type */
 	if ( !empty ( $lease_date ) ) {
