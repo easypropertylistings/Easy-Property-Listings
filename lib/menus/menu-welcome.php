@@ -191,7 +191,7 @@ class EPL_Welcome {
 				<h2><?php _e( 'Powerful Search Remastered' , 'epl' );?></h2>
 				
 				<div class="featured-image">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search.png'; ?>" class="epl-welcome-featured-image"/>
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search-remastered.png'; ?>" class="epl-welcome-featured-image"/>
 				</div>
 				
 				<div class="feature-section">
@@ -269,61 +269,92 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
-					
-					<h4><?php _e( 'Version 2.2', 'epl' );?></h4>
 				
+					<h4><?php _e( 'Version 2.2.4', 'epl' );?></h4>
 					<ul>
-						<li><?php _e( 'New: Search shortcode and widget rebuilt to enable adding additional fields through filters and hooks.', 'epl' );?>
-						<li><?php _e( 'New: Search shortcode and widget added additional search fields for City, State, Postcode and Country.', 'epl' );?>
-						<li><?php _e( 'New: Search shortcode and widget allows for optional multi select of house category.', 'epl' );?>
-						<li><?php _e( 'New: Search shortcode and widget improved responsive CSS.', 'epl' );?>
-						<li><?php _e( 'New: Grid styles included in main CSS for use in extensions.', 'epl' );?>
-						<li><?php _e( 'New: Upload button added for use in custom plug-ins and extensions to upload files.', 'epl' );?>
-						<li><?php _e( 'New: Filter to adjust tour labels.', 'epl' );?>
-						<li><?php _e( 'New: Filters to adjust Floor Plan labels.', 'epl' );?>
-						<li><?php _e( 'New: Filters to adjust External Link labels.', 'epl' );?>
-						<li><?php _e( 'New: Sold prices now display when set on front end and manage listings pages.', 'epl' );?>
-						<li><?php _e( 'New: Label function for returning meta labels.', 'epl' );?>
-						<li><?php _e( 'New: Ads on settings no longer display when there is an activated extension present.', 'epl' );?>
-						<li><?php _e( 'New: Locked and help cases options for use in extensions and custom plugins.', 'epl' );?>
-						<li><?php _e( 'New: Theme compatibility mode which enables all themes to display correctly with options to disable featured images for themes that automatically add featured images.', 'epl' );?>
-						<li><?php _e( 'New: City setting to allow addresses in countries that need more than a suburb Label is customisable from settings.', 'epl' );?>
-						<li><?php _e( 'New: Country setting to allow the country to display with the listing address.', 'epl' );?>
-						<li><?php _e( 'New: Able to adjust or add more registered thumbnail sizes through a filter.', 'epl' );?>
-						<li><?php _e( 'New: Function to get all the values associated with a specific post meta key.', 'epl' );?>
-						<li><?php _e( 'New: Replaced the_post_thumbnail on archive pages and shortcodes with a customisable hook allowing for additional customisation with themes.', 'epl' );?>
-						<li><?php _e( 'New: Specific templates for theme compatibility mode for archive and single listings.', 'epl' );?>
-						<li><?php _e( 'New: Template loading system allowing for additional templates to be added to shortcodes and widgets from themes, custom plug-ins and extensions. This allows you to create an unlimited number of templates and load them from your theme.', 'epl' );?>
-						<li><?php _e( 'New: Sorter allows for sorting by current/sold leased.', 'epl' );?>
-						<li><?php _e( 'New: Ability to add additional sorter via filter.', 'epl' );?>
-						<li><?php _e( 'New: Post counter function for use in extensions and custom plug-ins.', 'epl' );?>
-						<li><?php _e( 'New: User fields re-built which allows for adding on new fields through filter.', 'epl' );?>
-						<li><?php _e( 'New: Help meta type allowing for better internal documentation in extensions.', 'epl' );?>
-						<li><?php _e( 'New: City meta field added to all listing types when enabled.', 'epl' );?>
-						<li><?php _e( 'New: Rental display or hide rental price.', 'epl' );?>
-						<li><?php _e( 'New: Check-box single field type.', 'epl' );?>
-						<li><?php _e( 'New: Actions added to enable extensions to better hook into listings types and optimised functions for admin column details.', 'epl' );?>
-						<li><?php _e( 'New: Dashboard widget now displays other extensions content counts.', 'epl' );?>
-						<li><?php _e( 'New: Listing widget now allows for additional selectable templates to be added through custom plug-ins, hooks and themes.', 'epl' );?>
-						<li><?php _e( 'New: Replaced widget image with a dynamic action.', 'epl' );?>
-						<li><?php _e( 'New: Filter added for Gravatar image.', 'epl' );?>
-						<li><?php _e( 'New: Replaced widget and author box image functions with actions.', 'epl' );?>
-						<li><?php _e( 'New: Uninstall function to remove all Easy Property Listings content.', 'epl' );?>
-						<li><?php _e( 'New: Get option function.', 'epl' );?>
-						<li><?php _e( 'New: When saving settings on extensions sub tabs you are no longer taken to the first tab.', 'epl' );?>
-						<li><?php _e( 'Tweak: Improved under offer, sold and leased labels.', 'epl' );?>
-						<li><?php _e( 'Tweak: Increased search widget to 380px max-width.', 'epl' );?>
-						<li><?php _e( 'Tweak: Improved install function to reduce code and allow for new settings to be added.', 'epl' );?>
-						<li><?php _e( 'Tweak: Removed redundant code and streamlined templates.', 'epl' );?>
-						<li><?php _e( 'Tweak: Improved reset query function.', 'epl' );?>
-						<li><?php _e( 'Tweak: Removed old functions improving plugin code.', 'epl' );?>
-						<li><?php _e( 'Tweak: Rebuilt address function to allow for city and country.', 'epl' );?>
-						<li><?php _e( 'Tweak: Improved sorter function in all shortcodes.', 'epl' );?>
-						<li><?php _e( 'Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.', 'epl' );?>
-						<li><?php _e( 'Fix: Listings house categories correctly display labels instead of values.', 'epl' );?>
-						<li><?php _e( 'Fix: Listings with carport, garage or values set to zero no longer display.', 'epl' );?>
-						<li><?php _e( 'Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp', 'epl' );?>
-						<li><?php _e( 'Fix: Saving listing when in debug mode and ticking hide map or hide author box.', 'epl' );?>
+						<li><?php _e( 'Tweak: Improvements to Commercial/Commercial Land/Business pricing when set to Lease type to display free form price text.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Bar graph in dashboard will no longer cover address if set to low.', 'epl' );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 2.2.3', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Adjusted new sorter function to work on lower than PHP version 5.3.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Moved old template functions to theme compatibility, will be removed in future version.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Set sorter list style to none to prevent some themes from displaying a list bullet.', 'epl' );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 2.2.2', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: CSS tweak for image size to retain proportion on some themes.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Adjusted position of show/hide suburb on Commercial/Business listing types.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Archive image correctly loading 300x200 image.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Listing address display settings fixed.', 'epl' );?></li>
+					</ul>
+				
+					<h4><?php _e( 'Version 2.2.1', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Set padding for search tabs for better display on some themes.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search function fix checking for empty option when using custom filters.', 'epl' );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 2.2', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'New: Search shortcode and widget rebuilt to enable adding additional fields through filters and hooks.', 'epl' );?></li>
+						<li><?php _e( 'New: Search shortcode and widget added additional search fields for City, State, Postcode and Country.', 'epl' );?></li>
+						<li><?php _e( 'New: Search shortcode and widget allows for optional multi select of house category.', 'epl' );?></li>
+						<li><?php _e( 'New: Search shortcode and widget improved responsive CSS.', 'epl' );?></li>
+						<li><?php _e( 'New: Grid styles included in main CSS for use in extensions.', 'epl' );?></li>
+						<li><?php _e( 'New: Upload button added for use in custom plug-ins and extensions to upload files.', 'epl' );?></li>
+						<li><?php _e( 'New: Filter to adjust tour labels.', 'epl' );?></li>
+						<li><?php _e( 'New: Filters to adjust Floor Plan labels.', 'epl' );?></li>
+						<li><?php _e( 'New: Filters to adjust External Link labels.', 'epl' );?></li>
+						<li><?php _e( 'New: Sold prices now display when set on front end and manage listings pages.', 'epl' );?></li>
+						<li><?php _e( 'New: Label function for returning meta labels.', 'epl' );?></li>
+						<li><?php _e( 'New: Ads on settings no longer display when there is an activated extension present.', 'epl' );?></li>
+						<li><?php _e( 'New: Locked and help cases options for use in extensions and custom plugins.', 'epl' );?></li>
+						<li><?php _e( 'New: Theme compatibility mode which enables all themes to display correctly with options to disable featured images for themes that automatically add featured images.', 'epl' );?></li>
+						<li><?php _e( 'New: City setting to allow addresses in countries that need more than a suburb Label is customisable from settings.', 'epl' );?></li>
+						<li><?php _e( 'New: Country setting to allow the country to display with the listing address.', 'epl' );?></li>
+						<li><?php _e( 'New: Able to adjust or add more registered thumbnail sizes through a filter.', 'epl' );?></li>
+						<li><?php _e( 'New: Function to get all the values associated with a specific post meta key.', 'epl' );?></li>
+						<li><?php _e( 'New: Replaced the_post_thumbnail on archive pages and shortcodes with a customisable hook allowing for additional customisation with themes.', 'epl' );?></li>
+						<li><?php _e( 'New: Specific templates for theme compatibility mode for archive and single listings.', 'epl' );?></li>
+						<li><?php _e( 'New: Template loading system allowing for additional templates to be added to shortcodes and widgets from themes, custom plug-ins and extensions. This allows you to create an unlimited number of templates and load them from your theme.', 'epl' );?></li>
+						<li><?php _e( 'New: Sorter allows for sorting by current/sold leased.', 'epl' );?></li>
+						<li><?php _e( 'New: Ability to add additional sorter via filter.', 'epl' );?></li>
+						<li><?php _e( 'New: Post counter function for use in extensions and custom plug-ins.', 'epl' );?></li>
+						<li><?php _e( 'New: User fields re-built which allows for adding on new fields through filter.', 'epl' );?></li>
+						<li><?php _e( 'New: Help meta type allowing for better internal documentation in extensions.', 'epl' );?></li>
+						<li><?php _e( 'New: City meta field added to all listing types when enabled.', 'epl' );?></li>
+						<li><?php _e( 'New: Rental display or hide rental price.', 'epl' );?></li>
+						<li><?php _e( 'New: Check-box single field type.', 'epl' );?></li>
+						<li><?php _e( 'New: Actions added to enable extensions to better hook into listings types and optimised functions for admin column details.', 'epl' );?></li>
+						<li><?php _e( 'New: Dashboard widget now displays other extensions content counts.', 'epl' );?></li>
+						<li><?php _e( 'New: Listing widget now allows for additional selectable templates to be added through custom plug-ins, hooks and themes.', 'epl' );?></li>
+						<li><?php _e( 'New: Replaced widget image with a dynamic action.', 'epl' );?></li>
+						<li><?php _e( 'New: Filter added for Gravatar image.', 'epl' );?></li>
+						<li><?php _e( 'New: Replaced widget and author box image functions with actions.', 'epl' );?></li>
+						<li><?php _e( 'New: Uninstall function to remove all Easy Property Listings content.', 'epl' );?></li>
+						<li><?php _e( 'New: Get option function.', 'epl' );?></li>
+						<li><?php _e( 'New: When saving settings on extensions sub tabs you are no longer taken to the first tab.', 'epl' );?></li>
+						<li><?php _e( 'New: Customisable state label.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved under offer, sold and leased labels.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved install function to reduce code and allow for new settings to be added.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Removed redundant code and streamlined templates.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved reset query function.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Removed old functions improving plugin code.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Rebuilt address function to allow for city and country.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improved sorter function in all shortcodes.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Reorganised settings page.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Translations updated and additional tags added.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Search button default label changed from "Find Me A Property!" to "Search".', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Applied custom suburb label to EPL - Listing Widget.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Listings house categories correctly display labels instead of values.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Listings with carport, garage or values set to zero no longer display.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp', 'epl' );?></li>
+						<li><?php _e( 'Fix: Saving listing when in debug mode and ticking hide map or hide author box.', 'epl' );?></li>
+						<li><?php _e( 'Fix: New Zealand currency now displays a dollar sign.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.1.11', 'epl' );?></h4>
@@ -1032,7 +1063,7 @@ class EPL_Welcome {
 					<div class="last-feature">
 						<h3><?php _e( 'Extend With Extensions', 'epl' );?></h3>
 						<h4><?php _e( '18 Extensions and many more coming','epl' );?></h4>
-						<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for Sliders, Brochires, Advanced mapping, Testimonials, Agent Staff Directory, Listing alerts, CMA Market Reports, Location Profiles, and many, many more.', 'epl' );?></p>
+						<p><?php _e( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for Listing Sliders, Brochures, Advanced mapping, Testimonials, Agent Staff Directory, Listing alerts, CMA Market Reports, Location Profiles, and many, many more.', 'epl' );?></p>
 						
 						<h4><?php _e( 'Visit the Extension Store', 'epl' );?></h4>
 						<p><a href="http://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store' , 'epl' );?></a> <?php _e( 'has a list of all available extensions to make your real estate website even better.', 'epl' );?></p>

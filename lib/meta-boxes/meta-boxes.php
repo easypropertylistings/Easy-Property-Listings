@@ -153,7 +153,7 @@ function epl_meta_box_init() {
 
 						array(
 							'name'		=>	'property_agent_hide_author_box',
-							'label'		=>	__('', 'epl'),
+							'label'		=>	'',
 							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Hide Author Box', 'epl'),
@@ -837,7 +837,7 @@ function epl_meta_box_init() {
 						'fields'	=>	array(
 							array(
 								'name'		=>	'property_address_display',
-								'label'		=>	__('Display Address?', 'epl'),
+								'label'		=>	__('Display Street Address?', 'epl'),
 								'type'		=>	'radio',
 								'opts'		=>	array(
 									'yes'	=>	__('Yes', 'epl'),
@@ -881,24 +881,10 @@ function epl_meta_box_init() {
 								'type'		=>	'text',
 								'maxlength'	=>	'80'
 							),
-							( isset($epl_settings['epl_enable_city_field'] ) &&  $epl_settings['epl_enable_city_field'] == 'yes' ) ?
-							array(
-								'name'		=>	'property_address_city',
-								'label'		=>	epl_labels('label_city'),
-								'type'		=>	'text',
-								'maxlength'	=>	'80'
-							) : array() ,
-							array(
-								'name'		=>	'property_address_state',
-								'label'		=>	epl_labels('label_state'),
-								'type'		=>	'text',
-								'maxlength'	=>	'80'
-							),
-
-
+							
 							array(
 								'name'		=>	'property_com_display_suburb',
-								'label'		=>	__('Display Suburb', 'epl'),
+								'label'		=>	__('Display', 'epl') . ' ' .epl_labels('label_suburb'),
 								'type'		=>	'radio',
 								'opts'		=>	array(
 									'yes'	=>	__('Yes', 'epl'),
@@ -906,20 +892,35 @@ function epl_meta_box_init() {
 								),
 								'include'	=>	array('commercial', 'commercial_land', 'business'),
 							),
-					
+							
+							( isset($epl_settings['epl_enable_city_field'] ) &&  $epl_settings['epl_enable_city_field'] == 'yes' ) ?
+							array(
+								'name'		=>	'property_address_city',
+								'label'		=>	epl_labels('label_city'),
+								'type'		=>	'text',
+								'maxlength'	=>	'80'
+							) : array(),
+							
+							array(
+								'name'		=>	'property_address_state',
+								'label'		=>	epl_labels('label_state'),
+								'type'		=>	'text',
+								'maxlength'	=>	'80'
+							),
+							
 							array(
 								'name'		=>	'property_address_postal_code',
 								'label'		=>	epl_labels('label_postcode'),
 								'type'		=>	'text',
 								'maxlength'	=>	'30'
 							),
-							( isset($epl_settings['epl_enable_country_field'] ) &&  $epl_settings['epl_enable_country_field'] == 'yes' ) ?
+							
 							array(
 								'name'		=>	'property_address_country',
 								'label'		=>	__('Country', 'epl'),
 								'type'		=>	'text',
 								'maxlength'	=>	'40'
-							) : array() ,
+							),
 							
 							array(
 								'name'		=>	'property_address_coordinates',
@@ -930,13 +931,12 @@ function epl_meta_box_init() {
 							),
 							array(
 								'name'		=>	'property_address_hide_map',
-								'label'		=>	__('', 'epl'),
+								'label'		=>	'',
 								'type'		=>	'checkbox_single',
 								'opts'		=>	array(
 									'yes'	=>	__('Hide Map', 'epl'),
 								)
 							)
-
 						)
 					)
 				)
@@ -1212,7 +1212,8 @@ function epl_meta_box_init() {
 							'name'		=>	'property_com_rent',
 							'label'		=>	__('Commercial Rent', 'epl'),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'40'
+							'maxlength'	=>	'40',
+							'help'		=>	__('Price Text in Pricing box over-rides displayed price' , 'epl')
 						),
 						array(
 							'name'		=>	'property_com_rent_period',
