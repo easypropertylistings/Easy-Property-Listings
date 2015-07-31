@@ -204,6 +204,7 @@
 				'label'			=>	__('Search by Property ID / Address', 'epl'),
 				'type'			=>	'text',
 				'class'			=>	'epl-search-row-full',
+				'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id')
 			),
 			array(
 				'key'			=>	'search_location',
@@ -790,7 +791,7 @@ function epl_search_pre_get_posts( $query ) {
 		
 		if(isset($property_id) ) {
 			if(is_numeric($property_id)) {
-				$query->set( 'post__in', array(intval($property_id)) );
+				
 			} else {
 				$query->set( 'epl_post_title', sanitize_text_field($property_id) );
 			}
@@ -857,6 +858,10 @@ function epl_search_pre_get_posts( $query ) {
 						$query_meta_key = isset($epl_search_form_field['query']['key']) ? 
 						$epl_search_form_field['query']['key'] :
 						$epl_search_form_field['meta_key'];
+						
+						if($query_meta_key == 'property_unique_id' && !is_numeric(${$epl_search_form_field['meta_key']}) ) {
+							continue;
+						}
 						
 						if( isset(${$epl_search_form_field['meta_key']}) && !empty(${$epl_search_form_field['meta_key']}) ) {
 						
