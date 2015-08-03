@@ -917,10 +917,21 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 	$results = $wpdb->get_results( $wpdb->prepare( "SELECT distinct(pm.`meta_value`) FROM {$wpdb->postmeta} pm LEFT JOIN {$wpdb->posts} p ON p.`ID` = pm.`post_id` WHERE pm.`meta_key` = '%s' AND p.`post_status` = '%s' AND p.`post_type` = '%s' AND pm.`meta_value` != ''", $key, $status, $type ));
 	if(!empty($results)) {
 		$return = array();
-		foreach($results as $result) {
-			$return[] = $result->meta_value;
+		if($key == 'property_category') {
+			 $defaults = epl_listing_load_meta_property_category();
 		}
-		return array_combine($return,$return);
+		foreach($results as $result) {
+			if(isset( $defaults ) && !empty( $defaults )) {
+				$return[$result->meta_value] = $defaults[$result->meta_value];
+			} else {
+				$return[] = $result->meta_value;
+			}
+			
+		}
+		if(isset( $defaults ) )
+			return $return;
+		else
+			return array_combine($return,$return);
 	}
 }
 
