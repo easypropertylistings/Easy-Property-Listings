@@ -190,10 +190,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 2.2.4 July 29, 2015 =
+= 2.2.4 August 04, 2015 =
 
 * Tweak: Improvements to Commercial/Commercial Land/Business pricing when set to Lease type to display free form price text.
 * Tweak: Bar graph in dashboard will no longer cover address if set to low.
+* Fix: Search Widget/Shortcode display house category select value instead of key.
+* Fix: Search Widget/Shortcode Property ID correctly searches numeric listing ID.
 
 = 2.2.3 July 27, 2015 =
 
