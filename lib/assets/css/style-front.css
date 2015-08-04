@@ -640,6 +640,7 @@ li.tbhead.current {
     position: absolute;
     top: 20px;
     width: 100%;
+    z-index:9999;
 }
 .epl-property-blog .status-sticker {
 	font-size: 12px;
