@@ -204,6 +204,7 @@
 				'label'			=>	__('Search by Property ID / Address', 'epl'),
 				'type'			=>	'text',
 				'class'			=>	'epl-search-row-full',
+				'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id')
 			),
 			array(
 				'key'			=>	'search_location',
@@ -264,6 +265,7 @@
 				'type'			=>	'select',
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-full',
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 			),
 			array(
 				'key'			=>	'search_price',
@@ -307,7 +309,7 @@
 									array_combine(range(1,10),array_map('epl_number_suffix_callback',range(1,10)) )
 								),
 				'type'			=>	'select',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'key'		=>	'property_bedrooms', 
@@ -326,7 +328,7 @@
 										array_combine(range(1,10),array_map('epl_number_suffix_callback',range(1,10)) )
 									),
 				'type'			=>	'select',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'key'		=>	'property_bedrooms', 
@@ -345,7 +347,7 @@
 										array_combine(range(1,3),array_map('epl_number_suffix_callback',range(1,3)) )
 									),
 				'type'			=>	'select',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'type'		=>	'numeric', 
@@ -363,7 +365,7 @@
 										array_combine(range(1,3),array_map('epl_number_suffix_callback',range(1,3)) )
 									),
 				'type'			=>	'select',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'type'		=>	'numeric', 
@@ -382,7 +384,7 @@
 									),
 				'type'			=>	'select',
 				'class'			=>	'epl-search-row-half',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'multiple'	=>	true,
 									'query'		=>	'meta',
@@ -503,7 +505,7 @@
 				'meta_key'		=>	'property_air_conditioning',
 				'label'			=>	__('Air Conditioning', 'epl'),
 				'type'			=>	'checkbox',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'compare'	=>	'IN', 
@@ -517,7 +519,7 @@
 				'meta_key'		=>	'property_pool',
 				'label'			=>	__('Pool', 'epl'),
 				'type'			=>	'checkbox',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta',
 									'compare'	=>	'IN', 
@@ -530,7 +532,7 @@
 				'meta_key'		=>	'property_security_system',
 				'label'			=>	__('Security', 'epl'),
 				'type'			=>	'checkbox',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta',
 									'compare'	=>	'IN', 
@@ -790,7 +792,7 @@ function epl_search_pre_get_posts( $query ) {
 		
 		if(isset($property_id) ) {
 			if(is_numeric($property_id)) {
-				$query->set( 'post__in', array(intval($property_id)) );
+				
 			} else {
 				$query->set( 'epl_post_title', sanitize_text_field($property_id) );
 			}
@@ -858,6 +860,10 @@ function epl_search_pre_get_posts( $query ) {
 						$epl_search_form_field['query']['key'] :
 						$epl_search_form_field['meta_key'];
 						
+						if($query_meta_key == 'property_unique_id' && !is_numeric(${$epl_search_form_field['meta_key']}) ) {
+							continue;
+						}
+						
 						if( isset(${$epl_search_form_field['meta_key']}) && !empty(${$epl_search_form_field['meta_key']}) ) {
 						
 							$this_meta_query = array(
@@ -912,10 +918,24 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 	$results = $wpdb->get_results( $wpdb->prepare( "SELECT distinct(pm.`meta_value`) FROM {$wpdb->postmeta} pm LEFT JOIN {$wpdb->posts} p ON p.`ID` = pm.`post_id` WHERE pm.`meta_key` = '%s' AND p.`post_status` = '%s' AND p.`post_type` = '%s' AND pm.`meta_value` != ''", $key, $status, $type ));
 	if(!empty($results)) {
 		$return = array();
-		foreach($results as $result) {
-			$return[] = $result->meta_value;
+		if($key == 'property_category') {
+			 $defaults = epl_listing_load_meta_property_category();
 		}
-		return array_combine($return,$return);
+		foreach($results as $result) {
+			if(isset( $defaults ) && !empty( $defaults )) {
+				if( isset($defaults[$result->meta_value]) )
+					$return[$result->meta_value] = $defaults[$result->meta_value];
+				else
+					$return[$result->meta_value] = $result->meta_value;
+			} else {
+				$return[] = $result->meta_value;
+			}
+			
+		}
+		if(isset( $defaults ) )
+			return $return;
+		else
+			return array_combine($return,$return);
 	}
 }
 
