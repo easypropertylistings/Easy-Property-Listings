@@ -922,7 +922,10 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		}
 		foreach($results as $result) {
 			if(isset( $defaults ) && !empty( $defaults )) {
-				$return[$result->meta_value] = $defaults[$result->meta_value];
+				if( isset($defaults[$result->meta_value]) )
+					$return[$result->meta_value] = $defaults[$result->meta_value];
+				else
+					$return[$result->meta_value] = $result->meta_value;
 			} else {
 				$return[] = $result->meta_value;
 			}
