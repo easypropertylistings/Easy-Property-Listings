@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 2.2.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-08-04 20:57+0800\n"
-"PO-Revision-Date: 2015-08-04 20:57+0800\n"
+"POT-Creation-Date: 2015-08-05 16:19+0800\n"
+"PO-Revision-Date: 2015-08-05 16:19+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
 "Language: en\n"
@@ -5660,80 +5660,3 @@ msgstr ""
 #: widgets/~widget-listing-search.php:236
 msgid "Bathroom"
 msgstr ""
-
-#~ msgid "Filter By Specific Listing Meta Key and Value"
-#~ msgstr "Filtra per specifici Listing Meta Key e Value"
-
-#~ msgid ""
-#~ "This shortcode allows for you to output a list of listings by type and filter them "
-#~ "by any available meta key and value. So you can display a list of </em>property</"
-#~ "em> that are <em>House</em>, or perhaps by <em>4</em> bedrooms, all possible with "
-#~ "this shortcode."
-#~ msgstr ""
-#~ "Questo shortcode permette per l'output di un elenco di annunci per tipologia e "
-#~ "filtrare da un tasto qualsiasi meta a disposizione e valore. Così si può "
-#~ "visualizzare una lista di </ em> proprietà </ em> che sono <em> Casa </ em>, o "
-#~ "forse da <em> 4 </ em> camere da letto, tutto è possibile con questo shortcode."
-
-#~ msgid ""
-#~ "The category_value accepts multiple values separated by commas. category_value="
-#~ "\"2,3,4\" or category_value=\"House,Unit\""
-#~ msgstr ""
-#~ "Il category_value accetta più valori separati da virgole. category_value =\"2,3,4 "
-#~ "\" o category_value =\"House,Unit\""
-
-#~ msgid "Customization Filters and Constants to Support Real Estate in any Country"
-#~ msgstr ""
-#~ "Filtri di personalizzazione e costanti per Sostenere Immobiliare in qualsiasi Paese"
-
-#~ msgid ""
-#~ "Each Listing type has a category filter that allows you to replace the default "
-#~ "categories with your own in your functions.php or mini plugin."
-#~ msgstr ""
-#~ "Ogni tipo di immobile dispone di un filtro di categoria che consente di sostituire "
-#~ "le categorie predefinite con la vostra nel vostro functions.php o mini plugin."
-
-#~ msgid ""
-#~ "This constant allows you to change the post slug of each of the different listing "
-#~ "types. Be default the slug for the <em>Property</em> Listing type is <em>property</"
-#~ "em>, resulting is URLs that look like: http://yoursite.com/property/property-name, "
-#~ "by using this constant, you can define the slug as anything you want."
-#~ msgstr ""
-#~ "Questa costante permette di cambiare il posto sorso di ciascuno dei diversi tipi "
-#~ "di quotazione. Essere di default la lumaca per <em> proprietà </ em> tipo di "
-#~ "immobile è di proprietà <em> </ em>, con conseguente è URL che assomigliano: "
-#~ "http://yoursite.com/property/property-name, utilizzando questo costante, è "
-#~ "possibile definire la lumaca, come tutto quello che vuoi."
-
-#~ msgid "Settings Not Updating when Saved"
-#~ msgstr "Impostazioni Non Aggiornamento quando Salvato"
-
-#~ msgid ""
-#~ "When saving the initial settings the page is refreshed but the old settings were "
-#~ "still being shown. This has been fixed."
-#~ msgstr ""
-#~ "Quando si salvano le impostazioni iniziali la pagina viene aggiornata, ma le "
-#~ "vecchie impostazioni erano ancora viene mostrato. Questo è stato risolto."
-
-#, fuzzy
-#~ msgid "Tweak: Search Widget"
-#~ msgstr "Cerca Prezzo"
-
-#~ msgid "You may need to refresh to view the new listing type in the admin menu."
-#~ msgstr ""
-#~ "Potrebbe essere necessario aggiornare per vedere il nuovo tipo di profilo nel menu "
-#~ "di amministrazione."
-
-#, fuzzy
-#~ msgid "Address Suburb"
-#~ msgstr "Indirizzo"
-
-#, fuzzy
-#~ msgid "Show Price"
-#~ msgstr "Cerca Prezzo"
-
-#~ msgid "Dynamic Archive Page (Overrides Property Type)"
-#~ msgstr "Dinamica Archive Pagina (Ereditato Tipo di casa)"
-
-#~ msgid "Disable House Category:"
-#~ msgstr "Disabilitare House Categoria:"
