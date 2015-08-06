@@ -105,11 +105,14 @@ More information at [Easy Property Listings.com.au](http://easypropertylistings.
 <strong>Advanced Mapping</strong><br>
 [Advanced Map](http://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_advanced_map) Create a beautiful map showcasing your listings with a powerful shortcode.
 
+<strong>Frontend Submissions</strong><br>
+[Frontend Submissions](http://easypropertylistings.com.au/extensions/frontend-submissions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_frontend_submissions) Frontend Submissions provides a the ability to submit listings via a frontend form for review using a shortcode. They can also edit submitted listings from the frontend of your website.
+
 <strong>Listing Alerts</strong><br>
 [Listing Alerts](http://easypropertylistings.com.au/extensions/listing-alerts/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_listing_alerts) Schedule email alerts to subscribers with HTML email support and customisable messages.
 
 <strong>Location Profiles</strong><br>
-[Location Profiles](http://easypropertylistings.com.au/extensions/listing-alerts/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_location_profiles) With this plugin, you can add detailed suburb, city or neighborhood profiles automatically to your listings in that location.
+[Location Profiles](http://easypropertylistings.com.au/extensions/location-rofiles/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_location_profiles) With this plugin, you can add detailed suburb, city or neighbourhood profiles automatically to your listings in that location.
 
 <strong>Sliders</strong><br>
 [Sliders](http://easypropertylistings.com.au/extensions/sliders/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_slider) The Sliders extension allows you to effortlessly create beautiful listing galleries that include numerous options and are fully responsive.
@@ -121,10 +124,6 @@ More information at [Easy Property Listings.com.au](http://easypropertylistings.
 [Testimonial Manager](http://easypropertylistings.com.au/extensions/testimonial-manager/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_testimonial_manager) Testimonials can be an effective way to get more listings. They add credibility and builds trust. With this plugin, quickly add testimonials and have them link with properties in specific locations.
 
 [Many more extensions can be found here](http://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions).
-
-**Link listings with other types of content**
-
-With add-ons for [Listing Templates](http://easypropertylistings.com.au/extensions/listing-templates/), [Suburb/City Profiles](http://easypropertylistings.com.au/extensions/suburb-profiles/), [Testimonials](http://easypropertylistings.com.au/extensions/testimonial-manager/), and [Staff Directory](http://easypropertylistings.com.au/extensions/staff-directory/), [Awards](http://easypropertylistings.com.au/extensions/awards/), [Business Directory](http://easypropertylistings.com.au/extensions/business-directory/), [FeedSync REAXML](http://easypropertylistings.com.au/extensions/feedsync/), and more, Easy Property Listings can enhance your listings by dynamically linking content and you offering opportunities to build a deep real estate website.
 
 **Languages**
 
