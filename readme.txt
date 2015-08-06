@@ -112,7 +112,7 @@ More information at [Easy Property Listings.com.au](http://easypropertylistings.
 [Listing Alerts](http://easypropertylistings.com.au/extensions/listing-alerts/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_listing_alerts) Schedule email alerts to subscribers with HTML email support and customisable messages.
 
 <strong>Location Profiles</strong><br>
-[Location Profiles](http://easypropertylistings.com.au/extensions/location-rofiles/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_location_profiles) With this plugin, you can add detailed suburb, city or neighbourhood profiles automatically to your listings in that location.
+[Location Profiles](http://easypropertylistings.com.au/extensions/location-profiles/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_location_profiles) With this plugin, you can add detailed suburb, city or neighbourhood profiles automatically to your listings in that location.
 
 <strong>Sliders</strong><br>
 [Sliders](http://easypropertylistings.com.au/extensions/sliders/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_slider) The Sliders extension allows you to effortlessly create beautiful listing galleries that include numerous options and are fully responsive.
