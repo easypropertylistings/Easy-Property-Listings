@@ -265,6 +265,7 @@
 				'type'			=>	'select',
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-full',
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 			),
 			array(
 				'key'			=>	'search_price',
@@ -308,7 +309,7 @@
 									array_combine(range(1,10),array_map('epl_number_suffix_callback',range(1,10)) )
 								),
 				'type'			=>	'select',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'key'		=>	'property_bedrooms', 
@@ -327,7 +328,7 @@
 										array_combine(range(1,10),array_map('epl_number_suffix_callback',range(1,10)) )
 									),
 				'type'			=>	'select',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'key'		=>	'property_bedrooms', 
@@ -346,7 +347,7 @@
 										array_combine(range(1,3),array_map('epl_number_suffix_callback',range(1,3)) )
 									),
 				'type'			=>	'select',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'type'		=>	'numeric', 
@@ -364,7 +365,7 @@
 										array_combine(range(1,3),array_map('epl_number_suffix_callback',range(1,3)) )
 									),
 				'type'			=>	'select',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'type'		=>	'numeric', 
@@ -383,7 +384,7 @@
 									),
 				'type'			=>	'select',
 				'class'			=>	'epl-search-row-half',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'multiple'	=>	true,
 									'query'		=>	'meta',
@@ -504,7 +505,7 @@
 				'meta_key'		=>	'property_air_conditioning',
 				'label'			=>	__('Air Conditioning', 'epl'),
 				'type'			=>	'checkbox',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta', 
 									'compare'	=>	'IN', 
@@ -518,7 +519,7 @@
 				'meta_key'		=>	'property_pool',
 				'label'			=>	__('Pool', 'epl'),
 				'type'			=>	'checkbox',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta',
 									'compare'	=>	'IN', 
@@ -531,7 +532,7 @@
 				'meta_key'		=>	'property_security_system',
 				'label'			=>	__('Security', 'epl'),
 				'type'			=>	'checkbox',
-				'exclude'		=>	array('land'),
+				'exclude'		=>	array('land','commercial','commercial_land','business'),
 				'query'			=>	array(
 									'query'		=>	'meta',
 									'compare'	=>	'IN', 

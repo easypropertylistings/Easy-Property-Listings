@@ -642,6 +642,7 @@ li.tbhead.current {
     width: 100%;
     z-index:9999;
 }
+.epl-property-single .status-sticker,
 .epl-property-blog .status-sticker {
 	font-size: 12px;
 	background: #F00;
@@ -650,12 +651,15 @@ li.tbhead.current {
 	text-transform: uppercase;
 	color: #fff;
 }
+.epl-property-single .status-sticker.under-offer,
 .epl-property-blog .status-sticker.under-offer {
 	background: #FFA500;
 }
+.epl-property-single .status-sticker.open,
 .epl-property-blog .status-sticker.open {
 	background: #7FAF1B;
 }
+.epl-property-single .status-sticker.new,
 .epl-property-blog .status-sticker.new {
 	background: #800080;
 }
