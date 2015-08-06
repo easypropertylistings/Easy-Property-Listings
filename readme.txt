@@ -5,7 +5,7 @@ Contributors: mervb1
 Donate link: http://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.3
-Tested up to: 4.2.3
+Tested up to: 4.2.4
 
 Stable Tag: 2.2.4
 
@@ -102,13 +102,25 @@ More information at [Easy Property Listings.com.au](http://easypropertylistings.
 
 **Follow this plugin on [GitHub](https://github.com/easypropertylistings/Easy-Property-Listings)**
 
-**Advanced Mapping**
+<strong>Advanced Mapping</strong><br>
+[Advanced Map](http://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_advanced_map) Create a beautiful map showcasing your listings with a powerful shortcode.
 
-[Advanced Map](http://easypropertylistings.com.au/extensions/advanced-mapping/) Create a beautiful map showcasing your listings with a powerful shortcode.
+<strong>Listing Alerts</strong><br>
+[Listing Alerts](http://easypropertylistings.com.au/extensions/listing-alerts/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_listing_alerts) Schedule email alerts to subscribers with HTML email support and customisable messages.
 
-**Listing Alerts**
+<strong>Location Profiles</strong><br>
+[Location Profiles](http://easypropertylistings.com.au/extensions/listing-alerts/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_location_profiles) With this plugin, you can add detailed suburb, city or neighborhood profiles automatically to your listings in that location.
 
-[Listing Alerts](http://easypropertylistings.com.au/extensions/listing-alerts/) Schedule email alerts to subscribers with HTML email support and customisable messages.
+<strong>Sliders</strong><br>
+[Sliders](http://easypropertylistings.com.au/extensions/sliders/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_slider) The Sliders extension allows you to effortlessly create beautiful listing galleries that include numerous options and are fully responsive.
+
+<strong>Staff/Agent Directory</strong><br>
+[Staff/Agent Directory](http://easypropertylistings.com.au/extensions/staff-directory/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_staff_directory) Give your real estate agents and staff an enhanced author profile on your listings and manage staff members with this extension.
+
+<strong>Testimonial Manager</strong><br>
+[Testimonial Manager](http://easypropertylistings.com.au/extensions/testimonial-manager/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_testimonial_manager) Testimonials can be an effective way to get more listings. They add credibility and builds trust. With this plugin, quickly add testimonials and have them link with properties in specific locations.
+
+[Many more extensions can be found here](http://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions).
 
 **Link listings with other types of content**
 
