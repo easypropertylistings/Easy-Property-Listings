@@ -1,0 +1,81 @@
+* {margin: 0; padding: 0;}
+body {margin: 30px; font: 13px/1.5 "Trebuchet MS", Tahoma, Arial;}
+a {color: #0094D6;}
+p {padding: 7px 0;}
+h1 {font-size: 21px; font-weight: normal; margin: 0 0 30px;}
+
+/*************** tabs **************/
+.epl_ui_tab_wrapper{
+	width: 800px;
+	margin: 0 auto;
+}
+
+ul.epl_ui_tab_menu_wrapper{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.epl_ui_tab_menu_wrapper_vertical {
+    display: inline;
+    float: left;
+    width: 25%;
+}
+
+ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu{
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+.epl_ui_tab_menu_wrapper_vertical li {
+    width: 100%;
+}
+
+ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
+	background: #ededed;
+	color: #222;
+}
+
+.epl_ui_tab_content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.epl_ui_tab_wrapper_vertical .epl_ui_tab_content{
+	margin-left:25%;
+}
+
+.epl_ui_tab_content_current{
+	display: inherit;
+}
+
+/*************** accordian **************/
+.epl_ui_accordion_wrapper{
+	width: 800px;
+	margin: 0 auto;
+}
+
+.epl_ui_accordion_menu{
+	background: none;
+	color: #222;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+.epl_ui_accordion_menu_current{
+	background: #ededed;
+	color: #222;
+}
+
+.epl_ui_accordion_content{
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.epl_ui_accordion_content_current{
+	display: inherit;
+}
