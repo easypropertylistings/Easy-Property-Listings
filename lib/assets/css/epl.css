@@ -1,12 +1,6 @@
-* {margin: 0; padding: 0;}
-body {margin: 30px; font: 13px/1.5 "Trebuchet MS", Tahoma, Arial;}
-a {color: #0094D6;}
-p {padding: 7px 0;}
-h1 {font-size: 21px; font-weight: normal; margin: 0 0 30px;}
-
 /*************** tabs **************/
 .epl_ui_tab_wrapper{
-	width: 800px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -18,15 +12,16 @@ ul.epl_ui_tab_menu_wrapper{
 .epl_ui_tab_menu_wrapper_vertical {
     display: inline;
     float: left;
-    width: 25%;
+    width: 20%;
 }
 
 ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu{
-	background: none;
-	color: #222;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
+    background: none repeat scroll 0 0 #eeeeee;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    margin: 1px;
+    padding: 10px 15px;
 }
 
 .epl_ui_tab_menu_wrapper_vertical li {
@@ -34,14 +29,21 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu{
 }
 
 ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
-	background: #ededed;
-	color: #222;
+    background: none repeat scroll 0 0 #fafafa;
+    border-bottom: 2px solid #999999;
+    color: #222222;
+    margin-bottom: 0;
 }
-
+.epl_ui_tab_menu > a {
+    color: #222222;
+    font-size: 1em;
+    text-decoration: none;
+}
 .epl_ui_tab_content{
 	display: none;
-	background: #ededed;
-	padding: 15px;
+    background: none repeat scroll 0 0 #fafafa;
+    margin-bottom: 2em;
+    padding: 0.5em;
 }
 
 .epl_ui_tab_wrapper_vertical .epl_ui_tab_content{
@@ -54,26 +56,31 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 
 /*************** accordian **************/
 .epl_ui_accordion_wrapper{
-	width: 800px;
-	margin: 0 auto;
+	width: 100%;
+	margin: 2% auto;
 }
 
 .epl_ui_accordion_menu{
-	background: none;
-	color: #222;
-	padding: 10px 15px;
-	cursor: pointer;
+	background: none repeat scroll 0 0 #eeeeee;
+    color: #222222;
+    cursor: pointer;
+    margin: 1px;
+    padding: 10px 15px;
 }
 
 .epl_ui_accordion_menu_current{
-	background: #ededed;
-	color: #222;
+    background: none repeat scroll 0 0 #fafafa;
+    border-bottom: 2px solid #999999;
+    color: #222222;
+    margin-bottom: 0;
+
 }
 
 .epl_ui_accordion_content{
 	display: none;
-	background: #ededed;
-	padding: 15px;
+	background: none repeat scroll 0 0 #fafafa;
+    margin-bottom: 2em;
+    padding: 0.5em;
 }
 
 .epl_ui_accordion_content_current{

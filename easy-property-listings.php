@@ -166,6 +166,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			require_once EPL_PATH_LIB . 'api/cpt.php';
+			require_once EPL_PATH_LIB . 'api/form_builder.php';
 			
 			// Activate post types based on settings
 			if(isset($epl_settings['activate_post_types'])) {
