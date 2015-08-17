@@ -538,6 +538,7 @@ li.tbhead.current {
 }
 .property-box img {
 	max-width: 100%;
+	height: auto;
 }
 .property-box-left {
 	width:50%;
@@ -639,7 +640,9 @@ li.tbhead.current {
     position: absolute;
     top: 20px;
     width: 100%;
+    z-index:9999;
 }
+.epl-property-single .status-sticker,
 .epl-property-blog .status-sticker {
 	font-size: 12px;
 	background: #F00;
@@ -648,12 +651,15 @@ li.tbhead.current {
 	text-transform: uppercase;
 	color: #fff;
 }
+.epl-property-single .status-sticker.under-offer,
 .epl-property-blog .status-sticker.under-offer {
 	background: #FFA500;
 }
+.epl-property-single .status-sticker.open,
 .epl-property-blog .status-sticker.open {
 	background: #7FAF1B;
 }
+.epl-property-single .status-sticker.new,
 .epl-property-blog .status-sticker.new {
 	background: #800080;
 }
@@ -683,7 +689,8 @@ li.tbhead.current {
 	overflow: hidden;
 }
 .epl-search-tabs {
-	margin-bottom: 0;
+	margin: 0;
+	padding: 0;
 }
 .epl-search-form { 
 	background: transparent; 
@@ -1200,11 +1207,9 @@ li.tbhead.current {
 	padding: 0 5px;
 	vertical-align: middle;
 }
-/* Switching view grid-list */
-
 .epl-switch-view li {
 	float: left;
-	list-style: outside none none;
+	list-style: none !important;
 	opacity: 0.5;
 	padding: 0 10px;
 	cursor:pointer;

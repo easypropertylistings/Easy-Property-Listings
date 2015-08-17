@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.2.3
 
-Stable Tag: 2.2
+Stable Tag: 2.2.4
 
 License: GNU Version 2 or Any Later Version
 
@@ -189,6 +189,33 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.2.4 August 05, 2015 =
+
+* Tweak: Improvements to Commercial/Commercial Land/Business pricing when set to Lease type to display free form price text.
+* Tweak: Bar graph in dashboard will no longer cover address if set to low.
+* Tweak: Added sticker CSS styling for single listing.
+* Fix: Search Widget/Shortcode display house category value instead of key.
+* Fix: Search Widget/Shortcode Property ID correctly searches numeric listing ID.
+* Fix: Search Widget/Shortcode excluded non searchable fields from land, commercial, commercial land and business post types.
+
+= 2.2.3 July 27, 2015 =
+
+* Tweak: Adjusted new sorter function to work on lower than PHP version 5.3.
+* Tweak: Moved old template functions to theme compatibility, will be removed in future version.
+* Tweak: Set sorter list style to none to prevent some themes from displaying a list bullet.
+
+= 2.2.2 July 25, 2015 =
+
+* Tweak: CSS tweak for image size to retain proportion on certain themes.
+* Tweak: Adjusted position of show/hide suburb on Commercial/Business listing types.
+* Fix: Archive image correctly loading 300x200 image.
+* Fix: Listing address display settings fixed.
+
+= 2.2.1 July 24, 2015 =
+
+* Tweak: Set padding for search tabs for better display on some themes.
+* Fix: Search function fix checking for empty option when using custom filters.
 
 = 2.2 July 24, 2015 =
 

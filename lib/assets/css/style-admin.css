@@ -490,6 +490,7 @@ h3.epl-welcome-sub-heading {
 }
 /* Graph: Price bars */
 .epl-price-bar {
+	overflow: hidden;
 }
 .epl-price-bar span {
 	display: inline-block;

@@ -269,9 +269,39 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
-					
-					<h4><?php _e( 'Version 2.2', 'epl' );?></h4>
 				
+					<h4><?php _e( 'Version 2.2.4', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Improvements to Commercial/Commercial Land/Business pricing when set to Lease type to display free form price text.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Bar graph in dashboard will no longer cover address if set to low.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added sticker CSS styling for single listing.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search Widget/Shortcode display house category value instead of key.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search Widget/Shortcode Property ID correctly searches numeric listing ID.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search Widget/Shortcode excluded non searchable fields from land, commercial, commercial land and business post types.', 'epl' );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 2.2.3', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Adjusted new sorter function to work on lower than PHP version 5.3.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Moved old template functions to theme compatibility, will be removed in future version.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Set sorter list style to none to prevent some themes from displaying a list bullet.', 'epl' );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 2.2.2', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: CSS tweak for image size to retain proportion on some themes.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Adjusted position of show/hide suburb on Commercial/Business listing types.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Archive image correctly loading 300x200 image.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Listing address display settings fixed.', 'epl' );?></li>
+					</ul>
+				
+					<h4><?php _e( 'Version 2.2.1', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Set padding for search tabs for better display on some themes.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search function fix checking for empty option when using custom filters.', 'epl' );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 2.2', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Search shortcode and widget rebuilt to enable adding additional fields through filters and hooks.', 'epl' );?></li>
 						<li><?php _e( 'New: Search shortcode and widget added additional search fields for City, State, Postcode and Country.', 'epl' );?></li>

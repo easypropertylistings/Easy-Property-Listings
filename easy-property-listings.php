@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, lead generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 2.2
+ * Version: 2.2.4
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 2.2
+ * @version 2.2.4
  */
  
 // Exit if accessed directly
@@ -83,34 +83,28 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '2.2' );
+				define( 'EPL_PROPERTY_VER', '2.2.4' );
 			}
-			
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
 				define( 'EPL_PROPERTY_DB_VER', '2.0' );
 			}
-			
 			// Current Page
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
 				define("EPL_CURRENT_PAGE", basename($_SERVER['PHP_SELF']));
 			}
-			
 			// Current Page
 			if ( ! defined( 'EPL_PLUGIN_FILE' ) ) {
 				define("EPL_PLUGIN_FILE", plugin_basename( __FILE__ ));
 			}
-
 			// Plugin Folder URL
 			if ( ! defined( 'EPL_PLUGIN_URL' ) ) {
 				define( 'EPL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 			}
-			
 			// Plugin Folder Path
 			if ( ! defined( 'EPL_PLUGIN_PATH' ) ) {
 				define( 'EPL_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 			}
-
 			// Plugin Sub-Directory Paths
 			if ( ! defined( 'EPL_PATH_LIB' ) ) {
 				define( 'EPL_PATH_LIB', EPL_PLUGIN_PATH . 'lib/' );
@@ -146,8 +140,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			}
 		}
 		
-		
-	
 		/*
 		 * Include required files
 		 *
@@ -215,11 +207,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 						
 						default :
 							break;
-
 					}
 				}
-				
-				
 			}
 
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
@@ -268,8 +257,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/install.php';
 		}
 		
-
-		
 		/**
 		 * Loads the plugin language files
 		 *
@@ -303,7 +290,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		}
 	}
 endif; // End if class_exists check
-
 
 /*
  * The main function responsible for returning the one true Easy_Property_Listings
