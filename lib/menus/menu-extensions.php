@@ -27,47 +27,14 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 					}
 
 					if($field['type'] == 'text') {
-					
-						if( isset($_REQUEST[ $field['name'] ]) && is_array($_REQUEST[ $field['name'] ]) ) {
-							array_walk_recursive($_REQUEST[ $field['name'] ], 'sanitize_text_field');
-						}
-						
-						if( isset($_REQUEST[ $field['name'] ])  && is_string($_REQUEST[ $field['name'] ]) ) {
-							$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
-						}
-						
+						$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 					}
 					
 					if( isset($_REQUEST[ $field['name'] ]) ) {
 						$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
-						
-						// remove fields after adding them to epl_settings
-						unset($_REQUEST[ $field['name'] ]);
 					}
 				}
 			}
-			
-			/**
-			* adding some way for dynamic fields to be added to epl_settings array
-			*/
-
-			/** settings page params **/
-			$page_params = apply_filters('epl_settings_page_params',array('tab','page','sub_tab','action','submit') );
-			
-			/** remove all settings page params from $_REQUEST **/
-			foreach($page_params as $page_param) {
-				if( isset($_REQUEST[$page_param]) ) { 
-					unset($_REQUEST[$page_param]);
-				}
-			}
-			
-			/** remain fields are probably dynamic fields added via javascript/jquery 
-			 *  save them as well if they are not already in $epl_settings
-			 */ 
-			 foreach($_REQUEST as $dynamic_key	=>	$dynamic_value) {
-			 	if($dynamic_value != '')
-			 		$epl_settings[ $dynamic_key ] = $dynamic_value;
-			 }
 			update_option('epl_settings', $epl_settings);
 		}
 	}
@@ -92,9 +59,7 @@ $epl_settings = get_option('epl_settings');
 		?>
 		
 	</h2>
-	<?php
-	/** re get fields so that we can get updated fields if added via hook **/
-	$epl_extensions = epl_get_new_admin_option_fields(); 
+	<?php 
 	if(array_key_exists($active_tab, $epl_extensions)):
 		$ext_field_groups = $epl_extensions[$active_tab];?>
 		<div class="epl-content">
@@ -167,7 +132,7 @@ $epl_settings = get_option('epl_settings');
 								<?php } ?>
 								<div class="<?php echo $field['type'] == 'help' ? 'epl-full': 'epl-half-right'; ?>">
 									<?php
-										$val = isset($field['default']) ? $field['default'] : '' ;
+										$val = '';
 										if(isset($epl_settings[ $field['name'] ])) {
 											$val = $epl_settings[ $field['name'] ];
 										}

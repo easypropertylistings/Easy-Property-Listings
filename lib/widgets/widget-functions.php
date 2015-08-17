@@ -860,7 +860,7 @@ function epl_search_pre_get_posts( $query ) {
 						$epl_search_form_field['query']['key'] :
 						$epl_search_form_field['meta_key'];
 						
-						if($query_meta_key == 'property_unique_id' && isset(${$epl_search_form_field['meta_key']}) &&  !is_numeric(${$epl_search_form_field['meta_key']}) ) {
+						if($query_meta_key == 'property_unique_id' && !is_numeric(${$epl_search_form_field['meta_key']}) ) {
 							continue;
 						}
 						

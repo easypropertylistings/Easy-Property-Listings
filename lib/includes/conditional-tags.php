@@ -39,19 +39,6 @@
 		return 		is_post_type_archive($epl_posts);
 	}
 	
-	/**
-	 *	list of all epl cpts 
-	 *	@since 2.4
-	 */
-	function epl_all_post_types() {
-		
-		$epl_posts  = epl_get_active_post_types();
-		$epl_posts	= array_keys($epl_posts);
-		return apply_filters('epl_additional_post_types',$epl_posts);
-	}
-	
-	
-	
 	
 
 	

@@ -823,15 +823,10 @@ function epl_admin_sidebar () {
 		case 'url':
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[url]]" />';
 			break;
-		case 'button':
-			$classes = isset($field['class']) ? $field['class'] : '';
-			echo '<input type="button" name="'.$field['name'].'" id="'.$field['name'].'" value="'.$field['value'].'" class="'.$classes.'" />';
-			break;
 		case 'locked':
 			$atts = '';
 			echo '<span>'.stripslashes($val).'</span>';
 			break;
-
 		case 'help':
 			echo '<div class="epl-help-container" id="'.isset($field['name']) ? $field['name'] : ''.'">
 					'.isset($field['content']) ? $field['content'] : ''.'
@@ -841,12 +836,7 @@ function epl_admin_sidebar () {
 		default:
 			$atts = '';
 			if(isset($field['maxlength']) &&  $field['maxlength'] > 0) {
-				$atts .= ' maxlength="'.$field['maxlength'].'"';
-			}
-			foreach($field as $temp_key	=>	$temp_value) {
-				if (0 === strpos($temp_key, 'data-')) {
-				  $atts .= ''.$temp_key.'="'.$temp_value.'"';
-				}
+				$atts = ' maxlength="'.$field['maxlength'].'"';
 			}
 			echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
 	}
