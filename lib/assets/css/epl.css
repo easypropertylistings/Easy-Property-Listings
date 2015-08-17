@@ -1,0 +1,88 @@
+/*************** tabs **************/
+.epl_ui_tab_wrapper{
+	width: 100%;
+	margin: 0 auto;
+}
+
+ul.epl_ui_tab_menu_wrapper{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.epl_ui_tab_menu_wrapper_vertical {
+    display: inline;
+    float: left;
+    width: 20%;
+}
+
+ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu{
+    background: none repeat scroll 0 0 #eeeeee;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    margin: 1px;
+    padding: 10px 15px;
+}
+
+.epl_ui_tab_menu_wrapper_vertical li {
+    width: 100%;
+}
+
+ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
+    background: none repeat scroll 0 0 #fafafa;
+    border-bottom: 2px solid #999999;
+    color: #222222;
+    margin-bottom: 0;
+}
+.epl_ui_tab_menu > a {
+    color: #222222;
+    font-size: 1em;
+    text-decoration: none;
+}
+.epl_ui_tab_content{
+	display: none;
+    background: none repeat scroll 0 0 #fafafa;
+    margin-bottom: 2em;
+    padding: 0.5em;
+}
+
+.epl_ui_tab_wrapper_vertical .epl_ui_tab_content{
+	margin-left:25%;
+}
+
+.epl_ui_tab_content_current{
+	display: inherit;
+}
+
+/*************** accordian **************/
+.epl_ui_accordion_wrapper{
+	width: 100%;
+	margin: 2% auto;
+}
+
+.epl_ui_accordion_menu{
+	background: none repeat scroll 0 0 #eeeeee;
+    color: #222222;
+    cursor: pointer;
+    margin: 1px;
+    padding: 10px 15px;
+}
+
+.epl_ui_accordion_menu_current{
+    background: none repeat scroll 0 0 #fafafa;
+    border-bottom: 2px solid #999999;
+    color: #222222;
+    margin-bottom: 0;
+
+}
+
+.epl_ui_accordion_content{
+	display: none;
+	background: none repeat scroll 0 0 #fafafa;
+    margin-bottom: 2em;
+    padding: 0.5em;
+}
+
+.epl_ui_accordion_content_current{
+	display: inherit;
+}
