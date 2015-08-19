@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Author extends WP_Widget {
 
 	function __construct() {
-		parent::WP_Widget( false, $name = __('EPL - Author', 'epl') );
+		parent::__construct( false, $name = __('EPL - Author', 'epl') );
 	}
 
 	function widget($args, $instance) {

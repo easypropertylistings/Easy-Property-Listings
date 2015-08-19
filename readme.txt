@@ -5,9 +5,9 @@ Contributors: mervb1
 Donate link: http://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.3
-Tested up to: 4.2.3
+Tested up to: 4.3
 
-Stable Tag: 2.2.4
+Stable Tag: 2.2.5
 
 License: GNU Version 2 or Any Later Version
 
@@ -19,11 +19,15 @@ Easy Property Listing is one of the most dynamic and feature rich Real Estate pl
 
 An easy to use plugin that provides the needed functions to configure a dynamic real estate website in minutes. Packed with advanced features, shortcodes and templates letting you create real estate websites fast.
 
-> <strong>Theme Setup</strong><br>
-> To get the best result from Easy Property Listings on your real estate website you need to [configure your theme](http://easypropertylistings.com.au/docs/setup-wordpress-theme-easy-property-listings-2-0/) using some copy and paste. This will enable a better display and will make the plugin look great on any WordPress theme. If you need theme setup assistance first check the [theme support forum](http://easypropertylistings.com.au/support/forum/theme-support/) as many templates are already available.
+> <strong>Theme Setup - Are you feeling lucky?</strong><br>
+> The latest release of Easy Property Listings includes a theme compatibility mode that works great for most themes. Once you have activated the plugin visit Dashboard > Easy Property Listings > Settings > Theme Setup. Before you enable the theme compatibility mode, add a listing and preview. If it looks great, you are good to go, however if your listing is too wide or your sidebar is in the wrong place activate Theme Compatibility mode. Next adjust the 
+Theme Setup: Featured Images to adjust how your featured images appear. If you see two featured images play with the settings until it looks great.
+
+> <strong>Manual Theme Setup</strong><br>
+> To get the best result from Easy Property Listings on your real estate website you need to either manually [configure your theme](http://easypropertylistings.com.au/docs/setup-wordpress-theme-easy-property-listings-2-0/) using some copy and paste which gives you greater control over your listings. This will enable a better display and will make the plugin look great on any WordPress theme. If you need theme setup assistance first check the [theme support forum](http://easypropertylistings.com.au/support/forum/theme-support/) as we have already created many templates for popular WordPress themes.
 
 > <strong>Premium Support</strong><br>
-> The Easy Property Listings team does not provide support for the real estate plugin on the WordPress.org forums. One on one forum support is available to people who bought [Premium support](http://easypropertylistings.com.au/support/pricing/?utm_source=readme&utm_medium=description_tab&utm_content=premium_support&utm_campaign=wordpressorg) only. Note that Premium Support also includes the [Advanced Mapping](http://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=wordpressorg) extension and theme setup assistance so it might be well worth your investment!
+> The Easy Property Listings team does not provide support for the real estate plugin on the WordPress.org forums. One on one forum support is available to people who bought [Premium support](http://easypropertylistings.com.au/support/pricing/?utm_source=readme&utm_medium=description_tab&utm_content=premium_support&utm_campaign=wordpressorg) only.
 
 You should also check out the Local SEO, News SEO and Video SEO extensions to WordPress SEO, these of course come with support too.
 
@@ -102,17 +106,34 @@ More information at [Easy Property Listings.com.au](http://easypropertylistings.
 
 **Follow this plugin on [GitHub](https://github.com/easypropertylistings/Easy-Property-Listings)**
 
-**Advanced Mapping**
+<strong>Advanced Mapping</strong><br>
+[Advanced Map](http://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_advanced_map) Create a beautiful map showcasing your listings with a powerful shortcode.
 
-[Advanced Map](http://easypropertylistings.com.au/extensions/advanced-mapping/) Create a beautiful map showcasing your listings with a powerful shortcode.
+<strong>Brochures and Stock List Extension</strong><br>
+With the [brochures](http://easypropertylistings.com.au/extensions/brochures/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_brochures) extension for Easy Property Listings you can create printable brochures and stock lists for your listings. There are several options to control the brochure styles and templates. Or create your own!
 
-**Listing Alerts**
+<strong>Frontend Submissions</strong><br>
+[Frontend Submissions](http://easypropertylistings.com.au/extensions/frontend-submissions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_frontend_submissions) Frontend Submissions provides a the ability to submit listings via a frontend form for review using a shortcode. They can also edit submitted listings from the frontend of your website.
 
-[Listing Alerts](http://easypropertylistings.com.au/extensions/listing-alerts/) Schedule email alerts to subscribers with HTML email support and customisable messages.
+<strong>Listing Alerts</strong><br>
+[Listing Alerts](http://easypropertylistings.com.au/extensions/listing-alerts/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_listing_alerts) Schedule email alerts to subscribers with HTML email support and customisable messages.
 
-**Link listings with other types of content**
+<strong>Location Profiles</strong><br>
+[Location Profiles](http://easypropertylistings.com.au/extensions/location-profiles/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_location_profiles) With this plugin, you can add detailed suburb, city or neighbourhood profiles automatically to your listings in that location.
 
-With add-ons for [Listing Templates](http://easypropertylistings.com.au/extensions/listing-templates/), [Suburb/City Profiles](http://easypropertylistings.com.au/extensions/suburb-profiles/), [Testimonials](http://easypropertylistings.com.au/extensions/testimonial-manager/), and [Staff Directory](http://easypropertylistings.com.au/extensions/staff-directory/), [Awards](http://easypropertylistings.com.au/extensions/awards/), [Business Directory](http://easypropertylistings.com.au/extensions/business-directory/), [FeedSync REAXML](http://easypropertylistings.com.au/extensions/feedsync/), and more, Easy Property Listings can enhance your listings by dynamically linking content and you offering opportunities to build a deep real estate website.
+<strong>Market Research</strong><br>
+[Market Research](http://easypropertylistings.com.au/extensions/market-research/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_market_research). With the Market Research extension for Easy Property Listings you can import property sales data and dynamically display it on your listings in a matching location.
+
+<strong>Sliders</strong><br>
+[Sliders](http://easypropertylistings.com.au/extensions/sliders/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_slider) The Sliders extension allows you to effortlessly create beautiful listing galleries that include numerous options and are fully responsive.
+
+<strong>Staff/Agent Directory</strong><br>
+[Staff/Agent Directory](http://easypropertylistings.com.au/extensions/staff-directory/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_staff_directory) Give your real estate agents and staff an enhanced author profile on your listings and manage staff members with this extension.
+
+<strong>Testimonial Manager</strong><br>
+[Testimonial Manager](http://easypropertylistings.com.au/extensions/testimonial-manager/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_testimonial_manager) Testimonials can be an effective way to get more listings. They add credibility and builds trust. With this plugin, quickly add testimonials and have them link with properties in specific locations.
+
+[Many more extensions can be found here](http://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions).
 
 **Languages**
 
@@ -140,17 +161,33 @@ Would you like to help translate the plugin into more languages? [Join our Trans
 2. Go to Easy Property Listings > Settings and enable your listing types and press save.
 3. Customise your labels, tweak the display, all in minutes from Easy Property Listings > Setting page.
 4. Add a listing as you would a post. Check the help guide inside the plugin. Dashboard > Easy Property Listings > Help. These instructions are also accessible to authors.
-5. Create blank pages for each listing type you enable so you can easily add the archive page to your WordPress menus
-6. Insert short codes, add widgets, read the guide.
-7. For detailed setup instructions, visit the official [Documentation](http://easypropertylistings.com.au/documentation/) page.
+5. Create blank pages for each listing type you enable so you can easily add the archive page to your WordPress menus. There are detailed instructions which you can access from your Dashboard > Easy Property Listings > Help & Help > Getting Started
+6. The latest release of Easy Property Listings includes a theme compatibility mode that works great for most themes. Once you have activated the plugin visit Dashboard > Easy Property Listings > Settings > Theme Setup. Before you enable the theme compatibility mode, add a listing and preview. If it looks great, you are good to go, however if your listing is too wide or your sidebar is in the wrong place activate Theme Compatibility mode. Next adjust the 
+Theme Setup: Featured Images to adjust how your featured images appear. If you see two featured images play with the settings until it looks great.
+7. Add widgets, shortcodes and listings.
+8. Have a cup of coffee as you'll be amazed at how quickly and easily you created an advanced Real Estate listing website.
+9. For detailed setup instructions, visit the official [Documentation](http://easypropertylistings.com.au/documentation/) page.
+10. Visit the [Extension Store](http://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions) to further enhance your real estate website with cool SEO focused tools.
 
 == Frequently Asked Questions ==
+
+= Will this work for bigger companies with multiple agents? =
+
+Absolutely, Easy Property Listings is built from the ground up for scale, speed and thousands of listings. When you want dynamic agent and staff profiles we recommend the [Staff/Agent Directory](http://easypropertylistings.com.au/extensions/staff-directory/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_staff_directory) extension. This allows you to quickly set-up multiple agent and staff members and automatically display all the agents listings, post activity and use a featured image instead of the default Gravatar.
+
+= We want to display less or more info on the archive and single listing views, how can we create a unique customised look? =
+
+You can use the Easy Property Listings template loading system that lets you place all the plugin templates inside themes/YOUR_THEME/easypropertylistings/ folder and edit everything. You can [read more about how to do that here](http://easypropertylistings.com.au/docs/create-custom-theme-templates-using-included-hooks/?utm_source=readme&utm_medium=faq_tab&utm_content=templates&utm_campaign=epl_documentation).
 
 = How do I setup my WordPress theme to work with Easy Property Listings 2.0 =
 
 In order for correct integration with your WordPress theme please follow these instructions [WordPress Theme configuration instructions](http://easypropertylistings.com.au/section/theming/).
 
 These instructions are also located inside the plugin. Visit Dashboard > Easy Property Listings > Help > Getting Started > Setup your theme to work with the plugin
+
+= Do I need to know code like php or advanced CSS? =
+
+We built this plugin from the perspective of a real estate agent as that's what I used to do. We want this to be an easy to install and use plugin so you can focus on listing/selling and leasing property. No advanced coding knowledge needed, activate the property types and add listings, so no matter your experience it will work for you.
 
 = How do I Show My List of Listings? =
 
@@ -189,6 +226,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.2.5 August 20, 2015 =
+
+* Fix: Widget construct fixes for WordPress 4.3.
+* Tweak: Un-install function.
+* Tweak: Plugin page link to settings.
+* Tweak: Languages updated.
 
 = 2.2.4 August 05, 2015 =
 
