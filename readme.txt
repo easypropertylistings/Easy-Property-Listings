@@ -230,6 +230,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 = 2.2.5 August 20, 2015 =
 
 * Fix: Widget construct fixes for WordPress 4.3.
+* Tweak: Un-install function.
+* Tweak: Plugin page link to settings.
+* Tweak: Languages updated.
 
 = 2.2.4 August 05, 2015 =
 
