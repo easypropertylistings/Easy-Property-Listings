@@ -21,7 +21,7 @@ function epl_load_core_templates($template) {
 	
 	
 	$post_tpl	=	'';
-	if ( is_epl_post_single() ) {
+	if ( is_singular(epl_get_core_post_types()) ) {
 
 		$common_tpl		= apply_filters('epl_common_single_template','single-listing.php');
 		$post_tpl 		= 'single-'.get_post_type().'.php';
@@ -30,7 +30,7 @@ function epl_load_core_templates($template) {
 		$find[] 		= $common_tpl;
 		$find[] 		= epl_template_path() . $common_tpl;
 		
-	} elseif ( is_epl_post_archive() ) {
+	} elseif ( is_post_type_archive(epl_get_core_post_types()) ) {
 		$common_tpl		= apply_filters('epl_common_archive_template','archive-listing.php');
 		$post_tpl 		= 'archive-'.get_post_type().'.php';
 		$find[] 		=  $post_tpl;
