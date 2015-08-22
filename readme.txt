@@ -229,7 +229,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 2.2.6 August 22, 2015 =
 
-* Fix: Updated extension licensing updater to use https.
+* Fix: Updated extension licensing updater to use https. Update required in order to be able to auto-update your extensions as Easy Property Listings has moved to https.
 
 = 2.2.5 August 20, 2015 =
 
