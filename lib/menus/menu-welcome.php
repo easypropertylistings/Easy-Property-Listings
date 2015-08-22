@@ -270,6 +270,11 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 				
+					<h4><?php _e( 'Version 2.2.6', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Updated extension licensing updater to use https. Update required in order to be able to auto-update your extensions as Easy Property Listings has moved to https.', 'epl' );?></li>
+					</ul>
+				
 					<h4><?php _e( 'Version 2.2.5', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Widget construct fixes for WordPress 4.3.', 'epl' );?></li>
