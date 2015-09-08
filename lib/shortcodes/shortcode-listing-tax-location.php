@@ -1,6 +1,6 @@
 <?php
 /**
- * SHORTCODE :: Listing Location Taxonomy [listing_feature]
+ * SHORTCODE :: Listing Location Taxonomy [listing_location]
  *
  * @package     EPL
  * @subpackage  Shortcode/map
