@@ -219,7 +219,7 @@ function epl_property_blog($template='') {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$action_check = has_action( 'epl_loop_template' );
-		if ( $action_check != '' && $option !== 0 ) {
+		if ( $action_check != '' && $option !== 0 && in_array($template,array('default','blog') ) ) {
 			do_action( 'epl_loop_template' );
 		} else {
 			
