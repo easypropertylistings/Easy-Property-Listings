@@ -41,6 +41,8 @@ class EPL_Author_Meta {
     function __get($property) {
     	if(isset($this->{$property}) && $this->{$property} != ''){
     		return $this->{$property};
+    	} elseif( $return = get_user_meta($this->author_id,$property,true) ) {
+    		return $return;
     	}
     }
     

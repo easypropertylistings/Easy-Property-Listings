@@ -314,9 +314,6 @@ class EPL_FORM_BUILDER {
 			if( is_string($val) ) 
 				$val = esc_attr($val);
 				
-			if( is_array($val) ) {
-				$val = array_map( 'esc_attr' ,$val );
-			}
 		}
 		$this->form_fields[] = $field;		
 	}
@@ -614,7 +611,7 @@ class EPL_FORM_BUILDER {
 	* render select
 	*/
 	private function render_select($field) {
-		
+		global $post;
 		$options		= $field['opts'];
 		unset($field['opts']);
 
@@ -627,6 +624,20 @@ class EPL_FORM_BUILDER {
 		
 		foreach($options as $option	=>	$label) {
 		
+			if(is_array($label)) {
+				if(isset($label['exclude']) && !empty($label['exclude'])) {
+					if( in_array($post->post_type, $label['exclude']) ) {
+						continue;
+					}
+				}
+			
+				if(isset($label['include']) && !empty($label['include'])) {
+					if( !in_array($post->post_type, $label['include']) ) {
+						continue;
+					}
+				}
+				$label = $label['label'];
+			}
 			$html 			 	.= "\n<option  ";
 			$html 				.= 'value = "'.$option.'"';
 			

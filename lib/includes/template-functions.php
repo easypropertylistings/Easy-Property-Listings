@@ -148,6 +148,10 @@ function epl_get_content_path() {
 	return apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
 }
 
+function epl_get_fallback_content_path() {
+	return apply_filters('epl_templates_fallback_base_path',EPL_PATH_TEMPLATES_CONTENT);
+}
+
 /*
 * Attempts to load templates in order of priority
 */
@@ -159,6 +163,11 @@ function epl_get_template_part($template,$arguments=array()) {
 	$template       	= locate_template( array_unique( $find ) );
 	if(!$template) {
 		$template	= $base_path . $default;
+		if(!file_exists( $template ) ) {
+			//fallback to core
+			$base_path		= epl_get_fallback_content_path();
+			$template	= $base_path . $default;
+		}
 	}
 	if( !isset($arguments['epl_author']) ) {
 		global $epl_author;
