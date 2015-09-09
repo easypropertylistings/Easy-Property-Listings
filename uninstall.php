@@ -17,7 +17,7 @@ include_once( 'easy-property-listings.php' );
 
 global $wpdb, $wp_roles;
 
-if( epl_get_option( 'uninstall_on_delete' ) ) {
+if( epl_get_option( 'uninstall_on_delete' ) == 1 ) {
 
 	/** Delete All the Custom Post Types */
 	$epl_taxonomies = array( 'location', 'tax_feature', 'tax_business_listing', );
