@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.3
 
-Stable Tag: 2.2.6
+Stable Tag: 2.2.7
 
 License: GNU Version 2 or Any Later Version
 
@@ -226,6 +226,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.2.7 September 9, 2015 =
+
+* Tweak: Compatibility for Listing Templates extension. 
 
 = 2.2.6 August 22, 2015 =
 

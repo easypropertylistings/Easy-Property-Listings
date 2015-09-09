@@ -269,7 +269,12 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','epl' );?></h2>
 			
 				<div class="feature-section">
-				
+					
+					<h4><?php _e( 'Version 2.2.7', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Compatibility for Listing Templates extension. ', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.2.6', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Updated extension licensing updater to use https. Update required in order to be able to auto-update your extensions as Easy Property Listings has moved to https.', 'epl' );?></li>
