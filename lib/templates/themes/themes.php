@@ -35,7 +35,7 @@ function epl_load_core_templates($template) {
 		$find[] 		= epl_template_path() . $post_tpl;
 		$find[] 		=  $common_tpl;
 		$find[] 		= epl_template_path() . $common_tpl;
-	} elseif ( is_tax ( 'location' ) ) {
+	} elseif ( is_tax ( 'location' ) || is_tax ( 'tax_feature' ) ) {
 
 		$term   		= get_queried_object();
 		$common_tpl		= apply_filters('epl_common_taxonomy_template','archive-listing.php');;
