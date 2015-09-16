@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * Functions
+ *
+ * @package     EPL
+ * @subpackage  Custom Post Type API
+ * @copyright   Copyright (c) 2015, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       2.3
+ */
+ 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class EPL_CPT {
 
@@ -8,7 +19,7 @@ class EPL_CPT {
 	 *
 	 * @var string $post_type_name Holds the name of the post type.
 	 */
-    public $post_type_name;
+	 public $post_type_name;
 
 	/**
 	 * Holds the singular name of the post type. This is a human friendly
@@ -16,7 +27,7 @@ class EPL_CPT {
 	 *
 	 * @var string $singular Post type singular name.
 	 */
-    public $singular;
+	 public $singular;
 
 	/**
 	 * Holds the plural name of the post type. This is a human friendly
@@ -157,7 +168,7 @@ class EPL_CPT {
 
 			// Set the singular name label.
 			$this->singular = $this->get_singular();
-        }
+        	}
 
 		// Set the user submitted options to the object.
 		$this->options = $options;
@@ -179,7 +190,7 @@ class EPL_CPT {
 
 		// Add filter select option to admin edit.
 		$this->add_action( 'restrict_manage_posts', array( &$this, 'add_taxonomy_filters' ) );
-    }
+	}
 
 	/**
 	 * Get
@@ -201,8 +212,8 @@ class EPL_CPT {
 
 			// on fail return false
 			return false;
-        }
-    }
+        	}
+	}
 
 	/**
 	 * Set
@@ -248,7 +259,7 @@ class EPL_CPT {
 
 		// Pass variables into WordPress add_action function
 		add_action( $action, $function, $priority, $accepted_args );
-    }
+	}
 
 	/**
 	 * Add Filter
@@ -266,7 +277,7 @@ class EPL_CPT {
 
 		// Pass variables into Wordpress add_action function
 		add_filter( $action, $function, $priority, $accepted_args );
-    }
+	}
 
 	/**
 	 * Get slug
@@ -296,7 +307,7 @@ class EPL_CPT {
 		return $name;
 	}
 
-    /**
+	/**
 	 * Get plural
 	 *
 	 * Returns the friendly plural name.
@@ -318,7 +329,7 @@ class EPL_CPT {
 
 		// Return the plural name. Add 's' to the end.
 		return $this->get_human_friendly( $name ) . 's';
-    }
+	}
 
 	/**
 	 * Get singular
@@ -343,7 +354,7 @@ class EPL_CPT {
 
 		// Return the string.
 		return $this->get_human_friendly( $name );
-    }
+	}
 
 	/**
 	 * Get human friendly
@@ -435,7 +446,7 @@ class EPL_CPT {
 	 *
 	 * @param string $taxonomy_name The slug for the taxonomy.
 	 * @param array  $options Taxonomy options.
-     */
+	*/
 	function register_taxonomy($taxonomy_names, $options = array()) {
 
 		// Post type defaults to $this post type if unspecified.
@@ -527,9 +538,7 @@ class EPL_CPT {
 
 	}
 
-
-
-    /**
+	/**
 	 * Register taxonomies
 	 *
 	 * Cycles through taxonomies added with the class and registers them.
@@ -767,7 +776,7 @@ class EPL_CPT {
 	function filters( $filters = array() ) {
 
 		$this->filters = $filters;
-    }
+	}
 
 	/**
 	 *  Add taxtonomy filters
@@ -848,15 +857,15 @@ class EPL_CPT {
 	 *
 	 * @param array $columns An array of columns to be displayed.
 	 */
-    function columns( $columns ) {
+	function columns( $columns ) {
 
 		// If columns is set.
-        if( isset( $columns ) ) {
+        	if( isset( $columns ) ) {
 
 			// Assign user submitted columns to object.
 			$this->columns = $columns;
 
-        }
+        	}
 	}
 
 	/**
@@ -900,7 +909,7 @@ class EPL_CPT {
 	 * @param array $columns Columns to be sortable.
 	 *
 	 */
-    function make_columns_sortable( $columns ) {
+	 function make_columns_sortable( $columns ) {
 
 		// For each sortable column.
 		foreach ( $this->sortable as $column => $values ) {
@@ -922,12 +931,12 @@ class EPL_CPT {
 	 *
 	 * @see http://codex.wordpress.org/Plugin_API/Filter_Reference/request
 	 */
-    function load_edit() {
+	 function load_edit() {
 
-        // Run filter to sort columns when requested
-        $this->add_filter( 'request', array( &$this, 'sort_columns' ) );
+	        // Run filter to sort columns when requested
+	        $this->add_filter( 'request', array( &$this, 'sort_columns' ) );
 
-    }
+    	}
 
 	/**
 	 * Sort columns
@@ -999,7 +1008,7 @@ class EPL_CPT {
 	 *
 	 * @param string $icon dashicon name
 	 */
-    function menu_icon( $icon = "dashicons-admin-page" ) {
+	 function menu_icon( $icon = "dashicons-admin-page" ) {
 
 		if ( is_string( $icon ) && stripos( $icon, "dashicons" ) !== false ) {
 

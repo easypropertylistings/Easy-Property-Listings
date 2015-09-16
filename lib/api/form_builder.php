@@ -1,8 +1,16 @@
 <?php
-/*
-Plugin Name: Form Builder
-Description: Form builder class for epl.
-*/
+/**
+ * Functions
+ *
+ * @package     EPL
+ * @subpackage  Form Builder API
+ * @copyright   Copyright (c) 2015, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
+ 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class EPL_FORM_BUILDER {
 
@@ -262,7 +270,6 @@ class EPL_FORM_BUILDER {
 
 	}
 	
-
 	/**
 	* setsup all the form defaults while object instantiation
 	*
@@ -536,8 +543,7 @@ class EPL_FORM_BUILDER {
 		$html 			.= $this->get_attributes($field);
 		$html 			.= ' />';
 		echo apply_filters($this->prefix.'form_'.$field["type"].'_tag',$html,$field);
-			
-		
+
 	}
 	
 	/**
@@ -553,8 +559,7 @@ class EPL_FORM_BUILDER {
 		$html			.= $value;
 		$html 			.= '</textarea>';
 		echo apply_filters($this->prefix.'form_'.$field["type"].'_tag',$html,$field);
-			
-		
+
 	}
 	
 	/**
@@ -671,5 +676,3 @@ class EPL_FORM_BUILDER {
 	}
 
 }
-
-?>
