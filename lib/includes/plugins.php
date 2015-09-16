@@ -52,7 +52,7 @@ function epl_plugin_row_meta( $input, $file ) {
 
 	$links = array(
 		'<a href="' . admin_url( 'index.php?page=epl-getting-started' ) . '">' . esc_html__( 'Getting Started', 'epl' ) . '</a>',
-		'<a href="http://www.easypropertylistings.com.au/extensions/?utm_source=plugins-page&utm_medium=plugin-row&utm_campaign=admin">' . esc_html__( 'Add Ons', 'epl' ) . '</a>',
+		'<a href="https://www.easypropertylistings.com.au/extensions/?utm_source=plugins-page&utm_medium=plugin-row&utm_campaign=admin">' . esc_html__( 'Add Ons', 'epl' ) . '</a>',
 	);
 
 	$input = array_merge( $input, $links );
