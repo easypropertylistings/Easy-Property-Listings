@@ -1,13 +1,13 @@
 ﻿=== Easy Property Listings ===
-Author URI: http://www.realestateconnected.com.au
+Author URI: http://www.realestateconnected.com.au/
 Plugin URI: https://easypropertylistings.com.au/
 Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.3
-Tested up to: 4.3
+Tested up to: 4.3.1
 
-Stable Tag: 2.2.7
+Stable Tag: 2.3
 
 License: GNU Version 2 or Any Later Version
 
@@ -226,6 +226,24 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.3 September 17, 2015 =
+
+* New: Custom Post Type API. Makes it easy to create and register new custom post types.
+* New: Custom Meta Box API. Creating custom fields and being able to configure custom meta fields on existing and new post types.
+* New: Custom Forms API. Will give the ability to create forms and submissions for the coming CRM. (Customer Relationship Manager).
+* New: Ordering of extension dynamic custom fields now possible.
+* New: Archive template attributes class dynamically added depending on template in use.
+* New: A number of helper functions have been added to better integrate additional custom post types.
+* New: Button meta field for use in extensions and custom fields.
+* New: Adjustments to video output function.
+* New: Features taxonomy now use archive template instead of blog post view.
+* New: Filters to adjust the Search not found text epl_property_search_not_found_title and epl_property_search_not_found_message.
+* Tweak: Better author linking and real estate agent user output.
+* Tweak: Improvements for other extensions to hook into and use maps.
+* Tweak: Template fallback functions for improved custom template usage.
+* Fix: New Construction class corrected to new_construction instead of pool.
+* Fix: Fix: Property ID searching improved. If you have a-z characters in your id include them in the title. E.g. aaa222 - 9 Somewhere Street, Brooklyn NY.
 
 = 2.2.7 September 9, 2015 =
 
