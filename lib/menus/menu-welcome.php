@@ -168,18 +168,21 @@ class EPL_Welcome {
 			
 			<div class="changelog headline-feature">
 			
-				<h2><?php _e( 'New API&#39;s Making it easier to add custom post types, custom fields and forms' , 'epl' );?></h2>
+				<h2><?php _e( 'New API&#39;s' , 'epl' );?></h2>
 				
 				<div class="feature-section">
-					<p><?php _e( 'This release is focused on making it easier to add custom post types, custom meta fields and forms in preparation for the Contact Management System (CRM). These structural changes will allow us to create even more real estate plugins and tools moving forward and give you the possibility to create your own custom functions and features.', 'epl' ); ?></p>
+					<h4><?php _e( 'Three new API&#39;s have been added which will make it easier to add custom post types, custom fields and forms' , 'epl' ); ?></h4>
+					<p><?php _e( 'This release is focused on making it easier to add custom post types, custom meta fields and forms in preparation for the Contact Management System (CRM). These structural changes will allow us to create even more real estate plugins and tools moving forward and gives you the possibility to create your own custom functions and features.', 'epl' ); ?></p>
 					
-					<p><?php _e( 'These changes lay the groundwork for the Customer Relationship Manager (CRM) that will  give you better lead generation and capture tools. We have a number of really cool things planned for Easy Property Listings and our goal is to make Real Estate websites easy.', 'epl' ); ?></p>
+					<p><?php _e( 'These changes lay the groundwork for the Customer Relationship Manager (CRM) that will  give you better lead generation and capture tools.', 'epl' ); ?></p>
+					
+					<p><?php _e( 'We have a number of really cool things planned for Easy Property Listings and our goal is to make Real Estate websites easy with WordPress.', 'epl' ); ?></p>
 				</div>
 			</div>
 
 			<div class="changelog headline-feature">
 			
-				<h2><?php _e( 'Theme Compatibility Mode' , 'epl' );?></h2>
+				<h2><?php _e( 'Theme Compatibility Mode introduced in 2.2' , 'epl' );?></h2>
 				
 				<div class="featured-image">
 					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-themes.jpg'; ?>" class="epl-welcome-featured-image"/>
@@ -226,9 +229,11 @@ class EPL_Welcome {
 					<p><?php _e( 'We have taken the time to add many additional filters and hooks which will open the door for a whole lot more cool features and real estate tools.', 'epl' ); ?></p>
 					
 					<p><?php _e( 'Many under the hood improvements have been made to increase the extendibility of Easy Property Listings and allow for the creation of additional extensions and features. ', 'epl' ); ?></p>
-
+					
+					<?php $custom_template_link = '<a href="https://easypropertylistings.com.au/docs/create-custom-theme-templates-using-included-hooks/">'. __( 'custom templates' , 'epl' ) .'</a>'; ?>
 					<h3><?php _e( 'Custom Templates' , 'epl' );?></h3>
-					<p><?php _e( 'Easy Property Listings 2.2 introduces a custom template system allowing you to create any number of templates and use them in shortcodes and widgets allowing you and theme developers to create an unlimited number of templates and load them from your theme.', 'epl' ); ?></p>
+					
+					<p><?php printf( __( 'Easy Property Listings 2.2 introduces a %s system allowing you to create any number of templates and use them in shortcodes and widgets allowing you and theme developers to create an unlimited number of templates and load them from your theme.', 'epl' ) , $custom_template_link ); ?></p>
 				</div>
 			</div>
 			
@@ -238,7 +243,7 @@ class EPL_Welcome {
 			
 				<div class="feature-section col two-col">
 				
-					<div>
+					<div class="col">
 						<h4><?php _e( 'Sold Price Display','epl' );?></h4>
 						<p><?php _e( 'With Easy Property Listings 2.2 you can now display your sold prices and show off your real estate success to your visitors.', 'epl' );?></p>
 						
@@ -292,9 +297,11 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Adjustments to video output function.', 'epl' );?></li>
 						<li><?php _e( 'New: Features taxonomy now use archive template instead of blog post view.', 'epl' );?></li>
 						<li><?php _e( 'New: Filters to adjust the Search not found text epl_property_search_not_found_title and epl_property_search_not_found_message.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Restored get_property_suburb function which was used in Listing Templates.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Better author linking and real estate agent user output.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Improvements for other extensions to hook into and use maps.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Template fallback functions for improved custom template usage.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Swedish translations updated.', 'epl' );?></li>
 						<li><?php _e( 'Fix: New Construction class corrected to new_construction instead of pool.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Property ID searching improved. If you have a-z characters in your id include them in the title. E.g. aaa222 - 9 Somewhere Street, Brooklyn NY.', 'epl' );?></li>
 					</ul>
@@ -962,6 +969,21 @@ class EPL_Welcome {
 					</div>
 					
 				</div>
+				
+				<h3 style="font-size: 1.8em; text-align: center;"><?php _e( 'Search by location', 'epl' );?></h3>
+				
+				<div class="feature-section">
+					
+					<div class="col">
+						<p><?php _e( 'Although the address details are added into the Property Address box the location search you also need to add the City/Suburb to the location search taxonomy.', 'epl' );?></p>
+						<p><?php _e( 'This works like post tags and will populate the search widget/shortcode with your listings and it will automatically filter out options if no listings have that option.', 'epl' );?></p>
+					</div>
+					
+					<div class="col">
+						<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-details-location.png'; ?>" class="epl-welcome-screenshots"/>
+					</div>
+					
+				</div>
 			</div>
 			
 			<div class="changelog headline-feature">
@@ -998,77 +1020,10 @@ class EPL_Welcome {
 
 			<div class="changelog headline-feature">
 				<h2 id="theme-instructions" class="epl-welcome-sub-heading"><?php _e( 'Advanced theme integration instructions', 'epl' );?></h2>
-				<h3 class="about-description" style="text-align: center;"><?php _e( 'Before attempting the following steps add a', 'epl' );?> <a href="#guide-first-listing"><?php _e( 'test listing', 'epl' );?></a> <?php _e( 'and preview it. Your theme may already work with Easy Property Listings.', 'epl' );?></h3>
 
-				<div class="feature-section col two-col">
-					<div>
-						<h4><?php _e( '1. Take a backup of your theme and a copy of the files to edit.', 'epl' );?></h4>
-						
-						<p><?php _e( 'Open your favourite FTP program or access the file manager via your hosting panel.', 'epl' );?></p>
-						
-						<p style="margin-left: 2em;"><em><?php _e( 'Take a backup of your theme before you start.', 'epl' );?></em></p>
-
-						<p><?php _e( 'Download the single.php file and archive.php from your theme folder and save it to your computer.', 'epl' );?></p>
-						<p style="margin-left: 2em;"><em><?php _e( 'If these files are not present in your child theme then copy them from your parent theme folder. If there is no archive.php file use the index.php file.', 'epl' );?></em></p>
-						
-						
-						<p><?php _e( 'On your computer rename single.php to single-listing.php and rename archive.php to archive-listing.php', 'epl' );?></p>
-						
-						<p style="margin-left: 2em;"><em><?php _e( 'If using index.php, rename that to archive-listing.php', 'epl' );?></em></p>
-
-						<p><?php _e( 'Upload these new files back into your theme folder.', 'epl' );?></p>
-					</div>
-					
-					<div class="last-feature">
-						<h4><?php _e( '2. Edit your single-listing.php file.', 'epl' );?></h4>
-						
-						<p><?php _e( 'Open your new single-listing.php file in your text editor like Notepad++.', 'epl' );?></p>
-						<p><?php _e( 'Look for', 'epl' );?>:</p>
-						<p><code>&#60;?php get_template_part( &#39;SOME_STUFF&#39; , &#39;MORE_STUFF&#39; ); ?&#62;</code> <?php _e( 'which appears after', 'epl' );?> <code>the_post();</code></p>
-						<p><?php _e( 'Replace', 'epl' );?>:</p>
-							
-						<p><code>&#60;?php get_template_part( &#39;ALL_THE_STUFF&#39; ); ?&#62;</code></p>
-						<p><?php _e( 'with', 'epl' );?></p>
-						<p><code>&#60;?php do_action( &#39;epl_property_single&#39; ); ?&#62;</code></p>
-
-						<p><?php _e( 'Save the file and make sure you have sent it to the server.', 'epl' );?></p>
-						<p><?php _e( 'View the test listing you created and you should be done.', 'epl' );?></p>
-
-					</div>
-					
-					<div>
-						<h4><?php _e( '3. Edit your archive-listing.php file.', 'epl' );?></h4>
-						
-						<p><?php _e( 'Open archive-listing.php', 'epl' );?></p>
-						<p><?php _e( 'Look for', 'epl' );?></p> 
-						<p><code>&#60;?php get_template_part( &#39;SOME_STUFF&#39; , &#39;MORE_STUFF&#39; ); ?&#62;</code> <?php _e( 'which appears after the second', 'epl' );?>  <code>the_post();</code></p>
-						<p style="margin-left: 2em;"><em><?php _e( 'The first one is usually the page title.', 'epl' );?></em></p>
-						
-						<p><?php _e( 'Replace', 'epl' );?>:</p>
-									
-						<p><code>&#60;?php get_template_part( &#39;ALL_THE_STUFF&#39; ); ?&#62;</code></p>
-						<p>with</p>
-						<p><code>&#60;?php do_action( &#39;epl_property_blog&#39; ); ?&#62;</code></p>
-	
-						<p><?php _e( 'Save the file and make sure you have sent it to the server.', 'epl' );?></p>
-						<p><?php _e( 'Check the main property page <code>http://YOUR_SITE_URL/property/</code> and you should be done.', 'epl' );?></p>
-					</div>
-					
-					<div class="last-feature">
-							
-						<h4><?php _e( '4. Optional for grid and sorter. Edit your archive-listing.php file again.', 'epl' );?></h4>
-						
-						<p><?php _e( 'Insert', 'epl' );?></p>
-						
-						<p><code>&#60;?php do_action( &#39;epl_property_loop_start&#39; ); ?&#62;</code></p>
-						<p><?php _e( 'Before the second', 'epl' );?> <code>&#60;?php the_post(); ?&#62;</code></p>
-								
-						<p><?php _e( 'Check your main property page, if the buttons are in the incorrect place move them until they are in the correct place.', 'epl' );?></p>
-
-						<p><?php _e( 'Insert', 'epl' );?> <code>&#60;?php do_action( &#39;epl_property_loop_end&#39; ); ?&#62;</code></p>
-						<p><?php _e( 'After the second', 'epl' );?> <code>&#60;?php endwhile(); ?&#62;</code></p>
-					
-					</div>
+				<div class="feature-section two-col">
+					<?php $theme_instructions = '<a href="https://easypropertylistings.com.au/docs/setup-wordpress-theme-easy-property-listings-2-0/">'. __( 'theme setup instructions can be found here' , 'epl' ) .'</a>'; ?>
+					<h4 style="text-align: center;"><?php printf( __( 'Detailed %s.', 'epl' ) , $theme_instructions );?></h4>
 				</div>
 			</div>
 			

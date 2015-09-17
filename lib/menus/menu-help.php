@@ -162,6 +162,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						</div>
 					</div>
 					
+					<div class="epl-feature-section">
+						<div class="epl-col epl-half-left">
+							<h2><?php _e( 'Search by location', 'epl' );?></h2>
+							
+							<p><?php _e( 'Although the address details are added into the Property Address box the location search you also need to add the City/Suburb to the location search taxonomy.', 'epl' );?></p>
+							<p><?php _e( 'This works like post tags and will populate the search widget/shortcode with your listings and it will automatically filter out options if no listings have that option.', 'epl' );?></p> 
+						</div>
+						
+						<div class="epl-col epl-half-right">
+							<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-details-location.png'; ?>" class="epl-welcome-screenshots"/>
+						</div>
+					</div>
+					
 				<hr>
 				</div>
 
