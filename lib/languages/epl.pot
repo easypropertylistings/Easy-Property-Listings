@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2015-09-17 16:11+0800\n"
+"POT-Creation-Date: 2015-09-17 16:30+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "New %s"
 msgstr ""
 
-#: api/cpt.php:405 api/cpt.php:507 menus/menu-welcome.php:1128
+#: api/cpt.php:405 api/cpt.php:507 menus/menu-welcome.php:1137
 #, php-format
 msgid "View %s"
 msgstr ""
@@ -1829,32 +1829,32 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
-#: menus/menu-welcome.php:157 menus/menu-welcome.php:811 menus/menu-welcome.php:1095
+#: menus/menu-welcome.php:157 menus/menu-welcome.php:811 menus/menu-welcome.php:1104
 #, php-format
 msgid "Welcome to Easy Property Listings %s"
 msgstr ""
 
-#: menus/menu-welcome.php:158 menus/menu-welcome.php:812 menus/menu-welcome.php:1096
+#: menus/menu-welcome.php:158 menus/menu-welcome.php:812 menus/menu-welcome.php:1105
 #, php-format
 msgid ""
 "Thank you for updating to the latest version! Easy Property Listings %s is ready to "
 "make your real estate website faster, safer and better!"
 msgstr ""
 
-#: menus/menu-welcome.php:159 menus/menu-welcome.php:813 menus/menu-welcome.php:1097
+#: menus/menu-welcome.php:159 menus/menu-welcome.php:813 menus/menu-welcome.php:1106
 #, php-format
 msgid "Version %s"
 msgstr ""
 
-#: menus/menu-welcome.php:164
+#: menus/menu-welcome.php:164 menus/menu-welcome.php:1077
 msgid "Location Profiles"
 msgstr ""
 
-#: menus/menu-welcome.php:165
+#: menus/menu-welcome.php:165 menus/menu-welcome.php:1075
 msgid "Testimonial Manager"
 msgstr ""
 
-#: menus/menu-welcome.php:166
+#: menus/menu-welcome.php:166 menus/menu-welcome.php:1074
 msgid "Advanced Mapping"
 msgstr ""
 
@@ -1977,7 +1977,7 @@ msgid ""
 "Property Listings and allow for the creation of additional extensions and features. "
 msgstr ""
 
-#: menus/menu-welcome.php:233
+#: menus/menu-welcome.php:233 menus/menu-welcome.php:1027
 msgid "custom templates"
 msgstr ""
 
@@ -4177,37 +4177,42 @@ msgid "here"
 msgstr ""
 
 #: menus/menu-welcome.php:1023
-msgid "Advanced theme integration instructions"
+msgid "Advanced instructions"
 msgstr ""
 
 #: menus/menu-welcome.php:1026
 msgid "theme setup instructions can be found here"
 msgstr ""
 
-#: menus/menu-welcome.php:1027
+#: menus/menu-welcome.php:1028
 #, php-format
 msgid "Detailed %s."
 msgstr ""
 
-#: menus/menu-welcome.php:1033
+#: menus/menu-welcome.php:1029
+#, php-format
+msgid "How to create your own %s."
+msgstr ""
+
+#: menus/menu-welcome.php:1035
 msgid "Stuck getting your theme to work?"
 msgstr ""
 
-#: menus/menu-welcome.php:1034
+#: menus/menu-welcome.php:1036
 msgid ""
 "Not all themes follow modern WordPress coding standards and these may take a little "
 "more time and experience to get working. If you just can not get it to work, visit"
 msgstr ""
 
-#: menus/menu-welcome.php:1034
+#: menus/menu-welcome.php:1036
 msgid "premium support"
 msgstr ""
 
-#: menus/menu-welcome.php:1034
+#: menus/menu-welcome.php:1036
 msgid "and fill out a theme support request."
 msgstr ""
 
-#: menus/menu-welcome.php:1036
+#: menus/menu-welcome.php:1038
 msgid ""
 "If the theme is available in the WordPress.org theme directory let us know the theme "
 "name and URL where we can download it in your support ticket. If its a premium theme "
@@ -4215,60 +4220,60 @@ msgid ""
 "download link to it on a file sharing site like Dropbox."
 msgstr ""
 
-#: menus/menu-welcome.php:1038
+#: menus/menu-welcome.php:1040
 msgid "Need Help?"
 msgstr ""
 
-#: menus/menu-welcome.php:1042
+#: menus/menu-welcome.php:1044
 msgid "Premium Support"
 msgstr ""
 
-#: menus/menu-welcome.php:1043
+#: menus/menu-welcome.php:1045
 #, php-format
 msgid ""
 "We do our best to provide the best support we can. If you encounter a problem or have "
 "a question, post a question in the <a href=\"%s\">support forums</a>."
 msgstr ""
 
-#: menus/menu-welcome.php:1047
+#: menus/menu-welcome.php:1049
 msgid "Need Even Faster Support?"
 msgstr ""
 
-#: menus/menu-welcome.php:1048
+#: menus/menu-welcome.php:1050
 msgid ""
-"<a href=\"http://easypropertylistings.com.au/support/pricing/\">Priority Support "
+"<a href=\"https://easypropertylistings.com.au/support/pricing/\">Priority Support "
 "forums</a> are there for customers that need faster and/or more in-depth assistance."
 msgstr ""
 
-#: menus/menu-welcome.php:1052
+#: menus/menu-welcome.php:1054
 msgid "Documentation and Short Codes"
 msgstr ""
 
-#: menus/menu-welcome.php:1053
+#: menus/menu-welcome.php:1055
 msgid "Read the"
 msgstr ""
 
-#: menus/menu-welcome.php:1053
+#: menus/menu-welcome.php:1055
 msgid "documentation"
 msgstr ""
 
-#: menus/menu-welcome.php:1053
+#: menus/menu-welcome.php:1055
 msgid " and instructions on how to use the included"
 msgstr ""
 
-#: menus/menu-welcome.php:1053
+#: menus/menu-welcome.php:1055
 msgid "shortcodes"
 msgstr ""
 
-#: menus/menu-welcome.php:1062
+#: menus/menu-welcome.php:1064
 msgid "Stay Up to Date"
 msgstr ""
 
-#: menus/menu-welcome.php:1063
+#: menus/menu-welcome.php:1065
 msgid "Get Notified of Extension Releases"
 msgstr ""
 
-#: menus/menu-welcome.php:1064
+#: menus/menu-welcome.php:1066
 msgid ""
 "New extensions that make Easy Property Listings even more powerful are released "
 "nearly every single week. Subscribe to the newsletter to stay up to date with our "
@@ -4276,46 +4281,62 @@ msgid ""
 "a> to ensure you do not miss a release!"
 msgstr ""
 
-#: menus/menu-welcome.php:1066
+#: menus/menu-welcome.php:1068
 msgid "Get Alerted About New Tutorials"
 msgstr ""
 
-#: menus/menu-welcome.php:1067
+#: menus/menu-welcome.php:1069
 msgid ""
 "<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to hear about "
 "the latest tutorial releases that explain how to take Easy Property Listings further."
 msgstr ""
 
-#: menus/menu-welcome.php:1071
-msgid "Extend With Extensions"
-msgstr ""
-
 #: menus/menu-welcome.php:1072
-msgid "18 Extensions and many more coming"
+msgid "Sliders"
 msgstr ""
 
 #: menus/menu-welcome.php:1073
-msgid ""
-"Add-on plug ins are available that greatly extend the default functionality of Easy "
-"Property Listings. There are extensions for Listing Sliders, Brochures, Advanced "
-"mapping, Testimonials, Agent Staff Directory, Listing alerts, CMA Market Reports, "
-"Location Profiles, and many, many more."
+msgid "Brochures"
 msgstr ""
 
-#: menus/menu-welcome.php:1075
+#: menus/menu-welcome.php:1076
+msgid "Agent/Staff Directory"
+msgstr ""
+
+#: menus/menu-welcome.php:1078
+msgid "Add-On Store"
+msgstr ""
+
+#: menus/menu-welcome.php:1080
+msgid "Extend With Extensions"
+msgstr ""
+
+#: menus/menu-welcome.php:1081
+msgid "18 Extensions and many more coming"
+msgstr ""
+
+#: menus/menu-welcome.php:1082
+#, php-format
+msgid ""
+"Add-on plug ins are available that greatly extend the default functionality of Easy "
+"Property Listings. There are extensions for %s, %s, %s, %s, %s, %s, and many, many "
+"more. Visit the %s to further enhance your real estate website."
+msgstr ""
+
+#: menus/menu-welcome.php:1084
 msgid "Visit the Extension Store"
 msgstr ""
 
-#: menus/menu-welcome.php:1076
+#: menus/menu-welcome.php:1085
 msgid "The Extensions store"
 msgstr ""
 
-#: menus/menu-welcome.php:1076
+#: menus/menu-welcome.php:1085
 msgid ""
 "has a list of all available extensions to make your real estate website even better."
 msgstr ""
 
-#: menus/menu-welcome.php:1101
+#: menus/menu-welcome.php:1110
 msgid ""
 "Easy Property Listings is created by a worldwide team of developers who aim to "
 "provide the #1 property listings platform for managing your real estate business "
