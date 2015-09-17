@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<div class="epl-menu-section epl-clearfix">
 				<h1><?php _e('Welcome to Easy Property Listings', 'epl'); ?></h1>
 				<p><?php _e('Nice! You installed Easy Property Listings and now you are ready to manage your listings.', 'epl'); ?>
-				<p><?php echo $link = sprintf( __('Below are some links and videos that will help you get started. If you still have questions, we have on-line tutorials packed with information, as well as a very active <a href="%s">support forum</a> where you can ask our team questions', 'epl') , esc_url( 'http://easypropertylistings.com.au/support/' ) ); ?></p>
+				<p><?php echo $link = sprintf( __('Below are some links and videos that will help you get started. If you still have questions, we have on-line tutorials packed with information, as well as a very active <a href="%s">support forum</a> where you can ask our team questions', 'epl') , esc_url( 'https://easypropertylistings.com.au/support/' ) ); ?></p>
 				<hr>
 
 
@@ -34,9 +34,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-theme"><?php _e( 'What\'s New', 'epl' ); ?></a></li>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a></li>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-changelog"><?php _e( 'Full Change Log', 'epl' ); ?></a></li>
-							<li><a href="http://easypropertylistings.com.au/documentation/"><?php _e('Documentation', 'epl'); ?></a></li>
-							<li><a href="http://easypropertylistings.com.au/support-the-site/"><?php _e( 'Support the project', 'epl' ); ?></a></li>
-							<li><a href="http://easypropertylistings.com.au/support/"><?php _e( 'Visit Support', 'epl' ); ?></a></li>
+							<li><a href="https://easypropertylistings.com.au/documentation/"><?php _e('Documentation', 'epl'); ?></a></li>
+							<li><a href="https://easypropertylistings.com.au/support-the-site/"><?php _e( 'Support the project', 'epl' ); ?></a></li>
+							<li><a href="https://easypropertylistings.com.au/support/"><?php _e( 'Visit Support', 'epl' ); ?></a></li>
 							<li><a href="https://wordpress.org/support/view/plugin-reviews/easy-property-listings"><strong><?php _e( 'Write a Review', 'epl' ); ?></strong></a></li>
 						</ul>
 					</div>
@@ -159,6 +159,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						
 						<div class="epl-col epl-half-right">
 							<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-details.png'; ?>" class="epl-welcome-screenshots"/>
+						</div>
+					</div>
+					
+					<div class="epl-feature-section">
+						<div class="epl-col epl-half-left">
+							<h2><?php _e( 'Search by location', 'epl' );?></h2>
+							
+							<p><?php _e( 'Although the address details are added into the Property Address box the location search you also need to add the City/Suburb to the location search taxonomy.', 'epl' );?></p>
+							<p><?php _e( 'This works like post tags and will populate the search widget/shortcode with your listings and it will automatically filter out options if no listings have that option.', 'epl' );?></p> 
+						</div>
+						
+						<div class="epl-col epl-half-right">
+							<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-details-location.png'; ?>" class="epl-welcome-screenshots"/>
 						</div>
 					</div>
 					
