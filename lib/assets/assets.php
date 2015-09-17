@@ -33,7 +33,7 @@ function epl_admin_enqueue_scripts($screen) {
 	
 	// load admin style on help & documentation pages as well
 	if($screen = 'edit.php' || $screen == 'toplevel_page_epl-general' || $screen == 'dashboard_page_epl-about' || $screen == 'dashboard_page_epl-getting-started')	{
-		wp_enqueue_style( 'epl-admin-styles', 					$current_dir_path . '/css/style-admin.css',		FALSE,			EPL_PROPERTY_VER );
+		wp_enqueue_style(	'epl-admin-styles', 				$current_dir_path . '/css/style-admin.css',		FALSE,			EPL_PROPERTY_VER );
 	}
 	
 	wp_enqueue_script( 'epl-js-lib', $current_dir_path . '/js/epl.js', array('jquery') , EPL_PROPERTY_VER );
@@ -57,11 +57,14 @@ function epl_wp_enqueue_scripts() {
 	if( isset($epl_settings['epl_use_core_css']) &&  $epl_settings['epl_use_core_css'] == 'on') {
 	
 	} else {
-			wp_enqueue_style(	'epl-front-styles', $current_dir_path . '/css/style-front.css' ,FALSE,EPL_PROPERTY_VER);
-			wp_enqueue_style(	'epl-css-lib', $current_dir_path . '/css/epl.css' ,FALSE,EPL_PROPERTY_VER);
+		wp_enqueue_style(	'epl-front-styles', 	$current_dir_path . '/css/style-front.css' ,FALSE,EPL_PROPERTY_VER);
+		wp_enqueue_style(	'epl-css-lib', 		$current_dir_path . '/css/epl.css' ,FALSE,EPL_PROPERTY_VER);
 	}
-	$js_vars = array( 	'epl_default_view_type' => $epl_default_view_type ,'ajaxurl'	=>	admin_url('admin-ajax.php') );
-	wp_enqueue_script( 'epl-js-lib', $current_dir_path . '/js/epl.js', array('jquery') , EPL_PROPERTY_VER );
+	$js_vars = array( 	
+		'epl_default_view_type' => $epl_default_view_type,
+		'ajaxurl'		=> admin_url('admin-ajax.php')
+	);
+	wp_enqueue_script( 	'epl-js-lib', 			$current_dir_path . '/js/epl.js', array('jquery') , EPL_PROPERTY_VER );
 	
 	wp_localize_script( 	'epl-front-scripts', 'epl_frontend_vars', $js_vars);
 	wp_enqueue_script( 	'epl-front-scripts');
@@ -91,5 +94,4 @@ function epl_admin_styles() {
 	</style>
 <?php	
 }
-
 add_action('admin_head','epl_admin_styles');
