@@ -61,7 +61,7 @@ function epl_add_ons_page() {
 	<div class="wrap" id="epl-add-ons">
 		<h2>
 			<?php _e( 'Add Ons for Easy Property Listings', 'epl' ); ?>
-			&nbsp;&mdash;&nbsp;<a href="http://easypropertylistings.com.au/extensions/?utm_source=plugin-addons-page&utm_medium=plugin&ytm_campaign=epl%20Addons%20Page&utm_content=All%20Extensions" class="button-primary" title="<?php _e( 'Browse All Extensions', 'epl' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'epl' ); ?></a>
+			&nbsp;&mdash;&nbsp;<a href="https://easypropertylistings.com.au/extensions/?utm_source=plugin-addons-page&utm_medium=plugin&ytm_campaign=epl%20Addons%20Page&utm_content=All%20Extensions" class="button-primary" title="<?php _e( 'Browse All Extensions', 'epl' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'epl' ); ?></a>
 		</h2>
 		<p><?php _e( 'These add-ons extend the functionality of Easy Property Listings.', 'epl' ); ?></p>
 		<?php echo epl_add_ons_get_feed(); ?>
