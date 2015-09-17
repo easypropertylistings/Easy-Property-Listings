@@ -144,17 +144,30 @@ function epl_property_single_default() {
 	}
 }
 
+function epl_get_content_path() {
+	return apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
+}
+
+function epl_get_fallback_content_path() {
+	return apply_filters('epl_templates_fallback_base_path',EPL_PATH_TEMPLATES_CONTENT);
+}
+
 /*
 * Attempts to load templates in order of priority
 */
 function epl_get_template_part($template,$arguments=array()) {
 
-	$base_path		= apply_filters('epl_templates_base_path',EPL_PATH_TEMPLATES_CONTENT);
+	$base_path		= epl_get_content_path();
 	$default		= $template;
 	$find[] 		= epl_template_path() . $template;
 	$template       	= locate_template( array_unique( $find ) );
 	if(!$template) {
 		$template	= $base_path . $default;
+		if(!file_exists( $template ) ) {
+			//fallback to core
+			$base_path		= epl_get_fallback_content_path();
+			$template	= $base_path . $default;
+		}
 	}
 	if( !isset($arguments['epl_author']) ) {
 		global $epl_author;
@@ -446,6 +459,36 @@ add_action('epl_property_title','epl_property_the_address');
 add_action('epl_property_tab_address','epl_property_the_address');
 add_action('epl_property_address','epl_property_the_address');
 
+/*
+ * Suburb Name
+ * Kept for listing templates extensions which use this function
+ *
+ * @since 1.3
+ */
+function epl_property_suburb() {
+	global $property;
+	// Commercial and Business Address
+	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) {
+		if ( $property->get_property_meta('property_address_display') == 'yes' && $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
+			<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
+			
+		<?php } 
+		echo '<span class="entry-title-sub">';
+		if ( $property->get_property_meta('property_address_display') == 'yes') { ?>
+			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . ', '; ?></span>
+		<?php } ?>
+				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
+				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
+			</span>
+		<?php 
+	} else { ?>
+		<span class="entry-title-sub">
+			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb')?></span>
+		</span> <?php
+	}
+}
+add_action( 'epl_property_suburb' , 'epl_property_suburb' );
+
 /**
  * @hooked property_price
  * @hooked property_price_content
@@ -563,23 +606,34 @@ function epl_property_category() {
 	global $property;
 	echo $property->get_property_category();
 }
+
+function epl_get_video_html($property_video_url='',$width=600) {
+
+	if($property_video_url != '') {
+		$videoID = epl_get_youtube_id_from_url($property_video_url);
+		$video_html =  '<div class="epl-video-container videoContainer">';
+			
+			$video_html .=  wp_oembed_get( 
+				('http://www.youtube.com/watch?v=' . $videoID ) , 
+				array( 'width' => apply_filters( 'epl_property_video_width', $width  ) )  
+			); 
+		$video_html .= '</div>';
+		return $video_html;
+	}
+}
+
 /**
  * Video Output Function
  * @hooked property_after_content
 **/
 function epl_property_video_callback( $width = 600 ) {
+
 	global $property;
-	
 	$video_width 		= $width != '' ? $width : 600;
 	$property_video_url	= $property->get_property_meta('property_video_url');
+	echo epl_get_video_html($property_video_url,$video_width);
 	
-	if($property_video_url != '') {
-		$videoID = epl_get_youtube_id_from_url($property_video_url);
-		echo '<div class="epl-video-container videoContainer">';
-			// Echo the embed code via oEmbed
-			echo wp_oembed_get( ('http://www.youtube.com/watch?v=' . $videoID ) , array( 'width' => apply_filters( 'epl_property_video_width', $video_width  ) )  ); 
-		echo '</div>';
-	}
+	
 }
 add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
 
@@ -1630,3 +1684,5 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	$count = $wpdb->get_row($sql);
 	return $count->count;
 }
+
+
