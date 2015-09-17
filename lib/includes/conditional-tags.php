@@ -34,7 +34,7 @@ function epl_get_core_sales_post_types() {
 */
 
 function epl_get_core_rental_post_types() {
-	return apply_filters('epl_core_rental_post_types',array('rural') );	
+	return apply_filters('epl_core_rental_post_types',array('rental') );	
 }
 
 /**
@@ -79,7 +79,7 @@ function is_epl_rental_post($type=null) {
  * @since 2.2
  */
 function is_epl_post($type=null) {
-	return 		in_array(get_post_type(),epl_all_post_types());
+	return 	in_array(get_post_type(),epl_all_post_types());
 }
 
 /**
@@ -87,7 +87,7 @@ function is_epl_post($type=null) {
  * @since 2.2
  */
 function is_epl_post_single() {
-	return 		is_singular(epl_all_post_types());
+	return 	is_singular(epl_all_post_types());
 }
 
 /**
@@ -95,7 +95,7 @@ function is_epl_post_single() {
  * @since 2.2
  */
 function is_epl_post_type($type) {
-	return 		(in_array($type,epl_all_post_types()) && get_post_type() == $type );
+	return 	(in_array($type,epl_all_post_types()) && get_post_type() == $type );
 }
 
 /**
@@ -103,5 +103,5 @@ function is_epl_post_type($type) {
  * @since 2.2
  */
 function is_epl_post_archive() {
-	return 		is_post_type_archive(epl_all_post_types());
+	return 	is_post_type_archive(epl_all_post_types());
 }
