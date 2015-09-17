@@ -564,12 +564,10 @@ class EPL_Property_Meta {
 		
 			if( '' != $this->get_property_rent() && 'yes' == $this->get_property_meta('property_rent_display') && 'leased' != $this->get_property_meta('property_status') ) {
 					
-				$l_price = '
-								<li class="page-price-rent">
-									<span class="page-price" style="margin-right:0;">'. $this->get_property_rent() . '</span>
-									<span class="rent-period">/' . $this->get_property_meta('property_rent_period') . '</span>
-								</li>
-							';
+				$l_price = '<li class="page-price-rent">
+							<span class="page-price" style="margin-right:0;">'. $this->get_property_rent() . '</span>
+							<span class="rent-period">/' . $this->get_property_meta('property_rent_period') . '</span>
+						</li>';
 					
 			} elseif('leased' == $this->get_property_meta('property_status')) {
 				$l_price = '<li class="page-price sold-status">'.$this->label_leased.'</li>';
@@ -755,7 +753,7 @@ class EPL_Property_Meta {
 		if( isset($property_new_construction) && ($property_new_construction == 1 || $property_new_construction == 'yes') ) { 
 			$return_construction = array();
 			$return_construction['i'] = '<span title="'.__('New Construction', 'epl').'" class="icon new_construction"></span>'; 
-			$return_construction['l'] = '<li class="pool">'.__('New Construction', 'epl').'</li>';
+			$return_construction['l'] = '<li class="new_construction">'.__('New Construction', 'epl').'</li>';
 			return $return_construction[$returntype];
 		}
 	}

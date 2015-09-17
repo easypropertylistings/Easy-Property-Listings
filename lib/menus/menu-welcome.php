@@ -166,6 +166,16 @@ class EPL_Welcome {
 			<?php $am_link = '<a href="http://easypropertylistings.com.au/extensions/advanced-mapping/">' . __('Advanced Mapping' , 'epl') . '</a>'; ?>
 			<?php $sd_link = '<a href="http://easypropertylistings.com.au/extensions/staff-directory/">' . __('Staff Directory' , 'epl') . '</a>'; ?>
 			
+			<div class="changelog headline-feature">
+			
+				<h2><?php _e( 'New API&#39;s Making it easier to add custom post types, custom fields and forms' , 'epl' );?></h2>
+				
+				<div class="feature-section">
+					<p><?php _e( 'This release is focused on making it easier to add custom post types, custom meta fields and forms in preparation for the Contact Management System (CRM). These structural changes will allow us to create even more real estate plugins and tools moving forward and give you the possibility to create your own custom functions and features.', 'epl' ); ?></p>
+					
+					<p><?php _e( 'These changes lay the groundwork for the Customer Relationship Manager (CRM) that will  give you better lead generation and capture tools. We have a number of really cool things planned for Easy Property Listings and our goal is to make Real Estate websites easy.', 'epl' ); ?></p>
+				</div>
+			</div>
 
 			<div class="changelog headline-feature">
 			
@@ -270,9 +280,28 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 					
+					<h4><?php _e( 'Version 2.3', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'New: Custom Post Type API. Makes it easy to create and register new custom post types.', 'epl' );?></li>
+						<li><?php _e( 'New: Custom Meta Box API. Creating custom fields and being able to configure custom meta fields on existing and new post types.', 'epl' );?></li>
+						<li><?php _e( 'New: Custom Forms API. Will give the ability to create forms and submissions for the coming CRM. (Customer Relationship Manager).', 'epl' );?></li>
+						<li><?php _e( 'New: Ordering of extension dynamic custom fields now possible.', 'epl' );?></li>
+						<li><?php _e( 'New: Archive template attributes class dynamically added depending on template in use.', 'epl' );?></li>
+						<li><?php _e( 'New: A number of helper functions have been added to better integrate additional custom post types.', 'epl' );?></li>
+						<li><?php _e( 'New: Button meta field for use in extensions and custom fields.', 'epl' );?></li>
+						<li><?php _e( 'New: Adjustments to video output function.', 'epl' );?></li>
+						<li><?php _e( 'New: Features taxonomy now use archive template instead of blog post view.', 'epl' );?></li>
+						<li><?php _e( 'New: Filters to adjust the Search not found text epl_property_search_not_found_title and epl_property_search_not_found_message.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Better author linking and real estate agent user output.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Improvements for other extensions to hook into and use maps.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Template fallback functions for improved custom template usage.', 'epl' );?></li>
+						<li><?php _e( 'Fix: New Construction class corrected to new_construction instead of pool.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Property ID searching improved. If you have a-z characters in your id include them in the title. E.g. aaa222 - 9 Somewhere Street, Brooklyn NY.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.2.7', 'epl' );?></h4>
 					<ul>
-						<li><?php _e( 'Tweak: Compatibility for Listing Templates extension. ', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Compatibility for Listing Templates extension.', 'epl' );?></li>
 					</ul>
 					
 					<h4><?php _e( 'Version 2.2.6', 'epl' );?></h4>
