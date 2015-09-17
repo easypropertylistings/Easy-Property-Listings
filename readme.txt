@@ -244,6 +244,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Improvements for other extensions to hook into and use maps.
 * Tweak: Template fallback functions for improved custom template usage.
 * Tweak: Swedish translations updated.
+* Tweak: Translation file updated.
 * Fix: New Construction class corrected to new_construction instead of pool.
 * Fix: Fix: Property ID searching improved. If you have a-z characters in your id include them in the title. E.g. aaa222 - 9 Somewhere Street, Brooklyn NY.
 

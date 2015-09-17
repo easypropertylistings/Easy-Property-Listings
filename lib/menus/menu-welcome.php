@@ -302,6 +302,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Tweak: Improvements for other extensions to hook into and use maps.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Template fallback functions for improved custom template usage.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Swedish translations updated.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Translation file updated.', 'epl' );?></li>
 						<li><?php _e( 'Fix: New Construction class corrected to new_construction instead of pool.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Property ID searching improved. If you have a-z characters in your id include them in the title. E.g. aaa222 - 9 Somewhere Street, Brooklyn NY.', 'epl' );?></li>
 					</ul>
