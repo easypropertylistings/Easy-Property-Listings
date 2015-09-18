@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, lead generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
- * Version: 2.2.4
+ * Version: 2.3
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 2.2.4
+ * @version 2.3
  */
  
 // Exit if accessed directly
@@ -83,7 +83,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {		
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '2.2.4' );
+				define( 'EPL_PROPERTY_VER', '2.3' );
 			}
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 */
 		private function includes() {
 			
-			// Wordpress core functions for keeping compatibility.
+			// WordPress core functions for keeping compatibility.
 			require_once EPL_COMPATABILITY . 'wp-functions-compat.php';
 		
 			global $epl_settings;
@@ -165,6 +165,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/plugins.php';
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
+			require_once EPL_PATH_LIB . 'api/cpt.php';
+			require_once EPL_PATH_LIB . 'api/form_builder.php';
 			
 			// Activate post types based on settings
 			if(isset($epl_settings['activate_post_types'])) {
@@ -227,6 +229,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			
 			if ( is_admin() ) {
+				require_once EPL_PATH_LIB . 'api/metaboxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
 				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';

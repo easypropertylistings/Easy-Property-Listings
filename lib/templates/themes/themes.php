@@ -12,38 +12,33 @@ function epl_load_core_templates($template) {
 
 	global $epl_settings;
 	
+	$template_path = epl_get_content_path();
+	
 	if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
 		return $template;
 	}
 	
-	$template_path = EPL_PATH_TEMPLATES_CONTENT;
-	
 	$post_tpl	=	'';
-	$epl_posts 	= epl_get_active_post_types();
-	$epl_posts 	= array_keys($epl_posts);
-	
-	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
-	
-		$common_tpl		= 'single-listing.php';
-		$post_tpl 		= 'single-'.get_post_type().'.php';
+	if ( is_epl_post_single() ) {
+
+		$common_tpl		= apply_filters('epl_common_single_template','single-listing.php');
+		$post_tpl 		= 'single-'.str_Replace('_','-',get_post_type()).'.php';
 		$find[] 		= $post_tpl;
 		$find[] 		= epl_template_path() . $post_tpl;
-		$find[] 		=  $common_tpl;
 		$find[] 		= $common_tpl;
 		$find[] 		= epl_template_path() . $common_tpl;
 		
-	} elseif ( is_post_type_archive( $epl_posts ) ) {
-		$common_tpl		= 'archive-listing.php';
-		$post_tpl 		= 'archive-'.get_post_type().'.php';
+	} elseif ( is_epl_post_archive() ) {
+		$common_tpl		= apply_filters('epl_common_archive_template','archive-listing.php');
+		$post_tpl 		= 'archive-'.str_Replace('_','-',get_post_type()).'.php';
 		$find[] 		=  $post_tpl;
 		$find[] 		= epl_template_path() . $post_tpl;
 		$find[] 		=  $common_tpl;
 		$find[] 		= epl_template_path() . $common_tpl;
-		
-	} elseif ( is_tax ( 'location' ) ) {
+	} elseif ( is_tax ( 'location' ) || is_tax ( 'tax_feature' ) ) {
 
 		$term   		= get_queried_object();
-		$common_tpl		= 'archive-listing.php';
+		$common_tpl		= apply_filters('epl_common_taxonomy_template','archive-listing.php');;
 		$post_tpl 		= 'taxonomy-' . $term->taxonomy . '.php';
 		$find[] 		= 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
 		$find[] 		= epl_template_path() . 'taxonomy-' . $term->taxonomy . '-' . $term->slug . '.php';
@@ -54,7 +49,6 @@ function epl_load_core_templates($template) {
 		$find[] 		= epl_template_path() . $common_tpl;
 
 	}
-	
 	if ( $post_tpl ) {
 		$template       = locate_template( array_unique( $find ) );
 		if(!$template) {
