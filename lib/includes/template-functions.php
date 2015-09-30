@@ -438,8 +438,10 @@ function epl_property_the_address() {
 		<?php 
 			if( $property->get_property_meta('property_com_display_suburb') != 'no' || $property->get_property_meta('property_address_display') == 'yes' ) { ?>
 				<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb'); ?></span><?php
+				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+					echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
+				}
 			}
-			echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
 		?>
 		<?php 
 			if( $property->get_epl_settings('epl_enable_city_field') == 'yes' ) { ?>
