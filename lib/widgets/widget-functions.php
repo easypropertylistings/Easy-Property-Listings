@@ -82,13 +82,13 @@
 				'type'			=>	'checkbox',
 			),
 			array(
-				'key'			=>	'search_category',
+				'key'			=>	'search_house_category',
 				'label'			=>	__('Category','epl'),
 				'default'		=>	'on',
 				'type'			=>	'checkbox',
 			),
 			array(
-				'key'			=>	'category_multiple',
+				'key'			=>	'house_category_multiple',
 				'label'			=>	__('Categories: Multi select','epl'),
 				'default'		=>	'off',
 				'type'			=>	'checkbox',
@@ -254,7 +254,7 @@
 				'class'			=>	'epl-search-row-half',
 			),
 			array(
-				'key'			=>	'search_category',
+				'key'			=>	'search_house_category',
 				'meta_key'		=>	'property_category',
 				'label'			=>	__('House Category','epl'),
 				'option_filter'		=>	'category',
@@ -265,7 +265,7 @@
 				'exclude'		=>	array('rural','land','commercial','commercial_land','business'),
 			),
 			array(
-				'key'			=>	'search_category',
+				'key'			=>	'search_house_category',
 				'meta_key'		=>	'property_rural_category',
 				'label'			=>	__('Rural Category','epl'),
 				'option_filter'		=>	'category',
@@ -276,7 +276,7 @@
 				'exclude'		=>	array('property','rental','land','commercial','commercial_land','business'),
 			),
 			array(
-				'key'			=>	'search_category',
+				'key'			=>	'search_house_category',
 				'meta_key'		=>	'property_land_category',
 				'label'			=>	__('Land Category','epl'),
 				'option_filter'		=>	'category',
@@ -287,7 +287,7 @@
 				'exclude'		=>	array('property','rental','rural','commercial','commercial_land','business'),
 			),
 			array(
-				'key'			=>	'search_category',
+				'key'			=>	'search_house_category',
 				'meta_key'		=>	'property_commercial_category',
 				'label'			=>	__('Commercial Category','epl'),
 				'option_filter'		=>	'category',
@@ -298,7 +298,7 @@
 				'exclude'		=>	array('property','rental','land','rural','business'),
 			),
 			array(
-				'key'			=>	'search_category',
+				'key'			=>	'search_house_category',
 				'meta_key'		=>	'property_business_category',
 				'label'			=>	__('Business Category','epl'),
 				'option_filter'		=>	'category',
