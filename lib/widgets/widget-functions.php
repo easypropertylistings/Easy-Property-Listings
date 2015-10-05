@@ -106,12 +106,6 @@
 				'type'			=>	'checkbox',
 			),
 			array(
-				'key'			=>	'search_com_lease_price',
-				'label'			=>	__('Price: Commercial Lease','epl'),
-				'default'		=>	'off',
-				'type'			=>	'checkbox',
-			),
-			array(
 				'key'			=>	'search_bed',
 				'label'			=>	__('Bed','epl'),
 				'default'		=>	'on',
@@ -186,28 +180,14 @@
 		if( 
 			isset($post_type) && 
 			($post_type == 'rental' 
-				//|| $post_type == 'commercial' 
-				//|| $post_type == 'business' 
 				|| $post_type == 'holiday_rental' 
-				//|| $post_type == 'commercial_land'
 			) 
 		) {
 			$price_meta_key = 'property_rent';
 		} else {
 			$price_meta_key = 'property_price';
 		}
-		
-		// Commercial Lease
-		$lease_meta_key = 'property_com_rent';
-		
-		$lease_price_array	= array_combine(range(1000,50000,1000),array_map('epl_currency_formatted_amount',range(1000,50000,1000)) );
-		$lease_price_array 	= apply_filters('epl_listing_search_price_lease',$price_array);
-		
-		
-		
-		
-			
-		
+
 		$fields = apply_filters( 'epl_search_widget_fields_frontend',  array(
 	
 			array(
@@ -279,19 +259,6 @@
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-half',
 			),
-			
-			array(
-				'key'			=>	'search_commercial_type',
-				'meta_key'		=>	'property_com_listing_type',
-				'label'			=>	__('Commercial Type','epl'),
-				'option_filter'		=>	'category',
-				'options'		=>	epl_get_meta_values( 'property_com_listing_type', $post_type),
-				'type'			=>	'select',
-				'query'			=>	array('query'	=>	'meta'),
-				'class'			=>	'epl-search-row-full',
-				'exclude'		=>	array('property','rental','land','rural','business'),
-			),
-			
 			array(
 				'key'			=>	'search_category',
 				'meta_key'		=>	'property_category',
@@ -303,7 +270,6 @@
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('rural','land','commercial','commercial_land','business'),
 			),
-			
 			array(
 				'key'			=>	'search_category',
 				'meta_key'		=>	'property_rural_category',
@@ -315,7 +281,6 @@
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('property','rental','land','commercial','commercial_land','business'),
 			),
-			
 			array(
 				'key'			=>	'search_category',
 				'meta_key'		=>	'property_land_category',
@@ -327,7 +292,6 @@
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('property','rental','rural','commercial','commercial_land','business'),
 			),
-			
 			array(
 				'key'			=>	'search_category',
 				'meta_key'		=>	'property_commercial_category',
@@ -339,7 +303,6 @@
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('property','rental','land','rural','business'),
 			),
-
 			array(
 				'key'			=>	'search_category',
 				'meta_key'		=>	'property_bus_category',
@@ -351,7 +314,6 @@
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('property','rental','land','rural','commercial','commercial_land'),
 			),
-			
 			array(
 				'key'			=>	'search_price',
 				'meta_key'		=>	'property_price_from',
@@ -384,42 +346,6 @@
 								),
 				'class'			=>	'epl-search-row-half',
 			),
-			
-			array(
-				'key'			=>	'search_com_lease_price',
-				'meta_key'		=>	'property_lease_from',
-				'label'			=>	__('Lease From','epl'),
-				'type'			=>	'select',
-				'option_filter'		=>	'lease_from',
-				'options'		=>	$lease_price_array,
-				'type'			=>	'select',
-				'exclude'		=>	array('property','rental','land','rural'),
-				'query'			=>	array(
-									'query'		=>	'meta',
-									'key'		=>	$lease_meta_key,
-									'type'		=>	'numeric',
-									'compare'	=>	'>='
-								),
-				'class'			=>	'epl-search-row-half',
-			),
-			array(
-				'key'			=>	'search_com_lease_price',
-				'meta_key'		=>	'property_lease_to',
-				'label'			=>	__('Lease To','epl'),
-				'type'			=>	'select',
-				'option_filter'		=>	'lease_to',
-				'options'		=>	$lease_price_array,
-				'type'			=>	'select',
-				'exclude'		=>	array('property','rental','land','rural'),
-				'query'			=>	array(
-									'query'		=>	'meta', 
-									'key'		=>	$lease_meta_key, 
-									'type'		=>	'numeric', 
-									'compare'	=>	'<=' 
-								),
-				'class'			=>	'epl-search-row-half',
-			),
-			
 			array(
 				'key'			=>	'search_bed',
 				'meta_key'		=>	'property_bedrooms_min',
