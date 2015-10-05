@@ -232,6 +232,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Added a hidden field property_images_mod_date for image mod time in preparation for importer plugin.
 * Tweak: Added categories to search for business, rural, land, commercial, commercial_land post types.
 * Tweak: Adjusted z-index of sticker label.
+* Tweak: Hide address separator when address is empty.
 * Fix: Search price fix for commercial, commercial_land, and business.
 * Fix: POA label now obeys custom label setting.
 
