@@ -309,12 +309,9 @@ class EPL_Property_Meta {
 			} else {
 				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
 					$price_plain_value = $this->epl_settings['label_poa'];
+				} else {
+					$price_plain_value = __( 'POA' , 'epl');
 				}
-				$price_plain_value_poa = __( 'POA' , 'epl');
-				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
-					$price_plain_value_poa = $this->epl_settings['label_poa'];
-				}
-				$price_plain_value = $price_plain_value_poa;
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
 				
@@ -397,7 +394,7 @@ class EPL_Property_Meta {
 			else {
 				$price_plain_value_poa = __( 'POA' , 'epl');
 				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
-					$price = $this->epl_settings['label_poa'];
+					$price_plain_value_poa = $this->epl_settings['label_poa'];
 				}
 				$price = '<span class="page-price">' . $price_plain_value_poa . '</span>';
 			}
