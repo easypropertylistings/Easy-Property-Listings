@@ -82,12 +82,6 @@
 				'type'			=>	'checkbox',
 			),
 			array(
-				'key'			=>	'search_commercial_type',
-				'label'			=>	__('Commercial Type','epl'),
-				'default'		=>	'off',
-				'type'			=>	'checkbox',
-			),
-			array(
 				'key'			=>	'search_category',
 				'label'			=>	__('Category','epl'),
 				'default'		=>	'on',
@@ -305,10 +299,10 @@
 			),
 			array(
 				'key'			=>	'search_category',
-				'meta_key'		=>	'property_bus_category',
+				'meta_key'		=>	'property_business_category',
 				'label'			=>	__('Business Category','epl'),
 				'option_filter'		=>	'category',
-				'options'		=>	epl_get_meta_values( 'property_bus_category', $post_type),
+				'options'		=>	epl_get_meta_values( 'property_business_category', $post_type),
 				'type'			=>	'select',
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-full',
