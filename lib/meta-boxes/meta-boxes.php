@@ -218,6 +218,13 @@ function epl_meta_box_init() {
 							'type'		=>	'text',
 							'maxlength'	=>	'60'
 						),
+						
+						array(
+							'name'		=>	'property_images_mod_date',
+							'label'		=>	'',
+							'type'		=>	'hidden',
+							'maxlength'	=>	'60'
+						),
 					
 						array(
 							'name'		=>	'property_com_authority',
