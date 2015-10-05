@@ -285,6 +285,14 @@ class EPL_Welcome {
 			
 				<div class="feature-section">
 					
+					<h4><?php _e( 'Version 2.3.1', 'epl' );?></h4>
+					<ul>
+						<li><?php _e( 'New: Added a hidden field property_images_mod_date for image mod time in preparation for importer plugin.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added categories to search for business, rural, land, commercial, commercial_land post types.', 'epl' );?></li>
+						<li><?php _e( 'Fix: Search price fix for commercial, commercial_land, and business.', 'epl' );?></li>
+						<li><?php _e( 'Fix: POA label now obeys custom label setting.', 'epl' );?></li>
+					</ul>
+					
 					<h4><?php _e( 'Version 2.3', 'epl' );?></h4>
 					<ul>
 						<li><?php _e( 'New: Custom Post Type API. Makes it easy to create and register new custom post types.', 'epl' );?></li>
