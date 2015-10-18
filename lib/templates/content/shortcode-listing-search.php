@@ -90,6 +90,9 @@ if ( ! empty( $selected_post_types ) ) :
 					}
 
 					$config	=	isset(${$epl_frontend_field['key']}) ? ${$epl_frontend_field['key']} : '';
+					if ( empty( $config ) && isset( $epl_frontend_field['config'] ) ) {
+						$config = $epl_frontend_field['config'];
+					}
 					$value	=	isset(${$epl_frontend_field['meta_key']}) ? ${$epl_frontend_field['meta_key']} : '';
 					epl_widget_render_frontend_fields( $epl_frontend_field,$config,$value,$post_type,$property_status );
 				}
