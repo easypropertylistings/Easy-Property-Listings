@@ -582,7 +582,7 @@
 				'class'			=>	'epl-search-row-half',
 				'wrap_end'		=>	true
 			)
-		) );
+		), $post_type, $property_status );
 		return $fields;
 	}
 	/**
