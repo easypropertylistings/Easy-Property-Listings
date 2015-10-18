@@ -193,7 +193,10 @@
 				'key'			=>	'property_status',
 				'meta_key'		=>	'property_status',
 				'type'			=>	'hidden',
-				'query'			=>	array('query'	=>	'meta')
+				'query'			=>	array(
+										'query'   => 'meta',
+										'compare' => 'IN',
+									),
 			),
 			array(
 				'key'			=>	'search_id',
@@ -776,6 +779,15 @@ function epl_search_pre_get_posts( $query ) {
 									'type'		=>	$sub_query['type'],
 									'compare'	=>	$sub_query['compare']
 								);
+								/**
+								 * Changing value of $this_sub_query to array when
+								 * compare is IN, NOT IN, BETWEEN, NOT BETWEEN
+								 */
+								if ( isset( $this_sub_query['compare'] ) && isset( $this_sub_query['value'] )
+									&& in_array( strtoupper( $this_sub_query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
+									&& ! is_array( $this_sub_query['value'] ) ) {
+									$this_sub_query['value'] = array_map( 'trim', explode( ',', $this_meta_query['value'] ) );
+								}
 								$this_meta_query[] = $this_sub_query;
 							}
 							$epl_meta_query[] = $this_meta_query;
@@ -801,6 +813,15 @@ function epl_search_pre_get_posts( $query ) {
 							isset($epl_search_form_field['query']['compare']) ? $this_meta_query['compare'] = $epl_search_form_field['query']['compare'] : '';
 							isset($epl_search_form_field['query']['type']) ? $this_meta_query['type'] = $epl_search_form_field['query']['type'] : '';
 							isset($epl_search_form_field['query']['value']) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
+							/**
+							 * Changing value of $this_meta_query to array when
+							 * compare is IN, NOT IN, BETWEEN, NOT BETWEEN
+							 */
+							if ( isset( $this_meta_query['compare'] ) && isset( $this_meta_query['value'] )
+								&& in_array( strtoupper( $this_meta_query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
+								&& ! is_array( $this_meta_query['value'] ) ) {
+								$this_meta_query['value'] = array_map( 'trim', explode( ',', $this_meta_query['value'] ) );
+							}
 							$epl_meta_query[] = $this_meta_query;
 						}
 					}
