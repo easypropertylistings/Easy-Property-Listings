@@ -699,36 +699,7 @@
 		if( !empty($field['exclude']) && in_array($post_type,$field['exclude']) )
 			return;
 
-		switch ( $field['type'] ) {
-			// checkbox
-			case 'checkbox' :
-				do_action( 'epl_frontend_search_field_checkbox', $field, $config, $value, $post_type, $property_status );
-			break;
-
-			// text
-			case 'text' :
-				do_action( 'epl_frontend_search_field_text', $field, $config, $value, $post_type, $property_status );
-			break;
-
-			// number
-			case 'number' :
-				do_action( 'epl_frontend_search_field_number', $field, $config, $value, $post_type, $property_status );
-			break;
-
-			// select
-			case 'select' :
-				if ( isset( $field['multiple'] ) ) {
-					do_action( 'epl_frontend_search_field_multiple_select', $field, $config, $value, $post_type, $property_status );
-				} else {
-					do_action( 'epl_frontend_search_field_select', $field, $config, $value, $post_type, $property_status );
-				}
-			break;
-
-			// hidden
-			case 'hidden' :
-				do_action( 'epl_frontend_search_field_hidden', $field, $config, $value, $post_type, $property_status );
-			break;
-		}
+		do_action( 'epl_frontend_search_field_' . $field['type'], $field, $config, $value, $post_type, $property_status );
 	}
 
 //Property Search Query
