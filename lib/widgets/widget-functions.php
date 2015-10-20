@@ -705,146 +705,141 @@
 		do_action( 'epl_frontend_search_field_' . $field['type'], $field, $config, $value, $post_type, $property_status );
 	}
 
-//Property Search Query
-function epl_search_pre_get_posts( $query ) {
+/**
+ * Listings search.
+ *
+ * @since  2.3.1
+ * @param  WP_Query $query
+ * @return void
+ */
+function epl_search( WP_Query &$query ) {
+	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
-	if ( is_admin() || !$query->is_main_query() ) {
-		return;
+	$query->init();
+	$query->set( 'posts_per_page', get_option( 'posts_per_page' ) );
+	$query->set( 'paged', $paged );
+	extract( $_REQUEST );
+
+	if ( isset( $property_id ) ) {
+		if ( false === is_numeric( $property_id ) ) {
+			$query->set( 'epl_post_title', sanitize_text_field( $property_id ) );
+		}
 	}
 
-	if( epl_is_search() ) {
-		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-		$query->init();
-		$query->set('posts_per_page', get_option('posts_per_page'));
-		$query->set('paged', $paged);
-		extract($_REQUEST);
-
-		if(isset($property_id) ) {
-			if(is_numeric($property_id)) {
-
-			} else {
-				$query->set( 'epl_post_title', sanitize_text_field($property_id) );
-			}
-
+	if ( isset( $property_agent ) ) {
+		$property_agent = sanitize_title_with_dashes( $property_agent );
+		if ( $property_agent = get_user_by( 'slug',$property_agent ) ) {
+			$query->set( 'post_author', $property_agent->ID );
 		}
+	}
 
-		if(isset($property_agent) ) {
-			$property_agent = sanitize_title_with_dashes($property_agent);
-
-				if( $property_agent = get_user_by('slug',$property_agent) ) {
-
-					$query->set( 'post_author', $property_agent->ID );
-				}
-
+	if ( isset( $post_type ) && ! empty( $post_type ) ) {
+		$query->set( 'post_type', $post_type );
+	} else {
+		$epl_post_types = epl_get_active_post_types();
+		if ( ! empty( $epl_post_types ) ) {
+			$epl_post_types = array_keys( $epl_post_types );
+			$query->set( 'post_type', $epl_post_types );
 		}
+	}
 
-		if(isset($post_type) && !empty($post_type)) {
-			$query->set('post_type', $post_type);
-		} else {
-			$epl_post_types = epl_get_active_post_types();
-			if(!empty($epl_post_types)) {
-				$epl_post_types = array_keys($epl_post_types);
-				$query->set('post_type', $epl_post_types);
-			}
-		}
+	$epl_meta_query = array();
 
-		$epl_meta_query = array();
+	$epl_search_form_fields = epl_search_widget_fields_frontend( $post_type, $property_status );
 
-		$epl_search_form_fields = epl_search_widget_fields_frontend($post_type,$property_status);
+	foreach ( $epl_search_form_fields as $epl_search_form_field ) {
+		if ( isset($epl_search_form_field['query']) ) {
+			if ( $epl_search_form_field['query']['query'] == 'meta' ) {
+				$this_meta_query = array();
+				if ( isset($epl_search_form_field['query']['multiple']) && $epl_search_form_field['query']['multiple'] == true ) {
 
-		foreach($epl_search_form_fields as $epl_search_form_field) {
+					if ( isset(${$epl_search_form_field['meta_key']}) && ! empty( ${$epl_search_form_field['meta_key']} ) ) {
 
+						$this_meta_query['relation'] =
+							isset($epl_search_form_field['query']['relation']) ?
+							$epl_search_form_field['query']['relation'] : 'OR';
 
+						foreach ( $epl_search_form_field['query']['sub_queries'] as $sub_query ) {
 
-			if( isset($epl_search_form_field['query']) ) {
-
-				if($epl_search_form_field['query']['query'] == 'meta') {
-
-					$this_meta_query = array();
-
-					if( isset($epl_search_form_field['query']['multiple']) && $epl_search_form_field['query']['multiple'] == true) {
-
-						if( isset(${$epl_search_form_field['meta_key']}) && !empty(${$epl_search_form_field['meta_key']}) ) {
-
-							$this_meta_query['relation'] =
-								isset($epl_search_form_field['query']['relation']) ?
-								$epl_search_form_field['query']['relation'] : 'OR';
-
-							foreach($epl_search_form_field['query']['sub_queries'] as $sub_query) {
-
-								$this_sub_query = array(
-									'key'		=>	$sub_query['key'],
-									'value'		=>	${$epl_search_form_field['meta_key']},
-									'type'		=>	$sub_query['type'],
-									'compare'	=>	$sub_query['compare']
-								);
-								/**
-								 * Changing value of $this_sub_query to array when
-								 * compare is IN, NOT IN, BETWEEN, NOT BETWEEN
-								 */
-								if ( isset( $this_sub_query['compare'] ) && isset( $this_sub_query['value'] )
-									&& in_array( strtoupper( $this_sub_query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
-									&& ! is_array( $this_sub_query['value'] ) ) {
-									$this_sub_query['value'] = array_map( 'trim', explode( ',', $this_meta_query['value'] ) );
-								}
-								$this_meta_query[] = $this_sub_query;
-							}
-							$epl_meta_query[] = $this_meta_query;
-						}
-
-					} else {
-
-						$query_meta_key = isset($epl_search_form_field['query']['key']) ?
-						$epl_search_form_field['query']['key'] :
-						$epl_search_form_field['meta_key'];
-
-						if($query_meta_key == 'property_unique_id' && isset(${$epl_search_form_field['meta_key']}) &&  !is_numeric(${$epl_search_form_field['meta_key']}) ) {
-							continue;
-						}
-
-						if( isset(${$epl_search_form_field['meta_key']}) && !empty(${$epl_search_form_field['meta_key']}) ) {
-
-							$this_meta_query = array(
-								'key'	=>	$query_meta_key,
-								'value'	=>	${$epl_search_form_field['meta_key']}
+							$this_sub_query = array(
+								'key'		=>	$sub_query['key'],
+								'value'		=>	${$epl_search_form_field['meta_key']},
+								'type'		=>	$sub_query['type'],
+								'compare'	=>	$sub_query['compare'],
 							);
-
-							isset($epl_search_form_field['query']['compare']) ? $this_meta_query['compare'] = $epl_search_form_field['query']['compare'] : '';
-							isset($epl_search_form_field['query']['type']) ? $this_meta_query['type'] = $epl_search_form_field['query']['type'] : '';
-							isset($epl_search_form_field['query']['value']) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
 							/**
-							 * Changing value of $this_meta_query to array when
+							 * Changing value of $this_sub_query to array when
 							 * compare is IN, NOT IN, BETWEEN, NOT BETWEEN
 							 */
-							if ( isset( $this_meta_query['compare'] ) && isset( $this_meta_query['value'] )
-								&& in_array( strtoupper( $this_meta_query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
-								&& ! is_array( $this_meta_query['value'] ) ) {
-								$this_meta_query['value'] = array_map( 'trim', explode( ',', $this_meta_query['value'] ) );
+							if ( isset( $this_sub_query['compare'] ) && isset( $this_sub_query['value'] )
+								&& in_array( strtoupper( $this_sub_query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
+								&& ! is_array( $this_sub_query['value'] ) ) {
+								$this_sub_query['value'] = array_map( 'trim', explode( ',', $this_meta_query['value'] ) );
 							}
-							$epl_meta_query[] = $this_meta_query;
+							$this_meta_query[] = $this_sub_query;
 						}
+						$epl_meta_query[] = $this_meta_query;
+					}
+				} else {
+					$query_meta_key = isset( $epl_search_form_field['query']['key'] ) ?
+					$epl_search_form_field['query']['key'] :
+					$epl_search_form_field['meta_key'];
+
+					if ( $query_meta_key == 'property_unique_id' && isset( ${$epl_search_form_field['meta_key']} ) &&  false === is_numeric( ${$epl_search_form_field['meta_key']} ) ) {
+						continue;
+					}
+
+					if ( isset(${$epl_search_form_field['meta_key']}) && ! empty( ${$epl_search_form_field['meta_key']} ) ) {
+
+						$this_meta_query = array(
+							'key'	=>	$query_meta_key,
+							'value'	=>	${$epl_search_form_field['meta_key']}
+						);
+
+						isset($epl_search_form_field['query']['compare']) ? $this_meta_query['compare'] = $epl_search_form_field['query']['compare'] : '';
+						isset($epl_search_form_field['query']['type']) ? $this_meta_query['type'] = $epl_search_form_field['query']['type'] : '';
+						isset($epl_search_form_field['query']['value']) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
+						/**
+						 * Changing value of $this_meta_query to array when
+						 * compare is IN, NOT IN, BETWEEN, NOT BETWEEN
+						 */
+						if ( isset( $this_meta_query['compare'] ) && isset( $this_meta_query['value'] )
+							&& in_array( strtoupper( $this_meta_query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
+							&& ! is_array( $this_meta_query['value'] ) ) {
+							$this_meta_query['value'] = array_map( 'trim', explode( ',', $this_meta_query['value'] ) );
+						}
+						$epl_meta_query[] = $this_meta_query;
 					}
 				}
 			}
 		}
-		if(!empty($epl_meta_query)) {
-			$query->set('meta_query', $epl_meta_query);
-		}
+	}
+	if ( ! empty( $epl_meta_query ) ) {
+		$query->set( 'meta_query', $epl_meta_query );
+	}
 
-		$tax_query = array();
-		if(isset($property_location) && !empty($property_location)) {
-			$tax_query[] = array(
-				'taxonomy'	=>	'location',
-				'field'		=>	'id',
-				'terms'		=>	$property_location
-			);
-		}
+	$tax_query = array();
+	if ( isset( $property_location ) && ! empty( $property_location ) ) {
+		$tax_query[] = array(
+			'taxonomy'	=>	'location',
+			'field'		=>	'id',
+			'terms'		=>	$property_location,
+		);
+	}
 
-		if(!empty($tax_query)) {
-			$query->set('tax_query', $tax_query);
-		}
-		$query->parse_query();
+	if ( ! empty( $tax_query ) ) {
+		$query->set( 'tax_query', $tax_query );
+	}
+	$query->parse_query();
+}
+
+//Property Search Query
+function epl_search_pre_get_posts( $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+	if ( epl_is_search() ) {
+		epl_search( $query );
 	}
 }
 add_action( 'pre_get_posts', 'epl_search_pre_get_posts' );
