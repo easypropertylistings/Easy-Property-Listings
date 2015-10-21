@@ -912,10 +912,13 @@ function epl_get_available_locations($post_type='',$property_status='') {
 	tt.taxonomy 			= 'location'
 	AND p.post_status 		= 'publish'
 	AND p.post_type 		= '{$post_type}'";
-	if($property_status != '') {
-		$available_loc_query .= "
+	if ( ! empty( $property_status ) ) {
+		$property_status = array_map( 'trim', explode( ',', $property_status ) );
+		if ( count( $property_status ) ) {
+			$available_loc_query .= "
 			AND pm.meta_key 		= 'property_status'
-			AND pm.meta_value 		= '{$property_status}'";
+			AND pm.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
+		}
 	}
 	$available_locs	= $wpdb->get_col($available_loc_query);
 	$locations	= get_terms('location',array('hide_empty'	=> true,'include'	=>	$available_locs));
