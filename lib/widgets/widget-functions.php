@@ -710,31 +710,35 @@
  *
  * @since  2.3.1
  * @param  WP_Query $query
+ * @param  array    $data   That contains epl search key value pairs and if it's empty it will replace by $_REQUEST
  * @return void
  */
-function epl_search( WP_Query &$query ) {
+function epl_search( WP_Query &$query, array $data = array() ) {
+	if ( empty( $data ) ) {
+		$data = $_REQUEST;
+	}
+
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 	$query->init();
 	$query->set( 'posts_per_page', get_option( 'posts_per_page' ) );
 	$query->set( 'paged', $paged );
-	extract( $_REQUEST );
 
-	if ( isset( $property_id ) ) {
-		if ( false === is_numeric( $property_id ) ) {
-			$query->set( 'epl_post_title', sanitize_text_field( $property_id ) );
+	if ( isset( $data['property_id'] ) ) {
+		if ( absint( $data['property_id'] ) ) {
+			$query->set( 'epl_post_title', absint( $data['property_id'] ) );
 		}
 	}
 
-	if ( isset( $property_agent ) ) {
-		$property_agent = sanitize_title_with_dashes( $property_agent );
-		if ( $property_agent = get_user_by( 'slug',$property_agent ) ) {
+	if ( isset( $data['property_agent'] ) ) {
+		$property_agent = sanitize_title_with_dashes( $data['property_agent'] );
+		if ( $property_agent = get_user_by( 'slug', $property_agent ) ) {
 			$query->set( 'post_author', $property_agent->ID );
 		}
 	}
 
-	if ( isset( $post_type ) && ! empty( $post_type ) ) {
-		$query->set( 'post_type', $post_type );
+	if ( isset( $data['post_type'] ) && ! empty( $data['post_type'] ) ) {
+		$query->set( 'post_type', $data['post_type'] );
 	} else {
 		$epl_post_types = epl_get_active_post_types();
 		if ( ! empty( $epl_post_types ) ) {
@@ -745,25 +749,25 @@ function epl_search( WP_Query &$query ) {
 
 	$epl_meta_query = array();
 
-	$epl_search_form_fields = epl_search_widget_fields_frontend( $post_type, $property_status );
+	$epl_search_form_fields = epl_search_widget_fields_frontend( $data['post_type'], $data['property_status'] );
 
 	foreach ( $epl_search_form_fields as $epl_search_form_field ) {
-		if ( isset($epl_search_form_field['query']) ) {
+		if ( isset( $epl_search_form_field['query'] ) ) {
 			if ( $epl_search_form_field['query']['query'] == 'meta' ) {
 				$this_meta_query = array();
-				if ( isset($epl_search_form_field['query']['multiple']) && $epl_search_form_field['query']['multiple'] == true ) {
+				if ( isset( $epl_search_form_field['query']['multiple'] ) && $epl_search_form_field['query']['multiple'] == true ) {
 
-					if ( isset(${$epl_search_form_field['meta_key']}) && ! empty( ${$epl_search_form_field['meta_key']} ) ) {
+					if ( isset( $data[ $epl_search_form_field['meta_key'] ] ) && ! empty( $data[ $epl_search_form_field['meta_key'] ] ) ) {
 
 						$this_meta_query['relation'] =
-							isset($epl_search_form_field['query']['relation']) ?
-							$epl_search_form_field['query']['relation'] : 'OR';
+							isset( $epl_search_form_field['query']['relation'] ) ?
+								$epl_search_form_field['query']['relation'] : 'OR';
 
 						foreach ( $epl_search_form_field['query']['sub_queries'] as $sub_query ) {
 
 							$this_sub_query = array(
 								'key'		=>	$sub_query['key'],
-								'value'		=>	${$epl_search_form_field['meta_key']},
+								'value'		=>	$data[ $epl_search_form_field['meta_key'] ],
 								'type'		=>	$sub_query['type'],
 								'compare'	=>	$sub_query['compare'],
 							);
@@ -782,23 +786,23 @@ function epl_search( WP_Query &$query ) {
 					}
 				} else {
 					$query_meta_key = isset( $epl_search_form_field['query']['key'] ) ?
-					$epl_search_form_field['query']['key'] :
-					$epl_search_form_field['meta_key'];
+						$epl_search_form_field['query']['key'] :
+						$epl_search_form_field['meta_key'];
 
-					if ( $query_meta_key == 'property_unique_id' && isset( ${$epl_search_form_field['meta_key']} ) &&  false === is_numeric( ${$epl_search_form_field['meta_key']} ) ) {
+					if ( $query_meta_key == 'property_unique_id' && isset( $data[ $epl_search_form_field['meta_key'] ] ) &&  false === is_numeric( $data[ $epl_search_form_field['meta_key'] ] ) ) {
 						continue;
 					}
 
-					if ( isset(${$epl_search_form_field['meta_key']}) && ! empty( ${$epl_search_form_field['meta_key']} ) ) {
+					if ( isset( $data[ $epl_search_form_field['meta_key'] ] ) && ! empty( $data[ $epl_search_form_field['meta_key'] ] ) ) {
 
 						$this_meta_query = array(
 							'key'	=>	$query_meta_key,
-							'value'	=>	${$epl_search_form_field['meta_key']}
+							'value'	=>	$data[ $epl_search_form_field['meta_key'] ],
 						);
 
-						isset($epl_search_form_field['query']['compare']) ? $this_meta_query['compare'] = $epl_search_form_field['query']['compare'] : '';
-						isset($epl_search_form_field['query']['type']) ? $this_meta_query['type'] = $epl_search_form_field['query']['type'] : '';
-						isset($epl_search_form_field['query']['value']) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
+						isset( $epl_search_form_field['query']['compare'] ) ? $this_meta_query['compare'] = $epl_search_form_field['query']['compare'] : '';
+						isset( $epl_search_form_field['query']['type'] ) ? $this_meta_query['type'] = $epl_search_form_field['query']['type'] : '';
+						isset( $epl_search_form_field['query']['value'] ) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
 						/**
 						 * Changing value of $this_meta_query to array when
 						 * compare is IN, NOT IN, BETWEEN, NOT BETWEEN
@@ -819,11 +823,11 @@ function epl_search( WP_Query &$query ) {
 	}
 
 	$tax_query = array();
-	if ( isset( $property_location ) && ! empty( $property_location ) ) {
+	if ( isset( $data['property_location'] ) && ! empty( $data['property_location'] ) ) {
 		$tax_query[] = array(
 			'taxonomy'	=>	'location',
 			'field'		=>	'id',
-			'terms'		=>	$property_location,
+			'terms'		=>	$data['property_location'],
 		);
 	}
 
@@ -908,10 +912,13 @@ function epl_get_available_locations($post_type='',$property_status='') {
 	tt.taxonomy 			= 'location'
 	AND p.post_status 		= 'publish'
 	AND p.post_type 		= '{$post_type}'";
-	if($property_status != '') {
-		$available_loc_query .= "
+	if ( ! empty( $property_status ) ) {
+		$property_status = array_map( 'trim', explode( ',', $property_status ) );
+		if ( count( $property_status ) ) {
+			$available_loc_query .= "
 			AND pm.meta_key 		= 'property_status'
-			AND pm.meta_value 		= '{$property_status}'";
+			AND pm.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
+		}
 	}
 	$available_locs	= $wpdb->get_col($available_loc_query);
 	$locations	= get_terms('location',array('hide_empty'	=> true,'include'	=>	$available_locs));
