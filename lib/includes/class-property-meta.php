@@ -534,7 +534,7 @@ class EPL_Property_Meta {
 			}
 			
 		}
-		return $price_sticker;
+		return apply_filters('get_price_sticker',$price_sticker);
 	}
 	
 	// get l price 
