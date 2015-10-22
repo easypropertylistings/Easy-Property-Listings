@@ -795,7 +795,7 @@ class EPL_Property_Meta {
 				}
 				
 				if( $metavalue == 'no' )
-						$return =;
+						$return = '';
 
 				// string value field types
 				$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
