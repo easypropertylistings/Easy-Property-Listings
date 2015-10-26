@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, commercial, business, rural, land
 Requires at least: 3.3
 Tested up to: 4.3.1
 
-Stable Tag: 2.3
+Stable Tag: 2.3.1
 
 License: GNU Version 2 or Any Later Version
 
@@ -226,6 +226,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 6. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 2.3.1 October 5, 2015 =
+
+* New: Added a hidden field property_images_mod_date for image mod time in preparation for importer plugin.
+* Tweak: Added categories to search for business, rural, land, commercial, commercial_land post types.
+* Tweak: Adjusted z-index of sticker label.
+* Tweak: Hide address separator when address is empty.
+* Fix: Search price fix for commercial, commercial_land, and business.
+* Fix: POA label now obeys custom label setting.
 
 = 2.3 September 17, 2015 =
 
