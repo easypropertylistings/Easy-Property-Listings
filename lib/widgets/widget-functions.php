@@ -719,7 +719,7 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 		$data = $_REQUEST;
 	}
 
-	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	$paged = $query->get( 'paged', 1 );
 
 	$query->init();
 	$query->set( 'posts_per_page', get_option( 'posts_per_page' ) );
