@@ -710,15 +710,16 @@
  *
  * @since  2.3.1
  * @param  WP_Query $query
- * @param  array    $data   That contains epl search key value pairs and if it's empty it will replace by $_REQUEST
+ * @param  array    $data   	That contains epl search key value pairs and if it's empty it will replace by $_REQUEST
+ * @param  boolean  $get_posts  If set to true get_posts of WP_Query will execute on query and returns posts.
  * @return void
  */
-function epl_search( WP_Query &$query, array $data = array() ) {
+function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
 	if ( empty( $data ) ) {
 		$data = $_REQUEST;
 	}
 
-	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	$paged = $query->get( 'paged', 1 );
 
 	$query->init();
 	$query->set( 'posts_per_page', get_option( 'posts_per_page' ) );
@@ -835,6 +836,10 @@ function epl_search( WP_Query &$query, array $data = array() ) {
 		$query->set( 'tax_query', $tax_query );
 	}
 	$query->parse_query();
+
+	if ( $get_posts ) {
+		return $query->get_posts();
+	}
 }
 
 //Property Search Query
