@@ -32,6 +32,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'status'       => array( 'current', 'sold', 'leased' ),
 		'limit'        => '10', // Number of maximum posts to show
 		'author'       => '',	// Author of listings.
+		'featured'	   => 0,	// Featured listings.
 		'template'     => false, // Template can be set to "slim" for home open style template
 		'location'     => '', // Location slug. Should be a name like sorrento
 		'tools_top'    => 'off', // Tools before the loop like Sorter and Grid on or off
@@ -60,11 +61,19 @@ function epl_shortcode_listing_callback( $atts ) {
 		'posts_per_page' =>	$attributes['limit'],
 		'paged'          =>	absint( $paged ),
 	);
+	// Listings of specified author.
 	if ( ! empty( $attributes['author'] ) ) {
 		if ( is_array( $attributes['author'] ) ) {
 			$attributes['author'] = implode( ',', array_map( 'absint', $attributes['author'] ) );
 		}
 		$args['author'] = trim( $attributes['author'] );
+	}
+	// Featured listings.
+	if ( $attributes['featured'] ) {
+		$args['meta_query'][] = array(
+			'key'   => 'property_featured',
+			'value' => 'yes',
+		);
 	}
 
 	if ( ! empty( $attributes['location'] ) ) {
