@@ -15,182 +15,99 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Recent_Property extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, $name = __('EPL - Listing', 'epl') );
+		parent::__construct( false, __( 'EPL - Listing', 'epl' ) );
 	}
 
 	function widget( $args, $instance ) {
+		$property_types = epl_get_active_post_types();
+		if ( ! empty( $property_types ) ) {
+			$property_types = array_keys( $property_types );
+		}
 
 		$defaults = array(
-			'title'		=>	'',
-			'types'		=>	'property',
-			'featured'	=>	0,
-			'status'	=>	'any',
-			'display'	=>	'image',
-			'image'		=>	'thumbnail',
-			'archive'	=>	0,
-			'order_rand'	=>	0,
-			'd_title'	=>	0,
+			'title'      =>	'',
+			'types'      =>	$property_types,
+			'featured'   =>	0,
+			'status'     =>	array( 'current', 'sold', 'leased' ),
+			'view'		 => 'default',
+			'display'    =>	'image',
+			'image'      =>	'thumbnail',
+			'archive'    =>	0,
+			'order_rand' =>	0,
+			'd_title'    =>	0,
 
-			'more_text'	=>	'Read More',
-			'd_excerpt'	=>	'off',
-			'd_suburb'	=>	'on',
-			'd_street'	=>	'on',
-			'd_price'	=>	'on',
-			'd_more'	=>	'on',
+			'more_text'  =>	'Read More',
+			'd_excerpt'  =>	'off',
+			'd_suburb'   =>	'on',
+			'd_street'   =>	'on',
+			'd_price'    =>	'on',
+			'd_more'     =>	'on',
 
-			'd_icons'	=>	'none',
-			'p_number'	=>	1,
-			'p_skip'	=>	0,
+			'd_icons'    =>	'none',
+			'p_number'   =>	1,
+			'p_skip'     =>	0,
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		extract( $args );
-		$title 		= apply_filters('widget_title', $instance['title']);
-		$display	= $instance['display'];
-		$image		= $instance['image'];
-		$archive	= $instance['archive'];
-
-		$d_title	= $instance['d_title'];
-
-		$more_text	= $instance['more_text'];
-		$d_excerpt	= $instance['d_excerpt'];
-		$d_suburb	= $instance['d_suburb'];
-		$d_street	= $instance['d_street'];
-		$d_price	= $instance['d_price'];
-		$d_more		= $instance['d_more'];
-
-		$d_icons	= $instance['d_icons'];
-
-		$p_number	= $instance['p_number'];
-		$p_skip		= $instance['p_skip'];
-		$types		= $instance['types'];
-		$featured	= $instance['featured'];
-		$status		= $instance['status'];
-		$order_rand	= $instance['order_rand'];
-
-		if ( $types == '' ) { $types = 'property'; }
-		if ( $p_number == '' ) { $p_number = 1; }
-		if ( $d_icons == 'beds/baths' ) {
-			$d_icons = 'bb';
+		if ( ! is_array( $instance['types'] ) ) {
+			$instance['types'] = array_map( 'trim', explode( ',', $instance['types'] ) );
 		}
+		if ( ! $instance['p_number'] ) {
+			$instance['p_number'] = 1;
+		}
+		if ( 'beds/baths' === $instance['d_icons'] ) {
+			$instance['d_icons'] = 'bb';
+		}
+		// WP_Query arguments.
+		$query_args = array(
+			'post_type'    => $instance['types'],
+			'showposts'    => absint( $instance['p_number'] ),
+			'offset'       => absint( $instance['p_skip'] ),
+			'paged'        => '1',
+			'epl_nopaging' => 'true',
+		);
 
-		echo $before_widget;
-		if ( $title )
-			echo $before_title . $title . $after_title;
-
-		if ( $featured == 'on' ) {
-			$args = array(
-				'post_type' 	=> $types,
-				'showposts' 	=> $p_number,
-				'offset'	=> $p_skip,
-				'paged'		=> '1',
-				'epl_nopaging'	=> 'true',
-				'meta_query' 	=> array(
-					array(
-						'key' 	=> 'property_featured',
-						'value'	=> 'yes'
-					)
-				)
+		// Listing status.
+		if ( ! empty( $instance['status'] ) ) {
+			if ( ! is_array( $instance['status'] ) ) {
+				$instance['status'] = array_map( 'trim', explode( ',', $instance['status'] ) );
+			}
+			// If property_status is any do not set meta_query for property_status.
+			if ( ! in_array( 'any', $instance['status'] ) ) {
+				$query_args['meta_query'][] = array(
+					'key'		=> 'property_status',
+					'value'		=> $instance['status'],
+					'compare'	=> 'IN',
+				);
+			}
+		}
+		// Loading featured listings.
+		if ( 'on' === $instance['featured'] ) {
+			$query_args['meta_query'][] = array(
+				'key' 	=> 'property_featured',
+				'value'	=> 'yes',
 			);
-		} elseif ( $archive == 'on' && is_post_type_archive() ) {
-			$get_current_type 	= get_post_type();
-			$active_types 		= epl_get_active_post_types();
-
-			if ( !array_key_exists( $get_current_type , $active_types  ) ) {
-				$args = array(
-					'post_type' 	=> $types,
-					'showposts' 	=> $p_number,
-					'offset'	=> $p_skip,
-					'paged'		=> '1',
-					'epl_nopaging'	=> 'true'
-				);
-			} else {
-				$args = array(
-					'post_type' 	=> $get_current_type,
-					'showposts' 	=> $p_number,
-					'offset'	=> $p_skip,
-					'paged'		=> '1',
-					'epl_nopaging'	=> 'true'
-				);
-			}
-
-		} else {
-			if ( $status == 'Current' ) {
-				$args = array(
-					'post_type' 	=> $types,
-					'showposts' 	=> $p_number,
-					'offset'	=> $p_skip,
-					'paged'		=> '1',
-					'epl_nopaging'	=> 'true',
-					'meta_query' 	=> array(
-						array(
-							'key' => 'property_status',
-							'value' => 'current'
-						)
-					)
-				);
-
-			} elseif ( $status == 'Sold' ) {
-				$args = array(
-					'post_type' 	=> $types,
-					'showposts' 	=> $p_number,
-					'offset'	=> $p_skip,
-					'paged'		=> '1',
-					'epl_nopaging'	=> 'true',
-					'meta_query' 	=> array(
-						array(
-							'key' => 'property_status',
-							'value' => 'sold'
-						)
-					)
-				);
-
-			} elseif ( $status == 'Leased' ) {
-				$args = array(
-					'post_type'	=> $types,
-					'showposts'	=> $p_number,
-					'offset'	=> $p_skip,
-					'paged'		=> '1',
-					'epl_nopaging'	=> 'true',
-					'meta_query'	=> array(
-						array(
-							'key' => 'property_status',
-							'value' => 'leased'
-						)
-					)
-				);
-
-			} else {
-				$args = array(
-					'post_type' 	=> $types,
-					'showposts' 	=> $p_number,
-					'offset'	=> $p_skip,
-					'paged'		=> '1',
-					'epl_nopaging'	=> 'true'
-				);
+		}
+		// Loading current archive page listings.
+		if ( 'on' === $instance['archive'] && is_post_type_archive() ) {
+			$get_current_type = get_post_type();
+			if ( false !== $get_current_type && in_array( $get_current_type , $property_types ) ) {
+				$query_args['post_type'] = $get_current_type;
 			}
 		}
-
-		if ( $order_rand == 'on' ) {
-			$args['orderby'] = 'rand';
+		// Using random order for listings.
+		if ( 'on' === $instance['order_rand'] ) {
+			$query_args['orderby'] = 'rand';
 		}
 
-		$query = new WP_Query ( $args );
-		if( $query->have_posts() ) :
-			echo "<div class='epl-property-widget-$display-wrapper'>";
-				if ( $display == 'list' ) {
-						echo '<ul>';
-				}
-				while($query->have_posts()) : $query->the_post();
-					epl_property_widget( $display , $image , $d_title , $d_icons , $more_text , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  );
-					wp_reset_query();
-				endwhile;
-				if ( $display == 'list' ) {
-					echo '</ul>';
-				}
-			echo '</div>';
-		endif;
-		echo $after_widget;
+		$query = new WP_Query( $query_args );
+		epl_get_template_part( 'widgets/listing/' . ( strlen( trim( $instance['view'] ) ) ? trim( $instance['view'] ) : 'default' ) . '.php',
+			array(
+				'args'     => $args,
+				'instance' => $instance,
+				'query'    => $query,
+			)
+		);
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -233,7 +150,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'order_rand' =>	0,
 			'd_title'    =>	0,
 
-			'more_text'  =>	__('Read More', 'epl'),
+			'more_text'  =>	__( 'Read More', 'epl' ),
 			'd_excerpt'  =>	'off',
 			'd_suburb'   =>	'on',
 			'd_street'   =>	'on',
@@ -246,27 +163,27 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		$title 		= esc_attr($instance['title']);
-		$types		= esc_attr($instance['types']);
+		$title 		= esc_attr( $instance['title'] );
+		$types		= esc_attr( $instance['types'] );
 
-		$featured	= esc_attr($instance['featured']);
-		$status		= esc_attr($instance['status']);
-		$display 	= esc_attr($instance['display']);
-		$image	 	= esc_attr($instance['image']);
-		$archive	= esc_attr($instance['archive']);
-		$d_title 	= esc_attr($instance['d_title']);
+		$featured	= esc_attr( $instance['featured'] );
+		$status		= esc_attr( $instance['status'] );
+		$display 	= esc_attr( $instance['display'] );
+		$image	 	= esc_attr( $instance['image'] );
+		$archive	= esc_attr( $instance['archive'] );
+		$d_title 	= esc_attr( $instance['d_title'] );
 
-		$more_text 	= esc_attr($instance['more_text']);
-		$d_excerpt 	= esc_attr($instance['d_excerpt']);
-		$d_suburb 	= esc_attr($instance['d_suburb']);
-		$d_street 	= esc_attr($instance['d_street']);
-		$d_price 	= esc_attr($instance['d_price']);
-		$d_more 	= esc_attr($instance['d_more']);
+		$more_text 	= esc_attr( $instance['more_text'] );
+		$d_excerpt 	= esc_attr( $instance['d_excerpt'] );
+		$d_suburb 	= esc_attr( $instance['d_suburb'] );
+		$d_street 	= esc_attr( $instance['d_street'] );
+		$d_price 	= esc_attr( $instance['d_price'] );
+		$d_more 	= esc_attr( $instance['d_more'] );
 
-		$d_icons 	= esc_attr($instance['d_icons']);
-		$p_number	= esc_attr($instance['p_number']);
-		$p_skip		= esc_attr($instance['p_skip']);
-		$order_rand	= esc_attr($instance['order_rand']); ?>
+		$d_icons 	= esc_attr( $instance['d_icons'] );
+		$p_number	= esc_attr( $instance['p_number'] );
+		$p_skip		= esc_attr( $instance['p_skip'] );
+		$order_rand	= esc_attr( $instance['order_rand'] ); ?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'epl'); ?></label>
@@ -436,4 +353,4 @@ class EPL_Widget_Recent_Property extends WP_Widget {
         <?php
 	}
 }
-add_action( 'widgets_init', create_function('', 'return register_widget("EPL_Widget_Recent_Property");') );
+add_action( 'widgets_init', create_function( '', 'return register_widget("EPL_Widget_Recent_Property");' ) );
