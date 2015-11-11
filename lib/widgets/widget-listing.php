@@ -113,7 +113,18 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title']      = strip_tags( $new_instance['title'] );
-		$instance['types']      = strip_tags( $new_instance['types'] );
+		$epl_post_types 		= epl_get_active_post_types();
+		if ( isset( $new_instance['types'] ) && is_array( $new_instance['types'] ) ) {
+			$types = array();
+			foreach ( $new_instance['types'] as $type ) {
+				if ( array_key_exists( $type, $epl_post_types ) ) {
+					$types[] = $type;
+				}
+			}
+			if ( count( $types ) ) {
+				$instance['types'] = $types;
+			}
+		}
 		$instance['featured']   = strip_tags( $new_instance['featured'] );
 		$instance['status']     = strip_tags( $new_instance['status'] );
 		$instance['view']		= strip_tags( $new_instance['view'] );
@@ -191,13 +202,18 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('types'); ?>"><?php _e('Property Type', 'epl'); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id('types'); ?>" name="<?php echo $this->get_field_name('types'); ?> ">
+			<label for="<?php echo $this->get_field_id( 'types' ); ?>"><?php _e( 'Property Type', 'epl' ); ?></label>
+			<select class="widefat" id="<?php echo $this->get_field_id( 'types' ); ?>" name="<?php echo $this->get_field_name( 'types' ); ?>[]" multiple="multiple">
 				<?php
 					$options = epl_get_active_post_types();
-					if(!empty($options)) {
-						foreach ($options as $k=>$v) {
-							echo '<option value="' . $k . '" id="' . $k . '"', $instance['types'] == $k ? ' selected="selected"' : '', '>', __($v, 'epl'), '</option>';
+					if ( ! empty( $options ) ) {
+						foreach ( $options as $k => $v ) {
+							if ( is_array( $instance['types'] ) ) {
+								$selected = in_array( $k, $instance['types'] ) ? true : false;
+							} else {
+								$selected = $k == $instance['types'] ? true : false;
+							}
+							echo '<option value="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '"', $selected ? ' selected="selected"' : '', '>', __( $v, 'epl' ), '</option>';
 						}
 					}
 				?>
