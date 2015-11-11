@@ -113,6 +113,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title']      = strip_tags( $new_instance['title'] );
+		// Saving listing type.
 		$epl_post_types 		= epl_get_active_post_types();
 		if ( isset( $new_instance['types'] ) && is_array( $new_instance['types'] ) ) {
 			$types = array();
@@ -125,8 +126,28 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				$instance['types'] = $types;
 			}
 		}
+		// Saving listing status.
+		$listing_statuses = apply_filters( 'epl_widget_listing_property_status',
+			array(
+				'current'   => __( 'Current', 'epl' ),
+				'sold'      => __( 'Sold', 'epl' ),
+				'leased'    => __( 'Leased', 'epl' ),
+				'withdrawn' => __( 'Withdrawn', 'epl' ),
+				'offmarket' => __( 'Off Market', 'epl' ),
+			)
+		);
+		if ( isset( $new_instance['status'] ) && is_array( $new_instance['status'] ) ) {
+			$statuses = array();
+			foreach ( $new_instance['status'] as $status ) {
+				if ( array_key_exists( $status, $listing_statuses ) ) {
+					$statuses[] = $status;
+				}
+			}
+			if ( count( $statuses ) ) {
+				$instance['status'] = $statuses;
+			}
+		}
 		$instance['featured']   = strip_tags( $new_instance['featured'] );
-		$instance['status']     = strip_tags( $new_instance['status'] );
 		$instance['view']		= strip_tags( $new_instance['view'] );
 		$instance['display']    = strip_tags( $new_instance['display'] );
 		$instance['image']      = strip_tags( $new_instance['image'] );
@@ -221,12 +242,27 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('status'); ?>"><?php _e('Property Status', 'epl'); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id('status'); ?>" name="<?php echo $this->get_field_name('status'); ?> ">
+			<label for="<?php echo $this->get_field_id( 'status' ); ?>"><?php _e( 'Property Status', 'epl' ); ?></label>
+			<select class="widefat" id="<?php echo $this->get_field_id( 'status' ); ?>" name="<?php echo $this->get_field_name( 'status' ); ?>[]" multiple="multiple">
 				<?php
-					$options = array( 'Any' , 'Current', 'Sold' , 'Leased' );
-					foreach ($options as $option) {
-						echo '<option value="' . $option . '" id="' . $option . '"', $instance['status'] == $option ? ' selected="selected"' : '', '>', __($option, 'epl'), '</option>';
+					$options = apply_filters( 'epl_widget_listing_property_status',
+						array(
+							'current'   => __( 'Current', 'epl' ),
+							'sold'      => __( 'Sold', 'epl' ),
+							'leased'    => __( 'Leased', 'epl' ),
+							'withdrawn' => __( 'Withdrawn', 'epl' ),
+							'offmarket' => __( 'Off Market', 'epl' ),
+						)
+					);
+					if ( count( $options ) ) {
+						foreach ( $options as $key => $value ) {
+							if ( is_array( $instance['status'] ) ) {
+								$selected = in_array( $key, $instance['status'] ) ? true : false;
+							} else {
+								$selected = $key == $instance['status'] ? true : false;
+							}
+							echo '<option value="' . esc_attr( $key ) . '" id="' . esc_attr( $key ) . '"' . selected( $selected, true, false ) . '>' . $value . '</option>';
+						}
 					}
 				?>
 			</select>
