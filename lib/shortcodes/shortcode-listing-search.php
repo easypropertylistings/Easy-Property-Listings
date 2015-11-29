@@ -22,9 +22,12 @@ if( is_admin() ) {
  * [listing_search title="" post_type="property" property_status="current/sold/leased" search_house_category="on/off" search_price="on/off" search_bed="on/off" search_bath="on/off" search_car="on/off" search_other="on/off"] option
  */
 function epl_shortcode_listing_search_callback( $atts ) {
+	$defaults         = epl_search_get_defaults();
+	$defaults['view'] = 'default';
+	$attributes       = shortcode_atts( $defaults, $atts );
 	ob_start();
 	// Rendering view of listing search shortcode.
-	epl_get_template_part( 'shortcode-listing-search.php', array( 'atts' => $atts ) );
+	epl_get_template_part( 'shortcodes/listing-search/' . ( ! empty( $attributes['view'] ) ? trim( $attributes['view'] ) . '.php' : 'default.php' ), array( 'atts' => $attributes ) );
 	return ob_get_clean();
 }
 add_shortcode( 'listing_search', 'epl_shortcode_listing_search_callback' );
