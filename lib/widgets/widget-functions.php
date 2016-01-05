@@ -188,12 +188,14 @@
 				'key'			=>	'post_type',
 				'meta_key'		=>	'post_type',
 				'type'			=>	'hidden',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'property_status',
 				'meta_key'		=>	'property_status',
 				'type'			=>	'hidden',
-				'query'			=>	array('query'	=>	'meta')
+				'query'			=>	array('query'	=>	'meta'),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_id',
@@ -201,7 +203,8 @@
 				'label'			=>	__('Search by Property ID / Address', 'epl'),
 				'type'			=>	'text',
 				'class'			=>	'epl-search-row-full',
-				'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id')
+				'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_location',
@@ -212,6 +215,7 @@
 				'options'		=>	epl_get_available_locations($post_type,$property_status),
 				'query'			=>	array('query'	=>	'tax'),
 				'class'			=>	'epl-search-row-full',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_city',
@@ -222,6 +226,7 @@
 				'options'		=>	epl_get_unique_post_meta_values('property_address_city', $post_type ),
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_state',
@@ -232,6 +237,7 @@
 				'options'		=>	epl_get_unique_post_meta_values('property_address_state', $post_type ),
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_postcode',
@@ -242,6 +248,7 @@
 				'options'		=>	epl_get_unique_post_meta_values('property_address_postal_code', $post_type ),
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_country',
@@ -252,6 +259,7 @@
 				'options'		=>	epl_get_unique_post_meta_values('property_address_country', $post_type ),
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_house_category',
@@ -263,6 +271,7 @@
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('rural','land','commercial','commercial_land','business'),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_house_category',
@@ -274,6 +283,7 @@
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('property','rental','land','commercial','commercial_land','business'),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_house_category',
@@ -285,6 +295,7 @@
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('property','rental','rural','commercial','commercial_land','business'),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_house_category',
@@ -296,6 +307,7 @@
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('property','rental','land','rural','business'),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_house_category',
@@ -307,6 +319,7 @@
 				'query'			=>	array('query'	=>	'meta'),
 				'class'			=>	'epl-search-row-full',
 				'exclude'		=>	array('property','rental','land','rural','commercial','commercial_land'),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_price',
@@ -323,6 +336,7 @@
 									'compare'	=>	'>='
 								),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_price',
@@ -339,6 +353,7 @@
 									'compare'	=>	'<=' 
 								),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_bed',
@@ -358,6 +373,7 @@
 									'compare'	=>	'>=' 
 								),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_bed',
@@ -377,6 +393,7 @@
 									'compare'	=>	'<=' 
 								),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_bath',
@@ -395,6 +412,7 @@
 									'compare'	=>	'>=' 
 								),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_rooms',
@@ -413,6 +431,7 @@
 									'compare'	=>	'>=' 
 								),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			), 
 			array(
 				'key'			=>	'search_car',
@@ -442,7 +461,8 @@
 											'compare'	=>	'>='
 										)
 									)
-								)
+								),
+                'order'         =>  20
 			), 
 			array(
 				'key'			=>	'search_land_area',
@@ -456,7 +476,8 @@
 									'key'		=>	'property_land_area' 
 								),
 				'class'			=>	'epl-search-row-third',
-				'wrap_start'		=>	'epl-search-row epl-search-land-area'
+				'wrap_start'		=>	'epl-search-row epl-search-land-area',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_land_area',
@@ -469,7 +490,8 @@
 									'type'		=>	'numeric', 
 									'compare'	=>	'<=', 
 									'key'		=>	'property_land_area' 
-								)
+								),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_land_area',
@@ -488,7 +510,8 @@
 										)
 									),
 				'query'			=>	array('query'	=>	'meta'),
-				'wrap_end'		=>	true
+				'wrap_end'		=>	true,
+                'order'         =>  20
 
 			),
 			array(
@@ -504,7 +527,8 @@
 									'compare'	=>	'>=', 
 									'key'		=>	'property_building_area' 
 								),
-				'wrap_start'		=>	'epl-search-row epl-search-building-area'
+				'wrap_start'		=>	'epl-search-row epl-search-building-area',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_building_area',
@@ -518,7 +542,8 @@
 									'type'		=>	'numeric', 
 									'compare'	=>	'<=', 
 									'key'		=>	'property_building_area'
-								)
+								),
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_building_area',
@@ -538,7 +563,8 @@
 								),
 				'exclude'		=>	array('land'),
 				'query'			=>	array('query'	=>	'meta'),
-				'wrap_end'		=>	true
+				'wrap_end'		=>	true,
+                'order'         =>  20
 			),
 
 			array(
@@ -553,7 +579,8 @@
 									'value'		=>	array('yes','1') 
 								),
 				'class'			=>	'epl-search-row-half',
-				'wrap_start'		=>	'epl-search-row epl-search-other'
+				'wrap_start'		=>	'epl-search-row epl-search-other',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_other',
@@ -567,6 +594,7 @@
 									'value'		=>	array('yes','1') 
 								),
 				'class'			=>	'epl-search-row-half',
+                'order'         =>  20
 			),
 			array(
 				'key'			=>	'search_other',
@@ -580,9 +608,15 @@
 									'value'		=>	array('yes','1') 
 								),
 				'class'			=>	'epl-search-row-half',
-				'wrap_end'		=>	true
+				'wrap_end'		=>	true,
+                'order'         =>  2
 			)
 		) );
+        $order = array();
+        foreach($fields as $field_key   =>  $field_value) {
+            $order[$field_key] = isset($field_value['order']) ? $field_value['order'] : 20;
+        }
+        array_multisort($order, SORT_ASC, $fields);
 		return $fields;
 	}
 	/**
