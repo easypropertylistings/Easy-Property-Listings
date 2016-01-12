@@ -879,7 +879,7 @@ function epl_search_pre_get_posts( $query ) {
 				
 				if( $property_agent = get_user_by('slug',$property_agent) ) {
 			
-					$query->set( 'post_author', $property_agent->ID );
+                    $query->set( 'author__in' , array( $property_agent->ID) );
 				}
 				
 		}
