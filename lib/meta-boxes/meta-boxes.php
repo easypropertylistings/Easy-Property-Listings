@@ -1768,9 +1768,10 @@ function epl_meta_box_init() {
 			$address .= $_POST['property_address_sub_number'].'/';
 		}
 		$address .= $_POST['property_address_street_number'] . ' ' . $_POST['property_address_street'] . ' ' . $_POST['property_address_suburb'] . ' ' . $_POST['property_address_state'] . ' ' . $_POST['property_address_postal_code'];
-		$address = urlencode(strtolower(trim($address)));
-		$geourl = "http://maps.google.com/maps/api/geocode/json?address=". urlencode($address) ."&sensor=false";
-		$response = epl_remote_url_get($geourl);
+        $address = urlencode(mb_convert_encoding(strtolower(trim($address)), 'UTF-8'));
+        $geourl = "http://maps.google.com/maps/api/geocode/json?address=". $address ."&sensor=false";
+        //die($geourl);
+        $response = epl_remote_url_get($geourl);
 		if(!empty($response)) {
 			$geocoordinates = $response[0]->geometry->location->lat . ',' . $response[0]->geometry->location->lng;
 			echo $geocoordinates;
