@@ -176,7 +176,7 @@ class EPL_Property_Meta {
 		if ( $this->get_property_meta('property_com_listing_type') == 'lease' ) {
 			$property_price = $property_price_view;
 		}
-	return apply_filters('epl_get_property_price_display',$property_price);
+		return apply_filters('epl_get_property_price_display',$property_price);
 	}
 
 	// Sold price display
@@ -187,7 +187,8 @@ class EPL_Property_Meta {
 		if ( $property_sold_price != '' ) {
 			if ( $property_sold_display == 'yes' || $admin == true ) {
 				$property_sold_price = ' ' . epl_currency_formatted_amount( $property_sold_price );
-		return apply_filters('epl_get_property_price_sold_display',$property_sold_price);
+
+				return apply_filters('epl_get_property_price_sold_display',$property_sold_price);
 			}
 		}
 	}
@@ -201,7 +202,7 @@ class EPL_Property_Meta {
 		$property_sold_date	= $this->get_property_meta('property_sold_date' );
 
 		if ( $property_sold_date != '' ) {
-			return apply_filters('epl_get_property_price_sold_date',$sold_price . ' ' . $property_sold_date);
+			return apply_filters('get_property_price_sold_date',$sold_price . ' ' . $property_sold_date);
 		}
 	}
 
@@ -298,7 +299,7 @@ class EPL_Property_Meta {
 		} else {
 			$property_tax = '';
 		}
-	return apply_filters('epl_get_property_tax',$property_tax);
+		return apply_filters('epl_get_property_tax',$property_tax);
 	}
 
 	// plain price value
@@ -378,7 +379,7 @@ class EPL_Property_Meta {
 				$price_plain_value = $this->label_leased;
 			}
 		}
-	return apply_filters('epl_get_price_plain_value',$price_plain_value);
+		return apply_filters('epl_get_price_plain_value',$price_plain_value);
 	}
 
 	// get price
@@ -538,7 +539,7 @@ class EPL_Property_Meta {
 			}
 
 		}
-	return apply_filters('epl_get_price_sticker',$price_sticker);
+		return apply_filters('epl_get_price_sticker',$price_sticker);
 	}
 
 	// get l price
@@ -676,7 +677,6 @@ class EPL_Property_Meta {
 			return;
 		$garage['i'] = '<span title="'.__('Garage', 'epl').'" class="icon parking"><span class="icon-value">'. $this->get_property_meta('property_garage') . '</span></span>';
 		$garage['l'] = '<li class="garage">' . $this->get_property_meta('property_garage') . ' '.__('garage', 'epl').'</li>';
-
 		$garage['d'] = $this->get_property_meta('property_garage') . ' '.__('garage', 'epl').' ';
 
 		return apply_filters('epl_get_property_garage',$garage[$returntype]);
@@ -755,12 +755,12 @@ class EPL_Property_Meta {
 		if ( $building_unit == 'squareMeter' ) {
 			$building_unit = 'm²';
 		}
+
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
 			$return = '
 			<li class="land-size">'.__('Floor Area is', 'epl').' ' .
 				$this->get_property_meta('property_building_area') .' '.$building_unit.
 			'</li>';
-
 			return apply_filters('epl_get_property_building_area_value',$return);
 		}
 
@@ -780,54 +780,54 @@ class EPL_Property_Meta {
 
 	// additional features html
 	public function get_additional_features_html($metakey) {
-		$metavalue = $this->get_property_meta($metakey);
-		if( $metavalue != '' || intval($metavalue) != 0) {
-			if($metakey == 'property_com_car_spaces'){
-				$metavalue = $metavalue.__(' Car Spaces', 'epl');
-			}
-
-			if($metakey == 'property_category'){
-				$metavalue = $this->get_property_category();
-			}
-
-			if( (is_numeric($metavalue)) ) {
-				if($metavalue == 0)
-					$return = '';
-				// toggle field types -- 1 for toggle true
-				if( $metavalue == 1 ){
-					$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-				} elseif(is_numeric($metavalue)) {
-					// numbered field types
-					$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-				} else {
-					// others
-					$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
+			$metavalue = $this->get_property_meta($metakey);
+			if( $metavalue != '' || intval($metavalue) != 0) {
+				if($metakey == 'property_com_car_spaces'){
+					$metavalue = $metavalue.__(' Car Spaces', 'epl');
 				}
 
-			}
-			if( ( $metavalue == 'yes' ) ) {
-				$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-			}
+				if($metakey == 'property_category'){
+					$metavalue = $this->get_property_category();
+				}
 
-			if( $metavalue == 'no' )
-					$return = '';
+				if( (is_numeric($metavalue)) ) {
+					if($metavalue == 0)
+						$return = '';
+					// toggle field types -- 1 for toggle true
+					if( $metavalue == 1 ){
+						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+					} elseif(is_numeric($metavalue)) {
+						// numbered field types
+						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+					} else {
+						// others
+						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
+					}
 
-			// string value field types
-			$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
-		}
+				}
+				if( ( $metavalue == 'yes' ) ) {
+					$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+				}
+
+				if( $metavalue == 'no' )
+						$return = '';
+
+				// string value field types
+				$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
+			}
 		return apply_filters('epl_get_additional_features_html',$return);
 	}
 
 	// additional rural features html
 	public function get_additional_rural_features_html($metakey) {
-		$metavalue = $this->get_property_meta($metakey);
-		if( isset($metavalue) && $metavalue != '' ) {
-			$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
-						<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'epl').'</h6>'.
-						'<p>'.__($metavalue,'epl').'</p>'.
-					'</div>';
-			return apply_filters('epl_get_additional_rural_features_html',$return);
-		}
+			$metavalue = $this->get_property_meta($metakey);
+			if( isset($metavalue) && $metavalue != '' ) {
+				$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
+							<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'epl').'</h6>'.
+							'<p>'.__($metavalue,'epl').'</p>'.
+						'</div>';
+				return apply_filters('epl_get_additional_rural_features_html',$return);
+			}
 	}
 
 	// additional commerical features html
@@ -838,7 +838,6 @@ class EPL_Property_Meta {
 							<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'epl').'</h6>'.
 							'<p>'.__($metavalue,'epl').'</p>'.
 						'</div>';
-
 				return apply_filters('epl_get_additional_commerical_features_html',$return);
 			}
 	}
@@ -858,7 +857,6 @@ class EPL_Property_Meta {
 			global $post;
 			$property_feature_taxonomy = epl_get_the_term_list($this->post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' );
 		}
-
 		return apply_filters('get_features_from_taxonomy',$property_feature_taxonomy);
 	}
 }
