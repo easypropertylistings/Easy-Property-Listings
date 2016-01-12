@@ -31,10 +31,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( !session_id() && ! headers_sent() ) {
-	session_start();
-}
-
 if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 	/*
 	 * Main Easy_Property_Listings Class
