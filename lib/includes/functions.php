@@ -1471,3 +1471,20 @@ AND p.post_type = '%s'
 	if(!empty($res))
     	return array_combine(array_filter($res),array_filter($res) );
 }
+
+
+
+
+
+function epl_session_start() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+add_action('init', 'epl_session_start', 1);
+
+function epl_session_end() {
+    session_destroy ();
+}
+add_action('wp_logout', 'epl_session_end');
+add_action('wp_login', 'epl_session_end');
