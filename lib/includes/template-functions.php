@@ -25,7 +25,7 @@ add_action( 'the_post', 'epl_reset_property_object' );
 function epl_create_property_object() {
 
 	global $post,$property,$epl_author;
-	
+
 	if(is_author()) {
 		$author_id 		=  get_query_var( 'author' );
 		$epl_author		= new EPL_Author_meta($author_id);
@@ -50,7 +50,7 @@ function epl_property_single() {
 	if(!empty($epl_settings) && isset($epl_settings['epl_display_single_property'])) {
 		$d_option = $epl_settings['epl_display_single_property'];
 	}
-	
+
 	$action_check = has_action( 'epl_single_template' );
 	if ( $action_check != '' && $d_option !== 0 ) {
 		do_action( 'epl_single_template' );
@@ -65,8 +65,8 @@ add_action('epl_property_single','epl_property_single');
  *
  * @since 1.2
  */
-function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) { 
-	
+function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) {
+
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
 			<div class="epl-featured-image it-featured-image">
@@ -86,10 +86,10 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' , 10 , 2
  *
  * @since 2.2
  */
-function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) { 
+function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) {
 	if($image_size == '') {
 		$image_size = 'epl-image-medium-crop';
-	} 
+	}
 
 	if ( has_post_thumbnail() ) { ?>
 		<div class="epl-archive-entry-image">
@@ -112,8 +112,8 @@ add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featur
  *
  * @since 2.2
  */
-function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) { 
-	
+function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) {
+
 	if ( has_post_thumbnail() ) { ?>
 		<div class="epl-archive-entry-image">
 			<a href="<?php the_permalink(); ?>">
@@ -135,11 +135,11 @@ function epl_property_single_default() {
 
 	global $epl_settings;
 	if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
-	
+
 		epl_get_template_part('content-listing-single-compatibility.php');
-		
+
 	} else {
-	
+
 		epl_get_template_part('content-listing-single.php');
 	}
 }
@@ -171,9 +171,9 @@ function epl_get_template_part($template,$arguments=array()) {
 	}
 	if( !isset($arguments['epl_author']) ) {
 		global $epl_author;
-	} 
+	}
 	extract($arguments);
-	
+
 	include( $template);
 }
 /*
@@ -195,14 +195,14 @@ function epl_archive_custom_excerpt_length( $length ) {
 }
 
 // Selecting Card Display Style
-// Allows the use of one function where we can then select a different template when needed 
+// Allows the use of one function where we can then select a different template when needed
 function epl_property_blog($template='') {
 
 	if($template == '' || $template == 'blog')	{
 		$template = 'default';
 	}
 	$template = str_replace('_','-',$template);
-	
+
 	add_filter( 'excerpt_length', 'epl_archive_custom_excerpt_length', 999 );
 	global $epl_settings,$property;
 
@@ -222,25 +222,25 @@ function epl_property_blog($template='') {
 		if ( $action_check != '' && $option !== 0 && in_array($template,array('default','blog') ) ) {
 			do_action( 'epl_loop_template' );
 		} else {
-			
+
 			if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
-	
+
 				if( locate_template( array('loop-listing-blog-'.$template.'-compatibility.php') ) ) {
-				
+
 					epl_get_template_part('loop-listing-blog-'.$template.'-compatibility.php');
-					
+
 				} else {
-					
+
 					epl_get_template_part('loop-listing-blog-'.$template.'.php');
-					
+
 				}
-				
-		
+
+
 			} else {
-	
+
 				epl_get_template_part('loop-listing-blog-'.$template.'.php');
 			}
-			
+
 		}
 	} // End Status Removal
 }
@@ -272,11 +272,11 @@ function epl_reset_post_author() {
 	if(class_exists('EPL_Author_meta')) {
 		$epl_author = new EPL_Author_meta($post->post_author);
 	}
-	
+
 }
 
 add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
- 
+
 // AUTHOR CARD : Standard
 function epl_property_author_box_simple_card() {
 	global $property,$epl_author,$epl_author_secondary;
@@ -319,8 +319,8 @@ function epl_property_author_box_simple_grav() {
 // WIDGET LISTING : Listing Card
 function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','epl')" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
 	global $property;
-	$property_status = $property->get_property_meta('property_status');	
-	
+	$property_status = $property->get_property_meta('property_status');
+
 	switch($display) {
 		case 'list':
 			$tpl = 'widget-content-listing-list.php';
@@ -334,10 +334,10 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 		default:
 			$tpl = $display;
 		break;
-		
+
 	}
-	
-	
+
+
 	// Status Removal
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
 		// Do Not Display Withdrawn or OffMarket listings
@@ -359,7 +359,7 @@ function epl_property_widget_list_option() {
 }
 
 // WIDGET LISTING : Image Only
-function epl_property_widget_image_only_option( $image ) { 
+function epl_property_widget_image_only_option( $image ) {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
 	// Status Removal
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
@@ -374,11 +374,11 @@ function epl_property_widget_image_only_option( $image ) {
 function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio) {
 	global $property,$epl_author;
 	if( is_null($epl_author) )
-		return; 
-		
+		return;
+
 	$arg_list = get_defined_vars();
 	epl_get_template_part('widget-content-author-tall.php',$arg_list);
-	
+
 	// Second Author
 	if ( is_single() && !is_null($property) ) {
 		$property_second_agent = $property->get_property_meta('property_second_agent');
@@ -392,28 +392,28 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 			}
 			epl_reset_post_author();
 		}
-		
+
 	}
 
 }
 
 function epl_property_get_the_full_address(){
 	global $property;
-	
+
 		$address = '';
 		if($property->get_property_meta('property_address_sub_number') != '') {
-			$address .= $property->get_property_meta('property_address_sub_number') . '/'; 
+			$address .= $property->get_property_meta('property_address_sub_number') . '/';
 		}
-		$address .= $property->get_property_meta('property_address_street_number') . ' '; 
-		$address .= $property->get_property_meta('property_address_street') . ' '; 
-		$address .= $property->get_property_meta('property_address_suburb') . ' '; 
-		$address .= $property->get_property_meta('property_address_city') . ', '; 
-		$address .= $property->get_property_meta('property_address_state') . ' '; 
-		$address .= $property->get_property_meta('property_address_postal_code').' '; 
-		$address .= $property->get_property_meta('property_address_country'); 
-	
+		$address .= $property->get_property_meta('property_address_street_number') . ' ';
+		$address .= $property->get_property_meta('property_address_street') . ' ';
+		$address .= $property->get_property_meta('property_address_suburb') . ' ';
+		$address .= $property->get_property_meta('property_address_city') . ', ';
+		$address .= $property->get_property_meta('property_address_state') . ' ';
+		$address .= $property->get_property_meta('property_address_postal_code').' ';
+		$address .= $property->get_property_meta('property_address_country');
+
 	return $address;
-	
+
 }
 
 /*=== Callback functions for template hooks ====*/
@@ -426,16 +426,16 @@ function epl_property_get_the_full_address(){
 function epl_property_the_address() {
 
 	$epl_property_address_seperator	= apply_filters('epl_property_address_seperator',',');
-	
-	
+
+
 	global $property,$epl_settings;
-	
+
 	?>
 	<?php if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
 		<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
 	<?php } ?>
 	<span class="entry-title-sub">
-		<?php 
+		<?php
 			if( $property->get_property_meta('property_com_display_suburb') != 'no' || $property->get_property_meta('property_address_display') == 'yes' ) { ?>
 				<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb'); ?></span><?php
 				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
@@ -443,14 +443,14 @@ function epl_property_the_address() {
 				}
 			}
 		?>
-		<?php 
+		<?php
 			if( $property->get_epl_settings('epl_enable_city_field') == 'yes' ) { ?>
 				<span class="item-city"><?php echo $property->get_property_meta('property_address_city'); ?></span><?php
 			}
 		?>
 		<span class="item-state"><?php echo $property->get_property_meta('property_address_state'); ?></span>
 		<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
-		<?php 
+		<?php
 			if( $property->get_epl_settings('epl_enable_country_field') == 'yes' ) { ?>
 				<span class="item-country"><?php echo $property->get_property_meta('property_address_country'); ?></span><?php
 			}
@@ -473,8 +473,8 @@ function epl_property_suburb() {
 	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) {
 		if ( $property->get_property_meta('property_address_display') == 'yes' && $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
 			<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
-			
-		<?php } 
+
+		<?php }
 		echo '<span class="entry-title-sub">';
 		if ( $property->get_property_meta('property_address_display') == 'yes') { ?>
 			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . ', '; ?></span>
@@ -482,7 +482,7 @@ function epl_property_suburb() {
 				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
 				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
 			</span>
-		<?php 
+		<?php
 	} else { ?>
 		<span class="entry-title-sub">
 			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb')?></span>
@@ -501,7 +501,7 @@ function epl_property_price () {
 add_action('epl_property_price','epl_property_price');
 add_action('epl_property_price_content','epl_property_price');
 
-/** 
+/**
  * @hooked property_price
  * @hooked property_price_content
 **/
@@ -524,7 +524,7 @@ function epl_get_property_bb_icons() {
 		$property->get_property_bath();
 }
 
-/** 
+/**
  * @hooked property_land_category
 **/
 function epl_property_land_category(){
@@ -533,33 +533,33 @@ function epl_property_land_category(){
 }
 add_action('epl_property_land_category','epl_property_land_category');
 
-/** 
+/**
  * @hooked property_commercial_category
 **/
 function epl_property_commercial_category(){
 	global $property;
 	if ( $property->post_type == 'commercial' ) {
 		if ( $property->get_property_meta('property_com_plus_outgoings') == 1) {
-			echo '<div class="price-type">'.__('Plus Outgoings', 'epl').'</div>';
+			echo '<div class="price-type">'. apply_filters( 'epl_property_sub_title_plus_outgoings' , __('Plus Outgoings', 'epl') ) . '</div>';
 		}
 		echo $property->get_property_commercial_category();
 	}
 }
 add_action('epl_property_commercial_category','epl_property_commercial_category');
 
-/** 
+/**
  * @hooked property_available_dates
 **/
 function epl_property_available_dates() {
 	global $property;
-	if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) { 
+	if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) {
 		// Rental Specifics
-		echo '<div class="property-meta date-available">'.__('Available from', 'epl').' ', $property->get_property_available() , '</div>';
+		echo '<div class="property-meta date-available">'. apply_filters( 'epl_property_sub_title_available_from' , __('Available from', 'epl') ) .' ', $property->get_property_available() , '</div>';
 	}
 }
 add_action('epl_property_available_dates','epl_property_available_dates');
 
-/** 
+/**
  * @hooked property_inspection_times
 **/
 function epl_property_inspection_times(){
@@ -567,7 +567,7 @@ function epl_property_inspection_times(){
 	$property_inspection_times = $property->get_property_inspection_times();
 	$label_home_open = '';
 	if(trim($property_inspection_times) != '') {
-		$label_home_open = $property->get_epl_settings('label_home_open');	
+		$label_home_open = $property->get_epl_settings('label_home_open');
 	?>
 	<div class="epl-inspection-times">
 		<span class="epl-inspection-times-label">
@@ -575,12 +575,12 @@ function epl_property_inspection_times(){
 		</span>
 		<?php echo $property_inspection_times; ?>
 	</div>
-	<?php 
+	<?php
 	}
 }
 add_action('epl_property_inspection_times','epl_property_inspection_times');
 
-/** 
+/**
  * @hooked the_property_heading
 **/
 function epl_property_heading(){
@@ -589,7 +589,7 @@ function epl_property_heading(){
 }
 add_action('epl_property_heading','epl_property_heading');
 
-/** 
+/**
  * @hooked property_secondary_heading
 **/
 function epl_property_secondary_heading() {
@@ -599,7 +599,7 @@ function epl_property_secondary_heading() {
 		echo '<span class="sold-status">'.$property->label_sold.'</span>';
 	}
 	echo ' <span class="suburb"> - ' . $property->get_property_meta('property_address_suburb') . ' </span>';
-	echo ' <span class="state">' . $property->get_property_meta('property_address_state') . '</span>';	
+	echo ' <span class="state">' . $property->get_property_meta('property_address_state') . '</span>';
 
 }
 add_action('epl_property_secondary_heading','epl_property_secondary_heading');
@@ -614,11 +614,11 @@ function epl_get_video_html($property_video_url='',$width=600) {
 	if($property_video_url != '') {
 		$videoID = epl_get_youtube_id_from_url($property_video_url);
 		$video_html =  '<div class="epl-video-container videoContainer">';
-			
-			$video_html .=  wp_oembed_get( 
-				('http://www.youtube.com/watch?v=' . $videoID ) , 
-				array( 'width' => apply_filters( 'epl_property_video_width', $width  ) )  
-			); 
+
+			$video_html .=  wp_oembed_get(
+				('http://www.youtube.com/watch?v=' . $videoID ) ,
+				array( 'width' => apply_filters( 'epl_property_video_width', $width  ) )
+			);
 		$video_html .= '</div>';
 		return $video_html;
 	}
@@ -634,23 +634,23 @@ function epl_property_video_callback( $width = 600 ) {
 	$video_width 		= $width != '' ? $width : 600;
 	$property_video_url	= $property->get_property_meta('property_video_url');
 	echo epl_get_video_html($property_video_url,$video_width);
-	
-	
+
+
 }
 add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
 
-/** 
+/**
  * @hooked property_tab_section
 **/
 function epl_property_tab_section() {
 	global $property;
 	$post_type = $property->post_type;
 	$the_property_feature_list = '';
-	
+
 	if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
 		$the_property_feature_list .= $property->get_property_commercial_category('li');
 	}
-	
+
 	$the_property_feature_list .= $property->get_property_bed('l').' '.$property->get_property_bath('l').' '.$property->get_property_rooms('l').' ';
 	$the_property_feature_list .= $property->get_property_year_built('l').' '.$property->get_property_parking('l').' ';
 	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
@@ -699,18 +699,18 @@ function epl_property_tab_section() {
 
 	);
 	$additional_features = apply_filters('epl_property_additional_features_list',$additional_features);
-	
+
 	if ( 'property' == $property->post_type || 'rental' == $property->post_type || 'rural' == $property->post_type){
 		foreach($additional_features as $additional_feature){
 			$the_property_feature_list .= $property->get_additional_features_html($additional_feature);
 		}
 	}
-	
+
 	if ( $property->post_type != 'land' || $property->post_type != 'business') { ?>
-		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo apply_filters('epl_property_tab_section_title',__('Property Features', 'epl')); ?></h5>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php apply_filters( 'epl_property_sub_title_property_features' , _e('Property Features', 'epl') ); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
-					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>							
+					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>
 				</ul>
 			</div>
 	<?php } ?>
@@ -721,13 +721,13 @@ function epl_property_tab_section() {
 			if( 'land' == $property->post_type || 'commercial_land' == $property->post_type ) {
 				echo '<div class="epl-land-category">' . $property->get_property_land_category() . '</div>';
 			}
-			
+
 			//Commercial Options
 			if ( $property->post_type == 'commercial' ) {
 				if ( $property->get_property_meta('property_com_plus_outgoings') == 1) {
-					echo '<div class="epl-commercial-outgoings price-type">'.__('Plus Outgoings', 'epl').'</div>';
+					echo '<div class="epl-commercial-outgoings price-type">' . apply_filters( 'epl_property_sub_title_plus_outgoings' ,__('Plus Outgoings', 'epl') ) .'</div>';
 				}
-				// echo $property->get_property_commercial_category();						
+				// echo $property->get_property_commercial_category();
 			}
 		?>
 	</div>
@@ -735,14 +735,14 @@ function epl_property_tab_section() {
 }
 add_action('epl_property_tab_section','epl_property_tab_section');
 
-/** 
+/**
  * @hooked property_after_tab_section
 **/
 function epl_property_tab_section_after() {
 	global $property;
 	$post_type = $property->post_type;
 	if ( 'commercial' == $post_type || 'business' == $post_type || 'commercial_land' == $post_type) {
-		
+
 		$the_property_commercial_feature_list = '';
 		$features_lists = array(
 			'property_com_further_options',
@@ -754,19 +754,19 @@ function epl_property_tab_section_after() {
 		foreach($features_lists as $features_list){
 			$the_property_commercial_feature_list .= $property->get_additional_commerical_features_html($features_list);
 		}
-	
+
 	?>
 		<div class="epl-tab-section epl-tab-section-commercial-features">
-			<h5 class="epl-tab-title epl-tab-title-commercial-features tab-title"><?php _e('Commercial Features', 'epl'); ?></h5>
+			<h5 class="epl-tab-title epl-tab-title-commercial-features tab-title"><?php apply_filters( 'epl_property_sub_title_commercial_features' , _e('Commercial Features', 'epl') ); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<div class="epl-commercial-features listing-info">
-					<?php echo $the_property_commercial_feature_list; ?>							
+					<?php echo $the_property_commercial_feature_list; ?>
 				</div>
 			</div>
 		</div> <?php
 	}
-	
-	if ( $property->post_type == 'rural') { 
+
+	if ( $property->post_type == 'rural') {
 		$the_property_rural_feature_list = '';
 		$features_lists = array(
 							'property_rural_fencing',
@@ -780,13 +780,13 @@ function epl_property_tab_section_after() {
 		foreach($features_lists as $features_list){
 			$the_property_rural_feature_list .= $property->get_additional_rural_features_html($features_list);
 		}
-	
+
 	?>
 		<div class="epl-tab-section epl-tab-section-rural-features">
-			<h5 class="epl-tab-title epl-tab-title-rural-features tab-title"><?php _e('Rural Features', 'epl'); ?></h5>
+			<h5 class="epl-tab-title epl-tab-title-rural-features tab-title"><?php apply_filters( 'epl_property_sub_title_rural_features' , _e('Rural Features', 'epl') ); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<div class="epl-rural-features listing-info">
-					<?php echo $the_property_rural_feature_list; ?>							
+					<?php echo $the_property_rural_feature_list; ?>
 				</div>
 			</div>
 		</div>
@@ -827,7 +827,7 @@ function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
 			if ( $d_suburb == 'on' ) { ?>
 				<div class="property-meta suburb-name"><?php echo $property->get_property_meta('property_address_suburb'); ?></div>
 			<?php } ?>
-			
+
 			<?php // Street
 			if ( $d_street == 'on' ) { ?>
 				<div class="property-meta street-name"><?php echo $property->get_formatted_property_address(); ?></div>
@@ -837,8 +837,8 @@ function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
 			if ( $d_suburb == 'on' ) { ?>
 				<div class="property-meta suburb-name"><?php echo $property->get_property_meta('property_address_suburb'); ?></div>
 			<?php } ?>
-		<?php } 
-	} 
+		<?php }
+	}
 }
 
 function epl_sorting_options() {
@@ -895,8 +895,6 @@ function epl_sorting_options() {
 			'orderby'	=>	'meta_value',
 
 		),
-
-
 	) );
 }
 function epl_switch_views_sorting() {
@@ -911,7 +909,7 @@ function epl_switch_views_sorting() {
 		<?php do_action('epl_add_custom_menus'); ?>
 		<div class="epl-properties-sorting epl-clearfix">
 			<select id="epl-sort-listings">
-				<option <?php selected( $sortby, '' ); ?> value=""><?php _e('Sort','epl'); ?></option>
+				<option <?php selected( $sortby, '' ); ?> value=""><?php apply_filters( 'epl_switch_views_sorting_title_sort' , _e('Sort','epl') ); ?></option>
 				<?php
 					foreach($sorters as $sorter) { ?>
 						<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
@@ -941,11 +939,11 @@ function epl_archive_sorting($query) {
 
 			$orderby = sanitize_text_field(trim($_GET['sortby']));
 			$sorters = epl_sorting_options();
-			
+
 			foreach($sorters as $sorter) {
-				
+
 				if($orderby == $sorter['id']){
-					
+
 					if($sorter['type'] == 'meta') {
 						$query->set( 'orderby', $sorter['orderby'] );
 						$query->set( 'meta_key', $sorter['key'] );
@@ -955,9 +953,9 @@ function epl_archive_sorting($query) {
 					$query->set( 'order', $sorter['order'] );
 					break;
 				}
-			
+
 			}
-		} 
+		}
 	}
 }
 add_action('pre_get_posts','epl_archive_sorting');
@@ -972,7 +970,7 @@ function epl_author_tabs () {
 		'video'			=>	__('Video','epl'),
 		'contact_form'		=>	__('Contact','epl'),
 	);
-					
+
 	return $author_tabs = apply_filters('epl_author_tabs',$author_tabs);
 }
 
@@ -990,13 +988,13 @@ function epl_author_tab_author_id($epl_author = array() ) {
 	if(empty($epl_author)) {
 		global $epl_author;
 	}
-	
+
 	$permalink 	= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
-		
+
 ?>
 	<div class="epl-author-contact-details author-contact-details">
-	
+
 		<h5 class="epl-author-title author-title">
 			<a href="<?php echo $permalink ?>">
 				<?php echo $author_title;  ?>
@@ -1018,15 +1016,15 @@ function epl_author_tab_author_id($epl_author = array() ) {
 		<?php
 			$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
 			foreach($social_icons as $social_icon){
-				echo call_user_func(array($epl_author,'get_'.$social_icon.'_html')); 
+				echo call_user_func(array($epl_author,'get_'.$social_icon.'_html'));
 			}
 		?>
 	</div>
-<?php	
+<?php
 }
 
 function epl_author_tab_image ($epl_author = array() ) {
-	
+
 	if(empty($epl_author)) {
 		global $epl_author;
 	}
@@ -1038,7 +1036,7 @@ function epl_author_tab_image ($epl_author = array() ) {
 
 add_action('epl_author_thumbnail','epl_author_tab_image',10,2);
 
-function epl_author_tab_description($epl_author = array() ) { 
+function epl_author_tab_description($epl_author = array() ) {
 	if(empty($epl_author)) {
 		global $epl_author;
 	}
@@ -1076,27 +1074,27 @@ add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 function epl_property_gallery () {
 
 	global $epl_settings;
-	
+
 	$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
-	
+
 	$d_gallery = '';
 	if(!empty($epl_settings) && isset($epl_settings['display_single_gallery'])) {
 		$d_gallery		= $epl_settings['display_single_gallery'];
 	}
-	
+
 	$d_gallery_n = '';
 	if(!empty($epl_settings) && isset($epl_settings['display_gallery_n'])) {
 		$d_gallery_n		= $epl_settings['display_gallery_n'];
 	}
-	
+
 	if ( $attachments && $d_gallery == 1 ) { ?>
 		<div class="epl-gallery property-gallery">
 			<!-- Gallery -->
 			<div class="epl-gallery-entry entry-gallery epl-clearfix">
-				<?php 
+				<?php
 					$d_gallery_n = '[gallery columns="'. $d_gallery_n . '" link="file"]';
 					echo do_shortcode( $d_gallery_n );
-				?>					
+				?>
 			</div>
 		</div>
 		<?php
@@ -1117,9 +1115,9 @@ function epl_template_path() {
 function epl_switch_views () { ?>
 	<div class="epl-switch-view epl-clearfix">
 		<ul>
-			<li title="<?php _e('List','epl'); ?>" class="epl-current-view view-list" data-view="list">
+			<li title="<?php apply_filters( 'epl_switch_views_sorting_title_list' , _e('List','epl') ); ?>" class="epl-current-view view-list" data-view="list">
 			</li>
-			<li title="<?php _e('Grid','epl'); ?>" class="view-grid" data-view="grid">
+			<li title="<?php apply_filters( 'epl_switch_views_sorting_title_grid' , _e('Grid','epl') ); ?>" class="view-grid" data-view="grid">
 			</li>
 		</ul>
 	</div> <?php
@@ -1151,7 +1149,7 @@ add_action('epl_buttons_single_property', 'epl_buttons_wrapper_before' , 1);
 add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
 
 /**
- * Used to mark home inspection on apple devices 
+ * Used to mark home inspection on apple devices
  *
  * @since version 2.0
  *
@@ -1159,7 +1157,7 @@ add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
 function epl_create_ical_file($start='',$end='',$name='',$description='',$location='') {
 
      $data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:".date("Ymd\THis",strtotime($start))."\nDTEND:".date("Ymd\THis",strtotime($end))."\nLOCATION:".$location."\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:\nDTSTAMP:".date("Ymd\THis\Z")."\nSUMMARY:".$name."\nDESCRIPTION:".$description."\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
-	     
+
 	header("Content-type:text/calendar");
 	header('Content-Disposition: attachment; filename="'.$name.'.ics"');
 	Header('Content-Length: '.strlen($data));
@@ -1172,7 +1170,7 @@ function epl_create_ical_file($start='',$end='',$name='',$description='',$locati
 function epl_process_event_cal_request () {
 	global $epl_settings;
 	if(isset($_GET['epl_cal_dl']) && (int) $_GET['epl_cal_dl'] == 1 && intval($_GET['propid']) > 0) {
-		if(isset($_GET['cal']) ) { 
+		if(isset($_GET['cal']) ) {
 			$type = sanitize_text_field($_GET['cal']);
 			switch($type) {
 				case 'ical':
@@ -1184,17 +1182,17 @@ function epl_process_event_cal_request () {
 						$endtime 	= current($timearr).' '.end($timearr);
 						$post		= get_post($post_id);
 						$subject	= $epl_settings['label_home_open'].' - '.get_post_meta($post_id,'property_heading',true);
-						
+
 						$address = '';
 						if(get_post_meta($post_id,'property_address_sub_number',true) != '') {
-							$address .= get_post_meta($post_id,'property_address_sub_number',true) . '/'; 
+							$address .= get_post_meta($post_id,'property_address_sub_number',true) . '/';
 						}
-						$address .= get_post_meta($post_id,'property_address_street_number',true) . ' '; 
-						$address .= get_post_meta($post_id,'property_address_street',true) . ' '; 
-						$address .= get_post_meta($post_id,'property_address_suburb',true) . ', '; 
-						$address .= get_post_meta($post_id,'property_address_state',true) . ' '; 
-						$address .= get_post_meta($post_id,'property_address_postal_code',true); 
-						
+						$address .= get_post_meta($post_id,'property_address_street_number',true) . ' ';
+						$address .= get_post_meta($post_id,'property_address_street',true) . ' ';
+						$address .= get_post_meta($post_id,'property_address_suburb',true) . ', ';
+						$address .= get_post_meta($post_id,'property_address_state',true) . ' ';
+						$address .= get_post_meta($post_id,'property_address_postal_code',true);
+
 						epl_create_ical_file($starttime,$endtime,$subject,strip_tags($post->post_content),$address);
 					}
 				break;
@@ -1239,15 +1237,15 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 		$link = get_term_link( $term, $taxonomy );
 		if ( is_wp_error( $link ) )
 			return $link;
-			
+
 		if( apply_filters('epl_features_taxonomy_link_filter' , true)  == true ) {
-		
+
 			$term_links[] = '<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>';
-			
+
 		} else {
-		
+
 			$term_links[] = $term->name;
-		
+
 		}
 	}
 
@@ -1337,11 +1335,11 @@ add_action('epl_property_widget_status_class','epl_property_widget_status_class'
 function epl_hide_map_from_front() {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
-	
+
 	global $post,$property;
-	
+
 	if( is_single() && in_array($post->post_type,$epl_posts) ) {
-		
+
 		$hide_map = get_post_meta($post->ID,'property_address_hide_map',true);
 		if($hide_map == 'yes') {
 			remove_all_actions( 'epl_property_map' );
@@ -1371,11 +1369,11 @@ add_action('pre_get_posts','epl_nopaging');
 function epl_hide_author_box_from_front() {
 	$epl_posts 		= epl_get_active_post_types();
 	$epl_posts 		= array_keys($epl_posts);
-	
+
 	global $post,$property;
-	
+
 	if( is_single() && in_array($post->post_type,$epl_posts) ) {
-		
+
 		$hide_author_box = get_post_meta($post->ID,'property_agent_hide_author_box',true);
 		if($hide_author_box == 'yes') {
 			remove_all_actions( 'epl_single_author' );
@@ -1394,10 +1392,10 @@ function epl_update_default_view() {
 	$view 		= isset( $_POST['view'] ) ? trim( $_POST['view'] ) : '';
 
 	if( in_array($view,array('list','grid') ) ) {
-	
+
 		setcookie("preferredView", $view,0,'/');
 	}
-	wp_die('success');	
+	wp_die('success');
 }
 add_action('wp_ajax_epl_update_default_view','epl_update_default_view');
 add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');
@@ -1409,7 +1407,7 @@ add_action('wp_ajax_nopriv_epl_update_default_view','epl_update_default_view');
 function epl_the_content_filters() {
 
     if ( !has_filter( 'epl_get_the_content', 'wptexturize' ) ) {
-    
+
         add_filter( 'epl_get_the_content', 'wptexturize'        );
         add_filter( 'epl_get_the_content', 'convert_smilies'    );
         add_filter( 'epl_get_the_content', 'convert_chars'      );
@@ -1420,7 +1418,7 @@ function epl_the_content_filters() {
         add_filter( 'epl_get_the_content', array( &$vidembed, 'run_shortcode'), 8 );
         add_filter( 'epl_get_the_content', array( &$vidembed, 'autoembed'), 8 );
         add_filter( 'epl_get_the_content', 'do_shortcode', 11);
-    } 
+    }
 
     add_filter( 'epl_get_the_excerpt', 'epl_trim_excerpt'  );
 }
@@ -1442,26 +1440,26 @@ function epl_compatibility_archive_class_callback() {
  * @since 2.2
  */
 function epl_apply_feeling_lucky_config() {
-	
+
 	global $epl_settings;
-	
+
 	$epl_posts 	= epl_get_active_post_types();
 	$epl_posts 	= array_keys($epl_posts);
 
-	
+
     // remove epl featured image on single pages in lucky mode
     if( isset($epl_settings['epl_lucky_disable_single_thumb']) && $epl_settings['epl_lucky_disable_single_thumb'] == 'on') {
-    
-		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) { 
+
+		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
 			remove_all_actions( 'epl_property_featured_image' );
 		}
 
 	}
-	
+
     // remove active theme's featured image on single pages in lucky mode
     if( isset($epl_settings['epl_lucky_disable_theme_single_thumb']) && $epl_settings['epl_lucky_disable_theme_single_thumb'] == 'on') {
-    
-		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) { 
+
+		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
 			add_filter('post_thumbnail_html','epl_remove_single_thumbnail',20,5);
 		}
 
@@ -1469,18 +1467,18 @@ function epl_apply_feeling_lucky_config() {
 
     // remove featured image on archive pages in lucky mode
     if( isset($epl_settings['epl_lucky_disable_archive_thumb']) && $epl_settings['epl_lucky_disable_archive_thumb'] == 'on') {
-    
+
     	if( is_post_type_archive($epl_posts) ) {
 			add_filter('post_thumbnail_html','epl_remove_archive_thumbnail',20,5);
 		}
 	}
-	
+
     // remove epl featured image on archive pages in lucky mode
     if( isset($epl_settings['epl_lucky_disable_epl_archive_thumb']) && $epl_settings['epl_lucky_disable_epl_archive_thumb'] == 'on') {
-    
+
     	if( is_post_type_archive($epl_posts) ) {
 			remove_all_actions( 'epl_property_archive_featured_image' );
-			
+
 			// Adds class to disable property-box right and left
 			add_action('epl_compatibility_archive_class' , 'epl_compatibility_archive_class_callback');
 		}
@@ -1500,35 +1498,35 @@ function epl_remove_archive_thumbnail($html, $post_id, $post_thumbnail_id, $size
 	if( is_admin() ) {
 		return $html;
 	}
-	
+
 	if( is_epl_post_archive() ) {
 		// allow archive listing images as well as widget images
-		if( 
-			doing_action('epl_property_archive_featured_image') || 
-			doing_action('epl_property_widgets_featured_image') || 
-			doing_action('epl_author_thumbnail') || 
-			doing_action('epl_author_widget_thumbnail') 
+		if(
+			doing_action('epl_property_archive_featured_image') ||
+			doing_action('epl_property_widgets_featured_image') ||
+			doing_action('epl_author_thumbnail') ||
+			doing_action('epl_author_widget_thumbnail')
 		) {
-			
+
 		} else {
 			$html = '';
 		}
 	}
-	
+
 	return $html;
 }
 
 function epl_remove_single_thumbnail($html, $post_id, $post_thumbnail_id, $size, $attr) {
 
-	
+
 	if( is_admin() ) {
 		return $html;
 	}
-	
+
 	if( is_epl_post() ) {
 		// allow single listing images as well as widget images
 		if( doing_action('epl_property_featured_image') || doing_action('epl_property_widgets_featured_image') ) {
-			
+
 		} else {
 			$html = '';
 		}
@@ -1554,13 +1552,13 @@ add_action('epl_property_the_content','epl_the_content');
  * @since 2.2
  */
 function epl_feeling_lucky($content) {
-	
+
 	global $epl_settings;
-	
+
 	if( !isset($epl_settings['epl_feeling_lucky']) || $epl_settings['epl_feeling_lucky'] != 'on') {
 		return $content;
 	}
-	
+
 	$epl_posts 	= epl_get_active_post_types();
 	$epl_posts 	= array_keys($epl_posts);
 
@@ -1634,15 +1632,15 @@ function epl_syntax_highlight($str='',$class='') {
 }
 
 function epl_strip_tags($value) {
-	
+
 	if( !is_array($value) )  {
-		return strip_tags($value);	
+		return strip_tags($value);
 	}
 	return $value;
 }
 
 function epl_esc_attr($value) {
-	
+
 	if( !is_array($value) )  {
 		return esc_attr($value);
 	}
@@ -1650,35 +1648,35 @@ function epl_esc_attr($value) {
 }
 function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	global $wpdb;
-	
+
 	$sql = "
 		SELECT count( Distinct p.ID ) AS count
 		FROM {$wpdb->prefix}posts AS p
 		INNER JOIN $wpdb->postmeta pm  ON (p.ID = pm.post_id)
-		INNER JOIN $wpdb->postmeta pm2  ON (p.ID = pm2.post_id) 
+		INNER JOIN $wpdb->postmeta pm2  ON (p.ID = pm2.post_id)
 		WHERE p.post_status = 'publish' ";
-		
+
 		if($type == ''){
 			$epl_posts 	= epl_get_active_post_types();
 			$epl_posts 		= '"'.implode('","',array_keys($epl_posts) ).'"';
-			
+
 			$sql .=" AND p.post_type IN ( {$epl_posts} )";
 		} else {
 			$sql .=" AND p.post_type = '{$type}'";
 		}
-		
+
 		if($author_id != '') {
 			$user_info 		= get_userdata($author_id);
 			$sql .=" AND (
 						p.post_author =  $author_id
 						OR (
-							pm2.meta_key 	= 'property_second_agent' 
-							AND 
+							pm2.meta_key 	= 'property_second_agent'
+							AND
 							pm2.meta_value 	= '$user_info->user_login'
 						)
 					)";
 		}
-	$sql .="	
+	$sql .="
 		AND p.ID = pm.post_id
 		AND pm.meta_key = '{$meta_key}'
 		AND pm.meta_value = '{$meta_value}'
