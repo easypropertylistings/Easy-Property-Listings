@@ -707,7 +707,7 @@ function epl_property_tab_section() {
 	}
 	
 	if ( $property->post_type != 'land' || $property->post_type != 'business') { ?>
-		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php _e('Property Features', 'epl'); ?></h5>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo apply_filters('epl_property_tab_section_title',__('Property Features', 'epl')); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
 					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>							
