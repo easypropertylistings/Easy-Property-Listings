@@ -534,7 +534,7 @@ class EPL_Property_Meta {
 			}
 			
 		}
-		return $price_sticker;
+		return apply_filters('get_price_sticker',$price_sticker);
 	}
 	
 	// get l price 
@@ -722,6 +722,9 @@ class EPL_Property_Meta {
 		$property_land_area_unit = $this->get_property_meta('property_land_area_unit');
 		if ( $property_land_area_unit == 'squareMeter' ) {
 			$property_land_area_unit = __('sqm' , 'epl');
+		} else {
+			// translation for land area unit
+			$property_land_area_unit = __($property_land_area_unit , 'epl');
 		}
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			return '
