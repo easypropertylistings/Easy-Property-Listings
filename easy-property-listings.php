@@ -31,10 +31,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( !session_id() && ! headers_sent() ) {
-	session_start();
-}
-
 if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 	/*
 	 * Main Easy_Property_Listings Class
@@ -227,6 +223,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
 			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
+			require_once EPL_PATH_LIB . 'includes/pagination.php';
 			
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'api/metaboxes.php';
@@ -241,7 +238,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
-				require_once EPL_PATH_LIB . 'includes/pagination.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
@@ -249,6 +245,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-location.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
 				
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
