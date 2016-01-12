@@ -1120,7 +1120,7 @@ function epl_switch_views () { ?>
 			<li title="<?php _e('List','epl'); ?>" class="epl-current-view view-list" data-view="list">
 			</li>
 			<li title="<?php _e('Grid','epl'); ?>" class="view-grid" data-view="grid">
-			</li data-view="grid">
+			</li>
 		</ul>
 	</div> <?php
 

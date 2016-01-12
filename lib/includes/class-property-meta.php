@@ -176,7 +176,7 @@ class EPL_Property_Meta {
 		if ( $this->get_property_meta('property_com_listing_type') == 'lease' ) {
 			$property_price = $property_price_view; 
 		} 
-		return $property_price;
+        return apply_filters('epl_property_price_display',$property_price);
 	}
 	
 	// Sold price display
@@ -187,7 +187,7 @@ class EPL_Property_Meta {
 		if ( $property_sold_price != '' ) {
 			if ( $property_sold_display == 'yes' || $admin == true ) {
 				$property_sold_price = ' ' . epl_currency_formatted_amount( $property_sold_price );
-				return $property_sold_price;
+                return apply_filters('epl_property_price_sold_display',$property_sold_price);
 			}
 		}
 	}
@@ -201,7 +201,7 @@ class EPL_Property_Meta {
 		$property_sold_date	= $this->get_property_meta('property_sold_date' );
 		
 		if ( $property_sold_date != '' ) {
-			return $sold_price . ' ' . $property_sold_date;
+            return apply_filters('epl_property_price_sold_date',$sold_price . ' ' . $property_sold_date);
 		}
 	}
 	
@@ -220,7 +220,7 @@ class EPL_Property_Meta {
 		} else {
 			$rental_price = epl_currency_formatted_amount( $property_rent_search );
 		}
-		return $rental_price;
+        return apply_filters('epl_property_rent',$rental_price);
 	}
 
 	// Rental Bond
@@ -231,29 +231,34 @@ class EPL_Property_Meta {
 		$bond_position = apply_filters('epl_property_bond_position','after');
 		
 		if ( $this->get_property_meta('property_bond') !='' && $bond_position == 'before' ) {
-			return $this->label_bond . ' ' . epl_currency_formatted_amount($this->get_property_meta('property_bond'));
+			$return = $this->label_bond . ' ' . epl_currency_formatted_amount($this->get_property_meta('property_bond'));
 		} elseif ( $this->get_property_meta('property_bond') !='' ) {
-			return epl_currency_formatted_amount($this->get_property_meta('property_bond')).' '.$this->label_bond;
+            $return = epl_currency_formatted_amount($this->get_property_meta('property_bond')).' '.$this->label_bond;
 		}
+        return apply_filters('epl_property_bond',$return);
 	}
+    
 	// property rental available
 	public function get_property_available( $admin = false ) {
 		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F' ;
 		if(isset($this->meta['property_date_available'])) {
 			if(isset($this->meta['property_date_available'][0])) {
 					if ( '' != $this->meta['property_date_available'][0] ) {
-						return date( $format, strtotime($this->meta['property_date_available'][0]) );
+						$return =  date( $format, strtotime($this->meta['property_date_available'][0]) );
+                        return apply_filters('epl_property_available',$return);
 					}
 			}	
 		}
 	}
+    
 	// property land category
 	public function get_property_land_category() {
 		if ( 'land' != $this->post_type || 'commercial_land' != $this->post_type )
 			return;
 			
 		if ( $this->get_property_meta('property_land_category') !='' ) {
-			return epl_listing_meta_land_category_value( $this->get_property_meta('property_land_category') );
+            $return = epl_listing_meta_land_category_value( $this->get_property_meta('property_land_category') );
+            return apply_filters('epl_property_land_category',$return);
 		}
 	}
 	
@@ -267,11 +272,12 @@ class EPL_Property_Meta {
 				$street .= $this->get_property_meta('property_address_street_number').' ';
 				$street .= $this->get_property_meta('property_address_street').' ';
 				//$street .=$this->get_property_meta('property_address_suburb');
-		return $street;
+        return apply_filters('epl_formatted_property_address',$street);
 	}
 	
 	public function get_property_category () {
-		return epl_listing_meta_property_category_value( $this->get_property_meta('property_category') );
+		$return = epl_listing_meta_property_category_value( $this->get_property_meta('property_category') );
+        return apply_filters('epl_property_category',$return);
 	}
 	
 	public function get_price_class() {
@@ -294,7 +300,7 @@ class EPL_Property_Meta {
 		} else {
 			$property_tax = '';
 		}
-		return $property_tax;
+        return apply_filters('epl_property_tax',$property_tax);
 	}
 	
 	// plain price value
@@ -374,7 +380,7 @@ class EPL_Property_Meta {
 				$price_plain_value = $this->label_leased;
 			}
 		}
-		return $price_plain_value;
+        return apply_filters('epl_price_plain_value', $price_plain_value);
 	}
 	
 	// get price 
@@ -466,7 +472,7 @@ class EPL_Property_Meta {
 				$price = '<span class="page-price sold-status">'.$this->label_leased.'</span>';
 			}
 		}
-		return $price;
+		return apply_filters('epl_price',$price);
 	}
 	
 	// price sticker
@@ -534,7 +540,7 @@ class EPL_Property_Meta {
 			}
 			
 		}
-		return $price_sticker;
+        return apply_filters('epl_price_sticker',$price_sticker);
 	}
 	
 	// get l price 
@@ -595,14 +601,14 @@ class EPL_Property_Meta {
 				$l_price = '<li class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'epl') ).'</span> ' . $this->get_property_com_rent() . ' '.__($rent_lease_type, 'epl').'</li>';
 			}
 		}
-		return $l_price;
+        return apply_filters('get_l_price',$l_price);
 	}
 	
 	// property commercial category
 	public function get_property_commercial_category($tag='div') {
 		$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta('property_commercial_category') );
 		$property_commercial_category = '<'.$tag.' class="commercial-category">' . $property_commercial_category . '</'.$tag.'>';
-		return $property_commercial_category;
+        return apply_filters('epl_property_commercial_category',$property_commercial_category);
 	}
 	
 	// property year built
@@ -612,7 +618,7 @@ class EPL_Property_Meta {
 		$year_built['i'] = '<span title="'.__('Built', 'epl').'" class="icon year-built"><span class="icon-value">'. $this->get_property_meta('property_year_built') . '</span></span>'; 
 		$year_built['d'] = __('Built', 'epl') . ' ' . $this->get_property_meta('property_year_built') . ' ';
 		$year_built['l'] = '<li class="year-built">'.__('Built', 'epl') . ' ' . $this->get_property_meta('property_year_built') . '</li>';
-		return $year_built[$returntype];
+        return apply_filters('epl_property_year_built',$year_built[$returntype]);
 	}
 	
 	// property bed
@@ -622,7 +628,7 @@ class EPL_Property_Meta {
 		$bed['i'] = '<span title="'.__('Bedrooms', 'epl').'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>'; 
 		$bed['d'] = $this->get_property_meta('property_bedrooms') . ' '.__('bed', 'epl').' ';
 		$bed['l'] = '<li class="bedrooms">' . $this->get_property_meta('property_bedrooms') . ' '.__('bed', 'epl').'</li>';
-		return $bed[$returntype];
+        return apply_filters('epl_property_bed',$bed[$returntype]);
 	}
 	
 	// property bathrooms
@@ -632,7 +638,7 @@ class EPL_Property_Meta {
 		$bath['i'] = '<span title="'.__('Bathrooms', 'epl').'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>'; 
 		$bath['d'] = $this->get_property_meta('property_bathrooms') . ' '.__('bath', 'epl').' ';
 		$bath['l'] = '<li class="bathrooms">' . $this->get_property_meta('property_bathrooms') . ' '.__('bath', 'epl').'</li>';
-		return $bath[$returntype];
+        return apply_filters('epl_property_bath',$bath[$returntype]);
 	}
 	
 	// property rooms
@@ -642,7 +648,7 @@ class EPL_Property_Meta {
 		$rooms['i'] = '<span title="'.__('Rooms', 'epl').'" class="icon rooms"><span class="icon-value">'. $this->get_property_meta('property_rooms') . '</span></span>'; 
 		$rooms['d'] = $this->get_property_meta('property_rooms') . ' '.__('rooms', 'epl').' ';
 		$rooms['l'] = '<li class="rooms">' . $this->get_property_meta('property_rooms') . ' '.__('rooms', 'epl').'</li>';
-		return $rooms[$returntype];
+        return apply_filters('epl_property_rooms',$rooms[$returntype]);
 	}
 
 	// property parking for single icon
@@ -657,7 +663,7 @@ class EPL_Property_Meta {
 		$parking['i'] = '<span title="'.__('Parking Spaces', 'epl').'" class="icon parking"><span class="icon-value">' .$property_parking. '</span></span>';
 		$parking['d'] = $property_parking . ' '.__('Parking Spaces', 'epl').' ';
 		$parking['l'] = '<li class="parking">' . $property_parking . ' '.__('Parking Spaces', 'epl').'</li>';
-		return $parking[$returntype];
+        return apply_filters('epl_property_parking',$parking[$returntype]);
 	}
 
 	// property garage
@@ -666,8 +672,8 @@ class EPL_Property_Meta {
 			return;
 		$garage['i'] = '<span title="'.__('Garage', 'epl').'" class="icon parking"><span class="icon-value">'. $this->get_property_meta('property_garage') . '</span></span>'; 
 		$garage['l'] = '<li class="garage">' . $this->get_property_meta('property_garage') . ' '.__('garage', 'epl').'</li>';
-		$garage['d'] = $this->get_property_meta('property_garage') . ' '.__('garage', 'epl').' '; 
-		return $garage[$returntype];
+		$garage['d'] = $this->get_property_meta('property_garage') . ' '.__('garage', 'epl').' ';
+        return apply_filters('epl_property_garage',$garage[$returntype]);
 	}
 
 	// property cargport
@@ -677,8 +683,7 @@ class EPL_Property_Meta {
 		$carport['i'] = '<span title="'.__('Carport', 'epl').'" class="icon parking"><span class="icon-value">'. $this->get_property_meta('property_carport') . '</span></span>'; 
 		$carport['l'] = '<li class="carport">' . $this->get_property_meta('property_carport') . ' '.__('carport', 'epl').'</li>';
 		$carport['d'] = $this->get_property_meta('property_carport') . ' '.__('Carport', 'epl').' ';
-		
-		return $carport[$returntype];
+        return apply_filters('get_property_carport',$carport[$returntype]);
 	}
 	
 	// property ac
@@ -689,7 +694,7 @@ class EPL_Property_Meta {
 		if( isset($property_air_conditioning) && ($property_air_conditioning == 1 || $property_air_conditioning == 'yes') ) { 
 			$air['i'] = '<span title="'.__('Air Conditioning', 'epl').'" class="icon air"></span>'; 
 			$air['l'] = '<li class="air">'.__('Air conditioning', 'epl').'</li>';
-			return $air[$returntype];
+            return apply_filters('epl_property_air_conditioning',$air[$returntype]);
 		}
 	}
 	
@@ -701,7 +706,7 @@ class EPL_Property_Meta {
 		if( isset($property_pool) && ($property_pool == 1 || $property_pool == 'yes') ) { 
 			$pool['i'] = '<span title="'.__('Pool', 'epl').'" class="icon pool"></span>'; 
 			$pool['l'] = '<li class="pool">'.__('Pool', 'epl').'</li>';
-			return $pool[$returntype];
+            return apply_filters('epl_property_pool',$pool[$returntype]);
 		}
 	}
 	
@@ -713,7 +718,7 @@ class EPL_Property_Meta {
 		if( isset($property_security_system) && ($property_security_system == 1 || $property_security_system == 'yes') ) { 
 			$security_system['i'] = '<span title="'.__('Alarm System', 'epl').'" class="icon alarm"></span>'; 
 			$security_system['l'] = '<li class="alarm">'.__('Alarm System', 'epl').'</li>';
-			return $security_system[$returntype];
+            return apply_filters('epl_property_security_system',$security_system[$returntype]);
 		}
 	}
 	
@@ -724,8 +729,9 @@ class EPL_Property_Meta {
 			$property_land_area_unit = __('sqm' , 'epl');
 		}
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
-			return '
+			$return = '
 				<li class="land-size">'. __('Land is', 'epl').' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'</li>';
+            return apply_filters('epl_property_land_value',$return);
 		}
 	}
 	
@@ -736,10 +742,11 @@ class EPL_Property_Meta {
 			$building_unit = 'm²';
 		}
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) { 
-			return '
+			$return = '
 			<li class="land-size">'.__('Floor Area is', 'epl').' ' .
 		 		$this->get_property_meta('property_building_area') .' '.$building_unit.
 	 		'</li>';
+            return apply_filters('epl_property_building_area_value',$return);
 		}
 		
 	}
@@ -751,7 +758,7 @@ class EPL_Property_Meta {
 			$return_construction = array();
 			$return_construction['i'] = '<span title="'.__('New Construction', 'epl').'" class="icon new_construction"></span>'; 
 			$return_construction['l'] = '<li class="new_construction">'.__('New Construction', 'epl').'</li>';
-			return $return_construction[$returntype];
+            return apply_filters('epl_property_new_construction',$return_construction[$returntype]);
 		}
 	}
 	
@@ -790,7 +797,9 @@ class EPL_Property_Meta {
 						return;
 
 				// string value field types
-				return '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
+				$return =  '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
+                return apply_filters('epl_additional_features_html',$return);
+                
 			}
 	}
 	
@@ -798,10 +807,12 @@ class EPL_Property_Meta {
 	public function get_additional_rural_features_html($metakey) {
 			$metavalue = $this->get_property_meta($metakey);
 			if( isset($metavalue) && $metavalue != '' ) {
-				return '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
-							<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'epl').'</h6>'.
-							'<p>'.__($metavalue,'epl').'</p>'.
-						'</div>';
+				$return =  '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
+                                <h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'epl').'</h6>'.
+                                '<p>'.__($metavalue,'epl').'</p>'.
+                            '</div>';
+                return apply_filters('epl_additional_rural_features_html',$return);
+                
 			}
 	}
 	
@@ -809,10 +820,11 @@ class EPL_Property_Meta {
 	public function get_additional_commerical_features_html($metakey) {
 			$metavalue = $this->get_property_meta($metakey);
 			if( isset($metavalue) && $metavalue != '' ) {
-				return '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
+				$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
 							<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'epl').'</h6>'.
 							'<p>'.__($metavalue,'epl').'</p>'.
 						'</div>';
+                return apply_filters('epl_additional_commerical_features_html',$return);
 			}
 	}
 	
@@ -832,6 +844,6 @@ class EPL_Property_Meta {
 			global $post;
 			$property_feature_taxonomy = epl_get_the_term_list($this->post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' );
 		}
-		return $property_feature_taxonomy;
+        return apply_filters('epl_features_from_taxonomy',$property_feature_taxonomy);
 	}
 }
