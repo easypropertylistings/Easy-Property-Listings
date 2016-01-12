@@ -50,9 +50,16 @@ function epl_load_core_templates($template) {
 
 	}
 	if ( $post_tpl ) {
+        /*** Template found in theme ? ***/
 		$template       = locate_template( array_unique( $find ) );
 		if(!$template) {
+            /*** If not found, fallback to extension's default template ***/
 			$template	=	$template_path . $common_tpl;
+            
+            if( !file_exists($template) ) {
+                /*** If extension doesnt have templates, fallback to core templates ***/
+                $template	=	EPL_PATH_TEMPLATES_CONTENT . $common_tpl;
+            }
 		}
 	}
 	return $template;
