@@ -147,7 +147,7 @@ class EPL_Property_Meta {
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
-						return apply_filters('get_property_auction',date( $format, strtotime($this->meta['property_auction'][0]) ));
+						return apply_filters('epl_get_property_auction',date( $format, strtotime($this->meta['property_auction'][0]) ));
 					}
 			}
 		}
@@ -202,7 +202,7 @@ class EPL_Property_Meta {
 		$property_sold_date	= $this->get_property_meta('property_sold_date' );
 
 		if ( $property_sold_date != '' ) {
-			return apply_filters('get_property_price_sold_date',$sold_price . ' ' . $property_sold_date);
+			return apply_filters('epl_get_property_price_sold_date',$sold_price . ' ' . $property_sold_date);
 		}
 	}
 
@@ -257,7 +257,7 @@ class EPL_Property_Meta {
 			return;
 
 		if ( $this->get_property_meta('property_land_category') !='' ) {
-			return apply_filters('get_property_land_category',epl_listing_meta_land_category_value( $this->get_property_meta('property_land_category') ) );
+			return apply_filters('epl_get_property_land_category',epl_listing_meta_land_category_value( $this->get_property_meta('property_land_category') ) );
 		}
 	}
 
@@ -857,6 +857,6 @@ class EPL_Property_Meta {
 			global $post;
 			$property_feature_taxonomy = epl_get_the_term_list($this->post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' );
 		}
-		return apply_filters('get_features_from_taxonomy',$property_feature_taxonomy);
+		return apply_filters('epl_get_features_from_taxonomy',$property_feature_taxonomy);
 	}
 }
