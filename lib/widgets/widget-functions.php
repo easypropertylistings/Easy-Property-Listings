@@ -616,7 +616,9 @@
 		), $post_type, $property_status );
         $order = array();
         foreach($fields as $field_key   =>  $field_value) {
-            $order[$field_key] = isset($field_value['order']) ? $field_value['order'] : 20;
+            $fields[$field_value['meta_key']] = $field_value;
+            unset($fields[$field_key]);
+            $order[] = isset($field_value['order']) ? $field_value['order'] : 20;
         }
         array_multisort($order, SORT_ASC, $fields);
 		return $fields;
@@ -767,7 +769,7 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 	if ( isset( $data['property_agent'] ) ) {
 		$property_agent = sanitize_title_with_dashes( $data['property_agent'] );
 		if ( $property_agent = get_user_by( 'slug', $property_agent ) ) {
-			$query->set( 'post_author', $property_agent->ID );
+            $query->set( 'author__in' , array( $property_agent->ID) );
 		}
 	}
 
@@ -805,15 +807,6 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 								'type'		=>	$sub_query['type'],
 								'compare'	=>	$sub_query['compare'],
 							);
-							/**
-							 * Changing value of $this_sub_query to array when
-							 * compare is IN, NOT IN, BETWEEN, NOT BETWEEN
-							 */
-							if ( isset( $this_sub_query['compare'] ) && isset( $this_sub_query['value'] )
-								&& in_array( strtoupper( $this_sub_query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
-								&& ! is_array( $this_sub_query['value'] ) ) {
-								$this_sub_query['value'] = array_map( 'trim', explode( ',', $this_meta_query['value'] ) );
-							}
 							$this_meta_query[] = $this_sub_query;
 						}
 						$epl_meta_query[] = $this_meta_query;
@@ -837,15 +830,6 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 						isset( $epl_search_form_field['query']['compare'] ) ? $this_meta_query['compare'] = $epl_search_form_field['query']['compare'] : '';
 						isset( $epl_search_form_field['query']['type'] ) ? $this_meta_query['type'] = $epl_search_form_field['query']['type'] : '';
 						isset( $epl_search_form_field['query']['value'] ) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
-						/**
-						 * Changing value of $this_meta_query to array when
-						 * compare is IN, NOT IN, BETWEEN, NOT BETWEEN
-						 */
-						if ( isset( $this_meta_query['compare'] ) && isset( $this_meta_query['value'] )
-							&& in_array( strtoupper( $this_meta_query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
-							&& ! is_array( $this_meta_query['value'] ) ) {
-							$this_meta_query['value'] = array_map( 'trim', explode( ',', $this_meta_query['value'] ) );
-						}
 						$epl_meta_query[] = $this_meta_query;
 					}
 				}
@@ -853,7 +837,7 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 		}
 	}
 
-        $epl_meta_query = epl_preprocess_search_meta_query( $epl_meta_query );
+    $epl_meta_query = epl_preprocess_search_meta_query( $epl_meta_query, $epl_search_form_fields );
 
 	if ( ! empty( $epl_meta_query ) ) {
 		$query->set( 'meta_query', $epl_meta_query );
@@ -971,24 +955,22 @@ function epl_get_available_locations($post_type='',$property_status='') {
 
 }
 
-function epl_preprocess_search_meta_query($meta_query) {
+function epl_preprocess_search_meta_query($meta_query,$form_fields) {
+    $range_sep  = apply_filters('search_field_range_seperator','-');
+    $option_sep = apply_filters('search_field_option_seperator',',');
     foreach($meta_query as $key =>  &$query) {
-        if( isset($query['compare']) && in_array($query['compare'], array('between','BETWEEN','NOT BETWEEN','not between') )) {
-            $sep = apply_filters('search_field_option_seperator','-');
-
-            if( is_array($query['value']) ) {
-                if( !empty( array_filter($query['value']) ) ) {
-                    $query['value'] = array(
-                        explode( $sep, current($query['value']) )[0],
-                        explode( $sep, end($query['value']) )[1]
-                    );
-                } else {
-                    unset($meta_query[$key]);
-                }
-            } else {
-                $query['value'] = explode($sep, $query['value']);
+        
+        if ( isset( $query['compare'] ) && isset( $query['value'] )
+            && in_array( strtoupper( $query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
+            && ! is_array( $query['value'] ) ) {
+            $query['value'] = array_map( 'trim', explode( $option_sep, $query['value'] ) );
+            
+            if( isset($form_fields[$query['key']]['option_type']) && $form_fields[$query['key']]['option_type'] == 'range') {
+                $query['value'] = array(
+                    explode( $range_sep, current($query['value']) )[0],
+                    explode( $range_sep, end($query['value']) )[1]
+                );
             }
-
         }
     }
     return apply_filters('epl_preprocess_search_meta_query',$meta_query);
@@ -1045,6 +1027,7 @@ function epl_add_land_min_max_dropdown_field($fields) {
 							'800-900'	=>  '800-900',
 							'900-1000'	=>  '900-1000',
 		),
+        'option_type'   =>  'range', // provide range of option instead of option array
 		'query'			=>	array(
 							'query'		=>	'meta',
 							'compare'	=>	'BETWEEN'
