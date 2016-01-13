@@ -231,6 +231,7 @@ class EPL_Property_Meta {
 
 		$bond_position = apply_filters('epl_property_bond_position','after');
 
+		$bond = '';
 		if ( $this->get_property_meta('property_bond') !='' && $bond_position == 'before' ) {
 			$bond =  $this->label_bond . ' ' . epl_currency_formatted_amount($this->get_property_meta('property_bond'));
 		} elseif ( $this->get_property_meta('property_bond') !='' ) {
@@ -781,6 +782,7 @@ class EPL_Property_Meta {
 	// additional features html
 	public function get_additional_features_html($metakey) {
 			$metavalue = $this->get_property_meta($metakey);
+			$return = '';
 			if( $metavalue != '' || intval($metavalue) != 0) {
 				if($metakey == 'property_com_car_spaces'){
 					$metavalue = $metavalue.__(' Car Spaces', 'epl');

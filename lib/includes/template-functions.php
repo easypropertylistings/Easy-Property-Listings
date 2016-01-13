@@ -130,7 +130,6 @@ add_action( 'epl_property_widgets_featured_image' , 'epl_property_widgets_featur
 /*
 * Single Listing Templates
 */
-
 function epl_property_single_default() {
 
 	global $epl_settings;
@@ -176,6 +175,7 @@ function epl_get_template_part($template,$arguments=array()) {
 
 	include( $template);
 }
+
 /*
 * Loop Listing Templates
 */
@@ -198,7 +198,7 @@ function epl_archive_custom_excerpt_length( $length ) {
 // Allows the use of one function where we can then select a different template when needed
 function epl_property_blog($template='') {
 
-	if($template == '' || $template == 'blog')	{
+	if($template == '' || $template == 'blog') {
 		$template = 'default';
 	}
 	$template = str_replace('_','-',$template);
@@ -281,40 +281,39 @@ add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
 function epl_property_author_box_simple_card() {
 	global $property,$epl_author,$epl_author_secondary;
 	epl_get_template_part('content-author-box-simple-card.php');
-    if($property != NULL) {
-        $property_second_agent = $property->get_property_meta('property_second_agent');
-            if ( '' != $property_second_agent ) {
-                $second_author = get_user_by( 'login' , $property_second_agent );
-                if($second_author !== false){
-                        $epl_author_secondary = new EPL_Author_meta($second_author->ID);
-                        epl_get_template_part('content-author-box-simple-card.php',array('epl_author'	=>	$epl_author_secondary));
-                }
-                epl_reset_post_author();
-            }
-    }
+	if($property != NULL) {
+		$property_second_agent = $property->get_property_meta('property_second_agent');
+		if ( '' != $property_second_agent ) {
+			$second_author = get_user_by( 'login' , $property_second_agent );
+			if($second_author !== false){
+			        $epl_author_secondary = new EPL_Author_meta($second_author->ID);
+			        epl_get_template_part('content-author-box-simple-card.php',array('epl_author'	=>	$epl_author_secondary));
+			}
+		epl_reset_post_author();
+		}
+	}
 }
 
 // AUTHOR CARD : Gravatar
 function epl_property_author_box_simple_grav() {
 	global $property,$epl_author,$epl_author_secondary;
 	epl_get_template_part('content-author-box-simple-grav.php');
-    if($property != NULL) {
-        $property_second_agent = $property->get_property_meta('property_second_agent');
-            if ( '' != $property_second_agent ) {
-                $second_author = get_user_by( 'login' , $property_second_agent );
-                if($second_author !== false){
-                        $epl_author_secondary = new EPL_Author_meta($second_author->ID);
-                        epl_get_template_part('content-author-box-simple-grav.php',array('epl_author'	=>	$epl_author_secondary));
-                }
-                epl_reset_post_author();
-            }
-    }
+	if($property != NULL) {
+		$property_second_agent = $property->get_property_meta('property_second_agent');
+		if ( '' != $property_second_agent ) {
+			$second_author = get_user_by( 'login' , $property_second_agent );
+			if($second_author !== false){
+				$epl_author_secondary = new EPL_Author_meta($second_author->ID);
+				epl_get_template_part('content-author-box-simple-grav.php',array('epl_author'	=>	$epl_author_secondary));
+			}
+		epl_reset_post_author();
+		}
+	}
 }
 
 /*
 * Widget Templates
 */
-
 
 // WIDGET LISTING : Listing Card
 function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','epl')" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
@@ -336,7 +335,6 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 		break;
 
 	}
-
 
 	// Status Removal
 	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
@@ -413,10 +411,9 @@ function epl_property_get_the_full_address(){
 		$address .= $property->get_property_meta('property_address_country');
 
 	return $address;
-
 }
 
-/*=== Callback functions for template hooks ====*/
+/** Callback functions for template hooks **/
 
 /**
  * @hooked epl_property_title
@@ -581,11 +578,39 @@ function epl_property_inspection_times(){
 add_action('epl_property_inspection_times','epl_property_inspection_times');
 
 /**
+ * Getting heading/title of the listing.
+ *
+ * @since  2.3.1
+ * @param  int|WP_Post|EPL_Property_Meta  $listing
+ * @return string listing heading or title
+ */
+function epl_get_property_heading( $listing = null ) {
+	if ( null === $listing ) {
+		global $property;
+	} else if ( $listing instanceof EPL_Property_Meta ) {
+		$property = $listing;
+	} else if ( $listing instanceof WP_Post ) {
+		$property = new EPL_Property_Meta( $listing );
+	} else {
+		$property = get_post( $listing );
+		$property = new EPL_Property_Meta( $property );
+	}
+
+	if ( $property ) {
+		$property_heading = $property->get_property_meta( 'property_heading' );
+		if ( strlen( trim( $property_heading ) ) ) {
+			return $property_heading;
+		}
+		return get_the_title( $property->post->ID );
+	}
+	return '';
+}
+
+/**
  * @hooked the_property_heading
 **/
-function epl_property_heading(){
-	global $property;
-	echo $property->get_property_meta('property_heading');
+function epl_property_heading( $listing = null ){
+	echo epl_get_property_heading( $listing );
 }
 add_action('epl_property_heading','epl_property_heading');
 
@@ -696,7 +721,6 @@ function epl_property_tab_section() {
 		'property_gas_heating',
 		'property_reverse_cycle_aircon',
 		'property_evaporative_cooling'
-
 	);
 	$additional_features = apply_filters('epl_property_additional_features_list',$additional_features);
 
@@ -960,7 +984,7 @@ function epl_archive_sorting($query) {
 }
 add_action('pre_get_posts','epl_archive_sorting');
 
-/*==== Author functions ==*/
+/** Author functions **/
 
 function epl_author_tabs () {
 	global $epl_author;

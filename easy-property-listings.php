@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Easy Property Listings
- * Plugin URI: http://www.easypropertylistings.com.au
+ * Plugin URI: https://www.easypropertylistings.com.au/
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, lead generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
@@ -27,7 +27,7 @@
  * @author Merv Barrett
  * @version 2.3.1
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -38,13 +38,21 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 	 * @since 1.0
 	 */
 	final class Easy_Property_Listings {
-		
+
 		/*
 		 * @var Easy_Property_Listings The one true Easy_Property_Listings
 		 * @since 1.0
 		 */
 		private static $instance;
-	
+
+		/**
+		 * EPL search fields displayer object.
+		 *
+		 * @since 2.3.1
+		 * @var   EPL_Search_Fields
+		 */
+		public $search_fields;
+
 		/*
 		 * Main Easy_Property_Listings Instance
 		 *
@@ -64,11 +72,15 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->setup_constants();
 				self::$instance->includes();
 				self::$instance->load_textdomain();
-				define('EPL_RUNNING',true);
+				// Search fields displayer object.
+				self::$instance->search_fields = new EPL_Search_Fields();
+				self::$instance->search_fields->init();
+
+				define( 'EPL_RUNNING',true );
 			}
 			return self::$instance;
 		}
-		
+
 		/*
 		 * Setup plugin constants
 		 *
@@ -76,7 +88,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * @since 1.0
 		 * @return void
 		 */
-		public function setup_constants() {		
+		public function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
 				define( 'EPL_PROPERTY_VER', '2.3.1' );
@@ -114,28 +126,28 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_COMPATABILITY' ) ) {
 				define( 'EPL_COMPATABILITY', EPL_PATH_LIB . 'compatibility/' );
 			}
-			
+
 			if ( ! defined( 'EPL_PATH_TEMPLATES_CONTENT' ) ) {
 				define( 'EPL_PATH_TEMPLATES_CONTENT', EPL_PATH_TEMPLATES . 'content/' );
 			}
-			
+
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES', EPL_PATH_TEMPLATES . 'themes/' );
 			}
-			
+
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT', EPL_PATH_TEMPLATES_POST_TYPES . 'default/' );
 			}
-			
+
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES', EPL_PATH_TEMPLATES_POST_TYPES . 'ithemes-builder/' );
 			}
-			
+
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
 		}
-		
+
 		/*
 		 * Include required files
 		 *
@@ -144,15 +156,15 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * @return void
 		 */
 		private function includes() {
-			
+
 			// WordPress core functions for keeping compatibility.
 			require_once EPL_COMPATABILITY . 'wp-functions-compat.php';
-		
+
 			global $epl_settings;
-			
+
 			require_once EPL_PATH_LIB . 'includes/register-settings.php';
 			$epl_settings = epl_get_settings();
-		
+
 			require_once EPL_PATH_LIB . 'includes/functions.php';
 			require_once EPL_COMPATABILITY . 'functions-compat.php';
 			require_once EPL_COMPATABILITY . 'extensions.php';
@@ -163,46 +175,46 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			require_once EPL_PATH_LIB . 'api/cpt.php';
 			require_once EPL_PATH_LIB . 'api/form_builder.php';
-			
+
 			// Activate post types based on settings
 			if(isset($epl_settings['activate_post_types'])) {
 				$epl_activated_post_types = $epl_settings['activate_post_types'];
 			} else {
 				$epl_activated_post_types = '';
 			}
-			
+
 			if( is_array( $epl_activated_post_types ) ) {
 				foreach ( $epl_activated_post_types as $key => $value) {
 					switch ( $value ) {
-					
+
 						case 'property' :
 							require_once EPL_PATH_LIB . 'post-types/post-type-property.php';
 							break;
-						
+
 						case 'land' :
 							require_once EPL_PATH_LIB . 'post-types/post-type-land.php';
 							break;
-						
+
 						case 'rental' :
 							require_once EPL_PATH_LIB . 'post-types/post-type-rental.php';
 							break;
-						
+
 						case 'rural' :
 							require_once EPL_PATH_LIB . 'post-types/post-type-rural.php';
 							break;
-						
+
 						case 'business' :
 							require_once EPL_PATH_LIB . 'post-types/post-type-business.php';
 							break;
-						
+
 						case 'commercial' :
 							require_once EPL_PATH_LIB . 'post-types/post-type-commercial.php';
 							break;
-						
+
 						case 'commercial_land' :
 							require_once EPL_PATH_LIB . 'post-types/post-type-commercial_land.php';
 							break;
-						
+
 						default :
 							break;
 					}
@@ -224,7 +236,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			require_once EPL_PATH_LIB . 'includes/pagination.php';
-			
+
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'api/metaboxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
@@ -246,17 +258,18 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-location.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
-				
+
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-floorplan.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-mini-web.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-read-more.php';
 			}
-			
+
 			require_once EPL_PATH_LIB . 'includes/install.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 		}
-		
+
 		/**
 		 * Loads the plugin language files
 		 *
