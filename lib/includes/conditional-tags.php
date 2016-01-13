@@ -79,7 +79,8 @@ function is_epl_rental_post($type=null) {
  * @since 2.2
  */
 function is_epl_post($type=null) {
-	return 	in_array(get_post_type(),epl_all_post_types());
+	$type = $type === null ? get_post_type() : $type;
+	return 	in_array($type,epl_all_post_types());
 }
 
 /**
