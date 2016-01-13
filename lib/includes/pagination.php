@@ -90,6 +90,7 @@ function epl_fancy_pagination( $args = array() ) {
 				$out .= "<span class='pages'>$pages_text</span>";
 			}
 
+			$out = apply_filters( 'epl_pagination_before_page_numbers', $out, $start_page, $end_page );
 			if ( $start_page >= 2 && $pages_to_show < $total_pages ) {
 				// First
 				$first_text = str_replace( '%TOTAL_PAGES%', number_format_i18n( $total_pages ), $options['first_text'] );
@@ -107,8 +108,9 @@ function epl_fancy_pagination( $args = array() ) {
 			}
 
 			if ( $start_page >= 2 && $pages_to_show < $total_pages ) {
-				if ( !empty( $options['dotleft_text'] ) )
-					$out .= "<span class='extend'>{$options['dotleft_text']}</span>";
+				if ( ! empty( $options['dotleft_text'] ) ) {
+					$out .= $instance->get_single_dot( 'span', $options['dotleft_text'], array( 'class' => 'extend' ) );
+				}
 			}
 
 			// Smaller pages
@@ -127,15 +129,15 @@ function epl_fancy_pagination( $args = array() ) {
 				}
 			}
 
-			if ( $larger_page_start )
-				$out .= "<span class='extend'>{$options['dotleft_text']}</span>";
+			if ( $larger_page_start ) {
+				$out .= $instance->get_single_dot( 'span', $options['dotleft_text'], array( 'class' => 'extend' ) );
+			}
 
 			// Page numbers
 			$timeline = 'smaller';
 			foreach ( range( $start_page, $end_page ) as $i ) {
-				if ( $i == $paged && !empty( $options['current_text'] ) ) {
-					$current_page_text = str_replace( '%PAGE_NUMBER%', number_format_i18n( $i ), $options['current_text'] );
-					$out .= "<span class='current'>$current_page_text</span>";
+				if ( $i == $paged && ! empty( $options['current_text'] ) ) {
+					$out .= $instance->get_single( $i, $options['current_text'], array( 'class' => 'current' ), '%PAGE_NUMBER%', 'span' );
 					$timeline = 'larger';
 				} else {
 					$out .= $instance->get_single( $i, $options['page_text'], array(
@@ -157,20 +159,19 @@ function epl_fancy_pagination( $args = array() ) {
 			}
 
 			if ( $larger_page_out ) {
-				$out .= "<span class='extend'>{$options['dotright_text']}</span>";
+				$out .= $instance->get_single_dot( 'span', $options['dotright_text'], array( 'class' => 'extend' ) );
 			}
 			$out .= $larger_page_out;
 
-			if ( $end_page < $total_pages ) {
-				if ( !empty( $options['dotright_text'] ) )
-					$out .= "<span class='extend'>{$options['dotright_text']}</span>";
+			if ( $end_page < $total_pages && ! empty( $options['dotright_text'] ) ) {
+				$out .= $instance->get_single_dot( 'span', $options['dotright_text'], array( 'class' => 'extend' ) );
 			}
 
 			// Next
-			if ( $paged < $total_pages && !empty( $options['next_text'] ) ) {
+			if ( $paged < $total_pages && ! empty( $options['next_text'] ) ) {
 				$out .= $instance->get_single( $paged + 1, $options['next_text'], array(
 					'class' => 'nextpostslink',
-					'rel'	=> 'next'
+					'rel'	=> 'next',
 				) );
 			}
 
@@ -180,6 +181,7 @@ function epl_fancy_pagination( $args = array() ) {
 					'class' => 'last',
 				), '%TOTAL_PAGES%' );
 			}
+			$out = apply_filters( 'epl_pagination_after_page_numbers', $out, $start_page, $end_page );
 			break;
 
 		// Dropdown
@@ -257,15 +259,53 @@ class epl_pagination_Call {
 		return array( $posts_per_page, $paged, $total_pages );
 	}
 
-	function get_single( $page, $raw_text, $attr, $format = '%PAGE_NUMBER%' ) {
+	function get_single( $page, $raw_text, $attr, $format = '%PAGE_NUMBER%', $tag = 'a' ) {
 		if ( empty( $raw_text ) )
 			return '';
 
 		$text = str_replace( $format, number_format_i18n( $page ), $raw_text );
+		$text = apply_filters( 'epl_pagination_single_content_text', $text, $raw_text );
 
 		$attr['href'] = $this->get_url( $page );
 
-		return epl_pagination_html( 'a', $attr, $text );
+		list( $posts_per_page, $paged, $total_pages ) = $this->get_pagination_args();
+		$tag  = apply_filters( 'epl_pagination_single_tag', $tag, $page, $paged );
+
+		return apply_filters( 'epl_pagination_single', epl_pagination_html( $tag, $attr, $text ), $page, $paged, $total_pages, $posts_per_page );
+	}
+
+	/**
+	 * Outputting content of dot sigle elements.
+	 *
+	 * @since  2.3.1
+	 * @param  string $tag        tag of single dot.
+	 * @param  string $content    content of single dot.
+	 * @param  array  $attributes attributes of single dot tag.
+	 * @return string
+	 */
+	public function get_single_dot( $tag = 'span', $content = '...', array $attributes = array() ) {
+		$tag        = apply_filters( 'epl_pagination_single_dot_tag', $tag );
+		$content    = apply_filters( 'epl_pagination_single_dot_content', $content );
+		$attributes = apply_filters( 'epl_pagination_single_dot_attributes', $attributes );
+
+		$output = '<' . $tag;
+		if ( is_array( $attributes ) && count( $attributes ) ) {
+			foreach ( $attributes as $key => $value ) {
+				if ( ! empty( $key ) && ! empty( $value ) ) {
+					$output .= ' ' . $key . '="' . $value .'"';
+				}
+			}
+		}
+		// Tag is self closed.
+		if ( in_array( $tag, array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' ) ) ) {
+			$output .= ' />';
+		}
+		// Tag is not self closed.
+		else {
+			$output .= '>' . $content . '</' . $tag . '>';
+		}
+
+		return apply_filters( 'epl_pagination_single_dot', $output );
 	}
 
 	function get_url( $page ) {
@@ -328,21 +368,21 @@ endif;
 
 
 
-function epl_wp_default_pagination($query = array() ) { 
+function epl_wp_default_pagination($query = array() ) {
 	if(empty($query)) {
-	
+
 	?>
 	<div class="epl-paginate-default-wrapper epl-clearfix">
 		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
 		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
 	</div> <?php  } else {
-		
+
 		$query_open = $query['query']; ?>
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
 		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ), $query_open->max_num_pages ); ?></div>
 		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ), $query_open->max_num_pages ); ?></div>
 	</div> <?php }
-	
+
 }
 
