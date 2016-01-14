@@ -781,6 +781,9 @@ class EPL_Property_Meta {
 
 	// additional features html
 	public function get_additional_features_html($metakey) {
+        if( method_exists( $this,'get_'.$metakey ) ) {
+            return call_user_func( array($this,'get_'.$metakey) , 'l');
+        }
 			$metavalue = $this->get_property_meta($metakey);
 			$return = '';
 			if( $metavalue != '' || intval($metavalue) != 0) {
@@ -792,31 +795,19 @@ class EPL_Property_Meta {
 					$metavalue = $this->get_property_category();
 				}
 
-				if( (is_numeric($metavalue)) ) {
-					if($metavalue == 0)
-						$return = '';
-					// toggle field types -- 1 for toggle true
-					if( $metavalue == 1 ){
-						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-					} elseif(is_numeric($metavalue)) {
-						// numbered field types
-						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-					} else {
-						// others
-						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
-					}
+                switch($metavalue) {
+                    
+                    case 1:
+                    case 'yes':
+                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+                    break;
+                        
+                    default:
+                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+                    break;
+                }
+            }
 
-				}
-				if( ( $metavalue == 'yes' ) ) {
-					$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-				}
-
-				if( $metavalue == 'no' )
-						$return = '';
-
-				// string value field types
-				$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
-			}
 		return apply_filters('epl_get_additional_features_html',$return);
 	}
 
