@@ -843,12 +843,13 @@ function epl_admin_sidebar () {
 			if(isset($field['maxlength']) &&  $field['maxlength'] > 0) {
 				$atts .= ' maxlength="'.$field['maxlength'].'"';
 			}
+            $classes = isset($field['class']) ? $field['class'] : '';
 			foreach($field as $temp_key	=>	$temp_value) {
 				if (0 === strpos($temp_key, 'data-')) {
 				  $atts .= ''.$temp_key.'="'.$temp_value.'"';
 				}
 			}
-			echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+            echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" class="'.$classes.'"  value="'.stripslashes($val).'" '.$atts.' />';
 	}
 
 	if( isset($field['geocoder']) ) {
