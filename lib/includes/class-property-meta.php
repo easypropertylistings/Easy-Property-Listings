@@ -744,7 +744,7 @@ class EPL_Property_Meta {
 		}
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			$return = '
-				<li class="land-size">'. __('Land is', 'epl').' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'</li>';
+				<li class="land-size">'. __('Land is', 'epl').' ' . epl_format_amount($this->get_property_meta('property_land_area') ) .' '.$property_land_area_unit.'</li>';
 
 			return apply_filters('epl_get_property_land_value',$return);
 		}
@@ -760,7 +760,7 @@ class EPL_Property_Meta {
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
 			$return = '
 			<li class="land-size">'.__('Floor Area is', 'epl').' ' .
-				$this->get_property_meta('property_building_area') .' '.$building_unit.
+                epl_format_amount( $this->get_property_meta('property_building_area') ) .' '.$building_unit.
 			'</li>';
 			return apply_filters('epl_get_property_building_area_value',$return);
 		}
