@@ -781,16 +781,14 @@ class EPL_Property_Meta {
 
 	// additional features html
 	public function get_additional_features_html($metakey) {
-        if( method_exists( $this,'get_'.$metakey ) ) {
-            return call_user_func( array($this,'get_'.$metakey) , 'l');
-        }
-			$metavalue = $this->get_property_meta($metakey);
+
+            $metavalue = $this->get_property_meta($metakey);
 			$return = '';
 			if( $metavalue != '' || intval($metavalue) != 0) {
 				if($metakey == 'property_com_car_spaces'){
 					$metavalue = $metavalue.__(' Car Spaces', 'epl');
 				}
-
+                
 				if($metakey == 'property_category'){
 					$metavalue = $this->get_property_category();
 				}

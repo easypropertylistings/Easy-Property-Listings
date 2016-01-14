@@ -720,7 +720,8 @@ function epl_property_tab_section() {
 		'property_split_system_aircon',
 		'property_gas_heating',
 		'property_reverse_cycle_aircon',
-		'property_evaporative_cooling'
+		'property_evaporative_cooling',
+        'property_land_fully_fenced'
 	);
 	$additional_features = apply_filters('epl_property_additional_features_list',$additional_features);
 
