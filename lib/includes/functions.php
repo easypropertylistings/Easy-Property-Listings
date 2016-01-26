@@ -1366,6 +1366,50 @@ function epl_admin_sidebar () {
 		),
 		
 		array(
+			'label'		=>	__('Inspection Date & Time Format' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'inspection_date_time',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'inspection_date_format',
+					'label'	=>	__('Date Format', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						
+						'd-M-Y'							=>	date('d-M-Y',time() ),
+						'l, dS F'						=>	date('l, dS F',time() ),
+						'D d M'							=>	date('D d M',time() ),
+						'custom_inspection_date_format'	=>	__('Custom','epl')		
+
+					),
+				),
+				array(
+					'name'	=>	'custom_inspection_date_format',
+					'label'	=>	__('Custom Date Format', 'epl'),
+					'type'	=>	'text'
+				),
+				array(
+					'name'	=>	'inspection_time_format',
+					'label'	=>	__('Time Format', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						
+						'h:i A'	=>	date('h:i A',time() ),
+						'h:i a'	=>	date('h:i a',time() ),
+						'H:i'	=>	date('h:i',time() ) . ' ( 24 Hours Format ) ',
+						'custom_inspection_time_format'	=>	__('Custom','epl')
+
+					)
+				),
+				array(
+					'name'	=>	'custom_inspection_time_format',
+					'label'	=>	__('Custom Time Format', 'epl'),
+					'type'	=>	'text'
+				),
+			)
+		),
+		
+		array(
 			'label'		=>	__('Advanced Settings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'advanced',

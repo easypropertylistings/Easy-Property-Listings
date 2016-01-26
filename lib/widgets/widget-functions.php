@@ -967,8 +967,8 @@ function epl_preprocess_search_meta_query($meta_query,$form_fields) {
             
             if( isset($form_fields[$query['key']]['option_type']) && $form_fields[$query['key']]['option_type'] == 'range') {
                 $query['value'] = array(
-                    explode( $range_sep, current($query['value']) )[0],
-                    explode( $range_sep, end($query['value']) )[1]
+                    current (explode( $range_sep, current($query['value']) ) ),
+                    next (explode( $range_sep, end($query['value']) ) )
                 );
             }
         }

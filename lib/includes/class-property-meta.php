@@ -91,7 +91,7 @@ class EPL_Property_Meta {
 				// update inspection times by removing past dates
 				$new_inspection_meta = implode("\n", $inspectarray);
 				update_post_meta($this->post->ID,'property_inspection_times',$new_inspection_meta);
-
+				
 				$return =  "";
 				if(count($inspectarray) >= 1) {
 					// unordered list for multiple inspection times

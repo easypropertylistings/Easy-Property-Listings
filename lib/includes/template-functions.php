@@ -1710,4 +1710,22 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	return $count->count;
 }
 
+function epl_inspection_format($inspection_date) {
+
+	$formatted_date = '';
+	$inspection_date = explode(' ',$inspection_date);
+	
+	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'? 
+			epl_get_option('custom_inspection_date_format') : epl_get_option('inspection_date_format');
+			
+	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'? 
+			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
+			
+	$date 		= date($date_format,strtotime($inspection_date[0]));
+	$time_start = date($time_format,strtotime($inspection_date[1]));
+	$time_end 	= date($time_format,strtotime($inspection_date[3]));
+	
+	return "{$date} {$time_start} to {$time_end}";	
+}
+add_action('epl_inspection_format','epl_inspection_format');
 
