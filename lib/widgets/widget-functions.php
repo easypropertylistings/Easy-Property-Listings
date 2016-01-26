@@ -34,6 +34,12 @@
 				)
 			),
 			array(
+				'key'			=>	'show_property_status_frontend',
+				'label'			=>	__('Status Changed via Search Form','epl'),
+				'default'		=>	'off',
+				'type'			=>	'checkbox',
+			),
+			array(
 				'key'			=>	'property_status',
 				'label'			=>	__('Status','epl'),
 				'default'		=>	'',
@@ -193,6 +199,7 @@
 			array(
 				'key'			=>	'property_status',
 				'meta_key'		=>	'property_status',
+				'label'			=>	__('Property Status', 'epl'),
 				'type'			=>	'hidden',
 				'query'			=>	array(
 										'query'   => 'meta',
@@ -731,12 +738,13 @@
 	function epl_widget_render_frontend_fields($field,$config='',$value='',$post_type='',$property_status='') {
 
 		if ( 'hidden' != $field['type'] && 'on' != $config ) {
-			return;
+			if($field['key'] != 'property_status')
+				return;
 		}
 
 		if( !empty($field['exclude']) && in_array($post_type,$field['exclude']) )
 			return;
-
+		
 		do_action( 'epl_frontend_search_field_' . $field['type'], $field, $config, $value, $post_type, $property_status );
 	}
 

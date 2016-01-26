@@ -1729,3 +1729,20 @@ function epl_inspection_format($inspection_date) {
 }
 add_action('epl_inspection_format','epl_inspection_format');
 
+function epl_var_dump($var,$die=false) {
+	echo "<pre class=\"epl_var_dump\">";
+	var_dump($var);
+	echo "</pre>";
+	if($die) {
+		die();
+	}
+}
+function epl_print_r($var,$die=false) {
+	echo "<pre class=\"epl_print_r\">";
+	print_r($var);
+	echo "</pre>";
+	if($die) {
+		die();
+	}
+}
+

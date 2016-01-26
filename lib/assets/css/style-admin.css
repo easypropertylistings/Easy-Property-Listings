@@ -850,3 +850,9 @@ h3.epl-welcome-sub-heading {
 #ie7 .epl-clearfix {
 	zoom: 1;
 }
+.epl_print_r, .epl_var_dump {
+    background: gray none repeat scroll 0 0;
+    color: white;
+    width: 100%!important;
+    z-index: 9999;
+}
