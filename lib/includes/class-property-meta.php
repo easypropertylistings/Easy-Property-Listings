@@ -242,11 +242,16 @@ class EPL_Property_Meta {
 
 	// property rental available
 	public function get_property_available( $admin = false ) {
-		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F' ;
+		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F Y' ;
 		if(isset($this->meta['property_date_available'])) {
 			if(isset($this->meta['property_date_available'][0])) {
 				if ( '' != $this->meta['property_date_available'][0] ) {
-					return apply_filters('epl_get_property_available',date( $format, strtotime($this->meta['property_date_available'][0]) ));
+					if(time() > strtotime($this->meta['property_date_available'][0]) ) {
+						return __('Now','epl');
+					} else {
+						return apply_filters('epl_get_property_available',date( $format, strtotime($this->meta['property_date_available'][0]) ));
+					}
+					
 				}
 			}
 		}
