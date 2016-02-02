@@ -856,3 +856,186 @@ h3.epl-welcome-sub-heading {
     width: 100%!important;
     z-index: 9999;
 }
+
+/* lead Styles
+-------------------------------------------------------------- */
+#epl-item-tab-wrapper { margin-left: -1px; z-index: 1; text-align: center; display: inline-block; }
+#epl-item-tab-wrapper-list li { background-color: #fff; width: 32px; height: 32px; }
+#epl-item-tab-wrapper-list .inactive { background-color: #fff; color: #eee; border-left: 1px solid #e5e5e5; }
+#epl-item-tab-wrapper-list .active { border-width: 1px 1px 1px 0; border-style: solid; border-color: #e5e5e5; }
+#epl-item-tab-wrapper-list :not(:last-child) { margin-bottom: 3px; }
+#epl-item-tab-wrapper-list .dashicons { font-size: 24px; line-height: 32px; }
+#epl-item-card-wrapper .left { float: left; }
+#epl-item-card-wrapper .right { float: right; }
+#epl-item-card-wrapper input { font-weight: normal; }
+#epl-item-card-wrapper {
+	display: inline-block;
+	margin-left: -1px;
+	z-index: 2;
+	width: 700px;
+	background-color: #FFF;
+	min-height: 200px;
+	border: 1px solid #e5e5e5;
+	webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+}
+#epl-item-card-wrapper .lead-section { border-bottom: 1px solid #eee; margin-bottom: 10px; overflow: auto; }
+#epl-item-card-wrapper .lead-section table { margin-bottom: 20px; }
+#epl-item-card-wrapper > div { padding: 0px 20px; }
+#epl-item-card-wrapper > div:first-child { padding-top: 20px; }
+#epl-item-card-wrapper > div:last-child { padding-bottom: 20px; border: none; }
+#epl-item-card-wrapper .avatar-wrap { padding-right: 10px; text-align: center; }
+#epl-item-card-wrapper .lead-id { font-size: 24px; font-weight: 600; }
+#epl-item-card-wrapper .lead-main-wrapper input { width: 200px; }
+#epl-item-card-wrapper .lead-address-wrapper { max-width: 33%; margin-right: 25px; width: 202px; }
+#epl-item-card-wrapper .lead-address-wrapper select { width: 200px;}
+#epl-item-card-wrapper .lead-info { margin-top: 5px; min-height: 185px; margin-bottom: 10px; }
+#epl-item-card-wrapper .info-wrapper { min-height: 125px; overflow: visible; }
+#epl-item-card-wrapper a.delete { text-decoration: none; color: #ff0000; margin-right: 5px; }
+.lead-info .lead-name { font-size: 24px; font-weight: 600; }
+.lead-edit-link a, .disconnect-user a { font-size: 12px; font-weight: normal; text-decoration: none; }
+#lead-edit-actions { text-align: center; margin-bottom: 20px; line-height: 28px; }
+#lead-edit-actions .button-secondary { margin-right: 10px; }
+#epl-item-card-wrapper .info-item { line-height: 16px; display: block; padding-bottom: 5px; }
+#epl-item-card-wrapper .edit-item { display: none; }
+#epl-item-card-wrapper .epl_user_search_results { left: 1px; top: 16px;}
+#epl-item-card-wrapper .epl_user_search_results ul { width: 200px }
+#epl-item-stats-wrapper { margin: 0 auto; text-align: center; min-height: 30px; }
+#epl-item-stats-wrapper li { width: 50%; float: left; line-height: 22px; font-size: 14px; }
+#epl-item-stats-wrapper a { text-decoration: none; }
+#epl-item-stats-wrapper .dashicons { color: #888; }
+#epl-item-tables-wrapper table { width: 100%; text-align: center; }
+#epl-item-tables-wrapper th { text-align: center; }
+#epl-item-tables-wrapper .downloads tr > th:first-child, #epl-item-tables-wrapper .downloads tr > td:first-child { text-align: left; }
+#epl-item-tables-wrapper .downloads tr > td:only-child { text-align: center; }
+#epl-item-notes-wrapper { min-height: 50px; }
+.epl-item-notes-header span, .epl-item-notes-header img { font-weight: 600; line-height: 30px; vertical-align: middle; }
+.lead-note-input { width: 100%; margin-bottom: 5px; }
+#epl-lead-notes div:nth-of-type(even) { background-color: #fcfcfc; }
+
+.lead-note-wrapper {
+    background: #efe none repeat scroll 0 0;
+    border-bottom: 1px solid #f9f9f9;
+    border-radius: 0 10px 10px; -moz-border-radius: 0 10px 10px; -webkit-border-radius: 0 10px 10px;
+    box-shadow: 2px 1px 2px 1px #ddd inset; -moz-box-shadow: 2px 1px 2px 1px #ddd inset; -webkit-box-shadow: 2px 1px 2px 1px #ddd inset;
+    float: left;
+    margin: 10px 0;
+    min-height: 38px;
+    padding: 7px 0 7px 7px;
+    width: 90%;
+}
+.epl_user_note {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #dddbd1, #d2dbdc) repeat scroll 0 0 !important;
+}
+#epl-lead-notes {
+    clear: both;
+    float: left;
+    margin: 20px 0;
+    width: 100%;
+}
+.lead-note-wrapper span { display: block; }
+.note-content-wrap { padding-top: 20px; }
+.delete-lead { text-align: center; }
+#epl-item-card-wrapper .notice-wrap { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
+.epl_user_search_results ul {
+    background: #f0f0f0 none repeat scroll 0 0;
+    border: 1px solid #dfdfdf;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: scroll;
+    padding: 10px 10px 4px;
+    width: 300px;
+}
+
+select.lead-note-select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    width:100%;
+    display:block;
+    font-size:0.9em;
+    color:#666;
+}
+
+.lead-note-select option {
+    border-bottom: 1px solid #999;
+    padding: 5px 0;
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select.lead-note-select {padding-right:18px}
+}
+
+label.lead-select-label {
+    display: block;
+    float: left;
+    margin: 1%;
+    position: relative;
+    width: 48%;
+}
+label.lead-select-label:after {
+    content:'<>';
+    font:15px "Consolas", monospace;
+    color:#999;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:2px;
+    padding:0 0 2px;
+    border-bottom:1px solid #ddd;
+    position:absolute;
+    pointer-events:none;
+}
+label.lead-select-label:before {
+    content:'';
+    right:6px; top:0px;
+    width:20px; height:20px;
+    background:#f8f8f8;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+
+
+.epl-admin-note {
+    background: rgba(0, 255, 0, 0) linear-gradient(to bottom, #efe, #bfd) repeat scroll 0 0 !important;
+    border-radius: 10px 10px 0; -moz-border-radius: 10px 10px 0; -webkit-border-radius: 10px 10px 0;
+    float: right;
+}
+.note-content-meta {
+    border-bottom: 1px solid #eee;
+    color: #777;
+    font-size: 0.8em;
+    overflow: hidden;
+    padding: 0 5px 0 0;
+}
+
+.note-for-listing {
+    float: left;
+}
+.note-time {
+    float: right;
+}
+
+.epl-note-pagination a {
+    box-shadow: 0 0 3px 0 #ccc inset;
+    margin: 0 4px;
+    padding: 5px 10px;
+    text-decoration: none;
+}

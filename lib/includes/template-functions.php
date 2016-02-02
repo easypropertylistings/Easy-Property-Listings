@@ -1729,20 +1729,15 @@ function epl_inspection_format($inspection_date) {
 }
 add_action('epl_inspection_format','epl_inspection_format');
 
-function epl_var_dump($var,$die=false) {
-	echo "<pre class=\"epl_var_dump\">";
-	var_dump($var);
-	echo "</pre>";
-	if($die) {
-		die();
-	}
+/**
+ * Counts the total number of leads.
+ *
+ * @access 		public
+ * @since 		2.4
+ * @return 		int - The total number of leads.
+ */
+function epl_count_total_leads() {
+	return EPL()->leads->count();
 }
-function epl_print_r($var,$die=false) {
-	echo "<pre class=\"epl_print_r\">";
-	print_r($var);
-	echo "</pre>";
-	if($die) {
-		die();
-	}
-}
+
 

@@ -75,6 +75,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				// Search fields displayer object.
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->search_fields->init();
+				self::$instance->leads  = new EPL_DB_Leads();
 
 				define( 'EPL_RUNNING',true );
 			}
@@ -165,6 +166,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/register-settings.php';
 			$epl_settings = epl_get_settings();
 
+			require_once EPL_PATH_LIB . 'includes/actions.php';
 			require_once EPL_PATH_LIB . 'includes/functions.php';
 			require_once EPL_COMPATABILITY . 'functions-compat.php';
 			require_once EPL_COMPATABILITY . 'extensions.php';
@@ -235,9 +237,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
 			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
+			require_once EPL_PATH_LIB . 'includes/error-tracking.php';
+			
 			require_once EPL_PATH_LIB . 'includes/pagination.php';
-
-			if ( is_admin() ) {
+			require_once EPL_PATH_LIB . 'includes/class-epl-db.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-db-leads.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-lead.php';
+			
+			if ( is_admin() ) { 
 				require_once EPL_PATH_LIB . 'api/metaboxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
@@ -246,6 +253,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'menus/menus.php';
 				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
+				require_once EPL_PATH_LIB . 'leads/leads.php';
+				require_once EPL_PATH_LIB . 'leads/lead-functions.php';
+				require_once EPL_PATH_LIB . 'leads/lead-actions.php';
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
@@ -253,6 +263,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-lead-form.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
