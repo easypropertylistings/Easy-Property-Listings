@@ -1533,3 +1533,115 @@ function epl_session_end() {
 }
 add_action('wp_logout', 'epl_session_end');
 add_action('wp_login', 'epl_session_end');
+
+/**
+ * Get Sales Count By Date
+ *
+ * @since 2.4
+ * @param int $day Day number
+ * @param int $month_num Month number
+ * @param int $year Year
+ * @param int $hour Hour
+ * @return int $count Sales
+ */
+function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $hour = null, $status=null ) {
+	
+	$post_type = isset($_GET['view']) ? $_GET['view'] : 'property';
+	$args = array(
+		'post_type'      => $post_type,
+		'nopaging'       => true,
+		'year'           => $year,
+		'fields'         => 'ids',
+		'post_status'    => array( 'publish' ),
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false
+	);
+
+	if( in_array($status, array('sold','leased') ) ) {
+		
+			$month_num  = is_null($month_num) ? 00 : $month_num;
+			$day 		= is_null($day) ? 00 : $day;
+			$year 		= is_null($year) ? 0000 : $year;
+			$range		= isset($_GET['range'])?$_GET['range']:'other';
+			
+			
+			
+			$args['meta_query'] = array(
+				array(
+					'key' 		=> 'property_status',
+					'value' 	=> (array) $status,
+					'compare' => 'IN',
+				),
+			);
+			
+			if( in_array($range, array('other','last_year','this_year','last_quarter','this_quarter') ) ) {
+		
+				$sold_key = $status == 'leased' ? 'property_date_available':'property_sold_date';
+				$sold_date_start  	= date('Y-m-01',strtotime($year.'-'.$month_num.'-'.$day));
+				$sold_date_end  	= date('Y-m-d',strtotime($year.'-'.$month_num.'-'.$day));
+				
+				$args['meta_query'][] = array(
+					'key' 		=> $sold_key,
+					'value' 	=> array($sold_date_start,$sold_date_end),
+					'type'		=>	'DATE',
+					'compare'	=>	'BETWEEN'
+				);
+				
+			} else {
+			
+				$sold_key = $status == 'leased' ? 'property_date_available':'property_sold_date';
+				$sold_date  = date('Y-m-d',strtotime($year.'-'.$month_num.'-'.$day));
+				
+				$args['meta_query'][] = array(
+					'key' 		=> $sold_key,
+					'value' 	=> $sold_date,
+					'type'		=>	'DATE',
+				);
+			
+			}
+	
+	} else {
+			
+			if ( ! empty( $month_num ) )
+				$args['monthnum'] = $month_num;
+
+			if ( ! empty( $day ) )
+				$args['day'] = $day;
+
+			if ( ! empty( $hour ) )
+				$args['hour'] = $hour;
+
+	
+	}
+
+
+	$args = apply_filters( 'epl_get_sales_by_date_args', $args  );
+
+	$key   = 'epl_stats_' . substr( md5( serialize( $args ) ), 0, 15 );
+	$count = get_transient( $key );
+	if( false === $count ) {
+		$sales = new WP_Query( $args );
+		$count = (int) $sales->post_count;
+		// Cache the results for one hour
+		set_transient( $key, $count, HOUR_IN_SECONDS );
+	}
+	
+	return $count;
+}
+
+/**
+ * Month Num To Name
+ *
+ * Takes a month number and returns the name three letter name of it.
+ *
+ * @since 2.4
+ *
+ * @param integer $n
+ * @return string Short month name
+ */
+function epl_month_num_to_name( $n ) {
+	$timestamp = mktime( 0, 0, 0, $n, 1, 2005 );
+
+	return date_i18n( "M", $timestamp );
+}
+

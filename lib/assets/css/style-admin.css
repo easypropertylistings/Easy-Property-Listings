@@ -1039,3 +1039,35 @@ label.lead-select-label:before {
     padding: 5px 10px;
     text-decoration: none;
 }
+/* Reports Styles
+-------------------------------------------------------------- */
+#epl-dashboard-widgets-wrap .postbox h3 { cursor: default; }
+#epl-graphs-date-options,
+#epl-date-range-options { float: left; }
+#epl-date-range-options span { float: left; margin-right: 6px; height: 24px; line-height: 24px; }
+.epl-export-form { position: relative; }
+.epl-export-form .epl-progress {background: #ddd; position: absolute; bottom: 15px; height: 15px; width: 95%; }
+.epl-export-form .epl-progress div { height: 100%; background: #ccc; width: 0; }
+.epl-export-form .notice-wrap { background-color: #f4f4f4; padding: 12px 12px 4px; margin: 20px -12px -23px; border-style: solid; border-width: 1px 0; border-color: #eae9e9; overflow: auto; }
+.epl-export-form .notice-wrap .spinner { margin: 4px 10px 8px; }
+.admin-color-fresh .epl-export-form .epl-progress div { background: #0073aa; }
+.admin-color-light .epl-export-form .epl-progress div { background: #888; }
+.admin-color-blue .epl-export-form .epl-progress div { background: #096484; }
+.admin-color-coffee .epl-export-form .epl-progress div { background: #c7a589; }
+.admin-color-ectoplasm .epl-export-form .epl-progress div { background: #a3b745; }
+.admin-color-midnight .epl-export-form .epl-progress div { background: #e14d43; }
+.admin-color-sunrise .epl-export-form .epl-progress div { background: #dd823b; }
+#epl-graphs-filter label { vertical-align: inherit; }
+#epl-graphs-filter .graph-option-section { float: left; line-height: 2.5em; padding-right: 5px; }
+.epl-mix-totals { padding: 10px; background-color: #fff; box-shadow: 0 1px 1px rgba(0,0,0,0.04); border: 1px solid #e5e5e5; }
+.epl-mix-chart { display: inline-block; width: 49%; vertical-align: top; }
+.epl-graph-notes { color: #9c9c9c; }
+.epl-graph-notes span { display: block; }
+.epl-pie-graph .legend { display: none; }
+.epl-pie-legend { margin-top: 10px; overflow: auto; }
+.epl-legend-item-wrapper { width: 48%; display:inline-block; font-size:8pt; padding:2px; color:#333; padding: 2px 5px 0px 5px; height: 20px; }
+.epl-legend-color { display: inline-block; height: 15px; width: 20px; border: 1px solid #cfcfcf; margin-right: 5px; }
+.epl-pie-legend-item { display: inline-block; vertical-align: top; width: 80%; }
+.epl-graph .y1Axis { color: rgb( 237, 194, 64 )!important; }
+.epl-graph .y2Axis { color: rgb( 175, 216, 248 )!important; }
+

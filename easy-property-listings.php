@@ -256,6 +256,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'leads/leads.php';
 				require_once EPL_PATH_LIB . 'leads/lead-functions.php';
 				require_once EPL_PATH_LIB . 'leads/lead-actions.php';
+				require_once EPL_PATH_LIB . 'reports/graphing.php';
+				require_once EPL_PATH_LIB . 'reports/reports.php';
+				require_once EPL_PATH_LIB . 'reports/class-epl-graph.php';
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
