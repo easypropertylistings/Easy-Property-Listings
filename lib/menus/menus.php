@@ -73,6 +73,24 @@ function epl_admin_menu() {
 	$menu_slug	= 'epl-addons';
 	$function	= 'epl_menu_addons';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+	
+	// Editor level and above can see these options
+	$page_title	= __('Leads', 'epl');
+	$menu_title	= __('Leads', 'epl');
+	$capability	= 'edit_published_posts';
+	$menu_slug	= 'epl-leads';
+	$function	= 'epl_leads_page';
+	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+	
+	// Editor level and above can see these options
+	$page_title	= __('Reports', 'epl');
+	$menu_title	= __('Reports', 'epl');
+	$capability	= 'edit_published_posts';
+	$menu_slug	= 'epl-reports';
+	$function	= 'epl_reports_page';
+	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+	
+	
 }
 
 function epl_menu_general() {

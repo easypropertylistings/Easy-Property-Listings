@@ -720,7 +720,8 @@ function epl_property_tab_section() {
 		'property_split_system_aircon',
 		'property_gas_heating',
 		'property_reverse_cycle_aircon',
-		'property_evaporative_cooling'
+		'property_evaporative_cooling',
+        'property_land_fully_fenced'
 	);
 	$additional_features = apply_filters('epl_property_additional_features_list',$additional_features);
 
@@ -1707,6 +1708,36 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	";
 	$count = $wpdb->get_row($sql);
 	return $count->count;
+}
+
+function epl_inspection_format($inspection_date) {
+
+	$formatted_date = '';
+	$inspection_date = explode(' ',$inspection_date);
+	
+	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'? 
+			epl_get_option('custom_inspection_date_format') : epl_get_option('inspection_date_format');
+			
+	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'? 
+			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
+			
+	$date 		= date($date_format,strtotime($inspection_date[0]));
+	$time_start = date($time_format,strtotime($inspection_date[1]));
+	$time_end 	= date($time_format,strtotime($inspection_date[3]));
+	
+	return "{$date} {$time_start} to {$time_end}";	
+}
+add_action('epl_inspection_format','epl_inspection_format');
+
+/**
+ * Counts the total number of leads.
+ *
+ * @access 		public
+ * @since 		2.4
+ * @return 		int - The total number of leads.
+ */
+function epl_count_total_leads() {
+	return EPL()->leads->count();
 }
 
 
