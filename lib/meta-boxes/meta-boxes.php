@@ -301,8 +301,8 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_bedrooms',
 							'label'		=>	__('Bedrooms', 'epl'),
-							'type'		=>	'number',
-							'maxlength'	=>	'2'
+							'type'		=>	'text',
+                            'class'     =>  'validate[custom[bedroom]]'
 						),
 						
 						array(

@@ -98,6 +98,9 @@ function epl_install() {
 		$epl_settings = $new_fields_defaults;
 	}
 	update_option( 'epl_settings', $epl_settings );
+	
+	// Create the customers database
+	@EPL()->contacts->create_table();
 
 	// Add Upgraded From Option
 	$current_version = get_option( 'epl_version' );
