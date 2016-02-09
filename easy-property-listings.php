@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Easy Property Listings
  * Plugin URI: https://www.easypropertylistings.com.au/
- * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, lead generation and works with any theme!
+ * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
  * Version: 2.4 (beta)
@@ -75,7 +75,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				// Search fields displayer object.
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->search_fields->init();
-				self::$instance->leads  = new EPL_DB_Leads();
 
 				define( 'EPL_RUNNING',true );
 			}
@@ -222,6 +221,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 					}
 				}
 			}
+			
+			require_once EPL_PATH_LIB . 'post-types/post-type-contact.php';
 
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-features.php';
@@ -240,9 +241,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/error-tracking.php';
 			
 			require_once EPL_PATH_LIB . 'includes/pagination.php';
-			require_once EPL_PATH_LIB . 'includes/class-epl-db.php';
-			require_once EPL_PATH_LIB . 'includes/class-epl-db-leads.php';
-			require_once EPL_PATH_LIB . 'includes/class-epl-lead.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
 			
 			if ( is_admin() ) { 
 				require_once EPL_PATH_LIB . 'api/metaboxes.php';
@@ -253,9 +252,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'menus/menus.php';
 				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
-				require_once EPL_PATH_LIB . 'leads/leads.php';
-				require_once EPL_PATH_LIB . 'leads/lead-functions.php';
-				require_once EPL_PATH_LIB . 'leads/lead-actions.php';
+				require_once EPL_PATH_LIB . 'contacts/contacts.php';
+				require_once EPL_PATH_LIB . 'contacts/contact-functions.php';
+				require_once EPL_PATH_LIB . 'contacts/contact-actions.php';
 				require_once EPL_PATH_LIB . 'reports/graphing.php';
 				require_once EPL_PATH_LIB . 'reports/reports.php';
 				require_once EPL_PATH_LIB . 'reports/class-epl-graph.php';
@@ -266,7 +265,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-lead-form.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-contact-form.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';

@@ -1730,14 +1730,15 @@ function epl_inspection_format($inspection_date) {
 add_action('epl_inspection_format','epl_inspection_format');
 
 /**
- * Counts the total number of leads.
+ * Counts the total number of contacts.
  *
  * @access 		public
  * @since 		2.4
- * @return 		int - The total number of leads.
+ * @return 		int - The total number of contacts.
  */
-function epl_count_total_leads() {
-	return EPL()->leads->count();
+function epl_count_total_contacts() {
+	$counts =  wp_count_posts('epl_contact');
+	return $counts->publish;
 }
 
 

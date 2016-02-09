@@ -1645,3 +1645,72 @@ function epl_month_num_to_name( $n ) {
 	return date_i18n( "M", $timestamp );
 }
 
+/**
+ * Retrieve contacts from the database
+ *
+ * @access  public
+ * @since   2.4
+*/
+function get_contacts( $args = array() ) {
+
+	global $wpdb;
+
+	$defaults = array(
+		'post_type'		=>	'epl_contact',
+		'posts_per_page'       => 20,
+		'offset'       => 0,
+		'orderby'      => 'ID',
+		'order'        => 'DESC'
+	);
+
+	$args  = wp_parse_args( $args, $defaults );
+
+	if( $args['posts_per_page'] < 1 ) {
+		$args['number'] = -1;
+	}
+
+	$where = ' WHERE 1=1 ';
+
+	// specific contacts
+	if( ! empty( $args['ID'] ) ) {
+		$args['post__in']  = $args['ID'];
+		
+
+	}
+
+
+	//specific contacts by email
+	if( ! empty( $args['email'] ) ) {
+		
+		$email_query =  array(
+			'key'			=>	'contact_email',
+			'value'			=>	$args['email'],
+		);
+
+		if( is_array( $args['email'] ) ) {
+			$email_query['comparison'] = 'IN';
+			
+		}
+		$args['meta_query'][] = $email_query;
+	}
+
+	// specific contacts by name
+	if( ! empty( $args['name'] ) ) {
+		$args['post_title'] = $args['name'];
+	}
+
+	$cache_key = md5( 'epl_contacts_' . serialize( $args ) );
+
+	$contacts = wp_cache_get( $cache_key, 'contacts' );
+
+	$args['orderby'] = esc_sql( $args['orderby'] );
+	$args['order']   = esc_sql( $args['order'] );
+
+	if( $contacts === false ) {
+		$contacts = get_posts($args);
+		wp_cache_set( $cache_key, $contacts, 'contacts', 3600 );
+	}
+	return $contacts;
+
+}
+

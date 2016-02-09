@@ -857,7 +857,7 @@ h3.epl-welcome-sub-heading {
     z-index: 9999;
 }
 
-/* lead Styles
+/* contact Styles
 -------------------------------------------------------------- */
 #epl-item-tab-wrapper { margin-left: -1px; z-index: 1; text-align: center; display: inline-block; }
 #epl-item-tab-wrapper-list li { background-color: #fff; width: 32px; height: 32px; }
@@ -879,23 +879,23 @@ h3.epl-welcome-sub-heading {
 	webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 }
-#epl-item-card-wrapper .lead-section { border-bottom: 1px solid #eee; margin-bottom: 10px; overflow: auto; }
-#epl-item-card-wrapper .lead-section table { margin-bottom: 20px; }
+#epl-item-card-wrapper .contact-section { border-bottom: 1px solid #eee; margin-bottom: 10px; overflow: auto; }
+#epl-item-card-wrapper .contact-section table { margin-bottom: 20px; }
 #epl-item-card-wrapper > div { padding: 0px 20px; }
 #epl-item-card-wrapper > div:first-child { padding-top: 20px; }
 #epl-item-card-wrapper > div:last-child { padding-bottom: 20px; border: none; }
 #epl-item-card-wrapper .avatar-wrap { padding-right: 10px; text-align: center; }
-#epl-item-card-wrapper .lead-id { font-size: 24px; font-weight: 600; }
-#epl-item-card-wrapper .lead-main-wrapper input { width: 200px; }
-#epl-item-card-wrapper .lead-address-wrapper { max-width: 33%; margin-right: 25px; width: 202px; }
-#epl-item-card-wrapper .lead-address-wrapper select { width: 200px;}
-#epl-item-card-wrapper .lead-info { margin-top: 5px; min-height: 185px; margin-bottom: 10px; }
+#epl-item-card-wrapper .contact-id { font-size: 24px; font-weight: 600; }
+#epl-item-card-wrapper .contact-main-wrapper input { width: 200px; }
+#epl-item-card-wrapper .contact-address-wrapper { max-width: 33%; margin-right: 25px; width: 202px; }
+#epl-item-card-wrapper .contact-address-wrapper select { width: 200px;}
+#epl-item-card-wrapper .contact-info { margin-top: 5px; min-height: 185px; margin-bottom: 10px; }
 #epl-item-card-wrapper .info-wrapper { min-height: 125px; overflow: visible; }
 #epl-item-card-wrapper a.delete { text-decoration: none; color: #ff0000; margin-right: 5px; }
-.lead-info .lead-name { font-size: 24px; font-weight: 600; }
-.lead-edit-link a, .disconnect-user a { font-size: 12px; font-weight: normal; text-decoration: none; }
-#lead-edit-actions { text-align: center; margin-bottom: 20px; line-height: 28px; }
-#lead-edit-actions .button-secondary { margin-right: 10px; }
+.contact-info .contact-name { font-size: 24px; font-weight: 600; }
+.contact-edit-link a, .disconnect-user a { font-size: 12px; font-weight: normal; text-decoration: none; }
+#contact-edit-actions { text-align: center; margin-bottom: 20px; line-height: 28px; }
+#contact-edit-actions .button-secondary { margin-right: 10px; }
 #epl-item-card-wrapper .info-item { line-height: 16px; display: block; padding-bottom: 5px; }
 #epl-item-card-wrapper .edit-item { display: none; }
 #epl-item-card-wrapper .epl_user_search_results { left: 1px; top: 16px;}
@@ -910,10 +910,10 @@ h3.epl-welcome-sub-heading {
 #epl-item-tables-wrapper .downloads tr > td:only-child { text-align: center; }
 #epl-item-notes-wrapper { min-height: 50px; }
 .epl-item-notes-header span, .epl-item-notes-header img { font-weight: 600; line-height: 30px; vertical-align: middle; }
-.lead-note-input { width: 100%; margin-bottom: 5px; }
-#epl-lead-notes div:nth-of-type(even) { background-color: #fcfcfc; }
+.contact-note-input { width: 100%; margin-bottom: 5px; }
+#epl-contact-notes div:nth-of-type(even) { background-color: #fcfcfc; }
 
-.lead-note-wrapper {
+.contact-note-wrapper {
     background: #efe none repeat scroll 0 0;
     border-bottom: 1px solid #f9f9f9;
     border-radius: 0 10px 10px; -moz-border-radius: 0 10px 10px; -webkit-border-radius: 0 10px 10px;
@@ -927,15 +927,15 @@ h3.epl-welcome-sub-heading {
 .epl_user_note {
     background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #dddbd1, #d2dbdc) repeat scroll 0 0 !important;
 }
-#epl-lead-notes {
+#epl-contact-notes {
     clear: both;
     float: left;
     margin: 20px 0;
     width: 100%;
 }
-.lead-note-wrapper span { display: block; }
+.contact-note-wrapper span { display: block; }
 .note-content-wrap { padding-top: 20px; }
-.delete-lead { text-align: center; }
+.delete-contact { text-align: center; }
 #epl-item-card-wrapper .notice-wrap { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
 .epl_user_search_results ul {
     background: #f0f0f0 none repeat scroll 0 0;
@@ -947,7 +947,7 @@ h3.epl-welcome-sub-heading {
     width: 300px;
 }
 
-select.lead-note-select {
+select.contact-note-select {
     padding:3px;
     margin: 0;
     -webkit-border-radius:4px;
@@ -971,24 +971,24 @@ select.lead-note-select {
     color:#666;
 }
 
-.lead-note-select option {
+.contact-note-select option {
     border-bottom: 1px solid #999;
     padding: 5px 0;
 }
 
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    select.lead-note-select {padding-right:18px}
+    select.contact-note-select {padding-right:18px}
 }
 
-label.lead-select-label {
+label.contact-select-label {
     display: block;
     float: left;
     margin: 1%;
     position: relative;
     width: 48%;
 }
-label.lead-select-label:after {
+label.contact-select-label:after {
     content:'<>';
     font:15px "Consolas", monospace;
     color:#999;
@@ -1002,7 +1002,7 @@ label.lead-select-label:after {
     position:absolute;
     pointer-events:none;
 }
-label.lead-select-label:before {
+label.contact-select-label:before {
     content:'';
     right:6px; top:0px;
     width:20px; height:20px;
@@ -1070,4 +1070,16 @@ label.lead-select-label:before {
 .epl-pie-legend-item { display: inline-block; vertical-align: top; width: 80%; }
 .epl-graph .y1Axis { color: rgb( 237, 194, 64 )!important; }
 .epl-graph .y2Axis { color: rgb( 175, 216, 248 )!important; }
+
+/*** Contacts Meta Tab ***/
+.meta-contact .epl_form_builder_field_container {
+    margin: 10px 0;
+}
+.meta-contact label {
+    display: inline-block;
+    width: 30%;
+}
+.meta-contact .epl_form_builder_field{
+    width: 68%;
+}
 

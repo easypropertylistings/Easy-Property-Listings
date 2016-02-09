@@ -1,6 +1,6 @@
 <?php
 /**
- * Lead Interests Table Class
+ * Contact Reports Table Class
  *
  * @package     EPL
  * @since       2.4
@@ -15,13 +15,13 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 }
 
 /**
- * EPL_Lead_Interests_Table Class
+ * EPL_Contact_Reports_Table Class
  *
- * Renders the Lead Interests table
+ * Renders the Contact Reports table
  *
  * @since 2.4
  */
-class EPL_Lead_Interests_Table extends WP_List_Table {
+class EPL_Contact_Reports_Table extends WP_List_Table {
 
 	/**
 	 * Number of items per page
@@ -32,7 +32,7 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 	public $per_page = 30;
 
 	/**
-	 * Number of leads found
+	 * Number of contacts found
 	 *
 	 * @var int
 	 * @since 2.4
@@ -40,7 +40,7 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 	public $count = 0;
 
 	/**
-	 * Total leads
+	 * Total contacts
 	 *
 	 * @var int
 	 * @since 2.4
@@ -58,8 +58,8 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 
 		// Set parent defaults
 		parent::__construct( array(
-			'singular' => __( 'Lead', 'epl' ),
-			'plural'   => __( 'Leads', 'epl' ),
+			'singular' => __( 'Contact', 'epl' ),
+			'plural'   => __( 'Contacts', 'epl' ),
 			'ajax'     => false,
 		) );
 
@@ -110,18 +110,17 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 	 * @access public
 	 * @since 2.4
 	 *
-	 * @param array $item Contains all the data of the leads
+	 * @param array $item Contains all the data of the contacts
 	 * @param string $column_name The name of the column
 	 *
 	 * @return string Column Name
 	 */
 	public function column_default( $item, $column_name ) {
+
 		switch ( $column_name ) {
 
 			case 'num_listings' :
-				$value = '<a href="' .
-					admin_url( '/admin.php?page=epl-leads&view=interests&user=' . urlencode( $item['email'] )
-				) . '">' . esc_html( $item['num_listings'] ) . '</a>';
+				$value = esc_html( $item['listing_count'] ) ;
 				break;
 
 			case 'date_created' :
@@ -132,19 +131,20 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 				$value = isset( $item[ $column_name ] ) ? $item[ $column_name ] : null;
 				break;
 		}
-		return apply_filters( 'epl_leads_column_' . $column_name, $value, $item['id'] );
+		return apply_filters( 'epl_contacts_column_' . $column_name, $value, $item['id'] );
 	}
 
 	public function column_name( $item ) {
-		$name        = '#' . $item['id'] . ' ';
-		$name       .= ! empty( $item['name'] ) ? $item['name'] : '<em>' . __( 'Unnamed Lead','epl' ) . '</em>';
+		$name        = '#' . $item['ID'] . ' ';
+		$name       .= ! empty( $item['name'] ) ? $item['name'] : '<em>' . __( 'Unnamed Contact','epl' ) . '</em>';
 		$user        = ! empty( $item['user_id'] ) ? $item['user_id'] : $item['email'];
-		$view_url    = admin_url( 'admin.php?page=epl-leads&view=overview&id=' . $item['id'] );
+		$view_url    = admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $item['ID'] );
 		$actions     = array(
 			'view'   => '<a href="' . $view_url . '">' . __( 'View', 'epl' ) . '</a>',
+			'delete' => '<a href="' . admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $item['ID'] ) . '">' . __( 'Delete', 'epl' ) . '</a>'
 		);
 
-		$lead = new EPL_Lead( $item['id'] );
+		$contact = new EPL_Contact( $item['ID'] );
 		return '<a href="' . esc_url( $view_url ) . '">' . $name . '</a>' . $this->row_actions( $actions );
 	}
 
@@ -163,7 +163,7 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 			'date_created'  => __( 'Date Created', 'epl' ),
 		);
 
-		return apply_filters( 'epl_interest_lead_columns', $columns );
+		return apply_filters( 'epl_report_contact_columns', $columns );
 
 	}
 
@@ -183,7 +183,7 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 	}
 
 	/**
-	 * Outputs the interesting views
+	 * Outputs the reporting views
 	 *
 	 * @access public
 	 * @since 2.4
@@ -216,15 +216,15 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 	}
 
 	/**
-	 * Build all the interests data
+	 * Build all the reports data
 	 *
 	 * @access public
 	 * @since 2.4
 	  * @global object $wpdb Used to query the database using the WordPress
 	 *   Database API
-	 * @return array $interests_data All the data for lead interests
+	 * @return array $reports_data All the data for contact reports
 	 */
-	public function interests_data() {
+	public function reports_data() {
 		global $wpdb;
 
 		$data    = array();
@@ -235,7 +235,8 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 		$orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'id';
 
 		$args    = array(
-			'number'  => $this->per_page,
+			'post_type'	=>	'epl_contact',
+			'posts_per_page'  => $this->per_page,
 			'offset'  => $offset,
 			'order'   => $order,
 			'orderby' => $orderby
@@ -244,32 +245,20 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 		if( is_email( $search ) ) {
 			$args['email'] = $search;
 		} elseif( is_numeric( $search ) ) {
-			$args['id']    = $search;
-		} elseif( strpos( $search, 'user:' ) !== false ) {
-			$args['user_id'] = trim( str_replace( 'user:', '', $search ) );
+			$args['ID']    = $search;
 		} else {
 			$args['name']  = $search;
 		}
 
-		$leads = EPL()->leads->get_leads( $args );
+		$contacts = get_contacts( $args );
 
-		if ( $leads ) {
+		if ( $contacts ) {
 
-			foreach ( $leads as $lead ) {
-
-				$user_id = ! empty( $lead->user_id ) ? intval( $lead->user_id ) : 0;
-
-				$data[] = array(
-					'id'            => $lead->id,
-					'user_id'       => $user_id,
-					'name'          => $lead->name,
-					'email'         => $lead->email,
-					'num_listings' => $lead->listing_count,
-					'date_created'  => $lead->date_created,
-				);
+			foreach ( $contacts as $contact ) {
+				$contact_object = new EPL_Contact($contact->ID);
+				$data[] = (array) $contact_object;
 			}
 		}
-
 		return $data;
 	}
 
@@ -278,10 +267,10 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.4
-	 * @uses EPL_Lead_Interests_Table::get_columns()
+	 * @uses EPL_Contact_Reports_Table::get_columns()
 	 * @uses WP_List_Table::get_sortable_columns()
-	 * @uses EPL_Lead_Interests_Table::get_pagenum()
-	 * @uses EPL_Lead_Interests_Table::get_total_leads()
+	 * @uses EPL_Contact_Reports_Table::get_pagenum()
+	 * @uses EPL_Contact_Reports_Table::get_total_contacts()
 	 * @return void
 	 */
 	public function prepare_items() {
@@ -292,10 +281,9 @@ class EPL_Lead_Interests_Table extends WP_List_Table {
 
 		$this->_column_headers = array( $columns, $hidden, $sortable );
 
-		$this->items = $this->interests_data();
+		$this->items = $this->reports_data();
 
-		$this->total = epl_count_total_leads();
-
+		$this->total = epl_count_total_contacts();
 		$this->set_pagination_args( array(
 			'total_items' => $this->total,
 			'per_page'    => $this->per_page,

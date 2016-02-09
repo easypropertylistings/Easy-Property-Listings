@@ -75,11 +75,11 @@ function epl_admin_menu() {
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	
 	// Editor level and above can see these options
-	$page_title	= __('Leads', 'epl');
-	$menu_title	= __('Leads', 'epl');
+	$page_title	= __('Contacts', 'epl');
+	$menu_title	= __('Contacts', 'epl');
 	$capability	= 'edit_published_posts';
-	$menu_slug	= 'epl-leads';
-	$function	= 'epl_leads_page';
+	$menu_slug	= 'epl-contacts';
+	$function	= 'epl_contacts_page';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	
 	// Editor level and above can see these options
