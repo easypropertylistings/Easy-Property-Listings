@@ -924,7 +924,7 @@ h3.epl-welcome-sub-heading {
     padding: 7px 0 7px 7px;
     width: 90%;
 }
-.epl_user_note {
+.contact-note-wrapper.epl_user_note {
     background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #dddbd1, #d2dbdc) repeat scroll 0 0 !important;
 }
 #epl-contact-notes {
@@ -1013,7 +1013,7 @@ label.contact-select-label:before {
 }
 
 
-.epl-admin-note {
+.contact-note-wrapper.epl-admin-note {
     background: rgba(0, 255, 0, 0) linear-gradient(to bottom, #efe, #bfd) repeat scroll 0 0 !important;
     border-radius: 10px 10px 0; -moz-border-radius: 10px 10px 0; -webkit-border-radius: 10px 10px 0;
     float: right;

@@ -60,7 +60,9 @@ function epl_contacts_list() {
 	$contacts_table->prepare_items();
 	?>
 	<div class="wrap">
-		<h2><?php _e( 'Contacts', 'epl' ); ?></h2>
+		<h2><?php _e( 'Contacts', 'epl' ); ?>
+			<a class="add-new-h2" href="<?php echo admin_url('admin.php?page=epl-contacts&view=new-contact'); ?>"><?php _e('Add New','epl'); ?></a>
+		</h2>
 		<?php do_action( 'epl_contacts_table_top' ); ?>
 		<form id="epl-contacts-filter" method="get" action="<?php echo admin_url( 'admin.php?page=epl-contacts' ); ?>">
 			<?php
@@ -84,7 +86,7 @@ function epl_contacts_list() {
  * @return void
  */
 function epl_render_contact_view( $view, $callbacks ) {
-
+	
 	$render = true;
 
 	$contact_view_role = apply_filters( 'epl_view_contacts_role', 'manage_options' );
@@ -93,7 +95,11 @@ function epl_render_contact_view( $view, $callbacks ) {
 		epl_set_error( 'epl-no-access', __( 'You are not permitted to view this data.', 'epl' ) );
 		$render = false;
 	}
-
+	if($view == 'new-contact') {
+		$callbacks[$view]();
+		return;
+	}
+	
 	if ( ! isset( $_GET['id'] ) || ! is_numeric( $_GET['id'] ) ) {
 		epl_set_error( 'epl-invalid_contact', __( 'Invalid Contact ID Provided.', 'epl' ) );
 		$render = false;
@@ -151,6 +157,104 @@ function epl_render_contact_view( $view, $callbacks ) {
 
 }
 
+/**
+ * Create a contact
+ *
+ * @since  2.4
+ * @return void
+ */
+function epl_new_contact_view() { ?>
+
+	<?php
+		if( isset($_GET['id']) ) {
+			$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
+			wp_redirect( $redirect );
+			exit;
+		}
+	?>
+	<div class='wrap'>
+		<h2><?php _e( 'Add Contact', 'epl' );?></h2>
+		<?php if ( epl_get_errors() ) :?>
+			<div class="error settings-error">
+				<?php epl_print_errors(); ?>
+			</div>
+		<?php endif; ?>
+
+		<div id="epl-item-tab-wrapper" class="contact-tab-wrapper">
+		</div>
+
+		<div id="epl-item-card-wrapper" class="epl-contact-card-wrapper" style="float: left">
+		
+				<div class="info-wrapper contact-section">
+					<?php
+					
+						$args = array(
+							'post_type'		=>	'epl_contact',
+							'post_status'	=>	'auto-draft',
+							'post_title'	=>	__('Contact Name','epl')
+						);
+						$contact_id = wp_insert_post($args);
+						epl_var_dump($contact_id);
+						if($contact_id ):
+					
+
+					?>
+
+					<form id="meta-contact" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=new-contact&id=' . $contact_id ); ?>">
+
+						<div class="contact-info meta-contact">
+							<?php do_action( 'epl_new_contact_fields'); ?>
+				
+							<?php
+										$contact = new EPL_Contact( $contact_id );
+										$contact_meta_fields = new EPL_FORM_BUILDER();
+										$contact_fields	=	apply_filters('epl_contact_new_fields',
+											array(
+
+												array(
+													'name'		=>	'name',
+													'label'		=>	__('Contact Name','epl'),
+													'type'		=>	'text',
+													'maxlength'	=>	'60',
+													'value'		=>	$contact->name
+												),
+			
+												array(
+													'name'		=>	'email',
+													'label'		=>	__('Contact Email','epl'),
+													'type'		=>	'email',
+													'maxlength'	=>	'60',
+													'value'		=>	$contact->get_meta('lead_email')
+												),
+			
+											) 
+										);
+					
+										$contact_meta_fields->add_fields($contact_fields);
+										$contact_meta_fields->render_form();
+
+							?>
+
+									<span id="contact-edit-actions">
+										<input type="hidden" name="contact_id" value="<?php echo $contact->ID; ?>" />
+										<input type="hidden" name="ID" value="<?php echo $contact->ID; ?>" />
+										<?php wp_nonce_field( 'new-contact', '_wpnonce', false, true ); ?>
+										<input type="hidden" name="epl_action" value="new-contact" />
+										<input type="submit" id="epl-new-contact" class="button-primary" value="<?php _e( 'Create', 'epl' ); ?>" />
+									</span>
+
+						</div>
+
+					</form>
+					<?php endif; ?>
+
+				</div>
+		</div>
+
+	</div>
+	<?php
+	
+}
 
 /**
  * View a contact
