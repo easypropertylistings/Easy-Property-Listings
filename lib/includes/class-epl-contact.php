@@ -359,7 +359,8 @@ class EPL_Contact {
 			array(
 				'post_title'	=>	$data['name'],
 				'post_type'		=>	'epl_contact',
-				'ID'			=>	$this->ID
+				'ID'			=>	$this->ID,
+				'post_status'	=>	'publish',
 			)
 		);
 		if ( $updated ) {
@@ -510,7 +511,8 @@ class EPL_Contact {
 	 */
 	public function get_listing_count( ) {
 		
-		$listings =  get_post_meta($this->ID,'contact_interested_listings',true);
+		$listings =  (array) get_post_meta($this->ID,'contact_interested_listings',true);
+		$listings =  array_filter($listings);
 		return count($listings);
 		
 	}

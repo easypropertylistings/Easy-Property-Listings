@@ -261,7 +261,6 @@ add_action( 'epl_add-contact-note', 'epl_contact_save_note', 10, 1 );
  */
 function epl_meta_contact( $args ) {
 
-	epl_print_r($args);
 	$contact_edit_role = apply_filters( 'epl_edit_contacts_role', 'manage_options' );
 
 	if ( ! is_admin() || ! current_user_can( $contact_edit_role ) ) {
@@ -296,3 +295,43 @@ function epl_meta_contact( $args ) {
 
 }
 add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
+
+
+/**
+ * create a new contact from backend
+ *
+ * @since  2.4
+ * @param  array $args The $_POST array being passeed
+ * @return array $output Response messages
+ */
+function epl_new_contact( $args ) {
+
+	$contact_create_role = apply_filters( 'epl_create_contacts_role', 'manage_options' );
+
+	if ( ! is_admin() || ! current_user_can( $contact_create_role ) ) {
+		wp_die( __( 'You do not have permission to edit this contact.', 'epl' ) );
+	}
+
+	if ( empty( $args ) ) {
+		return;
+	}
+	
+	$nonce         = $args['_wpnonce'];
+	if ( ! wp_verify_nonce( $nonce, 'new-contact' ) ) {
+		wp_die( __( 'Cheatin\' uhh?!', 'epl' ) );
+	}
+
+	$contact_id   = (int)$args['contact_id'];
+	$contact = new EPL_Contact( $contact_id );
+	if ( empty( $contact->ID ) ) {
+		return false;
+	}
+	
+	$contact->update($args);
+	
+	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
+	wp_redirect( $redirect );
+	exit;
+
+}
+add_action( 'epl_new-contact', 'epl_new_contact', 10, 1 );
