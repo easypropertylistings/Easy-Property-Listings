@@ -1072,14 +1072,23 @@ label.contact-select-label:before {
 .epl-graph .y2Axis { color: rgb( 175, 216, 248 )!important; }
 
 /*** Contacts Meta Tab ***/
-.meta-contact .epl_form_builder_field_container {
-    margin: 10px 0;
-}
-.meta-contact label {
+
+
+/*** EPL form builder ***/
+.epl_form_builder_section_help {
     display: inline-block;
-    width: 30%;
-}
-.meta-contact .epl_form_builder_field{
-    width: 68%;
+    font-style: oblique;
+    padding: 1px 0;
 }
 
+.epl_form_builder_section_label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 0;
+    width: 100%;
+}
+.epl_form_builder_section_fields .epl_form_builder_label {
+    display: inline-block;
+    width: 100%;
+}

@@ -6,7 +6,7 @@
  * @subpackage  Form Builder API
  * @copyright   Copyright (c) 2015, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       2.3
  */
  
 // Exit if accessed directly
@@ -25,9 +25,14 @@ class EPL_FORM_BUILDER {
 	private $text_domain = 'epl';
 	
 	/**
-	* text domain for translation
+	* form fields
 	*/
 	public $form_fields = array();
+	
+	/**
+	* form sections
+	*/
+	public $form_sections = array();
 	
 	/**
 	* classes for form and fields
@@ -162,7 +167,7 @@ class EPL_FORM_BUILDER {
 	}
 	
 	/**
-	* List of invalid attributes per field type that must be removed field array before field rendering
+	* List of invalid attributes per field type that must be removed from field array before field rendering
 	*
 	*/	
 	function invalid_attributes() {
@@ -311,6 +316,31 @@ class EPL_FORM_BUILDER {
 	}
 	
 	/**
+	* Add multiple form sections at once
+	*
+	*
+	*/
+	function add_sections($sections = array() ) {
+	
+		foreach($sections as $section) {
+			$this->add_section($section);
+		}
+		
+	}
+	
+	
+	
+	/**
+	* Add single section to form
+	*
+	*
+	*/
+	function add_section($section = array() ) {
+		$this->form_sections[] = $section;		
+	}
+	
+	
+	/**
 	* Add single field to form
 	*
 	*
@@ -373,6 +403,12 @@ class EPL_FORM_BUILDER {
 			do_action('before_'.$this->prefix.'form_open');
 			$this->render_form_open();
 		}
+		
+		do_action('before_'.$this->prefix.'form_sections');
+		$this->render_sections();
+		do_action('after_'.$this->prefix.'form_sections');
+		
+		
 		do_action('before_'.$this->prefix.'form_fields');
 		$this->render_fields();
 		do_action('after_'.$this->prefix.'form_fields');
@@ -429,6 +465,63 @@ class EPL_FORM_BUILDER {
 		
 		echo apply_filters($this->prefix.'form_close_tag',"\n</form>",$this->form_attributes);
 	}
+	
+	/**
+	* Render all form sections
+	*
+	*
+	*/
+	private function render_sections() {
+		
+		if( !empty($this->form_sections) ) {
+			foreach($this->form_sections as $section) {
+				$this->render_section($section);
+				
+			}
+		}
+	}
+	
+	/**
+	* Render single form section
+	*
+	*
+	*/
+	private function render_section($section) { 
+	
+		$section_class 	= $this->prefix.'form_section '. isset($section['class']) ? $section['class'] : '';
+		$section_id 	= isset($section['id']) ? $section['id'] : '';
+		$section_label 	= isset($section['label']) ? $section['label'] : '';
+		$section_help 	= isset($section['help']) ? $section['help'] : ''; ?>
+		
+		<div id="<?php echo $section_id; ?>" class="<?php echo $section_class; ?>" >
+		
+			<span class="<?php echo $this->prefix.'section_label'; ?>">
+				<?php 
+					echo $section_label;
+				?>
+			</span>
+			
+			<span class="<?php echo $this->prefix.'section_help'; ?>">
+				<?php 
+					echo $section_help;
+				?>
+			</span>
+			
+			<div class="<?php echo $this->prefix.'section_fields'; ?>">
+				<?php 
+					if( !empty($section['fields']) ) {
+						foreach($section['fields'] as $field) {
+							$this->render_field($field);
+				
+						}
+					}
+				?>
+			</div>
+			
+		</div>	
+	<?php
+	}
+	
 	
 	/**
 	* Render all form fields based on type
