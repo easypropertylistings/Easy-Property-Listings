@@ -229,7 +229,7 @@ function epl_new_contact_view() { ?>
 			
 											) 
 										);
-					
+										
 										$contact_meta_fields->add_fields($contact_fields);
 										$contact_meta_fields->render_form();
 
@@ -439,7 +439,67 @@ function epl_contact_meta_view($contact) {
 						) 
 					);
 					
-					$contact_meta_fields->add_fields($contact_fields);
+					$fields = array(
+						array(
+							'label'		=>	__('Contact Details' , 'epl'),
+							'class'		=>	'col-2 epl-inner-div',
+							'id'		=>	'epl-contact-details',
+							'help'		=>	__('contact basic info' , 'epl') . '<hr/>',
+							'fields'	=>	$contact_fields
+						),
+						array(
+							'label'		=>	__('Address' , 'epl'),
+							'class'		=>	'col-2 epl-inner-div',
+							'id'		=>	'epl-contact-address-details',
+							'help'		=>	__('' , 'epl') . '<hr/>',
+							'fields'	=>	array(
+								array(
+									'name'		=>	'contact_street_number',
+									'label'		=>	__('Street Number','epl'),
+									'type'		=>	'text',
+									'maxlength'	=>	'200',
+									'value'		=>	$contact->get_meta('contact_street_number')
+								),
+								array(
+									'name'		=>	'contact_street_name',
+									'label'		=>	__('Street Name','epl'),
+									'type'		=>	'text',
+									'maxlength'	=>	'200',
+									'value'		=>	$contact->get_meta('contact_street_name')
+								),
+								array(
+									'name'		=>	'contact_suburb',
+									'label'		=>	__('Suburb','epl'),
+									'type'		=>	'text',
+									'maxlength'	=>	'200',
+									'value'		=>	$contact->get_meta('contact_suburb')
+								),
+								array(
+									'name'		=>	'contact_state',
+									'label'		=>	__('State','epl'),
+									'type'		=>	'text',
+									'maxlength'	=>	'200',
+									'value'		=>	$contact->get_meta('contact_state')
+								),
+								array(
+									'name'		=>	'contact_postcode',
+									'label'		=>	__('Postcode','epl'),
+									'type'		=>	'text',
+									'maxlength'	=>	'200',
+									'value'		=>	$contact->get_meta('contact_postcode')
+								),
+								array(
+									'name'		=>	'contact_country',
+									'label'		=>	__('Country','epl'),
+									'type'		=>	'text',
+									'maxlength'	=>	'200',
+									'value'		=>	$contact->get_meta('contact_country')
+								),
+							)
+						),
+
+					);
+					$contact_meta_fields->add_sections($fields);
 					$contact_meta_fields->render_form();
 					
 					

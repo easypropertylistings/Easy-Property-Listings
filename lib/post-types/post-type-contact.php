@@ -43,11 +43,11 @@ function epl_register_custom_post_type_contact() {
 	
 	$contact_args = array(
 		'labels'		=>	$labels,
-		'public'		=>	true,
-		'publicly_queryable'	=>	true,
-		'show_ui'		=>	true,
-		'show_in_menu'		=>	true,
-		'query_var'		=>	true,
+		'public'		=>	false,
+		'publicly_queryable'	=>	false,
+		'show_ui'		=>	false,
+		'show_in_menu'		=>	false,
+		'query_var'		=>	false,
 		'rewrite'		=>	$rewrite,
 		'menu_icon'		=>	'dashicons-admin-home',
 		'capability_type'	=>	'post',
