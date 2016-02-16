@@ -271,30 +271,32 @@ function epl_contacts_view( $contact ) {
 
 	<?php do_action( 'epl_contact_card_top', $contact ); ?>
 
-	<div class="info-wrapper contact-section">
+	<?php do_action('epl_pre_contact_quick_edit_options', $contact); ?>
 
-		<form id="edit-contact-info" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $contact->id ); ?>">
+	<?php do_action('epl_contact_action_menus',$contact); ?>
+
+	<?php do_action('epl_contact_entry_header',$contact); ?>
+
+	<?php do_action('epl_contact_assigned_tags',$contact); ?>
+
+	<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
+
+
+	<div class="info-wrapper contact-section">
+		<input type="hidden" id="epl_contact_id" value="<?php echo $contact->id; ?>"/>
 
 			<div class="epl-item-info contact-info">
 
-				<div class="avatar-wrap left" id="contact-avatar">
-					<?php echo get_avatar( $contact->email ); ?><br />
-					<?php if ( current_user_can( $contact_edit_role ) ): ?>
-						<span class="info-item editable contact-edit-link"><a title="<?php _e( 'Edit Contact', 'epl' ); ?>" href="#" id="edit-contact"><?php _e( 'Edit Contact', 'epl' ); ?></a></span>
-					<?php endif; ?>
-				</div>
+				<?php do_action('epl_contact_avatar',$contact); ?>
 
 				<div class="contact-id right">
-					#<?php echo $contact->id; ?>
+					<?php do_action('epl_contact_social_icons',$contact); ?>
 				</div>
 
 
 				<div class="contact-main-wrapper left">
 
-					<span class="contact-name info-item edit-item"><input size="15" data-key="name" name="contactinfo[name]" type="text" value="<?php echo esc_attr( $contact->name ); ?>" placeholder="<?php _e( 'Contact Name', 'epl' ); ?>" /></span>
-					<span class="contact-name info-item editable"><span data-key="name"><?php echo $contact->name; ?></span></span>
-					<span class="contact-name info-item edit-item"><input size="20" data-key="email" name="contactinfo[email]" type="text" value="<?php echo $contact->email; ?>" placeholder="<?php _e( 'Contact Email', 'epl' ); ?>" /></span>
-					<span class="contact-email info-item editable" data-key="email"><?php echo $contact->email; ?></span>
+					<?php do_action('epl_contact_contact_details',$contact); ?>
 					<span class="contact-since info-item">
 						<?php _e( 'Contact since', 'epl' ); ?>
 						<?php echo date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ) ?>
@@ -304,62 +306,19 @@ function epl_contacts_view( $contact ) {
 
 			</div>
 
-			<span id="contact-edit-actions" class="edit-item">
-				<input type="hidden" data-key="id" name="contactinfo[id]" value="<?php echo $contact->id; ?>" />
-				<?php wp_nonce_field( 'edit-contact', '_wpnonce', false, true ); ?>
-				<input type="hidden" name="epl_action" value="edit-contact" />
-				<input type="submit" id="epl-edit-contact-save" class="button-secondary" value="<?php _e( 'Update Contact', 'epl' ); ?>" />
-				<a id="epl-edit-contact-cancel" href="" class="delete"><?php _e( 'Cancel', 'epl' ); ?></a>
-			</span>
-
-		</form>
 	</div>
 
 	<?php do_action( 'epl_contact_before_tables_wrapper', $contact ); ?>
+
+	<?php do_action( 'epl_contact_background_info', $contact ); ?>
 
 	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper contact-section">
 
 		<?php do_action( 'epl_contact_before_tables', $contact ); ?>
 
-		<h3><?php _e( 'Recent Interests', 'epl' ); ?></h3>
-		<?php
-			$listing_ids = $contact->listing_ids;
-			if( !empty($listing_ids) ) {
-				$listings    = get_posts( array( 'post__in' => $listing_ids, 'post_type'	=>	epl_all_post_types() ) );
-				$listings    = array_slice( $listings, 0, 10 );
-			}
-		?>
-		<table class="wp-list-table widefat striped listings">
-			<thead>
-				<tr>
-					<th><?php _e( 'ID', 'epl' ); ?></th>
-					<th><?php _e( 'Title', 'epl' ); ?></th>
-					<th><?php _e( 'Published Date', 'epl' ); ?></th>
-					<th><?php _e( 'Status', 'epl' ); ?></th>
-					<th><?php _e( 'Actions', 'epl' ); ?></th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php if ( ! empty( $listings ) ) : ?>
-					<?php foreach ( $listings as $listing ) : ?>
-						<tr>
-							<td><?php echo $listing->ID; ?></td>
-							<td><?php echo  $listing->post_title; ?></td>
-							<td><?php echo date_i18n( get_option( 'date_format' ), strtotime( $listing->post_date ) ); ?></td>
-							<td><?php echo get_post_meta( $listing->ID,'property_status',true) ?></td>
-							<td>
-								<a title="<?php _e( 'View Details for Listing', 'epl' ); echo ' ' . $listing->ID; ?>" href="<?php echo admin_url( 'post.php?&action=edit&post=' . $listing->ID ); ?>">
-									<?php _e( 'View Details', 'epl' ); ?>
-								</a>
-								<?php do_action( 'epl_contact_recent_listings_actions', $contact, $listing ); ?>
-							</td>
-						</tr>
-					<?php endforeach; ?>
-				<?php else: ?>
-					<tr><td colspan="5"><?php _e( 'No Listings Found', 'epl' ); ?></td></tr>
-				<?php endif; ?>
-			</tbody>
-		</table>
+		<?php do_action('epl_contact_recent_activities',$contact); ?>
+
+		<?php //do_action('epl_contact_recent_interests',$contact); ?>
 
 		<?php do_action( 'epl_contact_after_tables', $contact ); ?>
 
@@ -383,138 +342,286 @@ function epl_contact_meta_view($contact) {
 
 	?>
 
-	<?php do_action( 'epl_contact_delete_top', $contact ); ?>
+	<?php do_action( 'epl_contact_edit_top', $contact ); ?>
+
+	<?php do_action('epl_pre_contact_quick_edit_options', $contact); ?>
+
+	<?php do_action('epl_contact_action_menus',$contact); ?>
+
+	<?php do_action('epl_contact_entry_header',$contact); ?>
+
+	<?php do_action('epl_contact_assigned_tags',$contact); ?>
+
+	<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
+
 
 	<div class="info-wrapper contact-section">
 
-		<form id="meta-contact" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact->ID ); ?>">
+		<div class="epl-item-info contact-info">
 
-			<div class="contact-info meta-contact">
-				<?php do_action( 'epl_contact_meta_fields', $contact ); ?>
-				
-				<?php
-					$contact_meta_fields = new EPL_FORM_BUILDER();
-					$contact_fields	=	apply_filters('epl_contact_meta_fields',
-						array(
+			<?php do_action('epl_contact_avatar',$contact); ?>
 
-							array(
-								'name'		=>	'contact_first_name',
-								'label'		=>	__('First Name','epl'),
-								'type'		=>	'text',
-								'maxlength'	=>	'60',
-								'value'		=>	$contact->get_meta('contact_first_name')
-							),
-			
-							array(
-								'name'		=>	'contact_last_name',
-								'label'		=>	__('Last Name','epl'),
-								'type'		=>	'text',
-								'maxlength'	=>	'60',
-								'value'		=>	$contact->get_meta('contact_last_name')
-							),
-			
-							array(
-								'name'		=>	'contact_phone',
-								'label'		=>	__('Phone','epl'),
-								'type'		=>	'text',
-								'maxlength'	=>	'60',
-								'value'		=>	$contact->get_meta('contact_phone')
-							),
+			<div class="contact-edit-main-wrapper left">
+				<form id="meta-contact" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact->ID ); ?>">
 
-							array(
-								'name'		=>	'contact_mobile',
-								'label'		=>	__('Mobile','epl'),
-								'type'		=>	'text',
-								'maxlength'	=>	'60',
-								'value'		=>	$contact->get_meta('contact_mobile')
-							),
-							
-							array(
-								'name'		=>	'contact_email',
-								'label'		=>	__('Email','epl'),
-								'type'		=>	'email',
-								'maxlength'	=>	'60',
-								'value'		=>	$contact->get_meta('contact_email')
-							),
-						) 
-					);
-					
-					$fields = array(
-						array(
-							'label'		=>	__('Contact Details' , 'epl'),
-							'class'		=>	'col-2 epl-inner-div',
-							'id'		=>	'epl-contact-details',
-							'help'		=>	__('contact basic info' , 'epl') . '<hr/>',
-							'fields'	=>	$contact_fields
-						),
-						array(
-							'label'		=>	__('Address' , 'epl'),
-							'class'		=>	'col-2 epl-inner-div',
-							'id'		=>	'epl-contact-address-details',
-							'help'		=>	__('' , 'epl') . '<hr/>',
-							'fields'	=>	array(
-								array(
-									'name'		=>	'contact_street_number',
-									'label'		=>	__('Street Number','epl'),
-									'type'		=>	'text',
-									'maxlength'	=>	'200',
-									'value'		=>	$contact->get_meta('contact_street_number')
-								),
-								array(
-									'name'		=>	'contact_street_name',
-									'label'		=>	__('Street Name','epl'),
-									'type'		=>	'text',
-									'maxlength'	=>	'200',
-									'value'		=>	$contact->get_meta('contact_street_name')
-								),
-								array(
-									'name'		=>	'contact_suburb',
-									'label'		=>	__('Suburb','epl'),
-									'type'		=>	'text',
-									'maxlength'	=>	'200',
-									'value'		=>	$contact->get_meta('contact_suburb')
-								),
-								array(
-									'name'		=>	'contact_state',
-									'label'		=>	__('State','epl'),
-									'type'		=>	'text',
-									'maxlength'	=>	'200',
-									'value'		=>	$contact->get_meta('contact_state')
-								),
-								array(
-									'name'		=>	'contact_postcode',
-									'label'		=>	__('Postcode','epl'),
-									'type'		=>	'text',
-									'maxlength'	=>	'200',
-									'value'		=>	$contact->get_meta('contact_postcode')
-								),
-								array(
-									'name'		=>	'contact_country',
-									'label'		=>	__('Country','epl'),
-									'type'		=>	'text',
-									'maxlength'	=>	'200',
-									'value'		=>	$contact->get_meta('contact_country')
-								),
-							)
-						),
+					<input type="hidden" id="epl_contact_id" value="<?php echo $contact->id; ?>"/>
 
-					);
-					$contact_meta_fields->add_sections($fields);
-					$contact_meta_fields->render_form();
-					
-					
-				?>
 
-				<span id="contact-edit-actions">
-					<input type="hidden" name="contact_id" value="<?php echo $contact->ID; ?>" />
-					<?php wp_nonce_field( 'meta-contact', '_wpnonce', false, true ); ?>
-					<input type="hidden" name="epl_action" value="meta-contact" />
-					<input type="submit" id="epl-meta-contact" class="button-primary" value="<?php _e( 'Update', 'epl' ); ?>" />
-				</span>
+					<div class="contact-info meta-contact">
+						<?php do_action( 'epl_contact_meta_fields', $contact ); ?>
+
+						<?php
+							$contact_meta_fields = new EPL_FORM_BUILDER();
+
+							$fields = array(
+								array(
+									'class'		=>	'col-1 epl-inner-div',
+									'id'		=>	'epl-contact-basic-details',
+									'fields'	=>	apply_filters('epl_contact_basic_fields',
+										array(
+											array(
+												'name'		=>	'contact_first_name',
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_first_name')
+											),
+
+											array(
+												'name'		=>	'contact_last_name',
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_last_name')
+											),
+
+										)
+									)
+								),
+								array(
+									'label'		=>	__('' , 'epl'),
+									'class'		=>	'col-1 epl-inner-div',
+									'id'		=>	'epl-contact-professional-details',
+									'help'		=>	__('Professional Details' , 'epl') . '<hr/>',
+									'fields'	=>	apply_filters('epl_contact_professional_fields',
+										array(
+											array(
+												'name'		=>	'post_title',
+												'label'		=>	__('Title','epl'),
+												'type'		=>	'text',
+												'value'		=>	$contact->name
+											),
+											array(
+												'name'		=>	'contact_company',
+												'label'		=>	__('Company','epl'),
+												'type'		=>	'text',
+												'value'		=>	$contact->get_meta('contact_company')
+											),
+										)
+									)
+								),
+								array(
+									'label'		=>	__('' , 'epl'),
+									'class'		=>	'col-1 epl-inner-div',
+									'id'		=>	'epl-contact-contact-details',
+									'help'		=>	__('Contact Details' , 'epl') . '<hr/>',
+									'fields'	=>	apply_filters('epl_contact_contact_fields',
+										array(
+											array(
+												'name'		=>	'contact_phone',
+												'label'		=>	__('Phone','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_phone')
+											),
+
+											array(
+												'name'		=>	'contact_mobile',
+												'label'		=>	__('Mobile','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_mobile')
+											),
+
+											array(
+												'name'		=>	'contact_email',
+												'label'		=>	__('Email','epl'),
+												'type'		=>	'email',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_email')
+											),
+											array(
+												'name'		=>	'contact_website',
+												'label'		=>	__('Website','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_website')
+											),
+										)
+									)
+								),
+								array(
+									'label'		=>	__('' , 'epl'),
+									'class'		=>	'col-1 epl-inner-div',
+									'id'		=>	'epl-contact-custom-details',
+									'help'		=>	__('Custom Fields' , 'epl') . '<hr/>',
+									'fields'	=>	apply_filters('epl_contact_custom_fields',
+										array(
+											array(
+												'name'		=>	'contact_referred_by',
+												'label'		=>	__('Referred By','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_referred_by')
+											),
+											array(
+												'name'		=>	'contact_custom_1',
+												'label'		=>	__('Custom Field 1','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_custom_1')
+											),
+											array(
+												'name'		=>	'contact_custom_2',
+												'label'		=>	__('Custom Field 2','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_custom_2')
+											),
+										)
+									)
+								),
+								array(
+									'label'		=>	__('' , 'epl'),
+									'class'		=>	'col-1 epl-inner-div',
+									'id'		=>	'epl-contact-social-details',
+									'help'		=>	__('Social Networks' , 'epl') . '<hr/>',
+									'fields'	=>	apply_filters('epl_contact_social_fields',
+										array(
+
+											array(
+												'name'		=>	'contact_facebook',
+												'label'		=>	__('Facebook','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_facebook')
+											),
+											array(
+												'name'		=>	'contact_twitter',
+												'label'		=>	__('Twitter','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_twitter')
+											),
+											array(
+												'name'		=>	'contact_google_plus',
+												'label'		=>	__('Google Plus','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_google_plus')
+											),
+											array(
+												'name'		=>	'contact_linked_in',
+												'label'		=>	__('Linked In','epl'),
+												'type'		=>	'text',
+												'maxlength'	=>	'60',
+												'value'		=>	$contact->get_meta('contact_linked_in')
+											),
+
+
+										)
+									)
+								),
+								array(
+									'label'		=>	__('' , 'epl'),
+									'class'		=>	'col-1 epl-inner-div',
+									'id'		=>	'epl-contact-address-details',
+									'help'		=>	__('Address' , 'epl') . '<hr/>',
+									'fields'	=>	array(
+										array(
+											'name'		=>	'contact_street_number',
+											'label'		=>	__('Street Number','epl'),
+											'type'		=>	'text',
+											'maxlength'	=>	'200',
+											'value'		=>	$contact->get_meta('contact_street_number')
+										),
+										array(
+											'name'		=>	'contact_street_name',
+											'label'		=>	__('Street Name','epl'),
+											'type'		=>	'text',
+											'maxlength'	=>	'200',
+											'value'		=>	$contact->get_meta('contact_street_name')
+										),
+										array(
+											'name'		=>	'contact_suburb',
+											'label'		=>	__('Suburb','epl'),
+											'type'		=>	'text',
+											'maxlength'	=>	'200',
+											'value'		=>	$contact->get_meta('contact_suburb')
+										),
+										array(
+											'name'		=>	'contact_state',
+											'label'		=>	__('State','epl'),
+											'type'		=>	'text',
+											'maxlength'	=>	'200',
+											'value'		=>	$contact->get_meta('contact_state')
+										),
+										array(
+											'name'		=>	'contact_postcode',
+											'label'		=>	__('Postcode','epl'),
+											'type'		=>	'text',
+											'maxlength'	=>	'200',
+											'value'		=>	$contact->get_meta('contact_postcode')
+										),
+										array(
+											'name'		=>	'contact_country',
+											'label'		=>	__('Country','epl'),
+											'type'		=>	'text',
+											'maxlength'	=>	'200',
+											'value'		=>	$contact->get_meta('contact_country')
+										),
+									)
+								),
+								array(
+									'label'		=>	__('' , 'epl'),
+									'class'		=>	'col-1 epl-inner-div',
+									'id'		=>	'epl-contact-bginfo-details',
+									'help'		=>	__('Background Info' , 'epl') . '<hr/>',
+									'fields'	=>	apply_filters('epl_contact_background_info_fields',
+										array(
+											array(
+												'name'		=>	'post_content',
+												'type'		=>	'textarea',
+												'value'		=>	$contact->background_info
+											),
+
+										)
+									)
+								),
+
+
+							);
+							$contact_meta_fields->add_sections($fields);
+							$contact_meta_fields->render_form();
+
+
+						?>
+
+						<span id="contact-edit-actions">
+							<input type="hidden" name="contact_id" value="<?php echo $contact->ID; ?>" />
+							<?php wp_nonce_field( 'meta-contact', '_wpnonce', false, true ); ?>
+							<input type="hidden" name="epl_action" value="meta-contact" />
+							<input type="submit" id="epl-meta-contact" class="button-primary" value="<?php _e( 'Update', 'epl' ); ?>" />
+						</span>
+
+					</div>
+
+				</form>
+
 
 			</div>
 
-		</form>
+		</div>
+
+
 	</div>
 
 	<?php

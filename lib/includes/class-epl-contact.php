@@ -119,7 +119,7 @@ class EPL_Contact {
 			return false;
 		}
 
-		foreach ( array('ID','name','email','notes','listing_ids','listing_count','date_created') as $key ) {
+		foreach ( array('ID','name','email','notes','listing_ids','listing_count','date_created','background_info') as $key ) {
 
 			switch ( $key ) {
 			
@@ -151,6 +151,10 @@ class EPL_Contact {
 					
 				case 'name':
 					$this->$key = $contact->post_title;
+					break;
+
+				case 'background_info':
+					$this->$key = $contact->post_content;
 					break;
 
 
@@ -516,22 +520,24 @@ class EPL_Contact {
 		return count($listings);
 		
 	}
-	
 
 	/**
 	 * Get the parsed notes for a contact as an array
 	 *
-	 * @since  2.4
-	 * @param  integer $length The number of notes to get
-	 * @param  integer $paged What note to start at
+	 * @param int    $number
+	 * @param int    $paged
+	 * @param string $orderby
+	 * @param string $order
+	 *
 	 * @return array           The notes requsted
 	 */
-	public function get_notes( $number = 20, $paged = 1 ) {
+	public function get_notes( $number = 10, $paged = 1 ,$orderby = 'comment_date', $order = 'DESC') {
 
-		$length = is_numeric( $length ) ? $length : 20;
+		$length = is_numeric( $number ) ? $number : 10;
 		$offset = is_numeric( $paged ) && $paged != 1 ? ( ( absint( $paged ) - 1 ) * $number ) : 0;
+		$args   = array( 'meta_key' => 'epl_contact_id', 'meta_value' => $this->ID, 'offset'	=>	$offset, 'number'	=>	$length, 'orderby'  =>  $orderby, 'order'   =>  $order );
 
-		return get_comments( array( 'meta_key' => 'epl_contact_id', 'meta_value' => $this->ID, 'offset'	=>	$offset, 'number'	=>	$number ) );
+		return get_comments( $args );
 
 	}
 
@@ -605,5 +611,32 @@ class EPL_Contact {
 	
 	public function get_meta($key) {
 		return get_post_meta($this->ID,$key,true);
+	}
+
+	/**
+	 * Returns activity type label for activity type
+	 * @param $key
+	 *
+	 * @return mixed
+	 */
+	public function get_activity_type($key) {
+		$activity_types = $this->get_activity_types();
+		return isset($activity_types[$key]) ? $activity_types[$key] : $activity_types['epl-admin-note'];
+	}
+
+	/**
+	 * Returns all activity types
+	 *
+	 *
+	 * @return mixed
+	 */
+	public function get_activity_types() {
+		return apply_filters('epl_contact_activity_labels',array(
+			'epl_user_note'     =>  __('Comment','epl'),
+			'epl-admin-note'    =>  __('Note','epl'),
+			'call'              =>  __('Call','epl'),
+			'email'             =>  __('Email','epl'),
+			'listing'           =>  __('Listing','epl'),
+		) );
 	}
 }

@@ -571,6 +571,9 @@ class EPL_FORM_BUILDER {
 			case 'checkbox_single':
 				$this->render_checkbox($field);
 			break;
+			case 'wp_editor':
+				$this->render_wp_editor($field);
+			break;
 				
 			default :
 				$this->render_text($field);
@@ -703,6 +706,12 @@ class EPL_FORM_BUILDER {
 			echo apply_filters($this->prefix.'form_'.$field["type"].'_tag',$html,$field);
 			unset($field['checked']);
 		}
+	}
+
+	private function render_wp_editor() {
+		$value	 		 = $this->get_value($field);
+		$field['class']  = $this->get_class('field',$field);
+		wp_editor($value,$field['name']);
 	}
 
 	/**
