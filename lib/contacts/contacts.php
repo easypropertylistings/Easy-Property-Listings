@@ -779,3 +779,67 @@ function epl_contacts_delete_view( $contact ) {
 	do_action( 'epl_contact_delete_bottom', $contact );
 }
 
+/**
+ * view contact listings
+ * @param $contact
+ */
+function epl_contacts_listing_view( $contact ) {
+
+	?>
+
+	<?php do_action( 'epl_contact_card_top', $contact ); ?>
+
+	<?php do_action('epl_pre_contact_quick_edit_options', $contact); ?>
+
+	<?php do_action('epl_contact_action_menus',$contact); ?>
+
+	<?php do_action('epl_contact_entry_header',$contact); ?>
+
+	<?php do_action('epl_contact_assigned_tags',$contact); ?>
+
+	<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
+
+
+	<div class="info-wrapper contact-section">
+		<input type="hidden" id="epl_contact_id" value="<?php echo $contact->id; ?>"/>
+
+		<div class="epl-item-info contact-info">
+
+			<?php do_action('epl_contact_avatar',$contact); ?>
+
+			<div class="contact-id right">
+				<?php do_action('epl_contact_social_icons',$contact); ?>
+			</div>
+
+
+			<div class="contact-main-wrapper left">
+
+				<?php do_action('epl_contact_contact_details',$contact); ?>
+				<span class="contact-since info-item">
+						<?php _e( 'Contact since', 'epl' ); ?>
+						<?php echo date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ) ?>
+					</span>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<?php do_action( 'epl_contact_before_tables_wrapper', $contact ); ?>
+
+	<?php //do_action( 'epl_contact_background_info', $contact ); ?>
+
+	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper contact-section">
+
+		<?php do_action( 'epl_contact_before_tables', $contact ); ?>
+
+		<?php do_action('epl_contact_recent_interests',$contact); ?>
+
+		<?php do_action( 'epl_contact_after_tables', $contact ); ?>
+
+	</div>
+	<?php do_action( 'epl_contact_card_bottom', $contact ); ?>
+
+<?php
+}

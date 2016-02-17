@@ -20,14 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action('init', 'epl_meta_box_init'); 
 function epl_meta_box_init() {
 	global $epl_settings;
-	$opts_users = array();
-	$users = get_users('orderby=display_name&order=ASC');
-	if(!empty($users)) {
-		foreach ($users as $user) {
-			$opts_users[ $user->ID ] = $user->display_name;
-		}
-	}
-
 	$opts_property_status = apply_filters (  'epl_opts_property_status_filter', array(
 			'current'	=>	__('Current', 'epl'),
 			'withdrawn'	=>	__('Withdrawn', 'epl'),
@@ -833,7 +825,7 @@ function epl_meta_box_init() {
 		array(
 			'id'		=>	'epl-property-address-section-id',
 			'label'		=>	__('Property Address', 'epl'),
-			'post_type'	=>	array('property', 'rural', 'rental', 'commercial', 'commercial_land', 'business', 'land'),
+			'post_type'	=>	array('property', 'rural', 'rental', 'commercial', 'commercial_land', 'business', 'land','contact_listing'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
 			'groups'	=>	array(	apply_filters('epl_listing_meta_address_block',
@@ -1498,6 +1490,11 @@ function epl_meta_box_init() {
 							'label'		=>	__('Video URL', 'epl'),
 							'type'		=>	'url'
 						),
+						array(
+							'name'		=>	'property_video_url',
+							'label'		=>	__('Video URL', 'epl'),
+							'type'		=>	'url'
+						),
 					
 						array(
 							'name'		=>	'property_floorplan',
@@ -1549,7 +1546,50 @@ function epl_meta_box_init() {
 					)
 				)
 			)
-		)
+		),
+
+		array(
+			'id'		=>	'epl-owner-listings-section-id',
+			'label'		=>	__('Owner Listings', 'epl'),
+			'post_type'	=>	array('contact_listing'),
+			'context'	=>	'normal',
+			'priority'	=>	'default',
+			'groups'	=>	array(
+				array(
+					'id'		=>	'owner_details',
+					'columns'	=>	'1',
+					'label'		=>	'',
+					'fields'	=>	array(
+						array(
+							'name'		=>	'property_owner',
+							'label'		=>	__('Propery Owner ID','epl'),
+							'type'		=>	'text',
+						),
+						array(
+							'name'		=>	'property_listing_type',
+							'label'		=>	__('Listing Type','epl'),
+							'type'		=>	'select',
+							'opts'      =>  epl_get_active_post_types(),
+						),
+						array(
+							'name'		=>	'property_listing_status',
+							'label'		=>	__('Listing Status','epl'),
+							'type'		=>	'select',
+							'class'     =>  'contact-note-select',
+							'opts'      => apply_filters('epl_contact_property_listing_status', array(
+								'appraisal' =>  __('Appraisal','epl'),
+								'new'       =>  __('New','epl'),
+								'hot'       =>  __('Hot','epl'),
+							)),
+							'maxlength'	=>	'200',
+						),
+
+					)
+				)
+			)
+
+
+		),
 	);
 	if(!empty($epl_meta_boxes)) {
 		foreach($epl_meta_boxes as &$epl_meta_box) {

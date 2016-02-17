@@ -81,7 +81,7 @@ function epl_get_reporting_view( $default = 'property' ) {
  */
 function epl_reports_tab_reports() {
 
-	if( ! current_user_can( 'view_shop_reports' ) ) {
+	if( ! current_user_can( 'manage_options' ) ) {
 		wp_die( __( 'You do not have permission to access this report', 'epl' ), __( 'Error', 'epl' ), array( 'response' => 403 ) );
 	}
 

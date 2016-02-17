@@ -217,7 +217,21 @@ function epl_contact_save_note( $args ) {
 		?>
 		<tr data-activity-id="<?php echo $note_object->comment_ID ;?>" id="activity-id-<?php echo $note_object->comment_ID ;?>" class="epl-contact-activity-row epl-contact-activity-<?php echo $note_object->comment_type; ?>" >
 			<td><?php echo stripslashes( $contact->get_activity_type($note_object->comment_type ) ); ?></td>
-			<td><?php echo stripslashes( $note_object->comment_content ); ?></td>
+			<td>
+				<?php
+					if($note_object->comment_post_ID > 0) {
+						echo '<div class="epl-contact-inline-lis-details">';
+						echo '<span class="epl-contact-inline-lis-img">';
+						echo get_the_post_thumbnail($note_object->comment_post_ID, array(50,50));
+						echo '</span>';
+						echo '<span class="epl-contact-inline-lis-title">';
+						echo '<a href="'.get_permalink($note_object->comment_post_ID).'">'.get_the_title($note_object->comment_post_ID).'</a>';
+						echo '</span>';
+						echo '</div>';
+					}
+					echo stripslashes( $note_object->comment_content );
+				?>
+			</td>
 			<td>
 				<?php
 					echo date_i18n( get_option( 'date_format' ), strtotime( $note_object->comment_date ) );
@@ -241,6 +255,93 @@ function epl_contact_save_note( $args ) {
 
 }
 add_action( 'epl_add-contact-note', 'epl_contact_save_note', 10, 1 );
+
+/**
+ * Save a contact listing being added
+ *
+ * @since  2.4
+ * @param  array $args The $_POST array being passeed
+ * @return object
+ */
+function epl_contact_save_listing( $args ) {
+	$contact_add_listing_role = apply_filters( 'epl_add_contacts_listing', 'manage_options' );
+
+	if ( ! is_admin() || ! current_user_can( $contact_add_listing_role ) ) {
+		wp_die( __( 'You do not have permission to add listing.', 'epl' ) );
+	}
+
+	if ( empty( $args ) ) {
+		return;
+	}
+
+	$post_fields = array('post_title');
+
+	$ignore_fields = array('add_contact_listing_nonce','epl_actiion','contact_id');
+
+	$nonce         = $args['add_contact_listing_nonce'];
+
+	if ( ! wp_verify_nonce( $nonce, 'add_contact_listing_nonce' ) ) {
+		wp_die( __( 'Cheatin\' eh?!', 'epl' ) );
+	}
+	if ( epl_get_errors() ) {
+		epl_print_error();
+		return;
+	}
+
+	do_action( 'epl_pre_insert_contact_listing', $args );
+	if($args['property_owner'] > 0) {
+		$insert_post_array = array('post_status'    =>  'publish', 'post_type'  =>  'contact_listing');
+		$insert_meta_array = array();
+		foreach($args as $arg_key   =>  $arg_value) {
+			if( in_array($arg_key,$post_fields) ) {
+				$insert_post_array[$arg_key] = $arg_value;
+			} elseif(!in_array($arg_key,$ignore_fields)) {
+				$insert_meta_array[$arg_key] = $arg_value;
+			}
+		}
+		if($insert_id = wp_insert_post($insert_post_array)) {
+			foreach($insert_meta_array as $meta_key =>  $meta_value) {
+				update_post_meta($insert_id,$meta_key,$meta_value);
+			}
+		} else {
+			return false;
+		}
+
+	}
+	$inserted_lisitng = get_post($insert_id);
+	if ( ! empty( $inserted_lisitng )  ) {
+
+		ob_start();
+		?>
+		<tr data-activity-id="<?php echo $inserted_lisitng->ID ;?>" id="activity-id-<?php echo $inserted_lisitng->ID ;?>" class="epl-contact-activity-row " >
+			<td><?php echo get_post_meta($inserted_lisitng->ID,'property_listing_type',true); ?></td>
+			<td>
+				<?php
+					echo '<a href="'.get_edit_post_link($inserted_lisitng->ID).'">'.$inserted_lisitng->post_title.'</a>';
+				?>
+			</td>
+			<td>
+				<?php echo get_post_meta($inserted_lisitng->ID,'property_listing_status',true); ?>
+			</td>
+		</tr>
+		<?php
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			echo $output;
+			exit;
+		}
+
+		return $inserted_lisitng;
+
+	}
+
+	return false;
+
+}
+add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
+
 
 
 /**
@@ -563,8 +664,9 @@ function epl_contact_contact_details($contact) { ?>
 }
 add_action('epl_contact_contact_details','epl_contact_contact_details');
 
+/**
 function epl_contact_recent_interests($contact) { ?>
-	<h3><?php _e( 'Recent Interests', 'epl' ); ?></h3>
+	<h3><?php _e( 'Listings', 'epl' ); ?></h3>
 	<?php
 		$listing_ids = $contact->listing_ids;
 		if( !empty($listing_ids) ) {
@@ -605,10 +707,23 @@ function epl_contact_recent_interests($contact) { ?>
 	</table> <?php
 }
 add_action('epl_contact_recent_interests','epl_contact_recent_interests');
+**/
+
+function epl_contact_recent_interests($contact,$number = 10, $paged = 1 ,$orderby = 'post_date', $order = 'DESC') { ?>
+	<?php do_action('epl_contact_add_listing_form', $contact); ?>
+	<h3 class="epl-contact-activity-title"><?php _e( 'Listings', 'epl' ); ?> <span class="epl-contact-add-listing"><?php _e('Add Listing'); ?></span></h3>
+	<input type="hidden" id="epl-listing-table-orderby" value="<?php echo $orderby; ?>"/>
+	<input type="hidden" id="epl-listing-table-order" value="<?php echo $order; ?>">
+	<?php
+	epl_contact_get_listings_html($contact,$number, $paged,$orderby, $order);
+}
+add_action('epl_contact_recent_interests','epl_contact_recent_interests');
 
 function epl_contact_recent_activities($contact,$number = 10, $paged = 1 ,$orderby = 'comment_date', $order = 'DESC') { ?>
 	<?php do_action('epl_contact_add_activity_form', $contact); ?>
 	<h3 class="epl-contact-activity-title"><?php _e( 'Activities', 'epl' ); ?> <span class="epl-contact-add-activity"><?php _e('Add Activity'); ?></span></h3>
+	<input type="hidden" id="epl-contact-table-orderby" value="<?php echo $orderby; ?>"/>
+	<input type="hidden" id="epl-contact-table-order" value="<?php echo $order; ?>">
 	<?php
 	epl_contact_get_activities_html($contact,$number, $paged,$orderby, $order);
 }
@@ -616,20 +731,22 @@ add_action('epl_contact_recent_activities','epl_contact_recent_activities');
 
 function epl_contact_get_activities_html($contact,$number = 10, $paged = 1 ,$orderby = 'comment_date', $order = 'DESC') {
 
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		extract($_POST);
+	}
 	if( !is_object($contact) )
 		$contact = new EPL_Contact( $contact );
 
+	//epl_print_r($contact,true);
 	$activities = $contact->get_notes($number,$paged,$orderby,$order);
 	?>
 	<div id="epl-contact-activity-table-wrapper">
-		<input type="hidden" id="epl-contact-table-orderby" value="<?php echo $orderby; ?>"/>
-		<input type="hidden" id="epl-contact-table-order" value="<?php echo $order; ?>">
 		<table class="wp-list-table widefat striped epl-contact-activities">
 			<thead>
 			<tr class="epl-contact-activities-table-heads">
-				<th data-sort="comment_type"><?php _e( 'Type', 'epl' ); ?></th>
-				<th data-sort="comment_content"><?php _e( 'Comment', 'epl' ); ?></th>
-				<th data-sort="comment_date"><?php _e( 'Date', 'epl' ); ?></th>
+				<th class="epl-sorted-<?php echo strtolower($order); ?>" data-sort="comment_type"><?php _e( 'Type', 'epl' ); ?></th>
+				<th class="epl-sorted-<?php echo strtolower($order); ?>" data-sort="comment_content"><?php _e( 'Comment', 'epl' ); ?></th>
+				<th class="epl-sorted-<?php echo strtolower($order); ?>" data-sort="comment_date"><?php _e( 'Date', 'epl' ); ?></th>
 			</tr>
 			</thead>
 			<tbody>
@@ -637,7 +754,22 @@ function epl_contact_get_activities_html($contact,$number = 10, $paged = 1 ,$ord
 				<?php foreach ( $activities as $activity ) : ?>
 					<tr data-activity-id="<?php echo $activity->comment_ID ;?>" id="activity-id-<?php echo $activity->comment_ID ;?>" class="epl-contact-activity-row epl-contact-activity-<?php echo $activity->comment_type; ?>" >
 						<td><?php echo $contact->get_activity_type($activity->comment_type) ?></td>
-						<td><?php echo  $activity->comment_content; ?></td>
+						<td>
+							<?php
+								if($activity->comment_post_ID > 0) {
+									echo '<div class="epl-contact-inline-lis-details">';
+									echo '<span class="epl-contact-inline-lis-img">';
+										echo get_the_post_thumbnail($activity->comment_post_ID, array(50,50));
+									echo '</span>';
+									echo '<span class="epl-contact-inline-lis-title">';
+									echo '<a href="'.get_permalink($activity->comment_post_ID).'">'.get_the_title($activity->comment_post_ID).'</a>';
+									echo '</span>';
+									echo '</div>';
+								}
+
+								echo  $activity->comment_content;
+							?>
+						</td>
 						<td><?php echo date_i18n( get_option( 'date_format' ), strtotime( $activity->comment_date ) ); ?></td>
 					</tr>
 				<?php endforeach; ?>
@@ -646,10 +778,70 @@ function epl_contact_get_activities_html($contact,$number = 10, $paged = 1 ,$ord
 			<?php endif; ?>
 			</tbody>
 		</table>
+		<span  data-page="<?php echo $paged + 1; ?>" class="epl-contact-load-activities"><?php _e('Load More Activities'); ?> </span>
 	</div><?php
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		wp_die();
+	}
 
 }
 add_action('wp_ajax_epl_contact_get_activity_table','epl_contact_get_activities_html',10,5);
+
+function epl_contact_get_listings_html($contact,$number = 10, $paged = 1 ,$orderby = 'post_date', $order = 'DESC') {
+
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		extract($_POST);
+	}
+	if( !is_object($contact) )
+		$contact = new EPL_Contact( $contact );
+
+	//epl_print_r($contact,true);
+	$activities = get_posts(
+		array(
+			'post_type'     =>  'contact_listing',
+			'post_status'   =>  'publish',
+			'meta_key'      =>  'property_owner',
+			'meta_value'    =>  $contact->id
+		)
+	);
+	?>
+	<div id="epl-contact-listing-table-wrapper">
+	<table class="wp-list-table widefat striped epl-contact-listings">
+		<thead>
+		<tr class="epl-contact-listings-table-heads">
+			<th class="epl-sorted-<?php echo strtolower($order); ?>" data-sort="listing_type"><?php _e( 'Type', 'epl' ); ?></th>
+			<th class="epl-sorted-<?php echo strtolower($order); ?>" data-sort="post_content"><?php _e( 'Title', 'epl' ); ?></th>
+			<th class="epl-sorted-<?php echo strtolower($order); ?>" data-sort="listing_status"><?php _e( 'Status', 'epl' ); ?></th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php if ( ! empty( $activities ) ) : ?>
+			<?php foreach ( $activities as $inserted_lisitng ) : ?>
+				<tr data-activity-id="<?php echo $inserted_lisitng->ID ;?>" id="activity-id-<?php echo $inserted_lisitng->ID ;?>" class="epl-contact-activity-row " >
+					<td><?php echo get_post_meta($inserted_lisitng->ID,'property_listing_type',true); ?></td>
+					<td>
+						<?php
+							echo '<a href="'.get_edit_post_link($inserted_lisitng->ID).'">'.$inserted_lisitng->post_title.'</a>';
+						?>
+					</td>
+					<td>
+						<?php echo get_post_meta($inserted_lisitng->ID,'property_listing_status',true); ?>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		<?php else: ?>
+			<tr><td colspan="5"><?php _e( 'No Listings Found', 'epl' ); ?></td></tr>
+		<?php endif; ?>
+		</tbody>
+	</table>
+	</div><?php
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		wp_die();
+	}
+
+}
+add_action('wp_ajax_epl_contact_get_listing_table','epl_contact_get_listings_html',10,5);
+
 function epl_contact_add_activity_form($contact) {
 	$form_builder = new EPL_FORM_BUILDER();
 	$listing_ids = $contact->listing_ids;
@@ -706,5 +898,124 @@ function epl_contact_add_activity_form($contact) {
 }
 add_action('epl_contact_add_activity_form','epl_contact_add_activity_form');
 
+function epl_contact_add_listing_form($contact) {
+	global $epl_settings;
+	$form_builder = new EPL_FORM_BUILDER();
+	$listing_types = epl_get_active_post_types();
+	$fields = array(
+		array(
+			'label'		=>	__('Add Listing' , 'epl'),
+			'class'		=>	'col-1 epl-inner-div',
+			'id'		=>	'epl-contact-add-listing-wrap',
+			'help'		=>	__('' , 'epl') . '<hr/>',
+			'fields'	=>	array(
 
+				array(
+					'name'		=>	'property_owner',
+					'label'		=>	__('','epl'),
+					'type'		=>	'hidden',
+					'value'	    =>	$contact->id,
+				),
+				array(
+					'name'		=>	'post_title',
+					'label'		=>	__('Title','epl'),
+					'type'		=>	'text',
+				),
+				array(
+					'name'		=>	'property_address_lot_number',
+					'label'		=>	__('Lot', 'epl'),
+					'type'		=>	'text',
+					'maxlength'	=>	'40',
+					'include'	=>	array('land', 'commercial_land')
+				),
+
+				array(
+					'name'		=>	'property_address_sub_number',
+					'label'		=>	__('Unit', 'epl'),
+					'type'		=>	'text',
+					'maxlength'	=>	'40',
+					'exclude'	=>	array('land', 'commercial_land')
+				),
+
+				array(
+					'name'		=>	'property_address_street_number',
+					'label'		=>	__('Street Number', 'epl'),
+					'type'		=>	'text',
+					'maxlength'	=>	'40'
+				),
+
+				array(
+					'name'		=>	'property_address_street',
+					'label'		=>	__('Street Name', 'epl'),
+					'type'		=>	'text',
+					'maxlength'	=>	'80'
+				),
+
+				array(
+					'name'		=>	'property_address_suburb',
+					'label'		=>	epl_labels('label_suburb'),
+					'type'		=>	'text',
+					'maxlength'	=>	'80'
+				),
+
+				array(
+					'name'		=>	'property_address_state',
+					'label'		=>	epl_labels('label_state'),
+					'type'		=>	'text',
+					'maxlength'	=>	'80'
+				),
+
+				array(
+					'name'		=>	'property_address_postal_code',
+					'label'		=>	epl_labels('label_postcode'),
+					'type'		=>	'text',
+					'maxlength'	=>	'30'
+				),
+
+				array(
+					'name'		=>	'property_address_country',
+					'label'		=>	__('Country', 'epl'),
+					'type'		=>	'text',
+					'maxlength'	=>	'40'
+				),
+				array(
+					'name'		=>	'property_listing_type',
+					'label'		=>	__('Listing Type','epl'),
+					'type'		=>	'select',
+					'class'     =>  'contact-note-select',
+					'opts'      =>  $listing_types,
+					'maxlength'	=>	'200',
+				),
+				array(
+					'name'		=>	'property_listing_status',
+					'label'		=>	__('Listing Status','epl'),
+					'type'		=>	'select',
+					'class'     =>  'contact-note-select',
+					'opts'      => apply_filters('epl_contact_property_listing_status', array(
+						'appraisal' =>  __('Appraisal','epl'),
+						'new'       =>  __('New','epl'),
+						'hot'       =>  __('Hot','epl'),
+					)),
+					'maxlength'	=>	'200',
+				),
+
+				array(
+					'name'		=>	'contact_listing_submit',
+					'value'		=>	__('Add','epl'),
+					'class'     =>  'button button-primary',
+					'type'		=>	'submit',
+				),
+			)
+		),
+
+	);
+	$form_builder->set_form_attributes( array('name'    =>  'epl_contact_add_listing_form', 'id'    =>  'epl_contact_add_listing_form') );
+	$form_builder->add_nonce('add_contact_listing_nonce');
+	$form_builder->add_sections($fields);
+	echo '<div class="epl-contact-add-listing-form-wrap">';
+	$form_builder->render_form();
+	echo '</div>';
+
+}
+add_action('epl_contact_add_listing_form','epl_contact_add_listing_form');
 
