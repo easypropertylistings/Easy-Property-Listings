@@ -913,7 +913,7 @@ h3.epl-welcome-sub-heading {
 #epl-item-stats-wrapper li { width: 50%; float: left; line-height: 22px; font-size: 14px; }
 #epl-item-stats-wrapper a { text-decoration: none; }
 #epl-item-stats-wrapper .dashicons { color: #888; }
-#epl-item-tables-wrapper table { width: 100%; text-align: center; }
+#epl-item-tables-wrapper table { width: 100%; }
 #epl-item-tables-wrapper th { text-align: center; }
 #epl-item-tables-wrapper .downloads tr > th:first-child, #epl-item-tables-wrapper .downloads tr > td:first-child { text-align: left; }
 #epl-item-tables-wrapper .downloads tr > td:only-child { text-align: center; }
@@ -975,7 +975,6 @@ select.contact-note-select {
     appearance:none;
     cursor:pointer;
     width:100%;
-    display:block;
     font-size:0.9em;
     color:#666;
 }
@@ -1059,8 +1058,18 @@ label.contact-select-label:before {
  }
 
  .epl_contact_quick_actions a {
-     color: grey;
+     color: #808080;
+     display: block;
+     padding: 3px;
      text-decoration: none;
+     width: 100%;
+ }
+ .epl-contact-load-activities {
+     background: #0073aa none repeat scroll 0 0;
+     border-radius: 2px;
+     color: #f9f9f9;
+     cursor: pointer;
+     padding: 2px 5px;
  }
 
 
@@ -1243,7 +1252,7 @@ label.contact-select-label:before {
      padding: 2px 5px;
      text-align: center;
  }
- .epl-contact-add-activity {
+ .epl-contact-add-activity, .epl-contact-add-listing {
      background: rgb(255,168,76); /* Old browsers */
      background: -moz-linear-gradient(top, rgba(255,168,76,1) 0%, rgba(255,123,13,1) 100%); /* FF3.6-15 */
      background: -webkit-linear-gradient(top, rgba(255,168,76,1) 0%,rgba(255,123,13,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -1256,7 +1265,7 @@ label.contact-select-label:before {
      padding: 5px;
      cursor: pointer;
  }
- .epl-contact-add-activity:hover {
+ .epl-contact-add-activity:hover, .epl-contact-add-listing:hover{
      background: rgb(255,168,76); /* Old browsers */
      background: -moz-linear-gradient(top, rgba(255,123,13,1) 0%, rgba(255,168,76,1) 100% ); /* FF3.6-15 */
      background: -webkit-linear-gradient(top, rgba(255,123,13,1) 0%, rgba(255,168,76,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -1328,6 +1337,27 @@ label.contact-select-label:before {
  }
  .epl_form_builder_field_container {
      margin-bottom: 10px;
+ }
+ .epl-contact-inline-lis-details {
+     overflow: hidden;
+ }
+ .epl-contact-inline-lis-img {
+     float: left;
+ }
+ .epl-contact-inline-lis-title {
+     display: inline-block;
+     font-weight: bold;
+     padding: 0 5px;
+ }
+ .epl-contact-add-listing-form-wrap .epl_form_builder_label_container {
+     display: inline-block;
+     width: 25%;
+ }
+ .epl-contact-add-listing-form-wrap .epl_form_builder_field {
+     width: 74%;
+ }
+ #epl-contact-add-listing-wrap {
+     display: none;
  }
 /* Reports Styles
 -------------------------------------------------------------- */

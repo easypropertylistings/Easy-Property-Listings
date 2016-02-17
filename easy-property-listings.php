@@ -91,7 +91,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '2.3.1' );
+				define( 'EPL_PROPERTY_VER', '2.3.90' );
 			}
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -221,7 +221,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 					}
 				}
 			}
-			
+			require_once EPL_PATH_LIB . 'post-types/post-type-contact-listing.php';
 			require_once EPL_PATH_LIB . 'post-types/post-type-contact.php';
 
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';

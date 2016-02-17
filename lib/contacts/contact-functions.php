@@ -17,6 +17,7 @@ function epl_register_default_contact_views( $views ) {
 		'delete'    			=> 'epl_contacts_delete_view',
 		'notes'     			=> 'epl_contact_notes_view',
 		'meta'     				=> 'epl_contact_meta_view',
+		'listings'     			=> 'epl_contacts_listing_view',
 		'new-contact'     		=> 'epl_new_contact_view',
 	);
 
@@ -36,7 +37,8 @@ function epl_register_default_contact_tabs( $tabs ) {
 
 	$default_tabs = array(
 		'overview' => array( 'dashicon' => 'dashicons-admin-users', 'title' => __( 'Contact Profile', 'epl' ) ),
-		'meta'    => array( 'dashicon' => 'dashicons-edit', 'title' => __( 'Contact Info', 'epl' ) ),
+		'meta'      => array( 'dashicon' => 'dashicons-edit', 'title' => __( 'Contact Info', 'epl' ) ),
+		'listings'  => array( 'dashicon' => 'dashicons-admin-home', 'title' => __( 'Listings', 'epl' ) ),
 		'notes'    => array( 'dashicon' => 'dashicons-admin-comments', 'title' => __( 'Contact Notes', 'epl' ) ),
 	);
 
