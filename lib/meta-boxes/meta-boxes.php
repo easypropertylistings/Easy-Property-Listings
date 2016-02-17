@@ -1550,7 +1550,7 @@ function epl_meta_box_init() {
 
 		array(
 			'id'		=>	'epl-owner-listings-section-id',
-			'label'		=>	__('Owner Listings', 'epl'),
+			'label'		=>	__('Listing Owner', 'epl'),
 			'post_type'	=>	array('contact_listing'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
@@ -1563,7 +1563,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_owner',
 							'label'		=>	__('Propery Owner ID','epl'),
-							'type'		=>	'text',
+							'type'		=>	'number',
 						),
 						array(
 							'name'		=>	'property_listing_type',
@@ -1667,7 +1667,12 @@ function epl_meta_box_init() {
 											if( !in_array($post->post_type, $field['include']) ) {
 												continue;
 											}
-										} ?>
+										}
+										$val = get_post_meta($post->ID, $field['name'], true);
+										if( has_action('epl_before_meta_field_'.$field['name']) ) {
+											do_action('epl_before_meta_field_'.$field['name'],$post->ID,$val);
+										}
+										?>
 										<tr class="form-field">
 											<th valign="top" scope="row">
 												<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
@@ -1679,14 +1684,20 @@ function epl_meta_box_init() {
 										
 											<td>
 												<?php
-													$val = get_post_meta($post->ID, $field['name'], true);
+
+
 													epl_render_html_fields ($field,$val);
 												?>
 											</td>
 										</tr>
+										<?php
+											if( has_action('epl_after_meta_field_'.$field['name']) ) {
+												do_action('epl_after_meta_field_'.$field['name'],$post->ID,$val);
+											}
+										?>
 									<?php }
 								}
-							?>
+							?>  
 						</tbody>
 					</table>
 				</div>
