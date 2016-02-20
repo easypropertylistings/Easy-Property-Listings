@@ -11,7 +11,7 @@ Stable Tag: 2.3.1
 
 License: GNU Version 2 or Any Later Version
 
-Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and lead generation and works with any theme.
+Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
 
 == Description ==
 
@@ -50,7 +50,7 @@ You should also check out the Local SEO, News SEO and Video SEO extensions to Wo
 * Lots of filters and developer hooks allowing you to add additional information and make changes quickly and easily.
 * Responsive CSS with grid and list views.
 * Sort listings by price and date.
-* Create your own real estate lead generation system around your listings and location.
+* Create your own real estate contact generation system around your listings and location.
 * Extend with many [add-ons](https://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=wordpressorg)
 
 **Widgets**

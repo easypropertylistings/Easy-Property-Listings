@@ -91,7 +91,7 @@ class EPL_Property_Meta {
 				// update inspection times by removing past dates
 				$new_inspection_meta = implode("\n", $inspectarray);
 				update_post_meta($this->post->ID,'property_inspection_times',$new_inspection_meta);
-
+				
 				$return =  "";
 				if(count($inspectarray) >= 1) {
 					// unordered list for multiple inspection times
@@ -242,11 +242,16 @@ class EPL_Property_Meta {
 
 	// property rental available
 	public function get_property_available( $admin = false ) {
-		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F' ;
+		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F Y' ;
 		if(isset($this->meta['property_date_available'])) {
 			if(isset($this->meta['property_date_available'][0])) {
 				if ( '' != $this->meta['property_date_available'][0] ) {
-					return apply_filters('epl_get_property_available',date( $format, strtotime($this->meta['property_date_available'][0]) ));
+					if(time() > strtotime($this->meta['property_date_available'][0]) ) {
+						return __('Now','epl');
+					} else {
+						return apply_filters('epl_get_property_available',date( $format, strtotime($this->meta['property_date_available'][0]) ));
+					}
+					
 				}
 			}
 		}
@@ -744,7 +749,7 @@ class EPL_Property_Meta {
 		}
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			$return = '
-				<li class="land-size">'. __('Land is', 'epl').' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'</li>';
+				<li class="land-size">'. __('Land is', 'epl').' ' . epl_format_amount($this->get_property_meta('property_land_area') ) .' '.$property_land_area_unit.'</li>';
 
 			return apply_filters('epl_get_property_land_value',$return);
 		}
@@ -760,7 +765,7 @@ class EPL_Property_Meta {
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
 			$return = '
 			<li class="land-size">'.__('Floor Area is', 'epl').' ' .
-				$this->get_property_meta('property_building_area') .' '.$building_unit.
+                epl_format_amount( $this->get_property_meta('property_building_area') ) .' '.$building_unit.
 			'</li>';
 			return apply_filters('epl_get_property_building_area_value',$return);
 		}
@@ -781,42 +786,31 @@ class EPL_Property_Meta {
 
 	// additional features html
 	public function get_additional_features_html($metakey) {
-			$metavalue = $this->get_property_meta($metakey);
+
+            $metavalue = $this->get_property_meta($metakey);
 			$return = '';
 			if( $metavalue != '' || intval($metavalue) != 0) {
 				if($metakey == 'property_com_car_spaces'){
 					$metavalue = $metavalue.__(' Car Spaces', 'epl');
 				}
-
+                
 				if($metakey == 'property_category'){
 					$metavalue = $this->get_property_category();
 				}
 
-				if( (is_numeric($metavalue)) ) {
-					if($metavalue == 0)
-						$return = '';
-					// toggle field types -- 1 for toggle true
-					if( $metavalue == 1 ){
-						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-					} elseif(is_numeric($metavalue)) {
-						// numbered field types
-						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.$metavalue.' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-					} else {
-						// others
-						$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
-					}
+                switch($metavalue) {
+                    
+                    case 1:
+                    case 'yes':
+                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+                    break;
+                        
+                    default:
+                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
+                    break;
+                }
+            }
 
-				}
-				if( ( $metavalue == 'yes' ) ) {
-					$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
-				}
-
-				if( $metavalue == 'no' )
-						$return = '';
-
-				// string value field types
-				$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').'</li>';
-			}
 		return apply_filters('epl_get_additional_features_html',$return);
 	}
 

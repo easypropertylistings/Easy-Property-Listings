@@ -64,7 +64,12 @@ function epl_shortcode_property_open_callback( $atts ) {
 				'key' => 'property_inspection_times',
 				'value' => '',
 				'compare' => '!=',
-			)
+			),
+           array(
+                'key'		=> 'property_status',
+                'value'		=> array('leased','sold'),
+                'compare'	=> 'NOT IN'
+            )
 		)
 	);
 	

@@ -196,10 +196,8 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		$title 		= esc_attr( $instance['title'] );
-		$types		= esc_attr( $instance['types'] );
 
 		$featured	= esc_attr( $instance['featured'] );
-		$status		= esc_attr( $instance['status'] );
 		$display 	= esc_attr( $instance['display'] );
 		$image	 	= esc_attr( $instance['image'] );
 		$archive	= esc_attr( $instance['archive'] );
