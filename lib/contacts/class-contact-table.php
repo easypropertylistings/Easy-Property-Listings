@@ -120,7 +120,12 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		switch ( $column_name ) {
 
 			case 'num_listings' :
-				$value = esc_html( $item['listing_count'] ) ;
+				$value = intval( $item['listing_count'] ) == 0 ? '' : intval( $item['listing_count'] ) ;
+				break;
+
+			case 'background_info' :
+				$value = esc_html( $item['background_info'] ) ;
+				$value = substr($value, 0, apply_filters('epl_contact_bg_info_length',200));
 				break;
 
 			case 'date_created' :
@@ -135,8 +140,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	}
 
 	public function column_name( $item ) {
-		$name        = '#' . $item['ID'] . ' ';
-		$name       .= ! empty( $item['name'] ) ? $item['name'] : '<em>' . __( 'Unnamed Contact','epl' ) . '</em>';
+
+		$name       = ! empty( $item['name'] ) ? $item['name'] : '<em>' . __( 'Unnamed Contact','epl' ) . '</em>';
 		$user        = ! empty( $item['user_id'] ) ? $item['user_id'] : $item['email'];
 		$view_url    = admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $item['ID'] );
 		$actions     = array(
@@ -145,7 +150,32 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		);
 
 		$contact = new EPL_Contact( $item['ID'] );
-		return '<a href="' . esc_url( $view_url ) . '">' . $name . '</a>' . $this->row_actions( $actions );
+		return '<span class="epl-contact-name">' . $name . '</span>' . $this->row_actions( $actions );
+	}
+
+	public function column_type( $item ) {
+		return '<span class="epl-contact-type">'.$item["type"].' </span>';
+	}
+
+	public function column_summary($item) {
+		ob_start(); ?>
+			<div class="contact-assigned-tags-wrap">
+				<h4><?php echo $item['heading']; ?> </h4>
+				<ul class="contact-assigned-tags">
+					<?php
+						$contact_tags = wp_get_object_terms( $item['ID'],  'contact_tag' );
+						if ( ! empty( $contact_tags ) ) {
+							if ( ! is_wp_error( $contact_tags ) ) {
+								foreach( $contact_tags as $term ) {
+									$bgcolor = epl_get_contact_tag_bgcolor( $term->term_id);
+									echo '<li data-id="'.$term->term_id.'" id="contact-tag-'.$term->term_id.'" style="background:'.$bgcolor.'">' . esc_html( $term->name ) . '</li>';
+								}
+							}
+						}
+					?>
+				</ul>
+			</div> <?php
+		return ob_get_clean();
 	}
 
 	/**
@@ -157,10 +187,12 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
-			'name'          => __( 'Name', 'epl' ),
-			'email'         => __( 'Email', 'epl' ),
-			'num_listings' => __( 'Listings', 'epl' ),
-			'date_created'  => __( 'Date Created', 'epl' ),
+			'name'          	=> __( 'Contact', 'epl' ),
+			'summary'         	=> __( 'Summary', 'epl' ),
+			'background_info'   => __( 'Background Info', 'epl' ),
+			'type' 				=> __( 'Type', 'epl' ),
+			'num_listings' 		=> __( 'Listings', 'epl' ),
+			'date_created'  	=> __( 'Date Created', 'epl' ),
 		);
 
 		return apply_filters( 'epl_report_contact_columns', $columns );

@@ -119,7 +119,7 @@ class EPL_Contact {
 			return false;
 		}
 
-		foreach ( array('ID','name','email','notes','listing_ids','listing_count','date_created','background_info') as $key ) {
+		foreach ( array('ID','name','email','notes','listing_ids','listing_count','date_created','background_info','type' ,'heading') as $key ) {
 
 			switch ( $key ) {
 			
@@ -149,13 +149,23 @@ class EPL_Contact {
 					$this->$key = $contact->post_date;
 					break;
 					
-				case 'name':
+				case 'heading':
 					$this->$key = $contact->post_title;
+					break;
+
+				case 'name':
+					$this->$key = $this->get_meta( 'contact_first_name' ) .' '.$this->get_meta( 'contact_last_name' );
 					break;
 
 				case 'background_info':
 					$this->$key = $contact->post_content;
 					break;
+
+				case 'type':
+					$this->$key = $this->get_meta( 'contact_category' );
+					break;
+
+
 
 
 			}
@@ -639,4 +649,58 @@ class EPL_Contact {
 			'listing'           =>  __('Listing','epl'),
 		) );
 	}
+
+	function epl_contact_get_address() {
+
+		$addr = $this->get_meta('contact_street_number').' ';
+		$addr .= $this->get_meta('contact_street_name').' ';
+
+		if($this->get_meta('contact_suburb') != '')
+			$addr .= $this->get_meta('contact_suburb').', ';
+
+		$addr .= $this->get_meta('contact_state').' ';
+		$addr .= $this->get_meta('contact_postcode').' ';
+		$addr .= $this->get_meta('contact_country').' ';
+
+		return apply_filters('epl_contact_formatted_address',$addr);
+	}
+
+	function get_emails() {
+
+		$emails = $this->get_meta('contact_emails');
+		if(!empty($emails)) {
+			ob_start();
+			foreach($emails as $mail_name	=>	$mail_value) {
+				$label = ucwords(str_replace('_',' ',$mail_name)); ?>
+				<span class="contact-email info-item editable" data-key="email">
+					<span class="dashicons dashicons-email epl-contact-icons"></span>
+				<?php echo $label .' - '.$mail_value; ?>
+				</span> <?php
+			}
+			$email_html = ob_get_clean();
+			return apply_filters('epl_contact_email_html',$email_html);
+		}
+
+
+	}
+
+	function get_phones() {
+
+		$emails = $this->get_meta('contact_phones');
+		if(!empty($emails)) {
+			ob_start();
+			foreach($emails as $mail_name	=>	$mail_value) {
+				$label = ucwords(str_replace('_',' ',$mail_name)); ?>
+				<span class="contact-email info-item editable" data-key="email">
+					<span class="dashicons dashicons-phone epl-contact-icons"></span>
+					<?php echo $label .' - '.$mail_value; ?>
+				</span> <?php
+			}
+			$email_html = ob_get_clean();
+			return apply_filters('epl_contact_phone_html',$email_html);
+		}
+
+
+	}
 }
+

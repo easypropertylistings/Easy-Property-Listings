@@ -274,7 +274,7 @@ function epl_contact_save_listing( $args ) {
 		return;
 	}
 
-	$post_fields = array('post_title');
+	$post_fields = array('post_title','post_type');
 
 	$ignore_fields = array('add_contact_listing_nonce','epl_actiion','contact_id');
 
@@ -290,7 +290,7 @@ function epl_contact_save_listing( $args ) {
 
 	do_action( 'epl_pre_insert_contact_listing', $args );
 	if($args['property_owner'] > 0) {
-		$insert_post_array = array('post_status'    =>  'publish', 'post_type'  =>  'contact_listing');
+		$insert_post_array = array('post_status'    =>  'publish');
 		$insert_meta_array = array();
 		foreach($args as $arg_key   =>  $arg_value) {
 			if( in_array($arg_key,$post_fields) ) {
@@ -314,14 +314,14 @@ function epl_contact_save_listing( $args ) {
 		ob_start();
 		?>
 		<tr data-activity-id="<?php echo $inserted_lisitng->ID ;?>" id="activity-id-<?php echo $inserted_lisitng->ID ;?>" class="epl-contact-activity-row " >
-			<td><?php echo get_post_meta($inserted_lisitng->ID,'property_listing_type',true); ?></td>
+			<td><?php echo $inserted_lisitng->post_type; ?></td>
 			<td>
 				<?php
 					echo '<a href="'.get_edit_post_link($inserted_lisitng->ID).'">'.$inserted_lisitng->post_title.'</a>';
 				?>
 			</td>
 			<td>
-				<?php echo get_post_meta($inserted_lisitng->ID,'property_listing_status',true); ?>
+				<?php echo get_post_meta($inserted_lisitng->ID,'property_status',true); ?>
 			</td>
 		</tr>
 		<?php
@@ -463,10 +463,13 @@ add_action('wp_ajax_contact_category_update','contact_category_update');
  * @return bool true if updated
  */
 	function contact_tag_add() {
-		if( (int) $_POST['contact_id'] > 0 && (int) $_POST['term_id'] > 0 ) {
+		if( (int) $_POST['contact_id'] > 0 && trim($_POST['term_id']) != '' ) {
+			if( is_numeric($_POST['term_id']) ) {
+				$_POST['term_id'] = (int) $_POST['term_id'];
+			}
 
-			wp_set_object_terms( absint($_POST['contact_id']), absint($_POST['term_id']), 'contact_tag', true );
-			wp_die(1);
+			$terms = wp_set_object_terms( absint($_POST['contact_id']), $_POST['term_id'], 'contact_tag', true );
+			wp_die( current($terms) );
 		}
 	}
 	add_action('wp_ajax_contact_tags_update','contact_tag_add');
@@ -491,7 +494,7 @@ add_action('wp_ajax_contact_tag_remove','contact_tag_remove');
  * renders contact action menus
  */
 function epl_contact_action_menus($contact) { ?>
-	<div class="contact-action-menu">
+	<div class="contact-action-menu epl-clearfix">
 	<ul class="epl_contact_quick_actions">
 		<li>
 			<a  class="contact-action-category" href="#" title="<?php _e('Contact Category'); ?>">
@@ -503,7 +506,7 @@ function epl_contact_action_menus($contact) { ?>
 
 					$cats = apply_filters('epl_contact_categories',array(
 						'appraisal'     =>  __('Appraisal','epl'),
-						'lead'          =>  __('Lead','epl'),
+						'contact'          =>  __('contact','epl'),
 						'past_customer' =>  __('Past Customer','epl'),
 						'contract'      =>  __('Contract','epl'),
 						'buyer'         =>  __('Buyer','epl'),
@@ -542,6 +545,19 @@ function epl_contact_action_menus($contact) { ?>
 		</li>
 		<?php do_action('post_contact_custom_quick_edit_options', $contact); ?>
 	</ul>
+	<div class="epl_contact_pagination">
+		<?php if(epl_get_prev_contact_link($contact->id)): ?>
+		<a class="epl_contact_pagination_prev " href="<?php echo epl_get_prev_contact_link($contact->id); ?>">
+			<span class="dashicons dashicons-arrow-left"></span>
+		</a>
+		<?php endif; ?>
+		<?php if(epl_get_next_contact_link($contact->id)): ?>
+		<a class="epl_contact_pagination_next " href="<?php echo epl_get_next_contact_link($contact->id); ?>">
+			<span class="dashicons dashicons-arrow-right">
+			</span>
+		</a>
+		<?php endif; ?>
+	</div   >
 </div> <?php
 }
 add_action('epl_contact_action_menus','epl_contact_action_menus');
@@ -557,15 +573,28 @@ function epl_contact_entry_header($contact) { ?>
 			<?php
 				echo $contact->name;
 			?>
-			<span>
-				<?php
-					echo $contact->get_meta('contact_category');
-				?>
-			</span>
+
 		</h1>
+		<span>
+			<?php
+				echo $contact->get_meta('contact_category');
+			?>
+		</span>
 	</div> <?php
 }
 add_action('epl_contact_entry_header','epl_contact_entry_header');
+
+function epl_contact_entry_header_editable($contact) { ?>
+	<div class="contact-entry-header">
+		<input class="epl-contact-title-editable" type="text" name="post_title" value="<?php echo $contact->name; ?>"/>
+		<span>
+			<?php
+			echo $contact->get_meta('contact_category');
+			?>
+		</span>
+	</div> <?php
+}
+add_action('epl_contact_entry_header_editable','epl_contact_entry_header_editable');
 
 /**
  * renders assigned tag for contact
@@ -638,29 +667,35 @@ add_action('epl_contact_social_icons','epl_contact_social_icons');
 
 function epl_contact_contact_details($contact) { ?>
 
-	<span class="contact-name info-item editable"><span data-key="name"><?php echo $contact->get_meta('contact_first_name').' '.$contact->get_meta('contact_last_name'); ?></span></span>
-	<span class="contact-email info-item editable" data-key="email">
-							<span class="dashicons dashicons-email epl-contact-icons"></span>
-		<?php echo $contact->email; ?>
-						</span>
-	<?php if( $contact->get_meta('contact_phone') != '' ) :?>
-		<span class="contact_phone info-item editable" data-key="phone">
-							<span class="dashicons dashicons-phone epl-contact-icons"></span>
-			<?php echo $contact->get_meta('contact_phone'); ?>
-						</span>
-	<?php endif; ?>
-	<?php if( $contact->get_meta('contact_mobile') != '' ) :?>
-		<span class="contact_mobile info-item editable" data-key="smartphone">
-							<span class="dashicons dashicons-smartphone epl-contact-icons"></span>
-			<?php echo $contact->get_meta('contact_mobile'); ?>
-						</span>
-	<?php endif; ?>
+	<span class="contact-name info-item editable">
+		<span data-key="name">
+			<?php echo $contact->get_meta('contact_first_name').' '.$contact->get_meta('contact_last_name'); ?>
+		</span>
+	</span>
+	<?php echo $contact->get_emails();?>
+
+	<?php echo $contact->get_phones();?>
+
 	<?php if( $contact->get_meta('contact_website') != '' ) :?>
 		<span class="contact_website info-item editable" data-key="website">
-							<span class="dashicons dashicons-admin-links epl-contact-icons"></span>
+			<span class="dashicons dashicons-admin-links epl-contact-icons"></span>
 			<?php echo $contact->get_meta('contact_website'); ?>
-						</span>
-	<?php endif;
+		</span>
+	<?php endif; ?>
+	<span class="contact_website info-item editable" data-key="address">
+		<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
+		<?php echo $contact->epl_contact_get_address(); ?>
+	</span>
+	<span class="contact-since info-item">
+		<span class="dashicons dashicons-clock epl-contact-icons"></span>
+		<?php _e( 'Contact since', 'epl' ); ?>
+		<?php echo date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ) ?>
+	</span>
+	<span class="epl-contact-view-more">
+		<span class="dashicons dashicons-arrow-right-alt epl-contact-icons"></span>
+		<?php _e( 'View More', 'epl' ); ?>
+	</span>
+	<?php
 }
 add_action('epl_contact_contact_details','epl_contact_contact_details');
 
@@ -721,7 +756,7 @@ add_action('epl_contact_recent_interests','epl_contact_recent_interests');
 
 function epl_contact_recent_activities($contact,$number = 10, $paged = 1 ,$orderby = 'comment_date', $order = 'DESC') { ?>
 	<?php do_action('epl_contact_add_activity_form', $contact); ?>
-	<h3 class="epl-contact-activity-title"><?php _e( 'Activities', 'epl' ); ?> <span class="epl-contact-add-activity"><?php _e('Add Activity'); ?></span></h3>
+	<h3 class="epl-contact-activity-title"><?php _e( 'Activities', 'epl' ); ?> <span class="epl-contact-add-activity"><?php _e('Add New'); ?></span></h3>
 	<input type="hidden" id="epl-contact-table-orderby" value="<?php echo $orderby; ?>"/>
 	<input type="hidden" id="epl-contact-table-order" value="<?php echo $order; ?>">
 	<?php
@@ -778,7 +813,7 @@ function epl_contact_get_activities_html($contact,$number = 10, $paged = 1 ,$ord
 			<?php endif; ?>
 			</tbody>
 		</table>
-		<span  data-page="<?php echo $paged + 1; ?>" class="epl-contact-load-activities"><?php _e('Load More Activities'); ?> </span>
+		<span  data-page="<?php echo $paged + 1; ?>" class="epl-contact-load-activities"><?php _e('Load More'); ?> </span>
 	</div><?php
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		wp_die();
@@ -798,10 +833,11 @@ function epl_contact_get_listings_html($contact,$number = 10, $paged = 1 ,$order
 	//epl_print_r($contact,true);
 	$activities = get_posts(
 		array(
-			'post_type'     =>  'contact_listing',
+			'post_type'     =>  array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
 			'post_status'   =>  'publish',
 			'meta_key'      =>  'property_owner',
-			'meta_value'    =>  $contact->id
+			'meta_value'    =>  $contact->id,
+			'posts_per_page'    =>  -1
 		)
 	);
 	?>
@@ -818,14 +854,14 @@ function epl_contact_get_listings_html($contact,$number = 10, $paged = 1 ,$order
 		<?php if ( ! empty( $activities ) ) : ?>
 			<?php foreach ( $activities as $inserted_lisitng ) : ?>
 				<tr data-activity-id="<?php echo $inserted_lisitng->ID ;?>" id="activity-id-<?php echo $inserted_lisitng->ID ;?>" class="epl-contact-activity-row " >
-					<td><?php echo get_post_meta($inserted_lisitng->ID,'property_listing_type',true); ?></td>
+					<td><?php echo $inserted_lisitng->post_type; ?></td>
 					<td>
 						<?php
 							echo '<a href="'.get_edit_post_link($inserted_lisitng->ID).'">'.$inserted_lisitng->post_title.'</a>';
 						?>
 					</td>
 					<td>
-						<?php echo get_post_meta($inserted_lisitng->ID,'property_listing_status',true); ?>
+						<?php echo get_post_meta($inserted_lisitng->ID,'property_status',true); ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>
@@ -917,11 +953,6 @@ function epl_contact_add_listing_form($contact) {
 					'value'	    =>	$contact->id,
 				),
 				array(
-					'name'		=>	'post_title',
-					'label'		=>	__('Title','epl'),
-					'type'		=>	'text',
-				),
-				array(
 					'name'		=>	'property_address_lot_number',
 					'label'		=>	__('Lot', 'epl'),
 					'type'		=>	'text',
@@ -979,22 +1010,27 @@ function epl_contact_add_listing_form($contact) {
 					'maxlength'	=>	'40'
 				),
 				array(
-					'name'		=>	'property_listing_type',
-					'label'		=>	__('Listing Type','epl'),
+					'name'		=>	'post_title',
+					'label'		=>	__('Full Address','epl'),
+					'type'		=>	'text',
+				),
+				array(
+					'name'		=>	'post_type',
+					'label'		=>	__('Property Type','epl'),
 					'type'		=>	'select',
 					'class'     =>  'contact-note-select',
 					'opts'      =>  $listing_types,
 					'maxlength'	=>	'200',
 				),
 				array(
-					'name'		=>	'property_listing_status',
+					'name'		=>	'property_status',
 					'label'		=>	__('Listing Status','epl'),
 					'type'		=>	'select',
 					'class'     =>  'contact-note-select',
-					'opts'      => apply_filters('epl_contact_property_listing_status', array(
-						'appraisal' =>  __('Appraisal','epl'),
-						'new'       =>  __('New','epl'),
-						'hot'       =>  __('Hot','epl'),
+					'opts'      => apply_filters('epl_contact_property_status', array(
+						'current' 		=>  __('Current','epl'),
+						'sold'       	=>  __('Sold','epl'),
+						'leased'       	=>  __('Leased','epl'),
 					)),
 					'maxlength'	=>	'200',
 				),
@@ -1019,3 +1055,121 @@ function epl_contact_add_listing_form($contact) {
 }
 add_action('epl_contact_add_listing_form','epl_contact_add_listing_form');
 
+function epl_after_meta_field_property_owner($post,$value) {
+	$url = admin_url('admin.php?page=epl-contacts&view=overview&id='.$value);
+	echo '<tr class="form-field"><td>';
+	echo '<a class="epl-listing-contact-url" href="'.$url.'">'.__('View Contact').'</a>';
+	echo '</td></tr>';
+}
+add_action('epl_after_meta_field_property_owner','epl_after_meta_field_property_owner',10,2);
+
+function epl_search_contact() {
+
+	$search_array = array(
+		's'						=> $_POST['user_name'],
+		'showposts'   			=> 6,
+		'post_type' 			=> 'contact_listing',
+		'post_status' 			=> 'publish',
+		'post_password' 		=> '',
+		'suppress_filters' 		=> true
+	);
+
+	$query = http_build_query($search_array);
+
+	$listings = get_posts(  $query );
+
+	if( !empty($listings) ) {
+		echo '<ul class="epl-contact-listing-suggestion">';
+		foreach( $listings as  $listing) {
+			echo '<li data-id="'.$listing->ID.'">'.$listing->post_title.'</li>';
+		}
+		echo '</ul>';
+	}
+	wp_die();
+
+}
+add_action('wp_ajax_epl_search_contact','epl_search_contact');
+
+function epl_search_user() {
+
+	$users = get_users(  'search='.$_GET['user_name'].'&number=5' );
+	if( !empty($users) ) {
+		echo '<ul class="epl-contact-user-suggestion">';
+		foreach( $users as  $user) {
+			echo '<li data-id="'.$user->ID.'">'.$user->display_name.'</li>';
+		}
+		echo '</ul>';
+	}
+	wp_die();
+
+}
+add_action('wp_ajax_epl_search_user','epl_search_user');
+
+/**
+ * Save a customer note being added
+ *
+ * @since  2.4
+ * @param  array $args The $_POST array being passeed
+ * @return object         the comment object
+ */
+function epl_contact_save_note_note_tab( $args ) {
+	$contact_view_role = apply_filters( 'epl_view_contacts_role', 'manage_options' );
+	if ( ! is_admin() || ! current_user_can( $contact_view_role ) ) {
+		wp_die( __( 'You do not have permission to edit this contact.', 'epl' ) );
+	}
+	if ( empty( $args ) ) {
+		return;
+	}
+	$contact_note 	= trim( sanitize_text_field( $args['contact_note'] ) );
+	$listing_id 	= trim( sanitize_text_field( $args['listing_id'] ) );
+	$note_type 		= trim( sanitize_text_field( $args['activity_type'] ) );
+
+	$contact_id   = (int)$args['contact_id'];
+	$nonce         = $args['add_contact_note_nonce'];
+	if ( ! wp_verify_nonce( $nonce, 'add-contact-note' ) ) {
+		wp_die( __( 'Cheatin\' eh?!', 'epl' ) );
+	}
+	if ( empty( $contact_note ) ) {
+		epl_set_error( 'empty-contact-note', __( 'A note is required', 'epl' ) );
+	}
+	if ( epl_get_errors() ) {
+		epl_set_error();
+		return;
+	}
+	do_action( 'epl_pre_insert_contact_note', $contact_id, $new_note, $listing_id, $note_type );
+
+	$contact = new EPL_contact( $contact_id );
+	$note_object = $contact->add_note( $contact_note,$note_type,$listing_id );
+
+	if ( ! empty( $note_object ) && ! empty( $contact->id ) ) {
+		ob_start();
+		?>
+		<div class="contact-note-wrapper dashboard-comment-wrap comment-item epl-admin-note">
+			<span class="note-content-meta">
+				<span class="note-for-listing">
+					<?php
+					echo isset($note_object->comment_post_ID) ? get_the_title($note_object->comment_post_ID) : '';
+					?>
+				 </span>
+				 <span class="note-time">
+					<?php
+					echo date_i18n( get_option( 'date_format' ), strtotime( $note_object->comment_date ) );
+					?>
+				 </span>
+			</span>
+			<span class="note-content-wrap">
+				<?php echo stripslashes( $note_object->comment_content ); ?>
+			</span>
+		</div>
+		<?php
+		$output = ob_get_contents();
+		ob_end_clean();
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			echo $output;
+			exit;
+		}
+		return $note_object;
+	}
+	return false;
+}
+add_action( 'epl_add-contact-note-note-tab', 'epl_contact_save_note_note_tab', 10, 1 );

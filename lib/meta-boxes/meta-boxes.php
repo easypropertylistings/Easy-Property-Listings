@@ -1551,7 +1551,7 @@ function epl_meta_box_init() {
 		array(
 			'id'		=>	'epl-owner-listings-section-id',
 			'label'		=>	__('Listing Owner', 'epl'),
-			'post_type'	=>	array('contact_listing'),
+			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
@@ -1563,27 +1563,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_owner',
 							'label'		=>	__('Propery Owner ID','epl'),
-							'type'		=>	'number',
+							'type'		=>	'text',
+							'help'      =>  __('type contact names to search ... ','epl')
 						),
-						array(
-							'name'		=>	'property_listing_type',
-							'label'		=>	__('Listing Type','epl'),
-							'type'		=>	'select',
-							'opts'      =>  epl_get_active_post_types(),
-						),
-						array(
-							'name'		=>	'property_listing_status',
-							'label'		=>	__('Listing Status','epl'),
-							'type'		=>	'select',
-							'class'     =>  'contact-note-select',
-							'opts'      => apply_filters('epl_contact_property_listing_status', array(
-								'appraisal' =>  __('Appraisal','epl'),
-								'new'       =>  __('New','epl'),
-								'hot'       =>  __('Hot','epl'),
-							)),
-							'maxlength'	=>	'200',
-						),
-
 					)
 				)
 			)
@@ -1670,7 +1652,7 @@ function epl_meta_box_init() {
 										}
 										$val = get_post_meta($post->ID, $field['name'], true);
 										if( has_action('epl_before_meta_field_'.$field['name']) ) {
-											do_action('epl_before_meta_field_'.$field['name'],$post->ID,$val);
+											do_action('epl_before_meta_field_'.$field['name'],$post,$val);
 										}
 										?>
 										<tr class="form-field">
@@ -1692,12 +1674,12 @@ function epl_meta_box_init() {
 										</tr>
 										<?php
 											if( has_action('epl_after_meta_field_'.$field['name']) ) {
-												do_action('epl_after_meta_field_'.$field['name'],$post->ID,$val);
+												do_action('epl_after_meta_field_'.$field['name'],$post,$val);
 											}
 										?>
 									<?php }
 								}
-							?>  
+							?>
 						</tbody>
 					</table>
 				</div>

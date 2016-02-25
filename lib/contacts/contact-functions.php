@@ -61,4 +61,58 @@ function epl_register_delete_contact_tab( $tabs ) {
 }
 add_filter( 'epl_contact_tabs', 'epl_register_delete_contact_tab', PHP_INT_MAX, 1 );
 
+function epl_get_next_contact_link($contact_id) {
+	if(absint($contact_id) < 1 )
+		return;
+	global $wpdb;
+	$next = $wpdb->get_col("SELECT `ID` from {$wpdb->prefix}posts where `post_type` = 'epl_contact' AND `ID` > {intval($contact_id)} ");
+	if(!empty($next)) {
+		return admin_url('admin.php?page=epl-contacts&view=overview&id='.$next[0]);
+	}
+}
+
+function epl_get_prev_contact_link($contact_id) {
+	if(absint($contact_id) < 1 )
+		return;
+	global $wpdb;
+	$next = $wpdb->get_col("SELECT `ID` from {$wpdb->prefix}posts where `post_type` = 'epl_contact' AND `ID` < {intval($contact_id)} ");
+	if(!empty($next)) {
+		return admin_url('admin.php?page=epl-contacts&view=overview&id='.$next[0]);
+	}
+}
+
+function epl_contact_contact_fields($contact_fields,$contact) {
+	$fields = array();
+	$phones = $contact->get_meta('contact_phones');
+	if(!empty($phones)) {
+		foreach($phones as $phone_name	=>	$phone_value) {
+			$label = ucwords(str_replace('_',' ',$phone_name));
+			$fields[] = array(
+				'name'		=>	"contact_phones[$phone_name]",
+				'label'		=>	__($label,'epl'),
+				'type'		=>	'number',
+				'class'		=>	'epl-contact-addable',
+				'maxlength'	=>	'60',
+				'value'		=>	$phone_value
+			);
+		}
+	}
+	$emails = $contact->get_meta('contact_emails');
+	if(!empty($emails)) {
+		foreach($emails as $mail_name	=>	$mail_value) {
+			$label = ucwords(str_replace('_',' ',$mail_name));
+			$fields[] = array(
+				'name'		=>	"contact_emails[$mail_name]",
+				'label'		=>	__($label,'epl'),
+				'type'		=>	'email',
+				'class'		=>	'epl-contact-addable-email',
+				'maxlength'	=>	'60',
+				'value'		=>	$mail_value
+			);
+		}
+	}
+	$merged_fields = array_merge($fields,$contact_fields);
+	return array_intersect_key($merged_fields, array_unique(array_map('serialize', $merged_fields)));
+}
+add_filter('epl_contact_contact_fields','epl_contact_contact_fields',10,2);
 
