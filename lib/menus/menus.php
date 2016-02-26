@@ -13,10 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if( !is_admin() ) {
 	return;
 }
+global $contact_page_hook;
 
 add_action('admin_menu', 'epl_admin_menu');
 
 function epl_admin_menu() {
+	global $contact_page_hook;
 	// Contributors and above can access these options
 	$menu_title	= __('Easy Property Listings', 'epl');
 	$page_title	= __('Easy Property Listings', 'epl');
@@ -80,7 +82,8 @@ function epl_admin_menu() {
 	$capability	= 'edit_published_posts';
 	$menu_slug	= 'epl-contacts';
 	$function	= 'epl_contacts_page';
-	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+	$contact_page_hook = add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+
 
 	// Editor level and above can see these options
 	$page_title	= __('Contact Tags', 'epl');

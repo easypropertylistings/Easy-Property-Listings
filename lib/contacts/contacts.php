@@ -54,10 +54,9 @@ function epl_contact_tabs() {
  * @return void
  */
 function epl_contacts_list() {
-	include( dirname( __FILE__ ) . '/class-contact-table.php' );
+	global $epl_contacts_table;
+	$epl_contacts_table->prepare_items();
 
-	$contacts_table = new EPL_Contact_Reports_Table();
-	$contacts_table->prepare_items();
 	?>
 	<div class="wrap">
 		<h2><?php _e( 'Contacts', 'epl' ); ?>
@@ -66,8 +65,8 @@ function epl_contacts_list() {
 		<?php do_action( 'epl_contacts_table_top' ); ?>
 		<form id="epl-contacts-filter" method="get" action="<?php echo admin_url( 'admin.php?page=epl-contacts' ); ?>">
 			<?php
-			$contacts_table->search_box( __( 'Search Contacts', 'epl' ), 'epl-contacts' );
-			$contacts_table->display();
+			$epl_contacts_table->search_box( __( 'Search Contacts', 'epl' ), 'epl-contacts' );
+			$epl_contacts_table->display();
 			?>
 			<input type="hidden" name="page" value="epl-contacts" />
 			<input type="hidden" name="view" value="contacts" />
@@ -854,3 +853,30 @@ function epl_contacts_listing_view( $contact ) {
 
 <?php
 }
+
+function add_contact_screen_options() {
+	global $epl_contacts_table;
+	$option = 'per_page';
+	$args = array(
+		'label' => 'Contacts',
+		'default' => 10,
+		'option' => 'contacts_per_page'
+	);
+	add_screen_option( $option, $args );
+	include_once( dirname( __FILE__ ) . '/class-contact-table.php' );
+	$epl_contacts_table = new EPL_Contact_Reports_Table();
+}
+
+
+function epl_contact_table_set_option($status, $option, $value) {
+	return $value;
+}
+
+
+
+function epl_add_contact_screen_opts() {
+	global $contact_page_hook;
+	add_action( "load-$contact_page_hook", 'add_contact_screen_options' );
+	add_filter('set-screen-option', 'epl_contact_table_set_option', 10, 3);
+}
+add_action('admin_menu','epl_add_contact_screen_opts',99);

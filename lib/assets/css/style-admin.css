@@ -1138,7 +1138,7 @@ label.contact-select-label:before {
  .epl-contact-view-more {
 	 background: #fff none repeat scroll 0 0;
 	 bottom: 0;
-	 display: block;
+	 display: none;
 	 position: absolute;
 	 width: 100%;
 	 color: #0073aa;
@@ -1190,7 +1190,7 @@ label.contact-select-label:before {
      width: 41px;
  }
 
- .contact_category_suggestions, .epl-contact-listing-suggestion , .epl-contact-user-suggestion{
+ .contact_category_suggestions, .epl-contact-listing-suggestion , .epl-contact-user-suggestion, .epl-contact-owned-listing-suggestion{
      display:none;
      background: #fff none repeat scroll 0 0;
      border: 1px solid #ddd;
@@ -1211,12 +1211,12 @@ label.contact-select-label:before {
      padding-top: 2px;
  }
 
- .contact_category_suggestions > li, .epl-contact-listing-suggestion > li, .epl-contact-user-suggestion > li {
+ .contact_category_suggestions > li, .epl-contact-listing-suggestion > li, .epl-contact-user-suggestion > li , .epl-contact-owned-listing-suggestion > li{
      cursor: pointer;
      padding: 7px;
  }
 
- .contact_category_suggestions > li:hover, .epl-contact-listing-suggestion > li:hover, .epl-contact-user-suggestion >li:hover {
+ .contact_category_suggestions > li:hover, .epl-contact-listing-suggestion > li:hover, .epl-contact-user-suggestion >li:hover, .epl-contact-owned-listing-suggestion > li:hover {
     background: #0073AA;
     color:white;
  }
@@ -1224,9 +1224,17 @@ label.contact-select-label:before {
  .contact_category_suggestions > li:hover a {
      color:white;
  }
+ .epl-contact-listing-type {
+	 padding-right: 20px;
+	 text-transform: capitalize;
+ }
+ .epl-contact-listing-status {
+	 float: right;
+	 padding-left: 20px;
+	 text-transform: capitalize;
+ }
 
-
- .contact_category_suggestions::before, .contact-tags-find:before, .epl-contact-listing-suggestion::before , .epl-contact-user-suggestion::before  {
+ .contact_category_suggestions::before, .contact-tags-find:before, .epl-contact-listing-suggestion::before , .epl-contact-user-suggestion::before, .epl-contact-owned-listing-suggestion::before  {
      border-bottom: 7px solid rgba(0, 0, 0, 0.2);
      border-left: 7px solid transparent;
      border-right: 7px solid transparent;
@@ -1242,7 +1250,7 @@ label.contact-select-label:before {
 	 width: 99%;
  }
 
- .contact_category_suggestions::after,.contact-tags-find:after, .epl-contact-listing-suggestion::after, .epl-contact-user-suggestion::after{
+ .contact_category_suggestions::after,.contact-tags-find:after, .epl-contact-listing-suggestion::after, .epl-contact-user-suggestion::after, .epl-contact-owned-listing-suggestion::after{
      border-bottom: 6px solid #fafafa;
      border-left: 6px solid transparent;
      border-right: 6px solid transparent;
@@ -1372,6 +1380,22 @@ label.contact-select-label:before {
      text-align: center;
      transition: all 1s ease-in-out 0s;
  }
+ h3.epl-contact-activity-title {
+	 float: left;
+	 margin: 0;
+ }
+ .epl-contact-add-old-listing-form-wrap {
+	 float: right;
+ }
+ .epl-contact-or {
+	 color: #999;
+	 float: right;
+	 font-weight: normal;
+	 height: 28px;
+	 margin-top: 4px;
+	 padding: 0 10px;
+	 text-transform: lowercase;
+ }
  .epl-contact-add-activity, .epl-contact-add-listing {
      background: rgb(255,168,76); /* Old browsers */
      background: -moz-linear-gradient(top, rgba(255,168,76,1) 0%, rgba(255,123,13,1) 100%); /* FF3.6-15 */
@@ -1384,6 +1408,7 @@ label.contact-select-label:before {
      font-size: 12px;
      padding: 5px;
      cursor: pointer;
+	 margin-bottom: 10px;
  }
  .epl-contact-add-activity:hover, .epl-contact-add-listing:hover{
      background: rgb(255,168,76); /* Old browsers */

@@ -260,7 +260,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_featured',
 							'label'		=>	__('Featured', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
 								'no'	=>	__('No', 'epl')
@@ -349,10 +349,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_new_construction',
 							'label'		=>	__('New Construction', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 							'include'	=>	array('property', 'rental' )
 						),
@@ -360,30 +359,27 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_pool',
 							'label'		=>	__('Pool', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_air_conditioning',
 							'label'		=>	__('Air Conditioning', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_security_system',
 							'label'		=>	__('Security System', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -425,10 +421,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_land_fully_fenced',
 							'label'		=>	__('Fully Fenced', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -445,145 +440,131 @@ function epl_meta_box_init() {
 			'groups'	=>	array(
 				array(
 					'id'		=>	'internal',
-					'columns'	=>	'2',
+					'columns'	=>	'3',
 					'label'		=>	__('Internal', 'epl'),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_remote_garage',
 							'label'		=>	__('Remote Garage', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_secure_parking',
 							'label'		=>	__('Secure Parking', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_study',
 							'label'		=>	__('Study', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_dishwasher',
 							'label'		=>	__('Dishwasher', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_built_in_robes',
 							'label'		=>	__('Built In Robes', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_gym',
 							'label'		=>	__('Gym', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_workshop',
 							'label'		=>	__('Workshop', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_rumpus_room',
 							'label'		=>	__('Rumpus Room', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_floor_boards',
 							'label'		=>	__('Floor Boards', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_broadband',
 							'label'		=>	__('Broadband', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_pay_tv',
 							'label'		=>	__('Pay TV', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 						array(
 							'name'		=>	'property_vacuum_system',
 							'label'		=>	__('Vacuum System', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_intercom',
 							'label'		=>	__('Intercom', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_spa',
 							'label'		=>	__('Spa', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -591,67 +572,61 @@ function epl_meta_box_init() {
 			
 				array(
 					'id'		=>	'external',
-					'columns'	=>	'2',
+					'columns'	=>	'3',
 					'label'		=>	__('External', 'epl'),
 					'fields'	=>	array(
 					
 						array(
 							'name'		=>	'property_tennis_court',
 							'label'		=>	__('Tennis Court', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_balcony',
 							'label'		=>	__('Balcony', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_deck',
 							'label'		=>	__('Deck', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_courtyard',
 							'label'		=>	__('Courtyard', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_outdoor_entertaining',
 							'label'		=>	__('Outdoor Entertaining', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_shed',
 							'label'		=>	__('Shed', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -659,97 +634,88 @@ function epl_meta_box_init() {
 				
 				array(
 					'id'		=>	'heating_cooling',
-					'columns'	=>	'2',
+					'columns'	=>	'3',
 					'label'		=>	__('Heating & Cooling', 'epl'),
 					'fields'	=>	array(
 					
 						array(
 							'name'		=>	'property_ducted_heating',
 							'label'		=>	__('Ducted Heating', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_ducted_cooling',
 							'label'		=>	__('Ducted Cooling', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_split_system_heating',
 							'label'		=>	__('Split System Heating', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_hydronic_heating',
 							'label'		=>	__('Hydronic Heating', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_split_system_aircon',
 							'label'		=>	__('Split System Aircon', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_gas_heating',
 							'label'		=>	__('Gas Heating', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_reverse_cycle_aircon',
 							'label'		=>	__('Reverse Cycle Aircon', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_evaporative_cooling',
 							'label'		=>	__('Evaporative Cooling', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_open_fire_place',
 							'label'		=>	__('Open Fire Place', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -810,10 +776,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_land_fully_fenced',
 							'label'		=>	__('Fully Fenced', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 							'include'	=>	array('land')
 						)
@@ -837,10 +802,9 @@ function epl_meta_box_init() {
 							array(
 								'name'		=>	'property_address_display',
 								'label'		=>	__('Display Street Address?', 'epl'),
-								'type'		=>	'radio',
+								'type'		=>	'checkbox_single',
 								'opts'		=>	array(
 									'yes'	=>	__('Yes', 'epl'),
-									'no'	=>	__('No', 'epl')
 								),
 							),
 							
@@ -884,10 +848,9 @@ function epl_meta_box_init() {
 							array(
 								'name'		=>	'property_com_display_suburb',
 								'label'		=>	__('Display', 'epl') . ' ' .epl_labels('label_suburb'),
-								'type'		=>	'radio',
+								'type'		=>	'checkbox_single',
 								'opts'		=>	array(
 									'yes'	=>	__('Yes', 'epl'),
-									'no'	=>	__('No', 'epl')
 								),
 								'include'	=>	array('commercial', 'commercial_land', 'business'),
 							),
@@ -957,7 +920,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_price',
 							'label'		=>	__('Search Price', 'epl'),
-							'type'		=>	'number',
+							'type'		=>	'decimal',
 							'maxlength'	=>	'50'
 						),
 					
@@ -978,30 +941,27 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_price_display',
 							'label'		=>	__('Display Price?', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_under_offer',
 							'label'		=>	epl_meta_under_offer_label(),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_is_home_land_package',
 							'label'		=>	__('House and Land Package', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 							'exclude'	=>	array('land', 'rural', 'commercial', 'commercial_land' , 'business')
 						)
@@ -1030,10 +990,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_sold_price_display',
 							'label'		=>	__('Display Sale Price', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						)
 					)
@@ -1077,10 +1036,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_rent_display',
 							'label'		=>	__('Display Rent?', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
@@ -1101,20 +1059,18 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_furnished',
 							'label'		=>	__('Furnished', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 						),
 					
 						array(
 							'name'		=>	'property_holiday_rental',
 							'label'		=>	__('Holiday Rental', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 							'exclude'	=>	array('rental')
 						),
@@ -1274,10 +1230,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_com_plus_outgoings',
 							'label'		=>	__('Plus Outgoings', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 							'exclude'	=>	array('business')
 						),
@@ -1293,10 +1248,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_bus_franchise',
 							'label'		=>	__('Franchise', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							),
 							'include'	=>	array('business')
 						),
@@ -1383,10 +1337,9 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_com_is_multiple',
 							'label'		=>	__('Is Multiple', 'epl'),
-							'type'		=>	'radio',
+							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'epl'),
-								'no'	=>	__('No', 'epl')
 							)
 						)
 					)
@@ -1552,7 +1505,7 @@ function epl_meta_box_init() {
 			'id'		=>	'epl-owner-listings-section-id',
 			'label'		=>	__('Listing Owner', 'epl'),
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
-			'context'	=>	'normal',
+			'context'	=>	'side',
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(

@@ -159,7 +159,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 	public function column_summary($item) {
 		ob_start(); ?>
-			<div class="contact-assigned-tags-wrap">
+			<div class="contact-assigned-tags-wrap epl-contact-list-table-tags">
 				<h4><?php echo $item['heading']; ?> </h4>
 				<ul class="contact-assigned-tags">
 					<?php
@@ -261,25 +261,38 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 		$data    = array();
 		$paged   = $this->get_paged();
-		$offset  = $this->per_page * ( $paged - 1 );
+		$offset  = $this->get_items_per_page('contacts_per_page', $this->per_page) * ( $paged - 1 );
 		$search  = $this->get_search();
 		$order   = isset( $_GET['order'] )   ? sanitize_text_field( $_GET['order'] )   : 'DESC';
 		$orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'id';
 
 		$args    = array(
 			'post_type'	=>	'epl_contact',
-			'posts_per_page'  => $this->per_page,
+			'posts_per_page'  => $this->get_items_per_page('contacts_per_page', $this->per_page),
 			'offset'  => $offset,
 			'order'   => $order,
-			'orderby' => $orderby
+			'orderby' => $orderby,
+			'meta_query' => array(),
+			'tax_query' => array(),
 		);
 
-		if( is_email( $search ) ) {
-			$args['email'] = $search;
-		} elseif( is_numeric( $search ) ) {
-			$args['ID']    = $search;
-		} else {
-			$args['name']  = $search;
+		if( $search != '' ) {
+			$args['s'] = $search;
+		}
+
+		if( isset($_GET['cat_filter']) && $_GET['cat_filter'] != '' ){
+			$args['meta_query'][] = array(
+				'key'     => 'contact_category',
+				'value'   => sanitize_text_field($_GET['cat_filter']),
+			);
+		}
+
+		if( isset($_GET['tag_filter']) && $_GET['tag_filter'] != '' ){
+			$args['tax_query'][] = array(
+				'taxonomy'     	=> 'contact_tag',
+				'field'   		=> 'id',
+				'terms'   		=> intval($_GET['tag_filter']),
+			);
 		}
 
 		$contacts = get_contacts( $args );
@@ -311,15 +324,54 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		$hidden   = array(); // No hidden columns
 		$sortable = $this->get_sortable_columns();
 
-		$this->_column_headers = array( $columns, $hidden, $sortable );
+		$this->_column_headers = $this->get_column_info();
 
 		$this->items = $this->reports_data();
 
 		$this->total = epl_count_total_contacts();
+
 		$this->set_pagination_args( array(
 			'total_items' => $this->total,
-			'per_page'    => $this->per_page,
-			'total_pages' => ceil( $this->total / $this->per_page ),
+			'per_page'    => $this->get_items_per_page('contacts_per_page', $this->per_page),
+			'total_pages' => ceil( $this->total / $this->get_items_per_page('contacts_per_page', $this->per_page) ),
 		) );
 	}
+
+	function extra_tablenav( $which ) {
+		if ( $which == "top" ){
+			?>
+			<div class="alignleft actions bulkactions">
+				<?php
+				$cats = apply_filters('epl_contact_categories',array(
+					'appraisal'     =>  __('Appraisal','epl'),
+					'contact'          =>  __('contact','epl'),
+					'past_customer' =>  __('Past Customer','epl'),
+					'contract'      =>  __('Contract','epl'),
+					'buyer'         =>  __('Buyer','epl'),
+					'seller'        =>  __('Seller','epl'),
+				));
+				if( $cats ){
+					?>
+					<select name="cat_filter" class="epl_contact_type_filter">
+						<option value=""><?php _e('Type:'); ?></option>
+						<?php
+						foreach( $cats as $cat_key	=>	$cat_value ){
+							$selected = '';
+							if( $_GET['cat_filter'] == $cat_key ){
+								$selected = ' selected = "selected"';
+							} ?>
+							<option value="<?php echo $cat_key; ?>" <?php echo $selected; ?>><?php echo $cat_value; ?></option> <?php
+						}
+						?>
+					</select>
+					<?php
+				}
+				?>
+			</div>
+			<?php
+		}
+
+	}
 }
+
+
