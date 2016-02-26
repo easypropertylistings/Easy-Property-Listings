@@ -13,10 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if( !is_admin() ) {
 	return;
 }
+global $contact_page_hook;
 
 add_action('admin_menu', 'epl_admin_menu');
 
 function epl_admin_menu() {
+	global $contact_page_hook;
 	// Contributors and above can access these options
 	$menu_title	= __('Easy Property Listings', 'epl');
 	$page_title	= __('Easy Property Listings', 'epl');
@@ -73,6 +75,32 @@ function epl_admin_menu() {
 	$menu_slug	= 'epl-addons';
 	$function	= 'epl_menu_addons';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+	
+	// Editor level and above can see these options
+	$page_title	= __('Contacts', 'epl');
+	$menu_title	= __('Contacts', 'epl');
+	$capability	= 'edit_published_posts';
+	$menu_slug	= 'epl-contacts';
+	$function	= 'epl_contacts_page';
+	$contact_page_hook = add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+
+
+	// Editor level and above can see these options
+	$page_title	= __('Contact Tags', 'epl');
+	$menu_title	= __('Contact Tags', 'epl');
+	$capability	= 'edit_published_posts';
+	$menu_slug	= 'edit-tags.php?taxonomy=contact_tag';
+	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug);
+	
+	// Editor level and above can see these options
+	$page_title	= __('Reports', 'epl');
+	$menu_title	= __('Reports', 'epl');
+	$capability	= 'edit_published_posts';
+	$menu_slug	= 'epl-reports';
+	$function	= 'epl_reports_page';
+	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+	
+	
 }
 
 function epl_menu_general() {

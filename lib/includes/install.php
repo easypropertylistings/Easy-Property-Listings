@@ -98,7 +98,7 @@ function epl_install() {
 		$epl_settings = $new_fields_defaults;
 	}
 	update_option( 'epl_settings', $epl_settings );
-
+	
 	// Add Upgraded From Option
 	$current_version = get_option( 'epl_version' );
 	if ( $current_version != '' ) {

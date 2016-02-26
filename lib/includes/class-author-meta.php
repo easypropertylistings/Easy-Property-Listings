@@ -117,8 +117,18 @@ class EPL_Author_Meta {
 	*/
     function get_linkedin_html($html = '') {
     	if ( $this->linkedin != '' ) {
+    	
+    		if(strpos('linkedin',$this->linkedin) > 0 ) {
+    			// absolute url
+    			$linkedin = $this->linkedin;
+    			
+    		} else {
+    			// relative url
+    			$linkedin = 'www.linkedin.com/pub/' . $this->linkedin;
+    		}
+    		
 			$html = '
-				<a class="epl-author-icon author-icon linkedin-icon-24" href="http://au.linkedin.com/in/' . $this->linkedin . '" 
+				<a class="epl-author-icon author-icon linkedin-icon-24" href="' . $linkedin . '" 
 					title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Linkedin', 'epl').'">'.
 					apply_filters( 'epl_author_icon_linkedin' , __('LinkedIn', 'epl')).
 				'</a>';
