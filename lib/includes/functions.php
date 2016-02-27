@@ -843,12 +843,13 @@ function epl_admin_sidebar () {
 			if(isset($field['maxlength']) &&  $field['maxlength'] > 0) {
 				$atts .= ' maxlength="'.$field['maxlength'].'"';
 			}
+            $classes = isset($field['class']) ? $field['class'] : '';
 			foreach($field as $temp_key	=>	$temp_value) {
 				if (0 === strpos($temp_key, 'data-')) {
 				  $atts .= ''.$temp_key.'="'.$temp_value.'"';
 				}
 			}
-			echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+            echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" class="'.$classes.'"  value="'.stripslashes($val).'" '.$atts.' />';
 	}
 
 	if( isset($field['geocoder']) ) {
@@ -1365,6 +1366,50 @@ function epl_admin_sidebar () {
 		),
 		
 		array(
+			'label'		=>	__('Inspection Date & Time Format' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'inspection_date_time',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'inspection_date_format',
+					'label'	=>	__('Date Format', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						
+						'd-M-Y'							=>	date('d-M-Y',time() ),
+						'l, dS F'						=>	date('l, dS F',time() ),
+						'D d M'							=>	date('D d M',time() ),
+						'custom_inspection_date_format'	=>	__('Custom','epl')		
+
+					),
+				),
+				array(
+					'name'	=>	'custom_inspection_date_format',
+					'label'	=>	__('Custom Date Format', 'epl'),
+					'type'	=>	'text'
+				),
+				array(
+					'name'	=>	'inspection_time_format',
+					'label'	=>	__('Time Format', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+						
+						'h:i A'	=>	date('h:i A',time() ),
+						'h:i a'	=>	date('h:i a',time() ),
+						'H:i'	=>	date('h:i',time() ) . ' ( 24 Hours Format ) ',
+						'custom_inspection_time_format'	=>	__('Custom','epl')
+
+					)
+				),
+				array(
+					'name'	=>	'custom_inspection_time_format',
+					'label'	=>	__('Custom Time Format', 'epl'),
+					'type'	=>	'text'
+				),
+			)
+		),
+		
+		array(
 			'label'		=>	__('Advanced Settings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'advanced',
@@ -1488,3 +1533,184 @@ function epl_session_end() {
 }
 add_action('wp_logout', 'epl_session_end');
 add_action('wp_login', 'epl_session_end');
+
+/**
+ * Get Sales Count By Date
+ *
+ * @since 2.4
+ * @param int $day Day number
+ * @param int $month_num Month number
+ * @param int $year Year
+ * @param int $hour Hour
+ * @return int $count Sales
+ */
+function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $hour = null, $status=null ) {
+	
+	$post_type = isset($_GET['view']) ? $_GET['view'] : 'property';
+	$args = array(
+		'post_type'      => $post_type,
+		'nopaging'       => true,
+		'year'           => $year,
+		'fields'         => 'ids',
+		'post_status'    => array( 'publish' ),
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false
+	);
+
+	if( in_array($status, array('sold','leased') ) ) {
+		
+			$month_num  = is_null($month_num) ? 00 : $month_num;
+			$day 		= is_null($day) ? 00 : $day;
+			$year 		= is_null($year) ? 0000 : $year;
+			$range		= isset($_GET['range'])?$_GET['range']:'other';
+			
+			
+			
+			$args['meta_query'] = array(
+				array(
+					'key' 		=> 'property_status',
+					'value' 	=> (array) $status,
+					'compare' => 'IN',
+				),
+			);
+			
+			if( in_array($range, array('other','last_year','this_year','last_quarter','this_quarter') ) ) {
+		
+				$sold_key = $status == 'leased' ? 'property_date_available':'property_sold_date';
+				$sold_date_start  	= date('Y-m-01',strtotime($year.'-'.$month_num.'-'.$day));
+				$sold_date_end  	= date('Y-m-d',strtotime($year.'-'.$month_num.'-'.$day));
+				
+				$args['meta_query'][] = array(
+					'key' 		=> $sold_key,
+					'value' 	=> array($sold_date_start,$sold_date_end),
+					'type'		=>	'DATE',
+					'compare'	=>	'BETWEEN'
+				);
+				
+			} else {
+			
+				$sold_key = $status == 'leased' ? 'property_date_available':'property_sold_date';
+				$sold_date  = date('Y-m-d',strtotime($year.'-'.$month_num.'-'.$day));
+				
+				$args['meta_query'][] = array(
+					'key' 		=> $sold_key,
+					'value' 	=> $sold_date,
+					'type'		=>	'DATE',
+				);
+			
+			}
+	
+	} else {
+			
+			if ( ! empty( $month_num ) )
+				$args['monthnum'] = $month_num;
+
+			if ( ! empty( $day ) )
+				$args['day'] = $day;
+
+			if ( ! empty( $hour ) )
+				$args['hour'] = $hour;
+
+	
+	}
+
+
+	$args = apply_filters( 'epl_get_sales_by_date_args', $args  );
+
+	$key   = 'epl_stats_' . substr( md5( serialize( $args ) ), 0, 15 );
+	$count = get_transient( $key );
+	if( false === $count ) {
+		$sales = new WP_Query( $args );
+		$count = (int) $sales->post_count;
+		// Cache the results for one hour
+		set_transient( $key, $count, HOUR_IN_SECONDS );
+	}
+	
+	return $count;
+}
+
+/**
+ * Month Num To Name
+ *
+ * Takes a month number and returns the name three letter name of it.
+ *
+ * @since 2.4
+ *
+ * @param integer $n
+ * @return string Short month name
+ */
+function epl_month_num_to_name( $n ) {
+	$timestamp = mktime( 0, 0, 0, $n, 1, 2005 );
+
+	return date_i18n( "M", $timestamp );
+}
+
+/**
+ * Retrieve contacts from the database
+ *
+ * @access  public
+ * @since   2.4
+*/
+function get_contacts( $args = array() ) {
+
+	global $wpdb;
+
+	$defaults = array(
+		'post_type'		=>	'epl_contact',
+		'posts_per_page'       => 20,
+		'offset'       => 0,
+		'orderby'      => 'ID',
+		'order'        => 'DESC'
+	);
+
+	$args  = wp_parse_args( $args, $defaults );
+
+	if( $args['posts_per_page'] < 1 ) {
+		$args['number'] = -1;
+	}
+
+	$where = ' WHERE 1=1 ';
+
+	// specific contacts
+	if( ! empty( $args['ID'] ) ) {
+		$args['post__in']  = $args['ID'];
+		
+
+	}
+
+
+	//specific contacts by email
+	if( ! empty( $args['email'] ) ) {
+		
+		$email_query =  array(
+			'key'			=>	'contact_email',
+			'value'			=>	$args['email'],
+		);
+
+		if( is_array( $args['email'] ) ) {
+			$email_query['comparison'] = 'IN';
+			
+		}
+		$args['meta_query'][] = $email_query;
+	}
+
+	// specific contacts by name
+	if( ! empty( $args['name'] ) ) {
+		$args['post_title'] = $args['name'];
+	}
+
+	$cache_key = md5( 'epl_contacts_' . serialize( $args ) );
+
+	$contacts = wp_cache_get( $cache_key, 'contacts' );
+
+	$args['orderby'] = esc_sql( $args['orderby'] );
+	$args['order']   = esc_sql( $args['order'] );
+
+	if( $contacts === false ) {
+		$contacts = get_posts($args);
+		wp_cache_set( $cache_key, $contacts, 'contacts', 3600 );
+	}
+	return $contacts;
+
+}
+

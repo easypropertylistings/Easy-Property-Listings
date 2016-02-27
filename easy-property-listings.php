@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Easy Property Listings
  * Plugin URI: https://www.easypropertylistings.com.au/
- * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, lead generation and works with any theme!
+ * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au
  * Version: 2.4 (beta)
@@ -91,7 +91,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '2.3.1' );
+				define( 'EPL_PROPERTY_VER', '2.3.90' );
 			}
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -165,6 +165,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/register-settings.php';
 			$epl_settings = epl_get_settings();
 
+			require_once EPL_PATH_LIB . 'includes/actions.php';
 			require_once EPL_PATH_LIB . 'includes/functions.php';
 			require_once EPL_COMPATABILITY . 'functions-compat.php';
 			require_once EPL_COMPATABILITY . 'extensions.php';
@@ -220,10 +221,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 					}
 				}
 			}
+			require_once EPL_PATH_LIB . 'post-types/post-type-contact.php';
 
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-features.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-business_listings.php';
+			require_once EPL_PATH_LIB . 'taxonomies/tax-contact_tags.php';
 
 			require_once EPL_PATH_LIB . 'widgets/widget-functions.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-author.php';
@@ -235,9 +238,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
 			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
+			require_once EPL_PATH_LIB . 'includes/error-tracking.php';
+			
 			require_once EPL_PATH_LIB . 'includes/pagination.php';
-
-			if ( is_admin() ) {
+			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
+			
+			if ( is_admin() ) { 
 				require_once EPL_PATH_LIB . 'api/metaboxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
@@ -246,6 +252,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'menus/menus.php';
 				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
+				require_once EPL_PATH_LIB . 'contacts/contacts.php';
+				require_once EPL_PATH_LIB . 'contacts/contact-functions.php';
+				require_once EPL_PATH_LIB . 'contacts/contact-actions.php';
+				require_once EPL_PATH_LIB . 'reports/graphing.php';
+				require_once EPL_PATH_LIB . 'reports/reports.php';
+				require_once EPL_PATH_LIB . 'reports/class-epl-graph.php';
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
@@ -253,6 +265,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-contact-form.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
