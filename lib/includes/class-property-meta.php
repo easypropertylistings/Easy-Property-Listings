@@ -804,7 +804,10 @@ class EPL_Property_Meta {
                     case 'yes':
                         $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
                     break;
-                        
+					case 0:
+					case 'no':
+						$return = '';
+					break;
                     default:
                         $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'epl').' '.__($this->get_label_from_metakey($metakey), 'epl').'</li>';
                     break;

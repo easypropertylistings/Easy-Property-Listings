@@ -734,6 +734,8 @@ function epl_admin_sidebar () {
 							$checked = 'checked="checked"';
 						}
 					}
+					if(count($field['opts']) == 1)
+						$v = $field['label'];
 					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
 				}
 			}
@@ -1097,6 +1099,13 @@ function epl_admin_sidebar () {
 					'type'		=>	'select',
 					'opts'		=>	$opts_epl_features,
 					'default'	=>	2
+				),
+
+				array(
+					'name'		=>	'epl_video_width',
+					'label'		=>	__('Video width on single listings', 'epl'),
+					'type'		=>	'number',
+					'help'		=>	__('Width should be in pixels','epl')
 				)
 			)
 		),

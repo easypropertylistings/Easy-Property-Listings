@@ -76,7 +76,8 @@ function epl_format_amount( $amount, $decimals = false ) {
 	}
 	
 	$decimals  = apply_filters( 'epl_format_amount_decimals', $decimals ? 2 : 0, $amount );
-	$formatted = number_format( $amount, $decimals, $decimal_sep, $thousands_sep );
+	if( is_numeric($amount) )
+		$formatted = number_format( $amount, $decimals, $decimal_sep, $thousands_sep );
 
 	return apply_filters( 'epl_format_amount', $formatted, $amount, $decimals, $decimal_sep, $thousands_sep );
 }

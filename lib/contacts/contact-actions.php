@@ -520,13 +520,32 @@ add_action('wp_ajax_contact_category_update','contact_category_update');
  * @return bool true if updated
  */
 	function contact_tag_add() {
-		if( (int) $_POST['contact_id'] > 0 && trim($_POST['term_id']) != '' ) {
+
+		if( ( trim($_POST['term_id']) != '' ) ) {
+
 			if( is_numeric($_POST['term_id']) ) {
 				$_POST['term_id'] = (int) $_POST['term_id'];
 			}
 
-			$terms = wp_set_object_terms( absint($_POST['contact_id']), $_POST['term_id'], 'contact_tag', true );
-			wp_die( current($terms) );
+			// update tag for a contact
+			if( (int) $_POST['contact_id'] > 0 ) {
+				$terms = wp_set_object_terms( absint($_POST['contact_id']), $_POST['term_id'], 'contact_tag', true );
+				wp_die( current($terms) );
+			} else {
+				// update the tag
+				if( $_POST['bg'])
+					epl_update_contact_tag_bgcolor($_POST['term_id'],$_POST['bg']);
+
+				if( $_POST['label'])
+					wp_update_term( $_POST['term_id'], 'contact_tag', array('name'	=>	$_POST['label']) );
+
+				if( $_POST['delete'])
+					wp_delete_term( $_POST['term_id'], 'contact_tag' );
+
+				wp_die(1);
+
+			}
+
 		}
 	}
 	add_action('wp_ajax_contact_tags_update','contact_tag_add');
@@ -1123,13 +1142,37 @@ function epl_contact_add_listing_form($contact) {
 }
 add_action('epl_contact_add_listing_form','epl_contact_add_listing_form');
 
-function epl_after_meta_field_property_owner($post,$value) {
+/**
+ * Displays Contact details in listing owner meta box
+ * @param $post
+ * @param $value
+ * @since 3.0
+ */
+function epl_before_meta_field_property_owner($post,$value) {
+	if(intval($value) == 0)
+		return;
+
 	$url = admin_url('admin.php?page=epl-contacts&view=overview&id='.$value);
+	$contact = new EPL_Contact($value);
 	echo '<tr class="form-field"><td>';
-	echo '<a class="epl-listing-contact-url" href="'.$url.'">'.__('View Contact').'</a>';
+	echo '
+			<div class="epl-listing-owner-details">
+				<div class="epl-listing-owner-grav">
+					'.get_avatar( $contact->email , apply_filters('epl_contact_gravatar_size',160) ).'
+				</div>
+				<div class="epl-listing-owner-mail">
+					'.$contact->get_emails().'
+				</div>
+				<div class="epl-listing-owner-heading">
+					'.$contact->heading.'
+				</div>
+				<a class="epl-listing-contact-url" href="'.$url.'">'.
+					__('View Contact').'
+				</a>
+			</div>';
 	echo '</td></tr>';
 }
-add_action('epl_after_meta_field_property_owner','epl_after_meta_field_property_owner',10,2);
+add_action('epl_before_meta_field_property_owner','epl_before_meta_field_property_owner',10,2);
 
 function epl_search_contact() {
 
