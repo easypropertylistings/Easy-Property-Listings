@@ -61,6 +61,7 @@ function epl_contacts_list() {
 	<div class="wrap">
 		<h2><?php _e( 'Contacts', 'epl' ); ?>
 			<a class="add-new-h2" href="<?php echo admin_url('admin.php?page=epl-contacts&view=new-contact'); ?>"><?php _e('Add New','epl'); ?></a>
+			<a class="add-new-h2 epl-contact-tags-page" href="<?php echo admin_url('admin.php?page=epl-contacts&view=all_tags'); ?>"><?php _e('Tags','epl'); ?></a>
 		</h2>
 		<?php do_action( 'epl_contacts_table_top' ); ?>
 		<form id="epl-contacts-filter" method="get" action="<?php echo admin_url( 'admin.php?page=epl-contacts' ); ?>">
@@ -94,11 +95,11 @@ function epl_render_contact_view( $view, $callbacks ) {
 		epl_set_error( 'epl-no-access', __( 'You are not permitted to view this data.', 'epl' ) );
 		$render = false;
 	}
-	if($view == 'new-contact') {
+	if($view == 'new-contact' || $view == 'all_tags') {
 		$callbacks[$view]();
 		return;
 	}
-	
+
 	if ( ! isset( $_GET['id'] ) || ! is_numeric( $_GET['id'] ) ) {
 		epl_set_error( 'epl-invalid_contact', __( 'Invalid Contact ID Provided.', 'epl' ) );
 		$render = false;
@@ -156,7 +157,10 @@ function epl_render_contact_view( $view, $callbacks ) {
 
 }
 
-/**
+function epl_all_tags_view() {
+	include_once('contact-tags-ui.php');
+}
+ /**
  * Create a contact
  *
  * @since  2.4

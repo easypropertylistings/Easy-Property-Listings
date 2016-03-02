@@ -86,13 +86,6 @@ function epl_admin_menu() {
 
 
 	// Editor level and above can see these options
-	$page_title	= __('Contact Tags', 'epl');
-	$menu_title	= __('Contact Tags', 'epl');
-	$capability	= 'edit_published_posts';
-	$menu_slug	= 'edit-tags.php?taxonomy=contact_tag';
-	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug);
-	
-	// Editor level and above can see these options
 	$page_title	= __('Reports', 'epl');
 	$menu_title	= __('Reports', 'epl');
 	$capability	= 'edit_published_posts';

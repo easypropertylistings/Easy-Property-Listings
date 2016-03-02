@@ -635,7 +635,7 @@ function epl_property_category() {
 }
 
 function epl_get_video_html($property_video_url='',$width=600) {
-
+	$width = epl_get_option('epl_video_width',$width);
 	if($property_video_url != '') {
 		$videoID = epl_get_youtube_id_from_url($property_video_url);
 		$video_html =  '<div class="epl-video-container videoContainer">';
@@ -714,6 +714,7 @@ function epl_property_tab_section() {
 		'property_outdoor_entertaining',
 		'property_shed',
 		'property_open_fire_place',
+		'property_ducted_heating',
 		'property_ducted_cooling',
 		'property_split_system_heating',
 		'property_hydronic_heating',
@@ -916,6 +917,24 @@ function epl_sorting_options() {
 			'label'	=>	__('Status : Sold/Leased First','epl'),
 			'type'	=>	'meta',
 			'key'	=>	'property_status',
+			'order'	=>	'DESC',
+			'orderby'	=>	'meta_value',
+
+		),
+		array(
+			'id'	=>	'location_asc',
+			'label'	=>	epl_labels('label_suburb'). __(' A-Z'),
+			'type'	=>	'meta',
+			'key'	=>	'property_address_suburb',
+			'order'	=>	'ASC',
+			'orderby'	=>	'meta_value',
+
+		),
+		array(
+			'id'	=>	'location_desc',
+			'label'	=>	epl_labels('label_suburb'). __(' Z-A'),
+			'type'	=>	'meta',
+			'key'	=>	'property_address_suburb',
 			'order'	=>	'DESC',
 			'orderby'	=>	'meta_value',
 

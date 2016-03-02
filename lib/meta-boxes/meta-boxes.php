@@ -140,12 +140,13 @@ function epl_meta_box_init() {
 							'name'		=>	'property_second_agent',
 							'label'		=>	__('Second Listing Agent', 'epl'),
 							'type'		=>	'text',
-							'maxlength'	=>	'40'
+							'maxlength'	=>	'40',
+                            'help'      =>  __('type in input box to search agent ...','epl')
 						),
 
 						array(
 							'name'		=>	'property_agent_hide_author_box',
-							'label'		=>	'',
+							'label'		=>	__('Hide Author Box', 'epl'),
 							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Hide Author Box', 'epl'),
@@ -1609,9 +1610,12 @@ function epl_meta_box_init() {
 										}
 										?>
 										<tr class="form-field">
+
+											<?php if($field['type'] != 'checkbox_single' && count($field['opts']) != 1  ): ?>
 											<th valign="top" scope="row">
 												<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
 											</th>
+                                            <?php endif; ?>
 										
 											<?php if($group['columns'] > 1) { ?>
 												</tr><tr class="form-field">
