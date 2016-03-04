@@ -672,7 +672,7 @@ class EPL_Contact {
 			ob_start();
 			foreach($emails as $mail_name	=>	$mail_value) {
 				$label = ucwords(str_replace('_',' ',$mail_name)); ?>
-				<span class="contact-email info-item editable" data-key="email">
+				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-email epl-contact-icons"></span>
 				<?php echo $label .' - '.$mail_value; ?>
 				</span> <?php
@@ -691,7 +691,7 @@ class EPL_Contact {
 			ob_start();
 			foreach($emails as $mail_name	=>	$mail_value) {
 				$label = ucwords(str_replace('_',' ',$mail_name)); ?>
-				<span class="contact-email info-item editable" data-key="email">
+				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-phone epl-contact-icons"></span>
 					<?php echo $label .' - '.$mail_value; ?>
 				</span> <?php

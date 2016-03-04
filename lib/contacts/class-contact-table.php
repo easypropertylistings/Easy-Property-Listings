@@ -159,7 +159,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 	public function column_summary($item) {
 		ob_start(); ?>
-			<div class="contact-assigned-tags-wrap epl-contact-list-table-tags">
+			<div class="epl-contact-assigned-tags-wrap epl-contact-list-table-tags">
 				<h4><?php echo $item['heading']; ?> </h4>
 				<ul class="contact-assigned-tags">
 					<?php

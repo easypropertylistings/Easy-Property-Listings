@@ -577,7 +577,7 @@ function epl_contact_action_menus($contact) { ?>
 				<span class="dashicons dashicons-flag"></span>
 				<b class="caret"></b>
 			</a>
-			<ul class="contact_category_suggestions">
+			<ul class="epl-contact_category_suggestions">
 				<?php
 
 					$cats = apply_filters('epl_contact_categories',array(
@@ -600,9 +600,9 @@ function epl_contact_action_menus($contact) { ?>
 				<span class="dashicons dashicons-tag"></span>
 				<b class="caret"></b>
 			</a>
-			<div class="contact-tags-find">
+			<div class="epl-contact-tags-find">
 				<input type="text" id="contact-tag-hint" value=""/>
-				<ul class="contact_tags_suggestions">
+				<ul class="epl-contact_tags_suggestions">
 					<?php
 						$contact_tags = get_terms('contact_tag',array( 'hide_empty' =>  false));
 						if( !empty($contact_tags) ) {
@@ -644,7 +644,7 @@ add_action('epl_contact_action_menus','epl_contact_action_menus');
  * renders contact header
  */
 function epl_contact_entry_header($contact) { ?>
-	<div class="contact-entry-header">
+	<div class="epl-contact-entry-header">
 		<h1 class="epl-contact-title">
 			<?php
 				echo $contact->name;
@@ -661,7 +661,7 @@ function epl_contact_entry_header($contact) { ?>
 add_action('epl_contact_entry_header','epl_contact_entry_header');
 
 function epl_contact_entry_header_editable($contact) { ?>
-	<div class="contact-entry-header">
+	<div class="epl-contact-entry-header">
 		<input class="epl-contact-title-editable" type="text" name="post_title" value="<?php echo $contact->heading; ?>"/>
 		<span>
 			<?php
@@ -679,7 +679,7 @@ add_action('epl_contact_entry_header_editable','epl_contact_entry_header_editabl
  * renders contact header
  */
 function epl_contact_assigned_tags($contact) { ?>
-	<div class="contact-assigned-tags-wrap">
+	<div class="epl-contact-assigned-tags-wrap">
 		<ul class="contact-assigned-tags">
 			<?php
 				$contact_tags = wp_get_object_terms( $contact->id,  'contact_tag' );
@@ -687,7 +687,7 @@ function epl_contact_assigned_tags($contact) { ?>
 					if ( ! is_wp_error( $contact_tags ) ) {
 						foreach( $contact_tags as $term ) {
 							$bgcolor = epl_get_contact_tag_bgcolor( $term->term_id);
-							echo '<li data-id="'.$term->term_id.'" id="contact-tag-'.$term->term_id.'" style="background:'.$bgcolor.'">' . esc_html( $term->name ) . '<span class="dashicons dashicons-no contact-tag-del"></span></li>';
+							echo '<li data-id="'.$term->term_id.'" id="contact-tag-'.$term->term_id.'" style="background:'.$bgcolor.'">' . esc_html( $term->name ) . '<span class="dashicons dashicons-no epl-contact-tag-del"></span></li>';
 						}
 					}
 				}
@@ -743,7 +743,7 @@ add_action('epl_contact_social_icons','epl_contact_social_icons');
 
 function epl_contact_contact_details($contact) { ?>
 
-	<span class="contact-name info-item editable">
+	<span class="epl-contact-name epl-info-item editable">
 		<span data-key="name">
 			<?php echo $contact->get_meta('contact_first_name').' '.$contact->get_meta('contact_last_name'); ?>
 		</span>
@@ -753,16 +753,16 @@ function epl_contact_contact_details($contact) { ?>
 	<?php echo $contact->get_phones();?>
 
 	<?php if( $contact->get_meta('contact_website') != '' ) :?>
-		<span class="contact_website info-item editable" data-key="website">
+		<span class="contact_website epl-info-item editable" data-key="website">
 			<span class="dashicons dashicons-admin-links epl-contact-icons"></span>
 			<?php echo $contact->get_meta('contact_website'); ?>
 		</span>
 	<?php endif; ?>
-	<span class="contact_website info-item editable" data-key="address">
+	<span class="contact_website epl-info-item editable" data-key="address">
 		<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
 		<?php echo $contact->epl_contact_get_address(); ?>
 	</span>
-	<span class="contact-since info-item">
+	<span class="contact-since epl-info-item">
 		<span class="dashicons dashicons-clock epl-contact-icons"></span>
 		<?php _e( 'Contact since', 'epl' ); ?>
 		<?php echo date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ) ?>
@@ -983,24 +983,24 @@ function epl_contact_add_activity_form($contact) {
 			'help'		=>	__('' , 'epl') . '<hr/>',
 			'fields'	=>	array(
 				array(
-					'name'		=>	'contact_activity_content',
-					'class'		=>	'contact-note-input',
+					'name'		=>	'epl_contact_activity_content',
+					'class'		=>	'epl-contact-note-input',
 					'type'		=>	'textarea',
 				),
 				array(
-					'name'		=>	'contact_activity_type',
-					'class'		=>	'contact-note-select',
+					'name'		=>	'epl_contact_activity_type',
+					'class'		=>	'epl-contact-note-select',
 					'type'		=>	'select',
 					'opts'	    =>	$contact->get_activity_types()
 				),
 				array(
-					'name'		=>	'contact_activity_listing',
-					'class'		=>	'contact-note-select',
+					'name'		=>	'epl_contact_activity_listing',
+					'class'		=>	'epl-contact-note-select',
 					'type'		=>	'select',
 					'opts'	    =>	$listings_opts
 				),
 				array(
-					'name'		=>	'contact_activity_submit',
+					'name'		=>	'epl_contact_activity_submit',
 					'value'		=>	__('Add','epl'),
 					'class'     =>  'button button-primary',
 					'type'		=>	'submit',
@@ -1103,7 +1103,7 @@ function epl_contact_add_listing_form($contact) {
 					'name'		=>	'post_type',
 					'label'		=>	__('Property Type','epl'),
 					'type'		=>	'select',
-					'class'     =>  'contact-note-select',
+					'class'     =>  'epl-contact-note-select',
 					'opts'      =>  $listing_types,
 					'maxlength'	=>	'200',
 				),
@@ -1111,7 +1111,7 @@ function epl_contact_add_listing_form($contact) {
 					'name'		=>	'property_status',
 					'label'		=>	__('Listing Status','epl'),
 					'type'		=>	'select',
-					'class'     =>  'contact-note-select',
+					'class'     =>  'epl-contact-note-select',
 					'opts'      => apply_filters('epl_contact_property_status', array(
 						'current' 		=>  __('Current','epl'),
 						'sold'       	=>  __('Sold','epl'),
@@ -1285,20 +1285,20 @@ function epl_contact_save_note_note_tab( $args ) {
 	if ( ! empty( $note_object ) && ! empty( $contact->id ) ) {
 		ob_start();
 		?>
-		<div class="contact-note-wrapper dashboard-comment-wrap comment-item epl-admin-note">
-			<span class="note-content-meta">
-				<span class="note-for-listing">
+		<div class="epl-contact-note-wrapper dashboard-comment-wrap comment-item epl-admin-note">
+			<span class="epl-note-content-meta">
+				<span class="epl-note-for-listing">
 					<?php
 					echo isset($note_object->comment_post_ID) ? get_the_title($note_object->comment_post_ID) : '';
 					?>
 				 </span>
-				 <span class="note-time">
+				 <span class="epl-note-time">
 					<?php
 					echo date_i18n( get_option( 'date_format' ), strtotime( $note_object->comment_date ) );
 					?>
 				 </span>
 			</span>
-			<span class="note-content-wrap">
+			<span class="epl-note-content-wrap">
 				<?php echo stripslashes( $note_object->comment_content ); ?>
 			</span>
 		</div>
