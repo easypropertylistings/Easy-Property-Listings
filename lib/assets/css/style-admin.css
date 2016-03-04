@@ -901,13 +901,13 @@ h3.epl-welcome-sub-heading {
 	webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 }
-#epl-item-card-wrapper .contact-section { border-bottom: 1px solid #eee; margin-bottom: 10px; overflow: auto; }
-#epl-item-card-wrapper .contact-section table { margin-bottom: 20px; }
+#epl-item-card-wrapper .epl-contact-section { border-bottom: 1px solid #eee; margin-bottom: 10px; overflow: auto; }
+#epl-item-card-wrapper .epl-contact-section table { margin-bottom: 20px; }
 #epl-item-card-wrapper > div { padding: 0px 20px; border-bottom: 2px solid #f1f1f1;}
 #epl-item-card-wrapper > div:first-child {  }
 #epl-item-card-wrapper > div:last-child { padding-bottom: 20px; border: none; }
 #epl-item-card-wrapper .avatar-wrap { padding-right: 10px; text-align: center; }
-#epl-item-card-wrapper .contact-id { font-size: 24px; font-weight: 600; }
+#epl-item-card-wrapper .epl-contact-id { font-size: 24px; font-weight: 600; }
  .epl-contact-bg-info-wrap h4 {
 	 border-bottom: 2px solid #ddd;
 	 display: inline-block;
@@ -919,7 +919,7 @@ h3.epl-welcome-sub-heading {
 	 text-align: center;
 	 text-transform: capitalize;
  }
- .contact-id.right > a {
+ .epl-contact-id.right > a {
      text-decoration: none;
  }
 #epl-item-card-wrapper .contact-main-wrapper input { width: 200px; }
@@ -1308,6 +1308,10 @@ label.contact-select-label:before {
      opacity : 1;
  }
  .contact-assigned-tags-wrap {
+ }
+ .epl-contact-list-table-tags h4 {
+	 margin-bottom: 0.5em;
+	 margin-top: 0;
  }
  .contact_tags_suggestions > li {
      border-radius: 25px;

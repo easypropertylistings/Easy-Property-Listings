@@ -726,11 +726,13 @@ function epl_admin_sidebar () {
 			break;
 			
 		case 'checkbox_single':
+
 			if(!empty($field['opts'])) {
 				foreach($field['opts'] as $k=>$v) {
 					$checked = '';
 					if(!empty($val)) {
-						if( $k == $val ) {
+						$checkbox_single_options = apply_filters('epl_checkbox_single_check_options', array(1,'yes',true));
+						if( $k == $val || in_array($k,$checkbox_single_options) ) {
 							$checked = 'checked="checked"';
 						}
 					}

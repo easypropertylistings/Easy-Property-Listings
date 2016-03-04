@@ -187,6 +187,10 @@ function epl_plugin_updates() {
 		include( EPL_PATH_UPDATES.'epl-2.2.php' );
 		update_option( 'epl_version' ,'2.2');
 	}
+	if ( version_compare( $current_version, '3.0', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-3.0.php' );
+		update_option( 'epl_version' ,'30');
+	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
 

@@ -188,7 +188,7 @@ function epl_new_contact_view() { ?>
 
 		<div id="epl-item-card-wrapper" class="epl-contact-card-wrapper" style="float: left">
 		
-				<div class="info-wrapper contact-section">
+				<div class="info-wrapper epl-contact-section">
 					<?php
 					
 						$args = array(
@@ -285,14 +285,14 @@ function epl_contacts_view( $contact ) {
 	<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
 
 
-	<div class="info-wrapper contact-section epl-contact-single-display">
+	<div class="info-wrapper epl-contact-section epl-contact-single-display">
 		<input type="hidden" id="epl_contact_id" value="<?php echo $contact->id; ?>"/>
 
 			<div class="epl-item-info contact-info">
 
 				<?php do_action('epl_contact_avatar',$contact); ?>
 
-				<div class="contact-id right">
+				<div class="epl-contact-id right">
 					<?php do_action('epl_contact_social_icons',$contact); ?>
 				</div>
 
@@ -310,7 +310,7 @@ function epl_contacts_view( $contact ) {
 
 	<?php do_action( 'epl_contact_background_info', $contact ); ?>
 
-	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper contact-section">
+	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper epl-contact-section">
 
 		<?php do_action( 'epl_contact_before_tables', $contact ); ?>
 
@@ -356,7 +356,7 @@ function epl_contact_meta_view($contact) {
 		<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
 
 
-		<div class="info-wrapper contact-section">
+		<div class="info-wrapper epl-contact-section">
 
 			<div class="epl-item-info contact-info">
 
@@ -672,7 +672,7 @@ function epl_contact_notes_view( $contact ) {
 			<form id="epl-add-contact-note" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=notes&id=' . $contact->id ); ?>">
 				<textarea id="contact-note" name="contact_note" class="contact-note-input" rows="10"></textarea>
 				<br />
-				<input type="hidden" id="contact-id" name="contact_id" value="<?php echo $contact->id; ?>" />
+				<input type="hidden" id="epl-contact-id" name="contact_id" value="<?php echo $contact->id; ?>" />
 				<input type="hidden" name="epl_action" value="add-contact-note" />
 				<br />
 				<label class ="contact-select-label" > 
@@ -759,7 +759,7 @@ function epl_contacts_delete_view( $contact ) {
 
 	<?php do_action( 'epl_contact_delete_top', $contact ); ?>
 
-	<div class="info-wrapper contact-section">
+	<div class="info-wrapper epl-contact-section">
 
 		<form id="delete-contact" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $contact->id ); ?>">
 
@@ -818,14 +818,14 @@ function epl_contacts_listing_view( $contact ) {
 	<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
 
 
-	<div class="info-wrapper contact-section epl-contact-single-display">
+	<div class="info-wrapper epl-contact-section epl-contact-single-display">
 		<input type="hidden" id="epl_contact_id" value="<?php echo $contact->id; ?>"/>
 
 		<div class="epl-item-info contact-info">
 
 			<?php do_action('epl_contact_avatar',$contact); ?>
 
-			<div class="contact-id right">
+			<div class="epl-contact-id right">
 				<?php do_action('epl_contact_social_icons',$contact); ?>
 			</div>
 
@@ -844,7 +844,7 @@ function epl_contacts_listing_view( $contact ) {
 
 	<?php //do_action( 'epl_contact_background_info', $contact ); ?>
 
-	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper contact-section">
+	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper epl-contact-section">
 
 		<?php do_action( 'epl_contact_before_tables', $contact ); ?>
 
