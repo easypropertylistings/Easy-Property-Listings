@@ -353,7 +353,11 @@ class EPL_Property_Meta {
 			// Sale or Both
 			$price_plain_value = '';
 			if ( $this->get_property_meta('property_com_listing_type') == 'sale' || $this->get_property_meta('property_com_listing_type') == 'both' ) {
-				if ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
+
+				if ( $this->get_property_meta('property_com_authority') == 'auction' ) {	// Auction
+					$price_plain_value = '<span class="page-price auction">' . __( 'Auction' , 'epl') . ' ' . $this->get_property_auction() . '</span>';
+				}
+				elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 					$price_plain_value = apply_filters( 'epl_commercial_for_sale_label' , __('For Sale', 'epl') ).': '. $this->get_property_price_display() . $this->get_property_tax();
 				} else {
 					if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
@@ -444,8 +448,6 @@ class EPL_Property_Meta {
 			$price = '';
 			if ( $this->get_property_meta('property_com_listing_type') == 'sale' || $this->get_property_meta('property_com_listing_type') == 'both' ) {
 
-
-				// Commercial Auction
 				if ( $this->get_property_meta('property_com_authority') == 'auction' ) {	// Auction
 					$price = '<span class="page-price auction">' . __( 'Auction' , 'epl') . ' ' . $this->get_property_auction() . '</span>';
 				} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
