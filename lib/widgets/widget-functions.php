@@ -168,7 +168,7 @@
 	 */
 	function epl_search_widget_fields_frontend($post_type='',$property_status='') {
 
-		if( $post_type == 'rental' || $post_type == 'holiday_rental' ) {
+		if( in_array($post_type,apply_filters('epl_core_rental_post_types', array('rental','holiday_rental') )) ) {
 
 			$price_array 	= array_combine(range(50,5000,50),array_map('epl_currency_formatted_amount',range(50,5000,50)) );
 			$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array);

@@ -19,22 +19,11 @@ function epl_add_dashboard_widgets() {
 	);
 
 	wp_add_dashboard_widget(
-		'epl_dashboard_future_listings',
-		__( 'Future Listings' , 'epl' ),
-		'epl_dashboard_future_listings'
-	);
-
-	wp_add_dashboard_widget(
-		'epl_dashboard_recent_listings',
-		__( 'Recently Published Listings' , 'epl' ),
-		'epl_dashboard_recent_listings'
-	);
-
-	wp_add_dashboard_widget(
-		'epl_activity_feed',
+		'epl_dashboard_activity_widget',
 		__( 'Easy Property Listings Activities' , 'epl' ),
-		'epl_dashboard_activity_feed'
+		'epl_dashboard_activity_widget'
 	);
+
 }
 add_action( 'wp_dashboard_setup', 'epl_add_dashboard_widgets' );
 
@@ -158,7 +147,7 @@ function epl_posts_highlights($type) {
 	}
 }
 
-function epl_dashboard_future_listings() {
+function epl_dashboard_activity_widget() {
 
 	echo '<div id="epl_dashboard_future_listings">';
 
@@ -173,8 +162,6 @@ function epl_dashboard_future_listings() {
 
 
 	echo '</div>';
-}
-function epl_dashboard_recent_listings() {
 
 	echo '<div id="epl_dashboard_recent_listings">';
 
@@ -189,21 +176,19 @@ function epl_dashboard_recent_listings() {
 
 
 	echo '</div>';
-}
-function epl_dashboard_activity_feed() {
 
-		echo '<div id="activity-widget">';
+	echo '<div id="activity-widget">';
 
-		$recent_comments = epl_dashboard_recent_comments();
+	$recent_comments = epl_dashboard_recent_comments();
 
-		if ( !$recent_comments ) {
-			echo '<div class="no-activity">';
-			echo '<p class="smiley"></p>';
-			echo '<p>' . __( 'No activity yet!' ) . '</p>';
-			echo '</div>';
-		}
-
+	if ( !$recent_comments ) {
+		echo '<div class="no-activity">';
+		echo '<p class="smiley"></p>';
+		echo '<p>' . __( 'No activity yet!' ) . '</p>';
 		echo '</div>';
+	}
+
+	echo '</div>';
 }
 
 /**
@@ -243,7 +228,7 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 
 	if ( $comments ) {
 		echo '<div id="latest-comments" class="activity-block epl-activity-block epl-feed-block">';
-		//echo '<h3>' . __( 'Comments' ) . '</h3>';
+		echo '<h3>' . __( 'Comments' ) . '</h3>';
 
 		echo '<div id="the-comment-list" data-wp-lists="list:comment">';
 		foreach ( $comments as $comment )
@@ -295,7 +280,7 @@ function epl_dashboard_recent_posts( $args ) {
 
 		echo '<div id="' . $args['id'] . '" class="epl-activity-block activity-block">';
 
-		//echo '<h3>' . $args['title'] . '</h3>';
+		echo '<h3>' . $args['title'] . '</h3>';
 
 		echo '<ul>';
 
