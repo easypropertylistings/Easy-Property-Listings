@@ -321,6 +321,24 @@ function epl_manage_listing_column_price_callback() {
 
 	}
 
+	/* Commercial Listing Lease Type Price */
+	if ( 'commercial' == $post->post_type && $property->get_property_meta('property_com_listing_type') == 'lease' ) {
+
+		// property_com_listing_type
+		// property_com_rent
+		// property_com_rent_period
+		// property_com_rent_range_min
+		// property_com_rent_range_max
+
+		$price 			= $property->get_property_meta('property_com_rent');
+
+		$max_price 		= '2000';
+		if(isset($epl_settings['epl_max_graph_rent_price' ])) {
+			$max_price = (int) $epl_settings['epl_max_graph_rent_price' ];
+		}
+
+	}
+
 	if ( $property_status == 'Sold' ) {
 		$class = 'bar-home-sold';
 	}

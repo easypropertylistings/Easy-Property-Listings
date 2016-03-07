@@ -10,10 +10,10 @@ class EPL_Property_Meta {
 
 	 public function __construct($post) {
 
-        $this->post 				= $post;
+        $this->post 			= $post;
         $this->epl_settings 		= epl_settings();
-        $this->meta 				= get_post_custom();
-        $this->post_type 			= $this->post->post_type;
+        $this->meta 			= get_post_custom();
+        $this->post_type 		= $this->post->post_type;
         $this->property_post_type	= $this->post->post_type;
 
         $this->epl_labels();
@@ -439,7 +439,7 @@ class EPL_Property_Meta {
 
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type) {
 			$rent_lease_type =
-				$this->get_property_meta('property_com_rent_period') != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta('property_com_rent_period') ) : 'P.A.';
+				$this->get_property_meta('property_com_rent_period') != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta('property_com_rent_period') ) : __('P.A.' , 'epl');
 			// Sale or both
 			$price = '';
 			if ( $this->get_property_meta('property_com_listing_type') == 'sale' || $this->get_property_meta('property_com_listing_type') == 'both' ) {
