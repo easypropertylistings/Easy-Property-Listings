@@ -978,7 +978,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_sold_price',
 							'label'		=>	__('Sale Price', 'epl'),
-							'type'		=>	'number',
+							'type'		=>	apply_filters('epl_price_number_format','decimal'),
 							'maxlength'	=>	'50'
 						),
 
@@ -1017,7 +1017,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_rent',
 							'label'		=>	__('Rent Amount', 'epl'),
-							'type'		=>	apply_filters('epl_price_number_format','number'),
+							'type'		=>	apply_filters('epl_price_number_format','decimal'),
 							'maxlength'	=>	'40'
 						),
 
@@ -1047,7 +1047,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_bond',
 							'label'		=>	epl_labels('label_bond'),
-							'type'		=>	'number',
+							'type'		=>	apply_filters('epl_bond_number_format','decimal'),
 							'maxlength'	=>	'40'
 						),
 
