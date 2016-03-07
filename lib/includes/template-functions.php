@@ -637,11 +637,10 @@ function epl_property_category() {
 function epl_get_video_html($property_video_url='',$width=600) {
 	$width = epl_get_option('epl_video_width',$width);
 	if($property_video_url != '') {
-		$videoID = epl_get_youtube_id_from_url($property_video_url);
 		$video_html =  '<div class="epl-video-container videoContainer">';
 
 			$video_html .=  wp_oembed_get(
-				('http://www.youtube.com/watch?v=' . $videoID ) ,
+				$property_video_url,
 				array( 'width' => apply_filters( 'epl_property_video_width', $width  ) )
 			);
 		$video_html .= '</div>';

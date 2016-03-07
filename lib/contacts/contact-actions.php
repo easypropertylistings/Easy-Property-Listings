@@ -489,7 +489,13 @@ function epl_new_contact( $args ) {
 	if ( empty( $contact->ID ) ) {
 		return false;
 	}
-	
+
+	if( $contact->contact_exists($args['email']) ) {
+		wp_die( __( 'A contact with this email already exists !', 'epl' ) );
+	}
+	$lo = $contact->contact_exists($args['email']);
+	epl_var_dump($lo);
+	die;
 	$contact->update($args);
 	
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
@@ -680,7 +686,7 @@ add_action('epl_contact_entry_header_editable','epl_contact_entry_header_editabl
  */
 function epl_contact_assigned_tags($contact) { ?>
 	<div class="epl-contact-assigned-tags-wrap">
-		<ul class="contact-assigned-tags">
+		<ul class="epl-contact-assigned-tags">
 			<?php
 				$contact_tags = wp_get_object_terms( $contact->id,  'contact_tag' );
 				if ( ! empty( $contact_tags ) ) {

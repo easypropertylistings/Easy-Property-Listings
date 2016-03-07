@@ -197,7 +197,6 @@ function epl_new_contact_view() { ?>
 							'post_title'	=>	__('Contact Name','epl')
 						);
 						$contact_id = wp_insert_post($args);
-						epl_var_dump($contact_id);
 						if($contact_id ):
 					
 
@@ -227,7 +226,7 @@ function epl_new_contact_view() { ?>
 													'label'		=>	__('Contact Email','epl'),
 													'type'		=>	'email',
 													'maxlength'	=>	'60',
-													'value'		=>	$contact->get_meta('lead_email')
+													'value'		=>	$contact->get_primary_email($contact->ID)
 												),
 			
 											) 

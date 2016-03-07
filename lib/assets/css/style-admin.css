@@ -446,6 +446,11 @@ h3.epl-welcome-sub-heading {
 	background:url(../images/refresh.png) no-repeat;
 	cursor:pointer;
 }
+ #epl_admin_map_canvas {
+	 height: 200px;
+	 margin: 10px 0;
+	 width: 96%;
+ }
 .epl-form-table .disabled {
 	opacity: 0.5;
 }
@@ -1145,10 +1150,10 @@ label.epl-contact-select-label:before {
 	 margin-left: 157px;
 	 width: 100%;
  }
- .epl-contact-new-num , .epl-contact-new-email {
-	 margin-left: 153px;
+ .epl-contact-new-num, .epl-contact-new-email {
+	 margin-left: 143px;
 	 padding: 5px 0;
-	 width: 99%;
+	 width: 96%;
  }
  .epl-contact-view-more {
 	 background: #fff none repeat scroll 0 0;
@@ -1304,7 +1309,7 @@ label.epl-contact-select-label:before {
  .epl-contact_tags_suggestions {
      border-top: 1px solid #eee;
  }
- .epl-contact_tags_suggestions > li:hover, .contact-assigned-tags > li:hover {
+ .epl-contact_tags_suggestions > li:hover, .epl-contact-assigned-tags > li:hover {
      opacity : 1;
  }
  .epl-contact-assigned-tags-wrap {
@@ -1323,7 +1328,7 @@ label.epl-contact-select-label:before {
      text-align: center;
      opacity : 0.8;
  }
- .contact-assigned-tags > li {
+ .epl-contact-assigned-tags > li {
      background: #43ac6d none repeat scroll 0 0;
      border-radius: 25px;
      color: #fbfbfb;

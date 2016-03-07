@@ -31,54 +31,62 @@ function epl_contact_capture_callback( $atts ) {
 	
 	ob_start();
 	$contact_form = new EPL_FORM_BUILDER( array('callback_action'	=>	'contact_capture_form') );
-	
-	$contact_form->add_fields(
+
+	$fields = array(
 		array(
-			array(
-				'label'	=>	__('Name','epl'),
-				'name'	=>	'epl_contact_name',
-				'id'	=>	'epl_contact_name',
-				'type'	=>	'text'
-			),
-			array(
-				'label'	=>	__('Email','epl'),
-				'name'	=>	'epl_contact_email',
-				'id'	=>	'epl_contact_email',
-				'type'	=>	'email'
-			),
-			array(
-				'label'	=>	__('Message','epl'),
-				'name'	=>	'epl_contact_note',
-				'id'	=>	'epl_contact_note',
-				'type'	=>	'textarea'
-			),
-			array(
-				'name'	=>	'epl_contact_listing_id',
-				'id'	=>	'epl_contact_listing_id',
-				'type'	=>	'hidden',
-				'value'	=>	$property->post->ID
-			),
-			array(
-				
-				'name'	=>	'epl_contact_submit',
-				'id'	=>	'epl_contact_submit',
-				'type'	=>	'submit',
-				'value'	=>	__('Subscribe','epl')
-			),
-			
-		)
+			'label'		=>	__('' , 'epl'),
+			'class'		=>	'col-1 epl-inner-div',
+			'id'		=>	'',
+			'help'		=>	__('' , 'epl') . '<hr/>',
+			'fields'	=>	array(
+					array(
+						'label'	=>	__('Name','epl'),
+						'name'	=>	'epl_contact_name',
+						'id'	=>	'epl_contact_name',
+						'type'	=>	'text'
+					),
+					array(
+						'label'	=>	__('Email','epl'),
+						'name'	=>	'epl_contact_email',
+						'id'	=>	'epl_contact_email',
+						'type'	=>	'email'
+					),
+					array(
+						'label'	=>	__('Message','epl'),
+						'name'	=>	'epl_contact_note',
+						'id'	=>	'epl_contact_note',
+						'type'	=>	'textarea'
+					),
+					array(
+						'name'	=>	'epl_contact_listing_id',
+						'id'	=>	'epl_contact_listing_id',
+						'type'	=>	'hidden',
+						'value'	=>	$property->post->ID
+					),
+					array(
+
+						'name'	=>	'epl_contact_submit',
+						'id'	=>	'epl_contact_submit',
+						'type'	=>	'submit',
+						'value'	=>	__('Subscribe','epl')
+					),
+
+			)
+		),
+
 	);
+	$contact_form->add_sections($fields);
+	echo '<div class="epl-contact-capture-form">';
 	$contact_form->render_form();
-	
-	
+	echo '</div>';
 	return ob_get_clean();
 }
 add_shortcode( 'contact_capture', 'epl_contact_capture_callback' );
 
 function contact_capture_form_callback($form_data,$request) {
-	
+
 	$contact = new EPL_contact( $request['epl_contact_email'] );
-	
+
 	if ( empty( $contact->id ) ) {
 	
 		$contact_data = array(
@@ -99,5 +107,5 @@ function contact_capture_form_callback($form_data,$request) {
 	
 
 }
-add_action('epl_form_builder_contact_capture_form','contact_capture_form_Callback',10,2);
+add_action('epl_form_builder_contact_capture_form','contact_capture_form_callback',10,2);
 

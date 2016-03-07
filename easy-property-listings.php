@@ -247,6 +247,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'api/metaboxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
+				require_once EPL_PATH_LIB . 'includes/admin-functions.php';
 				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
 				require_once EPL_PATH_LIB . 'menus/menus.php';

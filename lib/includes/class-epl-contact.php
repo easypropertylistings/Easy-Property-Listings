@@ -93,17 +93,19 @@ class EPL_Contact {
 	}
 	
 	/**
-	 * Get the email of contact
+	 * Get the primary email of contact / alias of get_primary_email
 	 */
 	function get_contact_email($id) {
-		return get_post_meta($id,'contact_email',true);
+		return $this->get_primary_email($id);
 	}
 	
 	/**
-	 * update the email of contact
+	 * update the primary email of contact
 	 */
 	function update_contact_email($id,$value) {
-		return update_post_meta($id,'contact_email',$value);
+		$emails = get_post_meta($id,'contact_emails',true);
+		$emails['email'] = $value;
+		return update_post_meta($id,'contact_emails',$emails);
 	}
 
 	/**
@@ -234,13 +236,25 @@ class EPL_Contact {
 						'post_status'	=>	'publish',
 						'meta_query'	=>	array(
 							array(
-								'key'	=>	'contact_email',
-								'value'	=>	$value
+								'key'	=>	'contact_emails',
+								'value'	=>	sprintf(':"%s";', $value),
+								'compare'	=>	'LIKE'
 							)
 						)
 					)
 				);
-				$contact  = $matched_contacts->post;
+				if( !empty($matched_contacts->posts) ) {
+
+					foreach($matched_contacts->posts as $matched_contact) {
+						$emails = get_post_meta($matched_contact->ID,'contact_emails',true);
+
+						if( isset($emails['email']) &&  $emails['email'] == $value) {
+							$contact = $matched_contacts->post;
+						}
+					}
+
+				}
+
 				break;
 			default:
 				return false;
@@ -343,13 +357,26 @@ class EPL_Contact {
 				'post_status'	=>	'publish',
 				'meta_query'	=>	array(
 					array(
-						'key'	=>	'contact_email',
-						'value'	=>	$email
+						'key'	=>	'contact_emails',
+						'value'	=>	sprintf(':"%s";', $email),
+						'compare'	=>	'LIKE'
 					)
 				)
 			)
 		);
-		return !empty($matched_contacts->post) ? $matched_contacts->post : false;
+		if( !empty($matched_contacts->posts) ) {
+
+			foreach($matched_contacts->posts as $matched_contact) {
+				$emails = get_post_meta($matched_contact->ID,'contact_emails',true);
+
+				if( isset($emails['email']) &&  $emails['email'] == $email) {
+					return $matched_contacts->post;
+				}
+			}
+
+		}
+
+		return false;
 	}
 
 	/**
@@ -665,6 +692,10 @@ class EPL_Contact {
 		return apply_filters('epl_contact_formatted_address',$addr);
 	}
 
+	function get_primary_email($id) {
+		$emails = get_post_meta($id,'contact_emails',true);
+		return isset($emails['email']) ? $emails['email'] : false ;
+	}
 	function get_emails() {
 
 		$emails = $this->get_meta('contact_emails');
