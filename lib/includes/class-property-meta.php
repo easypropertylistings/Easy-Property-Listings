@@ -443,7 +443,12 @@ class EPL_Property_Meta {
 			// Sale or both
 			$price = '';
 			if ( $this->get_property_meta('property_com_listing_type') == 'sale' || $this->get_property_meta('property_com_listing_type') == 'both' ) {
-				if ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
+
+
+				// Commercial Auction
+				if ( $this->get_property_meta('property_com_authority') == 'auction' ) {	// Auction
+					$price = '<span class="page-price auction">' . __( 'Auction' , 'epl') . ' ' . $this->get_property_auction() . '</span>';
+				} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 					$price = '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_sale_label' , __('For Sale', 'epl') ).'</span> '. $this->get_property_price_display() . $this->get_property_tax() . '</span>';
 				} else {
 					$price_plain_value = '';
@@ -621,7 +626,7 @@ class EPL_Property_Meta {
 
 	// property year built
 	public function get_property_year_built($returntype = 'i') {
-		if($this->get_property_meta('property_year_built') == '')
+		if( empty ( $this->get_property_meta('property_year_built') ) )
 			return;
 		$year_built['i'] = '<span title="'.__('Built', 'epl').'" class="icon year-built"><span class="icon-value">'. $this->get_property_meta('property_year_built') . '</span></span>';
 		$year_built['d'] = __('Built', 'epl') . ' ' . $this->get_property_meta('property_year_built') . ' ';
@@ -632,7 +637,7 @@ class EPL_Property_Meta {
 
 	// property bed
 	public function get_property_bed($returntype = 'i') {
-		if($this->get_property_meta('property_bedrooms') == '')
+		if( empty ( $this->get_property_meta('property_bedrooms') ) )
 			return;
 		$bed['i'] = '<span title="'.apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'epl') ).'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>';
 		$bed['d'] = $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bedrooms_label',__('bed', 'epl') ).' ';
@@ -643,7 +648,7 @@ class EPL_Property_Meta {
 
 	// property bathrooms
 	public function get_property_bath($returntype = 'i') {
-		if($this->get_property_meta('property_bathrooms') == '')
+		if( empty ( $this->get_property_meta('property_bathrooms') ) )
 			return;
 		$bath['i'] = '<span title="'.apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'epl') ).'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>';
 		$bath['d'] = $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bathrooms_label',__('bath', 'epl') ).' ';
@@ -654,7 +659,7 @@ class EPL_Property_Meta {
 
 	// property rooms
 	public function get_property_rooms($returntype = 'i') {
-		if($this->get_property_meta('property_rooms') == '')
+		if( empty ( $this->get_property_meta('property_rooms') ) )
 			return;
 		$rooms['i'] = '<span title="'.apply_filters('epl_get_property_rooms_label',__('Rooms', 'epl') ).'" class="icon rooms"><span class="icon-value">'. $this->get_property_meta('property_rooms') . '</span></span>';
 		$rooms['d'] = $this->get_property_meta('property_rooms') . ' '.apply_filters('epl_get_property_rooms_label',__('rooms', 'epl') ).' ';
@@ -770,7 +775,7 @@ class EPL_Property_Meta {
 	public function get_property_building_area_value($returntype = 'i') {
 		$building_unit = $this->get_property_meta('property_building_area_unit');
 		if ( $building_unit == 'squareMeter' ) {
-			$building_unit = __('m²' , 'epl');
+			$building_unit = __('m&#178;' , 'epl');
 		} else {
 			// translation for building area unit
 			$building_unit = __($building_unit , 'epl');
