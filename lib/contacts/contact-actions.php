@@ -525,7 +525,7 @@ add_action('wp_ajax_contact_category_update','contact_category_update');
  * @since 2.4
  * @return bool true if updated
  */
-	function contact_tag_add() {
+	function epl_contact_tag_add() {
 
 		if( ( trim($_POST['term_id']) != '' ) ) {
 
@@ -554,7 +554,7 @@ add_action('wp_ajax_contact_category_update','contact_category_update');
 
 		}
 	}
-	add_action('wp_ajax_contact_tags_update','contact_tag_add');
+	add_action('wp_ajax_contact_tags_update','epl_contact_tag_add');
 
 /**
  * delete contact tags

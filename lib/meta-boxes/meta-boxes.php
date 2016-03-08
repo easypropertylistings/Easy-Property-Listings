@@ -894,7 +894,7 @@ function epl_meta_box_init() {
 							),
 							array(
 								'name'		=>	'property_address_hide_map',
-								'label'		=>	'',
+								'label'		=>	__('Hide Map', 'epl'),
 								'type'		=>	'checkbox_single',
 								'opts'		=>	array(
 									'yes'	=>	__('Hide Map', 'epl'),
@@ -1611,7 +1611,7 @@ function epl_meta_box_init() {
 										?>
 										<tr class="form-field">
 
-											<?php if($field['type'] != 'checkbox_single' && count($field['opts']) != 1  ): ?>
+											<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
 											<th valign="top" scope="row">
 												<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
 											</th>

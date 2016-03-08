@@ -729,7 +729,7 @@ function epl_admin_sidebar () {
 				foreach($field['opts'] as $k=>$v) {
 					$checked = '';
 					if(!empty($val)) {
-						$checkbox_single_options = apply_filters('epl_checkbox_single_check_options', array(1,'yes',true));
+						$checkbox_single_options = apply_filters('epl_checkbox_single_check_options', array(1,'yes','on',true));
 						if( $k == $val || in_array($k,$checkbox_single_options) ) {
 							$checked = 'checked="checked"';
 						}
@@ -858,11 +858,8 @@ function epl_admin_sidebar () {
 		if( $field['geocoder'] == 'true' ) {
 			echo '<span class="epl-geocoder-button"></span>';
 		}
-		
-		if( !empty($val) ) {
-			do_action('epl_admin_listing_map',stripslashes($val));
-			//echo '<iframe width="100%" height="200" frameborder="0" scrolling="no" src="//maps.google.com/?q='.stripslashes($val).'&output=embed&z=14" style="margin:5px 0 0 0;"></iframe>';
-		}
+
+		do_action('epl_admin_listing_map',stripslashes($val));
 	}
 	
 	if(isset($field['help'])) {
