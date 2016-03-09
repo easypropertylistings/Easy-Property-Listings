@@ -1196,6 +1196,7 @@ label.epl-contact-select-label:before {
      display: inline-block;
      font-size: 60px;
      text-decoration: none;
+     float:left;
  }
  .epl_contact_pagination_prev .dashicons.dashicons-arrow-left {
      float: left;
