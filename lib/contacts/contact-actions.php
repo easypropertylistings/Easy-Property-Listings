@@ -1238,17 +1238,23 @@ function epl_search_contact_listing() {
 add_action('wp_ajax_epl_search_contact_listing','epl_search_contact_listing');
 
 function epl_search_user() {
+	$users = get_users(
+				array(
+					'search'       =>  $_REQUEST['user_name']. '*',
+					'number'       =>  5
+				)
+			);
 
-	$users = get_users(  'search='.$_GET['user_name'].'&number=5' );
-	if( !empty($users) ) {
+	if( !empty($users) && !is_wp_error($users) ) {
+		ob_start();
 		echo '<ul class="epl-contact-user-suggestion">';
 		foreach( $users as  $user) {
-			echo '<li data-id="'.$user->ID.'">'.$user->display_name.'</li>';
+			echo '<li data-id="'.$user->ID.'">'.$user->data->display_name.'</li>';
 		}
 		echo '</ul>';
+		echo ob_get_clean();
 	}
-	wp_die();
-
+	exit;
 }
 add_action('wp_ajax_epl_search_user','epl_search_user');
 
