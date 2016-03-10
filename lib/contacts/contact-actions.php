@@ -493,9 +493,6 @@ function epl_new_contact( $args ) {
 	if( $contact->contact_exists($args['email']) ) {
 		wp_die( __( 'A contact with this email already exists !', 'epl' ) );
 	}
-	$lo = $contact->contact_exists($args['email']);
-	epl_var_dump($lo);
-	die;
 	$contact->update($args);
 	
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );

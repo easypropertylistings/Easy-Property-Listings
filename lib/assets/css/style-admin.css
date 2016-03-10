@@ -1103,7 +1103,7 @@ label.epl-contact-select-label:before {
  .epl_contact_quick_actions a {
      color: #808080;
      display: block;
-     padding: 3px;
+     padding: 10px 3px;
      text-decoration: none;
      width: 100%;
  }
@@ -1234,7 +1234,6 @@ label.epl-contact-select-label:before {
 
  .epl-contact_category_suggestions > li, .epl-contact-listing-suggestion > li, .epl-contact-user-suggestion > li , .epl-contact-owned-listing-suggestion > li, .epl-popup-box > li{
      cursor: pointer;
-     padding: 7px;
  }
 
  .epl-contact_category_suggestions > li:hover, .epl-contact-listing-suggestion > li:hover, .epl-contact-user-suggestion >li:hover, .epl-contact-owned-listing-suggestion > li:hover, .epl-popup-box > li:hover {
