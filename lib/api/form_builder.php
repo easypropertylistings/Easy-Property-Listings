@@ -77,7 +77,6 @@ class EPL_FORM_BUILDER {
 	* @return null
 	*/
 	function __destruct() {
-	
 		$this->callbacks();
 	}
 	
@@ -86,7 +85,7 @@ class EPL_FORM_BUILDER {
 	}
 	
 	function callbacks() {
-		
+
 		if( isset($_REQUEST[$this->prefix.'form_submit']) ) {
 
 			// hook to this action to save form data
@@ -472,11 +471,11 @@ class EPL_FORM_BUILDER {
 	*
 	*/
 	private function render_sections() {
-		
+
 		if( !empty($this->form_sections) ) {
 			foreach($this->form_sections as $section) {
 				$this->render_section($section);
-				
+
 			}
 		}
 	}
@@ -487,7 +486,7 @@ class EPL_FORM_BUILDER {
 	*
 	*/
 	private function render_section($section) { 
-	
+
 		$section_class 	= $this->prefix.'form_section '. isset($section['class']) ? $section['class'] : '';
 		$section_id 	= isset($section['id']) ? $section['id'] : '';
 		$section_label 	= isset($section['label']) ? $section['label'] : '';
@@ -544,7 +543,7 @@ class EPL_FORM_BUILDER {
 	*
 	*/
 	private function render_field($field) {
-	
+
 		$this->render_field_container_open();
 		$this->render_field_label($field);
 		

@@ -168,7 +168,7 @@
 	 */
 	function epl_search_widget_fields_frontend($post_type='',$property_status='') {
 
-		if( $post_type == 'rental' || $post_type == 'holiday_rental' ) {
+		if( in_array($post_type,apply_filters('epl_core_rental_post_types', array('rental','holiday_rental') )) ) {
 
 			$price_array 	= array_combine(range(50,5000,50),array_map('epl_currency_formatted_amount',range(50,5000,50)) );
 			$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array);
@@ -1048,3 +1048,85 @@ function epl_add_land_min_max_dropdown_field($fields) {
 }
 add_filter('epl_search_widget_fields_frontend','epl_add_land_min_max_dropdown_field');
 **/
+
+ /** EPL COntacts widget functions */
+
+  function epl_contact_capture_get_widget_fields() {
+	  global $property;
+	  $fields = array(
+		  array(
+			  'label'	        =>	__('Title','epl'),
+			  'name'	        =>	'epl_contact_name',
+			  'id'	            =>	'epl_contact_name',
+			  'type'	        =>	'text',
+			  'data-default'    =>  'on'
+		  ),
+		  array(
+			  'label'	        =>	__('Email','epl'),
+			  'name'	        =>	'epl_contact_email',
+			  'id'	            =>	'epl_contact_email',
+			  'type'	        =>	'email',
+			  'data-default'     =>  'on'
+		  ),
+		  array(
+			  'label'	        =>	__('Message','epl'),
+			  'name'	        =>	'epl_contact_note',
+			  'id'	            =>	'epl_contact_note',
+			  'type'	        =>	'textarea',
+			  'data-default'     =>  'on'
+		  ),
+		  array(
+			  'name'	        =>	'epl_contact_listing_id',
+			  'id'	            =>	'epl_contact_listing_id',
+			  'type'	        =>	'hidden',
+			  'value'	        =>	$property->post->ID,
+			  'data-default'     =>  'on'
+		  ),
+		  array(
+
+			  'name'	        =>	'epl_contact_submit',
+			  'id'	            =>	'epl_contact_submit',
+			  'type'	        =>	'submit',
+			  'value'	        =>	__('Subscribe','epl'),
+			  'data-default'     =>  'on'
+		  ),
+
+	  );
+
+	  return apply_filters('epl_contact_capture_get_widget_fields',$fields);
+  }
+
+
+	function epl_contact_capture_get_widget_defaults() {
+		$fields = epl_contact_capture_widget_form_fields();
+		$defaults = array();
+		foreach($fields as $field) {
+			$defaults[$field['key']] = (isset($field['default']) && $field['default'] == 'off') ? 'off' : 'on';
+		}
+
+		return apply_filters('epl_contact_capture_get_widget_defaults',$defaults);
+	}
+
+	function epl_contact_capture_widget_form_fields() {
+		$fields = array(
+			array(
+				'label'	        =>	__('Title','epl'),
+				'key'	        =>	'epl_contact_name',
+				'type'	        =>	'checkbox',
+				'default'       =>  'on'
+			),
+			array(
+				'label'	        =>	__('Email','epl'),
+				'key'	        =>	'epl_contact_email',
+				'type'	        =>	'checkbox',
+				'default'       =>  'on'
+			),
+			array(
+				'label'	        =>	__('Message','epl'),
+				'key'	        =>	'epl_contact_note',
+				'type'	        =>	'checkbox',
+				'default'       =>  'on'
+			),
+		);
+		return apply_filters('epl_contact_capture_widget_form_fields',$fields);
+	}

@@ -61,6 +61,7 @@ function epl_contacts_list() {
 	<div class="wrap">
 		<h2><?php _e( 'Contacts', 'epl' ); ?>
 			<a class="add-new-h2" href="<?php echo admin_url('admin.php?page=epl-contacts&view=new-contact'); ?>"><?php _e('Add New','epl'); ?></a>
+			<a class="add-new-h2 epl-contact-tags-page" href="<?php echo admin_url('admin.php?page=epl-contacts&view=all_tags'); ?>"><?php _e('Tags','epl'); ?></a>
 		</h2>
 		<?php do_action( 'epl_contacts_table_top' ); ?>
 		<form id="epl-contacts-filter" method="get" action="<?php echo admin_url( 'admin.php?page=epl-contacts' ); ?>">
@@ -94,11 +95,11 @@ function epl_render_contact_view( $view, $callbacks ) {
 		epl_set_error( 'epl-no-access', __( 'You are not permitted to view this data.', 'epl' ) );
 		$render = false;
 	}
-	if($view == 'new-contact') {
+	if($view == 'new-contact' || $view == 'all_tags') {
 		$callbacks[$view]();
 		return;
 	}
-	
+
 	if ( ! isset( $_GET['id'] ) || ! is_numeric( $_GET['id'] ) ) {
 		epl_set_error( 'epl-invalid_contact', __( 'Invalid Contact ID Provided.', 'epl' ) );
 		$render = false;
@@ -156,7 +157,10 @@ function epl_render_contact_view( $view, $callbacks ) {
 
 }
 
-/**
+function epl_all_tags_view() {
+	include_once('contact-tags-ui.php');
+}
+ /**
  * Create a contact
  *
  * @since  2.4
@@ -184,7 +188,7 @@ function epl_new_contact_view() { ?>
 
 		<div id="epl-item-card-wrapper" class="epl-contact-card-wrapper" style="float: left">
 		
-				<div class="info-wrapper contact-section">
+				<div class="epl-info-wrapper epl-contact-section">
 					<?php
 					
 						$args = array(
@@ -193,15 +197,14 @@ function epl_new_contact_view() { ?>
 							'post_title'	=>	__('Contact Name','epl')
 						);
 						$contact_id = wp_insert_post($args);
-						epl_var_dump($contact_id);
 						if($contact_id ):
 					
 
 					?>
 
-					<form id="meta-contact" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=new-contact&id=' . $contact_id ); ?>">
+					<form id="epl-meta-contact-form" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=new-contact&id=' . $contact_id ); ?>">
 
-						<div class="contact-info meta-contact">
+						<div class="epl-contact-info epl-meta-contact">
 							<?php do_action( 'epl_new_contact_fields'); ?>
 				
 							<?php
@@ -223,7 +226,7 @@ function epl_new_contact_view() { ?>
 													'label'		=>	__('Contact Email','epl'),
 													'type'		=>	'email',
 													'maxlength'	=>	'60',
-													'value'		=>	$contact->get_meta('lead_email')
+													'value'		=>	$contact->get_primary_email($contact->ID)
 												),
 			
 											) 
@@ -234,7 +237,7 @@ function epl_new_contact_view() { ?>
 
 							?>
 
-									<span id="contact-edit-actions">
+									<span id="epl-contact-edit-actions">
 										<input type="hidden" name="contact_id" value="<?php echo $contact->ID; ?>" />
 										<input type="hidden" name="ID" value="<?php echo $contact->ID; ?>" />
 										<?php wp_nonce_field( 'new-contact', '_wpnonce', false, true ); ?>
@@ -281,19 +284,19 @@ function epl_contacts_view( $contact ) {
 	<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
 
 
-	<div class="info-wrapper contact-section epl-contact-single-display">
+	<div class="epl-info-wrapper epl-contact-section epl-contact-single-display">
 		<input type="hidden" id="epl_contact_id" value="<?php echo $contact->id; ?>"/>
 
-			<div class="epl-item-info contact-info">
+			<div class="epl-item-info epl-contact-info">
 
 				<?php do_action('epl_contact_avatar',$contact); ?>
 
-				<div class="contact-id right">
+				<div class="epl-contact-id right">
 					<?php do_action('epl_contact_social_icons',$contact); ?>
 				</div>
 
 
-				<div class="contact-main-wrapper left">
+				<div class="epl-contact-main-wrapper left">
 
 					<?php do_action('epl_contact_contact_details',$contact); ?>
 				</div>
@@ -306,7 +309,7 @@ function epl_contacts_view( $contact ) {
 
 	<?php do_action( 'epl_contact_background_info', $contact ); ?>
 
-	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper contact-section">
+	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper epl-contact-section">
 
 		<?php do_action( 'epl_contact_before_tables', $contact ); ?>
 
@@ -342,7 +345,7 @@ function epl_contact_meta_view($contact) {
 
 	<?php do_action('epl_contact_action_menus',$contact); ?>
 
-	<form id="meta-contact" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact->ID ); ?>">
+	<form id="epl-meta-contact-form" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact->ID ); ?>">
 
 
 		<?php do_action('epl_contact_entry_header_editable',$contact); ?>
@@ -352,18 +355,18 @@ function epl_contact_meta_view($contact) {
 		<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
 
 
-		<div class="info-wrapper contact-section">
+		<div class="epl-info-wrapper epl-contact-section">
 
-			<div class="epl-item-info contact-info">
+			<div class="epl-item-info epl-contact-info">
 
 				<?php do_action('epl_contact_avatar',$contact); ?>
 
-				<div class="contact-edit-main-wrapper left">
+				<div class="epl-contact-edit-main-wrapper left">
 
 						<input type="hidden" id="epl_contact_id" value="<?php echo $contact->id; ?>"/>
 
 
-						<div class="contact-info meta-contact">
+						<div class="epl-contact-info epl-meta-contact">
 							<?php do_action( 'epl_contact_meta_fields', $contact ); ?>
 
 							<?php
@@ -618,7 +621,7 @@ function epl_contact_meta_view($contact) {
 
 							?>
 
-							<span id="contact-edit-actions">
+							<span id="epl-contact-edit-actions">
 								<input type="hidden" name="contact_id" value="<?php echo $contact->ID; ?>" />
 								<?php wp_nonce_field( 'meta-contact', '_wpnonce', false, true ); ?>
 								<input type="hidden" name="epl_action" value="meta-contact" />
@@ -666,13 +669,13 @@ function epl_contact_notes_view( $contact ) {
 		<?php if ( 1 == $paged ) : ?>
 		<div style="display: block; margin-bottom: 35px;">
 			<form id="epl-add-contact-note" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=notes&id=' . $contact->id ); ?>">
-				<textarea id="contact-note" name="contact_note" class="contact-note-input" rows="10"></textarea>
+				<textarea id="contact-note" name="contact_note" class="epl-contact-note-input" rows="10"></textarea>
 				<br />
-				<input type="hidden" id="contact-id" name="contact_id" value="<?php echo $contact->id; ?>" />
+				<input type="hidden" id="epl-contact-id" name="contact_id" value="<?php echo $contact->id; ?>" />
 				<input type="hidden" name="epl_action" value="add-contact-note" />
 				<br />
-				<label class ="contact-select-label" > 
-					<select class="contact-note-select" id="contact-note-listing">
+				<label class ="epl-contact-select-label" >
+					<select class="epl-contact-note-select" id="contact-note-listing">
 						<option value=''><?php _e('Note for Listing', 'epl'); ?></option>
 						<?php
 							if( !empty($contact->listing_ids) ) {
@@ -683,8 +686,8 @@ function epl_contact_notes_view( $contact ) {
 						?>
 					</select>
 				</label>
-				<label class ="contact-select-label" > 
-					<select class="contact-note-select" id="contact-activity-type">
+				<label class ="epl-contact-select-label" >
+					<select class="epl-contact-note-select" id="contact-activity-type">
 						<?php
 							foreach( $contact->get_activity_types() as $act_key	=>	$act_name) {
 								echo '<option value="'.$act_key.'">'.$act_name.'</option>';
@@ -713,20 +716,20 @@ function epl_contact_notes_view( $contact ) {
 		<div id="epl-contact-notes">
 		<?php if ( count( $contact_notes ) > 0 ) : ?>
 			<?php foreach( $contact_notes as $key => $note ) : ?>
-				<div class="contact-note-wrapper dashboard-comment-wrap comment-item <?php echo $note->comment_type; ?>" >
-					<span class="note-content-meta">
-						<span class="note-for-listing">
+				<div class="epl-contact-note-wrapper dashboard-comment-wrap comment-item <?php echo $note->comment_type; ?>" >
+					<span class="epl-note-content-meta">
+						<span class="epl-note-for-listing">
 							<?php 
 								echo isset($note->post_title) ? $note->post_title : '';
 							 ?>
 						 </span>
-						 <span class="note-time">
+						 <span class="epl-note-time">
 							<?php 
 								echo date_i18n( get_option( 'date_format' ), strtotime( $note->comment_date ) );
 							 ?>
 						 </span>
 					</span>
-					<span class="note-content-wrap">
+					<span class="epl-note-content-wrap">
 						<?php echo stripslashes( $note->comment_content ); ?>
 					</span>
 				</div>
@@ -755,18 +758,18 @@ function epl_contacts_delete_view( $contact ) {
 
 	<?php do_action( 'epl_contact_delete_top', $contact ); ?>
 
-	<div class="info-wrapper contact-section">
+	<div class="epl-info-wrapper epl-contact-section">
 
-		<form id="delete-contact" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $contact->id ); ?>">
+		<form id="epl-delete-contact-form" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $contact->id ); ?>">
 
 				<div class="epl-item-notes-header">
 				<?php echo get_avatar( $contact->email, 30 ); ?> <span><?php echo $contact->name; ?></span>
 			</div>
 
 
-			<div class="contact-info delete-contact">
+			<div class="epl-contact-info epl-wrapper-delete-contact">
 
-				<span class="delete-contact-options">
+				<span class="epl-delete-contact-options">
 					<p>
 						<input type="checkbox" class="epl-checkbox epl-contact-delete-confirm" id="epl-contact-delete-confirm" name="epl-contact-delete-confirm">
 						<label for="epl-contact-delete-confirm"><?php _e( 'Are you sure you want to delete this contact?', 'epl' ); ?></label>
@@ -775,7 +778,7 @@ function epl_contacts_delete_view( $contact ) {
 					<?php do_action( 'epl_contact_delete_inputs', $contact ); ?>
 				</span>
 
-				<span id="contact-edit-actions">
+				<span id="epl-contact-edit-actions">
 					<input type="hidden" name="contact_id" value="<?php echo $contact->id; ?>" />
 					<?php wp_nonce_field( 'delete-contact', '_wpnonce', false, true ); ?>
 					<input type="hidden" name="epl_action" value="delete-contact" />
@@ -814,19 +817,19 @@ function epl_contacts_listing_view( $contact ) {
 	<?php do_action('epl_post_contact_quick_edit_options', $contact); ?>
 
 
-	<div class="info-wrapper contact-section epl-contact-single-display">
+	<div class="epl-info-wrapper epl-contact-section epl-contact-single-display">
 		<input type="hidden" id="epl_contact_id" value="<?php echo $contact->id; ?>"/>
 
-		<div class="epl-item-info contact-info">
+		<div class="epl-item-info epl-contact-info">
 
 			<?php do_action('epl_contact_avatar',$contact); ?>
 
-			<div class="contact-id right">
+			<div class="epl-contact-id right">
 				<?php do_action('epl_contact_social_icons',$contact); ?>
 			</div>
 
 
-			<div class="contact-main-wrapper left">
+			<div class="epl-contact-main-wrapper left">
 
 				<?php do_action('epl_contact_contact_details',$contact); ?>
 
@@ -840,7 +843,7 @@ function epl_contacts_listing_view( $contact ) {
 
 	<?php //do_action( 'epl_contact_background_info', $contact ); ?>
 
-	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper contact-section">
+	<div id="epl-item-tables-wrapper" class="contact-tables-wrapper epl-contact-section">
 
 		<?php do_action( 'epl_contact_before_tables', $contact ); ?>
 

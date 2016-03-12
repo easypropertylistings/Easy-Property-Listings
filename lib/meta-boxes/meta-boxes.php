@@ -140,12 +140,13 @@ function epl_meta_box_init() {
 							'name'		=>	'property_second_agent',
 							'label'		=>	__('Second Listing Agent', 'epl'),
 							'type'		=>	'text',
-							'maxlength'	=>	'40'
+							'maxlength'	=>	'40',
+                            'help'      =>  __('type in input box to search agent ...','epl')
 						),
 
 						array(
 							'name'		=>	'property_agent_hide_author_box',
-							'label'		=>	'',
+							'label'		=>	__('Hide Author Box', 'epl'),
 							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Hide Author Box', 'epl'),
@@ -893,7 +894,7 @@ function epl_meta_box_init() {
 							),
 							array(
 								'name'		=>	'property_address_hide_map',
-								'label'		=>	'',
+								'label'		=>	__('Hide Map', 'epl'),
 								'type'		=>	'checkbox_single',
 								'opts'		=>	array(
 									'yes'	=>	__('Hide Map', 'epl'),
@@ -920,7 +921,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_price',
 							'label'		=>	__('Search Price', 'epl'),
-							'type'		=>	'decimal',
+							'type'		=>	apply_filters('epl_price_number_format','decimal'),
 							'maxlength'	=>	'50'
 						),
 					
@@ -1609,9 +1610,12 @@ function epl_meta_box_init() {
 										}
 										?>
 										<tr class="form-field">
+
+											<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
 											<th valign="top" scope="row">
 												<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
 											</th>
+                                            <?php endif; ?>
 										
 											<?php if($group['columns'] > 1) { ?>
 												</tr><tr class="form-field">
@@ -1741,30 +1745,6 @@ function epl_meta_box_init() {
 	}
 	add_action( 'save_post', 'epl_save_meta_boxes' );
 
-	/**
-	 * Adds geo-coordinate button to the address meta box
-	 * If you are importing from XML you can use FeedSync 
-	 * to pre-geocode the property elements
-	 *
-	 * @since 1.0
-	 */
-	function epl_get_geocoordinates() {
-		$address = '';
-		if(trim($_POST['property_address_sub_number']) != '') {
-			$address .= $_POST['property_address_sub_number'].'/';
-		}
-		$address .= $_POST['property_address_street_number'] . ' ' . $_POST['property_address_street'] . ' ' . $_POST['property_address_suburb'] . ' ' . $_POST['property_address_state'] . ' ' . $_POST['property_address_postal_code'];
-        $address = urlencode(mb_convert_encoding(strtolower(trim($address)), 'UTF-8'));
-        $geourl = "http://maps.google.com/maps/api/geocode/json?address=". $address ."&sensor=false";
-        //die($geourl);
-        $response = epl_remote_url_get($geourl);
-		if(!empty($response)) {
-			$geocoordinates = $response[0]->geometry->location->lat . ',' . $response[0]->geometry->location->lng;
-			echo $geocoordinates;
-		}
-		exit;
-	}
-	add_action( 'wp_ajax_epl_get_geocoordinates', 'epl_get_geocoordinates' );
 	/**
 	 * Returns a dropdown list for terms
 	 *

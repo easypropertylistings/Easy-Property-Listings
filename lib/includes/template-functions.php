@@ -635,13 +635,12 @@ function epl_property_category() {
 }
 
 function epl_get_video_html($property_video_url='',$width=600) {
-
+	$width = epl_get_option('epl_video_width',$width);
 	if($property_video_url != '') {
-		$videoID = epl_get_youtube_id_from_url($property_video_url);
 		$video_html =  '<div class="epl-video-container videoContainer">';
 
 			$video_html .=  wp_oembed_get(
-				('http://www.youtube.com/watch?v=' . $videoID ) ,
+				$property_video_url,
 				array( 'width' => apply_filters( 'epl_property_video_width', $width  ) )
 			);
 		$video_html .= '</div>';
@@ -714,6 +713,7 @@ function epl_property_tab_section() {
 		'property_outdoor_entertaining',
 		'property_shed',
 		'property_open_fire_place',
+		'property_ducted_heating',
 		'property_ducted_cooling',
 		'property_split_system_heating',
 		'property_hydronic_heating',
@@ -916,6 +916,24 @@ function epl_sorting_options() {
 			'label'	=>	__('Status : Sold/Leased First','epl'),
 			'type'	=>	'meta',
 			'key'	=>	'property_status',
+			'order'	=>	'DESC',
+			'orderby'	=>	'meta_value',
+
+		),
+		array(
+			'id'	=>	'location_asc',
+			'label'	=>	epl_labels('label_suburb'). __(' A-Z'),
+			'type'	=>	'meta',
+			'key'	=>	'property_address_suburb',
+			'order'	=>	'ASC',
+			'orderby'	=>	'meta_value',
+
+		),
+		array(
+			'id'	=>	'location_desc',
+			'label'	=>	epl_labels('label_suburb'). __(' Z-A'),
+			'type'	=>	'meta',
+			'key'	=>	'property_address_suburb',
 			'order'	=>	'DESC',
 			'orderby'	=>	'meta_value',
 
@@ -1721,9 +1739,9 @@ function epl_inspection_format($inspection_date) {
 	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'? 
 			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
 			
-	$date 		= date($date_format,strtotime($inspection_date[0]));
-	$time_start = date($time_format,strtotime($inspection_date[1]));
-	$time_end 	= date($time_format,strtotime($inspection_date[3]));
+	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';
+	$time_start = isset($inspection_date[1]) ? date($time_format,strtotime($inspection_date[1])) : '';
+	$time_end 	= isset($inspection_date[3]) ? date($time_format,strtotime($inspection_date[3])) : '';
 	
 	return "{$date} {$time_start} to {$time_end}";	
 }
