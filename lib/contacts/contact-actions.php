@@ -493,9 +493,6 @@ function epl_new_contact( $args ) {
 	if( $contact->contact_exists($args['email']) ) {
 		wp_die( __( 'A contact with this email already exists !', 'epl' ) );
 	}
-	$lo = $contact->contact_exists($args['email']);
-	epl_var_dump($lo);
-	die;
 	$contact->update($args);
 	
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
@@ -525,7 +522,7 @@ add_action('wp_ajax_contact_category_update','contact_category_update');
  * @since 2.4
  * @return bool true if updated
  */
-	function contact_tag_add() {
+	function epl_contact_tag_add() {
 
 		if( ( trim($_POST['term_id']) != '' ) ) {
 
@@ -554,7 +551,7 @@ add_action('wp_ajax_contact_category_update','contact_category_update');
 
 		}
 	}
-	add_action('wp_ajax_contact_tags_update','contact_tag_add');
+	add_action('wp_ajax_contact_tags_update','epl_contact_tag_add');
 
 /**
  * delete contact tags
@@ -1238,17 +1235,23 @@ function epl_search_contact_listing() {
 add_action('wp_ajax_epl_search_contact_listing','epl_search_contact_listing');
 
 function epl_search_user() {
+	$users = get_users(
+				array(
+					'search'       =>  $_REQUEST['user_name']. '*',
+					'number'       =>  5
+				)
+			);
 
-	$users = get_users(  'search='.$_GET['user_name'].'&number=5' );
-	if( !empty($users) ) {
+	if( !empty($users) && !is_wp_error($users) ) {
+		ob_start();
 		echo '<ul class="epl-contact-user-suggestion">';
 		foreach( $users as  $user) {
-			echo '<li data-id="'.$user->ID.'">'.$user->display_name.'</li>';
+			echo '<li data-id="'.$user->ID.'">'.$user->data->display_name.'</li>';
 		}
 		echo '</ul>';
+		echo ob_get_clean();
 	}
-	wp_die();
-
+	exit;
 }
 add_action('wp_ajax_epl_search_user','epl_search_user');
 

@@ -56,8 +56,8 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 		$month = $dates['m_start'];
 		while ( $hour <= 23 ) {
 
-			$sales    = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour,$sold_status );
-			$current_listings = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour,$current_status );
+			$sales    = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour,$sold_status,$day_by_day );
+			$current_listings = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour,$current_status,$day_by_day );
 
 			$sales_totals    += $sales;
 			$listings_totals += $current_listings;
@@ -95,10 +95,10 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 		}
 
 		foreach ( $report_dates as $report_date ) {
-			$sales = epl_get_sales_by_date( $report_date['day'], $report_date['month'], $report_date['year'],$sold_status );
+			$sales = epl_get_sales_by_date( $report_date['day'], $report_date['month'], $report_date['year'],$sold_status,$day_by_day );
 			$sales_totals += $sales;
 
-			$current_listings        = epl_get_sales_by_date( $report_date['day'], $report_date['month'], $report_date['year'] , null, $current_status );
+			$current_listings        = epl_get_sales_by_date( $report_date['day'], $report_date['month'], $report_date['year'] , null, $current_status,$day_by_day );
 			$current_listings_totals += $current_listings;
 
 			$date            = mktime( 0, 0, 0,  $report_date['month'], $report_date['day'], $report_date['year']  ) * 1000;
@@ -157,10 +157,10 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 
 					while ( $d <= $num_of_days ) {
 
-						$sales = epl_get_sales_by_date( $d, $i, $y,null,$sold_status );
+						$sales = epl_get_sales_by_date( $d, $i, $y,null,$sold_status,$day_by_day );
 						$sales_totals += $sales;
 
-						$current_listings = epl_get_sales_by_date( $d, $i, $y, null, $current_status );
+						$current_listings = epl_get_sales_by_date( $d, $i, $y, null, $current_status,$day_by_day );
 						$current_listings_totals += $current_listings;
 
 						$date = mktime( 0, 0, 0, $i, $d, $y ) * 1000;
@@ -172,10 +172,10 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 
 				} else {
 
-					$sales = epl_get_sales_by_date( null, $i, $y, null, $sold_status );
+					$sales = epl_get_sales_by_date( null, $i, $y, null, $sold_status,$day_by_day );
 					$sales_totals += $sales;
 
-					$current_listings = epl_get_sales_by_date( null, $i, $y, null, $current_status );
+					$current_listings = epl_get_sales_by_date( null, $i, $y, null, $current_status,$day_by_day );
 					$current_listings_totals += $current_listings;
 
 					if( $i == $month_end && $last_year ) {

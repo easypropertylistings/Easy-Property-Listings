@@ -777,7 +777,7 @@ class EPL_Property_Meta {
 		}
 
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
-			$label = apply_filters('epl_get_property_land_area_label',__('Floor Area is', 'epl') );
+			$label = apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'epl') );
 			$return = '
 			<li class="land-size">'.$label.' ' .
                 epl_format_amount( $this->get_property_meta('property_building_area') ) .' '.$building_unit.
@@ -818,10 +818,12 @@ class EPL_Property_Meta {
 
                     case 1:
                     case 'yes':
+	                case 'on':
                         $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'epl') ).'</li>';
                     break;
 					case 0:
 					case 'no':
+	                case 'off':
 						$return = '';
 					break;
                     default:

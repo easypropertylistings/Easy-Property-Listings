@@ -77,7 +77,6 @@ class EPL_FORM_BUILDER {
 	* @return null
 	*/
 	function __destruct() {
-		die('yoooo');
 		$this->callbacks();
 	}
 	
@@ -86,7 +85,7 @@ class EPL_FORM_BUILDER {
 	}
 	
 	function callbacks() {
-		
+
 		if( isset($_REQUEST[$this->prefix.'form_submit']) ) {
 
 			// hook to this action to save form data

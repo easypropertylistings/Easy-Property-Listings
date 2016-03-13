@@ -729,8 +729,8 @@ function epl_admin_sidebar () {
 				foreach($field['opts'] as $k=>$v) {
 					$checked = '';
 					if(!empty($val)) {
-						$checkbox_single_options = apply_filters('epl_checkbox_single_check_options', array(1,'yes',true));
-						if( $k == $val || in_array($k,$checkbox_single_options) ) {
+						$checkbox_single_options = apply_filters('epl_checkbox_single_check_options', array(1,'yes','on','true'));
+						if( $k == $val || in_array($val,$checkbox_single_options) ) {
 							$checked = 'checked="checked"';
 						}
 					}
@@ -858,11 +858,8 @@ function epl_admin_sidebar () {
 		if( $field['geocoder'] == 'true' ) {
 			echo '<span class="epl-geocoder-button"></span>';
 		}
-		
-		if( !empty($val) ) {
-			do_action('epl_admin_listing_map',stripslashes($val));
-			//echo '<iframe width="100%" height="200" frameborder="0" scrolling="no" src="//maps.google.com/?q='.stripslashes($val).'&output=embed&z=14" style="margin:5px 0 0 0;"></iframe>';
-		}
+
+		do_action('epl_admin_listing_map',stripslashes($val));
 	}
 	
 	if(isset($field['help'])) {
@@ -1554,8 +1551,7 @@ add_action('wp_login', 'epl_session_end');
  * @param int $hour Hour
  * @return int $count Sales
  */
-function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $hour = null, $status=null ) {
-	
+function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $hour = null, $status=null,$day_by_day=true ) {
 	$post_type = isset($_GET['view']) ? $_GET['view'] : 'property';
 	$args = array(
 		'post_type'      => $post_type,
@@ -1587,8 +1583,10 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 			if( in_array($range, array('other','last_year','this_year','last_quarter','this_quarter') ) ) {
 		
 				$sold_key = $status == 'leased' ? 'property_date_available':'property_sold_date';
-				$sold_date_start  	= date('Y-m-01',strtotime($year.'-'.$month_num.'-'.$day));
+
 				$sold_date_end  	= date('Y-m-d',strtotime($year.'-'.$month_num.'-'.$day));
+				$sold_date_start  	= $day_by_day == true ? $sold_date_end : date('Y-m-01',strtotime($year.'-'.$month_num.'-'.$day));
+
 				
 				$args['meta_query'][] = array(
 					'key' 		=> $sold_key,
