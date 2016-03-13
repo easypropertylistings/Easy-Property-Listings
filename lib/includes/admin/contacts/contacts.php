@@ -389,7 +389,7 @@ function epl_contact_meta_view($contact) {
 									)
 								),
 								array(
-									'label'		=>	__('' , 'epl'),
+									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-professional-details',
 									'help'		=>	__('Professional Details' , 'epl') . '<hr/>',
@@ -411,7 +411,7 @@ function epl_contact_meta_view($contact) {
 									)
 								),
 								array(
-									'label'		=>	__('' , 'epl'),
+									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-contact-details',
 									'help'		=>	__('Contact Details' , 'epl') . '<hr/>',
@@ -446,7 +446,7 @@ function epl_contact_meta_view($contact) {
 									)
 								),
 								array(
-									'label'		=>	__('' , 'epl'),
+									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-custom-details',
 									'help'		=>	__('Custom Fields' , 'epl') . '<hr/>',
@@ -477,7 +477,7 @@ function epl_contact_meta_view($contact) {
 									)
 								),
 								array(
-									'label'		=>	__('' , 'epl'),
+									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-social-details',
 									'help'		=>	__('Social Networks' , 'epl') . '<hr/>',
@@ -516,7 +516,7 @@ function epl_contact_meta_view($contact) {
 									)
 								),
 								array(
-									'label'		=>	__('' , 'epl'),
+									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-address-details',
 									'help'		=>	__('Address' , 'epl') . '<hr/>',
@@ -566,7 +566,7 @@ function epl_contact_meta_view($contact) {
 									)
 								),
 								array(
-									'label'		=>	__('' , 'epl'),
+									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-wpuser-details',
 									'help'		=>	__('WP User' , 'epl') . '<hr/>',
@@ -587,7 +587,7 @@ function epl_contact_meta_view($contact) {
 									)
 								),
 								array(
-									'label'		=>	__('' , 'epl'),
+									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-bginfo-details',
 									'help'		=>	__('Background Info' , 'epl') . '<hr/>',

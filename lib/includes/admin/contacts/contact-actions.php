@@ -1080,7 +1080,7 @@ function epl_contact_add_activity_form( $contact ) {
 			'label'		=>	__('Add Activity' , 'epl'),
 			'class'		=>	'col-1 epl-inner-div',
 			'id'		=>	'epl-contact-add-activity-wrap',
-			'help'		=>	__('' , 'epl') . '<hr/>',
+			'help'		=>	'<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'epl_contact_activity_content',
@@ -1132,12 +1132,12 @@ function epl_contact_add_listing_form( $contact ) {
 			'label'		=>	__('Add Listing' , 'epl'),
 			'class'		=>	'col-1 epl-inner-div',
 			'id'		=>	'epl-contact-add-listing-wrap',
-			'help'		=>	__('' , 'epl') . '<hr/>',
+			'help'		=>	'<hr/>',
 			'fields'	=>	array(
 
 				array(
 					'name'		=>	'property_owner',
-					'label'		=>	__('','epl'),
+					'label'		=>	'',
 					'type'		=>	'hidden',
 					'value'		=>	$contact->id,
 				),

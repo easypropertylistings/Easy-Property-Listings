@@ -33,10 +33,10 @@ function epl_contact_capture_form( $atts ) {
 
 	$fields = array(
 		array(
-			'label'		=>	__('' , 'epl'),
+			'label'		=>	'',
 			'class'		=>	'col-1 epl-inner-div',
 			'id'		=>	'',
-			'help'		=>	__('' , 'epl') . '<hr/>',
+			'help'		=>	'' . '<hr/>',
 			'fields'	=>	epl_contact_capture_get_widget_fields()
 		),
 
