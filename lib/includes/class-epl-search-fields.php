@@ -1,6 +1,6 @@
 <?php
 /**
- * EPL Search
+ * Search Object
  *
  * @package     EPL
  * @subpackage	Classes/Search Fields

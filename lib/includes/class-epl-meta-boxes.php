@@ -1,6 +1,6 @@
 <?php
 /**
- * Functions
+ * Metabox API
  *
  * @package     EPL
  * @subpackage  Classes/Metabox API

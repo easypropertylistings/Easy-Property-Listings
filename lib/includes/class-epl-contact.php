@@ -1,6 +1,6 @@
 <?php
 /**
- * EPL Admin Functions
+ * Contact Object
  *
  * @package     EPL
  * @subpackage  Classes/Contact

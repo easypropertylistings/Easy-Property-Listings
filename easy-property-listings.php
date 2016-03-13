@@ -169,8 +169,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/plugins.php';
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
-			require_once EPL_PATH_LIB . 'api/cpt.php';
-			require_once EPL_PATH_LIB . 'api/form_builder.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-custom-post-type.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-form-builder.php';
 
 			// Activate post types based on settings
 			if(isset($epl_settings['activate_post_types'])) {
@@ -230,8 +230,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-contact-capture.php';
 
-			require_once EPL_PATH_LIB . 'includes/class-property-meta.php';
-			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-author-meta.php';
 			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			require_once EPL_PATH_LIB . 'includes/error-tracking.php';
@@ -240,7 +240,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
 
 			if ( is_admin() ) {
-				require_once EPL_PATH_LIB . 'api/metaboxes.php';
+				require_once EPL_PATH_LIB . 'includes/class-epl-meta-boxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
 				require_once EPL_PATH_LIB . 'includes/admin-functions.php';
