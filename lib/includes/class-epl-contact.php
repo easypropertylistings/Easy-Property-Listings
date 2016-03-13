@@ -772,8 +772,5 @@ class EPL_Contact {
 			$email_html = ob_get_clean();
 			return apply_filters('epl_contact_phone_html',$email_html);
 		}
-
-
 	}
 }
-

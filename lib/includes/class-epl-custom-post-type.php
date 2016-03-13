@@ -1,9 +1,9 @@
 <?php
 /**
- * Functions
+ * Custom Post Object
  *
  * @package     EPL
- * @subpackage  Classes/Custom Post Type API
+ * @subpackage  Classes/PostType
  * @copyright   Copyright (c) 2015, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
@@ -12,6 +12,11 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * EPL_CPT Class
+ *
+ * @since 2.3
+ */
 class EPL_CPT {
 
 	/**
@@ -411,18 +416,18 @@ class EPL_CPT {
 
 		// Default options.
 		$defaults = array(
-			'labels'				=>	$labels,
-			'public'				=>	true,
-			'publicly_queryable'	=>	true,
-			'show_ui'				=>	true,
+			'labels'			=>	$labels,
+			'public'			=>	true,
+			'publicly_queryable'		=>	true,
+			'show_ui'			=>	true,
 			'show_in_menu'			=>	true,
-			'query_var'				=>	true,
-			'rewrite'				=>	array( 'slug' => $slug ),
+			'query_var'			=>	true,
+			'rewrite'			=>	array( 'slug' => $slug ),
 			'capability_type'		=>	'post',
 			'has_archive'			=>	true,
 			'hierarchical'			=>	false,
 			'menu_position'			=>	'26.87',
-			'supports'				=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
+			'supports'			=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
 		);
 
 		// Merge user submitted options with defaults.
@@ -520,10 +525,10 @@ class EPL_CPT {
 
 		// Default options.
 		$defaults = array(
-			'labels' => $labels,
-			'hierarchical' => true,
-			'rewrite' => array(
-				'slug' => $slug
+				'labels' 	=> $labels,
+				'hierarchical'	=> true,
+				'rewrite'	=> array(
+				'slug'		=> $slug
 			)
 		);
 

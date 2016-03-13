@@ -1,9 +1,9 @@
 <?php
 /**
- * Functions
+ * Form Builder Object
  *
  * @package     EPL
- * @subpackage  Classes/Form Builder API
+ * @subpackage  Classes/Forms
  * @copyright   Copyright (c) 2015, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
@@ -12,56 +12,77 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * EPL_FORM_BUILDER Class
+ *
+ * @since 2.3
+ */
 class EPL_FORM_BUILDER {
 
 	/**
-	* prefix for this class, will be used for filters & actions
-	*/
+	 * prefix for this class, will be used for filters & actions
+	 *
+	 * @since 2.3
+	 */
 	private $prefix = 'epl_form_builder_';
 
 	/**
-	* text domain for translation
-	*/
+	 * text domain for translation
+	 *
+	 * @since 2.3
+	 */
 	private $text_domain = 'epl';
 
 	/**
-	* form fields
-	*/
+	 * form fields
+	 *
+	 * @since 2.3
+	 */
 	public $form_fields = array();
 
 	/**
-	* form sections
-	*/
+	 * form sections
+	 *
+	 * @since 2.3
+	 */
 	public $form_sections = array();
 
 	/**
-	* classes for form and fields
-	*/
+	 * classes for form and fields
+	 *
+	 * @since 2.3
+	 */
 	private $form_classes = array();
 
 	/**
-	* configuration of this form
-	*/
+	 * configuration of this form
+	 *
+	 * @since 2.3
+	 */
 	public $configuration = array();
 
 	/**
-	* form has nonce or not
-	*/
+	 * form has nonce or not
+	 *
+	 * @since 2.3
+	 */
 	public $has_nonce = false;
 
 	/**
-	* holds the list of form attributes, defaults & added by user
-	*/
+	 * holds the list of form attributes, defaults & added by user
+	 *
+	 * @since 2.3
+	 */
 	public $form_attributes = array();
 
 	function __construct($config = array() ) {
 
 		$defaults = array(
-			'form_tag'				=>	'on',
-			'form_wrap'				=>	'on',
-			'form_context'			=>	'default', // default , meta , settings
-			'callback_action'		=>	NULL,
-			'is_ajax'				=>	false
+			'form_tag'		=>	'on',
+			'form_wrap'		=>	'on',
+			'form_context'		=>	'default', // default , meta , settings
+			'callback_action'	=>	NULL,
+			'is_ajax'		=>	false
 		);
 
 		$this->configuration = shortcode_atts($defaults,$config);
@@ -72,14 +93,21 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* call default & user submitted callbacks for this form upon form submission
-	*
-	* @return null
-	*/
+	 * call default & user submitted callbacks for this form upon form submission
+	 *
+	 * @since 2.3
+	 * @return null
+	 */
 	function __destruct() {
 		$this->callbacks();
 	}
 
+	/**
+	 * call default & user submitted callbacks for this form upon form submission
+	 *
+	 * @since 2.3
+	 * @return string
+	 */
 	function __get($key) {
 		return isset($this->{$key}) ? $this->{$key} : null ;
 	}
@@ -100,13 +128,19 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Set form configuration
-	*
-	*/
+	 * Set form configuration
+	 *
+	 * @since 2.3
+	 */
 	function get_configuration($key='') {
 		return isset($this->configuration[$key]) ? $this->configuration[$key] : false;
 	}
 
+	/**
+	 * Get value
+	 *
+	 * @since 2.3
+	 */
 	function get_value($field) {
 
 		switch($this->configuration['form_context']) {
@@ -129,9 +163,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Set form classes
-	*
-	*/
+	 * Set form classes
+	 *
+	 * @since 2.3
+	 */
 	function set_form_classes() {
 
 		$this->form_classes = apply_filters( $this->prefix.'form_classes',
@@ -166,9 +201,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* List of invalid attributes per field type that must be removed from field array before field rendering
-	*
-	*/
+	 * List of invalid attributes per field type that must be removed from field array before field rendering
+	 *
+	 * @since 2.3
+	 */
 	function invalid_attributes() {
 		return apply_filters( $this->prefix.'invalid_attributes',
 			array(
@@ -180,9 +216,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Get classes for wrappers, form , fields
-	*
-	*/
+	 * Get classes for wrappers, form , fields
+	 *
+	 * @since 2.3
+	 */
 	function get_class( $key='',$field=array() ) {
 
 		if( isset($this->form_classes[$key]) ) {
@@ -203,6 +240,11 @@ class EPL_FORM_BUILDER {
 		}
 	}
 
+	/**
+	 * Get Field Attributes
+	 *
+	 * @since 2.3
+	 */
 	function get_attributes($field) {
 
 		$html = '';
@@ -227,10 +269,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* The function can be used to configure the attributes of form
-	*
-	*
-	*/
+	 * The function can be used to configure the attributes of form
+	 *
+	 * @since 2.3
+	 */
 	function set_form_attributes($key='',$value='') {
 
 		/* if user wants to add a single attribute */
@@ -243,16 +285,14 @@ class EPL_FORM_BUILDER {
 			foreach($key as $index	=>	$val) {
 				$this->form_attributes[$this->escape('text',$index)] = $this->escape('attribute',$val);
 			}
-
 		}
 	}
 
-
 	/**
-	* set default attributes for the form tag
-	*
-	*
-	*/
+	 * set default attributes for the form tag
+	 *
+	 * @since 2.3
+	 */
 	private function set_default_form_attributes() {
 
 		$this->form_attributes = apply_filters(
@@ -264,21 +304,19 @@ class EPL_FORM_BUILDER {
 					'enctype'	=>	'',
 					'method'	=>	'POST',
 					'name'		=>	''
-
 				)
 			);
 
 		if( $this->configuration['is_ajax'] == true) {
 			$this->form_attributes['data-'.$this->prefix.'ajax_submit'] = 'true';
 		}
-
 	}
 
 	/**
-	* setsup all the form defaults while object instantiation
-	*
-	*
-	*/
+	 * setsup all the form defaults while object instantiation
+	 *
+	 * @since 2.3
+	 */
 	private function set_defaults() {
 
 		do_action($this->prefix.'before_setup_defaults');
@@ -287,10 +325,11 @@ class EPL_FORM_BUILDER {
 		do_action($this->prefix.'after_setup_defaults');
 	}
 
-
 	/**
-	* escape necessary data
-	*/
+	 * escape necessary data
+	 *
+	 * @since 2.3
+	 */
 	private function escape($type='',$value='') {
 
 		switch($type) {
@@ -309,56 +348,48 @@ class EPL_FORM_BUILDER {
 			break;
 			case 'attribute':
 				return esc_attr($value);
-
-
 		}
 	}
 
 	/**
-	* Add multiple form sections at once
-	*
-	*
-	*/
+	 * Add multiple form sections at once
+	 *
+	 * @since 2.3
+	 */
 	function add_sections($sections = array() ) {
 
 		foreach($sections as $section) {
 			$this->add_section($section);
 		}
-
 	}
 
-
-
 	/**
-	* Add single section to form
-	*
-	*
-	*/
+	 * Add single section to form
+	 *
+	 * @since 2.3
+	 */
 	function add_section($section = array() ) {
 		$this->form_sections[] = $section;
 	}
 
-
 	/**
-	* Add single field to form
-	*
-	*
-	*/
+	 * Add single field to form
+	 *
+	 * @since 2.3
+	 */
 	function add_field($field = array() ) {
 		foreach($field as $key	=>	&$val) {
-
 			if( is_string($val) )
 				$val = esc_attr($val);
-
 		}
 		$this->form_fields[] = $field;
 	}
 
 	/**
-	* Add multiple form fields at once
-	*
-	*
-	*/
+	 * Add multiple form fields at once
+	 *
+	 * @since 2.3
+	 */
 	function add_fields($fields = array() ) {
 
 		foreach($fields as $field) {
@@ -385,10 +416,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Render form html based on the fields & form attributes
-	*
-	*
-	*/
+	 * Render form html based on the fields & form attributes
+	 *
+	 * @since 2.3
+	 */
 	function render_form() {
 
 		ob_start();
@@ -426,8 +457,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Render form container opening tag
-	*/
+	 * Render form container opening tag
+	 *
+	 * @since 2.3
+	 */
 	function render_form_container_open() {
 
 		$html 		 = "\n<div  ";
@@ -437,16 +470,20 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Render form container closing tag
-	*/
+	 * Render form container closing tag
+	 *
+	 * @since 2.3
+	 */
 	function render_form_container_close() {
 
 		echo apply_filters($this->prefix.'form_container_close_tag',"\n</div>",$this->form_attributes);
 	}
 
 	/**
-	* Render form opening tag
-	*/
+	 * Render form opening tag
+	 *
+	 * @since 2.3
+	 */
 	function render_form_open() {
 
 		$html = "\n<form  ";
@@ -458,18 +495,20 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Render form closing tag
-	*/
+	 * Render form closing tag
+	 *
+	 * @since 2.3
+	 */
 	function render_form_close() {
 
 		echo apply_filters($this->prefix.'form_close_tag',"\n</form>",$this->form_attributes);
 	}
 
 	/**
-	* Render all form sections
-	*
-	*
-	*/
+	 * Render all form sections
+	 *
+	 * @since 2.3
+	 */
 	private function render_sections() {
 
 		if( !empty($this->form_sections) ) {
@@ -481,10 +520,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Render single form section
-	*
-	*
-	*/
+	 * Render single form section
+	 *
+	 * @since 2.3
+	 */
 	private function render_section($section) {
 
 		$section_class 	= $this->prefix.'form_section '. isset($section['class']) ? $section['class'] : '';
@@ -521,12 +560,11 @@ class EPL_FORM_BUILDER {
 	<?php
 	}
 
-
 	/**
-	* Render all form fields based on type
-	*
-	*
-	*/
+	 * Render all form fields based on type
+	 *
+	 * @since 2.3
+	 */
 	private function render_fields() {
 
 		if( !empty($this->form_fields) ) {
@@ -538,10 +576,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Render single form field
-	*
-	*
-	*/
+	 * Render single form field
+	 *
+	 * @since 2.3
+	 */
 	private function render_field($field) {
 
 		$this->render_field_container_open();
@@ -579,13 +617,14 @@ class EPL_FORM_BUILDER {
 			break;
 
 		}
-
 		$this->render_field_container_close();
 	}
 
 	/**
-	* Render field container opening tag
-	*/
+	 * Render field container opening tag
+	 *
+	 * @since 2.3
+	 */
 	function render_field_container_open() {
 
 		$html 		 = "\n<div  ";
@@ -595,16 +634,20 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* Render field container closing tag
-	*/
+	 * Render field container closing tag
+	 *
+	 * @since 2.3
+	 */
 	function render_field_container_close() {
 
 		echo apply_filters($this->prefix.'field_container_close_tag',"\n</div>",$this->form_attributes);
 	}
 
 	/**
-	* Render field label
-	*/
+	 * Render field label
+	 *
+	 * @since 2.3
+	 */
 	function render_field_label( $field = array() ) {
 
 		$wrapper 		 = "\n<span  ";
@@ -621,15 +664,16 @@ class EPL_FORM_BUILDER {
 			$wrapper 	.= $html;
 		}
 
-
 		$wrapper .= "\n</span>";
 
 		echo apply_filters($this->prefix.'field_label_html',$wrapper,$field);
 	}
 
 	/**
-	* render text & similar fields
-	*/
+	 * render text & similar fields
+	 *
+	 * @since 2.3
+	 */
 	private function render_text($field) {
 
 		$field['value']	 = $this->get_value($field);
@@ -638,12 +682,13 @@ class EPL_FORM_BUILDER {
 		$html 			.= $this->get_attributes($field);
 		$html 			.= ' />';
 		echo apply_filters($this->prefix.'form_'.$field["type"].'_tag',$html,$field);
-
 	}
 
 	/**
-	* render textarea
-	*/
+	 * render textarea
+	 *
+	 * @since 2.3
+	 */
 	private function render_textarea($field) {
 
 		$value	 		 = $this->get_value($field);
@@ -658,8 +703,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* render radio
-	*/
+	 * render radio
+	 *
+	 * @since 2.3
+	 */
 	private function render_radio($field) {
 
 		$options		= $field['opts'];
@@ -683,8 +730,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* render radio
-	*/
+	 * render checkbox
+	 *
+	 * @since 2.3
+	 */
 	private function render_checkbox($field) {
 
 		$options		= $field['opts'];
@@ -707,6 +756,11 @@ class EPL_FORM_BUILDER {
 		}
 	}
 
+	/**
+	 * Render Editior
+	 *
+	 * @since 2.3
+	 */
 	private function render_wp_editor() {
 		$value	 		 = $this->get_value($field);
 		$field['class']  = $this->get_class('field',$field);
@@ -714,8 +768,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* render select
-	*/
+	 * render select
+	 *
+	 * @since 2.3
+	 */
 	private function render_select($field) {
 		global $post;
 		$options		= $field['opts'];
@@ -758,9 +814,10 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	* render nonce field
-	*/
-
+	 * render nonce field
+	 *
+	 * @since 2.3
+	 */
 	function add_nonce($action='') {
 
 		$this->has_nonce 	= true;
@@ -775,5 +832,4 @@ class EPL_FORM_BUILDER {
 			)
 		);
 	}
-
 }

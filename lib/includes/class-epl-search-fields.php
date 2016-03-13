@@ -3,7 +3,7 @@
  * Search Object
  *
  * @package     EPL
- * @subpackage	Classes/Search Fields
+ * @subpackage	Classes/Search
  * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Search Fields Displayer.
+ * EPL_Search_Fields Class
  *
  * @since      3.0
  * @author     Taher Atashbar <taher.atashbar@gmail.com>

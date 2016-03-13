@@ -1,9 +1,9 @@
 <?php
 /**
- * Metabox API
+ * Metabox Oject
  *
  * @package     EPL
- * @subpackage  Classes/Metabox API
+ * @subpackage  Classes/Metaboxs
  * @copyright   Copyright (c) 2015, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
@@ -13,10 +13,14 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * EPL_METABOX class can be used by extensions to handle all the metabox functionality
+ * EPL_METABOX class
+
+ * Can also be used by extensions to handle all the metabox functionality
  * it adds metabox wrapper & renders metabox fields and finally save it on save_post hook
  * the constructor of the class accepts one or more array of metabox to be rendered
  * the structure of the metabox array should be similar to make it work
+ *
+ * @since 2.0
  */
 class EPL_METABOX {
 
