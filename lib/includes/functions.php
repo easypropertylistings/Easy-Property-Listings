@@ -1,9 +1,9 @@
 <?php
 /**
- * Functions
+ * Front End Functions
  *
  * @package     EPL
- * @subpackage  Front/Display
+ * @subpackage  Functions/FrontEnd
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -38,6 +38,7 @@ function epl_is_builder_framework_theme() {
 	}
 	return false;
 }
+
 /**
  * Determine if Genesis framework is loaded
  *
@@ -49,6 +50,7 @@ function epl_is_genesis_framework_theme() {
 	}
 	return false;
 }
+
 /**
  * Used in the widgets by appending the registered image sizes
  *
@@ -70,6 +72,7 @@ function epl_get_thumbnail_sizes() {
 	}
 	return $sizes;
 }
+
 /**
  * Remote get function
  *
@@ -87,6 +90,7 @@ function epl_remote_url_get($url) {
 		}
 	}
 }
+
 /**
  * Register post type to EPL and wordpress
  *
@@ -116,6 +120,7 @@ function epl_register_post_type($post_type='', $post_type_label, $args=array()) 
 		$_SESSION['epl_actions']['epl_flush_rewrite_rules'] = true;
 	}
 }
+
 /**
  * Return all the post types that are selected as active by admin
  *
@@ -127,6 +132,7 @@ function epl_get_active_post_types() {
 		$epl_active_post_types = array();
 	return $epl_active_post_types;
 }
+
 /**
  * Return all the post types doesn't matter if selected as active or not by admin
  *
@@ -145,6 +151,7 @@ function epl_get_post_types() {
 	// allow 3rd party extensions to add custom posts as a part of epl
 	return apply_filters('epl_post_types',$epl_post_types);
 }
+
 /**
  * Get Currencies
  *
@@ -188,6 +195,7 @@ function epl_get_currencies() {
 	);
 	return apply_filters( 'epl_get_currencies', $currencies );
 }
+
 /**
  * Get the store's set currency
  *
@@ -203,6 +211,13 @@ function epl_get_currency() {
 	}
 	return apply_filters( 'epl_currency', $epl_currency );
 }
+
+/**
+ * Get the currency position
+ *
+ * @since 1.0
+ * @return string The currency symbol position
+ */
 function epl_get_currency_position() {
 	$epl_currency_position = '';
 
@@ -212,6 +227,13 @@ function epl_get_currency_position() {
 	}
 	return apply_filters( 'epl_currency_position', $epl_currency_position );
 }
+
+/**
+ * Get the currency thousands separator
+ *
+ * @since 1.0
+ * @return string The currency thousands separator
+ */
 function epl_get_thousands_separator() {
 	$epl_thousands_separator = '';
 
@@ -221,6 +243,13 @@ function epl_get_thousands_separator() {
 	}
 	return apply_filters( 'epl_thousands_separator', $epl_thousands_separator );
 }
+
+/**
+ * Get the currency decimal separator
+ *
+ * @since 1.0
+ * @return string The currency decimal separator
+ */
 function epl_get_decimal_separator() {
 	$epl_decimal_separator = '';
 
@@ -230,7 +259,15 @@ function epl_get_decimal_separator() {
 	}
 	return apply_filters( 'epl_decimal_separator', $epl_decimal_separator );
 }
-function epl_currency_formatted_amount($price) {
+
+/**
+ * Get the currency formatted amount
+ *
+ * @since 1.0
+ * @param integer $price
+ * @return string Currency Formatted price
+ */
+function epl_currency_formatted_amount( $price ) {
 	$price_format 			= apply_filters('epl_price_number_format','number');
 	$price_format_com_lease 	= apply_filters('epl_price_number_format_commercial_lease','number');
 
@@ -241,7 +278,14 @@ function epl_currency_formatted_amount($price) {
 
 }
 
-function epl_labels($key) {
+/**
+ * Get the currency formatted amount
+ *
+ * @since 2.2
+ * @param integer $key Settings meta key
+ * @return string
+ */
+function epl_labels( $key ) {
 	global $epl_settings;
 	$field_groups = epl_get_admin_option_fields();
 	$epl_labels = array();
@@ -275,10 +319,10 @@ function epl_display_label_suburb( ) {
 	}
 	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
 }
+
 /**
  * @depricated since 2.2. use epl_labels instead
  */
-
 function epl_display_label_bond( ) {
 	$epl_display_label_bond = '';
 
@@ -288,6 +332,7 @@ function epl_display_label_bond( ) {
 	}
 	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
 }
+
 /**
  * @depricated since 2.2. use epl_labels instead
  */
@@ -305,19 +350,23 @@ function epl_display_label_postcode() {
  * Print EPL property address
  *
  * @since 1.0
+ * @param integer $post_ID
  * @return the string for address
  */
-function epl_the_property_address($post_ID='') {
+function epl_the_property_address( $post_ID = '' ) {
 	$address = epl_get_property_address($post_ID);
 	echo apply_filters('epl_the_property_address_filter', $address);
 }
+
 /**
- * Get EPL property meta data
+ * Get EPL property meta data based on post id
  *
  * @since 1.0
+ * @param integer $post_ID
+ * @param string $meta_key
  * @return the string/list for values
  */
-function epl_get_property_meta($post_ID='', $meta_key='') {
+function epl_get_property_meta( $post_ID = '' , $meta_key = '' ) {
 	if($post_ID == '') {
 		$post_ID = get_the_ID();
 	}
@@ -329,18 +378,22 @@ function epl_get_property_meta($post_ID='', $meta_key='') {
 	}
 	return apply_filters('epl_get_property_meta_filter', $meta_value);
 }
+
 /**
  * Print EPL property meta data
  *
  * @since 1.0
+ * @param integer $post_ID
+ * @param string $meta_key
  * @return the string/list for values
  */
-function epl_the_property_meta($post_ID='', $meta_key) {
+function epl_the_property_meta( $post_ID = '' , $meta_key ) {
 	$meta_value = epl_get_property_meta($post_ID, $meta_key);
 	echo apply_filters('epl_the_property_meta_filter', $meta_value);
 }
+
 /**
- * Taxonomy: Location Label
+ * Taxonomy Location Label
  *
  * @since 1.0
  * @return all the settings in array
@@ -356,8 +409,9 @@ function epl_tax_location_label() {
 	}
 	return $label_location;
 }
+
 /**
- * Custom Meta: Location Label
+ * Location Label
  *
  * @since 1.0
  * @return all the settings in array
@@ -373,8 +427,9 @@ function epl_meta_location_label() {
 	}
 	return $label_location;
 }
+
 /**
- * Custom Meta: Under Offer Label
+ * Under Offer Label
  *
  * @since 2.1
  * @return label
@@ -390,8 +445,9 @@ function epl_meta_under_offer_label() {
 	}
 	return $under_offer;
 }
+
 /**
- * Custom Meta: House Categories
+ * House Categories Options
  *
  * @since 1.1
  * @return all the categories in array
@@ -422,6 +478,7 @@ function epl_listing_load_meta_property_category() {
  * Custom Meta: Return Value of House Category
  *
  * @since 1.1
+ * @param string $key
  * @return all the categories in array
  */
 function epl_listing_meta_property_category_value( $key ) {
@@ -449,6 +506,7 @@ function epl_listing_load_meta_land_category() {
  * Custom Meta: Return Value of Land Category
  *
  * @since 1.1
+ * @param string $key
  * @return all the categories in array
  */
 function epl_listing_meta_land_category_value( $key ) {
@@ -483,6 +541,7 @@ function epl_listing_load_meta_commercial_category() {
  * Custom Meta: Return Value of Commercial Category
  *
  * @since 1.1
+ * @param string $key
  * @return all the categories in array
  */
 function epl_listing_load_meta_commercial_category_value( $key ) {
@@ -512,6 +571,7 @@ function epl_listing_load_meta_commercial_rent_period() {
  * Custom Meta: Return Value of Commercial Rental Period
  *
  * @since 2.1
+ * @param string $key
  * @return all the categories in array
  */
 function epl_listing_load_meta_commercial_rent_period_value( $key ) {
@@ -542,11 +602,11 @@ function epl_listing_load_meta_rural_category() {
 	return apply_filters( 'epl_listing_meta_rural_category', $defaults );
 }
 
-
 /**
  * Custom Meta: Return Value of Rural Category
  *
  * @since 1.1
+ * @param string $key
  * @return all the categories in array
  */
 function epl_listing_load_meta_rural_category_value( $key ) {
@@ -564,9 +624,9 @@ function epl_listing_load_meta_rural_category_value( $key ) {
  * [epl_feedsync_format_date({./@modTime})]
  *
  * @since 1.2
+ * @param string $date
  * @return formatted date
  */
-
 function epl_feedsync_format_date( $date ) {
     $date_example = '2014-07-22-16:45:56';
 
@@ -584,6 +644,7 @@ function epl_feedsync_format_date( $date ) {
  * [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})]
  *
  * @since 1.3
+ * @param string $sub_value
  * @return formatted sub number/
  */
 function epl_feedsync_format_sub_number( $sub_value ) {
@@ -627,8 +688,10 @@ function epl_admin_sidebar () {
  * Renders field array to html
  *
  * @since 2.1
+ * @param array $field
+ * @param string $val
  */
- function epl_render_html_fields ($field=array(),$val='') {
+function epl_render_html_fields ( $field = array() , $val = '' ) {
  	global $post;
  	switch($field['type']) {
 		case 'select':
@@ -871,6 +934,11 @@ function epl_admin_sidebar () {
 
  }
 
+/**
+ * Admin options settings
+ *
+ * @since 2.1
+ */
  function epl_get_admin_option_fields() {
  	global $epl_settings;
 	$opts_epl_gallery_n = array();
@@ -1495,16 +1563,13 @@ add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_cal
 * Author: Chinmoy Paul
 * Author URL: http://pwdtechnology.com
 *
+* @since 2.1.11
 * @param string $key Post Meta Key.
-*
 * @param string $type Post Type. Default is post. You can pass custom post type here.
-*
 * @param string $status Post Status like Publish, draft, future etc. default is publish
-*
 * @return array
 */
-
- function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
     global $wpdb;
 
@@ -1524,10 +1589,11 @@ AND p.post_type = '%s'
     	return array_combine(array_filter($res),array_filter($res) );
 }
 
-
-
-
-
+/**
+ * Session Start
+ *
+ * @since 3.0
+ */
 function epl_session_start() {
     if(!session_id()) {
         session_start();
@@ -1535,6 +1601,11 @@ function epl_session_start() {
 }
 add_action('init', 'epl_session_start', 1);
 
+/**
+ * Session End
+ *
+ * @since 3.0
+ */
 function epl_session_end() {
     session_destroy ();
 }
@@ -1544,7 +1615,7 @@ add_action('wp_login', 'epl_session_end');
 /**
  * Get Sales Count By Date
  *
- * @since 2.4
+ * @since 3.0
  * @param int $day Day number
  * @param int $month_num Month number
  * @param int $year Year
@@ -1569,8 +1640,6 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 			$day 		= is_null($day) ? 00 : $day;
 			$year 		= is_null($year) ? 0000 : $year;
 			$range		= isset($_GET['range'])?$_GET['range']:'other';
-
-
 
 			$args['meta_query'] = array(
 				array(
@@ -1604,7 +1673,6 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 					'value' 	=> $sold_date,
 					'type'		=>	'DATE',
 				);
-
 			}
 
 	} else {
@@ -1617,10 +1685,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 
 			if ( ! empty( $hour ) )
 				$args['hour'] = $hour;
-
-
 	}
-
 
 	$args = apply_filters( 'epl_get_sales_by_date_args', $args  );
 
@@ -1641,7 +1706,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
  *
  * Takes a month number and returns the name three letter name of it.
  *
- * @since 2.4
+ * @since 3.0
  *
  * @param integer $n
  * @return string Short month name
@@ -1656,18 +1721,18 @@ function epl_month_num_to_name( $n ) {
  * Retrieve contacts from the database
  *
  * @access  public
- * @since   2.4
+ * @since   3.0
 */
 function get_contacts( $args = array() ) {
 
 	global $wpdb;
 
 	$defaults = array(
-		'post_type'		=>	'epl_contact',
-		'posts_per_page'       => 20,
-		'offset'       => 0,
-		'orderby'      => 'ID',
-		'order'        => 'DESC'
+		'post_type'		=> 'epl_contact',
+		'posts_per_page'	=> 20,
+		'offset'		=> 0,
+		'orderby'		=> 'ID',
+		'order'			=> 'DESC'
 	);
 
 	$args  = wp_parse_args( $args, $defaults );
@@ -1685,13 +1750,12 @@ function get_contacts( $args = array() ) {
 
 	}
 
-
 	//specific contacts by email
 	if( ! empty( $args['email'] ) ) {
 
 		$email_query =  array(
-			'key'			=>	'contact_email',
-			'value'			=>	$args['email'],
+			'key'		=> 'contact_email',
+			'value'		=> $args['email'],
 		);
 
 		if( is_array( $args['email'] ) ) {
@@ -1718,6 +1782,4 @@ function get_contacts( $args = array() ) {
 		wp_cache_set( $cache_key, $contacts, 'contacts', 3600 );
 	}
 	return $contacts;
-
 }
-

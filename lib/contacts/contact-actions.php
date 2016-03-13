@@ -1,13 +1,21 @@
 <?php
+/**
+ * Contact Actions
+ *
+ * @package     EPL
+ * @subpackage  Contacts/Actions
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Processes a custom edit
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $args The $_POST array being passeed
  * @return array $output Response messages
  */
@@ -91,7 +99,7 @@ add_action( 'epl_edit-contact', 'epl_edit_contact', 10, 1 );
 /**
  * Delete a contact
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $args The $_POST array being passeed
  * @return int         Wether it was a successful deletion
  */
@@ -131,17 +139,17 @@ function epl_contact_delete( $args ) {
 	if ( $contact->ID > 0 ) {
 
 		$listings_array = $contact->listing_ids;
-		
+
 		// delete contact from meta of interested listings
 		foreach($listings_array as $listing_id) {
 			$contact->remove_listing($listing_id);
 		}
-			
+
 
 		$success        = $contact->delete( $contact->id );
 
 		if ( $success ) {
-			
+
 			$redirect = admin_url( 'admin.php?page=epl-contacts&epl-message=contact-deleted' );
 
 		} else {
@@ -168,7 +176,7 @@ add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
 /**
  * Save a customer note being added
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $args The $_POST array being passeed
  * @return object         the comment object
  */
@@ -205,11 +213,11 @@ function epl_contact_save_note( $args ) {
 	}
 
 	do_action( 'epl_pre_insert_contact_note', $contact_id, $new_note, $listing_id, $note_type );
-	
+
 	$contact = new EPL_Contact( $contact_id );
 	$note_object = $contact->add_note( $contact_note,$note_type,$listing_id );
 
-	
+
 
 	if ( ! empty( $note_object ) && ! empty( $contact->id ) ) {
 
@@ -259,7 +267,7 @@ add_action( 'epl_add-contact-note', 'epl_contact_save_note', 10, 1 );
 /**
  * Save a contact listing being added
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $args The $_POST array being passeed
  * @return object
  */
@@ -345,7 +353,7 @@ add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
 /**
  * Add an existing listing to a contact
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $args The $_POST array being passeed
  * @return object
  */
@@ -404,7 +412,7 @@ add_action( 'epl_add-existing-contact-listing', 'epl_contact_assign_existing_lis
 /**
  * Processes a custom edit
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $args The $_POST array being passeed
  * @return array $output Response messages
  */
@@ -419,7 +427,7 @@ function epl_meta_contact( $args ) {
 	if ( empty( $args ) ) {
 		return;
 	}
-	
+
 	$nonce         = $args['_wpnonce'];
 	if ( ! wp_verify_nonce( $nonce, 'meta-contact' ) ) {
 		wp_die( __( 'Cheatin\' eh?!', 'epl' ) );
@@ -430,7 +438,7 @@ function epl_meta_contact( $args ) {
 	if ( empty( $contact->ID ) ) {
 		return false;
 	}
-	
+
 	$not_meta_fields = array('epl_form_builder_form_submit','contact_id','_wpnonce','epl_action');
 
 	$post_fields = array('post_title','post_content','ID','post_author');
@@ -463,7 +471,7 @@ add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
 /**
  * create a new contact from backend
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $args The $_POST array being passeed
  * @return array $output Response messages
  */
@@ -478,7 +486,7 @@ function epl_new_contact( $args ) {
 	if ( empty( $args ) ) {
 		return;
 	}
-	
+
 	$nonce         = $args['_wpnonce'];
 	if ( ! wp_verify_nonce( $nonce, 'new-contact' ) ) {
 		wp_die( __( 'Cheatin\' uhh?!', 'epl' ) );
@@ -494,7 +502,7 @@ function epl_new_contact( $args ) {
 		wp_die( __( 'A contact with this email already exists !', 'epl' ) );
 	}
 	$contact->update($args);
-	
+
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
 	wp_redirect( $redirect );
 	exit;
@@ -504,7 +512,7 @@ add_action( 'epl_new-contact', 'epl_new_contact', 10, 1 );
 
 /**
  * Update contact category
- * @since 2.4
+ * @since 3.0
  * @return bool true if updated
  */
 function contact_category_update() {
@@ -519,7 +527,7 @@ add_action('wp_ajax_contact_category_update','contact_category_update');
 
 /**
  * Add/Update contact tags
- * @since 2.4
+ * @since 3.0
  * @return bool true if updated
  */
 	function epl_contact_tag_add() {
@@ -555,7 +563,7 @@ add_action('wp_ajax_contact_category_update','contact_category_update');
 
 /**
  * delete contact tags
- * @since 2.4
+ * @since 3.0
  * @return bool true if updated
  */
 function contact_tag_remove() {
@@ -569,7 +577,7 @@ add_action('wp_ajax_contact_tag_remove','contact_tag_remove');
 
 /**
  * @param $contact
- * @since 2.4
+ * @since 3.0
  * renders contact action menus
  */
 function epl_contact_action_menus($contact) { ?>
@@ -643,7 +651,7 @@ add_action('epl_contact_action_menus','epl_contact_action_menus');
 
 /**
  * @param $contact
- * @since 2.4
+ * @since 3.0
  * renders contact header
  */
 function epl_contact_entry_header($contact) { ?>
@@ -678,7 +686,7 @@ add_action('epl_contact_entry_header_editable','epl_contact_entry_header_editabl
 /**
  * renders assigned tag for contact
  * @param $contact
- * @since 2.4
+ * @since 3.0
  * renders contact header
  */
 function epl_contact_assigned_tags($contact) { ?>
@@ -1258,7 +1266,7 @@ add_action('wp_ajax_epl_search_user','epl_search_user');
 /**
  * Save a customer note being added
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $args The $_POST array being passeed
  * @return object         the comment object
  */

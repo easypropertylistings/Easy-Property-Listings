@@ -1,11 +1,24 @@
 <?php
-/*
- * Author Meta 
- * This prepares the meta data for the author profile and author box
+/**
+ * EPL Author Meta Compatibility
+ *
+ * @package     EPL
+ * @subpackage  Compatibility/Author
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+/*
+ * Author Meta: Depreciated.
+ *
+ * This prepares the meta data for the author profile and author box
+ *
+ * @since       1.0
+ */
 
 $name 			= get_the_author_meta( 'display_name' , $author_id);
 $mobile 		= get_the_author_meta( 'mobile' , $author_id);

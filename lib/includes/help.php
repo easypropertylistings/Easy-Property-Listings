@@ -11,9 +11,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Adds the Contextual Help for the main Downloads page
+ * Adds the Contextual Help for the main Listings page
  *
- * @since 1.2.3
+ * @since 3.0
  * @return void
  */
 function epl_listings_contextual_help() {
@@ -33,24 +33,22 @@ function epl_listings_contextual_help() {
     );
 
     $screen->add_help_tab( array(
-        'id'	    => 'epl-listing-configuration',
-        'title'	    => __('Title One'),
-        'content'	=>  __('Content One')
+        'id'		=> 'epl-listing-configuration',
+        'title'		=> __('Title One'),
+        'content'	=> __('Content One')
 
     ) );
     $screen->add_help_tab( array(
-        'id'	    => 'epl-listing-configuration-two',
-        'title'	    => __('Title Two'),
-        'content'	=>  __('Content Two')
+        'id'		=> 'epl-listing-configuration-two',
+        'title'		=> __('Title Two'),
+        'content'	=> __('Content Two')
 
     ) );
-
-
 
     /**
      * Fires off in the EDD Downloads Contextual Help Screen
      *
-     * @since 1.2.3
+     * @since 3.0
      * @param object $screen The current admin screen
      */
     do_action( 'epl_listings_contextual_help', $screen );

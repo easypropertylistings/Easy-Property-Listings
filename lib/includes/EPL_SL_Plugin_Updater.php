@@ -1,4 +1,13 @@
 <?php
+/**
+ * EPL Updater
+ *
+ * @package     EPL
+ * @subpackage  Classes/Updater
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
 
 // uncomment this line for testing
 //set_site_transient( 'update_plugins', null );
@@ -11,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @author Pippin Williamson
  * @version 1.6.3
+ * @since 1.0
  */
 class EPL_SL_Plugin_Updater {
 	private $api_url   = '';

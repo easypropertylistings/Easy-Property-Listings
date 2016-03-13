@@ -3,7 +3,10 @@
  * Error Tracking
  *
  * @package     EPL
- * @since       2.4
+ * @subpackage  Functions/ErrorTracking
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
  */
 
 // Exit if accessed directly
@@ -13,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Print Errors
  *
- * @since 2.4
+ * @since 3.0
  * @uses epl_get_errors()
  * @uses epl_clear_errors()
  * @return void
@@ -38,14 +41,14 @@ function epl_print_errors() {
  * Get Errors
  * If errors exist, they are returned.
  *
- * @since 2.4
+ * @since 3.0
  * @return mixed array if errors are present, false if none found
  */
 function epl_get_errors() {
 	if( session_id() && isset($_SESSION['epl_errors']) ) {
 		return $_SESSION['epl_errors'];
 	}
-	
+
 }
 
 /**
@@ -53,7 +56,7 @@ function epl_get_errors() {
  *
  * Stores an error in a session var.
  *
- * @since 2.4
+ * @since 3.0
  * @param int $error_id ID of the error being set
  * @param string $error_message Message to store with the error
  * @return void
@@ -70,7 +73,7 @@ function epl_set_error( $error_id, $error_message ) {
 /**
  * Clears all stored errors.
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_clear_errors() {
@@ -80,7 +83,7 @@ function epl_clear_errors() {
 /**
  * Removes (unsets) a stored error
  *
- * @since 2.4
+ * @since 3.0
  * @param int $error_id ID of the error being set
  * @return string
  */
@@ -95,7 +98,7 @@ function epl_unset_error( $error_id ) {
 /**
  * pretty var dump
  *
- * @since 2.4
+ * @since 3.0
  */
 function epl_var_dump($var,$die=false) {
 	echo "<pre class=\"epl_var_dump\">";
@@ -109,7 +112,7 @@ function epl_var_dump($var,$die=false) {
 /**
  * pretty print_r
  *
- * @since 2.4
+ * @since 3.0
  */
 function epl_print_r($var,$die=false) {
 	echo "<pre class=\"epl_print_r\">";

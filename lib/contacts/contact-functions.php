@@ -1,4 +1,13 @@
 <?php
+/**
+ * Contact Functions
+ *
+ * @package     EPL
+ * @subpackage  Contacts/Functions
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -6,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Register a view for the single contact view
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $views An array of existing views
  * @return array        The altered list of views
  */
@@ -23,24 +32,23 @@ function epl_register_default_contact_views( $views ) {
 	);
 
 	return array_merge( $views, $default_views );
-
 }
 add_filter( 'epl_contact_views', 'epl_register_default_contact_views', 1, 1 );
 
 /**
  * Register a tab for the single contact view
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $tabs An array of existing tabs
  * @return array       The altered list of tabs
  */
 function epl_register_default_contact_tabs( $tabs ) {
 
 	$default_tabs = array(
-		'overview' => array( 'dashicon' => 'dashicons-admin-users', 'title' => __( 'Contact Profile', 'epl' ) ),
-		'meta'      => array( 'dashicon' => 'dashicons-edit', 'title' => __( 'Contact Info', 'epl' ) ),
-		'listings'  => array( 'dashicon' => 'dashicons-admin-home', 'title' => __( 'Listings', 'epl' ) ),
-		'notes'    => array( 'dashicon' => 'dashicons-admin-comments', 'title' => __( 'Contact Notes', 'epl' ) ),
+		'overview'	=> array( 'dashicon' => 'dashicons-admin-users', 'title' => __( 'Contact Profile', 'epl' ) ),
+		'meta'		=> array( 'dashicon' => 'dashicons-edit', 'title' => __( 'Contact Info', 'epl' ) ),
+		'listings'	=> array( 'dashicon' => 'dashicons-admin-home', 'title' => __( 'Listings', 'epl' ) ),
+		'notes'		=> array( 'dashicon' => 'dashicons-admin-comments', 'title' => __( 'Contact Notes', 'epl' ) ),
 	);
 
 	return array_merge( $tabs, $default_tabs );
@@ -50,7 +58,7 @@ add_filter( 'epl_contact_tabs', 'epl_register_default_contact_tabs', 1, 1 );
 /**
  * Register the Delete icon as late as possible so it's at the bottom
  *
- * @since  2.4
+ * @since  3.0
  * @param  array $tabs An array of existing tabs
  * @return array       The altered list of tabs, with 'delete' at the bottom
  */
@@ -62,6 +70,11 @@ function epl_register_delete_contact_tab( $tabs ) {
 }
 add_filter( 'epl_contact_tabs', 'epl_register_delete_contact_tab', PHP_INT_MAX, 1 );
 
+/**
+ * Next contact link
+ *
+ * @since  3.0
+ */
 function epl_get_next_contact_link($contact_id) {
 	if(absint($contact_id) < 1 )
 		return;
@@ -72,6 +85,11 @@ function epl_get_next_contact_link($contact_id) {
 	}
 }
 
+/**
+ * Previous contact link
+ *
+ * @since  3.0
+ */
 function epl_get_prev_contact_link($contact_id) {
 	if(absint($contact_id) < 1 )
 		return;
@@ -82,6 +100,11 @@ function epl_get_prev_contact_link($contact_id) {
 	}
 }
 
+/**
+ * Contact Fields
+ *
+ * @since  3.0
+ */
 function epl_contact_contact_fields($contact_fields,$contact) {
 	$fields = array();
 	$phones = $contact->get_meta('contact_phones');
@@ -116,4 +139,3 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 	return array_intersect_key($merged_fields, array_unique(array_map('serialize', $merged_fields)));
 }
 add_filter('epl_contact_contact_fields','epl_contact_contact_fields',10,2);
-
