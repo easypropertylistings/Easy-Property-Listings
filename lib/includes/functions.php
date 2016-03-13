@@ -8,7 +8,7 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -78,9 +78,9 @@ function epl_get_thumbnail_sizes() {
 function epl_remote_url_get($url) {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$response = curl_exec($ch);
-	$response = json_decode($response);	
+	$response = json_decode($response);
 	if(!empty($response)) {
 		if($response->status == 'OK') {
 			return $response->results;
@@ -96,7 +96,7 @@ function epl_register_post_type($post_type='', $post_type_label, $args=array()) 
 	if(empty($post_type)) {
 		return;
 	}
-	
+
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['activate_post_types'])) {
 		$epl_activate_post_types = $epl_settings['activate_post_types'];
@@ -111,7 +111,7 @@ function epl_register_post_type($post_type='', $post_type_label, $args=array()) 
 			}
 		}
 	}
-	
+
 	if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 		$_SESSION['epl_actions']['epl_flush_rewrite_rules'] = true;
 	}
@@ -196,7 +196,7 @@ function epl_get_currencies() {
  */
 function epl_get_currency() {
 	$epl_currency = '';
-	
+
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['currency'])) {
 		$epl_currency = $epl_settings['currency'];
@@ -205,7 +205,7 @@ function epl_get_currency() {
 }
 function epl_get_currency_position() {
 	$epl_currency_position = '';
-	
+
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['currency_position'])) {
 		$epl_currency_position = $epl_settings['currency_position'];
@@ -214,7 +214,7 @@ function epl_get_currency_position() {
 }
 function epl_get_thousands_separator() {
 	$epl_thousands_separator = '';
-	
+
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['currency_thousands_separator'])) {
 		$epl_thousands_separator = $epl_settings['currency_thousands_separator'];
@@ -223,7 +223,7 @@ function epl_get_thousands_separator() {
 }
 function epl_get_decimal_separator() {
 	$epl_decimal_separator = '';
-	
+
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['currency_decimal_separator'])) {
 		$epl_decimal_separator = $epl_settings['currency_decimal_separator'];
@@ -233,14 +233,12 @@ function epl_get_decimal_separator() {
 function epl_currency_formatted_amount($price) {
 	$price_format 			= apply_filters('epl_price_number_format','number');
 	$price_format_com_lease 	= apply_filters('epl_price_number_format_commercial_lease','number');
-	
-	if($price_format == 'decimal' && ( get_post_type() == 'rental' || is_post_type_archive('rental') ) )
-		return epl_currency_filter( epl_format_amount( $price , true ) );
-	elseif($price_format_com_lease == 'decimal' && ( get_post_type() == 'commercial' || is_post_type_archive('commercial') ) )
+
+	if($price_format == 'decimal' || $price_format_com_lease == 'decimal' )
 		return epl_currency_filter( epl_format_amount( $price , true ) );
 	else
 		return epl_currency_filter( epl_format_amount( $price , false ) );
-		
+
 }
 
 function epl_labels($key) {
@@ -250,19 +248,19 @@ function epl_labels($key) {
 	foreach($field_groups as $field_group) {
 		if($field_group['id']	==	'labels' || $field_group['id']	==	'address') {
 			$epl_labels = array_merge ( $epl_labels, array_filter($field_group['fields']) );
-			
+
 		}
 	}
 	foreach($epl_labels as $label_key	=>	$label) {
-	
+
 		if( isset($label['default']) && $key == $label['name'] ) {
-			
+
 			$label =  isset($epl_settings[$key]) ? $epl_settings[$key] : $label['default'];
-			
+
 			return apply_filters( 'epl_display_'.$key, $label );
 		}
 	}
-	
+
 }
 
 /**
@@ -270,7 +268,7 @@ function epl_labels($key) {
  */
 function epl_display_label_suburb( ) {
 	$epl_display_label_suburb = '';
-	
+
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
 		$epl_display_label_suburb = $epl_settings['label_suburb'];
@@ -283,7 +281,7 @@ function epl_display_label_suburb( ) {
 
 function epl_display_label_bond( ) {
 	$epl_display_label_bond = '';
-	
+
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
 		$epl_display_label_bond = $epl_settings['label_bond'];
@@ -295,7 +293,7 @@ function epl_display_label_bond( ) {
  */
 function epl_display_label_postcode() {
 	$epl_display_label_postcode = '';
-	
+
 	global $epl_settings;
 	if(!empty($epl_settings) && isset($epl_settings['label_postcode'])) {
 		$epl_display_label_postcode = $epl_settings['label_postcode'];
@@ -323,7 +321,7 @@ function epl_get_property_meta($post_ID='', $meta_key='') {
 	if($post_ID == '') {
 		$post_ID = get_the_ID();
 	}
-	
+
 	if(!empty($meta_key)) {
 		$meta_value = trim(get_post_meta($post_ID, $meta_key, true));
 	} else {
@@ -355,7 +353,7 @@ function epl_tax_location_label() {
 	}
 	if(empty($label_location)) {
 		$label_location = 'City';
-	}	
+	}
 	return $label_location;
 }
 /**
@@ -372,7 +370,7 @@ function epl_meta_location_label() {
 	}
 	if(empty($label_location)) {
 		$label_location = 'City';
-	}	
+	}
 	return $label_location;
 }
 /**
@@ -389,7 +387,7 @@ function epl_meta_under_offer_label() {
 	}
 	if(empty($under_offer)) {
 		$under_offer = __('Under Offer' , 'epl');
-	}	
+	}
 	return $under_offer;
 }
 /**
@@ -432,7 +430,7 @@ function epl_listing_meta_property_category_value( $key ) {
 
 	return $value;
 }
- 
+
 /**
  * Custom Meta: Land Categories
  *
@@ -459,7 +457,7 @@ function epl_listing_meta_land_category_value( $key ) {
 
 	return $value;
 }
- 
+
 /**
  * Custom Meta: Commercial Categories
  *
@@ -522,7 +520,7 @@ function epl_listing_load_meta_commercial_rent_period_value( $key ) {
 
 	return $value;
 }
-  
+
 /**
  * Custom Meta: Rural Categories
  *
@@ -543,8 +541,8 @@ function epl_listing_load_meta_rural_category() {
 	);
 	return apply_filters( 'epl_listing_meta_rural_category', $defaults );
 }
- 
-  
+
+
 /**
  * Custom Meta: Return Value of Rural Category
  *
@@ -561,30 +559,30 @@ function epl_listing_load_meta_rural_category_value( $key ) {
 /**
  * REAXML Date Processing Function for WP All Import and FeedSync
  *
- * Some imports set the current date instead of the date from the REAXML file. 
- * Usage in WP All Import Post Date field is: 
+ * Some imports set the current date instead of the date from the REAXML file.
+ * Usage in WP All Import Post Date field is:
  * [epl_feedsync_format_date({./@modTime})]
- * 
+ *
  * @since 1.2
  * @return formatted date
  */
- 
+
 function epl_feedsync_format_date( $date ) {
     $date_example = '2014-07-22-16:45:56';
-     
+
     $tempdate = explode('-',$date);
 	$date = $tempdate[0].'-'.$tempdate[1].'-'.$tempdate[2].' '.$tempdate[3];
     return  date("Y-m-d H:i:s",strtotime($date));
 }
 
 /**
- * REAXML Address Sub Number field for title import 
+ * REAXML Address Sub Number field for title import
  * processing Function for WP All Import and FeedSync
  *
- * This function adds a / after the $value else returns false. 
- * Usage in WP All Import Post Date field is: 
+ * This function adds a / after the $value else returns false.
+ * Usage in WP All Import Post Date field is:
  * [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})]
- * 
+ *
  * @since 1.3
  * @return formatted sub number/
  */
@@ -603,9 +601,9 @@ function epl_feedsync_format_sub_number( $sub_value ) {
  */
 function epl_admin_sidebar () {
 
-	if ( has_filter( 'epl_extensions_options_filter_new' ) ) 
+	if ( has_filter( 'epl_extensions_options_filter_new' ) )
 		return;
-		
+
 	$service_banners = array(
 		array(
 			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
@@ -626,7 +624,7 @@ function epl_admin_sidebar () {
 }
 
 /**
- * Renders field array to html 
+ * Renders field array to html
  *
  * @since 2.1
  */
@@ -634,7 +632,7 @@ function epl_admin_sidebar () {
  	global $post;
  	switch($field['type']) {
 		case 'select':
-			$dependency = 'false'; 
+			$dependency = 'false';
 			if(isset($field['opt_args']) && !empty($field['opt_args'])) {
 				if( isset($field['opt_args']['type']) ) {
 					switch($field['opt_args']['type']) {
@@ -646,11 +644,11 @@ function epl_admin_sidebar () {
 									'parent'		=>	0
 								)
 							);
-						
+
 							if(!isset($field['opt_args']['parent']) || $field['opt_args']['parent'] == '') {
 								$var = sanitize_title( $field['opt_args']['slug'] );
 								$var = 'var_'.str_replace("-", "_", $var);
-						
+
 								if(!isset($$var)) {
 									$$var = array();
 									if ( !empty($terms) && !is_wp_error($terms) ) {
@@ -669,31 +667,31 @@ function epl_admin_sidebar () {
 					}
 				}
 			}
-		
+
 			$field_atts = '';
 			if($dependency == 'true') {
 				$field_atts = 'data-dependency="true" data-type="taxonomy" data-type-name="'.$field['opt_args']['slug'].'" data-parent="'.$field['opt_args']['parent'].'" data-default="'.$val.'"';
 			}
-		
+
 			echo '<select name="'.$field['name'].'" id="'.$field['name'].'" '.$field_atts.' class="dependency-'.$dependency.'">';
 				if(!empty($field['default'])) {
 					echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
 				}
-			
+
 				if(isset($field['opts']) && !empty($field['opts'])) {
 					foreach($field['opts'] as $k=>$v) {
 						$selected = '';
 						if($val == $k) {
 							$selected = 'selected="selected"';
 						}
-					
+
 						if(is_array($v)) {
 							if(isset($v['exclude']) && !empty($v['exclude'])) {
 								if( in_array($post->post_type, $v['exclude']) ) {
 									continue;
 								}
 							}
-						
+
 							if(isset($v['include']) && !empty($v['include'])) {
 								if( !in_array($post->post_type, $v['include']) ) {
 									continue;
@@ -701,7 +699,7 @@ function epl_admin_sidebar () {
 							}
 							$v = $v['label'];
 						}
-					
+
 						echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
 					}
 				} else {
@@ -724,16 +722,20 @@ function epl_admin_sidebar () {
 				}
 			}
 			break;
-			
+
 		case 'checkbox_single':
+
 			if(!empty($field['opts'])) {
 				foreach($field['opts'] as $k=>$v) {
 					$checked = '';
 					if(!empty($val)) {
-						if( $k == $val ) {
+						$checkbox_single_options = apply_filters('epl_checkbox_single_check_options', array(1,'yes','on','true'));
+						if( $k == $val || in_array($val,$checkbox_single_options) ) {
 							$checked = 'checked="checked"';
 						}
 					}
+					if(count($field['opts']) == 1)
+						$v = $field['label'];
 					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
 				}
 			}
@@ -762,11 +764,11 @@ function epl_admin_sidebar () {
 				<div class="epl-media-row">
 					<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />
 					&nbsp;&nbsp;<input type="button" name="epl_upload_button" class="button" value="'.__('Add File', 'epl').'" />';
-					
+
 					if( in_array( pathinfo($img, PATHINFO_EXTENSION), array('jpg','jpeg','png','gif') ) ) {
 						echo '&nbsp;&nbsp;<img src="'.$img.'" alt="" />';
 					}
-			echo		
+			echo
 					'<div class="epl-clear"></div>
 				</div>
 			';
@@ -783,7 +785,7 @@ function epl_admin_sidebar () {
 			}
 			echo '<textarea name="'.$field['name'].'" id="'.$field['name'].'" '.$atts.'>'.stripslashes($val).'</textarea>';
 			break;
-	
+
 		case'decimal':
 			$atts = '';
 			if($field['maxlength'] > 0) {
@@ -791,7 +793,7 @@ function epl_admin_sidebar () {
 			}
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[onlyNumberWithDecimal]]" '.$atts.' />';
 			break;
-		
+
 		case 'number':
 			$atts = '';
 			if(isset($field['maxlength']) && $field['maxlength'] > 0) {
@@ -799,7 +801,7 @@ function epl_admin_sidebar () {
 			}
 			echo '<input type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[onlyNumber]]" '.$atts.' />';
 			break;
-			
+
 		case 'date':
 			$atts = '';
 			echo '<input type="text" class="epldatepicker" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
@@ -810,16 +812,16 @@ function epl_admin_sidebar () {
 			$atts = '';
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
 			break;
-			
+
 		case 'sold-date':
 			$atts = '';
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
 			break;
-		
+
 		case 'email':
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[email]]" />';
 			break;
-			
+
 		case 'url':
 			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[url]]" />';
 			break;
@@ -837,39 +839,38 @@ function epl_admin_sidebar () {
 					'.isset($field['content']) ? $field['content'] : ''.'
 				</div>';
 			break;
-		
+
 		default:
 			$atts = '';
 			if(isset($field['maxlength']) &&  $field['maxlength'] > 0) {
 				$atts .= ' maxlength="'.$field['maxlength'].'"';
 			}
+            $classes = isset($field['class']) ? $field['class'] : '';
 			foreach($field as $temp_key	=>	$temp_value) {
 				if (0 === strpos($temp_key, 'data-')) {
 				  $atts .= ''.$temp_key.'="'.$temp_value.'"';
 				}
 			}
-			echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+            echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" class="'.$classes.'"  value="'.stripslashes($val).'" '.$atts.' />';
 	}
 
 	if( isset($field['geocoder']) ) {
 		if( $field['geocoder'] == 'true' ) {
 			echo '<span class="epl-geocoder-button"></span>';
 		}
-		
-		if( !empty($val) ) {
-			echo '<iframe width="100%" height="200" frameborder="0" scrolling="no" src="//maps.google.com/?q='.stripslashes($val).'&output=embed&z=14" style="margin:5px 0 0 0;"></iframe>';
-		}
+
+		do_action('epl_admin_listing_map',stripslashes($val));
 	}
-	
+
 	if(isset($field['help'])) {
 		$field['help'] = trim($field['help']);
 		if(!empty($field['help'])) {
 			echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
 		}
 	}
- 	
+
  }
- 
+
  function epl_get_admin_option_fields() {
  	global $epl_settings;
 	$opts_epl_gallery_n = array();
@@ -889,7 +890,7 @@ function epl_admin_sidebar () {
 
 	$opts_pages = array( '' => __('Select Page', 'epl') );
 	$pages = get_pages();
-	
+
 	if(!empty($pages)) {
 		foreach($pages as $page) {
 			$opts_pages[$page->ID] = $page->post_title;
@@ -897,7 +898,7 @@ function epl_admin_sidebar () {
 	}
 
 	$epl_currency_positions = array(
-			'before'	=> __('Before - $10', 'epl'), 
+			'before'	=> __('Before - $10', 'epl'),
 			'after'		=> __('After - 10$', 'epl')
 			);
 	$epl_currency_types = epl_get_currencies();
@@ -917,7 +918,7 @@ function epl_admin_sidebar () {
 					'opts'		=>	$epl_post_types,
 					'help'		=>	__('Note: If they are not visible on the front end visit Dashboard > Settings > Permalinks and press Save Changes.' , 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'label_location',
 					'label'		=>	__('Location Taxonomy', 'epl'),
@@ -927,7 +928,7 @@ function epl_admin_sidebar () {
 				)
 			)
 		),
-		
+
 		array(
 			'label'		=>	__('Address', 'epl'),
 			'class'		=>	'core',
@@ -940,7 +941,7 @@ function epl_admin_sidebar () {
 					'type'		=>	'text',
 					'default'	=>	__('Suburb', 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'epl_enable_city_field',
 					'label'		=>	__('Additional Address Field', 'epl'),
@@ -952,14 +953,14 @@ function epl_admin_sidebar () {
 					'default'	=>	'no',
 					'help'		=>	__('Use when you need an additional Municipality/Town/City/Region.' , 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'label_city',
 					'label'		=>	__('Additional Address Field Label', 'epl'),
 					'type'		=>	'text',
 					'default'	=>	__('City', 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'label_state',
 					'label'		=>	__('State/Province/Region Label', 'epl'),
@@ -973,7 +974,7 @@ function epl_admin_sidebar () {
 					'type'		=>	'text',
 					'default'	=>	__('Postcode', 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'epl_enable_country_field',
 					'label'		=>	__('Display Country', 'epl'),
@@ -987,13 +988,13 @@ function epl_admin_sidebar () {
 				)
 			)
 		),
-		
+
 		array(
 			'label'		=>	__('Labels', 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'labels',
 			'fields'	=>	array(
-			
+
 				array(
 					'name'		=>	'sticker_new_range',
 					'label'		=>	__('Keep Listings flagged "New" for', 'epl'),
@@ -1001,7 +1002,7 @@ function epl_admin_sidebar () {
 					'default'	=>	'7',
 					'help'		=>	__('Listings will have a "NEW" Sticker for the defined number of days.', 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'label_new',
 					'label'		=>	__('New/Just Listed Label', 'epl'),
@@ -1015,14 +1016,14 @@ function epl_admin_sidebar () {
 					'type'		=>	'text',
 					'default'	=>	__('Home Open', 'epl')
 				),
-	
+
 				array(
 					'name'		=>	'label_poa',
 					'label'		=>	__('No Price Label', 'epl'),
 					'type'		=>	'text',
 					'default'	=>	__('POA', 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'label_under_offer',
 					'label'		=>	__('Under Offer Label', 'epl'),
@@ -1036,14 +1037,14 @@ function epl_admin_sidebar () {
 					'type'		=>	'text',
 					'default'	=>	__('Sold', 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'label_leased',
 					'label'		=>	__('Leased Label', 'epl'),
 					'type'		=>	'text',
 					'default'	=>	__('Leased', 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'display_bond',
 					'label'		=>	__('Rental Bond/Deposit Display', 'epl'),
@@ -1054,7 +1055,7 @@ function epl_admin_sidebar () {
 					),
 					'help'		=>	__('Display the Bond/Deposit on rental listings.', 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'label_bond',
 					'label'		=>	__('Rental Bond/Deposit Label', 'epl'),
@@ -1096,10 +1097,17 @@ function epl_admin_sidebar () {
 					'type'		=>	'select',
 					'opts'		=>	$opts_epl_features,
 					'default'	=>	2
+				),
+
+				array(
+					'name'		=>	'epl_video_width',
+					'label'		=>	__('Video width on single listings', 'epl'),
+					'type'		=>	'number',
+					'help'		=>	__('Width should be in pixels','epl')
 				)
 			)
 		),
-		
+
 		array(
 			'label'		=>	__('Listing Archive View', 'epl'),
 			'class'		=>	'core',
@@ -1124,7 +1132,7 @@ function epl_admin_sidebar () {
 					),
 					'default'	=>	'list'
 				),
-				
+
 				array(
 					'name'		=>	'use_fancy_navigation',
 					'label'		=>	__('Fancy pagination', 'epl'),
@@ -1137,7 +1145,7 @@ function epl_admin_sidebar () {
 				)
 			)
 		),
-		
+
 		array(
 			'label'		=>	__('Search Widget: Tab Labels', 'epl'),
 			'class'		=>	'core',
@@ -1195,7 +1203,7 @@ function epl_admin_sidebar () {
 			'class'		=>	'core',
 			'id'		=>	'admin_general',
 			'fields'	=>	array(
-			
+
 				array(
 					'name'		=>	'epl_max_graph_sales_price',
 					'label'		=>	__('Graph Max', 'epl'),
@@ -1203,7 +1211,7 @@ function epl_admin_sidebar () {
 					'default'	=>	'2000000',
 					'help'		=>	__('Used for bar chart display on listings for sale.' , 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'epl_max_graph_rent_price',
 					'label'		=>	__('Graph Rental Max', 'epl'),
@@ -1211,7 +1219,7 @@ function epl_admin_sidebar () {
 					'default'	=>	'2000',
 					'help'		=>	__('Rental range.' , 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'epl_admin_thumb_size',
 					'label'		=>	__('Image size', 'epl'),
@@ -1223,7 +1231,7 @@ function epl_admin_sidebar () {
 					'default'	=>	'admin-list-thumb',
 					'help'		=>	__('Size of the image shown in listing columns in admin area' , 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'admin_unique_id',
 					'label'		=>	__('Unique Listing ID column', 'epl'),
@@ -1247,14 +1255,14 @@ function epl_admin_sidebar () {
 				),
 			),
 		),
-		
+
 		array(
 			'label'		=>	__('Theme Setup' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'theme_setup',
 			'help'		=>	__('The following settings will use your theme templates to generate your listing pages. If your listings appear too wide or your sidebar is in the wrong place enable theme compatibility. When this is enabled you can use the included shortcodes like [listing post_type="property" tools_top="on"] to display your listings with sorting and grid options.', 'epl') . '<hr/>',
 			'fields'	=>	array(
-				
+
 				array(
 					'name'		=>	'epl_feeling_lucky',
 					'label'		=>	__('Theme Compatibility', 'epl'),
@@ -1281,7 +1289,7 @@ function epl_admin_sidebar () {
 					'type'		=>	'help',
 					'content'	=>	__('Theme Featured Image Settings' , 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'epl_lucky_disable_theme_single_thumb',
 					'label'		=>	__('Single Listing', 'epl'),
@@ -1291,7 +1299,7 @@ function epl_admin_sidebar () {
 					),
 					'default'	=>	'off'
 				),
-				
+
 				array(
 					'name'		=>	'epl_lucky_disable_archive_thumb',
 					'label'		=>	__('Archive Listing', 'epl'),
@@ -1301,13 +1309,13 @@ function epl_admin_sidebar () {
 					),
 					'default'	=>	'off'
 				),
-				
+
 				array(
 					'name'		=>	'help_lucky_epl_featured_image',
 					'type'		=>	'help',
 					'content'	=>	'<hr/>' . __('Easy Property Listings Featured Image Settings' , 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'epl_lucky_disable_single_thumb',
 					'label'		=>	__('Single Listing', 'epl'),
@@ -1317,7 +1325,7 @@ function epl_admin_sidebar () {
 					),
 					'default'	=>	'off'
 				),
-				
+
 				array(
 					'name'		=>	'epl_lucky_disable_epl_archive_thumb',
 					'label'		=>	__('Archive Listing', 'epl'),
@@ -1329,8 +1337,8 @@ function epl_admin_sidebar () {
 				)
 			)
 		),
-		
-				
+
+
 		array(
 			'label'		=>	__('Currency' , 'epl'),
 			'class'		=>	'core',
@@ -1363,7 +1371,51 @@ function epl_admin_sidebar () {
 				)
 			)
 		),
-		
+
+		array(
+			'label'		=>	__('Inspection Date & Time Format' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'inspection_date_time',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'inspection_date_format',
+					'label'	=>	__('Date Format', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+
+						'd-M-Y'							=>	date('d-M-Y',time() ),
+						'l, dS F'						=>	date('l, dS F',time() ),
+						'D d M'							=>	date('D d M',time() ),
+						'custom_inspection_date_format'	=>	__('Custom','epl')
+
+					),
+				),
+				array(
+					'name'	=>	'custom_inspection_date_format',
+					'label'	=>	__('Custom Date Format', 'epl'),
+					'type'	=>	'text'
+				),
+				array(
+					'name'	=>	'inspection_time_format',
+					'label'	=>	__('Time Format', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	array(
+
+						'h:i A'	=>	date('h:i A',time() ),
+						'h:i a'	=>	date('h:i a',time() ),
+						'H:i'	=>	date('h:i',time() ) . __(' ( 24 Hours Format ) ' , 'epl'),
+						'custom_inspection_time_format'	=>	__('Custom','epl')
+
+					)
+				),
+				array(
+					'name'	=>	'custom_inspection_time_format',
+					'label'	=>	__('Custom Time Format', 'epl'),
+					'type'	=>	'text'
+				),
+			)
+		),
+
 		array(
 			'label'		=>	__('Advanced Settings' , 'epl'),
 			'class'		=>	'core',
@@ -1379,7 +1431,7 @@ function epl_admin_sidebar () {
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'epl')
 				),
-				
+
 				array(
 					'name'		=>	'uninstall_on_delete',
 					'label'		=>	__('Remove Data on Uninstall?', 'epl'),
@@ -1394,7 +1446,7 @@ function epl_admin_sidebar () {
 			)
 		)
 	);
-	
+
 	$fields = apply_filters('epl_display_options_filter', $fields);
 	return $fields;
 }
@@ -1451,7 +1503,7 @@ add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_cal
 *
 * @return array
 */
- 
+
  function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
     global $wpdb;
@@ -1471,3 +1523,201 @@ AND p.post_type = '%s'
 	if(!empty($res))
     	return array_combine(array_filter($res),array_filter($res) );
 }
+
+
+
+
+
+function epl_session_start() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+add_action('init', 'epl_session_start', 1);
+
+function epl_session_end() {
+    session_destroy ();
+}
+add_action('wp_logout', 'epl_session_end');
+add_action('wp_login', 'epl_session_end');
+
+/**
+ * Get Sales Count By Date
+ *
+ * @since 2.4
+ * @param int $day Day number
+ * @param int $month_num Month number
+ * @param int $year Year
+ * @param int $hour Hour
+ * @return int $count Sales
+ */
+function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $hour = null, $status=null,$day_by_day=true ) {
+	$post_type = isset($_GET['view']) ? $_GET['view'] : 'property';
+	$args = array(
+		'post_type'      => $post_type,
+		'nopaging'       => true,
+		'year'           => $year,
+		'fields'         => 'ids',
+		'post_status'    => array( 'publish' ),
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false
+	);
+
+	if( in_array($status, array('sold','leased') ) ) {
+
+			$month_num  = is_null($month_num) ? 00 : $month_num;
+			$day 		= is_null($day) ? 00 : $day;
+			$year 		= is_null($year) ? 0000 : $year;
+			$range		= isset($_GET['range'])?$_GET['range']:'other';
+
+
+
+			$args['meta_query'] = array(
+				array(
+					'key' 		=> 'property_status',
+					'value' 	=> (array) $status,
+					'compare' => 'IN',
+				),
+			);
+
+			if( in_array($range, array('other','last_year','this_year','last_quarter','this_quarter') ) ) {
+
+				$sold_key = $status == 'leased' ? 'property_date_available':'property_sold_date';
+
+				$sold_date_end  	= date('Y-m-d',strtotime($year.'-'.$month_num.'-'.$day));
+				$sold_date_start  	= $day_by_day == true ? $sold_date_end : date('Y-m-01',strtotime($year.'-'.$month_num.'-'.$day));
+
+				$args['meta_query'][] = array(
+					'key' 		=> $sold_key,
+					'value' 	=> array($sold_date_start,$sold_date_end),
+					'type'		=>	'DATE',
+					'compare'	=>	'BETWEEN'
+				);
+
+			} else {
+
+				$sold_key = $status == 'leased' ? 'property_date_available':'property_sold_date';
+				$sold_date  = date('Y-m-d',strtotime($year.'-'.$month_num.'-'.$day));
+
+				$args['meta_query'][] = array(
+					'key' 		=> $sold_key,
+					'value' 	=> $sold_date,
+					'type'		=>	'DATE',
+				);
+
+			}
+
+	} else {
+
+			if ( ! empty( $month_num ) )
+				$args['monthnum'] = $month_num;
+
+			if ( ! empty( $day ) )
+				$args['day'] = $day;
+
+			if ( ! empty( $hour ) )
+				$args['hour'] = $hour;
+
+
+	}
+
+
+	$args = apply_filters( 'epl_get_sales_by_date_args', $args  );
+
+	$key   = 'epl_stats_' . substr( md5( serialize( $args ) ), 0, 15 );
+	$count = get_transient( $key );
+	if( false === $count ) {
+		$sales = new WP_Query( $args );
+		$count = (int) $sales->post_count;
+		// Cache the results for one hour
+		set_transient( $key, $count, HOUR_IN_SECONDS );
+	}
+
+	return $count;
+}
+
+/**
+ * Month Num To Name
+ *
+ * Takes a month number and returns the name three letter name of it.
+ *
+ * @since 2.4
+ *
+ * @param integer $n
+ * @return string Short month name
+ */
+function epl_month_num_to_name( $n ) {
+	$timestamp = mktime( 0, 0, 0, $n, 1, 2005 );
+
+	return date_i18n( "M", $timestamp );
+}
+
+/**
+ * Retrieve contacts from the database
+ *
+ * @access  public
+ * @since   2.4
+*/
+function get_contacts( $args = array() ) {
+
+	global $wpdb;
+
+	$defaults = array(
+		'post_type'		=>	'epl_contact',
+		'posts_per_page'       => 20,
+		'offset'       => 0,
+		'orderby'      => 'ID',
+		'order'        => 'DESC'
+	);
+
+	$args  = wp_parse_args( $args, $defaults );
+
+	if( $args['posts_per_page'] < 1 ) {
+		$args['number'] = -1;
+	}
+
+	$where = ' WHERE 1=1 ';
+
+	// specific contacts
+	if( ! empty( $args['ID'] ) ) {
+		$args['post__in']  = $args['ID'];
+
+
+	}
+
+
+	//specific contacts by email
+	if( ! empty( $args['email'] ) ) {
+
+		$email_query =  array(
+			'key'			=>	'contact_email',
+			'value'			=>	$args['email'],
+		);
+
+		if( is_array( $args['email'] ) ) {
+			$email_query['comparison'] = 'IN';
+
+		}
+		$args['meta_query'][] = $email_query;
+	}
+
+	// specific contacts by name
+	if( ! empty( $args['name'] ) ) {
+		$args['post_title'] = $args['name'];
+	}
+
+	$cache_key = md5( 'epl_contacts_' . serialize( $args ) );
+
+	$contacts = wp_cache_get( $cache_key, 'contacts' );
+
+	$args['orderby'] = esc_sql( $args['orderby'] );
+	$args['order']   = esc_sql( $args['order'] );
+
+	if( $contacts === false ) {
+		$contacts = get_posts($args);
+		wp_cache_set( $cache_key, $contacts, 'contacts', 3600 );
+	}
+	return $contacts;
+
+}
+

@@ -98,7 +98,7 @@ function epl_install() {
 		$epl_settings = $new_fields_defaults;
 	}
 	update_option( 'epl_settings', $epl_settings );
-
+	
 	// Add Upgraded From Option
 	$current_version = get_option( 'epl_version' );
 	if ( $current_version != '' ) {
@@ -186,6 +186,10 @@ function epl_plugin_updates() {
 	if ( version_compare( $current_version, '2.2', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.2.php' );
 		update_option( 'epl_version' ,'2.2');
+	}
+	if ( version_compare( $current_version, '3.0', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-3.0.php' );
+		update_option( 'epl_version' ,'30');
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );

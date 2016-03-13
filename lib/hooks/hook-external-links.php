@@ -19,31 +19,29 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * has external links they will be output on the template
  */
 function epl_button_external_link() {
-	$external_link		= get_post_meta( get_the_ID() , 'property_external_link' , true );
-	$external_link_2	= get_post_meta( get_the_ID() , 'property_external_link_2' , true );
-	$external_link_3	= get_post_meta( get_the_ID() , 'property_external_link_3' , true );
+
+	$keys = array('property_external_link','property_external_link_2','property_external_link_3');
 	
-	$links = array();
-	if(!empty($external_link)) {
-		$links[] = $external_link;
-	}
-	if(!empty($external_link_2)) {
-		$links[] = $external_link_2;
-	}
-	if(!empty($external_link_3)) {
-		$links[] = $external_link_3;
-	}
-	
-	if ( !empty($links) ) {
-		foreach ( $links as $k=>$link ) {
-			if(!empty($link)) {
-				$number_string = '';
-				if($k > 0) {
-					$number_string = ' ' . $k + 1;
-				}
-				?><button type="button" class="epl-button epl-external-link" onclick="location.href='<?php echo $link; ?>'"><?php echo apply_filters( 'epl_button_label_tour' , __('Tour ', 'epl') ) . $number_string; ?></button><?php
-			}
+	foreach($keys as $key) {
+		$link = get_post_meta( get_the_ID() , $key , true );
+		
+		$count = $key == 'property_external_link' ? '': substr($key, -1);
+			
+		if( !empty($link) ) { ?>
+			<button type="button" class="epl-button epl-external-link" onclick="location.href='<?php echo $link; ?>'">
+				<?php
+				
+					if( has_filter('epl_button_label_'.$key) ) {
+						$label = apply_filters('epl_button_label_'.$key,__('Tour '.$count, 'epl') );
+					} else {
+						$label = apply_filters( 'epl_button_label_tour' , __('Tour '.$count, 'epl') );
+					}
+				?>
+				<?php echo $label ?>
+			</button> <?php
+			
 		}
 	}
+
 }
 add_action('epl_buttons_single_property', 'epl_button_external_link');
