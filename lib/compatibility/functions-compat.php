@@ -1,5 +1,18 @@
 <?php
 /**
+ * EPL Functions Compatibility
+ *
+ * @package     EPL
+ * @subpackage  Compatibility/Functions
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
  * Get EPL author meta
  *
  * @since 1.0
@@ -10,10 +23,11 @@ function epl_get_author_meta() {
 	if($epl_author_meta_sent) {
 		return;
 	}
-	
+
 	require_once EPL_PATH_LIB . 'templates/content/author-meta.php';
 	$epl_author_meta_sent = true;
 }
+
 /**
  * Get EPL property address
  *
@@ -23,60 +37,57 @@ function epl_get_author_meta() {
 function epl_get_property_address($post_ID='') {
 	if($post_ID == '') {
 		$post_ID = get_the_ID();
-	}	
+	}
 	$property_meta = epl_get_property_meta($post_ID);
-	
+
 	$address = '';
-	
+
 	if(isset($property_meta['property_address_street_number']) && !empty($property_meta['property_address_street_number'])) {
 		$property_address_street_number = $property_meta['property_address_street_number'][0];
 		if( $property_address_street_number != '' ) {
 			$address .= $property_address_street_number . ", ";
 		}
 	}
-	
+
 	if(isset($property_meta['property_address_street']) && !empty($property_meta['property_address_street'])) {
 		$property_address_street = $property_meta['property_address_street'][0];
 		if( $property_address_street != '' ) {
 			$address .= $property_address_street . ", ";
 		}
 	}
-	
+
 	if(isset($property_meta['property_address_suburb']) && !empty($property_meta['property_address_suburb'])) {
 		$property_address_suburb = $property_meta['property_address_suburb'][0];
 		if( $property_address_suburb != '' ) {
 			$address .= $property_address_suburb . ", ";
 		}
 	}
-	
+
 	if(isset($property_meta['property_address_state']) && !empty($property_meta['property_address_state'])) {
 		$property_address_state = $property_meta['property_address_state'][0];
 		if( $property_address_state != '' ) {
 			$address .= $property_address_state . ", ";
 		}
 	}
-	
+
 	if(isset($property_meta['property_address_postal_code']) && !empty($property_meta['property_address_postal_code'])) {
 		$property_address_postal_code = $property_meta['property_address_postal_code'][0];
 		if( $property_address_postal_code != '' ) {
 			$address .= $property_address_postal_code . ", ";
 		}
 	}
-	
+
 	$address = trim($address); $address = trim($address, ","); $address = trim($address);
 	return apply_filters('epl_get_property_address_filter', $address);
 }
-
-
-
 
 // Front End Functions
 if ( ! is_admin() )
 	return;
 
 /**
- * Listing Function for paged card display 
- * 
+ * Listing Function for paged card display
+ *
  * @compat	not being used @since 1.3 in core, but still kept for extensions which may be using this function
  * @since	1.3
  */
@@ -92,7 +103,7 @@ function epl_property_blog_default() {
 		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
 			$option = $epl_settings['epl_property_card_style'];
 		}
-	
+
 		$action_check = has_action( 'epl_loop_template' );
 		if ( $action_check != '' && $option !== 0 ) {
 			do_action( 'epl_loop_template' );
@@ -122,7 +133,7 @@ function epl_property_blog_slim() {
 		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
 			$option = $epl_settings['epl_property_card_style'];
 		}
-	
+
 		$action_check = has_action( 'epl_loop_template' );
 		if ( $action_check != '' && $option !== 0 ) {
 			do_action( 'epl_loop_template' );
@@ -151,7 +162,7 @@ function epl_property_blog_table() {
 		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
 			$option = $epl_settings['epl_property_card_style'];
 		}
-	
+
 		$action_check = has_action( 'epl_loop_template' );
 		if ( $action_check != '' && $option !== 0 ) {
 			do_action( 'epl_loop_template' );
@@ -181,7 +192,7 @@ function epl_property_blog_table_open() {
 		if(!empty($epl_settings) && isset($epl_settings['epl_property_card_style'])) {
 			$option = $epl_settings['epl_property_card_style'];
 		}
-	
+
 		$action_check = has_action( 'epl_loop_template' );
 		if ( $action_check != '' && $option !== 0 ) {
 			do_action( 'epl_loop_template' );
@@ -207,7 +218,7 @@ function epl_property_sold_leased() {
 			$term->slug;
 		}
 	}
-	
+
 	$post_type = get_post_type();
 
 	if ( 'property' == $post_type ) {
@@ -259,7 +270,7 @@ function epl_property_sold_leased() {
 			'posts_per_page' => '5'
 		) );
 	}
-	
+
 	if ( $query->have_posts() ) { ?>
 		<div class="epl-tab-section epl-tab-section-listing-history">
 			<?php if ( 'property' == $post_type || 'land' == $post_type || 'rural' == $post_type) { ?>
@@ -272,7 +283,7 @@ function epl_property_sold_leased() {
 					<?php
 						while ( $query->have_posts() ) {
 							$query->the_post(); ?>
-					
+
 							<!-- Suburb Tab -->
 							<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?><?php echo $suburb[0]; ?></a></li>
 							<?php
@@ -292,16 +303,16 @@ function epl_property_sold_leased() {
  *
  * @since 1.3
  */
-function epl_property_author_card( $display , $image , $title , $icons) {		
-	global $property,$epl_author;		
-	if( is_null($epl_author) )		
-		return; 		
-	$property_status = $property->get_property_meta('property_status');	      		
-	// Status Removal		
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {	
-		// Do Not Display Withdrawn or OffMarket listings		
-	} else {	
-		//$arg_list = get_defined_vars();	
+function epl_property_author_card( $display , $image , $title , $icons) {
+	global $property,$epl_author;
+	if( is_null($epl_author) )
+		return;
+	$property_status = $property->get_property_meta('property_status');
+	// Status Removal
+	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+		// Do Not Display Withdrawn or OffMarket listings
+	} else {
+		//$arg_list = get_defined_vars();
 		//epl_get_template_part('widget-content-author.php',$arg_list);
 
 		?>
@@ -313,9 +324,9 @@ function epl_property_author_card( $display , $image , $title , $icons) {
 								<?php the_post_thumbnail( $image ); ?>
 							</a>
 						</div>
-					<?php endif; ?>		
+					<?php endif; ?>
 				</div>
-				
+
 				<div class="entry-content">
 					<?php
 						// Heading Options
@@ -323,13 +334,13 @@ function epl_property_author_card( $display , $image , $title , $icons) {
 							<h5 class="property-meta heading"><?php echo $the_property_heading; ?></h5>
 						<?php }
 					?>
-					
+
 					<!-- Address -->
 					<div class="property-address">
 						<?php do_action('epl_property_address'); ?>
 					</div>
 					<!-- END Address -->
-					
+
 					<?php
 						// Icon Options
 						if ( $icons == 'all' ) { ?>
@@ -346,5 +357,5 @@ function epl_property_author_card( $display , $image , $title , $icons) {
 			</div>
 
 	<?php
-	} // End Status Removal		
+	} // End Status Removal
 }

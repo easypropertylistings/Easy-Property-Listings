@@ -1,4 +1,13 @@
 <?php
+/**
+ * Contact Functions
+ *
+ * @package     EPL
+ * @subpackage  Contacts
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -8,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * Renders the contacts page contents.
  *
- * @since  2.4
+ * @since  3.0
  * @return void
 */
 function epl_contacts_page() {
@@ -24,33 +33,31 @@ function epl_contacts_page() {
 /**
  * Register the views for contact management
  *
- * @since  2.4
+ * @since  3.0
  * @return array Array of views and their callbacks
  */
 function epl_contact_views() {
 
 	$views = array();
 	return apply_filters( 'epl_contact_views', $views );
-
 }
 
 /**
  * Register the tabs for contact management
  *
- * @since  2.4
+ * @since  3.0
  * @return array Array of tabs for the contact
  */
 function epl_contact_tabs() {
 
 	$tabs = array();
 	return apply_filters( 'epl_contact_tabs', $tabs );
-
 }
 
 /**
  * List table of contacts
  *
- * @since  2.4
+ * @since  3.0
  * @return void
  */
 function epl_contacts_list() {
@@ -80,13 +87,13 @@ function epl_contacts_list() {
 /**
  * Renders the contact view wrapper
  *
- * @since  2.4
+ * @since  3.0
  * @param  string $view      The View being requested
  * @param  array $callbacks  The Registered views and their callback functions
  * @return void
  */
 function epl_render_contact_view( $view, $callbacks ) {
-	
+
 	$render = true;
 
 	$contact_view_role = apply_filters( 'epl_view_contacts_role', 'manage_options' );
@@ -157,13 +164,20 @@ function epl_render_contact_view( $view, $callbacks ) {
 
 }
 
+/**
+ * Contacts Tags UI
+ *
+ * @since  3.0
+ * @return void
+ */
 function epl_all_tags_view() {
 	include_once('contact-tags-ui.php');
 }
- /**
+
+/**
  * Create a contact
  *
- * @since  2.4
+ * @since  3.0
  * @return void
  */
 function epl_new_contact_view() { ?>
@@ -187,10 +201,10 @@ function epl_new_contact_view() { ?>
 		</div>
 
 		<div id="epl-item-card-wrapper" class="epl-contact-card-wrapper" style="float: left">
-		
+
 				<div class="epl-info-wrapper epl-contact-section">
 					<?php
-					
+
 						$args = array(
 							'post_type'		=>	'epl_contact',
 							'post_status'	=>	'auto-draft',
@@ -198,7 +212,7 @@ function epl_new_contact_view() { ?>
 						);
 						$contact_id = wp_insert_post($args);
 						if($contact_id ):
-					
+
 
 					?>
 
@@ -206,7 +220,7 @@ function epl_new_contact_view() { ?>
 
 						<div class="epl-contact-info epl-meta-contact">
 							<?php do_action( 'epl_new_contact_fields'); ?>
-				
+
 							<?php
 										$contact = new EPL_Contact( $contact_id );
 										$contact_meta_fields = new EPL_FORM_BUILDER();
@@ -220,7 +234,7 @@ function epl_new_contact_view() { ?>
 													'maxlength'	=>	'60',
 													'value'		=>	$contact->name
 												),
-			
+
 												array(
 													'name'		=>	'email',
 													'label'		=>	__('Contact Email','epl'),
@@ -228,10 +242,10 @@ function epl_new_contact_view() { ?>
 													'maxlength'	=>	'60',
 													'value'		=>	$contact->get_primary_email($contact->ID)
 												),
-			
-											) 
+
+											)
 										);
-										
+
 										$contact_meta_fields->add_fields($contact_fields);
 										$contact_meta_fields->render_form();
 
@@ -255,13 +269,13 @@ function epl_new_contact_view() { ?>
 
 	</div>
 	<?php
-	
+
 }
 
 /**
  * View a contact
  *
- * @since  2.4
+ * @since  3.0
  * @param  $contact The Contact object being displayed
  * @return void
  */
@@ -325,11 +339,10 @@ function epl_contacts_view( $contact ) {
 	<?php
 }
 
-
 /**
  * View the meta of a contact
  *
- * @since  2.4
+ * @since  3.0
  * @param  $contact The Contact being displayed
  * @return void
  */
@@ -645,7 +658,7 @@ function epl_contact_meta_view($contact) {
 /**
  * View the notes of a contact
  *
- * @since  2.4
+ * @since  3.0
  * @param  $contact The Contact being displayed
  * @return void
  */
@@ -719,12 +732,12 @@ function epl_contact_notes_view( $contact ) {
 				<div class="epl-contact-note-wrapper dashboard-comment-wrap comment-item <?php echo $note->comment_type; ?>" >
 					<span class="epl-note-content-meta">
 						<span class="epl-note-for-listing">
-							<?php 
+							<?php
 								echo isset($note->post_title) ? $note->post_title : '';
 							 ?>
 						 </span>
 						 <span class="epl-note-time">
-							<?php 
+							<?php
 								echo date_i18n( get_option( 'date_format' ), strtotime( $note->comment_date ) );
 							 ?>
 						 </span>
@@ -741,8 +754,8 @@ function epl_contact_notes_view( $contact ) {
 		<?php endif; ?>
 		</div>
 		<div class="epl-note-pagination">
-			<?php 
-				echo paginate_links( $pagination_args ); 
+			<?php
+				echo paginate_links( $pagination_args );
 			?>
 		</div>
 
@@ -751,6 +764,13 @@ function epl_contact_notes_view( $contact ) {
 	<?php
 }
 
+/**
+ * Contact Delete View
+ *
+ * @since  3.0
+ * @param  $contact The Contact being displayed
+ * @return void
+ */
 function epl_contacts_delete_view( $contact ) {
 	$contact_edit_role = apply_filters( 'epl_edit_contacts_role', 'manage_options' );
 
@@ -797,7 +817,9 @@ function epl_contacts_delete_view( $contact ) {
 }
 
 /**
- * view contact listings
+ * View contact listings
+ *
+ * @since  3.0
  * @param $contact
  */
 function epl_contacts_listing_view( $contact ) {
@@ -857,26 +879,38 @@ function epl_contacts_listing_view( $contact ) {
 <?php
 }
 
+/**
+ * View contact listings
+ *
+ * @since  3.0
+ */
 function add_contact_screen_options() {
 	global $epl_contacts_table;
 	$option = 'per_page';
 	$args = array(
-		'label' => 'Contacts',
-		'default' => 10,
-		'option' => 'contacts_per_page'
+		'label'		=> __('Contacts','epl'),
+		'default'	=> 10,
+		'option'	=> 'contacts_per_page'
 	);
 	add_screen_option( $option, $args );
 	include_once( dirname( __FILE__ ) . '/class-contact-table.php' );
 	$epl_contacts_table = new EPL_Contact_Reports_Table();
 }
 
-
+/**
+ * Contact Table Options
+ *
+ * @since  3.0
+ */
 function epl_contact_table_set_option($status, $option, $value) {
 	return $value;
 }
 
-
-
+/**
+ * Contact screen options
+ *
+ * @since  3.0
+ */
 function epl_add_contact_screen_opts() {
 	global $contact_page_hook;
 	add_action( "load-$contact_page_hook", 'add_contact_screen_options' );

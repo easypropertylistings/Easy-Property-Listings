@@ -3,7 +3,7 @@
  * SHORTCODE :: Listing [listing]
  *
  * @package     EPL
- * @subpackage  Shortcode
+ * @subpackage  Shortcode/Listing
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -12,10 +12,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Only load on front
-if ( is_admin() ) {
-	return;
-}
 /**
  * This shortcode allows for you to specify the property type(s) using
  * [listing post_type="property,rental" status="current,sold,leased" template="default"] option. You can also

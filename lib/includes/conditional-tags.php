@@ -1,9 +1,9 @@
 <?php
 /**
- * Functions
+ * Conditional Tags
  *
  * @package     EPL
- * @subpackage  Custom Post Type API
+ * @subpackage  Functions/Conditional-Tags
  * @copyright   Copyright (c) 2015, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.2
@@ -12,33 +12,37 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/** 
-* get list of core epl posts 
-* @since 2.3
-*/
+/**
+ * get list of core epl posts
+ *
+ * @since 2.3
+ */
 function epl_get_core_post_types() {
-	return apply_filters('epl_core_post_types',array('rural','property','rental','land','commercial','commercial_land','business') );	
-}
-
-/** 
-* get list of sales epl posts 
-* @since 2.3
-*/
-function epl_get_core_sales_post_types() {
-	return apply_filters('epl_core_sales_post_types',array('rural','property','land','commercial','commercial_land','business') );	
-}
-
-/** 
-* get list of rental epl posts 
-* @since 2.3
-*/
-
-function epl_get_core_rental_post_types() {
-	return apply_filters('epl_core_rental_post_types',array('rental') );	
+	return apply_filters('epl_core_post_types',array('rural','property','rental','land','commercial','commercial_land','business') );
 }
 
 /**
- * list of all epl cpts 
+ * get list of sales epl posts
+ *
+ * @since 2.3
+ */
+function epl_get_core_sales_post_types() {
+	return apply_filters('epl_core_sales_post_types',array('rural','property','land','commercial','commercial_land','business') );
+}
+
+/**
+ * get list of rental epl posts
+ *
+ * @since 2.3
+ */
+
+function epl_get_core_rental_post_types() {
+	return apply_filters('epl_core_rental_post_types',array('rental') );
+}
+
+/**
+ * list of all epl cpts
+ *
  * @since 2.3
  */
 function epl_all_post_types() {
@@ -49,6 +53,7 @@ function epl_all_post_types() {
 
 /**
  * check if post is core epl post
+ *
  * @since 2.3
  */
 function is_epl_core_post($type=null) {
@@ -58,6 +63,7 @@ function is_epl_core_post($type=null) {
 
 /**
  * check if post is sales post
+ *
  * @since 2.3
  */
 function is_epl_sales_post($type=null) {
@@ -67,6 +73,7 @@ function is_epl_sales_post($type=null) {
 
 /**
  * check if post is rental post
+ *
  * @since 2.3
  */
 function is_epl_rental_post($type=null) {
@@ -76,6 +83,7 @@ function is_epl_rental_post($type=null) {
 
 /**
  * check if current post is of epl
+ *
  * @since 2.2
  */
 function is_epl_post($type=null) {
@@ -85,6 +93,7 @@ function is_epl_post($type=null) {
 
 /**
  * check if viewing a single post of epl
+ *
  * @since 2.2
  */
 function is_epl_post_single() {
@@ -93,6 +102,7 @@ function is_epl_post_single() {
 
 /**
  * check if cpt is from epl
+ *
  * @since 2.2
  */
 function is_epl_post_type($type) {
@@ -101,6 +111,7 @@ function is_epl_post_type($type) {
 
 /**
  * check if current post is of epl
+ *
  * @since 2.2
  */
 function is_epl_post_archive() {

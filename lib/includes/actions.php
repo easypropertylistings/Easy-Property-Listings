@@ -3,15 +3,23 @@
  * EPL Actions
  *
  * @package     EPL
+ * @subpackage  Functions
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
-*
-*	Processes all EPL actions sent via POST and GET by looking for the 'epl_action' . Used to trigger action on init hook
-**/
+ * Hooks EPL front end actions, when present in the $_GET and $_POST superglobal. Every epl_action
+ * present in the $_GET or $_POST is called using WordPress's do_action function. Functions
+ * triggered on init hook.
+ *
+ * @since 3.0
+ * @return void
+ */
 function epl_process_actions() {
 
 	if ( isset( $_POST['epl_action'] ) ) {
@@ -25,9 +33,13 @@ function epl_process_actions() {
 add_action( 'init', 'epl_process_actions' );
 
 /**
-*
-*	Processes all EPL actions sent via POST and GET by looking for the 'epl-action' . Used to trigger action on admin_init hook
-**/
+ * Hooks EPL admin actions, when present in the $_GET and $_POST superglobal. Every epl_action
+ * present in the $_GET or $_POST is called using WordPress's do_action function. Functions
+ * triggered on init hook.
+ *
+ * @since 3.0
+ * @return void
+ */
 function epl_process_admin_actions() {
 
 	if ( isset( $_POST['epl-action'] ) ) {

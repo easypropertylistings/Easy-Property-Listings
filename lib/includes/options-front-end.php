@@ -12,11 +12,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Only load on front end
-if( is_admin() ) {
-	return;
-}
-
 /**
 * Modify the Excerpt length on archive pages
 *
@@ -46,7 +41,7 @@ function epl_excerpt_length( $length ) {
 add_filter('excerpt_length', 'epl_excerpt_length' , 999);
 
 /**
-* Modify the Read More Link of archive pages which can be styled with 
+* Modify the Read More Link of archive pages which can be styled with
 * CSS using the epl-more-link selector
 *
 * @since 1.0
@@ -55,7 +50,7 @@ function epl_property_new_excerpt_more( $more ) {
 	global $post;
 	return '...<a href="'. get_permalink( $post->ID ) . '" class="epl-more-link">'.__('Read More', 'epl').'&rarr;</a>';
 }
-add_filter('excerpt_more', 'epl_property_new_excerpt_more');	
+add_filter('excerpt_more', 'epl_property_new_excerpt_more');
 
 /**
  * Youtube Video Link Filter so the YouTube short links will work

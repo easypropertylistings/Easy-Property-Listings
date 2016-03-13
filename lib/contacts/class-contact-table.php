@@ -3,7 +3,10 @@
  * Contact Reports Table Class
  *
  * @package     EPL
- * @since       2.4
+ * @subpackage  Contacts/Table
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
  */
 
 // Exit if accessed directly
@@ -15,11 +18,11 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 }
 
 /**
- * EPL_Contact_Reports_Table Class
+ * EPL_Contact_Reports_Table Class.
  *
  * Renders the Contact Reports table
  *
- * @since 2.4
+ * @since 3.0
  */
 class EPL_Contact_Reports_Table extends WP_List_Table {
 
@@ -27,7 +30,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Number of items per page
 	 *
 	 * @var int
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public $per_page = 30;
 
@@ -35,7 +38,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Number of contacts found
 	 *
 	 * @var int
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public $count = 0;
 
@@ -43,14 +46,14 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Total contacts
 	 *
 	 * @var int
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public $total = 0;
 
 	/**
 	 * Get things started
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 * @see WP_List_Table::__construct()
 	 */
 	public function __construct() {
@@ -68,7 +71,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	/**
 	 * Show the search field
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 * @access public
 	 *
 	 * @param string $text Label for the search box
@@ -95,7 +98,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	/**
 	 * Gets the name of the primary column.
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 * @access protected
 	 *
 	 * @return string Name of the primary column.
@@ -108,7 +111,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * This function renders most of the columns in the list table.
 	 *
 	 * @access public
-	 * @since 2.4
+	 * @since 3.0
 	 *
 	 * @param array $item Contains all the data of the contacts
 	 * @param string $column_name The name of the column
@@ -182,7 +185,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Retrieve the table columns
 	 *
 	 * @access public
-	 * @since 2.4
+	 * @since 3.0
 	 * @return array $columns Array of all the list table columns
 	 */
 	public function get_columns() {
@@ -203,7 +206,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Get the sortable columns
 	 *
 	 * @access public
-	 * @since 2.4
+	 * @since 3.0
 	 * @return array Array of all the sortable columns
 	 */
 	public function get_sortable_columns() {
@@ -218,7 +221,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Outputs the reporting views
 	 *
 	 * @access public
-	 * @since 2.4
+	 * @since 3.0
 	 * @return void
 	 */
 	public function bulk_actions( $which = '' ) {
@@ -229,7 +232,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Retrieve the current page number
 	 *
 	 * @access public
-	 * @since 2.4
+	 * @since 3.0
 	 * @return int Current page number
 	 */
 	public function get_paged() {
@@ -251,9 +254,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Build all the reports data
 	 *
 	 * @access public
-	 * @since 2.4
-	  * @global object $wpdb Used to query the database using the WordPress
-	 *   Database API
+	 * @since 3.0
+	 * @global object $wpdb Used to query the database using the WordPress Database API
 	 * @return array $reports_data All the data for contact reports
 	 */
 	public function reports_data() {
@@ -311,7 +313,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Setup the final data for the table
 	 *
 	 * @access public
-	 * @since 2.4
+	 * @since 3.0
 	 * @uses EPL_Contact_Reports_Table::get_columns()
 	 * @uses WP_List_Table::get_sortable_columns()
 	 * @uses EPL_Contact_Reports_Table::get_pagenum()
@@ -337,18 +339,25 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		) );
 	}
 
+	/**
+	 * Output the contact categories
+	 *
+	 * @access public
+	 * @since 3.0
+	 */
 	function extra_tablenav( $which ) {
 		if ( $which == "top" ){
 			?>
 			<div class="alignleft actions bulkactions">
 				<?php
 				$cats = apply_filters('epl_contact_categories',array(
-					'appraisal'     =>  __('Appraisal','epl'),
-					'contact'          =>  __('contact','epl'),
-					'past_customer' =>  __('Past Customer','epl'),
-					'contract'      =>  __('Contract','epl'),
-					'buyer'         =>  __('Buyer','epl'),
-					'seller'        =>  __('Seller','epl'),
+					'appraisal'	=>  __('Appraisal','epl'),
+					'contact'	=>  __('Contact','epl'),
+					'past_customer'	=>  __('Past Customer','epl'),
+					'contract'	=>  __('Contract','epl'),
+					'buyer'		=>  __('Buyer','epl'),
+					'seller'	=>  __('Seller','epl'),
+					'lead'		=>  __('Lead','epl'),
 				));
 				if( $cats ){
 					?>
@@ -373,5 +382,3 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 	}
 }
-
-
