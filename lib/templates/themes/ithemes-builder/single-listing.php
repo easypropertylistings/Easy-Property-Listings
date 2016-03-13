@@ -2,7 +2,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-function render_content() {
+function epl_single_render_content() {
 	if ( have_posts() ) : ?>
 		<div class="loop">
 			<div class="loop-content">
@@ -20,5 +20,5 @@ function render_content() {
 		do_action( 'builder_template_show_not_found' );
 	endif; // do not delete
 }
-add_action( 'builder_layout_engine_render_content', 'render_content' );
+add_action( 'builder_layout_engine_render_content', 'epl_single_render_content' );
 do_action( 'builder_layout_engine_render', basename( __FILE__ ) );
