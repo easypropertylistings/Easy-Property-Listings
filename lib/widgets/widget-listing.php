@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Recent_Property extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, __( 'EPL - Listing', 'epl' ) );
+		parent::__construct( false, __( 'EPL - Listing', 'epl' ), array( 'description' => __( 'Add listings to a sidebar.', 'epl' ) ) );
 	}
 
 	function widget( $args, $instance ) {
