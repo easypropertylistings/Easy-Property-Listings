@@ -166,7 +166,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_COMPATABILITY . 'extensions.php';
 			require_once EPL_PATH_LIB . 'includes/options-global.php';
 			require_once EPL_PATH_LIB . 'includes/formatting.php';
-			require_once EPL_PATH_LIB . 'includes/plugins.php';
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-custom-post-type.php';
@@ -240,6 +239,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
 
 			if ( is_admin() ) {
+				require_once EPL_PATH_LIB . 'includes/plugins.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-meta-boxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin.php';
