@@ -32,10 +32,10 @@ function epl_install() {
 
 	// Clear the permalinks
 	flush_rewrite_rules();
-	
+
 	// Add default EPL Settings
 	$epl_settings = epl_settings();
-	
+
 	$new_fields_defaults = array(
 		'currency'				=> 'AUD',
 		'currency_position'			=> 'before',
@@ -79,13 +79,17 @@ function epl_install() {
 		'epl_lucky_disable_single_thumb'	=> 'off',
 		'epl_lucky_disable_theme_single_thumb'	=> 'off',
 		'epl_lucky_disable_archive_thumb'	=> 'off',
-		'epl_lucky_disable_epl_archive_thumb'	=> 'off',	
+		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
 		'epl_use_core_css'			=> 'off', // Means Enable CSS
-		'uninstall_on_delete'			=> 0
+		'uninstall_on_delete'			=> 0,
+		'inspection_date_format'		=> 'l, dS F',
+		'inspection_time_format'		=> 'h:i a',
+		'custom_inspection_date_format'		=> 'l, dS F',
+		'custom_inspection_time_format'		=> 'h:i a'
 	);
-	
+
 	if(!empty($epl_settings)) {
-		
+
 		// possible upgrade
 		foreach($new_fields_defaults as $key	=>	$value) {
 			if(!isset($epl_settings[$key])) {
@@ -103,7 +107,7 @@ function epl_install() {
 	$current_version = get_option( 'epl_version' );
 	if ( $current_version != '' ) {
 		update_option( 'epl_version_upgraded_from', $current_version );
-			
+
 	} else {
 		$epl_data = get_plugin_data(EPL_PLUGIN_PATH.'/easy-property-listings.php');
 		update_option( 'epl_version', $epl_data['Version'] );
@@ -122,8 +126,9 @@ register_activation_hook( EPL_PLUGIN_FILE, 'epl_install' );
 /**
  * Un-Install
  *
- * Runs on plugin un-install by setting up the current version,
- * flushing rewrite rules
+ * Runs on plugin un-install by setting up the current version, flushing rewrite rules
+ *
+ * @since 2.2
  */
 function epl_uninstall() {
 	update_option('epl_rewrite_rules', false);
@@ -160,6 +165,14 @@ function epl_after_install() {
 }
 add_action( 'admin_init', 'epl_after_install' );
 
+/**
+ * Apply new settings on update
+ *
+ * Runs just after plugin installation
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_plugin_updates() {
 	$current_version = get_option( 'epl_version' );
 
@@ -167,28 +180,29 @@ function epl_plugin_updates() {
 		include( EPL_PATH_UPDATES.'epl-1.3.1.php' );
 		update_option( 'epl_version' ,'1.3');
 	}
-	
+
 	if ( version_compare( $current_version, '2.1', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.php' );
 		update_option( 'epl_version' ,'2.1');
 	}
-	
+
 	if ( version_compare( $current_version, '2.1.8', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.8.php' );
 		update_option( 'epl_version' ,'2.1.8');
 	}
-	
+
 	if ( version_compare( $current_version, '2.1.11', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.11.php' );
 		update_option( 'epl_version' ,'2.1.11');
 	}
-	
+
 	if ( version_compare( $current_version, '2.2', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.2.php' );
 		update_option( 'epl_version' ,'2.2');
 	}
+	if ( version_compare( $current_version, '3.0', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-3.0.php' );
+		update_option( 'epl_version' ,'30');
+	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
-
-
-
