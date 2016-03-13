@@ -50,11 +50,11 @@ function epl_meta_box_init() {
 		)
 	);
 	$opts_property_com_authority = apply_filters (  'epl_opts_property_com_authority_filter', array(
+			'Forsale'	=>	__('For Sale', 'epl'),
 			'auction'	=>	__('Auction', 'epl'),
 			'tender'	=>	__('Tender', 'epl'),
 			'eoi'		=>	__('EOI', 'epl'),
 			'Sale'		=>	__('Sale', 'epl'),
-			'Forsale'	=>	__('For Sale', 'epl'),
 			'offers'	=>	__('Offers', 'epl')
 		)
 	);
