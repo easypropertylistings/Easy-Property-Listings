@@ -1,9 +1,9 @@
 <?php
 /**
- * Adds filters for search and ordering to admin pages
+ * Custom Post Types Functions
  *
  * @package     EPL
- * @subpackage  Meta
+ * @subpackage  Functions/CPT
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -12,8 +12,11 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
-// Query filter for property_address_suburb custom field sortable in posts listing
+/**
+ * Query filter for property_address_suburb custom field sortable in posts listing
+ *
+ * @since 1.0
+ */
 add_filter( 'request', 'epl_property_address_suburb_column_orderby' );
 function epl_property_address_suburb_column_orderby( $vars ) {
 	if ( isset( $vars['orderby'] ) && 'property_address_suburb' == $vars['orderby'] ) {
@@ -30,6 +33,11 @@ function epl_property_address_suburb_column_orderby( $vars ) {
 add_action( 'restrict_manage_posts', 'epl_custom_restrict_manage_posts' );
 add_filter( 'parse_query', 'epl_admin_posts_filter' );
 
+/**
+ * Add custom filters to post type posts listings
+ *
+ * @since 1.0
+ */
 function epl_custom_restrict_manage_posts() {
 	global $post_type;
 	if($post_type == 'property' || $post_type == 'rental' || $post_type == 'land' || $post_type == 'commercial' || $post_type == 'rural' || $post_type == 'business' || $post_type == 'holiday_rental' || $post_type == 'commercial_land') {
@@ -99,6 +107,11 @@ function epl_custom_restrict_manage_posts() {
 	}
 }
 
+/**
+ * Admin Posts Filter
+ *
+ * @since 1.0
+ */
 function epl_admin_posts_filter( $query ) {
 	global $pagenow;
 	if( is_admin() && $pagenow == 'edit.php' ) {
@@ -170,7 +183,6 @@ function epl_custom_orderby( $query ) {
 // handle sorting of admin columns
 add_filter( 'pre_get_posts', 'epl_custom_orderby' );
 
-
 /**
  * Functions for post column contents
  *
@@ -186,6 +198,11 @@ function epl_manage_listing_column_property_thumb_callback() {
 }
 add_action( 'epl_manage_listing_column_property_thumb' , 'epl_manage_listing_column_property_thumb_callback' );
 
+/**
+ * Posts Types Columns
+ *
+ * @since 1.0
+ */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$epl_settings,$property;
 
@@ -259,6 +276,11 @@ function epl_manage_listing_column_listing_callback() {
 }
 add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_listing_callback' );
 
+/**
+ * Posts Types Column ID
+ *
+ * @since 1.0
+ */
 function epl_manage_listing_column_listing_id_callback() {
 	global $post;
 
@@ -269,7 +291,11 @@ function epl_manage_listing_column_listing_id_callback() {
 }
 add_action( 'epl_manage_listing_column_listing_id' , 'epl_manage_listing_column_listing_id_callback' );
 
-
+/**
+ * Posts Types Column Geocode
+ *
+ * @since 1.0
+ */
 function epl_manage_listing_column_geo_callback() {
 	global $post;
 
@@ -283,7 +309,11 @@ function epl_manage_listing_column_geo_callback() {
 }
 add_action( 'epl_manage_listing_column_geo' , 'epl_manage_listing_column_geo_callback' );
 
-
+/**
+ * Posts Types Column Price
+ *
+ * @since 1.0
+ */
 function epl_manage_listing_column_price_callback() {
 	global $post, $property, $epl_settings;
 
@@ -318,7 +348,6 @@ function epl_manage_listing_column_price_callback() {
 		if(isset($epl_settings['epl_max_graph_rent_price' ])) {
 			$max_price = (int) $epl_settings['epl_max_graph_rent_price' ];
 		}
-
 	}
 
 	/* Commercial Listing Lease Type Price */
@@ -336,7 +365,6 @@ function epl_manage_listing_column_price_callback() {
 		if(isset($epl_settings['epl_max_graph_rent_price' ])) {
 			$max_price = (int) $epl_settings['epl_max_graph_rent_price' ];
 		}
-
 	}
 
 	if ( $property_status == 'Sold' ) {
@@ -392,10 +420,14 @@ function epl_manage_listing_column_price_callback() {
 		_e('Auction ','epl');
 		echo '<br>'.$property->get_property_auction(true);
 	}*/
-
 }
 add_action( 'epl_manage_listing_column_price' , 'epl_manage_listing_column_price_callback' );
 
+/**
+ * Posts Types Column Status
+ *
+ * @since 1.0
+ */
 function epl_manage_listing_column_property_status_callback() {
 	global $post, $property;
 
@@ -411,10 +443,14 @@ function epl_manage_listing_column_property_status_callback() {
 	if ( ! empty ( $property_status ) ) {
 		echo '<span class="type_'.strtolower($property_status).'">'.$labels_property_status[$property_status].'</span>';
 	}
-
 }
 add_action( 'epl_manage_listing_column_property_status' , 'epl_manage_listing_column_property_status_callback' );
 
+/**
+ * Posts Types Column Listing Type
+ *
+ * @since 1.0
+ */
 function epl_manage_listing_column_listing_type_callback() {
 	global $post;
 
@@ -423,10 +459,14 @@ function epl_manage_listing_column_listing_type_callback() {
 	/* If no duration is found, output a default message. */
 	if ( ! empty( $listing_type) )
 		echo $listing_type;
-
 }
 add_action( 'epl_manage_listing_column_listing_type' , 'epl_manage_listing_column_listing_type_callback' );
 
+/**
+ * Posts Types Agent/Author
+ *
+ * @since 1.0
+ */
 function epl_manage_listing_column_agent_callback() {
 	global $post, $property;
 
@@ -447,7 +487,5 @@ function epl_manage_listing_column_agent_callback() {
 		}
 		epl_reset_post_author();
 	}
-
 }
 add_action( 'epl_manage_listing_column_agent' , 'epl_manage_listing_column_agent_callback' );
-

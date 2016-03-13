@@ -1,9 +1,12 @@
 <?php
 /**
- * General Help Page options
+ * Help Page
  *
- * @since 2.0
- * @return void
+ * @package     EPL
+ * @subpackage  Admin/Menus
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       2.0
  */
 
 // Exit if accessed directly
@@ -42,15 +45,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					</div>
 				</div>
 				<hr>
-				
-				
+
+
 				<?php
 				/**
 				 * Managing Users: Visible to Editor and Administrators only as the video goes into more detail about managing users.
 				 *
 				 * @since 2.1
 				**/
-				
+
 				if ( current_user_can( 'edit_others_posts_not_ready' ) ) :
 				?>
 				<div id="add-listing" class="epl-section-content epl-section-admin-tutorial">
@@ -67,11 +70,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							</div>
 						</div>
 					</div>
-					
+
 				<hr>
 				</div>
 				<?php endif;?>
-				
+
 				<div id="add-listing" class="epl-section-content epl-section-author-tutorial">
 					<div class="epl-feature-section">
 						<div class="epl-col">
@@ -79,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							<p><?php _e( 'Managing your profile is very important to help you connect with your visitors and gives you an opportunity to tell them about how you can help them.', 'epl'); ?></p>
 
 							<p><?php _e( 'You can quickly edit your profile and update and add your phone number, social media links and bio or even add a video.', 'epl'); ?></p>
-							
+
 							<p><?php _e( 'Fast forward video to 5:00 minutes to see how you can quickly update your profile, update your contact details, edit your bio and add a YouTube video.', 'epl'); ?></p>
 						</div>
 						<div class="epl-col-last">
@@ -88,12 +91,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							</div>
 						</div>
 					</div>
-					
+
 				<hr>
 				</div>
-				
+
 				<div id="add-listing" class="epl-section-content">
-				
+
 					<div class="epl-feature-section">
 						<div class="epl-col">
 							<h1 class="epl-section-title"><?php _e( 'Adding Listings', 'epl'); ?></h1>
@@ -106,12 +109,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="epl-feature-section">
 						<div class="epl-col">
 							<h3><?php _e( 'Title', 'epl' );?></h3>
 							<p><?php _e( 'When a property is being sold the "heading" is frequently changed and can cause link issues. Not to mention the search engine benefits. Use the full listing address as the title.', 'epl' );?></p>
-							
+
 							<h3><?php _e( 'Content Editor', 'epl' );?></h3>
 							<p><?php _e( 'Enter your descriptive text for your listing here. Add images, insert shortcodes, or plain text.', 'epl' );?></p>
 
@@ -124,57 +127,57 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="epl-feature-section">
 						<div class="epl-col">
 							<h3><?php _e( 'Featured Image', 'epl' );?></h3>
 							<p><?php _e( 'Set your featured property image.' , 'epl' ); ?></p>
-							
+
 							<h3><?php _e( 'Listing Image Gallery', 'epl' );?></h3>
 							<p><?php _e( 'Add a gallery of images to your listings with the WordPress Add Media button.' , 'epl' ); ?></p>
 
 							<p><?php _e( 'If set to automatic, just upload your images to the listing and press x to close the media upload box once the images are attached to the listing.', 'epl' );?></p>
 
 						</div>
-						
+
 						<div class="epl-col epl-col-last">
 							<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-gallery.png'; ?>" class="epl-welcome-screenshots"/>
 						</div>
 					</div>
-					
+
 					<div class="epl-feature-section">
 						<div class="epl-col epl-half-left">
 							<h2><?php _e( 'Listing Details', 'epl' );?></h2>
-							
+
 							<h3><?php _e( 'Heading', 'epl' );?></h3>
 							<p><?php _e( 'Enter the descriptive listing headline like "Great Property with Views".', 'epl' );?></p>
-							
+
 							<h3><?php _e( 'Second Listing Agent', 'epl' );?></h3>
 							<p><?php _e( 'If the listing has two real estate agents marketing it, enter their WordPress user name here. The primary agent is the post Author.', 'epl' );?></p>
-							
+
 							<h3><?php _e( 'Inspection Times', 'epl' );?></h3>
-							<p><?php _e( 'Add your inspection dates. ', 'epl' );?></p> 
-							
+							<p><?php _e( 'Add your inspection dates. ', 'epl' );?></p>
+
 						</div>
-						
+
 						<div class="epl-col epl-half-right">
 							<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-details.png'; ?>" class="epl-welcome-screenshots"/>
 						</div>
 					</div>
-					
+
 					<div class="epl-feature-section">
 						<div class="epl-col epl-half-left">
 							<h2><?php _e( 'Search by location', 'epl' );?></h2>
-							
+
 							<p><?php _e( 'Although the address details are added into the Property Address box the location search you also need to add the City/Suburb to the location search taxonomy.', 'epl' );?></p>
-							<p><?php _e( 'This works like post tags and will populate the search widget/shortcode with your listings and it will automatically filter out options if no listings have that option.', 'epl' );?></p> 
+							<p><?php _e( 'This works like post tags and will populate the search widget/shortcode with your listings and it will automatically filter out options if no listings have that option.', 'epl' );?></p>
 						</div>
-						
+
 						<div class="epl-col epl-half-right">
 							<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-add-listing-details-location.png'; ?>" class="epl-welcome-screenshots"/>
 						</div>
 					</div>
-					
+
 				<hr>
 				</div>
 

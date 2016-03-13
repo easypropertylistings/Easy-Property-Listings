@@ -4,18 +4,22 @@
  *
  * @package     EPL
  * @subpackage  Shortcode/Listing Auction
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       3.0
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Listing Auction Shortcode
+ *
  * This shortcode allows for you to specify the property type(s) using
  * [listing_auction post_type="property,rental" status="current,sold,leased" template="default"] option. You can also
  * limit the number of entries that display. using  [listing_auction limit="5"]
+ *
+ * @since       1.0
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -167,4 +171,3 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	return ob_get_clean();
 }
 add_shortcode( 'listing_auction', 'epl_shortcode_listing_auction_callback' );
-

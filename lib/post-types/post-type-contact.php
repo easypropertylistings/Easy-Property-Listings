@@ -1,28 +1,28 @@
 <?php
 /**
- * Register post type :: Contact
+ * Register post type Contact
  *
  * @package     EPL
- * @subpackage  Meta
+ * @subpackage  Functions/CPT
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       2.4
+ * @since       3.0
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
- 
+
 /**
  * Registers and sets up the Contact custom post type
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_register_custom_post_type_contact() {
 
-	$archives = defined( 'EPL_LEAD_DISABLE_ARCHIVE' ) && EPL_LEAD_DISABLE_ARCHIVE ? false : true;
-	$slug     = defined( 'EPL_LEAD_SLUG' ) ? EPL_LEAD_SLUG : 'contact';
-	$rewrite  = defined( 'EPL_LEAD_DISABLE_REWRITE' ) && EPL_LEAD_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$archives = defined( 'EPL_CONTACT_DISABLE_ARCHIVE' ) && EPL_CONTACT_DISABLE_ARCHIVE ? false : true;
+	$slug     = defined( 'EPL_CONTACT_SLUG' ) ? EPL_CONTACT_SLUG : 'contact';
+	$rewrite  = defined( 'EPL_CONTACT_DISABLE_REWRITE' ) && EPL_CONTACT_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_contact_labels', array(
 		'name'			=>	__('contacts', 'epl'),
@@ -40,7 +40,7 @@ function epl_register_custom_post_type_contact() {
 		'not_found_in_trash'	=>	__('Contact Not Found in Trash', 'epl'),
 		'parent_item_colon'	=>	__('Parent Contact:', 'epl')
 	) );
-	
+
 	$contact_args = array(
 		'labels'		=>	$labels,
 		'public'		=>	false,
@@ -58,5 +58,3 @@ function epl_register_custom_post_type_contact() {
 	register_post_type( 'epl_contact',  apply_filters( 'epl_contact_post_type_args', $contact_args ) );
 }
 add_action( 'init', 'epl_register_custom_post_type_contact', 0 );
- 
-

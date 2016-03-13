@@ -4,8 +4,9 @@
  *
  * @package     EPL
  * @subpackage  Admin/Reports
+ * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       2.4
+ * @since       3.0
  */
 
 // Exit if accessed directly
@@ -16,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * Renders the reports page contents.
  *
- * @since 2.4
+ * @since 3.0
  * @return void
 */
 function epl_reports_page() {
@@ -41,7 +42,7 @@ function epl_reports_page() {
 /**
  * Default Report Views
  *
- * @since 2.4
+ * @since 3.0
  * @return array $views Report Views
  */
 function epl_reports_default_views() {
@@ -58,7 +59,7 @@ function epl_reports_default_views() {
  *
  * @param string $default Default view to use.
  *
- * @since 2.4
+ * @since 3.0
  * @return string $view Report View
  *
  */
@@ -76,7 +77,7 @@ function epl_get_reporting_view( $default = 'property' ) {
 /**
  * Renders the Reports page
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_reports_tab_reports() {
@@ -99,7 +100,7 @@ add_action( 'epl_reports_tab_reports', 'epl_reports_tab_reports' );
 /**
  * Renders the Reports Page Views Drop Downs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_report_views() {
@@ -131,7 +132,7 @@ function epl_report_views() {
 /**
  * Renders the Reports property Graphs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_reports_property() {
@@ -151,7 +152,7 @@ add_action( 'epl_reports_view_property', 'epl_reports_property' );
 /**
  * Renders the Reports rental Graphs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_reports_rental() {
@@ -171,7 +172,7 @@ add_action( 'epl_reports_view_rental', 'epl_reports_rental' );
 /**
  * Renders the Reports land Graphs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_reports_land() {
@@ -191,7 +192,7 @@ add_action( 'epl_reports_view_land', 'epl_reports_land' );
 /**
  * Renders the Reports land Graphs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_reports_commercial() {
@@ -211,7 +212,7 @@ add_action( 'epl_reports_view_commercial', 'epl_reports_commercial' );
 /**
  * Renders the Reports land Graphs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_reports_commercial_land() {
@@ -231,7 +232,7 @@ add_action( 'epl_reports_view_commercial_land', 'epl_reports_commercial_land' );
 /**
  * Renders the Reports land Graphs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_reports_business() {
@@ -251,7 +252,7 @@ add_action( 'epl_reports_view_business', 'epl_reports_business' );
 /**
  * Renders the Reports land Graphs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
  */
 function epl_reports_rural() {
@@ -267,5 +268,3 @@ function epl_reports_rural() {
 	epl_reports_graph('sold','current','#e50000','#a5df41');
 }
 add_action( 'epl_reports_view_rural', 'epl_reports_rural' );
-
-

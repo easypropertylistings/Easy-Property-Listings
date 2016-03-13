@@ -3,7 +3,7 @@
  * SHORTCODE :: Listing Category [listing_category]
  *
  * @package     EPL
- * @subpackage  Shortcode/Listing Category
+ * @subpackage  Shortcode/ListingCategory
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.1.1
@@ -13,10 +13,14 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Listing Category
+ *
  * This shortcode allows for you to specify the property type(s) using
  * [listing_category post_type="property" status="current,sold,leased" category_key="property_rural_category" category_key="farm"] option. You can also
  * limit the number of entries that display. using  [listing_category limit="5"]
  * Added Commercial Category Support
+ *
+ * @since       1.1.1
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	$property_types = epl_get_active_post_types();

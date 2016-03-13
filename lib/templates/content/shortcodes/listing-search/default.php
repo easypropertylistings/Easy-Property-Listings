@@ -1,9 +1,12 @@
 <?php
 /**
- * Listing Search Shortcode Default View.
+ * Listing Search Shortcode Default View
  *
- * @package    easy-property-listings
- * @subpackage Theme
+ * @package     EPL
+ * @subpackage  Shortcodes/Templates
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
  */
 
 // Exit if accessed directly
@@ -80,12 +83,12 @@ if ( ! empty( $selected_post_types ) ) :
 			<?php
 				$epl_frontend_fields = epl_search_widget_fields_frontend( $post_type,$property_status );
 				foreach ( $epl_frontend_fields as &$epl_frontend_field ) {
-				
+
 					if($epl_frontend_field['key'] == 'property_status' && $show_property_status_frontend == 'on'){
 						$epl_frontend_field['type'] =  'text';
 						$epl_frontend_field['config'] = 'on';
 					}
-					
+
 					if ( $epl_frontend_field['key'] == 'search_house_category' && isset( $house_category_multiple ) && $house_category_multiple == 'on' ) {
 						$epl_frontend_field['multiple'] 	= true;
 						$epl_frontend_field['query'] 		= array( 'query'	=> 'meta', 'compare' => 'IN' );

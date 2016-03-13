@@ -2,22 +2,28 @@
 /**
  * TAXONOMY :: Location
  *
- * @package	 EPL
- * @subpackage  Taxonomy/Location
+ * @package	EPL
+ * @subpackage  Taxonomy
  * @copyright   Copyright (c) 2014, Merv Barrett
- * @license	 http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since	1.0
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Registers and sets up the tax_location taxonomy
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_register_taxonomy_location() {
 	$location_label = epl_tax_location_label();
 	$location_slug = sanitize_title($location_label);
 	$hierarchical = defined( 'EPL_LOCATION_HIERARCHICAL' ) && EPL_LOCATION_HIERARCHICAL ? true : false;
 		/* add define ('EPL_LOCATION_HIERARCHICAL', 'true'); into theme functions.php for hierarchical location taxonomy */
-	
+
 	$labels = array(
 		'name'				=> _x( $location_label, 'Taxonomy General Name', 'epl'),
 		'singular_name'			=> _x( $location_label, 'Taxonomy Singular Name', 'epl'),

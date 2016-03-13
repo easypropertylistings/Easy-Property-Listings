@@ -173,12 +173,7 @@ class EPL_Contact {
 				case 'type':
 					$this->$key = $this->get_meta( 'contact_category' );
 					break;
-
-
-
-
 			}
-
 		}
 
 		// Contact ID and email are the only things that are necessary, make sure they exist
@@ -239,12 +234,12 @@ class EPL_Contact {
 			case 'email':
 				$matched_contacts = new WP_Query(
 					array(
-						'post_type'		=>	'epl_contact',
+						'post_type'	=>	'epl_contact',
 						'post_status'	=>	'publish',
 						'meta_query'	=>	array(
 							array(
-								'key'	=>	'contact_emails',
-								'value'	=>	sprintf(':"%s";', $value),
+								'key'		=>	'contact_emails',
+								'value'		=>	sprintf(':"%s";', $value),
 								'compare'	=>	'LIKE'
 							)
 						)
@@ -274,7 +269,6 @@ class EPL_Contact {
 		return $contact;
 	}
 
-
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
@@ -283,15 +277,10 @@ class EPL_Contact {
 	public function __get( $key ) {
 
 		if( method_exists( $this, 'get_' . $key ) ) {
-
 			return call_user_func( array( $this, 'get_' . $key ) );
-
 		} else {
-
 			return new WP_Error( 'epl-contact-invalid-property', sprintf( __( 'Can\'t get property %s', 'epl' ), $key ) );
-
 		}
-
 	}
 
 	/**
@@ -309,11 +298,10 @@ class EPL_Contact {
 
 		$defaults = array(
 			'name' 	=> '',
-			'email'	=>	''
+			'email'	=> ''
 		);
 
 		$args = wp_parse_args( $data, $defaults );
-
 
 		if ( empty( $args['email'] ) || ! is_email( $args['email'] ) ) {
 			return false;
@@ -326,7 +314,7 @@ class EPL_Contact {
 		if( $contact = $this->contact_exists($args['email']) ) {
 			wp_update_post(
 				array(
-					'post_title'	=>	$args['name'],
+					'post_title'		=>	$args['name'],
 					'post_type'		=>	'epl_contact',
 					'ID'			=>	$contact->ID
 				)
@@ -337,7 +325,7 @@ class EPL_Contact {
 			$inserted = wp_insert_post(
 				array(
 					'post_title'		=>	$args['name'],
-					'post_type'			=>	'epl_contact',
+					'post_type'		=>	'epl_contact',
 					'post_status'		=>	'publish',
 				)
 			);
@@ -347,14 +335,11 @@ class EPL_Contact {
 				$contact = $this->get_contact_by( 'email', $args['email'] );
 				$this->setup_contact( $contact );
 			}
-
-
 		}
 		$created = $contact->ID;
 
 		do_action( 'epl_contact_post_create', $created, $args );
 		return $created;
-
 	}
 
 	/**
@@ -369,8 +354,8 @@ class EPL_Contact {
 				'post_status'	=>	'publish',
 				'meta_query'	=>	array(
 					array(
-						'key'	=>	'contact_emails',
-						'value'	=>	sprintf(':"%s";', $email),
+						'key'		=>	'contact_emails',
+						'value'		=>	sprintf(':"%s";', $email),
 						'compare'	=>	'LIKE'
 					)
 				)
@@ -385,9 +370,7 @@ class EPL_Contact {
 					return $matched_contacts->post;
 				}
 			}
-
 		}
-
 		return false;
 	}
 
@@ -411,8 +394,8 @@ class EPL_Contact {
 		$updated = wp_update_post(
 			array(
 				'post_title'	=>	$data['name'],
-				'post_type'		=>	'epl_contact',
-				'ID'			=>	$this->ID,
+				'post_type'	=>	'epl_contact',
+				'ID'		=>	$this->ID,
 				'post_status'	=>	'publish',
 			)
 		);
@@ -435,7 +418,6 @@ class EPL_Contact {
 
 		return $updated;
 	}
-
 
 	/**
 	 * Attach listing to the contact then triggers increasing stats
@@ -470,7 +452,6 @@ class EPL_Contact {
 		$listing_added = update_post_meta($this->ID,'contact_interested_listings',$new_listing_ids);
 
 		if ( $listing_added ) {
-
 
 			// update the contacts of listing as well
 			$contact_ids = get_post_meta($listing_id,'epl_interested_contacts',true);
@@ -524,8 +505,6 @@ class EPL_Contact {
 
 		if ( $listing_removed ) {
 
-
-
 		}
 		// update the contacts of listing as well
 		$contact_ids = get_post_meta($listing_id,'epl_interested_contacts',true);
@@ -554,7 +533,6 @@ class EPL_Contact {
 	public function get_listings( ) {
 
 		return get_post_meta($this->ID,'contact_interested_listings',true);
-
 	}
 
 	/**
@@ -567,7 +545,6 @@ class EPL_Contact {
 		$listings =  (array) get_post_meta($this->ID,'contact_interested_listings',true);
 		$listings =  array_filter($listings);
 		return count($listings);
-
 	}
 
 	/**
@@ -606,7 +583,6 @@ class EPL_Contact {
 	public function get_notes_count() {
 
 		return get_comments( array( 'meta_key' => 'epl_contact_id', 'meta_value' => $this->ID , 'count' => true) );
-
 	}
 
 	/**
@@ -650,7 +626,6 @@ class EPL_Contact {
 
 	}
 
-
 	/**
 	 * delete the contact
 	 *
@@ -660,11 +635,20 @@ class EPL_Contact {
 		return wp_delete_post($this->ID,true);
 	}
 
-
+	/**
+	 * Update Contact Meta
+	 *
+	 * @since  3.0
+	 */
 	public function update_meta($key,$value) {
 		return update_post_meta($this->ID,$key,$value);
 	}
 
+	/**
+	 * Get Contact Meta
+	 *
+	 * @since  3.0
+	 */
 	public function get_meta($key) {
 		return get_post_meta($this->ID,$key,true);
 	}

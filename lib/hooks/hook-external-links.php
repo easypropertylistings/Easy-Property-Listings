@@ -3,7 +3,7 @@
  * Hook for External Link Buttons on Property Templates
  *
  * @package     EPL
- * @subpackage  Hooks/External Links
+ * @subpackage  Hooks/ExternalLinks
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

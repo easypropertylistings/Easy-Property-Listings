@@ -1,9 +1,12 @@
 <?php
 /**
- * Extensions General Options Menu page
+ * Extensions Settings Compatibility
  *
- * @since 1.0
- * @return void
+ * @package     EPL
+ * @subpackage  Admin/Menus
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
 
 // Exit if accessed directly
@@ -74,7 +77,7 @@ $epl_settings = get_option('epl_settings');
 														$multiple = $field['multiple'];
 														$field['name'] = $field['name'].'[]';
 													}
-													
+
 													echo '<select name="'.$field['name'].'" id="'.$field['id'].'" '.((isset($field['multiple']) && $field['multiple']) ? 'multiple' : false).'>';
 														if(!empty($field['default'])) {
 															echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
@@ -125,13 +128,13 @@ $epl_settings = get_option('epl_settings');
 														}
 													}
 													break;
-													
+
 												case 'editor':
 													echo '<span class="epl-field-row">';
 														wp_editor(stripslashes($val), $field['name'], array('wpautop'=>true, 'textarea_rows'=>5));
 													echo '</span>';
 													break;
-													
+
 												case 'textarea':
 													echo '<span class="epl-field-row">';
 														echo '<textarea name="'.$field['name'].'" id="'.$field['name'].'">'.stripslashes($val).'</textarea>';
@@ -166,6 +169,11 @@ $epl_settings = get_option('epl_settings');
 	</div>
 </div><?php
 
+/**
+ * Extensions Compatibility Load Settings
+ *
+ * @since 1.0
+ */
 function epl_get_admin_option_fields_extensions_compat() {
 	$fields = array( );
 	$fields = apply_filters('epl_extensions_options_filter', $fields);
