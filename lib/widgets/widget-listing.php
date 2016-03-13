@@ -12,6 +12,11 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * EPL_Widget_Recent_Property class
+ *
+ * @since 1.0
+ */
 class EPL_Widget_Recent_Property extends WP_Widget {
 
 	function __construct() {
@@ -221,7 +226,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'types' ); ?>"><?php _e( 'Property Type', 'epl' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'types' ); ?>"><?php _e( 'Listing Type', 'epl' ); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id( 'types' ); ?>" name="<?php echo $this->get_field_name( 'types' ); ?>[]" multiple="multiple">
 				<?php
 					$options = epl_get_active_post_types();
@@ -240,7 +245,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'status' ); ?>"><?php _e( 'Property Status', 'epl' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'status' ); ?>"><?php _e( 'Listing Status', 'epl' ); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id( 'status' ); ?>" name="<?php echo $this->get_field_name( 'status' ); ?>[]" multiple="multiple">
 				<?php
 					$options = apply_filters( 'epl_widget_listing_property_status',

@@ -85,7 +85,8 @@ function epl_install() {
 		'inspection_date_format'		=> 'l, dS F',
 		'inspection_time_format'		=> 'h:i a',
 		'custom_inspection_date_format'		=> 'l, dS F',
-		'custom_inspection_time_format'		=> 'h:i a'
+		'custom_inspection_time_format'		=> 'h:i a',
+		'epl_video_width'			=> 600,
 	);
 
 	if(!empty($epl_settings)) {

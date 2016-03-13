@@ -4,8 +4,10 @@
  *
  * @package     EPL
  * @subpackage  Admin/Reports
- * @since       2.4
-*/
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -13,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Show report graphs
  *
- * @since 2.4
+ * @since 3.0
  * @return void
 */
 function epl_reports_graph($sold_status='sold',$current_status='current',$sold_color=null,$current_color=null) {
@@ -215,10 +217,10 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 			'data'	=>	$sales_data
 		)
 	);
-	
+
 	! is_null($sold_color) ? $data[$sold_status]['color'] = $sold_color : null;
 	! is_null($current_color) ? $data[$current_status]['color'] = $current_color : null;
-		
+
 	// start our own output buffer
 	ob_start();
 	?>
@@ -272,7 +274,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 /**
  * Show report graph date filters
  *
- * @since 1.3
+ * @since 3.0
  * @return void
 */
 function epl_reports_graph_controls() {
@@ -293,7 +295,7 @@ function epl_reports_graph_controls() {
 	$dates   = epl_get_report_dates();
 	$display = $dates['range'] == 'other' ? '' : 'style="display:none;"';
 	$view    = epl_get_reporting_view();
-	
+
 	if( empty( $dates['day_end'] ) ) {
 		$dates['day_end'] = cal_days_in_month( CAL_GREGORIAN, date( 'n' ), date( 'Y' ) );
 	}
@@ -363,7 +365,7 @@ function epl_reports_graph_controls() {
  * Date sent via $_GET is read first and then modified (if needed) to match the
  * selected date-range (if any)
  *
- * @since 1.3
+ * @since 3.0
  * @return array
 */
 function epl_get_report_dates() {
@@ -535,5 +537,3 @@ function epl_get_report_dates() {
 
 	return apply_filters( 'epl_report_dates', $dates );
 }
-
-

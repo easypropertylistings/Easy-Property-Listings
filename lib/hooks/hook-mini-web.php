@@ -3,7 +3,7 @@
  * Hook for Mini Website Links used with commercial and business listings
  *
  * @package     EPL
- * @subpackage  Hooks/epl_buttons_single_property
+ * @subpackage  Hooks/WebLink
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

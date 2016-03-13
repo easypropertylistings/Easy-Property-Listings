@@ -3,7 +3,7 @@
  * Conditional Tags
  *
  * @package     EPL
- * @subpackage  Functions/Conditional-Tags
+ * @subpackage  Functions/ConditionalTags
  * @copyright   Copyright (c) 2015, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.2
