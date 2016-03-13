@@ -295,7 +295,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_bedrooms',
 							'label'		=>	__('Bedrooms', 'epl'),
 							'type'		=>	'text',
-                            'class'     =>  'validate[custom[bedroom]]'
+							'class'		=>	'validate[custom[bedroom]]'
 						),
 
 						array(
@@ -322,8 +322,8 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_toilet',
 							'label'		=>	__('Toilet', 'epl'),
-							'type'		=>	'number',
-							'maxlength'	=>	'2'
+							'type'		=>	'decimal',
+							'maxlength'	=>	'4'
 						),
 
 						array(

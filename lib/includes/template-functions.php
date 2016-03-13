@@ -616,7 +616,7 @@ function epl_property_commercial_category(){
 	global $property;
 	if ( $property->post_type == 'commercial' ) {
 		if ( $property->get_property_meta('property_com_plus_outgoings') == 1) {
-			echo '<div class="price-type">'. apply_filters( 'epl_property_sub_title_plus_outgoings' , __('Plus Outgoings', 'epl') ) . '</div>';
+			echo '<div class="price-type">'. apply_filters( 'epl_property_sub_title_plus_outgoings_label' , __('Plus Outgoings', 'epl') ) . '</div>';
 		}
 		echo $property->get_property_commercial_category();
 	}
@@ -633,7 +633,7 @@ function epl_property_available_dates() {
 	global $property;
 	if( 'rental' == $property->post_type && $property->get_property_meta('property_date_available') != '' && $property->get_property_meta('property_status') != 'leased' ) {
 		// Rental Specifics
-		echo '<div class="property-meta date-available">'. apply_filters( 'epl_property_sub_title_available_from' , __('Available from', 'epl') ) .' ', $property->get_property_available() , '</div>';
+		echo '<div class="property-meta date-available">'. apply_filters( 'epl_property_sub_title_available_from_label' , __('Available from', 'epl') ) .' ', $property->get_property_available() , '</div>';
 	}
 }
 add_action('epl_property_available_dates','epl_property_available_dates');
