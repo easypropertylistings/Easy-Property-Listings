@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.0 (beta-1)
+ * Version: 2.97 (beta-1)
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -91,11 +91,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.0' );
+				define( 'EPL_PROPERTY_VER', '2.97' );
 			}
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
-				define( 'EPL_PROPERTY_DB_VER', '3.0' );
+				define( 'EPL_PROPERTY_DB_VER', '2.97' );
 			}
 			// Current Page
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
@@ -239,24 +239,24 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
 
 			if ( is_admin() ) {
-				require_once EPL_PATH_LIB . 'includes/plugins.php';
+				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-meta-boxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
-				require_once EPL_PATH_LIB . 'includes/admin.php';
-				require_once EPL_PATH_LIB . 'includes/admin-functions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/admin-actions.php';
 				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
-				require_once EPL_PATH_LIB . 'menus/menus.php';
-				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
+				require_once EPL_PATH_LIB . 'includes/admin/menus/menus.php';
+				require_once EPL_PATH_LIB . 'includes/admin/menus/class-epl-menu-welcome.php';
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
-				require_once EPL_PATH_LIB . 'contacts/contacts.php';
-				require_once EPL_PATH_LIB . 'contacts/contact-functions.php';
-				require_once EPL_PATH_LIB . 'contacts/contact-actions.php';
-				require_once EPL_PATH_LIB . 'reports/graphing.php';
-				require_once EPL_PATH_LIB . 'reports/reports.php';
-				require_once EPL_PATH_LIB . 'reports/class-epl-graph.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contacts.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contact-functions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contact-actions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/graphing.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/reports.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/class-epl-graph.php';
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
-				require_once EPL_PATH_LIB . 'includes/help.php';
+				require_once EPL_PATH_LIB . 'includes/admin/help.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';

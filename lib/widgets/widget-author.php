@@ -12,6 +12,11 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * EPL_Widget_Author class
+ *
+ * @since 1.0
+ */
 class EPL_Widget_Author extends WP_Widget {
 
 	function __construct() {

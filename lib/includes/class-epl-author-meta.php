@@ -3,12 +3,11 @@
  * EPL Admin Functions
  *
  * @package     EPL
- * @subpackage  Classes/Author Meta Fields
+ * @subpackage  Classes/Author
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.3
  */
-
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -36,7 +35,7 @@ class EPL_Author_Meta {
 	private $description;
 
 	/**
-	 * 
+	 *
 	 * @param [type]
 	 */
 	function __construct($author_id) {
@@ -88,7 +87,7 @@ class EPL_Author_Meta {
 
 	/*
 	 * Author Twitter html Box
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_twitter_html($html = ''){
@@ -105,7 +104,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Google html Box
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_google_html($html = ''){
@@ -122,7 +121,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Facebook html Box
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_facebook_html($html = ''){
@@ -139,7 +138,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Linkedin html Box
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_linkedin_html($html = '') {
@@ -166,7 +165,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Skype html Box
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_skype_html($html = '') {
@@ -183,7 +182,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author video html Box
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_video_html($html = '') {
@@ -196,7 +195,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author description html
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_description_html($html = '') {
@@ -218,7 +217,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author mobile
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_author_mobile() {
@@ -228,7 +227,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Id
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_author_id() {
@@ -238,7 +237,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Slogan
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_author_slogan() {
@@ -248,7 +247,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Position
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_author_position() {
@@ -258,7 +257,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Name
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_author_name() {
@@ -268,7 +267,7 @@ class EPL_Author_Meta {
 
 	/**
 	 * Author Contact Form
-	 * 
+	 *
 	 * @since version 1.3
 	 */
     function get_author_contact_form() {

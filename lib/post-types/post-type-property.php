@@ -3,15 +3,15 @@
  * Register post type :: Property
  *
  * @package     EPL
- * @subpackage  Meta
+ * @subpackage  Functions/CPT
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
- 
+
 /**
  * Registers and sets up the Property custom post type
  *
@@ -40,7 +40,7 @@ function epl_register_custom_post_type_property() {
 		'not_found_in_trash'	=>	__('Listing Not Found in Trash', 'epl'),
 		'parent_item_colon'	=>	__('Parent Listing:', 'epl')
 	) );
-	
+
 	$property_args = array(
 		'labels'		=>	$labels,
 		'public'		=>	true,
@@ -60,9 +60,9 @@ function epl_register_custom_post_type_property() {
 	epl_register_post_type( 'property', 'Property (Residential)', apply_filters( 'epl_property_post_type_args', $property_args ) );
 }
 add_action( 'init', 'epl_register_custom_post_type_property', 0 );
- 
+
 /**
- * Manage Admin Property Post Type Columns 
+ * Manage Admin Property Post Type Columns
  *
  * @since 1.0
  * @return void
@@ -76,7 +76,7 @@ if ( is_admin() ) {
 	 */
 	function epl_manage_property_columns_heading( $columns ) {
 		global $epl_settings;
-		
+
 		$columns = array(
 			'cb' 			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Image', 'epl'),
@@ -89,23 +89,23 @@ if ( is_admin() ) {
 			'agent'			=> __('Agent', 'epl'),
 			'date'			=> __('Date', 'epl')
 		);
-		
+
 		// Geocode Column
 		$geo_debug = !empty($epl_settings) && isset($epl_settings['debug']) ? $epl_settings['debug'] : 0;
 		if ( $geo_debug != 1 ) {
 			unset($columns['geo']);
 		}
-		
-		// Listing ID Column		
+
+		// Listing ID Column
 		$admin_unique_id = !empty($epl_settings) && isset($epl_settings['admin_unique_id']) ? $epl_settings['admin_unique_id'] : 0;
 		if ( $admin_unique_id != 1 ) {
 			unset($columns['listing_id']);
 		}
-		
+
 		return $columns;
 	}
 	add_filter( 'manage_edit-property_columns', 'epl_manage_property_columns_heading' );
-	
+
 	/**
 	 * Manage Admin Property Post Type Columns: Row Contents
 	 *
@@ -113,30 +113,30 @@ if ( is_admin() ) {
 	 */
 	function epl_manage_property_columns_value( $column, $post_id ) {
 
-		switch( $column ) {	
+		switch( $column ) {
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
 				do_action('epl_manage_listing_column_property_thumb_before');
 				do_action('epl_manage_listing_column_property_thumb');
 				do_action('epl_manage_listing_column_property_thumb_after');
-				
+
 				break;
-				
+
 			/* If displaying the 'Listing Details' column. */
-			
+
 			case 'listing' :
 				do_action('epl_manage_listing_column_listing_before');
 				do_action('epl_manage_listing_column_listing');
 				do_action('epl_manage_listing_column_listing_after');
-				
+
 				break;
-			
+
 			/* If displaying the 'Listing ID' column. */
 			case 'listing_id' :
 				do_action('epl_manage_listing_column_listing_id_before');
 				do_action('epl_manage_listing_column_listing_id');
 				do_action('epl_manage_listing_column_listing_id_after');
-				
+
 				break;
 
 			/* If displaying the 'Geocoding' column. */
@@ -144,37 +144,36 @@ if ( is_admin() ) {
 				do_action('epl_manage_listing_column_geo_before');
 				do_action('epl_manage_listing_column_geo');
 				do_action('epl_manage_listing_column_geo_after');
-				
+
 				break;
-				
+
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
 				do_action('epl_manage_listing_column_price_before');
 				do_action('epl_manage_listing_column_price');
 				do_action('epl_manage_listing_column_price_after');
-				
+
 				break;
-				
+
 			/* If displaying the 'property_status' column. */
 			case 'property_status' :
 				do_action('epl_manage_listing_column_property_status_before');
 				do_action('epl_manage_listing_column_property_status');
 				do_action('epl_manage_listing_column_property_status_after');
-				
+
 				break;
-				
+
 			case 'agent':
 				do_action('epl_manage_listing_column_agent_before');
 				do_action('epl_manage_listing_column_agent');
 				do_action('epl_manage_listing_column_agent_after');
-				
+
 				break;
-				
+
 			/* Just break out of the switch statement for everything else. */
 			default :
 				break;
 		}
 	}
 	add_action( 'manage_property_posts_custom_column', 'epl_manage_property_columns_value', 10, 2 );
-
 }

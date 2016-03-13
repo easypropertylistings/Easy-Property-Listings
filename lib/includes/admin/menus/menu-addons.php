@@ -1,5 +1,18 @@
 <?php
 /**
+ * Add-ons
+ *
+ * @package     EPL
+ * @subpackage  Admin/Menus
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
  * Add-ons Page Init
  *
  * Hooks check feed to the page load action.
@@ -9,22 +22,13 @@
  * @global $epl_add_ons_page EPL Add-ons Pages
  * @return void
  */
- 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
-
-// Only load in admin
-if( !is_admin() ) {
-	return;
-}
-
 function epl_add_ons_init() {
 	global $epl_add_ons_page;
 	add_action( 'load-' . $epl_add_ons_page, 'epl_add_ons_check_feed' );
 }
 add_action( 'admin_menu', 'epl_add_ons_init');
 
- 
+
 /**
  * Add-ons Get Feed
  *
@@ -70,8 +74,3 @@ function epl_add_ons_page() {
 	echo ob_get_clean();
 }
 echo epl_add_ons_page();
-
-
-/*
-* End EDD Adapted Code
-*/

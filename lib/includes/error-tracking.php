@@ -12,7 +12,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Print Errors
  *
@@ -39,6 +38,7 @@ function epl_print_errors() {
 
 /**
  * Get Errors
+ *
  * If errors exist, they are returned.
  *
  * @since 3.0

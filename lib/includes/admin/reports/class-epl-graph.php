@@ -1,13 +1,14 @@
 <?php
 /**
- * Graphs
+ * Reports
  *
- * This class handles building pretty report graphs
+ * This class handles building report graphs
  *
  * @package     EPL
  * @subpackage  Admin/Reports
+ * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       2.4
+ * @since       3.0
  */
 
 // Exit if accessed directly
@@ -16,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * EPL_Graph Class
  *
- * @since 2.4
+ * @since 3.0
  */
 class EPL_Graph {
 
@@ -50,7 +51,7 @@ class EPL_Graph {
 	 * Data to graph
 	 *
 	 * @var array
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	private $data;
 
@@ -58,7 +59,7 @@ class EPL_Graph {
 	 * Unique ID for the graph
 	 *
 	 * @var string
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	private $id = '';
 
@@ -66,14 +67,14 @@ class EPL_Graph {
 	 * Graph options
 	 *
 	 * @var array
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	private $options = array();
 
 	/**
 	 * Get things started
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public function __construct( $_data ) {
 
@@ -101,7 +102,6 @@ class EPL_Graph {
 			'lines'           => true,
 			'points'          => true
 		);
-
 	}
 
 	/**
@@ -109,7 +109,7 @@ class EPL_Graph {
 	 *
 	 * @param $key The option key to set
 	 * @param $value The value to assign to the key
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public function set( $key, $value ) {
 		$this->options[ $key ] = $value;
@@ -119,7 +119,7 @@ class EPL_Graph {
 	 * Get an option
 	 *
 	 * @param $key The option key to get
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public function get( $key ) {
 		return isset( $this->options[ $key ] ) ? $this->options[ $key ] : false;
@@ -128,7 +128,7 @@ class EPL_Graph {
 	/**
 	 * Get graph data
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public function get_data() {
 		return apply_filters( 'epl_get_graph_data', $this->data, $this );
@@ -137,7 +137,7 @@ class EPL_Graph {
 	/**
 	 * Load the graphing library script
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public function load_scripts() {
 		// Use minified libraries if SCRIPT_DEBUG is turned off
@@ -151,7 +151,7 @@ class EPL_Graph {
 	 * Build the graph and return it as a string
 	 *
 	 * @var array
-	 * @since 2.4
+	 * @since 3.0
 	 * @return string
 	 */
 	public function build_graph() {
@@ -171,11 +171,11 @@ class EPL_Graph {
 						{
 							label: "<?php echo esc_attr( $data['label'] ); ?>",
 							id: "<?php echo sanitize_key( $data['id'] ); ?>",
-							
+
 							<?php if( !is_null($data['color'])) : ?>
-							
+
 								color: "<?php echo esc_attr( $data['color'] ); ?>",
-								
+
 							<?php endif; ?>
 							// data format is: [ point on x, value on y ]
 							data: [<?php foreach( $data['data'] as $point ) { echo '[' . implode( ',', $point ) . '],'; } ?>],
@@ -273,19 +273,18 @@ class EPL_Graph {
 
 		</script>
 		<div id="epl-graph-<?php echo $this->id; ?>" class="epl-graph" style="height: 300px;"></div>
-<?php
+		<?php
 		return ob_get_clean();
 	}
 
 	/**
 	 * Output the final graph
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public function display() {
 		do_action( 'epl_before_graph', $this );
 		echo $this->build_graph();
 		do_action( 'epl_after_graph', $this );
 	}
-
 }

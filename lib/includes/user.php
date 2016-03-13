@@ -3,7 +3,7 @@
  * User Profile
  *
  * @package     EPL
- * @subpackage  Admin/Author
+ * @subpackage  Admin/User
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

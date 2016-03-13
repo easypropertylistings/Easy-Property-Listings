@@ -3,11 +3,11 @@ Author URI: http://www.realestateconnected.com.au/
 Plugin URI: https://easypropertylistings.com.au/
 Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
-Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
+Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, contact, crm, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.3
-Tested up to: 4.3.1
+Tested up to: 4.5
 
-Stable Tag: 2.3.1
+Stable Tag: 2.97
 
 License: GNU Version 2 or Any Later Version
 
@@ -226,110 +226,162 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.0 March 10, 2016 =
+= 3.0 March 14, 2016 =
 
-
-New: Inspection date format now customisable from settings.
+New: Every epl_action present in the $_GET or $_POST is called using WordPress do_action function in init.
 Tweak: Radio options when adding listings converted to checkboxes to slim down the admin pages.
-
-
-New: Ability to manually adjust or set listing coordinates.
-New: Search for second listing author on listings.
-New: Internal help tabs.
-New: Link a contact with a listing.
-New: Video links now support wp_oembed like Vimeo.
-New: Default embedded video width adjustable from settings.
-
-
-New: Contextual Help on listings.
-
-New: Search upgraded to API
-Tweak: listing_search shortcode using new API and allows for custom template
-New: Actions.php
-
-New: Contacts and Lead system
-New: Contact API
-New: Contact Form API
-New: contact_capture shortcode // Needs Author id of page and URL
-New: listing_auction shortcode
-New: Listing widget now loadable using epl_get_template_part
-
-New: Assign a Listing to a contact meta-box.
-
-Search template now editable using epl_get_template_part
-Search Widget and [listing_search] shortcode allows for property status option.
-Search meta array accepts order to adjust field order.
-
-New: Allow extensions to use core templates.
-
-Widget - Listing improved
-
-Tweak: Listing Shortcode adjusted for better processing of options
-New: Reporting and Graphing
-New: Graphing API
-
-New: Error tracking and debug logging.
-Fix: listing_open shortcode no longer displays sold or leased listings.
-New: Additional customisation of shortcode-listing.php template part
-
-Tweak: Pagination API loading globally for use in Dashboard
-
-Tweak: epl_render_html_fields allows for css class set in the field array of meta-boxes.
-Tweak: Improvements to Google Coordinate generation.
-
-New: Date Available updated JS for improved selection with some themes and plugins.
-Tweak: External link function improved.
-Tweak: LinkedIn will use full URL or fallback.
-
-New: Pagination enhanced
-Fix: is_epl_post function to prevent error when no posts are activated.
-Tweak: Improved get_additional_features_html function for additional features and added epl_get_additional_features_html filter
-Fix: Session start less likely to cause issues with certain server configurations.
-Tweak: Enhanced Search Class thanks to codewp
-Tweak: Bedrooms allow studio option
-New: Configurable Inspection date and time format from settings.
-New: Sort by location A-Z added to filter.
-Fix: Stray tag with search widget tabbing.
-
-Fix: Translation of land size unit.
-Tweak: Improved Google Map CSS correctly displaying on some themes.
-Tweak: Applied thousands separator to land sizes using settings.
-Fix: If no listing types are enabled an error no longer occurs.
-Fix: Ducted Heating additional features now displays.
-Fix: Open Fire Place additional features now displays.
-
-New: Second agent field allows for searching users.
-Tweak: Converted Radio options to tick boxes to reduce space.
-Fix: Number Formatting function PHP warning fixed.
-
-Tweak: Translation strings fixed.
-Tweak: Allow for .00 and .0 when adding search prices.
-
-
-New: Dashboard Widget Activity Feed
-
-Tweak: Listing price and rental price now supports decimal value saving.
-
-
-* New: xxx.
-* Tweak: xxx.
-* Fix: xxx.
-
-Tweak: Commercial auction listing support.
-Tweak: Listings with prices set to 0 like bond no longer display in admin.
-Fix: Rental listing when using price text the period no longer displays in admin.
-Tweak: Removed double display of Under Offer.
+Fix: Ducted Heating additional features now displays in feature list.
+Fix: Fully fenced option now displays in feature list.
+Tweak: Optimise Admin Listing queries.
+Tweak: Removed double display of Under Offer in admin listing list.
 Tweak: Leased rental listings now display the weekly rent amount in admin.
+Tweak: Commercial Lease listing details improved in admin list.
+Tweak: Sold price displays in admin.
+Fix: Date Available fix for year.
+New: epl_get_property_available filter allows customising date format.
+Tweak: External links function improved.
+Tweak: Added additional plugn file security access to prevent file reading outside of WordPress.
+Fix: Number Formatting function PHP warning fixed.
+Fix: is_epl_post function to prevent error when no posts are activated.
+Tweak: Commercial auction listing support.
+New: Contacts and form system for managing listing leads and history of contact.
+New: contact_capture shortcode // Needs Author id of page and URL.
+New: Contact System for Lead Generation and Capture.
+New: Form API supports editor.
+New: Dashboard Widget Listing and Contact Activity Feed.
+New: Date Picker updated JS for improved usage and improved compatibility with themes and plugins.
+Tweak: Code Docblocks created for http://docs.easypropertylistings.com.au code reference.
+New: Link a contact with a listing and display details and quick access to contact.
+New: Error tracking and debug logging helper functions.
+New: Form API supports sections breaks.
+New: Contextual help tab added to Add/Edit Listin page.
+New: Inspection date format now customisable from settings.
+Tweak: Extension license updater updated.
+Tweak Added additional map CSS classes to improve Google Map output with some themes.
+New: Adjustable Map pin when editing a listing and setting coordinates. Drag the map pin to adust the position.
 Tweak: Imported values of 0 no longer display on commercial listings.
+Tweak: epl_render_html_fields allows for css class set in the field array of meta-boxes.
+Tweak: Commercial authority default type is now For Sale instead of Auction.
+Tweak: Converted Radio options to tick boxes to reduce space.
+Tweak: Commercial auction listing support.
+Tweak: Bedrooms allow studio option.
+Tweak: Applied thousands separator to land sizes using settings.
+Tweak: Allow for .00 and .0 when adding listing prices.
+Tweak: Toilet supports decimal.
+Tweak: Additional Features increased to three columns to minimise space with single checkboxes.
+Tweak: Listing price, sale, and rental price now supports decimal values when saving.
+Tweak: Bond supports decimal figures.
+Tweak: Translation strings fixed.
 Tweak: m2 html character added.
-Tweak: Fully fenced option now displays in feature list.
-Tweak: Custom meta fields queries optimised in Admin.
-
-
-
-
-
-
+Tweak: Listings with prices set to 0 like bond no longer display in admin.
+Fix: Rental listing when using price text the rental period no longer displays in admin.
+Tweak: Pagination loading globally for use in admin.
+New: Pagination enhanced to enable adjustment of output.
+Fix: Old function in metaboxes removed as it inadvertently caused additional unnecessary queries.
+New: Generate visual reports on your listing KPI status so you can track your listings and sales.
+Tweak: [listing_search] shortcode using new API and allows for custom templates. Place the template in themes/your_theme/easypropertylistings/templates/ folder.
+Tweak: Enhanced Search Object thanks to codewp allows widget template override.
+New: Search Widget and [listing_search] shortcode allows for property status option.
+New: Search template now editable using epl_get_template_part.
+New: Search widget and [listing_search] shortcode order option added to allow adjusting of field order.
+New: Second agent field allows for searching users.
+New: Search upgraded to object thanks to codewp.
+New: Search for second listing author on listings.
+New: Search widget and [listing_search] shortcode status search option added.
+New: Search widget and [listing_search] shortcode support any registered post types.
+New: Search widget and [listing_search] shortcode support single drop down selection for price, land, building.
+Fix: Session start less likely to cause issues with certain server configurations.
+Fix: listing_open shortcode no longer displays sold or leased listings.
+New: Additional customisation of shortcode-listing.php template part.
+Tweak: Listing Shortcode adjusted for better processing of options
+New: [listing_auction] shortcode
+New: Contact shortcode. [epl_contact_form]
+New: Contact Form Widget.
+New: Sort by location A-Z added to front end listing filter.
+Tweak: iThemes Builder archive-listing.php and single-listing.php templates updated to improve render_content theme function.
+New: Allow extensions to use core templates for output.
+Fix: Added translation string for P.A. label
+Fix: Translation of land size unit.
+Tweak: LinkedIn will use full URL or fallback.
+New: Default embedded video width adjustable from settings.
+New: Video links now support additional formats like Vimeo using the WordPress wp_oembed.
+New: Listing widget now loadable using epl_get_template_part thanks to codewp.
+Tweak: Widget descriptions added to widget management.
+Fix: Stray ul tag with search widget tabbing.
+Tweak: Improved get_additional_features_html function for additional features and added epl_get_additional_features_html filter
+New: Contact tags taxonomy added for creating your own contact tags.
+Tweak: Listing heading function enhanced for other post types.
+New: epl_get_property_feature_taxonomy filter allowing adjustment of listing features.
+New: epl_get_property_auction filter allows adjustment of auction date format.
+New: epl_get_property_auction_label filter to adjust the Auction label.
+New: epl_get_property_price_display Filter
+New: epl_get_property_price_sold_display Filter
+New: epl_get_property_price_sold_date Filter
+New: epl_get_property_rent Filter
+New: epl_get_property_bond Filter
+New: epl_get_property_land_category Filter
+New: epl_commercial_auction_label Filter
+New: epl_get_price_plain_value Filter
+New: epl_get_price Filter
+New: epl_get_price_sticker Filter
+New: epl_get_price_in_list Filter
+New: epl_get_property_commercial_category Filter
+New: epl_get_property_year_built_label Filter
+New: epl_get_property_year_built Filter
+New: epl_get_property_bath_label Filter
+New: epl_get_property_bathrooms_label Filter
+New: epl_get_property_bath Filter
+New: epl_get_property_bed_label Filter
+New: epl_get_property_bedrooms_label Filter
+New: epl_get_property_bed Filter
+New: epl_get_property_rooms_label Filter
+New: epl_get_property_rooms Filter
+New: epl_get_parking_spaces_label Filter
+New: epl_get_property_parking Filter
+New: epl_get_property_garage_label Filter
+New: epl_get_property_garage Filter
+New: epl_get_property_carport_label Filter
+New: epl_get_property_carport Filter
+New: epl_get_property_air_conditioning_label Filter
+New: epl_get_property_air_conditioning Filter
+New: epl_get_property_pool_label Filter
+New: epl_get_property_pool Filter
+New: epl_get_property_security_system_label Filter
+New: epl_get_property_security_system Filter
+New: epl_get_property_land_area_label Filter
+New: epl_get_property_land_value Filter
+New: epl_get_property_building_area_label Filter
+New: epl_get_property_building_area_value Filter
+New: epl_get_property_new_construction_label Filter
+New: epl_get_property_new_construction Filter
+New: epl_get_property_com_car_spaces_label Filter
+New: Dynamic filter for addiitonal features epl_get_{meta_key}_label
+New: epl_get_additional_features_html Filter
+New: epl_get_additional_rural_features_html Filter
+New: epl_get_additional_commerical_features_html Filter
+New: epl_get_features_from_taxonomy Filter
+New: epl_checkbox_single_check_options Filter
+New: epl_property_sub_title_plus_outgoings_label.
+New: epl_property_sub_title_available_from_label.
+New: epl_get_formatted_property_address filter.
+New: epl_get_property_category filter.
+New: epl_get_property_tax.
+New: epl_property_sub_title_property_features filter for Property Features label.
+New: epl_property_sub_title_plus_outgoings filter for Plus Outgoings label.
+New: epl_property_sub_title_commercial_features filter for Commercial Features label.
+New: epl_property_sub_title_rural_features filter for Rural Features label.
+New: epl_switch_views_sorting_title_sort filter for Sort label.
+New: epl_switch_views_sorting_title_list filter for List label.
+New: epl_switch_views_sorting_title_grid filter for Grid label.
+New: epl_pagination_before_page_numbers filter.
+New: epl_pagination_after_page_numbers filter.
+New: epl_pagination_single_content_text Filter
+New: epl_pagination_single_tag Filter.
+New: epl_pagination_single Filter.
+New: epl_pagination_single_dot_tag Filter
+New: epl_pagination_single_dot_content Filter
+New: epl_pagination_single_dot_attributes Filter
+New: epl_pagination_single_dot Filter
 
 = 2.3.1 October 5, 2015 =
 

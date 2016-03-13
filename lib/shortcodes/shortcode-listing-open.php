@@ -3,7 +3,7 @@
  * SHORTCODE :: Open For Inspection [listing_open]
  *
  * @package     EPL
- * @subpackage  Shotrcode/Listing Open
+ * @subpackage  Shortcode/ListingOpen
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -13,9 +13,13 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Listing Open Shortcode
+ *
  * This shortcode allows for you to specify the property type(s) using
  * [listing_open post_type="property,rental"] option. You can also
  * limit the number of entries that display. using  [epl-property-open limit="5"]
+ *
+ * @since       1.0
  */
 function epl_shortcode_property_open_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
