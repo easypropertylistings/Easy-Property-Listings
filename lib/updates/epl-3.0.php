@@ -2,10 +2,10 @@
 $epl_settings = epl_settings();
 
 $new_fields_defaults = array(
-    'inspection_date_format'			=> 'l, dS F',
-    'inspection_time_format'			=> 'h:i a',
-    'custom_inspection_date_format'		=> 'l, dS F',
-    'custom_inspection_time_format'		=> 'h:i a'
+	'inspection_date_format'		=> 'l, dS F',
+	'inspection_time_format'		=> 'h:i a',
+	'custom_inspection_date_format'		=> 'l, dS F',
+	'custom_inspection_time_format'		=> 'h:i a'
 );
 
 foreach($new_fields_defaults as $key	=>	$value) {

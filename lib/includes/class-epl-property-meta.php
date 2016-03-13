@@ -1,25 +1,90 @@
 <?php
+/**
+ * Property Meta Fields
+ *
+ * @package     EPL
+ * @subpackage	Classes/Property Meta
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       2.0
+ */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * EPL_Property_Meta Class
+ *
+ * @since      2.0
+ */
 class EPL_Property_Meta {
 
+	/**
+	 * Global Instance
+	 *
+	 * @since 2.0
+	 */
 	static $instance;
+
+	/**
+	 * Global post
+	 *
+	 * @since 2.0
+	 */
 	public $post;
+
+	/**
+	 * Global epl_settings
+	 *
+	 * @since 2.0
+	 */
 	public $epl_settings;
+
+	/**
+	 * Global meta
+	 *
+	 * @since 2.0
+	 */
 	public $meta;
+
+	/**
+	 * Global post type
+	 *
+	 * @since 2.0
+	 */
 	public $post_type;
+
+	/**
+	 * Global EPL Post Type
+	 *
+	 * @since 2.0
+	 */
 	public $property_post_type;
 
-	 public function __construct($post) {
+	/**
+	 * Get things going
+	 *
+	 * @since 2.0
+	 */
+	public function __construct($post) {
 
-        $this->post 			= $post;
+        $this->post 				= $post;
         $this->epl_settings 		= epl_settings();
-        $this->meta 			= get_post_custom();
-        $this->post_type 		= $this->post->post_type;
+        $this->meta 				= get_post_custom();
+        $this->post_type 			= $this->post->post_type;
         $this->property_post_type	= $this->post->post_type;
 
         $this->epl_labels();
-
     }
 
+	/**
+	 * Define Admin labels in epl_settings global variable
+	 *
+	 * @since 2.0
+	 * @return array Adds the custom admin labels
+	 */
 	public function epl_labels() {
 
 		$field_groups = epl_get_admin_option_fields();
@@ -46,7 +111,17 @@ class EPL_Property_Meta {
 
 	}
 
-	public function get_property_meta($meta_key,$allowzero=true) {
+	/**
+	 * Return the meta value based on the meta key.
+	 *
+	 * Usage is $property->get_property_meta('meta_key') with the global $property variable defined
+	 *
+	 * @since 2.0
+	 * @param  string $meta_key The meta key to get the value
+	 * @param  bool $allowzero Return a 0 value or if false and a value of 0 return nothing. Default True.
+	 * @return string|integer 	Return the value of the meta key, string, or integer.
+	 */
+	public function get_property_meta( $meta_key , $allowzero = true ) {
 		if(isset($this->meta[$meta_key])) {
 			if(isset($this->meta[$meta_key][0])) {
 				if($allowzero === true){
@@ -60,7 +135,14 @@ class EPL_Property_Meta {
 		}
 	}
 
-	public function get_property_inspection_times($meta_key='property_inspection_times') {
+	/**
+	 * Outputs the inspection times based on settings format
+	 *
+	 * @since 2.0
+	 * @param  string $meta_key The meta key to get the value from default is property_inspection_times
+	 * @return mixed Return formatted inspection times with a iCal link
+	 */
+	public function get_property_inspection_times( $meta_key = 'property_inspection_times' ) {
 		if('leased' == $this->get_property_meta('property_status') || 'sold' == $this->get_property_meta('property_status'))
 			return;
 
@@ -116,9 +198,16 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// wrapper function for epl settings
-
-	public function get_epl_settings($key) {
+	/**
+	 * Get the setting based on the key
+	 *
+	 * Usage is $property->get_epl_settings('meta_key') with the global $property variable defined
+	 *
+	 * @since 2.0
+	 * @param  string $meta_key The meta key to get the setting from
+	 * @return string Value of the setting or if not set nothing is returned
+	 */
+	public function get_epl_settings( $key ) {
 		$value = '';
 		if(!empty($this->epl_settings) && isset($this->epl_settings[$key])) {
 			$value = $this->epl_settings[$key];
@@ -126,12 +215,22 @@ class EPL_Property_Meta {
 		return $value;
 	}
 
-	// Process Property Features Taxonomy
+	/**
+	 * Process Property Features Taxonomy
+	 *
+	 * @since 2.0
+	 * @return mixed List of features
+	 */
 	public function get_property_feature_taxonomy() {
 		return apply_filters('epl_get_property_feature_taxonomy',get_the_term_list($this->post->ID, 'tax_feature', '<li>', '</li><li>', '</li>' ));
 	}
 
-	// suburb profile
+	/**
+	 * Suburb profile
+	 *
+	 * @since 2.0
+	 * @return string Suburb/Location name
+	 */
 	public function get_suburb_profile() {
 		$profiles = get_the_terms( $this->post->ID, 'location' );
 		if ( is_array ($profiles) ){
@@ -140,9 +239,15 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// property auction
-	public function get_property_auction($admin=false) {
-		$format = $admin == true?'l jS M \a\t g:i a': 'l jS F \a\t g:i a';
+	/**
+	 * Auction Date/Time
+	 *
+	 * @since 2.0
+	 * @param $admin Bool true/false
+	 * @return string formatted auction date
+	 */
+	public function get_property_auction( $admin=false ) {
+		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F \a\t g:i a';
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
@@ -151,12 +256,23 @@ class EPL_Property_Meta {
 			}
 		}
 	}
-	// property com rent
+
+	/**
+	 * Commercial Rent
+	 *
+	 * @since 2.0
+	 * @return string Currency Formatted price
+	 */
 	public function get_property_com_rent(){
 		return epl_currency_formatted_amount( $this->get_property_meta('property_com_rent') );
 	}
 
-	// price display
+	/**
+	 * Price Display
+	 *
+	 * @since 2.0
+	 * @return string Return formatted price based on selected options
+	 */
 	public function get_property_price_display() {
 		$property_price_search	= $this->get_property_meta('property_price');
 		$property_price_view	= $this->get_property_meta('property_price_view');
@@ -178,7 +294,12 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_price_display',$property_price);
 	}
 
-	// Sold price display
+	/**
+	 * Sold price display
+	 *
+	 * @since 2.0
+	 * @return string Return sold price if selected or nothing
+	 */
 	public function get_property_price_sold_display( $admin = false ) {
 		$property_sold_price	= $this->get_property_meta('property_sold_price', false );
 		$property_sold_display	= $this->get_property_meta('property_sold_price_display');
@@ -192,7 +313,13 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// Sold date display
+	/**
+	 * Sold date display
+	 *
+	 * @since 2.0
+	 * @param integer $sold_price Sold price
+	 * @return string Return sold date if sold
+	 */
 	public function get_property_price_sold_date( $sold_price = null ) {
 
 		if ( $sold_price == null )
@@ -205,7 +332,12 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// Rental Price XE Format
+	/**
+	 * Rental Price
+	 *
+	 * @since 2.0
+	 * @return string Currency Formatted Rental Price
+	 */
 	public function get_property_rent () {
 		if($this->post_type != 'rental')
 			return;
@@ -223,7 +355,12 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_rent',$rental_price);
 	}
 
-	// Rental Bond
+	/**
+	 * Rental Bond
+	 *
+	 * @since 2.0
+	 * @return string Formatted Bond price
+	 */
 	public function get_property_bond ( ) {
 		if($this->post_type != 'rental')
 			return;
@@ -239,7 +376,13 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_bond',$bond);
 	}
 
-	// property rental available
+	/**
+	 * Rental Available Date
+	 *
+	 * @since 2.0
+	 * @param bool $admin
+	 * @return string Formatted date
+	 */
 	public function get_property_available( $admin = false ) {
 		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F Y' ;
 		if(isset($this->meta['property_date_available'])) {
@@ -256,7 +399,12 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// property land category
+	/**
+	 * Land category
+	 *
+	 * @since 2.0
+	 * @return string
+	 */
 	public function get_property_land_category() {
 		if ( 'land' != $this->post_type || 'commercial_land' != $this->post_type )
 			return;
@@ -266,7 +414,12 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// formatted property
+	/**
+	 * Formatted Address based on selected display option
+	 *
+	 * @since 2.0
+	 * @return string formatted street address
+	 */
 	public function get_formatted_property_address() {
 		$street =  $this->get_property_meta('property_address_lot_number').' ';
 
@@ -280,16 +433,34 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_formatted_property_address',$street);
 	}
 
+	/**
+	 * Listing Category
+	 *
+	 * @since 2.0
+	 * @return string
+	 */
 	public function get_property_category () {
 		return apply_filters('epl_get_property_category',epl_listing_meta_property_category_value( $this->get_property_meta('property_category') ));
 	}
 
+	/**
+	 * Price Class
+	 *
+	 * @since 2.0
+	 * @return string
+	 */
 	public function get_price_class() {
 		if($this->get_property_meta('property_status') == 'sold'){
 			return apply_filters('property_price_class','epl-price sold');
 		}
 	}
 
+	/**
+	 * Tax
+	 *
+	 * @since 2.0
+	 * @return string
+	 */
 	public function get_property_tax() {
 		$property_tax = '';
 		if( $this->get_property_meta('property_tax') != '' ) {
@@ -307,7 +478,12 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_tax',$property_tax);
 	}
 
-	// plain price value
+	/**
+	 * Plain price value
+	 *
+	 * @since 2.0
+	 * @return string
+	 */
 	public function get_price_plain_value() {
 
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
@@ -394,7 +570,12 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_price_plain_value',$price_plain_value);
 	}
 
-	// get price
+	/**
+	 * Get Price
+	 *
+	 * @since 2.0
+	 * @return string
+	 */
 	public function get_price() {
 		$price = '';
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
@@ -490,6 +671,12 @@ class EPL_Property_Meta {
 	}
 
 	// price sticker
+	/**
+	 * Price Sticker
+	 *
+	 * @since 2.0
+	 * @return string
+	 */
 	public function get_price_sticker() {
 		$price_sticker = '';
 		$date = new DateTime($this->post->post_date);
@@ -557,7 +744,12 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_price_sticker',$price_sticker);
 	}
 
-	// get l price
+	/**
+	 * Get list style price
+	 *
+	 * @since 2.0
+	 * @return string
+	 */
 	public function get_l_price() {
 
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
@@ -618,16 +810,28 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_price_in_list',$l_price);
 	}
 
-	// property commercial category
-	public function get_property_commercial_category($tag='div') {
+	/**
+	 * Get Commercial Category
+	 *
+	 * @since 2.0
+	 * @param string $tag HTML wrapper type, default div
+	 * @return string
+	 */
+	public function get_property_commercial_category( $tag = 'div' ) {
 		$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta('property_commercial_category') );
 		$property_commercial_category = '<'.$tag.' class="commercial-category">' . __($property_commercial_category,'epl') . '</'.$tag.'>';
 
 		return apply_filters('epl_get_property_commercial_category',$property_commercial_category);
 	}
 
-	// property year built
-	public function get_property_year_built($returntype = 'i') {
+	/**
+	 * Get Year Built
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_year_built( $returntype = 'i' ) {
 		if( empty ( $this->get_property_meta('property_year_built') ) )
 			return;
 		$year_built['i'] = '<span title="'.__('Built', 'epl').'" class="icon year-built"><span class="icon-value">'. $this->get_property_meta('property_year_built') . '</span></span>';
@@ -637,8 +841,14 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_year_built',$year_built[$returntype]);
 	}
 
-	// property bed
-	public function get_property_bed($returntype = 'i') {
+	/**
+	 * Get Bedrooms
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_bed( $returntype = 'i' ) {
 		if( empty ( $this->get_property_meta('property_bedrooms') ) )
 			return;
 		$bed['i'] = '<span title="'.apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'epl') ).'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>';
@@ -648,8 +858,14 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_bed',$bed[$returntype]);
 	}
 
-	// property bathrooms
-	public function get_property_bath($returntype = 'i') {
+	/**
+	 * Get Bathrooms
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_bath( $returntype = 'i' ) {
 		if( empty ( $this->get_property_meta('property_bathrooms') ) )
 			return;
 		$bath['i'] = '<span title="'.apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'epl') ).'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>';
@@ -659,8 +875,14 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_bath',$bath[$returntype]);
 	}
 
-	// property rooms
-	public function get_property_rooms($returntype = 'i') {
+	/**
+	 * Get Rooms
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_rooms( $returntype = 'i' ) {
 		if( empty ( $this->get_property_meta('property_rooms') ) )
 			return;
 		$rooms['i'] = '<span title="'.apply_filters('epl_get_property_rooms_label',__('Rooms', 'epl') ).'" class="icon rooms"><span class="icon-value">'. $this->get_property_meta('property_rooms') . '</span></span>';
@@ -670,8 +892,16 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_rooms',$rooms[$returntype]);
 	}
 
-	// property parking for single icon
-	public function get_property_parking($returntype = 'i') {
+	/**
+	 * Get Parking
+	 *
+	 * Caluclated value based on number of garages + carports
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_parking( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '' )
 			return;
 		$property_garage 	= intval($this->get_property_meta('property_garage'));
@@ -687,8 +917,14 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_parking',$parking[$returntype]);
 	}
 
-	// property garage
-	public function get_property_garage($returntype = 'i') {
+	/**
+	 * Get Garage
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_garage( $returntype = 'i' ) {
 		if($this->get_property_meta('property_garage') == '')
 			return;
 
@@ -700,8 +936,14 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_garage',$garage[$returntype]);
 	}
 
-	// property cargport
-	public function get_property_carport($returntype = 'i') {
+	/**
+	 * Get Carport
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_carport( $returntype = 'i' ) {
 		if($this->get_property_meta('property_carport') == '')
 			return;
 		$label = apply_filters('epl_get_property_carport_label',__('garage', 'epl') );
@@ -712,8 +954,14 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_property_carport',$carport[$returntype]);
 	}
 
-	// property ac
-	public function get_property_air_conditioning($returntype = 'i') {
+	/**
+	 * Get Air Conditioning
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_air_conditioning( $returntype = 'i' ) {
 		if($this->get_property_meta('property_air_conditioning') == '')
 			return;
 
@@ -727,8 +975,14 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// property pool
-	public function get_property_pool($returntype = 'i') {
+	/**
+	 * Get Pool
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_pool( $returntype = 'i' ) {
 		if($this->get_property_meta('property_pool') == '')
 			return;
 		$label = apply_filters('epl_get_property_pool_label',__('Pool', 'epl') );
@@ -741,8 +995,14 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// property security system
-	public function get_property_security_system($returntype = 'i') {
+	/**
+	 * Get Security System
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_security_system( $returntype = 'i' ) {
 		if($this->get_property_meta('property_security_system') == '')
 			return;
 		$label = apply_filters('epl_get_property_security_system_label',__('Alarm System', 'epl') );
@@ -755,8 +1015,14 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// property land value
-	public function get_property_land_value($returntype = 'i') {
+	/**
+	 * Get Land Value
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_land_value( $returntype = 'i' ) {
 		$property_land_area_unit = $this->get_property_meta('property_land_area_unit');
 		if ( $property_land_area_unit == 'squareMeter' ) {
 			$property_land_area_unit = __('sqm' , 'epl');
@@ -773,8 +1039,14 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// property building area
-	public function get_property_building_area_value($returntype = 'i') {
+	/**
+	 * Get Building area
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_building_area_value( $returntype = 'i' ) {
 		$building_unit = $this->get_property_meta('property_building_area_unit');
 		if ( $building_unit == 'squareMeter' ) {
 			$building_unit = __('m&#178;' , 'epl');
@@ -794,8 +1066,14 @@ class EPL_Property_Meta {
 
 	}
 
-	// new construction
-	public function get_property_new_construction($returntype = 'i') {
+	/**
+	 * Get New Construction
+	 *
+	 * @since 2.0
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_new_construction( $returntype = 'i' ) {
 		$property_new_construction = $this->get_property_meta('property_new_construction');
 		if( isset($property_new_construction) && ($property_new_construction == 1 || $property_new_construction == 'yes') ) {
 			$label = apply_filters('epl_get_property_new_construction_label',__('New Construction', 'epl') );
@@ -807,8 +1085,14 @@ class EPL_Property_Meta {
 		}
 	}
 
-	// additional features html
-	public function get_additional_features_html($metakey) {
+	/**
+	 * Get Additional Features by meta key
+	 *
+	 * @since 2.0
+	 * @param string $metakey
+	 * @return mixed Value wrapped in a list item
+	 */
+	public function get_additional_features_html( $metakey ) {
 
             $metavalue = $this->get_property_meta($metakey);
 			$return = '';
@@ -842,8 +1126,14 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_additional_features_html',$return);
 	}
 
-	// additional rural features html
-	public function get_additional_rural_features_html($metakey) {
+	/**
+	 * Get Additional Rural Features by meta key
+	 *
+	 * @since 2.0
+	 * @param string $metakey
+	 * @return mixed Value formatted and wrapped in div with title
+	 */
+	public function get_additional_rural_features_html( $metakey ) {
 			$metavalue = $this->get_property_meta($metakey);
 			if( isset($metavalue) && $metavalue != '' ) {
 				$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
@@ -854,8 +1144,14 @@ class EPL_Property_Meta {
 			}
 	}
 
-	// additional commerical features html
-	public function get_additional_commerical_features_html($metakey) {
+	/**
+	 * Get Additional Commercial Features by meta key
+	 *
+	 * @since 2.0
+	 * @param string $metakey
+	 * @return mixed Value formatted and wrapped in div with title
+	 */
+	public function get_additional_commerical_features_html( $metakey ) {
 			$metavalue = $this->get_property_meta($metakey);
 			if( isset($metavalue) && $metavalue != '' ) {
 				$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
@@ -866,15 +1162,37 @@ class EPL_Property_Meta {
 			}
 	}
 
-	public function get_class_from_metakey($key,$search= 'property_'){
+	/**
+	 * Get class name from meta key
+	 *
+	 * @since 2.0
+	 * @param string $key Meta key
+	 * @param string $search Meta key prefix to search for and remove from class, Default property_
+	 * @return string Formatted class name
+	 */
+	public function get_class_from_metakey( $key , $search = 'property_' ){
 		 return str_replace("property_", "", $key);
 
 	}
 
-	public function get_label_from_metakey($key,$search= 'property_'){
+	/**
+	 * Get Label from meta key
+	 *
+	 * @since 2.0
+	 * @param string $key Meta key
+	 * @param string $search Meta key prefix to search for and remove from class, Default property_
+	 * @return string Formatted uppercase words
+	 */
+	public function get_label_from_metakey( $key , $search = 'property_' ){
 		 return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
 	}
 
+	/**
+	 * Get features from taxonomy
+	 *
+	 * @since 2.0
+	 * @return mixed Formatted list items
+	 */
 	public function get_features_from_taxonomy() {
 		$property_feature_taxonomy = '';
 		if ( taxonomy_exists('tax_feature') ) {

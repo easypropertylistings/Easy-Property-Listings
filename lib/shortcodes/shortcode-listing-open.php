@@ -3,7 +3,7 @@
  * SHORTCODE :: Open For Inspection [listing_open]
  *
  * @package     EPL
- * @subpackage  Shotrcode/map
+ * @subpackage  Shotrcode/Listing Open
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -12,13 +12,9 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Only load on front
-if( is_admin() ) {
-	return;
-}
 /**
- * This shortcode allows for you to specify the property type(s) using 
- * [listing_open post_type="property,rental"] option. You can also 
+ * This shortcode allows for you to specify the property type(s) using
+ * [listing_open post_type="property,rental"] option. You can also
  * limit the number of entries that display. using  [epl-property-open limit="5"]
  */
 function epl_shortcode_property_open_callback( $atts ) {
@@ -26,7 +22,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 	if(!empty($property_types)) {
 		 $property_types = array_keys($property_types);
 	}
-	
+
 	extract( shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
 		'limit'			=>	'-1', // Number of maximum posts to show
@@ -38,18 +34,18 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'sort_order'		=>	'DESC'
 
 	), $atts ) );
-	
+
 	if(is_string($post_type) && $post_type == 'rental') {
 		$meta_key_price = 'property_rent';
 	} else {
 		$meta_key_price = 'property_price';
 	}
-	
+
 	$sort_options = array(
 		'price'			=>	$meta_key_price,
 		'date'			=>	'post_date'
 	);
-	
+
 	ob_start();
 	if( !is_array($post_type) ) {
 		$post_type 			= array_map('trim',explode(',',$post_type) );
@@ -72,12 +68,12 @@ function epl_shortcode_property_open_callback( $atts ) {
             )
 		)
 	);
-	
+
 	if(!empty($location) ) {
 		if( !is_array( $location ) ) {
 			$location = explode(",", $location);
 			$location = array_map('trim', $location);
-			
+
 			$args['tax_query'][] = array(
 				'taxonomy' => 'location',
 				'field' => 'slug',
@@ -85,9 +81,9 @@ function epl_shortcode_property_open_callback( $atts ) {
 			);
 		}
 	}
-	
+
 	if( $sortby != '' ) {
-	
+
 		if($sortby == 'price') {
 			$args['orderby']	=	'meta_value_num';
 			$args['meta_key']	=	$meta_key_price;
@@ -98,8 +94,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 		}
 		$args['order']			=	$sort_order;
 	}
-	
-	
+
+
 	if( isset( $_GET['sortby'] ) ) {
 		$orderby = sanitize_text_field( trim($_GET['sortby']) );
 		if($orderby == 'high') {
@@ -117,7 +113,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 			$args['orderby']	=	'post_date';
 			$args['order']		=	'ASC';
 		}
-		
+
 	}
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
@@ -129,7 +125,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 					}
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						
+
 						$template = str_replace('_','-',$template);
 						epl_property_blog($template);
 					}
