@@ -27,14 +27,14 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 */
 	static $instance;
-	
+
 	/**
 	 * Global post
 	 *
 	 * @since 2.0
 	 */
 	public $post;
-	
+
 	/**
 	 * Global epl_settings
 	 *
@@ -115,7 +115,7 @@ class EPL_Property_Meta {
 	 * Return the meta value based on the meta key.
 	 *
 	 * Usage is $property->get_property_meta('meta_key') with the global $property variable defined
-	 * 
+	 *
 	 * @since 2.0
 	 * @param  string $meta_key The meta key to get the value
 	 * @param  bool $allowzero Return a 0 value or if false and a value of 0 return nothing. Default True.
@@ -137,7 +137,7 @@ class EPL_Property_Meta {
 
 	/**
 	 * Outputs the inspection times based on settings format
-	 * 
+	 *
 	 * @since 2.0
 	 * @param  string $meta_key The meta key to get the value from default is property_inspection_times
 	 * @return mixed Return formatted inspection times with a iCal link
@@ -202,9 +202,9 @@ class EPL_Property_Meta {
 	 * Get the setting based on the key
 	 *
 	 * Usage is $property->get_epl_settings('meta_key') with the global $property variable defined
-	 * 
+	 *
 	 * @since 2.0
-	 * @param  string $meta_key The meta key to get the setting from 
+	 * @param  string $meta_key The meta key to get the setting from
 	 * @return string Value of the setting or if not set nothing is returned
 	 */
 	public function get_epl_settings( $key ) {
@@ -1073,7 +1073,7 @@ class EPL_Property_Meta {
 	 * @param string $returntype Options i = span, d = string, l = list item
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
-	public function get_property_new_construction( $returntype = 'i' b) {
+	public function get_property_new_construction( $returntype = 'i' ) {
 		$property_new_construction = $this->get_property_meta('property_new_construction');
 		if( isset($property_new_construction) && ($property_new_construction == 1 || $property_new_construction == 'yes') ) {
 			$label = apply_filters('epl_get_property_new_construction_label',__('New Construction', 'epl') );
