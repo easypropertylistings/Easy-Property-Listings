@@ -50,11 +50,11 @@ function epl_meta_box_init() {
 		)
 	);
 	$opts_property_com_authority = apply_filters (  'epl_opts_property_com_authority_filter', array(
+			'Forsale'	=>	__('For Sale', 'epl'),
 			'auction'	=>	__('Auction', 'epl'),
 			'tender'	=>	__('Tender', 'epl'),
 			'eoi'		=>	__('EOI', 'epl'),
 			'Sale'		=>	__('Sale', 'epl'),
-			'Forsale'	=>	__('For Sale', 'epl'),
 			'offers'	=>	__('Offers', 'epl')
 		)
 	);
@@ -1607,7 +1607,7 @@ function epl_meta_box_init() {
 										?>
 										<tr class="form-field">
 
-											<?php if($field['type'] != 'checkbox_single' && count($field['opts']) != 1  ): ?>
+											<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
 											<th valign="top" scope="row">
 												<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
 											</th>

@@ -1739,9 +1739,9 @@ function epl_inspection_format($inspection_date) {
 	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
 			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
 
-	$date 		= date($date_format,strtotime($inspection_date[0]));
-	$time_start = date($time_format,strtotime($inspection_date[1]));
-	$time_end 	= date($time_format,strtotime($inspection_date[3]));
+	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';
+	$time_start = isset($inspection_date[1]) ? date($time_format,strtotime($inspection_date[1])) : '';
+	$time_end 	= isset($inspection_date[3]) ? date($time_format,strtotime($inspection_date[3])) : '';
 
 	return "{$date} {$time_start} to {$time_end}";
 }
