@@ -174,7 +174,7 @@ class EPL_Welcome {
 					<h4><?php _e( 'Three new API&#39;s have been added which will make it easier to add custom post types, custom fields and forms' , 'epl' ); ?></h4>
 					<p><?php _e( 'This release is focused on making it easier to add custom post types, custom meta fields and forms in preparation for the Contact Management System (CRM). These structural changes will allow us to create even more real estate plugins and tools moving forward and gives you the possibility to create your own custom functions and features.', 'epl' ); ?></p>
 					
-					<p><?php _e( 'These changes lay the groundwork for the Customer Relationship Manager (CRM) that will  give you better lead generation and capture tools.', 'epl' ); ?></p>
+					<p><?php _e( 'These changes lay the groundwork for the Customer Relationship Manager (CRM) that will  give you better contact generation and capture tools.', 'epl' ); ?></p>
 					
 					<p><?php _e( 'We have a number of really cool things planned for Easy Property Listings and our goal is to make Real Estate websites easy with WordPress.', 'epl' ); ?></p>
 				</div>

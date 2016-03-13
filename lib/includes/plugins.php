@@ -9,14 +9,8 @@
  * @since       1.0
  */
 
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
-// Only load in admin
-if( !is_admin() ) {
-	return;
-}
 
 /**
  * Plugins row action links adapted from Easy Digital Downloads
@@ -35,7 +29,6 @@ function epl_plugin_action_links( $links, $file ) {
 	return $links;
 }
 add_filter( 'plugin_action_links', 'epl_plugin_action_links', 10, 2 );
-
 
 /**
  * Plugin row meta links adapted from Easy Digital Downloads

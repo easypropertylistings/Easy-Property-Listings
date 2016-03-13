@@ -74,3 +74,8 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 .epl_ui_accordion_content_current{
 	display: inherit;
 }
+#epl-default-map .gm-style img,
+.epl_adv_tab_map .gm-style img {
+	max-width: none;
+	box-shadow: none;
+}
