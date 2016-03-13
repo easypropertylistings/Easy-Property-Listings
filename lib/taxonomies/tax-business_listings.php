@@ -1,9 +1,9 @@
 <?php
 /**
- * TAXONOMY :: Business Listings
+ * TAXONOMY Business Listings
  *
  * @package     EPL
- * @subpackage  Taxonomy/Business Listings
+ * @subpackage  Taxonomy
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -12,6 +12,12 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Registers and sets up the tax_business_listing taxonomy
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_register_taxonomy_business_listings() {
 	$labels = array(
 		'name'                       => _x( 'Business Listings', 'Taxonomy General Name', 'epl' ),

@@ -1,9 +1,12 @@
 <?php
 /**
- * Listing widget default view.
+ * Listing widget default view
  *
- * @package 	easy-property-listings
- * @subpackage  Theme
+ * @package     EPL
+ * @subpackage  Widgets/Templates
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
  */
 
 // Exit if accessed directly

@@ -3,7 +3,7 @@
  * SHORTCODE :: Listing Location Taxonomy [listing_location]
  *
  * @package     EPL
- * @subpackage  Shortcode/Listing Location
+ * @subpackage  Shortcode/ListingLocation
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.1.2
@@ -13,9 +13,13 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Listing Shortcode [listing_location]
+ *
  * This shortcode allows for you to specify feature property type(s) using
  * [listing_location post_type="property" location="sorrento" location_id="6" status="current,sold,leased" template="default"] option. You can also
  * limit the number of entries that display. using  [listing_location limit="5"]
+ *
+ * @since       1.1.2
  */
 function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$property_types = epl_get_active_post_types();

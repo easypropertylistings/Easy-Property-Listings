@@ -12,6 +12,11 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * EPL_Widget_Recent_Property class
+ *
+ * @since 1.0
+ */
 class EPL_Widget_Recent_Property extends WP_Widget {
 
 	function __construct() {

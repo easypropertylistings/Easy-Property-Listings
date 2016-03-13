@@ -3,7 +3,7 @@
  * Hook for Floor plan Buttons on Property Templates
  *
  * @package     EPL
- * @subpackage  Hooks/Floor Plan
+ * @subpackage  Hooks/FloorPlan
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

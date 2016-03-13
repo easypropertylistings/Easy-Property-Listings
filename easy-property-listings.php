@@ -239,24 +239,24 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
 
 			if ( is_admin() ) {
-				require_once EPL_PATH_LIB . 'includes/plugins.php';
+				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-meta-boxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
-				require_once EPL_PATH_LIB . 'includes/admin.php';
-				require_once EPL_PATH_LIB . 'includes/admin-functions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/admin-actions.php';
 				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
-				require_once EPL_PATH_LIB . 'menus/menus.php';
-				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
+				require_once EPL_PATH_LIB . 'includes/admin/menus/menus.php';
+				require_once EPL_PATH_LIB . 'includes/admin/menus/class-epl-menu-welcome.php';
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
-				require_once EPL_PATH_LIB . 'contacts/contacts.php';
-				require_once EPL_PATH_LIB . 'contacts/contact-functions.php';
-				require_once EPL_PATH_LIB . 'contacts/contact-actions.php';
-				require_once EPL_PATH_LIB . 'reports/graphing.php';
-				require_once EPL_PATH_LIB . 'reports/reports.php';
-				require_once EPL_PATH_LIB . 'reports/class-epl-graph.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contacts.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contact-functions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contact-actions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/graphing.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/reports.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/class-epl-graph.php';
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
-				require_once EPL_PATH_LIB . 'includes/help.php';
+				require_once EPL_PATH_LIB . 'includes/admin/help.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';

@@ -8,6 +8,7 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -16,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 1.0
  */
-
 add_action('init', 'epl_meta_box_init');
 function epl_meta_box_init() {
 	global $epl_settings;
@@ -1519,8 +1519,6 @@ function epl_meta_box_init() {
 					)
 				)
 			)
-
-
 		),
 	);
 	if(!empty($epl_meta_boxes)) {
@@ -1537,7 +1535,6 @@ function epl_meta_box_init() {
 							$fieldvalue = apply_filters('epl_meta_'.$fieldvalue['name'], $fieldvalue);
 						}
 					}
-
 				}
 			}
 		}
@@ -1564,6 +1561,7 @@ function epl_meta_box_init() {
 			}
 		}
 	}
+
 	/**
 	 * Add sub meta boxes to the post-edit page
 	 *
@@ -1644,6 +1642,7 @@ function epl_meta_box_init() {
 		}
 	}
 	add_action( 'add_meta_boxes', 'epl_add_meta_boxes' );
+
 	/**
 	 * Save and update meta box values to the post-edit page
 	 *

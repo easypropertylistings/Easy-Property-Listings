@@ -1,12 +1,12 @@
 <?php
 /**
- * SHORTCODE :: Contact Capture [contact_capture]
+ * SHORTCODE :: Contact Capture [epl_contact_form]
  *
  * @package     EPL
- * @subpackage  Shortcode/Contact Capture
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @subpackage  Shortcode/ContactForm
+ * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       2.4
+ * @since       3.0
  */
 
 // Exit if accessed directly
@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * This shortcode allows for you to capture contacts for listings
+ *
+ * @since 3.0
  */
 function epl_contact_capture_form( $atts ) {
 
@@ -48,6 +50,11 @@ function epl_contact_capture_form( $atts ) {
 }
 add_shortcode( 'contact_capture', 'epl_contact_capture_form' );
 
+/**
+ * Contact Form Callback
+ *
+ * @since 3.0
+ */
 function contact_capture_form_callback($form_data,$request) {
 
 	$contact = new EPL_contact( $request['epl_contact_email'] );

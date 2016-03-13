@@ -304,7 +304,6 @@ function epl_labels( $key ) {
 			return apply_filters( 'epl_display_'.$key, $label );
 		}
 	}
-
 }
 
 /**
@@ -704,7 +703,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 								$field['opt_args']['slug'],
 								array(
 									'hide_empty'	=>	0,
-									'parent'		=>	0
+									'parent'	=>	0
 								)
 							);
 
@@ -1451,9 +1450,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'type'	=>	'radio',
 					'opts'	=>	array(
 
-						'd-M-Y'							=>	date('d-M-Y',time() ),
-						'l, dS F'						=>	date('l, dS F',time() ),
-						'D d M'							=>	date('D d M',time() ),
+						'd-M-Y'				=>	date('d-M-Y',time() ),
+						'l, dS F'			=>	date('l, dS F',time() ),
+						'D d M'				=>	date('D d M',time() ),
 						'custom_inspection_date_format'	=>	__('Custom','epl')
 
 					),
@@ -1469,9 +1468,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'type'	=>	'radio',
 					'opts'	=>	array(
 
-						'h:i A'	=>	date('h:i A',time() ),
-						'h:i a'	=>	date('h:i a',time() ),
-						'H:i'	=>	date('h:i',time() ) . __(' ( 24 Hours Format ) ' , 'epl'),
+						'h:i A'				=>	date('h:i A',time() ),
+						'h:i a'				=>	date('h:i a',time() ),
+						'H:i'				=>	date('h:i',time() ) . __(' ( 24 Hours Format ) ' , 'epl'),
 						'custom_inspection_time_format'	=>	__('Custom','epl')
 
 					)

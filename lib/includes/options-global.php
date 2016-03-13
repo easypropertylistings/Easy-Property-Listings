@@ -1,9 +1,9 @@
 <?php
 /**
- * Global options for Easy Property Listings
+ * Global Functions
  *
  * @package     EPL
- * @subpackage  Functions/GlobalFunctions
+ * @subpackage  Functions/Global
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

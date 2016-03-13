@@ -3,13 +3,20 @@
  * DASHBOARD WIDGET :: Easy Property Listings Status
  *
  * @package     EPL
- * @subpackage  dashbaord Widget/status
+ * @subpackage  Admin/DashboardWidget
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.3
  */
 
 // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * Add Dashboard Widgets
+ *
+ * @since 1.3
+ */
 function epl_add_dashboard_widgets() {
 
 	wp_add_dashboard_widget(
@@ -27,6 +34,11 @@ function epl_add_dashboard_widgets() {
 }
 add_action( 'wp_dashboard_setup', 'epl_add_dashboard_widgets' );
 
+/**
+ * Status Dashboard Widget
+ *
+ * @since 1.3
+ */
 function epl_status_dashboard_widget_callback() {
 	global $epl_settings;
 	$activate_post_types = isset($epl_settings['activate_post_types'])?$epl_settings['activate_post_types'] : array();
@@ -44,7 +56,7 @@ function epl_status_dashboard_widget_callback() {
 							<strong><?php echo epl_get_plural($count->publish,$activate_post_type); ?></strong>
 							<?php epl_posts_highlights($activate_post_type);?>
 						</a>
-						
+
 					</li><?php
 					$counter++;
 				}
@@ -54,6 +66,11 @@ function epl_status_dashboard_widget_callback() {
 	</div><?php
 }
 
+/**
+ * Status Dashboard Widget Counter
+ *
+ * @since 1.3
+ */
 function epl_get_plural($count,$singular) {
 	switch($singular){
 		case 'property':
@@ -82,9 +99,14 @@ function epl_get_plural($count,$singular) {
 			return sprintf( _n( '1 '.__($singular,'epl'), '%s '.__($singular,'epl'), $count, 'epl' ), $count );
 		break;
 	}
-	
+
 }
 
+/**
+ * Status Dashboard Widget Hghlights
+ *
+ * @since 1.3
+ */
 function epl_posts_highlights($type) {
 	switch($type){
 
@@ -101,10 +123,10 @@ function epl_posts_highlights($type) {
 				if($count != 0){
 					echo '<span>'.$count.' '.$filter_value['string'].' </span>';
 				}
-				
+
 			}
 		break;
-		
+
 		case 'commercial':
 			$filters = array(
 				array('key'	=>	'property_status','value'	=>	'current','string'	=>	__('Current','epl')),
@@ -120,10 +142,10 @@ function epl_posts_highlights($type) {
 				if($count != 0){
 					echo '<span>'.$count.' '.$filter_value['string'].' </span>';
 				}
-				
+
 			}
 		break;
-		
+
 		case 'property':
 		case 'land':
 		case 'rural':
@@ -141,12 +163,17 @@ function epl_posts_highlights($type) {
 				if($count != 0){
 					echo '<span>'.$count.' '.$filter_value['string'].' </span>';
 				}
-				
+
 			}
 		break;
 	}
 }
 
+/**
+ * Activity Dashboard Widget
+ *
+ * @since 3.0
+ */
 function epl_dashboard_activity_widget() {
 
 	echo '<div id="epl_dashboard_future_listings">';

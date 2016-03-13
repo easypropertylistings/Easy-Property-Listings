@@ -1,10 +1,12 @@
 <?php
-/*
+/**
  * Template Functions
  *
- * @package EPL
- * @subpackage Functions/Template
- * @since 1.0
+ * @package     EPL
+ * @subpackage  Functions/Templates
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
 
 // Exit if accessed directly
