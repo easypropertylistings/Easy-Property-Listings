@@ -3,7 +3,7 @@
  * Functions
  *
  * @package     EPL
- * @subpackage  Metabox API
+ * @subpackage  Classes/Metabox API
  * @copyright   Copyright (c) 2015, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
@@ -18,67 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * the constructor of the class accepts one or more array of metabox to be rendered
  * the structure of the metabox array should be similar to make it work
  */
-
-/*********** sample usage *************
-
-$epl_dh_meta_boxes = array(
-	array(
-		'id'		=>	'epl-display-homes-section-id',
-		'label'		=>	'Location Details',
-		'post_type'	=>	'display_home',
-		'context'	=>	'normal',
-		'priority'	=>	'high',
-		'groups'	=>	array(
-			array(
-				'columns'	=>	'1',
-				'label'		=>	'',
-				'fields'	=>	apply_filters('epl_dh_meta_fields',
-					array(
-
-						array(
-							'name'		=>	'display_home_name',
-							'label'		=>	'Location Address including state and postcode/zip',
-							'type'		=>	'text',
-							'maxlength'	=>	'60'
-						),
-
-						array(
-							'name'		=>	'display_home_state',
-							'label'		=>	'State',
-							'type'		=>	'text',
-							'maxlength'	=>	'10'
-						),
-
-						array(
-							'name'		=>	'display_home_postcode',
-							'label'		=>	'Postcode/Zip',
-							'type'		=>	'text',
-							'maxlength'	=>	'60'
-						),
-
-						array(
-							'name'		=>	'display_home_video_url',
-							'label'		=>	'YouTube Video Link',
-							'type'		=>	'text',
-							'maxlength'	=>	'60'
-						),
-					)
-				)
-			)
-		)
-	)
-);
-
-new EPL_METABOX($epl_dh_meta_boxes);
-
-***********   sample usage ends  **********/
-
 class EPL_METABOX {
 
 	/**
 	 * Holds the user submitted metabox array
 	 *
-	 * @var array $epl_meta_boxes .
+	 * @var array $epl_meta_boxes
 	 */
 	protected $epl_meta_boxes;
 
@@ -87,7 +32,7 @@ class EPL_METABOX {
 	 *
 	 * default is epl_
 	 *
-	 * @var array $epl_meta_boxes .
+	 * @var array $epl_meta_boxes
 	 */
 	protected $prefix;
 
@@ -96,7 +41,7 @@ class EPL_METABOX {
 	 *
 	 * default is epl
 	 *
-	 * @var array $text_domain .
+	 * @var array $text_domain
 	 */
 	protected $text_domain;
 
@@ -237,7 +182,6 @@ class EPL_METABOX {
 
 	/**
 	 * used to render the metabox fields
-	 * @uses epl_render_html_fields
 	 */
 
 	function inner_meta_box($post, $args) {
@@ -406,3 +350,57 @@ class EPL_METABOX {
 	    }
 	}
 }
+
+/*********** sample usage *************
+
+$epl_dh_meta_boxes = array(
+	array(
+		'id'		=>	'epl-display-homes-section-id',
+		'label'		=>	'Location Details',
+		'post_type'	=>	'display_home',
+		'context'	=>	'normal',
+		'priority'	=>	'high',
+		'groups'	=>	array(
+			array(
+				'columns'	=>	'1',
+				'label'		=>	'',
+				'fields'	=>	apply_filters('epl_dh_meta_fields',
+					array(
+
+						array(
+							'name'		=>	'display_home_name',
+							'label'		=>	'Location Address including state and postcode/zip',
+							'type'		=>	'text',
+							'maxlength'	=>	'60'
+						),
+
+						array(
+							'name'		=>	'display_home_state',
+							'label'		=>	'State',
+							'type'		=>	'text',
+							'maxlength'	=>	'10'
+						),
+
+						array(
+							'name'		=>	'display_home_postcode',
+							'label'		=>	'Postcode/Zip',
+							'type'		=>	'text',
+							'maxlength'	=>	'60'
+						),
+
+						array(
+							'name'		=>	'display_home_video_url',
+							'label'		=>	'YouTube Video Link',
+							'type'		=>	'text',
+							'maxlength'	=>	'60'
+						),
+					)
+				)
+			)
+		)
+	)
+);
+
+new EPL_METABOX($epl_dh_meta_boxes);
+
+***********   sample usage ends  **********/

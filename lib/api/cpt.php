@@ -3,12 +3,12 @@
  * Functions
  *
  * @package     EPL
- * @subpackage  Custom Post Type API
+ * @subpackage  Classes/Custom Post Type API
  * @copyright   Copyright (c) 2015, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 

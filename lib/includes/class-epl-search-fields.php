@@ -1,4 +1,13 @@
 <?php
+/**
+ * EPL Search
+ *
+ * @package     EPL
+ * @subpackage	Classes/Search Fields
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
@@ -8,19 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Search Fields Displayer.
  *
- * @since      2.3.1
- *
- * @package    Easy_Property_Listings
- * @subpackage Easy_Property_Listings/lib/incluces
+ * @since      3.0
  * @author     Taher Atashbar <taher.atashbar@gmail.com>
  */
-
 class EPL_Search_Fields {
 
 	/**
 	 * Initialize hooks.
 	 *
-	 * @since  2.3.1
+	 * @since  3.0
 	 * @return void
 	 */
 	public function init() {
@@ -36,7 +41,7 @@ class EPL_Search_Fields {
 	/**
 	 * Renders serach frontend Text field.
 	 *
-	 * @since  2.3.1
+	 * @since  3.0
 	 * @param  array  $field
 	 * @param  string $config
 	 * @param  string $value
@@ -72,7 +77,7 @@ class EPL_Search_Fields {
 	/**
 	 * Renders serach frontend Checkbox field.
 	 *
-	 * @since  2.3.1
+	 * @since  3.0
 	 * @param  array  $field
 	 * @param  string $config
 	 * @param  string $value
@@ -101,7 +106,7 @@ class EPL_Search_Fields {
 	/**
 	 * Renders serach frontend Select field.
 	 *
-	 * @since  2.3.1
+	 * @since  3.0
 	 * @param  array  $field
 	 * @param  string $config
 	 * @param  string $value
@@ -145,7 +150,7 @@ class EPL_Search_Fields {
 	/**
 	 * Renders serach frontend Multiple Select field.
 	 *
-	 * @since  2.3.1
+	 * @since  3.0
 	 * @param  array  $field
 	 * @param  string $config
 	 * @param  string $value
@@ -189,7 +194,7 @@ class EPL_Search_Fields {
 	/**
 	 * Renders serach frontend Number field.
 	 *
-	 * @since  2.3.1
+	 * @since  3.0
 	 * @param  array  $field
 	 * @param  string $config
 	 * @param  string $value
@@ -223,7 +228,7 @@ class EPL_Search_Fields {
 	/**
 	 * Renders serach frontend Hidden field.
 	 *
-	 * @since  2.3.1
+	 * @since  3.0
 	 * @param  array  $field
 	 * @param  string $config
 	 * @param  string $value
@@ -246,5 +251,4 @@ class EPL_Search_Fields {
 			echo '</div>';
 		}
 	}
-
 }
