@@ -126,4 +126,3 @@ $epl_settings = get_option('epl_settings');
 		</div>
 	</div>
 </div>
-<?php
