@@ -3,7 +3,7 @@
  * SHORTCODE :: Listing [listing]
  *
  * @package     EPL
- * @subpackage  Shortcode
+ * @subpackage  Shortcode/Listing
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -12,14 +12,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Only load on front
-if ( is_admin() ) {
-	return;
-}
 /**
+ * Listing Shortcode [listing]
+ *
  * This shortcode allows for you to specify the property type(s) using
  * [listing post_type="property,rental" status="current,sold,leased" template="default"] option. You can also
  * limit the number of entries that display. using  [listing limit="5"]
+ *
+ * @since       1.0
  */
 function epl_shortcode_listing_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -158,6 +158,11 @@ function epl_shortcode_listing_callback( $atts ) {
 }
 add_shortcode( 'listing', 'epl_shortcode_listing_callback' );
 
+/**
+ * Listing Shortcode Sorting
+ *
+ * @since       1.0
+ */
 function epl_sorting_options_callback( $sorters ) {
 	foreach ( $sorters as $key => &$sorter ) {
 		if ( $sorter['id'] == 'status_asc' || $sorter['id'] == 'status_desc' ) {

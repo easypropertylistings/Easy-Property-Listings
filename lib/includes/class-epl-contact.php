@@ -3,8 +3,11 @@
  * Contact Object
  *
  * @package     EPL
- * @since       2.4
-*/
+ * @subpackage  Classes/Contact
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.0
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -12,21 +15,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * EPL_Contact Class
  *
- * @since 2.4
+ * @since 3.0
  */
 class EPL_Contact {
 
 	/**
 	 * The contact ID
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public $ID = 0;
 
 	/**
 	 * The contact's listing count
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public $listing_count = 0;
 
@@ -34,42 +37,42 @@ class EPL_Contact {
 	/**
 	 * The contact's email
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public $email;
 
 	/**
 	 * The contact's name
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public $name;
 
 	/**
 	 * The contact's creation date
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public $date_created;
 
 	/**
 	 * The listing IDs associated with the contact
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 */
 	public $listing_ids;
 
 	/**
 	 * Contact Notes
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 */
 	public $notes;
 
 	/**
 	 * Get things going
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public function __construct( $_id_or_email = false) {
 
@@ -91,25 +94,31 @@ class EPL_Contact {
 		$this->setup_contact( $contact );
 
 	}
-	
+
 	/**
-	 * Get the email of contact
+	 * Get the primary email of contact / alias of get_primary_email
+	 *
+	 * @since  3.0
 	 */
 	function get_contact_email($id) {
-		return get_post_meta($id,'contact_email',true);
+		return $this->get_primary_email($id);
 	}
-	
+
 	/**
-	 * update the email of contact
+	 * update the primary email of contact
+	 *
+	 * @since  3.0
 	 */
 	function update_contact_email($id,$value) {
-		return update_post_meta($id,'contact_email',$value);
+		$emails = get_post_meta($id,'contact_emails',true);
+		$emails['email'] = $value;
+		return update_post_meta($id,'contact_emails',$emails);
 	}
 
 	/**
 	 * Given the contact data, let's set the variables
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 * @param  object $contact The Contact Object
 	 * @return bool             If the setup was successful or not
 	 */
@@ -122,33 +131,33 @@ class EPL_Contact {
 		foreach ( array('ID','name','email','notes','listing_ids','listing_count','date_created','background_info','type' ,'heading') as $key ) {
 
 			switch ( $key ) {
-			
+
 				case 'ID':
 					$this->$key = $contact->ID;
 					$this->id = $contact->ID;
 					break;
-					
+
 				case 'email':
 					$this->$key = $this->get_contact_email($contact->ID);
 					break;
-					
+
 
 				case 'notes':
 					$this->$key = $this->get_notes();
 					break;
-					
+
 				case 'listing_ids':
 					$this->$key = $this->get_listings();
 					break;
-					
+
 				case 'listing_count':
 					$this->$key = $this->get_listing_count();
 					break;
-					
+
 				case 'date_created':
 					$this->$key = $contact->post_date;
 					break;
-					
+
 				case 'heading':
 					$this->$key = $contact->post_title;
 					break;
@@ -164,12 +173,7 @@ class EPL_Contact {
 				case 'type':
 					$this->$key = $this->get_meta( 'contact_category' );
 					break;
-
-
-
-
 			}
-
 		}
 
 		// Contact ID and email are the only things that are necessary, make sure they exist
@@ -180,12 +184,12 @@ class EPL_Contact {
 		return false;
 
 	}
-	
+
 	/**
 	 * Retrieves a single contact from the database
 	 *
 	 * @access public
-	 * @since  2.4
+	 * @since  3.0
 	 * @param  string $column id or email
 	 * @param  mixed  $value  The Contact ID or email to search
 	 * @return mixed          Upon success, an object of the contact. Upon failure, NULL
@@ -230,17 +234,29 @@ class EPL_Contact {
 			case 'email':
 				$matched_contacts = new WP_Query(
 					array(
-						'post_type'		=>	'epl_contact',
+						'post_type'	=>	'epl_contact',
 						'post_status'	=>	'publish',
 						'meta_query'	=>	array(
 							array(
-								'key'	=>	'contact_email',
-								'value'	=>	$value
+								'key'		=>	'contact_emails',
+								'value'		=>	sprintf(':"%s";', $value),
+								'compare'	=>	'LIKE'
 							)
 						)
 					)
 				);
-				$contact  = $matched_contacts->post;
+				if( !empty($matched_contacts->posts) ) {
+
+					foreach($matched_contacts->posts as $matched_contact) {
+						$emails = get_post_meta($matched_contact->ID,'contact_emails',true);
+
+						if( isset($emails['email']) &&  $emails['email'] == $value) {
+							$contact = $matched_contacts->post;
+						}
+					}
+
+				}
+
 				break;
 			default:
 				return false;
@@ -252,31 +268,25 @@ class EPL_Contact {
 
 		return $contact;
 	}
-	
 
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
-	 * @since 2.4
+	 * @since 3.0
 	 */
 	public function __get( $key ) {
-		
+
 		if( method_exists( $this, 'get_' . $key ) ) {
-
 			return call_user_func( array( $this, 'get_' . $key ) );
-
 		} else {
-
 			return new WP_Error( 'epl-contact-invalid-property', sprintf( __( 'Can\'t get property %s', 'epl' ), $key ) );
-
 		}
-
 	}
 
 	/**
 	 * Creates a contact
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 * @param  array  $data Array of attributes for a contact
 	 * @return mixed        False if not a valid creation, Contact ID if user is found or valid creation
 	 */
@@ -288,11 +298,10 @@ class EPL_Contact {
 
 		$defaults = array(
 			'name' 	=> '',
-			'email'	=>	''
+			'email'	=> ''
 		);
 
 		$args = wp_parse_args( $data, $defaults );
-
 
 		if ( empty( $args['email'] ) || ! is_email( $args['email'] ) ) {
 			return false;
@@ -305,57 +314,70 @@ class EPL_Contact {
 		if( $contact = $this->contact_exists($args['email']) ) {
 			wp_update_post(
 				array(
-					'post_title'	=>	$args['name'],
+					'post_title'		=>	$args['name'],
 					'post_type'		=>	'epl_contact',
 					'ID'			=>	$contact->ID
 				)
 			);
-			
+
 		} else {
-			
-			$inserted = wp_insert_post( 
+
+			$inserted = wp_insert_post(
 				array(
 					'post_title'		=>	$args['name'],
-					'post_type'			=>	'epl_contact',
+					'post_type'		=>	'epl_contact',
 					'post_status'		=>	'publish',
-				) 
+				)
 			);
-		
+
 			if($inserted) {
 				$this->update_contact_email($inserted,$args['email']);
 				$contact = $this->get_contact_by( 'email', $args['email'] );
 				$this->setup_contact( $contact );
 			}
-
-		
 		}
 		$created = $contact->ID;
 
 		do_action( 'epl_contact_post_create', $created, $args );
 		return $created;
-
 	}
-	
+
+	/**
+	 * Checking for contact
+	 *
+	 * @since  3.0
+	 */
 	function contact_exists($email=null) {
 		$matched_contacts = new WP_Query(
 			array(
-				'post_type'		=>	'epl_contact',
+				'post_type'	=>	'epl_contact',
 				'post_status'	=>	'publish',
 				'meta_query'	=>	array(
 					array(
-						'key'	=>	'contact_email',
-						'value'	=>	$email
+						'key'		=>	'contact_emails',
+						'value'		=>	sprintf(':"%s";', $email),
+						'compare'	=>	'LIKE'
 					)
 				)
 			)
 		);
-		return !empty($matched_contacts->post) ? $matched_contacts->post : false;
+		if( !empty($matched_contacts->posts) ) {
+
+			foreach($matched_contacts->posts as $matched_contact) {
+				$emails = get_post_meta($matched_contact->ID,'contact_emails',true);
+
+				if( isset($emails['email']) &&  $emails['email'] == $email) {
+					return $matched_contacts->post;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
 	 * Update a contact record
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 * @param  array  $data Array of data attributes for a contact (checked via whitelist)
 	 * @return bool         If the update was successful or not
 	 */
@@ -368,18 +390,18 @@ class EPL_Contact {
 		do_action( 'epl_contact_pre_update', $this->ID, $data );
 
 		$updated = false;
-		
+
 		$updated = wp_update_post(
 			array(
 				'post_title'	=>	$data['name'],
-				'post_type'		=>	'epl_contact',
-				'ID'			=>	$this->ID,
+				'post_type'	=>	'epl_contact',
+				'ID'		=>	$this->ID,
 				'post_status'	=>	'publish',
 			)
 		);
 		if ( $updated ) {
-		
-			if( isset($data['email']) && is_email($data['email']) ) { 
+
+			if( isset($data['email']) && is_email($data['email']) ) {
 				// make sure email is new & not already attached to some other contact
 				if( ! $this->contact_exists($data['email']) && ($data['email'] != $this->email) ) {
 					$this->update_contact_email($this->ID,$data['email']);
@@ -397,11 +419,10 @@ class EPL_Contact {
 		return $updated;
 	}
 
-
 	/**
 	 * Attach listing to the contact then triggers increasing stats
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 * @param  int $listing_id The listing ID to attach to the contact
 	 * @return bool            If the attachment was successfuly
 	 */
@@ -427,12 +448,11 @@ class EPL_Contact {
 		}
 
 		do_action( 'epl_contact_pre_attach_listing', $listing_id, $this->ID );
-			
+
 		$listing_added = update_post_meta($this->ID,'contact_interested_listings',$new_listing_ids);
 
 		if ( $listing_added ) {
 
-		
 			// update the contacts of listing as well
 			$contact_ids = get_post_meta($listing_id,'epl_interested_contacts',true);
 			if(!empty($contact_ids)) {
@@ -453,7 +473,7 @@ class EPL_Contact {
 	/**
 	 * Remove a listing from this contact, then triggers reducing stats
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 * @param  integer $listing_id The Payment ID to remove
 	 * @return boolean             If the removal was successful
 	 */
@@ -485,8 +505,6 @@ class EPL_Contact {
 
 		if ( $listing_removed ) {
 
-
-
 		}
 		// update the contacts of listing as well
 		$contact_ids = get_post_meta($listing_id,'epl_interested_contacts',true);
@@ -494,10 +512,10 @@ class EPL_Contact {
 			$pos = array_search( $this->ID, $contact_ids );
 			if ( false !== $pos ) {
 				unset( $contact_ids[ $pos ] );
-				update_post_meta($listing_id,'epl_interested_contacts',$contact_ids);		
+				update_post_meta($listing_id,'epl_interested_contacts',$contact_ids);
 			}
 
-			
+
 		}
 
 		do_action( 'epl_contact_post_remove_listing', $listing_removed, $listing_id, $this->ID );
@@ -505,30 +523,28 @@ class EPL_Contact {
 		return $listing_removed;
 
 	}
-	
-	
+
+
 	/**
 	 * get listings of contact
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 */
 	public function get_listings( ) {
-		
+
 		return get_post_meta($this->ID,'contact_interested_listings',true);
-		
 	}
-	
+
 	/**
 	 * get listings count
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 */
 	public function get_listing_count( ) {
-		
+
 		$listings =  (array) get_post_meta($this->ID,'contact_interested_listings',true);
 		$listings =  array_filter($listings);
 		return count($listings);
-		
 	}
 
 	/**
@@ -545,7 +561,14 @@ class EPL_Contact {
 
 		$length = is_numeric( $number ) ? $number : 10;
 		$offset = is_numeric( $paged ) && $paged != 1 ? ( ( absint( $paged ) - 1 ) * $number ) : 0;
-		$args   = array( 'meta_key' => 'epl_contact_id', 'meta_value' => $this->ID, 'offset'	=>	$offset, 'number'	=>	$length, 'orderby'  =>  $orderby, 'order'   =>  $order );
+		$args   = array(
+				'meta_key'	=> 'epl_contact_id',
+				'meta_value'	=> $this->ID,
+				'offset'	=> $offset,
+				'number'	=> $length,
+				'orderby'	=> $orderby,
+				'order'		=> $order
+			);
 
 		return get_comments( $args );
 
@@ -554,19 +577,18 @@ class EPL_Contact {
 	/**
 	 * Get the total number of notes we have after parsing
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 * @return int The number of notes for the contact
 	 */
 	public function get_notes_count() {
-		
-		return get_comments( array( 'meta_key' => 'epl_contact_id', 'meta_value' => $this->ID , 'count' => true) );
 
+		return get_comments( array( 'meta_key' => 'epl_contact_id', 'meta_value' => $this->ID , 'count' => true) );
 	}
 
 	/**
 	 * Add a note for the contact
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 * @param string $note The note to add
 	 * @return string|boolean The new note if added succesfully, false otherwise
 	 */
@@ -576,16 +598,16 @@ class EPL_Contact {
 		if ( empty( $note ) ) {
 			return false;
 		}
-		
+
 		$note    = apply_filters( 'epl_contact_add_note_string', $note, $note_type, $listing_id );
 
 		do_action( 'epl_contact_pre_add_note', $note, $this->ID );
-		
+
 		$notedata = array(
 			'comment_post_ID' 		=> absint($listing_id),
 			'comment_author' 		=> $this->name,
-			'comment_author_email' 	=> $this->email,
-			'comment_content' 		=> $note, 
+			'comment_author_email' 		=> $this->email,
+			'comment_content' 		=> $note,
 			'comment_type' 			=> $note_type,
 			'comment_parent' 		=> 0,
 			'comment_agent' 		=> 'epl',
@@ -598,27 +620,35 @@ class EPL_Contact {
 		}
 
 		do_action( 'epl_contact_post_add_note', $this->notes, $new_note, $this->ID, $note_type, $listing_id );
-		
+
 		// Return the note object
 		return get_comment($note_id);
 
 	}
-	
-	
+
 	/**
 	 * delete the contact
 	 *
-	 * @since  2.4
+	 * @since  3.0
 	 */
 	public function delete() {
 		return wp_delete_post($this->ID,true);
 	}
-	
-	
+
+	/**
+	 * Update Contact Meta
+	 *
+	 * @since  3.0
+	 */
 	public function update_meta($key,$value) {
 		return update_post_meta($this->ID,$key,$value);
 	}
-	
+
+	/**
+	 * Get Contact Meta
+	 *
+	 * @since  3.0
+	 */
 	public function get_meta($key) {
 		return get_post_meta($this->ID,$key,true);
 	}
@@ -637,8 +667,8 @@ class EPL_Contact {
 	/**
 	 * Returns all activity types
 	 *
-	 *
 	 * @return mixed
+	 * @since 3.0
 	 */
 	public function get_activity_types() {
 		return apply_filters('epl_contact_activity_labels',array(
@@ -650,6 +680,12 @@ class EPL_Contact {
 		) );
 	}
 
+	/**
+	 * Returns Contact Address
+	 *
+	 * @return mixed
+	 * @since 3.0
+	 */
 	function epl_contact_get_address() {
 
 		$addr = $this->get_meta('contact_street_number').' ';
@@ -665,6 +701,23 @@ class EPL_Contact {
 		return apply_filters('epl_contact_formatted_address',$addr);
 	}
 
+	/**
+	 * Returns Contact Primary Email
+	 *
+	 * @return mixed
+	 * @since 3.0
+	 */
+	function get_primary_email($id) {
+		$emails = get_post_meta($id,'contact_emails',true);
+		return isset($emails['email']) ? $emails['email'] : false ;
+	}
+
+	/**
+	 * Returns Contact Email
+	 *
+	 * @return mixed
+	 * @since 3.0
+	 */
 	function get_emails() {
 
 		$emails = $this->get_meta('contact_emails');
@@ -672,7 +725,7 @@ class EPL_Contact {
 			ob_start();
 			foreach($emails as $mail_name	=>	$mail_value) {
 				$label = ucwords(str_replace('_',' ',$mail_name)); ?>
-				<span class="contact-email info-item editable" data-key="email">
+				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-email epl-contact-icons"></span>
 				<?php echo $label .' - '.$mail_value; ?>
 				</span> <?php
@@ -680,10 +733,14 @@ class EPL_Contact {
 			$email_html = ob_get_clean();
 			return apply_filters('epl_contact_email_html',$email_html);
 		}
-
-
 	}
 
+	/**
+	 * Returns Contact Phone
+	 *
+	 * @return mixed
+	 * @since 3.0
+	 */
 	function get_phones() {
 
 		$emails = $this->get_meta('contact_phones');
@@ -691,7 +748,7 @@ class EPL_Contact {
 			ob_start();
 			foreach($emails as $mail_name	=>	$mail_value) {
 				$label = ucwords(str_replace('_',' ',$mail_name)); ?>
-				<span class="contact-email info-item editable" data-key="email">
+				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-phone epl-contact-icons"></span>
 					<?php echo $label .' - '.$mail_value; ?>
 				</span> <?php
@@ -699,8 +756,5 @@ class EPL_Contact {
 			$email_html = ob_get_clean();
 			return apply_filters('epl_contact_phone_html',$email_html);
 		}
-
-
 	}
 }
-

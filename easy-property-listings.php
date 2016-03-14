@@ -4,8 +4,8 @@
  * Plugin URI: https://www.easypropertylistings.com.au/
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
- * Author URI: http://www.realestateconnected.com.au
- * Version: 2.4 (beta)
+ * Author URI: http://www.realestateconnected.com.au/
+ * Version: 2.97 (beta-1)
  * Text Domain: epl
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 2.4
+ * @version 3.0
  */
 
 // Exit if accessed directly
@@ -48,7 +48,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		/**
 		 * EPL search fields displayer object.
 		 *
-		 * @since 2.3.1
+		 * @since 3.0
 		 * @var   EPL_Search_Fields
 		 */
 		public $search_fields;
@@ -91,11 +91,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '2.3.90' );
+				define( 'EPL_PROPERTY_VER', '2.97' );
 			}
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
-				define( 'EPL_PROPERTY_DB_VER', '2.0' );
+				define( 'EPL_PROPERTY_DB_VER', '2.97' );
 			}
 			// Current Page
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
@@ -126,23 +126,18 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_COMPATABILITY' ) ) {
 				define( 'EPL_COMPATABILITY', EPL_PATH_LIB . 'compatibility/' );
 			}
-
 			if ( ! defined( 'EPL_PATH_TEMPLATES_CONTENT' ) ) {
 				define( 'EPL_PATH_TEMPLATES_CONTENT', EPL_PATH_TEMPLATES . 'content/' );
 			}
-
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES', EPL_PATH_TEMPLATES . 'themes/' );
 			}
-
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT', EPL_PATH_TEMPLATES_POST_TYPES . 'default/' );
 			}
-
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES', EPL_PATH_TEMPLATES_POST_TYPES . 'ithemes-builder/' );
 			}
-
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
@@ -171,11 +166,10 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_COMPATABILITY . 'extensions.php';
 			require_once EPL_PATH_LIB . 'includes/options-global.php';
 			require_once EPL_PATH_LIB . 'includes/formatting.php';
-			require_once EPL_PATH_LIB . 'includes/plugins.php';
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
-			require_once EPL_PATH_LIB . 'api/cpt.php';
-			require_once EPL_PATH_LIB . 'api/form_builder.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-custom-post-type.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-form-builder.php';
 
 			// Activate post types based on settings
 			if(isset($epl_settings['activate_post_types'])) {
@@ -233,32 +227,36 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-contact-capture.php';
 
-			require_once EPL_PATH_LIB . 'includes/class-property-meta.php';
-			require_once EPL_PATH_LIB . 'includes/class-author-meta.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-author-meta.php';
 			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			require_once EPL_PATH_LIB . 'includes/error-tracking.php';
-			
+
 			require_once EPL_PATH_LIB . 'includes/pagination.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
-			
-			if ( is_admin() ) { 
-				require_once EPL_PATH_LIB . 'api/metaboxes.php';
+
+			if ( is_admin() ) {
+				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
+				require_once EPL_PATH_LIB . 'includes/class-epl-meta-boxes.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
-				require_once EPL_PATH_LIB . 'includes/admin.php';
+				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/admin-actions.php';
 				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
-				require_once EPL_PATH_LIB . 'menus/menus.php';
-				require_once EPL_PATH_LIB . 'menus/menu-welcome.php';
+				require_once EPL_PATH_LIB . 'includes/admin/menus/menus.php';
+				require_once EPL_PATH_LIB . 'includes/admin/menus/class-epl-menu-welcome.php';
 				require_once EPL_PATH_LIB . 'meta-boxes/meta-boxes.php';
-				require_once EPL_PATH_LIB . 'contacts/contacts.php';
-				require_once EPL_PATH_LIB . 'contacts/contact-functions.php';
-				require_once EPL_PATH_LIB . 'contacts/contact-actions.php';
-				require_once EPL_PATH_LIB . 'reports/graphing.php';
-				require_once EPL_PATH_LIB . 'reports/reports.php';
-				require_once EPL_PATH_LIB . 'reports/class-epl-graph.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contacts.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contact-functions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/contacts/contact-actions.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/graphing.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/reports.php';
+				require_once EPL_PATH_LIB . 'includes/admin/reports/class-epl-graph.php';
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
+				require_once EPL_PATH_LIB . 'includes/admin/help.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';

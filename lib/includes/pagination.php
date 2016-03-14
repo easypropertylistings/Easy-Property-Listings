@@ -3,12 +3,20 @@
  * Pagination option
  *
  * @package     EPL
- * @subpackage  Pagination
+ * @subpackage  Functions/Pagination
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.1
 */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * Pagination function
+ *
+ * @since 2.1
+ */
 function epl_fancy_pagination( $args = array() ) {
 	if ( !is_array( $args ) ) {
 		$argv = func_get_args();
@@ -217,7 +225,11 @@ function epl_fancy_pagination( $args = array() ) {
 	echo $out;
 }
 
-
+/**
+ * epl_pagination_Call Class
+ *
+ * @since 2.1
+ */
 class epl_pagination_Call {
 
 	protected $args;
@@ -314,60 +326,74 @@ class epl_pagination_Call {
 }
 
 if ( ! function_exists( 'epl_pagination_html' ) ):
-function epl_pagination_html( $tag ) {
-	static $SELF_CLOSING_TAGS = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
 
-	$args = func_get_args();
+	/**
+	 * Pagination HTML
+	 *
+	 * @since 2.1
+	 */
+	function epl_pagination_html( $tag ) {
+		static $SELF_CLOSING_TAGS = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
 
-	$tag = array_shift( $args );
+		$args = func_get_args();
 
-	if ( is_array( $args[0] ) ) {
-		$closing = $tag;
-		$attributes = array_shift( $args );
-		foreach ( $attributes as $key => $value ) {
-			if ( false === $value )
-				continue;
+		$tag = array_shift( $args );
 
-			if ( true === $value )
-				$value = $key;
+		if ( is_array( $args[0] ) ) {
+			$closing = $tag;
+			$attributes = array_shift( $args );
+			foreach ( $attributes as $key => $value ) {
+				if ( false === $value )
+					continue;
 
-			$tag .= ' ' . $key . '="' . esc_attr( $value ) . '"';
+				if ( true === $value )
+					$value = $key;
+
+				$tag .= ' ' . $key . '="' . esc_attr( $value ) . '"';
+			}
+		} else {
+			list( $closing ) = explode( ' ', $tag, 2 );
 		}
-	} else {
-		list( $closing ) = explode( ' ', $tag, 2 );
+
+		if ( in_array( $closing, $SELF_CLOSING_TAGS ) ) {
+			return "<{$tag} />";
+		}
+
+		$content = implode( '', $args );
+
+		return "<{$tag}>{$content}</{$closing}>";
 	}
-
-	if ( in_array( $closing, $SELF_CLOSING_TAGS ) ) {
-		return "<{$tag} />";
-	}
-
-	$content = implode( '', $args );
-
-	return "<{$tag}>{$content}</{$closing}>";
-}
-endif;
+	endif;
 
 if ( !function_exists( 'epl_get_multipage_link' ) ) :
-function epl_get_multipage_link( $page = 1 ) {
-	global $post, $wp_rewrite;
 
-	if ( 1 == $page ) {
-		$url = get_permalink();
-	} else {
-		if ( '' == get_option('permalink_structure') || in_array( $post->post_status, array( 'draft', 'pending') ) )
-			$url = add_query_arg( 'page', $page, get_permalink() );
-		elseif ( 'page' == get_option( 'show_on_front' ) && get_option('page_on_front') == $post->ID )
-			$url = trailingslashit( get_permalink() ) . user_trailingslashit( $wp_rewrite->pagination_base . "/$page", 'single_paged' );
-		else
-			$url = trailingslashit( get_permalink() ) . user_trailingslashit( $page, 'single_paged' );
+	/**
+	 * Pagination Multipage link
+	 *
+	 * @since 2.1
+	 */
+	function epl_get_multipage_link( $page = 1 ) {
+		global $post, $wp_rewrite;
+
+		if ( 1 == $page ) {
+			$url = get_permalink();
+		} else {
+			if ( '' == get_option('permalink_structure') || in_array( $post->post_status, array( 'draft', 'pending') ) )
+				$url = add_query_arg( 'page', $page, get_permalink() );
+			elseif ( 'page' == get_option( 'show_on_front' ) && get_option('page_on_front') == $post->ID )
+				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $wp_rewrite->pagination_base . "/$page", 'single_paged' );
+			else
+				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $page, 'single_paged' );
+		}
+
+		return esc_url($url);
 	}
-
-	return esc_url($url);
-}
 endif;
 
-
-
+/**
+ * WordPress Default Pagination *
+ * @since 2.1
+ */
 function epl_wp_default_pagination($query = array() ) {
 	if(empty($query)) {
 
@@ -385,4 +411,3 @@ function epl_wp_default_pagination($query = array() ) {
 	</div> <?php }
 
 }
-
