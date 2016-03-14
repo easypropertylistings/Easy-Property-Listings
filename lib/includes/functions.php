@@ -1782,3 +1782,31 @@ function get_contacts( $args = array() ) {
 	}
 	return $contacts;
 }
+
+/**
+ * Search Listing Ajax
+ *
+ * @access  public
+ * @since   3.0
+*/
+function epl_search_listing() {
+	$search_array = array(
+		's'			=> sanitize_text_field($_POST['s']),
+		'showposts'   		=> 6,
+		'post_type' 		=> epl_get_core_post_types(),
+		'post_status' 		=> 'publish',
+	);
+	$query = http_build_query($search_array);
+	$listings = get_posts(  $query );
+	if( !empty($listings) ) {
+		echo '<ul class="epl-popup-box epl-property-suggestion epl-striped">';
+		foreach( $listings as  $listing) {
+			$status = get_post_meta($listing->ID,'property_status',true);
+			echo '<li data-id="'.$listing->ID.'"><span class="epl-listing-type">'.$listing->post_type.'</span>'.$listing->post_title.'<span class="epl-listing-status type_'.$status.'">'.$status.'</span></li>';
+		}
+		echo '</ul>';
+	}
+	wp_die();
+}
+add_action('wp_ajax_nopriv_epl_search_listing','epl_search_listing');
+add_action('wp_ajax_epl_search_listing','epl_search_listing');
