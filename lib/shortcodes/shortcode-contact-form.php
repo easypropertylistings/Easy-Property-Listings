@@ -19,12 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_contact_capture_form( $atts ) {
 
-	if( !is_epl_post() ) {
-		return;  // dont display contact capture form on post type other than EPL
-	}
-
-	global $property;
-
 	$defaults =epl_contact_capture_get_widget_defaults();
 	$attributes = shortcode_atts( $defaults, $atts );
 
@@ -37,7 +31,7 @@ function epl_contact_capture_form( $atts ) {
 			'class'		=>	'col-1 epl-inner-div',
 			'id'		=>	'',
 			'help'		=>	'' . '<hr/>',
-			'fields'	=>	epl_contact_capture_get_widget_fields()
+			'fields'	=>	epl_contact_capture_get_widget_fields( $attributes )
 		),
 
 	);
@@ -60,11 +54,16 @@ function contact_capture_form_callback($form_data,$request) {
 	$contact = new EPL_contact( $request['epl_contact_email'] );
 	if ( empty( $contact->id ) ) {
 
+		$fname  = isset($request['epl_contact_first_name']) ? sanitize_text_field($request['epl_contact_first_name']) : '';
+		$lname  = isset($request['epl_contact_last_name']) ? sanitize_text_field($request['epl_contact_last_name']) : '';
+
 		$contact_data = array(
-			'name'			=>	$request['epl_contact_name'],
-			'email'			=>	$request['epl_contact_email'],
+			'name'			=>	$fname.' '.$lname,
+			'email'			=>	sanitize_email($request['epl_contact_email']),
 		);
 		if ( $contact->create( $contact_data ) ) {
+			$contact->update_meta('contact_first_name',$fname);
+			$contact->update_meta('contact_last_name',$lname);
 			$contact->attach_listing( $request['epl_contact_listing_id'] );
 			$contact->add_note( $request['epl_contact_note'],'epl_user_note',$request['epl_contact_listing_id'] );
 		}
@@ -75,8 +74,5 @@ function contact_capture_form_callback($form_data,$request) {
 			$contact->attach_listing( $request['epl_contact_listing_id'] );
 		}
 	}
-
-
 }
 add_action('epl_form_builder_contact_capture_form','contact_capture_form_callback',10,2);
-

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2016-03-14 01:28+0800\n"
+"POT-Creation-Date: 2016-03-14 17:07+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <admin@realestateconnected.com.au>\n"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: compatibility/author-meta-compat.php:41 includes/admin/contacts/contacts.php:431
 #: includes/class-epl-author-meta.php:81 includes/class-epl-contact.php:678
-#: widgets/widget-functions.php:1125 widgets/widget-functions.php:1189
+#: widgets/widget-functions.php:1135 widgets/widget-functions.php:1216
 msgid "Email"
 msgstr ""
 
@@ -689,8 +689,7 @@ msgstr ""
 #: includes/admin/contacts/contacts.php:400
 #: includes/admin/menus/class-epl-menu-welcome.php:1078
 #: includes/admin/menus/menu-help.php:115 widgets/widget-functions.php:25
-#: widgets/widget-functions.php:1117 widgets/widget-functions.php:1183
-#: widgets/widget-listing.php:224
+#: widgets/widget-functions.php:1199 widgets/widget-listing.php:224
 msgid "Title"
 msgstr ""
 
@@ -5761,23 +5760,28 @@ msgstr ""
 msgid "Offers"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:62
+#: meta-boxes/meta-boxes.php:62 widgets/widget-functions.php:534
+#: widgets/widget-functions.php:586
 msgid "Square"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:63
+#: meta-boxes/meta-boxes.php:63 widgets/widget-functions.php:535
+#: widgets/widget-functions.php:587
 msgid "Square Meter"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:64
+#: meta-boxes/meta-boxes.php:64 widgets/widget-functions.php:536
+#: widgets/widget-functions.php:588
 msgid "Acre"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:65
+#: meta-boxes/meta-boxes.php:65 widgets/widget-functions.php:537
+#: widgets/widget-functions.php:589
 msgid "Hectare"
 msgstr ""
 
-#: meta-boxes/meta-boxes.php:66
+#: meta-boxes/meta-boxes.php:66 widgets/widget-functions.php:538
+#: widgets/widget-functions.php:590
 msgid "Square Feet"
 msgstr ""
 
@@ -7212,11 +7216,19 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: widgets/widget-functions.php:1133 widgets/widget-functions.php:1195
+#: widgets/widget-functions.php:1121 widgets/widget-functions.php:1204
+msgid "First Name"
+msgstr ""
+
+#: widgets/widget-functions.php:1128 widgets/widget-functions.php:1210
+msgid "Last Name"
+msgstr ""
+
+#: widgets/widget-functions.php:1142 widgets/widget-functions.php:1222
 msgid "Message"
 msgstr ""
 
-#: widgets/widget-functions.php:1152
+#: widgets/widget-functions.php:1159
 msgid "Subscribe"
 msgstr ""
 
