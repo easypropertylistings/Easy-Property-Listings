@@ -531,11 +531,11 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='') {
 			'option_filter'		=>	'land_area_unit',
 			'options'		=>	apply_filters( 'epl_listing_search_land_unit_label',
 									array(
-										'square'	=>	'Square',
-										'squareMeter'	=>	'Square Meter',
-										'acre'		=>	'Acre',
-										'hectare'	=>	'Hectare',
-										'sqft'		=>	'Square Feet',
+										'square'	=>	__('Square', 'epl'),
+										'squareMeter'	=>	__('Square Meter', 'epl'),
+										'acre'		=>	__('Acre', 'epl'),
+										'hectare'	=>	__('Hectare', 'epl'),
+										'sqft'		=>	__('Square Feet', 'epl'),
 									)
 								),
 			'query'			=>	array('query'	=>	'meta'),
@@ -583,11 +583,11 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='') {
 			'option_filter'		=>	'building_area_unit',
 			'options'		=>	apply_filters( 'epl_listing_search_building_unit_label',
 								array(
-									'square'	=>	'Square',
-									'squareMeter'	=>	'Square Meter',
-									'acre'		=>	'Acre',
-									'hectare'	=>	'Hectare',
-									'sqft'		=>	'Square Feet',
+									'square'	=>	__('Square', 'epl'),
+									'squareMeter'	=>	__('Square Meter', 'epl'),
+									'acre'		=>	__('Acre', 'epl'),
+									'hectare'	=>	__('Hectare', 'epl'),
+									'sqft'		=>	__('Square Feet', 'epl'),
 								)
 							),
 			'exclude'		=>	array('land'),
@@ -1046,17 +1046,17 @@ function epl_preprocess_search_meta_query($meta_query,$form_fields) {
  **/
 
 /**
-function epl_filter_search_widget_fields_frontend($fields) {
-	foreach($fields as &$field) {
-		if($field['key'] == 'search_house_category') {
-			$field['multiple'] 	= true;
-			$field['query'] 	= array('query'	=>	'meta','compare'	=>	'IN' );
-			break;
-		}
-	}
-	return $fields;
-}
-add_filter('epl_search_widget_fields_frontend','epl_filter_search_widget_fields_frontend');
+* function epl_filter_search_widget_fields_frontend($fields) {
+* 	foreach($fields as &$field) {
+* 		if($field['key'] == 'search_house_category') {
+* 			$field['multiple'] 	= true;
+* 			$field['query'] 	= array('query'	=>	'meta','compare'	=>	'IN' );
+* 			break;
+* 		}
+* 	}
+* 	return $fields;
+* }
+* add_filter('epl_search_widget_fields_frontend','epl_filter_search_widget_fields_frontend');
 **/
 
 
@@ -1066,43 +1066,43 @@ add_filter('epl_search_widget_fields_frontend','epl_filter_search_widget_fields_
  **/
 
 /**
-function epl_add_land_min_max_dropdown_field($fields) {
-	foreach($fields as $field_key   =>  &$field) {
-	        if( in_array($field['meta_key'], array('property_land_area_min','property_land_area_max') ) ) {
-			unset($fields[$field_key]);
-	        }
-	}
-	$fields[] =array(
-		'key'			=>	'search_land_area',
-		//'multiple'		=>	true,
-		'meta_key'		=>	'property_land_area',
-		'label'			=>	__('Land Area','epl'),
-		'type'			=>	'select',
-		'option_filter'		=>	'property_land_area',
-		'options'		=>	array(
-							'0-100'		=>  '0-100',
-							'100-200'	=>  '100-200',
-							'200-300'	=>  '200-300',
-							'300-400'	=>  '300-400',
-							'400-500'	=>  '400-500',
-							'500-600'	=>  '500-600',
-							'600-700'	=>  '600-700',
-							'700-800'	=>  '700-800',
-							'800-900'	=>  '800-900',
-							'900-1000'	=>  '900-1000',
-		),
-        'option_type'   =>  'range', // provide range of option instead of option array
-		'query'			=>	array(
-							'query'		=>	'meta',
-							'compare'	=>	'BETWEEN'
-		),
-		'class'			=>	'epl-search-row-half',
-		'wrap_start'		=>	'epl-search-row epl-search-land-area',
-		'order'			=>  220
-	);
-	return $fields;
-}
-add_filter('epl_search_widget_fields_frontend','epl_add_land_min_max_dropdown_field');
+* function epl_add_land_min_max_dropdown_field($fields) {
+*	foreach($fields as $field_key   =>  &$field) {
+* 	        if( in_array($field['meta_key'], array('property_land_area_min','property_land_area_max') ) ) {
+* 			unset($fields[$field_key]);
+* 	        }
+* 	}
+* 	$fields[] =array(
+* 		'key'			=>	'search_land_area',
+* 		//'multiple'		=>	true,
+* 		'meta_key'		=>	'property_land_area',
+* 		'label'			=>	__('Land Area','epl'),
+* 		'type'			=>	'select',
+* 		'option_filter'		=>	'property_land_area',
+* 		'options'		=>	array(
+* 							'0-100'		=>  '0-100',
+* 							'100-200'	=>  '100-200',
+* 							'200-300'	=>  '200-300',
+* 							'300-400'	=>  '300-400',
+* 							'400-500'	=>  '400-500',
+* 							'500-600'	=>  '500-600',
+* 							'600-700'	=>  '600-700',
+* 							'700-800'	=>  '700-800',
+* 							'800-900'	=>  '800-900',
+* 							'900-1000'	=>  '900-1000',
+* 		),
+*         'option_type'   =>  'range', // provide range of option instead of option array
+* 		'query'			=>	array(
+* 							'query'		=>	'meta',
+* 							'compare'	=>	'BETWEEN'
+* 		),
+* 		'class'			=>	'epl-search-row-half',
+* 		'wrap_start'		=>	'epl-search-row epl-search-land-area',
+* 		'order'			=>  220
+* 	);
+* 	return $fields;
+* }
+* add_filter('epl_search_widget_fields_frontend','epl_add_land_min_max_dropdown_field');
 **/
 
 /**
@@ -1110,53 +1110,68 @@ add_filter('epl_search_widget_fields_frontend','epl_add_land_min_max_dropdown_fi
  *
  * @since  3.0
  */
-function epl_contact_capture_get_widget_fields() {
-	global $property;
+function epl_contact_capture_get_widget_fields( $atts ) {
+	$property_id = 0;
+	if ( is_epl_post_single() ) {
+		global $property;
+		$property_id = $property->post->ID;
+	}
 	$fields = array(
-			array(
-				'label'		=>	__('Title','epl'),
-				'name'		=>	'epl_contact_name',
-				'id'		=>	'epl_contact_name',
-				'type'		=>	'text',
-				'data-default'	=>	'on'
-			),
-
-			array(
-				'label'		=>	__('Email','epl'),
-				'name'		=>	'epl_contact_email',
-				'id'		=>	'epl_contact_email',
-				'type'	        =>	'email',
-				'data-default'	=>	'on'
-			),
-
-			array(
-				'label'	        =>	__('Message','epl'),
-				'name'	        =>	'epl_contact_note',
-				'id'		=>	'epl_contact_note',
-				'type'	        =>	'textarea',
-				'data-default'	=>	'on'
-			),
-
-			array(
-				'name'	        =>	'epl_contact_listing_id',
-				'id'		=>	'epl_contact_listing_id',
-				'type'	        =>	'hidden',
-				'value'	        =>	$property->post->ID,
-				'data-default'	=>	'on'
-			),
-
-			array(
-				'name'	        =>	'epl_contact_submit',
-				'id'		=>	'epl_contact_submit',
-				'type'	        =>	'submit',
-				'value'	        =>	__('Subscribe','epl'),
-				'data-default'	=>	'on'
-			),
-		);
-
-	return apply_filters('epl_contact_capture_get_widget_fields',$fields);
+		array(
+			'label'        => __( 'First Name', 'epl' ),
+			'name'         => 'epl_contact_first_name',
+			'id'           => 'epl_contact_first_name',
+			'type'         => 'text',
+			'data-default' => 'on'
+		),
+		array(
+			'label'        => __( 'Last Name', 'epl' ),
+			'name'         => 'epl_contact_last_name',
+			'id'           => 'epl_contact_last_name',
+			'type'         => 'text',
+			'data-default' => 'on'
+		),
+		array(
+			'label'        => __( 'Email', 'epl' ),
+			'name'         => 'epl_contact_email',
+			'id'           => 'epl_contact_email',
+			'type'         => 'email',
+			'data-default' => 'on'
+		),
+		array(
+			'label'        => __( 'Message', 'epl' ),
+			'name'         => 'epl_contact_note',
+			'id'           => 'epl_contact_note',
+			'type'         => 'textarea',
+			'data-default' => 'on'
+		),
+		array(
+			'name'         => 'epl_contact_listing_id',
+			'id'           => 'epl_contact_listing_id',
+			'type'         => 'hidden',
+			'value'        => $property_id,
+			'data-default' => 'on'
+		),
+		array(
+			'name'         => 'epl_contact_submit',
+			'id'           => 'epl_contact_submit',
+			'type'         => 'submit',
+			'value'        => __( 'Subscribe', 'epl' ),
+			'data-default' => 'on'
+		),
+	);
+	/** allow additional fields */
+	$all_fields = apply_filters( 'epl_contact_capture_get_widget_fields', $fields );
+	/** filter fields based on attributes */
+	foreach ( $all_fields as $field_key =>  &$field ) {
+		if ( isset( $atts[ $field['name'] ] ) && $atts[ $field['name'] ] != 'on' ) {
+			unset($all_fields[$field_key]);
+		} else {
+			$field['data-default'] = 'on';
+		}
+	}
+	return $all_fields;
 }
-
 /**
  * Contacts widget form get defaults
  *
@@ -1180,23 +1195,35 @@ function epl_contact_capture_get_widget_defaults() {
 function epl_contact_capture_widget_form_fields() {
 	$fields = array(
 		array(
-			'label'	        =>	__('Title','epl'),
-			'key'	        =>	'epl_contact_name',
-			'type'	        =>	'checkbox',
-			'default'       =>  'on'
+			'key'		=> 'title',
+			'label'		=> __( 'Title', 'epl' ),
+			'type'		=> 'text',
+			'default'	=> ''
 		),
 		array(
-			'label'	        =>	__('Email','epl'),
-			'key'	        =>	'epl_contact_email',
-			'type'	        =>	'checkbox',
-			'default'       =>  'on'
+			'label'		=> __( 'First Name', 'epl' ),
+			'key'		=> 'epl_contact_first_name',
+			'type'		=> 'checkbox',
+			'default'	=> 'on'
 		),
 		array(
-			'label'	        =>	__('Message','epl'),
-			'key'	        =>	'epl_contact_note',
-			'type'	        =>	'checkbox',
-			'default'       =>  'on'
+			'label'		=> __( 'Last Name', 'epl' ),
+			'key'		=> 'epl_contact_last_name',
+			'type'		=> 'checkbox',
+			'default'	=> 'on'
+		),
+		array(
+			'label'		=> __( 'Email', 'epl' ),
+			'key'		=> 'epl_contact_email',
+			'type'		=> 'checkbox',
+			'default'	=> 'on'
+		),
+		array(
+			'label'		=> __( 'Message', 'epl' ),
+			'key'		=> 'epl_contact_note',
+			'type'		=> 'checkbox',
+			'default'	=> 'on'
 		),
 	);
-	return apply_filters('epl_contact_capture_widget_form_fields',$fields);
+	return apply_filters( 'epl_contact_capture_widget_form_fields', $fields );
 }
