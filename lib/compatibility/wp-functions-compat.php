@@ -2,7 +2,11 @@
 /**
  * Wordpress core functions for keeping compatibility.
  *
- * @since 2.1.11
+ * @package     EPL
+ * @subpackage  Compatibility/Shortcodes
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       2.1.11
  */
 
 // Exit if accessed directly
