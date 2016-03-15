@@ -114,7 +114,7 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 			$fields[] = array(
 				'name'		=>	"contact_phones[$phone_name]",
 				'label'		=>	__($label,'epl'),
-				'type'		=>	'number',
+				'type'		=>	'text',
 				'class'		=>	'epl-contact-addable',
 				'maxlength'	=>	'60',
 				'value'		=>	$phone_value
