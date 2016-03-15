@@ -1,4 +1,3 @@
-
 <?php
 /**
  * SHORTCODE :: Contact Capture [epl_contact_form]
