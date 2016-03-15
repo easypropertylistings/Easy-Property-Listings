@@ -662,7 +662,7 @@ function epl_contact_entry_header($contact) { ?>
 	<div class="epl-contact-entry-header">
 		<h1 class="epl-contact-title">
 			<?php
-				echo $contact->name;
+				echo $contact->heading;
 			?>
 		</h1>
 		<span>
