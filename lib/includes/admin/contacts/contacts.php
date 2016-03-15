@@ -213,7 +213,7 @@ function epl_new_contact_view() { ?>
 
 				<form id="epl-meta-contact-form" method="post" action="<?php echo admin_url( 'admin.php?page=epl-contacts&view=new-contact&id=' . $contact_id ); ?>">
 
-					<div class="epl-contact-info epl-meta-contact">
+					<div class="epl-contact-info epl-meta-contact epl-admin-new-contact">
 						<?php do_action( 'epl_new_contact_fields'); ?>
 
 						<?php
