@@ -1,3 +1,4 @@
+
 <?php
 /**
  * SHORTCODE :: Contact Capture [epl_contact_form]
@@ -19,12 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_contact_capture_form( $atts ) {
 
-	if( !is_epl_post() ) {
-		return;  // dont display contact capture form on post type other than EPL
-	}
-
-	global $property;
-
 	$defaults =epl_contact_capture_get_widget_defaults();
 	$attributes = shortcode_atts( $defaults, $atts );
 
@@ -37,7 +32,7 @@ function epl_contact_capture_form( $atts ) {
 			'class'		=>	'col-1 epl-inner-div',
 			'id'		=>	'',
 			'help'		=>	'' . '<hr/>',
-			'fields'	=>	epl_contact_capture_get_widget_fields()
+			'fields'	=>	epl_contact_capture_get_widget_fields( $attributes )
 		),
 
 	);
@@ -48,7 +43,7 @@ function epl_contact_capture_form( $atts ) {
 	echo '</div>';
 	return ob_get_clean();
 }
-add_shortcode( 'contact_capture', 'epl_contact_capture_form' );
+add_shortcode( 'epl_contact_form', 'epl_contact_capture_form' );
 
 /**
  * Contact Form Callback
@@ -58,25 +53,31 @@ add_shortcode( 'contact_capture', 'epl_contact_capture_form' );
 function contact_capture_form_callback($form_data,$request) {
 
 	$contact = new EPL_contact( $request['epl_contact_email'] );
+	$fname  = isset($request['epl_contact_first_name']) ? sanitize_text_field($request['epl_contact_first_name']) : '';
+	$lname  = isset($request['epl_contact_last_name']) ? sanitize_text_field($request['epl_contact_last_name']) : '';
+	$phone  = isset($request['epl_contact_phone']) ? sanitize_text_field($request['epl_contact_phone']) : '';
+	$title  = isset($request['epl_contact_title']) ? sanitize_text_field($request['epl_contact_title']) : '';
+
 	if ( empty( $contact->id ) ) {
 
 		$contact_data = array(
-			'name'			=>	$request['epl_contact_name'],
-			'email'			=>	$request['epl_contact_email'],
+			'name'			=>	$title,
+			'email'			=>	sanitize_email($request['epl_contact_email']),
 		);
 		if ( $contact->create( $contact_data ) ) {
+			$contact->update_meta('contact_first_name',$fname);
+			$contact->update_meta('contact_last_name',$lname);
+			$contact->update_meta('contact_phones',array('phone' =>  $phone) );
+			$contact->update_meta('contact_category','widget');
 			$contact->attach_listing( $request['epl_contact_listing_id'] );
 			$contact->add_note( $request['epl_contact_note'],'epl_user_note',$request['epl_contact_listing_id'] );
 		}
 	} else {
 
-		if ( $contact->update( array('name'	=>	$request['epl_contact_name'] ) ) ) {
+		if ( $contact->update( array('name'	=>	$title ) ) ) {
 			$contact->add_note( $request['epl_contact_note'],'epl_user_note',$request['epl_contact_listing_id'] );
 			$contact->attach_listing( $request['epl_contact_listing_id'] );
 		}
 	}
-
-
 }
 add_action('epl_form_builder_contact_capture_form','contact_capture_form_callback',10,2);
-

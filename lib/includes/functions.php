@@ -970,7 +970,11 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			);
 	$epl_currency_types = epl_get_currencies();
 	$epl_post_types = epl_get_post_types();
-
+	 if ( !function_exists('get_editable_roles') ) {
+		 require_once( ABSPATH . '/wp-admin/includes/user.php' );
+	 }
+	$roles = get_editable_roles();
+	$roles = array_combine(array_keys($roles),array_map('ucfirst',array_keys($roles) ));
 	$fields = array(
 		array(
 			'label'		=>	__('Listing Types and Location Taxonomy' , 'epl'),
@@ -1484,6 +1488,22 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 		),
 
 		array(
+			'label'		=>	__('Contact Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'contact',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'contact_access',
+					'label'	=>	__('Contact Access Level', 'epl'),
+					'type'	=>	'checkbox',
+					'opts'	=>	$roles,
+					'help'  =>  __('roles to manage contacts ', 'epl')
+				),
+
+			)
+		),
+
+		array(
 			'label'		=>	__('Advanced Settings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'advanced',
@@ -1722,7 +1742,7 @@ function epl_month_num_to_name( $n ) {
  * @access  public
  * @since   3.0
 */
-function get_contacts( $args = array() ) {
+function epl_get_contacts( $args = array() ) {
 
 	global $wpdb;
 
@@ -1781,4 +1801,59 @@ function get_contacts( $args = array() ) {
 		wp_cache_set( $cache_key, $contacts, 'contacts', 3600 );
 	}
 	return $contacts;
+}
+
+/**
+ * Search Listing Ajax
+ *
+ * @access  public
+ * @since   3.0
+*/
+function epl_search_listing() {
+	$search_array = array(
+		's'			=> sanitize_text_field($_POST['s']),
+		'showposts'   		=> 6,
+		'post_type' 		=> epl_get_core_post_types(),
+		'post_status' 		=> 'publish',
+	);
+	$query = http_build_query($search_array);
+	$listings = get_posts(  $query );
+	if( !empty($listings) ) {
+		echo '<ul class="epl-popup-box epl-property-suggestion epl-striped">';
+		foreach( $listings as  $listing) {
+			$status = get_post_meta($listing->ID,'property_status',true);
+			echo '<li data-id="'.$listing->ID.'"><span class="epl-listing-type">'.$listing->post_type.'</span>'.$listing->post_title.'<span class="epl-listing-status type_'.$status.'">'.$status.'</span></li>';
+		}
+		echo '</ul>';
+	}
+	wp_die();
+}
+add_action('wp_ajax_nopriv_epl_search_listing','epl_search_listing');
+add_action('wp_ajax_epl_search_listing','epl_search_listing');
+
+function epl_get_contact_categories() {
+	return apply_filters('epl_contact_categories',array(
+		'appraisal'	=>  __('Appraisal','epl'),
+		'buyer'		=>  __('Buyer','epl'),
+		'contact'	=>  __('Contact','epl'),
+		'lead'		=>  __('Lead','epl'),
+		'landlord'	=>  __('Landlord','epl'),
+		'past customer'	=>  __('Past Customer','epl'),
+		'seller'	=>  __('Seller','epl'),
+		'tenant'	=>  __('Tenant','epl'),
+		'contract'	=>  __('Under Contract','epl'),
+		'new'	    =>  __('New','epl'),
+		'widget'	=>  __('Widget','epl'),
+
+	));
+}
+
+function get_category_label($category) {
+	foreach(epl_get_contact_categories() as $key    =>  $cat) {
+		if($key == $category) {
+			return $cat;
+			break;
+		}
+	}
+	return $category;
 }

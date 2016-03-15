@@ -166,7 +166,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 				<h4><?php echo $item['heading']; ?> </h4>
 				<ul class="epl-contact-assigned-tags">
 					<?php
-						$contact_tags = wp_get_object_terms( $item['ID'],  'contact_tag' );
+						$contact_tags = wp_get_object_terms( $item['ID'],  'epl_contact_tag' );
 						if ( ! empty( $contact_tags ) ) {
 							if ( ! is_wp_error( $contact_tags ) ) {
 								foreach( $contact_tags as $term ) {
@@ -291,13 +291,13 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 		if( isset($_GET['tag_filter']) && $_GET['tag_filter'] != '' ){
 			$args['tax_query'][] = array(
-				'taxonomy'     	=> 'contact_tag',
+				'taxonomy'     	=> 'epl_contact_tag',
 				'field'   		=> 'id',
 				'terms'   		=> intval($_GET['tag_filter']),
 			);
 		}
 
-		$contacts = get_contacts( $args );
+		$contacts = epl_get_contacts( $args );
 
 		if ( $contacts ) {
 
@@ -350,15 +350,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 			?>
 			<div class="alignleft actions bulkactions">
 				<?php
-				$cats = apply_filters('epl_contact_categories',array(
-					'appraisal'	=>  __('Appraisal','epl'),
-					'contact'	=>  __('Contact','epl'),
-					'past_customer'	=>  __('Past Customer','epl'),
-					'contract'	=>  __('Contract','epl'),
-					'buyer'		=>  __('Buyer','epl'),
-					'seller'	=>  __('Seller','epl'),
-					'lead'		=>  __('Lead','epl'),
-				));
+				$cats = epl_get_contact_categories();
 				if( $cats ){
 					?>
 					<select name="cat_filter" class="epl_contact_type_filter">
@@ -366,7 +358,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 						<?php
 						foreach( $cats as $cat_key	=>	$cat_value ){
 							$selected = '';
-							if( $_GET['cat_filter'] == $cat_key ){
+							if( isset($_GET['cat_filter']) && $_GET['cat_filter'] == $cat_key ){
 								$selected = ' selected = "selected"';
 							} ?>
 							<option value="<?php echo $cat_key; ?>" <?php echo $selected; ?>><?php echo $cat_value; ?></option> <?php

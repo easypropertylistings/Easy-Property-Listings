@@ -1559,6 +1559,10 @@ label.epl-contact-select-label:before {
      font-weight: bold;
      padding: 0 5px;
  }
+ .epl_form_builder_label_container {
+     display: inline-block;
+     width: 25%;
+ }
  .epl-contact-add-listing-form-wrap .epl_form_builder_label_container {
      display: inline-block;
      width: 25%;
