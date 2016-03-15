@@ -96,9 +96,8 @@ function epl_render_contact_view( $view, $callbacks ) {
 
 	$render = true;
 
-	$contact_view_role = apply_filters( 'epl_view_contacts_role', 'manage_options' );
-
-	if ( ! current_user_can( $contact_view_role ) ) {
+	$this_user = wp_get_current_user();
+	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
 		epl_set_error( 'epl-no-access', __( 'You are not permitted to view this data.', 'epl' ) );
 		$render = false;
 	}
@@ -224,19 +223,39 @@ function epl_new_contact_view() { ?>
 								array(
 
 									array(
-										'name'		=>	'name',
-										'label'		=>	__('Contact Name','epl'),
+										'name'		=>	'title',
+										'label'		=>	__('Summary','epl'),
 										'type'		=>	'text',
 										'maxlength'	=>	'60',
 										'value'		=>	$contact->name
 									),
-
+									array(
+										'name'		=>	'first_name',
+										'label'		=>	__('First Name','epl'),
+										'type'		=>	'text',
+										'maxlength'	=>	'60',
+										'value'		=>	$contact->get_meta('contact_first_name')
+									),
+									array(
+										'name'		=>	'last_name',
+										'label'		=>	__('Last Name','epl'),
+										'type'		=>	'text',
+										'maxlength'	=>	'60',
+										'value'		=>	$contact->get_meta('contact_last_name')
+									),
 									array(
 										'name'		=>	'email',
-										'label'		=>	__('Contact Email','epl'),
+										'label'		=>	__('Email','epl'),
 										'type'		=>	'email',
 										'maxlength'	=>	'60',
 										'value'		=>	$contact->get_primary_email($contact->ID)
+									),
+									array(
+										'name'		=>	'phone',
+										'label'		=>	__('Phone','epl'),
+										'type'		=>	'text',
+										'maxlength'	=>	'60',
+										'value'		=>	''
 									),
 
 								)
@@ -334,7 +353,11 @@ function epl_contacts_view( $contact ) {
  */
 function epl_contact_meta_view($contact) {
 
-	$contact_edit_role = apply_filters( 'epl_edit_contacts_role', 'manage_options' ); ?>
+	$this_user = wp_get_current_user();
+	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+		wp_die( __( 'You do not have permission to see this page.', 'epl' ) );
+	}
+	?>
 
 	<?php do_action( 'epl_contact_edit_top', $contact ); ?>
 
@@ -843,7 +866,7 @@ function epl_contacts_listing_view( $contact ) {
  *
  * @since  3.0
  */
-function add_contact_screen_options() {
+function epl_add_contact_screen_options() {
 	global $epl_contacts_table;
 	$option = 'per_page';
 	$args = array(
@@ -871,8 +894,8 @@ function epl_contact_table_set_option($status, $option, $value) {
  * @since  3.0
  */
 function epl_add_contact_screen_opts() {
-	global $contact_page_hook;
-	add_action( "load-$contact_page_hook", 'add_contact_screen_options' );
+	global $epl_contact_page_hook;
+	add_action( "load-$epl_contact_page_hook", 'epl_add_contact_screen_options' );
 	add_filter('set-screen-option', 'epl_contact_table_set_option', 10, 3);
 }
 add_action('admin_menu','epl_add_contact_screen_opts',99);

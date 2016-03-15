@@ -37,7 +37,7 @@ function epl_register_taxonomy_contact_tag() {
 		'not_found'                  => __( 'Contact Tag Not Found', 'epl' ),
 	);
 	$rewrite = array(
-		'slug'                       => 'contact_tag',
+		'slug'                       => 'epl_contact_tag',
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);
@@ -51,7 +51,7 @@ function epl_register_taxonomy_contact_tag() {
 		'show_tagcloud'              => true,
 		'rewrite'                    => $rewrite,
 	);
-	register_taxonomy( 'contact_tag', array( 'epl_contact' ) , $args );
+	register_taxonomy( 'epl_contact_tag', array( 'epl_contact' ) , $args );
 }
 add_action( 'init', 'epl_register_taxonomy_contact_tag', 0 );
 
@@ -61,14 +61,14 @@ add_action( 'init', 'epl_register_taxonomy_contact_tag', 0 );
  * @since 3.0
  *
  */
-function add_contact_tag_bgcolor_field() {
+function epl_add_contact_tag_bgcolor_field() {
 
 	echo '<div class="form-field epl-contact-tag-bgwrap">
 			<label for="epl_contact_tag_bgcolor">' . __('Background Color', 'epl') . '</label>
 			<input type="color" class="epl_contact_tag_bgcolor" name="epl_contact_tag_bgcolor" id="epl_contact_tag_bgcolor" value="" />
 		</div>';
 }
-add_action('contact_tag_add_form_fields', 'add_contact_tag_bgcolor_field' );
+add_action('contact_tag_add_form_fields', 'epl_add_contact_tag_bgcolor_field' );
 
 /**
  * Add background color on edit contact tag screen
@@ -76,7 +76,7 @@ add_action('contact_tag_add_form_fields', 'add_contact_tag_bgcolor_field' );
  * @since 3.0
  * @param $taxonomy term object
  */
-function edit_contact_tag_bgcolor_field($taxonomy) {
+function epl_edit_contact_tag_bgcolor_field($taxonomy) {
 
 	$bg_color = epl_get_contact_tag_bgcolor($taxonomy->term_id);
 	echo '
@@ -90,7 +90,7 @@ function edit_contact_tag_bgcolor_field($taxonomy) {
 		</tr>';
 
 }
-add_action('contact_tag_edit_form_fields','edit_contact_tag_bgcolor_field' );
+add_action('contact_tag_edit_form_fields','epl_edit_contact_tag_bgcolor_field' );
 
 /**
  * Save term background color while saving / editing the term
