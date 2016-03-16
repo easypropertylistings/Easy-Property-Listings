@@ -160,6 +160,11 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 }
 add_filter('epl_contact_contact_fields','epl_contact_contact_fields',10,2);
 
+/**
+ * Contact Access Roles
+ *
+ * @since  3.0
+ */
 function epl_contact_access($role) {
 	$allowed = epl_get_option('contact_access');
 	$allowed = empty($allowed) ? array('administrator') : $allowed;

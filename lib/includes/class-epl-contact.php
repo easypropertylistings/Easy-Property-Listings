@@ -758,13 +758,24 @@ class EPL_Contact {
 		}
 	}
 
+	/**
+	 * Returns Contact Category Label
+	 *
+	 * @return mixed
+	 * @since 3.0
+	 */
 	function get_category_label() {
 		$cat = $this->get_meta('contact_category');
 		return get_category_label($cat);
 	}
 
+	/**
+	 * Returns Contact Category Name
+	 *
+	 * @return mixed
+	 * @since 3.0
+	 */
 	function get_category_name() {
 		return $this->get_meta('contact_category');
 	}
-
 }
