@@ -167,7 +167,7 @@ add_filter('epl_contact_contact_fields','epl_contact_contact_fields',10,2);
  */
 function epl_contact_access() {
 	$allowed = epl_get_option('min_contact_access');
-	$allowed = empty($allowed) ? 'administrator' : $allowed;
+	$allowed = empty($allowed) ? 'level_10' : $allowed;
 	return current_user_can($allowed) ? true : false;
 }
 
