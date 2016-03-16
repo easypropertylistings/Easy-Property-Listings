@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<div class="epl-menu-section epl-clearfix">
 				<h1><?php _e('Welcome to Easy Property Listings', 'epl'); ?></h1>
 				<p><?php _e('Nice! You installed Easy Property Listings and now you are ready to manage your listings.', 'epl'); ?>
-				<p><?php echo $link = sprintf( __('Below are some links and videos that will help you get started. If you still have questions, we have on-line tutorials packed with information, as well as a very active <a href="%s">support forum</a> where you can ask our team questions', 'epl') , esc_url( 'https://easypropertylistings.com.au/support/' ) ); ?></p>
+				<p><?php echo $link = sprintf( __('Below are some links and videos that will help you get started. If you still have questions, we have on-line documentation and tutorials packed with information or ask a question by opening a <a href="%s">support ticket</a>.', 'epl') , esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) ); ?></p>
 				<hr>
 
 
@@ -37,9 +37,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-theme"><?php _e( 'What\'s New', 'epl' ); ?></a></li>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a></li>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-changelog"><?php _e( 'Full Change Log', 'epl' ); ?></a></li>
-							<li><a href="https://easypropertylistings.com.au/documentation/"><?php _e('Documentation', 'epl'); ?></a></li>
+							<li><a href="http://codex.easypropertylistings.com.au/"><?php _e('Documentation', 'epl'); ?></a></li>
 							<li><a href="https://easypropertylistings.com.au/support-the-site/"><?php _e( 'Support the project', 'epl' ); ?></a></li>
-							<li><a href="https://easypropertylistings.com.au/support/"><?php _e( 'Visit Support', 'epl' ); ?></a></li>
+							<li><a href="https://easypropertylistings.com.au/support-ticket/"><?php _e( 'Visit Support', 'epl' ); ?></a></li>
 							<li><a href="https://wordpress.org/support/view/plugin-reviews/easy-property-listings"><strong><?php _e( 'Write a Review', 'epl' ); ?></strong></a></li>
 						</ul>
 					</div>

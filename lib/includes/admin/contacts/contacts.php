@@ -96,8 +96,7 @@ function epl_render_contact_view( $view, $callbacks ) {
 
 	$render = true;
 
-	$this_user = wp_get_current_user();
-	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+	if ( ! is_admin() || ! epl_contact_access() ) {
 		epl_set_error( 'epl-no-access', __( 'You are not permitted to view this data.', 'epl' ) );
 		$render = false;
 	}
@@ -354,7 +353,7 @@ function epl_contacts_view( $contact ) {
 function epl_contact_meta_view($contact) {
 
 	$this_user = wp_get_current_user();
-	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( __( 'You do not have permission to see this page.', 'epl' ) );
 	}
 	?>
