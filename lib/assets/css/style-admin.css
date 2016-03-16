@@ -78,7 +78,7 @@ h3.epl-welcome-sub-heading {
 	background: #1494dd;
 	color: #FFFFFF;
 }
-.epl-extension.postbox .hndle, 
+.epl-extension.postbox .hndle,
 .epl-extension .stuffbox .hndle {
 	border-bottom: 1px solid #1494dd;
 }
@@ -384,7 +384,7 @@ h3.epl-welcome-sub-heading {
 .epl-inner-div.col-2 td,
 .epl-inner-div.col-3 td,
 #side-sortables .epl-form-table td {
-	padding:0; 
+	padding:0;
 }
 .epl-inner-div.col-2 span.epl-field-row,
 .epl-inner-div.col-3 span.epl-field-row,
@@ -401,29 +401,29 @@ h3.epl-welcome-sub-heading {
 	margin-right:0;
 	margin-top:0;
 }
-.epl-form-table, 
-.epl-form-table td, 
-.epl-form-table th, 
-.epl-form-table td p, 
-#side-sortables .epl-form-table labelepl-form-table, 
-.epl-form-table input, 
-.epl-form-table textarea, 
-.epl-form-table select, 
+.epl-form-table,
+.epl-form-table td,
+.epl-form-table th,
+.epl-form-table td p,
+#side-sortables .epl-form-table labelepl-form-table,
+.epl-form-table input,
+.epl-form-table textarea,
+.epl-form-table select,
 .epl-form-table label {
 	font-size:13px !important;
 }
 .epl-inner-div input[type="radio"] {
-	
-} 
+
+}
 .epl-inner-div input[type="checkbox"] {
 	width:auto;
 }
 /* Post Type List Admin Styles */
 .column-listing {
-	
+
 }
 .column-property_thumb {
-	
+
 }
 .type_current {
 	font-weight:normal;
@@ -461,16 +461,16 @@ h3.epl-welcome-sub-heading {
 	width:100%;
 	float:none;
 }
-#side-sortables .epl-form-table th, 
+#side-sortables .epl-form-table th,
 #side-sortables .epl-form-table td {
 	display:block;
-	padding:0; 
+	padding:0;
 }
 .license-status {
 	position:absolute;
 	margin:5px 0 0 5px;
 	height:20px;
-	width:20px;	
+	width:20px;
 }
 .license-status.license-status-valid {
 	background:url(../images/valid.png) no-repeat;
@@ -556,11 +556,11 @@ h3.epl-welcome-sub-heading {
 	background: #fff;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;			
+	border-radius: 3px;
 	-webkit-animation: animate-shine 2s ease-out infinite;
-	-moz-animation: animate-shine 2s ease-out infinite; 			
+	-moz-animation: animate-shine 2s ease-out infinite;
 }
-@-webkit-keyframes animate-shine { 
+@-webkit-keyframes animate-shine {
 	0% {opacity: 0; width: 0;}
 	50% {opacity: .5;}
 	100% {opacity: 0; width: 95%;}
@@ -661,7 +661,7 @@ h3.epl-welcome-sub-heading {
 #epl_status_dashboard_widget li.epl_type_testimonial,
 #epl_status_dashboard_widget li.epl_type_directory,
 #epl_status_dashboard_widget li.epl_type_location_profile {
-	
+
 }
 #epl_status_dashboard_widget .epl_status_list li.epl_type_testimonial a:before,
 #epl_status_dashboard_widget .epl_status_list li.epl_type_directory a:before,
@@ -788,7 +788,7 @@ h3.epl-welcome-sub-heading {
 	}
 	.form-table td  input[type=text]#epl-inspection-date {
 		display: block;
-	} 
+	}
 	.fixed .column-listing,
 	.fixed .column-property_status,
 	.fixed .column-property_price,
@@ -809,7 +809,7 @@ h3.epl-welcome-sub-heading {
 		width: 93%;
 	}
 	.epl-geocoder-button {
-		
+
 	}
 	.epl-form-table .epl-geocoder-button {
 		float: right !important;
@@ -818,7 +818,7 @@ h3.epl-welcome-sub-heading {
 		position: relative;
 	}
 	.epl-inner-div input[type=text] {
-		
+
 	}
 	.epl-inner-div.col-2,
 	.epl-inner-div.col-3 {
@@ -830,13 +830,13 @@ h3.epl-welcome-sub-heading {
 		width:50%;
 		float:left;
 	}
-	
+
 	#epl-pricing-section-id {
-	
+
 	}
-	
+
 }
-@media screen and (max-width: 500px)  { 
+@media screen and (max-width: 500px)  {
 	.epl-col,
 	.epl-left-half,
 	.epl-right-half,
@@ -845,7 +845,7 @@ h3.epl-welcome-sub-heading {
 		width: 100% !important;
 	}
 }
-@media screen and (max-width: 360px)  { 
+@media screen and (max-width: 360px)  {
     #epl_status_dashboard_widget .epl_status_list li{
     	width:100%;
     }
@@ -1313,6 +1313,9 @@ label.epl-contact-select-label:before {
      opacity : 1;
  }
  .epl-contact-assigned-tags-wrap {
+ }
+ .epl-contact-assigned-tags {
+	 margin: 0;
  }
  .epl-contact-list-table-tags h4 {
 	 margin-bottom: 0.5em;
