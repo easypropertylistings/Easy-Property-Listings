@@ -86,7 +86,7 @@ function epl_admin_menu() {
 	$menu_slug	= 'epl-contacts';
 	$function	= 'epl_contacts_page';
 	$this_user = wp_get_current_user();
-	if ( epl_contact_access($this_user->roles[0]) ) {
+	if ( epl_contact_access() ) {
 		$capability	= $this_user->roles[0];
 		$epl_contact_page_hook = add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	}

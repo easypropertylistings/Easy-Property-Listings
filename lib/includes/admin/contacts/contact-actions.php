@@ -20,8 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return array $output Response messages
  */
 function epl_edit_contact( $args ) {
-	$this_user = wp_get_current_user();
-	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( __( 'You do not have permission to edit this contact.', 'epl' ) );
 	}
 
@@ -180,8 +179,7 @@ add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
  */
 function epl_contact_save_note( $args ) {
 
-	$this_user = wp_get_current_user();
-	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( __( 'You do not have permission to save note.', 'epl' ) );
 	}
 
@@ -356,8 +354,7 @@ add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
  */
 function epl_contact_assign_existing_listing( $args ) {
 
-	$this_user = wp_get_current_user();
-	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( __( 'You do not have permission to assign listings.', 'epl' ) );
 	}
 
@@ -415,8 +412,7 @@ add_action( 'epl_add-existing-contact-listing', 'epl_contact_assign_existing_lis
  */
 function epl_meta_contact( $args ) {
 
-	$this_user = wp_get_current_user();
-	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( __( 'You do not have permission to update this contact.', 'epl' ) );
 	}
 
@@ -472,8 +468,7 @@ add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
  */
 function epl_new_contact( $args ) {
 
-	$this_user = wp_get_current_user();
-	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( __( 'You do not have permission to create contacts.', 'epl' ) );
 	}
 
@@ -1361,8 +1356,8 @@ add_action('wp_ajax_epl_search_user','epl_search_user');
  * @return object         the comment object
  */
 function epl_contact_save_note_note_tab( $args ) {
-	$this_user = wp_get_current_user();
-	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+
+	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( __( 'You do not have permission to save note.', 'epl' ) );
 	}
 	if ( empty( $args ) ) {

@@ -87,7 +87,7 @@ function epl_install() {
 		'custom_inspection_date_format'		=> 'l, dS F',
 		'custom_inspection_time_format'		=> 'h:i a',
 		'epl_video_width'			=> 600,
-		'contact_access'			        => array('administrator'),
+		'min_contact_access'			        => 'administrator',
 	);
 
 	if(!empty($epl_settings)) {
