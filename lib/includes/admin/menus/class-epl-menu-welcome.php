@@ -168,72 +168,40 @@ class EPL_Welcome {
 
 			<div class="changelog headline-feature">
 
-				<h2><?php _e( 'New API&#39;s' , 'epl' );?></h2>
-
-				<div class="feature-section">
-					<h4><?php _e( 'Three new API&#39;s have been added which will make it easier to add custom post types, custom fields and forms' , 'epl' ); ?></h4>
-					<p><?php _e( 'This release is focused on making it easier to add custom post types, custom meta fields and forms in preparation for the Contact Management System (CRM). These structural changes will allow us to create even more real estate plugins and tools moving forward and gives you the possibility to create your own custom functions and features.', 'epl' ); ?></p>
-
-					<p><?php _e( 'These changes lay the groundwork for the Customer Relationship Manager (CRM) that will  give you better contact generation and capture tools.', 'epl' ); ?></p>
-
-					<p><?php _e( 'We have a number of really cool things planned for Easy Property Listings and our goal is to make Real Estate websites easy with WordPress.', 'epl' ); ?></p>
-				</div>
-			</div>
-
-			<div class="changelog headline-feature">
-
-				<h2><?php _e( 'Theme Compatibility Mode introduced in 2.2' , 'epl' );?></h2>
+				<h2><?php _e( 'Contact and Lead Management System' , 'epl' );?></h2>
 
 				<div class="featured-image">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-themes.jpg'; ?>" class="epl-welcome-featured-image"/>
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-contacts.png'; ?>" class="epl-welcome-featured-image"/>
 				</div>
 
 				<div class="feature-section">
-					<p><?php _e( 'We have been hard at work to improve theme compatibility in this version of Easy Property Listings which required a huge amount of new code and adjustments to make this possible. Many users were unable to get listings to display correctly on their WordPress theme without having to dive in an edit some code.', 'epl' ); ?></p>
+					<p><?php _e( 'Contact management and lead CRM has been added to the Easy Property Listings plugin and we are very excited to finally release this to you to use on your real estate website.' , 'epl' ); ?></h4>
 
-					<p><?php _e( 'When theme compatibility mode is enabled your WordPress theme will look fantastic and you will be able to use the most advanced real estate platform to power your real estate business.', 'epl' ); ?></p>
+					<p><?php _e( 'Lead generation in real estate is a must online and we have created an easy to use CRM that allows you to track and communicate with your prospects as they make enquiries on your listings. If you already are using a CRM in your business then the contact system will allow us to create add-ons which will be able to pass the lead information directly into your real estate CRM provided yours has an API. This will help you streamline your daily lead generation and prospecting activities with your website.' , 'epl' ); ?></h4>
 
-					<p><?php _e( 'This required the creation of additional templates specifically for theme compatibility mode. Once you enable theme compatibility mode you may get a double up of your featured images as some themes automatically add images and we have added settings where you can either disable the theme images or the plugin.', 'epl' ); ?></p>
+					<p><?php _e( 'The contact system has been designed to be easy to use and allow you to track and capture contact information on your listings.' , 'epl' ); ?></h4>
 
-					<p><?php _e( 'We have tested Easy Property Listings with hundreds of WordPress themes and it works great!', 'epl' ); ?></p>
+					<p><?php _e( 'Back when I was selling property I would frequently meet the same people at different properties that I had listed for sale and now you will be able to create a story around your potential buyer or seller shopping for an agent.', 'epl' ); ?></p>
+
 				</div>
 			</div>
 
 			<div class="changelog headline-feature">
 
-				<h2><?php _e( 'Powerful Search Remastered' , 'epl' );?></h2>
+				<h2><?php _e( 'Reports' , 'epl' );?></h2>
 
 				<div class="featured-image">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-widget-search-remastered.png'; ?>" class="epl-welcome-featured-image"/>
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-reports.png'; ?>" class="epl-welcome-featured-image"/>
 				</div>
 
 				<div class="feature-section">
+					<p><?php _e( 'This release introduces a reports feature for you to track your listings, sales and rentals so you can visually see how your business is going at a glance.', 'epl' ); ?></p>
 
-					<p><?php _e( 'We totally rebuilt the search capabilities of Easy Property Listings and added additional search fields for you to use on your real estate website. We have enabled an additional customisable City field and this is great for use in many countries that need an additional location field on their listings.', 'epl' ); ?></p>
+					<p><?php _e( 'Graphs are cool and they really can give you a quick picture of how you are going with your real estate business so you can see trends in your business to better prepare your prospecting. Real Estate can be a very seasonal business and when you can see the last 5 years of your listings on a graph you can plan ahead.', 'epl' ); ?></p>
 
-					<p><?php _e( 'For power users you now can add any number of custom search fields to the search widget using the new filters and hooks. Along with the search improvements we have improved the widget display and improved the responsive display.', 'epl' ); ?></p>
+					<p><?php _e( 'If you are running a business and have several sales and property manager staff you will be able to see how your business is going and track the KPI’s of your people.', 'epl' ); ?></p>
 
-					<h4><?php _e( 'Additional Search Improvements.', 'epl' ); ?></h4>
-					<ul>
-						<li><?php _e( 'Multiple house category select.', 'epl' ); ?></li>
-						<li><?php _e( 'Search by city, state/province, postcode/zip and Country.', 'epl' ); ?></li>
-						<li><?php _e( 'Search by anything, add your own search fields in minutes.', 'epl' ); ?></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="changelog headline-feature">
-				<h2><?php _e( 'Developer Features' , 'epl' );?></h2>
-
-				<div class="feature-section">
-					<p><?php _e( 'We have taken the time to add many additional filters and hooks which will open the door for a whole lot more cool features and real estate tools.', 'epl' ); ?></p>
-
-					<p><?php _e( 'Many under the hood improvements have been made to increase the extendibility of Easy Property Listings and allow for the creation of additional extensions and features. ', 'epl' ); ?></p>
-
-					<?php $custom_template_link = '<a href="https://easypropertylistings.com.au/docs/create-custom-theme-templates-using-included-hooks/">'. __( 'custom templates' , 'epl' ) .'</a>'; ?>
-					<h3><?php _e( 'Custom Templates' , 'epl' );?></h3>
-
-					<p><?php printf( __( 'Easy Property Listings 2.2 introduces a %s system allowing you to create any number of templates and use them in shortcodes and widgets allowing you and theme developers to create an unlimited number of templates and load them from your theme.', 'epl' ) , $custom_template_link ); ?></p>
+					<p><?php _e( 'We have additional enhancements planned for the reports moving forward so you can track commissions so you can see your sales and rental revenue.', 'epl' ); ?></p>
 				</div>
 			</div>
 
@@ -241,41 +209,12 @@ class EPL_Welcome {
 
 				<h2><?php _e( 'Additional Updates', 'epl' );?></h2>
 
-				<div class="feature-section col two-col">
 
-					<div class="col">
-						<h4><?php _e( 'Sold Price Display','epl' );?></h4>
-						<p><?php _e( 'With Easy Property Listings 2.2 you can now display your sold prices and show off your real estate success to your visitors.', 'epl' );?></p>
+				<p><?php _e( 'Along with the new Contacts and Reports features we have been optimising code, adding many new filters and functions to the code base to make your site faster and allow developers to create any type of real estate website that they can imagine.', 'epl' ); ?></p>
 
-						<h4><?php _e( 'Adjustable Image Sizes','epl' );?></h4>
-						<p><?php _e( 'Edit the image sizes and add more using the new filter allowing for endless possibilities with your WordPress theme.', 'epl' );?></p>
+				<p><?php _e( 'We have fixed some issues and improved the listing edit pages to slim them down a bit.', 'epl' ); ?></p>
 
-						<h4><?php _e( 'Sort by Current, Sold and Leased','epl' );?></h4>
-						<p><?php _e( 'Sorting your listings by status is now possible and we have added additional filters to allow you to sort your listings by anything.', 'epl' );?></p>
-
-						<h4><?php _e( 'Listing Widget','epl' );?></h4>
-						<p><?php _e( 'Listing widget now allows for the creation of additional templates that your can select and create your own custom look.', 'epl' );?></p>
-
-						<h4><?php _e( 'Meta Fields','epl' );?></h4>
-						<p><?php _e( 'We have added additional fields to better support other countries and improve on the widely used REAXML format.', 'epl' );?></p>
-					</div>
-
-					<div class="last-feature">
-
-						<h4><?php _e( 'Future Extensions','epl' );?></h4>
-						<p><?php _e( 'We have added a number of new features for the creation of more advanced real estate tools and have big plans for the future.', 'epl' );?></p>
-
-						<h4><?php _e( 'Updated Extensions','epl' );?></h4>
-						<p><?php _e( 'Along with the release of Easy Property Listings are a number of improvements to the extensions that help you make your real estate website even better and they will be released alongside Easy Property Listings 2.2.', 'epl' );?></p>
-
-						<h4><?php _e( 'More Filters Added','epl' );?></h4>
-						<p><?php _e( 'Dozens of new filters have been added allowing you to customise every aspect of Easy Property Listings quickly and easily.', 'epl' );?></p>
-
-						<h4><?php _e( 'Loading speed improvements','epl' );?></h4>
-						<p><?php _e( 'Changes to only load scripts and CSS when they are needed. Many other optimisations to the code to reduce load times. Dashboard widget loads much faster.', 'epl' );?></p>
-					</div>
-
-				</div>
+				<p><?php _e( 'Many more changes have been made which are noted in the Change Log below.', 'epl' ); ?></p>
 
 			</div>
 

@@ -1139,6 +1139,20 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 			'data-default' => 'on'
 		),
 		array(
+			'label'        => __( 'Phone', 'epl' ),
+			'name'         => 'epl_contact_phone',
+			'id'           => 'epl_contact_phone',
+			'type'         => 'text',
+			'data-default' => 'off'
+		),
+		array(
+			'label'        => __( 'Subject', 'epl' ),
+			'name'         => 'epl_contact_title',
+			'id'           => 'epl_contact_title',
+			'type'         => 'text',
+			'data-default' => 'on'
+		),
+		array(
 			'label'        => __( 'Message', 'epl' ),
 			'name'         => 'epl_contact_note',
 			'id'           => 'epl_contact_note',
@@ -1215,6 +1229,19 @@ function epl_contact_capture_widget_form_fields() {
 		array(
 			'label'		=> __( 'Email', 'epl' ),
 			'key'		=> 'epl_contact_email',
+			'type'		=> 'checkbox',
+			'default'	=> 'on'
+		),
+		array(
+			'label'        => __( 'Phone', 'epl' ),
+			'key'          => 'epl_contact_phone',
+			'id'           => 'epl_contact_phone',
+			'type'         => 'checkbox',
+			'default'       => 'off'
+		),
+		array(
+			'label'		=> __( 'Subject', 'epl' ),
+			'key'		=> 'epl_contact_title',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
