@@ -443,7 +443,7 @@ function epl_contact_meta_view($contact) {
 											array(
 												'name'		=>	"contact_phones[phone]",
 												'label'		=>	__('Phone','epl'),
-												'type'		=>	'number',
+												'type'		=>	'text',
 												'class'		=>	'epl-contact-addable',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_phones')['phone']
