@@ -87,6 +87,7 @@ function epl_install() {
 		'custom_inspection_date_format'		=> 'l, dS F',
 		'custom_inspection_time_format'		=> 'h:i a',
 		'epl_video_width'			=> 600,
+		'contact_access'			        => array('administrator'),
 	);
 
 	if(!empty($epl_settings)) {
@@ -118,7 +119,7 @@ function epl_install() {
 	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 		return;
 	}
-
+	remove_role( 'epl_crm' );
 	// Add the transient to redirect
 	set_transient( '_epl_activation_redirect', true, 30 );
 }

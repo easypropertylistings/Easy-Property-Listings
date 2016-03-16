@@ -970,7 +970,11 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			);
 	$epl_currency_types = epl_get_currencies();
 	$epl_post_types = epl_get_post_types();
-
+	 if ( !function_exists('get_editable_roles') ) {
+		 require_once( ABSPATH . '/wp-admin/includes/user.php' );
+	 }
+	$roles = get_editable_roles();
+	$roles = array_combine(array_keys($roles),array_map('ucfirst',array_keys($roles) ));
 	$fields = array(
 		array(
 			'label'		=>	__('Listing Types and Location Taxonomy' , 'epl'),
@@ -1484,6 +1488,22 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 		),
 
 		array(
+			'label'		=>	__('Contact Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'contact',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'contact_access',
+					'label'	=>	__('Contact Access Level', 'epl'),
+					'type'	=>	'checkbox',
+					'opts'	=>	$roles,
+					'help'  =>  __('roles to manage contacts ', 'epl')
+				),
+
+			)
+		),
+
+		array(
 			'label'		=>	__('Advanced Settings' , 'epl'),
 			'class'		=>	'core',
 			'id'		=>	'advanced',
@@ -1721,8 +1741,8 @@ function epl_month_num_to_name( $n ) {
  *
  * @access  public
  * @since   3.0
-*/
-function get_contacts( $args = array() ) {
+ */
+function epl_get_contacts( $args = array() ) {
 
 	global $wpdb;
 
@@ -1788,7 +1808,7 @@ function get_contacts( $args = array() ) {
  *
  * @access  public
  * @since   3.0
-*/
+ */
 function epl_search_listing() {
 	$search_array = array(
 		's'			=> sanitize_text_field($_POST['s']),
@@ -1810,3 +1830,41 @@ function epl_search_listing() {
 }
 add_action('wp_ajax_nopriv_epl_search_listing','epl_search_listing');
 add_action('wp_ajax_epl_search_listing','epl_search_listing');
+
+/**
+ * Get Contact Categories
+ *
+ * @access  public
+ * @since   3.0
+ */
+function epl_get_contact_categories() {
+	return apply_filters('epl_contact_categories',array(
+		'appraisal'	=>  __('Appraisal','epl'),
+		'buyer'		=>  __('Buyer','epl'),
+		'contact'	=>  __('Contact','epl'),
+		'lead'		=>  __('Lead','epl'),
+		'landlord'	=>  __('Landlord','epl'),
+		'new'		=>  __('New','epl'),
+		'past_customer'	=>  __('Past Customer','epl'),
+		'seller'	=>  __('Seller','epl'),
+		'tenant'	=>  __('Tenant','epl'),
+		'widget'	=>  __('Widget Lead','epl'),
+		'contract'	=>  __('Under Contract','epl'),
+	));
+}
+
+/**
+ * Get Contact Labels
+ *
+ * @access  public
+ * @since   3.0
+ */
+function get_category_label($category) {
+	foreach(epl_get_contact_categories() as $key    =>  $cat) {
+		if($key == $category) {
+			return $cat;
+			break;
+		}
+	}
+	return $category;
+}

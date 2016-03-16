@@ -20,9 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return array $output Response messages
  */
 function epl_edit_contact( $args ) {
-	$contact_edit_role = apply_filters( 'epl_edit_contacts_role', 'manage_options' );
-
-	if ( ! is_admin() || ! current_user_can( $contact_edit_role ) ) {
+	$this_user = wp_get_current_user();
+	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
 		wp_die( __( 'You do not have permission to edit this contact.', 'epl' ) );
 	}
 
@@ -181,10 +180,9 @@ add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
  */
 function epl_contact_save_note( $args ) {
 
-	$contact_view_role = apply_filters( 'epl_view_contacts_role', 'manage_options' );
-
-	if ( ! is_admin() || ! current_user_can( $contact_view_role ) ) {
-		wp_die( __( 'You do not have permission to edit this customer.', 'epl' ) );
+	$this_user = wp_get_current_user();
+	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+		wp_die( __( 'You do not have permission to save note.', 'epl' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -358,10 +356,9 @@ add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
  */
 function epl_contact_assign_existing_listing( $args ) {
 
-	$contact_add_listing_role = apply_filters( 'epl_add_contacts_listing', 'manage_options' );
-
-	if ( ! is_admin() || ! current_user_can( $contact_add_listing_role ) ) {
-		wp_die( __( 'You do not have permission to add listing.', 'epl' ) );
+	$this_user = wp_get_current_user();
+	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+		wp_die( __( 'You do not have permission to assign listings.', 'epl' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -418,10 +415,9 @@ add_action( 'epl_add-existing-contact-listing', 'epl_contact_assign_existing_lis
  */
 function epl_meta_contact( $args ) {
 
-	$contact_edit_role = apply_filters( 'epl_edit_contacts_role', 'manage_options' );
-
-	if ( ! is_admin() || ! current_user_can( $contact_edit_role ) ) {
-		wp_die( __( 'You do not have permission to edit this contact.', 'epl' ) );
+	$this_user = wp_get_current_user();
+	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+		wp_die( __( 'You do not have permission to update this contact.', 'epl' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -476,10 +472,9 @@ add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
  */
 function epl_new_contact( $args ) {
 
-	$contact_create_role = apply_filters( 'epl_create_contacts_role', 'manage_options' );
-
-	if ( ! is_admin() || ! current_user_can( $contact_create_role ) ) {
-		wp_die( __( 'You do not have permission to edit this contact.', 'epl' ) );
+	$this_user = wp_get_current_user();
+	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+		wp_die( __( 'You do not have permission to create contacts.', 'epl' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -500,7 +495,13 @@ function epl_new_contact( $args ) {
 	if( $contact->contact_exists($args['email']) ) {
 		wp_die( __( 'A contact with this email already exists !', 'epl' ) );
 	}
-	$contact->update($args);
+	if ( $contact->update( array('name'	=>	$args['title'], 'email' => $args['email']  ) ) ) {
+		$contact->update_meta('contact_first_name',$args['first_name']);
+		$contact->update_meta('contact_last_name',$args['last_name']);
+		$contact->update_meta('contact_phones',array('phone' =>  $args['phone']) );
+		$contact->update_meta('contact_category','new');
+	}
+
 
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
 	wp_redirect( $redirect );
@@ -515,7 +516,7 @@ add_action( 'epl_new-contact', 'epl_new_contact', 10, 1 );
  * @since 3.0
  * @return bool true if updated
  */
-function contact_category_update() {
+function epl_contact_category_update() {
 	if( (int) $_POST['contact_id'] > 0 && trim($_POST['type']) != '' ) {
 
 		$contact = new EPL_Contact($_POST['contact_id']);
@@ -523,7 +524,7 @@ function contact_category_update() {
 		wp_die();
 	}
 }
-add_action('wp_ajax_contact_category_update','contact_category_update');
+add_action('wp_ajax_epl_contact_category_update','epl_contact_category_update');
 
 /**
  * Add/Update contact tags
@@ -541,7 +542,7 @@ function epl_contact_tag_add() {
 
 		// update tag for a contact
 		if( (int) $_POST['contact_id'] > 0 ) {
-			$terms = wp_set_object_terms( absint($_POST['contact_id']), $_POST['term_id'], 'contact_tag', true );
+			$terms = wp_set_object_terms( absint($_POST['contact_id']), $_POST['term_id'], 'epl_contact_tag', true );
 			wp_die( current($terms) );
 		} else {
 			// update the tag
@@ -549,10 +550,10 @@ function epl_contact_tag_add() {
 				epl_update_contact_tag_bgcolor($_POST['term_id'],$_POST['bg']);
 
 			if( $_POST['label'])
-				wp_update_term( $_POST['term_id'], 'contact_tag', array('name'	=>	$_POST['label']) );
+				wp_update_term( $_POST['term_id'], 'epl_contact_tag', array('name'	=>	$_POST['label']) );
 
 			if( $_POST['delete'])
-				wp_delete_term( $_POST['term_id'], 'contact_tag' );
+				wp_delete_term( $_POST['term_id'], 'epl_contact_tag' );
 
 			wp_die(1);
 
@@ -568,14 +569,14 @@ add_action('wp_ajax_contact_tags_update','epl_contact_tag_add');
  * @since 3.0
  * @return bool true if updated
  */
-function contact_tag_remove() {
+function epl_contact_tag_remove() {
 	if( (int) $_POST['contact_id'] > 0 && (int) $_POST['term_id'] > 0 ) {
 
-		wp_remove_object_terms( absint($_POST['contact_id']), absint($_POST['term_id']), 'contact_tag' );
+		wp_remove_object_terms( absint($_POST['contact_id']), absint($_POST['term_id']), 'epl_contact_tag' );
 		wp_die(1);
 	}
 }
-add_action('wp_ajax_contact_tag_remove','contact_tag_remove');
+add_action('wp_ajax_epl_contact_tag_remove','epl_contact_tag_remove');
 
 /**
  * Contact Action Menus
@@ -596,17 +597,7 @@ function epl_contact_action_menus($contact) { ?>
 				<ul class="epl-contact_category_suggestions">
 					<?php
 
-						$cats = apply_filters('epl_contact_categories',array(
-							'appraisal'	=>  __('Appraisal','epl'),
-							'buyer'		=>  __('Buyer','epl'),
-							'contact'	=>  __('Contact','epl'),
-							'lead'		=>  __('Lead','epl'),
-							'landlord'	=>  __('Landlord','epl'),
-							'past_customer'	=>  __('Past Customer','epl'),
-							'seller'	=>  __('Seller','epl'),
-							'tenant'	=>  __('Tenant','epl'),
-							'contract'	=>  __('Under Contract','epl'),
-						));
+						$cats = epl_get_contact_categories();
 
 						foreach($cats as $cat_key   =>  $cat_label) :
 							echo '<li> <a href="#" data-key="'.$cat_key.'" data-label="'.$cat_label.'">'.$cat_label.'</a></li>';
@@ -624,7 +615,7 @@ function epl_contact_action_menus($contact) { ?>
 					<input type="text" id="contact-tag-hint" value=""/>
 					<ul class="epl-contact_tags_suggestions">
 						<?php
-							$contact_tags = get_terms('contact_tag',array( 'hide_empty' =>  false));
+							$contact_tags = get_terms('epl_contact_tag',array( 'hide_empty' =>  false));
 							if( !empty($contact_tags) ) {
 
 								foreach($contact_tags as $contact_tag) {
@@ -671,12 +662,12 @@ function epl_contact_entry_header($contact) { ?>
 	<div class="epl-contact-entry-header">
 		<h1 class="epl-contact-title">
 			<?php
-				echo $contact->name;
+				echo $contact->heading;
 			?>
 		</h1>
 		<span>
 			<?php
-				echo $contact->get_meta('contact_category');
+				echo $contact->get_category_label();
 			?>
 		</span>
 	</div> <?php
@@ -712,7 +703,7 @@ function epl_contact_assigned_tags($contact) { ?>
 	<div class="epl-contact-assigned-tags-wrap">
 		<ul class="epl-contact-assigned-tags">
 			<?php
-				$contact_tags = wp_get_object_terms( $contact->id,  'contact_tag' );
+				$contact_tags = wp_get_object_terms( $contact->id,  'epl_contact_tag' );
 				if ( ! empty( $contact_tags ) ) {
 					if ( ! is_wp_error( $contact_tags ) ) {
 						foreach( $contact_tags as $term ) {
@@ -1370,9 +1361,9 @@ add_action('wp_ajax_epl_search_user','epl_search_user');
  * @return object         the comment object
  */
 function epl_contact_save_note_note_tab( $args ) {
-	$contact_view_role = apply_filters( 'epl_view_contacts_role', 'manage_options' );
-	if ( ! is_admin() || ! current_user_can( $contact_view_role ) ) {
-		wp_die( __( 'You do not have permission to edit this contact.', 'epl' ) );
+	$this_user = wp_get_current_user();
+	if ( ! is_admin() || ! epl_contact_access($this_user->roles[0]) ) {
+		wp_die( __( 'You do not have permission to save note.', 'epl' ) );
 	}
 	if ( empty( $args ) ) {
 		return;

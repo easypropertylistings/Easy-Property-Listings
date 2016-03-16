@@ -78,8 +78,18 @@ add_filter( 'epl_contact_tabs', 'epl_register_delete_contact_tab', PHP_INT_MAX, 
 function epl_get_next_contact_link($contact_id) {
 	if(absint($contact_id) < 1 )
 		return;
+	$contact_id = absint($contact_id);
 	global $wpdb;
-	$next = $wpdb->get_col("SELECT `ID` from {$wpdb->prefix}posts where `post_type` = 'epl_contact' AND `ID` > {intval($contact_id)} ");
+
+	$next = $wpdb->get_col("
+						SELECT `ID`
+						FROM {$wpdb->prefix}posts
+						WHERE `post_type` = 'epl_contact'
+						AND `post_status`	= 'publish'
+						AND `ID` > {$contact_id}
+						ORDER BY `ID` ASC
+						LIMIT 1
+					");
 	if(!empty($next)) {
 		return admin_url('admin.php?page=epl-contacts&view=overview&id='.$next[0]);
 	}
@@ -93,8 +103,18 @@ function epl_get_next_contact_link($contact_id) {
 function epl_get_prev_contact_link($contact_id) {
 	if(absint($contact_id) < 1 )
 		return;
+	$contact_id = absint($contact_id);
 	global $wpdb;
-	$next = $wpdb->get_col("SELECT `ID` from {$wpdb->prefix}posts where `post_type` = 'epl_contact' AND `ID` < {intval($contact_id)} ");
+	$next = $wpdb->get_col("
+		SELECT *
+		FROM {$wpdb->prefix}posts
+		WHERE `post_type` = 'epl_contact'
+		AND `post_status`	= 'publish'
+		AND `ID` < {$contact_id}
+		ORDER BY `ID` DESC
+		LIMIT 1
+
+	");
 	if(!empty($next)) {
 		return admin_url('admin.php?page=epl-contacts&view=overview&id='.$next[0]);
 	}
@@ -114,7 +134,7 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 			$fields[] = array(
 				'name'		=>	"contact_phones[$phone_name]",
 				'label'		=>	__($label,'epl'),
-				'type'		=>	'number',
+				'type'		=>	'text',
 				'class'		=>	'epl-contact-addable',
 				'maxlength'	=>	'60',
 				'value'		=>	$phone_value
@@ -139,3 +159,15 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 	return array_intersect_key($merged_fields, array_unique(array_map('serialize', $merged_fields)));
 }
 add_filter('epl_contact_contact_fields','epl_contact_contact_fields',10,2);
+
+/**
+ * Contact Access Roles
+ *
+ * @since  3.0
+ */
+function epl_contact_access($role) {
+	$allowed = epl_get_option('contact_access');
+	$allowed = empty($allowed) ? array('administrator') : $allowed;
+	return in_array( $role, $allowed ) ? true : false;
+}
+
