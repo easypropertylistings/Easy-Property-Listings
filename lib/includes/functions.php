@@ -1493,14 +1493,15 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'id'		=>	'contact',
 			'fields'	=>	array(
 				array(
-					'name'	=>	'contact_access',
+					'name'	=>	'min_contact_access',
 					'label'	=>	__('Contact Access Level', 'epl'),
-					'type'	=>	'checkbox',
+					'type'	=>	'radio',
 					'opts'	=>	$roles,
 					'help'  =>  __('roles to manage contacts ', 'epl')
 				),
 
-			)
+			),
+			'default'	=>	'administrator',
 		),
 
 		array(
