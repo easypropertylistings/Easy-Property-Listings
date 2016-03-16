@@ -171,7 +171,7 @@ class EPL_Contact {
 					break;
 
 				case 'type':
-					$this->$key = $this->get_meta( 'contact_category' );
+					$this->$key = $this->get_category_label();
 					break;
 			}
 		}
@@ -195,7 +195,6 @@ class EPL_Contact {
 	 * @return mixed          Upon success, an object of the contact. Upon failure, NULL
 	 */
 	public function get_contact_by( $field = 'id', $value = 0 ) {
-		global $wpdb;
 
 		if ( empty( $field ) || empty( $value ) ) {
 			return NULL;
@@ -227,6 +226,7 @@ class EPL_Contact {
 			return false;
 		}
 
+		$contact = false;
 		switch ( $field ) {
 			case 'id':
 				$contact  = get_post($value);
@@ -619,7 +619,7 @@ class EPL_Contact {
 			update_comment_meta($note_id,'epl_contact_id',$this->ID);
 		}
 
-		do_action( 'epl_contact_post_add_note', $this->notes, $new_note, $this->ID, $note_type, $listing_id );
+		do_action( 'epl_contact_post_add_note', $this->notes, $notedata, $this->ID );
 
 		// Return the note object
 		return get_comment($note_id);
@@ -756,5 +756,26 @@ class EPL_Contact {
 			$email_html = ob_get_clean();
 			return apply_filters('epl_contact_phone_html',$email_html);
 		}
+	}
+
+	/**
+	 * Returns Contact Category Label
+	 *
+	 * @return mixed
+	 * @since 3.0
+	 */
+	function get_category_label() {
+		$cat = $this->get_meta('contact_category');
+		return get_category_label($cat);
+	}
+
+	/**
+	 * Returns Contact Category Name
+	 *
+	 * @return mixed
+	 * @since 3.0
+	 */
+	function get_category_name() {
+		return $this->get_meta('contact_category');
 	}
 }
