@@ -3,7 +3,7 @@
  * TAXONOMY :: Features
  *
  * @package     EPL
- * @subpackage  Taxonomy/Features
+ * @subpackage  Taxonomy
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -12,6 +12,12 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Registers and sets up the tax_feature taxonomy
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_register_taxonomy_features() {
 	$labels = array(
 		'name'                       => _x( 'Features', 'Taxonomy General Name', 'epl' ),
