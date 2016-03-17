@@ -973,8 +973,13 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 	 if ( !function_exists('get_editable_roles') ) {
 		 require_once( ABSPATH . '/wp-admin/includes/user.php' );
 	 }
-	$roles = get_editable_roles();
-	$roles = array_combine(array_keys($roles),array_map('ucfirst',array_keys($roles) ));
+	$roles = array(
+		'level_10'  =>  __('Administrator'),
+		'level_7'  =>  __('Editor'),
+		'level_2'  =>  __('Author'),
+		'level_1'  =>  __('Contributor'),
+		'level_0'  =>  __('Subscriber')
+	);
 	$fields = array(
 		array(
 			'label'		=>	__('Listing Types and Location Taxonomy' , 'epl'),
@@ -1493,14 +1498,15 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'id'		=>	'contact',
 			'fields'	=>	array(
 				array(
-					'name'	=>	'contact_access',
+					'name'	=>	'min_contact_access',
 					'label'	=>	__('Contact Access Level', 'epl'),
-					'type'	=>	'checkbox',
+					'type'	=>	'radio',
 					'opts'	=>	$roles,
 					'help'  =>  __('roles to manage contacts ', 'epl')
 				),
 
-			)
+			),
+			'default'	=>	'administrator',
 		),
 
 		array(
