@@ -248,7 +248,11 @@ class EPL_FORM_BUILDER {
 	function get_attributes($field) {
 
 		$html = '';
-		$field['id']		= isset($field['id']) ? $field['id'] :  isset($field['name']) ? $field['name'] : '';
+		$field['id']    =   isset($field['id']) ? $field['id'] : '';
+
+		if( empty($field['id']) )
+			$field['id']    =   isset($field['name']) ? $field['name'] : '';
+
 		$invalid_attributes = $this->invalid_attributes();
 
 		foreach($field as $key 	=>	$value) {
