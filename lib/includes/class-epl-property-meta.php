@@ -368,9 +368,9 @@ class EPL_Property_Meta {
 		$bond_position = apply_filters('epl_property_bond_position','after');
 
 		$bond = '';
-		if ( ! empty ( $this->get_property_meta('property_bond') ) && $bond_position == 'before' ) {
+		if ( $this->get_property_meta('property_bond') != '' && $bond_position == 'before' ) {
 			$bond =  $this->label_bond . ' ' . epl_currency_formatted_amount($this->get_property_meta('property_bond'));
-		} elseif ( ! empty ( $this->get_property_meta('property_bond') ) ) {
+		} elseif ( $this->get_property_meta('property_bond') != '' ) {
 			$bond =  epl_currency_formatted_amount($this->get_property_meta('property_bond')).' '.$this->label_bond;
 		}
 		return apply_filters('epl_get_property_bond',$bond);
@@ -509,7 +509,7 @@ class EPL_Property_Meta {
 			if( '' != $this->get_property_rent() && 'yes' == $this->get_property_meta('property_rent_display') && 'leased' != $this->get_property_meta('property_status') ) {
 
 				$price_plain_value = $this->get_property_rent() . '/' . $this->get_property_meta('property_rent_period');
-				if ( ! empty ( $this->get_property_meta('property_rent_view') ) ) {
+				if ( '' == $this->get_property_meta('property_rent_view') ) {
 					$price_plain_value = $this->get_property_rent();
 				}
 
@@ -832,7 +832,7 @@ class EPL_Property_Meta {
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_year_built( $returntype = 'i' ) {
-		if( empty ( $this->get_property_meta('property_year_built') ) )
+		if( $this->get_property_meta('property_year_built') == '' )
 			return;
 		$year_built['i'] = '<span title="'.apply_filters('epl_get_property_year_built_label',__('Built', 'epl') ).'" class="icon year-built"><span class="icon-value">'. $this->get_property_meta('property_year_built') . '</span></span>';
 		$year_built['d'] = apply_filters('epl_get_property_year_built_label',__('Built', 'epl') ) . ' ' . $this->get_property_meta('property_year_built') . ' ';
@@ -849,7 +849,7 @@ class EPL_Property_Meta {
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_bed( $returntype = 'i' ) {
-		if( empty ( $this->get_property_meta('property_bedrooms') ) )
+		if( $this->get_property_meta('property_bedrooms' , false ) == '' )
 			return;
 		$bed['i'] = '<span title="'.apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'epl') ).'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>';
 		$bed['d'] = $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bed_label',__('bed', 'epl') ).' ';
@@ -866,7 +866,7 @@ class EPL_Property_Meta {
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_bath( $returntype = 'i' ) {
-		if( empty ( $this->get_property_meta('property_bathrooms') ) )
+		if( $this->get_property_meta('property_bathrooms' , false ) == '' )
 			return;
 		$bath['i'] = '<span title="'.apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'epl') ).'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>';
 		$bath['d'] = $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bath_label',__('bath', 'epl') ).' ';
@@ -883,7 +883,7 @@ class EPL_Property_Meta {
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_rooms( $returntype = 'i' ) {
-		if( empty ( $this->get_property_meta('property_rooms') ) )
+		if( $this->get_property_meta('property_rooms' , false ) == '' )
 			return;
 		$rooms['i'] = '<span title="'.apply_filters('epl_get_property_rooms_label',__('Rooms', 'epl') ).'" class="icon rooms"><span class="icon-value">'. $this->get_property_meta('property_rooms') . '</span></span>';
 		$rooms['d'] = $this->get_property_meta('property_rooms') . ' '.apply_filters('epl_get_property_rooms_label',__('rooms', 'epl') ).' ';
