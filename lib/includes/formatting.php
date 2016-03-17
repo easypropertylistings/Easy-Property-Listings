@@ -8,7 +8,7 @@
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
-*/
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -49,16 +49,16 @@ function epl_sanitize_amount( $amount ) {
  * Returns a nicely formatted amount.
  *
  * @since 1.0
- * 
+ *
  * @param string $amount   Price amount to format
  * @param string $decimals Whether or not to use decimals.  Useful when set to false for non-currency numbers.
- * 
+ *
  * @return string $amount Newly formatted amount or Price Not Available
  */
 function epl_format_amount( $amount, $decimals = false ) {
 	$thousands_sep = epl_get_thousands_separator();
 	$decimal_sep = epl_get_decimal_separator();
-	
+
 	// Format the amount
 	if ( $decimal_sep == ',' && false !== ( $found = strpos( $amount, $decimal_sep ) ) ) {
 		$whole = substr( $amount, 0, $sep_found );
@@ -74,9 +74,10 @@ function epl_format_amount( $amount, $decimals = false ) {
 	if ( empty( $amount ) ) {
 		$amount = 0;
 	}
-	
+
 	$decimals  = apply_filters( 'epl_format_amount_decimals', $decimals ? 2 : 0, $amount );
-	$formatted = number_format( $amount, $decimals, $decimal_sep, $thousands_sep );
+	if( is_numeric($amount) )
+		$formatted = number_format( $amount, $decimals, $decimal_sep, $thousands_sep );
 
 	return apply_filters( 'epl_format_amount', $formatted, $amount, $decimals, $decimal_sep, $thousands_sep );
 }
@@ -91,7 +92,7 @@ function epl_format_amount( $amount, $decimals = false ) {
 function epl_currency_filter( $price ) {
 	$currency = epl_get_currency();
 	$currency_position = epl_get_currency_position();
-	
+
 	$position = ( isset( $currency_position ) && !empty( $currency_position ) ) ? $currency_position : 'before';
 
 	$negative = $price < 0;
