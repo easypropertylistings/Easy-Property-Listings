@@ -247,7 +247,7 @@ class EPL_Property_Meta {
 	 * @return string formatted auction date
 	 */
 	public function get_property_auction( $admin=false ) {
-		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F \a\t g:i a';
+		$format = $admin == true ? apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a') : apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a');
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
@@ -389,7 +389,7 @@ class EPL_Property_Meta {
 			if(isset($this->meta['property_date_available'][0])) {
 				if ( '' != $this->meta['property_date_available'][0] ) {
 					if(time() > strtotime($this->meta['property_date_available'][0]) ) {
-						return __('Now','epl');
+						return apply_filters( 'epl_property_sub_title_available_now_label' , __('now','epl') );
 					} else {
 						return apply_filters('epl_get_property_available',date( $format, strtotime($this->meta['property_date_available'][0]) ));
 					}
@@ -509,8 +509,9 @@ class EPL_Property_Meta {
 			if( '' != $this->get_property_rent() && 'yes' == $this->get_property_meta('property_rent_display') && 'leased' != $this->get_property_meta('property_status') ) {
 
 				$price_plain_value = $this->get_property_rent() . '/' . $this->get_property_meta('property_rent_period');
-				if ( '' == $this->get_property_meta('property_rent_view') ) {
-					$price_plain_value = $this->get_property_rent();
+				if ( '' != $this->get_property_meta('property_rent_view') ) {
+					//$price_plain_value = $this->get_property_rent();
+					$price_plain_value = $this->get_property_meta('property_rent_view');
 				}
 
 				if($this->get_property_bond() != '' && $this->epl_settings['display_bond'] == 'yes')
