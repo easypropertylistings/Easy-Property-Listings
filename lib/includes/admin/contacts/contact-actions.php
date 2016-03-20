@@ -966,7 +966,7 @@ function epl_contact_get_activities_html( $contact , $number = 10 , $paged = 1 ,
 					</tr>
 				<?php endforeach; ?>
 			<?php else: ?>
-				<tr><td colspan="5"><?php _e( 'No Listings Found', 'epl' ); ?></td></tr>
+				<tr><td colspan="5"><?php _e( 'No Activities', 'epl' ); ?></td></tr>
 			<?php endif; ?>
 			</tbody>
 		</table>
