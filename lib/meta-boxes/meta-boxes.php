@@ -141,7 +141,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('Second Listing Agent', 'epl'),
 							'type'		=>	'text',
 							'maxlength'	=>	'40',
-                            'help'      =>  __('type in input box to search agent ...','epl')
+							'help'		=>	__('Search for secondary agent.','epl')
 						),
 
 						array(
@@ -1500,7 +1500,7 @@ function epl_meta_box_init() {
 
 		array(
 			'id'		=>	'epl-owner-listings-section-id',
-			'label'		=>	__('Listing Owner', 'epl'),
+			'label'		=>	__('Linked Contact', 'epl'),
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
 			'context'	=>	'side',
 			'priority'	=>	'default',
@@ -1514,7 +1514,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_owner',
 							'label'		=>	__('Propery Owner ID','epl'),
 							'type'		=>	'text',
-							'help'      =>  __('type contact names to search ... ','epl')
+							'help'		=>	__('Search for contact and update to save.','epl')
 						),
 					)
 				)

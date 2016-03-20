@@ -888,7 +888,7 @@ class EPL_Property_Meta {
 			return;
 		$rooms['i'] = '<span title="'.apply_filters('epl_get_property_rooms_label',__('Rooms', 'epl') ).'" class="icon rooms"><span class="icon-value">'. $this->get_property_meta('property_rooms') . '</span></span>';
 		$rooms['d'] = $this->get_property_meta('property_rooms') . ' '.apply_filters('epl_get_property_rooms_label',__('rooms', 'epl') ).' ';
-		$rooms['l'] = '<li class="rooms">' . apply_filters('epl_get_property_rooms_label',__('rooms', 'epl') ).'</li>';
+		$rooms['l'] = '<li class="rooms">' . $this->get_property_meta('property_rooms') . ' ' . apply_filters('epl_get_property_rooms_label',__('rooms', 'epl') ).'</li>';
 
 		return apply_filters('epl_get_property_rooms',$rooms[$returntype]);
 	}
@@ -1034,7 +1034,7 @@ class EPL_Property_Meta {
 		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
 			$label = apply_filters('epl_get_property_land_area_label',__('Land is', 'epl') );
 			$return = '
-				<li class="land-size">'. $label.' ' . epl_format_amount($this->get_property_meta('property_land_area') ) .' '.$property_land_area_unit.'</li>';
+				<li class="land-size">'. $label.' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'</li>';
 
 			return apply_filters('epl_get_property_land_value',$return);
 		}
@@ -1060,7 +1060,7 @@ class EPL_Property_Meta {
 			$label = apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'epl') );
 			$return = '
 			<li class="land-size">'.$label.' ' .
-                epl_format_amount( $this->get_property_meta('property_building_area') ) .' '.$building_unit.
+                $this->get_property_meta('property_building_area') .' '.$building_unit.
 			'</li>';
 			return apply_filters('epl_get_property_building_area_value',$return);
 		}
