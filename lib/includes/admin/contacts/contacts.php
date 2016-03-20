@@ -594,7 +594,7 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-wpuser-details',
-									'help'		=>	__('WP User' , 'epl') . '<hr/>',
+									'help'		=>	__('Author' , 'epl') . '<hr/>',
 									'fields'	=>	apply_filters('epl_contact_wpuser_info_fields',
 										array(
 											array(

@@ -8,6 +8,7 @@ $new_fields_defaults = array(
 	'custom_inspection_time_format'		=> 'h:i a',
 	'epl_video_width'			=> 600,
 	'min_contact_access'			=> 'level_10',
+	'min_reports_access'			=> 'level_10',
 );
 
 foreach($new_fields_defaults as $key	=>	$value) {
