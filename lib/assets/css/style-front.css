@@ -745,7 +745,7 @@ li.tbhead.current {
 }
 .epl-search-form .epl-search-row-half,
 .epl-search-form .epl-search-row-third {
-	width: 49%;
+	width: 48.6%;
 }
 .epl-search-form .epl-search-row-third {
 	width: 32%;
@@ -763,7 +763,7 @@ li.tbhead.current {
 }
 .epl-search-form .check-label {
 	font-size: 0.7em;
-	padding-top: 0.4em;
+	padding-top: 0;
 }
 .epl-search-form .epl-search-other {
 	margin-top: 6px;
