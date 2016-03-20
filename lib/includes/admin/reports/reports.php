@@ -82,7 +82,7 @@ function epl_get_reporting_view( $default = 'property' ) {
  */
 function epl_reports_tab_reports() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		wp_die( __( 'You do not have permission to access this report', 'epl' ), __( 'Error', 'epl' ), array( 'response' => 403 ) );
 	}
 
@@ -105,7 +105,7 @@ add_action( 'epl_reports_tab_reports', 'epl_reports_tab_reports' );
  */
 function epl_report_views() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		return;
 	}
 
@@ -137,7 +137,7 @@ function epl_report_views() {
  */
 function epl_reports_property() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		return;
 	}
 	?>
@@ -157,7 +157,7 @@ add_action( 'epl_reports_view_property', 'epl_reports_property' );
  */
 function epl_reports_rental() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		return;
 	}
 	?>
@@ -177,7 +177,7 @@ add_action( 'epl_reports_view_rental', 'epl_reports_rental' );
  */
 function epl_reports_land() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		return;
 	}
 	?>
@@ -197,7 +197,7 @@ add_action( 'epl_reports_view_land', 'epl_reports_land' );
  */
 function epl_reports_commercial() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		return;
 	}
 	?>
@@ -217,7 +217,7 @@ add_action( 'epl_reports_view_commercial', 'epl_reports_commercial' );
  */
 function epl_reports_commercial_land() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		return;
 	}
 	?>
@@ -237,7 +237,7 @@ add_action( 'epl_reports_view_commercial_land', 'epl_reports_commercial_land' );
  */
 function epl_reports_business() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		return;
 	}
 	?>
@@ -257,7 +257,7 @@ add_action( 'epl_reports_view_business', 'epl_reports_business' );
  */
 function epl_reports_rural() {
 
-	if( ! current_user_can( 'manage_options' ) ) {
+	if ( ! is_admin() || ! epl_reports_access() ) {
 		return;
 	}
 	?>
@@ -268,3 +268,14 @@ function epl_reports_rural() {
 	epl_reports_graph('sold','current','#e50000','#a5df41');
 }
 add_action( 'epl_reports_view_rural', 'epl_reports_rural' );
+
+/**
+ * Reports Access Roles
+ *
+ * @since  3.0
+ */
+function epl_reports_access() {
+	$allowed = epl_get_option('min_reports_access');
+	$allowed = empty($allowed) ? 'level_10' : $allowed;
+	return current_user_can($allowed) ? true : false;
+}
