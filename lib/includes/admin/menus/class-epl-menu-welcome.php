@@ -238,7 +238,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Fix: Date Available fix for year.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_available filter allows customising date format.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: External links function improved.', 'epl' );?></li>
-						<li><?php _e( 'Tweak: Added additional plugn file security access to prevent file reading outside of WordPress.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Added additional plugin file security access to prevent file reading outside of WordPress.', 'epl' );?></li>
 						<li><?php _e( 'Fix: Number Formatting function PHP warning fixed.', 'epl' );?></li>
 						<li><?php _e( 'Fix: is_epl_post function to prevent error when no posts are activated.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Commercial auction listing support.', 'epl' );?></li>
@@ -252,7 +252,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Link a contact with a listing and display details and quick access to contact.', 'epl' );?></li>
 						<li><?php _e( 'New: Error tracking and debug logging helper functions.', 'epl' );?></li>
 						<li><?php _e( 'New: Form API supports sections breaks.', 'epl' );?></li>
-						<li><?php _e( 'New: Contextual help tab added to Add/Edit Listin page.', 'epl' );?></li>
+						<li><?php _e( 'New: Contextual help tab added to Add/Edit Listing page.', 'epl' );?></li>
 						<li><?php _e( 'New: Inspection date format now customisable from settings.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Extension license updater updated.', 'epl' );?></li>
 						<li><?php _e( 'Tweak Added additional map CSS classes to improve Google Map output with some themes.', 'epl' );?></li>
@@ -279,6 +279,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Generate visual reports on your listing KPI status so you can track your listings and sales.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: [listing_search] shortcode using new API and allows for custom templates. Place the template in themes/your_theme/easypropertylistings/templates/ folder.', 'epl' );?></li>
 						<li><?php _e( 'Tweak: Enhanced Search Object thanks to codewp allows widget template override.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Building value now accepts decimal.', 'epl' );?></li>
 						<li><?php _e( 'New: Search Widget and [listing_search] shortcode allows for property status option.', 'epl' );?></li>
 						<li><?php _e( 'New: Search template now editable using epl_get_template_part.', 'epl' );?></li>
 						<li><?php _e( 'New: Search widget and [listing_search] shortcode order option added to allow adjusting of field order.', 'epl' );?></li>
@@ -319,6 +320,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: epl_get_property_bond Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_land_category Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_commercial_auction_label Filter.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_get_property_auction_date Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_price_plain_value Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_price Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_price_sticker Filter.', 'epl' );?></li>
@@ -353,7 +355,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: epl_get_property_new_construction_label Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_new_construction Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_com_car_spaces_label Filter.', 'epl' );?></li>
-						<li><?php _e( 'New: Dynamic filter for additional features epl_get_{meta_key}_label', 'epl' );?></li>
+						<li><?php _e( 'New: Dynamic additional features epl_get_{meta_key}_label Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_additional_features_html Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_additional_rural_features_html Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_additional_commerical_features_html Filter.', 'epl' );?></li>
@@ -361,6 +363,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: epl_checkbox_single_check_options Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_property_sub_title_plus_outgoings_label Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_property_sub_title_available_from_label Filter.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_property_sub_title_available_now_label Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_formatted_property_address filter Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_category  Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_tax Filter.', 'epl' );?></li>
