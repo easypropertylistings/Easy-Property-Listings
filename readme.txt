@@ -240,7 +240,7 @@ Tweak: Sold price displays in admin.
 Fix: Date Available fix for year.
 New: epl_get_property_available filter allows customising date format.
 Tweak: External links function improved.
-Tweak: Added additional plugn file security access to prevent file reading outside of WordPress.
+Tweak: Added additional plugin file security access to prevent file reading outside of WordPress.
 Fix: Number Formatting function PHP warning fixed.
 Fix: is_epl_post function to prevent error when no posts are activated.
 Tweak: Commercial auction listing support.
@@ -254,7 +254,7 @@ Tweak: Code Docblocks created for http://docs.easypropertylistings.com.au code r
 New: Link a contact with a listing and display details and quick access to contact.
 New: Error tracking and debug logging helper functions.
 New: Form API supports sections breaks.
-New: Contextual help tab added to Add/Edit Listin page.
+New: Contextual help tab added to Add/Edit Listing page.
 New: Inspection date format now customisable from settings.
 Tweak: Extension license updater updated.
 Tweak Added additional map CSS classes to improve Google Map output with some themes.
@@ -293,14 +293,14 @@ New: Search widget and [listing_search] shortcode support single drop down selec
 Fix: Session start less likely to cause issues with certain server configurations.
 Fix: listing_open shortcode no longer displays sold or leased listings.
 New: Additional customisation of shortcode-listing.php template part.
-Tweak: Listing Shortcode adjusted for better processing of options
-New: [listing_auction] shortcode
+Tweak: Listing Shortcode adjusted for better processing of options.
+New: [listing_auction] shortcode.
 New: Contact shortcode. [epl_contact_form]
 New: Contact Form Widget.
 New: Sort by location A-Z added to front end listing filter.
 Tweak: iThemes Builder archive-listing.php and single-listing.php templates updated to improve render_content theme function.
 New: Allow extensions to use core templates for output.
-Fix: Added translation string for P.A. label
+Fix: Added translation string for P.A. label.
 Fix: Translation of land size unit.
 Tweak: LinkedIn will use full URL or fallback.
 New: Default embedded video width adjustable from settings.
@@ -311,58 +311,61 @@ Fix: Stray ul tag with search widget tabbing.
 Tweak: Improved get_additional_features_html function for additional features and added epl_get_additional_features_html filter
 New: Contact tags taxonomy added for creating your own contact tags.
 Tweak: Listing heading function enhanced for other post types.
+Tweak: Building value now accepts decimal.
 New: epl_get_property_feature_taxonomy filter allowing adjustment of listing features.
 New: epl_get_property_auction filter allows adjustment of auction date format.
 New: epl_get_property_auction_label filter to adjust the Auction label.
-New: epl_get_property_price_display Filter
-New: epl_get_property_price_sold_display Filter
-New: epl_get_property_price_sold_date Filter
-New: epl_get_property_rent Filter
-New: epl_get_property_bond Filter
-New: epl_get_property_land_category Filter
-New: epl_commercial_auction_label Filter
-New: epl_get_price_plain_value Filter
-New: epl_get_price Filter
-New: epl_get_price_sticker Filter
-New: epl_get_price_in_list Filter
-New: epl_get_property_commercial_category Filter
-New: epl_get_property_year_built_label Filter
-New: epl_get_property_year_built Filter
-New: epl_get_property_bath_label Filter
-New: epl_get_property_bathrooms_label Filter
-New: epl_get_property_bath Filter
-New: epl_get_property_bed_label Filter
-New: epl_get_property_bedrooms_label Filter
-New: epl_get_property_bed Filter
-New: epl_get_property_rooms_label Filter
-New: epl_get_property_rooms Filter
-New: epl_get_parking_spaces_label Filter
-New: epl_get_property_parking Filter
-New: epl_get_property_garage_label Filter
-New: epl_get_property_garage Filter
-New: epl_get_property_carport_label Filter
-New: epl_get_property_carport Filter
-New: epl_get_property_air_conditioning_label Filter
-New: epl_get_property_air_conditioning Filter
-New: epl_get_property_pool_label Filter
-New: epl_get_property_pool Filter
-New: epl_get_property_security_system_label Filter
-New: epl_get_property_security_system Filter
-New: epl_get_property_land_area_label Filter
-New: epl_get_property_land_value Filter
-New: epl_get_property_building_area_label Filter
-New: epl_get_property_building_area_value Filter
-New: epl_get_property_new_construction_label Filter
-New: epl_get_property_new_construction Filter
-New: epl_get_property_com_car_spaces_label Filter
-New: Dynamic filter for addiitonal features epl_get_{meta_key}_label
-New: epl_get_additional_features_html Filter
-New: epl_get_additional_rural_features_html Filter
-New: epl_get_additional_commerical_features_html Filter
-New: epl_get_features_from_taxonomy Filter
-New: epl_checkbox_single_check_options Filter
-New: epl_property_sub_title_plus_outgoings_label.
-New: epl_property_sub_title_available_from_label.
+New: epl_get_property_price_display Filter.
+New: epl_get_property_price_sold_display Filter.
+New: epl_get_property_price_sold_date Filter.
+New: epl_get_property_rent Filter.
+New: epl_get_property_bond Filter.
+New: epl_get_property_land_category Filter.
+New: epl_commercial_auction_label Filter.
+New: epl_get_property_auction_date Filter.
+New: epl_get_price_plain_value Filter.
+New: epl_get_price Filter.
+New: epl_get_price_sticker Filter.
+New: epl_get_price_in_list Filter.
+New: epl_get_property_commercial_category Filter.
+New: epl_get_property_year_built_label Filter.
+New: epl_get_property_year_built Filter.
+New: epl_get_property_bath_label Filter.
+New: epl_get_property_bathrooms_label Filter.
+New: epl_get_property_bath Filter.
+New: epl_get_property_bed_label Filter.
+New: epl_get_property_bedrooms_label Filter.
+New: epl_get_property_bed Filter.
+New: epl_get_property_rooms_label Filter.
+New: epl_get_property_rooms Filter.
+New: epl_get_parking_spaces_label Filter.
+New: epl_get_property_parking Filter.
+New: epl_get_property_garage_label Filter.
+New: epl_get_property_garage Filter.
+New: epl_get_property_carport_label Filter.
+New: epl_get_property_carport Filter.
+New: epl_get_property_air_conditioning_label Filter.
+New: epl_get_property_air_conditioning Filter.
+New: epl_get_property_pool_label Filter.
+New: epl_get_property_pool Filter.
+New: epl_get_property_security_system_label Filter.
+New: epl_get_property_security_system Filter.
+New: epl_get_property_land_area_label Filter.
+New: epl_get_property_land_value Filter.
+New: epl_get_property_building_area_label Filter.
+New: epl_get_property_building_area_value Filter.
+New: epl_get_property_new_construction_label Filter.
+New: epl_get_property_new_construction Filter.
+New: epl_get_property_com_car_spaces_label Filter.
+New: Dynamic additional features epl_get_{meta_key}_label Filter.
+New: epl_get_additional_features_html Filter.
+New: epl_get_additional_rural_features_html Filter.
+New: epl_get_additional_commerical_features_html Filter.
+New: epl_get_features_from_taxonomy Filter.
+New: epl_checkbox_single_check_options Filter.
+New: epl_property_sub_title_plus_outgoings_label Filter.
+New: epl_property_sub_title_available_from_label Filter.
+New: epl_property_sub_title_available_now_label Filer.
 New: epl_get_formatted_property_address filter.
 New: epl_get_property_category filter.
 New: epl_get_property_tax.
@@ -378,10 +381,10 @@ New: epl_pagination_after_page_numbers filter.
 New: epl_pagination_single_content_text Filter
 New: epl_pagination_single_tag Filter.
 New: epl_pagination_single Filter.
-New: epl_pagination_single_dot_tag Filter
-New: epl_pagination_single_dot_content Filter
-New: epl_pagination_single_dot_attributes Filter
-New: epl_pagination_single_dot Filter
+New: epl_pagination_single_dot_tag Filter.
+New: epl_pagination_single_dot_content Filter.
+New: epl_pagination_single_dot_attributes Filter.
+New: epl_pagination_single_dot Filter.
 
 = 2.3.1 October 5, 2015 =
 
