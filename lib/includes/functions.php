@@ -1502,7 +1502,22 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'label'	=>	__('Contact Access Level', 'epl'),
 					'type'	=>	'radio',
 					'opts'	=>	$roles,
-					'help'  =>  __('roles to manage contacts ', 'epl')
+				),
+
+			),
+			'default'	=>	'administrator',
+		),
+
+		array(
+			'label'		=>	__('Reports Settings' , 'epl'),
+			'class'		=>	'core',
+			'id'		=>	'reports',
+			'fields'	=>	array(
+				array(
+					'name'	=>	'min_reports_access',
+					'label'	=>	__('Reports Access Level', 'epl'),
+					'type'	=>	'radio',
+					'opts'	=>	$roles,
 				),
 
 			),

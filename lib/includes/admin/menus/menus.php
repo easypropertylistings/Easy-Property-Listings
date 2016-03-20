@@ -45,6 +45,31 @@ function epl_admin_menu() {
 	$menu_slug	= 'epl-settings';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 
+	// Contacts Menu item
+	$page_title	= __('Contacts', 'epl');
+	$menu_title	= __('Contacts', 'epl');
+	$menu_slug	= 'epl-contacts';
+	$function	= 'epl_contacts_page';
+	$this_user	= wp_get_current_user();
+	if ( epl_contact_access() ) {
+		$capability	= $this_user->roles[0];
+		$epl_contact_page_hook = add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+	}
+
+	// Reports Access, $this_user is common with contacts
+	$page_title	= __('Reports', 'epl');
+	$menu_title	= __('Reports', 'epl');
+	$capability	= 'edit_published_posts';
+	$menu_slug	= 'epl-reports';
+	$function	= 'epl_reports_page';
+	if ( epl_reports_access() ) {
+		$capability	= $this_user->roles[0];
+		$epl_reports_page_hook = add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+	}
+
+	// Administrator and above can see these options
+	$capability	= 'manage_options';
+
 	// Enable Menu if extension requires extension options
 	if ( has_filter( 'epl_extensions_options_filter_new' ) ) {
 		$page_title	= __('Extensions', 'epl');
@@ -72,35 +97,13 @@ function epl_admin_menu() {
 		add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	}
 
-	// Editor level and above can see these options
+	// Author level and above can see these options
 	$page_title	= __('Add Ons', 'epl');
 	$menu_title	= __('Add Ons', 'epl');
 	$capability	= 'edit_published_posts';
 	$menu_slug	= 'epl-addons';
 	$function	= 'epl_menu_addons';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
-
-	// Editor level and above can see these options
-	$page_title	= __('Contacts', 'epl');
-	$menu_title	= __('Contacts', 'epl');
-	$menu_slug	= 'epl-contacts';
-	$function	= 'epl_contacts_page';
-	$this_user = wp_get_current_user();
-	if ( epl_contact_access() ) {
-		$capability	= $this_user->roles[0];
-		$epl_contact_page_hook = add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
-	}
-
-
-
-	// Editor level and above can see these options
-	$page_title	= __('Reports', 'epl');
-	$menu_title	= __('Reports', 'epl');
-	$capability	= 'edit_published_posts';
-	$menu_slug	= 'epl-reports';
-	$function	= 'epl_reports_page';
-	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
-
 
 }
 
