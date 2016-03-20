@@ -408,7 +408,7 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_building_area',
 							'label'		=>	__('Building Area', 'epl'),
-							'type'		=>	'number',
+							'type'		=>	'decimal',
 							'maxlength'	=>	'50'
 						),
 
