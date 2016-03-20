@@ -247,7 +247,7 @@ class EPL_Property_Meta {
 	 * @return string formatted auction date
 	 */
 	public function get_property_auction( $admin=false ) {
-		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F \a\t g:i a';
+		$format = $admin == true ? apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a') : apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a');
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
