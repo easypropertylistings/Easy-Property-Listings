@@ -1,4 +1,12 @@
 <?php
+/**
+ * The Template for displaying all Easy Property Listings single posts with the iThemes Builder Theme Framework
+ *
+ * @package EPL
+ * @subpackage Templates/Themes/iThemesBuilder
+ * @since 1.0
+ */
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 

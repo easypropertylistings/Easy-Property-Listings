@@ -313,6 +313,21 @@ class EPL_Welcome {
 						<li><?php _e( 'New: epl_get_property_feature_taxonomy filter allowing adjustment of listing features.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_auction filter allows adjustment of auction date format.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_auction_label filter to adjust the Auction label.', 'epl' );?></li>
+						<li><?php _e( 'New: Support for Twenty Sixteen theme.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: Active theme function enhanced for older WordPress versions.', 'epl' );?></li>
+						<li><?php _e( 'New: Templates added for Twenty Fourteen Theme to improve display.', 'epl' );?></li>
+						<li><?php _e( 'New: Archive title action added for easier implementation and filters to adjust output.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_feedsync_format_strip_currency function to strip currency during import with epl_feedsync_format_strip_currency_symbol filter to modify string replacement search.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_archive_title_search_result Filter, default "Search Result".', 'epl' );?></li>
+						<li><?php _e( 'New: epl_archive_title_fallback Filter, default "Listing".', 'epl' );?></li>
+						<li><?php _e( 'New: epl_archive_title_default Filter.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_get_active_theme Filter.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_active_theme Filter.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_active_theme_name Filter.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_active_theme_prefix Filter.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_archive_title_fallback Filer.', 'epl' );?></li>
+						<li><?php _e( 'Tweak: epl_strip_tags function added filter to adjust HTML tag stripping.', 'epl' );?></li>
+						<li><?php _e( 'New: epl_contact_form_description_allowed_tags Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_price_display Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_price_sold_display Filter.', 'epl' );?></li>
 						<li><?php _e( 'New: epl_get_property_price_sold_date Filter.', 'epl' );?></li>

@@ -1,11 +1,15 @@
 <?php
-/*
- * Archive Template for Author Profile : author.php
+/**
+ * The Template for displaying the author posts with the Genesis Theme Framework
+ *
+ * @package EPL
+ * @subpackage Templates/Themes/Genesis
+ * @since 1.0
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
- 
+
 get_header(); ?>
 
 <div id="primary" class="site-content">
@@ -17,7 +21,7 @@ get_header(); ?>
 				<h4 class="loop-title">
 					<?php
 						the_post();
-						
+
 						if ( is_category() ) { // Category Archive
 							$title = sprintf( __( 'Archive for %s', 'it-l10n-Builder-Threads' ), single_cat_title( '', false ) );
 						}
@@ -48,17 +52,17 @@ get_header(); ?>
 						else { // Default catchall just in case
 							$title = __( 'Archive', 'it-l10n-Builder-Threads' );
 						}
-						
+
 						if ( is_paged() )
 							printf( '%s &ndash; Page %d', $title, get_query_var( 'paged' ) );
 						else
 							echo $title;
-						
+
 						rewind_posts();
 					?>
 				</h4>
 			</div>
-			
+
 			<div class="loop-content">
 				<?php
 					while ( have_posts() ) : // The Loop
@@ -73,7 +77,7 @@ get_header(); ?>
 										do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', __( 'Comments %s', 'it-l10n-Builder-Threads' ), __( '(0)', 'it-l10n-Builder-Threads' ), __( '(1)', 'it-l10n-Builder-Threads' ), __( '(%)', 'it-l10n-Builder-Threads' ) );
 									?>
 								</div>
-						
+
 								<div class="entry-meta date">
 									<span class="weekday"><?php the_time( 'l' ); ?><span class="weekday-comma">,</span></span>
 									<span class="month"><?php the_time( 'F' ); ?></span>
@@ -81,12 +85,12 @@ get_header(); ?>
 									<span class="year"><?php the_time( 'Y' ); ?></span>
 								</div>
 							</div>
-					
+
 							<!-- post content -->
 							<div class="entry-content clearfix">
 								<?php the_excerpt(); ?>
 							</div>
-					
+
 							<!-- categories, tags and comments -->
 							<div class="entry-footer clearfix">
 								<?php do_action( 'builder_comments_popup_link', '<div class="entry-meta alignright"><span class="comments">', '</span></div>', __( 'Comments %s', 'it-l10n-Builder-Threads' ), __( '(0)', 'it-l10n-Builder-Threads' ), __( '(1)', 'it-l10n-Builder-Threads' ), __( '(%)', 'it-l10n-Builder-Threads' ) ); ?>
@@ -97,12 +101,12 @@ get_header(); ?>
 							</div>
 						</div>
 						<!-- end .post -->
-				
+
 						<?php comments_template(); // include comments template
 					endwhile; // end of one post
 				?>
 			</div>
-			
+
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
