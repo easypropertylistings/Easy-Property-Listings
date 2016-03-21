@@ -1543,20 +1543,41 @@ add_action('epl_pagination','epl_pagination');
 /**
  * Returns active theme name as a css class for use in default templates
  *
+ * @since 3.0
+ */
+function epl_get_active_theme() {
+	if ( function_exists( 'wp_get_theme' ) ) { // wp version >= 3.4
+		$active_theme = wp_get_theme();
+		$active_theme = $active_theme->get( 'Name' );
+
+	} else {
+		// older versions
+		$active_theme = get_current_theme();
+	}
+	$active_theme = str_replace(' ','',strtolower($active_theme));
+	return apply_filters('epl_active_theme', $active_theme);
+}
+/**
+ * Returns active theme name as a css class with prefix  for use in default templates
+ *
  * @since 2.1.2
  */
 function epl_get_active_theme_name() {
-	$epl_class_prefix = 'epl-active-theme-';
-	$epl_class_unknown = 'unknown';
-	if ( function_exists( 'wp_get_theme' ) ) {
-		$active_theme = wp_get_theme();
-		$active_theme = preg_replace('/\W+/','',strtolower(strip_tags($active_theme)));
-		return $epl_class_prefix . $active_theme;
-	} else {
-		return $epl_class_prefix . $epl_class_unknown;
-	}
+	$epl_class_prefix = apply_filters('epl_active_theme_prefix','epl-active-theme-');
+	$active_theme = epl_get_active_theme();
+	return apply_filters('epl_active_theme_name',$epl_class_prefix . $active_theme);
 }
+/**
+ * Add extra class for twentysixteen theme
+ */
+function epl_active_theme_name_twentysixteen($class) {
 
+	if( epl_get_active_theme() == 'twentysixteen') {
+		$class = $class.' content-area';
+	}
+	return $class;
+}
+add_filter('epl_active_theme_name','epl_active_theme_name_twentysixteen');
 /**
  * Pagination fix for home
  *
