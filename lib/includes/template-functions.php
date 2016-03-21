@@ -1546,15 +1546,16 @@ add_action('epl_pagination','epl_pagination');
  * @since 2.1.2
  */
 function epl_get_active_theme_name() {
-	$epl_class_prefix = 'epl-active-theme-';
-	$epl_class_unknown = 'unknown';
-	if ( function_exists( 'wp_get_theme' ) ) {
+	$epl_class_prefix = apply_filters('epl_active_theme_prefix','epl-active-theme-');
+	if ( function_exists( 'wp_get_theme' ) ) { // wp version >= 3.4
 		$active_theme = wp_get_theme();
-		$active_theme = preg_replace('/\W+/','',strtolower(strip_tags($active_theme)));
-		return $epl_class_prefix . $active_theme;
+		$active_theme = strtolower($active_theme->get( 'Name' ));
+
 	} else {
-		return $epl_class_prefix . $epl_class_unknown;
+		// older versions
+		$active_theme = strtolower( get_current_theme() );
 	}
+	return apply_filters('epl_active_theme_name',$epl_class_prefix . $active_theme);
 }
 
 /**
