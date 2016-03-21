@@ -655,6 +655,24 @@ function epl_feedsync_format_sub_number( $sub_value ) {
 }
 
 /**
+ * REAXML convert currency to integer
+ *
+ * Processing Function for WP All Import and FeedSync
+ *
+ * @since 3.0
+ * @return integer
+ */
+function epl_feedsync_format_strip_currency( $value ) {
+	if ( $value ) {
+		$value = preg_replace('/[\$,]/', '', $value);
+		$value = floatval($value);
+		return $value;
+	}
+	return;
+}
+
+
+/**
  * Offers presented on settings page, removed if extension is present and activated
  *
  * @since 2.0
