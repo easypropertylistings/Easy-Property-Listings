@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function epl_register_custom_post_type_contact() {
 
 	$archives = defined( 'EPL_CONTACT_DISABLE_ARCHIVE' ) && EPL_CONTACT_DISABLE_ARCHIVE ? false : true;
-	$slug     = defined( 'EPL_CONTACT_SLUG' ) ? EPL_CONTACT_SLUG : 'contact';
+	$slug     = defined( 'EPL_CONTACT_SLUG' ) ? EPL_CONTACT_SLUG : 'epl-contact';
 	$rewrite  = defined( 'EPL_CONTACT_DISABLE_REWRITE' ) && EPL_CONTACT_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_contact_labels', array(
