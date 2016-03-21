@@ -3,11 +3,11 @@ Author URI: http://www.realestateconnected.com.au/
 Plugin URI: https://easypropertylistings.com.au/
 Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
-Tags: real estate, property, listings, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, contact, crm, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
+Tags: real estate, property, listings, CRM, contact management, reports, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, contact, crm, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.8
 Tested up to: 4.5
 
-Stable Tag: 2.97
+Stable Tag: 2.98
 
 License: GNU Version 2 or Any Later Version
 
@@ -32,6 +32,8 @@ You should also check out the Local SEO, News SEO and Video SEO extensions to Wo
 
 **Features:**
 
+* Contact CRM System for managing leads and contacts.
+* Reports for tracking listings, rentals, sales and more.
 * Multiple listing types are supported because not everyone is a residential properties specialist. You can list rentals, commercial, land, rural and businesses just as easily.
 * Flexible pricing options like "no price", POA and necessary real estate options like under offer & auction.
 * A fast and efficient plugin written using WordPress standards.
@@ -69,6 +71,8 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_search]
 * [listing_feature]
 * [listing_location]
+* [listing_auction]
+* [epl_contact_form]
 
 <strong>Listing</strong><br>
  The [listing] shortcode allows you to output your listings on pages and posts with advanced filtering options for listing types, order, status filtering, locations and much more which you can [read about the settings and options here](https://easypropertylistings.com.au/docs/listing-short-code/?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg).
@@ -96,6 +100,7 @@ Use any theme you want which means you can use your creativity and build beautif
 * Developer friendly with dozens of actions and filters.
 * Custom labels for everything and full translation support.
 * Supports REAXML, JUPIX and worldwide MLS systems.
+* Hundreds of filters to modify the default behaviour of the plugin.
 
 **Extensions and add-ons**
 
@@ -312,6 +317,21 @@ Tweak: Improved get_additional_features_html function for additional features an
 New: Contact tags taxonomy added for creating your own contact tags.
 Tweak: Listing heading function enhanced for other post types.
 Tweak: Building value now accepts decimal.
+New: Support for Twenty Sixteen theme.
+Tweak: Active theme function enhanced for older WordPress versions.
+New: Templates added for Twenty Fourteen Theme to improve display.
+New: Archive title action added for easier implementation and filters to adjust output.
+New: epl_feedsync_format_strip_currency function to strip currency during import with epl_feedsync_format_strip_currency_symbol filter to modify string replacement search.
+New: epl_archive_title_search_result Filter, default “Search Result”.
+New: epl_archive_title_fallback Filter, default “Listing”.
+New: epl_archive_title_default Filter.
+New: epl_get_active_theme Filter.
+New: epl_active_theme Filter.
+New: epl_active_theme_name Filter.
+New: epl_active_theme_prefix Filter.
+New: epl_archive_title_fallback Filer.
+Tweak: epl_strip_tags function added filter to adjust HTML tag stripping.
+New: epl_contact_form_description_allowed_tags Filter.
 New: epl_get_property_feature_taxonomy filter allowing adjustment of listing features.
 New: epl_get_property_auction filter allows adjustment of auction date format.
 New: epl_get_property_auction_label filter to adjust the Auction label.

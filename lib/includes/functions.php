@@ -664,7 +664,7 @@ function epl_feedsync_format_sub_number( $sub_value ) {
  */
 function epl_feedsync_format_strip_currency( $value ) {
 	if ( $value ) {
-		$value = preg_replace('/[\$,]/', '', $value);
+		$value = preg_replace( apply_filters( 'epl_feedsync_format_strip_currency_symbol' , '/[\$,]/' ) , '', $value);
 		$value = floatval($value);
 		return $value;
 	}
