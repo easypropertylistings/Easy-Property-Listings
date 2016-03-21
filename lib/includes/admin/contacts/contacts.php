@@ -387,7 +387,10 @@ function epl_contact_meta_view($contact) {
 
 						<?php
 							$contact_meta_fields = new EPL_FORM_BUILDER();
-
+							$contact_phones = $contact->get_meta('contact_phones');
+							$contact_phone  = isset($contact_phones['phone']) ? $contact_phones['phone'] : '';
+							$contact_emails = $contact->get_meta('contact_emails');
+							$contact_email  = isset($contact_emails['email']) ? $contact_emails['email'] : '';
 							$fields = array(
 								array(
 									'class'		=>	'col-1 epl-inner-div',
@@ -445,7 +448,7 @@ function epl_contact_meta_view($contact) {
 												'type'		=>	'text',
 												'class'		=>	'epl-contact-addable',
 												'maxlength'	=>	'60',
-												'value'		=>	$contact->get_meta('contact_phones')['phone']
+												'value'		=>	$contact_phone
 											),
 
 											array(
@@ -454,7 +457,7 @@ function epl_contact_meta_view($contact) {
 												'type'		=>	'email',
 												'class'		=>	'epl-contact-addable-email',
 												'maxlength'	=>	'60',
-												'value'		=>	$contact->get_meta('contact_emails')['email']
+												'value'		=>	$contact_email
 											),
 
 											array(
@@ -591,17 +594,19 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-wpuser-details',
-									'help'		=>	__('WP User' , 'epl') . '<hr/>',
+									'help'		=>	__('Author' , 'epl') . '<hr/>',
 									'fields'	=>	apply_filters('epl_contact_wpuser_info_fields',
 										array(
 											array(
 												'name'		=>	'contact_wp_user',
+												'id'		=>	'epl_contact_wp_user',
 												'type'		=>	'text',
 												'autocomplete'	=>	'off',
 												'value'		=>	$contact->get_meta('contact_wp_user')
 											),
 											array(
 												'name'		=>	'contact_wp_user_id',
+												'id'		=>	'epl_contact_wp_user_id',
 												'type'		=>	'hidden',
 												'value'		=>	$contact->get_meta('contact_wp_user_id')
 											),
