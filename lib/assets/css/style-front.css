@@ -51,7 +51,6 @@ h3.property-address {
 .address.alignright {
 	margin-bottom: 0;
 }
-
 /* Property Cards & Blog*/
 .property-box .entry-title {
 	margin-top: 0;
@@ -270,7 +269,7 @@ h3.property-address {
 	border-bottom: 3px double #ccc;
 	margin-bottom: 0.8em;
 }
-/* Twenty 13 CSS Fix */
+/* Twenty Thirteen CSS Fix */
 .sidebar .epl-listing-post .entry-header,
 .sidebar .epl-listing-post .entry-content,
 .sidebar .epl-widget .entry-header,
@@ -292,7 +291,7 @@ h3.property-address {
 .sidebar .widget_epl_tm_testimonial .entry-summary {
 	padding: 0;
 }
-/* Twenty 12 */
+/* Twenty Twelve */
 .epl-active-theme-twentytwelve.epl-archive-default .epl-listing-grid-view.epl-property-blog {
 	margin: 0 2% 2% 0;
 	padding: 2% !important;
@@ -300,7 +299,7 @@ h3.property-address {
 	min-height: 494px;
 	font-size: 0.9em;
 }
-/* Twenty 13 */
+/* Twenty Thirteen */
 .epl-active-theme-twentythirteen .loop-footer {
 	margin: 0 auto;
 	max-width: 604px;
@@ -318,15 +317,26 @@ h3.property-address {
 	padding-left: 0;
 	padding-right: 0;
 }
-
-/* Twenty 15 */
+/* Twenty Fourteen */
+.epl-active-theme-twentyfourteen.epl-archive-default .page-header,
+.epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog,
+.epl-active-theme-twentyfourteen.epl-archive-default .epl-switching-sorting-wrap  {
+	max-width: 774px;
+}
+.epl-active-theme-twentyfourteen.epl-archive-default .epl-switching-sorting-wrap  {
+	margin: 0 auto;
+}
+.full-width .epl-active-theme-twentyfourteen .site-content .hentry.epl-listing-single:first-child {
+	margin-top: 0;
+}
+/* Twenty Fifteen */
 .epl-active-theme-twentyfifteen.epl-archive-default,
 .epl-active-theme-twentyfifteen.epl-single-default {
 	margin: 0;
 	width: 100%;
 }
-.epl-active-theme-twentyfourteen.epl-archive-default .property-box  .entry-title,
-.epl-active-theme-twentyfifteen.epl-archive-default .property-box  .entry-title {
+.epl-active-theme-twentyfourteen.epl-archive-default .property-box .entry-title,
+.epl-active-theme-twentyfifteen.epl-archive-default .property-box .entry-title {
 		font-size: 1.1em;
 		line-height: 1.3;
 }
@@ -378,9 +388,12 @@ h3.property-address {
 	margin: 0;
 	font-size: 0.8em;
 }
-
 .hentry.epl-listing-grid-view + .hentry.epl-listing-grid-view {
 	margin-top: 0;
+}
+/* Twenty 16 */
+.site-content .site-content.epl-active-theme-twentysixteen {
+	padding: 0;
 }
 /* Author Styling */
 .epl-author-archive {
@@ -423,7 +436,6 @@ h3.property-address {
 #tab-1.epl-author-details {
 	padding-top: 0.5em;
 }
-
 .epl-author-box.epl-author-image {
     min-width: 150px;
     padding-right: 1em;
@@ -434,7 +446,6 @@ h3.property-address {
     padding-right: 1em;
     width: 30%;
 }
-
 .epl-author-box.epl-author-bio {
     padding-right: 1em;
     width: 38%;
@@ -1392,7 +1403,6 @@ li.tbhead.current {
 	width:16.6%;
 	float:left;
 }
-
 /**************************************
 	Search Popdown
 **************************************/
@@ -1416,7 +1426,6 @@ li.tbhead.current {
     position: absolute;
     top: -6px;
 }
-
 .epl-popup-box{
     display:none;
     background: #fff none repeat scroll 0 0;
@@ -1470,7 +1479,6 @@ li.tbhead.current {
     width: 100% !important;
     z-index: 9999;
 }
-
 /*****************************
 	EPL Responsive Design
 ******************************/
@@ -1519,7 +1527,6 @@ li.tbhead.current {
 		width: 44%;
 	}
 }
-
 @media screen and (max-width: 500px) {
 	/* Property Card Slim */
 	.epl-property-blog-slim .property-box-left {

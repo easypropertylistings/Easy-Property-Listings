@@ -1570,20 +1570,6 @@ function epl_get_active_theme_name() {
 }
 
 /**
- * Add extra class for twentysixteen theme
- *
- * @since 3.0
- */
-function epl_active_theme_name_twentysixteen($class) {
-
-	if( epl_get_active_theme() == 'twentysixteen') {
-		$class = $class.' content-area';
-	}
-	return $class;
-}
-add_filter('epl_active_theme_name','epl_active_theme_name_twentysixteen');
-
-/**
  * Pagination fix for home
  *
  * @since 2.1.2
@@ -2027,3 +2013,37 @@ function epl_count_total_contacts() {
 	$counts =  wp_count_posts('epl_contact');
 	return $counts->publish;
 }
+
+/**
+ * Archive Page Title
+ *
+ * @since 3.0
+ * @return Output the archive title
+ */
+function epl_archive_title_callback() {
+	the_post();
+
+	if ( is_tax() && function_exists( 'epl_is_search' ) && false == epl_is_search() ) { // Tag Archive
+		$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+		$title = sprintf( __( 'Property in %s', 'epl' ), $term->name );
+	}
+	else if ( function_exists( 'epl_is_search' ) && epl_is_search() ) { // Search Result
+		$title = apply_filters( 'epl_archive_title_search_result' , __( 'Search Result', 'epl' ) );
+	}
+
+	else if ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive
+		$title = post_type_archive_title( '', false );
+	}
+
+	else { // Default catchall just in case
+		$title = apply_filters( 'epl_archive_title_fallback' , __( 'Listing', 'epl' ) );
+	}
+
+	if ( is_paged() )
+		printf( '%s &ndash; Page %d', $title, get_query_var( 'paged' ) );
+	else
+		echo apply_filters( 'epl_archive_title_default' , $title );
+
+	rewind_posts();
+}
+add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
