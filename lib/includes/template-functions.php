@@ -2022,3 +2022,21 @@ function epl_count_total_contacts() {
 	$counts =  wp_count_posts('epl_contact');
 	return $counts->publish;
 }
+
+/**
+ * hide contacts notes from showing on frontend
+ * @since 3.0
+ * @param $comments
+ * @param $post_id
+ *
+ * @return mixed
+ */
+function epl_filter_listing_comments_array($comments , $post_id) {
+	foreach($comments as $key   =>  &$comment) {
+		if( $comment->comment_agent == 'epl' ) {
+			unset($comments[$key]);
+		}
+	}
+	return $comments;
+}
+add_filter( 'comments_array' , 'epl_filter_listing_comments_array' , 10, 2 );
