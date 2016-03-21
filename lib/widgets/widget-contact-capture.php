@@ -56,7 +56,6 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 		$instance = array_map( 'epl_esc_attr', $instance );
 		extract( $instance );
 		$fields     = epl_contact_capture_widget_form_fields();
-
 		foreach ( $fields as $field ) {
 			$field_value = ${$field['key']};
 			epl_widget_render_backend_field( $field, $this, $field_value );

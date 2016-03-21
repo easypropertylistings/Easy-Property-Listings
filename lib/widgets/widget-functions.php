@@ -712,6 +712,20 @@ function epl_widget_render_backend_field($field,$object,$value='') {
 
 		break;
 
+		// textarea
+		case "textarea": ?>
+			<p>
+				<label for="<?php echo $object->get_field_id($field['key']); ?>">
+					<?php echo $field['label']; ?>
+				</label>
+				<textarea
+					id="<?php echo $object->get_field_id($field['key']); ?>"
+					name="<?php echo $object->get_field_name($field['key']); ?>"
+					><?php echo $value; ?></textarea>
+			</p> <?php
+
+			break;
+
 		// select
 		case "select": ?>
 			<p>
@@ -1178,6 +1192,7 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 	$all_fields = apply_filters( 'epl_contact_capture_get_widget_fields', $fields );
 	/** filter fields based on attributes */
 	foreach ( $all_fields as $field_key =>  &$field ) {
+
 		if ( isset( $atts[ $field['name'] ] ) && $atts[ $field['name'] ] != 'on' ) {
 			unset($all_fields[$field_key]);
 		} else {
@@ -1195,9 +1210,11 @@ function epl_contact_capture_get_widget_defaults() {
 	$fields = epl_contact_capture_widget_form_fields();
 	$defaults = array();
 	foreach($fields as $field) {
-		$defaults[$field['key']] = (isset($field['default']) && $field['default'] == 'off') ? 'off' : 'on';
+		if($field['type'] == 'checkbox')
+			$defaults[$field['key']] = (isset($field['default']) && $field['default'] == 'off') ? 'off' : 'on';
+		else
+			$defaults[$field['key']] = isset($field['default']) ? $field['default'] : '';
 	}
-
 	return apply_filters('epl_contact_capture_get_widget_defaults',$defaults);
 }
 
@@ -1212,6 +1229,12 @@ function epl_contact_capture_widget_form_fields() {
 			'key'		=> 'title',
 			'label'		=> __( 'Title', 'epl' ),
 			'type'		=> 'text',
+			'default'	=> __('Contact Form')
+		),
+		array(
+			'key'		=> 'description',
+			'label'		=> __( 'Description', 'epl' ),
+			'type'		=> 'textarea',
 			'default'	=> ''
 		),
 		array(
