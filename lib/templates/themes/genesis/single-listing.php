@@ -1,15 +1,19 @@
 <?php
-/*
- * Single Template for Property Custom Post Type : property
+/**
+ * The Template for displaying all Easy Property Listings single posts with the Genesis Theme Framework
+ *
+ * @package EPL
+ * @subpackage Templates/Themes/Genesis
+ * @since 1.0
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
- get_header(); 
- do_action( 'genesis_before_content_sidebar_wrap' );
- 
- genesis_markup( array(
+get_header();
+do_action( 'genesis_before_content_sidebar_wrap' );
+
+genesis_markup( array(
 		'html5'   => '<div %s>',
 		'xhtml'   => '<div id="content-sidebar-wrap">',
 		'context' => 'content-sidebar-wrap',
@@ -32,9 +36,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 									<?php
 										while ( have_posts() ) : // The Loop
 											the_post();
-											
+
 											do_action('epl_property_single');
-											
+
 											comments_template(); // include comments template
 										endwhile; // end of one post
 									?>
@@ -42,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 							</div>
 						<?php endif; ?>
 					</div>
-				</div>	
+				</div>
 				<?php
 			do_action( 'genesis_after_loop' );
 		genesis_markup( array(

@@ -1541,20 +1541,32 @@ function epl_pagination ($query = array() ) {
 add_action('epl_pagination','epl_pagination');
 
 /**
- * Returns active theme name as a css class for use in default templates
+ * Returns active theme name as a lowercase name
+ *
+ * @since 3.0
+ */
+function epl_get_active_theme() {
+	if ( function_exists( 'wp_get_theme' ) ) { // wp version >= 3.4
+		$active_theme = wp_get_theme();
+		$active_theme = $active_theme->get( 'Name' );
+
+	} else {
+		// older versions
+		$active_theme = get_current_theme();
+	}
+	$active_theme = str_replace(' ','',strtolower($active_theme));
+	return apply_filters('epl_active_theme', $active_theme);
+}
+
+/**
+ * Returns active theme name as a css class with prefix for use in default templates
  *
  * @since 2.1.2
  */
 function epl_get_active_theme_name() {
-	$epl_class_prefix = 'epl-active-theme-';
-	$epl_class_unknown = 'unknown';
-	if ( function_exists( 'wp_get_theme' ) ) {
-		$active_theme = wp_get_theme();
-		$active_theme = preg_replace('/\W+/','',strtolower(strip_tags($active_theme)));
-		return $epl_class_prefix . $active_theme;
-	} else {
-		return $epl_class_prefix . $epl_class_unknown;
-	}
+	$epl_class_prefix = apply_filters('epl_active_theme_prefix','epl-active-theme-');
+	$active_theme = epl_get_active_theme();
+	return apply_filters('epl_active_theme_name',$epl_class_prefix . $active_theme);
 }
 
 /**
@@ -1900,11 +1912,13 @@ function epl_syntax_highlight( $str = '' , $class = '' ) {
  * Strip Tags
  *
  * @since 2.2
+ * @param string $value
+ * @param string $allowed_tags
  */
-function epl_strip_tags($value) {
+function epl_strip_tags( $value , $allowed_tags = '' ) {
 
-	if( !is_array($value) )  {
-		return strip_tags($value);
+	if( !is_array( $value ) )  {
+		return strip_tags( $value , $allowed_tags );
 	}
 	return $value;
 }
@@ -2001,3 +2015,55 @@ function epl_count_total_contacts() {
 	$counts =  wp_count_posts('epl_contact');
 	return $counts->publish;
 }
+
+/**
+ * Hide contacts notes from showing on frontend
+ *
+ * @since 3.0
+ * @param $comments
+ * @param $post_id
+ * @return mixed
+ */
+function epl_filter_listing_comments_array( $comments , $post_id ) {
+	foreach($comments as $key   =>  &$comment) {
+		if( $comment->comment_agent == 'epl' ) {
+			unset($comments[$key]);
+		}
+	}
+	return $comments;
+}
+add_filter( 'comments_array' , 'epl_filter_listing_comments_array' , 10, 2 );
+
+/**
+ * Archive Page Title
+ *
+ * @since 3.0
+ * @return Output the archive title
+ */
+function epl_archive_title_callback() {
+	the_post();
+
+	if ( is_tax() && function_exists( 'epl_is_search' ) && false == epl_is_search() ) { // Tag Archive
+		$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+		$title = sprintf( __( 'Property in %s', 'epl' ), $term->name );
+	}
+	else if ( function_exists( 'epl_is_search' ) && epl_is_search() ) { // Search Result
+		$title = apply_filters( 'epl_archive_title_search_result' , __( 'Search Result', 'epl' ) );
+	}
+
+	else if ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive
+		$title = post_type_archive_title( '', false );
+	}
+
+	else { // Default catchall just in case
+		$title = apply_filters( 'epl_archive_title_fallback' , __( 'Listing', 'epl' ) );
+	}
+
+	if ( is_paged() )
+		printf( '%s &ndash; Page %d', $title, get_query_var( 'paged' ) );
+	else
+		echo apply_filters( 'epl_archive_title_default' , $title );
+
+	rewind_posts();
+}
+add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
