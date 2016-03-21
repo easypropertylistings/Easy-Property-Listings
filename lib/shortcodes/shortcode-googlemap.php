@@ -3,7 +3,7 @@
  * SHORTCODE :: Simple Google Map
  *
  * @package     EPL
- * @subpackage  Shotrcode/map
+ * @subpackage  Shortcode/Map
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -12,6 +12,11 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Listing Google Map [listing_map]
+ *
+ * @since       1.0
+ */
 function epl_shortcode_googlemap_callback($atts, $content = null) {
 	global $property;
 	extract( shortcode_atts( array(
@@ -19,8 +24,8 @@ function epl_shortcode_googlemap_callback($atts, $content = null) {
 		'height' 		=> '350',
 		'zoom' 			=> '17',
 		'q' 			=> '',
-		'cord'			=>	'',
-		'suburb_mode'	=>	0
+		'cord'			=> '',
+		'suburb_mode'		=> 0
 	), $atts) );
 
 	return '<div class="epl-tab-section">

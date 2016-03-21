@@ -1,11 +1,12 @@
 <?php
 /**
- * License handler for Easy Property Listings
+ * EPL License
  *
- * This class should simplify the process of adding license information
- * to new EPL extensions.
- *
- * @version 1.1
+ * @package     EPL
+ * @subpackage  Classes/License
+ * @copyright   Copyright (c) 2016, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
 
 // Exit if accessed directly
@@ -14,7 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! class_exists( 'EPL_License' ) ) :
 
 	/**
-	 * EPL_License Class
+	 * License handler for Easy Property Listings
+	 *
+	 * This class should simplify the process of adding license information to new EPL extensions.
+	 *
+	 * @since	1.0
+	 * @version	1.1
 	 */
 	class EPL_License {
 		private $file;
@@ -41,12 +47,12 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			$this->file           = $_file;
 			$this->item_name      = $_item_name;
-		
+
 			$this->item_shortname_without_prefix = preg_replace( '/[^a-zA-Z0-9_\s]/', '', str_replace( ' ', '_', strtolower( $this->item_name ) ) );
 			$this->item_shortname = 'epl_' . $this->item_shortname_without_prefix;
-		
+
 			$this->version        = $_version;
-		
+
 			$this->license        = isset( $epl_options[ $this->item_shortname . '_license_key' ] ) ? trim( $epl_options[ $this->item_shortname . '_license_key' ] ) : '';
 			if(empty($this->license)) {
 				$epl_license = get_option('epl_license');
@@ -54,7 +60,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 					$this->license = $epl_license[$this->item_shortname_without_prefix];
 				}
 			}
-		
+
 			$this->author         = $_author;
 			$this->api_url        = is_null( $_api_url ) ? $this->api_url : $_api_url;
 
@@ -100,7 +106,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			// Deactivate license key
 			add_action( 'admin_init', array( $this, 'deactivate_license' ) );
-			
+
 			// Updater
 			add_action( 'admin_init', array( $this, 'auto_updater' ), 0 );
 
@@ -161,13 +167,13 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		public function activate_license() {
 			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
 				return;
-			
+
 			if ( ! isset( $_POST['epl_license'] ) )
 				return;
-		
+
 			if ( ! isset( $_POST['epl_license'][ $this->item_shortname ] ) )
 				return;
-		
+
 			foreach( $_POST as $key => $value ) {
 				if( false !== strpos( $key, 'license_key_deactivate' ) ) {
 					// Don't activate a key when deactivating a different key
@@ -176,7 +182,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			}
 
 			$license = sanitize_text_field( $_POST['epl_license'][ $this->item_shortname ] );
-		
+
 			// Data to send to the API
 			$api_params = array(
 				'edd_action' => 'activate_license',
@@ -184,7 +190,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				'item_name'  => urlencode( $this->item_name ),
 				'url'        => home_url()
 			);
-		
+
 			// Call the API
 			$response = wp_remote_get(
 				add_query_arg( $api_params, $this->api_url ),
@@ -198,14 +204,14 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// Make sure there are no errors
 			if ( is_wp_error( $response ) )
 				return;
-				
+
 			// Tell WordPress to look for updates
 			set_site_transient( 'update_plugins', null );
 
 			// Decode license data
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 			update_option( $this->item_shortname . '_license_active', $license_data->license );
-			
+
 			if( ! (bool) $license_data->success ) {
 				set_transient( 'epl_license_error', $license_data, 1000 );
 			} else {
@@ -223,10 +229,10 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		public function deactivate_license() {
 			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
 				return;
-			
+
 			if ( ! isset( $_POST['epl_license'] ) )
 				return;
-			
+
 			if ( ! isset( $_POST['epl_license'][ $this->item_shortname ] ) )
 				return;
 
@@ -240,7 +246,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 					'item_name'  => urlencode( $this->item_name ),
 					'url'        => home_url()
 				);
-			
+
 				// Call the API
 				$response = wp_remote_get(
 					add_query_arg( $api_params, $this->api_url ),
@@ -259,7 +265,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 				if ( $license_data->license == 'deactivated' )
 					delete_option( $this->item_shortname . '_license_active' );
-					
+
 				if( ! (bool) $license_data->success ) {
 					set_transient( 'epl_license_error', $license_data, 1000 );
 				} else {
@@ -267,7 +273,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				}
 			}
 		}
-		
+
 		/**
 		 * Admin notices for errors
 		 *
