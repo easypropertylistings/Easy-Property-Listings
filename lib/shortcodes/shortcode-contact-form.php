@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_contact_capture_form( $atts ) {
 
-	$defaults =epl_contact_capture_get_widget_defaults();
+	$defaults = epl_contact_capture_get_widget_defaults();
 	$attributes = shortcode_atts( $defaults, $atts );
 
 	ob_start();

@@ -1912,11 +1912,13 @@ function epl_syntax_highlight( $str = '' , $class = '' ) {
  * Strip Tags
  *
  * @since 2.2
+ * @param string $value
+ * @param string $allowed_tags
  */
-function epl_strip_tags($value) {
+function epl_strip_tags( $value , $allowed_tags = '' ) {
 
-	if( !is_array($value) )  {
-		return strip_tags($value);
+	if( !is_array( $value ) )  {
+		return strip_tags( $value , $allowed_tags );
 	}
 	return $value;
 }

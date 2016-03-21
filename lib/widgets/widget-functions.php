@@ -703,6 +703,7 @@ function epl_widget_render_backend_field($field,$object,$value='') {
 					<?php echo $field['label']; ?>
 				</label>
 				<input
+					class="widefat"
 					id="<?php echo $object->get_field_id($field['key']); ?>"
 					name="<?php echo $object->get_field_name($field['key']); ?>"
 					type="text"
@@ -719,6 +720,9 @@ function epl_widget_render_backend_field($field,$object,$value='') {
 					<?php echo $field['label']; ?>
 				</label>
 				<textarea
+					class="widefat"
+					rows="10"
+					cols="20"
 					id="<?php echo $object->get_field_id($field['key']); ?>"
 					name="<?php echo $object->get_field_name($field['key']); ?>"
 					><?php echo $value; ?></textarea>
