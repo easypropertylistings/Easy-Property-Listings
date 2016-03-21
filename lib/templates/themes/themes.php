@@ -3,8 +3,11 @@
  * Loading the templates
  * Needs to work with other themes. These template files af a function that iThemes Builder needs to render the template.
  *
- * @since 1.0
- * @subpackage Templates/Themes
+ * @package     EPL
+ * @subpackage  Templates/Themes
+ * @copyright   Copyright (c) 2015, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
 
 // Exit if accessed directly
