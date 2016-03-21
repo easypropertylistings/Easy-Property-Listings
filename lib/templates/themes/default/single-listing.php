@@ -1,11 +1,15 @@
 <?php
-/*
- * Single Template for Property Custom Post Type : property
+/**
+ * The Default Template for displaying all Easy Property Listings single posts with WordPress Themes
+ *
+ * @package EPL
+ * @subpackage Templates/Themes/Default
+ * @since 1.0
  */
- 
+
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
- 
+
 get_header(); ?>
  <div id="primary" class="site-content content-area epl-single-default <?php echo epl_get_active_theme_name(); ?>">
 	<section class="content">
@@ -26,6 +30,6 @@ get_header(); ?>
 			<?php endif; ?>
 		</div>
 	</section>
-</div>	
+</div>
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
