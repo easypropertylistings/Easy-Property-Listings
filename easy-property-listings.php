@@ -141,10 +141,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
-			if ( ! defined( 'HOUR_IN_SECONDS' ) ) {
-				define( 'HOUR_IN_SECONDS', 3600 );
-			}
-
 		}
 
 		/*
