@@ -1,4 +1,11 @@
 <?php
+/**
+ * The Template for displaying the author posts with the iThemes Builder Theme Framework
+ *
+ * @package EPL
+ * @subpackage Templates/Themes/iThemesBuilder
+ * @since 1.0
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -11,7 +18,7 @@ function render_content() {
 				<h4 class="loop-title">
 					<?php
 						the_post();
-						
+
 						if ( is_category() ) { // Category Archive
 							$title = sprintf( __( 'Archive for %s', 'epl' ), single_cat_title( '', false ) );
 						}
@@ -42,32 +49,32 @@ function render_content() {
 						else { // Default catchall just in case
 							$title = __( 'Archive', 'epl' );
 						}
-						
+
 						if ( is_paged() )
 							printf( '%s &ndash; Page %d', $title, get_query_var( 'paged' ) );
 						else
 							echo $title;
-						
+
 						rewind_posts();
 					?>
 				</h4>
 			</div>
-			
+
 			<div class="loop-content">
 				<?php
 					while ( have_posts() ) : // The Loop
 						the_post(); ?>
-					
+
 						<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 							<!-- title, meta, and date info -->
 							<div class="entry-header clearfix">
 								<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-							
+
 								<div class="entry-meta">
 									<?php printf( __( 'By %s', 'epl' ), '<span class="meta-author">' . builder_get_author_link() . '</span>' ); ?>
 									<?php do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', __( 'Comments %s', 'epl' ), __( '(0)', 'epl' ), __( '(1)', 'epl' ), __( '(%)', 'epl' ) ); ?>
 								</div>
-							
+
 								<div class="entry-meta date">
 									<span class="weekday"><?php the_time( 'l' ); ?><span class="weekday-comma">,</span></span>
 									<span class="month"><?php the_time( 'F' ); ?></span>
@@ -75,12 +82,12 @@ function render_content() {
 									<span class="year"><?php the_time( 'Y' ); ?></span>
 								</div>
 							</div>
-						
+
 							<!-- post content -->
 							<div class="entry-content clearfix">
 								<?php the_excerpt(); ?>
 							</div>
-						
+
 							<!-- categories, tags and comments -->
 							<div class="entry-footer clearfix">
 								<?php do_action( 'builder_comments_popup_link', '<div class="entry-meta alignright"><span class="comments">', '</span></div>', __( 'Comments %s', 'epl' ), __( '(0)', 'epl' ), __( '(1)', 'epl' ), __( '(%)', 'epl' ) ); ?>
@@ -91,12 +98,12 @@ function render_content() {
 							</div>
 						</div>
 						<!-- end .post -->
-					
+
 						<?php comments_template(); // include comments template
 					endwhile; // end of one post
 				?>
 			</div>
-			
+
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
