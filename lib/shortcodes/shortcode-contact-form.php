@@ -30,14 +30,21 @@ function epl_contact_capture_form( $atts ) {
 			'label'		=>	'',
 			'class'		=>	'col-1 epl-inner-div',
 			'id'		=>	'',
-			'help'		=>	'' . '<hr/>',
+			'help'		=>	'',
 			'fields'	=>	epl_contact_capture_get_widget_fields( $attributes )
 		),
 
 	);
 	$contact_form->add_sections($fields);
 	$contact_form->add_fields();
-	echo '<div class="epl-contact-capture-form">';
+	echo '<div class="epl-contact-capture-form">';?>
+	<div class="epl-contact-capture-form">
+		<?php
+			echo isset($atts['description']) ? $atts['description'] : '';
+		?>
+	</div>
+	<?php
+
 	$contact_form->render_form();
 	echo '</div>';
 	return ob_get_clean();
