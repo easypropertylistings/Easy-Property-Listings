@@ -1549,12 +1549,13 @@ function epl_get_active_theme_name() {
 	$epl_class_prefix = apply_filters('epl_active_theme_prefix','epl-active-theme-');
 	if ( function_exists( 'wp_get_theme' ) ) { // wp version >= 3.4
 		$active_theme = wp_get_theme();
-		$active_theme = sanitize_title($active_theme->get( 'Name' ));
+		$active_theme = $active_theme->get( 'Name' );
 
 	} else {
 		// older versions
-		$active_theme = sanitize_title( get_current_theme() );
+		$active_theme = get_current_theme();
 	}
+	$active_theme = str_replace(' ','',strtolower($active_theme));
 	return apply_filters('epl_active_theme_name',$epl_class_prefix . $active_theme);
 }
 /**
@@ -1562,7 +1563,7 @@ function epl_get_active_theme_name() {
  */
 function epl_active_theme_name_twentysixteen($class) {
 
-	if( 'epl-active-theme-twenty-sixteen' == $class) {
+	if( 'epl-active-theme-twentysixteen' == $class) {
 		$class = $class.' content-area';
 	}
 	return $class;
