@@ -1549,15 +1549,25 @@ function epl_get_active_theme_name() {
 	$epl_class_prefix = apply_filters('epl_active_theme_prefix','epl-active-theme-');
 	if ( function_exists( 'wp_get_theme' ) ) { // wp version >= 3.4
 		$active_theme = wp_get_theme();
-		$active_theme = strtolower($active_theme->get( 'Name' ));
+		$active_theme = sanitize_title($active_theme->get( 'Name' ));
 
 	} else {
 		// older versions
-		$active_theme = strtolower( get_current_theme() );
+		$active_theme = sanitize_title( get_current_theme() );
 	}
 	return apply_filters('epl_active_theme_name',$epl_class_prefix . $active_theme);
 }
+/**
+ * Add extra class for twentysixteen theme
+ */
+function epl_active_theme_name_twentysixteen($class) {
 
+	if( 'epl-active-theme-twenty-sixteen' == $class) {
+		$class = $class.' content-area';
+	}
+	return $class;
+}
+add_filter('epl_active_theme_name','epl_active_theme_name_twentysixteen');
 /**
  * Pagination fix for home
  *
