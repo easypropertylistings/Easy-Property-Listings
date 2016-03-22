@@ -24,8 +24,8 @@ add_action('admin_menu', 'epl_admin_menu');
 function epl_admin_menu() {
 	global $epl_contact_page_hook;
 	// Contributors and above can access these options
-	$menu_title	= __('Easy Property Listings', 'epl');
-	$page_title	= __('Easy Property Listings', 'epl');
+	$menu_title	= __('Easy Property Listings', 'easy-property-listings' );
+	$page_title	= __('Easy Property Listings', 'easy-property-listings' );
 	$capability	= 'edit_posts';
 	$main_menu_slug = $menu_slug	= 'epl-general';
 	$function	= 'epl_menu_general';
@@ -33,21 +33,21 @@ function epl_admin_menu() {
 	$position 	= '25.9';
 	add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon, $position);
 
-	$page_title	= __('Help', 'epl');
-	$menu_title	= __('Help', 'epl');
+	$page_title	= __('Help', 'easy-property-listings' );
+	$menu_title	= __('Help', 'easy-property-listings' );
 	add_submenu_page($menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 
 	// Administrator and above can see these options
-	$page_title	= __('Settings', 'epl');
-	$menu_title 	= __('Settings', 'epl');
+	$page_title	= __('Settings', 'easy-property-listings' );
+	$menu_title 	= __('Settings', 'easy-property-listings' );
 	$capability	= 'manage_options';
 	$function	= 'epl_menu_settings';
 	$menu_slug	= 'epl-settings';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 
 	// Contacts Menu item
-	$page_title	= __('Contacts', 'epl');
-	$menu_title	= __('Contacts', 'epl');
+	$page_title	= __('Contacts', 'easy-property-listings' );
+	$menu_title	= __('Contacts', 'easy-property-listings' );
 	$menu_slug	= 'epl-contacts';
 	$function	= 'epl_contacts_page';
 	$this_user	= wp_get_current_user();
@@ -57,8 +57,8 @@ function epl_admin_menu() {
 	}
 
 	// Reports Access, $this_user is common with contacts
-	$page_title	= __('Reports', 'epl');
-	$menu_title	= __('Reports', 'epl');
+	$page_title	= __('Reports', 'easy-property-listings' );
+	$menu_title	= __('Reports', 'easy-property-listings' );
 	$capability	= 'edit_published_posts';
 	$menu_slug	= 'epl-reports';
 	$function	= 'epl_reports_page';
@@ -72,8 +72,8 @@ function epl_admin_menu() {
 
 	// Enable Menu if extension requires extension options
 	if ( has_filter( 'epl_extensions_options_filter_new' ) ) {
-		$page_title	= __('Extensions', 'epl');
-		$menu_title	= __('Extensions', 'epl');
+		$page_title	= __('Extensions', 'easy-property-listings' );
+		$menu_title	= __('Extensions', 'easy-property-listings' );
 		$menu_slug	= 'epl-extensions';
 		$function	= 'epl_menu_extensions';
 		add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
@@ -81,8 +81,8 @@ function epl_admin_menu() {
 
 	if ( has_filter( 'epl_extensions_options_filter' ) ) {
 		// show their menu on separate page
-		$page_title_old	= __('Extensions Updates', 'epl');
-		$menu_title_old	= '<span style="color:#ff0000">'.__('Update Extensions', 'epl').'</span>';
+		$page_title_old	= __('Extensions Updates', 'easy-property-listings' );
+		$menu_title_old	= '<span style="color:#ff0000">'.__('Update Extensions', 'easy-property-listings' ).'</span>';
 		$menu_slug_old	= 'epl-extensions-compat';
 		$function_old	= 'epl_menu_extensions_compat';
 		add_submenu_page($main_menu_slug, $page_title_old, $menu_title_old, $capability, $menu_slug_old, $function_old);
@@ -90,16 +90,16 @@ function epl_admin_menu() {
 
 	// Enable Menu if extension requires license options
 	if ( has_filter( 'epl_license_options_filter' ) ) {
-		$page_title	= __('Licenses', 'epl');
-		$menu_title	= __('Licenses', 'epl');
+		$page_title	= __('Licenses', 'easy-property-listings' );
+		$menu_title	= __('Licenses', 'easy-property-listings' );
 		$menu_slug	= 'epl-licenses';
 		$function	= 'epl_menu_licenses';
 		add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 	}
 
 	// Author level and above can see these options
-	$page_title	= __('Add Ons', 'epl');
-	$menu_title	= __('Add Ons', 'epl');
+	$page_title	= __('Add Ons', 'easy-property-listings' );
+	$menu_title	= __('Add Ons', 'easy-property-listings' );
 	$capability	= 'edit_published_posts';
 	$menu_slug	= 'epl-addons';
 	$function	= 'epl_menu_addons';
@@ -114,7 +114,7 @@ function epl_admin_menu() {
  */
 function epl_menu_general() {
 	if(!current_user_can('edit_published_posts')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
+		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-help.php';
 }
@@ -126,7 +126,7 @@ function epl_menu_general() {
  */
 function epl_menu_settings() {
 	if(!current_user_can('manage_options')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
+		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-general.php';
 }
@@ -138,7 +138,7 @@ function epl_menu_settings() {
  */
 function epl_menu_extensions() {
 	if(!current_user_can('manage_options')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
+		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-extensions.php';
 }
@@ -150,7 +150,7 @@ function epl_menu_extensions() {
  */
 function epl_menu_extensions_compat() {
 	if(!current_user_can('manage_options')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
+		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-extensions-compat.php';
 }
@@ -162,7 +162,7 @@ function epl_menu_extensions_compat() {
  */
 function epl_menu_licenses() {
 	if(!current_user_can('manage_options')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
+		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-licenses.php';
 }
@@ -174,7 +174,7 @@ function epl_menu_licenses() {
  */
 function epl_menu_addons() {
 	if(!current_user_can('edit_published_posts')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
+		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-addons.php';
 }
@@ -186,7 +186,7 @@ function epl_menu_addons() {
  */
 function epl_menu_help() {
 	if(!current_user_can('edit_posts')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'epl') );
+		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-help.php';
 }

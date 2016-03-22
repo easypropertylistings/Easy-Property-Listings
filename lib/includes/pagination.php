@@ -37,15 +37,15 @@ function epl_fancy_pagination( $args = array() ) {
 
 	extract( $args, EXTR_SKIP );
 	$options = array(
-		'pages_text'    => __( 'Page %CURRENT_PAGE% of %TOTAL_PAGES%', 'epl' ),
+		'pages_text'    => __( 'Page %CURRENT_PAGE% of %TOTAL_PAGES%', 'easy-property-listings'  ),
 		'current_text'  => '%PAGE_NUMBER%',
 		'page_text'     => '%PAGE_NUMBER%',
-		'first_text'    => __( '&laquo; First', 'epl' ),
-		'last_text'     => __( 'Last &raquo;', 'epl' ),
-		'prev_text'     => __( '&laquo;', 'epl' ),
-		'next_text'     => __( '&raquo;', 'epl' ),
-		'dotleft_text'  => __( '...', 'epl' ),
-		'dotright_text' => __( '...', 'epl' ),
+		'first_text'    => __( '&laquo; First', 'easy-property-listings'  ),
+		'last_text'     => __( 'Last &raquo;', 'easy-property-listings'  ),
+		'prev_text'     => __( '&laquo;', 'easy-property-listings'  ),
+		'next_text'     => __( '&raquo;', 'easy-property-listings'  ),
+		'dotleft_text'  => __( '...', 'easy-property-listings'  ),
+		'dotright_text' => __( '...', 'easy-property-listings'  ),
 		'num_pages' => 5,
 		'num_larger_page_numbers' => 3,
 		'larger_page_numbers_multiple' => 10,
@@ -399,15 +399,15 @@ function epl_wp_default_pagination($query = array() ) {
 
 	?>
 	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ) ); ?></div>
-		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ) ); ?></div>
+		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'easy-property-listings'  ) ); ?></div>
+		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'easy-property-listings'  ) ); ?></div>
 	</div> <?php  } else {
 
 		$query_open = $query['query']; ?>
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'epl' ), $query_open->max_num_pages ); ?></div>
-		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'epl' ), $query_open->max_num_pages ); ?></div>
+		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'easy-property-listings'  ), $query_open->max_num_pages ); ?></div>
+		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'easy-property-listings'  ), $query_open->max_num_pages ); ?></div>
 	</div> <?php }
 
 }

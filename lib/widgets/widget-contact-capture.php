@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Contact_Capture extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, $name = __('EPL - Contact Form', 'epl'), array( 'description' => __( 'Add contact form to a sidebar.', 'epl' ) ) );
+		parent::__construct( false, $name = __('EPL - Contact Form', 'easy-property-listings'), array( 'description' => __( 'Add contact form to a sidebar.', 'easy-property-listings' ) ) );
 	}
 
 	function widget($args, $instance) {

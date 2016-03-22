@@ -42,8 +42,8 @@ $epl_settings = get_option('epl_settings');
 ?>
 
 <div class="wrap">
-	<h2><?php _e('Update your extensions for new features', 'epl'); ?></h2>
-	<p><?php _e('Every extension has been updated to use the code base of 2.1 please update. Adjust non supported extension settings on this page.', 'epl'); ?></p>
+	<h2><?php _e('Update your extensions for new features', 'easy-property-listings' ); ?></h2>
+	<p><?php _e('Every extension has been updated to use the code base of 2.1 please update. Adjust non supported extension settings on this page.', 'easy-property-listings' ); ?></p>
 	<div class="epl-content">
 		<form action="" method="post">
 			<div class="epl-fields">
@@ -52,7 +52,7 @@ $epl_settings = get_option('epl_settings');
 						foreach($fields as $field_group) {
 							if( !empty($field_group['label']) ) { ?>
 								<div class="epl-field">
-									<h3><?php _e($field_group['label'], 'epl'); ?></h3>
+									<h3><?php _e($field_group['label'], 'easy-property-listings' ); ?></h3>
 								</div>
 								<?php
 							}
@@ -60,7 +60,7 @@ $epl_settings = get_option('epl_settings');
 							foreach($field_group['fields'] as $field) { ?>
 								<div class="epl-field">
 									<div class="epl-half-left">
-										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
+										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
 									</div>
 									<div class="epl-half-right">
 										<?php
@@ -80,7 +80,7 @@ $epl_settings = get_option('epl_settings');
 
 													echo '<select name="'.$field['name'].'" id="'.$field['id'].'" '.((isset($field['multiple']) && $field['multiple']) ? 'multiple' : false).'>';
 														if(!empty($field['default'])) {
-															echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
+															echo '<option value="" selected="selected">'.__($field['default'], 'easy-property-listings' ).'</option>';
 														}
 
 														if(!empty($field['opts'])) {
@@ -97,7 +97,7 @@ $epl_settings = get_option('epl_settings');
 																		$selected = 'selected="selected"';
 																	}
 																}
-																echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+																echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
 															}
 														}
 													echo '</select>';
@@ -112,7 +112,7 @@ $epl_settings = get_option('epl_settings');
 																	$checked = 'checked="checked"';
 																}
 															}
-															echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+															echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'easy-property-listings' ).'</label></span>';
 														}
 													}
 													break;
@@ -124,7 +124,7 @@ $epl_settings = get_option('epl_settings');
 															if($val == $k) {
 																$checked = 'checked="checked"';
 															}
-															echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+															echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'easy-property-listings' ).'</label></span>';
 														}
 													}
 													break;
@@ -148,7 +148,7 @@ $epl_settings = get_option('epl_settings');
 											if(isset($field['help'])) {
 												$field['help'] = trim($field['help']);
 												if(!empty($field['help'])) {
-													echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
+													echo '<span class="epl-help-text">'.__($field['help'], 'easy-property-listings' ).'</span>';
 												}
 											}
 										?>
@@ -163,7 +163,7 @@ $epl_settings = get_option('epl_settings');
 
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
-				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
+				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'easy-property-listings' ); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
 	</div>

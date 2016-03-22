@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return array $links
  */
 function epl_plugin_action_links( $links, $file ) {
-	$settings_link = '<a href="' . admin_url( 'admin.php?page=epl-settings' ) . '">' . esc_html__( 'General Settings', 'epl' ) . '</a>';
+	$settings_link = '<a href="' . admin_url( 'admin.php?page=epl-settings' ) . '">' . esc_html__( 'General Settings', 'easy-property-listings'  ) . '</a>';
 	if ( $file == 'easy-property-listings/easy-property-listings.php' )
 		array_unshift( $links, $settings_link );
 
@@ -44,8 +44,8 @@ function epl_plugin_row_meta( $input, $file ) {
 		return $input;
 
 	$links = array(
-		'<a href="' . admin_url( 'index.php?page=epl-getting-started' ) . '">' . esc_html__( 'Getting Started', 'epl' ) . '</a>',
-		'<a href="https://www.easypropertylistings.com.au/extensions/?utm_source=plugins-page&utm_medium=plugin-row&utm_campaign=admin">' . esc_html__( 'Add Ons', 'epl' ) . '</a>',
+		'<a href="' . admin_url( 'index.php?page=epl-getting-started' ) . '">' . esc_html__( 'Getting Started', 'easy-property-listings'  ) . '</a>',
+		'<a href="https://www.easypropertylistings.com.au/extensions/?utm_source=plugins-page&utm_medium=plugin-row&utm_campaign=admin">' . esc_html__( 'Add Ons', 'easy-property-listings'  ) . '</a>',
 	);
 
 	$input = array_merge( $input, $links );

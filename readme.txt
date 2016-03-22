@@ -233,6 +233,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.0 March 14, 2016 =
 
+Tweak: Textdomain and languages files renamed. Changed from epl to easy-property-listings for the WordPress.org translation initiative.
 New: Every epl_action present in the $_GET or $_POST is called using WordPress do_action function in init.
 Tweak: Radio options when adding listings converted to checkboxes to slim down the admin pages.
 Fix: Ducted Heating additional features now displays in feature list.

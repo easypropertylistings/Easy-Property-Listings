@@ -1,4 +1,12 @@
 <?php
+/*
+ * Shortcode Listing Template
+ * @package     EPL
+ * @subpackage  Templates/Content
+ * @copyright   Copyright (c) 2015, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -34,5 +42,5 @@ if ( $query_open->have_posts() ) {
 	<?php
 	wp_reset_postdata();
 } else {
-	echo '<h3>' . __( 'Nothing found, please check back later.', 'epl' ) . '</h3>';
+	echo '<h3>' . __( 'Nothing found, please check back later.', 'easy-property-listings'  ) . '</h3>';
 }

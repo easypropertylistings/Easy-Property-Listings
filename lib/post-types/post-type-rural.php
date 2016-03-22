@@ -25,20 +25,20 @@ function epl_register_custom_post_type_rural() {
 	$rewrite  = defined( 'EPL_RURAL_DISABLE_REWRITE' ) && EPL_RURAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_rural_labels', array(
-		'name'			=>	__('Rural', 'epl'),
-		'singular_name'		=>	__('Rural', 'epl'),
-		'menu_name'		=>	__('Rural', 'epl'),
-		'add_new'		=>	__('Add New', 'epl'),
-		'add_new_item'		=>	__('Add New Rural Listing', 'epl'),
-		'edit_item'		=>	__('Edit Rural Listing', 'epl'),
-		'new_item'		=>	__('New Rural Listing', 'epl'),
-		'update_item'		=>	__('Update Rural Listing', 'epl'),
-		'all_items'		=>	__('All Rural Listings', 'epl'),
-		'view_item'		=>	__('View Rural Listing', 'epl'),
-		'search_items'		=>	__('Search Rural Listing', 'epl'),
-		'not_found'		=>	__('Rural Listing Not Found', 'epl'),
-		'not_found_in_trash'	=>	__('Rural Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'	=>	__('Parent Rural Listing:', 'epl')
+		'name'			=>	__('Rural', 'easy-property-listings' ),
+		'singular_name'		=>	__('Rural', 'easy-property-listings' ),
+		'menu_name'		=>	__('Rural', 'easy-property-listings' ),
+		'add_new'		=>	__('Add New', 'easy-property-listings' ),
+		'add_new_item'		=>	__('Add New Rural Listing', 'easy-property-listings' ),
+		'edit_item'		=>	__('Edit Rural Listing', 'easy-property-listings' ),
+		'new_item'		=>	__('New Rural Listing', 'easy-property-listings' ),
+		'update_item'		=>	__('Update Rural Listing', 'easy-property-listings' ),
+		'all_items'		=>	__('All Rural Listings', 'easy-property-listings' ),
+		'view_item'		=>	__('View Rural Listing', 'easy-property-listings' ),
+		'search_items'		=>	__('Search Rural Listing', 'easy-property-listings' ),
+		'not_found'		=>	__('Rural Listing Not Found', 'easy-property-listings' ),
+		'not_found_in_trash'	=>	__('Rural Listing Not Found in Trash', 'easy-property-listings' ),
+		'parent_item_colon'	=>	__('Parent Rural Listing:', 'easy-property-listings' )
 	) );
 
 	$rural_args = array(
@@ -79,15 +79,15 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb'			=> '<input type="checkbox" />',
-			'property_thumb'	=> __('Image', 'epl'),
-			'property_price'	=> __('Price', 'epl'),
-			'title'			=> __('Address', 'epl'),
-			'listing'		=> __('Listing Details', 'epl'),
-			'listing_id'		=> __('Unique ID' , 'epl'),
-			'geo'			=> __('Geo', 'epl'),
-			'property_status'	=> __('Status', 'epl'),
-			'agent'			=> __('Agent', 'epl'),
-			'date'			=> __('Date', 'epl')
+			'property_thumb'	=> __('Image', 'easy-property-listings' ),
+			'property_price'	=> __('Price', 'easy-property-listings' ),
+			'title'			=> __('Address', 'easy-property-listings' ),
+			'listing'		=> __('Listing Details', 'easy-property-listings' ),
+			'listing_id'		=> __('Unique ID' , 'easy-property-listings' ),
+			'geo'			=> __('Geo', 'easy-property-listings' ),
+			'property_status'	=> __('Status', 'easy-property-listings' ),
+			'agent'			=> __('Agent', 'easy-property-listings' ),
+			'date'			=> __('Date', 'easy-property-listings' )
 		);
 
 		// Geocode Column

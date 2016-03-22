@@ -114,7 +114,7 @@ class EPL_CPT {
 	 *
 	 * @var string $textdomain Used for internationalising. Defaults to "cpt" without quotes.
 	 */
-	public $textdomain = 'epl';
+	public $textdomain = 'easy-property-listings' ;
 
 	/**
 	 * Constructor

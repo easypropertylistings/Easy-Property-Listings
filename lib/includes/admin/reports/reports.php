@@ -26,7 +26,7 @@ function epl_reports_page() {
 	?>
 	<div class="wrap">
 		<h1 class="nav-tab-wrapper">
-			<a href="<?php echo add_query_arg( array( 'tab' => 'reports', 'settings-updated' => false ), $current_page ); ?>" class="nav-tab <?php echo $active_tab == 'reports' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Reports', 'epl' ); ?></a>
+			<a href="<?php echo add_query_arg( array( 'tab' => 'reports', 'settings-updated' => false ), $current_page ); ?>" class="nav-tab <?php echo $active_tab == 'reports' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Reports', 'easy-property-listings'  ); ?></a>
 			<?php do_action( 'epl_reports_tabs' ); ?>
 		</h1>
 
@@ -83,7 +83,7 @@ function epl_get_reporting_view( $default = 'property' ) {
 function epl_reports_tab_reports() {
 
 	if ( ! is_admin() || ! epl_reports_access() ) {
-		wp_die( __( 'You do not have permission to access this report', 'epl' ), __( 'Error', 'epl' ), array( 'response' => 403 ) );
+		wp_die( __( 'You do not have permission to access this report', 'easy-property-listings'  ), __( 'Error', 'easy-property-listings'  ), array( 'response' => 403 ) );
 	}
 
 	$current_view = 'property';
@@ -114,7 +114,7 @@ function epl_report_views() {
 	?>
 	<form id="epl-reports-filter" method="get">
 		<select id="epl-reports-view" name="view">
-			<option value="-1"><?php _e( 'Report Type', 'epl' ); ?></option>
+			<option value="-1"><?php _e( 'Report Type', 'easy-property-listings'  ); ?></option>
 			<?php foreach ( $views as $view_id => $label ) : ?>
 				<option value="<?php echo esc_attr( $view_id ); ?>" <?php selected( $view_id, $current_view ); ?>><?php echo $label; ?></option>
 			<?php endforeach; ?>
@@ -123,7 +123,7 @@ function epl_report_views() {
 		<?php do_action( 'epl_report_view_actions' ); ?>
 
 		<input type="hidden" name="page" value="epl-reports"/>
-		<?php submit_button( __( 'Show', 'epl' ), 'secondary', 'submit', false ); ?>
+		<?php submit_button( __( 'Show', 'easy-property-listings'  ), 'secondary', 'submit', false ); ?>
 	</form>
 	<?php
 	do_action( 'epl_report_view_actions_after' );

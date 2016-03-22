@@ -2,7 +2,7 @@
 $epl_settings = epl_settings();
 
 $new_fields_defaults = array(
-	'label_sold'			=>	__('Sold','epl'),
+	'label_sold'			=>	__('Sold','easy-property-listings'),
 );
 
 

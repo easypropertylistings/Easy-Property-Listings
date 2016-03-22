@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Author extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, $name = __('EPL - Author', 'epl'), array( 'description' => __( 'Add an Author profile to a sidebar.', 'epl' ) ) );
+		parent::__construct( false, $name = __('EPL - Author', 'easy-property-listings'), array( 'description' => __( 'Add an Author profile to a sidebar.', 'easy-property-listings' ) ) );
 	}
 
 	function widget($args, $instance) {
@@ -79,23 +79,23 @@ class EPL_Widget_Author extends WP_Widget {
 		$d_bio		= esc_attr($instance['d_bio']); ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'easy-property-listings'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_image'); ?>" name="<?php echo $this->get_field_name('d_image'); ?>" <?php if ($instance['d_image']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_image'); ?>"><?php _e('Display Author Gravatar', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_image'); ?>"><?php _e('Display Author Gravatar', 'easy-property-listings'); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_icons'); ?>" name="<?php echo $this->get_field_name('d_icons'); ?>" <?php if ($instance['d_icons']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_icons'); ?>"><?php _e('Display Icons', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_icons'); ?>"><?php _e('Display Icons', 'easy-property-listings'); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_bio'); ?>" name="<?php echo $this->get_field_name('d_bio'); ?>" <?php if ($instance['d_bio']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_bio'); ?>"><?php _e('Display Bio', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_bio'); ?>"><?php _e('Display Bio', 'easy-property-listings'); ?></label>
 		</p>
 		<?php
 	}

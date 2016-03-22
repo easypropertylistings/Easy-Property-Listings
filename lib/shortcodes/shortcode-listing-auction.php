@@ -165,7 +165,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		echo '<h3>'.__('Nothing found, please check back later.', 'epl').'</h3>';
+		echo '<h3>'.__('Nothing found, please check back later.', 'easy-property-listings' ).'</h3>';
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

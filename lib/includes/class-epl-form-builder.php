@@ -31,7 +31,7 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	private $text_domain = 'epl';
+	private $text_domain = 'easy-property-listings' ;
 
 	/**
 	 * form fields

@@ -25,20 +25,20 @@ function epl_register_custom_post_type_business() {
 	$rewrite  = defined( 'EPL_BUSINESS_DISABLE_REWRITE' ) && EPL_BUSINESS_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_business_labels', array(
-		'name'			=>	__('Business Listings', 'epl'),
-		'singular_name'		=>	__('Business Listings', 'epl'),
-		'menu_name'		=>	__('Business', 'epl'),
-		'add_new'		=>	__('Add New', 'epl'),
-		'add_new_item'		=>	__('Add New Business Listing', 'epl'),
-		'edit_item'		=>	__('Edit Business Listing', 'epl'),
-		'new_item'		=>	__('New Business Listing', 'epl'),
-		'update_item'		=>	__('Update Business Listing', 'epl'),
-		'all_items'		=>	__('All Business Listings', 'epl'),
-		'view_item'		=>	__('View Business Listing', 'epl'),
-		'search_items'		=>	__('Search Business Listing', 'epl'),
-		'not_found'		=>	__('Business Listing Not Found', 'epl'),
-		'not_found_in_trash'	=>	__('Business Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'	=>	__('Parent Business Listing:', 'epl')
+		'name'			=>	__('Business Listings', 'easy-property-listings' ),
+		'singular_name'		=>	__('Business Listings', 'easy-property-listings' ),
+		'menu_name'		=>	__('Business', 'easy-property-listings' ),
+		'add_new'		=>	__('Add New', 'easy-property-listings' ),
+		'add_new_item'		=>	__('Add New Business Listing', 'easy-property-listings' ),
+		'edit_item'		=>	__('Edit Business Listing', 'easy-property-listings' ),
+		'new_item'		=>	__('New Business Listing', 'easy-property-listings' ),
+		'update_item'		=>	__('Update Business Listing', 'easy-property-listings' ),
+		'all_items'		=>	__('All Business Listings', 'easy-property-listings' ),
+		'view_item'		=>	__('View Business Listing', 'easy-property-listings' ),
+		'search_items'		=>	__('Search Business Listing', 'easy-property-listings' ),
+		'not_found'		=>	__('Business Listing Not Found', 'easy-property-listings' ),
+		'not_found_in_trash'	=>	__('Business Listing Not Found in Trash', 'easy-property-listings' ),
+		'parent_item_colon'	=>	__('Parent Business Listing:', 'easy-property-listings' )
 	) );
 
 	$business_args = array(
@@ -80,16 +80,16 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb'			=> '<input type="checkbox" />',
-			'property_thumb'	=> __('Image', 'epl'),
-			'property_price'	=> __('Price', 'epl'),
-			'title'			=> __('Address', 'epl'),
-			'listing'		=> __('Listing Details', 'epl'),
-			'listing_id'		=> __('Unique ID' , 'epl'),
-			'geo'			=> __('Geo', 'epl'),
-			'property_status'	=> __('Status', 'epl'),
-			'listing_type'		=> __('Sale/Lease', 'epl'),
-			'agent'			=> __('Agent', 'epl'),
-			'date'			=> __('Date', 'epl')
+			'property_thumb'	=> __('Image', 'easy-property-listings' ),
+			'property_price'	=> __('Price', 'easy-property-listings' ),
+			'title'			=> __('Address', 'easy-property-listings' ),
+			'listing'		=> __('Listing Details', 'easy-property-listings' ),
+			'listing_id'		=> __('Unique ID' , 'easy-property-listings' ),
+			'geo'			=> __('Geo', 'easy-property-listings' ),
+			'property_status'	=> __('Status', 'easy-property-listings' ),
+			'listing_type'		=> __('Sale/Lease', 'easy-property-listings' ),
+			'agent'			=> __('Agent', 'easy-property-listings' ),
+			'date'			=> __('Date', 'easy-property-listings' )
 		);
 
 		// Geocode Column
@@ -140,7 +140,7 @@ if ( is_admin() ) {
 				$land_unit			= get_post_meta( $post_id, 'property_land_area_unit', true );
 
 				if ( empty( $heading) ) {
-					echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
+					echo '<strong>'.__( 'Important! Set a Heading', 'easy-property-listings'  ).'</strong>';
 				} else {
 					echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
 				}
@@ -235,7 +235,7 @@ if ( is_admin() ) {
 				}
 
 				if ( empty ( $view ) ) {
-					echo '<div class="epl_meta_search_price">'.__('Sale','epl').': ' , epl_currency_formatted_amount( $price ), '</div>';
+					echo '<div class="epl_meta_search_price">'.__('Sale','easy-property-listings' ).': ' , epl_currency_formatted_amount( $price ), '</div>';
 				} else {
 					echo '<div class="epl_meta_price">' , $view , '</div>';
 				}
@@ -248,10 +248,10 @@ if ( is_admin() ) {
 				}
 
 				if ( !empty ( $lease_date ) ) {
-					echo '<div class="epl_meta_lease_date">'.__('Lease End','epl').': ' ,  $lease_date , '</div>';
+					echo '<div class="epl_meta_lease_date">'.__('Lease End','easy-property-listings' ).': ' ,  $lease_date , '</div>';
 				}
 				if($property_authority == 'auction' ) {
-					_e('Auction ','epl');
+					_e('Auction ','easy-property-listings' );
 
 					echo '<br>'.$property->get_property_auction(true);
 				}

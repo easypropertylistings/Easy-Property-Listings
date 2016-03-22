@@ -146,7 +146,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			$epl_license_settings = array(
 				array(
 					'id'      => $this->item_shortname . '_license_key',
-					'name'    => sprintf( __( '%1$s License Key', 'epl' ), $this->item_name ),
+					'name'    => sprintf( __( '%1$s License Key', 'easy-property-listings'  ), $this->item_name ),
 					'desc'    => '',
 					'type'    => 'license_key',
 					'options' => array( 'is_valid_license_option' => $this->item_shortname . '_license_active' ),
@@ -298,22 +298,22 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 					case 'item_name_mismatch' :
 
-						$message = __( 'This license does not belong to the product you have entered it for.', 'epl' );
+						$message = __( 'This license does not belong to the product you have entered it for.', 'easy-property-listings'  );
 						break;
 
 					case 'no_activations_left' :
 
-						$message = __( 'This license does not have any activations left', 'epl' );
+						$message = __( 'This license does not have any activations left', 'easy-property-listings'  );
 						break;
 
 					case 'expired' :
 
-						$message = __( 'This license key is expired. Please renew it.', 'epl' );
+						$message = __( 'This license key is expired. Please renew it.', 'easy-property-listings'  );
 						break;
 
 					default :
 
-						$message = sprintf( __( 'There was a problem activating your license key, please try again or contact support. Error code: %s', 'epl' ), $license_error->error );
+						$message = sprintf( __( 'There was a problem activating your license key, please try again or contact support. Error code: %s', 'easy-property-listings'  ), $license_error->error );
 						break;
 
 				}

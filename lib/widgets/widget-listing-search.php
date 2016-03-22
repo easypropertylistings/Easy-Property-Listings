@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Property_Search extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, $name = __('EPL - Listing Search', 'epl'), array( 'description' => __( 'Search listings.', 'epl' ) ) );
+		parent::__construct( false, $name = __('EPL - Listing Search', 'easy-property-listings'), array( 'description' => __( 'Search listings.', 'easy-property-listings' ) ) );
 	}
 
 	function widget($args, $instance) {
