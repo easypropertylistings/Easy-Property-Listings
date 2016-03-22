@@ -66,14 +66,14 @@ function epl_contacts_list() {
 
 	?>
 	<div class="wrap">
-		<h2><?php _e( 'Contacts', 'epl' ); ?>
-			<a class="add-new-h2" href="<?php echo admin_url('admin.php?page=epl-contacts&view=new-contact'); ?>"><?php _e('Add New','epl'); ?></a>
-			<a class="add-new-h2 epl-contact-tags-page" href="<?php echo admin_url('admin.php?page=epl-contacts&view=all_tags'); ?>"><?php _e('Tags','epl'); ?></a>
+		<h2><?php _e( 'Contacts', 'easy-property-listings'  ); ?>
+			<a class="add-new-h2" href="<?php echo admin_url('admin.php?page=epl-contacts&view=new-contact'); ?>"><?php _e('Add New','easy-property-listings' ); ?></a>
+			<a class="add-new-h2 epl-contact-tags-page" href="<?php echo admin_url('admin.php?page=epl-contacts&view=all_tags'); ?>"><?php _e('Tags','easy-property-listings' ); ?></a>
 		</h2>
 		<?php do_action( 'epl_contacts_table_top' ); ?>
 		<form id="epl-contacts-filter" method="get" action="<?php echo admin_url( 'admin.php?page=epl-contacts' ); ?>">
 			<?php
-			$epl_contacts_table->search_box( __( 'Search Contacts', 'epl' ), 'epl-contacts' );
+			$epl_contacts_table->search_box( __( 'Search Contacts', 'easy-property-listings'  ), 'epl-contacts' );
 			$epl_contacts_table->display();
 			?>
 			<input type="hidden" name="page" value="epl-contacts" />
@@ -97,7 +97,7 @@ function epl_render_contact_view( $view, $callbacks ) {
 	$render = true;
 
 	if ( ! is_admin() || ! epl_contact_access() ) {
-		epl_set_error( 'epl-no-access', __( 'You are not permitted to view this data.', 'epl' ) );
+		epl_set_error( 'epl-no-access', __( 'You are not permitted to view this data.', 'easy-property-listings'  ) );
 		$render = false;
 	}
 	if($view == 'new-contact' || $view == 'all_tags') {
@@ -106,7 +106,7 @@ function epl_render_contact_view( $view, $callbacks ) {
 	}
 
 	if ( ! isset( $_GET['id'] ) || ! is_numeric( $_GET['id'] ) ) {
-		epl_set_error( 'epl-invalid_contact', __( 'Invalid Contact ID Provided.', 'epl' ) );
+		epl_set_error( 'epl-invalid_contact', __( 'Invalid Contact ID Provided.', 'easy-property-listings'  ) );
 		$render = false;
 	}
 
@@ -114,7 +114,7 @@ function epl_render_contact_view( $view, $callbacks ) {
 	$contact    = new EPL_Contact( $contact_id );
 
 	if ( empty( $contact->ID ) ) {
-		epl_set_error( 'epl-invalid_contact', __( 'Invalid Contact ID Provided.', 'epl' ) );
+		epl_set_error( 'epl-invalid_contact', __( 'Invalid Contact ID Provided.', 'easy-property-listings'  ) );
 		$render = false;
 	}
 
@@ -122,7 +122,7 @@ function epl_render_contact_view( $view, $callbacks ) {
 	?>
 
 	<div class='wrap'>
-		<h2><?php _e( 'Contact Details', 'epl' );?></h2>
+		<h2><?php _e( 'Contact Details', 'easy-property-listings'  );?></h2>
 		<?php if ( epl_get_errors() ) :?>
 			<div class="error settings-error">
 				<?php epl_print_errors(); ?>
@@ -187,7 +187,7 @@ function epl_new_contact_view() { ?>
 		}
 	?>
 	<div class='wrap'>
-		<h2><?php _e( 'Add Contact', 'epl' );?></h2>
+		<h2><?php _e( 'Add Contact', 'easy-property-listings'  );?></h2>
 		<?php if ( epl_get_errors() ) :?>
 			<div class="error settings-error">
 				<?php epl_print_errors(); ?>
@@ -204,7 +204,7 @@ function epl_new_contact_view() { ?>
 					$args = array(
 						'post_type'	=>	'epl_contact',
 						'post_status'	=>	'auto-draft',
-						'post_title'	=>	__('Contact Name','epl')
+						'post_title'	=>	__('Contact Name','easy-property-listings' )
 					);
 					$contact_id = wp_insert_post($args);
 					if($contact_id ):
@@ -223,35 +223,35 @@ function epl_new_contact_view() { ?>
 
 									array(
 										'name'		=>	'title',
-										'label'		=>	__('Summary','epl'),
+										'label'		=>	__('Summary','easy-property-listings' ),
 										'type'		=>	'text',
 										'maxlength'	=>	'60',
 										'value'		=>	$contact->name
 									),
 									array(
 										'name'		=>	'first_name',
-										'label'		=>	__('First Name','epl'),
+										'label'		=>	__('First Name','easy-property-listings' ),
 										'type'		=>	'text',
 										'maxlength'	=>	'60',
 										'value'		=>	$contact->get_meta('contact_first_name')
 									),
 									array(
 										'name'		=>	'last_name',
-										'label'		=>	__('Last Name','epl'),
+										'label'		=>	__('Last Name','easy-property-listings' ),
 										'type'		=>	'text',
 										'maxlength'	=>	'60',
 										'value'		=>	$contact->get_meta('contact_last_name')
 									),
 									array(
 										'name'		=>	'email',
-										'label'		=>	__('Email','epl'),
+										'label'		=>	__('Email','easy-property-listings' ),
 										'type'		=>	'email',
 										'maxlength'	=>	'60',
 										'value'		=>	$contact->get_primary_email($contact->ID)
 									),
 									array(
 										'name'		=>	'phone',
-										'label'		=>	__('Phone','epl'),
+										'label'		=>	__('Phone','easy-property-listings' ),
 										'type'		=>	'text',
 										'maxlength'	=>	'60',
 										'value'		=>	''
@@ -269,7 +269,7 @@ function epl_new_contact_view() { ?>
 							<input type="hidden" name="ID" value="<?php echo $contact->ID; ?>" />
 							<?php wp_nonce_field( 'new-contact', '_wpnonce', false, true ); ?>
 							<input type="hidden" name="epl_action" value="new-contact" />
-							<input type="submit" id="epl-new-contact" class="button-primary" value="<?php _e( 'Create', 'epl' ); ?>" />
+							<input type="submit" id="epl-new-contact" class="button-primary" value="<?php _e( 'Create', 'easy-property-listings'  ); ?>" />
 						</span>
 					</div>
 				</form>
@@ -354,7 +354,7 @@ function epl_contact_meta_view($contact) {
 
 	$this_user = wp_get_current_user();
 	if ( ! is_admin() || ! epl_contact_access() ) {
-		wp_die( __( 'You do not have permission to see this page.', 'epl' ) );
+		wp_die( __( 'You do not have permission to see this page.', 'easy-property-listings'  ) );
 	}
 	?>
 
@@ -417,18 +417,18 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-professional-details',
-									'help'		=>	__('Professional Details' , 'epl') . '<hr/>',
+									'help'		=>	__('Professional Details' , 'easy-property-listings' ) . '<hr/>',
 									'fields'	=>	apply_filters('epl_contact_professional_fields',
 										array(
 											array(
 												'name'		=>	'contact_title',
-												'label'		=>	__('Title','epl'),
+												'label'		=>	__('Title','easy-property-listings' ),
 												'type'		=>	'text',
 												'value'		=>	$contact->get_meta('contact_title')
 											),
 											array(
 												'name'		=>	'contact_company',
-												'label'		=>	__('Company','epl'),
+												'label'		=>	__('Company','easy-property-listings' ),
 												'type'		=>	'text',
 												'value'		=>	$contact->get_meta('contact_company')
 											),
@@ -439,12 +439,12 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-contact-details',
-									'help'		=>	__('Contact Details' , 'epl') . '<hr/>',
+									'help'		=>	__('Contact Details' , 'easy-property-listings' ) . '<hr/>',
 									'fields'	=>	apply_filters('epl_contact_contact_fields',
 										array(
 											array(
 												'name'		=>	"contact_phones[phone]",
-												'label'		=>	__('Phone','epl'),
+												'label'		=>	__('Phone','easy-property-listings' ),
 												'type'		=>	'text',
 												'class'		=>	'epl-contact-addable',
 												'maxlength'	=>	'60',
@@ -453,7 +453,7 @@ function epl_contact_meta_view($contact) {
 
 											array(
 												'name'		=>	"contact_emails[email]",
-												'label'		=>	__('Email','epl'),
+												'label'		=>	__('Email','easy-property-listings' ),
 												'type'		=>	'email',
 												'class'		=>	'epl-contact-addable-email',
 												'maxlength'	=>	'60',
@@ -462,7 +462,7 @@ function epl_contact_meta_view($contact) {
 
 											array(
 												'name'		=>	'contact_website',
-												'label'		=>	__('Website','epl'),
+												'label'		=>	__('Website','easy-property-listings' ),
 												'type'		=>	'text',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_website')
@@ -474,26 +474,26 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-custom-details',
-									'help'		=>	__('Custom Fields' , 'epl') . '<hr/>',
+									'help'		=>	__('Custom Fields' , 'easy-property-listings' ) . '<hr/>',
 									'fields'	=>	apply_filters('epl_contact_custom_fields',
 										array(
 											array(
 												'name'		=>	'contact_referred_by',
-												'label'		=>	__('Referred By','epl'),
+												'label'		=>	__('Referred By','easy-property-listings' ),
 												'type'		=>	'text',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_referred_by')
 											),
 											array(
 												'name'		=>	'contact_custom_1',
-												'label'		=>	__('Custom Field 1','epl'),
+												'label'		=>	__('Custom Field 1','easy-property-listings' ),
 												'type'		=>	'text',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_custom_1')
 											),
 											array(
 												'name'		=>	'contact_custom_2',
-												'label'		=>	__('Custom Field 2','epl'),
+												'label'		=>	__('Custom Field 2','easy-property-listings' ),
 												'type'		=>	'text',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_custom_2')
@@ -505,34 +505,34 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-social-details',
-									'help'		=>	__('Social Networks' , 'epl') . '<hr/>',
+									'help'		=>	__('Social Networks' , 'easy-property-listings' ) . '<hr/>',
 									'fields'	=>	apply_filters('epl_contact_social_fields',
 										array(
 
 											array(
 												'name'		=>	'contact_facebook',
-												'label'		=>	__('Facebook','epl'),
+												'label'		=>	__('Facebook','easy-property-listings' ),
 												'type'		=>	'text',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_facebook')
 											),
 											array(
 												'name'		=>	'contact_twitter',
-												'label'		=>	__('Twitter','epl'),
+												'label'		=>	__('Twitter','easy-property-listings' ),
 												'type'		=>	'text',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_twitter')
 											),
 											array(
 												'name'		=>	'contact_google_plus',
-												'label'		=>	__('Google Plus','epl'),
+												'label'		=>	__('Google Plus','easy-property-listings' ),
 												'type'		=>	'text',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_google_plus')
 											),
 											array(
 												'name'		=>	'contact_linked_in',
-												'label'		=>	__('Linked In','epl'),
+												'label'		=>	__('Linked In','easy-property-listings' ),
 												'type'		=>	'text',
 												'maxlength'	=>	'60',
 												'value'		=>	$contact->get_meta('contact_linked_in')
@@ -544,46 +544,46 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-address-details',
-									'help'		=>	__('Address' , 'epl') . '<hr/>',
+									'help'		=>	__('Address' , 'easy-property-listings' ) . '<hr/>',
 									'fields'	=>	array(
 										array(
 											'name'		=>	'contact_street_number',
-											'label'		=>	__('Street Number','epl'),
+											'label'		=>	__('Street Number','easy-property-listings' ),
 											'type'		=>	'text',
 											'maxlength'	=>	'200',
 											'value'		=>	$contact->get_meta('contact_street_number')
 										),
 										array(
 											'name'		=>	'contact_street_name',
-											'label'		=>	__('Street Name','epl'),
+											'label'		=>	__('Street Name','easy-property-listings' ),
 											'type'		=>	'text',
 											'maxlength'	=>	'200',
 											'value'		=>	$contact->get_meta('contact_street_name')
 										),
 										array(
 											'name'		=>	'contact_suburb',
-											'label'		=>	__('Suburb','epl'),
+											'label'		=>	__('Suburb','easy-property-listings' ),
 											'type'		=>	'text',
 											'maxlength'	=>	'200',
 											'value'		=>	$contact->get_meta('contact_suburb')
 										),
 										array(
 											'name'		=>	'contact_state',
-											'label'		=>	__('State','epl'),
+											'label'		=>	__('State','easy-property-listings' ),
 											'type'		=>	'text',
 											'maxlength'	=>	'200',
 											'value'		=>	$contact->get_meta('contact_state')
 										),
 										array(
 											'name'		=>	'contact_postcode',
-											'label'		=>	__('Postcode','epl'),
+											'label'		=>	__('Postcode','easy-property-listings' ),
 											'type'		=>	'text',
 											'maxlength'	=>	'200',
 											'value'		=>	$contact->get_meta('contact_postcode')
 										),
 										array(
 											'name'		=>	'contact_country',
-											'label'		=>	__('Country','epl'),
+											'label'		=>	__('Country','easy-property-listings' ),
 											'type'		=>	'text',
 											'maxlength'	=>	'200',
 											'value'		=>	$contact->get_meta('contact_country')
@@ -594,7 +594,7 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-wpuser-details',
-									'help'		=>	__('Author' , 'epl') . '<hr/>',
+									'help'		=>	__('Author' , 'easy-property-listings' ) . '<hr/>',
 									'fields'	=>	apply_filters('epl_contact_wpuser_info_fields',
 										array(
 											array(
@@ -617,7 +617,7 @@ function epl_contact_meta_view($contact) {
 									'label'		=>	'',
 									'class'		=>	'col-1 epl-inner-div',
 									'id'		=>	'epl-contact-bginfo-details',
-									'help'		=>	__('Background Info' , 'epl') . '<hr/>',
+									'help'		=>	__('Background Info' , 'easy-property-listings' ) . '<hr/>',
 									'fields'	=>	apply_filters('epl_contact_background_info_fields',
 										array(
 											array(
@@ -637,7 +637,7 @@ function epl_contact_meta_view($contact) {
 							<input type="hidden" name="contact_id" value="<?php echo $contact->ID; ?>" />
 							<?php wp_nonce_field( 'meta-contact', '_wpnonce', false, true ); ?>
 							<input type="hidden" name="epl_action" value="meta-contact" />
-							<input type="submit" id="epl-meta-contact" class="button-primary" value="<?php _e( 'Update', 'epl' ); ?>" />
+							<input type="submit" id="epl-meta-contact" class="button-primary" value="<?php _e( 'Update', 'easy-property-listings'  ); ?>" />
 						</span>
 
 					</div>
@@ -674,7 +674,7 @@ function epl_contact_notes_view( $contact ) {
 		<div class="epl-item-notes-header">
 			<?php echo get_avatar( $contact->email, 30 ); ?> <span><?php echo $contact->name; ?></span>
 		</div>
-		<h3><?php _e( 'Notes', 'epl' ); ?></h3>
+		<h3><?php _e( 'Notes', 'easy-property-listings'  ); ?></h3>
 
 		<?php if ( 1 == $paged ) : ?>
 		<div style="display: block; margin-bottom: 35px;">
@@ -686,7 +686,7 @@ function epl_contact_notes_view( $contact ) {
 				<br />
 				<label class ="epl-contact-select-label" >
 					<select class="epl-contact-note-select" id="contact-note-listing">
-						<option value=''><?php _e('Note for Listing', 'epl'); ?></option>
+						<option value=''><?php _e('Note for Listing', 'easy-property-listings' ); ?></option>
 						<?php
 							if( !empty($contact->listing_ids) ) {
 								foreach( $contact->listing_ids as $listing_id ) {
@@ -745,7 +745,7 @@ function epl_contact_notes_view( $contact ) {
 			<?php endforeach; ?>
 		<?php else: ?>
 			<div class="epl-no-contact-notes">
-				<?php _e( 'No Contact Notes', 'epl' ); ?>
+				<?php _e( 'No Contact Notes', 'easy-property-listings'  ); ?>
 			</div>
 		<?php endif; ?>
 		</div>
@@ -785,7 +785,7 @@ function epl_contacts_delete_view( $contact ) {
 				<span class="epl-delete-contact-options">
 					<p>
 						<input type="checkbox" class="epl-checkbox epl-contact-delete-confirm" id="epl-contact-delete-confirm" name="epl-contact-delete-confirm">
-						<label for="epl-contact-delete-confirm"><?php _e( 'Are you sure you want to delete this contact?', 'epl' ); ?></label>
+						<label for="epl-contact-delete-confirm"><?php _e( 'Are you sure you want to delete this contact?', 'easy-property-listings'  ); ?></label>
 					</p>
 
 					<?php do_action( 'epl_contact_delete_inputs', $contact ); ?>
@@ -795,8 +795,8 @@ function epl_contacts_delete_view( $contact ) {
 					<input type="hidden" name="contact_id" value="<?php echo $contact->id; ?>" />
 					<?php wp_nonce_field( 'delete-contact', '_wpnonce', false, true ); ?>
 					<input type="hidden" name="epl_action" value="delete-contact" />
-					<input type="submit" disabled="disabled" id="epl-delete-contact" class="button-primary" value="<?php _e( 'Delete Contact', 'epl' ); ?>" />
-					<a id="epl-delete-contact-cancel" href="<?php echo admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $contact->id ); ?>" class="delete"><?php _e( 'Cancel', 'epl' ); ?></a>
+					<input type="submit" disabled="disabled" id="epl-delete-contact" class="button-primary" value="<?php _e( 'Delete Contact', 'easy-property-listings'  ); ?>" />
+					<a id="epl-delete-contact-cancel" href="<?php echo admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $contact->id ); ?>" class="delete"><?php _e( 'Cancel', 'easy-property-listings'  ); ?></a>
 				</span>
 
 			</div>
@@ -874,7 +874,7 @@ function epl_add_contact_screen_options() {
 	global $epl_contacts_table;
 	$option = 'per_page';
 	$args = array(
-		'label'		=> __('Contacts','epl'),
+		'label'		=> __('Contacts','easy-property-listings' ),
 		'default'	=> 10,
 		'option'	=> 'contacts_per_page'
 	);

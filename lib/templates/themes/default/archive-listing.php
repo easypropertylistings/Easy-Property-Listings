@@ -43,11 +43,11 @@ get_header(); ?>
 		else :
 			?><div class="hentry">
 				<div class="entry-header clearfix">
-					<h3 class="entry-title"><?php apply_filters( 'epl_property_search_not_found_title' , _e('Listing not Found', 'epl') ); ?></h3>
+					<h3 class="entry-title"><?php apply_filters( 'epl_property_search_not_found_title' , _e('Listing not Found', 'easy-property-listings') ); ?></h3>
 				</div>
 
 				<div class="entry-content clearfix">
-					<p><?php apply_filters( 'epl_property_search_not_found_message' , _e('Listing not found, expand your search criteria and try again.', 'epl') ); ?></p>
+					<p><?php apply_filters( 'epl_property_search_not_found_message' , _e('Listing not found, expand your search criteria and try again.', 'easy-property-listings') ); ?></p>
 				</div>
 			</div>
 		<?php endif; ?>

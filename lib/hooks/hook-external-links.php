@@ -34,9 +34,9 @@ function epl_button_external_link() {
 				<?php
 
 					if( has_filter('epl_button_label_'.$key) ) {
-						$label = apply_filters('epl_button_label_'.$key,__('Tour '.$count, 'epl') );
+						$label = apply_filters('epl_button_label_' . $key , __('Tour ', 'easy-property-listings') . $count );
 					} else {
-						$label = apply_filters( 'epl_button_label_tour' , __('Tour '.$count, 'epl') );
+						$label = apply_filters( 'epl_button_label_tour' , __('Tour ', 'easy-property-listings') . $count );
 					}
 				?>
 				<?php echo $label ?>

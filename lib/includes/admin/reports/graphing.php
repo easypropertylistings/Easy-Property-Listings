@@ -207,12 +207,12 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 
 	$data = array(
 		$current_status	=>	array(
-			'label'	=>	__( ucfirst($current_status), 'epl' ),
+			'label'	=>	__( ucfirst($current_status), 'easy-property-listings'  ),
 			'id'	=>	$current_status,
 			'data'	=>	$current_listings_data
 		),
 		$sold_status	=>	array(
-			'label'	=>	__( ucfirst($sold_status), 'epl' ),
+			'label'	=>	__( ucfirst($sold_status), 'easy-property-listings'  ),
 			'id'	=>	$current_status,
 			'data'	=>	$sales_data
 		)
@@ -227,7 +227,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 	<div id="epl-dashboard-widgets-wrap">
 		<div class="metabox-holder" style="padding-top: 0;">
 			<div class="postbox">
-				<h3><span><?php _e('Listings Over Time','epl' ); ?></span></h3>
+				<h3><span><?php _e('Listings Over Time','easy-property-listings'  ); ?></span></h3>
 
 				<div class="inside">
 					<?php
@@ -242,7 +242,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								_e( 'Total '.ucfirst($current_status).' listings for period shown: ', 'epl' );
+								_e( 'Total '.ucfirst($current_status).' listings for period shown: ', 'easy-property-listings'  );
 								echo epl_format_amount( $current_listings_totals );
 							?>
 						</strong>
@@ -250,7 +250,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								_e( 'Total '.ucfirst($sold_status).' listings for period shown: ', 'epl' );
+								_e( 'Total '.ucfirst($sold_status).' listings for period shown: ', 'easy-property-listings'  );
 								echo epl_format_amount( $sales_totals );
 							?>
 						</strong>
@@ -279,17 +279,17 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 */
 function epl_reports_graph_controls() {
 	$date_options = apply_filters( 'epl_report_date_options', array(
-		'today'        => __( 'Today', 'epl' ),
-		'yesterday'    => __( 'Yesterday', 'epl' ),
-		'this_week'    => __( 'This Week', 'epl' ),
-		'last_week'    => __( 'Last Week', 'epl' ),
-		'this_month'   => __( 'This Month', 'epl' ),
-		'last_month'   => __( 'Last Month', 'epl' ),
-		'this_quarter' => __( 'This Quarter', 'epl' ),
-		'last_quarter' => __( 'Last Quarter', 'epl' ),
-		'this_year'    => __( 'This Year', 'epl' ),
-		'last_year'    => __( 'Last Year', 'epl' ),
-		'other'        => __( 'Custom', 'epl' )
+		'today'        => __( 'Today', 'easy-property-listings'  ),
+		'yesterday'    => __( 'Yesterday', 'easy-property-listings'  ),
+		'this_week'    => __( 'This Week', 'easy-property-listings'  ),
+		'last_week'    => __( 'Last Week', 'easy-property-listings'  ),
+		'this_month'   => __( 'This Month', 'easy-property-listings'  ),
+		'last_month'   => __( 'Last Month', 'easy-property-listings'  ),
+		'this_quarter' => __( 'This Quarter', 'easy-property-listings'  ),
+		'last_quarter' => __( 'Last Quarter', 'easy-property-listings'  ),
+		'this_year'    => __( 'This Year', 'easy-property-listings'  ),
+		'last_year'    => __( 'Last Year', 'easy-property-listings'  ),
+		'other'        => __( 'Custom', 'easy-property-listings'  )
 	) );
 
 	$dates   = epl_get_report_dates();
@@ -315,7 +315,7 @@ function epl_reports_graph_controls() {
 				</select>
 
 				<div id="epl-date-range-options" <?php echo $display; ?>>
-					<span><?php _e( 'From', 'epl' ); ?>&nbsp;</span>
+					<span><?php _e( 'From', 'easy-property-listings'  ); ?>&nbsp;</span>
 					<select id="epl-graphs-month-start" name="m_start">
 						<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_start'] ); ?>><?php echo epl_month_num_to_name( $i ); ?></option>
@@ -331,7 +331,7 @@ function epl_reports_graph_controls() {
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['year'] ); ?>><?php echo $i; ?></option>
 						<?php endfor; ?>
 					</select>
-					<span><?php _e( 'To', 'epl' ); ?>&nbsp;</span>
+					<span><?php _e( 'To', 'easy-property-listings'  ); ?>&nbsp;</span>
 					<select id="epl-graphs-month-end" name="m_end">
 						<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_end'] ); ?>><?php echo epl_month_num_to_name( $i ); ?></option>
@@ -351,7 +351,7 @@ function epl_reports_graph_controls() {
 
 				<div class="epl-graph-filter-submit graph-option-section">
 					<input type="hidden" name="epl_action" value="filter_reports" />
-					<input type="submit" class="button-secondary" value="<?php _e( 'Filter', 'epl' ); ?>"/>
+					<input type="submit" class="button-secondary" value="<?php _e( 'Filter', 'easy-property-listings'  ); ?>"/>
 				</div>
 			</div>
 		</div>

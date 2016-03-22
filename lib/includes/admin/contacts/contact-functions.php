@@ -45,10 +45,10 @@ add_filter( 'epl_contact_views', 'epl_register_default_contact_views', 1, 1 );
 function epl_register_default_contact_tabs( $tabs ) {
 
 	$default_tabs = array(
-		'overview'	=> array( 'dashicon' => 'dashicons-admin-users', 'title' => __( 'Contact Profile', 'epl' ) ),
-		'meta'		=> array( 'dashicon' => 'dashicons-edit', 'title' => __( 'Contact Info', 'epl' ) ),
-		'listings'	=> array( 'dashicon' => 'dashicons-admin-home', 'title' => __( 'Listings', 'epl' ) ),
-		'notes'		=> array( 'dashicon' => 'dashicons-admin-comments', 'title' => __( 'Contact Notes', 'epl' ) ),
+		'overview'	=> array( 'dashicon' => 'dashicons-admin-users', 'title' => __( 'Contact Profile', 'easy-property-listings'  ) ),
+		'meta'		=> array( 'dashicon' => 'dashicons-edit', 'title' => __( 'Contact Info', 'easy-property-listings'  ) ),
+		'listings'	=> array( 'dashicon' => 'dashicons-admin-home', 'title' => __( 'Listings', 'easy-property-listings'  ) ),
+		'notes'		=> array( 'dashicon' => 'dashicons-admin-comments', 'title' => __( 'Contact Notes', 'easy-property-listings'  ) ),
 	);
 
 	return array_merge( $tabs, $default_tabs );
@@ -64,7 +64,7 @@ add_filter( 'epl_contact_tabs', 'epl_register_default_contact_tabs', 1, 1 );
  */
 function epl_register_delete_contact_tab( $tabs ) {
 
-	$tabs['delete'] = array( 'dashicon' => 'dashicons-trash', 'title' => __( 'Delete Contact', 'epl' ) );
+	$tabs['delete'] = array( 'dashicon' => 'dashicons-trash', 'title' => __( 'Delete Contact', 'easy-property-listings'  ) );
 
 	return $tabs;
 }
@@ -133,7 +133,7 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 			$label = ucwords(str_replace('_',' ',$phone_name));
 			$fields[] = array(
 				'name'		=>	"contact_phones[$phone_name]",
-				'label'		=>	__($label,'epl'),
+				'label'		=>	__($label,'easy-property-listings' ),
 				'type'		=>	'text',
 				'class'		=>	'epl-contact-addable',
 				'maxlength'	=>	'60',
@@ -147,7 +147,7 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 			$label = ucwords(str_replace('_',' ',$mail_name));
 			$fields[] = array(
 				'name'		=>	"contact_emails[$mail_name]",
-				'label'		=>	__($label,'epl'),
+				'label'		=>	__($label,'easy-property-listings' ),
 				'type'		=>	'email',
 				'class'		=>	'epl-contact-addable-email',
 				'maxlength'	=>	'60',

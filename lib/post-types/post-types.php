@@ -44,26 +44,26 @@ function epl_custom_restrict_manage_posts() {
 
 		//Filter by property_status
 		$fields = array(
-			'current'	=>	__('Current', 'epl'),
-			'withdrawn'	=>	__('Withdrawn', 'epl'),
-			'offmarket'	=>	__('Off Market', 'epl')
+			'current'	=>	__('Current', 'easy-property-listings' ),
+			'withdrawn'	=>	__('Withdrawn', 'easy-property-listings' ),
+			'offmarket'	=>	__('Off Market', 'easy-property-listings' )
 		);
 
 		if($post_type != 'rental' && $post_type != 'holiday_rental') {
-			$fields['sold'] = apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'epl') );
+			$fields['sold'] = apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'easy-property-listings' ) );
 		}
 
 		if($post_type == 'rental' || $post_type == 'holiday_rental' || $post_type == 'commercial' || $post_type == 'business' || $post_type == 'commercial_land') {
-			$fields['leased'] = apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'epl') );
+			$fields['leased'] = apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'easy-property-listings' ) );
 		}
 
 		if(!empty($fields)) {
 			$_GET['property_status'] = isset($_GET['property_status'])?sanitize_text_field($_GET['property_status']):'';
 			echo '<select name="property_status">';
-				echo '<option value="">'.__('Filter By Type', 'epl').'</option>';
+				echo '<option value="">'.__('Filter By Type', 'easy-property-listings' ).'</option>';
 				foreach($fields as $k=>$v) {
 					$selected = ($_GET['property_status'] == $k ? 'selected="selected"' : '');
-					echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+					echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
 				}
 			echo '</select>';
 		}
@@ -74,25 +74,25 @@ function epl_custom_restrict_manage_posts() {
 			array(
 				'name' 			=> 'property_author',
 				'selected'		=> $property_author,
-				'show_option_all'	=> __('All Users','epl')
+				'show_option_all'	=> __('All Users','easy-property-listings' )
 			)
 		);
 
 		$custom_search_fields = array(
 			'property_address_suburb'	=>	epl_labels('label_suburb'),
-			'property_office_id'		=>	__('Office ID', 'epl'),
-			'property_agent'		=>	__('Listing Agent', 'epl'),
-			'property_second_agent'		=>	__('Second Listing Agent', 'epl'),
+			'property_office_id'		=>	__('Office ID', 'easy-property-listings' ),
+			'property_agent'		=>	__('Listing Agent', 'easy-property-listings' ),
+			'property_second_agent'		=>	__('Second Listing Agent', 'easy-property-listings' ),
 		);
 		$custom_search_fields = apply_filters('epl_admin_search_fields',$custom_search_fields);
 
 		if(!empty($custom_search_fields)) {
 			$_GET['property_custom_fields'] = isset($_GET['property_custom_fields'])?sanitize_text_field($_GET['property_custom_fields']):'';
 			echo '<select name="property_custom_fields">';
-				echo '<option value="">'.__('Search For :', 'epl').'</option>';
+				echo '<option value="">'.__('Search For :', 'easy-property-listings' ).'</option>';
 				foreach($custom_search_fields as $k=>$v) {
 					$selected = ($_GET['property_custom_fields'] == $k ? 'selected="selected"' : '');
-					echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+					echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
 				}
 			echo '</select>';
 		}
@@ -103,7 +103,7 @@ function epl_custom_restrict_manage_posts() {
 		} else {
 			$val = '';
 		}
-		echo '<input type="text" name="property_custom_value" placeholder="'.__('Search Value.', 'epl').'" value="'.$val.'" />';
+		echo '<input type="text" name="property_custom_value" placeholder="'.__('Search Value.', 'easy-property-listings' ).'" value="'.$val.'" />';
 	}
 }
 
@@ -220,7 +220,7 @@ function epl_manage_listing_column_listing_callback() {
 	$return				= $property->get_property_meta('property_com_return');
 
 	if ( empty( $heading) ) {
-		echo '<strong>'.__( 'Important! Set a Heading', 'epl' ).'</strong>';
+		echo '<strong>'.__( 'Important! Set a Heading', 'easy-property-listings'  ).'</strong>';
 	} else {
 		echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
 	}
@@ -244,16 +244,16 @@ function epl_manage_listing_column_listing_callback() {
 
 	if ( !empty( $beds ) || !empty( $baths ) ) {
 		echo '<div class="epl_meta_beds_baths">';
-			echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'epl' ) , ' | </span>';
-			echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'epl' ) , '</span>';
+			echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'easy-property-listings'  ) , ' | </span>';
+			echo '<span class="epl_meta_baths">' , $baths , ' ' , __( 'Baths', 'easy-property-listings'  ) , '</span>';
 		echo '</div>';
 	}
 
 	if ( !empty( $rooms ) ) {
 		if ( $rooms == 1 ) {
-			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Room', 'epl' ) , '</div>';
+			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Room', 'easy-property-listings'  ) , '</div>';
 		} else {
-			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Rooms', 'epl' ) , '</div>';
+			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Rooms', 'easy-property-listings'  ) , '</div>';
 		}
 	}
 
@@ -302,7 +302,7 @@ function epl_manage_listing_column_geo_callback() {
 	$property_address_coordinates = get_post_meta( $post->ID, 'property_address_coordinates', true );
 	/* If no duration is found, output a default message. */
 	if (  $property_address_coordinates == ',' || empty($property_address_coordinates ) )
-		_e('No','epl') ;
+		_e('No','easy-property-listings' ) ;
 	/* If there is a duration, append 'minutes' to the text string. */
 	else
 		echo $property_address_coordinates;
@@ -417,7 +417,7 @@ function epl_manage_listing_column_price_callback() {
 
 	/*
 	if($property_authority == 'auction' ) {
-		_e('Auction ','epl');
+		_e('Auction ','easy-property-listings' );
 		echo '<br>'.$property->get_property_auction(true);
 	}*/
 }
@@ -433,9 +433,9 @@ function epl_manage_listing_column_property_status_callback() {
 
 	$property_status = get_post_meta( $post->ID, 'property_status', true );
 	$labels_property_status = apply_filters (  'epl_labels_property_status_filter', array(
-		'current' 	=> __('Current', 'epl'),
-		'withdrawn' 	=> __('Withdrawn', 'epl'),
-		'offmarket' 	=> __('Off Market', 'epl'),
+		'current' 	=> __('Current', 'easy-property-listings' ),
+		'withdrawn' 	=> __('Withdrawn', 'easy-property-listings' ),
+		'offmarket' 	=> __('Off Market', 'easy-property-listings' ),
 		'sold'  	=> $property->label_sold,
 		'leased'  	=> $property->label_leased
 		)

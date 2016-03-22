@@ -39,8 +39,8 @@ $epl_license = get_option('epl_license');
 ?>
 
 <div class="wrap">
-	<h2><?php _e('Licenses Keys For Extensions', 'epl'); ?></h2>
-	<p><?php _e('Activate extension updates by entering your license key below. Thanks for purchasing software for Easy Property Listings. You\'re awesome!', 'epl'); ?></p>
+	<h2><?php _e('Licenses Keys For Extensions', 'easy-property-listings' ); ?></h2>
+	<p><?php _e('Activate extension updates by entering your license key below. Thanks for purchasing software for Easy Property Listings. You\'re awesome!', 'easy-property-listings' ); ?></p>
 
 	<div id="epl-menu-licences" class="epl-content metabox-holder">
 		<form action="" method="post" class="tba-epl-general-form">
@@ -50,13 +50,13 @@ $epl_license = get_option('epl_license');
 						<div id="epl-<?php echo $field_id; ?>" class="postbox epl-menu-section epl-<?php echo $field_class; ?>">
 
 						<!--<div class="handlediv" title="Click to toggle"><br></div>-->
-						<h3 class="hndle ui-sortable-handle epl-section-title"><?php _e( 'Enter Your Activated Extension License Keys' , 'epl'); ?></h3>
+						<h3 class="hndle ui-sortable-handle epl-section-title"><?php _e( 'Enter Your Activated Extension License Keys' , 'easy-property-listings' ); ?></h3>
 
 							<?php foreach($fields as $field_group) { ?>
 								<?php foreach($field_group['fields'] as $field) { ?>
 									<div class="inside epl-field">
 										<div class="epl-half-left">
-											<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
+											<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
 										</div>
 										<div class="epl-half-right">
 											<?php
@@ -65,7 +65,7 @@ $epl_license = get_option('epl_license');
 													case 'select':
 														echo '<select name="'.$field['name'].'" id="'.$field['name'].'">';
 															if(!empty($field['default'])) {
-																echo '<option value="" selected="selected">'.__($field['default'], 'epl').'</option>';
+																echo '<option value="" selected="selected">'.__($field['default'], 'easy-property-listings' ).'</option>';
 															}
 
 															if(!empty($field['opts'])) {
@@ -74,7 +74,7 @@ $epl_license = get_option('epl_license');
 																	if($val == $k) {
 																		$selected = 'selected="selected"';
 																	}
-																	echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'epl').'</option>';
+																	echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
 																}
 															}
 														echo '</select>';
@@ -89,7 +89,7 @@ $epl_license = get_option('epl_license');
 																		$checked = 'checked="checked"';
 																	}
 																}
-																echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+																echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'easy-property-listings' ).'</label></span>';
 															}
 														}
 														break;
@@ -101,7 +101,7 @@ $epl_license = get_option('epl_license');
 																if($val == $k) {
 																	$checked = 'checked="checked"';
 																}
-																echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+																echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'easy-property-listings' ).'</label></span>';
 															}
 														}
 														break;
@@ -119,13 +119,13 @@ $epl_license = get_option('epl_license');
 
 																if( $status == 'invalid' ) {
 																	echo '<span class="license-status-text license-status-text-'.$status.'">';
-																		echo '<span class="license-status-text-label">' . __('Invalid or Expired Key :', 'epl') . '</span>';
-																		echo '<span class="license-status-text-value">' . __('Please make sure you have entered the correct value and that your key is not expired.', 'epl') . '</span>';
+																		echo '<span class="license-status-text-label">' . __('Invalid or Expired Key :', 'easy-property-listings' ) . '</span>';
+																		echo '<span class="license-status-text-value">' . __('Please make sure you have entered the correct value and that your key is not expired.', 'easy-property-listings' ) . '</span>';
 																	echo '</span>';
 																} else if( $status == 'valid' ) {
 																	echo '<span class="license-status-text license-status-text-'.$status.'">';
-																		echo '<span class="license-status-text-label">' . __('Valid Key :', 'epl') . '</span>';
-																		echo '<span class="license-status-text-value">' . __('Your license key has been successfully validated.', 'epl') . '</span>';
+																		echo '<span class="license-status-text-label">' . __('Valid Key :', 'easy-property-listings' ) . '</span>';
+																		echo '<span class="license-status-text-value">' . __('Your license key has been successfully validated.', 'easy-property-listings' ) . '</span>';
 																	echo '</span>';
 																}
 															}
@@ -135,7 +135,7 @@ $epl_license = get_option('epl_license');
 												if(isset($field['help'])) {
 													$field['help'] = trim($field['help']);
 													if(!empty($field['help'])) {
-														echo '<span class="epl-help-text">'.__($field['help'], 'epl').'</span>';
+														echo '<span class="epl-help-text">'.__($field['help'], 'easy-property-listings' ).'</span>';
 													}
 												}
 											?>
@@ -152,7 +152,7 @@ $epl_license = get_option('epl_license');
 
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
-				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
+				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'easy-property-listings' ); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
 	</div>
@@ -174,7 +174,7 @@ function epl_get_admin_option_licence_fields() {
 		$opts_epl_property_card_excerpt_length[$i] = $i;
 	}
 
-	$opts_pages = array( '' => __('Select Page', 'epl') );
+	$opts_pages = array( '' => __('Select Page', 'easy-property-listings' ) );
 	$pages = get_pages();
 	if(!empty($pages)) {
 		foreach($pages as $page) {

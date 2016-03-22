@@ -6,7 +6,7 @@
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
  * Version: 2.99 (beta-5)
- * Text Domain: epl
+ * Text Domain: easy-property-listings
  * Domain Path: languages
  *
  * Easy Property Listings is free software: you can redistribute it and/or modify
@@ -294,8 +294,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			$epl_lang_dir = apply_filters( 'epl_languages_directory', $epl_lang_dir );
 
 			// Traditional WordPress plugin locale filter
-			$locale        = apply_filters( 'plugin_locale',  get_locale(), 'epl' );
-			$mofile        = sprintf( '%1$s-%2$s.mo', 'epl', $locale );
+			$locale        = apply_filters( 'plugin_locale',  get_locale(), 'easy-property-listings' );
+			$mofile        = sprintf( '%1$s-%2$s.mo', 'easy-property-listings', $locale );
 
 			// Setup paths to current locale file
 			$mofile_local  = $epl_lang_dir . $mofile;
@@ -303,13 +303,13 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			if ( file_exists( $mofile_global ) ) {
 				// Look in global /wp-content/languages/epl folder
-				load_textdomain( 'epl', $mofile_global );
+				load_textdomain( 'easy-property-listings', $mofile_global );
 			} elseif ( file_exists( $mofile_local ) ) {
 				// Look in local /wp-content/plugins/easy-property-listings/languages/ folder
-				load_textdomain( 'epl', $mofile_local );
+				load_textdomain( 'easy-property-listings', $mofile_local );
 			} else {
 				// Load the default language files
-				load_plugin_textdomain( 'epl', false, $epl_lang_dir );
+				load_plugin_textdomain( 'easy-property-listings', false, $epl_lang_dir );
 			}
 		}
 	}
