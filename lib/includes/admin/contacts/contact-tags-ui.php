@@ -1,7 +1,7 @@
 <div class='wrap'>
     <div class="epl-contact-all-tags-wrap">
         <div class="epl-contact-all-tags-header">
-            <h2 class="epl-contact-all-tags-title"><?php _e('Tags', 'epl'); ?></h2>
+            <h2 class="epl-contact-all-tags-title"><?php _e('Tags', 'easy-property-listings' ); ?></h2>
             <div class="epl-contact-all-tags-menu">
                 <?php do_action('epl_contact_pre_all_tags_menu'); ?>
 

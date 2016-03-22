@@ -103,7 +103,7 @@ if ( ! empty( $selected_post_types ) ) :
 				}
 				?>
 				<div class="epl-search-submit-row epl-search-submit property-type-search">
-					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __('Search', 'epl'); ?>" class="epl-search-btn" />
+					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __('Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
 				</div>
 			</form>
 			</div>

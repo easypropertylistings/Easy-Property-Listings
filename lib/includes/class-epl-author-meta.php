@@ -77,8 +77,8 @@ class EPL_Author_Meta {
     	if ( $this->email != '' ) {
 			$html = '
 				<a class="epl-author-icon author-icon email-icon-24"
-					href="mailto:' . $this->email . '" title="'.__('Contact', 'epl').' '.$this->name.' '.__('by Email', 'epl').'">'.
-					apply_filters( 'epl_author_icon_email' , __('Email', 'epl')).
+					href="mailto:' . $this->email . '" title="'.__('Contact', 'easy-property-listings' ).' '.$this->name.' '.__('by Email', 'easy-property-listings' ).'">'.
+					apply_filters( 'epl_author_icon_email' , __('Email', 'easy-property-listings' )).
 				'</a>';
 		}
 		$html = apply_filters('epl_author_email_html',$html);
@@ -94,8 +94,8 @@ class EPL_Author_Meta {
     	if ( $this->twitter != '' ) {
 			$html = '
 				<a class="epl-author-icon author-icon twitter-icon-24"
-					href="http://twitter.com/' . $this->twitter . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Twitter', 'epl').'">'.
-					apply_filters( 'epl_author_icon_twitter' , __('Twitter', 'epl')).
+					href="http://twitter.com/' . $this->twitter . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Twitter', 'easy-property-listings' ).'">'.
+					apply_filters( 'epl_author_icon_twitter' , __('Twitter', 'easy-property-listings' )).
 				'</a>';
 		}
 		$html = apply_filters('epl_author_twitter_html',$html);
@@ -111,8 +111,8 @@ class EPL_Author_Meta {
     	if ( $this->google != '' ) {
 			$html = '
 				<a class="epl-author-icon author-icon google-icon-24"
-					href="https://plus.google.com/' . $this->google . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Google', 'epl').'">'.
-					apply_filters( 'epl_author_icon_google' , __('Google', 'epl')).
+					href="https://plus.google.com/' . $this->google . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Google', 'easy-property-listings' ).'">'.
+					apply_filters( 'epl_author_icon_google' , __('Google', 'easy-property-listings' )).
 				'</a>';
 		}
 		$html = apply_filters('epl_author_google_html',$html);
@@ -128,8 +128,8 @@ class EPL_Author_Meta {
     	if ( $this->facebook != '' ) {
 			$html = '
 				<a class="epl-author-icon author-icon facebook-icon-24"
-					href="http://facebook.com/' . $this->facebook . '" title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Facebook', 'epl').'">'.
-					apply_filters( 'epl_author_icon_facebook' , __('Facebook', 'epl')).
+					href="http://facebook.com/' . $this->facebook . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Facebook', 'easy-property-listings' ).'">'.
+					apply_filters( 'epl_author_icon_facebook' , __('Facebook', 'easy-property-listings' )).
 				'</a>';
 		}
 		$html = apply_filters('epl_author_facebook_html',$html);
@@ -155,8 +155,8 @@ class EPL_Author_Meta {
 
 			$html = '
 				<a class="epl-author-icon author-icon linkedin-icon-24" href="' . $linkedin . '"
-					title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Linkedin', 'epl').'">'.
-					apply_filters( 'epl_author_icon_linkedin' , __('LinkedIn', 'epl')).
+					title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Linkedin', 'easy-property-listings' ).'">'.
+					apply_filters( 'epl_author_icon_linkedin' , __('LinkedIn', 'easy-property-listings' )).
 				'</a>';
 		}
 		$html = apply_filters('epl_author_linkedin_html',$html);
@@ -172,8 +172,8 @@ class EPL_Author_Meta {
     	if ( $this->skype != '' ) {
 			$html = '
 				<a class="epl-author-icon author-icon skype-icon-24" href="http://skype.com/' . $this->skype . '"
-					title="'.__('Follow', 'epl').' '.$this->name.' '.__('on Skype', 'epl').'">'.
-					apply_filters( 'epl_author_icon_skype' , __('Skype', 'epl')).
+					title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Skype', 'easy-property-listings' ).'">'.
+					apply_filters( 'epl_author_icon_skype' , __('Skype', 'easy-property-listings' )).
 				'</a>';
 		}
 		$html = apply_filters('epl_author_skype_html',$html);
@@ -207,7 +207,7 @@ class EPL_Author_Meta {
 			<div class="epl-author-content author-content">'.$this->description.'</div>
 				<span class="bio-more">
 					<a href="'.$permalink.'">'.
-						apply_filters('epl_author_read_more_label',__('Read More', 'epl') ).'
+						apply_filters('epl_author_read_more_label',__('Read More', 'easy-property-listings' ) ).'
 					</a>
 				</span>
 		';

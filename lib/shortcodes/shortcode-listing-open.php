@@ -145,7 +145,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		echo '<h3 class="epl-shortcode-listing-open epl-alert">'.__('Nothing currently scheduled for inspection, please check back later.', 'epl').'</h3>';
+		echo '<h3 class="epl-shortcode-listing-open epl-alert">'.__('Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ).'</h3>';
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

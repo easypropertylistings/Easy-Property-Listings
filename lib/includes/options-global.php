@@ -50,7 +50,7 @@ add_action( 'after_setup_theme', 'epl_image_sizes' );
  */
 function epl_image_size_names_choose( $epl_sizes ) {
 	return array_merge( $epl_sizes, array(
-		'epl-image-medium-crop' => __('Medium 300x200 hard Crop', 'epl'),
+		'epl-image-medium-crop' => __('Medium 300x200 hard Crop', 'easy-property-listings' ),
 	) );
 }
 add_filter( 'image_size_names_choose', 'epl_image_size_names_choose' );

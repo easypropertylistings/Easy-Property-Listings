@@ -25,20 +25,20 @@ function epl_register_custom_post_type_property() {
 	$rewrite  = defined( 'EPL_PROPERTY_DISABLE_REWRITE' ) && EPL_PROPERTY_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_property_labels', array(
-		'name'			=>	__('Properties', 'epl'),
-		'singular_name'		=>	__('Property', 'epl'),
-		'menu_name'		=>	__('Property', 'epl'),
-		'add_new'		=>	__('Add New', 'epl'),
-		'add_new_item'		=>	__('Add New Listing', 'epl'),
-		'edit_item'		=>	__('Edit Listing', 'epl'),
-		'new_item'		=>	__('New Listing', 'epl'),
-		'update_item'		=>	__('Update Listing', 'epl'),
-		'all_items'		=>	__('All Listings', 'epl'),
-		'view_item'		=>	__('View Listing', 'epl'),
-		'search_items'		=>	__('Search Listing', 'epl'),
-		'not_found'		=>	__('Listing Not Found', 'epl'),
-		'not_found_in_trash'	=>	__('Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'	=>	__('Parent Listing:', 'epl')
+		'name'			=>	__('Properties', 'easy-property-listings' ),
+		'singular_name'		=>	__('Property', 'easy-property-listings' ),
+		'menu_name'		=>	__('Property', 'easy-property-listings' ),
+		'add_new'		=>	__('Add New', 'easy-property-listings' ),
+		'add_new_item'		=>	__('Add New Listing', 'easy-property-listings' ),
+		'edit_item'		=>	__('Edit Listing', 'easy-property-listings' ),
+		'new_item'		=>	__('New Listing', 'easy-property-listings' ),
+		'update_item'		=>	__('Update Listing', 'easy-property-listings' ),
+		'all_items'		=>	__('All Listings', 'easy-property-listings' ),
+		'view_item'		=>	__('View Listing', 'easy-property-listings' ),
+		'search_items'		=>	__('Search Listing', 'easy-property-listings' ),
+		'not_found'		=>	__('Listing Not Found', 'easy-property-listings' ),
+		'not_found_in_trash'	=>	__('Listing Not Found in Trash', 'easy-property-listings' ),
+		'parent_item_colon'	=>	__('Parent Listing:', 'easy-property-listings' )
 	) );
 
 	$property_args = array(
@@ -79,15 +79,15 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb' 			=> '<input type="checkbox" />',
-			'property_thumb'	=> __('Image', 'epl'),
-			'property_price'	=> __('Price', 'epl'),
-			'title' 		=> __('Address', 'epl'),
-			'listing'		=> __('Listing Details', 'epl'),
-			'listing_id'		=> __('Unique ID' , 'epl'),
-			'geo'			=> __('Geo', 'epl'),
-			'property_status'	=> __('Status', 'epl'),
-			'agent'			=> __('Agent', 'epl'),
-			'date'			=> __('Date', 'epl')
+			'property_thumb'	=> __('Image', 'easy-property-listings' ),
+			'property_price'	=> __('Price', 'easy-property-listings' ),
+			'title' 		=> __('Address', 'easy-property-listings' ),
+			'listing'		=> __('Listing Details', 'easy-property-listings' ),
+			'listing_id'		=> __('Unique ID' , 'easy-property-listings' ),
+			'geo'			=> __('Geo', 'easy-property-listings' ),
+			'property_status'	=> __('Status', 'easy-property-listings' ),
+			'agent'			=> __('Agent', 'easy-property-listings' ),
+			'date'			=> __('Date', 'easy-property-listings' )
 		);
 
 		// Geocode Column

@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Property_Gallery extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, $name = __('EPL - Listing Gallery', 'epl'), array( 'description' => __( 'Display image gallery.', 'epl' ) ) );
+		parent::__construct( false, $name = __('EPL - Listing Gallery', 'easy-property-listings'), array( 'description' => __( 'Display image gallery.', 'easy-property-listings' ) ) );
 	}
 
 	function widget($args, $instance) {
@@ -64,16 +64,16 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		$d_columns	= esc_attr($instance['d_columns']); ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'easy-property-listings'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('d_columns'); ?>"><?php _e('Number of columns', 'epl'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_columns'); ?>"><?php _e('Number of columns', 'easy-property-listings'); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id('d_columns'); ?>" name="<?php echo $this->get_field_name('d_columns'); ?>">
 				<?php
 					for ($i=1;$i<=6;$i++) {
-						echo '<option value="'.$i.'"'; if ($i==$instance['d_columns']) echo ' selected="selected"'; echo '>'. __($i, 'epl') .'</option>';
+						echo '<option value="'.$i.'"'; if ($i==$instance['d_columns']) echo ' selected="selected"'; echo '>'. __($i, 'easy-property-listings') .'</option>';
 					}
 				?>
 			</select>

@@ -20,21 +20,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_register_taxonomy_contact_tag() {
 	$labels = array(
-		'name'                       => _x( 'Contact Tags', 'Taxonomy General Name', 'epl' ),
-		'singular_name'              => _x( 'Contact Tag', 'Taxonomy Singular Name', 'epl' ),
-		'menu_name'                  => __( 'Contact Tags', 'epl' ),
-		'all_items'                  => __( 'All Contact Tags', 'epl' ),
-		'parent_item'                => __( 'Parent Contact Tag', 'epl' ),
-		'parent_item_colon'          => __( 'Parent Contact Tag:', 'epl' ),
-		'new_item_name'              => __( 'New Contact Tag Name', 'epl' ),
-		'add_new_item'               => __( 'Add New Contact Tag', 'epl' ),
-		'edit_item'                  => __( 'Edit Contact Tag', 'epl' ),
-		'update_item'                => __( 'Update Contact Tag', 'epl' ),
-		'separate_items_with_commas' => __( 'Separate Contact Tag with commas', 'epl' ),
-		'search_items'               => __( 'Search Contact Tag', 'epl' ),
-		'add_or_remove_items'        => __( 'Add or remove Contact Tag', 'epl' ),
-		'choose_from_most_used'      => __( 'Choose from the most used Contact Tag', 'epl' ),
-		'not_found'                  => __( 'Contact Tag Not Found', 'epl' ),
+		'name'                       => _x( 'Contact Tags', 'Taxonomy General Name', 'easy-property-listings'  ),
+		'singular_name'              => _x( 'Contact Tag', 'Taxonomy Singular Name', 'easy-property-listings'  ),
+		'menu_name'                  => __( 'Contact Tags', 'easy-property-listings'  ),
+		'all_items'                  => __( 'All Contact Tags', 'easy-property-listings'  ),
+		'parent_item'                => __( 'Parent Contact Tag', 'easy-property-listings'  ),
+		'parent_item_colon'          => __( 'Parent Contact Tag:', 'easy-property-listings'  ),
+		'new_item_name'              => __( 'New Contact Tag Name', 'easy-property-listings'  ),
+		'add_new_item'               => __( 'Add New Contact Tag', 'easy-property-listings'  ),
+		'edit_item'                  => __( 'Edit Contact Tag', 'easy-property-listings'  ),
+		'update_item'                => __( 'Update Contact Tag', 'easy-property-listings'  ),
+		'separate_items_with_commas' => __( 'Separate Contact Tag with commas', 'easy-property-listings'  ),
+		'search_items'               => __( 'Search Contact Tag', 'easy-property-listings'  ),
+		'add_or_remove_items'        => __( 'Add or remove Contact Tag', 'easy-property-listings'  ),
+		'choose_from_most_used'      => __( 'Choose from the most used Contact Tag', 'easy-property-listings'  ),
+		'not_found'                  => __( 'Contact Tag Not Found', 'easy-property-listings'  ),
 	);
 	$rewrite = array(
 		'slug'                       => 'epl_contact_tag',
@@ -64,7 +64,7 @@ add_action( 'init', 'epl_register_taxonomy_contact_tag', 0 );
 function epl_add_contact_tag_bgcolor_field() {
 
 	echo '<div class="form-field epl-contact-tag-bgwrap">
-			<label for="epl_contact_tag_bgcolor">' . __('Background Color', 'epl') . '</label>
+			<label for="epl_contact_tag_bgcolor">' . __('Background Color', 'easy-property-listings' ) . '</label>
 			<input type="color" class="epl_contact_tag_bgcolor" name="epl_contact_tag_bgcolor" id="epl_contact_tag_bgcolor" value="" />
 		</div>';
 }
@@ -82,7 +82,7 @@ function epl_edit_contact_tag_bgcolor_field($taxonomy) {
 	echo '
 		<tr class="form-field epl-contact-tag-bgwrap">
 			<th scope="row" valign="top">
-				<label for="epl_contact_tag_bgcolor">' . __('Background Color', 'epl') . '</label>
+				<label for="epl_contact_tag_bgcolor">' . __('Background Color', 'easy-property-listings' ) . '</label>
 			</th>
 			<td class="eti-image-wrap">
 				<input type="color" class="epl_contact_tag_bgcolor" name="epl_contact_tag_bgcolor" id="epl_contact_tag_bgcolor" value="'.$bg_color.'" /><br />

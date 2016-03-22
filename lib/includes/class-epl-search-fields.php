@@ -94,7 +94,7 @@ class EPL_Search_Fields {
 			<input type="checkbox" name="<?php echo $field['meta_key']; ?>" id="<?php echo $field['meta_key']; ?>" class="in-field"
 			<?php if ( isset( $value ) && ! empty( $value ) ) { echo 'checked="checked"'; } ?> />
 			<label for="<?php echo $field['meta_key']; ?>" class="check-label">
-			<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], __( $field['label'], 'epl' ) ); ?>
+			<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], __( $field['label'], 'easy-property-listings'  ) ); ?>
 			</label>
 		</span>
 		<?php
@@ -129,7 +129,7 @@ class EPL_Search_Fields {
 					id="<?php echo $field['meta_key']; ?>"
 					class="in-field field-width">
 					<option value="">
-						<?php echo apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'epl' ) ); ?>
+						<?php echo apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'easy-property-listings'  ) ); ?>
 					</option>
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
@@ -172,7 +172,7 @@ class EPL_Search_Fields {
 					id="<?php echo $field['meta_key']; ?>"
 					class="in-field field-width" multiple>
 					<option value="">
-						<?php echo apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'epl' ) ); ?>
+						<?php echo apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'easy-property-listings'  ) ); ?>
 					</option>
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {

@@ -279,7 +279,7 @@ class EPL_Contact {
 		if( method_exists( $this, 'get_' . $key ) ) {
 			return call_user_func( array( $this, 'get_' . $key ) );
 		} else {
-			return new WP_Error( 'epl-contact-invalid-property', sprintf( __( 'Can\'t get property %s', 'epl' ), $key ) );
+			return new WP_Error( 'epl-contact-invalid-property', sprintf( __( 'Can\'t get property %s', 'easy-property-listings'  ), $key ) );
 		}
 	}
 
@@ -672,11 +672,11 @@ class EPL_Contact {
 	 */
 	public function get_activity_types() {
 		return apply_filters('epl_contact_activity_labels',array(
-			'epl_user_note'     =>  __('Comment','epl'),
-			'epl-admin-note'    =>  __('Note','epl'),
-			'call'              =>  __('Call','epl'),
-			'email'             =>  __('Email','epl'),
-			'listing'           =>  __('Listing','epl'),
+			'epl_user_note'     =>  __('Comment','easy-property-listings' ),
+			'epl-admin-note'    =>  __('Note','easy-property-listings' ),
+			'call'              =>  __('Call','easy-property-listings' ),
+			'email'             =>  __('Email','easy-property-listings' ),
+			'listing'           =>  __('Listing','easy-property-listings' ),
 		) );
 	}
 
