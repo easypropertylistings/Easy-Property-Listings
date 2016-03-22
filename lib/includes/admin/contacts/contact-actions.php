@@ -818,49 +818,49 @@ function epl_contact_contact_details($contact) { ?>
 add_action('epl_contact_contact_details','epl_contact_contact_details');
 
 /**
-function epl_contact_recent_interests($contact) { ?>
-	<h3><?php _e( 'Listings', 'easy-property-listings'  ); ?></h3>
-	<?php
-		$listing_ids = $contact->listing_ids;
-		if( !empty($listing_ids) ) {
-			$listings    = get_posts( array( 'post__in' => $listing_ids, 'post_type'	=>	epl_all_post_types() ) );
-			$listings    = array_slice( $listings, 0, 10 );
-		}
-	?>
-	<table class="wp-list-table widefat striped listings">
-		<thead>
-		<tr>
-			<th><?php _e( 'ID', 'easy-property-listings'  ); ?></th>
-			<th><?php _e( 'Title', 'easy-property-listings'  ); ?></th>
-			<th><?php _e( 'Published Date', 'easy-property-listings'  ); ?></th>
-			<th><?php _e( 'Status', 'easy-property-listings'  ); ?></th>
-			<th><?php _e( 'Actions', 'easy-property-listings'  ); ?></th>
-		</tr>
-		</thead>
-		<tbody>
-		<?php if ( ! empty( $listings ) ) : ?>
-			<?php foreach ( $listings as $listing ) : ?>
-				<tr>
-					<td><?php echo $listing->ID; ?></td>
-					<td><?php echo  $listing->post_title; ?></td>
-					<td><?php echo date_i18n( get_option( 'date_format' ), strtotime( $listing->post_date ) ); ?></td>
-					<td><?php echo get_post_meta( $listing->ID,'property_status',true) ?></td>
-					<td>
-						<a title="<?php _e( 'View Details for Listing', 'easy-property-listings'  ); echo ' ' . $listing->ID; ?>" href="<?php echo admin_url( 'post.php?&action=edit&post=' . $listing->ID ); ?>">
-							<?php _e( 'View Details', 'easy-property-listings'  ); ?>
-						</a>
-						<?php do_action( 'epl_contact_recent_listings_actions', $contact, $listing ); ?>
-					</td>
-				</tr>
-			<?php endforeach; ?>
-		<?php else: ?>
-			<tr><td colspan="5"><?php _e( 'No Listings Found', 'easy-property-listings'  ); ?></td></tr>
-		<?php endif; ?>
-		</tbody>
-	</table> <?php
-}
-add_action('epl_contact_recent_interests','epl_contact_recent_interests');
-**/
+ * function epl_contact_recent_interests($contact) { ?>
+ * 	<h3><?php _e( 'Listings', 'easy-property-listings'  ); ?></h3>
+ * 	<?php
+ * 		$listing_ids = $contact->listing_ids;
+ * 		if( !empty($listing_ids) ) {
+ * 			$listings    = get_posts( array( 'post__in' => $listing_ids, 'post_type'	=>	epl_all_post_types() ) );
+ * 			$listings    = array_slice( $listings, 0, 10 );
+ * 		}
+ * 	?>
+ * 	<table class="wp-list-table widefat striped listings">
+ * 		<thead>
+ * 		<tr>
+ * 			<th><?php _e( 'ID', 'easy-property-listings'  ); ?></th>
+ * 			<th><?php _e( 'Title', 'easy-property-listings'  ); ?></th>
+ * 			<th><?php _e( 'Published Date', 'easy-property-listings'  ); ?></th>
+ * 			<th><?php _e( 'Status', 'easy-property-listings'  ); ?></th>
+ * 			<th><?php _e( 'Actions', 'easy-property-listings'  ); ?></th>
+ * 		</tr>
+ * 		</thead>
+ * 		<tbody>
+ * 		<?php if ( ! empty( $listings ) ) : ?>
+ * 			<?php foreach ( $listings as $listing ) : ?>
+ * 				<tr>
+ * 					<td><?php echo $listing->ID; ?></td>
+ * 					<td><?php echo  $listing->post_title; ?></td>
+ * 					<td><?php echo date_i18n( get_option( 'date_format' ), strtotime( $listing->post_date ) ); ?></td>
+ * 					<td><?php echo get_post_meta( $listing->ID,'property_status',true) ?></td>
+ * 					<td>
+ * 						<a title="<?php _e( 'View Details for Listing', 'easy-property-listings'  ); echo ' ' . $listing->ID; ?>" href="<?php echo admin_url( 'post.php?&action=edit&post=' . $listing->ID ); ?>">
+ * 							<?php _e( 'View Details', 'easy-property-listings'  ); ?>
+ * 						</a>
+ * 						<?php do_action( 'epl_contact_recent_listings_actions', $contact, $listing ); ?>
+ * 					</td>
+ * 				</tr>
+ * 			<?php endforeach; ?>
+ * 		<?php else: ?>
+ * 			<tr><td colspan="5"><?php _e( 'No Listings Found', 'easy-property-listings'  ); ?></td></tr>
+ * 		<?php endif; ?>
+ * 		</tbody>
+ * 	</table> <?php
+ * }
+ * add_action('epl_contact_recent_interests','epl_contact_recent_interests');
+ */
 
 /**
  * Contact Recent Interest in Listings
