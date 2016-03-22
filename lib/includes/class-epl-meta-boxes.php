@@ -49,7 +49,7 @@ class EPL_METABOX {
 	 */
 	protected $text_domain;
 
-	function __construct($epl_meta_boxes,$prefix='epl_',$text_domain='epl') {
+	function __construct($epl_meta_boxes,$prefix='epl_',$text_domain='easy-property-listings' ) {
 
 		$this->epl_meta_boxes 	= $epl_meta_boxes;
 

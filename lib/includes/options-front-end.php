@@ -48,7 +48,7 @@ add_filter('excerpt_length', 'epl_excerpt_length' , 999);
 **/
 function epl_property_new_excerpt_more( $more ) {
 	global $post;
-	return '...<a href="'. get_permalink( $post->ID ) . '" class="epl-more-link">'.__('Read More', 'epl').'&rarr;</a>';
+	return '...<a href="'. get_permalink( $post->ID ) . '" class="epl-more-link">'.__('Read More', 'easy-property-listings' ).'&rarr;</a>';
 }
 add_filter('excerpt_more', 'epl_property_new_excerpt_more');
 

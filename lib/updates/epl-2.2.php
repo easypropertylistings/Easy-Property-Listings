@@ -2,8 +2,8 @@
 $epl_settings = epl_settings();
 
 $new_fields_defaults = array(
-	'label_city'				=> __('City','epl'),
-	'label_state'				=> __('State', 'epl'),
+	'label_city'				=> __('City','easy-property-listings'),
+	'label_state'				=> __('State', 'easy-property-listings'),
 	'epl_feeling_lucky'			=> 'off',
 	'epl_lucky_disable_single_thumb'	=> 'off',
 	'epl_lucky_disable_theme_single_thumb'	=> 'off',

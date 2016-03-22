@@ -1,4 +1,11 @@
 <?php
+/**
+ * The Template for displaying all Easy Property Listings archive/loop posts with the iThemes Builder Theme Framework
+ *
+ * @package EPL
+ * @subpackage Templates/Themes/Heuman
+ * @since 1.0
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -8,32 +15,7 @@ function epl_archive_render_content() {
 		<div class="loop">
 			<div class="loop-header">
 				<h4 class="loop-title">
-					<?php
-						the_post();
-							 
-						if ( is_tax() && function_exists( 'epl_is_search' ) && false == epl_is_search() ) { // Tag Archive
-							$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-							$title = sprintf( __( 'Property in %s', 'epl' ), $term->name );
-						}
-						else if ( function_exists( 'epl_is_search' ) && epl_is_search() ) { // Search Result
-							$title = __( 'Search Result', 'epl' );
-						}
-						
-						else if ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive
-							$title = post_type_archive_title( '', false );
-						} 
-						
-						else { // Default catchall just in case
-							$title = __( 'Listing', 'epl' );
-						}
-						
-						if ( is_paged() )
-							printf( '%s &ndash; Page %d', $title, get_query_var( 'paged' ) );
-						else
-							echo $title;
-						
-						rewind_posts();
-					?>
+					<?php do_action( 'epl_the_archive_title' ); ?>
 				</h4>
 			</div>
 
@@ -46,7 +28,7 @@ function epl_archive_render_content() {
 				?>
 				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div>
-			
+
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
@@ -59,13 +41,13 @@ function epl_archive_render_content() {
 		//do_action( 'builder_template_show_not_found' );
 		?><div class="hentry">
 			<div class="entry-header clearfix">
-				<h3 class="entry-title"><?php apply_filters( 'epl_property_search_not_found_title' , _e('Listing not Found', 'epl') ); ?></h3>
+				<h3 class="entry-title"><?php apply_filters( 'epl_property_search_not_found_title' , _e('Listing not Found', 'easy-property-listings') ); ?></h3>
 			</div>
-			
+
 			<div class="entry-content clearfix">
-				<p><?php apply_filters( 'epl_property_search_not_found_message' , _e('Listing not found, expand your search criteria and try again.', 'epl') ); ?></p>
+				<p><?php apply_filters( 'epl_property_search_not_found_message' , _e('Listing not found, expand your search criteria and try again.', 'easy-property-listings') ); ?></p>
 			</div>
-		</div><?php		
+		</div><?php
 	endif;
 }
 add_action( 'builder_layout_engine_render_content', 'epl_archive_render_content' );

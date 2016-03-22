@@ -2,15 +2,18 @@
 /**
  * Loop Property Template: Card home open list
  *
- * @package easy-property-listings
- * @subpackage Theme
+ * @package     EPL
+ * @subpackage  Templates/Content
+ * @copyright   Copyright (c) 2015, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-property-blog-card'); ?>>				
+<div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-property-blog-card'); ?>>
 	<?php do_action('epl_property_loop_before_content'); ?>
 		<div class="epl-entry-content">
 			<?php if ( has_post_thumbnail() ) : ?>
@@ -27,17 +30,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						<?php do_action('epl_property_tab_address'); ?>
 					</a>
 				</div>
-			
+
 				<div class="price">
 					<?php do_action('epl_property_price'); ?>
 				</div>
-				
+
 				<!-- Property Featured Icons -->
 				<div class="property-feature-icons">
-					<?php do_action('epl_property_icons'); ?>						
+					<?php do_action('epl_property_icons'); ?>
 				</div>
-				
+
 			</div>
 		</div>
-	<?php do_action('epl_property_loop_after_content'); ?>			
+	<?php do_action('epl_property_loop_after_content'); ?>
 </div>

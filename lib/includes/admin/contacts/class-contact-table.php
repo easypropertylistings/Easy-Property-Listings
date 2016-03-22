@@ -61,8 +61,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 		// Set parent defaults
 		parent::__construct( array(
-			'singular' => __( 'Contact', 'epl' ),
-			'plural'   => __( 'Contacts', 'epl' ),
+			'singular' => __( 'Contact', 'easy-property-listings'  ),
+			'plural'   => __( 'Contacts', 'easy-property-listings'  ),
 			'ajax'     => false,
 		) );
 
@@ -144,12 +144,12 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 	public function column_name( $item ) {
 
-		$name       = ! empty( $item['name'] ) ? $item['name'] : '<em>' . __( 'Unnamed Contact','epl' ) . '</em>';
+		$name       = ! empty( $item['name'] ) ? $item['name'] : '<em>' . __( 'Unnamed Contact','easy-property-listings'  ) . '</em>';
 		$user        = ! empty( $item['user_id'] ) ? $item['user_id'] : $item['email'];
 		$view_url    = admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $item['ID'] );
 		$actions     = array(
-			'view'   => '<a href="' . $view_url . '">' . __( 'View', 'epl' ) . '</a>',
-			'delete' => '<a href="' . admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $item['ID'] ) . '">' . __( 'Delete', 'epl' ) . '</a>'
+			'view'   => '<a href="' . $view_url . '">' . __( 'View', 'easy-property-listings'  ) . '</a>',
+			'delete' => '<a href="' . admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $item['ID'] ) . '">' . __( 'Delete', 'easy-property-listings'  ) . '</a>'
 		);
 
 		$contact = new EPL_Contact( $item['ID'] );
@@ -190,12 +190,12 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
-			'name'          	=> __( 'Contact', 'epl' ),
-			'summary'         	=> __( 'Summary', 'epl' ),
-			'background_info'   => __( 'Background Info', 'epl' ),
-			'type' 				=> __( 'Type', 'epl' ),
-			'num_listings' 		=> __( 'Listings', 'epl' ),
-			'date_created'  	=> __( 'Date Created', 'epl' ),
+			'name'          	=> __( 'Contact', 'easy-property-listings'  ),
+			'summary'         	=> __( 'Summary', 'easy-property-listings'  ),
+			'background_info'	=> __( 'Background Info', 'easy-property-listings'  ),
+			'type' 			=> __( 'Type', 'easy-property-listings'  ),
+			'num_listings' 		=> __( 'Listings', 'easy-property-listings'  ),
+			'date_created'  	=> __( 'Date Created', 'easy-property-listings'  ),
 		);
 
 		return apply_filters( 'epl_report_contact_columns', $columns );

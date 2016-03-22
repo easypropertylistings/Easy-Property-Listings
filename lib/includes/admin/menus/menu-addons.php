@@ -39,14 +39,14 @@ add_action( 'admin_menu', 'epl_add_ons_init');
  */
 function epl_add_ons_get_feed() {
 	if ( false === ( $cache = get_transient( 'easypropertylistings_add_ons_feed' ) ) ) {
-		$feed = wp_remote_get( 'http://easypropertylistings.com.au/?feed=addons', array( 'timeout' => 120 ) );
+		$feed = wp_remote_get( 'https://easypropertylistings.com.au/?feed=addons', array( 'timeout' => 120 ) );
 		if ( ! is_wp_error( $feed ) ) {
 			if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 ) {
 				$cache = wp_remote_retrieve_body( $feed );
 				set_transient( 'easypropertylistings_add_ons_feed', $cache, 3600 );
 			}
 		} else {
-			$cache = '<div class="error"><p>' . __( 'There was an error retrieving the extensions list from the server. Please try again later.', 'epl' ) . '</div>';
+			$cache = '<div class="error"><p>' . __( 'There was an error retrieving the extensions list from the server. Please try again later.', 'easy-property-listings'  ) . '</div>';
 		}
 	}
 	return $cache;
@@ -64,10 +64,10 @@ function epl_add_ons_page() {
 	ob_start(); ?>
 	<div class="wrap" id="epl-add-ons">
 		<h2>
-			<?php _e( 'Add Ons for Easy Property Listings', 'epl' ); ?>
-			&nbsp;&mdash;&nbsp;<a href="https://easypropertylistings.com.au/extensions/?utm_source=plugin-addons-page&utm_medium=plugin&ytm_campaign=epl%20Addons%20Page&utm_content=All%20Extensions" class="button-primary" title="<?php _e( 'Browse All Extensions', 'epl' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'epl' ); ?></a>
+			<?php _e( 'Add Ons for Easy Property Listings', 'easy-property-listings'  ); ?>
+			&nbsp;&mdash;&nbsp;<a href="https://easypropertylistings.com.au/extensions/?utm_source=plugin-addons-page&utm_medium=plugin&ytm_campaign=epl%20Addons%20Page&utm_content=All%20Extensions" class="button-primary" title="<?php _e( 'Browse All Extensions', 'easy-property-listings'  ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'easy-property-listings'  ); ?></a>
 		</h2>
-		<p><?php _e( 'These add-ons extend the functionality of Easy Property Listings.', 'epl' ); ?></p>
+		<p><?php _e( 'These add-ons extend the functionality of Easy Property Listings.', 'easy-property-listings'  ); ?></p>
 		<?php echo epl_add_ons_get_feed(); ?>
 	</div>
 	<?php

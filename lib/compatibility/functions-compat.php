@@ -274,9 +274,9 @@ function epl_property_sold_leased() {
 	if ( $query->have_posts() ) { ?>
 		<div class="epl-tab-section epl-tab-section-listing-history">
 			<?php if ( 'property' == $post_type || 'land' == $post_type || 'rural' == $post_type) { ?>
-				<h5 class="epl-tab-title epl-tab-title-sales tab-title"><?php _e('Recently Sold', 'epl'); ?></h5>
+				<h5 class="epl-tab-title epl-tab-title-sales tab-title"><?php _e('Recently Sold', 'easy-property-listings'); ?></h5>
 			<?php } else { ?>
-				<h5 class="epl-tab-title epl-tab-title-leased tab-title"><?php _e('Recently Leased', 'epl'); ?></h5>
+				<h5 class="epl-tab-title epl-tab-title-leased tab-title"><?php _e('Recently Leased', 'easy-property-listings'); ?></h5>
 			<?php } ?>
 			<div class="tab-content">
 				<ul>
@@ -351,7 +351,7 @@ function epl_property_author_card( $display , $image , $title , $icons) {
 
 					<div class="property-meta price"><?php epl_property_price() ?></div>
 					<form class="epl-property-button" action="<?php the_permalink(); ?>" method="post">
-						<input type=submit value="<?php _e('Read More', 'epl'); ?>" />
+						<input type=submit value="<?php _e('Read More', 'easy-property-listings'); ?>" />
 					</form>
 				</div>
 			</div>

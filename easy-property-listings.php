@@ -5,8 +5,8 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 2.98 (beta-4)
- * Text Domain: epl
+ * Version: 2.99 (beta-5)
+ * Text Domain: easy-property-listings
  * Domain Path: languages
  *
  * Easy Property Listings is free software: you can redistribute it and/or modify
@@ -91,11 +91,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '2.98' );
+				define( 'EPL_PROPERTY_VER', '2.99' );
 			}
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
-				define( 'EPL_PROPERTY_DB_VER', '2.98' );
+				define( 'EPL_PROPERTY_DB_VER', '2.99' );
 			}
 			// Current Page
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
@@ -294,8 +294,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			$epl_lang_dir = apply_filters( 'epl_languages_directory', $epl_lang_dir );
 
 			// Traditional WordPress plugin locale filter
-			$locale        = apply_filters( 'plugin_locale',  get_locale(), 'epl' );
-			$mofile        = sprintf( '%1$s-%2$s.mo', 'epl', $locale );
+			$locale        = apply_filters( 'plugin_locale',  get_locale(), 'easy-property-listings' );
+			$mofile        = sprintf( '%1$s-%2$s.mo', 'easy-property-listings', $locale );
 
 			// Setup paths to current locale file
 			$mofile_local  = $epl_lang_dir . $mofile;
@@ -303,13 +303,13 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			if ( file_exists( $mofile_global ) ) {
 				// Look in global /wp-content/languages/epl folder
-				load_textdomain( 'epl', $mofile_global );
+				load_textdomain( 'easy-property-listings', $mofile_global );
 			} elseif ( file_exists( $mofile_local ) ) {
 				// Look in local /wp-content/plugins/easy-property-listings/languages/ folder
-				load_textdomain( 'epl', $mofile_local );
+				load_textdomain( 'easy-property-listings', $mofile_local );
 			} else {
 				// Load the default language files
-				load_plugin_textdomain( 'epl', false, $epl_lang_dir );
+				load_plugin_textdomain( 'easy-property-listings', false, $epl_lang_dir );
 			}
 		}
 	}

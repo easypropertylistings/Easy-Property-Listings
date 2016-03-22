@@ -56,8 +56,8 @@ $epl_settings = get_option('epl_settings');
 ?>
 
 <div class="wrap">
-	<h2><?php _e('General Settings', 'epl'); ?></h2>
-	<p><?php _e('Configure Easy Property Listings. Visit ', 'epl'); ?><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'epl' ); ?></a><?php _e(' for help.', 'epl');?></p>
+	<h2><?php _e('General Settings', 'easy-property-listings' ); ?></h2>
+	<p><?php _e('Configure Easy Property Listings. Visit ', 'easy-property-listings' ); ?><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'easy-property-listings'  ); ?></a><?php _e(' for help.', 'easy-property-listings' );?></p>
 
 	<div id="epl-menu-general" class="epl-content epl-menu-content-wrapper">
 		<form action="" method="post" class="tba-epl-general-form">
@@ -73,13 +73,13 @@ $epl_settings = get_option('epl_settings');
 									<?php
 									if( !empty($field_group['label']) ) { ?>
 										<!--<div class="handlediv" title="Click to toggle"><br></div>-->
-										<h3 class="hndle ui-sortable-handle epl-section-title"><?php _e($field_group['label'], 'epl'); ?></h3>
+										<h3 class="hndle ui-sortable-handle epl-section-title"><?php _e($field_group['label'], 'easy-property-listings' ); ?></h3>
 									<?php
 									} ?>
 
 									<div class="inside epl-section-content">
 										<?php if( !empty($field_group['label']) ) { ?>
-											<p><?php if(isset($field_group['help'])) _e($field_group['help'], 'epl'); ?></p>
+											<p><?php if(isset($field_group['help'])) _e($field_group['help'], 'easy-property-listings' ); ?></p>
 										<?php
 										} ?>
 										<?php
@@ -89,7 +89,7 @@ $epl_settings = get_option('epl_settings');
 												<div class="epl-field">
 													<?php if($field['type'] != 'help') {?>
 													<div class="epl-half-left">
-														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php _e($field['label'], 'epl'); ?></h4>
+														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php _e($field['label'], 'easy-property-listings' ); ?></h4>
 
 													</div>
 													<?php } ?>
@@ -115,7 +115,7 @@ $epl_settings = get_option('epl_settings');
 
 			<div class="epl-content-footer submit">
 				<input type="hidden" name="action" value="epl_settings" />
-				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit"></p>
+				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'easy-property-listings' ); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
 	</div>

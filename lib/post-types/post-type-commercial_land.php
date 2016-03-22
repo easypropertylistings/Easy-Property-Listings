@@ -25,20 +25,20 @@ function epl_register_custom_post_type_commercial_land() {
 	$rewrite  = defined( 'EPL_COMMERCIAL_LAND_DISABLE_REWRITE' ) && EPL_COMMERCIAL_LAND_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_commercial_land_labels', array(
-		'name'			=>	__('Commercial Land Listings', 'epl'),
-		'singular_name'		=>	__('Commercial Land Listing', 'epl'),
-		'menu_name'		=>	__('Commercial Land', 'epl'),
-		'add_new'		=>	__('Add New', 'epl'),
-		'add_new_item'		=>	__('Add New Commercial Land Listing', 'epl'),
-		'edit_item'		=>	__('Edit Commercial Land Listing', 'epl'),
-		'new_item'		=>	__('New Commercial Land Listing', 'epl'),
-		'update_item'		=>	__('Update Commercial Land Listing', 'epl'),
-		'all_items'		=>	__('All Commercial Land Listings', 'epl'),
-		'view_item'		=>	__('View Commercial Land Listing', 'epl'),
-		'search_items'		=>	__('Search Commercial Land Listing', 'epl'),
-		'not_found'		=>	__('Commercial Land Listing Not Found', 'epl'),
-		'not_found_in_trash'	=>	__('Commercial Land Listing Not Found in Trash', 'epl'),
-		'parent_item_colon'	=>	__('Parent Commercial Land Listing:', 'epl')
+		'name'			=>	__('Commercial Land Listings', 'easy-property-listings' ),
+		'singular_name'		=>	__('Commercial Land Listing', 'easy-property-listings' ),
+		'menu_name'		=>	__('Commercial Land', 'easy-property-listings' ),
+		'add_new'		=>	__('Add New', 'easy-property-listings' ),
+		'add_new_item'		=>	__('Add New Commercial Land Listing', 'easy-property-listings' ),
+		'edit_item'		=>	__('Edit Commercial Land Listing', 'easy-property-listings' ),
+		'new_item'		=>	__('New Commercial Land Listing', 'easy-property-listings' ),
+		'update_item'		=>	__('Update Commercial Land Listing', 'easy-property-listings' ),
+		'all_items'		=>	__('All Commercial Land Listings', 'easy-property-listings' ),
+		'view_item'		=>	__('View Commercial Land Listing', 'easy-property-listings' ),
+		'search_items'		=>	__('Search Commercial Land Listing', 'easy-property-listings' ),
+		'not_found'		=>	__('Commercial Land Listing Not Found', 'easy-property-listings' ),
+		'not_found_in_trash'	=>	__('Commercial Land Listing Not Found in Trash', 'easy-property-listings' ),
+		'parent_item_colon'	=>	__('Parent Commercial Land Listing:', 'easy-property-listings' )
 	) );
 
 	$commercial_land_args = array(
@@ -79,16 +79,16 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb'			=> '<input type="checkbox" />',
-			'property_thumb'	=> __('Image', 'epl'),
-			'property_price'	=> __('Price', 'epl'),
-			'title'			=> __('Address', 'epl'),
-			'listing'		=> __('Listing Details', 'epl'),
-			'listing_id'		=> __('Unique ID' , 'epl'),
-			'geo'			=> __('Geo', 'epl'),
-			'property_status'	=> __('Status', 'epl'),
-			'listing_type'		=> __('Sale/Lease', 'epl'),
-			'agent'			=> __('Agent', 'epl'),
-			'date'			=> __('Date', 'epl')
+			'property_thumb'	=> __('Image', 'easy-property-listings' ),
+			'property_price'	=> __('Price', 'easy-property-listings' ),
+			'title'			=> __('Address', 'easy-property-listings' ),
+			'listing'		=> __('Listing Details', 'easy-property-listings' ),
+			'listing_id'		=> __('Unique ID' , 'easy-property-listings' ),
+			'geo'			=> __('Geo', 'easy-property-listings' ),
+			'property_status'	=> __('Status', 'easy-property-listings' ),
+			'listing_type'		=> __('Sale/Lease', 'easy-property-listings' ),
+			'agent'			=> __('Agent', 'easy-property-listings' ),
+			'date'			=> __('Date', 'easy-property-listings' )
 		);
 
 		// Geocode Column

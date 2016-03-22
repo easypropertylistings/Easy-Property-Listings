@@ -81,15 +81,15 @@ $epl_settings = get_option('epl_settings');
 
 ?>
 <div class="wrap">
-	<h2><?php _e( 'Extensions Settings', 'epl'); ?></h2>
-	<p><?php _e( 'Configure your extension settings here. Visit the main settings page for more extension settings.', 'epl'); ?></p>
+	<h2><?php _e( 'Extensions Settings', 'easy-property-listings' ); ?></h2>
+	<p><?php _e( 'Configure your extension settings here. Visit the main settings page for more extension settings.', 'easy-property-listings' ); ?></p>
 	<h2 class="nav-tab-wrapper epl-nav-tab-wrapper">
 		<?php
 			foreach($epl_extensions as $ext_key	=>	$epl_extension){
 				$nav_active = $active_tab == $ext_key ? 'nav-tab-active' : ''; ?>
 				<a class="nav-tab <?php echo $nav_active; ?>"
 					href="<?php echo admin_url('admin.php?page=epl-extensions&tab='.sanitize_title($ext_key)); ?>">
-					<?php _e($epl_extension['label'],'epl'); ?>
+					<?php _e($epl_extension['label'],'easy-property-listings' ); ?>
 				</a><?php
 			}
 		?>
@@ -108,7 +108,7 @@ $epl_settings = get_option('epl_settings');
 
 							if( isset($ext_field_group['intro']) && !empty($ext_field_group['intro']) ) {
 								echo '<div class="epl-field epl-field-intro" data-help="tab-menu-'.sanitize_title($ext_field_group['label']).'">';
-								_e($ext_field_group['intro'],'epl');
+								_e($ext_field_group['intro'],'easy-property-listings' );
 								echo '</div>';
 							}
 
@@ -133,7 +133,7 @@ $epl_settings = get_option('epl_settings');
 								}
 								if( !empty($ext_field_group['label']) ) { ?>
 									<li class="<?php echo $current_class;?>" data-tab="<?php echo 'tab-menu-'.sanitize_title($ext_field_group['label']); ?>">
-										<?php _e($ext_field_group['label'], 'epl'); ?>
+										<?php _e($ext_field_group['label'], 'easy-property-listings' ); ?>
 									</li>
 									<?php
 								}
@@ -160,11 +160,11 @@ $epl_settings = get_option('epl_settings');
 						foreach($field_group['fields'] as $field) {?>
 							<div class="epl-field">
 								<div class="epl-help-entry-header">
-									<div class="epl_help_entry_content<?php //echo $field['name']; ?>"><?php //_e($field['help'], 'epl'); ?></div>
+									<div class="epl_help_entry_content<?php //echo $field['name']; ?>"><?php //_e($field['help'], 'easy-property-listings' ); ?></div>
 								</div>
 								<?php if($field['type'] != 'help') {?>
 									<div class="epl-half-left">
-										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'epl'); ?></label>
+										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
 
 									</div>
 								<?php } ?>
@@ -190,7 +190,7 @@ $epl_settings = get_option('epl_settings');
 					<input type="hidden" name="action" value="epl_settings" />
 					<input type="hidden" name="sub_tab" id="sub_tab" value="" />
 					<p class="submit">
-						<input type="submit" value="<?php _e('Save Changes', 'epl'); ?>" class="button button-primary" id="submit" name="submit">
+						<input type="submit" value="<?php _e('Save Changes', 'easy-property-listings' ); ?>" class="button button-primary" id="submit" name="submit">
 					</p>
 				</div>
 			</form>

@@ -29,7 +29,7 @@ function epl_print_errors() {
 		echo '<div class="' . implode( ' ', $classes ) . '">';
 		    // Loop error codes and display errors
 		   foreach ( $errors as $error_id => $error ) {
-		        echo '<p class="epl_error" id="epl_error_' . $error_id . '"><strong>' . __( 'Error', 'epl' ) . '</strong>: ' . $error . '</p>';
+		        echo '<p class="epl_error" id="epl_error_' . $error_id . '"><strong>' . __( 'Error', 'easy-property-listings' ) . '</strong>: ' . $error . '</p>';
 		   }
 		echo '</div>';
 		epl_clear_errors();
