@@ -3,7 +3,7 @@
  * TAXONOMY :: Features
  *
  * @package     EPL
- * @subpackage  Taxonomy/Features
+ * @subpackage  Taxonomy
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -12,23 +12,29 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Registers and sets up the tax_feature taxonomy
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_register_taxonomy_features() {
 	$labels = array(
-		'name'                       => _x( 'Features', 'Taxonomy General Name', 'epl' ),
-		'singular_name'              => _x( 'Feature', 'Taxonomy Singular Name', 'epl' ),
-		'menu_name'                  => __( 'Features', 'epl' ),
-		'all_items'                  => __( 'All Features', 'epl' ),
-		'parent_item'                => __( 'Parent Feature', 'epl' ),
-		'parent_item_colon'          => __( 'Parent Feature:', 'epl' ),
-		'new_item_name'              => __( 'New Feature Name', 'epl' ),
-		'add_new_item'               => __( 'Add New Feature', 'epl' ),
-		'edit_item'                  => __( 'Edit Feature', 'epl' ),
-		'update_item'                => __( 'Update Feature', 'epl' ),
-		'separate_items_with_commas' => __( 'Separate Feature with commas', 'epl' ),
-		'search_items'               => __( 'Search Feature', 'epl' ),
-		'add_or_remove_items'        => __( 'Add or remove Feature', 'epl' ),
-		'choose_from_most_used'      => __( 'Choose from the most used Feature', 'epl' ),
-		'not_found'                  => __( 'Feature Not Found', 'epl' ),
+		'name'                       => _x( 'Features', 'Taxonomy General Name', 'easy-property-listings'  ),
+		'singular_name'              => _x( 'Feature', 'Taxonomy Singular Name', 'easy-property-listings'  ),
+		'menu_name'                  => __( 'Features', 'easy-property-listings'  ),
+		'all_items'                  => __( 'All Features', 'easy-property-listings'  ),
+		'parent_item'                => __( 'Parent Feature', 'easy-property-listings'  ),
+		'parent_item_colon'          => __( 'Parent Feature:', 'easy-property-listings'  ),
+		'new_item_name'              => __( 'New Feature Name', 'easy-property-listings'  ),
+		'add_new_item'               => __( 'Add New Feature', 'easy-property-listings'  ),
+		'edit_item'                  => __( 'Edit Feature', 'easy-property-listings'  ),
+		'update_item'                => __( 'Update Feature', 'easy-property-listings'  ),
+		'separate_items_with_commas' => __( 'Separate Feature with commas', 'easy-property-listings'  ),
+		'search_items'               => __( 'Search Feature', 'easy-property-listings'  ),
+		'add_or_remove_items'        => __( 'Add or remove Feature', 'easy-property-listings'  ),
+		'choose_from_most_used'      => __( 'Choose from the most used Feature', 'easy-property-listings'  ),
+		'not_found'                  => __( 'Feature Not Found', 'easy-property-listings'  ),
 	);
 	$rewrite = array(
 		'slug'                       => 'feature',

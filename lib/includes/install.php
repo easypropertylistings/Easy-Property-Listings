@@ -32,10 +32,10 @@ function epl_install() {
 
 	// Clear the permalinks
 	flush_rewrite_rules();
-	
+
 	// Add default EPL Settings
 	$epl_settings = epl_settings();
-	
+
 	$new_fields_defaults = array(
 		'currency'				=> 'AUD',
 		'currency_position'			=> 'before',
@@ -50,25 +50,25 @@ function epl_install() {
 		'display_excerpt_length'		=> 10,
 		'display_archive_view_type'		=> 'list',
 		'use_fancy_navigation'			=> 0,
-		'label_bond'				=> __('Bond', 'epl'),
-		'label_location'			=> __('Suburb', 'epl'),
-		'label_suburb'				=> __('Suburb', 'epl'),
-		'label_city'				=> __('City', 'epl'),
-		'label_state'				=> __('State', 'epl'),
-		'label_postcode'			=> __('Post Code', 'epl'),
-		'label_home_open'			=> __('Home Open', 'epl'),
-		'label_poa'				=> __('POA', 'epl'),
-		'label_new'				=> __('New', 'epl'),
-		'label_under_offer'			=> __('Under Offer', 'epl'),
-		'label_leased'				=> __('Leased', 'epl'),
-		'label_sold'				=> __('Sold', 'epl'),
-		'widget_label_property'			=> __('Buy', 'epl'),
-		'widget_label_land'			=> __('Land', 'epl'),
-		'widget_label_rental'			=> __('Rent', 'epl'),
-		'widget_label_rural'			=> __('Rural', 'epl'),
-		'widget_label_business'			=> __('Business', 'epl'),
-		'widget_label_commercial'		=> __('Commercial', 'epl'),
-		'widget_label_commercial_land'		=> __('Commercial Land', 'epl'),
+		'label_bond'				=> __('Bond', 'easy-property-listings' ),
+		'label_location'			=> __('Suburb', 'easy-property-listings' ),
+		'label_suburb'				=> __('Suburb', 'easy-property-listings' ),
+		'label_city'				=> __('City', 'easy-property-listings' ),
+		'label_state'				=> __('State', 'easy-property-listings' ),
+		'label_postcode'			=> __('Post Code', 'easy-property-listings' ),
+		'label_home_open'			=> __('Home Open', 'easy-property-listings' ),
+		'label_poa'				=> __('POA', 'easy-property-listings' ),
+		'label_new'				=> __('New', 'easy-property-listings' ),
+		'label_under_offer'			=> __('Under Offer', 'easy-property-listings' ),
+		'label_leased'				=> __('Leased', 'easy-property-listings' ),
+		'label_sold'				=> __('Sold', 'easy-property-listings' ),
+		'widget_label_property'			=> __('Buy', 'easy-property-listings' ),
+		'widget_label_land'			=> __('Land', 'easy-property-listings' ),
+		'widget_label_rental'			=> __('Rent', 'easy-property-listings' ),
+		'widget_label_rural'			=> __('Rural', 'easy-property-listings' ),
+		'widget_label_business'			=> __('Business', 'easy-property-listings' ),
+		'widget_label_commercial'		=> __('Commercial', 'easy-property-listings' ),
+		'widget_label_commercial_land'		=> __('Commercial Land', 'easy-property-listings' ),
 		'epl_max_graph_sales_price'		=> 2000000,
 		'epl_max_graph_rent_price'		=> 2000,
 		'sticker_new_range'			=> 7,
@@ -79,13 +79,20 @@ function epl_install() {
 		'epl_lucky_disable_single_thumb'	=> 'off',
 		'epl_lucky_disable_theme_single_thumb'	=> 'off',
 		'epl_lucky_disable_archive_thumb'	=> 'off',
-		'epl_lucky_disable_epl_archive_thumb'	=> 'off',	
+		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
 		'epl_use_core_css'			=> 'off', // Means Enable CSS
-		'uninstall_on_delete'			=> 0
+		'uninstall_on_delete'			=> 0,
+		'inspection_date_format'		=> 'l, dS F',
+		'inspection_time_format'		=> 'h:i a',
+		'custom_inspection_date_format'		=> 'l, dS F',
+		'custom_inspection_time_format'		=> 'h:i a',
+		'epl_video_width'			=> 600,
+		'min_contact_access'			=> 'level_10',
+		'min_reports_access'			=> 'level_10',
 	);
-	
+
 	if(!empty($epl_settings)) {
-		
+
 		// possible upgrade
 		foreach($new_fields_defaults as $key	=>	$value) {
 			if(!isset($epl_settings[$key])) {
@@ -103,7 +110,7 @@ function epl_install() {
 	$current_version = get_option( 'epl_version' );
 	if ( $current_version != '' ) {
 		update_option( 'epl_version_upgraded_from', $current_version );
-			
+
 	} else {
 		$epl_data = get_plugin_data(EPL_PLUGIN_PATH.'/easy-property-listings.php');
 		update_option( 'epl_version', $epl_data['Version'] );
@@ -113,7 +120,7 @@ function epl_install() {
 	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 		return;
 	}
-
+	remove_role( 'epl_crm' );
 	// Add the transient to redirect
 	set_transient( '_epl_activation_redirect', true, 30 );
 }
@@ -122,8 +129,9 @@ register_activation_hook( EPL_PLUGIN_FILE, 'epl_install' );
 /**
  * Un-Install
  *
- * Runs on plugin un-install by setting up the current version,
- * flushing rewrite rules
+ * Runs on plugin un-install by setting up the current version, flushing rewrite rules
+ *
+ * @since 2.2
  */
 function epl_uninstall() {
 	update_option('epl_rewrite_rules', false);
@@ -160,6 +168,14 @@ function epl_after_install() {
 }
 add_action( 'admin_init', 'epl_after_install' );
 
+/**
+ * Apply new settings on update
+ *
+ * Runs just after plugin installation
+ *
+ * @since 1.0
+ * @return void
+ */
 function epl_plugin_updates() {
 	$current_version = get_option( 'epl_version' );
 
@@ -167,28 +183,29 @@ function epl_plugin_updates() {
 		include( EPL_PATH_UPDATES.'epl-1.3.1.php' );
 		update_option( 'epl_version' ,'1.3');
 	}
-	
+
 	if ( version_compare( $current_version, '2.1', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.php' );
 		update_option( 'epl_version' ,'2.1');
 	}
-	
+
 	if ( version_compare( $current_version, '2.1.8', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.8.php' );
 		update_option( 'epl_version' ,'2.1.8');
 	}
-	
+
 	if ( version_compare( $current_version, '2.1.11', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.11.php' );
 		update_option( 'epl_version' ,'2.1.11');
 	}
-	
+
 	if ( version_compare( $current_version, '2.2', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.2.php' );
 		update_option( 'epl_version' ,'2.2');
 	}
+	if ( version_compare( $current_version, '3.0', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-3.0.php' );
+		update_option( 'epl_version' ,'30');
+	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
-
-
-

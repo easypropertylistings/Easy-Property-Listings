@@ -3,7 +3,7 @@
  * SHORTCODE :: Listing Category [listing_category]
  *
  * @package     EPL
- * @subpackage  Shortcode/category
+ * @subpackage  Shortcode/ListingCategory
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.1.1
@@ -12,22 +12,22 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Only load on front
-if( is_admin() ) {
-	return;
-}
 /**
- * This shortcode allows for you to specify the property type(s) using 
- * [listing_category post_type="property" status="current,sold,leased" category_key="property_rural_category" category_key="farm"] option. You can also 
+ * Listing Category
+ *
+ * This shortcode allows for you to specify the property type(s) using
+ * [listing_category post_type="property" status="current,sold,leased" category_key="property_rural_category" category_key="farm"] option. You can also
  * limit the number of entries that display. using  [listing_category limit="5"]
- * Added Commercial Category Support 
+ * Added Commercial Category Support
+ *
+ * @since       1.1.1
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
 	if(!empty($property_types)) {
 		 $property_types = array_keys($property_types);
 	}
-	
+
 	extract( shortcode_atts( array(
 		'post_type' 			=>	$property_types,
 		'status'			=>	array('current' , 'sold' , 'leased' ),
@@ -42,17 +42,17 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'sortby'			=>	'', // Options: price, date : Default date
 		'sort_order'			=>	'DESC'
 	), $atts ) );
-	
+
 	if(empty($post_type)) {
 		return;
 	}
-	
+
 	if(is_string($post_type) && $post_type == 'rental') {
 		$meta_key_price = 'property_rent';
 	} else {
 		$meta_key_price = 'property_price';
 	}
-	
+
 	$sort_options = array(
 		'price'			=>	$meta_key_price,
 		'date'			=>	'post_date'
@@ -67,12 +67,12 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'posts_per_page'	=>	$limit,
 		'paged' 		=>	$paged
 	);
-	
+
 	if(!empty($location) ) {
 		if( !is_array( $location ) ) {
 			$location = explode(",", $location);
 			$location = array_map('trim', $location);
-			
+
 			$args['tax_query'][] = array(
 				'taxonomy' => 'location',
 				'field' => 'slug',
@@ -80,12 +80,12 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			);
 		}
 	}
-	
+
 	if(!empty($status)) {
 		if(!is_array($status)) {
 			$status = explode(",", $status);
 			$status = array_map('trim', $status);
-			
+
 			$args['meta_query'][] = array(
 				'key' => 'property_status',
 				'value' => $status,
@@ -93,12 +93,12 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			);
 		}
 	}
-	
+
 	if(!empty($commercial_listing_type)) {
 		if(!is_array($commercial_listing_type)) {
 			$commercial_listing_type = explode(",", $commercial_listing_type);
 			$commercial_listing_type = array_map('trim', $commercial_listing_type);
-			
+
 			$args['meta_query'][] = array(
 				'key' => 'property_com_listing_type',
 				'value' => $commercial_listing_type,
@@ -106,12 +106,12 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			);
 		}
 	}
-	
+
 	if(!empty($category_key) && !empty($category_value)) {
 		if(!is_array($category_value)) {
 			$category_value = explode(",", $category_value);
 			$category_value = array_map('trim', $category_value);
-			
+
 			$args['meta_query'][] = array(
 				'key' => $category_key,
 				'value' => $category_value,
@@ -119,9 +119,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			);
 		}
 	}
-	
+
 	if( $sortby != '' ) {
-	
+
 		if($sortby == 'price') {
 			$args['orderby']	=	'meta_value_num';
 			$args['meta_key']	=	$meta_key_price;
@@ -132,8 +132,8 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		}
 		$args['order']			=	$sort_order;
 	}
-	
-	
+
+
 	if( isset( $_GET['sortby'] ) ) {
 		$orderby = sanitize_text_field( trim($_GET['sortby']) );
 		if($orderby == 'high') {
@@ -151,9 +151,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			$args['orderby']	=	'post_date';
 			$args['order']		=	'ASC';
 		}
-		
+
 	}
-	
+
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
@@ -164,7 +164,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 					}
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
-						
+
 						$template = str_replace('_','-',$template);
 						epl_property_blog($template);
 					}
@@ -179,7 +179,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		echo '<h3>'.__('Nothing found, please check back later.', 'epl').'</h3>';
+		echo '<h3>'.__('Nothing found, please check back later.', 'easy-property-listings' ).'</h3>';
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

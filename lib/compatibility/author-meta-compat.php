@@ -1,11 +1,24 @@
 <?php
-/*
- * Author Meta 
- * This prepares the meta data for the author profile and author box
+/**
+ * EPL Author Meta Compatibility
+ *
+ * @package     EPL
+ * @subpackage  Compatibility/Author
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+/*
+ * Author Meta: Depreciated.
+ *
+ * This prepares the meta data for the author profile and author box
+ *
+ * @since       1.0
+ */
 
 $name 			= get_the_author_meta( 'display_name' , $author_id);
 $mobile 		= get_the_author_meta( 'mobile' , $author_id);
@@ -25,30 +38,30 @@ $contact_form 	= get_the_author_meta( 'contact-form' , $author_id);
 
 // Email
 if ( $email != '' ) {
-	$i_email = '<a class="author-icon email-icon-24" href="mailto:' . $email . '" title="'.__('Contact', 'epl').' '.$name.' '.__('by Email', 'epl').'">'.__('Email', 'epl').'</a>';
+	$i_email = '<a class="author-icon email-icon-24" href="mailto:' . $email . '" title="'.__('Contact', 'easy-property-listings').' '.$name.' '.__('by Email', 'easy-property-listings').'">'.__('Email', 'easy-property-listings').'</a>';
 }
 
 // Twitter
 if ( $twitter != '' ) {
-	$i_twitter = '<a class="author-icon twitter-icon-24" href="http://twitter.com/' . $twitter . '" title="'.__('Follow', 'epl').' '.$name.' '.__('on Twitter', 'epl').'">'.__('Twitter', 'epl').'</a>';
+	$i_twitter = '<a class="author-icon twitter-icon-24" href="http://twitter.com/' . $twitter . '" title="'.__('Follow', 'easy-property-listings').' '.$name.' '.__('on Twitter', 'easy-property-listings').'">'.__('Twitter', 'easy-property-listings').'</a>';
 }
 
 // Google
 if ( $google != '' ) {
-	$i_google = '<a class="author-icon google-icon-24" href="https://plus.google.com/' . $google . '" title="'.__('Follow', 'epl').' '.$name.' '.__('on Google', 'epl').'">'.__('Google', 'epl').'</a>';
+	$i_google = '<a class="author-icon google-icon-24" href="https://plus.google.com/' . $google . '" title="'.__('Follow', 'easy-property-listings').' '.$name.' '.__('on Google', 'easy-property-listings').'">'.__('Google', 'easy-property-listings').'</a>';
 }
 
 // Facebook
 if ( $facebook != '' ) {
-	$i_facebook = '<a class="author-icon facebook-icon-24" href="http://facebook.com/' . $facebook . '" title="'.__('Follow', 'epl').' '.$name.' '.__('on Facebook', 'epl').'">'.__('Facebook', 'epl').'</a>';
+	$i_facebook = '<a class="author-icon facebook-icon-24" href="http://facebook.com/' . $facebook . '" title="'.__('Follow', 'easy-property-listings').' '.$name.' '.__('on Facebook', 'easy-property-listings').'">'.__('Facebook', 'easy-property-listings').'</a>';
 }
 
 // Linked In
 if ( $linkedin != '' ) {
-	$i_linkedin = '<a class="author-icon linkedin-icon-24" href="http://au.linkedin.com/in/' . $linkedin . '" title="'.__('Follow', 'epl').' '.$name.' '.__('on Linkedin', 'epl').'">'.__('Linkedin', 'epl').'</a>';
+	$i_linkedin = '<a class="author-icon linkedin-icon-24" href="http://au.linkedin.com/in/' . $linkedin . '" title="'.__('Follow', 'easy-property-listings').' '.$name.' '.__('on Linkedin', 'easy-property-listings').'">'.__('Linkedin', 'easy-property-listings').'</a>';
 }
 
 // Skype
 if ( $skype != '' ) {
-	$i_skype = '<a class="author-icon skype-icon-24" href="http://skype.com/' . $skype . '" title="'.__('Follow', 'epl').' '.$name.' '.__('on Skype', 'epl').'">'.__('Skype', 'epl').'</a>';
+	$i_skype = '<a class="author-icon skype-icon-24" href="http://skype.com/' . $skype . '" title="'.__('Follow', 'easy-property-listings').' '.$name.' '.__('on Skype', 'easy-property-listings').'">'.__('Skype', 'easy-property-listings').'</a>';
 }

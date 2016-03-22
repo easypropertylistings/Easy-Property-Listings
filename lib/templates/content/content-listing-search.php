@@ -1,6 +1,12 @@
 <?php
 /*
  * Search Widget Content.
+ *
+ * @package     EPL
+ * @subpackage  Templates/Content
+ * @copyright   Copyright (c) 2015, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
  */
 
 // Exit if accessed directly
@@ -78,7 +84,7 @@ if(!empty($args)) {
 query_posts($args);
 if(have_posts()) :
 	while ( have_posts() ) : the_post();
-		global $post;		
+		global $post;
 	endwhile;
 endif;
 wp_reset_query();
