@@ -226,6 +226,7 @@ class EPL_Welcome {
 
 					<h4><?php _e( 'Version 3.0', 'easy-property-listings'  );?></h4>
 					<ul>
+						<li><?php _e( 'Tweak: Textdomain and languages files renamed. Changed from epl to easy-property-listings for the WordPress.org translation initiative.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Every epl_action present in the $_GET or $_POST is called using WordPress do_action function in init.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Tweak: Radio options when adding listings converted to checkboxes to slim down the admin pages.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Fix: Ducted Heating additional features now displays in feature list.', 'easy-property-listings'  );?></li>
