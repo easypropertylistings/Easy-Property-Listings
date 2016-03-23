@@ -802,7 +802,8 @@ h3.epl-welcome-sub-heading {
 	display: inline-block;
 	margin-left: -1px;
 	z-index: 2;
-	width: 700px;
+	width: 90%;
+	max-width: 700px;
 	background-color: #FFF;
 	min-height: 200px;
 	border: 1px solid #e5e5e5;
@@ -811,7 +812,8 @@ h3.epl-welcome-sub-heading {
 }
 #epl-item-card-wrapper .epl-contact-section { border-bottom: 1px solid #eee; margin-bottom: 10px; overflow: auto; }
 #epl-item-card-wrapper .epl-contact-section table { margin-bottom: 20px; }
-#epl-item-card-wrapper > div, #epl-item-card-wrapper > form > div{ padding: 0px 20px; border-bottom: 2px solid #f1f1f1;}
+#epl-item-card-wrapper > div, #epl-item-card-wrapper > form > div{padding: 0px 20px;border-bottom: 2px solid #f1f1f1;}
+#epl-item-card-wrapper .epl-contact-entry-header { border-bottom: none; }
 #epl-item-card-wrapper > div:first-child {  }
 #epl-item-card-wrapper > div:last-child { padding-bottom: 20px; border: none; }
 #epl-item-card-wrapper .avatar-wrap { padding-right: 10px; text-align: center; }
@@ -841,7 +843,7 @@ h3.epl-welcome-sub-heading {
 }
 #epl-item-card-wrapper .epl-info-wrapper { min-height: 125px; overflow: visible; }
 #epl-item-card-wrapper a.delete { text-decoration: none; color: #ff0000; margin-right: 5px; }
-.epl-contact-info .epl-contact-name { font-size: 24px; font-weight: 600; }
+.epl-contact-info .epl-contact-name {font-size: 1.5em;font-weight: 600; margin-bottom: 0.5em}
 .epl-contact-edit-link a, .epl-disconnect-user a { font-size: 12px; font-weight: normal; text-decoration: none; }
 #epl-contact-edit-actions {
 	display: inline-block;
@@ -860,7 +862,7 @@ h3.epl-welcome-sub-heading {
 #epl-item-stats-wrapper a { text-decoration: none; }
 #epl-item-stats-wrapper .dashicons { color: #888; }
 #epl-item-tables-wrapper table { width: 100%; }
-#epl-item-tables-wrapper th { text-align: center; }
+#epl-item-tables-wrapper th {text-align: left;}
 #epl-item-tables-wrapper .downloads tr > th:first-child, #epl-item-tables-wrapper .downloads tr > td:first-child { text-align: left; }
 #epl-item-tables-wrapper .downloads tr > td:only-child { text-align: center; }
 #epl-item-notes-wrapper { min-height: 50px; }
@@ -990,6 +992,7 @@ label.epl-contact-select-label:before {
 .epl_contact_quick_actions > li {
 	display: inline-block;
 	position: relative;
+	margin-bottom: 0;
 }
 .epl_contact_quick_actions > li:not(:first-child) {
 	margin: 0 16px;
@@ -997,9 +1000,9 @@ label.epl-contact-select-label:before {
 .epl_contact_quick_actions a {
 	color: #808080;
 	display: block;
-	padding: 10px 3px;
+	padding: 6px 10px;
 	text-decoration: none;
-	width: 100%;
+	/* width: 100%; */
 }
 .epl-contact-load-activities {
 	background: #dddddd none repeat scroll 0 0;
@@ -1060,7 +1063,7 @@ h1.epl-contact-title {
 	float: left;
 	font-size: 24px;
 	font-weight: 600;
-	padding-bottom: 15px;
+	padding: 0.3em 0;
 	width: 75%;
 }
 .epl-contact-title-editable {
@@ -1076,11 +1079,13 @@ h1.epl-contact-title {
 .epl_contact_quick_actions {
 	float: left;
 	margin: 12px 0;
-	width: 80%;
+	width: 70%;
 }
 .epl_contact_pagination {
+	margin: 0.3em 0 0;
 	float: right;
-	width: 13%;
+	width: 100%;
+	max-width: 90px;
 }
 .epl_contact_pagination_prev, .epl_contact_pagination_next {
 	color: #808080;
@@ -1109,7 +1114,7 @@ h1.epl-contact-title {
 	box-shadow: -1px 3px 2px 2px #ddd;
 	font-weight: 500;
 	margin: 6px 0;
-	padding: 10px;
+	padding: 0;
 	position: absolute;
 	min-width: 160px;
 	z-index: 9999;
@@ -1139,7 +1144,9 @@ h1.epl-contact-title {
 	padding-left: 20px;
 	text-transform: capitalize;
 }
-
+.easy-property-listings_page_epl-contacts .search-box {
+	margin-bottom: 0;
+}
 .epl-contact_category_suggestions::before, .epl-contact-tags-find:before, .epl-contact-listing-suggestion::before , .epl-contact-user-suggestion::before, .epl-contact-owned-listing-suggestion::before , .epl-popup-box::before {
 	border-bottom: 7px solid rgba(0, 0, 0, 0.2);
 	border-left: 7px solid transparent;
@@ -1199,7 +1206,7 @@ h1.epl-contact-title {
 .epl-contact-assigned-tags-wrap {
 }
 .epl-contact-assigned-tags {
-	margin: 0;
+	margin: 0 0 0.3em;
 }
 .epl-contact-list-table-tags h4 {
 	margin-bottom: 0.5em;
@@ -1232,7 +1239,7 @@ h1.epl-contact-title {
 	border-color:  #73a8e0;
 }
 .epl-contact-icons {
-	margin-right: 30px;
+	margin-right: 0.5em;
 }
 .epl-info-item {
 	margin: 4px 0;
@@ -1542,7 +1549,11 @@ h3.epl-contact-activity-title {
 }
 .epl-single-tag-name {
 	display: inline-block;
-	margin: 10px 0;
+	margin: 0 0 10px;
+	width: 99%
+}
+.epl-single-tag-name #epl-single-tag-name-input {
+	width: 100%;
 }
 .epl-lock {
 	display: inline-block;
@@ -1627,6 +1638,7 @@ h3.epl-contact-activity-title {
 }
 .epl-popup-box.epl-all-tags-single-tag {
 	background: #f5f5f5 none repeat scroll 0 0;
+	padding: 0.5em;
 }
 .epl-single-tag-opts {
 	text-align: center;
@@ -1726,6 +1738,26 @@ h3.epl-contact-activity-title {
 	#epl-pricing-section-id {
 
 	}
+	.epl-admin-page-archive .property_thumb.column-property_thumb {
+		display: none !important;
+	}
+	.epl-admin-page-archive .manage-column.column-property_thumb {
+		display: none !important;
+	}
+	.epl-admin-page-archive .property_price.column-property_price {
+		padding-right: 2em;
+	}
+	.epl-admin-page-archive .property_price.column-property_price,
+	.epl-admin-page-archive .property_thumb.column-property_thumb[data-colname="Image"] {
+		color: transparent;
+	}
+	.epl-admin-page-archive .property_price.column-property_price div {
+		color: #000;
+	}
+	.epl-contact-activities-table-heads {
+		display: none !important;
+	}
+
 }
 @media screen and (max-width: 500px)  {
 	.epl-col,
