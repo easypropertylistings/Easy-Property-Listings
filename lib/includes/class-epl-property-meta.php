@@ -384,7 +384,7 @@ class EPL_Property_Meta {
 	 * @return string Formatted date
 	 */
 	public function get_property_available( $admin = false ) {
-		$format = $admin == true ? apply_filters('epl_filter_admin_available_date_format','l jS M \a\t g:i a') : apply_filters('epl_filter_available_date_format','l jS F Y') ;
+		$format = $admin == true ? apply_filters('epl_property_available_date_format_admin','l jS M \a\t g:i a') : apply_filters('epl_property_available_date_format','l jS F Y') ;
 		if(isset($this->meta['property_date_available'])) {
 			if(isset($this->meta['property_date_available'][0])) {
 				if ( '' != $this->meta['property_date_available'][0] ) {
