@@ -384,14 +384,17 @@ class EPL_Property_Meta {
 	 * @return string Formatted date
 	 */
 	public function get_property_available( $admin = false ) {
-		$format = $admin == true ? 'l jS M \a\t g:i a' : 'l jS F Y' ;
+		$format = $admin == true ? apply_filters('epl_property_available_date_format_admin','l jS M \a\t g:i a') : apply_filters('epl_property_available_date_format','l jS F Y') ;
 		if(isset($this->meta['property_date_available'])) {
 			if(isset($this->meta['property_date_available'][0])) {
 				if ( '' != $this->meta['property_date_available'][0] ) {
-					if(time() > strtotime($this->meta['property_date_available'][0]) ) {
+					$av_date_array = date_parse($this->meta['property_date_available'][0]);
+					$av_date = ( isset($av_date_array['year']) && isset($av_date_array['month']) && isset($av_date_array['day']) ) ?
+						$av_date_array['year'].'-'.$av_date_array['month'].'-'.$av_date_array['day']: $this->meta['property_date_available'][0];
+					if(time() > strtotime($av_date) ) {
 						return apply_filters( 'epl_property_sub_title_available_now_label' , __('now','easy-property-listings' ) );
 					} else {
-						return apply_filters('epl_get_property_available',date( $format, strtotime($this->meta['property_date_available'][0]) ));
+						return apply_filters('epl_get_property_available',date( $format, strtotime($av_date) ));
 					}
 
 				}
