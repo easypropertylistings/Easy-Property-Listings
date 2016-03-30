@@ -264,7 +264,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Inspection date format now customisable from settings.
 * Tweak: Extension license updater updated.
 * Tweak: Added additional map CSS classes to improve Google Map output with some themes.
-* New: Adjustable Map pin when editing a listing and setting coordinates. Drag the map pin to adust the position.
+* New: Adjustable Map pin when editing a listing and setting coordinates. Drag the map pin to adujst the position.
 * Tweak: Imported values of 0 no longer display on commercial listings.
 * Tweak: epl_render_html_fields allows for css class set in the field array of meta-boxes.
 * Tweak: Commercial authority default type is now For Sale instead of Auction.
