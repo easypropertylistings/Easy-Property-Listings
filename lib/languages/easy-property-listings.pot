@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2016-03-22 11:20+0800\n"
+"POT-Creation-Date: 2016-03-30 10:47+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Read More"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:311 includes/class-epl-property-meta.php:1029
+#: compatibility/listing-meta-compat.php:311 includes/class-epl-property-meta.php:1032
 msgid "sqm"
 msgstr ""
 
@@ -144,7 +144,7 @@ msgid "Leased"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:426 compatibility/listing-meta-compat.php:427
-#: includes/class-epl-property-meta.php:524 includes/class-epl-property-meta.php:623
+#: includes/class-epl-property-meta.php:527 includes/class-epl-property-meta.php:626
 msgid "TBA"
 msgstr ""
 
@@ -153,24 +153,24 @@ msgstr ""
 msgid "Commercial Category"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:584 includes/class-epl-property-meta.php:1102
+#: compatibility/listing-meta-compat.php:584 includes/class-epl-property-meta.php:1105
 #: meta-boxes/meta-boxes.php:1305 widgets/widget-functions.php:468
 msgid "Car Spaces"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:597 compatibility/listing-meta-compat.php:599
-#: includes/class-epl-property-meta.php:470 includes/class-epl-property-meta.php:472
+#: includes/class-epl-property-meta.php:473 includes/class-epl-property-meta.php:475
 msgid "Inc. GST"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:601 includes/class-epl-property-meta.php:474
+#: compatibility/listing-meta-compat.php:601 includes/class-epl-property-meta.php:477
 msgid "GST"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:613 compatibility/listing-meta-compat.php:614
-#: compatibility/listing-meta-compat.php:615 includes/class-epl-property-meta.php:538
-#: includes/class-epl-property-meta.php:541 includes/class-epl-property-meta.php:636
-#: includes/class-epl-property-meta.php:642 includes/class-epl-property-meta.php:793
+#: compatibility/listing-meta-compat.php:615 includes/class-epl-property-meta.php:541
+#: includes/class-epl-property-meta.php:544 includes/class-epl-property-meta.php:639
+#: includes/class-epl-property-meta.php:645 includes/class-epl-property-meta.php:796
 #: meta-boxes/meta-boxes.php:53
 msgid "For Sale"
 msgstr ""
@@ -178,59 +178,59 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:634 compatibility/listing-meta-compat.php:635
 #: compatibility/listing-meta-compat.php:636 compatibility/listing-meta-compat.php:638
 #: compatibility/listing-meta-compat.php:639 compatibility/listing-meta-compat.php:640
-#: includes/class-epl-property-meta.php:549 includes/class-epl-property-meta.php:551
-#: includes/class-epl-property-meta.php:553 includes/class-epl-property-meta.php:556
-#: includes/class-epl-property-meta.php:649 includes/class-epl-property-meta.php:651
-#: includes/class-epl-property-meta.php:653 includes/class-epl-property-meta.php:656
-#: includes/class-epl-property-meta.php:806 includes/class-epl-property-meta.php:808
+#: includes/class-epl-property-meta.php:552 includes/class-epl-property-meta.php:554
+#: includes/class-epl-property-meta.php:556 includes/class-epl-property-meta.php:559
+#: includes/class-epl-property-meta.php:652 includes/class-epl-property-meta.php:654
+#: includes/class-epl-property-meta.php:656 includes/class-epl-property-meta.php:659
+#: includes/class-epl-property-meta.php:809 includes/class-epl-property-meta.php:811
 msgid "For Lease"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:634 compatibility/listing-meta-compat.php:635
 #: compatibility/listing-meta-compat.php:636 compatibility/listing-meta-compat.php:638
 #: compatibility/listing-meta-compat.php:639 compatibility/listing-meta-compat.php:640
-#: includes/class-epl-property-meta.php:628 includes/class-epl-property-meta.php:789
+#: includes/class-epl-property-meta.php:631 includes/class-epl-property-meta.php:792
 #: includes/functions.php:561
 msgid "P.A."
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:662 includes/class-epl-property-meta.php:855
+#: compatibility/listing-meta-compat.php:662 includes/class-epl-property-meta.php:858
 #: meta-boxes/meta-boxes.php:296
 msgid "Bedrooms"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:663 compatibility/listing-meta-compat.php:664
-#: includes/class-epl-property-meta.php:856 includes/class-epl-property-meta.php:857
+#: includes/class-epl-property-meta.php:859 includes/class-epl-property-meta.php:860
 msgid "bed"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:667 includes/class-epl-property-meta.php:872
+#: compatibility/listing-meta-compat.php:667 includes/class-epl-property-meta.php:875
 #: meta-boxes/meta-boxes.php:303 widgets/widget-functions.php:430
 msgid "Bathrooms"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:668 compatibility/listing-meta-compat.php:669
-#: includes/class-epl-property-meta.php:873 includes/class-epl-property-meta.php:874
+#: includes/class-epl-property-meta.php:876 includes/class-epl-property-meta.php:877
 msgid "bath"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:672 includes/class-epl-property-meta.php:889
+#: compatibility/listing-meta-compat.php:672 includes/class-epl-property-meta.php:892
 #: meta-boxes/meta-boxes.php:310 post-types/post-types.php:256
 #: widgets/widget-functions.php:135 widgets/widget-functions.php:449
 msgid "Rooms"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:673 compatibility/listing-meta-compat.php:674
-#: includes/class-epl-property-meta.php:890 includes/class-epl-property-meta.php:891
+#: includes/class-epl-property-meta.php:893 includes/class-epl-property-meta.php:894
 msgid "rooms"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:677 includes/class-epl-property-meta.php:913
-#: includes/class-epl-property-meta.php:914
+#: compatibility/listing-meta-compat.php:677 includes/class-epl-property-meta.php:916
+#: includes/class-epl-property-meta.php:917
 msgid "Parking Spaces"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:680 includes/class-epl-property-meta.php:969
+#: compatibility/listing-meta-compat.php:680 includes/class-epl-property-meta.php:972
 #: meta-boxes/meta-boxes.php:371 widgets/widget-functions.php:601
 msgid "Air Conditioning"
 msgstr ""
@@ -240,7 +240,7 @@ msgid "Air conditioning"
 msgstr ""
 
 #: compatibility/listing-meta-compat.php:684 compatibility/listing-meta-compat.php:685
-#: includes/class-epl-property-meta.php:989 meta-boxes/meta-boxes.php:362
+#: includes/class-epl-property-meta.php:992 meta-boxes/meta-boxes.php:362
 #: widgets/widget-functions.php:616
 msgid "Pool"
 msgstr ""
@@ -249,7 +249,7 @@ msgstr ""
 msgid "Toilet"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:694 includes/class-epl-property-meta.php:1080
+#: compatibility/listing-meta-compat.php:694 includes/class-epl-property-meta.php:1083
 #: meta-boxes/meta-boxes.php:352
 msgid "New Construction"
 msgstr ""
@@ -266,11 +266,11 @@ msgstr ""
 msgid "Carport"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:708 includes/class-epl-property-meta.php:1035
+#: compatibility/listing-meta-compat.php:708 includes/class-epl-property-meta.php:1038
 msgid "Land is"
 msgstr ""
 
-#: compatibility/listing-meta-compat.php:711 includes/class-epl-property-meta.php:1060
+#: compatibility/listing-meta-compat.php:711 includes/class-epl-property-meta.php:1063
 msgid "Floor Area is"
 msgstr ""
 
@@ -4882,40 +4882,40 @@ msgstr ""
 msgid "Show all %s"
 msgstr ""
 
-#: includes/class-epl-property-meta.php:288 includes/class-epl-property-meta.php:535
-#: includes/class-epl-property-meta.php:591 includes/class-epl-property-meta.php:634
+#: includes/class-epl-property-meta.php:288 includes/class-epl-property-meta.php:538
+#: includes/class-epl-property-meta.php:594 includes/class-epl-property-meta.php:637
 #: meta-boxes/meta-boxes.php:39 meta-boxes/meta-boxes.php:54
 #: widgets/widget-admin-dashboard.php:133 widgets/widget-admin-dashboard.php:155
 msgid "Auction"
 msgstr ""
 
-#: includes/class-epl-property-meta.php:392
+#: includes/class-epl-property-meta.php:395
 msgid "now"
 msgstr ""
 
-#: includes/class-epl-property-meta.php:499 includes/class-epl-property-meta.php:594
+#: includes/class-epl-property-meta.php:502 includes/class-epl-property-meta.php:597
 #: includes/functions.php:1120 includes/install.php:60
 msgid "POA"
 msgstr ""
 
-#: includes/class-epl-property-meta.php:838 includes/class-epl-property-meta.php:839
-#: includes/class-epl-property-meta.php:840
+#: includes/class-epl-property-meta.php:841 includes/class-epl-property-meta.php:842
+#: includes/class-epl-property-meta.php:843
 msgid "Built"
 msgstr ""
 
-#: includes/class-epl-property-meta.php:932
+#: includes/class-epl-property-meta.php:935
 msgid "garage"
 msgstr ""
 
-#: includes/class-epl-property-meta.php:950
+#: includes/class-epl-property-meta.php:953
 msgid "carport"
 msgstr ""
 
-#: includes/class-epl-property-meta.php:1009
+#: includes/class-epl-property-meta.php:1012
 msgid "Alarm System"
 msgstr ""
 
-#: includes/class-epl-property-meta.php:1053
+#: includes/class-epl-property-meta.php:1056
 msgid "m&#178;"
 msgstr ""
 
