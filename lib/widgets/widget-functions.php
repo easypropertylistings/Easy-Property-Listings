@@ -1281,6 +1281,12 @@ function epl_contact_capture_widget_form_fields() {
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
+		array(
+			'key'		=> 'submit',
+			'label'		=> __( 'Submit Label', 'epl' ),
+			'type'		=> 'text',
+			'default'	=> __('Subscribe','epl')
+		),
 	);
 	return apply_filters( 'epl_contact_capture_widget_form_fields', $fields );
 }
