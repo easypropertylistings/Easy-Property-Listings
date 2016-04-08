@@ -19,9 +19,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_contact_capture_form( $atts ) {
 
-	$defaults = epl_contact_capture_get_widget_defaults();
+	$defaults 	= epl_contact_capture_get_widget_defaults();
 	$attributes = shortcode_atts( $defaults, $atts );
+	$fields 	= epl_contact_capture_get_widget_fields( $attributes );
 
+	if( isset($attributes['submit']) && $attributes['submit'] != '') {
+		foreach($fields as &$field) {
+			if($field['name'] == 'epl_contact_submit') {
+				$field['value'] = $attributes['submit'];
+			}
+		}
+	}
+	
 	ob_start();
 	$contact_form = new EPL_FORM_BUILDER( array('callback_action'	=>	'contact_capture_form') );
 
@@ -31,14 +40,14 @@ function epl_contact_capture_form( $atts ) {
 			'class'		=>	'col-1 epl-inner-div',
 			'id'		=>	'',
 			'help'		=>	'',
-			'fields'	=>	epl_contact_capture_get_widget_fields( $attributes )
+			'fields'	=>	$fields
 		),
 
 	);
 	$contact_form->add_sections($fields);
 	$contact_form->add_fields();
 	echo '<div class="epl-contact-capture-form">';?>
-	<div class="epl-contact-capture-form">
+	<div class="epl-contact-capture-form-desc">
 		<?php
 			echo isset($atts['description']) ? $atts['description'] : '';
 		?>
