@@ -610,7 +610,7 @@ class EPL_Contact {
 			'comment_content' 		=> $note,
 			'comment_type' 			=> $note_type,
 			'comment_parent' 		=> 0,
-			'comment_agent' 		=> 'epl',
+			'comment_agent' 		=> 'easy-property-listings',
 		);
 
 		//Insert new note and get the note ID
