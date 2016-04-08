@@ -810,11 +810,11 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 
 	if(isset($data['property_id']) ) {
 		if(is_numeric($data['property_id'])) {
-			
+
 		} else {
 			$query->set( 'epl_post_title', sanitize_text_field($data['property_id']) );
 		}
-			
+
 	}
 
 	if ( isset( $data['property_agent'] ) ) {
@@ -1139,42 +1139,42 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 	}
 	$fields = array(
 		array(
-			'label'        => __( 'First Name', 'epl' ),
+			'label'        => __( 'First Name', 'easy-property-listings' ),
 			'name'         => 'epl_contact_first_name',
 			'id'           => 'epl_contact_first_name',
 			'type'         => 'text',
 			'data-default' => 'on'
 		),
 		array(
-			'label'        => __( 'Last Name', 'epl' ),
+			'label'        => __( 'Last Name', 'easy-property-listings' ),
 			'name'         => 'epl_contact_last_name',
 			'id'           => 'epl_contact_last_name',
 			'type'         => 'text',
 			'data-default' => 'on'
 		),
 		array(
-			'label'        => __( 'Email', 'epl' ),
+			'label'        => __( 'Email', 'easy-property-listings' ),
 			'name'         => 'epl_contact_email',
 			'id'           => 'epl_contact_email',
 			'type'         => 'email',
 			'data-default' => 'on'
 		),
 		array(
-			'label'        => __( 'Phone', 'epl' ),
+			'label'        => __( 'Phone', 'easy-property-listings' ),
 			'name'         => 'epl_contact_phone',
 			'id'           => 'epl_contact_phone',
 			'type'         => 'text',
 			'data-default' => 'off'
 		),
 		array(
-			'label'        => __( 'Subject', 'epl' ),
+			'label'        => __( 'Subject', 'easy-property-listings' ),
 			'name'         => 'epl_contact_title',
 			'id'           => 'epl_contact_title',
 			'type'         => 'text',
 			'data-default' => 'on'
 		),
 		array(
-			'label'        => __( 'Message', 'epl' ),
+			'label'        => __( 'Message', 'easy-property-listings' ),
 			'name'         => 'epl_contact_note',
 			'id'           => 'epl_contact_note',
 			'type'         => 'textarea',
@@ -1191,7 +1191,7 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 			'name'         => 'epl_contact_submit',
 			'id'           => 'epl_contact_submit',
 			'type'         => 'submit',
-			'value'        => __( 'Subscribe', 'epl' ),
+			'value'        => __( 'Submit', 'easy-property-listings' ),
 			'data-default' => 'on'
 		),
 	);
@@ -1234,58 +1234,58 @@ function epl_contact_capture_widget_form_fields() {
 	$fields = array(
 		array(
 			'key'		=> 'title',
-			'label'		=> __( 'Title', 'epl' ),
+			'label'		=> __( 'Title', 'easy-property-listings' ),
 			'type'		=> 'text',
 			'default'	=> __('Contact Form')
 		),
 		array(
 			'key'		=> 'description',
-			'label'		=> __( 'Description', 'epl' ),
+			'label'		=> __( 'Description', 'easy-property-listings' ),
 			'type'		=> 'textarea',
 			'default'	=> ''
 		),
 		array(
-			'label'		=> __( 'First Name', 'epl' ),
+			'label'		=> __( 'First Name', 'easy-property-listings' ),
 			'key'		=> 'epl_contact_first_name',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
 		array(
-			'label'		=> __( 'Last Name', 'epl' ),
+			'label'		=> __( 'Last Name', 'easy-property-listings' ),
 			'key'		=> 'epl_contact_last_name',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
 		array(
-			'label'		=> __( 'Email', 'epl' ),
+			'label'		=> __( 'Email', 'easy-property-listings' ),
 			'key'		=> 'epl_contact_email',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
 		array(
-			'label'        => __( 'Phone', 'epl' ),
+			'label'        => __( 'Phone', 'easy-property-listings' ),
 			'key'          => 'epl_contact_phone',
 			'id'           => 'epl_contact_phone',
 			'type'         => 'checkbox',
 			'default'       => 'off'
 		),
 		array(
-			'label'		=> __( 'Subject', 'epl' ),
+			'label'		=> __( 'Subject', 'easy-property-listings' ),
 			'key'		=> 'epl_contact_title',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
 		array(
-			'label'		=> __( 'Message', 'epl' ),
+			'label'		=> __( 'Message', 'easy-property-listings' ),
 			'key'		=> 'epl_contact_note',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
 		array(
 			'key'		=> 'submit',
-			'label'		=> __( 'Submit Label', 'epl' ),
+			'label'		=> __( 'Submit Label', 'easy-property-listings' ),
 			'type'		=> 'text',
-			'default'	=> __('Subscribe','epl')
+			'default'	=> __('Submit','easy-property-listings')
 		),
 	);
 	return apply_filters( 'epl_contact_capture_widget_form_fields', $fields );
