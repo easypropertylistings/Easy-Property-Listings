@@ -174,29 +174,32 @@ Would you like to help translate the plugin into more languages? [Join our Trans
 
 == Installation ==
 
-Automatic installation
+**Automatic installation**
+
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't even need to leave your web browser. To do an automatic install, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New.
 
-In the search field type "WP Job Manager" and click Search Plugins. Once you've found the plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by clicking Install Now.
+In the search field type "Easy Property Listings" and click Search Plugins. Once you've found the plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by clicking Install Now.
 
-Manual installation
-The manual installation method involves downloading the plugin and uploading it to your web server via your favorite FTP application.
+**Manual installation**
 
-Download the plugin file to your computer and unzip it
-Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installation's wp-content/plugins/ directory.
-Activate the plugin from the Plugins menu within the WordPress admin.
+The manual installation method involves downloading the plugin and uploading it to your web server via your favourite FTP application.
 
-1. Upload plugin zip contents to wp-contents/plugin directory and activate the plugin.
-2. Go to Easy Property Listings > Settings and enable your listing types and press save.
-3. Customise your labels, tweak the display, all in minutes from Easy Property Listings > Setting page.
-4. Add a listing as you would a post. Check the help guide inside the plugin. Dashboard > Easy Property Listings > Help. These instructions are also accessible to authors.
-5. Create blank pages for each listing type you enable so you can easily add the archive page to your WordPress menus. There are detailed instructions which you can access from your Dashboard > Easy Property Listings > Help & Help > Getting Started
-6. The latest release of Easy Property Listings includes a theme compatibility mode that works great for most themes. Once you have activated the plugin visit Dashboard > Easy Property Listings > Settings > Theme Setup. Before you enable the theme compatibility mode, add a listing and preview. If it looks great, you are good to go, however if your listing is too wide or your sidebar is in the wrong place activate Theme Compatibility mode. Next adjust the
+1. Download the plugin file to your computer and unzip it
+2. Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installation's wp-content/plugins/ directory.
+3. Activate the plugin from the Plugins menu within the WordPress admin.
+
+**Getting Started**
+
+1. Go to Easy Property Listings > Settings and enable your listing types and press save.
+2. Customise your labels, tweak the display, all in minutes from Easy Property Listings > Setting page.
+3. Add a listing as you would a post. Check the help guide inside the plugin. Dashboard > Easy Property Listings > Help. These instructions are also accessible to authors.
+4. Create blank pages for each listing type you enable so you can easily add the archive page to your WordPress menus. There are detailed instructions which you can access from your Dashboard > Easy Property Listings > Help & Help > Getting Started
+5. The latest release of Easy Property Listings includes a theme compatibility mode that works great for most themes. Once you have activated the plugin visit Dashboard > Easy Property Listings > Settings > Theme Setup. Before you enable the theme compatibility mode, add a listing and preview. If it looks great, you are good to go, however if your listing is too wide or your sidebar is in the wrong place activate Theme Compatibility mode. Next adjust the
 Theme Setup: Featured Images to adjust how your featured images appear. If you see two featured images play with the settings until it looks great.
-7. Add widgets, shortcodes and listings.
-8. Have a cup of coffee as you'll be amazed at how quickly and easily you created an advanced Real Estate listing website.
-9. For detailed setup instructions, visit the official [Documentation](https://easypropertylistings.com.au/documentation/) page.
-10. Visit the [Extension Store](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions) to further enhance your real estate website with cool SEO focused tools.
+6. Add widgets, shortcodes and listings.
+7. Have a cup of coffee as you'll be amazed at how quickly and easily you created an advanced Real Estate listing website.
+8. For detailed setup instructions, visit the official [Documentation](https://easypropertylistings.com.au/documentation/) page.
+9. Visit the [Extension Store](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions) to further enhance your real estate website with cool SEO focused tools.
 
 == Frequently Asked Questions ==
 
