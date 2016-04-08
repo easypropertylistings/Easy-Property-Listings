@@ -269,6 +269,31 @@ h3.property-address {
 	border-bottom: 3px double #ccc;
 	margin-bottom: 0.8em;
 }
+/** epl contact form widget **/
+
+.epl-contact-capture-form {
+    padding: 10px 0;
+}
+
+.widget_epl_contact_capture .widget-title {
+ 
+}
+.epl-contact-capture-form-desc {
+    margin-bottom: 10px;
+}
+.epl-contact-capture-form .epl_form_builder_label {
+    display: block;
+    font-size: 0.8em;
+    margin: 5px 0;
+}
+.epl-contact-capture-form #epl_contact_submit {
+    margin: 10px 0;
+    width: 100%;
+}
+.epl-contact-capture-form input, .epl-contact-capture-form textarea {
+    display: inline-block;
+    width: 95%;
+}
 /* Twenty Thirteen CSS Fix */
 .sidebar .epl-listing-post .entry-header,
 .sidebar .epl-listing-post .entry-content,
