@@ -808,10 +808,13 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 	$query->set( 'posts_per_page', get_option( 'posts_per_page' ) );
 	$query->set( 'paged', $paged );
 
-	if ( isset( $data['property_id'] ) ) {
-		if ( absint( $data['property_id'] ) ) {
-			$query->set( 'epl_post_title', absint( $data['property_id'] ) );
+	if(isset($data['property_id']) ) {
+		if(is_numeric($data['property_id'])) {
+			
+		} else {
+			$query->set( 'epl_post_title', sanitize_text_field($data['property_id']) );
 		}
+			
 	}
 
 	if ( isset( $data['property_agent'] ) ) {
@@ -1277,6 +1280,12 @@ function epl_contact_capture_widget_form_fields() {
 			'key'		=> 'epl_contact_note',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
+		),
+		array(
+			'key'		=> 'submit',
+			'label'		=> __( 'Submit Label', 'epl' ),
+			'type'		=> 'text',
+			'default'	=> __('Subscribe','epl')
 		),
 	);
 	return apply_filters( 'epl_contact_capture_widget_form_fields', $fields );
