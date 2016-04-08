@@ -809,12 +809,7 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 	$query->set( 'paged', $paged );
 
 	if(isset($data['property_id']) ) {
-		if(is_numeric($data['property_id'])) {
-
-		} else {
-			$query->set( 'epl_post_title', sanitize_text_field($data['property_id']) );
-		}
-
+		$query->set( 'epl_post_title', sanitize_text_field($data['property_id']) );
 	}
 
 	if ( isset( $data['property_agent'] ) ) {
@@ -867,7 +862,7 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
 						$epl_search_form_field['query']['key'] :
 						$epl_search_form_field['meta_key'];
 
-					if ( $query_meta_key == 'property_unique_id' && isset( $data[ $epl_search_form_field['meta_key'] ] ) &&  false === is_numeric( $data[ $epl_search_form_field['meta_key'] ] ) ) {
+					if ( $query_meta_key == 'property_unique_id' ) {
 						continue;
 					}
 
