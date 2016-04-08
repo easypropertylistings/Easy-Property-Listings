@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.8
 Tested up to: 4.5
 
-Stable Tag: 2.3.1
+Stable Tag: 3.0
 
 License: GNU Version 2 or Any Later Version
 
@@ -74,16 +74,20 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_auction]
 * [epl_contact_form]
 
-<strong>Listing</strong><br>
+**Listing**
+
  The [listing] shortcode allows you to output your listings on pages and posts with advanced filtering options for listing types, order, status filtering, locations and much more which you can [read about the settings and options here](https://easypropertylistings.com.au/docs/listing-short-code/?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg).
 
-<strong>Listing Open</strong><br>
+**Listing Open**
+
 The [listing_open] shortcode quickly outputs listings that have scheduled open for inspection times. Use this on posts so your site will always have an up-to-date list of properties open for inspection. Use the [listing_open post_type="property" template="table"] or for rentals and slimmer [listing_open post_type="rental" template="table_open"] option to create a slim list of listings.
 
-<strong>Listing Search</strong><br>
+**Listing Search**
+
 The [listing_search] shortcode allows you to place the search widget anywhere you like. Just added to the plugin are new styles to output [listing_search style="wide"] and [listing_search style="slim"] variations. You can also enable the tabbed option with [listing_search post_type="property,rental,land"] and you can adjust the tab labels from the plugin settings page. More [details about the listing_search shortcode can be found here](https://easypropertylistings.com.au/docs/listing_search-short-code/?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg). If you use the search widget you can easily select your options from the widget editor. Enable the tabbed search by multi selecting the listing types with Ctrl on your pc or Command on a mac keyboard.
 
-<strong>Listing Category</strong><br>
+**Listing Category**
+
 Use the [listing_category] short code to filter listings by any variable you want to use. Easy Property Listings has over 30 variables available for each listing type to create specialised pages for anything. Read the [detailed documentation](https://easypropertylistings.com.au/docs/listing-category-short-code/?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg) about this advanced shortcode.
 
 **Use any theme**
@@ -110,31 +114,40 @@ More information at [Easy Property Listings.com.au](https://easypropertylistings
 
 **Follow this plugin on [GitHub](https://github.com/easypropertylistings/Easy-Property-Listings)**
 
-<strong>Advanced Mapping</strong><br>
+**Advanced Mapping**
+
 [Advanced Map](https://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_advanced_map) Create a beautiful map showcasing your listings with a powerful shortcode.
 
-<strong>Brochures and Stock List Extension</strong><br>
+**Brochures and Stock List Extension**
+
 With the [brochures](https://easypropertylistings.com.au/extensions/brochures/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_brochures) extension for Easy Property Listings you can create printable brochures and stock lists for your listings. There are several options to control the brochure styles and templates. Or create your own!
 
-<strong>Frontend Submissions</strong><br>
+**Frontend Submissions**
+
 [Frontend Submissions](https://easypropertylistings.com.au/extensions/frontend-submissions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_frontend_submissions) Frontend Submissions provides a the ability to submit listings via a frontend form for review using a shortcode. They can also edit submitted listings from the frontend of your website.
 
-<strong>Listing Alerts</strong><br>
+**Listing Alerts**
+
 [Listing Alerts](https://easypropertylistings.com.au/extensions/listing-alerts/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_listing_alerts) Schedule email alerts to subscribers with HTML email support and customisable messages.
 
-<strong>Location Profiles</strong><br>
+**Location Profiles**
+
 [Location Profiles](https://easypropertylistings.com.au/extensions/location-profiles/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_location_profiles) With this plugin, you can add detailed suburb, city or neighbourhood profiles automatically to your listings in that location.
 
-<strong>Market Research</strong><br>
+**Market Research**
+
 [Market Research](https://easypropertylistings.com.au/extensions/market-research/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_market_research). With the Market Research extension for Easy Property Listings you can import property sales data and dynamically display it on your listings in a matching location.
 
-<strong>Sliders</strong><br>
+**Sliders**
+
 [Sliders](https://easypropertylistings.com.au/extensions/sliders/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_slider) The Sliders extension allows you to effortlessly create beautiful listing galleries that include numerous options and are fully responsive.
 
-<strong>Staff/Agent Directory</strong><br>
+**Staff/Agent Directory**
+
 [Staff/Agent Directory](https://easypropertylistings.com.au/extensions/staff-directory/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_staff_directory) Give your real estate agents and staff an enhanced author profile on your listings and manage staff members with this extension.
 
-<strong>Testimonial Manager</strong><br>
+**Testimonial Manager**
+
 [Testimonial Manager](https://easypropertylistings.com.au/extensions/testimonial-manager/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_testimonial_manager) Testimonials can be an effective way to get more listings. They add credibility and builds trust. With this plugin, quickly add testimonials and have them link with properties in specific locations.
 
 [Many more extensions can be found here](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions).
@@ -156,22 +169,38 @@ Easy Property Listings needs help for translation:
 11. Russian
 12. Swedish
 13. Ukrainian
+14. Arabic
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/).
 
 == Installation ==
 
-1. Upload plugin zip contents to wp-contents/plugin directory and activate the plugin.
-2. Go to Easy Property Listings > Settings and enable your listing types and press save.
-3. Customise your labels, tweak the display, all in minutes from Easy Property Listings > Setting page.
-4. Add a listing as you would a post. Check the help guide inside the plugin. Dashboard > Easy Property Listings > Help. These instructions are also accessible to authors.
-5. Create blank pages for each listing type you enable so you can easily add the archive page to your WordPress menus. There are detailed instructions which you can access from your Dashboard > Easy Property Listings > Help & Help > Getting Started
-6. The latest release of Easy Property Listings includes a theme compatibility mode that works great for most themes. Once you have activated the plugin visit Dashboard > Easy Property Listings > Settings > Theme Setup. Before you enable the theme compatibility mode, add a listing and preview. If it looks great, you are good to go, however if your listing is too wide or your sidebar is in the wrong place activate Theme Compatibility mode. Next adjust the
+**Automatic installation**
+
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't even need to leave your web browser. To do an automatic install, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New.
+
+In the search field type "Easy Property Listings" and click Search Plugins. Once you've found the plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by clicking Install Now.
+
+**Manual installation**
+
+The manual installation method involves downloading the plugin and uploading it to your web server via your favourite FTP application.
+
+1. Download the plugin file to your computer and unzip it
+2. Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installation's wp-content/plugins/ directory.
+3. Activate the plugin from the Plugins menu within the WordPress admin.
+
+**Getting Started**
+
+1. Go to Easy Property Listings > Settings and enable your listing types and press save.
+2. Customise your labels, tweak the display, all in minutes from Easy Property Listings > Setting page.
+3. Add a listing as you would a post. Check the help guide inside the plugin. Dashboard > Easy Property Listings > Help. These instructions are also accessible to authors.
+4. Create blank pages for each listing type you enable so you can easily add the archive page to your WordPress menus. There are detailed instructions which you can access from your Dashboard > Easy Property Listings > Help & Help > Getting Started
+5. The latest release of Easy Property Listings includes a theme compatibility mode that works great for most themes. Once you have activated the plugin visit Dashboard > Easy Property Listings > Settings > Theme Setup. Before you enable the theme compatibility mode, add a listing and preview. If it looks great, you are good to go, however if your listing is too wide or your sidebar is in the wrong place activate Theme Compatibility mode. Next adjust the
 Theme Setup: Featured Images to adjust how your featured images appear. If you see two featured images play with the settings until it looks great.
-7. Add widgets, shortcodes and listings.
-8. Have a cup of coffee as you'll be amazed at how quickly and easily you created an advanced Real Estate listing website.
-9. For detailed setup instructions, visit the official [Documentation](https://easypropertylistings.com.au/documentation/) page.
-10. Visit the [Extension Store](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions) to further enhance your real estate website with cool SEO focused tools.
+6. Add widgets, shortcodes and listings.
+7. Have a cup of coffee as you'll be amazed at how quickly and easily you created an advanced Real Estate listing website.
+8. For detailed setup instructions, visit the official [Documentation](https://easypropertylistings.com.au/documentation/) page.
+9. Visit the [Extension Store](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions) to further enhance your real estate website with cool SEO focused tools.
 
 == Frequently Asked Questions ==
 
@@ -222,14 +251,30 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Screenshots ==
 
-1. Archive Page Display with Listing Widgets
-2. Admin view of Property listing type
-3. Custom fields configured for a Property Listing type
-4. User Profile options for author box
-5. Search Widget adapts to child theme style
-6. Home open shortcode and Multi Author widget
+1. Edit Contact Details
+2. Listing Reports
+3. Archive Page Display with Listing Widgets
+4. Admin view of Property listing type
+5. Custom fields configured for a Property Listing type
+6. User Profile options for author box
+7. Search Widget adapts to child theme style
+8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.0.1 April 8, 2016 =
+
+* Tweak: Versioning to all CSS and JS.
+* New: Arabic translation.
+* Tweak: Updated German Translation.
+* Tweak: Updated French Translation.
+* Tweak: Updated Dutch Translation.
+* Fix: Search by Address and Property ID correctly searches the listing Title. In order to search by property ID, add the property ID to the listing title.
+* New: Customise the EPL - Contact Form Widget Submit Label.
+* Tweak: Added Form styling to contact form.
+* Tweak: Corrected additional translation strings with contact form labels.
+* Tweak: Corrected spacing in extension plugin updates.
+* Tweak: Renamed EPL - Contact Form Subscribe label to Submit.
 
 = 3.0 March 30, 2016 =
 
