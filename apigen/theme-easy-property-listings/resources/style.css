@@ -237,7 +237,7 @@ pre code {
 	display: block;
 	color: #777;
 	line-height: 20px;
-	padding: 15px;
+	padding: 20px;
 }
 
 .navbar .nav > li.active > span {
@@ -537,9 +537,9 @@ span.l a.l:hover, span.l a.l:active, span.l a.l:focus {
 }
 .navbar-brand {
 	background: url(easy-property-listing_logo.png) no-repeat left top;
-	background-size: 149px 30px;
-	width: 159px;
-	padding: 30px 0 0 0;
+	background-size: 200px 40px;
+	width: 200px;
+	padding: 40px 0 0 0;
 	overflow: hidden;
 	height: 0;
 }
@@ -571,7 +571,13 @@ span.l a.l:hover, span.l a.l:active, span.l a.l:focus {
 	background: #ffa500;
 	color: #fff;
 }
-
+.navbar-form {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+.nav>li>a {
+    padding: 20px 15px;
+}
 a {
 	color: #3464b8;
 }
