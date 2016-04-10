@@ -224,7 +224,7 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
-					<h4><?php _e( 'Version 3.0.1', 'easy-property-listings'  );?></h4>
+					<h4><?php _e( 'Version 3.0.2', 'easy-property-listings'  );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Featured Listing removed redundant no option.', 'easy-property-listings'  );?></li>
 					</ul>
