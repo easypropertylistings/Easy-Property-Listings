@@ -264,7 +264,6 @@ function epl_meta_box_init() {
 							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'easy-property-listings' ),
-								'no'	=>	__('No', 'easy-property-listings' )
 							),
 						),
 
