@@ -12,16 +12,16 @@ module.exports = function( grunt ) {
 		},
 
 		// JavaScript linting with JSHint.
-		jshint: {
+		/*jshint: {
 			options: {
 				jshintrc: '.jshintrc'
 			},
 			all: [
-				//'Gruntfile.js',
-				//'<%= dirs.js %>/*.js',
-				//'!<%= dirs.js %>/*.min.js',
+				'Gruntfile.js',
+				'<%= dirs.js %>/*.js',
+				'!<%= dirs.js %>/*.min.js',
 			]
-		},
+		},*/
 
 		// Minify .js files.
 		uglify: {
@@ -66,15 +66,16 @@ module.exports = function( grunt ) {
 
 		// Watch changes for assets.
 		watch: {
-			//css: {
-				//files: ['<%= dirs.css %>/*.scss'],
-				//tasks: ['sass', 'cssmin']
-			//},
+			css: {
+				files: ['<%= dirs.css %>/*.css'],
+				tasks: ['cssmin']
+			},
 			js: {
 				files: [
 					'<%= dirs.js %>/*js',
 				],
-				tasks: ['jshint', 'uglify']
+				//tasks: ['jshint', 'uglify']
+				tasks: ['uglify']
 			}
 		},
 
@@ -82,7 +83,7 @@ module.exports = function( grunt ) {
 		makepot: {
 			options: {
 				type: 'wp-plugin',
-				domainPath: 'i18n/languages',
+				domainPath: 'lib/languages',
 				potHeaders: {
 					'report-msgid-bugs-to': 'https://github.com/woothemes/woocommerce/issues',
 					'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
@@ -160,7 +161,7 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-shell' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-checktextdomain' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+	//grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	//grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
@@ -169,13 +170,13 @@ module.exports = function( grunt ) {
 
 	// Register tasks
 	grunt.registerTask( 'default', [
-		'jshint',
+		//'jshint',
 		'uglify',
 		'css'
 	]);
 
 	grunt.registerTask( 'js', [
-		'jshint',
+		//'jshint',
 		'uglify:admin',
 		'uglify:frontend'
 	]);
