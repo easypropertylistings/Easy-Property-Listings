@@ -29,7 +29,30 @@ module.exports = function( grunt ) {
 				// Preserve comments that start with a bang.
 				preserveComments: /^!/
 			},
-			admin: {
+			/*admin: {
+				files: [{
+					expand: true,
+					cwd: '<%= dirs.js %>/',
+					src: [
+						'*.js',
+						'!*.min.js'
+					],
+					dest: '<%= dirs.js %>/',
+					ext: '.min.js'
+				}]
+			},*/
+			/*vendor: {
+				files: {
+					'<%= dirs.js %>/epl.min.js': ['<%= dirs.js %>/epl.js'],
+					'<%= dirs.js %>/jquery-admin-scripts.min.js': ['<%= dirs.js %>/jquery-admin-scripts.js'],
+					'<%= dirs.js %>/jquery-datetime-picker.min.js': ['<%= dirs.js %>/jquery-datetime-picker.js'],
+					'<%= dirs.js %>/jquery-front-scripts.min.js': ['<%= dirs.js %>/jquery-front-scripts.js'],
+					'<%= dirs.js %>/jquery-validationEngine-en.min.js': ['<%= dirs.js %>/jquery-validationEngine-en.js'],
+					'<%= dirs.js %>/jquery-validationEngine.min.js': ['<%= dirs.js %>/jquery-validationEngine.js'],
+				}
+			},*/
+
+			frontend: {
 				files: [{
 					expand: true,
 					cwd: '<%= dirs.js %>/',
@@ -41,16 +64,6 @@ module.exports = function( grunt ) {
 					ext: '.min.js'
 				}]
 			},
-			vendor: {
-				files: {
-					'<%= dirs.js %>/epl.min.js': ['<%= dirs.js %>/epl.js'],
-					'<%= dirs.js %>/jquery-admin-scripts.min.js': ['<%= dirs.js %>/jquery-admin-scripts.js'],
-					'<%= dirs.js %>/jquery-datetime-picker.min.js': ['<%= dirs.js %>/jquery-datetime-picker.js'],
-					'<%= dirs.js %>/jquery-front-scripts.min.js': ['<%= dirs.js %>/jquery-front-scripts.js'],
-					'<%= dirs.js %>/jquery-validationEngine-en.min.js': ['<%= dirs.js %>/jquery-validationEngine-en.js'],
-					'<%= dirs.js %>/jquery-validationEngine.min.js': ['<%= dirs.js %>/jquery-validationEngine.js'],
-				}
-			},
 		},
 
 		// Minify all .css files.
@@ -60,7 +73,7 @@ module.exports = function( grunt ) {
 				cwd: '<%= dirs.css %>/',
 				src: ['*.css'],
 				dest: '<%= dirs.css %>/',
-				ext: '.css'
+				ext: '.min.css'
 			}
 		},
 
@@ -177,7 +190,7 @@ module.exports = function( grunt ) {
 
 	grunt.registerTask( 'js', [
 		//'jshint',
-		'uglify:admin',
+		//'uglify:admin',
 		'uglify:frontend'
 	]);
 
