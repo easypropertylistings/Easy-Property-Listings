@@ -1,8 +1,9 @@
 <?php
 /**
- * Generate documentation for hooks in WC
+ * Generate documentation for hooks in EPL
+ * Adapted from WooCommerce
  */
-class WC_HookFinder {
+class EPL_HookFinder {
 	private static $current_file           = '';
 	private static $files_to_scan          = array();
 	private static $pattern_custom_actions = '/do_action(.*?);/i';
@@ -180,7 +181,7 @@ class WC_HookFinder {
 			}
 
 			foreach ( self::$custom_hooks_found as $hook => $details ) {
-				if ( ! strstr( $hook, 'woocommerce' ) && ! strstr( $hook, 'product' ) && ! strstr( $hook, 'epl_' ) ) {
+				if ( ! strstr( $hook, 'property' ) && ! strstr( $hook, 'product' ) && ! strstr( $hook, 'epl_' ) ) {
 					unset( self::$custom_hooks_found[ $hook ] );
 				}
 			}
@@ -218,4 +219,4 @@ class WC_HookFinder {
 	}
 }
 
-WC_HookFinder::process_hooks();
+EPL_HookFinder::process_hooks();
