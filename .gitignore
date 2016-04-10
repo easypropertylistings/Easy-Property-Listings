@@ -1,2 +1,14 @@
+# Editors
 .idea
+
+# Grunt
+/node_modules/
+
+# OS X metadata
 .DS_Store
+
+# ApiGen
+/epl-apidocs/
+
+# Windows junk
+Thumbs.db
