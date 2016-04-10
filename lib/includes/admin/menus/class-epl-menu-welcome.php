@@ -226,6 +226,11 @@ class EPL_Welcome {
 
 					<h4><?php _e( 'Version 3.0.1', 'easy-property-listings'  );?></h4>
 					<ul>
+						<li><?php _e( 'Fix: Featured Listing removed redundant no option.', 'easy-property-listings'  );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 3.0.1', 'easy-property-listings'  );?></h4>
+					<ul>
 						<li><?php _e( 'Tweak: Versioning to all CSS and JS.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Arabic translation.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Tweak: Updated German Translation.', 'easy-property-listings'  );?></li>

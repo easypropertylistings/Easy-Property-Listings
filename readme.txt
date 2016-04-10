@@ -262,6 +262,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.0.2 April 10, 2016 =
+
+* Fix: Featured Listing removed redundant no option.
+
 = 3.0.1 April 8, 2016 =
 
 * Tweak: Versioning to all CSS and JS.
