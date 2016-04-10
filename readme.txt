@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.8
 Tested up to: 4.5
 
-Stable Tag: 3.0
+Stable Tag: 3.0.1
 
 License: GNU Version 2 or Any Later Version
 
@@ -261,6 +261,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.0.2 April 10, 2016 =
+
+* Fix: Featured Listing removed redundant no option.
 
 = 3.0.1 April 8, 2016 =
 
