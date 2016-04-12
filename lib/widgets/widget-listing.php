@@ -3,7 +3,7 @@
  * WIDGET :: Recent Property
  *
  * @package     EPL
- * @subpackage  Widget/Recent_Property
+ * @subpackage  Widget/Listing
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

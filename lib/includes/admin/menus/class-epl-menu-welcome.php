@@ -224,6 +224,26 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.0.2', 'easy-property-listings'  );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Featured Listing removed redundant no option.', 'easy-property-listings'  );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 3.0.1', 'easy-property-listings'  );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Versioning to all CSS and JS.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Arabic translation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Updated German Translation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Updated French Translation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Updated Dutch Translation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Search by Address and Property ID correctly searches the listing Title. In order to search by property ID, add the property ID to the listing title.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Customise the EPL - Contact Form Widget Submit Label.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Added Form styling to contact form.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Corrected additional translation strings with contact form labels.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Corrected spacing in extension plugin updates.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Renamed EPL - Contact Form Subscribe label to Submit.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.0', 'easy-property-listings'  );?></h4>
 					<ul>
 						<li><?php _e( 'Tweak: Textdomain and languages files renamed. Changed from epl to easy-property-listings for the WordPress.org translation initiative.', 'easy-property-listings'  );?></li>

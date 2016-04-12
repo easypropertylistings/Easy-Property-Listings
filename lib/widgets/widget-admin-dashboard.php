@@ -96,7 +96,7 @@ function epl_get_plural($count,$singular) {
 		break;
 		default:
 			$singular = ucwords( str_replace('epl','',str_replace('-',' ',str_replace('_',' ',$singular) ) ) );
-			return sprintf( _n( '1 '.__($singular,'easy-property-listings'), '%s '.__($singular,'easy-property-listings'), $count, 'epl' ), $count );
+			return sprintf( _n( '1 '.__($singular,'easy-property-listings'), '%s '.__($singular,'easy-property-listings'), $count, 'easy-property-listings' ), $count );
 		break;
 	}
 

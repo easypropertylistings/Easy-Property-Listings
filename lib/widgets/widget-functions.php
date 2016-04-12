@@ -229,7 +229,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='') {
 		array(
 			'key'			=>	'search_id',
 			'meta_key'		=>	'property_id',
-			'label'			=>	__('Search by Property Address', 'easy-property-listings'),
+			'label'			=>	__('Search by Property ID / Address', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
@@ -1186,7 +1186,7 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 			'name'         => 'epl_contact_submit',
 			'id'           => 'epl_contact_submit',
 			'type'         => 'submit',
-			'value'        => __( 'Subscribe',  'easy-property-listings' ),
+			'value'        => __( 'Submit', 'easy-property-listings' ),
 			'data-default' => 'on'
 		),
 	);
@@ -1280,7 +1280,7 @@ function epl_contact_capture_widget_form_fields() {
 			'key'		=> 'submit',
 			'label'		=> __( 'Submit Label', 'easy-property-listings' ),
 			'type'		=> 'text',
-			'default'	=> __('Subscribe','epl')
+			'default'	=> __('Submit','easy-property-listings')
 		),
 	);
 	return apply_filters( 'epl_contact_capture_widget_form_fields', $fields );
