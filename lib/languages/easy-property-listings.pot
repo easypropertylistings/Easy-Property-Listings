@@ -3,9 +3,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.0.2\n"
+"Project-Id-Version: Easy Property Listings 3.0.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2016-04-10 13:38+0800\n"
+"POT-Creation-Date: 2016-04-12 14:22+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -6453,7 +6453,7 @@ msgid "Mini Website URL 3"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:1514
-msgid "Propery Owner ID"
+msgid "Property Owner ID"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:1516
