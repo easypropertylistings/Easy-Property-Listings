@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.0.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2016-04-12 14:22+0800\n"
+"POT-Creation-Date: 2016-04-21 20:57+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -115,7 +115,7 @@ msgstr ""
 #: compatibility/listing-meta-compat.php:361 compatibility/listing-meta-compat.php:362
 #: compatibility/listing-meta-compat.php:607 compatibility/listing-meta-compat.php:609
 #: compatibility/listing-meta-compat.php:610 compatibility/listing-meta-compat.php:611
-#: includes/admin/contacts/contact-actions.php:1207 includes/functions.php:1134
+#: includes/admin/contacts/contact-actions.php:1208 includes/functions.php:1134
 #: includes/functions.php:1590 includes/install.php:64 meta-boxes/meta-boxes.php:28
 #: post-types/post-types.php:53 updates/epl-2.1.11.php:5
 #: widgets/widget-admin-dashboard.php:135 widgets/widget-admin-dashboard.php:157
@@ -137,7 +137,7 @@ msgstr ""
 
 #: compatibility/listing-meta-compat.php:421 compatibility/listing-meta-compat.php:422
 #: compatibility/listing-meta-compat.php:423 compatibility/listing-meta-compat.php:424
-#: includes/admin/contacts/contact-actions.php:1208 includes/functions.php:1141
+#: includes/admin/contacts/contact-actions.php:1209 includes/functions.php:1141
 #: includes/functions.php:1616 includes/install.php:63 meta-boxes/meta-boxes.php:32
 #: post-types/post-types.php:57 updates/epl-2.1.php:5
 #: widgets/widget-admin-dashboard.php:116 widgets/widget-admin-dashboard.php:136
@@ -506,19 +506,19 @@ msgid "Summary"
 msgstr ""
 
 #: includes/admin/contacts/class-contact-table.php:195
-#: includes/admin/contacts/contact-actions.php:725
+#: includes/admin/contacts/contact-actions.php:726
 #: includes/admin/contacts/contacts.php:620
 msgid "Background Info"
 msgstr ""
 
 #: includes/admin/contacts/class-contact-table.php:196
-#: includes/admin/contacts/contact-actions.php:939
-#: includes/admin/contacts/contact-actions.php:1014
+#: includes/admin/contacts/contact-actions.php:940
+#: includes/admin/contacts/contact-actions.php:1015
 msgid "Type"
 msgstr ""
 
 #: includes/admin/contacts/class-contact-table.php:197
-#: includes/admin/contacts/contact-actions.php:878
+#: includes/admin/contacts/contact-actions.php:879
 #: includes/admin/contacts/contact-functions.php:50
 #: widgets/widget-admin-dashboard.php:24
 msgid "Listings"
@@ -538,10 +538,10 @@ msgstr ""
 
 #: includes/admin/contacts/contact-actions.php:36
 #: includes/admin/contacts/contact-actions.php:119
-#: includes/admin/contacts/contact-actions.php:198
-#: includes/admin/contacts/contact-actions.php:287
-#: includes/admin/contacts/contact-actions.php:425
-#: includes/admin/contacts/contact-actions.php:1373
+#: includes/admin/contacts/contact-actions.php:199
+#: includes/admin/contacts/contact-actions.php:288
+#: includes/admin/contacts/contact-actions.php:426
+#: includes/admin/contacts/contact-actions.php:1374
 msgid "Cheatin' eh?!"
 msgstr ""
 
@@ -557,75 +557,75 @@ msgstr ""
 msgid "Please confirm you want to delete this contact"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:155
+#: includes/admin/contacts/contact-actions.php:156
 msgid "Error deleting contact"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:162
+#: includes/admin/contacts/contact-actions.php:163
 msgid "Invalid Contact ID"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:183
-#: includes/admin/contacts/contact-actions.php:1361
+#: includes/admin/contacts/contact-actions.php:184
+#: includes/admin/contacts/contact-actions.php:1362
 msgid "You do not have permission to save note."
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:202
-#: includes/admin/contacts/contact-actions.php:1376
+#: includes/admin/contacts/contact-actions.php:203
+#: includes/admin/contacts/contact-actions.php:1377
 msgid "A note is required"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:273
+#: includes/admin/contacts/contact-actions.php:274
 msgid "You do not have permission to add listing."
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:358
+#: includes/admin/contacts/contact-actions.php:359
 msgid "You do not have permission to assign listings."
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:416
+#: includes/admin/contacts/contact-actions.php:417
 msgid "You do not have permission to update this contact."
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:472
+#: includes/admin/contacts/contact-actions.php:473
 msgid "You do not have permission to create contacts."
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:481
+#: includes/admin/contacts/contact-actions.php:482
 msgid "Cheatin' uhh?!"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:491
+#: includes/admin/contacts/contact-actions.php:492
 msgid "A contact with this email already exists !"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:588
+#: includes/admin/contacts/contact-actions.php:589
 msgid "Contact Category"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:605 taxonomies/tax-contact_tags.php:23
+#: includes/admin/contacts/contact-actions.php:606 taxonomies/tax-contact_tags.php:23
 #: taxonomies/tax-contact_tags.php:25
 msgid "Contact Tags"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:809
+#: includes/admin/contacts/contact-actions.php:810
 msgid "Contact since"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:814
+#: includes/admin/contacts/contact-actions.php:815
 msgid "View More"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:881
+#: includes/admin/contacts/contact-actions.php:882
 msgid "Search Listings"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:883
+#: includes/admin/contacts/contact-actions.php:884
 msgid "Or"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:884
-#: includes/admin/contacts/contact-actions.php:906
+#: includes/admin/contacts/contact-actions.php:885
+#: includes/admin/contacts/contact-actions.php:907
 #: includes/admin/contacts/contacts.php:70 includes/class-epl-custom-post-type.php:406
 #: post-types/post-type-business.php:31 post-types/post-type-commercial.php:30
 #: post-types/post-type-commercial_land.php:31 post-types/post-type-contact.php:31
@@ -634,30 +634,30 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:905
+#: includes/admin/contacts/contact-actions.php:906
 msgid "Activities"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:940 includes/class-epl-contact.php:675
+#: includes/admin/contacts/contact-actions.php:941 includes/class-epl-contact.php:675
 msgid "Comment"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:941 post-types/post-type-business.php:92
+#: includes/admin/contacts/contact-actions.php:942 post-types/post-type-business.php:92
 #: post-types/post-type-commercial.php:90 post-types/post-type-commercial_land.php:91
 #: post-types/post-type-land.php:90 post-types/post-type-property.php:90
 #: post-types/post-type-rental.php:89 post-types/post-type-rural.php:90
 msgid "Date"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:969
+#: includes/admin/contacts/contact-actions.php:970
 msgid "No Activities"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:973
+#: includes/admin/contacts/contact-actions.php:974
 msgid "Load More"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1015
+#: includes/admin/contacts/contact-actions.php:1016
 #: includes/admin/contacts/contacts.php:425 includes/admin/help.php:43
 #: includes/admin/menus/class-epl-menu-welcome.php:1056
 #: includes/admin/menus/menu-help.php:115 widgets/widget-functions.php:25
@@ -665,7 +665,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1016 post-types/post-type-business.php:89
+#: includes/admin/contacts/contact-actions.php:1017 post-types/post-type-business.php:89
 #: post-types/post-type-commercial.php:87 post-types/post-type-commercial_land.php:88
 #: post-types/post-type-land.php:88 post-types/post-type-property.php:88
 #: post-types/post-type-rental.php:87 post-types/post-type-rural.php:88
@@ -673,66 +673,66 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1035
+#: includes/admin/contacts/contact-actions.php:1036
 msgid "No Listings Found"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1055
+#: includes/admin/contacts/contact-actions.php:1056
 msgid "No Listing"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1066
+#: includes/admin/contacts/contact-actions.php:1067
 msgid "Add Activity"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1090
-#: includes/admin/contacts/contact-actions.php:1215
+#: includes/admin/contacts/contact-actions.php:1091
+#: includes/admin/contacts/contact-actions.php:1216
 msgid "Add"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1118
+#: includes/admin/contacts/contact-actions.php:1119
 msgid "Add Listing"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1132 meta-boxes/meta-boxes.php:813
+#: includes/admin/contacts/contact-actions.php:1133 meta-boxes/meta-boxes.php:813
 msgid "Lot"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1140 includes/functions.php:457
+#: includes/admin/contacts/contact-actions.php:1141 includes/functions.php:457
 #: meta-boxes/meta-boxes.php:821
 msgid "Unit"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1148
+#: includes/admin/contacts/contact-actions.php:1149
 #: includes/admin/contacts/contacts.php:551 meta-boxes/meta-boxes.php:829
 msgid "Street Number"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1155
+#: includes/admin/contacts/contact-actions.php:1156
 #: includes/admin/contacts/contacts.php:558 meta-boxes/meta-boxes.php:836
 msgid "Street Name"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1183
+#: includes/admin/contacts/contact-actions.php:1184
 #: includes/admin/contacts/contacts.php:586 meta-boxes/meta-boxes.php:882
 #: widgets/widget-functions.php:99 widgets/widget-functions.php:285
 msgid "Country"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1189
+#: includes/admin/contacts/contact-actions.php:1190
 msgid "Full Address"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1194 meta-boxes/meta-boxes.php:161
+#: includes/admin/contacts/contact-actions.php:1195 meta-boxes/meta-boxes.php:161
 #: widgets/widget-listing.php:229
 msgid "Listing Type"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1202 widgets/widget-listing.php:248
+#: includes/admin/contacts/contact-actions.php:1203 widgets/widget-listing.php:248
 msgid "Listing Status"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1206 meta-boxes/meta-boxes.php:24
+#: includes/admin/contacts/contact-actions.php:1207 meta-boxes/meta-boxes.php:24
 #: post-types/post-types.php:47 post-types/post-types.php:436
 #: widgets/widget-admin-dashboard.php:115 widgets/widget-admin-dashboard.php:132
 #: widgets/widget-admin-dashboard.php:154 widgets/widget-functions.php:62
@@ -740,7 +740,7 @@ msgstr ""
 msgid "Current"
 msgstr ""
 
-#: includes/admin/contacts/contact-actions.php:1257 post-types/post-type-contact.php:37
+#: includes/admin/contacts/contact-actions.php:1258 post-types/post-type-contact.php:37
 msgid "View Contact"
 msgstr ""
 
@@ -6453,7 +6453,7 @@ msgid "Mini Website URL 3"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:1514
-msgid "Property Owner ID"
+msgid "Contact ID"
 msgstr ""
 
 #: meta-boxes/meta-boxes.php:1516
@@ -7181,7 +7181,7 @@ msgstr ""
 msgid "Property Details"
 msgstr ""
 
-#: templates/content/shortcodes/listing-search/default.php:106
+#: templates/content/shortcodes/listing-search/default.php:105
 #: widgets/widget-functions.php:167
 msgid "Search"
 msgstr ""
