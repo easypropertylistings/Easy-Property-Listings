@@ -139,10 +139,11 @@ function epl_contact_delete( $args ) {
 		$listings_array = $contact->listing_ids;
 
 		// delete contact from meta of interested listings
-		foreach($listings_array as $listing_id) {
-			$contact->remove_listing($listing_id);
+		if( !empty($listings_array) ) {
+			foreach($listings_array as $listing_id) {
+				$contact->remove_listing($listing_id);
+			}
 		}
-
 
 		$success        = $contact->delete( $contact->id );
 

@@ -69,7 +69,6 @@ if ( ! empty( $selected_post_types ) ) :
 			$is_sb_current = $tabcounter == 1 ? 'epl-sb-current' : '';
 		}
 		?>
-		</ul>
 		<div class="epl-search-form <?php echo $is_sb_current; ?>" id="epl_ps_tab_<?php echo $tabcounter; ?>">
 		<?php
 			if ( isset( $show_title ) && $show_title == 'true' ) {
