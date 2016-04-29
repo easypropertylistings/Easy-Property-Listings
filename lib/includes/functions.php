@@ -1559,7 +1559,21 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'easy-property-listings' )
 				),
-
+				array(
+					'name'		=>	'epl_disable_google_api',
+					'label'		=>	__('Disable Google API', 'easy-property-listings' ),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Yes', 'easy-property-listings' ),
+					),
+					'help'		=>	__('Check this if google api is loaded from another plugin or theme', 'easy-property-listings' ),
+					'default'	=>	'off',
+				),
+				array(
+					'name'		=>	'epl_google_api_key',
+					'label'		=>	__('Google API Key', 'easy-property-listings' ),
+					'type'		=>	'text',
+				),
 				array(
 					'name'		=>	'uninstall_on_delete',
 					'label'		=>	__('Remove Data on Uninstall?', 'easy-property-listings' ),

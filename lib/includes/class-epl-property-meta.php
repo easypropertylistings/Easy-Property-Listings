@@ -157,7 +157,7 @@ class EPL_Property_Meta {
 					if(is_numeric($item[0])) {
 						$timearr = explode(' ',$item);
 						$endtime = current($timearr).' '.end($timearr);
-						if(strtotime($endtime) > time()) {
+						if(strtotime($endtime) > current_time( 'timestamp' ) ) {
 							$item = trim($item);
 							$inspectarray[strtotime($endtime)] = $item;
 						} else {
@@ -391,7 +391,7 @@ class EPL_Property_Meta {
 					$av_date_array = date_parse($this->meta['property_date_available'][0]);
 					$av_date = ( isset($av_date_array['year']) && isset($av_date_array['month']) && isset($av_date_array['day']) ) ?
 						$av_date_array['year'].'-'.$av_date_array['month'].'-'.$av_date_array['day']: $this->meta['property_date_available'][0];
-					if(time() > strtotime($av_date) ) {
+					if(current_time( 'timestamp' ) > strtotime($av_date) ) {
 						return apply_filters( 'epl_property_sub_title_available_now_label' , __('now','easy-property-listings' ) );
 					} else {
 						return apply_filters('epl_get_property_available',date( $format, strtotime($av_date) ));
