@@ -1,11 +1,12 @@
- /**
- *  EPL Admin CSS
+/**
+ * EPL Admin CSS
  *
  * @package     EPL
+ * @since	1.0
  * @subpackage  Admin CSS
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
-*/
+ */
 
 /** Welcome **/
 .epl-about-wrap .headline-feature h2 {
@@ -1127,6 +1128,9 @@ h1.epl-contact-title {
 }
 .epl-contact_category_suggestions > li, .epl-contact-listing-suggestion > li, .epl-contact-user-suggestion > li , .epl-contact-owned-listing-suggestion > li, .epl-popup-box > li{
 	cursor: pointer;
+	padding: 0.4em;
+	margin-bottom: 0;
+	border-bottom: 1px solid #eee;
 }
 .epl-contact_category_suggestions > li:hover, .epl-contact-listing-suggestion > li:hover, .epl-contact-user-suggestion >li:hover, .epl-contact-owned-listing-suggestion > li:hover, .epl-popup-box > li:hover {
 	background: #0073AA;
@@ -1800,4 +1804,3 @@ h3.epl-contact-activity-title {
     width: 100%!important;
     z-index: 9999;
 }
-

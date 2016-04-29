@@ -1511,7 +1511,7 @@ function epl_meta_box_init() {
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_owner',
-							'label'		=>	__('Property Owner ID','easy-property-listings' ),
+							'label'		=>	__('Contact ID','easy-property-listings' ),
 							'type'		=>	'text',
 							'help'		=>	__('Search for contact and update to save.','easy-property-listings' )
 						),
