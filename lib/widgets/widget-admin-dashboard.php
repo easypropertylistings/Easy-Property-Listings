@@ -176,44 +176,46 @@ function epl_posts_highlights($type) {
  */
 function epl_dashboard_activity_widget() {
 
-	echo '<div id="epl_dashboard_future_listings">';
-
-	$future_posts = epl_dashboard_recent_posts( array(
-		'post_type'	=>	epl_get_core_post_types(),
-		'max'     => 5,
-		'status'  => 'future',
-		'order'   => 'ASC',
-		'title'   => __( 'Listings Publishing Soon' ),
-		'id'      => 'epl-future-posts',
-	) );
-
-
-	echo '</div>';
-
-	echo '<div id="epl_dashboard_recent_listings">';
-
-	$future_posts = epl_dashboard_recent_posts( array(
-		'post_type'	=>	epl_get_core_post_types(),
-		'max'     => 5,
-		'status'  => 'publish',
-		'order'   => 'ASC',
-		'title'   => __( 'Recently Published Listings' ),
-		'id'      => 'epl-recent-posts',
-	) );
-
-
-	echo '</div>';
-
 	echo '<div id="activity-widget">';
 
-	$recent_comments = epl_dashboard_recent_comments();
 
-	if ( !$recent_comments ) {
-		echo '<div class="no-activity">';
-		echo '<p class="smiley"></p>';
-		echo '<p>' . __( 'No activity yet!' ) . '</p>';
+		echo '<div id="epl_dashboard_future_listings" class="activity-block epl-activity-block">';
+
+		$future_posts = epl_dashboard_recent_posts( array(
+			'post_type'	=>	epl_get_core_post_types(),
+			'max'     => 5,
+			'status'  => 'future',
+			'order'   => 'ASC',
+			'title'   => __( 'Listings Publishing Soon' ),
+			'id'      => 'epl-future-posts',
+		) );
+
+
 		echo '</div>';
-	}
+
+		echo '<div id="epl_dashboard_recent_listings" class="activity-block epl-activity-block">';
+
+		$future_posts = epl_dashboard_recent_posts( array(
+			'post_type'	=>	epl_get_core_post_types(),
+			'max'     => 5,
+			'status'  => 'publish',
+			'order'   => 'ASC',
+			'title'   => __( 'Recently Published Listings' ),
+			'id'      => 'epl-recent-posts',
+		) );
+
+
+		echo '</div>';
+
+
+		$recent_comments = epl_dashboard_recent_comments();
+
+		if ( !$recent_comments ) {
+			echo '<div class="no-activity">';
+			echo '<p class="smiley"></p>';
+			echo '<p>' . __( 'No activity yet!' ) . '</p>';
+			echo '</div>';
+		}
 
 	echo '</div>';
 }
@@ -256,16 +258,16 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 
 	if ( $comments ) {
 		$activity_types = EPL_Contact::get_activity_types();
-		echo '<div id="latest-comments" class="activity-block epl-activity-block epl-feed-block">';
+		echo '<div id="epl_dashboard_activity_feed latest-comments" class="activity-block epl-activity-block epl-feed-block">';
 		echo '<h3>' . __( 'Activity' ) . '</h3>';
 
-		echo '<div id="the-comment-list" data-wp-lists="list:comment">';
+		echo '<ul id="the-comment-list" data-wp-lists="list:comment">';
 		foreach ( $comments as $comment ) {
 			$comment->comment_type = array_key_exists($comment->comment_type,$activity_types) ?
 			$activity_types[$comment->comment_type] : $comment->comment_type;
 			_wp_dashboard_recent_comments_row( $comment );
 		}
-		echo '</div>';
+		echo '</ul>';
 
 		wp_comment_reply( -1, false, 'dashboard', false );
 		wp_comment_trashnotice();
