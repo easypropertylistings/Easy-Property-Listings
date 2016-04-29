@@ -670,10 +670,10 @@ class EPL_Contact {
 	 * @return mixed
 	 * @since 3.0
 	 */
-	public function get_activity_types() {
+	public static function get_activity_types() {
 		return apply_filters('epl_contact_activity_labels',array(
-			'epl_user_note'     =>  __('Comment','easy-property-listings' ),
-			'epl-admin-note'    =>  __('Note','easy-property-listings' ),
+			'epl_user_note'     =>  __('User Activity','easy-property-listings' ),
+			'epl-admin-note'    =>  __('Admin Note','easy-property-listings' ),
 			'call'              =>  __('Call','easy-property-listings' ),
 			'email'             =>  __('Email','easy-property-listings' ),
 			'listing'           =>  __('Listing','easy-property-listings' ),

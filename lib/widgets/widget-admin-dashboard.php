@@ -233,7 +233,8 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 	$comments_query = array(
 		'post_type'	=>	epl_get_core_post_types(),
 		'number' => $total_items * 5,
-		'offset' => 0
+		'offset' => 0,
+		'order' => 'comment_date',
 	);
 	if ( ! current_user_can( 'edit_posts' ) )
 		$comments_query['status'] = 'approve';
@@ -254,12 +255,16 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 	}
 
 	if ( $comments ) {
+		$activity_types = EPL_Contact::get_activity_types();
 		echo '<div id="latest-comments" class="activity-block epl-activity-block epl-feed-block">';
-		echo '<h3>' . __( 'Comments' ) . '</h3>';
+		echo '<h3>' . __( 'Activity' ) . '</h3>';
 
 		echo '<div id="the-comment-list" data-wp-lists="list:comment">';
-		foreach ( $comments as $comment )
+		foreach ( $comments as $comment ) {
+			$comment->comment_type = array_key_exists($comment->comment_type,$activity_types) ?
+			$activity_types[$comment->comment_type] : $comment->comment_type;
 			_wp_dashboard_recent_comments_row( $comment );
+		}
 		echo '</div>';
 
 		wp_comment_reply( -1, false, 'dashboard', false );
