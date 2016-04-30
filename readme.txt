@@ -393,19 +393,19 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.0.3 April 30, 2016 =
+= 3.0.3 May 2, 2016 =
 
-* Fix:
-
-
-
-
-
-
-
-
-
-
+* New: Setting to disable Google Maps API if already added by theme or other plugin.
+* New: Ability to set a Google Maps API Key.
+* Fix: Renamed misspelled Property on linked contact.
+* Fix: Trailing ul tag on search widget.
+* Fix: Implemented better timezone support for open for inspection. Requires WordPress 3.9.
+* Tweak: Tighter spacing on dropdown contact list.
+* Tweak: Updated translations file.
+* Tweak: Capital c for contact post type.
+* Tweak: Dashboard activity widget improved CSS display.
+* Tweak: Dashboard activity comments better labeled.
+* Tweak: Internal links to documentation corrected.
 
 = 3.0.2 April 10, 2016 =
 
