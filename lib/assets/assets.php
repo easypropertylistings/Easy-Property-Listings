@@ -21,7 +21,15 @@ function epl_admin_enqueue_scripts($screen) {
 
 	if( $screen == 'post.php' || $screen == 'post-new.php' || $screen == 'easy-property-listings_page_epl-extensions' ||  $screen == 'easy-property-listings_page_epl-settings' ||  $screen= 'easy-property-listings_page_epl-extensions') {
 
-		wp_enqueue_script('google-map-v-3','https://maps.googleapis.com/maps/api/js?v=3.exp');
+		$googleapiurl = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
+
+		if( epl_get_option('epl_google_api_key') != '' ) {
+			$googleapiurl = $googleapiurl.'&key='.epl_get_option('epl_google_api_key');
+		}
+		
+		if(epl_get_option('epl_disable_google_api') != 'on')
+			wp_enqueue_script('google-map-v-3',$googleapiurl);
+
 		wp_enqueue_style(	'epl-jquery-validation-engine-style', 		$current_dir_path . '/css/validationEngine-jquery.css',	FALSE,			EPL_PROPERTY_VER );
 		wp_enqueue_script(	'epl-jquery-validation-engine-lang-scripts', 	$current_dir_path . '/js/jquery-validationEngine-en.js',array('jquery'),	EPL_PROPERTY_VER );
 		wp_enqueue_script(	'epl-jquery-validation-engine-scripts', 	$current_dir_path . '/js/jquery-validationEngine.js', 	array('jquery'),	EPL_PROPERTY_VER );
@@ -52,7 +60,15 @@ function epl_wp_enqueue_scripts() {
 
 	if( is_epl_post() && shortcode_exists('listing_map') ) {
 
-		wp_enqueue_script('google-map-v-3','https://maps.googleapis.com/maps/api/js?v=3.exp');
+		$googleapiurl = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
+
+		if( epl_get_option('epl_google_api_key') != '' ) {
+			$googleapiurl = $googleapiurl.'&key='.epl_get_option('epl_google_api_key');
+		}
+		
+		if(epl_get_option('epl_disable_google_api') != 'on')
+			wp_enqueue_script('google-map-v-3',$googleapiurl);
+
 	}
 
 	if( isset($epl_settings['epl_use_core_css']) &&  $epl_settings['epl_use_core_css'] == 'on') {

@@ -25,7 +25,7 @@ function epl_register_custom_post_type_contact() {
 	$rewrite  = defined( 'EPL_CONTACT_DISABLE_REWRITE' ) && EPL_CONTACT_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 
 	$labels = apply_filters( 'epl_contact_labels', array(
-		'name'			=>	__('contacts', 'easy-property-listings' ),
+		'name'			=>	__('Contacts', 'easy-property-listings' ),
 		'singular_name'		=>	__('Contact', 'easy-property-listings' ),
 		'menu_name'		=>	__('Contact', 'easy-property-listings' ),
 		'add_new'		=>	__('Add New', 'easy-property-listings' ),
