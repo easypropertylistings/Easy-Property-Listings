@@ -700,9 +700,10 @@ h3.epl-welcome-sub-heading {
 #epl_status_dashboard_widget .epl_status_list li a span {
 	display:block;
 }
+#epl_dashboard_activity_widget .inside {
+	margin-top: 0;
+}
 #epl-recent-posts li, #epl-future-posts li {
-	/* background: #f9f9f9 none repeat scroll 0 0; */
-	/* padding: 10px; */
 	position: relative;
 }
 #epl-recent-posts span, #epl-future-posts span {

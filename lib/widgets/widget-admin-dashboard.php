@@ -250,7 +250,7 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 
 	if ( $comments ) {
 		$activity_types = EPL_Contact::get_activity_types();
-		echo '<div id="epl_dashboard_activity_feed latest-comments" class="activity-block epl-activity-block epl-feed-block">';
+		echo '<div id="latest-comments" class="epl-dashboard-activity-feed activity-block epl-activity-block epl-feed-block">';
 		echo '<h3>' . __( 'Activity' ) . '</h3>';
 
 		echo '<ul id="the-comment-list" data-wp-lists="list:comment">';
