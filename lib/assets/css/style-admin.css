@@ -701,13 +701,13 @@ h3.epl-welcome-sub-heading {
 	display:block;
 }
 #epl-recent-posts li, #epl-future-posts li {
-	background: #f9f9f9 none repeat scroll 0 0;
-	padding: 10px;
+	/* background: #f9f9f9 none repeat scroll 0 0; */
+	/* padding: 10px; */
 	position: relative;
 }
 #epl-recent-posts span, #epl-future-posts span {
 	display: inline-block;
-	font-size: 0.8em;
+	color: #888;
 	width: 100%;
 }
 .epl-feed-block .comment-item {

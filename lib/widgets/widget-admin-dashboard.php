@@ -176,36 +176,28 @@ function epl_posts_highlights($type) {
  */
 function epl_dashboard_activity_widget() {
 
-	echo '<div id="activity-widget">';
-
-
-		echo '<div id="epl_dashboard_future_listings" class="activity-block epl-activity-block">';
+	echo '<div id="activity-widget" class="epl-activity-widget">';
 
 		$future_posts = epl_dashboard_recent_posts( array(
-			'post_type'	=>	epl_get_core_post_types(),
-			'max'     => 5,
-			'status'  => 'future',
-			'order'   => 'ASC',
-			'title'   => __( 'Listings Publishing Soon' ),
-			'id'      => 'epl-future-posts',
+			'post_type'	=> epl_get_core_post_types(),
+			'max'     	=> 5,
+			'status'  	=> 'future',
+			'order'   	=> 'ASC',
+			'title'   	=> __( 'Listings Publishing Soon' ),
+			'id'      	=> 'epl-future-posts',
+		) );
+
+		$future_posts = epl_dashboard_recent_posts( array(
+			'post_type'	=> epl_get_core_post_types(),
+			'max'     	=> 5,
+			'status'  	=> 'publish',
+			'order'   	=> 'ASC',
+			'title'   	=> __( 'Recently Published Listings' ),
+			'id'      	=> 'epl-recent-posts',
 		) );
 
 
-		echo '</div>';
-
-		echo '<div id="epl_dashboard_recent_listings" class="activity-block epl-activity-block">';
-
-		$future_posts = epl_dashboard_recent_posts( array(
-			'post_type'	=>	epl_get_core_post_types(),
-			'max'     => 5,
-			'status'  => 'publish',
-			'order'   => 'ASC',
-			'title'   => __( 'Recently Published Listings' ),
-			'id'      => 'epl-recent-posts',
-		) );
-
-
-		echo '</div>';
+		//echo '</div>';
 
 
 		$recent_comments = epl_dashboard_recent_comments();
