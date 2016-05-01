@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.0.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2016-04-30 16:14+0800\n"
+"POT-Creation-Date: 2016-05-01 14:57+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -5780,7 +5780,7 @@ msgstr ""
 
 #: includes/functions.php:1574
 msgid ""
-"Set to disabled if Google Maps API has already been loaded in your them or other "
+"Set to disabled if Google Maps API has already been loaded in your theme or other "
 "plugin."
 msgstr ""
 

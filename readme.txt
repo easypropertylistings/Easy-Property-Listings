@@ -165,7 +165,6 @@ Extensive near instant response to support, we just want to help.
 * Free, easy to follow online documentation.
 * Support plans for fast detailed help and theme setup.
 
-
 **More Features**
 
 * Multiple listing types are supported because not everyone is a residential properties specialist. You can list rentals, commercial, land, rural and businesses just as easily.
