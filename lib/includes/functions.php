@@ -1571,7 +1571,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						'on'	=>	__('Disable', 'easy-property-listings' )
 					),
 					'default'	=>	'',
-					'help'		=>	__('Set to disabled if Google Maps API has already been loaded in your them or other plugin.' , 'easy-property-listings' )
+					'help'		=>	__('Set to disabled if Google Maps API has already been loaded in your theme or other plugin.' , 'easy-property-listings' )
 
 				),
 				array(
