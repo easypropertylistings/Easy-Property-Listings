@@ -15,7 +15,7 @@ Fast. Flexible. Forward-thinking solution for real estate agents using WordPress
 
 == Description ==
 
-Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today.
+Easy Property Listings is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today.
 
 An easy to use plugin that provides the needed functions to configure a dynamic real estate website in minutes. Packed with advanced features, shortcodes and templates letting you create real estate websites fast.
 
