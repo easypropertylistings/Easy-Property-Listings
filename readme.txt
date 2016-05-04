@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.5.1
 
-Stable Tag: 3.0.2
+Stable Tag: 3.0.3
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.0.4 May 4, 2016 =
+
+* Fix: Internal help videos gzip error, using iframe instead.
+* Fix: Corrected incorrect stray tags on internal welcome page.
 
 = 3.0.3 May 2, 2016 =
 

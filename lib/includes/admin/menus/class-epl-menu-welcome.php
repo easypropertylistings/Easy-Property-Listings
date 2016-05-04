@@ -224,6 +224,12 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.0.4', 'easy-property-listings'  );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Internal help videos gzip error, using iframe instead.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Corrected incorrect stray tags on internal welcome page.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.0.3', 'easy-property-listings'  );?></h4>
 					<ul>
 						<li><?php _e( 'New: Setting to disable Google Maps API if already added by theme or other plugin.', 'easy-property-listings'  );?></li>
