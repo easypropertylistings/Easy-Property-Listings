@@ -1060,7 +1060,11 @@ class EPL_Welcome {
 				<h2 id="guide-first-listing" class="epl-welcome-sub-heading"><?php _e( 'Publish Your First Listing', 'easy-property-listings'  );?></h2>
 
 				<div class="featured-image">
-					<?php echo wp_oembed_get('https://www.youtube.com/watch?v=h6B8LLecfbw', array('width'=>600)); ?>
+					<?php $video_add_listing_id = 'h6B8LLecfbw'; ?>
+
+					<div class="video-container">
+						<iframe width="640" height="360" src="//www.youtube.com/embed/<?php echo $video_add_listing_id; ?>" frameborder="0" allowfullscreen ></iframe>
+					</div>
 				</div>
 				<h3 class="epl-welcome-sub-heading"><?php _e( 'Title & Author', 'easy-property-listings'  );?></h3>
 
