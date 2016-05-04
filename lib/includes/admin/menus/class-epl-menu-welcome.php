@@ -175,11 +175,11 @@ class EPL_Welcome {
 				</div>
 
 				<div class="feature-section">
-					<p><?php _e( 'Contact management and lead CRM has been added to the Easy Property Listings plugin and we are very excited to finally release this to you to use on your real estate website.' , 'easy-property-listings'  ); ?></h4>
+					<p><?php _e( 'Contact management and lead CRM has been added to the Easy Property Listings plugin and we are very excited to finally release this to you to use on your real estate website.' , 'easy-property-listings'  ); ?></p>
 
-					<p><?php _e( 'Lead generation in real estate is a must online and we have created an easy to use CRM that allows you to track and communicate with your prospects as they make enquiries on your listings. If you already are using a CRM in your business then the contact system will allow us to create add-ons which will be able to pass the lead information directly into your real estate CRM provided yours has an API. This will help you streamline your daily lead generation and prospecting activities with your website.' , 'easy-property-listings'  ); ?></h4>
+					<p><?php _e( 'Lead generation in real estate is a must online and we have created an easy to use CRM that allows you to track and communicate with your prospects as they make enquiries on your listings. If you already are using a CRM in your business then the contact system will allow us to create add-ons which will be able to pass the lead information directly into your real estate CRM provided yours has an API. This will help you streamline your daily lead generation and prospecting activities with your website.' , 'easy-property-listings'  ); ?></p>
 
-					<p><?php _e( 'The contact system has been designed to be easy to use and allow you to track and capture contact information on your listings.' , 'easy-property-listings'  ); ?></h4>
+					<p><?php _e( 'The contact system has been designed to be easy to use and allow you to track and capture contact information on your listings.' , 'easy-property-listings'  ); ?></p>
 
 					<p><?php _e( 'Back when I was selling property I would frequently meet the same people at different properties that I had listed for sale and now you will be able to create a story around your potential buyer or seller shopping for an agent.', 'easy-property-listings'  ); ?></p>
 
@@ -1195,7 +1195,7 @@ class EPL_Welcome {
 			<div class="changelog headline-feature">
 
 				<h2 class="about-description" style="text-align: center;"><?php _e( 'Stuck getting your theme to work?', 'easy-property-listings'  );?></h2>
-				<h3 class="about-description" style="text-align: center;"><?php _e( 'Not all themes follow modern WordPress coding standards and these may take a little more time and experience to get working. If you just can not get it to work, visit', 'easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/support-ticket/"><?php _e( 'premium support', 'easy-property-listings'  );?></a> <?php _e( 'and fill out a theme support request.', 'easy-property-listings'  );?></em></h3>
+				<h3 class="about-description" style="text-align: center;"><?php _e( 'Not all themes follow modern WordPress coding standards and these may take a little more time and experience to get working. If you just can not get it to work, visit', 'easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/support-ticket/"><?php _e( 'premium support', 'easy-property-listings'  );?></a> <?php _e( 'and fill out a theme support request.', 'easy-property-listings'  );?></h3>
 
 				<p style="text-align:center;"><?php _e( 'If the theme is available in the WordPress.org theme directory let us know the theme name and URL where we can download it in your support ticket. If its a premium theme or are in a hurry submit a priority support ticket along with the theme in a zip or a download link to it on a file sharing site like Dropbox.', 'easy-property-listings'  );?></p>
 
