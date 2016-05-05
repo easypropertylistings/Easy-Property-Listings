@@ -66,7 +66,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						</div>
 						<div class="epl-col-last">
 							<div class="featured-image">
-								<?php echo wp_oembed_get('https://www.youtube.com/watch?v=FX1eXeWQAis', array('width'=>475)); ?>
+								<?php $video_add_listing_id = 'FX1eXeWQAis'; ?>
+
+								<div class="video-container">
+									<iframe width="475" height="267" src="//www.youtube.com/embed/<?php echo $video_add_listing_id; ?>" frameborder="0" allowfullscreen ></iframe>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -87,7 +91,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						</div>
 						<div class="epl-col-last">
 							<div class="featured-image">
-								<?php echo wp_oembed_get('https://www.youtube.com/watch?v=FX1eXeWQAis', array('width'=>475)); ?>
+								<?php $video_add_listing_id = 'FX1eXeWQAis'; ?>
+
+								<div class="video-container">
+									<iframe width="475" height="267" src="//www.youtube.com/embed/<?php echo $video_add_listing_id; ?>" frameborder="0" allowfullscreen ></iframe>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -104,8 +112,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						</div>
 						<div class="epl-col-last">
 							<div class="featured-image">
-								<?php echo wp_oembed_get('https://www.youtube.com/watch?v=h6B8LLecfbw', array('width'=>475)); ?>
+								<?php $video_add_listing_id = 'h6B8LLecfbw'; ?>
 
+								<div class="video-container">
+									<iframe width="475" height="267" src="//www.youtube.com/embed/<?php echo $video_add_listing_id; ?>" frameborder="0" allowfullscreen ></iframe>
+								</div>
 							</div>
 						</div>
 					</div>

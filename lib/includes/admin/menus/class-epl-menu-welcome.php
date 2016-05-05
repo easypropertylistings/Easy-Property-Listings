@@ -175,11 +175,11 @@ class EPL_Welcome {
 				</div>
 
 				<div class="feature-section">
-					<p><?php _e( 'Contact management and lead CRM has been added to the Easy Property Listings plugin and we are very excited to finally release this to you to use on your real estate website.' , 'easy-property-listings'  ); ?></h4>
+					<p><?php _e( 'Contact management and lead CRM has been added to the Easy Property Listings plugin and we are very excited to finally release this to you to use on your real estate website.' , 'easy-property-listings'  ); ?></p>
 
-					<p><?php _e( 'Lead generation in real estate is a must online and we have created an easy to use CRM that allows you to track and communicate with your prospects as they make enquiries on your listings. If you already are using a CRM in your business then the contact system will allow us to create add-ons which will be able to pass the lead information directly into your real estate CRM provided yours has an API. This will help you streamline your daily lead generation and prospecting activities with your website.' , 'easy-property-listings'  ); ?></h4>
+					<p><?php _e( 'Lead generation in real estate is a must online and we have created an easy to use CRM that allows you to track and communicate with your prospects as they make enquiries on your listings. If you already are using a CRM in your business then the contact system will allow us to create add-ons which will be able to pass the lead information directly into your real estate CRM provided yours has an API. This will help you streamline your daily lead generation and prospecting activities with your website.' , 'easy-property-listings'  ); ?></p>
 
-					<p><?php _e( 'The contact system has been designed to be easy to use and allow you to track and capture contact information on your listings.' , 'easy-property-listings'  ); ?></h4>
+					<p><?php _e( 'The contact system has been designed to be easy to use and allow you to track and capture contact information on your listings.' , 'easy-property-listings'  ); ?></p>
 
 					<p><?php _e( 'Back when I was selling property I would frequently meet the same people at different properties that I had listed for sale and now you will be able to create a story around your potential buyer or seller shopping for an agent.', 'easy-property-listings'  ); ?></p>
 
@@ -223,6 +223,47 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','easy-property-listings'  );?></h2>
 
 				<div class="feature-section">
+
+					<h4><?php _e( 'Version 3.0.4', 'easy-property-listings'  );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Internal help videos gzip error, using iframe instead.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Corrected incorrect stray tags on internal welcome page.', 'easy-property-listings'  );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 3.0.3', 'easy-property-listings'  );?></h4>
+					<ul>
+						<li><?php _e( 'New: Setting to disable Google Maps API if already added by theme or other plugin.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Ability to set a Google Maps API Key.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Renamed misspelled Property on linked contact.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Trailing ul tag on search widget.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Implemented better timezone support for open for inspection. Requires WordPress 3.9.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Tighter spacing on dropdown contact list.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Updated translations file.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Capital c for contact post type.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Dashboard activity widget improved CSS display.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Dashboard activity comments better labeled.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Internal links to documentation corrected.', 'easy-property-listings'  );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 3.0.2', 'easy-property-listings'  );?></h4>
+					<ul>
+						<li><?php _e( 'Fix: Featured Listing removed redundant no option.', 'easy-property-listings'  );?></li>
+					</ul>
+
+					<h4><?php _e( 'Version 3.0.1', 'easy-property-listings'  );?></h4>
+					<ul>
+						<li><?php _e( 'Tweak: Versioning to all CSS and JS.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Arabic translation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Updated German Translation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Updated French Translation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Updated Dutch Translation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Search by Address and Property ID correctly searches the listing Title. In order to search by property ID, add the property ID to the listing title.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Customise the EPL - Contact Form Widget Submit Label.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Added Form styling to contact form.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Corrected additional translation strings with contact form labels.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Corrected spacing in extension plugin updates.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Renamed EPL - Contact Form Subscribe label to Submit.', 'easy-property-listings'  );?></li>
+					</ul>
 
 					<h4><?php _e( 'Version 3.0', 'easy-property-listings'  );?></h4>
 					<ul>
@@ -1025,7 +1066,11 @@ class EPL_Welcome {
 				<h2 id="guide-first-listing" class="epl-welcome-sub-heading"><?php _e( 'Publish Your First Listing', 'easy-property-listings'  );?></h2>
 
 				<div class="featured-image">
-					<?php echo wp_oembed_get('https://www.youtube.com/watch?v=h6B8LLecfbw', array('width'=>600)); ?>
+					<?php $video_add_listing_id = 'h6B8LLecfbw'; ?>
+
+					<div class="video-container">
+						<iframe width="640" height="360" src="//www.youtube.com/embed/<?php echo $video_add_listing_id; ?>" frameborder="0" allowfullscreen ></iframe>
+					</div>
 				</div>
 				<h3 class="epl-welcome-sub-heading"><?php _e( 'Title & Author', 'easy-property-listings'  );?></h3>
 
@@ -1137,10 +1182,11 @@ class EPL_Welcome {
 						<ul>
 							<li><a href="http://ithemes.com/member/go.php?r=15200&i=l37"><?php _e( 'iThemes Builder Themes', 'easy-property-listings'  );?></a></li>
 							<li><?php _e( 'Genesis Framework by StudioPress', 'easy-property-listings'  );?></li>
+							<li><?php _e( 'Headway Theme Framework', 'easy-property-listings'  );?></li>
 							<li><?php _e( 'Twenty 12, 13, 14 &#38; 15 by WordPress.', 'easy-property-listings'  );?></li>
 							<li><?php _e( 'Many others, add a listing and see how it looks.', 'easy-property-listings'  );?></li>
 						</ul>
-						<p><?php _e( 'We have a selection of pre configured templates here for many popular themes', 'easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/support/forum/theme-support/"><?php _e( 'here', 'easy-property-listings'  );?></a>.</p>
+						<p><?php _e( 'We have a selection of pre configured templates here for many popular themes', 'easy-property-listings'  );?> <a href="http://codex.easypropertylistings.com.au/article/185-theme-templates"><?php _e( 'here', 'easy-property-listings'  );?></a>.</p>
 					</div>
 				</div>
 			</div>
@@ -1149,8 +1195,8 @@ class EPL_Welcome {
 				<h2 id="theme-instructions" class="epl-welcome-sub-heading"><?php _e( 'Advanced instructions', 'easy-property-listings'  );?></h2>
 
 				<div class="feature-section two-col">
-					<?php $theme_instructions = '<a href="https://easypropertylistings.com.au/docs/setup-wordpress-theme-easy-property-listings-2-0/">'. __( 'theme setup instructions can be found here' , 'easy-property-listings'  ) .'</a>'; ?>
-					<?php $custom_template_link = '<a href="https://easypropertylistings.com.au/docs/create-custom-theme-templates-using-included-hooks/">'. __( 'custom templates' , 'easy-property-listings'  ) .'</a>'; ?>
+					<?php $theme_instructions = '<a href="http://codex.easypropertylistings.com.au/article/49-theme-setup">'. __( 'theme setup instructions can be found here' , 'easy-property-listings'  ) .'</a>'; ?>
+					<?php $custom_template_link = '<a href="http://codex.easypropertylistings.com.au/article/121-how-to-create-your-own-custom-theme-templates-or-modify-existing-ones-using-the-theme-template-loader">'. __( 'custom templates' , 'easy-property-listings'  ) .'</a>'; ?>
 					<h4 style="text-align: center;"><?php printf( __( 'Detailed %s.', 'easy-property-listings'  ) , $theme_instructions );?></h4>
 					<h4 style="text-align: center;"><?php printf( __( 'How to create your own %s.', 'easy-property-listings'  ) , $custom_template_link );?></h4>
 				</div>
@@ -1159,7 +1205,7 @@ class EPL_Welcome {
 			<div class="changelog headline-feature">
 
 				<h2 class="about-description" style="text-align: center;"><?php _e( 'Stuck getting your theme to work?', 'easy-property-listings'  );?></h2>
-				<h3 class="about-description" style="text-align: center;"><?php _e( 'Not all themes follow modern WordPress coding standards and these may take a little more time and experience to get working. If you just can not get it to work, visit', 'easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/support/"><?php _e( 'premium support', 'easy-property-listings'  );?></a> <?php _e( 'and fill out a theme support request.', 'easy-property-listings'  );?></em></h3>
+				<h3 class="about-description" style="text-align: center;"><?php _e( 'Not all themes follow modern WordPress coding standards and these may take a little more time and experience to get working. If you just can not get it to work, visit', 'easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/support-ticket/"><?php _e( 'premium support', 'easy-property-listings'  );?></a> <?php _e( 'and fill out a theme support request.', 'easy-property-listings'  );?></h3>
 
 				<p style="text-align:center;"><?php _e( 'If the theme is available in the WordPress.org theme directory let us know the theme name and URL where we can download it in your support ticket. If its a premium theme or are in a hurry submit a priority support ticket along with the theme in a zip or a download link to it on a file sharing site like Dropbox.', 'easy-property-listings'  );?></p>
 
@@ -1168,17 +1214,17 @@ class EPL_Welcome {
 				<div class="feature-section col three-col">
 					<div>
 						<h4><?php _e( 'Premium Support','easy-property-listings'  );?></h4>
-						<p><?php echo $link = sprintf( __( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'easy-property-listings'  ), esc_url( 'https://easypropertylistings.com.au/support/' ) );?></p>
+						<p><?php echo $link = sprintf( __( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'easy-property-listings'  ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) );?></p>
 					</div>
 
 					<div>
 						<h4><?php _e( 'Need Even Faster Support?', 'easy-property-listings'  );?></h4>
-						<p><?php _e( '<a href="https://easypropertylistings.com.au/support/pricing/">Priority Support forums</a> are there for customers that need faster and/or more in-depth assistance.', 'easy-property-listings'  );?></p>
+						<p><?php _e( '<a href="https://easypropertylistings.com.au/support-ticket/">Priority Support forums</a> are there for customers that need faster and/or more in-depth assistance.', 'easy-property-listings'  );?></p>
 					</div>
 
 					<div class="last-feature">
 						<h4><?php _e( 'Documentation and Short Codes','easy-property-listings'  );?></h4>
-						<p><?php _e( 'Read the','easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/documentation/"><?php _e( 'documentation','easy-property-listings'  );?></a> <?php _e( ' and instructions on how to use the included','easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/section/short-codes/"><?php _e( 'shortcodes','easy-property-listings'  );?></a>.</p>
+						<p><?php _e( 'Read the','easy-property-listings'  );?> <a href="http://codex.easypropertylistings.com.au/"><?php _e( 'documentation','easy-property-listings'  );?></a> <?php _e( ' and instructions on how to use the included','easy-property-listings'  );?> <a href="http://codex.easypropertylistings.com.au/category/25-shortcodes"><?php _e( 'shortcodes','easy-property-listings'  );?></a>.</p>
 					</div>
 				</div>
 			</div>

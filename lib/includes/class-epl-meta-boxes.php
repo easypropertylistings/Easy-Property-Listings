@@ -101,8 +101,10 @@ class EPL_METABOX {
 
 	/**
 	 * Add metaboxes
-	 * use to add wp metaboxes
-	 * @TODO add usage example link
+	 *
+	 * See how to register custom field metaboxes to listings here.
+	 *
+	 * @link http://codex.easypropertylistings.com.au/article/127-epllistingmetaboxes-filter
 	 */
 	function add_meta_boxes() {
 

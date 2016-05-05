@@ -984,6 +984,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 		}
 	}
 
+	$get_google_maps_api_key_uri = '<a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">' . __( 'Google Maps Api Key' , 'easy-property-listings') . '</a>';
+
+
 	$epl_currency_positions = array(
 			'before'	=> __('Before - $10', 'easy-property-listings' ),
 			'after'		=> __('After - 10$', 'easy-property-listings' )
@@ -1559,7 +1562,24 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'easy-property-listings' )
 				),
+				array(
+					'name'		=>	'epl_disable_google_api',
+					'label'		=>	__('Google Maps API', 'easy-property-listings' ),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						''	=>	__('Enable', 'easy-property-listings' ),
+						'on'	=>	__('Disable', 'easy-property-listings' )
+					),
+					'default'	=>	'',
+					'help'		=>	__('Set to disabled if Google Maps API has already been loaded in your theme or other plugin.' , 'easy-property-listings' )
 
+				),
+				array(
+					'name'		=>	'epl_google_api_key',
+					'label'		=>	__('Google Maps API Key', 'easy-property-listings' ),
+					'type'		=>	'text',
+					'help'		=>	__("Register for a $get_google_maps_api_key_uri here." , 'easy-property-listings' )
+				),
 				array(
 					'name'		=>	'uninstall_on_delete',
 					'label'		=>	__('Remove Data on Uninstall?', 'easy-property-listings' ),
