@@ -87,8 +87,8 @@ function is_epl_rental_post($type=null) {
  * @since 2.2
  */
 function is_epl_post($type=null) {
-
-	if ( empty(epl_all_post_types()) )
+	$all_types = epl_all_post_types();
+	if ( empty($all_types) )
 	return false;
 
 
@@ -103,8 +103,9 @@ function is_epl_post($type=null) {
  */
 function is_epl_post_single() {
 
-	if ( empty(epl_all_post_types()) )
-		return false;
+	$all_types = epl_all_post_types();
+	if ( empty($all_types) )
+	return false;
 
 	return 	is_singular(epl_all_post_types());
 }
@@ -116,7 +117,8 @@ function is_epl_post_single() {
  */
 function is_epl_post_type($type) {
 
-	if ( empty(epl_all_post_types()) )
+	$all_types = epl_all_post_types();
+	if ( empty($all_types) )
 	return false;
 
 	return 	(in_array($type,epl_all_post_types()) && get_post_type() == $type );
@@ -129,7 +131,8 @@ function is_epl_post_type($type) {
  */
 function is_epl_post_archive() {
 
-	if ( empty(epl_all_post_types()) )
+	$all_types = epl_all_post_types();
+	if ( empty($all_types) )
 	return false;
 
 	return 	is_post_type_archive(epl_all_post_types());
