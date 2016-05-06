@@ -392,6 +392,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.0.5 May 6, 2016 =
+
+* Fix: Conditional tags when lo listing types are activated.
+
+
+
+
+
+
 = 3.0.4 May 4, 2016 =
 
 * Fix: Internal help videos gzip error, using iframe instead.
