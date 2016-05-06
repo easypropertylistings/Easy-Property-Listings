@@ -251,6 +251,12 @@ class EPL_Property_Meta {
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
+						if(strpos($this->meta['property_auction'][0], 'T') === FALSE){
+                            $epl_date = DateTime::createFromFormat('Y-m-d-H:i:s', $this->meta['property_auction'][0]);
+
+                            if($epl_date)
+                                $this->meta['property_auction'][0] = $epl_date->format('Y-m-d\TH:i');
+                        }
 						return apply_filters('epl_get_property_auction',date( $format, strtotime($this->meta['property_auction'][0]) ));
 					}
 			}
