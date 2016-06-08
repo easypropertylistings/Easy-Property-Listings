@@ -165,7 +165,8 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 * @return  void
 		 */
 		public function activate_license() {
-			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
+
+			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_license' )
 				return;
 
 			if ( ! isset( $_POST['epl_license'] ) )
@@ -174,6 +175,14 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			if ( ! isset( $_POST['epl_license'][ $this->item_shortname ] ) )
 				return;
 
+			if ( empty( $_POST['epl_license'][ $this->item_shortname ] ) ) {
+
+				delete_option( $this->item_shortname . '_license_active' );
+
+				return;
+
+			}
+
 			foreach( $_POST as $key => $value ) {
 				if( false !== strpos( $key, 'license_key_deactivate' ) ) {
 					// Don't activate a key when deactivating a different key
@@ -181,7 +190,17 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				}
 			}
 
+			$details = get_option( $this->item_shortname . '_license_active' );
+
+			if ( is_object( $details ) && 'valid' === $details->license ) {
+				return;
+			}
+
 			$license = sanitize_text_field( $_POST['epl_license'][ $this->item_shortname ] );
+
+			if( empty( $license ) ) {
+				return;
+			}
 
 			// Data to send to the API
 			$api_params = array(
@@ -191,7 +210,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				'url'        => home_url()
 			);
 
+
 			// Call the API
+			// body not needed as api_params are sent via GET request in api_url
 			$response = wp_remote_get(
 				add_query_arg( $api_params, $this->api_url ),
 				array(
