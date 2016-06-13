@@ -137,6 +137,14 @@ function epl_shortcode_listing_callback( $atts ) {
 			$args['orderby']  = 'meta_value';
 			$args['meta_key'] =	'property_status';
 			$args['order']    = 'ASC';
+		} else if ( $orderby == 'location_asc' ) {
+			$args['orderby']  = 'meta_value';
+			$args['meta_key'] =	'property_address_suburb';
+			$args['order']    = 'ASC';
+		} else if ( $orderby == 'location_desc' ) {
+			$args['orderby']  = 'meta_value';
+			$args['meta_key'] =	'property_address_suburb';
+			$args['order']    = 'DESC';
 		}
 	}
 
