@@ -116,8 +116,12 @@ $epl_license = get_option('epl_license');
 												
 														if( empty($status) || is_null($status) || $status == false ) {
 															$status = 'invalid';
-														}
+														} else {
 
+															if( is_object($status))
+																$status = $status->license;
+														}
+														
 														if(!empty($status)) {
 															echo '<span class="license-status license-status-'.$status.'"></span>';
 
