@@ -602,6 +602,7 @@ function epl_get_property_bb_icons() {
  * @since 1.0
  * @hooked property_land_category
  */
+
 function epl_property_land_category(){
 	global $property;
 	echo $property->get_property_land_category();
@@ -1864,6 +1865,7 @@ function epl_trim_excerpt($text = '') {
 		$excerpt_length = apply_filters( 'excerpt_length', 55 );
 		$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
 		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
+		
 	}
 	return apply_filters( 'epl_trim_excerpt', $text, $raw_excerpt );
 }
