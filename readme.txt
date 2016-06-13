@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.5.1
 
-Stable Tag: 3.0.3
+Stable Tag: 3.0.4
 
 License: GNU Version 2 or Any Later Version
 
