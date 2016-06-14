@@ -362,6 +362,10 @@ function epl_property_author_box_simple_grav() {
  */
 function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','easy-property-listings' )" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
 	global $property;
+
+	if( is_null($property) )
+		return;
+	
 	$property_status = $property->get_property_meta('property_status');
 
 	switch($display) {
