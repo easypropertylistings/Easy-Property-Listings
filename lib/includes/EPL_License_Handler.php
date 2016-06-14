@@ -355,7 +355,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				return;
 			}
 
-			$messages = array();
+			$messages = null;
 
 			$license = get_option( $this->item_shortname . '_license_active' );
 
@@ -363,7 +363,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 				if( empty( $_GET['page'] ) || 'epl-licenses' !== $_GET['page'] ) {
 
-					$messages[] = sprintf(
+					$messages = sprintf(
 						__( 'You have invalid or expired license keys for Easy Property Listings. Please go to the <a href="%s" title="Go to Licenses page">Licenses page</a> to correct this issue.', 'easy-property-listings' ),
 						admin_url( 'admin.php?page=epl-licenses' )
 					);
@@ -374,15 +374,11 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			}
 
-			if( ! empty( $messages ) ) {
+			if( ! is_null( $messages ) ) {
 
-				foreach( $messages as $message ) {
-
-					echo '<div class="error">';
-						echo '<p>' . $message . '</p>';
-					echo '</div>';
-
-				}
+				echo '<div class="error">';
+					echo '<p>' . $message . '</p>';
+				echo '</div>';
 
 			}
 

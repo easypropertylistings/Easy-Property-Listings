@@ -115,25 +115,9 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		$args['order']			=	$sort_order;
 	}
 
-	if( isset( $_GET['sortby'] ) ) {
-		$orderby = sanitize_text_field( trim($_GET['sortby']) );
-		if($orderby == 'high') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
-			$args['order']		=	'DESC';
-		} elseif($orderby == 'low') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
-			$args['order']		=	'ASC';
-		} elseif($orderby == 'new') {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'DESC';
-		} elseif($orderby == 'old') {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'ASC';
-		}
+	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
+	$args = epl_add_orderby_args($args);
 
-	}
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
