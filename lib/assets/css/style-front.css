@@ -1456,13 +1456,12 @@ li.tbhead.current {
     background: #fff none repeat scroll 0 0;
     border: 1px solid #ddd;
     box-shadow: -1px 3px 2px 2px #ddd;
-    font-weight: 500;
+    font-weight: bold;
     margin: 6px 0;
     padding: 10px;
     position: absolute;
     min-width: 160px;
     z-index: 9999;
-
 }
 .epl-popup-box > li{
     cursor: pointer;
