@@ -2073,3 +2073,26 @@ function epl_archive_title_callback() {
 	rewind_posts();
 }
 add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
+
+function epl_add_orderby_args($args) {
+
+	if ( isset( $_GET['sortby'] ) ) {
+		$id = sanitize_text_field( trim( $_GET['sortby'] ) );
+		$sorting_options = epl_sorting_options();
+
+		foreach($sorting_options as $sorting_option) {
+
+			if($id == $sorting_option['id']) {
+
+				if( isset($sorting_option['orderby']) )
+					$args['orderby']  = $sorting_option['orderby'];
+
+				$args['meta_key'] =	$sorting_option['key'];
+				$args['order']    = $sorting_option['order'];
+				break;
+			}
+		}
+
+	}
+	return $args;
+}
