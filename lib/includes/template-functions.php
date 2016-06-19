@@ -368,6 +368,9 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 		case 'list':
 			$tpl = 'widget-content-listing-list.php';
 		break;
+		case 'hide-image':
+			$tpl = 'widget-content-listing-hide-image.php';
+		break;
 		case 'image-only':
 			$tpl = 'widget-content-listing-image.php';
 		break;
