@@ -377,7 +377,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			if( ! is_null( $messages ) ) {
 
 				echo '<div class="error">';
-					echo '<p>' . $message . '</p>';
+					echo '<p>' . $messages . '</p>';
 				echo '</div>';
 
 			}
