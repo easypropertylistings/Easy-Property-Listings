@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.5.1
 
-Stable Tag: 3.0.3
+Stable Tag: 3.0.4
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.0.5 May 6, 2016 =
+
+* Fix: Conditional tags when lo listing types are activated.
+
+
+
+
+
 
 = 3.0.4 May 4, 2016 =
 
