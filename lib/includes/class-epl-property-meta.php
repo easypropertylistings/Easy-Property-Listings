@@ -251,6 +251,15 @@ class EPL_Property_Meta {
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 					if ( '' != $this->meta['property_auction'][0] ) {
+						if(strpos($this->meta['property_auction'][0], 'T') === FALSE){
+							$feed_format 	= apply_filters('epl_auction_feed_format','Y-m-d-H:i:s');
+                            $epl_date 		= DateTime::createFromFormat($feed_format, $this->meta['property_auction'][0]);
+
+                            if($epl_date) {
+                            	$primary_feed_format 	= apply_filters('epl_auction_primary_feed_format','Y-m-d\TH:i');
+                                $this->meta['property_auction'][0] = $epl_date->format($primary_feed_format);
+                            }
+                        }
 						return apply_filters('epl_get_property_auction',date( $format, strtotime($this->meta['property_auction'][0]) ));
 					}
 			}
@@ -692,7 +701,7 @@ class EPL_Property_Meta {
 			$diff = $now->diff($date);
 			$diff = $diff->days;
 		} else {
-			$diff = strtotime($date->format('M d Y ')) - strtotime($now->format('M d Y ') ) ;
+			$diff = strtotime($now->format('M d Y ')) - strtotime($date->format('M d Y ') ) ;
 			$diff = floor($diff/3600/24);
 
 		}

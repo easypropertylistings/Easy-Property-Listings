@@ -113,21 +113,28 @@ $epl_license = get_option('epl_license');
 														}
 														echo '<input type="text" class="epl-field-license" name="epl_license[epl_'.$field['name'].']" id="'.$field['name'].'" value="'.stripslashes($val).'" />';
 														$status = get_option( 'epl_'.$field['name'].'_license_active' );
-														if(stripslashes($val) != '') {
-															if(!empty($status)) {
-																echo '<span class="license-status license-status-'.$status.'"></span>';
+												
+														if( empty($status) || is_null($status) || $status == false ) {
+															$status = 'invalid';
+														} else {
 
-																if( $status == 'invalid' ) {
-																	echo '<span class="license-status-text license-status-text-'.$status.'">';
-																		echo '<span class="license-status-text-label">' . __('Invalid or Expired Key :', 'easy-property-listings' ) . '</span>';
-																		echo '<span class="license-status-text-value">' . __('Please make sure you have entered the correct value and that your key is not expired.', 'easy-property-listings' ) . '</span>';
-																	echo '</span>';
-																} else if( $status == 'valid' ) {
-																	echo '<span class="license-status-text license-status-text-'.$status.'">';
-																		echo '<span class="license-status-text-label">' . __('Valid Key :', 'easy-property-listings' ) . '</span>';
-																		echo '<span class="license-status-text-value">' . __('Your license key has been successfully validated.', 'easy-property-listings' ) . '</span>';
-																	echo '</span>';
-																}
+															if( is_object($status))
+																$status = $status->license;
+														}
+														
+														if(!empty($status)) {
+															echo '<span class="license-status license-status-'.$status.'"></span>';
+
+															if( $status == 'valid' ) {
+																echo '<span class="license-status-text license-status-text-'.$status.'">';
+																	echo '<span class="license-status-text-label">' . __('Valid Key :', 'easy-property-listings' ) . '</span>';
+																	echo '<span class="license-status-text-value">' . __('Your license key has been successfully validated.', 'easy-property-listings' ) . '</span>';
+																echo '</span>';
+															} else  {
+																echo '<span class="license-status-text license-status-text-'.$status.'">';
+																	echo '<span class="license-status-text-label">' . __('Invalid or Expired Key :', 'easy-property-listings' ) . '</span>';
+																	echo '<span class="license-status-text-value">' . __('Please make sure you have entered the correct value and that your key is not expired.', 'easy-property-listings' ) . '</span>';
+																echo '</span>';
 															}
 														}
 												}

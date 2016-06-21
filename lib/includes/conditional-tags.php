@@ -87,6 +87,11 @@ function is_epl_rental_post($type=null) {
  * @since 2.2
  */
 function is_epl_post($type=null) {
+	$all_types = epl_all_post_types();
+	if ( empty($all_types) )
+	return false;
+
+
 	$type = $type === null ? get_post_type() : $type;
 	return 	in_array($type,epl_all_post_types());
 }
@@ -97,6 +102,11 @@ function is_epl_post($type=null) {
  * @since 2.2
  */
 function is_epl_post_single() {
+
+	$all_types = epl_all_post_types();
+	if ( empty($all_types) )
+	return false;
+
 	return 	is_singular(epl_all_post_types());
 }
 
@@ -106,6 +116,11 @@ function is_epl_post_single() {
  * @since 2.2
  */
 function is_epl_post_type($type) {
+
+	$all_types = epl_all_post_types();
+	if ( empty($all_types) )
+	return false;
+
 	return 	(in_array($type,epl_all_post_types()) && get_post_type() == $type );
 }
 
@@ -115,5 +130,10 @@ function is_epl_post_type($type) {
  * @since 2.2
  */
 function is_epl_post_archive() {
+
+	$all_types = epl_all_post_types();
+	if ( empty($all_types) )
+	return false;
+
 	return 	is_post_type_archive(epl_all_post_types());
 }

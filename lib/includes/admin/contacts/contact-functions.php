@@ -78,18 +78,27 @@ add_filter( 'epl_contact_tabs', 'epl_register_delete_contact_tab', PHP_INT_MAX, 
 function epl_get_next_contact_link($contact_id) {
 	if(absint($contact_id) < 1 )
 		return;
+
 	$contact_id = absint($contact_id);
 	global $wpdb;
 
-	$next = $wpdb->get_col("
-						SELECT `ID`
-						FROM {$wpdb->prefix}posts
-						WHERE `post_type` = 'epl_contact'
-						AND `post_status`	= 'publish'
-						AND `ID` > {$contact_id}
-						ORDER BY `ID` ASC
-						LIMIT 1
-					");
+	$where = " `post_type` = 'epl_contact'
+		AND `post_status`	= 'publish'
+		AND `ID` > {$contact_id} ";
+
+	$where = apply_filters('epl_get_next_contact_link_query',$where);
+
+	$query = "
+		SELECT *
+		FROM {$wpdb->prefix}posts
+		WHERE ".$where."
+		ORDER BY `ID` DESC
+		LIMIT 1
+	";
+
+
+	$next = $wpdb->get_col($query);
+
 	if(!empty($next)) {
 		return admin_url('admin.php?page=epl-contacts&view=overview&id='.$next[0]);
 	}
@@ -101,20 +110,30 @@ function epl_get_next_contact_link($contact_id) {
  * @since  3.0
  */
 function epl_get_prev_contact_link($contact_id) {
+
 	if(absint($contact_id) < 1 )
 		return;
+
 	$contact_id = absint($contact_id);
 	global $wpdb;
-	$next = $wpdb->get_col("
+
+	$where = " `post_type` = 'epl_contact'
+		AND `post_status`	= 'publish'
+		AND `ID` < {$contact_id} ";
+
+	$where = apply_filters('epl_get_prev_contact_link_query',$where);
+
+	$query = "
 		SELECT *
 		FROM {$wpdb->prefix}posts
-		WHERE `post_type` = 'epl_contact'
-		AND `post_status`	= 'publish'
-		AND `ID` < {$contact_id}
+		WHERE ".$where."
 		ORDER BY `ID` DESC
 		LIMIT 1
+	";
 
-	");
+
+	$next = $wpdb->get_col($query);
+
 	if(!empty($next)) {
 		return admin_url('admin.php?page=epl-contacts&view=overview&id='.$next[0]);
 	}
@@ -168,6 +187,7 @@ add_filter('epl_contact_contact_fields','epl_contact_contact_fields',10,2);
 function epl_contact_access() {
 	$allowed = epl_get_option('min_contact_access');
 	$allowed = empty($allowed) ? 'level_10' : $allowed;
-	return current_user_can($allowed) ? true : false;
+	$return	 = current_user_can($allowed) ? true : false;
+	return apply_filters('epl_contact_access',$return);
 }
 
