@@ -23,13 +23,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		if ($title == 'on') { ?>
 			<h5 class="property-heading"><a href="<?php the_permalink(); ?>"><?php do_action('epl_property_heading'); ?></a></h5>
 		<?php } ?>
-		<?php if ( $d_excerpt == 'on' ) {
-			if( function_exists('epl_the_excerpt') ) {
-        		epl_the_excerpt();
-    		} else {
-				the_excerpt();
-    		}
-		} ?>
+
+		<?php if ( $d_excerpt == 'on' ) { ?>
+			<p class="property-heading">
+				<?php
+				if( function_exists('epl_the_excerpt') ) {
+	        			epl_the_excerpt();
+	    			} else {
+					the_excerpt();
+	    			} ?>
+			</p>
+		<?php } ?>
 
 		<!-- Address -->
 		<div class="property-address">
