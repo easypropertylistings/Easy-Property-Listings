@@ -392,7 +392,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.0.5 June 14, 2016 =
+= 3.1 June 23, 2016 =
 
 * Fix: Conditional tags when lo listing types are activated.
 
