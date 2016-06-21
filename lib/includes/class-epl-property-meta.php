@@ -125,11 +125,11 @@ class EPL_Property_Meta {
 		if(isset($this->meta[$meta_key])) {
 			if(isset($this->meta[$meta_key][0])) {
 				if($allowzero === true){
-					return  $this->meta[$meta_key][0];
+					return  maybe_unserialize($this->meta[$meta_key][0]);
 				} elseif(intval($this->meta[$meta_key][0]) == 0) {
 					return;
 				} else {
-					return $this->meta[$meta_key][0];
+					return maybe_unserialize($this->meta[$meta_key][0]);
 				}
 			}
 		}

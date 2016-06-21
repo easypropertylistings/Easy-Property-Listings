@@ -37,7 +37,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
 		'sortby'		=>	'', // Options: price, date : Default date
 		'sort_order'		=>	'DESC',
-		'query_object'		=>	'' // only for internal use . if provided use it instead of custom query
+		'query_object'		=>	'', // only for internal use . if provided use it instead of custom query
+		'pagination'   => 'on'
 	), $atts ) );
 
 	if(is_string($post_type) && $post_type == 'rental') {
@@ -136,7 +137,10 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 				?>
 			</div>
 			<div class="loop-footer">
-					<?php do_action('epl_pagination',array('query'	=>	$query_open)); ?>
+				<?php
+					if( $pagination == 'on') 
+						do_action('epl_pagination',array('query'	=>	$query_open)); 
+				?>
 			</div>
 		</div>
 		<?php
