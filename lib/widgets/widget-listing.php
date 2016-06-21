@@ -29,6 +29,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			$property_types = array_keys( $property_types );
 		}
 
+		// Prince Annotate options here
 		$defaults = array(
 			'title'      =>	'',
 			'types'      =>	$property_types,
@@ -299,6 +300,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 									array(
 										'image'      =>	__( 'Image','easy-property-listings' ),
 										'image-only' =>	__( 'Image Only','easy-property-listings' ),
+										'hide-image' =>	__( 'Hide Image','easy-property-listings' ),
 										'list'       =>	__( 'List','easy-property-listings' ),
 									)
 								);
