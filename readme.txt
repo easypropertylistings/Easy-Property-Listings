@@ -5,7 +5,7 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, contact, crm, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.9
-Tested up to: 4.5.1
+Tested up to: 4.5.2
 
 Stable Tag: 3.0.4
 
@@ -392,9 +392,27 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.0.5 May 6, 2016 =
+= 3.1 June 23, 2016 =
 
 * Fix: Conditional tags when lo listing types are activated.
+
+
+* New: cron
+* Tweak: jQuery scripts refactored and converted it into a single object less chances of interference of outside code this way
+
+* Tweak: License schedule
+* Tweak: License expired notices.
+* New: Contact Filter epl_get_contacts_args
+New Filter
+epl_get_next_contact_link_query
+epl_get_prev_contact_link_query
+epl_contact_access
+
+Cron system
+
+Shortcode filters for sorting added
+
+
 
 
 
