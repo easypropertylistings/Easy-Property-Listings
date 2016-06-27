@@ -28,6 +28,18 @@ function epl_get_option( $key = '', $default = false ) {
 }
 
 /**
+ * Determine if Divi framework is loaded
+ *
+ * @since 3.1
+ */
+function epl_is_divi_framework_theme() {
+	if(function_exists('et_divi_fonts_url')) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * Determine if iThemes Builder framework is loaded
  *
  * @since 1.0
@@ -789,6 +801,40 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				}
 			echo '</select>';
 			break;
+		case 'select_multiple':
+
+			$val = (array) $val;
+			echo '<select multiple name="'.$field['name'].'[]" id="'.$field['name'].'" >';
+	
+				if(isset($field['opts']) && !empty($field['opts'])) {
+					foreach($field['opts'] as $k=>$v) {
+						$selected = '';
+						if( in_array($k,$val)) {
+							$selected = 'selected="selected"';
+						}
+
+						if(is_array($v)) {
+							if(isset($v['exclude']) && !empty($v['exclude'])) {
+								if( in_array($post->post_type, $v['exclude']) ) {
+									continue;
+								}
+							}
+
+							if(isset($v['include']) && !empty($v['include'])) {
+								if( !in_array($post->post_type, $v['include']) ) {
+									continue;
+								}
+							}
+							$v = $v['label'];
+						}
+
+						echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
+					}
+				} else {
+					echo '<option value=""> </option>';
+				}
+			echo '</select>';
+		break;
 
 		case 'checkbox':
 			if(!empty($field['opts'])) {
@@ -1664,6 +1710,17 @@ AND p.post_status = '%s'
 AND p.post_type = '%s'
 ", $key, $status, $type ) );
 
+	$res = array_filter($res);
+	foreach($res as $key =>	&$elem) {
+		$elem 	= maybe_unserialize($elem);
+		if(!empty($elem) && is_array($elem) ) {
+			foreach($elem as $el) {
+				$res[] 	= $el;
+			}
+			unset($res[$key]);
+		}
+		
+	}
 	$res = array_filter($res);
 	if(!empty($res))
     	return array_combine(array_filter($res),array_filter($res) );

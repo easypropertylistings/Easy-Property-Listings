@@ -107,10 +107,17 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// Deactivate license key
 			add_action( 'admin_init', array( $this, 'deactivate_license' ) );
 
+			// Check that license is valid once per week
+			add_action( 'epl_weekly_scheduled_events', array( $this, 'weekly_license_check' ) );
+
+			// For testing license notices, uncomment this line to force checks on every page load
+			//add_action( 'admin_init', array( $this, 'weekly_license_check' ) );
+
 			// Updater
 			add_action( 'admin_init', array( $this, 'auto_updater' ), 0 );
 
 			add_action( 'admin_notices', array( $this, 'notices' ) );
+
 		}
 
 		/**
@@ -165,7 +172,8 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 * @return  void
 		 */
 		public function activate_license() {
-			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
+
+			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_license' )
 				return;
 
 			if ( ! isset( $_POST['epl_license'] ) )
@@ -174,6 +182,14 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			if ( ! isset( $_POST['epl_license'][ $this->item_shortname ] ) )
 				return;
 
+			if ( empty( $_POST['epl_license'][ $this->item_shortname ] ) ) {
+
+				delete_option( $this->item_shortname . '_license_active' );
+
+				return;
+
+			}
+
 			foreach( $_POST as $key => $value ) {
 				if( false !== strpos( $key, 'license_key_deactivate' ) ) {
 					// Don't activate a key when deactivating a different key
@@ -181,7 +197,17 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				}
 			}
 
+			$details = get_option( $this->item_shortname . '_license_active' );
+
+			if ( is_object( $details ) && 'valid' === $details->license ) {
+				return;
+			}
+
 			$license = sanitize_text_field( $_POST['epl_license'][ $this->item_shortname ] );
+
+			if( empty( $license ) ) {
+				return;
+			}
 
 			// Data to send to the API
 			$api_params = array(
@@ -191,7 +217,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				'url'        => home_url()
 			);
 
+
 			// Call the API
+			// body not needed as api_params are sent via GET request in api_url
 			$response = wp_remote_get(
 				add_query_arg( $api_params, $this->api_url ),
 				array(
@@ -212,11 +240,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 			update_option( $this->item_shortname . '_license_active', $license_data->license );
 
-			if( ! (bool) $license_data->success ) {
-				set_transient( 'epl_license_error', $license_data, 1000 );
-			} else {
-				delete_transient( 'epl_license_error' );
-			}
 		}
 
 
@@ -263,16 +286,56 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				// Decode the license data
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-				if ( $license_data->license == 'deactivated' )
-					delete_option( $this->item_shortname . '_license_active' );
+				delete_option( $this->item_shortname . '_license_active' );
 
-				if( ! (bool) $license_data->success ) {
-					set_transient( 'epl_license_error', $license_data, 1000 );
-				} else {
-					delete_transient( 'epl_license_error' );
-				}
 			}
 		}
+
+		/**
+		 * Check if license key is valid once per week
+		 *
+		 * @access  public
+		 * @since   2.5
+		 * @return  void
+		 */
+		public function weekly_license_check() {
+
+			if( ! empty( $_POST['epl_settings'] ) ) {
+				return; // Don't fire when saving settings
+			}
+
+			if( empty( $this->license ) ) {
+				return;
+			}
+
+			// data to send in our API request
+			$api_params = array(
+				'edd_action'=> 'check_license',
+				'license' 	=> $this->license,
+				'item_name' => urlencode( $this->item_name ),
+				'url'       => home_url()
+			);
+
+			// Call the API
+			$response = wp_remote_post(
+				add_query_arg( $api_params, $this->api_url ),
+				array(
+					'timeout'   => 15,
+					'sslverify' => false
+				)
+			);
+
+			// make sure the response came back okay
+			if ( is_wp_error( $response ) ) {
+				return false;
+			}
+
+			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+
+			update_option( $this->item_shortname . '_license_active', $license_data );
+
+		}
+
 
 		/**
 		 * Admin notices for errors
@@ -282,55 +345,45 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 */
 		public function notices() {
 
-			if( ! isset( $_GET['page'] ) || 'epl-licenses' !== $_GET['page'] ) {
+			static $showed_invalid_message;
+
+			if( empty( $this->license ) ) {
 				return;
 			}
 
-			$license_error = get_transient( 'epl_license_error' );
-
-			if( false === $license_error ) {
+			if( ! current_user_can( 'manage_options' ) ) {
 				return;
 			}
 
-			if( ! empty( $license_error->error ) ) {
+			$messages = null;
 
-				switch( $license_error->error ) {
+			$license = get_option( $this->item_shortname . '_license_active' );
 
-					case 'item_name_mismatch' :
+			if( is_object( $license ) && 'valid' !== $license->license && empty( $showed_invalid_message ) ) {
 
-						$message = __( 'This license does not belong to the product you have entered it for.', 'easy-property-listings'  );
-						break;
+				if( empty( $_GET['page'] ) || 'epl-licenses' !== $_GET['page'] ) {
 
-					case 'no_activations_left' :
+					$messages = sprintf(
+						__( 'You have invalid or expired license keys for Easy Property Listings. Please go to the <a href="%s" title="Go to Licenses page">Licenses page</a> to correct this issue.', 'easy-property-listings' ),
+						admin_url( 'admin.php?page=epl-licenses' )
+					);
 
-						$message = __( 'This license does not have any activations left', 'easy-property-listings'  );
-						break;
-
-					case 'expired' :
-
-						$message = __( 'This license key is expired. Please renew it.', 'easy-property-listings'  );
-						break;
-
-					default :
-
-						$message = sprintf( __( 'There was a problem activating your license key, please try again or contact support. Error code: %s', 'easy-property-listings'  ), $license_error->error );
-						break;
+					$showed_invalid_message = true;
 
 				}
 
 			}
 
-			if( ! empty( $message ) ) {
+			if( ! is_null( $messages ) ) {
 
 				echo '<div class="error">';
-					echo '<p>' . $message . '</p>';
+					echo '<p>' . $messages . '</p>';
 				echo '</div>';
 
 			}
 
-			delete_transient( 'epl_license_error' );
-
 		}
+
 	}
 
 endif; // end class_exists check

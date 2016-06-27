@@ -297,6 +297,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 			);
 		}
 
+		$args = apply_filters('epl_get_contacts_args',$args);
+
 		$contacts = epl_get_contacts( $args );
 
 		if ( $contacts ) {

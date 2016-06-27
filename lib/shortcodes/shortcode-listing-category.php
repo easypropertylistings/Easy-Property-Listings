@@ -40,7 +40,8 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
 		'sortby'			=>	'', // Options: price, date : Default date
-		'sort_order'			=>	'DESC'
+		'sort_order'			=>	'DESC',
+		'pagination'   => 'on'
 	), $atts ) );
 
 	if(empty($post_type)) {
@@ -134,25 +135,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 	}
 
 
-	if( isset( $_GET['sortby'] ) ) {
-		$orderby = sanitize_text_field( trim($_GET['sortby']) );
-		if($orderby == 'high') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
-			$args['order']		=	'DESC';
-		} elseif($orderby == 'low') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
-			$args['order']		=	'ASC';
-		} elseif($orderby == 'new') {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'DESC';
-		} elseif($orderby == 'old') {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'ASC';
-		}
+	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
+	$args = epl_add_orderby_args($args);
 
-	}
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
@@ -174,7 +159,10 @@ function epl_shortcode_listing_category_callback( $atts ) {
 				?>
 			</div>
 			<div class="loop-footer">
-				<?php do_action('epl_pagination',array('query'	=>	$query_open)); ?>
+				<?php
+					if( $pagination == 'on') 
+					do_action('epl_pagination',array('query'	=>	$query_open)); 
+				?>
 			</div>
 		</div>
 		<?php
