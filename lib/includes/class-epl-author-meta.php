@@ -144,13 +144,13 @@ class EPL_Author_Meta {
     function get_linkedin_html($html = '') {
     	if ( $this->linkedin != '' ) {
 
-    		if(strpos('linkedin',$this->linkedin) > 0 ) {
+    		if( (strpos('http://',$this->linkedin) == 0 ) || (strpos('https://',$this->linkedin) == 0 ) ) {
     			// absolute url
     			$linkedin = $this->linkedin;
 
     		} else {
     			// relative url
-    			$linkedin = 'www.linkedin.com/pub/' . $this->linkedin;
+    			$linkedin = 'http://linkedin.com/pub/' . $this->linkedin;
     		}
 
 			$html = '

@@ -841,8 +841,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				foreach($field['opts'] as $k=>$v) {
 					$checked = '';
 					if(!empty($val)) {
+
+						$val = (array) $val;
 						if( in_array($k, $val) ) {
-							$val = (array) $val;
 							$checked = 'checked="checked"';
 						}
 					}

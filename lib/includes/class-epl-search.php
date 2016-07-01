@@ -258,7 +258,7 @@ class EPL_SEARCH {
 	protected function prepare_query() {
 
 		if($this->get_data['post_type'] == 'commercial')
-			$this->form_fields = epl_commercial_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );	
+			$this->form_fields = epl_listing_search_commercial_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );	
 		else
 			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 

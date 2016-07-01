@@ -176,8 +176,8 @@ function epl_search_widget_fields() {
  *
  * @since 2.0
  */
-function epl_commercial_search_widget_fields() {
-	$fields = apply_filters( 'epl_commercial_search_widget_fields',  array(
+function epl_listing_search_commercial_widget_fields() {
+	$fields = apply_filters( 'epl_listing_search_commercial_widget_fields',  array(
 
 		array(
 			'key'			=>	'title',
@@ -832,13 +832,13 @@ array_multisort($order, SORT_ASC, $fields);
  *
  * @since 2.2
  */
-function epl_commercial_search_widget_fields_frontend($post_type='commercial',$property_status='',$transaction_type='default') {
+function epl_listing_search_commercial_widget_fields_frontend($post_type='commercial',$property_status='',$transaction_type='default') {
 
 	$price_array = epl_get_price_array($post_type,$transaction_type);
 
 	$price_meta_key = epl_get_price_meta_key($post_type,$transaction_type);
 
-	$fields = apply_filters( 'epl_commercial_search_widget_fields_frontend',  array(
+	$fields = apply_filters( 'epl_listing_search_commercial_widget_fields_frontend',  array(
 
 		array(
 			'key'			=>	'post_type',
@@ -1146,10 +1146,10 @@ function epl_search_get_defaults() {
  *
  * @since 3.1
  */
-function epl_commercial_search_get_defaults() {
+function epl_listing_search_commercial_get_defaults() {
 
 	$defaults 	= array();
-	$fields 	= epl_commercial_search_widget_fields();
+	$fields 	= epl_listing_search_commercial_widget_fields();
 
 	foreach($fields as $field) {
 		$defaults[$field['key']] = $field['default'];
