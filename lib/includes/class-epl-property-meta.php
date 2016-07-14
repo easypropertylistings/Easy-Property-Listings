@@ -739,6 +739,9 @@ class EPL_Property_Meta {
 			if ( 'sold' == $this->get_property_meta('property_status') ){
 				$price_sticker .= '<span class="status-sticker sold">'.$this->label_sold.'</span>';
 			}
+			if ( 'leased' == $this->get_property_meta('property_status') ){
+				$price_sticker .= '<span class="status-sticker leased">'.$this->label_leased.'</span>';
+			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
 
 				$price_sticker .= '<span class="status-sticker under-offer">'.$this->label_under_offer.'</span>';
