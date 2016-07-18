@@ -30,7 +30,7 @@ function epl_button_external_link() {
 		$count = $key == 'property_external_link' ? '': substr($key, -1);
 
 		if( !empty($link) ) { ?>
-			<button type="button" class="epl-button epl-external-link" onclick="location.href='<?php echo $link; ?>'">
+			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo $link; ?>')">
 				<?php
 
 					if( has_filter('epl_button_label_'.$key) ) {

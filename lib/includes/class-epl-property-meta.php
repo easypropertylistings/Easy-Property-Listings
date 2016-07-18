@@ -273,7 +273,9 @@ class EPL_Property_Meta {
 	 * @return string Currency Formatted price
 	 */
 	public function get_property_com_rent(){
-		return epl_currency_formatted_amount( $this->get_property_meta('property_com_rent') );
+		$rent =  epl_currency_formatted_amount( $this->get_property_meta('property_com_rent') );
+
+		return apply_filters('epl_get_property_com_rent',$rent);
 	}
 
 	/**
@@ -1043,7 +1045,7 @@ class EPL_Property_Meta {
 			// translation for land area unit
 			$property_land_area_unit = __($property_land_area_unit , 'easy-property-listings' );
 		}
-		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
+		if(is_numeric($this->get_property_meta('property_land_area')) ) {
 			$label = apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
 			$return = '
 				<li class="land-size">'. $label.' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'</li>';

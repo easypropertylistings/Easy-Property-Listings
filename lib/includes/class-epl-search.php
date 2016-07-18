@@ -80,6 +80,8 @@ class EPL_SEARCH {
 
 		$this->prepare_query();
 
+		$this->epl_search_query_pre_search();
+
 		$this->query = apply_filters('epl_search_query_pre_search',$this->query,$this->get_data);
 
 		$this->set_query();
@@ -298,6 +300,34 @@ class EPL_SEARCH {
 
 	}
 
+	function epl_search_query_pre_search() {
+
+		foreach($this->meta_query as $index	=>	&$meta_query) {
+
+			if($meta_query['key'] == 'property_com_listing_type' ) {
+
+				$meta_query['compare'] 	= 'IN';
+
+				switch($meta_query['value']) {
+
+					case 'sale':
+						$meta_query['value']	= array('sale','both');
+					break;
+
+					case 'lease':
+						$meta_query['value']	= array('lease','both');
+					break;
+
+					default :
+						$meta_query['value']	= array('lease','both','sale');
+					break;
+
+				}
+
+			}
+		}
+	}
+
 	/**
 	 * Prepare meta query
 	 * @param  [type] $query_field [description]
@@ -447,7 +477,7 @@ class EPL_SEARCH {
 
 		if( trim($value) != '' )
 		$this->tax_query[] = array(
-			'taxonomy'	=>	$query_field['meta_key'],
+			'taxonomy'	=>	ltrim($query_field['meta_key'],'property_'),
 			'field'		=>	'id',
 			'terms'		=>	$value,
 		);

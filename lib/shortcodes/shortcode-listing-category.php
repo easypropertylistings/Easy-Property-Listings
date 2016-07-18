@@ -34,14 +34,15 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'commercial_listing_type'	=>	'',
 		'category_key'			=>	'',
 		'category_value'		=>	'',
-		'limit'				=>	'10', // Number of maximum posts to show
-		'template'			=>	false, // Template can be set to "slim" for home open style template
-		'location'			=>	'', // Location slug. Should be a name like sorrento
-		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
+		'category_compare'		=>	'IN',
+		'limit'					=>	'10', // Number of maximum posts to show
+		'template'				=>	false, // Template can be set to "slim" for home open style template
+		'location'				=>	'', // Location slug. Should be a name like sorrento
+		'tools_top'				=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
-		'sortby'			=>	'', // Options: price, date : Default date
+		'sortby'				=>	'', // Options: price, date : Default date
 		'sort_order'			=>	'DESC',
-		'pagination'   => 'on'
+		'pagination'   			=> 'on'
 	), $atts ) );
 
 	if(empty($post_type)) {
@@ -109,16 +110,19 @@ function epl_shortcode_listing_category_callback( $atts ) {
 	}
 
 	if(!empty($category_key) && !empty($category_value)) {
-		if(!is_array($category_value)) {
+
+		if(!is_array($category_value) && in_array($category_compare,array('IN','NOT IN','BETWEEN','NOT BETWEEN') ) ) {
 			$category_value = explode(",", $category_value);
 			$category_value = array_map('trim', $category_value);
 
-			$args['meta_query'][] = array(
-				'key' => $category_key,
-				'value' => $category_value,
-				'compare' => 'IN'
-			);
 		}
+
+		$args['meta_query'][] = array(
+			'key' 		=> $category_key,
+			'value' 	=> $category_value,
+			'compare' 	=> $category_compare
+		);
+
 	}
 
 	if( $sortby != '' ) {
@@ -137,7 +141,6 @@ function epl_shortcode_listing_category_callback( $atts ) {
 
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
 	$args = epl_add_orderby_args($args);
-
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>

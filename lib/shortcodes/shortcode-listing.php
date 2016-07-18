@@ -22,6 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since       1.0
  */
 function epl_shortcode_listing_callback( $atts ) {
+
+
 	$property_types = epl_get_active_post_types();
 	if ( ! empty($property_types ) ) {
 		$property_types = array_keys( $property_types );
@@ -62,6 +64,8 @@ function epl_shortcode_listing_callback( $atts ) {
 		'posts_per_page' =>	$attributes['limit'],
 		'paged'          =>	absint( $paged ),
 	);
+	$args['meta_query'] = epl_parse_atts($atts);
+
 	// Listings of specified author.
 	if ( ! empty( $attributes['author'] ) ) {
 		if ( is_array( $attributes['author'] ) ) {
@@ -116,7 +120,6 @@ function epl_shortcode_listing_callback( $atts ) {
 
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
 	$args = epl_add_orderby_args($args);
-
 	$query_open = new WP_Query( $args );
 
 	if ( is_object( $attributes['query_object'] ) ) {

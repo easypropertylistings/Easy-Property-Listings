@@ -822,6 +822,22 @@ li.tbhead.current {
 .epl-search-form .epl-search-submit-row {
 	margin-top: 0.5em;
 }
+.epl-search-radio-label {
+    display: inline-block;
+    min-height: 2.1em;
+    vertical-align: text-bottom;
+}
+.epl-search-row-radio input {
+    width: auto !important;
+}
+.epl-search-checkbox-label {
+    display: inline-block;
+    min-height: 2.1em;
+    vertical-align: text-bottom;
+}
+.epl-search-row-checkbox-multiple input {
+    width: auto !important;
+}
 /** EPL Search Wide **/
 .epl-search-wide .epl-search-row-full {
 	width: 99.5%;
