@@ -71,6 +71,12 @@ function epl_search_widget_fields() {
 			'type'			=>	'checkbox',
 		),
 		array(
+			'key'			=>	'search_address',
+			'label'			=>	__('Property Address','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
 			'key'			=>	'search_location',
 			'label'			=>	epl_tax_location_label(),
 			'default'		=>	'on',
@@ -226,6 +232,12 @@ function epl_listing_search_commercial_widget_fields() {
 		array(
 			'key'			=>	'search_id',
 			'label'			=>	__('Property ID','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_address',
+			'label'			=>	__('Property Address','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
@@ -406,10 +418,19 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 		array(
 			'key'			=>	'search_id',
 			'meta_key'		=>	'property_id',
-			'label'			=>	__('Search by Property ID / Address', 'easy-property-listings'),
+			'label'			=>	__('Search by Property ID', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
+			'order'			=>	30
+		),
+		array(
+			'key'			=>	'search_address',
+			'meta_key'		=>	'property_address',
+			'label'			=>	__('Search by Address', 'easy-property-listings'),
+			'type'			=>	'text',
+			'class'			=>	'epl-search-row-full',
+			'query'			=>	array('query'	=>	'post'),
 			'order'			=>	30
 		),
 		array(
@@ -860,10 +881,19 @@ function epl_listing_search_commercial_widget_fields_frontend($post_type='commer
 		array(
 			'key'			=>	'search_id',
 			'meta_key'		=>	'property_id',
-			'label'			=>	__('Search by Property ID / Address', 'easy-property-listings'),
+			'label'			=>	__('Search by Property ID', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
+			'order'			=>	30
+		),
+		array(
+			'key'			=>	'search_address',
+			'meta_key'		=>	'property_address',
+			'label'			=>	__('Search by Address', 'easy-property-listings'),
+			'type'			=>	'text',
+			'class'			=>	'epl-search-row-full',
+			'query'			=>	array('query'	=>	'post'),
 			'order'			=>	30
 		),
 		array(

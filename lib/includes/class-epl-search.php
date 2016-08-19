@@ -167,8 +167,8 @@ class EPL_SEARCH {
 	 */
 	protected function set_title() {
 
-		if(isset($this->get_data['property_id']) ) {
-			$this->query->set( 'epl_post_title', sanitize_text_field($this->get_data['property_id']) );
+		if(isset($this->get_data['property_address']) ) {
+			$this->query->set( 'epl_post_title', sanitize_text_field($this->get_data['property_address']) );
 		}
 
 	}

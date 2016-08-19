@@ -284,7 +284,7 @@ class EPL_Search_Fields {
 								type="radio"
 								<?php checked( $k, $value, true ) ?>
 								name="<?php echo $field['meta_key']; ?>"
-								id="<?php echo $field['meta_key']; ?>"
+								id="<?php echo $field['meta_key'].'_'.$k; ?>"
 								value="<?php echo esc_attr( $k ); ?>"
 								class="in-field field-width" />
 							<label class="epl-search-radio-label"><?php echo $v; ?></label> <?php
