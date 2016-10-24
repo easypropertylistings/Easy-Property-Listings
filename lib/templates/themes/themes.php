@@ -88,6 +88,8 @@ function epl_render_single_post() {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES;
 	} elseif ( epl_is_genesis_framework_theme() ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
+	}  elseif ( epl_is_divi_framework_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES. 'divi/';
 	} elseif ( epl_get_active_theme() == 'twentyfourteen' ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'twentyfourteen/';
 	} else {
@@ -110,6 +112,8 @@ function epl_render_archive_post() {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES;
 	} elseif ( epl_is_genesis_framework_theme() ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
+	} elseif ( epl_is_divi_framework_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES. 'divi/';
 	} elseif ( epl_get_active_theme() == 'twentyfourteen' ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'twentyfourteen/';
 	} else {

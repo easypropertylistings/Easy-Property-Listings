@@ -125,11 +125,11 @@ class EPL_Property_Meta {
 		if(isset($this->meta[$meta_key])) {
 			if(isset($this->meta[$meta_key][0])) {
 				if($allowzero === true){
-					return  $this->meta[$meta_key][0];
+					return  maybe_unserialize($this->meta[$meta_key][0]);
 				} elseif(intval($this->meta[$meta_key][0]) == 0) {
 					return;
 				} else {
-					return $this->meta[$meta_key][0];
+					return maybe_unserialize($this->meta[$meta_key][0]);
 				}
 			}
 		}
@@ -747,6 +747,9 @@ class EPL_Property_Meta {
 			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ){
 				$price_sticker .= '<span class="status-sticker sold">'.$this->label_sold.'</span>';
+			}
+			if ( 'leased' == $this->get_property_meta('property_status') ){
+				$price_sticker .= '<span class="status-sticker leased">'.$this->label_leased.'</span>';
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
 

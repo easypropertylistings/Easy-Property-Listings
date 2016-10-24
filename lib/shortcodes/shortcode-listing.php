@@ -40,6 +40,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'sortby'       => '', // Options: price, date : Default date
 		'sort_order'   => 'DESC',
 		'query_object' => '', // only for internal use . if provided use it instead of custom query
+		'pagination'   => 'on'			
 	), $atts );
 
 	if ( is_string( $attributes['post_type'] ) && $attributes['post_type'] == 'rental' ) {

@@ -13,14 +13,15 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Adds the Contextual Help for the List Listings page
+ * Adds the Contextual Help for the main Listings page
  *
  * @since 3.0
  * @return void
  */
-function epl_list_listings_contextual_help() {
+function epl_listings_contextual_help() {
     $screen = get_current_screen();
-    if (  !in_array( ltrim($screen->id,'edit-'), epl_get_core_post_types()))
+
+    if (  !in_array($screen->id, epl_get_core_post_types()))
         return;
 
     $screen->set_help_sidebar(
@@ -138,7 +139,7 @@ function epl_list_listings_contextual_help() {
      * @since 3.0
      * @param object $screen The current admin screen
      */
-    do_action( 'epl_list_listings_contextual_help', $screen );
+    do_action( 'epl_listings_contextual_help', $screen );
 }
 
-add_action( 'current_screen', 'epl_list_listings_contextual_help' );
+add_action( 'current_screen', 'epl_listings_contextual_help' );

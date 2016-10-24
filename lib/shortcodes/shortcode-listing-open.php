@@ -35,7 +35,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
 		'sortby'		=>	'', // Options: price, date : Default date
-		'sort_order'		=>	'DESC'
+		'sort_order'		=>	'DESC',
+		'pagination'   => 'on'
 
 	), $atts ) );
 
@@ -124,7 +125,10 @@ function epl_shortcode_property_open_callback( $atts ) {
 				?>
 			</div>
 			<div class="loop-footer">
-				<?php do_action('epl_pagination',array('query'	=>	$query_open)); ?>
+				<?php
+					if( $pagination == 'on') 
+					do_action('epl_pagination',array('query'	=>	$query_open)); 
+				?>
 			</div>
 		</div>
 		<?php

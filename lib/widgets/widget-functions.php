@@ -172,6 +172,158 @@ function epl_search_widget_fields() {
 }
 
 /**
+ * Search widget form fields for search widget
+ *
+ * @since 2.0
+ */
+function epl_commercial_search_widget_fields() {
+	$fields = apply_filters( 'epl_commercial_search_widget_fields',  array(
+
+		array(
+			'key'			=>	'title',
+			'label'			=>	__('Title','easy-property-listings'),
+			'type'			=>	'text',
+			'default'		=>	''
+		),
+		array(
+			'key'			=>	'post_type',
+			'label'			=>	__('Post Type','easy-property-listings'),
+			'default'		=>	array('commercial'),
+			'type'			=>	'select',
+			'multiple'		=>	true,
+			'options'		=>	epl_get_active_post_types(),
+		),
+		array(
+			'key'			=>	'style',
+			'label'			=>	__('Style','easy-property-listings'),
+			'default'		=>	'default',
+			'type'			=>	'select',
+			'options'		=>	array(
+				'default'	=>	__('Default' , 'easy-property-listings'),
+				'wide'		=>	__('Wide' , 'easy-property-listings'),
+				'slim'		=>	__('Slim' , 'easy-property-listings'),
+				'fixed'		=>	__('Fixed Width' , 'easy-property-listings'),
+			)
+		),
+		array(
+			'key'			=>	'show_property_status_frontend',
+			'label'			=>	__('Status Changed via Search Form','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'property_status',
+			'label'			=>	__('Status','easy-property-listings'),
+			'default'		=>	'',
+			'type'			=>	'select',
+			'options'		=>	array(
+				''		=>	__('Any' , 'easy-property-listings'),
+				'current'	=>	__('Current' , 'easy-property-listings'),
+				'sold'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'easy-property-listings') ),
+				'leased'	=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'easy-property-listings') )
+			),
+		),
+		array(
+			'key'			=>	'search_id',
+			'label'			=>	__('Property ID','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_location',
+			'label'			=>	epl_tax_location_label(),
+			'default'		=>	'on',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_city',
+			'label'			=>	epl_labels('label_city'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_state',
+			'label'			=>	epl_labels('label_state'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_postcode',
+			'label'			=>	epl_labels('label_postcode'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_country',
+			'label'			=>	__('Country','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_house_category',
+			'label'			=>	__('Category','easy-property-listings'),
+			'default'		=>	'on',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'house_category_multiple',
+			'label'			=>	__('Categories: Multi select','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_price',
+			'label'			=>	__('Price','easy-property-listings'),
+			'default'		=>	'on',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_land_area',
+			'label'			=>	__('Land Area','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_building_area',
+			'label'			=>	__('Building Area','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_com_authority',
+			'label'			=>	__('Property Authority','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_com_listing_type',
+			'label'			=>	__('Property Listing Type','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_com_rent_period',
+			'label'			=>	__('Lease Period','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_com_tenancy',
+			'label'			=>	__('Tenancy Status','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'submit_label',
+			'label'			=>	__('Submit Label','easy-property-listings'),
+			'type'			=>	'text',
+			'default'		=>	__('Search','easy-property-listings')
+		),
+	) );
+
+	return $fields;
+}
+/**
  * Number Suffix Callback
  *
  * @since 2.0
@@ -180,32 +332,57 @@ function epl_number_suffix_callback($v,$suffix=' +') {
 	return $v.''.$suffix;
 }
 
+function epl_get_price_array($post_type='property',$transaction='default') {
+
+
+	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
+	if( is_epl_rental_post($post_type) ) {
+
+		$price_array 	= array_combine(range(50,5000,50),array_map('epl_currency_formatted_amount',range(50,5000,50)) );
+		
+		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type
+		$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array,$post_type,$transaction);
+	} else {
+		$price_array 	= array_combine(range(50000,10000000,50000),array_map('epl_currency_formatted_amount',range(50000,10000000,50000)) );
+		$price_array 	= apply_filters('epl_listing_search_price_sale',$price_array,$post_type,$transaction);
+	}
+
+	return $price_array;
+
+
+}
+
+function epl_get_price_meta_key($post_type='property',$transaction='default') {
+
+	// move from specific to general
+	if(	$post_type == 'commercial') {
+
+		$price_meta_key = $transaction =='lease' ? 'property_com_rent' : 'property_price';
+	
+	} else if( is_epl_rental_post($post_type) ) {
+
+		$price_meta_key = 'property_rent';
+
+	} else {
+
+		$price_meta_key = 'property_price';
+	}
+
+	// use this filter to change property price meta key on the basis of post type & transaction
+	return apply_filters('epl_price_meta_key',$price_meta_key,$post_type,$transaction);
+
+}
+
 /**
  * search widget form fields for search widget - frontend
  *
  * @since 2.2
  */
-function epl_search_widget_fields_frontend($post_type='',$property_status='') {
+function epl_search_widget_fields_frontend($post_type='',$property_status='',$transaction_type='default') {
 
-	if( in_array($post_type,apply_filters('epl_core_rental_post_types', array('rental','holiday_rental') )) ) {
+	$price_array = epl_get_price_array($post_type,$transaction_type);
 
-		$price_array 	= array_combine(range(50,5000,50),array_map('epl_currency_formatted_amount',range(50,5000,50)) );
-		$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array);
-	} else {
-		$price_array 	= array_combine(range(50000,10000000,50000),array_map('epl_currency_formatted_amount',range(50000,10000000,50000)) );
-		$price_array 	= apply_filters('epl_listing_search_price_sale',$price_array);
-	}
-
-	if(
-		isset($post_type) &&
-		($post_type == 'rental'
-			|| $post_type == 'holiday_rental'
-		)
-	) {
-		$price_meta_key = 'property_rent';
-	} else {
-		$price_meta_key = 'property_price';
-	}
+	$price_meta_key = epl_get_price_meta_key($post_type,$transaction_type);
 
 	$fields = apply_filters( 'epl_search_widget_fields_frontend',  array(
 
@@ -651,6 +828,303 @@ array_multisort($order, SORT_ASC, $fields);
 }
 
 /**
+ * search widget form fields for commercial search widget - frontend
+ *
+ * @since 2.2
+ */
+function epl_commercial_search_widget_fields_frontend($post_type='commercial',$property_status='',$transaction_type='default') {
+
+	$price_array = epl_get_price_array($post_type,$transaction_type);
+
+	$price_meta_key = epl_get_price_meta_key($post_type,$transaction_type);
+
+	$fields = apply_filters( 'epl_commercial_search_widget_fields_frontend',  array(
+
+		array(
+			'key'			=>	'post_type',
+			'meta_key'		=>	'post_type',
+			'type'			=>	'hidden',
+			'order'			=>	10
+		),
+		array(
+			'key'			=>	'property_status',
+			'meta_key'		=>	'property_status',
+			'label'			=>	__('Property Status', 'easy-property-listings'),
+			'type'			=>	'hidden',
+			'query'			=>	array(
+									'query'   => 'meta',
+									'compare' => 'IN',
+								),
+			'order'			=>	20
+		),
+		array(
+			'key'			=>	'search_id',
+			'meta_key'		=>	'property_id',
+			'label'			=>	__('Search by Property ID / Address', 'easy-property-listings'),
+			'type'			=>	'text',
+			'class'			=>	'epl-search-row-full',
+			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
+			'order'			=>	30
+		),
+		array(
+			'key'			=>	'search_location',
+			'meta_key'		=>	'property_location',
+			'label'			=>	epl_tax_location_label(),
+			'type'			=>	'select',
+			'option_filter'		=>	'location',
+			'options'		=>	epl_get_available_locations($post_type,$property_status),
+			'query'			=>	array('query'	=>	'tax'),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	40
+		),
+		array(
+			'key'			=>	'search_city',
+			'meta_key'		=>	'property_address_city',
+			'label'			=>	epl_labels('label_city'),
+			'type'			=>	'select',
+			'option_filter'		=>	'city',
+			'options'		=>	epl_get_unique_post_meta_values('property_address_city', $post_type ),
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	50
+		),
+		array(
+			'key'			=>	'search_state',
+			'meta_key'		=>	'property_address_state',
+			'label'			=>	epl_labels('label_state'),
+			'type'			=>	'select',
+			'option_filter'		=>	'state',
+			'options'		=>	epl_get_unique_post_meta_values('property_address_state', $post_type ),
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	60
+		),
+		array(
+			'key'			=>	'search_postcode',
+			'meta_key'		=>	'property_address_postal_code',
+			'label'			=>	epl_labels('label_postcode'),
+			'type'			=>	'select',
+			'option_filter'		=>	'postcode',
+			'options'		=>	epl_get_unique_post_meta_values('property_address_postal_code', $post_type ),
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	70
+		),
+		array(
+			'key'			=>	'search_country',
+			'meta_key'		=>	'property_address_country',
+			'label'			=>	__( 'Country' , 'easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'country',
+			'options'		=>	epl_get_unique_post_meta_values('property_address_country', $post_type ),
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	80
+		),
+		array(
+			'key'			=>	'search_house_category',
+			'meta_key'		=>	'property_commercial_category',
+			'label'			=>	__('Commercial Category','easy-property-listings'),
+			'option_filter'		=>	'category',
+			'options'		=>	epl_get_meta_values( 'property_commercial_category', $post_type),
+			'type'			=>	'select',
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	120
+		),
+		array(
+			'key'			=>	'search_com_authority',
+			'meta_key'		=>	'property_com_authority',
+			'label'			=>	__('Authority','easy-property-listings'),
+			'option_filter'		=>	'property_com_authority',
+			'options'		=>	epl_get_meta_values( 'property_com_authority', $post_type),
+			'type'			=>	'select',
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	120
+		),
+		array(
+			'key'			=>	'search_com_listing_type',
+			'meta_key'		=>	'property_com_listing_type',
+			'label'			=>	__('Listing Type','easy-property-listings'),
+			'option_filter'		=>	'property_com_listing_type',
+			'options'		=>	epl_get_meta_values( 'property_com_listing_type', $post_type),
+			'type'			=>	'select',
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	120
+		),
+		array(
+			'key'			=>	'search_com_rent_period',
+			'meta_key'		=>	'property_com_rent_period',
+			'label'			=>	__('Lease Period','easy-property-listings'),
+			'option_filter'		=>	'property_com_rent_period',
+			'options'		=>	epl_get_meta_values( 'property_com_rent_period', $post_type),
+			'type'			=>	'select',
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	120
+		),
+		array(
+			'key'			=>	'search_com_tenancy',
+			'meta_key'		=>	'property_com_tenancy',
+			'label'			=>	__('Tenant Status','easy-property-listings'),
+			'option_filter'		=>	'property_com_tenancy',
+			'options'		=>	epl_get_meta_values( 'property_com_tenancy', $post_type),
+			'type'			=>	'select',
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	120
+		),
+		array(
+			'key'			=>	'search_price',
+			'meta_key'		=>	'property_price_from',
+			'label'			=>	__('Price From','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'price_from',
+			'options'		=>	$price_array,
+			'type'			=>	'select',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'key'		=>	$price_meta_key,
+								'type'		=>	'numeric',
+								'compare'	=>	'>='
+							),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	140
+		),
+		array(
+			'key'			=>	'search_price',
+			'meta_key'		=>	'property_price_to',
+			'label'			=>	__('Price To','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'price_to',
+			'options'		=>	$price_array,
+			'type'			=>	'select',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'key'		=>	$price_meta_key,
+								'type'		=>	'numeric',
+								'compare'	=>	'<='
+							),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	150
+		),
+		array(
+			'key'			=>	'search_land_area',
+			'meta_key'		=>	'property_land_area_min',
+			'label'			=>	__('Land Min','easy-property-listings'),
+			'type'			=>	has_filter('epl_property_land_area_min') ? apply_filters('epl_property_land_area_min','') : 'number',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'type'		=>	'numeric',
+								'compare'	=>	'>=',
+								'key'		=>	'property_land_area'
+							),
+			'class'			=>	'epl-search-row-third',
+			'wrap_start'		=>	'epl-search-row epl-search-land-area',
+			'order'			=>	210
+		),
+		array(
+			'key'			=>	'search_land_area',
+			'meta_key'		=>	'property_land_area_max',
+			'label'			=>	__('Land Max','easy-property-listings'),
+			'class'			=>	'epl-search-row-third',
+			'type'			=>	has_filter('epl_property_land_area_max') ? apply_filters('epl_property_land_area_max','') : 'number',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'type'		=>	'numeric',
+								'compare'	=>	'<=',
+								'key'		=>	'property_land_area'
+							),
+			'order'			=>	220
+		),
+		array(
+			'key'			=>	'search_land_area',
+			'meta_key'		=>	'property_land_area_unit',
+			'label'			=>	__('Area Unit', 'easy-property-listings'),
+			'class'			=>	'epl-search-row-third',
+			'type'			=>	'select',
+			'option_filter'		=>	'land_area_unit',
+			'options'		=>	apply_filters( 'epl_listing_search_land_unit_label',
+									array(
+										'square'	=>	__('Square', 'easy-property-listings'),
+										'squareMeter'	=>	__('Square Meter', 'easy-property-listings'),
+										'acre'		=>	__('Acre', 'easy-property-listings'),
+										'hectare'	=>	__('Hectare', 'easy-property-listings'),
+										'sqft'		=>	__('Square Feet', 'easy-property-listings'),
+									)
+								),
+			'query'			=>	array('query'	=>	'meta'),
+			'wrap_end'		=>	true,
+			'order'			=>	230
+
+		),
+		array(
+			'key'			=>	'search_building_area',
+			'meta_key'		=>	'property_building_area_min',
+			'label'			=>	__('Building Min','easy-property-listings'),
+			'class'			=>	'epl-search-row-third',
+			'type'			=>	has_filter('epl_property_building_area_min') ? apply_filters('epl_property_building_area_min','') : 'number',
+			'exclude'		=>	array('land'),
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'type'		=>	'numeric',
+								'compare'	=>	'>=',
+								'key'		=>	'property_building_area'
+							),
+			'wrap_start'		=>	'epl-search-row epl-search-building-area',
+			'order'			=>	240
+		),
+		array(
+			'key'			=>	'search_building_area',
+			'meta_key'		=>	'property_building_area_max',
+			'label'			=>	__('Building Max','easy-property-listings'),
+			'class'			=>	'epl-search-row-third',
+			'type'			=>	has_filter('epl_property_building_area_max') ? apply_filters('epl_property_building_area_max','') : 'number',
+			'exclude'		=>	array('land'),
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'type'		=>	'numeric',
+								'compare'	=>	'<=',
+								'key'		=>	'property_building_area'
+							),
+			'order'			=>	250
+		),
+		array(
+			'key'			=>	'search_building_area',
+			'meta_key'		=>	'property_building_area_unit',
+			'label'			=>	__('Area Unit', 'easy-property-listings'),
+			'class'			=>	'epl-search-row-third',
+			'type'			=>	'select',
+			'option_filter'		=>	'building_area_unit',
+			'options'		=>	apply_filters( 'epl_listing_search_building_unit_label',
+								array(
+									'square'	=>	__('Square', 'easy-property-listings'),
+									'squareMeter'	=>	__('Square Meter', 'easy-property-listings'),
+									'acre'		=>	__('Acre', 'easy-property-listings'),
+									'hectare'	=>	__('Hectare', 'easy-property-listings'),
+									'sqft'		=>	__('Square Feet', 'easy-property-listings'),
+								)
+							),
+			'exclude'		=>	array('land'),
+			'query'			=>	array('query'	=>	'meta'),
+			'wrap_end'		=>	true,
+			'order'			=>	260
+		),
+
+	), $post_type, $property_status );
+$order = array();
+foreach($fields as $field_key   =>  $field_value) {
+    $fields[$field_value['meta_key']] = $field_value;
+    unset($fields[$field_key]);
+    $order[] = isset($field_value['order']) ? $field_value['order'] : 20;
+}
+array_multisort($order, SORT_ASC, $fields);
+	return $fields;
+}
+
+/**
  * Search widget form fields defaults
  *
  * @since 2.2
@@ -659,6 +1133,23 @@ function epl_search_get_defaults() {
 
 	$defaults 	= array();
 	$fields 	= epl_search_widget_fields();
+
+	foreach($fields as $field) {
+		$defaults[$field['key']] = $field['default'];
+	}
+	return $defaults;
+
+}
+
+/**
+ * Search widget form fields defaults
+ *
+ * @since 3.1
+ */
+function epl_commercial_search_get_defaults() {
+
+	$defaults 	= array();
+	$fields 	= epl_commercial_search_widget_fields();
 
 	foreach($fields as $field) {
 		$defaults[$field['key']] = $field['default'];
@@ -798,114 +1289,17 @@ function epl_widget_render_frontend_fields($field,$config='',$value='',$post_typ
  * @return void
  */
 function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
+
 	if ( empty( $data ) ) {
 		$data = $_REQUEST;
 	}
 
-	$paged = $query->get( 'paged', 1 );
-
-	$query->init();
-	$query->set( 'posts_per_page', get_option( 'posts_per_page' ) );
-	$query->set( 'paged', $paged );
-
-	if(isset($data['property_id']) ) {
-		$query->set( 'epl_post_title', sanitize_text_field($data['property_id']) );
-	}
-
-	if ( isset( $data['property_agent'] ) ) {
-		$property_agent = sanitize_title_with_dashes( $data['property_agent'] );
-		if ( $property_agent = get_user_by( 'slug', $property_agent ) ) {
-            $query->set( 'author__in' , array( $property_agent->ID) );
-		}
-	}
-
-	if ( isset( $data['post_type'] ) && ! empty( $data['post_type'] ) ) {
-		$query->set( 'post_type', $data['post_type'] );
-	} else {
-		$epl_post_types = epl_get_active_post_types();
-		if ( ! empty( $epl_post_types ) ) {
-			$epl_post_types = array_keys( $epl_post_types );
-			$query->set( 'post_type', $epl_post_types );
-		}
-	}
-
-	$epl_meta_query = array();
-
-	$epl_search_form_fields = epl_search_widget_fields_frontend( $data['post_type'], $data['property_status'] );
-
-	foreach ( $epl_search_form_fields as $epl_search_form_field ) {
-		if ( isset( $epl_search_form_field['query'] ) ) {
-			if ( $epl_search_form_field['query']['query'] == 'meta' ) {
-				$this_meta_query = array();
-				if ( isset( $epl_search_form_field['query']['multiple'] ) && $epl_search_form_field['query']['multiple'] == true ) {
-
-					if ( isset( $data[ $epl_search_form_field['meta_key'] ] ) && ! empty( $data[ $epl_search_form_field['meta_key'] ] ) ) {
-
-						$this_meta_query['relation'] =
-							isset( $epl_search_form_field['query']['relation'] ) ?
-								$epl_search_form_field['query']['relation'] : 'OR';
-
-						foreach ( $epl_search_form_field['query']['sub_queries'] as $sub_query ) {
-
-							$this_sub_query = array(
-								'key'		=>	$sub_query['key'],
-								'value'		=>	$data[ $epl_search_form_field['meta_key'] ],
-								'type'		=>	$sub_query['type'],
-								'compare'	=>	$sub_query['compare'],
-							);
-							$this_meta_query[] = $this_sub_query;
-						}
-						$epl_meta_query[] = $this_meta_query;
-					}
-				} else {
-					$query_meta_key = isset( $epl_search_form_field['query']['key'] ) ?
-						$epl_search_form_field['query']['key'] :
-						$epl_search_form_field['meta_key'];
-
-					if ( $query_meta_key == 'property_unique_id' ) {
-						continue;
-					}
-
-					if ( isset( $data[ $epl_search_form_field['meta_key'] ] ) && ! empty( $data[ $epl_search_form_field['meta_key'] ] ) ) {
-
-						$this_meta_query = array(
-							'key'	=>	$query_meta_key,
-							'value'	=>	$data[ $epl_search_form_field['meta_key'] ],
-						);
-
-						isset( $epl_search_form_field['query']['compare'] ) ? $this_meta_query['compare'] = $epl_search_form_field['query']['compare'] : '';
-						isset( $epl_search_form_field['query']['type'] ) ? $this_meta_query['type'] = $epl_search_form_field['query']['type'] : '';
-						isset( $epl_search_form_field['query']['value'] ) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
-						$epl_meta_query[] = $this_meta_query;
-					}
-				}
-			}
-		}
-	}
-
-	$epl_meta_query = epl_preprocess_search_meta_query( $epl_meta_query, $epl_search_form_fields );
-
-	if ( ! empty( $epl_meta_query ) ) {
-		$query->set( 'meta_query', $epl_meta_query );
-	}
-
-	$tax_query = array();
-	if ( isset( $data['property_location'] ) && ! empty( $data['property_location'] ) ) {
-		$tax_query[] = array(
-			'taxonomy'	=>	'location',
-			'field'		=>	'id',
-			'terms'		=>	$data['property_location'],
-		);
-	}
-
-	if ( ! empty( $tax_query ) ) {
-		$query->set( 'tax_query', $tax_query );
-	}
-	$query->parse_query();
+	$epl_search = new EPL_SEARCH($query,$data);
 
 	if ( $get_posts ) {
-		return $query->get_posts();
+		return $epl_search->get_posts();
 	}
+
 }
 
 /**
@@ -964,6 +1358,18 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 			}
 
 		}
+		foreach($return as $key =>	&$elem) {
+			$elem 	= maybe_unserialize($elem);
+			if(!empty($elem) && is_array($elem) ) {
+				foreach($elem as $el) {
+					$return[] 	= $el;
+				}
+				unset($return[$key]);
+			}
+			
+		}
+		$return = array_filter($return);
+		
 		if(isset( $defaults ) )
 			return $return;
 		else
