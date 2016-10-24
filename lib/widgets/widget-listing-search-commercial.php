@@ -1,6 +1,6 @@
 <?php
 /**
- * WIDGET :: Property Search
+ * WIDGET :: Listing Search Commercial
  *
  * @package     EPL
  * @subpackage  Widget/Search
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Commercial_Property_Search extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, $name = __('EPL - Commercial Listing Search', 'easy-property-listings'), array( 'description' => __( 'Commercial Search listings.', 'easy-property-listings' ) ) );
+		parent::__construct( false, $name = __('EPL - Listing Search Commercial', 'easy-property-listings'), array( 'description' => __( 'Search Commercial listings.', 'easy-property-listings' ) ) );
 	}
 
 	function widget($args, $instance) {
@@ -38,7 +38,7 @@ class EPL_Widget_Commercial_Property_Search extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		echo epl_shortcode_commercial_listing_search_callback($instance);
+		echo epl_shortcode_listing_search_commercial_callback($instance);
 
 		echo $after_widget;
 	}
