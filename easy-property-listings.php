@@ -228,7 +228,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
-			require_once EPL_PATH_LIB . 'widgets/widget-commercial-listing-search.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-listing-search-commercial.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-contact-capture.php';
 
 			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
@@ -266,7 +266,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-commercial-listing-search.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search-commercial.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-contact-form.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
