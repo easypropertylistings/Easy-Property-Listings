@@ -1238,7 +1238,7 @@ add_action('epl_contact_add_listing_form','epl_contact_add_listing_form');
  */
 function epl_before_meta_field_property_owner($post,$value) {
 
-	if(intval($value) == 0 || )
+	if(intval($value) == 0 )
 		return;
 
 	$url = admin_url('admin.php?page=epl-contacts&view=overview&id='.$value);
