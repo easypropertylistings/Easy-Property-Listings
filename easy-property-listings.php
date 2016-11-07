@@ -290,7 +290,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 */
 		public function load_textdomain() {
 			// Set filter for plugin's languages directory
-			$epl_lang_dir = 'languages/';
+			$epl_lang_dir = EPL_PLUGIN_PATH . 'languages/';
 			$epl_lang_dir = apply_filters( 'epl_languages_directory', $epl_lang_dir );
 
 			// Traditional WordPress plugin locale filter
