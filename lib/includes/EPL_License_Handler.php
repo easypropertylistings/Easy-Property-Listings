@@ -173,7 +173,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 */
 		public function activate_license() {
 
-			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_license' )
+			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
 				return;
 
 			if ( ! isset( $_POST['epl_license'] ) )

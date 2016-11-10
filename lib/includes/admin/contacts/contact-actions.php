@@ -1345,7 +1345,7 @@ function epl_search_user() {
 		ob_start();
 		echo '<ul class="epl-contact-user-suggestion">';
 		foreach( $users as  $user) {
-			echo '<li data-id="'.$user->ID.'">'.$user->data->display_name.'</li>';
+			echo '<li data-uname="'.$user->data->user_login.'" data-id="'.$user->ID.'">'.$user->data->display_name.'</li>';
 		}
 		echo '</ul>';
 		echo ob_get_clean();
