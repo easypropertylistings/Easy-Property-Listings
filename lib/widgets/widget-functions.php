@@ -291,13 +291,13 @@ function epl_commercial_search_widget_fields() {
 		),
 		array(
 			'key'			=>	'search_com_authority',
-			'label'			=>	__('Property Authority','easy-property-listings'),
+			'label'			=>	__('Commercial Authority','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
 		array(
 			'key'			=>	'search_com_listing_type',
-			'label'			=>	__('Property Listing Type','easy-property-listings'),
+			'label'			=>	__('Commercial Listing Type','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
@@ -339,7 +339,7 @@ function epl_get_price_array($post_type='property',$transaction='default') {
 	if( is_epl_rental_post($post_type) ) {
 
 		$price_array 	= array_combine(range(50,5000,50),array_map('epl_currency_formatted_amount',range(50,5000,50)) );
-		
+
 		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type
 		$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array,$post_type,$transaction);
 	} else {
@@ -358,7 +358,7 @@ function epl_get_price_meta_key($post_type='property',$transaction='default') {
 	if(	$post_type == 'commercial') {
 
 		$price_meta_key = $transaction =='lease' ? 'property_com_rent' : 'property_price';
-	
+
 	} else if( is_epl_rental_post($post_type) ) {
 
 		$price_meta_key = 'property_rent';
@@ -817,14 +817,15 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'order'			=>	290
 		)
 	), $post_type, $property_status );
-$order = array();
-foreach($fields as $field_key   =>  $field_value) {
-    $fields[$field_value['meta_key']] = $field_value;
-    unset($fields[$field_key]);
-    $order[] = isset($field_value['order']) ? $field_value['order'] : 20;
-}
-array_multisort($order, SORT_ASC, $fields);
-	return $fields;
+
+	$order = array();
+	foreach($fields as $field_key   =>  $field_value) {
+	    $fields[$field_value['meta_key']] = $field_value;
+	    unset($fields[$field_key]);
+	    $order[] = isset($field_value['order']) ? $field_value['order'] : 20;
+	}
+	array_multisort($order, SORT_ASC, $fields);
+		return $fields;
 }
 
 /**
@@ -1114,14 +1115,15 @@ function epl_commercial_search_widget_fields_frontend($post_type='commercial',$p
 		),
 
 	), $post_type, $property_status );
-$order = array();
-foreach($fields as $field_key   =>  $field_value) {
-    $fields[$field_value['meta_key']] = $field_value;
-    unset($fields[$field_key]);
-    $order[] = isset($field_value['order']) ? $field_value['order'] : 20;
-}
-array_multisort($order, SORT_ASC, $fields);
-	return $fields;
+
+	$order = array();
+	foreach($fields as $field_key   =>  $field_value) {
+	    $fields[$field_value['meta_key']] = $field_value;
+	    unset($fields[$field_key]);
+	    $order[] = isset($field_value['order']) ? $field_value['order'] : 20;
+	}
+	array_multisort($order, SORT_ASC, $fields);
+		return $fields;
 }
 
 /**
@@ -1366,10 +1368,10 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 				}
 				unset($return[$key]);
 			}
-			
+
 		}
 		$return = array_filter($return);
-		
+
 		if(isset( $defaults ) )
 			return $return;
 		else
