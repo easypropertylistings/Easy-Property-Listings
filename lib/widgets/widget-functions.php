@@ -977,7 +977,7 @@ function epl_listing_search_commercial_widget_fields_frontend($post_type='commer
 		array(
 			'key'			=>	'search_com_listing_type',
 			'meta_key'		=>	'property_com_listing_type',
-			'label'			=>	__('Listing Type','easy-property-listings'),
+			'label'			=>	__('Commercial Type','easy-property-listings'),
 			'option_filter'		=>	'property_com_listing_type',
 			'options'		=>	epl_get_meta_values( 'property_com_listing_type', $post_type),
 			'type'			=>	'select',
@@ -988,7 +988,7 @@ function epl_listing_search_commercial_widget_fields_frontend($post_type='commer
 		array(
 			'key'			=>	'search_com_rent_period',
 			'meta_key'		=>	'property_com_rent_period',
-			'label'			=>	__('Lease Period','easy-property-listings'),
+			'label'			=>	__('Commercial Period','easy-property-listings'),
 			'option_filter'		=>	'property_com_rent_period',
 			'options'		=>	epl_get_meta_values( 'property_com_rent_period', $post_type),
 			'type'			=>	'select',
@@ -999,7 +999,7 @@ function epl_listing_search_commercial_widget_fields_frontend($post_type='commer
 		array(
 			'key'			=>	'search_com_tenancy',
 			'meta_key'		=>	'property_com_tenancy',
-			'label'			=>	__('Tenant Status','easy-property-listings'),
+			'label'			=>	__('Commercial Tenant Status','easy-property-listings'),
 			'option_filter'		=>	'property_com_tenancy',
 			'options'		=>	epl_get_meta_values( 'property_com_tenancy', $post_type),
 			'type'			=>	'select',
