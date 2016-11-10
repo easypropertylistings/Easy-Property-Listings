@@ -80,6 +80,8 @@ class EPL_SEARCH {
 
 		$this->prepare_query();
 
+		$this->epl_search_query_pre_search();
+
 		$this->query = apply_filters('epl_search_query_pre_search',$this->query,$this->get_data);
 
 		$this->set_query();
@@ -165,8 +167,8 @@ class EPL_SEARCH {
 	 */
 	protected function set_title() {
 
-		if(isset($this->get_data['property_id']) ) {
-			$this->query->set( 'epl_post_title', sanitize_text_field($this->get_data['property_id']) );
+		if(isset($this->get_data['property_address']) ) {
+			$this->query->set( 'epl_post_title', sanitize_text_field($this->get_data['property_address']) );
 		}
 
 	}
@@ -258,7 +260,7 @@ class EPL_SEARCH {
 	protected function prepare_query() {
 
 		if($this->get_data['post_type'] == 'commercial')
-			$this->form_fields = epl_commercial_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );	
+			$this->form_fields = epl_listing_search_commercial_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );	
 		else
 			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 
@@ -296,6 +298,34 @@ class EPL_SEARCH {
 			}
 		}
 
+	}
+
+	function epl_search_query_pre_search() {
+
+		foreach($this->meta_query as $index	=>	&$meta_query) {
+
+			if($meta_query['key'] == 'property_com_listing_type' ) {
+
+				$meta_query['compare'] 	= 'IN';
+
+				switch($meta_query['value']) {
+
+					case 'sale':
+						$meta_query['value']	= array('sale','both');
+					break;
+
+					case 'lease':
+						$meta_query['value']	= array('lease','both');
+					break;
+
+					default :
+						$meta_query['value']	= array('lease','both','sale');
+					break;
+
+				}
+
+			}
+		}
 	}
 
 	/**
@@ -447,7 +477,7 @@ class EPL_SEARCH {
 
 		if( trim($value) != '' )
 		$this->tax_query[] = array(
-			'taxonomy'	=>	$query_field['meta_key'],
+			'taxonomy'	=>	ltrim($query_field['meta_key'],'property_'),
 			'field'		=>	'id',
 			'terms'		=>	$value,
 		);

@@ -557,9 +557,19 @@ function epl_listing_load_meta_commercial_category() {
  */
 function epl_listing_load_meta_commercial_category_value( $key ) {
 	$array = epl_listing_load_meta_commercial_category();
-	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
 
-	return $value;
+	if( is_array($key) ) {
+		$values = array();
+		foreach($key as $k) {
+			$values[] = array_key_exists( $k , $array ) && !empty( $array[$k] )  ? $array[$k] : ucfirst($k);
+		}
+		$value = implode(', ',$values);
+	} else {
+		$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : ucfirst($key);
+	}
+	
+
+	return apply_filters('epl_meta_commercial_category_value',$value,$key,$array);
 }
 
 /**
@@ -841,8 +851,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				foreach($field['opts'] as $k=>$v) {
 					$checked = '';
 					if(!empty($val)) {
+
+						$val = (array) $val;
 						if( in_array($k, $val) ) {
-							$val = (array) $val;
 							$checked = 'checked="checked"';
 						}
 					}
@@ -1985,4 +1996,57 @@ function get_category_label($category) {
 		}
 	}
 	return $category;
+}
+
+function epl_starts_with($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+}
+
+function epl_ends_with($haystack, $needle) {
+    // search forward starting from end minus needle length characters
+    return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+}
+
+/**
+ * Parse EPL shortcodes for meta queries
+ * @param  [type] $atts [description]
+ * @return [type]       [description]
+ */
+function epl_parse_atts($atts) {
+
+	$query = array();
+
+	if( empty($atts) )
+		return $atts; 
+
+	foreach($atts as $key 	=>	&$value) {
+
+		$this_query = array(
+			'compare'	=>	'=',
+			'value'		=>	$value
+		);
+
+		// check for meta
+		if( epl_starts_with($key,'epl_meta_') ) {
+			$key = preg_replace('/^epl_meta_/', '', $key);
+
+			if( epl_ends_with($key,'_min') || epl_ends_with($key,'_max') ) {
+
+				if(epl_ends_with($key,'_min')) {
+					$key = preg_replace('/_min$/', '', $key);
+					$this_query['compare'] = '>=';
+				} else {
+					$key = preg_replace('/_max$/', '', $key);
+					$this_query['compare'] = '<=';
+				}
+			}
+
+			$this_query['key'] = $key;
+			$query['meta_query'][] = $this_query;
+		}
+
+	}
+	return $query['meta_query'];
+
 }

@@ -43,7 +43,7 @@ function epl_button_mini_web() {
 				if($k > 0) {
 					$number_string = ' ' . $k + 1;
 				}
-				?><button type="button" class="epl-button epl-mini-web-link" onclick="location.href='<?php echo $link; ?>'"><?php echo apply_filters( 'epl_button_label_mini_web' , __('Mini Web ', 'easy-property-listings') ) . $number_string; ?></button><?php
+				?><button type="button" class="epl-button epl-mini-web-link" onclick="window.open('<?php echo $link; ?>')"><?php echo apply_filters( 'epl_button_label_mini_web' , __('Mini Web ', 'easy-property-listings') ) . $number_string; ?></button><?php
 			}
 		}
 	}
