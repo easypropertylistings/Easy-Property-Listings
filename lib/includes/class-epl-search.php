@@ -4,7 +4,7 @@ class EPL_SEARCH {
 
 	/**
 	 * WP_QUERY Object
-	 * 
+	 *
 	 */
 	private $query;
 
@@ -104,7 +104,7 @@ class EPL_SEARCH {
 
 	/**
 	 * Sanitize whole GET & POST array, insures security from XSS
-	 * 
+	 *
 	 */
 	protected function sanitize_data () {
 		$this->get_data   	= filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
@@ -126,7 +126,7 @@ class EPL_SEARCH {
 	 * @return 3.2
 	 */
 	protected function skip_unnecessary_fields() {
-		
+
 		$this->fields_to_skip();
 
 		if( !empty($this->skip_fields) ) {
@@ -211,7 +211,7 @@ class EPL_SEARCH {
 	protected function modify_fields() {
 
 		// if  post type is commercial and listing type is set, accordingly change the price meta key
-		if( $this->post_type == 'commercial' && isset( $this->get_data['property_com_listing_type'] ) ) {
+		if( $this->post_type == 'commercial' ||  $this->post_type == 'commercial_land' && isset( $this->get_data['property_com_listing_type'] ) ) {
 
 			$type = $this->get_data['property_com_listing_type'];
 			$this->transaction_type = $type == 'lease' ? 'lease' : 'sale';
@@ -259,8 +259,8 @@ class EPL_SEARCH {
 	 */
 	protected function prepare_query() {
 
-		if($this->get_data['post_type'] == 'commercial')
-			$this->form_fields = epl_listing_search_commercial_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );	
+		if($this->get_data['post_type'] == 'commercial' || $this->get_data['post_type'] == 'commercial_land' )
+			$this->form_fields = epl_listing_search_commercial_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 		else
 			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 
@@ -292,7 +292,7 @@ class EPL_SEARCH {
 					case 'special' :
 
 						$this->prepare_special_query($this->form_fields[$key],$data);
-					
+
 					break;
 				}
 			}
@@ -354,7 +354,7 @@ class EPL_SEARCH {
 	protected function is_query_multiple($query_field) {
 
 		if(
-			isset( $query_field['query']['multiple'] ) && 
+			isset( $query_field['query']['multiple'] ) &&
 			$query_field['query']['multiple'] == true
 		)
 		return true;
@@ -427,13 +427,13 @@ class EPL_SEARCH {
 				'value'	=>	$data,
 			);
 
-			isset( $query_field['query']['compare'] ) ? 
+			isset( $query_field['query']['compare'] ) ?
 				$this_meta_query['compare'] = $query_field['query']['compare'] : '';
-			
-			isset( $query_field['query']['type'] ) ? 
+
+			isset( $query_field['query']['type'] ) ?
 				$this_meta_query['type'] = $query_field['query']['type'] : '';
-			
-			isset( $query_field['query']['value'] ) ? 
+
+			isset( $query_field['query']['value'] ) ?
 				$this_meta_query['value'] = $query_field['query']['value'] : '';
 
 			$this->meta_query[] = $this_meta_query;

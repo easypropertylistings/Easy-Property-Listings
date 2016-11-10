@@ -277,7 +277,7 @@ h3.property-address {
 }
 
 .widget_epl_contact_capture .widget-title {
- 
+
 }
 .epl-contact-capture-form-desc {
     margin-bottom: 10px;
@@ -576,6 +576,7 @@ li.tbhead.current {
 .property-box img {
 	max-width: 100%;
 	height: auto;
+	display: block;
 }
 .property-box-left {
 	width:50%;
@@ -1361,6 +1362,7 @@ li.tbhead.current {
 .epl-table .epl-table-column-image img {
 	max-width: 100%;
 	padding-right: 1em;
+	display: block;
 }
 .epl-table .epl-table-column-content {
 	width:88%;
