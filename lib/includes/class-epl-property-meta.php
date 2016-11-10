@@ -420,7 +420,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 */
 	public function get_property_land_category() {
-		if ( 'land' != $this->post_type || 'commercial_land' != $this->post_type )
+		if ( !in_array( $this->post_type, array('land','commercial_land') ) )
 			return;
 
 		if ( $this->get_property_meta('property_land_category') !='' ) {
