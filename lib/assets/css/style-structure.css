@@ -66,7 +66,7 @@
 /* Property Card and Blog*/
 .epl-property-blog .property-box {
 	box-sizing:border-box;
-	-moz-box-sizing:border-box; /* Firefox */
+	-moz-box-sizing:border-box;
 	float:left;
 }
 .epl-property-blog .property-box img {
@@ -85,7 +85,7 @@
 /* Property Card and Blog*/
 .epl-property-blog.epl-listing-grid-view .property-box {
 	box-sizing:border-box;
-	-moz-box-sizing:border-box; /* Firefox */
+	-moz-box-sizing:border-box;
 	float:left;
 }
 .epl-property-blog.epl-listing-grid-view .property-box img {
@@ -136,6 +136,9 @@
 }
 .epl-property-blog-slim.property-box-right {
 	width: 75%;
+}
+.epl-property-blog-slim.epl-listing-grid-view .property-box img {
+	margin: 0 auto;
 }
 
 /** Card **/
@@ -947,6 +950,10 @@ li.tbhead.current {
 }
 .skype-icon-24 {
 	background: url(../images/social-icons-sprites.png) 0 -120px no-repeat;
+}
+
+.widget_epl_author .entry-content h5.epl-author-title {
+	margin: 0.5em 0;
 }
 /**************************************
 	Search Popdown

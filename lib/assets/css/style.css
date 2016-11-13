@@ -175,21 +175,6 @@
 	padding: 0.5em 1em;
 	/* margin: -1em; */
 }
-/* Card Top */
-.epl-property-blog.card-top {
-	background: #e9e9e9;
-	padding: 0.5em;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-}
-.epl-property-blog.card-top .page-price.sold-status,
-.epl-property-blog.card-top .page-price.under-offer-status{
-	display: block;
-}
-.epl-property-blog.card-top .alignleft,
-.epl-property-blog.card-top .alignright {
-	margin: 0 !important;
-}
 #tabs {
 	overflow:hidden;
 	margin-top: 1em;
@@ -240,17 +225,6 @@
 .epl-listing-grid-view.epl-property-blog.masonry-brick {
 	min-height: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
 .epl-alternate, .epl-striped > tbody > *:nth-child(2n+1),
 ul.epl-striped > *:nth-child(2n+1) {
     background-color: #f9f9f9;
