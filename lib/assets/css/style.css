@@ -623,7 +623,7 @@
 
 
 .epl-archive-utility-wrapper {
-	margin-bottom: 0.5em;
+	margin: 0.5em 0;
 }
 .epl-property-blog {
 	font-size: 0.8em;
@@ -653,8 +653,8 @@
 	margin: 0.5em 0;
 }
 .epl-property-blog .entry-title {
-	font-size: 1.4em;
-	line-height: 1.2;
+	font-size: 1.3em;
+	line-height: 1.1;
 	max-height: 42px;
 	overflow: hidden;
 }
