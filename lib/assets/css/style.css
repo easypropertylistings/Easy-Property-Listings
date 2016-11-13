@@ -689,6 +689,9 @@
 	padding: 0;
 	margin: 0;
 }
+.builder-module-content .epl-property-blog.hentry {
+	border-bottom: none;
+}
 .epl-property-blog .entry-title,
 .epl-property-blog .entry-content  {
 	margin: 0.5em 0;
