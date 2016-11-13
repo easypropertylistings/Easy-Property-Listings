@@ -372,43 +372,7 @@
 		.skype-icon-24 {
 			background: url(../images/social-icons-sprites.png) 0 -120px no-repeat;
 		}
-		/* Property Card and Blog*/
-		.property-box {
-			box-sizing:border-box;
-			-moz-box-sizing:border-box; /* Firefox */
-			float:left;
-		}
-		.property-box img {
-			max-width: 100%;
-			height: auto;
-			display: block;
-		}
-		.property-box-left {
-			width:50%;
-			padding-right: 1em;
-		}
-		.property-box-right {
-			width:50%;
-		}
-		/* Width Ready Classes */
-		.property-box-left.epl-one-third {
-			width:33%;
-		}
-		.property-box-right.epl-two-third {
-			width:66%;
-		}
-		.property-box-left.epl-one-quarter {
-			width:25%;
-		}
-		.property-box-right.epl-three-quarter {
-			width:75%;
-		}
-		.property-box-right-slim {
-			width:50%;
-		}
-		.address-price {
-			overflow: hidden;
-		}
+
 
 
 		/* Inspection Times */
@@ -515,34 +479,8 @@
 		.epl-blog-image {
 			position: relative;
 		}
-		.epl-stickers-wrapper {
-		    left: 0;
-		    position: absolute;
-		    top: 20px;
-		    width: 100%;
-		    z-index:9;
-		}
-		.epl-property-single .status-sticker,
-		.epl-property-blog .status-sticker {
-			font-size: 12px;
-			background: #F00;
-			padding: 0 0.4em;
-			margin-right:0.4em;
-			text-transform: uppercase;
-			color: #fff;
-		}
-		.epl-property-single .status-sticker.under-offer,
-		.epl-property-blog .status-sticker.under-offer {
-			background: #FFA500;
-		}
-		.epl-property-single .status-sticker.open,
-		.epl-property-blog .status-sticker.open {
-			background: #7FAF1B;
-		}
-		.epl-property-single .status-sticker.new,
-		.epl-property-blog .status-sticker.new {
-			background: #800080;
-		}
+
+
 		/* Property Card Slim */
 		.epl-property-blog-slim .property-box-left-slim {
 			margin-right: 1em;
@@ -580,38 +518,7 @@
 			list-style-position: inside;
 		}
 
-		/*****************************
-			EPL Ready Icons
-		******************************/
-		.property-type {
-			margin-right: 1em;
-		}
-		.property-feature-icons {
-		}
-		.property-feature-icons .icon {
-			padding: 0px 10px 4px 25px;
-			width: 20px;
-			height: 20px;
-			overflow: hidden;
-		}
-		.icon.beds {
-			background: transparent url(../images/icon-sprites.png) 0 -120px no-repeat;
-		}
-		.icon.bath {
-			background: transparent url(../images/icon-sprites.png) 0 -400px no-repeat;
-		}
-		.icon.parking {
-			background: transparent url(../images/icon-sprites.png) 0 -280px no-repeat;
-		}
-		.icon.air {
-			background: transparent url(../images/icon-sprites.png) 0 -200px no-repeat;
-		}
-		.icon.pool {
-			background: transparent url(../images/icon-sprites.png) 0 -160px no-repeat;
-		}
-		.icon.open {
-			background: transparent url(../images/icon-sprites.png) 0 -200px no-repeat;
-		}
+
 		/* Author Directory Page */
 
 		.epl-sd-location-profile .epl-location-profile-card.hentry {
@@ -643,19 +550,6 @@
 			display: none;
 		}
 
-
-		.epl-property-blog {
-			-webkit-transition: all 0.2s ease-in-out;
-			-moz-transition: all 0.2s ease-in-out;
-			-o-transition: all 0.2s ease-in-out;
-			transition: all 0.2s ease-in-out;
-		}
-		.epl-listing-grid-view.epl-property-blog div {
-			clear: both;
-			display: block;
-			padding: 0;
-			width: 100%;
-		}
 		.epl-listing-grid-view.epl-property-blog.masonry-brick {
 			min-height: 0;
 		}
@@ -759,3 +653,99 @@
 
 
 }
+
+
+
+.epl-property-blog {
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.epl-property-blog.epl-listing-grid-view {
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+
+
+.epl-property-blog-entry-wrapper {
+	margin: 3px;
+	background: #fafafa;
+	box-shadow: 0 0 3px #ccc;
+}
+
+
+
+
+.epl-property-blog {
+	font-size: 0.8em;
+}
+.epl-property-blog .entry-title,
+.epl-property-blog .entry-content  {
+	margin: 0.5em 0;
+}
+.epl-property-blog .entry-title {
+	font-size: 1em;
+}
+
+.epl-property-blog .property-box-right {
+	padding: 1em;
+}
+
+.epl-property-blog.epl-listing-grid-view {
+	text-align: center;
+}
+.epl-property-blog.epl-listing-grid-view .property-box-right {
+	min-height: 180px;
+}
+.epl-property-blog.epl-listing-grid-view .entry-content {
+	display: none;
+}
+.epl-property-blog .property-address {
+	margin: 0.5em 0;
+}
+.epl-property-blog .entry-title-sub {
+	display: block;
+}
+
+
+
+
+
+
+
+
+.epl-stickers-wrapper {
+
+}
+.epl-property-single .status-sticker,
+.epl-property-blog .status-sticker {
+	background: #F00;
+	color: #fff;
+}
+.epl-property-single .status-sticker.under-offer,
+.epl-property-blog .status-sticker.under-offer {
+	background: #FFA500;
+}
+.epl-property-single .status-sticker.open,
+.epl-property-blog .status-sticker.open {
+	background: #7FAF1B;
+}
+.epl-property-single .status-sticker.new,
+.epl-property-blog .status-sticker.new {
+	background: #800080;
+}
+
+
+
+@media screen and (max-width: 500px) {
+	.property-box.slim  h5{
+		font-size: 1em;
+	}
+}
+
+

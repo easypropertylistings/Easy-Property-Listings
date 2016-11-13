@@ -15,7 +15,7 @@ global $property;
 ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class('epl-listing-post epl-property-blog epl-clearfix'); ?> <?php do_action('epl_archive_listing_atts'); ?>>
-	<div class="epl-property-blog-entry-wrapper">
+	<div class="epl-property-blog-entry-wrapper epl-clearfix">
 		<?php do_action('epl_property_before_content'); ?>
 			<?php if ( has_post_thumbnail() ) : ?>
 				<div class="property-box property-box-left property-featured-image-wrapper">

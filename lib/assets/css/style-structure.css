@@ -9,6 +9,158 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
+
+/**********************
+	Loop
+***********************/
+
+.epl-property-blog {
+	float: left;
+	margin: 0;
+	padding: 0%;
+	width: 100%;
+}
+.epl-property-blog.epl-listing-grid-view {
+	clear: none !important;
+	width: 33.3%;
+}
+.epl-property-blog-entry-wrapper {
+	display: block;
+	float: none;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+.epl-property-blog a.more-link {
+	display: none;
+}
+.hentry.epl-listing-grid-view + .hentry.epl-listing-grid-view {
+	margin-top: 0;
+}
+
+
+.epl-property-blog .entry-content {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+/* Property Card and Blog*/
+.epl-property-blog .property-box {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	float:left;
+}
+.epl-property-blog .property-box img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+.epl-property-blog .property-box-left {
+	width:50%;
+	padding-right: 0;
+}
+.epl-property-blog .property-box-right {
+	width:50%;
+}
+/* Property Card and Blog*/
+.epl-property-blog.epl-listing-grid-view .property-box {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	float:left;
+}
+.epl-property-blog.epl-listing-grid-view .property-box img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+.epl-property-blog.epl-listing-grid-view .property-box-left {
+	width:100%;
+}
+.epl-property-blog.epl-listing-grid-view .property-box-right {
+	width:100%;
+}
+
+.epl-blog-image {
+	position: relative;
+}
+
+.epl-stickers-wrapper {
+	position: absolute;
+	left: 0;
+	top: 20px;
+	width: 100%;
+	z-index:9;
+}
+.epl-property-single .status-sticker,
+.epl-property-blog .status-sticker {
+	padding: 0.3em 1em;
+	margin-right: 0;
+}
+
+
+
+
+/* Width Ready Classes */
+.property-box-left.epl-one-third {
+	width:33%;
+}
+.property-box-right.epl-two-third {
+	width:66%;
+}
+.property-box-left.epl-one-quarter {
+	width:25%;
+}
+.property-box-right.epl-three-quarter {
+	width:75%;
+}
+.property-box-right-slim {
+	width:50%;
+}
+
+
+
+
+
+.address-price {
+	overflow: hidden;
+}
+
+/*****************************
+	EPL Ready Icons
+******************************/
+.property-feature-icons {
+
+}
+.property-feature-icons .icon {
+	padding: 0px 10px 4px 25px;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
+}
+.icon.beds {
+	background: transparent url(../images/icon-sprites.png) 0 -120px no-repeat;
+}
+.icon.bath {
+	background: transparent url(../images/icon-sprites.png) 0 -400px no-repeat;
+}
+.icon.parking {
+	background: transparent url(../images/icon-sprites.png) 0 -280px no-repeat;
+}
+.icon.air {
+	background: transparent url(../images/icon-sprites.png) 0 -200px no-repeat;
+}
+.icon.pool {
+	background: transparent url(../images/icon-sprites.png) 0 -160px no-repeat;
+}
+.icon.open {
+	background: transparent url(../images/icon-sprites.png) 0 -200px no-repeat;
+}
+
+
 /* Buttons */
 .epl-button {
 	display: inline-block;
@@ -326,19 +478,6 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 
 
 
-.epl-listing-grid-view.epl-property-blog {
-	clear: none !important;
-	float: left;
-	margin: 0 2% 2%;
-	padding: 0 3% 0 1% !important;
-	-webkit-transition: all 0.2s ease-in-out;
-	-moz-transition: all 0.2s ease-in-out;
-	-o-transition: all 0.2s ease-in-out;
-	transition: all 0.2s ease-in-out;
-	width: 24.5%;
-	min-height: 510px;
-}
-
 
 
 /** Table **/
@@ -533,15 +672,27 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	margin: 0;
 	font-size: 0.8em;
 }
-.hentry.epl-listing-grid-view + .hentry.epl-listing-grid-view {
-	margin-top: 0;
-}
 /* Twenty Sixteen */
 .site-content .site-content.epl-active-theme-twentysixteen {
 	padding: 0;
 }
+.epl-active-theme-twentysixteen .epl-property-blog a,
+.epl-active-theme-twentysixteen .epl-property-blog .entry-title a,
+.epl-shortcode .epl-property-blog a,
+.epl-shortcode .epl-property-blog .entry-title a {
+	box-shadow: none;
+}
 
 
+.no-sidebar .epl-active-theme-twentysixteen .epl-property-blog .entry-header,
+.no-sidebar .epl-active-theme-twentysixteen .epl-property-blog .entry-content,
+.no-sidebar .epl-active-theme-twentysixteen .epl-property-blog .entry-footer,
+.no-sidebar .epl-shortcode .epl-property-blog .entry-header,
+.no-sidebar .epl-shortcode .epl-property-blog .entry-content,
+.no-sidebar .epl-shortcode .epl-property-blog .entry-footer  {
+	margin-right: 0;
+	margin-left: 0;
+}
 
 
 
@@ -975,9 +1126,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 }
 @media screen and (max-width: 800px) {
 	.epl-listing-grid-view.epl-property-blog {
-		margin: 0 2% 2%;
-		padding: 0 3% 0 1% !important;
-		width: 42%;
+		width: 50%;
 	}
 	.epl-active-theme-twentythirteen.epl-archive-default .epl-listing-grid-view.epl-property-blog,
 	.epl-active-theme-twentyfifteen.epl-archive-default .epl-listing-grid-view.epl-property-blog {
@@ -1007,9 +1156,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	.property-box.slim {
 		float:left;
 	}
-	.property-box.slim  h5{
-		font-size: 1em;
-	}
+
 	#map-container {
 		height:200px;
 	}
