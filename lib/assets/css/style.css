@@ -673,8 +673,8 @@
 
 
 .epl-property-blog-entry-wrapper {
-	margin: 3px;
-	background: #fafafa;
+	margin: 4px;
+	background: #ffffff;
 	box-shadow: 0 0 3px #ccc;
 }
 
@@ -683,25 +683,33 @@
 
 .epl-property-blog {
 	font-size: 0.8em;
+	line-height: 1.2;
+}
+.epl-property-blog.hentry {
+	padding: 0;
+	margin: 0;
 }
 .epl-property-blog .entry-title,
 .epl-property-blog .entry-content  {
 	margin: 0.5em 0;
 }
 .epl-property-blog .entry-title {
-	font-size: 1em;
+	font-size: 1.4em;
+	line-height: 1.2
 }
-
+.epl-property-blog .entry-title a {
+	text-decoration: none;
+}
 .epl-property-blog .property-box-right {
 	padding: 1em;
+	min-height: 180px;
 }
 
 .epl-property-blog.epl-listing-grid-view {
 	text-align: center;
+	/* min-height: 370px; */
 }
-.epl-property-blog.epl-listing-grid-view .property-box-right {
-	min-height: 180px;
-}
+.epl-property-blog.epl-listing-grid-view .property-box-right {/* min-height: 200px; */}
 .epl-property-blog.epl-listing-grid-view .entry-content {
 	display: none;
 }
@@ -713,7 +721,9 @@
 }
 
 
-
+.epl-archive-utility-wrapper {
+	margin-bottom: 0.5em;
+}
 
 
 
@@ -745,6 +755,11 @@
 @media screen and (max-width: 500px) {
 	.property-box.slim  h5{
 		font-size: 1em;
+	}
+	.epl-active-theme-twentyfourteen.epl-archive-default .page-header,
+	.epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog,
+	.epl-active-theme-twentyfourteen.epl-archive-default .epl-switching-sorting-wrap  {
+		max-width: 300px;
 	}
 }
 
