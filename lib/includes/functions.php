@@ -1621,7 +1621,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				),
 
 				array(
-					'name'		=>	'epl_css_vistual_disable',
+					'name'		=>	'epl_css_visual_disable',
 					'label'		=>	__('Disable Visual Styles', 'easy-property-listings' ),
 					'type'		=>	'checkbox_single',
 					'opts'		=>	array(

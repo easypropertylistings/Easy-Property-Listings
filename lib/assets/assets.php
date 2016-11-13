@@ -76,11 +76,13 @@ function epl_wp_enqueue_scripts() {
 
 	} else {
 
-		// Strucrural CSS
+		// Structural CSS
 		wp_enqueue_style(	'epl-css-lib', 					$current_dir_path . '/css/style-structure.css',		FALSE,			EPL_PROPERTY_VER );
 
 		// Visual CSS: on is to disable visual css, default off
-		if( isset($epl_settings['epl_css_vistual_disable']) &&  $epl_settings['epl_css_vistual_disable'] != 'on') {
+		if( isset($epl_settings['epl_css_visual_disable']) &&  $epl_settings['epl_css_visual_disable'] == 'on') {
+
+		} else {
 			wp_enqueue_style(	'epl-front-styles', 			$current_dir_path . '/css/style.css',			FALSE,			EPL_PROPERTY_VER );
 		}
 	}
