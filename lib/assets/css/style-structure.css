@@ -68,6 +68,7 @@
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	float:left;
+	width: 50%;
 }
 .epl-property-blog .property-box img {
 	max-width: 100%;
