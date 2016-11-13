@@ -82,6 +82,8 @@ function epl_wp_enqueue_scripts() {
 		// Visual CSS: on is to disable visual css, default off
 		if( isset($epl_settings['epl_css_visual_disable']) &&  $epl_settings['epl_css_visual_disable'] == 'on') {
 
+			wp_enqueue_style(	'epl-front-styles', 			$current_dir_path . '/css/style-legacy.css',			FALSE,			EPL_PROPERTY_VER );
+
 		} else {
 			wp_enqueue_style(	'epl-front-styles', 			$current_dir_path . '/css/style.css',			FALSE,			EPL_PROPERTY_VER );
 		}

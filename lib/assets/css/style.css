@@ -375,13 +375,7 @@
 
 
 
-		/* Inspection Times */
-		.epl-inspection-times {
-		    margin: 1em 0;
-		}
-		.epl-inspection-times ul {
-		    margin: 0.5em 1.2em;
-		}
+
 
 		/*****************************
 			EPL Loop
@@ -417,24 +411,10 @@
 			display: block
 		}
 
-		.epl-property-blog .bond {
-			padding-left: 0.3em;
-		}
-		.epl-property-blog .entry-content h3.address {
-			display: inline-block;
-		}
+
 		.epl-property-blog.suburb-top  {
 			border: 1px solid #ccc;
 			/* padding: 0em 1em; */
-		}
-		.epl-property-blog.suburb-top .entry-content {
-			padding: 1em;
-			margin-top: 0;
-		}
-		.epl-property-blog.suburb-top .address-header {
-			background: #ccc;
-			padding: 0.5em 1em;
-			/* margin: -1em; */
 		}
 		.epl-property-blog .property-address {
 			overflow: hidden;
@@ -443,17 +423,6 @@
 		}
 		.epl-property-blog .entry-content .property-price {
 			float: right;
-		}
-		.epl-property-blog .entry-header,
-		.epl-property-blog-slim .entry-header   {
-			margin-bottom: 0.5em;
-		}
-		.epl-property-blog .entry-header h3 {
-			font-size: 1.1em;
-		}
-		.epl-property-blog .entry-content.property {
-			font-size: 0.9em;
-			line-height: 1.3em;
 		}
 		/* Card Top Style */
 		.epl-property-blog.card-top {
@@ -481,10 +450,7 @@
 		}
 
 
-		/* Property Card Slim */
-		.epl-property-blog-slim .property-box-left-slim {
-			margin-right: 1em;
-		}
+
 		/* Tab Sections */
 		.epl-tab-section {
 			overflow: hidden;
@@ -656,41 +622,31 @@
 
 
 
+.epl-archive-utility-wrapper {
+	margin-bottom: 0.5em;
+}
 .epl-property-blog {
+	font-size: 0.8em;
+	line-height: 1.2;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
-
 .epl-property-blog.epl-listing-grid-view {
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
-
-
-
-.epl-property-blog-entry-wrapper {
+.epl-property-blog .epl-property-blog-entry-wrapper {
 	margin: 4px;
 	background: #ffffff;
 	box-shadow: 0 0 3px #ccc;
 }
-
-
-
-
-.epl-property-blog {
-	font-size: 0.8em;
-	line-height: 1.2;
-}
-.epl-property-blog.hentry {
-	padding: 0;
-	margin: 0;
-}
-.builder-module-content .epl-property-blog.hentry {
-	border-bottom: none;
+.epl-property-blog .property-box-right {
+	padding: 0 0.5em;
+	min-height: 170px;
 }
 .epl-property-blog .entry-title,
 .epl-property-blog .entry-content  {
@@ -698,40 +654,65 @@
 }
 .epl-property-blog .entry-title {
 	font-size: 1.4em;
-	line-height: 1.2
+	line-height: 1.2;
+	max-height: 42px;
+	overflow: hidden;
 }
 .epl-property-blog .entry-title a {
 	text-decoration: none;
 }
-.epl-property-blog .property-box-right {
-	padding: 1em;
-	min-height: 180px;
-}
 
+/* Grid View */
 .epl-property-blog.epl-listing-grid-view {
 	text-align: center;
 	/* min-height: 370px; */
 }
-.epl-property-blog.epl-listing-grid-view .property-box-right {/* min-height: 200px; */}
+.epl-property-blog.epl-listing-grid-view .property-box-right {
+	/* min-height: 200px; */
+}
 .epl-property-blog.epl-listing-grid-view .entry-content {
 	display: none;
 }
+
+
+/* Address */
 .epl-property-blog .property-address {
 	margin: 0.5em 0;
 }
-.epl-property-blog .entry-title-sub {
+.epl-property-blog .property-address .entry-title-sub {
 	display: block;
 }
+/* Pricing */
+.epl-property-blog .price {
+	margin: 0.5em 0;
+}
+.epl-property-blog .bond {
+	padding-left: 0.3em;
+}
 
 
-.epl-archive-utility-wrapper {
-	margin-bottom: 0.5em;
+/* Property Card Slim */
+.epl-property-blog-slim {
+
+}
+.epl-property-blog-slim .property-box-right {
+	min-height: 0;
+}
+.epl-property-blog-slim .property-address .entry-title-sub {
+	display: inline-block;
+}
+.epl-property-blog-slim.epl-listing-grid-view .property-box {
+	width: 100%;
+}
+.epl-property-blog-slim.epl-listing-grid-view .property-box-right {
+	min-height: 150px;
 }
 
 
 
 
 
+/* Stickers */
 .epl-stickers-wrapper {
 
 }
@@ -755,10 +736,21 @@
 
 
 
+
+/* Inspection Times */
+.epl-inspection-times {
+    padding: 0 0.5em;
+}
+.epl-inspection-times ul {
+    margin: 0.5em 0;
+    list-style-type: none;
+}
+.epl-inspection-times .epl-inspection-times-label {
+	margin: 0.5em 0;
+	display: block;
+}
+
 @media screen and (max-width: 500px) {
-	.property-box.slim  h5{
-		font-size: 1em;
-	}
 	.epl-active-theme-twentyfourteen.epl-archive-default .page-header,
 	.epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog,
 	.epl-active-theme-twentyfourteen.epl-archive-default .epl-switching-sorting-wrap  {

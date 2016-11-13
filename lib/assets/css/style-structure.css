@@ -17,8 +17,14 @@
 .epl-property-blog {
 	float: left;
 	margin: 0;
-	padding: 0%;
+	padding: 0;
 	width: 100%;
+}
+.epl-property-blog.hentry,
+.builder-module-content .epl-property-blog.hentry {
+	margin: 0;
+	padding: 0;
+	border-bottom: none;
 }
 .epl-property-blog a {
 	text-decoration: none;
@@ -33,13 +39,14 @@
 	display: block;
 	float: none;
 	-webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
-.epl-property-blog a.more-link {
-	display: none;
+.epl-property-blog a.more-link,
+.epl-property-blog a.epl-more-link {
+			display: none;
 }
 .hentry.epl-listing-grid-view + .hentry.epl-listing-grid-view {
 	margin-top: 0;
@@ -50,6 +57,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 
 
 
@@ -68,6 +76,7 @@
 	width:50%;
 	padding-right: 0;
 	background: transparent;
+	background-color: white;
 }
 .epl-property-blog .property-box-right {
 	width:50%;
@@ -89,11 +98,9 @@
 .epl-property-blog.epl-listing-grid-view .property-box-right {
 	width:100%;
 }
-
 .epl-blog-image {
 	position: relative;
 }
-
 .epl-stickers-wrapper {
 	position: absolute;
 	left: 0;
@@ -111,23 +118,24 @@
 }
 /* Width Ready Classes */
 .property-box-left.epl-one-third {
-	width:33%;
+	width: 33%;
 }
 .property-box-right.epl-two-third {
-	width:66%;
+	width: 66%;
 }
 .property-box-left.epl-one-quarter {
-	width:25%;
+	width: 25%;
 }
 .property-box-right.epl-three-quarter {
-	width:75%;
+	width: 75%;
 }
-.property-box-right-slim {
-	width:50%;
+/* Slim */
+.epl-property-blog-slim .property-box-left {
+	width: 25%;
 }
-
-
-
+.epl-property-blog-slim.property-box-right {
+	width: 75%;
+}
 
 
 .address-price {
@@ -514,14 +522,17 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	float: right;
 }
 .epl-table .epl-table-column-left {
-	width: 50%;
+	width: 40%;
 }
 .epl-table .epl-table-column-middle {
-	width: 25%;
+	width: 30%;
 }
 .epl-table .epl-table-column-right {
-	width: 20%;
+	width: 25%;
 	float: right;
+}
+.epl-table.epl-property-blog .property-box-right {
+	min-height: 0;
 }
 .epl-table .epl-inspection-times,
 .epl-table .home-open-wrapper {
@@ -1249,7 +1260,8 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 		float: none;
 		text-align: left;
 	}
-	.epl-listing-grid-view.epl-property-blog {
+	.epl-listing-grid-view.epl-property-blog,
+	.builder-module-content .epl-property-blog.hentry {
 		float: none;
 		width: 100%;
 		margin: 0 auto;
