@@ -455,71 +455,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 #map-container img {
 	background: transparent;
 }
-/**************************************
-	Grid column styles
-**************************************/
-.epl-container-grid-1,
-.epl-container-grid-2,
-.epl-container-grid-3,
-.epl-container-grid-4,
-.epl-container-grid-5,
-.epl-container-grid-6 {
-	float:left;
-}
-.epl-container-grid-1 {
-	width:100%;
-}
-.epl-container-grid-2 {
-	width:50%;
-}
-.epl-container-grid-3 {
-	width:33%;
-}
-.epl-container-grid-4 {
-	width:25%;
-}
-.epl-container-grid-5 {
-	width:20%;
-}
-.epl-container-grid-6 {
-	width:16.6%;
-}
 
-/* Columns */
-.epl-tab-1-columns {
-}
-.epl-tab-2-columns {
-	-webkit-column-count:2;
-	-moz-column-count:2;
-	column-count:2;
-	-webkit-columns:2;
-	-moz-columns:2;
-	columns:2;
-}
-.epl-tab-3-columns {
-	-webkit-column-count:3;
-	-moz-column-count:3;
-	column-count:3;
-	-webkit-columns:3;
-	-moz-columns:3;
-	columns:3;
-}
-.epl-tab-4-columns {
-	-webkit-column-count:4;
-	-moz-column-count:4;
-	column-count:4;
-	-webkit-columns:4;
-	-moz-columns:4;
-	columns:4;
-}
-.epl-tab-5-columns {
-	-webkit-column-count:5;
-	-moz-column-count:5;
-	column-count:5;
-	-webkit-columns:5;
-	-moz-columns:5;
-	columns:5;
-}
 
 /**************************************
 	Fancy pagination
@@ -1038,6 +974,101 @@ li.tbhead.current {
     background: #0073AA!important;
     color:white;
 }
+
+/**************************************
+	Grid column styles
+**************************************/
+.epl-container-grid-1,
+.epl-container-grid-2,
+.epl-container-grid-3,
+.epl-container-grid-4,
+.epl-container-grid-5,
+.epl-container-grid-6 {
+	float:left;
+}
+.epl-container-grid-1 {
+	width:100%;
+}
+.epl-container-grid-2 {
+	width:50%;
+}
+.epl-container-grid-3 {
+	width:33%;
+}
+.epl-container-grid-4 {
+	width:25%;
+}
+.epl-container-grid-5 {
+	width:20%;
+}
+.epl-container-grid-6 {
+	width:16.6%;
+}
+.epl-container-grid-1 .entry-content,
+.epl-container-grid-2 .entry-content,
+.epl-container-grid-3 .entry-content,
+.epl-container-grid-4 .entry-content,
+.epl-container-grid-5 .entry-content,
+.epl-container-grid-6 .entry-content {
+	padding: 4px;
+	float: left;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+}
+.epl-container-grid-1 .epl-author-box.epl-author-image,
+.epl-container-grid-2 .epl-author-box.epl-author-image,
+.epl-container-grid-3 .epl-author-box.epl-author-image,
+.epl-container-grid-4 .epl-author-box.epl-author-image,
+.epl-container-grid-5 .epl-author-box.epl-author-image,
+.epl-container-grid-6 .epl-author-box.epl-author-image,
+.epl-container-grid-1 .epl-author-box.epl-author-details,
+.epl-container-grid-2 .epl-author-box.epl-author-details,
+.epl-container-grid-3 .epl-author-box.epl-author-details,
+.epl-container-grid-4 .epl-author-box.epl-author-details,
+.epl-container-grid-5 .epl-author-box.epl-author-details,
+.epl-container-grid-6 .epl-author-box.epl-author-details {
+	width: 100%;
+	padding-right: 0;
+	min-width: 0;
+}
+
+/* Columns */
+.epl-tab-1-columns {
+}
+.epl-tab-2-columns {
+	-webkit-column-count:2;
+	-moz-column-count:2;
+	column-count:2;
+	-webkit-columns:2;
+	-moz-columns:2;
+	columns:2;
+}
+.epl-tab-3-columns {
+	-webkit-column-count:3;
+	-moz-column-count:3;
+	column-count:3;
+	-webkit-columns:3;
+	-moz-columns:3;
+	columns:3;
+}
+.epl-tab-4-columns {
+	-webkit-column-count:4;
+	-moz-column-count:4;
+	column-count:4;
+	-webkit-columns:4;
+	-moz-columns:4;
+	columns:4;
+}
+.epl-tab-5-columns {
+	-webkit-column-count:5;
+	-moz-column-count:5;
+	column-count:5;
+	-webkit-columns:5;
+	-moz-columns:5;
+	columns:5;
+}
 /*****************************
 	EPL Search
 ******************************/
@@ -1243,6 +1274,22 @@ li.tbhead.current {
 
 /* Search Widget Responsive */
 @media screen and (max-width: 860px) {
+
+	/** Grid **/
+	.epl-container-grid-1 {
+		width:100%;
+	}
+	.epl-container-grid-2,
+	.epl-container-grid-3 {
+		width:50%;
+	}
+	.epl-container-grid-4,
+	.epl-container-grid-5,
+	.epl-container-grid-6 {
+		width:33%;
+	}
+
+
 	.epl-search-wide .epl-search-row-full {
 		width: 99.2%;
 	}
