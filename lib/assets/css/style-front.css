@@ -1,6 +1,7 @@
-/*
+/**
  * EPL Front CSS
  * @since 1.0
+ * @version 3.1
  */
 h3.property-address {
 	margin-top:0;
@@ -276,7 +277,7 @@ h3.property-address {
 }
 
 .widget_epl_contact_capture .widget-title {
- 
+
 }
 .epl-contact-capture-form-desc {
     margin-bottom: 10px;
@@ -575,6 +576,7 @@ li.tbhead.current {
 .property-box img {
 	max-width: 100%;
 	height: auto;
+	display: block;
 }
 .property-box-left {
 	width:50%;
@@ -820,6 +822,22 @@ li.tbhead.current {
 }
 .epl-search-form .epl-search-submit-row {
 	margin-top: 0.5em;
+}
+.epl-search-radio-label {
+    display: inline-block;
+    min-height: 2.1em;
+    vertical-align: text-bottom;
+}
+.epl-search-row-radio input {
+    width: auto !important;
+}
+.epl-search-checkbox-label {
+    display: inline-block;
+    min-height: 2.1em;
+    vertical-align: text-bottom;
+}
+.epl-search-row-checkbox-multiple input {
+    width: auto !important;
 }
 /** EPL Search Wide **/
 .epl-search-wide .epl-search-row-full {
@@ -1344,6 +1362,7 @@ li.tbhead.current {
 .epl-table .epl-table-column-image img {
 	max-width: 100%;
 	padding-right: 1em;
+	display: block;
 }
 .epl-table .epl-table-column-content {
 	width:88%;
@@ -1404,29 +1423,31 @@ li.tbhead.current {
 /**************************************
 	Grid column styles
 **************************************/
+.epl-container-grid-1,
+.epl-container-grid-2,
+.epl-container-grid-3,
+.epl-container-grid-4,
+.epl-container-grid-5,
+.epl-container-grid-6 {
+	float:left;
+}
 .epl-container-grid-1 {
 	width:100%;
-	float:left;
 }
 .epl-container-grid-2 {
 	width:50%;
-	float:left;
 }
 .epl-container-grid-3 {
 	width:33%;
-	float:left;
 }
 .epl-container-grid-4 {
 	width:25%;
-	float:left;
 }
 .epl-container-grid-5 {
 	width:20%;
-	float:left;
 }
 .epl-container-grid-6 {
 	width:16.6%;
-	float:left;
 }
 /**************************************
 	Search Popdown
@@ -1456,13 +1477,12 @@ li.tbhead.current {
     background: #fff none repeat scroll 0 0;
     border: 1px solid #ddd;
     box-shadow: -1px 3px 2px 2px #ddd;
-    font-weight: 500;
+    font-weight: bold;
     margin: 6px 0;
     padding: 10px;
     position: absolute;
     min-width: 160px;
     z-index: 9999;
-
 }
 .epl-popup-box > li{
     cursor: pointer;
@@ -1504,10 +1524,7 @@ li.tbhead.current {
     width: 100% !important;
     z-index: 9999;
 }
-/*****************************
-	EPL Responsive Design
-******************************/
-/* responsive youtube videos */
+/* Video Container */
 .epl-video-container {
 	position: relative;
 	padding-bottom: 56.25%;
@@ -1522,6 +1539,9 @@ li.tbhead.current {
 	width: 100%;
 	height: 100%;
 }
+/*****************************
+	EPL Responsive Design
+******************************/
 @media screen and (max-width: 1200px) {
 	.epl-active-theme-twentyfifteen.epl-archive-default .epl-listing-grid-view.epl-property-blog {
 		min-height: 550px;
@@ -1553,6 +1573,14 @@ li.tbhead.current {
 	}
 }
 @media screen and (max-width: 500px) {
+	.epl-container-grid-1,
+	.epl-container-grid-2,
+	.epl-container-grid-3,
+	.epl-container-grid-4,
+	.epl-container-grid-5,
+	.epl-container-grid-6 {
+		width: 100%;
+	}
 	/* Property Card Slim */
 	.epl-property-blog-slim .property-box-left {
 		width: 100px;

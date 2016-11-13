@@ -22,6 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since       1.0
  */
 function epl_shortcode_listing_callback( $atts ) {
+
+
 	$property_types = epl_get_active_post_types();
 	if ( ! empty($property_types ) ) {
 		$property_types = array_keys( $property_types );
@@ -40,6 +42,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'sortby'       => '', // Options: price, date : Default date
 		'sort_order'   => 'DESC',
 		'query_object' => '', // only for internal use . if provided use it instead of custom query
+		'pagination'   => 'on'			
 	), $atts );
 
 	if ( is_string( $attributes['post_type'] ) && $attributes['post_type'] == 'rental' ) {
@@ -61,6 +64,8 @@ function epl_shortcode_listing_callback( $atts ) {
 		'posts_per_page' =>	$attributes['limit'],
 		'paged'          =>	absint( $paged ),
 	);
+	$args['meta_query'] = epl_parse_atts($atts);
+
 	// Listings of specified author.
 	if ( ! empty( $attributes['author'] ) ) {
 		if ( is_array( $attributes['author'] ) ) {
@@ -113,33 +118,8 @@ function epl_shortcode_listing_callback( $atts ) {
 		$args['order']        = $attributes['sort_order'];
 	}
 
-	if ( isset( $_GET['sortby'] ) ) {
-		$orderby = sanitize_text_field( trim( $_GET['sortby'] ) );
-		if ( $orderby == 'high' ) {
-			$args['orderby']  = 'meta_value_num';
-			$args['meta_key'] =	$meta_key_price;
-			$args['order']    = 'DESC';
-		} else if ( $orderby == 'low' ) {
-			$args['orderby']  = 'meta_value_num';
-			$args['meta_key'] =	$meta_key_price;
-			$args['order']    = 'ASC';
-		} else if ( $orderby == 'new' ) {
-			$args['orderby']  = 'post_date';
-			$args['order']    = 'DESC';
-		} else if ( $orderby == 'old' ) {
-			$args['orderby']  = 'post_date';
-			$args['order']    = 'ASC';
-		} else if ( $orderby == 'status_desc' ) {
-			$args['orderby']  = 'meta_value';
-			$args['meta_key'] =	'property_status';
-			$args['order']    = 'DESC';
-		} else if ( $orderby == 'status_asc' ) {
-			$args['orderby']  = 'meta_value';
-			$args['meta_key'] =	'property_status';
-			$args['order']    = 'ASC';
-		}
-	}
-
+	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
+	$args = epl_add_orderby_args($args);
 	$query_open = new WP_Query( $args );
 
 	if ( is_object( $attributes['query_object'] ) ) {

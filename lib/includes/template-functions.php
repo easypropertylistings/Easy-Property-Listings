@@ -362,11 +362,18 @@ function epl_property_author_box_simple_grav() {
  */
 function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','easy-property-listings' )" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
 	global $property;
+
+	if( is_null($property) )
+		return;
+	
 	$property_status = $property->get_property_meta('property_status');
 
 	switch($display) {
 		case 'list':
 			$tpl = 'widget-content-listing-list.php';
+		break;
+		case 'hide-image':
+			$tpl = 'widget-content-listing-hide-image.php';
 		break;
 		case 'image-only':
 			$tpl = 'widget-content-listing-image.php';
@@ -602,6 +609,7 @@ function epl_get_property_bb_icons() {
  * @since 1.0
  * @hooked property_land_category
  */
+
 function epl_property_land_category(){
 	global $property;
 	echo $property->get_property_land_category();
@@ -1864,6 +1872,7 @@ function epl_trim_excerpt($text = '') {
 		$excerpt_length = apply_filters( 'excerpt_length', 55 );
 		$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
 		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
+		
 	}
 	return apply_filters( 'epl_trim_excerpt', $text, $raw_excerpt );
 }
@@ -1996,6 +2005,13 @@ function epl_inspection_format($inspection_date) {
 	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
 			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
 
+	if($date_format == '')
+		$date_format = 'd-M-Y';
+
+	if($time_format == '')
+		$time_format = 'h:i A';
+
+
 	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';
 	$time_start = isset($inspection_date[1]) ? date($time_format,strtotime($inspection_date[1])) : '';
 	$time_end 	= isset($inspection_date[3]) ? date($time_format,strtotime($inspection_date[3])) : '';
@@ -2067,3 +2083,26 @@ function epl_archive_title_callback() {
 	rewind_posts();
 }
 add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
+
+function epl_add_orderby_args($args) {
+
+	if ( isset( $_GET['sortby'] ) ) {
+		$id = sanitize_text_field( trim( $_GET['sortby'] ) );
+		$sorting_options = epl_sorting_options();
+
+		foreach($sorting_options as $sorting_option) {
+
+			if($id == $sorting_option['id']) {
+
+				if( isset($sorting_option['orderby']) )
+					$args['orderby']  = $sorting_option['orderby'];
+
+				$args['meta_key'] =	$sorting_option['key'];
+				$args['order']    = $sorting_option['order'];
+				break;
+			}
+		}
+
+	}
+	return $args;
+}

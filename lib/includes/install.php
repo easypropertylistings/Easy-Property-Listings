@@ -89,6 +89,7 @@ function epl_install() {
 		'epl_video_width'			=> 600,
 		'min_contact_access'			=> 'level_10',
 		'min_reports_access'			=> 'level_10',
+		'activate_post_types'			=>	array('property')
 	);
 
 	if(!empty($epl_settings)) {
