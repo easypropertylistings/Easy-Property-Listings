@@ -84,6 +84,7 @@ h3.epl-welcome-sub-heading {
 .epl-extension .stuffbox .hndle {
 	border-bottom: 1px solid #1494dd;
 }
+#epl-menu-licences .epl-menu-license,
 #epl-add-ons .epl-extension {
 	float:left;
 	margin:0 15px 15px 0;
@@ -92,7 +93,12 @@ h3.epl-welcome-sub-heading {
 	width:320px;
 	padding:8px;
 	height:340px;
-	position:relative
+	position:relative;
+}
+#epl-menu-licences .epl-menu-license {
+	height: 180px;
+	width: 290px;
+	text-align: center;
 }
 #epl-add-ons .epl-extension h3 {
 	margin:0 0 8px;
@@ -135,6 +141,14 @@ h3.epl-welcome-sub-heading {
 .epl_meta_home_open_label ul,
 .epl_meta_home_open_label ul li {
 	margin: 0;
+}
+.epl-full {
+
+
+}
+
+.epl-no-label {
+	display: none;
 }
 .epl-half-left,
 .epl-third-left {
@@ -468,31 +482,31 @@ h3.epl-welcome-sub-heading {
 	display:block;
 	padding:0;
 }
-.license-status {
+.epl-license-status {
 	position:absolute;
 	margin:5px 0 0 5px;
 	height:20px;
 	width:20px;
 }
-.license-status.license-status-valid {
+.epl-license-status.epl-license-status-valid {
 	background:url(../images/valid.png) no-repeat;
 }
-.license-status.license-status-invalid {
+.epl-license-status.epl-license-status-invalid {
 	background:url(../images/invalid.gif) no-repeat;
 }
-.license-status-text {
+.epl-license-status-text {
 	display:block;
 	clear:both;
 	margin:5px 0;
 }
-.license-status-text .license-status-text-label {
+.epl-license-status-text .epl-license-status-text-label {
 	font-weight:bold;
 	margin-right:5px;
 }
-.license-status-text.license-status-text-invalid {
+.epl-license-status-text.epl-license-status-text-invalid {
 	color:red;
 }
-.license-status-text.license-status-text-valid {
+.epl-license-status-text.epl-license-status-text-valid {
 	color:green;
 }
 /* Graph: Price bars */
