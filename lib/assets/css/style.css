@@ -1,0 +1,23 @@
+/**
+ * EPL CSS
+ *
+ * @package     EPL
+ * @since	3.1
+ * @subpackage  Pretty CSS
+ * @copyright   Copyright (c) 2014, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ */
+
+
+/* Loop */
+.epl-property-blog .address {
+	/* margin-top: 0.3em; */
+	font-size: 1.2em;
+}
+
+
+/* Single */
+.epl-property-single {
+	float: right;
+	text-align: right;
+}
