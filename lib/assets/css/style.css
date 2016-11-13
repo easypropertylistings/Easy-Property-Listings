@@ -14,7 +14,7 @@
 	margin: 0.5em 0;
 }
 .epl-property-blog {
-	font-size: 0.8em;
+	font-size: 0.9em;
 	line-height: 1.2;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
@@ -39,6 +39,9 @@
 .epl-property-blog .entry-title,
 .epl-property-blog .entry-content  {
 	margin: 0.5em 0;
+}
+.builder-module-content .epl-property-blog.hentry .entry-content  {
+	padding: 0;
 }
 .epl-property-blog .entry-title {
 	font-size: 1.3em;
@@ -129,6 +132,27 @@
 .epl-property-single .tab-content .bond {
 	font-size: 1em;
 }
+/* Card Top */
+.epl-property-blog.card-top {
+	background: #e9e9e9;
+	padding: 0.5em;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+.epl-property-blog.card-top .page-price.sold-status,
+.epl-property-blog.card-top .page-price.under-offer-status{
+	display: block;
+}
+.epl-property-blog.card-top .bond {
+	/*display: none;*/
+}
+.epl-property-blog.card-top .epl-more-link {
+	display: none;
+}
+.epl-property-blog.card-top .alignleft,
+.epl-property-blog.card-top .alignright {
+	margin: 0 !important;
+}
 
 /* Stickers */
 .epl-stickers-wrapper {
@@ -162,6 +186,15 @@
 }
 .epl-property-blog.suburb-top  {
 	border: 1px solid #ccc;
+}
+.epl-property-blog.suburb-top .entry-content {
+	padding: 1em;
+	margin-top: 0;
+}
+.epl-property-blog.suburb-top .address-header {
+	background: #ccc;
+	padding: 0.5em 1em;
+	/* margin: -1em; */
 }
 /* Card Top Style */
 .epl-property-blog.card-top {
@@ -272,7 +305,8 @@ ul.epl-striped > *:nth-child(2n+1) {
     font-weight:normal;
     color:green;
 }
-.type_sold, .type_leased {
+.type_sold,
+.type_leased {
     font-weight:bold;
     color:red;
 }
@@ -285,12 +319,15 @@ ul.epl-striped > *:nth-child(2n+1) {
 .epl-inspection-times {
     padding: 0 0.5em;
 }
+.epl-property-single .epl-inspection-times {
+    padding: 0;
+}
 .epl-inspection-times ul {
     margin: 0.5em 0;
     list-style-type: none;
 }
 .epl-inspection-times .epl-inspection-times-label {
-	margin: 0.5em 0;
+	margin: 0.5em 0 0;
 	display: block;
 }
 

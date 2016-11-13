@@ -24,7 +24,7 @@
 .builder-module-content .epl-property-blog.hentry {
 	margin: 0;
 	padding: 0;
-	border-bottom: none;
+	border: none;
 	box-shadow: none;
 	background: transparent;
 }
@@ -214,8 +214,7 @@
 	margin-top: 1.5em;
 }
 .epl-tab-title {
-	margin-top: 1em;
-	margin-bottom: 0em;
+	margin: 1em 0;
 	padding-bottom: 0.5em;
 }
 .epl-property-single .tab-content {
@@ -254,7 +253,9 @@
 .epl-property-single .epl-author-col.epl-author-text p {
 	margin: 0;
 }
-
+.epl-property-single .epl-property-meta {
+	margin: 0.5em 0;
+}
 /*****************************
 	EPL Ready Icons
 ******************************/
