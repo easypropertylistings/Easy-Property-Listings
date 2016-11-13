@@ -48,7 +48,7 @@
 }
 .epl-property-blog a.more-link,
 .epl-property-blog a.epl-more-link {
-			display: none;
+	display: none;
 }
 .hentry.epl-listing-grid-view + .hentry.epl-listing-grid-view {
 	margin-top: 0;
@@ -75,10 +75,9 @@
 	display: block;
 }
 .epl-property-blog .property-box-left {
-	width:50%;
+	width: 50%;
 	padding-right: 0;
 	background: transparent;
-	background-color: white;
 }
 .epl-property-blog .property-box-right {
 	width:50%;
@@ -527,6 +526,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 **************************************/
 .epl-pagination {
 	clear: both;
+	margin: 1em 0;
 }
 .epl-pagination a, .epl-pagination span {
 	padding: 3px 5px;
@@ -1613,9 +1613,10 @@ li.tbhead.current {
 /*****************************
 	Error Styling
 ******************************/
-.epl_print_r, .epl_var_dump {
-    background: gray none repeat scroll 0 0;
-    color: white;
+.epl_print_r,
+.epl_var_dump {
+    background: gray;
+    color: #ffffff;
     width: 100% !important;
     z-index: 9999;
 }

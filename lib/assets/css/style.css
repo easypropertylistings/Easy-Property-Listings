@@ -36,8 +36,7 @@
 	padding: 0 0.5em;
 	min-height: 170px;
 }
-.epl-property-blog .entry-title,
-.epl-property-blog .entry-content  {
+.epl-property-blog .entry-title  {
 	margin: 0.5em 0;
 }
 .builder-module-content .epl-property-blog.hentry .entry-content  {
@@ -132,27 +131,7 @@
 .epl-property-single .tab-content .bond {
 	font-size: 1em;
 }
-/* Card Top */
-.epl-property-blog.card-top {
-	background: #e9e9e9;
-	padding: 0.5em;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-}
-.epl-property-blog.card-top .page-price.sold-status,
-.epl-property-blog.card-top .page-price.under-offer-status{
-	display: block;
-}
-.epl-property-blog.card-top .bond {
-	/*display: none;*/
-}
-.epl-property-blog.card-top .epl-more-link {
-	display: none;
-}
-.epl-property-blog.card-top .alignleft,
-.epl-property-blog.card-top .alignright {
-	margin: 0 !important;
-}
+
 
 /* Stickers */
 .epl-stickers-wrapper {
@@ -196,7 +175,7 @@
 	padding: 0.5em 1em;
 	/* margin: -1em; */
 }
-/* Card Top Style */
+/* Card Top */
 .epl-property-blog.card-top {
 	background: #e9e9e9;
 	padding: 0.5em;
@@ -207,14 +186,10 @@
 .epl-property-blog.card-top .page-price.under-offer-status{
 	display: block;
 }
-.epl-property-blog.card-top .epl-more-link {
-	display: none;
-}
 .epl-property-blog.card-top .alignleft,
 .epl-property-blog.card-top .alignright {
 	margin: 0 !important;
 }
-
 /** Card **/
 .epl-property-blog-card {
 	width: 25%;
