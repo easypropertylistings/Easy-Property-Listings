@@ -3,6 +3,7 @@
  *
  * @package     EPL
  * @since	1.0
+ * @version	3.1
  * @subpackage  Admin CSS
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -89,25 +90,32 @@ h3.epl-welcome-sub-heading {
 	float:left;
 	margin:0 15px 15px 0;
 	background:#f0f0f0;
+	background: #fff;
 	border:1px solid #ccc;
 	width:320px;
-	padding:8px;
-	height:340px;
+	height:360px;
 	position:relative;
+	text-align: center;
 }
 #epl-menu-licences .epl-menu-license {
 	height: 180px;
 	width: 290px;
-	text-align: center;
+}
+#epl-add-ons .epl-extension {
+
 }
 #epl-add-ons .epl-extension h3 {
 	margin:0 0 8px;
-	font-size:13px
+	font-size:13px;
+	padding-top: 8px;
+}
+#epl-add-ons .epl-extension p {
+	padding: 0 8px;
 }
 #epl-add-ons .epl-extension .button-secondary {
 	position:absolute;
 	bottom:8px;
-	left:8px
+	left:30%;
 }
 #epl-add-ons .epl-browse-all {
 	clear:both;
