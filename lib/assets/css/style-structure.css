@@ -138,6 +138,22 @@
 	width: 75%;
 }
 
+/** Card **/
+.epl-property-blog-card {
+	width: 25%;
+	float: left;
+	clear: none;
+	padding: 0;
+	margin: 0;
+}
+.epl-property-blog-card .epl-entry-content {
+	padding: 4px;
+	min-height: 230px;
+}
+
+
+
+
 
 .address-price {
 	overflow: hidden;
@@ -1275,6 +1291,14 @@ li.tbhead.current {
 /* Search Widget Responsive */
 @media screen and (max-width: 860px) {
 
+	/** Card **/
+	.epl-property-blog-card {
+		width: 50%;
+	}
+	.epl-property-blog-card .epl-entry-content {
+		min-height: 250px;
+	}
+
 	/** Grid **/
 	.epl-container-grid-1 {
 		width:100%;
@@ -1288,8 +1312,6 @@ li.tbhead.current {
 	.epl-container-grid-6 {
 		width:33%;
 	}
-
-
 	.epl-search-wide .epl-search-row-full {
 		width: 99.2%;
 	}
@@ -1438,6 +1460,18 @@ li.tbhead.current {
 	}
 	.epl-search-fixed .epl-search-submit-row {
 		margin-right: 2%;
+	}
+
+	/** Card **/
+	.epl-property-blog-card,
+	.epl-property-blog-card.hentry {
+		width: 100%;
+		float: none;
+		margin: 0 auto;
+		max-width: 300px;
+	}
+	.epl-property-blog-card .epl-entry-content {
+		min-height: 0;
 	}
 }
 @media screen and (max-width: 400px) {

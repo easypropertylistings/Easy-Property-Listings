@@ -190,18 +190,6 @@
 .epl-property-blog.card-top .alignright {
 	margin: 0 !important;
 }
-/** Card **/
-.epl-property-blog-card {
-	width: 25%;
-	float: left;
-	clear: none;
-}
-.epl-property-blog-card .epl-entry-content {
-	padding: 0.3em;
-}
-.epl-property-blog-card .epl-entry-content {
-	padding: 0.3em;
-}
 #tabs {
 	overflow:hidden;
 	margin-top: 1em;
