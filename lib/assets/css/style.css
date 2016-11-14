@@ -54,14 +54,14 @@
 
 /* Grid View */
 .epl-property-blog.epl-listing-grid-view {
-	/* text-align: center; */
+	text-align: center;
 	/* min-height: 370px; */
 }
 .epl-property-blog.epl-listing-grid-view .property-box-right {
-	min-height: 240px;
+	min-height: 180px;
 }
 .epl-property-blog.epl-listing-grid-view .entry-content {
-	/* display: none; */
+	display: none;
 }
 
 
