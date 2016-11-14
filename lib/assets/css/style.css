@@ -54,7 +54,7 @@
 
 /* Grid View */
 .epl-property-blog.epl-listing-grid-view {
-	text-align: center;
+	/* text-align: center; */
 	/* min-height: 370px; */
 }
 .epl-property-blog.epl-listing-grid-view .property-box-right {
@@ -263,5 +263,3 @@ ul.epl-striped > *:nth-child(2n+1) {
 		min-height: 0;
 	}
 }
-
-
