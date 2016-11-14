@@ -1621,14 +1621,14 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				),
 
 				array(
-					'name'		=>	'epl_css_vistual_disable',
-					'label'		=>	__('Disable Visual Styles', 'easy-property-listings' ),
+					'name'		=>	'epl_css_visual_disable',
+					'label'		=>	__('Enable Legacy Styles', 'easy-property-listings' ),
 					'type'		=>	'checkbox_single',
 					'opts'		=>	array(
-						'on'	=>	__('Disable', 'easy-property-listings' ),
+						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
 					'default'	=>	'off',
-					'help'		=>	__('Check this to disable all elements.' , 'easy-property-listings' )
+					'help'		=>	__('Check this to enable legacy css styles.' , 'easy-property-listings' )
 				),
 
 
