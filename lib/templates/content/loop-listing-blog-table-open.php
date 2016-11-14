@@ -27,13 +27,15 @@ global $property;
 		<div class="epl-table-column-content property-box property-box-right property-content">
 			<!-- Address -->
 			<div class="epl-table-box epl-table-column epl-table-column-left">
-				<div class="epl-table-address"><a href="<?php the_permalink(); ?>"><?php do_action('epl_property_address'); ?></a></div>
+				<div class="epl-table-address property-address">
+					<a href="<?php the_permalink(); ?>"><?php do_action('epl_property_address'); ?></a>
+				</div>
 				<div class="property-feature-icons">
 					<?php do_action('epl_property_icons'); ?>
 				</div>
 			</div>
 			<!-- Property Featured Icons -->
-			<div class="epl-table-box epl-table-column epl-table-column-middle">
+			<div class="epl-table-box epl-table-column epl-table-column-middle price">
 				<?php do_action('epl_property_price'); ?>
 			</div>
 			<!-- Price -->

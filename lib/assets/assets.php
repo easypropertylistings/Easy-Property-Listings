@@ -26,9 +26,9 @@ function epl_admin_enqueue_scripts($screen) {
 		if( epl_get_option('epl_google_api_key') != '' ) {
 			$googleapiurl = $googleapiurl.'&key='.epl_get_option('epl_google_api_key');
 		}
-		
+
 		wp_enqueue_script('google-map-v-3',$googleapiurl);
-			
+
 
 		wp_enqueue_style(	'epl-jquery-validation-engine-style', 		$current_dir_path . '/css/validationEngine-jquery.css',	FALSE,			EPL_PROPERTY_VER );
 		wp_enqueue_script(	'epl-jquery-validation-engine-lang-scripts', 	$current_dir_path . '/js/jquery-validationEngine-en.js',array('jquery'),	EPL_PROPERTY_VER );
@@ -65,18 +65,30 @@ function epl_wp_enqueue_scripts() {
 		if( epl_get_option('epl_google_api_key') != '' ) {
 			$googleapiurl = $googleapiurl.'&key='.epl_get_option('epl_google_api_key');
 		}
-		
+
 		if(epl_get_option('epl_disable_google_api') != 'on')
 			wp_enqueue_script('google-map-v-3',$googleapiurl);
 
 	}
 
+	// All CSS includting Structual
 	if( isset($epl_settings['epl_use_core_css']) &&  $epl_settings['epl_use_core_css'] == 'on') {
 
 	} else {
-		wp_enqueue_style(	'epl-front-styles', 				$current_dir_path . '/css/style-front.css',		FALSE,			EPL_PROPERTY_VER );
-		wp_enqueue_style(	'epl-css-lib', 					$current_dir_path . '/css/epl.css',			FALSE,			EPL_PROPERTY_VER );
+
+		// Structural CSS
+		wp_enqueue_style(	'epl-css-lib', 					$current_dir_path . '/css/style-structure.css',		FALSE,			EPL_PROPERTY_VER );
+
+		// Visual CSS: on is to disable visual css, default off
+		if( isset($epl_settings['epl_css_visual_disable']) &&  $epl_settings['epl_css_visual_disable'] == 'on') {
+
+			wp_enqueue_style(	'epl-front-styles', 			$current_dir_path . '/css/style-legacy.css',			FALSE,			EPL_PROPERTY_VER );
+
+		} else {
+			wp_enqueue_style(	'epl-front-styles', 			$current_dir_path . '/css/style.css',			FALSE,			EPL_PROPERTY_VER );
+		}
 	}
+
 	$js_vars = array(
 		'epl_default_view_type' => $epl_default_view_type,
 		'ajaxurl'		=> admin_url('admin-ajax.php')
