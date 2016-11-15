@@ -567,7 +567,7 @@ function epl_listing_load_meta_commercial_category_value( $key ) {
 	} else {
 		$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : ucfirst($key);
 	}
-	
+
 
 	return apply_filters('epl_meta_commercial_category_value',$value,$key,$array);
 }
@@ -815,7 +815,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 			$val = (array) $val;
 			echo '<select multiple name="'.$field['name'].'[]" id="'.$field['name'].'" >';
-	
+
 				if(isset($field['opts']) && !empty($field['opts'])) {
 					foreach($field['opts'] as $k=>$v) {
 						$selected = '';
@@ -1619,6 +1619,19 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'easy-property-listings' )
 				),
+
+				array(
+					'name'		=>	'epl_css_visual_disable',
+					'label'		=>	__('Enable Legacy Styles', 'easy-property-listings' ),
+					'type'		=>	'checkbox_single',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'easy-property-listings' ),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to enable legacy css styles.' , 'easy-property-listings' )
+				),
+
+
 				array(
 					'name'		=>	'epl_disable_google_api',
 					'label'		=>	__('Google Maps API', 'easy-property-listings' ),
@@ -1730,7 +1743,7 @@ AND p.post_type = '%s'
 			}
 			unset($res[$key]);
 		}
-		
+
 	}
 	$res = array_filter($res);
 	if(!empty($res))
@@ -2018,7 +2031,7 @@ function epl_parse_atts($atts) {
 	$query = array();
 
 	if( empty($atts) )
-		return $atts; 
+		return $atts;
 
 	foreach($atts as $key 	=>	&$value) {
 

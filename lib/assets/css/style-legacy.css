@@ -1319,7 +1319,7 @@ li.tbhead.current {
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
-.epl-listing-grid-view.epl-property-blog div {
+.epl-listing-grid-view.epl-property-blog .property-box {
 	clear: both;
 	display: block;
 	padding: 0;
