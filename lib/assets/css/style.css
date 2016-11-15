@@ -63,6 +63,12 @@
 	box-shadow: 0 0 2px #bbb;
 }
 
+/* Slim */
+.epl-property-blog-slim .epl-inspection-times {
+	padding: 0;
+}
+
+
 /* Grid View */
 .epl-property-blog.epl-listing-grid-view,
 .epl-property-blog.epl-listing-grid-view-forced {
@@ -218,41 +224,41 @@
 }
 .epl-alternate, .epl-striped > tbody > *:nth-child(2n+1),
 ul.epl-striped > *:nth-child(2n+1) {
-    background-color: #f9f9f9;
+	background-color: #f9f9f9;
 }
 .epl-listing-type {
-    padding-right: 20px;
-    text-transform: capitalize;
+	padding-right: 20px;
+	text-transform: capitalize;
 }
 .epl-listing-status {
-    float: right;
-    padding-left: 20px;
-    text-transform: capitalize;
+	float: right;
+	padding-left: 20px;
+	text-transform: capitalize;
 }
 .type_current {
-    font-weight:normal;
-    color:green;
+	font-weight:normal;
+	color:green;
 }
 .type_sold,
 .type_leased {
-    font-weight:bold;
-    color:red;
+	font-weight:bold;
+	color:red;
 }
 .type_under_offer {
-    font-weight:bold;
-    color:#FFA500;
+	font-weight:bold;
+	color:#FFA500;
 }
 
 /* Inspection Times */
 .epl-inspection-times {
-    padding: 0 0.5em;
+
 }
 .epl-property-single .epl-inspection-times {
-    padding: 0;
+	padding: 0;
 }
 .epl-inspection-times ul.home-open-wrapper {
-    margin: 0.5em 0;
-    list-style-type: none;
+	margin: 0.5em 0;
+	list-style-type: none;
 }
 .epl-inspection-times ul.home-open-wrapper li {
     line-height: 1;

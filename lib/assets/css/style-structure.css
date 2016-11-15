@@ -276,7 +276,7 @@
 	EPL Ready Icons
 ******************************/
 .property-feature-icons {
-
+	margin: 0.5em 0;
 }
 .property-feature-icons .icon {
 	padding: 0px 10px 4px 25px;
