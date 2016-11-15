@@ -58,7 +58,7 @@ function epl_list_listings_contextual_help() {
 
 
 	// Available Actions
-	$screen_content	= '<p>' . __( 'Hovering over a row in the listings list will display action links that allow you to manage your listings. You can perform the following actions:' , 'easy-property-listings'  ) . '</p>';
+	$actions	= '<p>' . __( 'Hovering over a row in the listings list will display action links that allow you to manage your listings. You can perform the following actions:' , 'easy-property-listings'  ) . '</p>';
 	$actions	.= '<ul>';
 	$actions	.= '<li><strong>' . __('Edit' , 'easy-property-listings'  ) . '</strong> ' . __( 'takes you to the editing screen for that listing. You can also reach that screen by clicking on the listing title.' , 'easy-property-listings'  ) . '</li>';
 	$actions	.= '<li><strong>' . __('Quick Edit' , 'easy-property-listings'  ) . '</strong> ' . __( 'provides inline access to the metadata of your listing, allowing you to update listing details without leaving this screen.' , 'easy-property-listings'  ) . '</li>';
