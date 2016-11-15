@@ -309,19 +309,19 @@ function epl_listing_search_commercial_widget_fields() {
 		),
 		array(
 			'key'			=>	'search_com_listing_type',
-			'label'			=>	__('Property Listing Type','easy-property-listings'),
+			'label'			=>	__('Commercial: Listing Type','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
 		array(
 			'key'			=>	'search_com_rent_period',
-			'label'			=>	__('Lease Period','easy-property-listings'),
+			'label'			=>	__('Commercial: Lease Period','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
 		array(
 			'key'			=>	'search_com_tenancy',
-			'label'			=>	__('Tenancy Status','easy-property-listings'),
+			'label'			=>	__('Commercial: Tenancy Status','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
@@ -425,7 +425,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
-			'order'			=>	30
+			'order'			=>	25
 		),
 		array(
 			'key'			=>	'search_address',
@@ -888,8 +888,10 @@ function epl_listing_search_commercial_widget_fields_frontend($post_type='commer
 			'label'			=>	__('Search by Property ID', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
-			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
-			'order'			=>	30
+			'query'			=>	array(
+								'query'	=>	'meta' ,
+								'key'	=>	'property_unique_id'),
+			'order'			=>	25
 		),
 		array(
 			'key'			=>	'search_address',
