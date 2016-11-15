@@ -437,6 +437,19 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Conditional tags when lo listing types are activated.
 * Fix: Improved onclick links in floorpan, external, web links to conform with new JS class.
 
+
+
+* New: No image icon for listing attachments.
+* Tweak: Reset page sorting when performing a search on a sub page with a widget or shortcode.
+* New: Display lease price if nothing selected.
+* Tweak: Translation fix for rent period.
+* New: Added epl_get_property_price_lease_display filter to control lease price display.
+* Fix: Commercial car spaces displaying incorrectly.
+* New: Added Pet Friendly options.
+* Tweak: Listing search widget status label.
+
+
+
 = 3.0.4 May 4, 2016 =
 
 * Fix: Internal help videos gzip error, using iframe instead.
