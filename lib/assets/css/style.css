@@ -8,6 +8,7 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
+/* Loop */
 .epl-archive-utility-wrapper {
 	margin: 0.5em 0;
 }
@@ -34,30 +35,37 @@
 	padding: 0 0.5em;
 	min-height: 170px;
 }
+.epl-property-blog .entry-title  {
+	margin: 0.5em 0;
+}
 .builder-module-content .epl-property-blog.hentry .entry-content  {
 	padding: 0;
 }
-.epl-property-blog .entry-title,
-.epl-property-blog .entry-title:first-child {
+.epl-property-blog .entry-title {
 	font-size: 1.3em;
 	line-height: 1.1;
 	max-height: 42px;
 	overflow: hidden;
-	margin: 0.5em 0;
 }
 .epl-property-blog .entry-title a {
 	text-decoration: none;
 }
+
 /* Grid View */
-.epl-property-blog.epl-listing-grid-view {
+.epl-property-blog.epl-listing-grid-view,
+.epl-property-blog.epl-listing-grid-view-forced {
 
 }
-.epl-property-blog.epl-listing-grid-view .property-box-right {
+.epl-property-blog.epl-listing-grid-view .property-box-right,
+.epl-property-blog.epl-listing-grid-view-forced .property-box-right{
 	min-height: 180px;
 }
-.epl-property-blog.epl-listing-grid-view .entry-content {
+.epl-property-blog.epl-listing-grid-view .entry-content,
+.epl-property-blog.epl-listing-grid-view-forced .entry-content {
 	display: none;
 }
+
+
 /* Address */
 .epl-property-blog .property-address {
 	margin: 0.5em 0;
@@ -81,6 +89,7 @@
 .under-offer-status {
 	color: #FFA500;
 }
+
 /* Property Status */
 .property-under-offer,
 .property-sold,
@@ -92,6 +101,7 @@
 .property-under-offer {
 	color: #FFA042;
 }
+
 /* Property Card Slim */
 .epl-property-blog-slim {
 
@@ -143,9 +153,7 @@
 	background: #800080;
 }
 
-/*****************************
-	EPL Loop
-******************************/
+/* Tabs */
 #tabs {
 	overflow:hidden;
 	margin-top: 1em;
@@ -162,6 +170,7 @@
 .tab-content ol {
 	list-style-position: inside;
 }
+
 
 /* Author Directory Page */
 .epl-sd-location-profile .epl-location-profile-card.hentry {
@@ -229,9 +238,12 @@ ul.epl-striped > *:nth-child(2n+1) {
 .epl-property-single .epl-inspection-times {
     padding: 0;
 }
-.epl-inspection-times ul {
+.epl-inspection-times ul.home-open-wrapper {
     margin: 0.5em 0;
     list-style-type: none;
+}
+.epl-inspection-times ul.home-open-wrapper li {
+    line-height: 1;
 }
 .epl-inspection-times .epl-inspection-times-label {
 	margin: 0.5em 0 0;
