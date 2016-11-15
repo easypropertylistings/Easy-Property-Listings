@@ -71,7 +71,7 @@ function epl_wp_enqueue_scripts() {
 
 	}
 
-	// All CSS including Structual
+	// All CSS includting Structual
 	if( isset($epl_settings['epl_use_core_css']) &&  $epl_settings['epl_use_core_css'] == 'on') {
 
 	} else {
@@ -79,15 +79,15 @@ function epl_wp_enqueue_scripts() {
 		// Structural CSS
 		wp_enqueue_style(	'epl-css-lib', 			$current_dir_path . '/css/style-structure.css',		FALSE,			EPL_PROPERTY_VER );
 
-		// Visual CSS: on is to disable visual css, default off
-		if( isset($epl_settings['epl_css_visual_disable']) &&  $epl_settings['epl_css_visual_disable'] == 'on') {
+		// Legacy CSS: on is to disable visual css, default off
+		if( isset($epl_settings['epl_css_legacy']) &&  $epl_settings['epl_css_legacy'] == 'on') {
 
 			wp_enqueue_style(	'epl-front-styles', 	$current_dir_path . '/css/style-legacy.css',			FALSE,			EPL_PROPERTY_VER );
 
 		} else {
 			wp_enqueue_style(	'epl-style', 		$current_dir_path . '/css/style.css',			FALSE,			EPL_PROPERTY_VER );
 		}
-		
+
 		/**
 		 * Load theme specific stylesheet for epl, if exists
 		 * Loaded at the end to override any styles in plugin
