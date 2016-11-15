@@ -349,13 +349,14 @@ function epl_get_price_array($post_type='property',$transaction='default') {
 
 	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
 	if( is_epl_rental_post($post_type) ) {
-
-		$price_array 	= array_combine(range(50,5000,50),array_map('epl_currency_formatted_amount',range(50,5000,50)) );
+		$range 			= array_merge(range(50,1000,50), range(1100,2000,100), range(2500,5000,500) );
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
 
 		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type
 		$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array,$post_type,$transaction);
 	} else {
-		$price_array 	= array_combine(range(50000,10000000,50000),array_map('epl_currency_formatted_amount',range(50000,10000000,50000)) );
+		$range 			= array_merge(range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
 		$price_array 	= apply_filters('epl_listing_search_price_sale',$price_array,$post_type,$transaction);
 	}
 
@@ -409,7 +410,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_status',
 			'label'			=>	__('Status', 'easy-property-listings'),
 			'type'			=>	'hidden',
-			'option_filter'	=>	'prpoerty_status',
+			'option_filter'	=>	'property_status',
 			'options'		=>	epl_get_unique_post_meta_values('property_status', $post_type ),
 			'query'			=>	array(
 									'query'   => 'meta',

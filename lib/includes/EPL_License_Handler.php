@@ -114,7 +114,15 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			//add_action( 'admin_init', array( $this, 'weekly_license_check' ) );
 
 			// Updater
-			add_action( 'admin_init', array( $this, 'auto_updater' ), 0 );
+			/**
+			 *  schedule auto updater daily or weekly depending upon user preference. Defaults to daily
+			 *  improves site load performance. 
+			 */
+			$frequency = epl_get_option('epl_updates_lookup','daily');
+			
+			add_action( 'epl_'.$frequency.'_scheduled_events', array( $this, 'auto_updater' ), 0 );
+
+			add_action( 'admin_init', array( $this, 'manual_updater' ), 0 );
 
 			add_action( 'admin_notices', array( $this, 'notices' ) );
 
@@ -139,6 +147,13 @@ if ( ! class_exists( 'EPL_License' ) ) :
 					'author'    => $this->author
 				)
 			);
+		}
+
+		public function manual_updater() {
+
+			if( isset($_GET['epl_manual_update']) ) {
+				$this->auto_updater();
+			}
 		}
 
 
