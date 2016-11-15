@@ -22,6 +22,9 @@
 	max-width: 100%;
 	width: 100%;
 }
+.epl-about-wrap .headline-feature .feature-section p {
+	max-width: 100%;
+}
 .epl-about-wrap .headline-feature .feature-section .col:first-child {
 	float: left;
 	margin: 15px 5% 0 0;
