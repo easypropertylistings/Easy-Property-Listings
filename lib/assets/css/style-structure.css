@@ -834,7 +834,6 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	margin-bottom: 0.5em;
 }
 .epl-author-box-outer-wrapper {
-	background: #fafafa;
 	padding: 0.5em;
 	margin-bottom: 2em;
 }
@@ -899,9 +898,8 @@ ul.map-tabs li {
 	margin: 0;
 }
 ul.property_search-tabs li{
-	text-transform:capitalize;
+	text-transform: capitalize;
 	margin:0 0.3em 0 0;
-	font-weight:bold;
 }
 ul.epl-author-tabs li.epl-author-current,
 ul.property_search-tabs li.epl-sb-current,
@@ -919,16 +917,13 @@ li.tbhead.current {
 }
 
 /* Author Social Icons */
-.epl-author-social-buttons {
-	margin-top: 1em;
-}
 .epl-author-icon  {
 	display: inline-block;
 	text-indent: -999em;
-	height:24px;
-	width:24px;
+	height: 24px;
+	width: 24px;
 	text-decoration: none;
-	vertical-align:middle;
+	vertical-align: middle;
 	margin-right: 3px;
 }
 .epl-author-icon:hover  {
@@ -978,7 +973,7 @@ li.tbhead.current {
 	position: absolute;
 	top: -6px;
 }
-.epl-popup-box{
+.epl-popup-box {
 	display:none;
 	background: #fff none repeat scroll 0 0;
 	border: 1px solid #ddd;
@@ -990,7 +985,7 @@ li.tbhead.current {
 	min-width: 160px;
 	z-index: 9999;
 }
-.epl-popup-box > li{
+.epl-popup-box > li {
 	cursor: pointer;
 }
 .epl-popup-box > li:hover {

@@ -250,6 +250,19 @@ ul.epl-striped > *:nth-child(2n+1) {
 	display: block;
 }
 
+/* Author */
+.epl-author-box-outer-wrapper {
+	background: #fafafa;
+}
+.epl-author-social-buttons {
+	margin: 0.5em 0;
+}
+
+.widget_epl_author .entry-content h5.epl-author-title {
+	margin: 0.5em 0;
+}
+
+
 @media screen and (max-width: 500px) {
 	.epl-active-theme-twentyfourteen.epl-archive-default .page-header,
 	.epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog,
