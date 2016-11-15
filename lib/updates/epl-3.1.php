@@ -2,7 +2,7 @@
 $epl_settings = epl_settings();
 
 $new_fields_defaults = array(
-	'epl_css_visual_disable'		=> 'on'
+	'epl_css_legacy'		=> 'on'
 );
 
 foreach($new_fields_defaults as $key	=>	$value) {
