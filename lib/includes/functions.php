@@ -1484,7 +1484,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 				array(
 					'name'		=>	'epl_lucky_disable_epl_archive_thumb',
-					'label'		=>	__('---Archive Listing', 'easy-property-listings' ),
+					'label'		=>	__('Archive Listing', 'easy-property-listings' ),
 					'type'		=>	'checkbox_single',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
