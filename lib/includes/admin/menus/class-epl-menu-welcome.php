@@ -224,6 +224,54 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+
+					<h4><?php _e( 'Version 3.1', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Rebuilt templates including additional wrapper for better grid layout.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added legacy CSS option to prevent using new stylesheets when updating to 3.1 ensuring your listing display remains consistent.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Enhanced grid wrapper CSS to better display listings in a grid format and improved CSS by splitting global style.css with style-structure.css allowing for better compatibility with themes.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Class based front JS scripts for enhanced compatibility.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Implemented cron checking in extension license handler and updated license updater EDD code.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added filter for epl_get_contacts_args to enable contact form field changes.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added epl_get_next_contact_link_query filter to adjust contact query.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added epl_contact_access filter to adjust contact system access by user level.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Contextual help tab on listing pages.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added epl_author_description_html filter to adjust the author description.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Cron added to handle scheduled events like license checking and updating.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Auction epl_auction_feed_format date format filter added.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added epl_get_property_com_rent to allow commercial rent prince formatting.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Search radio option and checkbox added.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Refactored search into class based code.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Commercial search added (beta) disabled by default.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Conditional post types added for checking on enabled  listing types.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Support for DIVI theme framework.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added epl_meta_commercial_category_value to adjust commercial category.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Parse EPL shortcodes for meta queries.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Widget template no image added.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Sorting order function added.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Pagination option added to all listing shortcodes pagination = ‘on’ default.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: [listing_category] shortcode added compare option. category_compare = ‘IN’ usage is based on SQL query options.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Wrapper added to templates to improve display and  provide even grid spacing.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added search address to separate from ID search.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: License handler using https.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Improvements to contact actions.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: License styling improved for better WordPRess UX.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: LinkedIn link adjusted for worldwide usage.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: get_property_meta improved.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Commercial leased sticker corrected.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: property_land_area adjustment for numerical value.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Commercial and land category correctly displaying.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: On activation the Property post type is enabled by default.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Improvements to listing widget.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Inspection time and date format improved.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: File option added to external links for floorplans.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Template wrappers prefixed for details, property meta, icons, address, content.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Languages moved for better compatibility with translation plugins.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Conditional tags when lo listing types are activated.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Improved onclick links in floorpan, external, web links to conform with new JS class.', 'easy-property-listings'  );?></li>
+					<ul>
+
 					<h4><?php _e( 'Version 3.0.4', 'easy-property-listings'  );?></h4>
 					<ul>
 						<li><?php _e( 'Fix: Internal help videos gzip error, using iframe instead.', 'easy-property-listings'  );?></li>

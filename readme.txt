@@ -433,6 +433,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Inspection time and date format improved.
 * Tweak: File option added to external links for floorplans.
 * Tweak: Template wrappers prefixed for details, property meta, icons, address, content.
+* Tweak: Languages moved for better compatibility with translation plugins.
 * Fix: Conditional tags when lo listing types are activated.
 * Fix: Improved onclick links in floorpan, external, web links to conform with new JS class.
 
