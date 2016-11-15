@@ -8,8 +8,6 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
-
-
 .epl-archive-utility-wrapper {
 	margin: 0.5em 0;
 }
@@ -36,26 +34,23 @@
 	padding: 0 0.5em;
 	min-height: 170px;
 }
-.epl-property-blog .entry-title  {
-	margin: 0.5em 0;
-}
 .builder-module-content .epl-property-blog.hentry .entry-content  {
 	padding: 0;
 }
-.epl-property-blog .entry-title {
+.epl-property-blog .entry-title,
+.epl-property-blog .entry-title:first-child {
 	font-size: 1.3em;
 	line-height: 1.1;
 	max-height: 42px;
 	overflow: hidden;
+	margin: 0.5em 0;
 }
 .epl-property-blog .entry-title a {
 	text-decoration: none;
 }
-
 /* Grid View */
 .epl-property-blog.epl-listing-grid-view {
-	/* text-align: center; */
-	/* min-height: 370px; */
+
 }
 .epl-property-blog.epl-listing-grid-view .property-box-right {
 	min-height: 180px;
@@ -63,8 +58,6 @@
 .epl-property-blog.epl-listing-grid-view .entry-content {
 	display: none;
 }
-
-
 /* Address */
 .epl-property-blog .property-address {
 	margin: 0.5em 0;
@@ -88,7 +81,6 @@
 .under-offer-status {
 	color: #FFA500;
 }
-
 /* Property Status */
 .property-under-offer,
 .property-sold,
@@ -100,7 +92,6 @@
 .property-under-offer {
 	color: #FFA042;
 }
-
 /* Property Card Slim */
 .epl-property-blog-slim {
 
@@ -119,9 +110,6 @@
 	min-height: 150px;
 }
 
-
-
-
 /* Single Tab Content */
 .epl-property-single .tab-content.home-open {
 	background: #666;
@@ -132,7 +120,6 @@
 .epl-property-single .tab-content .bond {
 	font-size: 1em;
 }
-
 
 /* Stickers */
 .epl-stickers-wrapper {
@@ -156,7 +143,6 @@
 	background: #800080;
 }
 
-
 /*****************************
 	EPL Loop
 ******************************/
@@ -176,7 +162,6 @@
 .tab-content ol {
 	list-style-position: inside;
 }
-
 
 /* Author Directory Page */
 .epl-sd-location-profile .epl-location-profile-card.hentry {
