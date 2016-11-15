@@ -104,7 +104,7 @@ Multiple agent details not a problem, its built in.
 Filled with rich and useful features that makes publishing listings online a breeze.
 
 * Easily add, update and manage unlimited listings fast.
-* Optimized for Search Engines (SEO) with separate listing types.
+* Optimised for Search Engines (SEO) with separate listing types.
 * Pricing system for today that you won’t find in any other plugin.
 * Attach landlords and sellers details to listings for quick access.
 * Listings have different needs, this handles them all.
