@@ -51,6 +51,18 @@
 	text-decoration: none;
 }
 
+/** Card **/
+.epl-property-blog-card {
+	font-size: 0.8em;
+	text-align: center;
+}
+.epl-property-blog-card .epl-entry-content {
+	margin: 4px;
+	padding: 4px;
+	min-height: 240px;
+	box-shadow: 0 0 2px #bbb;
+}
+
 /* Grid View */
 .epl-property-blog.epl-listing-grid-view,
 .epl-property-blog.epl-listing-grid-view-forced {
