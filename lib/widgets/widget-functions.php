@@ -407,8 +407,10 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 		array(
 			'key'			=>	'property_status',
 			'meta_key'		=>	'property_status',
-			'label'			=>	__('Property Status', 'easy-property-listings'),
+			'label'			=>	__('Status', 'easy-property-listings'),
 			'type'			=>	'hidden',
+			'option_filter'	=>	'prpoerty_status',
+			'options'		=>	epl_get_unique_post_meta_values('property_status', $post_type ),
 			'query'			=>	array(
 									'query'   => 'meta',
 									'compare' => 'IN',

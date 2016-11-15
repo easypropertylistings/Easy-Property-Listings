@@ -897,7 +897,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			if($val != '') {
 				$img = $val;
 			} else {
-				$img = plugin_dir_url( __FILE__ ).'images/no_image.jpg';
+				$img = plugin_dir_url( __DIR__ ).'assets/images/no_image.png';
 			}
 			echo '
 				<div class="epl-media-row">

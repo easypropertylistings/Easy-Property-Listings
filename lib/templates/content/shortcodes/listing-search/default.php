@@ -84,7 +84,7 @@ if ( ! empty( $selected_post_types ) ) :
 				foreach ( $epl_frontend_fields as &$epl_frontend_field ) {
 
 					if($epl_frontend_field['key'] == 'property_status' && $show_property_status_frontend == 'on'){
-						$epl_frontend_field['type'] =  'text';
+						$epl_frontend_field['type'] =  'select';
 						$epl_frontend_field['config'] = 'on';
 					}
 
