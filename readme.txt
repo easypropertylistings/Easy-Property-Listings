@@ -5,7 +5,7 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, contact, crm, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.9
-Tested up to: 4.5.2
+Tested up to: 4.7
 
 Stable Tag: 3.0.4
 
@@ -104,7 +104,7 @@ Multiple agent details not a problem, its built in.
 Filled with rich and useful features that makes publishing listings online a breeze.
 
 * Easily add, update and manage unlimited listings fast.
-* Optimized for Search Engines (SEO) with separate listing types.
+* Optimised for Search Engines (SEO) with separate listing types.
 * Pricing system for today that you won’t find in any other plugin.
 * Attach landlords and sellers details to listings for quick access.
 * Listings have different needs, this handles them all.
@@ -392,30 +392,61 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.1 June 23, 2016 =
+= 3.1 November 17, 2016 =
 
+* New: Rebuilt templates including additional wrapper for better grid layout.
+* New: Added legacy CSS option to prevent using new stylesheets when updating to 3.1 ensuring your listing display remains consistent.
+* New: Enhanced grid wrapper CSS to better display listings in a grid format and improved CSS by splitting global style.css with style-structure.css allowing for better compatibility with themes.
+* New: Class based front JS scripts for enhanced compatibility.
+* New: Implemented cron checking in extension license handler and updated license updater EDD code.
+* New: Added filter for epl_get_contacts_args to enable contact form field changes.
+* New: Added epl_get_next_contact_link_query filter to adjust contact query.
+* New: Added epl_contact_access filter to adjust contact system access by user level.
+* New: Contextual help tab on listing pages.
+* New: Added epl_author_description_html filter to adjust the author description.
+* New: Cron added to handle scheduled events like license checking and updating.
+* New: Auction epl_auction_feed_format date format filter added.
+* New: Added epl_get_property_com_rent to allow commercial rent prince formatting.
+* New: Search radio option and checkbox added.
+* New: Refactored search into class based code.
+* New: Commercial search added (beta) disabled by default.
+* New: Conditional post types added for checking on enabled  listing types.
+* New: Support for DIVI theme framework.
+* New: Added epl_meta_commercial_category_value to adjust commercial category.
+* New: Parse EPL shortcodes for meta queries.
+* New: Widget template no image added.
+* New: Sorting order function added.
+* New: Pagination option added to all listing shortcodes pagination = ‘on’ default.
+* New: [listing_category] shortcode added compare option. category_compare = ‘IN’ usage is based on SQL query options. 'IN','NOT IN','BETWEEN','NOT BETWEEN'
+* New: Wrapper added to templates to improve display and  provide even grid spacing.
+* New: Added search address to separate from ID search.
+* Tweak: License handler using https.
+* Tweak: Improvements to contact actions.
+* Tweak: License styling improved for better WordPRess UX.
+* Tweak: LinkedIn link adjusted for worldwide usage.
+* Tweak: get_property_meta improved.
+* Tweak: Commercial leased sticker corrected.
+* Tweak: property_land_area adjustment for numerical value.
+* Tweak: Commercial and land category correctly displaying.
+* Tweak: On activation the Property post type is enabled by default.
+* Tweak: Improvements to listing widget.
+* Tweak: Inspection time and date format improved.
+* Tweak: File option added to external links for floorplans.
+* Tweak: Template wrappers prefixed for details, property meta, icons, address, content.
+* Tweak: Languages moved for better compatibility with translation plugins.
 * Fix: Conditional tags when lo listing types are activated.
-
-
-* New: cron
-* Tweak: jQuery scripts refactored and converted it into a single object less chances of interference of outside code this way
-
-* Tweak: License schedule
-* Tweak: License expired notices.
-* New: Contact Filter epl_get_contacts_args
-New Filter
-epl_get_next_contact_link_query
-epl_get_prev_contact_link_query
-epl_contact_access
-
-Cron system
-
-Shortcode filters for sorting added
+* Fix: Improved onclick links in floorpan, external, web links to conform with new JS class.
 
 
 
-
-
+* New: No image icon for listing attachments.
+* Tweak: Reset page sorting when performing a search on a sub page with a widget or shortcode.
+* New: Display lease price if nothing selected.
+* Tweak: Translation fix for rent period.
+* New: Added epl_get_property_price_lease_display filter to control lease price display.
+* Fix: Commercial car spaces displaying incorrectly.
+* New: Added Pet Friendly options.
+* Tweak: Listing search widget status label.
 
 
 
