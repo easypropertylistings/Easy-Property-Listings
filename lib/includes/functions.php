@@ -1662,7 +1662,37 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'default'	=>	0
 				)
 			)
+		),
+
+		array(
+			'label'		=>	__('Extension Updates' , 'easy-property-listings' ),
+			'class'		=>	'core',
+			'id'		=>	'advanced',
+			'fields'	=>	array(
+
+				array(
+					'name'		=>	'epl_updates_lookup',
+					'label'		=>	__('Updates Frequency', 'easy-property-listings' ),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						'daily'		=>	__('Daily', 'easy-property-listings' ),
+						'weekly'	=>	__('Weekly', 'easy-property-listings' ),
+						'manual'	=>	__('Manual', 'easy-property-listings' )
+					),
+					'default'	=>	'daily'
+				),
+				array(
+					'name'		=>	'epl_manual_update_lookup',
+					'label'		=>	__('Manual Update', 'easy-property-listings' ),
+					'type'		=>	'button',
+					'class'		=>	'button',
+					'value'		=>	__('Look for updates', 'easy-property-listings')
+				),
+				
+			)
 		)
+
+
 	);
 
 	$fields = apply_filters('epl_display_options_filter', $fields);
@@ -1747,7 +1777,7 @@ AND p.post_type = '%s'
 	}
 	$res = array_filter($res);
 	if(!empty($res))
-    	return array_combine(array_filter($res),array_filter($res) );
+    	return array_combine(array_filter($res), array_map('ucwords',array_filter($res)) );
 }
 
 /**

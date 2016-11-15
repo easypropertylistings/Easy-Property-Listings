@@ -87,6 +87,14 @@ function epl_wp_enqueue_scripts() {
 		} else {
 			wp_enqueue_style(	'epl-style', 		$current_dir_path . '/css/style.css',			FALSE,			EPL_PROPERTY_VER );
 		}
+
+		/**
+		 * Load theme specific stylesheet for epl, if exists
+		 * Loaded at the end to override any styles in plugin
+		 */
+		if( file_exists(get_stylesheet_directory().'/easypropertylistings/style.css' ) ) {
+			wp_enqueue_style(	'epl-theme-style', 		get_stylesheet_directory_uri().'/easypropertylistings/style.css',			FALSE,			EPL_PROPERTY_VER );
+		}
 	}
 
 	$js_vars = array(

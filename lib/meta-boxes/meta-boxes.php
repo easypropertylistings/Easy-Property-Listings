@@ -381,6 +381,16 @@ function epl_meta_box_init() {
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'easy-property-listings' ),
 							),
+						),
+
+						array(
+							'name'		=>	'property_pet_friendly',
+							'label'		=>	__('Pet Friendly', 'easy-property-listings' ),
+							'type'		=>	'checkbox_single',
+							'include'	=>	array('rental'),
+							'opts'	=>	array(
+								'yes'	=>	__('Yes', 'easy-property-listings' ),
+							),
 						)
 					)
 				),
@@ -443,15 +453,7 @@ function epl_meta_box_init() {
 					'columns'	=>	'3',
 					'label'		=>	__('Internal', 'easy-property-listings' ),
 					'fields'	=>	array(
-						array(
-							'name'		=>	'property_pet_friendly',
-							'label'		=>	__('Pet Friendly', 'easy-property-listings' ),
-							'type'		=>	'checkbox_single',
-							'include'	=>	array('rental'),
-							'opts'	=>	array(
-								'yes'	=>	__('Yes', 'easy-property-listings' ),
-							),
-						),
+						
 						array(
 							'name'		=>	'property_remote_garage',
 							'label'		=>	__('Remote Garage', 'easy-property-listings' ),
