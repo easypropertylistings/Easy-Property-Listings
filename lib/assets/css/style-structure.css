@@ -1606,6 +1606,14 @@ li.tbhead.current {
 	.property-box {
 		float:none;
 	}
+	.epl-property-blog,
+	.epl-property-blog.hentry {
+		width: 100%;
+		max-width: 300px;
+		margin: 0 auto;
+		float: none;
+		clear: both;
+	}
 	.epl-property-blog .property-box-left,
 	.epl-property-blog .property-box-right {
 		width: 100%;

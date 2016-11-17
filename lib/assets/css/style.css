@@ -45,8 +45,8 @@
 .epl-property-blog .entry-title {
 	font-size: 1.3em;
 	line-height: 1.1;
-	max-height: 42px;
-	overflow: hidden;
+	/* max-height: 42px; */
+	/* overflow: hidden; */
 }
 .epl-property-blog .entry-title a {
 	text-decoration: none;
