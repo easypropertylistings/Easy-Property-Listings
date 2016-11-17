@@ -72,7 +72,7 @@ class EPL_Property_Meta {
 
         $this->post 				= $post;
         $this->epl_settings 		= epl_settings();
-        $this->meta 				= get_post_custom();
+        $this->meta 				= get_post_custom($post->ID);
         $this->post_type 			= $this->post->post_type;
         $this->property_post_type	= $this->post->post_type;
 
