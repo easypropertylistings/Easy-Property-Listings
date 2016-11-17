@@ -252,7 +252,8 @@ ul.epl-striped > *:nth-child(2n+1) {
 
 /* Inspection Times */
 .epl-inspection-times {
-
+	padding-left: 5px;
+	padding-right: 5px;
 }
 .epl-property-single .epl-inspection-times {
 	padding: 0;
