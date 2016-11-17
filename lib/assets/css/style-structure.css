@@ -481,7 +481,8 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	clear: both;
 	margin: 1em 0;
 }
-.epl-pagination a, .epl-pagination span {
+.epl-pagination a,
+.epl-pagination span {
 	padding: 3px 5px;
 	margin: 2px;
 }
@@ -641,6 +642,13 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	border-radius: 0 !important;
 	box-shadow: none !important;
 }
+/* Twenty Twelve */
+.epl-active-theme-twentytwelve {
+
+}
+.epl-active-theme-twentytwelve .entry-content {
+	overflow: hidden;
+}
 /* Twenty Thirteen */
 .epl-active-theme-twentythirteen .loop-footer {
 	margin: 0 auto;
@@ -762,7 +770,12 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	box-shadow: none;
 	border-bottom: none;
 }
-
+/*****************************
+	Shortcodes
+******************************/
+.epl-shortcode-listing {
+	overflow: hidden;
+}
 /*****************************
 	Widgets
 ******************************/
@@ -1728,4 +1741,3 @@ li.tbhead.current {
 #ie7 .epl-clearfix {
 	zoom: 1;
 }
-
