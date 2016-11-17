@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				$current_class = $counter == 1? 'epl-author-current':''; ?>
 				<?php
 					ob_start();
-					apply_filters('epl_author_tab_'.$k.'_callback',call_user_func('epl_author_tab_'.str_replace(' ','_',$k), $epl_author ));
+					echo apply_filters('epl_author_tab_'.$k.'_callback',call_user_func('epl_author_tab_'.str_replace(' ','_',$k), $epl_author ), $epl_author);
 					$author_tab = array('label'	=>	$author_tab);
 					$author_tab['content'] = ob_get_clean();
 					// remove tab if callback function output is ''
