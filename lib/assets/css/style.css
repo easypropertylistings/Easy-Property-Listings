@@ -40,6 +40,7 @@
 }
 .builder-module-content .epl-property-blog.hentry .entry-content  {
 	padding: 0;
+	overflow: hidden;
 }
 .epl-property-blog .entry-title {
 	font-size: 1.3em;
@@ -76,11 +77,11 @@
 }
 .epl-property-blog.epl-listing-grid-view .property-box-right,
 .epl-property-blog.epl-listing-grid-view-forced .property-box-right{
-	min-height: 180px;
+	min-height: 210px;
 }
 .epl-property-blog.epl-listing-grid-view .entry-content,
 .epl-property-blog.epl-listing-grid-view-forced .entry-content {
-	display: none;
+	/* display: none; */
 }
 
 
