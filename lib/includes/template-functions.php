@@ -1194,7 +1194,7 @@ function epl_author_tab_author_id( $epl_author = array() ) {
 
 	$permalink 	= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
-
+	ob_start();
 ?>
 	<div class="epl-author-contact-details author-contact-details">
 
@@ -1224,6 +1224,7 @@ function epl_author_tab_author_id( $epl_author = array() ) {
 		?>
 	</div>
 <?php
+	return ob_get_clean();
 }
 
 /**
