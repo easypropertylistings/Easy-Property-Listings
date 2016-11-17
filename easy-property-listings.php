@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.1 RC-3
+ * Version: 3.1 RC-6
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -228,7 +228,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
-			//require_once EPL_PATH_LIB . 'widgets/widget-listing-search-commercial.php';
+			require_once EPL_PATH_LIB . 'widgets/widget-listing-search-commercial.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-contact-capture.php';
 
 			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
