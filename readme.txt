@@ -440,13 +440,17 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 
 * New: No image icon for listing attachments.
-* Tweak: Reset page sorting when performing a search on a sub page with a widget or shortcode.
 * New: Display lease price if nothing selected.
-* Tweak: Translation fix for rent period.
 * New: Added epl_get_property_price_lease_display filter to control lease price display.
-* Fix: Commercial car spaces displaying incorrectly.
+* New: License checker for updates to improve plugin page performance and reduce the update checker frequency.
+* New: Load custom stylesheet from active_theme/easypropertylistings/style.css
 * New: Added Pet Friendly options.
 * Tweak: Listing search widget status label.
+* Tweak: Reset page sorting when performing a search on a sub page with a widget or shortcode.
+* Tweak: Adjusted price and rental search ranges.
+* Tweak: Translation fix for rent period.
+* Fix: Commercial car spaces displaying incorrectly.
+
 
 
 
