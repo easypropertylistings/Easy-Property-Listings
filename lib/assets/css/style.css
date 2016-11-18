@@ -75,7 +75,6 @@
 	padding: 0;
 }
 
-
 /* Grid View */
 .epl-property-blog.epl-listing-grid-view,
 .epl-property-blog.epl-listing-grid-view-forced {
@@ -252,6 +251,11 @@ ul.epl-striped > *:nth-child(2n+1) {
 }
 
 /* Inspection Times */
+
+.epl-property-blog.epl-listing-grid-view .epl-inspection-times,
+.epl-property-blog.epl-listing-grid-view-forced .epl-inspection-times {
+	display: none;
+}
 .epl-inspection-times {
 	padding-left: 5px;
 	padding-right: 5px;
