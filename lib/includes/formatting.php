@@ -238,3 +238,16 @@ function epl_currency_decimal_filter( $decimals = 2 ) {
 }
 add_filter( 'epl_sanitize_amount_decimals', 'epl_currency_decimal_filter' );
 add_filter( 'epl_format_amount_decimals', 'epl_currency_decimal_filter' );
+
+
+/**
+ * Apply formatting to epl_the_excerpt
+ *
+ * @since 3.1
+ * @return int $decimals
+*/
+function epl_format_the_excerpt( $content ) {
+	$content = '<div class="epl-excerpt-content">' . wpautop( $content ) . '</div>';
+	return $content;
+}
+add_filter( 'epl_the_excerpt' , 'epl_format_the_excerpt' );
