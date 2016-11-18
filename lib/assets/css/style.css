@@ -49,7 +49,7 @@
 	overflow: hidden;
 }
 .epl-property-blog .entry-title {
-	font-size: 1.3em;
+	font-size: 1.2em;
 	line-height: 1.1;
 	/* max-height: 42px; */
 	/* overflow: hidden; */
@@ -291,19 +291,20 @@ ul.epl-striped > *:nth-child(2n+1) {
 .epl-pagination .pages {
 	border: none;
 	border: 1px solid #ccc;
-	border-right: 0;
 }
 .epl-pagination a,
 .epl-pagination span {
 	border: 1px solid #ccc;
-	border-right: 0;
+	border-left: 0;
 }
 .epl-pagination .last {
 	border-right: 1px solid #ccc;
+	border-left: 0;
 }
 .epl-pagination a {
 	text-decoration: none;
 	background: #eee;
+	color: #888;
 }
 .epl-pagination a:hover,
 .epl-pagination span.current {

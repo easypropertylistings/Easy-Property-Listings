@@ -483,7 +483,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 }
 .epl-pagination a,
 .epl-pagination span {
-	padding: 0.5em 0.7em;
+	padding: 0.2em 0.5em;
 	margin: 0;
 	display: inline-block;
 }
