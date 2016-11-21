@@ -245,6 +245,7 @@
 }
 .epl-property-single .tab-content ul {
 	margin-top: 0;
+	padding-left: 0;
 }
 .epl-property-single .epl-author-col {
 	-webkit-box-sizing: border-box;
@@ -304,6 +305,9 @@
 }
 
 /* Buttons */
+.epl-button-wrapper {
+	margin: 0.5em 0;
+}
 .epl-button {
 	display: inline-block;
 	margin-bottom: 0;
