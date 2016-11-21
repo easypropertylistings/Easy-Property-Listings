@@ -98,6 +98,7 @@
 .epl-property-blog.epl-listing-grid-view .property-box-left,
 .epl-property-blog.epl-listing-grid-view-forced .property-box-left {
 	width:100%;
+	padding-right: 0;
 }
 .epl-property-blog.epl-listing-grid-view .property-box-right,
 .epl-property-blog.epl-listing-grid-view-forced .property-box-right {
