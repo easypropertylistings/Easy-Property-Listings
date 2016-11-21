@@ -335,6 +335,7 @@
 	color: #FFFFFF;
 	text-decoration: none;
 	background: #888888;
+	border: 1px solid transparent;
 }
 .epl-button a,
 .epl-button input[type='submit'],
