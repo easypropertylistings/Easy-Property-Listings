@@ -38,15 +38,21 @@
 .epl-property-blog .entry-title  {
 	margin: 0.5em 0;
 }
+.epl-property-blog .epl-excerpt-content  {
+	margin: 0.5em 0;
+}
+.epl-property-blog .epl-excerpt-content p {
+	margin: 0;
+}
 .builder-module-content .epl-property-blog.hentry .entry-content  {
 	padding: 0;
 	overflow: hidden;
 }
 .epl-property-blog .entry-title {
-	font-size: 1.3em;
+	font-size: 1.2em;
 	line-height: 1.1;
-	max-height: 42px;
-	overflow: hidden;
+	/* max-height: 42px; */
+	/* overflow: hidden; */
 }
 .epl-property-blog .entry-title a {
 	text-decoration: none;
@@ -69,7 +75,6 @@
 	padding: 0;
 }
 
-
 /* Grid View */
 .epl-property-blog.epl-listing-grid-view,
 .epl-property-blog.epl-listing-grid-view-forced {
@@ -77,13 +82,8 @@
 }
 .epl-property-blog.epl-listing-grid-view .property-box-right,
 .epl-property-blog.epl-listing-grid-view-forced .property-box-right{
-	min-height: 210px;
+	min-height: 240px;
 }
-.epl-property-blog.epl-listing-grid-view .entry-content,
-.epl-property-blog.epl-listing-grid-view-forced .entry-content {
-	/* display: none; */
-}
-
 
 /* Address */
 .epl-property-blog .property-address {
@@ -251,8 +251,14 @@ ul.epl-striped > *:nth-child(2n+1) {
 }
 
 /* Inspection Times */
-.epl-inspection-times {
 
+.epl-property-blog.epl-listing-grid-view .epl-inspection-times,
+.epl-property-blog.epl-listing-grid-view-forced .epl-inspection-times {
+	display: none;
+}
+.epl-inspection-times {
+	padding-left: 5px;
+	padding-right: 5px;
 }
 .epl-property-single .epl-inspection-times {
 	padding: 0;
@@ -262,7 +268,8 @@ ul.epl-striped > *:nth-child(2n+1) {
 	list-style-type: none;
 }
 .epl-inspection-times ul.home-open-wrapper li {
-    line-height: 1;
+    line-height: 1.2;
+    margin-left: 0;
 }
 .epl-inspection-times .epl-inspection-times-label {
 	margin: 0.5em 0 0;
@@ -279,6 +286,38 @@ ul.epl-striped > *:nth-child(2n+1) {
 
 .widget_epl_author .entry-content h5.epl-author-title {
 	margin: 0.5em 0;
+}
+
+/* Pagination */
+.epl-pagination {
+
+}
+.epl-pagination .pages {
+	border: none;
+	border: 1px solid #ccc;
+}
+.epl-pagination a,
+.epl-pagination span {
+	border: 1px solid #ccc;
+	border-left: 0;
+}
+.epl-pagination .last {
+	border-right: 1px solid #ccc;
+	border-left: 0;
+}
+.epl-pagination a {
+	text-decoration: none;
+	background: #eee;
+	color: #888;
+}
+.epl-pagination a:hover,
+.epl-pagination span.current {
+	background: #ccc;
+	color: #fff;
+	text-decoration: none;
+}
+.epl-pagination span.current {
+
 }
 
 
