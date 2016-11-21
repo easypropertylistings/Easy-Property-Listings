@@ -340,7 +340,7 @@ function epl_meta_box_init() {
 						),
 
 						array(
-							'name'		=>	'property_parking_open',
+							'name'		=>	'property_open_spaces',
 							'label'		=>	__('Open Spaces', 'easy-property-listings' ),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
