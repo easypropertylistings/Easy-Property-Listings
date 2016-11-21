@@ -76,7 +76,7 @@
 }
 .epl-property-blog .property-box-left {
 	width: 50%;
-	padding-right: 0;
+	padding-right: 1em;
 	background: transparent;
 }
 .epl-property-blog .property-box-right {
@@ -1630,8 +1630,7 @@ li.tbhead.current {
 	.epl-property-blog .property-box-left,
 	.epl-property-blog .property-box-right {
 		width: 100%;
-		padding-top: 0;
-		padding-left: 0;
+		padding: 0;
 	}
 	.epl-property-blog .entry-header .address,
 	.epl-property-blog .entry-header .property-price,
