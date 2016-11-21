@@ -320,6 +320,7 @@
 	background: #eeeeee;
 	color: #888888;
 	border: 1px solid transparent;
+	text-decoration: none;
 	white-space: nowrap;
 	padding: 6px 12px;
 	font-size: 14px;
@@ -336,6 +337,7 @@
 	text-decoration: none;
 	background: #888888;
 	border: 1px solid transparent;
+	text-decoration: none;
 }
 .epl-button a,
 .epl-button input[type='submit'],
