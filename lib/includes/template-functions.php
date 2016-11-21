@@ -365,7 +365,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 
 	if( is_null($property) )
 		return;
-	
+
 	$property_status = $property->get_property_meta('property_status');
 
 	switch($display) {
@@ -795,8 +795,10 @@ function epl_property_tab_section() {
 	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_new_construction('l');
 	$common_features = array(
 				'property_toilet',
+				'property_pet_friendly',
 				'property_garage',
 				'property_carport',
+				'property_open_spaces',
 				'property_com_parking_comments',
 				'property_com_car_spaces',
 				'property_category',
@@ -1873,7 +1875,7 @@ function epl_trim_excerpt($text = '') {
 		$excerpt_length = apply_filters( 'excerpt_length', 55 );
 		$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
 		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
-		
+
 	}
 	return apply_filters( 'epl_trim_excerpt', $text, $raw_excerpt );
 }
