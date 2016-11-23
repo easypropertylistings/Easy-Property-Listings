@@ -420,6 +420,22 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: [listing_category] shortcode added compare option. category_compare = 'IN' usage is based on SQL query options. 'IN','NOT IN','BETWEEN','NOT BETWEEN'
 * New: Wrapper added to templates to improve display and  provide even grid spacing.
 * New: Added search address to separate from ID search.
+* New: No image icon for listing attachments.
+* New: Display lease price if nothing selected.
+* New: Added epl_get_property_price_lease_display filter to control lease price display.
+* New: License checker for updates set to daily and constant added to improve plugin page performance and reduce the update checker frequency.
+* New: Load custom stylesheet from active_theme/easypropertylistings/style.css
+* New: Added Pet Friendly options.
+* New: Search frontend radio option epl_frontend_search_field_radio.
+* New: Search frontend multiple checkbox option epl_frontend_search_field_checkbox_multiple.
+* New: Search placeholders added to text fields.
+* New: Correctly wrap epl_the_excerpt.
+* New: Divi theme support.
+* New: Select multiple added as custom field ability.
+* New: Custom field option checkbox_option.
+* New: Pet Friendly option added to rentals.
+* New: Open Parking spaces added to listings.
+* New: Prefixed additional css in templates for better styling.
 * Tweak: License handler using https.
 * Tweak: Improvements to contact actions.
 * Tweak: License styling improved for better WordPRess UX.
@@ -434,42 +450,18 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: File option added to external links for floorplans.
 * Tweak: Template wrappers prefixed for details, property meta, icons, address, content.
 * Tweak: Languages moved for better compatibility with translation plugins.
-* Fix: Conditional tags when lo listing types are activated.
-* Fix: Improved onclick links in external, web links to conform with new JS class.
-
-
-
-* New: No image icon for listing attachments.
-* New: Display lease price if nothing selected.
-* New: Added epl_get_property_price_lease_display filter to control lease price display.
-* New: License checker for updates set to daily and constant added to improve plugin page performance and reduce the update checker frequency.
-* New: Load custom stylesheet from active_theme/easypropertylistings/style.css
-* New: Added Pet Friendly options.
 * Tweak: Listing search widget status label.
 * Tweak: Reset page sorting when performing a search on a sub page with a widget or shortcode.
 * Tweak: Adjusted price and rental search ranges.
 * Tweak: Translation fix for rent period.
-* Fix: Commercial car spaces displaying incorrectly.
-
-
 * Tweak: Numerous changes to CSS to improve listing display and responsiveness.
 * Tweak: Settings checkbox options display correctly.
 * Tweak: Improvements to author box functions for multi-author.
-* Tweak: LinkedIn author link adjusted
-
-* New: Search frontend radio option epl_frontend_search_field_radio.
-* New: Search frontend multiple checkbox option epl_frontend_search_field_checkbox_multiple.
-
-* New: Search placeholders added to text fields.
+* Tweak: LinkedIn author link adjusted.
+* Fix: Conditional tags when lo listing types are activated.
+* Fix: Improved onclick links in external, web links to conform with new JS class.
+* Fix: Commercial car spaces displaying incorrectly.
 * Fix: Conditional tags improved.
-* New: Correctly wrap epl_the_excerpt.
-* New: Divi theme support.
-* New: Select multiple added as custom field ability.
-* New: Custom field option checkbox_option.
-* New: Pet Friendly option added to rentals.
-* New: Open Parking spaces added to listings.
-* New: Prefixed additional css in templates for better styling.
-
 
 = 3.0.4 May 4, 2016 =
 
