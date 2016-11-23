@@ -17,14 +17,17 @@
 					</article> <!-- .et_pb_post -->
 			<?php
 					endwhile; ?>
-			<?php do_action( 'epl_property_loop_end' ); ?>	
-				
+			<?php do_action( 'epl_property_loop_end' ); ?>
+
+			<div class="loop-footer">
+					<!-- Previous/Next page navigation -->
+					<div class="loop-utility clearfix">
+						<?php do_action('epl_pagination'); ?>
+					</div>
+				</div>
+
 			<?php
 
-					if ( function_exists( 'wp_pagenavi' ) )
-						wp_pagenavi();
-					else
-						get_template_part( 'includes/navigation', 'index' );
 				else :
 					get_template_part( 'includes/no-results', 'index' );
 				endif;
