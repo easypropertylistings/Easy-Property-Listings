@@ -580,7 +580,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 }
 .epl-table .epl-table-column-image img {
 	max-width: 100%;
-	padding-right: 1em;
+	padding-right: 0;
 	display: block;
 }
 .epl-table .epl-table-column-content {
