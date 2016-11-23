@@ -118,11 +118,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			 *  schedule auto updater daily or weekly depending upon user preference. Defaults to daily
 			 *  improves site load performance. 
 			 */
-			$frequency = epl_get_option('epl_updates_lookup','daily');
+			$frequency = defined( 'EPL_UPDATE_FREQUENCY' ) ? EPL_UPDATE_FREQUENCY : 'daily';
 			
 			add_action( 'epl_'.$frequency.'_scheduled_events', array( $this, 'auto_updater' ), 0 );
-
-			add_action( 'admin_init', array( $this, 'manual_updater' ), 0 );
 
 			add_action( 'admin_notices', array( $this, 'notices' ) );
 
@@ -148,14 +146,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				)
 			);
 		}
-
-		public function manual_updater() {
-
-			if( isset($_GET['epl_manual_update']) ) {
-				$this->auto_updater();
-			}
-		}
-
 
 		/**
 		 * Add license field to settings

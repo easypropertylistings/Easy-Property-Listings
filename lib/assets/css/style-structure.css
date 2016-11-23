@@ -1174,6 +1174,7 @@ li.tbhead.current {
 	padding: 6px;
 	line-height: 1.3;
 	min-height: 2.1em;
+	text-transform: capitalize;
 }
 .epl-search-form .check-label {
 	font-size: 0.7em;

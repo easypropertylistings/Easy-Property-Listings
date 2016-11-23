@@ -880,6 +880,20 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			}
 			break;
 
+		case 'checkbox_option':
+			if(!empty($field['opts'])) {
+				foreach($field['opts'] as $k=>$v) {
+					$checked = '';
+					if(!empty($val)) {
+						if( $k == $val ) {
+							$checked = 'checked="checked"';
+						}
+					}
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+				}
+			}
+			break;
+
 		case 'radio':
 			if(!empty($field['opts'])) {
 				foreach($field['opts'] as $k=>$v) {
@@ -1449,7 +1463,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_lucky_disable_theme_single_thumb',
 					'label'		=>	__('Single Listing', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
 					),
@@ -1459,7 +1473,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_lucky_disable_archive_thumb',
 					'label'		=>	__('Archive Listing', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
 					),
@@ -1475,7 +1489,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_lucky_disable_single_thumb',
 					'label'		=>	__('Single Listing', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
 					),
@@ -1485,7 +1499,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_lucky_disable_epl_archive_thumb',
 					'label'		=>	__('Archive Listing', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
 					),
@@ -1612,7 +1626,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_use_core_css',
 					'label'		=>	__('Disable Styles', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Yes', 'easy-property-listings' ),
 					),
@@ -1623,7 +1637,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_css_legacy',
 					'label'		=>	__('Enable Legacy Styles', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
@@ -1663,35 +1677,6 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				)
 			)
 		),
-
-		array(
-			'label'		=>	__('Extension Updates' , 'easy-property-listings' ),
-			'class'		=>	'core',
-			'id'		=>	'advanced',
-			'fields'	=>	array(
-
-				array(
-					'name'		=>	'epl_updates_lookup',
-					'label'		=>	__('Updates Frequency', 'easy-property-listings' ),
-					'type'		=>	'radio',
-					'opts'		=>	array(
-						'daily'		=>	__('Daily', 'easy-property-listings' ),
-						'weekly'	=>	__('Weekly', 'easy-property-listings' ),
-						'manual'	=>	__('Manual', 'easy-property-listings' )
-					),
-					'default'	=>	'daily'
-				),
-				array(
-					'name'		=>	'epl_manual_update_lookup',
-					'label'		=>	__('Manual Update', 'easy-property-listings' ),
-					'type'		=>	'button',
-					'class'		=>	'button',
-					'value'		=>	__('Look for updates', 'easy-property-listings')
-				),
-				
-			)
-		)
-
 
 	);
 
