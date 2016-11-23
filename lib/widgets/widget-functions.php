@@ -48,7 +48,7 @@ function epl_search_widget_fields() {
 		),
 		array(
 			'key'			=>	'show_property_status_frontend',
-			'label'			=>	__('Status Changed via Search Form','easy-property-listings'),
+			'label'			=>	__('Status','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
