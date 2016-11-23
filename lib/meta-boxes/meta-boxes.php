@@ -340,6 +340,13 @@ function epl_meta_box_init() {
 						),
 
 						array(
+							'name'		=>	'property_open_spaces',
+							'label'		=>	__('Open Spaces', 'easy-property-listings' ),
+							'type'		=>	'number',
+							'maxlength'	=>	'2'
+						),
+
+						array(
 							'name'		=>	'property_year_built',
 							'label'		=>	__('Year Built', 'easy-property-listings' ),
 							'type'		=>	'text',
@@ -453,7 +460,7 @@ function epl_meta_box_init() {
 					'columns'	=>	'3',
 					'label'		=>	__('Internal', 'easy-property-listings' ),
 					'fields'	=>	array(
-						
+
 						array(
 							'name'		=>	'property_remote_garage',
 							'label'		=>	__('Remote Garage', 'easy-property-listings' ),

@@ -40,7 +40,7 @@ function epl_button_floor_plan() {
 					$number_string = ' ' . $k + 1;
 				}
 				?><span class="epl-floor-plan-button-wrapper<?php echo $number_string; ?>">
-				<button type="button" class="epl-button epl-floor-plan" onclick="window.open('<?php echo $link; ?>')"><?php echo apply_filters( 'epl_button_label_floorplan' , __('Floor Plan', 'easy-property-listings') ) . ' ' . $number_string; ?></button></span><?php
+				<a type="button" class="fancybox image epl-button epl-floor-plan" href="<?php echo $link; ?>"><?php echo apply_filters( 'epl_button_label_floorplan' , __('Floor Plan', 'easy-property-listings') ) . ' ' . $number_string; ?></a></span><?php
 			}
 		}
 	}
