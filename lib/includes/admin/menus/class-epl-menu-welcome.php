@@ -250,7 +250,7 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Parse EPL shortcodes for meta queries.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Widget template no image added.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Sorting order function added.', 'easy-property-listings'  );?></li>
-						<li><?php _e( 'New: Pagination option added to all listing shortcodes pagination = 'on' default.', 'easy-property-listings'  );?></li>
+						<li><?php _e( "New: Pagination option added to all listing shortcodes pagination = 'on' default.", 'easy-property-listings'  );?></li>
 						<li><?php _e( "New: [listing_category] shortcode added compare option. category_compare = 'IN' usage is based on SQL query options. 'IN','NOT IN','BETWEEN','NOT BETWEEN'", 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Wrapper added to templates to improve display and  provide even grid spacing.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Added search address to separate from ID search.', 'easy-property-listings'  );?></li>
