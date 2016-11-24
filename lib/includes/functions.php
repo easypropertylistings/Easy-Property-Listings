@@ -2075,6 +2075,6 @@ function epl_parse_atts($atts) {
 		}
 
 	}
-	return $query['meta_query'];
+	return isset($query['meta_query'])?$query['meta_query'] : false;
 
 }

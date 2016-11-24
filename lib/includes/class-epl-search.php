@@ -211,7 +211,7 @@ class EPL_SEARCH {
 	protected function modify_fields() {
 
 		// if  post type is commercial and listing type is set, accordingly change the price meta key
-		if( $this->post_type == 'commercial' ||  $this->post_type == 'commercial_land' && isset( $this->get_data['property_com_listing_type'] ) ) {
+		if( ($this->post_type == 'commercial' ||  $this->post_type == 'commercial_land' ) && isset( $this->get_data['property_com_listing_type'] ) ) {
 
 			$type = $this->get_data['property_com_listing_type'];
 			$this->transaction_type = $type == 'lease' ? 'lease' : 'sale';
@@ -316,6 +316,9 @@ class EPL_SEARCH {
 	function epl_search_query_pre_search() {
 
 		foreach($this->meta_query as $index	=>	&$meta_query) {
+			
+			if( !isset($meta_query['key']) )
+				continue;
 
 			if($meta_query['key'] == 'property_com_listing_type' ) {
 
