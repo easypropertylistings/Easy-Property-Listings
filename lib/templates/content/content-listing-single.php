@@ -47,7 +47,7 @@
 		<div class="tab-wrapper">
 			<div class="epl-tab-section epl-section-property-details">
 				<h5 class="epl-tab-title tab-title"><?php echo apply_filters('property_tab_title',__('Property Details', 'easy-property-listings' )); ?></h5>
-				<div class="epl-tap-content tab-content">
+				<div class="epl-tab-content tab-content">
 					<div class="epl-property-address property-details">
 						<h3 class="epl-tab-address tab-address">
 							<?php do_action('epl_property_address'); ?>

@@ -42,7 +42,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Text field.
+	 * Renders search frontend Text field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -80,7 +80,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Checkbox field.
+	 * Renders search frontend Checkbox field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -109,7 +109,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Select field.
+	 * Renders search frontend Select field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -153,7 +153,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Multiple Select field.
+	 * Renders search frontend Multiple Select field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -197,7 +197,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Number field.
+	 * Renders search frontend Number field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -231,7 +231,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Hidden field.
+	 * Renders search frontend Hidden field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -258,7 +258,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Radio field.
+	 * Renders search frontend Radio field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -278,7 +278,7 @@ class EPL_Search_Fields {
 				<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] ); ?>
 			</label>
 			<div class="field">
-				
+
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
 						foreach ( $field['options'] as $k => $v ) { ?>
@@ -293,7 +293,7 @@ class EPL_Search_Fields {
 						}
 					}
 					?>
-				
+
 			</div>
 		</div>
 		<?php
@@ -304,7 +304,7 @@ class EPL_Search_Fields {
 	}
 
 		/**
-	 * Renders serach frontend Radio field.
+	 * Renders search frontend Radio field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -324,10 +324,10 @@ class EPL_Search_Fields {
 				<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] ); ?>
 			</label>
 			<div class="field">
-				
+
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
-						foreach ( $field['options'] as $k => $v ) { 
+						foreach ( $field['options'] as $k => $v ) {
 							$checked = in_array($k, (array) $value ) ? 'checked' : '';
 							?>
 							<input
@@ -341,13 +341,13 @@ class EPL_Search_Fields {
 						}
 					}
 					?>
-				
+
 			</div>
 		</div>
 		<?php
 		if ( isset( $field['wrap_end'] ) ) {
 			echo '</div>';
 		}
-	}	
+	}
 
 }

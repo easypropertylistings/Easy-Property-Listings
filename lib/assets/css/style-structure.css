@@ -46,6 +46,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
 }
 .epl-property-blog a.more-link,
 .epl-property-blog a.epl-more-link {
@@ -579,7 +580,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 }
 .epl-table .epl-table-column-image img {
 	max-width: 100%;
-	padding-right: 1em;
+	padding-right: 0;
 	display: block;
 }
 .epl-table .epl-table-column-content {
@@ -1185,6 +1186,8 @@ li.tbhead.current {
 	line-height: 1.3;
 	min-height: 2.1em;
 	text-transform: capitalize;
+	-webkit-border-radius: 0;
+	border-radius: 0;
 }
 .epl-search-form .check-label {
 	font-size: 0.7em;
