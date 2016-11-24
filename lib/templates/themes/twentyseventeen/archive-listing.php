@@ -29,6 +29,7 @@ get_header(); ?>
 		<?php
 		if ( have_posts() ) : ?>
 			<?php
+			do_action( 'epl_property_loop_start' );
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
 
@@ -37,19 +38,27 @@ get_header(); ?>
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
-				get_template_part( 'template-parts/post/content', get_post_format() );
+				do_action('epl_property_blog');
 
 			endwhile;
 
-			the_posts_pagination( array(
-				'prev_text' => twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'twentyseventeen' ) . '</span>',
-				'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'twentyseventeen' ) . '</span>' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyseventeen' ) . ' </span>',
-			) );
+			do_action( 'epl_property_loop_end' );
+
+			// Previous/next page navigation.
+			do_action('epl_pagination');
 
 		else :
 
-			get_template_part( 'template-parts/post/content', 'none' );
+			?><div class="hentry">
+				<div class="entry-header clearfix">
+					<h3 class="entry-title"><?php apply_filters( 'epl_property_search_not_found_title' , _e('Listing not Found', 'easy-property-listings') ); ?></h3>
+				</div>
+
+				<div class="entry-content clearfix">
+					<p><?php apply_filters( 'epl_property_search_not_found_message' , _e('Listing not found, expand your search criteria and try again.', 'easy-property-listings') ); ?></p>
+				</div>
+			</div>
+			<?php
 
 		endif; ?>
 
