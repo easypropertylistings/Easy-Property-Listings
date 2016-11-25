@@ -1134,7 +1134,7 @@ class EPL_Property_Meta {
 			$return = '';
 			if( $metavalue != '' || intval($metavalue) != 0) {
 				if($metakey == 'property_com_car_spaces'){
-					$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label',__('', 'easy-property-listings' ) );
+					$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label','' );
 				}
 
 				if($metakey == 'property_category'){
