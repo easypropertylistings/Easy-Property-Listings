@@ -38,7 +38,7 @@
 
 	<div class="entry-content epl-content epl-clearfix">
 
-		<div class="tab-wrapper">
+		<div class="epl-tab-wrapper tab-wrapper">
 
 			<div class="epl-tab-section epl-section-description">
 				<h5 class="epl-tab-title"><?php echo apply_filters('epl_property_tab_title_description',__('Description', 'easy-property-listings' )); ?></h5>
