@@ -168,6 +168,33 @@ class EPL_Welcome {
 
 			<div class="changelog headline-feature">
 
+				<h2><?php _e( 'New Grid Styles' , 'easy-property-listings'  );?></h2>
+
+				<div class="featured-image">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-new-grid.png'; ?>" class="epl-welcome-featured-image"/>
+				</div>
+
+				<div class="feature-section">
+					<p><?php _e( 'When the grid/list option was added in a previous version last year we did so without adding an internal container so that the grid could neatly format at 33.3% to maintain an even effect.' , 'easy-property-listings'  ); ?></p>
+
+					<p><?php _e( 'We have now implemented an internal container on the listing element and moved the styling options to this new CSS class. So when you decide to use the new styles you’ll have to update your styling to this new class called epl-property-blog-entry-wrapper.' , 'easy-property-listings'  ); ?></p>
+				</div>
+			</div>
+
+			<div class="changelog headline-feature">
+
+				<h2><?php _e( 'Load Custom CSS from Your Theme' , 'easy-property-listings'  );?></h2>
+
+				<div class="feature-section">
+					<p><?php _e( 'In 3.1 we have also added the ability to load custom stylesheets from your_theme/easypropertylistings/style.css which allows you to quickly style your listings and keep the stylesheets separate from your main theme stylesheets. This allows you to quickly take your custom created templates and use them on other real estate sites.' , 'easy-property-listings'  ); ?></p>
+
+				</div>
+			</div>
+
+
+
+			<div class="changelog headline-feature">
+
 				<h2><?php _e( 'Contact and Lead Management System' , 'easy-property-listings'  );?></h2>
 
 				<div class="featured-image">
