@@ -209,7 +209,7 @@ function epl_plugin_updates() {
 		include( EPL_PATH_UPDATES.'epl-3.0.php' );
 		update_option( 'epl_version' ,'3.0');
 	}
-	if ( version_compare( $current_version, '3.1', '<' ) ) {
+	if ( version_compare( $current_version, '3.1', '<' ) || version_compare( $current_version, '30', '==' )) {
 		include( EPL_PATH_UPDATES.'epl-3.1.php' );
 		update_option( 'epl_version' ,'3.1');
 	}
