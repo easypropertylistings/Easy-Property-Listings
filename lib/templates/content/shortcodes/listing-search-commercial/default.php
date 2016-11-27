@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 extract( $atts );
 $selected_post_types = $atts['post_type'];
 extract( $_GET );
-$queried_post_type = isset( $_GET['post_type'] ) ? $_GET['post_type'] : '';
+$queried_post_type = isset( $_GET['post_type'] ) ? $_GET['post_type'] : 'commercial';
 
 if ( ! is_array( $selected_post_types ) ) {
 	$selected_post_types = explode( ',', $selected_post_types );
@@ -80,11 +80,11 @@ if ( ! empty( $selected_post_types ) ) :
 		<form method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<input type="hidden" name="action" value="epl_search" />
 			<?php
-				$epl_frontend_fields = epl_search_widget_fields_frontend( $post_type,$property_status );
+				$epl_frontend_fields = epl_listing_search_commercial_widget_fields_frontend( $post_type,$property_status );
 				foreach ( $epl_frontend_fields as &$epl_frontend_field ) {
 
 					if($epl_frontend_field['key'] == 'property_status' && $show_property_status_frontend == 'on'){
-						$epl_frontend_field['type'] =  'select';
+						$epl_frontend_field['type'] =  'text';
 						$epl_frontend_field['config'] = 'on';
 					}
 

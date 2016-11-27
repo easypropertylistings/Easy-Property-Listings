@@ -81,6 +81,7 @@ function epl_install() {
 		'epl_lucky_disable_archive_thumb'	=> 'off',
 		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
 		'epl_use_core_css'			=> 'off', // Means Enable CSS
+		'epl_css_legacy'			=> 'off', // Legacy styles disabled by default
 		'uninstall_on_delete'			=> 0,
 		'inspection_date_format'		=> 'l, dS F',
 		'inspection_time_format'		=> 'h:i a',
@@ -89,6 +90,7 @@ function epl_install() {
 		'epl_video_width'			=> 600,
 		'min_contact_access'			=> 'level_10',
 		'min_reports_access'			=> 'level_10',
+		'activate_post_types'			=> array('property')
 	);
 
 	if(!empty($epl_settings)) {
@@ -205,6 +207,10 @@ function epl_plugin_updates() {
 	}
 	if ( version_compare( $current_version, '3.0', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-3.0.php' );
+		update_option( 'epl_version' ,'30');
+	}
+	if ( version_compare( $current_version, '3.1', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-3.1.php' );
 		update_option( 'epl_version' ,'30');
 	}
 }

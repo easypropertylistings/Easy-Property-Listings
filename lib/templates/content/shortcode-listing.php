@@ -36,7 +36,11 @@ if ( $query_open->have_posts() ) {
 			?>
 		</div>
 		<div class="loop-footer">
-				<?php do_action( 'epl_pagination',array( 'query'	=> $query_open ) ); ?>
+				<?php
+					if ( $attributes['pagination'] == 'on' ) {
+						do_action( 'epl_pagination',array( 'query'	=> $query_open ) );
+					}
+				?>
 		</div>
 	</div>
 	<?php

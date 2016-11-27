@@ -48,7 +48,7 @@ function epl_search_widget_fields() {
 		),
 		array(
 			'key'			=>	'show_property_status_frontend',
-			'label'			=>	__('Status Changed via Search Form','easy-property-listings'),
+			'label'			=>	__('Status','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
@@ -67,6 +67,12 @@ function epl_search_widget_fields() {
 		array(
 			'key'			=>	'search_id',
 			'label'			=>	__('Property ID','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_address',
+			'label'			=>	__('Property Address','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
@@ -180,32 +186,58 @@ function epl_number_suffix_callback($v,$suffix=' +') {
 	return $v.''.$suffix;
 }
 
+function epl_get_price_array($post_type='property',$transaction='default') {
+
+
+	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
+	if( is_epl_rental_post($post_type) ) {
+		$range 			= array_merge(range(50,1000,50), range(1100,2000,100), range(2500,5000,500) );
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
+
+		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type
+		$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array,$post_type,$transaction);
+	} else {
+		$range 			= array_merge(range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
+		$price_array 	= apply_filters('epl_listing_search_price_sale',$price_array,$post_type,$transaction);
+	}
+
+	return $price_array;
+
+
+}
+
+function epl_get_price_meta_key($post_type='property',$transaction='default') {
+
+	// move from specific to general
+	if(	$post_type == 'commercial') {
+
+		$price_meta_key = $transaction =='lease' ? 'property_com_rent' : 'property_price';
+
+	} else if( is_epl_rental_post($post_type) ) {
+
+		$price_meta_key = 'property_rent';
+
+	} else {
+
+		$price_meta_key = 'property_price';
+	}
+
+	// use this filter to change property price meta key on the basis of post type & transaction
+	return apply_filters('epl_price_meta_key',$price_meta_key,$post_type,$transaction);
+
+}
+
 /**
  * search widget form fields for search widget - frontend
  *
  * @since 2.2
  */
-function epl_search_widget_fields_frontend($post_type='',$property_status='') {
+function epl_search_widget_fields_frontend($post_type='',$property_status='',$transaction_type='default') {
 
-	if( in_array($post_type,apply_filters('epl_core_rental_post_types', array('rental','holiday_rental') )) ) {
+	$price_array = epl_get_price_array($post_type,$transaction_type);
 
-		$price_array 	= array_combine(range(50,5000,50),array_map('epl_currency_formatted_amount',range(50,5000,50)) );
-		$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array);
-	} else {
-		$price_array 	= array_combine(range(50000,10000000,50000),array_map('epl_currency_formatted_amount',range(50000,10000000,50000)) );
-		$price_array 	= apply_filters('epl_listing_search_price_sale',$price_array);
-	}
-
-	if(
-		isset($post_type) &&
-		($post_type == 'rental'
-			|| $post_type == 'holiday_rental'
-		)
-	) {
-		$price_meta_key = 'property_rent';
-	} else {
-		$price_meta_key = 'property_price';
-	}
+	$price_meta_key = epl_get_price_meta_key($post_type,$transaction_type);
 
 	$fields = apply_filters( 'epl_search_widget_fields_frontend',  array(
 
@@ -218,8 +250,10 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='') {
 		array(
 			'key'			=>	'property_status',
 			'meta_key'		=>	'property_status',
-			'label'			=>	__('Property Status', 'easy-property-listings'),
+			'label'			=>	__('Status', 'easy-property-listings'),
 			'type'			=>	'hidden',
+			'option_filter'		=>	'property_status',
+			'options'		=>	epl_get_unique_post_meta_values('property_status', $post_type ),
 			'query'			=>	array(
 									'query'   => 'meta',
 									'compare' => 'IN',
@@ -229,10 +263,21 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='') {
 		array(
 			'key'			=>	'search_id',
 			'meta_key'		=>	'property_id',
-			'label'			=>	__('Search by Property ID / Address', 'easy-property-listings'),
+			'label'			=>	__('Search by Property ID', 'easy-property-listings'),
+			'placeholder'	=>	__('Search ID', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
+			'order'			=>	25
+		),
+		array(
+			'key'			=>	'search_address',
+			'meta_key'		=>	'property_address',
+			'label'			=>	__('Search by Address', 'easy-property-listings'),
+			'placeholder'	=>	__('Search Address', 'easy-property-listings'),
+			'type'			=>	'text',
+			'class'			=>	'epl-search-row-full',
+			'query'			=>	array('query'	=>	'post'),
 			'order'			=>	30
 		),
 		array(
@@ -640,14 +685,15 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='') {
 			'order'			=>	290
 		)
 	), $post_type, $property_status );
-$order = array();
-foreach($fields as $field_key   =>  $field_value) {
-    $fields[$field_value['meta_key']] = $field_value;
-    unset($fields[$field_key]);
-    $order[] = isset($field_value['order']) ? $field_value['order'] : 20;
-}
-array_multisort($order, SORT_ASC, $fields);
-	return $fields;
+
+	$order = array();
+	foreach($fields as $field_key   =>  $field_value) {
+		$fields[$field_value['meta_key']] = $field_value;
+		unset($fields[$field_key]);
+		$order[] = isset($field_value['order']) ? $field_value['order'] : 20;
+	}
+	array_multisort($order, SORT_ASC, $fields);
+		return $fields;
 }
 
 /**
@@ -666,7 +712,6 @@ function epl_search_get_defaults() {
 	return $defaults;
 
 }
-
 /**
  * Render widget field blocks -- for backend form
  *
@@ -798,114 +843,17 @@ function epl_widget_render_frontend_fields($field,$config='',$value='',$post_typ
  * @return void
  */
 function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
+
 	if ( empty( $data ) ) {
 		$data = $_REQUEST;
 	}
 
-	$paged = $query->get( 'paged', 1 );
-
-	$query->init();
-	$query->set( 'posts_per_page', get_option( 'posts_per_page' ) );
-	$query->set( 'paged', $paged );
-
-	if(isset($data['property_id']) ) {
-		$query->set( 'epl_post_title', sanitize_text_field($data['property_id']) );
-	}
-
-	if ( isset( $data['property_agent'] ) ) {
-		$property_agent = sanitize_title_with_dashes( $data['property_agent'] );
-		if ( $property_agent = get_user_by( 'slug', $property_agent ) ) {
-            $query->set( 'author__in' , array( $property_agent->ID) );
-		}
-	}
-
-	if ( isset( $data['post_type'] ) && ! empty( $data['post_type'] ) ) {
-		$query->set( 'post_type', $data['post_type'] );
-	} else {
-		$epl_post_types = epl_get_active_post_types();
-		if ( ! empty( $epl_post_types ) ) {
-			$epl_post_types = array_keys( $epl_post_types );
-			$query->set( 'post_type', $epl_post_types );
-		}
-	}
-
-	$epl_meta_query = array();
-
-	$epl_search_form_fields = epl_search_widget_fields_frontend( $data['post_type'], $data['property_status'] );
-
-	foreach ( $epl_search_form_fields as $epl_search_form_field ) {
-		if ( isset( $epl_search_form_field['query'] ) ) {
-			if ( $epl_search_form_field['query']['query'] == 'meta' ) {
-				$this_meta_query = array();
-				if ( isset( $epl_search_form_field['query']['multiple'] ) && $epl_search_form_field['query']['multiple'] == true ) {
-
-					if ( isset( $data[ $epl_search_form_field['meta_key'] ] ) && ! empty( $data[ $epl_search_form_field['meta_key'] ] ) ) {
-
-						$this_meta_query['relation'] =
-							isset( $epl_search_form_field['query']['relation'] ) ?
-								$epl_search_form_field['query']['relation'] : 'OR';
-
-						foreach ( $epl_search_form_field['query']['sub_queries'] as $sub_query ) {
-
-							$this_sub_query = array(
-								'key'		=>	$sub_query['key'],
-								'value'		=>	$data[ $epl_search_form_field['meta_key'] ],
-								'type'		=>	$sub_query['type'],
-								'compare'	=>	$sub_query['compare'],
-							);
-							$this_meta_query[] = $this_sub_query;
-						}
-						$epl_meta_query[] = $this_meta_query;
-					}
-				} else {
-					$query_meta_key = isset( $epl_search_form_field['query']['key'] ) ?
-						$epl_search_form_field['query']['key'] :
-						$epl_search_form_field['meta_key'];
-
-					if ( $query_meta_key == 'property_unique_id' ) {
-						continue;
-					}
-
-					if ( isset( $data[ $epl_search_form_field['meta_key'] ] ) && ! empty( $data[ $epl_search_form_field['meta_key'] ] ) ) {
-
-						$this_meta_query = array(
-							'key'	=>	$query_meta_key,
-							'value'	=>	$data[ $epl_search_form_field['meta_key'] ],
-						);
-
-						isset( $epl_search_form_field['query']['compare'] ) ? $this_meta_query['compare'] = $epl_search_form_field['query']['compare'] : '';
-						isset( $epl_search_form_field['query']['type'] ) ? $this_meta_query['type'] = $epl_search_form_field['query']['type'] : '';
-						isset( $epl_search_form_field['query']['value'] ) ? $this_meta_query['value'] = $epl_search_form_field['query']['value'] : '';
-						$epl_meta_query[] = $this_meta_query;
-					}
-				}
-			}
-		}
-	}
-
-	$epl_meta_query = epl_preprocess_search_meta_query( $epl_meta_query, $epl_search_form_fields );
-
-	if ( ! empty( $epl_meta_query ) ) {
-		$query->set( 'meta_query', $epl_meta_query );
-	}
-
-	$tax_query = array();
-	if ( isset( $data['property_location'] ) && ! empty( $data['property_location'] ) ) {
-		$tax_query[] = array(
-			'taxonomy'	=>	'location',
-			'field'		=>	'id',
-			'terms'		=>	$data['property_location'],
-		);
-	}
-
-	if ( ! empty( $tax_query ) ) {
-		$query->set( 'tax_query', $tax_query );
-	}
-	$query->parse_query();
+	$epl_search = new EPL_SEARCH($query,$data);
 
 	if ( $get_posts ) {
-		return $query->get_posts();
+		return $epl_search->get_posts();
 	}
+
 }
 
 /**
@@ -964,6 +912,18 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 			}
 
 		}
+		foreach($return as $key =>	&$elem) {
+			$elem 	= maybe_unserialize($elem);
+			if(!empty($elem) && is_array($elem) ) {
+				foreach($elem as $el) {
+					$return[] 	= $el;
+				}
+				unset($return[$key]);
+			}
+
+		}
+		$return = array_filter($return);
+
 		if(isset( $defaults ) )
 			return $return;
 		else

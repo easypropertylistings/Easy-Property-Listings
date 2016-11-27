@@ -36,10 +36,13 @@ class EPL_Search_Fields {
 		add_action( 'epl_frontend_search_field_multiple_select', array( $this, 'render_multiple_select' ), 10, 5 );
 		add_action( 'epl_frontend_search_field_number', array( $this, 'render_number' ), 10, 5 );
 		add_action( 'epl_frontend_search_field_hidden', array( $this, 'render_hidden' ), 10, 5 );
+		add_action( 'epl_frontend_search_field_radio', array( $this, 'render_radio' ), 10, 5 );
+		add_action( 'epl_frontend_search_field_checkbox_multiple', array( $this, 'render_checkbox_multiple' ), 10, 5 );
+
 	}
 
 	/**
-	 * Renders serach frontend Text field.
+	 * Renders search frontend Text field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -53,6 +56,7 @@ class EPL_Search_Fields {
 		if ( isset( $field['wrap_start'] ) ) {
 			echo '<div class="' . $field['wrap_start'] . '">';
 		}
+		$placeholder = isset($field['placeholder']) ? $field['placeholder'] : '';
 		?>
 		<div class="epl-search-row epl-search-row-text epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset( $field['class'] ) ? $field['class'] : ''; ?>">
 			<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
@@ -60,6 +64,7 @@ class EPL_Search_Fields {
 			</label>
 			<div class="field">
 				<input
+					placeholder="<?php echo $placeholder; ?>"
 					type="text"
 					class="in-field field-width"
 					name="<?php echo $field['meta_key']; ?>"
@@ -75,7 +80,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Checkbox field.
+	 * Renders search frontend Checkbox field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -104,7 +109,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Select field.
+	 * Renders search frontend Select field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -148,7 +153,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Multiple Select field.
+	 * Renders search frontend Multiple Select field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -192,7 +197,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Number field.
+	 * Renders search frontend Number field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -226,7 +231,7 @@ class EPL_Search_Fields {
 	}
 
 	/**
-	 * Renders serach frontend Hidden field.
+	 * Renders search frontend Hidden field.
 	 *
 	 * @since  3.0
 	 * @param  array  $field
@@ -251,4 +256,98 @@ class EPL_Search_Fields {
 			echo '</div>';
 		}
 	}
+
+	/**
+	 * Renders search frontend Radio field.
+	 *
+	 * @since  3.0
+	 * @param  array  $field
+	 * @param  string $config
+	 * @param  string $value
+	 * @param  string $post_type
+	 * @param  string $property_status
+	 * @return void
+	 */
+	public function render_radio( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
+		if ( isset( $field['wrap_start'] ) ) {
+			echo '<div class="' . $field['wrap_start'] . '">';
+		}
+		?>
+		<div class="epl-search-row epl-search-row-radio epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset( $field['class'] ) ? $field['class'] : ''; ?>">
+			<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
+				<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] ); ?>
+			</label>
+			<div class="field">
+
+					<?php
+					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
+						foreach ( $field['options'] as $k => $v ) { ?>
+							<input
+								type="radio"
+								<?php checked( $k, $value, true ) ?>
+								name="<?php echo $field['meta_key']; ?>"
+								id="<?php echo $field['meta_key'].'_'.$k; ?>"
+								value="<?php echo esc_attr( $k ); ?>"
+								class="in-field field-width" />
+							<label class="epl-search-radio-label"><?php echo $v; ?></label> <?php
+						}
+					}
+					?>
+
+			</div>
+		</div>
+		<?php
+		if ( isset( $field['wrap_end'] ) ) {
+			echo '</div>';
+		}
+
+	}
+
+		/**
+	 * Renders search frontend Radio field.
+	 *
+	 * @since  3.0
+	 * @param  array  $field
+	 * @param  string $config
+	 * @param  string $value
+	 * @param  string $post_type
+	 * @param  string $property_status
+	 * @return void
+	 */
+	public function render_checkbox_multiple( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
+		if ( isset( $field['wrap_start'] ) ) {
+			echo '<div class="' . $field['wrap_start'] . '">';
+		}
+		?>
+		<div class="epl-search-row epl-search-row-checkbox-multiple epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset( $field['class'] ) ? $field['class'] : ''; ?>">
+			<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
+				<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] ); ?>
+			</label>
+			<div class="field">
+
+					<?php
+					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
+						foreach ( $field['options'] as $k => $v ) {
+							$checked = in_array($k, (array) $value ) ? 'checked' : '';
+							?>
+							<input
+								type="checkbox"
+								<?php echo " ".$checked." " ?>
+								name="<?php echo $field['meta_key']; ?>[]"
+								id="<?php echo $field['meta_key'].'_'.$k; ?>"
+								value="<?php echo esc_attr( $k ); ?>"
+								class="in-field field-width" />
+							<label class="epl-search-checkbox-label"><?php echo $v; ?></label> <?php
+						}
+					}
+					?>
+
+			</div>
+		</div>
+		<?php
+		if ( isset( $field['wrap_end'] ) ) {
+			echo '</div>';
+		}
+	}
+
 }

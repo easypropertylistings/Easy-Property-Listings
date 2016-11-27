@@ -88,8 +88,10 @@ function epl_render_single_post() {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES;
 	} elseif ( epl_is_genesis_framework_theme() ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
-	} elseif ( epl_get_active_theme() == 'twentyfourteen' ) {
-		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'twentyfourteen/';
+	}  elseif ( epl_is_divi_framework_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES. 'divi/';
+	} elseif ( file_exists(EPL_PATH_TEMPLATES_POST_TYPES.epl_get_active_theme()) ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . trailingslashit( epl_get_active_theme() );
 	} else {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT;
 	}
@@ -110,8 +112,10 @@ function epl_render_archive_post() {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_ITHEMES;
 	} elseif ( epl_is_genesis_framework_theme() ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
-	} elseif ( epl_get_active_theme() == 'twentyfourteen' ) {
-		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'twentyfourteen/';
+	} elseif ( epl_is_divi_framework_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES. 'divi/';
+	} elseif ( file_exists(EPL_PATH_TEMPLATES_POST_TYPES.epl_get_active_theme()) ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . trailingslashit( epl_get_active_theme() );
 	} else {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_DEFAULT;
 	}

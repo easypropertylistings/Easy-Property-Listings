@@ -218,7 +218,9 @@ function epl_manage_listing_column_listing_callback() {
 	$category			= $property->get_property_meta('property_commercial_category');
 	$outgoings			= $property->get_property_meta('property_com_outgoings');
 	$return				= $property->get_property_meta('property_com_return');
-
+	if ( is_array($category) ) {
+		$category = implode(', ', $category);
+	}
 	if ( empty( $heading) ) {
 		echo '<strong>'.__( 'Important! Set a Heading', 'easy-property-listings'  ).'</strong>';
 	} else {

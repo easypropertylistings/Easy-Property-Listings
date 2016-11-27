@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.0.4
+ * Version: 3.1
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.0.4
+ * @version 3.1
  */
 
 // Exit if accessed directly
@@ -91,7 +91,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.0.4' );
+				define( 'EPL_PROPERTY_VER', '3.1' );
 			}
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -170,6 +170,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-custom-post-type.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-form-builder.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-cron.php';
 
 			// Activate post types based on settings
 			if(isset($epl_settings['activate_post_types'])) {
@@ -257,6 +258,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'includes/admin/reports/class-epl-graph.php';
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
 				require_once EPL_PATH_LIB . 'includes/admin/help.php';
+				require_once EPL_PATH_LIB . 'includes/admin/help-single.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
@@ -279,6 +281,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
 		}
 
 		/**
@@ -290,7 +293,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 */
 		public function load_textdomain() {
 			// Set filter for plugin's languages directory
-			$epl_lang_dir = EPL_PATH_LIB . 'languages/';
+			$epl_lang_dir = EPL_PLUGIN_PATH . 'languages/';
 			$epl_lang_dir = apply_filters( 'epl_languages_directory', $epl_lang_dir );
 
 			// Traditional WordPress plugin locale filter

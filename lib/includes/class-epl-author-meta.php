@@ -81,7 +81,7 @@ class EPL_Author_Meta {
 					apply_filters( 'epl_author_icon_email' , __('Email', 'easy-property-listings' )).
 				'</a>';
 		}
-		$html = apply_filters('epl_author_email_html',$html);
+		$html = apply_filters('epl_author_email_html',$html,$this);
 		return $html ;
     }
 
@@ -98,7 +98,7 @@ class EPL_Author_Meta {
 					apply_filters( 'epl_author_icon_twitter' , __('Twitter', 'easy-property-listings' )).
 				'</a>';
 		}
-		$html = apply_filters('epl_author_twitter_html',$html);
+		$html = apply_filters('epl_author_twitter_html',$html,$this);
 		return $html;
     }
 
@@ -115,7 +115,7 @@ class EPL_Author_Meta {
 					apply_filters( 'epl_author_icon_google' , __('Google', 'easy-property-listings' )).
 				'</a>';
 		}
-		$html = apply_filters('epl_author_google_html',$html);
+		$html = apply_filters('epl_author_google_html',$html,$this);
 		return $html;
     }
 
@@ -132,7 +132,7 @@ class EPL_Author_Meta {
 					apply_filters( 'epl_author_icon_facebook' , __('Facebook', 'easy-property-listings' )).
 				'</a>';
 		}
-		$html = apply_filters('epl_author_facebook_html',$html);
+		$html = apply_filters('epl_author_facebook_html',$html,$this);
 		return $html;
     }
 
@@ -144,13 +144,13 @@ class EPL_Author_Meta {
     function get_linkedin_html($html = '') {
     	if ( $this->linkedin != '' ) {
 
-    		if(strpos('linkedin',$this->linkedin) > 0 ) {
+    		if( (strpos('http://',$this->linkedin) == 0 ) || (strpos('https://',$this->linkedin) == 0 ) ) {
     			// absolute url
     			$linkedin = $this->linkedin;
 
     		} else {
     			// relative url
-    			$linkedin = 'www.linkedin.com/pub/' . $this->linkedin;
+    			$linkedin = 'http://linkedin.com/pub/' . $this->linkedin;
     		}
 
 			$html = '
@@ -159,7 +159,7 @@ class EPL_Author_Meta {
 					apply_filters( 'epl_author_icon_linkedin' , __('LinkedIn', 'easy-property-listings' )).
 				'</a>';
 		}
-		$html = apply_filters('epl_author_linkedin_html',$html);
+		$html = apply_filters('epl_author_linkedin_html',$html,$this);
 		return $html;
     }
 
@@ -176,7 +176,7 @@ class EPL_Author_Meta {
 					apply_filters( 'epl_author_icon_skype' , __('Skype', 'easy-property-listings' )).
 				'</a>';
 		}
-		$html = apply_filters('epl_author_skype_html',$html);
+		$html = apply_filters('epl_author_skype_html',$html,$this);
 		return $html;
     }
 
@@ -212,7 +212,7 @@ class EPL_Author_Meta {
 				</span>
 		';
 		}
-		return $html;
+		return apply_filters('epl_author_description_html',$html,$this);
 	}
 
 	/**

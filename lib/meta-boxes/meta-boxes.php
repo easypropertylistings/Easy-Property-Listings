@@ -340,6 +340,13 @@ function epl_meta_box_init() {
 						),
 
 						array(
+							'name'		=>	'property_open_spaces',
+							'label'		=>	__('Open Spaces', 'easy-property-listings' ),
+							'type'		=>	'number',
+							'maxlength'	=>	'2'
+						),
+
+						array(
 							'name'		=>	'property_year_built',
 							'label'		=>	__('Year Built', 'easy-property-listings' ),
 							'type'		=>	'text',
@@ -378,6 +385,16 @@ function epl_meta_box_init() {
 							'name'		=>	'property_security_system',
 							'label'		=>	__('Security System', 'easy-property-listings' ),
 							'type'		=>	'checkbox_single',
+							'opts'	=>	array(
+								'yes'	=>	__('Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'		=>	'property_pet_friendly',
+							'label'		=>	__('Pet Friendly', 'easy-property-listings' ),
+							'type'		=>	'checkbox_single',
+							'include'	=>	array('rental'),
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'easy-property-listings' ),
 							),
@@ -443,6 +460,7 @@ function epl_meta_box_init() {
 					'columns'	=>	'3',
 					'label'		=>	__('Internal', 'easy-property-listings' ),
 					'fields'	=>	array(
+
 						array(
 							'name'		=>	'property_remote_garage',
 							'label'		=>	__('Remote Garage', 'easy-property-listings' ),
@@ -1448,48 +1466,48 @@ function epl_meta_box_init() {
 						array(
 							'name'		=>	'property_floorplan',
 							'label'		=>	__('Floorplan', 'easy-property-listings' ),
-							'type'		=>	'url'
+							'type'		=>	'file'
 						),
 						array(
 							'name'		=>	'property_floorplan_2',
 							'label'		=>	__('Floorplan 2', 'easy-property-listings' ),
-							'type'		=>	'url'
+							'type'		=>	'file'
 						),
 
 						array(
 							'name'		=>	'property_external_link',
 							'label'		=>	__('External Link', 'easy-property-listings' ),
-							'type'		=>	'url'
+							'type'		=>	'file'
 						),
 
 						array(
 							'name'		=>	'property_external_link_2',
 							'label'		=>	__('External Link 2', 'easy-property-listings' ),
-							'type'		=>	'url'
+							'type'		=>	'file'
 						),
 						array(
 							'name'		=>	'property_external_link_3',
 							'label'		=>	__('External Link 3', 'easy-property-listings' ),
-							'type'		=>	'url',
+							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
 
 						array(
 							'name'		=>	'property_com_mini_web',
 							'label'		=>	__('Mini Website URL', 'easy-property-listings' ),
-							'type'		=>	'url',
+							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
 						array(
 							'name'		=>	'property_com_mini_web_2',
 							'label'		=>	__('Mini Website URL 2', 'easy-property-listings' ),
-							'type'		=>	'url',
+							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
 						array(
 							'name'		=>	'property_com_mini_web_3',
 							'label'		=>	__('Mini Website URL 3', 'easy-property-listings' ),
-							'type'		=>	'url',
+							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
 					)
