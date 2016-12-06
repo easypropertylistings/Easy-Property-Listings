@@ -491,12 +491,15 @@ class EPL_SEARCH {
 	 */
 	protected function prepare_tax_query($query_field,$value) {
 
-		if( trim($value) != '' )
-		$this->tax_query[] = array(
-			'taxonomy'	=>	ltrim($query_field['meta_key'],'property_'),
-			'field'		=>	'id',
-			'terms'		=>	$value,
-		);
+		$value = (array) $value; 
+		if( !empty( array_filter($value) ) ) {
+			$this->tax_query[] = array(
+				'taxonomy'	=>	ltrim($query_field['meta_key'],'property_'),
+				'field'		=>	'id',
+				'terms'		=>	$value,
+			);
+		}
+		
 	}
 
 	/**

@@ -251,6 +251,13 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.1', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'Fix: [listing] shortcode with author option correctly filters by username.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Listing search undefined result when using custom search options.', 'easy-property-listings'  );?></li>
+					</ul>
+
 
 					<h4><?php _e( 'Version 3.1', 'easy-property-listings'  );?></h4>
 
