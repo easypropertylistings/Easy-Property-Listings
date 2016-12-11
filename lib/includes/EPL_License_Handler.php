@@ -6,7 +6,7 @@
  * @subpackage  Classes/License
  * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.1
  */
 
 // Exit if accessed directly
@@ -47,20 +47,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			$this->file           = $_file;
 			$this->item_name      = $_item_name;
-
-			$this->item_shortname_without_prefix = preg_replace( '/[^a-zA-Z0-9_\s]/', '', str_replace( ' ', '_', strtolower( $this->item_name ) ) );
-			$this->item_shortname = 'epl_' . $this->item_shortname_without_prefix;
-
+			$this->item_shortname = 'epl_' . preg_replace( '/[^a-zA-Z0-9_\s]/', '', str_replace( ' ', '_', strtolower( $this->item_name ) ) );;
 			$this->version        = $_version;
-
 			$this->license        = isset( $epl_options[ $this->item_shortname . '_license_key' ] ) ? trim( $epl_options[ $this->item_shortname . '_license_key' ] ) : '';
-			if(empty($this->license)) {
-				$epl_license = get_option('epl_license');
-				if(!empty($epl_license) && isset($epl_license[$this->item_shortname_without_prefix])) {
-					$this->license = $epl_license[$this->item_shortname_without_prefix];
-				}
-			}
-
 			$this->author         = $_author;
 			$this->api_url        = is_null( $_api_url ) ? $this->api_url : $_api_url;
 
@@ -77,7 +66,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// Setup hooks
 			$this->includes();
 			$this->hooks();
-			//$this->auto_updater();
+			$this->auto_updater();
 		}
 
 		/**
@@ -110,17 +99,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// Check that license is valid once per week
 			add_action( 'epl_weekly_scheduled_events', array( $this, 'weekly_license_check' ) );
 
-			// For testing license notices, uncomment this line to force checks on every page load
-			//add_action( 'admin_init', array( $this, 'weekly_license_check' ) );
-
-			// Updater
-			/**
-			 *  schedule auto updater daily or weekly depending upon user preference. Defaults to daily
-			 *  improves site load performance. 
-			 */
-			$frequency = defined( 'EPL_UPDATE_FREQUENCY' ) ? EPL_UPDATE_FREQUENCY : 'daily';
-			
-			add_action( 'epl_'.$frequency.'_scheduled_events', array( $this, 'auto_updater' ), 0 );
+			//force wp to check for fresh updates from server
+			// set_site_transient( 'update_plugins', null );
+			//add_action( 'init', array( $this, 'auto_updater' ), 0 );
 
 			add_action( 'admin_notices', array( $this, 'notices' ) );
 
