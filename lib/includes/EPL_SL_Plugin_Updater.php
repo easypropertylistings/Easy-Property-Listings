@@ -6,7 +6,8 @@
  * @subpackage  Classes/Updater
  * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.6.6
+ * @since       1.0
+ * @version	1.6.6
  */
 
 // uncomment this line for testing
@@ -19,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Allows plugins to use their own update API.
  *
  * @author Pippin Williamson
- * @version 1.6.3
+ * @version 1.6.6
  * @since 1.0
  */
 class EPL_SL_Plugin_Updater {
@@ -189,7 +190,7 @@ class EPL_SL_Plugin_Updater {
 			$version_info = $update_cache->response[ $this->name ];
 
 		}
-		
+
 		// Restore our filter
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
 
