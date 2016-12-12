@@ -44,7 +44,7 @@
 
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 
-		<div class="tab-wrapper">
+		<div class="epl-tab-wrapper tab-wrapper">
 			<div class="epl-tab-section epl-section-property-details">
 				<h5 class="epl-tab-title tab-title"><?php echo apply_filters('property_tab_title',__('Property Details', 'easy-property-listings' )); ?></h5>
 				<div class="epl-tab-content tab-content">

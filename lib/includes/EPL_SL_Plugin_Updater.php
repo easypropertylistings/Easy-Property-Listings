@@ -6,7 +6,8 @@
  * @subpackage  Classes/Updater
  * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.6.6
+ * @since       1.0
+ * @version	1.6.6
  */
 
 // uncomment this line for testing
@@ -19,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Allows plugins to use their own update API.
  *
  * @author Pippin Williamson
- * @version 1.6.3
+ * @version 1.6.6
  * @since 1.0
  */
 class EPL_SL_Plugin_Updater {
@@ -43,7 +44,7 @@ class EPL_SL_Plugin_Updater {
 	 */
 	public function __construct( $_api_url, $_plugin_file, $_api_data = null ) {
 
-		global $edd_plugin_data;
+		global $epl_plugin_data;
 
 		$this->api_url  = trailingslashit( $_api_url );
 		$this->api_data = $_api_data;
@@ -54,7 +55,7 @@ class EPL_SL_Plugin_Updater {
 
 		$this->cache_key   = md5( serialize( $this->slug . $this->api_data['license'] ) );
 
-		$edd_plugin_data[ $this->slug ] = $this->api_data;
+		$epl_plugin_data[ $this->slug ] = $this->api_data;
 
 		// Set up hooks.
 		$this->init();
@@ -189,7 +190,7 @@ class EPL_SL_Plugin_Updater {
 			$version_info = $update_cache->response[ $this->name ];
 
 		}
-		
+
 		// Restore our filter
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
 
@@ -206,7 +207,7 @@ class EPL_SL_Plugin_Updater {
 
 			if ( empty( $version_info->download_link ) ) {
 				printf(
-					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s.', 'easy-digital-downloads' ),
+					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s.', 'easy-property-listings' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -214,7 +215,7 @@ class EPL_SL_Plugin_Updater {
 				);
 			} else {
 				printf(
-					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s.', 'easy-digital-downloads' ),
+					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s.', 'easy-property-listings' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -265,23 +266,10 @@ class EPL_SL_Plugin_Updater {
 			)
 		);
 
-		$cache_key = 'edd_api_request_' . md5( serialize( $this->slug . $this->api_data->license ) );
+		$api_response = $this->api_request( 'plugin_information', $to_send );
 
-		//Get the transient where we store the api request for this plugin for 24 hours
-		$edd_api_request_transient = get_site_transient( $cache_key );
-
-		//If we have no transient-saved value, run the API, set a fresh transient with the API value, and return that value too right now.
-		if ( empty( $edd_api_request_transient ) ){
-
-			$api_response = $this->api_request( 'plugin_information', $to_send );
-
-			//Expires in 1 day
-			set_site_transient( $cache_key, $api_response, DAY_IN_SECONDS );
-
-			if ( false !== $api_response ) {
-				$_data = $api_response;
-			}
-
+		if ( false !== $api_response ) {
+			$_data = $api_response;
 		}
 
 		return $_data;
@@ -356,7 +344,7 @@ class EPL_SL_Plugin_Updater {
 
 	public function show_changelog() {
 
-		global $edd_plugin_data;
+		global $epl_plugin_data;
 
 		if( empty( $_REQUEST['edd_sl_action'] ) || 'view_plugin_changelog' != $_REQUEST['edd_sl_action'] ) {
 			return;
@@ -374,8 +362,8 @@ class EPL_SL_Plugin_Updater {
 			wp_die( __( 'You do not have permission to install plugin updates', 'easy-property-listings'  ), __( 'Error', 'easy-property-listings'  ), array( 'response' => 403 ) );
 		}
 
-		$data         = $edd_plugin_data[ $_REQUEST['slug'] ];
-		$cache_key    = md5( 'edd_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_version_info' );
+		$data         = $epl_plugin_data[ $_REQUEST['slug'] ];
+		$cache_key    = md5( 'epl_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_version_info' );
 		$version_info = get_transient( $cache_key );
 
 		if( false === $version_info ) {

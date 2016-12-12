@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.7
 
-Stable Tag: 3.0.4
+Stable Tag: 3.1
 
 License: GNU Version 2 or Any Later Version
 
@@ -392,7 +392,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.1 November 24, 2016 =
+= 3.1.1 December 6, 2016 =
+
+* Fix: [listing] shortcode with author option correctly filters by username.
+* Fix: Listing search undefined result when using custom search options.
+
+= 3.1 November 28, 2016 =
 
 * New: Rebuilt templates including additional wrapper for better grid layout.
 * New: Added legacy CSS option to prevent using new stylesheets when updating to 3.1 ensuring your listing display remains consistent.

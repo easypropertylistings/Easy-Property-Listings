@@ -207,11 +207,15 @@ function epl_plugin_updates() {
 	}
 	if ( version_compare( $current_version, '3.0', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-3.0.php' );
-		update_option( 'epl_version' ,'30');
+		update_option( 'epl_version' ,'3.0');
+	}
+	if ( version_compare( $current_version, '30', '==' ) ) { // Fix for 3.0 version number
+		include( EPL_PATH_UPDATES.'epl-3.1.php' );
+		update_option( 'epl_version' ,'3.1');
 	}
 	if ( version_compare( $current_version, '3.1', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-3.1.php' );
-		update_option( 'epl_version' ,'30');
+		update_option( 'epl_version' ,'3.1');
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
