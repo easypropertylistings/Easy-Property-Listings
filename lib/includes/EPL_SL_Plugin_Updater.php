@@ -51,7 +51,6 @@ class EPL_SL_Plugin_Updater {
 		$this->slug     = basename( $_plugin_file, '.php' );
 		$this->version     = $_api_data['version'];
 		$this->wp_override = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
-
 		$this->cache_key   = md5( serialize( $this->slug . $this->api_data['license'] ) );
 
 		$edd_plugin_data[ $this->slug ] = $this->api_data;
@@ -206,7 +205,7 @@ class EPL_SL_Plugin_Updater {
 
 			if ( empty( $version_info->download_link ) ) {
 				printf(
-					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s.', 'easy-digital-downloads' ),
+					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s.', 'easy-property-listings' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -214,7 +213,7 @@ class EPL_SL_Plugin_Updater {
 				);
 			} else {
 				printf(
-					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s.', 'easy-digital-downloads' ),
+					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s.', 'easy-property-listings' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -264,8 +263,7 @@ class EPL_SL_Plugin_Updater {
 				'reviews' => false
 			)
 		);
-
-		$cache_key = 'edd_api_request_' . md5( serialize( $this->slug . $this->api_data->license ) );
+		$cache_key = 'edd_api_request_' . md5( serialize( $this->slug . $this->api_data['license'] ) );
 
 		//Get the transient where we store the api request for this plugin for 24 hours
 		$edd_api_request_transient = get_site_transient( $cache_key );
