@@ -3,9 +3,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.1.1\n"
+"Project-Id-Version: Easy Property Listings 3.1.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2016-12-06 11:22+0800\n"
+"POT-Creation-Date: 2016-12-13 11:57+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-contact-table.php:64
 #: lib/includes/admin/contacts/class-contact-table.php:193
 #: lib/includes/class-epl-author-meta.php:80 lib/includes/functions.php:2001
-#: lib/includes/template-functions.php:1166 lib/post-types/post-type-contact.php:29
+#: lib/includes/template-functions.php:1170 lib/post-types/post-type-contact.php:29
 #: lib/post-types/post-type-contact.php:30
 msgid "Contact"
 msgstr ""
@@ -491,39 +491,42 @@ msgstr ""
 msgid "Read More "
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:161
-#, php-format
-msgid "%1$s License Key"
+#: lib/includes/EPL_License_Handler.php:282
+msgid "This license does not belong to the product you have entered it for."
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:372
+#: lib/includes/EPL_License_Handler.php:287
+msgid "This license does not have any activations left"
+msgstr ""
+
+#: lib/includes/EPL_License_Handler.php:292
+msgid "This license key is expired. Please renew it."
+msgstr ""
+
+#: lib/includes/EPL_License_Handler.php:297
 #, php-format
 msgid ""
-"You have invalid or expired license keys for Easy Property Listings. Please go to the "
-"<a href=\"%s\" title=\"Go to Licenses page\">Licenses page</a> to correct this issue."
+"There was a problem activating your license key, please try again or contact support. "
+"Error code: %s"
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:417
-msgid "Deactivate License"
-msgstr ""
-
-#: lib/includes/EPL_SL_Plugin_Updater.php:196
+#: lib/includes/EPL_SL_Plugin_Updater.php:210
 #, php-format
 msgid "There is a new version of %1$s available. %2$s View version %3$s details %4$s."
 msgstr ""
 
-#: lib/includes/EPL_SL_Plugin_Updater.php:204
+#: lib/includes/EPL_SL_Plugin_Updater.php:218
 #, php-format
 msgid ""
 "There is a new version of %1$s available. %2$s View version %3$s details %4$s or %5$s "
 "update now %6$s."
 msgstr ""
 
-#: lib/includes/EPL_SL_Plugin_Updater.php:347
+#: lib/includes/EPL_SL_Plugin_Updater.php:362
 msgid "You do not have permission to install plugin updates"
 msgstr ""
 
-#: lib/includes/EPL_SL_Plugin_Updater.php:347 lib/includes/admin/reports/reports.php:86
+#: lib/includes/EPL_SL_Plugin_Updater.php:362 lib/includes/admin/reports/reports.php:86
 #: lib/includes/error-tracking.php:32
 msgid "Error"
 msgstr ""
@@ -5438,7 +5441,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: lib/includes/class-epl-contact.php:679 lib/includes/template-functions.php:2078
+#: lib/includes/class-epl-contact.php:679 lib/includes/template-functions.php:2082
 msgid "Listing"
 msgstr ""
 
@@ -6104,12 +6107,12 @@ msgstr ""
 msgid "Listing view type"
 msgstr ""
 
-#: lib/includes/functions.php:1300 lib/includes/template-functions.php:1362
+#: lib/includes/functions.php:1300 lib/includes/template-functions.php:1366
 #: lib/widgets/widget-listing.php:304
 msgid "List"
 msgstr ""
 
-#: lib/includes/functions.php:1301 lib/includes/template-functions.php:1364
+#: lib/includes/functions.php:1301 lib/includes/template-functions.php:1368
 msgid "Grid"
 msgstr ""
 
@@ -6473,64 +6476,64 @@ msgstr ""
 msgid "Rural Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1012
+#: lib/includes/template-functions.php:1016
 msgid "Price: High to Low"
 msgstr ""
 
-#: lib/includes/template-functions.php:1020
+#: lib/includes/template-functions.php:1024
 msgid "Price: Low to High"
 msgstr ""
 
-#: lib/includes/template-functions.php:1029
+#: lib/includes/template-functions.php:1033
 msgid "Date: Newest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1038
+#: lib/includes/template-functions.php:1042
 msgid "Date: Oldest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1045
+#: lib/includes/template-functions.php:1049
 msgid "Status : Current First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1054
+#: lib/includes/template-functions.php:1058
 msgid "Status : Sold/Leased First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1063
+#: lib/includes/template-functions.php:1067
 msgid " A-Z"
 msgstr ""
 
-#: lib/includes/template-functions.php:1072
+#: lib/includes/template-functions.php:1076
 msgid " Z-A"
 msgstr ""
 
-#: lib/includes/template-functions.php:1099
+#: lib/includes/template-functions.php:1103
 msgid "Sort"
 msgstr ""
 
-#: lib/includes/template-functions.php:1163
+#: lib/includes/template-functions.php:1167
 msgid "About"
 msgstr ""
 
-#: lib/includes/template-functions.php:1164
+#: lib/includes/template-functions.php:1168
 msgid "Bio"
 msgstr ""
 
-#: lib/includes/template-functions.php:1165
+#: lib/includes/template-functions.php:1169
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:1907
+#: lib/includes/template-functions.php:1911
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:2067
+#: lib/includes/template-functions.php:2071
 #, php-format
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:2070
+#: lib/includes/template-functions.php:2074
 msgid "Search Result"
 msgstr ""
 
