@@ -965,18 +965,22 @@ function epl_get_property_price () {
 function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
 	global $property;
 	if ($property->post_type == 'commercial' || $property->post_type == 'business' ){
-		if ( $property->get_property_meta('property_address_display') == 'no' && $property->get_property_meta('property_com_display_suburb') == 'no') { ?>
-			<div class="property-meta suburb-name">
-				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
-				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
-			</div>
-		<?php } elseif ( $property->get_property_meta('property_address_display') == 'no' && $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
+		// Address Display not Commercial or Business type
+		if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+			<?php // Suburb
+			if ( $d_suburb == 'on' && $property->get_property_meta('property_com_display_suburb') == 'yes' ) { ?>
 				<div class="property-meta suburb-name"><?php echo $property->get_property_meta('property_address_suburb'); ?></div>
-		<?php } elseif ( $property->get_property_meta('property_address_display') == 'yes' && $property->get_property_meta('property_com_display_suburb') == 'no') { ?>
-			<div class="property-meta suburb-name">
-				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
-				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
-			</div>
+			<?php } ?>
+
+			<?php // Street
+			if ( $d_street == 'on' ) { ?>
+				<div class="property-meta street-name"><?php echo $property->get_formatted_property_address(); ?></div>
+			<?php } ?>
+		<?php } else { ?>
+			<?php // Suburb
+			if ( $d_suburb == 'on' && $property->get_property_meta('property_com_display_suburb') == 'yes' ) { ?>
+				<div class="property-meta suburb-name"><?php echo $property->get_property_meta('property_address_suburb'); ?></div>
+			<?php } ?>
 		<?php }
 	} else {
 		// Address Display not Commercial or Business type
