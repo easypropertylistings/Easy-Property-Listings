@@ -7,6 +7,7 @@
  * @copyright   Copyright (c) 2016, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
+ * @version	1.6.6
  */
 
 // uncomment this line for testing
@@ -19,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Allows plugins to use their own update API.
  *
  * @author Pippin Williamson
- * @version 1.6.3
+ * @version 1.6.6
  * @since 1.0
  */
 class EPL_SL_Plugin_Updater {
@@ -28,6 +29,8 @@ class EPL_SL_Plugin_Updater {
 	private $name      = '';
 	private $slug      = '';
 	private $version   = '';
+	private $wp_override = false;
+	private $cache_key   = '';
 
 	/**
 	 * Class constructor.
@@ -41,15 +44,18 @@ class EPL_SL_Plugin_Updater {
 	 */
 	public function __construct( $_api_url, $_plugin_file, $_api_data = null ) {
 
-		global $edd_plugin_data;
+		global $epl_plugin_data;
 
 		$this->api_url  = trailingslashit( $_api_url );
 		$this->api_data = $_api_data;
 		$this->name     = plugin_basename( $_plugin_file );
 		$this->slug     = basename( $_plugin_file, '.php' );
-		$this->version  = $_api_data['version'];
+		$this->version     = $_api_data['version'];
+		$this->wp_override = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
 
-		$edd_plugin_data[ $this->slug ] = $this->api_data;
+		$this->cache_key   = md5( serialize( $this->slug . $this->api_data['license'] ) );
+
+		$epl_plugin_data[ $this->slug ] = $this->api_data;
 
 		// Set up hooks.
 		$this->init();
@@ -65,7 +71,7 @@ class EPL_SL_Plugin_Updater {
 	 */
 	public function init() {
 
-		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
+		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ), 10 );
 		add_filter( 'plugins_api', array( $this, 'plugins_api_filter' ), 10, 3 );
 		remove_action( 'after_plugin_row_' . $this->name, 'wp_plugin_update_row', 10, 2 );
 		add_action( 'after_plugin_row_' . $this->name, array( $this, 'show_update_notification' ), 10, 2 );
@@ -98,22 +104,28 @@ class EPL_SL_Plugin_Updater {
 			return $_transient_data;
 		}
 
-		if ( empty( $_transient_data->response ) || empty( $_transient_data->response[ $this->name ] ) ) {
+		if ( ! empty( $_transient_data->response ) && ! empty( $_transient_data->response[ $this->name ] ) && false === $this->wp_override ) {
+			return $_transient_data;
+		}
 
+		$version_info = get_transient( $this->cache_key );
+
+		if ( false === $version_info ) {
 			$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
 
-			if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
+			set_transient( $this->cache_key, $version_info, 3600 );
+		}
 
-				if( version_compare( $this->version, $version_info->new_version, '<' ) ) {
+		if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
 
-					$_transient_data->response[ $this->name ] = $version_info;
+			if ( version_compare( $this->version, $version_info->new_version, '<' ) ) {
 
-				}
-
-				$_transient_data->last_checked = time();
-				$_transient_data->checked[ $this->name ] = $this->version;
+				$_transient_data->response[ $this->name ] = $version_info;
 
 			}
+
+			$_transient_data->last_checked           = time();
+			$_transient_data->checked[ $this->name ] = $this->version;
 
 		}
 
@@ -127,6 +139,10 @@ class EPL_SL_Plugin_Updater {
 	 * @param array   $plugin
 	 */
 	public function show_update_notification( $file, $plugin ) {
+
+		if ( is_network_admin() ) {
+			return;
+		}
 
 		if( ! current_user_can( 'update_plugins' ) ) {
 			return;
@@ -149,14 +165,11 @@ class EPL_SL_Plugin_Updater {
 
 		if ( empty( $update_cache->response ) || empty( $update_cache->response[ $this->name ] ) ) {
 
-			$cache_key    = md5( 'edd_plugin_' . sanitize_key( $this->name ) . '_version_info' );
-			$version_info = get_transient( $cache_key );
-
+			$version_info = get_transient( $this->cache_key );
 			if( false === $version_info ) {
 
 				$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
-
-				set_transient( $cache_key, $version_info, 3600 );
+				set_transient( $this->cache_key, $version_info, 3600 );
 			}
 
 			if( ! is_object( $version_info ) ) {
@@ -164,9 +177,7 @@ class EPL_SL_Plugin_Updater {
 			}
 
 			if( version_compare( $this->version, $version_info->new_version, '<' ) ) {
-
 				$update_cache->response[ $this->name ] = $version_info;
-
 			}
 
 			$update_cache->last_checked = time();
@@ -187,13 +198,16 @@ class EPL_SL_Plugin_Updater {
 
 			// build a plugin list row, with update notification
 			$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
-			echo '<tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange"><div class="update-message">';
+			# <tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange">
+			echo '<tr class="plugin-update-tr" id="' . $this->slug . '-update" data-slug="' . $this->slug . '" data-plugin="' . $this->slug . '/' . $file . '">';
+			echo '<td colspan="3" class="plugin-update colspanchange">';
+			echo '<div class="update-message notice inline notice-warning notice-alt">';
 
 			$changelog_link = self_admin_url( 'index.php?edd_sl_action=view_plugin_changelog&plugin=' . $this->name . '&slug=' . $this->slug . '&TB_iframe=true&width=772&height=911' );
 
 			if ( empty( $version_info->download_link ) ) {
 				printf(
-					__( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s.', 'easy-property-listings'  ),
+					__( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s.', 'easy-property-listings' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -201,7 +215,7 @@ class EPL_SL_Plugin_Updater {
 				);
 			} else {
 				printf(
-					__( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s or %5$s update now %6$s.', 'easy-property-listings'  ),
+					__( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s or %5$s update now %6$s.', 'easy-property-listings' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -298,7 +312,7 @@ class EPL_SL_Plugin_Updater {
 			return;
 		}
 
-		if( $this->api_url == home_url() ) {
+		if( $this->api_url == trailingslashit (home_url() ) ) {
 			return false; // Don't allow a plugin to ping itself
 		}
 
@@ -309,10 +323,11 @@ class EPL_SL_Plugin_Updater {
 			'item_id'    => isset( $data['item_id'] ) ? $data['item_id'] : false,
 			'slug'       => $data['slug'],
 			'author'     => $data['author'],
-			'url'        => home_url()
+			'url'        => home_url(),
+			'beta'       => isset( $data['beta'] ) ? $data['beta'] : false,
 		);
 
-		$request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => true, 'body' => $api_params ) );
+		$request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
 
 		if ( ! is_wp_error( $request ) ) {
 			$request = json_decode( wp_remote_retrieve_body( $request ) );
@@ -329,7 +344,7 @@ class EPL_SL_Plugin_Updater {
 
 	public function show_changelog() {
 
-		global $edd_plugin_data;
+		global $epl_plugin_data;
 
 		if( empty( $_REQUEST['edd_sl_action'] ) || 'view_plugin_changelog' != $_REQUEST['edd_sl_action'] ) {
 			return;
@@ -347,8 +362,8 @@ class EPL_SL_Plugin_Updater {
 			wp_die( __( 'You do not have permission to install plugin updates', 'easy-property-listings'  ), __( 'Error', 'easy-property-listings'  ), array( 'response' => 403 ) );
 		}
 
-		$data         = $edd_plugin_data[ $_REQUEST['slug'] ];
-		$cache_key    = md5( 'edd_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_version_info' );
+		$data         = $epl_plugin_data[ $_REQUEST['slug'] ];
+		$cache_key    = md5( 'epl_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_version_info' );
 		$version_info = get_transient( $cache_key );
 
 		if( false === $version_info ) {
@@ -362,7 +377,7 @@ class EPL_SL_Plugin_Updater {
 				'url'        => home_url()
 			);
 
-			$request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => true, 'body' => $api_params ) );
+			$request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
 
 			if ( ! is_wp_error( $request ) ) {
 				$version_info = json_decode( wp_remote_retrieve_body( $request ) );
