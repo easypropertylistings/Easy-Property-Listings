@@ -251,6 +251,15 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.2', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'Fix: Corrected the address display of the Commercial and Business listing types.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Extension updater class to provide automatic updates.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Visiting the plugins page now caches plugin updates.', 'easy-property-listings'  );?></li>
+					</ul>
+
+
 					<h4><?php _e( 'Version 3.1.1', 'easy-property-listings'  );?></h4>
 
 					<ul>
