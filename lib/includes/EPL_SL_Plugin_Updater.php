@@ -207,7 +207,7 @@ class EPL_SL_Plugin_Updater {
 
 			if ( empty( $version_info->download_link ) ) {
 				printf(
-					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s.', 'easy-property-listings' ),
+					__( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s.', 'easy-property-listings' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -215,7 +215,7 @@ class EPL_SL_Plugin_Updater {
 				);
 			} else {
 				printf(
-					__( 'There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s.', 'easy-property-listings' ),
+					__( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s or %5$s update now %6$s.', 'easy-property-listings' ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
