@@ -80,7 +80,7 @@ if ( ! empty( $selected_post_types ) ) :
 		<form method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<input type="hidden" name="action" value="epl_search" />
 			<?php
-				$epl_frontend_fields = epl_commercial_search_widget_fields_frontend( $post_type,$property_status );
+				$epl_frontend_fields = epl_listing_search_commercial_widget_fields_frontend( $post_type,$property_status );
 				foreach ( $epl_frontend_fields as &$epl_frontend_field ) {
 
 					if($epl_frontend_field['key'] == 'property_status' && $show_property_status_frontend == 'on'){

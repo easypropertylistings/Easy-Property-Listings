@@ -98,6 +98,10 @@ $epl_settings = get_option('epl_settings');
 															$val = '';
 															if(isset($epl_settings[ $field['name'] ])) {
 																$val = $epl_settings[ $field['name'] ];
+															} else{
+																if(isset($field['default'])) {
+																	$val = $field['default'];
+																}
 															}
 															epl_render_html_fields ($field,$val);
 														?>

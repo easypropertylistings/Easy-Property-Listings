@@ -365,7 +365,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 
 	if( is_null($property) )
 		return;
-	
+
 	$property_status = $property->get_property_meta('property_status');
 
 	switch($display) {
@@ -795,8 +795,10 @@ function epl_property_tab_section() {
 	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_new_construction('l');
 	$common_features = array(
 				'property_toilet',
+				'property_pet_friendly',
 				'property_garage',
 				'property_carport',
+				'property_open_spaces',
 				'property_com_parking_comments',
 				'property_com_car_spaces',
 				'property_category',
@@ -963,18 +965,22 @@ function epl_get_property_price () {
 function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
 	global $property;
 	if ($property->post_type == 'commercial' || $property->post_type == 'business' ){
-		if ( $property->get_property_meta('property_address_display') == 'no' && $property->get_property_meta('property_com_display_suburb') == 'no') { ?>
-			<div class="property-meta suburb-name">
-				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
-				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
-			</div>
-		<?php } elseif ( $property->get_property_meta('property_address_display') == 'no' && $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
+		// Address Display not Commercial or Business type
+		if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+			<?php // Suburb
+			if ( $d_suburb == 'on' && $property->get_property_meta('property_com_display_suburb') == 'yes' ) { ?>
 				<div class="property-meta suburb-name"><?php echo $property->get_property_meta('property_address_suburb'); ?></div>
-		<?php } elseif ( $property->get_property_meta('property_address_display') == 'yes' && $property->get_property_meta('property_com_display_suburb') == 'no') { ?>
-			<div class="property-meta suburb-name">
-				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
-				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
-			</div>
+			<?php } ?>
+
+			<?php // Street
+			if ( $d_street == 'on' ) { ?>
+				<div class="property-meta street-name"><?php echo $property->get_formatted_property_address(); ?></div>
+			<?php } ?>
+		<?php } else { ?>
+			<?php // Suburb
+			if ( $d_suburb == 'on' && $property->get_property_meta('property_com_display_suburb') == 'yes' ) { ?>
+				<div class="property-meta suburb-name"><?php echo $property->get_property_meta('property_address_suburb'); ?></div>
+			<?php } ?>
 		<?php }
 	} else {
 		// Address Display not Commercial or Business type
@@ -1194,7 +1200,7 @@ function epl_author_tab_author_id( $epl_author = array() ) {
 
 	$permalink 	= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
-
+	ob_start();
 ?>
 	<div class="epl-author-contact-details author-contact-details">
 
@@ -1224,6 +1230,7 @@ function epl_author_tab_author_id( $epl_author = array() ) {
 		?>
 	</div>
 <?php
+	return ob_get_clean();
 }
 
 /**
@@ -1872,7 +1879,7 @@ function epl_trim_excerpt($text = '') {
 		$excerpt_length = apply_filters( 'excerpt_length', 55 );
 		$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[&hellip;]' );
 		$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
-		
+
 	}
 	return apply_filters( 'epl_trim_excerpt', $text, $raw_excerpt );
 }
@@ -2004,6 +2011,13 @@ function epl_inspection_format($inspection_date) {
 
 	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
 			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
+
+	if($date_format == '')
+		$date_format = 'd-M-Y';
+
+	if($time_format == '')
+		$time_format = 'h:i A';
+
 
 	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';
 	$time_start = isset($inspection_date[1]) ? date($time_format,strtotime($inspection_date[1])) : '';

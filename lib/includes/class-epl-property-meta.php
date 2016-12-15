@@ -72,7 +72,7 @@ class EPL_Property_Meta {
 
         $this->post 				= $post;
         $this->epl_settings 		= epl_settings();
-        $this->meta 				= get_post_custom();
+        $this->meta 				= get_post_custom($post->ID);
         $this->post_type 			= $this->post->post_type;
         $this->property_post_type	= $this->post->post_type;
 
@@ -273,7 +273,9 @@ class EPL_Property_Meta {
 	 * @return string Currency Formatted price
 	 */
 	public function get_property_com_rent(){
-		return epl_currency_formatted_amount( $this->get_property_meta('property_com_rent') );
+		$rent =  epl_currency_formatted_amount( $this->get_property_meta('property_com_rent') );
+
+		return apply_filters('epl_get_property_com_rent',$rent);
 	}
 
 	/**
@@ -318,6 +320,24 @@ class EPL_Property_Meta {
 				$property_sold_price = ' ' . epl_currency_formatted_amount( $property_sold_price );
 
 				return apply_filters('epl_get_property_price_sold_display',$property_sold_price);
+			}
+		}
+	}
+
+	/**
+	 * Sold price display
+	 *
+	 * @since 3.1
+	 * @return string Return lease price if selected or nothing
+	 */
+	public function get_property_price_lease_display( $admin = false ) {
+		$property_sold_price	= $this->get_property_price_display();
+		$property_sold_display	= $this->get_property_meta('property_sold_price_display');
+
+		if ( $property_sold_price != '' ) {
+			if ( $property_sold_display == 'yes' || $admin == true ) {
+
+				return apply_filters('epl_get_property_price_lease_display',$property_sold_price);
 			}
 		}
 	}
@@ -418,7 +438,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 */
 	public function get_property_land_category() {
-		if ( 'land' != $this->post_type || 'commercial_land' != $this->post_type )
+		if ( !in_array( $this->post_type, array('land','commercial_land') ) )
 			return;
 
 		if ( $this->get_property_meta('property_land_category') !='' ) {
@@ -520,7 +540,7 @@ class EPL_Property_Meta {
 
 			if( '' != $this->get_property_rent() && 'yes' == $this->get_property_meta('property_rent_display') && 'leased' != $this->get_property_meta('property_status') ) {
 
-				$price_plain_value = $this->get_property_rent() . '/' . $this->get_property_meta('property_rent_period');
+				$price_plain_value = $this->get_property_rent() . '/' .  __( ucfirst($this->get_property_meta('property_rent_period')), 'easy-property-listings');
 				if ( '' != $this->get_property_meta('property_rent_view') ) {
 					//$price_plain_value = $this->get_property_rent();
 					$price_plain_value = $this->get_property_meta('property_rent_view');
@@ -621,7 +641,7 @@ class EPL_Property_Meta {
 				$price = '<span class="page-price-rent">';
 				$price .=		'<span class="page-price" style="margin-right:0;">'. $this->get_property_rent() . '</span>';
 				if( '' == $this->get_property_meta('property_rent_view') ) {
-					$price .=	'<span class="rent-period">' .$epl_property_price_rent_separator.''. $this->get_property_meta('property_rent_period') . '</span>';
+					$price .=	'<span class="rent-period">' .$epl_property_price_rent_separator.''. __( ucfirst($this->get_property_meta('property_rent_period')), 'easy-property-listings') . '</span>';
 				}
 				$price .= '</span>';
 
@@ -671,13 +691,13 @@ class EPL_Property_Meta {
 			}
 			// Status
 			if ( 'sold' == $this->get_property_meta('property_status') ){
-				$price = '<span class="page-price sold-status">'.$this->label_sold.'</span>';
+				$price = '<span class="page-price sold-status">'.$this->label_sold.'</span>' . $this->get_property_price_sold_display();
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status') ) { // Under Offer
 				$price = '<div class="page-price under-offer-status">'.$this->label_under_offer.'</div>';
 			}
 			if ( 'leased' == $this->get_property_meta('property_status') ) {
-				$price = '<span class="page-price sold-status">'.$this->label_leased.'</span>';
+				$price = '<span class="page-price leased-status sold-status">'.$this->label_leased.'</span>' . $this->get_property_price_lease_display();
 			}
 		}
 		return apply_filters('epl_get_price',$price);
@@ -747,6 +767,9 @@ class EPL_Property_Meta {
 			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ){
 				$price_sticker .= '<span class="status-sticker sold">'.$this->label_sold.'</span>';
+			}
+			if ( 'leased' == $this->get_property_meta('property_status') ){
+				$price_sticker .= '<span class="status-sticker leased">'.$this->label_leased.'</span>';
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
 
@@ -1043,7 +1066,7 @@ class EPL_Property_Meta {
 			// translation for land area unit
 			$property_land_area_unit = __($property_land_area_unit , 'easy-property-listings' );
 		}
-		if(intval($this->get_property_meta('property_land_area')) != 0 ) {
+		if(is_numeric($this->get_property_meta('property_land_area')) ) {
 			$label = apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
 			$return = '
 				<li class="land-size">'. $label.' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'</li>';
@@ -1111,7 +1134,7 @@ class EPL_Property_Meta {
 			$return = '';
 			if( $metavalue != '' || intval($metavalue) != 0) {
 				if($metakey == 'property_com_car_spaces'){
-					$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label',__('Car Spaces', 'easy-property-listings' ) );
+					$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label','' );
 				}
 
 				if($metakey == 'property_category'){

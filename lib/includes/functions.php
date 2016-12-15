@@ -557,9 +557,19 @@ function epl_listing_load_meta_commercial_category() {
  */
 function epl_listing_load_meta_commercial_category_value( $key ) {
 	$array = epl_listing_load_meta_commercial_category();
-	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
 
-	return $value;
+	if( is_array($key) ) {
+		$values = array();
+		foreach($key as $k) {
+			$values[] = array_key_exists( $k , $array ) && !empty( $array[$k] )  ? $array[$k] : ucfirst($k);
+		}
+		$value = implode(', ',$values);
+	} else {
+		$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : ucfirst($key);
+	}
+
+
+	return apply_filters('epl_meta_commercial_category_value',$value,$key,$array);
 }
 
 /**
@@ -805,7 +815,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 			$val = (array) $val;
 			echo '<select multiple name="'.$field['name'].'[]" id="'.$field['name'].'" >';
-	
+
 				if(isset($field['opts']) && !empty($field['opts'])) {
 					foreach($field['opts'] as $k=>$v) {
 						$selected = '';
@@ -841,8 +851,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				foreach($field['opts'] as $k=>$v) {
 					$checked = '';
 					if(!empty($val)) {
+
+						$val = (array) $val;
 						if( in_array($k, $val) ) {
-							$val = (array) $val;
 							$checked = 'checked="checked"';
 						}
 					}
@@ -869,6 +880,20 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			}
 			break;
 
+		case 'checkbox_option':
+			if(!empty($field['opts'])) {
+				foreach($field['opts'] as $k=>$v) {
+					$checked = '';
+					if(!empty($val)) {
+						if( $k == $val ) {
+							$checked = 'checked="checked"';
+						}
+					}
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+				}
+			}
+			break;
+
 		case 'radio':
 			if(!empty($field['opts'])) {
 				foreach($field['opts'] as $k=>$v) {
@@ -886,7 +911,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			if($val != '') {
 				$img = $val;
 			} else {
-				$img = plugin_dir_url( __FILE__ ).'images/no_image.jpg';
+				$img = plugin_dir_url( __DIR__ ).'assets/images/no_image.png';
 			}
 			echo '
 				<div class="epl-media-row">
@@ -1438,7 +1463,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_lucky_disable_theme_single_thumb',
 					'label'		=>	__('Single Listing', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
 					),
@@ -1448,7 +1473,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_lucky_disable_archive_thumb',
 					'label'		=>	__('Archive Listing', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
 					),
@@ -1464,7 +1489,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_lucky_disable_single_thumb',
 					'label'		=>	__('Single Listing', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
 					),
@@ -1474,7 +1499,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_lucky_disable_epl_archive_thumb',
 					'label'		=>	__('Archive Listing', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Disable', 'easy-property-listings' ),
 					),
@@ -1601,13 +1626,26 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				array(
 					'name'		=>	'epl_use_core_css',
 					'label'		=>	__('Disable Styles', 'easy-property-listings' ),
-					'type'		=>	'checkbox_single',
+					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Yes', 'easy-property-listings' ),
 					),
 					'default'	=>	'off',
 					'help'		=>	__('Check this to disable all elements.' , 'easy-property-listings' )
 				),
+
+				array(
+					'name'		=>	'epl_css_legacy',
+					'label'		=>	__('Enable Legacy Styles', 'easy-property-listings' ),
+					'type'		=>	'checkbox_option',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'easy-property-listings' ),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to enable legacy css styles.' , 'easy-property-listings' )
+				),
+
+
 				array(
 					'name'		=>	'epl_disable_google_api',
 					'label'		=>	__('Google Maps API', 'easy-property-listings' ),
@@ -1638,7 +1676,8 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'default'	=>	0
 				)
 			)
-		)
+		),
+
 	);
 
 	$fields = apply_filters('epl_display_options_filter', $fields);
@@ -1719,11 +1758,11 @@ AND p.post_type = '%s'
 			}
 			unset($res[$key]);
 		}
-		
+
 	}
 	$res = array_filter($res);
 	if(!empty($res))
-    	return array_combine(array_filter($res),array_filter($res) );
+    	return array_combine(array_filter($res), array_map('ucwords',array_filter($res)) );
 }
 
 /**
@@ -1985,4 +2024,57 @@ function get_category_label($category) {
 		}
 	}
 	return $category;
+}
+
+function epl_starts_with($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+}
+
+function epl_ends_with($haystack, $needle) {
+    // search forward starting from end minus needle length characters
+    return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+}
+
+/**
+ * Parse EPL shortcodes for meta queries
+ * @param  [type] $atts [description]
+ * @return [type]       [description]
+ */
+function epl_parse_atts($atts) {
+
+	$query = array();
+
+	if( empty($atts) )
+		return $atts;
+
+	foreach($atts as $key 	=>	&$value) {
+
+		$this_query = array(
+			'compare'	=>	'=',
+			'value'		=>	$value
+		);
+
+		// check for meta
+		if( epl_starts_with($key,'epl_meta_') ) {
+			$key = preg_replace('/^epl_meta_/', '', $key);
+
+			if( epl_ends_with($key,'_min') || epl_ends_with($key,'_max') ) {
+
+				if(epl_ends_with($key,'_min')) {
+					$key = preg_replace('/_min$/', '', $key);
+					$this_query['compare'] = '>=';
+				} else {
+					$key = preg_replace('/_max$/', '', $key);
+					$this_query['compare'] = '<=';
+				}
+			}
+
+			$this_query['key'] = $key;
+			$query['meta_query'][] = $this_query;
+		}
+
+	}
+	return isset($query['meta_query'])?$query['meta_query'] : false;
+
 }
