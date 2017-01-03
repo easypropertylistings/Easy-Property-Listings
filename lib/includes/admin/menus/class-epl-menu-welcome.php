@@ -251,6 +251,15 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.3', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'Fix: Contact linking when editing listings with invalid contact ID.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Shortcode sorting for Current/Sold.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Output Ensuite to features list.', 'easy-property-listings'  );?></li>
+					</ul>
+
+
 					<h4><?php _e( 'Version 3.1.2', 'easy-property-listings'  );?></h4>
 
 					<ul>
