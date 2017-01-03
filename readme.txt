@@ -396,6 +396,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * Fix: Contact linking when editing listings with invalid contact ID.
 * Fix: Shortcode sorting for Current/Sold.
+* Fix: Commercial Lease price display.
 * Tweak: Output Ensuite to features list.
 
 = 3.1.2 December 13, 2016 =

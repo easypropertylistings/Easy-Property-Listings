@@ -256,6 +256,7 @@ class EPL_Welcome {
 					<ul>
 						<li><?php _e( 'Fix: Contact linking when editing listings with invalid contact ID.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Fix: Shortcode sorting for Current/Sold.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Commercial Lease price display.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Tweak: Output Ensuite to features list.', 'easy-property-listings'  );?></li>
 					</ul>
 
