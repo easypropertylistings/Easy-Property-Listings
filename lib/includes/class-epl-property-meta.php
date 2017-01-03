@@ -325,19 +325,19 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Lease price display
+	 * Sold price display
 	 *
 	 * @since 3.1
 	 * @return string Return lease price if selected or nothing
 	 */
 	public function get_property_price_lease_display( $admin = false ) {
-		$property_lease_price	= $this->get_property_price_display();
-		$property_lease_display	= $this->get_property_meta('property_price_display');
+		$property_sold_price	= $this->get_property_price_display();
+		$property_sold_display	= $this->get_property_meta('property_sold_price_display');
 
-		if ( $property_lease_price != '' ) {
-			if ( $property_lease_display == 'yes' || $admin == true ) {
+		if ( $property_sold_price != '' ) {
+			if ( $property_sold_display == 'yes' || $admin == true ) {
 
-				return apply_filters('epl_get_property_price_lease_display',$property_lease_price);
+				return apply_filters('epl_get_property_price_lease_display',$property_sold_price);
 			}
 		}
 	}
@@ -640,7 +640,7 @@ class EPL_Property_Meta {
 
 				$price = '<span class="page-price-rent">';
 				$price .=		'<span class="page-price" style="margin-right:0;">'. $this->get_property_rent() . '</span>';
-				if( '' == $this->get_property_meta('property_rent_view') ) {
+				if ( '' == $this->get_property_meta('property_rent_view') ) {
 					$price .=	'<span class="rent-period">' .$epl_property_price_rent_separator.''. __( ucfirst($this->get_property_meta('property_rent_period')), 'easy-property-listings') . '</span>';
 				}
 				$price .= '</span>';
@@ -658,6 +658,7 @@ class EPL_Property_Meta {
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type) {
 			$rent_lease_type =
 				$this->get_property_meta('property_com_rent_period') != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta('property_com_rent_period') ) : __('P.A.' , 'easy-property-listings' );
+
 			// Sale or both
 			$price = '';
 			if ( $this->get_property_meta('property_com_listing_type') == 'sale' || $this->get_property_meta('property_com_listing_type') == 'both' ) {
@@ -674,21 +675,52 @@ class EPL_Property_Meta {
 					$price = '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_sale_label' , __('For Sale', 'easy-property-listings' ) ).'</span> ' . $price_plain_value . '</span>';
 				}
 			}
-			// Lease or Both
-			if ( $this->get_property_meta('property_com_listing_type') == 'lease' || $this->get_property_meta('property_com_listing_type') == 'both' ) { // Both
+
+			// Lease
+			if ( $this->get_property_meta('property_com_listing_type') == 'lease' ) {
 				$both = $this->get_property_meta('property_com_listing_type') == 'both' ? '<div class="epl-clear"></div>' : '';
-				if ( $this->get_property_com_rent() != '' && $this->get_property_price_display() == 'yes' ) {
-					$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_com_rent() . ' '.__($rent_lease_type, 'easy-property-listings' ).'</span>';
-				} elseif ( $this->get_property_price_display() != '' && $this->get_property_meta('property_com_listing_type') == 'lease' ) {
-					$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_price_display() . '</span>';
-				} elseif ( $this->get_property_meta('property_com_listing_type') == 'both' ) {
-					$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_com_rent() . ' '.__($rent_lease_type, 'easy-property-listings' ). '</span>';
-				} else {
+
+				// Show Price
+				if ( $this->get_property_meta( 'property_price_display' ) == 'yes' ) {
+
+					if ( $this->get_property_price_display() != '' ) {
+						$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_price_display() . '</span>';
+
+					}
+
+					elseif ( $this->get_property_com_rent() != '' ) {
+						$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_com_rent() . ' '.__($rent_lease_type, 'easy-property-listings' ).'</span>';
+					}
+				}
+
+				// Hide Price
+				else {
 					if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
 						$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->epl_settings['label_poa'] . '</span>';
 					}
 				}
 			}
+
+			// Both (Add Lease Price Details)
+			if ( $this->get_property_meta('property_com_listing_type') == 'both' ) {
+				$both = $this->get_property_meta('property_com_listing_type') == 'both' ? '<div class="epl-clear"></div>' : '';
+
+				// Show Price
+				if ( $this->get_property_meta( 'property_price_display' ) == 'yes' ) {
+
+					if ( $this->get_property_com_rent() != '' ) {
+						$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_com_rent() . ' '.__($rent_lease_type, 'easy-property-listings' ).'</span>';
+					}
+				}
+
+				// Hide Price
+				else {
+					if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
+						$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->epl_settings['label_poa'] . '</span>';
+					}
+				}
+			}
+
 			// Status
 			if ( 'sold' == $this->get_property_meta('property_status') ){
 				$price = '<span class="page-price sold-status">'.$this->label_sold.'</span>' . $this->get_property_price_sold_display();
