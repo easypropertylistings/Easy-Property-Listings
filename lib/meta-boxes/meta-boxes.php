@@ -1187,7 +1187,8 @@ function epl_meta_box_init() {
 							'label'		=>	__('Commercial Rent', 'easy-property-listings' ),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'40',
-							'help'		=>	__('Price Text in Pricing box over-rides displayed price' , 'easy-property-listings' )
+							'help'		=>	__('Price Text in Pricing box over-rides displayed price' , 'easy-property-listings' ) . '. <br>' .
+										__('Select Display Price to show.' , 'easy-property-listings' )
 						),
 						array(
 							'name'		=>	'property_com_rent_period',
