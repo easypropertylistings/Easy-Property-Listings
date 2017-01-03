@@ -325,19 +325,19 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Sold price display
+	 * Lease price display
 	 *
 	 * @since 3.1
 	 * @return string Return lease price if selected or nothing
 	 */
 	public function get_property_price_lease_display( $admin = false ) {
-		$property_sold_price	= $this->get_property_price_display();
-		$property_sold_display	= $this->get_property_meta('property_sold_price_display');
+		$property_lease_price	= $this->get_property_price_display();
+		$property_lease_display	= $this->get_property_meta('property_price_display');
 
-		if ( $property_sold_price != '' ) {
-			if ( $property_sold_display == 'yes' || $admin == true ) {
+		if ( $property_lease_price != '' ) {
+			if ( $property_lease_display == 'yes' || $admin == true ) {
 
-				return apply_filters('epl_get_property_price_lease_display',$property_sold_price);
+				return apply_filters('epl_get_property_price_lease_display',$property_lease_price);
 			}
 		}
 	}
@@ -677,7 +677,7 @@ class EPL_Property_Meta {
 			// Lease or Both
 			if ( $this->get_property_meta('property_com_listing_type') == 'lease' || $this->get_property_meta('property_com_listing_type') == 'both' ) { // Both
 				$both = $this->get_property_meta('property_com_listing_type') == 'both' ? '<div class="epl-clear"></div>' : '';
-				if ( $this->get_property_com_rent() != '' && $this->get_property_price_display() == '' ) {
+				if ( $this->get_property_com_rent() != '' && $this->get_property_price_display() == 'yes' ) {
 					$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_com_rent() . ' '.__($rent_lease_type, 'easy-property-listings' ).'</span>';
 				} elseif ( $this->get_property_price_display() != '' && $this->get_property_meta('property_com_listing_type') == 'lease' ) {
 					$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_price_display() . '</span>';
