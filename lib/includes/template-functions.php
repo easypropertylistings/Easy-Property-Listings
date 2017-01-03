@@ -2094,23 +2094,26 @@ add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
 
 function epl_add_orderby_args($args) {
 
-	if ( isset( $_GET['sortby'] ) ) {
-		$id = sanitize_text_field( trim( $_GET['sortby'] ) );
-		$sorting_options = epl_sorting_options();
+	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 
-		foreach($sorting_options as $sorting_option) {
+		$orderby = sanitize_text_field(trim($_GET['sortby']));
+		$sorters = epl_sorting_options();
 
-			if($id == $sorting_option['id']) {
+		foreach($sorters as $sorter) {
 
-				if( isset($sorting_option['orderby']) )
-					$args['orderby']  = $sorting_option['orderby'];
+			if($orderby == $sorter['id']){
 
-				$args['meta_key'] =	$sorting_option['key'];
-				$args['order']    = $sorting_option['order'];
+				if($sorter['type'] == 'meta') {
+					$args['orderby']  = $sorter['orderby'];
+					$args['meta_key'] =	$sorter['key'];
+				} else {
+					$args['orderby']  = $sorter['key'];
+				}
+				$args['order']    = $sorter['order'];
 				break;
 			}
-		}
 
+		}
 	}
 	return $args;
 }
