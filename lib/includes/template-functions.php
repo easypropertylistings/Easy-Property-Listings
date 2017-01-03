@@ -795,6 +795,7 @@ function epl_property_tab_section() {
 	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_new_construction('l');
 	$common_features = array(
 				'property_toilet',
+				'property_ensuite',
 				'property_pet_friendly',
 				'property_garage',
 				'property_carport',
