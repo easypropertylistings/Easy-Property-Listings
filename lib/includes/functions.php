@@ -693,38 +693,6 @@ function epl_feedsync_format_strip_currency( $value ) {
 	return;
 }
 
-
-/**
- * Offers presented on settings page, removed if extension is present and activated
- *
- * @since 2.0
- */
-function epl_admin_sidebar () {
-
-	if ( has_filter( 'epl_extensions_options_filter_new' ) )
-		return;
-
-	$service_banners = array(
-		array(
-			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
-			'img' => 'bannertwo.png',
-			'alt' => __('Developer bundle Prospector for Easy Property Listings', 'easy-property-listings' )
-		),
-		/*
-		* array(
-		*	'url' => 'http://easypropertylistings.com.au/extensions/prospector-license/',
-		*	'img' => 'bannerone.png',
-		*	'alt' => __('Prospector pack for Easy Property Listings', 'easy-property-listings' )
-		*),
-		*/
-	);
-	$i = 0;
-	foreach ( $service_banners as $banner ) {
-		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="261" src="' .plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) .'" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
-		$i ++;
-	}
-}
-
 /**
  * Renders field array to html
  *
