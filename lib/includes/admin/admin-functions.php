@@ -108,6 +108,7 @@ function epl_admin_sidebar () {
 function epl_dashboard_widget_offer () {
 	if ( has_filter( 'epl_extensions_options_filter_new' ) )
 		return;
+
 	$service_banners = array(
 		array(
 			'url' 	=> 'https://easypropertylistings.com.au/extensions/core-bundle/?utm_source=offers&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_core',
@@ -146,6 +147,7 @@ function epl_dashboard_widget_offer () {
 function epl_dashboard_widget_offer_post_types () {
 	if ( has_filter( 'epl_extensions_options_filter_new' ) )
 		return;
+
 	$service_banners = array(
 		array(
 			'url' => 'https://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=post_link&utm_campaign=epl_extensions',
