@@ -160,7 +160,9 @@ function epl_extension_notice_offer() {
 	if ( has_filter( 'epl_extensions_options_filter_new' ) )
 		return;
 
-	if( is_epl_core_post() == true ) {
+	$screen = get_current_screen();
+
+	if( is_epl_core_post() == true || $screen->id == 'easy-property-listings_page_epl-reports' || $screen->id == 'easy-property-listings_page_epl-contacts' || $screen->id == 'toplevel_page_epl-general' ) {
 
 		echo '<div class="notice notice-success" style="max-height: 130px; overflow: hidden;">';
 			echo '<div class="epl-offers epl-offers-left" style="box-sizing: border-box; width: 85%; float: left; height: 120px">';
