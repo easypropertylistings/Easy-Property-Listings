@@ -137,3 +137,20 @@ function is_epl_post_archive() {
 
 	return 	is_post_type_archive(epl_all_post_types());
 }
+
+/**
+ * check if listing has secondary author
+ *
+ * @since 3.2
+ */
+function epl_listing_has_secondary_author() {
+    $exists = false;
+    $property_second_agent = get_property_meta('property_second_agent');
+    if ( '' != $property_second_agent ) {
+        $second_author = get_user_by( 'login' , $property_second_agent );
+        if($second_author !== false){
+            $exists = $second_author->ID;
+        }
+    }
+    return $exists;
+}
