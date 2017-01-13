@@ -1244,7 +1244,7 @@ function epl_before_meta_field_property_owner($post,$value) {
 	$url = admin_url('admin.php?page=epl-contacts&view=overview&id='.$value);
 	$contact = new EPL_Contact($value);
 
-	if( !$contact )
+	if( !$contact || $contact->ID <= 0 )
 		return;
 
 	echo '<tr class="form-field"><td>';
