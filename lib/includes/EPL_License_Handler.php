@@ -83,6 +83,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 		private function maybe_validate_license(){
 
+			// uncomment next two lines for testing
+			// $this->validate_license();
+			// return;
 			//Perform a request to validate the license.
 	        if ( false === ( $validate = get_transient( '_epl_validate_license' ) ) ) {
 	            // Only run every 24 hours.
