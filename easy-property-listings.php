@@ -71,7 +71,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance = new Easy_Property_Listings;
 				self::$instance->setup_constants();
 				self::$instance->includes();
-				self::$instance->load_textdomain();
+
+				add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
+
 				// Search fields displayer object.
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->search_fields->init();

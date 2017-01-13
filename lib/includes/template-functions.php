@@ -2090,6 +2090,12 @@ function epl_archive_title_callback() {
 }
 add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
 
+/**
+ * Shortcode Sorter
+ *
+ * @since 3.0
+ * @return $args
+ */
 function epl_add_orderby_args($args) {
 
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
