@@ -44,7 +44,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 */
 		function __construct( $_file, $_item_name, $_version, $_author, $_optname = null, $_api_url = null ) {
 			global $epl_options;
-			
+
 			$this->file           = $_file;
 			$this->item_name      = $_item_name;
 
@@ -63,7 +63,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			$this->author         = $_author;
 			$this->api_url        = is_null( $_api_url ) ? $this->api_url : $_api_url;
-			
+
 			/**
 			 * Allows for backwards compatibility with old license options,
 			 * i.e. if the plugins had license key fields previously, the license
@@ -86,24 +86,25 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// uncomment next two lines for testing
 			// $this->validate_license();
 			// return;
+
 			//Perform a request to validate the license.
-	        if ( false === ( $validate = get_transient( '_epl_validate_license' ) ) ) {
-	            // Only run every 24 hours.
-	            $timestamp = get_option( 'epl_license_updates' );
-	            if ( ! $timestamp ) {
-	                $timestamp = strtotime( '+24 hours' );
-	                update_option( 'epl_license_updates', $timestamp );
-	                $this->validate_license();
-	            } else {
-	                $current_timestamp = time();
-	                if ( $current_timestamp < $timestamp ) {
-	                    return;
-	                } else {
-	                    update_option( 'epl_license_updates', strtotime( '+24 hours' ) );
-	                    $this->validate_license();
-	                }
-	            }
-	        }
+			if ( false === ( $validate = get_transient( '_epl_validate_license' ) ) ) {
+				// Only run every 24 hours.
+				$timestamp = get_option( 'epl_license_updates' );
+				if ( ! $timestamp ) {
+					$timestamp = strtotime( '+24 hours' );
+					update_option( 'epl_license_updates', $timestamp );
+					$this->validate_license();
+				} else {
+					$current_timestamp = time();
+					if ( $current_timestamp < $timestamp ) {
+						return;
+					} else {
+						update_option( 'epl_license_updates', strtotime( '+24 hours' ) );
+						$this->validate_license();
+					}
+				}
+			}
 		}
 
 		private function validate_license() {
@@ -140,43 +141,43 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 					case 'missing':
 						set_transient( $this->item_shortname . '_license_active', false, DAY_IN_SECONDS );
-			            $option                			= get_option( $this->item_shortname . '_license_status' );
-			            $option['expired']  			= false;
-			            $option['no_activations_left'] 	= false;
-			            $option['item_name_mismatch']  	= false;
-			            $option['missing']  			= true;
-			            update_option( $this->item_shortname . '_license_status', $option );
-		            break;
+						$option                			= get_option( $this->item_shortname . '_license_status' );
+						$option['expired']  			= false;
+						$option['no_activations_left'] 		= false;
+						$option['item_name_mismatch']  		= false;
+						$option['missing']  			= true;
+						update_option( $this->item_shortname . '_license_status', $option );
+						break;
 
-		            case 'expired':
+					case 'expired':
 						set_transient( $this->item_shortname . '_license_active', false, DAY_IN_SECONDS );
-			            $option                			= get_option( $this->item_shortname . '_license_status' );
-			            $option['expired']  			= true;
-			            $option['no_activations_left'] 	= false;
-			            $option['item_name_mismatch']  	= false;
-			            $option['missing']  			= false;
-			            update_option( $this->item_shortname . '_license_status', $option );
-		            break;
+						$option                			= get_option( $this->item_shortname . '_license_status' );
+						$option['expired']  			= true;
+						$option['no_activations_left'] 		= false;
+						$option['item_name_mismatch']  		= false;
+						$option['missing']  			= false;
+						update_option( $this->item_shortname . '_license_status', $option );
+						break;
 
-		            case 'no_activations_left':
+					case 'no_activations_left':
 						set_transient( $this->item_shortname . '_license_active', false, DAY_IN_SECONDS );
-			            $option                			= get_option( $this->item_shortname . '_license_status' );
-			            $option['expired']  			= false;
-			            $option['no_activations_left'] 	= true;
-			            $option['item_name_mismatch']  	= false;
-			            $option['missing']  			= false;
-			            update_option( $this->item_shortname . '_license_status', $option );
-		            break;
+						$option                			= get_option( $this->item_shortname . '_license_status' );
+						$option['expired']  			= false;
+						$option['no_activations_left'] 		= true;
+						$option['item_name_mismatch']  		= false;
+						$option['missing']  			= false;
+						update_option( $this->item_shortname . '_license_status', $option );
+						break;
 
-		            case 'item_name_mismatch':
+					case 'item_name_mismatch':
 						set_transient( $this->item_shortname . '_license_active', false, DAY_IN_SECONDS );
-			            $option                			= get_option( $this->item_shortname . '_license_status' );
-			            $option['expired']  			= false;
-			            $option['no_activations_left'] 	= false;
-			            $option['item_name_mismatch']  	= true;
-			            $option['missing']  			= false;
-			            update_option( $this->item_shortname . '_license_status', $option );
-		            break;
+						$option                			= get_option( $this->item_shortname . '_license_status' );
+						$option['expired']  			= false;
+						$option['no_activations_left'] 		= false;
+						$option['item_name_mismatch']  		= true;
+						$option['missing']  			= false;
+						update_option( $this->item_shortname . '_license_status', $option );
+						break;
 
 				}
 
@@ -185,66 +186,66 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 	        // Otherwise, our check has returned successfully. Set the transient and update our license type and flags.
 	        set_transient( '_epl_validate_license', true, DAY_IN_SECONDS );
-	        $option                			= get_option( $this->item_shortname . '_license_status' );
-            $option['expired']  			= false;
-            $option['no_activations_left'] 	= false;
-            $option['item_name_mismatch']  	= false;
-            $option['missing']  			= false;
-	        update_option( $this->item_shortname . '_license_status', $option );
+		$option                			= get_option( $this->item_shortname . '_license_status' );
+		$option['expired']  			= false;
+		$option['no_activations_left'] 	= false;
+		$option['item_name_mismatch']  	= false;
+		$option['missing']  			= false;
+		update_option( $this->item_shortname . '_license_status', $option );
 		}
 
-    /**
-     * Outputs any notices generated by the class.
-     *
-     * @since 3.2
-     */
-    public function license_notices() {
+		/**
+		* Outputs any notices generated by the class.
+		*
+		* @since 3.1.4
+		*/
+		public function license_notices() {
 
-        $option = get_option( $this->item_shortname . '_license_status' );
+			$option = get_option( $this->item_shortname . '_license_status' );
 
-        //Only display notices to admin users
-		if ( current_user_can( 'manage_options' ) ) {
-   
-	        // If there is no license key, output nag about ensuring key is set for automatic updates.
-	        if ( isset( $option['missing'] ) && $option['missing'] ) :
-	        ?>
-	        <div class="error">
-	            <p><?php printf( __( 'No valid license key has been entered, so automatic updates for %s have been turned off. <a href="%s">Please click here to enter your license key and begin receiving automatic updates.</a>', 'easy-property-listings' ),
-	            	$this->item_name,
-	            	esc_url( add_query_arg( array( 'page' => 'epl-licenses' ), admin_url( 'admin.php' ) ) ) ); ?></p>
-	        </div>
-	        <?php
-	        endif;
-	
-	        // If a key has expired, output nag about renewing the key.
-	        if ( isset( $option['expired'] ) && $option['expired'] ) :
-	        ?>
-	        <div class="error">
-	            <p><?php printf( __( 'Your license key for %s has expired. <a href="%s" target="_blank">Please click here to renew your license key and continue receiving automatic updates.</a>', 'soliloquy' ),$this->item_name, 'https://easypropertylistings.com.au/your-account/' ); ?></p>
-	        </div>
-	        <?php
-	        endif;
-	
-	        // If activation limit reached for the license
-	        if ( isset( $option['no_activations_left'] ) && $option['no_activations_left'] ) :
-	        ?>
-	        <div class="error">
-	            <p><?php printf(__( 'Your maximum usage limit for license key of %s has been reached. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ),$this->item_name); ?></p>
-	        </div>
-	        <?php
-	        endif;
-	
-	        // If a key is invalid, output nag about using another key.
-	        if ( isset( $option['item_name_mismatch'] ) && $option['item_name_mismatch'] ) :
-	        ?>
-	        <div class="error">
-	            <p><?php printf(__( 'The license you entered for %s doesnt belong to it. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ),$this->item_name); ?></p>
-	        </div>
-	        <?php
-	        endif;
-        	
-        }
-    }
+			//Only display notices to admin users
+			if ( current_user_can( 'manage_options' ) ) {
+
+			        // If there is no license key, output nag about ensuring key is set for automatic updates.
+			        if ( isset( $option['missing'] ) && $option['missing'] ) :
+			        ?>
+				        <div class="error">
+				            <p><?php printf( __( 'No valid license key has been entered, so automatic updates for %s have been turned off. <a href="%s">Please click here to enter your license key and begin receiving automatic updates.</a>', 'easy-property-listings' ),
+				            	$this->item_name,
+				            	esc_url( add_query_arg( array( 'page' => 'epl-licenses' ), admin_url( 'admin.php' ) ) ) ); ?></p>
+				        </div>
+				        <?php
+				        endif;
+
+				        // If a key has expired, output nag about renewing the key.
+				        if ( isset( $option['expired'] ) && $option['expired'] ) :
+				        ?>
+				        <div class="error">
+				            <p><?php printf( __( 'Your license key for %s has expired. <a href="%s" target="_blank">Please click here to renew your license key and continue receiving automatic updates.</a>', 'easy-property-listings' ),$this->item_name, 'https://easypropertylistings.com.au/your-account/' ); ?></p>
+				        </div>
+				        <?php
+				        endif;
+
+				        // If activation limit reached for the license
+				        if ( isset( $option['no_activations_left'] ) && $option['no_activations_left'] ) :
+				        ?>
+				        <div class="error">
+				            <p><?php printf(__( 'Your maximum usage limit for license key of %s has been reached. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ),$this->item_name); ?></p>
+				        </div>
+				        <?php
+				        endif;
+
+				        // If a key is invalid, output nag about using another key.
+				        if ( isset( $option['item_name_mismatch'] ) && $option['item_name_mismatch'] ) :
+				        ?>
+				        <div class="error">
+				            <p><?php printf(__( 'The license you entered for %s doesnt belong to it. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ),$this->item_name); ?></p>
+				        </div>
+			        <?php
+			        endif;
+
+			}
+		}
 
 		/**
 		 * Include the updater class
@@ -292,7 +293,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				// dont check for updates on unvalid licensed
 				return;
 			}
-			
+
 			// Setup the updater
 			$epl_updater = new EPL_SL_Plugin_Updater(
 				$this->api_url,
