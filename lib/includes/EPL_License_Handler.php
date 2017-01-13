@@ -365,6 +365,12 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				set_transient( 'epl_license_error', $license_data, 1000 );
 			} else {
 				delete_transient( 'epl_license_error' );
+				$option                			= get_option( $this->item_shortname . '_license_status' );
+				$option['expired']  			= false;
+				$option['no_activations_left'] 	= false;
+				$option['item_name_mismatch']  	= false;
+				$option['missing']  			= false;
+				update_option( $this->item_shortname . '_license_status', $option );
 			}
 		}
 
@@ -419,6 +425,12 @@ if ( ! class_exists( 'EPL_License' ) ) :
 					set_transient( 'epl_license_error', $license_data, 1000 );
 				} else {
 					delete_transient( 'epl_license_error' );
+					$option                			= get_option( $this->item_shortname . '_license_status' );
+					$option['expired']  			= false;
+					$option['no_activations_left'] 	= false;
+					$option['item_name_mismatch']  	= false;
+					$option['missing']  			= false;
+					update_option( $this->item_shortname . '_license_status', $option );
 				}
 			}
 		}
