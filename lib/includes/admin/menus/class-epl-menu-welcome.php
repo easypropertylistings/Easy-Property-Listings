@@ -251,6 +251,16 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.4', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Added offset option to the following shortcodes that allows you to place multiple shortcodes on a single page and prevent displaying duplicate listings. Added to the following shortcodes: [listing] , [listing_category], [listing_feature], [listing_location]', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Optimisations to secondary author display by removing duplicate code.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Improvements to extension license updater and notifications on license status.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Performance improvements to admin functions.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Translations adjustment to load textdomain after all plugins initialised.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.3', 'easy-property-listings'  );?></h4>
 
 					<ul>
