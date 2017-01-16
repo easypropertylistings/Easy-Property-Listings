@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.1.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2017-01-16 13:52+0800\n"
+"POT-Creation-Date: 2017-01-16 13:57+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -517,7 +517,7 @@ msgstr ""
 #: lib/includes/EPL_License_Handler.php:242
 #, php-format
 msgid ""
-"The license you entered for %s doesnt belong to it. Please use a different key to "
+"The license you entered for %s does not belong to it. Please use a different key to "
 "continue receiving automatic updates."
 msgstr ""
 
