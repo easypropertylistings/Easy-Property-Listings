@@ -30,19 +30,20 @@ function epl_shortcode_listing_callback( $atts ) {
 	}
 
 	$attributes = shortcode_atts( array(
-		'post_type'    => $property_types, //Post Type
-		'status'       => array( 'current', 'sold', 'leased' ),
-		'limit'        => '10', // Number of maximum posts to show
-		'author'       => '',	// Author of listings.
-		'featured'	   => 0,	// Featured listings.
-		'template'     => false, // Template can be set to "slim" for home open style template
-		'location'     => '', // Location slug. Should be a name like sorrento
-		'tools_top'    => 'off', // Tools before the loop like Sorter and Grid on or off
-		'tools_bottom' => 'off', // Tools after the loop like pagination on or off
-		'sortby'       => '', // Options: price, date : Default date
-		'sort_order'   => 'DESC',
-		'query_object' => '', // only for internal use . if provided use it instead of custom query
-		'pagination'   => 'on'
+		'post_type'	=> $property_types, //Post Type
+		'status'	=> array( 'current', 'sold', 'leased' ),
+		'limit'		=> '10', // Number of maximum posts to show
+		'offset'	=> 0,
+		'author'	=> '',	// Author of listings.
+		'featured'	=> 0,	// Featured listings.
+		'template'	=> false, // Template can be set to "slim" for home open style template
+		'location'	=> '', // Location slug. Should be a name like sorrento
+		'tools_top'	=> 'off', // Tools before the loop like Sorter and Grid on or off
+		'tools_bottom'	=> 'off', // Tools after the loop like pagination on or off
+		'sortby'	=> '', // Options: price, date : Default date
+		'sort_order'	=> 'DESC',
+		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
+		'pagination'	=> 'on'
 	), $atts );
 
 	if ( is_string( $attributes['post_type'] ) && $attributes['post_type'] == 'rental' ) {
@@ -61,6 +62,7 @@ function epl_shortcode_listing_callback( $atts ) {
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
 		'post_type'      =>	$attributes['post_type'],
+		'offset'         =>	$attributes['offset'],
 		'posts_per_page' =>	$attributes['limit'],
 		'paged'          =>	absint( $paged ),
 	);

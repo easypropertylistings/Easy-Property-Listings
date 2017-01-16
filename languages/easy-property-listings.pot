@@ -3,9 +3,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.1.3\n"
+"Project-Id-Version: Easy Property Listings 3.1.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2017-01-03 12:51+0800\n"
+"POT-Creation-Date: 2017-01-16 13:57+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-contact-table.php:64
 #: lib/includes/admin/contacts/class-contact-table.php:193
 #: lib/includes/class-epl-author-meta.php:80 lib/includes/functions.php:2001
-#: lib/includes/template-functions.php:1171 lib/post-types/post-type-contact.php:29
+#: lib/includes/template-functions.php:1169 lib/post-types/post-type-contact.php:29
 #: lib/post-types/post-type-contact.php:30
 msgid "Contact"
 msgstr ""
@@ -492,19 +492,48 @@ msgstr ""
 msgid "Read More "
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:282
+#: lib/includes/EPL_License_Handler.php:213
+#, php-format
+msgid ""
+"No valid license key has been entered, so automatic updates for %s have been turned "
+"off. <a href=\"%s\">Please click here to enter your license key and begin receiving "
+"automatic updates.</a>"
+msgstr ""
+
+#: lib/includes/EPL_License_Handler.php:224
+#, php-format
+msgid ""
+"Your license key for %s has expired. <a href=\"%s\" target=\"_blank\">Please click "
+"here to renew your license key and continue receiving automatic updates.</a>"
+msgstr ""
+
+#: lib/includes/EPL_License_Handler.php:233
+#, php-format
+msgid ""
+"Your maximum usage limit for license key of %s has been reached. Please use a "
+"different key to continue receiving automatic updates."
+msgstr ""
+
+#: lib/includes/EPL_License_Handler.php:242
+#, php-format
+msgid ""
+"The license you entered for %s does not belong to it. Please use a different key to "
+"continue receiving automatic updates."
+msgstr ""
+
+#: lib/includes/EPL_License_Handler.php:462
 msgid "This license does not belong to the product you have entered it for."
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:287
+#: lib/includes/EPL_License_Handler.php:467
 msgid "This license does not have any activations left"
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:292
+#: lib/includes/EPL_License_Handler.php:472
 msgid "This license key is expired. Please renew it."
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:297
+#: lib/includes/EPL_License_Handler.php:477
 #, php-format
 msgid ""
 "There was a problem activating your license key, please try again or contact support. "
@@ -5478,7 +5507,7 @@ msgstr ""
 msgid "Call"
 msgstr ""
 
-#: lib/includes/class-epl-contact.php:679 lib/includes/template-functions.php:2083
+#: lib/includes/class-epl-contact.php:679 lib/includes/template-functions.php:2081
 msgid "Listing"
 msgstr ""
 
@@ -6144,12 +6173,12 @@ msgstr ""
 msgid "Listing view type"
 msgstr ""
 
-#: lib/includes/functions.php:1300 lib/includes/template-functions.php:1367
+#: lib/includes/functions.php:1300 lib/includes/template-functions.php:1365
 #: lib/widgets/widget-listing.php:304
 msgid "List"
 msgstr ""
 
-#: lib/includes/functions.php:1301 lib/includes/template-functions.php:1369
+#: lib/includes/functions.php:1301 lib/includes/template-functions.php:1367
 msgid "Grid"
 msgstr ""
 
@@ -6492,85 +6521,85 @@ msgstr ""
 msgid "Next Page &raquo;"
 msgstr ""
 
-#: lib/includes/template-functions.php:629 lib/includes/template-functions.php:869
+#: lib/includes/template-functions.php:627 lib/includes/template-functions.php:867
 #: lib/meta-boxes/meta-boxes.php:1252
 msgid "Plus Outgoings"
 msgstr ""
 
-#: lib/includes/template-functions.php:646
+#: lib/includes/template-functions.php:644
 msgid "Available from"
 msgstr ""
 
-#: lib/includes/template-functions.php:851
+#: lib/includes/template-functions.php:849
 msgid "Property Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:904 lib/meta-boxes/meta-boxes.php:1297
+#: lib/includes/template-functions.php:902 lib/meta-boxes/meta-boxes.php:1297
 msgid "Commercial Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:930 lib/meta-boxes/meta-boxes.php:1103
+#: lib/includes/template-functions.php:928 lib/meta-boxes/meta-boxes.php:1103
 msgid "Rural Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1017
+#: lib/includes/template-functions.php:1015
 msgid "Price: High to Low"
 msgstr ""
 
-#: lib/includes/template-functions.php:1025
+#: lib/includes/template-functions.php:1023
 msgid "Price: Low to High"
 msgstr ""
 
-#: lib/includes/template-functions.php:1034
+#: lib/includes/template-functions.php:1032
 msgid "Date: Newest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1043
+#: lib/includes/template-functions.php:1041
 msgid "Date: Oldest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1050
+#: lib/includes/template-functions.php:1048
 msgid "Status : Current First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1059
+#: lib/includes/template-functions.php:1057
 msgid "Status : Sold/Leased First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1068
+#: lib/includes/template-functions.php:1066
 msgid " A-Z"
 msgstr ""
 
-#: lib/includes/template-functions.php:1077
+#: lib/includes/template-functions.php:1075
 msgid " Z-A"
 msgstr ""
 
-#: lib/includes/template-functions.php:1104
+#: lib/includes/template-functions.php:1102
 msgid "Sort"
 msgstr ""
 
-#: lib/includes/template-functions.php:1168
+#: lib/includes/template-functions.php:1166
 msgid "About"
 msgstr ""
 
-#: lib/includes/template-functions.php:1169
+#: lib/includes/template-functions.php:1167
 msgid "Bio"
 msgstr ""
 
-#: lib/includes/template-functions.php:1170
+#: lib/includes/template-functions.php:1168
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:1912
+#: lib/includes/template-functions.php:1910
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:2072
+#: lib/includes/template-functions.php:2070
 #, php-format
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:2075
+#: lib/includes/template-functions.php:2073
 msgid "Search Result"
 msgstr ""
 
@@ -7582,10 +7611,10 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: lib/shortcodes/shortcode-listing-auction.php:148
-#: lib/shortcodes/shortcode-listing-category.php:173
-#: lib/shortcodes/shortcode-listing-tax-feature.php:168
-#: lib/shortcodes/shortcode-listing-tax-location.php:152
+#: lib/shortcodes/shortcode-listing-auction.php:147
+#: lib/shortcodes/shortcode-listing-category.php:175
+#: lib/shortcodes/shortcode-listing-tax-feature.php:169
+#: lib/shortcodes/shortcode-listing-tax-location.php:154
 #: lib/templates/content/shortcode-listing.php:49
 msgid "Nothing found, please check back later."
 msgstr ""
