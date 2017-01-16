@@ -239,7 +239,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				        if ( isset( $option['item_name_mismatch'] ) && $option['item_name_mismatch'] ) :
 				        ?>
 				        <div class="error">
-				            <p><?php printf(__( 'The license you entered for %s doesnt belong to it. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ),$this->item_name); ?></p>
+				            <p><?php printf(__( 'The license you entered for %s does not belong to it. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ),$this->item_name); ?></p>
 				        </div>
 			        <?php
 			        endif;
