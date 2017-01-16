@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.1.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2017-01-16 13:45+0800\n"
+"POT-Creation-Date: 2017-01-16 13:52+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -521,19 +521,19 @@ msgid ""
 "continue receiving automatic updates."
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:450
+#: lib/includes/EPL_License_Handler.php:462
 msgid "This license does not belong to the product you have entered it for."
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:455
+#: lib/includes/EPL_License_Handler.php:467
 msgid "This license does not have any activations left"
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:460
+#: lib/includes/EPL_License_Handler.php:472
 msgid "This license key is expired. Please renew it."
 msgstr ""
 
-#: lib/includes/EPL_License_Handler.php:465
+#: lib/includes/EPL_License_Handler.php:477
 #, php-format
 msgid ""
 "There was a problem activating your license key, please try again or contact support. "
