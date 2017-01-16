@@ -36,7 +36,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
 		'sortby'		=>	'', // Options: price, date : Default date
 		'sort_order'		=>	'DESC',
-		'pagination'   => 'on'
+		'pagination'		=> 	'on'
 
 	), $atts ) );
 
@@ -126,8 +126,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 			</div>
 			<div class="loop-footer">
 				<?php
-					if( $pagination == 'on') 
-					do_action('epl_pagination',array('query'	=>	$query_open)); 
+					if( $pagination == 'on')
+					do_action('epl_pagination',array('query'	=>	$query_open));
 				?>
 			</div>
 		</div>
