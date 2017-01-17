@@ -36,7 +36,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'category_value'		=>	'',
 		'category_compare'		=>	'IN',
 		'limit'				=>	'10', // Number of maximum posts to show
-		'offset'			=>	0, // Offset Posts
+		'offset'			=>	'', // Offset Posts, pagination will be disabled
 		'template'			=>	false, // Template can be set to "slim" for home open style template
 		'location'			=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
@@ -68,9 +68,14 @@ function epl_shortcode_listing_category_callback( $atts ) {
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'offset'		=>	$offset,
 		'paged' 		=>	$paged
 	);
+
+	// Offset query does not work with pagination
+	if ( ! empty ( $offset ) ) {
+		$args['offset'] 	= $offset;
+		$pagination	 	= 'off'; // Disable pagination when offset is used
+	}
 
 	if(!empty($location) ) {
 		if( !is_array( $location ) ) {

@@ -33,7 +33,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'post_type'	=> $property_types, //Post Type
 		'status'	=> array( 'current', 'sold', 'leased' ),
 		'limit'		=> '10', // Number of maximum posts to show
-		'offset'	=> 0,
+		'offset'	=> '', // When offset is used, pagination is disabled
 		'author'	=> '',	// Author of listings.
 		'featured'	=> 0,	// Featured listings.
 		'template'	=> false, // Template can be set to "slim" for home open style template
@@ -59,13 +59,20 @@ function epl_shortcode_listing_callback( $atts ) {
 	if ( ! is_array( $attributes['post_type'] ) ) {
 		$attributes['post_type'] = array_map( 'trim', explode( ',',$attributes['post_type'] ) );
 	}
+
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
 		'post_type'      =>	$attributes['post_type'],
-		'offset'         =>	$attributes['offset'],
 		'posts_per_page' =>	$attributes['limit'],
 		'paged'          =>	absint( $paged ),
 	);
+
+	// Offset query does not work with pagination
+	if ( ! empty ( $attributes['offset'] ) ) {
+		$args['offset'] 		= $attributes['offset'];
+		$attributes['pagination'] 	= 'off'; // Disable pagination when offset is used
+	}
+
 	$args['meta_query'] = epl_parse_atts($atts);
 
 	// Listings of specified author.

@@ -33,7 +33,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		'location'		=>	'',
 		'location_id'		=>	'',
 		'limit'			=>	'10', // Number of maximum posts to show
-		'offset'		=>	0, // Offset Posts
+		'offset'		=>	'', // Offset Posts
 		'template'		=>	false, // Template can be set to "slim" for home open style template
 		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
@@ -62,9 +62,14 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'offset' 		=>	$offset,
 		'paged' 		=>	$paged
 	);
+
+	// Offset query does not work with pagination
+	if ( ! empty ( $offset ) ) {
+		$args['offset'] 	= $offset;
+		$pagination	 	= 'off'; // Disable pagination when offset is used
+	}
 
 	if(!empty($location) ) {
 		if( !is_array( $location ) ) {
