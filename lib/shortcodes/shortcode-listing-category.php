@@ -31,19 +31,19 @@ function epl_shortcode_listing_category_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' 			=>	$property_types,
 		'status'			=>	array('current' , 'sold' , 'leased' ),
-		'commercial_listing_type'	=>	'',
-		'category_key'			=>	'',
-		'category_value'		=>	'',
-		'category_compare'		=>	'IN',
+		'commercial_listing_type'	=>	'', // Listing Type, 'sale' , 'lease', 'both'
+		'category_key'			=>	'', // Meta field key
+		'category_value'		=>	'', // Meta field value
+		'category_compare'		=>	'IN', // Compare using 'IN','NOT IN','BETWEEN','NOT BETWEEN'
 		'limit'				=>	'10', // Number of maximum posts to show
-		'offset'			=>	'', // Offset Posts, pagination will be disabled
+		'offset'			=>	'', // Offset posts. When used, pagination is disabled
 		'template'			=>	false, // Template can be set to "slim" for home open style template
 		'location'			=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
 		'sortby'			=>	'', // Options: price, date : Default date
-		'sort_order'			=>	'DESC',
-		'pagination'			=>	'on'
+		'sort_order'			=>	'DESC', // Sort by ASC or DESC
+		'pagination'			=>	'on' // Enable or disable pagination
 	), $atts ) );
 
 	if(empty($post_type)) {

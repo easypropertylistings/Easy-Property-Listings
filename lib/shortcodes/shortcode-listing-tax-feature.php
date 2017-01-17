@@ -30,17 +30,17 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
 		'status'		=>	array('current' , 'sold' , 'leased' ),
-		'feature'		=>	'',
-		'feature_id'		=>	'',
+		'feature'		=>	'', // Feature slug
+		'feature_id'		=>	'', // Feature ID
 		'limit'			=>	'10', // Number of maximum posts to show
-		'offset'		=>	'', // Offset Posts
+		'offset'		=>	'', // Offset posts. When used, pagination is disabled
 		'template'		=>	false, // Template can be set to "slim" for home open style template
 		'location'		=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
 		'sortby'		=>	'', // Options: price, date : Default date
-		'sort_order'		=>	'DESC',
-		'pagination'		=> 	'on'
+		'sort_order'		=>	'DESC', // Sort by ASC or DESC
+		'pagination'		=> 	'on' // Enable or disable pagination
 	), $atts ) );
 
 	if(empty($post_type)) {

@@ -33,7 +33,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'post_type'	=> $property_types, //Post Type
 		'status'	=> array( 'current', 'sold', 'leased' ),
 		'limit'		=> '10', // Number of maximum posts to show
-		'offset'	=> '', // When offset is used, pagination is disabled
+		'offset'	=> '', // Offset posts. When used, pagination is disabled
 		'author'	=> '',	// Author of listings.
 		'featured'	=> 0,	// Featured listings.
 		'template'	=> false, // Template can be set to "slim" for home open style template
@@ -41,9 +41,9 @@ function epl_shortcode_listing_callback( $atts ) {
 		'tools_top'	=> 'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'	=> 'off', // Tools after the loop like pagination on or off
 		'sortby'	=> '', // Options: price, date : Default date
-		'sort_order'	=> 'DESC',
+		'sort_order'	=> 'DESC', // Sort by ASC or DESC
 		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
-		'pagination'	=> 'on'
+		'pagination'	=> 'on' // Enable or disable pagination
 	), $atts );
 
 	if ( is_string( $attributes['post_type'] ) && $attributes['post_type'] == 'rental' ) {
