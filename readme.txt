@@ -5,9 +5,9 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, contact, crm, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.9
-Tested up to: 4.7
+Tested up to: 4.7.1
 
-Stable Tag: 3.1.2
+Stable Tag: 3.1.3
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.4 January 16, 2017 =
+
+* New: Added offset option to the following shortcodes that allows you to place multiple shortcodes on a single page and prevent displaying duplicate listings. Added to the following shortcodes: [listing] , [listing_category], [listing_feature], [listing_location]
+* Tweak: Optimisations to secondary author display by removing duplicate code.
+* Tweak: Improvements to extension license updater and notifications on license status.
+* Tweak: Performance improvements to admin functions.
+* Tweak: Translations adjustment to load textdomain after all plugins initialised.
 
 = 3.1.3 January 3, 2017 =
 
