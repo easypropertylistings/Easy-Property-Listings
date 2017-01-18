@@ -47,20 +47,25 @@ add_filter( 'admin_body_class', 'epl_add_admin_body_class' );
  */
 function epl_admin_google_maps_api_notification() {
 
-	if( current_user_can( 'manage_options' ) && epl_get_option('epl_disable_google_api') != 'on' && epl_get_option('epl_google_api_key') == '' ) { ?>
-		<div class="notice notice-error is-dismissible">
-			<h3 class="epl-text-red" style="color:#dd3d36"><?php _e( 'Easy Property Listings requires a Google API key for mapping' , 'easy-property-listings' ); ?></h3>
+	$screen = get_current_screen();
 
-			<p><strong><?php _e( 'As of June 22, 2016 Google has made API keys required for the Javascript Maps API.' , 'easy-property-listings' ); ?></strong><br>
+	if ( $screen->id == 'easy-property-listings_page_epl-settings' ) {
 
-				<?php $link = '<strong><a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">' . __( 'Google Maps API Key' , 'easy-property-listings'  ) . '</a></strong>'; ?>
-				<?php printf( __( 'To allow maps to function correctly please create a %s and enable <strong>Google Maps API</strong>.', 'easy-property-listings'  ), $link ); ?><br>
+		if( current_user_can( 'manage_options' ) && epl_get_option('epl_disable_google_api') != 'on' && epl_get_option('epl_google_api_key') == '' ) { ?>
+			<div class="notice notice-error is-dismissible">
+				<h3 class="epl-text-red" style="color:#dd3d36"><?php _e( 'Easy Property Listings requires a Google API key for mapping' , 'easy-property-listings' ); ?></h3>
 
-				<?php $link = '<strong><a href="admin.php?page=epl-settings#epl-advanced">' . __( 'Easy Property Listings Advanced Settings' , 'easy-property-listings'  ) . '</a></strong>'; ?>
-				<?php printf( __( 'Once complete enter your API key in the %s', 'easy-property-listings'  ), $link ); ?>
-			</p>
-		</div>
-	<?php
+				<p><strong><?php _e( 'As of June 22, 2016 Google has made API keys required for the Javascript Maps API.' , 'easy-property-listings' ); ?></strong><br>
+
+					<?php $link = '<strong><a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">' . __( 'Google Maps API Key' , 'easy-property-listings'  ) . '</a></strong>'; ?>
+					<?php printf( __( 'To allow maps to function correctly please create a %s and enable <strong>Google Maps API</strong>.', 'easy-property-listings'  ), $link ); ?><br>
+
+					<?php $link = '<strong><a href="#epl-advanced">' . __( 'Advanced Settings' , 'easy-property-listings'  ) . '</a></strong>'; ?>
+					<?php printf( __( 'Once complete enter your API key below under %s > Google Maps API Key.', 'easy-property-listings'  ), $link ); ?>
+				</p>
+			</div>
+		<?php
+		}
 	}
 }
 add_action( 'admin_notices', 'epl_admin_google_maps_api_notification',5 );
