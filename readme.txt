@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.7.1
 
-Stable Tag: 3.1.3
+Stable Tag: 3.1.4
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.5 January 18, 2017 =
+
+* Tweak: Internal shortcode option documentation.
+* Fix: Shortcode offset feature breaking pagination. Note when using offset, pagination is disabled: [listing] , [listing_category], [listing_feature], [listing_location]
+* Fix: Corrected the default option when using select fields.
 
 = 3.1.4 January 16, 2017 =
 

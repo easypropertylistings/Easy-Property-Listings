@@ -3,9 +3,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.1.4\n"
+"Project-Id-Version: Easy Property Listings 3.1.5\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2017-01-16 14:46+0800\n"
+"POT-Creation-Date: 2017-01-18 08:16+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -743,7 +743,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1016
 #: lib/includes/admin/contacts/contacts.php:425 lib/includes/admin/help-single.php:44
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1218
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1224
 #: lib/includes/admin/menus/menu-help.php:126 lib/widgets/widget-functions.php:25
 #: lib/widgets/widget-functions.php:1192 lib/widgets/widget-listing.php:225
 msgid "Title"
@@ -1346,15 +1346,15 @@ msgid "Credits"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:157
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1115
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1413
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1121
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1419
 #, php-format
 msgid "Welcome to Easy Property Listings %s"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:158
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1116
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1414
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1122
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1420
 #, php-format
 msgid ""
 "Thank you for updating to the latest version! Easy Property Listings %s is ready to "
@@ -1362,24 +1362,24 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:159
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1117
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1415
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1123
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1421
 #, php-format
 msgid "Version %s"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:164
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1386
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1392
 msgid "Location Profiles"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:165
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1384
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1390
 msgid "Testimonial Manager"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:166
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1383
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1389
 msgid "Advanced Mapping"
 msgstr ""
 
@@ -1418,18 +1418,18 @@ msgid ""
 "quickly take your custom created templates and use them on other real estate sites."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:198
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:196
 msgid "Contact and Lead Management System"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:205
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:203
 msgid ""
 "Contact management and lead CRM has been added to the Easy Property Listings plugin "
 "and we are very excited to finally release this to you to use on your real estate "
 "website."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:207
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:205
 msgid ""
 "Lead generation in real estate is a must online and we have created an easy to use "
 "CRM that allows you to track and communicate with your prospects as they make "
@@ -1440,32 +1440,32 @@ msgid ""
 "website."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:209
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:207
 msgid ""
 "The contact system has been designed to be easy to use and allow you to track and "
 "capture contact information on your listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:211
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:209
 msgid ""
 "Back when I was selling property I would frequently meet the same people at different "
 "properties that I had listed for sale and now you will be able to create a story "
 "around your potential buyer or seller shopping for an agent."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:218
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:216
 #: lib/includes/admin/menus/menus.php:60 lib/includes/admin/menus/menus.php:61
 #: lib/includes/admin/reports/reports.php:29
 msgid "Reports"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:225
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:223
 msgid ""
 "This release introduces a reports feature for you to track your listings, sales and "
 "rentals so you can visually see how your business is going at a glance."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:227
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:225
 msgid ""
 "Graphs are cool and they really can give you a quick picture of how you are going "
 "with your real estate business so you can see trends in your business to better "
@@ -1473,49 +1473,67 @@ msgid ""
 "can see the last 5 years of your listings on a graph you can plan ahead."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:229
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:227
 msgid ""
 "If you are running a business and have several sales and property manager staff you "
 "will be able to see how your business is going and track the KPI’s of your people."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:231
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:229
 msgid ""
 "We have additional enhancements planned for the reports moving forward so you can "
 "track commissions so you can see your sales and rental revenue."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:237
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:235
 msgid "Additional Updates"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:240
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:238
 msgid ""
 "Along with the new Contacts and Reports features we have been optimising code, adding "
 "many new filters and functions to the code base to make your site faster and allow "
 "developers to create any type of real estate website that they can imagine."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:242
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:240
 msgid ""
 "We have fixed some issues and improved the listing edit pages to slim them down a bit."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:244
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:242
 msgid "Many more changes have been made which are noted in the Change Log below."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:250
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1141
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:248
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1147
 #: lib/includes/admin/menus/menu-help.php:39
 msgid "Full Change Log"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:254
-msgid "Version 3.1.4"
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:252
+msgid "Version 3.1.5"
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:255
+msgid "Tweak: Internal shortcode option documentation."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:256
+msgid ""
+"Fix: Shortcode offset breaking pagination. Note when using offset, pagination is "
+"disabled: [listing] , [listing_category], [listing_feature], [listing_location]"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:257
+msgid "Fix: Corrected the default option when using select fields."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:260
+msgid "Version 3.1.4"
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:263
 msgid ""
 "New: Added offset option to the following shortcodes that allows you to place "
 "multiple shortcodes on a single page and prevent displaying duplicate listings. Added "
@@ -1523,1884 +1541,1884 @@ msgid ""
 "[listing_location]"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:258
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:264
 msgid "Tweak: Optimisations to secondary author display by removing duplicate code."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:259
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:265
 msgid ""
 "Tweak: Improvements to extension license updater and notifications on license status."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:260
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:266
 msgid "Tweak: Performance improvements to admin functions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:261
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:267
 msgid "Tweak: Translations adjustment to load textdomain after all plugins initialised."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:264
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:270
 msgid "Version 3.1.3"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:267
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:273
 msgid "Fix: Contact linking when editing listings with invalid contact ID."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:268
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:274
 msgid "Fix: Shortcode sorting for Current/Sold."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:269
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:275
 msgid "Fix: Commercial Lease price display."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:270
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:276
 msgid "Tweak: Output Ensuite to features list."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:274
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:280
 msgid "Version 3.1.2"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:277
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:283
 msgid "Fix: Corrected the address display of the Commercial and Business listing types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:278
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:284
 msgid "Fix: Extension updater class to provide automatic updates."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:279
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:285
 msgid "Tweak: Visiting the plugins page now caches plugin updates."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:283
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:289
 msgid "Version 3.1.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:286
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:292
 msgid "Fix: [listing] shortcode with author option correctly filters by username."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:287
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:293
 msgid "Fix: Listing search undefined result when using custom search options."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:291
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:297
 msgid "Version 3.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:294
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:300
 msgid "New: Rebuilt templates including additional wrapper for better grid layout."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:295
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:301
 msgid ""
 "New: Added legacy CSS option to prevent using new stylesheets when updating to 3.1 "
 "ensuring your listing display remains consistent."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:296
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:302
 msgid ""
 "New: Enhanced grid wrapper CSS to better display listings in a grid format and "
 "improved CSS by splitting global style.css with style-structure.css allowing for "
 "better compatibility with themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:297
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:303
 msgid "New: Class based front JS scripts for enhanced compatibility."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:298
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:304
 msgid ""
 "New: Implemented cron checking in extension license handler and updated license "
 "updater EDD code."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:299
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:305
 msgid ""
 "New: Added filter for epl_get_contacts_args to enable contact form field changes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:300
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:306
 msgid "New: Added epl_get_next_contact_link_query filter to adjust contact query."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:301
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:307
 msgid ""
 "New: Added epl_contact_access filter to adjust contact system access by user level."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:302
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:308
 msgid "New: Contextual help tab on listing pages."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:303
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:309
 msgid "New: Added epl_author_description_html filter to adjust the author description."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:304
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:310
 msgid "New: Cron added to handle scheduled events like license checking and updating."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:305
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:311
 msgid "New: Auction epl_auction_feed_format date format filter added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:306
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:312
 msgid "New: Added epl_get_property_com_rent to allow commercial rent price formatting."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:307
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:313
 msgid "New: Search radio option and checkbox added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:308
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:314
 msgid "New: Refactored search into class based code."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:309
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:315
 msgid "New: Commercial search added (beta) disabled by default."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:310
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:316
 msgid "New: Conditional post types added for checking on enabled  listing types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:311
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:317
 msgid "New: Support for DIVI theme framework."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:312
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:318
 msgid "New: Added epl_meta_commercial_category_value to adjust commercial category."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:313
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:319
 msgid "New: Parse EPL shortcodes for meta queries."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:314
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:320
 msgid "New: Widget template no image added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:315
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:321
 msgid "New: Sorting order function added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:316
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:322
 msgid ""
 "New: Pagination option added to all listing shortcodes pagination = 'on' default."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:317
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:323
 msgid ""
 "New: [listing_category] shortcode added compare option. category_compare = 'IN' usage "
 "is based on SQL query options. 'IN','NOT IN','BETWEEN','NOT BETWEEN'"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:318
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:324
 msgid ""
 "New: Wrapper added to templates to improve display and  provide even grid spacing."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:319
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:325
 msgid "New: Added search address to separate from ID search."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:320
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:326
 msgid "New: No image icon for listing attachments."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:321
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:327
 msgid "New: Display lease price if nothing selected."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:322
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:328
 msgid ""
 "New: Added epl_get_property_price_lease_display filter to control lease price display."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:323
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:329
 msgid ""
 "New: License checker for updates set to daily and constant added to improve plugin "
 "page performance and reduce the update checker frequency."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:324
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:330
 msgid "New: Load custom stylesheet from active_theme/easypropertylistings/style.css"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:325
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:331
 msgid "New: Added Pet Friendly options."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:326
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:332
 msgid "New: Search frontend radio option epl_frontend_search_field_radio."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:327
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:333
 msgid ""
 "New: Search frontend multiple checkbox option "
 "epl_frontend_search_field_checkbox_multiple."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:328
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:334
 msgid "New: Search placeholders added to text fields."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:329
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:335
 msgid "New: Correctly wrap epl_the_excerpt."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:330
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:336
 msgid "New: Divi theme support."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:331
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:337
 msgid "New: Select multiple added as custom field ability."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:332
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:338
 msgid "New: Custom field option checkbox_option."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:333
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:339
 msgid "New: Pet Friendly option added to rentals."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:334
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:340
 msgid "New: Open Parking spaces added to listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:335
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:341
 msgid "New: Prefixed additional css in templates for better styling."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:336
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:342
 msgid "Tweak: License handler using https."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:337
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:343
 msgid "Tweak: Improvements to contact actions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:338
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:344
 msgid "Tweak: License styling improved for better WordPRess UX."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:339
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:345
 msgid "Tweak: LinkedIn link adjusted for worldwide usage."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:340
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:346
 msgid "Tweak: get_property_meta improved."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:341
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:347
 msgid "Tweak: Commercial leased sticker corrected."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:342
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:348
 msgid "Tweak: property_land_area adjustment for numerical value."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:343
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:349
 msgid "Tweak: Commercial and land category correctly displaying."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:344
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:350
 msgid "Tweak: On activation the Property post type is enabled by default."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:345
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:351
 msgid "Tweak: Improvements to listing widget."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:346
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:352
 msgid "Tweak: Inspection time and date format improved."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:347
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:353
 msgid "Tweak: File option added to external links for floorplans."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:348
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:354
 msgid ""
 "Tweak: Template wrappers prefixed for details, property meta, icons, address, content."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:349
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:355
 msgid "Tweak: Languages moved for better compatibility with translation plugins."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:350
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:356
 msgid "Tweak: Listing search widget status label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:351
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:357
 msgid ""
 "Tweak: Reset page sorting when performing a search on a sub page with a widget or "
 "shortcode."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:352
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:358
 msgid "Tweak: Adjusted price and rental search ranges."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:353
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:359
 msgid "Tweak: Translation fix for rent period."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:354
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:360
 msgid "Tweak: Numerous changes to CSS to improve listing display and responsiveness."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:355
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:361
 msgid "Tweak: Settings checkbox options display correctly."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:356
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:362
 msgid "Tweak: Improvements to author box functions for multi-author."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:357
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:363
 msgid "Tweak: LinkedIn author link adjusted."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:358
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:364
 msgid "Fix: Conditional tags when lo listing types are activated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:359
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:365
 msgid "Fix: Improved onclick links in external, web links to conform with new JS class."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:360
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:366
 msgid "Fix: Commercial car spaces displaying incorrectly."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:361
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:367
 msgid "Fix: Conditional tags improved."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:364
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:370
 msgid "Version 3.0.4"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:366
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:372
 msgid "Fix: Internal help videos gzip error, using iframe instead."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:367
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:373
 msgid "Fix: Corrected incorrect stray tags on internal welcome page."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:370
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:376
 msgid "Version 3.0.3"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:372
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:378
 msgid ""
 "New: Setting to disable Google Maps API if already added by theme or other plugin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:373
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:379
 msgid "New: Ability to set a Google Maps API Key."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:374
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:380
 msgid "Fix: Renamed misspelled Property on linked contact."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:375
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:381
 msgid "Fix: Trailing ul tag on search widget."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:376
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:382
 msgid ""
 "Fix: Implemented better timezone support for open for inspection. Requires WordPress "
 "3.9."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:377
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:383
 msgid "Tweak: Tighter spacing on dropdown contact list."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:378
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:384
 msgid "Tweak: Updated translations file."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:379
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:385
 msgid "Tweak: Capital c for contact post type."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:380
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:386
 msgid "Tweak: Dashboard activity widget improved CSS display."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:381
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:387
 msgid "Tweak: Dashboard activity comments better labeled."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:382
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:388
 msgid "Tweak: Internal links to documentation corrected."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:385
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:391
 msgid "Version 3.0.2"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:387
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:393
 msgid "Fix: Featured Listing removed redundant no option."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:390
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:396
 msgid "Version 3.0.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:392
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:398
 msgid "Tweak: Versioning to all CSS and JS."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:393
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:399
 msgid "New: Arabic translation."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:394
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:400
 msgid "Tweak: Updated German Translation."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:395
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:401
 msgid "Tweak: Updated French Translation."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:396
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:402
 msgid "Tweak: Updated Dutch Translation."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:397
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:403
 msgid ""
 "Fix: Search by Address and Property ID correctly searches the listing Title. In order "
 "to search by property ID, add the property ID to the listing title."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:398
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:404
 msgid "New: Customise the EPL - Contact Form Widget Submit Label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:399
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:405
 msgid "Tweak: Added Form styling to contact form."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:400
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:406
 msgid "Tweak: Corrected additional translation strings with contact form labels."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:401
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:407
 msgid "Tweak: Corrected spacing in extension plugin updates."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:402
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:408
 msgid "Tweak: Renamed EPL - Contact Form Subscribe label to Submit."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:405
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:411
 msgid "Version 3.0"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:407
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:413
 msgid ""
 "Tweak: Textdomain and languages files renamed. Changed from epl to easy-property-"
 "listings for the WordPress.org translation initiative."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:408
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:414
 msgid ""
 "New: Every epl_action present in the $_GET or $_POST is called using WordPress "
 "do_action function in init."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:409
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:415
 msgid ""
 "Tweak: Radio options when adding listings converted to checkboxes to slim down the "
 "admin pages."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:410
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:416
 msgid "Fix: Ducted Heating additional features now displays in feature list."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:411
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:417
 msgid "Fix: Fully fenced option now displays in feature list."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:412
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:418
 msgid "Tweak: Optimise Admin Listing queries."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:413
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:419
 msgid "Tweak: Removed double display of Under Offer in admin listing list."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:414
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:420
 msgid "Tweak: Leased rental listings now display the weekly rent amount in admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:415
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:421
 msgid "Tweak: Commercial Lease listing details improved in admin list."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:416
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:422
 msgid "Tweak: Sold price displays in admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:417
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:423
 msgid "Fix: Date Available fix for year."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:418
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:424
 msgid "New: epl_get_property_available filter allows customising date format."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:419
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:425
 msgid "Tweak: External links function improved."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:420
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:426
 msgid ""
 "Tweak: Added additional plugin file security access to prevent file reading outside "
 "of WordPress."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:421
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:427
 msgid "Fix: Number Formatting function PHP warning fixed."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:422
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:428
 msgid "Fix: is_epl_post function to prevent error when no posts are activated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:423
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:443
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:429
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:449
 msgid "Tweak: Commercial auction listing support."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:424
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:430
 msgid "New: Contacts and form system for managing listing leads and history of contact."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:425
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:431
 msgid "New: contact_capture shortcode // Needs Author id of page and URL."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:426
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:432
 msgid "New: Contact System for Lead Generation and Capture."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:427
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:433
 msgid "New: Form API supports editor."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:428
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:434
 msgid "New: Dashboard Widget Listing and Contact Activity Feed."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:429
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:435
 msgid ""
 "New: Date Picker updated JS for improved usage and improved compatibility with themes "
 "and plugins."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:430
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:436
 msgid ""
 "Tweak: Code Docblocks created for http://docs.easypropertylistings.com.au code "
 "reference."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:431
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:437
 msgid ""
 "New: Link a contact with a listing and display details and quick access to contact."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:432
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:438
 msgid "New: Error tracking and debug logging helper functions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:433
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:439
 msgid "New: Form API supports sections breaks."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:434
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:440
 msgid "New: Contextual help tab added to Add/Edit Listing page."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:435
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:441
 msgid "New: Inspection date format now customisable from settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:436
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:442
 msgid "Tweak: Extension license updater updated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:437
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:443
 msgid ""
 "Tweak Added additional map CSS classes to improve Google Map output with some themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:438
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:444
 msgid ""
 "New: Adjustable Map pin when editing a listing and setting coordinates. Drag the map "
 "pin to adust the position."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:439
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:445
 msgid "Tweak: Imported values of 0 no longer display on commercial listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:440
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:446
 msgid ""
 "Tweak: epl_render_html_fields allows for css class set in the field array of meta-"
 "boxes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:441
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:447
 msgid "Tweak: Commercial authority default type is now For Sale instead of Auction."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:442
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:448
 msgid "Tweak: Converted Radio options to tick boxes to reduce space."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:444
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:450
 msgid "Tweak: Bedrooms allow studio option."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:445
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:451
 msgid "Tweak: Applied thousands separator to land sizes using settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:446
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:452
 msgid "Tweak: Allow for .00 and .0 when adding listing prices."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:447
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:453
 msgid "Tweak: Toilet supports decimal."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:448
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:454
 msgid ""
 "Tweak: Additional Features increased to three columns to minimise space with single "
 "checkboxes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:449
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:455
 msgid ""
 "Tweak: Listing price, sale, and rental price now supports decimal values when saving."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:450
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:456
 msgid "Tweak: Bond supports decimal figures."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:451
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:457
 msgid "Tweak: Translation strings fixed."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:452
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:458
 msgid "Tweak: m2 html character added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:453
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:459
 msgid "Tweak: Listings with prices set to 0 like bond no longer display in admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:454
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:460
 msgid ""
 "Fix: Rental listing when using price text the rental period no longer displays in "
 "admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:455
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:461
 msgid "Tweak: Pagination loading globally for use in admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:456
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:462
 msgid "New: Pagination enhanced to enable adjustment of output."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:457
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:463
 msgid ""
 "Fix: Old function in metaboxes removed as it inadvertently caused additional "
 "unnecessary queries."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:458
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:464
 msgid ""
 "New: Generate visual reports on your listing KPI status so you can track your "
 "listings and sales."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:459
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:465
 msgid ""
 "Tweak: [listing_search] shortcode using new API and allows for custom templates. "
 "Place the template in themes/your_theme/easypropertylistings/templates/ folder."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:460
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:466
 msgid "Tweak: Enhanced Search Object thanks to codewp allows widget template override."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:461
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:467
 msgid "Tweak: Building value now accepts decimal."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:462
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:468
 msgid ""
 "New: Search Widget and [listing_search] shortcode allows for property status option."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:463
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:469
 msgid "New: Search template now editable using epl_get_template_part."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:464
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:470
 msgid ""
 "New: Search widget and [listing_search] shortcode order option added to allow "
 "adjusting of field order."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:465
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:471
 msgid "New: Second agent field allows for searching users."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:466
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:472
 msgid "New: Search upgraded to object thanks to codewp."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:467
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:473
 msgid "New: Search for second listing author on listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:468
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:474
 msgid "New: Search widget and [listing_search] shortcode status search option added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:469
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:475
 msgid ""
 "New: Search widget and [listing_search] shortcode support any registered post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:470
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:476
 msgid ""
 "New: Search widget and [listing_search] shortcode support single drop down selection "
 "for price, land, building."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:471
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:477
 msgid ""
 "Fix: Session start less likely to cause issues with certain server configurations."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:472
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:478
 msgid "Fix: listing_open shortcode no longer displays sold or leased listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:473
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:479
 msgid "New: Additional customisation of shortcode-listing.php template part."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:474
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:480
 msgid "Tweak: Listing Shortcode adjusted for better processing of options."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:475
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:481
 msgid "New: [listing_auction] shortcode."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:476
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:482
 msgid "New: Contact shortcode. [epl_contact_form]."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:477
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:483
 msgid "New: Contact Form Widget."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:478
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:484
 msgid "New: Sort by location A-Z added to front end listing filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:479
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:485
 msgid ""
 "Tweak: iThemes Builder archive-listing.php and single-listing.php templates updated "
 "to improve render_content theme function."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:480
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:486
 msgid "New: Allow extensions to use core templates for output."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:481
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:487
 msgid "Fix: Added translation string for P.A. label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:482
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:488
 msgid "Fix: Translation of land size unit."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:483
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:489
 msgid "Tweak: LinkedIn will use full URL or fallback."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:484
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:490
 msgid "New: Default embedded video width adjustable from settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:485
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:491
 msgid ""
 "New: Video links now support additional formats like Vimeo using the WordPress "
 "wp_oembed."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:486
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:492
 msgid "New: Listing widget now loadable using epl_get_template_part thanks to codewp."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:487
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:493
 msgid "Tweak: Widget descriptions added to widget management."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:488
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:494
 msgid "Fix: Stray ul tag with search widget tabbing."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:489
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:495
 msgid ""
 "Tweak: Improved get_additional_features_html function for additional features and "
 "added epl_get_additional_features_html filter"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:490
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:496
 msgid "New: Contact tags taxonomy added for creating your own contact tags."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:491
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:497
 msgid "Tweak: Listing heading function enhanced for other post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:492
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:498
 msgid ""
 "New: epl_get_property_feature_taxonomy filter allowing adjustment of listing features."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:493
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:499
 msgid "New: epl_get_property_auction filter allows adjustment of auction date format."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:494
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:500
 msgid "New: epl_get_property_auction_label filter to adjust the Auction label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:495
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:501
 msgid "New: Support for Twenty Sixteen theme."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:496
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:502
 msgid "Tweak: Active theme function enhanced for older WordPress versions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:497
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:503
 msgid "New: Templates added for Twenty Fourteen Theme to improve display."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:498
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:504
 msgid ""
 "New: Archive title action added for easier implementation and filters to adjust "
 "output."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:499
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:505
 msgid ""
 "New: epl_feedsync_format_strip_currency function to strip currency during import with "
 "epl_feedsync_format_strip_currency_symbol filter to modify string replacement search."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:500
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:506
 msgid "New: epl_archive_title_search_result Filter, default \"Search Result\"."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:501
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:507
 msgid "New: epl_archive_title_fallback Filter, default \"Listing\"."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:502
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:508
 msgid "New: epl_archive_title_default Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:503
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:509
 msgid "New: epl_get_active_theme Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:504
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:510
 msgid "New: epl_active_theme Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:505
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:511
 msgid "New: epl_active_theme_name Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:506
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:512
 msgid "New: epl_active_theme_prefix Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:507
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:513
 msgid "New: epl_archive_title_fallback Filer."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:508
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:514
 msgid "Tweak: epl_strip_tags function added filter to adjust HTML tag stripping."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:509
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:515
 msgid "New: epl_contact_form_description_allowed_tags Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:510
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:516
 msgid "New: epl_get_property_price_display Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:511
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:517
 msgid "New: epl_get_property_price_sold_display Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:512
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:518
 msgid "New: epl_get_property_price_sold_date Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:513
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:519
 msgid "New: epl_get_property_rent Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:514
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:520
 msgid "New: epl_get_property_bond Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:515
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:521
 msgid "New: epl_get_property_land_category Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:516
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:522
 msgid "New: epl_commercial_auction_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:517
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:523
 msgid "New: epl_get_property_auction_date Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:518
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:524
 msgid "New: epl_get_price_plain_value Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:519
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:525
 msgid "New: epl_get_price Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:520
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:526
 msgid "New: epl_get_price_sticker Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:521
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:527
 msgid "New: epl_get_price_in_list Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:522
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:528
 msgid "New: epl_get_property_commercial_category Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:523
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:529
 msgid "New: epl_get_property_year_built_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:524
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:530
 msgid "New: epl_get_property_year_built Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:525
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:531
 msgid "New: epl_get_property_bath_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:526
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:532
 msgid "New: epl_get_property_bathrooms_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:527
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:533
 msgid "New: epl_get_property_bath Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:528
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:534
 msgid "New: epl_get_property_bed_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:529
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:535
 msgid "New: epl_get_property_bedrooms_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:530
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:536
 msgid "New: epl_get_property_bed Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:531
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:537
 msgid "New: epl_get_property_rooms_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:532
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:538
 msgid "New: epl_get_property_rooms Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:533
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:539
 msgid "New: epl_get_parking_spaces_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:534
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:540
 msgid "New: epl_get_property_parking Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:535
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:541
 msgid "New: epl_get_property_garage_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:536
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:542
 msgid "New: epl_get_property_garage Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:537
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:543
 msgid "New: epl_get_property_carport_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:538
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:544
 msgid "New: epl_get_property_carport Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:539
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:545
 msgid "New: epl_get_property_air_conditioning_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:540
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:546
 msgid "New: epl_get_property_air_conditioning Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:541
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:547
 msgid "New: epl_get_property_pool_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:542
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:548
 msgid "New: epl_get_property_pool Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:543
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:549
 msgid "New: epl_get_property_security_system_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:544
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:550
 msgid "New: epl_get_property_security_system Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:545
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:551
 msgid "New: epl_get_property_land_area_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:546
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:552
 msgid "New: epl_get_property_land_value Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:547
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:553
 msgid "New: epl_get_property_building_area_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:548
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:554
 msgid "New: epl_get_property_building_area_value Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:549
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:555
 msgid "New: epl_get_property_new_construction_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:550
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:556
 msgid "New: epl_get_property_new_construction Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:551
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:557
 msgid "New: epl_get_property_com_car_spaces_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:552
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:558
 msgid "New: Dynamic additional features epl_get_{meta_key}_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:553
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:559
 msgid "New: epl_get_additional_features_html Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:554
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:560
 msgid "New: epl_get_additional_rural_features_html Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:555
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:561
 msgid "New: epl_get_additional_commerical_features_html Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:556
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:562
 msgid "New: epl_get_features_from_taxonomy Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:557
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:563
 msgid "New: epl_checkbox_single_check_options Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:558
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:564
 msgid "New: epl_property_sub_title_plus_outgoings_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:559
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:565
 msgid "New: epl_property_sub_title_available_from_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:560
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:566
 msgid "New: epl_property_sub_title_available_now_label Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:561
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:567
 msgid "New: epl_get_formatted_property_address filter Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:562
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:568
 msgid "New: epl_get_property_category  Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:563
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:569
 msgid "New: epl_get_property_tax Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:564
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:570
 msgid ""
 "New: epl_property_sub_title_property_features filter for Property Features label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:565
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:571
 msgid "New: epl_property_sub_title_plus_outgoings filter for Plus Outgoings label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:566
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:572
 msgid ""
 "New: epl_property_sub_title_commercial_features filter for Commercial Features label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:567
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:573
 msgid "New: epl_property_sub_title_rural_features filter for Rural Features label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:568
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:574
 msgid "New: epl_switch_views_sorting_title_sort filter for Sort label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:569
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:575
 msgid "New: epl_switch_views_sorting_title_list filter for List label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:570
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:576
 msgid "New: epl_switch_views_sorting_title_grid filter for Grid label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:571
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:577
 msgid "New: epl_pagination_before_page_numbers  Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:572
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:578
 msgid "New: epl_pagination_after_page_numbers  Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:573
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:579
 msgid "New: epl_pagination_single_content_text Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:574
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:580
 msgid "New: epl_pagination_single_tag  Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:575
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:581
 msgid "New: epl_pagination_single Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:576
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:582
 msgid "New: epl_pagination_single_dot_tag Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:577
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:583
 msgid "New: epl_pagination_single_dot_content Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:578
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:584
 msgid "New: epl_pagination_single_dot_attributes Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:579
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:585
 msgid "New: epl_pagination_single_dot Filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:582
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:588
 msgid "Version 2.3.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:584
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:590
 msgid ""
 "New: Added a hidden field property_images_mod_date for image mod time in preparation "
 "for importer plugin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:585
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:591
 msgid ""
 "Tweak: Added categories to search for business, rural, land, commercial, "
 "commercial_land post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:586
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:592
 msgid "Tweak: Adjusted z-index of sticker label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:587
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:593
 msgid "Tweak: Hide address separator when address is empty."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:588
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:594
 msgid "Fix: Search price fix for commercial, commercial_land, and business."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:589
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:595
 msgid "Fix: POA label now obeys custom label setting."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:592
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:598
 msgid "Version 2.3"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:594
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:600
 msgid ""
 "New: Custom Post Type API. Makes it easy to create and register new custom post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:595
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:601
 msgid ""
 "New: Custom Meta Box API. Creating custom fields and being able to configure custom "
 "meta fields on existing and new post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:596
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:602
 msgid ""
 "New: Custom Forms API. Will give the ability to create forms and submissions for the "
 "coming CRM. (Customer Relationship Manager)."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:597
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:603
 msgid "New: Ordering of extension dynamic custom fields now possible."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:598
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:604
 msgid ""
 "New: Archive template attributes class dynamically added depending on template in use."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:599
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:605
 msgid ""
 "New: A number of helper functions have been added to better integrate additional "
 "custom post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:600
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:606
 msgid "New: Button meta field for use in extensions and custom fields."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:601
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:607
 msgid "New: Adjustments to video output function."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:602
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:608
 msgid "New: Features taxonomy now use archive template instead of blog post view."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:603
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:609
 msgid ""
 "New: Filters to adjust the Search not found text epl_property_search_not_found_title "
 "and epl_property_search_not_found_message."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:604
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:610
 msgid ""
 "Tweak: Restored get_property_suburb function which was used in Listing Templates."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:605
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:611
 msgid "Tweak: Better author linking and real estate agent user output."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:606
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:612
 msgid "Tweak: Improvements for other extensions to hook into and use maps."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:607
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:613
 msgid "Tweak: Template fallback functions for improved custom template usage."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:608
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:614
 msgid "Tweak: Swedish translations updated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:609
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:615
 msgid "Tweak: Translation file updated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:610
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:616
 msgid "Fix: New Construction class corrected to new_construction instead of pool."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:611
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:617
 msgid ""
 "Fix: Property ID searching improved. If you have a-z characters in your id include "
 "them in the title. E.g. aaa222 - 9 Somewhere Street, Brooklyn NY."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:614
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:620
 msgid "Version 2.2.7"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:616
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:622
 msgid "Tweak: Compatibility for Listing Templates extension."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:619
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:625
 msgid "Version 2.2.6"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:621
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:627
 msgid ""
 "Fix: Updated extension licensing updater to use https. Update required in order to be "
 "able to auto-update your extensions as Easy Property Listings has moved to https."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:624
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:630
 msgid "Version 2.2.5"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:626
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:632
 msgid "Fix: Widget construct fixes for WordPress 4.3."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:627
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:633
 msgid "Tweak: Un-install function."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:628
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:634
 msgid "Tweak: Plugin page link to settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:629
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:635
 msgid "Tweak: Languages updated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:632
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:638
 msgid "Version 2.2.4"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:634
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:640
 msgid ""
 "Tweak: Improvements to Commercial/Commercial Land/Business pricing when set to Lease "
 "type to display free form price text."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:635
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:641
 msgid "Tweak: Bar graph in dashboard will no longer cover address if set to low."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:636
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:642
 msgid "Tweak: Added sticker CSS styling for single listing."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:637
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:643
 msgid "Fix: Search Widget/Shortcode display house category value instead of key."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:638
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:644
 msgid "Fix: Search Widget/Shortcode Property ID correctly searches numeric listing ID."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:639
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:645
 msgid ""
 "Fix: Search Widget/Shortcode excluded non searchable fields from land, commercial, "
 "commercial land and business post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:642
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:648
 msgid "Version 2.2.3"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:644
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:650
 msgid "Tweak: Adjusted new sorter function to work on lower than PHP version 5.3."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:645
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:651
 msgid ""
 "Tweak: Moved old template functions to theme compatibility, will be removed in future "
 "version."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:646
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:652
 msgid ""
 "Tweak: Set sorter list style to none to prevent some themes from displaying a list "
 "bullet."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:649
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:655
 msgid "Version 2.2.2"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:651
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:657
 msgid "Tweak: CSS tweak for image size to retain proportion on some themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:652
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:658
 msgid ""
 "Tweak: Adjusted position of show/hide suburb on Commercial/Business listing types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:653
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:659
 msgid "Fix: Archive image correctly loading 300x200 image."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:654
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:660
 msgid "Fix: Listing address display settings fixed."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:657
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:663
 msgid "Version 2.2.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:659
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:665
 msgid "Tweak: Set padding for search tabs for better display on some themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:660
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:666
 msgid "Fix: Search function fix checking for empty option when using custom filters."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:663
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:669
 msgid "Version 2.2"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:665
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:671
 msgid ""
 "New: Search shortcode and widget rebuilt to enable adding additional fields through "
 "filters and hooks."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:666
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:672
 msgid ""
 "New: Search shortcode and widget added additional search fields for City, State, "
 "Postcode and Country."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:667
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:673
 msgid ""
 "New: Search shortcode and widget allows for optional multi select of house category."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:668
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:674
 msgid "New: Search shortcode and widget improved responsive CSS."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:669
-msgid "New: Grid styles included in main CSS for use in extensions."
-msgstr ""
-
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:670
-msgid ""
-"New: Upload button added for use in custom plug-ins and extensions to upload files."
-msgstr ""
-
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:671
-msgid "New: Filter to adjust tour labels."
-msgstr ""
-
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:672
-msgid "New: Filters to adjust Floor Plan labels."
-msgstr ""
-
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:673
-msgid "New: Filters to adjust External Link labels."
-msgstr ""
-
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:674
-msgid "New: Sold prices now display when set on front end and manage listings pages."
-msgstr ""
-
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:675
-msgid "New: Label function for returning meta labels."
+msgid "New: Grid styles included in main CSS for use in extensions."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:676
 msgid ""
-"New: Ads on settings no longer display when there is an activated extension present."
+"New: Upload button added for use in custom plug-ins and extensions to upload files."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:677
-msgid "New: Locked and help cases options for use in extensions and custom plugins."
+msgid "New: Filter to adjust tour labels."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:678
+msgid "New: Filters to adjust Floor Plan labels."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:679
+msgid "New: Filters to adjust External Link labels."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:680
+msgid "New: Sold prices now display when set on front end and manage listings pages."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:681
+msgid "New: Label function for returning meta labels."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:682
+msgid ""
+"New: Ads on settings no longer display when there is an activated extension present."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:683
+msgid "New: Locked and help cases options for use in extensions and custom plugins."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:684
 msgid ""
 "New: Theme compatibility mode which enables all themes to display correctly with "
 "options to disable featured images for themes that automatically add featured images."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:679
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:685
 msgid ""
 "New: City setting to allow addresses in countries that need more than a suburb Label "
 "is customisable from settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:680
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:686
 msgid "New: Country setting to allow the country to display with the listing address."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:681
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:687
 msgid "New: Able to adjust or add more registered thumbnail sizes through a filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:682
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:688
 msgid "New: Function to get all the values associated with a specific post meta key."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:683
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:689
 msgid ""
 "New: Replaced the_post_thumbnail on archive pages and shortcodes with a customisable "
 "hook allowing for additional customisation with themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:684
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:690
 msgid ""
 "New: Specific templates for theme compatibility mode for archive and single listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:685
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:691
 msgid ""
 "New: Template loading system allowing for additional templates to be added to "
 "shortcodes and widgets from themes, custom plug-ins and extensions. This allows you "
 "to create an unlimited number of templates and load them from your theme."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:686
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:692
 msgid "New: Sorter allows for sorting by current/sold leased."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:687
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:693
 msgid "New: Ability to add additional sorter via filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:688
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:694
 msgid "New: Post counter function for use in extensions and custom plug-ins."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:689
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:695
 msgid "New: User fields re-built which allows for adding on new fields through filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:690
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:696
 msgid "New: Help meta type allowing for better internal documentation in extensions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:691
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:697
 msgid "New: City meta field added to all listing types when enabled."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:692
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:698
 msgid "New: Rental display or hide rental price."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:693
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:699
 msgid "New: Check-box single field type."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:694
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:700
 msgid ""
 "New: Actions added to enable extensions to better hook into listings types and "
 "optimised functions for admin column details."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:695
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:701
 msgid "New: Dashboard widget now displays other extensions content counts."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:696
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:702
 msgid ""
 "New: Listing widget now allows for additional selectable templates to be added "
 "through custom plug-ins, hooks and themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:697
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:703
 msgid "New: Replaced widget image with a dynamic action."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:698
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:704
 msgid "New: Filter added for Gravatar image."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:699
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:705
 msgid "New: Replaced widget and author box image functions with actions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:700
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:706
 msgid "New: Uninstall function to remove all Easy Property Listings content."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:701
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:707
 msgid "New: Get option function."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:702
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:708
 msgid ""
 "New: When saving settings on extensions sub tabs you are no longer taken to the first "
 "tab."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:703
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:709
 msgid "New: Customisable state label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:704
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:710
 msgid "Tweak: Improved under offer, sold and leased labels."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:705
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:711
 msgid ""
 "Tweak: Improved install function to reduce code and allow for new settings to be "
 "added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:706
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:712
 msgid "Tweak: Removed redundant code and streamlined templates."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:707
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:713
 msgid "Tweak: Improved reset query function."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:708
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:714
 msgid "Tweak: Removed old functions improving plugin code."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:709
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:715
 msgid "Tweak: Rebuilt address function to allow for city and country."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:710
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:716
 msgid "Tweak: Improved sorter function in all shortcodes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:711
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:717
 msgid ""
 "Tweak: Improvements to Commercial and Business listing types to better comply with "
 "REAXML format with business takings, franchise, terms and commercial outgoings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:712
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:718
 msgid "Tweak: Reorganised settings page."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:713
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:719
 msgid "Tweak: Translations updated and additional tags added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:714
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:720
 msgid ""
 "Tweak: Search button default label changed from \"Find Me A Property!\" to \"Search\"."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:715
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:721
 msgid "Tweak: Applied custom suburb label to EPL - Listing Widget."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:716
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:722
 msgid "Fix: Listings house categories correctly display labels instead of values."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:717
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:723
 msgid "Fix: Listings with carport, garage or values set to zero no longer display."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:718
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:724
 msgid "Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:719
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:725
 msgid "Fix: Saving listing when in debug mode and ticking hide map or hide author box."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:720
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:726
 msgid "Fix: New Zealand currency now displays a dollar sign."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:723
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:729
 msgid "Version 2.1.11"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:726
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:732
 msgid ""
 "Tweak: Removed sub titles \"Property Manager\" and \"Real Estate Agent\" from the "
 "single listing template for better language support and to facilitate the hiding of "
 "the author box."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:727
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:733
 msgid "Tweak: Added epl- prefix to all author-box and widget css."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:728
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:734
 msgid ""
 "Tweak: Renamed author-box container with epl-author-box-container as it was harder to "
 "target the author box content and adjusted JS for tabs."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:729
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:735
 msgid "Tweak: Improved author box responsive CSS."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:730
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:736
 msgid "Tweak: Updated extension updater for multisite and other improvements."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:731
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:737
 msgid "Tweak: Leased label when adding a property will use custom label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:732
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:738
 msgid "Tweak: Wrapper class for property category."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:733
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:739
 msgid "Fix: Undefined status if importing listings not using current status."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:734
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:740
 msgid ""
 "Fix: When user selects grid/list option and pages the user selected view is retained."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:735
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:741
 msgid "Fix: [listing post_type=\"rental\"] shortcode price sorting for rental."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:736
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:742
 msgid "New: Author box is now able to be hidden on a per listing basis."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:737
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:743
 msgid "New: Added filters for author box social links."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:738
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:744
 msgid "New: Inspection filter to adjust the inspection date/time format."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:739
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:745
 msgid ""
 "New: Several author widget filters added to enable additional content through "
 "extensions or custom functions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:740
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:746
 msgid ""
 "New: Sold, leased, under offer label filter which uses the label setting and label "
 "changes dashboard widget, admin category filters and search widget."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:741
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:747
 msgid "New: Sold label making Sold STC possible or other Sold label variant."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:742
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:748
 msgid "New: Danish language thanks to pascal."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:743
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:749
 msgid "New: German language thanks to ChriKn."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:744
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:750
 msgid "New: Ukrainian language thanks to Alex."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:745
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:751
 msgid "New: Swedish language thanks to Roland J."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:748
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:754
 msgid "Version 2.1.10"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:751
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:757
 msgid "New: Email field validation added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:752
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:758
 msgid "New: Added status classes to widgets for better targeting of CSS styles."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:753
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:759
 msgid "Tweak: Improved video embed and added a filter to adjust video container size."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:754
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:760
 msgid ""
 "Tweak: Improved CSS wrappers for listing widget and added dynamic class depending on "
 "widget display style."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:755
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:761
 msgid "Tweak: Added additional classes to Listing Widget list variant style list items."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:756
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:762
 msgid "Fix: Additional paging issues fixed in listing widget for other options."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:757
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:763
 msgid "Fix: Widget leased selection displays rentals correctly."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:760
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:766
 msgid "Version 2.1.9"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:763
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:769
 msgid "Fix: Fixed paging issues in listing widget."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:764
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:770
 msgid "Fix: Fix shortcodes when using multiple listing post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:767
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:773
 msgid "Version 2.1.8"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:770
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:776
 msgid "New: Ability to disable all plugin CSS from Advanced Settings section."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:771
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:777
 msgid "New: Search widget and shortcode now have the option to turn of Location search."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:772
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:778
 msgid ""
 "New: Search widget and shortcode now have filters to control the display of \"Any\". "
 "Each field has a unique filter which will allow you to hide the label using CSS and "
@@ -3408,15 +3426,15 @@ msgid ""
 "create super slim search boxes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:773
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:779
 msgid "New: Added translation Belgian (Dutch) thanks to pascal.beyens"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:774
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:780
 msgid "New: Polish translation thanks to Weronika.urbanczyk"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:775
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:781
 msgid ""
 "New: Two mew shortcode templates table and table_open usable with shortcodes to "
 "provide a slim list of listings. Example usage is [listing_open template=\"table\"] "
@@ -3424,310 +3442,310 @@ msgid ""
 "theme/easypropertylistings folder to further customize."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:776
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:782
 msgid ""
 "New: Added currency support for Qatar Riyal (QAR), United Arab Emirates (AED), "
 "Ukrainian Hryvnia (UAH), Vietnamese đồng (VND)"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:777
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:783
 msgid "New: checkbox_single ability for plugin and extensions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:778
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:784
 msgid "New: Ability to disable map on each listing."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:779
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:785
 msgid ""
 "Tweak: Updated currency symbols for: Israeli Shekel, Thai Baht, Indian Rupee, Turkish "
 "Lira, Iranian Rial."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:780
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:786
 msgid ""
 "Tweak: Improved CSS and added additional classes with epl- prefix in templates and "
 "search."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:781
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:787
 msgid "Tweak: Improved CSS for Location Profiles and Staff Directory extensions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:782
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:788
 msgid ""
 "Tweak: Added filters for commercial titles to allow you to change \"For Lease\" and "
 "\"For Sale\" using epl_commercial_for_lease_label, and epl_commercial_for_sale_label "
 "filters."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:783
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:789
 msgid "Tweak: Additional CSS classes for Land, Commercial and Rural special features."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:784
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:790
 msgid "Tweak: Gallery CSS classes added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:785
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:791
 msgid ""
 "Tweak: Improved table shortcodes CSS and styling for better full display and "
 "responsive widths."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:786
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:792
 msgid "Fix: New/Open Sticker now appear on listings with the price display set to no."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:787
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:793
 msgid "Fix: Translations work correctly for categories."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:790
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:796
 msgid "Version 2.1.7"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:793
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:799
 msgid ""
 "New: listing_search shortcode now has style option for adjusting the width. You can "
 "add style=\"slim\" or style=\"wide\" to the shortcode to adjust the appearance."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:794
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:800
 msgid "New: Listing Search widget now has style options for adjusting the width."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:795
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:801
 msgid "Tweak: Updated translation and added missing sqm translation element."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:796
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:802
 msgid "Tweak: Allowed for hundredths decimal in bathrooms field."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:797
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:803
 msgid "Tweak: Floor plan button CSS."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:798
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:804
 msgid "Tweak: Address and price responsive CSS."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:799
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:805
 msgid "Fix: Auction listing price set to no displays auction date correctly."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:800
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:806
 msgid "Fix: Fix: Author position css class."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:803
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:809
 msgid "Version 2.1.6"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:806
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:812
 msgid "Fix: Fancy pagination paging works correctly when shortcodes used on home page."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:807
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:813
 msgid "Fix: Wrapped new pagination feature in esc_url to prevent vulnerability."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:808
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:814
 msgid ""
 "Fix: Corrected sorting by price when using shortcodes. Note: Rental sorting works on "
 "post_type=\"rental\" in all shortcodes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:809
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:815
 msgid ""
 "Tweak: Added rental rate view for text entry of rental rates for REAXML compatibility."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:810
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:816
 msgid ""
 "Tweak: Corrected admin display columns and edit listing pages for better display on "
 "mobile devices."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:813
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:819
 msgid "Version 2.1.5"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:816
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:822
 msgid ""
 "Tweak: Commercial listing: Ability to set commercial lease rate to a decimal value "
 "using the epl_price_number_format_commercial_lease filter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:817
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:823
 msgid "Tweak: Updated epl.pot translation file."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:818
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:824
 msgid ""
 "Tweak: Removed horizontal line elements in the help section to match WordPress 4.2 "
 "admin page styles."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:819
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:825
 msgid ""
 "Tweak: Rental Listing: Added epl_property_bond_position filter to adjust the position "
 "of the Bond/Deposit to appear either before or after the value."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:820
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:826
 msgid "Tweak: Rental Listing: Removed CSS padding before bond value."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:821
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:827
 msgid ""
 "Fix: Rental Listing: Adjusting the Bond/Deposit label will now show your custom label "
 "in the Rental Price box."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:822
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:828
 msgid "Fix: Rural Listing: Undefined label_leased variable."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:823
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:829
 msgid ""
 "Note: Confirmed Easy Property Listings is not vulnerable to recent WordPress exploit."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:824
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:830
 msgid "New: Added setting to show/hide Listing Unique ID column when managing listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:827
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:833
 msgid "Version 2.1.4"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:830
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:836
 msgid "Tweak: Pagination optimised and no longer loads in admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:831
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:837
 msgid "Tweak: New filter epl_price_number_format added for decimal rental rates."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:832
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:838
 msgid "Fix: Display custom bond label when viewing listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:833
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:839
 msgid ""
 "Tweak: Added filter epl_floorplan_button_label_filter to adjust Floor Plan button "
 "label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:836
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:842
 msgid "Version 2.1.3"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:839
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:845
 msgid ""
 "Fix: Author box upgraded to allow for custom tabs and better extension integration "
 "with author box and widget."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:840
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:846
 msgid "Fix: Added additional epl-author-archive CSS class for author archive pages."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:841
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:847
 msgid "Fix: Improved CSS classes for author box with better responsive support."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:842
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:848
 msgid "Fix: Added additional filters for author contact information."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:843
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:849
 msgid ""
 "Fix: Added secondary global author function for simpler integration for extensions "
 "like the Staff Directory."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:844
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:850
 msgid "Fix: Changes to author tempaltes and restored author position variable."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:845
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:851
 msgid "Fix: Further improved max and min graph values when in listing admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:848
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:854
 msgid "Version 2.1.2"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:850
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:856
 msgid "Fix: Improved Responsive CSS for grid style."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:851
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:857
 msgid ""
 "Fix: Twenty Fifteen, Twenty Fourteen, Twenty Thirteen, Twenty Twelve CSS styles for "
 "better display."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:852
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:858
 msgid "New: Added CSS class theme name output to archive and single templates."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:855
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:861
 msgid "Version 2.1.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:857
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:863
 msgid ""
 "Fix: Max price defaults set for graph calculations when upgrading from pre 2.0 "
 "version."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:860
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:866
 msgid "Version 2.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:862
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:868
 msgid "New: Fancy pagination option which can be enabled in settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:863
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:869
 msgid "New: Coordinates now added to listing if not set prior."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:864
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:870
 msgid "New: Ability to select larger listing image sizes in admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:865
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:871
 msgid "New: Added date picker for available date on rental listing."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:866
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:872
 msgid "New: Added date picker for sold date."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:867
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:873
 msgid ""
 "New: New function that combines all meta box options into one global function for "
 "admin pages."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:868
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:874
 msgid "New: Display second agent name in admin listing lists."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:869
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:875
 msgid "New: Additional admin option to filter by agent/author. "
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:870
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:876
 msgid "New: Shortcode [listing_location] to display listings by specific location."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:871
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:877
 msgid ""
 "New: The following shortcodes can now be filtered by location taxonomy: [listing "
 "location=\"perth\"], [listing_open location=\"sydney\"], [listing_category location="
@@ -3735,485 +3753,485 @@ msgid ""
 "\"terrace\" location=\"new-york\"]"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:872
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:878
 msgid ""
 "New: The following shortcodes can now be sorted by price, date and ordered by ASC and "
 "DESC [listing sortby=\"price\" sort_order=\"ASC\"]."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:873
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:879
 msgid ""
 "New: Sorter added to shortcodes which can be enabled by adding tools_top=\"on\" to "
 "your shortcode options."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:874
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:880
 msgid "New: Template added in table format for use in shortcodes template=\"table\"."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:875
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:881
 msgid "New: Function to get all active post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:876
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:882
 msgid "New: Ability to register additional custom post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:877
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:883
 msgid "New: Extensions now have additional help text ability."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:878
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:884
 msgid "New: All menus now use global function to render fields."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:879
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:885
 msgid ""
 "New: Improved template output and added additional CSS wrappers for some theme and "
 "HTML5 themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:880
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:886
 msgid "New: Commercial rental lease duration now selectable."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:881
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:887
 msgid "New: Rooms field added to set the number of rooms that the listing has."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:882
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:888
 msgid "New: Date listed field added to all listing types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:883
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:889
 msgid "New: Year built field added to property, rental, rural listing types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:884
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:890
 msgid "New: Media upload function for use in extensions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:885
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:891
 msgid "New: Ability to customise Under Offer and Leased labels in settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:886
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:892
 msgid ""
 "New: Lease type label loaded from dropdown select. So you can have NNN, P.A., Full "
 "Service, Gross Lease Rates, on commercial listing types. Also has a filter to enable "
 "customisation of the options."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:887
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:893
 msgid "New: Disable links in the feature list."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:888
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:894
 msgid "Fix: Text domain fixes on template files."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:889
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:895
 msgid "Fix: Finnish translation file renamed."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:890
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:896
 msgid "Fix: FeedSync date processor strptime function corrected."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:891
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:897
 msgid ""
 "Fix: Bug in parking search field. Was only searching carports and not garages. Now "
 "searches both."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:892
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:898
 msgid "Fix: New label now appears on listings not just with an inspection time saved."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:893
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:899
 msgid "Tweak: Optimised loading of admin scripts and styles to pages where required."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:894
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:900
 msgid ""
 "Tweak: Added version to CSS and JS so new versions are automatically used when plugin "
 "is updated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:895
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:901
 msgid "Tweak: Tidy up of admin CSS."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:896
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:902
 msgid "Tweak: Video in author box now responsive."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:897
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:903
 msgid ""
 "Tweak: Increased characters possible in address block fields from 40 to 80 characters "
 "and heading block to 200."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:898
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:904
 msgid "Tweak: Coordinates now correctly being used to generate map."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:899
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:905
 msgid "Tweak: Inspection times improved style in admin."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:900
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:906
 msgid "Tweak: Commercial rental rate now accepts decimal numbers."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:901
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:907
 msgid "Tweak: Improved google map output."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:902
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:908
 msgid "Tweak: Improved default settings on upgrade, install and multisite."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:903
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:909
 msgid "Tweak: Scripts improve site speed."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:904
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:910
 msgid "Tweak: Dashboard widget improved query."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:905
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:911
 msgid "Tweak: Front end CSS tweaks for better responsiveness."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:908
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:914
 msgid "Version 2.0.3"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:910
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:916
 msgid "Fix: Manually entered inspection capitalization fixed pM to PM."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:911
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:917
 msgid "New: French translation (Thanks to Thomas Grimaud)"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:912
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:918
 msgid "New: Finnish translation (Thanks to Turo)"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:915
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:921
 msgid "Version 2.0.2"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:917
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:923
 msgid ""
 "Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used "
 "with the New label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:918
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:924
 msgid ""
 "Fix: Some Labels in settings were not saving correctly particularly the search widget "
 "labels."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:919
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:925
 msgid "Fix: Restored missing author profile contact form tab on author box."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:920
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:926
 msgid "Tweak: Added CSS version to admin CSS and front end CSS."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:923
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:929
 msgid "Version 2.0.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:925
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:931
 msgid ""
 "Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: "
 "Copy CSS from style-front.css to correct, margins and grid/sorter."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:926
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:932
 msgid ""
 "Fix: Restored Display of Inspection Label for properties with scheduled inspection "
 "times."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:927
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:933
 msgid "Fix: Search Widget security fix and performance improvements."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:930
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:936
 msgid "Version 2.0"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:932
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:938
 msgid "New: Extension validator."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:933
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:939
 msgid "New: Depreciated listing-meta.php into compatibility folder."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:934
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:940
 msgid "New: Depreciated author-meta.php into compatibility folder."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:935
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:941
 msgid "New: Global variables: $property, $epl_author and $epl_settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:936
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:942
 msgid "New: Added filters for fields and groups in /lib/meta-boxes.php"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:937
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:943
 msgid ""
 "New: Property custom meta re-written into class. This was the big change to 2.0 where "
 "we completely re-wrote the output of the meta values which are now accessible using "
 "global $property variable and easy template actions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:938
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:944
 msgid ""
 "New: Property meta can now can be output using new actions for easy and quick custom "
 "template creation."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:939
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:945
 msgid "New: Reconstructed templates for single, archive & author pages"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:940
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:946
 msgid "Tweak: Removed unused price script"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:941
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:947
 msgid "Fix: Fixed warning related to static instance in strict standard modes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:942
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:948
 msgid "New: API for extensions now support WordPress editor with validation."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:943
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:949
 msgid ""
 "New: jQuery date time picker formatting added to improve support for auction and sold "
 "listing, support for 30+ languages support."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:944
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:950
 msgid ""
 "New: Inspection time auto-formats REAXML date eg [13-Dec-2014 11:00am to 11:45am] and "
 "will no longer show past inspection times."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:945
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:951
 msgid "New: Inspection time support multiple dates written one per line."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:946
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:952
 msgid "Tweak: CSS improved with better commenting and size reduction."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:947
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:953
 msgid ""
 "New: Dashboard widget now lists all listing status so at a glance you can see your "
 "property stock."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:948
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:954
 msgid ""
 "New: Display: To enable grid, list and sorter your custom archive-listing.php "
 "template requires the new action hook epl_template_before_property_loop before the "
 "WordPress loop."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:949
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:955
 msgid ""
 "New: Display: Utility hook action hook added epl_template_after_property_loop for "
 "future updates."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:950
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:956
 msgid "New: Display: List and grid view with optional masonry effect."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:951
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:957
 msgid "New: Display: Sorter added for price high/low and date newest/oldest."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:952
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:958
 msgid "New: Auction Date formats nicely. EG [Auction Saturday 28th December at 2:00pm]."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:953
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:959
 msgid ""
 "New: Tabbed extensions page support in admin for advanced extensions like Listing "
 "Alerts."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:954
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:960
 msgid "New: Multiple author support in Author Box."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:955
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:961
 msgid ""
 "New: Search Widget - Supports multiple listing types, hold Ctrl to enable tabbed "
 "front end display."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:956
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:962
 msgid ""
 "New: Search Widget - Labels are configurable from the Display settings allowing you "
 "to set for example: Property to Buy and Rental to Rent and use a single widget to "
 "search multiple types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:957
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:963
 msgid ""
 "New: Search Widget and shortcode supports search by property ID, post Title, Land "
 "Area and Building Area."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:958
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:964
 msgid ""
 "New: Search Widget - removed extra fields from land, added labels for each property "
 "type to be shown as tab heading in search widget"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:959
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:965
 msgid ""
 "Fix: Search Widget - Optimized total queries due to search widget from 1500 + to ~40"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:960
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:966
 msgid "New: Author variables accessible using new CLASS."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:961
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:967
 msgid "New: Search short code supports array of property types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:962
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:968
 msgid ""
 "New: REAXML date format function to format date correctly when using WP All Import "
 "Pro. Usage [epl_feedsync_format_date({./@modTime})]."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:963
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:969
 msgid ""
 "New: REAXML Unit and lot formatting function for usage in the title when using WP All "
 "Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})]."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:964
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:970
 msgid ""
 "New: Global $epl_settings settings variable adds new default values on plugin update."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:965
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:971
 msgid "New: Display: Added customisable label for rental Bond/Deposit."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:966
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:972
 msgid ""
 "New: Template functions completely re-written and can now be output using actions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:967
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:973
 msgid ""
 "New: Added NEW sticker with customisable label and ability to set how long a listing "
 "displays the new label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:968
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:974
 msgid "Tweak: Compatibility fixes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:969
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:975
 msgid "New: Bar Graph API added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:970
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:976
 msgid ""
 "New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 "
 "sale) and (2,000 rental)."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:971
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:977
 msgid "New: Graph visually displays price and status."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:972
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:978
 msgid ""
 "New: Price graph now appears in admin pages quickly highlighting price and status "
 "visually."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:973
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:979
 msgid "New: Meta Fields: Support for unit number, lot number (land)."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:974
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:980
 msgid "New: South African ZAR currency support."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:975
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:981
 msgid "Fix: Corrected Commercial Features ID Spelling"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:976
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:982
 msgid ""
 "Tweak: YouTube video src to id function is replaced with better method which handles "
 "multiple YouTube video formats including shortened & embedded format"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:977
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:983
 msgid "New: Adding Sold Date processing"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:978
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:984
 msgid "Tweak: Updated shortcode templates"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:979
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:985
 msgid "Tweak: Global $epl_author."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:980
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:986
 msgid "Tweak: Fixed content/ into EPL_PATH_TEMPLATES_CONTENT"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:981
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:987
 msgid "New: Support for older extensions added"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:982
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:988
 msgid "New: Extension offers in menus general tab"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:983
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:989
 msgid ""
 "Tweak: Renamed user profile options section to [Easy Property Listings: Author Box "
 "Profile]."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:984
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:990
 msgid "Tweak: Added better Bond/Deposit for rentals labels."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:985
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:991
 msgid ""
 "Fix: Deprecated author-meta.php in compatibility folder, class-author-meta.php has "
 "been created which will be used in place of author-meta.php & its variables in all "
 "author templates"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:986
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:992
 msgid ""
 "New: Added template functions for author meta class, modified templates lib/templates/"
 "content/content-author-box-simple-card.php lib/templates/content/content-author-box-"
@@ -4221,512 +4239,512 @@ msgid ""
 "functions based on author meta class instead of variables from author-meta.php"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:987
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:993
 msgid ""
 "New: author-meta.php depreciated and moved to compatibility directory. Variables "
 "globally available using $epl_author variable."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:988
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:994
 msgid ""
 "Tweak: listing-meta.php depreciated and moved to compatibility directory. Variables "
 "globally available with $property variable."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:989
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:995
 msgid ""
 "Tweak: Added Listing not Found to default templates when search performed with no "
 "results."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:990
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:996
 msgid "Tweak: Improved Google maps address output for addresses containing # and /."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:991
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:997
 msgid ""
 "Fix: Listing Pages now have better responsive support for small screen devices like "
 "iPhone."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:992
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:998
 msgid ""
 "Fix: Default templates for Genesis and TwentyTwelve now show Listing Not Found when a "
 "search result returns empty."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:993
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:999
 msgid "Fix: Purged translations in epl.pot file."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:994
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1000
 msgid "Fix: Search Widget and short code drastically reduces database queries."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:995
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1001
 msgid ""
 "New: Templates are now able to be saved in active theme folder /easypropertylistings "
 "and edited. Plugin will use these first and fall back to plugin if not located in "
 "theme folder."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:996
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1002
 msgid "Fix: Extensions Notification and checker updated"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:997
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1003
 msgid "New: updated author templates to use new author meta class"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:998
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1004
 msgid ""
 "Fix: Added prefix to CSS tab-content class. Now epl-tab-content for compatibility."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:999
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1005
 msgid "New: Update user.php"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1000
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1006
 msgid "Tweak: Improved internal documentation and updated screens."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1001
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1007
 msgid "Tweak: Improved descriptions on author pages."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1002
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1008
 msgid "Tweak: Better permalink flushing on activation, deactivation and install."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1003
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1009
 msgid "Tweak: Extensive changes to admin descriptions and labels."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1004
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1010
 msgid "Tweak: Optimising the php loading of files and scripts."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1005
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1011
 msgid "New: Define EPL_RUNNING added for extensions to check if plugin is active."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1006
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1012
 msgid "New: New options added to setting array when plugin is updated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1007
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1013
 msgid ""
 "New: Old functions and files moved to plug-in /compatibility folder to ensure old "
 "code still works."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1008
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1014
 msgid "New: Meta Location Label."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1009
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1015
 msgid "New: Service banners on settings page."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1010
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1016
 msgid "New: Saving version number so when updating new settings are added."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1011
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1017
 msgid ""
 "New: iCal functionality for REAXML formatted inspection dates. Further improvements "
 "coming for manual date entry. "
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1012
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1018
 msgid "New: Extensions options pages now with tabs for easier usage."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1013
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1019
 msgid "New: Added ID classes to admin pages and meta fields."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1014
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1020
 msgid "New: Filters to adjust land and building sizes from number to select fields."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1015
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1021
 msgid ""
 "Tweak: Moved old extensions options page to compatibility folder so older extensions "
 "still work as expected."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1016
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1022
 msgid ""
 "New: Search Widget - Added filter for land min & max fields in listing search widget"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1017
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1023
 msgid ""
 "New: Search Widget - Added filter for building min & max fields in listing search "
 "widget"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1018
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1024
 msgid "Fix: For session start effecting certain themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1019
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1025
 msgid "New: Land sizes now allow up to 5 decimal places"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1020
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1026
 msgid "New: Search Widget - Custom submit label"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1021
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1027
 msgid "New: Search Widget - Can search by title in property ID / Address field"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1022
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1028
 msgid "New: Added Russian Translation"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1025
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1031
 msgid "Version 1.2.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1027
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1033
 msgid "Fix: Search Widget not working on page 2 of archive page in some instances"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1028
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1034
 msgid ""
 "Fix: Property feature list Toilet and New Construction now display in list when ticked"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1029
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1035
 msgid "Fix: EPL - Listing widget was not displaying featured listings"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1030
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1036
 msgid ""
 "Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1031
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1037
 msgid "Fix: Updated templates to display Search Results when performing search"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1032
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1038
 msgid "Fix: No longer show Bond when viewing rental list in admin"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1033
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1039
 msgid "Fix: Open for inspection sticker now appears on rental properties"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1034
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1040
 msgid "New: Added initial Dutch translation."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1037
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1043
 msgid "Version 1.2"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1039
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1045
 msgid "New: Plug in Activation process flushes permalinks"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1040
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1046
 msgid "New: Plug in deactivation flushes permalinks"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1041
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1047
 msgid "New: Shortcode [listing_search]"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1042
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1048
 msgid "New: Shortcode [listing_feature]"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1043
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1049
 msgid ""
 "New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] "
 "for backward compatibility, however adjust your site. "
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1044
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1050
 msgid ""
 "New: Listing shortcodes allow for default template display if registered by adding "
 "template=\"slim\" to the shortcode."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1045
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1051
 msgid "New: Translation support now correctly loads text domain epl"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1046
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1052
 msgid "New: Added translation tags to all test elements for better translation support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1047
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1053
 msgid "New: Updated source epl.pot translation file for translations"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1048
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1054
 msgid "New: Added very rough Italian translation"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1049
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1055
 msgid ""
 "New: Wrapped Featured image in action to allow for easy removal and/or replacement"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1050
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1056
 msgid "Fix: Undefined errors when debug is active"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1051
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1057
 msgid "New: Added new CSS classes to widgets for consistent usage"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1052
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1058
 msgid "Tweak: Admin CSS tweaks to define sections in admin"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1053
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1059
 msgid "Fix: CSS for TwentyThirteen style CSS using .sidebar container"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1054
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1060
 msgid "Fix: CSS for responsive shortcode"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1055
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1061
 msgid ""
 "New: Added options to hide/ show various options to EPL - Listing widget: Property "
 "Headline, Excerpt, Suburb/Location Label, Street Address, Price, Read More Button"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1056
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1062
 msgid "New: Added customisable \"Read More\" label to EPL - Listing widget"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1057
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1063
 msgid "New: Added excerpt to EPL - Listing widget"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1058
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1064
 msgid "New: Added options to remove search options from EPL - Listing Search widget"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1059
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1065
 msgid "New: Added consistent CSS classes to shortcodes for responsive shortcode"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1060
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1066
 msgid ""
 "New: Date processing function for use with WP All Import when importing REAXML files. "
 "Some imports set the current date instead of the date from the REAXML file. Usage in "
 "WP All Import Post Date is: [epl_feedsync_format_date({./@modTime})]"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1061
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1067
 msgid ""
 "Tweak: Added additional CSS classes to admin menu pages to extensions can be better "
 "distinguished when installed and activated"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1062
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1068
 msgid "Fix: Registering custom template actions now works correctly"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1063
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1069
 msgid "New: Added additional CSS classes to template files"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1064
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1070
 msgid ""
 "Fix: Changed property not found wording when using search widget and listing not "
 "found. "
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1065
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1071
 msgid "Tweak: Added defaults to widgets to prevent errors when debug is on"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1066
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1072
 msgid "New: Added WordPress editor support in admin for use with extensions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1067
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1073
 msgid "New: Added textarea support in admin for use with extensions."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1068
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1074
 msgid ""
 "New: Filters added for all select options on add listing pages which allows for full "
 "customisation through simple function"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1069
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1075
 msgid "New: Added rent period, Day, Daily, Month, Monthly to rental listing types"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1070
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1076
 msgid "New: Added property_office_id meta field"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1071
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1077
 msgid "New: Added property_address_country meta field"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1072
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1078
 msgid "Tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1073
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1079
 msgid ""
 "New: Added mini map to listing edit screen. Will display mini map in address block "
 "when pressing green coordinates button."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1074
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1080
 msgid ""
 "Fix: Updated admin columns for commercial_land listing type to match other listing "
 "type"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1075
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1081
 msgid "Fix: Swapped bedrooms/bathroom label on hover"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1076
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1082
 msgid ""
 "New: Added filter epl_listing_meta_boxes which allows additional meta boxes to be "
 "added through filter"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1079
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1085
 msgid "Version 1.1.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1081
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1087
 msgid ""
 "New: Internationalisation support to enable customizing of post types: slug, archive, "
 "rewrite, labels, listing categories for meta_types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1082
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1088
 msgid ""
 "New: Created filters for listing meta select fields: property_category, "
 "property_rural_category, property_commercial_category, property_land_category."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1083
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1089
 msgid ""
 "New: Created filters for each of the seven custom post types: labels, supports, slug, "
 "archive, rewrite, seven custom post types."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1084
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1090
 msgid ""
 "New: Shortcode [listing_category] This shortcode allows for you to output a list of "
 "listings by type and filter them by any available meta key and value."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1085
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1091
 msgid "Tweak: Updated search widget for filtered property_categories."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1086
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1092
 msgid "Fix: Listing categories were showing key, now showing value."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1087
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1093
 msgid ""
 "Fix: Settings were not showing up after saving, second refresh required setting "
 "variable to reload."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1090
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1096
 msgid "Version 1.1"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1092
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1098
 msgid "First official release!"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1098
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1104
 msgid "Go to Easy Property Listings Settings"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1122
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1128
 msgid "Real Estate Tools for WordPress"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1130
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1136
 msgid "Quick Start Guide"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1132
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1138
 msgid ""
 "Use the tips below to get started using Easy Property Listings. You will be up and "
 "running in no time!"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1136
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1142
 msgid "Activate the listing types you need & configure the plugin general settings"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1137
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1179
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1143
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1185
 msgid "Create a blank page for each activated listing type"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1138
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1144
 msgid "Publish your first listing for testing your theme setup"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1140
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1146
 msgid "Setup your theme to work with the plugin"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1142
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1148
 #: lib/includes/admin/menus/menu-help.php:42
 msgid "Visit Support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1149
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1155
 msgid "Activate the listing types you need"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1155
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1161
 msgid ""
 "Visit the general settings page and enable the listing types you need. Once you have "
 "pressed save visit the Permalinks page to re-fresh your sites permalinks."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1157
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1163
 msgid ""
 "Instead of classifying everything as a property, Easy Property Listings allows you to "
 "separate the different listing types which is better for SEO and RSS feeds."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1159
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1165
 msgid "Supported Listing Types"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1161
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1167
 #: lib/includes/functions.php:155
 msgid "Property (Residential)"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1162
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1168
 #: lib/includes/functions.php:157 lib/includes/functions.php:1340
 #: lib/includes/functions.php:1342 lib/post-types/post-type-rental.php:29
 #: lib/updates/epl-1.3.1.php:6 lib/widgets/widget-admin-dashboard.php:83
 msgid "Rental"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1163
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1169
 #: lib/includes/functions.php:156 lib/includes/functions.php:1334
 #: lib/includes/functions.php:1336 lib/includes/install.php:66
 #: lib/post-types/post-type-land.php:28 lib/post-types/post-type-land.php:29
@@ -4735,7 +4753,7 @@ msgstr ""
 msgid "Land"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1164
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1170
 #: lib/includes/functions.php:158 lib/includes/functions.php:1346
 #: lib/includes/functions.php:1348 lib/includes/install.php:68
 #: lib/post-types/post-type-rural.php:28 lib/post-types/post-type-rural.php:29
@@ -4744,7 +4762,7 @@ msgstr ""
 msgid "Rural"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1165
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1171
 #: lib/includes/functions.php:159 lib/includes/functions.php:510
 #: lib/includes/functions.php:1352 lib/includes/functions.php:1354
 #: lib/includes/install.php:70 lib/post-types/post-type-commercial.php:29
@@ -4752,7 +4770,7 @@ msgstr ""
 msgid "Commercial"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1166
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1172
 #: lib/includes/functions.php:160 lib/includes/functions.php:1358
 #: lib/includes/functions.php:1360 lib/includes/install.php:71
 #: lib/post-types/post-type-commercial_land.php:30 lib/updates/epl-1.3.1.php:10
@@ -4760,7 +4778,7 @@ msgstr ""
 msgid "Commercial Land"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1167
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1173
 #: lib/includes/functions.php:161 lib/includes/functions.php:1364
 #: lib/includes/functions.php:1366 lib/includes/install.php:69
 #: lib/post-types/post-type-business.php:30 lib/updates/epl-1.3.1.php:8
@@ -4768,58 +4786,58 @@ msgstr ""
 msgid "Business"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1184
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1190
 msgid ""
 "Doing this allows you to add \"Property\", \"Land\" and \"Rental\" pages to your "
 "WordPress menu. Add a new page for each listing type you activated."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1186
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1192
 msgid ""
 "For example, lets say you have activated: Property, Rental and Land. Create three "
 "pages, one called \"Property\", another \"Land\" and the third \"Rental\" these will "
 "be the custom post type slugs/permalinks eg: property, rental and land."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1188
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1194
 msgid ""
 "Publish a test \"Property Listing\" and visit your new property page and you will see "
 "the new property and others you have created."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1190
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1196
 msgid ""
 "Now you can rename them to whatever you like eg: \"For Sale\", \"For Rent\" etc, but "
 "leave the slug/permalink as it was,"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1190
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1196
 msgid "this is very important."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1203
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1209
 msgid "Publish Your First Listing"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1212
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1218
 msgid "Title & Author"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1219
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1225
 msgid "Use the full listing address as the title."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1221
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1227
 msgid ""
 "When a property is being sold the \"heading\" is frequently changed and can cause "
 "permalink issues. Not to mention the search engine benefits."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1223
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1229
 msgid "Author or Primary Real Estate Agent"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1224
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1230
 msgid ""
 "Select the author to show the name of the agent who has listed the property with "
 "their contact details. For best results each real estate agent should have their own "
@@ -4827,41 +4845,41 @@ msgid ""
 "and in widgets."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1233
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1239
 msgid "Gallery and Featured Image"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1238
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1244
 msgid "Gallery"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1239
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1245
 #: lib/includes/admin/menus/menu-help.php:148
 msgid "Add a gallery of images to your listings with the WordPress Add Media button."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1241
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1247
 msgid "You can automatically output a gallery from the Display options page."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1243
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1249
 msgid ""
 "If set to automatic, just upload your images to the listing and press x to close the "
 "media upload box once the images are attached to the listing. You can also easily "
 "adjust the number of gallery columns from the plugin Display options."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1245
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1251
 msgid "Gallery Light Box"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1246
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1252
 msgid ""
 "Using a light box plug-in like Easy FancyBox, your automatic gallery images will use "
 "the light box effect."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1257
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1263
 #: lib/includes/admin/menus/menu-help.php:161 lib/meta-boxes/meta-boxes.php:101
 #: lib/post-types/post-type-business.php:86 lib/post-types/post-type-commercial.php:84
 #: lib/post-types/post-type-commercial_land.php:85 lib/post-types/post-type-land.php:85
@@ -4870,175 +4888,175 @@ msgstr ""
 msgid "Listing Details"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1263
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1269
 #: lib/includes/admin/menus/menu-help.php:163 lib/meta-boxes/meta-boxes.php:113
 msgid "Heading"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1264
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1270
 #: lib/includes/admin/menus/menu-help.php:164
 msgid "Enter the descriptive listing headline like \"Great Property with Views\"."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1266
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1272
 #: lib/includes/admin/menus/menu-help.php:166 lib/meta-boxes/meta-boxes.php:141
 #: lib/post-types/post-types.php:85
 msgid "Second Listing Agent"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1267
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1273
 #: lib/includes/admin/menus/menu-help.php:167
 msgid ""
 "If the listing has two real estate agents marketing it, enter their WordPress user "
 "name here. The primary agent is the post Author."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1269
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1275
 #: lib/includes/admin/menus/menu-help.php:169
 msgid "Inspection Times"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1270
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1276
 msgid ""
 "Now supports multiple inspection times, add one per line. Past inspection dates will "
 "not display when using the new format."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1272
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1278
 msgid ""
 "The output is now wrapped in an iCal format so clicking on the date will open the "
 "users calendar."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1282
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1288
 #: lib/includes/admin/menus/menu-help.php:181
 msgid "Search by location"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1287
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1293
 #: lib/includes/admin/menus/menu-help.php:183
 msgid ""
 "Although the address details are added into the Property Address box the location "
 "search you also need to add the City/Suburb to the location search taxonomy."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1288
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1294
 #: lib/includes/admin/menus/menu-help.php:184
 msgid ""
 "This works like post tags and will populate the search widget/shortcode with your "
 "listings and it will automatically filter out options if no listings have that option."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1300
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1306
 msgid "Configure your theme"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1301
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1307
 msgid ""
 "We have done our best to integrate Easy Property Listings with all WordPress themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1306
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1312
 #: lib/includes/functions.php:1438
 msgid "Theme Compatibility"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1307
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1313
 msgid ""
 "Once you add a listing and if your page is really wide or your sidebar is under the "
 "content enable Theme Compatibility mode from settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1309
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1315
 msgid ""
 "Review your listing and if you are seeing double images, hop back over to Settings "
 "page and either disable the theme feature image or the one provided by Easy Property "
 "Listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1311
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1317
 msgid "Shortcodes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1313
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1319
 msgid ""
 "The featured image settings have no impact on the Easy Property Listings shortcodes "
 "and widgets."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1318
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1324
 msgid "Theme Compatibility not required for some themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1320
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1326
 msgid "iThemes Builder Themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1321
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1327
 msgid "Genesis Framework by StudioPress"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1322
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1328
 msgid "Headway Theme Framework"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1323
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1329
 msgid "Twenty 12, 13, 14 &#38; 15 by WordPress."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1324
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1330
 msgid "Many others, add a listing and see how it looks."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1326
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1332
 msgid "We have a selection of pre configured templates here for many popular themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1326
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1332
 msgid "here"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1332
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1338
 msgid "Advanced instructions"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1335
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1341
 msgid "theme setup instructions can be found here"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1336
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1342
 msgid "custom templates"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1337
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1343
 #, php-format
 msgid "Detailed %s."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1338
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1344
 #, php-format
 msgid "How to create your own %s."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1344
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1350
 msgid "Stuck getting your theme to work?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1345
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1351
 msgid ""
 "Not all themes follow modern WordPress coding standards and these may take a little "
 "more time and experience to get working. If you just can not get it to work, visit"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1345
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1351
 msgid "premium support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1345
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1351
 msgid "and fill out a theme support request."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1347
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1353
 msgid ""
 "If the theme is available in the WordPress.org theme directory let us know the theme "
 "name and URL where we can download it in your support ticket. If its a premium theme "
@@ -5046,60 +5064,60 @@ msgid ""
 "download link to it on a file sharing site like Dropbox."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1349
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1355
 msgid "Need Help?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1353
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1359
 msgid "Premium Support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1354
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1360
 #, php-format
 msgid ""
 "We do our best to provide the best support we can. If you encounter a problem or have "
 "a question, post a question in the <a href=\"%s\">support forums</a>."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1358
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1364
 msgid "Need Even Faster Support?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1359
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1365
 msgid ""
 "<a href=\"https://easypropertylistings.com.au/support-ticket/\">Priority Support "
 "forums</a> are there for customers that need faster and/or more in-depth assistance."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1363
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1369
 msgid "Documentation and Short Codes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1364
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1370
 msgid "Read the"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1364
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1370
 msgid "documentation"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1364
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1370
 msgid " and instructions on how to use the included"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1364
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1370
 msgid "shortcodes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1373
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1379
 msgid "Stay Up to Date"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1374
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1380
 msgid "Get Notified of Extension Releases"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1375
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1381
 msgid ""
 "New extensions that make Easy Property Listings even more powerful are released "
 "nearly every single week. Subscribe to the newsletter to stay up to date with our "
@@ -5107,41 +5125,41 @@ msgid ""
 "a> to ensure you do not miss a release!"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1377
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1383
 msgid "Get Alerted About New Tutorials"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1378
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1384
 msgid ""
 "<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to hear about "
 "the latest tutorial releases that explain how to take Easy Property Listings further."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1381
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1387
 msgid "Sliders"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1382
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1388
 msgid "Brochures"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1385
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1391
 msgid "Agent/Staff Directory"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1387
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1393
 msgid "Add-On Store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1389
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1395
 msgid "Extend With Extensions"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1390
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1396
 msgid "18 Extensions and many more coming"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1391
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1397
 #, php-format
 msgid ""
 "Add-on plug ins are available that greatly extend the default functionality of Easy "
@@ -5149,27 +5167,27 @@ msgid ""
 "more. Visit the %s to further enhance your real estate website."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1393
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1399
 msgid "Visit the Extension Store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1394
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1400
 msgid "The Extensions store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1394
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1400
 msgid ""
 "has a list of all available extensions to make your real estate website even better."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1419
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1425
 msgid ""
 "Easy Property Listings is created by a worldwide team of developers who aim to "
 "provide the #1 property listings platform for managing your real estate business "
 "through WordPress."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:1446
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:1452
 #: lib/includes/class-epl-custom-post-type.php:410
 #: lib/includes/class-epl-custom-post-type.php:512
 #, php-format
@@ -7641,9 +7659,9 @@ msgid "No"
 msgstr ""
 
 #: lib/shortcodes/shortcode-listing-auction.php:147
-#: lib/shortcodes/shortcode-listing-category.php:175
-#: lib/shortcodes/shortcode-listing-tax-feature.php:169
-#: lib/shortcodes/shortcode-listing-tax-location.php:154
+#: lib/shortcodes/shortcode-listing-category.php:180
+#: lib/shortcodes/shortcode-listing-tax-feature.php:174
+#: lib/shortcodes/shortcode-listing-tax-location.php:159
 #: lib/templates/content/shortcode-listing.php:49
 msgid "Nothing found, please check back later."
 msgstr ""
