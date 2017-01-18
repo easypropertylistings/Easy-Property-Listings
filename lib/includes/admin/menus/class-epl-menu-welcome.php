@@ -191,8 +191,6 @@ class EPL_Welcome {
 				</div>
 			</div>
 
-
-
 			<div class="changelog headline-feature">
 
 				<h2><?php _e( 'Contact and Lead Management System' , 'easy-property-listings'  );?></h2>
@@ -250,6 +248,15 @@ class EPL_Welcome {
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','easy-property-listings'  );?></h2>
 
 				<div class="feature-section">
+
+					<h4><?php _e( 'Version 3.1.5', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Added a Google Maps API key notification to Easy Property Listings > Settings when no key is set.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Internal shortcode option documentation.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Shortcode offset breaking pagination. Note when using offset, pagination is disabled: [listing] , [listing_category], [listing_feature], [listing_location]', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Corrected the default option when using select fields.', 'easy-property-listings'  );?></li>
+					</ul>
 
 					<h4><?php _e( 'Version 3.1.4', 'easy-property-listings'  );?></h4>
 
