@@ -61,7 +61,7 @@ function epl_admin_google_maps_api_notification() {
 					<?php printf( __( 'To allow maps to function correctly please create a %s and enable <strong>Google Maps API</strong>.', 'easy-property-listings'  ), $link ); ?><br>
 
 					<?php $link = '<strong><a href="#epl-advanced">' . __( 'Advanced Settings' , 'easy-property-listings'  ) . '</a></strong>'; ?>
-					<?php printf( __( 'Once complete enter your API key below under %s > Google Maps API Key.', 'easy-property-listings'  ), $link ); ?>
+					<?php printf( __( 'Once complete enter your API key below under %s > Google Maps API Key. When set, refresh page to dismiss notice.', 'easy-property-listings'  ), $link ); ?>
 				</p>
 			</div>
 		<?php

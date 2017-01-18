@@ -394,6 +394,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.1.5 January 18, 2017 =
 
+* New: Added a Google Maps API key notification to Easy Property Listings > Settings when no key is set.
 * Tweak: Internal shortcode option documentation.
 * Fix: Shortcode offset feature breaking pagination. Note when using offset, pagination is disabled: [listing] , [listing_category], [listing_feature], [listing_location]
 * Fix: Corrected the default option when using select fields.
