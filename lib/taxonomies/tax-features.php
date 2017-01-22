@@ -19,6 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return void
  */
 function epl_register_taxonomy_features() {
+	$hierarchical = defined( 'EPL_FEATURES_HIERARCHICAL' ) && EPL_FEATURES_HIERARCHICAL ? true : false;
+		/* add define ('EPL_FEATURES_HIERARCHICAL', 'true'); into theme functions.php for hierarchical features taxonomy */
+
 	$labels = array(
 		'name'                       => _x( 'Features', 'Taxonomy General Name', 'easy-property-listings'  ),
 		'singular_name'              => _x( 'Feature', 'Taxonomy Singular Name', 'easy-property-listings'  ),
@@ -43,7 +46,7 @@ function epl_register_taxonomy_features() {
 	);
 	$args = array(
 		'labels'                     => $labels,
-		'hierarchical'               => false,
+		'hierarchical'               => $hierarchical,
 		'public'                     => true,
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
