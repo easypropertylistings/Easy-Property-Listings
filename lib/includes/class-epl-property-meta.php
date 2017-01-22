@@ -930,7 +930,6 @@ class EPL_Property_Meta {
 				<div class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</div>
 			</div>';
 
-
 		return apply_filters('epl_get_property_bed',$bed[$returntype]);
 	}
 

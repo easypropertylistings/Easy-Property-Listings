@@ -12,9 +12,8 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
- * SVG Icons Loaded in Head
+ * SVG Listing Icons Loaded in Head
  */
 function epl_load_svg_listing_icons_head() {
 
@@ -129,7 +128,85 @@ function epl_load_svg_listing_icons_head() {
 	*/
 
 }
-add_action('wp_head', 'epl_load_svg_listing_icons_head' , 99 );
+add_action('wp_head', 'epl_load_svg_listing_icons_head' , 90 );
 
+/**
+ * SVG Social Media Icons Loaded in Head
+ */
+function epl_load_svg_social_icons_head() {
 
+	$social_icons = '
 
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide">
+		<defs>
+
+			<symbol id="epl-icon-svg-email">
+				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
+					<rect width="100" height="100" style="fill:none"/>
+				</g>
+				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
+					<path class="epl-icon-shape-part-base" id="Email" d="M83.36,17.33H16.88A10.77,10.77,0,0,0,6.13,28.09V73.52A10.77,10.77,0,0,0,16.88,84.28H83.34A10.77,10.77,0,0,0,94.1,73.52V28.11A10.76,10.76,0,0,0,83.36,17.33ZM89.2,73.52a5.85,5.85,0,0,1-5.84,5.84H16.88A5.85,5.85,0,0,1,11,73.52V28.11a5.85,5.85,0,0,1,5.84-5.84H83.34a5.85,5.85,0,0,1,5.84,5.84V73.52Z" transform="translate(0 -0.29)" style="fill:#010101"/><path d="M61.61,50.24,83.12,30.95a2.46,2.46,0,1,0-3.29-3.66L50.16,53.92l-5.79-5.17s0,0,0-.05a3.64,3.64,0,0,0-.4-.35L20.38,27.27a2.46,2.46,0,0,0-3.28,3.68L38.87,50.41,17.19,70.7a2.47,2.47,0,0,0-.11,3.48,2.51,2.51,0,0,0,1.8.78,2.46,2.46,0,0,0,1.67-.66l22-20.59,6,5.33a2.45,2.45,0,0,0,3.28,0l6.13-5.5L79.83,74.32a2.46,2.46,0,0,0,3.48-.09,2.47,2.47,0,0,0-.09-3.48Z" transform="translate(0 -0.29)"/>
+				</g>
+			</symbol>
+
+			<symbol id="epl-icon-svg-facebook">
+				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
+					<rect width="100" height="100" style="fill:none"/>
+				</g>
+				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
+					<path class="epl-icon-shape-part-base" id="Facebook" data-name="Facebook" d="M95,20.29c0-7.88-7.12-15-15-15H20c-7.88,0-15,7.12-15,15v60c0,7.88,7.12,15,15,15H50v-34H39v-15H50V40.44c0-10.08,7.57-19.16,16.88-19.16H79v15H66.88c-1.33,0-2.87,1.61-2.87,4v6H79v15H64v34H80c7.88,0,15-7.12,15-15Z" transform="translate(0 -0.29)"/>
+				</g>
+			</symbol>
+
+			<symbol id="epl-icon-svg-twitter">
+				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
+					<rect width="100" height="100" style="fill:none"/>
+				</g>
+				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
+					<path class="epl-icon-shape-part-base" id="Twitter" data-name="Twitter" d="M95,22.38a36.87,36.87,0,0,1-10.6,2.91,18.54,18.54,0,0,0,8.12-10.21,37.22,37.22,0,0,1-11.73,4.48A18.48,18.48,0,0,0,49.32,36.4,52.42,52.42,0,0,1,11.27,17.11,18.48,18.48,0,0,0,17,41.75a18.46,18.46,0,0,1-8.36-2.32v.23a18.48,18.48,0,0,0,14.81,18.1,18.7,18.7,0,0,1-4.86.65,17.72,17.72,0,0,1-3.48-.34A18.47,18.47,0,0,0,32.33,70.9,37,37,0,0,1,9.4,78.79,39.24,39.24,0,0,1,5,78.53a52.19,52.19,0,0,0,28.3,8.31c34,0,52.53-28.13,52.53-52.53l-.06-2.39A36.87,36.87,0,0,0,95,22.38Z" transform="translate(0 -0.29)"/>
+				</g>
+			</symbol>
+
+			<symbol id="epl-icon-svg-linkedin">
+				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
+						<rect width="100" height="100" style="fill:none"/>
+				</g>
+				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
+					<path class="epl-icon-shape-part-base" id="LinkedIn" data-name="LinkedIn" d="M93.37,59.11V91.78H74.43V61.29c0-7.66-2.74-12.88-9.6-12.88-5.23,0-8.35,3.52-9.72,6.93A13,13,0,0,0,54.49,60V91.78H35.54s.26-51.63,0-57H54.49v8.08l-.12.18h.12v-.18c2.52-3.88,7-9.41,17.07-9.41C84,33.46,93.37,41.6,93.37,59.11ZM15.72,7.33C9.24,7.33,5,11.59,5,17.18S9.12,27,15.47,27h.13c6.61,0,10.72-4.38,10.72-9.85S22.2,7.33,15.72,7.33ZM6.13,91.78H25.06v-57H6.13Z" transform="translate(0 -0.29)"/>
+				</g>
+			</symbol>
+
+			<symbol id="epl-icon-svg-google-plus">
+				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
+					<rect width="100" height="100" style="fill:none"/>
+				</g>
+				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
+					<path class="epl-icon-shape-part-base" id="GooglePlus-g" data-name="GooglePlus-g" d="M63.55,4.62H41.91c-9.64,0-16.32,2.11-22.33,7.08A21.37,21.37,0,0,0,12,27.55c0,9,6.87,18.59,19.6,18.59,1.22,0,2.58-.13,3.78-.24l-.18.43a9.84,9.84,0,0,0-1,4.19c0,3.51,1.7,5.68,3.33,7.78l.21.27-.37,0c-5.26.36-15,1-22.19,5.42-8.44,5-9.1,12.32-9.1,14.44,0,8.42,7.85,16.93,25.39,16.93,20.4,0,31.07-11.25,31.07-22.37,0-8.22-4.82-12.28-9.94-16.59l-4.32-3.36c-1.33-1.11-3-2.48-3-5s1.66-4.16,3.13-5.62l.15-.15c4.66-3.67,9.94-7.83,9.94-16.84s-5.66-13.73-8.38-16h7.18a.46.46,0,0,0,.25-.07L63.8,5.49a.47.47,0,0,0-.25-.87ZM37.31,90.42c-12.43,0-20.79-5.81-20.79-14.45,0-5.64,3.42-9.74,10.15-12.18a47.71,47.71,0,0,1,12.41-1.9,19.08,19.08,0,0,1,2.71.12c8.7,6.19,12.88,9.44,12.88,15.63C54.67,85.52,48,90.42,37.31,90.42Zm-.12-47.59c-10.43,0-14.76-13.72-14.76-21.06,0-3.73.85-6.6,2.6-8.76a10.94,10.94,0,0,1,8.27-3.9C42.87,9.1,48.17,22,48.17,30.87c0,1.4,0,5.68-3,8.64A12.1,12.1,0,0,1,37.19,42.82Z" transform="translate(0 -0.29)"/>
+					<path class="epl-icon-shape-part-base" id="GooglePlus-plus" data-name="GooglePlus-plus"  d="M93.89,47H82.48V35.65a.47.47,0,0,0-.47-.47H77.11a.47.47,0,0,0-.47.47V47H65.29a.47.47,0,0,0-.47.47v5a.47.47,0,0,0,.47.47H76.64V64.36a.47.47,0,0,0,.47.47H82a.47.47,0,0,0,.47-.47V52.92h11.4a.47.47,0,0,0,.47-.47v-5A.47.47,0,0,0,93.89,47Z" transform="translate(0 -0.29)"/>
+				</g>
+			</symbol>
+
+			<symbol id="epl-icon-svg-youtube">
+				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
+					<rect width="100" height="100" style="fill:none"/>
+				</g>
+				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
+					<path class="epl-icon-shape-part-base" id="YouTube" data-name="YouTube" d="M76.7,71.2h-5l0-2.9A2.36,2.36,0,0,1,74.08,66h.32a2.36,2.36,0,0,1,2.36,2.34ZM58,65a2.14,2.14,0,0,0-2.3,1.89V81a2.35,2.35,0,0,0,4.61,0V66.88A2.14,2.14,0,0,0,58,65Zm30.43-7.89V83.94c0,6.44-5.58,11.71-12.41,11.71H25c-6.83,0-12.41-5.27-12.41-11.71V57.09c0-6.44,5.58-11.71,12.41-11.71H76C82.81,45.38,88.39,50.65,88.39,57.09Zm-60,29.76V58.57h6.33V54.38l-16.86,0v4.12l5.26,0V86.85Zm19-24.07H42v15.1a26.76,26.76,0,0,1,0,3.66c-.43,1.17-2.36,2.42-3.11.13a30.05,30.05,0,0,1,0-3.68l0-15.2H33.64l0,15c0,2.29-.05,4,0,4.78.13,1.37.08,3,1.36,3.89,2.37,1.71,6.92-.25,8.06-2.7v3.12h4.24V62.79ZM64.19,80.08V67.51c0-4.79-3.59-7.66-8.45-3.78l0-9.34H50.48l0,32.25,4.33-.06.39-2C60.72,89.65,64.2,86.17,64.19,80.08ZM80.7,78.41l-4,0c0,.16,0,.34,0,.54v2.21a2.16,2.16,0,0,1-2.16,2.14H73.8a2.16,2.16,0,0,1-2.16-2.14v-5.8h9.06V72a53.77,53.77,0,0,0-.27-6.4c-.65-4.5-7-5.22-10.17-2.91a6,6,0,0,0-2.21,3,16.77,16.77,0,0,0-.67,5.31v7.49C67.37,90.89,82.5,89.13,80.7,78.41ZM60.41,37.73a3.59,3.59,0,0,0,1.27,1.6,3.67,3.67,0,0,0,2.16.6,3.36,3.36,0,0,0,2-.63,4.85,4.85,0,0,0,1.48-1.89l-.1,2.07h5.88v-25H68.49V33.93a1.93,1.93,0,0,1-3.85,0V14.47H59.8V31.34c0,2.15,0,3.58.1,4.31A7.25,7.25,0,0,0,60.41,37.73ZM42.6,23.61a20.81,20.81,0,0,1,.6-5.63,6,6,0,0,1,6.15-4.48,7.29,7.29,0,0,1,3.5.79,5.83,5.83,0,0,1,2.26,2.05A8.09,8.09,0,0,1,56.18,19,20.76,20.76,0,0,1,56.48,23v6.32a34.23,34.23,0,0,1-.27,5.11,8.1,8.1,0,0,1-1.16,3,5.5,5.5,0,0,1-2.26,2.08,7.22,7.22,0,0,1-3.19.67,8.86,8.86,0,0,1-3.4-.57A4.67,4.67,0,0,1,44,38a7.7,7.7,0,0,1-1.1-2.8,27,27,0,0,1-.33-4.93V23.61Zm4.6,9.93a2.35,2.35,0,1,0,4.67,0V20.23a2.35,2.35,0,1,0-4.67,0ZM30.93,40.26h5.55V21.08L43,4.66H37l-3.48,12.2L30,4.62h-6l7,16.47Z" transform="translate(0 -0.29)"/>
+				</g>
+			</symbol>
+
+			<symbol id="epl-icon-svg-skype">
+				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
+					<rect width="100" height="100" style="fill:none"/>
+				</g>
+				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
+					<path class="epl-icon-shape-part-base" id="Skype" data-name="Skype" d="M89.27,55.88a39.25,39.25,0,0,0,.38-5.39A39.9,39.9,0,0,0,43.31,11.33a23.81,23.81,0,0,0-33,32.91,39.7,39.7,0,0,0,39.4,45.95A40.89,40.89,0,0,0,57,89.52,23.82,23.82,0,0,0,89.27,55.88ZM53.48,79.75c-12.68.66-18.61-2.15-24-7.24C23.36,66.8,25.8,60.31,30.75,60s7.91,5.6,10.55,7.25,12.66,5.39,18-.66c5.77-6.59-3.83-10-10.87-11-10-1.48-22.73-6.92-21.74-17.63s9.09-16.19,17.62-17c10.87-1,18,1.65,23.55,6.42,6.47,5.52,3,11.69-1.15,12.19s-8.72-9.08-17.78-9.22c-9.34-.15-15.65,9.72-4.12,12.52s23.88,4,28.34,14.49S66.17,79.08,53.48,79.75Z" transform="translate(0 -0.29)"/></g>
+			</symbol>
+
+				';
+
+	add_filter ( 'epl_social_icons' , $social_icons );
+
+	echo $social_icons;
+}
+add_action('wp_head', 'epl_load_svg_social_icons_head' , 95 );

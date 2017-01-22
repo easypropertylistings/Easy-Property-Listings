@@ -311,7 +311,8 @@
 	display: inline-block;
 	vertical-align: middle;
 }
-.epl-icon-svg {
+.epl-icon-svg,
+.epl-author-icon-svg {
 	display: inline-block;
 	width: 30px;
 	height: 30px;
@@ -322,19 +323,15 @@
 	margin: 0 1em 0 0.5em;
 	line-height: 30px;
 }
-
 .epl-icon-color-frame {
 	fill: #999999;
 }
-
 .epl-icon-color-base {
 	fill: rgb(52,100,184);
 }
-
 .epl-icon-color-highlight {
-	fill: green;
+	fill: orange;
 }
-
 .epl-icon-color-alternate {
 	fill: rgb(78,169,234);
 }
