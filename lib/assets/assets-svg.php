@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * SVG Icons Loaded in Head
  */
-function epl_load_svg_icons_head() {
+function epl_load_svg_listing_icons_head() {
 
 
 	$svg_icons = '
@@ -129,7 +129,7 @@ function epl_load_svg_icons_head() {
 	*/
 
 }
-add_action('wp_head', 'epl_load_svg_icons_head' , 99 );
+add_action('wp_head', 'epl_load_svg_listing_icons_head' , 99 );
 
 
 

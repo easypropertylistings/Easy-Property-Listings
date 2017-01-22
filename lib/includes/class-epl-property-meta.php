@@ -900,7 +900,7 @@ class EPL_Property_Meta {
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_year_built( $returntype = 'i' ) {
-		if( $this->get_property_meta('property_year_built') == '' )
+		if( $this->get_property_meta('property_year_built' , false ) == '' )
 			return;
 		$year_built['i'] = '<span title="'.apply_filters('epl_get_property_year_built_label',__('Built', 'easy-property-listings' ) ).'" class="icon year-built"><span class="icon-value">'. $this->get_property_meta('property_year_built') . '</span></span>';
 		$year_built['d'] = apply_filters('epl_get_property_year_built_label',__('Built', 'easy-property-listings' ) ) . ' ' . $this->get_property_meta('property_year_built') . ' ';
