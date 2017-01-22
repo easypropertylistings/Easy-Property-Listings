@@ -306,6 +306,39 @@
 	background: transparent url(../images/icon-sprites.png) 0 -200px no-repeat;
 }
 
+/* SVG Icons */
+.epl-icon-svg-container {
+	display: inline-block;
+	vertical-align: middle;
+}
+.epl-icon-svg {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+.epl-icon-svg-container .icon-value {
+	display: inline-block;
+	margin: 0 1em 0 0.5em;
+	line-height: 30px;
+}
+
+.epl-icon-color-frame {
+	fill: #999999;
+}
+
+.epl-icon-color-base {
+	fill: rgb(52,100,184);
+}
+
+.epl-icon-color-highlight {
+	fill: green;
+}
+
+.epl-icon-color-alternate {
+	fill: rgb(78,169,234);
+}
+
 /* Buttons */
 .epl-button-wrapper {
 	margin: 0.5em 0;
