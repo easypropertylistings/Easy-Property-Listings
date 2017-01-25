@@ -920,7 +920,7 @@ class EPL_Property_Meta {
 		if( $this->get_property_meta('property_bedrooms' , false ) == '' )
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+		$returntype	=	defined( 'EPL_ICONS_SVG' ) && $returntype == 'i' ? 's' : $returntype;
 
 		$bed['i'] = '<span title="'.apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'easy-property-listings' ) ).'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>';
 		$bed['d'] = $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bed_label',__('bed', 'easy-property-listings' ) ).' ';
@@ -947,7 +947,7 @@ class EPL_Property_Meta {
 		if( $this->get_property_meta('property_bathrooms' , false ) == '' )
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
 
 		$bath['i'] = '<span title="'.apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'easy-property-listings' ) ).'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>';
 		$bath['d'] = $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bath_label',__('bath', 'easy-property-listings' ) ).' ';
@@ -993,7 +993,7 @@ class EPL_Property_Meta {
 		if( $this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '' )
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
 
 		$property_garage 	= intval($this->get_property_meta('property_garage'));
 		$property_carport 	= intval($this->get_property_meta('property_carport'));
@@ -1063,7 +1063,7 @@ class EPL_Property_Meta {
 		if($this->get_property_meta('property_air_conditioning') == '')
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
 
 		$label = apply_filters('epl_get_property_air_conditioning_label',__('Air Conditioning', 'easy-property-listings' ) );
 		$property_air_conditioning = $this->get_property_meta('property_air_conditioning');
@@ -1092,7 +1092,7 @@ class EPL_Property_Meta {
 		if($this->get_property_meta('property_pool') == '')
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
 
 		$label = apply_filters('epl_get_property_pool_label',__('Pool', 'easy-property-listings' ) );
 		$property_pool = $this->get_property_meta('property_pool');
