@@ -48,12 +48,12 @@ function epl_load_svg_listing_icons_head() {
 				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
 					<path class="epl-icon-shape-part-base" d="M13.25,48.84S16.9,70.64,35,70.64H64.49c18.14,0,21.79-21.79,21.79-21.79Zm4.39,4.26h2.93c.48,2.26,3,11.8,10.74,15.3C20,67.08,17.64,53.1,17.64,53.1Z" transform="translate(0.02)"/>
 				</g>
-				<g id="epl-icon-shape-feet" class="epl-icon-shape-feet epl-icon-shape-base">
+				<g id="epl-icon-shape-feet" class="epl-icon-shape-feet epl-icon-color-base">
 					<path class="epl-icon-shape-part-feet" d="M33.2,72.47A18.88,18.88,0,0,1,23.62,70L21.33,75.5s-1.9,3.8,4.42.9l7.77-3.93Z" transform="translate(0.02)"/>
 					<path class="epl-icon-shape-part-feet" d="M66.34,72.47A18.88,18.88,0,0,0,75.92,70l2.29,5.49s1.9,3.8-4.42.9L66,72.47Z" transform="translate(0.02)"/>
 				</g>
-				<g id="epl-icon-shape-tap" class="epl-icon-shape-tap epl-icon-shape-base">
-					<path class="epl-icon-shape-part-tap" d="M11.06,37.9h5.15s.33-6.39,4.07-6.39c0,0,2,0,3.32,2.81l1.87-1.87s-2.61-2.85-5-2.85S11.6,35.19,11.06,37.9Z" transform="translate(0.02)"/>
+				<g id="epl-icon-shape-tap" class="epl-icon-shape-tap epl-icon-color-base">
+					<path class="epl-icon-shape-part-tap epl-icon-shape-part-base" d="M11.06,37.9h5.15s.33-6.39,4.07-6.39c0,0,2,0,3.32,2.81l1.87-1.87s-2.61-2.85-5-2.85S11.6,35.19,11.06,37.9Z" transform="translate(0.02)"/>
 				</g>
 			</symbol>
 
