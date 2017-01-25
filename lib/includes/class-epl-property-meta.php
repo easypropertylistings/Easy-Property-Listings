@@ -916,9 +916,12 @@ class EPL_Property_Meta {
 	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
-	public function get_property_bed( $returntype = 's' ) {
+	public function get_property_bed( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_bedrooms' , false ) == '' )
 			return;
+
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+
 		$bed['i'] = '<span title="'.apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'easy-property-listings' ) ).'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>';
 		$bed['d'] = $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bed_label',__('bed', 'easy-property-listings' ) ).' ';
 		$bed['l'] = '<li class="bedrooms">' . $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bed_label',__('bed', 'easy-property-listings' ) ).'</li>';
@@ -940,9 +943,12 @@ class EPL_Property_Meta {
 	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
-	public function get_property_bath( $returntype = 's' ) {
+	public function get_property_bath( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_bathrooms' , false ) == '' )
 			return;
+
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+
 		$bath['i'] = '<span title="'.apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'easy-property-listings' ) ).'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>';
 		$bath['d'] = $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bath_label',__('bath', 'easy-property-listings' ) ).' ';
 		$bath['l'] = '<li class="bathrooms">' . $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bath_label',__('bath', 'easy-property-listings' ) ).'</li>';
@@ -983,9 +989,12 @@ class EPL_Property_Meta {
 	 * @param string $returntype Options i = span, d = string, l = list item
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
-	public function get_property_parking( $returntype = 's' ) {
+	public function get_property_parking( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '' )
 			return;
+
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+
 		$property_garage 	= intval($this->get_property_meta('property_garage'));
 		$property_carport 	= intval($this->get_property_meta('property_carport'));
 		$property_parking 	= $property_carport + $property_garage;
@@ -1050,9 +1059,11 @@ class EPL_Property_Meta {
 	 * @param string $returntype Options i = span, d = string, l = list item
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
-	public function get_property_air_conditioning( $returntype = 's' ) {
+	public function get_property_air_conditioning( $returntype = 'i' ) {
 		if($this->get_property_meta('property_air_conditioning') == '')
 			return;
+
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
 
 		$label = apply_filters('epl_get_property_air_conditioning_label',__('Air Conditioning', 'easy-property-listings' ) );
 		$property_air_conditioning = $this->get_property_meta('property_air_conditioning');
@@ -1077,9 +1088,12 @@ class EPL_Property_Meta {
 	 * @param string $returntype Options i = span, d = string, l = list item
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
-	public function get_property_pool( $returntype = 's' ) {
+	public function get_property_pool( $returntype = 'i' ) {
 		if($this->get_property_meta('property_pool') == '')
 			return;
+
+		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : 'i';
+
 		$label = apply_filters('epl_get_property_pool_label',__('Pool', 'easy-property-listings' ) );
 		$property_pool = $this->get_property_meta('property_pool');
 		if( isset($property_pool) && ($property_pool == 1 || $property_pool == 'yes') ) {
