@@ -68,14 +68,24 @@ class EPL_Author_Meta {
 	}
 
 	/**
+	 * Experimental SVG Icons
+	 *
+	 * @since version 3.1.6
+	 */
+	// Enable with: define ( 'EPL_ICONS_SOCIAL_SVG' , true );
+
+	/**
 	 * Author Email html Box
 	 *
 	 * @since version 1.3
 	 */
-	function get_email_html( $html = '' , $style = 's' ) {
+	function get_email_html( $html = '' , $style = 'i' ) {
 
 		if ( $this->email != '' ) {
-			if ( $style != 's' ) {
+
+			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+
+			if ( $style == 'i' ) {
 				$html	= '
 					<a class="epl-author-icon author-icon email-icon-24"
 						href="mailto:' . $this->email . '" title="'.__('Contact', 'easy-property-listings' ).' '.$this->name.' '.__('by Email', 'easy-property-listings' ).'">'.
@@ -100,12 +110,15 @@ class EPL_Author_Meta {
 	 *
 	 * @since version 1.3
 	 */
-	function get_twitter_html( $html = '' , $style = 's' ){
+	function get_twitter_html( $html = '' , $style = 'i' ){
 
 		$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
 		if ( $this->twitter != '' ) {
-	    		if ( $style != 's' ) {
+
+			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+
+	    		if ( $style == 'i' ) {
 				$html	= '
 					<a class="epl-author-icon author-icon twitter-icon-24"
 						href="http://twitter.com/' . $this->twitter . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Twitter', 'easy-property-listings' ). '"' . $link_target . '>'.
@@ -130,12 +143,15 @@ class EPL_Author_Meta {
 	 *
 	 * @since version 1.3
 	 */
-	function get_google_html( $html = '' , $style = 's' ){
+	function get_google_html( $html = '' , $style = 'i' ){
 
 		$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
 		if ( $this->google != '' ) {
-			if ( $style != 's' ) {
+
+			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+
+			if ( $style == 'i' ) {
 				$html = '
 					<a class="epl-author-icon author-icon google-icon-24"
 						href="https://plus.google.com/' . $this->google . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Google', 'easy-property-listings' ).'"' . $link_target . '>'.
@@ -160,12 +176,15 @@ class EPL_Author_Meta {
 	 *
 	 * @since version 1.3
 	 */
-	function get_facebook_html( $html = '' , $style = 's' ){
+	function get_facebook_html( $html = '' , $style = 'i' ){
 
 		$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
 		if ( $this->facebook != '' ) {
-			if ( $style != 's' ) {
+
+			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+
+			if ( $style == 'i' ) {
 				$html = '
 					<a class="epl-author-icon author-icon facebook-icon-24"
 						href="http://facebook.com/' . $this->facebook . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Facebook', 'easy-property-listings' ).'"' . $link_target . '>'.
@@ -190,7 +209,7 @@ class EPL_Author_Meta {
 	 *
 	 * @since version 1.3
 	 */
-	function get_linkedin_html( $html = '' , $style = 's' ) {
+	function get_linkedin_html( $html = '' , $style = 'i' ) {
 
 		$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -205,7 +224,9 @@ class EPL_Author_Meta {
 				$linkedin = 'http://linkedin.com/pub/' . $this->linkedin;
 			}
 
-			if ( $style != 's' ) {
+			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+
+			if ( $style == 'i' ) {
 
 				$html = '
 					<a class="epl-author-icon author-icon linkedin-icon-24"
@@ -231,12 +252,15 @@ class EPL_Author_Meta {
 	 *
 	 * @since version 1.3
 	 */
-	function get_skype_html( $html = '' , $style = 's' ) {
+	function get_skype_html( $html = '' , $style = 'i' ) {
 
 		$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
 		if ( $this->skype != '' ) {
-			if ( $style != 's' ) {
+
+			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+
+			if ( $style == 'i' ) {
 
 				$html = '
 					<a class="epl-author-icon author-icon skype-icon-24"

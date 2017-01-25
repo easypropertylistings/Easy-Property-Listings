@@ -910,6 +910,13 @@ class EPL_Property_Meta {
 	}
 
 	/**
+	 * Experimental SVG Icons
+	 *
+	 * @since version 3.1.6
+	 */
+	// Enable with: define ( 'EPL_ICONS_SVG' , true );
+
+	/**
 	 * Get Bedrooms
 	 *
 	 * @since 2.0
