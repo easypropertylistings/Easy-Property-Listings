@@ -395,7 +395,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 		} else {
 			epl_get_template_part($tpl,$arg_list);
 		}
-		
+
 	} // End Status Removal
 }
 
@@ -801,6 +801,8 @@ function epl_property_tab_section() {
 				'property_com_parking_comments',
 				'property_com_car_spaces',
 				'property_category',
+				'property_holiday_rental',
+				'property_furnished',
 			);
 	foreach($common_features as $common_feature){
 		$the_property_feature_list .= $property->get_additional_features_html($common_feature);
