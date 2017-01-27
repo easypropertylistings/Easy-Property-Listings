@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * SVG Listing Icons Loaded in Head
+ *
+ * @since       3.2
  */
 function epl_load_svg_listing_icons_head() {
 
@@ -107,13 +109,18 @@ function epl_load_svg_listing_icons_head() {
 
 	add_filter ( 'epl_svg_icons' , $svg_icons );
 
-	echo $svg_icons;
+	// Only Load SVG icons if EPL_ICONS_SVG is defined
+	if ( defined( 'EPL_ICONS_SVG' ) ) {
+		echo $svg_icons;
+	}
 
 }
 add_action('wp_head', 'epl_load_svg_listing_icons_head' , 90 );
 
 /**
  * SVG Social Media Icons Loaded in Head
+ *
+ * @since       3.2
  */
 function epl_load_svg_social_icons_head() {
 
@@ -191,6 +198,9 @@ function epl_load_svg_social_icons_head() {
 
 	add_filter ( 'epl_social_icons' , $social_icons );
 
-	echo $social_icons;
+	// Only Load SVG icons if EPL_ICONS_SOCIAL_SVG is defined
+	if ( defined( 'EPL_ICONS_SOCIAL_SVG' ) ) {
+		echo $social_icons;
+	}
 }
-add_action('wp_head', 'epl_load_svg_social_icons_head' , 95 );
+add_action('wp_head', 'epl_load_svg_social_icons_head' , 90 );
