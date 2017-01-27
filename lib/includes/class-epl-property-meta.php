@@ -70,10 +70,10 @@ class EPL_Property_Meta {
 	 */
 	public function __construct($post) {
 
-        $this->post 				= $post;
+        $this->post 			= $post;
         $this->epl_settings 		= epl_settings();
-        $this->meta 				= get_post_custom($post->ID);
-        $this->post_type 			= $this->post->post_type;
+        $this->meta 			= get_post_custom($post->ID);
+        $this->post_type 		= $this->post->post_type;
         $this->property_post_type	= $this->post->post_type;
 
         $this->epl_labels();
@@ -250,18 +250,18 @@ class EPL_Property_Meta {
 		$format = $admin == true ? apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a') : apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a');
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
-					if ( '' != $this->meta['property_auction'][0] ) {
-						if(strpos($this->meta['property_auction'][0], 'T') === FALSE){
-							$feed_format 	= apply_filters('epl_auction_feed_format','Y-m-d-H:i:s');
-                            $epl_date 		= DateTime::createFromFormat($feed_format, $this->meta['property_auction'][0]);
+				if ( '' != $this->meta['property_auction'][0] ) {
+					if(strpos($this->meta['property_auction'][0], 'T') === FALSE){
+						$feed_format 	= apply_filters('epl_auction_feed_format','Y-m-d-H:i:s');
+			                        $epl_date 	= DateTime::createFromFormat($feed_format, $this->meta['property_auction'][0]);
 
-                            if($epl_date) {
-                            	$primary_feed_format 	= apply_filters('epl_auction_primary_feed_format','Y-m-d\TH:i');
-                                $this->meta['property_auction'][0] = $epl_date->format($primary_feed_format);
-                            }
-                        }
-						return apply_filters('epl_get_property_auction',date( $format, strtotime($this->meta['property_auction'][0]) ));
+						if($epl_date) {
+							$primary_feed_format 	= apply_filters('epl_auction_primary_feed_format','Y-m-d\TH:i');
+							$this->meta['property_auction'][0] = $epl_date->format($primary_feed_format);
+						}
 					}
+					return apply_filters('epl_get_property_auction',date( $format, strtotime($this->meta['property_auction'][0]) ));
+				}
 			}
 		}
 	}
@@ -425,7 +425,6 @@ class EPL_Property_Meta {
 					} else {
 						return apply_filters('epl_get_property_available',date( $format, strtotime($av_date) ));
 					}
-
 				}
 			}
 		}
@@ -735,7 +734,6 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_price',$price);
 	}
 
-	// price sticker
 	/**
 	 * Price Sticker
 	 *
@@ -920,8 +918,8 @@ class EPL_Property_Meta {
 	 * Get Bedrooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon
-	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
 	 */
 	public function get_property_bed( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_bedrooms' , false ) == '' )
@@ -930,6 +928,12 @@ class EPL_Property_Meta {
 		$returntype	=	defined( 'EPL_ICONS_SVG' ) && $returntype == 'i' ? 's' : $returntype;
 
 		$bed['i'] = '<span title="'.apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'easy-property-listings' ) ).'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>';
+		$bed['t'] =
+			'<div class="epl-text-icon-container epl-text-icon-container-bed">
+				<span class="epl-text-icon-label bed">' . apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'easy-property-listings' ) ) . '</span>
+				<span class="epl-text-icon-value bed">'. $this->get_property_meta('property_bedrooms') . '</span>
+			</div>';
+
 		$bed['d'] = $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bed_label',__('bed', 'easy-property-listings' ) ).' ';
 		$bed['l'] = '<li class="bedrooms">' . $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bed_label',__('bed', 'easy-property-listings' ) ).'</li>';
 
@@ -947,7 +951,7 @@ class EPL_Property_Meta {
 	 * Get Bathrooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon
+	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_bath( $returntype = 'i' ) {
@@ -957,6 +961,11 @@ class EPL_Property_Meta {
 		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
 
 		$bath['i'] = '<span title="'.apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'easy-property-listings' ) ).'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>';
+		$bath['t'] =
+			'<div class="epl-text-icon-container epl-text-icon-container-bath">
+				<span class="epl-text-icon-label bath">' . apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'easy-property-listings' ) ) . '</span>
+				<span class="epl-text-icon-value bath">'. $this->get_property_meta('property_bathrooms') . '</span>
+			</div>';
 		$bath['d'] = $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bath_label',__('bath', 'easy-property-listings' ) ).' ';
 		$bath['l'] = '<li class="bathrooms">' . $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bath_label',__('bath', 'easy-property-listings' ) ).'</li>';
 
@@ -974,8 +983,8 @@ class EPL_Property_Meta {
 	 * Get Rooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item
-	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
 	 */
 	public function get_property_rooms( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_rooms' , false ) == '' )
@@ -1009,6 +1018,13 @@ class EPL_Property_Meta {
 			return;
 		$label = apply_filters('epl_get_parking_spaces_label',__('Parking Spaces', 'easy-property-listings' ) );
 		$parking['i'] = '<span title="'.__('Parking Spaces', 'easy-property-listings' ).'" class="icon parking"><span class="icon-value">' .$property_parking. '</span></span>';
+
+		$parking['t'] =
+			'<div class="epl-text-icon-container epl-text-icon-container-parking">
+				<span class="epl-text-icon-label parking">' . apply_filters('epl_get_parking_spaces_label',__('Parking Spaces', 'easy-property-listings' ) ) . '</span>
+				<span class="epl-text-icon-value parking">'. $property_parking . '</span>
+			</div>';
+
 		$parking['d'] = $property_parking . ' '.$label.' ';
 		$parking['l'] = '<li class="parking">' . $property_parking . ' '.$label.'</li>';
 
@@ -1076,6 +1092,12 @@ class EPL_Property_Meta {
 		$property_air_conditioning = $this->get_property_meta('property_air_conditioning');
 		if( isset($property_air_conditioning) && ($property_air_conditioning == 1 || $property_air_conditioning == 'yes') ) {
 			$air['i'] = '<span title="'.$label.'" class="icon air"></span>';
+
+			$air['t'] =
+				'<div class="epl-text-icon-container epl-text-icon-container-air">
+					<span class="epl-text-icon-label air">' . $label . '</span>
+				</div>';
+
 			$air['l'] = '<li class="air">'.$label.'</li>';
 
 			$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-air"><use xlink:href="#epl-icon-svg-air"></use></svg>';
@@ -1105,6 +1127,12 @@ class EPL_Property_Meta {
 		$property_pool = $this->get_property_meta('property_pool');
 		if( isset($property_pool) && ($property_pool == 1 || $property_pool == 'yes') ) {
 			$pool['i'] = '<span title="'.$label.'" class="icon pool"></span>';
+
+			$pool['t'] =
+				'<div class="epl-text-icon-container epl-text-icon-container-pool">
+					<span class="epl-text-icon-label pool">' . $label . '</span>
+				</div>';
+
 			$pool['l'] = '<li class="pool">'.$label.'</li>';
 
 			$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-pool"><use xlink:href="#epl-icon-svg-pool"></use></svg>';
