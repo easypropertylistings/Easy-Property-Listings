@@ -28,15 +28,15 @@ function epl_load_svg_listing_icons_head() {
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
 				<g id="epl-icon-shape-frame" class="epl-icon-shape-frame epl-icon-color-frame">
-					<path class="epl-icon-shape-part-frame" d="M17.8,48.17H91.71a2.21,2.21,0,0,1,2.21,2.21v3.17a2.21,2.21,0,0,1-2.21,2.21H17.8a2.22,2.22,0,0,1-2.22-2.22V50.39A2.22,2.22,0,0,1,17.8,48.17Z"/>
-					<rect class="epl-icon-shape-part-frame" x="5.39" y="32.55" width="7.39" height="39.68" rx="1.84" ry="1.84"/>
-					<path class="epl-icon-shape-part-frame" d="M81.79,59.44V70.68a1.84,1.84,0,0,0,1.85,1.84h3.7a1.84,1.84,0,0,0,1.84-1.84V59.44Z" transform="translate(0 -0.29)"/>
+					<rect class="epl-icon-shape-part-frame" x="19.18" y="49.4" width="70.2" height="6.81" rx="1.98" ry="1.98"/>
+					<rect class="epl-icon-shape-part-frame" x="10.94" y="33.62" width="6.62" height="35.56" rx="1.65" ry="1.65"/>
+					<path class="epl-icon-shape-part-frame" d="M78.51,57.73V67.81a1.65,1.65,0,0,0,1.65,1.65h3.32a1.65,1.65,0,0,0,1.65-1.65V57.73Z" transform="translate(0 -0.29)"/>
 				</g>
-				<g id="epl-icon-shape-pillow" class="epl-icon-shape-pillow epl-icon-color-highlight">
-					<path class="epl-icon-shape-part-pillow" d="M41.73,45.6a1.84,1.84,0,0,1-2.35,1.13l-22.81-8a1.84,1.84,0,0,1-1.13-2.35l1.71-4.89a1.84,1.84,0,0,1,2.35-1.13l22.81,8a1.84,1.84,0,0,1,1.13,2.35Z" transform="translate(0 -0.29)"/>
+				<g id="epl-icon-shape-pillow" class="epl-icon-shape-pillow epl-icon-color-base">
+					<path class="epl-icon-shape-part-pillow" d="M42.61,49.45a1.65,1.65,0,0,1-2.1,1L20.06,43.29a1.65,1.65,0,0,1-1-2.1l1.54-4.38a1.65,1.65,0,0,1,2.11-1L43.13,43a1.65,1.65,0,0,1,1,2.1Z" transform="translate(0 -0.29)"/>
 				</g>
 				<g id="epl-icon-shape-matress" class="epl-icon-shape-matress epl-icon-color-alternate">
-					<rect class="epl-icon-shape-part-matress" x="50.98" y="41.84" width="40.52" height="9.71" rx="1.84" ry="1.84"/>
+					<rect class="epl-icon-shape-part-matress" x="50.89" y="42.84" width="36.31" height="8.7" rx="1.65" ry="1.65"/>
 				</g>
 			</symbol>
 
@@ -63,12 +63,8 @@ function epl_load_svg_listing_icons_head() {
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
-				<g id="epl-icon-shape-frame" class="epl-icon-shape-frame epl-icon-color-frame">
-					<path class="epl-icon-shape-part-frame" d="M5.39,30.27V28.59a5.69,5.69,0,0,1,5.68-5.69H88.65a5.69,5.69,0,0,1,5.69,5.69v1.68Z" transform="translate(0.02)"/>
-					<path class="epl-icon-shape-part-frame" d="M11.78,74.52a3.22,3.22,0,0,0,6.44,0V33.18H11.78ZM80.89,33.18V74.52a3.22,3.22,0,0,0,6.44,0V33.18Z" transform="translate(0.02)"/>
-				</g>
 				<g id="epl-icon-shape-car" class="epl-icon-shape-car epl-icon-color-base">
-					<path class="epl-icon-shape-part-car" d="M75.15,47.41a22,22,0,0,0-3,.53s-.4.13-.8.31l-.2-.1a2,2,0,0,0,0-.81L68.36,39c-.42-1.4-1.13-2.53-2.53-2.53,0,0-10.64-.61-15.57-.67H50c-4.94.06-15.57.67-15.57.67-1.4,0-2.11,1.14-2.53,2.53l-2.75,8.29a2,2,0,0,0,0,.81l-.28.15a7.45,7.45,0,0,0-1.23-.53,22,22,0,0,0-3-.53c-.79,0-1,1-1,1v1.59c0,1.11,1.64,1.35,1.64,1.35h2.51V64.08a.73.73,0,0,0-.19.13H26.28a.76.76,0,0,0-.77.76v2.3a.77.77,0,0,0,.77.77H28.6v3.22a1.53,1.53,0,0,0,1.53,1.53H32.3a1.53,1.53,0,0,0,1.53-1.53V68H66.46v3.22A1.53,1.53,0,0,0,68,72.79h2.16a1.53,1.53,0,0,0,1.53-1.53V68h2.26a.77.77,0,0,0,.77-.77V65a.77.77,0,0,0-.77-.76h-1a.75.75,0,0,0-.43-.19V51.35h2s1.64-.24,1.64-1.35V48.41S75.94,47.41,75.15,47.41ZM38.9,63.63A1.34,1.34,0,0,1,37.56,65H31.47a1.34,1.34,0,0,1-1.34-1.34V61.48a1.34,1.34,0,0,1,1.34-1.34h6.09a1.34,1.34,0,0,1,1.34,1.34Zm-5.54-14h0c-1.27,0-2.6-.85-2.3-2.3L33.54,40c.38-1.27,1-2.3,2.3-2.3,0,0,9.66-.55,14.14-.61h.27c4.48.06,14.14.61,14.14.61,1.27,0,1.92,1,2.3,2.3l2.5,7.35c.3,1.45-1,2.3-2.3,2.3h0c-4.76-.42-10.51-.69-16.75-.76S38.12,49.22,33.37,49.65Zm37.32,14A1.34,1.34,0,0,1,69.35,65H63.26a1.34,1.34,0,0,1-1.34-1.34V61.48a1.34,1.34,0,0,1,1.34-1.34h6.09a1.34,1.34,0,0,1,1.34,1.34Z" transform="translate(0.02)"/>
+					<path class="epl-icon-shape-part-car" d="M70.18,68.94v4.5c0,1.24.54,2.4,2.09,2.4h9.31c1.71,0,2-.93,2.09-2.95.08-2.25,0-16.45,0-18.93,0-3.34,0-4.34-.54-5.35-.93-1.71-2.48-5.9-2.48-5.9a19.83,19.83,0,0,0,3.1-1.16c1.63-.78,1.78-1.24,1.09-2.95s-1.32-2.79-2.56-2.95-4.34-.39-7.52-.62C71.11,29.77,67.31,25,66.23,25H34.58c-1,0-4.89,4.81-8.46,10.08-3.18.16-6.21.39-7.52.62S16.74,36.9,16,38.61s-.62,2.17,1,2.95a19.83,19.83,0,0,0,3.1,1.16s-1.94,4.11-2.79,5.9c-.54,1.09-.54,1.09-.54,3.1,0,3.18-.08,18.85,0,21.1.08,2,.47,2.95,2.09,2.95h9.23c1.55,0,2.09-1.09,2.09-2.4v-4.5H70.18ZM34.58,56.84s-8.92-.39-11.4-.62c-3.1-.31-2.09-5.12-2.09-6.52,0-.08,7.83.78,10.32,1.16s3.1,1.86,3.1,2.4S34.58,56.22,34.58,56.84ZM64,30.39c.62,0,1.63-.23,5.2,4.81,2.87,4,4,7.68,3.1,7.68h-44c-.93,0,.62-4.11,3.1-7.68,3.65-5.12,4.58-4.81,5.2-4.81ZM77.48,56.3c-2.48.23-11.4.62-11.4.62V53.35c0-.54.54-1.86,3.1-2.4s10.39-1.32,10.39-1.16C79.57,51.1,80.58,56,77.48,56.3Z"/>
 				</g>
 			</symbol>
 
@@ -79,10 +75,10 @@ function epl_load_svg_listing_icons_head() {
 				<g id="epl-icon-shape-frame" class="epl-icon-shape-frame epl-icon-color-frame">
 					<path class="epl-icon-shape-part-frame" d="M50.3,22.9A22.3,22.3,0,1,0,72.6,45.2h0A22.32,22.32,0,0,0,50.3,22.9Zm0,42A19.7,19.7,0,1,1,70,45.2h0A19.67,19.67,0,0,1,50.3,64.9Z"/>
 				</g>
-				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-base">
+				<g id="epl-icon-shape-base" class="epl-icon-shape-base epl-icon-color-alternate">
 					<path class="epl-icon-shape-part-base" d="M45.8,70.5c-.5,2.2-2.7,3.2-4.7,4.5-2.3,1.4-4.4,1.9-4.4,4.6v1.7H64V79.6c0-2.6-2.1-3.2-4.4-4.6-2-1.3-4.2-2.3-4.7-4.5a27.78,27.78,0,0,1-9.1,0Z"/>
 				</g>
-				<g id="epl-icon-shape-fan" class="epl-icon-shape-fan epl-icon-color-alternate">
+				<g id="epl-icon-shape-fan" class="epl-icon-shape-fan epl-icon-color-base">
 					<path class="epl-icon-shape-part-fan" d="M52.6,40.5c1.2-3.6,1.3-11.4-7-11.4-4.4,0-7.3,5.9-2.2,9,1.4.8,2.7,1.4,3.4,3.2a5.15,5.15,0,0,1,5.8-.8Z"/>
 					<path class="epl-icon-shape-part-fan" d="M45.1,45.3c-3.7,1-9.9,4.9-5.7,11.8,2.3,3.8,8.8,3.2,8.8-2.8,0-1.4-.2-2.8.7-4.1A5.13,5.13,0,0,1,45.1,45.3Z"/>
 					<path class="epl-icon-shape-part-fan" d="M59.6,41.9c-1.4.8-2.5,1.7-4.4,1.5a5.29,5.29,0,0,1-1.6,5.9c2.8,2.7,9.3,5.8,13-1.3C68.6,44.1,64.7,38.8,59.6,41.9Z"/>

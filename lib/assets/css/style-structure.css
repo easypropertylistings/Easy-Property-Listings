@@ -310,6 +310,10 @@
 .epl-icon-svg-container {
 	display: inline-block;
 	vertical-align: middle;
+	margin-right: 0.5em;
+}
+.epl-icon-svg-container:last-child {
+	margin-right: 0;
 }
 .epl-icon-svg,
 .epl-author-icon-svg {
@@ -320,7 +324,7 @@
 }
 .epl-icon-svg-container .icon-value {
 	display: inline-block;
-	margin: 0 1em 0 0.5em;
+	margin: 0 0 0 0.5em;
 	line-height: 30px;
 }
 .epl-icon-color-frame {
