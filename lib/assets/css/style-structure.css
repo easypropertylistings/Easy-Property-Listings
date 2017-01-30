@@ -1304,23 +1304,28 @@ li.tbhead.current {
 .epl-search-fixed .epl-search-row-full,
 .epl-search-fixed .epl-search-row-half,
 .epl-search-fixed .epl-search-row-third {
-	width: 14.2%;
+	width: 14.28%;
+	float: left;
 }
 .epl-search-fixed .epl-property_id,
-.epl-search-fixed .epl-property_address,
-.epl-search-fixed .epl-search-other {
-	width: 21.7%;
+.epl-search-fixed .epl-property_address {
+	width: 50%;
 	float: left;
 }
 .epl-search-fixed .epl-search-other {
-	width: 32.8%;
+	width: 14.28%;
+	float: left;
+}
+.epl-search-fixed .epl-search-other {
+	width: 14.28%;
 }
 .epl-search-fixed .epl-search-land-area,
 .epl-search-fixed .epl-search-building-area {
-	width: 32.7%;
+	width: 28.56%;
+	float: left;
 }
 .epl-search-fixed .epl-search-row-third {
-	width: 32.2%;
+	width: 33.3%;
 }
 .epl-search-fixed .epl-search-row-checkbox {
 	width: auto;
@@ -1385,16 +1390,17 @@ li.tbhead.current {
 		width: 14.28%;
 		float: left;
 	}
-	.epl-search-fixed .epl-property_id {
-		width: 27.8%;
+	.epl-search-fixed .epl-property_id,
+	.epl-search-fixed .epl-property_address {
+		width: 50%;
 	}
 	.epl-search-fixed .epl-search-land-area,
 	.epl-search-fixed .epl-search-building-area,
 	.epl-search-fixed .epl-search-other {
-		width: 42.6%;
+		width: 42.84%;
 	}
 	.epl-search-fixed .epl-search-row-third {
-		width: 31.8%;
+		width: 33.3%;
 	}
 	.epl-search-wide .epl-search-row-checkbox,
 	.epl-search-fixed .epl-search-row-checkbox {
@@ -1443,15 +1449,16 @@ li.tbhead.current {
 		width: 16.6%;
 	}
 	.epl-search-fixed .epl-property_id,
+	.epl-search-fixed .epl-property_address,
 	.epl-search-fixed .epl-search-other {
-		width: 49.1%;
+		width: 50%;
 	}
 	.epl-search-fixed .epl-search-land-area,
 	.epl-search-fixed .epl-search-building-area {
-		width: 49.6%;
+		width: 50%;
 	}
 	.epl-search-fixed .epl-search-row-third {
-		width: 31.8%;
+		width: 33.33%;
 	}
 	.epl-search-fixed .epl-search-other {
 		width: 48%;
@@ -1488,24 +1495,25 @@ li.tbhead.current {
 	.epl-search-fixed .epl-search-row-full,
 	.epl-search-fixed .epl-search-row-half,
 	.epl-search-fixed .epl-search-row-third {
-		width: 23.8%;
+		width: 25%;
 	}
 	.epl-search-fixed .epl-property_id,
+	.epl-search-fixed .epl-property_address,
 	.epl-search-fixed .epl-search-other {
-		width: 49%;
+		width: 50%;
 	}
 	.epl-search-fixed .epl-search-land-area,
 	.epl-search-fixed .epl-search-building-area {
-		width: 49%;
+		width: 50%;
 	}
 	.epl-search-fixed .epl-search-row-third {
-		width: 31.6%;
+		width: 33.33%;
 	}
 	.epl-search-fixed .epl-search-row-checkbox {
 		width: auto;
 	}
 	.epl-search-fixed .epl-search-submit-row {
-		margin-right: 2%;
+		margin-right: 0;
 	}
 
 	/** Card **/
@@ -1548,10 +1556,10 @@ li.tbhead.current {
 	.epl-search-fixed .epl-search-land-area,
 	.epl-search-fixed .epl-search-building-area,
 	.epl-search-fixed .epl-search-other {
-		width: 98.3%;
+		width: 100%;
 	}
 	.epl-search-fixed .epl-search-row-third {
-		width: 32.4%;
+		width: 33.33%;
 	}
 	.epl-search-fixed .epl-search-row-checkbox {
 		width: auto;
