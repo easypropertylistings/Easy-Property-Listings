@@ -1195,6 +1195,17 @@ li.tbhead.current {
 	border-radius: 0;
 	/* width: 100%; */
 }
+.epl-search-form select.in-field{
+	background: transparent;
+	padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 1px solid #B7B7B7;
+	border-radius: 0;
+	height: 40px;
+	-webkit-appearance: none;
+	background: url(../images/select-arrow.svg) no-repeat right #FFF;
+}
 .epl-search-form .check-label {
 	font-size: 0.7em;
 	padding-top: 0;
