@@ -21,7 +21,7 @@ function epl_load_svg_listing_icons_head() {
 
 	$svg_icons = '
 
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide">
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
 		<defs>
 			<symbol id="epl-icon-svg-bed">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
@@ -122,7 +122,7 @@ function epl_load_svg_social_icons_head() {
 
 	$social_icons = '
 
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide">
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
 		<defs>
 
 			<symbol id="epl-icon-svg-email">
