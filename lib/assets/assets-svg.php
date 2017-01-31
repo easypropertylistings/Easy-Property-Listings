@@ -103,7 +103,7 @@ function epl_load_svg_listing_icons_head() {
 		</defs>
 	</svg>';
 
-	add_filter ( 'epl_svg_icons' , $svg_icons );
+	apply_filters( 'epl_svg_icons' , $svg_icons );
 
 	// Only Load SVG icons if EPL_ICONS_SVG is defined
 	if ( defined( 'EPL_ICONS_SVG' ) ) {
@@ -192,7 +192,7 @@ function epl_load_svg_social_icons_head() {
 		</defs>
 	</svg>';
 
-	add_filter ( 'epl_social_icons' , $social_icons );
+	apply_filters( 'epl_social_icons' , $social_icons );
 
 	// Only Load SVG icons if EPL_ICONS_SOCIAL_SVG is defined
 	if ( defined( 'EPL_ICONS_SOCIAL_SVG' ) ) {
