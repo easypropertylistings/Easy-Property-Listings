@@ -42,20 +42,28 @@ class EPL_Widget_Author extends WP_Widget {
 		$d_icons	= $instance['d_icons'];
 		$d_bio		= $instance['d_bio'];
 
-		global $property;
+		if ( is_singular() ) {
+			// Only retrieve global $property variable if singluar
+			global $property;
+			$hide_author_box	=	$property->get_property_meta('property_agent_hide_author_box');
 
-		$hide_author_box	=	$property->get_property_meta('property_agent_hide_author_box');
+			if ( $hide_author_box == 'yes' ) {
+				// Hide Author Box
+			} else {
+				echo $before_widget;
+				if ( $title )
+					echo $before_title . $title . $after_title;
+					epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
 
-		if ( $hide_author_box == 'yes' && is_singular() ) {
-
-			// Hide Author Box
+				echo $after_widget;
+			}
 
 		} else {
 
 			echo $before_widget;
 			if ( $title )
 				echo $before_title . $title . $after_title;
-			epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
+				epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
 
 			echo $after_widget;
 		}
