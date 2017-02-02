@@ -26,12 +26,12 @@ class EPL_Widget_Author extends WP_Widget {
 	function widget($args, $instance) {
 
 		$defaults = array(
-					'title'		=>	'',
-					'display'	=>	0,
-					'd_image'	=>	0,
-					'd_icons'	=>	0,
-					'd_bio'		=>	0
-				);
+			'title'		=>	'',
+			'display'	=>	0,
+			'd_image'	=>	0,
+			'd_icons'	=>	0,
+			'd_bio'		=>	0
+		);
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
@@ -42,12 +42,20 @@ class EPL_Widget_Author extends WP_Widget {
 		$d_icons	= $instance['d_icons'];
 		$d_bio		= $instance['d_bio'];
 
-		echo $before_widget;
-		if ( $title )
-			echo $before_title . $title . $after_title;
-		epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
+		global $property;
 
-		echo $after_widget;
+		$hide_author_box	=	$property->get_property_meta('property_agent_hide_author_box');
+
+		if ( $hide_author_box != 'yes' ) {
+
+			echo $before_widget;
+			if ( $title )
+				echo $before_title . $title . $after_title;
+			epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
+
+			echo $after_widget;
+
+		}
 	}
 
 	function update($new_instance, $old_instance) {
@@ -62,12 +70,12 @@ class EPL_Widget_Author extends WP_Widget {
 
 	function form($instance) {
 		$defaults = array(
-						'title'		=>	'',
-						'display'	=>	0,
-						'd_image'	=>	0,
-						'd_icons'	=>	0,
-						'd_bio'		=>	0
-					);
+			'title'		=>	'',
+			'display'	=>	0,
+			'd_image'	=>	0,
+			'd_icons'	=>	0,
+			'd_bio'		=>	0
+		);
 
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
