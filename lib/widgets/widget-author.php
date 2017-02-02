@@ -46,7 +46,11 @@ class EPL_Widget_Author extends WP_Widget {
 
 		$hide_author_box	=	$property->get_property_meta('property_agent_hide_author_box');
 
-		if ( $hide_author_box != 'yes' ) {
+		if ( $hide_author_box == 'yes' && is_singular() ) {
+
+			// Hide Author Box
+
+		} else {
 
 			echo $before_widget;
 			if ( $title )
@@ -54,7 +58,6 @@ class EPL_Widget_Author extends WP_Widget {
 			epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
 
 			echo $after_widget;
-
 		}
 	}
 
