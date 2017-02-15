@@ -802,6 +802,8 @@ function epl_property_tab_section() {
 				'property_com_car_spaces',
 				'property_category',
 			);
+	$common_features = apply_filters('epl_property_common_features_list',$common_features);
+
 	foreach($common_features as $common_feature){
 		$the_property_feature_list .= $property->get_additional_features_html($common_feature);
 	}
