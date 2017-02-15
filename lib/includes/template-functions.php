@@ -395,7 +395,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 		} else {
 			epl_get_template_part($tpl,$arg_list);
 		}
-		
+
 	} // End Status Removal
 }
 
@@ -846,7 +846,8 @@ function epl_property_tab_section() {
 	}
 
 	if ( $property->post_type != 'land' || $property->post_type != 'business') { ?>
-		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php apply_filters( 'epl_property_sub_title_property_features' , _e('Property Features', 'easy-property-listings' ) ); ?></h5>
+		<?php $property_features_title = __('Property Features', 'easy-property-listings' ); ?>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php apply_filters( 'epl_property_sub_title_property_features' , $property_features_title ); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
 					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>
