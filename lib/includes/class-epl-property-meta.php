@@ -671,8 +671,8 @@ class EPL_Property_Meta {
 					$price = '<span class="page-price auction">' . apply_filters('epl_commercial_auction_label',__( 'Auction' , 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
 				}
 
-				elseif ( $this->get_property_meta('property_price_view') != '' ) {
-					$price = '<span class="page-price"><span class="page-price-prefix">' . $this->get_property_price_display() . '</span>';
+				elseif ( $this->get_property_meta('property_price_view') != '' &&  $this->get_property_meta('property_com_listing_type') == 'both' ) {
+					$price = '<span class="page-price"><span class="page-price-prefix"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_sale_and_lease_label' , __('For Sale and Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_price_display() . '</span>';
 				}
 
 				elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
