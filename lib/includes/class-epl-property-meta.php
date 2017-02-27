@@ -1179,6 +1179,7 @@ class EPL_Property_Meta {
 
 				case 1:
 				case 'yes':
+				case 'YES':
 				case 'Y':
 				case 'y':
 				case 'on':
@@ -1187,6 +1188,7 @@ class EPL_Property_Meta {
 
 				case 0:
 				case 'no':
+				case 'NO':
 				case 'N':
 				case 'n':
 				case 'off':
