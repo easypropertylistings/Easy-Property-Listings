@@ -1162,35 +1162,44 @@ class EPL_Property_Meta {
 	 */
 	public function get_additional_features_html( $metakey ) {
 
-            $metavalue = $this->get_property_meta($metakey);
-			$return = '';
-			if( $metavalue != '' || intval($metavalue) != 0) {
-				if($metakey == 'property_com_car_spaces'){
-					$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label','' );
-				}
+		$metavalue = $this->get_property_meta($metakey);
 
-				if($metakey == 'property_category'){
-					$metavalue = $this->get_property_category();
-				}
+		$return = '';
 
-                switch($metavalue) {
+		if( $metavalue != '' || intval($metavalue) != 0) {
+			if($metakey == 'property_com_car_spaces'){
+				$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label','' );
+			}
 
-                    case 1:
-                    case 'yes':
-	                case 'on':
-                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
-                    break;
-					case 0:
-					case 'no':
-	                case 'off':
-						$return = '';
+			if($metakey == 'property_category'){
+				$metavalue = $this->get_property_category();
+			}
+
+	                switch($metavalue) {
+
+				case 1:
+				case 'yes':
+				case 'YES':
+				case 'Y':
+				case 'y':
+				case 'on':
+					$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
 					break;
-                    default:
-                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'easy-property-listings' ).' '.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
-                    break;
-                }
-            }
 
+				case 0:
+				case 'no':
+				case 'NO':
+				case 'N':
+				case 'n':
+				case 'off':
+					$return = '';
+					break;
+
+				default:
+	                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'easy-property-listings' ).' '.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
+	                    break;
+	                }
+		}
 		return apply_filters('epl_get_additional_features_html',$return);
 	}
 
@@ -1202,14 +1211,14 @@ class EPL_Property_Meta {
 	 * @return mixed Value formatted and wrapped in div with title
 	 */
 	public function get_additional_rural_features_html( $metakey ) {
-			$metavalue = $this->get_property_meta($metakey);
-			if( isset($metavalue) && $metavalue != '' ) {
-				$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
-							<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'easy-property-listings' ).'</h6>'.
-							'<p>'.__($metavalue,'easy-property-listings' ).'</p>'.
-						'</div>';
-				return apply_filters('epl_get_additional_rural_features_html',$return);
-			}
+		$metavalue = $this->get_property_meta($metakey);
+		if( isset($metavalue) && $metavalue != '' ) {
+			$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
+						<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'easy-property-listings' ).'</h6>'.
+						'<p>'.__($metavalue,'easy-property-listings' ).'</p>'.
+					'</div>';
+			return apply_filters('epl_get_additional_rural_features_html',$return);
+		}
 	}
 
 	/**
@@ -1220,14 +1229,14 @@ class EPL_Property_Meta {
 	 * @return mixed Value formatted and wrapped in div with title
 	 */
 	public function get_additional_commerical_features_html( $metakey ) {
-			$metavalue = $this->get_property_meta($metakey);
-			if( isset($metavalue) && $metavalue != '' ) {
-				$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
-							<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'easy-property-listings' ).'</h6>'.
-							'<p>'.__($metavalue,'easy-property-listings' ).'</p>'.
-						'</div>';
-				return apply_filters('epl_get_additional_commerical_features_html',$return);
-			}
+		$metavalue = $this->get_property_meta($metakey);
+		if( isset($metavalue) && $metavalue != '' ) {
+			$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
+						<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'easy-property-listings' ).'</h6>'.
+						'<p>'.__($metavalue,'easy-property-listings' ).'</p>'.
+					'</div>';
+			return apply_filters('epl_get_additional_commerical_features_html',$return);
+		}
 	}
 
 	/**
@@ -1239,8 +1248,7 @@ class EPL_Property_Meta {
 	 * @return string Formatted class name
 	 */
 	public function get_class_from_metakey( $key , $search = 'property_' ){
-		 return str_replace("property_", "", $key);
-
+		return str_replace("property_", "", $key);
 	}
 
 	/**
@@ -1252,7 +1260,7 @@ class EPL_Property_Meta {
 	 * @return string Formatted uppercase words
 	 */
 	public function get_label_from_metakey( $key , $search = 'property_' ){
-		 return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
+		return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
 	}
 
 	/**
