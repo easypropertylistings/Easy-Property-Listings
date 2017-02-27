@@ -2124,3 +2124,21 @@ function epl_add_orderby_args($args) {
 	}
 	return $args;
 }
+
+/**
+ * Shortcode Sorter
+ *
+ * @since 3.1.5
+ */
+function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
+
+	$title = apply_filters( 'epl_shortcode_results_message_title' , __('Nothing found, please check back later.', 'easy-property-listings' ) );
+
+	if ( $shortcode == 'open' ) {
+		$title = apply_filters( 'epl_shortcode_results_message_title_open' , __('Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ) );
+	}
+
+	echo '<h3 class="epl-shortcode-listing-open epl-alert">' . $title . '</h3>';
+
+}
+add_action( 'epl_shortcode_results_message' , 'epl_shortcode_results_message_callback' );
