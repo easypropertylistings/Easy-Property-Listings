@@ -30,16 +30,16 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
 		'status'		=>	array('current' , 'sold' , 'leased' ),
-		'location'		=>	'',
-		'location_id'		=>	'',
+		'location'		=>	'', // Location slug
+		'location_id'		=>	'', // Location ID
 		'limit'			=>	'10', // Number of maximum posts to show
-		'offset'		=>	0, // Offset Posts
+		'offset'		=>	'', // Offset posts. When used, pagination is disabled
 		'template'		=>	false, // Template can be set to "slim" for home open style template
 		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
 		'sortby'		=>	'', // Options: price, date : Default date
-		'sort_order'		=>	'DESC',
-		'pagination'		=> 	'on'
+		'sort_order'		=>	'DESC', // Sort by ASC or DESC
+		'pagination'		=> 	'on' // Enable or disable pagination
 	), $atts ) );
 
 	if(empty($post_type)) {
@@ -62,9 +62,14 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'offset' 		=>	$offset,
 		'paged' 		=>	$paged
 	);
+
+	// Offset query does not work with pagination
+	if ( ! empty ( $offset ) ) {
+		$args['offset'] 	= $offset;
+		$pagination	 	= 'off'; // Disable pagination when offset is used
+	}
 
 	if(!empty($location) ) {
 		if( !is_array( $location ) ) {
@@ -151,7 +156,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		echo '<h3>'.__('Nothing found, please check back later.', 'easy-property-listings' ).'</h3>';
+		do_action( 'epl_shortcode_results_message' );
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

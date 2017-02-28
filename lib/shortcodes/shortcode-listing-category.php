@@ -31,19 +31,19 @@ function epl_shortcode_listing_category_callback( $atts ) {
 	extract( shortcode_atts( array(
 		'post_type' 			=>	$property_types,
 		'status'			=>	array('current' , 'sold' , 'leased' ),
-		'commercial_listing_type'	=>	'',
-		'category_key'			=>	'',
-		'category_value'		=>	'',
-		'category_compare'		=>	'IN',
+		'commercial_listing_type'	=>	'', // Listing Type, 'sale' , 'lease', 'both'
+		'category_key'			=>	'', // Meta field key
+		'category_value'		=>	'', // Meta field value
+		'category_compare'		=>	'IN', // Compare using 'IN','NOT IN','BETWEEN','NOT BETWEEN'
 		'limit'				=>	'10', // Number of maximum posts to show
-		'offset'			=>	0, // Offset Posts
+		'offset'			=>	'', // Offset posts. When used, pagination is disabled
 		'template'			=>	false, // Template can be set to "slim" for home open style template
 		'location'			=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
 		'sortby'			=>	'', // Options: price, date : Default date
-		'sort_order'			=>	'DESC',
-		'pagination'			=>	'on'
+		'sort_order'			=>	'DESC', // Sort by ASC or DESC
+		'pagination'			=>	'on' // Enable or disable pagination
 	), $atts ) );
 
 	if(empty($post_type)) {
@@ -68,9 +68,14 @@ function epl_shortcode_listing_category_callback( $atts ) {
 	$args = array(
 		'post_type' 		=>	$post_type,
 		'posts_per_page'	=>	$limit,
-		'offset'		=>	$offset,
 		'paged' 		=>	$paged
 	);
+
+	// Offset query does not work with pagination
+	if ( ! empty ( $offset ) ) {
+		$args['offset'] 	= $offset;
+		$pagination	 	= 'off'; // Disable pagination when offset is used
+	}
 
 	if(!empty($location) ) {
 		if( !is_array( $location ) ) {
@@ -172,7 +177,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		echo '<h3>'.__('Nothing found, please check back later.', 'easy-property-listings' ).'</h3>';
+		do_action( 'epl_shortcode_results_message' );
 	}
 	wp_reset_postdata();
 	return ob_get_clean();
