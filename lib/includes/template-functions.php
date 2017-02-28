@@ -1532,13 +1532,15 @@ function the_property_meta($key) {
  *
  * @since 2.1
  */
-function epl_template_class( $class = false ) {
+function epl_template_class( $class = false, $context = 'single' ) {
 
-	if ( $class != false ) {
-		return 'epl-template-'.$class;
-	} else {
-		return 'epl-template-blog';
-	}
+    if ( $class != false ) {
+        $class = 'epl-template-'.$class;
+    } else {
+        $class = 'epl-template-blog';
+    }
+
+    return apply_filters('epl_template_class',$class,$context);
 }
 
 /**
