@@ -392,7 +392,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.1.6 January 18, 2017 =
+= 3.1.6 March 10, 2017 =
 
 * New: Hierarchical Features Taxonomy EPL_FEATURES_HIERARCHICAL Constant.
 * New: Filter for Commercial For Sale and Lease label epl_commercial_for_sale_and_lease_label when both option selected.
