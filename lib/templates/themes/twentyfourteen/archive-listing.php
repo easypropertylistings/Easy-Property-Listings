@@ -10,7 +10,7 @@
 get_header(); ?>
 
 	<section id="primary" class="content-area epl-archive-default <?php echo epl_get_active_theme_name(); ?>">
-		<div id="content" class="site-content" role="main">
+		<div id="content" class="site-content <?php echo epl_template_class( 'twentyfourteen', 'archive' ); ?>" role="main">
 
 			<?php if ( have_posts() ) : ?>
 

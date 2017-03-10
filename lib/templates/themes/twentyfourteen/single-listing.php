@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 get_header(); ?>
 
 	<div id="primary" class="content-area epl-single-default <?php echo epl_get_active_theme_name(); ?>">
-		<div id="content" class="site-content" role="main">
+		<div id="content" class="site-content <?php echo epl_template_class( 'twentyfourteen', 'single' ); ?>" role="main">
 			<?php
 				// Start the Loop.
 				while ( have_posts() ) : the_post();

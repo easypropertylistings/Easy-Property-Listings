@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 									</h4>
 								</div>
 
-								<div class="loop-content">
+								<div class="loop-content <?php echo epl_template_class( 'genesis', 'archive' ); ?>">
 									<?php do_action( 'epl_property_loop_start' ); ?>
 									<?php while ( have_posts() ) : // The Loop
 											the_post();
