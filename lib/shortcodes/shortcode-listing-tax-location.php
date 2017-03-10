@@ -156,7 +156,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		echo '<h3>'.__('Nothing found, please check back later.', 'easy-property-listings' ).'</h3>';
+		do_action( 'epl_shortcode_results_message' );
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

@@ -395,7 +395,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 		} else {
 			epl_get_template_part($tpl,$arg_list);
 		}
-		
+
 	} // End Status Removal
 }
 
@@ -802,6 +802,8 @@ function epl_property_tab_section() {
 				'property_com_car_spaces',
 				'property_category',
 			);
+	$common_features = apply_filters('epl_property_common_features_list',$common_features);
+
 	foreach($common_features as $common_feature){
 		$the_property_feature_list .= $property->get_additional_features_html($common_feature);
 	}
@@ -846,7 +848,8 @@ function epl_property_tab_section() {
 	}
 
 	if ( $property->post_type != 'land' || $property->post_type != 'business') { ?>
-		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php apply_filters( 'epl_property_sub_title_property_features' , _e('Property Features', 'easy-property-listings' ) ); ?></h5>
+		<?php $property_features_title = __('Property Features', 'easy-property-listings' ); ?>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php apply_filters( 'epl_property_sub_title_property_features' , $property_features_title ); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
 					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>
@@ -1124,11 +1127,11 @@ function epl_archive_sorting($query) {
 	$post_types_sold 	= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rural');
 	$post_types_rental 	= array('rental');
 
-	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental )){
+	if(!$query->is_main_query()){
+		return;
+	}
 
-		if(!$query->is_main_query()){
-			return;
-		}
+	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental )){
 
 		if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 
@@ -1529,13 +1532,15 @@ function the_property_meta($key) {
  *
  * @since 2.1
  */
-function epl_template_class( $class = false ) {
+function epl_template_class( $class = false, $context = 'single' ) {
 
-	if ( $class != false ) {
-		return 'epl-template-'.$class;
-	} else {
-		return 'epl-template-blog';
-	}
+    if ( $class != false ) {
+        $class = 'epl-template-'.$class;
+    } else {
+        $class = 'epl-template-blog';
+    }
+
+    return apply_filters('epl_template_class',$class,$context);
 }
 
 /**
@@ -2121,3 +2126,21 @@ function epl_add_orderby_args($args) {
 	}
 	return $args;
 }
+
+/**
+ * Shortcode Sorter
+ *
+ * @since 3.1.5
+ */
+function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
+
+	$title = apply_filters( 'epl_shortcode_results_message_title' , __('Nothing found, please check back later.', 'easy-property-listings' ) );
+
+	if ( $shortcode == 'open' ) {
+		$title = apply_filters( 'epl_shortcode_results_message_title_open' , __('Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ) );
+	}
+
+	echo '<h3 class="epl-shortcode-listing-open epl-alert">' . $title . '</h3>';
+
+}
+add_action( 'epl_shortcode_results_message' , 'epl_shortcode_results_message_callback' );
