@@ -249,6 +249,23 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.6', 'easy-property-listings'  );?></h4>
+
+					<ul>
+
+						<li><?php _e( 'New: Hierarchical Features Taxonomy EPL_FEATURES_HIERARCHICAL Constant.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Filter for Commercial For Sale and Lease label epl_commercial_for_sale_and_lease_label when both option selected.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added filters for shortcodes to adjust no results messages. Filters epl_shortcode_results_message_title_open for [listing_open] shortcode and epl_shortcode_results_message_title for all other shortcodes.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Additional case values for importing additional features now accepts YES, yes, Y, y, on, NO, no, N, n, off.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Common features filter epl_property_common_features_list added.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Corrected spelling of meta box group ids for commercial_features and files_n_links.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Author widget will no longer display if hide author box on a listing is ticked.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Commercial listing lease price text display when both option selected.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Property Features title filter epl_property_sub_title_property_features enabling title modification.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Post type archive called incorrectly in some cases.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: PHP 7.1 support.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.5', 'easy-property-listings'  );?></h4>
 
 					<ul>
