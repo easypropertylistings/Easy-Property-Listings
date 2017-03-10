@@ -401,10 +401,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Common features filter epl_property_common_features_list added.
 * Tweak: Corrected spelling of meta box group ids for commercial_features and files_n_links.
 * Tweak: Author widget will no longer display if hide author box on a listing is ticked.
+* Tweak: Filter for epl template class.
 * Fix: Commercial listing lease price text display when both option selected.
 * Fix: Property Features title filter epl_property_sub_title_property_features enabling title modification.
 * Fix: Post type archive called incorrectly in some cases.
 * Fix: PHP 7.1 support.
+* Fix: Class adjustment for taxonomy search.
 
 = 3.1.5 January 18, 2017 =
 

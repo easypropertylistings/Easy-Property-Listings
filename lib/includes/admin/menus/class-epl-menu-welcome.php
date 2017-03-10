@@ -260,10 +260,12 @@ class EPL_Welcome {
 						<li><?php _e( 'New: Common features filter epl_property_common_features_list added.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Tweak: Corrected spelling of meta box group ids for commercial_features and files_n_links.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Tweak: Author widget will no longer display if hide author box on a listing is ticked.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Filter for epl template class.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Fix: Commercial listing lease price text display when both option selected.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Fix: Property Features title filter epl_property_sub_title_property_features enabling title modification.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Fix: Post type archive called incorrectly in some cases.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Fix: PHP 7.1 support.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Class adjustment for taxonomy search.', 'easy-property-listings'  );?></li>
 					</ul>
 
 					<h4><?php _e( 'Version 3.1.5', 'easy-property-listings'  );?></h4>
