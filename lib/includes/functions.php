@@ -669,7 +669,7 @@ function epl_feedsync_format_date( $date ) {
  */
 function epl_feedsync_format_date_auction($date,$time) {
 
-	$date = str_replace('/', '-', $date);
+	$date = str_replace('/', '-', $date); // Convert to european date format for strtotime function
 	return date( "Y-M-d H:i:s", strtotime( $date . ' ' . $time ) );
 }
 
