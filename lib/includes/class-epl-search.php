@@ -495,7 +495,7 @@ class EPL_SEARCH {
 		$value = array_filter($value);
 		if( !empty( $value ) ) {
 			$this->tax_query[] = array(
-				'taxonomy'	=>	ltrim($query_field['meta_key'],'property_'),
+				'taxonomy'	=>	preg_replace('/^property_/', '', $query_field['meta_key']),
 				'field'		=>	'id',
 				'terms'		=>	$value,
 			);
