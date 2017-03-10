@@ -945,7 +945,7 @@ function epl_esc_like ($text) {
  *
  * @since  2.3.1
  */
-function epl_listings_where( $where, &$wp_query ) {
+function epl_listings_where( $where, $wp_query ) {
     global $wpdb;
     if ( $epl_post_title = $wp_query->get( 'epl_post_title' ) ) {
         $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql( epl_esc_like( $epl_post_title ) ) . '%\'';
