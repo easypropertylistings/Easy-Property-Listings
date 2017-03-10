@@ -657,6 +657,23 @@ function epl_feedsync_format_date( $date ) {
 }
 
 /**
+ * REAXML Auction Date Processing Function for WP All Import and FeedSync
+ *
+ * Some imports set the current date instead of the date from the REAXML file.
+ * Usage in WP All Import Post Date field is:
+ * [epl_feedsync_format_date_auction({AUCDATE[1]},{AUC_TIME[1]})]
+ *
+ * @since 3.1.7
+ * @param string $date
+ * @return formatted date
+ */
+function epl_feedsync_format_date_auction($date,$time) {
+
+	$date = str_replace('/', '-', $date);
+	return date( "Y-M-d H:i:s", strtotime( $date . ' ' . $time ) );
+}
+
+/**
  * REAXML Address Sub Number field for title import
  * processing Function for WP All Import and FeedSync
  *
@@ -692,7 +709,6 @@ function epl_feedsync_format_strip_currency( $value ) {
 	}
 	return;
 }
-
 
 /**
  * Offers presented on settings page, removed if extension is present and activated
