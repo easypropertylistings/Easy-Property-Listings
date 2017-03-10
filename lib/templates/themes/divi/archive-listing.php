@@ -2,7 +2,7 @@
 
 <div id="main-content">
 	<div class="container">
-		<div id="content-area" class="clearfix">
+		<div id="content-area" class="clearfix <?php echo epl_template_class( 'divi', 'archive' ); ?>">
 			<div id="left-area">
 		<?php
 			if ( have_posts() ) : ?>
