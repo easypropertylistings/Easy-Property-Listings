@@ -1127,11 +1127,11 @@ function epl_archive_sorting($query) {
 	$post_types_sold 	= array('property','land', 'commercial', 'business', 'commercial_land' , 'location_profile','rural');
 	$post_types_rental 	= array('rental');
 
-	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental )){
+	if(!$query->is_main_query()){
+		return;
+	}
 
-		if(!$query->is_main_query()){
-			return;
-		}
+	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental )){
 
 		if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 
