@@ -1688,7 +1688,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						1	=>	__('Enable', 'easy-property-listings' ),
 						0	=>	__('Disable', 'easy-property-listings' )
 					),
-					'help'		=>	__('Check this box if you would like EPL to completely remove all of its data when the plugin is deleted.', 'easy-property-listings' ),
+					'help'		=>	__('Select Enable if you would like EPL to completely remove all of its data when the plugin is deleted.', 'easy-property-listings' ),
 					'default'	=>	0
 				)
 			)
