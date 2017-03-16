@@ -711,6 +711,33 @@ function epl_feedsync_format_strip_currency( $value ) {
 }
 
 /**
+ * REAXML convert date/time to adjust for timezone
+ *
+ * Processing Function for WP All Import and FeedSync
+ * [epl_feedsync_switch_date_time({firstDate[1]},'Australia/Perth','Australia/Sydney')]
+ *
+ * @since 3.0
+ * @return integer
+ */
+function epl_feedsync_switch_date_time($date_time=false,$old_time_zone='Australia/Perth',$new_timezone='Australia/Sydney',$format='Y-m-d H:i:s') {
+
+	if( !$date_time) {
+		$date_time = date( 'Y-m-d H:i:s',time() );
+	}
+	if( !$old_time_zone) {
+		$old_time_zone = 'Australia/Perth';
+	}
+	if( !$new_timezone) {
+		$new_timezone = 'Australia/Sydney';
+	}
+
+	$schedule_date = new DateTime($date_time, new DateTimeZone($new_timezone) );
+	$schedule_date->setTimeZone(new DateTimeZone($old_time_zone));
+	return $schedule_date->format($format);
+
+}
+
+/**
  * Offers presented on settings page, removed if extension is present and activated
  *
  * @since 2.0
