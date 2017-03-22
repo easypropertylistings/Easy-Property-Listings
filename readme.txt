@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.7.3
 
-Stable Tag: 3.1.5
+Stable Tag: 3.1.6
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.7 March 22, 2017 =
+
+* New: Added epl_template_cass to templates and added its context for Listing Templates extension.
+* New: Auction Date processing function for import scripts.
+* New: REAXML convert date/time to adjust for timezone for import scripts.
+* Tweak: Wording for delete settings adjusted to reflect radio option.
+* Fix: Corrected missing Property Features title and filter.
 
 = 3.1.6 March 10, 2017 =
 

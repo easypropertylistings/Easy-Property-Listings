@@ -657,6 +657,23 @@ function epl_feedsync_format_date( $date ) {
 }
 
 /**
+ * REAXML Auction Date Processing Function for WP All Import and FeedSync
+ *
+ * Some imports set the current date instead of the date from the REAXML file.
+ * Usage in WP All Import Post Date field is:
+ * [epl_feedsync_format_date_auction({AUCDATE[1]},{AUC_TIME[1]})]
+ *
+ * @since 3.1.7
+ * @param string $date
+ * @return formatted date
+ */
+function epl_feedsync_format_date_auction($date,$time) {
+
+	$date = str_replace('/', '-', $date); // Convert to european date format for strtotime function
+	return date( "Y-M-d H:i:s", strtotime( $date . ' ' . $time ) );
+}
+
+/**
  * REAXML Address Sub Number field for title import
  * processing Function for WP All Import and FeedSync
  *
@@ -693,6 +710,32 @@ function epl_feedsync_format_strip_currency( $value ) {
 	return;
 }
 
+/**
+ * REAXML convert date/time to adjust for timezone
+ *
+ * Processing Function for WP All Import and FeedSync
+ * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
+ *
+ * @since 3.0
+ * @return integer
+ */
+function epl_feedsync_switch_date_time($date_time=false,$old_time_zone='Australia/Perth',$new_timezone='Australia/Sydney',$format='Y-m-d H:i:s') {
+
+	if( !$date_time) {
+		$date_time = date( 'Y-m-d H:i:s',time() );
+	}
+	if( !$old_time_zone) {
+		$old_time_zone = 'Australia/Perth';
+	}
+	if( !$new_timezone) {
+		$new_timezone = 'Australia/Sydney';
+	}
+
+	$schedule_date = new DateTime($date_time, new DateTimeZone($new_timezone) );
+	$schedule_date->setTimeZone(new DateTimeZone($old_time_zone));
+	return $schedule_date->format($format);
+
+}
 
 /**
  * Offers presented on settings page, removed if extension is present and activated
@@ -1672,7 +1715,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						1	=>	__('Enable', 'easy-property-listings' ),
 						0	=>	__('Disable', 'easy-property-listings' )
 					),
-					'help'		=>	__('Check this box if you would like EPL to completely remove all of its data when the plugin is deleted.', 'easy-property-listings' ),
+					'help'		=>	__('Select Enable if you would like EPL to completely remove all of its data when the plugin is deleted.', 'easy-property-listings' ),
 					'default'	=>	0
 				)
 			)

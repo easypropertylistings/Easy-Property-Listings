@@ -14,7 +14,7 @@ get_header(); ?>
 
 <div class="wrap">
 	<div id="primary" class="content-area <?php echo epl_get_active_theme_name(); ?>">
-		<main id="main" class="site-main" role="main">
+		<main id="main" class="site-main <?php echo epl_template_class( 'twentyseventeen', 'single' ); ?>" role="main">
 
 			<?php
 				/* Start the Loop */
