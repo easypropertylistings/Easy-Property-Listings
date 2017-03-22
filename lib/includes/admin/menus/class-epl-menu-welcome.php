@@ -252,7 +252,7 @@ class EPL_Welcome {
 					<h4><?php _e( 'Version 3.1.7', 'easy-property-listings'  );?></h4>
 
 					<ul>
-						<li><?php _e( 'New: Added epl_template_cass to templates and added its context for Listing Templates extension.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added epl_template_class to templates and added its context for Listing Templates extension.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Auction Date processing function for import scripts.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: REAXML convert date/time to adjust for timezone for import scripts.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Tweak: Wording for delete settings adjusted to reflect radio option.', 'easy-property-listings'  );?></li>
