@@ -714,7 +714,7 @@ function epl_feedsync_format_strip_currency( $value ) {
  * REAXML convert date/time to adjust for timezone
  *
  * Processing Function for WP All Import and FeedSync
- * [epl_feedsync_switch_date_time({firstDate[1]},'Australia/Perth','Australia/Sydney')]
+ * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
  *
  * @since 3.0
  * @return integer
