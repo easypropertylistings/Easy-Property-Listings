@@ -2144,3 +2144,27 @@ function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
 }
 add_action( 'epl_shortcode_results_message' , 'epl_shortcode_results_message_callback' );
+
+/**
+ * Search Not Found Messages
+ *
+ * @since 3.1.8
+ */
+function epl_property_search_not_found_callback() {
+
+	$title 		= apply_filters( 'epl_property_search_not_found_title' , __('Listing not Found', 'easy-property-listings') );;
+	$message 	= apply_filters( 'epl_property_search_not_found_message' , __('Listing not found, expand your search criteria and try again.', 'easy-property-listings') );
+
+	?>
+
+	<div class="epl-search-not-found-title entry-header clearfix">
+		<h3 class="entry-title"><?php echo $title; ?></h3>
+	</div>
+
+	<div class="epl-search-not-found-message entry-content clearfix">
+		<p><?php echo $message; ?></p>
+	</div>
+
+<?php
+}
+add_action( 'epl_property_search_not_found' , 'epl_property_search_not_found_callback' );
