@@ -249,6 +249,13 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.8', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'Fix: Corrected Listing not found filters used in archive templates with a new epl_property_search_not_found hook.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Translations updated.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.7', 'easy-property-listings'  );?></h4>
 
 					<ul>
