@@ -392,6 +392,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.1.7 March 22, 2017 =
+
+* New: Added epl_template_cass to templates and added its context for Listing Templates extension.
+* New: Auction Date processing function for import scripts.
+* New: REAXML convert date/time to adjust for timezone for import scripts.
+* Tweak: Wording for delete settings adjusted to reflect radio option.
+* Fix: Corrected missing Property Features title and filter.
+
 = 3.1.6 March 10, 2017 =
 
 * New: Hierarchical Features Taxonomy EPL_FEATURES_HIERARCHICAL Constant.

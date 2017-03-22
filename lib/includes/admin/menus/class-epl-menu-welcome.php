@@ -249,10 +249,19 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.7', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Added epl_template_cass to templates and added its context for Listing Templates extension.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Auction Date processing function for import scripts.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: REAXML convert date/time to adjust for timezone for import scripts.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Wording for delete settings adjusted to reflect radio option.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Corrected missing Property Features title and filter.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.6', 'easy-property-listings'  );?></h4>
 
 					<ul>
-
 						<li><?php _e( 'New: Hierarchical Features Taxonomy EPL_FEATURES_HIERARCHICAL Constant.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Filter for Commercial For Sale and Lease label epl_commercial_for_sale_and_lease_label when both option selected.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Added filters for shortcodes to adjust no results messages. Filters epl_shortcode_results_message_title_open for [listing_open] shortcode and epl_shortcode_results_message_title for all other shortcodes.', 'easy-property-listings'  );?></li>
