@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.7.3
 
-Stable Tag: 3.1.6
+Stable Tag: 3.1.7
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.8 March 22, 2017 =
+
+* Fix: Corrected Listing not found filters used in archive templates with a new epl_property_search_not_found hook.
+* Tweak: Translations updated.
 
 = 3.1.7 March 22, 2017 =
 
