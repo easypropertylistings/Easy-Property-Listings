@@ -29,7 +29,8 @@
 			<?php
 
 				else :
-					get_template_part( 'includes/no-results', 'index' );
+					//get_template_part( 'includes/no-results', 'index' );
+					do_action( 'epl_property_search_not_found' );
 				endif;
 			?>
 			</div> <!-- #left-area -->

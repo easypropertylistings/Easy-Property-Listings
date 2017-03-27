@@ -848,8 +848,8 @@ function epl_property_tab_section() {
 	}
 
 	if ( $property->post_type != 'land' || $property->post_type != 'business') { ?>
-		<?php $property_features_title = __('Property Features', 'easy-property-listings' ); ?>
-		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php apply_filters( 'epl_property_sub_title_property_features' , $property_features_title ); ?></h5>
+		<?php $property_features_title = apply_filters( 'epl_property_sub_title_property_features' , __('Property Features', 'easy-property-listings' ) ); ?>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo $property_features_title; ?></h5>
 			<div class="epl-tab-content tab-content">
 				<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
 					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>
@@ -2144,3 +2144,27 @@ function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
 }
 add_action( 'epl_shortcode_results_message' , 'epl_shortcode_results_message_callback' );
+
+/**
+ * Search Not Found Messages
+ *
+ * @since 3.1.8
+ */
+function epl_property_search_not_found_callback() {
+
+	$title 		= apply_filters( 'epl_property_search_not_found_title' , __('Listing not Found', 'easy-property-listings') );;
+	$message 	= apply_filters( 'epl_property_search_not_found_message' , __('Listing not found, expand your search criteria and try again.', 'easy-property-listings') );
+
+	?>
+
+	<div class="epl-search-not-found-title entry-header clearfix">
+		<h3 class="entry-title"><?php echo $title; ?></h3>
+	</div>
+
+	<div class="epl-search-not-found-message entry-content clearfix">
+		<p><?php echo $message; ?></p>
+	</div>
+
+<?php
+}
+add_action( 'epl_property_search_not_found' , 'epl_property_search_not_found_callback' );

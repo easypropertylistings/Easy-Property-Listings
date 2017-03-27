@@ -5,9 +5,9 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, contact, crm, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.9
-Tested up to: 4.7.1
+Tested up to: 4.7.3
 
-Stable Tag: 3.1.4
+Stable Tag: 3.1.8
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,39 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.9 March 23, 2017 =
+
+* Tweak: Allowed Authors and Contributors to access help screens.
+
+= 3.1.8 March 22, 2017 =
+
+* Fix: Corrected Listing not found filters used in archive templates with a new epl_property_search_not_found hook.
+* Tweak: Translations updated.
+
+= 3.1.7 March 22, 2017 =
+
+* New: Added epl_template_class to templates and added its context for Listing Templates extension.
+* New: Auction Date processing function for import scripts.
+* New: REAXML convert date/time to adjust for timezone for import scripts.
+* Tweak: Wording for delete settings adjusted to reflect radio option.
+* Fix: Corrected missing Property Features title and filter.
+
+= 3.1.6 March 10, 2017 =
+
+* New: Hierarchical Features Taxonomy EPL_FEATURES_HIERARCHICAL Constant.
+* New: Filter for Commercial For Sale and Lease label epl_commercial_for_sale_and_lease_label when both option selected.
+* New: Added filters for shortcodes to adjust no results messages. Filters epl_shortcode_results_message_title_open for [listing_open] shortcode and epl_shortcode_results_message_title for all other shortcodes.
+* Tweak: Additional case values for importing additional features now accepts YES, yes, Y, y, on, NO, no, N, n, off.
+* New: Common features filter epl_property_common_features_list added.
+* Tweak: Corrected spelling of meta box group ids for commercial_features and files_n_links.
+* Tweak: Author widget will no longer display if hide author box on a listing is ticked.
+* Tweak: Filter for epl template class.
+* Fix: Commercial listing lease price text display when both option selected.
+* Fix: Property Features title filter epl_property_sub_title_property_features enabling title modification.
+* Fix: Post type archive called incorrectly in some cases.
+* Fix: PHP 7.1 support.
+* Fix: Class adjustment for taxonomy search.
 
 = 3.1.5 January 18, 2017 =
 
