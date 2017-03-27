@@ -249,6 +249,13 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.10', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Filter added epl_ical_args for iCal output.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Ability to search by property ID when managing listings from the Dashboard.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.9', 'easy-property-listings'  );?></h4>
 
 					<ul>
