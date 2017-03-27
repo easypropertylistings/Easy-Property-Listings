@@ -1403,6 +1403,8 @@ add_action('epl_buttons_single_property', 'epl_buttons_wrapper_after' , 99);
  */
 function epl_create_ical_file($start='',$end='',$name='',$description='',$location='') {
 
+	$args = get_defined_vars();
+	$args = apply_filters('epl_ical_args', $args);
      $data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:".date("Ymd\THis",strtotime($start))."\nDTEND:".date("Ymd\THis",strtotime($end))."\nLOCATION:".$location."\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:\nDTSTAMP:".date("Ymd\THis\Z")."\nSUMMARY:".$name."\nDESCRIPTION:".$description."\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
 
 	header("Content-type:text/calendar");
