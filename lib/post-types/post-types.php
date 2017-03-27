@@ -81,8 +81,9 @@ function epl_custom_restrict_manage_posts() {
 		$custom_search_fields = array(
 			'property_address_suburb'	=>	epl_labels('label_suburb'),
 			'property_office_id'		=>	__('Office ID', 'easy-property-listings' ),
-			'property_agent'		=>	__('Listing Agent', 'easy-property-listings' ),
+			'property_agent'			=>	__('Listing Agent', 'easy-property-listings' ),
 			'property_second_agent'		=>	__('Second Listing Agent', 'easy-property-listings' ),
+			'property_unique_id'		=>	__('Property ID', 'easy-property-listings' ),
 		);
 		$custom_search_fields = apply_filters('epl_admin_search_fields',$custom_search_fields);
 
