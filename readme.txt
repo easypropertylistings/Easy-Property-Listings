@@ -396,6 +396,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * New: Filter added epl_ical_args for iCal output.
 * Tweak: Ability to search by property ID when managing listings from the Dashboard.
+* Tweak: Added Sortable column Unique ID.
 
 = 3.1.9 March 23, 2017 =
 

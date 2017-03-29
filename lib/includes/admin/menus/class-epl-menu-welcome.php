@@ -254,6 +254,7 @@ class EPL_Welcome {
 					<ul>
 						<li><?php _e( 'New: Filter added epl_ical_args for iCal output.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'Tweak: Ability to search by property ID when managing listings from the Dashboard.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Added Sortable column Unique ID.', 'easy-property-listings'  );?></li>
 					</ul>
 
 					<h4><?php _e( 'Version 3.1.9', 'easy-property-listings'  );?></h4>
