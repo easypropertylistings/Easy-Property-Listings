@@ -801,6 +801,8 @@ function epl_property_tab_section() {
 				'property_com_parking_comments',
 				'property_com_car_spaces',
 				'property_category',
+				'property_holiday_rental',
+				'property_furnished',
 			);
 	$common_features = apply_filters('epl_property_common_features_list',$common_features);
 

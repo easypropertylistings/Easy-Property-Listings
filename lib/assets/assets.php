@@ -108,6 +108,9 @@ function epl_wp_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
 
+/**
+ * Load and enqueue admin styles
+ */
 function epl_admin_styles() {
 
 	global $current_screen,$epl_settings;
