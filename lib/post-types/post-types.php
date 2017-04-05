@@ -116,7 +116,7 @@ function epl_custom_restrict_manage_posts() {
 function epl_admin_posts_filter( $query ) {
 	global $pagenow;
 	if( is_admin() && $pagenow == 'edit.php' ) {
-		$meta_query = $query->get('meta_query');
+		$meta_query = (array) $query->get('meta_query');
 
 		if(isset($_GET['property_status']) && $_GET['property_status'] != '') {
 			$meta_query[] = array(
