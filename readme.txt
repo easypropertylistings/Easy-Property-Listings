@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.7.3
 
-Stable Tag: 3.1.8
+Stable Tag: 3.1.9
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.10 March 27, 2017 =
+
+* New: Filter added epl_ical_args for iCal output.
+* Tweak: Ability to search by property ID when managing listings from the Dashboard.
+* Tweak: Added Sortable column Unique ID.
 
 = 3.1.9 March 23, 2017 =
 

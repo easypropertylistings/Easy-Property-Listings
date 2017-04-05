@@ -154,6 +154,7 @@ function epl_admin_posts_filter( $query ) {
 function epl_manage_listings_sortable_columns( $columns ) {
 	$columns['property_price']	= 'property_price';
 	$columns['property_status'] 	= 'property_status';
+	$columns['listing_id'] 		= 'listing_id';
 	$columns['agent'] 		= 'agent';
 	return $columns;
 }
