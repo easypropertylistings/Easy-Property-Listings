@@ -292,6 +292,7 @@ Easy Property Listings needs help for translation:
 12. Swedish
 13. Ukrainian
 14. Arabic
+15. Brazilian Portuguese
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/).
 
