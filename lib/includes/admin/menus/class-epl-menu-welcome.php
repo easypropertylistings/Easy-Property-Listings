@@ -249,6 +249,14 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.11', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'Fix: Property ID search in admin.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Brazilian Portuguese Translation thanks to Dijo.', 'easy-property-listings'  );?></li>
+
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.10', 'easy-property-listings'  );?></h4>
 
 					<ul>

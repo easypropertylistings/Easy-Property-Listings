@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.7.3
 
-Stable Tag: 3.1.9
+Stable Tag: 3.1.10
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.11 April 6, 2017 =
+
+* Fix: Property ID search in admin.
+* New: Brazilian Portuguese Translation thanks to Dijo.
 
 = 3.1.10 March 27, 2017 =
 
