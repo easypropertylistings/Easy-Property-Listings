@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.7.3
 
-Stable Tag: 3.1.9
+Stable Tag: 3.1.10
 
 License: GNU Version 2 or Any Later Version
 
@@ -18,9 +18,6 @@ Fast. Flexible. Forward-thinking solution for real estate agents using WordPress
 Easy Property Listings is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today.
 
 An easy to use plugin that provides the needed functions to configure a dynamic real estate website in minutes. Packed with advanced features, shortcodes and templates letting you create real estate websites fast.
-
-> <strong>Support</strong><br>
-> The Easy Property Listings team does not provide support for the real estate plugin on the WordPress.org forums. One on one forum support is available to people who bought [Support](https://easypropertylistings.com.au/support-ticket/?utm_source=readme&utm_medium=description_tab&utm_content=premium_support&utm_campaign=wordpressorg) only.
 
 **Features:**
 
@@ -158,6 +155,8 @@ Grow your online success with premium add-ons
 
 **Dedicated Support**
 
+> The Easy Property Listings team does not provide support for the real estate plugin on the WordPress.org forums. One on one forum support is available to people who purchase [Support](https://easypropertylistings.com.au/support-ticket/?utm_source=readme&utm_medium=description_tab&utm_content=premium_support&utm_campaign=wordpressorg) only.
+
 Extensive near instant response to support, we just want to help.
 
 * Lots of free tutorials & how to videos.
@@ -292,6 +291,7 @@ Easy Property Listings needs help for translation:
 12. Swedish
 13. Ukrainian
 14. Arabic
+15. Brazilian Portuguese
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/).
 
@@ -391,6 +391,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.11 April 6, 2017 =
+
+* Fix: Property ID search in admin.
+* New: Brazilian Portuguese Translation thanks to Dijo.
+* New: Added epl_button_target_floorplan filter.
 
 = 3.1.10 March 27, 2017 =
 
