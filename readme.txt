@@ -19,9 +19,6 @@ Easy Property Listings is one of the most dynamic and feature rich Real Estate p
 
 An easy to use plugin that provides the needed functions to configure a dynamic real estate website in minutes. Packed with advanced features, shortcodes and templates letting you create real estate websites fast.
 
-> <strong>Support</strong><br>
-> The Easy Property Listings team does not provide support for the real estate plugin on the WordPress.org forums. One on one forum support is available to people who bought [Support](https://easypropertylistings.com.au/support-ticket/?utm_source=readme&utm_medium=description_tab&utm_content=premium_support&utm_campaign=wordpressorg) only.
-
 **Features:**
 
 **Get Real Estate Online Faster Than Ever**
@@ -157,6 +154,8 @@ Grow your online success with premium add-ons
 * Extend with many [add-ons](https://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=wordpressorg)
 
 **Dedicated Support**
+
+> The Easy Property Listings team does not provide support for the real estate plugin on the WordPress.org forums. One on one forum support is available to people who purchase [Support](https://easypropertylistings.com.au/support-ticket/?utm_source=readme&utm_medium=description_tab&utm_content=premium_support&utm_campaign=wordpressorg) only.
 
 Extensive near instant response to support, we just want to help.
 
@@ -397,6 +396,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * Fix: Property ID search in admin.
 * New: Brazilian Portuguese Translation thanks to Dijo.
+* New: Added epl_button_target_floorplan filter.
 
 = 3.1.10 March 27, 2017 =
 

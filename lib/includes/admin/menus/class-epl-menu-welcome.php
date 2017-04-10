@@ -254,6 +254,7 @@ class EPL_Welcome {
 					<ul>
 						<li><?php _e( 'Fix: Property ID search in admin.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Brazilian Portuguese Translation thanks to Dijo.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added epl_button_target_floorplan filter.', 'easy-property-listings'  );?></li>
 
 					</ul>
 
