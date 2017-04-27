@@ -733,7 +733,7 @@ function epl_property_secondary_heading() {
 	}
 
 	if($property->get_property_meta('property_status') == 'sold'){
-		echo '<span class="sold-status">'.$property->label_sold.'</span>';
+		echo ' <span class="sold-status">'.$property->label_sold.'</span>';
 	}
 	echo ' <span class="suburb"> - ' . $property->get_property_meta('property_address_suburb') . ' </span>';
 	echo ' <span class="state">' . $property->get_property_meta('property_address_state') . '</span>';
