@@ -934,17 +934,36 @@ function epl_property_tab_section_after() {
 	if ( $property->post_type == 'rural') {
 		$the_property_rural_feature_list = '';
 		$features_lists = array(
-							'property_rural_fencing',
-							'property_rural_annual_rainfall',
-							'property_rural_soil_types',
-							'property_rural_improvements',
-							'property_rural_council_rates',
-							'property_rural_irrigation',
-							'property_rural_carrying_capacity',
+			'property_rural_fencing',
+			'property_rural_annual_rainfall',
+			'property_rural_soil_types',
+			'property_rural_improvements',
+			'property_rural_council_rates',
+			'property_rural_irrigation',
+			'property_rural_carrying_capacity',
 		);
-		foreach($features_lists as $features_list){
-			$the_property_rural_feature_list .= $property->get_additional_rural_features_html($features_list);
+
+		// Check for values in the rural features
+		$rural_value = '';
+
+		$result = array();
+
+		foreach ( $features_lists as $feature ) {
+
+			$rural_value = $property->get_property_meta( $feature );
+
+			if ( $rural_value != '' ) {
+				$result[] = $rural_value;
+			}
 		}
+
+
+		// Display results if $result array is not empty
+		if ( ! empty( $result ) ) {
+
+			foreach($features_lists as $features_list){
+				$the_property_rural_feature_list .= $property->get_additional_rural_features_html($features_list);
+			}
 
 	?>
 		<div class="epl-tab-section epl-tab-section-rural-features">
@@ -955,7 +974,9 @@ function epl_property_tab_section_after() {
 				</div>
 			</div>
 		</div>
-	<?php }
+		<?php
+		}
+	}
 }
 add_action('epl_property_tab_section_after','epl_property_tab_section_after');
 
