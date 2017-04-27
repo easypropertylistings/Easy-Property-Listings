@@ -249,6 +249,25 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.12', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Filter epl_property_land_area_unit_label for Land Unit Label Filter.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Filter epl_property_building_area_unit_label for Building Unit Label Filter.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Filter epl_the_property_feature_list_before before the features list.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Filter epl_the_property_feature_list_before_common_features before the common features list.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Filter epl_the_property_feature_list_before_additional_features before the additional features list.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Filter epl_the_property_feature_list_after for after the output of the features list.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Property, Rural, Commercial Category output to secondary heading.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Altered land sqm output to m2.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Shortcode [listing_auction] now only displays auction listings.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Property Category now outputs to feature list.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Rural Category now outputs to feature list.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Commercial Category now outputs to feature list.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Empty Commercial Features heading no longer outputs heading if values are empty.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Empty Rural Features heading no longer outputs heading if values are empty.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.11', 'easy-property-listings'  );?></h4>
 
 					<ul>

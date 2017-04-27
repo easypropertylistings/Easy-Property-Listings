@@ -394,9 +394,20 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.1.12 April 27, 2017 =
 
-*
-
-
+* New: Filter epl_property_land_area_unit_label for Land Unit Label Filter.
+* New: Filter epl_property_building_area_unit_label for Building Unit Label Filter.
+* New: Filter epl_the_property_feature_list_before before the features list.
+* New: Filter epl_the_property_feature_list_before_common_features before the common features list.
+* New: Filter epl_the_property_feature_list_before_additional_features before the additional features list.
+* New: Filter epl_the_property_feature_list_after for after the output of the features list.
+* Tweak: Property, Rural, Commercial Category output to secondary heading.
+* Tweak: Altered land sqm output to m2.
+* Tweak: Shortcode [listing_auction] now only displays auction listings.
+* Fix: Property Category now outputs to feature list.
+* Fix: Rural Category now outputs to feature list.
+* Fix: Commercial Category now outputs to feature list.
+* Fix: Empty Commercial Features heading no longer outputs heading if values are empty.
+* Fix: Empty Rural Features heading no longer outputs heading if values are empty.
 
 = 3.1.11 April 6, 2017 =
 
