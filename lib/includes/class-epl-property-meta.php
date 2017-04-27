@@ -1192,6 +1192,8 @@ class EPL_Property_Meta {
 		$return = '';
 
 		if( $metavalue != '' || intval($metavalue) != 0) {
+
+			// Commercial Car Spaces : Label Issue (Returning 50 Com Car Spaces. Need to remove com
 			if($metakey == 'property_com_car_spaces'){
 				$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label','' );
 			}
@@ -1221,8 +1223,8 @@ class EPL_Property_Meta {
 					break;
 
 				default:
-	                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'easy-property-listings' ).' '.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
-	                    break;
+	                        	$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'easy-property-listings' ).' '.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
+					break;
 	                }
 		}
 		return apply_filters('epl_get_additional_features_html',$return);

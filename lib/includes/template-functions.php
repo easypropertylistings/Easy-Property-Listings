@@ -805,8 +805,8 @@ function epl_property_tab_section() {
 				'property_garage',
 				'property_carport',
 				'property_open_spaces',
-				'property_com_parking_comments',
-				'property_com_car_spaces',
+				'property_com_parking_comments', // Issue with label output
+				'property_com_car_spaces', // Issue with label output
 			);
 	$common_features = apply_filters('epl_property_common_features_list',$common_features);
 
@@ -907,19 +907,39 @@ function epl_property_tab_section_after() {
 			'property_com_highlight_3',
 			'property_com_zone',
 		);
-		foreach($features_lists as $features_list){
-			$the_property_commercial_feature_list .= $property->get_additional_commerical_features_html($features_list);
+
+		// Check for values in the commercial features
+		$commercial_value = '';
+
+		$result = array();
+
+		foreach ( $features_lists as $feature ) {
+
+			$commercial_value = $property->get_property_meta( $feature );
+
+			if ( $commercial_value != '' ) {
+				$result[] = $commercial_value;
+			}
 		}
 
-	?>
-		<div class="epl-tab-section epl-tab-section-commercial-features">
-			<h5 class="epl-tab-title epl-tab-title-commercial-features tab-title"><?php apply_filters( 'epl_property_sub_title_commercial_features' , _e('Commercial Features', 'easy-property-listings' ) ); ?></h5>
-			<div class="epl-tab-content tab-content">
-				<div class="epl-commercial-features listing-info">
-					<?php echo $the_property_commercial_feature_list; ?>
+		// Display results if $result array is not empty
+		if ( ! empty( $result ) ) {
+
+			foreach( $features_lists as $features_list ){
+				$the_property_commercial_feature_list .= $property->get_additional_commerical_features_html($features_list);
+			}
+
+		?>
+			<div class="epl-tab-section epl-tab-section-commercial-features">
+				<h5 class="epl-tab-title epl-tab-title-commercial-features tab-title"><?php apply_filters( 'epl_property_sub_title_commercial_features' , _e('Commercial Features', 'easy-property-listings' ) ); ?></h5>
+				<div class="epl-tab-content tab-content">
+					<div class="epl-commercial-features listing-info">
+						<?php echo $the_property_commercial_feature_list; ?>
+					</div>
 				</div>
 			</div>
-		</div> <?php
+		<?php
+		}
 	}
 
 	if ( $property->post_type == 'rural') {
