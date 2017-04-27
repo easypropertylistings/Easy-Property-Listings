@@ -814,7 +814,7 @@ function epl_property_tab_section() {
 		$the_property_feature_list .= $property->get_additional_features_html($common_feature);
 	}
 
-	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_after_common_features', '' );
+	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_additional_features', '' );
 
 	$additional_features 	= array (
 		'property_remote_garage',
