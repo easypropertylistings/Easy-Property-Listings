@@ -918,6 +918,20 @@ class EPL_Property_Meta {
 	}
 
 	/**
+	 * Get Rural Category
+	 *
+	 * @since 3.1.12
+	 * @param string $tag HTML wrapper type, default div
+	 * @return string
+	 */
+	public function get_property_rural_category( $tag = 'div' ) {
+		$property_rural_category = epl_listing_load_meta_rural_category_value( $this->get_property_meta('property_rural_category') );
+		$property_rural_category = '<'.$tag.' class="rural-category">' . __( $property_rural_category , 'easy-property-listings' ) . '</'.$tag.'>';
+
+		return apply_filters( 'epl_get_property_rural_category' , $property_rural_category );
+	}
+
+	/**
 	 * Get Year Built
 	 *
 	 * @since 2.0

@@ -782,8 +782,12 @@ function epl_property_tab_section() {
 	$post_type = $property->post_type;
 	$the_property_feature_list = apply_filters('epl_the_property_feature_list_before', '' );
 
-	if ( 'property' == $post_type || 'rental' == $post_type || 'rural' == $post_type ) {
+	if ( 'property' == $post_type || 'rental' == $post_type ) {
 		$the_property_feature_list .= $property->get_property_category('li');
+	}
+
+	if ( 'rural' == $post_type ) {
+		$the_property_feature_list .= $property->get_property_rural_category('li');
 	}
 
 	if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
