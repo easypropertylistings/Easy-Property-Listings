@@ -1116,7 +1116,7 @@ class EPL_Property_Meta {
 			$property_land_area_unit = __($property_land_area_unit , 'easy-property-listings' );
 		}
 
-		$property_land_area_unit = apply_filters( 'epl_property_land_area_unit' , $property_land_area_unit );
+		$property_land_area_unit = apply_filters( 'epl_property_land_area_unit_label' , $property_land_area_unit );
 
 		if(is_numeric($this->get_property_meta('property_land_area')) ) {
 			$label = apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
@@ -1143,7 +1143,7 @@ class EPL_Property_Meta {
 			$building_unit = __($building_unit , 'easy-property-listings' );
 		}
 
-		$building_unit = apply_filters( 'epl_property_building_unit_unit' , $building_unit );
+		$building_unit = apply_filters( 'epl_property_building_area_unit_label' , $building_unit );
 
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
 			$label = apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
