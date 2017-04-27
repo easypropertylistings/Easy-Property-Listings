@@ -718,7 +718,20 @@ add_action('epl_property_heading','epl_property_heading');
  */
 function epl_property_secondary_heading() {
 	global $property;
-	echo '<span class="epl-property-category">' . $property->get_property_category() . '</span> ';
+
+
+	if ( $property->post_type == 'property' || $property->post_type == 'rental' ) {
+		echo $property->get_property_category( 'span' , 'epl-property-category' );
+	}
+
+	if ( $property->post_type == 'rural' ) {
+		echo $property->get_property_rural_category( 'span' , 'epl-rural-category' );
+	}
+
+	if ( $property->post_type == 'commercial' || $property->post_type == 'commercial_land' ) {
+		echo $property->get_property_commercial_category( 'span' , 'epl-commercial-category' );
+	}
+
 	if($property->get_property_meta('property_status') == 'sold'){
 		echo '<span class="sold-status">'.$property->label_sold.'</span>';
 	}
@@ -734,7 +747,7 @@ add_action('epl_property_secondary_heading','epl_property_secondary_heading');
  */
 function epl_property_category() {
 	global $property;
-	echo $property->get_property_category();
+	echo $property->get_property_category( 'none' );
 }
 
 /**
