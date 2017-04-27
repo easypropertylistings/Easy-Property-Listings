@@ -68,6 +68,12 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		'value'		=> 'no',
 	);
 
+	/** only properties which are not auction should be allowed **/
+	$args['meta_query'][] = array(
+		'key'		=> 'property_authority',
+		'value'		=> 'auction',
+	);
+
 	if(!empty($location) ) {
 		if( !is_array( $location ) ) {
 			$location = explode(",", $location);
