@@ -475,8 +475,16 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @return string
 	 */
-	public function get_property_category () {
-		return apply_filters('epl_get_property_category',epl_listing_meta_property_category_value( $this->get_property_meta('property_category') ));
+	public function get_property_category ( $tag = '' ) {
+
+		$property_category =	epl_listing_meta_property_category_value( $this->get_property_meta('property_category') );
+
+		if ( $tag != '' ) {
+
+			$property_category = '<'.$tag.' class="property-category">' . __( $property_category,'easy-property-listings' ) . '</'.$tag.'>';
+		}
+
+		return apply_filters('epl_get_property_category', $property_category );
 	}
 
 	/**

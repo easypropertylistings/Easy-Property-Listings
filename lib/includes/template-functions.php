@@ -780,7 +780,11 @@ add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
 function epl_property_tab_section() {
 	global $property;
 	$post_type = $property->post_type;
-	$the_property_feature_list = '';
+	$the_property_feature_list = apply_filters('epl_the_property_feature_list_before', '' );
+
+	if ( 'property' == $post_type || 'rental' == $post_type || 'rural' == $post_type ) {
+		$the_property_feature_list .= $property->get_property_category('li');
+	}
 
 	if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
 		$the_property_feature_list .= $property->get_property_commercial_category('li');
@@ -791,6 +795,9 @@ function epl_property_tab_section() {
 	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
 	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
 	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_new_construction('l');
+
+	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_common_features', '' );
+
 	$common_features = array(
 				'property_toilet',
 				'property_ensuite',
@@ -800,13 +807,15 @@ function epl_property_tab_section() {
 				'property_open_spaces',
 				'property_com_parking_comments', // Issue with label output
 				'property_com_car_spaces', // Issue with label output
-				'property_category',
 			);
 	$common_features = apply_filters('epl_property_common_features_list',$common_features);
 
 	foreach($common_features as $common_feature){
 		$the_property_feature_list .= $property->get_additional_features_html($common_feature);
 	}
+
+	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_additional_features', '' );
+
 	$additional_features 	= array (
 		'property_remote_garage',
 		'property_secure_parking',
@@ -846,6 +855,8 @@ function epl_property_tab_section() {
 			$the_property_feature_list .= $property->get_additional_features_html($additional_feature);
 		}
 	}
+
+	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_after', '' );
 
 	if ( $property->post_type != 'land' || $property->post_type != 'business') { ?>
 		<?php $property_features_title = apply_filters( 'epl_property_sub_title_property_features' , __('Property Features', 'easy-property-listings' ) ); ?>
