@@ -253,7 +253,7 @@ class EPL_Welcome {
 
 					<ul>
 						<li><?php _e( 'Tweak: Allow author box to be used on non Easy Property Listings posts without error.', 'easy-property-listings'  );?></li>
-						<li><?php _e( 'Tweak: Removed Brazilian Portugues from plugin as language package is now served from WordPress.org', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Removed Brazilian Portuguese from plugin as language package is now served from WordPress.org', 'easy-property-listings'  );?></li>
 					</ul>
 
 

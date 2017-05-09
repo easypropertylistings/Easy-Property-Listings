@@ -395,7 +395,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 = 3.1.14 May 9, 2017 =
 
 * Tweak: Allow author box to be used on non Easy Property Listings posts without error.
-* Tweak: Removed Brazilian Portugues from plugin as language package is now served from WordPress.org
+* Tweak: Removed Brazilian Portuguese from plugin as language package is now served from WordPress.org
 
 = 3.1.12 April 27, 2017 =
 
