@@ -249,6 +249,13 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.15', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'Fix: Car searching Any will now return listings with no carport or garage.', 'easy-property-listings'  );?></li>
+					</ul>
+
+
 					<h4><?php _e( 'Version 3.1.14', 'easy-property-listings'  );?></h4>
 
 					<ul>
