@@ -293,7 +293,7 @@ add_action('epl_property_blog','epl_property_blog');
 function epl_property_author_default() {
 	global $epl_author_secondary;
 	epl_get_template_part('content-author-box.php');
-	if( epl_listing_has_secondary_author() ) {
+	if( is_epl_post() && epl_listing_has_secondary_author() ) {
 	    epl_get_template_part('content-author-box.php',array('epl_author'	=>	$epl_author_secondary));
 	    epl_reset_post_author();
 	}
@@ -333,7 +333,7 @@ add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
 function epl_property_author_box_simple_card() {
 	global $property,$epl_author,$epl_author_secondary;
 	epl_get_template_part('content-author-box-simple-card.php');
-	if( epl_listing_has_secondary_author() ) {
+	if( is_epl_post() && epl_listing_has_secondary_author() ) {
 		    epl_get_template_part('content-author-box-simple-card.php',array('epl_author'	=>	$epl_author_secondary));
 	}
 	epl_reset_post_author();
@@ -347,7 +347,7 @@ function epl_property_author_box_simple_card() {
 function epl_property_author_box_simple_grav() {
 	global $property,$epl_author,$epl_author_secondary;
 	epl_get_template_part('content-author-box-simple-grav.php');
-	if( epl_listing_has_secondary_author() ) {
+	if( is_epl_post() && epl_listing_has_secondary_author() ) {
 		    epl_get_template_part('content-author-box-simple-grav.php',array('epl_author'	=>	$epl_author_secondary));
 	}
 	epl_reset_post_author();
@@ -445,7 +445,7 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 
 	// Second Author
 	if ( is_single() && !is_null($property) ) {
-		if( epl_listing_has_secondary_author() ) {
+		if( is_epl_post() && epl_listing_has_secondary_author() ) {
 				$epl_author = $epl_author_secondary;
 			    epl_get_template_part('widget-content-author-tall.php',$arg_list);
 		}

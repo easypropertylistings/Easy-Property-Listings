@@ -399,6 +399,10 @@ class EPL_SEARCH {
 	 */
 	protected function multiple_meta_query($query_field,$data) {
 
+		if ( empty( $data ) ) {
+			return;
+		}
+
 		$this_meta_query = array();
 
 		if( isset( $query_field['meta_key'] ) && !empty($query_field['meta_key']) ) {

@@ -5,9 +5,9 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports, rental, commercial, business, rural, land, residential, property listings, property management, realtor, broker, contact, crm, australia, wp-property, wp property, wp rentals, wp-realestate, wp real estate, multisite, property, Merv Barrett, real estate connected
 Requires at least: 3.9
-Tested up to: 4.7.4
+Tested up to: 4.8
 
-Stable Tag: 3.1.11
+Stable Tag: 3.1.14
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.15 May 17, 2017 =
+
+* Fix: Car searching Any will now return listings with no carport or garage.
+
+= 3.1.14 May 9, 2017 =
+
+* Tweak: Allow author box to be used on non Easy Property Listings posts without error.
+* Tweak: Removed Brazilian Portuguese from plugin as language package is now served from WordPress.org
 
 = 3.1.12 April 27, 2017 =
 
