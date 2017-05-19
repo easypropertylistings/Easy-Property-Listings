@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.8
 
-Stable Tag: 3.1.14
+Stable Tag: 3.1.15
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.16 May 19, 2017 =
+
+* New: Filter epl_property_category_value for altering house category.
+* Tweak: Ability to display multiple categories on listings.
 
 = 3.1.15 May 17, 2017 =
 
