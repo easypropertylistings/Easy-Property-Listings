@@ -494,9 +494,15 @@ function epl_listing_load_meta_property_category() {
  */
 function epl_listing_meta_property_category_value( $key ) {
 	$array = epl_listing_load_meta_property_category();
-	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
+	$key = (array) $key;
+	$values = array();
+	foreach($key as $single) {
+		$values[] = array_key_exists( $single , $array ) && !empty( $array[$single] )  ? $array[$single] : $single;
+	}
 
-	return $value;
+	$value = implode(', ',$values);
+
+	return apply_filters('epl_property_category_value',$value);
 }
 
 /**
