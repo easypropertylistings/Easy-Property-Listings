@@ -1,6 +1,6 @@
 # [Easy Property Listings](https://easypropertylistings.com.au/)  #
 
-![Plugin Version](https://img.shields.io/wordpress/plugin/v/easy-propery-listings.svg?maxAge=2592000) ![Total Downloads](https://img.shields.io/wordpress/plugin/dt/easy-property-listings.svg?maxAge=2592000) ![Plugin Rating](https://img.shields.io/wordpress/plugin/r/easy-property-listings.svg?maxAge=2592000) ![WordPress Compatibility](https://img.shields.io/wordpress/v/easy-property-listings.svg?maxAge=2592000) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/easypropertylistings/Easy-Property-Listings/blob/master/license.txt)
+![Plugin Version](https://img.shields.io/wordpress/plugin/v/easy-property-listings.svg?maxAge=2592000) ![Total Downloads](https://img.shields.io/wordpress/plugin/dt/easy-property-listings.svg?maxAge=2592000) ![Plugin Rating](https://img.shields.io/wordpress/plugin/r/easy-property-listings.svg?maxAge=2592000) ![WordPress Compatibility](https://img.shields.io/wordpress/v/easy-property-listings.svg?maxAge=2592000) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/easypropertylistings/Easy-Property-Listings/blob/master/license.txt)
 
 ### Welcome to our GitHub Repository
 
