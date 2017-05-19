@@ -249,6 +249,14 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.16', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Filter epl_property_category_value for altering house category.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Ability to display multiple categories on listings.', 'easy-property-listings'  );?></li>
+					</ul>
+
+
 					<h4><?php _e( 'Version 3.1.15', 'easy-property-listings'  );?></h4>
 
 					<ul>
