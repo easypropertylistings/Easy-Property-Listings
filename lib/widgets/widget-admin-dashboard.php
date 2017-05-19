@@ -44,6 +44,7 @@ function epl_status_dashboard_widget_callback() {
 	$activate_post_types = isset($epl_settings['activate_post_types'])?$epl_settings['activate_post_types'] : array();
 	$activate_post_types = apply_filters('epl_filter_dashboard_widget_posts',$activate_post_types); ?>
 	<div class="main">
+		<?php //epl_dashboard_widget_offer(); ?>
 		<ul class="epl_status_list">
 		<?php
 			if( !empty($activate_post_types) ) {
