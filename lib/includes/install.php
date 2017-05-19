@@ -118,10 +118,10 @@ function epl_install() {
 		update_option( 'epl_version', $epl_data['Version'] );
 	}
 
-	$adds_display = get_transient( 'epl_not_display_adds' );
+	$notice_display = get_transient( 'epl_admin_notices_display' );
 
-	if( !$adds_display ) {
-		set_transient( 'epl_not_display_adds', true, 60*60*24*14 );
+	if( !$notice_display ) {
+		set_transient( 'epl_admin_notices_display', true, 60*60*24*14 );
 	}
 
 	// Bail if activating from network, or bulk
