@@ -2239,3 +2239,16 @@ function epl_property_search_not_found_callback() {
 <?php
 }
 add_action( 'epl_property_search_not_found' , 'epl_property_search_not_found_callback' );
+
+/**
+ * Listing Status to Post Class
+ *
+ * @since 3.1.16
+ */
+function epl_property_post_class_listing_status_callback( $classes ) {
+
+	return $classes;
+
+
+}
+add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
