@@ -747,7 +747,7 @@ add_action('epl_property_secondary_heading','epl_property_secondary_heading');
  */
 function epl_property_category() {
 	global $property;
-	echo $property->get_property_category( 'none' );
+	echo $property->get_property_category( 'value' );
 }
 
 /**
@@ -889,7 +889,7 @@ function epl_property_tab_section() {
 		<?php
 			//Land Category
 			if( 'land' == $property->post_type || 'commercial_land' == $property->post_type ) {
-				echo '<div class="epl-land-category">' . $property->get_property_land_category() . '</div>';
+				echo '<div class="epl-land-category">' . $property->get_property_land_category('value') . '</div>';
 			}
 
 			//Commercial Options
@@ -2251,6 +2251,7 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 
 		$property_status	= get_property_meta('property_status');
 		$property_under_offer	= get_property_meta('property_under_offer');
+		$commercial_type	= get_property_meta('property_com_listing_type');
 		$class_prefix		= 'epl-status-';
 
 		if ( $property_status != '' ) {
@@ -2258,6 +2259,10 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 		}
 		if ( $property_under_offer == 'yes' && $property_status != 'sold' ) {
 			$classes[] = $class_prefix . 'under-offer';
+		}
+		if ( $commercial_type != '' ) {
+			$class_prefix		= 'epl-commercial-type-';
+			$classes[] = $class_prefix . strtolower( $commercial_type );
 		}
 	}
 	return $classes;
