@@ -34,7 +34,7 @@ add_action('init', 'epl_flush_rewrite_rules');
  */
 function epl_dashboard_widget_offer_rough() {
 
-	if ( has_filter( 'epl_extensions_options_filter_new' ) )
+	if ( has_filter( 'epl_extensions_options_filter_new' ) && !get_transient( 'epl_admin_notices_display' ) )
 		return;
 
 
@@ -52,7 +52,7 @@ function epl_dashboard_widget_offer_rough() {
  */
 function epl_admin_sidebar () {
 
-	if ( has_filter( 'epl_extensions_options_filter_new' ) )
+	if ( has_filter( 'epl_extensions_options_filter_new' ) && !get_transient( 'epl_admin_notices_display' ) )
 		return;
 
 	$service_banners = array(
@@ -106,7 +106,7 @@ function epl_admin_sidebar () {
  * @since 3.1.6
  */
 function epl_dashboard_widget_offer () {
-	if ( has_filter( 'epl_extensions_options_filter_new' ) )
+	if ( has_filter( 'epl_extensions_options_filter_new' ) && !get_transient( 'epl_admin_notices_display' ) )
 		return;
 
 	$service_banners = array(
@@ -145,7 +145,7 @@ function epl_dashboard_widget_offer () {
  * @since 3.1.6
  */
 function epl_dashboard_widget_offer_post_types () {
-	if ( has_filter( 'epl_extensions_options_filter_new' ) )
+	if ( has_filter( 'epl_extensions_options_filter_new' ) && !get_transient( 'epl_admin_notices_display' ) )
 		return;
 
 	$service_banners = array(
@@ -197,7 +197,7 @@ function epl_dashboard_widget_offer_post_types () {
  * @since 3.1.6
  */
 function epl_dashboard_widget_offer_post_types_last () {
-	if ( has_filter( 'epl_extensions_options_filter_new' ) )
+	if ( has_filter( 'epl_extensions_options_filter_new' ) && !get_transient( 'epl_admin_notices_display' ) )
 		return;
 
 	echo '<a target="_blank" href="https://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_store">
@@ -214,7 +214,7 @@ function epl_dashboard_widget_offer_post_types_last () {
 */
 function epl_extension_notice_offer() {
 
-	if ( has_filter( 'epl_extensions_options_filter_new' ) )
+	if ( has_filter( 'epl_extensions_options_filter_new' ) && !get_transient( 'epl_admin_notices_display' ) )
 		return;
 
 	$screen = get_current_screen();
