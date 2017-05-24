@@ -1079,14 +1079,18 @@ function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
  *
  * @since 2.0
  */
-function epl_sorting_options() {
+function epl_sorting_options($post_type = null) {
+
+	if( is_null($post_type) ) {
+		$post_type = get_queried_object()->name;
+	}
 
 	return apply_filters('epl_sorting_options',array(
 		array(
 			'id'		=>	'high',
 			'label'		=>	__('Price: High to Low','easy-property-listings' ),
 			'type'		=>	'meta',
-			'key'		=>	is_post_type_archive( array('rental') ) ? 'property_rent':'property_price',
+			'key'		=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
 			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value_num',
 		),
@@ -1094,7 +1098,7 @@ function epl_sorting_options() {
 			'id'	=>	'low',
 			'label'	=>	__('Price: Low to High','easy-property-listings' ),
 			'type'	=>	'meta',
-			'key'	=>	is_post_type_archive( array('rental') ) ? 'property_rent':'property_price',
+			'key'	=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
 			'order'	=>	'ASC',
 			'orderby'	=>	'meta_value_num',
 
@@ -2174,10 +2178,12 @@ add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
  */
 function epl_add_orderby_args($args) {
 
+	$post_type = current($args['post_type']);
+
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 
 		$orderby = sanitize_text_field(trim($_GET['sortby']));
-		$sorters = epl_sorting_options();
+		$sorters = epl_sorting_options($post_type);
 
 		foreach($sorters as $sorter) {
 
