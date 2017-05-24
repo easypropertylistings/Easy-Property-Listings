@@ -2239,3 +2239,27 @@ function epl_property_search_not_found_callback() {
 <?php
 }
 add_action( 'epl_property_search_not_found' , 'epl_property_search_not_found_callback' );
+
+/**
+ * Add Listing Status and Under Offer to Post Class
+ *
+ * @since 3.1.16
+ */
+function epl_property_post_class_listing_status_callback( $classes ) {
+
+	if ( is_epl_post() ) {
+
+		$property_status	= get_property_meta('property_status');
+		$property_under_offer	= get_property_meta('property_under_offer');
+		$class_prefix		= 'epl-status-';
+
+		if ( $property_status != '' ) {
+			$classes[] = $class_prefix . strtolower( $property_status );
+		}
+		if ( $property_under_offer == 'yes' && $property_status != 'sold' ) {
+			$classes[] = $class_prefix . 'under-offer';
+		}
+	}
+	return $classes;
+}
+add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
