@@ -39,9 +39,9 @@ function epl_dashboard_widget_offer_rough() {
 
 
 	echo '<div class="epl-internal-ad">';
-		echo '<div>Remove these ads</div>';
+		echo '<div>' . __('Remove these ads?' , 'easy-property-listings') . '</div>';
 
-		echo '<div><a href="#">Purchase an extension remove me</a></div>';
+		echo '<div><a href="https://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_store">' . __('Purchase an extension remove me' , 'easy-property-listings') . '</a></div>';
 	echo '</div>';
 }
 
@@ -95,7 +95,7 @@ function epl_admin_sidebar () {
 	?>
 	<div class="epl-admin-offer" style="margin-bottom: 1em;">
 		<div><span><?php _e('Remove these ads?', 'easy-property-listings' ); ?><span></div>
-		<div><a href="http://easypropertylistings.com.au/extensions/"><?php _e('Purchase and activate any extension', 'easy-property-listings' ); ?> &#x27F6;</a></div>
+		<div><a href="http://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_store"><?php _e('Purchase and activate any extension', 'easy-property-listings' ); ?> &#x27F6;</a></div>
 	</div>
 <?php
 }
