@@ -392,9 +392,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.1.16 May 19, 2017 =
+= 3.1.16 May 24, 2017 =
 
 * New: Filter epl_property_category_value for altering house category.
+* New: Add Listing Status and Under Offer to Post Class
 * Tweak: Ability to display multiple categories on listings.
 
 = 3.1.15 May 17, 2017 =
