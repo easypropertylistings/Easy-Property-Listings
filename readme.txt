@@ -400,6 +400,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Ability to display multiple categories on listings.
 * Fix: Corrected returning of none and added value to get_property_category, get_property_land_category, get_property_commercial_category and get_property_rural_category functions.
 * Fix: Rental sorting error in listing shortcodes.
+* Fix: Author widget on pages with sorting.
 
 = 3.1.15 May 17, 2017 =
 
