@@ -42,7 +42,7 @@ class EPL_Widget_Author extends WP_Widget {
 		$d_icons	= $instance['d_icons'];
 		$d_bio		= $instance['d_bio'];
 
-		if ( is_singular() ) {
+		if ( is_epl_post_single() ) {
 			// Only retrieve global $property variable if singluar
 			global $property;
 			$hide_author_box	=	$property->get_property_meta('property_agent_hide_author_box');
