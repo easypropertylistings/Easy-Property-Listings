@@ -394,6 +394,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.1.16 May 25, 2017 =
 
+* New: Rebuilt search CSS containers for easier formatting with exact widths.
 * New: Filter epl_property_category_value for altering house category.
 * New: Add Listing Status and Under Offer to post class.
 * New: Added Commercial Type to post class.

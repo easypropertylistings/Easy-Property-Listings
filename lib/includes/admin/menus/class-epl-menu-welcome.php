@@ -252,6 +252,7 @@ class EPL_Welcome {
 					<h4><?php _e( 'Version 3.1.16', 'easy-property-listings'  );?></h4>
 
 					<ul>
+						<li><?php _e( 'New: Rebuilt search CSS containers for easier formatting with exact widths.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Filter epl_property_category_value for altering house category.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Add Listing Status and Under Offer to post class.', 'easy-property-listings'  );?></li>
 						<li><?php _e( 'New: Added Commercial Type to post class.', 'easy-property-listings'  );?></li>
