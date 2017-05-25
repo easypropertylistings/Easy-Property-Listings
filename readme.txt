@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports, rental,
 Requires at least: 3.9
 Tested up to: 4.8
 
-Stable Tag: 3.1.14
+Stable Tag: 3.1.15
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,17 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.16 May 25, 2017 =
+
+* New: Rebuilt search CSS containers for easier formatting with exact widths.
+* New: Filter epl_property_category_value for altering house category.
+* New: Add Listing Status and Under Offer to post class.
+* New: Added Commercial Type to post class.
+* Tweak: Ability to display multiple categories on listings.
+* Fix: Corrected returning of none and added value to get_property_category, get_property_land_category, get_property_commercial_category and get_property_rural_category functions.
+* Fix: Rental sorting error in listing shortcodes.
+* Fix: Author widget on pages with sorting.
 
 = 3.1.15 May 17, 2017 =
 
