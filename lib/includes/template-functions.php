@@ -747,7 +747,7 @@ add_action('epl_property_secondary_heading','epl_property_secondary_heading');
  */
 function epl_property_category() {
 	global $property;
-	echo $property->get_property_category( 'none' );
+	echo $property->get_property_category( 'value' );
 }
 
 /**
@@ -889,7 +889,7 @@ function epl_property_tab_section() {
 		<?php
 			//Land Category
 			if( 'land' == $property->post_type || 'commercial_land' == $property->post_type ) {
-				echo '<div class="epl-land-category">' . $property->get_property_land_category() . '</div>';
+				echo '<div class="epl-land-category">' . $property->get_property_land_category('value') . '</div>';
 			}
 
 			//Commercial Options
@@ -1079,14 +1079,18 @@ function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
  *
  * @since 2.0
  */
-function epl_sorting_options() {
+function epl_sorting_options($post_type = null) {
+
+	if( is_null($post_type) ) {
+		$post_type = get_queried_object()->name;
+	}
 
 	return apply_filters('epl_sorting_options',array(
 		array(
 			'id'		=>	'high',
 			'label'		=>	__('Price: High to Low','easy-property-listings' ),
 			'type'		=>	'meta',
-			'key'		=>	is_post_type_archive( array('rental') ) ? 'property_rent':'property_price',
+			'key'		=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
 			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value_num',
 		),
@@ -1094,7 +1098,7 @@ function epl_sorting_options() {
 			'id'	=>	'low',
 			'label'	=>	__('Price: Low to High','easy-property-listings' ),
 			'type'	=>	'meta',
-			'key'	=>	is_post_type_archive( array('rental') ) ? 'property_rent':'property_price',
+			'key'	=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
 			'order'	=>	'ASC',
 			'orderby'	=>	'meta_value_num',
 
@@ -2174,10 +2178,12 @@ add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
  */
 function epl_add_orderby_args($args) {
 
+	$post_type = current($args['post_type']);
+
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 
 		$orderby = sanitize_text_field(trim($_GET['sortby']));
-		$sorters = epl_sorting_options();
+		$sorters = epl_sorting_options($post_type);
 
 		foreach($sorters as $sorter) {
 
@@ -2239,3 +2245,32 @@ function epl_property_search_not_found_callback() {
 <?php
 }
 add_action( 'epl_property_search_not_found' , 'epl_property_search_not_found_callback' );
+
+/**
+ * Add Listing Status and Under Offer to Post Class
+ *
+ * @since 3.1.16
+ */
+function epl_property_post_class_listing_status_callback( $classes ) {
+
+	if ( is_epl_post() ) {
+
+		$property_status	= get_property_meta('property_status');
+		$property_under_offer	= get_property_meta('property_under_offer');
+		$commercial_type	= get_property_meta('property_com_listing_type');
+		$class_prefix		= 'epl-status-';
+
+		if ( $property_status != '' ) {
+			$classes[] = $class_prefix . strtolower( $property_status );
+		}
+		if ( $property_under_offer == 'yes' && $property_status != 'sold' ) {
+			$classes[] = $class_prefix . 'under-offer';
+		}
+		if ( $commercial_type != '' ) {
+			$class_prefix		= 'epl-commercial-type-';
+			$classes[] = $class_prefix . strtolower( $commercial_type );
+		}
+	}
+	return $classes;
+}
+add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );

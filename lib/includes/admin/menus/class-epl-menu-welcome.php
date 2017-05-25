@@ -249,6 +249,20 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.16', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Rebuilt search CSS containers for easier formatting with exact widths.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Filter epl_property_category_value for altering house category.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Add Listing Status and Under Offer to post class.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Added Commercial Type to post class.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Ability to display multiple categories on listings.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Corrected returning of none and added value to get_property_category, get_property_land_category, get_property_commercial_category and get_property_rural_category functions.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Rental sorting error in listing shortcodes.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Author widget on pages with sorting.', 'easy-property-listings'  );?></li>
+					</ul>
+
+
 					<h4><?php _e( 'Version 3.1.15', 'easy-property-listings'  );?></h4>
 
 					<ul>

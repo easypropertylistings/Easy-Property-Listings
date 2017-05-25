@@ -118,6 +118,12 @@ function epl_install() {
 		update_option( 'epl_version', $epl_data['Version'] );
 	}
 
+	$notice_display = get_transient( 'epl_admin_notices_display' );
+
+	if( !$notice_display ) {
+		set_transient( 'epl_admin_notices_display', true, 60*60*24*14 );
+	}
+
 	// Bail if activating from network, or bulk
 	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 		return;
