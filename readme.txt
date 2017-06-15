@@ -392,6 +392,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.1.17 June 15, 2017 =
+
+* Fix: Geocoding Address with only partial address details will now generate coordinates.
+* Fix: Sorting rentals after performing search would sometimes return no results.
+
 = 3.1.16 May 25, 2017 =
 
 * New: Rebuilt search CSS containers for easier formatting with exact widths.
