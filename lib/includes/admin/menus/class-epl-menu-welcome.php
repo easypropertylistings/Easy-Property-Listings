@@ -249,7 +249,7 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
-					<h4><?php _e( 'Version 3.1.16', 'easy-property-listings'  );?></h4>
+					<h4><?php _e( 'Version 3.1.17', 'easy-property-listings'  );?></h4>
 
 					<ul>
 						<li><?php _e( 'Fix: Geocoding Address with only partial address details will now generate coordinates.', 'easy-property-listings'  );?></li>

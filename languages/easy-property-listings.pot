@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.1.17\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2017-06-15 13:52+0800\n"
+"POT-Creation-Date: 2017-06-15 13:56+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -1581,8 +1581,7 @@ msgid "Full Change Log"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:252
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:259
-msgid "Version 3.1.16"
+msgid "Version 3.1.17"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:255
@@ -1593,6 +1592,10 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:256
 msgid "Fix: Sorting rentals after performing search would sometimes return no results."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:259
+msgid "Version 3.1.16"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:262
