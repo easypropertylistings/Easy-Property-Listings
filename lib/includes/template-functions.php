@@ -1082,7 +1082,7 @@ function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
 function epl_sorting_options($post_type = null) {
 
 	if( is_null($post_type) ) {
-		$post_type = get_queried_object()->name;
+		$post_type = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_type']) : 'property';
 	}
 
 	return apply_filters('epl_sorting_options',array(
