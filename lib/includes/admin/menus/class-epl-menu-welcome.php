@@ -249,6 +249,12 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.18', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'Fix: Corrected Commercial and Business epl_property_suburb function to only display suburb.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.17', 'easy-property-listings'  );?></h4>
 
 					<ul>
