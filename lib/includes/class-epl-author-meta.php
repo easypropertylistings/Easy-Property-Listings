@@ -91,10 +91,21 @@ class EPL_Author_Meta {
 	 * @since version 1.3
 	 */
     function get_twitter_html($html = ''){
+
     	if ( $this->twitter != '' ) {
+
+    		if( (strpos('http://',$this->twitter) == 0 ) || (strpos('https://',$this->twitter) == 0 ) ) {
+    			// absolute url
+    			$twitter = $this->twitter;
+
+    		} else {
+    			// relative url
+    			$twitter = 'http://twitter.com/' . $this->twitter;
+    		}
+
 			$html = '
 				<a class="epl-author-icon author-icon twitter-icon-24"
-					href="http://twitter.com/' . $this->twitter . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Twitter', 'easy-property-listings' ).'">'.
+					href="' . $twitter . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Twitter', 'easy-property-listings' ).'">'.
 					apply_filters( 'epl_author_icon_twitter' , __('Twitter', 'easy-property-listings' )).
 				'</a>';
 		}
@@ -109,9 +120,19 @@ class EPL_Author_Meta {
 	 */
     function get_google_html($html = ''){
     	if ( $this->google != '' ) {
+
+    		if( (strpos('http://',$this->google) == 0 ) || (strpos('https://',$this->google) == 0 ) ) {
+    			// absolute url
+    			$google = $this->google;
+
+    		} else {
+    			// relative url
+    			$google = 'http://plus.google.com/' . $this->google;
+    		}
+
 			$html = '
 				<a class="epl-author-icon author-icon google-icon-24"
-					href="https://plus.google.com/' . $this->google . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Google', 'easy-property-listings' ).'">'.
+					href="' . $google . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Google', 'easy-property-listings' ).'">'.
 					apply_filters( 'epl_author_icon_google' , __('Google', 'easy-property-listings' )).
 				'</a>';
 		}
@@ -125,10 +146,21 @@ class EPL_Author_Meta {
 	 * @since version 1.3
 	 */
     function get_facebook_html($html = ''){
+
     	if ( $this->facebook != '' ) {
+
+    		if( (strpos('http://',$this->facebook) == 0 ) || (strpos('https://',$this->facebook) == 0 ) ) {
+    			// absolute url
+    			$facebook = $this->facebook;
+
+    		} else {
+    			// relative url
+    			$facebook = 'http://facebook.com/' . $this->facebook;
+    		}
+
 			$html = '
 				<a class="epl-author-icon author-icon facebook-icon-24"
-					href="http://facebook.com/' . $this->facebook . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Facebook', 'easy-property-listings' ).'">'.
+					href="' . $facebook . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->name.' '.__('on Facebook', 'easy-property-listings' ).'">'.
 					apply_filters( 'epl_author_icon_facebook' , __('Facebook', 'easy-property-listings' )).
 				'</a>';
 		}
