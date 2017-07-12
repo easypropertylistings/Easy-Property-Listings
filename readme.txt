@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 4.8
 
-Stable Tag: 3.1.16
+Stable Tag: 3.1.17
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.18 July 7, 2017 =
+
+* Fix: Corrected Commercial and Business epl_property_suburb function to only display suburb.
+
+= 3.1.17 June 15, 2017 =
+
+* Fix: Geocoding Address with only partial address details will now generate coordinates.
+* Fix: Sorting rentals after performing search would sometimes return no results.
 
 = 3.1.16 May 25, 2017 =
 

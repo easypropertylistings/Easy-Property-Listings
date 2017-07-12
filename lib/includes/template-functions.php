@@ -526,27 +526,33 @@ add_action('epl_property_address','epl_property_the_address');
  * Kept for listing templates extensions which use this function
  *
  * @since 1.3
+ * @revised 3.1.18
  */
 function epl_property_suburb() {
 	global $property;
 	// Commercial and Business Address
-	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) {
-		if ( $property->get_property_meta('property_address_display') == 'yes' && $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
-			<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
+	if ($property->post_type == 'commercial' || $property->post_type == 'business' ) { ?>
 
-		<?php }
-		echo '<span class="entry-title-sub">';
-		if ( $property->get_property_meta('property_address_display') == 'yes') { ?>
-			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb') . ', '; ?></span>
-		<?php } ?>
+		<span class="entry-title-sub">
+			<?php if ( $property->get_property_meta('property_com_display_suburb') == 'yes') { ?>
+				<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb')?></span>
+			<?php } else { ?>
+
+				<?php if ( $property->get_property_meta('property_address_city') != '' ) { ?>
+					<span class="item-city"><?php echo $property->get_property_meta('property_address_city') . ' '; ?></span>
+				<?php } ?>
+
 				<span class="item-state"><?php echo $property->get_property_meta('property_address_state') . ' '; ?></span>
 				<span class="item-pcode"><?php echo $property->get_property_meta('property_address_postal_code'); ?></span>
-			</span>
-		<?php
+			<?php } ?>
+		</span>
+
+	<?php
 	} else { ?>
 		<span class="entry-title-sub">
 			<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb')?></span>
-		</span> <?php
+		</span>
+	<?php
 	}
 }
 add_action( 'epl_property_suburb' , 'epl_property_suburb' );
@@ -1082,7 +1088,7 @@ function epl_widget_listing_address ( $d_suburb = '' , $d_street = '' ) {
 function epl_sorting_options($post_type = null) {
 
 	if( is_null($post_type) ) {
-		$post_type = get_queried_object()->name;
+		$post_type = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_type']) : 'property';
 	}
 
 	return apply_filters('epl_sorting_options',array(
