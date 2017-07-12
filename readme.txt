@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 4.8
 
-Stable Tag: 3.1.17
+Stable Tag: 3.1.18
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,16 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.19 July 12, 2017 =
+
+* New: Filter added to allow filtering of property meta with epl_meta_filter_{property_meta_key_name}.
+* Tweak: Allow Full URL for user profile, Twitter, Facebook, Google Plus accounts.
+* Fix: Corrected the epl_property_sub_title_commercial_features filter to allow altering.
+* Fix: Corrected the epl_property_sub_title_rural_features filter to allow altering.
+* Fix: Corrected the epl_switch_views_sorting_title_sort filter to allow altering.
+* Fix: Corrected the epl_switch_views_sorting_title_list filter to allow altering.
+* Fix: Corrected the epl_switch_views_sorting_title_grid filter to allow altering.
 
 = 3.1.18 July 7, 2017 =
 
