@@ -70,10 +70,10 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {
 				self::$instance = new Easy_Property_Listings;
 				self::$instance->setup_constants();
-				self::$instance->includes();
 
 				add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
-
+				
+				self::$instance->includes();
 				// Search fields displayer object.
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->search_fields->init();
