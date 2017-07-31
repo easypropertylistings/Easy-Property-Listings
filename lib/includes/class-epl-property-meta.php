@@ -1203,7 +1203,7 @@ class EPL_Property_Meta {
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
 			$label = apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
 			$return = '
-			<li class="land-size">'.$label.' ' . $this->get_property_meta('property_building_area') .' '.$building_unit. '</li>';
+			<li class="building-size">'.$label.' ' . $this->get_property_meta('property_building_area') .' '.$building_unit. '</li>';
 			return apply_filters('epl_get_property_building_area_value',$return);
 		}
 
