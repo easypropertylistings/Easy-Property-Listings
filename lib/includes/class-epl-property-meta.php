@@ -122,17 +122,20 @@ class EPL_Property_Meta {
 	 * @return string|integer 	Return the value of the meta key, string, or integer.
 	 */
 	public function get_property_meta( $meta_key , $allowzero = true ) {
+		$value = null;
 		if(isset($this->meta[$meta_key])) {
 			if(isset($this->meta[$meta_key][0])) {
 				if($allowzero === true){
-					return  maybe_unserialize($this->meta[$meta_key][0]);
+					$value =  maybe_unserialize($this->meta[$meta_key][0]);
 				} elseif(intval($this->meta[$meta_key][0]) == 0) {
-					return;
+					$value = '';
 				} else {
-					return maybe_unserialize($this->meta[$meta_key][0]);
+					$value = maybe_unserialize($this->meta[$meta_key][0]);
 				}
 			}
 		}
+
+		return apply_filters( 'epl_meta_filter_'.$meta_key, $value );
 	}
 
 	/**
