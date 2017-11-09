@@ -404,6 +404,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Location taxonomy search redirection.
 * Tweak: Added option to use a seperate template for search results.
 
+
+* Tweak: Corrected building size css class name from land-size to building-size.
+* New: Added a new CSS class epl-property-features  to the listing features column.
+
+
 = 3.1.19 July 12, 2017 =
 
 * New: Filter added to allow filtering of property meta with epl_meta_filter_{property_meta_key_name}.
