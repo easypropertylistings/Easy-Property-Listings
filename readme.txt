@@ -403,6 +403,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Filter for epl_get_unique_post_meta_values to adjust data parsing.
 * Fix: Translation issues for search dropdowns.
 * Fix: Location taxonomy search redirection.
+* Fix: Sorting by Unique ID in Dashboard manage listings.
 * Tweak: Added option to use a seperate template for search results.
 * Tweak: Corrected building size css class name from land-size to building-size.
 

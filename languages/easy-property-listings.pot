@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.1.20\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2017-11-09 18:44+0800\n"
+"POT-Creation-Date: 2017-11-09 19:39+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -271,7 +271,7 @@ msgstr ""
 
 #: lib/compatibility/listing-meta-compat.php:672
 #: lib/includes/class-epl-property-meta.php:1028 lib/meta-boxes/meta-boxes.php:309
-#: lib/post-types/post-types.php:260 lib/widgets/widget-functions.php:141
+#: lib/post-types/post-types.php:265 lib/widgets/widget-functions.php:141
 #: lib/widgets/widget-functions.php:494
 msgid "Rooms"
 msgstr ""
@@ -900,7 +900,7 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1207 lib/meta-boxes/meta-boxes.php:24
-#: lib/post-types/post-types.php:47 lib/post-types/post-types.php:440
+#: lib/post-types/post-types.php:47 lib/post-types/post-types.php:445
 #: lib/widgets/widget-admin-dashboard.php:116 lib/widgets/widget-admin-dashboard.php:133
 #: lib/widgets/widget-admin-dashboard.php:155 lib/widgets/widget-functions.php:62
 #: lib/widgets/widget-listing.php:138 lib/widgets/widget-listing.php:254
@@ -1586,51 +1586,55 @@ msgstr ""
 msgid "Version 3.1.20"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:256
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:255
 msgid ""
 "New: Added a new CSS class epl-property-features  to the listing features column."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:257
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:256
 msgid ""
 "New: Search Query Filter epl_search_query_pre_parse allows altering of query after "
 "its ready to be processed. I.e. after query is setup but before parsing it."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:258
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:257
 msgid ""
 "New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data "
 "which is fed to epl search class."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:259
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:258
 msgid ""
 "New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data "
 "which is fed to epl search class."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:260
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:259
 msgid ""
 "New: Search Query Filter epl_preprocess_search_tax_query filter to alter taxonomy "
 "query."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:261
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:260
 msgid ""
 "New: Search results template filter epl_common_search_template allowing using an "
 "alternative template for search results."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:262
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:261
 msgid "New: Filter for epl_get_unique_post_meta_values to adjust data parsing."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:263
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:262
 msgid "Fix: Translation issues for search dropdowns."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:264
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:263
 msgid "Fix: Location taxonomy search redirection."
+msgstr ""
+
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:264
+msgid "Fix: Sorting by Unique ID in Dashboard manage listings."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:265
@@ -7180,14 +7184,14 @@ msgid "The following details will appear in your author box and widgets."
 msgstr ""
 
 #: lib/meta-boxes/meta-boxes.php:25 lib/post-types/post-types.php:48
-#: lib/post-types/post-types.php:441 lib/widgets/widget-admin-dashboard.php:118
+#: lib/post-types/post-types.php:446 lib/widgets/widget-admin-dashboard.php:118
 #: lib/widgets/widget-admin-dashboard.php:138 lib/widgets/widget-admin-dashboard.php:159
 #: lib/widgets/widget-listing.php:141 lib/widgets/widget-listing.php:257
 msgid "Withdrawn"
 msgstr ""
 
 #: lib/meta-boxes/meta-boxes.php:26 lib/post-types/post-types.php:49
-#: lib/post-types/post-types.php:442 lib/widgets/widget-admin-dashboard.php:119
+#: lib/post-types/post-types.php:447 lib/widgets/widget-admin-dashboard.php:119
 #: lib/widgets/widget-admin-dashboard.php:139 lib/widgets/widget-admin-dashboard.php:160
 #: lib/widgets/widget-listing.php:142 lib/widgets/widget-listing.php:258
 msgid "Off Market"
@@ -7795,7 +7799,7 @@ msgstr ""
 msgid "Agent"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:143 lib/post-types/post-types.php:227
+#: lib/post-types/post-type-business.php:143 lib/post-types/post-types.php:232
 msgid "Important! Set a Heading"
 msgstr ""
 
@@ -8131,19 +8135,19 @@ msgstr ""
 msgid "Search Value."
 msgstr ""
 
-#: lib/post-types/post-types.php:251
+#: lib/post-types/post-types.php:256
 msgid "Beds"
 msgstr ""
 
-#: lib/post-types/post-types.php:252
+#: lib/post-types/post-types.php:257
 msgid "Baths"
 msgstr ""
 
-#: lib/post-types/post-types.php:258
+#: lib/post-types/post-types.php:263
 msgid "Room"
 msgstr ""
 
-#: lib/post-types/post-types.php:309
+#: lib/post-types/post-types.php:314
 msgid "No"
 msgstr ""
 
