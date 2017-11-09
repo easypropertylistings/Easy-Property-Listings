@@ -249,6 +249,20 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
+					<h4><?php _e( 'Version 3.1.20', 'easy-property-listings'  );?></h4>
+
+					<ul>
+						<li><?php _e( 'New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data which is fed to epl search class.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Search Query Filter epl_preprocess_search_tax_query filter to alter taxonomy query.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Search results template filter epl_common_search_template allowing using an alternative template for search results.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'New: Filter for epl_get_unique_post_meta_values to adjust data parsing.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Translation issues for search dropdowns.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Fix: Location taxonomy search redirection.', 'easy-property-listings'  );?></li>
+						<li><?php _e( 'Tweak: Added option to use a seperate template for search results.', 'easy-property-listings'  );?></li>
+					</ul>
+
 					<h4><?php _e( 'Version 3.1.19', 'easy-property-listings'  );?></h4>
 
 					<ul>
