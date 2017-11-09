@@ -1759,15 +1759,19 @@ function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = '
     if( empty( $key ) )
         return;
 
+    $type = (array) $type;
+    $type = array_map( 'sanitize_text_field', $type );
+    $type_str = " ( '".implode("','", $type)."' ) ";
     $res = $wpdb->get_col( $wpdb->prepare( "
 SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
 LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
 WHERE pm.meta_key = '%s'
 AND p.post_status = '%s'
-AND p.post_type = '%s'
-", $key, $status, $type ) );
+AND p.post_type IN $type_str
+", $key, $status ) );
 
 	$res = array_filter($res);
+
 	foreach($res as $key =>	&$elem) {
 		$elem 	= maybe_unserialize($elem);
 		if(!empty($elem) && is_array($elem) ) {
@@ -1778,9 +1782,17 @@ AND p.post_type = '%s'
 		}
 
 	}
+
 	$res = array_filter($res);
-	if(!empty($res))
-    	return array_combine(array_filter($res), array_map('ucwords',array_filter($res)) );
+
+	$results = array();
+
+	foreach($res as $s_res) {
+		$results[$s_res] = __( ucwords($s_res) , 'easy-property-listings' );
+	}
+
+
+	return apply_filters('epl_get_unique_post_meta_values',$results,$key,$type);
 }
 
 /**

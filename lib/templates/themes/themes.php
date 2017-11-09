@@ -32,15 +32,32 @@ function epl_load_core_templates($template) {
 	if ( is_epl_post_single() ) {
 
 		$common_tpl		= apply_filters('epl_common_single_template','single-listing.php');
-		$post_tpl 		= 'single-'.str_Replace('_','-',get_post_type()).'.php';
+		$post_tpl 		= 'single-'.str_replace('_','-',get_post_type()).'.php';
 		$find[] 		= $post_tpl;
 		$find[] 		= epl_template_path() . $post_tpl;
 		$find[] 		= $common_tpl;
 		$find[] 		= epl_template_path() . $common_tpl;
 
+	} elseif ( epl_is_search() ) {
+
+		$common_tpl		= apply_filters('epl_common_search_template','archive-listing.php');
+
+		if( isset( $_GET['post_type'] ) ) {
+
+			if( is_array( $_GET['post_type'] ) ) {
+				$post_tpl = 'search-listing.php';
+			} else {
+				$post_tpl = 'search-'.sanitize_title( $_GET['post_type'] ).'.php';
+			}
+		}
+		$find[] 		=  $post_tpl;
+		$find[] 		= epl_template_path() . $post_tpl;
+		$find[] 		=  $common_tpl;
+		$find[] 		= epl_template_path() . $common_tpl;
+
 	} elseif ( is_epl_post_archive() ) {
 		$common_tpl		= apply_filters('epl_common_archive_template','archive-listing.php');
-		$post_tpl 		= 'archive-'.str_Replace('_','-',get_post_type()).'.php';
+		$post_tpl 		= 'archive-'.str_replace('_','-',get_post_type()).'.php';
 		$find[] 		=  $post_tpl;
 		$find[] 		= epl_template_path() . $post_tpl;
 		$find[] 		=  $common_tpl;

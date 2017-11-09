@@ -1215,7 +1215,7 @@ function epl_archive_sorting($query) {
 		if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 
 			$orderby = sanitize_text_field(trim($_GET['sortby']));
-			$sorters = epl_sorting_options();
+			$sorters = epl_sorting_options( $query->get( 'post_type') );
 
 			foreach($sorters as $sorter) {
 
