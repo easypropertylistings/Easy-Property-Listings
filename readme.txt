@@ -394,6 +394,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.1.20 November 10, 2017 =
 
+* New: Added a new CSS class epl-property-features  to the listing features column.
 * New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.
 * New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.
 * New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data which is fed to epl search class.
@@ -403,11 +404,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Translation issues for search dropdowns.
 * Fix: Location taxonomy search redirection.
 * Tweak: Added option to use a seperate template for search results.
-
-
 * Tweak: Corrected building size css class name from land-size to building-size.
-* New: Added a new CSS class epl-property-features  to the listing features column.
-
 
 = 3.1.19 July 12, 2017 =
 
