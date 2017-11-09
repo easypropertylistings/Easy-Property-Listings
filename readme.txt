@@ -394,7 +394,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.1.20 November 10, 2017 =
 
-* New: Added a new CSS class epl-property-features  to the listing features column.
+* New: Added a new CSS class epl-property-features to the listing features column.
 * New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.
 * New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.
 * New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data which is fed to epl search class.
