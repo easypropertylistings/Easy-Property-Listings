@@ -1210,6 +1210,22 @@ class EPL_Property_Meta {
 	}
 
 	/**
+	 * Get Building Energy Rating
+	 *
+	 * @since 3.1.20
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_energy_rating_value( $returntype = 'i' ) {
+		if(intval($this->get_property_meta('property_building_energy_rating')) != 0 ) {
+			$label = apply_filters('epl_get_property_energy_rating_label',__('EER (Energy Efficiency Rating):', 'easy-property-listings' ) );
+			$return = '
+			<li class="energy-rating">'.$label.' ' . $this->get_property_meta('property_building_energy_rating') . '</li>';
+			return apply_filters('epl_get_property_energy_rating_value',$return);
+		}
+	}
+
+	/**
 	 * Get New Construction
 	 *
 	 * @since 2.0
