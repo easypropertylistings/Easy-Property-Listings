@@ -1203,10 +1203,26 @@ class EPL_Property_Meta {
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
 			$label = apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
 			$return = '
-			<li class="land-size">'.$label.' ' . $this->get_property_meta('property_building_area') .' '.$building_unit. '</li>';
+			<li class="building-size">'.$label.' ' . $this->get_property_meta('property_building_area') .' '.$building_unit. '</li>';
 			return apply_filters('epl_get_property_building_area_value',$return);
 		}
 
+	}
+
+	/**
+	 * Get Building Energy Rating
+	 *
+	 * @since 3.1.20
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_energy_rating_value( $returntype = 'i' ) {
+		if(intval($this->get_property_meta('property_building_energy_rating')) != 0 ) {
+			$label = apply_filters('epl_get_property_energy_rating_label',__('EER (Energy Efficiency Rating):', 'easy-property-listings' ) );
+			$return = '
+			<li class="energy-rating">'.$label.' ' . $this->get_property_meta('property_building_energy_rating') . '</li>';
+			return apply_filters('epl_get_property_energy_rating_value',$return);
+		}
 	}
 
 	/**

@@ -5,9 +5,9 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 4.8
+Tested up to: 4.9
 
-Stable Tag: 3.1.18
+Stable Tag: 3.1.19
 
 License: GNU Version 2 or Any Later Version
 
@@ -391,6 +391,21 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.20 November 10, 2017 =
+
+* New: Added a new CSS class epl-property-features to the listing features column.
+* New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.
+* New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.
+* New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data which is fed to epl search class.
+* New: Search Query Filter epl_preprocess_search_tax_query filter to alter taxonomy query.
+* New: Search results template filter epl_common_search_template allowing using an alternative template for search results.
+* New: Filter for epl_get_unique_post_meta_values to adjust data parsing.
+* Fix: Translation issues for search dropdowns.
+* Fix: Location taxonomy search redirection.
+* Fix: Sorting by Unique ID in Dashboard manage listings.
+* Tweak: Added option to use a seperate template for search results.
+* Tweak: Corrected building size css class name from land-size to building-size.
 
 = 3.1.19 July 12, 2017 =
 
