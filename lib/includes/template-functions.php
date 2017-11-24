@@ -817,7 +817,7 @@ function epl_property_tab_section() {
 	$the_property_feature_list .= $property->get_property_year_built('l').' '.$property->get_property_parking('l').' ';
 	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
 	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
-	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_new_construction('l');
+	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_energy_rating_value('l').' '.$property->get_property_new_construction('l');
 
 	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_common_features', '' );
 
