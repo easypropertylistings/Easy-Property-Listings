@@ -230,6 +230,15 @@ function epl_archive_custom_excerpt_length( $length ) {
 }
 
 /**
+ * Since 3.1.20  filter which listing status shouldnt be displayed
+ * 
+ */
+function epl_hide_listing_statuses() {
+
+	return apply_filters( 'epl_hide_listing_statuses', array('withdrawn','offmarket') );
+}
+
+/**
  * Selecting Card Display Style
  *
  * Allows the use of one function where we can then select a different template when needed
@@ -255,7 +264,7 @@ function epl_property_blog($template='') {
 	}
 	$property_status = $property->get_property_meta('property_status');
 	// Status Removal Do Not Display Withdrawn or OffMarket listings
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( in_array( $property_status,epl_hide_listing_statuses() ) ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$action_check = has_action( 'epl_loop_template' );
@@ -386,7 +395,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 	}
 
 	// Status Removal
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( in_array( $property_status,epl_hide_listing_statuses() ) ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$arg_list = get_defined_vars();
@@ -407,7 +416,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 function epl_property_widget_list_option() {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
 	// Status Removal
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( in_array( $property_status,epl_hide_listing_statuses() ) ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		epl_get_template_part('widget-content-listing-list.php');
@@ -422,7 +431,7 @@ function epl_property_widget_list_option() {
 function epl_property_widget_image_only_option( $image ) {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
 	// Status Removal
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( in_array( $property_status,epl_hide_listing_statuses() ) ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$arg_list = get_defined_vars();
