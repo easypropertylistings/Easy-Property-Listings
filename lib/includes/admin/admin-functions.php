@@ -235,17 +235,6 @@ function epl_extension_notice_offer() {
 add_action( 'admin_notices', 'epl_extension_notice_offer' );
 
 /**
- * Return an array of all extensions with beta support
- *
- * Extensions should be added as 'extension-slug' => 'Extension Name'
- *
- * @return      array $extensions The array of extensions
- */
-function epl_get_beta_enabled_extensions() {
-	return apply_filters( 'epl_beta_enabled_extensions', array() );
-}
-
-/**
  * Check if a given extensions has beta support enabled
  *
  * @param       string $slug The slug of the extension to check

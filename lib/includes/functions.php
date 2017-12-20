@@ -2124,3 +2124,14 @@ function epl_parse_atts($atts) {
 	return isset($query['meta_query'])?$query['meta_query'] : false;
 
 }
+
+/**
+ * Return an array of all extensions with beta support
+ *
+ * Extensions should be added as 'extension-slug' => 'Extension Name'
+ *
+ * @return      array $extensions The array of extensions
+ */
+function epl_get_beta_enabled_extensions() {
+	return apply_filters( 'epl_beta_enabled_extensions', array() );
+}
