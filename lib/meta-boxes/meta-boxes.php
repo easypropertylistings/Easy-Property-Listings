@@ -66,7 +66,7 @@ function epl_meta_box_init() {
 			'sqft'		=>	__('Square Feet', 'easy-property-listings' )
 		)
 	);
-	$opts_frontage_unit = apply_filters (  'epl_opts_frontage_unit_filter', array(
+	$opts_length_unit = apply_filters (  'epl_opts_length_unit_filter', array(
 			'meter'		=>	__('Meter', 'easy-property-listings' ),
 			'foot'		=>	__('Foot', 'easy-property-listings' ),
 		)
@@ -454,7 +454,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_land_frontage_unit',
 							'label'		=>	__('Frontage Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'opts'		=>	$opts_frontage_unit
+							'opts'		=>	$opts_length_unit
 						),
 
 
@@ -469,7 +469,7 @@ function epl_meta_box_init() {
 							'name'		=>	'property_land_depth_unit',
 							'label'		=>	__('Depth Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'opts'		=>	$opts_frontage_unit
+							'opts'		=>	$opts_length_unit
 						),
 
 						array(
@@ -873,7 +873,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('Frontage Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
 							'exclude'	=>	array('commercial','business'),
-							'opts'		=>	$opts_frontage_unit
+							'opts'		=>	$opts_length_unit
 						),
 
 
@@ -890,7 +890,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('Depth Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
 							'exclude'	=>	array('commercial','business'),
-							'opts'		=>	$opts_frontage_unit
+							'opts'		=>	$opts_length_unit
 						),
 
 						array(
