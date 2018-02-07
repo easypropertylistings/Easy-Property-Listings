@@ -445,9 +445,8 @@ function epl_meta_box_init() {
 
 						array(
 							'name'		=>	'property_land_frontage',
-							'label'		=>	__('Land Area', 'easy-property-listings' ),
+							'label'		=>	__('Frontage', 'easy-property-listings' ),
 							'type'		=>	'decimal',
-							'exclude'	=>	array('commercial','business'),
 							'maxlength'	=>	'50'
 						),
 
@@ -455,7 +454,6 @@ function epl_meta_box_init() {
 							'name'		=>	'property_land_frontage_unit',
 							'label'		=>	__('Frontage Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'exclude'	=>	array('commercial','business'),
 							'opts'		=>	$opts_frontage_unit
 						),
 
@@ -464,7 +462,6 @@ function epl_meta_box_init() {
 							'name'		=>	'property_land_depth',
 							'label'		=>	__('Depth', 'easy-property-listings' ),
 							'type'		=>	'decimal',
-							'exclude'	=>	array('commercial','business'),
 							'maxlength'	=>	'50'
 						),
 
@@ -472,7 +469,6 @@ function epl_meta_box_init() {
 							'name'		=>	'property_land_depth_unit',
 							'label'		=>	__('Depth Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'exclude'	=>	array('commercial','business'),
 							'opts'		=>	$opts_frontage_unit
 						),
 
@@ -480,7 +476,6 @@ function epl_meta_box_init() {
 							'name'		=>	'property_land_depth_side',
 							'label'		=>	__('Depth Side', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'exclude'	=>	array('commercial','business'),
 							'opts'		=>	$opts_depth_side
 						),
 
@@ -867,7 +862,7 @@ function epl_meta_box_init() {
 
 						array(
 							'name'		=>	'property_land_frontage',
-							'label'		=>	__('Land Area', 'easy-property-listings' ),
+							'label'		=>	__('Frontage', 'easy-property-listings' ),
 							'type'		=>	'decimal',
 							'exclude'	=>	array('commercial','business'),
 							'maxlength'	=>	'50'
