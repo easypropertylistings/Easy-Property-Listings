@@ -1696,6 +1696,22 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			)
 		),
 
+		array(
+			'label'		=>	__('Beta Versions' , 'easy-property-listings' ),
+			'class'		=>	'core',
+			'id'		=>	'beta-versions',
+			'fields'	=>	array(
+				array(
+					'name'		=>	'enabled_betas',
+					'label'		=>	__('Enable Beta Versions', 'easy-property-listings' ),
+					'type'		=>	'checkbox',
+					'opts'		=>	epl_get_beta_enabled_extensions(),
+					'help'		=>	__('Checking any of the checkboxes will opt you in to receive pre-release update notifications. You can opt-out at any time. Pre-release updates do not install automatically, you will still have the opportunity to ignore update notifications.' , 'easy-property-listings' )
+				),
+
+			)
+		),
+
 	);
 
 	$fields = apply_filters('epl_display_options_filter', $fields);
@@ -2107,4 +2123,15 @@ function epl_parse_atts($atts) {
 	}
 	return isset($query['meta_query'])?$query['meta_query'] : false;
 
+}
+
+/**
+ * Return an array of all extensions with beta support
+ *
+ * Extensions should be added as 'extension-slug' => 'Extension Name'
+ *
+ * @return      array $extensions The array of extensions
+ */
+function epl_get_beta_enabled_extensions() {
+	return apply_filters( 'epl_beta_enabled_extensions', array() );
 }
