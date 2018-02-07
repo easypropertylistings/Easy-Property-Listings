@@ -29,7 +29,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		private $item_shortname;
 		private $version;
 		private $author;
-		private $api_url = 'https://easypropertylistings.com.au/edd-sl-api/';
+		private $api_url = 'http://dev.realestateconnected.com.au/easypropertylistings/edd-sl-api/';
 
 		/**
 		 * Class constructor
@@ -42,11 +42,16 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 * @param string  $_optname
 		 * @param string  $_api_url
 		 */
-		function __construct( $_file, $_item_name, $_version, $_author, $_optname = null, $_api_url = null ) {
+		function __construct( $_file, $_item_name, $_version, $_author, $_optname = null, $_api_url = null, $_item_id = null  ) {
+
 			global $epl_options;
 
 			$this->file           = $_file;
 			$this->item_name      = $_item_name;
+
+			if ( is_numeric( $_item_id ) ) {
+				$this->item_id = absint( $_item_id );
+			}
 
 			$this->item_shortname_without_prefix = preg_replace( '/[^a-zA-Z0-9_\s]/', '', str_replace( ' ', '_', strtolower( $this->item_name ) ) );
 			$this->item_shortname = 'epl_' . $this->item_shortname_without_prefix;
@@ -54,9 +59,12 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			$this->version        = $_version;
 
 			$this->license        = isset( $epl_options[ $this->item_shortname . '_license_key' ] ) ? trim( $epl_options[ $this->item_shortname . '_license_key' ] ) : '';
+
 			if(empty($this->license)) {
+
 				$epl_license = get_option('epl_license');
 				if(!empty($epl_license) && isset($epl_license[$this->item_shortname_without_prefix])) {
+
 					$this->license = $epl_license[$this->item_shortname_without_prefix];
 				}
 			}
@@ -71,14 +79,239 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			 * user having to reactive their license.
 			 */
 			if ( ! empty( $_optname ) && isset( $epl_options[ $_optname ] ) && empty( $this->license ) ) {
+
 				$this->license = trim( $epl_options[ $_optname ] );
 			}
 
 			// Setup hooks
 			$this->includes();
 			$this->hooks();
+
 			//$this->auto_updater();
-			$this->maybe_validate_license();
+			//$this->maybe_validate_license();
+		}
+
+		/**
+		 * Include the updater class
+		 *
+		 * @access  private
+		 * @return  void
+		 */
+		private function includes() {
+			if ( ! class_exists( 'EPL_SL_Plugin_Updater' ) )
+				require_once 'EPL_SL_Plugin_Updater.php';
+		}
+
+		/**
+		 * Setup hooks
+		 *
+		 * @access  private
+		 * @return  void
+		 */
+		private function hooks() {
+
+			// Activate license key on settings save
+			add_action( 'admin_init', array( $this, 'activate_license' ) );
+
+			// Deactivate license key
+			add_action( 'admin_init', array( $this, 'deactivate_license' ) );
+
+			// Updater
+			add_action( 'admin_init', array( $this, 'auto_updater' ), 0 );
+
+			add_action( 'in_plugin_update_message-' . plugin_basename( $this->file ), array( $this, 'plugin_row_license_missing' ), 10, 2 );
+
+
+			add_action( 'admin_notices', array( $this, 'license_notices' ), 5 );
+
+			add_action( 'admin_notices', array( $this, 'notices' ),20 );
+
+			// Register plugins for beta support
+			add_filter( 'epl_beta_enabled_extensions', array( $this, 'register_beta_support' ) );
+		}
+
+		/**
+		 * Auto updater
+		 *
+		 * @access  private
+		 * @global  array $epl_options
+		 * @return  void
+		 */
+		public function auto_updater() {
+
+			$license = get_option( $this->item_shortname . '_license_active' );
+
+			if( 'valid' !== $license ) {
+				// dont check for updates on unvalid licensed
+				return;
+			}
+
+			$betas = epl_get_option( 'enabled_betas', array() );
+
+			$args = array(
+				'version'   => $this->version,
+				'license'   => $this->license,
+				'author'    => $this->author,
+				'beta'      => function_exists( 'epl_extension_has_beta_support' ) && epl_extension_has_beta_support( $this->item_shortname ),
+			);
+
+			if( ! empty( $this->item_id ) ) {
+				$args['item_id']   = $this->item_id;
+			} else {
+				$args['item_name'] = $this->item_name;
+			}
+
+			// Setup the updater
+			$edd_updater = new EPL_SL_Plugin_Updater(
+				$this->api_url,
+				$this->file,
+				$args
+			);
+
+		}
+
+		/**
+		 * Activate the license key
+		 *
+		 * @access  public
+		 * @return  void
+		 */
+		public function activate_license() {
+
+			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
+				return;
+
+			if ( ! isset( $_POST['epl_license'] ) )
+				return;
+
+			if ( empty( $_POST['epl_license'][ $this->item_shortname ] ) ){
+
+				delete_option( $this->item_shortname . '_license_active' );
+
+				return;
+			}
+
+			foreach( $_POST as $key => $value ) {
+				if( false !== strpos( $key, 'license_key_deactivate' ) ) {
+					// Don't activate a key when deactivating a different key
+					return;
+				}
+			}
+
+			$license_active = get_option( $this->item_shortname . '_license_active' );
+
+			if ( 'valid' === $license_active ) {
+				return;
+			}
+
+			$license = sanitize_text_field( $_POST['epl_license'][ $this->item_shortname ] );
+
+			if( empty( $license ) ) {
+				return;
+			}
+
+			// Data to send to the API
+			$api_params = array(
+				'edd_action' => 'activate_license',
+				'license'    => $license,
+				'item_name'  => urlencode( $this->item_name ),
+				'url'        => home_url()
+			);
+
+			// Call the API
+			$response = wp_remote_get(
+				add_query_arg( $api_params, $this->api_url ),
+				array(
+					'timeout'   => 15,
+					//'body'      => $api_params,
+					'sslverify' => false
+				)
+			);
+
+			// Make sure there are no errors
+			if ( is_wp_error( $response ) )
+				return;
+
+			// Tell WordPress to look for updates
+			set_site_transient( 'update_plugins', null );
+
+			// Decode license data
+			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+			update_option( $this->item_shortname . '_license_active', $license_data->license );
+
+			if( ! (bool) $license_data->success ) {
+				set_transient( 'epl_license_error', $license_data, 1000 );
+			} else {
+				delete_transient( 'epl_license_error' );
+				$option                			= get_option( $this->item_shortname . '_license_status' );
+				$option['expired']  			= false;
+				$option['no_activations_left'] 	= false;
+				$option['item_name_mismatch']  	= false;
+				$option['missing']  			= false;
+				update_option( $this->item_shortname . '_license_status', $option );
+			}
+		}
+
+		/**
+		 * Deactivate the license key
+		 *
+		 * @access  public
+		 * @return  void
+		 */
+		public function deactivate_license() {
+
+			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
+				return;
+
+			if ( ! isset( $_POST['epl_license'] ) )
+				return;
+
+			if ( ! isset( $_POST['epl_license'][ $this->item_shortname ] ) )
+				return;
+
+			// Run on deactivate button press
+			if ( isset( $_POST[ $this->item_shortname . '_license_key_deactivate' ] ) ) { //Need to check this param
+
+				// Data to send to the API
+				$api_params = array(
+					'edd_action' => 'deactivate_license',
+					'license'    => $this->license,
+					'item_name'  => urlencode( $this->item_name ),
+					'url'        => home_url()
+				);
+
+				// Call the API
+				$response = wp_remote_get(
+					add_query_arg( $api_params, $this->api_url ),
+					array(
+						'timeout'   => 15,
+						'sslverify' => false
+					)
+				);
+
+				// Make sure there are no errors
+				if ( is_wp_error( $response ) )
+					return;
+
+				// Decode the license data
+				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+
+				if ( $license_data->license == 'deactivated' ){
+					delete_option( $this->item_shortname . '_license_active' );
+				}
+
+				if( ! (bool) $license_data->success ) {
+					set_transient( 'epl_license_error', $license_data, 1000 );
+				} else {
+					delete_transient( 'epl_license_error' );
+					$option                			= get_option( $this->item_shortname . '_license_status' );
+					$option['expired']  			= false;
+					$option['no_activations_left'] 	= false;
+					$option['item_name_mismatch']  	= false;
+					$option['missing']  			= false;
+					update_option( $this->item_shortname . '_license_status', $option );
+				}
+			}
 		}
 
 		private function maybe_validate_license(){
@@ -186,12 +419,12 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 	        // Otherwise, our check has returned successfully. Set the transient and update our license type and flags.
 	        set_transient( '_epl_validate_license', true, DAY_IN_SECONDS );
-		$option                			= get_option( $this->item_shortname . '_license_status' );
-		$option['expired']  			= false;
-		$option['no_activations_left'] 	= false;
-		$option['item_name_mismatch']  	= false;
-		$option['missing']  			= false;
-		update_option( $this->item_shortname . '_license_status', $option );
+			$option                			= get_option( $this->item_shortname . '_license_status' );
+			$option['expired']  			= false;
+			$option['no_activations_left'] 	= false;
+			$option['item_name_mismatch']  	= false;
+			$option['missing']  			= false;
+			update_option( $this->item_shortname . '_license_status', $option );
 		}
 
 		/**
@@ -247,193 +480,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			}
 		}
 
-		/**
-		 * Include the updater class
-		 *
-		 * @access  private
-		 * @return  void
-		 */
-		private function includes() {
-			if ( ! class_exists( 'EPL_SL_Plugin_Updater' ) )
-				require_once 'EPL_SL_Plugin_Updater.php';
-		}
-
-		/**
-		 * Setup hooks
-		 *
-		 * @access  private
-		 * @return  void
-		 */
-		private function hooks() {
-
-			// Activate license key on settings save
-			add_action( 'admin_init', array( $this, 'activate_license' ) );
-
-			// Deactivate license key
-			add_action( 'admin_init', array( $this, 'deactivate_license' ) );
-
-			// Updater
-			add_action( 'admin_init', array( $this, 'auto_updater' ), 0 );
-
-			add_action( 'admin_notices', array( $this, 'license_notices' ), 5 );
-			add_action( 'admin_notices', array( $this, 'notices' ),20 );
-		}
-
-		/**
-		 * Auto updater
-		 *
-		 * @access  private
-		 * @global  array $epl_options
-		 * @return  void
-		 */
-		public function auto_updater() {
-
-			$license = get_option( $this->item_shortname . '_license_active' );
-			if( 'valid' !== $license ) {
-				// dont check for updates on unvalid licensed
-				return;
-			}
-
-			// Setup the updater
-			$epl_updater = new EPL_SL_Plugin_Updater(
-				$this->api_url,
-				$this->file,
-				array(
-					'version'   => $this->version,
-					'license'   => $this->license,
-					'item_name' => $this->item_name,
-					'author'    => $this->author
-				)
-			);
-		}
-
-		/**
-		 * Activate the license key
-		 *
-		 * @access  public
-		 * @return  void
-		 */
-		public function activate_license() {
-			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
-				return;
-
-			if ( ! isset( $_POST['epl_license'] ) )
-				return;
-
-			if ( ! isset( $_POST['epl_license'][ $this->item_shortname ] ) )
-				return;
-
-			foreach( $_POST as $key => $value ) {
-				if( false !== strpos( $key, 'license_key_deactivate' ) ) {
-					// Don't activate a key when deactivating a different key
-					return;
-				}
-			}
-
-			$license = sanitize_text_field( $_POST['epl_license'][ $this->item_shortname ] );
-
-			// Data to send to the API
-			$api_params = array(
-				'edd_action' => 'activate_license',
-				'license'    => $license,
-				'item_name'  => urlencode( $this->item_name ),
-				'url'        => home_url()
-			);
-
-			// Call the API
-			$response = wp_remote_get(
-				add_query_arg( $api_params, $this->api_url ),
-				array(
-					'timeout'   => 15,
-					//'body'      => $api_params,
-					'sslverify' => false
-				)
-			);
-
-			// Make sure there are no errors
-			if ( is_wp_error( $response ) )
-				return;
-
-			// Tell WordPress to look for updates
-			set_site_transient( 'update_plugins', null );
-
-			// Decode license data
-			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-			update_option( $this->item_shortname . '_license_active', $license_data->license );
-
-			if( ! (bool) $license_data->success ) {
-				set_transient( 'epl_license_error', $license_data, 1000 );
-			} else {
-				delete_transient( 'epl_license_error' );
-				$option                			= get_option( $this->item_shortname . '_license_status' );
-				$option['expired']  			= false;
-				$option['no_activations_left'] 	= false;
-				$option['item_name_mismatch']  	= false;
-				$option['missing']  			= false;
-				update_option( $this->item_shortname . '_license_status', $option );
-			}
-		}
-
-
-		/**
-		 * Deactivate the license key
-		 *
-		 * @access  public
-		 * @return  void
-		 */
-		public function deactivate_license() {
-			if( !isset($_REQUEST['action']) || $_REQUEST['action'] != 'epl_settings' )
-				return;
-
-			if ( ! isset( $_POST['epl_license'] ) )
-				return;
-
-			if ( ! isset( $_POST['epl_license'][ $this->item_shortname ] ) )
-				return;
-
-			// Run on deactivate button press
-			if ( isset( $_POST[ $this->item_shortname . '_license_key_deactivate' ] ) ) { //Need to check this param
-
-				// Data to send to the API
-				$api_params = array(
-					'edd_action' => 'deactivate_license',
-					'license'    => $this->license,
-					'item_name'  => urlencode( $this->item_name ),
-					'url'        => home_url()
-				);
-
-				// Call the API
-				$response = wp_remote_get(
-					add_query_arg( $api_params, $this->api_url ),
-					array(
-						'timeout'   => 15,
-						'sslverify' => false
-					)
-				);
-
-				// Make sure there are no errors
-				if ( is_wp_error( $response ) )
-					return;
-
-				// Decode the license data
-				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-
-				if ( $license_data->license == 'deactivated' )
-					delete_option( $this->item_shortname . '_license_active' );
-
-				if( ! (bool) $license_data->success ) {
-					set_transient( 'epl_license_error', $license_data, 1000 );
-				} else {
-					delete_transient( 'epl_license_error' );
-					$option                			= get_option( $this->item_shortname . '_license_status' );
-					$option['expired']  			= false;
-					$option['no_activations_left'] 	= false;
-					$option['item_name_mismatch']  	= false;
-					$option['missing']  			= false;
-					update_option( $this->item_shortname . '_license_status', $option );
-				}
-			}
-		}
 
 		/**
 		 * Admin notices for errors
@@ -491,6 +537,41 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			delete_transient( 'epl_license_error' );
 
+		}
+
+		/**
+		 * Displays message inline on plugin row that the license key is missing
+		 *
+		 * @access  public
+		 * @since   2.5
+		 * @return  void
+		 */
+		public function plugin_row_license_missing( $plugin_data, $version_info ) {
+
+			static $showed_imissing_key_message;
+
+			$license = get_option( $this->item_shortname . '_license_active' );
+
+			if( ( 'valid' !== $license ) && empty( $showed_imissing_key_message[ $this->item_shortname ] ) ) {
+
+				echo '&nbsp;<strong><a href="' . esc_url( add_query_arg( array( 'page' => 'epl-licenses' ), admin_url( 'admin.php' ) ) ) . '">' . __( 'Enter valid license key for automatic updates.', 'easy-property-listings' ) . '</a></strong>';
+				$showed_imissing_key_message[ $this->item_shortname ] = true;
+			}
+
+		}
+
+		/**
+		 * Adds this plugin to the beta page
+		 *
+		 * @access  public
+		 * @param   array $products
+		 * @since   2.6.11
+		 * @return  void
+		 */
+		public function register_beta_support( $products ) {
+			$products[ $this->item_shortname ] = $this->item_name;
+
+			return $products;
 		}
 	}
 

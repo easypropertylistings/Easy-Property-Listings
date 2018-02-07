@@ -88,7 +88,11 @@ if ( is_admin() ) {
 			'listing_type'		=> __('Sale/Lease', 'easy-property-listings' ),
 			'agent'			=> __('Agent', 'easy-property-listings' ),
 			'date'			=> __('Date', 'easy-property-listings' )
-		);
+		)  + $columns;
+
+		// unset author columns as duplicate of agent column
+		unset( $columns['author'] );
+		unset( $columns['comments'] );
 
 		// Geocode Column
 		$geo_debug = !empty($epl_settings) && isset($epl_settings['debug']) ? $epl_settings['debug'] : 0;
@@ -102,7 +106,7 @@ if ( is_admin() ) {
 			unset($columns['listing_id']);
 		}
 
-		return $columns;
+		return apply_filters('epl_post_type_commercial_admin_columns',$columns);
 	}
 	add_filter( 'manage_edit-commercial_columns', 'epl_manage_commercial_heading' ) ;
 

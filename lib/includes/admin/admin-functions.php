@@ -233,3 +233,19 @@ function epl_extension_notice_offer() {
 	}
 }
 add_action( 'admin_notices', 'epl_extension_notice_offer' );
+
+/**
+ * Check if a given extensions has beta support enabled
+ *
+ * @param       string $slug The slug of the extension to check
+ * @return      bool True if enabled, false otherwise
+ */
+function epl_extension_has_beta_support( $slug ) {
+
+	$enabled_betas = epl_get_option( 'enabled_betas', array() );
+	$return        = false;
+	if( in_array( $slug, $enabled_betas ) ) {
+		$return = true;
+	}
+	return $return;
+}
