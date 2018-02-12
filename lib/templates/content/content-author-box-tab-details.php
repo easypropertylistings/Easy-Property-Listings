@@ -13,7 +13,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<!-- Author Box Container Tabbed -->
+<!-- Author Box Container Tabbed Content -->
 <div class="epl-author-contact-details author-contact-details">
 
 	<h5 class="epl-author-title author-title">
