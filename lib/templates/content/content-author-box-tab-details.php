@@ -1,17 +1,16 @@
 <?php
 /**
- * Author Box: Advanced Style
+ * Author Box: Details Tab
  *
  * @package     EPL
  * @subpackage  Templates/Content
- * @copyright   Copyright (c) 2015, Merv Barrett
+ * @copyright   Copyright (c) 2018, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       3.2
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 ?>
 
 <!-- Author Box Container Tabbed -->
