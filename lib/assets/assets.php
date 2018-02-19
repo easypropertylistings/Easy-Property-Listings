@@ -37,7 +37,7 @@ function epl_admin_enqueue_scripts($screen) {
 		wp_enqueue_style(	'jquery-ui-datetime-picker-style',  		$current_dir_path . '/css/jquery-ui.min.css',		FALSE,			EPL_PROPERTY_VER );
 
 		$js_vars = array(
-			'default_map_address' 	=> apply_filters('epl_default_map_address','Australia'),
+			'default_map_address' 	=> apply_filters('epl_default_map_address', epl_get_option('epl_default_country','Australia') ),
 		);
 
 		wp_register_script( 	'epl-admin-scripts', 				$current_dir_path . '/js/jquery-admin-scripts.js', 	array('jquery'),	EPL_PROPERTY_VER );
