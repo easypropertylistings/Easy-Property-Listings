@@ -231,7 +231,7 @@ function epl_archive_custom_excerpt_length( $length ) {
 
 /**
  * Since 3.1.20  filter which listing status shouldnt be displayed
- * 
+ *
  */
 function epl_hide_listing_statuses() {
 
@@ -1290,36 +1290,13 @@ function epl_author_tab_author_id( $epl_author = array() ) {
 
 	$permalink 	= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
+
+	$arg_list = get_defined_vars();
+
 	ob_start();
-?>
-	<div class="epl-author-contact-details author-contact-details">
 
-		<h5 class="epl-author-title author-title">
-			<a href="<?php echo $permalink ?>">
-				<?php echo $author_title;  ?>
-			</a>
-		</h5>
-		<div class="epl-author-position author-position">
-			<span class="label-position"></span>
-			<span class="position"><?php echo $epl_author->get_author_position() ?></span>
-		</div>
+		epl_get_template_part('content-author-box-tab-details.php' , $arg_list );
 
-		<div class="epl-author-contact author-contact">
-			<span class="label-mobile"></span>
-			<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
-		</div>
-	</div>
-	<div class="epl-author-slogan author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
-	<div class="epl-clearfix"></div>
-	<div class="epl-author-social-buttons author-social-buttons">
-		<?php
-			$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
-			foreach($social_icons as $social_icon){
-				echo call_user_func(array($epl_author,'get_'.$social_icon.'_html'));
-			}
-		?>
-	</div>
-<?php
 	return ob_get_clean();
 }
 
