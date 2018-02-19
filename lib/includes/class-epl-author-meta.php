@@ -86,7 +86,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 
 			if ( $this->email != '' ) {
 
-				$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 					$html	= '
@@ -129,7 +129,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$twitter = 'http://twitter.com/' . $this->twitter;
 				}
 
-				$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 					$html	= '
@@ -171,7 +171,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$google = 'http://plus.google.com/' . $this->google;
 				}
 
-				$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 					$html = '
@@ -213,7 +213,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$facebook = 'http://facebook.com/' . $this->facebook;
 				}
 
-				$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 					$html = '
@@ -255,7 +255,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$linkedin = 'http://linkedin.com/pub/' . $this->linkedin;
 				}
 
-				$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 
@@ -289,7 +289,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 
 			if ( $this->skype != '' ) {
 
-				$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 

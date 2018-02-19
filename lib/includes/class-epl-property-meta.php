@@ -990,13 +990,6 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Experimental SVG Icons
-	 *
-	 * @since version 3.1.6
-	 */
-	// Enable with: define ( 'EPL_ICONS_SVG' , true );
-
-	/**
 	 * Get Bedrooms
 	 *
 	 * @since 2.0
@@ -1007,7 +1000,7 @@ class EPL_Property_Meta {
 		if( $this->get_property_meta('property_bedrooms' , false ) == '' )
 			return;
 
-		$returntype	=	defined( 'EPL_ICONS_SVG' ) && $returntype == 'i' ? 's' : $returntype;
+		$returntype	=	$returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
 
 		$returntype	=	apply_filters( 'epl_get_property_bedrooms_return_type' , $returntype);
 
@@ -1042,7 +1035,7 @@ class EPL_Property_Meta {
 		if( $this->get_property_meta('property_bathrooms' , false ) == '' )
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
+		$returntype	=	$returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
 
 		$returntype	=	apply_filters( 'epl_get_property_bathrooms_return_type' , $returntype);
 
@@ -1105,7 +1098,7 @@ class EPL_Property_Meta {
 		if( $this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '' )
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
+		$returntype	=	$returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
 
 		$returntype	=	apply_filters( 'epl_get_property_parking_spaces_return_type' , $returntype);
 
@@ -1203,7 +1196,7 @@ class EPL_Property_Meta {
 		if($this->get_property_meta('property_air_conditioning') == '')
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
+		$returntype	=	$returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
 
 		$returntype	=	apply_filters( 'epl_get_property_air_conditioning_return_type' , $returntype);
 
@@ -1240,7 +1233,7 @@ class EPL_Property_Meta {
 		if($this->get_property_meta('property_pool') == '')
 			return;
 
-		$returntype	=	$returntype == 'i' && defined( 'EPL_ICONS_SVG' ) ? 's' : $returntype;
+		$returntype	=	$returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
 
 		$returntype	=	apply_filters( 'epl_get_property_pool_return_type' , $returntype);
 

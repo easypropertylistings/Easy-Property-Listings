@@ -105,8 +105,8 @@ function epl_load_svg_listing_icons_head() {
 
 	apply_filters( 'epl_svg_icons' , $svg_icons );
 
-	// Only Load SVG icons if EPL_ICONS_SVG is defined
-	if ( defined( 'EPL_ICONS_SVG' ) ) {
+	// Only Load SVG icons if epl_icons_svg_listings is on
+	if ( epl_get_option('epl_icons_svg_listings') == 'on' ) {
 		echo $svg_icons;
 	}
 
@@ -194,8 +194,8 @@ function epl_load_svg_social_icons_head() {
 
 	apply_filters( 'epl_social_icons' , $social_icons );
 
-	// Only Load SVG icons if EPL_ICONS_SOCIAL_SVG is defined
-	if ( defined( 'EPL_ICONS_SOCIAL_SVG' ) ) {
+	// Only Load SVG icons if epl_icons_svg_author is on
+	if ( epl_get_option('epl_icons_svg_author') == 'on' ) {
 		echo $social_icons;
 	}
 }

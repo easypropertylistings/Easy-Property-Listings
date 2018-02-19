@@ -90,7 +90,10 @@ function epl_install() {
 		'epl_video_width'			=> 600,
 		'min_contact_access'			=> 'level_10',
 		'min_reports_access'			=> 'level_10',
-		'activate_post_types'			=> array('property')
+		'activate_post_types'			=> array('property'),
+
+		'epl_icons_svg_listings'		=> 'off',
+		'epl_icons_svg_author'			=> 'off',
 	);
 
 	if(!empty($epl_settings)) {
@@ -123,7 +126,7 @@ function epl_install() {
 	if( !$notice_display ) {
 		set_transient( 'epl_admin_notices_display', true, 60*60*24*14 );
 	}
-	
+
 	// Bail if activating from network, or bulk
 	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 		return;
