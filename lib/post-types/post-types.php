@@ -391,24 +391,24 @@ function epl_manage_listing_column_price_callback() {
 	else {
 		$class = '';
 	}
-    
-    // If we have a sold price
+
+	// If we have a sold price
 	if ( ! empty ( $sold_price ) ) {
         $bar_price = $sold_price;
-    // If we have a regular price
+	// If we have a regular price
 	} else if ( ! empty ( $price ) ) {
         $bar_price = $price;
 	}
-	
-    // If we have a price to display in the bar
+
+	// If we have a price to display in the bar
 	if ( ! empty( $bar_price ) ) {
         $barwidth = $max_price == 0 ? 0 : $bar_price/$max_price * 100;
 	    echo '<div class="epl-price-bar '.$class.'">
 			<span style="width:'.$barwidth.'%"></span>
 		</div>';
-    // Otherwise, there is no price set
+	// Otherwise, there is no price set
 	} else {
-	    echo 'No price set';
+	    echo __('No price set', 'easy-property-listings' );
 	}
 
 	if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
