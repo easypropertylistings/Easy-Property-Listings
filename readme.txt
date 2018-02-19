@@ -392,8 +392,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.1.20 February 20, 2018 =
 
-* New: Removed changelog from plugin core files to greatly reduce translation requirements for plugin and translation will be far easier for translators now.
-* New: Change log items are parsed from readme.txt file which removes the need to translate change log entries.
+* New: Removed changelog entries from plugin core files to greatly reduce translation requirements for plugin and translation will be far easier for translators now.
+* New: Change log items are parsed from readme.txt file which removes the need to translate over 700 change log entries.
 * New: Added a new CSS class epl-property-features to the listing features column.
 * New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.
 * New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.
