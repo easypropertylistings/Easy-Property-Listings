@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 1.3
  */
+
+if( !class_exists('EPL_Author_Meta') ) :
+
 class EPL_Author_Meta {
 
 	private $author_id;
@@ -219,7 +222,7 @@ class EPL_Author_Meta {
 	 */
     function get_video_html($html = '') {
     	if($this->video != '') {
-    		$video 	= apply_filters('epl_author_video',$this->video);
+    		$video 	= apply_filters('epl_author_video',$this->video,$this);
     		$html 	= wp_oembed_get($video);
 		}
 		return $html;
@@ -254,7 +257,7 @@ class EPL_Author_Meta {
 	 */
     function get_author_mobile() {
     	if($this->mobile != '')
-    		return $this->mobile;
+    		return apply_filters('epl_author_mobile',$this->mobile,$this);
     }
 
 	/**
@@ -264,7 +267,7 @@ class EPL_Author_Meta {
 	 */
     function get_author_id() {
     	if($this->author_id != '')
-    		return $this->author_id;
+    		return apply_filters('epl_author_id',$this->author_id,$this);
     }
 
 	/**
@@ -274,7 +277,7 @@ class EPL_Author_Meta {
 	 */
     function get_author_slogan() {
     	if($this->slogan != '')
-    		return $this->slogan;
+    		return apply_filters('epl_author_slogan',$this->slogan,$this);
     }
 
 	/**
@@ -284,7 +287,7 @@ class EPL_Author_Meta {
 	 */
     function get_author_position() {
     	if($this->position != '')
-    		return $this->position;
+    		return apply_filters('epl_author_position',$this->position,$this);
     }
 
 	/**
@@ -294,7 +297,7 @@ class EPL_Author_Meta {
 	 */
     function get_author_name() {
     	if($this->name != '')
-    		return $this->name;
+    		return apply_filters('epl_author_name',$this->name,$this);
     }
 
 	/**
@@ -303,7 +306,11 @@ class EPL_Author_Meta {
 	 * @since version 1.3
 	 */
     function get_author_contact_form() {
-    	if($this->contact_form != '')
-    		return do_shortcode($this->contact_form);
+    	if($this->contact_form != ''){
+    		$cf = apply_filters('epl_author_contact_form',$this->contact_form,$this);
+    		return do_shortcode($cf);
+    	}
     }
 }
+
+endif;

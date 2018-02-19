@@ -46,14 +46,14 @@ class EPL_SL_Plugin_Updater {
 
 		global $epl_plugin_data;
 
-		$this->api_url  = trailingslashit( $_api_url );
-		$this->api_data = $_api_data;
-		$this->name     = plugin_basename( $_plugin_file );
-		$this->slug     = basename( $_plugin_file, '.php' );
-		$this->version     = $_api_data['version'];
-		$this->wp_override = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
-
-		$this->cache_key   = md5( serialize( $this->slug . $this->api_data['license'] ) );
+		$this->api_url  	= trailingslashit( $_api_url );
+		$this->api_data 	= $_api_data;
+		$this->name     	= plugin_basename( $_plugin_file );
+		$this->slug     	= basename( $_plugin_file, '.php' );
+		$this->version     	= $_api_data['version'];
+		$this->wp_override 	= isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
+		$this->beta        	= ! empty( $this->api_data['beta'] ) ? true : false;
+		$this->cache_key   	= md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
 
 		$epl_plugin_data[ $this->slug ] = $this->api_data;
 
@@ -108,12 +108,12 @@ class EPL_SL_Plugin_Updater {
 			return $_transient_data;
 		}
 
-		$version_info = get_transient( $this->cache_key );
+		$version_info = $this->get_cached_version_info();
 
 		if ( false === $version_info ) {
-			$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
+			$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug, 'beta' => $this->beta ) );
 
-			set_transient( $this->cache_key, $version_info, 3600 );
+			$this->set_version_info_cache( $version_info );
 		}
 
 		if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
@@ -124,7 +124,7 @@ class EPL_SL_Plugin_Updater {
 
 			}
 
-			$_transient_data->last_checked           = time();
+			$_transient_data->last_checked           = current_time( 'timestamp' );
 			$_transient_data->checked[ $this->name ] = $this->version;
 
 		}
@@ -165,11 +165,13 @@ class EPL_SL_Plugin_Updater {
 
 		if ( empty( $update_cache->response ) || empty( $update_cache->response[ $this->name ] ) ) {
 
-			$version_info = get_transient( $this->cache_key );
+			$version_info = $this->get_cached_version_info();
+
 			if( false === $version_info ) {
 
-				$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
-				set_transient( $this->cache_key, $version_info, 3600 );
+				$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug, 'beta' => $this->beta ) );
+				
+				$this->set_version_info_cache( $version_info );
 			}
 
 			if( ! is_object( $version_info ) ) {
@@ -177,10 +179,11 @@ class EPL_SL_Plugin_Updater {
 			}
 
 			if( version_compare( $this->version, $version_info->new_version, '<' ) ) {
+
 				$update_cache->response[ $this->name ] = $version_info;
 			}
 
-			$update_cache->last_checked = time();
+			$update_cache->last_checked = current_time( 'timestamp' );
 			$update_cache->checked[ $this->name ] = $this->version;
 
 			set_site_transient( 'update_plugins', $update_cache );
@@ -261,15 +264,48 @@ class EPL_SL_Plugin_Updater {
 			'slug'   => $this->slug,
 			'is_ssl' => is_ssl(),
 			'fields' => array(
-				'banners' => false, // These will be supported soon hopefully
+				'banners' =>  array(),
 				'reviews' => false
 			)
 		);
 
-		$api_response = $this->api_request( 'plugin_information', $to_send );
+		$cache_key = 'epl_api_request_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
 
-		if ( false !== $api_response ) {
-			$_data = $api_response;
+		// Get the transient where we store the api request for this plugin for 24 hours
+		$epl_api_request_transient = $this->get_cached_version_info( $cache_key );
+
+		//If we have no transient-saved value, run the API, set a fresh transient with the API value, and return that value too right now.
+		if ( empty( $epl_api_request_transient ) ) {
+
+			$api_response = $this->api_request( 'plugin_information', $to_send );
+			// Expires in 3 hours
+			$this->set_version_info_cache( $api_response, $cache_key );
+			if ( false !== $api_response ) {
+				$_data = $api_response;
+			}
+		} else {
+
+			$_data = $epl_api_request_transient;
+		}
+
+		// Convert sections into an associative array, since we're getting an object, but Core expects an array.
+		if ( isset( $_data->sections ) && ! is_array( $_data->sections ) ) {
+
+			$new_sections = array();
+			foreach ( $_data->sections as $key => $value ) {
+				$new_sections[ $key ] = $value;
+			}
+			$_data->sections = $new_sections;
+		}
+
+		// Convert banners into an associative array, since we're getting an object, but Core expects an array.
+		if ( isset( $_data->banners ) && ! is_array( $_data->banners ) ) {
+
+			$new_banners = array();
+			foreach ( $_data->banners as $key => $value ) {
+				$new_banners[ $key ] = $value;
+			}
+			$_data->banners = $new_banners;
 		}
 
 		return $_data;
@@ -321,13 +357,16 @@ class EPL_SL_Plugin_Updater {
 			'license'    => ! empty( $data['license'] ) ? $data['license'] : '',
 			'item_name'  => isset( $data['item_name'] ) ? $data['item_name'] : false,
 			'item_id'    => isset( $data['item_id'] ) ? $data['item_id'] : false,
+			'version'    => isset( $data['version'] ) ? $data['version'] : false,
 			'slug'       => $data['slug'],
 			'author'     => $data['author'],
 			'url'        => home_url(),
-			'beta'       => isset( $data['beta'] ) ? $data['beta'] : false,
+			'beta'       => ! empty( $data['beta'] ),
 		);
 
-		$request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+		$verify_ssl = $this->verify_ssl();
+
+		$request    = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => $verify_ssl, 'body' => $api_params ) );
 
 		if ( ! is_wp_error( $request ) ) {
 			$request = json_decode( wp_remote_retrieve_body( $request ) );
@@ -337,6 +376,17 @@ class EPL_SL_Plugin_Updater {
 			$request->sections = maybe_unserialize( $request->sections );
 		} else {
 			$request = false;
+		}
+
+		if ( $request && isset( $request->banners ) ) {
+
+			$request->banners = maybe_unserialize( $request->banners );
+		}
+
+		if( ! empty( $request->sections ) ) {
+			foreach( $request->sections as $key => $section ) {
+				$request->$key = (array) $section;
+			}
 		}
 
 		return $request;
@@ -363,8 +413,9 @@ class EPL_SL_Plugin_Updater {
 		}
 
 		$data         = $epl_plugin_data[ $_REQUEST['slug'] ];
-		$cache_key    = md5( 'epl_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_version_info' );
-		$version_info = get_transient( $cache_key );
+		$beta         = ! empty( $data['beta'] ) ? true : false;
+		$cache_key    = md5( 'epl_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_' . $beta . '_version_info' );
+		$version_info = $this->get_cached_version_info( $cache_key );
 
 		if( false === $version_info ) {
 
@@ -374,10 +425,13 @@ class EPL_SL_Plugin_Updater {
 				'item_id'    => isset( $data['item_id'] ) ? $data['item_id'] : false,
 				'slug'       => $_REQUEST['slug'],
 				'author'     => $data['author'],
-				'url'        => home_url()
+				'url'        => home_url(),
+				'beta'       => ! empty( $data['beta'] )
 			);
 
-			$request = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
+			$verify_ssl = $this->verify_ssl();
+
+			$request    = wp_remote_post( $this->api_url, array( 'timeout' => 15, 'sslverify' => $verify_ssl, 'body' => $api_params ) );
 
 			if ( ! is_wp_error( $request ) ) {
 				$version_info = json_decode( wp_remote_retrieve_body( $request ) );
@@ -389,7 +443,13 @@ class EPL_SL_Plugin_Updater {
 				$version_info = false;
 			}
 
-			set_transient( $cache_key, $version_info, 3600 );
+			if( ! empty( $version_info ) ) {
+				foreach( $version_info->sections as $key => $section ) {
+					$version_info->$key = (array) $section;
+				}
+			}
+			
+			$this->set_version_info_cache( $version_info, $cache_key );
 
 		}
 
@@ -400,4 +460,38 @@ class EPL_SL_Plugin_Updater {
 		exit;
 	}
 
+
+	public function get_cached_version_info( $cache_key = '' ) {
+
+		if( empty( $cache_key ) ) {
+			$cache_key = $this->cache_key;
+		}
+		$cache = get_option( $cache_key );
+		if( empty( $cache['timeout'] ) || current_time( 'timestamp' ) > $cache['timeout'] ) {
+			return false; // Cache is expired
+		}
+		return json_decode( $cache['value'] );
+	}
+
+	public function set_version_info_cache( $value = '', $cache_key = '' ) {
+
+		if( empty( $cache_key ) ) {
+			$cache_key = $this->cache_key;
+		}
+		$data = array(
+			'timeout' => strtotime( '+3 hours', current_time( 'timestamp' ) ),
+			'value'   => json_encode( $value )
+		);
+		update_option( $cache_key, $data, 'no' );
+	}
+
+	/**
+	 * Returns if the SSL of the store should be verified.
+	 *
+	 * @since  1.6.13
+	 * @return bool
+	 */
+	private function verify_ssl() {
+		return (bool) apply_filters( 'epl_sl_api_request_verify_ssl', true, $this );
+	}
 }

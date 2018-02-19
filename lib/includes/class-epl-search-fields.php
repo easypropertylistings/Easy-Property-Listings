@@ -173,7 +173,7 @@ class EPL_Search_Fields {
 				<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] ); ?>
 			</label>
 			<div class="field">
-				<select name="<?php echo $field['meta_key']; ?>"
+				<select name="<?php echo $field['meta_key']; ?>[]"
 					id="<?php echo $field['meta_key']; ?>"
 					class="in-field field-width" multiple>
 					<option value="">

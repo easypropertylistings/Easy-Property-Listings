@@ -181,6 +181,11 @@ function epl_custom_orderby( $query ) {
 		$query->set('orderby','meta_value_num');
 	}
 
+	if( 'listing_id' == $orderby ) {
+		$query->set('meta_key','property_unique_id');
+		$query->set('orderby','meta_value');
+	}
+
 }
 // handle sorting of admin columns
 add_filter( 'pre_get_posts', 'epl_custom_orderby' );

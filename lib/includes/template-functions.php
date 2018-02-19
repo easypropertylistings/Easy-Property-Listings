@@ -230,6 +230,15 @@ function epl_archive_custom_excerpt_length( $length ) {
 }
 
 /**
+ * Since 3.1.20  filter which listing status shouldnt be displayed
+ *
+ */
+function epl_hide_listing_statuses() {
+
+	return apply_filters( 'epl_hide_listing_statuses', array('withdrawn','offmarket') );
+}
+
+/**
  * Selecting Card Display Style
  *
  * Allows the use of one function where we can then select a different template when needed
@@ -255,7 +264,7 @@ function epl_property_blog($template='') {
 	}
 	$property_status = $property->get_property_meta('property_status');
 	// Status Removal Do Not Display Withdrawn or OffMarket listings
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( in_array( $property_status,epl_hide_listing_statuses() ) ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$action_check = has_action( 'epl_loop_template' );
@@ -386,7 +395,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 	}
 
 	// Status Removal
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( in_array( $property_status,epl_hide_listing_statuses() ) ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$arg_list = get_defined_vars();
@@ -407,7 +416,7 @@ function epl_property_widget( $display , $image , $title , $icons , $more_text =
 function epl_property_widget_list_option() {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
 	// Status Removal
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( in_array( $property_status,epl_hide_listing_statuses() ) ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		epl_get_template_part('widget-content-listing-list.php');
@@ -422,7 +431,7 @@ function epl_property_widget_list_option() {
 function epl_property_widget_image_only_option( $image ) {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
 	// Status Removal
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( in_array( $property_status,epl_hide_listing_statuses() ) ) {
 		// Do Not Display Withdrawn or OffMarket listings
 	} else {
 		$arg_list = get_defined_vars();
@@ -817,7 +826,7 @@ function epl_property_tab_section() {
 	$the_property_feature_list .= $property->get_property_year_built('l').' '.$property->get_property_parking('l').' ';
 	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
 	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
-	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_new_construction('l');
+	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_energy_rating_value('l').' '.$property->get_property_new_construction('l');
 
 	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_common_features', '' );
 
@@ -885,7 +894,7 @@ function epl_property_tab_section() {
 		<?php $property_features_title = apply_filters( 'epl_property_sub_title_property_features' , __('Property Features', 'easy-property-listings' ) ); ?>
 		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo $property_features_title; ?></h5>
 			<div class="epl-tab-content tab-content">
-				<ul class="listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
+				<ul class="epl-property-features listing-info epl-tab-<?php echo $property->get_epl_settings('display_feature_columns'); ?>-columns">
 					<?php echo $the_property_feature_list.' '.$property->get_features_from_taxonomy(); ?>
 				</ul>
 			</div>
@@ -1215,7 +1224,7 @@ function epl_archive_sorting($query) {
 		if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 
 			$orderby = sanitize_text_field(trim($_GET['sortby']));
-			$sorters = epl_sorting_options();
+			$sorters = epl_sorting_options( $query->get( 'post_type') );
 
 			foreach($sorters as $sorter) {
 
@@ -1281,36 +1290,13 @@ function epl_author_tab_author_id( $epl_author = array() ) {
 
 	$permalink 	= apply_filters('epl_author_profile_link', get_author_posts_url($epl_author->author_id) , $epl_author);
 	$author_title	= apply_filters('epl_author_profile_title',get_the_author_meta( 'display_name',$epl_author->author_id ) ,$epl_author );
+
+	$arg_list = get_defined_vars();
+
 	ob_start();
-?>
-	<div class="epl-author-contact-details author-contact-details">
 
-		<h5 class="epl-author-title author-title">
-			<a href="<?php echo $permalink ?>">
-				<?php echo $author_title;  ?>
-			</a>
-		</h5>
-		<div class="epl-author-position author-position">
-			<span class="label-position"></span>
-			<span class="position"><?php echo $epl_author->get_author_position() ?></span>
-		</div>
+		epl_get_template_part('content-author-box-tab-details.php' , $arg_list );
 
-		<div class="epl-author-contact author-contact">
-			<span class="label-mobile"></span>
-			<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
-		</div>
-	</div>
-	<div class="epl-author-slogan author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>
-	<div class="epl-clearfix"></div>
-	<div class="epl-author-social-buttons author-social-buttons">
-		<?php
-			$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
-			foreach($social_icons as $social_icon){
-				echo call_user_func(array($epl_author,'get_'.$social_icon.'_html'));
-			}
-		?>
-	</div>
-<?php
 	return ob_get_clean();
 }
 
