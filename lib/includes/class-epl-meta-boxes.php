@@ -222,11 +222,11 @@ class EPL_METABOX {
 									}
 								} ?>
 								<tr class="form-field">
+									<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
 									<th valign="top" scope="row">
-										<label for="<?php echo $field['name']; ?>">
-									    		<?php _e($field['label'], $this->text_domain); ?>
-										</label>
+										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
 									</th>
+                                    <?php endif; ?>
 
 									<?php if($group['columns'] > 1) { ?>
 										</tr><tr class="form-field">

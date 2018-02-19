@@ -17,7 +17,7 @@ get_header(); ?>
 			<?php
 			if ( have_posts() ) : ?>
 				<div class="loop">
-					<div class="loop-content">
+					<div class="loop-content <?php echo epl_template_class( 'default', 'single' ); ?>">
 						<?php
 							while ( have_posts() ) : // The Loop
 								the_post();

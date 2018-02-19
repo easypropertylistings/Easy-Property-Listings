@@ -2,7 +2,7 @@
 
 <div id="main-content">
 	<div class="container">
-		<div id="content-area" class="clearfix">
+		<div id="content-area" class="clearfix <?php echo epl_template_class( 'divi', 'single' ); ?>">
 			<div id="left-area">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php if (et_get_option('divi_integration_single_top') <> '' && et_get_option('divi_integrate_singletop_enable') == 'on') echo(et_get_option('divi_integration_single_top')); ?>

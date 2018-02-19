@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 1.3
  */
+
+if( !class_exists('EPL_Author_Meta') ) :
+
 class EPL_Author_Meta {
 
 	private $author_id;
@@ -110,11 +113,21 @@ class EPL_Author_Meta {
 	 *
 	 * @since version 1.3
 	 */
+
 	function get_twitter_html( $html = '' , $style = 'i' ){
 
 		$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
 		if ( $this->twitter != '' ) {
+      
+      if( (strpos('http://',$this->twitter) == 0 ) || (strpos('https://',$this->twitter) == 0 ) ) {
+    			// absolute url
+    			$twitter = $this->twitter;
+
+    		} else {
+    			// relative url
+    			$twitter = 'http://twitter.com/' . $this->twitter;
+    		}
 
 			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
 
@@ -148,6 +161,15 @@ class EPL_Author_Meta {
 		$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
 		if ( $this->google != '' ) {
+      
+      	if( (strpos('http://',$this->google) == 0 ) || (strpos('https://',$this->google) == 0 ) ) {
+    			// absolute url
+    			$google = $this->google;
+
+    		} else {
+    			// relative url
+    			$google = 'http://plus.google.com/' . $this->google;
+    		}
 
 			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
 
@@ -181,6 +203,15 @@ class EPL_Author_Meta {
 		$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
 		if ( $this->facebook != '' ) {
+      
+      	if( (strpos('http://',$this->facebook) == 0 ) || (strpos('https://',$this->facebook) == 0 ) ) {
+    			// absolute url
+    			$facebook = $this->facebook;
+
+    		} else {
+    			// relative url
+    			$facebook = 'http://facebook.com/' . $this->facebook;
+    		}
 
 			$style	=	defined( 'EPL_ICONS_SOCIAL_SVG' ) && $style == 'i' ? 's' : $style;
 
@@ -286,10 +317,11 @@ class EPL_Author_Meta {
 	 *
 	 * @since version 1.3
 	 */
-	function get_video_html($html = '') {
-		if($this->video != '') {
-			$video 	= apply_filters('epl_author_video',$this->video);
-			$html 	= wp_oembed_get($video);
+
+    function get_video_html($html = '') {
+    	if($this->video != '') {
+    		$video 	= apply_filters('epl_author_video',$this->video,$this);
+    		$html 	= wp_oembed_get($video);
 		}
 		return $html;
 	}
@@ -321,58 +353,61 @@ class EPL_Author_Meta {
 	 *
 	 * @since version 1.3
 	 */
-	function get_author_mobile() {
-		if($this->mobile != '')
-			return $this->mobile;
-	}
-
+    function get_author_mobile() {
+    	if($this->mobile != '')
+    		return apply_filters('epl_author_mobile',$this->mobile,$this);
+    }
 	/**
 	 * Author Id
 	 *
 	 * @since version 1.3
 	 */
-	function get_author_id() {
-		if($this->author_id != '')
-			return $this->author_id;
-	}
+    function get_author_id() {
+    	if($this->author_id != '')
+    		return apply_filters('epl_author_id',$this->author_id,$this);
+    }
 
 	/**
 	 * Author Slogan
 	 *
 	 * @since version 1.3
 	 */
-	function get_author_slogan() {
-		if($this->slogan != '')
-			return $this->slogan;
-	}
+    function get_author_slogan() {
+    	if($this->slogan != '')
+    		return apply_filters('epl_author_slogan',$this->slogan,$this);
+    }
 
 	/**
 	 * Author Position
 	 *
 	 * @since version 1.3
 	 */
-	function get_author_position() {
-		if($this->position != '')
-			return $this->position;
-	}
+    function get_author_position() {
+    	if($this->position != '')
+    		return apply_filters('epl_author_position',$this->position,$this);
+    }
 
 	/**
 	 * Author Name
 	 *
 	 * @since version 1.3
 	 */
-	function get_author_name() {
-		if($this->name != '')
-			return $this->name;
-	}
+    function get_author_name() {
+    	if($this->name != '')
+    		return apply_filters('epl_author_name',$this->name,$this);
+    }
 
 	/**
 	 * Author Contact Form
 	 *
 	 * @since version 1.3
 	 */
-	function get_author_contact_form() {
-		if($this->contact_form != '')
-			return do_shortcode($this->contact_form);
-	}
+    function get_author_contact_form() {
+    	if($this->contact_form != ''){
+    		$cf = apply_filters('epl_author_contact_form',$this->contact_form,$this);
+    		return do_shortcode($cf);
+    	}
+    }
 }
+
+endif;

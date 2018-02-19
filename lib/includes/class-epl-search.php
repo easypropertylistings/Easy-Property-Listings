@@ -86,7 +86,14 @@ class EPL_SEARCH {
 
 		$this->set_query();
 
+		$this->query = apply_filters('epl_search_query_pre_parse',$this->query,$this->get_data);
+
 		$this->query->parse_query();
+
+		/** disable is_tax flag to avoid redirection to tax archive url */
+		$this->query->is_tax = false;
+
+		$this->query->is_epl_search = true;
 
 		//epl_print_r($this->query,true);
 	}
@@ -108,7 +115,9 @@ class EPL_SEARCH {
 	 */
 	protected function sanitize_data () {
 		$this->get_data   	= filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+		$this->get_data   	= apply_filters('epl_search_get_data',$this->get_data);
 		$this->post_data  	= filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+		$this->post_data   	= apply_filters('epl_search_post_data',$this->post_data);
 	}
 
 	/**
@@ -399,6 +408,10 @@ class EPL_SEARCH {
 	 */
 	protected function multiple_meta_query($query_field,$data) {
 
+		if ( empty( $data ) ) {
+			return;
+		}
+
 		$this_meta_query = array();
 
 		if( isset( $query_field['meta_key'] ) && !empty($query_field['meta_key']) ) {
@@ -495,12 +508,13 @@ class EPL_SEARCH {
 		$value = array_filter($value);
 		if( !empty( $value ) ) {
 			$this->tax_query[] = array(
-				'taxonomy'	=>	ltrim($query_field['meta_key'],'property_'),
+				'taxonomy'	=>	preg_replace('/^property_/', '', $query_field['meta_key']),
 				'field'		=>	'id',
 				'terms'		=>	$value,
 			);
 		}
 		
+		$this->tax_query = apply_filters('epl_preprocess_search_tax_query',$this->tax_query);
 	}
 
 	/**

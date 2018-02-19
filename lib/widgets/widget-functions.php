@@ -890,13 +890,20 @@ function epl_is_search() {
  * @since  2.3.1
  */
 function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+
 	if( empty($key) ) {
 		return;
 	}
 
+	$type = (array) $type;
+    $type = array_map( 'sanitize_text_field', $type );
+    $type_str = " ( '".implode("','", $type)."' ) ";
+
 	global $wpdb;
-	$results = $wpdb->get_results( $wpdb->prepare( "SELECT distinct(pm.`meta_value`) FROM {$wpdb->postmeta} pm LEFT JOIN {$wpdb->posts} p ON p.`ID` = pm.`post_id` WHERE pm.`meta_key` = '%s' AND p.`post_status` = '%s' AND p.`post_type` = '%s' AND pm.`meta_value` != ''", $key, $status, $type ));
+	$results = $wpdb->get_results( $wpdb->prepare( "SELECT distinct(pm.`meta_value`) FROM {$wpdb->postmeta} pm LEFT JOIN {$wpdb->posts} p ON p.`ID` = pm.`post_id` WHERE pm.`meta_key` = '%s' AND p.`post_status` = '%s' AND p.`post_type` IN $type_str AND pm.`meta_value` != ''", $key, $status ));
+
 	if(!empty($results)) {
+		
 		$return = array();
 		if($key == 'property_category') {
 			 $defaults = epl_listing_load_meta_property_category();
@@ -922,12 +929,24 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 			}
 
 		}
+
 		$return = array_filter($return);
 
-		if(isset( $defaults ) )
-			return $return;
-		else
-			return array_combine($return,$return);
+		if( isset( $defaults ) ){
+
+			$values = $return;
+
+		} else {
+
+			$values = array();
+
+			foreach($return as $s_res) {
+				$values[$s_res] = __( ucwords($s_res) , 'easy-property-listings' );
+			}
+
+		}
+
+		return apply_filters('epl_get_unique_post_meta_values',$values,$key,$type);
 	}
 }
 
@@ -945,7 +964,7 @@ function epl_esc_like ($text) {
  *
  * @since  2.3.1
  */
-function epl_listings_where( $where, &$wp_query ) {
+function epl_listings_where( $where, $wp_query ) {
     global $wpdb;
     if ( $epl_post_title = $wp_query->get( 'epl_post_title' ) ) {
         $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql( epl_esc_like( $epl_post_title ) ) . '%\'';

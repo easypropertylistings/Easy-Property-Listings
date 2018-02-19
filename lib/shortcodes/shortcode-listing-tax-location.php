@@ -130,7 +130,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template ); ?>">
+			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template, 'archive' ); ?>">
 				<?php
 					if ( $tools_top == 'on' ) {
 						do_action( 'epl_property_loop_start' );
@@ -156,7 +156,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		echo '<h3>'.__('Nothing found, please check back later.', 'easy-property-listings' ).'</h3>';
+		do_action( 'epl_shortcode_results_message' );
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

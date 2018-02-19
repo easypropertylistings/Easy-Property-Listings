@@ -2,7 +2,7 @@
 
 <div id="main-content">
 	<div class="container">
-		<div id="content-area" class="clearfix">
+		<div id="content-area" class="clearfix <?php echo epl_template_class( 'divi', 'archive' ); ?>">
 			<div id="left-area">
 		<?php
 			if ( have_posts() ) : ?>
@@ -29,7 +29,8 @@
 			<?php
 
 				else :
-					get_template_part( 'includes/no-results', 'index' );
+					//get_template_part( 'includes/no-results', 'index' );
+					do_action( 'epl_property_search_not_found' );
 				endif;
 			?>
 			</div> <!-- #left-area -->

@@ -40,13 +40,7 @@ function epl_archive_render_content() {
 	else :
 		//do_action( 'builder_template_show_not_found' );
 		?><div class="hentry">
-			<div class="entry-header clearfix">
-				<h3 class="entry-title"><?php apply_filters( 'epl_property_search_not_found_title' , _e('Listing not Found', 'easy-property-listings') ); ?></h3>
-			</div>
-
-			<div class="entry-content clearfix">
-				<p><?php apply_filters( 'epl_property_search_not_found_message' , _e('Listing not found, expand your search criteria and try again.', 'easy-property-listings') ); ?></p>
-			</div>
+			<?php do_action( 'epl_property_search_not_found' ); ?>
 		</div><?php
 	endif;
 }

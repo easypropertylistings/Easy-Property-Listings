@@ -122,17 +122,20 @@ class EPL_Property_Meta {
 	 * @return string|integer 	Return the value of the meta key, string, or integer.
 	 */
 	public function get_property_meta( $meta_key , $allowzero = true ) {
+		$value = null;
 		if(isset($this->meta[$meta_key])) {
 			if(isset($this->meta[$meta_key][0])) {
 				if($allowzero === true){
-					return  maybe_unserialize($this->meta[$meta_key][0]);
+					$value =  maybe_unserialize($this->meta[$meta_key][0]);
 				} elseif(intval($this->meta[$meta_key][0]) == 0) {
-					return;
+					$value = '';
 				} else {
-					return maybe_unserialize($this->meta[$meta_key][0]);
+					$value = maybe_unserialize($this->meta[$meta_key][0]);
 				}
 			}
 		}
+
+		return apply_filters( 'epl_meta_filter_'.$meta_key, $value );
 	}
 
 	/**
@@ -302,6 +305,10 @@ class EPL_Property_Meta {
 		if ( $this->get_property_meta('property_com_listing_type') == 'lease' ) {
 			$property_price = $property_price_view;
 		}
+		// Commercial Both Override
+		if ( $this->get_property_meta('property_com_listing_type') == 'both' && $property_price_view != '' ) {
+			$property_price = $property_price_view;
+		}
 		return apply_filters('epl_get_property_price_display',$property_price);
 	}
 
@@ -325,19 +332,19 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Sold price display
+	 * Lease price display
 	 *
 	 * @since 3.1
 	 * @return string Return lease price if selected or nothing
 	 */
 	public function get_property_price_lease_display( $admin = false ) {
-		$property_sold_price	= $this->get_property_price_display();
-		$property_sold_display	= $this->get_property_meta('property_sold_price_display');
+		$property_lease_price	= $this->get_property_price_display();
+		$property_lease_display	= $this->get_property_meta('property_sold_price_display');
 
-		if ( $property_sold_price != '' ) {
-			if ( $property_sold_display == 'yes' || $admin == true ) {
+		if ( $property_lease_price != '' ) {
+			if ( $property_lease_display == 'yes' || $admin == true ) {
 
-				return apply_filters('epl_get_property_price_lease_display',$property_sold_price);
+				return apply_filters('epl_get_property_price_lease_display',$property_lease_price);
 			}
 		}
 	}
@@ -436,14 +443,23 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @return string
 	 */
-	public function get_property_land_category() {
+	public function get_property_land_category( $tag = 'div' , $class = 'land-category' ) {
 		if ( !in_array( $this->post_type, array('land','commercial_land') ) )
 			return;
 
-		if ( $this->get_property_meta('property_land_category') !='' ) {
-			return apply_filters('epl_get_property_land_category',epl_listing_meta_land_category_value( $this->get_property_meta('property_land_category') ) );
+		$land_category	= epl_listing_meta_land_category_value( $this->get_property_meta('property_land_category') );
+
+		if ( $land_category == '' ) {
+			$land_category = $land_category;
 		}
+		elseif ( $tag == 'none' || $tag == 'value' ) {
+			$land_category = $land_category;
+		} else {
+			$land_category = '<'.$tag.' class="' . $class . '">' . __( $land_category , 'easy-property-listings' ) . '</'.$tag.'>';
+		}
+		return apply_filters( 'epl_get_property_rural_category' , $land_category );
 	}
+
 
 	/**
 	 * Formatted Address based on selected display option
@@ -468,10 +484,67 @@ class EPL_Property_Meta {
 	 * Listing Category
 	 *
 	 * @since 2.0
+	 * @param string $tag HTML wrapper type, default div
+	 * @param string $class name, default property-category
 	 * @return string
 	 */
-	public function get_property_category () {
-		return apply_filters('epl_get_property_category',epl_listing_meta_property_category_value( $this->get_property_meta('property_category') ));
+	public function get_property_category( $tag = 'div' , $class = 'property-category' ) {
+
+		$property_category =	epl_listing_meta_property_category_value( $this->get_property_meta('property_category') );
+
+		if ( $property_category == '' ) {
+			$property_category = $property_category;
+		}
+		elseif ( $tag == 'none' || $tag == 'value' ) {
+			$property_category = $property_category;
+		} else {
+			$property_category = '<'.$tag.' class="' . $class . '">' . __( $property_category,'easy-property-listings' ) . '</'.$tag.'>';
+		}
+		return apply_filters('epl_get_property_category', $property_category );
+	}
+
+	/**
+	 * Get Commercial Category
+	 *
+	 * @since 2.0
+	 * @param string $tag HTML wrapper type, default div
+	 * @param string $class name, default commercial-category
+	 * @return string
+	 */
+	public function get_property_commercial_category( $tag = 'div' , $class = 'commercial-category' ) {
+		$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta('property_commercial_category') );
+
+		if ( $property_commercial_category == '' ) {
+			$property_commercial_category = $property_commercial_category;
+		}
+		elseif ( $tag == 'none' || $tag == 'value' ) {
+			$property_commercial_category = $property_commercial_category;
+		} else {
+			$property_commercial_category = '<'.$tag.' class="' . $class . '">' . __($property_commercial_category,'easy-property-listings' ) . '</'.$tag.'>';
+		}
+		return apply_filters('epl_get_property_commercial_category',$property_commercial_category);
+	}
+
+	/**
+	 * Get Rural Category
+	 *
+	 * @since 3.1.12
+	 * @param string $tag HTML wrapper type, default div
+	 * @param string $class name, default rural-category
+	 * @return string
+	 */
+	public function get_property_rural_category( $tag = 'div' , $class = 'rural-category' ) {
+		$property_rural_category = epl_listing_load_meta_rural_category_value( $this->get_property_meta('property_rural_category') );
+
+		if ( $property_rural_category == '' ) {
+			$property_rural_category = $property_rural_category;
+		}
+		elseif ( $tag == 'none' || $tag == 'value' ) {
+			$property_rural_category = $property_rural_category;
+		} else {
+			$property_rural_category = '<'.$tag.' class="' . $class . '">' . __( $property_rural_category , 'easy-property-listings' ) . '</'.$tag.'>';
+		}
+		return apply_filters( 'epl_get_property_rural_category' , $property_rural_category );
 	}
 
 	/**
@@ -664,9 +737,17 @@ class EPL_Property_Meta {
 
 				if ( $this->get_property_meta('property_com_authority') == 'auction' ) {	// Auction
 					$price = '<span class="page-price auction">' . apply_filters('epl_commercial_auction_label',__( 'Auction' , 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
-				} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
+				}
+
+				elseif ( $this->get_property_meta('property_price_view') != '' &&  $this->get_property_meta('property_com_listing_type') == 'both' ) {
+					$price = '<span class="page-price"><span class="page-price-prefix"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_sale_and_lease_label' , __('For Sale and Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_price_display() . '</span>';
+				}
+
+				elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 					$price = '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_sale_label' , __('For Sale', 'easy-property-listings' ) ).'</span> '. $this->get_property_price_display() . $this->get_property_tax() . '</span>';
-				} else {
+				}
+
+				else {
 					$price_plain_value = '';
 					if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
 						$price_plain_value = $this->epl_settings['label_poa'];
@@ -698,6 +779,11 @@ class EPL_Property_Meta {
 						$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->epl_settings['label_poa'] . '</span>';
 					}
 				}
+
+				// Price text override
+				if ( $this->get_property_meta('property_price_view') != '' ) {
+					$price = '<span class="page-price"><span class="page-price-prefix">' . $this->get_property_price_display() . '</span>';
+				}
 			}
 
 			// Both (Add Lease Price Details)
@@ -705,7 +791,7 @@ class EPL_Property_Meta {
 				$both = $this->get_property_meta('property_com_listing_type') == 'both' ? '<div class="epl-clear"></div>' : '';
 
 				// Show Price
-				if ( $this->get_property_meta( 'property_price_display' ) == 'yes' ) {
+				if ( $this->get_property_meta( 'property_price_display' ) == 'yes' && $this->get_property_meta('property_price_view') == '' ) {
 
 					if ( $this->get_property_com_rent() != '' ) {
 						$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->get_property_com_rent() . ' '.__($rent_lease_type, 'easy-property-listings' ).'</span>';
@@ -714,7 +800,7 @@ class EPL_Property_Meta {
 
 				// Hide Price
 				else {
-					if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
+					if( !empty($this->epl_settings) && isset($this->epl_settings['label_poa'])  && $this->get_property_meta('property_price_view') == '' ) {
 						$price .= $both . '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_lease_label' , __('For Lease', 'easy-property-listings' ) ).'</span> ' . $this->epl_settings['label_poa'] . '</span>';
 					}
 				}
@@ -874,20 +960,6 @@ class EPL_Property_Meta {
 			}
 		}
 		return apply_filters('epl_get_price_in_list',$l_price);
-	}
-
-	/**
-	 * Get Commercial Category
-	 *
-	 * @since 2.0
-	 * @param string $tag HTML wrapper type, default div
-	 * @return string
-	 */
-	public function get_property_commercial_category( $tag = 'div' ) {
-		$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta('property_commercial_category') );
-		$property_commercial_category = '<'.$tag.' class="commercial-category">' . __($property_commercial_category,'easy-property-listings' ) . '</'.$tag.'>';
-
-		return apply_filters('epl_get_property_commercial_category',$property_commercial_category);
 	}
 
 	/**
@@ -1238,6 +1310,9 @@ class EPL_Property_Meta {
 			// translation for land area unit
 			$property_land_area_unit = __($property_land_area_unit , 'easy-property-listings' );
 		}
+
+		$property_land_area_unit = apply_filters( 'epl_property_land_area_unit_label' , $property_land_area_unit );
+
 		if(is_numeric($this->get_property_meta('property_land_area')) ) {
 			$label = apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
 			$return = '
@@ -1263,14 +1338,31 @@ class EPL_Property_Meta {
 			$building_unit = __($building_unit , 'easy-property-listings' );
 		}
 
+		$building_unit = apply_filters( 'epl_property_building_area_unit_label' , $building_unit );
+
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
 			$label = apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
 			$return = '
-				<li class="land-size">'.$label.' ' . $this->get_property_meta('property_building_area') .' '.$building_unit. '</li>';
-
+			<li class="building-size">'.$label.' ' . $this->get_property_meta('property_building_area') .' '.$building_unit. '</li>';
 			return apply_filters('epl_get_property_building_area_value',$return);
 		}
 
+	}
+
+	/**
+	 * Get Building Energy Rating
+	 *
+	 * @since 3.1.20
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 */
+	public function get_property_energy_rating_value( $returntype = 'i' ) {
+		if(intval($this->get_property_meta('property_building_energy_rating')) != 0 ) {
+			$label = apply_filters('epl_get_property_energy_rating_label',__('EER (Energy Efficiency Rating):', 'easy-property-listings' ) );
+			$return = '
+			<li class="energy-rating">'.$label.' ' . $this->get_property_meta('property_building_energy_rating') . '</li>';
+			return apply_filters('epl_get_property_energy_rating_value',$return);
+		}
 	}
 
 	/**
@@ -1366,35 +1458,42 @@ class EPL_Property_Meta {
 	 */
 	public function get_additional_features_html( $metakey ) {
 
-            $metavalue = $this->get_property_meta($metakey);
-			$return = '';
-			if( $metavalue != '' || intval($metavalue) != 0) {
-				if($metakey == 'property_com_car_spaces'){
-					$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label','' );
-				}
+		$metavalue = $this->get_property_meta($metakey);
 
-				if($metakey == 'property_category'){
-					$metavalue = $this->get_property_category();
-				}
+		$return = '';
 
-                switch($metavalue) {
+		if( $metavalue != '' || intval($metavalue) != 0) {
 
-                    case 1:
-                    case 'yes':
-	                case 'on':
-                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
-                    break;
-					case 0:
-					case 'no':
-	                case 'off':
-						$return = '';
+			// Commercial Car Spaces : Label Issue (Returning 50 Com Car Spaces. Need to remove com
+			if($metakey == 'property_com_car_spaces'){
+				$metavalue = $metavalue.apply_filters('epl_get_property_com_car_spaces_label','' );
+			}
+
+	                switch($metavalue) {
+
+				case 1:
+				case 'yes':
+				case 'YES':
+				case 'Y':
+				case 'y':
+				case 'on':
+					$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
 					break;
-                    default:
-                        $return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'easy-property-listings' ).' '.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
-                    break;
-                }
-            }
 
+				case 0:
+				case 'no':
+				case 'NO':
+				case 'N':
+				case 'n':
+				case 'off':
+					$return = '';
+					break;
+
+				default:
+	                        	$return = '<li class="'.$this->get_class_from_metakey($metakey).'">'.__($metavalue,'easy-property-listings' ).' '.apply_filters('epl_get_'.$metakey.'_label',__($this->get_label_from_metakey($metakey), 'easy-property-listings' ) ).'</li>';
+					break;
+	                }
+		}
 		return apply_filters('epl_get_additional_features_html',$return);
 	}
 
@@ -1406,14 +1505,14 @@ class EPL_Property_Meta {
 	 * @return mixed Value formatted and wrapped in div with title
 	 */
 	public function get_additional_rural_features_html( $metakey ) {
-			$metavalue = $this->get_property_meta($metakey);
-			if( isset($metavalue) && $metavalue != '' ) {
-				$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
-							<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'easy-property-listings' ).'</h6>'.
-							'<p>'.__($metavalue,'easy-property-listings' ).'</p>'.
-						'</div>';
-				return apply_filters('epl_get_additional_rural_features_html',$return);
-			}
+		$metavalue = $this->get_property_meta($metakey);
+		if( isset($metavalue) && $metavalue != '' ) {
+			$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_rural_').'">
+						<h6>'.__($this->get_label_from_metakey($metakey,'property_rural_'), 'easy-property-listings' ).'</h6>'.
+						'<p>'.__($metavalue,'easy-property-listings' ).'</p>'.
+					'</div>';
+			return apply_filters('epl_get_additional_rural_features_html',$return);
+		}
 	}
 
 	/**
@@ -1424,14 +1523,14 @@ class EPL_Property_Meta {
 	 * @return mixed Value formatted and wrapped in div with title
 	 */
 	public function get_additional_commerical_features_html( $metakey ) {
-			$metavalue = $this->get_property_meta($metakey);
-			if( isset($metavalue) && $metavalue != '' ) {
-				$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
-							<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'easy-property-listings' ).'</h6>'.
-							'<p>'.__($metavalue,'easy-property-listings' ).'</p>'.
-						'</div>';
-				return apply_filters('epl_get_additional_commerical_features_html',$return);
-			}
+		$metavalue = $this->get_property_meta($metakey);
+		if( isset($metavalue) && $metavalue != '' ) {
+			$return = '<div class="'.$this->get_class_from_metakey($metakey,$search= 'property_com_').'">
+						<h6>'.__($this->get_label_from_metakey($metakey,'property_com_'), 'easy-property-listings' ).'</h6>'.
+						'<p>'.__($metavalue,'easy-property-listings' ).'</p>'.
+					'</div>';
+			return apply_filters('epl_get_additional_commerical_features_html',$return);
+		}
 	}
 
 	/**
@@ -1443,8 +1542,7 @@ class EPL_Property_Meta {
 	 * @return string Formatted class name
 	 */
 	public function get_class_from_metakey( $key , $search = 'property_' ){
-		 return str_replace("property_", "", $key);
-
+		return str_replace("property_", "", $key);
 	}
 
 	/**
@@ -1456,7 +1554,7 @@ class EPL_Property_Meta {
 	 * @return string Formatted uppercase words
 	 */
 	public function get_label_from_metakey( $key , $search = 'property_' ){
-		 return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
+		return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
 	}
 
 	/**

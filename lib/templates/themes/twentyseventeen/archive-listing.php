@@ -24,7 +24,7 @@ get_header(); ?>
 	<?php endif; ?>
 
 	<div id="primary" class="content-area <?php echo epl_get_active_theme_name(); ?>">
-		<main id="main" class="site-main" role="main">
+		<main id="main" class="site-main <?php echo epl_template_class( 'twentyseventeen', 'archive' ); ?>" role="main">
 
 		<?php
 		if ( have_posts() ) : ?>
@@ -50,13 +50,7 @@ get_header(); ?>
 		else :
 
 			?><div class="hentry">
-				<div class="entry-header clearfix">
-					<h3 class="entry-title"><?php apply_filters( 'epl_property_search_not_found_title' , _e('Listing not Found', 'easy-property-listings') ); ?></h3>
-				</div>
-
-				<div class="entry-content clearfix">
-					<p><?php apply_filters( 'epl_property_search_not_found_message' , _e('Listing not found, expand your search criteria and try again.', 'easy-property-listings') ); ?></p>
-				</div>
+				<?php do_action( 'epl_property_search_not_found' ); ?>
 			</div>
 			<?php
 

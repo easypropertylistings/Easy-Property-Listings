@@ -22,7 +22,7 @@ get_header(); ?>
 					</h4>
 				</header>
 
-				<div class="entry-content loop-content">
+				<div class="entry-content loop-content <?php echo epl_template_class( 'default', 'archive' ); ?>">
 					<?php do_action( 'epl_property_loop_start' ); ?>
 					<?php while ( have_posts() ) : // The Loop
 							the_post();
@@ -42,13 +42,7 @@ get_header(); ?>
 		<?php
 		else :
 			?><div class="hentry">
-				<div class="entry-header clearfix">
-					<h3 class="entry-title"><?php apply_filters( 'epl_property_search_not_found_title' , _e('Listing not Found', 'easy-property-listings') ); ?></h3>
-				</div>
-
-				<div class="entry-content clearfix">
-					<p><?php apply_filters( 'epl_property_search_not_found_message' , _e('Listing not found, expand your search criteria and try again.', 'easy-property-listings') ); ?></p>
-				</div>
+				<?php do_action( 'epl_property_search_not_found' ); ?>
 			</div>
 		<?php endif; ?>
 	</div>

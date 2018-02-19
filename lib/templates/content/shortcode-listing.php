@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $query_open->have_posts() ) {
 	?>
 	<div class="loop epl-shortcode">
-		<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $attributes['template'] ); ?>">
+		<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $attributes['template'], 'archive' ); ?>">
 			<?php
 			if ( $attributes['tools_top'] == 'on' ) {
 				do_action( 'epl_property_loop_start' );

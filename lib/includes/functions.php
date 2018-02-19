@@ -494,9 +494,15 @@ function epl_listing_load_meta_property_category() {
  */
 function epl_listing_meta_property_category_value( $key ) {
 	$array = epl_listing_load_meta_property_category();
-	$value = array_key_exists( $key , $array ) && !empty( $array[$key] )  ? $array[$key] : '';
+	$key = (array) $key;
+	$values = array();
+	foreach($key as $single) {
+		$values[] = array_key_exists( $single , $array ) && !empty( $array[$single] )  ? $array[$single] : $single;
+	}
 
-	return $value;
+	$value = implode(', ',$values);
+
+	return apply_filters('epl_property_category_value',$value);
 }
 
 /**
@@ -657,6 +663,23 @@ function epl_feedsync_format_date( $date ) {
 }
 
 /**
+ * REAXML Auction Date Processing Function for WP All Import and FeedSync
+ *
+ * Some imports set the current date instead of the date from the REAXML file.
+ * Usage in WP All Import Post Date field is:
+ * [epl_feedsync_format_date_auction({AUCDATE[1]},{AUC_TIME[1]})]
+ *
+ * @since 3.1.7
+ * @param string $date
+ * @return formatted date
+ */
+function epl_feedsync_format_date_auction($date,$time) {
+
+	$date = str_replace('/', '-', $date); // Convert to european date format for strtotime function
+	return date( "Y-M-d H:i:s", strtotime( $date . ' ' . $time ) );
+}
+
+/**
  * REAXML Address Sub Number field for title import
  * processing Function for WP All Import and FeedSync
  *
@@ -693,36 +716,31 @@ function epl_feedsync_format_strip_currency( $value ) {
 	return;
 }
 
-
 /**
- * Offers presented on settings page, removed if extension is present and activated
+ * REAXML convert date/time to adjust for timezone
  *
- * @since 2.0
+ * Processing Function for WP All Import and FeedSync
+ * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
+ *
+ * @since 3.0
+ * @return integer
  */
-function epl_admin_sidebar () {
+function epl_feedsync_switch_date_time($date_time=false,$old_time_zone='Australia/Perth',$new_timezone='Australia/Sydney',$format='Y-m-d H:i:s') {
 
-	if ( has_filter( 'epl_extensions_options_filter_new' ) )
-		return;
-
-	$service_banners = array(
-		array(
-			'url' => 'http://easypropertylistings.com.au/extensions/developer-license/',
-			'img' => 'bannertwo.png',
-			'alt' => __('Developer bundle Prospector for Easy Property Listings', 'easy-property-listings' )
-		),
-		/*
-		* array(
-		*	'url' => 'http://easypropertylistings.com.au/extensions/prospector-license/',
-		*	'img' => 'bannerone.png',
-		*	'alt' => __('Prospector pack for Easy Property Listings', 'easy-property-listings' )
-		*),
-		*/
-	);
-	$i = 0;
-	foreach ( $service_banners as $banner ) {
-		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="261" src="' .plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) .'" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
-		$i ++;
+	if( !$date_time) {
+		$date_time = date( 'Y-m-d H:i:s',time() );
 	}
+	if( !$old_time_zone) {
+		$old_time_zone = 'Australia/Perth';
+	}
+	if( !$new_timezone) {
+		$new_timezone = 'Australia/Sydney';
+	}
+
+	$schedule_date = new DateTime($date_time, new DateTimeZone($new_timezone) );
+	$schedule_date->setTimeZone(new DateTimeZone($old_time_zone));
+	return $schedule_date->format($format);
+
 }
 
 /**
@@ -1155,7 +1173,18 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					),
 					'default'	=>	'no',
 					'help'		=>	__('Display country with listing address.' , 'easy-property-listings' )
-				)
+				),
+
+				array(
+					'name'		=>	'epl_default_country',
+					'label'		=>	__('Default Country', 'easy-property-listings' ),
+					'type'		=>	'select',
+					'opts'		=>	epl_get_countries_list(),
+					'default'	=>	'Australia',
+					'help'		=>	__('This is used for map when listing has no address details' , 'easy-property-listings' )
+				),
+
+
 			)
 		),
 
@@ -1672,13 +1701,31 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						1	=>	__('Enable', 'easy-property-listings' ),
 						0	=>	__('Disable', 'easy-property-listings' )
 					),
-					'help'		=>	__('Check this box if you would like EPL to completely remove all of its data when the plugin is deleted.', 'easy-property-listings' ),
+					'help'		=>	__('Select Enable if you would like EPL to completely remove all of its data when the plugin is deleted.', 'easy-property-listings' ),
 					'default'	=>	0
 				)
 			)
-		),
+		)
 
 	);
+
+	if( defined('EPL_BETA_VERSIONS') && EPL_BETA_VERSIONS == true ) {
+		$fields[] = array(
+			'label'		=>	__('Beta Versions' , 'easy-property-listings' ),
+			'class'		=>	'core',
+			'id'		=>	'beta-versions',
+			'fields'	=>	array(
+				array(
+					'name'		=>	'enabled_betas',
+					'label'		=>	__('Enable Beta Versions', 'easy-property-listings' ),
+					'type'		=>	'checkbox',
+					'opts'		=>	epl_get_beta_enabled_extensions(),
+					'help'		=>	__('Checking any of the checkboxes will opt you in to receive pre-release update notifications. You can opt-out at any time. Pre-release updates do not install automatically, you will still have the opportunity to ignore update notifications.' , 'easy-property-listings' )
+				),
+
+			)
+		);
+	}
 
 	$fields = apply_filters('epl_display_options_filter', $fields);
 	return $fields;
@@ -1741,15 +1788,19 @@ function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = '
     if( empty( $key ) )
         return;
 
+    $type = (array) $type;
+    $type = array_map( 'sanitize_text_field', $type );
+    $type_str = " ( '".implode("','", $type)."' ) ";
     $res = $wpdb->get_col( $wpdb->prepare( "
 SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
 LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
 WHERE pm.meta_key = '%s'
 AND p.post_status = '%s'
-AND p.post_type = '%s'
-", $key, $status, $type ) );
+AND p.post_type IN $type_str
+", $key, $status ) );
 
 	$res = array_filter($res);
+
 	foreach($res as $key =>	&$elem) {
 		$elem 	= maybe_unserialize($elem);
 		if(!empty($elem) && is_array($elem) ) {
@@ -1760,9 +1811,17 @@ AND p.post_type = '%s'
 		}
 
 	}
+
 	$res = array_filter($res);
-	if(!empty($res))
-    	return array_combine(array_filter($res), array_map('ucwords',array_filter($res)) );
+
+	$results = array();
+
+	foreach($res as $s_res) {
+		$results[$s_res] = __( ucwords($s_res) , 'easy-property-listings' );
+	}
+
+
+	return apply_filters('epl_get_unique_post_meta_values',$results,$key,$type);
 }
 
 /**
@@ -2077,4 +2136,25 @@ function epl_parse_atts($atts) {
 	}
 	return isset($query['meta_query'])?$query['meta_query'] : false;
 
+}
+
+/**
+ * Return an array of all extensions with beta support
+ *
+ * Extensions should be added as 'extension-slug' => 'Extension Name'
+ *
+ * @return      array $extensions The array of extensions
+ */
+function epl_get_beta_enabled_extensions() {
+	return apply_filters( 'epl_beta_enabled_extensions', array() );
+}
+
+/**
+ * Returns List of countries
+ */
+function epl_get_countries_list() {
+
+	$countries = array("Australia", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+
+	return apply_filters('epl_get_countries_list',array_combine($countries,$countries) );
 }

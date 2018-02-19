@@ -436,6 +436,13 @@ function epl_meta_box_init() {
 						),
 
 						array(
+							'name'		=>	'property_building_energy_rating',
+							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
+							'type'		=>	'decimal',
+							'maxlength'	=>	'6'
+						),
+
+						array(
 							'name'		=>	'property_land_fully_fenced',
 							'label'		=>	__('Fully Fenced', 'easy-property-listings' ),
 							'type'		=>	'checkbox_single',
@@ -781,6 +788,13 @@ function epl_meta_box_init() {
 							'type'		=>	'select',
 							'opts'		=>	$opts_area_unit,
 							'include'	=>	array('commercial','business')
+						),
+
+						array(
+							'name'		=>	'property_building_energy_rating',
+							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
+							'type'		=>	'decimal',
+							'maxlength'	=>	'6'
 						),
 
 						array(
@@ -1300,7 +1314,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
-					'id'		=>	'commerial_features',
+					'id'		=>	'commercial_features',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(
@@ -1454,7 +1468,7 @@ function epl_meta_box_init() {
 			'priority'	=>	'default',
 			'groups'	=>	array(
 				array(
-					'id'		=>	'filen_n_links',
+					'id'		=>	'files_n_links',
 					'columns'	=>	'1',
 					'label'		=>	'',
 					'fields'	=>	array(

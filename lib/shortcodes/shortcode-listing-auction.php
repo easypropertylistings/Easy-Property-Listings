@@ -68,6 +68,12 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		'value'		=> 'no',
 	);
 
+	/** only properties which are not auction should be allowed **/
+	$args['meta_query'][] = array(
+		'key'		=> 'property_authority',
+		'value'		=> 'auction',
+	);
+
 	if(!empty($location) ) {
 		if( !is_array( $location ) ) {
 			$location = explode(",", $location);
@@ -120,7 +126,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template ); ?>">
+			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template, 'archive' ); ?>">
 				<?php
 					if ( $tools_top == 'on' ) {
 						do_action( 'epl_property_loop_start' );
@@ -144,7 +150,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		echo '<h3>'.__('Nothing found, please check back later.', 'easy-property-listings' ).'</h3>';
+		do_action( 'epl_shortcode_results_message' );
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

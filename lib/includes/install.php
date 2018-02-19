@@ -118,6 +118,12 @@ function epl_install() {
 		update_option( 'epl_version', $epl_data['Version'] );
 	}
 
+	$notice_display = get_transient( 'epl_admin_notices_display' );
+
+	if( !$notice_display ) {
+		set_transient( 'epl_admin_notices_display', true, 60*60*24*14 );
+	}
+	
 	// Bail if activating from network, or bulk
 	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 		return;
@@ -216,6 +222,10 @@ function epl_plugin_updates() {
 	if ( version_compare( $current_version, '3.1', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-3.1.php' );
 		update_option( 'epl_version' ,'3.1');
+	}
+	if ( version_compare( $current_version, '3.1.16', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-3.1.16.php' );
+		update_option( 'epl_version' ,'3.1.16');
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
