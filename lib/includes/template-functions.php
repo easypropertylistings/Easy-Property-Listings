@@ -837,8 +837,11 @@ function epl_property_tab_section() {
 				'property_garage',
 				'property_carport',
 				'property_open_spaces',
-				'property_com_parking_comments', // Issue with label output
-				'property_com_car_spaces', // Issue with label output
+				'property_com_parking_comments',
+				'property_com_car_spaces',
+				'property_category',
+				'property_holiday_rental',
+				'property_furnished',
 			);
 	$common_features = apply_filters('epl_property_common_features_list',$common_features);
 

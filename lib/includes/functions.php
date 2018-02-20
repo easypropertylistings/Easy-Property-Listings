@@ -1665,7 +1665,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 				array(
 					'name'		=>	'epl_css_legacy',
-					'label'		=>	__('Enable Legacy Styles', 'easy-property-listings' ),
+					'label'		=>	__('Legacy Styles', 'easy-property-listings' ),
 					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
@@ -1674,6 +1674,27 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'help'		=>	__('Check this to enable legacy css styles.' , 'easy-property-listings' )
 				),
 
+				array(
+					'name'		=>	'epl_icons_svg_listings',
+					'label'		=>	__('SVG Icons for Listings', 'easy-property-listings' ),
+					'type'		=>	'checkbox_option',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'easy-property-listings' ),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to enable SVG icons on listings.' , 'easy-property-listings' )
+				),
+
+				array(
+					'name'		=>	'epl_icons_svg_author',
+					'label'		=>	__('SVG Icons for Author Social Links', 'easy-property-listings' ),
+					'type'		=>	'checkbox_option',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'easy-property-listings' ),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to enable SVG icons on author social links.' , 'easy-property-listings' )
+				),
 
 				array(
 					'name'		=>	'epl_disable_google_api',
@@ -1687,12 +1708,14 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'help'		=>	__('Set to disabled if Google Maps API has already been loaded in your theme or other plugin.' , 'easy-property-listings' )
 
 				),
+
 				array(
 					'name'		=>	'epl_google_api_key',
 					'label'		=>	__('Google Maps API Key', 'easy-property-listings' ),
 					'type'		=>	'text',
 					'help'		=>	__("Register for a $get_google_maps_api_key_uri here." , 'easy-property-listings' )
 				),
+
 				array(
 					'name'		=>	'uninstall_on_delete',
 					'label'		=>	__('Remove Data on Uninstall?', 'easy-property-listings' ),
