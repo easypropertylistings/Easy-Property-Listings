@@ -211,6 +211,7 @@ class EPL_Search_Fields {
 		if ( isset( $field['wrap_start'] ) ) {
 			echo '<div class="' . $field['wrap_start'] . '">';
 		}
+		$placeholder = isset($field['placeholder']) ? $field['placeholder'] : '';
 		?>
 		<div class="epl-search-row epl-search-row-number epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset( $field['class'] ) ? $field['class'] : ''; ?>">
 			<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
@@ -218,6 +219,7 @@ class EPL_Search_Fields {
 			</label>
 			<div class="field">
 				<input type="number" class="in-field field-width"
+					placeholder="<?php echo $placeholder; ?>"
 					name="<?php echo $field['meta_key']; ?>"
 					id="<?php echo $field['meta_key']; ?>"
 					value="<?php echo $value; ?>"
