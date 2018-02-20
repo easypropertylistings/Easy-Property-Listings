@@ -35,7 +35,17 @@ function epl_admin_enqueue_scripts($screen) {
 		wp_enqueue_script(	'epl-jquery-validation-engine-scripts', 	$current_dir_path . '/js/jquery-validationEngine.js', 	array('jquery'),	EPL_PROPERTY_VER );
 		wp_enqueue_script(	'jquery-datetime-picker',			$current_dir_path . '/js/jquery-datetime-picker.js', 	array('jquery'),	EPL_PROPERTY_VER );
 		wp_enqueue_style(	'jquery-ui-datetime-picker-style',  		$current_dir_path . '/css/jquery-ui.min.css',		FALSE,			EPL_PROPERTY_VER );
-		wp_enqueue_script( 	'epl-admin-scripts', 				$current_dir_path . '/js/jquery-admin-scripts.js', 	array('jquery'),	EPL_PROPERTY_VER );
+
+		$js_vars = array(
+			'default_map_address' 	=> apply_filters('epl_default_map_address', epl_get_option('epl_default_country','Australia') ),
+		);
+
+		wp_register_script( 	'epl-admin-scripts', 				$current_dir_path . '/js/jquery-admin-scripts.js', 	array('jquery'),	EPL_PROPERTY_VER );
+
+		wp_localize_script('epl-admin-scripts','epl_admin_vars',$js_vars);
+
+		wp_enqueue_script('epl-admin-scripts');
+
 		wp_enqueue_style( 	'epl-admin-styles', 				$current_dir_path . '/css/style-admin.css',		FALSE,			EPL_PROPERTY_VER );
 
 	}
@@ -108,6 +118,9 @@ function epl_wp_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
 
+/**
+ * Load and enqueue admin styles
+ */
 function epl_admin_styles() {
 
 	global $current_screen,$epl_settings;

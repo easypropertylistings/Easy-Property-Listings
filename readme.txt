@@ -5,10 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 4.8
-
-Stable Tag: 3.1.18
-
+Tested up to: 4.9.4
+Stable Tag: 3.1.19
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -391,6 +389,41 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.1.20 February 20, 2018 =
+
+* New: Removed changelog entries from plugin core files to greatly reduce translation requirements for plugin and translation will be far easier for translators now.
+* New: Change log items are parsed from readme.txt file which removes the need to translate over 700 change log entries.
+* New: Added a new CSS class epl-property-features to the listing features column.
+* New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.
+* New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.
+* New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data which is fed to epl search class.
+* New: Search Query Filter epl_preprocess_search_tax_query filter to alter taxonomy query.
+* New: Search results template filter epl_common_search_template allowing using an alternative template for search results.
+* New: Filter for epl_get_unique_post_meta_values to adjust data parsing.
+* New: Selection to set default country for map coordinate generation when adding listings.
+* New: Implementation to support beta releases of extensions, enabled when EPL_BETA_VERSIONS is true.
+* New: Added additional filters for epl_author_mobile, epl_author_id, epl_author_slogan, epl_author_position, epl_author_name and epl_author_contact_form.
+* New: Implemented support for energy rating value on listings as it is mandatory in some regions. New meta field is property_building_energy_rating.
+* New: Ability to display offmarket and withdrawn listings on archive pages through the epl_hide_listing_statuses filter.
+* New: Migrated Author details tab into a new template file content-author-box-tab-details.php that can be overridden in active_theme/easypropertylistings folder which enables easier editing of the details tab contents.
+* New: Filters added for listing admin columns allowing other plugins to hook in correctly to listing dashboard columns and display additional info like Yoast SEO, Post Counter and many other WordPress plugins: epl_post_type_business_admin_columns, epl_post_type_commercial_admin_columns, epl_post_type_commercial_land_admin_columns, epl_post_type_land_admin_columns, epl_post_type_property_admin_columns, epl_post_type_rental_admin_columns, epl_post_type_rural_admin_columns.
+* New: Implemented a filter epl_common_search_template to allow altering of search results template. Default is archive-listing.php and can be overridden by creating a search-listing.php or by post type search-{post_type_name}.php.
+* Tweak: Added option to use a seperate template for search results.
+* Tweak: Corrected building size css class name from land-size to building-size.
+* Tweak: Extension updater class cache improvements implemented.
+* Tweak: Updates to licensing system to support beta releases of extension versions.
+* Tweak: Class check to ensure that the EPL_Author_Meta is already defined, class will not load in error.
+* Tweak: Field type checkbox_single altered so that the label is not displayed twice when adding a custom field.
+* Tweak: Altered the plugin loading order for better WPML support.
+* Tweak: Better support to search multiple post types.
+* Tweak: Search better supports multiple post types in an array: epl_get_unique_post_meta_values('property_bedroom','current', array('property','rental') ).
+* Tweak: Sorting option better allows sorting options based on post types by passing post type.
+* Fix: Select form render multiple selections for search.
+* Fix: Price bar graph in admin when no price set.
+* Fix: Translation issues for search dropdowns.
+* Fix: Location taxonomy search redirection.
+* Fix: Sorting by Unique ID in Dashboard manage listings.
 
 = 3.1.19 July 12, 2017 =
 

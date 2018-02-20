@@ -1173,7 +1173,18 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					),
 					'default'	=>	'no',
 					'help'		=>	__('Display country with listing address.' , 'easy-property-listings' )
-				)
+				),
+
+				array(
+					'name'		=>	'epl_default_country',
+					'label'		=>	__('Default Country', 'easy-property-listings' ),
+					'type'		=>	'select',
+					'opts'		=>	epl_get_countries_list(),
+					'default'	=>	'Australia',
+					'help'		=>	__('This is used for map when listing has no address details' , 'easy-property-listings' )
+				),
+
+
 			)
 		),
 
@@ -1654,7 +1665,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 				array(
 					'name'		=>	'epl_css_legacy',
-					'label'		=>	__('Enable Legacy Styles', 'easy-property-listings' ),
+					'label'		=>	__('Legacy Styles', 'easy-property-listings' ),
 					'type'		=>	'checkbox_option',
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
@@ -1663,6 +1674,27 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'help'		=>	__('Check this to enable legacy css styles.' , 'easy-property-listings' )
 				),
 
+				array(
+					'name'		=>	'epl_icons_svg_listings',
+					'label'		=>	__('SVG Icons for Listings', 'easy-property-listings' ),
+					'type'		=>	'checkbox_option',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'easy-property-listings' ),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to enable SVG icons on listings.' , 'easy-property-listings' )
+				),
+
+				array(
+					'name'		=>	'epl_icons_svg_author',
+					'label'		=>	__('SVG Icons for Author Social Links', 'easy-property-listings' ),
+					'type'		=>	'checkbox_option',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'easy-property-listings' ),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to enable SVG icons on author social links.' , 'easy-property-listings' )
+				),
 
 				array(
 					'name'		=>	'epl_disable_google_api',
@@ -1676,12 +1708,14 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'help'		=>	__('Set to disabled if Google Maps API has already been loaded in your theme or other plugin.' , 'easy-property-listings' )
 
 				),
+
 				array(
 					'name'		=>	'epl_google_api_key',
 					'label'		=>	__('Google Maps API Key', 'easy-property-listings' ),
 					'type'		=>	'text',
 					'help'		=>	__("Register for a $get_google_maps_api_key_uri here." , 'easy-property-listings' )
 				),
+
 				array(
 					'name'		=>	'uninstall_on_delete',
 					'label'		=>	__('Remove Data on Uninstall?', 'easy-property-listings' ),
@@ -1694,9 +1728,27 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'default'	=>	0
 				)
 			)
-		),
+		)
 
 	);
+
+	if( defined('EPL_BETA_VERSIONS') && EPL_BETA_VERSIONS == true ) {
+		$fields[] = array(
+			'label'		=>	__('Beta Versions' , 'easy-property-listings' ),
+			'class'		=>	'core',
+			'id'		=>	'beta-versions',
+			'fields'	=>	array(
+				array(
+					'name'		=>	'enabled_betas',
+					'label'		=>	__('Enable Beta Versions', 'easy-property-listings' ),
+					'type'		=>	'checkbox',
+					'opts'		=>	epl_get_beta_enabled_extensions(),
+					'help'		=>	__('Checking any of the checkboxes will opt you in to receive pre-release update notifications. You can opt-out at any time. Pre-release updates do not install automatically, you will still have the opportunity to ignore update notifications.' , 'easy-property-listings' )
+				),
+
+			)
+		);
+	}
 
 	$fields = apply_filters('epl_display_options_filter', $fields);
 	return $fields;
@@ -1759,15 +1811,19 @@ function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = '
     if( empty( $key ) )
         return;
 
+    $type = (array) $type;
+    $type = array_map( 'sanitize_text_field', $type );
+    $type_str = " ( '".implode("','", $type)."' ) ";
     $res = $wpdb->get_col( $wpdb->prepare( "
 SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
 LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
 WHERE pm.meta_key = '%s'
 AND p.post_status = '%s'
-AND p.post_type = '%s'
-", $key, $status, $type ) );
+AND p.post_type IN $type_str
+", $key, $status ) );
 
 	$res = array_filter($res);
+
 	foreach($res as $key =>	&$elem) {
 		$elem 	= maybe_unserialize($elem);
 		if(!empty($elem) && is_array($elem) ) {
@@ -1778,9 +1834,17 @@ AND p.post_type = '%s'
 		}
 
 	}
+
 	$res = array_filter($res);
-	if(!empty($res))
-    	return array_combine(array_filter($res), array_map('ucwords',array_filter($res)) );
+
+	$results = array();
+
+	foreach($res as $s_res) {
+		$results[$s_res] = __( ucwords($s_res) , 'easy-property-listings' );
+	}
+
+
+	return apply_filters('epl_get_unique_post_meta_values',$results,$key,$type);
 }
 
 /**
@@ -2095,4 +2159,25 @@ function epl_parse_atts($atts) {
 	}
 	return isset($query['meta_query'])?$query['meta_query'] : false;
 
+}
+
+/**
+ * Return an array of all extensions with beta support
+ *
+ * Extensions should be added as 'extension-slug' => 'Extension Name'
+ *
+ * @return      array $extensions The array of extensions
+ */
+function epl_get_beta_enabled_extensions() {
+	return apply_filters( 'epl_beta_enabled_extensions', array() );
+}
+
+/**
+ * Returns List of countries
+ */
+function epl_get_countries_list() {
+
+	$countries = array("Australia", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+
+	return apply_filters('epl_get_countries_list',array_combine($countries,$countries) );
 }

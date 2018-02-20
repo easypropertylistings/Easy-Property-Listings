@@ -181,6 +181,11 @@ function epl_custom_orderby( $query ) {
 		$query->set('orderby','meta_value_num');
 	}
 
+	if( 'listing_id' == $orderby ) {
+		$query->set('meta_key','property_unique_id');
+		$query->set('orderby','meta_value');
+	}
+
 }
 // handle sorting of admin columns
 add_filter( 'pre_get_posts', 'epl_custom_orderby' );
@@ -386,14 +391,25 @@ function epl_manage_listing_column_price_callback() {
 	else {
 		$class = '';
 	}
-	if ( ! empty ( $sold_price ) ){
-		$barwidth = $max_price == 0 ? 0 : $sold_price/$max_price * 100;
-	} else {
-		$barwidth = $max_price == 0 ? 0 : $price/$max_price * 100;
+
+	// If we have a sold price
+	if ( ! empty ( $sold_price ) ) {
+        $bar_price = $sold_price;
+	// If we have a regular price
+	} else if ( ! empty ( $price ) ) {
+        $bar_price = $price;
 	}
-	echo '<div class="epl-price-bar '.$class.'">
+
+	// If we have a price to display in the bar
+	if ( ! empty( $bar_price ) ) {
+        $barwidth = $max_price == 0 ? 0 : $bar_price/$max_price * 100;
+	    echo '<div class="epl-price-bar '.$class.'">
 			<span style="width:'.$barwidth.'%"></span>
 		</div>';
+	// Otherwise, there is no price set
+	} else {
+	    echo __('No price set', 'easy-property-listings' );
+	}
 
 	if ( !empty( $property_under_offer) && 'yes' == $property_under_offer ) {
 		// echo '<div class="type_under_offer">' .$property->label_under_offer. '</div>';
