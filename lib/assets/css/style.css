@@ -320,6 +320,13 @@ ul.epl-striped > *:nth-child(2n+1) {
 
 }
 
+/* Contact Forms */
+.epl-contact-capture-form {
+
+}
+.epl-contact-capture-form .col-1 {
+	width: 100%;
+}
 
 @media screen and (max-width: 500px) {
 	.epl-active-theme-twentyfourteen.epl-archive-default .page-header,
