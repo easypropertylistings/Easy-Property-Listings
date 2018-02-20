@@ -86,14 +86,18 @@ add_action('epl_property_single','epl_property_single');
  *
  * @since 1.2
  */
-function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' ) {
+function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' , $link = true ) {
 
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
 			<div class="epl-featured-image it-featured-image">
-				<a href="<?php the_permalink(); ?>">
-					<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
-				</a>
+				<?php if ( $link == true ) { ?>
+					<a href="<?php the_permalink(); ?>">
+				<?php } ?>
+						<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
+				<?php if ( $link == true ) { ?>
+					</a>
+				<?php } ?>
 			</div>
 		</div>
 	<?php }
@@ -107,21 +111,25 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' , 10 , 2
  *
  * @since 2.2
  */
-function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) {
+function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' , $link = true  ) {
 	if($image_size == '') {
 		$image_size = 'epl-image-medium-crop';
 	}
 
 	if ( has_post_thumbnail() ) { ?>
 		<div class="epl-archive-entry-image">
-			<a href="<?php the_permalink(); ?>">
-				<div class="epl-blog-image">
-					<div class="epl-stickers-wrapper">
-						<?php echo epl_get_price_sticker(); ?>
+			<?php if ( $link == true ) { ?>
+				<a href="<?php the_permalink(); ?>">
+			<?php } ?>
+					<div class="epl-blog-image">
+						<div class="epl-stickers-wrapper">
+							<?php echo epl_get_price_sticker(); ?>
+						</div>
+						<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
 					</div>
-					<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
-				</div>
-			</a>
+			<?php if ( $link == true ) { ?>
+				</a>
+			<?php } ?>
 		</div>
 	<?php }
 
@@ -133,15 +141,19 @@ add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featur
  *
  * @since 2.2
  */
-function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' ) {
+function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' , $link = true  ) {
 
 	if ( has_post_thumbnail() ) { ?>
 		<div class="epl-archive-entry-image">
-			<a href="<?php the_permalink(); ?>">
-				<div class="epl-blog-image">
-					<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
-				</div>
-			</a>
+			<?php if ( $link == true ) { ?>
+				<a href="<?php the_permalink(); ?>">
+			<?php } ?>
+					<div class="epl-blog-image">
+						<?php the_post_thumbnail( $image_size , array( 'class' => $image_class ) ); ?>
+					</div>
+			<?php if ( $link == true ) { ?>
+				</a>
+			<?php } ?>
 		</div>
 	<?php }
 
