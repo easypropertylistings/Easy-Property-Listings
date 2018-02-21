@@ -85,7 +85,7 @@ function epl_search_widget_fields() {
 		array(
 			'key'			=>	'search_features',
 			'label'			=>	__('Features','easy-property-listings'),
-			'default'		=>	'on',
+			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
 		array(
@@ -924,7 +924,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 	$results = $wpdb->get_results( $wpdb->prepare( "SELECT distinct(pm.`meta_value`) FROM {$wpdb->postmeta} pm LEFT JOIN {$wpdb->posts} p ON p.`ID` = pm.`post_id` WHERE pm.`meta_key` = '%s' AND p.`post_status` = '%s' AND p.`post_type` IN $type_str AND pm.`meta_value` != ''", $key, $status ));
 
 	if(!empty($results)) {
-		
+
 		$return = array();
 		if($key == 'property_category') {
 			 $defaults = epl_listing_load_meta_property_category();
