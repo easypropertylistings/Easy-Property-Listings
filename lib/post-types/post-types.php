@@ -152,11 +152,11 @@ function epl_admin_posts_filter( $query ) {
  * @since 1.0
  */
 function epl_manage_listings_sortable_columns( $columns ) {
-	$columns['property_price']		= 'property_price';
+	$columns['property_price']	= 'property_price';
 	$columns['property_status'] 	= 'property_status';
-	$columns['listing_id'] 			= 'listing_id';
-	$columns['agent'] 				= 'agent';
-	$columns['property_thumb'] 				= 'property_thumb';
+	$columns['listing_id'] 		= 'listing_id';
+	$columns['agent'] 		= 'agent';
+	$columns['property_thumb'] 	= 'property_thumb';
 	return $columns;
 }
 

@@ -83,12 +83,6 @@ function epl_search_widget_fields() {
 			'type'			=>	'checkbox',
 		),
 		array(
-			'key'			=>	'search_features',
-			'label'			=>	__('Features','easy-property-listings'),
-			'default'		=>	'on',
-			'type'			=>	'checkbox',
-		),
-		array(
 			'key'			=>	'search_city',
 			'label'			=>	epl_labels('label_city'),
 			'default'		=>	'off',
@@ -163,6 +157,12 @@ function epl_search_widget_fields() {
 		array(
 			'key'			=>	'search_building_area',
 			'label'			=>	__('Building Area','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
+			'key'			=>	'search_features',
+			'label'			=>	__('Features','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
@@ -293,17 +293,6 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'type'			=>	'select',
 			'option_filter'		=>	'location',
 			'options'		=>	epl_get_available_locations($post_type,$property_status),
-			'query'			=>	array('query'	=>	'tax'),
-			'class'			=>	'epl-search-row-full',
-			'order'			=>	40
-		),
-		array(
-			'key'			=>	'search_features',
-			'meta_key'		=>	'property_tax_feature',
-			'label'			=>	__('Features', 'easy-property-listings'),
-			'type'			=>	'select',
-			'option_filter'		=>	'tax_feature',
-			'options'		=>	epl_get_available_terms('tax_feature',$post_type,$property_status),
 			'query'			=>	array('query'	=>	'tax'),
 			'class'			=>	'epl-search-row-full',
 			'order'			=>	40
@@ -556,6 +545,17 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'order'			=>	200
 		),
 		array(
+			'key'			=>	'search_features',
+			'meta_key'		=>	'property_tax_feature',
+			'label'			=>	__('Features', 'easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'tax_feature',
+			'options'		=>	epl_get_available_terms('tax_feature',$post_type,$property_status),
+			'query'			=>	array('query'	=>	'tax'),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	205
+		),
+		array(
 			'key'			=>	'search_land_area',
 			'meta_key'		=>	'property_land_area_min',
 			'label'			=>	__('Land Min','easy-property-listings'),
@@ -567,7 +567,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 								'key'		=>	'property_land_area'
 							),
 			'class'			=>	'epl-search-row-third',
-			'placeholder'	=>	__('Min Area','easy-property-listings'),
+			'placeholder'		=>	__('Min','easy-property-listings'),
 			'wrap_start'		=>	'epl-search-row epl-search-land-area',
 			'order'			=>	210
 		),
@@ -576,7 +576,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_land_area_max',
 			'label'			=>	__('Land Max','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
-			'placeholder'	=>	__('Max Area','easy-property-listings'),
+			'placeholder'		=>	__('Max','easy-property-listings'),
 			'type'			=>	has_filter('epl_property_land_area_max') ? apply_filters('epl_property_land_area_max','') : 'number',
 			'query'			=>	array(
 								'query'		=>	'meta',
@@ -611,7 +611,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'key'			=>	'search_building_area',
 			'meta_key'		=>	'property_building_area_min',
 			'label'			=>	__('Building Min','easy-property-listings'),
-			'placeholder'	=>	__('Min Area','easy-property-listings'),
+			'placeholder'		=>	__('Min','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
 			'type'			=>	has_filter('epl_property_building_area_min') ? apply_filters('epl_property_building_area_min','') : 'number',
 			'exclude'		=>	array('land'),
@@ -629,7 +629,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_building_area_max',
 			'label'			=>	__('Building Max','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
-			'placeholder'	=>	__('Max Area','easy-property-listings'),
+			'placeholder'		=>	__('Max','easy-property-listings'),
 			'type'			=>	has_filter('epl_property_building_area_max') ? apply_filters('epl_property_building_area_max','') : 'number',
 			'exclude'		=>	array('land'),
 			'query'			=>	array(
@@ -924,7 +924,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 	$results = $wpdb->get_results( $wpdb->prepare( "SELECT distinct(pm.`meta_value`) FROM {$wpdb->postmeta} pm LEFT JOIN {$wpdb->posts} p ON p.`ID` = pm.`post_id` WHERE pm.`meta_key` = '%s' AND p.`post_status` = '%s' AND p.`post_type` IN $type_str AND pm.`meta_value` != ''", $key, $status ));
 
 	if(!empty($results)) {
-		
+
 		$return = array();
 		if($key == 'property_category') {
 			 $defaults = epl_listing_load_meta_property_category();
