@@ -306,7 +306,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'options'		=>	epl_get_available_terms('tax_feature',$post_type,$property_status),
 			'query'			=>	array('query'	=>	'tax'),
 			'class'			=>	'epl-search-row-full',
-			'order'			=>	40
+			'order'			=>	45
 		),
 		array(
 			'key'			=>	'search_city',
