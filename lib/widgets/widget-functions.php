@@ -83,6 +83,12 @@ function epl_search_widget_fields() {
 			'type'			=>	'checkbox',
 		),
 		array(
+			'key'			=>	'search_features',
+			'label'			=>	__('Features','easy-property-listings'),
+			'default'		=>	'on',
+			'type'			=>	'checkbox',
+		),
+		array(
 			'key'			=>	'search_city',
 			'label'			=>	epl_labels('label_city'),
 			'default'		=>	'off',
@@ -287,6 +293,17 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'type'			=>	'select',
 			'option_filter'		=>	'location',
 			'options'		=>	epl_get_available_locations($post_type,$property_status),
+			'query'			=>	array('query'	=>	'tax'),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	40
+		),
+		array(
+			'key'			=>	'search_features',
+			'meta_key'		=>	'property_tax_feature',
+			'label'			=>	__('Features', 'easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'tax_feature',
+			'options'		=>	epl_get_available_terms('tax_feature',$post_type,$property_status),
 			'query'			=>	array('query'	=>	'tax'),
 			'class'			=>	'epl-search-row-full',
 			'order'			=>	40
@@ -550,6 +567,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 								'key'		=>	'property_land_area'
 							),
 			'class'			=>	'epl-search-row-third',
+			'placeholder'	=>	__('Min Area','easy-property-listings'),
 			'wrap_start'		=>	'epl-search-row epl-search-land-area',
 			'order'			=>	210
 		),
@@ -558,6 +576,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_land_area_max',
 			'label'			=>	__('Land Max','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
+			'placeholder'	=>	__('Max Area','easy-property-listings'),
 			'type'			=>	has_filter('epl_property_land_area_max') ? apply_filters('epl_property_land_area_max','') : 'number',
 			'query'			=>	array(
 								'query'		=>	'meta',
@@ -592,6 +611,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'key'			=>	'search_building_area',
 			'meta_key'		=>	'property_building_area_min',
 			'label'			=>	__('Building Min','easy-property-listings'),
+			'placeholder'	=>	__('Min Area','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
 			'type'			=>	has_filter('epl_property_building_area_min') ? apply_filters('epl_property_building_area_min','') : 'number',
 			'exclude'		=>	array('land'),
@@ -609,6 +629,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_building_area_max',
 			'label'			=>	__('Building Max','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
+			'placeholder'	=>	__('Max Area','easy-property-listings'),
 			'type'			=>	has_filter('epl_property_building_area_max') ? apply_filters('epl_property_building_area_max','') : 'number',
 			'exclude'		=>	array('land'),
 			'query'			=>	array(
@@ -687,10 +708,10 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 	), $post_type, $property_status );
 
 	$order = array();
-	foreach($fields as $field_key   =>  $field_value) {
-		$fields[$field_value['meta_key']] = $field_value;
+	foreach($fields as $field_key => $field_value) {
+		$fields[$field_value['meta_key']] 	= $field_value;
+		$order[$field_value['meta_key']] 	= isset($field_value['order']) ? $field_value['order'] : 20;
 		unset($fields[$field_key]);
-		$order[] = isset($field_value['order']) ? $field_value['order'] : 20;
 	}
 	array_multisort($order, SORT_ASC, $fields);
 		return $fields;
@@ -974,11 +995,12 @@ function epl_listings_where( $where, $wp_query ) {
 add_filter( 'posts_where', 'epl_listings_where', 10, 2 );
 
 /**
- * Search Get Locations
- *
- * @since  2.3.1
+ * Get available terms based on post type & property status
+ * @param  string $post_type       [description]
+ * @param  string $property_status [description]
+ * @return [type]                  [description]
  */
-function epl_get_available_locations($post_type='',$property_status='') {
+function epl_get_available_terms($tax='location',$post_type='',$property_status='') {
 	global $wpdb;
 	$available_loc_query = "
 	SELECT DISTINCT (
@@ -988,7 +1010,7 @@ function epl_get_available_locations($post_type='',$property_status='') {
 	LEFT JOIN {$wpdb->prefix}postmeta pm ON ( p.ID = pm.post_id )
 	LEFT JOIN {$wpdb->prefix}term_relationships tr ON ( p.ID = tr.object_id )
 	LEFT JOIN {$wpdb->prefix}term_taxonomy tt ON ( tr.term_taxonomy_id = tt.term_taxonomy_id ) WHERE
-	tt.taxonomy 			= 'location'
+	tt.taxonomy 			= '{$tax}'
 	AND p.post_status 		= 'publish'
 	AND p.post_type 		= '{$post_type}'";
 	if ( ! empty( $property_status ) ) {
@@ -1000,12 +1022,21 @@ function epl_get_available_locations($post_type='',$property_status='') {
 		}
 	}
 	$available_locs	= $wpdb->get_col($available_loc_query);
-	$locations	= get_terms('location',array('hide_empty'	=> true,'include'	=>	$available_locs));
+	$terms	= get_terms($tax,array('hide_empty'	=> true,'include'	=>	$available_locs));
 	$arr = array();
-	foreach($locations as $location) {
-		$arr[$location->term_id] = $location->name;
+	foreach($terms as $term) {
+		$arr[$term->term_id] = $term->name;
 	}
-	return $arr;
+	return apply_filters('epl_get_available_terms',$arr,$tax,$post_type,$property_status);
+}
+
+/**
+ * Search Get Locations
+ *
+ * @since  2.3.1
+ */
+function epl_get_available_locations($post_type='',$property_status='') {
+	return epl_get_available_terms('location',$post_type,$property_status);
 
 }
 

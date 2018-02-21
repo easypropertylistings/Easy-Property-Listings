@@ -139,17 +139,41 @@ function is_epl_post_archive() {
 }
 
 /**
- * check if listing has secondary author
+ * same as epl_listing_has_secondary_agent, kept for backward compatibility 
+ * @return [type] [description]
+ */
+function epl_listing_has_secondary_author() {
+    return epl_listing_has_secondary_agent();
+}
+
+/**
+ * check if listing has secondary agent
  *
  * @since 3.2
  */
-function epl_listing_has_secondary_author() {
-    $exists = false;
+function epl_listing_has_secondary_agent() {
+	$exists = false;
     $property_second_agent = get_property_meta('property_second_agent');
     if ( '' != $property_second_agent ) {
-        $second_author = get_user_by( 'login' , $property_second_agent );
+        $second_author = get_user_by( 'login' , sanitize_title($property_second_agent) );
         if($second_author !== false){
             $exists = $second_author->ID;
+        }
+    }
+    return $exists;
+}
+/**
+ * check if listing has primary agent
+ *
+ * @since 3.2
+ */
+function epl_listing_has_primary_agent() {
+    $exists = false;
+    $property_agent = get_property_meta('property_agent');
+    if ( '' != $property_agent ) {
+        $author = get_user_by( 'login' , sanitize_title($property_agent) );
+         if($author !== false){
+            $exists = $author->ID;
         }
     }
     return $exists;
