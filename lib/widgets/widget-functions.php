@@ -567,7 +567,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 								'key'		=>	'property_land_area'
 							),
 			'class'			=>	'epl-search-row-third',
-			'placeholder'	=>	__('Min Area','easy-property-listings'),
+			'placeholder'		=>	__('Min Area','easy-property-listings'),
 			'wrap_start'		=>	'epl-search-row epl-search-land-area',
 			'order'			=>	210
 		),
@@ -576,7 +576,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_land_area_max',
 			'label'			=>	__('Land Max','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
-			'placeholder'	=>	__('Max Area','easy-property-listings'),
+			'placeholder'		=>	__('Max Area','easy-property-listings'),
 			'type'			=>	has_filter('epl_property_land_area_max') ? apply_filters('epl_property_land_area_max','') : 'number',
 			'query'			=>	array(
 								'query'		=>	'meta',
@@ -611,7 +611,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'key'			=>	'search_building_area',
 			'meta_key'		=>	'property_building_area_min',
 			'label'			=>	__('Building Min','easy-property-listings'),
-			'placeholder'	=>	__('Min Area','easy-property-listings'),
+			'placeholder'		=>	__('Min Area','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
 			'type'			=>	has_filter('epl_property_building_area_min') ? apply_filters('epl_property_building_area_min','') : 'number',
 			'exclude'		=>	array('land'),
@@ -629,7 +629,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_building_area_max',
 			'label'			=>	__('Building Max','easy-property-listings'),
 			'class'			=>	'epl-search-row-third',
-			'placeholder'	=>	__('Max Area','easy-property-listings'),
+			'placeholder'		=>	__('Max Area','easy-property-listings'),
 			'type'			=>	has_filter('epl_property_building_area_max') ? apply_filters('epl_property_building_area_max','') : 'number',
 			'exclude'		=>	array('land'),
 			'query'			=>	array(
