@@ -1358,19 +1358,19 @@ class EPL_Property_Meta {
 		if( $property_energy_rating != 0 || $property_energy_rating != '' ) {
 			$label = apply_filters('epl_get_property_energy_rating_label',__('EER (Energy Efficiency Rating)', 'easy-property-listings' ) );
 
-			$energy_rating = array();
+			$return_energy_rating = array();
 
-			$energy_rating['i'] = '<span title="'.$label.'" class="icon energy_rating"><span class="icon-value">'. $this->get_property_meta('property_energy_rating') . '</span></span>';
+			$return_energy_rating['i'] = '<span title="'.$label.'" class="icon energy_rating"><span class="icon-value">'. $this->get_property_meta('property_energy_rating') . '</span></span>';
 
-			$energy_rating['t'] =
+			$return_energy_rating['t'] =
 				'<div class="epl-text-icon-container epl-text-icon-container-energy_rating">
 					<span class="epl-text-icon-label energy_rating">' . $label . '</span>
 					<span class="epl-text-icon-value energy_rating">'. $this->get_property_meta('property_energy_rating') . '</span>
 				</div>';
 
-			$energy_rating['l'] = '<li class="energy-rating">' . $label . ' ' . $this->get_property_meta('property_energy_rating') . '</li>';
+			$return_energy_rating['l'] = '<li class="energy-rating">' . $label . ' ' . $this->get_property_meta('property_energy_rating') . '</li>';
 
-			return apply_filters('epl_get_property_energy_rating',$return);
+			return apply_filters('epl_get_property_energy_rating',$return_energy_rating[$returntype]);
 		}
 	}
 
