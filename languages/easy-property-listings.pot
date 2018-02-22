@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2018-02-22 13:01+0800\n"
+"POT-Creation-Date: 2018-02-22 14:37+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -321,7 +321,7 @@ msgid "Toilet"
 msgstr ""
 
 #: lib/compatibility/listing-meta-compat.php:694
-#: lib/includes/class-epl-property-meta.php:1374 lib/meta-boxes/meta-boxes.php:359
+#: lib/includes/class-epl-property-meta.php:1390 lib/meta-boxes/meta-boxes.php:359
 msgid "New Construction"
 msgstr ""
 
@@ -2641,12 +2641,12 @@ msgstr ""
 msgid "m&#178;"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1354
-msgid "EER (Energy Efficiency Rating):"
+#: lib/includes/class-epl-property-meta.php:1359
+msgid "EER (Energy Efficiency Rating)"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1402
-#: lib/includes/class-epl-property-meta.php:1430 lib/meta-boxes/meta-boxes.php:1104
+#: lib/includes/class-epl-property-meta.php:1418
+#: lib/includes/class-epl-property-meta.php:1446 lib/meta-boxes/meta-boxes.php:1104
 msgid "Holiday Rental"
 msgstr ""
 
