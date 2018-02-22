@@ -415,6 +415,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Filters added for listing admin columns allowing other plugins to hook in correctly to listing dashboard columns and display additional info like Yoast SEO, Post Counter and many other WordPress plugins: epl_post_type_business_admin_columns, epl_post_type_commercial_admin_columns, epl_post_type_commercial_land_admin_columns, epl_post_type_land_admin_columns, epl_post_type_property_admin_columns, epl_post_type_rental_admin_columns, epl_post_type_rural_admin_columns.
 * New: Implemented a filter epl_common_search_template to allow altering of search results template. Default is archive-listing.php and can be overridden by creating a search-listing.php or by post type search-{post_type_name}.php.
 * New: Ability to search for primary listing agent when adding a listing, secondary agent already has this functionallity.
+* New: Added additional options to the image functions which allow disabling of the image links to epl_property_featured_image, epl_property_archive_featured_image, epl_property_widgets_featured_image.
+* New: Added options for SVG icons for listing icons and author social icons. Enable from Settings.
+* New: SVG assets added using inline allowing for icon styling using CSS.
+* New: Implemented filters to replace or add additional SVG icons Filters are epl_svg_icons and epl_svg_social_icons.
+* New: Enhanced author class with additional get variables to return the formatted value without html content.
+* New: Added options to return text values to each of the get_property functions. Allowing return of a text result instead of a formatted list item.
+* New: Filters added to adjust the return format of each get_property function: epl_get_property_year_built_return_type, epl_get_property_bedrooms_return_type, epl_get_property_bathrooms_return_type, epl_get_property_rooms_return_type, epl_get_property_parking_spaces_return_type, epl_get_property_garage_return_type, epl_get_property_carport_return_type, epl_get_property_air_conditioning_return_type, epl_get_property_pool_return_type, epl_get_property_security_system_return_type, epl_get_property_new_construction_return_type, epl_get_property_holiday_rental_return_type.
+* New: Added functions for get_property_furnished and get_property_holiday_rental.
 * Tweak: Adjustment to the handling of the primary and secondary listing agents on listings. When a primary agent details are entered this will be the listing agent displayed. If the primary agent for a listing is not set then the Author will be the primary agent displayed.
 * Tweak: Added option to use a seperate template for search results.
 * Tweak: Corrected building size css class name from land-size to building-size.
@@ -426,6 +434,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Better support to search multiple post types.
 * Tweak: Search better supports multiple post types in an array: epl_get_unique_post_meta_values('property_bedroom','current', array('property','rental') ).
 * Tweak: Sorting option better allows sorting options based on post types by passing post type.
+* Tweak: Contact form CSS added for better formatting.
 * Fix: Select form render multiple selections for search.
 * Fix: Price bar graph in admin when no price set.
 * Fix: Translation issues for search dropdowns.
