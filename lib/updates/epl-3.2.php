@@ -2,6 +2,7 @@
 $epl_settings = epl_settings();
 
 $new_fields_defaults = array(
+	'epl_default_country'			=> 'Australia',
 	'epl_icons_svg_listings'		=> 'off',
 	'epl_icons_svg_author'			=> 'off',
 );

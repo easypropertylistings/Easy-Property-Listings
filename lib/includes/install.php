@@ -91,7 +91,7 @@ function epl_install() {
 		'min_contact_access'			=> 'level_10',
 		'min_reports_access'			=> 'level_10',
 		'activate_post_types'			=> array('property'),
-
+		'epl_default_country'			=> 'Australia',
 		'epl_icons_svg_listings'		=> 'off',
 		'epl_icons_svg_author'			=> 'off',
 	);
