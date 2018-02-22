@@ -192,7 +192,7 @@ function epl_load_svg_social_icons_head() {
 		</defs>
 	</svg>';
 
-	apply_filters( 'epl_social_icons' , $social_icons );
+	apply_filters( 'epl_svg_social_icons' , $social_icons );
 
 	// Only Load SVG icons if epl_icons_svg_author is on
 	if ( epl_get_option('epl_icons_svg_author') == 'on' ) {

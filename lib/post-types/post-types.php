@@ -156,6 +156,7 @@ function epl_manage_listings_sortable_columns( $columns ) {
 	$columns['property_status'] 	= 'property_status';
 	$columns['listing_id'] 		= 'listing_id';
 	$columns['agent'] 		= 'agent';
+	$columns['property_thumb'] 	= 'property_thumb';
 	return $columns;
 }
 
@@ -183,6 +184,11 @@ function epl_custom_orderby( $query ) {
 
 	if( 'listing_id' == $orderby ) {
 		$query->set('meta_key','property_unique_id');
+		$query->set('orderby','meta_value');
+	}
+
+	if( 'property_thumb' == $orderby ) {
+		$query->set('meta_key','_thumbnail_id');
 		$query->set('orderby','meta_value');
 	}
 

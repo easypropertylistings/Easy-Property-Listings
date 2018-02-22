@@ -133,7 +133,8 @@ function epl_meta_box_init() {
 							'name'		=>	'property_agent',
 							'label'		=>	__('Listing Agent', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'maxlength'	=>	'40'
+							'maxlength'	=>	'40',
+							'help'		=>	__('Search for primary agent.','easy-property-listings' )
 						),
 
 						array(
@@ -436,7 +437,7 @@ function epl_meta_box_init() {
 						),
 
 						array(
-							'name'		=>	'property_building_energy_rating',
+							'name'		=>	'property_energy_rating',
 							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'6'
@@ -791,7 +792,7 @@ function epl_meta_box_init() {
 						),
 
 						array(
-							'name'		=>	'property_building_energy_rating',
+							'name'		=>	'property_energy_rating',
 							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'6'

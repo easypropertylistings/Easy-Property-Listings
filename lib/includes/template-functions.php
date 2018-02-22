@@ -18,15 +18,26 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 2.2
  */
 function epl_reset_property_object( $post ) {
-	global $epl_author,$epl_author_secondary;
-	$epl_author 	= new EPL_Author_meta($post->post_author);
 
-	if( is_epl_post() ){
-		global $property;
-		$property 		= new EPL_Property_Meta($post);
-		if( $ID = epl_listing_has_secondary_author() ) {
-		    $epl_author_secondary = new EPL_Author_meta($ID);
-		}
+	global $epl_author,$epl_author_secondary;
+
+	if( !is_epl_post() )
+		return;
+
+	global $property;
+	$property 		= new EPL_Property_Meta($post);
+
+	if( $ID = epl_listing_has_primary_agent() ) {
+
+		$epl_author = new EPL_Author_meta($ID);
+
+	} else {
+
+		$epl_author 	= new EPL_Author_meta($post->post_author);
+	}
+
+	if( $SEC_ID = epl_listing_has_secondary_author() ) {
+	    $epl_author_secondary = new EPL_Author_meta($SEC_ID);
 	}
 }
 add_action( 'the_post', 'epl_reset_property_object' );
@@ -341,7 +352,15 @@ function epl_property_author_box() {
 function epl_reset_post_author() {
 	global $post, $epl_author;
 	if(class_exists('EPL_Author_meta')) {
-		$epl_author = new EPL_Author_meta($post->post_author);
+
+		if( is_epl_post() && ( $ID = epl_listing_has_primary_agent() ) ) {
+
+			$epl_author = new EPL_Author_meta($ID);
+
+		} else {
+
+			$epl_author 	= new EPL_Author_meta($post->post_author);
+		}
 	}
 }
 add_action( 'epl_single_author' , 'epl_property_author_box' , 10 );
@@ -838,7 +857,7 @@ function epl_property_tab_section() {
 	$the_property_feature_list .= $property->get_property_year_built('l').' '.$property->get_property_parking('l').' ';
 	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
 	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
-	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_energy_rating_value('l').' '.$property->get_property_new_construction('l');
+	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_energy_rating('l').' '.$property->get_property_new_construction('l');
 
 	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_common_features', '' );
 
