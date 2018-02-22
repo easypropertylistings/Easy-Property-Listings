@@ -71,6 +71,16 @@ if( !class_exists('EPL_Author_Meta') ) :
 		}
 
 		/**
+		 * Author Name
+		 *
+		 * @since version 1.3
+		 */
+		function get_author_name() {
+			if($this->name != '')
+				return apply_filters('epl_author_name',$this->name,$this);
+		}
+
+		/**
 		 * Get Email
 		 *
 		 * @since version 3.2
@@ -124,8 +134,21 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 * @since version 3.2
 		 */
 		function get_twitter() {
-			if($this->twitter != '')
-				return apply_filters('epl_author_twitter',$this->twitter,$this);
+
+			$twitter = '';
+			if($this->twitter != '') {
+
+				if( (strpos($this->twitter,'http://' ) === 0 ) || (strpos($this->twitter,'https://' ) === 0 ) ) {
+					// absolute url
+					$twitter = $this->twitter;
+
+				} else {
+					// relative url
+					$twitter = 'http://twitter.com/' . $this->twitter;
+				}
+
+			}
+			return apply_filters('epl_author_twitter',$twitter,$this);
 		}
 
 		/*
@@ -140,21 +163,12 @@ if( !class_exists('EPL_Author_Meta') ) :
 
 			if ( $this->get_twitter() != '' ) {
 
-				if( (strpos('http://',$this->get_twitter() ) == 0 ) || (strpos('https://',$this->get_twitter() ) == 0 ) ) {
-					// absolute url
-					$twitter = $this->get_twitter();
-
-				} else {
-					// relative url
-					$twitter = 'http://twitter.com/' . $this->get_twitter();
-				}
-
 				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 					$html	= '
 						<a class="epl-author-icon author-icon twitter-icon-24"
-							href="http://twitter.com/' . $this->get_twitter() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Twitter', 'easy-property-listings' ). '"' . $link_target . '>'.
+							href="' . $this->get_twitter() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Twitter', 'easy-property-listings' ). '"' . $link_target . '>'.
 							apply_filters( 'epl_author_icon_twitter' , __('Twitter', 'easy-property-listings' )).
 						'</a>';
 				} else {
@@ -162,7 +176,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$html	=
 						'<div class="epl-icon-svg-container epl-icon-container-twitter">
 							<a class="epl-author-icon-svg author-icon-svg twitter-icon"
-								href="http://twitter.com/' . $this->get_twitter() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Twitter', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+								href="' . $this->get_twitter() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Twitter', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -177,8 +191,22 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 * @since version 3.2
 		 */
 		function get_google() {
-			if($this->google != '')
-				return apply_filters('epl_author_google',$this->google,$this);
+
+			$google = '';
+			if($this->google != '') {
+
+				if( (strpos($this->google,'http://' ) === 0 ) || (strpos($this->google,'https://' ) === 0 ) ) {
+					// absolute url
+					$google = $this->google;
+
+				} else {
+					// relative url
+					$google = 'http://plus.google.com/' . $this->google;
+				}
+
+				
+			}
+			return apply_filters('epl_author_google',$google,$this);
 		}
 
 		/**
@@ -192,21 +220,12 @@ if( !class_exists('EPL_Author_Meta') ) :
 
 			if ( $this->get_google() != '' ) {
 
-				if( (strpos('http://',$this->get_google() ) == 0 ) || (strpos('https://',$this->get_google() ) == 0 ) ) {
-					// absolute url
-					$google = $this->get_google();
-
-				} else {
-					// relative url
-					$google = 'http://plus.google.com/' . $this->get_google();
-				}
-
 				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 					$html = '
 						<a class="epl-author-icon author-icon google-icon-24"
-							href="https://plus.google.com/' . $this->get_google() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Google', 'easy-property-listings' ).'"' . $link_target . '>'.
+							href="' . $this->get_google() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Google', 'easy-property-listings' ).'"' . $link_target . '>'.
 							apply_filters( 'epl_author_icon_google' , __('Google', 'easy-property-listings' )).
 						'</a>';
 				} else {
@@ -214,7 +233,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$html	=
 						'<div class="epl-icon-svg-container epl-icon-container-google-plus">
 							<a class="epl-author-icon-svg author-icon-svg google-plus-icon"
-								href="https://plus.google.com/' . $this->get_google() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Google', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+								href="' . $this->get_google() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Google', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -229,8 +248,23 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 * @since version 3.2
 		 */
 		function get_facebook() {
-			if($this->facebook != '')
-				return apply_filters('epl_author_facebook',$this->facebook,$this);
+
+			$facebook = '';
+
+			if($this->facebook != ''){
+
+				if( (strpos( $this->facebook,'http://' ) === 0 ) || (strpos( $this->facebook,'https://' ) === 0 ) ) {
+					// absolute url
+					$facebook = $this->facebook;
+
+				} else {
+					// relative url
+					$facebook = 'http://facebook.com/' . $this->facebook;
+				}
+
+				
+			}
+			return apply_filters('epl_author_facebook',$facebook,$this);
 		}
 
 		/**
@@ -244,21 +278,12 @@ if( !class_exists('EPL_Author_Meta') ) :
 
 			if ( $this->get_facebook() != '' ) {
 
-				if( (strpos('http://',$this->get_facebook() ) == 0 ) || (strpos('https://',$this->get_facebook() ) == 0 ) ) {
-					// absolute url
-					$facebook = $this->get_facebook();
-
-				} else {
-					// relative url
-					$facebook = 'http://facebook.com/' . $this->get_facebook();
-				}
-
 				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 					$html = '
 						<a class="epl-author-icon author-icon facebook-icon-24"
-							href="http://facebook.com/' . $this->get_facebook() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Facebook', 'easy-property-listings' ).'"' . $link_target . '>'.
+							href="' . $this->get_facebook() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Facebook', 'easy-property-listings' ).'"' . $link_target . '>'.
 							apply_filters( 'epl_author_icon_facebook' , __('Facebook', 'easy-property-listings' )).
 						'</a>';
 				} else {
@@ -266,7 +291,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$html	=
 						'<div class="epl-icon-svg-container epl-icon-container-facebook">
 							<a class="epl-author-icon-svg author-icon-svg facebook-icon"
-								href="http://facebook.com/' . $this->get_facebook() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Facebook', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+								href="' . $this->get_facebook() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Facebook', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -281,8 +306,22 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 * @since version 3.2
 		 */
 		function get_linkedin() {
-			if($this->linkedin != '')
-				return apply_filters('epl_author_linkedin',$this->linkedin,$this);
+
+			$linkedin = '';
+
+			if($this->linkedin != '') {
+
+				if( (strpos( $this->linkedin,'http://' ) === 0 ) || (strpos( $this->linkedin,'https://' ) === 0 ) ) {
+					// absolute url
+					$linkedin = $this->linkedin;
+
+				} else {
+					// relative url
+					$linkedin = 'http://linkedin.com/pub/' . $this->linkedin;
+				}
+				
+			}
+			return apply_filters('epl_author_linkedin',$linkedin,$this);
 		}
 
 		/**
@@ -296,22 +335,13 @@ if( !class_exists('EPL_Author_Meta') ) :
 
 			if ( $this->get_linkedin() != '' ) {
 
-				if( (strpos('http://',$this->get_linkedin()) == 0 ) || (strpos('https://',$this->get_linkedin() ) == 0 ) ) {
-					// absolute url
-					$linkedin = $this->linkedin;
-
-				} else {
-					// relative url
-					$linkedin = 'http://linkedin.com/pub/' . $this->get_linkedin();
-				}
-
 				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
 
 				if ( $style == 'i' ) {
 
 					$html = '
 						<a class="epl-author-icon author-icon linkedin-icon-24"
-							href="' . $linkedin . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Linkedin', 'easy-property-listings' ).'"' . $link_target . '>'.
+							href="' . $this->get_linkedin() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Linkedin', 'easy-property-listings' ).'"' . $link_target . '>'.
 							apply_filters( 'epl_author_icon_linkedin' , __('LinkedIn', 'easy-property-listings' )).
 						'</a>';
 				} else {
@@ -319,7 +349,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$html	=
 						'<div class="epl-icon-svg-container epl-icon-container-linkedin">
 							<a class="epl-author-icon-svg author-icon-svg linkedin-icon"
-								href="' . $linkedin . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Linkedin', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+								href="' . $this->get_linkedin() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Linkedin', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 					}
@@ -334,8 +364,22 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 * @since version 3.2
 		 */
 		function get_skype() {
-			if($this->skype != '')
-				return apply_filters('epl_author_skype',$this->skype,$this);
+
+			$skype = '';
+			if($this->skype != ''){
+
+				if( (strpos( $this->skype,'skype:' ) === 0 ) ) {
+					// absolute url
+					$skype = $this->skype;
+
+				} else {
+					// relative url
+					$skype = 'skype:' . $this->skype;
+				}
+
+				
+			}
+			return apply_filters('epl_author_skype',$skype,$this);
 		}
 
 		/**
@@ -355,7 +399,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 
 					$html = '
 						<a class="epl-author-icon author-icon skype-icon-24"
-							href="http://skype.com/' . $this->get_skype() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Skype', 'easy-property-listings' ).'"' . $link_target . '>'.
+							href="' . $this->get_skype() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Skype', 'easy-property-listings' ).'"' . $link_target . '>'.
 							apply_filters( 'epl_author_icon_skype' , __('Skype', 'easy-property-listings' )).
 						'</a>';
 				} else {
@@ -363,7 +407,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$html	=
 						'<div class="epl-icon-svg-container epl-icon-container-skype">
 							<a class="epl-author-icon-svg author-icon-svg skype-icon"
-								href="http://skype.com/' . $this->get_skype() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Skype', 'easy-property-listings' ).'"' . $link_target . '>'. $svg .
+								href="' . $this->get_skype() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Skype', 'easy-property-listings' ).'"' . $link_target . '>'. $svg .
 							'</a>
 						</div>';
 				}
@@ -455,16 +499,6 @@ if( !class_exists('EPL_Author_Meta') ) :
 		function get_author_position() {
 			if($this->position != '')
 				return apply_filters('epl_author_position',$this->position,$this);
-		}
-
-		/**
-		 * Author Name
-		 *
-		 * @since version 1.3
-		 */
-		function get_author_name() {
-			if($this->name != '')
-				return apply_filters('epl_author_name',$this->name,$this);
 		}
 
 		/**
