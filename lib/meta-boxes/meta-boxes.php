@@ -133,7 +133,8 @@ function epl_meta_box_init() {
 							'name'		=>	'property_agent',
 							'label'		=>	__('Listing Agent', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'maxlength'	=>	'40'
+							'maxlength'	=>	'40',
+							'help'		=>	__('Search for primary agent.','easy-property-listings' )
 						),
 
 						array(
