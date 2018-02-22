@@ -1175,7 +1175,7 @@ class EPL_Property_Meta {
 
 		$carport['t'] =
 			'<div class="epl-text-icon-container epl-text-icon-container-carport">
-				<span class="epl-text-icon-label carport">' . apply_filters('epl_get_property_carport_return_type',__('Carport', 'easy-property-listings' ) ) . '</span>
+				<span class="epl-text-icon-label carport">' . apply_filters('epl_get_property_carport_label',__('Carport', 'easy-property-listings' ) ) . '</span>
 				<span class="epl-text-icon-value carport">'. $this->get_property_meta('property_carport') . '</span>
 			</div>';
 
@@ -1346,15 +1346,31 @@ class EPL_Property_Meta {
 	 * Get Building Energy Rating
 	 *
 	 * @since 3.1.20
-	 * @param string $returntype Options i = span, d = string, l = list item
-	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 * @param string $returntype Options i = span, d = string, l = list item,  t = text
+	 * @return string based on $returntype Options i = span, d = string, l = list item,  t = text
 	 */
-	public function get_property_energy_rating_value( $returntype = 'i' ) {
-		if(intval($this->get_property_meta('property_building_energy_rating')) != 0 ) {
-			$label = apply_filters('epl_get_property_energy_rating_label',__('EER (Energy Efficiency Rating):', 'easy-property-listings' ) );
-			$return = '
-			<li class="energy-rating">'.$label.' ' . $this->get_property_meta('property_building_energy_rating') . '</li>';
-			return apply_filters('epl_get_property_energy_rating_value',$return);
+	public function get_property_energy_rating( $returntype = 'i' ) {
+
+		$property_energy_rating = $this->get_property_meta('property_energy_rating');
+
+		$returntype	=	apply_filters( 'epl_get_property_energy_rating_return_type' , $returntype);
+
+		if( $property_energy_rating != 0 || $property_energy_rating != '' ) {
+			$label = apply_filters('epl_get_property_energy_rating_label',__('EER (Energy Efficiency Rating)', 'easy-property-listings' ) );
+
+			$energy_rating = array();
+
+			$energy_rating['i'] = '<span title="'.$label.'" class="icon energy_rating"><span class="icon-value">'. $this->get_property_meta('property_energy_rating') . '</span></span>';
+
+			$energy_rating['t'] =
+				'<div class="epl-text-icon-container epl-text-icon-container-energy_rating">
+					<span class="epl-text-icon-label energy_rating">' . $label . '</span>
+					<span class="epl-text-icon-value energy_rating">'. $this->get_property_meta('property_energy_rating') . '</span>
+				</div>';
+
+			$energy_rating['l'] = '<li class="energy-rating">' . $label . ' ' . $this->get_property_meta('property_energy_rating') . '</li>';
+
+			return apply_filters('epl_get_property_energy_rating',$return);
 		}
 	}
 

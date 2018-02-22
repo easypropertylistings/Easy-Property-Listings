@@ -437,7 +437,7 @@ function epl_meta_box_init() {
 						),
 
 						array(
-							'name'		=>	'property_building_energy_rating',
+							'name'		=>	'property_energy_rating',
 							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'6'
@@ -792,7 +792,7 @@ function epl_meta_box_init() {
 						),
 
 						array(
-							'name'		=>	'property_building_energy_rating',
+							'name'		=>	'property_energy_rating',
 							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
 							'type'		=>	'decimal',
 							'maxlength'	=>	'6'
