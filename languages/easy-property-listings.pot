@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2018-02-22 14:37+0800\n"
+"POT-Creation-Date: 2018-02-23 10:55+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -188,7 +188,7 @@ msgstr ""
 msgid "Commercial Category"
 msgstr ""
 
-#: lib/compatibility/listing-meta-compat.php:584 lib/meta-boxes/meta-boxes.php:1338
+#: lib/compatibility/listing-meta-compat.php:584 lib/meta-boxes/meta-boxes.php:1339
 #: lib/widgets/widget-functions.php:519
 msgid "Car Spaces"
 msgstr ""
@@ -461,31 +461,31 @@ msgstr ""
 msgid "Evaporative Cooling"
 msgstr ""
 
-#: lib/compatibility/listing-meta-compat.php:1259 lib/meta-boxes/meta-boxes.php:1130
+#: lib/compatibility/listing-meta-compat.php:1259 lib/meta-boxes/meta-boxes.php:1131
 msgid "Fencing"
 msgstr ""
 
-#: lib/compatibility/listing-meta-compat.php:1262 lib/meta-boxes/meta-boxes.php:1137
+#: lib/compatibility/listing-meta-compat.php:1262 lib/meta-boxes/meta-boxes.php:1138
 msgid "Annual Rainfall"
 msgstr ""
 
-#: lib/compatibility/listing-meta-compat.php:1265 lib/meta-boxes/meta-boxes.php:1144
+#: lib/compatibility/listing-meta-compat.php:1265 lib/meta-boxes/meta-boxes.php:1145
 msgid "Soil Types"
 msgstr ""
 
-#: lib/compatibility/listing-meta-compat.php:1268 lib/meta-boxes/meta-boxes.php:1151
+#: lib/compatibility/listing-meta-compat.php:1268 lib/meta-boxes/meta-boxes.php:1152
 msgid "Improvements"
 msgstr ""
 
-#: lib/compatibility/listing-meta-compat.php:1271 lib/meta-boxes/meta-boxes.php:1158
+#: lib/compatibility/listing-meta-compat.php:1271 lib/meta-boxes/meta-boxes.php:1159
 msgid "Council Rates"
 msgstr ""
 
-#: lib/compatibility/listing-meta-compat.php:1274 lib/meta-boxes/meta-boxes.php:1165
+#: lib/compatibility/listing-meta-compat.php:1274 lib/meta-boxes/meta-boxes.php:1166
 msgid "Irrigation"
 msgstr ""
 
-#: lib/compatibility/listing-meta-compat.php:1277 lib/meta-boxes/meta-boxes.php:1172
+#: lib/compatibility/listing-meta-compat.php:1277 lib/meta-boxes/meta-boxes.php:1173
 msgid "Carrying Capacity"
 msgstr ""
 
@@ -876,27 +876,27 @@ msgid "Add Listing"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1133
-#: lib/meta-boxes/meta-boxes.php:846
+#: lib/meta-boxes/meta-boxes.php:847
 msgid "Lot"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1141 lib/includes/functions.php:469
-#: lib/meta-boxes/meta-boxes.php:854
+#: lib/meta-boxes/meta-boxes.php:855
 msgid "Unit"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1149
-#: lib/includes/admin/contacts/contacts.php:551 lib/meta-boxes/meta-boxes.php:862
+#: lib/includes/admin/contacts/contacts.php:551 lib/meta-boxes/meta-boxes.php:863
 msgid "Street Number"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1156
-#: lib/includes/admin/contacts/contacts.php:558 lib/meta-boxes/meta-boxes.php:869
+#: lib/includes/admin/contacts/contacts.php:558 lib/meta-boxes/meta-boxes.php:870
 msgid "Street Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1184
-#: lib/includes/admin/contacts/contacts.php:586 lib/meta-boxes/meta-boxes.php:915
+#: lib/includes/admin/contacts/contacts.php:586 lib/meta-boxes/meta-boxes.php:916
 #: lib/widgets/widget-functions.php:105 lib/widgets/widget-functions.php:336
 msgid "Country"
 msgstr ""
@@ -1228,7 +1228,7 @@ msgid ""
 "if required. You can also hide the map on a per listing basis."
 msgstr ""
 
-#: lib/includes/admin/help-single.php:101 lib/meta-boxes/meta-boxes.php:825
+#: lib/includes/admin/help-single.php:101 lib/meta-boxes/meta-boxes.php:826
 #: lib/widgets/widget-functions.php:75
 msgid "Property Address"
 msgstr ""
@@ -1272,7 +1272,7 @@ msgid ""
 "cusom label which is currently:"
 msgstr ""
 
-#: lib/includes/admin/help-single.php:118 lib/meta-boxes/meta-boxes.php:1012
+#: lib/includes/admin/help-single.php:118 lib/meta-boxes/meta-boxes.php:1013
 msgid "Sale Price"
 msgstr ""
 
@@ -1292,7 +1292,7 @@ msgid ""
 "Publish/Update your listing and their details will be displayed for quick access."
 msgstr ""
 
-#: lib/includes/admin/help-single.php:132 lib/meta-boxes/meta-boxes.php:1536
+#: lib/includes/admin/help-single.php:132 lib/meta-boxes/meta-boxes.php:1537
 msgid "Linked Contact"
 msgstr ""
 
@@ -2646,7 +2646,7 @@ msgid "EER (Energy Efficiency Rating)"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1418
-#: lib/includes/class-epl-property-meta.php:1446 lib/meta-boxes/meta-boxes.php:1104
+#: lib/includes/class-epl-property-meta.php:1446 lib/meta-boxes/meta-boxes.php:1105
 msgid "Holiday Rental"
 msgstr ""
 
@@ -3377,14 +3377,14 @@ msgstr ""
 #: lib/meta-boxes/meta-boxes.php:690 lib/meta-boxes/meta-boxes.php:699
 #: lib/meta-boxes/meta-boxes.php:708 lib/meta-boxes/meta-boxes.php:717
 #: lib/meta-boxes/meta-boxes.php:726 lib/meta-boxes/meta-boxes.php:735
-#: lib/meta-boxes/meta-boxes.php:744 lib/meta-boxes/meta-boxes.php:814
-#: lib/meta-boxes/meta-boxes.php:840 lib/meta-boxes/meta-boxes.php:886
-#: lib/meta-boxes/meta-boxes.php:933 lib/meta-boxes/meta-boxes.php:980
-#: lib/meta-boxes/meta-boxes.php:989 lib/meta-boxes/meta-boxes.php:998
-#: lib/meta-boxes/meta-boxes.php:1029 lib/meta-boxes/meta-boxes.php:1075
-#: lib/meta-boxes/meta-boxes.php:1098 lib/meta-boxes/meta-boxes.php:1107
-#: lib/meta-boxes/meta-boxes.php:1270 lib/meta-boxes/meta-boxes.php:1288
-#: lib/meta-boxes/meta-boxes.php:1377
+#: lib/meta-boxes/meta-boxes.php:744 lib/meta-boxes/meta-boxes.php:815
+#: lib/meta-boxes/meta-boxes.php:841 lib/meta-boxes/meta-boxes.php:887
+#: lib/meta-boxes/meta-boxes.php:934 lib/meta-boxes/meta-boxes.php:981
+#: lib/meta-boxes/meta-boxes.php:990 lib/meta-boxes/meta-boxes.php:999
+#: lib/meta-boxes/meta-boxes.php:1030 lib/meta-boxes/meta-boxes.php:1076
+#: lib/meta-boxes/meta-boxes.php:1099 lib/meta-boxes/meta-boxes.php:1108
+#: lib/meta-boxes/meta-boxes.php:1271 lib/meta-boxes/meta-boxes.php:1289
+#: lib/meta-boxes/meta-boxes.php:1378
 msgid "Yes"
 msgstr ""
 
@@ -3542,7 +3542,7 @@ msgid "Next Page &raquo;"
 msgstr ""
 
 #: lib/includes/template-functions.php:673 lib/includes/template-functions.php:947
-#: lib/meta-boxes/meta-boxes.php:1267
+#: lib/meta-boxes/meta-boxes.php:1268
 msgid "Plus Outgoings"
 msgstr ""
 
@@ -3554,11 +3554,11 @@ msgstr ""
 msgid "Property Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1000 lib/meta-boxes/meta-boxes.php:1312
+#: lib/includes/template-functions.php:1000 lib/meta-boxes/meta-boxes.php:1313
 msgid "Commercial Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1047 lib/meta-boxes/meta-boxes.php:1118
+#: lib/includes/template-functions.php:1047 lib/meta-boxes/meta-boxes.php:1119
 msgid "Rural Features"
 msgstr ""
 
@@ -3946,7 +3946,7 @@ msgstr ""
 msgid "Energy Rating"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:448 lib/meta-boxes/meta-boxes.php:811
+#: lib/meta-boxes/meta-boxes.php:448 lib/meta-boxes/meta-boxes.php:812
 msgid "Fully Fenced"
 msgstr ""
 
@@ -3970,259 +3970,259 @@ msgstr ""
 msgid "Ducted Heating"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:803 lib/widgets/widget-functions.php:371
+#: lib/meta-boxes/meta-boxes.php:804 lib/widgets/widget-functions.php:371
 msgid "Land Category"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:837
+#: lib/meta-boxes/meta-boxes.php:838
 msgid "Display Street Address?"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:883
+#: lib/meta-boxes/meta-boxes.php:884
 msgid "Display"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:922
+#: lib/meta-boxes/meta-boxes.php:923
 msgid "Coordinates"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:924
+#: lib/meta-boxes/meta-boxes.php:925
 msgid "Drag the pin to manually set listing coordinates"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:930
+#: lib/meta-boxes/meta-boxes.php:931
 msgid "Hide Map"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:944
+#: lib/meta-boxes/meta-boxes.php:945
 msgid "Pricing"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:956
+#: lib/meta-boxes/meta-boxes.php:957
 msgid "Search Price"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:963
+#: lib/meta-boxes/meta-boxes.php:964
 msgid "Price Text"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:970
+#: lib/meta-boxes/meta-boxes.php:971
 msgid "Auction Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:977
+#: lib/meta-boxes/meta-boxes.php:978
 msgid "Display Price?"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:995
+#: lib/meta-boxes/meta-boxes.php:996
 msgid "House and Land Package"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1008
+#: lib/meta-boxes/meta-boxes.php:1009
 msgid "Sale Details"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1019
+#: lib/meta-boxes/meta-boxes.php:1020
 msgid "Sale Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1026
+#: lib/meta-boxes/meta-boxes.php:1027
 msgid "Display Sale Price"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1039
+#: lib/meta-boxes/meta-boxes.php:1040
 msgid "Rental Pricing"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1051
+#: lib/meta-boxes/meta-boxes.php:1052
 msgid "Rent Amount"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1058
+#: lib/meta-boxes/meta-boxes.php:1059
 msgid "Rent Period"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1065
+#: lib/meta-boxes/meta-boxes.php:1066
 msgid "Rent Text"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1072
+#: lib/meta-boxes/meta-boxes.php:1073
 msgid "Display Rent?"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1088
+#: lib/meta-boxes/meta-boxes.php:1089
 msgid "Date Available"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1095
+#: lib/meta-boxes/meta-boxes.php:1096
 msgid "Furnished"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1179
+#: lib/meta-boxes/meta-boxes.php:1180
 msgid "Services"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1190
+#: lib/meta-boxes/meta-boxes.php:1191
 msgid "Leasing"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1202
+#: lib/meta-boxes/meta-boxes.php:1203
 msgid "Commercial Rent"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1205
+#: lib/meta-boxes/meta-boxes.php:1206
 msgid "Price Text in Pricing box over-rides displayed price"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1206
+#: lib/meta-boxes/meta-boxes.php:1207
 msgid "Select Display Price to show."
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1210
+#: lib/meta-boxes/meta-boxes.php:1211
 msgid "Lease Period"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1216
+#: lib/meta-boxes/meta-boxes.php:1217
 msgid "Rent Range Min"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1223
+#: lib/meta-boxes/meta-boxes.php:1224
 msgid "Rent Range Max"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1230
+#: lib/meta-boxes/meta-boxes.php:1231
 msgid "Lease End Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1237
+#: lib/meta-boxes/meta-boxes.php:1238
 msgid "Property Extent"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1251
+#: lib/meta-boxes/meta-boxes.php:1252
 msgid "Tenant Status"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1259
+#: lib/meta-boxes/meta-boxes.php:1260
 msgid "Commercial Outgoings"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1277
+#: lib/meta-boxes/meta-boxes.php:1278
 msgid "Takings"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1285
+#: lib/meta-boxes/meta-boxes.php:1286
 msgid "Franchise"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1295
+#: lib/meta-boxes/meta-boxes.php:1296
 msgid "Return"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1302
+#: lib/meta-boxes/meta-boxes.php:1303
 msgid "Terms"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1324
+#: lib/meta-boxes/meta-boxes.php:1325
 msgid "Further Options"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1331
+#: lib/meta-boxes/meta-boxes.php:1332
 msgid "Zone"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1346
+#: lib/meta-boxes/meta-boxes.php:1347
 msgid "Highlight 1"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1353
+#: lib/meta-boxes/meta-boxes.php:1354
 msgid "Highlight 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1360
+#: lib/meta-boxes/meta-boxes.php:1361
 msgid "Highlight 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1367
+#: lib/meta-boxes/meta-boxes.php:1368
 msgid "Parking Comments"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1374
+#: lib/meta-boxes/meta-boxes.php:1375
 msgid "Is Multiple"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1387
+#: lib/meta-boxes/meta-boxes.php:1388
 msgid "Business Categories"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1399 lib/widgets/widget-functions.php:395
+#: lib/meta-boxes/meta-boxes.php:1400 lib/widgets/widget-functions.php:395
 msgid "Business Category"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1409
+#: lib/meta-boxes/meta-boxes.php:1410
 msgid "Business Sub Category"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1420
+#: lib/meta-boxes/meta-boxes.php:1421
 msgid "Business Category 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1430
+#: lib/meta-boxes/meta-boxes.php:1431
 msgid "Business Sub Category 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1441
+#: lib/meta-boxes/meta-boxes.php:1442
 msgid "Business Category 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1451
+#: lib/meta-boxes/meta-boxes.php:1452
 msgid "Business Sub Category 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1466
+#: lib/meta-boxes/meta-boxes.php:1467
 msgid "Files and Links"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1478
+#: lib/meta-boxes/meta-boxes.php:1479
 msgid "Video URL"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1484
+#: lib/meta-boxes/meta-boxes.php:1485
 msgid "Floorplan"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1489
+#: lib/meta-boxes/meta-boxes.php:1490
 msgid "Floorplan 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1495
+#: lib/meta-boxes/meta-boxes.php:1496
 msgid "External Link"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1501
+#: lib/meta-boxes/meta-boxes.php:1502
 msgid "External Link 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1506
+#: lib/meta-boxes/meta-boxes.php:1507
 msgid "External Link 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1513
+#: lib/meta-boxes/meta-boxes.php:1514
 msgid "Mini Website URL"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1519
+#: lib/meta-boxes/meta-boxes.php:1520
 msgid "Mini Website URL 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1525
+#: lib/meta-boxes/meta-boxes.php:1526
 msgid "Mini Website URL 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1548
+#: lib/meta-boxes/meta-boxes.php:1549
 msgid "Contact ID"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1550
+#: lib/meta-boxes/meta-boxes.php:1551
 msgid "Search for contact and update to save."
 msgstr ""
 

@@ -441,6 +441,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Location taxonomy search redirection.
 * Fix: Sorting by Unique ID in Dashboard manage listings.
 * Fix: Carport label filter name corrected to epl_get_property_carport_label.
+* Fix: Added land size to commercial land.
 
 = 3.1.19 July 12, 2017 =
 
