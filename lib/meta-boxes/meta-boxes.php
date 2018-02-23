@@ -752,7 +752,7 @@ function epl_meta_box_init() {
 		array( //Repeating most from above "epl-features-section-id" because on land it will be single column
 			'id'		=>	'epl-features-section-id-single-column',
 			'label'		=>	__('Land Details', 'easy-property-listings' ),
-			'post_type'	=>	array('land', 'commercial', 'business'),
+			'post_type'	=>	array('land', 'commercial', 'commercial_land', 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
@@ -795,7 +795,8 @@ function epl_meta_box_init() {
 							'name'		=>	'property_energy_rating',
 							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'6'
+							'maxlength'	=>	'6',
+							'exclude'	=>	array( 'land' , 'commercial_land')
 						),
 
 						array(
