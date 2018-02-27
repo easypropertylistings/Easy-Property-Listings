@@ -29,7 +29,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		private $item_shortname;
 		private $version;
 		private $author;
-		private $api_url = 'http://dev.realestateconnected.com.au/easypropertylistings/edd-sl-api/';
+		private $api_url = 'https://easypropertylistings.com.au/edd-sl-api/';
 
 		/**
 		 * Class constructor
