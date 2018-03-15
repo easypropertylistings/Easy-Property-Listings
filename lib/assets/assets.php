@@ -134,7 +134,8 @@ function epl_admin_styles() {
 				'epl-image-medium-crop'		=>	'300 X 200',
 			);
 
-	$width = current(explode(' X ',$sizes[$active_size])).'px';
+	$width = current(explode(' X ',$sizes[$active_size]));
+	$width = $width + 20 . 'px'; // Add 20 pixels for padding
 	?>
 	<style>
 		.column-property_thumb {
