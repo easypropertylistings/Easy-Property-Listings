@@ -1662,8 +1662,6 @@ function epl_meta_box_init() {
 
 											<td>
 												<?php
-
-
 													epl_render_html_fields ($field,$val);
 												?>
 											</td>
