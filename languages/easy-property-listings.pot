@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2018-02-23 10:55+0800\n"
+"POT-Creation-Date: 2018-03-21 14:03+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -279,7 +279,7 @@ msgstr ""
 #: lib/compatibility/listing-meta-compat.php:672
 #: lib/includes/class-epl-property-meta.php:1074
 #: lib/includes/class-epl-property-meta.php:1078 lib/meta-boxes/meta-boxes.php:310
-#: lib/post-types/post-types.php:271 lib/widgets/widget-functions.php:141
+#: lib/post-types/post-types.php:284 lib/widgets/widget-functions.php:141
 #: lib/widgets/widget-functions.php:500
 msgid "Rooms"
 msgstr ""
@@ -487,6 +487,10 @@ msgstr ""
 
 #: lib/compatibility/listing-meta-compat.php:1277 lib/meta-boxes/meta-boxes.php:1173
 msgid "Carrying Capacity"
+msgstr ""
+
+#: lib/hooks/hook-energy-certificate.php:30
+msgid "Energy Certificate "
 msgstr ""
 
 #: lib/hooks/hook-external-links.php:37 lib/hooks/hook-external-links.php:39
@@ -916,7 +920,7 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1207 lib/meta-boxes/meta-boxes.php:24
-#: lib/post-types/post-types.php:47 lib/post-types/post-types.php:462
+#: lib/post-types/post-types.php:47 lib/post-types/post-types.php:479
 #: lib/widgets/widget-admin-dashboard.php:116 lib/widgets/widget-admin-dashboard.php:133
 #: lib/widgets/widget-admin-dashboard.php:155 lib/widgets/widget-functions.php:62
 #: lib/widgets/widget-listing.php:138 lib/widgets/widget-listing.php:254
@@ -1292,7 +1296,7 @@ msgid ""
 "Publish/Update your listing and their details will be displayed for quick access."
 msgstr ""
 
-#: lib/includes/admin/help-single.php:132 lib/meta-boxes/meta-boxes.php:1537
+#: lib/includes/admin/help-single.php:132 lib/meta-boxes/meta-boxes.php:1548
 msgid "Linked Contact"
 msgstr ""
 
@@ -2637,7 +2641,7 @@ msgid "Alarm System"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1301
-#: lib/includes/class-epl-property-meta.php:1328
+#: lib/includes/class-epl-property-meta.php:1328 lib/post-types/post-types.php:293
 msgid "m&#178;"
 msgstr ""
 
@@ -3685,14 +3689,14 @@ msgid "The following details will appear in your author box and widgets."
 msgstr ""
 
 #: lib/meta-boxes/meta-boxes.php:25 lib/post-types/post-types.php:48
-#: lib/post-types/post-types.php:463 lib/widgets/widget-admin-dashboard.php:118
+#: lib/post-types/post-types.php:480 lib/widgets/widget-admin-dashboard.php:118
 #: lib/widgets/widget-admin-dashboard.php:138 lib/widgets/widget-admin-dashboard.php:159
 #: lib/widgets/widget-listing.php:141 lib/widgets/widget-listing.php:257
 msgid "Withdrawn"
 msgstr ""
 
 #: lib/meta-boxes/meta-boxes.php:26 lib/post-types/post-types.php:49
-#: lib/post-types/post-types.php:464 lib/widgets/widget-admin-dashboard.php:119
+#: lib/post-types/post-types.php:481 lib/widgets/widget-admin-dashboard.php:119
 #: lib/widgets/widget-admin-dashboard.php:139 lib/widgets/widget-admin-dashboard.php:160
 #: lib/widgets/widget-listing.php:142 lib/widgets/widget-listing.php:258
 msgid "Off Market"
@@ -4190,39 +4194,43 @@ msgstr ""
 msgid "Floorplan"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1490
+#: lib/meta-boxes/meta-boxes.php:1491
 msgid "Floorplan 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1496
+#: lib/meta-boxes/meta-boxes.php:1497
 msgid "External Link"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1502
+#: lib/meta-boxes/meta-boxes.php:1503
 msgid "External Link 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1507
+#: lib/meta-boxes/meta-boxes.php:1509
 msgid "External Link 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1514
+#: lib/meta-boxes/meta-boxes.php:1516
 msgid "Mini Website URL"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1520
+#: lib/meta-boxes/meta-boxes.php:1523
 msgid "Mini Website URL 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1526
+#: lib/meta-boxes/meta-boxes.php:1530
 msgid "Mini Website URL 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1549
+#: lib/meta-boxes/meta-boxes.php:1537
+msgid "Energy Certificate"
+msgstr ""
+
+#: lib/meta-boxes/meta-boxes.php:1560
 msgid "Contact ID"
 msgstr ""
 
-#: lib/meta-boxes/meta-boxes.php:1551
+#: lib/meta-boxes/meta-boxes.php:1562
 msgid "Search for contact and update to save."
 msgstr ""
 
@@ -4304,7 +4312,7 @@ msgstr ""
 msgid "Agent"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:147 lib/post-types/post-types.php:238
+#: lib/post-types/post-type-business.php:147 lib/post-types/post-types.php:245
 msgid "Important! Set a Heading"
 msgstr ""
 
@@ -4640,24 +4648,36 @@ msgstr ""
 msgid "Search Value."
 msgstr ""
 
-#: lib/post-types/post-types.php:262
+#: lib/post-types/post-types.php:265
+msgid "Outgoings:"
+msgstr ""
+
+#: lib/post-types/post-types.php:270
+msgid "Return:"
+msgstr ""
+
+#: lib/post-types/post-types.php:275
 msgid "Beds"
 msgstr ""
 
-#: lib/post-types/post-types.php:263
+#: lib/post-types/post-types.php:276
 msgid "Baths"
 msgstr ""
 
-#: lib/post-types/post-types.php:269
+#: lib/post-types/post-types.php:282
 msgid "Room"
 msgstr ""
 
-#: lib/post-types/post-types.php:320
+#: lib/post-types/post-types.php:338
 msgid "No"
 msgstr ""
 
-#: lib/post-types/post-types.php:417
+#: lib/post-types/post-types.php:435
 msgid "No price set"
+msgstr ""
+
+#: lib/post-types/post-types.php:458
+msgid "Lease End:"
 msgstr ""
 
 #: lib/taxonomies/tax-business_listings.php:24
