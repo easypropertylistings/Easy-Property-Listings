@@ -410,6 +410,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Implementation to support beta releases of extensions, enabled when EPL_BETA_VERSIONS is true.
 * New: Added additional filters for epl_author_mobile, epl_author_id, epl_author_slogan, epl_author_position, epl_author_name and epl_author_contact_form.
 * New: Implemented support for energy rating value on listings as it is mandatory in some regions. New meta field is property_energy_rating.
+* New: Added Energy Certificate link to listings which allows for an image upload and button output. Field is property_energy_certificate.
 * New: Ability to display offmarket and withdrawn listings on archive pages through the epl_hide_listing_statuses filter.
 * New: Migrated Author details tab into a new template file content-author-box-tab-details.php that can be overridden in active_theme/easypropertylistings folder which enables easier editing of the details tab contents.
 * New: Filters added for listing admin columns allowing other plugins to hook in correctly to listing dashboard columns and display additional info like Yoast SEO, Post Counter and many other WordPress plugins: epl_post_type_business_admin_columns, epl_post_type_commercial_admin_columns, epl_post_type_commercial_land_admin_columns, epl_post_type_land_admin_columns, epl_post_type_property_admin_columns, epl_post_type_rental_admin_columns, epl_post_type_rural_admin_columns.
