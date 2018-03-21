@@ -152,6 +152,9 @@ function epl_admin_posts_filter( $query ) {
  * @since 1.0
  */
 function epl_manage_listings_sortable_columns( $columns ) {
+
+	global $post;
+
 	$columns['property_price']	= 'property_price';
 	// Rental Sorting
 	if ( 'rental' == $post->post_type ) {
