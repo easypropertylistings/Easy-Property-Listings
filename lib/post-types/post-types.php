@@ -152,6 +152,7 @@ function epl_admin_posts_filter( $query ) {
  * @since 1.0
  */
 function epl_manage_listings_sortable_columns( $columns ) {
+	$columns['property_rent']	= 'property_rent';
 	$columns['property_price']	= 'property_price';
 	$columns['property_status'] 	= 'property_status';
 	$columns['listing_id'] 		= 'listing_id';
@@ -179,6 +180,11 @@ function epl_custom_orderby( $query ) {
 
 	if( 'property_price' == $orderby ) {
 		$query->set('meta_key','property_price');
+		$query->set('orderby','meta_value_num');
+	}
+
+	if( 'property_rent' == $orderby ) {
+		$query->set('meta_key','property_rent');
 		$query->set('orderby','meta_value_num');
 	}
 
