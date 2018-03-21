@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2018-03-21 14:10+0800\n"
+"POT-Creation-Date: 2018-03-21 14:15+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -279,7 +279,7 @@ msgstr ""
 #: lib/compatibility/listing-meta-compat.php:672
 #: lib/includes/class-epl-property-meta.php:1074
 #: lib/includes/class-epl-property-meta.php:1078 lib/meta-boxes/meta-boxes.php:310
-#: lib/post-types/post-types.php:287 lib/widgets/widget-functions.php:141
+#: lib/post-types/post-types.php:280 lib/widgets/widget-functions.php:141
 #: lib/widgets/widget-functions.php:500
 msgid "Rooms"
 msgstr ""
@@ -920,7 +920,7 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1207 lib/meta-boxes/meta-boxes.php:24
-#: lib/post-types/post-types.php:47 lib/post-types/post-types.php:482
+#: lib/post-types/post-types.php:47 lib/post-types/post-types.php:475
 #: lib/widgets/widget-admin-dashboard.php:116 lib/widgets/widget-admin-dashboard.php:133
 #: lib/widgets/widget-admin-dashboard.php:155 lib/widgets/widget-functions.php:62
 #: lib/widgets/widget-listing.php:138 lib/widgets/widget-listing.php:254
@@ -2641,7 +2641,7 @@ msgid "Alarm System"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1301
-#: lib/includes/class-epl-property-meta.php:1328 lib/post-types/post-types.php:296
+#: lib/includes/class-epl-property-meta.php:1328 lib/post-types/post-types.php:289
 msgid "m&#178;"
 msgstr ""
 
@@ -3689,14 +3689,14 @@ msgid "The following details will appear in your author box and widgets."
 msgstr ""
 
 #: lib/meta-boxes/meta-boxes.php:25 lib/post-types/post-types.php:48
-#: lib/post-types/post-types.php:483 lib/widgets/widget-admin-dashboard.php:118
+#: lib/post-types/post-types.php:476 lib/widgets/widget-admin-dashboard.php:118
 #: lib/widgets/widget-admin-dashboard.php:138 lib/widgets/widget-admin-dashboard.php:159
 #: lib/widgets/widget-listing.php:141 lib/widgets/widget-listing.php:257
 msgid "Withdrawn"
 msgstr ""
 
 #: lib/meta-boxes/meta-boxes.php:26 lib/post-types/post-types.php:49
-#: lib/post-types/post-types.php:484 lib/widgets/widget-admin-dashboard.php:119
+#: lib/post-types/post-types.php:477 lib/widgets/widget-admin-dashboard.php:119
 #: lib/widgets/widget-admin-dashboard.php:139 lib/widgets/widget-admin-dashboard.php:160
 #: lib/widgets/widget-listing.php:142 lib/widgets/widget-listing.php:258
 msgid "Off Market"
@@ -4312,7 +4312,7 @@ msgstr ""
 msgid "Agent"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:147 lib/post-types/post-types.php:248
+#: lib/post-types/post-type-business.php:147 lib/post-types/post-types.php:241
 msgid "Important! Set a Heading"
 msgstr ""
 
@@ -4648,35 +4648,35 @@ msgstr ""
 msgid "Search Value."
 msgstr ""
 
-#: lib/post-types/post-types.php:268
+#: lib/post-types/post-types.php:261
 msgid "Outgoings:"
 msgstr ""
 
-#: lib/post-types/post-types.php:273
+#: lib/post-types/post-types.php:266
 msgid "Return:"
 msgstr ""
 
-#: lib/post-types/post-types.php:278
+#: lib/post-types/post-types.php:271
 msgid "Beds"
 msgstr ""
 
-#: lib/post-types/post-types.php:279
+#: lib/post-types/post-types.php:272
 msgid "Baths"
 msgstr ""
 
-#: lib/post-types/post-types.php:285
+#: lib/post-types/post-types.php:278
 msgid "Room"
 msgstr ""
 
-#: lib/post-types/post-types.php:341
+#: lib/post-types/post-types.php:334
 msgid "No"
 msgstr ""
 
-#: lib/post-types/post-types.php:438
+#: lib/post-types/post-types.php:431
 msgid "No price set"
 msgstr ""
 
-#: lib/post-types/post-types.php:461
+#: lib/post-types/post-types.php:454
 msgid "Lease End:"
 msgstr ""
 
