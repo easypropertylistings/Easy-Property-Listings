@@ -390,7 +390,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.2 February 22, 2018 =
+= 3.2 March 21, 2018 =
 
 * New: Search fields allow for placeholder to be defined for each search field.
 * New: Ability to sort be featured image in the dashboard when managing listings allowing user to sort columns by listings without a featured image set.

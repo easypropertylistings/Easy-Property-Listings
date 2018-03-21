@@ -1654,7 +1654,7 @@ function epl_meta_box_init() {
 											<th valign="top" scope="row">
 												<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
 											</th>
-                                            <?php endif; ?>
+											<?php endif; ?>
 
 											<?php if($group['columns'] > 1) { ?>
 												</tr><tr class="form-field">
