@@ -340,7 +340,7 @@ Absolutely, Easy Property Listings is built from the ground up for scale, speed 
 
 You can use the Easy Property Listings template loading system that lets you place all the plugin templates inside themes/YOUR_THEME/easypropertylistings/ folder and edit everything. You can [read more about how to do that here](http://codex.easypropertylistings.com.au/article/303-how-to-create-custom-widget-templates-using-the-theme-template-loader?utm_source=readme&utm_medium=faq_tab&utm_content=templates&utm_campaign=epl_documentation).
 
-= How do I setup my WordPress theme to work with Easy Property Listings 2.0 =
+= How do I setup my WordPress theme to work with Easy Property Listings =
 
 In order for correct integration with your WordPress theme please follow these instructions [WordPress Theme configuration instructions](http://codex.easypropertylistings.com.au/article/49-theme-setup).
 
