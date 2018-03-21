@@ -153,6 +153,10 @@ function epl_admin_posts_filter( $query ) {
  */
 function epl_manage_listings_sortable_columns( $columns ) {
 	$columns['property_price']	= 'property_price';
+	// Rental Sorting
+	if ( 'rental' == $post->post_type ) {
+		$columns['property_price']	= 'property_rent';
+	}
 	$columns['property_status'] 	= 'property_status';
 	$columns['listing_id'] 		= 'listing_id';
 	$columns['agent'] 		= 'agent';
