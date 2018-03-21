@@ -400,6 +400,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Removed changelog entries from plugin core files to greatly reduce translation requirements for plugin and translation will be far easier for translators now.
 * New: Change log items are parsed from readme.txt file which removes the need to translate over 700 change log entries.
 * New: Added a new CSS class epl-property-features to the listing features column.
+* New: Searching by features staxonomy no possible with [listing_search] shortcode and EPL - Listing Search widget.
 * New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.
 * New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.
 * New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data which is fed to epl search class.
@@ -424,6 +425,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Added options to return text values to each of the get_property functions. Allowing return of a text result instead of a formatted list item.
 * New: Filters added to adjust the return format of each get_property function: epl_get_property_year_built_return_type, epl_get_property_bedrooms_return_type, epl_get_property_bathrooms_return_type, epl_get_property_rooms_return_type, epl_get_property_parking_spaces_return_type, epl_get_property_garage_return_type, epl_get_property_carport_return_type, epl_get_property_air_conditioning_return_type, epl_get_property_pool_return_type, epl_get_property_security_system_return_type, epl_get_property_new_construction_return_type, epl_get_property_holiday_rental_return_type.
 * New: Added functions for get_property_furnished and get_property_holiday_rental.
+* New: House Category now displays in admin column for quick identification of the listing type.
 * Tweak: Adjustment to the handling of the primary and secondary listing agents on listings. When a primary agent details are entered this will be the listing agent displayed. If the primary agent for a listing is not set then the Author will be the primary agent displayed.
 * Tweak: Added option to use a seperate template for search results.
 * Tweak: Corrected building size css class name from land-size to building-size.
@@ -436,6 +438,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Search better supports multiple post types in an array: epl_get_unique_post_meta_values('property_bedroom','current', array('property','rental') ).
 * Tweak: Sorting option better allows sorting options based on post types by passing post type.
 * Tweak: Contact form CSS added for better formatting.
+* Tweak: Adjusted admin images padding.
+* Tweak: Added date picker to Listed Date and Commercial End Lease date fields.
+* Fix: Translations added for Admin on commercial listings (Return, Outgoings, Lease End )
+* Fix: Sorting by rental price corrected in admin for Rental listings.
+* Fix: Land details missing on Commercial Land listing type.
 * Fix: Select form render multiple selections for search.
 * Fix: Price bar graph in admin when no price set.
 * Fix: Translation issues for search dropdowns.
