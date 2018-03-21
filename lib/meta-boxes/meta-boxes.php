@@ -1485,6 +1485,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('Floorplan', 'easy-property-listings' ),
 							'type'		=>	'file'
 						),
+
 						array(
 							'name'		=>	'property_floorplan_2',
 							'label'		=>	__('Floorplan 2', 'easy-property-listings' ),
@@ -1502,6 +1503,7 @@ function epl_meta_box_init() {
 							'label'		=>	__('External Link 2', 'easy-property-listings' ),
 							'type'		=>	'file'
 						),
+
 						array(
 							'name'		=>	'property_external_link_3',
 							'label'		=>	__('External Link 3', 'easy-property-listings' ),
@@ -1515,17 +1517,26 @@ function epl_meta_box_init() {
 							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
+
 						array(
 							'name'		=>	'property_com_mini_web_2',
 							'label'		=>	__('Mini Website URL 2', 'easy-property-listings' ),
 							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
+
 						array(
 							'name'		=>	'property_com_mini_web_3',
 							'label'		=>	__('Mini Website URL 3', 'easy-property-listings' ),
 							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
+						),
+
+						array(
+							'name'		=>	'property_energy_certificate',
+							'label'		=>	__('Energy Certificate', 'easy-property-listings' ),
+							'type'		=>	'file',
+							'exclude'	=>	array('land', 'commercial_land'),
 						),
 					)
 				)
