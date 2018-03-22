@@ -241,6 +241,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'includes/pagination.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
+			require_once EPL_PATH_LIB . 'meta-boxes/meta-box-init.php';
 
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';

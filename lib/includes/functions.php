@@ -2181,3 +2181,112 @@ function epl_get_countries_list() {
 
 	return apply_filters('epl_get_countries_list',array_combine($countries,$countries) );
 }
+
+
+function epl_get_property_status_opts() {
+
+	return apply_filters (  'epl_opts_property_status_filter', array(
+			'current'	=>	__('Current', 'easy-property-listings' ),
+			'withdrawn'	=>	__('Withdrawn', 'easy-property-listings' ),
+			'offmarket'	=>	__('Off Market', 'easy-property-listings' ),
+			'sold'		=>	array(
+				'label'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'easy-property-listings' ) ),
+				'exclude'	=>	array('rental')
+			),
+			'leased'		=>	array(
+				'label'		=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'easy-property-listings' ) ),
+				'include'	=>	array('rental', 'commercial', 'commercial_land', 'business')
+			)
+		)
+	);
+}
+
+function epl_get_property_authority_opts() {
+
+	return apply_filters (  'epl_property_authority_filter', array(
+			'exclusive'	=>	__('Exclusive', 'easy-property-listings' ),
+			'auction'	=>	__('Auction', 'easy-property-listings' ),
+			'multilist'	=>	__('Multilist', 'easy-property-listings' ),
+			'conjunctional'	=>	__('Conjunctional', 'easy-property-listings' ),
+			'open'		=>	__('Open', 'easy-property-listings' ),
+			'sale'		=>	__('Sale', 'easy-property-listings' ),
+			'setsale'	=>	__('Set Sale', 'easy-property-listings' )
+		)
+	);
+}
+
+function epl_get_property_exclusivity_opts() {
+
+	return apply_filters (  'epl_opts_property_exclusivity_filter', array(
+			'exclusive'	=>	__('Exclusive', 'easy-property-listings' ),
+			'open'		=>	__('Open', 'easy-property-listings' )
+		)
+	);
+}
+
+function epl_get_property_com_authority_opts() {
+
+	return apply_filters (  'epl_opts_property_com_authority_filter', array(
+			'Forsale'	=>	__('For Sale', 'easy-property-listings' ),
+			'auction'	=>	__('Auction', 'easy-property-listings' ),
+			'tender'	=>	__('Tender', 'easy-property-listings' ),
+			'eoi'		=>	__('EOI', 'easy-property-listings' ),
+			'Sale'		=>	__('Sale', 'easy-property-listings' ),
+			'offers'	=>	__('Offers', 'easy-property-listings' )
+		)
+	);
+}
+
+function epl_get_property_area_unit_opts() {
+
+	return apply_filters (  'epl_opts_area_unit_filter', array(
+			'square'	=>	__('Square', 'easy-property-listings' ),
+			'squareMeter'	=>	__('Square Meter', 'easy-property-listings' ),
+			'acre'		=>	__('Acre', 'easy-property-listings' ),
+			'hectare'	=>	__('Hectare', 'easy-property-listings' ),
+			'sqft'		=>	__('Square Feet', 'easy-property-listings' )
+		)
+	);
+}
+
+function epl_get_property_rent_period_opts() {
+
+	return apply_filters (  'epl_opts_rent_period_filter', array(
+			'day'		=>	__('Day', 'easy-property-listings' ),
+			'daily'		=>	__('Daily', 'easy-property-listings' ),
+			'week'		=>	__('Week', 'easy-property-listings' ),
+			'weekly'	=>	__('Weekly', 'easy-property-listings' ),
+			'month'		=>	__('Month', 'easy-property-listings' ),
+			'monthly'	=>	__('Monthly', 'easy-property-listings' )
+		)
+	);
+}
+
+function epl_get_property_com_listing_type_opts() {
+
+	return apply_filters (  'epl_opts_property_com_listing_type_filter', array(
+			'sale'		=>	__('Sale', 'easy-property-listings' ),
+			'lease'		=>	__('Lease', 'easy-property-listings' ),
+			'both'		=>	__('Both', 'easy-property-listings' )
+		)
+	);
+}
+
+function epl_get_property_com_tenancy_opts() {
+
+	return apply_filters (  'epl_opts_property_com_tenancy_filter', array(
+			'unknown'	=>	__('Unknown', 'easy-property-listings' ),
+			'vacant'	=>	__('Vacant', 'easy-property-listings' ),
+			'tenanted'	=>	__('Tenanted', 'easy-property-listings' )
+		)
+	);
+}
+
+function epl_get_property_com_property_extent_opts() {
+
+	return apply_filters (  'epl_opts_property_com_property_extent_filter', array(
+			'whole'		=>	__('Whole', 'easy-property-listings' ),
+			'part'		=>	__('Part', 'easy-property-listings' )
+		)
+	);
+}

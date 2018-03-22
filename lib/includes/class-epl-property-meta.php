@@ -1561,9 +1561,10 @@ class EPL_Property_Meta {
 	 * @param string $key Meta key
 	 * @param string $search Meta key prefix to search for and remove from class, Default property_
 	 * @return string Formatted uppercase words
+	 * @depricated since 3.2
 	 */
 	public function get_label_from_metakey( $key , $search = 'property_' ){
-		return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
+		return epl_get_meta_field_label($key);
 	}
 
 	/**
