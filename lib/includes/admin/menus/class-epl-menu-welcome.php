@@ -437,7 +437,7 @@ class EPL_Welcome {
 			<div class="changelog headline-feature">
 				<h2 id="theme-instructions" class="epl-welcome-sub-heading"><?php _e( 'Advanced instructions', 'easy-property-listings'  );?></h2>
 
-				<div class="feature-section two-col">
+				<div class="feature-section">
 					<?php $theme_instructions = '<a href="http://codex.easypropertylistings.com.au/article/49-theme-setup">'. __( 'theme setup instructions can be found here' , 'easy-property-listings'  ) .'</a>'; ?>
 					<?php $custom_template_link = '<a href="http://codex.easypropertylistings.com.au/article/121-how-to-create-your-own-custom-theme-templates-or-modify-existing-ones-using-the-theme-template-loader">'. __( 'custom templates' , 'easy-property-listings'  ) .'</a>'; ?>
 					<h4 style="text-align: center;"><?php printf( __( 'Detailed %s.', 'easy-property-listings'  ) , $theme_instructions );?></h4>
