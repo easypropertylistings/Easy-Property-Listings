@@ -3,7 +3,7 @@
  *
  * @package     EPL
  * @since	1.0
- * @version	3.1
+ * @version	3.2
  * @subpackage  Admin CSS
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -16,6 +16,10 @@
 	font-weight: 300;
 	line-height: 1.3;
 	text-align: center;
+}
+.epl-about-wrap .headline-feature {
+	margin: 0 auto;
+	max-width: 800px;
 }
 .epl-about-wrap .headline-feature .feature-section {
 	margin: 0 auto;
@@ -34,6 +38,20 @@
 	float: right;
 	margin: 15px 0 40px;
 	width: 40%;
+}
+.epl-about-wrap .feature-section.two-col div {
+	width: 50%;
+	box-sizing: border-box;
+	padding: 0 1em;
+}
+.epl-about-wrap .feature-section.three-col div {
+	width: 33%;
+	box-sizing: border-box;
+	padding: 0 1em;
+}
+.epl-about-wrap .feature-section h3 {
+	font-size: 1.3em;
+	padding-top: 1em
 }
 .epl-about-wrap .featured-image {
 	text-align: center;
@@ -155,9 +173,7 @@ h3.epl-welcome-sub-heading {
 }
 .epl-full {
 
-
 }
-
 .epl-no-label {
 	display: none;
 }
@@ -1715,6 +1731,33 @@ h3.epl-contact-activity-title {
 
 /* Responsive */
 @media screen and (max-width: 782px) {
+
+	.epl-about-wrap .headline-feature .feature-section .col:first-child {
+		float: none;
+		margin: 0;
+		width: 100%;
+	}
+	.epl-about-wrap .headline-feature .feature-section .col:last-child {
+		float: none;
+		margin: 0 0 0;
+		width: 100%;
+	}
+	.epl-about-wrap .epl-welcome-screenshots {
+	 	float: none !important;
+	 	margin: 0 auto !important;
+	}
+
+	.epl-about-wrap .feature-section.two-col div {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0;
+	}
+	.epl-about-wrap .feature-section.three-col div {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0;
+	}
+
 	.form-table td .epl-inspection-markup input[type=text],
 	.form-table td .epl-inspection-markup select {
 		display: inline-block;
