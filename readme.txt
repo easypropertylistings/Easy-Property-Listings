@@ -427,6 +427,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Filters added to adjust the return format of each get_property function: epl_get_property_year_built_return_type, epl_get_property_bedrooms_return_type, epl_get_property_bathrooms_return_type, epl_get_property_rooms_return_type, epl_get_property_parking_spaces_return_type, epl_get_property_garage_return_type, epl_get_property_carport_return_type, epl_get_property_air_conditioning_return_type, epl_get_property_pool_return_type, epl_get_property_security_system_return_type, epl_get_property_new_construction_return_type, epl_get_property_holiday_rental_return_type.
 * New: Added functions for get_property_furnished and get_property_holiday_rental.
 * New: House Category now displays in admin column for quick identification of the listing type.
+* Tweak: Removed screenshots to reduce plugin size.
+* Tweak: Removed Whats New page descriptions to significantly reduce translation requirements for translators.
 * Tweak: Adjustment to the handling of the primary and secondary listing agents on listings. When a primary agent details are entered this will be the listing agent displayed. If the primary agent for a listing is not set then the Author will be the primary agent displayed.
 * Tweak: Added option to use a seperate template for search results.
 * Tweak: Corrected building size css class name from land-size to building-size.

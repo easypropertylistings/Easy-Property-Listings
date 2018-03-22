@@ -184,89 +184,6 @@ class EPL_Welcome {
 
 			<?php $this->tabs(); ?>
 
-
-			<?php $lp_link = '<a href="https://easypropertylistings.com.au/extensions/location-profiles/">' . __('Location Profiles' , 'easy-property-listings' ) . '</a>'; ?>
-			<?php $tm_link = '<a href="https://easypropertylistings.com.au/extensions/testimonial-manager/">' . __('Testimonial Manager' , 'easy-property-listings' ) . '</a>'; ?>
-			<?php $am_link = '<a href="https://easypropertylistings.com.au/extensions/advanced-mapping/">' . __('Advanced Mapping' , 'easy-property-listings' ) . '</a>'; ?>
-			<?php $sd_link = '<a href="https://easypropertylistings.com.au/extensions/staff-directory/">' . __('Staff Directory' , 'easy-property-listings' ) . '</a>'; ?>
-
-			<div class="changelog headline-feature">
-
-				<h2><?php _e( 'New Grid Styles' , 'easy-property-listings'  );?></h2>
-
-				<div class="featured-image">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-new-grid.png'; ?>" class="epl-welcome-featured-image"/>
-				</div>
-
-				<div class="feature-section">
-					<p><?php _e( 'When the grid/list option was added in a previous version last year we did so without adding an internal container so that the grid could neatly format at 33.3% to maintain an even effect.' , 'easy-property-listings'  ); ?></p>
-
-					<p><?php _e( 'We have now implemented an internal container on the listing element and moved the styling options to this new CSS class. So when you decide to use the new styles you’ll have to update your styling to this new class called epl-property-blog-entry-wrapper.' , 'easy-property-listings'  ); ?></p>
-				</div>
-			</div>
-
-			<div class="changelog headline-feature">
-
-				<h2><?php _e( 'Load Custom CSS from Your Theme' , 'easy-property-listings'  );?></h2>
-
-				<div class="feature-section">
-					<p><?php _e( 'In 3.1 we have also added the ability to load custom stylesheets from your_theme/easypropertylistings/style.css which allows you to quickly style your listings and keep the stylesheets separate from your main theme stylesheets. This allows you to quickly take your custom created templates and use them on other real estate sites.' , 'easy-property-listings'  ); ?></p>
-
-				</div>
-			</div>
-
-			<div class="changelog headline-feature">
-
-				<h2><?php _e( 'Contact and Lead Management System' , 'easy-property-listings'  );?></h2>
-
-				<div class="featured-image">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-contacts.png'; ?>" class="epl-welcome-featured-image"/>
-				</div>
-
-				<div class="feature-section">
-					<p><?php _e( 'Contact management and lead CRM has been added to the Easy Property Listings plugin and we are very excited to finally release this to you to use on your real estate website.' , 'easy-property-listings'  ); ?></p>
-
-					<p><?php _e( 'Lead generation in real estate is a must online and we have created an easy to use CRM that allows you to track and communicate with your prospects as they make enquiries on your listings. If you already are using a CRM in your business then the contact system will allow us to create add-ons which will be able to pass the lead information directly into your real estate CRM provided yours has an API. This will help you streamline your daily lead generation and prospecting activities with your website.' , 'easy-property-listings'  ); ?></p>
-
-					<p><?php _e( 'The contact system has been designed to be easy to use and allow you to track and capture contact information on your listings.' , 'easy-property-listings'  ); ?></p>
-
-					<p><?php _e( 'Back when I was selling property I would frequently meet the same people at different properties that I had listed for sale and now you will be able to create a story around your potential buyer or seller shopping for an agent.', 'easy-property-listings'  ); ?></p>
-
-				</div>
-			</div>
-
-			<div class="changelog headline-feature">
-
-				<h2><?php _e( 'Reports' , 'easy-property-listings'  );?></h2>
-
-				<div class="featured-image">
-					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/epl-reports.png'; ?>" class="epl-welcome-featured-image"/>
-				</div>
-
-				<div class="feature-section">
-					<p><?php _e( 'This release introduces a reports feature for you to track your listings, sales and rentals so you can visually see how your business is going at a glance.', 'easy-property-listings'  ); ?></p>
-
-					<p><?php _e( 'Graphs are cool and they really can give you a quick picture of how you are going with your real estate business so you can see trends in your business to better prepare your prospecting. Real Estate can be a very seasonal business and when you can see the last 5 years of your listings on a graph you can plan ahead.', 'easy-property-listings'  ); ?></p>
-
-					<p><?php _e( 'If you are running a business and have several sales and property manager staff you will be able to see how your business is going and track the KPI’s of your people.', 'easy-property-listings'  ); ?></p>
-
-					<p><?php _e( 'We have additional enhancements planned for the reports moving forward so you can track commissions so you can see your sales and rental revenue.', 'easy-property-listings'  ); ?></p>
-				</div>
-			</div>
-
-			<div class="changelog headline-feature">
-
-				<h2><?php _e( 'Additional Updates', 'easy-property-listings'  );?></h2>
-
-
-				<p><?php _e( 'Along with the new Contacts and Reports features we have been optimising code, adding many new filters and functions to the code base to make your site faster and allow developers to create any type of real estate website that they can imagine.', 'easy-property-listings'  ); ?></p>
-
-				<p><?php _e( 'We have fixed some issues and improved the listing edit pages to slim them down a bit.', 'easy-property-listings'  ); ?></p>
-
-				<p><?php _e( 'Many more changes have been made which are noted in the Change Log below.', 'easy-property-listings'  ); ?></p>
-
-			</div>
-
 			<div class="changelog headline-feature">
 
 			<h2 id="guide-changelog"><?php _e( 'Full Change Log','easy-property-listings'  );?></h2>
@@ -274,7 +191,7 @@ class EPL_Welcome {
 				<div class="feature-section">
 
 					<?php echo $this->parse_readme(); ?>
-					
+
 				</div>
 			</div>
 
@@ -505,6 +422,7 @@ class EPL_Welcome {
 							<li><?php _e( 'Genesis Framework by StudioPress', 'easy-property-listings'  );?></li>
 							<li><?php _e( 'Headway Theme Framework', 'easy-property-listings'  );?></li>
 							<li><?php _e( 'Twenty 12, 13, 14 &#38; 15 by WordPress.', 'easy-property-listings'  );?></li>
+							<li><?php _e( 'Divi by Elegant Themes.', 'easy-property-listings'  );?></li>
 							<li><?php _e( 'Many others, add a listing and see how it looks.', 'easy-property-listings'  );?></li>
 						</ul>
 						<p><?php _e( 'We have a selection of pre configured templates here for many popular themes', 'easy-property-listings'  );?> <a href="http://codex.easypropertylistings.com.au/article/185-theme-templates"><?php _e( 'here', 'easy-property-listings'  );?></a>.</p>
