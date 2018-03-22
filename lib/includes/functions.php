@@ -2174,6 +2174,8 @@ function epl_get_beta_enabled_extensions() {
 
 /**
  * Returns List of countries
+ *
+ * @since   3.2
  */
 function epl_get_countries_list() {
 
@@ -2182,7 +2184,11 @@ function epl_get_countries_list() {
 	return apply_filters('epl_get_countries_list',array_combine($countries,$countries) );
 }
 
-
+/**
+ * Returns array containing Property Status
+ *
+ * @since   3.2
+ */
 function epl_get_property_status_opts() {
 
 	return apply_filters (  'epl_opts_property_status_filter', array(
@@ -2201,6 +2207,11 @@ function epl_get_property_status_opts() {
 	);
 }
 
+/**
+ * Returns array containing Property authority
+ *
+ * @since   3.2
+ */
 function epl_get_property_authority_opts() {
 
 	return apply_filters (  'epl_property_authority_filter', array(
@@ -2215,6 +2226,11 @@ function epl_get_property_authority_opts() {
 	);
 }
 
+/**
+ * Returns array containing Property exclusivity
+ *
+ * @since   3.2
+ */
 function epl_get_property_exclusivity_opts() {
 
 	return apply_filters (  'epl_opts_property_exclusivity_filter', array(
@@ -2224,6 +2240,11 @@ function epl_get_property_exclusivity_opts() {
 	);
 }
 
+/**
+ * Returns array containing Commercial Authority
+ *
+ * @since   3.2
+ */
 function epl_get_property_com_authority_opts() {
 
 	return apply_filters (  'epl_opts_property_com_authority_filter', array(
@@ -2237,6 +2258,11 @@ function epl_get_property_com_authority_opts() {
 	);
 }
 
+/**
+ * Returns array containing area unit options
+ *
+ * @since   3.2
+ */
 function epl_get_property_area_unit_opts() {
 
 	return apply_filters (  'epl_opts_area_unit_filter', array(
@@ -2249,6 +2275,11 @@ function epl_get_property_area_unit_opts() {
 	);
 }
 
+/**
+ * Returns array containing Rental period
+ *
+ * @since   3.2
+ */
 function epl_get_property_rent_period_opts() {
 
 	return apply_filters (  'epl_opts_rent_period_filter', array(
@@ -2262,6 +2293,11 @@ function epl_get_property_rent_period_opts() {
 	);
 }
 
+/**
+ * Returns array containing Commercial Leasing Types
+ *
+ * @since   3.2
+ */
 function epl_get_property_com_listing_type_opts() {
 
 	return apply_filters (  'epl_opts_property_com_listing_type_filter', array(
@@ -2272,6 +2308,11 @@ function epl_get_property_com_listing_type_opts() {
 	);
 }
 
+/**
+ * Returns array containing Commercial Tenancy
+ *
+ * @since   3.2
+ */
 function epl_get_property_com_tenancy_opts() {
 
 	return apply_filters (  'epl_opts_property_com_tenancy_filter', array(
@@ -2282,6 +2323,11 @@ function epl_get_property_com_tenancy_opts() {
 	);
 }
 
+/**
+ * Returns array containing Commercial Land Extent
+ *
+ * @since   3.2
+ */
 function epl_get_property_com_property_extent_opts() {
 
 	return apply_filters (  'epl_opts_property_com_property_extent_filter', array(

@@ -16,14 +16,14 @@ function epl_get_meta_boxes() {
 
 	global $epl_settings;
 
-	$opts_property_status 				= epl_get_property_status_opts();
-	$opts_property_authority 			= epl_get_property_authority_opts();
-	$opts_property_exclusivity 			= epl_get_property_exclusivity_opts();
+	$opts_property_status 			= epl_get_property_status_opts();
+	$opts_property_authority 		= epl_get_property_authority_opts();
+	$opts_property_exclusivity 		= epl_get_property_exclusivity_opts();
 	$opts_property_com_authority 		= epl_get_property_com_authority_opts();
-	$opts_area_unit 					= epl_get_property_area_unit_opts();
-	$opts_rent_period 					= epl_get_property_rent_period_opts(); 
+	$opts_area_unit 			= epl_get_property_area_unit_opts();
+	$opts_rent_period 			= epl_get_property_rent_period_opts();
 	$opts_property_com_listing_type 	= epl_get_property_com_listing_type_opts();
-	$opts_property_com_tenancy 			= epl_get_property_com_tenancy_opts();
+	$opts_property_com_tenancy 		= epl_get_property_com_tenancy_opts();
 	$opts_property_com_property_extent 	= epl_get_property_com_property_extent_opts();
 
 	$epl_meta_boxes = array(
@@ -372,7 +372,8 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_energy_rating',
 							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'6'
+							'maxlength'	=>	'6',
+							'exclude'	=>	array( 'land' , 'commercial_land')
 						),
 
 						array(
@@ -684,7 +685,7 @@ function epl_get_meta_boxes() {
 		array( //Repeating most from above "epl-features-section-id" because on land it will be single column
 			'id'		=>	'epl-features-section-id-single-column',
 			'label'		=>	__('Land Details', 'easy-property-listings' ),
-			'post_type'	=>	array('land', 'commercial', 'business'),
+			'post_type'	=>	array('land', 'commercial', 'commercial_land' , 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
 			'groups'	=>	array(
@@ -1416,6 +1417,7 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('Floorplan', 'easy-property-listings' ),
 							'type'		=>	'file'
 						),
+
 						array(
 							'name'		=>	'property_floorplan_2',
 							'label'		=>	__('Floorplan 2', 'easy-property-listings' ),
@@ -1433,6 +1435,7 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('External Link 2', 'easy-property-listings' ),
 							'type'		=>	'file'
 						),
+
 						array(
 							'name'		=>	'property_external_link_3',
 							'label'		=>	__('External Link 3', 'easy-property-listings' ),
@@ -1446,17 +1449,26 @@ function epl_get_meta_boxes() {
 							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
+
 						array(
 							'name'		=>	'property_com_mini_web_2',
 							'label'		=>	__('Mini Website URL 2', 'easy-property-listings' ),
 							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
 						),
+
 						array(
 							'name'		=>	'property_com_mini_web_3',
 							'label'		=>	__('Mini Website URL 3', 'easy-property-listings' ),
 							'type'		=>	'file',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
+						),
+
+						array(
+							'name'		=>	'property_energy_certificate',
+							'label'		=>	__('Energy Certificate', 'easy-property-listings' ),
+							'type'		=>	'file',
+							'exclude'	=>	array('land', 'commercial_land'),
 						),
 					)
 				)
@@ -1486,7 +1498,7 @@ function epl_get_meta_boxes() {
 			)
 		),
 	);
-	
+
 	if(!empty($epl_meta_boxes)) {
 
 		foreach($epl_meta_boxes as &$epl_meta_box) {
@@ -1525,7 +1537,7 @@ function epl_get_meta_field_labels() {
 	}
 
 	foreach($epl_meta_boxes as &$epl_meta_box) {
-		
+
 		if(!empty($epl_meta_box['groups'])) {
 			foreach($epl_meta_box['groups'] as &$group) {
 				if(!empty($group['fields'])) {
