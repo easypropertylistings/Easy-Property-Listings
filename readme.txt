@@ -401,7 +401,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Removed changelog entries from plugin core files to greatly reduce translation requirements for plugin and translation will be far easier for translators now.
 * New: Change log items are parsed from readme.txt file which removes the need to translate over 700 change log entries.
 * New: Added a new CSS class epl-property-features to the listing features column.
-* New: Searching by features staxonomy no possible with [listing_search] shortcode and EPL - Listing Search widget.
+* New: Searching by featuress taxonomy no possible with [listing_search] shortcode and EPL - Listing Search widget.
 * New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.
 * New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.
 * New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data which is fed to epl search class.
