@@ -23,7 +23,7 @@ function epl_load_svg_listing_icons_head() {
 
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
 		<defs>
-			<symbol id="epl-icon-svg-bed">
+			<symbol id="epl-icon-svg-bed" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -40,7 +40,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-bath">
+			<symbol id="epl-icon-svg-bath" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -59,7 +59,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-car">
+			<symbol id="epl-icon-svg-car" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -68,7 +68,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-air">
+			<symbol id="epl-icon-svg-air" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -88,7 +88,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-pool">
+			<symbol id="epl-icon-svg-pool" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -125,7 +125,7 @@ function epl_load_svg_social_icons_head() {
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
 		<defs>
 
-			<symbol id="epl-icon-svg-email">
+			<symbol id="epl-icon-svg-email" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect width="100" height="100" style="fill:none"/>
 				</g>
@@ -135,7 +135,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-facebook">
+			<symbol id="epl-icon-svg-facebook" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect width="100" height="100" style="fill:none"/>
 				</g>
@@ -144,7 +144,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-twitter">
+			<symbol id="epl-icon-svg-twitter" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect width="100" height="100" style="fill:none"/>
 				</g>
@@ -153,7 +153,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-linkedin">
+			<symbol id="epl-icon-svg-linkedin" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 						<rect width="100" height="100" style="fill:none"/>
 				</g>
@@ -162,7 +162,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-google-plus">
+			<symbol id="epl-icon-svg-google-plus" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect width="100" height="100" style="fill:none"/>
 				</g>
@@ -172,7 +172,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-youtube">
+			<symbol id="epl-icon-svg-youtube" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect width="100" height="100" style="fill:none"/>
 				</g>
@@ -181,7 +181,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-skype">
+			<symbol id="epl-icon-svg-skype" class="epl-icon-fill">
 				<g id="epl-icon-shape-container" class="epl-icon-shape-container">
 					<rect width="100" height="100" style="fill:none"/>
 				</g>
