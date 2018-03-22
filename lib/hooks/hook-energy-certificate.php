@@ -27,7 +27,7 @@ function epl_button_energy_certificate() {
 	if( !empty($link) ) { ?>
 		<button type="button" class="epl-button epl-energy-certificate" onclick="window.open('<?php echo $link; ?>')">
 			<?php
-				$label = apply_filters( 'epl_button_label_energy_certificate' , __('Energy Certificate ', 'easy-property-listings') . $count );
+				$label = apply_filters( 'epl_button_label_energy_certificate' , __('Energy Certificate ', 'easy-property-listings') );
 			?>
 			<?php echo $label ?>
 		</button> <?php
