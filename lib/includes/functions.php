@@ -2174,10 +2174,165 @@ function epl_get_beta_enabled_extensions() {
 
 /**
  * Returns List of countries
+ *
+ * @since   3.2
  */
 function epl_get_countries_list() {
 
 	$countries = array("Australia", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
 
 	return apply_filters('epl_get_countries_list',array_combine($countries,$countries) );
+}
+
+/**
+ * Returns array containing Property Status
+ *
+ * @since   3.2
+ */
+function epl_get_property_status_opts() {
+
+	return apply_filters (  'epl_opts_property_status_filter', array(
+			'current'	=>	__('Current', 'easy-property-listings' ),
+			'withdrawn'	=>	__('Withdrawn', 'easy-property-listings' ),
+			'offmarket'	=>	__('Off Market', 'easy-property-listings' ),
+			'sold'		=>	array(
+				'label'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'easy-property-listings' ) ),
+				'exclude'	=>	array('rental')
+			),
+			'leased'		=>	array(
+				'label'		=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'easy-property-listings' ) ),
+				'include'	=>	array('rental', 'commercial', 'commercial_land', 'business')
+			)
+		)
+	);
+}
+
+/**
+ * Returns array containing Property authority
+ *
+ * @since   3.2
+ */
+function epl_get_property_authority_opts() {
+
+	return apply_filters (  'epl_property_authority_filter', array(
+			'exclusive'	=>	__('Exclusive', 'easy-property-listings' ),
+			'auction'	=>	__('Auction', 'easy-property-listings' ),
+			'multilist'	=>	__('Multilist', 'easy-property-listings' ),
+			'conjunctional'	=>	__('Conjunctional', 'easy-property-listings' ),
+			'open'		=>	__('Open', 'easy-property-listings' ),
+			'sale'		=>	__('Sale', 'easy-property-listings' ),
+			'setsale'	=>	__('Set Sale', 'easy-property-listings' )
+		)
+	);
+}
+
+/**
+ * Returns array containing Property exclusivity
+ *
+ * @since   3.2
+ */
+function epl_get_property_exclusivity_opts() {
+
+	return apply_filters (  'epl_opts_property_exclusivity_filter', array(
+			'exclusive'	=>	__('Exclusive', 'easy-property-listings' ),
+			'open'		=>	__('Open', 'easy-property-listings' )
+		)
+	);
+}
+
+/**
+ * Returns array containing Commercial Authority
+ *
+ * @since   3.2
+ */
+function epl_get_property_com_authority_opts() {
+
+	return apply_filters (  'epl_opts_property_com_authority_filter', array(
+			'Forsale'	=>	__('For Sale', 'easy-property-listings' ),
+			'auction'	=>	__('Auction', 'easy-property-listings' ),
+			'tender'	=>	__('Tender', 'easy-property-listings' ),
+			'eoi'		=>	__('EOI', 'easy-property-listings' ),
+			'Sale'		=>	__('Sale', 'easy-property-listings' ),
+			'offers'	=>	__('Offers', 'easy-property-listings' )
+		)
+	);
+}
+
+/**
+ * Returns array containing area unit options
+ *
+ * @since   3.2
+ */
+function epl_get_property_area_unit_opts() {
+
+	return apply_filters (  'epl_opts_area_unit_filter', array(
+			'square'	=>	__('Square', 'easy-property-listings' ),
+			'squareMeter'	=>	__('Square Meter', 'easy-property-listings' ),
+			'acre'		=>	__('Acre', 'easy-property-listings' ),
+			'hectare'	=>	__('Hectare', 'easy-property-listings' ),
+			'sqft'		=>	__('Square Feet', 'easy-property-listings' )
+		)
+	);
+}
+
+/**
+ * Returns array containing Rental period
+ *
+ * @since   3.2
+ */
+function epl_get_property_rent_period_opts() {
+
+	return apply_filters (  'epl_opts_rent_period_filter', array(
+			'day'		=>	__('Day', 'easy-property-listings' ),
+			'daily'		=>	__('Daily', 'easy-property-listings' ),
+			'week'		=>	__('Week', 'easy-property-listings' ),
+			'weekly'	=>	__('Weekly', 'easy-property-listings' ),
+			'month'		=>	__('Month', 'easy-property-listings' ),
+			'monthly'	=>	__('Monthly', 'easy-property-listings' )
+		)
+	);
+}
+
+/**
+ * Returns array containing Commercial Leasing Types
+ *
+ * @since   3.2
+ */
+function epl_get_property_com_listing_type_opts() {
+
+	return apply_filters (  'epl_opts_property_com_listing_type_filter', array(
+			'sale'		=>	__('Sale', 'easy-property-listings' ),
+			'lease'		=>	__('Lease', 'easy-property-listings' ),
+			'both'		=>	__('Both', 'easy-property-listings' )
+		)
+	);
+}
+
+/**
+ * Returns array containing Commercial Tenancy
+ *
+ * @since   3.2
+ */
+function epl_get_property_com_tenancy_opts() {
+
+	return apply_filters (  'epl_opts_property_com_tenancy_filter', array(
+			'unknown'	=>	__('Unknown', 'easy-property-listings' ),
+			'vacant'	=>	__('Vacant', 'easy-property-listings' ),
+			'tenanted'	=>	__('Tenanted', 'easy-property-listings' )
+		)
+	);
+}
+
+/**
+ * Returns array containing Commercial Land Extent
+ *
+ * @since   3.2
+ */
+function epl_get_property_com_property_extent_opts() {
+
+	return apply_filters (  'epl_opts_property_com_property_extent_filter', array(
+			'whole'		=>	__('Whole', 'easy-property-listings' ),
+			'part'		=>	__('Part', 'easy-property-listings' )
+		)
+	);
 }
