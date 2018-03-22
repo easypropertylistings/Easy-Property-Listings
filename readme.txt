@@ -390,8 +390,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.2 March 21, 2018 =
+= 3.2 March 22, 2018 =
 
+* New: Refactored meta-boxes to allow for better translations of additional features options on frontend.
 * New: Search fields allow for placeholder to be defined for each search field.
 * New: Ability to sort be featured image in the dashboard when managing listings allowing user to sort columns by listings without a featured image set.
 * New: Search by listing features now possible when using EPL - Listing Search widget or [listing_search] shortcode.
