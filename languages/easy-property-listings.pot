@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2018-03-22 11:12+0800\n"
+"POT-Creation-Date: 2018-03-22 11:44+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -627,7 +627,7 @@ msgid "Core bundle for Easy Property Listings"
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:68 lib/includes/admin/admin-functions.php:161
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:485
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:503
 msgid "Advanced Mapping"
 msgstr ""
 
@@ -1449,14 +1449,14 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:181
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:216
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:515
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:533
 #, php-format
 msgid "Welcome to Easy Property Listings %s"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:182
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:217
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:516
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:534
 #, php-format
 msgid ""
 "Thank you for updating to the latest version! Easy Property Listings %s is ready to "
@@ -1465,7 +1465,7 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:183
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:218
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:517
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:535
 #, php-format
 msgid "Version %s"
 msgstr ""
@@ -1751,120 +1751,120 @@ msgid ""
 "listings and it will automatically filter out options if no listings have that option."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:401
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:403
 msgid "Configure your theme"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:402
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:404
 msgid ""
 "We have done our best to integrate Easy Property Listings with all WordPress themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:407
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:409
 #: lib/includes/functions.php:1467
 msgid "Theme Compatibility"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:408
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:410
 msgid ""
 "Once you add a listing and if your page is really wide or your sidebar is under the "
 "content enable Theme Compatibility mode from settings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:410
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:412
 msgid ""
 "Review your listing and if you are seeing double images, hop back over to Settings "
 "page and either disable the theme feature image or the one provided by Easy Property "
 "Listings."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:412
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:414
 msgid "Shortcodes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:414
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:416
 msgid ""
 "The featured image settings have no impact on the Easy Property Listings shortcodes "
 "and widgets."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:419
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:421
 msgid "Theme Compatibility not required for some themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:421
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:423
 msgid "iThemes Builder Themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:422
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:424
 msgid "Genesis Framework by StudioPress"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:423
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:425
 msgid "Headway Theme Framework"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:424
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:426
 msgid "Twenty 12, 13, 14 &#38; 15 by WordPress."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:425
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:427
 msgid "Divi by Elegant Themes."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:426
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:428
 msgid "Many others, add a listing and see how it looks."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:428
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:430
 msgid "We have a selection of pre configured templates here for many popular themes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:428
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:430
 msgid "here"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:434
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:438
 msgid "Advanced instructions"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:437
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:441
 msgid "theme setup instructions can be found here"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:438
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:442
 msgid "custom templates"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:439
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:443
 #, php-format
 msgid "Detailed %s."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:440
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:444
 #, php-format
 msgid "How to create your own %s."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:446
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:454
 msgid "Stuck getting your theme to work?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:447
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:455
 msgid ""
 "Not all themes follow modern WordPress coding standards and these may take a little "
 "more time and experience to get working. If you just can not get it to work, visit"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:447
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:455
 msgid "premium support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:447
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:455
 msgid "and fill out a theme support request."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:449
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:457
 msgid ""
 "If the theme is available in the WordPress.org theme directory let us know the theme "
 "name and URL where we can download it in your support ticket. If its a premium theme "
@@ -1872,60 +1872,60 @@ msgid ""
 "download link to it on a file sharing site like Dropbox."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:451
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:467
 msgid "Need Help?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:455
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:471
 msgid "Premium Support"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:456
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:472
 #, php-format
 msgid ""
 "We do our best to provide the best support we can. If you encounter a problem or have "
 "a question, post a question in the <a href=\"%s\">support forums</a>."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:460
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:476
 msgid "Need Even Faster Support?"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:461
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:477
 msgid ""
 "<a href=\"https://easypropertylistings.com.au/support-ticket/\">Priority Support "
 "forums</a> are there for customers that need faster and/or more in-depth assistance."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:465
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:481
 msgid "Documentation and Short Codes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:466
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:482
 msgid "Read the"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:466
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:482
 msgid "documentation"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:466
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:482
 msgid " and instructions on how to use the included"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:466
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:482
 msgid "shortcodes"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:475
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:493
 msgid "Stay Up to Date"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:476
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:494
 msgid "Get Notified of Extension Releases"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:477
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:495
 msgid ""
 "New extensions that make Easy Property Listings even more powerful are released "
 "nearly every single week. Subscribe to the newsletter to stay up to date with our "
@@ -1933,49 +1933,49 @@ msgid ""
 "a> to ensure you do not miss a release!"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:479
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:497
 msgid "Get Alerted About New Tutorials"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:480
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:498
 msgid ""
 "<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to hear about "
 "the latest tutorial releases that explain how to take Easy Property Listings further."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:483
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:501
 msgid "Sliders"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:484
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:502
 msgid "Brochures"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:486
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:504
 msgid "Testimonial Manager"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:487
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:505
 msgid "Agent/Staff Directory"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:488
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:506
 msgid "Location Profiles"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:489
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:507
 msgid "Add-On Store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:491
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:509
 msgid "Extend With Extensions"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:492
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:510
 msgid "18 Extensions and many more coming"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:493
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:511
 #, php-format
 msgid ""
 "Add-on plug ins are available that greatly extend the default functionality of Easy "
@@ -1983,27 +1983,27 @@ msgid ""
 "more. Visit the %s to further enhance your real estate website."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:495
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:513
 msgid "Visit the Extension Store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:496
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:514
 msgid "The Extensions store"
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:496
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:514
 msgid ""
 "has a list of all available extensions to make your real estate website even better."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:521
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:539
 msgid ""
 "Easy Property Listings is created by a worldwide team of developers who aim to "
 "provide the #1 property listings platform for managing your real estate business "
 "through WordPress."
 msgstr ""
 
-#: lib/includes/admin/menus/class-epl-menu-welcome.php:548
+#: lib/includes/admin/menus/class-epl-menu-welcome.php:566
 #: lib/includes/class-epl-custom-post-type.php:410
 #: lib/includes/class-epl-custom-post-type.php:512
 #, php-format

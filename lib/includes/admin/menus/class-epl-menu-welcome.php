@@ -310,7 +310,7 @@ class EPL_Welcome {
 						<iframe width="640" height="360" src="//www.youtube.com/embed/<?php echo $video_add_listing_id; ?>" frameborder="0" allowfullscreen ></iframe>
 					</div>
 				</div>
-				<h3 class="epl-welcome-sub-heading"><?php _e( 'Title & Author', 'easy-property-listings'  );?></h3>
+				<h3 class="epl-welcome-sub-heading" style="font-size: 1.8em;text-align: center;"><?php _e( 'Title & Author', 'easy-property-listings'  );?></h3>
 
 				<div class="feature-section">
 
@@ -331,7 +331,7 @@ class EPL_Welcome {
 					</div>
 				</div>
 
-				<h3 class="epl-welcome-sub-heading"><?php _e( 'Gallery and Featured Image', 'easy-property-listings'  );?></h3>
+				<h3 class="epl-welcome-sub-heading" style="font-size: 1.8em;text-align: center;"><?php _e( 'Gallery and Featured Image', 'easy-property-listings'  );?></h3>
 				<div class="feature-section">
 
 					<div class="col">
@@ -396,6 +396,8 @@ class EPL_Welcome {
 				</div>
 			</div>
 
+			<hr/>
+
 			<div class="changelog headline-feature">
 
 				<h2 id="guide-theme" class="epl-welcome-sub-heading"><?php _e( 'Configure your theme', 'easy-property-listings'  );?></h2>
@@ -430,6 +432,8 @@ class EPL_Welcome {
 				</div>
 			</div>
 
+			<hr/>
+
 			<div class="changelog headline-feature">
 				<h2 id="theme-instructions" class="epl-welcome-sub-heading"><?php _e( 'Advanced instructions', 'easy-property-listings'  );?></h2>
 
@@ -441,14 +445,26 @@ class EPL_Welcome {
 				</div>
 			</div>
 
+			<hr/>
+
 			<div class="changelog headline-feature">
 
-				<h2 class="about-description" style="text-align: center;"><?php _e( 'Stuck getting your theme to work?', 'easy-property-listings'  );?></h2>
-				<h3 class="about-description" style="text-align: center;"><?php _e( 'Not all themes follow modern WordPress coding standards and these may take a little more time and experience to get working. If you just can not get it to work, visit', 'easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/support-ticket/"><?php _e( 'premium support', 'easy-property-listings'  );?></a> <?php _e( 'and fill out a theme support request.', 'easy-property-listings'  );?></h3>
+				<div class="feature-section">
 
-				<p style="text-align:center;"><?php _e( 'If the theme is available in the WordPress.org theme directory let us know the theme name and URL where we can download it in your support ticket. If its a premium theme or are in a hurry submit a priority support ticket along with the theme in a zip or a download link to it on a file sharing site like Dropbox.', 'easy-property-listings'  );?></p>
+					<h2 class="about-description" style="text-align: center;"><?php _e( 'Stuck getting your theme to work?', 'easy-property-listings'  );?></h2>
+					<p style="text-align: center;"><?php _e( 'Not all themes follow modern WordPress coding standards and these may take a little more time and experience to get working. If you just can not get it to work, visit', 'easy-property-listings'  );?> <a href="https://easypropertylistings.com.au/support-ticket/"><?php _e( 'premium support', 'easy-property-listings'  );?></a> <?php _e( 'and fill out a theme support request.', 'easy-property-listings'  );?></p>
 
-				<h2 id="guide-help"><?php _e( 'Need Help?', 'easy-property-listings'  );?></h2>
+					<p style="text-align:center;"><?php _e( 'If the theme is available in the WordPress.org theme directory let us know the theme name and URL where we can download it in your support ticket. If its a premium theme or are in a hurry submit a priority support ticket along with the theme in a zip or a download link to it on a file sharing site like Dropbox.', 'easy-property-listings'  );?></p>
+
+				</div>
+
+			</div>
+
+			<hr/>
+
+			<div class="changelog headline-feature">
+
+				<h2 id="guide-help" class="about-description" style="text-align: center;"><?php _e( 'Need Help?', 'easy-property-listings'  );?></h2>
 
 				<div class="feature-section col three-col">
 					<div>
@@ -467,6 +483,8 @@ class EPL_Welcome {
 					</div>
 				</div>
 			</div>
+
+			<hr/>
 
 			<div class="changelog headline-feature">
 
