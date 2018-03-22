@@ -429,6 +429,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: House Category now displays in admin column for quick identification of the listing type.
 * Tweak: Removed screenshots to reduce plugin size.
 * Tweak: Removed Whats New page descriptions to significantly reduce translation requirements for translators.
+* Tweak: Admin Getting Started CSS enhancements.
 * Tweak: Adjustment to the handling of the primary and secondary listing agents on listings. When a primary agent details are entered this will be the listing agent displayed. If the primary agent for a listing is not set then the Author will be the primary agent displayed.
 * Tweak: Added option to use a seperate template for search results.
 * Tweak: Corrected building size css class name from land-size to building-size.
