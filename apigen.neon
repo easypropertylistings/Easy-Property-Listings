@@ -19,7 +19,7 @@ charset: [UTF-8]
 
 # elements with this name prefix will be considered as the "main project" (the rest will be considered as libraries)
 main: EPL
-api
+
 # title of generated documentation
 title: Easy Property Listings 3.2.1 Code Reference
 
