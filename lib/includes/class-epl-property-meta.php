@@ -1356,7 +1356,7 @@ class EPL_Property_Meta {
 		$returntype	=	apply_filters( 'epl_get_property_energy_rating_return_type' , $returntype);
 
 		if( $property_energy_rating != 0 || $property_energy_rating != '' ) {
-			$label = apply_filters('epl_get_property_energy_rating_label',__('EER (Energy Efficiency Rating)', 'easy-property-listings' ) );
+			$label = apply_filters('epl_get_property_energy_rating_label',__('Energy Rating', 'easy-property-listings' ) );
 
 			$return_energy_rating = array();
 

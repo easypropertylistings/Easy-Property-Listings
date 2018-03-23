@@ -371,8 +371,8 @@ function epl_get_meta_boxes() {
 						array(
 							'name'		=>	'property_energy_rating',
 							'label'		=>	__('Energy Rating', 'easy-property-listings' ),
-							'type'		=>	'decimal',
-							'maxlength'	=>	'6',
+							'type'		=>	'text',
+							'maxlength'	=>	'10',
 							'exclude'	=>	array( 'land' , 'commercial_land')
 						),
 
