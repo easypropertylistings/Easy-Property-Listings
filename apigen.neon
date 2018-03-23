@@ -19,9 +19,9 @@ charset: [UTF-8]
 
 # elements with this name prefix will be considered as the "main project" (the rest will be considered as libraries)
 main: EPL
-
+api
 # title of generated documentation
-title: Easy Property Listings 3.1.19 Code Reference
+title: Easy Property Listings 3.2 Code Reference
 
 # base url used for sitemap (useful for public doc)
 baseUrl: http://docs.easypropertylistings.com.au/
