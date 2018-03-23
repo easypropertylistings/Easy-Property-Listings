@@ -3,9 +3,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.2\n"
+"Project-Id-Version: Easy Property Listings 3.2.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2018-03-22 11:44+0800\n"
+"POT-Creation-Date: 2018-03-24 07:44+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -2532,8 +2532,9 @@ msgstr ""
 msgid "m&#178;"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1359
-msgid "EER (Energy Efficiency Rating)"
+#: lib/includes/class-epl-property-meta.php:1359 lib/meta-boxes/meta-box-init.php:373
+#: lib/meta-boxes/meta-box-init.php:729
+msgid "Energy Rating"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1418
@@ -3831,10 +3832,6 @@ msgstr ""
 
 #: lib/meta-boxes/meta-box-init.php:366 lib/meta-boxes/meta-box-init.php:721
 msgid "Building Unit"
-msgstr ""
-
-#: lib/meta-boxes/meta-box-init.php:373 lib/meta-boxes/meta-box-init.php:729
-msgid "Energy Rating"
 msgstr ""
 
 #: lib/meta-boxes/meta-box-init.php:381 lib/meta-boxes/meta-box-init.php:744

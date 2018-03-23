@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 4.9.4
-Stable Tag: 3.1.19
+Stable Tag: 3.2
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -389,6 +389,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.2.1 March 24, 2018 =
+
+* Tweak: Implemented a minimum width to Property Features info columns for better responsive formatting.
+* Tweak: Changed Energy Efficiency rating to text field to support EU requirements.
+* Tweak: Renamed EER (Energy Efficiency Rating) to Energy Rating, adjustable with epl_get_property_energy_rating_label filter.
 
 = 3.2 March 22, 2018 =
 
