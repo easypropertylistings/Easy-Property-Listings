@@ -119,4 +119,17 @@ class EPL_Widget_Author extends WP_Widget {
 		<?php
 	}
 }
-add_action( 'widgets_init', create_function('', 'return register_widget("EPL_Widget_Author");') );
+
+/**
+ * Register Author Widget.
+ *
+ * Registers the EDD Widgets.
+ *
+ * @since 3.2.2
+ * @return void
+ */
+function epl_register_widget_author() {
+	register_widget( 'EPL_Widget_Author' );
+}
+add_action( 'widgets_init', 'epl_register_widget_author' );
+
