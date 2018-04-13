@@ -394,6 +394,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+
+
+* New: Filter allow user or extension to enable or disable link behaviour on featured image.
+* New: Filter: Allow user or extension to enable or disable link behaviour on archive image.
+
+
+
 = 3.2.1 March 24, 2018 =
 
 * Tweak: Implemented a minimum width to Property Features info columns for better responsive formatting.
