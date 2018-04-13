@@ -66,7 +66,7 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 /**
  * Register Contact Widget.
  *
- * Registers the EDD Widgets.
+ * Registers the EPL Widgets.
  *
  * @since 3.2.2
  * @return void
