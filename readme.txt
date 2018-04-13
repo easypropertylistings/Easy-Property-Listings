@@ -388,18 +388,16 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 7. Search Widget adapts to child theme style
 8. Home open shortcode and Multi Author widget
 
-= 3.2.1 April 13, 2018 =
-
-* Fix: Enhanced for PHP 7.2 and removed create_function depreciated notice.
-
 == Changelog ==
 
 = 3.2.2 April 13, 2018 =
 
 * New: Filter allow user or extension to enable or disable link behaviour on featured image.
 * New: Filter: Allow user or extension to enable or disable link behaviour on archive image.
-* Fix: Business Search Categories in Listing Search widget and shortcode.
 * Tweak: Removed business category from EPL meta-boxes, use the hierarchal taxonomy to manage categories and sub categories.
+* Tweak: Added widget names to code for filter and ensure backward compatibility.
+* Fix: Business Search Categories in Listing Search widget and shortcode.
+* Fix: Enhanced for PHP 7.2 and removed create_function depreciated notice.
 
 = 3.2.1 March 24, 2018 =
 
