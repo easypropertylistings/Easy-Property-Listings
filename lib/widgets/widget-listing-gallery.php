@@ -85,7 +85,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 /**
  * Register Property Gallery Widget.
  *
- * Registers the EDD Widgets.
+ * Registers the EPL Widgets.
  *
  * @since 3.2.2
  * @return void
