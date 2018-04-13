@@ -21,6 +21,7 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 
 	function __construct() {
 		parent::__construct( false, $name = __('EPL - Contact Form', 'easy-property-listings'), array( 'description' => __( 'Add contact form to a sidebar.', 'easy-property-listings' ) ) );
+		// Widget name for filter: epl_contact_capture
 	}
 
 	function widget($args, $instance) {
@@ -62,4 +63,16 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 		}
 	}
 }
-add_action( 'widgets_init', create_function('', 'return register_widget("EPL_Widget_Contact_Capture");') );
+
+/**
+ * Register Contact Widget.
+ *
+ * Registers the EPL Widgets.
+ *
+ * @since 3.2.2
+ * @return void
+ */
+function epl_register_widget_contact_form() {
+	register_widget( 'EPL_Widget_Contact_Capture' );
+}
+add_action( 'widgets_init', 'epl_register_widget_contact_form' );

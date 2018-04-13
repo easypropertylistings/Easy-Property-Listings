@@ -21,6 +21,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 
 	function __construct() {
 		parent::__construct( false, $name = __('EPL - Listing Gallery', 'easy-property-listings'), array( 'description' => __( 'Display image gallery.', 'easy-property-listings' ) ) );
+		// Widget name for filter: epl_property_gallery
 	}
 
 	function widget($args, $instance) {
@@ -81,4 +82,16 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		<?php
 	}
 }
-add_action( 'widgets_init', create_function('', 'return register_widget("EPL_Widget_Property_Gallery");') );
+
+/**
+ * Register Property Gallery Widget.
+ *
+ * Registers the EPL Widgets.
+ *
+ * @since 3.2.2
+ * @return void
+ */
+function epl_register_widget_property_gallery() {
+	register_widget( 'EPL_Widget_Property_Gallery' );
+}
+add_action( 'widgets_init', 'epl_register_widget_property_gallery' );
