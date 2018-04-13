@@ -398,7 +398,8 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'options'		=>	epl_get_available_terms('tax_business_listing','business',$property_status),
 			'query'			=>	array('query'	=>	'tax'),
 			'class'			=>	'epl-search-row-full',
-			'order'			=>	40
+			'exclude'		=>	array('property','rental','land','rural','commercial','commercial_land'),
+			'order'			=>	130
 		),
 		array(
 			'key'			=>	'search_price',
