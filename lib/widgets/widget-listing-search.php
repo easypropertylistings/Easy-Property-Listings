@@ -67,4 +67,16 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		}
 	}
 }
-add_action( 'widgets_init', create_function('', 'return register_widget("EPL_Widget_Property_Search");') );
+
+/**
+ * Register Listing Search Widget.
+ *
+ * Registers the EPL Widgets.
+ *
+ * @since 3.2.2
+ * @return void
+ */
+function epl_register_widget_property_search() {
+	register_widget( 'EPL_Widget_Property_Search' );
+}
+add_action( 'widgets_init', 'epl_register_widget_property_search' );

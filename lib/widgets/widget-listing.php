@@ -410,4 +410,17 @@ class EPL_Widget_Recent_Property extends WP_Widget {
         <?php
 	}
 }
-add_action( 'widgets_init', create_function( '', 'return register_widget("EPL_Widget_Recent_Property");' ) );
+
+/**
+ * Register Recent Property Widget.
+ *
+ * Registers the EPL Widgets.
+ *
+ * @since 3.2.2
+ * @return void
+ */
+function epl_register_widget_recent_property() {
+	register_widget( 'EPL_Widget_Recent_Property' );
+}
+add_action( 'widgets_init', 'epl_register_widget_recent_property' );
+

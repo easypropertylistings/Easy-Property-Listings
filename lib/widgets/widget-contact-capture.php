@@ -62,4 +62,16 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 		}
 	}
 }
-add_action( 'widgets_init', create_function('', 'return register_widget("EPL_Widget_Contact_Capture");') );
+
+/**
+ * Register Contact Widget.
+ *
+ * Registers the EPL Widgets.
+ *
+ * @since 3.2.2
+ * @return void
+ */
+function epl_register_widget_contact_form() {
+	register_widget( 'EPL_Widget_Contact_Capture' );
+}
+add_action( 'widgets_init', 'epl_register_widget_contact_form' );
