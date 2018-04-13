@@ -388,6 +388,18 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 7. Search Widget adapts to child theme style
 8. Home open shortcode and Multi Author widget
 
+
+
+
+---- NEW----
+* New: Added business category taxonomy slug filter.
+* Tweak: Renamed business_listing category slug to business-category .
+* New: Added DEFINED FILTERS to taxonomy slug Additional Filters added to Taxonomies. Business Categories
+
+
+
+
+
 == Changelog ==
 
 = 3.2.1 March 24, 2018 =
