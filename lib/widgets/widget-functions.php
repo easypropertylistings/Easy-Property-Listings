@@ -112,6 +112,13 @@ function epl_search_widget_fields() {
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
 		),
+
+		array(
+			'key'			=>	'search_business_category',
+			'label'			=>	__('Business Category','easy-property-listings'),
+			'default'		=>	'on',
+			'type'			=>	'checkbox',
+		),
 		array(
 			'key'			=>	'house_category_multiple',
 			'label'			=>	__('Categories: Multi select','easy-property-listings'),
@@ -270,7 +277,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'key'			=>	'search_id',
 			'meta_key'		=>	'property_id',
 			'label'			=>	__('Search by Property ID', 'easy-property-listings'),
-			'placeholder'	=>	__('Search ID', 'easy-property-listings'),
+			'placeholder'		=>	__('Search ID', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
@@ -280,7 +287,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'key'			=>	'search_address',
 			'meta_key'		=>	'property_address',
 			'label'			=>	__('Search by Address', 'easy-property-listings'),
-			'placeholder'	=>	__('Search Address', 'easy-property-listings'),
+			'placeholder'		=>	__('Search Address', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'post'),
@@ -389,6 +396,13 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'exclude'		=>	array('property','rental','land','rural','business'),
 			'order'			=>	120
 		),
+
+
+
+
+		/*
+
+			ORIGINAL ARRAY
 		array(
 			'key'			=>	'search_house_category',
 			'meta_key'		=>	'property_business_category',
@@ -401,6 +415,31 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'exclude'		=>	array('property','rental','land','rural','commercial','commercial_land'),
 			'order'			=>	130
 		),
+
+		*/
+
+
+
+		/* NEW ARRAY */
+
+		array(
+			'key'			=>	'search_business_category',
+			'meta_key'		=>	'property_bus_category',
+			'label'			=>	__('Business Category: ','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'category',
+			'options'		=>	epl_get_available_terms('tax_business_listing','business',$property_status),
+			'query'			=>	array('query'	=>	'tax'),
+			'class'			=>	'epl-search-row-full',
+			'exclude'		=>	array('property','rental','land','rural','commercial','commercial_land'),
+			'order'			=>	130
+		),
+
+		/** IF Business Search Options are enabled **/
+
+		/** Implement Additioanl Business Taxonomy Search Options **/
+
+
 		array(
 			'key'			=>	'search_price',
 			'meta_key'		=>	'property_price_from',
