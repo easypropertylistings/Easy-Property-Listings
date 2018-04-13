@@ -1356,7 +1356,7 @@ class EPL_Property_Meta {
 		$returntype	=	apply_filters( 'epl_get_property_energy_rating_return_type' , $returntype);
 
 		if( $property_energy_rating != 0 || $property_energy_rating != '' ) {
-			$label = apply_filters('epl_get_property_energy_rating_label',__('EER (Energy Efficiency Rating)', 'easy-property-listings' ) );
+			$label = apply_filters('epl_get_property_energy_rating_label',__('Energy Rating', 'easy-property-listings' ) );
 
 			$return_energy_rating = array();
 
@@ -1561,9 +1561,10 @@ class EPL_Property_Meta {
 	 * @param string $key Meta key
 	 * @param string $search Meta key prefix to search for and remove from class, Default property_
 	 * @return string Formatted uppercase words
+	 * @depricated since 3.2
 	 */
 	public function get_label_from_metakey( $key , $search = 'property_' ){
-		return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
+		return epl_get_meta_field_label($key);
 	}
 
 	/**

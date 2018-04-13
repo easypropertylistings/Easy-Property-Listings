@@ -52,8 +52,12 @@ function epl_load_core_templates($template) {
 		}
 		$find[] 		=  $post_tpl;
 		$find[] 		= epl_template_path() . $post_tpl;
+		$find[] 		=  'search-listing.php';
+		$find[] 		= epl_template_path() . 'search-listing.php';
 		$find[] 		=  $common_tpl;
 		$find[] 		= epl_template_path() . $common_tpl;
+		$find 			= array_unique($find);
+		
 
 	} elseif ( is_epl_post_archive() ) {
 		$common_tpl		= apply_filters('epl_common_archive_template','archive-listing.php');

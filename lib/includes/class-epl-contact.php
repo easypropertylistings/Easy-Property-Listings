@@ -236,6 +236,8 @@ class EPL_Contact {
 					array(
 						'post_type'	=>	'epl_contact',
 						'post_status'	=>	'publish',
+						'paged'		=>	1,
+						'offset'	=>	0,
 						'meta_query'	=>	array(
 							array(
 								'key'		=>	'contact_emails',
@@ -254,7 +256,6 @@ class EPL_Contact {
 							$contact = $matched_contacts->post;
 						}
 					}
-
 				}
 
 				break;

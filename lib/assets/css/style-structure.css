@@ -161,7 +161,7 @@
 }
 .epl-floor-plan-button-wrapper {
 	display: inline-block;
-	margin-right: 0.3em;
+	margin-right: 0.05em;
 }
 
 /*****************************
@@ -1117,33 +1117,33 @@ li.tbhead.current {
 	-webkit-column-count:2;
 	-moz-column-count:2;
 	column-count:2;
-	-webkit-columns:2;
-	-moz-columns:2;
-	columns:2;
+	-webkit-columns: 160px 2;
+	-moz-columns: 160px 2;
+	columns: 160px 2;
 }
 .epl-tab-3-columns {
 	-webkit-column-count:3;
 	-moz-column-count:3;
 	column-count:3;
-	-webkit-columns:3;
-	-moz-columns:3;
-	columns:3;
+	-webkit-columns: 160px 3;
+	-moz-columns: 160px 3;
+	columns: 160px 3;
 }
 .epl-tab-4-columns {
 	-webkit-column-count:4;
 	-moz-column-count:4;
 	column-count:4;
-	-webkit-columns:4;
-	-moz-columns:4;
-	columns:4;
+	-webkit-columns: 160px 4;
+	-moz-columns: 160px 4;
+	columns: 160px 4;
 }
 .epl-tab-5-columns {
 	-webkit-column-count:5;
 	-moz-column-count:5;
 	column-count:5;
-	-webkit-columns:5;
-	-moz-columns:5;
-	columns:5;
+	-webkit-columns: 160px 5;
+	-moz-columns: 160px 5;
+	columns: 160px 5;
 }
 
 /*****************************
