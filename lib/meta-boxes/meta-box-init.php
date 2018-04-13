@@ -1314,7 +1314,7 @@ function epl_get_meta_boxes() {
 				)
 			)
 		),
-
+		/**
 		array(
 			'id'		=>	'epl-business-features-id',
 			'label'		=>	__('Business Categories', 'easy-property-listings' ),
@@ -1393,7 +1393,7 @@ function epl_get_meta_boxes() {
 				)
 			)
 		),
-
+		**/
 		array(
 			'id'		=>	'epl-attachments-section-id',
 			'label'		=>	__('Files and Links', 'easy-property-listings' ),
