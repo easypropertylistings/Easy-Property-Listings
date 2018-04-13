@@ -391,6 +391,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 == Changelog ==
 
 * Fix: Business Search Categories in Listing Search widget and shortcode.
+* Tweak: Removed business category from EPL meta-boxes, use the hierarchal taxonomy to manage categories and sub categories.
 
 = 3.2.1 March 24, 2018 =
 
