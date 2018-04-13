@@ -21,6 +21,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 	function __construct() {
 		parent::__construct( false, __( 'EPL - Listing', 'easy-property-listings' ), array( 'description' => __( 'Add listings to a sidebar.', 'easy-property-listings' ) ) );
+		// Widget name for filter: epl_recent_property
 	}
 
 	function widget( $args, $instance ) {

@@ -21,6 +21,7 @@ class EPL_Widget_Author extends WP_Widget {
 
 	function __construct() {
 		parent::__construct( false, $name = __('EPL - Author', 'easy-property-listings'), array( 'description' => __( 'Add an Author profile to a sidebar.', 'easy-property-listings' ) ) );
+		// Widget name for filter: epl_author
 	}
 
 	function widget($args, $instance) {
