@@ -21,6 +21,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 
 	function __construct() {
 		parent::__construct( false, $name = __('EPL - Listing Gallery', 'easy-property-listings'), array( 'description' => __( 'Display image gallery.', 'easy-property-listings' ) ) );
+		// Widget name for filter: epl_property_gallery
 	}
 
 	function widget($args, $instance) {
