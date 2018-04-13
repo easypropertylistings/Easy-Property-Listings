@@ -388,24 +388,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 7. Search Widget adapts to child theme style
 8. Home open shortcode and Multi Author widget
 
-
-
-
----- NEW----
-* New: Added business category taxonomy slug filter.
-* Tweak: Renamed business_listing category slug to business-category .
-* New: Added DEFINED FILTERS to taxonomy slug Additional Filters added to Taxonomies. Business Categories
-
-
-
-
-
 == Changelog ==
 
 = 3.2.2 April 13, 2018 =
 
+* New: Added business category taxonomy slug filter.
+* New: Added DEFINED FILTERS to taxonomy slug Additional Filters added to Taxonomies. Business Categories
 * New: Filter epl_property_featured_image_link allow user or extension to enable or disable link behaviour on featured image.
 * New: Filter epl_property_archive_featured_image_link allow user or extension to enable or disable link behaviour on archive image.
+* Tweak: Renamed business_listing category slug to business-category permalinks will automatically re-fresh on update.
 * Tweak: Removed business category from EPL meta-boxes, use the hierarchal taxonomy to manage categories and sub categories when editing business listings.
 * Tweak: Added widget names to code for filter and ensure backward compatibility.
 * Fix: Business Search Categories in Listing Search widget and shortcode.
