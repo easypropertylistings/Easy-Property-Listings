@@ -414,7 +414,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 /**
  * Register Recent Property Widget.
  *
- * Registers the EDD Widgets.
+ * Registers the EPL Widgets.
  *
  * @since 3.2.2
  * @return void

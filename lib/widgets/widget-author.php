@@ -123,7 +123,7 @@ class EPL_Widget_Author extends WP_Widget {
 /**
  * Register Author Widget.
  *
- * Registers the EDD Widgets.
+ * Registers the EPL Widgets.
  *
  * @since 3.2.2
  * @return void
