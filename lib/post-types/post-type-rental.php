@@ -79,7 +79,7 @@ if ( is_admin() ) {
 		$columns = array(
 			'cb' 			=> '<input type="checkbox" />',
 			'property_thumb'	=> __('Image', 'easy-property-listings' ),
-			'property_rent'	=> __('Rent', 'easy-property-listings' ),
+			'property_rent'		=> __('Rent', 'easy-property-listings' ),
 			'title'			=> __('Address', 'easy-property-listings' ),
 			'listing'		=> __('Listing Details', 'easy-property-listings' ),
 			'listing_id'		=> __('Unique ID' , 'easy-property-listings' ),
@@ -165,7 +165,6 @@ if ( is_admin() ) {
 				break;
 
 			case 'agent':
-
 				do_action('epl_manage_listing_column_agent_before');
 				do_action('epl_manage_listing_column_agent');
 				do_action('epl_manage_listing_column_agent_after');

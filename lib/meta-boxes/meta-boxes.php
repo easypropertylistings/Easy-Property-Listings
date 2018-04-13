@@ -24,18 +24,17 @@ function epl_meta_box_init() {
 	global $epl_settings;
 	global $epl_meta_boxes;
 
-	$opts_property_status 				= epl_get_property_status_opts();
-	$opts_property_authority 			= epl_get_property_authority_opts();
-	$opts_property_exclusivity 			= epl_get_property_exclusivity_opts();
+	$opts_property_status 			= epl_get_property_status_opts();
+	$opts_property_authority 		= epl_get_property_authority_opts();
+	$opts_property_exclusivity 		= epl_get_property_exclusivity_opts();
 	$opts_property_com_authority 		= epl_get_property_com_authority_opts();
-	$opts_area_unit 					= epl_get_property_area_unit_opts();
-	$opts_rent_period 					= epl_get_property_rent_period_opts(); 
+	$opts_area_unit 			= epl_get_property_area_unit_opts();
+	$opts_rent_period 			= epl_get_property_rent_period_opts();
 	$opts_property_com_listing_type 	= epl_get_property_com_listing_type_opts();
-	$opts_property_com_tenancy 			= epl_get_property_com_tenancy_opts();
+	$opts_property_com_tenancy 		= epl_get_property_com_tenancy_opts();
 	$opts_property_com_property_extent 	= epl_get_property_com_property_extent_opts();
 
-	
-	$epl_meta_boxes 					=	epl_get_meta_boxes();
+	$epl_meta_boxes 			= epl_get_meta_boxes();
 }
 
 
@@ -68,7 +67,7 @@ add_action( 'add_meta_boxes', 'epl_add_meta_boxes' );
  * @since 1.0
  */
 function epl_meta_box_inner_custom_box($post, $args) {
-	
+
 	$groups = $args['args']['groups'];
 	$groups = array_filter($groups);
 	if(!empty($groups)) {
@@ -110,7 +109,7 @@ function epl_meta_box_inner_custom_box($post, $args) {
 										<th valign="top" scope="row">
 											<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
 										</th>
-                                        <?php endif; ?>
+										<?php endif; ?>
 
 										<?php if($group['columns'] > 1) { ?>
 											</tr><tr class="form-field">
@@ -118,8 +117,6 @@ function epl_meta_box_inner_custom_box($post, $args) {
 
 										<td>
 											<?php
-
-
 												epl_render_html_fields ($field,$val);
 											?>
 										</td>
@@ -163,7 +160,6 @@ function epl_save_meta_boxes( $post_ID ) {
 		if ( ! current_user_can( 'edit_post', $post_ID ) )
 		return $post_ID;
 	}
-
 
 	$epl_meta_box_ids = '';
 	if(isset($_POST['epl_meta_box_ids'])) {

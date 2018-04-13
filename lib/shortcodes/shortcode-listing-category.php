@@ -34,7 +34,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'commercial_listing_type'	=>	'', // Listing Type, 'sale' , 'lease', 'both'
 		'category_key'			=>	'', // Meta field key
 		'category_value'		=>	'', // Meta field value
-		'category_compare'		=>	'IN', // Compare using 'IN','NOT IN','BETWEEN','NOT BETWEEN'
+		'category_compare'		=>	'IN', // Compare using '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'EXISTS', 'NOT EXISTS', 'IN','NOT IN','BETWEEN','NOT BETWEEN'
 		'limit'				=>	'10', // Number of maximum posts to show
 		'offset'			=>	'', // Offset posts. When used, pagination is disabled
 		'template'			=>	false, // Template can be set to "slim" for home open style template

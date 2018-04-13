@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 4.9.4
-Stable Tag: 3.1.19
+Stable Tag: 3.2
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -340,7 +340,7 @@ Absolutely, Easy Property Listings is built from the ground up for scale, speed 
 
 You can use the Easy Property Listings template loading system that lets you place all the plugin templates inside themes/YOUR_THEME/easypropertylistings/ folder and edit everything. You can [read more about how to do that here](http://codex.easypropertylistings.com.au/article/303-how-to-create-custom-widget-templates-using-the-theme-template-loader?utm_source=readme&utm_medium=faq_tab&utm_content=templates&utm_campaign=epl_documentation).
 
-= How do I setup my WordPress theme to work with Easy Property Listings 2.0 =
+= How do I setup my WordPress theme to work with Easy Property Listings =
 
 In order for correct integration with your WordPress theme please follow these instructions [WordPress Theme configuration instructions](http://codex.easypropertylistings.com.au/article/49-theme-setup).
 
@@ -390,8 +390,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.2 February 22, 2018 =
+= 3.2.1 March 24, 2018 =
 
+* Tweak: Implemented a minimum width to Property Features info columns for better responsive formatting.
+* Tweak: Changed Energy Efficiency rating to text field to support EU requirements.
+* Tweak: Renamed EER (Energy Efficiency Rating) to Energy Rating, adjustable with epl_get_property_energy_rating_label filter.
+
+= 3.2 March 22, 2018 =
+
+* New: Refactored meta-boxes to allow for better translations of additional features options on frontend.
 * New: Search fields allow for placeholder to be defined for each search field.
 * New: Ability to sort be featured image in the dashboard when managing listings allowing user to sort columns by listings without a featured image set.
 * New: Search by listing features now possible when using EPL - Listing Search widget or [listing_search] shortcode.
@@ -400,6 +407,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Removed changelog entries from plugin core files to greatly reduce translation requirements for plugin and translation will be far easier for translators now.
 * New: Change log items are parsed from readme.txt file which removes the need to translate over 700 change log entries.
 * New: Added a new CSS class epl-property-features to the listing features column.
+* New: Searching by features taxonomy now possible with [listing_search] shortcode and EPL - Listing Search widget.
 * New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.
 * New: Search Query Filter epl_search_get_data allows filtering of $_GET & $_POST data which is fed to epl search class.
 * New: Search Query Filter epl_search_post_data allows filtering of $_GET & $_POST data which is fed to epl search class.
@@ -410,6 +418,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Implementation to support beta releases of extensions, enabled when EPL_BETA_VERSIONS is true.
 * New: Added additional filters for epl_author_mobile, epl_author_id, epl_author_slogan, epl_author_position, epl_author_name and epl_author_contact_form.
 * New: Implemented support for energy rating value on listings as it is mandatory in some regions. New meta field is property_energy_rating.
+* New: Added Energy Certificate link to listings which allows for an image upload and button output. Field is property_energy_certificate.
 * New: Ability to display offmarket and withdrawn listings on archive pages through the epl_hide_listing_statuses filter.
 * New: Migrated Author details tab into a new template file content-author-box-tab-details.php that can be overridden in active_theme/easypropertylistings folder which enables easier editing of the details tab contents.
 * New: Filters added for listing admin columns allowing other plugins to hook in correctly to listing dashboard columns and display additional info like Yoast SEO, Post Counter and many other WordPress plugins: epl_post_type_business_admin_columns, epl_post_type_commercial_admin_columns, epl_post_type_commercial_land_admin_columns, epl_post_type_land_admin_columns, epl_post_type_property_admin_columns, epl_post_type_rental_admin_columns, epl_post_type_rural_admin_columns.
@@ -423,6 +432,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Added options to return text values to each of the get_property functions. Allowing return of a text result instead of a formatted list item.
 * New: Filters added to adjust the return format of each get_property function: epl_get_property_year_built_return_type, epl_get_property_bedrooms_return_type, epl_get_property_bathrooms_return_type, epl_get_property_rooms_return_type, epl_get_property_parking_spaces_return_type, epl_get_property_garage_return_type, epl_get_property_carport_return_type, epl_get_property_air_conditioning_return_type, epl_get_property_pool_return_type, epl_get_property_security_system_return_type, epl_get_property_new_construction_return_type, epl_get_property_holiday_rental_return_type.
 * New: Added functions for get_property_furnished and get_property_holiday_rental.
+* New: House Category now displays in admin column for quick identification of the listing type.
+* Tweak: Removed screenshots to reduce plugin size.
+* Tweak: Removed Whats New page descriptions to significantly reduce translation requirements for translators.
+* Tweak: Admin Getting Started CSS enhancements.
 * Tweak: Adjustment to the handling of the primary and secondary listing agents on listings. When a primary agent details are entered this will be the listing agent displayed. If the primary agent for a listing is not set then the Author will be the primary agent displayed.
 * Tweak: Added option to use a seperate template for search results.
 * Tweak: Corrected building size css class name from land-size to building-size.
@@ -435,12 +448,18 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Search better supports multiple post types in an array: epl_get_unique_post_meta_values('property_bedroom','current', array('property','rental') ).
 * Tweak: Sorting option better allows sorting options based on post types by passing post type.
 * Tweak: Contact form CSS added for better formatting.
+* Tweak: Adjusted admin images padding.
+* Tweak: Added date picker to Listed Date and Commercial End Lease date fields.
+* Fix: Translations added for Admin on commercial listings (Return, Outgoings, Lease End )
+* Fix: Sorting by rental price corrected in admin for Rental listings.
+* Fix: Land details missing on Commercial Land listing type.
 * Fix: Select form render multiple selections for search.
 * Fix: Price bar graph in admin when no price set.
-* Fix: Translation issues for search dropdowns.
+* Fix: Translation issues for search drop downs.
 * Fix: Location taxonomy search redirection.
 * Fix: Sorting by Unique ID in Dashboard manage listings.
 * Fix: Carport label filter name corrected to epl_get_property_carport_label.
+* Fix: Added land size to commercial land.
 
 = 3.1.19 July 12, 2017 =
 
