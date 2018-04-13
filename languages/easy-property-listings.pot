@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.2.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2018-04-13 14:14+0800\n"
+"POT-Creation-Date: 2018-04-13 15:26+0800\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -4091,16 +4091,14 @@ msgid "Search for contact and update to save."
 msgstr ""
 
 #: lib/post-types/post-type-business.php:28 lib/post-types/post-type-business.php:29
-#: lib/taxonomies/tax-business_listings.php:23
-#: lib/taxonomies/tax-business_listings.php:25
 msgid "Business Listings"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:32 lib/taxonomies/tax-business_listings.php:30
+#: lib/post-types/post-type-business.php:32
 msgid "Add New Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:33 lib/taxonomies/tax-business_listings.php:31
+#: lib/post-types/post-type-business.php:33
 msgid "Edit Business Listing"
 msgstr ""
 
@@ -4108,11 +4106,11 @@ msgstr ""
 msgid "New Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:35 lib/taxonomies/tax-business_listings.php:32
+#: lib/post-types/post-type-business.php:35
 msgid "Update Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:36 lib/taxonomies/tax-business_listings.php:26
+#: lib/post-types/post-type-business.php:36
 msgid "All Business Listings"
 msgstr ""
 
@@ -4120,11 +4118,11 @@ msgstr ""
 msgid "View Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:38 lib/taxonomies/tax-business_listings.php:34
+#: lib/post-types/post-type-business.php:38
 msgid "Search Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:39 lib/taxonomies/tax-business_listings.php:37
+#: lib/post-types/post-type-business.php:39
 msgid "Business Listing Not Found"
 msgstr ""
 
@@ -4132,7 +4130,7 @@ msgstr ""
 msgid "Business Listing Not Found in Trash"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:41 lib/taxonomies/tax-business_listings.php:28
+#: lib/post-types/post-type-business.php:41
 msgid "Parent Business Listing:"
 msgstr ""
 
@@ -4536,28 +4534,64 @@ msgstr ""
 msgid "Lease End:"
 msgstr ""
 
-#: lib/taxonomies/tax-business_listings.php:24
-msgid "Business Listing"
+#: lib/taxonomies/tax-business_listings.php:28
+msgid "Business Categories"
 msgstr ""
 
-#: lib/taxonomies/tax-business_listings.php:27
-msgid "Parent Business Listing"
+#: lib/taxonomies/tax-business_listings.php:29 lib/widgets/widget-functions.php:395
+msgid "Business Category"
 msgstr ""
 
-#: lib/taxonomies/tax-business_listings.php:29
-msgid "New Business Listing Name"
+#: lib/taxonomies/tax-business_listings.php:30
+msgid "Categories"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:31
+msgid "All Business Categories"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:32
+msgid "Parent Business Category"
 msgstr ""
 
 #: lib/taxonomies/tax-business_listings.php:33
-msgid "Separate Business Listing with commas"
+msgid "Parent Business Category:"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:34
+msgid "New Business Category Name"
 msgstr ""
 
 #: lib/taxonomies/tax-business_listings.php:35
-msgid "Add or remove Business Listing"
+msgid "Add New Business Category"
 msgstr ""
 
 #: lib/taxonomies/tax-business_listings.php:36
-msgid "Choose from the most used Business Listing"
+msgid "Edit Business Category"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:37
+msgid "Update Business Category"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:38
+msgid "Separate Business Category with commas"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:39
+msgid "Search Business Category"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:40
+msgid "Add or remove Business Category"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:41
+msgid "Choose from the most used Business Category"
+msgstr ""
+
+#: lib/taxonomies/tax-business_listings.php:42
+msgid "Business Category Not Found"
 msgstr ""
 
 #: lib/taxonomies/tax-contact_tags.php:24
@@ -4616,60 +4650,60 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:26 lib/taxonomies/tax-features.php:28
+#: lib/taxonomies/tax-features.php:28 lib/taxonomies/tax-features.php:30
 #: lib/widgets/widget-functions.php:165 lib/widgets/widget-functions.php:550
 msgid "Features"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:27
+#: lib/taxonomies/tax-features.php:29
 msgid "Feature"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:29
+#: lib/taxonomies/tax-features.php:31
 msgid "All Features"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:30
+#: lib/taxonomies/tax-features.php:32
 msgid "Parent Feature"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:31
+#: lib/taxonomies/tax-features.php:33
 msgid "Parent Feature:"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:32
+#: lib/taxonomies/tax-features.php:34
 msgid "New Feature Name"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:33
+#: lib/taxonomies/tax-features.php:35
 msgid "Add New Feature"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:34
+#: lib/taxonomies/tax-features.php:36
 msgid "Edit Feature"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:35
+#: lib/taxonomies/tax-features.php:37
 msgid "Update Feature"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:36
+#: lib/taxonomies/tax-features.php:38
 msgid "Separate Feature with commas"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:37
+#: lib/taxonomies/tax-features.php:39
 msgid "Search Feature"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:38
+#: lib/taxonomies/tax-features.php:40
 msgid "Add or remove Feature"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:39
+#: lib/taxonomies/tax-features.php:41
 msgid "Choose from the most used Feature"
 msgstr ""
 
-#: lib/taxonomies/tax-features.php:40
+#: lib/taxonomies/tax-features.php:42
 msgid "Feature Not Found"
 msgstr ""
 
@@ -4996,10 +5030,6 @@ msgstr ""
 
 #: lib/widgets/widget-functions.php:283
 msgid "Search Address"
-msgstr ""
-
-#: lib/widgets/widget-functions.php:395
-msgid "Business Category"
 msgstr ""
 
 #: lib/widgets/widget-functions.php:407
