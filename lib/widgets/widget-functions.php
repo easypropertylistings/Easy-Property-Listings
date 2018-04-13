@@ -391,12 +391,12 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 		),
 		array(
 			'key'			=>	'search_house_category',
-			'meta_key'		=>	'property_business_category',
+			'meta_key'		=>	'property_tax_business_listing',
 			'label'			=>	__('Business Category','easy-property-listings'),
-			'option_filter'		=>	'category',
-			'options'		=>	epl_get_meta_values( 'property_business_category', $post_type),
 			'type'			=>	'select',
-			'query'			=>	array('query'	=>	'meta'),
+			'option_filter'	=>	'tax_business_listing',
+			'options'		=>	epl_get_available_terms('tax_business_listing','business',$property_status),
+			'query'			=>	array('query'	=>	'tax'),
 			'class'			=>	'epl-search-row-full',
 			'exclude'		=>	array('property','rental','land','rural','commercial','commercial_land'),
 			'order'			=>	130
