@@ -390,6 +390,17 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+Tweak: Implemented responsive breakpoints in epl-container-grid css class.
+
+
+
+
+
+
+
+
+
+
 = 3.2.1 March 24, 2018 =
 
 * Tweak: Implemented a minimum width to Property Features info columns for better responsive formatting.

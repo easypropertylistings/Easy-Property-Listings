@@ -1388,10 +1388,14 @@ li.tbhead.current {
 	.epl-container-grid-3 {
 		width:50%;
 	}
-	.epl-container-grid-4,
-	.epl-container-grid-5,
-	.epl-container-grid-6 {
+	.epl-container-grid-4 {
 		width:33%;
+	}
+	.epl-container-grid-5 {
+		width:25%;
+	}
+	.epl-container-grid-6 {
+		width:20%;
 	}
 	.epl-search-wide .epl-search-row-full {
 		width: 100%;
@@ -1454,13 +1458,24 @@ li.tbhead.current {
 	.epl-container-grid-3 {
 		width:50%;
 	}
-	.epl-container-grid-4,
-	.epl-container-grid-5,
-	.epl-container-grid-6 {
+	.epl-container-grid-4 {
 		width:50%;
+	}
+	.epl-container-grid-5 {
+		width:33.3%;
+	}
+	.epl-container-grid-6 {
+		width:25%;
 	}
 }
 @media screen and (max-width: 690px) {
+	/** Grid **/
+	.epl-container-grid-5 {
+		width:50%;
+	}
+	.epl-container-grid-6 {
+		width:33%;
+	}
 	.epl-search-wide .epl-search-row-third {
 		width: 33.3%;
 	}
