@@ -1435,8 +1435,9 @@ function epl_property_gallery () {
 			<!-- Gallery -->
 			<div class="epl-gallery-entry entry-gallery epl-clearfix">
 				<?php
-					$d_gallery_n = '[gallery columns="'. $d_gallery_n . '" link="file"]';
-					echo do_shortcode( $d_gallery_n );
+					$gallery_shortcode = '[gallery columns="'. $d_gallery_n . '" link="file"]';
+					$gallery = apply_filters( 'epl_property_gallery_shortcode' , $gallery_shortcode );
+					echo do_shortcode( $gallery );
 				?>
 			</div>
 		</div>
