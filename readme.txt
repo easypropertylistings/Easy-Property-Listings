@@ -390,7 +390,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.2.2 April 13, 2018 =
+
+= 3.2.2 May 23, 2018 =
 
 * New: Added business category taxonomy slug filter.
 * New: Added DEFINED FILTERS to taxonomy slug Additional Filters added to Taxonomies. Business Categories
@@ -399,6 +400,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Renamed business_listing category slug to business-category permalinks will automatically re-fresh on update.
 * Tweak: Removed business category from EPL meta-boxes, use the hierarchal taxonomy to manage categories and sub categories when editing business listings.
 * Tweak: Added widget names to code for filter and ensure backward compatibility.
+* Tweak: Implemented responsive breakpoints in epl-container-grid css class.
 * Fix: Business Search Categories in Listing Search widget and shortcode.
 * Fix: Enhanced for PHP 7.2 and removed create_function depreciated notice.
 

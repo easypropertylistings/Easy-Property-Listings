@@ -3,7 +3,7 @@
  *
  * @package     EPL
  * @since	3.1
- * @version	3.1
+ * @version	3.2.2
  * @subpackage  Pretty CSS
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -1388,10 +1388,14 @@ li.tbhead.current {
 	.epl-container-grid-3 {
 		width:50%;
 	}
-	.epl-container-grid-4,
-	.epl-container-grid-5,
-	.epl-container-grid-6 {
+	.epl-container-grid-4 {
 		width:33%;
+	}
+	.epl-container-grid-5 {
+		width:25%;
+	}
+	.epl-container-grid-6 {
+		width:20%;
 	}
 	.epl-search-wide .epl-search-row-full {
 		width: 100%;
@@ -1445,7 +1449,33 @@ li.tbhead.current {
 		margin-right: 0;
 	}
 }
+@media screen and (max-width: 768px) {
+	/** Grid **/
+	.epl-container-grid-1 {
+		width:100%;
+	}
+	.epl-container-grid-2,
+	.epl-container-grid-3 {
+		width:50%;
+	}
+	.epl-container-grid-4 {
+		width:50%;
+	}
+	.epl-container-grid-5 {
+		width:33.3%;
+	}
+	.epl-container-grid-6 {
+		width:25%;
+	}
+}
 @media screen and (max-width: 690px) {
+	/** Grid **/
+	.epl-container-grid-5 {
+		width:50%;
+	}
+	.epl-container-grid-6 {
+		width:33%;
+	}
 	.epl-search-wide .epl-search-row-third {
 		width: 33.3%;
 	}
