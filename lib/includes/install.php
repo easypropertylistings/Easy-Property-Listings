@@ -234,5 +234,9 @@ function epl_plugin_updates() {
 		include( EPL_PATH_UPDATES.'epl-3.2.php' );
 		update_option( 'epl_version' ,'3.2');
 	}
+	if ( version_compare( $current_version, '3.2.2', '<' ) ) {
+		 flush_rewrite_rules();
+		 update_option( 'epl_version' ,'3.2.2');
+	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );

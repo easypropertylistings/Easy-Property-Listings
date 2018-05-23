@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 4.9.4
-Stable Tag: 3.2
+Stable Tag: 3.2.1
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -390,16 +390,19 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-Tweak: Implemented responsive breakpoints in epl-container-grid css class.
 
+= 3.2.2 May 23, 2018 =
 
-
-
-
-
-
-
-
+* New: Added business category taxonomy slug filter.
+* New: Added DEFINED FILTERS to taxonomy slug Additional Filters added to Taxonomies. Business Categories
+* New: Filter epl_property_featured_image_link allow user or extension to enable or disable link behaviour on featured image.
+* New: Filter epl_property_archive_featured_image_link allow user or extension to enable or disable link behaviour on archive image.
+* Tweak: Renamed business_listing category slug to business-category permalinks will automatically re-fresh on update.
+* Tweak: Removed business category from EPL meta-boxes, use the hierarchal taxonomy to manage categories and sub categories when editing business listings.
+* Tweak: Added widget names to code for filter and ensure backward compatibility.
+* Tweak: Implemented responsive breakpoints in epl-container-grid css class.
+* Fix: Business Search Categories in Listing Search widget and shortcode.
+* Fix: Enhanced for PHP 7.2 and removed create_function depreciated notice.
 
 = 3.2.1 March 24, 2018 =
 

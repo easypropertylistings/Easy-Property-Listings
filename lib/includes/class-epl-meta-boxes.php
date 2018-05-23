@@ -343,8 +343,8 @@ class EPL_METABOX {
 	                                            }
 	                                            $_POST[ $field['name'] ] = $epl_date;
 	                                        }
-
-	                                        update_post_meta( $post_ID, $field['name'], $_POST[ $field['name'] ] );
+	                                        if( isset($_POST[ $field['name'] ]) )
+	                                        	update_post_meta( $post_ID, $field['name'], $_POST[ $field['name'] ] );
 	                                    }
 	                                }
 	                            }
