@@ -303,7 +303,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	epl_labels('label_city'),
 			'type'			=>	'select',
 			'option_filter'		=>	'city',
-			'options'		=>	epl_get_unique_post_meta_values('property_address_city', $post_type ),
+			'options'		=>	epl_get_unique_post_meta_values('property_address_city', $post_type, 'publish', $property_status ),
 			'query'			=>	array('query'	=>	'meta'),
 			'class'			=>	'epl-search-row-half',
 			'order'			=>	50
@@ -314,7 +314,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	epl_labels('label_state'),
 			'type'			=>	'select',
 			'option_filter'		=>	'state',
-			'options'		=>	epl_get_unique_post_meta_values('property_address_state', $post_type ),
+			'options'		=>	epl_get_unique_post_meta_values('property_address_state', $post_type, 'publish', $property_status ),
 			'query'			=>	array('query'	=>	'meta'),
 			'class'			=>	'epl-search-row-half',
 			'order'			=>	60
@@ -325,7 +325,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	epl_labels('label_postcode'),
 			'type'			=>	'select',
 			'option_filter'		=>	'postcode',
-			'options'		=>	epl_get_unique_post_meta_values('property_address_postal_code', $post_type ),
+			'options'		=>	epl_get_unique_post_meta_values('property_address_postal_code', $post_type, 'publish', $property_status ),
 			'query'			=>	array('query'	=>	'meta'),
 			'class'			=>	'epl-search-row-half',
 			'order'			=>	70
@@ -336,7 +336,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	__( 'Country' , 'easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'country',
-			'options'		=>	epl_get_unique_post_meta_values('property_address_country', $post_type ),
+			'options'		=>	epl_get_unique_post_meta_values('property_address_country', $post_type, 'publish', $property_status ),
 			'query'			=>	array('query'	=>	'meta'),
 			'class'			=>	'epl-search-row-half',
 			'order'			=>	80
@@ -391,12 +391,12 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 		),
 		array(
 			'key'			=>	'search_house_category',
-			'meta_key'		=>	'property_business_category',
+			'meta_key'		=>	'property_tax_business_listing',
 			'label'			=>	__('Business Category','easy-property-listings'),
-			'option_filter'		=>	'category',
-			'options'		=>	epl_get_meta_values( 'property_business_category', $post_type),
 			'type'			=>	'select',
-			'query'			=>	array('query'	=>	'meta'),
+			'option_filter'	=>	'tax_business_listing',
+			'options'		=>	epl_get_available_terms('tax_business_listing','business',$property_status),
+			'query'			=>	array('query'	=>	'tax'),
 			'class'			=>	'epl-search-row-full',
 			'exclude'		=>	array('property','rental','land','rural','commercial','commercial_land'),
 			'order'			=>	130

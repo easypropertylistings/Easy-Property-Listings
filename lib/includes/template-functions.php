@@ -99,6 +99,11 @@ add_action('epl_property_single','epl_property_single');
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail' , $image_class = 'index-thumbnail' , $link = true ) {
 
+	/**
+	 * Filter: Allow user or extension to enable or disable link behaviour on featured image.
+	 */
+	$link = apply_filters( 'epl_property_featured_image_link' , $link );
+
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
 			<div class="epl-featured-image it-featured-image">
@@ -123,9 +128,15 @@ add_action( 'epl_single_featured_image' , 'epl_property_featured_image' , 10 , 2
  * @since 2.2
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop' , $image_class = 'teaser-left-thumb' , $link = true  ) {
-	if($image_size == '') {
+
+	if( $image_size == '' ) {
 		$image_size = 'epl-image-medium-crop';
 	}
+
+	/**
+	 * Filter: Allow user or extension to enable or disable link behaviour on archive image.
+	 */
+	$link = apply_filters( 'epl_property_archive_featured_image_link' , $link );
 
 	if ( has_post_thumbnail() ) { ?>
 		<div class="epl-archive-entry-image">
@@ -1435,8 +1446,9 @@ function epl_property_gallery () {
 			<!-- Gallery -->
 			<div class="epl-gallery-entry entry-gallery epl-clearfix">
 				<?php
-					$d_gallery_n = '[gallery columns="'. $d_gallery_n . '" link="file"]';
-					echo do_shortcode( $d_gallery_n );
+					$gallery_shortcode = '[gallery columns="'. $d_gallery_n . '" link="file"]';
+					$gallery = apply_filters( 'epl_property_gallery_shortcode' , $gallery_shortcode );
+					echo do_shortcode( $gallery );
 				?>
 			</div>
 		</div>

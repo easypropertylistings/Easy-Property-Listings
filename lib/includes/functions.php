@@ -1804,7 +1804,7 @@ add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_cal
 * @param string $status Post Status like Publish, draft, future etc. default is publish
 * @return array
 */
-function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish', $property_status='' ) {
 
     global $wpdb;
 
@@ -1814,13 +1814,26 @@ function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = '
     $type = (array) $type;
     $type = array_map( 'sanitize_text_field', $type );
     $type_str = " ( '".implode("','", $type)."' ) ";
-    $res = $wpdb->get_col( $wpdb->prepare( "
+
+    $query = "
 SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
 LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+LEFT JOIN {$wpdb->postmeta} pm2 ON pm.post_id = pm2.post_id
 WHERE pm.meta_key = '%s'
 AND p.post_status = '%s'
 AND p.post_type IN $type_str
-", $key, $status ) );
+";
+
+if ( ! empty( $property_status ) ) {
+	$property_status = array_map( 'trim', explode( ',', $property_status ) );
+	if ( count( $property_status ) ) {
+		$query .= "
+		AND pm2.meta_key 		= 'property_status'
+		AND pm2.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
+	}
+}
+
+    $res = $wpdb->get_col( $wpdb->prepare( $query, $key, $status ) );
 
 	$res = array_filter($res);
 
