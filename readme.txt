@@ -397,6 +397,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Added DEFINED FILTERS to taxonomy slug Additional Filters added to Taxonomies. Business Categories
 * New: Filter epl_property_featured_image_link allow user or extension to enable or disable link behaviour on featured image.
 * New: Filter epl_property_archive_featured_image_link allow user or extension to enable or disable link behaviour on archive image.
+* New: Added a epl_property_gallery_shortcode filter.
 * Tweak: Renamed business_listing category slug to business-category permalinks will automatically re-fresh on update.
 * Tweak: Removed business category from EPL meta-boxes, use the hierarchal taxonomy to manage categories and sub categories when editing business listings.
 * Tweak: Added widget names to code for filter and ensure backward compatibility.
