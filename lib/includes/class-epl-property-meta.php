@@ -1184,7 +1184,7 @@ class EPL_Property_Meta {
 		$property_carport	= intval($this->get_property_meta('property_carport'));
 		$value 			= $property_carport + $property_garage;
 
-		if ( $property_parking == 0)
+		if ( $value == 0)
 			return;
 
 		$label 			= apply_filters('epl_get_parking_spaces_label',__('Parking Spaces', 'easy-property-listings' ) );
