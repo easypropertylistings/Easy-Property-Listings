@@ -89,7 +89,7 @@ if ( ! empty( $selected_post_types ) ) :
 					}
 
 					if ( $epl_frontend_field['key'] == 'search_house_category' && isset( $house_category_multiple ) && $house_category_multiple == 'on' ) {
-						$epl_frontend_field['multiple'] 	= true;
+						$epl_frontend_field['type'] 		= 'multiple_select';
 						$epl_frontend_field['query'] 		= array( 'query'	=> 'meta', 'compare' => 'IN' );
 					}
 
