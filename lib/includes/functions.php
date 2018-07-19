@@ -358,6 +358,100 @@ function epl_display_label_postcode() {
 }
 
 /**
+ * since 3.2.3
+ * @param  array  $args address components
+ * @param  array  $sep  override default seperators for each address components here
+ * @return [type]       [description]
+ *
+ * 
+ */
+function epl_property_get_address( $args = array(), $sep = array() ) {
+
+	$address = '';
+
+	$sep_defaults = array(
+		'sub_number'		=>	'/',
+		'lot_number'		=>	' ',
+		'street_number'		=>	' ',
+		'street'			=>	', ',
+		'suburb'			=>	' ',
+		'city'				=>	' ',
+		'state'				=>	' ',
+		'postal_code'		=>	' ',
+		'country'			=>	' ',
+	);
+
+	$seps = array_merge($sep_defaults, $sep);
+
+	foreach($args as $arg) {
+
+		if( isset($sep_defaults[$arg]) ) {
+
+			if( get_property_meta('property_address_display') != 'yes' && in_array($arg, array('sub_number','lot_number', 'street_number', 'street') ) ) {
+				continue;
+			}
+
+			$address .= get_property_meta('property_address_'.$arg).$seps[$arg];
+		}
+	}
+
+	return $address;
+}	
+
+/**
+ * Get EPL property address
+ *
+ * @since 1.0
+ * @return the string for address
+ */
+function epl_get_property_address($post_ID='') {
+	if($post_ID == '') {
+		$post_ID = get_the_ID();
+	}
+	$property_meta = epl_get_property_meta($post_ID);
+
+	$address = '';
+
+	if(isset($property_meta['property_address_street_number']) && !empty($property_meta['property_address_street_number'])) {
+		$property_address_street_number = $property_meta['property_address_street_number'][0];
+		if( $property_address_street_number != '' ) {
+			$address .= $property_address_street_number . ", ";
+		}
+	}
+
+	if(isset($property_meta['property_address_street']) && !empty($property_meta['property_address_street'])) {
+		$property_address_street = $property_meta['property_address_street'][0];
+		if( $property_address_street != '' ) {
+			$address .= $property_address_street . ", ";
+		}
+	}
+
+	if(isset($property_meta['property_address_suburb']) && !empty($property_meta['property_address_suburb'])) {
+		$property_address_suburb = $property_meta['property_address_suburb'][0];
+		if( $property_address_suburb != '' ) {
+			$address .= $property_address_suburb . ", ";
+		}
+	}
+
+	if(isset($property_meta['property_address_state']) && !empty($property_meta['property_address_state'])) {
+		$property_address_state = $property_meta['property_address_state'][0];
+		if( $property_address_state != '' ) {
+			$address .= $property_address_state . ", ";
+		}
+	}
+
+	if(isset($property_meta['property_address_postal_code']) && !empty($property_meta['property_address_postal_code'])) {
+		$property_address_postal_code = $property_meta['property_address_postal_code'][0];
+		if( $property_address_postal_code != '' ) {
+			$address .= $property_address_postal_code . ", ";
+		}
+	}
+
+	$address = trim($address); $address = trim($address, ","); $address = trim($address);
+	return apply_filters('epl_get_property_address_filter', $address);
+}
+
+/**
  * Print EPL property address
  *
  * @since 1.0
