@@ -1427,27 +1427,23 @@ add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
  */
 function epl_property_gallery () {
 
-	global $epl_settings;
+	$d_gallery = epl_get_option('display_single_gallery');
+
+	$d_gallery_n = epl_get_option('display_gallery_n');
+
+	if( $d_gallery != 1 )
+		return;
 
 	$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
 
-	$d_gallery = '';
-	if(!empty($epl_settings) && isset($epl_settings['display_single_gallery'])) {
-		$d_gallery		= $epl_settings['display_single_gallery'];
-	}
+	if ( $attachments  ) { ?>
 
-	$d_gallery_n = '';
-	if(!empty($epl_settings) && isset($epl_settings['display_gallery_n'])) {
-		$d_gallery_n		= $epl_settings['display_gallery_n'];
-	}
-
-	if ( $attachments && $d_gallery == 1 ) { ?>
 		<div class="epl-gallery property-gallery">
 			<!-- Gallery -->
 			<div class="epl-gallery-entry entry-gallery epl-clearfix">
 				<?php
 					$gallery_shortcode = '[gallery columns="'. $d_gallery_n . '" link="file"]';
-					$gallery = apply_filters( 'epl_property_gallery_shortcode' , $gallery_shortcode );
+					$gallery = apply_filters( 'epl_property_gallery_shortcode' , $gallery_shortcode, $d_gallery_n );
 					echo do_shortcode( $gallery );
 				?>
 			</div>
