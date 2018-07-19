@@ -119,6 +119,19 @@ function epl_display_label_bond( ) {
 	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
 }
 
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_suburb( ) {
+	$epl_display_label_suburb = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
+		$epl_display_label_suburb = $epl_settings['label_suburb'];
+	}
+	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
+}
+
 // Front End Functions
 if ( ! is_admin() )
 	return;

@@ -319,19 +319,6 @@ function epl_labels( $key ) {
 }
 
 /**
- * @depricated since 2.2. use epl_labels instead
- */
-function epl_display_label_suburb( ) {
-	$epl_display_label_suburb = '';
-
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
-		$epl_display_label_suburb = $epl_settings['label_suburb'];
-	}
-	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
-}
-
-/**
  * since 3.2.3
  * @param  array  $args address components
  * @param  array  $sep  override default seperators for each address components here
