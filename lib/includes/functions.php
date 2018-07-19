@@ -345,19 +345,6 @@ function epl_display_label_bond( ) {
 }
 
 /**
- * @depricated since 2.2. use epl_labels instead
- */
-function epl_display_label_postcode() {
-	$epl_display_label_postcode = '';
-
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_postcode'])) {
-		$epl_display_label_postcode = $epl_settings['label_postcode'];
-	}
-	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
-}
-
-/**
  * since 3.2.3
  * @param  array  $args address components
  * @param  array  $sep  override default seperators for each address components here

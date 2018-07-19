@@ -93,6 +93,19 @@ function epl_get_property_address($post_ID='') {
 	return apply_filters('epl_get_property_address_filter', $address);
 }
 
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_postcode() {
+	$epl_display_label_postcode = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_postcode'])) {
+		$epl_display_label_postcode = $epl_settings['label_postcode'];
+	}
+	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
+}
+
 // Front End Functions
 if ( ! is_admin() )
 	return;
