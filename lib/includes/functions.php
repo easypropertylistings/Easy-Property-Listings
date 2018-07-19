@@ -287,7 +287,6 @@ function epl_currency_formatted_amount( $price ) {
 		return epl_currency_filter( epl_format_amount( $price , true ) );
 	else
 		return epl_currency_filter( epl_format_amount( $price , false ) );
-
 }
 
 /**
@@ -304,7 +303,6 @@ function epl_labels( $key ) {
 	foreach($field_groups as $field_group) {
 		if($field_group['id']	==	'labels' || $field_group['id']	==	'address') {
 			$epl_labels = array_merge ( $epl_labels, array_filter($field_group['fields']) );
-
 		}
 	}
 	foreach($epl_labels as $label_key	=>	$label) {
