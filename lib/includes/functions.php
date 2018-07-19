@@ -386,6 +386,11 @@ function epl_property_get_address( $args = array(), $sep = array() ) {
 	foreach($args as $arg) {
 
 		if( isset($sep_defaults[$arg]) ) {
+
+			if( get_property_meta('property_address_display') != 'yes' && in_array($arg, array('sub_number','lot_number', 'street_number', 'street') ) ) {
+				continue;
+			}
+
 			$address .= get_property_meta('property_address_'.$arg).$seps[$arg];
 		}
 	}
