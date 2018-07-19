@@ -106,6 +106,19 @@ function epl_display_label_postcode() {
 	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
 }
 
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_bond( ) {
+	$epl_display_label_bond = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
+		$epl_display_label_bond = $epl_settings['label_bond'];
+	}
+	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
+}
+
 // Front End Functions
 if ( ! is_admin() )
 	return;

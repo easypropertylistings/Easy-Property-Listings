@@ -291,7 +291,7 @@ function epl_currency_formatted_amount( $price ) {
 }
 
 /**
- * Get the currency formatted amount
+ * Get labels
  *
  * @since 2.2
  * @param integer $key Settings meta key
@@ -329,19 +329,6 @@ function epl_display_label_suburb( ) {
 		$epl_display_label_suburb = $epl_settings['label_suburb'];
 	}
 	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
-}
-
-/**
- * @depricated since 2.2. use epl_labels instead
- */
-function epl_display_label_bond( ) {
-	$epl_display_label_bond = '';
-
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
-		$epl_display_label_bond = $epl_settings['label_bond'];
-	}
-	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
 }
 
 /**
