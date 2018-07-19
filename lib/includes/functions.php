@@ -363,9 +363,9 @@ function epl_display_label_postcode() {
  * @param  array  $sep  override default seperators for each address components here
  * @return [type]       [description]
  *
- * 
+ *
  */
-function epl_property_get_address( $args = array(), $sep = array() ) {
+function epl_get_property_address_components( $args = array(), $sep = array() ) {
 
 	$address = '';
 
@@ -396,7 +396,7 @@ function epl_property_get_address( $args = array(), $sep = array() ) {
 	}
 
 	return $address;
-}	
+}
 
 /**
  * Get EPL property address
