@@ -358,6 +358,42 @@ function epl_display_label_postcode() {
 }
 
 /**
+ * since 3.2.3
+ * @param  array  $args address components
+ * @param  array  $sep  override default seperators for each address components here
+ * @return [type]       [description]
+ *
+ * 
+ */
+function epl_property_get_address( $args = array(), $sep = array() ) {
+
+	$address = '';
+
+	$sep_defaults = array(
+		'sub_number'		=>	'/',
+		'lot_number'		=>	' ',
+		'street_number'		=>	' ',
+		'street'			=>	', ',
+		'suburb'			=>	' ',
+		'city'				=>	' ',
+		'state'				=>	' ',
+		'postal_code'		=>	' ',
+		'country'			=>	' ',
+	);
+
+	$seps = array_merge($sep_defaults, $sep);
+
+	foreach($args as $arg) {
+
+		if( isset($sep_defaults[$arg]) ) {
+			$address .= get_property_meta('property_address_'.$arg).$seps[$arg];
+		}
+	}
+
+	return $address;
+}	
+
+/**
  * Get EPL property address
  *
  * @since 1.0
