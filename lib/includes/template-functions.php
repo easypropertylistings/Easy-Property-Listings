@@ -156,7 +156,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 	<?php }
 
 }
-add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featured_image' , 10 , 2 );
+add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featured_image' , 10 , 3 );
 
 /**
  * Featured Image in widgets
@@ -180,7 +180,7 @@ function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-cr
 	<?php }
 
 }
-add_action( 'epl_property_widgets_featured_image' , 'epl_property_widgets_featured_image' , 10 , 2 );
+add_action( 'epl_property_widgets_featured_image' , 'epl_property_widgets_featured_image' , 10 , 3 );
 
 /**
  * Single Listing Templates
