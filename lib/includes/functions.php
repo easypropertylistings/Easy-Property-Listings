@@ -445,7 +445,7 @@ function epl_get_the_status( $post = 0 ) {
 	$post = get_post( $post );
 
 	$status = get_property_meta( 'property_status' );
-	$status = isset( $status ) ? get_property_meta( 'property_status' ) : '';
+	$status = isset( $status ) ? $status : '';
 	$id = isset( $post->ID ) ? $post->ID : 0;
 
 	/**
@@ -527,6 +527,61 @@ function epl_meta_location_label() {
 		$label_location = __('City' , 'easy-property-listings' );
 	}
 	return $label_location;
+}
+
+/**
+ * Display or retrieve the under offer label with optional markup.
+ *
+ * @since 3.2.3
+ *
+ * @param integer $post_ID
+ * @param string $meta_key
+ * @return the string/list for values
+ */
+function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
+	$under_offer = epl_get_the_under_offer();
+
+	$under_offer_label = epl_meta_under_offer_label();
+
+        if ( strlen($under_offer) == 0 )
+                return;
+
+        if ( strtolower($under_offer) != 'yes' )
+		return;
+
+        $under_offer = $before . $under_offer_label . $after;
+
+        if ( $echo )
+                echo $under_offer;
+        else
+                return $under_offer;
+}
+
+/**
+ * Retrieve listing under offer value.
+ *
+ * @since 3.2.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ * @return string
+ */
+function epl_get_the_under_offer( $post = 0 ) {
+
+	$post = get_post( $post );
+
+	$under_offer = get_property_meta( 'property_under_offer' );
+	$under_offer = isset( $under_offer ) ? $under_offer : '';
+	$id = isset( $post->ID ) ? $post->ID : 0;
+
+	/**
+	 * Filters the status.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @param string $title The listing status.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_get_the_under_offer', $under_offer, $id );
 }
 
 /**
