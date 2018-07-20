@@ -408,6 +408,58 @@ function epl_get_the_address( $country = false, $address_args = array(), $sep = 
 }
 
 /**
+ * Display or retrieve the listing status label with optional markup.
+ *
+ * @since 3.2.3
+ *
+ * @param integer $post_ID
+ * @param string $meta_key
+ * @return the string/list for values
+ */
+function epl_the_status( $before = '', $after = '', $echo = true ) {
+	$status = epl_get_the_status();
+
+	$status_opts = epl_get_property_status_opts();
+
+        if ( strlen($status) == 0 )
+                return;
+
+        $status = $before . $status_opts[$status] . $after;
+
+        if ( $echo )
+                echo $status;
+        else
+                return $status;
+}
+
+/**
+ * Retrieve listing status.
+ *
+ * @since 3.2.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ * @return string
+ */
+function epl_get_the_status( $post = 0 ) {
+
+	$post = get_post( $post );
+
+	$status = get_property_meta( 'property_status' );
+	$status = isset( $status ) ? get_property_meta( 'property_status' ) : '';
+	$id = isset( $post->ID ) ? $post->ID : 0;
+
+	/**
+	 * Filters the status.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @param string $title The listing status.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_get_the_status', $status, $id );
+}
+
+/**
  * Get EPL property meta data based on post id
  *
  * @since 1.0
