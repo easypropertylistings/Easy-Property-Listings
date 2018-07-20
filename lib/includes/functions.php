@@ -3,7 +3,7 @@
  * Front End Functions
  *
  * @package     EPL
- * @subpackage  Functions/FrontEnd
+ * @subpackage  Functions/Global
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -317,18 +317,49 @@ function epl_labels( $key ) {
 }
 
 /**
- * since 3.2.3
- * @param  array  $args address components
+ * Display or retrieve the current listing address based on user display selection with optional markup.
+ *
+ * @since 3.2.3
+ *
+ * @param string $before   Optional. Markup to prepend to the title. Default empty.
+ * @param string $after    Optional. Markup to append to the title. Default empty.
+ * @param bool   $country  Optional. Whether to echo or return country. Default false for country.
+ * @param bool   $echo     Optional. Whether to echo or return the title. Default true for echo.
+ * @return string|void Current post title if $echo is false.
+ */
+function epl_the_address( $before = '', $after = '', $country = false, $echo = true ) {
+	$address = epl_get_the_address( $country );
+
+        if ( strlen($address) == 0 )
+                return;
+
+        $address = $before . $address . $after;
+
+        if ( $echo )
+                echo $address;
+        else
+		return $address;
+}
+
+/**
+ * Retrieve address based on user display selection.
+ *
+ * @since 3.2.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ *
+ * @param  array  $address_args address components
  * @param  array  $sep  override default seperators for each address components here
  * @return [type]       [description]
  *
- *
  */
-function epl_get_property_address_components( $args = array(), $sep = array() ) {
+function epl_get_the_address( $country = false, $address_args = array(), $sep = array(), $post = 0 ) {
 
 	$address = '';
+	$post = get_post( $post );
+	$id = isset( $post->ID ) ? $post->ID : 0;
 
-	$sep_defaults = array(
+	$address_defaults = array(
 		'sub_number'		=>	'/',
 		'lot_number'		=>	' ',
 		'street_number'		=>	' ',
@@ -340,21 +371,40 @@ function epl_get_property_address_components( $args = array(), $sep = array() ) 
 		'country'		=>	' ',
 	);
 
-	$seps = array_merge($sep_defaults, $sep);
+	// Uncertain on array_merge usage @lead_dev with $sep
+	$seps = array_merge( $address_defaults, $sep );
 
-	foreach($args as $arg) {
+	// Output the full address based on user selection
+	if( empty ( $address_args ) ) {
+		$address_args = array_keys( $address_defaults );
+	}
 
-		if( isset($sep_defaults[$arg]) ) {
+	foreach( $address_args as $arg ) {
 
-			if( get_property_meta('property_address_display') != 'yes' && in_array($arg, array('sub_number','lot_number', 'street_number', 'street') ) ) {
+		if( isset( $address_defaults[$arg] ) ) {
+
+			if( get_property_meta( 'property_address_display' ) != 'yes' && in_array( $arg, array( 'sub_number','lot_number', 'street_number', 'street' ) ) ) {
 				continue;
 			}
 
-			$address .= get_property_meta('property_address_'.$arg).$seps[$arg];
+			// Country hidden by default
+			if ( $country != true && in_array( $arg, array( 'country' ) ) )
+				continue;
+
+			// Missing code to prevent outout if meta is empty EG lot_number is unused, yet $sep is output creating 12/ 4 Smith Street, when it should be 12/4 Smith Street
+			$address .= get_property_meta( 'property_address_' . $arg ) . $seps[$arg];
 		}
 	}
 
-	return $address;
+	/**
+	 * Filters the post title.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @param string $title The listing address.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_the_address', $address, $id );
 }
 
 /**
