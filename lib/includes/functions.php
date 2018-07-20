@@ -534,9 +534,10 @@ function epl_meta_location_label() {
  *
  * @since 3.2.3
  *
- * @param integer $post_ID
- * @param string $meta_key
- * @return the string/list for values
+ * @param string $before Optional. Markup to prepend to the formatted Under Offer label. Default empty.
+ * @param string $after  Optional. Markup to append to the formatted Under Offer label. Default empty.
+ * @param bool   $echo   Optional. Whether to echo or return the formatted Under Offer label. Default true for echo.
+ * @return string|void Current post title if $echo is false.
  */
 function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
 	$under_offer = epl_get_the_under_offer();
