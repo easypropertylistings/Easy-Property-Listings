@@ -28,6 +28,110 @@ function epl_get_author_meta() {
 	$epl_author_meta_sent = true;
 }
 
+/**
+ * Print EPL property address
+ *
+ * @since 1.0
+ * @param integer $post_ID
+ * @return the string for address
+ */
+function epl_the_property_address( $post_ID = '' ) {
+	$address = epl_get_property_address($post_ID);
+	echo apply_filters('epl_the_property_address_filter', $address);
+}
+
+/**
+ * Get EPL property address
+ *
+ * @since 1.0
+ * @return the string for address
+ */
+function epl_get_property_address($post_ID='') {
+	if($post_ID == '') {
+		$post_ID = get_the_ID();
+	}
+	$property_meta = epl_get_property_meta($post_ID);
+
+	$address = '';
+
+	if(isset($property_meta['property_address_street_number']) && !empty($property_meta['property_address_street_number'])) {
+		$property_address_street_number = $property_meta['property_address_street_number'][0];
+		if( $property_address_street_number != '' ) {
+			$address .= $property_address_street_number . ", ";
+		}
+	}
+
+	if(isset($property_meta['property_address_street']) && !empty($property_meta['property_address_street'])) {
+		$property_address_street = $property_meta['property_address_street'][0];
+		if( $property_address_street != '' ) {
+			$address .= $property_address_street . ", ";
+		}
+	}
+
+	if(isset($property_meta['property_address_suburb']) && !empty($property_meta['property_address_suburb'])) {
+		$property_address_suburb = $property_meta['property_address_suburb'][0];
+		if( $property_address_suburb != '' ) {
+			$address .= $property_address_suburb . ", ";
+		}
+	}
+
+	if(isset($property_meta['property_address_state']) && !empty($property_meta['property_address_state'])) {
+		$property_address_state = $property_meta['property_address_state'][0];
+		if( $property_address_state != '' ) {
+			$address .= $property_address_state . ", ";
+		}
+	}
+
+	if(isset($property_meta['property_address_postal_code']) && !empty($property_meta['property_address_postal_code'])) {
+		$property_address_postal_code = $property_meta['property_address_postal_code'][0];
+		if( $property_address_postal_code != '' ) {
+			$address .= $property_address_postal_code . ", ";
+		}
+	}
+
+	$address = trim($address); $address = trim($address, ","); $address = trim($address);
+	return apply_filters('epl_get_property_address_filter', $address);
+}
+
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_postcode() {
+	$epl_display_label_postcode = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_postcode'])) {
+		$epl_display_label_postcode = $epl_settings['label_postcode'];
+	}
+	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
+}
+
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_bond( ) {
+	$epl_display_label_bond = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
+		$epl_display_label_bond = $epl_settings['label_bond'];
+	}
+	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
+}
+
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_suburb( ) {
+	$epl_display_label_suburb = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
+		$epl_display_label_suburb = $epl_settings['label_suburb'];
+	}
+	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
+}
+
 // Front End Functions
 if ( ! is_admin() )
 	return;
