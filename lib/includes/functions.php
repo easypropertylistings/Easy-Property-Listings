@@ -353,11 +353,9 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
  * @return [type]       [description]
  *
  */
-function epl_get_the_address( $country = false, $address_args = array(), $sep = array(), $post = 0 ) {
+function epl_get_the_address( $country = false, $address_args = array(), $sep = array() ) {
 
 	$address = '';
-	$post = get_post( $post );
-	$id = isset( $post->ID ) ? $post->ID : 0;
 
 	$address_defaults = array(
 		'sub_number'		=>	'/',
@@ -371,7 +369,7 @@ function epl_get_the_address( $country = false, $address_args = array(), $sep = 
 		'country'		=>	' ',
 	);
 
-	// Uncertain on array_merge usage @lead_dev with $sep
+	// override default seperators for address components
 	$seps = array_merge( $address_defaults, $sep );
 
 	// Output the full address based on user selection
@@ -391,8 +389,10 @@ function epl_get_the_address( $country = false, $address_args = array(), $sep = 
 			if ( $country != true && in_array( $arg, array( 'country' ) ) )
 				continue;
 
-			// Missing code to prevent outout if meta is empty EG lot_number is unused, yet $sep is output creating 12/ 4 Smith Street, when it should be 12/4 Smith Street
-			$address .= get_property_meta( 'property_address_' . $arg ) . $seps[$arg];
+			$value = get_property_meta( 'property_address_' . $arg );
+
+			if( !empty($value) )
+				$address .= get_property_meta( 'property_address_' . $arg ) . $seps[$arg];
 		}
 	}
 
@@ -404,7 +404,7 @@ function epl_get_the_address( $country = false, $address_args = array(), $sep = 
 	 * @param string $title The listing address.
 	 * @param int    $id    The post ID.
 	 */
-	return apply_filters( 'epl_the_address', $address, $id );
+	return apply_filters( 'epl_the_address', $address );
 }
 
 /**
