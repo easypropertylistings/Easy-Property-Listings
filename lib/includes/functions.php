@@ -546,7 +546,7 @@ function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
         if ( strlen($under_offer) == 0 )
                 return;
 
-        if ( strtolower($under_offer) != 'yes' )
+        if ( strtolower($under_offer) != 'yes' && 'sold' != epl_get_the_status() )
 		return;
 
         $under_offer = $before . $under_offer_label . $after;
@@ -570,7 +570,7 @@ function epl_get_the_under_offer( $post = 0 ) {
 	$post = get_post( $post );
 
 	$under_offer = get_property_meta( 'property_under_offer' );
-	$under_offer = isset( $under_offer ) ? $under_offer : '';
+	$under_offer = 'yes' == get_property_meta( 'property_under_offer' ) && 'sold' != epl_get_the_status() ? $under_offer : '';
 	$id = isset( $post->ID ) ? $post->ID : 0;
 
 	/**
