@@ -3,7 +3,7 @@
  * Front End Functions
  *
  * @package     EPL
- * @subpackage  Functions/FrontEnd
+ * @subpackage  Functions/Global
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -287,11 +287,10 @@ function epl_currency_formatted_amount( $price ) {
 		return epl_currency_filter( epl_format_amount( $price , true ) );
 	else
 		return epl_currency_filter( epl_format_amount( $price , false ) );
-
 }
 
 /**
- * Get the currency formatted amount
+ * Get labels
  *
  * @since 2.2
  * @param integer $key Settings meta key
@@ -304,7 +303,6 @@ function epl_labels( $key ) {
 	foreach($field_groups as $field_group) {
 		if($field_group['id']	==	'labels' || $field_group['id']	==	'address') {
 			$epl_labels = array_merge ( $epl_labels, array_filter($field_group['fields']) );
-
 		}
 	}
 	foreach($epl_labels as $label_key	=>	$label) {
@@ -319,148 +317,146 @@ function epl_labels( $key ) {
 }
 
 /**
- * @depricated since 2.2. use epl_labels instead
+ * Display or retrieve the current listing address based on user display selection with optional markup.
+ *
+ * @since 3.2.3
+ *
+ * @param string $before   Optional. Markup to prepend to the title. Default empty.
+ * @param string $after    Optional. Markup to append to the title. Default empty.
+ * @param bool   $country  Optional. Whether to echo or return country. Default false for country.
+ * @param bool   $echo     Optional. Whether to echo or return the title. Default true for echo.
+ * @return string|void Current post title if $echo is false.
  */
-function epl_display_label_suburb( ) {
-	$epl_display_label_suburb = '';
+function epl_the_address( $before = '', $after = '', $country = false, $echo = true ) {
+	$address = epl_get_the_address( $country );
 
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
-		$epl_display_label_suburb = $epl_settings['label_suburb'];
-	}
-	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
+        if ( strlen($address) == 0 )
+                return;
+
+        $address = $before . $address . $after;
+
+        if ( $echo )
+                echo $address;
+        else
+		return $address;
 }
 
 /**
- * @depricated since 2.2. use epl_labels instead
- */
-function epl_display_label_bond( ) {
-	$epl_display_label_bond = '';
-
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
-		$epl_display_label_bond = $epl_settings['label_bond'];
-	}
-	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
-}
-
-/**
- * @depricated since 2.2. use epl_labels instead
- */
-function epl_display_label_postcode() {
-	$epl_display_label_postcode = '';
-
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_postcode'])) {
-		$epl_display_label_postcode = $epl_settings['label_postcode'];
-	}
-	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
-}
-
-/**
- * since 3.2.3
- * @param  array  $args address components
+ * Retrieve address based on user display selection.
+ *
+ * @since 3.2.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ *
+ * @param  array  $address_args address components
  * @param  array  $sep  override default seperators for each address components here
  * @return [type]       [description]
  *
- *
  */
-function epl_get_property_address_components( $args = array(), $sep = array() ) {
+function epl_get_the_address( $country = false, $address_args = array(), $sep = array() ) {
 
 	$address = '';
 
-	$sep_defaults = array(
+	$address_defaults = array(
 		'sub_number'		=>	'/',
 		'lot_number'		=>	' ',
 		'street_number'		=>	' ',
-		'street'			=>	', ',
-		'suburb'			=>	' ',
-		'city'				=>	' ',
-		'state'				=>	' ',
+		'street'		=>	', ',
+		'suburb'		=>	' ',
+		'city'			=>	' ',
+		'state'			=>	' ',
 		'postal_code'		=>	' ',
-		'country'			=>	' ',
+		'country'		=>	' ',
 	);
 
-	$seps = array_merge($sep_defaults, $sep);
+	// override default seperators for address components
+	$seps = array_merge( $address_defaults, $sep );
 
-	foreach($args as $arg) {
+	// Output the full address based on user selection
+	if( empty ( $address_args ) ) {
+		$address_args = array_keys( $address_defaults );
+	}
 
-		if( isset($sep_defaults[$arg]) ) {
+	foreach( $address_args as $arg ) {
 
-			if( get_property_meta('property_address_display') != 'yes' && in_array($arg, array('sub_number','lot_number', 'street_number', 'street') ) ) {
+		if( isset( $address_defaults[$arg] ) ) {
+
+			if( get_property_meta( 'property_address_display' ) != 'yes' && in_array( $arg, array( 'sub_number','lot_number', 'street_number', 'street' ) ) ) {
 				continue;
 			}
 
-			$address .= get_property_meta('property_address_'.$arg).$seps[$arg];
+			// Country hidden by default
+			if ( $country != true && in_array( $arg, array( 'country' ) ) )
+				continue;
+
+			$value = get_property_meta( 'property_address_' . $arg );
+
+			if( !empty($value) )
+				$address .= get_property_meta( 'property_address_' . $arg ) . $seps[$arg];
 		}
 	}
 
-	return $address;
+	/**
+	 * Filters the post title.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @param string $title The listing address.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_the_address', $address );
 }
 
 /**
- * Get EPL property address
+ * Display or retrieve the listing status label with optional markup.
  *
- * @since 1.0
- * @return the string for address
- */
-function epl_get_property_address($post_ID='') {
-	if($post_ID == '') {
-		$post_ID = get_the_ID();
-	}
-	$property_meta = epl_get_property_meta($post_ID);
-
-	$address = '';
-
-	if(isset($property_meta['property_address_street_number']) && !empty($property_meta['property_address_street_number'])) {
-		$property_address_street_number = $property_meta['property_address_street_number'][0];
-		if( $property_address_street_number != '' ) {
-			$address .= $property_address_street_number . ", ";
-		}
-	}
-
-	if(isset($property_meta['property_address_street']) && !empty($property_meta['property_address_street'])) {
-		$property_address_street = $property_meta['property_address_street'][0];
-		if( $property_address_street != '' ) {
-			$address .= $property_address_street . ", ";
-		}
-	}
-
-	if(isset($property_meta['property_address_suburb']) && !empty($property_meta['property_address_suburb'])) {
-		$property_address_suburb = $property_meta['property_address_suburb'][0];
-		if( $property_address_suburb != '' ) {
-			$address .= $property_address_suburb . ", ";
-		}
-	}
-
-	if(isset($property_meta['property_address_state']) && !empty($property_meta['property_address_state'])) {
-		$property_address_state = $property_meta['property_address_state'][0];
-		if( $property_address_state != '' ) {
-			$address .= $property_address_state . ", ";
-		}
-	}
-
-	if(isset($property_meta['property_address_postal_code']) && !empty($property_meta['property_address_postal_code'])) {
-		$property_address_postal_code = $property_meta['property_address_postal_code'][0];
-		if( $property_address_postal_code != '' ) {
-			$address .= $property_address_postal_code . ", ";
-		}
-	}
-
-	$address = trim($address); $address = trim($address, ","); $address = trim($address);
-	return apply_filters('epl_get_property_address_filter', $address);
-}
-
-/**
- * Print EPL property address
+ * @since 3.2.3
  *
- * @since 1.0
  * @param integer $post_ID
- * @return the string for address
+ * @param string $meta_key
+ * @return the string/list for values
  */
-function epl_the_property_address( $post_ID = '' ) {
-	$address = epl_get_property_address($post_ID);
-	echo apply_filters('epl_the_property_address_filter', $address);
+function epl_the_status( $before = '', $after = '', $echo = true ) {
+	$status = epl_get_the_status();
+
+	$status_opts = epl_get_property_status_opts();
+
+        if ( strlen($status) == 0 )
+                return;
+
+        $status = $before . $status_opts[$status] . $after;
+
+        if ( $echo )
+                echo $status;
+        else
+                return $status;
+}
+
+/**
+ * Retrieve listing status.
+ *
+ * @since 3.2.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ * @return string
+ */
+function epl_get_the_status( $post = 0 ) {
+
+	$post = get_post( $post );
+
+	$status = get_property_meta( 'property_status' );
+	$status = isset( $status ) ? $status : '';
+	$id = isset( $post->ID ) ? $post->ID : 0;
+
+	/**
+	 * Filters the status.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @param string $title The listing status.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_get_the_status', $status, $id );
 }
 
 /**
@@ -531,6 +527,62 @@ function epl_meta_location_label() {
 		$label_location = __('City' , 'easy-property-listings' );
 	}
 	return $label_location;
+}
+
+/**
+ * Display or retrieve the under offer label with optional markup.
+ *
+ * @since 3.2.3
+ *
+ * @param string $before Optional. Markup to prepend to the formatted Under Offer label. Default empty.
+ * @param string $after  Optional. Markup to append to the formatted Under Offer label. Default empty.
+ * @param bool   $echo   Optional. Whether to echo or return the formatted Under Offer label. Default true for echo.
+ * @return string|void Current post title if $echo is false.
+ */
+function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
+	$under_offer = epl_get_the_under_offer();
+
+	$under_offer_label = epl_meta_under_offer_label();
+
+        if ( strlen($under_offer) == 0 )
+                return;
+
+        if ( strtolower($under_offer) != 'yes' && 'sold' != epl_get_the_status() )
+		return;
+
+        $under_offer = $before . $under_offer_label . $after;
+
+        if ( $echo )
+                echo $under_offer;
+        else
+                return $under_offer;
+}
+
+/**
+ * Retrieve listing under offer value.
+ *
+ * @since 3.2.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ * @return string
+ */
+function epl_get_the_under_offer( $post = 0 ) {
+
+	$post = get_post( $post );
+
+	$under_offer = get_property_meta( 'property_under_offer' );
+	$under_offer = 'yes' == get_property_meta( 'property_under_offer' ) && 'sold' != epl_get_the_status() ? $under_offer : '';
+	$id = isset( $post->ID ) ? $post->ID : 0;
+
+	/**
+	 * Filters the status.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @param string $title The listing status.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_get_the_under_offer', $under_offer, $id );
 }
 
 /**
