@@ -1273,7 +1273,6 @@ function epl_tools_utility_wrapper() {
 	// Wrapper End
 	do_action('epl_archive_utility_wrap_end');
 
-<?php
 }
 add_action( 'epl_property_loop_start' , 'epl_tools_utility_wrapper' , 10 );
 
