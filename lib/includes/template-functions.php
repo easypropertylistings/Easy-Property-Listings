@@ -1195,63 +1195,63 @@ function epl_sorting_options($post_type = null) {
 			'orderby'	=>	'meta_value_num',
 		),
 		array(
-			'id'	=>	'low',
-			'label'	=>	__('Price: Low to High','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
-			'order'	=>	'ASC',
+			'id'		=>	'low',
+			'label'		=>	__('Price: Low to High','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value_num',
 
 		),
 		array(
-			'id'	=>	'new',
-			'label'	=>	__('Date: Newest First','easy-property-listings' ),
-			'type'	=>	'post',
-			'key'	=>	'post_date',
-			'order'	=>	'DESC'
+			'id'		=>	'new',
+			'label'		=>	__('Date: Newest First','easy-property-listings' ),
+			'type'		=>	'post',
+			'key'		=>	'post_date',
+			'order'		=>	'DESC'
 
 
 		),
 		array(
-			'id'	=>	'old',
-			'label'	=>	__('Date: Oldest First','easy-property-listings' ),
-			'type'	=>	'post',
-			'key'	=>	'post_date',
-			'order'	=>	'ASC'
+			'id'		=>	'old',
+			'label'		=>	__('Date: Oldest First','easy-property-listings' ),
+			'type'		=>	'post',
+			'key'		=>	'post_date',
+			'order'		=>	'ASC'
 		),
 		array(
-			'id'	=>	'status_asc',
-			'label'	=>	__('Status : Current First','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_status',
-			'order'	=>	'ASC',
+			'id'		=>	'status_asc',
+			'label'		=>	__('Status : Current First','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_status',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'status_desc',
-			'label'	=>	__('Status : Sold/Leased First','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_status',
-			'order'	=>	'DESC',
+			'id'		=>	'status_desc',
+			'label'		=>	__('Status : Sold/Leased First','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_status',
+			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'location_asc',
-			'label'	=>	epl_labels('label_suburb'). __(' A-Z' , 'easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_address_suburb',
-			'order'	=>	'ASC',
+			'id'		=>	'location_asc',
+			'label'		=>	epl_labels('label_suburb'). __(' A-Z' , 'easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_address_suburb',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'location_desc',
-			'label'	=>	epl_labels('label_suburb'). __(' Z-A' , 'easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_address_suburb',
-			'order'	=>	'DESC',
+			'id'		=>	'location_desc',
+			'label'		=>	epl_labels('label_suburb'). __(' Z-A' , 'easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_address_suburb',
+			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value',
 
 		),
