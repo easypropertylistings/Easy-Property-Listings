@@ -1263,17 +1263,16 @@ function epl_sorting_options($post_type = null) {
  *
  * @since 3.2.3
  */
-function epl_tools_utility_wrapper() { ?>
+function epl_tools_utility_wrapper() {
 
-	<?php
-	// if there is hooked stuff output the wrapper
-	?>
+	// Wrapper Start
+	do_action('epl_archive_utility_wrap_start');
 
-	<div class="epl-loop-tools-wrap epl-clearfix">
+		do_action('epl_add_custom_menus');
 
-		<?php do_action('epl_add_custom_menus'); ?>
+	// Wrapper End
+	do_action('epl_archive_utility_wrap_end');
 
-	</div>
 <?php
 }
 add_action( 'epl_property_loop_start' , 'epl_tools_utility_wrapper' , 10 );
@@ -1306,9 +1305,6 @@ function epl_get_switch_views_sorting( $args = array() ) {
 	);
 
 	$tools = apply_filters('epl_switch_views_sorting', $defaults);
-
-	// Backward Compat Action
-	do_action('epl_archive_utility_wrap_start');
 
 	ob_start();
 
@@ -1343,11 +1339,7 @@ function epl_get_switch_views_sorting( $args = array() ) {
 		<?php
 	}
 	return ob_get_clean();
-
-	// Backward Compat Action
-	do_action('epl_archive_utility_wrap_end');
 }
-add_action( 'epl_add_custom_menus' , 'epl_switch_views_sorting' , 10 );
 
 /**
  * Switch Views
@@ -1554,8 +1546,9 @@ function epl_author_tab_contact_form( $epl_author = array() ) {
  * @since 1.0
  */
 function epl_archive_utility_wrap_before() {
-	echo '<div class="epl-archive-utility-wrapper epl-clearfix">';
+	echo '<div class="epl-loop-tools-wrap epl-archive-utility-wrapper epl-clearfix">';
 }
+add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
 /**
  * Archive Utility Wrapper After
@@ -1566,7 +1559,6 @@ function epl_archive_utility_wrap_after() {
 	echo '</div>';
 }
 add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
-add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
 /**
  * Listing Image Gallery
