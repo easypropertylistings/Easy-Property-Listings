@@ -1300,7 +1300,6 @@ add_action( 'epl_add_custom_menus' , 'epl_switch_views_sorting' , 10 );
  */
 function epl_get_switch_views_sorting( $args = array() ) {
 
-	// Implement filter
 	$defaults = array(
 		'switch_views',
 		'sorting_tool',
@@ -1313,7 +1312,7 @@ function epl_get_switch_views_sorting( $args = array() ) {
 
 	ob_start();
 
-	//Wrapper
+	// Wrapper
 	if ( !empty( $defaults ) ) { ?>
 		<div class="epl-loop-tools epl-loop-tools-switch-sort epl-switching-sorting-wrap">
 			<?php
@@ -1324,7 +1323,6 @@ function epl_get_switch_views_sorting( $args = array() ) {
 					}
 
 					switch( $tool ) {
-
 
 						case 'switch_views' :
 							epl_switch_views();
