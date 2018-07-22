@@ -1258,13 +1258,12 @@ function epl_sorting_options($post_type = null) {
 	) );
 }
 
-
 /**
  * Switch Sorting Wrapper
  *
  * @since 3.2.3
  */
-function epl_property_loop_start_utility_wrapper() { ?>
+function epl_tools_utility_wrapper() { ?>
 
 	<?php
 	// if there is hooked stuff output the wrapper
@@ -1277,49 +1276,89 @@ function epl_property_loop_start_utility_wrapper() { ?>
 	</div>
 <?php
 }
-add_action( 'epl_property_loop_start' , 'epl_property_loop_start_utility_wrapper' , 10 );
-
-
+add_action( 'epl_property_loop_start' , 'epl_tools_utility_wrapper' , 10 );
 
 /**
- * Switch Sorting
+ * Switch Sorting Wrapper
  *
  * @since 2.0
  * @revised 3.2.3
  */
 function epl_switch_views_sorting() {
-	$sortby = '';
-	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
-		$sortby = sanitize_text_field(trim($_GET['sortby']));
-	}
-	$sorters = epl_sorting_options();
-	?>
-	<div class="epl-loop-tool epl-tool-sorting epl-switching-sorting-wrap">
-		<div class="epl-properties-sorting epl-clearfix">
-			<select id="epl-sort-listings">
-				<option <?php selected( $sortby, '' ); ?> value=""><?php echo apply_filters( 'epl_switch_views_sorting_title_sort' , __('Sort','easy-property-listings' ) ); ?></option>
-				<?php
-					foreach($sorters as $sorter) { ?>
-						<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
-							<?php echo $sorter['label']; ?>
-						</option> <?php
-					}
-				?>
-			</select>
-		</div>
-	</div>
-	<?php
+
+	echo epl_get_switch_views_sorting();
+
 }
 add_action( 'epl_add_custom_menus' , 'epl_switch_views_sorting' , 10 );
 
+/**
+ * Retrieves the switch and sorting options normally right aligned
+ *
+ * @since 3.2.3
+ *
+ * @return string
+ */
+function epl_get_switch_views_sorting( $args = array() ) {
+
+	// Implement filter
+	$defaults = array(
+		'switch_views',
+		'sorting_tool',
+	);
+
+	$tools = apply_filters('epl_switch_views_sorting', $defaults);
+
+	// Backward Compat Action
+	do_action('epl_archive_utility_wrap_start');
+
+	ob_start();
+
+	//Wrapper
+	if ( !empty( $defaults ) ) { ?>
+		<div class="epl-loop-tools epl-loop-tools-switch-sort epl-switching-sorting-wrap">
+			<?php
+				foreach( $tools as $tool ) {
+
+					if( !empty( $args ) && !in_array( $tool, $args ) ) {
+						continue;
+					}
+
+					switch( $tool ) {
+
+
+						case 'switch_views' :
+							epl_switch_views();
+							break;
+
+						case 'sorting_tool' :
+							epl_sorting_tool();
+							break;
+
+						default :
+							// action to hook additional tools
+							do_action( 'epl_switch_views_sorting_' . $tool );
+							break;
+					}
+				}
+			?>
+		</div>
+		<?php
+	}
+	return ob_get_clean();
+
+	// Backward Compat Action
+	do_action('epl_archive_utility_wrap_end');
+}
+add_action( 'epl_add_custom_menus' , 'epl_switch_views_sorting' , 10 );
 
 /**
  * Switch Views
  *
- * @return string
  * @since 2.0
+ *
+ * @return string
  */
-function epl_switch_views () { ?>
+function epl_switch_views() { ?>
 	<div class="epl-loop-tool epl-tool-switch epl-switch-view">
 		<ul>
 			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_list' , __('List','easy-property-listings' ) ); ?>" class="epl-current-view view-list" data-view="list">
@@ -1329,55 +1368,38 @@ function epl_switch_views () { ?>
 		</ul>
 	</div> <?php
 }
-add_action('epl_add_custom_menus','epl_switch_views',1);
-
-
-
-
-
-
-
 
 /**
- * Switch Sorting
+ * Displays the Switch Sorting select options
  *
  * @since 2.0
  * @revised 3.2.3
+ *
+ * @return string
  */
-function epl_switch_views_sorting_depreciate() {
+function epl_sorting_tool() {
 	$sortby = '';
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 		$sortby = sanitize_text_field(trim($_GET['sortby']));
 	}
-	do_action('epl_archive_utility_wrap_start');
-	$sorters = epl_sorting_options();
-	?>
-	<div class="epl-loop-tool epl-switching-sorting-wrap epl-clearfix">
-		<?php do_action('epl_add_custom_menus'); ?>
-		<div class="epl-properties-sorting epl-clearfix">
-			<select id="epl-sort-listings">
-				<option <?php selected( $sortby, '' ); ?> value=""><?php echo apply_filters( 'epl_switch_views_sorting_title_sort' , __('Sort','easy-property-listings' ) ); ?></option>
-				<?php
-					foreach($sorters as $sorter) { ?>
-						<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
-							<?php echo $sorter['label']; ?>
-						</option> <?php
-					}
-				?>
-			</select>
-		</div>
+	$sorters = epl_sorting_options(); ?>
+
+	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
+		<select id="epl-sort-listings">
+			<option <?php selected( $sortby, '' ); ?> value="">
+				<?php echo apply_filters( 'epl_switch_views_sorting_title_sort' , __('Sort','easy-property-listings' ) ); ?>
+			</option>
+			<?php
+				foreach($sorters as $sorter) { ?>
+					<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
+						<?php echo $sorter['label']; ?>
+					</option> <?php
+				}
+			?>
+		</select>
 	</div>
-	<?php
-	do_action('epl_archive_utility_wrap_end');
+<?php
 }
-//add_action( 'epl_add_custom_menus' , 'epl_switch_views_sorting' , 20 );
-
-
-
-
-
-
-
 
 /**
  * Archive Sorting
