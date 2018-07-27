@@ -409,7 +409,7 @@ function epl_property_author_box_simple_grav() {
  *
  * @since 1.0
  */
-function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','easy-property-listings' )" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
+function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','easy-property-listings' )" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more, $d_inspection_time, $d_ical_link  ) {
 	global $property;
 
 	if( is_null($property) )
@@ -2170,6 +2170,9 @@ function epl_inspection_format($inspection_date) {
 
 	if($time_format == '')
 		$time_format = 'h:i A';
+
+	$date_format = apply_filters('epl_inspection_date_format', $date_format);
+	$time_format = apply_filters('epl_inspection_time_format', $time_format);
 
 
 	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';

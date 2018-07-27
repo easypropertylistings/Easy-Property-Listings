@@ -30,29 +30,33 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			$property_types = array_keys( $property_types );
 		}
 
-		// Prince Annotate options here
+
 		$defaults = array(
-			'title'      =>	'',
-			'types'      =>	$property_types,
-			'featured'   =>	0,
-			'status'     =>	array( 'current', 'sold', 'leased' ),
-			'view'		 => 'default',
-			'display'    =>	'image',
-			'image'      =>	'thumbnail',
-			'archive'    =>	0,
-			'order_rand' =>	0,
-			'd_title'    =>	0,
+			'title'      =>	'', // widget title
+			'types'      =>	$property_types, // listing types to show in widget
+			'featured'   =>	0, // show only featured listings ?
+			'status'     =>	array( 'current', 'sold', 'leased' ), // property status to show
+			'view'		 => 'default', // template to render results : templates/content/widget/listing, override in theme
+			'display'    =>	'image', // show featured image ?
+			'image'      =>	'thumbnail', // image size
+			'archive'    =>	0, // if this is selected, widget will dynamially show listings of currently displayed listing post type 
+			'order_rand' =>	0, // randomly order ?
+			'open_house'	=>	0, // show listings open for inspection ?
+			'd_title'    =>	0, // show title of listing ?
 
-			'more_text'  =>	'Read More',
-			'd_excerpt'  =>	'off',
-			'd_suburb'   =>	'on',
-			'd_street'   =>	'on',
-			'd_price'    =>	'on',
-			'd_more'     =>	'on',
+			'more_text'  =>	'Read More', // read more text
+			'd_excerpt'  =>	'off', // show excerpt ?
+			'd_suburb'   =>	'on', // show suburb ?
+			'd_street'   =>	'on', // show street address ?
+			'd_price'    =>	'on', // show listing price ? 
+			'd_more'     =>	'on', // show read more button ?
+			'd_inspection_time'	=>	'off', // show inspection dates
+			'd_ical_link'		=>	'on', // link inspection dates to ical
 
-			'd_icons'    =>	'none',
-			'p_number'   =>	1,
-			'p_skip'     =>	0,
+			'd_icons'    =>	'none', // show icons ? none | bed & bath | all
+			'p_number'   =>	1, // number of listings to show
+			'p_skip'     =>	0, // number of listings to skip
+			
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
@@ -95,6 +99,16 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				'value'	=> 'yes',
 			);
 		}
+
+		// Loading open house listings.
+		if ( 'on' === $instance['open_house'] ) {
+			$query_args['meta_query'][] = array(
+				'key' 		=> 'property_inspection_times',
+				'value' 	=> '',
+				'compare' 	=> '!=',
+			);
+		}
+
 		// Loading current archive page listings.
 		if ( 'on' === $instance['archive'] && is_post_type_archive() ) {
 			$get_current_type = get_post_type();
@@ -159,6 +173,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$instance['display']    = strip_tags( $new_instance['display'] );
 		$instance['image']      = strip_tags( $new_instance['image'] );
 		$instance['archive']    = strip_tags( $new_instance['archive'] );
+		$instance['open_house']    = strip_tags( $new_instance['open_house'] );
 		$instance['d_title']    = strip_tags( $new_instance['d_title'] );
 
 		$instance['more_text']  = strip_tags( $new_instance['more_text'] );
@@ -167,6 +182,8 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$instance['d_street']   = strip_tags( $new_instance['d_street'] );
 		$instance['d_price']    = strip_tags( $new_instance['d_price'] );
 		$instance['d_more']     = strip_tags( $new_instance['d_more'] );
+		$instance['d_inspection_time']     = strip_tags( $new_instance['d_inspection_time'] );
+		$instance['d_ical_link']     = strip_tags( $new_instance['d_ical_link'] );
 
 		$instance['d_icons']    = strip_tags( $new_instance['d_icons'] );
 		$instance['p_number']   = strip_tags( $new_instance['p_number'] );
@@ -187,6 +204,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'image'      =>	'thumbnail',
 			'archive'    =>	0,
 			'order_rand' =>	0,
+			'open_house'	=>	0,
 			'd_title'    =>	0,
 
 			'more_text'  =>	__( 'Read More', 'easy-property-listings' ),
@@ -195,6 +213,8 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'd_street'   =>	'on',
 			'd_price'    =>	'on',
 			'd_more'     =>	'on',
+			'd_inspection_time'	=>	0,
+			'd_ical_link'		=>	1,
 
 			'd_icons'    =>	'none',
 			'p_number'   =>	1,
@@ -220,13 +240,17 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$d_icons 	= esc_attr( $instance['d_icons'] );
 		$p_number	= esc_attr( $instance['p_number'] );
 		$p_skip		= esc_attr( $instance['p_skip'] );
-		$order_rand	= esc_attr( $instance['order_rand'] ); ?>
+		$order_rand	= esc_attr( $instance['order_rand'] ); 
+		$open_house	= esc_attr( $instance['open_house'] ); 
+		$d_inspection_time	= esc_attr( $instance['d_inspection_time'] ); 
+		$d_ical_link	= esc_attr( $instance['d_ical_link'] ); 
+	?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'easy-property-listings'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
 		</p>
-
+		<p> <strong><?php _e('Query Settings', 'easy-property-listings'); ?></strong></p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'types' ); ?>"><?php _e( 'Listing Type', 'easy-property-listings' ); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id( 'types' ); ?>" name="<?php echo $this->get_field_name( 'types' ); ?>[]" multiple="multiple">
@@ -272,6 +296,50 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				?>
 			</select>
 		</p>
+
+		<p>
+			<select id="<?php echo $this->get_field_id('p_number'); ?>" name="<?php echo $this->get_field_name('p_number'); ?>">
+				<?php
+					for ($i=1;$i<=20;$i++) {
+						echo '<option value="'.$i.'"'; 	if ($i==$instance['p_number']) echo ' selected="selected"'; echo '>'.__($i, 'easy-property-listings').'</option>';
+					}
+				?>
+			</select>
+			<label for="<?php echo $this->get_field_id('p_number'); ?>"><?php _e('Number of Properties', 'easy-property-listings'); ?></label>
+		</p>
+
+		<p>
+			<select id="<?php echo $this->get_field_id('p_skip'); ?>" name="<?php echo $this->get_field_name('p_skip'); ?>">
+				<?php
+					for ($i=0;$i<=20;$i++) {
+						echo '<option value="'.$i.'"'; 	if ($i==$instance['p_skip']) echo ' selected="selected"'; echo '>'.__($i, 'easy-property-listings').'</option>';
+					}
+				?>
+			</select>
+			<label for="<?php echo $this->get_field_id('p_skip'); ?>"><?php _e('Properties to Skip', 'easy-property-listings'); ?></label>
+		</p>
+
+		<p>
+			<input type="checkbox" id="<?php echo $this->get_field_id('featured'); ?>" name="<?php echo $this->get_field_name('featured'); ?>" <?php if ($instance['featured']) echo 'checked="checked"' ?> />
+			<label for="<?php echo $this->get_field_id('featured'); ?>"><?php _e('Only Show Featured Properties', 'easy-property-listings'); ?></label>
+		</p>
+
+		<p>
+			<input type="checkbox" id="<?php echo $this->get_field_id('open_house'); ?>" name="<?php echo $this->get_field_name('open_house'); ?>" <?php if ($instance['open_house']) echo 'checked="checked"' ?> />
+			<label for="<?php echo $this->get_field_id('open_house'); ?>"><?php _e('Only Show Open House Listings', 'easy-property-listings'); ?></label>
+		</p>
+
+		<p>
+			<input type="checkbox" id="<?php echo $this->get_field_id('archive'); ?>" name="<?php echo $this->get_field_name('archive'); ?>" <?php if ($instance['archive']) echo 'checked="checked"' ?> />
+			<label for="<?php echo $this->get_field_id('archive'); ?>"><?php _e('Dynamic', 'easy-property-listings'); ?></label>
+		</p>
+
+		<p>
+			<input type="checkbox" id="<?php echo $this->get_field_id('order_rand'); ?>" name="<?php echo $this->get_field_name('order_rand'); ?>" <?php if ($instance['order_rand']) echo 'checked="checked"' ?> />
+			<label for="<?php echo $this->get_field_id('order_rand'); ?>"><?php _e('Random Order', 'easy-property-listings'); ?></label>
+		</p>
+
+		<p> <strong><?php _e('Display Settings', 'easy-property-listings'); ?></strong></p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'view' ); ?>"><?php _e( 'View', 'easy-property-listings' ); ?></label>
@@ -337,32 +405,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			</select>
 		</p>
 
-		<p>
-			<select id="<?php echo $this->get_field_id('p_number'); ?>" name="<?php echo $this->get_field_name('p_number'); ?>">
-				<?php
-					for ($i=1;$i<=20;$i++) {
-						echo '<option value="'.$i.'"'; 	if ($i==$instance['p_number']) echo ' selected="selected"'; echo '>'.__($i, 'easy-property-listings').'</option>';
-					}
-				?>
-			</select>
-			<label for="<?php echo $this->get_field_id('p_number'); ?>"><?php _e('Number of Properties', 'easy-property-listings'); ?></label>
-		</p>
-
-		<p>
-			<select id="<?php echo $this->get_field_id('p_skip'); ?>" name="<?php echo $this->get_field_name('p_skip'); ?>">
-				<?php
-					for ($i=0;$i<=20;$i++) {
-						echo '<option value="'.$i.'"'; 	if ($i==$instance['p_skip']) echo ' selected="selected"'; echo '>'.__($i, 'easy-property-listings').'</option>';
-					}
-				?>
-			</select>
-			<label for="<?php echo $this->get_field_id('p_skip'); ?>"><?php _e('Properties to Skip', 'easy-property-listings'); ?></label>
-		</p>
-
-		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id('featured'); ?>" name="<?php echo $this->get_field_name('featured'); ?>" <?php if ($instance['featured']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('featured'); ?>"><?php _e('Only Show Featured Properties', 'easy-property-listings'); ?></label>
-		</p>
+		
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_title'); ?>" name="<?php echo $this->get_field_name('d_title'); ?>" <?php if ($instance['d_title']) echo 'checked="checked"' ?> />
@@ -390,24 +433,27 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('more_text'); ?>"><?php _e('Read More Label', 'easy-property-listings'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('more_text'); ?>" name="<?php echo $this->get_field_name('more_text'); ?>" type="text" value="<?php echo $more_text; ?>" />
-		</p>
-
-		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_more'); ?>" name="<?php echo $this->get_field_name('d_more'); ?>" <?php if ($instance['d_more']) echo 'checked="checked"' ?> />
 			<label for="<?php echo $this->get_field_id('d_more'); ?>"><?php _e('Read More Button', 'easy-property-listings'); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id('archive'); ?>" name="<?php echo $this->get_field_name('archive'); ?>" <?php if ($instance['archive']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('archive'); ?>"><?php _e('Dynamic', 'easy-property-listings'); ?></label>
+			<input type="checkbox" id="<?php echo $this->get_field_id('d_inspection_time'); ?>" name="<?php echo $this->get_field_name('d_inspection_time'); ?>" <?php if ($instance['d_inspection_time']) echo 'checked="checked"' ?> />
+			<label for="<?php echo $this->get_field_id('d_inspection_time'); ?>"><?php _e('Inspection Times', 'easy-property-listings'); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id('order_rand'); ?>" name="<?php echo $this->get_field_name('order_rand'); ?>" <?php if ($instance['order_rand']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('order_rand'); ?>"><?php _e('Random Order', 'easy-property-listings'); ?></label>
+			<input type="checkbox" id="<?php echo $this->get_field_id('d_ical_link'); ?>" name="<?php echo $this->get_field_name('d_ical_link'); ?>" <?php if ($instance['d_ical_link']) echo 'checked="checked"' ?> />
+			<label for="<?php echo $this->get_field_id('d_ical_link'); ?>"><?php _e('Inspection Time Ical Link', 'easy-property-listings'); ?></label>
 		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id('more_text'); ?>"><?php _e('Read More Label', 'easy-property-listings'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('more_text'); ?>" name="<?php echo $this->get_field_name('more_text'); ?>" type="text" value="<?php echo $more_text; ?>" />
+		</p>
+
+
+		
         <?php
 	}
 }
