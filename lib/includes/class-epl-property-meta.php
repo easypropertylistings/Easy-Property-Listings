@@ -145,7 +145,7 @@ class EPL_Property_Meta {
 	 * @param  string $meta_key The meta key to get the value from default is property_inspection_times
 	 * @return mixed Return formatted inspection times with a iCal link
 	 */
-	public function get_property_inspection_times( $meta_key = 'property_inspection_times' ) {
+	public function get_property_inspection_times( $ical=true, $meta_key = 'property_inspection_times' ) {
 		if('leased' == $this->get_property_meta('property_status') || 'sold' == $this->get_property_meta('property_status'))
 			return;
 
@@ -182,13 +182,22 @@ class EPL_Property_Meta {
 					foreach ($inspectarray as $key => &$element) {
 						if(!empty($element)) {
 							$element_formatted = apply_filters('epl_inspection_format',$element);
-							$return .= "<li class='home-open-date'>
-										<a
+							$return .= "<li class='home-open-date'>";
+
+								if( $ical ) {
+
+									$return .= "<a
 											class ='epl_inspection_calendar'
 											href='".get_bloginfo('url')."?epl_cal_dl=1&cal=ical&dt=".base64_encode(htmlspecialchars($element))."&propid=".$this->post->ID."' >"
 												. $element_formatted ."
-										</a>
-									</li>";
+										</a>";
+
+								} else {
+									$return .= $element_formatted;
+								}
+								
+
+								$return .= "</li>";
 						}
 					}
 					if(!empty($return)) {
