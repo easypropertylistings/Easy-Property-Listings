@@ -119,32 +119,46 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 
 	$query_open = new WP_Query( $args );
+        
+        //print_r($query_open);
 
 	if( is_object($query_object) ) {
 		$query_open = $query_object;
 	}
+      
+       if ( $query_open->have_posts() ) { ?>
 
-	if ( $query_open->have_posts() ) { ?>
+
+
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template, 'archive' ); ?>">
-				<?php
-					if ( $tools_top == 'on' ) {
+<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template, 'archive' ); ?>">
+
+<?php
+if ( $tools_top == 'on' ) {
 						do_action( 'epl_property_loop_start' );
-					}
+					}?>
+
+       <ul>
+<?php
 					while ( $query_open->have_posts() ) {
 						$query_open->the_post();
+
 						$template = str_replace('_','-',$template);
 						epl_property_blog($template);
-					}
+					}?>
+
+   </ul>
+<?php
 					if ( $tools_bottom == 'on' ) {
 						do_action( 'epl_property_loop_end' );
 					}
+
 				?>
 			</div>
 			<div class="loop-footer">
 				<?php
 					if( $pagination == 'on')
-						do_action('epl_pagination',array('query'	=>	$query_open));
+					do_action('epl_pagination',array('query'	=>	$query_open));
 				?>
 			</div>
 		</div>

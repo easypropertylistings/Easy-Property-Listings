@@ -150,9 +150,10 @@ class EPL_Property_Meta {
 			return;
 
 		$pit = $this->get_property_meta($meta_key);
-		$pit = trim($pit);
-		if($pit != '') {
+        $pit = trim($pit);
+                 if($pit != '') {
 			$list = array_filter(explode("\n", $pit));
+                      
 			if(!empty($list)){
 				// there are inspection times
 				$inspectarray = array();
@@ -174,14 +175,29 @@ class EPL_Property_Meta {
 				ksort($inspectarray);
 				// update inspection times by removing past dates
 				$new_inspection_meta = implode("\n", $inspectarray);
+                             
 				update_post_meta($this->post->ID,'property_inspection_times',$new_inspection_meta);
 
 				$return =  "";
 				if(count($inspectarray) >= 1) {
 					// unordered list for multiple inspection times
 					foreach ($inspectarray as $key => &$element) {
+                                           
 						if(!empty($element)) {
+                                                    
+                                                    $explodeDate = explode(" ", $element);
+                                                    
 							$element_formatted = apply_filters('epl_inspection_format',$element);
+                                                        
+                                              //     print_r($element_formatted);
+                                                
+                                                  //  $element_formatted_new =   str_replace("to","-",$element_formatted);
+                                                        
+//                                                        $element_formatted = date("l, j F", strtotime($explodeDate[0]))." ".$explodeDate[1]." ".$explodeDate[2]." ".$explodeDate[3];
+                                                        
+                                                   $element_formatted = date("l j F", strtotime($explodeDate[0]))." <br/>".date("g:iA",strtotime($explodeDate[1]))." ".$explodeDate[2]." ".date("g:iA",  strtotime($explodeDate[3]));
+                                                        
+                                                    
 							$return .= "<li class='home-open-date'>
 										<a
 											class ='epl_inspection_calendar'
@@ -250,21 +266,24 @@ class EPL_Property_Meta {
 	 * @return string formatted auction date
 	 */
 	public function get_property_auction( $admin=false ) {
-		$format = $admin == true ? apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a') : apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a');
+		$format = $admin == true ? apply_filters ( 'epl_get_property_auction_date' , 'l j F\<\/\b\r\>g:iA') : apply_filters ( 'epl_get_property_auction_date' , 'l j F\<\/\b\r\>g:iA');
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
-				if ( '' != $this->meta['property_auction'][0] ) {
-					if(strpos($this->meta['property_auction'][0], 'T') === FALSE){
-						$feed_format 	= apply_filters('epl_auction_feed_format','Y-m-d-H:i:s');
-			                        $epl_date 	= DateTime::createFromFormat($feed_format, $this->meta['property_auction'][0]);
+					if ( '' != $this->meta['property_auction'][0] ) {
+						if(strpos($this->meta['property_auction'][0], 'T') === FALSE){
+							$feed_format 	= apply_filters('epl_auction_feed_format','Y-F-d-H:i:s');
+                            $epl_date 		= DateTime::createFromFormat($feed_format, $this->meta['property_auction'][0]);
 
-						if($epl_date) {
-							$primary_feed_format 	= apply_filters('epl_auction_primary_feed_format','Y-m-d\TH:i');
-							$this->meta['property_auction'][0] = $epl_date->format($primary_feed_format);
-						}
+                            if($epl_date) {
+                            	$primary_feed_format 	= apply_filters('epl_auction_primary_feed_format','Y-F-d\TH:i');
+                                $this->meta['property_auction'][0] = $epl_date->format($primary_feed_format);
+                            }
+                        }
+                        
+
+                        
+						return apply_filters('epl_get_property_auction',date( $format, strtotime($this->meta['property_auction'][0]) ));
 					}
-					return apply_filters('epl_get_property_auction',date( $format, strtotime($this->meta['property_auction'][0]) ));
-				}
 			}
 		}
 	}
@@ -299,8 +318,8 @@ class EPL_Property_Meta {
 		}
 		// Auction Details and Price override
 		if ( $this->get_property_meta('property_authority') == 'auction') {
-			$property_price = apply_filters('epl_get_property_auction_label',__( 'Auction' , 'easy-property-listings' ) ). ' ' . $this->get_property_auction();
-		}
+			$property_price = apply_filters('epl_get_property_auction_label',__( 'Auction' , 'easy-property-listings' ) ). '<br/><span class ="upcoming-auction-time">' .$this->get_property_auction(). '</span>';
+		}// updated on 25-oct-2017 Komal
 		// Commercial Lease Override
 		if ( $this->get_property_meta('property_com_listing_type') == 'lease' ) {
 			$property_price = $property_price_view;
@@ -432,6 +451,7 @@ class EPL_Property_Meta {
 					} else {
 						return apply_filters('epl_get_property_available',date( $format, strtotime($av_date) ));
 					}
+
 				}
 			}
 		}
@@ -595,14 +615,40 @@ class EPL_Property_Meta {
 				$price_plain_value = $this->label_sold;
 			}
 			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
-				$price_plain_value = $this->get_property_price_display();
-			} else {
-				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
-					$price_plain_value = $this->epl_settings['label_poa'];
-				} else {
-					$price_plain_value = __( 'POA' , 'easy-property-listings' );
-				}
+			
+                              $price_plain_value = $this->get_property_price_display();
 			}
+                        
+                        elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
+			
+                              $price_plain_value = $this->get_property_price_display();
+			}
+
+			elseif ( '' != $this->get_property_price_display() && 'no' == $this->get_property_meta('property_price_display') ) {	// Property
+				$price_plain_value = $this->get_property_price_display();
+			}
+
+
+                        
+                        elseif (''== $this->get_property_price_display()) {	// Property
+				$price_plain_value = $this->get_property_price_display();
+			}
+                        
+                        else {
+				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
+					$price_plain_value = $this->get_property_price_display();
+				} else {
+					$price_plain_value = $this->get_property_price_display();
+				}
+			}// commented on 5 december to hide POA from admin section
+                        
+//                        else {
+//				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
+//					$price_plain_value = $this->epl_settings['label_poa'];
+//				} else {
+//					$price_plain_value = __( 'POA' , 'easy-property-listings' );
+//				}
+//			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
 
 				$price_plain_value = $this->label_under_offer;
@@ -690,16 +736,49 @@ class EPL_Property_Meta {
 			elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 				$price = '<span class="page-price">'. $this->get_property_price_display() . '</span>';
 
+			} 
+                        
+                        elseif ( '' != $this->get_property_price_display() && 'no' == $this->get_property_meta('property_price_display') ) {	// Property
+				$price = '<span class="page-price">'. $this->get_property_price_display() . '</span>';
+
+			} 
+// update code on  7 November if display price field is uncheck from admin section
+                        
+                        elseif ( '' != $this->get_property_price_display() && '' == $this->get_property_meta('property_price_display') ) {	// Property
+				$price = '<span class="page-price">'. $this->get_property_price_display() . '</span>';
+
 			}
-			elseif ( $this->get_property_meta('property_authority') == 'auction' && 'no' == $this->get_property_meta('property_price_display') ) {	// Auction
-				$price = '<span class="page-price auction">' . apply_filters('epl_get_property_auction_label', __( 'Auction' , 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
+                        
+                        
+			elseif ( 'Auction' == $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
+				$price = '<span class="page-price-auction">'. $this->get_property_price_display() . '</span>';
+
 			}
+                        
+                        			elseif ( 'Auction' == $this->get_property_price_display() && 'no' == $this->get_property_meta('property_price_display') ) {	// Property
+				$price = '<span class="page-price-auction">'. $this->get_property_price_display() . '</span>';
+
+			}
+                        elseif ( 'Auction' == $this->get_property_price_display() && '' == $this->get_property_meta('property_price_display') ) {	// Property
+				$price = '<span class="page-price-auction">'. $this->get_property_price_display() . '</span>';
+
+			}
+                        //commented on 15 November 2017 to show auction time everytime
+                        
+//                        else {
+//				$price_plain_value_poa = __( 'POA' , 'easy-property-listings' );
+//				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
+//					$price_plain_value_poa = $this->epl_settings['label_poa'];
+//				}
+//				$price = '<span class="page-price">' . $price_plain_value_poa . '</span>';
+//			}
+                        
 			else {
 				$price_plain_value_poa = __( 'POA' , 'easy-property-listings' );
 				if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
 					$price_plain_value_poa = $this->epl_settings['label_poa'];
 				}
-				$price = '<span class="page-price">' . $price_plain_value_poa . '</span>';
+				$price = '<span class="page-price">' . $this->get_property_price_display() . '</span>';
 			}
 			if ( 'yes' == $this->get_property_meta('property_under_offer') && 'sold' != $this->get_property_meta('property_status')) {
 				$price = '<span class="page-price under-offer-status">'.$this->label_under_offer.'</span>';
@@ -746,7 +825,12 @@ class EPL_Property_Meta {
 				elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta('property_price_display') ) {	// Property
 					$price = '<span class="page-price"><span class="page-price-prefix">'.apply_filters( 'epl_commercial_for_sale_label' , __('For Sale', 'easy-property-listings' ) ).'</span> '. $this->get_property_price_display() . $this->get_property_tax() . '</span>';
 				}
-
+                                
+                                
+                                   elseif ( $this->get_property_meta('property_authority') == 'auction' && 'yes' == $this->get_property_meta('property_price_display') ) {	// Auction
+				$price = '<span class="page-price-auction">' . apply_filters('epl_get_property_auction_label', __( 'Auction' , 'easy-property-listings' ) ) . $this->get_property_price_display() . '</span>';
+			
+                                   }
 				else {
 					$price_plain_value = '';
 					if(!empty($this->epl_settings) && isset($this->epl_settings['label_poa'])) {
@@ -820,6 +904,7 @@ class EPL_Property_Meta {
 		return apply_filters('epl_get_price',$price);
 	}
 
+	// price sticker
 	/**
 	 * Price Sticker
 	 *
@@ -966,201 +1051,68 @@ class EPL_Property_Meta {
 	 * Get Year Built
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_year_built( $returntype = 'i' ) {
-
-		if( $this->get_property_meta('property_year_built' , false ) == '' )
+		if( $this->get_property_meta('property_year_built') == '' )
 			return;
+		$year_built['i'] = '<span title="'.apply_filters('epl_get_property_year_built_label',__('Built', 'easy-property-listings' ) ).'" class="icon year-built"><span class="icon-value">'. $this->get_property_meta('property_year_built') . '</span></span>';
+		$year_built['d'] = apply_filters('epl_get_property_year_built_label',__('Built', 'easy-property-listings' ) ) . ' ' . $this->get_property_meta('property_year_built') . ' ';
+		$year_built['l'] = '<li class="year-built">'.apply_filters('epl_get_property_year_built_label',__('Built', 'easy-property-listings' ) ) . ' ' . $this->get_property_meta('property_year_built') . '</li>';
 
-		$returntype	= apply_filters( 'epl_get_property_year_built_return_type' , $returntype);
-		$value 		= $this->get_property_meta('property_year_built');
-		$label 		= apply_filters('epl_get_property_year_built_label',__('Built', 'easy-property-listings' ) );
-		$return 	= '';
-
-		switch( $returntype ) {
-
-			case 'i' :
-				$return = '<span title="'.$label.'" class="icon year-built"><span class="icon-value">'. $value . '</span></span>';
-				break;
-
-			case 'v' :
-				$return = $value;
-				break;
-
-			case 't':
-				$return = '<div class="epl-text-icon-container epl-text-icon-container-year-built">
-						<span class="epl-text-icon-label year-built">' . $label . '</span>
-						<span class="epl-text-icon-value year-built">'. $value . '</span>
-					</div>';
-				break;
-
-			case 'd' :
-				$return = $label.' '.$value.' ';
-				break;
-
-			case 'l' :
-				$return = '<li class="year-built">'.$label . ' ' .$value . '</li>';
-				break;
-		}
-		return apply_filters('epl_get_property_year_built',$return,$returntype,$value,$label);
+		return apply_filters('epl_get_property_year_built',$year_built[$returntype]);
 	}
 
 	/**
 	 * Get Bedrooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_bed( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_bedrooms' , false ) == '' )
 			return;
+		$bed['i'] = '<span title="'.apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'easy-property-listings' ) ).'" class="icon beds"><span class="icon-value">'. $this->get_property_meta('property_bedrooms') . '</span></span>';
+		$bed['d'] = $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bed_label',__('bed', 'easy-property-listings' ) ).' ';
+		$bed['l'] = '<li class="bedrooms">' . $this->get_property_meta('property_bedrooms') . ' '.apply_filters('epl_get_property_bed_label',__('bed', 'easy-property-listings' ) ).'</li>';
 
-		$returntype	= $returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
-		$returntype	= apply_filters( 'epl_get_property_bedrooms_return_type' , $returntype);
-
-		$label 		= apply_filters('epl_get_property_bedrooms_label',__('Bedrooms', 'easy-property-listings' ) );
-		$singular 	= apply_filters('epl_get_property_bed_label',__('bed', 'easy-property-listings' ) );
-		$value 		= $this->get_property_meta('property_bedrooms');
-		$return 	= '';
-
-		switch( $returntype ) {
-
-			case 'i' :
-				$return = '<span title="'.$label.'" class="icon beds"><span class="icon-value">'. $value . '</span></span>';
-				break;
-
-			case 'v' :
-				$return = $value;
-				break;
-
-			case 't':
-				$return = '<div class="epl-text-icon-container epl-text-icon-container-bed">
-						<span class="epl-text-icon-label bed">' . $label . '</span>
-						<span class="epl-text-icon-value bed">'. $value . '</span>
-					</div>';
-				break;
-
-			case 'd' :
-				$return = $singular.' '.$value.' ';
-				break;
-
-			case 'l' :
-				$return = '<li class="bedrooms">'.$value . ' ' .$singular . '</li>';
-				break;
-
-			case 's' :
-				$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-bed"><use xlink:href="#epl-icon-svg-bed"></use></svg>';
-				$return = '<div class="epl-icon-svg-container epl-icon-container-bed">
-						<div class="epl-icon epl-icon-svg bed" title="'.$label.'">' . $svg . '</div>
-						<div class="icon-value">'. $value . '</div>
-					</div>';
-				break;
-		}
-		return apply_filters('epl_get_property_bed',$return,$returntype,$value,$label,$singular);
+		return apply_filters('epl_get_property_bed',$bed[$returntype]);
 	}
 
 	/**
 	 * Get Bathrooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_bath( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_bathrooms' , false ) == '' )
 			return;
+		$bath['i'] = '<span title="'.apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'easy-property-listings' ) ).'" class="icon bath"><span class="icon-value">'. $this->get_property_meta('property_bathrooms') . '</span></span>';
+		$bath['d'] = $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bath_label',__('bath', 'easy-property-listings' ) ).' ';
+		$bath['l'] = '<li class="bathrooms">' . $this->get_property_meta('property_bathrooms') . ' '.apply_filters('epl_get_property_bath_label',__('bath', 'easy-property-listings' ) ).'</li>';
 
-		$returntype	= $returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
-		$returntype	= apply_filters( 'epl_get_property_bathrooms_return_type' , $returntype);
-
-		$label 		= apply_filters('epl_get_property_bathrooms_label',__('Bathrooms', 'easy-property-listings' ) );
-		$singular 	= apply_filters('epl_get_property_bath_label',__('bath', 'easy-property-listings' ) );
-		$value 		= $this->get_property_meta('property_bathrooms');
-		$return 	= '';
-
-		switch( $returntype ) {
-
-			case 'i' :
-				$return = '<span title="'.$label.'" class="icon bath"><span class="icon-value">'. $value . '</span></span>';
-				break;
-
-			case 'v' :
-				$return = $value;
-				break;
-
-			case 't':
-				$return = '<div class="epl-text-icon-container epl-text-icon-container-bath">
-						<span class="epl-text-icon-label bath">' . $label . '</span>
-						<span class="epl-text-icon-value bath">'. $value . '</span>
-					</div>';
-				break;
-
-			case 'd' :
-				$return = $singular.' '.$value.' ';
-				break;
-
-			case 'l' :
-				$return = '<li class="bedrooms">'.$value . ' ' .$singular . '</li>';
-				break;
-
-			case 's' :
-				$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-bath"><use xlink:href="#epl-icon-svg-bath"></use></svg>';
-				$return = '<div class="epl-icon-svg-container epl-icon-container-bed">
-						<div class="epl-icon epl-icon-svg bath" title="'.$label.'">' . $svg . '</div>
-						<div class="icon-value">'. $value . '</div>
-					</div>';
-				break;
-
-		}
-		return apply_filters('epl_get_property_bath',$return,$returntype,$value,$label,$singular);
+		return apply_filters('epl_get_property_bath',$bath[$returntype]);
 	}
 
 	/**
 	 * Get Rooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_rooms( $returntype = 'i' ) {
 		if( $this->get_property_meta('property_rooms' , false ) == '' )
 			return;
+		$rooms['i'] = '<span title="'.apply_filters('epl_get_property_rooms_label',__('Rooms', 'easy-property-listings' ) ).'" class="icon rooms"><span class="icon-value">'. $this->get_property_meta('property_rooms') . '</span></span>';
+		$rooms['d'] = $this->get_property_meta('property_rooms') . ' '.apply_filters('epl_get_property_rooms_label',__('rooms', 'easy-property-listings' ) ).' ';
+		$rooms['l'] = '<li class="rooms">' . $this->get_property_meta('property_rooms') . ' ' . apply_filters('epl_get_property_rooms_label',__('rooms', 'easy-property-listings' ) ).'</li>';
 
-		$returntype	= apply_filters( 'epl_get_property_rooms_return_type' , $returntype);
-
-		$label		= apply_filters('epl_get_property_rooms_label',__('Rooms', 'easy-property-listings' ) );
-		$value		= $this->get_property_meta('property_rooms');
-		$return		= '';
-
-		switch( $returntype ) {
-
-			case 'i' :
-				$return = '<span title="'.$label.'" class="icon rooms"><span class="icon-value">'. $value . '</span></span>';
-				break;
-
-			case 'v' :
-				$return = $value;
-				break;
-
-			case 't':
-				$return = '<div class="epl-text-icon-container epl-text-icon-container-rooms">
-						<span class="epl-text-icon-label rooms">' . $label . '</span>
-						<span class="epl-text-icon-value rooms">'. $value . '</span>
-					</div>';
-				break;
-
-			case 'd' :
-				$return = $label.' '.$value.' ';
-				break;
-
-			case 'l' :
-				$return = '<li class="rooms">'.$value . ' ' .$label . '</li>';
-				break;
-		}
-		return apply_filters('epl_get_property_rooms',$return,$returntype,$value,$label);
+		return apply_filters('epl_get_property_rooms',$rooms[$returntype]);
 	}
 
 	/**
@@ -1169,263 +1121,100 @@ class EPL_Property_Meta {
 	 * Caluclated value based on number of garages + carports
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_parking( $returntype = 'i' ) {
-
 		if( $this->get_property_meta('property_garage') == '' && $this->get_property_meta('property_carport') == '' )
 			return;
-
-		$returntype		= $returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
-		$returntype		= apply_filters( 'epl_get_property_parking_spaces_return_type' , $returntype);
-
 		$property_garage 	= intval($this->get_property_meta('property_garage'));
-		$property_carport	= intval($this->get_property_meta('property_carport'));
-		$value 			= $property_carport + $property_garage;
-
-		if ( $value == 0)
+		$property_carport 	= intval($this->get_property_meta('property_carport'));
+		$property_parking 	= $property_carport + $property_garage;
+		if ( $property_parking == 0)
 			return;
+		$label = apply_filters('epl_get_parking_spaces_label',__('Parking Spaces', 'easy-property-listings' ) );
+		$parking['i'] = '<span title="'.__('Parking Spaces', 'easy-property-listings' ).'" class="icon parking"><span class="icon-value">' .$property_parking. '</span></span>';
+		$parking['d'] = $property_parking . ' '.$label.' ';
+		$parking['l'] = '<li class="parking">' . $property_parking . ' '.$label.'</li>';
 
-		$label 			= apply_filters('epl_get_parking_spaces_label',__('Parking Spaces', 'easy-property-listings' ) );
-		$return 		= '';
-
-		switch( $returntype ) {
-
-			case 'i' :
-				$return 	= '<span title="'.$label.'" class="icon parking"><span class="icon-value">'. $value . '</span></span>';
-				break;
-
-			case 'v' :
-				$return = $value;
-				break;
-
-			case 't':
-				$return = '<div class="epl-text-icon-container epl-text-icon-container-parking">
-						<span class="epl-text-icon-label parking">' . $label . '</span>
-						<span class="epl-text-icon-value parking">'. $value . '</span>
-					</div>';
-				break;
-
-			case 'd' :
-				$return = $label.' '.$value.' ';
-				break;
-
-			case 'l' :
-				$return = '<li class="parking">'.$value . ' ' .$label . '</li>';
-				break;
-
-			case 's' :
-				$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-car"><use xlink:href="#epl-icon-svg-car"></use></svg>';
-				$return = '<div class="epl-icon-svg-container epl-icon-container-bed">
-						<div class="epl-icon epl-icon-svg car" title="'.$label.'">' . $svg . '</div>
-						<div class="icon-value">'. $value . '</div>
-					</div>';
-				break;
-		}
-		return apply_filters('epl_get_property_parking',$return,$returntype,$value,$label);
-
+		return apply_filters('epl_get_property_parking',$parking[$returntype]);
 	}
 
 	/**
 	 * Get Garage
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_garage( $returntype = 'i' ) {
-
 		if($this->get_property_meta('property_garage') == '')
 			return;
 
-		$returntype	= apply_filters( 'epl_get_property_garage_return_type' , $returntype);
+		$label = apply_filters('epl_get_property_garage_label',__('garage', 'easy-property-listings' ) );
+		$garage['i'] = '<span title="'.$label.'" class="icon parking"><span class="icon-value">'. $this->get_property_meta('property_garage') . '</span></span>';
+		$garage['l'] = '<li class="garage">' . $this->get_property_meta('property_garage') . ' '.$label.'</li>';
+		$garage['d'] = $this->get_property_meta('property_garage') . ' '.$label.' ';
 
-		$label 		= apply_filters('epl_get_property_garage_label',__('garage', 'easy-property-listings' ) );
-		$value 		= $this->get_property_meta('property_garage');
-		$return 	= '';
-
-		switch( $returntype ) {
-
-			case 'i' :
-				$return 	= '<span title="'.$label.'" class="icon parking"><span class="icon-value">'. $value . '</span></span>';
-				break;
-
-			case 'v' :
-				$return = $value;
-				break;
-
-			case 't':
-				$return = '<div class="epl-text-icon-container epl-text-icon-container-garage">
-						<span class="epl-text-icon-label garage">' . $label . '</span>
-						<span class="epl-text-icon-value garage">'. $value . '</span>
-					</div>';
-				break;
-
-			case 'd' :
-				$return = $label.' '.$value.' ';
-				break;
-
-			case 'l' :
-				$return = '<li class="garage">'.$value . ' ' .$label . '</li>';
-				break;
-		}
-		return apply_filters('epl_get_property_garage',$return,$returntype,$value,$label);
+		return apply_filters('epl_get_property_garage',$garage[$returntype]);
 	}
 
 	/**
 	 * Get Carport
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_carport( $returntype = 'i' ) {
-
 		if($this->get_property_meta('property_carport') == '')
 			return;
+		$label = apply_filters('epl_get_property_carport_label',__('carport', 'easy-property-listings' ) );
+		$carport['i'] = '<span title="'.$label.'" class="icon parking"><span class="icon-value">'. $this->get_property_meta('property_carport') . '</span></span>';
+		$carport['l'] = '<li class="carport">' . $this->get_property_meta('property_carport') . ' '.$label.'</li>';
+		$carport['d'] = $this->get_property_meta('property_carport') . ' '.$label.' ';
 
-		$returntype	= apply_filters( 'epl_get_property_carport_return_type' , $returntype);
-		$label 		= apply_filters('epl_get_property_carport_label',__('carport', 'easy-property-listings' ) );
-		$value 		= $this->get_property_meta('property_garage');
-		$return 	= '';
-
-		switch( $returntype ) {
-
-			case 'i' :
-				$return 	= '<span title="'.$label.'" class="icon parking"><span class="icon-value">'. $value . '</span></span>';
-				break;
-
-			case 'v' :
-				$return = $value;
-				break;
-
-			case 't':
-				$return = '<div class="epl-text-icon-container epl-text-icon-container-carport">
-						<span class="epl-text-icon-label carport">' . $label . '</span>
-						<span class="epl-text-icon-value carport">'. $value . '</span>
-					</div>';
-				break;
-
-			case 'd' :
-				$return = $label.' '.$value.' ';
-				break;
-
-			case 'l' :
-				$return = '<li class="carport">'.$value . ' ' .$label . '</li>';
-				break;
-		}
-		return apply_filters('epl_get_property_carport',$return,$returntype,$value,$label);
+		return apply_filters('epl_get_property_carport',$carport[$returntype]);
 	}
 
 	/**
 	 * Get Air Conditioning
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_air_conditioning( $returntype = 'i' ) {
-
 		if($this->get_property_meta('property_air_conditioning') == '')
 			return;
 
-		$returntype	= $returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
-		$returntype	= apply_filters( 'epl_get_property_air_conditioning_return_type' , $returntype);
-		$label 		= apply_filters('epl_get_property_air_conditioning_label',__('Air Conditioning', 'easy-property-listings' ) );
-		$value 		= $this->get_property_meta('property_air_conditioning');
-		$return 	= '';
+		$label = apply_filters('epl_get_property_air_conditioning_label',__('Air Conditioning', 'easy-property-listings' ) );
+		$property_air_conditioning = $this->get_property_meta('property_air_conditioning');
+		if( isset($property_air_conditioning) && ($property_air_conditioning == 1 || $property_air_conditioning == 'yes') ) {
+			$air['i'] = '<span title="'.$label.'" class="icon air"></span>';
+			$air['l'] = '<li class="air">'.$label.'</li>';
 
-		if( isset($value) && ($value == 1 || $value == 'yes') ) {
-
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon air"></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-air">
-							<span class="epl-text-icon-label air">' . $label . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="air">'.$label.'</li>';
-					break;
-
-				case 's' :
-					$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-air"><use xlink:href="#epl-icon-svg-air"></use></svg>';
-					$return = '<div class="epl-icon-svg-container epl-icon-container-air">
-									<div class="epl-icon epl-icon-svg air" title="'.$label.'">' . $svg . '</div>
-						</div>';
-					break;
-			}
-			return apply_filters('epl_get_property_air_conditioning',$return,$returntype,$value,$label);
+			return apply_filters('epl_get_property_air_conditioning',$air[$returntype]);
 		}
-
 	}
 
 	/**
 	 * Get Pool
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_pool( $returntype = 'i' ) {
-
 		if($this->get_property_meta('property_pool') == '')
 			return;
+		$label = apply_filters('epl_get_property_pool_label',__('Pool', 'easy-property-listings' ) );
+		$property_pool = $this->get_property_meta('property_pool');
+		if( isset($property_pool) && ($property_pool == 1 || $property_pool == 'yes') ) {
+			$pool['i'] = '<span title="'.$label.'" class="icon pool"></span>';
+			$pool['l'] = '<li class="pool">'.$label.'</li>';
 
-		$returntype	= $returntype == 'i' && epl_get_option('epl_icons_svg_listings') == 'on' ? 's' : $returntype;
-		$returntype	= apply_filters( 'epl_get_property_pool_return_type' , $returntype);
-		$label 		= apply_filters('epl_get_property_pool_label',__('Pool', 'easy-property-listings' ) );
-		$value  	= $this->get_property_meta('property_pool');
-		$return 	= '';
-
-		if( isset($value) && ($value == 1 || $value == 'yes') ) {
-
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon pool"></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-pool">
-							<span class="epl-text-icon-label pool">' . $label . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="pool">'.$label.'</li>';
-					break;
-
-				case 's' :
-					$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-pool"><use xlink:href="#epl-icon-svg-pool"></use></svg>';
-					$return = '<div class="epl-icon-svg-container epl-icon-container-pool">
-							<div class="epl-icon epl-icon-svg pool" title="'.$label.'">' . $svg . '</div>
-						</div>';
-					break;
-			}
-			return apply_filters('epl_get_property_pool',$return,$returntype,$value,$label);
+			return apply_filters('epl_get_property_pool',$pool[$returntype]);
 		}
 	}
 
@@ -1437,42 +1226,15 @@ class EPL_Property_Meta {
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_security_system( $returntype = 'i' ) {
-
 		if($this->get_property_meta('property_security_system') == '')
 			return;
+		$label = apply_filters('epl_get_property_security_system_label',__('Alarm System', 'easy-property-listings' ) );
+		$property_security_system = $this->get_property_meta('property_security_system');
+		if( isset($property_security_system) && ($property_security_system == 1 || $property_security_system == 'yes') ) {
+			$security_system['i'] = '<span title="'.$label.'" class="icon alarm"></span>';
+			$security_system['l'] = '<li class="alarm">'.$label.'</li>';
 
-		$returntype	= apply_filters( 'epl_get_property_security_system_return_type' , $returntype);
-		$label 		= apply_filters('epl_get_property_security_system_label',__('Alarm System', 'easy-property-listings' ) );
-		$value 		= $this->get_property_meta('property_security_system');
-		$return 	= '';
-
-		if( isset($value) && ($value == 1 || $value == 'yes') ) {
-
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon alarm"></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-alarm">
-							<span class="epl-text-icon-label alarm">' . $label . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="alarm">'.$label.'</li>';
-					break;
-			}
-			return apply_filters('epl_get_property_security_system',$return,$returntype,$value,$label);
+			return apply_filters('epl_get_property_security_system',$security_system[$returntype]);
 		}
 	}
 
@@ -1484,7 +1246,6 @@ class EPL_Property_Meta {
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
-
 		$property_land_area_unit = $this->get_property_meta('property_land_area_unit');
 		if ( $property_land_area_unit == 'squareMeter' ) {
 			$property_land_area_unit = __('m&#178;' , 'easy-property-listings' );
@@ -1496,37 +1257,11 @@ class EPL_Property_Meta {
 		$property_land_area_unit = apply_filters( 'epl_property_land_area_unit_label' , $property_land_area_unit );
 
 		if(is_numeric($this->get_property_meta('property_land_area')) ) {
+			$label = apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
+			$return = '
+				<li class="land-size">'. $label.' ' . $this->get_property_meta('property_land_area') .' '.$property_land_area_unit.'</li>';
 
-			$label 		= apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
-			$value 		= $this->get_property_meta('property_land_area').' '.$property_land_area_unit;
-			$return 	= '';
-
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon land-size"><span class="icon-value">'. $value . '</span></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-land-size">
-							<span class="epl-text-icon-label land-size">' . $label . '</span>
-							<span class="epl-text-icon-value land-size">'. $value . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="land-size">'. $label.' ' . $value.'</li>';
-					break;
-			}
-			return apply_filters('epl_get_property_land_value',$return,$returntype,$value,$label);
+			return apply_filters('epl_get_property_land_value',$return);
 		}
 	}
 
@@ -1538,7 +1273,6 @@ class EPL_Property_Meta {
 	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_building_area_value( $returntype = 'i' ) {
-
 		$building_unit = $this->get_property_meta('property_building_area_unit');
 		if ( $building_unit == 'squareMeter' ) {
 			$building_unit = __('m&#178;' , 'easy-property-listings' );
@@ -1550,217 +1284,30 @@ class EPL_Property_Meta {
 		$building_unit = apply_filters( 'epl_property_building_area_unit_label' , $building_unit );
 
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
-
-			$label 		= apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
-			$value 		= $this->get_property_meta('property_building_area').' '.$building_unit;
-			$return 	= '';
-
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon building-size"><span class="icon-value">'. $value . '</span></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-building-size">
-							<span class="epl-text-icon-label building-size">' . $label . '</span>
-							<span class="epl-text-icon-value building-size">'. $value . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="land-size">'. $label.' ' . $value.'</li>';
-					break;
-			}
-			return apply_filters('epl_get_property_building_area_value',$return,$returntype,$value,$label);
+			$label = apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
+			$return = '
+			<li class="land-size">'.$label.' ' . $this->get_property_meta('property_building_area') .' '.$building_unit. '</li>';
+			return apply_filters('epl_get_property_building_area_value',$return);
 		}
-	}
 
-	/**
-	 * Get Building Energy Rating
-	 *
-	 * @since 3.1.20
-	 * @param string $returntype Options i = span, d = string, l = list item,  t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item,  t = text
-	 */
-	public function get_property_energy_rating( $returntype = 'i' ) {
-
-		$value 		= $this->get_property_meta('property_energy_rating');
-		$return 	= '';
-		$returntype	= apply_filters( 'epl_get_property_energy_rating_return_type' , $returntype);
-
-		if( $value != 0 || $value != '' ) {
-
-			$label = apply_filters('epl_get_property_energy_rating_label',__('Energy Rating', 'easy-property-listings' ) );
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon energy_rating"><span class="icon-value">'. $value . '</span></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-energy_rating">
-							<span class="epl-text-icon-label energy_rating">' . $label . '</span>
-							<span class="epl-text-icon-value energy_rating">'. $value . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="energy_rating">'.$label . ' ' .$value . '</li>';
-					break;
-			}
-			return apply_filters('epl_get_property_energy_rating',$return,$returntype,$value,$label);
-		}
 	}
 
 	/**
 	 * Get New Construction
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, d = string, l = list item
+	 * @return string based on $returntype Options i = span, d = string, l = list item
 	 */
 	public function get_property_new_construction( $returntype = 'i' ) {
-
-		$value 		= $this->get_property_meta('property_new_construction');
-		$return 	= '';
-		$returntype	= apply_filters( 'epl_get_property_new_construction_return_type' , $returntype);
-
-		if( isset($value) && ($value == 1 || $value == 'yes') ) {
-
+		$property_new_construction = $this->get_property_meta('property_new_construction');
+		if( isset($property_new_construction) && ($property_new_construction == 1 || $property_new_construction == 'yes') ) {
 			$label = apply_filters('epl_get_property_new_construction_label',__('New Construction', 'easy-property-listings' ) );
+			$return_construction = array();
+			$return_construction['i'] = '<span title="'.$label.'" class="icon new_construction"></span>';
+			$return_construction['l'] = '<li class="new_construction">'.$label.'</li>';
 
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon new_construction"></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-new_construction">
-							<span class="epl-text-icon-label new_construction">' . $label . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="new_construction">'.$label.'</li>';
-					break;
-			}
-
-			return apply_filters('epl_get_property_new_construction',$return,$returntype,$value,$label);
-		}
-	}
-
-	/**
-	 * Get Holiday Rental
-	 *
-	 * @since 3.2
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
-	 */
-	public function get_property_holiday_rental( $returntype = 'i' ) {
-
-		$label 		= apply_filters('epl_get_property_holiday_rental_label',__('Holiday Rental', 'easy-property-listings' ) );
-		$value 		= $this->get_property_meta('property_holiday_rental');
-		$return 	= '';
-		$returntype	= apply_filters( 'epl_get_property_holiday_rental_return_type' , $returntype);
-
-		if( isset($value) && ($value == 1 || $value == 'yes') ) {
-
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon holiday_rental"></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-holiday_rental">
-							<span class="epl-text-icon-label holiday_rental">' . $label . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="holiday_rental">'.$label.'</li>';
-					break;
-			}
-			return apply_filters('epl_get_property_holiday_rental',$return,$returntype,$value,$label);
-		}
-	}
-
-	/**
-	 * Get Furnished
-	 *
-	 * @since 3.2
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
-	 */
-	public function get_property_furnished( $returntype = 'i' ) {
-
-		$value 		= $this->get_property_meta('property_furnished');
-		$returntype	= apply_filters( 'epl_get_property_furnished_return_type' , $returntype);
-
-		if( isset($value) && ($value == 1 || $value == 'yes') ) {
-
-			$label = apply_filters('epl_get_property_furnished_label',__('Holiday Rental', 'easy-property-listings' ) );
-
-			switch( $returntype ) {
-
-				case 'i' :
-					$return 	= '<span title="'.$label.'" class="icon furnished"></span>';
-					break;
-
-				case 'v' :
-					$return = $value;
-					break;
-
-				case 't':
-					$return = '<div class="epl-text-icon-container epl-text-icon-container-furnished">
-							<span class="epl-text-icon-label furnished">' . $label . '</span>
-						</div>';
-					break;
-
-				case 'd' :
-					$return = $label.' '.$value.' ';
-					break;
-
-				case 'l' :
-					$return = '<li class="furnished">'.$label.'</li>';
-					break;
-
-			}
-			return apply_filters('epl_get_property_furnished',$return,$returntype,$value,$label);
+			return apply_filters('epl_get_property_new_construction',$return_construction[$returntype]);
 		}
 	}
 
@@ -1867,10 +1414,9 @@ class EPL_Property_Meta {
 	 * @param string $key Meta key
 	 * @param string $search Meta key prefix to search for and remove from class, Default property_
 	 * @return string Formatted uppercase words
-	 * @depricated since 3.2
 	 */
 	public function get_label_from_metakey( $key , $search = 'property_' ){
-		return epl_get_meta_field_label($key);
+		return ucwords(str_replace('_',' ',str_replace($search, "", $key)));
 	}
 
 	/**
