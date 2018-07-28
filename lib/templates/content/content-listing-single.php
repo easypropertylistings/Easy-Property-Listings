@@ -12,6 +12,34 @@
 
 <div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded' ); ?>>
 	<div class="entry-header epl-header epl-clearfix">
+            
+            
+          <?php  $attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'order' => 'ASC', 'post_mime_type' => 'image') ); 
+
+echo '<div class="single-property-sliders"><ul class="propertyslider">';
+
+                       if( count($attachments)>0 ){
+    
+	foreach($attachments as $data ){
+            
+            
+                   $content_guide      =  $data->guid;
+                   
+               echo '<li><img src='.$content_guide.'></li>';
+            
+        }
+                       }
+                       
+                       echo '</ul></div>';
+                       
+
+                       ?>
+            
+            
+            
+         
+            
+            	<?php //do_action( 'epl_property_featured_image' ); ?>
 		<div class="title-meta-wrapper">
 			<div class="entry-col epl-property-details property-details">
 
@@ -33,35 +61,38 @@
 				<div class="epl-property-featured-icons property-feature-icons epl-clearfix">
 					<?php do_action('epl_property_icons'); ?>
 				</div>
+                            
+                            
 
 			</div>
+                    <div class="epl-property-meta property-meta">
+						<?php do_action('epl_property_available_dates');// meant for rent only ?>
+						<?php do_action('epl_property_inspection_times'); ?>
+					</div>
 		</div>
 	</div>
 
 	<div class="entry-content epl-content epl-clearfix">
 
-		<?php do_action( 'epl_property_featured_image' ); ?>
+	
 
 		<?php do_action( 'epl_buttons_single_property' ); ?>
 
 		<div class="epl-tab-wrapper tab-wrapper">
-			<div class="epl-tab-section epl-section-property-details">
-				<h5 class="epl-tab-title tab-title"><?php echo apply_filters('property_tab_title',__('Property Details', 'easy-property-listings' )); ?></h5>
+<!--			<div class="epl-tab-section epl-section-property-details">
+				<h5 class="epl-tab-title tab-title"><?php //echo apply_filters('property_tab_title',__('Property Details', 'easy-property-listings' )); ?></h5>
 				<div class="epl-tab-content tab-content">
 					<div class="epl-property-address property-details">
 						<h3 class="epl-tab-address tab-address">
 							<?php do_action('epl_property_address'); ?>
 						</h3>
-						<?php do_action('epl_property_land_category'); ?>
-						<?php do_action('epl_property_price_content'); ?>
-						<?php do_action('epl_property_commercial_category'); ?>
+						<?php //do_action('epl_property_land_category'); ?>
+						
+						<?php //do_action('epl_property_commercial_category'); ?>
 					</div>
-					<div class="epl-property-meta property-meta">
-						<?php do_action('epl_property_available_dates');// meant for rent only ?>
-						<?php do_action('epl_property_inspection_times'); ?>
-					</div>
+					
 				</div>
-			</div>
+			</div>-->
 
 			<div class="epl-tab-section epl-section-description">
 				<h5 class="epl-tab-title tab-title"><?php echo apply_filters('epl_property_tab_title_description',__('Description', 'easy-property-listings' )); ?></h5>
@@ -79,6 +110,17 @@
 					?>
 				</div>
 			</div>
+                    <div class="epl-tab-section epl-section-sidebar">                       
+                                   
+                <?php    $post_year_bulit = get_post_meta(get_the_ID(), 'property_year_built', true ); ?>
+                        
+                        <div class="property-sidebar">
+                            
+                          <h4>Built Date </h4>
+                          <p> <?php  echo $post_year_bulit; ?></p>
+                         </div>
+           
+                    </div>
 
 			<?php do_action('epl_property_tab_section_before'); ?>
 			<div class="epl-tab-section epl-tab-section-features">
