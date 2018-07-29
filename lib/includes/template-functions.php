@@ -1282,12 +1282,12 @@ add_action( 'epl_property_loop_start' , 'epl_tools_utility_wrapper' , 10 );
  * @since 2.0
  * @revised 3.2.3
  */
-function epl_switch_views_sorting() {
+function epl_listing_toolbar_items() {
 
-	echo epl_get_switch_views_sorting();
+	echo get_epl_listing_toolbar_items();
 
 }
-add_action( 'epl_add_custom_menus' , 'epl_switch_views_sorting' , 10 );
+add_action( 'epl_add_custom_menus' , 'epl_listing_toolbar_items' , 10 );
 
 /**
  * Retrieves the switch and sorting options normally right aligned
@@ -1296,14 +1296,14 @@ add_action( 'epl_add_custom_menus' , 'epl_switch_views_sorting' , 10 );
  *
  * @return string
  */
-function epl_get_switch_views_sorting( $args = array() ) {
+function get_epl_listing_toolbar_items( $args = array() ) {
 
 	$defaults = array(
 		'switch_views',
 		'sorting_tool',
 	);
 
-	$tools = apply_filters('epl_switch_views_sorting', $defaults);
+	$tools = apply_filters('epl_listing_toolbar_items', $defaults);
 
 	ob_start();
 
@@ -1320,16 +1320,16 @@ function epl_get_switch_views_sorting( $args = array() ) {
 					switch( $tool ) {
 
 						case 'switch_views' :
-							epl_switch_views();
+							do_action('epl_switch_views');
 							break;
 
 						case 'sorting_tool' :
-							epl_sorting_tool();
+							do_action('epl_sorting_tool');
 							break;
 
 						default :
 							// action to hook additional tools
-							do_action( 'epl_switch_views_sorting_' . $tool );
+							do_action( 'epl_listing_toolbar_' . $tool );
 							break;
 					}
 				}
@@ -1357,6 +1357,8 @@ function epl_switch_views() { ?>
 		</ul>
 	</div> <?php
 }
+
+add_action('epl_switch_views','epl_switch_views');
 
 /**
  * Displays the Switch Sorting select options
@@ -1389,6 +1391,8 @@ function epl_sorting_tool() {
 	</div>
 <?php
 }
+
+add_action('epl_sorting_tool','epl_sorting_tool');
 
 /**
  * Archive Sorting
