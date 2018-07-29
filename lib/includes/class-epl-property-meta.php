@@ -259,7 +259,19 @@ class EPL_Property_Meta {
 	 * @return string formatted auction date
 	 */
 	public function get_property_auction( $admin=false ) {
-		$format = $admin == true ? apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a') : apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a');
+		
+		$date_time_sep = ' \a\t ';
+
+		$date_format 	= epl_get_inspection_date_format();
+		$time_format 	= epl_get_inspection_time_format();
+		$format 		= $date_format.$date_time_sep.$time_format;
+
+		if($admin) {
+			$format = apply_filters('epl_get_property_auction_date_admin',$format);
+		} else {
+			$format = apply_filters('epl_get_property_auction_date',$format);
+		}
+		
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 				if ( '' != $this->meta['property_auction'][0] ) {
