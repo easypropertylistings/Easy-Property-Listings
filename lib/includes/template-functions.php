@@ -892,23 +892,135 @@ function epl_property_tab_section() {
 	$post_type = $property->post_type;
 	$the_property_feature_list = apply_filters('epl_the_property_feature_list_before', '' );
 
-	if ( 'property' == $post_type || 'rental' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_category('li');
+	$general_features_array = array(
+		'category',
+		'rural_category',
+		'commercial_category',
+		'bed',
+		'bath',
+		'rooms',
+		'year_built',
+		'parking',
+		'ac',
+		'pool',
+		'security',
+		'land_value',
+		'building_value',
+		'energy_rating',
+		'new_construction',
+	);
+
+	$general_features_array = apply_filters('epl_property_general_features_list', $general_features_array);
+
+	foreach( $general_features_array as $general_feature) {
+
+		switch($general_feature) {
+
+			case 'category':
+
+				if ( 'property' == $post_type || 'rental' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_category('li');
+				}
+			
+			break;
+
+			case 'rural_category':
+
+				if ( 'rural' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_rural_category('li');
+				}
+			
+			break;
+
+			case 'commercial_category':
+
+				if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_commercial_category('li');
+				}
+			
+			break;
+
+			case 'bed':
+				
+				$the_property_feature_list .= $property->get_property_bed('l').' ';
+
+			break;
+
+			case 'bath':
+
+				$the_property_feature_list .= $property->get_property_bath('l').' ';
+			
+			break;
+
+			case 'rooms':
+
+				$the_property_feature_list .= $property->get_property_rooms('l').' ';
+			
+			break;
+
+			case 'year_built':
+
+				$the_property_feature_list .= $property->get_property_year_built('l').' ';
+			
+			break;
+
+			case 'parking':
+
+				$the_property_feature_list .= $property->get_property_parking('l').' ';
+			
+			break;
+
+			case 'ac':
+
+				$the_property_feature_list .= $property->get_property_air_conditioning('l').' ';
+			
+			break;
+
+			case 'pool':
+
+				$the_property_feature_list .= $property->get_property_pool('l');
+			
+			break;
+
+			case 'security':
+
+				$the_property_feature_list .= $property->get_property_security_system('l').' ';
+			
+			break;
+
+			case 'land_value':
+
+				$the_property_feature_list .= $property->get_property_land_value('l');
+			
+			break;
+
+			case 'building_value':
+
+				$the_property_feature_list .= $property->get_property_building_area_value('l').' ';
+			
+			break;
+
+			case 'energy_rating':
+
+				$the_property_feature_list .= $property->get_property_energy_rating('l');
+			
+			break;
+
+			case 'new_construction':
+				
+				$the_property_feature_list .= $property->get_property_new_construction('l');
+
+			break;
+
+			default :
+
+				do_action('epl_property_general_feature_'.$general_feature);
+
+			break;
+
+		}
 	}
 
-	if ( 'rural' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_rural_category('li');
-	}
-
-	if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_commercial_category('li');
-	}
-
-	$the_property_feature_list .= $property->get_property_bed('l').' '.$property->get_property_bath('l').' '.$property->get_property_rooms('l').' ';
-	$the_property_feature_list .= $property->get_property_year_built('l').' '.$property->get_property_parking('l').' ';
-	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
-	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
-	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_energy_rating('l').' '.$property->get_property_new_construction('l');
 
 	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_common_features', '' );
 
