@@ -2346,6 +2346,29 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	return $count->count;
 }
 
+function epl_get_inspection_date_format() {
+
+	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'?
+		epl_get_option('custom_inspection_date_format') : epl_get_option('inspection_date_format');
+
+	if($date_format == '')
+		$date_format = 'd-M-Y';
+
+	return apply_filters('epl_inspection_date_format', $date_format);
+}
+
+function epl_get_inspection_time_format() {
+
+	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
+			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
+
+	if($time_format == '')
+		$time_format = 'h:i A';
+
+	return apply_filters('epl_inspection_time_format', $time_format);
+
+}
+
 /**
  * Inspection Format
  *
@@ -2356,20 +2379,9 @@ function epl_inspection_format($inspection_date) {
 	$formatted_date = '';
 	$inspection_date = explode(' ',$inspection_date);
 
-	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'?
-			epl_get_option('custom_inspection_date_format') : epl_get_option('inspection_date_format');
 
-	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
-			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
-
-	if($date_format == '')
-		$date_format = 'd-M-Y';
-
-	if($time_format == '')
-		$time_format = 'h:i A';
-
-	$date_format = apply_filters('epl_inspection_date_format', $date_format);
-	$time_format = apply_filters('epl_inspection_time_format', $time_format);
+	$date_format = epl_get_inspection_date_format();
+	$time_format = epl_get_inspection_time_format();
 
 
 	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';

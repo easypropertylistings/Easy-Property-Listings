@@ -429,7 +429,19 @@ class EPL_Property_Meta {
 	 * @return string Formatted date
 	 */
 	public function get_property_available( $admin = false ) {
-		$format = $admin == true ? apply_filters('epl_property_available_date_format_admin','l jS M \a\t g:i a') : apply_filters('epl_property_available_date_format','l jS F Y') ;
+
+		$date_time_sep = ' \a\t ';
+
+		$date_format 	= epl_get_inspection_date_format();
+		$time_format 	= epl_get_inspection_time_format();
+		$format 		= $date_format.$date_time_sep.$time_format;
+
+		if($admin) {
+			$format = apply_filters('epl_property_available_date_format_admin',$format);
+		} else {
+			$format = apply_filters('epl_property_available_date_format',$format);
+		}
+
 		if(isset($this->meta['property_date_available'])) {
 			if(isset($this->meta['property_date_available'][0])) {
 				if ( '' != $this->meta['property_date_available'][0] ) {
