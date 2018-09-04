@@ -96,7 +96,7 @@ class EPL_Shortcode_Listing {
 			'featured'                => 0,	// Featured listings.
 			'open_house'              =>	false, // only show open house
 			'auction'                 =>	false, // only show properties for auction
-			'class'					  =>	'epl-shortcode-listing', // wrapper class		
+			'class'                   =>	'epl-shortcode-listing', // wrapper class		
 			'wrap_template'           =>	'', // explained in detail below
 			'template'                => false, // Template can be set to "slim" for home open style template
 			'location'                => '', // Location slug. Should be a name like sorrento
@@ -108,6 +108,8 @@ class EPL_Shortcode_Listing {
 			'sort_order'              => 'DESC', // Sort by ASC or DESC
 			'query_object'            => '', // only for internal use . if provided use it instead of custom query
 			'pagination'              => 'on' // Enable or disable pagination
+			'post__in'                => '',	// show only these posts
+			'post__not_in'            => '' // dont show these posts
 		);
 
 		return $this->default_args;
@@ -152,6 +154,24 @@ class EPL_Shortcode_Listing {
 		if ( ! empty ( $this->attributes['offset'] ) ) {
 			$this->args['offset'] 		= $this->attributes['offset'];
 			$this->attributes['pagination'] 	= 'off'; // Disable pagination when offset is used
+		}
+	}
+
+	function set_post__in() {
+		if ( ! empty( $this->attributes['post__in'] ) ) {
+			$post__in = array_map( 'trim', explode( ',',$this->attributes['post__in'] ) );
+			if( !empty($post__in) ){
+				$this->args['post__in'] = $post__in;
+			}
+		}
+	}
+
+	function set_post__not_in() {
+		if ( ! empty( $this->attributes['post__not_in'] ) ) {
+			$post__not_in = array_map( 'trim', explode( ',',$this->attributes['post__not_in'] ) );
+			if( !empty($post__not_in) ){
+				$this->args['post__not_in'] = $post__not_in;
+			}
 		}
 	}
 
@@ -368,6 +388,8 @@ class EPL_Shortcode_Listing {
 		$this->set_post_type();
 		$this->set_initial_args();
 		$this->set_offset();
+		$this->set_post__in();
+		$this->set_post__not_in();
 		$this->process_epl_atts();
 		$this->set_author();
 		$this->set_featured();
