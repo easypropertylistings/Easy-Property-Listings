@@ -107,7 +107,7 @@ class EPL_Shortcode_Listing {
 			'orderby_clause'          =>	'', //  order by two different pieces of postmeta (for example, suburb first and state second)
 			'sort_order'              => 'DESC', // Sort by ASC or DESC
 			'query_object'            => '', // only for internal use . if provided use it instead of custom query
-			'pagination'              => 'on' // Enable or disable pagination
+			'pagination'              => 'on', // Enable or disable pagination
 			'post__in'                => '',	// show only these posts
 			'post__not_in'            => '' // dont show these posts
 		);
