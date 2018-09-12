@@ -874,6 +874,9 @@ class EPL_Property_Meta {
 			$diff = floor($diff/3600/24);
 
 		}
+
+		$pit = $this->get_property_meta('property_inspection_times');
+		$pit = trim($pit);
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
 			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
@@ -885,7 +888,7 @@ class EPL_Property_Meta {
 				if($this->get_epl_settings('sticker_new_range') >=  $diff)
 					$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
 
-				if ( $this->get_property_meta('property_inspection_times') != '' ){
+				if ( !empty($pit) ){
 					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
 
@@ -907,7 +910,7 @@ class EPL_Property_Meta {
 				if($this->get_epl_settings('sticker_new_range') >=  $diff)
 					$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
 
-				if ( $this->get_property_meta('property_inspection_times') != '' ){
+				if ( !empty($pit) ){
 					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
 			}
@@ -926,6 +929,8 @@ class EPL_Property_Meta {
 			}
 
 		}
+
+		do_action('epl_property_stickers',$this); // add more stickers
 		return apply_filters('epl_get_price_sticker',$price_sticker);
 	}
 
