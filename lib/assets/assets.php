@@ -129,13 +129,16 @@ function epl_admin_styles() {
 		return;
 
 	$active_size = isset($epl_settings['epl_admin_thumb_size'])? $epl_settings['epl_admin_thumb_size'] : 'admin-list-thumb';
-	$sizes = array(
-				'admin-list-thumb'		=>	'100 X 100',
-				'epl-image-medium-crop'		=>	'300 X 200',
-			);
+	$sizes = get_epl_image_sizes();
+	$width = '120px';
 
-	$width = current(explode(' X ',$sizes[$active_size]));
-	$width = $width + 20 . 'px'; // Add 20 pixels for padding
+	foreach( $sizes as $size) {
+		if($size['id'] == $active_size) {
+			$width = $size['width'] + 20 . 'px';  // Add 20 pixels for padding
+			break;
+		}
+	}
+
 	?>
 	<style>
 		.column-property_thumb {
