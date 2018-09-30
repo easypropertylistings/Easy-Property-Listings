@@ -1548,8 +1548,9 @@ class EPL_Property_Meta {
 				$property_land_area_format = apply_filters( 'epl_property_land_area_format' , number_format_i18n( $property_land_area ) );
 			}
 
-			$return = '
-				<li class="land-size">'. $label.' ' . $property_land_area_format .' '.$property_land_area_unit.'</li>';
+			$return = '<li class="land-size">'. $label.' ' . $property_land_area_format .' '.$property_land_area_unit.'</li>';
+
+			return apply_filters('epl_get_property_land_value',$return);
 
 			$label 		= apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
 			$value 		= $this->get_property_meta('property_land_area').' '.$property_land_area_unit;
@@ -1618,8 +1619,8 @@ class EPL_Property_Meta {
 				$building_area_format = apply_filters( 'epl_property_building_area_format' , number_format_i18n( $building_area ) );
 			}
 
-			$return = '
-			<li class="building-size">'.$label.' ' . $building_area_format .' '.$building_unit. '</li>';
+			$return = '<li class="building-size">'.$label.' ' . $building_area_format .' '.$building_unit. '</li>';
+
 			return apply_filters('epl_get_property_building_area_value',$return);
 
 			$label 		= apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
