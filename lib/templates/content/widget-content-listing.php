@@ -11,11 +11,21 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+global $property;
 ?>
 
 <div id="post-<?php the_ID(); ?>" class="epl-widget epl-listing-widget property-widget-image <?php do_action('epl_property_widget_status_class'); ?>">
 	<div class="entry-header">
-		<?php do_action('epl_property_widgets_featured_image' , $image); ?>
+		<?php 
+			do_action('epl_property_widgets_featured_image' , $image);
+
+			if( $d_inspection_time == 'on') : 
+			$show_ical = $d_ical_link == 'on' ? true : false;
+			$property_inspection_times = $property->get_property_inspection_times($show_ical); 	?>
+			<div class="epl-inspection-times">
+				<?php echo $property_inspection_times; ?>
+			</div>
+		<?php endif; ?>
 	</div>
 
 	<div class="entry-content">

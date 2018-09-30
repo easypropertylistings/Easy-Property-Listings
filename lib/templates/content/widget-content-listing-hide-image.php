@@ -15,6 +15,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <div id="post-<?php the_ID(); ?>" class="epl-widget epl-listing-widget property-widget-hide-image <?php do_action('epl_property_widget_status_class'); ?>">
 
+	<div class="entry-header">
+		<?php 
+			if( $d_inspection_time == 'on') : 
+			$show_ical = $d_ical_link == 'on' ? true : false;
+			$property_inspection_times = $property->get_property_inspection_times($show_ical); 	?>
+			<div class="epl-inspection-times">
+				<?php echo $property_inspection_times; ?>
+			</div>
+		<?php endif; ?>
+	</div>
+
 	<div class="entry-content">
 		<?php // Heading Options
 		if ($title == 'on') { ?>

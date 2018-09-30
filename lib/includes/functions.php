@@ -2289,6 +2289,21 @@ function epl_parse_atts($atts) {
 	if( empty($atts) )
 		return $atts;
 
+	$compare_operators = array(
+		'_min'			=>	'>=',
+		'_max'			=>	'<=',
+		'_not_equal'	=>	'!=',
+		'_like'			=>	'LIKE', 
+		'_not_like'		=>	'NOT LIKE', 
+		'_exists'		=>	'EXISTS', 
+		'_not_exists'	=>	'NOT EXISTS', 
+		'_in'			=>	'IN',
+		'_not_in'		=>	'NOT IN',
+		'_between'		=>	'BETWEEN',
+		'_not_between'	=>	'NOT BETWEEN'
+	);
+
+
 	foreach($atts as $key 	=>	&$value) {
 
 		$this_query = array(
@@ -2298,21 +2313,33 @@ function epl_parse_atts($atts) {
 
 		// check for meta
 		if( epl_starts_with($key,'epl_meta_') ) {
+
 			$key = preg_replace('/^epl_meta_/', '', $key);
 
-			if( epl_ends_with($key,'_min') || epl_ends_with($key,'_max') ) {
+			foreach($compare_operators as $look_for =>	$compare_operator) {
 
-				if(epl_ends_with($key,'_min')) {
-					$key = preg_replace('/_min$/', '', $key);
-					$this_query['compare'] = '>=';
-				} else {
-					$key = preg_replace('/_max$/', '', $key);
-					$this_query['compare'] = '<=';
+				if( epl_ends_with($key,$look_for) ) {
+
+					$key = preg_replace('/'.$look_for.'$/', '', $key);
+					$this_query['compare'] = $compare_operator;
+
+					if( in_array($look_for, array('_in','_not_in', '_between', '_not_between') ) ){
+
+						$this_query['value'] = 
+						array_map( 'trim', explode( ',', $this_query['value'] ) );
+					}
+
+					if( in_array($look_for, array('_exists','_not_exists') ) ){
+						
+						unset($this_query['value']);
+					}
 				}
-			}
+
+				
+			} 
 
 			$this_query['key'] = $key;
-			$query['meta_query'][] = $this_query;
+			$query['meta_query'][$key.'_clause'] = $this_query;
 		}
 
 	}
@@ -2494,4 +2521,18 @@ function epl_get_property_com_property_extent_opts() {
 			'part'		=>	__('Part', 'easy-property-listings' )
 		)
 	);
+}
+
+/**
+ * Get author id from name
+ *
+ * @since       3.1.1
+ */
+function epl_get_author_id_from_name($author) {
+	if( is_numeric($author) ) {
+		return absint($author);
+	} else {
+		$user = get_user_by( 'login', $author );
+		return $user->ID;
+	}
 }

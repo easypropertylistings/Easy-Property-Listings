@@ -145,7 +145,7 @@ class EPL_Property_Meta {
 	 * @param  string $meta_key The meta key to get the value from default is property_inspection_times
 	 * @return mixed Return formatted inspection times with a iCal link
 	 */
-	public function get_property_inspection_times( $meta_key = 'property_inspection_times' ) {
+	public function get_property_inspection_times( $ical=true, $meta_key = 'property_inspection_times' ) {
 		if('leased' == $this->get_property_meta('property_status') || 'sold' == $this->get_property_meta('property_status'))
 			return;
 
@@ -182,13 +182,22 @@ class EPL_Property_Meta {
 					foreach ($inspectarray as $key => &$element) {
 						if(!empty($element)) {
 							$element_formatted = apply_filters('epl_inspection_format',$element);
-							$return .= "<li class='home-open-date'>
-										<a
+							$return .= "<li class='home-open-date'>";
+
+								if( $ical ) {
+
+									$return .= "<a
 											class ='epl_inspection_calendar'
 											href='".get_bloginfo('url')."?epl_cal_dl=1&cal=ical&dt=".base64_encode(htmlspecialchars($element))."&propid=".$this->post->ID."' >"
 												. $element_formatted ."
-										</a>
-									</li>";
+										</a>";
+
+								} else {
+									$return .= $element_formatted;
+								}
+								
+
+								$return .= "</li>";
 						}
 					}
 					if(!empty($return)) {
@@ -250,7 +259,19 @@ class EPL_Property_Meta {
 	 * @return string formatted auction date
 	 */
 	public function get_property_auction( $admin=false ) {
-		$format = $admin == true ? apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a') : apply_filters ( 'epl_get_property_auction_date' , 'l jS M \a\t g:i a');
+		
+		$date_time_sep = ' \a\t ';
+
+		$date_format 	= epl_get_inspection_date_format();
+		$time_format 	= epl_get_inspection_time_format();
+		$format 		= $date_format.$date_time_sep.$time_format;
+
+		if($admin) {
+			$format = apply_filters('epl_get_property_auction_date_admin',$format);
+		} else {
+			$format = apply_filters('epl_get_property_auction_date',$format);
+		}
+		
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 				if ( '' != $this->meta['property_auction'][0] ) {
@@ -420,7 +441,19 @@ class EPL_Property_Meta {
 	 * @return string Formatted date
 	 */
 	public function get_property_available( $admin = false ) {
-		$format = $admin == true ? apply_filters('epl_property_available_date_format_admin','l jS M \a\t g:i a') : apply_filters('epl_property_available_date_format','l jS F Y') ;
+
+		$date_time_sep = ' \a\t ';
+
+		$date_format 	= epl_get_inspection_date_format();
+		$time_format 	= epl_get_inspection_time_format();
+		$format 		= $date_format.$date_time_sep.$time_format;
+
+		if($admin) {
+			$format = apply_filters('epl_property_available_date_format_admin',$format);
+		} else {
+			$format = apply_filters('epl_property_available_date_format',$format);
+		}
+
 		if(isset($this->meta['property_date_available'])) {
 			if(isset($this->meta['property_date_available'][0])) {
 				if ( '' != $this->meta['property_date_available'][0] ) {
@@ -841,6 +874,9 @@ class EPL_Property_Meta {
 			$diff = floor($diff/3600/24);
 
 		}
+
+		$pit = $this->get_property_meta('property_inspection_times');
+		$pit = trim($pit);
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type){
 			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta('property_status') ) {
@@ -852,7 +888,7 @@ class EPL_Property_Meta {
 				if($this->get_epl_settings('sticker_new_range') >=  $diff)
 					$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
 
-				if ( $this->get_property_meta('property_inspection_times') != '' ){
+				if ( !empty($pit) ){
 					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
 
@@ -874,7 +910,7 @@ class EPL_Property_Meta {
 				if($this->get_epl_settings('sticker_new_range') >=  $diff)
 					$price_sticker .= '<span class="status-sticker new">'.$this->get_epl_settings('label_new').'</span>';
 
-				if ( $this->get_property_meta('property_inspection_times') != '' ){
+				if ( !empty($pit) ){
 					$price_sticker .= '<span class="status-sticker open">'.$this->get_epl_settings('label_home_open').'</span>';
 				}
 			}
@@ -893,6 +929,8 @@ class EPL_Property_Meta {
 			}
 
 		}
+
+		do_action('epl_property_stickers',$this); // add more stickers
 		return apply_filters('epl_get_price_sticker',$price_sticker);
 	}
 

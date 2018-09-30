@@ -409,7 +409,7 @@ function epl_property_author_box_simple_grav() {
  *
  * @since 1.0
  */
-function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','easy-property-listings' )" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
+function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','easy-property-listings' )" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more, $d_inspection_time, $d_ical_link  ) {
 	global $property;
 
 	if( is_null($property) )
@@ -648,23 +648,23 @@ function epl_get_property_icons( $args = array() ) {
 		switch($icon) {
 
 			case 'bed' :
-				echo $property->get_property_bed(); 
+				echo $property->get_property_bed();
 			break;
 
 			case 'bath' :
-				echo $property->get_property_bath(); 
+				echo $property->get_property_bath();
 			break;
 
 			case 'parking' :
-				echo $property->get_property_parking(); 
+				echo $property->get_property_parking();
 			break;
 
 			case 'ac' :
-				echo $property->get_property_air_conditioning(); 
+				echo $property->get_property_air_conditioning();
 			break;
 
 			case 'pool' :
-				echo $property->get_property_pool(); 
+				echo $property->get_property_pool();
 			break;
 
 			default:
@@ -892,23 +892,135 @@ function epl_property_tab_section() {
 	$post_type = $property->post_type;
 	$the_property_feature_list = apply_filters('epl_the_property_feature_list_before', '' );
 
-	if ( 'property' == $post_type || 'rental' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_category('li');
+	$general_features_array = array(
+		'category',
+		'rural_category',
+		'commercial_category',
+		'bed',
+		'bath',
+		'rooms',
+		'year_built',
+		'parking',
+		'ac',
+		'pool',
+		'security',
+		'land_value',
+		'building_value',
+		'energy_rating',
+		'new_construction',
+	);
+
+	$general_features_array = apply_filters('epl_property_general_features_list', $general_features_array);
+
+	foreach( $general_features_array as $general_feature) {
+
+		switch($general_feature) {
+
+			case 'category':
+
+				if ( 'property' == $post_type || 'rental' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_category('li');
+				}
+			
+			break;
+
+			case 'rural_category':
+
+				if ( 'rural' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_rural_category('li');
+				}
+			
+			break;
+
+			case 'commercial_category':
+
+				if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_commercial_category('li');
+				}
+			
+			break;
+
+			case 'bed':
+				
+				$the_property_feature_list .= $property->get_property_bed('l').' ';
+
+			break;
+
+			case 'bath':
+
+				$the_property_feature_list .= $property->get_property_bath('l').' ';
+			
+			break;
+
+			case 'rooms':
+
+				$the_property_feature_list .= $property->get_property_rooms('l').' ';
+			
+			break;
+
+			case 'year_built':
+
+				$the_property_feature_list .= $property->get_property_year_built('l').' ';
+			
+			break;
+
+			case 'parking':
+
+				$the_property_feature_list .= $property->get_property_parking('l').' ';
+			
+			break;
+
+			case 'ac':
+
+				$the_property_feature_list .= $property->get_property_air_conditioning('l').' ';
+			
+			break;
+
+			case 'pool':
+
+				$the_property_feature_list .= $property->get_property_pool('l');
+			
+			break;
+
+			case 'security':
+
+				$the_property_feature_list .= $property->get_property_security_system('l').' ';
+			
+			break;
+
+			case 'land_value':
+
+				$the_property_feature_list .= $property->get_property_land_value('l');
+			
+			break;
+
+			case 'building_value':
+
+				$the_property_feature_list .= $property->get_property_building_area_value('l').' ';
+			
+			break;
+
+			case 'energy_rating':
+
+				$the_property_feature_list .= $property->get_property_energy_rating('l');
+			
+			break;
+
+			case 'new_construction':
+				
+				$the_property_feature_list .= $property->get_property_new_construction('l');
+
+			break;
+
+			default :
+
+				do_action('epl_property_general_feature_'.$general_feature);
+
+			break;
+
+		}
 	}
 
-	if ( 'rural' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_rural_category('li');
-	}
-
-	if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_commercial_category('li');
-	}
-
-	$the_property_feature_list .= $property->get_property_bed('l').' '.$property->get_property_bath('l').' '.$property->get_property_rooms('l').' ';
-	$the_property_feature_list .= $property->get_property_year_built('l').' '.$property->get_property_parking('l').' ';
-	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
-	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
-	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_energy_rating('l').' '.$property->get_property_new_construction('l');
 
 	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_common_features', '' );
 
@@ -1195,63 +1307,63 @@ function epl_sorting_options($post_type = null) {
 			'orderby'	=>	'meta_value_num',
 		),
 		array(
-			'id'	=>	'low',
-			'label'	=>	__('Price: Low to High','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
-			'order'	=>	'ASC',
+			'id'		=>	'low',
+			'label'		=>	__('Price: Low to High','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value_num',
 
 		),
 		array(
-			'id'	=>	'new',
-			'label'	=>	__('Date: Newest First','easy-property-listings' ),
-			'type'	=>	'post',
-			'key'	=>	'post_date',
-			'order'	=>	'DESC'
+			'id'		=>	'new',
+			'label'		=>	__('Date: Newest First','easy-property-listings' ),
+			'type'		=>	'post',
+			'key'		=>	'post_date',
+			'order'		=>	'DESC'
 
 
 		),
 		array(
-			'id'	=>	'old',
-			'label'	=>	__('Date: Oldest First','easy-property-listings' ),
-			'type'	=>	'post',
-			'key'	=>	'post_date',
-			'order'	=>	'ASC'
+			'id'		=>	'old',
+			'label'		=>	__('Date: Oldest First','easy-property-listings' ),
+			'type'		=>	'post',
+			'key'		=>	'post_date',
+			'order'		=>	'ASC'
 		),
 		array(
-			'id'	=>	'status_asc',
-			'label'	=>	__('Status : Current First','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_status',
-			'order'	=>	'ASC',
+			'id'		=>	'status_asc',
+			'label'		=>	__('Status : Current First','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_status',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'status_desc',
-			'label'	=>	__('Status : Sold/Leased First','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_status',
-			'order'	=>	'DESC',
+			'id'		=>	'status_desc',
+			'label'		=>	__('Status : Sold/Leased First','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_status',
+			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'location_asc',
-			'label'	=>	epl_labels('label_suburb'). __(' A-Z' , 'easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_address_suburb',
-			'order'	=>	'ASC',
+			'id'		=>	'location_asc',
+			'label'		=>	epl_labels('label_suburb'). __(' A-Z' , 'easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_address_suburb',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'location_desc',
-			'label'	=>	epl_labels('label_suburb'). __(' Z-A' , 'easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_address_suburb',
-			'order'	=>	'DESC',
+			'id'		=>	'location_desc',
+			'label'		=>	epl_labels('label_suburb'). __(' Z-A' , 'easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_address_suburb',
+			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value',
 
 		),
@@ -1259,37 +1371,140 @@ function epl_sorting_options($post_type = null) {
 }
 
 /**
- * Switch Sorting
+ * Switch Sorting Wrapper
+ *
+ * @since 3.2.3
+ */
+function epl_tools_utility_wrapper() {
+
+	// Wrapper Start
+	do_action('epl_archive_utility_wrap_start');
+
+		do_action('epl_add_custom_menus');
+
+	// Wrapper End
+	do_action('epl_archive_utility_wrap_end');
+
+}
+add_action( 'epl_property_loop_start' , 'epl_tools_utility_wrapper' , 10 );
+
+/**
+ * Switch Sorting Wrapper
  *
  * @since 2.0
+ * @revised 3.2.3
  */
-function epl_switch_views_sorting() {
+function epl_listing_toolbar_items() {
+
+	echo get_epl_listing_toolbar_items();
+
+}
+add_action( 'epl_add_custom_menus' , 'epl_listing_toolbar_items' , 10 );
+
+/**
+ * Retrieves the switch and sorting options normally right aligned
+ *
+ * @since 3.2.3
+ *
+ * @return string
+ */
+function get_epl_listing_toolbar_items( $args = array() ) {
+
+	$defaults = array(
+		'switch_views',
+		'sorting_tool',
+	);
+
+	$tools = apply_filters('epl_listing_toolbar_items', $defaults);
+
+	ob_start();
+
+	// Wrapper
+	if ( !empty( $defaults ) ) { ?>
+		<div class="epl-loop-tools epl-loop-tools-switch-sort epl-switching-sorting-wrap">
+			<?php
+				foreach( $tools as $tool ) {
+
+					if( !empty( $args ) && !in_array( $tool, $args ) ) {
+						continue;
+					}
+
+					switch( $tool ) {
+
+						case 'switch_views' :
+							do_action('epl_switch_views');
+							break;
+
+						case 'sorting_tool' :
+							do_action('epl_sorting_tool');
+							break;
+
+						default :
+							// action to hook additional tools
+							do_action( 'epl_listing_toolbar_' . $tool );
+							break;
+					}
+				}
+			?>
+		</div>
+		<?php
+	}
+	return ob_get_clean();
+}
+
+/**
+ * Switch Views
+ *
+ * @since 2.0
+ *
+ * @return string
+ */
+function epl_switch_views() { ?>
+	<div class="epl-loop-tool epl-tool-switch epl-switch-view">
+		<ul>
+			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_list' , __('List','easy-property-listings' ) ); ?>" class="epl-current-view view-list" data-view="list">
+			</li>
+			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_grid' , __('Grid','easy-property-listings' ) ); ?>" class="view-grid" data-view="grid">
+			</li>
+		</ul>
+	</div> <?php
+}
+
+add_action('epl_switch_views','epl_switch_views');
+
+/**
+ * Displays the Switch Sorting select options
+ *
+ * @since 2.0
+ * @revised 3.2.3
+ *
+ * @return string
+ */
+function epl_sorting_tool() {
 	$sortby = '';
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 		$sortby = sanitize_text_field(trim($_GET['sortby']));
 	}
-	do_action('epl_archive_utility_wrap_start');
-	$sorters = epl_sorting_options();
-	?>
-	<div class="epl-switching-sorting-wrap epl-clearfix">
-		<?php do_action('epl_add_custom_menus'); ?>
-		<div class="epl-properties-sorting epl-clearfix">
-			<select id="epl-sort-listings">
-				<option <?php selected( $sortby, '' ); ?> value=""><?php echo apply_filters( 'epl_switch_views_sorting_title_sort' , __('Sort','easy-property-listings' ) ); ?></option>
-				<?php
-					foreach($sorters as $sorter) { ?>
-						<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
-							<?php echo $sorter['label']; ?>
-						</option> <?php
-					}
-				?>
-			</select>
-		</div>
+	$sorters = epl_sorting_options(); ?>
+
+	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
+		<select id="epl-sort-listings">
+			<option <?php selected( $sortby, '' ); ?> value="">
+				<?php echo apply_filters( 'epl_switch_views_sorting_title_sort' , __('Sort','easy-property-listings' ) ); ?>
+			</option>
+			<?php
+				foreach($sorters as $sorter) { ?>
+					<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
+						<?php echo $sorter['label']; ?>
+					</option> <?php
+				}
+			?>
+		</select>
 	</div>
-	<?php
-	do_action('epl_archive_utility_wrap_end');
+<?php
 }
-add_action( 'epl_property_loop_start' , 'epl_switch_views_sorting' , 20 );
+
+add_action('epl_sorting_tool','epl_sorting_tool');
 
 /**
  * Archive Sorting
@@ -1446,8 +1661,9 @@ function epl_author_tab_contact_form( $epl_author = array() ) {
  * @since 1.0
  */
 function epl_archive_utility_wrap_before() {
-	echo '<div class="epl-archive-utility-wrapper epl-clearfix">';
+	echo '<div class="epl-loop-tools-wrap epl-archive-utility-wrapper epl-clearfix">';
 }
+add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
 /**
  * Archive Utility Wrapper After
@@ -1458,7 +1674,6 @@ function epl_archive_utility_wrap_after() {
 	echo '</div>';
 }
 add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
-add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
 /**
  * Listing Image Gallery
@@ -1502,24 +1717,6 @@ add_action('epl_property_gallery','epl_property_gallery');
 function epl_template_path() {
 	return apply_filters( 'epl_template_path', 'easypropertylistings/' );
 }
-
-/**
- * Switch Views
- *
- * @return string
- * @since 2.0
- */
-function epl_switch_views () { ?>
-	<div class="epl-switch-view epl-clearfix">
-		<ul>
-			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_list' , __('List','easy-property-listings' ) ); ?>" class="epl-current-view view-list" data-view="list">
-			</li>
-			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_grid' , __('Grid','easy-property-listings' ) ); ?>" class="view-grid" data-view="grid">
-			</li>
-		</ul>
-	</div> <?php
-}
-add_action('epl_add_custom_menus','epl_switch_views',1);
 
 /**
  * Outputs a wrapper div before the first button
@@ -2149,6 +2346,29 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	return $count->count;
 }
 
+function epl_get_inspection_date_format() {
+
+	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'?
+		epl_get_option('custom_inspection_date_format') : epl_get_option('inspection_date_format');
+
+	if($date_format == '')
+		$date_format = 'd-M-Y';
+
+	return apply_filters('epl_inspection_date_format', $date_format);
+}
+
+function epl_get_inspection_time_format() {
+
+	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
+			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
+
+	if($time_format == '')
+		$time_format = 'h:i A';
+
+	return apply_filters('epl_inspection_time_format', $time_format);
+
+}
+
 /**
  * Inspection Format
  *
@@ -2159,17 +2379,9 @@ function epl_inspection_format($inspection_date) {
 	$formatted_date = '';
 	$inspection_date = explode(' ',$inspection_date);
 
-	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'?
-			epl_get_option('custom_inspection_date_format') : epl_get_option('inspection_date_format');
 
-	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
-			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
-
-	if($date_format == '')
-		$date_format = 'd-M-Y';
-
-	if($time_format == '')
-		$time_format = 'h:i A';
+	$date_format = epl_get_inspection_date_format();
+	$time_format = epl_get_inspection_time_format();
 
 
 	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';
