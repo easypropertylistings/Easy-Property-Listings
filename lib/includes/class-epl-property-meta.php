@@ -195,7 +195,7 @@ class EPL_Property_Meta {
 								} else {
 									$return .= $element_formatted;
 								}
-								
+
 
 								$return .= "</li>";
 						}
@@ -259,7 +259,7 @@ class EPL_Property_Meta {
 	 * @return string formatted auction date
 	 */
 	public function get_property_auction( $admin=false ) {
-		
+
 		$date_time_sep = ' \a\t ';
 
 		$date_format 	= epl_get_inspection_date_format();
@@ -271,7 +271,7 @@ class EPL_Property_Meta {
 		} else {
 			$format = apply_filters('epl_get_property_auction_date',$format);
 		}
-		
+
 		if(isset($this->meta['property_auction'])) {
 			if(isset($this->meta['property_auction'][0])) {
 				if ( '' != $this->meta['property_auction'][0] ) {
@@ -1535,6 +1535,23 @@ class EPL_Property_Meta {
 
 		if(is_numeric($this->get_property_meta('property_land_area')) ) {
 
+			$label = apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
+
+			$property_land_area = $this->get_property_meta('property_land_area');
+
+			//Decimal
+			if ( fmod( $property_land_area , 1 ) !== 0.00 ) {
+				$property_land_area_format = apply_filters( 'epl_property_land_area_format_decimal' , number_format_i18n( $property_land_area , 2 ) );
+			}
+			//No decimal
+			else {
+				$property_land_area_format = apply_filters( 'epl_property_land_area_format' , number_format_i18n( $property_land_area ) );
+			}
+
+			$return = '<li class="land-size">'. $label.' ' . $property_land_area_format .' '.$property_land_area_unit.'</li>';
+
+			return apply_filters('epl_get_property_land_value',$return);
+
 			$label 		= apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
 			$value 		= $this->get_property_meta('property_land_area').' '.$property_land_area_unit;
 			$return 	= '';
@@ -1588,6 +1605,23 @@ class EPL_Property_Meta {
 		$building_unit = apply_filters( 'epl_property_building_area_unit_label' , $building_unit );
 
 		if(intval($this->get_property_meta('property_building_area')) != 0 ) {
+
+			$label = apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
+
+			$building_area = $this->get_property_meta('property_building_area');
+
+			//Decimal
+			if ( fmod( $building_area , 1 ) !== 0.00 ) {
+				$building_area_format = apply_filters( 'epl_property_building_area_format_decimal' , number_format_i18n( $building_area , 2 ) );
+			}
+			//No decimal
+			else {
+				$building_area_format = apply_filters( 'epl_property_building_area_format' , number_format_i18n( $building_area ) );
+			}
+
+			$return = '<li class="building-size">'.$label.' ' . $building_area_format .' '.$building_unit. '</li>';
+
+			return apply_filters('epl_get_property_building_area_value',$return);
 
 			$label 		= apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
 			$value 		= $this->get_property_meta('property_building_area').' '.$building_unit;

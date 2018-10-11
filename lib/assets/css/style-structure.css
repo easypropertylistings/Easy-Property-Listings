@@ -1831,41 +1831,43 @@ li.tbhead.current {
 	width: 100% !important;
 	z-index: 9999;
 }
-
+.epl-success,
+.epl-info,
+.epl-warning,
+.epl-danger {
+	margin: 0;
+	padding: 5px;
+    border-left: 3px solid;
+    font-size: 10px;
+}
+.epl-success p,
+.epl-info p,
+.epl-warning p,
+.epl-danger p {
+	margin: 0;
+	padding: 0;
+    line-height: 1.2;
+}
 .epl-success {
     color: #3c763d;
     background-color: #dff0d8;
     border-color: #d6e9c6;
-    border-left: 3px solid;
-    padding: 5px;
-	font-size: 10px;
 }
 .epl-info {
     color: #31708f;
     background-color: #d9edf7;
     border-color: #bce8f1;
-    border-left: 3px solid;
-    padding: 5px;
-	font-size: 10px;
 }
 .epl-warning {
     color: #8a6d3b;
     background-color: #fcf8e3;
     border-color: #faebcc;
-    border-left: 3px solid;
-    padding: 5px;
-	font-size: 10px;
 }
 .epl-danger {
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
-    border-left: 3px solid;
-    padding: 5px;
-	font-size: 10px;
 }
-
-
 /*****************************
 	EPL Clear Floating Div's
 ******************************/

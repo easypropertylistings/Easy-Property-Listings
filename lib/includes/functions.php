@@ -328,7 +328,7 @@ function epl_labels( $key ) {
  * @return string|void Current post title if $echo is false.
  */
 function epl_the_address( $before = '', $after = '', $country = false, $echo = true ) {
-	$address = epl_get_the_address( $country );
+	$address = epl_get_the_address();
 
         if ( strlen($address) == 0 )
                 return;
@@ -353,7 +353,7 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
  * @return [type]       [description]
  *
  */
-function epl_get_the_address( $country = false, $address_args = array(), $sep = array() ) {
+function epl_get_the_address( $address_args = array(), $sep = array(), $country = false ) {
 
 	$address = '';
 
