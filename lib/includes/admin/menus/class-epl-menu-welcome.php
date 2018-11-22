@@ -423,7 +423,7 @@ class EPL_Welcome {
 							<li><a href="http://ithemes.com/member/go.php?r=15200&i=l37"><?php _e( 'iThemes Builder Themes', 'easy-property-listings'  );?></a></li>
 							<li><?php _e( 'Genesis Framework by StudioPress', 'easy-property-listings'  );?></li>
 							<li><?php _e( 'Headway Theme Framework', 'easy-property-listings'  );?></li>
-							<li><?php _e( 'Twenty 12, 13, 14 &#38; 15 by WordPress.', 'easy-property-listings'  );?></li>
+							<li><?php _e( 'Twenty 11, 12, 13, 14, 15, 16, 17 &#38; 19 by WordPress.', 'easy-property-listings'  );?></li>
 							<li><?php _e( 'Divi by Elegant Themes.', 'easy-property-listings'  );?></li>
 							<li><?php _e( 'Many others, add a listing and see how it looks.', 'easy-property-listings'  );?></li>
 						</ul>
