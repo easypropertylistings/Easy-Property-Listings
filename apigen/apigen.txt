@@ -1,4 +1,11 @@
+OLD COMMAND
 apigen generate -s /Users/Merv/Sites/easypropertylistings-dev/wp-content/plugins/Easy-Property-Listings-DEV/ -d /Users/Merv/Sites/apigen/ --exclude /Users/Merv/Sites/easypropertylistings-dev/wp-content/plugins/Easy-Property-Listings-DEV/.git/ --base-url http://docs.easypropertylistings.com.au --title="Easy Property Listings 3.0 Docs" --depreciated --template-theme bootstrap --google-analytics UA-4538434-18
 
+
+
+
+Terminal Command:
+apigen generate
+(Execute from core plugin folder)
 
 http://localhost:8888/easypropertylistings-dev/wp-content/plugins/Easy-Property-Listings/apigen/hook-docs.php
