@@ -105,6 +105,14 @@ function epl_admin_menu() {
 	$function	= 'epl_menu_addons';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 
+	// Author level and above can see these options
+	$page_title	= __('Tools', 'easy-property-listings' );
+	$menu_title	= __('Tools', 'easy-property-listings' );
+	$capability	= 'edit_published_posts';
+	$menu_slug	= 'epl-tools';
+	$function	= 'epl_menu_tools';
+	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
+
 }
 
 /**
@@ -189,4 +197,16 @@ function epl_menu_help() {
 		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-help.php';
+}
+
+/**
+ * Tools Menu
+ *
+ * @since 3.3
+ */
+function epl_menu_tools() {
+	if(!current_user_can('edit_published_posts')) {
+		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
+	}
+	require_once 'menu-tools.php';
 }
