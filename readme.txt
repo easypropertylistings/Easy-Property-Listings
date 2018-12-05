@@ -5,7 +5,7 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 4.9.4
+Tested up to: 5.0
 Stable Tag: 3.2.2
 License: GNU Version 2 or Any Later Version
 
@@ -390,6 +390,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.2.3 November 22, 2018 =
+
+* New: WordPress 5 TwentyNineteen theme support.
 
 = 3.2.2 May 23, 2018 =
 
