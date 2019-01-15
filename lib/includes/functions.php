@@ -1121,7 +1121,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 		case 'date':
 			$atts = '';
-			echo '<input type="text" class="epldatepicker" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+			$format 	= isset( $field['format'] ) ? $field['format'] : "Y-m-d" ;
+			$timepicker = isset( $field['timepicker'] ) ? $field['timepicker'] : false ;
+			echo '<input type="text" class="epldatepicker" data-format="'.$format.'"  data-timepicker="'.$timepicker.'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
 			break;
 
 
