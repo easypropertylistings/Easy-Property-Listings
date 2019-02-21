@@ -2314,9 +2314,9 @@ function epl_parse_atts($atts) {
 		);
 
 		// check for meta
-		if( epl_starts_with($key,'epl_meta_') ) {
+		if( epl_starts_with($key,'_') ) {
 
-			$key = preg_replace('/^epl_meta_/', '', $key);
+			$key = preg_replace('/^_/', '', $key);
 
 			foreach($compare_operators as $look_for =>	$compare_operator) {
 

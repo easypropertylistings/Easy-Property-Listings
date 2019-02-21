@@ -12,7 +12,7 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class EPL_Shortcode_Listing {
+class EPL_Advanced_Shortcode_Listing {
 
 	public $default_args;
 
