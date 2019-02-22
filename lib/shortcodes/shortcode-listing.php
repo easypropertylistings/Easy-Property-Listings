@@ -163,17 +163,3 @@ function epl_sorting_options_callback( $sorters ) {
 	}
 	return $sorters;
 }
-
-/**
- * Get author id from name
- *
- * @since       3.1.1
- */
-function epl_get_author_id_from_name($author) {
-	if( is_numeric($author) ) {
-		return absint($author);
-	} else {
-		$user = get_user_by( 'login', $author );
-		return $user->ID;
-	}
-}
