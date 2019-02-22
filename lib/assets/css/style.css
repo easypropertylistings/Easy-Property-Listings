@@ -139,6 +139,27 @@
 	min-height: 150px;
 }
 
+/** Author loop box */
+.epl-loop-author-box-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #eef3f6;
+    padding: 13px 0;
+}
+.epl-loop-author-image {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+.epl-loop-author-content {
+    float: left;
+}
+.epl-loop-author-title {
+    line-height: 30px;
+    font-size: 13px;
+}
+
 /* Single Tab Content */
 .epl-property-single .tab-content.home-open {
 	background: #666;

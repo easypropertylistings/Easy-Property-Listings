@@ -2560,3 +2560,13 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 	return $classes;
 }
 add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
+
+function epl_archive_author_callback() {
+	global $epl_author_secondary;
+	epl_get_template_part('content-author-archive-card.php');
+	if( is_epl_post() && epl_listing_has_secondary_author() ) {
+	    epl_get_template_part('content-author-archive-card.php',array('epl_author'	=>	$epl_author_secondary));
+	    epl_reset_post_author();
+	}
+}
+add_action( 'epl_archive_author' , 'epl_archive_author_callback' );
