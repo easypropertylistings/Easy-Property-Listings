@@ -1506,6 +1506,60 @@ function epl_sorting_tool() {
 
 add_action('epl_sorting_tool','epl_sorting_tool');
 
+function epl_sorting_tabs() {
+	$sortby = '';
+	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
+		$sortby = sanitize_text_field(trim($_GET['sortby']));
+	}
+	$sorters = epl_sorting_options(); 
+
+	global $wp;  
+	$current_url = home_url(add_query_arg(array($_GET), $wp->request)); ?>
+
+	<div class="epl-loop-tool epl-tool-sorting-tabs epl-properties-sorting epl-clearfix">
+		<ul id="epl-sort-tabs-listings">
+			
+			<?php
+				foreach($sorters as $sorter) { 
+					$href = epl_add_or_update_params($current_url,'sortby',$sorter['id']);
+					$class = $sortby == $sorter['id'] ? 'epl-sortby-selected' : '';
+					?>
+					<li class="epl-sortby-list <?php echo $class?>">
+						<a href="<?php echo $href; ?>">
+							<?php echo $sorter['label']; ?>
+						</a>
+					</li> <?php
+				}
+			?>
+		</ul>
+	</div>
+<?php
+
+}
+
+function epl_add_or_update_params($url,$key,$value){
+
+    $a = parse_url($url);
+    $query = $a['query'] ? $a['query'] : '';
+    parse_str($query,$params);
+    $params[$key] = $value;
+    $query = http_build_query($params);
+    $result = '';
+    if($a['scheme']){
+        $result .= $a['scheme'] . ':';
+    }
+    if($a['host']){
+        $result .= '//' . $a['host'];
+    }
+    if($a['path']){
+        $result .=  $a['path'];
+    }
+    if($query){
+        $result .=  '?' . $query;
+    }
+    return $result;
+}
+
 /**
  * Archive Sorting
  *
@@ -2560,3 +2614,13 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 	return $classes;
 }
 add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
+
+function epl_archive_author_callback() {
+	global $epl_author_secondary;
+	epl_get_template_part('content-author-archive-card.php');
+	if( is_epl_post() && epl_listing_has_secondary_author() ) {
+	    epl_get_template_part('content-author-archive-card.php',array('epl_author'	=>	$epl_author_secondary));
+	    epl_reset_post_author();
+	}
+}
+add_action( 'epl_archive_author' , 'epl_archive_author_callback' );

@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
 if ( $query_open->have_posts() ) {
+	$attributes['class'] = isset( $attributes['class'] ) ? $attributes['class'] : 'epl-shortcode-listing';
 	?>
 	<div class="loop epl-shortcode">
 		<div class="loop-content <?php echo $attributes['class']; ?> <?php echo epl_template_class( $attributes['template'], 'archive' ); ?>">
