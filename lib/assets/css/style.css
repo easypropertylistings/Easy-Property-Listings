@@ -349,6 +349,39 @@ ul.epl-striped > *:nth-child(2n+1) {
 	width: 100%;
 }
 
+/** Sorting Tabs */
+#epl-sort-tabs-listings {
+    list-style: none;
+}
+
+#epl-sort-tabs-listings li {
+    display: inline-block;
+    outline: none;
+    border: 1px solid #ddd;
+    margin: 5px;
+    background: transparent;
+}
+
+#epl-sort-tabs-listings a {
+    text-decoration: none;
+    border: none;
+    box-shadow: unset;
+    color: #666;
+    display: block;
+    padding: 2px 10px;
+    background: #fff;
+
+}
+#epl-sort-tabs-listings a:hover {
+	background: #ddd;
+}
+
+#epl-sort-tabs-listings .epl-sortby-list.epl-sortby-selected a{
+    background: #666;
+    color: #fff
+}
+
+
 @media screen and (max-width: 500px) {
 	.epl-active-theme-twentyfourteen.epl-archive-default .page-header,
 	.epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog,

@@ -1506,6 +1506,60 @@ function epl_sorting_tool() {
 
 add_action('epl_sorting_tool','epl_sorting_tool');
 
+function epl_sorting_tabs() {
+	$sortby = '';
+	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
+		$sortby = sanitize_text_field(trim($_GET['sortby']));
+	}
+	$sorters = epl_sorting_options(); 
+
+	global $wp;  
+	$current_url = home_url(add_query_arg(array($_GET), $wp->request)); ?>
+
+	<div class="epl-loop-tool epl-tool-sorting-tabs epl-properties-sorting epl-clearfix">
+		<ul id="epl-sort-tabs-listings">
+			
+			<?php
+				foreach($sorters as $sorter) { 
+					$href = epl_add_or_update_params($current_url,'sortby',$sorter['id']);
+					$class = $sortby == $sorter['id'] ? 'epl-sortby-selected' : '';
+					?>
+					<li class="epl-sortby-list <?php echo $class?>">
+						<a href="<?php echo $href; ?>">
+							<?php echo $sorter['label']; ?>
+						</a>
+					</li> <?php
+				}
+			?>
+		</ul>
+	</div>
+<?php
+
+}
+
+function epl_add_or_update_params($url,$key,$value){
+
+    $a = parse_url($url);
+    $query = $a['query'] ? $a['query'] : '';
+    parse_str($query,$params);
+    $params[$key] = $value;
+    $query = http_build_query($params);
+    $result = '';
+    if($a['scheme']){
+        $result .= $a['scheme'] . ':';
+    }
+    if($a['host']){
+        $result .= '//' . $a['host'];
+    }
+    if($a['path']){
+        $result .=  $a['path'];
+    }
+    if($query){
+        $result .=  '?' . $query;
+    }
+    return $result;
+}
+
 /**
  * Archive Sorting
  *
