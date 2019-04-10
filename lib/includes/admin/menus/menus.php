@@ -105,10 +105,10 @@ function epl_admin_menu() {
 	$function	= 'epl_menu_addons';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
 
-	// Author level and above can see these options
+	// Administrator level and above can see these options
 	$page_title	= __('Tools', 'easy-property-listings' );
 	$menu_title	= __('Tools', 'easy-property-listings' );
-	$capability	= 'edit_published_posts';
+	$capability	= 'manage_options';
 	$menu_slug	= 'epl-tools';
 	$function	= 'epl_menu_tools';
 	add_submenu_page($main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function);
