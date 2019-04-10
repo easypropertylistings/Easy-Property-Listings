@@ -390,15 +390,38 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 = 3.3 April 12, 2019 =
 
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible. And easy to use.
 * New: Now able to add a function.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
 * New: Export Easy Property Listings settings and import them into another site on the Tools option.
 * New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set.
-* New:
-* New:
-* New:
+* New: Easier to add additional custom stickers to listings with the epl_property_stickers hook.
+* New: Address function for use in custom templates epl_the_address, epl_get_the_address.
+* New: Status functions for use in custom templates epl_the_status, epl_get_the_status.
+* New: Under Offer functions for use in custom templates epl_the_under_offer, epl_get_the_under_offer.
+
+
+
+
+
+
+NEW: TBA : get_property_pets
 
 
 
@@ -410,28 +433,39 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Inspection times function altered to allow disabling of ical function.
 * Tweak: Auction get_property_auction function greatly improved with better date formatting for different country formats.
 * Tweak: Property Available get_property_available function greatly improved with better date formatting for different country formats.
-* Tweak:
-* Tweak:
+* Tweak: Totally re-built the functions handling important details using code switches and filters greatly improving customisations and alterations. Functions re-built using switches: get_property_year_built, get_property_bed, get_property_bath, get_property_rooms, get_property_parking, get_property_garage, get_property_carport, get_property_air_conditioning, get_property_pool, get_property_security_system, get_property_land_value, get_property_building_area_value, get_property_energy_rating, get_property_new_construction, get_property_holiday_rental, get_property_furnished,
+* Tweak: Improvements to search ?????  // $this->get_data = $this->data; // lib/includes/class-epl-search.php
+* Tweak: Parse EPL shortcodes for meta queries improved.
+
+* Tweak: Completely re-worked the icons system for listings which makes it easier to customise with hooks and filters and add additional icons and adjust the order.
+* Tweak: Reworked the Additional features output allowing further control over output of features along with adjusting the order and output style.
+* Tweak: Total rebuild of the sorting and tools code allowing additional tools to be hooked in and rework the existing tools.
 
 
+
+
+* Tweak: Selecting secondary agents works better now on the edit listing pages.
+
+TEST * Tweak: epl_property_widget Options for Inspection times and iCal links to EPL - Listing Widget.
 
 
 
 * Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.
 * Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
+* Fix: Widget image hook epl_property_widgets_featured_image third option for link now working.
 * Fix: Images no longer overlap in admin when the image filter is used to alter the default image sizes.
 
 
+
+* Fix: Home Open label improved as sometimes empty data is imported and the label appears where it should not.
+
+
+
 * Fix:  // $emails = (array) get_post_meta($id,'contact_emails',true);   // Uncertian what this fixes?  lib/includes/class-epl-contact.php
-* Fix:
 
 
-
-
-
-
-
+* Fix: // $selected = in_array( $k, (array) $value ) ? true : false; // Uncertian what it fixes? lib/includes/class-epl-search-fields.php
 
 
 
