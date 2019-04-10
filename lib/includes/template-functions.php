@@ -1506,6 +1506,13 @@ function epl_sorting_tool() {
 
 add_action('epl_sorting_tool','epl_sorting_tool');
 
+/**
+ * Displays the Sorting tabs
+ *
+ * @since 3.3
+ *
+ * @return string
+ */
 function epl_sorting_tabs() {
 	$sortby = '';
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
@@ -1534,9 +1541,15 @@ function epl_sorting_tabs() {
 		</ul>
 	</div>
 <?php
-
 }
 
+/**
+ * Update parameters
+ *
+ * @since 3.3
+ *
+ * @return string
+ */
 function epl_add_or_update_params($url,$key,$value){
 
     $a = parse_url($url);
@@ -1733,6 +1746,7 @@ add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
  * Listing Image Gallery
  *
  * @since 1.0
+ * @revised 3.3
  */
 function epl_property_gallery () {
 
@@ -2400,6 +2414,11 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	return $count->count;
 }
 
+/**
+ * Get the inspection date format
+ *
+ * @revised 3.3
+ */
 function epl_get_inspection_date_format() {
 
 	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'?
@@ -2411,6 +2430,11 @@ function epl_get_inspection_date_format() {
 	return apply_filters('epl_inspection_date_format', $date_format);
 }
 
+/**
+ * Get the inspection time format
+ *
+ * @revised 3.3
+ */
 function epl_get_inspection_time_format() {
 
 	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
@@ -2615,6 +2639,11 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 }
 add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
 
+/**
+ * Get the author loop
+ *
+ * @revised 3.3
+ */
 function epl_archive_author_callback() {
 	global $epl_author_secondary;
 	epl_get_template_part('content-author-archive-card.php');
