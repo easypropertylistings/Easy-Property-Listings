@@ -289,6 +289,10 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
+
+			if( file_exists(get_stylesheet_directory().'/easypropertylistings/functions.php' ) ) {
+				include_once(get_stylesheet_directory().'/easypropertylistings/functions.php' );
+			}
 		}
 
 		/**

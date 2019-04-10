@@ -1368,7 +1368,7 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_com_mini_web',
 							'label'		=>	__('Mini Website URL', 'easy-property-listings' ),
 							'type'		=>	'file',
-							'include'	=>	array('commercial', 'business', 'commercial_land'),
+							'include'	=>	array('commercial', 'business', 'commercial_land','rental','land','rural','property'),
 						),
 
 						array(

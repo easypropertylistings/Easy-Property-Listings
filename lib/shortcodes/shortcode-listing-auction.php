@@ -65,7 +65,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	/** only properties which are not under offer should be allowed **/
 	$args['meta_query'][] = array(
 		'key'		=> 'property_under_offer',
-		'value'		=> 'no',
+		'value'		=> 'yes',
+		'compare'	=>	'!='
 	);
 
 	/** only properties which are not auction should be allowed **/
@@ -116,7 +117,6 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
 	$args = epl_add_orderby_args($args);
-
 
 	$query_open = new WP_Query( $args );
 

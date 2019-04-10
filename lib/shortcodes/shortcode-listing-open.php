@@ -63,8 +63,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'meta_query' => array(
 			array(
 				'key' => 'property_inspection_times',
-				'value' => '',
-				'compare' => '!=',
+				'value' => '^\s*$',
+				'compare' => 'NOT REGEXP',
 			),
            array(
                 'key'		=> 'property_status',
