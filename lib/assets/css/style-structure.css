@@ -1905,7 +1905,7 @@ li.tbhead.current {
 	EPL Clear Floating Div's
 ******************************/
 .epl-clearfix {
-	clear:  both !important;
+	/*clear:  both !important;*/
 }
 .epl-clearfix:after {
 	visibility: hidden;
