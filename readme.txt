@@ -415,7 +415,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Address function for use in custom templates epl_the_address, epl_get_the_address.
 * New: Status functions for use in custom templates epl_the_status, epl_get_the_status.
 * New: Under Offer functions for use in custom templates epl_the_under_offer, epl_get_the_under_offer.
-
+* New: Enabled Mini Website URL meta field as a number of REAXML providers are now using 3D Tours.
 
 
 
@@ -440,8 +440,9 @@ NEW: TBA : get_property_pets
 * Tweak: Completely re-worked the icons system for listings which makes it easier to customise with hooks and filters and add additional icons and adjust the order.
 * Tweak: Reworked the Additional features output allowing further control over output of features along with adjusting the order and output style.
 * Tweak: Total rebuild of the sorting and tools code allowing additional tools to be hooked in and rework the existing tools.
+* Tweak: Code optimisations of gallery functions.
 
-
+* Tweak: Widget templates to handle the Inspection time and ical options.
 
 
 * Tweak: Selecting secondary agents works better now on the edit listing pages.
@@ -455,12 +456,12 @@ TEST * Tweak: epl_property_widget Options for Inspection times and iCal links to
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
 * Fix: Widget image hook epl_property_widgets_featured_image third option for link now working.
 * Fix: Images no longer overlap in admin when the image filter is used to alter the default image sizes.
-
-
+* Fix: [listing_auction] shortcode now correctly lists set auctions.
+* Fix: [listing_open] shortcode now correctly lists listings that have an inspection set.
 
 * Fix: Home Open label improved as sometimes empty data is imported and the label appears where it should not.
 
-
+* Fix: [listing_search] enabling the multiple select option now works better.
 
 * Fix:  // $emails = (array) get_post_meta($id,'contact_emails',true);   // Uncertian what this fixes?  lib/includes/class-epl-contact.php
 
