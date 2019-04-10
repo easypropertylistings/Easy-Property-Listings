@@ -404,9 +404,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 
 
-* Tweak:
+* Tweak: Rebuilt dat picker JS validation code to better optimise and streamline listing entry.
 
-* Tweak:
+* Tweak: Rebuilt mapping JS and added better notices for Admin users to better diagnose maps on listings.
 * Tweak:
 * Tweak:
 * Tweak:
