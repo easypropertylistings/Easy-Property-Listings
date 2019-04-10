@@ -395,19 +395,18 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible. And easy to use.
 * New: Now able to add a function.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
 * New: Export Easy Property Listings settings and import them into another site on the Tools option.
+* New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set.
 * New:
 * New:
 * New:
-* New:
 
 
 
 
 
-* Tweak: Rebuilt dat picker JS validation code to better optimise and streamline listing entry.
-
-* Tweak: Rebuilt mapping JS and added better notices for Admin users to better diagnose maps on listings.
-* Tweak:
+* Tweak: Rebuilt date picker JS validation code to better optimise and streamline listing entry.
+* Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
+* Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
 * Tweak:
 * Tweak:
 * Tweak:
