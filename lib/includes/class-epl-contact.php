@@ -110,7 +110,7 @@ class EPL_Contact {
 	 * @since  3.0
 	 */
 	function update_contact_email($id,$value) {
-		$emails = get_post_meta($id,'contact_emails',true);
+		$emails = (array) get_post_meta($id,'contact_emails',true);
 		$emails['email'] = $value;
 		return update_post_meta($id,'contact_emails',$emails);
 	}

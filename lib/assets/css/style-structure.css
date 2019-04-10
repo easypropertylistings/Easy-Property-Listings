@@ -819,6 +819,27 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	box-shadow: none;
 	border-bottom: none;
 }
+/* Twenty Nineteen */
+.epl-active-theme-twentynineteen .epl-switching-sorting-wrap {
+	margin: calc(3 * 1rem) 1rem 1rem;
+}
+.epl-active-theme-twentynineteen .epl-outer-grid-wrapper {
+	margin: calc(3 * 1rem) 1rem 1rem;
+}
+.epl-active-theme-twentynineteen .epl-loop-footer {
+	margin: calc(3 * 1rem) 1rem 1rem;
+}
+@media only screen and (min-width: 768px) {
+	.epl-active-theme-twentynineteen .epl-switching-sorting-wrap {
+		margin: calc(3 * 1rem) calc(10% + 60px) calc(1rem / 2);
+	}
+	.epl-active-theme-twentynineteen .epl-outer-grid-wrapper {
+		margin: calc(3 * 1rem) calc(10% + 60px) calc(1rem / 2);
+	}
+	.epl-active-theme-twentynineteen .epl-loop-footer {
+		margin: calc(3 * 1rem) calc(10% + 60px) calc(1rem / 2);
+	}
+}
 /*****************************
 	Shortcodes
 ******************************/

@@ -249,3 +249,123 @@ function epl_extension_has_beta_support( $slug ) {
 	}
 	return $return;
 }
+
+
+/**
+ * EPL Tools Tabs
+ * @return [type] [description]
+ * @since  3.3 [<description>]
+ */
+function epl_get_tools_tab() {
+
+	$default_tabs = array(
+		'import'	=>	array(
+			'label'		=>	__('Import','easy-property-listings'),
+			'callback'	=>	'epl_settings_import'
+		),
+		'export'	=>	array(
+			'label'		=>	__('Export','easy-property-listings'),
+			'callback'	=>	'epl_settings_export'
+		)
+	);
+	return apply_filters('epl_get_tools_tab',$default_tabs);
+}
+
+function epl_serialize($data) {
+	return base64_encode(serialize($data));
+}
+
+function epl_unserialize($data) {
+	return unserialize(base64_decode($data));
+}
+
+function epl_settings_import() {
+
+		do_action('epl_pre_import_fields');
+
+		$fields = array(
+
+			array(
+				'name'		=>	'epl_import',
+				'label'		=>	__('Import data','easy-property-listings'),
+				'type'		=>	'textarea',
+				'help'		=>	__("Paste exported data here. Warning ! it will override existing settings",'easy-property-listings'),
+			)
+		);
+
+		$fields = apply_filters('epl_import_fields',$fields);
+
+		foreach($fields as $field) {
+
+			echo '<div class="epl-field">';
+				echo '<div class="epl-label-wrap">';
+					echo '<label class="epl-label epl-label-'.$field['name'].'" for="'.$field['name'].'" >'.$field['label'].'</label>';
+					
+				echo '</div>';
+				echo '<div class="epl-input-wrap">';
+					epl_render_html_fields($field);
+				echo '</div>';
+			echo '</div>';
+		}
+
+
+
+		do_action('epl_post_import_fields');
+
+	}
+
+function epl_settings_export() {
+
+	do_action('epl_pre_export_fields');
+
+	// export settings
+
+	do_action('epl_post_export_fields');
+	
+}
+
+function epl_handle_tools_form() {
+
+    if( !isset($_GET['page']) || $_GET['page'] != 'epl-tools' || !isset($_POST['epl_tools_submit'])  )
+        return;
+
+    // sanitize post array
+    $post_data  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+    $tab    = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'import'; // default is import
+
+    switch($tab) {
+
+        case 'export':
+            $export = get_option('epl_settings');
+            
+			header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=cpb-export.txt');
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Pragma: public');
+            ob_clean();
+            flush();
+            echo epl_serialize($export);
+            die;
+        break;
+
+        case 'import':
+
+            if( trim($post_data['epl_import']) == '')
+                return;
+
+            $imported_data 		= epl_unserialize($post_data['epl_import']);
+            $options_backup 	= get_option('epl_settings');
+
+            update_option('epl_settings_backup',$options_backup);
+            $status 			= update_option('epl_settings',$imported_data);
+
+        break;
+    }
+
+}
+
+add_action('init', 'epl_handle_tools_form' );
