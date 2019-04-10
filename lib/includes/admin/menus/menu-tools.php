@@ -1,3 +1,14 @@
+<?php
+/**
+ * Menu Tools
+ *
+ * @package     EPL
+ * @subpackage  Admin/Menu-Tools
+ * @copyright   Copyright (c) 2019, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.3
+ */
+?>
 <div class="wrap epl-wrap">
 
     <div class="epl-content">
@@ -6,12 +17,11 @@
             <?php
                 $tabs       = epl_get_tools_tab();
                 $current    = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'import'; // default is import
-                
+
                 echo '<h1 class="nav-tab-wrapper">';
                 foreach( $tabs as $tab => $tab_options ){
                     $class = ( $tab == $current ) ? ' nav-tab-active' : '';
                     echo "<a class='nav-tab$class' href='?page=epl-tools&tab=$tab'>{$tab_options['label']}</a>";
-
                 }
                 echo '</h1>';
             ?>
