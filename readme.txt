@@ -407,9 +407,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Rebuilt date picker JS validation code to better optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
 * Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
-* Tweak:
-* Tweak:
-* Tweak:
+* Tweak: Inspection times function altered to allow disabling of ical function.
+* Tweak: Auction get_property_auction function greatly improved with better date formatting for different country formats.
+* Tweak: Property Available get_property_available function greatly improved with better date formatting for different country formats.
 * Tweak:
 * Tweak:
 
@@ -421,7 +421,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
 * Fix: Images no longer overlap in admin when the image filter is used to alter the default image sizes.
-* Fix:
+
+
+* Fix:  // $emails = (array) get_post_meta($id,'contact_emails',true);   // Uncertian what this fixes?  lib/includes/class-epl-contact.php
 * Fix:
 
 

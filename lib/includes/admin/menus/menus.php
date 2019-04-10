@@ -205,7 +205,7 @@ function epl_menu_help() {
  * @since 3.3
  */
 function epl_menu_tools() {
-	if(!current_user_can('edit_published_posts')) {
+	if(!current_user_can('manage_options')) {
 		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-tools.php';

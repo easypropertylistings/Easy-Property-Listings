@@ -2292,16 +2292,16 @@ function epl_parse_atts($atts) {
 		return $atts;
 
 	$compare_operators = array(
-		'_min'			=>	'>=',
-		'_max'			=>	'<=',
+		'_min'		=>	'>=',
+		'_max'		=>	'<=',
 		'_not_equal'	=>	'!=',
-		'_like'			=>	'LIKE', 
-		'_not_like'		=>	'NOT LIKE', 
-		'_exists'		=>	'EXISTS', 
-		'_not_exists'	=>	'NOT EXISTS', 
-		'_in'			=>	'IN',
-		'_not_in'		=>	'NOT IN',
-		'_between'		=>	'BETWEEN',
+		'_like'		=>	'LIKE',
+		'_not_like'	=>	'NOT LIKE',
+		'_exists'	=>	'EXISTS',
+		'_not_exists'	=>	'NOT EXISTS',
+		'_in'		=>	'IN',
+		'_not_in'	=>	'NOT IN',
+		'_between'	=>	'BETWEEN',
 		'_not_between'	=>	'NOT BETWEEN'
 	);
 
@@ -2327,26 +2327,21 @@ function epl_parse_atts($atts) {
 
 					if( in_array($look_for, array('_in','_not_in', '_between', '_not_between') ) ){
 
-						$this_query['value'] = 
+						$this_query['value'] =
 						array_map( 'trim', explode( ',', $this_query['value'] ) );
 					}
 
 					if( in_array($look_for, array('_exists','_not_exists') ) ){
-						
+
 						unset($this_query['value']);
 					}
 				}
-
-				
-			} 
-
+			}
 			$this_query['key'] = $key;
 			$query['meta_query'][$key.'_clause'] = $this_query;
 		}
-
 	}
 	return isset($query['meta_query'])?$query['meta_query'] : false;
-
 }
 
 /**

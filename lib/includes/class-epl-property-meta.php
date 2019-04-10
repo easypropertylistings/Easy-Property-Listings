@@ -262,9 +262,9 @@ class EPL_Property_Meta {
 
 		$date_time_sep = ' \a\t ';
 
-		$date_format 	= epl_get_inspection_date_format();
-		$time_format 	= epl_get_inspection_time_format();
-		$format 		= $date_format.$date_time_sep.$time_format;
+		$date_format	= epl_get_inspection_date_format();
+		$time_format	= epl_get_inspection_time_format();
+		$format		= $date_format.$date_time_sep.$time_format;
 
 		if($admin) {
 			$format = apply_filters('epl_get_property_auction_date_admin',$format);
@@ -277,7 +277,7 @@ class EPL_Property_Meta {
 				if ( '' != $this->meta['property_auction'][0] ) {
 					if(strpos($this->meta['property_auction'][0], 'T') === FALSE){
 						$feed_format 	= apply_filters('epl_auction_feed_format','Y-m-d-H:i:s');
-			                        $epl_date 	= DateTime::createFromFormat($feed_format, $this->meta['property_auction'][0]);
+						$epl_date 	= DateTime::createFromFormat($feed_format, $this->meta['property_auction'][0]);
 
 						if($epl_date) {
 							$primary_feed_format 	= apply_filters('epl_auction_primary_feed_format','Y-m-d\TH:i');
@@ -444,9 +444,9 @@ class EPL_Property_Meta {
 
 		$date_time_sep = ' \a\t ';
 
-		$date_format 	= epl_get_inspection_date_format();
-		$time_format 	= epl_get_inspection_time_format();
-		$format 		= $date_format.$date_time_sep.$time_format;
+		$date_format	= epl_get_inspection_date_format();
+		$time_format	= epl_get_inspection_time_format();
+		$format		= $date_format.$date_time_sep.$time_format;
 
 		if($admin) {
 			$format = apply_filters('epl_property_available_date_format_admin',$format);
