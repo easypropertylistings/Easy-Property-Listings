@@ -1251,7 +1251,7 @@ li.tbhead.current {
 	/* width: 100%; */
 }
 .epl-search-form select.in-field{
-	background: transparent;
+	/*background: transparent;
 	padding: 5px;
 	font-size: 16px;
 	line-height: 1;
@@ -1260,6 +1260,7 @@ li.tbhead.current {
 	height: 40px;
 	-webkit-appearance: none;
 	background: url(../images/select-arrow.svg) no-repeat right #FFF;
+	*/
 }
 .epl-search-form .check-label {
 	font-size: 0.7em;

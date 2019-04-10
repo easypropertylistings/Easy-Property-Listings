@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.0
-Stable Tag: 3.2.2
+Tested up to: 5.1.1
+Stable Tag: 3.2.3
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -389,6 +389,56 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.3 April 12, 2019 =
+
+* New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible. And easy to use.
+* New: Now able to add a function.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
+* New: Export Easy Property Listings settings and import them into another site on the Tools option.
+* New:
+* New:
+* New:
+* New:
+
+
+
+
+
+* Tweak:
+
+* Tweak:
+* Tweak:
+* Tweak:
+* Tweak:
+* Tweak:
+* Tweak:
+* Tweak:
+
+
+
+
+
+* Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.
+* Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
+* Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
+* Fix: Images no longer overlap in admin when the image filter is used to alter the default image sizes.
+* Fix:
+* Fix:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 = 3.2.3 November 22, 2018 =
 
