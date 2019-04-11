@@ -44,8 +44,6 @@ function epl_admin_enqueue_scripts($screen) {
 
 		wp_localize_script('epl-admin-scripts','epl_admin_vars',$js_vars);
 
-		wp_enqueue_script('epl-admin-scripts');
-
 		wp_enqueue_style( 	'epl-admin-styles', 				$current_dir_path . '/css/style-admin.css',		FALSE,			EPL_PROPERTY_VER );
 
 	}
@@ -56,6 +54,8 @@ function epl_admin_enqueue_scripts($screen) {
 	}
 
 	wp_enqueue_script(		'epl-js-lib', 					$current_dir_path . '/js/epl.js', 			array('jquery') , 	EPL_PROPERTY_VER );
+
+	wp_enqueue_script('epl-admin-scripts');
 }
 add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 

@@ -488,7 +488,13 @@ function epl_property_widget_image_only_option( $image ) {
  *
  * @since 1.0
  */
-function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio) {
+function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio, $username) {
+
+	if( !empty($username) ) {
+		epl_show_author_widget_by_username($d_image , $d_icons , $d_bio, $username);
+		return;
+	}
+
 	global $property,$epl_author,$epl_author_secondary;
 	if( is_null($epl_author) )
 		return;
@@ -503,6 +509,19 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 			    epl_get_template_part('widget-content-author-tall.php',$arg_list);
 		}
 		epl_reset_post_author();
+	}
+}
+
+function epl_show_author_widget_by_username($d_image , $d_icons , $d_bio, $username) {
+	$username = explode(',',$username);
+	$username = array_filter($username);
+	foreach($username as $uname) {
+		$author = get_user_by( 'login' , sanitize_user($uname) );
+     	if($author !== false){
+        	$epl_author = new EPL_Author_meta($author->ID);
+        	$arg_list = get_defined_vars();
+			epl_get_template_part('widget-content-author-tall.php',$arg_list);
+    	}
 	}
 }
 

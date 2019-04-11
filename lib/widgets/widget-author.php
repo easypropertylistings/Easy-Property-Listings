@@ -28,6 +28,7 @@ class EPL_Widget_Author extends WP_Widget {
 
 		$defaults = array(
 			'title'		=>	'',
+			'username'		=>	'',
 			'display'	=>	0,
 			'd_image'	=>	0,
 			'd_icons'	=>	0,
@@ -42,6 +43,7 @@ class EPL_Widget_Author extends WP_Widget {
 		$d_image	= $instance['d_image'];
 		$d_icons	= $instance['d_icons'];
 		$d_bio		= $instance['d_bio'];
+		$username	= $instance['username'];
 
 		if ( is_epl_post_single() ) {
 			// Only retrieve global $property variable if singluar
@@ -54,7 +56,7 @@ class EPL_Widget_Author extends WP_Widget {
 				echo $before_widget;
 				if ( $title )
 					echo $before_title . $title . $after_title;
-					epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
+					epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio, $username);
 
 				echo $after_widget;
 			}
@@ -64,7 +66,7 @@ class EPL_Widget_Author extends WP_Widget {
 			echo $before_widget;
 			if ( $title )
 				echo $before_title . $title . $after_title;
-				epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio);
+				epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio, $username);
 
 			echo $after_widget;
 		}
@@ -73,6 +75,7 @@ class EPL_Widget_Author extends WP_Widget {
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['username'] = strip_tags($new_instance['username']);
 		$instance['display'] = strip_tags($new_instance['display']);
 		$instance['d_image'] = strip_tags($new_instance['d_image']);
 		$instance['d_icons'] = strip_tags($new_instance['d_icons']);
@@ -83,6 +86,7 @@ class EPL_Widget_Author extends WP_Widget {
 	function form($instance) {
 		$defaults = array(
 			'title'		=>	'',
+			'username'		=>	'',
 			'display'	=>	0,
 			'd_image'	=>	0,
 			'd_icons'	=>	0,
@@ -93,6 +97,7 @@ class EPL_Widget_Author extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		$title 		= esc_attr($instance['title']);
+		$username 	= esc_attr($instance['username']);
 		$display	= esc_attr($instance['display']);
 		$d_image	= esc_attr($instance['d_image']);
 		$d_icons	= esc_attr($instance['d_icons']);
@@ -101,6 +106,12 @@ class EPL_Widget_Author extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'easy-property-listings'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id('username'); ?>"><?php _e('Username:', 'easy-property-listings'); ?></label>
+			<input class="widefat epl-widget-author-username" id="<?php echo $this->get_field_id('username'); ?>" name="<?php echo $this->get_field_name('username'); ?>" type="text" value="<?php echo $username; ?>" placeholder="<?php _e('Type to search users','easy-property-listings'); ?>"/>
+			<span class="help"><?php _e('Comma seperated list of multiple author','easy-property-listings'); ?></span>
 		</p>
 
 		<p>
