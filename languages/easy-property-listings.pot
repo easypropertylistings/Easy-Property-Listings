@@ -3,9 +3,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.2.2\n"
+"Project-Id-Version: Easy Property Listings 3.2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2018-05-23 11:36+0800\n"
+"POT-Creation-Date: 2018-12-05 10:30+0100\n"
 "PO-Revision-Date: 2015-09-09 16:02+0800\n"
 "Last-Translator: Merv Barrett <admin@realestateconnected.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
@@ -1805,7 +1805,7 @@ msgid "Headway Theme Framework"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:426
-msgid "Twenty 12, 13, 14 &#38; 15 by WordPress."
+msgid "Twenty 11, 12, 13, 14, 15, 16, 17 &#38; 19 by WordPress."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:427
@@ -4872,16 +4872,32 @@ msgstr ""
 msgid "Tags:"
 msgstr ""
 
+#: lib/templates/themes/twentynineteen/single-listing.php:32
+msgid ""
+"<span class=\"meta-nav\">Published in</span><br/><span class=\"post-title\">%title</"
+"span>"
+msgstr ""
+
+#: lib/templates/themes/twentynineteen/single-listing.php:39
+#: lib/templates/themes/twentyseventeen/single-listing.php:32
+msgid "Next Post"
+msgstr ""
+
+#: lib/templates/themes/twentynineteen/single-listing.php:40
+msgid "Next post:"
+msgstr ""
+
+#: lib/templates/themes/twentynineteen/single-listing.php:42
 #: lib/templates/themes/twentyseventeen/single-listing.php:31
 msgid "Previous Post"
 msgstr ""
 
-#: lib/templates/themes/twentyseventeen/single-listing.php:31
-msgid "Previous"
+#: lib/templates/themes/twentynineteen/single-listing.php:43
+msgid "Previous post:"
 msgstr ""
 
-#: lib/templates/themes/twentyseventeen/single-listing.php:32
-msgid "Next Post"
+#: lib/templates/themes/twentyseventeen/single-listing.php:31
+msgid "Previous"
 msgstr ""
 
 #: lib/templates/themes/twentyseventeen/single-listing.php:32

@@ -921,7 +921,7 @@ function epl_property_tab_section() {
 				if ( 'property' == $post_type || 'rental' == $post_type ) {
 					$the_property_feature_list .= $property->get_property_category('li');
 				}
-			
+
 			break;
 
 			case 'rural_category':
@@ -929,7 +929,7 @@ function epl_property_tab_section() {
 				if ( 'rural' == $post_type ) {
 					$the_property_feature_list .= $property->get_property_rural_category('li');
 				}
-			
+
 			break;
 
 			case 'commercial_category':
@@ -937,11 +937,11 @@ function epl_property_tab_section() {
 				if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
 					$the_property_feature_list .= $property->get_property_commercial_category('li');
 				}
-			
+
 			break;
 
 			case 'bed':
-				
+
 				$the_property_feature_list .= $property->get_property_bed('l').' ';
 
 			break;
@@ -949,65 +949,65 @@ function epl_property_tab_section() {
 			case 'bath':
 
 				$the_property_feature_list .= $property->get_property_bath('l').' ';
-			
+
 			break;
 
 			case 'rooms':
 
 				$the_property_feature_list .= $property->get_property_rooms('l').' ';
-			
+
 			break;
 
 			case 'year_built':
 
 				$the_property_feature_list .= $property->get_property_year_built('l').' ';
-			
+
 			break;
 
 			case 'parking':
 
 				$the_property_feature_list .= $property->get_property_parking('l').' ';
-			
+
 			break;
 
 			case 'ac':
 
 				$the_property_feature_list .= $property->get_property_air_conditioning('l').' ';
-			
+
 			break;
 
 			case 'pool':
 
 				$the_property_feature_list .= $property->get_property_pool('l');
-			
+
 			break;
 
 			case 'security':
 
 				$the_property_feature_list .= $property->get_property_security_system('l').' ';
-			
+
 			break;
 
 			case 'land_value':
 
 				$the_property_feature_list .= $property->get_property_land_value('l');
-			
+
 			break;
 
 			case 'building_value':
 
 				$the_property_feature_list .= $property->get_property_building_area_value('l').' ';
-			
+
 			break;
 
 			case 'energy_rating':
 
 				$the_property_feature_list .= $property->get_property_energy_rating('l');
-			
+
 			break;
 
 			case 'new_construction':
-				
+
 				$the_property_feature_list .= $property->get_property_new_construction('l');
 
 			break;
@@ -1373,7 +1373,7 @@ function epl_sorting_options($post_type = null) {
 /**
  * Switch Sorting Wrapper
  *
- * @since 3.2.3
+ * @since 3.3
  */
 function epl_tools_utility_wrapper() {
 
@@ -1392,7 +1392,7 @@ add_action( 'epl_property_loop_start' , 'epl_tools_utility_wrapper' , 10 );
  * Switch Sorting Wrapper
  *
  * @since 2.0
- * @revised 3.2.3
+ * @revised 3.3
  */
 function epl_listing_toolbar_items() {
 
@@ -1404,7 +1404,7 @@ add_action( 'epl_add_custom_menus' , 'epl_listing_toolbar_items' , 10 );
 /**
  * Retrieves the switch and sorting options normally right aligned
  *
- * @since 3.2.3
+ * @since 3.3
  *
  * @return string
  */
@@ -1476,7 +1476,7 @@ add_action('epl_switch_views','epl_switch_views');
  * Displays the Switch Sorting select options
  *
  * @since 2.0
- * @revised 3.2.3
+ * @revised 3.3
  *
  * @return string
  */
@@ -1505,6 +1505,73 @@ function epl_sorting_tool() {
 }
 
 add_action('epl_sorting_tool','epl_sorting_tool');
+
+/**
+ * Displays the Sorting tabs
+ *
+ * @since 3.3
+ *
+ * @return string
+ */
+function epl_sorting_tabs() {
+	$sortby = '';
+	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
+		$sortby = sanitize_text_field(trim($_GET['sortby']));
+	}
+	$sorters = epl_sorting_options();
+
+	global $wp;
+	$current_url = home_url(add_query_arg(array($_GET), $wp->request)); ?>
+
+	<div class="epl-loop-tool epl-tool-sorting-tabs epl-properties-sorting epl-clearfix">
+		<ul id="epl-sort-tabs-listings">
+
+			<?php
+				foreach($sorters as $sorter) {
+					$href = epl_add_or_update_params($current_url,'sortby',$sorter['id']);
+					$class = $sortby == $sorter['id'] ? 'epl-sortby-selected' : '';
+					?>
+					<li class="epl-sortby-list <?php echo $class?>">
+						<a href="<?php echo $href; ?>">
+							<?php echo $sorter['label']; ?>
+						</a>
+					</li> <?php
+				}
+			?>
+		</ul>
+	</div>
+<?php
+}
+
+/**
+ * Update parameters
+ *
+ * @since 3.3
+ *
+ * @return string
+ */
+function epl_add_or_update_params($url,$key,$value){
+
+    $a = parse_url($url);
+    $query = $a['query'] ? $a['query'] : '';
+    parse_str($query,$params);
+    $params[$key] = $value;
+    $query = http_build_query($params);
+    $result = '';
+    if($a['scheme']){
+        $result .= $a['scheme'] . ':';
+    }
+    if($a['host']){
+        $result .= '//' . $a['host'];
+    }
+    if($a['path']){
+        $result .=  $a['path'];
+    }
+    if($query){
+        $result .=  '?' . $query;
+    }
+    return $result;
+}
 
 /**
  * Archive Sorting
@@ -1679,6 +1746,7 @@ add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
  * Listing Image Gallery
  *
  * @since 1.0
+ * @revised 3.3
  */
 function epl_property_gallery () {
 
@@ -2346,6 +2414,11 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 	return $count->count;
 }
 
+/**
+ * Get the inspection date format
+ *
+ * @revised 3.3
+ */
 function epl_get_inspection_date_format() {
 
 	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'?
@@ -2357,6 +2430,11 @@ function epl_get_inspection_date_format() {
 	return apply_filters('epl_inspection_date_format', $date_format);
 }
 
+/**
+ * Get the inspection time format
+ *
+ * @revised 3.3
+ */
 function epl_get_inspection_time_format() {
 
 	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
@@ -2560,3 +2638,18 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 	return $classes;
 }
 add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
+
+/**
+ * Get the author loop
+ *
+ * @revised 3.3
+ */
+function epl_archive_author_callback() {
+	global $epl_author_secondary;
+	epl_get_template_part('content-author-archive-card.php');
+	if( is_epl_post() && epl_listing_has_secondary_author() ) {
+	    epl_get_template_part('content-author-archive-card.php',array('epl_author'	=>	$epl_author_secondary));
+	    epl_reset_post_author();
+	}
+}
+add_action( 'epl_archive_author' , 'epl_archive_author_callback' );

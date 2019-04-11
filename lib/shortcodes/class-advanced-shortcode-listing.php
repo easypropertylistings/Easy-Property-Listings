@@ -4,15 +4,15 @@
  *
  * @package     EPL
  * @subpackage  Shortcode/Listing
- * @copyright   Copyright (c) 2018, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       3.2.3
+ * @since       3.3
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class EPL_Shortcode_Listing {
+class EPL_Advanced_Shortcode_Listing {
 
 	public $default_args;
 
@@ -68,43 +68,43 @@ class EPL_Shortcode_Listing {
 		/**
 		 *
 		 * Template 		: used to render each listing in loop.
-		 * 
+		 *
 		 * Default to loop-listing-blog-default.php
 		 *
-		 * To override copy loop-listing-blog-default.php from EPL/templates/content to 
+		 * To override copy loop-listing-blog-default.php from EPL/templates/content to
 		 * active_theme/easypropertylistings and rename the file to loop-listing-blog-{$template}.php
 		 *
-		 * 
+		 *
 		 * wrap_template 	: Used to render wrapper of listings render using shortcode.
 		 *
 		 * Default to shortcode-listing.php
 		 *
-		 * to override copy shortcode-listing.php from EPL/templates/content to 
-		 * active_theme/easypropertylistings and rename the file to 
+		 * to override copy shortcode-listing.php from EPL/templates/content to
+		 * active_theme/easypropertylistings and rename the file to
 		 * shortcode-listing-{$wrap_template}.php
 		 */
 
 		$this->default_args = array(
 			'post_type'               => $this->get_default_post_types(), //Post Type
 			'status'                  => array( 'current', 'sold', 'leased' ),
-			'commercial_listing_type' =>	'', // Listing Type, 'sale' , 'lease', 'both'
-			'feature'                 =>	'', // Feature slug
-			'feature_id'              =>	'', // Feature ID
+			'commercial_listing_type' => '', // Listing Type, 'sale' , 'lease', 'both'
+			'feature'                 => '', // Feature slug
+			'feature_id'              => '', // Feature ID
 			'limit'                   => '10', // Number of maximum posts to show
 			'offset'                  => '', // Offset posts. When used, pagination is disabled
 			'author'                  => '',	// Author of listings.
 			'featured'                => 0,	// Featured listings.
-			'open_house'              =>	false, // only show open house
-			'auction'                 =>	false, // only show properties for auction
-			'class'                   =>	'epl-shortcode-listing', // wrapper class		
-			'wrap_template'           =>	'', // explained in detail below
+			'open_house'              => false, // only show open house
+			'auction'                 => false, // only show properties for auction
+			'class'                   => 'epl-shortcode-listing', // wrapper class
+			'wrap_template'           => '', // explained in detail below
 			'template'                => false, // Template can be set to "slim" for home open style template
 			'location'                => '', // Location slug. Should be a name like sorrento
-			'location_id'             =>	'', // Location ID
+			'location_id'             => '', // Location ID
 			'tools_top'               => 'off', // Tools before the loop like Sorter and Grid on or off
 			'tools_bottom'            => 'off', // Tools after the loop like pagination on or off
 			'sortby'                  => '', // Options: price, date : Default date
-			'orderby_clause'          =>	'', //  order by two different pieces of postmeta (for example, suburb first and state second)
+			'orderby_clause'          => '', //  order by two different pieces of postmeta (for example, suburb first and state second)
 			'sort_order'              => 'DESC', // Sort by ASC or DESC
 			'query_object'            => '', // only for internal use . if provided use it instead of custom query
 			'pagination'              => 'on', // Enable or disable pagination
@@ -133,7 +133,7 @@ class EPL_Shortcode_Listing {
 
 	function set_post_type() {
 		if ( ! is_array( $this->attributes['post_type'] ) ) {
-			$this->attributes['post_type'] = 
+			$this->attributes['post_type'] =
 			array_map( 'trim', explode( ',',$this->attributes['post_type'] ) );
 		}
 	}
@@ -344,16 +344,16 @@ class EPL_Shortcode_Listing {
 		 * Advance orderby using named meta query clauses,
 		 * will override default orderby
 		 */
-		
+
 		if ( ! empty ( $this->attributes['orderby_clause'] ) ) {
 
-			$this->attributes['orderby_clause'] = 
+			$this->attributes['orderby_clause'] =
 			array_map( 'trim', explode( ',',$this->attributes['orderby_clause'] ) );
 			foreach( $this->attributes['orderby_clause'] as $oc ) {
 				$oc_array = explode( '|',$oc );
-				
+
 				$this->args['orderby'][$oc_array[0]] = $oc_array[1];
-				
+
 			}
 
 			unset($this->args['order']);
@@ -376,8 +376,8 @@ class EPL_Shortcode_Listing {
 
 		$attributes['wrap_template'] = str_replace( '_', '-', $this->attributes['wrap_template'] );
 
-		$wrap_template = 
-		$this->attributes['wrap_template'] == '' ? 
+		$wrap_template =
+		$this->attributes['wrap_template'] == '' ?
 		'shortcode-listing.php' : 'shortcode-listing-'.$this->attributes['wrap_template'].'.php';
 
 		return $wrap_template;

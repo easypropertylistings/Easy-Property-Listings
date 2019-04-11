@@ -1873,3 +1873,6 @@ h3.epl-contact-activity-title {
     width: 100%!important;
     z-index: 9999;
 }
+.epl-tools-form {
+    padding: 20px 0;
+}
