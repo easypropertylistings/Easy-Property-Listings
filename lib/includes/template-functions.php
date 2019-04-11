@@ -849,12 +849,36 @@ function epl_property_category() {
 	echo $property->get_property_category( 'value' );
 }
 
+function epl_get_video_host($url) {
+
+	$host = 'unknown';
+
+	if (strpos($url, 'youtu') > 0) {
+        $host = 'youtube';
+    } elseif (strpos($url, 'vimeo') > 0) {
+        $host = 'vimeo';
+    }
+
+    return $host;
+}
+
 /**
  * Property Video HTML
  *
  * @since 1.0
  */
 function epl_get_video_html($property_video_url='',$width=600) {
+
+	/** remove related videos from youtube */
+	if( epl_get_video_host($property_video_url) == 'youtube' ) {
+
+		if (strpos($property_video_url, '?') > 0) {
+			$property_video_url .= '&rel=0';
+		} else {
+			$property_video_url .= '?rel=0';
+		}
+		
+	}
 	$width = epl_get_option('epl_video_width',$width);
 	if($property_video_url != '') {
 		$video_html =  '<div class="epl-video-container videoContainer">';
