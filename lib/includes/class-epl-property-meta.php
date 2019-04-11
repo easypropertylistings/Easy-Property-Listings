@@ -1805,7 +1805,7 @@ class EPL_Property_Meta {
 
 		if( isset($value) && ($value == 1 || $value == 'yes') ) {
 
-			$label = apply_filters('epl_get_property_furnished_label',__('Holiday Rental', 'easy-property-listings' ) );
+			$label = apply_filters('epl_get_property_furnished_label',__('Furnished', 'easy-property-listings' ) );
 
 			switch( $returntype ) {
 
@@ -1833,6 +1833,51 @@ class EPL_Property_Meta {
 
 			}
 			return apply_filters('epl_get_property_furnished',$return,$returntype,$value,$label);
+		}
+	}
+
+	/**
+	 * Get Furnished
+	 *
+	 * @since 3.2
+	 * @param string $returntype Options i = span, d = string, l = list item, t = text
+	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 */
+	public function get_property_pets( $returntype = 'i' ) {
+
+		$value 		= $this->get_property_meta('property_pet_friendly');
+		$returntype	= apply_filters( 'epl_get_property_pet_friendly_return_type' , $returntype);
+
+		if( isset($value) && ($value == 1 || $value == 'yes') ) {
+
+			$label = apply_filters('epl_get_property_pet_friendly_label',__('Pet Friendly', 'easy-property-listings' ) );
+
+			switch( $returntype ) {
+
+				case 'i' :
+					$return 	= '<span title="'.$label.'" class="icon pet-friendly"></span>';
+					break;
+
+				case 'v' :
+					$return = $value;
+					break;
+
+				case 't':
+					$return = '<div class="epl-text-icon-container epl-text-icon-container-pet-friendly">
+							<span class="epl-text-icon-label pet-friendly">' . $label . '</span>
+						</div>';
+					break;
+
+				case 'd' :
+					$return = $label.' '.$value.' ';
+					break;
+
+				case 'l' :
+					$return = '<li class="pet-friendly">'.$label.'</li>';
+					break;
+
+			}
+			return apply_filters('epl_get_property_pet_friendly',$return,$returntype,$value,$label);
 		}
 	}
 
