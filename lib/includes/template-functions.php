@@ -879,7 +879,7 @@ function epl_property_video_callback( $width = 600 ) {
 	$property_video_url	= $property->get_property_meta('property_video_url');
 	echo epl_get_video_html($property_video_url,$video_width);
 }
-add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
+add_action('epl_property_video','epl_property_video_callback' , 10 , 1);
 
 /**
  * Property Tab section details output

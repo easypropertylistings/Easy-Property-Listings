@@ -76,6 +76,8 @@
 						do_action('epl_property_the_content');
 
 						do_action('epl_property_content_after');
+
+						do_action('epl_property_video');
 					?>
 				</div>
 			</div>
