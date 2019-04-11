@@ -390,21 +390,6 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 = 3.3 April 12, 2019 =
 
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible. And easy to use.
@@ -416,17 +401,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Status functions for use in custom templates epl_the_status, epl_get_the_status.
 * New: Under Offer functions for use in custom templates epl_the_under_offer, epl_get_the_under_offer.
 * New: Enabled Mini Website URL meta field as a number of REAXML providers are now using 3D Tours.
-
-
-
-
-
-NEW: TBA : get_property_pets
-
-
-
-
-
+* New: Able to configure sorting dropdown as tabs.
 * Tweak: Rebuilt date picker JS validation code to better optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
 * Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
@@ -436,21 +411,13 @@ NEW: TBA : get_property_pets
 * Tweak: Totally re-built the functions handling important details using code switches and filters greatly improving customisations and alterations. Functions re-built using switches: get_property_year_built, get_property_bed, get_property_bath, get_property_rooms, get_property_parking, get_property_garage, get_property_carport, get_property_air_conditioning, get_property_pool, get_property_security_system, get_property_land_value, get_property_building_area_value, get_property_energy_rating, get_property_new_construction, get_property_holiday_rental, get_property_furnished,
 * Tweak: Improvements to search ?????  // $this->get_data = $this->data; // lib/includes/class-epl-search.php
 * Tweak: Parse EPL shortcodes for meta queries improved.
-
 * Tweak: Completely re-worked the icons system for listings which makes it easier to customise with hooks and filters and add additional icons and adjust the order.
 * Tweak: Reworked the Additional features output allowing further control over output of features along with adjusting the order and output style.
 * Tweak: Total rebuild of the sorting and tools code allowing additional tools to be hooked in and rework the existing tools.
 * Tweak: Code optimisations of gallery functions.
-
 * Tweak: Widget templates to handle the Inspection time and ical options.
-
-
 * Tweak: Selecting secondary agents works better now on the edit listing pages.
-
-TEST * Tweak: epl_property_widget Options for Inspection times and iCal links to EPL - Listing Widget.
-
-
-
+* Tweak: epl_property_widget Options for Inspection times and iCal links to EPL - Listing Widget.
 * Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.
 * Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
@@ -458,23 +425,9 @@ TEST * Tweak: epl_property_widget Options for Inspection times and iCal links to
 * Fix: Images no longer overlap in admin when the image filter is used to alter the default image sizes.
 * Fix: [listing_auction] shortcode now correctly lists set auctions.
 * Fix: [listing_open] shortcode now correctly lists listings that have an inspection set.
-
 * Fix: Home Open label improved as sometimes empty data is imported and the label appears where it should not.
-
 * Fix: [listing_search] enabling the multiple select option now works better.
-
-* Fix:  // $emails = (array) get_post_meta($id,'contact_emails',true);   // Uncertian what this fixes?  lib/includes/class-epl-contact.php
-
-
-* Fix: // $selected = in_array( $k, (array) $value ) ? true : false; // Uncertian what it fixes? lib/includes/class-epl-search-fields.php
-
-
-
-
-
-
-
-
+* Fix: Several typcasting fixes to various functions to prevent any issues with data that is not entirely empty.
 
 = 3.2.3 November 22, 2018 =
 
