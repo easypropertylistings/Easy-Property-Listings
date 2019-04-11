@@ -90,7 +90,7 @@ function epl_property_single() {
 		epl_property_single_default();
 	}
 }
-add_action('epl_property_single','epl_property_single');
+add_action('epl_property_single','epl_property_single',10,1);
 
 /**
  * Featured Image template now loading through filter
@@ -195,8 +195,9 @@ function epl_property_single_default() {
 		epl_get_template_part('content-listing-single-compatibility.php');
 
 	} else {
-
-		epl_get_template_part('content-listing-single.php');
+		$single_tpl = 'content-listing-single.php';
+		$single_tpl = apply_filters('epl_property_single_default',$single_tpl);
+		epl_get_template_part($single_tpl);
 	}
 }
 
@@ -320,14 +321,15 @@ function epl_property_blog($template='') {
 
 
 			} else {
-
-				epl_get_template_part('loop-listing-blog-'.$template.'.php');
+				$tpl_name = 'loop-listing-blog-'.$template.'.php';
+				$tpl_name = apply_filters('epl_property_blog_template',$tpl_name);
+				epl_get_template_part($tpl_name);
 			}
 
 		}
 	} // End Status Removal
 }
-add_action('epl_property_blog','epl_property_blog');
+add_action('epl_property_blog','epl_property_blog',10,1);
 
 /**
  * Renders default author box
