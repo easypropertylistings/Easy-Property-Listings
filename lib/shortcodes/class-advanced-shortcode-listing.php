@@ -109,7 +109,8 @@ class EPL_Advanced_Shortcode_Listing {
 			'query_object'            => '', // only for internal use . if provided use it instead of custom query
 			'pagination'              => 'on', // Enable or disable pagination
 			'post__in'                => '',	// show only these posts
-			'post__not_in'            => '' // dont show these posts
+			'post__not_in'            => '', // dont show these posts
+			'instance_id'				=>	'1'			
 		);
 
 		return $this->default_args;
@@ -359,8 +360,12 @@ class EPL_Advanced_Shortcode_Listing {
 			unset($this->args['order']);
 		}
 
+		$args['instance_id'] = $attributes['instance_id'];
 		// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-		$this->args = epl_add_orderby_args($this->args);
+		$args = epl_add_orderby_args($args,'shortcode','listing_advanced');
+
+		/** Option to filter args */
+		$args = apply_filters('epl_shortcode_listing_advanced_args',$this->args,$this->attributes);
 	}
 
 	function set_query() {

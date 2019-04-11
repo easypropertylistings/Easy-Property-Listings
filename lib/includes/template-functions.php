@@ -2047,6 +2047,18 @@ function epl_get_active_theme_name() {
 	return apply_filters('epl_active_theme_name',$epl_class_prefix . $active_theme);
 }
 
+function epl_get_shortcode_list() {
+	return array(
+		'listing',
+		'listing_category',
+		'listing_open',
+		'listing_feature',
+		'listing_location',
+		'listing_auction',
+		'listing_advanced'
+	);
+}
+
 /**
  * Pagination fix for home
  *
@@ -2055,10 +2067,25 @@ function epl_get_active_theme_name() {
 function epl_home_pagination_fix( $query) {
 
 	global $wp_query;
-	if( isset($wp_query->query['paged']) )
+	if( isset($wp_query->query['paged']) ){
 		$query->set('paged', $wp_query->query['paged']);
+	}
+
+	$shortcodes = epl_get_shortcode_list();
+
+	if( $query->get('is_epl_shortcode') && 
+		in_array($query->get('epl_shortcode_name'),$shortcodes) ){
+
+		if( isset($_GET['pagination_id']) && $_GET['pagination_id'] == $query->get('instance_id') ) {
+			$query->set('paged', $query->get('paged') );
+		} else {
+			$query->set('paged', 1 );
+		}
+		
+
+	}
 }
-add_action('pre_get_posts','epl_home_pagination_fix');
+add_action('pre_get_posts','epl_home_pagination_fix',99);
 
 /**
  * Returns status class
@@ -2585,7 +2612,12 @@ add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
  * @since 3.0
  * @return $args
  */
-function epl_add_orderby_args($args) {
+function epl_add_orderby_args($args,$type='',$name='') {
+
+	if( $type == 'shortcode' ) {
+		$args['is_epl_shortcode'] 	= true;
+		$args['epl_shortcode_name'] = $name;
+	}
 
 	$post_type = current($args['post_type']);
 
