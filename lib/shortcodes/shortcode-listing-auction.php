@@ -28,17 +28,17 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	}
 
 	extract( shortcode_atts( array(
-		'post_type' 		=>	$property_types, //Post Type
-		'status'		=>	array('current' , 'sold' , 'leased' ),
-		'limit'			=>	'10', // Number of maximum posts to show
-		'template'		=>	false, // Template can be set to "slim" for home open style template
-		'location'		=>	'', // Location slug. Should be a name like sorrento
-		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
-		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
-		'sortby'		=>	'', // Options: price, date : Default date
-		'sort_order'		=>	'DESC',
-		'query_object'		=>	'', // only for internal use . if provided use it instead of custom query
-		'pagination'		=> 	'on'
+		'post_type' 	=> $property_types, //Post Type
+		'status'		=> array('current' , 'sold' , 'leased' ),
+		'limit'		=> '10', // Number of maximum posts to show
+		'template'	=> false, // Template can be set to "slim" for home open style template
+		'location'	=> '', // Location slug. Should be a name like sorrento
+		'tools_top'	=> 'off', // Tools before the loop like Sorter and Grid on or off
+		'tools_bottom'	=> 'off', // Tools after the loop like pagination on or off
+		'sortby'		=> '', // Options: price, date : Default date
+		'sort_order'	=> 'DESC',
+		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
+		'pagination'	=> 'on'
 	), $atts ) );
 
 	if(is_string($post_type) && $post_type == 'rental') {
@@ -48,8 +48,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	}
 
 	$sort_options = array(
-		'price'			=>	$meta_key_price,
-		'date'			=>	'post_date'
+		'price'		=>	$meta_key_price,
+		'date'		=>	'post_date'
 	);
 	if( !is_array($post_type) ) {
 		$post_type 			= array_map('trim',explode(',',$post_type) );
@@ -57,7 +57,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(
-		'post_type' 		=>	$post_type,
+		'post_type' 	=>	$post_type,
 		'posts_per_page'	=>	$limit,
 		'paged' 		=>	$paged
 	);
@@ -66,7 +66,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	$args['meta_query'][] = array(
 		'key'		=> 'property_under_offer',
 		'value'		=> 'yes',
-		'compare'	=>	'!='
+		'compare'	=> '!='
 	);
 
 	/** only properties which are not auction should be allowed **/
@@ -83,7 +83,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 			$args['tax_query'][] = array(
 				'taxonomy'	=> 'location',
 				'field'		=> 'slug',
-				'terms' 	=> $location
+				'terms' 		=> $location
 			);
 		}
 	}
@@ -106,13 +106,13 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	if( $sortby != '' ) {
 
 		if($sortby == 'price') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
+			$args['orderby']		= 'meta_value_num';
+			$args['meta_key']	= $meta_key_price;
 		} else {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'DESC';
+			$args['orderby']		= 'post_date';
+			$args['order']		= 'DESC';
 		}
-		$args['order']			=	$sort_order;
+		$args['order']			= $sort_order;
 	}
 
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
