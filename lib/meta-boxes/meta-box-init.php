@@ -92,6 +92,7 @@ function epl_get_meta_boxes() {
 					'id'		=>	'listing_type',
 					'columns'	=>	'2',
 					'label'		=>	__('Listing Type', 'easy-property-listings' ),
+					'width'	=>	'2',
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_status',
@@ -221,13 +222,15 @@ function epl_get_meta_boxes() {
 				array(
 					'id'		=>	'house_features',
 					'columns'	=>	'2',
+					'width'	=>	'2', // default for this group
 					'label'		=>	__('House Features', 'easy-property-listings' ),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_bedrooms',
 							'label'		=>	__('Bedrooms', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'class'		=>	'validate[custom[bedroom]]'
+							'class'		=>	'validate[custom[bedroom]]',
+							'width'	=>	'2', // override width for this field
 						),
 
 						array(
@@ -283,7 +286,8 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_year_built',
 							'label'		=>	__('Year Built', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'maxlength'	=>	'4'
+							'maxlength'	=>	'4',
+							'width'	=>	'1'
 						),
 
 						array(
@@ -344,28 +348,32 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_land_area',
 							'label'		=>	__('Land Area', 'easy-property-listings' ),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'50'
+							'maxlength'	=>	'50',
+							'width'	=>	'2-3'
 						),
 
 						array(
 							'name'		=>	'property_land_area_unit',
 							'label'		=>	__('Land Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'opts'		=>	$opts_area_unit
+							'opts'		=>	$opts_area_unit,
+							'width'	=>	'3'
 						),
 
 						array(
 							'name'		=>	'property_building_area',
 							'label'		=>	__('Building Area', 'easy-property-listings' ),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'50'
+							'maxlength'	=>	'50',
+							'width'	=>	'2-3'
 						),
 
 						array(
 							'name'		=>	'property_building_area_unit',
 							'label'		=>	__('Building Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'opts'		=>	$opts_area_unit
+							'opts'		=>	$opts_area_unit,
+							'width'	=>	'3'
 						),
 
 						array(
