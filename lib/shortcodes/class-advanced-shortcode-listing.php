@@ -331,6 +331,8 @@ class EPL_Advanced_Shortcode_Listing {
 			if ( $this->attributes['sortby'] == 'price' ) {
 				$this->args['orderby']  = 'meta_value_num';
 				$this->args['meta_key'] =	$this->get_meta_key_price();
+			} elseif( $this->attributes['sortby'] == 'rand' ) {
+				$this->args['orderby']  = 'rand';
 			} else {
 				$this->args['orderby']  = 'post_date';
 				$this->args['order']    = 'DESC';

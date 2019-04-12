@@ -123,6 +123,8 @@ function epl_shortcode_listing_callback( $atts ) {
 		if ( $attributes['sortby'] == 'price' ) {
 			$args['orderby']  = 'meta_value_num';
 			$args['meta_key'] =	$meta_key_price;
+		} elseif( $attributes['sortby'] == 'rand' ) {
+			$args['orderby']  = 'rand';
 		} else {
 			$args['orderby']  = 'post_date';
 			$args['order']    = 'DESC';
