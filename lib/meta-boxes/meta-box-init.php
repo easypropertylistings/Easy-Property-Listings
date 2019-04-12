@@ -1024,6 +1024,13 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
+							'name'		=>	'property_date_leased',
+							'label'		=>	__('Leased Date', 'easy-property-listings' ),
+							'type'		=>	'date',
+							'maxlength'	=>	'100'
+						),
+
+						array(
 							'name'		=>	'property_furnished',
 							'label'		=>	__('Furnished', 'easy-property-listings' ),
 							'type'		=>	'checkbox_single',
