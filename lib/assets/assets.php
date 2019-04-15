@@ -108,7 +108,8 @@ function epl_wp_enqueue_scripts() {
 
 	$js_vars = array(
 		'epl_default_view_type' => $epl_default_view_type,
-		'ajaxurl'		=> admin_url('admin-ajax.php')
+		'ajaxurl'				=> admin_url('admin-ajax.php'),
+		'image_base'			=> EPL_PLUGIN_URL.'lib/assets/images/'	
 	);
 	wp_enqueue_script( 	'epl-js-lib', 						$current_dir_path . '/js/epl.js', 			array('jquery'), 	EPL_PROPERTY_VER );
 
