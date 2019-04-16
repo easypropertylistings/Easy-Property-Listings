@@ -258,13 +258,9 @@ function epl_extension_has_beta_support( $slug ) {
 function epl_get_tools_tab() {
 
 	$default_tabs = array(
-		'import'	=>	array(
-			'label'		=>	__('Import','easy-property-listings'),
-			'callback'	=>	'epl_settings_import'
-		),
-		'export'	=>	array(
-			'label'		=>	__('Export','easy-property-listings'),
-			'callback'	=>	'epl_settings_export'
+		'tools'	=>	array(
+			'label'		=>	__('Tools','easy-property-listings'),
+			'callback'	=>	'epl_settings_import_export'
 		)
 	);
 	return apply_filters('epl_get_tools_tab',$default_tabs);
@@ -295,7 +291,7 @@ function epl_unserialize($data) {
  *
  * @since 3.3
  */
-function epl_settings_import() {
+function epl_settings_import_export() {
 
 	do_action('epl_pre_import_fields');
 
@@ -311,6 +307,8 @@ function epl_settings_import() {
 
 	$fields = apply_filters('epl_import_fields',$fields);
 
+	echo '<h2>'.__('Import Options','easy-property-listings').'</h2>';
+
 	foreach($fields as $field) {
 
 		echo '<div class="epl-field">';
@@ -324,23 +322,29 @@ function epl_settings_import() {
 		echo '</div>';
 	}
 
-	do_action('epl_post_import_fields');
-}
+	?>
+	<input type="hidden" name="action" value="import">
+	<div class="">
+		<input type="submit" name="epl_tools_submit" value="<?php _e('Import','easy-property-listings') ?>" class="epl-tools-submit button button-primary"/>
+		<span style="color:#f00"><?php _e('WARNING! This will overwrite all existing option values, please proceed with caution','easy-property-listings'); ?></span>
+	</div>
+	
 
-/**
- * Export Settings Screen
- *
- * @since 3.3
- */
-function epl_settings_export() {
+	<?php
+
+	do_action('epl_post_import_fields');
+
+	echo '<h2>'.__('Export Options','easy-property-listings').'</h2>';
+
+	$tab    = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'tools';
+
+	echo "<a class='button button-primary' href='?page=epl-tools&tab=$tab&action=export&epl_tools_submit=true'>".__('Download File','easy-property-listings')."</a>";
 
 	do_action('epl_pre_export_fields');
 
-	// export settings (Needs details here)
-
 	do_action('epl_post_export_fields');
-
 }
+
 
 /**
  * Import and Export Form
@@ -349,15 +353,20 @@ function epl_settings_export() {
  */
 function epl_handle_tools_form() {
 
-    if( !isset($_GET['page']) || $_GET['page'] != 'epl-tools' || !isset($_POST['epl_tools_submit'])  )
+    if( !isset($_GET['page']) || $_GET['page'] != 'epl-tools' || !isset($_REQUEST['epl_tools_submit'])  )
         return;
+
+
+    if( !isset($_REQUEST['action']) || !in_array( $_REQUEST['action'], array('import','export') )  ){
+    	return;
+    }
+
+    $action  = $_REQUEST['action'];
 
     // sanitize post array
     $post_data	= filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-    $tab		= isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'import'; // default is import
-
-    switch($tab) {
+    switch($action) {
 
         case 'export':
 		$export = get_option('epl_settings');
@@ -376,7 +385,7 @@ function epl_handle_tools_form() {
         break;
 
         case 'import':
-
+        
 		if( trim($post_data['epl_import']) == '')
 		return;
 
@@ -390,4 +399,4 @@ function epl_handle_tools_form() {
     }
 
 }
-add_action('init', 'epl_handle_tools_form' );
+add_action('admin_init', 'epl_handle_tools_form' );

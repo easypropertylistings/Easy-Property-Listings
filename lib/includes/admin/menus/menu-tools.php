@@ -16,7 +16,7 @@
         <div class="epl-tabs">
             <?php
                 $tabs       = epl_get_tools_tab();
-                $current    = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'import'; // default is import
+                $current    = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'tools'; // default is import
 
                 echo '<h1 class="nav-tab-wrapper">';
                 foreach( $tabs as $tab => $tab_options ){
@@ -34,7 +34,7 @@
                 <?php
                     call_user_func($tabs[$current]['callback']);
                 ?>
-                <input type="submit" name="epl_tools_submit" value="<?php _e('Submit','easy-property-listings') ?>" class="epl-tools-submit button button-primary"/>
+                
             </form>
         </div>
 
