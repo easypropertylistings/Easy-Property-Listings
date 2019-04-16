@@ -609,7 +609,7 @@ function epl_property_suburb() {
 add_action( 'epl_property_suburb' , 'epl_property_suburb' );
 
 /**
- * Get the full address
+ * Get the price
  *
  * @since 1.0
  * @hooked property_price
