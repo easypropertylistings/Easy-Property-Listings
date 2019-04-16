@@ -1141,7 +1141,7 @@ class EPL_Property_Meta {
 				break;
 
 			case 'l' :
-				$return = '<li class="bedrooms">'.$value . ' ' .$singular . '</li>';
+				$return = '<li class="bathrooms">'.$value . ' ' .$singular . '</li>';
 				break;
 
 			case 's' :
@@ -1649,7 +1649,7 @@ class EPL_Property_Meta {
 					break;
 
 				case 'l' :
-					$return = '<li class="land-size">'. $label.' ' . $value.'</li>';
+					$return = '<li class="building-size">'. $label.' ' . $value.'</li>';
 					break;
 			}
 			return apply_filters('epl_get_property_building_area_value',$return,$returntype,$value,$label);
