@@ -649,13 +649,14 @@ add_action('epl_property_price_content','epl_property_price');
  * @hooked property_price
  * @hooked property_price_content
  */
-function epl_get_property_icons( $args = array() ) {
+function epl_get_property_icons( $args = array() , $returntype = 'i') {
 
 	global $property;
 
 	$defaults = array('bed','bath','parking','ac','pool');
 
-	$icons = apply_filters('epl_get_property_icons', $defaults);
+	$icons 		= apply_filters('epl_get_property_icons', $defaults);
+	$returntype = apply_filters('epl_icons_return_type', $returntype);
 
 	ob_start();
 
@@ -669,23 +670,23 @@ function epl_get_property_icons( $args = array() ) {
 		switch($icon) {
 
 			case 'bed' :
-				echo $property->get_property_bed();
+				echo $property->get_property_bed($returntype);
 			break;
 
 			case 'bath' :
-				echo $property->get_property_bath();
+				echo $property->get_property_bath($returntype);
 			break;
 
 			case 'parking' :
-				echo $property->get_property_parking();
+				echo $property->get_property_parking($returntype);
 			break;
 
 			case 'ac' :
-				echo $property->get_property_air_conditioning();
+				echo $property->get_property_air_conditioning($returntype);
 			break;
 
 			case 'pool' :
-				echo $property->get_property_pool();
+				echo $property->get_property_pool($returntype);
 			break;
 
 			default:
@@ -703,8 +704,9 @@ function epl_get_property_icons( $args = array() ) {
  *
  * @since 1.0
  */
-function epl_property_icons() {
-	echo epl_get_property_icons();
+function epl_property_icons($returntype = 'i') {
+	$returntype = $returntype == '' ? 'i' : $returntype;
+	echo epl_get_property_icons(array(),$returntype);
 }
 add_action('epl_property_icons','epl_property_icons');
 
