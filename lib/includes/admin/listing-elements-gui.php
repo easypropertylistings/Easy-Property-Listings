@@ -5,7 +5,8 @@ function epl_add_elements_gui_button() {
    echo '<style>
    .epl_am_elements_gui_icon:before {
    		font: 400 18px/1 dashicons;
-   		content:""
+   		content: "\f478";
+      vertical-align: middle;
    }
 
    </style>
