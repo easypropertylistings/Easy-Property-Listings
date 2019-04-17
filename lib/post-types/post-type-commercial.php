@@ -22,6 +22,7 @@ function epl_register_custom_post_type_commercial() {
 	$archives = defined( 'EPL_COMMERCIAL_DISABLE_ARCHIVE' ) && EPL_COMMERCIAL_DISABLE_ARCHIVE ? false : true;
 	$slug     = defined( 'EPL_COMMERCIAL_SLUG' ) ? EPL_COMMERCIAL_SLUG : 'commercial';
 	$rewrite  = defined( 'EPL_COMMERCIAL_DISABLE_REWRITE' ) && EPL_COMMERCIAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$rest  = defined( 'EPL_COMMERCIAL_ENABLE_REST' ) && EPL_COMMERCIAL_ENABLE_REST ? true : false;
 
 	$labels = apply_filters( 'epl_commercial_labels', array(
 		'name'			=>	__('Commercial Listings', 'easy-property-listings' ),
@@ -53,6 +54,7 @@ function epl_register_custom_post_type_commercial() {
 		'has_archive'		=>	$archives,
 		'hierarchical'		=>	false,
 		'menu_position'		=>	'26.7',
+		'show_in_rest'		=>	$rest,
 		'taxonomies'		=>	array( 'location', 'tax_feature' ),
 		'supports'		=>	apply_filters( 'epl_commercial_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
