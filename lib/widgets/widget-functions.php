@@ -167,6 +167,12 @@ function epl_search_widget_fields() {
 			'type'			=>	'checkbox',
 		),
 		array(
+			'key'			=>	'search_linked_contact',
+			'label'			=>	__('Linked Contact','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
 			'key'			=>	'search_other',
 			'label'			=>	__('Other Search Options','easy-property-listings'),
 			'default'		=>	'on',
@@ -691,6 +697,17 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'order'			=>	280
 		),
 		array(
+			'key'			=>	'search_linked_contact',
+			'meta_key'		=>	'property_owner',
+			'label'			=>	__('Linked Contact','easy-property-listings'),
+			'option_filter'		=>	'linked_contact',
+			'options'		=>	epl_get_owners(),
+			'type'			=>	'select',
+			'query'			=>	array('query'	=>	'meta'),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	285
+		),
+		array(
 			'key'			=>	'search_other',
 			'meta_key'		=>	'property_security_system',
 			'label'			=>	__('Security', 'easy-property-listings'),
@@ -704,7 +721,8 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'class'			=>	'epl-search-row-half',
 			'wrap_end'		=>	true,
 			'order'			=>	290
-		)
+		),
+		
 	), $post_type, $property_status );
 
 	$order = array();
@@ -1294,4 +1312,15 @@ function epl_contact_capture_widget_form_fields() {
 		),
 	);
 	return apply_filters( 'epl_contact_capture_widget_form_fields', $fields );
+}
+
+function epl_get_owners() {
+	$c_array = array();
+	$contact_ids = (array) epl_get_meta_values( 'property_owner', epl_get_core_post_types() );
+	foreach ( $contact_ids as $contact ) {
+		$contact_object = new EPL_Contact($contact);
+		$c_array[$contact] = $contact_object->name;
+	}
+	return $c_array;
+
 }
