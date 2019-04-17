@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <div class="epl-clearfix"></div>
 <div class="epl-author-social-buttons author-social-buttons">
 	<?php
-		$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
+		$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','instagram','pinterest','google','linkedin','skype'));
 		foreach($social_icons as $social_icon){
 			echo call_user_func(array($epl_author,'get_'.$social_icon.'_html'));
 		}
