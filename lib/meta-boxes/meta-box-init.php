@@ -1347,8 +1347,20 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
+							'name'		=>	'property_floorplan_label',
+							'label'		=>	__('Floorplan Label', 'easy-property-listings' ),
+							'type'		=>	'file'
+						),
+
+						array(
 							'name'		=>	'property_floorplan_2',
 							'label'		=>	__('Floorplan 2', 'easy-property-listings' ),
+							'type'		=>	'file'
+						),
+
+						array(
+							'name'		=>	'property_floorplan_2_label',
+							'label'		=>	__('Floorplan 2 Label', 'easy-property-listings' ),
 							'type'		=>	'file'
 						),
 
@@ -1359,8 +1371,20 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
+							'name'		=>	'property_external_link_label',
+							'label'		=>	__('External Link Label', 'easy-property-listings' ),
+							'type'		=>	'file'
+						),
+
+						array(
 							'name'		=>	'property_external_link_2',
 							'label'		=>	__('External Link 2', 'easy-property-listings' ),
+							'type'		=>	'file'
+						),
+
+						array(
+							'name'		=>	'property_external_link_2_label',
+							'label'		=>	__('External Link 2 Label', 'easy-property-listings' ),
 							'type'		=>	'file'
 						),
 
@@ -1368,6 +1392,12 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_external_link_3',
 							'label'		=>	__('External Link 3', 'easy-property-listings' ),
 							'type'		=>	'file',
+						),
+
+						array(
+							'name'		=>	'property_external_link_3_label',
+							'label'		=>	__('External Link 3 Label', 'easy-property-listings' ),
+							'type'		=>	'file'
 						),
 
 						array(
