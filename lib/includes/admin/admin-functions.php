@@ -261,6 +261,10 @@ function epl_get_tools_tab() {
 		'tools'	=>	array(
 			'label'		=>	__('Tools','easy-property-listings'),
 			'callback'	=>	'epl_settings_import_export'
+		),
+		'upgrade'	=>	array(
+			'label'		=>	__('Upgrade','easy-property-listings'),
+			'callback'	=>	'epl_settings_upgrade_tab'
 		)
 	);
 	return apply_filters('epl_get_tools_tab',$default_tabs);
@@ -345,6 +349,18 @@ function epl_settings_import_export() {
 	do_action('epl_post_export_fields');
 }
 
+function epl_settings_upgrade_tab() {
+
+	echo '<h2>'.__('Upgrade Options','easy-property-listings').'</h2>';
+
+	if( get_option('epl_db_upgraded_to') < 3.3 ) :
+
+	echo "<a class='button button-primary epl-upgrade-btn' data-upgrade='3.3' href='#'>".__('Upgrade Database','easy-property-listings')."</a>";
+
+	endif;
+
+	echo '<div style="display:none;" class="epl-ajax-notice">'.__('Processing...','easy-property-listings').'</div>';
+}
 
 /**
  * Import and Export Form
@@ -357,7 +373,7 @@ function epl_handle_tools_form() {
         return;
 
 
-    if( !isset($_REQUEST['action']) || !in_array( $_REQUEST['action'], array('import','export') )  ){
+    if( !isset($_REQUEST['action']) ){
     	return;
     }
 
@@ -414,3 +430,95 @@ function epl_comments_clauses( $clauses ){
     $clauses['where'] .= " AND comment_agent != 'easy-property-listings' "; // EDIT
     return $clauses;
 }
+
+function epl_upgrade_admin_notice(){
+
+	$upgraded_to = get_option('epl_db_upgraded_to');
+
+	if( $upgraded_to < 3.3 && current_user_can( 'administrator' ) ) :
+
+		$head = __('It looks like you upgraded to latest version of Easy Property Listings','easy-property-listings');
+
+		$msg = __('For better performance, we need to upgrade the database.You can upgrade the database by visiting tools page','easy-property-listings');
+
+	     echo '<div class="notice notice-warning epl-upgrade-notice is-dismissible">
+	             <p><strong>'.$head.'</strong></p>
+	             <p>'.$msg.'</p>
+	             <p><a class="button" href="?page=epl-tools&tab=upgrade">'.__("Take me to upgrade tool","easy-property-listings").'</a></p>
+	         </div>';
+
+ 	endif;
+}
+add_action('admin_notices', 'epl_upgrade_admin_notice');
+
+function epl_upgrade_db() {
+
+	if( !isset($_POST['upgrade_to']) ){
+		wp_die( json_encode(array('status'	=>	'fail', 'msg'	=>	__('Some error occured','easy-property-listings') ) ) );
+	}
+
+	$ver = $_POST['upgrade_to'];
+
+	switch( $ver ) {
+
+		case '3.3' :
+			epl_upgrade_db_to_3_3();
+		break;
+	}
+}
+add_action('wp_ajax_epl_upgrade_db','epl_upgrade_db');
+
+function epl_upgrade_db_to_3_3() {
+
+	$all_posts = get_posts(
+		array(
+			'post_type'		=>	epl_get_core_post_types(),
+			'post_status'	=>	'any',
+			'numberposts' 	=> -1
+		)
+	);
+
+	if( !empty($all_posts) ) {
+
+		foreach($all_posts as $single) {
+
+			switch($single->post_type) {
+
+				case 'rental' :
+					$price = get_post_meta($single->ID,'property_rent',true);
+					update_post_meta($single->ID,'property_search_price',$price);
+				break;
+
+				default :
+					$price = get_post_meta($single->ID,'property_price',true);
+					update_post_meta($single->ID,'property_search_price',$price);
+				break;
+			}
+		}
+	}
+
+	update_option('epl_db_upgraded_to','3.3');
+
+	wp_die( 
+		json_encode(
+			array(
+				'status'	=>	'success', 
+				'msg'	=>	__('DB upgraded successfully','easy-property-listings') 
+			)
+		)
+	);
+}
+
+function epl_sync_property_search_price() {
+
+	if( is_epl_post() ) {
+		if ( 'rental' == $_POST['post_type'] ) {
+			$price = get_post_meta($_POST['ID'],'property_rent',true);
+			update_post_meta($_POST['ID'],'property_search_price',$price);
+		} else {
+			$price = get_post_meta($_POST['ID'],'property_price',true);
+			update_post_meta($_POST['ID'],'property_search_price',$price);
+		}
+	}
+}
+add_action('save_post','epl_sync_property_search_price',40);
