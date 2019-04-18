@@ -400,3 +400,17 @@ function epl_handle_tools_form() {
 
 }
 add_action('admin_init', 'epl_handle_tools_form' );
+
+add_action( 'admin_notices', 'epl_filter_recent_comments' );
+
+function epl_filter_recent_comments(){
+	global $current_screen;
+
+	if( $current_screen->id == 'dashboard' )
+    	add_filter( 'comments_clauses', 'epl_comments_clauses' );
+}
+
+function epl_comments_clauses( $clauses ){
+    $clauses['where'] .= " AND comment_agent != 'easy-property-listings' "; // EDIT
+    return $clauses;
+}
