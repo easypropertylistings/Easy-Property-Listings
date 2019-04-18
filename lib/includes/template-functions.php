@@ -2342,9 +2342,13 @@ function epl_feeling_lucky($content) {
 	$epl_posts 	= array_keys($epl_posts);
 
 	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
+		ob_start();
 		do_action('epl_property_single');
+		return ob_get_clean();
 	} elseif( is_post_type_archive($epl_posts) ) {
+		ob_start();
 		do_action('epl_property_blog');
+		return ob_get_clean();
 	} else {
 		return $content;
 	}
