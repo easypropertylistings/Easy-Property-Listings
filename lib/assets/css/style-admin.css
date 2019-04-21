@@ -315,7 +315,7 @@ h3.epl-welcome-sub-heading {
 }
 .epl-field-row {
 	display:block;
-	margin:5px 0;
+	margin: 0;
 }
 .epl-field textarea {
 	float: left;
@@ -461,16 +461,14 @@ h3.epl-welcome-sub-heading {
 .epl-inner-div input[type="checkbox"] {
 	width:auto;
 }
-
 /** meta fields */
-
-.epl-inner-div.col-1 .epl-form-field-wrap{
-    padding: 20px 10px 20px 0;
+.epl-inner-div.col-1 .epl-form-field-wrap {
+    padding: 5px 0;
 }
 .epl-inner-div.col-2 .epl-form-field-wrap,
 .epl-inner-div.col-3 .epl-form-field-wrap,
-#side-sortables .epl-form-field-wrap{
-    padding: 5px 0 2px 0;
+#side-sortables .epl-form-field-wrap {
+    padding: 0;
 }
 .epl-form-field-wrap {
     width: 100%;
@@ -517,13 +515,13 @@ h3.epl-welcome-sub-heading {
 	width:100%;
 	font-weight: normal;
 }
-.epl-form-field-wrap.epl-grid-1 .form-field input[type="text"], 
-.epl-form-field-wrap.epl-grid-1 .form-field input[type="password"], 
-.epl-form-field-wrap.epl-grid-1 .form-field input[type="email"], 
-.epl-form-field-wrap.epl-grid-1 .form-field input[type="number"], 
-.epl-form-field-wrap.epl-grid-1 .form-field input[type="search"], 
-.epl-form-field-wrap.epl-grid-1 .form-field input[type="tel"], 
-.epl-form-field-wrap.epl-grid-1 .form-field input[type="url"], 
+.epl-form-field-wrap.epl-grid-1 .form-field input[type="text"],
+.epl-form-field-wrap.epl-grid-1 .form-field input[type="password"],
+.epl-form-field-wrap.epl-grid-1 .form-field input[type="email"],
+.epl-form-field-wrap.epl-grid-1 .form-field input[type="number"],
+.epl-form-field-wrap.epl-grid-1 .form-field input[type="search"],
+.epl-form-field-wrap.epl-grid-1 .form-field input[type="tel"],
+.epl-form-field-wrap.epl-grid-1 .form-field input[type="url"],
 .epl-form-field-wrap.epl-grid-1 .form-field textarea,
 .epl-form-field-wrap.epl-grid-1 .form-field select {
     width: 98%;
@@ -1926,11 +1924,12 @@ h3.epl-contact-activity-title {
 
 /* Clear Floats */
 .epl-clear {
-	clear:both;
+	/* clear:  both !important; */
 }
 .epl-clearfix {
-	clear:  both !important;
+	/* clear:  both !important; */
 }
+.epl-clear:after,
 .epl-clearfix:after {
 	visibility: hidden;
 	display: block;

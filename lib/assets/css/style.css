@@ -76,12 +76,12 @@
 }
 
 /* Grid View */
-.epl-property-blog.epl-listing-grid-view,
-.epl-property-blog.epl-listing-grid-view-forced {
+.epl-listing-grid-view,
+.epl-listing-grid-view-forced {
 
 }
-.epl-property-blog.epl-listing-grid-view .property-box-right,
-.epl-property-blog.epl-listing-grid-view-forced .property-box-right{
+.epl-listing-grid-view .property-box-right,
+.epl-listing-grid-view-forced .property-box-right{
 	min-height: 250px;
 }
 
@@ -273,8 +273,8 @@ ul.epl-striped > *:nth-child(2n+1) {
 
 /* Inspection Times */
 
-.epl-property-blog.epl-listing-grid-view .epl-inspection-times,
-.epl-property-blog.epl-listing-grid-view-forced .epl-inspection-times {
+.epl-listing-grid-view .epl-inspection-times,
+.epl-listing-grid-view-forced .epl-inspection-times {
 	display: none;
 }
 .epl-inspection-times {
@@ -388,7 +388,7 @@ ul.epl-striped > *:nth-child(2n+1) {
 	.epl-active-theme-twentyfourteen.epl-archive-default .epl-switching-sorting-wrap  {
 		max-width: 300px;
 	}
-	.epl-property-blog.epl-listing-grid-view .property-box-right {
+	.epl-listing-grid-view .property-box-right {
 		min-height: 0;
 	}
 }
