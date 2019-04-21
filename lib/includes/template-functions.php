@@ -487,6 +487,7 @@ function epl_property_widget_image_only_option( $image ) {
  * WIDGET LISTING : Widget Tall Card
  *
  * @since 1.0
+ * @revised 3.3
  */
 function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio, $username) {
 
@@ -512,16 +513,21 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio,
 	}
 }
 
+/**
+ * Display widget by username
+ *
+ * @since 3.3
+ */
 function epl_show_author_widget_by_username($d_image , $d_icons , $d_bio, $username) {
 	$username = explode(',',$username);
 	$username = array_filter($username);
 	foreach($username as $uname) {
 		$author = get_user_by( 'login' , sanitize_user($uname) );
-     	if($author !== false){
-        	$epl_author = new EPL_Author_meta($author->ID);
-        	$arg_list = get_defined_vars();
+		if($author !== false){
+			$epl_author = new EPL_Author_meta($author->ID);
+			$arg_list = get_defined_vars();
 			epl_get_template_part('widget-content-author-tall.php',$arg_list);
-    	}
+		}
 	}
 }
 
@@ -646,6 +652,7 @@ add_action('epl_property_price_content','epl_property_price');
  * Get Property icons
  *
  * @since 1.0
+ * @revised 3.3
  * @hooked property_price
  * @hooked property_price_content
  */
@@ -703,6 +710,7 @@ function epl_get_property_icons( $args = array() , $returntype = 'i') {
  * Property icons
  *
  * @since 1.0
+ * @revised 3.3
  */
 function epl_property_icons($returntype = 'i') {
 	$returntype = $returntype == '' ? 'i' : $returntype;
@@ -727,7 +735,6 @@ function epl_get_property_bb_icons() {
  * @since 1.0
  * @hooked property_land_category
  */
-
 function epl_property_land_category(){
 	global $property;
 	echo $property->get_property_land_category();
@@ -870,23 +877,29 @@ function epl_property_category() {
 	echo $property->get_property_category( 'value' );
 }
 
+/**
+ * Video type
+ *
+ * @since 3.3
+ */
 function epl_get_video_host($url) {
 
 	$host = 'unknown';
 
 	if (strpos($url, 'youtu') > 0) {
-        $host = 'youtube';
-    } elseif (strpos($url, 'vimeo') > 0) {
-        $host = 'vimeo';
-    }
+		$host = 'youtube';
+	} elseif (strpos($url, 'vimeo') > 0) {
+		$host = 'vimeo';
+	}
 
-    return $host;
+	return $host;
 }
 
 /**
  * Property Video HTML
  *
  * @since 1.0
+ * @revised 3.3
  */
 function epl_get_video_html($property_video_url='',$width=600) {
 
@@ -898,7 +911,7 @@ function epl_get_video_html($property_video_url='',$width=600) {
 		} else {
 			$property_video_url .= '?rel=0';
 		}
-		
+
 	}
 	$width = epl_get_option('epl_video_width',$width);
 	if($property_video_url != '') {
@@ -917,6 +930,7 @@ function epl_get_video_html($property_video_url='',$width=600) {
  * Video Output Function
  *
  * @since 1.0
+ * @revised 3.3
  * @hooked property_after_content
  */
 function epl_property_video_callback( $width = 600 ) {
@@ -927,6 +941,14 @@ function epl_property_video_callback( $width = 600 ) {
 	echo epl_get_video_html($property_video_url,$video_width);
 }
 add_action('epl_property_video','epl_property_video_callback' , 10 , 1);
+
+/**
+ * Previous Video Hook, maintained for backward compatibility.
+ *
+ * @since 3.3
+ * @hooked property_after_content
+ */
+//add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
 
 /**
  * Property Tab section details output
@@ -2049,6 +2071,11 @@ function epl_get_active_theme_name() {
 	return apply_filters('epl_active_theme_name',$epl_class_prefix . $active_theme);
 }
 
+/**
+ * Returns core shortcode names
+ *
+ * @since 3.3
+ */
 function epl_get_shortcode_list() {
 	return array(
 		'listing',
@@ -2075,7 +2102,7 @@ function epl_home_pagination_fix( $query) {
 
 	$shortcodes = epl_get_shortcode_list();
 
-	if( $query->get('is_epl_shortcode') && 
+	if( $query->get('is_epl_shortcode') &&
 		in_array($query->get('epl_shortcode_name'),$shortcodes) ){
 
 		if( isset($_GET['pagination_id']) && $_GET['pagination_id'] == $query->get('instance_id') ) {
@@ -2083,8 +2110,6 @@ function epl_home_pagination_fix( $query) {
 		} else {
 			$query->set('paged', 1 );
 		}
-		
-
 	}
 }
 add_action('pre_get_posts','epl_home_pagination_fix',99);
