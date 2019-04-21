@@ -103,7 +103,7 @@ function epl_wp_enqueue_scripts() {
 			wp_enqueue_style(	'epl-style', 		$current_dir_path . '/css/style'.$suffix.'.css',			FALSE,		EPL_PROPERTY_VER );
 		}
 
-		// Enhanced CSS: on is to enable visual css, default off
+		// Enhanced CSS: on is to enable visual css, default on for new installations
 		if( isset($epl_settings['epl_css_enhanced']) &&  $epl_settings['epl_css_enhanced'] == 'on') {
 			wp_enqueue_style(	'epl-style-enhanced', 	$current_dir_path . '/css/style-enhanced'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
 		}

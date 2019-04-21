@@ -44,22 +44,22 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 * @param [type]
 		 */
 		function __construct($author_id) {
-			$this->author_id 		= $author_id;
-			$this->name 			= get_the_author_meta( 'display_name' , $this->author_id);
-			$this->mobile 			= get_the_author_meta( 'mobile' , $this->author_id);
+			$this->author_id 	= $author_id;
+			$this->name 		= get_the_author_meta( 'display_name' , $this->author_id);
+			$this->mobile 		= get_the_author_meta( 'mobile' , $this->author_id);
 			$this->facebook 		= get_the_author_meta( 'facebook' , $this->author_id);
 			$this->linkedin 		= get_the_author_meta( 'linkedin' , $this->author_id);
-			$this->google 			= get_the_author_meta( 'google' , $this->author_id);
-			$this->twitter 			= get_the_author_meta( 'twitter' , $this->author_id);
-			$this->instagram 			= get_the_author_meta( 'instagram' , $this->author_id);
-			$this->pinterest 			= get_the_author_meta( 'pinterest' , $this->author_id);
-			$this->email 			= get_the_author_meta( 'email' , $this->author_id);
-			$this->skype 			= get_the_author_meta( 'skype' , $this->author_id);
-			$this->slogan 			= get_the_author_meta( 'slogan' , $this->author_id);
+			$this->google 		= get_the_author_meta( 'google' , $this->author_id);
+			$this->twitter 		= get_the_author_meta( 'twitter' , $this->author_id);
+			$this->instagram 	= get_the_author_meta( 'instagram' , $this->author_id);
+			$this->pinterest 	= get_the_author_meta( 'pinterest' , $this->author_id);
+			$this->email 		= get_the_author_meta( 'email' , $this->author_id);
+			$this->skype 		= get_the_author_meta( 'skype' , $this->author_id);
+			$this->slogan 		= get_the_author_meta( 'slogan' , $this->author_id);
 			$this->position 		= get_the_author_meta( 'position' , $this->author_id);
-			$this->video 			= get_the_author_meta( 'video' , $this->author_id);
-			$this->contact_form 		= get_the_author_meta( 'contact-form' , $this->author_id);
-			$this->description 		= get_the_author_meta( 'description' , $this->author_id);
+			$this->video 		= get_the_author_meta( 'video' , $this->author_id);
+			$this->contact_form 	= get_the_author_meta( 'contact-form' , $this->author_id);
+			$this->description 	= get_the_author_meta( 'description' , $this->author_id);
 		}
 
 		/**
@@ -93,13 +93,6 @@ if( !class_exists('EPL_Author_Meta') ) :
 			if($this->email != '')
 				return apply_filters('epl_author_email',$this->email,$this);
 		}
-
-		/**
-		 * Experimental SVG Icons
-		 *
-		 * @since version 3.1.6
-		 */
-		// Enable with: define ( 'EPL_ICONS_SOCIAL_SVG' , true );
 
 		/**
 		 * Author Email html Box
@@ -179,7 +172,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 		}
 
 		/**
-		 * Get Instagram
+		 * Get Pinterest
 		 *
 		 * @since version 3.3
 		 */
@@ -270,7 +263,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 		}
 
 		/*
-		 * Author Instagram html Box
+		 * Author Pinterest html Box
 		 *
 		 * @since version 3.3
 		 */
@@ -322,7 +315,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$google = 'http://plus.google.com/' . $this->google;
 				}
 
-				
+
 			}
 			return apply_filters('epl_author_google',$google,$this);
 		}
@@ -380,7 +373,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$facebook = 'http://facebook.com/' . $this->facebook;
 				}
 
-				
+
 			}
 			return apply_filters('epl_author_facebook',$facebook,$this);
 		}
@@ -437,7 +430,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					// relative url
 					$linkedin = 'http://linkedin.com/pub/' . $this->linkedin;
 				}
-				
+
 			}
 			return apply_filters('epl_author_linkedin',$linkedin,$this);
 		}
@@ -495,7 +488,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$skype = 'skype:' . $this->skype;
 				}
 
-				
+
 			}
 			return apply_filters('epl_author_skype',$skype,$this);
 		}
