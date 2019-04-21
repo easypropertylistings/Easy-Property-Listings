@@ -1837,9 +1837,9 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Get Furnished
+	 * Get Pets
 	 *
-	 * @since 3.2
+	 * @since 3.3
 	 * @param string $returntype Options i = span, d = string, l = list item, t = text
 	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
 	 */

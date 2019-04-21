@@ -19,10 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return void
  */
 function epl_register_taxonomy_location() {
-	$location_label = epl_tax_location_label();
-	$location_slug = sanitize_title($location_label);
-	$hierarchical = defined( 'EPL_LOCATION_HIERARCHICAL' ) && EPL_LOCATION_HIERARCHICAL ? true : false;
-	$rest  = defined( 'EPL_LOCATION_ENABLE_REWRITE' ) && EPL_LOCATION_ENABLE_REWRITE ? true : false;
+	$location_label	= epl_tax_location_label();
+	$location_slug	= sanitize_title($location_label);
+	$hierarchical	= defined( 'EPL_LOCATION_HIERARCHICAL' ) && EPL_LOCATION_HIERARCHICAL ? true : false;
+	$rest		= defined( 'EPL_LOCATION_ENABLE_REST' ) && EPL_LOCATION_ENABLE_REST ? true : false;
 		/* add define ('EPL_LOCATION_HIERARCHICAL', 'true'); into theme functions.php for hierarchical location taxonomy */
 
 	$labels = array(
@@ -48,14 +48,14 @@ function epl_register_taxonomy_location() {
 		'hierarchical'			=> $hierarchical,
 	);
 	$args = array(
-		'labels'			=> $labels,
+		'labels'				=> $labels,
 		'hierarchical'			=> $hierarchical,
-		'public'			=> true,
+		'public'				=> true,
 		'show_ui'			=> true,
 		'show_admin_column'		=> true,
 		'show_in_nav_menus'		=> true,
 		'show_tagcloud'			=> true,
-		'show_in_rest'			=>	$rest,
+		'show_in_rest'			=> $rest,
 		'rewrite'			=> $rewrite,
 	);
 	register_taxonomy( 'location', array( 'property' , 'rental' , 'land', 'rural' , 'business', 'commercial' , 'commercial_land' ,'testimonial' ,'location',  ) , $args );

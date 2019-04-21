@@ -3,7 +3,7 @@
  *
  * @package     EPL
  * @since	3.1
- * @version	3.2.2
+ * @version	3.3
  * @subpackage  Pretty CSS
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -254,7 +254,7 @@
 	margin-bottom: 0.5em;
 }
 .epl-property-single .property-meta.pricing {
-	float: right;
+	/* float: right; */
 	text-align: right;
 }
 .epl-property-single .property-meta.pricing .page-price {
@@ -1911,7 +1911,7 @@ li.tbhead.current {
 	EPL Clear Floating Div's
 ******************************/
 .epl-clearfix {
-	/*clear:  both !important;*/
+	/* clear:  both !important; */
 }
 .epl-clearfix:after {
 	visibility: hidden;

@@ -20,10 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_register_custom_post_type_rural() {
 
-	$archives = defined( 'EPL_RURAL_DISABLE_ARCHIVE' ) && EPL_RURAL_DISABLE_ARCHIVE ? false : true;
-	$slug     = defined( 'EPL_RURAL_SLUG' ) ? EPL_RURAL_SLUG : 'rural';
-	$rewrite  = defined( 'EPL_RURAL_DISABLE_REWRITE' ) && EPL_RURAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
-	$rest  = defined( 'EPL_RURAL_ENABLE_REST' ) && EPL_RURAL_ENABLE_REST ? true : false;
+	$archives	= defined( 'EPL_RURAL_DISABLE_ARCHIVE' ) && EPL_RURAL_DISABLE_ARCHIVE ? false : true;
+	$slug		= defined( 'EPL_RURAL_SLUG' ) ? EPL_RURAL_SLUG : 'rural';
+	$rewrite		= defined( 'EPL_RURAL_DISABLE_REWRITE' ) && EPL_RURAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$rest		= defined( 'EPL_RURAL_ENABLE_REST' ) && EPL_RURAL_ENABLE_REST ? true : false;
 
 	$labels = apply_filters( 'epl_rural_labels', array(
 		'name'			=>	__('Rural', 'easy-property-listings' ),
@@ -43,8 +43,8 @@ function epl_register_custom_post_type_rural() {
 	) );
 
 	$rural_args = array(
-		'labels'		=>	$labels,
-		'public'		=>	true,
+		'labels'			=>	$labels,
+		'public'			=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'		=>	true,
 		'show_in_menu'		=>	true,
@@ -81,8 +81,8 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb'			=> '<input type="checkbox" />',
-			'property_thumb'	=> __('Image', 'easy-property-listings' ),
-			'property_price'	=> __('Price', 'easy-property-listings' ),
+			'property_thumb'		=> __('Image', 'easy-property-listings' ),
+			'property_price'		=> __('Price', 'easy-property-listings' ),
 			'title'			=> __('Address', 'easy-property-listings' ),
 			'listing'		=> __('Listing Details', 'easy-property-listings' ),
 			'listing_id'		=> __('Unique ID' , 'easy-property-listings' ),
@@ -94,7 +94,7 @@ if ( is_admin() ) {
 
 		// unset author columns as duplicate of agent column
 		unset( $columns['author'] );
-		unset( $columns['comments'] ); 
+		unset( $columns['comments'] );
 
 		// Geocode Column
 		$geo_debug = !empty($epl_settings) && isset($epl_settings['debug']) ? $epl_settings['debug'] : 0;
@@ -122,55 +122,41 @@ if ( is_admin() ) {
 		switch( $column ) {
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
-				do_action('epl_manage_listing_column_property_thumb_before');
 				do_action('epl_manage_listing_column_property_thumb');
-				do_action('epl_manage_listing_column_property_thumb_after');
 			break;
 
 			case 'listing' :
-				do_action('epl_manage_listing_column_listing_before');
 				do_action('epl_manage_listing_column_listing');
-				do_action('epl_manage_listing_column_listing_after');
 
 				break;
 
 			/* If displaying the 'Listing ID' column. */
 			case 'listing_id' :
-				do_action('epl_manage_listing_column_listing_id_before');
 				do_action('epl_manage_listing_column_listing_id');
-				do_action('epl_manage_listing_column_listing_id_after');
 
 				break;
 
 			/* If displaying the 'Geocoding' column. */
 			case 'geo' :
-				do_action('epl_manage_listing_column_geo_before');
 				do_action('epl_manage_listing_column_geo');
-				do_action('epl_manage_listing_column_geo_after');
 
 				break;
 
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
-				do_action('epl_manage_listing_column_price_before');
 				do_action('epl_manage_listing_column_price');
-				do_action('epl_manage_listing_column_price_after');
 
 				break;
 
 
 			/* If displaying the 'real-estate' column. */
 			case 'property_status' :
-				do_action('epl_manage_listing_column_property_status_before');
 				do_action('epl_manage_listing_column_property_status');
-				do_action('epl_manage_listing_column_property_status_after');
 
 				break;
 
 			case 'agent':
-				do_action('epl_manage_listing_column_agent_before');
 				do_action('epl_manage_listing_column_agent');
-				do_action('epl_manage_listing_column_agent_after');
 
 				break;
 

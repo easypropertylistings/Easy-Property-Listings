@@ -33,11 +33,11 @@ function epl_admin_enqueue_scripts($screen) {
 		wp_enqueue_script('google-map-v-3',$googleapiurl);
 
 
-		wp_enqueue_style(	'epl-jquery-validation-engine-style', 		$current_dir_path . '/css/validationEngine-jquery'.$suffix.'.css',	FALSE,			EPL_PROPERTY_VER );
-		wp_enqueue_script(	'epl-jquery-validation-engine-lang-scripts', 	$current_dir_path . '/js/jquery-validationEngine-en'.$suffix.'.js',array('jquery'),	EPL_PROPERTY_VER );
-		wp_enqueue_script(	'epl-jquery-validation-engine-scripts', 	$current_dir_path . '/js/jquery-validationEngine'.$suffix.'.js', 	array('jquery'),	EPL_PROPERTY_VER );
-		wp_enqueue_script(	'jquery-datetime-picker',			$current_dir_path . '/js/jquery-datetime-picker'.$suffix.'.js', 	array('jquery'),	EPL_PROPERTY_VER );
-		wp_enqueue_style(	'jquery-ui-datetime-picker-style',  		$current_dir_path . '/css/jquery-ui.min.css',		FALSE,			EPL_PROPERTY_VER );
+		wp_enqueue_style(	'epl-jquery-validation-engine-style', 		$current_dir_path . '/css/validationEngine-jquery'.$suffix.'.css',	FALSE,		EPL_PROPERTY_VER );
+		wp_enqueue_script(	'epl-jquery-validation-engine-lang-scripts', 	$current_dir_path . '/js/jquery-validationEngine-en'.$suffix.'.js',	array('jquery'),	EPL_PROPERTY_VER );
+		wp_enqueue_script(	'epl-jquery-validation-engine-scripts', 		$current_dir_path . '/js/jquery-validationEngine'.$suffix.'.js', 	array('jquery'),	EPL_PROPERTY_VER );
+		wp_enqueue_script(	'jquery-datetime-picker',				$current_dir_path . '/js/jquery-datetime-picker'.$suffix.'.js', 	array('jquery'),	EPL_PROPERTY_VER );
+		wp_enqueue_style(	'jquery-ui-datetime-picker-style',  		$current_dir_path . '/css/jquery-ui.min.css',			FALSE,		EPL_PROPERTY_VER );
 
 		$js_vars = array(
 			'default_map_address' 	=> apply_filters('epl_default_map_address', epl_get_option('epl_default_country','Australia') ),
@@ -47,16 +47,16 @@ function epl_admin_enqueue_scripts($screen) {
 
 		wp_localize_script('epl-admin-scripts','epl_admin_vars',$js_vars);
 
-		wp_enqueue_style( 	'epl-admin-styles', 				$current_dir_path . '/css/style-admin'.$suffix.'.css',		FALSE,			EPL_PROPERTY_VER );
+		wp_enqueue_style( 	'epl-admin-styles', 				$current_dir_path . '/css/style-admin'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
 
 	}
 
 	// load admin style on help & documentation pages as well
 	if($screen = 'edit.php' || $screen == 'toplevel_page_epl-general' || $screen == 'dashboard_page_epl-about' || $screen == 'dashboard_page_epl-getting-started' || $screen == 'toplevel_page_epl-tools' )	{
-		wp_enqueue_style(	'epl-admin-styles', 				$current_dir_path . '/css/style-admin'.$suffix.'.css',		FALSE,			EPL_PROPERTY_VER );
+		wp_enqueue_style(	'epl-admin-styles', 				$current_dir_path . '/css/style-admin'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
 	}
 
-	wp_enqueue_script(		'epl-js-lib', 					$current_dir_path . '/js/epl'.$suffix.'.js', 			array('jquery') , 	EPL_PROPERTY_VER );
+	wp_enqueue_script(		'epl-js-lib', 					$current_dir_path . '/js/epl'.$suffix.'.js', 			array('jquery'), EPL_PROPERTY_VER );
 
 	wp_enqueue_script('epl-admin-scripts');
 }
@@ -72,7 +72,7 @@ function epl_wp_enqueue_scripts() {
 	$suffix = $mode == 'production' ? '.min' : '';
 	$epl_default_view_type = isset($epl_settings['display_archive_view_type']) ? $epl_settings['display_archive_view_type'] : 'list';
 	$current_dir_path = plugins_url('', __FILE__ );
-	wp_register_script( 		'epl-front-scripts', 				$current_dir_path . '/js/jquery-front-scripts'.$suffix.'.js', 	array('jquery') , 	EPL_PROPERTY_VER );
+	wp_register_script( 		'epl-front-scripts', 				$current_dir_path . '/js/jquery-front-scripts'.$suffix.'.js', 	array('jquery'), EPL_PROPERTY_VER );
 
 	if( is_epl_post() && shortcode_exists('listing_map') ) {
 
@@ -92,15 +92,20 @@ function epl_wp_enqueue_scripts() {
 
 	} else {
 
-		// Legacy CSS: on is to disable visual css, default off
+		// Legacy CSS: on is to enable visual css, default off
 		if( isset($epl_settings['epl_css_legacy']) &&  $epl_settings['epl_css_legacy'] == 'on') {
 
-			wp_enqueue_style(	'epl-front-styles', 	$current_dir_path . '/css/style-legacy'.$suffix.'.css',			FALSE,			EPL_PROPERTY_VER );
+			wp_enqueue_style(	'epl-front-styles', 	$current_dir_path . '/css/style-legacy'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
 
 		} else {
 			// Structural CSS
-			wp_enqueue_style(	'epl-css-lib', 		$current_dir_path . '/css/style-structure'.$suffix.'.css',		FALSE,			EPL_PROPERTY_VER );
-			wp_enqueue_style(	'epl-style', 		$current_dir_path . '/css/style'.$suffix.'.css',			FALSE,			EPL_PROPERTY_VER );
+			wp_enqueue_style(	'epl-css-lib', 		$current_dir_path . '/css/style-structure'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
+			wp_enqueue_style(	'epl-style', 		$current_dir_path . '/css/style'.$suffix.'.css',			FALSE,		EPL_PROPERTY_VER );
+		}
+
+		// Enhanced CSS: on is to enable visual css, default on for new installations
+		if( isset($epl_settings['epl_css_enhanced']) &&  $epl_settings['epl_css_enhanced'] == 'on') {
+			wp_enqueue_style(	'epl-style-enhanced', 	$current_dir_path . '/css/style-enhanced'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
 		}
 
 		/**
@@ -108,16 +113,16 @@ function epl_wp_enqueue_scripts() {
 		 * Loaded at the end to override any styles in plugin
 		 */
 		if( file_exists(get_stylesheet_directory().'/easypropertylistings/style.css' ) ) {
-			wp_enqueue_style(	'epl-theme-style', 		get_stylesheet_directory_uri().'/easypropertylistings/style.css',			FALSE,			EPL_PROPERTY_VER );
+			wp_enqueue_style(	'epl-theme-style', 	get_stylesheet_directory_uri().'/easypropertylistings/style.css',	FALSE,		EPL_PROPERTY_VER );
 		}
 	}
 
 	$js_vars = array(
 		'epl_default_view_type' => $epl_default_view_type,
-		'ajaxurl'				=> admin_url('admin-ajax.php'),
-		'image_base'			=> EPL_PLUGIN_URL.'lib/assets/images/'	
+		'ajaxurl'	=> admin_url('admin-ajax.php'),
+		'image_base'	=> EPL_PLUGIN_URL.'lib/assets/images/'
 	);
-	wp_enqueue_script( 	'epl-js-lib', 						$current_dir_path . '/js/epl'.$suffix.'.js', 			array('jquery'), 	EPL_PROPERTY_VER );
+	wp_enqueue_script( 	'epl-js-lib',	$current_dir_path . 	'/js/epl'.$suffix.'.js', 						array('jquery'), EPL_PROPERTY_VER );
 
 	wp_localize_script( 	'epl-front-scripts', 'epl_frontend_vars', $js_vars);
 	wp_enqueue_script( 	'epl-front-scripts');
