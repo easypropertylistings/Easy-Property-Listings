@@ -1141,7 +1141,7 @@ class EPL_Property_Meta {
 				break;
 
 			case 'l' :
-				$return = '<li class="bedrooms">'.$value . ' ' .$singular . '</li>';
+				$return = '<li class="bathrooms">'.$value . ' ' .$singular . '</li>';
 				break;
 
 			case 's' :
@@ -1526,6 +1526,8 @@ class EPL_Property_Meta {
 		$property_land_area_unit = $this->get_property_meta('property_land_area_unit');
 		if ( $property_land_area_unit == 'squareMeter' ) {
 			$property_land_area_unit = __('m&#178;' , 'easy-property-listings' );
+		} elseif ( $property_land_area_unit == 'acre' ) {
+			$property_land_area_unit = __('acres' , 'easy-property-listings' );
 		} else {
 			// translation for land area unit
 			$property_land_area_unit = __($property_land_area_unit , 'easy-property-listings' );
@@ -1550,10 +1552,8 @@ class EPL_Property_Meta {
 
 			$return = '<li class="land-size">'. $label.' ' . $property_land_area_format .' '.$property_land_area_unit.'</li>';
 
-			return apply_filters('epl_get_property_land_value',$return);
-
 			$label 		= apply_filters('epl_get_property_land_area_label',__('Land is', 'easy-property-listings' ) );
-			$value 		= $this->get_property_meta('property_land_area').' '.$property_land_area_unit;
+			$value 		= $property_land_area_format .' '.$property_land_area_unit;
 			$return 	= '';
 
 			switch( $returntype ) {
@@ -1597,6 +1597,8 @@ class EPL_Property_Meta {
 		$building_unit = $this->get_property_meta('property_building_area_unit');
 		if ( $building_unit == 'squareMeter' ) {
 			$building_unit = __('m&#178;' , 'easy-property-listings' );
+		}  elseif ( $building_unit == 'acre' ) {
+			$building_unit = __('acres' , 'easy-property-listings' );
 		} else {
 			// translation for building area unit
 			$building_unit = __($building_unit , 'easy-property-listings' );
@@ -1621,10 +1623,8 @@ class EPL_Property_Meta {
 
 			$return = '<li class="building-size">'.$label.' ' . $building_area_format .' '.$building_unit. '</li>';
 
-			return apply_filters('epl_get_property_building_area_value',$return);
-
 			$label 		= apply_filters('epl_get_property_building_area_label',__('Floor Area is', 'easy-property-listings' ) );
-			$value 		= $this->get_property_meta('property_building_area').' '.$building_unit;
+			$value 		= $building_area_format .' '.$building_unit;
 			$return 	= '';
 
 			switch( $returntype ) {
@@ -1649,7 +1649,7 @@ class EPL_Property_Meta {
 					break;
 
 				case 'l' :
-					$return = '<li class="land-size">'. $label.' ' . $value.'</li>';
+					$return = '<li class="building-size">'. $label.' ' . $value.'</li>';
 					break;
 			}
 			return apply_filters('epl_get_property_building_area_value',$return,$returntype,$value,$label);
@@ -1805,7 +1805,7 @@ class EPL_Property_Meta {
 
 		if( isset($value) && ($value == 1 || $value == 'yes') ) {
 
-			$label = apply_filters('epl_get_property_furnished_label',__('Holiday Rental', 'easy-property-listings' ) );
+			$label = apply_filters('epl_get_property_furnished_label',__('Furnished', 'easy-property-listings' ) );
 
 			switch( $returntype ) {
 
@@ -1833,6 +1833,51 @@ class EPL_Property_Meta {
 
 			}
 			return apply_filters('epl_get_property_furnished',$return,$returntype,$value,$label);
+		}
+	}
+
+	/**
+	 * Get Furnished
+	 *
+	 * @since 3.2
+	 * @param string $returntype Options i = span, d = string, l = list item, t = text
+	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 */
+	public function get_property_pets( $returntype = 'i' ) {
+
+		$value 		= $this->get_property_meta('property_pet_friendly');
+		$returntype	= apply_filters( 'epl_get_property_pet_friendly_return_type' , $returntype);
+
+		if( isset($value) && ($value == 1 || $value == 'yes') ) {
+
+			$label = apply_filters('epl_get_property_pet_friendly_label',__('Pet Friendly', 'easy-property-listings' ) );
+
+			switch( $returntype ) {
+
+				case 'i' :
+					$return 	= '<span title="'.$label.'" class="icon pet-friendly"></span>';
+					break;
+
+				case 'v' :
+					$return = $value;
+					break;
+
+				case 't':
+					$return = '<div class="epl-text-icon-container epl-text-icon-container-pet-friendly">
+							<span class="epl-text-icon-label pet-friendly">' . $label . '</span>
+						</div>';
+					break;
+
+				case 'd' :
+					$return = $label.' '.$value.' ';
+					break;
+
+				case 'l' :
+					$return = '<li class="pet-friendly">'.$label.'</li>';
+					break;
+
+			}
+			return apply_filters('epl_get_property_pet_friendly',$return,$returntype,$value,$label);
 		}
 	}
 

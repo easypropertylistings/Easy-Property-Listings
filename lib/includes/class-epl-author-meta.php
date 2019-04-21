@@ -29,6 +29,8 @@ if( !class_exists('EPL_Author_Meta') ) :
 		private $linkedin;
 		private $google;
 		private $twitter;
+		private $instagram;
+		private $pinterest;
 		private $email;
 		private $skype;
 		private $slogan;
@@ -49,6 +51,8 @@ if( !class_exists('EPL_Author_Meta') ) :
 			$this->linkedin 		= get_the_author_meta( 'linkedin' , $this->author_id);
 			$this->google 			= get_the_author_meta( 'google' , $this->author_id);
 			$this->twitter 			= get_the_author_meta( 'twitter' , $this->author_id);
+			$this->instagram 			= get_the_author_meta( 'instagram' , $this->author_id);
+			$this->pinterest 			= get_the_author_meta( 'pinterest' , $this->author_id);
 			$this->email 			= get_the_author_meta( 'email' , $this->author_id);
 			$this->skype 			= get_the_author_meta( 'skype' , $this->author_id);
 			$this->slogan 			= get_the_author_meta( 'slogan' , $this->author_id);
@@ -151,6 +155,52 @@ if( !class_exists('EPL_Author_Meta') ) :
 			return apply_filters('epl_author_twitter',$twitter,$this);
 		}
 
+		/**
+		 * Get Instagram
+		 *
+		 * @since version 3.3
+		 */
+		function get_instagram() {
+
+			$instagram = '';
+			if($this->instagram != '') {
+
+				if( (strpos($this->instagram,'http://' ) === 0 ) || (strpos($this->instagram,'https://' ) === 0 ) ) {
+					// absolute url
+					$instagram = $this->instagram;
+
+				} else {
+					// relative url
+					$instagram = 'http://instagram.com/' . $this->instagram;
+				}
+
+			}
+			return apply_filters('epl_author_instagram',$instagram,$this);
+		}
+
+		/**
+		 * Get Instagram
+		 *
+		 * @since version 3.3
+		 */
+		function get_pinterest() {
+
+			$pinterest = '';
+			if($this->pinterest != '') {
+
+				if( (strpos($this->pinterest,'http://' ) === 0 ) || (strpos($this->pinterest,'https://' ) === 0 ) ) {
+					// absolute url
+					$pinterest = $this->pinterest;
+
+				} else {
+					// relative url
+					$pinterest = 'http://pinterest.com/' . $this->pinterest;
+				}
+
+			}
+			return apply_filters('epl_author_pinterest',$pinterest,$this);
+		}
+
 		/*
 		 * Author Twitter html Box
 		 *
@@ -182,6 +232,74 @@ if( !class_exists('EPL_Author_Meta') ) :
 				}
 			}
 			$html = apply_filters('epl_author_twitter_html',$html,$this);
+			return $html;
+		}
+
+		/*
+		 * Author Instagram html Box
+		 *
+		 * @since version 3.3
+		 */
+
+		function get_instagram_html( $html = '' , $style = 'i' ){
+
+			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
+
+			if ( $this->get_instagram() != '' ) {
+
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
+
+				if ( $style == 'i' ) {
+					$html	= '
+						<a class="epl-author-icon author-icon instagram-icon-24"
+							href="' . $this->get_instagram() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Instagram', 'easy-property-listings' ). '"' . $link_target . '>'.
+							apply_filters( 'epl_author_icon_instagram' , __('Instagram', 'easy-property-listings' )).
+						'</a>';
+				} else {
+					$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-instagram"><use xlink:href="#epl-icon-svg-instagram"></use></svg>';
+					$html	=
+						'<div class="epl-icon-svg-container epl-icon-container-instagram">
+							<a class="epl-author-icon-svg author-icon-svg instagram-icon"
+								href="' . $this->get_instagram() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Instagram', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+							'</a>
+						</div>';
+				}
+			}
+			$html = apply_filters('epl_author_instagram_html',$html,$this);
+			return $html;
+		}
+
+		/*
+		 * Author Instagram html Box
+		 *
+		 * @since version 3.3
+		 */
+
+		function get_pinterest_html( $html = '' , $style = 'i' ){
+
+			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
+
+			if ( $this->get_pinterest() != '' ) {
+
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
+
+				if ( $style == 'i' ) {
+					$html	= '
+						<a class="epl-author-icon author-icon pinterest-icon-24"
+							href="' . $this->get_pinterest() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Pinterest', 'easy-property-listings' ). '"' . $link_target . '>'.
+							apply_filters( 'epl_author_icon_pinterest' , __('Pinterest', 'easy-property-listings' )).
+						'</a>';
+				} else {
+					$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-pinterest"><use xlink:href="#epl-icon-svg-pinterest"></use></svg>';
+					$html	=
+						'<div class="epl-icon-svg-container epl-icon-container-pinterest">
+							<a class="epl-author-icon-svg author-icon-svg pinterest-icon"
+								href="' . $this->get_instagram() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Pinterest', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+							'</a>
+						</div>';
+				}
+			}
+			$html = apply_filters('epl_author_pinterest_html',$html,$this);
 			return $html;
 		}
 

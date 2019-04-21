@@ -263,6 +263,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
 				require_once EPL_PATH_LIB . 'includes/admin/help.php';
 				require_once EPL_PATH_LIB . 'includes/admin/help-single.php';
+				require_once EPL_PATH_LIB . 'includes/admin/listing-elements-gui.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
@@ -289,6 +290,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-listing-elements.php';
 
 			if( file_exists(get_stylesheet_directory().'/easypropertylistings/functions.php' ) ) {
 				include_once(get_stylesheet_directory().'/easypropertylistings/functions.php' );

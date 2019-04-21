@@ -23,6 +23,7 @@ function epl_register_taxonomy_features() {
 	$slug = defined( 'EPL_FEATURES_SLUG' ) ? EPL_FEATURES_SLUG : 'feature';
 	$hierarchical = defined( 'EPL_FEATURES_HIERARCHICAL' ) && EPL_FEATURES_HIERARCHICAL ? true : false;
 	$rewrite  = defined( 'EPL_FEATURES_DISABLE_REWRITE' ) && EPL_FEATURES_REWRITE ? false : array( 'slug' => $slug, 'with_front' => true, 'hierarchical' => $hierarchical );
+	$rest  = defined( 'EPL_FEATURES_ENABLE_REWRITE' ) && EPL_FEATURES_ENABLE_REWRITE ? true : false;
 
 	$labels = array(
 		'name'                       => _x( 'Features', 'Taxonomy General Name', 'easy-property-listings'  ),
@@ -50,6 +51,7 @@ function epl_register_taxonomy_features() {
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
+		'show_in_rest'				 =>	$rest,
 		'rewrite'                    => $rewrite,
 	);
 	register_taxonomy( 'tax_feature', array( 'property' , 'rental' , 'land', 'rural' , 'business', 'commercial' , 'commercial_land' ) , $args );

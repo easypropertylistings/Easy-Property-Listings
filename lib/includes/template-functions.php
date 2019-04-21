@@ -90,7 +90,7 @@ function epl_property_single() {
 		epl_property_single_default();
 	}
 }
-add_action('epl_property_single','epl_property_single');
+add_action('epl_property_single','epl_property_single',10,1);
 
 /**
  * Featured Image template now loading through filter
@@ -195,8 +195,9 @@ function epl_property_single_default() {
 		epl_get_template_part('content-listing-single-compatibility.php');
 
 	} else {
-
-		epl_get_template_part('content-listing-single.php');
+		$single_tpl = 'content-listing-single.php';
+		$single_tpl = apply_filters('epl_property_single_default',$single_tpl);
+		epl_get_template_part($single_tpl);
 	}
 }
 
@@ -320,14 +321,15 @@ function epl_property_blog($template='') {
 
 
 			} else {
-
-				epl_get_template_part('loop-listing-blog-'.$template.'.php');
+				$tpl_name = 'loop-listing-blog-'.$template.'.php';
+				$tpl_name = apply_filters('epl_property_blog_template',$tpl_name);
+				epl_get_template_part($tpl_name);
 			}
 
 		}
 	} // End Status Removal
 }
-add_action('epl_property_blog','epl_property_blog');
+add_action('epl_property_blog','epl_property_blog',10,1);
 
 /**
  * Renders default author box
@@ -486,7 +488,13 @@ function epl_property_widget_image_only_option( $image ) {
  *
  * @since 1.0
  */
-function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio) {
+function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio, $username) {
+
+	if( !empty($username) ) {
+		epl_show_author_widget_by_username($d_image , $d_icons , $d_bio, $username);
+		return;
+	}
+
 	global $property,$epl_author,$epl_author_secondary;
 	if( is_null($epl_author) )
 		return;
@@ -501,6 +509,19 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 			    epl_get_template_part('widget-content-author-tall.php',$arg_list);
 		}
 		epl_reset_post_author();
+	}
+}
+
+function epl_show_author_widget_by_username($d_image , $d_icons , $d_bio, $username) {
+	$username = explode(',',$username);
+	$username = array_filter($username);
+	foreach($username as $uname) {
+		$author = get_user_by( 'login' , sanitize_user($uname) );
+     	if($author !== false){
+        	$epl_author = new EPL_Author_meta($author->ID);
+        	$arg_list = get_defined_vars();
+			epl_get_template_part('widget-content-author-tall.php',$arg_list);
+    	}
 	}
 }
 
@@ -628,13 +649,14 @@ add_action('epl_property_price_content','epl_property_price');
  * @hooked property_price
  * @hooked property_price_content
  */
-function epl_get_property_icons( $args = array() ) {
+function epl_get_property_icons( $args = array() , $returntype = 'i') {
 
 	global $property;
 
 	$defaults = array('bed','bath','parking','ac','pool');
 
-	$icons = apply_filters('epl_get_property_icons', $defaults);
+	$icons 		= apply_filters('epl_get_property_icons', $defaults);
+	$returntype = apply_filters('epl_icons_return_type', $returntype);
 
 	ob_start();
 
@@ -648,23 +670,23 @@ function epl_get_property_icons( $args = array() ) {
 		switch($icon) {
 
 			case 'bed' :
-				echo $property->get_property_bed();
+				echo $property->get_property_bed($returntype);
 			break;
 
 			case 'bath' :
-				echo $property->get_property_bath();
+				echo $property->get_property_bath($returntype);
 			break;
 
 			case 'parking' :
-				echo $property->get_property_parking();
+				echo $property->get_property_parking($returntype);
 			break;
 
 			case 'ac' :
-				echo $property->get_property_air_conditioning();
+				echo $property->get_property_air_conditioning($returntype);
 			break;
 
 			case 'pool' :
-				echo $property->get_property_pool();
+				echo $property->get_property_pool($returntype);
 			break;
 
 			default:
@@ -682,8 +704,9 @@ function epl_get_property_icons( $args = array() ) {
  *
  * @since 1.0
  */
-function epl_property_icons() {
-	echo epl_get_property_icons();
+function epl_property_icons($returntype = 'i') {
+	$returntype = $returntype == '' ? 'i' : $returntype;
+	echo epl_get_property_icons(array(),$returntype);
 }
 add_action('epl_property_icons','epl_property_icons');
 
@@ -847,12 +870,36 @@ function epl_property_category() {
 	echo $property->get_property_category( 'value' );
 }
 
+function epl_get_video_host($url) {
+
+	$host = 'unknown';
+
+	if (strpos($url, 'youtu') > 0) {
+        $host = 'youtube';
+    } elseif (strpos($url, 'vimeo') > 0) {
+        $host = 'vimeo';
+    }
+
+    return $host;
+}
+
 /**
  * Property Video HTML
  *
  * @since 1.0
  */
 function epl_get_video_html($property_video_url='',$width=600) {
+
+	/** remove related videos from youtube */
+	if( epl_get_video_host($property_video_url) == 'youtube' ) {
+
+		if (strpos($property_video_url, '?') > 0) {
+			$property_video_url .= '&rel=0';
+		} else {
+			$property_video_url .= '?rel=0';
+		}
+		
+	}
 	$width = epl_get_option('epl_video_width',$width);
 	if($property_video_url != '') {
 		$video_html =  '<div class="epl-video-container videoContainer">';
@@ -879,7 +926,7 @@ function epl_property_video_callback( $width = 600 ) {
 	$property_video_url	= $property->get_property_meta('property_video_url');
 	echo epl_get_video_html($property_video_url,$video_width);
 }
-add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
+add_action('epl_property_video','epl_property_video_callback' , 10 , 1);
 
 /**
  * Property Tab section details output
@@ -2002,6 +2049,18 @@ function epl_get_active_theme_name() {
 	return apply_filters('epl_active_theme_name',$epl_class_prefix . $active_theme);
 }
 
+function epl_get_shortcode_list() {
+	return array(
+		'listing',
+		'listing_category',
+		'listing_open',
+		'listing_feature',
+		'listing_location',
+		'listing_auction',
+		'listing_advanced'
+	);
+}
+
 /**
  * Pagination fix for home
  *
@@ -2010,10 +2069,25 @@ function epl_get_active_theme_name() {
 function epl_home_pagination_fix( $query) {
 
 	global $wp_query;
-	if( isset($wp_query->query['paged']) )
+	if( isset($wp_query->query['paged']) ){
 		$query->set('paged', $wp_query->query['paged']);
+	}
+
+	$shortcodes = epl_get_shortcode_list();
+
+	if( $query->get('is_epl_shortcode') && 
+		in_array($query->get('epl_shortcode_name'),$shortcodes) ){
+
+		if( isset($_GET['pagination_id']) && $_GET['pagination_id'] == $query->get('instance_id') ) {
+			$query->set('paged', $query->get('paged') );
+		} else {
+			$query->set('paged', 1 );
+		}
+		
+
+	}
 }
-add_action('pre_get_posts','epl_home_pagination_fix');
+add_action('pre_get_posts','epl_home_pagination_fix',99);
 
 /**
  * Returns status class
@@ -2268,9 +2342,13 @@ function epl_feeling_lucky($content) {
 	$epl_posts 	= array_keys($epl_posts);
 
 	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
+		ob_start();
 		do_action('epl_property_single');
+		return ob_get_clean();
 	} elseif( is_post_type_archive($epl_posts) ) {
+		ob_start();
 		do_action('epl_property_blog');
+		return ob_get_clean();
 	} else {
 		return $content;
 	}
@@ -2540,7 +2618,12 @@ add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
  * @since 3.0
  * @return $args
  */
-function epl_add_orderby_args($args) {
+function epl_add_orderby_args($args,$type='',$name='') {
+
+	if( $type == 'shortcode' ) {
+		$args['is_epl_shortcode'] 	= true;
+		$args['epl_shortcode_name'] = $name;
+	}
 
 	$post_type = current($args['post_type']);
 

@@ -109,7 +109,8 @@ class EPL_Advanced_Shortcode_Listing {
 			'query_object'            => '', // only for internal use . if provided use it instead of custom query
 			'pagination'              => 'on', // Enable or disable pagination
 			'post__in'                => '',	// show only these posts
-			'post__not_in'            => '' // dont show these posts
+			'post__not_in'            => '', // dont show these posts
+			'instance_id'				=>	'1'			
 		);
 
 		return $this->default_args;
@@ -330,6 +331,8 @@ class EPL_Advanced_Shortcode_Listing {
 			if ( $this->attributes['sortby'] == 'price' ) {
 				$this->args['orderby']  = 'meta_value_num';
 				$this->args['meta_key'] =	$this->get_meta_key_price();
+			} elseif( $this->attributes['sortby'] == 'rand' ) {
+				$this->args['orderby']  = 'rand';
 			} else {
 				$this->args['orderby']  = 'post_date';
 				$this->args['order']    = 'DESC';
@@ -359,8 +362,12 @@ class EPL_Advanced_Shortcode_Listing {
 			unset($this->args['order']);
 		}
 
+		$args['instance_id'] = $attributes['instance_id'];
 		// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-		$this->args = epl_add_orderby_args($this->args);
+		$args = epl_add_orderby_args($args,'shortcode','listing_advanced');
+
+		/** Option to filter args */
+		$args = apply_filters('epl_shortcode_listing_advanced_args',$this->args,$this->attributes);
 	}
 
 	function set_query() {

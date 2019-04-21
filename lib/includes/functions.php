@@ -1858,6 +1858,18 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				),
 
 				array(
+					'name'		=>	'epl_plugin_mode',
+					'label'		=>	__('Mode', 'easy-property-listings' ),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						'development'	=>	__('Development', 'easy-property-listings' ),
+						'production'	=>	__('Production', 'easy-property-listings' )
+					),
+					'help'		=>	__('Production mode enqueue minified js & css for faster page loads.', 'easy-property-listings' ),
+					'default'	=>	'development'
+				),
+
+				array(
 					'name'		=>	'epl_google_api_key',
 					'label'		=>	__('Google Maps API Key', 'easy-property-listings' ),
 					'type'		=>	'text',

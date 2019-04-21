@@ -27,7 +27,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 		 $property_types = array_keys($property_types);
 	}
 
-	extract( shortcode_atts( array(
+	$attributes = shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
 		'limit'			=>	'-1', // Number of maximum posts to show
 		'template'		=>	false, // Template. slim, table
@@ -36,9 +36,12 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
 		'sortby'		=>	'', // Options: price, date : Default date
 		'sort_order'		=>	'DESC',
-		'pagination'		=> 	'on'
+		'pagination'		=> 	'on',
+		'instance_id'	=>	'1'
 
-	), $atts ) );
+	), $atts );
+
+	extract( $attributes  );
 
 	if(is_string($post_type) && $post_type == 'rental') {
 		$meta_key_price = 'property_rent';
@@ -101,8 +104,12 @@ function epl_shortcode_property_open_callback( $atts ) {
 	}
 
 
+	$args['instance_id'] = $attributes['instance_id'];
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-	$args = epl_add_orderby_args($args);
+	$args = epl_add_orderby_args($args,'shortcode','listing_open');
+
+	/** Option to filter args */
+	$args = apply_filters('epl_shortcode_listing_open_args',$args,$attributes);
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>

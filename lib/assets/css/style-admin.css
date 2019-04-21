@@ -1728,7 +1728,16 @@ h3.epl-contact-activity-title {
 	margin: 10px 0;
 	padding: 10px 0;
 }
-
+/* ajax messages*/
+.epl-ajax-notice {
+    padding: 10px 0;
+}
+.ajax-success {
+    color:green;
+}
+.ajax-fail {
+    color:#f00;
+}
 /* Responsive */
 @media screen and (max-width: 782px) {
 

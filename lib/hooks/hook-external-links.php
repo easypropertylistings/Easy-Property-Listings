@@ -26,17 +26,20 @@ function epl_button_external_link() {
 
 	foreach($keys as $key) {
 		$link = get_post_meta( get_the_ID() , $key , true );
-
 		$count = $key == 'property_external_link' ? '': substr($key, -1);
+		$default = __('Tour ', 'easy-property-listings') . $count;
+		$meta_label = get_post_meta( get_the_ID() , $key.'_label' , true );
+		$meta_label = $meta_label == '' ? $default : $meta_label;
+
 
 		if( !empty($link) ) { ?>
 			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo $link; ?>')">
 				<?php
 
 					if( has_filter('epl_button_label_'.$key) ) {
-						$label = apply_filters('epl_button_label_' . $key , __('Tour ', 'easy-property-listings') . $count );
+						$label = apply_filters('epl_button_label_' . $key , $meta_label );
 					} else {
-						$label = apply_filters( 'epl_button_label_tour' , __('Tour ', 'easy-property-listings') . $count );
+						$label = apply_filters( 'epl_button_label_tour' , $meta_label );
 					}
 				?>
 				<?php echo $label ?>

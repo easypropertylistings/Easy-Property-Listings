@@ -1057,6 +1057,14 @@ li.tbhead.current {
 .email-icon-24 {
 	background: url(../images/social-icons-sprites.png) 0 0 no-repeat;
 }
+.instagram-icon-24 {
+	background: url(../images/instagram.png) 0 0 no-repeat;
+	background-size: 100%;
+}
+.pinterest-icon-24 {
+	background: url(../images/pinterest.png) 0 0 no-repeat;
+	background-size: 100%;
+}
 .twitter-icon-24 {
 	background: url(../images/social-icons-sprites.png) 0 -48px no-repeat;
 }

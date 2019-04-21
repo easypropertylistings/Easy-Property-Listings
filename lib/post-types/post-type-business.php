@@ -23,6 +23,7 @@ function epl_register_custom_post_type_business() {
 	$archives = defined( 'EPL_BUSINESS_DISABLE_ARCHIVE' ) && EPL_BUSINESS_DISABLE_ARCHIVE ? false : true;
 	$slug     = defined( 'EPL_BUSINESS_SLUG' ) ? EPL_BUSINESS_SLUG : 'business';
 	$rewrite  = defined( 'EPL_BUSINESS_DISABLE_REWRITE' ) && EPL_BUSINESS_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$rest  = defined( 'EPL_BUSINESS_ENABLE_REST' ) && EPL_BUSINESS_ENABLE_REST ? true : false;
 
 	$labels = apply_filters( 'epl_business_labels', array(
 		'name'			=>	__('Business Listings', 'easy-property-listings' ),
@@ -54,6 +55,7 @@ function epl_register_custom_post_type_business() {
 		'has_archive'		=>	$archives,
 		'hierarchical'		=>	false,
 		'menu_position'		=>	'26.6',
+		'show_in_rest'		=>	$rest,
 		'taxonomies'		=>	array( 'location', 'tax_feature' ),
 		'supports'		=>	apply_filters( 'epl_business_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);

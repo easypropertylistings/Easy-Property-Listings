@@ -321,7 +321,15 @@ class epl_pagination_Call {
 	}
 
 	function get_url( $page ) {
-		return ( 'multipart' == $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
+
+		$link =  ( 'multipart' == $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
+
+		if( $this->query->get('is_epl_shortcode') && 
+			in_array($this->query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
+			$link = epl_add_or_update_params($link,'pagination_id', $this->query->get('instance_id') );
+		}
+
+		return $link;
 	}
 }
 
