@@ -82,7 +82,7 @@ function epl_install() {
 		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
 		'epl_use_core_css'			=> 'off', // Means Enable CSS
 		'epl_css_legacy'				=> 'off', // Legacy styles disabled by default
-		'epl_css_enhanced'			=> 'off', // Enhanced styles disabled by default
+		'epl_css_enhanced'			=> 'on', // Enhanced styles enabled for new installations by default
 		'uninstall_on_delete'			=> 0,
 		'inspection_date_format'			=> 'l, dS F',
 		'inspection_time_format'			=> 'h:i a',

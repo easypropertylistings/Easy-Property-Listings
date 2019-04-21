@@ -506,7 +506,7 @@
 /** Single **/
 .epl-property-single.view-expanded  .item-street,
 .epl-property-single.view-expanded  .page-price-rent {
-	display: inline-block;
+	/* display: inline-block; */
 }
 .epl-property-single.view-expanded  .page-price-rent {
 	margin-right: 1em;
