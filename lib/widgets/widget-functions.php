@@ -172,12 +172,7 @@ function epl_search_widget_fields() {
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
-		array(
-			'key'			=>	'search_linked_contact',
-			'label'			=>	__('Linked Contact','easy-property-listings'),
-			'default'		=>	'off',
-			'type'			=>	'checkbox',
-		),
+		
 		array(
 			'key'			=>	'search_other',
 			'label'			=>	__('Other Search Options','easy-property-listings'),
@@ -718,17 +713,6 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 							),
 			'class'			=>	'epl-search-row-half',
 			'order'			=>	280
-		),
-		array(
-			'key'			=>	'search_linked_contact',
-			'meta_key'		=>	'property_owner',
-			'label'			=>	__('Linked Contact','easy-property-listings'),
-			'option_filter'		=>	'linked_contact',
-			'options'		=>	epl_get_owners(),
-			'type'			=>	'select',
-			'query'			=>	array('query'	=>	'meta'),
-			'class'			=>	'epl-search-row-full',
-			'order'			=>	285
 		),
 		array(
 			'key'			=>	'search_other',
