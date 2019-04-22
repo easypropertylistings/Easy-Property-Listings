@@ -543,7 +543,7 @@ includes/class-epl-listing-elements.php
 
 ** New: Search by linked contacts — search_linked_contact
 —— Search i think this is not what we want.
---- Ass search to Dash > EPL > Contacts page
+--- Add search to Dash > EPL > Contacts page
 
 ** Tweak: Replaced grid/list icon with a better quality one.
 
