@@ -125,6 +125,12 @@ function epl_search_widget_fields() {
 			'type'			=>	'checkbox',
 		),
 		array(
+			'key'			=>	'search_price_search',
+			'label'			=>	__('Price Search','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
 			'key'			=>	'search_bed',
 			'label'			=>	__('Bed','easy-property-listings'),
 			'default'		=>	'on',
@@ -440,6 +446,23 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 							),
 			'class'			=>	'epl-search-row-half',
 			'order'			=>	150
+		),
+		array(
+			'key'			=>	'search_price_search',
+			'meta_key'		=>	'property_search_price',
+			'label'			=>	__('Price Search','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'price_search',
+			'options'		=>	$price_array,
+			'type'			=>	'select',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'key'		=>	'property_search_price',
+								'type'		=>	'numeric',
+								'compare'	=>	'<='
+							),
+			'class'			=>	'epl-search-row-full',
+			'order'			=>	140
 		),
 		array(
 			'key'			=>	'search_bed',
