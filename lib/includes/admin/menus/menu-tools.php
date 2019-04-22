@@ -10,7 +10,12 @@
  */
 ?>
 <div class="wrap epl-wrap">
-
+    <h2><?php _e('Tools','easy-property-listings'); ?></h2>
+    <p>
+        <?php
+            _e('Visit the main settings page for Easy Property Listings Settings','easy-property-listings');
+        ?>
+    </p>
     <div class="epl-content">
 
         <div class="epl-tabs">

@@ -259,7 +259,7 @@ function epl_get_tools_tab() {
 
 	$default_tabs = array(
 		'tools'	=>	array(
-			'label'		=>	__('Tools','easy-property-listings'),
+			'label'		=>	__('Import/Export','easy-property-listings'),
 			'callback'	=>	'epl_settings_import_export'
 		),
 		'upgrade'	=>	array(
@@ -343,6 +343,9 @@ function epl_settings_import_export() {
 	$tab    = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'tools';
 
 	echo "<a class='button button-primary' href='?page=epl-tools&tab=$tab&action=export&epl_tools_submit=true'>".__('Download File','easy-property-listings')."</a>";
+	?>
+	<span style="color:#f00"><?php _e('The following settings are exported. Easy Property Listings settings screen and any Extension settings','easy-property-listings'); ?></span>
+	<?php
 
 	do_action('epl_pre_export_fields');
 
@@ -416,20 +419,6 @@ function epl_handle_tools_form() {
 
 }
 add_action('admin_init', 'epl_handle_tools_form' );
-
-add_action( 'admin_notices', 'epl_filter_recent_comments' );
-
-function epl_filter_recent_comments(){
-	global $current_screen;
-
-	if( $current_screen->id == 'dashboard' )
-    	add_filter( 'comments_clauses', 'epl_comments_clauses' );
-}
-
-function epl_comments_clauses( $clauses ){
-    $clauses['where'] .= " AND comment_agent != 'easy-property-listings' "; // EDIT
-    return $clauses;
-}
 
 function epl_upgrade_admin_notice(){
 
@@ -522,3 +511,44 @@ function epl_sync_property_search_price() {
 	}
 }
 add_action('save_post','epl_sync_property_search_price',40);
+
+function epl_get_avatar_filter($avatar, $id_or_email,$args) {
+
+	if($id_or_email->comment_agent != 'easy-property-listings') {
+		return $avatar;
+	}
+
+	$label = __('Note','easy-property-listings');
+	switch($id_or_email->comment_type) {
+
+		case 'call' :
+			$label = __('Call','easy-property-listings');
+		break;
+
+		case 'email' :
+			$label = __('Mail','easy-property-listings');
+		break;
+
+		case 'epl_user_note' :
+			$label = __('Note','easy-property-listings');
+		break;
+
+		case 'listing_alert' :
+			$label = __('Alert','easy-property-listings');
+		break;
+
+		default:
+			$label = __('Note','easy-property-listings');
+		break;
+	}
+
+	return '<div class="avatar epl-notes-grav">
+				<div class="epl-notes-icon">
+					'.substr($label, 0, 1).'
+				</div>
+				<div class="epl-notes-label">
+					'.$label.'
+				</div>
+			</div>';
+}
+add_filter('pre_get_avatar','epl_get_avatar_filter',10,5);
