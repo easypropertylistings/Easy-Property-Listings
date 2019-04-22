@@ -1,12 +1,12 @@
 /**
  * EPL Structural CSS
  *
- * @package     EPL
+ * @package	EPL
  * @since	3.1
  * @version	3.3
- * @subpackage  Pretty CSS
- * @copyright   Copyright (c) 2014, Merv Barrett
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @subpackage	Structure CSS
+ * @copyright	Copyright (c) 2019, Merv Barrett
+ * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 /*****************************
@@ -1057,14 +1057,6 @@ li.tbhead.current {
 .email-icon-24 {
 	background: url(../images/social-icons-sprites.png) 0 0 no-repeat;
 }
-.instagram-icon-24 {
-	background: url(../images/instagram.png) 0 0 no-repeat;
-	background-size: 100%;
-}
-.pinterest-icon-24 {
-	background: url(../images/pinterest.png) 0 0 no-repeat;
-	background-size: 100%;
-}
 .twitter-icon-24 {
 	background: url(../images/social-icons-sprites.png) 0 -48px no-repeat;
 }
@@ -1079,6 +1071,12 @@ li.tbhead.current {
 }
 .skype-icon-24 {
 	background: url(../images/social-icons-sprites.png) 0 -120px no-repeat;
+}
+.instagram-icon-24 {
+	background: url(../images/social-icons-sprites.png) 0 -264px no-repeat;
+}
+.pinterest-icon-24 {
+	background: url(../images/social-icons-sprites.png) 0 -240px no-repeat;
 }
 .widget_epl_author .entry-content h5.epl-author-title {
 	margin: 0.5em 0;
