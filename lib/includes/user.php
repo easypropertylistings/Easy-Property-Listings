@@ -19,11 +19,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 1.0
  */
 function epl_property_admin_contact ( $contactmethods ) {
-	$contactmethods['mobile']	= __( 'Mobile', 'easy-property-listings' );
-	$contactmethods['skype']	= __( 'Skype', 'easy-property-listings' );
+	$contactmethods['mobile']		= __( 'Mobile', 'easy-property-listings' );
+	$contactmethods['skype']		= __( 'Skype', 'easy-property-listings' );
 	$contactmethods['twitter']	= __( 'Twitter', 'easy-property-listings' );
 	$contactmethods['facebook']	= __( 'Facebook', 'easy-property-listings' );
-	$contactmethods['google']	= __( 'Google Plus', 'easy-property-listings' );
+	//$contactmethods['google']		= __( 'Google Plus', 'easy-property-listings' );
 	$contactmethods['linkedin']	= __( 'LinkedIn', 'easy-property-listings' );
 	$contactmethods['instagram']	= __( 'Instagram', 'easy-property-listings' );
 	$contactmethods['pinterest']	= __( 'Pinterest', 'easy-property-listings' );
@@ -43,32 +43,32 @@ function epl_get_custom_user_profile_fields() {
 		'epl_custom_user_profile_fields',
 		array(
 			array(
-				'name'			=>	'position',
-				'label'			=>	__('Position', 'easy-property-listings' ),
-				'description'		=>	__('Please enter your title/position.', 'easy-property-listings' ),
-				'class'			=>	'regular-text',
-				'type'			=>	'text',
+				'name'		=>	'position',
+				'label'		=>	__('Position', 'easy-property-listings' ),
+				'description'	=>	__('Please enter your title/position.', 'easy-property-listings' ),
+				'class'		=>	'regular-text',
+				'type'		=>	'text',
 			),
 			array(
-				'name'			=>	'slogan',
-				'label'			=>	__('Slogan', 'easy-property-listings' ),
-				'description'		=>	__('Please enter your slogan.', 'easy-property-listings' ),
-				'class'			=>	'regular-text',
-				'type'			=>	'text',
+				'name'		=>	'slogan',
+				'label'		=>	__('Slogan', 'easy-property-listings' ),
+				'description'	=>	__('Please enter your slogan.', 'easy-property-listings' ),
+				'class'		=>	'regular-text',
+				'type'		=>	'text',
 			),
 			array(
-				'name'			=>	'video',
-				'label'			=>	__('Youtube Video Url','easy-property-listings' ),
-				'description'		=>	__('Please enter your YouTube Profile Video URL.', 'easy-property-listings' ),
-				'class'			=>	'regular-text',
-				'type'			=>	'text',
+				'name'		=>	'video',
+				'label'		=>	__('Youtube Video Url','easy-property-listings' ),
+				'description'	=>	__('Please enter your YouTube Profile Video URL.', 'easy-property-listings' ),
+				'class'		=>	'regular-text',
+				'type'		=>	'text',
 			),
 			array(
-				'name'			=>	'contact-form',
-				'label'			=>	__('Contact Form short code','easy-property-listings' ),
-				'description'		=>	__('Please enter your form short code for author contact tab.', 'easy-property-listings' ),
-				'class'			=>	'regular-text',
-				'type'			=>	'text',
+				'name'		=>	'contact-form',
+				'label'		=>	__('Contact Form short code','easy-property-listings' ),
+				'description'	=>	__('Please enter your form short code for author contact tab.', 'easy-property-listings' ),
+				'class'		=>	'regular-text',
+				'type'		=>	'text',
 			),
 		)
 	);
@@ -114,7 +114,8 @@ function epl_add_custom_user_profile_fields( $user ) { ?>
 			}
 		?>
 	</table>
-<?php }
+<?php
+}
 
 /**
  * Save and update additional author profile box information
@@ -132,8 +133,6 @@ function epl_save_custom_user_profile_fields( $user_id ) {
 		if( isset($_POST[$user_field['name']]) ) {
 			update_user_meta( $user_id, $user_field['name'], sanitize_text_field($_POST[$user_field['name']]) );
 		}
-
-
 	}
 }
 

@@ -1823,6 +1823,17 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				),
 
 				array(
+					'name'		=>	'epl_css_enhanced',
+					'label'		=>	__('Enhanced Styles', 'easy-property-listings' ),
+					'type'		=>	'checkbox_option',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'easy-property-listings' ),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to enable enhanced structural css styles. This implements inline-block mode for a better grid format.' , 'easy-property-listings' )
+				),
+
+				array(
 					'name'		=>	'epl_icons_svg_listings',
 					'label'		=>	__('SVG Icons for Listings', 'easy-property-listings' ),
 					'type'		=>	'checkbox_option',
@@ -1858,6 +1869,13 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				),
 
 				array(
+					'name'		=>	'epl_google_api_key',
+					'label'		=>	__('Google Maps API Key', 'easy-property-listings' ),
+					'type'		=>	'text',
+					'help'		=>	__("Register for a $get_google_maps_api_key_uri here." , 'easy-property-listings' )
+				),
+
+				array(
 					'name'		=>	'epl_plugin_mode',
 					'label'		=>	__('Mode', 'easy-property-listings' ),
 					'type'		=>	'radio',
@@ -1867,13 +1885,6 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					),
 					'help'		=>	__('Production mode enqueue minified js & css for faster page loads.', 'easy-property-listings' ),
 					'default'	=>	'development'
-				),
-
-				array(
-					'name'		=>	'epl_google_api_key',
-					'label'		=>	__('Google Maps API Key', 'easy-property-listings' ),
-					'type'		=>	'text',
-					'help'		=>	__("Register for a $get_google_maps_api_key_uri here." , 'easy-property-listings' )
 				),
 
 				array(

@@ -332,7 +332,7 @@ function epl_settings_import_export() {
 		<input type="submit" name="epl_tools_submit" value="<?php _e('Import','easy-property-listings') ?>" class="epl-tools-submit button button-primary"/>
 		<span style="color:#f00"><?php _e('WARNING! This will overwrite all existing option values, please proceed with caution','easy-property-listings'); ?></span>
 	</div>
-	
+
 
 	<?php
 
@@ -401,7 +401,7 @@ function epl_handle_tools_form() {
         break;
 
         case 'import':
-        
+
 		if( trim($post_data['epl_import']) == '')
 		return;
 
@@ -444,7 +444,7 @@ function epl_upgrade_admin_notice(){
 	     echo '<div class="notice notice-warning epl-upgrade-notice is-dismissible">
 	             <p><strong>'.$head.'</strong></p>
 	             <p>'.$msg.'</p>
-	             <p><a class="button" href="?page=epl-tools&tab=upgrade">'.__("Take me to upgrade tool","easy-property-listings").'</a></p>
+	             <p><a class="button" href="admin.php?page=epl-tools&tab=upgrade">'.__("Take me to upgrade tool","easy-property-listings").'</a></p>
 	         </div>';
 
  	endif;
@@ -499,11 +499,11 @@ function epl_upgrade_db_to_3_3() {
 
 	update_option('epl_db_upgraded_to','3.3');
 
-	wp_die( 
+	wp_die(
 		json_encode(
 			array(
-				'status'	=>	'success', 
-				'msg'	=>	__('DB upgraded successfully','easy-property-listings') 
+				'status'	=>	'success',
+				'msg'	=>	__('Database upgraded successfully','easy-property-listings')
 			)
 		)
 	);

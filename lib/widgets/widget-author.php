@@ -28,7 +28,7 @@ class EPL_Widget_Author extends WP_Widget {
 
 		$defaults = array(
 			'title'		=>	'',
-			'username'		=>	'',
+			'username'	=>	'',
 			'display'	=>	0,
 			'd_image'	=>	0,
 			'd_icons'	=>	0,
@@ -39,9 +39,9 @@ class EPL_Widget_Author extends WP_Widget {
 
 		extract( $args );
 		$title 		= apply_filters('widget_title', $instance['title']);
-		$display	= $instance['display'];
-		$d_image	= $instance['d_image'];
-		$d_icons	= $instance['d_icons'];
+		$display		= $instance['display'];
+		$d_image		= $instance['d_image'];
+		$d_icons		= $instance['d_icons'];
 		$d_bio		= $instance['d_bio'];
 		$username	= $instance['username'];
 
@@ -74,33 +74,32 @@ class EPL_Widget_Author extends WP_Widget {
 
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['username'] = strip_tags($new_instance['username']);
-		$instance['display'] = strip_tags($new_instance['display']);
-		$instance['d_image'] = strip_tags($new_instance['d_image']);
-		$instance['d_icons'] = strip_tags($new_instance['d_icons']);
-		$instance['d_bio'] = strip_tags($new_instance['d_bio']);
+		$instance['title'] 	= strip_tags($new_instance['title']);
+		$instance['username'] 	= strip_tags($new_instance['username']);
+		$instance['display'] 	= strip_tags($new_instance['display']);
+		$instance['d_image'] 	= strip_tags($new_instance['d_image']);
+		$instance['d_icons'] 	= strip_tags($new_instance['d_icons']);
+		$instance['d_bio'] 	= strip_tags($new_instance['d_bio']);
 		return $instance;
 	}
 
 	function form($instance) {
 		$defaults = array(
 			'title'		=>	'',
-			'username'		=>	'',
+			'username'	=>	'',
 			'display'	=>	0,
 			'd_image'	=>	0,
 			'd_icons'	=>	0,
 			'd_bio'		=>	0
 		);
 
-
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		$title 		= esc_attr($instance['title']);
 		$username 	= esc_attr($instance['username']);
-		$display	= esc_attr($instance['display']);
-		$d_image	= esc_attr($instance['d_image']);
-		$d_icons	= esc_attr($instance['d_icons']);
+		$display		= esc_attr($instance['display']);
+		$d_image		= esc_attr($instance['d_image']);
+		$d_icons		= esc_attr($instance['d_icons']);
 		$d_bio		= esc_attr($instance['d_bio']); ?>
 
 		<p>
@@ -144,4 +143,3 @@ function epl_register_widget_author() {
 	register_widget( 'EPL_Widget_Author' );
 }
 add_action( 'widgets_init', 'epl_register_widget_author' );
-
