@@ -1623,7 +1623,7 @@ function epl_sorting_tabs() {
 function epl_add_or_update_params($url,$key,$value){
 
     $a = parse_url($url);
-    $query = $a['query'] ? $a['query'] : '';
+    $query = isset($a['query']) ? $a['query'] : '';
     parse_str($query,$params);
     $params[$key] = $value;
     $query = http_build_query($params);
