@@ -584,15 +584,15 @@ h3.epl-welcome-sub-heading {
 }
 .epl-license-status {
 	position:absolute;
-	margin:5px 0 0 5px;
-	height:20px;
-	width:20px;
+	margin: 1px 0 0 5px;
+	height: 24px;
+	width: 24px;
 }
 .epl-license-status.epl-license-status-valid {
 	background:url(../images/valid.png) no-repeat;
 }
 .epl-license-status.epl-license-status-invalid {
-	background:url(../images/invalid.gif) no-repeat;
+	background:url(../images/invalid.png) no-repeat;
 }
 .epl-license-status-text {
 	display:block;
