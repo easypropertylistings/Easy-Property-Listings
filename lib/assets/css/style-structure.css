@@ -1079,6 +1079,9 @@ li.tbhead.current {
 .pinterest-icon-24 {
 	background: url(../images/social-icons-sprites.png) 0 -240px no-repeat;
 }
+.youtube-icon-24 {
+	background: url(../images/social-icons-sprites.png) 0 -192px no-repeat;
+}
 .widget_epl_author .entry-content h5.epl-author-title {
 	margin: 0.5em 0;
 }

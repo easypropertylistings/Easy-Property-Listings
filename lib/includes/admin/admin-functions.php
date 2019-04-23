@@ -542,6 +542,7 @@ function epl_get_avatar_filter($avatar, $id_or_email,$args) {
 	}
 
 	$label = __('Note','easy-property-listings');
+	
 	switch($id_or_email->comment_type) {
 
 		case 'call' :
