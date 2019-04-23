@@ -830,6 +830,27 @@ h3.epl-welcome-sub-heading {
 	padding: 5px !important;
 }
 /*** dashboard widget **/
+
+/*** dashboard widget - activity **/
+.avatar.epl-notes-grav {
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background: #aaa;
+}
+.epl-notes-label {
+    display: block;
+    text-align: center;
+}
+.epl-notes-icon {
+    font-size: 30px;
+    font-weight: bold;
+    display: block;
+    padding: 2px 0;
+    text-align: center;
+    line-height: 28px;
+}
+/*** dashboard widget - activity end **/
 .epl-nav-tab-wrapper{
 	border-bottom:none;
 }

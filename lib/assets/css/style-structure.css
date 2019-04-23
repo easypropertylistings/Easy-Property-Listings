@@ -552,6 +552,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 .epl_adv_tab_map .gm-style img {
 	max-width: none;
 	box-shadow: none;
+	margin: 0 auto;
 }
 #epl-default-map img {
 	max-width:none;

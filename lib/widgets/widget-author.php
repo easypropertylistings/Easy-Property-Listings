@@ -109,7 +109,7 @@ class EPL_Widget_Author extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id('username'); ?>"><?php _e('Username:', 'easy-property-listings'); ?></label>
-			<input class="widefat epl-widget-author-username" id="<?php echo $this->get_field_id('username'); ?>" name="<?php echo $this->get_field_name('username'); ?>" type="text" value="<?php echo $username; ?>" placeholder="<?php _e('Type to search users','easy-property-listings'); ?>"/>
+			<input autocomplete="off" class="widefat epl-widget-author-username" id="<?php echo $this->get_field_id('username'); ?>" name="<?php echo $this->get_field_name('username'); ?>" type="text" value="<?php echo $username; ?>" placeholder="<?php _e('Type to search users','easy-property-listings'); ?>"/>
 			<span class="help"><?php _e('Comma seperated list of multiple author','easy-property-listings'); ?></span>
 		</p>
 
