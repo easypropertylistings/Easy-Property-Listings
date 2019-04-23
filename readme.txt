@@ -390,7 +390,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.3 April 12, 2019 =
+= 3.3 April 28, 2019 =
 
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible. And easy to use.
 * New: Now able to add a function.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
@@ -402,6 +402,29 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Under Offer functions for use in custom templates epl_the_under_offer, epl_get_the_under_offer.
 * New: Enabled Mini Website URL meta field as a number of REAXML providers are now using 3D Tours.
 * New: Able to configure sorting dropdown as tabs.
+* New: Implemented CSS and JS minified files and development mode option to disable minimised CSS and JS files.
+* New: Development mode setting that currently enabled minified JS and CSS files.
+* New: Upgrade notice that will copy the listing pricing for all listing types into a unified price search.
+* New: EPL - Author widget supports single or multiple users with user searching capabilities. Allowing you to use the widget and set a specific agent or WordPress user.
+* New: Enhanced CSS implemented, for new installations this is enabled. If upgrading then the enhanced CSS is disabled. Enable and disable from Advanced Settings.
+* New: Floorplan uploader now support a custom label added to the listing entry screen. Label filter is still in place.
+* New: External Links now 3 are now supported with a custom label. Label filter is still in place.
+* New: Mini Website URL,  2 are supported with a custom label. Label filter is still in place.
+* New: Major tweaks to the custom fields screens allowing for a smaller data entry screen when adding your listing details.
+* New: Map Icon.
+* New: Listing Map Icon for when the location is not exact, IE when the user selects to not display the full address.
+* New: Users profiles now have Instagram and Pinterest links and social icons added.
+* New: Tools page holding Import and Export options along with the Upgrade screen.
+* New: Shortcode [listing_element] for use with page builder systems to output variables, meta fields, action hooks, excerpt,  onto templates.
+* New: Pets icons and function to handle output with the get_property_pets function.
+* New: Rental Leased Date custom field.
+* New: Ability to apply multiple templates using the epl_property_single_default filter to the single listing template loading queue.
+* New: Ability to apply multiple templates using the epl_property_blog_template filter to the loop listing template loading queue.
+* New: Specify the default return type of the property listing icons. Basically using the epl_icons_return_type filter you can force all icons to output text instead of an icon. Or configure a completely custom output.
+* New: Improvements to video link handling with YouTube and Vimeo support.
+* New: Video hook implemented into templates. Before we were using the epl_property_content_after hook where we have now added a better named epl_property_video action hook.
+* New: Random sorting option added to [listing_category], [listing]
+* New: Search by linked contacts — search_linked_contact.
 * Tweak: Rebuilt date picker JS validation code to better optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
 * Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
@@ -418,6 +441,15 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Widget templates to handle the Inspection time and ical options.
 * Tweak: Selecting secondary agents works better now on the edit listing pages.
 * Tweak: epl_property_widget Options for Inspection times and iCal links to EPL - Listing Widget.
+* Tweak: Acre to Acres tweak - Implement formatting for measurements.
+* Tweak: Pagination and multiple shortcodes on the same page working correctly.
+* Tweak: Removed Google Plus from Users as it no longer exists.
+* Tweak: Removed redundant before and after hooks on the manage listing screens.
+* Tweak: Enable REST support and Gutenberg by defining new constants for post types. EPL_BUSINESS_ENABLE_REST, EPL_COMMERCIAL_ENABLE_REST, EPL_COMMERCIAL_LAND_ENABLE_REST, EPL_LAND_ENABLE_REST, EPL_PROPERTY_ENABLE_REST, EPL_RENTAL_ENABLE_REST, EPL_RURAL_ENABLE_REST.
+* Tweak: Enable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_ENABLE_REST, EPL_FEATURES_ENABLE_REST, EPL_LOCATION_ENABLE_REST.
+* Tweak: All shortcodes now include a filter to alter the default options. epl_shortcode_listing_auction_args, epl_shortcode_listing_category_args, epl_shortcode_listing_open_args, epl_shortcode_listing_feature_args, epl_shortcode_listing_location_args, epl_shortcode_listing_args
+* Tweak: Replaced grid/list icon with a better quality one.
+* Tweak: Replaced all internal icons.
 * Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.
 * Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
@@ -428,139 +460,45 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Home Open label improved as sometimes empty data is imported and the label appears where it should not.
 * Fix: [listing_search] enabling the multiple select option now works better.
 * Fix: Several typcasting fixes to various functions to prevent any issues with data that is not entirely empty.
+* Fix: Features list output class name fix for bathrooms.
+* Fix: Features list output class name fix for building size.
+* Fix: Features list output class name fix for furnished.
+* Fix: Improvements to compatibility mode that prevents YoastSEO outputting multiple times on the page. This will also correct any other plugins with a similar issue.
 
 
+****** Beta 4 *****
 
+* New: YouTube User Profile link.
+* New: Office Phone to profile? Currently added with SD.
 
-*****************
 
-BETA 2 Change Log
 
-* New: Implemented CSS and JS minified files and development mode option to disable minimised CSS and JS files.
------ @prince how does this work? EG i make CSS tweaks, how to compile min files?
 
-** New: Development mode setting that currently enabled minified JS and CSS files.
 
-* New: Upgrade notice that will copy the listing pricing for all listing types into a unified price search.
------- @prince implement this into shortcode and Widget. you did the work, lets put in in 3.3 to be actually used :)
-Perhaps Unified Price Search is the widget option
+*******
+TO-DO
+*******
+Padding on Map icon
+Translation - Portugal Portuguese mo file
+SVG icons Pinterest
+SVG Icon Instagram
+SVG Icon YouTube
 
+Re-colour new EMAIL png icon from green to grey.
 
-** New: EPL - Author widget supports single or multiple users with user searching capabilities. Allowing you to use the widget and set a specific agent or WordPress user.
-——— @prince only search and use Contributor or higher, Currently widget support Subscriber level. We do not want to allow subscribers OR user has edit_posts capability.
-—— Works well though
 
+Welcome Screen text and screenshots
 
-** New: Enhanced CSS implemented, for new installations this is enabled. If upgrading then the enhanced CSS is disabled. Enable and disable from Advanced Settings.
+Text for new listing_element shortcode
 
+CSS for Select Multi
+SVG for select
 
-** New: Floorplan uploader now support a custom label added to the listing entry screen. Label filter is still in place.
-** New: External Links now 3 are now supported with a custom label. Label filter is still in place.
-** New: Mini Website URL,  2 are supported with a custom label. Label filter is still in place.
 
-** New: Major tweaks to the custom fields screens allowing for a smaller data entry screen when adding your listing details.
-
-** New: Map Icon.
-** New: Listing Map Icon for when the location is not exact, IE when the user selects to not display the full address.
-
-
-** New: Users profiles now have Instagram and Pinterest links and social icons added.
-
-** New: Tools page holding Import and Export options along with the Upgrade screen.
-
-
-
-** New: Shortcode [listing_element] for use with page builder systems to output variables, meta fields, action hooks, excerpt,  onto templates.
-
-** New: Pets icons and function to handle output with the get_property_pets function.
-
-
-** New: Rental Leased Date custom field.
-
-** Fix: Features list output class name fix for bathrooms.
-** Fix: Features list output class name fix for building size.
-** Fix: Features list output class name fix for furnished.
-
-
-
-** Tweak: Acre to Acres tweak - Implement formatting for measurements #489
-——— @prince can we have 1 acre and 2 acres implemented.. IE if value == 1 (acre else acres)
-
-
-3.3 Pagination and multiple shortcodes on the same page #549
-—— @prince Bug Broken http://localhost/easypropertylistings-dev/shortcodes/listing/page/2/?pagination_id=1
-—— lib/includes/pagination.php
-
-
-** New: Ability to apply multiple templates using the epl_property_single_default filter to the single listing template loading queue.
-** New: Ability to apply multiple templates using the epl_property_blog_template filter to the loop listing template loading queue.
-
-
-** New: Specify the default return type of the property listing icons. Basically using the epl_icons_return_type filter you can force all icons to output text instead of an icon. Or configure a completely custom output.
-
-** New: Improvements to video link handling with YouTube and Vimeo support.
-** New: Video hook implemented into templates. Before we were using the epl_property_content_after hook where we have now added a better named epl_property_video action hook.
-—— @prince How to maintain for backward compatibility?
-/**
- * Previous Video Hook, maintained for backward compatibility.
- *
- * @since 3.3
- * @hooked property_after_content
- */
-//add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
-
-
-
-**** YouTube User Profile link***
-
-
-
-***** Office Phone to profile? Currently added with SD *****
-
-/admin/listing-elements-gui.php
-includes/class-epl-listing-elements.php
-
-
-
-** Fix: Improvements to compatibility mode that prevents YoastSEO outputting multiple times on the page. This will also correct any other plugins with a similar issue.
-
-
-** Tweak: Removed Google Plus from Users as it no longer exists.
-
-** Tweak: Removed redundant before and after hooks on the manage listing screens.
-
-
-** Tweak: Enable REST support and Gutenberg by defining new constants for post types. EPL_BUSINESS_ENABLE_REST, EPL_COMMERCIAL_ENABLE_REST, EPL_COMMERCIAL_LAND_ENABLE_REST, EPL_LAND_ENABLE_REST, EPL_PROPERTY_ENABLE_REST, EPL_RENTAL_ENABLE_REST, EPL_RURAL_ENABLE_REST.
-
-
-
-** Tweak: Enable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_ENABLE_REST, EPL_FEATURES_ENABLE_REST, EPL_LOCATION_ENABLE_REST.
-
-
-** Tweak: All shortcodes now include a filter to alter the default options. epl_shortcode_listing_auction_args, epl_shortcode_listing_category_args, epl_shortcode_listing_open_args, epl_shortcode_listing_feature_args, epl_shortcode_listing_location_args, epl_shortcode_listing_args
-
-** New: Random sorting option added to [listing_category], [listing]
-
-** New: Search by linked contacts — search_linked_contact
-—— Search i think this is not what we want.
---- Add search to Dash > EPL > Contacts page
-
-** Tweak: Replaced grid/list icon with a better quality one.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CODEX docs for new features
+Release Blog post
+Release change log post
+Icon Pets
 
 
 
