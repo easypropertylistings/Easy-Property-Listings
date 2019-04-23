@@ -2097,7 +2097,7 @@ function epl_get_shortcode_list() {
 function epl_home_pagination_fix( $query) {
 
 	global $wp_query;
-	if( isset($wp_query->query['paged']) ){
+	if( isset($wp_query->query['paged']) && in_array( $query->query_vars['post_type'], epl_get_core_post_types() ) ){
 		$query->set('paged', $wp_query->query['paged']);
 	}
 
