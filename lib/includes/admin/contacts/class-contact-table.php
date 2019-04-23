@@ -86,10 +86,14 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 			echo '<input type="hidden" name="orderby" value="' . esc_attr( $_REQUEST['orderby'] ) . '" />';
 		if ( ! empty( $_REQUEST['order'] ) )
 			echo '<input type="hidden" name="order" value="' . esc_attr( $_REQUEST['order'] ) . '" />';
+
+		$s_contact_name = isset( $_GET['s_contact_name']) ? sanitize_text_field($_GET['s_contact_name']) : '';
 		?>
 		<p class="search-box">
 			<label class="screen-reader-text" for="<?php echo $input_id ?>"><?php echo $text; ?>:</label>
-			<input type="search" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>" />
+			<input type="search" placeholder="<?php _e('Search by Title','easy-property-listings'); ?>" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>" />
+			<input type="search" placeholder="<?php _e('Search by Name','easy-property-listings'); ?>" id="" name="s_contact_name" value="<?php echo $s_contact_name; ?>" />
+
 			<?php submit_button( $text, 'button', false, false, array('ID' => 'search-submit') ); ?>
 		</p>
 		<?php
@@ -251,6 +255,17 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	}
 
 	/**
+	 * Retrieves the search query string
+	 *
+	 * @access public
+	 * @since 3.3
+	 * @return mixed string If search is present, false otherwise
+	 */
+	public function get_name_search() {
+		return ! empty( $_GET['s_contact_name'] ) ? urldecode( trim( $_GET['s_contact_name'] ) ) : false;
+	}
+
+	/**
 	 * Build all the reports data
 	 *
 	 * @access public
@@ -265,6 +280,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		$paged   = $this->get_paged();
 		$offset  = $this->get_items_per_page('contacts_per_page', $this->per_page) * ( $paged - 1 );
 		$search  = $this->get_search();
+		$name_search  = $this->get_name_search();
 		$order   = isset( $_GET['order'] )   ? sanitize_text_field( $_GET['order'] )   : 'DESC';
 		$orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'id';
 
@@ -280,6 +296,36 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 		if( $search != '' ) {
 			$args['s'] = $search;
+		}
+
+		if( $name_search != '') {
+
+			$name_search_array = explode(' ', sanitize_text_field($name_search) );
+
+			if( !empty($name_search_array) ) {
+
+				$meta_name = array(
+					'relation'		=>	'OR'
+				);
+
+				foreach($name_search_array as $component) {
+
+					$meta_name[] = array(
+						'key'     	=> 'contact_first_name',
+						'value'   	=> 	sanitize_text_field($component),
+						'compare'	=>	'LIKE'	
+					);
+
+					$meta_name[] = array(
+						'key'     	=> 'contact_last_name',
+						'value'   	=> 	sanitize_text_field($component),
+						'compare'	=>	'LIKE'	
+					);
+				}
+
+				$args['meta_query'][] = $meta_name;
+			}
+
 		}
 
 		if( isset($_GET['cat_filter']) && $_GET['cat_filter'] != '' ){
