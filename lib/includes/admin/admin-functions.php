@@ -514,6 +514,10 @@ add_action('save_post','epl_sync_property_search_price',40);
 
 function epl_get_avatar_filter($avatar, $id_or_email,$args) {
 
+	if( !is_object($id_or_email) ){
+		return $avatar;
+	}
+
 	if($id_or_email->comment_agent != 'easy-property-listings') {
 		return $avatar;
 	}
