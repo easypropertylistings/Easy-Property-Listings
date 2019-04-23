@@ -540,3 +540,16 @@
 .epl-author-archive-card .epl-author-details {
 
 }
+
+/** Search Styling **/
+.epl-search-form select.in-field{
+	background: transparent;
+	padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 1px solid #B7B7B7;
+	border-radius: 0;
+	height: 40px;
+	-webkit-appearance: none;
+	background: url('../images/select-arrow.svg') no-repeat right #FFF;
+}
