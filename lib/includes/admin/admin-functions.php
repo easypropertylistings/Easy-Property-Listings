@@ -358,7 +358,9 @@ function epl_settings_upgrade_tab() {
 
 	if( get_option('epl_db_upgraded_to') < 3.3 ) :
 
-	echo "<a class='button button-primary epl-upgrade-btn' data-upgrade='3.3' href='#'>".__('Upgrade Database','easy-property-listings')."</a>";
+	echo '<div style="color:red">'.__('Upgrading the database will copy all the listing pricing info into a unified price data column for searching and ordering. We recommend taking a database backup before performing this action.','easy-property-listings').'</div>';
+
+	echo "<div><br><a class='button button-primary epl-upgrade-btn' data-upgrade='3.3' href='#'>".__('Upgrade Database','easy-property-listings')."</a></div>";
 
 	endif;
 
@@ -459,6 +461,23 @@ add_action('wp_ajax_epl_upgrade_db','epl_upgrade_db');
 
 function epl_upgrade_db_to_3_3() {
 
+	$comments_query = new WP_Comment_Query;
+
+	$comments = $comments_query->query( array(
+		'type__in'	=>	array('epl_user_note') 
+	)  );
+	
+	if( !empty( $comments ) ) {
+		foreach( $comments as $comment ) {
+			wp_update_comment( 
+				array(
+					'comment_ID'		=>	$comment->comment_ID,
+					'comment_type'		=>	'note'
+				)
+			);
+		}
+	}
+
 	$all_posts = get_posts(
 		array(
 			'post_type'		=>	epl_get_core_post_types(),
@@ -533,7 +552,7 @@ function epl_get_avatar_filter($avatar, $id_or_email,$args) {
 			$label = __('Mail','easy-property-listings');
 		break;
 
-		case 'epl_user_note' :
+		case 'note' :
 			$label = __('Note','easy-property-listings');
 		break;
 
