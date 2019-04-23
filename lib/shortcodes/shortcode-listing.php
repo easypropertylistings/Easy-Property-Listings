@@ -44,7 +44,8 @@ function epl_shortcode_listing_callback( $atts ) {
 		'sort_order'	=> 'DESC', // Sort by ASC or DESC
 		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
 		'pagination'	=> 'on', // Enable or disable pagination
-		'instance_id'	=>	'1'
+		'instance_id'	=>	'1',
+		'class'         => '', // wrapper class
 	), $atts );
 
 	if ( is_string( $attributes['post_type'] ) && $attributes['post_type'] == 'rental' ) {

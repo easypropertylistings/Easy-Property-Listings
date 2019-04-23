@@ -1623,7 +1623,7 @@ function epl_sorting_tabs() {
 function epl_add_or_update_params($url,$key,$value){
 
     $a = parse_url($url);
-    $query = $a['query'] ? $a['query'] : '';
+    $query = isset($a['query']) ? $a['query'] : '';
     parse_str($query,$params);
     $params[$key] = $value;
     $query = http_build_query($params);
@@ -2097,7 +2097,7 @@ function epl_get_shortcode_list() {
 function epl_home_pagination_fix( $query) {
 
 	global $wp_query;
-	if( isset($wp_query->query['paged']) ){
+	if( isset($wp_query->query['paged']) && in_array( $query->query_vars['post_type'], epl_get_core_post_types() ) ){
 		$query->set('paged', $wp_query->query['paged']);
 	}
 

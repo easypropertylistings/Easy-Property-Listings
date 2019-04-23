@@ -39,7 +39,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		'sort_order'	=> 'DESC',
 		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
 		'pagination'	=> 'on',
-		'instance_id'	=>	'1'
+		'instance_id'	=>	'1',
+		'class'				=>	''
 	), $atts );
 
 	extract( $attributes );
@@ -133,7 +134,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template, 'archive' ); ?>">
+			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template, 'archive' ); echo $attributes['class']; ?>">
 				<?php
 					if ( $tools_top == 'on' ) {
 						do_action( 'epl_property_loop_start' );

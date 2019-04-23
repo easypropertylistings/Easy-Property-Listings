@@ -120,6 +120,73 @@ function epl_listing_elements_gui() {
                 <a class="button" style="color:#bbb;" href="#" onclick="tb_remove(); return false;"><?php _e("Cancel", "easy-property-listings"); ?></a>
                 </div>
             </div>
+
+            <div class="epl-shortcode-gui-help">
+                <h4><?php _e('How to use this shortcode','easy-property-listings'); ?></h4>
+                <div>
+                    <table class="widefat striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <strong>
+                                        <?php _e('Actions','easy-property-listings'); ?>
+                                    </strong>
+                                    
+                                </th>
+                                <th>
+                                    <strong>
+                                        <?php _e('Meta Fields','easy-property-listings'); ?>
+                                    </strong>
+                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    epl_property_price
+                                </td>
+                                <td>
+                                    property_price
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    epl_property_heading
+                                </td>
+                                <td>
+                                    property_heading
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    epl_property_icons
+                                </td>
+                                <td>
+                                    property_bedrooms
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    epl_property_map
+                                </td>
+                                <td>
+                                    property_bathrooms
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>
+                    <?php
+                        _e('For complete action reference visit','easy-property-listings');
+                    ?>
+                    <a target="_blank" href="http://docs.easypropertylistings.com.au/hook-docs.html">
+                        <?php _e('Here','easy-property-listings'); ?>
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
 

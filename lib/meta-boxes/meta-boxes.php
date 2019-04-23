@@ -105,7 +105,7 @@ function epl_meta_box_inner_custom_box($post, $args) {
 
 							$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
 							?>
-							<li class="epl-form-field-wrap epl-grid-<?php echo $field_width; ?>">
+							<li id="epl_<?php echo $field['name']; ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo $field_width; ?> epl_<?php echo $field['name']; ?>_wrap">
 
 								
 								<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
@@ -117,7 +117,7 @@ function epl_meta_box_inner_custom_box($post, $args) {
 								<?php endif; ?>
 								
 
-								<div class="form-field epl-form-field-value">
+								<div id="epl_<?php echo $field['name']; ?>" class="form-field epl-form-field-value epl_<?php echo $field['name']; ?>">
 									<?php
 										epl_render_html_fields ($field,$val);
 									?>

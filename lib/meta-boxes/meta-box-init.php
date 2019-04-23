@@ -44,7 +44,8 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_heading',
 							'label'		=>	__('Heading', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'maxlength'	=>	'200'
+							'maxlength'	=>	'200',
+							'class'		=>	'epl-property-heading'
 						)
 					)
 				),
@@ -58,7 +59,8 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_office_id',
 							'label'		=>	__('Office ID', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'maxlength'	=>	'50'
+							'maxlength'	=>	'50',
+							'class'		=>	'epl-property-office-id'
 						),
 
 						array(
@@ -66,7 +68,8 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('Listing Agent', 'easy-property-listings' ),
 							'type'		=>	'text',
 							'maxlength'	=>	'40',
-							'help'		=>	__('Search for primary agent.','easy-property-listings' )
+							'help'		=>	__('Search for primary agent.','easy-property-listings' ),
+							'class'		=>	'epl-property-agent'
 						),
 
 						array(
@@ -74,7 +77,8 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('Second Listing Agent', 'easy-property-listings' ),
 							'type'		=>	'text',
 							'maxlength'	=>	'40',
-							'help'		=>	__('Search for secondary agent.','easy-property-listings' )
+							'help'		=>	__('Search for secondary agent.','easy-property-listings' ),
+							'class'		=>	'epl-property-second-agent'
 						),
 
 						array(
@@ -83,7 +87,8 @@ function epl_get_meta_boxes() {
 							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Hide Author Box', 'easy-property-listings' ),
-							)
+							),
+							'class'		=>	'epl-property-agent-hide-author-box'
 						)
 					)
 				),

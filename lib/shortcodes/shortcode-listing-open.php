@@ -37,7 +37,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'sortby'		=>	'', // Options: price, date : Default date
 		'sort_order'		=>	'DESC',
 		'pagination'		=> 	'on',
-		'instance_id'	=>	'1'
+		'instance_id'	=>	'1',
+		'class'				=>	''
 
 	), $atts );
 
@@ -114,7 +115,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template, 'archive' ); ?>">
+			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template, 'archive' );  echo $attributes['class']; ?>">
 				<?php
 					if ( $tools_top == 'on' ) {
 						do_action( 'epl_property_loop_start' );
