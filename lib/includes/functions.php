@@ -192,6 +192,7 @@ function epl_get_currencies() {
 		'NOK'  => __( 'Norwegian Krone', 'easy-property-listings'  ),
 		'PHP'  => __( 'Philippine Pesos', 'easy-property-listings'  ),
 		'PLN'  => __( 'Polish Zloty', 'easy-property-listings'  ),
+		'PKR'  => __('Pakistani Rupee','easy-property-listings'),	
 		'QAR'  => __( 'Qatar Riyal (QAR)', 'easy-property-listings'  ),
 		'SGD'  => __( 'Singapore Dollar (&#36;)', 'easy-property-listings'  ),
 		'ZAR'  => __( 'South African Rand (R)', 'easy-property-listings'  ),
