@@ -290,6 +290,7 @@ Easy Property Listings needs help for translation:
 13. Ukrainian
 14. Arabic
 15. Brazilian Portuguese - pt_BR – [Dionizio Bach | DJIO](https://www.djio.com.br/wordpress/)
+16. Portuguese
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/).
 
@@ -428,6 +429,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: YouTube User Profile link.
 * New: Office Phone added to user profile.
 * New: Default and custom classes added to meta field generator used in admin edit listing screens.
+* New: Added Portugal Portuguese language partial translation by Fábio Nunes.
 * Tweak: Rebuilt date picker JS validation code to better optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
 * Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
@@ -474,7 +476,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 *******
 TO-DO
 *******
-Translation - Portugal Portuguese mo file
+
 SVG icons Pinterest
 SVG Icon Instagram
 SVG Icon YouTube
@@ -498,6 +500,9 @@ Release change log post
 Icon Pets
 
 
+
+
+DONE - Translation - Portugal Portuguese mo file
 
 *****************
 
