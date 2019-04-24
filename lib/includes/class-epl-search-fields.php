@@ -175,7 +175,7 @@ class EPL_Search_Fields {
 			<div class="field">
 				<select name="<?php echo $field['meta_key']; ?>[]"
 					id="<?php echo $field['meta_key']; ?>"
-					class="in-field field-width" multiple>
+					class="in-field field-width field-multiple" multiple>
 					<option value="">
 						<?php echo apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'easy-property-listings'  ) ); ?>
 					</option>

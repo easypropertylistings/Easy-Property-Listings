@@ -593,7 +593,7 @@ class EPL_Contact {
 	 * @param string $note The note to add
 	 * @return string|boolean The new note if added succesfully, false otherwise
 	 */
-	public function add_note( $note = '',$note_type='epl_user_note',$listing_id=0 ) {
+	public function add_note( $note = '',$note_type='note',$listing_id=0 ) {
 
 		$note = trim( $note );
 		if ( empty( $note ) ) {
@@ -673,7 +673,7 @@ class EPL_Contact {
 	 */
 	public static function get_activity_types() {
 		return apply_filters('epl_contact_activity_labels',array(
-			'epl_user_note'     =>  __('User Activity','easy-property-listings' ),
+			'note'     =>  __('User Activity','easy-property-listings' ),
 			'epl-admin-note'    =>  __('Admin Note','easy-property-listings' ),
 			'call'              =>  __('Call','easy-property-listings' ),
 			'email'             =>  __('Email','easy-property-listings' ),

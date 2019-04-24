@@ -26,6 +26,7 @@ function epl_property_admin_contact ( $contactmethods ) {
 	//$contactmethods['google']		= __( 'Google Plus', 'easy-property-listings' );
 	$contactmethods['linkedin']	= __( 'LinkedIn', 'easy-property-listings' );
 	$contactmethods['instagram']	= __( 'Instagram', 'easy-property-listings' );
+	$contactmethods['youtube']	= __( 'Youtube', 'easy-property-listings' );
 	$contactmethods['pinterest']	= __( 'Pinterest', 'easy-property-listings' );
 	return $contactmethods;
 }

@@ -59,8 +59,31 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		// Generate POT files.
+		makepot: {
+			options: {
+				type: 'wp-plugin',
+				domainPath: 'languages',
+				potHeaders: {
+					'report-msgid-bugs-to': 'https://github.com/easy-property-listings/Easy-Property-Listings/issues',
+					'language-team': 'LANGUAGE <EMAIL@ADDRESS>'
+				}
+			},
+			dist: {
+				options: {
+					potFilename: 'easy-property-listings.pot',
+					exclude: [
+						'apigen/.*',
+						'tests/.*',
+						'tmp/.*'
+					]
+				}
+			}
+		},
+
 	});
 
+	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
@@ -77,6 +100,11 @@ module.exports = function( grunt ) {
 
 	grunt.registerTask( 'css', [
 		'cssmin'
+	]);
+
+	grunt.registerTask( 'dev', [
+		'default',
+		'makepot'
 	]);
 
 };

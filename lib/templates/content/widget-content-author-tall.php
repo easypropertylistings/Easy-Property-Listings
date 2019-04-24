@@ -41,6 +41,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					<span class="label-mobile"><?php _e('Mobile', 'easy-property-listings' ); ?> </span>
 					<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
 				<?php } ?>
+				<?php if ( $epl_author->get_author_office_phone() != '' ) { ?>
+					<span class="label-office-phone"><?php _e('Office', 'easy-property-listings' ); ?> </span>
+					<span class="office-phone"><?php echo $epl_author->get_author_office_phone() ?></span>
+				<?php } ?>
 			</div>
 			<?php do_action('epl_author_widget_after_contact'); ?>
 
@@ -48,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<?php if ( $d_icons == 'on' ) { ?>
 				<div class="epl-author-social-buttons author-social-buttons">
 					<?php
-						$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','instagram','pinterest','linkedin','skype'));
+						$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','instagram','pinterest','linkedin','skype','youtube'));
 						foreach($social_icons as $social_icon){
 							echo call_user_func(array($epl_author,'get_'.$social_icon.'_html'));
 						}
