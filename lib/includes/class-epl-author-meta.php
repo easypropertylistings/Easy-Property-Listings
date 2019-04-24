@@ -49,7 +49,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 			$this->author_id 	= $author_id;
 			$this->name 		= get_the_author_meta( 'display_name' , $this->author_id);
 			$this->mobile 		= get_the_author_meta( 'mobile' , $this->author_id);
-			$this->office_phone 	= get_the_author_meta( 'epl_user_office' , $this->author_id);
+			$this->office_phone 	= get_the_author_meta( 'office_phone' , $this->author_id);
 			$this->facebook 		= get_the_author_meta( 'facebook' , $this->author_id);
 			$this->linkedin 		= get_the_author_meta( 'linkedin' , $this->author_id);
 			$this->google 		= get_the_author_meta( 'google' , $this->author_id);
