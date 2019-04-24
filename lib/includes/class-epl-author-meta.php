@@ -31,6 +31,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 		private $twitter;
 		private $instagram;
 		private $pinterest;
+		private $youtube;
 		private $email;
 		private $skype;
 		private $slogan;
@@ -47,12 +48,14 @@ if( !class_exists('EPL_Author_Meta') ) :
 			$this->author_id 	= $author_id;
 			$this->name 		= get_the_author_meta( 'display_name' , $this->author_id);
 			$this->mobile 		= get_the_author_meta( 'mobile' , $this->author_id);
+			$this->office_phone = get_the_author_meta( 'epl_user_office' , $this->author_id);
 			$this->facebook 		= get_the_author_meta( 'facebook' , $this->author_id);
 			$this->linkedin 		= get_the_author_meta( 'linkedin' , $this->author_id);
 			$this->google 		= get_the_author_meta( 'google' , $this->author_id);
 			$this->twitter 		= get_the_author_meta( 'twitter' , $this->author_id);
 			$this->instagram 	= get_the_author_meta( 'instagram' , $this->author_id);
 			$this->pinterest 	= get_the_author_meta( 'pinterest' , $this->author_id);
+			$this->youtube 		= get_the_author_meta( 'video' , $this->author_id);
 			$this->email 		= get_the_author_meta( 'email' , $this->author_id);
 			$this->skype 		= get_the_author_meta( 'skype' , $this->author_id);
 			$this->slogan 		= get_the_author_meta( 'slogan' , $this->author_id);
@@ -172,6 +175,29 @@ if( !class_exists('EPL_Author_Meta') ) :
 		}
 
 		/**
+		 * Get Instagram
+		 *
+		 * @since version 3.3
+		 */
+		function get_youtube() {
+
+			$youtube = '';
+			if($this->youtube != '') {
+
+				if( (strpos($this->youtube,'http://' ) === 0 ) || (strpos($this->youtube,'https://' ) === 0 ) ) {
+					// absolute url
+					$youtube = $this->youtube;
+
+				} else {
+					// relative url
+					$youtube = 'http://youtube.com/' . $this->youtube;
+				}
+
+			}
+			return apply_filters('epl_author_youtube',$youtube,$this);
+		}
+
+		/**
 		 * Get Pinterest
 		 *
 		 * @since version 3.3
@@ -259,6 +285,40 @@ if( !class_exists('EPL_Author_Meta') ) :
 				}
 			}
 			$html = apply_filters('epl_author_instagram_html',$html,$this);
+			return $html;
+		}
+
+		/*
+		 * Author Youtube html Box
+		 *
+		 * @since version 3.3
+		 */
+
+		function get_youtube_html( $html = '' , $style = 'i' ){
+
+			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
+
+			if ( $this->get_youtube() != '' ) {
+
+				$style	=	$style == 'i' && epl_get_option('epl_icons_svg_author') == 'on' ? 's' : $style;
+
+				if ( $style == 'i' ) {
+					$html	= '
+						<a class="epl-author-icon author-icon youtube-icon-24"
+							href="' . $this->get_youtube() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on youtube', 'easy-property-listings' ). '"' . $link_target . '>'.
+							apply_filters( 'epl_author_icon_youtube' , __('youtube', 'easy-property-listings' )).
+						'</a>';
+				} else {
+					$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-youtube"><use xlink:href="#epl-icon-svg-youtube"></use></svg>';
+					$html	=
+						'<div class="epl-icon-svg-container epl-icon-container-youtube">
+							<a class="epl-author-icon-svg author-icon-svg youtube-icon"
+								href="' . $this->get_youtube() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on youtube', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+							'</a>
+						</div>';
+				}
+			}
+			$html = apply_filters('epl_author_youtube_html',$html,$this);
 			return $html;
 		}
 
@@ -580,6 +640,16 @@ if( !class_exists('EPL_Author_Meta') ) :
 		function get_author_mobile() {
 			if($this->mobile != '')
 				return apply_filters('epl_author_mobile',$this->mobile,$this);
+		}
+
+		/**
+		 * Author mobile
+		 *
+		 * @since version 3.3
+		 */
+		function get_author_office_phone() {
+			if($this->office_phone != '')
+				return apply_filters('epl_author_office_phone',$this->office_phone,$this);
 		}
 
 		/**
