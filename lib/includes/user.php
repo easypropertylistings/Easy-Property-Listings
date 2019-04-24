@@ -20,14 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_property_admin_contact ( $contactmethods ) {
 	$contactmethods['mobile']		= __( 'Mobile', 'easy-property-listings' );
+	$contactmethods['office_phone']	= __( 'Office Phone', 'easy-property-listings' );
 	$contactmethods['skype']		= __( 'Skype', 'easy-property-listings' );
 	$contactmethods['twitter']	= __( 'Twitter', 'easy-property-listings' );
 	$contactmethods['facebook']	= __( 'Facebook', 'easy-property-listings' );
 	//$contactmethods['google']		= __( 'Google Plus', 'easy-property-listings' );
 	$contactmethods['linkedin']	= __( 'LinkedIn', 'easy-property-listings' );
 	$contactmethods['instagram']	= __( 'Instagram', 'easy-property-listings' );
-	$contactmethods['youtube']	= __( 'Youtube', 'easy-property-listings' );
 	$contactmethods['pinterest']	= __( 'Pinterest', 'easy-property-listings' );
+	$contactmethods['youtube']	= __( 'Youtube', 'easy-property-listings' );
 	return $contactmethods;
 }
 add_filter ('user_contactmethods','epl_property_admin_contact',10,1);

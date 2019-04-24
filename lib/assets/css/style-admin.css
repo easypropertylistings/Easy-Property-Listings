@@ -466,7 +466,7 @@ h3.epl-welcome-sub-heading {
 
 }
 .epl-inner-div input[type="checkbox"] {
-	width:auto;
+	/* width:auto; */
 }
 /** meta fields */
 .epl-inner-div.col-1 .epl-form-field-wrap {
@@ -518,7 +518,7 @@ h3.epl-welcome-sub-heading {
 	display: inline-block;
 }
 #side-sortables .epl-form-field-label,
-#side-sortables .epl-form-field-value{
+#side-sortables .epl-form-field-value {
 	width:100%;
 	font-weight: normal;
 }
@@ -532,6 +532,12 @@ h3.epl-welcome-sub-heading {
 .epl-form-field-wrap.epl-grid-1 .form-field textarea,
 .epl-form-field-wrap.epl-grid-1 .form-field select {
     width: 98%;
+}
+
+@media screen and ( max-width: 500px ) {
+	.epl-form-field-wrap.epl-grid-2 {
+		width: 100%;
+	}
 }
 
 /* Post Type List Admin Styles */
@@ -553,14 +559,34 @@ h3.epl-welcome-sub-heading {
 	font-weight:bold;
 	color:#FFA500;
 }
+#side-sortables .epl_property_address_coordinates {
+	position: relative;
+}
+#side-sortables .epl_property_address_coordinates input[type="text"]{
+	width: 86%;
+}
 .epl-form-table .epl-geocoder-button {
 	width: 24px;
 	height: 24px;
 	margin-left: -26px;
 	margin-top: 2px;
+	right: 5px;
 	position: absolute;
 	background:url(../images/refresh.png) no-repeat;
 	cursor:pointer;
+}
+@media screen and ( max-width:850px ) {
+	#side-sortables .epl_property_address_coordinates input[type="text"]{
+		width: 90%;
+	}
+	.epl-form-table .epl-geocoder-button {
+		right: 12px;
+	}
+}
+@media screen and ( max-width:500px ) {
+	#side-sortables .epl_property_address_coordinates input[type="text"]{
+		width: 84%;
+	}
 }
  #epl_admin_map_canvas {
 	 height: 200px;
@@ -584,15 +610,15 @@ h3.epl-welcome-sub-heading {
 }
 .epl-license-status {
 	position:absolute;
-	margin:5px 0 0 5px;
-	height:20px;
-	width:20px;
+	margin: 1px 0 0 5px;
+	height: 24px;
+	width: 24px;
 }
 .epl-license-status.epl-license-status-valid {
 	background:url(../images/valid.png) no-repeat;
 }
 .epl-license-status.epl-license-status-invalid {
-	background:url(../images/invalid.gif) no-repeat;
+	background:url(../images/invalid.png) no-repeat;
 }
 .epl-license-status-text {
 	display:block;
