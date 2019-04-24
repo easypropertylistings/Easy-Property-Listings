@@ -425,6 +425,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Video hook implemented into templates. Before we were using the epl_property_content_after hook where we have now added a better named epl_property_video action hook.
 * New: Random sorting option added to [listing_category], [listing]
 * New: Search by linked contacts — search_linked_contact.
+* New: YouTube User Profile link.
+* New: Office Phone added to user profile.
+* New: Default and custom classes added to meta field generator used in admin edit listing screens.
 * Tweak: Rebuilt date picker JS validation code to better optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
 * Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
@@ -466,25 +469,19 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Improvements to compatibility mode that prevents YoastSEO outputting multiple times on the page. This will also correct any other plugins with a similar issue.
 
 
-****** Beta 4 *****
-
-* New: YouTube User Profile link.
-* New: Office Phone to profile? Currently added with SD.
-
-
-
 
 
 *******
 TO-DO
 *******
-Padding on Map icon
 Translation - Portugal Portuguese mo file
 SVG icons Pinterest
 SVG Icon Instagram
 SVG Icon YouTube
 
 Re-colour new EMAIL png icon from green to grey.
+
+
 
 
 Welcome Screen text and screenshots
