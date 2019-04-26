@@ -320,7 +320,7 @@ function epl_labels( $key ) {
 /**
  * Display or retrieve the current listing address based on user display selection with optional markup.
  *
- * @since 3.2.3
+ * @since 3.3
  *
  * @param string $before   Optional. Markup to prepend to the title. Default empty.
  * @param string $after    Optional. Markup to append to the title. Default empty.
@@ -345,7 +345,7 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
 /**
  * Retrieve address based on user display selection.
  *
- * @since 3.2.3
+ * @since 3.3
  *
  * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
  *
@@ -400,7 +400,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 	/**
 	 * Filters the post title.
 	 *
-	 * @since 3.2.3
+	 * @since 3.3
 	 *
 	 * @param string $title The listing address.
 	 * @param int    $id    The post ID.
@@ -411,7 +411,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 /**
  * Display or retrieve the listing status label with optional markup.
  *
- * @since 3.2.3
+ * @since 3.3
  *
  * @param integer $post_ID
  * @param string $meta_key
@@ -436,7 +436,7 @@ function epl_the_status( $before = '', $after = '', $echo = true ) {
 /**
  * Retrieve listing status.
  *
- * @since 3.2.3
+ * @since 3.3
  *
  * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
  * @return string
@@ -452,7 +452,7 @@ function epl_get_the_status( $post = 0 ) {
 	/**
 	 * Filters the status.
 	 *
-	 * @since 3.2.3
+	 * @since 3.3
 	 *
 	 * @param string $title The listing status.
 	 * @param int    $id    The post ID.
@@ -533,7 +533,7 @@ function epl_meta_location_label() {
 /**
  * Display or retrieve the under offer label with optional markup.
  *
- * @since 3.2.3
+ * @since 3.3
  *
  * @param string $before Optional. Markup to prepend to the formatted Under Offer label. Default empty.
  * @param string $after  Optional. Markup to append to the formatted Under Offer label. Default empty.
@@ -562,7 +562,7 @@ function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
 /**
  * Retrieve listing under offer value.
  *
- * @since 3.2.3
+ * @since 3.3
  *
  * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
  * @return string
@@ -578,7 +578,7 @@ function epl_get_the_under_offer( $post = 0 ) {
 	/**
 	 * Filters the status.
 	 *
-	 * @since 3.2.3
+	 * @since 3.3
 	 *
 	 * @param string $title The listing status.
 	 * @param int    $id    The post ID.
