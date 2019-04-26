@@ -10,8 +10,8 @@
   "license": "GPL-3.0+",
   "main": "Gruntfile.js",
   "devDependencies": {
-    "grunt": "*",
-    "grunt-contrib-cssmin": "*",
+    "grunt": "^1.0.4",
+    "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "^1.1.0",
