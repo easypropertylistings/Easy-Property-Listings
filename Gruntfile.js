@@ -91,7 +91,8 @@ module.exports = function( grunt ) {
 	// Register tasks
 	grunt.registerTask( 'default', [
 		'uglify',
-		'css'
+		'css',
+		'makepot'
 	]);
 
 	grunt.registerTask( 'js', [

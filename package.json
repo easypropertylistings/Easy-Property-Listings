@@ -15,6 +15,7 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "^1.1.0",
+    "grunt-pot": "^0.3.0",
     "grunt-wp-i18n": "^1.0.3"
   },
   "engines": {

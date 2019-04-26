@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.3\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/easy-property-listings/Easy-Property-Listings/issues\n"
-"POT-Creation-Date: 2019-04-23 10:02:55+00:00\n"
+"POT-Creation-Date: 2019-04-26 02:37:49+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,8 +17,8 @@ msgstr ""
 #: lib/compatibility/author-meta-compat.php:41
 #: lib/includes/admin/contacts/class-contact-table.php:64
 #: lib/includes/admin/contacts/class-contact-table.php:197
-#: lib/includes/class-epl-author-meta.php:114
-#: lib/includes/class-epl-author-meta.php:122 lib/includes/functions.php:2268
+#: lib/includes/class-epl-author-meta.php:115
+#: lib/includes/class-epl-author-meta.php:123 lib/includes/functions.php:2268
 #: lib/includes/template-functions.php:1697
 #: lib/post-types/post-type-contact.php:29
 #: lib/post-types/post-type-contact.php:30
@@ -26,15 +26,15 @@ msgid "Contact"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:41
-#: lib/includes/class-epl-author-meta.php:114
-#: lib/includes/class-epl-author-meta.php:122
+#: lib/includes/class-epl-author-meta.php:115
+#: lib/includes/class-epl-author-meta.php:123
 msgid "by Email"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:41
 #: lib/includes/admin/contacts/contacts.php:247
 #: lib/includes/admin/contacts/contacts.php:456
-#: lib/includes/class-epl-author-meta.php:115
+#: lib/includes/class-epl-author-meta.php:116
 #: lib/includes/class-epl-contact.php:679 lib/widgets/widget-functions.php:1186
 #: lib/widgets/widget-functions.php:1290
 msgid "Email"
@@ -45,63 +45,63 @@ msgstr ""
 #: lib/compatibility/author-meta-compat.php:56
 #: lib/compatibility/author-meta-compat.php:61
 #: lib/compatibility/author-meta-compat.php:66
-#: lib/includes/class-epl-author-meta.php:240
-#: lib/includes/class-epl-author-meta.php:248
-#: lib/includes/class-epl-author-meta.php:274
-#: lib/includes/class-epl-author-meta.php:282
-#: lib/includes/class-epl-author-meta.php:308
-#: lib/includes/class-epl-author-meta.php:316
-#: lib/includes/class-epl-author-meta.php:342
-#: lib/includes/class-epl-author-meta.php:350
-#: lib/includes/class-epl-author-meta.php:399
-#: lib/includes/class-epl-author-meta.php:407
-#: lib/includes/class-epl-author-meta.php:457
-#: lib/includes/class-epl-author-meta.php:465
-#: lib/includes/class-epl-author-meta.php:515
-#: lib/includes/class-epl-author-meta.php:523
-#: lib/includes/class-epl-author-meta.php:573
-#: lib/includes/class-epl-author-meta.php:581
+#: lib/includes/class-epl-author-meta.php:241
+#: lib/includes/class-epl-author-meta.php:249
+#: lib/includes/class-epl-author-meta.php:275
+#: lib/includes/class-epl-author-meta.php:283
+#: lib/includes/class-epl-author-meta.php:309
+#: lib/includes/class-epl-author-meta.php:317
+#: lib/includes/class-epl-author-meta.php:343
+#: lib/includes/class-epl-author-meta.php:351
+#: lib/includes/class-epl-author-meta.php:400
+#: lib/includes/class-epl-author-meta.php:408
+#: lib/includes/class-epl-author-meta.php:458
+#: lib/includes/class-epl-author-meta.php:466
+#: lib/includes/class-epl-author-meta.php:516
+#: lib/includes/class-epl-author-meta.php:524
+#: lib/includes/class-epl-author-meta.php:574
+#: lib/includes/class-epl-author-meta.php:582
 msgid "Follow"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:46
-#: lib/includes/class-epl-author-meta.php:240
-#: lib/includes/class-epl-author-meta.php:248
+#: lib/includes/class-epl-author-meta.php:241
+#: lib/includes/class-epl-author-meta.php:249
 msgid "on Twitter"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:46
 #: lib/includes/admin/contacts/contacts.php:521
-#: lib/includes/class-epl-author-meta.php:241 lib/includes/user.php:24
+#: lib/includes/class-epl-author-meta.php:242 lib/includes/user.php:25
 msgid "Twitter"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:51
-#: lib/includes/class-epl-author-meta.php:399
-#: lib/includes/class-epl-author-meta.php:407
+#: lib/includes/class-epl-author-meta.php:400
+#: lib/includes/class-epl-author-meta.php:408
 msgid "on Google"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:51
-#: lib/includes/class-epl-author-meta.php:400
+#: lib/includes/class-epl-author-meta.php:401
 msgid "Google"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:56
-#: lib/includes/class-epl-author-meta.php:457
-#: lib/includes/class-epl-author-meta.php:465
+#: lib/includes/class-epl-author-meta.php:458
+#: lib/includes/class-epl-author-meta.php:466
 msgid "on Facebook"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:56
 #: lib/includes/admin/contacts/contacts.php:514
-#: lib/includes/class-epl-author-meta.php:458 lib/includes/user.php:25
+#: lib/includes/class-epl-author-meta.php:459 lib/includes/user.php:26
 msgid "Facebook"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:61
-#: lib/includes/class-epl-author-meta.php:515
-#: lib/includes/class-epl-author-meta.php:523
+#: lib/includes/class-epl-author-meta.php:516
+#: lib/includes/class-epl-author-meta.php:524
 msgid "on Linkedin"
 msgstr ""
 
@@ -110,13 +110,13 @@ msgid "Linkedin"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:66
-#: lib/includes/class-epl-author-meta.php:573
-#: lib/includes/class-epl-author-meta.php:581
+#: lib/includes/class-epl-author-meta.php:574
+#: lib/includes/class-epl-author-meta.php:582
 msgid "on Skype"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:66
-#: lib/includes/class-epl-author-meta.php:574 lib/includes/user.php:23
+#: lib/includes/class-epl-author-meta.php:575 lib/includes/user.php:24
 msgid "Skype"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgid "Recently Leased"
 msgstr ""
 
 #: lib/compatibility/functions-compat.php:405
-#: lib/includes/class-epl-author-meta.php:627
+#: lib/includes/class-epl-author-meta.php:628
 #: lib/includes/options-front-end.php:51 lib/widgets/widget-listing.php:209
 msgid "Read More"
 msgstr ""
@@ -2618,34 +2618,34 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:274
-#: lib/includes/class-epl-author-meta.php:282
+#: lib/includes/class-epl-author-meta.php:275
+#: lib/includes/class-epl-author-meta.php:283
 msgid "on Instagram"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:275 lib/includes/user.php:28
+#: lib/includes/class-epl-author-meta.php:276 lib/includes/user.php:29
 msgid "Instagram"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:308
-#: lib/includes/class-epl-author-meta.php:316
+#: lib/includes/class-epl-author-meta.php:309
+#: lib/includes/class-epl-author-meta.php:317
 msgid "on youtube"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:309
+#: lib/includes/class-epl-author-meta.php:310
 msgid "youtube"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:342
-#: lib/includes/class-epl-author-meta.php:350
+#: lib/includes/class-epl-author-meta.php:343
+#: lib/includes/class-epl-author-meta.php:351
 msgid "on Pinterest"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:343 lib/includes/user.php:30
+#: lib/includes/class-epl-author-meta.php:344 lib/includes/user.php:30
 msgid "Pinterest"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:516 lib/includes/user.php:27
+#: lib/includes/class-epl-author-meta.php:517 lib/includes/user.php:28
 msgid "LinkedIn"
 msgstr ""
 
@@ -3981,47 +3981,51 @@ msgstr ""
 msgid "Mobile"
 msgstr ""
 
-#: lib/includes/user.php:29
+#: lib/includes/user.php:23
+msgid "Office Phone"
+msgstr ""
+
+#: lib/includes/user.php:31
 msgid "Youtube"
 msgstr ""
 
-#: lib/includes/user.php:48
+#: lib/includes/user.php:49
 msgid "Position"
 msgstr ""
 
-#: lib/includes/user.php:49
+#: lib/includes/user.php:50
 msgid "Please enter your title/position."
 msgstr ""
 
-#: lib/includes/user.php:55
+#: lib/includes/user.php:56
 msgid "Slogan"
 msgstr ""
 
-#: lib/includes/user.php:56
+#: lib/includes/user.php:57
 msgid "Please enter your slogan."
 msgstr ""
 
-#: lib/includes/user.php:62
+#: lib/includes/user.php:63
 msgid "Youtube Video Url"
 msgstr ""
 
-#: lib/includes/user.php:63
+#: lib/includes/user.php:64
 msgid "Please enter your YouTube Profile Video URL."
 msgstr ""
 
-#: lib/includes/user.php:69
+#: lib/includes/user.php:70
 msgid "Contact Form short code"
 msgstr ""
 
-#: lib/includes/user.php:70
+#: lib/includes/user.php:71
 msgid "Please enter your form short code for author contact tab."
 msgstr ""
 
-#: lib/includes/user.php:86
+#: lib/includes/user.php:87
 msgid "Easy Property Listings: Author Box Profile"
 msgstr ""
 
-#: lib/includes/user.php:87
+#: lib/includes/user.php:88
 msgid "The following details will appear in your author box and widgets."
 msgstr ""
 
