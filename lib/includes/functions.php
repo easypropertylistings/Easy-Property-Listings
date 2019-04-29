@@ -192,7 +192,7 @@ function epl_get_currencies() {
 		'NOK'  => __( 'Norwegian Krone', 'easy-property-listings'  ),
 		'PHP'  => __( 'Philippine Pesos', 'easy-property-listings'  ),
 		'PLN'  => __( 'Polish Zloty', 'easy-property-listings'  ),
-		'PKR'  => __('Pakistani Rupee','easy-property-listings'),	
+		'PKR'  => __( 'Pakistani Rupee','easy-property-listings' ),
 		'QAR'  => __( 'Qatar Riyal (QAR)', 'easy-property-listings'  ),
 		'SGD'  => __( 'Singapore Dollar (&#36;)', 'easy-property-listings'  ),
 		'ZAR'  => __( 'South African Rand (R)', 'easy-property-listings'  ),
@@ -362,8 +362,8 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		'sub_number'		=>	'/',
 		'lot_number'		=>	' ',
 		'street_number'		=>	' ',
-		'street'		=>	', ',
-		'suburb'		=>	' ',
+		'street'			=>	', ',
+		'suburb'			=>	' ',
 		'city'			=>	' ',
 		'state'			=>	' ',
 		'postal_code'		=>	' ',
@@ -612,22 +612,22 @@ function epl_meta_under_offer_label() {
  */
 function epl_listing_load_meta_property_category() {
 	$defaults = array(
-		'House'				=>	__('House', 'easy-property-listings' ),
-		'Unit'				=>	__('Unit', 'easy-property-listings' ),
-		'Townhouse'			=>	__('Townhouse', 'easy-property-listings' ),
-		'Villa'				=>	__('Villa', 'easy-property-listings' ),
-		'Apartment'			=>	__('Apartment', 'easy-property-listings' ),
-		'Flat'				=>	__('Flat', 'easy-property-listings' ),
+		'House'			=>	__('House', 'easy-property-listings' ),
+		'Unit'			=>	__('Unit', 'easy-property-listings' ),
+		'Townhouse'		=>	__('Townhouse', 'easy-property-listings' ),
+		'Villa'			=>	__('Villa', 'easy-property-listings' ),
+		'Apartment'		=>	__('Apartment', 'easy-property-listings' ),
+		'Flat'			=>	__('Flat', 'easy-property-listings' ),
 		'Studio'			=>	__('Studio', 'easy-property-listings' ),
-		'Warehouse'			=>	__('Warehouse', 'easy-property-listings' ),
-		'DuplexSemi-detached'		=>	__('Duplex Semi-detached', 'easy-property-listings' ),
+		'Warehouse'		=>	__('Warehouse', 'easy-property-listings' ),
+		'DuplexSemi-detached'	=>	__('Duplex Semi-detached', 'easy-property-listings' ),
 		'Alpine'			=>	__('Alpine', 'easy-property-listings' ),
-		'AcreageSemi-rural'		=>	__('Acreage Semi-rural', 'easy-property-listings' ),
-		'Retirement'			=>	__('Retirement', 'easy-property-listings' ),
-		'BlockOfUnits'			=>	__('Block Of Units', 'easy-property-listings' ),
-		'Terrace'			=>	__('Terrace', 'easy-property-listings' ),
-		'ServicedApartment'		=>	__('Serviced Apartment', 'easy-property-listings' ),
-		'Other'				=>	__('Other', 'easy-property-listings' )
+		'AcreageSemi-rural'	=>	__('Acreage Semi-rural', 'easy-property-listings' ),
+		'Retirement'		=>	__('Retirement', 'easy-property-listings' ),
+		'BlockOfUnits'		=>	__('Block Of Units', 'easy-property-listings' ),
+		'Terrace'		=>	__('Terrace', 'easy-property-listings' ),
+		'ServicedApartment'	=>	__('Serviced Apartment', 'easy-property-listings' ),
+		'Other'			=>	__('Other', 'easy-property-listings' )
 	);
 	return apply_filters( 'epl_listing_meta_property_category', $defaults );
 }
@@ -660,8 +660,8 @@ function epl_listing_meta_property_category_value( $key ) {
  */
 function epl_listing_load_meta_land_category() {
 	$defaults = array(
-		'Commercial'			=>	__('Commercial', 'easy-property-listings' ),
-		'Residential'			=>	__('Residential', 'easy-property-listings' )
+		'Commercial'		=>	__('Commercial', 'easy-property-listings' ),
+		'Residential'		=>	__('Residential', 'easy-property-listings' )
 	);
 	return apply_filters( 'epl_listing_meta_land_category', $defaults );
 }
@@ -688,15 +688,15 @@ function epl_listing_meta_land_category_value( $key ) {
  */
 function epl_listing_load_meta_commercial_category() {
 	$defaults = array(
-		'Commercial Farming'		=>	__('Commercial Farming', 'easy-property-listings' ),
-		'Land/Development'		=>	__('Land/Development', 'easy-property-listings' ),
-		'Hotel/Leisure'			=>	__('Hotel/Leisure', 'easy-property-listings' ),
-		'Industrial/Warehouse'		=>	__('Industrial/Warehouse', 'easy-property-listings' ),
-		'Medical/Consulting'		=>	__('Medical/Consulting', 'easy-property-listings' ),
-		'Offices'			=>	__('Offices', 'easy-property-listings' ),
+		'Commercial Farming'	=>	__('Commercial Farming', 'easy-property-listings' ),
+		'Land/Development'	=>	__('Land/Development', 'easy-property-listings' ),
+		'Hotel/Leisure'		=>	__('Hotel/Leisure', 'easy-property-listings' ),
+		'Industrial/Warehouse'	=>	__('Industrial/Warehouse', 'easy-property-listings' ),
+		'Medical/Consulting'	=>	__('Medical/Consulting', 'easy-property-listings' ),
+		'Offices'		=>	__('Offices', 'easy-property-listings' ),
 		'Retail'			=>	__('Retail', 'easy-property-listings' ),
-		'Showrooms/Bulky Goods'		=>	__('Showrooms/Bulky Goods', 'easy-property-listings' ),
-		'Other'				=>	__('Other', 'easy-property-listings' )
+		'Showrooms/Bulky Goods'	=>	__('Showrooms/Bulky Goods', 'easy-property-listings' ),
+		'Other'			=>	__('Other', 'easy-property-listings' )
 	);
 	return apply_filters( 'epl_listing_meta_commercial_category', $defaults );
 }
@@ -733,7 +733,7 @@ function epl_listing_load_meta_commercial_category_value( $key ) {
  */
 function epl_listing_load_meta_commercial_rent_period() {
 	$defaults = array(
-		'annual'		=>	__('P.A.', 'easy-property-listings' ),
+		'annual'			=>	__('P.A.', 'easy-property-listings' ),
 		'nnn'			=>	__('NNN', 'easy-property-listings' ),
 		'full-service'		=>	__('Full Service', 'easy-property-listings' ),
 		'gross-lease-rates'	=>	__('Gross Lease Rates', 'easy-property-listings' )
@@ -763,15 +763,15 @@ function epl_listing_load_meta_commercial_rent_period_value( $key ) {
  */
 function epl_listing_load_meta_rural_category() {
 	$defaults = array(
-		'Cropping'			=>	__('Cropping', 'easy-property-listings' ),
-		'Dairy'				=>	__('Dairy', 'easy-property-listings' ),
-		'Farmlet'			=>	__('Farmlet', 'easy-property-listings' ),
-		'Horticulture'			=>	__('Horticulture', 'easy-property-listings' ),
-		'Livestock'			=>	__('Livestock', 'easy-property-listings' ),
-		'Viticulture'			=>	__('Viticulture', 'easy-property-listings' ),
-		'MixedFarming'			=>	__('Mixed Farming', 'easy-property-listings' ),
-		'Lifestyle'			=>	__('Lifestyle', 'easy-property-listings' ),
-		'Other'				=>	__('Other', 'easy-property-listings' )
+		'Cropping'		=>	__('Cropping', 'easy-property-listings' ),
+		'Dairy'			=>	__('Dairy', 'easy-property-listings' ),
+		'Farmlet'		=>	__('Farmlet', 'easy-property-listings' ),
+		'Horticulture'		=>	__('Horticulture', 'easy-property-listings' ),
+		'Livestock'		=>	__('Livestock', 'easy-property-listings' ),
+		'Viticulture'		=>	__('Viticulture', 'easy-property-listings' ),
+		'MixedFarming'		=>	__('Mixed Farming', 'easy-property-listings' ),
+		'Lifestyle'		=>	__('Lifestyle', 'easy-property-listings' ),
+		'Other'			=>	__('Other', 'easy-property-listings' )
 	);
 	return apply_filters( 'epl_listing_meta_rural_category', $defaults );
 }
@@ -910,7 +910,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 								$field['opt_args']['slug'],
 								array(
 									'hide_empty'	=>	0,
-									'parent'	=>	0
+									'parent'		=>	0
 								)
 							);
 
@@ -1188,7 +1188,6 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			echo '<span class="epl-help-text">'.__($field['help'], 'easy-property-listings' ).'</span>';
 		}
 	}
-
  }
 
 /**
@@ -2172,8 +2171,8 @@ function epl_get_contacts( $args = array() ) {
 
 	$defaults = array(
 		'post_type'		=> 'epl_contact',
-		'posts_per_page'	=> 20,
-		'offset'		=> 0,
+		'posts_per_page'		=> 20,
+		'offset'			=> 0,
 		'orderby'		=> 'ID',
 		'order'			=> 'DESC'
 	);
@@ -2270,9 +2269,9 @@ function epl_get_contact_categories() {
 		'landlord'	=>  __('Landlord','easy-property-listings' ),
 		'new'		=>  __('New','easy-property-listings' ),
 		'past_customer'	=>  __('Past Customer','easy-property-listings' ),
-		'seller'	=>  __('Seller','easy-property-listings' ),
-		'tenant'	=>  __('Tenant','easy-property-listings' ),
-		'widget'	=>  __('Widget Lead','easy-property-listings' ),
+		'seller'		=>  __('Seller','easy-property-listings' ),
+		'tenant'		=>  __('Tenant','easy-property-listings' ),
+		'widget'		=>  __('Widget Lead','easy-property-listings' ),
 		'contract'	=>  __('Under Contract','easy-property-listings' ),
 	));
 }
@@ -2457,10 +2456,10 @@ function epl_get_property_com_authority_opts() {
 	return apply_filters (  'epl_opts_property_com_authority_filter', array(
 			'Forsale'	=>	__('For Sale', 'easy-property-listings' ),
 			'auction'	=>	__('Auction', 'easy-property-listings' ),
-			'tender'	=>	__('Tender', 'easy-property-listings' ),
+			'tender'		=>	__('Tender', 'easy-property-listings' ),
 			'eoi'		=>	__('EOI', 'easy-property-listings' ),
 			'Sale'		=>	__('Sale', 'easy-property-listings' ),
-			'offers'	=>	__('Offers', 'easy-property-listings' )
+			'offers'		=>	__('Offers', 'easy-property-listings' )
 		)
 	);
 }
@@ -2473,7 +2472,7 @@ function epl_get_property_com_authority_opts() {
 function epl_get_property_area_unit_opts() {
 
 	return apply_filters (  'epl_opts_area_unit_filter', array(
-			'square'	=>	__('Square', 'easy-property-listings' ),
+			'square'		=>	__('Square', 'easy-property-listings' ),
 			'squareMeter'	=>	__('Square Meter', 'easy-property-listings' ),
 			'acre'		=>	__('Acre', 'easy-property-listings' ),
 			'hectare'	=>	__('Hectare', 'easy-property-listings' ),
@@ -2493,7 +2492,7 @@ function epl_get_property_rent_period_opts() {
 			'day'		=>	__('Day', 'easy-property-listings' ),
 			'daily'		=>	__('Daily', 'easy-property-listings' ),
 			'week'		=>	__('Week', 'easy-property-listings' ),
-			'weekly'	=>	__('Weekly', 'easy-property-listings' ),
+			'weekly'		=>	__('Weekly', 'easy-property-listings' ),
 			'month'		=>	__('Month', 'easy-property-listings' ),
 			'monthly'	=>	__('Monthly', 'easy-property-listings' )
 		)
@@ -2524,7 +2523,7 @@ function epl_get_property_com_tenancy_opts() {
 
 	return apply_filters (  'epl_opts_property_com_tenancy_filter', array(
 			'unknown'	=>	__('Unknown', 'easy-property-listings' ),
-			'vacant'	=>	__('Vacant', 'easy-property-listings' ),
+			'vacant'		=>	__('Vacant', 'easy-property-listings' ),
 			'tenanted'	=>	__('Tenanted', 'easy-property-listings' )
 		)
 	);
