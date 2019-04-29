@@ -35,7 +35,7 @@
             <?php do_action('epl_import_status'); ?>
         </div>
         <div class="epl-tabs-content">
-            <form class="epl-tools-form" method="post">
+            <form class="epl-tools-form" method="post" enctype="multipart/form-data">
                 <?php
                     call_user_func($tabs[$current]['callback']);
                 ?>
