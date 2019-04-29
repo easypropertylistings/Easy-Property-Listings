@@ -10,12 +10,13 @@
   "license": "GPL-3.0+",
   "main": "Gruntfile.js",
   "devDependencies": {
-    "grunt": "*",
-    "grunt-contrib-cssmin": "*",
+    "grunt": "^1.0.4",
+    "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-wp-i18n": "*"
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-pot": "^0.3.0",
+    "grunt-wp-i18n": "^1.0.3"
   },
   "engines": {
     "node": ">=0.8.0",
