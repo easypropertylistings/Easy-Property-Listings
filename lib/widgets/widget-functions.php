@@ -444,7 +444,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 		),
 		array(
 			'key'			=>	'search_price_search',
-			'meta_key'		=>	'property_search_price',
+			'meta_key'		=>	'property_price_search',
 			'label'			=>	__('Price Search','easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'price_search',
@@ -452,7 +452,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'type'			=>	'select',
 			'query'			=>	array(
 								'query'		=>	'meta',
-								'key'		=>	'property_search_price',
+								'key'		=>	'property_price_search',
 								'type'		=>	'numeric',
 								'compare'	=>	'<='
 							),

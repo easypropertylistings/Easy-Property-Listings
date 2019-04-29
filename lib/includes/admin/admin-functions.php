@@ -261,13 +261,28 @@ function epl_get_tools_tab() {
 		'tools'	=>	array(
 			'label'		=>	__('Import/Export','easy-property-listings'),
 			'callback'	=>	'epl_settings_import_export'
-		),
-		'upgrade'	=>	array(
-			'label'		=>	__('Upgrade','easy-property-listings'),
-			'callback'	=>	'epl_settings_upgrade_tab'
 		)
 	);
+
+	if( epl_show_upgrade_tab() ) :
+
+		$default_tabs['upgrade'] = array(
+			'label'		=>	__('Upgrade','easy-property-listings'),
+			'callback'	=>	'epl_settings_upgrade_tab'
+		);
+
+	endif;
+
 	return apply_filters('epl_get_tools_tab',$default_tabs);
+}
+
+function epl_show_upgrade_tab() {
+
+	$upgraded = get_option('epl_db_upgraded_to') < 3.3 ? true : false;
+
+	$upgraded = isset($_GET['dev']) ? true : $upgraded;
+
+	return $upgraded;
 }
 
 /**
@@ -298,35 +313,27 @@ function epl_unserialize($data) {
 function epl_settings_import_export() {
 
 	do_action('epl_pre_import_fields');
+	
+	echo '<h2>'.__('Import Options','easy-property-listings').'</h2>'; ?>
 
-	$fields = array(
+	<div class="epl-field">
+		<div class="epl-label-wrap">
+			<label class="epl-label epl-label-epl_import" for="epl_import">
+				<?php
+					_e('Import data','easy-property-listings');
+				?>
+			</label>
+		</div>
+		<div class="epl-input-wrap">
+			<input type="file" name="epl_import" id="epl_import" />
+			<span class="epl-help-text">
+				<?php
+					_e('Import exported file here. Warning! it will override all existing settings','easy-property-listings');
+				?>
+			</span>
+		</div>
+	</div>
 
-		array(
-			'name'		=>	'epl_import',
-			'label'		=>	__('Import data','easy-property-listings'),
-			'type'		=>	'textarea',
-			'help'		=>	__("Paste exported data here. Warning! it will override all existing settings",'easy-property-listings'),
-		)
-	);
-
-	$fields = apply_filters('epl_import_fields',$fields);
-
-	echo '<h2>'.__('Import Options','easy-property-listings').'</h2>';
-
-	foreach($fields as $field) {
-
-		echo '<div class="epl-field">';
-			echo '<div class="epl-label-wrap">';
-				echo '<label class="epl-label epl-label-'.$field['name'].'" for="'.$field['name'].'" >'.$field['label'].'</label>';
-
-			echo '</div>';
-			echo '<div class="epl-input-wrap">';
-				epl_render_html_fields($field);
-			echo '</div>';
-		echo '</div>';
-	}
-
-	?>
 	<input type="hidden" name="action" value="import">
 	<div class="">
 		<input type="submit" name="epl_tools_submit" value="<?php _e('Import','easy-property-listings') ?>" class="epl-tools-submit button button-primary"/>
@@ -356,13 +363,9 @@ function epl_settings_upgrade_tab() {
 
 	echo '<h2>'.__('Upgrade Options','easy-property-listings').'</h2>';
 
-	if( get_option('epl_db_upgraded_to') < 3.3 ) :
-
 	echo '<div style="color:red">'.__('Upgrading the database will copy all the listing pricing info into a unified price data column for searching and ordering. We recommend taking a database backup before performing this action.','easy-property-listings').'</div>';
 
 	echo "<div><br><a class='button button-primary epl-upgrade-btn' data-upgrade='3.3' href='#'>".__('Upgrade Database','easy-property-listings')."</a></div>";
-
-	endif;
 
 	echo '<div style="display:none;" class="epl-ajax-notice">'.__('Processing...','easy-property-listings').'</div>';
 }
@@ -406,15 +409,17 @@ function epl_handle_tools_form() {
         break;
 
         case 'import':
-
-		if( trim($post_data['epl_import']) == '')
-		return;
-
-		$imported_data 	= epl_unserialize($post_data['epl_import']);
-		$options_backup 	= get_option('epl_settings');
-
-		update_option('epl_settings_backup',$options_backup);
-		$status 		= update_option('epl_settings',$imported_data);
+        $uploadedfile 	= $_FILES['epl_import'];
+        $upload_overrides = array( 'test_form' => false );
+		$movefile 		= wp_handle_upload( $uploadedfile, $upload_overrides );
+		
+		if ( $movefile && ! isset( $movefile['error'] ) ) {
+		    $imported_data = file_get_contents($movefile['url']);
+		    $imported_data = epl_unserialize( $imported_data );
+		    $options_backup = get_option('epl_settings');
+		    update_option('epl_settings_backup',$options_backup);
+			$status 		= update_option('epl_settings',$imported_data);
+		}
 
         break;
     }
@@ -437,7 +442,6 @@ function epl_upgrade_admin_notice(){
 	             <p>'.$msg.'</p>
 	             <p><a class="button" href="admin.php?page=epl-tools&tab=upgrade">'.__("Take me to upgrade tool","easy-property-listings").'</a></p>
 	         </div>';
-
  	endif;
 }
 add_action('admin_notices', 'epl_upgrade_admin_notice');
@@ -494,12 +498,12 @@ function epl_upgrade_db_to_3_3() {
 
 				case 'rental' :
 					$price = get_post_meta($single->ID,'property_rent',true);
-					update_post_meta($single->ID,'property_search_price',$price);
+					update_post_meta($single->ID,'property_price_search',$price);
 				break;
 
 				default :
 					$price = get_post_meta($single->ID,'property_price',true);
-					update_post_meta($single->ID,'property_search_price',$price);
+					update_post_meta($single->ID,'property_price_search',$price);
 				break;
 			}
 		}
@@ -522,10 +526,10 @@ function epl_sync_property_search_price() {
 	if( is_epl_post() ) {
 		if ( 'rental' == $_POST['post_type'] ) {
 			$price = get_post_meta($_POST['ID'],'property_rent',true);
-			update_post_meta($_POST['ID'],'property_search_price',$price);
+			update_post_meta($_POST['ID'],'property_price_search',$price);
 		} else {
 			$price = get_post_meta($_POST['ID'],'property_price',true);
-			update_post_meta($_POST['ID'],'property_search_price',$price);
+			update_post_meta($_POST['ID'],'property_price_search',$price);
 		}
 	}
 }
