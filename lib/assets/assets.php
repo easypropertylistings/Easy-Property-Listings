@@ -108,6 +108,8 @@ function epl_wp_enqueue_scripts() {
 			wp_enqueue_style(	'epl-style-enhanced', 	$current_dir_path . '/css/style-enhanced'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
 		}
 
+		wp_enqueue_style(	'epl-field-sliders', 	$current_dir_path . '/css/field-slider'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );		
+
 		/**
 		 * Load theme specific stylesheet for epl, if exists
 		 * Loaded at the end to override any styles in plugin
@@ -119,9 +121,13 @@ function epl_wp_enqueue_scripts() {
 
 	$js_vars = array(
 		'epl_default_view_type' => $epl_default_view_type,
-		'ajaxurl'	=> admin_url('admin-ajax.php'),
-		'image_base'	=> EPL_PLUGIN_URL.'lib/assets/images/'
+		'ajaxurl'               => admin_url('admin-ajax.php'),
+		'image_base'            => EPL_PLUGIN_URL.'lib/assets/images/',
+		'field_sliders'         => epl_get_field_sliders()
 	);
+
+	wp_enqueue_script('jquery-ui-touch-punch', $current_dir_path .'/js/jquery.ui.touch-punch.min.js', array('jquery-ui-slider') );
+
 	wp_enqueue_script( 	'epl-js-lib',	$current_dir_path . 	'/js/epl'.$suffix.'.js', 						array('jquery'), EPL_PROPERTY_VER );
 
 	wp_localize_script( 	'epl-front-scripts', 'epl_frontend_vars', $js_vars);

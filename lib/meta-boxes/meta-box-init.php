@@ -725,7 +725,7 @@ function epl_get_meta_boxes() {
 						array(
 							'name'		=>	'property_building_area',
 							'label'		=>	__('Building Area', 'easy-property-listings' ),
-							'type'		=>	'number',
+							'type'		=>	'decimal',
 							'include'	=>	array('commercial','business'),
 							'maxlength'	=>	'40'
 						),
