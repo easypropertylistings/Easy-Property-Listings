@@ -312,6 +312,24 @@ function epl_manage_listing_column_listing_callback() {
 add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_listing_callback' );
 
 /**
+ * Featured Listing Label to Listing Details column
+ *
+ * @since 3.3
+ */
+function epl_manage_listing_column_labels_callback() {
+
+	$labels = apply_filters (  'epl_manage_listing_column_labels', $labels );
+
+	echo $labels;
+
+}
+add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_labels_callback' , 20 );
+
+
+
+
+
+/**
  * Posts Types Column ID
  *
  * @since 1.0
