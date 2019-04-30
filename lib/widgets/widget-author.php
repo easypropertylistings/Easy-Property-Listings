@@ -54,7 +54,6 @@ class EPL_Widget_Author extends WP_Widget {
 
 			if ( $hide_author_box == 'yes' && $author_box == 'on' ) {
 				// Hide Author Box
-				// Disabled this feature due to user would not place a widget and hide it.
 			} else {
 				echo $before_widget;
 				if ( $title )

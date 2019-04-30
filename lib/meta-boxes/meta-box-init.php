@@ -207,7 +207,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'		=>	'property_featured',
-							'label'		=>	__('Set Featured Listing', 'easy-property-listings' ),
+							'label'		=>	__('Featured Listing', 'easy-property-listings' ),
 							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'easy-property-listings' ),
