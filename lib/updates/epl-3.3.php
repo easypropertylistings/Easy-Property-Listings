@@ -3,6 +3,7 @@ $epl_settings = epl_settings();
 
 $new_fields_defaults = array(
 	'epl_css_enhanced'		=> 'off',
+	'epl_plugin_mode'		=> 'development',
 );
 
 foreach($new_fields_defaults as $key	=>	$value) {
