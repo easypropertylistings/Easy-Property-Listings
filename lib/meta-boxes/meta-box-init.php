@@ -17,12 +17,12 @@ function epl_get_meta_boxes() {
 	global $epl_settings;
 
 	$opts_property_status 			= epl_get_property_status_opts();
-	$opts_property_authority 			= epl_get_property_authority_opts();
+	$opts_property_authority 		= epl_get_property_authority_opts();
 	$opts_property_exclusivity 		= epl_get_property_exclusivity_opts();
 	$opts_property_com_authority 		= epl_get_property_com_authority_opts();
-	$opts_area_unit 				= epl_get_property_area_unit_opts();
+	$opts_area_unit 			= epl_get_property_area_unit_opts();
 	$opts_rent_period 			= epl_get_property_rent_period_opts();
-	$opts_property_com_listing_type 		= epl_get_property_com_listing_type_opts();
+	$opts_property_com_listing_type 	= epl_get_property_com_listing_type_opts();
 	$opts_property_com_tenancy 		= epl_get_property_com_tenancy_opts();
 	$opts_property_com_property_extent 	= epl_get_property_com_property_extent_opts();
 
@@ -207,7 +207,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'		=>	'property_featured',
-							'label'		=>	__('Featured', 'easy-property-listings' ),
+							'label'		=>	__('Featured Listing', 'easy-property-listings' ),
 							'type'		=>	'checkbox_single',
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'easy-property-listings' ),

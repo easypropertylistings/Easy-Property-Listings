@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Install
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
 */
@@ -44,18 +44,18 @@ function epl_install() {
 		'admin_unique_id'			=> 0,
 		'debug'					=> 0,
 		'display_bond'				=> 0,
-		'display_single_gallery'			=> 0,
+		'display_single_gallery'		=> 1,
 		'display_gallery_n'			=> 4,
-		'display_feature_columns'			=> 2,
-		'display_excerpt_length'			=> 10,
+		'display_feature_columns'		=> 2,
+		'display_excerpt_length'		=> 10,
 		'display_archive_view_type'		=> 'list',
 		'use_fancy_navigation'			=> 0,
 		'label_bond'				=> __('Bond', 'easy-property-listings' ),
-		'label_location'				=> __('Suburb', 'easy-property-listings' ),
+		'label_location'			=> __('Suburb', 'easy-property-listings' ),
 		'label_suburb'				=> __('Suburb', 'easy-property-listings' ),
 		'label_city'				=> __('City', 'easy-property-listings' ),
 		'label_state'				=> __('State', 'easy-property-listings' ),
-		'label_postcode'				=> __('Post Code', 'easy-property-listings' ),
+		'label_postcode'			=> __('Post Code', 'easy-property-listings' ),
 		'label_home_open'			=> __('Home Open', 'easy-property-listings' ),
 		'label_poa'				=> __('POA', 'easy-property-listings' ),
 		'label_new'				=> __('New', 'easy-property-listings' ),
@@ -67,7 +67,7 @@ function epl_install() {
 		'widget_label_rental'			=> __('Rent', 'easy-property-listings' ),
 		'widget_label_rural'			=> __('Rural', 'easy-property-listings' ),
 		'widget_label_business'			=> __('Business', 'easy-property-listings' ),
-		'widget_label_commercial'			=> __('Commercial', 'easy-property-listings' ),
+		'widget_label_commercial'		=> __('Commercial', 'easy-property-listings' ),
 		'widget_label_commercial_land'		=> __('Commercial Land', 'easy-property-listings' ),
 		'epl_max_graph_sales_price'		=> 2000000,
 		'epl_max_graph_rent_price'		=> 2000,
@@ -76,16 +76,16 @@ function epl_install() {
 		'epl_enable_city_field'			=> 'no',
 		'epl_enable_country_field'		=> 'no',
 		'epl_feeling_lucky'			=> 'off',
-		'epl_lucky_disable_single_thumb'		=> 'off',
+		'epl_lucky_disable_single_thumb'	=> 'off',
 		'epl_lucky_disable_theme_single_thumb'	=> 'off',
-		'epl_lucky_disable_archive_thumb'		=> 'off',
+		'epl_lucky_disable_archive_thumb'	=> 'off',
 		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
 		'epl_use_core_css'			=> 'off', // Means Enable CSS
-		'epl_css_legacy'				=> 'off', // Legacy styles disabled by default
+		'epl_css_legacy'			=> 'off', // Legacy styles disabled by default
 		'epl_css_enhanced'			=> 'on', // Enhanced styles enabled for new installations by default
 		'uninstall_on_delete'			=> 0,
-		'inspection_date_format'			=> 'l, dS F',
-		'inspection_time_format'			=> 'h:i a',
+		'inspection_date_format'		=> 'l, dS F',
+		'inspection_time_format'		=> 'h:i a',
 		'custom_inspection_date_format'		=> 'l, dS F',
 		'custom_inspection_time_format'		=> 'h:i a',
 		'epl_video_width'			=> 600,
@@ -93,8 +93,9 @@ function epl_install() {
 		'min_reports_access'			=> 'level_10',
 		'activate_post_types'			=> array('property'),
 		'epl_default_country'			=> 'Australia',
-		'epl_icons_svg_listings'			=> 'off',
-		'epl_icons_svg_author'			=> 'off',
+		'epl_icons_svg_listings'		=> 'on',
+		'epl_icons_svg_author'			=> 'on',
+		'epl_plugin_mode'			=> 'development',
 	);
 
 	if(!empty($epl_settings)) {

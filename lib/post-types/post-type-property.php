@@ -22,7 +22,7 @@ function epl_register_custom_post_type_property() {
 
 	$archives	= defined( 'EPL_PROPERTY_DISABLE_ARCHIVE' ) && EPL_PROPERTY_DISABLE_ARCHIVE ? false : true;
 	$slug		= defined( 'EPL_PROPERTY_SLUG' ) ? EPL_PROPERTY_SLUG : 'property';
-	$rewrite		= defined( 'EPL_PROPERTY_DISABLE_REWRITE' ) && EPL_PROPERTY_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$rewrite	= defined( 'EPL_PROPERTY_DISABLE_REWRITE' ) && EPL_PROPERTY_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 	$rest		= defined( 'EPL_PROPERTY_ENABLE_REST' ) && EPL_PROPERTY_ENABLE_REST ? true : false;
 
 	$labels = apply_filters( 'epl_property_labels', array(
@@ -43,8 +43,8 @@ function epl_register_custom_post_type_property() {
 	) );
 
 	$property_args = array(
-		'labels'			=>	$labels,
-		'public'			=>	true,
+		'labels'		=>	$labels,
+		'public'		=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'		=>	true,
 		'show_in_menu'		=>	true,
@@ -81,9 +81,10 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb' 			=> '<input type="checkbox" />',
-			'property_thumb'		=> __('Image', 'easy-property-listings' ),
-			'property_price'		=> __('Price', 'easy-property-listings' ),
-			'title' 			=> __('Address', 'easy-property-listings' ),
+			'property_featured' 	=> '<span class="dashicons dashicons-star-half"></span>' . '<span class="epl-manage-featured">' . __('Featured', 'easy-property-listings' ) . '</span>',
+			'property_thumb'	=> __('Image', 'easy-property-listings' ),
+			'property_price'	=> __('Price', 'easy-property-listings' ),
+			'title' 		=> __('Address', 'easy-property-listings' ),
 			'listing'		=> __('Listing Details', 'easy-property-listings' ),
 			'listing_id'		=> __('Unique ID' , 'easy-property-listings' ),
 			'geo'			=> __('Geo', 'easy-property-listings' ),
@@ -116,10 +117,17 @@ if ( is_admin() ) {
 	 * Manage Admin Property Post Type Columns: Row Contents
 	 *
 	 * @since 1.0
+	 * @revised 3.3
 	 */
 	function epl_manage_property_columns_value( $column, $post_id ) {
 
 		switch( $column ) {
+			/* If displaying the 'Featured' image column. */
+			case 'property_featured' :
+				do_action('epl_manage_listing_column_featured');
+
+				break;
+
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
 				do_action('epl_manage_listing_column_property_thumb');
