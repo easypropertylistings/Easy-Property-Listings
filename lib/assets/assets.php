@@ -162,6 +162,18 @@ function epl_admin_styles() {
 		.column-property_thumb {
 			width:<?php echo $width; ?>;
 		}
+		.column-property_featured {
+			width: 60px;
+		}
+		.column-property_featured .dashicons-star-filled {
+			color: orange;
+		}
+		.column-property_featured .dashicons-star-empty {
+			color: #aaaaaa;
+		}
+		.column-property_featured .epl-manage-featured {
+			display: none;
+		}
 	</style>
 <?php
 }

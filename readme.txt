@@ -393,6 +393,36 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.3 April 28, 2019 =
 
+
+
+RE-REVIEW Readme
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible. And easy to use.
 * New: Now able to add a function.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
 * New: Export Easy Property Listings settings and import them into another site on the Tools option.

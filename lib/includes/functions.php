@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Global
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -1426,7 +1426,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						1	=>	__('Enable', 'easy-property-listings' ),
 						0	=>	__('Disable', 'easy-property-listings' )
 					),
-					'default'	=>	0,
+					'default'	=>	1,
 					'help'		=>	__('Images uploaded and attached to a listing will automatically display on the single listing page.', 'easy-property-listings' )
 				),
 
@@ -1829,7 +1829,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
-					'default'	=>	'off',
+					'default'	=>	'on',
 					'help'		=>	__('Check this to enable enhanced structural css styles. This implements inline-block mode for a better grid format.' , 'easy-property-listings' )
 				),
 
@@ -1840,7 +1840,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
-					'default'	=>	'off',
+					'default'	=>	'on',
 					'help'		=>	__('Check this to enable SVG icons on listings.' , 'easy-property-listings' )
 				),
 
@@ -1851,7 +1851,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
-					'default'	=>	'off',
+					'default'	=>	'on',
 					'help'		=>	__('Check this to enable SVG icons on author social links.' , 'easy-property-listings' )
 				),
 
@@ -2037,9 +2037,9 @@ if ( ! empty( $property_status ) ) {
  * @since 3.0
  */
 function epl_session_start() {
-    if(!session_id()) {
-        session_start();
-    }
+	if(!session_id()) {
+		session_start();
+	}
 }
 add_action('init', 'epl_session_start', 1);
 
@@ -2049,7 +2049,7 @@ add_action('init', 'epl_session_start', 1);
  * @since 3.0
  */
 function epl_session_end() {
-    session_destroy ();
+	session_destroy();
 }
 add_action('wp_logout', 'epl_session_end');
 add_action('wp_login', 'epl_session_end');
@@ -2171,8 +2171,8 @@ function epl_get_contacts( $args = array() ) {
 
 	$defaults = array(
 		'post_type'		=> 'epl_contact',
-		'posts_per_page'		=> 20,
-		'offset'			=> 0,
+		'posts_per_page'	=> 20,
+		'offset'		=> 0,
 		'orderby'		=> 'ID',
 		'order'			=> 'DESC'
 	);
@@ -2269,9 +2269,9 @@ function epl_get_contact_categories() {
 		'landlord'	=>  __('Landlord','easy-property-listings' ),
 		'new'		=>  __('New','easy-property-listings' ),
 		'past_customer'	=>  __('Past Customer','easy-property-listings' ),
-		'seller'		=>  __('Seller','easy-property-listings' ),
-		'tenant'		=>  __('Tenant','easy-property-listings' ),
-		'widget'		=>  __('Widget Lead','easy-property-listings' ),
+		'seller'	=>  __('Seller','easy-property-listings' ),
+		'tenant'	=>  __('Tenant','easy-property-listings' ),
+		'widget'	=>  __('Widget Lead','easy-property-listings' ),
 		'contract'	=>  __('Under Contract','easy-property-listings' ),
 	));
 }
@@ -2456,10 +2456,10 @@ function epl_get_property_com_authority_opts() {
 	return apply_filters (  'epl_opts_property_com_authority_filter', array(
 			'Forsale'	=>	__('For Sale', 'easy-property-listings' ),
 			'auction'	=>	__('Auction', 'easy-property-listings' ),
-			'tender'		=>	__('Tender', 'easy-property-listings' ),
+			'tender'	=>	__('Tender', 'easy-property-listings' ),
 			'eoi'		=>	__('EOI', 'easy-property-listings' ),
 			'Sale'		=>	__('Sale', 'easy-property-listings' ),
-			'offers'		=>	__('Offers', 'easy-property-listings' )
+			'offers'	=>	__('Offers', 'easy-property-listings' )
 		)
 	);
 }
@@ -2472,7 +2472,7 @@ function epl_get_property_com_authority_opts() {
 function epl_get_property_area_unit_opts() {
 
 	return apply_filters (  'epl_opts_area_unit_filter', array(
-			'square'		=>	__('Square', 'easy-property-listings' ),
+			'square'	=>	__('Square', 'easy-property-listings' ),
 			'squareMeter'	=>	__('Square Meter', 'easy-property-listings' ),
 			'acre'		=>	__('Acre', 'easy-property-listings' ),
 			'hectare'	=>	__('Hectare', 'easy-property-listings' ),
@@ -2492,7 +2492,7 @@ function epl_get_property_rent_period_opts() {
 			'day'		=>	__('Day', 'easy-property-listings' ),
 			'daily'		=>	__('Daily', 'easy-property-listings' ),
 			'week'		=>	__('Week', 'easy-property-listings' ),
-			'weekly'		=>	__('Weekly', 'easy-property-listings' ),
+			'weekly'	=>	__('Weekly', 'easy-property-listings' ),
 			'month'		=>	__('Month', 'easy-property-listings' ),
 			'monthly'	=>	__('Monthly', 'easy-property-listings' )
 		)
@@ -2523,7 +2523,7 @@ function epl_get_property_com_tenancy_opts() {
 
 	return apply_filters (  'epl_opts_property_com_tenancy_filter', array(
 			'unknown'	=>	__('Unknown', 'easy-property-listings' ),
-			'vacant'		=>	__('Vacant', 'easy-property-listings' ),
+			'vacant'	=>	__('Vacant', 'easy-property-listings' ),
 			'tenanted'	=>	__('Tenanted', 'easy-property-listings' )
 		)
 	);
