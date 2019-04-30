@@ -892,22 +892,24 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'land'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'pricing',
 					'columns'	=>	'1',
 					'label'		=>	'',
-					'fields'	=>	array(
+					'fields'		=>	array(
+
+						array(
+							'name'		=>	'property_price_global',
+							'label'		=>	__('Global Price', 'easy-property-listings' ),
+							'type'		=>	'hidden',
+							'maxlength'	=>	'50'
+						),
+
 						array(
 							'name'		=>	'property_price',
 							'label'		=>	__('Search Price', 'easy-property-listings' ),
 							'type'		=>	apply_filters('epl_price_number_format','decimal'),
-							'maxlength'	=>	'50'
-						),
-						array(
-							'name'		=>	'property_price_search',
-							'label'		=>	__('Price Search', 'easy-property-listings' ),
-							'type'		=>	'hidden',
 							'maxlength'	=>	'50'
 						),
 
@@ -959,7 +961,7 @@ function epl_get_meta_boxes() {
 					'id'		=>	'sale_details',
 					'columns'	=>	'1',
 					'label'		=>	__('Sale Details', 'easy-property-listings' ),
-					'fields'	=>	array(
+					'fields'		=>	array(
 						array(
 							'name'		=>	'property_sold_price',
 							'label'		=>	__('Sale Price', 'easy-property-listings' ),
@@ -993,24 +995,25 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('rental'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'rental_pricing',
 					'columns'	=>	'1',
 					'label'		=>	'',
-					'fields'	=>	array(
+					'fields'		=>	array(
+
+						array(
+							'name'		=>	'property_price_global',
+							'label'		=>	__('Global Price', 'easy-property-listings' ),
+							'type'		=>	'hidden',
+							'maxlength'	=>	'50'
+						),
+
 						array(
 							'name'		=>	'property_rent',
 							'label'		=>	__('Rent Amount', 'easy-property-listings' ),
 							'type'		=>	apply_filters('epl_price_number_format','decimal'),
 							'maxlength'	=>	'40'
-						),
-
-						array(
-							'name'		=>	'property_price_search',
-							'label'		=>	__('Price Search', 'easy-property-listings' ),
-							'type'		=>	'hidden',
-							'maxlength'	=>	'50'
 						),
 
 						array(
@@ -1086,7 +1089,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('rural'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'rural_features',
 					'columns'	=>	'1',
@@ -1158,7 +1161,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('commercial', 'commercial_land' , 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'commercial_leasing',
 					'columns'	=>	'2',
@@ -1212,7 +1215,7 @@ function epl_get_meta_boxes() {
 					'id'		=>	'tenant_n_outgoings',
 					'columns'	=>	'2',
 					'label'		=>	'',
-					'fields'	=>	array(
+					'fields'		=>	array(
 						array(
 							'name'		=>	'property_com_tenancy',
 							'label'		=>	__('Tenant Status', 'easy-property-listings' ),
@@ -1280,7 +1283,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('commercial'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'commercial_features',
 					'columns'	=>	'1',
@@ -1355,7 +1358,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'files_n_links',
 					'columns'	=>	'2',
@@ -1437,7 +1440,7 @@ function epl_get_meta_boxes() {
 					'id'		=>	'files_n_links_2',
 					'columns'	=>	'2',
 					'label'		=>	'',
-					'fields'	=>	array(
+					'fields'		=>	array(
 
 						array(
 							'name'		=>	'property_floorplan',
@@ -1497,7 +1500,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
 			'context'	=>	'side',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'owner_details',
 					'columns'	=>	'1',
