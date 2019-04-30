@@ -2556,3 +2556,25 @@ function epl_get_author_id_from_name($author) {
 		return $user->ID;
 	}
 }
+
+/**
+ * WP All Import Pro filter that processes property_price_search after updating or saving a post
+ *
+ * @since       3.3
+ */
+function epl_pmxi_import_post_saved($id) {
+
+	$post = get_post($id);
+
+	if( is_epl_post($post->post_type) ) {
+
+		if ( 'rental' == $post->post_type ) {
+			$price = get_post_meta($id,'property_rent',true);
+			update_post_meta($id,'property_price_search',$price);
+		} else {
+			$price = get_post_meta($id,'property_price',true);
+			update_post_meta($id,'property_price_search',$price);
+		}
+	}
+}
+add_action('pmxi_saved_post', 'epl_pmxi_import_post_saved', 10, 1);
