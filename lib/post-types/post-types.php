@@ -21,8 +21,8 @@ add_filter( 'request', 'epl_property_address_suburb_column_orderby' );
 function epl_property_address_suburb_column_orderby( $vars ) {
 	if ( isset( $vars['orderby'] ) && 'property_address_suburb' == $vars['orderby'] ) {
 		$vars = array_merge( $vars, array(
-			'meta_key' => 'property_address_suburb',
-			'orderby' => 'meta_value'
+			'meta_key'	=> 'property_address_suburb',
+			'orderby'	=> 'meta_value'
 		) );
 	}
 
@@ -152,6 +152,7 @@ function epl_admin_posts_filter( $query ) {
  * @since 1.0
  */
 function epl_manage_listings_sortable_columns( $columns ) {
+	$columns['property_featured']	= 'property_featured';
 	$columns['property_rent']	= 'property_rent';
 	$columns['property_price']	= 'property_price';
 	$columns['property_status'] 	= 'property_status';
@@ -195,6 +196,11 @@ function epl_custom_orderby( $query ) {
 
 	if( 'property_thumb' == $orderby ) {
 		$query->set('meta_key','_thumbnail_id');
+		$query->set('orderby','meta_value');
+	}
+
+	if( 'property_featured' == $orderby ) {
+		$query->set('meta_key','property_featured');
 		$query->set('orderby','meta_value');
 	}
 
@@ -587,3 +593,22 @@ function epl_manage_listing_column_agent_callback() {
 	}
 }
 add_action( 'epl_manage_listing_column_agent' , 'epl_manage_listing_column_agent_callback' );
+
+/**
+ * Functions for featured listing column
+ *
+ * @since 3.3
+ */
+function epl_manage_listing_column_featured_callback() {
+
+	global $property;
+
+	if ( $property->get_property_meta( 'property_featured' ) == 'yes' ) {
+		echo '<span class="dashicons dashicons-star-filled"></span>';
+	} else {
+		echo '<span class="dashicons dashicons-star-empty"></span>';
+	}
+
+
+}
+add_action( 'epl_manage_listing_column_featured' , 'epl_manage_listing_column_featured_callback' );

@@ -1993,6 +1993,9 @@ h3.epl-contact-activity-title {
 	.epl-admin-page-archive .manage-column.column-property_thumb {
 		display: none !important;
 	}
+	.epl-admin-page-archive .manage-column.column-property_featured {
+		display: none !important;
+	}
 	.epl-admin-page-archive .property_price.column-property_price {
 		padding-right: 2em;
 	}

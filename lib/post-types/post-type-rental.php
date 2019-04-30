@@ -22,7 +22,7 @@ function epl_register_custom_post_type_rental() {
 
 	$archives	= defined( 'EPL_RENTAL_DISABLE_ARCHIVE' ) && EPL_RENTAL_DISABLE_ARCHIVE ? false : true;
 	$slug		= defined( 'EPL_RENTAL_SLUG' ) ? EPL_RENTAL_SLUG : 'rental';
-	$rewrite		= defined( 'EPL_RENTAL_DISABLE_REWRITE' ) && EPL_RENTAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$rewrite	= defined( 'EPL_RENTAL_DISABLE_REWRITE' ) && EPL_RENTAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 	$rest		= defined( 'EPL_RENTAL_ENABLE_REST' ) && EPL_RENTAL_ENABLE_REST ? true : false;
 
 	$labels = apply_filters( 'epl_rental_labels', array(
@@ -42,8 +42,8 @@ function epl_register_custom_post_type_rental() {
 		'parent_item_colon'	=>	__('Parent Rental:', 'easy-property-listings' )
 	) );
 	$rental_args = array(
-		'labels'			=>	$labels,
-		'public'			=>	true,
+		'labels'		=>	$labels,
+		'public'		=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'		=>	true,
 		'show_in_menu'		=>	true,
@@ -80,7 +80,8 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb' 			=> '<input type="checkbox" />',
-			'property_thumb'		=> __('Image', 'easy-property-listings' ),
+			'property_featured' 	=> '<span class="dashicons dashicons-star-half"></span>' . '<span class="epl-manage-featured">' . __('Featured', 'easy-property-listings' ) . '</span>',
+			'property_thumb'	=> __('Image', 'easy-property-listings' ),
 			'property_rent'		=> __('Rent', 'easy-property-listings' ),
 			'title'			=> __('Address', 'easy-property-listings' ),
 			'listing'		=> __('Listing Details', 'easy-property-listings' ),
@@ -120,6 +121,12 @@ if ( is_admin() ) {
 		global $post,$property;
 		global $epl_settings;
 		switch( $column ) {
+			/* If displaying the 'Featured' image column. */
+			case 'property_featured' :
+				do_action('epl_manage_listing_column_featured');
+
+				break;
+
 			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
 				do_action('epl_manage_listing_column_property_thumb');
