@@ -312,22 +312,57 @@ function epl_manage_listing_column_listing_callback() {
 add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_listing_callback' );
 
 /**
+ * Get Listing Labels
+ *
+ * @since 3.3
+ */
+function epl_get_manage_listing_column_labels( $args = array() , $returntype = 'l' ) {
+
+	global $property;
+
+	$defaults	= array( 'featured' );
+	$labels 	= apply_filters( 'epl_manage_listing_column_labels' , $defaults );
+	$returntype 	= apply_filters( 'epl_manage_listing_column_labels_return_type' , $returntype );
+
+	ob_start();
+
+	foreach( $labels as $label ) {
+		if( !empty( $args ) && !in_array( $label , $args ) ) {
+			continue;
+		}
+
+		switch( $label ) {
+			case 'featured' :
+				echo $property->get_property_featured( $returntype );
+			break;
+
+			default:
+				// action to hook additional icons
+				do_action( 'epl_get_manage_listing_column_label_' . $label );
+			break;
+		}
+
+	}
+
+	return ob_get_clean();
+}
+
+/**
  * Featured Listing Label to Listing Details column
  *
  * @since 3.3
  */
-function epl_manage_listing_column_labels_callback() {
+function epl_manage_listing_column_labels_callback( $returntype = 'l' ) {
 
-	$labels = apply_filters (  'epl_manage_listing_column_labels', $labels );
+	$returntype = $returntype == '' ? 'l' : $returntype;
 
-	echo $labels;
+	echo '<ul class="epl-listing-labels">' . epl_get_manage_listing_column_labels( array() , $returntype ) . '</ul>';
 
 }
-add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_labels_callback' , 20 );
+add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_labels_callback' , 20 , 1 );
 
-
-
-
+//Business Post Type needs updating
+add_action( 'epl_manage_business_listing_column_listing_details', 'epl_manage_listing_column_labels_callback', 10, 1 );
 
 /**
  * Posts Types Column ID

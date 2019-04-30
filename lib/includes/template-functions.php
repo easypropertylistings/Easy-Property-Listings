@@ -658,10 +658,10 @@ function epl_get_property_icons( $args = array() , $returntype = 'i') {
 
 	global $property;
 
-	$defaults = array('bed','bath','parking','ac','pool');
+	$defaults 	= array('bed','bath','parking','ac','pool');
 
 	$icons 		= apply_filters('epl_get_property_icons', $defaults);
-	$returntype = apply_filters('epl_icons_return_type', $returntype);
+	$returntype	= apply_filters('epl_icons_return_type', $returntype);
 
 	ob_start();
 
