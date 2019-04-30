@@ -120,9 +120,21 @@ class EPL_Search_Fields {
 	 * @return void
 	 */
 	public function render_select( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
+
 		if ( isset( $field['wrap_start'] ) ) {
 			echo '<div class="' . $field['wrap_start'] . '">';
 		}
+
+		$min_max_atts 	= '';
+
+		if( isset( $field['query']['type'] ) && $field['query']['type'] == 'numeric' ){
+			current( $field['options'] );
+			$opt_min 		= key( $field['options'] );
+			end( $field['options'] );
+			$opt_max 		= key( $field['options'] );
+			$min_max_atts 	= ' data-min="'.$opt_min.'" data-max="'.$opt_max.'" ';
+		}
+
 		?>
 		<div class="epl-search-row epl-search-row-select epl-<?php echo $field['meta_key']; ?> fm-block <?php echo isset( $field['class'] ) ? $field['class'] : ''; ?>">
 			<label for="<?php echo $field['meta_key']; ?>" class="epl-search-label fm-label">
@@ -132,6 +144,7 @@ class EPL_Search_Fields {
 				<select
 					name="<?php echo $field['meta_key']; ?>"
 					id="<?php echo $field['meta_key']; ?>"
+					<?php echo $min_max_atts; ?>
 					class="in-field field-width">
 					<option value="">
 						<?php echo apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'easy-property-listings'  ) ); ?>
