@@ -580,3 +580,20 @@ function epl_get_avatar_filter($avatar, $id_or_email,$args) {
 			</div>';
 }
 add_filter('pre_get_avatar','epl_get_avatar_filter',10,5);
+
+function epl_import_post_saved($id) {
+
+	$post = get_post($id);
+
+	if( is_epl_post($post->post_type) ) {
+
+		if ( 'rental' == $post->post_type ) {
+			$price = get_post_meta($id,'property_rent',true);
+			update_post_meta($id,'property_price_search',$price);
+		} else {
+			$price = get_post_meta($id,'property_price',true);
+			update_post_meta($id,'property_price_search',$price);
+		}
+	}
+}
+add_action('pmxi_saved_post', 'epl_import_post_saved', 10, 1);

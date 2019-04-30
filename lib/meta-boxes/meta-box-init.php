@@ -904,6 +904,12 @@ function epl_get_meta_boxes() {
 							'type'		=>	apply_filters('epl_price_number_format','decimal'),
 							'maxlength'	=>	'50'
 						),
+						array(
+							'name'		=>	'property_price_search',
+							'label'		=>	__('Price Search', 'easy-property-listings' ),
+							'type'		=>	'hidden',
+							'maxlength'	=>	'50'
+						),
 
 						array(
 							'name'		=>	'property_price_view',
@@ -998,6 +1004,13 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('Rent Amount', 'easy-property-listings' ),
 							'type'		=>	apply_filters('epl_price_number_format','decimal'),
 							'maxlength'	=>	'40'
+						),
+
+						array(
+							'name'		=>	'property_price_search',
+							'label'		=>	__('Price Search', 'easy-property-listings' ),
+							'type'		=>	'hidden',
+							'maxlength'	=>	'50'
 						),
 
 						array(
