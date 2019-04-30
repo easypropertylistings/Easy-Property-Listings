@@ -575,6 +575,10 @@ h3.epl-welcome-sub-heading {
 	background:url(../images/refresh.png) no-repeat;
 	cursor:pointer;
 }
+.column-property_featured span{
+	cursor: pointer;
+}
+
 @media screen and ( max-width:850px ) {
 	#side-sortables .epl_property_address_coordinates input[type="text"]{
 		width: 90%;
