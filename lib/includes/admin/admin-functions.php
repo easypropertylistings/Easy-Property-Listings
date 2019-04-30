@@ -518,12 +518,12 @@ function epl_upgrade_db_to_3_3() {
 
 				case 'rental' :
 					$price = get_post_meta($single->ID,'property_rent',true);
-					update_post_meta($single->ID,'property_price_search',$price);
+					update_post_meta($single->ID,'property_price_global',$price);
 				break;
 
 				default :
 					$price = get_post_meta($single->ID,'property_price',true);
-					update_post_meta($single->ID,'property_price_search',$price);
+					update_post_meta($single->ID,'property_price_global',$price);
 				break;
 			}
 		}
@@ -542,23 +542,23 @@ function epl_upgrade_db_to_3_3() {
 }
 
 /**
- * Update the property_price_search when saving or updating an EPL post
+ * Update the property_price_global when saving or updating an EPL post
  *
  * @since       3.3
  */
-function epl_sync_property_price_search() {
+function epl_sync_property_price_global() {
 
 	if( is_epl_post() ) {
 		if ( 'rental' == $_POST['post_type'] ) {
 			$price = get_post_meta($_POST['ID'],'property_rent',true);
-			update_post_meta($_POST['ID'],'property_price_search',$price);
+			update_post_meta($_POST['ID'],'property_price_global',$price);
 		} else {
 			$price = get_post_meta($_POST['ID'],'property_price',true);
-			update_post_meta($_POST['ID'],'property_price_search',$price);
+			update_post_meta($_POST['ID'],'property_price_global',$price);
 		}
 	}
 }
-add_action('save_post','epl_sync_property_price_search',40);
+add_action('save_post','epl_sync_property_price_global',40);
 
 /**
  * Filter the contacts comments
