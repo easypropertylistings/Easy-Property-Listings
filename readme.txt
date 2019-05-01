@@ -191,6 +191,8 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_feature]
 * [listing_location]
 * [listing_auction]
+* [listing_advanced]
+* [listing_element]
 * [epl_contact_form]
 
 **Listing**
