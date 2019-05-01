@@ -409,6 +409,40 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'order'			=>	130
 		),
 		array(
+			'key'			=>	'search_price_global',
+			'meta_key'		=>	'property_price_global_from',
+			'label'			=>	__('Search Price From','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'global_price_from',
+			'options'		=>	$price_array,
+			'type'			=>	'select',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'key'		=>	'property_price_global',
+								'type'		=>	'numeric',
+								'compare'	=>	'>='
+							),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	134
+		),
+		array(
+			'key'			=>	'search_price_global',
+			'meta_key'		=>	'property_price_global_to',
+			'label'			=>	__('Search Price To','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'global_price_to',
+			'options'		=>	$price_array,
+			'type'			=>	'select',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'key'		=>	'property_price_global',
+								'type'		=>	'numeric',
+								'compare'	=>	'<='
+							),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	135
+		),
+		array(
 			'key'			=>	'search_price',
 			'meta_key'		=>	'property_price_from',
 			'label'			=>	__('Price From','easy-property-listings'),
@@ -436,40 +470,6 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'query'			=>	array(
 								'query'		=>	'meta',
 								'key'		=>	$price_meta_key,
-								'type'		=>	'numeric',
-								'compare'	=>	'<='
-							),
-			'class'			=>	'epl-search-row-half',
-			'order'			=>	150
-		),
-		array(
-			'key'			=>	'search_price_global',
-			'meta_key'		=>	'property_price_global_from',
-			'label'			=>	__('Search Price From','easy-property-listings'),
-			'type'			=>	'select',
-			'option_filter'		=>	'global_price_from',
-			'options'		=>	$price_array,
-			'type'			=>	'select',
-			'query'			=>	array(
-								'query'		=>	'meta',
-								'key'		=>	'property_price_global',
-								'type'		=>	'numeric',
-								'compare'	=>	'>='
-							),
-			'class'			=>	'epl-search-row-half',
-			'order'			=>	140
-		),
-		array(
-			'key'			=>	'search_price_global',
-			'meta_key'		=>	'property_price_global_to',
-			'label'			=>	__('Search Price To','easy-property-listings'),
-			'type'			=>	'select',
-			'option_filter'		=>	'global_price_to',
-			'options'		=>	$price_array,
-			'type'			=>	'select',
-			'query'			=>	array(
-								'query'		=>	'meta',
-								'key'		=>	'property_price_global',
 								'type'		=>	'numeric',
 								'compare'	=>	'<='
 							),
