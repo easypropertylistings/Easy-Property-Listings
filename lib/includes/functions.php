@@ -580,7 +580,7 @@ function epl_get_the_under_offer( $post = 0 ) {
 	 *
 	 * @since 3.3
 	 *
-	 * @param string $title The listing status.
+	 * @param string $under_offer The Under Offer status.
 	 * @param int    $id    The post ID.
 	 */
 	return apply_filters( 'epl_get_the_under_offer', $under_offer, $id );
@@ -618,10 +618,10 @@ function epl_listing_load_meta_property_category() {
 		'Villa'			=>	__('Villa', 'easy-property-listings' ),
 		'Apartment'		=>	__('Apartment', 'easy-property-listings' ),
 		'Flat'			=>	__('Flat', 'easy-property-listings' ),
-		'Studio'			=>	__('Studio', 'easy-property-listings' ),
+		'Studio'		=>	__('Studio', 'easy-property-listings' ),
 		'Warehouse'		=>	__('Warehouse', 'easy-property-listings' ),
 		'DuplexSemi-detached'	=>	__('Duplex Semi-detached', 'easy-property-listings' ),
-		'Alpine'			=>	__('Alpine', 'easy-property-listings' ),
+		'Alpine'		=>	__('Alpine', 'easy-property-listings' ),
 		'AcreageSemi-rural'	=>	__('Acreage Semi-rural', 'easy-property-listings' ),
 		'Retirement'		=>	__('Retirement', 'easy-property-listings' ),
 		'BlockOfUnits'		=>	__('Block Of Units', 'easy-property-listings' ),
@@ -694,7 +694,7 @@ function epl_listing_load_meta_commercial_category() {
 		'Industrial/Warehouse'	=>	__('Industrial/Warehouse', 'easy-property-listings' ),
 		'Medical/Consulting'	=>	__('Medical/Consulting', 'easy-property-listings' ),
 		'Offices'		=>	__('Offices', 'easy-property-listings' ),
-		'Retail'			=>	__('Retail', 'easy-property-listings' ),
+		'Retail'		=>	__('Retail', 'easy-property-listings' ),
 		'Showrooms/Bulky Goods'	=>	__('Showrooms/Bulky Goods', 'easy-property-listings' ),
 		'Other'			=>	__('Other', 'easy-property-listings' )
 	);
@@ -733,7 +733,7 @@ function epl_listing_load_meta_commercial_category_value( $key ) {
  */
 function epl_listing_load_meta_commercial_rent_period() {
 	$defaults = array(
-		'annual'			=>	__('P.A.', 'easy-property-listings' ),
+		'annual'		=>	__('P.A.', 'easy-property-listings' ),
 		'nnn'			=>	__('NNN', 'easy-property-listings' ),
 		'full-service'		=>	__('Full Service', 'easy-property-listings' ),
 		'gross-lease-rates'	=>	__('Gross Lease Rates', 'easy-property-listings' )
@@ -910,7 +910,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 								$field['opt_args']['slug'],
 								array(
 									'hide_empty'	=>	0,
-									'parent'		=>	0
+									'parent'	=>	0
 								)
 							);
 
@@ -1225,9 +1225,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 
 	$epl_currency_positions = array(
-			'before'	=> __('Before - $10', 'easy-property-listings' ),
-			'after'		=> __('After - 10$', 'easy-property-listings' )
-			);
+		'before'	=> __('Before - $10', 'easy-property-listings' ),
+		'after'		=> __('After - 10$', 'easy-property-listings' )
+		);
 	$epl_currency_types = epl_get_currencies();
 	$epl_post_types = epl_get_post_types();
 	 if ( !function_exists('get_editable_roles') ) {
