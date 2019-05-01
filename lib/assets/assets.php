@@ -117,6 +117,14 @@ function epl_wp_enqueue_scripts() {
 		if( file_exists(get_stylesheet_directory().'/easypropertylistings/style.css' ) ) {
 			wp_enqueue_style(	'epl-theme-style', 	get_stylesheet_directory_uri().'/easypropertylistings/style.css',	FALSE,		EPL_PROPERTY_VER );
 		}
+
+		if( is_epl_post_archive() && file_exists(get_stylesheet_directory().'/easypropertylistings/style-archive.css' ) ) {
+			wp_enqueue_style(	'epl-theme-style', 	get_stylesheet_directory_uri().'/easypropertylistings/style-archive.css',	FALSE,		EPL_PROPERTY_VER );
+		}
+
+		if( is_epl_post_single() && file_exists(get_stylesheet_directory().'/easypropertylistings/style-single.css' ) ) {
+			wp_enqueue_style(	'epl-theme-style', 	get_stylesheet_directory_uri().'/easypropertylistings/style-single.css',	FALSE,		EPL_PROPERTY_VER );
+		}
 	}
 
 	$js_vars = array(

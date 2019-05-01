@@ -1341,7 +1341,7 @@ function epl_get_field_sliders() {
 			'prefix'    => '$',
 			'suffix'    => '',
 			'seperator' => ' - '
-		),
+		), /**
 		'epl_field_slider_property_price'	=>	array(
 			'els'       =>	array('property_price_from','property_price_to'),
 			'label'     => __('Price','easy-property-listings'),
@@ -1376,7 +1376,7 @@ function epl_get_field_sliders() {
             'max' 		=> 2000,
             'step' 		=> 10
 		)
-
+		**/
 	);
 
 	return  apply_filters('epl_search_slider_fields', $sliders);
