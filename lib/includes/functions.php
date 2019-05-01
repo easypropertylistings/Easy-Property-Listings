@@ -1269,7 +1269,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Address', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'address',
-			'help'		=>	__('Addres HELP.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('Use these settings to adjust the address labels to suite your location and address format for your listings.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1341,8 +1341,15 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Labels', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'labels',
-			'help'		=>	__('Labels HELP.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('These labels ca be adjusted to how you want them to display on your website to sue the market you work in.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
+
+				array(
+					'name'		=>	'label_new',
+					'label'		=>	__('New/Just Listed Label', 'easy-property-listings' ),
+					'type'		=>	'text',
+					'default'	=>	__('New' , 'easy-property-listings'  )
+				),
 
 				array(
 					'name'		=>	'sticker_new_range',
@@ -1350,13 +1357,6 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'type'		=>	'number',
 					'default'	=>	'7',
 					'help'		=>	__('Listings will have a "NEW" Sticker for the defined number of days.', 'easy-property-listings' )
-				),
-
-				array(
-					'name'		=>	'label_new',
-					'label'		=>	__('New/Just Listed Label', 'easy-property-listings' ),
-					'type'		=>	'text',
-					'default'	=>	__('New' , 'easy-property-listings'  )
 				),
 
 				array(
@@ -1499,7 +1499,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Search Widget: Tab Labels', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'labels',
-			'help'		=>	__('Customise the tab labels of the EPL - Search Widget.', 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('Customise the tab labels of the EPL - Search Widget or [listing_search] shortcode.', 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1551,7 +1551,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Dashboard Listing Columns' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'admin_general',
-			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('Use the following settings to change how the Dashbord > Property or any listing of the types you have enabled display.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1688,12 +1688,11 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			)
 		),
 
-
 		array(
 			'label'		=>	__('Currency' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'currency',
-			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	sprintf( __('Select your default currency. If you can not find the currency you are looking for, you can add additional currencies with a filter, <a href="%s" target="_blank">visit the codex to see how</a>.' , 'easy-property-listings' ) , esc_url( 'https://codex.easypropertylistings.com.au/article/153-eplgetcurrencies' ) ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'currency',
@@ -1727,7 +1726,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Inspection Date & Time Format' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'inspection_date_time',
-			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('These settings aloow you to control how your inspection times dieplay by default.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'inspection_date_format',
@@ -1772,7 +1771,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Contact Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'contact',
-			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('You can allow access to the Contacts system for logged in users.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'min_contact_access',
@@ -1789,7 +1788,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Reports Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'reports',
-			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('You can allow access to the Reports system for logged in users.' , 'easy-property-listings' ) . '<hr/>',
 
 			'fields'	=>	array(
 				array(
@@ -1807,7 +1806,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Advanced Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'advanced',
-			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	sprintf( __('Additonal settings to control how Easy Property Listings works. For even more advanced filters and hooks, <a href="%s" target="_blank">visit the codex</a>.' , 'easy-property-listings' ) ,esc_url( 'https://codex.easypropertylistings.com.au/' ) ). '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'epl_use_core_css',
@@ -1839,7 +1838,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
 					'default'	=>	'on',
-					'help'		=>	__('Check this to enable enhanced structural css styles. This implements inline-block mode for a better grid format.' , 'easy-property-listings' )
+					'help'		=>	__('Check this to enable enhanced structural css styles. This implements inline-block mode for a better grid format on your listings.' , 'easy-property-listings' )
 				),
 
 				array(
