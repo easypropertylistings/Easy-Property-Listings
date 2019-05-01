@@ -2588,8 +2588,13 @@ function epl_pmxi_import_post_saved($id) {
 }
 add_action('pmxi_saved_post', 'epl_pmxi_import_post_saved', 10, 1);
 
+/**
+ * Load functions from child theme folder if present
+ *
+ * @since       3.3
+ */
 function epl_single_and_archive_functions() {
-			 
+
 	if(  is_epl_post_single() && file_exists(get_stylesheet_directory().'/easypropertylistings/functions-single.php' ) ) {
 		include_once(get_stylesheet_directory().'/easypropertylistings/functions-single.php' );
 	}
