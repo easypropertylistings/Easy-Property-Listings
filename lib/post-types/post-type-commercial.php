@@ -22,7 +22,7 @@ function epl_register_custom_post_type_commercial() {
 	$archives	= defined( 'EPL_COMMERCIAL_DISABLE_ARCHIVE' ) && EPL_COMMERCIAL_DISABLE_ARCHIVE ? false : true;
 	$slug		= defined( 'EPL_COMMERCIAL_SLUG' ) ? EPL_COMMERCIAL_SLUG : 'commercial';
 	$rewrite	= defined( 'EPL_COMMERCIAL_DISABLE_REWRITE' ) && EPL_COMMERCIAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
-	$rest		= defined( 'EPL_COMMERCIAL_ENABLE_REST' ) && EPL_COMMERCIAL_ENABLE_REST ? true : false;
+	$rest		= defined( 'EPL_COMMERCIAL_DISABLE_REST' ) && EPL_COMMERCIAL_DISABLE_REST ? false : true;
 
 	$labels = apply_filters( 'epl_commercial_labels', array(
 		'name'			=>	__('Commercial Listings', 'easy-property-listings' ),
