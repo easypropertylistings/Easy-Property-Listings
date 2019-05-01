@@ -533,6 +533,9 @@ h3.epl-welcome-sub-heading {
 .epl-form-field-wrap.epl-grid-1 .form-field select {
     width: 98%;
 }
+.epl-field-type-hidden{
+	display: none;
+}
 
 @media screen and ( max-width: 500px ) {
 	.epl-form-field-wrap.epl-grid-2 {
