@@ -509,7 +509,7 @@
 	/* display: inline-block; */
 }
 .epl-property-single.view-expanded  .page-price-rent {
-	margin-right: 1em;
+	margin-right: 0;
 }
 .epl-property-single .entry-title-sub,
 .epl-property-single .rent-period,
