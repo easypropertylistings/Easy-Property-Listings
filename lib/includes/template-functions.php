@@ -783,6 +783,8 @@ function epl_property_inspection_times(){
 	$label_home_open = '';
 	if(trim($property_inspection_times) != '') {
 		$label_home_open = $property->get_epl_settings('label_home_open');
+
+		$label_home_open = apply_filters('epl_inspection_times_label',$label_home_open);
 	?>
 	<div class="epl-inspection-times">
 		<span class="epl-inspection-times-label">

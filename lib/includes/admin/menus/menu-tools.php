@@ -37,7 +37,8 @@
         <div class="epl-tabs-content">
             <form class="epl-tools-form" method="post" enctype="multipart/form-data">
                 <?php
-                    call_user_func($tabs[$current]['callback']);
+                    if( isset($tabs[$current]) )
+                        call_user_func($tabs[$current]['callback']);
                 ?>
                 
             </form>
