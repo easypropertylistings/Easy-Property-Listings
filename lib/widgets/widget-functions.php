@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 2.0
  */
 function epl_search_widget_fields() {
+
+	$post_type_array = array_merge( array( ''	=>	__('All','easy-property-listings') ) + epl_get_active_post_types() );
 	$fields = apply_filters( 'epl_search_widget_fields',  array(
 
 		array(
@@ -32,7 +34,7 @@ function epl_search_widget_fields() {
 			'default'		=>	array('property'),
 			'type'			=>	'select',
 			'multiple'		=>	true,
-			'options'		=>	epl_get_active_post_types(),
+			'options'		=>	$post_type_array,
 		),
 		array(
 			'key'			=>	'style',
