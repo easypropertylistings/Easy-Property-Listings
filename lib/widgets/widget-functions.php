@@ -172,7 +172,7 @@ function epl_search_widget_fields() {
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
-		
+
 		array(
 			'key'			=>	'search_other',
 			'label'			=>	__('Other Search Options','easy-property-listings'),
@@ -401,7 +401,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_tax_business_listing',
 			'label'			=>	__('Business Category','easy-property-listings'),
 			'type'			=>	'select',
-			'option_filter'	=>	'tax_business_listing',
+			'option_filter'		=>	'tax_business_listing',
 			'options'		=>	epl_get_available_terms('tax_business_listing','business',$property_status),
 			'query'			=>	array('query'	=>	'tax'),
 			'class'			=>	'epl-search-row-full',
@@ -746,7 +746,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'wrap_end'		=>	true,
 			'order'			=>	290
 		),
-		
+
 	), $post_type, $property_status );
 
 	$order = array();
