@@ -23,7 +23,7 @@ function epl_register_custom_post_type_land() {
 	$archives	= defined( 'EPL_LAND_DISABLE_ARCHIVE' ) && EPL_LAND_DISABLE_ARCHIVE ? false : true;
 	$slug		= defined( 'EPL_LAND_SLUG' ) ? EPL_LAND_SLUG : 'land';
 	$rewrite	= defined( 'EPL_LAND_DISABLE_REWRITE' ) && EPL_LAND_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
-	$rest		= defined( 'EPL_LAND_ENABLE_REST' ) && EPL_LAND_ENABLE_REST ? true : false;
+	$rest		= defined( 'EPL_LAND_DISABLE_REST' ) && EPL_LAND_DISABLE_REST ? false : true;
 
 	$labels = apply_filters( 'epl_land_labels', array(
 		'name'			=>	__('Land', 'easy-property-listings' ),

@@ -23,7 +23,7 @@ function epl_register_custom_post_type_property() {
 	$archives	= defined( 'EPL_PROPERTY_DISABLE_ARCHIVE' ) && EPL_PROPERTY_DISABLE_ARCHIVE ? false : true;
 	$slug		= defined( 'EPL_PROPERTY_SLUG' ) ? EPL_PROPERTY_SLUG : 'property';
 	$rewrite	= defined( 'EPL_PROPERTY_DISABLE_REWRITE' ) && EPL_PROPERTY_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
-	$rest		= defined( 'EPL_PROPERTY_ENABLE_REST' ) && EPL_PROPERTY_ENABLE_REST ? true : false;
+	$rest		= defined( 'EPL_PROPERTY_DISABLE_REST' ) && EPL_PROPERTY_DISABLE_REST ? false : true;
 
 	$labels = apply_filters( 'epl_property_labels', array(
 		'name'			=>	__('Properties', 'easy-property-listings' ),

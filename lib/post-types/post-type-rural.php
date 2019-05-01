@@ -23,7 +23,7 @@ function epl_register_custom_post_type_rural() {
 	$archives	= defined( 'EPL_RURAL_DISABLE_ARCHIVE' ) && EPL_RURAL_DISABLE_ARCHIVE ? false : true;
 	$slug		= defined( 'EPL_RURAL_SLUG' ) ? EPL_RURAL_SLUG : 'rural';
 	$rewrite	= defined( 'EPL_RURAL_DISABLE_REWRITE' ) && EPL_RURAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
-	$rest		= defined( 'EPL_RURAL_ENABLE_REST' ) && EPL_RURAL_ENABLE_REST ? true : false;
+	$rest		= defined( 'EPL_RURAL_DISABLE_REST' ) && EPL_RURAL_DISABLE_REST ? false : true;
 
 	$labels = apply_filters( 'epl_rural_labels', array(
 		'name'			=>	__('Rural', 'easy-property-listings' ),

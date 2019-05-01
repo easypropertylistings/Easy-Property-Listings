@@ -153,7 +153,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'		=>	'property_images_mod_date',
-							'label'		=>	'',
+							'label'		=>	__('Image Modified Date', 'easy-property-listings' ),
 							'type'		=>	'hidden',
 							'maxlength'	=>	'60'
 						),
