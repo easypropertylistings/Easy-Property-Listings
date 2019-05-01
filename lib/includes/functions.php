@@ -1221,7 +1221,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 		}
 	}
 
-	$get_google_maps_api_key_uri = '<a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">' . __( 'Google Maps Api Key' , 'easy-property-listings') . '</a>';
+	$get_google_maps_api_key_uri = '<a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">' . __( 'Google Maps API Key' , 'easy-property-listings') . '</a>';
 
 
 	$epl_currency_positions = array(
@@ -1234,11 +1234,11 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 		 require_once( ABSPATH . '/wp-admin/includes/user.php' );
 	 }
 	$roles = array(
-		'level_10'  =>  __('Administrator'),
-		'level_7'  =>  __('Editor'),
-		'level_2'  =>  __('Author'),
-		'level_1'  =>  __('Contributor'),
-		'level_0'  =>  __('Subscriber')
+		'level_10'	=>  __('Administrator', 'easy-property-listings' ),
+		'level_7'	=>  __('Editor', 'easy-property-listings' ),
+		'level_2'	=>  __('Author', 'easy-property-listings' ),
+		'level_1'	=>  __('Contributor', 'easy-property-listings' ),
+		'level_0'	=>  __('Subscriber', 'easy-property-listings' )
 	);
 	$fields = array(
 		array(
@@ -1269,6 +1269,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Address', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'address',
+			'help'		=>	__('Addres HELP.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1340,6 +1341,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Labels', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'labels',
+			'help'		=>	__('Labels HELP.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1416,7 +1418,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Listing Single View', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Configure the default options when viewing a single listing.', 'easy-property-listings' ),
+			'help'		=>	__('Configure the default options when viewing a single listing.', 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'display_single_gallery',
@@ -1459,7 +1461,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Listing Archive View', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'easy-property-listings' ),
+			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'display_excerpt_length',
@@ -1497,7 +1499,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Search Widget: Tab Labels', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'labels',
-			'help'		=>	__('Customise the tab labels of the EPL - Search Widget.', 'easy-property-listings' ),
+			'help'		=>	__('Customise the tab labels of the EPL - Search Widget.', 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1549,6 +1551,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Dashboard Listing Columns' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'admin_general',
+			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1690,6 +1693,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Currency' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'currency',
+			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'currency',
@@ -1723,6 +1727,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Inspection Date & Time Format' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'inspection_date_time',
+			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'inspection_date_format',
@@ -1767,6 +1772,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Contact Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'contact',
+			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'min_contact_access',
@@ -1783,6 +1789,8 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Reports Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'reports',
+			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
+
 			'fields'	=>	array(
 				array(
 					'name'	=>	'min_reports_access',
@@ -1799,6 +1807,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Advanced Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'advanced',
+			'help'		=>	__('Dashboard HELP.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'epl_use_core_css',
