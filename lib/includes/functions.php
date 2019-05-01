@@ -1341,7 +1341,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Labels', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'labels',
-			'help'		=>	__('These labels ca be adjusted to how you want them to display on your website to sue the market you work in.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('Customise the labels that are used to show the status and information on the archive and individual listing pages.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1395,6 +1395,13 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				),
 
 				array(
+					'name'		=>	'label_bond',
+					'label'		=>	__('Rental Bond/Deposit Label', 'easy-property-listings' ),
+					'type'		=>	'text',
+					'default'	=>	__('Bond', 'easy-property-listings' )
+				),
+
+				array(
 					'name'		=>	'display_bond',
 					'label'		=>	__('Rental Bond/Deposit Display', 'easy-property-listings' ),
 					'type'		=>	'radio',
@@ -1403,14 +1410,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 							0	=>	__('Disable', 'easy-property-listings' )
 					),
 					'help'		=>	__('Display the Bond/Deposit on rental listings.', 'easy-property-listings' )
-				),
-
-				array(
-					'name'		=>	'label_bond',
-					'label'		=>	__('Rental Bond/Deposit Label', 'easy-property-listings' ),
-					'type'		=>	'text',
-					'default'	=>	__('Bond', 'easy-property-listings' )
-				),
+				)
 			)
 		),
 
@@ -1726,7 +1726,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Inspection Date & Time Format' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'inspection_date_time',
-			'help'		=>	__('These settings aloow you to control how your inspection times dieplay by default.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('These settings allow you to control how your inspection times display by default.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'inspection_date_format',
