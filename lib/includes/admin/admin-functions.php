@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Admin/Functions
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -611,6 +611,11 @@ function epl_get_avatar_filter($avatar, $id_or_email,$args) {
 }
 add_filter('pre_get_avatar','epl_get_avatar_filter',10,5);
 
+/**
+ * Update a featured listing when pressing the star icon
+ *
+ * @since       3.3
+ */
 function epl_update_featured_listing() {
 
 	$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
