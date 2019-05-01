@@ -23,7 +23,7 @@ function epl_register_custom_post_type_rental() {
 	$archives	= defined( 'EPL_RENTAL_DISABLE_ARCHIVE' ) && EPL_RENTAL_DISABLE_ARCHIVE ? false : true;
 	$slug		= defined( 'EPL_RENTAL_SLUG' ) ? EPL_RENTAL_SLUG : 'rental';
 	$rewrite	= defined( 'EPL_RENTAL_DISABLE_REWRITE' ) && EPL_RENTAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
-	$rest		= defined( 'EPL_RENTAL_ENABLE_REST' ) && EPL_RENTAL_ENABLE_REST ? true : false;
+	$rest		= defined( 'EPL_RENTAL_DISABLE_REST' ) && EPL_RENTAL_DISABLE_REST ? false : true;
 
 	$labels = apply_filters( 'epl_rental_labels', array(
 		'name'			=>	__('Rentals', 'easy-property-listings' ),
