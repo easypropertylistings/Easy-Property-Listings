@@ -201,6 +201,17 @@ function epl_number_suffix_callback($v,$suffix=' +') {
 	return $v.''.$suffix;
 }
 
+function epl_get_global_price_array() {
+
+	$range 			= array_merge(range(0,1000,50), range(1100,2000,100), range(2500,5000,500),range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
+
+	$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
+
+	$price_array 	= apply_filters('epl_listing_search_price_global',$price_array);
+
+	return $price_array;
+}
+
 function epl_get_price_array($post_type='property',$transaction='default') {
 
 
@@ -251,6 +262,7 @@ function epl_get_price_meta_key($post_type='property',$transaction='default') {
 function epl_search_widget_fields_frontend($post_type='',$property_status='',$transaction_type='default') {
 
 	$price_array = epl_get_price_array($post_type,$transaction_type);
+	$global_price_array = epl_get_global_price_array();
 
 	$price_meta_key = epl_get_price_meta_key($post_type,$transaction_type);
 
@@ -416,7 +428,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	__('Search Price From','easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'global_price_from',
-			'options'		=>	$price_array,
+			'options'		=>	$global_price_array,
 			'type'			=>	'select',
 			'query'			=>	array(
 								'query'		=>	'meta',
@@ -433,7 +445,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	__('Search Price To','easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'global_price_to',
-			'options'		=>	$price_array,
+			'options'		=>	$global_price_array,
 			'type'			=>	'select',
 			'query'			=>	array(
 								'query'		=>	'meta',

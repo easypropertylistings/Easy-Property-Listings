@@ -2016,6 +2016,9 @@ h3.epl-contact-activity-title {
 	.epl-contact-activities-table-heads {
 		display: none !important;
 	}
+	.wp-list-table .property_featured.column-property_featured::before {
+	    content: ""!important;
+	}
 
 }
 @media screen and (max-width: 500px)  {
