@@ -444,10 +444,27 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 		),
 		array(
 			'key'			=>	'search_price_global',
-			'meta_key'		=>	'property_price_global',
-			'label'			=>	__('Price Search','easy-property-listings'),
+			'meta_key'		=>	'property_price_global_from',
+			'label'			=>	__('Search Price From','easy-property-listings'),
 			'type'			=>	'select',
-			'option_filter'		=>	'price_search',
+			'option_filter'		=>	'global_price_from',
+			'options'		=>	$price_array,
+			'type'			=>	'select',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'key'		=>	'property_price_global',
+								'type'		=>	'numeric',
+								'compare'	=>	'>='
+							),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	140
+		),
+		array(
+			'key'			=>	'search_price_global',
+			'meta_key'		=>	'property_price_global_to',
+			'label'			=>	__('Search Price To','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'global_price_to',
 			'options'		=>	$price_array,
 			'type'			=>	'select',
 			'query'			=>	array(
@@ -456,8 +473,8 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 								'type'		=>	'numeric',
 								'compare'	=>	'<='
 							),
-			'class'			=>	'epl-search-row-full',
-			'order'			=>	140
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	150
 		),
 		array(
 			'key'			=>	'search_bed',
@@ -1336,7 +1353,7 @@ function epl_get_field_sliders() {
 
 	$sliders = array(
 		'epl_field_slider_property_price_global'	=>	array(
-			'els'       =>	array('property_price_global'),
+			'els'       =>	array('property_price_global_from','property_price_global_to'),
 			'label'     => __('Price Search','easy-property-listings'),
 			'prefix'    => '$',
 			'suffix'    => '',
