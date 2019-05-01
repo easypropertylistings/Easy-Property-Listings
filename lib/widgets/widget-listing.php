@@ -103,8 +103,8 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		if ( 'on' === $instance['open_house'] ) {
 			$query_args['meta_query'][] = array(
 				'key' 		=> 'property_inspection_times',
-				'value' 	=> '',
-				'compare' 	=> '!=',
+				'value' 	=> '^\s*$',
+				'compare' 	=> 'NOT REGEXP',
 			);
 		}
 

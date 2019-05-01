@@ -620,6 +620,9 @@ button.ui-button::-moz-focus-inner {
 	height:22px;
 	cursor: default;
 	transition:none;
+	border-radius: 100%;
+	border: 1px solid #00ACEC;
+	background: #fff !important;
 }
 .ui-slider .ui-slider-range {
 	position: absolute;
@@ -637,11 +640,13 @@ button.ui-button::-moz-focus-inner {
 }
 
 .ui-slider-horizontal {
-	height:12px;
-	position:relative; top:12px;
+    height: 5px;
+    position: relative;
+    top: 12px;
+    margin: 10px 0;
 }
 .ui-slider-horizontal .ui-slider-handle {
-	top:-6px;
+	top:-9px;
 	margin-left: -.6em;
 }
 .ui-slider-horizontal .ui-slider-range {
@@ -800,7 +805,7 @@ body .ui-tooltip {
 }
 .ui-widget-content {
 	/*border: 1px solid #aaaaaa;*/
-	background:#3a3a3a;
+	background:#666;
 	color: #222222;
 }
 .ui-widget-content a {
@@ -1179,4 +1184,36 @@ body .ui-tooltip {
 	opacity: .3;
 	filter: Alpha(Opacity=30);
 	border-radius: 8px;
+}
+
+/** field sliders */
+.epl-search-form.epl-lf-search-form-container{
+	display:block!important;
+	width:auto!important;
+}
+.epl-lf-search-forms-wrapper {
+    max-width: none !important;
+}
+
+.epl-lf-search-forms-wrapper .epl-search-submit-row{
+	float:none;
+	 display:none;
+}
+.epl-lf-search-form > div:not(.epl-lf-range-slider) , .epl-lf-search-form > div:not(.epl-search-row.epl-search-land-area),  .epl-lf-search-form > div:not(.epl-search-row.epl-search-building-area) {
+    width: 30.3% !important;
+    min-width:200px;
+   
+}
+.blockDiv {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #FFF;
+  width: 0px;
+  height: 0px;
+  z-index: 10;
+  
+}
+.epl-lf-range-slider {
+    padding: 0 12px;
 }
