@@ -31,8 +31,11 @@ get_header();
 
 			<?php
 			// Start the Loop.
-			do_action( 'epl_property_loop_start' );
+			do_action( 'epl_property_loop_start' );?>
 
+			<div class="epl-outer-grid-wrapper">
+
+			<?php
 			while ( have_posts() ) :
 				the_post();
 
@@ -44,17 +47,22 @@ get_header();
 				//get_template_part( 'template-parts/content/content', 'excerpt' );
 
 				?>
-				<div class="epl-outer-grid-wrapper">
+
 				<?php
 
 				do_action('epl_property_blog');
 
 				?>
-				</div>
+
 				<?php
 
 				// End the loop.
-			endwhile;
+			endwhile; ?>
+
+			</div>
+
+
+			<?php
 
 			do_action( 'epl_property_loop_end' );
 

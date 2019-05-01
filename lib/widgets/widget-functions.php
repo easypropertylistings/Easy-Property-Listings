@@ -125,8 +125,8 @@ function epl_search_widget_fields() {
 			'type'			=>	'checkbox',
 		),
 		array(
-			'key'			=>	'search_price_search',
-			'label'			=>	__('Price Search','easy-property-listings'),
+			'key'			=>	'search_price_global',
+			'label'			=>	__('Global Price Search','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
@@ -443,8 +443,8 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'order'			=>	150
 		),
 		array(
-			'key'			=>	'search_price_search',
-			'meta_key'		=>	'property_price_search',
+			'key'			=>	'search_price_global',
+			'meta_key'		=>	'property_price_global',
 			'label'			=>	__('Price Search','easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'price_search',
@@ -452,7 +452,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'type'			=>	'select',
 			'query'			=>	array(
 								'query'		=>	'meta',
-								'key'		=>	'property_price_search',
+								'key'		=>	'property_price_global',
 								'type'		=>	'numeric',
 								'compare'	=>	'<='
 							),
@@ -1330,4 +1330,54 @@ function epl_get_owners() {
 	}
 	return $c_array;
 
+}
+
+function epl_get_field_sliders() {
+
+	$sliders = array(
+		'epl_field_slider_property_price_global'	=>	array(
+			'els'       =>	array('property_price_global'),
+			'label'     => __('Price Search','easy-property-listings'),
+			'prefix'    => '$',
+			'suffix'    => '',
+			'seperator' => ' - '
+		),
+		'epl_field_slider_property_price'	=>	array(
+			'els'       =>	array('property_price_from','property_price_to'),
+			'label'     => __('Price','easy-property-listings'),
+			'prefix'    => '$',
+			'suffix'    => '',
+			'seperator' => ' - '
+		),
+		'epl_field_slider_property_bedrooms'	=>	array(
+			'els'       =>	array('property_bedrooms_min','property_bedrooms_max'),
+			'label'     => __('Bedrooms','easy-property-listings'),
+			'prefix'    => '',
+			'suffix'    => '',
+			'seperator' => ' - '
+		),
+		'epl_field_slider_property_land_area'	=>	array(
+			'els'       =>	array('property_land_area_min','property_land_area_max'),
+			'label'     => __('Land Area','easy-property-listings'),
+			'prefix'    => '',
+			'suffix'    => 'm<sup>2</sup>',
+			'seperator' => ' - ',
+			'min' 		=> 0,
+            'max' 		=> 2000,
+            'step' 		=> 10
+		),
+		'epl_field_slider_property_building_area'	=>	array(
+			'els'       =>	array('property_building_area_min','property_building_area_max'),
+			'label'     => __('Building Area','easy-property-listings'),
+			'prefix'    => '',
+			'suffix'    => 'sq',
+			'seperator' => ' - ',
+			'min' 		=> 0,
+            'max' 		=> 2000,
+            'step' 		=> 10
+		)
+
+	);
+
+	return  apply_filters('epl_search_slider_fields', $sliders);
 }

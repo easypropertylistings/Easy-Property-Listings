@@ -31,29 +31,29 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		}
 
 		$defaults = array(
-			'title'		=> '', // widget title
-			'types'		=> $property_types, // listing types to show in widget
-			'featured'	=> 0, // show only featured listings ?
+			'title'			=> '', // widget title
+			'types'			=> $property_types, // listing types to show in widget
+			'featured'		=> 0, // show only featured listings ?
 			'status'		=> array( 'current', 'sold', 'leased' ), // property status to show
-			'view'		=> 'default', // template to render results : templates/content/widget/listing, override in theme
-			'display'	=> 'image', // show featured image ?
-			'image'		=> 'thumbnail', // image size
-			'archive'	=> 0, // if this is selected, widget will dynamially show listings of currently displayed listing post type
-			'order_rand'	=> 0, // randomly order ?
-			'open_house'	=> 0, // show listings open for inspection ?
-			'd_title'	=> 0, // show title of listing ?
+			'view'			=> 'default', // template to render results : templates/content/widget/listing, override in theme
+			'display'		=> 'image', // show featured image ?
+			'image'			=> 'thumbnail', // image size
+			'archive'		=> 0, // if this is selected, widget will dynamially show listings of currently displayed listing post type
+			'order_rand'		=> 0, // randomly order ?
+			'open_house'		=> 0, // show listings open for inspection ?
+			'd_title'		=> 0, // show title of listing ?
 
-			'more_text'	=> 'Read More', // read more text
-			'd_excerpt'	=> 'off', // show excerpt ?
-			'd_suburb'	=> 'on', // show suburb ?
-			'd_street'	=> 'on', // show street address ?
-			'd_price'	=> 'on', // show listing price ?
+			'more_text'		=> __('Read More', 'easy-property-listings' ), // read more text
+			'd_excerpt'		=> 'off', // show excerpt ?
+			'd_suburb'		=> 'on', // show suburb ?
+			'd_street'		=> 'on', // show street address ?
+			'd_price'		=> 'on', // show listing price ?
 			'd_more'		=> 'on', // show read more button ?
-			'd_inspection_time' => 'off', // show inspection dates
-			'd_ical_link'	=> 'on', // link inspection dates to ical
+			'd_inspection_time' 	=> 'off', // show inspection dates
+			'd_ical_link'		=> 'on', // link inspection dates to ical
 
-			'd_icons'	=> 'none', // show icons ? none | bed & bath | all
-			'p_number'	=> 1, // number of listings to show
+			'd_icons'		=> 'none', // show icons ? none | bed & bath | all
+			'p_number'		=> 1, // number of listings to show
 			'p_skip'		=> 0, // number of listings to skip
 
 		);
@@ -167,82 +167,82 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				$instance['status'] = $statuses;
 			}
 		}
-		$instance['featured']	= strip_tags( $new_instance['featured'] );
-		$instance['view']	= strip_tags( $new_instance['view'] );
-		$instance['display']	= strip_tags( $new_instance['display'] );
-		$instance['image']	= strip_tags( $new_instance['image'] );
-		$instance['archive']	= strip_tags( $new_instance['archive'] );
-		$instance['open_house']	= strip_tags( $new_instance['open_house'] );
-		$instance['d_title']	= strip_tags( $new_instance['d_title'] );
+		$instance['featured']		= strip_tags( $new_instance['featured'] );
+		$instance['view']		= strip_tags( $new_instance['view'] );
+		$instance['display']		= strip_tags( $new_instance['display'] );
+		$instance['image']		= strip_tags( $new_instance['image'] );
+		$instance['archive']		= strip_tags( $new_instance['archive'] );
+		$instance['open_house']		= strip_tags( $new_instance['open_house'] );
+		$instance['d_title']		= strip_tags( $new_instance['d_title'] );
 
-		$instance['more_text']	= strip_tags( $new_instance['more_text'] );
-		$instance['d_excerpt']	= strip_tags( $new_instance['d_excerpt'] );
-		$instance['d_suburb']	= strip_tags( $new_instance['d_suburb'] );
-		$instance['d_street']	= strip_tags( $new_instance['d_street'] );
-		$instance['d_price']	= strip_tags( $new_instance['d_price'] );
-		$instance['d_more']	= strip_tags( $new_instance['d_more'] );
-		$instance['d_inspection_time']     = strip_tags( $new_instance['d_inspection_time'] );
+		$instance['more_text']		= strip_tags( $new_instance['more_text'] );
+		$instance['d_excerpt']		= strip_tags( $new_instance['d_excerpt'] );
+		$instance['d_suburb']		= strip_tags( $new_instance['d_suburb'] );
+		$instance['d_street']		= strip_tags( $new_instance['d_street'] );
+		$instance['d_price']		= strip_tags( $new_instance['d_price'] );
+		$instance['d_more']		= strip_tags( $new_instance['d_more'] );
+		$instance['d_inspection_time']	= strip_tags( $new_instance['d_inspection_time'] );
 		$instance['d_ical_link']	= strip_tags( $new_instance['d_ical_link'] );
 
-		$instance['d_icons']	= strip_tags( $new_instance['d_icons'] );
-		$instance['p_number']	= strip_tags( $new_instance['p_number'] );
-		$instance['p_skip']	= strip_tags( $new_instance['p_skip'] );
-		$instance['order_rand']	= strip_tags( $new_instance['order_rand'] );
+		$instance['d_icons']		= strip_tags( $new_instance['d_icons'] );
+		$instance['p_number']		= strip_tags( $new_instance['p_number'] );
+		$instance['p_skip']		= strip_tags( $new_instance['p_skip'] );
+		$instance['order_rand']		= strip_tags( $new_instance['order_rand'] );
 		return $instance;
 	}
 
 	function form( $instance ) {
 
 		$defaults = array(
-			'title'		=> '',
-			'types'		=> 'property',
-			'featured'	=> 0,
+			'title'			=> '',
+			'types'			=> 'property',
+			'featured'		=> 0,
 			'status'		=> 'any',
-			'view'		=> 'default',
-			'display'	=> 'image',
-			'image'		=> 'thumbnail',
-			'archive'	=> 0,
-			'order_rand'	=> 0,
-			'open_house'	=> 0,
-			'd_title'	=> 0,
+			'view'			=> 'default',
+			'display'		=> 'image',
+			'image'			=> 'thumbnail',
+			'archive'		=> 0,
+			'order_rand'		=> 0,
+			'open_house'		=> 0,
+			'd_title'		=> 0,
 
-			'more_text'	=> __( 'Read More', 'easy-property-listings' ),
-			'd_excerpt'	=> 'off',
-			'd_suburb'	=> 'on',
-			'd_street'	=> 'on',
-			'd_price'	=> 'on',
+			'more_text'		=> __( 'Read More', 'easy-property-listings' ),
+			'd_excerpt'		=> 'off',
+			'd_suburb'		=> 'on',
+			'd_street'		=> 'on',
+			'd_price'		=> 'on',
 			'd_more'		=> 'on',
-			'd_inspection_time' => 0,
-			'd_ical_link'	=> 1,
+			'd_inspection_time' 	=> 0,
+			'd_ical_link'		=> 1,
 
-			'd_icons'	=> 'none',
-			'p_number'	=> 1,
+			'd_icons'		=> 'none',
+			'p_number'		=> 1,
 			'p_skip'		=> 0,
 		);
-		$instance	= wp_parse_args( (array) $instance, $defaults );
+		$instance		= wp_parse_args( (array) $instance, $defaults );
 
-		$title 		= esc_attr( $instance['title'] );
+		$title 			= esc_attr( $instance['title'] );
 
-		$featured	= esc_attr( $instance['featured'] );
-		$display 	= esc_attr( $instance['display'] );
-		$image	 	= esc_attr( $instance['image'] );
+		$featured		= esc_attr( $instance['featured'] );
+		$display 		= esc_attr( $instance['display'] );
+		$image	 		= esc_attr( $instance['image'] );
 		$archive		= esc_attr( $instance['archive'] );
-		$d_title 	= esc_attr( $instance['d_title'] );
+		$d_title 		= esc_attr( $instance['d_title'] );
 
-		$more_text 	= esc_attr( $instance['more_text'] );
-		$d_excerpt 	= esc_attr( $instance['d_excerpt'] );
-		$d_suburb 	= esc_attr( $instance['d_suburb'] );
-		$d_street 	= esc_attr( $instance['d_street'] );
-		$d_price 	= esc_attr( $instance['d_price'] );
+		$more_text 		= esc_attr( $instance['more_text'] );
+		$d_excerpt 		= esc_attr( $instance['d_excerpt'] );
+		$d_suburb 		= esc_attr( $instance['d_suburb'] );
+		$d_street 		= esc_attr( $instance['d_street'] );
+		$d_price 		= esc_attr( $instance['d_price'] );
 		$d_more 		= esc_attr( $instance['d_more'] );
 
-		$d_icons 	= esc_attr( $instance['d_icons'] );
-		$p_number	= esc_attr( $instance['p_number'] );
-		$p_skip		= esc_attr( $instance['p_skip'] );
-		$order_rand	= esc_attr( $instance['order_rand'] );
-		$open_house	= esc_attr( $instance['open_house'] );
+		$d_icons 		= esc_attr( $instance['d_icons'] );
+		$p_number		= esc_attr( $instance['p_number'] );
+		$p_skip			= esc_attr( $instance['p_skip'] );
+		$order_rand		= esc_attr( $instance['order_rand'] );
+		$open_house		= esc_attr( $instance['open_house'] );
 		$d_inspection_time	= esc_attr( $instance['d_inspection_time'] );
-		$d_ical_link	= esc_attr( $instance['d_ical_link'] );
+		$d_ical_link		= esc_attr( $instance['d_ical_link'] );
 	?>
 
 		<p>
@@ -320,12 +320,12 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('featured'); ?>" name="<?php echo $this->get_field_name('featured'); ?>" <?php if ($instance['featured']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('featured'); ?>"><?php _e('Only Show Featured Properties', 'easy-property-listings'); ?></label>
+			<label for="<?php echo $this->get_field_id('featured'); ?>"><?php _e('Featured Properties', 'easy-property-listings'); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('open_house'); ?>" name="<?php echo $this->get_field_name('open_house'); ?>" <?php if ($instance['open_house']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('open_house'); ?>"><?php _e('Only Show Open House Listings', 'easy-property-listings'); ?></label>
+			<label for="<?php echo $this->get_field_id('open_house'); ?>"><?php echo epl_labels('label_home_open') . ' ' . __('Listings', 'easy-property-listings'); ?></label>
 		</p>
 
 		<p>
@@ -443,7 +443,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id('d_ical_link'); ?>" name="<?php echo $this->get_field_name('d_ical_link'); ?>" <?php if ($instance['d_ical_link']) echo 'checked="checked"' ?> />
-			<label for="<?php echo $this->get_field_id('d_ical_link'); ?>"><?php _e('Inspection Time Ical Link', 'easy-property-listings'); ?></label>
+			<label for="<?php echo $this->get_field_id('d_ical_link'); ?>"><?php _e('Inspection Time iCal Link', 'easy-property-listings'); ?></label>
 		</p>
 
 		<p>

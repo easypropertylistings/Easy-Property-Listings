@@ -22,7 +22,7 @@ function epl_register_custom_post_type_business() {
 
 	$archives	= defined( 'EPL_BUSINESS_DISABLE_ARCHIVE' ) && EPL_BUSINESS_DISABLE_ARCHIVE ? false : true;
 	$slug		= defined( 'EPL_BUSINESS_SLUG' ) ? EPL_BUSINESS_SLUG : 'business';
-	$rewrite		= defined( 'EPL_BUSINESS_DISABLE_REWRITE' ) && EPL_BUSINESS_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$rewrite	= defined( 'EPL_BUSINESS_DISABLE_REWRITE' ) && EPL_BUSINESS_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
 	$rest		= defined( 'EPL_BUSINESS_ENABLE_REST' ) && EPL_BUSINESS_ENABLE_REST ? true : false;
 
 	$labels = apply_filters( 'epl_business_labels', array(
@@ -43,8 +43,8 @@ function epl_register_custom_post_type_business() {
 	) );
 
 	$business_args = array(
-		'labels'			=>	$labels,
-		'public'			=>	true,
+		'labels'		=>	$labels,
+		'public'		=>	true,
 		'publicly_queryable'	=>	true,
 		'show_ui'		=>	true,
 		'show_in_menu'		=>	true,
@@ -82,8 +82,9 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb'			=> '<input type="checkbox" />',
-			'property_thumb'		=> __('Image', 'easy-property-listings' ),
-			'property_price'		=> __('Price', 'easy-property-listings' ),
+			'property_featured' 	=> '<span class="dashicons dashicons-star-half"></span>' . '<span class="epl-manage-featured">' . __('Featured', 'easy-property-listings' ) . '</span>',
+			'property_thumb'	=> __('Image', 'easy-property-listings' ),
+			'property_price'	=> __('Price', 'easy-property-listings' ),
 			'title'			=> __('Address', 'easy-property-listings' ),
 			'listing'		=> __('Listing Details', 'easy-property-listings' ),
 			'listing_id'		=> __('Unique ID' , 'easy-property-listings' ),
@@ -124,6 +125,12 @@ if ( is_admin() ) {
 		switch( $column ) {
 
 			/* If displaying the 'Featured' image column. */
+			case 'property_featured' :
+				do_action('epl_manage_listing_column_featured');
+
+				break;
+
+			/* If displaying the 'Featured' image column. */
 			case 'property_thumb' :
 				do_action('epl_manage_listing_column_property_thumb_before');
 				do_action('epl_manage_listing_column_property_thumb');
@@ -133,8 +140,8 @@ if ( is_admin() ) {
 
 			case 'listing' :
 				/* Get the post meta. */
-				$property_address_suburb	= get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading			= get_post_meta( $post_id, 'property_heading', true );
+				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
+				$heading		= get_post_meta( $post_id, 'property_heading', true );
 
 				$category		= get_post_meta( $post_id, 'property_commercial_category', true );
 				$homeopen		= get_post_meta( $post_id, 'property_inspection_times', true );
@@ -181,6 +188,8 @@ if ( is_admin() ) {
 						$homeopen_list .= '</ul>';
 					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>'.$epl_settings['label_home_open'].'</strong></span>' , $homeopen_list , '</div>';
 				}
+
+				do_action( 'epl_manage_business_listing_column_listing_details' );
 
 				break;
 
@@ -257,6 +266,7 @@ if ( is_admin() ) {
 
 					echo '<br>'.$property->get_property_auction(true);
 				}
+
 				break;
 
 			/* If displaying the 'Commercial Listing Type' column. */
@@ -285,6 +295,7 @@ if ( is_admin() ) {
 			default :
 				break;
 		}
+
 	}
 	add_action( 'manage_business_posts_custom_column', 'epl_manage_business_columns_value', 10, 2 );
 

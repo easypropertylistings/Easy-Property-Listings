@@ -653,17 +653,15 @@ add_action('epl_property_price_content','epl_property_price');
  *
  * @since 1.0
  * @revised 3.3
- * @hooked property_price
- * @hooked property_price_content
  */
 function epl_get_property_icons( $args = array() , $returntype = 'i') {
 
 	global $property;
 
-	$defaults = array('bed','bath','parking','ac','pool');
+	$defaults 	= array('bed','bath','parking','ac','pool');
 
 	$icons 		= apply_filters('epl_get_property_icons', $defaults);
-	$returntype = apply_filters('epl_icons_return_type', $returntype);
+	$returntype	= apply_filters('epl_icons_return_type', $returntype);
 
 	ob_start();
 
@@ -716,7 +714,7 @@ function epl_property_icons($returntype = 'i') {
 	$returntype = $returntype == '' ? 'i' : $returntype;
 	echo epl_get_property_icons(array(),$returntype);
 }
-add_action('epl_property_icons','epl_property_icons');
+add_action( 'epl_property_icons' , 'epl_property_icons' , 10 , 1 );
 
 /**
  * Property bed/bath icons

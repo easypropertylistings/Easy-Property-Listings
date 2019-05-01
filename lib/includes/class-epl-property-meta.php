@@ -1884,6 +1884,51 @@ class EPL_Property_Meta {
 	}
 
 	/**
+	 * Get Featured
+	 *
+	 * @since 3.3
+	 * @param string $returntype Options i = span, d = string, l = list item, t = text
+	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 */
+	public function get_property_featured( $returntype = 'i' ) {
+
+		$value 		= $this->get_property_meta('property_featured');
+		$returntype	= apply_filters( 'epl_get_property_featured_return_type' , $returntype);
+
+		if( isset($value) && ( $value == 1 || $value == 'yes') ) {
+
+			$label = apply_filters('epl_get_property_featured_label',__('Featured', 'easy-property-listings' ) );
+
+			switch( $returntype ) {
+
+				case 'i' :
+					$return 	= '<span title="'.$label.'" class="icon featured"></span>';
+					break;
+
+				case 'v' :
+					$return = $value;
+					break;
+
+				case 't':
+					$return = '<div class="epl-text-icon-container epl-text-icon-container-featured">
+							<span class="epl-text-icon-label featured">' . $label . '</span>
+						</div>';
+					break;
+
+				case 'd' :
+					$return = $label.' '.$value.' ';
+					break;
+
+				case 'l' :
+					$return = '<li class="featured">'.$label.'</li>';
+					break;
+
+			}
+			return apply_filters('epl_get_property_property_featured',$return,$returntype,$value,$label);
+		}
+	}
+
+	/**
 	 * Get Additional Features by meta key
 	 *
 	 * @since 2.0

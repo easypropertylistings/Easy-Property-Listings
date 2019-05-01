@@ -610,3 +610,25 @@ function epl_get_avatar_filter($avatar, $id_or_email,$args) {
 		</div>';
 }
 add_filter('pre_get_avatar','epl_get_avatar_filter',10,5);
+
+function epl_update_featured_listing() {
+
+	$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+
+	if($id <= 0)
+		return;
+
+	$featured = get_post_meta($id,'property_featured',true);
+	$is_featured = 'no';
+
+	if( $featured == 'yes' ) {
+		update_post_meta($id,'property_featured','');
+		$is_featured = 'no';
+	} else {
+		update_post_meta($id,'property_featured','yes');
+		$is_featured = 'yes';
+	}
+
+	wp_die( json_encode( array( 'status'	=>	'successful', 'featured'	=>	$is_featured ) ) );
+}
+add_action('wp_ajax_epl_update_featured_listing','epl_update_featured_listing');

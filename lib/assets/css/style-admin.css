@@ -575,6 +575,10 @@ h3.epl-welcome-sub-heading {
 	background:url(../images/refresh.png) no-repeat;
 	cursor:pointer;
 }
+.column-property_featured span{
+	cursor: pointer;
+}
+
 @media screen and ( max-width:850px ) {
 	#side-sortables .epl_property_address_coordinates input[type="text"]{
 		width: 90%;
@@ -712,6 +716,28 @@ h3.epl-welcome-sub-heading {
 	50% {opacity: .5;}
 	100% {opacity: 0; width: 95%;}
 }
+
+.epl-listing-labels {
+	margin: 1em 0 0;
+}
+.epl-listing-labels > li {
+	background-color: #fecf23;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fecf23), to(#fd9215));
+	background-image: -webkit-linear-gradient(top, #fecf23, #fd9215);
+	background-image: -moz-linear-gradient(top, #fecf23, #fd9215);
+	background-image: -ms-linear-gradient(top, #fecf23, #fd9215);
+	background-image: -o-linear-gradient(top, #fecf23, #fd9215);
+	background-image: linear-gradient(top, #fecf23, #fd9215);
+	border-radius: 25px;
+	color: #fbfbfb;
+	display: inline-block;
+	line-height: 20px;
+	margin: 0 4px 2px 0;
+	opacity: 1;
+	padding: 0 9px;
+	text-align: center;
+}
+
 /* extension menu tabs */
 .epl-nav-tab-wrapper .nav-tab:hover {
 	background: #FFA500;
@@ -1202,11 +1228,13 @@ label.epl-contact-select-label:before {
 .epl-contact-entry-header {
 	overflow: hidden;
 }
-#epl-meta-contact .epl-contact-entry-header , #epl-meta-contact .epl-contact-assigned-tags-wrap{
+#epl-meta-contact .epl-contact-entry-header,
+#epl-meta-contact .epl-contact-assigned-tags-wrap{
 	border-bottom: 2px solid #f1f1f1;
 	padding: 0 20px;
 }
-#epl-contact-sub-select.epl-contact-note-select, #epl-contact-sub-mail.epl-contact-note-select {
+#epl-contact-sub-select.epl-contact-note-select,
+#epl-contact-sub-mail.epl-contact-note-select {
 	margin: 0 5px !important;
 	position: absolute;
 	width: 135px !important;
@@ -1388,7 +1416,8 @@ h1.epl-contact-title {
 .epl-contact_tags_suggestions {
 	border-top: 1px solid #eee;
 }
-.epl-contact_tags_suggestions > li:hover, .epl-contact-assigned-tags > li:hover {
+.epl-contact_tags_suggestions > li:hover,
+.epl-contact-assigned-tags > li:hover {
 	opacity : 1;
 }
 .epl-contact-assigned-tags-wrap {
@@ -1966,6 +1995,9 @@ h3.epl-contact-activity-title {
 		display: none !important;
 	}
 	.epl-admin-page-archive .manage-column.column-property_thumb {
+		display: none !important;
+	}
+	.epl-admin-page-archive .manage-column.column-property_featured {
 		display: none !important;
 	}
 	.epl-admin-page-archive .property_price.column-property_price {
