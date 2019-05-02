@@ -91,7 +91,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		?>
 		<p class="search-box">
 			<label class="screen-reader-text" for="<?php echo $input_id ?>"><?php echo $text; ?>:</label>
-			<input type="search" placeholder="<?php _e('Search by Title','easy-property-listings'); ?>" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>" />
+			<input type="search" placeholder="<?php _e('Search by Summary','easy-property-listings'); ?>" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>" />
 			<input type="search" placeholder="<?php _e('Search by Name','easy-property-listings'); ?>" id="" name="s_contact_name" value="<?php echo $s_contact_name; ?>" />
 
 			<?php submit_button( $text, 'button', false, false, array('ID' => 'search-submit') ); ?>
@@ -194,6 +194,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
+			'cb'      			=> '<input type="checkbox" />',
 			'name'          	=> __( 'Contact', 'easy-property-listings'  ),
 			'summary'         	=> __( 'Summary', 'easy-property-listings'  ),
 			'background_info'	=> __( 'Background Info', 'easy-property-listings'  ),
@@ -204,6 +205,17 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 
 		return apply_filters( 'epl_report_contact_columns', $columns );
 
+	}
+
+	/**
+	 * Render checkbox column
+	 * @param  [type] $item [description]
+	 * @return [type]       [description]
+	 */
+	function column_cb( $item ) {
+		return sprintf(
+			'<input type="checkbox" name="bulk-delete[]" value="%s" />', $item['ID']
+		);
 	}
 
 	/**
@@ -221,16 +233,6 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		);
 	}
 
-	/**
-	 * Outputs the reporting views
-	 *
-	 * @access public
-	 * @since 3.0
-	 * @return void
-	 */
-	public function bulk_actions( $which = '' ) {
-		// These aren't really bulk actions but this outputs the markup in the right place
-	}
 
 	/**
 	 * Retrieve the current page number
@@ -357,6 +359,22 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		return $data;
 	}
 
+	public function process_bulk_action() {
+
+	  	//Detect when a bulk action is being triggered...
+		if ( 'bulk-delete' === $this->current_action() ) {
+
+			$delete_ids = esc_sql( $_GET['bulk-delete'] );
+
+			// loop over the array of record IDs and delete them
+			foreach ( $delete_ids as $id ) {
+				$contact = new EPL_Contact( $id );
+				$contact->delete( $contact->id );
+			}
+
+		}
+
+	}
 	/**
 	 * Setup the final data for the table
 	 *
@@ -369,6 +387,9 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * @return void
 	 */
 	public function prepare_items() {
+
+		/** Process bulk action */
+  		$this->process_bulk_action();
 
 		$columns  = $this->get_columns();
 		$hidden   = array(); // No hidden columns
@@ -385,6 +406,14 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 			'per_page'    => $this->get_items_per_page('contacts_per_page', $this->per_page),
 			'total_pages' => ceil( $this->total / $this->get_items_per_page('contacts_per_page', $this->per_page) ),
 		) );
+	}
+
+	public function get_bulk_actions() {
+		$actions = array(
+			'bulk-delete' => __('Delete','easy-property-listings')
+		);
+
+		return $actions;
 	}
 
 	/**

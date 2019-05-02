@@ -309,16 +309,7 @@ function epl_property_blog($template='') {
 
 			if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
 
-				if( locate_template( array('loop-listing-blog-'.$template.'-compatibility.php') ) ) {
-
-					epl_get_template_part('loop-listing-blog-'.$template.'-compatibility.php');
-
-				} else {
-
-					epl_get_template_part('loop-listing-blog-'.$template.'.php');
-
-				}
-
+				epl_get_template_part('loop-listing-blog-'.$template.'-compatibility.php');
 
 			} else {
 				$tpl_name = 'loop-listing-blog-'.$template.'.php';

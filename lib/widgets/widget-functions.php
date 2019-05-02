@@ -201,19 +201,16 @@ function epl_number_suffix_callback($v,$suffix=' +') {
 	return $v.''.$suffix;
 }
 
-function epl_get_global_price_array() {
-
-	$range 			= array_merge(range(0,1000,50), range(1100,2000,100), range(2500,5000,500),range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
-
-	$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
-
-	$price_array 	= apply_filters('epl_listing_search_price_global',$price_array);
-
-	return $price_array;
-}
-
 function epl_get_price_array($post_type='property',$transaction='default') {
 
+	if($post_type == '') {
+
+		$range 			= array_merge(range(0,1000,50), range(1100,2000,100), range(2500,5000,500),range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
+
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
+
+		$price_array 	= apply_filters('epl_listing_search_price_global',$price_array);
+	}
 
 	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
 	if( is_epl_rental_post($post_type) ) {
@@ -262,7 +259,6 @@ function epl_get_price_meta_key($post_type='property',$transaction='default') {
 function epl_search_widget_fields_frontend($post_type='',$property_status='',$transaction_type='default') {
 
 	$price_array = epl_get_price_array($post_type,$transaction_type);
-	$global_price_array = epl_get_global_price_array();
 
 	$price_meta_key = epl_get_price_meta_key($post_type,$transaction_type);
 
@@ -428,7 +424,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	__('Search Price From','easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'global_price_from',
-			'options'		=>	$global_price_array,
+			'options'		=>	$price_array,
 			'type'			=>	'select',
 			'query'			=>	array(
 								'query'		=>	'meta',
@@ -445,7 +441,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	__('Search Price To','easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'global_price_to',
-			'options'		=>	$global_price_array,
+			'options'		=>	$price_array,
 			'type'			=>	'select',
 			'query'			=>	array(
 								'query'		=>	'meta',
@@ -972,6 +968,10 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		return;
 	}
 
+	if($type == '') {
+		$type = epl_get_core_post_types();
+	}
+
 	$type = (array) $type;
     $type = array_map( 'sanitize_text_field', $type );
     $type_str = " ( '".implode("','", $type)."' ) ";
@@ -1242,6 +1242,13 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 			'data-default' => 'on'
 		),
 		array(
+			'label'        => '',
+			'name'         => 'epl_contact_anti_spam',
+			'id'           => 'epl_contact_note',
+			'type'         => 'hidden',
+			'data-default' => 'on'
+		),
+		array(
 			'name'         => 'epl_contact_listing_id',
 			'id'           => 'epl_contact_listing_id',
 			'type'         => 'hidden',
@@ -1339,6 +1346,12 @@ function epl_contact_capture_widget_form_fields() {
 		array(
 			'label'		=> __( 'Message', 'easy-property-listings' ),
 			'key'		=> 'epl_contact_note',
+			'type'		=> 'checkbox',
+			'default'	=> 'on'
+		),
+		array(
+			'label'		=> __( 'Anti Spam', 'easy-property-listings' ),
+			'key'		=> 'epl_contact_anti_spam',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
