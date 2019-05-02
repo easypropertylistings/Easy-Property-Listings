@@ -1501,7 +1501,12 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'id'		=>	'labels',
 			'help'		=>	__('Customise the tab labels of the EPL - Search Widget or [listing_search] shortcode.', 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
-
+				array(
+					'name'		=>	'widget_label_all',
+					'label'		=>	__('All', 'easy-property-listings' ),
+					'type'		=>	'text',
+					'default'	=>	__('All', 'easy-property-listings' )
+				),
 				array(
 					'name'		=>	'widget_label_property',
 					'label'		=>	__('Property', 'easy-property-listings' ),
