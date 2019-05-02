@@ -67,6 +67,11 @@ add_shortcode( 'epl_contact_form', 'epl_contact_capture_form' );
  */
 function contact_capture_form_callback($form_data,$request) {
 
+	if( isset($request['epl_contact_anti_spam']) && $request['epl_contact_anti_spam'] != '' ){
+		// spam
+		return;
+	}
+
 	$contact = new EPL_contact( $request['epl_contact_email'] );
 	$fname  = isset($request['epl_contact_first_name']) ? sanitize_text_field($request['epl_contact_first_name']) : '';
 	$lname  = isset($request['epl_contact_last_name']) ? sanitize_text_field($request['epl_contact_last_name']) : '';

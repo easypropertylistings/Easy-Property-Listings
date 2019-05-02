@@ -1242,6 +1242,13 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 			'data-default' => 'on'
 		),
 		array(
+			'label'        => '',
+			'name'         => 'epl_contact_anti_spam',
+			'id'           => 'epl_contact_note',
+			'type'         => 'hidden',
+			'data-default' => 'on'
+		),
+		array(
 			'name'         => 'epl_contact_listing_id',
 			'id'           => 'epl_contact_listing_id',
 			'type'         => 'hidden',
@@ -1339,6 +1346,12 @@ function epl_contact_capture_widget_form_fields() {
 		array(
 			'label'		=> __( 'Message', 'easy-property-listings' ),
 			'key'		=> 'epl_contact_note',
+			'type'		=> 'checkbox',
+			'default'	=> 'on'
+		),
+		array(
+			'label'		=> __( 'Anti Spam', 'easy-property-listings' ),
+			'key'		=> 'epl_contact_anti_spam',
 			'type'		=> 'checkbox',
 			'default'	=> 'on'
 		),
