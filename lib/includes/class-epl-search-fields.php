@@ -66,7 +66,7 @@ class EPL_Search_Fields {
 				<input
 					placeholder="<?php echo $placeholder; ?>"
 					type="text"
-					class="in-field field-width"
+					class="in-field field-width <?php echo $field['meta_key']; ?>"
 					name="<?php echo $field['meta_key']; ?>"
 					id="<?php echo $field['meta_key']; ?>"
 					value="<?php echo $value; ?>"
@@ -96,7 +96,7 @@ class EPL_Search_Fields {
 		}
 		?>
 		<span class="epl-search-row epl-search-row-checkbox <?php echo isset( $field['class'] ) ? $field['class'] : ''; ?>">
-			<input type="checkbox" name="<?php echo $field['meta_key']; ?>" id="<?php echo $field['meta_key']; ?>" class="in-field"
+			<input type="checkbox" name="<?php echo $field['meta_key']; ?>" id="<?php echo $field['meta_key']; ?>" class="in-field <?php echo $field['meta_key']; ?>"
 			<?php if ( isset( $value ) && ! empty( $value ) ) { echo 'checked="checked"'; } ?> />
 			<label for="<?php echo $field['meta_key']; ?>" class="check-label">
 			<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], __( $field['label'], 'easy-property-listings'  ) ); ?>
@@ -145,7 +145,7 @@ class EPL_Search_Fields {
 					name="<?php echo $field['meta_key']; ?>"
 					id="<?php echo $field['meta_key']; ?>"
 					<?php echo $min_max_atts; ?>
-					class="in-field field-width">
+					class="in-field field-width <?php echo $field['meta_key']; ?>">
 					<option value="">
 						<?php echo apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'easy-property-listings'  ) ); ?>
 					</option>
@@ -188,7 +188,7 @@ class EPL_Search_Fields {
 			<div class="field">
 				<select name="<?php echo $field['meta_key']; ?>[]"
 					id="<?php echo $field['meta_key']; ?>"
-					class="in-field field-width field-multiple" multiple>
+					class="in-field field-width field-multiple <?php echo $field['meta_key']; ?>" multiple>
 					<option value="">
 						<?php echo apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'easy-property-listings'  ) ); ?>
 					</option>
@@ -231,7 +231,7 @@ class EPL_Search_Fields {
 				<?php echo apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] ); ?>
 			</label>
 			<div class="field">
-				<input type="number" class="in-field field-width"
+				<input type="number" class="in-field field-width <?php echo $field['meta_key']; ?>"
 					placeholder="<?php echo $placeholder; ?>"
 					name="<?php echo $field['meta_key']; ?>"
 					id="<?php echo $field['meta_key']; ?>"
@@ -261,7 +261,7 @@ class EPL_Search_Fields {
 			echo '<div class="' . $field['wrap_start'] . '">';
 		}
 		?>
-		<input type="hidden" class="in-field field-width"
+		<input type="hidden" class="in-field field-width <?php echo $field['meta_key']; ?>"
 			name="<?php echo $field['meta_key']; ?>"
 			id="<?php echo $field['meta_key']; ?>"
 			value="<?php echo $value; ?>"
@@ -303,7 +303,7 @@ class EPL_Search_Fields {
 								name="<?php echo $field['meta_key']; ?>"
 								id="<?php echo $field['meta_key'].'_'.$k; ?>"
 								value="<?php echo esc_attr( $k ); ?>"
-								class="in-field field-width" />
+								class="in-field field-width <?php echo $field['meta_key'].'_'.$k; ?>" />
 							<label class="epl-search-radio-label"><?php echo $v; ?></label> <?php
 						}
 					}
@@ -351,7 +351,7 @@ class EPL_Search_Fields {
 								name="<?php echo $field['meta_key']; ?>[]"
 								id="<?php echo $field['meta_key'].'_'.$k; ?>"
 								value="<?php echo esc_attr( $k ); ?>"
-								class="in-field field-width" />
+								class="in-field field-width <?php echo $field['meta_key'].'_'.$k; ?>" />
 							<label class="epl-search-checkbox-label"><?php echo $v; ?></label> <?php
 						}
 					}

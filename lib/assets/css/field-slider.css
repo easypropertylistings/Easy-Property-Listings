@@ -1214,6 +1214,6 @@ body .ui-tooltip {
   z-index: 10;
   
 }
-.epl-lf-range-slider {
+.epl-lf-range-slider .field{
     padding: 0 12px;
 }
