@@ -385,6 +385,9 @@
 .epl-icon-color-alternate {
 	fill: rgb(78,169,234);
 }
+.epl-icon-color-hollow {
+	fill: #ffffff;
+}
 
 /* Buttons */
 .epl-button-wrapper {

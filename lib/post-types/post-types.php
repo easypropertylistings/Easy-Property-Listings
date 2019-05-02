@@ -90,7 +90,7 @@ function epl_custom_restrict_manage_posts() {
 		if(!empty($custom_search_fields)) {
 			$_GET['property_custom_fields'] = isset($_GET['property_custom_fields'])?sanitize_text_field($_GET['property_custom_fields']):'';
 			echo '<select name="property_custom_fields">';
-				echo '<option value="">'.__('Search For :', 'easy-property-listings' ).'</option>';
+				echo '<option value="">'.__('Search For:', 'easy-property-listings' ).'</option>';
 				foreach($custom_search_fields as $k=>$v) {
 					$selected = ($_GET['property_custom_fields'] == $k ? 'selected="selected"' : '');
 					echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
