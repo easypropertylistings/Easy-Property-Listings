@@ -426,24 +426,25 @@
 	.epl-listing-grid-view-forced,
 	.epl-listing-grid-view-forced.hentry,
 	.builder-module-content .epl-listing-grid-view-forced.hentry {
-		width: 100%;
+		/* width: 100%; */
 		/*	display: block; */
 	}
 }
 @media screen and (max-width: 500px) {
-	.epl-property-blog,
-	.epl-property-blog.hentry,
-	.builder-module-content .epl-property-blog.hentry {
-		/* max-width: 600px; */
-	}
 	.epl-listing-grid-view,
 	.epl-listing-grid-view.hentry,
 	.builder-module-content .epl-listing-grid-view.hentry,
 	.epl-listing-grid-view-forced,
 	.epl-listing-grid-view-forced.hentry,
 	.builder-module-content .epl-listing-grid-view-forced.hentry {
+		width: 100%;
 		margin: 0 auto;
 		display: block;
+	}
+	.epl-property-blog,
+	.epl-property-blog.hentry,
+	.builder-module-content .epl-property-blog.hentry {
+		/* max-width: 600px; */
 	}
 	.epl-property-blog .property-box-left,
 	.epl-property-blog .property-box-right {
