@@ -238,8 +238,8 @@ function epl_plugin_updates() {
 	}
 	if ( version_compare( $current_version, '3.3', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-3.3.php' );
-		 flush_rewrite_rules();
-		 update_option( 'epl_version' ,'3.3');
+		flush_rewrite_rules();
+		update_option( 'epl_version' ,'3.3');
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
