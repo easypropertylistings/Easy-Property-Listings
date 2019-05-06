@@ -372,6 +372,7 @@
 	display: inline-block;
 	margin: 0 0 0 0.5em;
 	line-height: 30px;
+	vertical-align: top;
 }
 .epl-icon-color-frame {
 	fill: #999999;
