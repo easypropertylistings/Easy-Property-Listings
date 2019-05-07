@@ -291,7 +291,7 @@ Easy Property Listings needs help for translation:
 12. Swedish
 13. Ukrainian
 14. Arabic
-15. Brazilian Portuguese - pt_BR – [Dionizio Bach | DJIO](https://www.djio.com.br/wordpress/)
+15. Brazilian Portuguese - pt_BR - [Dionizio Bach | DJIO](https://www.djio.com.br/wordpress/)
 16. Portuguese
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/).
@@ -395,31 +395,44 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.3 May 15, 2019 =
 
-* New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible. And easy to use.
-* New: Now able to add a function.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
-* New: Export Easy Property Listings settings and import them into another site on the Tools option.
-* New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set.
+* New: Gutenberg support along with the REST WordPress API. Using the WordPress classic plugin will disable Gutenberg and Easy Property Listings or define some constants, details below.
+* New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible.
+* New: Shortcode [listing_element] for use with page builder systems to output variables, meta fields, action hooks, excerpt,  onto templates.
+* New: Re-created Social SVG Icons.
+* New: Re-created Social PNG Icons.
+* New: Production/Development mode option to enable or disable minimised CSS and JS files.
+* New: Enhanced CSS implemented to enable better listing grid wrapping along with a larg number of helper classes to construct custom templates for listings. Enabled on new installations. When upgrading the enhanced CSS is disabled. Enable and disable from Advanced Settings.
+* New: Tools page holding Import and Export options along with the Upgrade screen.
+* New: Export Easy Property Listings settings and import them into another site on the Tools page.
+* New: Upgrade notice that will copy the listing pricing for all listing types into a unified price search.
+* New: Unified price search slider usable in the EPL - Listing Search widget and [listing_search] shortcode.
+
+* New: Able to add a functions.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
+* New: Able to add style-single.css and style-archive.css to the active_child_theme/easypropertylistings where you can store CSS customisations along with the already implemented style.css file.
+* New: Implemented a Featured listing system that will allow you to set your listings as featured from the listing administration page. With the update to the EPL Importer add-on listings that you mark as featured will stay featured when updated from external sources.
+* New: Major tweaks to the custom fields screens allowing for a smaller data entry screen when adding your listing details.
+
+
+* New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set and re-built the JS to avoid any issues when the API key is not added.
 * New: Easier to add additional custom stickers to listings with the epl_property_stickers hook.
 * New: Address function for use in custom templates epl_the_address, epl_get_the_address.
 * New: Status functions for use in custom templates epl_the_status, epl_get_the_status.
 * New: Under Offer functions for use in custom templates epl_the_under_offer, epl_get_the_under_offer.
-* New: Enabled Mini Website URL meta field as a number of REAXML providers are now using 3D Tours.
+* New: Enabled Mini Website URL meta field as a number of REAXML providers are now using 3D Tours along with support for custom button titles.
 * New: Able to configure sorting dropdown as tabs.
-* New: Implemented CSS and JS minified files and development mode option to disable minimised CSS and JS files.
-* New: Development mode setting that currently enabled minified JS and CSS files.
-* New: Upgrade notice that will copy the listing pricing for all listing types into a unified price search.
+
+
 * New: EPL - Author widget supports single or multiple users with user searching capabilities. Allowing you to use the widget and set a specific agent or WordPress user.
-* New: Enhanced CSS implemented, for new installations this is enabled. If upgrading then the enhanced CSS is disabled. Enable and disable from Advanced Settings.
+
 * New: Floorplan uploader now support a custom label added to the listing entry screen. Label filter is still in place.
 * New: External Links now 3 are now supported with a custom label. Label filter is still in place.
 * New: Mini Website URL,  2 are supported with a custom label. Label filter is still in place.
-* New: Major tweaks to the custom fields screens allowing for a smaller data entry screen when adding your listing details.
-* New: Map Icon.
+* New: Map Icon with filter fort customising.
 * New: Listing Map Icon for when the location is not exact, IE when the user selects to not display the full address.
 * New: Users profiles now have Instagram, Pinterest and YouTube links and social icons added.
-* New: Re-created Social SVG Icons.
-* New: Tools page holding Import and Export options along with the Upgrade screen.
-* New: Shortcode [listing_element] for use with page builder systems to output variables, meta fields, action hooks, excerpt,  onto templates.
+
+
+
 * New: Pets icons and function to handle output with the get_property_pets function.
 * New: Rental Leased Date custom field.
 * New: Ability to apply multiple templates using the epl_property_single_default filter to the single listing template loading queue.
@@ -433,7 +446,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Office Phone added to user profile.
 * New: Default and custom classes added to meta field generator used in admin edit listing screens.
 * New: Added Portugal Portuguese language partial translation by Fábio Nunes.
-* Tweak: Rebuilt date picker JS validation code to better optimise and streamline listing entry.
+
+
+* New: Disable REST support and Gutenberg by defining new constants for post types. EPL_BUSINESS_DISABLE_REST, EPL_COMMERCIAL_DISABLE_REST, EPL_COMMERCIAL_LAND_DISABLE_REST, EPL_LAND_DISABLE_REST, EPL_PROPERTY_DISABLE_REST, EPL_RENTAL_DISABLE_REST, EPL_RURAL_DISABLE_REST.
+* New: Enable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_DISABLE_REST, EPL_FEATURES_DISABLE_REST, EPL_LOCATION_DISABLE_REST.
+
+
+* Tweak: Dashboard activity widget improved CSS display with icons denoting comment type.
+* Tweak: Rebuilt JS validation engine to better handle numeric numbers and the date system to optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
 * Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
 * Tweak: Inspection times function altered to allow disabling of ical function.
@@ -453,11 +473,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Pagination and multiple shortcodes on the same page working correctly.
 * Tweak: Removed Google Plus from Users as it no longer exists.
 * Tweak: Removed redundant before and after hooks on the manage listing screens.
-* Tweak: Enable REST support and Gutenberg by defining new constants for post types. EPL_BUSINESS_ENABLE_REST, EPL_COMMERCIAL_ENABLE_REST, EPL_COMMERCIAL_LAND_ENABLE_REST, EPL_LAND_ENABLE_REST, EPL_PROPERTY_ENABLE_REST, EPL_RENTAL_ENABLE_REST, EPL_RURAL_ENABLE_REST.
-* Tweak: Enable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_ENABLE_REST, EPL_FEATURES_ENABLE_REST, EPL_LOCATION_ENABLE_REST.
 * Tweak: All shortcodes now include a filter to alter the default options. epl_shortcode_listing_auction_args, epl_shortcode_listing_category_args, epl_shortcode_listing_open_args, epl_shortcode_listing_feature_args, epl_shortcode_listing_location_args, epl_shortcode_listing_args
 * Tweak: Replaced grid/list icon with a better quality one.
 * Tweak: Replaced all internal icons.
+* Tweak: several older functions move to depreciated functions for future removal.
 * Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.
 * Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.

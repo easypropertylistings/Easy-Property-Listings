@@ -306,15 +306,15 @@ if( !class_exists('EPL_Author_Meta') ) :
 				if ( $style == 'i' ) {
 					$html	= '
 						<a class="epl-author-icon author-icon youtube-icon-24"
-							href="' . $this->get_youtube() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on youtube', 'easy-property-listings' ). '"' . $link_target . '>'.
-							apply_filters( 'epl_author_icon_youtube' , __('youtube', 'easy-property-listings' )).
+							href="' . $this->get_youtube() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on YouTube', 'easy-property-listings' ). '"' . $link_target . '>'.
+							apply_filters( 'epl_author_icon_youtube' , __('YouTube', 'easy-property-listings' )).
 						'</a>';
 				} else {
 					$svg	= '<svg viewBox="0 0 100 100" class="epl-icon-svg-youtube"><use xlink:href="#epl-icon-svg-youtube"></use></svg>';
 					$html	=
 						'<div class="epl-icon-svg-container epl-icon-container-youtube">
 							<a class="epl-author-icon-svg author-icon-svg youtube-icon"
-								href="' . $this->get_youtube() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on youtube', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+								href="' . $this->get_youtube() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on YouTube', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -497,7 +497,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 		}
 
 		/**
-		 * Author Linkedin html Box
+		 * Author LinkedIn html Box
 		 *
 		 * @since version 1.3
 		 */
@@ -513,7 +513,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 
 					$html = '
 						<a class="epl-author-icon author-icon linkedin-icon-24"
-							href="' . $this->get_linkedin() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Linkedin', 'easy-property-listings' ).'"' . $link_target . '>'.
+							href="' . $this->get_linkedin() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on LinkedIn', 'easy-property-listings' ).'"' . $link_target . '>'.
 							apply_filters( 'epl_author_icon_linkedin' , __('LinkedIn', 'easy-property-listings' )).
 						'</a>';
 				} else {
@@ -521,7 +521,7 @@ if( !class_exists('EPL_Author_Meta') ) :
 					$html	=
 						'<div class="epl-icon-svg-container epl-icon-container-linkedin">
 							<a class="epl-author-icon-svg author-icon-svg linkedin-icon"
-								href="' . $this->get_linkedin() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on Linkedin', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
+								href="' . $this->get_linkedin() . '" title="'.__('Follow', 'easy-property-listings' ).' '.$this->get_author_name().' '.__('on LinkedIn', 'easy-property-listings' ).'"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 					}
