@@ -1897,7 +1897,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						'production'	=>	__('Production', 'easy-property-listings' )
 					),
 					'help'		=>	__('Production mode enqueue minified js & css for faster page loads.', 'easy-property-listings' ),
-					'default'	=>	'development'
+					'default'	=>	'production'
 				),
 
 				array(

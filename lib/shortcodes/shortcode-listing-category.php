@@ -45,7 +45,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'sort_order'			=>	'DESC', // Sort by ASC or DESC
 		'pagination'			=>	'on', // Enable or disable pagination
 		'instance_id'			=>	'1',
-		'class'					=>	''
+		'class'				=>	''
 	), $atts );
 
 	extract( $attributes );

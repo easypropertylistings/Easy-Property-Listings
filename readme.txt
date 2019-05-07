@@ -407,12 +407,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Upgrade notice that will copy the listing pricing for all listing types into a unified price search.
 * New: Unified price search slider usable in the EPL - Listing Search widget and [listing_search] shortcode.
 
-* New: Able to add a functions.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
+* New: Able to add a functions.php, functions-single.php and functions-archive.php files to the active_child_theme/easypropertylistings where you can store code and filter customisations.
 * New: Able to add style-single.css and style-archive.css to the active_child_theme/easypropertylistings where you can store CSS customisations along with the already implemented style.css file.
 * New: Implemented a Featured listing system that will allow you to set your listings as featured from the listing administration page. With the update to the EPL Importer add-on listings that you mark as featured will stay featured when updated from external sources.
 * New: Major tweaks to the custom fields screens allowing for a smaller data entry screen when adding your listing details.
 
-
+* New: Contacts now allow you to bulk select and delete contacts.
+* New: Contacts summary search.
+* New: Contact widget now has a hidden field to prevent bots from entering form details.
 * New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set and re-built the JS to avoid any issues when the API key is not added.
 * New: Easier to add additional custom stickers to listings with the epl_property_stickers hook.
 * New: Address function for use in custom templates epl_the_address, epl_get_the_address.
@@ -435,6 +437,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 
 * New: Pets icons and function to handle output with the get_property_pets function.
+* New: Rebuilt several functions which now allow for greater filtered output. Rebuilt functions are: get_property_year_built, get_property_bed, get_property_bath, get_property_rooms, get_property_parking, get_property_garage, get_property_carport, get_property_air_conditioning, get_property_pool, get_property_security_system, get_property_land_value, get_property_building_area_value, get_property_energy_rating, get_property_new_construction, get_property_holiday_rental, get_property_furnished. (New Functions) get_property_pets, get_property_featured.
 * New: Rental Leased Date custom field.
 * New: Ability to apply multiple templates using the epl_property_single_default filter to the single listing template loading queue.
 * New: Ability to apply multiple templates using the epl_property_blog_template filter to the loop listing template loading queue.
@@ -444,29 +447,30 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Random sorting option added to [listing_category], [listing]
 * New: Search by linked contacts — search_linked_contact.
 * New: YouTube User Profile link.
-* New: Office Phone added to user profile.
+* New: Office Phone added to user profile and outputs on author profile and widget.
 * New: Default and custom classes added to meta field generator used in admin edit listing screens.
 * New: Added Portugal Portuguese language partial translation by Fábio Nunes.
 
 
 * New: Disable REST support and Gutenberg by defining new constants for post types. EPL_BUSINESS_DISABLE_REST, EPL_COMMERCIAL_DISABLE_REST, EPL_COMMERCIAL_LAND_DISABLE_REST, EPL_LAND_DISABLE_REST, EPL_PROPERTY_DISABLE_REST, EPL_RENTAL_DISABLE_REST, EPL_RURAL_DISABLE_REST.
 * New: Enable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_DISABLE_REST, EPL_FEATURES_DISABLE_REST, EPL_LOCATION_DISABLE_REST.
-
-
+* New: Pakistani Rupee currency.
+* New: Better support for hidden admin custom fields.
 * Tweak: Filers to alter the default Mobile and Office labels epl_author_widget_label_office, epl_author_widget_label_mobile.
-
+* Tweak: Custom classes in admin screens added to some meta fields for example usage.
 * Tweak: Dashboard activity widget improved CSS display with icons denoting comment type.
 * Tweak: Rebuilt JS validation engine to better handle numeric numbers and the date system to optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
 * Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
 * Tweak: Inspection times function altered to allow disabling of ical function.
+* Tweak: Added additional inspection time filters which allow you to filter the label further in templates where needed.
 * Tweak: Auction get_property_auction function greatly improved with better date formatting for different country formats.
 * Tweak: Property Available get_property_available function greatly improved with better date formatting for different country formats.
 * Tweak: Totally re-built the functions handling important details using code switches and filters greatly improving customisations and alterations. Functions re-built using switches: get_property_year_built, get_property_bed, get_property_bath, get_property_rooms, get_property_parking, get_property_garage, get_property_carport, get_property_air_conditioning, get_property_pool, get_property_security_system, get_property_land_value, get_property_building_area_value, get_property_energy_rating, get_property_new_construction, get_property_holiday_rental, get_property_furnished,
-* Tweak: Improvements to search ?????  // $this->get_data = $this->data; // lib/includes/class-epl-search.php
+* Tweak: Improvements to search and global price search slider options now available.
 * Tweak: Parse EPL shortcodes for meta queries improved.
 * Tweak: Completely re-worked the icons system for listings which makes it easier to customise with hooks and filters and add additional icons and adjust the order.
-* Tweak: Reworked the Additional features output allowing further control over output of features along with adjusting the order and output style.
+* Tweak: Reworked the Additional features output allowing further control over output of features along with adjusting the order and output style. Use the epl_property_general_features_list filter to alter the order and what is included. Also add your own customised feature list output with the dynamic epl_property_general_feature_{new_one} filter.
 * Tweak: Total rebuild of the sorting and tools code allowing additional tools to be hooked in and rework the existing tools.
 * Tweak: Code optimisations of gallery functions.
 * Tweak: Widget templates to handle the Inspection time and ical options.

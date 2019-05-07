@@ -1,4 +1,13 @@
 <?php
+/**
+ * Listing Elements GUI
+ *
+ * @package     EPL
+ * @subpackage  Admin/Elements
+ * @copyright   Copyright (c) 2019, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.3
+ */
 
 function epl_add_elements_gui_button() {
 
@@ -66,7 +75,7 @@ function epl_listing_elements_gui() {
 					break;
 				}
 
-				
+
 			}
 
 			shortcode += "]";
@@ -79,7 +88,7 @@ function epl_listing_elements_gui() {
 
                 <div style="padding:15px 15px 0 15px;">
                     <h3 style="color:#5A5A5A!important; font-family:Georgia,Times New Roman,Times,serif!important; font-size:1.8em!important; font-weight:normal!important;"><?php _e("Insert Shortcode", "easy-property-listings"); ?></h3>
- 				 
+
                 </div>
 
                 <div style="padding:15px 15px 0 15px;">
@@ -99,7 +108,7 @@ function epl_listing_elements_gui() {
 	                        }
 	                    ?>
 	                </select> <br/>
-					
+
 
 	            </div>
 
@@ -131,13 +140,13 @@ function epl_listing_elements_gui() {
                                     <strong>
                                         <?php _e('Actions','easy-property-listings'); ?>
                                     </strong>
-                                    
+
                                 </th>
                                 <th>
                                     <strong>
                                         <?php _e('Meta Fields','easy-property-listings'); ?>
                                     </strong>
-                                    
+
                                 </th>
                             </tr>
                         </thead>

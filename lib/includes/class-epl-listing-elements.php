@@ -1,6 +1,15 @@
 <?php
+/**
+ * Listing Elements Shortcode class
+ *
+ * @package     EPL
+ * @subpackage  Classes/Listing-Elements
+ * @copyright   Copyright (c) 2019, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.3
+ */
 
-CLASS EPL_LISTING_ELEMENTS {
+class EPL_LISTING_ELEMENTS {
 
 	function __construct() {
 		add_shortcode('listing_element',array($this,'listing_element') );
@@ -64,7 +73,7 @@ CLASS EPL_LISTING_ELEMENTS {
 	}
 
 	function post($atts) {
-		
+
 		global $property;
 		switch($atts['key']) {
 
@@ -77,23 +86,23 @@ CLASS EPL_LISTING_ELEMENTS {
 			break;
 
 		}
-		
+
 	}
 
 	function epl_suburb_profile(){
-	
+
 		global $property;
 		echo $property->get_suburb_profile();
 	}
 
 	function epl_formatted_address(){
-		
+
 		global $property;
 		echo  $property->get_formatted_property_address();
 	}
 
 	function epl_the_excerpt(){
-		
+
 		global $property;
 		return epl_get_the_excerpt();
 	}
