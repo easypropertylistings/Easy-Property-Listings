@@ -25,11 +25,11 @@ function epl_button_external_link() {
 	$keys = array('property_external_link','property_external_link_2','property_external_link_3');
 
 	foreach($keys as $key) {
-		$link = get_post_meta( get_the_ID() , $key , true );
-		$count = $key == 'property_external_link' ? '': substr($key, -1);
-		$default = __('Tour ', 'easy-property-listings') . $count;
-		$meta_label = get_post_meta( get_the_ID() , $key.'_label' , true );
-		$meta_label = $meta_label == '' ? $default : $meta_label;
+		$link 		= get_post_meta( get_the_ID() , $key , true );
+		$count 		= $key == 'property_external_link' ? '': substr($key, -1);
+		$default 	= __('Tour ', 'easy-property-listings') . $count;
+		$meta_label 	= get_post_meta( get_the_ID() , $key.'_label' , true );
+		$meta_label 	= $meta_label == '' ? $default : $meta_label;
 
 
 		if( !empty($link) ) { ?>
