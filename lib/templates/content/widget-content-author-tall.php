@@ -38,17 +38,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<?php do_action('epl_author_widget_before_contact'); ?>
 			<div class="epl-author-contact author-contact">
 				<?php if ( $epl_author->get_author_mobile() != '' ) { ?>
-					<span class="label-mobile"><?php _e('Mobile', 'easy-property-listings' ); ?> </span>
+					<span class="label-mobile"><?php apply_filters( 'epl_author_widget_label_mobile' , _e('Mobile', 'easy-property-listings' ) ); ?> </span>
 					<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
 				<?php } ?>
 			</div>
+
+			<div class="epl-author-contact author-contact author-contact-office-phone">
+				<?php if ( $epl_author->get_author_office_phone() != '' ) { ?>
+					<span class="label-office-phone"><?php apply_filters( 'epl_author_widget_label_office' , _e('Office', 'easy-property-listings' ) ); ?></span>
+					<span class="office-phone"><?php echo $epl_author->get_author_office_phone() ?></span>
+				<?php } ?>
+			</div>
+
 			<?php do_action('epl_author_widget_after_contact'); ?>
 
 			<?php do_action('epl_author_widget_before_icons'); ?>
 			<?php if ( $d_icons == 'on' ) { ?>
 				<div class="epl-author-social-buttons author-social-buttons">
 					<?php
-						$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','google','linkedin','skype'));
+						$social_icons = apply_filters('epl_display_author_social_icons',array('email','facebook','twitter','instagram','pinterest','linkedin','skype','youtube'));
 						foreach($social_icons as $social_icon){
 							echo call_user_func(array($epl_author,'get_'.$social_icon.'_html'));
 						}

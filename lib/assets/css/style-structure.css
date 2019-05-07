@@ -1,19 +1,65 @@
 /**
  * EPL Structural CSS
  *
- * @package     EPL
+ * @package	EPL
  * @since	3.1
- * @version	3.2.2
- * @subpackage  Pretty CSS
- * @copyright   Copyright (c) 2014, Merv Barrett
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @version	3.3
+ * @subpackage	Structure CSS
+ * @copyright	Copyright (c) 2019, Merv Barrett
+ * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
+/*****************************
+	General Styling
+******************************/
+.epl_print_r,
+.epl_var_dump {
+	background: gray;
+	color: #ffffff;
+	width: 100% !important;
+	z-index: 9999;
+}
+.epl-success,
+.epl-info,
+.epl-warning,
+.epl-danger {
+	margin: 0;
+	padding: 5px;
+	border-left: 3px solid;
+	font-size: 10px;
+}
+.epl-success p,
+.epl-info p,
+.epl-warning p,
+.epl-danger p {
+	margin: 0;
+	padding: 0;
+	line-height: 1.2;
+}
+.epl-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+.epl-info {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+.epl-warning {
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc;
+}
+.epl-danger {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
 
 /**********************
 	Loop
 ***********************/
-
 .epl-property-blog {
 	float: left;
 	margin: 0;
@@ -208,7 +254,7 @@
 	margin-bottom: 0.5em;
 }
 .epl-property-single .property-meta.pricing {
-	float: right;
+	/* float: right; */
 	text-align: right;
 }
 .epl-property-single .property-meta.pricing .page-price {
@@ -326,6 +372,7 @@
 	display: inline-block;
 	margin: 0 0 0 0.5em;
 	line-height: 30px;
+	vertical-align: top;
 }
 .epl-icon-color-frame {
 	fill: #999999;
@@ -338,6 +385,9 @@
 }
 .epl-icon-color-alternate {
 	fill: rgb(78,169,234);
+}
+.epl-icon-color-hollow {
+	fill: #ffffff;
 }
 
 /* Buttons */
@@ -506,6 +556,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 .epl_adv_tab_map .gm-style img {
 	max-width: none;
 	box-shadow: none;
+	margin: 0 auto;
 }
 #epl-default-map img {
 	max-width:none;
@@ -1026,6 +1077,15 @@ li.tbhead.current {
 .skype-icon-24 {
 	background: url(../images/social-icons-sprites.png) 0 -120px no-repeat;
 }
+.instagram-icon-24 {
+	background: url(../images/social-icons-sprites.png) 0 -264px no-repeat;
+}
+.pinterest-icon-24 {
+	background: url(../images/social-icons-sprites.png) 0 -240px no-repeat;
+}
+.youtube-icon-24 {
+	background: url(../images/social-icons-sprites.png) 0 -192px no-repeat;
+}
 .widget_epl_author .entry-content h5.epl-author-title {
 	margin: 0.5em 0;
 }
@@ -1250,9 +1310,29 @@ li.tbhead.current {
 	border-radius: 0;
 	/* width: 100%; */
 }
+.epl-search-form select.in-field{
+	/*background: transparent;
+	padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 1px solid #B7B7B7;
+	border-radius: 0;
+	height: 40px;
+	-webkit-appearance: none;
+	background: url(../images/select-arrow.svg) no-repeat right #FFF;
+	*/
+}
+.epl-search-form select.field-multiple{
+	height: auto;
+	background: transparent;
+}
 .epl-search-form .check-label {
 	font-size: 0.7em;
 	padding-top: 0;
+	padding-left: 3px;
+}
+.epl-search-form input[type='checkbox'] {
+
 }
 .epl-search-form .epl-search-other {
 	margin-top: 6px;
@@ -1755,7 +1835,7 @@ li.tbhead.current {
 	.epl-property-blog.hentry {
 		width: 100%;
 		max-width: 300px;
-		margin: 0 auto;
+		margin: 0 auto 20px;
 		float: none;
 		clear: both;
 	}
@@ -1841,23 +1921,11 @@ li.tbhead.current {
 		width: 100%;
 	}
 }
-
-/*****************************
-	Error Styling
-******************************/
-.epl_print_r,
-.epl_var_dump {
-	background: gray;
-	color: #ffffff;
-	width: 100% !important;
-	z-index: 9999;
-}
-
 /*****************************
 	EPL Clear Floating Div's
 ******************************/
 .epl-clearfix {
-	clear:  both !important;
+	/* clear:  both !important; */
 }
 .epl-clearfix:after {
 	visibility: hidden;

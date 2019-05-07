@@ -19,9 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_register_custom_post_type_commercial() {
 
-	$archives = defined( 'EPL_COMMERCIAL_DISABLE_ARCHIVE' ) && EPL_COMMERCIAL_DISABLE_ARCHIVE ? false : true;
-	$slug     = defined( 'EPL_COMMERCIAL_SLUG' ) ? EPL_COMMERCIAL_SLUG : 'commercial';
-	$rewrite  = defined( 'EPL_COMMERCIAL_DISABLE_REWRITE' ) && EPL_COMMERCIAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$archives	= defined( 'EPL_COMMERCIAL_DISABLE_ARCHIVE' ) && EPL_COMMERCIAL_DISABLE_ARCHIVE ? false : true;
+	$slug		= defined( 'EPL_COMMERCIAL_SLUG' ) ? EPL_COMMERCIAL_SLUG : 'commercial';
+	$rewrite	= defined( 'EPL_COMMERCIAL_DISABLE_REWRITE' ) && EPL_COMMERCIAL_DISABLE_REWRITE ? false : array('slug' => $slug, 'with_front' => false);
+	$rest		= defined( 'EPL_COMMERCIAL_DISABLE_REST' ) && EPL_COMMERCIAL_DISABLE_REST ? false : true;
 
 	$labels = apply_filters( 'epl_commercial_labels', array(
 		'name'			=>	__('Commercial Listings', 'easy-property-listings' ),
@@ -53,6 +54,7 @@ function epl_register_custom_post_type_commercial() {
 		'has_archive'		=>	$archives,
 		'hierarchical'		=>	false,
 		'menu_position'		=>	'26.7',
+		'show_in_rest'		=>	$rest,
 		'taxonomies'		=>	array( 'location', 'tax_feature' ),
 		'supports'		=>	apply_filters( 'epl_commercial_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' , 'comments' ) ),
 	);
@@ -78,6 +80,7 @@ if ( is_admin() ) {
 
 		$columns = array(
 			'cb'			=> '<input type="checkbox" />',
+			'property_featured' 	=> '<span class="dashicons dashicons-star-half"></span>' . '<span class="epl-manage-featured">' . __('Featured', 'easy-property-listings' ) . '</span>',
 			'property_thumb'	=> __('Featured Image', 'easy-property-listings' ),
 			'property_price'	=> __('Price', 'easy-property-listings' ),
 			'title'			=> __('Address', 'easy-property-listings' ),
@@ -119,64 +122,56 @@ if ( is_admin() ) {
 		switch( $column ) {
 
 			/* If displaying the 'Featured' image column. */
-			case 'property_thumb' :
-				do_action('epl_manage_listing_column_property_thumb_before');
-				do_action('epl_manage_listing_column_property_thumb');
-				do_action('epl_manage_listing_column_property_thumb_after');
+			case 'property_featured' :
+				do_action('epl_manage_listing_column_featured');
 
 				break;
 
+			/* If displaying the 'Featured' image column. */
+			case 'property_thumb' :
+				do_action('epl_manage_listing_column_property_thumb');
+
+				break;
+
+			/* If displaying the 'Listing Details' column. */
 			case 'listing' :
-				do_action('epl_manage_listing_column_listing_before');
 				do_action('epl_manage_listing_column_listing');
-				do_action('epl_manage_listing_column_listing_after');
 
 				break;
 
 			/* If displaying the 'Listing ID' column. */
 			case 'listing_id' :
-				do_action('epl_manage_listing_column_listing_id_before');
 				do_action('epl_manage_listing_column_listing_id');
-				do_action('epl_manage_listing_column_listing_id_after');
 
 				break;
 
 			/* If displaying the 'Geocoding' column. */
 			case 'geo' :
-				do_action('epl_manage_listing_column_geo_before');
 				do_action('epl_manage_listing_column_geo');
-				do_action('epl_manage_listing_column_geo_after');
 
 				break;
 
 			/* If displaying the 'Price' column. */
 			case 'property_price' :
-				do_action('epl_manage_listing_column_price_before');
 				do_action('epl_manage_listing_column_price');
-				do_action('epl_manage_listing_column_price_after');
 
 				break;
 
 			/* If displaying the 'Commercial Listing Type' column. */
 			case 'listing_type' :
-				do_action('epl_manage_listing_column_listing_type_before');
 				do_action('epl_manage_listing_column_listing_type');
-				do_action('epl_manage_listing_column_listing_type_after');
 
 				break;
 
 			/* If displaying the 'property_status' column. */
 			case 'property_status' :
-				do_action('epl_manage_listing_column_property_status_before');
 				do_action('epl_manage_listing_column_property_status');
-				do_action('epl_manage_listing_column_property_status_after');
 
 				break;
 
+			/* If displaying the 'Agent' column. */
 			case 'agent':
-				do_action('epl_manage_listing_column_agent_before');
 				do_action('epl_manage_listing_column_agent');
-				do_action('epl_manage_listing_column_agent_after');
 
 				break;
 

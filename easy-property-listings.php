@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.2.3
+ * Version: 3.3
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.2.3
+ * @version 3.3
  */
 
 // Exit if accessed directly
@@ -93,11 +93,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.2.3' );
+				define( 'EPL_PROPERTY_VER', '3.3' );
 			}
 			// Plugin DB version
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
-				define( 'EPL_PROPERTY_DB_VER', '3.0' );
+				define( 'EPL_PROPERTY_DB_VER', '3.3' );
 			}
 			// Current Page
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
@@ -263,11 +263,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'widgets/widget-admin-dashboard.php';
 				require_once EPL_PATH_LIB . 'includes/admin/help.php';
 				require_once EPL_PATH_LIB . 'includes/admin/help-single.php';
+				require_once EPL_PATH_LIB . 'includes/admin/listing-elements-gui.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
+				require_once EPL_PATH_LIB . 'shortcodes/class-advanced-shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
+				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-advanced.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-contact-form.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
@@ -287,6 +290,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-listing-elements.php';
+
+			if( file_exists(get_stylesheet_directory().'/easypropertylistings/functions.php' ) ) {
+				include_once(get_stylesheet_directory().'/easypropertylistings/functions.php' );
+			}
 		}
 
 		/**

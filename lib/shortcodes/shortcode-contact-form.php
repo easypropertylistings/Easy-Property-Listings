@@ -67,6 +67,11 @@ add_shortcode( 'epl_contact_form', 'epl_contact_capture_form' );
  */
 function contact_capture_form_callback($form_data,$request) {
 
+	if( isset($request['epl_contact_anti_spam']) && $request['epl_contact_anti_spam'] != '' ){
+		// spam
+		return;
+	}
+
 	$contact = new EPL_contact( $request['epl_contact_email'] );
 	$fname  = isset($request['epl_contact_first_name']) ? sanitize_text_field($request['epl_contact_first_name']) : '';
 	$lname  = isset($request['epl_contact_last_name']) ? sanitize_text_field($request['epl_contact_last_name']) : '';
@@ -85,12 +90,12 @@ function contact_capture_form_callback($form_data,$request) {
 			$contact->update_meta('contact_phones',array('phone' =>  $phone) );
 			$contact->update_meta('contact_category','widget');
 			$contact->attach_listing( $request['epl_contact_listing_id'] );
-			$contact->add_note( $request['epl_contact_note'],'epl_user_note',$request['epl_contact_listing_id'] );
+			$contact->add_note( $request['epl_contact_note'],'note',$request['epl_contact_listing_id'] );
 		}
 	} else {
 
 		if ( $contact->update( array('name'	=>	$title ) ) ) {
-			$contact->add_note( $request['epl_contact_note'],'epl_user_note',$request['epl_contact_listing_id'] );
+			$contact->add_note( $request['epl_contact_note'],'note',$request['epl_contact_listing_id'] );
 			$contact->attach_listing( $request['epl_contact_listing_id'] );
 		}
 	}

@@ -44,7 +44,8 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_heading',
 							'label'		=>	__('Heading', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'maxlength'	=>	'200'
+							'maxlength'	=>	'200',
+							'class'		=>	'epl-property-heading'
 						)
 					)
 				),
@@ -58,7 +59,8 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_office_id',
 							'label'		=>	__('Office ID', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'maxlength'	=>	'50'
+							'maxlength'	=>	'50',
+							'class'		=>	'epl-property-office-id'
 						),
 
 						array(
@@ -66,7 +68,8 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('Listing Agent', 'easy-property-listings' ),
 							'type'		=>	'text',
 							'maxlength'	=>	'40',
-							'help'		=>	__('Search for primary agent.','easy-property-listings' )
+							'help'		=>	__('Search for primary agent.','easy-property-listings' ),
+							'class'		=>	'epl-property-agent'
 						),
 
 						array(
@@ -74,7 +77,8 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('Second Listing Agent', 'easy-property-listings' ),
 							'type'		=>	'text',
 							'maxlength'	=>	'40',
-							'help'		=>	__('Search for secondary agent.','easy-property-listings' )
+							'help'		=>	__('Search for secondary agent.','easy-property-listings' ),
+							'class'		=>	'epl-property-second-agent'
 						),
 
 						array(
@@ -83,7 +87,8 @@ function epl_get_meta_boxes() {
 							'type'		=>	'checkbox_single',
 							'opts'		=>	array(
 								'yes'	=>	__('Hide Author Box', 'easy-property-listings' ),
-							)
+							),
+							'class'		=>	'epl-property-agent-hide-author-box'
 						)
 					)
 				),
@@ -92,6 +97,7 @@ function epl_get_meta_boxes() {
 					'id'		=>	'listing_type',
 					'columns'	=>	'2',
 					'label'		=>	__('Listing Type', 'easy-property-listings' ),
+					'width'		=>	'2',
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_status',
@@ -115,6 +121,13 @@ function epl_get_meta_boxes() {
 							'exclude'	=>	array('rental', 'commercial', 'commercial_land')
 						),
 
+												array(
+							'name'		=>	'property_unique_id',
+							'label'		=>	__('Unique ID', 'easy-property-listings' ),
+							'type'		=>	'text',
+							'maxlength'	=>	'50'
+						),
+
 						array(
 							'name'		=>	'property_category',
 							'label'		=>	__('House Category', 'easy-property-listings' ),
@@ -132,13 +145,6 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'		=>	'property_unique_id',
-							'label'		=>	__('Unique ID', 'easy-property-listings' ),
-							'type'		=>	'text',
-							'maxlength'	=>	'50'
-						),
-
-						array(
 							'name'		=>	'property_mod_date',
 							'label'		=>	__('XML Importer Mod Date', 'easy-property-listings' ),
 							'type'		=>	'text',
@@ -147,7 +153,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'		=>	'property_images_mod_date',
-							'label'		=>	'',
+							'label'		=>	__('Image Modified Date', 'easy-property-listings' ),
 							'type'		=>	'hidden',
 							'maxlength'	=>	'60'
 						),
@@ -191,20 +197,21 @@ function epl_get_meta_boxes() {
 					'columns'	=>	'2',
 					'label'		=>	__('Display Details', 'easy-property-listings' ),
 					'fields'	=>	array(
-						array(
-							'name'		=>	'property_featured',
-							'label'		=>	__('Featured', 'easy-property-listings' ),
-							'type'		=>	'checkbox_single',
-							'opts'	=>	array(
-								'yes'	=>	__('Yes', 'easy-property-listings' ),
-							),
-						),
 
 						array(
 							'name'		=>	'property_inspection_times',
 							'label'		=>	__('Inspection Times ( one per line )', 'easy-property-listings' ),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'500'
+						),
+
+						array(
+							'name'		=>	'property_featured',
+							'label'		=>	__('Featured Listing', 'easy-property-listings' ),
+							'type'		=>	'checkbox_single',
+							'opts'	=>	array(
+								'yes'	=>	__('Yes', 'easy-property-listings' ),
+							),
 						)
 					)
 				)
@@ -221,13 +228,15 @@ function epl_get_meta_boxes() {
 				array(
 					'id'		=>	'house_features',
 					'columns'	=>	'2',
+					'width'		=>	'2', // default for this group
 					'label'		=>	__('House Features', 'easy-property-listings' ),
 					'fields'	=>	array(
 						array(
 							'name'		=>	'property_bedrooms',
 							'label'		=>	__('Bedrooms', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'class'		=>	'validate[custom[bedroom]]'
+							'class'		=>	'validate[custom[bedroom]]',
+							'width'		=>	'2', // override width for this field
 						),
 
 						array(
@@ -238,10 +247,10 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'		=>	'property_rooms',
-							'label'		=>	__('Rooms', 'easy-property-listings' ),
-							'type'		=>	'number',
-							'maxlength'	=>	'3'
+							'name'		=>	'property_toilet',
+							'label'		=>	__('Toilet', 'easy-property-listings' ),
+							'type'		=>	'decimal',
+							'maxlength'	=>	'4'
 						),
 
 						array(
@@ -249,13 +258,6 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('Ensuite', 'easy-property-listings' ),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
-						),
-
-						array(
-							'name'		=>	'property_toilet',
-							'label'		=>	__('Toilet', 'easy-property-listings' ),
-							'type'		=>	'decimal',
-							'maxlength'	=>	'4'
 						),
 
 						array(
@@ -274,16 +276,24 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'		=>	'property_open_spaces',
-							'label'		=>	__('Open Spaces', 'easy-property-listings' ),
+							'label'		=>	__('Open Parking Spaces', 'easy-property-listings' ),
 							'type'		=>	'number',
 							'maxlength'	=>	'2'
+						),
+
+						array(
+							'name'		=>	'property_rooms',
+							'label'		=>	__('Rooms', 'easy-property-listings' ),
+							'type'		=>	'number',
+							'maxlength'	=>	'3'
 						),
 
 						array(
 							'name'		=>	'property_year_built',
 							'label'		=>	__('Year Built', 'easy-property-listings' ),
 							'type'		=>	'text',
-							'maxlength'	=>	'4'
+							'maxlength'	=>	'4',
+							'width'		=>	'1'
 						),
 
 						array(
@@ -344,28 +354,32 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_land_area',
 							'label'		=>	__('Land Area', 'easy-property-listings' ),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'50'
+							'maxlength'	=>	'50',
+							'width'		=>	'2-3'
 						),
 
 						array(
 							'name'		=>	'property_land_area_unit',
 							'label'		=>	__('Land Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'opts'		=>	$opts_area_unit
+							'opts'		=>	$opts_area_unit,
+							'width'		=>	'3'
 						),
 
 						array(
 							'name'		=>	'property_building_area',
 							'label'		=>	__('Building Area', 'easy-property-listings' ),
 							'type'		=>	'decimal',
-							'maxlength'	=>	'50'
+							'maxlength'	=>	'50',
+							'width'		=>	'2-3'
 						),
 
 						array(
 							'name'		=>	'property_building_area_unit',
 							'label'		=>	__('Building Unit', 'easy-property-listings' ),
 							'type'		=>	'select',
-							'opts'		=>	$opts_area_unit
+							'opts'		=>	$opts_area_unit,
+							'width'		=>	'3'
 						),
 
 						array(
@@ -711,7 +725,7 @@ function epl_get_meta_boxes() {
 						array(
 							'name'		=>	'property_building_area',
 							'label'		=>	__('Building Area', 'easy-property-listings' ),
-							'type'		=>	'number',
+							'type'		=>	'decimal',
 							'include'	=>	array('commercial','business'),
 							'maxlength'	=>	'40'
 						),
@@ -878,12 +892,20 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'land'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'pricing',
 					'columns'	=>	'1',
 					'label'		=>	'',
-					'fields'	=>	array(
+					'fields'		=>	array(
+
+						array(
+							'name'		=>	'property_price_global',
+							'label'		=>	__('Global Price', 'easy-property-listings' ),
+							'type'		=>	'hidden',
+							'maxlength'	=>	'50'
+						),
+
 						array(
 							'name'		=>	'property_price',
 							'label'		=>	__('Search Price', 'easy-property-listings' ),
@@ -939,7 +961,7 @@ function epl_get_meta_boxes() {
 					'id'		=>	'sale_details',
 					'columns'	=>	'1',
 					'label'		=>	__('Sale Details', 'easy-property-listings' ),
-					'fields'	=>	array(
+					'fields'		=>	array(
 						array(
 							'name'		=>	'property_sold_price',
 							'label'		=>	__('Sale Price', 'easy-property-listings' ),
@@ -973,12 +995,20 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('rental'),
 			'context'	=>	'side',
 			'priority'	=>	'core',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'rental_pricing',
 					'columns'	=>	'1',
 					'label'		=>	'',
-					'fields'	=>	array(
+					'fields'		=>	array(
+
+						array(
+							'name'		=>	'property_price_global',
+							'label'		=>	__('Global Price', 'easy-property-listings' ),
+							'type'		=>	'hidden',
+							'maxlength'	=>	'50'
+						),
+
 						array(
 							'name'		=>	'property_rent',
 							'label'		=>	__('Rent Amount', 'easy-property-listings' ),
@@ -1024,6 +1054,13 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
+							'name'		=>	'property_date_leased',
+							'label'		=>	__('Leased Date', 'easy-property-listings' ),
+							'type'		=>	'date',
+							'maxlength'	=>	'100'
+						),
+
+						array(
 							'name'		=>	'property_furnished',
 							'label'		=>	__('Furnished', 'easy-property-listings' ),
 							'type'		=>	'checkbox_single',
@@ -1052,7 +1089,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('rural'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'rural_features',
 					'columns'	=>	'1',
@@ -1124,7 +1161,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('commercial', 'commercial_land' , 'business'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'commercial_leasing',
 					'columns'	=>	'2',
@@ -1178,7 +1215,7 @@ function epl_get_meta_boxes() {
 					'id'		=>	'tenant_n_outgoings',
 					'columns'	=>	'2',
 					'label'		=>	'',
-					'fields'	=>	array(
+					'fields'		=>	array(
 						array(
 							'name'		=>	'property_com_tenancy',
 							'label'		=>	__('Tenant Status', 'easy-property-listings' ),
@@ -1246,7 +1283,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('commercial'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'commercial_features',
 					'columns'	=>	'1',
@@ -1321,10 +1358,10 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
 			'context'	=>	'normal',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'files_n_links',
-					'columns'	=>	'1',
+					'columns'	=>	'2',
 					'label'		=>	'',
 					'fields'	=>	array(
 						array(
@@ -1334,63 +1371,124 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'		=>	'property_floorplan',
-							'label'		=>	__('Floorplan', 'easy-property-listings' ),
-							'type'		=>	'file'
-						),
-
-						array(
-							'name'		=>	'property_floorplan_2',
-							'label'		=>	__('Floorplan 2', 'easy-property-listings' ),
-							'type'		=>	'file'
-						),
-
-						array(
 							'name'		=>	'property_external_link',
 							'label'		=>	__('External Link', 'easy-property-listings' ),
-							'type'		=>	'file'
+							'type'		=>	'url',
+							'width'		=>	'2-3'
+						),
+
+						array(
+							'name'		=>	'property_external_link_label',
+							'label'		=>	__('Title', 'easy-property-listings' ),
+							'type'		=>	'text',
+							'maxlength'	=>	'40',
+							'width'		=>	'3'
 						),
 
 						array(
 							'name'		=>	'property_external_link_2',
 							'label'		=>	__('External Link 2', 'easy-property-listings' ),
-							'type'		=>	'file'
+							'type'		=>	'url',
+							'width'		=>	'2-3'
+						),
+
+						array(
+							'name'		=>	'property_external_link_2_label',
+							'label'		=>	__('Title', 'easy-property-listings' ),
+							'type'		=>	'text',
+							'maxlength'	=>	'40',
+							'width'		=>	'3'
 						),
 
 						array(
 							'name'		=>	'property_external_link_3',
 							'label'		=>	__('External Link 3', 'easy-property-listings' ),
-							'type'		=>	'file',
-							'include'	=>	array('commercial', 'business', 'commercial_land'),
+							'type'		=>	'url',
+							'width'		=>	'2-3'
+						),
+
+						array(
+							'name'		=>	'property_external_link_3_label',
+							'label'		=>	__('Title', 'easy-property-listings' ),
+							'type'		=>	'text',
+							'maxlength'	=>	'40',
+							'width'		=>	'3'
 						),
 
 						array(
 							'name'		=>	'property_com_mini_web',
 							'label'		=>	__('Mini Website URL', 'easy-property-listings' ),
-							'type'		=>	'file',
-							'include'	=>	array('commercial', 'business', 'commercial_land'),
+							'type'		=>	'url',
 						),
 
 						array(
 							'name'		=>	'property_com_mini_web_2',
 							'label'		=>	__('Mini Website URL 2', 'easy-property-listings' ),
-							'type'		=>	'file',
-							'include'	=>	array('commercial', 'business', 'commercial_land'),
+							'type'		=>	'url',
 						),
 
 						array(
 							'name'		=>	'property_com_mini_web_3',
 							'label'		=>	__('Mini Website URL 3', 'easy-property-listings' ),
-							'type'		=>	'file',
+							'type'		=>	'url',
 							'include'	=>	array('commercial', 'business', 'commercial_land'),
+						),
+					)
+				),
+
+				array(
+					'id'		=>	'files_n_links_2',
+					'columns'	=>	'2',
+					'label'		=>	'',
+					'fields'		=>	array(
+
+						array(
+							'name'		=>	'property_floorplan',
+							'label'		=>	__('Floorplan', 'easy-property-listings' ),
+							'type'		=>	'file',
+							'width'		=>	'2-3'
+						),
+
+						array(
+							'name'		=>	'property_floorplan_label',
+							'label'		=>	__('Title', 'easy-property-listings' ),
+							'type'		=>	'text',
+							'maxlength'	=>	'40',
+							'width'		=>	'3'
+						),
+
+						array(
+							'name'		=>	'property_floorplan_2',
+							'label'		=>	__('Floorplan 2', 'easy-property-listings' ),
+							'type'		=>	'file',
+							'width'		=>	'2-3'
+						),
+
+						array(
+							'name'		=>	'property_floorplan_2_label',
+							'label'		=>	__('Title', 'easy-property-listings' ),
+							'type'		=>	'text',
+							'maxlength'	=>	'40',
+							'width'		=>	'3'
 						),
 
 						array(
 							'name'		=>	'property_energy_certificate',
 							'label'		=>	__('Energy Certificate', 'easy-property-listings' ),
 							'type'		=>	'file',
+							'width'		=>	'2-3',
 							'exclude'	=>	array('land', 'commercial_land'),
 						),
+
+						array(
+							'name'		=>	'property_energy_certificate_label',
+							'label'		=>	__('Title', 'easy-property-listings' ),
+							'type'		=>	'file',
+							'type'		=>	'text',
+							'maxlength'	=>	'40',
+							'width'		=>	'3',
+							'exclude'	=>	array('land', 'commercial_land'),
+						)
 					)
 				)
 			)
@@ -1402,7 +1500,7 @@ function epl_get_meta_boxes() {
 			'post_type'	=>	array('property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land'),
 			'context'	=>	'side',
 			'priority'	=>	'default',
-			'groups'	=>	array(
+			'groups'		=>	array(
 				array(
 					'id'		=>	'owner_details',
 					'columns'	=>	'1',

@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 2.0
  */
 function epl_search_widget_fields() {
+
+	$post_type_array = array_merge( array( ''	=>	__('All','easy-property-listings') ) + epl_get_active_post_types() );
 	$fields = apply_filters( 'epl_search_widget_fields',  array(
 
 		array(
@@ -32,7 +34,7 @@ function epl_search_widget_fields() {
 			'default'		=>	array('property'),
 			'type'			=>	'select',
 			'multiple'		=>	true,
-			'options'		=>	epl_get_active_post_types(),
+			'options'		=>	$post_type_array,
 		),
 		array(
 			'key'			=>	'style',
@@ -125,6 +127,12 @@ function epl_search_widget_fields() {
 			'type'			=>	'checkbox',
 		),
 		array(
+			'key'			=>	'search_price_global',
+			'label'			=>	__('Global Price Search','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
 			'key'			=>	'search_bed',
 			'label'			=>	__('Bed','easy-property-listings'),
 			'default'		=>	'on',
@@ -166,6 +174,7 @@ function epl_search_widget_fields() {
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
 		),
+
 		array(
 			'key'			=>	'search_other',
 			'label'			=>	__('Other Search Options','easy-property-listings'),
@@ -194,6 +203,14 @@ function epl_number_suffix_callback($v,$suffix=' +') {
 
 function epl_get_price_array($post_type='property',$transaction='default') {
 
+	if($post_type == '') {
+
+		$range 			= array_merge(range(0,1000,50), range(1100,2000,100), range(2500,5000,500),range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
+
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
+
+		$price_array 	= apply_filters('epl_listing_search_price_global',$price_array);
+	}
 
 	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
 	if( is_epl_rental_post($post_type) ) {
@@ -394,12 +411,46 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'meta_key'		=>	'property_tax_business_listing',
 			'label'			=>	__('Business Category','easy-property-listings'),
 			'type'			=>	'select',
-			'option_filter'	=>	'tax_business_listing',
+			'option_filter'		=>	'tax_business_listing',
 			'options'		=>	epl_get_available_terms('tax_business_listing','business',$property_status),
 			'query'			=>	array('query'	=>	'tax'),
 			'class'			=>	'epl-search-row-full',
 			'exclude'		=>	array('property','rental','land','rural','commercial','commercial_land'),
 			'order'			=>	130
+		),
+		array(
+			'key'			=>	'search_price_global',
+			'meta_key'		=>	'property_price_global_from',
+			'label'			=>	__('Search Price From','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'global_price_from',
+			'options'		=>	$price_array,
+			'type'			=>	'select',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'key'		=>	'property_price_global',
+								'type'		=>	'numeric',
+								'compare'	=>	'>='
+							),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	134
+		),
+		array(
+			'key'			=>	'search_price_global',
+			'meta_key'		=>	'property_price_global_to',
+			'label'			=>	__('Search Price To','easy-property-listings'),
+			'type'			=>	'select',
+			'option_filter'		=>	'global_price_to',
+			'options'		=>	$price_array,
+			'type'			=>	'select',
+			'query'			=>	array(
+								'query'		=>	'meta',
+								'key'		=>	'property_price_global',
+								'type'		=>	'numeric',
+								'compare'	=>	'<='
+							),
+			'class'			=>	'epl-search-row-half',
+			'order'			=>	135
 		),
 		array(
 			'key'			=>	'search_price',
@@ -704,7 +755,8 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'class'			=>	'epl-search-row-half',
 			'wrap_end'		=>	true,
 			'order'			=>	290
-		)
+		),
+
 	), $post_type, $property_status );
 
 	$order = array();
@@ -914,6 +966,10 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
 	if( empty($key) ) {
 		return;
+	}
+
+	if($type == '') {
+		$type = epl_get_core_post_types();
 	}
 
 	$type = (array) $type;
@@ -1186,6 +1242,13 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 			'data-default' => 'on'
 		),
 		array(
+			'label'        => '',
+			'name'         => 'epl_contact_anti_spam',
+			'id'           => 'epl_contact_note',
+			'type'         => 'hidden',
+			'data-default' => 'on'
+		),
+		array(
 			'name'         => 'epl_contact_listing_id',
 			'id'           => 'epl_contact_listing_id',
 			'type'         => 'hidden',
@@ -1287,6 +1350,12 @@ function epl_contact_capture_widget_form_fields() {
 			'default'	=> 'on'
 		),
 		array(
+			'label'		=> __( 'Anti Spam', 'easy-property-listings' ),
+			'key'		=> 'epl_contact_anti_spam',
+			'type'		=> 'checkbox',
+			'default'	=> 'on'
+		),
+		array(
 			'key'		=> 'submit',
 			'label'		=> __( 'Submit Label', 'easy-property-listings' ),
 			'type'		=> 'text',
@@ -1294,4 +1363,65 @@ function epl_contact_capture_widget_form_fields() {
 		),
 	);
 	return apply_filters( 'epl_contact_capture_widget_form_fields', $fields );
+}
+
+function epl_get_owners() {
+	$c_array = array();
+	$contact_ids = (array) epl_get_meta_values( 'property_owner', epl_get_core_post_types() );
+	foreach ( $contact_ids as $contact ) {
+		$contact_object = new EPL_Contact($contact);
+		$c_array[$contact] = $contact_object->name;
+	}
+	return $c_array;
+
+}
+
+function epl_get_field_sliders() {
+
+	$sliders = array(
+		'epl_field_slider_property_price_global'	=>	array(
+			'els'       =>	array('property_price_global_from','property_price_global_to'),
+			'label'     => __('Price Search','easy-property-listings'),
+			'prefix'    => '$',
+			'suffix'    => '',
+			'seperator' => ' - '
+		), /**
+		'epl_field_slider_property_price'	=>	array(
+			'els'       =>	array('property_price_from','property_price_to'),
+			'label'     => __('Price','easy-property-listings'),
+			'prefix'    => '$',
+			'suffix'    => '',
+			'seperator' => ' - '
+		),
+		'epl_field_slider_property_bedrooms'	=>	array(
+			'els'       =>	array('property_bedrooms_min','property_bedrooms_max'),
+			'label'     => __('Bedrooms','easy-property-listings'),
+			'prefix'    => '',
+			'suffix'    => '',
+			'seperator' => ' - '
+		),
+		'epl_field_slider_property_land_area'	=>	array(
+			'els'       =>	array('property_land_area_min','property_land_area_max'),
+			'label'     => __('Land Area','easy-property-listings'),
+			'prefix'    => '',
+			'suffix'    => 'm<sup>2</sup>',
+			'seperator' => ' - ',
+			'min' 		=> 0,
+            'max' 		=> 2000,
+            'step' 		=> 10
+		),
+		'epl_field_slider_property_building_area'	=>	array(
+			'els'       =>	array('property_building_area_min','property_building_area_max'),
+			'label'     => __('Building Area','easy-property-listings'),
+			'prefix'    => '',
+			'suffix'    => 'sq',
+			'seperator' => ' - ',
+			'min' 		=> 0,
+            'max' 		=> 2000,
+            'step' 		=> 10
+		)
+		**/
+	);
+
+	return  apply_filters('epl_search_slider_fields', $sliders);
 }

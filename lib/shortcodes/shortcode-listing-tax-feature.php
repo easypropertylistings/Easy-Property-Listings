@@ -27,7 +27,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		 $property_types = array_keys($property_types);
 	}
 
-	extract( shortcode_atts( array(
+	$attributes = shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
 		'status'		=>	array('current' , 'sold' , 'leased' ),
 		'feature'		=>	'', // Feature slug
@@ -40,8 +40,12 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
 		'sortby'		=>	'', // Options: price, date : Default date
 		'sort_order'		=>	'DESC', // Sort by ASC or DESC
-		'pagination'		=> 	'on' // Enable or disable pagination
-	), $atts ) );
+		'pagination'		=> 	'on', // Enable or disable pagination
+		'instance_id'		=>	'1',
+		'class'			=>	''
+	), $atts );
+
+	extract( $attributes );
 
 	if(empty($post_type)) {
 		return;
@@ -140,14 +144,18 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	}
 
 
+	$args['instance_id'] = $attributes['instance_id'];
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-	$args = epl_add_orderby_args($args);
+	$args = epl_add_orderby_args($args,'shortcode','listing_feature');
+
+	/** Option to filter args */
+	$args = apply_filters('epl_shortcode_listing_feature_args',$args,$attributes);
 
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-feature <?php echo epl_template_class( $template, 'archive' ); ?>">
+			<div class="loop-content epl-shortcode-listing-feature <?php echo epl_template_class( $template, 'archive' );  echo $attributes['class']; ?>">
 				<?php
 					if ( $tools_top == 'on' ) {
 						do_action( 'epl_property_loop_start' );

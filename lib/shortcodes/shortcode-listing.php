@@ -43,7 +43,9 @@ function epl_shortcode_listing_callback( $atts ) {
 		'sortby'	=> '', // Options: price, date : Default date
 		'sort_order'	=> 'DESC', // Sort by ASC or DESC
 		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
-		'pagination'	=> 'on' // Enable or disable pagination
+		'pagination'	=> 'on', // Enable or disable pagination
+		'instance_id'	=> '1',
+		'class'         => '', // wrapper class
 	), $atts );
 
 	if ( is_string( $attributes['post_type'] ) && $attributes['post_type'] == 'rental' ) {
@@ -59,7 +61,6 @@ function epl_shortcode_listing_callback( $atts ) {
 	if ( ! is_array( $attributes['post_type'] ) ) {
 		$attributes['post_type'] = array_map( 'trim', explode( ',',$attributes['post_type'] ) );
 	}
-
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
 		'post_type'      =>	$attributes['post_type'],
@@ -123,6 +124,8 @@ function epl_shortcode_listing_callback( $atts ) {
 		if ( $attributes['sortby'] == 'price' ) {
 			$args['orderby']  = 'meta_value_num';
 			$args['meta_key'] =	$meta_key_price;
+		} elseif( $attributes['sortby'] == 'rand' ) {
+			$args['orderby']  = 'rand';
 		} else {
 			$args['orderby']  = 'post_date';
 			$args['order']    = 'DESC';
@@ -130,8 +133,13 @@ function epl_shortcode_listing_callback( $atts ) {
 		$args['order']        = $attributes['sort_order'];
 	}
 
+	$args['instance_id'] = $attributes['instance_id'];
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-	$args = epl_add_orderby_args($args);
+	$args = epl_add_orderby_args($args,'shortcode','listing');
+
+	/** Option to filter args */
+	$args = apply_filters('epl_shortcode_listing_args',$args,$attributes);
+
 	$query_open = new WP_Query( $args );
 
 	if ( is_object( $attributes['query_object'] ) ) {
@@ -162,18 +170,4 @@ function epl_sorting_options_callback( $sorters ) {
 		}
 	}
 	return $sorters;
-}
-
-/**
- * Get author id from name
- *
- * @since       3.1.1
- */
-function epl_get_author_id_from_name($author) {
-	if( is_numeric($author) ) {
-		return absint($author);
-	} else {
-		$user = get_user_by( 'login', $author );
-		return $user->ID;
-	}
 }

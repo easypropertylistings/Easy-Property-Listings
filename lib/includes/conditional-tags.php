@@ -155,7 +155,7 @@ function epl_listing_has_secondary_agent() {
 	$exists = false;
     $property_second_agent = get_property_meta('property_second_agent');
     if ( '' != $property_second_agent ) {
-        $second_author = get_user_by( 'login' , sanitize_title($property_second_agent) );
+        $second_author = get_user_by( 'login' , sanitize_user($property_second_agent) );
         if($second_author !== false){
             $exists = $second_author->ID;
         }
@@ -171,7 +171,7 @@ function epl_listing_has_primary_agent() {
     $exists = false;
     $property_agent = get_property_meta('property_agent');
     if ( '' != $property_agent ) {
-        $author = get_user_by( 'login' , sanitize_title($property_agent) );
+        $author = get_user_by( 'login' , sanitize_user($property_agent) );
          if($author !== false){
             $exists = $author->ID;
         }

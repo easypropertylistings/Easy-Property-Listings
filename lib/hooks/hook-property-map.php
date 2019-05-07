@@ -19,7 +19,20 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 1.0
  */
 function epl_property_map_default_callback() {
+
 	global $property;
+
+	$api_key = epl_get_option('epl_google_api_key');
+	$show_warning = apply_filters('epl_show_map_key_warning', true);
+
+	if( empty($api_key) ) {
+
+		if( $show_warning && is_user_logged_in() && current_user_can('administrator') ){
+			epl_map_api_key_warning();
+		}
+
+		return;
+	}
 
 	// only show map if address display is set to true
 	if ( $property->get_property_meta('property_address_display') == 'yes' ) {
@@ -44,3 +57,12 @@ function epl_property_map_default_callback() {
 
 }
 add_action('epl_property_map', 'epl_property_map_default_callback');
+
+function epl_map_api_key_warning() { ?>
+
+	<div class="epl-danger epl-warning-map-key" >
+		<p> <?php _e('Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings.','easy-property-listings'); ?> <em>
+			<?php _e('Note: This message is only displayed to logged in administrators.','easy-property-listings'); ?></em></p>
+	</div> <?php
+
+}

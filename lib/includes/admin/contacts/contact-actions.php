@@ -1334,12 +1334,18 @@ add_action('wp_ajax_epl_search_contact_listing','epl_search_contact_listing');
  * @since 3.0
  */
 function epl_search_user() {
-	$users = get_users(
-			array(
-				'search'       =>  $_REQUEST['user_name']. '*',
-				'number'       =>  5
-			)
-		);
+
+	$args = array(
+		'search'       =>  $_REQUEST['user_name']. '*',
+		'number'       =>  5
+	);
+
+	if( isset($_REQUEST['exclude_roles']) ) {
+		$exclude_roles = explode(',', $_REQUEST['exclude_roles'] );
+		$args['role__not_in'] = $exclude_roles;
+	}
+
+	$users = get_users( $args );
 
 	if( !empty($users) && !is_wp_error($users) ) {
 		ob_start();

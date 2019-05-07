@@ -90,7 +90,7 @@ function epl_property_single() {
 		epl_property_single_default();
 	}
 }
-add_action('epl_property_single','epl_property_single');
+add_action('epl_property_single','epl_property_single',10,1);
 
 /**
  * Featured Image template now loading through filter
@@ -156,7 +156,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 	<?php }
 
 }
-add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featured_image' , 10 , 2 );
+add_action( 'epl_property_archive_featured_image' , 'epl_property_archive_featured_image' , 10 , 3 );
 
 /**
  * Featured Image in widgets
@@ -180,7 +180,7 @@ function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-cr
 	<?php }
 
 }
-add_action( 'epl_property_widgets_featured_image' , 'epl_property_widgets_featured_image' , 10 , 2 );
+add_action( 'epl_property_widgets_featured_image' , 'epl_property_widgets_featured_image' , 10 , 3 );
 
 /**
  * Single Listing Templates
@@ -195,8 +195,9 @@ function epl_property_single_default() {
 		epl_get_template_part('content-listing-single-compatibility.php');
 
 	} else {
-
-		epl_get_template_part('content-listing-single.php');
+		$single_tpl = 'content-listing-single.php';
+		$single_tpl = apply_filters('epl_property_single_default',$single_tpl);
+		epl_get_template_part($single_tpl);
 	}
 }
 
@@ -308,26 +309,18 @@ function epl_property_blog($template='') {
 
 			if( isset($epl_settings['epl_feeling_lucky']) && $epl_settings['epl_feeling_lucky'] == 'on') {
 
-				if( locate_template( array('loop-listing-blog-'.$template.'-compatibility.php') ) ) {
-
-					epl_get_template_part('loop-listing-blog-'.$template.'-compatibility.php');
-
-				} else {
-
-					epl_get_template_part('loop-listing-blog-'.$template.'.php');
-
-				}
-
+				epl_get_template_part('loop-listing-blog-'.$template.'-compatibility.php');
 
 			} else {
-
-				epl_get_template_part('loop-listing-blog-'.$template.'.php');
+				$tpl_name = 'loop-listing-blog-'.$template.'.php';
+				$tpl_name = apply_filters('epl_property_blog_template',$tpl_name);
+				epl_get_template_part($tpl_name);
 			}
 
 		}
 	} // End Status Removal
 }
-add_action('epl_property_blog','epl_property_blog');
+add_action('epl_property_blog','epl_property_blog',10,1);
 
 /**
  * Renders default author box
@@ -409,7 +402,7 @@ function epl_property_author_box_simple_grav() {
  *
  * @since 1.0
  */
-function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','easy-property-listings' )" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more  ) {
+function epl_property_widget( $display , $image , $title , $icons , $more_text = "__('Read More','easy-property-listings' )" , $d_excerpt , $d_suburb , $d_street , $d_price , $d_more, $d_inspection_time, $d_ical_link  ) {
 	global $property;
 
 	if( is_null($property) )
@@ -485,8 +478,15 @@ function epl_property_widget_image_only_option( $image ) {
  * WIDGET LISTING : Widget Tall Card
  *
  * @since 1.0
+ * @revised 3.3
  */
-function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio) {
+function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio, $username) {
+
+	if( !empty($username) ) {
+		epl_show_author_widget_by_username($d_image , $d_icons , $d_bio, $username);
+		return;
+	}
+
 	global $property,$epl_author,$epl_author_secondary;
 	if( is_null($epl_author) )
 		return;
@@ -501,6 +501,24 @@ function epl_property_author_box_simple_card_tall( $d_image , $d_icons , $d_bio)
 			    epl_get_template_part('widget-content-author-tall.php',$arg_list);
 		}
 		epl_reset_post_author();
+	}
+}
+
+/**
+ * Display widget by username
+ *
+ * @since 3.3
+ */
+function epl_show_author_widget_by_username($d_image , $d_icons , $d_bio, $username) {
+	$username = explode(',',$username);
+	$username = array_filter($username);
+	foreach($username as $uname) {
+		$author = get_user_by( 'login' , sanitize_user($uname) );
+		if($author !== false){
+			$epl_author = new EPL_Author_meta($author->ID);
+			$arg_list = get_defined_vars();
+			epl_get_template_part('widget-content-author-tall.php',$arg_list);
+		}
 	}
 }
 
@@ -609,7 +627,7 @@ function epl_property_suburb() {
 add_action( 'epl_property_suburb' , 'epl_property_suburb' );
 
 /**
- * Get the full address
+ * Get the price
  *
  * @since 1.0
  * @hooked property_price
@@ -625,27 +643,69 @@ add_action('epl_property_price_content','epl_property_price');
  * Get Property icons
  *
  * @since 1.0
- * @hooked property_price
- * @hooked property_price_content
+ * @revised 3.3
  */
-function epl_get_property_icons() {
+function epl_get_property_icons( $args = array() , $returntype = 'i') {
+
 	global $property;
-	return $property->get_property_bed().
-		$property->get_property_bath().
-		$property->get_property_parking().
-		$property->get_property_air_conditioning().
-		$property->get_property_pool();
+
+	$defaults 	= array('bed','bath','parking','ac','pool');
+
+	$icons 		= apply_filters('epl_get_property_icons', $defaults);
+	$returntype	= apply_filters('epl_icons_return_type', $returntype);
+
+	ob_start();
+
+	foreach($icons as $icon) {
+
+
+		if( !empty($args) && !in_array($icon,$args) ) {
+			continue;
+		}
+
+		switch($icon) {
+
+			case 'bed' :
+				echo $property->get_property_bed($returntype);
+			break;
+
+			case 'bath' :
+				echo $property->get_property_bath($returntype);
+			break;
+
+			case 'parking' :
+				echo $property->get_property_parking($returntype);
+			break;
+
+			case 'ac' :
+				echo $property->get_property_air_conditioning($returntype);
+			break;
+
+			case 'pool' :
+				echo $property->get_property_pool($returntype);
+			break;
+
+			default:
+				// action to hook additional icons
+				do_action('epl_get_property_icon_'.$icon);
+			break;
+		}
+	}
+
+	return ob_get_clean();
 }
 
 /**
  * Property icons
  *
  * @since 1.0
+ * @revised 3.3
  */
-function epl_property_icons() {
-	echo epl_get_property_icons();
+function epl_property_icons($returntype = 'i') {
+	$returntype = $returntype == '' ? 'i' : $returntype;
+	echo epl_get_property_icons(array(),$returntype);
 }
-add_action('epl_property_icons','epl_property_icons');
+add_action( 'epl_property_icons' , 'epl_property_icons' , 10 , 1 );
 
 /**
  * Property bed/bath icons
@@ -664,7 +724,6 @@ function epl_get_property_bb_icons() {
  * @since 1.0
  * @hooked property_land_category
  */
-
 function epl_property_land_category(){
 	global $property;
 	echo $property->get_property_land_category();
@@ -715,6 +774,8 @@ function epl_property_inspection_times(){
 	$label_home_open = '';
 	if(trim($property_inspection_times) != '') {
 		$label_home_open = $property->get_epl_settings('label_home_open');
+
+		$label_home_open = apply_filters('epl_inspection_times_label',$label_home_open);
 	?>
 	<div class="epl-inspection-times">
 		<span class="epl-inspection-times-label">
@@ -808,11 +869,41 @@ function epl_property_category() {
 }
 
 /**
+ * Video type
+ *
+ * @since 3.3
+ */
+function epl_get_video_host($url) {
+
+	$host = 'unknown';
+
+	if (strpos($url, 'youtu') > 0) {
+		$host = 'youtube';
+	} elseif (strpos($url, 'vimeo') > 0) {
+		$host = 'vimeo';
+	}
+
+	return $host;
+}
+
+/**
  * Property Video HTML
  *
  * @since 1.0
+ * @revised 3.3
  */
 function epl_get_video_html($property_video_url='',$width=600) {
+
+	/** remove related videos from youtube */
+	if( epl_get_video_host($property_video_url) == 'youtube' ) {
+
+		if (strpos($property_video_url, '?') > 0) {
+			$property_video_url .= '&rel=0';
+		} else {
+			$property_video_url .= '?rel=0';
+		}
+
+	}
 	$width = epl_get_option('epl_video_width',$width);
 	if($property_video_url != '') {
 		$video_html =  '<div class="epl-video-container videoContainer">';
@@ -830,6 +921,7 @@ function epl_get_video_html($property_video_url='',$width=600) {
  * Video Output Function
  *
  * @since 1.0
+ * @revised 3.3
  * @hooked property_after_content
  */
 function epl_property_video_callback( $width = 600 ) {
@@ -838,7 +930,16 @@ function epl_property_video_callback( $width = 600 ) {
 	$video_width 		= $width != '' ? $width : 600;
 	$property_video_url	= $property->get_property_meta('property_video_url');
 	echo epl_get_video_html($property_video_url,$video_width);
+
 }
+add_action('epl_property_video','epl_property_video_callback' , 10 , 1);
+
+/**
+ * Previous Video Hook, maintained for backward compatibility.
+ *
+ * @since 3.3
+ * @hooked property_after_content
+ */
 add_action('epl_property_content_after','epl_property_video_callback' , 10 , 1);
 
 /**
@@ -852,23 +953,135 @@ function epl_property_tab_section() {
 	$post_type = $property->post_type;
 	$the_property_feature_list = apply_filters('epl_the_property_feature_list_before', '' );
 
-	if ( 'property' == $post_type || 'rental' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_category('li');
+	$general_features_array = array(
+		'category',
+		'rural_category',
+		'commercial_category',
+		'bed',
+		'bath',
+		'rooms',
+		'year_built',
+		'parking',
+		'ac',
+		'pool',
+		'security',
+		'land_value',
+		'building_value',
+		'energy_rating',
+		'new_construction',
+	);
+
+	$general_features_array = apply_filters('epl_property_general_features_list', $general_features_array);
+
+	foreach( $general_features_array as $general_feature) {
+
+		switch($general_feature) {
+
+			case 'category':
+
+				if ( 'property' == $post_type || 'rental' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_category('li');
+				}
+
+			break;
+
+			case 'rural_category':
+
+				if ( 'rural' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_rural_category('li');
+				}
+
+			break;
+
+			case 'commercial_category':
+
+				if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
+					$the_property_feature_list .= $property->get_property_commercial_category('li');
+				}
+
+			break;
+
+			case 'bed':
+
+				$the_property_feature_list .= $property->get_property_bed('l').' ';
+
+			break;
+
+			case 'bath':
+
+				$the_property_feature_list .= $property->get_property_bath('l').' ';
+
+			break;
+
+			case 'rooms':
+
+				$the_property_feature_list .= $property->get_property_rooms('l').' ';
+
+			break;
+
+			case 'year_built':
+
+				$the_property_feature_list .= $property->get_property_year_built('l').' ';
+
+			break;
+
+			case 'parking':
+
+				$the_property_feature_list .= $property->get_property_parking('l').' ';
+
+			break;
+
+			case 'ac':
+
+				$the_property_feature_list .= $property->get_property_air_conditioning('l').' ';
+
+			break;
+
+			case 'pool':
+
+				$the_property_feature_list .= $property->get_property_pool('l');
+
+			break;
+
+			case 'security':
+
+				$the_property_feature_list .= $property->get_property_security_system('l').' ';
+
+			break;
+
+			case 'land_value':
+
+				$the_property_feature_list .= $property->get_property_land_value('l');
+
+			break;
+
+			case 'building_value':
+
+				$the_property_feature_list .= $property->get_property_building_area_value('l').' ';
+
+			break;
+
+			case 'energy_rating':
+
+				$the_property_feature_list .= $property->get_property_energy_rating('l');
+
+			break;
+
+			case 'new_construction':
+
+				$the_property_feature_list .= $property->get_property_new_construction('l');
+
+			break;
+
+			default :
+
+				do_action('epl_property_general_feature_'.$general_feature);
+
+			break;
+
+		}
 	}
 
-	if ( 'rural' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_rural_category('li');
-	}
-
-	if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
-		$the_property_feature_list .= $property->get_property_commercial_category('li');
-	}
-
-	$the_property_feature_list .= $property->get_property_bed('l').' '.$property->get_property_bath('l').' '.$property->get_property_rooms('l').' ';
-	$the_property_feature_list .= $property->get_property_year_built('l').' '.$property->get_property_parking('l').' ';
-	$the_property_feature_list .= $property->get_property_air_conditioning('l').' '.$property->get_property_pool('l');
-	$the_property_feature_list .= $property->get_property_security_system('l').' '.$property->get_property_land_value('l');
-	$the_property_feature_list .= $property->get_property_building_area_value('l').' '.$property->get_property_energy_rating('l').' '.$property->get_property_new_construction('l');
 
 	$the_property_feature_list .= apply_filters('epl_the_property_feature_list_before_common_features', '' );
 
@@ -1155,63 +1368,63 @@ function epl_sorting_options($post_type = null) {
 			'orderby'	=>	'meta_value_num',
 		),
 		array(
-			'id'	=>	'low',
-			'label'	=>	__('Price: Low to High','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
-			'order'	=>	'ASC',
+			'id'		=>	'low',
+			'label'		=>	__('Price: Low to High','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value_num',
 
 		),
 		array(
-			'id'	=>	'new',
-			'label'	=>	__('Date: Newest First','easy-property-listings' ),
-			'type'	=>	'post',
-			'key'	=>	'post_date',
-			'order'	=>	'DESC'
+			'id'		=>	'new',
+			'label'		=>	__('Date: Newest First','easy-property-listings' ),
+			'type'		=>	'post',
+			'key'		=>	'post_date',
+			'order'		=>	'DESC'
 
 
 		),
 		array(
-			'id'	=>	'old',
-			'label'	=>	__('Date: Oldest First','easy-property-listings' ),
-			'type'	=>	'post',
-			'key'	=>	'post_date',
-			'order'	=>	'ASC'
+			'id'		=>	'old',
+			'label'		=>	__('Date: Oldest First','easy-property-listings' ),
+			'type'		=>	'post',
+			'key'		=>	'post_date',
+			'order'		=>	'ASC'
 		),
 		array(
-			'id'	=>	'status_asc',
-			'label'	=>	__('Status : Current First','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_status',
-			'order'	=>	'ASC',
+			'id'		=>	'status_asc',
+			'label'		=>	__('Status : Current First','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_status',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'status_desc',
-			'label'	=>	__('Status : Sold/Leased First','easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_status',
-			'order'	=>	'DESC',
+			'id'		=>	'status_desc',
+			'label'		=>	__('Status : Sold/Leased First','easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_status',
+			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'location_asc',
-			'label'	=>	epl_labels('label_suburb'). __(' A-Z' , 'easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_address_suburb',
-			'order'	=>	'ASC',
+			'id'		=>	'location_asc',
+			'label'		=>	epl_labels('label_suburb'). __(' A-Z' , 'easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_address_suburb',
+			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value',
 
 		),
 		array(
-			'id'	=>	'location_desc',
-			'label'	=>	epl_labels('label_suburb'). __(' Z-A' , 'easy-property-listings' ),
-			'type'	=>	'meta',
-			'key'	=>	'property_address_suburb',
-			'order'	=>	'DESC',
+			'id'		=>	'location_desc',
+			'label'		=>	epl_labels('label_suburb'). __(' Z-A' , 'easy-property-listings' ),
+			'type'		=>	'meta',
+			'key'		=>	'property_address_suburb',
+			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value',
 
 		),
@@ -1219,37 +1432,207 @@ function epl_sorting_options($post_type = null) {
 }
 
 /**
- * Switch Sorting
+ * Switch Sorting Wrapper
+ *
+ * @since 3.3
+ */
+function epl_tools_utility_wrapper() {
+
+	// Wrapper Start
+	do_action('epl_archive_utility_wrap_start');
+
+		do_action('epl_add_custom_menus');
+
+	// Wrapper End
+	do_action('epl_archive_utility_wrap_end');
+
+}
+add_action( 'epl_property_loop_start' , 'epl_tools_utility_wrapper' , 10 );
+
+/**
+ * Switch Sorting Wrapper
  *
  * @since 2.0
+ * @revised 3.3
  */
-function epl_switch_views_sorting() {
+function epl_listing_toolbar_items() {
+
+	echo get_epl_listing_toolbar_items();
+
+}
+add_action( 'epl_add_custom_menus' , 'epl_listing_toolbar_items' , 10 );
+
+/**
+ * Retrieves the switch and sorting options normally right aligned
+ *
+ * @since 3.3
+ *
+ * @return string
+ */
+function get_epl_listing_toolbar_items( $args = array() ) {
+
+	$defaults = array(
+		'switch_views',
+		'sorting_tool',
+	);
+
+	$tools = apply_filters('epl_listing_toolbar_items', $defaults);
+
+	ob_start();
+
+	// Wrapper
+	if ( !empty( $defaults ) ) { ?>
+		<div class="epl-loop-tools epl-loop-tools-switch-sort epl-switching-sorting-wrap">
+			<?php
+				foreach( $tools as $tool ) {
+
+					if( !empty( $args ) && !in_array( $tool, $args ) ) {
+						continue;
+					}
+
+					switch( $tool ) {
+
+						case 'switch_views' :
+							do_action('epl_switch_views');
+							break;
+
+						case 'sorting_tool' :
+							do_action('epl_sorting_tool');
+							break;
+
+						default :
+							// action to hook additional tools
+							do_action( 'epl_listing_toolbar_' . $tool );
+							break;
+					}
+				}
+			?>
+		</div>
+		<?php
+	}
+	return ob_get_clean();
+}
+
+/**
+ * Switch Views
+ *
+ * @since 2.0
+ *
+ * @return string
+ */
+function epl_switch_views() { ?>
+	<div class="epl-loop-tool epl-tool-switch epl-switch-view">
+		<ul>
+			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_list' , __('List','easy-property-listings' ) ); ?>" class="epl-current-view view-list" data-view="list">
+			</li>
+			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_grid' , __('Grid','easy-property-listings' ) ); ?>" class="view-grid" data-view="grid">
+			</li>
+		</ul>
+	</div> <?php
+}
+
+add_action('epl_switch_views','epl_switch_views');
+
+/**
+ * Displays the Switch Sorting select options
+ *
+ * @since 2.0
+ * @revised 3.3
+ *
+ * @return string
+ */
+function epl_sorting_tool() {
 	$sortby = '';
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 		$sortby = sanitize_text_field(trim($_GET['sortby']));
 	}
-	do_action('epl_archive_utility_wrap_start');
-	$sorters = epl_sorting_options();
-	?>
-	<div class="epl-switching-sorting-wrap epl-clearfix">
-		<?php do_action('epl_add_custom_menus'); ?>
-		<div class="epl-properties-sorting epl-clearfix">
-			<select id="epl-sort-listings">
-				<option <?php selected( $sortby, '' ); ?> value=""><?php echo apply_filters( 'epl_switch_views_sorting_title_sort' , __('Sort','easy-property-listings' ) ); ?></option>
-				<?php
-					foreach($sorters as $sorter) { ?>
-						<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
-							<?php echo $sorter['label']; ?>
-						</option> <?php
-					}
-				?>
-			</select>
-		</div>
+	$sorters = epl_sorting_options(); ?>
+
+	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
+		<select id="epl-sort-listings">
+			<option <?php selected( $sortby, '' ); ?> value="">
+				<?php echo apply_filters( 'epl_switch_views_sorting_title_sort' , __('Sort','easy-property-listings' ) ); ?>
+			</option>
+			<?php
+				foreach($sorters as $sorter) { ?>
+					<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
+						<?php echo $sorter['label']; ?>
+					</option> <?php
+				}
+			?>
+		</select>
 	</div>
-	<?php
-	do_action('epl_archive_utility_wrap_end');
+<?php
 }
-add_action( 'epl_property_loop_start' , 'epl_switch_views_sorting' , 20 );
+
+add_action('epl_sorting_tool','epl_sorting_tool');
+
+/**
+ * Displays the Sorting tabs
+ *
+ * @since 3.3
+ *
+ * @return string
+ */
+function epl_sorting_tabs() {
+	$sortby = '';
+	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
+		$sortby = sanitize_text_field(trim($_GET['sortby']));
+	}
+	$sorters = epl_sorting_options();
+
+	global $wp;
+	$current_url = home_url(add_query_arg(array($_GET), $wp->request)); ?>
+
+	<div class="epl-loop-tool epl-tool-sorting-tabs epl-properties-sorting epl-clearfix">
+		<ul id="epl-sort-tabs-listings">
+
+			<?php
+				foreach($sorters as $sorter) {
+					$href = epl_add_or_update_params($current_url,'sortby',$sorter['id']);
+					$class = $sortby == $sorter['id'] ? 'epl-sortby-selected' : '';
+					?>
+					<li class="epl-sortby-list <?php echo $class?>">
+						<a href="<?php echo $href; ?>">
+							<?php echo $sorter['label']; ?>
+						</a>
+					</li> <?php
+				}
+			?>
+		</ul>
+	</div>
+<?php
+}
+
+/**
+ * Update parameters
+ *
+ * @since 3.3
+ *
+ * @return string
+ */
+function epl_add_or_update_params($url,$key,$value){
+
+    $a = parse_url($url);
+    $query = isset($a['query']) ? $a['query'] : '';
+    parse_str($query,$params);
+    $params[$key] = $value;
+    $query = http_build_query($params);
+    $result = '';
+    if($a['scheme']){
+        $result .= $a['scheme'] . ':';
+    }
+    if($a['host']){
+        $result .= '//' . $a['host'];
+    }
+    if($a['path']){
+        $result .=  $a['path'];
+    }
+    if($query){
+        $result .=  '?' . $query;
+    }
+    return $result;
+}
 
 /**
  * Archive Sorting
@@ -1406,8 +1789,9 @@ function epl_author_tab_contact_form( $epl_author = array() ) {
  * @since 1.0
  */
 function epl_archive_utility_wrap_before() {
-	echo '<div class="epl-archive-utility-wrapper epl-clearfix">';
+	echo '<div class="epl-loop-tools-wrap epl-archive-utility-wrapper epl-clearfix">';
 }
+add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
 /**
  * Archive Utility Wrapper After
@@ -1418,36 +1802,32 @@ function epl_archive_utility_wrap_after() {
 	echo '</div>';
 }
 add_action('epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
-add_action('epl_archive_utility_wrap_start', 'epl_archive_utility_wrap_before');
 
 /**
  * Listing Image Gallery
  *
  * @since 1.0
+ * @revised 3.3
  */
 function epl_property_gallery () {
 
-	global $epl_settings;
+	$d_gallery = epl_get_option('display_single_gallery');
+
+	$d_gallery_n = epl_get_option('display_gallery_n');
+
+	if( $d_gallery != 1 )
+		return;
 
 	$attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') );
 
-	$d_gallery = '';
-	if(!empty($epl_settings) && isset($epl_settings['display_single_gallery'])) {
-		$d_gallery		= $epl_settings['display_single_gallery'];
-	}
+	if ( $attachments  ) { ?>
 
-	$d_gallery_n = '';
-	if(!empty($epl_settings) && isset($epl_settings['display_gallery_n'])) {
-		$d_gallery_n		= $epl_settings['display_gallery_n'];
-	}
-
-	if ( $attachments && $d_gallery == 1 ) { ?>
 		<div class="epl-gallery property-gallery">
 			<!-- Gallery -->
 			<div class="epl-gallery-entry entry-gallery epl-clearfix">
 				<?php
 					$gallery_shortcode = '[gallery columns="'. $d_gallery_n . '" link="file"]';
-					$gallery = apply_filters( 'epl_property_gallery_shortcode' , $gallery_shortcode );
+					$gallery = apply_filters( 'epl_property_gallery_shortcode' , $gallery_shortcode, $d_gallery_n );
 					echo do_shortcode( $gallery );
 				?>
 			</div>
@@ -1466,24 +1846,6 @@ add_action('epl_property_gallery','epl_property_gallery');
 function epl_template_path() {
 	return apply_filters( 'epl_template_path', 'easypropertylistings/' );
 }
-
-/**
- * Switch Views
- *
- * @return string
- * @since 2.0
- */
-function epl_switch_views () { ?>
-	<div class="epl-switch-view epl-clearfix">
-		<ul>
-			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_list' , __('List','easy-property-listings' ) ); ?>" class="epl-current-view view-list" data-view="list">
-			</li>
-			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_grid' , __('Grid','easy-property-listings' ) ); ?>" class="view-grid" data-view="grid">
-			</li>
-		</ul>
-	</div> <?php
-}
-add_action('epl_add_custom_menus','epl_switch_views',1);
 
 /**
  * Outputs a wrapper div before the first button
@@ -1702,6 +2064,23 @@ function epl_get_active_theme_name() {
 }
 
 /**
+ * Returns core shortcode names
+ *
+ * @since 3.3
+ */
+function epl_get_shortcode_list() {
+	return array(
+		'listing',
+		'listing_category',
+		'listing_open',
+		'listing_feature',
+		'listing_location',
+		'listing_auction',
+		'listing_advanced'
+	);
+}
+
+/**
  * Pagination fix for home
  *
  * @since 2.1.2
@@ -1709,10 +2088,23 @@ function epl_get_active_theme_name() {
 function epl_home_pagination_fix( $query) {
 
 	global $wp_query;
-	if( isset($wp_query->query['paged']) )
+	if( isset($wp_query->query['paged']) && in_array( $query->query_vars['post_type'], epl_get_core_post_types() ) ){
 		$query->set('paged', $wp_query->query['paged']);
+	}
+
+	$shortcodes = epl_get_shortcode_list();
+
+	if( $query->get('is_epl_shortcode') &&
+		in_array($query->get('epl_shortcode_name'),$shortcodes) ){
+
+		if( isset($_GET['pagination_id']) && $_GET['pagination_id'] == $query->get('instance_id') ) {
+			$query->set('paged', $query->get('paged') );
+		} else {
+			$query->set('paged', 1 );
+		}
+	}
 }
-add_action('pre_get_posts','epl_home_pagination_fix');
+add_action('pre_get_posts','epl_home_pagination_fix',99);
 
 /**
  * Returns status class
@@ -1967,9 +2359,13 @@ function epl_feeling_lucky($content) {
 	$epl_posts 	= array_keys($epl_posts);
 
 	if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
+		ob_start();
 		do_action('epl_property_single');
+		return ob_get_clean();
 	} elseif( is_post_type_archive($epl_posts) ) {
+		ob_start();
 		do_action('epl_property_blog');
+		return ob_get_clean();
 	} else {
 		return $content;
 	}
@@ -2114,6 +2510,39 @@ function epl_get_post_count($type='',$meta_key,$meta_value,$author_id='') {
 }
 
 /**
+ * Get the inspection date format
+ *
+ * @revised 3.3
+ */
+function epl_get_inspection_date_format() {
+
+	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'?
+		epl_get_option('custom_inspection_date_format') : epl_get_option('inspection_date_format');
+
+	if($date_format == '')
+		$date_format = 'd-M-Y';
+
+	return apply_filters('epl_inspection_date_format', $date_format);
+}
+
+/**
+ * Get the inspection time format
+ *
+ * @revised 3.3
+ */
+function epl_get_inspection_time_format() {
+
+	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
+			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
+
+	if($time_format == '')
+		$time_format = 'h:i A';
+
+	return apply_filters('epl_inspection_time_format', $time_format);
+
+}
+
+/**
  * Inspection Format
  *
  * @since 2.2
@@ -2123,17 +2552,9 @@ function epl_inspection_format($inspection_date) {
 	$formatted_date = '';
 	$inspection_date = explode(' ',$inspection_date);
 
-	$date_format = epl_get_option('inspection_date_format') == 'custom_inspection_date_format'?
-			epl_get_option('custom_inspection_date_format') : epl_get_option('inspection_date_format');
 
-	$time_format = epl_get_option('inspection_time_format') == 'custom_inspection_time_format'?
-			epl_get_option('custom_inspection_time_format') : epl_get_option('inspection_time_format');
-
-	if($date_format == '')
-		$date_format = 'd-M-Y';
-
-	if($time_format == '')
-		$time_format = 'h:i A';
+	$date_format = epl_get_inspection_date_format();
+	$time_format = epl_get_inspection_time_format();
 
 
 	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';
@@ -2214,7 +2635,12 @@ add_action( 'epl_the_archive_title' , 'epl_archive_title_callback' );
  * @since 3.0
  * @return $args
  */
-function epl_add_orderby_args($args) {
+function epl_add_orderby_args($args,$type='',$name='') {
+
+	if( $type == 'shortcode' ) {
+		$args['is_epl_shortcode'] 	= true;
+		$args['epl_shortcode_name'] = $name;
+	}
 
 	$post_type = current($args['post_type']);
 
@@ -2312,3 +2738,18 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 	return $classes;
 }
 add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
+
+/**
+ * Get the author loop
+ *
+ * @revised 3.3
+ */
+function epl_archive_author_callback() {
+	global $epl_author_secondary;
+	epl_get_template_part('content-author-archive-card.php');
+	if( is_epl_post() && epl_listing_has_secondary_author() ) {
+	    epl_get_template_part('content-author-archive-card.php',array('epl_author'	=>	$epl_author_secondary));
+	    epl_reset_post_author();
+	}
+}
+add_action( 'epl_archive_author' , 'epl_archive_author_callback' );
