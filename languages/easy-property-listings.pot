@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-05-07 04:31:34+00:00\n"
+"POT-Creation-Date: 2019-05-07 08:16:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -111,8 +111,6 @@ msgid "Facebook"
 msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:61
-#: lib/includes/class-epl-author-meta.php:516
-#: lib/includes/class-epl-author-meta.php:524
 msgid "on Linkedin"
 msgstr ""
 
@@ -672,160 +670,160 @@ msgid ""
 "set, refresh page to dismiss notice."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:42
-#: lib/includes/admin/admin-functions.php:97
-#: lib/includes/admin/admin-functions.php:136
+#: lib/includes/admin/admin-functions.php:41
+#: lib/includes/admin/admin-functions.php:96
+#: lib/includes/admin/admin-functions.php:135
 msgid "Remove these ads?"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:44
+#: lib/includes/admin/admin-functions.php:43
 msgid "Purchase an extension remove me"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:62
+#: lib/includes/admin/admin-functions.php:61
 msgid "Core bundle for Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:68
-#: lib/includes/admin/admin-functions.php:161
+#: lib/includes/admin/admin-functions.php:67
+#: lib/includes/admin/admin-functions.php:160
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:503
 msgid "Advanced Mapping"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:74
-#: lib/includes/admin/admin-functions.php:167
+#: lib/includes/admin/admin-functions.php:73
+#: lib/includes/admin/admin-functions.php:166
 msgid "Sliders extension"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:80
-#: lib/includes/admin/admin-functions.php:173
+#: lib/includes/admin/admin-functions.php:79
+#: lib/includes/admin/admin-functions.php:172
 msgid "Staff Directory"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:86
-#: lib/includes/admin/admin-functions.php:179
+#: lib/includes/admin/admin-functions.php:85
+#: lib/includes/admin/admin-functions.php:178
 msgid "Listing Templates"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:98
-#: lib/includes/admin/admin-functions.php:137
+#: lib/includes/admin/admin-functions.php:97
+#: lib/includes/admin/admin-functions.php:136
 msgid "Purchase and activate any extension"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:116
+#: lib/includes/admin/admin-functions.php:115
 msgid "Check out the premium extensions"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:122
-#: lib/includes/admin/admin-functions.php:155
+#: lib/includes/admin/admin-functions.php:121
+#: lib/includes/admin/admin-functions.php:154
 msgid "Browse the extension store"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:204
+#: lib/includes/admin/admin-functions.php:203
 msgid "Purchase and activate any extension to remove these ads"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:262
+#: lib/includes/admin/admin-functions.php:261
 msgid "Import/Export"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:270
+#: lib/includes/admin/admin-functions.php:269
 msgid "Upgrade"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:322
+#: lib/includes/admin/admin-functions.php:321
 msgid "Import Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:328
+#: lib/includes/admin/admin-functions.php:327
 msgid "Import data"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:336
+#: lib/includes/admin/admin-functions.php:335
 msgid "Import exported file here. Warning! it will override all existing settings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:344
+#: lib/includes/admin/admin-functions.php:343
 msgid "Import"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:345
+#: lib/includes/admin/admin-functions.php:344
 msgid ""
 "WARNING! This will overwrite all existing option values, please proceed "
 "with caution"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:353
+#: lib/includes/admin/admin-functions.php:352
 msgid "Export Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:357
+#: lib/includes/admin/admin-functions.php:356
 msgid "Download File"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:359
+#: lib/includes/admin/admin-functions.php:358
 msgid ""
 "The following settings are exported. Easy Property Listings settings screen "
 "and any Extension settings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:369
+#: lib/includes/admin/admin-functions.php:373
 msgid "Upgrade Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:371
+#: lib/includes/admin/admin-functions.php:375
 msgid ""
 "Upgrading the database will copy all the listing pricing info into a "
 "unified price data column for searching and ordering. We recommend taking a "
 "database backup before performing this action."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:373
+#: lib/includes/admin/admin-functions.php:377
 msgid "Upgrade Database"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:375
+#: lib/includes/admin/admin-functions.php:379
 msgid "Processing..."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:446
+#: lib/includes/admin/admin-functions.php:450
 msgid "It looks like you upgraded to latest version of Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:448
+#: lib/includes/admin/admin-functions.php:452
 msgid ""
 "For better performance, we need to upgrade the database. You can upgrade "
 "the database by visiting tools page"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:453
+#: lib/includes/admin/admin-functions.php:457
 msgid "Take me to upgrade tool"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:467
+#: lib/includes/admin/admin-functions.php:471
 msgid "Some error occured"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:538
+#: lib/includes/admin/admin-functions.php:542
 msgid "Database upgraded successfully"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:578
-#: lib/includes/admin/admin-functions.php:591
-#: lib/includes/admin/admin-functions.php:599
+#: lib/includes/admin/admin-functions.php:582
+#: lib/includes/admin/admin-functions.php:595
+#: lib/includes/admin/admin-functions.php:603
 msgid "Note"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:583
+#: lib/includes/admin/admin-functions.php:587
 #: lib/includes/class-epl-contact.php:678
 msgid "Call"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:587
+#: lib/includes/admin/admin-functions.php:591
 msgid "Mail"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:595
+#: lib/includes/admin/admin-functions.php:599
 msgid "Alert"
 msgstr ""
 
@@ -1288,7 +1286,7 @@ msgid "Are you sure you want to delete this contact?"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:799
-#: lib/includes/admin/listing-elements-gui.php:120
+#: lib/includes/admin/listing-elements-gui.php:129
 msgid "Cancel"
 msgstr ""
 
@@ -1617,52 +1615,52 @@ msgstr ""
 msgid "Bulk Actions"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:16
-#: lib/includes/admin/listing-elements-gui.php:17
+#: lib/includes/admin/listing-elements-gui.php:25
+#: lib/includes/admin/listing-elements-gui.php:26
 msgid "Add Listing Elements"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:81
+#: lib/includes/admin/listing-elements-gui.php:90
 msgid "Insert Shortcode"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:88
+#: lib/includes/admin/listing-elements-gui.php:97
 msgid "Select Shortcode Type"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:92
+#: lib/includes/admin/listing-elements-gui.php:101
 msgid "type"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:110
+#: lib/includes/admin/listing-elements-gui.php:119
 msgid "Value"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:115
+#: lib/includes/admin/listing-elements-gui.php:124
 msgid "Required for Types : action, meta, post"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:119
+#: lib/includes/admin/listing-elements-gui.php:128
 msgid "Insert"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:125
+#: lib/includes/admin/listing-elements-gui.php:134
 msgid "How to use this shortcode"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:132
+#: lib/includes/admin/listing-elements-gui.php:141
 msgid "Actions"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:138
+#: lib/includes/admin/listing-elements-gui.php:147
 msgid "Meta Fields"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:183
+#: lib/includes/admin/listing-elements-gui.php:192
 msgid "For complete action reference visit"
 msgstr ""
 
-#: lib/includes/admin/listing-elements-gui.php:186
+#: lib/includes/admin/listing-elements-gui.php:195
 msgid "Here"
 msgstr ""
 
@@ -1803,7 +1801,7 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:264
 #: lib/includes/functions.php:156 lib/includes/functions.php:1518
-#: lib/includes/functions.php:1520 lib/includes/install.php:66
+#: lib/includes/functions.php:1520 lib/includes/install.php:67
 #: lib/post-types/post-type-land.php:29 lib/post-types/post-type-land.php:30
 #: lib/post-types/post-type-land.php:31 lib/updates/epl-1.3.1.php:5
 msgid "Land"
@@ -1811,7 +1809,7 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:265
 #: lib/includes/functions.php:158 lib/includes/functions.php:1530
-#: lib/includes/functions.php:1532 lib/includes/install.php:68
+#: lib/includes/functions.php:1532 lib/includes/install.php:69
 #: lib/post-types/post-type-rural.php:29 lib/post-types/post-type-rural.php:30
 #: lib/post-types/post-type-rural.php:31 lib/updates/epl-1.3.1.php:7
 msgid "Rural"
@@ -1820,21 +1818,21 @@ msgstr ""
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:266
 #: lib/includes/functions.php:159 lib/includes/functions.php:663
 #: lib/includes/functions.php:1536 lib/includes/functions.php:1538
-#: lib/includes/install.php:70 lib/post-types/post-type-commercial.php:30
+#: lib/includes/install.php:71 lib/post-types/post-type-commercial.php:30
 #: lib/updates/epl-1.3.1.php:9
 msgid "Commercial"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:267
 #: lib/includes/functions.php:160 lib/includes/functions.php:1542
-#: lib/includes/functions.php:1544 lib/includes/install.php:71
+#: lib/includes/functions.php:1544 lib/includes/install.php:72
 #: lib/post-types/post-type-commercial_land.php:31 lib/updates/epl-1.3.1.php:10
 msgid "Commercial Land"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:268
 #: lib/includes/functions.php:161 lib/includes/functions.php:1548
-#: lib/includes/functions.php:1550 lib/includes/install.php:69
+#: lib/includes/functions.php:1550 lib/includes/install.php:70
 #: lib/post-types/post-type-business.php:31 lib/updates/epl-1.3.1.php:8
 msgid "Business"
 msgstr ""
@@ -2643,11 +2641,11 @@ msgstr ""
 
 #: lib/includes/class-epl-author-meta.php:309
 #: lib/includes/class-epl-author-meta.php:317
-msgid "on youtube"
+msgid "on YouTube"
 msgstr ""
 
 #: lib/includes/class-epl-author-meta.php:310
-msgid "youtube"
+msgid "YouTube"
 msgstr ""
 
 #: lib/includes/class-epl-author-meta.php:343
@@ -2657,6 +2655,11 @@ msgstr ""
 
 #: lib/includes/class-epl-author-meta.php:344 lib/includes/user.php:30
 msgid "Pinterest"
+msgstr ""
+
+#: lib/includes/class-epl-author-meta.php:516
+#: lib/includes/class-epl-author-meta.php:524
+msgid "on LinkedIn"
 msgstr ""
 
 #: lib/includes/class-epl-author-meta.php:517 lib/includes/user.php:28
@@ -3409,6 +3412,7 @@ msgid ""
 msgstr ""
 
 #: lib/includes/functions.php:1506 lib/includes/functions.php:1508
+#: lib/includes/install.php:65 lib/updates/epl-3.3.php:7
 #: lib/widgets/widget-functions.php:22
 msgid "All"
 msgstr ""
@@ -3896,11 +3900,11 @@ msgstr ""
 msgid "Post Code"
 msgstr ""
 
-#: lib/includes/install.php:65
+#: lib/includes/install.php:66
 msgid "Buy"
 msgstr ""
 
-#: lib/includes/install.php:67 lib/post-types/post-type-rental.php:85
+#: lib/includes/install.php:68 lib/post-types/post-type-rental.php:85
 msgid "Rent"
 msgstr ""
 
@@ -5221,7 +5225,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: lib/templates/content/content-listing-single-compatibility.php:80
+#: lib/templates/content/content-listing-single-compatibility.php:82
 #: lib/templates/content/content-listing-single.php:105
 #: lib/templates/themes/heuman/single-listing.php:35
 msgid "Pages:"
