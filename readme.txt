@@ -452,6 +452,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Enable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_DISABLE_REST, EPL_FEATURES_DISABLE_REST, EPL_LOCATION_DISABLE_REST.
 
 
+* Tweak: Filers to alter the default Mobile and Office labels epl_author_widget_label_office, epl_author_widget_label_mobile.
+
 * Tweak: Dashboard activity widget improved CSS display with icons denoting comment type.
 * Tweak: Rebuilt JS validation engine to better handle numeric numbers and the date system to optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.

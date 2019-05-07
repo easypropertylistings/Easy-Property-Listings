@@ -74,10 +74,10 @@
 						do_action('epl_property_content_before');
 
 						do_action('epl_property_the_content');
-					
-						do_action('epl_property_content_after'); // Extension Backward Compat
 
-						do_action('epl_property_video');
+						do_action('epl_property_content_after'); // For Extension Support
+
+						//do_action('epl_property_video');
 					?>
 				</div>
 			</div>
