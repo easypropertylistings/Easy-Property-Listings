@@ -426,8 +426,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * New: Floorplan uploader now support a custom label added to the listing entry screen. Label filter is still in place.
 * New: External Links now 3 are now supported with a custom label. Label filter is still in place.
-* New: Mini Website URL,  2 are supported with a custom label. Label filter is still in place.
-* New: Map Icon with filter fort customising.
+* New: Mini Website URL, 2 are supported with a custom label. Label filter is still in place.
+* New: Energy Certificate supports a custom label. Label filter is still in place.
+* New: Map Icon with filter for customising.
 * New: Listing Map Icon for when the location is not exact, IE when the user selects to not display the full address.
 * New: Users profiles now have Instagram, Pinterest and YouTube links and social icons added.
 
