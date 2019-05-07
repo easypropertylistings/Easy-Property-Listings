@@ -41,11 +41,15 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					<span class="label-mobile"><?php _e('Mobile', 'easy-property-listings' ); ?> </span>
 					<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
 				<?php } ?>
+			</div>
+
+			<div class="epl-author-contact author-contact author-contact-office-phone">
 				<?php if ( $epl_author->get_author_office_phone() != '' ) { ?>
 					<span class="label-office-phone"><?php _e('Office', 'easy-property-listings' ); ?> </span>
 					<span class="office-phone"><?php echo $epl_author->get_author_office_phone() ?></span>
 				<?php } ?>
 			</div>
+
 			<?php do_action('epl_author_widget_after_contact'); ?>
 
 			<?php do_action('epl_author_widget_before_icons'); ?>
