@@ -561,7 +561,7 @@
 
 /** Search Styling **/
 .epl-search-form select.in-field{
-	background: transparent;
+	/* background: transparent;
 	padding: 5px;
 	font-size: 16px;
 	line-height: 1;
@@ -569,5 +569,9 @@
 	border-radius: 0;
 	height: 40px;
 	-webkit-appearance: none;
-	background: url('../images/select-arrow.svg') no-repeat right #FFF;
+	background: url('../images/select-arrow.svg') no-repeat right #FFF; */
+}
+.epl-search-form select.field-multiple{
+	height: auto;
+	background: transparent;
 }
