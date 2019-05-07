@@ -406,12 +406,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Export Easy Property Listings settings and import them into another site on the Tools page.
 * New: Upgrade notice that will copy the listing pricing for all listing types into a unified price search.
 * New: Unified price search slider usable in the EPL - Listing Search widget and [listing_search] shortcode.
-
 * New: Able to add a functions.php, functions-single.php and functions-archive.php files to the active_child_theme/easypropertylistings where you can store code and filter customisations.
 * New: Able to add style-single.css and style-archive.css to the active_child_theme/easypropertylistings where you can store CSS customisations along with the already implemented style.css file.
 * New: Implemented a Featured listing system that will allow you to set your listings as featured from the listing administration page. With the update to the EPL Importer add-on listings that you mark as featured will stay featured when updated from external sources.
 * New: Major tweaks to the custom fields screens allowing for a smaller data entry screen when adding your listing details.
-
 * New: Contacts now allow you to bulk select and delete contacts.
 * New: Contacts summary search.
 * New: Contact widget now has a hidden field to prevent bots from entering form details.
@@ -422,10 +420,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Under Offer functions for use in custom templates epl_the_under_offer, epl_get_the_under_offer.
 * New: Enabled Mini Website URL meta field as a number of REAXML providers are now using 3D Tours along with support for custom button titles.
 * New: Able to configure sorting dropdown as tabs.
-
-
 * New: EPL - Author widget supports single or multiple users with user searching capabilities. Allowing you to use the widget and set a specific agent or WordPress user.
-
 * New: Floorplan uploader now support a custom label added to the listing entry screen. Label filter is still in place.
 * New: External Links now 3 are now supported with a custom label. Label filter is still in place.
 * New: Mini Website URL, 2 are supported with a custom label. Label filter is still in place.
@@ -433,9 +428,6 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Map Icon with filter for customising.
 * New: Listing Map Icon for when the location is not exact, IE when the user selects to not display the full address.
 * New: Users profiles now have Instagram, Pinterest and YouTube links and social icons added.
-
-
-
 * New: Pets icons and function to handle output with the get_property_pets function.
 * New: Rebuilt several functions which now allow for greater filtered output. Rebuilt functions are: get_property_year_built, get_property_bed, get_property_bath, get_property_rooms, get_property_parking, get_property_garage, get_property_carport, get_property_air_conditioning, get_property_pool, get_property_security_system, get_property_land_value, get_property_building_area_value, get_property_energy_rating, get_property_new_construction, get_property_holiday_rental, get_property_furnished. (New Functions) get_property_pets, get_property_featured.
 * New: Rental Leased Date custom field.
@@ -450,8 +442,6 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Office Phone added to user profile and outputs on author profile and widget.
 * New: Default and custom classes added to meta field generator used in admin edit listing screens.
 * New: Added Portugal Portuguese language partial translation by Fábio Nunes.
-
-
 * New: Disable REST support and Gutenberg by defining new constants for post types. EPL_BUSINESS_DISABLE_REST, EPL_COMMERCIAL_DISABLE_REST, EPL_COMMERCIAL_LAND_DISABLE_REST, EPL_LAND_DISABLE_REST, EPL_PROPERTY_DISABLE_REST, EPL_RENTAL_DISABLE_REST, EPL_RURAL_DISABLE_REST.
 * New: Enable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_DISABLE_REST, EPL_FEATURES_DISABLE_REST, EPL_LOCATION_DISABLE_REST.
 * New: Pakistani Rupee currency.
