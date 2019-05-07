@@ -30,12 +30,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	<div class="epl-author-contact author-contact">
 		<span class="label-mobile"></span>
 		<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
-		<div class="epl-author-contact-office">
-			<span class="office-phone">
-				<?php echo $epl_author->get_author_office_phone() ?>
-			</span>
-		</div>
-		
+	</div>
+
+	<div class="epl-author-contact author-contact author-contact-office-phone">
+		<span class="label-office-phone"></span>
+		<span class="office-phone"><?php echo $epl_author->get_author_office_phone() ?></span>
 	</div>
 </div>
 <div class="epl-author-slogan author-slogan"><?php echo $epl_author->get_author_slogan() ?></div>

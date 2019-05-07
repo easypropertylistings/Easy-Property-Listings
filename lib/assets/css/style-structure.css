@@ -372,6 +372,7 @@
 	display: inline-block;
 	margin: 0 0 0 0.5em;
 	line-height: 30px;
+	vertical-align: top;
 }
 .epl-icon-color-frame {
 	fill: #999999;
@@ -1321,9 +1322,17 @@ li.tbhead.current {
 	background: url(../images/select-arrow.svg) no-repeat right #FFF;
 	*/
 }
+.epl-search-form select.field-multiple{
+	height: auto;
+	background: transparent;
+}
 .epl-search-form .check-label {
 	font-size: 0.7em;
 	padding-top: 0;
+	padding-left: 3px;
+}
+.epl-search-form input[type='checkbox'] {
+
 }
 .epl-search-form .epl-search-other {
 	margin-top: 6px;
@@ -1826,7 +1835,7 @@ li.tbhead.current {
 	.epl-property-blog.hentry {
 		width: 100%;
 		max-width: 300px;
-		margin: 0 auto;
+		margin: 0 auto 20px;
 		float: none;
 		clear: both;
 	}

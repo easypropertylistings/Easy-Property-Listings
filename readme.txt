@@ -393,37 +393,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.3 April 28, 2019 =
-
-
-
-RE-REVIEW Readme
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+= 3.3 May 15, 2019 =
 
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible. And easy to use.
 * New: Now able to add a function.php file to the active_child_theme/easypropertylistings where you can store code and filter customisations.
@@ -446,7 +416,8 @@ RE-REVIEW Readme
 * New: Major tweaks to the custom fields screens allowing for a smaller data entry screen when adding your listing details.
 * New: Map Icon.
 * New: Listing Map Icon for when the location is not exact, IE when the user selects to not display the full address.
-* New: Users profiles now have Instagram and Pinterest links and social icons added.
+* New: Users profiles now have Instagram, Pinterest and YouTube links and social icons added.
+* New: Re-created Social SVG Icons.
 * New: Tools page holding Import and Export options along with the Upgrade screen.
 * New: Shortcode [listing_element] for use with page builder systems to output variables, meta fields, action hooks, excerpt,  onto templates.
 * New: Pets icons and function to handle output with the get_property_pets function.
@@ -501,44 +472,6 @@ RE-REVIEW Readme
 * Fix: Features list output class name fix for building size.
 * Fix: Features list output class name fix for furnished.
 * Fix: Improvements to compatibility mode that prevents YoastSEO outputting multiple times on the page. This will also correct any other plugins with a similar issue.
-
-
-
-
-*******
-TO-DO
-*******
-
-SVG icons Pinterest
-SVG Icon Instagram
-SVG Icon YouTube
-
-Re-colour new EMAIL png icon from green to grey.
-
-
-
-
-Welcome Screen text and screenshots
-
-Text for new listing_element shortcode
-
-CSS for Select Multi
-SVG for select
-
-
-CODEX docs for new features
-Release Blog post
-Release change log post
-Icon Pets
-
-
-
-
-DONE - Translation - Portugal Portuguese mo file
-
-*****************
-
-
 
 = 3.2.3 November 22, 2018 =
 

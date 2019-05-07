@@ -22,8 +22,8 @@ function epl_register_taxonomy_business_listings() {
 
 	$slug		= defined( 'EPL_BUSINESS_CAT_SLUG' ) ? EPL_BUSINESS_CAT_SLUG : 'business-category';
 	$hierarchical	= defined( 'EPL_BUSINESS_CAT_HIERARCHICAL' ) && EPL_BUSINESS_CAT_HIERARCHICAL ? false : true;
-	$rewrite		= defined( 'EPL_BUSINESS_CAT_DISABLE_REWRITE' ) && EPL_BUSINESS_CAT_DISABLE_REWRITE ? false : array( 'slug' => $slug, 'with_front' => true, 'hierarchical' => $hierarchical );
-	$rest		= defined( 'EPL_BUSINESS_CAT_ENABLE_REST' ) && EPL_BUSINESS_CAT_ENABLE_REST ? true : false;
+	$rewrite	= defined( 'EPL_BUSINESS_CAT_DISABLE_REWRITE' ) && EPL_BUSINESS_CAT_DISABLE_REWRITE ? false : array( 'slug' => $slug, 'with_front' => true, 'hierarchical' => $hierarchical );
+	$rest		= defined( 'EPL_BUSINESS_CAT_DISABLE_REST' ) && EPL_BUSINESS_CAT_DISABLE_REST ? false : true;
 
 	$labels = array(
 		'name'				=> _x( 'Business Categories', 'Taxonomy General Name', 'easy-property-listings'  ),
@@ -44,9 +44,9 @@ function epl_register_taxonomy_business_listings() {
 	);
 
 	$args = array(
-		'labels'				=> $labels,
+		'labels'			=> $labels,
 		'hierarchical'			=> $hierarchical,
-		'public'				=> true,
+		'public'			=> true,
 		'show_ui'			=> true,
 		'show_admin_column'		=> true,
 		'show_in_nav_menus'		=> true,
