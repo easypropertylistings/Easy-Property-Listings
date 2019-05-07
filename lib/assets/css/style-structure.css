@@ -1827,7 +1827,7 @@ li.tbhead.current {
 	.epl-property-blog.hentry {
 		width: 100%;
 		max-width: 300px;
-		margin: 0 auto;
+		margin: 0 auto 20px;
 		float: none;
 		clear: both;
 	}

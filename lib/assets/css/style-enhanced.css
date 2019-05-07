@@ -438,7 +438,7 @@
 	.epl-listing-grid-view-forced.hentry,
 	.builder-module-content .epl-listing-grid-view-forced.hentry {
 		width: 100%;
-		margin: 0 auto;
+		margin: 0 auto 10px;
 		display: block;
 	}
 	.epl-property-blog,
