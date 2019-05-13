@@ -110,7 +110,7 @@ class EPL_Advanced_Shortcode_Listing {
 			'pagination'              => 'on', // Enable or disable pagination
 			'post__in'                => '',	// show only these posts
 			'post__not_in'            => '', // dont show these posts
-			'instance_id'				=>	'1'			
+			'instance_id'		  => '1'
 		);
 
 		return $this->default_args;

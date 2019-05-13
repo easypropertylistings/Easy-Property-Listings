@@ -355,7 +355,6 @@
 .epl-property-blog .property-links {
 
 }
-
 /** Grid View Inline Block instead of float **/
 .epl-listing-grid-view,
 .epl-listing-grid-view.hentry,
@@ -391,10 +390,15 @@
 .epl-listing-grid-view-forced .property-links a.epl-button {
 
 }
+
+/** Slim **/
+.epl-property-blog-slim.epl-listing-grid-view .property-box-right {
+    /* min-height: 0; */
+}
 @media screen and (max-width: 767px) {
 	.epl-property-blog .property-box-left,
 	.epl-property-blog .property-box-right {
-		width: 100%;
+		/* width: 100%; */
 	}
 	.epl-property-blog .property-content-wrapper {
 		margin: 0;
@@ -422,15 +426,29 @@
 	.epl-listing-grid-view-forced,
 	.epl-listing-grid-view-forced.hentry,
 	.builder-module-content .epl-listing-grid-view-forced.hentry {
-		width: 100%;
-		display: block;
+		/* width: 100%; */
+		/*	display: block; */
 	}
 }
 @media screen and (max-width: 500px) {
+	.epl-listing-grid-view,
+	.epl-listing-grid-view.hentry,
+	.builder-module-content .epl-listing-grid-view.hentry,
+	.epl-listing-grid-view-forced,
+	.epl-listing-grid-view-forced.hentry,
+	.builder-module-content .epl-listing-grid-view-forced.hentry {
+		width: 100%;
+		margin: 0 auto 10px;
+		display: block;
+	}
 	.epl-property-blog,
 	.epl-property-blog.hentry,
 	.builder-module-content .epl-property-blog.hentry {
-		max-width: 600px;
+		/* max-width: 600px; */
+	}
+	.epl-property-blog .property-box-left,
+	.epl-property-blog .property-box-right {
+		width: 100%;
 	}
 }
 
@@ -509,7 +527,7 @@
 	/* display: inline-block; */
 }
 .epl-property-single.view-expanded  .page-price-rent {
-	margin-right: 1em;
+	margin-right: 0;
 }
 .epl-property-single .entry-title-sub,
 .epl-property-single .rent-period,
@@ -539,17 +557,4 @@
 }
 .epl-author-archive-card .epl-author-details {
 
-}
-
-/** Search Styling **/
-.epl-search-form select.in-field{
-	background: transparent;
-	padding: 5px;
-	font-size: 16px;
-	line-height: 1;
-	border: 1px solid #B7B7B7;
-	border-radius: 0;
-	height: 40px;
-	-webkit-appearance: none;
-	background: url('../images/select-arrow.svg') no-repeat right #FFF;
 }

@@ -38,14 +38,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			<?php do_action('epl_author_widget_before_contact'); ?>
 			<div class="epl-author-contact author-contact">
 				<?php if ( $epl_author->get_author_mobile() != '' ) { ?>
-					<span class="label-mobile"><?php _e('Mobile', 'easy-property-listings' ); ?> </span>
+					<span class="label-mobile"><?php apply_filters( 'epl_author_widget_label_mobile' , _e('Mobile', 'easy-property-listings' ) ); ?> </span>
 					<span class="mobile"><?php echo $epl_author->get_author_mobile() ?></span>
 				<?php } ?>
+			</div>
+
+			<div class="epl-author-contact author-contact author-contact-office-phone">
 				<?php if ( $epl_author->get_author_office_phone() != '' ) { ?>
-					<span class="label-office-phone"><?php _e('Office', 'easy-property-listings' ); ?> </span>
+					<span class="label-office-phone"><?php apply_filters( 'epl_author_widget_label_office' , _e('Office', 'easy-property-listings' ) ); ?></span>
 					<span class="office-phone"><?php echo $epl_author->get_author_office_phone() ?></span>
 				<?php } ?>
 			</div>
+
 			<?php do_action('epl_author_widget_after_contact'); ?>
 
 			<?php do_action('epl_author_widget_before_icons'); ?>

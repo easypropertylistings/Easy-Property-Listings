@@ -1842,7 +1842,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
-					'default'	=>	'on',
+					'default'	=>	'off',
 					'help'		=>	__('Check this to enable enhanced structural css styles. This implements inline-block mode for a better grid format on your listings.' , 'easy-property-listings' )
 				),
 
@@ -1853,7 +1853,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
-					'default'	=>	'on',
+					'default'	=>	'off',
 					'help'		=>	__('Check this to enable SVG icons on listings.' , 'easy-property-listings' )
 				),
 
@@ -1864,7 +1864,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'opts'		=>	array(
 						'on'	=>	__('Enable', 'easy-property-listings' ),
 					),
-					'default'	=>	'on',
+					'default'	=>	'off',
 					'help'		=>	__('Check this to enable SVG icons on author social links.' , 'easy-property-listings' )
 				),
 
@@ -1897,7 +1897,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						'production'	=>	__('Production', 'easy-property-listings' )
 					),
 					'help'		=>	__('Production mode enqueue minified js & css for faster page loads.', 'easy-property-listings' ),
-					'default'	=>	'development'
+					'default'	=>	'production'
 				),
 
 				array(

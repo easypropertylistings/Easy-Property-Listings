@@ -27,12 +27,11 @@ function epl_button_floor_plan() {
 
 	foreach($keys as $key) {
 
-		$link = get_post_meta( get_the_ID() , $key , true );
-		$count = $key == 'property_floorplan' ? '': substr($key, -1);
-		$default = __('Floor Plan ', 'easy-property-listings') . $count;
-		$meta_label = get_post_meta( get_the_ID() , $key.'_label' , true );
-		$meta_label = $meta_label == '' ? $default : $meta_label;
-
+		$link 		= get_post_meta( get_the_ID() , $key , true );
+		$count 		= $key == 'property_floorplan' ? '': substr($key, -1);
+		$default 	= __('Floor Plan ', 'easy-property-listings') . $count;
+		$meta_label 	= get_post_meta( get_the_ID() , $key.'_label' , true );
+		$meta_label 	= $meta_label == '' ? $default : $meta_label;
 
 		if( !empty($link) ) { ?>
 

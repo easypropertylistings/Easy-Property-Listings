@@ -37,7 +37,6 @@ function epl_dashboard_widget_offer_rough() {
 	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) == '1' )
 		return;
 
-
 	echo '<div class="epl-internal-ad">';
 		echo '<div>' . __('Remove these ads?' , 'easy-property-listings') . '</div>';
 
@@ -364,6 +363,11 @@ function epl_settings_import_export() {
 	do_action('epl_post_export_fields');
 }
 
+/**
+ * Settings upgrade tab screen
+ *
+ * @since 3.3
+ */
 function epl_settings_upgrade_tab() {
 
 	echo '<h2>'.__('Upgrade Options','easy-property-listings').'</h2>';
@@ -416,14 +420,14 @@ function epl_handle_tools_form() {
         case 'import':
         $uploadedfile 	= $_FILES['epl_import'];
         $upload_overrides = array( 'test_form' => false );
-		$movefile 		= wp_handle_upload( $uploadedfile, $upload_overrides );
+		$movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
 
 		if ( $movefile && ! isset( $movefile['error'] ) ) {
 		    $imported_data = file_get_contents($movefile['url']);
 		    $imported_data = epl_unserialize( $imported_data );
 		    $options_backup = get_option('epl_settings');
 		    update_option('epl_settings_backup',$options_backup);
-			$status 		= update_option('epl_settings',$imported_data);
+			$status = update_option('epl_settings',$imported_data);
 		}
 
         break;

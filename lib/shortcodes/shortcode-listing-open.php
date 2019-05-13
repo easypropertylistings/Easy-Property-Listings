@@ -37,8 +37,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'sortby'		=>	'', // Options: price, date : Default date
 		'sort_order'		=>	'DESC',
 		'pagination'		=> 	'on',
-		'instance_id'	=>	'1',
-		'class'				=>	''
+		'instance_id'		=>	'1',
+		'class'			=>	''
 
 	), $atts );
 
