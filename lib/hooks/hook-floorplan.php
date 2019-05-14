@@ -39,7 +39,7 @@ function epl_button_floor_plan() {
 
 					<a type="button"
 						class="fancybox image epl-button epl-floor-plan"
-						<?php echo apply_filters( 'epl_button_target_floorplan' , '' ); ?>
+						<?php echo apply_filters( 'epl_button_target_floorplan' , 'target="_blank"' ); ?>
 						href="<?php echo $link; ?>">
 
 							<?php

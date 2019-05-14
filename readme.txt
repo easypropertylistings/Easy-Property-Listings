@@ -491,6 +491,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 RC1 LOG
 Tweak: Custom admin Image fix scaling.
+Tweak: Floorplan opens link in another window by default to match other buttons. Use the epl_button_target_floorplan to alter the default behaviour.
 
 
 = 3.2.3 November 22, 2018 =
