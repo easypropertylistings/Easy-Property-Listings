@@ -1067,8 +1067,16 @@ function epl_get_available_terms($tax='location',$post_type='',$property_status=
 	LEFT JOIN {$wpdb->prefix}term_relationships tr ON ( p.ID = tr.object_id )
 	LEFT JOIN {$wpdb->prefix}term_taxonomy tt ON ( tr.term_taxonomy_id = tt.term_taxonomy_id ) WHERE
 	tt.taxonomy 			= '{$tax}'
-	AND p.post_status 		= 'publish'
-	AND p.post_type 		= '{$post_type}'";
+	AND p.post_status 		= 'publish'";
+
+	if( is_array($post_type) ){
+		$available_loc_query .= " AND p.post_type IN ('" . implode( "','", $post_type ) . "')";
+	} else {
+		$available_loc_query .= " AND p.post_type 		= '{$post_type}'";
+	}
+
+
+
 	if ( ! empty( $property_status ) ) {
 		$property_status = array_map( 'trim', explode( ',', $property_status ) );
 		if ( count( $property_status ) ) {

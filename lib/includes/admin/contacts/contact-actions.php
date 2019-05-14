@@ -491,12 +491,12 @@ function epl_new_contact( $args ) {
 	if( $contact->contact_exists($args['email']) ) {
 		wp_die( __( 'A contact with this email already exists !', 'easy-property-listings'  ) );
 	}
-	if ( $contact->update( array('name'	=>	$args['title'], 'email' => $args['email']  ) ) ) {
-		$contact->update_meta('contact_first_name',$args['first_name']);
-		$contact->update_meta('contact_last_name',$args['last_name']);
-		$contact->update_meta('contact_phones',array('phone' =>  $args['phone']) );
-		$contact->update_meta('contact_category','new');
-	}
+	
+	$contact->update( array('name'	=>	$args['title'], 'email' => $args['email']  ) );
+	$contact->update_meta('contact_first_name',$args['first_name']);
+	$contact->update_meta('contact_last_name',$args['last_name']);
+	$contact->update_meta('contact_phones',array('phone' =>  $args['phone']) );
+	$contact->update_meta('contact_category','new');
 
 
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
@@ -801,10 +801,12 @@ function epl_contact_contact_details($contact) { ?>
 			<?php echo $contact->get_meta('contact_website'); ?>
 		</span>
 	<?php endif; ?>
-	<span class="contact_website epl-info-item editable" data-key="address">
-		<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
-		<?php echo $contact->epl_contact_get_address(); ?>
-	</span>
+	<?php if( $contact->get_meta('contact_website') != '' ) :?>
+			<span class="contact_website epl-info-item editable" data-key="address">
+				<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
+				<?php echo $contact->epl_contact_get_address(); ?>
+			</span>
+	<?php endif; ?>
 	<span class="contact-since epl-info-item">
 		<span class="dashicons dashicons-clock epl-contact-icons"></span>
 		<?php _e( 'Contact since', 'easy-property-listings'  ); ?>
@@ -1275,21 +1277,34 @@ add_action('epl_before_meta_field_property_owner','epl_before_meta_field_propert
 function epl_search_contact() {
 
 	$search_array = array(
-		's'				=> $_POST['user_name'],
+		//'s'						=> $_POST['user_name'],
 		'showposts'   			=> 6,
 		'post_type' 			=> 'epl_contact',
-		'post_status' 			=> 'publish',
+		//'post_status' 			=> 'any',
 		'post_password' 		=> '',
-		'suppress_filters' 		=> true
+		'suppress_filters' 		=> true,
+		'meta_query'			=> array(
+			'relation'		=>	'OR',
+			array(
+				'key'		=>	'contact_first_name',
+				'value'		=>	sanitize_text_field($_POST['user_name']),
+				'compare'	=>  'LIKE'
+			),
+			array(
+				'key'		=>	'contact_last_name',
+				'value'		=>	sanitize_text_field($_POST['user_name']),
+				'compare'	=>  'LIKE'
+			)
+		)
 	);
 
-	$query = http_build_query($search_array);
+	//$query = http_build_query($search_array);
 
-	$listings = get_posts(  $query );
+	$listings = new WP_Query(  $search_array );
 
-	if( !empty($listings) ) {
+	if( !empty($listings->posts) ) {
 		echo '<ul class="epl-contact-listing-suggestion">';
-		foreach( $listings as  $listing) {
+		foreach( $listings->posts as  $listing) {
 			echo '<li data-id="'.$listing->ID.'">'.get_post_meta($listing->ID,"contact_first_name",true).' '.get_post_meta($listing->ID,"contact_last_name",true).'</li>';
 		}
 		echo '</ul>';
