@@ -525,6 +525,14 @@ function epl_upgrade_db_to_3_3() {
 					update_post_meta($single->ID,'property_price_global',$price);
 				break;
 
+				case 'commercial' :
+					$price = get_post_meta($single->ID,'property_price',true);
+					if($price == ''){
+						$price = get_post_meta($single->ID,'property_com_rent',true);
+					}
+					update_post_meta($single->ID,'property_price_global',$price);
+				break;
+
 				default :
 					$price = get_post_meta($single->ID,'property_price',true);
 					update_post_meta($single->ID,'property_price_global',$price);
@@ -555,6 +563,12 @@ function epl_sync_property_price_global() {
 	if( is_epl_post() ) {
 		if ( 'rental' == $_POST['post_type'] ) {
 			$price = get_post_meta($_POST['ID'],'property_rent',true);
+			update_post_meta($_POST['ID'],'property_price_global',$price);
+		} elseif ( 'commercial' == $_POST['post_type'] ) {
+			$price = get_post_meta($_POST['ID'],'property_price',true);
+			if($price == ''){
+				$price = get_post_meta($_POST['ID'],'property_com_rent',true);
+			}
 			update_post_meta($_POST['ID'],'property_price_global',$price);
 		} else {
 			$price = get_post_meta($_POST['ID'],'property_price',true);
