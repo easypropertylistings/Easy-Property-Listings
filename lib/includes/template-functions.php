@@ -2084,6 +2084,7 @@ function epl_get_shortcode_list() {
  * Pagination fix for home
  *
  * @since 2.1.2
+ * @revised 3.3
  */
 function epl_home_pagination_fix( $query) {
 
