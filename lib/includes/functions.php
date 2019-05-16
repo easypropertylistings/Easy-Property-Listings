@@ -2584,6 +2584,12 @@ function epl_pmxi_import_post_saved($id) {
 		if ( 'rental' == $post->post_type ) {
 			$price = get_post_meta($id,'property_rent',true);
 			update_post_meta($id,'property_price_global',$price);
+		} elseif ( 'commercial' == $post->post_type ) {
+			$price = get_post_meta($id,'property_price',true);
+			if($price == ''){
+				$price = get_post_meta($id,'property_com_rent',true);
+			}
+			update_post_meta($id,'property_price_global',$price);
 		} else {
 			$price = get_post_meta($id,'property_price',true);
 			update_post_meta($id,'property_price_global',$price);
