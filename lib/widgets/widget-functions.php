@@ -211,7 +211,7 @@ function epl_get_price_array($post_type='property',$transaction='default') {
 
 	if($post_type == '') {
 
-		$range 			= array_merge(range(0,1000,50), range(1100,2000,100), range(2500,5000,500),range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
+		$range 		= array_merge(range(0,1000,50), range(1100,2000,100), range(2500,5000,500),range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
 
 		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
 
@@ -220,13 +220,13 @@ function epl_get_price_array($post_type='property',$transaction='default') {
 
 	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
 	if( is_epl_rental_post($post_type) ) {
-		$range 			= array_merge(range(50,1000,50), range(1100,2000,100), range(2500,5000,500) );
+		$range 		= array_merge(range(50,1000,50), range(1100,2000,100), range(2500,5000,500) );
 		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
 
 		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type
 		$price_array 	= apply_filters('epl_listing_search_price_rental',$price_array,$post_type,$transaction);
 	} else {
-		$range 			= array_merge(range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
+		$range 		= array_merge(range(50000,1000000,50000), range(1250000,3000000,250000), array(4000000,5000000,10000000) );
 		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
 		$price_array 	= apply_filters('epl_listing_search_price_sale',$price_array,$post_type,$transaction);
 	}
@@ -298,7 +298,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'key'			=>	'search_id',
 			'meta_key'		=>	'property_id',
 			'label'			=>	__('Search by Property ID', 'easy-property-listings'),
-			'placeholder'	=>	__('Search ID', 'easy-property-listings'),
+			'placeholder'		=>	__('Search ID', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'meta' , 'key'	=>	'property_unique_id'),
@@ -308,7 +308,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'key'			=>	'search_address',
 			'meta_key'		=>	'property_address',
 			'label'			=>	__('Search by Address', 'easy-property-listings'),
-			'placeholder'	=>	__('Search Address', 'easy-property-listings'),
+			'placeholder'		=>	__('Search Address', 'easy-property-listings'),
 			'type'			=>	'text',
 			'class'			=>	'epl-search-row-full',
 			'query'			=>	array('query'	=>	'post'),
