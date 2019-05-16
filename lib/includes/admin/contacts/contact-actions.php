@@ -1317,10 +1317,10 @@ add_action('wp_ajax_epl_search_contact','epl_search_contact');
 function epl_search_contact_listing() {
 
 	$search_array = array(
-		's'				=> sanitize_text_field($_POST['s']),
-		'showposts'   			=> 6,
-		'post_type' 			=> epl_get_core_post_types(),
-		'post_status' 			=> 'publish',
+		's'			=> sanitize_text_field($_POST['s']),
+		'showposts'   		=> 6,
+		'post_type' 		=> epl_get_core_post_types(),
+		'post_status' 		=> 'publish',
 	);
 
 	$query = http_build_query($search_array);
@@ -1388,10 +1388,10 @@ function epl_contact_save_note_note_tab( $args ) {
 	}
 	$contact_note 	= trim( sanitize_text_field( $args['contact_note'] ) );
 	$listing_id 	= trim( sanitize_text_field( $args['listing_id'] ) );
-	$note_type 		= trim( sanitize_text_field( $args['activity_type'] ) );
+	$note_type	= trim( sanitize_text_field( $args['activity_type'] ) );
 
-	$contact_id   = (int)$args['contact_id'];
-	$nonce         = $args['add_contact_note_nonce'];
+	$contact_id	= (int)$args['contact_id'];
+	$nonce		= $args['add_contact_note_nonce'];
 	if ( ! wp_verify_nonce( $nonce, 'add-contact-note' ) ) {
 		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings'  ) );
 	}
