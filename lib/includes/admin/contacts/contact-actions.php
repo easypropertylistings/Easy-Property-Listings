@@ -803,7 +803,7 @@ function epl_contact_contact_details($contact) { ?>
 	<?php endif; ?>
 	<?php if( $contact->get_meta('contact_website') != '' ) :?>
 			<span class="contact_website epl-info-item editable" data-key="address">
-				<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
+				<span class="dashicons dashicons-admin-site-alt3 epl-contact-icons"></span>
 				<?php echo $contact->epl_contact_get_address(); ?>
 			</span>
 	<?php endif; ?>

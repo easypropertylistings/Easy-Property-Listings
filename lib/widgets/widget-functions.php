@@ -121,17 +121,18 @@ function epl_search_widget_fields() {
 			'type'			=>	'checkbox',
 		),
 		array(
+			'key'			=>	'search_price_global',
+			'label'			=>	__('Price Slider','easy-property-listings'),
+			'default'		=>	'off',
+			'type'			=>	'checkbox',
+		),
+		array(
 			'key'			=>	'search_price',
 			'label'			=>	__('Price','easy-property-listings'),
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
 		),
-		array(
-			'key'			=>	'search_price_global',
-			'label'			=>	__('Global Price Search','easy-property-listings'),
-			'default'		=>	'off',
-			'type'			=>	'checkbox',
-		),
+		
 		array(
 			'key'			=>	'search_bed',
 			'label'			=>	__('Bed','easy-property-listings'),

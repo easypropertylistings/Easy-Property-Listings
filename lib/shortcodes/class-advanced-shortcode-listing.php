@@ -93,6 +93,7 @@ class EPL_Advanced_Shortcode_Listing {
 			'limit'                   => '10', // Number of maximum posts to show
 			'offset'                  => '', // Offset posts. When used, pagination is disabled
 			'author'                  => '',	// Author of listings.
+			'agent'					  => '',	// listings by agent	
 			'featured'                => 0,	// Featured listings.
 			'open_house'              => false, // only show open house
 			'auction'                 => false, // only show properties for auction
@@ -191,6 +192,34 @@ class EPL_Advanced_Shortcode_Listing {
 				$this->attributes['author'] = implode( ',', $author_ids );
 			}
 			$this->args['author'] = trim( $this->attributes['author'] );
+		}
+	}
+
+	function set_agent() {
+
+		// Listings by specified agent.
+		if ( ! empty( $this->attributes['agent'] ) ) {
+			$this->attributes['agent'] = array_map( 'trim', explode( ',', $this->attributes['agent'] ) );
+			$this->attributes['agent'] = array_filter($this->attributes['agent']);
+
+			$agent_meta_query = array(
+				'relation'  =>  'OR',
+			);
+
+			foreach($this->attributes['agent'] as $single_agent) {
+				$agent_meta_query[] = array(
+	                'key'       =>  'property_agent',
+	                'value'     =>  array($single_agent, sanitize_user($single_agent) ),
+	                'compare'   =>  'IN'
+	            );
+	            $agent_meta_query[] = array(
+	                'key'       =>  'property_second_agent',
+	                'value'     =>  array($single_agent, sanitize_user($single_agent) ),
+	                'compare'   =>  'IN'
+	            );
+			}
+
+			$this->args['meta_query']['agent_clause'] = $agent_meta_query;
 		}
 	}
 
@@ -333,6 +362,9 @@ class EPL_Advanced_Shortcode_Listing {
 				$this->args['meta_key'] =	$this->get_meta_key_price();
 			} elseif( $this->attributes['sortby'] == 'rand' ) {
 				$this->args['orderby']  = 'rand';
+			} elseif ( $this->attributes['sortby'] == 'status' ) {
+				$this->args['orderby']  = 'meta_value';
+				$this->args['meta_key'] = 'property_status';
 			} else {
 				$this->args['orderby']  = 'post_date';
 				$this->args['order']    = 'DESC';
@@ -399,6 +431,7 @@ class EPL_Advanced_Shortcode_Listing {
 		$this->set_post__not_in();
 		$this->process_epl_atts();
 		$this->set_author();
+		$this->set_agent();
 		$this->set_featured();
 		$this->set_auction();
 		$this->set_open_house();

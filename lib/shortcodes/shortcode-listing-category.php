@@ -144,6 +144,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		} elseif($sortby == 'rand') {
 			$args['orderby']	=	'rand';
 
+		}  elseif ( $sortby == 'status' ) {
+			$args['orderby']  = 'meta_value';
+			$args['meta_key'] =	'property_status';
 		} else {
 			$args['orderby']	=	'post_date';
 			$args['order']		=	'DESC';
