@@ -72,8 +72,8 @@ function epl_edit_contact( $args ) {
 
 	if ( $contact->update( $contact_data ) ) {
 
-		$output['success']       = true;
-		$output['contact_info'] = $contact_data;
+		$output['success'] 	= true;
+		$output['contact_info']	= $contact_data;
 
 	} else {
 
@@ -188,12 +188,12 @@ function epl_contact_save_note( $args ) {
 		return;
 	}
 
-	$contact_note 	= trim( sanitize_text_field( $args['contact_note'] ) );
-	$listing_id 	= trim( sanitize_text_field( $args['listing_id'] ) );
-	$note_type 	    = trim( sanitize_text_field( $args['note_type'] ) );
+	$contact_note	= trim( sanitize_text_field( $args['contact_note'] ) );
+	$listing_id	= trim( sanitize_text_field( $args['listing_id'] ) );
+	$note_type	= trim( sanitize_text_field( $args['note_type'] ) );
 
-	$contact_id   = (int)$args['contact_id'];
-	$nonce         = $args['add_contact_note_nonce'];
+	$contact_id	= (int)$args['contact_id'];
+	$nonce		= $args['add_contact_note_nonce'];
 
 	if ( ! wp_verify_nonce( $nonce, 'add_contact_note_nonce' ) ) {
 		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings'  ) );
@@ -426,17 +426,17 @@ function epl_meta_contact( $args ) {
 		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings'  ) );
 	}
 
-	$contact_id   = (int)$args['contact_id'];
-	$contact = new EPL_Contact( $contact_id );
+	$contact_id	= (int)$args['contact_id'];
+	$contact	= new EPL_Contact( $contact_id );
 	if ( empty( $contact->ID ) ) {
 		return false;
 	}
 
 	$not_meta_fields = array('epl_form_builder_form_submit','contact_id','_wpnonce','epl_action');
 
-	$post_fields = array('post_title','post_content','ID','post_author');
+	$post_fields	= array('post_title','post_content','ID','post_author');
 
-	$field_updates = array('ID' =>  $contact_id);
+	$field_updates	= array('ID' =>  $contact_id);
 	foreach($args as $key	=>	$value) {
 		if( !in_array($key,$not_meta_fields) ) {
 
@@ -446,10 +446,7 @@ function epl_meta_contact( $args ) {
 			} else {
 				$contact->update_meta($key,$value);
 			}
-
-
 		}
-
 	}
 	wp_update_post($field_updates);
 
@@ -477,13 +474,13 @@ function epl_new_contact( $args ) {
 		return;
 	}
 
-	$nonce         = $args['_wpnonce'];
+	$nonce		= $args['_wpnonce'];
 	if ( ! wp_verify_nonce( $nonce, 'new-contact' ) ) {
 		wp_die( __( 'Cheatin\' uhh?!', 'easy-property-listings'  ) );
 	}
 
-	$contact_id   = (int)$args['contact_id'];
-	$contact = new EPL_Contact( $contact_id );
+	$contact_id	= (int)$args['contact_id'];
+	$contact	= new EPL_Contact( $contact_id );
 	if ( empty( $contact->ID ) ) {
 		return false;
 	}
@@ -491,7 +488,7 @@ function epl_new_contact( $args ) {
 	if( $contact->contact_exists($args['email']) ) {
 		wp_die( __( 'A contact with this email already exists !', 'easy-property-listings'  ) );
 	}
-	
+
 	$contact->update( array('name'	=>	$args['title'], 'email' => $args['email']  ) );
 	$contact->update_meta('contact_first_name',$args['first_name']);
 	$contact->update_meta('contact_last_name',$args['last_name']);
@@ -554,7 +551,6 @@ function epl_contact_tag_add() {
 			wp_die(1);
 
 		}
-
 	}
 }
 add_action('wp_ajax_contact_tags_update','epl_contact_tag_add');
@@ -1277,23 +1273,23 @@ add_action('epl_before_meta_field_property_owner','epl_before_meta_field_propert
 function epl_search_contact() {
 
 	$search_array = array(
-		//'s'						=> $_POST['user_name'],
+		//'s'				=> $_POST['user_name'],
 		'showposts'   			=> 6,
 		'post_type' 			=> 'epl_contact',
-		//'post_status' 			=> 'any',
+		//'post_status' 		=> 'any',
 		'post_password' 		=> '',
 		'suppress_filters' 		=> true,
 		'meta_query'			=> array(
-			'relation'		=>	'OR',
+			'relation'		=> 'OR',
 			array(
-				'key'		=>	'contact_first_name',
-				'value'		=>	sanitize_text_field($_POST['user_name']),
-				'compare'	=>  'LIKE'
+				'key'		=> 'contact_first_name',
+				'value'		=> sanitize_text_field($_POST['user_name']),
+				'compare'	=> 'LIKE'
 			),
 			array(
-				'key'		=>	'contact_last_name',
-				'value'		=>	sanitize_text_field($_POST['user_name']),
-				'compare'	=>  'LIKE'
+				'key'		=> 'contact_last_name',
+				'value'		=> sanitize_text_field($_POST['user_name']),
+				'compare'	=> 'LIKE'
 			)
 		)
 	);
