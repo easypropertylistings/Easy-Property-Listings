@@ -503,6 +503,16 @@ RC1 LOG
 * New: Shortcodes now support default sorting by status with the sortby=status option.
 * Tweak: Default sorting is now using the hidden and automatically generated property_price_global value which allows sorting taxonomy filtered listings.
 
+
+
+
+
+
+
+
+
+
+
 = 3.2.3 November 22, 2018 =
 
 * New: WordPress 5 TwentyNineteen theme support.
