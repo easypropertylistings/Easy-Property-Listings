@@ -132,7 +132,7 @@ function epl_search_widget_fields() {
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
 		),
-		
+
 		array(
 			'key'			=>	'search_bed',
 			'label'			=>	__('Bed','easy-property-listings'),
@@ -202,6 +202,11 @@ function epl_number_suffix_callback($v,$suffix=' +') {
 	return $v.''.$suffix;
 }
 
+/**
+ * Get the price array for the price slider
+ *
+ * @since 3.3
+ */
 function epl_get_price_array($post_type='property',$transaction='default') {
 
 	if($post_type == '') {
@@ -231,6 +236,11 @@ function epl_get_price_array($post_type='property',$transaction='default') {
 
 }
 
+/**
+ * Get the price meta key
+ *
+ * @since 3.3
+ */
 function epl_get_price_meta_key($post_type='property',$transaction='default') {
 
 	// move from specific to general
@@ -786,6 +796,7 @@ function epl_search_get_defaults() {
 	return $defaults;
 
 }
+
 /**
  * Render widget field blocks -- for backend form
  *
@@ -974,8 +985,8 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 	}
 
 	$type = (array) $type;
-    $type = array_map( 'sanitize_text_field', $type );
-    $type_str = " ( '".implode("','", $type)."' ) ";
+	$type = array_map( 'sanitize_text_field', $type );
+	$type_str = " ( '".implode("','", $type)."' ) ";
 
 	global $wpdb;
 	$results = $wpdb->get_results( $wpdb->prepare( "SELECT distinct(pm.`meta_value`) FROM {$wpdb->postmeta} pm LEFT JOIN {$wpdb->posts} p ON p.`ID` = pm.`post_id` WHERE pm.`meta_key` = '%s' AND p.`post_status` = '%s' AND p.`post_type` IN $type_str AND pm.`meta_value` != ''", $key, $status ));
@@ -1285,6 +1296,7 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 	}
 	return $all_fields;
 }
+
 /**
  * Contacts widget form get defaults
  *
@@ -1374,6 +1386,11 @@ function epl_contact_capture_widget_form_fields() {
 	return apply_filters( 'epl_contact_capture_widget_form_fields', $fields );
 }
 
+/**
+ * Get listing owner
+ *
+ * @since 3.3
+ */
 function epl_get_owners() {
 	$c_array = array();
 	$contact_ids = (array) epl_get_meta_values( 'property_owner', epl_get_core_post_types() );
@@ -1385,6 +1402,11 @@ function epl_get_owners() {
 
 }
 
+/**
+ * Get price slider
+ *
+ * @since 3.3
+ */
 function epl_get_field_sliders() {
 
 	$sliders = array(
