@@ -1647,7 +1647,7 @@ function epl_archive_sorting($query) {
 		return;
 	}
 
-	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental ) || is_tax ( 'location' ) || is_tax ( 'tax_feature' ) || is_tax ( 'tax_business_listing' ) ){
+	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental ) || is_tax ( 'location' ) || is_tax ( 'tax_feature' ) || is_tax ( 'tax_business_listing' ) || epl_is_search() ){
 
 		if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 

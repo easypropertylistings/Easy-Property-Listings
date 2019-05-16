@@ -454,7 +454,7 @@ function epl_upgrade_admin_notice(){
 	     echo '<div class="notice notice-warning epl-upgrade-notice is-dismissible">
 	             <p><strong>'.$head.'</strong></p>
 	             <p>'.$msg.'</p>
-	             <p><a class="button" href="admin.php?page=epl-tools&tab=upgrade">'.__("Take me to upgrade tool","easy-property-listings").'</a></p>
+	             <p><a class="button" href="admin.php?page=epl-tools&tab=upgrade">'.__("Take me to the upgrade tool","easy-property-listings").'</a></p>
 	         </div>';
  	endif;
 }
