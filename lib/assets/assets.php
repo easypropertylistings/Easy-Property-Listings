@@ -108,7 +108,7 @@ function epl_wp_enqueue_scripts() {
 			wp_enqueue_style(	'epl-style-enhanced', 	$current_dir_path . '/css/style-enhanced'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
 		}
 
-		wp_enqueue_style(	'epl-field-sliders', 	$current_dir_path . '/css/field-slider'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );		
+		wp_enqueue_style(	'epl-field-sliders', 	$current_dir_path . '/css/field-slider'.$suffix.'.css',		FALSE,		EPL_PROPERTY_VER );
 
 		/**
 		 * Load theme specific stylesheet for epl, if exists
@@ -170,6 +170,10 @@ function epl_admin_styles() {
 	<style>
 		.column-property_thumb {
 			width:<?php echo $width; ?>;
+		}
+		.column-property_thumb img {
+			max-width: 100%;
+			height: auto;
 		}
 		.column-property_featured {
 			width: 60px;

@@ -489,6 +489,30 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Features list output class name fix for furnished.
 * Fix: Improvements to compatibility mode that prevents YoastSEO outputting multiple times on the page. This will also correct any other plugins with a similar issue.
 
+RC1 LOG
+* Tweak: Converted floorplan button into button element instead of link with button styling. This makes all buttons consistent.
+* Tweak: When using custom image sizes we've improved the admin image sizes to not exceed the column sizes when managing listings from the dashboard.
+* Tweak: Floorplan opens link in another window by default to match other buttons.
+* Tweak: Contacts system better displays contact information. IE hiding empty fields when nothing is set.
+
+* Fix: Adding of contacts with no summary is now possible.
+* Fix: When checkbox option defaults were set to on user was unable to save option, corrected the behaviour.
+
+* New: Shortcodes [listing], [listing_category] and [listing_advanced] all support agent option for filtering by either primary or secondary agents.
+
+* New: Shortcodes now support default sorting by status with the sortby=status option.
+* Tweak: Default sorting is now using the hidden and automatically generated property_price_global value which allows sorting taxonomy filtered listings.
+
+
+
+
+
+
+
+
+
+
+
 = 3.2.3 November 22, 2018 =
 
 * New: WordPress 5 TwentyNineteen theme support.

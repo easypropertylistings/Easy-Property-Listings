@@ -1,6 +1,6 @@
 <?php
 /**
- * SHORTCODE :: Listing [listing]
+ * SHORTCODE :: Listing [listing_advanced]
  *
  * @package     EPL
  * @subpackage  Shortcode/Listing
@@ -32,6 +32,11 @@ class EPL_Advanced_Shortcode_Listing {
 		$this->set_query();
 	}
 
+	/**
+	 * Override Attributes
+	 *
+	 * @since 3.3
+	 */
 	function override_atts($overrides) {
 
 		if( !empty($overrides) ) {
@@ -42,6 +47,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Get default post types
+	 *
+	 * @since 3.3
+	 */
 	function get_default_post_types() {
 
 		$property_types = epl_get_active_post_types();
@@ -52,6 +62,11 @@ class EPL_Advanced_Shortcode_Listing {
 		return $property_types;
 	}
 
+	/**
+	 * Get meta key price
+	 *
+	 * @since 3.3
+	 */
 	function get_meta_key_price() {
 
 		if ( is_string( $this->attributes['post_type'] ) && $this->attributes['post_type'] == 'rental' ) {
@@ -63,11 +78,16 @@ class EPL_Advanced_Shortcode_Listing {
 		return $this->meta_key_price;
 	}
 
+	/**
+	 * Get default options
+	 *
+	 * @since 3.3
+	 */
 	function get_default_args() {
 
 		/**
 		 *
-		 * Template 		: used to render each listing in loop.
+		 * Template 	: used to render each listing in loop.
 		 *
 		 * Default to loop-listing-blog-default.php
 		 *
@@ -85,42 +105,52 @@ class EPL_Advanced_Shortcode_Listing {
 		 */
 
 		$this->default_args = array(
-			'post_type'               => $this->get_default_post_types(), //Post Type
-			'status'                  => array( 'current', 'sold', 'leased' ),
-			'commercial_listing_type' => '', // Listing Type, 'sale' , 'lease', 'both'
-			'feature'                 => '', // Feature slug
-			'feature_id'              => '', // Feature ID
-			'limit'                   => '10', // Number of maximum posts to show
-			'offset'                  => '', // Offset posts. When used, pagination is disabled
-			'author'                  => '',	// Author of listings.
-			'agent'					  => '',	// listings by agent	
-			'featured'                => 0,	// Featured listings.
-			'open_house'              => false, // only show open house
-			'auction'                 => false, // only show properties for auction
-			'class'                   => 'epl-shortcode-listing', // wrapper class
-			'wrap_template'           => '', // explained in detail below
-			'template'                => false, // Template can be set to "slim" for home open style template
-			'location'                => '', // Location slug. Should be a name like sorrento
-			'location_id'             => '', // Location ID
-			'tools_top'               => 'off', // Tools before the loop like Sorter and Grid on or off
-			'tools_bottom'            => 'off', // Tools after the loop like pagination on or off
-			'sortby'                  => '', // Options: price, date : Default date
-			'orderby_clause'          => '', //  order by two different pieces of postmeta (for example, suburb first and state second)
-			'sort_order'              => 'DESC', // Sort by ASC or DESC
-			'query_object'            => '', // only for internal use . if provided use it instead of custom query
-			'pagination'              => 'on', // Enable or disable pagination
-			'post__in'                => '',	// show only these posts
-			'post__not_in'            => '', // dont show these posts
-			'instance_id'		  => '1'
+			'post_type'			=> $this->get_default_post_types(), //Post Type
+			'status'			=> array( 'current', 'sold', 'leased' ),
+			'commercial_listing_type'	=> '', // Listing Type, 'sale' , 'lease', 'both'
+			'feature'			=> '', // Feature slug
+			'feature_id'			=> '', // Feature ID
+			'limit'				=> '10', // Number of maximum posts to show
+			'offset'			=> '', // Offset posts. When used, pagination is disabled
+			'author'			=> '',	// Author of listings.
+			'agent'				=> '',	// listings by agent
+			'featured'			=> 0,	// Featured listings.
+			'open_house'			=> false, // only show open house
+			'auction'			=> false, // only show properties for auction
+			'class'				=> 'epl-shortcode-listing', // wrapper class
+			'wrap_template'			=> '', // explained in detail below
+			'template'			=> false, // Template can be set to "slim" for home open style template
+			'location'			=> '', // Location slug. Should be a name like sorrento
+			'location_id'			=> '', // Location ID
+			'tools_top'			=> 'off', // Tools before the loop like Sorter and Grid on or off
+			'tools_bottom'			=> 'off', // Tools after the loop like pagination on or off
+			'sortby'			=> '', // Options: price, date : Default date
+			'orderby_clause'		=> '', //  order by two different pieces of postmeta (for example, suburb first and state second)
+			'sort_order'			=> 'DESC', // Sort by ASC or DESC
+			'query_object'			=> '', // only for internal use . if provided use it instead of custom query
+			'pagination'			=> 'on', // Enable or disable pagination
+			'post__in'			=> '',	// show only these posts
+			'post__not_in'			=> '', // dont show these posts
+			'instance_id'			=> '1'
 		);
 
 		return $this->default_args;
 	}
 
+	/**
+	 * Shortcode attributes
+	 *
+	 * @since 3.3
+	 */
 	function shortcode_atts() {
 		$this->attributes = shortcode_atts( $this->get_default_args(), $this->atts );
 	}
 
+	/**
+	 * Set attributes
+	 *
+	 * @since 3.3
+	 */
 	function set_attribute($key,$value) {
 
 		if( isset($this->attributes[$key]) ) {
@@ -128,11 +158,21 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Get attributes
+	 *
+	 * @since 3.3
+	 */
 	function get_attribute($key) {
 
 		return isset($this->attributes[$key]) ? $this->attributes[$key] : null;
 	}
 
+	/**
+	 * Set the post type
+	 *
+	 * @since 3.3
+	 */
 	function set_post_type() {
 		if ( ! is_array( $this->attributes['post_type'] ) ) {
 			$this->attributes['post_type'] =
@@ -140,6 +180,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set initial options
+	 *
+	 * @since 3.3
+	 */
 	function set_initial_args() {
 
 		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
@@ -150,6 +195,11 @@ class EPL_Advanced_Shortcode_Listing {
 		);
 	}
 
+	/**
+	 * Set the offset
+	 *
+	 * @since 3.3
+	 */
 	function set_offset() {
 
 		// Offset query does not work with pagination
@@ -159,6 +209,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set posts in
+	 *
+	 * @since 3.3
+	 */
 	function set_post__in() {
 		if ( ! empty( $this->attributes['post__in'] ) ) {
 			$post__in = array_map( 'trim', explode( ',',$this->attributes['post__in'] ) );
@@ -168,6 +223,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set posts not in
+	 *
+	 * @since 3.3
+	 */
 	function set_post__not_in() {
 		if ( ! empty( $this->attributes['post__not_in'] ) ) {
 			$post__not_in = array_map( 'trim', explode( ',',$this->attributes['post__not_in'] ) );
@@ -177,11 +237,21 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Process EPL attributes
+	 *
+	 * @since 3.3
+	 */
 	function process_epl_atts() {
 
 		$this->args['meta_query'] = epl_parse_atts($this->atts);
 	}
 
+	/**
+	 * Set the author
+	 *
+	 * @since 3.3
+	 */
 	function set_author() {
 
 		// Listings of specified author.
@@ -195,6 +265,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set the agent
+	 *
+	 * @since 3.3
+	 */
 	function set_agent() {
 
 		// Listings by specified agent.
@@ -223,6 +298,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set featured
+	 *
+	 * @since 3.3
+	 */
 	function set_featured() {
 
 		// Featured listings.
@@ -234,6 +314,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set auction
+	 *
+	 * @since 3.3
+	 */
 	function set_auction() {
 
 		// auction only listings
@@ -245,6 +330,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set open for inspection
+	 *
+	 * @since 3.3
+	 */
 	function set_open_house() {
 
 		// open house only ?
@@ -257,6 +347,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set location taxonomy query
+	 *
+	 * @since 3.3
+	 */
 	function set_location_tax_query() {
 
 		/** Location taxonomy */
@@ -286,9 +381,13 @@ class EPL_Advanced_Shortcode_Listing {
 				);
 			}
 		}
-
 	}
 
+	/**
+	 * Set feeatures taxonomy query
+	 *
+	 * @since 3.3
+	 */
 	function set_features_tax_query() {
 
 		/** Features taxonomy */
@@ -317,9 +416,13 @@ class EPL_Advanced_Shortcode_Listing {
 				);
 			}
 		}
-
 	}
 
+	/**
+	 * Set status
+	 *
+	 * @since 3.3
+	 */
 	function set_status() {
 
 		if ( ! empty( $this->attributes['status'] ) ) {
@@ -337,6 +440,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set commercial listing type
+	 *
+	 * @since 3.3
+	 */
 	function set_commercial_listing_type() {
 
 		/** Commercial listing type */
@@ -349,11 +457,15 @@ class EPL_Advanced_Shortcode_Listing {
 					'value'		=> $this->attributes['commercial_listing_type'],
 					'compare'	=> 'IN',
 				);
-
 			}
 		}
 	}
 
+	/**
+	 * Set orderby
+	 *
+	 * @since 3.3
+	 */
 	function set_orderby() {
 
 		if ( ! empty ( $this->attributes['sortby'] ) ) {
@@ -373,6 +485,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Set orderby clause
+	 *
+	 * @since 3.3
+	 */
 	function set_orderby_clause() {
 
 		/**
@@ -402,6 +519,11 @@ class EPL_Advanced_Shortcode_Listing {
 		$args = apply_filters('epl_shortcode_listing_advanced_args',$this->args,$this->attributes);
 	}
 
+	/**
+	 * Set query
+	 *
+	 * @since 3.3
+	 */
 	function set_query() {
 
 		$this->query_open = new WP_Query( $this->args );
@@ -411,6 +533,11 @@ class EPL_Advanced_Shortcode_Listing {
 		}
 	}
 
+	/**
+	 * Get the template
+	 *
+	 * @since 3.3
+	 */
 	function get_wrap_template() {
 
 		$attributes['wrap_template'] = str_replace( '_', '-', $this->attributes['wrap_template'] );
@@ -422,6 +549,11 @@ class EPL_Advanced_Shortcode_Listing {
 		return $wrap_template;
 	}
 
+	/**
+	 * Build the query
+	 *
+	 * @since 3.3
+	 */
 	function build_query() {
 
 		$this->set_post_type();
@@ -443,6 +575,11 @@ class EPL_Advanced_Shortcode_Listing {
 		$this->set_orderby_clause();
 	}
 
+	/**
+	 * Render the shortcode
+	 *
+	 * @since 3.3
+	 */
 	function render() {
 		$wrap_template = $this->get_wrap_template();
 		ob_start();

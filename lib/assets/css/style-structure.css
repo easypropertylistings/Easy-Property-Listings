@@ -394,6 +394,9 @@
 .epl-button-wrapper {
 	margin: 0.5em 0;
 }
+.epl-button-wrapper form {
+	display: inline-block;
+}
 .epl-button {
 	display: inline-block;
 	margin-bottom: 0;

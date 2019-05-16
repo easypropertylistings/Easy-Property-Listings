@@ -66,9 +66,9 @@ function epl_shortcode_property_open_callback( $atts ) {
 		'meta_key' 		=>	'property_inspection_times',
 		'meta_query' => array(
 			array(
-				'key' => 'property_inspection_times',
-				'value' => '^\s*$',
-				'compare' => 'NOT REGEXP',
+				'key' 		=> 'property_inspection_times',
+				'value' 	=> '^\s*$',
+				'compare' 	=> 'NOT REGEXP',
 			),
            array(
                 'key'		=> 'property_status',
@@ -94,17 +94,17 @@ function epl_shortcode_property_open_callback( $atts ) {
 	if( $sortby != '' ) {
 
 		if($sortby == 'price') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
+			$args['orderby']	= 'meta_value_num';
+			$args['meta_key']	= $meta_key_price;
 		} elseif ( $sortby == 'status' ) {
-			$args['orderby']  = 'meta_value';
-			$args['meta_key'] =	'property_status';
+			$args['orderby']	= 'meta_value';
+			$args['meta_key']	= 'property_status';
 		} else {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'DESC';
+			$args['orderby']	= 'post_date';
+			$args['order']		= 'DESC';
 
 		}
-		$args['order']			=	$sort_order;
+		$args['order']			= $sort_order;
 	}
 
 
