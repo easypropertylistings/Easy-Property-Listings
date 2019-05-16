@@ -37,8 +37,8 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'category_compare'		=>	'IN', // Compare using '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'EXISTS', 'NOT EXISTS', 'IN','NOT IN','BETWEEN','NOT BETWEEN'
 		'limit'				=>	'10', // Number of maximum posts to show
 		'offset'			=>	'', // Offset posts. When used, pagination is disabled
-		'author'			=> '',	// Author of listings.
-		'agent'				=> '',	// Agent of listings.
+		'author'			=>	'', // Author of listings.
+		'agent'				=>	'', // Agent of listings.
 		'template'			=>	false, // Template can be set to "slim" for home open style template
 		'location'			=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
@@ -67,7 +67,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'date'			=>	'post_date'
 	);
 	if( !is_array($post_type) ) {
-		$post_type 			= array_map('trim',explode(',',$post_type) );
+		$post_type 		= array_map('trim',explode(',',$post_type) );
 	}
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
@@ -89,9 +89,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			$location = array_map('trim', $location);
 
 			$args['tax_query'][] = array(
-				'taxonomy' => 'location',
-				'field' => 'slug',
-				'terms' => $location
+				'taxonomy'	=> 'location',
+				'field'		=> 'slug',
+				'terms'		=> $location
 			);
 		}
 	}
@@ -102,9 +102,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			$status = array_map('trim', $status);
 
 			$args['meta_query'][] = array(
-				'key' => 'property_status',
-				'value' => $status,
-				'compare' => 'IN'
+				'key'		=> 'property_status',
+				'value'		=> $status,
+				'compare'	=> 'IN'
 			);
 		}
 	}
@@ -121,7 +121,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 
 	// Listings by specified agent.
 	if ( ! empty( $agent ) ) {
-		
+
 		$agent = array_map( 'trim', explode( ',', $agent ) );
 		$agent = array_filter($agent);
 		$agent_meta_query = array(
@@ -150,9 +150,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			$commercial_listing_type = array_map('trim', $commercial_listing_type);
 
 			$args['meta_query'][] = array(
-				'key' => 'property_com_listing_type',
-				'value' => $commercial_listing_type,
-				'compare' => 'IN'
+				'key'		=> 'property_com_listing_type',
+				'value'		=> $commercial_listing_type,
+				'compare'	=> 'IN'
 			);
 		}
 	}
@@ -162,7 +162,6 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		if(!is_array($category_value) && in_array($category_compare,array('IN','NOT IN','BETWEEN','NOT BETWEEN') ) ) {
 			$category_value = explode(",", $category_value);
 			$category_value = array_map('trim', $category_value);
-
 		}
 
 		$args['meta_query'][] = array(
@@ -170,26 +169,25 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			'value' 	=> $category_value,
 			'compare' 	=> $category_compare
 		);
-
 	}
 
 	if( $sortby != '' ) {
 
 		if($sortby == 'price') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
+			$args['orderby']	= 'meta_value_num';
+			$args['meta_key']	= $meta_key_price;
 		} elseif($sortby == 'rand') {
-			$args['orderby']	=	'rand';
+			$args['orderby']	= 'rand';
 
 		}  elseif ( $sortby == 'status' ) {
-			$args['orderby']  = 'meta_value';
-			$args['meta_key'] =	'property_status';
+			$args['orderby']	= 'meta_value';
+			$args['meta_key']	= 'property_status';
 		} else {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'DESC';
+			$args['orderby']	= 'post_date';
+			$args['order']		= 'DESC';
 
 		}
-		$args['order']			=	$sort_order;
+		$args['order']			= $sort_order;
 	}
 
 

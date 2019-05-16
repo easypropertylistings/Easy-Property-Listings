@@ -63,7 +63,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	);
 
 	if( !is_array($post_type) ) {
-		$post_type 			= array_map('trim',explode(',',$post_type) );
+		$post_type 		= array_map('trim',explode(',',$post_type) );
 	}
 	ob_start();
 
@@ -112,9 +112,9 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 			$location = array_map('trim', $location);
 
 			$args['tax_query'][] = array(
-				'taxonomy' => 'location',
-				'field' => 'slug',
-				'terms' => $location
+				'taxonomy'	=> 'location',
+				'field'		=> 'slug',
+				'terms'		=> $location
 			);
 		}
 	}
@@ -125,25 +125,25 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 			$status = array_map('trim', $status);
 
 			$args['meta_query'][] = array(
-				'key' => 'property_status',
-				'value' => $status,
-				'compare' => 'IN'
+				'key'		=> 'property_status',
+				'value'		=> $status,
+				'compare'	=> 'IN'
 			);
 		}
 	}
 	if( $sortby != '' ) {
 
 		if($sortby == 'price') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
+			$args['orderby']	= 'meta_value_num';
+			$args['meta_key']	= $meta_key_price;
 		} elseif ( $sortby == 'status' ) {
-			$args['orderby']  = 'meta_value';
-			$args['meta_key'] =	'property_status';
+			$args['orderby']  	= 'meta_value';
+			$args['meta_key'] 	= 'property_status';
 		} else {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'DESC';
+			$args['orderby']	= 'post_date';
+			$args['order']		= 'DESC';
 		}
-		$args['order']			=	$sort_order;
+		$args['order']			= $sort_order;
 	}
 
 
