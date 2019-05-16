@@ -119,7 +119,10 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		if($sortby == 'price') {
 			$args['orderby']	=	'meta_value_num';
 			$args['meta_key']	=	$meta_key_price;
-		} else {
+		} elseif ( $sortby == 'status' ) {
+			$args['orderby']  = 'meta_value';
+			$args['meta_key'] =	'property_status';
+		}  else {
 			$args['orderby']	=	'post_date';
 			$args['order']		=	'DESC';
 

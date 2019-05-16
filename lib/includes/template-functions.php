@@ -1363,7 +1363,7 @@ function epl_sorting_options($post_type = null) {
 			'id'		=>	'high',
 			'label'		=>	__('Price: High to Low','easy-property-listings' ),
 			'type'		=>	'meta',
-			'key'		=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
+			'key'		=>	'property_price_global',
 			'order'		=>	'DESC',
 			'orderby'	=>	'meta_value_num',
 		),
@@ -1371,7 +1371,7 @@ function epl_sorting_options($post_type = null) {
 			'id'		=>	'low',
 			'label'		=>	__('Price: Low to High','easy-property-listings' ),
 			'type'		=>	'meta',
-			'key'		=>	is_epl_rental_post( $post_type ) ? 'property_rent':'property_price',
+			'key'		=>	'property_price_global',
 			'order'		=>	'ASC',
 			'orderby'	=>	'meta_value_num',
 
@@ -1647,7 +1647,7 @@ function epl_archive_sorting($query) {
 		return;
 	}
 
-	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental )){
+	if(is_post_type_archive( $post_types_sold ) || is_post_type_archive( $post_types_rental ) || is_tax ( 'location' ) || is_tax ( 'tax_feature' ) || is_tax ( 'tax_business_listing' ) ){
 
 		if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 

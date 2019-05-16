@@ -722,6 +722,7 @@ class EPL_Contact {
 	function get_emails() {
 
 		$emails = $this->get_meta('contact_emails');
+		$emails = array_filter($emails);
 		if(!empty($emails)) {
 			ob_start();
 			foreach($emails as $mail_name	=>	$mail_value) {
@@ -745,6 +746,7 @@ class EPL_Contact {
 	function get_phones() {
 
 		$emails = $this->get_meta('contact_phones');
+		$emails = array_filter($emails);
 		if(!empty($emails)) {
 			ob_start();
 			foreach($emails as $mail_name	=>	$mail_value) {

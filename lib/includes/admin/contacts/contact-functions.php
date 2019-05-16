@@ -25,7 +25,7 @@ function epl_register_default_contact_views( $views ) {
 		'overview'  		=> 'epl_contacts_view',
 		'delete'    		=> 'epl_contacts_delete_view',
 		'notes'     		=> 'epl_contact_notes_view',
-		'meta'     		=> 'epl_contact_meta_view',
+		'meta'     			=> 'epl_contact_meta_view',
 		'listings'     		=> 'epl_contacts_listing_view',
 		'new-contact'     	=> 'epl_new_contact_view',
 		'all_tags'     		=> 'epl_all_tags_view',
