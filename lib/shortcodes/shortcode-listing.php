@@ -147,16 +147,16 @@ function epl_shortcode_listing_callback( $atts ) {
 
 	if ( ! empty ( $attributes['sortby'] ) ) {
 		if ( $attributes['sortby'] == 'price' ) {
-			$args['orderby']  = 'meta_value_num';
-			$args['meta_key'] =	$meta_key_price;
+			$args['orderby']	= 'meta_value_num';
+			$args['meta_key']	= $meta_key_price;
 		} elseif( $attributes['sortby'] == 'rand' ) {
-			$args['orderby']  = 'rand';
+			$args['orderby']	= 'rand';
 		} elseif ( $attributes['sortby'] == 'status' ) {
-			$args['orderby']  = 'meta_value';
-			$args['meta_key'] =	'property_status';
+			$args['orderby'] 	= 'meta_value';
+			$args['meta_key']	= 'property_status';
 		} else {
-			$args['orderby']  = 'post_date';
-			$args['order']    = 'DESC';
+			$args['orderby']	= 'post_date';
+			$args['order']		= 'DESC';
 		}
 		$args['order']        = $attributes['sort_order'];
 	}

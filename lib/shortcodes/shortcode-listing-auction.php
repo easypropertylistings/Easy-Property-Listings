@@ -39,8 +39,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		'sort_order'	=> 'DESC',
 		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
 		'pagination'	=> 'on',
-		'instance_id'	=>	'1',
-		'class'		=>	''
+		'instance_id'	=> '1',
+		'class'		=> ''
 	), $atts );
 
 	extract( $attributes );
@@ -113,8 +113,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 			$args['orderby']	= 'meta_value_num';
 			$args['meta_key']	= $meta_key_price;
 		}  elseif ( $sortby == 'status' ) {
-			$args['orderby']  = 'meta_value';
-			$args['meta_key'] =	'property_status';
+			$args['orderby']	= 'meta_value';
+			$args['meta_key']	= 'property_status';
 		}  else {
 			$args['orderby']	= 'post_date';
 			$args['order']		= 'DESC';
