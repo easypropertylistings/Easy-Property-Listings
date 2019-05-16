@@ -37,6 +37,8 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'category_compare'		=>	'IN', // Compare using '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'EXISTS', 'NOT EXISTS', 'IN','NOT IN','BETWEEN','NOT BETWEEN'
 		'limit'				=>	'10', // Number of maximum posts to show
 		'offset'			=>	'', // Offset posts. When used, pagination is disabled
+		'author'			=> '',	// Author of listings.
+		'agent'				=> '',	// Agent of listings.
 		'template'			=>	false, // Template can be set to "slim" for home open style template
 		'location'			=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
@@ -107,6 +109,41 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		}
 	}
 
+	// Listings of specified author.
+	if ( ! empty( $author ) ) {
+		$author = (array) $author;
+		if ( is_array( $author ) ) {
+			$author_ids = array_map( 'epl_get_author_id_from_name', $author );
+			$author = implode( ',', $author_ids );
+		}
+		$args['author'] = trim( $author );
+	}
+
+	// Listings by specified agent.
+	if ( ! empty( $agent ) ) {
+		
+		$agent = array_map( 'trim', explode( ',', $agent ) );
+		$agent = array_filter($agent);
+		$agent_meta_query = array(
+			'relation'  =>  'OR',
+		);
+
+		foreach($agent as $single_agent) {
+			$agent_meta_query[] = array(
+                'key'       =>  'property_agent',
+                'value'     =>  array($single_agent, sanitize_user($single_agent) ),
+                'compare'   =>  'IN'
+            );
+            $agent_meta_query[] = array(
+                'key'       =>  'property_second_agent',
+                'value'     =>  array($single_agent, sanitize_user($single_agent) ),
+                'compare'   =>  'IN'
+            );
+		}
+
+		$args['meta_query'][] = $agent_meta_query;
+	}
+
 	if(!empty($commercial_listing_type)) {
 		if(!is_array($commercial_listing_type)) {
 			$commercial_listing_type = explode(",", $commercial_listing_type);
@@ -144,6 +181,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		} elseif($sortby == 'rand') {
 			$args['orderby']	=	'rand';
 
+		}  elseif ( $sortby == 'status' ) {
+			$args['orderby']  = 'meta_value';
+			$args['meta_key'] =	'property_status';
 		} else {
 			$args['orderby']	=	'post_date';
 			$args['order']		=	'DESC';

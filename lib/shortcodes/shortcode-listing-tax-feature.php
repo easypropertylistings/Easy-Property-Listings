@@ -136,6 +136,9 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		if($sortby == 'price') {
 			$args['orderby']	=	'meta_value_num';
 			$args['meta_key']	=	$meta_key_price;
+		} elseif ( $sortby == 'status' ) {
+			$args['orderby']  = 'meta_value';
+			$args['meta_key'] =	'property_status';
 		} else {
 			$args['orderby']	=	'post_date';
 			$args['order']		=	'DESC';

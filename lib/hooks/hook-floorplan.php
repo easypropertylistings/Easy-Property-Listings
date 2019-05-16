@@ -35,26 +35,17 @@ function epl_button_floor_plan() {
 
 		if( !empty($link) ) { ?>
 
-			<span class="epl-floor-plan-button-wrapper<?php echo $count; ?>">
-
-					<a type="button"
-						class="fancybox image epl-button epl-floor-plan"
-						<?php echo apply_filters( 'epl_button_target_floorplan' , 'target="_blank"' ); ?>
-						href="<?php echo $link; ?>">
-
-							<?php
-								$filter_key = str_replace('property_','',$key);
-
-								if( has_filter('epl_button_label_'.$filter_key) ) {
-									$label = apply_filters('epl_button_label_floorplan_' . $filter_key , $meta_label );
-								} else {
-									$label = apply_filters( 'epl_button_label_floorplan' , $meta_label );
-								}
-								echo $label;
-							?>
-
-					</a>
-			</span> <?php
+			<button type="button" class="epl-button epl-floor-plan epl-floor-plan-<?php echo $count; ?>" onclick="window.open('<?php echo $link; ?>')">
+				<?php
+					$filter_key = str_replace('property_','',$key);
+					if( has_filter('epl_button_label_'.$filter_key) ) {
+						$label = apply_filters('epl_button_label_floorplan_' . $filter_key , $meta_label );
+					} else {
+						$label = apply_filters( 'epl_button_label_floorplan' , $meta_label );
+					}
+				?>
+				<?php echo $label ?>
+			</button> <?php
 
 		}
 	}

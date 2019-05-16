@@ -124,6 +124,10 @@ class EPL_SEARCH {
 		$this->get_data   	= apply_filters('epl_search_get_data',$this->get_data);
 		$this->post_data  	= filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 		$this->post_data   	= apply_filters('epl_search_post_data',$this->post_data);
+
+		if( !isset($this->get_data['property_status']) ) {
+			$this->get_data['property_status'] = '';
+		}
 	}
 
 	/**
@@ -215,6 +219,7 @@ class EPL_SEARCH {
 				$epl_post_types = array_keys( $epl_post_types );
 				$this->query->set( 'post_type', $epl_post_types );
 				$this->post_type = $epl_post_types;
+				$this->get_data['post_type'] = $this->post_type;
 			}
 		}
 	}

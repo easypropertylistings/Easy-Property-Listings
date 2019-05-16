@@ -35,6 +35,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'limit'		=> '10', // Number of maximum posts to show
 		'offset'	=> '', // Offset posts. When used, pagination is disabled
 		'author'	=> '',	// Author of listings.
+		'agent'		=> '',	// Agent of listings.
 		'featured'	=> 0,	// Featured listings.
 		'template'	=> false, // Template can be set to "slim" for home open style template
 		'location'	=> '', // Location slug. Should be a name like sorrento
@@ -86,6 +87,30 @@ function epl_shortcode_listing_callback( $atts ) {
 		$args['author'] = trim( $attributes['author'] );
 	}
 
+	// Listings by specified agent.
+	if ( ! empty( $attributes['agent'] ) ) {
+		$attributes['agent'] = array_map( 'trim', explode( ',', $attributes['agent'] ) );
+		$attributes['agent'] = array_filter($attributes['agent']);
+		$agent_meta_query = array(
+			'relation'  =>  'OR',
+		);
+
+		foreach($attributes['agent'] as $single_agent) {
+			$agent_meta_query[] = array(
+                'key'       =>  'property_agent',
+                'value'     =>  array($single_agent, sanitize_user($single_agent) ),
+                'compare'   =>  'IN'
+            );
+            $agent_meta_query[] = array(
+                'key'       =>  'property_second_agent',
+                'value'     =>  array($single_agent, sanitize_user($single_agent) ),
+                'compare'   =>  'IN'
+            );
+		}
+
+		$args['meta_query'][] = $agent_meta_query;
+	}
+
 	// Featured listings.
 	if ( $attributes['featured'] ) {
 		$args['meta_query'][] = array(
@@ -126,6 +151,9 @@ function epl_shortcode_listing_callback( $atts ) {
 			$args['meta_key'] =	$meta_key_price;
 		} elseif( $attributes['sortby'] == 'rand' ) {
 			$args['orderby']  = 'rand';
+		} elseif ( $attributes['sortby'] == 'status' ) {
+			$args['orderby']  = 'meta_value';
+			$args['meta_key'] =	'property_status';
 		} else {
 			$args['orderby']  = 'post_date';
 			$args['order']    = 'DESC';
