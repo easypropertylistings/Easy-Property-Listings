@@ -219,7 +219,7 @@ function epl_get_price_array($post_type='property',$transaction='default') {
 	}
 
 	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
-	if( is_epl_rental_post($post_type) ) {
+	elseif( is_epl_rental_post($post_type) ) {
 		$range 		= array_merge(range(50,1000,50), range(1100,2000,100), range(2500,5000,500) );
 		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
 
