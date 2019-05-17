@@ -391,7 +391,7 @@ function epl_contact_meta_view($contact) {
 							$contact_phones = array_filter($contact_phones);
 							$contact_phone  = isset($contact_phones['phone']) ? $contact_phones['phone'] : '';
 
-							$contact_emails = $contact->get_meta('contact_emails');
+							$contact_emails = (array) $contact->get_meta('contact_emails');
 							$contact_emails = array_filter($contact_emails);
 							$contact_email  = isset($contact_emails['email']) ? $contact_emails['email'] : '';
 							$fields = array(

@@ -202,6 +202,34 @@ function epl_number_suffix_callback($v,$suffix=' +') {
 	return $v.''.$suffix;
 }
 
+function epl_get_price_slider_array($post_type='property',$transaction='default') {
+
+	if($post_type == '') {
+
+		$range 		= range(0,10000000,50000);
+
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
+
+		$price_array 	= apply_filters('epl_listing_search_price_slider_global',$price_array);
+	}
+
+	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
+	elseif( is_epl_rental_post($post_type) ) {
+		$range 		= range(50,5000,50);
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
+
+		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type
+		$price_array 	= apply_filters('epl_listing_search_price_slider_rental',$price_array,$post_type,$transaction);
+	} else {
+		$range 		= range(50000,10000000,50000);
+		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
+		$price_array 	= apply_filters('epl_listing_search_price_slider_sale',$price_array,$post_type,$transaction);
+	}
+
+	return $price_array;
+
+}
+
 /**
  * Get the price array for the price slider
  *
@@ -270,6 +298,7 @@ function epl_get_price_meta_key($post_type='property',$transaction='default') {
 function epl_search_widget_fields_frontend($post_type='',$property_status='',$transaction_type='default') {
 
 	$price_array = epl_get_price_array($post_type,$transaction_type);
+	$price_slider_array = epl_get_price_slider_array($post_type,$transaction_type);
 
 	$price_meta_key = epl_get_price_meta_key($post_type,$transaction_type);
 
@@ -435,7 +464,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	__('Search Price From','easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'global_price_from',
-			'options'		=>	$price_array,
+			'options'		=>	$price_slider_array,
 			'type'			=>	'select',
 			'query'			=>	array(
 								'query'		=>	'meta',
@@ -452,7 +481,7 @@ function epl_search_widget_fields_frontend($post_type='',$property_status='',$tr
 			'label'			=>	__('Search Price To','easy-property-listings'),
 			'type'			=>	'select',
 			'option_filter'		=>	'global_price_to',
-			'options'		=>	$price_array,
+			'options'		=>	$price_slider_array,
 			'type'			=>	'select',
 			'query'			=>	array(
 								'query'		=>	'meta',

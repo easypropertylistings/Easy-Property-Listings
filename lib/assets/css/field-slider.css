@@ -1215,5 +1215,10 @@ body .ui-tooltip {
   
 }
 .epl-lf-range-slider .field{
-    padding: 0 12px;
+	margin: 0;
+	padding: 0 15px;
+	position: relative;
+}
+.epl-search-form .ui-slider-horizontal {
+   top: 0;
 }
