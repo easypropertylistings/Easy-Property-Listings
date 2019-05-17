@@ -244,7 +244,7 @@ function epl_new_contact_view() { ?>
 									),
 									array(
 										'name'		=>	'email',
-										'label'		=>	__('Email','easy-property-listings' ),
+										'label'		=>	__('Email *','easy-property-listings' ),
 										'type'		=>	'email',
 										'maxlength'	=>	'60',
 										'value'		=>	$contact->get_primary_email($contact->ID)
@@ -263,6 +263,9 @@ function epl_new_contact_view() { ?>
 							$contact_meta_fields->add_fields($contact_fields);
 							$contact_meta_fields->render_form();
 						?>
+						<span style="color:#f00; text-align:right;">
+							<?php _e('* Required Fields','easy-property-listings'); ?>
+						</span>
 
 						<span id="epl-contact-edit-actions">
 							<input type="hidden" name="contact_id" value="<?php echo $contact->ID; ?>" />
@@ -271,6 +274,7 @@ function epl_new_contact_view() { ?>
 							<input type="hidden" name="epl_action" value="new-contact" />
 							<input type="submit" id="epl-new-contact" class="button-primary" value="<?php _e( 'Create', 'easy-property-listings'  ); ?>" />
 						</span>
+						
 					</div>
 				</form>
 				<?php endif; ?>

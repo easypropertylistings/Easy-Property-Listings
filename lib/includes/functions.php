@@ -1988,12 +1988,16 @@ add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_cal
 * @param string $status Post Status like Publish, draft, future etc. default is publish
 * @return array
 */
-function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish', $property_status='' ) {
+function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status='' ) {
 
     global $wpdb;
 
     if( empty( $key ) )
         return;
+
+    if($type == ''){
+    	$type = epl_get_core_post_types();
+    }
 
     $type = (array) $type;
     $type = array_map( 'sanitize_text_field', $type );

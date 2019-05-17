@@ -400,6 +400,7 @@ class EPL_Contact {
 				'post_status'	=>	'publish',
 			)
 		);
+
 		if ( $updated ) {
 
 			if( isset($data['email']) && is_email($data['email']) ) {
