@@ -505,7 +505,7 @@ RC1 LOG
 
 
 
-
+* New: Search results URL will now only contain commands that are being searched, making the URL a whole lot shorter.
 
 
 
