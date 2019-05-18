@@ -485,8 +485,16 @@ function epl_new_contact( $args ) {
 		return false;
 	}
 
+	if( $args['email'] == '' || !is_email($args['email']) ) {
+		wp_die( __( 'Please provide valid email address', 'easy-property-listings'  ) );
+	}
+
 	if( $contact->contact_exists($args['email']) ) {
 		wp_die( __( 'A contact with this email already exists !', 'easy-property-listings'  ) );
+	}
+
+	if( trim($args['title']) == '' ){
+		$args['title'] = $args['first_name'].' '.$args['last_name'];
 	}
 
 	$contact->update( array('name'	=>	$args['title'], 'email' => $args['email']  ) );
@@ -793,13 +801,13 @@ function epl_contact_contact_details($contact) { ?>
 
 	<?php if( $contact->get_meta('contact_website') != '' ) :?>
 		<span class="contact_website epl-info-item editable" data-key="website">
-			<span class="dashicons dashicons-admin-links epl-contact-icons"></span>
+			<span class="dashicons dashicons-admin-site-alt3 epl-contact-icons"></span>
 			<?php echo $contact->get_meta('contact_website'); ?>
 		</span>
 	<?php endif; ?>
-	<?php if( $contact->get_meta('contact_website') != '' ) :?>
+	<?php var_dump( $contact->epl_contact_get_address() ); if( $contact->epl_contact_get_address() != '' ) :?>
 			<span class="contact_website epl-info-item editable" data-key="address">
-				<span class="dashicons dashicons-admin-site-alt3 epl-contact-icons"></span>
+				<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
 				<?php echo $contact->epl_contact_get_address(); ?>
 			</span>
 	<?php endif; ?>
