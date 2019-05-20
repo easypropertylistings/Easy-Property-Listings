@@ -381,6 +381,13 @@ ul.epl-striped > *:nth-child(2n+1) {
     color: #fff
 }
 
+/** contact capture form */
+.epl-contact-widget-msgs.epl-contact-widget-msg-fail {
+    color: #f00;
+}
+.epl-contact-widget-msgs.epl-contact-widget-msg-success {
+    color: #080;
+}
 
 @media screen and (max-width: 500px) {
 	.epl-active-theme-twentyfourteen.epl-archive-default .page-header,

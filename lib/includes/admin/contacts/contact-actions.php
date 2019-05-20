@@ -493,8 +493,12 @@ function epl_new_contact( $args ) {
 		wp_die( __( 'A contact with this email already exists !', 'easy-property-listings'  ) );
 	}
 
-	if( trim($args['title']) == '' ){
+	if( trim($args['title']) == '' && ( $args['first_name'] != '' || $args['last_name'] != ''  ) ){
 		$args['title'] = $args['first_name'].' '.$args['last_name'];
+	}
+
+	if( trim($args['title']) == '' && ( $args['email'] != '' ) ){
+		$args['title'] = $args['email'];
 	}
 
 	$contact->update( array('name'	=>	$args['title'], 'email' => $args['email']  ) );
@@ -805,7 +809,7 @@ function epl_contact_contact_details($contact) { ?>
 			<?php echo $contact->get_meta('contact_website'); ?>
 		</span>
 	<?php endif; ?>
-	<?php var_dump( $contact->epl_contact_get_address() ); if( $contact->epl_contact_get_address() != '' ) :?>
+	<?php if( trim( $contact->epl_contact_get_address() ) != '' ) :?>
 			<span class="contact_website epl-info-item editable" data-key="address">
 				<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
 				<?php echo $contact->epl_contact_get_address(); ?>

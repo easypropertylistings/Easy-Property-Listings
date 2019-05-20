@@ -144,7 +144,8 @@ function epl_get_prev_contact_link($contact_id) {
  */
 function epl_contact_contact_fields($contact_fields,$contact) {
 	$fields = array();
-	$phones = $contact->get_meta('contact_phones');
+	$phones = (array) $contact->get_meta('contact_phones');
+	$phones = array_filter($phones);
 	if(!empty($phones)) {
 		foreach($phones as $phone_name	=>	$phone_value) {
 			$label = ucwords(str_replace('_',' ',$phone_name));
@@ -158,7 +159,8 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 			);
 		}
 	}
-	$emails = $contact->get_meta('contact_emails');
+	$emails = (array) $contact->get_meta('contact_emails');
+	$emails = array_filter($emails);
 	if(!empty($emails)) {
 		foreach($emails as $mail_name	=>	$mail_value) {
 			$label = ucwords(str_replace('_',' ',$mail_name));
