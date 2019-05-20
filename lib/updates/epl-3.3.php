@@ -3,7 +3,7 @@ $epl_settings = epl_settings();
 
 $new_fields_defaults = array(
 	'epl_css_enhanced'		=> 'off',
-	'epl_plugin_mode'		=> 'development',
+	'epl_plugin_mode'		=> 'production',
 	'widget_label_all'		=> __('All', 'easy-property-listings' ),
 );
 
