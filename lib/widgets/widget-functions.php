@@ -202,14 +202,17 @@ function epl_number_suffix_callback($v,$suffix=' +') {
 	return $v.''.$suffix;
 }
 
+/**
+ * Get the price slider default ranges
+ *
+ * @since 3.3
+ */
 function epl_get_price_slider_array($post_type='property',$transaction='default') {
 
 	if($post_type == '') {
 
 		$range 		= range(0,10000000,50000);
-
 		$price_array 	= array_combine($range,array_map('epl_currency_formatted_amount',$range) );
-
 		$price_array 	= apply_filters('epl_listing_search_price_slider_global',$price_array);
 	}
 
@@ -233,7 +236,7 @@ function epl_get_price_slider_array($post_type='property',$transaction='default'
 /**
  * Get the price array for the price slider
  *
- * @since 3.3
+ * @since 3.1
  */
 function epl_get_price_array($post_type='property',$transaction='default') {
 
@@ -261,13 +264,12 @@ function epl_get_price_array($post_type='property',$transaction='default') {
 
 	return $price_array;
 
-
 }
 
 /**
  * Get the price meta key
  *
- * @since 3.3
+ * @since 3.1
  */
 function epl_get_price_meta_key($post_type='property',$transaction='default') {
 

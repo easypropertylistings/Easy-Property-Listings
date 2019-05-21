@@ -393,17 +393,19 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.3 May 15, 2019 =
+= 3.3 May 21, 2019 =
 
-* New: Gutenberg support along with the REST WordPress API. Using the WordPress classic plugin will disable Gutenberg and Easy Property Listings or define some constants, details below.
+* New: Gutenberg support along with the REST WordPress API. Using the WordPress classic plugin will disable Gutenberg and Easy Property Listings or define constants.
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible.
 * New: Shortcode [listing_element] for use with page builder systems to output variables, meta fields, action hooks, excerpt,  onto templates.
-* New: Re-created Social SVG Icons.
-* New: Re-created Social PNG Icons.
+* New: Re-created Social SVG and PNG Icons.
 * New: Production/Development mode option to enable or disable minimised CSS and JS files.
-* New: Enhanced CSS implemented to enable better listing grid wrapping along with a larg number of helper classes to construct custom templates for listings. Enabled on new installations. When upgrading the enhanced CSS is disabled. Enable and disable from Advanced Settings.
+* New: Enhanced CSS implemented to enable better listing grid wrapping along with a large number of helper classes to construct custom templates for listings. Enabled on new installations. When upgrading the enhanced CSS is disabled. Enable and disable from Advanced Settings.
 * New: Tools page holding Import and Export options along with the Upgrade screen.
 * New: Export Easy Property Listings settings and import them into another site on the Tools page.
+* New: Shortcodes [listing], [listing_category] and [listing_advanced] all support agent option for filtering by either primary or secondary agents.
+* New: Shortcodes now support default sorting by status with the sortby=status option.
+* New: Search results URL will now only contain commands that are being searched, making the URL a whole lot shorter.
 * New: Upgrade notice that will copy the listing pricing for all listing types into a unified price search.
 * New: Unified price search slider usable in the EPL - Listing Search widget and [listing_search] shortcode.
 * New: Able to add a functions.php, functions-single.php and functions-archive.php files to the active_child_theme/easypropertylistings where you can store code and filter customisations.
@@ -413,6 +415,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Contacts now allow you to bulk select and delete contacts.
 * New: Contacts summary search.
 * New: Contact widget now has a hidden field to prevent bots from entering form details.
+* New: EPL - Contact form completely re-built with better handling of success and error messages to the user.
 * New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set and re-built the JS to avoid any issues when the API key is not added.
 * New: Easier to add additional custom stickers to listings with the epl_property_stickers hook.
 * New: Address function for use in custom templates epl_the_address, epl_get_the_address.
@@ -443,27 +446,26 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Default and custom classes added to meta field generator used in admin edit listing screens.
 * New: Added Portugal Portuguese language partial translation by Fábio Nunes.
 * New: Disable REST support and Gutenberg by defining new constants for post types. EPL_BUSINESS_DISABLE_REST, EPL_COMMERCIAL_DISABLE_REST, EPL_COMMERCIAL_LAND_DISABLE_REST, EPL_LAND_DISABLE_REST, EPL_PROPERTY_DISABLE_REST, EPL_RENTAL_DISABLE_REST, EPL_RURAL_DISABLE_REST.
-* New: Enable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_DISABLE_REST, EPL_FEATURES_DISABLE_REST, EPL_LOCATION_DISABLE_REST.
+* New: Disable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_DISABLE_REST, EPL_FEATURES_DISABLE_REST, EPL_LOCATION_DISABLE_REST.
 * New: Pakistani Rupee currency.
 * New: Better support for hidden admin custom fields.
-* Tweak: Filers to alter the default Mobile and Office labels epl_author_widget_label_office, epl_author_widget_label_mobile.
+* Tweak: Filters to alter the default Mobile and Office labels epl_author_widget_label_office, epl_author_widget_label_mobile.
 * Tweak: Custom classes in admin screens added to some meta fields for example usage.
 * Tweak: Dashboard activity widget improved CSS display with icons denoting comment type.
 * Tweak: Rebuilt JS validation engine to better handle numeric numbers and the date system to optimise and streamline listing entry.
 * Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.
 * Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.
-* Tweak: Inspection times function altered to allow disabling of ical function.
+* Tweak: Inspection times function altered to allow disabling of iCal function.
 * Tweak: Added additional inspection time filters which allow you to filter the label further in templates where needed.
 * Tweak: Auction get_property_auction function greatly improved with better date formatting for different country formats.
 * Tweak: Property Available get_property_available function greatly improved with better date formatting for different country formats.
-* Tweak: Totally re-built the functions handling important details using code switches and filters greatly improving customisations and alterations. Functions re-built using switches: get_property_year_built, get_property_bed, get_property_bath, get_property_rooms, get_property_parking, get_property_garage, get_property_carport, get_property_air_conditioning, get_property_pool, get_property_security_system, get_property_land_value, get_property_building_area_value, get_property_energy_rating, get_property_new_construction, get_property_holiday_rental, get_property_furnished,
 * Tweak: Improvements to search and global price search slider options now available.
 * Tweak: Parse EPL shortcodes for meta queries improved.
 * Tweak: Completely re-worked the icons system for listings which makes it easier to customise with hooks and filters and add additional icons and adjust the order.
 * Tweak: Reworked the Additional features output allowing further control over output of features along with adjusting the order and output style. Use the epl_property_general_features_list filter to alter the order and what is included. Also add your own customised feature list output with the dynamic epl_property_general_feature_{new_one} filter.
 * Tweak: Total rebuild of the sorting and tools code allowing additional tools to be hooked in and rework the existing tools.
 * Tweak: Code optimisations of gallery functions.
-* Tweak: Widget templates to handle the Inspection time and ical options.
+* Tweak: Widget templates to handle the Inspection time and iCal options.
 * Tweak: Selecting secondary agents works better now on the edit listing pages.
 * Tweak: epl_property_widget Options for Inspection times and iCal links to EPL - Listing Widget.
 * Tweak: Acre to Acres tweak - Implement formatting for measurements.
@@ -473,7 +475,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: All shortcodes now include a filter to alter the default options. epl_shortcode_listing_auction_args, epl_shortcode_listing_category_args, epl_shortcode_listing_open_args, epl_shortcode_listing_feature_args, epl_shortcode_listing_location_args, epl_shortcode_listing_args
 * Tweak: Replaced grid/list icon with a better quality one.
 * Tweak: Replaced all internal icons.
-* Tweak: several older functions move to depreciated functions for future removal.
+* Tweak: Several older functions moved to depreciated functions for future removal.
+* Tweak: Converted floorplan button into button element instead of link with button styling. This makes all buttons consistent.
+* Tweak: When using custom image sizes we've improved the admin image sizes to not exceed the column sizes when managing listings from the dashboard.
+* Tweak: Floorplan opens link in another window by default to match other buttons.
+* Tweak: Contacts system better displays contact information. IE hiding empty fields when nothing is set.
+* Tweak: Default sorting is now using the hidden and automatically generated property_price_global value which allows sorting taxonomy filtered listings.
+* Tweak: Custom taxonomy features now output a class to the list item for css targeting.
 * Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.
 * Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
@@ -484,34 +492,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Home Open label improved as sometimes empty data is imported and the label appears where it should not.
 * Fix: [listing_search] enabling the multiple select option now works better.
 * Fix: Several typcasting fixes to various functions to prevent any issues with data that is not entirely empty.
-* Fix: Features list output class name fix for bathrooms.
-* Fix: Features list output class name fix for building size.
-* Fix: Features list output class name fix for furnished.
+* Fix: Features list output class name fix for bathrooms, building size and furnished.
 * Fix: Improvements to compatibility mode that prevents YoastSEO outputting multiple times on the page. This will also correct any other plugins with a similar issue.
-
-RC1 LOG
-* Tweak: Converted floorplan button into button element instead of link with button styling. This makes all buttons consistent.
-* Tweak: When using custom image sizes we've improved the admin image sizes to not exceed the column sizes when managing listings from the dashboard.
-* Tweak: Floorplan opens link in another window by default to match other buttons.
-* Tweak: Contacts system better displays contact information. IE hiding empty fields when nothing is set.
-
 * Fix: Adding of contacts with no summary is now possible.
 * Fix: When checkbox option defaults were set to on user was unable to save option, corrected the behaviour.
-
-* New: Shortcodes [listing], [listing_category] and [listing_advanced] all support agent option for filtering by either primary or secondary agents.
-
-* New: Shortcodes now support default sorting by status with the sortby=status option.
-* Tweak: Default sorting is now using the hidden and automatically generated property_price_global value which allows sorting taxonomy filtered listings.
-
-
-
-
-
-
-
-
-
-
 
 = 3.2.3 November 22, 2018 =
 
