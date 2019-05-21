@@ -1950,7 +1950,6 @@ add_action('wp_ajax_nopriv_epl_update_listing_coordinates','epl_update_listing_c
  * Adapted from wp core to add additional filters
  *
  * @since 2.1
- * @revised 3.3
  */
 function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
 	$terms = get_the_terms( $id, $taxonomy );
@@ -1961,7 +1960,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 	if ( empty( $terms ) )
 		return false;
 
-
+	
 	foreach ( $terms as $term ) {
 
 		$link = get_term_link( $term, $taxonomy );
@@ -1971,7 +1970,8 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 		if( apply_filters('epl_features_taxonomy_link_filter' , true)  == true ) {
 
 			$term_links[] = '<li class="epl-tax-feature '.$term->slug.' ">'.
-								'<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a></li>'.$sep;
+								'<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>'
+							.$term_link.'</li>'.$sep;
 
 		} else {
 
@@ -1979,6 +1979,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 
 		}
 	}
+	
 
 	$term_links = apply_filters( "term_links-$taxonomy", $term_links );
 
@@ -2099,7 +2100,7 @@ function epl_home_pagination_fix( $query) {
 
 	global $wp_query;
 	$queried_post_type = isset( $query->query_vars['post_type'] ) ? $query->query_vars['post_type'] : '';
-	if( isset($wp_query->query['paged']) && in_array( $query->query_vars['post_type'], epl_get_core_post_types() ) ){
+	if( isset($wp_query->query['paged']) && in_array( $queried_post_type, epl_get_core_post_types() ) ){
 		$query->set('paged', $wp_query->query['paged']);
 	}
 
@@ -2751,9 +2752,9 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
 
 /**
- * Load Author card template
+ * Get the author loop
  *
- * @since 3.3
+ * @revised 3.3
  */
 function epl_archive_author_callback() {
 	global $epl_author_secondary;
@@ -2765,21 +2766,16 @@ function epl_archive_author_callback() {
 }
 add_action( 'epl_archive_author' , 'epl_archive_author_callback' );
 
-/**
- * Get the author loop
- *
- * @since 3.3
- */
 function epl_contact_capture_action() {
 
 	$success = array(
 		'status'	=>	'success',
-		'msg'		=>	apply_filters('epl_contact_capture_success_msg',__('Form submitted successfully','easy-property-listings') )
+		'msg'		=>	apply_filters('epl_contact_capture_success_msg',__('Form submitted successfully','easy-property-listings') ) 
 	);
 
 	$fail = array(
 		'status'	=>	'fail',
-		'msg'		=>	apply_filters('epl_contact_capture_fail_msg',__('Some issues with form submitted','easy-property-listings') )
+		'msg'		=>	apply_filters('epl_contact_capture_fail_msg',__('Some issues with form submitted','easy-property-listings') ) 
 	);
 
 	if( isset($_POST['epl_contact_anti_spam']) && $_POST['epl_contact_anti_spam'] != '' ){
@@ -2787,7 +2783,7 @@ function epl_contact_capture_action() {
 	}
 
 	if( isset($_POST['epl_contact_email']) && $_POST['epl_contact_email'] == '' ){
-		wp_die( json_encode( array('status'	=>	'fail', 'msg'	=>	__('Email ID is required','easy-property-listings') ) ) );
+		wp_die( json_encode( array('status'	=>	'fail', 'msg'	=>	__('Email is required','easy-property-listings') ) ) );
 	}
 
 	$contact = new EPL_contact( $_POST['epl_contact_email'] );
@@ -2803,6 +2799,8 @@ function epl_contact_capture_action() {
 	if( trim($title) == '' && ( $_POST['epl_contact_email'] != '' ) ){
 		$title = $_POST['epl_contact_email'];
 	}
+
+	
 
 	if ( empty( $contact->id ) ) {
 
