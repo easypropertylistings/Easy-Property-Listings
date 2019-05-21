@@ -45,10 +45,21 @@
 	box-sizing: border-box;
 	padding: 0 1em;
 }
+.epl-about-wrap .headline-feature .feature-section.three-col .col:first-child {
+	float: left;
+	margin: 0;
+	width: 33%;
+}
+.epl-about-wrap .headline-feature .feature-section.three-col .col:last-child {
+	float: right;
+	margin: 0;
+	width: 33%;
+}
 .epl-about-wrap .feature-section.three-col div {
 	width: 33%;
 	box-sizing: border-box;
 	padding: 0 1em;
+	float: left;
 }
 .epl-about-wrap .feature-section h3 {
 	font-size: 1.3em;
@@ -82,6 +93,7 @@
 h3.epl-welcome-sub-heading {
 	font-size: 1.8em;
 	text-align: center;
+	clear: both;
 }
 .epl-welcome-video-container {
 	margin: 0 auto;
