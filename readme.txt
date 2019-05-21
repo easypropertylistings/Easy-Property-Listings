@@ -193,7 +193,9 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_auction]
 * [listing_advanced]
 * [listing_element]
-* [epl_contact_form]
+* [listing_contact]
+* [listing_advanced]
+* [listing_element]
 
 **Listing**
 
@@ -415,6 +417,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Contacts now allow you to bulk select and delete contacts.
 * New: Contacts summary search.
 * New: Contact widget now has a hidden field to prevent bots from entering form details.
+* New: Contact shortcode renamed to [listing_contact] instead of [epl_contact_form]. Retained old shortcode name for backward compatibility.
 * New: EPL - Contact form completely re-built with better handling of success and error messages to the user.
 * New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set and re-built the JS to avoid any issues when the API key is not added.
 * New: Easier to add additional custom stickers to listings with the epl_property_stickers hook.
