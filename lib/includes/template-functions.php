@@ -1960,6 +1960,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 	if ( empty( $terms ) )
 		return false;
 
+	
 	foreach ( $terms as $term ) {
 
 		$link = get_term_link( $term, $taxonomy );
@@ -1968,18 +1969,27 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 
 		if( apply_filters('epl_features_taxonomy_link_filter' , true)  == true ) {
 
-			$term_links[] = '<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>';
+			$term_links[] = '<li class="epl-tax-feature '.$term->slug.' ">'.
+								'<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>'
+							.$term_link.'</li>'.$sep;
 
 		} else {
 
-			$term_links[] = $term->name;
+			$term_links[] = '<li class="epl-tax-feature '.$term->slug.' ">'.$term->name.'</li>'.$sep;
 
 		}
 	}
+	
 
 	$term_links = apply_filters( "term_links-$taxonomy", $term_links );
 
-	return $before . join( $sep, $term_links ) . $after;
+	$html = $before;
+	foreach ($term_links as $term_link) {
+		$html .= $term_link;
+	}
+	$html .= $after;
+
+	return $html;
 }
 
 /**
@@ -2089,6 +2099,7 @@ function epl_get_shortcode_list() {
 function epl_home_pagination_fix( $query) {
 
 	global $wp_query;
+	$queried_post_type = isset( $query->query_vars['post_type'] ) ? $query->query_vars['post_type'] : '';
 	if( isset($wp_query->query['paged']) && in_array( $query->query_vars['post_type'], epl_get_core_post_types() ) ){
 		$query->set('paged', $wp_query->query['paged']);
 	}
@@ -2754,3 +2765,70 @@ function epl_archive_author_callback() {
 	}
 }
 add_action( 'epl_archive_author' , 'epl_archive_author_callback' );
+
+function epl_contact_capture_action() {
+
+	$success = array(
+		'status'	=>	'success',
+		'msg'		=>	apply_filters('epl_contact_capture_success_msg',__('Form submitted successfully','easy-property-listings') ) 
+	);
+
+	$fail = array(
+		'status'	=>	'fail',
+		'msg'		=>	apply_filters('epl_contact_capture_fail_msg',__('Some issues with form submitted','easy-property-listings') ) 
+	);
+
+	if( isset($_POST['epl_contact_anti_spam']) && $_POST['epl_contact_anti_spam'] != '' ){
+		wp_die( json_encode( $fail ) );
+	}
+
+	if( isset($_POST['epl_contact_email']) && $_POST['epl_contact_email'] == '' ){
+		wp_die( json_encode( array('status'	=>	'fail', 'msg'	=>	__('Email ID is required','easy-property-listings') ) ) );
+	}
+
+	$contact = new EPL_contact( $_POST['epl_contact_email'] );
+	$fname  = isset($_POST['epl_contact_first_name']) ? sanitize_text_field($_POST['epl_contact_first_name']) : '';
+	$lname  = isset($_POST['epl_contact_last_name']) ? sanitize_text_field($_POST['epl_contact_last_name']) : '';
+	$phone  = isset($_POST['epl_contact_phone']) ? sanitize_text_field($_POST['epl_contact_phone']) : '';
+	$title  = isset($_POST['epl_contact_title']) ? sanitize_text_field($_POST['epl_contact_title']) : '';
+
+	if( trim($title) == '' && ( $fname != '' || $lname != ''  ) ){
+		$title = $fname.' '.$lname;
+	}
+
+	if( trim($title) == '' && ( $_POST['epl_contact_email'] != '' ) ){
+		$title = $_POST['epl_contact_email'];
+	}
+
+	
+
+	if ( empty( $contact->id ) ) {
+
+		$contact_data = array(
+			'name'			=>	$title,
+			'email'			=>	sanitize_email($_POST['epl_contact_email']),
+		);
+		if ( $contact->create( $contact_data ) ) {
+			$contact->update_meta('contact_first_name',$fname);
+			$contact->update_meta('contact_last_name',$lname);
+			$contact->update_meta('contact_phones',array('phone' =>  $phone) );
+			$contact->update_meta('contact_category','widget');
+			$contact->attach_listing( $_POST['epl_contact_listing_id'] );
+			$contact->add_note( $_POST['epl_contact_note'],'note',$_POST['epl_contact_listing_id'] );
+			wp_die( json_encode( $success ) );
+		} else {
+			wp_die( json_encode( $fail ) );
+		}
+	} else {
+
+		if ( $contact->update( array('name'	=>	$title ) ) ) {
+			$contact->add_note( $_POST['epl_contact_note'],'note',$_POST['epl_contact_listing_id'] );
+			$contact->attach_listing( $_POST['epl_contact_listing_id'] );
+			wp_die( json_encode( $success ) );
+		} else {
+			wp_die( json_encode( $fail ) );
+		}
+	}
+}
+add_action('wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action');
+add_action('wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action');
