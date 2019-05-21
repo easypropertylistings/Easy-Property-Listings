@@ -1265,7 +1265,7 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 			'data-default' => 'on'
 		),
 		array(
-			'label'        => __( 'Email', 'easy-property-listings' ),
+			'label'        => __( 'Email *', 'easy-property-listings' ),
 			'name'         => 'epl_contact_email',
 			'id'           => 'epl_contact_email',
 			'type'         => 'email',
