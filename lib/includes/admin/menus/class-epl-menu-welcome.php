@@ -203,7 +203,7 @@ class EPL_Welcome {
 						<li><?php _e( 'Re-created Social icons and several others.', 'easy-property-listings'  ); ?></li>
 						<li><?php _e( 'Agent profile links for Instagram, Pinterest and YouTube.', 'easy-property-listings'  ); ?></li>
 						<li><?php _e( 'Minified code with production and development mode.', 'easy-property-listings'  ); ?></li>
-						<li><?php _e( 'Listing administraton screens slimmed.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'Listing administration screens slimmed.', 'easy-property-listings'  ); ?></li>
 						<li><?php _e( 'Set listings as featured even with imports.', 'easy-property-listings'  ); ?></li>
 						<li><?php _e( 'Tools to import and export settings.', 'easy-property-listings'  ); ?></li>
 						<li><?php _e( 'Unified search.', 'easy-property-listings'  ); ?></li>
@@ -211,13 +211,6 @@ class EPL_Welcome {
 					</ul>
 				</div>
 			</div>
-
-
-
-
-
-
-
 
 			<hr/>
 
@@ -249,13 +242,13 @@ class EPL_Welcome {
 					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/grid-mode.png'; ?>" class="epl-welcome-featured-image"/>
 				</div>
 
-					<p><?php _e( 'Saying this we understand that making wide sweeping changes can have unintended consiquences to your site. We do not want that to happen to you. So we have added an option to enable Enhanced CSS from the Advanced Settings page.' , 'easy-property-listings'); ?></p>
+					<p><?php _e( 'Saying this we understand that making wide sweeping changes can have unintended consequences to your site. We do not want that to happen to you. So we have added an option to enable Enhanced CSS from the Advanced Settings page.' , 'easy-property-listings'); ?></p>
 
-					<p><?php _e( 'One of the changes this applies is to the grid mode view of your listings. Structurally this converts a float left block into an inline block for better wrapping of lisitngs in grid mode and prevents white space appearing if your listings are not the exact same size.' , 'easy-property-listings'); ?></p>
+					<p><?php _e( 'One of the changes this applies is to the grid mode view of your listings. Structurally this converts a float left block into an inline block for better wrapping of listings in grid mode and prevents white space appearing if your listings are not the exact same size.' , 'easy-property-listings'); ?></p>
 
 					<p><?php _e( 'If you install Easy Property Listings fresh this option will be automatically enabled, however if you are upgrading to 3.3 you will need to <strong>manually enable the option</strong> and check that your customisations still work.' , 'easy-property-listings'); ?></p>
 
-					<p><?php _e( 'A lot of work has gone into the Enhanced CSS that will be documented in the codex as there are a number of new classes that allow you to customise your templates faster.' , 'easy-property-listings'); ?></p>
+					<p><?php _e( 'A lot of work has gone into the Enhanced CSS that will be documented in the codex as there are a number of new classes that allow you to customise templates faster.' , 'easy-property-listings'); ?></p>
 
 				</div>
 
@@ -270,7 +263,7 @@ class EPL_Welcome {
 				<div class="feature-section col three-col">
 					<div class="col">
 						<h4><?php _e( 'Listing Entry','easy-property-listings'  );?></h4>
-						<p><?php _e( 'This release contains a number of improvements to the listing entry screens to trim them down in size significantly which should aid you with listing entry. We have also optomised the expereince if you are using classic WordPress or Gutenberg.' , 'easy-property-listings'); ?></p>
+						<p><?php _e( 'This release contains a number of improvements to the listing entry screens to trim them down in size significantly which should aid you with listing entry. We have also optomised the experience if you are using classic WordPress or Gutenberg.' , 'easy-property-listings'); ?></p>
 					</div>
 
 					<div class="col">
@@ -293,7 +286,7 @@ class EPL_Welcome {
 
 				<div class="feature-section">
 
-					<p><?php _e( 'Optomising your sites performance and keeping it running as fast possible has been a key cornerstone in development of Easy Property Listings since the beginning. We are further enhancing this with a produection and development mode option that will use minified JS and CSS files. This is enabled by default and can be easily disabled from the Advanced Settings of Easy Property Listings.' , 'easy-property-listings'); ?></p>
+					<p><?php _e( 'Optomising your sites performance and keeping it running as fast possible has been a key cornerstone in development of Easy Property Listings since the beginning. We are further enhancing this with a production and development mode option that will use minified JS and CSS files. This is enabled by default and can be easily disabled from the Advanced Settings of Easy Property Listings.' , 'easy-property-listings'); ?></p>
 
 				</div>
 
@@ -318,7 +311,7 @@ class EPL_Welcome {
 
 					<div class="col last-feature">
 						<h4><?php _e( 'Contacts and Form','easy-property-listings'  );?></h4>
-						<p><?php _e( 'The EPL - Contact widget form has gone under the code beam and been refactored with agaj entries and better front end user notifications along with anti-spam protecton to prevent bot spam.', 'easy-property-listings'  );?></p>
+						<p><?php _e( 'The EPL - Contact widget form has gone under the code beam and been refactored with agax entries and better front end user notifications along with anti-spam protection to prevent bot spam.', 'easy-property-listings'  );?></p>
 					</div>
 				</div>
 			</div>
