@@ -1950,6 +1950,7 @@ add_action('wp_ajax_nopriv_epl_update_listing_coordinates','epl_update_listing_c
  * Adapted from wp core to add additional filters
  *
  * @since 2.1
+ * @revised 3.3
  */
 function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
 	$terms = get_the_terms( $id, $taxonomy );
@@ -1960,7 +1961,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 	if ( empty( $terms ) )
 		return false;
 
-	
+
 	foreach ( $terms as $term ) {
 
 		$link = get_term_link( $term, $taxonomy );
@@ -1970,8 +1971,8 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 		if( apply_filters('epl_features_taxonomy_link_filter' , true)  == true ) {
 
 			$term_links[] = '<li class="epl-tax-feature '.$term->slug.' ">'.
-								'<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>'
-							.$term_link.'</li>'.$sep;
+						'<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>'
+					. '</li>'.$sep;
 
 		} else {
 
@@ -1979,7 +1980,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 
 		}
 	}
-	
+
 
 	$term_links = apply_filters( "term_links-$taxonomy", $term_links );
 
@@ -2770,12 +2771,12 @@ function epl_contact_capture_action() {
 
 	$success = array(
 		'status'	=>	'success',
-		'msg'		=>	apply_filters('epl_contact_capture_success_msg',__('Form submitted successfully','easy-property-listings') ) 
+		'msg'		=>	apply_filters('epl_contact_capture_success_msg',__('Form submitted successfully','easy-property-listings') )
 	);
 
 	$fail = array(
 		'status'	=>	'fail',
-		'msg'		=>	apply_filters('epl_contact_capture_fail_msg',__('Some issues with form submitted','easy-property-listings') ) 
+		'msg'		=>	apply_filters('epl_contact_capture_fail_msg',__('Some issues with form submitted','easy-property-listings') )
 	);
 
 	if( isset($_POST['epl_contact_anti_spam']) && $_POST['epl_contact_anti_spam'] != '' ){
@@ -2800,7 +2801,7 @@ function epl_contact_capture_action() {
 		$title = $_POST['epl_contact_email'];
 	}
 
-	
+
 
 	if ( empty( $contact->id ) ) {
 
