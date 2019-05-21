@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-05-21 08:21:26+00:00\n"
+"POT-Creation-Date: 2019-05-21 09:03:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2904,7 +2904,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:681
-#: lib/includes/template-functions.php:2633
+#: lib/includes/template-functions.php:2638
 msgid "Listing"
 msgstr ""
 
@@ -4249,44 +4249,44 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:2437
+#: lib/includes/template-functions.php:2442
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:2622
+#: lib/includes/template-functions.php:2627
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:2625
+#: lib/includes/template-functions.php:2630
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:2691
+#: lib/includes/template-functions.php:2696
 #: lib/templates/content/shortcode-listing.php:50
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:2694
+#: lib/includes/template-functions.php:2699
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:2709
+#: lib/includes/template-functions.php:2714
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:2710
+#: lib/includes/template-functions.php:2715
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:2774
+#: lib/includes/template-functions.php:2779
 msgid "Form submitted successfully"
 msgstr ""
 
-#: lib/includes/template-functions.php:2779
+#: lib/includes/template-functions.php:2784
 msgid "Some issues with form submitted"
 msgstr ""
 
-#: lib/includes/template-functions.php:2787
+#: lib/includes/template-functions.php:2792
 msgid "Email is required"
 msgstr ""
 
