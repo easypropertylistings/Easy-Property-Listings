@@ -184,9 +184,150 @@ class EPL_Welcome {
 
 			<?php $this->tabs(); ?>
 
+			<div class="changelog headline-feature epl-clearfix">
+				<h2><?php _e( 'Major Release with Huge Improvements', 'easy-property-listings'  );?></h2>
+
+				<div class="feature-section">
+
+					<p class="lead-description"><?php _e( 'Easy Property Listings 3.3 is a major release with a huge number of new features for your real estate website. Whether you are a developer helping clients or you manage your site yourself, these features will help you showcase your listings.' , 'easy-property-listings'); ?></p>
+				</div>
+
+				<h4 style="text-align:center"><?php _e( 'Standout Upgrades', 'easy-property-listings'  );?></h4>
+
+				<div class="feature-section">
+					<ul style="text-align: center;">
+						<li><?php _e( 'Gutenberg enabled with REST API.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'Price slider search and major search upgrades.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'New super awesome [listing_advanced] shortcode.', 'easy-property-listings'  ); ?></li>
+
+						<li><?php _e( 'Re-created Social icons and several others.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'Agent profile links for Instagram, Pinterest and YouTube.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'Minified code with production and development mode.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'Listing administraton screens slimmed.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'Set listings as featured even with imports.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'Tools to import and export settings.', 'easy-property-listings'  ); ?></li>
+						<li><?php _e( 'Unified search.', 'easy-property-listings'  ); ?></li>
+						<li><a href="#guide-changelog"><?php _e( 'So much more.', 'easy-property-listings'  ); ?></a></li>
+					</ul>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+			<hr/>
+
+			<div class="changelog headline-feature epl-clearfix">
+
+				<h2><?php _e( 'Gutenberg Support', 'easy-property-listings'  );?></h2>
+
+				<div class="feature-section">
+
+					<p><?php _e( 'Now that WordPress Gutenberg has been out and compatibility issues solved with the core WordPress team. We have enabled Gutenberg as default for Easy Property Listings. This also enables the REST API for all the custom post types.' , 'easy-property-listings'); ?></p>
+
+					<p><?php echo $link = sprintf( __( 'Prefer classic WordPress? We have you covered. If you have the <a href="%s" target="_blank">Classic Editor WordPress plugin</a> installed and activated your listing entry screens will revert to the classic WordPress experience.', 'easy-property-listings'  ), esc_url( 'https://wordpress.org/plugins/classic-editor/' ) );?></p>
+
+				</div>
+
+			</div>
+
+			<hr/>
+
+			<div class="changelog headline-feature epl-clearfix">
+
+				<h2><?php _e( 'Grid Mode and Enhanced CSS Styles', 'easy-property-listings'  );?></h2>
+
+				<div class="feature-section">
+
+					<p><?php _e( 'Major changes to underlying front end CSS is always a challenge where we understand that a large number of Easy Property Listings have applied a considerable amount of customisations to the default look and feel of the plugin. This is exactly what we hoped would happen and have seen some shining and stunning examples by a lot of WordPress developers.' , 'easy-property-listings'); ?></p>
+
+				<div class="featured-image">
+					<img src="<?php echo EPL_PLUGIN_URL . 'lib/assets/images/screenshots/grid-mode.png'; ?>" class="epl-welcome-featured-image"/>
+				</div>
+
+					<p><?php _e( 'Saying this we understand that making wide sweeping changes can have unintended consiquences to your site. We do not want that to happen to you. So we have added an option to enable Enhanced CSS from the Advanced Settings page.' , 'easy-property-listings'); ?></p>
+
+					<p><?php _e( 'One of the changes this applies is to the grid mode view of your listings. Structurally this converts a float left block into an inline block for better wrapping of lisitngs in grid mode and prevents white space appearing if your listings are not the exact same size.' , 'easy-property-listings'); ?></p>
+
+					<p><?php _e( 'If you install Easy Property Listings fresh this option will be automatically enabled, however if you are upgrading to 3.3 you will need to <strong>manually enable the option</strong> and check that your customisations still work.' , 'easy-property-listings'); ?></p>
+
+					<p><?php _e( 'A lot of work has gone into the Enhanced CSS that will be documented in the codex as there are a number of new classes that allow you to customise your templates faster.' , 'easy-property-listings'); ?></p>
+
+				</div>
+
+			</div>
+
+			<hr/>
+
+			<div class="changelog headline-feature epl-clearfix">
+
+				<h2 id="feature-enhanced-styles" class="about-description" style="text-align: center;"><?php _e( 'Improvements for Everyone', 'easy-property-listings'  );?></h2>
+
+				<div class="feature-section col three-col">
+					<div class="col">
+						<h4><?php _e( 'Listing Entry','easy-property-listings'  );?></h4>
+						<p><?php _e( 'This release contains a number of improvements to the listing entry screens to trim them down in size significantly which should aid you with listing entry. We have also optomised the expereince if you are using classic WordPress or Gutenberg.' , 'easy-property-listings'); ?></p>
+					</div>
+
+					<div class="col">
+						<h4><?php _e( 'New Social Icons', 'easy-property-listings'  );?></h4>
+						<p><?php _e( 'Social profile icons has been altered to a more modern flat style that can be easily customised with CSS when using SVG versions or modify the sprite PNG file. Any existing customisations are preserved.', 'easy-property-listings'  );?></p>
+					</div>
+
+					<div class="col last-feature">
+						<h4><?php _e( 'Enhanced CSS','easy-property-listings'  );?></h4>
+						<p><?php _e( 'There is now a new advanced setting that is enabled by default for Enhanced CSS. If you are upgrading your site to 3.3 this will be disabled by default, we recommend you enable it. It applies a better wrapping system to the grid mode so you will no longer have any empty white space if your listings.', 'easy-property-listings'  );?></p>
+					</div>
+				</div>
+			</div>
+
+			<hr/>
+
+			<div class="changelog headline-feature epl-clearfix">
+
+				<h2><?php _e( 'Production and Development Mode', 'easy-property-listings'  );?></h2>
+
+				<div class="feature-section">
+
+					<p><?php _e( 'Optomising your sites performance and keeping it running as fast possible has been a key cornerstone in development of Easy Property Listings since the beginning. We are further enhancing this with a produection and development mode option that will use minified JS and CSS files. This is enabled by default and can be easily disabled from the Advanced Settings of Easy Property Listings.' , 'easy-property-listings'); ?></p>
+
+				</div>
+
+			</div>
+
+			<hr/>
+
+			<div class="changelog headline-feature epl-clearfix">
+
+				<h2 id="feature-enhanced-styles" class="about-description" style="text-align: center;"><?php _e( 'WordPress Developers', 'easy-property-listings'  );?></h2>
+
+				<div class="feature-section col three-col">
+					<div class="col">
+						<h4><?php _e( 'Listing Entry','easy-property-listings'  );?></h4>
+						<p><?php _e( 'This release contains a number of improvements to the listing entry screens to trim them down in size significantly which should aid you with listing entry. We have also optomised the expereince if you are using classic WordPress or Gutenberg.' , 'easy-property-listings'); ?></p>
+					</div>
+
+					<div class="col">
+						<h4><?php _e( 'New Social Icons', 'easy-property-listings'  );?></h4>
+						<p><?php _e( 'Social profile icons has been altered to a more modern flat style that can be easily customised with CSS when using SVG versions or modify the sprite PNG file. Any existing customisations are preserved.', 'easy-property-listings'  );?></p>
+					</div>
+
+					<div class="col last-feature">
+						<h4><?php _e( 'Contacts and Form','easy-property-listings'  );?></h4>
+						<p><?php _e( 'The EPL - Contact widget form has gone under the code beam and been refactored with agaj entries and better front end user notifications along with anti-spam protecton to prevent bot spam.', 'easy-property-listings'  );?></p>
+					</div>
+				</div>
+			</div>
+
+			<hr/>
+
 			<div class="changelog headline-feature">
 
-			<h2 id="guide-changelog"><?php _e( 'Full Change Log','easy-property-listings'  );?></h2>
+				<h2 id="guide-changelog"><?php _e( 'Full Change Log','easy-property-listings'  );?></h2>
 
 				<div class="feature-section">
 
