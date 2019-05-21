@@ -56,6 +56,7 @@
 	width: 33%;
 }
 .epl-about-wrap .feature-section.three-col div {
+	margin-top: 0;
 	width: 33%;
 	box-sizing: border-box;
 	padding: 0 1em;
