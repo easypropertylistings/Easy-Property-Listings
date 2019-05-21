@@ -2108,7 +2108,7 @@ function epl_home_pagination_fix( $query) {
 	$shortcodes = epl_get_shortcode_list();
 
 	if( $query->get('is_epl_shortcode') &&
-		in_array($query->get('epl_shortcode_name'),$shortcodes) ){
+		in_array($query->get('epl_shortcode_name'),$shortcodes) && !wp_doing_ajax() ){
 
 		if( isset($_GET['pagination_id']) && $_GET['pagination_id'] == $query->get('instance_id') ) {
 			$query->set('paged', $query->get('paged') );
