@@ -1960,7 +1960,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 	if ( empty( $terms ) )
 		return false;
 
-	
+
 	foreach ( $terms as $term ) {
 
 		$link = get_term_link( $term, $taxonomy );
@@ -1979,7 +1979,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 
 		}
 	}
-	
+
 
 	$term_links = apply_filters( "term_links-$taxonomy", $term_links );
 
@@ -2752,9 +2752,9 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 add_filter( 'post_class' , 'epl_property_post_class_listing_status_callback' );
 
 /**
- * Get the author loop
+ * Load Author card template
  *
- * @revised 3.3
+ * @since 3.3
  */
 function epl_archive_author_callback() {
 	global $epl_author_secondary;
@@ -2766,16 +2766,21 @@ function epl_archive_author_callback() {
 }
 add_action( 'epl_archive_author' , 'epl_archive_author_callback' );
 
+/**
+ * Get the author loop
+ *
+ * @since 3.3
+ */
 function epl_contact_capture_action() {
 
 	$success = array(
 		'status'	=>	'success',
-		'msg'		=>	apply_filters('epl_contact_capture_success_msg',__('Form submitted successfully','easy-property-listings') ) 
+		'msg'		=>	apply_filters('epl_contact_capture_success_msg',__('Form submitted successfully','easy-property-listings') )
 	);
 
 	$fail = array(
 		'status'	=>	'fail',
-		'msg'		=>	apply_filters('epl_contact_capture_fail_msg',__('Some issues with form submitted','easy-property-listings') ) 
+		'msg'		=>	apply_filters('epl_contact_capture_fail_msg',__('Some issues with form submitted','easy-property-listings') )
 	);
 
 	if( isset($_POST['epl_contact_anti_spam']) && $_POST['epl_contact_anti_spam'] != '' ){
@@ -2799,8 +2804,6 @@ function epl_contact_capture_action() {
 	if( trim($title) == '' && ( $_POST['epl_contact_email'] != '' ) ){
 		$title = $_POST['epl_contact_email'];
 	}
-
-	
 
 	if ( empty( $contact->id ) ) {
 
