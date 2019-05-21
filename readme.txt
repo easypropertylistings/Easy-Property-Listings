@@ -395,7 +395,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.3 May 21, 2019 =
+= 3.3 May 22, 2019 =
 
 * New: Gutenberg support along with the REST WordPress API. Using the WordPress classic plugin will disable Gutenberg and Easy Property Listings or define constants.
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible.
