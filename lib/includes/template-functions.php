@@ -2378,7 +2378,7 @@ function epl_feeling_lucky($content) {
 	} elseif( is_post_type_archive($epl_posts) ) {
 		ob_start();
 		do_action('epl_property_blog');
-		return ob_get_clean();
+		echo ob_get_clean();
 	} else {
 		return $content;
 	}
