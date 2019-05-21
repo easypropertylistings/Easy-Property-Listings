@@ -59,6 +59,8 @@ function epl_contact_capture_form( $atts ) {
 	return ob_get_clean();
 }
 add_shortcode( 'epl_contact_form', 'epl_contact_capture_form' );
+add_shortcode( 'listing_contact', 'epl_contact_capture_form' );
+
 
 /**
  * Contact Form Callback
