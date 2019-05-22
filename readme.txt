@@ -395,6 +395,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.3.1 May 22, 2019 =
+
+* Tweak: Unique IDs applied to the SVG icons as they were duplicated for each icon.
+
 = 3.3 May 22, 2019 =
 
 * New: Gutenberg support along with the REST WordPress API. Using the WordPress classic plugin will disable Gutenberg and Easy Property Listings or define constants.
