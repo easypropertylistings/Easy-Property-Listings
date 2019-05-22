@@ -194,7 +194,7 @@
 		width: 100%;
 		max-width: 325px;
 		position: relative;
-		z-index: 2;
+		/* z-index: 2; */
 	}
 	/** Needs super parent epl-property-blog **/
 	.epl-property-blog .epl-property-box-with-fixed-elements .property-box-right {
