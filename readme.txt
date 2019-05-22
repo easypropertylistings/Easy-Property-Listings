@@ -485,6 +485,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Contacts system better displays contact information. IE hiding empty fields when nothing is set.
 * Tweak: Default sorting is now using the hidden and automatically generated property_price_global value which allows sorting taxonomy filtered listings.
 * Tweak: Custom taxonomy features now output a class to the list item for css targeting.
+* Tweak: Unique IDs applied to the SVG icons as they were duplicated for each icon.
 * Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.
 * Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
