@@ -263,7 +263,7 @@ class EPL_Welcome {
 				<div class="feature-section col three-col">
 					<div class="col">
 						<h4><?php _e( 'Listing Entry','easy-property-listings'  );?></h4>
-						<p><?php _e( 'This release contains a number of improvements to the listing entry screens to trim them down in size significantly which should aid you with listing entry. We have also optomised the experience if you are using classic WordPress or Gutenberg.' , 'easy-property-listings'); ?></p>
+						<p><?php _e( 'This release contains a number of improvements to the listing entry screens to trim them down in size significantly which should aid you with listing entry. We have also optimised the experience if you are using classic WordPress or Gutenberg.' , 'easy-property-listings'); ?></p>
 					</div>
 
 					<div class="col">
