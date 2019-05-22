@@ -279,6 +279,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-location.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
 
+				// Partial fix, recommend moving file to shortcodes/ folder and internal docs added to file
+				require_once EPL_PATH_LIB . 'includes/class-epl-listing-elements.php';
+
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-floorplan.php';
@@ -290,7 +293,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
-			require_once EPL_PATH_LIB . 'includes/class-epl-listing-elements.php';
 
 			if( file_exists(get_stylesheet_directory().'/easypropertylistings/functions.php' ) ) {
 				include_once(get_stylesheet_directory().'/easypropertylistings/functions.php' );
