@@ -12,15 +12,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- * Register image sizes for the admin list of property
- * and a hard cropped 300x200 px image for use in widgets
- *
- * @since 1.0
- */
-function epl_image_sizes() {
 
-	$epl_sizes = apply_filters(
+/**
+ * Get list of all EPL image sizes
+ *
+ * @since 3.2.3
+ */
+function get_epl_image_sizes() {
+	return apply_filters(
 		'epl_image_sizes',
 		array(
 			array(
@@ -37,6 +36,18 @@ function epl_image_sizes() {
 			)
 		)
 	);
+}
+
+/**
+ * Register image sizes for the admin list of property
+ * and a hard cropped 300x200 px image for use in widgets
+ *
+ * @since 1.0
+ */
+function epl_image_sizes() {
+
+	$epl_sizes = get_epl_image_sizes();
+
 	foreach($epl_sizes as $epl_size) {
 		add_image_size( $epl_size['id'], $epl_size['width'], $epl_size['height'], $epl_size['crop'] );
 	}

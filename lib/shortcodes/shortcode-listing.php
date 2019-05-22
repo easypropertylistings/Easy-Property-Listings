@@ -35,6 +35,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'limit'		=> '10', // Number of maximum posts to show
 		'offset'	=> '', // Offset posts. When used, pagination is disabled
 		'author'	=> '',	// Author of listings.
+		'agent'		=> '',	// Agent of listings.
 		'featured'	=> 0,	// Featured listings.
 		'template'	=> false, // Template can be set to "slim" for home open style template
 		'location'	=> '', // Location slug. Should be a name like sorrento
@@ -43,7 +44,9 @@ function epl_shortcode_listing_callback( $atts ) {
 		'sortby'	=> '', // Options: price, date : Default date
 		'sort_order'	=> 'DESC', // Sort by ASC or DESC
 		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
-		'pagination'	=> 'on' // Enable or disable pagination
+		'pagination'	=> 'on', // Enable or disable pagination
+		'instance_id'	=> '1',
+		'class'         => '', // wrapper class
 	), $atts );
 
 	if ( is_string( $attributes['post_type'] ) && $attributes['post_type'] == 'rental' ) {
@@ -59,7 +62,6 @@ function epl_shortcode_listing_callback( $atts ) {
 	if ( ! is_array( $attributes['post_type'] ) ) {
 		$attributes['post_type'] = array_map( 'trim', explode( ',',$attributes['post_type'] ) );
 	}
-
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
 		'post_type'      =>	$attributes['post_type'],
@@ -83,6 +85,30 @@ function epl_shortcode_listing_callback( $atts ) {
 			$attributes['author'] = implode( ',', $author_ids );
 		}
 		$args['author'] = trim( $attributes['author'] );
+	}
+
+	// Listings by specified agent.
+	if ( ! empty( $attributes['agent'] ) ) {
+		$attributes['agent'] = array_map( 'trim', explode( ',', $attributes['agent'] ) );
+		$attributes['agent'] = array_filter($attributes['agent']);
+		$agent_meta_query = array(
+			'relation'  =>  'OR',
+		);
+
+		foreach($attributes['agent'] as $single_agent) {
+			$agent_meta_query[] = array(
+                'key'       =>  'property_agent',
+                'value'     =>  array($single_agent, sanitize_user($single_agent) ),
+                'compare'   =>  'IN'
+            );
+            $agent_meta_query[] = array(
+                'key'       =>  'property_second_agent',
+                'value'     =>  array($single_agent, sanitize_user($single_agent) ),
+                'compare'   =>  'IN'
+            );
+		}
+
+		$args['meta_query'][] = $agent_meta_query;
 	}
 
 	// Featured listings.
@@ -121,17 +147,27 @@ function epl_shortcode_listing_callback( $atts ) {
 
 	if ( ! empty ( $attributes['sortby'] ) ) {
 		if ( $attributes['sortby'] == 'price' ) {
-			$args['orderby']  = 'meta_value_num';
-			$args['meta_key'] =	$meta_key_price;
+			$args['orderby']	= 'meta_value_num';
+			$args['meta_key']	= $meta_key_price;
+		} elseif( $attributes['sortby'] == 'rand' ) {
+			$args['orderby']	= 'rand';
+		} elseif ( $attributes['sortby'] == 'status' ) {
+			$args['orderby'] 	= 'meta_value';
+			$args['meta_key']	= 'property_status';
 		} else {
-			$args['orderby']  = 'post_date';
-			$args['order']    = 'DESC';
+			$args['orderby']	= 'post_date';
+			$args['order']		= 'DESC';
 		}
 		$args['order']        = $attributes['sort_order'];
 	}
 
+	$args['instance_id'] = $attributes['instance_id'];
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-	$args = epl_add_orderby_args($args);
+	$args = epl_add_orderby_args($args,'shortcode','listing');
+
+	/** Option to filter args */
+	$args = apply_filters('epl_shortcode_listing_args',$args,$attributes);
+
 	$query_open = new WP_Query( $args );
 
 	if ( is_object( $attributes['query_object'] ) ) {
@@ -162,18 +198,4 @@ function epl_sorting_options_callback( $sorters ) {
 		}
 	}
 	return $sorters;
-}
-
-/**
- * Get author id from name
- *
- * @since       3.1.1
- */
-function epl_get_author_id_from_name($author) {
-	if( is_numeric($author) ) {
-		return absint($author);
-	} else {
-		$user = get_user_by( 'login', $author );
-		return $user->ID;
-	}
 }

@@ -58,6 +58,8 @@ class EPL_SEARCH {
 	 */
 	function __construct($query,$data) {
 
+		$this->data = $data;
+
 		$this->query = $query;
 
 		$this->sanitize_data();
@@ -115,9 +117,17 @@ class EPL_SEARCH {
 	 */
 	protected function sanitize_data () {
 		$this->get_data   	= filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+
+		if (!empty($this->data)) {
+			$this->get_data = $this->data;
+		}
 		$this->get_data   	= apply_filters('epl_search_get_data',$this->get_data);
 		$this->post_data  	= filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 		$this->post_data   	= apply_filters('epl_search_post_data',$this->post_data);
+
+		if( !isset($this->get_data['property_status']) ) {
+			$this->get_data['property_status'] = '';
+		}
 	}
 
 	/**
@@ -209,6 +219,7 @@ class EPL_SEARCH {
 				$epl_post_types = array_keys( $epl_post_types );
 				$this->query->set( 'post_type', $epl_post_types );
 				$this->post_type = $epl_post_types;
+				$this->get_data['post_type'] = $this->post_type;
 			}
 		}
 	}

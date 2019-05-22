@@ -21,8 +21,8 @@ add_filter( 'request', 'epl_property_address_suburb_column_orderby' );
 function epl_property_address_suburb_column_orderby( $vars ) {
 	if ( isset( $vars['orderby'] ) && 'property_address_suburb' == $vars['orderby'] ) {
 		$vars = array_merge( $vars, array(
-			'meta_key' => 'property_address_suburb',
-			'orderby' => 'meta_value'
+			'meta_key'	=> 'property_address_suburb',
+			'orderby'	=> 'meta_value'
 		) );
 	}
 
@@ -90,7 +90,7 @@ function epl_custom_restrict_manage_posts() {
 		if(!empty($custom_search_fields)) {
 			$_GET['property_custom_fields'] = isset($_GET['property_custom_fields'])?sanitize_text_field($_GET['property_custom_fields']):'';
 			echo '<select name="property_custom_fields">';
-				echo '<option value="">'.__('Search For :', 'easy-property-listings' ).'</option>';
+				echo '<option value="">'.__('Search For:', 'easy-property-listings' ).'</option>';
 				foreach($custom_search_fields as $k=>$v) {
 					$selected = ($_GET['property_custom_fields'] == $k ? 'selected="selected"' : '');
 					echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
@@ -152,6 +152,7 @@ function epl_admin_posts_filter( $query ) {
  * @since 1.0
  */
 function epl_manage_listings_sortable_columns( $columns ) {
+	$columns['property_featured']	= 'property_featured';
 	$columns['property_rent']	= 'property_rent';
 	$columns['property_price']	= 'property_price';
 	$columns['property_status'] 	= 'property_status';
@@ -195,6 +196,11 @@ function epl_custom_orderby( $query ) {
 
 	if( 'property_thumb' == $orderby ) {
 		$query->set('meta_key','_thumbnail_id');
+		$query->set('orderby','meta_value');
+	}
+
+	if( 'property_featured' == $orderby ) {
+		$query->set('meta_key','property_featured');
 		$query->set('orderby','meta_value');
 	}
 
@@ -310,6 +316,59 @@ function epl_manage_listing_column_listing_callback() {
 	}
 }
 add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_listing_callback' );
+
+/**
+ * Get Listing Labels
+ *
+ * @since 3.3
+ */
+function epl_get_manage_listing_column_labels( $args = array() , $returntype = 'l' ) {
+
+	global $property;
+
+	$defaults	= array( 'featured' );
+	$labels 	= apply_filters( 'epl_manage_listing_column_labels' , $defaults );
+	$returntype 	= apply_filters( 'epl_manage_listing_column_labels_return_type' , $returntype );
+
+	ob_start();
+
+	foreach( $labels as $label ) {
+		if( !empty( $args ) && !in_array( $label , $args ) ) {
+			continue;
+		}
+
+		switch( $label ) {
+			case 'featured' :
+				echo $property->get_property_featured( $returntype );
+			break;
+
+			default:
+				// action to hook additional icons
+				do_action( 'epl_get_manage_listing_column_label_' . $label );
+			break;
+		}
+
+	}
+
+	return ob_get_clean();
+}
+
+/**
+ * Featured Listing Label to Listing Details column
+ *
+ * @since 3.3
+ */
+function epl_manage_listing_column_labels_callback( $returntype = 'l' ) {
+
+	$returntype = $returntype == '' ? 'l' : $returntype;
+
+	echo '<ul class="epl-listing-labels">' . epl_get_manage_listing_column_labels( array() , $returntype ) . '</ul>';
+
+}
+add_action( 'epl_manage_listing_column_listing' , 'epl_manage_listing_column_labels_callback' , 20 , 1 );
+
+//Business Post Type needs updating
+add_action( 'epl_manage_business_listing_column_listing_details', 'epl_manage_listing_column_labels_callback', 10, 1 );
 
 /**
  * Posts Types Column ID
@@ -534,3 +593,22 @@ function epl_manage_listing_column_agent_callback() {
 	}
 }
 add_action( 'epl_manage_listing_column_agent' , 'epl_manage_listing_column_agent_callback' );
+
+/**
+ * Functions for featured listing column
+ *
+ * @since 3.3
+ */
+function epl_manage_listing_column_featured_callback() {
+
+	global $property;
+
+	if ( $property->get_property_meta( 'property_featured' ) == 'yes' ) {
+		echo '<span class="dashicons dashicons-star-filled"></span>';
+	} else {
+		echo '<span class="dashicons dashicons-star-empty"></span>';
+	}
+
+
+}
+add_action( 'epl_manage_listing_column_featured' , 'epl_manage_listing_column_featured_callback' );

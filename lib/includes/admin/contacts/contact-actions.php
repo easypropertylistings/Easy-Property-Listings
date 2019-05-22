@@ -72,8 +72,8 @@ function epl_edit_contact( $args ) {
 
 	if ( $contact->update( $contact_data ) ) {
 
-		$output['success']       = true;
-		$output['contact_info'] = $contact_data;
+		$output['success'] 	= true;
+		$output['contact_info']	= $contact_data;
 
 	} else {
 
@@ -188,12 +188,12 @@ function epl_contact_save_note( $args ) {
 		return;
 	}
 
-	$contact_note 	= trim( sanitize_text_field( $args['contact_note'] ) );
-	$listing_id 	= trim( sanitize_text_field( $args['listing_id'] ) );
-	$note_type 	    = trim( sanitize_text_field( $args['note_type'] ) );
+	$contact_note	= trim( sanitize_text_field( $args['contact_note'] ) );
+	$listing_id	= trim( sanitize_text_field( $args['listing_id'] ) );
+	$note_type	= trim( sanitize_text_field( $args['note_type'] ) );
 
-	$contact_id   = (int)$args['contact_id'];
-	$nonce         = $args['add_contact_note_nonce'];
+	$contact_id	= (int)$args['contact_id'];
+	$nonce		= $args['add_contact_note_nonce'];
 
 	if ( ! wp_verify_nonce( $nonce, 'add_contact_note_nonce' ) ) {
 		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings'  ) );
@@ -426,17 +426,17 @@ function epl_meta_contact( $args ) {
 		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings'  ) );
 	}
 
-	$contact_id   = (int)$args['contact_id'];
-	$contact = new EPL_Contact( $contact_id );
+	$contact_id	= (int)$args['contact_id'];
+	$contact	= new EPL_Contact( $contact_id );
 	if ( empty( $contact->ID ) ) {
 		return false;
 	}
 
 	$not_meta_fields = array('epl_form_builder_form_submit','contact_id','_wpnonce','epl_action');
 
-	$post_fields = array('post_title','post_content','ID','post_author');
+	$post_fields	= array('post_title','post_content','ID','post_author');
 
-	$field_updates = array('ID' =>  $contact_id);
+	$field_updates	= array('ID' =>  $contact_id);
 	foreach($args as $key	=>	$value) {
 		if( !in_array($key,$not_meta_fields) ) {
 
@@ -446,10 +446,7 @@ function epl_meta_contact( $args ) {
 			} else {
 				$contact->update_meta($key,$value);
 			}
-
-
 		}
-
 	}
 	wp_update_post($field_updates);
 
@@ -477,26 +474,38 @@ function epl_new_contact( $args ) {
 		return;
 	}
 
-	$nonce         = $args['_wpnonce'];
+	$nonce		= $args['_wpnonce'];
 	if ( ! wp_verify_nonce( $nonce, 'new-contact' ) ) {
 		wp_die( __( 'Cheatin\' uhh?!', 'easy-property-listings'  ) );
 	}
 
-	$contact_id   = (int)$args['contact_id'];
-	$contact = new EPL_Contact( $contact_id );
+	$contact_id	= (int)$args['contact_id'];
+	$contact	= new EPL_Contact( $contact_id );
 	if ( empty( $contact->ID ) ) {
 		return false;
+	}
+
+	if( $args['email'] == '' || !is_email($args['email']) ) {
+		wp_die( __( 'Please provide valid email address', 'easy-property-listings'  ) );
 	}
 
 	if( $contact->contact_exists($args['email']) ) {
 		wp_die( __( 'A contact with this email already exists !', 'easy-property-listings'  ) );
 	}
-	if ( $contact->update( array('name'	=>	$args['title'], 'email' => $args['email']  ) ) ) {
-		$contact->update_meta('contact_first_name',$args['first_name']);
-		$contact->update_meta('contact_last_name',$args['last_name']);
-		$contact->update_meta('contact_phones',array('phone' =>  $args['phone']) );
-		$contact->update_meta('contact_category','new');
+
+	if( trim($args['title']) == '' && ( $args['first_name'] != '' || $args['last_name'] != ''  ) ){
+		$args['title'] = $args['first_name'].' '.$args['last_name'];
 	}
+
+	if( trim($args['title']) == '' && ( $args['email'] != '' ) ){
+		$args['title'] = $args['email'];
+	}
+
+	$contact->update( array('name'	=>	$args['title'], 'email' => $args['email']  ) );
+	$contact->update_meta('contact_first_name',$args['first_name']);
+	$contact->update_meta('contact_last_name',$args['last_name']);
+	$contact->update_meta('contact_phones',array('phone' =>  $args['phone']) );
+	$contact->update_meta('contact_category','new');
 
 
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
@@ -554,7 +563,6 @@ function epl_contact_tag_add() {
 			wp_die(1);
 
 		}
-
 	}
 }
 add_action('wp_ajax_contact_tags_update','epl_contact_tag_add');
@@ -797,14 +805,16 @@ function epl_contact_contact_details($contact) { ?>
 
 	<?php if( $contact->get_meta('contact_website') != '' ) :?>
 		<span class="contact_website epl-info-item editable" data-key="website">
-			<span class="dashicons dashicons-admin-links epl-contact-icons"></span>
+			<span class="dashicons dashicons-admin-site-alt3 epl-contact-icons"></span>
 			<?php echo $contact->get_meta('contact_website'); ?>
 		</span>
 	<?php endif; ?>
-	<span class="contact_website epl-info-item editable" data-key="address">
-		<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
-		<?php echo $contact->epl_contact_get_address(); ?>
-	</span>
+	<?php if( trim( $contact->epl_contact_get_address() ) != '' ) :?>
+			<span class="contact_website epl-info-item editable" data-key="address">
+				<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
+				<?php echo $contact->epl_contact_get_address(); ?>
+			</span>
+	<?php endif; ?>
 	<span class="contact-since epl-info-item">
 		<span class="dashicons dashicons-clock epl-contact-icons"></span>
 		<?php _e( 'Contact since', 'easy-property-listings'  ); ?>
@@ -1275,21 +1285,34 @@ add_action('epl_before_meta_field_property_owner','epl_before_meta_field_propert
 function epl_search_contact() {
 
 	$search_array = array(
-		's'				=> $_POST['user_name'],
+		//'s'				=> $_POST['user_name'],
 		'showposts'   			=> 6,
 		'post_type' 			=> 'epl_contact',
-		'post_status' 			=> 'publish',
+		//'post_status' 		=> 'any',
 		'post_password' 		=> '',
-		'suppress_filters' 		=> true
+		'suppress_filters' 		=> true,
+		'meta_query'			=> array(
+			'relation'		=> 'OR',
+			array(
+				'key'		=> 'contact_first_name',
+				'value'		=> sanitize_text_field($_POST['user_name']),
+				'compare'	=> 'LIKE'
+			),
+			array(
+				'key'		=> 'contact_last_name',
+				'value'		=> sanitize_text_field($_POST['user_name']),
+				'compare'	=> 'LIKE'
+			)
+		)
 	);
 
-	$query = http_build_query($search_array);
+	//$query = http_build_query($search_array);
 
-	$listings = get_posts(  $query );
+	$listings = new WP_Query(  $search_array );
 
-	if( !empty($listings) ) {
+	if( !empty($listings->posts) ) {
 		echo '<ul class="epl-contact-listing-suggestion">';
-		foreach( $listings as  $listing) {
+		foreach( $listings->posts as  $listing) {
 			echo '<li data-id="'.$listing->ID.'">'.get_post_meta($listing->ID,"contact_first_name",true).' '.get_post_meta($listing->ID,"contact_last_name",true).'</li>';
 		}
 		echo '</ul>';
@@ -1306,10 +1329,10 @@ add_action('wp_ajax_epl_search_contact','epl_search_contact');
 function epl_search_contact_listing() {
 
 	$search_array = array(
-		's'				=> sanitize_text_field($_POST['s']),
-		'showposts'   			=> 6,
-		'post_type' 			=> epl_get_core_post_types(),
-		'post_status' 			=> 'publish',
+		's'			=> sanitize_text_field($_POST['s']),
+		'showposts'   		=> 6,
+		'post_type' 		=> epl_get_core_post_types(),
+		'post_status' 		=> 'publish',
 	);
 
 	$query = http_build_query($search_array);
@@ -1334,12 +1357,18 @@ add_action('wp_ajax_epl_search_contact_listing','epl_search_contact_listing');
  * @since 3.0
  */
 function epl_search_user() {
-	$users = get_users(
-			array(
-				'search'       =>  $_REQUEST['user_name']. '*',
-				'number'       =>  5
-			)
-		);
+
+	$args = array(
+		'search'       =>  $_REQUEST['user_name']. '*',
+		'number'       =>  5
+	);
+
+	if( isset($_REQUEST['exclude_roles']) ) {
+		$exclude_roles = explode(',', $_REQUEST['exclude_roles'] );
+		$args['role__not_in'] = $exclude_roles;
+	}
+
+	$users = get_users( $args );
 
 	if( !empty($users) && !is_wp_error($users) ) {
 		ob_start();
@@ -1371,10 +1400,10 @@ function epl_contact_save_note_note_tab( $args ) {
 	}
 	$contact_note 	= trim( sanitize_text_field( $args['contact_note'] ) );
 	$listing_id 	= trim( sanitize_text_field( $args['listing_id'] ) );
-	$note_type 		= trim( sanitize_text_field( $args['activity_type'] ) );
+	$note_type	= trim( sanitize_text_field( $args['activity_type'] ) );
 
-	$contact_id   = (int)$args['contact_id'];
-	$nonce         = $args['add_contact_note_nonce'];
+	$contact_id	= (int)$args['contact_id'];
+	$nonce		= $args['add_contact_note_nonce'];
 	if ( ! wp_verify_nonce( $nonce, 'add-contact-note' ) ) {
 		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings'  ) );
 	}

@@ -45,10 +45,10 @@ add_filter( 'epl_contact_views', 'epl_register_default_contact_views', 1, 1 );
 function epl_register_default_contact_tabs( $tabs ) {
 
 	$default_tabs = array(
-		'overview'	=> array( 'dashicon' => 'dashicons-admin-users', 'title' => __( 'Contact Profile', 'easy-property-listings'  ) ),
-		'meta'		=> array( 'dashicon' => 'dashicons-edit', 'title' => __( 'Contact Info', 'easy-property-listings'  ) ),
-		'listings'	=> array( 'dashicon' => 'dashicons-admin-home', 'title' => __( 'Listings', 'easy-property-listings'  ) ),
-		'notes'		=> array( 'dashicon' => 'dashicons-admin-comments', 'title' => __( 'Contact Notes', 'easy-property-listings'  ) ),
+		'overview'	=> array( 'dashicon' => 'dashicons-admin-users',	'title'		=> __( 'Contact Profile', 'easy-property-listings'  ) ),
+		'meta'		=> array( 'dashicon' => 'dashicons-edit',		'title' 	=> __( 'Contact Info', 'easy-property-listings'  ) ),
+		'listings'	=> array( 'dashicon' => 'dashicons-admin-home',		'title' 	=> __( 'Listings', 'easy-property-listings'  ) ),
+		'notes'		=> array( 'dashicon' => 'dashicons-admin-comments',	'title' 	=> __( 'Contact Notes', 'easy-property-listings'  ) ),
 	);
 
 	return array_merge( $tabs, $default_tabs );
@@ -96,7 +96,6 @@ function epl_get_next_contact_link($contact_id) {
 		LIMIT 1
 	";
 
-
 	$next = $wpdb->get_col($query);
 
 	if(!empty($next)) {
@@ -131,7 +130,6 @@ function epl_get_prev_contact_link($contact_id) {
 		LIMIT 1
 	";
 
-
 	$next = $wpdb->get_col($query);
 
 	if(!empty($next)) {
@@ -146,7 +144,8 @@ function epl_get_prev_contact_link($contact_id) {
  */
 function epl_contact_contact_fields($contact_fields,$contact) {
 	$fields = array();
-	$phones = $contact->get_meta('contact_phones');
+	$phones = (array) $contact->get_meta('contact_phones');
+	$phones = array_filter($phones);
 	if(!empty($phones)) {
 		foreach($phones as $phone_name	=>	$phone_value) {
 			$label = ucwords(str_replace('_',' ',$phone_name));
@@ -160,7 +159,8 @@ function epl_contact_contact_fields($contact_fields,$contact) {
 			);
 		}
 	}
-	$emails = $contact->get_meta('contact_emails');
+	$emails = (array) $contact->get_meta('contact_emails');
+	$emails = array_filter($emails);
 	if(!empty($emails)) {
 		foreach($emails as $mail_name	=>	$mail_value) {
 			$label = ucwords(str_replace('_',' ',$mail_name));

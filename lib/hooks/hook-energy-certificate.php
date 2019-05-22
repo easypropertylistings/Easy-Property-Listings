@@ -22,16 +22,28 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_button_energy_certificate() {
 
-	$link = get_post_meta( get_the_ID() , 'property_energy_certificate' , true );
+	$keys = array( 'property_energy_certificate' );
 
-	if( !empty($link) ) { ?>
-		<button type="button" class="epl-button epl-energy-certificate" onclick="window.open('<?php echo $link; ?>')">
-			<?php
-				$label = apply_filters( 'epl_button_label_energy_certificate' , __('Energy Certificate ', 'easy-property-listings') );
-			?>
-			<?php echo $label ?>
-		</button> <?php
+	foreach($keys as $key) {
+		$link 		= get_post_meta( get_the_ID() , $key , true );
+		$count 		= $key == 'property_energy_certificate' ? '': substr($key, -1);
+		$default 	= __('Energy Certificate ', 'easy-property-listings') . $count;
+		$meta_label 	= get_post_meta( get_the_ID() , $key.'_label' , true );
+		$meta_label 	= $meta_label == '' ? $default : $meta_label;
 
+		if( !empty($link) ) { ?>
+			<button type="button" class="epl-button epl-energy-certificate" onclick="window.open('<?php echo $link; ?>')">
+				<?php
+					if( has_filter('epl_button_label_'.$key ) ) {
+						$label = apply_filters('epl_button_label_' . $key , $meta_label );
+					} else {
+						$label = apply_filters( 'epl_button_label_energy_certificate' , $meta_label );
+					}
+				?>
+				<?php echo $label ?>
+			</button> <?php
+
+		}
 	}
 
 }

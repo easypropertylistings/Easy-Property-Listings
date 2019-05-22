@@ -41,7 +41,7 @@ function epl_load_core_templates($template) {
 	} elseif ( epl_is_search() ) {
 
 		$common_tpl		= apply_filters('epl_common_search_template','archive-listing.php');
-
+		$post_tpl = 'archive-listing.php';
 		if( isset( $_GET['post_type'] ) ) {
 
 			if( is_array( $_GET['post_type'] ) ) {

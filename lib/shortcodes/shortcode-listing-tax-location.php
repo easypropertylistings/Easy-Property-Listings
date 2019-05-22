@@ -27,7 +27,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		 $property_types = array_keys($property_types);
 	}
 
-	extract( shortcode_atts( array(
+	$attributes = shortcode_atts( array(
 		'post_type' 		=>	$property_types, //Post Type
 		'status'		=>	array('current' , 'sold' , 'leased' ),
 		'location'		=>	'', // Location slug
@@ -39,8 +39,12 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
 		'sortby'		=>	'', // Options: price, date : Default date
 		'sort_order'		=>	'DESC', // Sort by ASC or DESC
-		'pagination'		=> 	'on' // Enable or disable pagination
-	), $atts ) );
+		'pagination'		=> 	'on', // Enable or disable pagination
+		'instance_id'		=>	'1',
+		'class'				=>	''
+	), $atts );
+
+	extract( $attributes );
 
 	if(empty($post_type)) {
 		return;
@@ -55,7 +59,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		'date'			=>	'post_date'
 	);
 	if( !is_array($post_type) ) {
-		$post_type 			= array_map('trim',explode(',',$post_type) );
+		$post_type 		= array_map('trim',explode(',',$post_type) );
 	}
 	ob_start();
 	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
@@ -103,9 +107,9 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 			$status = array_map('trim', $status);
 
 			$args['meta_query'][] = array(
-				'key' => 'property_status',
-				'value' => $status,
-				'compare' => 'IN'
+				'key'		=> 'property_status',
+				'value'		=> $status,
+				'compare'	=> 'IN'
 			);
 		}
 	}
@@ -113,24 +117,31 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 	if( $sortby != '' ) {
 
 		if($sortby == 'price') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
-		} else {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'DESC';
+			$args['orderby']	= 'meta_value_num';
+			$args['meta_key']	= $meta_key_price;
+		} elseif ( $sortby == 'status' ) {
+			$args['orderby']	= 'meta_value';
+			$args['meta_key']	= 'property_status';
+		}  else {
+			$args['orderby']	= 'post_date';
+			$args['order']		= 'DESC';
 
 		}
-		$args['order']			=	$sort_order;
+		$args['order']			= $sort_order;
 	}
 
+	$args['instance_id'] = $attributes['instance_id'];
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-	$args = epl_add_orderby_args($args);
+	$args = epl_add_orderby_args($args,'shortcode','listing_location');
+
+	/** Option to filter args */
+	$args = apply_filters('epl_shortcode_listing_location_args',$args,$attributes);
 
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template, 'archive' ); ?>">
+			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template, 'archive' ); echo $attributes['class']; ?>">
 				<?php
 					if ( $tools_top == 'on' ) {
 						do_action( 'epl_property_loop_start' );
