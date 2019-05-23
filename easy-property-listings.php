@@ -278,6 +278,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-location.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
+				require_once EPL_PATH_LIB . 'shortcodes/class-epl-listing-elements.php';
 
 				// Partial fix, recommend moving file to shortcodes/ folder and internal docs added to file
 				require_once EPL_PATH_LIB . 'includes/class-epl-listing-elements.php';
