@@ -57,32 +57,32 @@ class EPL_LISTING_ELEMENTS {
 	}
 
 	function epl_action($atts) {
-		if( !isset($atts['action']) )
+		if( !isset($atts['action_key']) )
 			return;
 		ob_start();
-		do_action($atts['action']);
+		do_action($atts['action_key']);
 		return ob_get_clean();
 	}
 
 	function epl_meta($atts) {
 
-		if( !isset($atts['key']) )
+		if( !isset($atts['meta_key']) )
 			return;
 
-		return get_property_meta($atts['key']);
+		return get_property_meta($atts['meta_key']);
 	}
 
 	function post($atts) {
 
 		global $property;
-		switch($atts['key']) {
+		switch($atts['post_key']) {
 
 			case 'permalink' :
 				return get_permalink($property->post->ID);
 			break;
 
 			default :
-				return isset($property->post->{$atts['key']}) ? $property->post->{$atts['key']} : '';
+				return isset($property->post->{$atts['post_key']}) ? $property->post->{$atts['post_key']} : '';
 			break;
 
 		}

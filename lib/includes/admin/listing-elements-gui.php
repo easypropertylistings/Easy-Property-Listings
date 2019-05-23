@@ -63,15 +63,15 @@ function epl_listing_elements_gui() {
 				switch( type ) {
 
 					case 'action' :
-						shortcode += "action='"+val+"' ";
+						shortcode += "action_key='"+val+"' ";
 					break;
 
 					case 'meta' :
-						shortcode += "key='"+val+"' ";
+						shortcode += "meta_key='"+val+"' ";
 					break;
 
 					case 'post' :
-						shortcode += "key='"+val+"' ";
+						shortcode += "post_key='"+val+"' ";
 					break;
 				}
 
