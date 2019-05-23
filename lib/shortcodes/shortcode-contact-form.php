@@ -1,6 +1,6 @@
 <?php
 /**
- * SHORTCODE :: Contact Capture [epl_contact_form]
+ * SHORTCODE :: Contact Capture [listing_contact]
  *
  * @package     EPL
  * @subpackage  Shortcode/ContactForm
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function epl_contact_capture_form( $atts ) {
 
 	$defaults 	= epl_contact_capture_get_widget_defaults();
-	$attributes = shortcode_atts( $defaults, $atts );
+	$attributes	= shortcode_atts( $defaults, $atts );
 	$fields 	= epl_contact_capture_get_widget_fields( $attributes );
 
 	if( isset($attributes['submit']) && $attributes['submit'] != '') {
@@ -30,7 +30,7 @@ function epl_contact_capture_form( $atts ) {
 			}
 		}
 	}
-	
+
 	ob_start();
 	$contact_form = new EPL_FORM_BUILDER( array('callback_action'	=>	'contact_capture_form') );
 

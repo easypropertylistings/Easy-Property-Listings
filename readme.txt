@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.2
-Stable Tag: 3.2.3
+Tested up to: 5.2.1
+Stable Tag: 3.3
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -193,7 +193,9 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_auction]
 * [listing_advanced]
 * [listing_element]
-* [epl_contact_form]
+* [listing_contact]
+* [listing_advanced]
+* [listing_element]
 
 **Listing**
 
@@ -393,7 +395,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.3 May 21, 2019 =
+= 3.3 May 22, 2019 =
 
 * New: Gutenberg support along with the REST WordPress API. Using the WordPress classic plugin will disable Gutenberg and Easy Property Listings or define constants.
 * New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible.
@@ -415,6 +417,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Contacts now allow you to bulk select and delete contacts.
 * New: Contacts summary search.
 * New: Contact widget now has a hidden field to prevent bots from entering form details.
+* New: Contact shortcode renamed to [listing_contact] instead of [epl_contact_form]. Retained old shortcode name for backward compatibility.
 * New: EPL - Contact form completely re-built with better handling of success and error messages to the user.
 * New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set and re-built the JS to avoid any issues when the API key is not added.
 * New: Easier to add additional custom stickers to listings with the epl_property_stickers hook.
@@ -482,6 +485,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Contacts system better displays contact information. IE hiding empty fields when nothing is set.
 * Tweak: Default sorting is now using the hidden and automatically generated property_price_global value which allows sorting taxonomy filtered listings.
 * Tweak: Custom taxonomy features now output a class to the list item for css targeting.
+* Tweak: Unique IDs applied to the SVG icons as they were duplicated for each icon.
 * Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.
 * Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.
 * Fix: Archive image hook epl_property_archive_featured_image third option for link now working.
