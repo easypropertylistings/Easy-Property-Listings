@@ -2660,7 +2660,7 @@ function epl_add_orderby_args($args,$type='',$name='') {
 		$args['epl_shortcode_name'] = $name;
 	}
 
-	$post_type = current($args['post_type']);
+	$post_type = isset($args['post_type']) ? current($args['post_type']) : '';
 
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 

@@ -356,6 +356,8 @@
 /** Grid View Inline Block instead of float **/
 .epl-listing-grid-view,
 .epl-listing-grid-view.hentry,
+.epl-property-blog.epl-listing-grid-view,
+.epl-property-blog.epl-listing-grid-view-forced,
 .builder-module-content .epl-listing-grid-view.hentry,
 .epl-listing-grid-view-forced,
 .epl-listing-grid-view-forced.hentry,

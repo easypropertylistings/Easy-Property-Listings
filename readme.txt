@@ -81,7 +81,6 @@ Shortcodes and widgets that let you filter, display and search listings.
 * Template system allows infinite display possibilities.
 * Instantly generate an automatic open home list.
 
-
 **Listings Displayed Beautifully**
 
 Multiple agent details not a problem, its built in.
@@ -187,6 +186,7 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing]
 * [listing_category]
 * [listing_open]
+* [listing_map]
 * [listing_search]
 * [listing_feature]
 * [listing_location]
@@ -194,8 +194,6 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_advanced]
 * [listing_element]
 * [listing_contact]
-* [listing_advanced]
-* [listing_element]
 
 **Listing**
 
@@ -394,6 +392,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.3.1 May 23, 2019 =
+
+* Tweak: Grid CSS tweaked when using Enhanced CSS option with some themes.
+* Tweak: Altered the options to the new [listing_element] shortcode for easier use and documentation.
+* Fix: Corrected a warning and notice errors when using the new [listing_advanced] shortcode with no options.
+* Fix: Corrected an error when using the new [listing_element] shortcode.
 
 = 3.3 May 22, 2019 =
 
