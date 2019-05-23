@@ -511,7 +511,7 @@ class EPL_Advanced_Shortcode_Listing {
 			unset($this->args['order']);
 		}
 
-		$args['instance_id'] = $attributes['instance_id'];
+		$args['instance_id'] = $this->attributes['instance_id'];
 		// add sortby arguments to query, if listings sorted by $_GET['sortby'];
 		$args = epl_add_orderby_args($args,'shortcode','listing_advanced');
 
