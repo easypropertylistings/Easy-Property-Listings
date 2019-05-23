@@ -37,11 +37,11 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		'template'		=>	false, // Template can be set to "slim" for home open style template
 		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
-		'sortby'		=>	'', // Options: price, date : Default date
+		'sortby'		=>	'', // Options: price, date, status : Default date
 		'sort_order'		=>	'DESC', // Sort by ASC or DESC
 		'pagination'		=> 	'on', // Enable or disable pagination
 		'instance_id'		=>	'1',
-		'class'				=>	''
+		'class'			=>	''
 	), $atts );
 
 	extract( $attributes );

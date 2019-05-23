@@ -43,7 +43,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'location'			=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'			=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'			=>	'off', // Tools after the loop like pagination on or off
-		'sortby'			=>	'', // Options: price, date : Default date
+		'sortby'			=>	'', // Options: price, date, status, rand (for random) : Default date
 		'sort_order'			=>	'DESC', // Sort by ASC or DESC
 		'pagination'			=>	'on', // Enable or disable pagination
 		'instance_id'			=>	'1',
@@ -178,18 +178,15 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			$args['meta_key']	= $meta_key_price;
 		} elseif($sortby == 'rand') {
 			$args['orderby']	= 'rand';
-
 		}  elseif ( $sortby == 'status' ) {
 			$args['orderby']	= 'meta_value';
 			$args['meta_key']	= 'property_status';
 		} else {
 			$args['orderby']	= 'post_date';
 			$args['order']		= 'DESC';
-
 		}
 		$args['order']			= $sort_order;
 	}
-
 
 	$args['instance_id'] = $attributes['instance_id'];
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];

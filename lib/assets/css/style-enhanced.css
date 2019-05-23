@@ -194,7 +194,6 @@
 		width: 100%;
 		max-width: 325px;
 		position: relative;
-		z-index: 2;
 	}
 	/** Needs super parent epl-property-blog **/
 	.epl-property-blog .epl-property-box-with-fixed-elements .property-box-right {
@@ -203,7 +202,6 @@
 		top: 0;
 		left: 0;
 		padding-left: 345px;
-		z-index: 1;
 	}
 	/** Adjust for grid mode **/
 	.epl-listing-grid-view .epl-property-box-with-fixed-elements .property-box-left,
@@ -475,7 +473,6 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 10;
 }
 .epl-property-blog-image-cover.epl-listing-grid-view .property-content-wrapper,
 .epl-property-blog-image-cover.epl-listing-grid-view-forced .property-content-wrapper {

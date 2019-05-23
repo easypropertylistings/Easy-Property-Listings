@@ -38,7 +38,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		'location'		=>	'', // Location slug. Should be a name like sorrento
 		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
 		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
-		'sortby'		=>	'', // Options: price, date : Default date
+		'sortby'		=>	'', // Options: price, date, status : Default date
 		'sort_order'		=>	'DESC', // Sort by ASC or DESC
 		'pagination'		=> 	'on', // Enable or disable pagination
 		'instance_id'		=>	'1',
