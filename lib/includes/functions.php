@@ -1556,7 +1556,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Dashboard Listing Columns' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'admin_general',
-			'help'		=>	__('Use the following settings to change how the Dashbord > Property or any listing of the types you have enabled display.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('Use the following settings to change how the Dashboard > Property or any listing of the types you have enabled display.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
