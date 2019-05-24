@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $query_open->have_posts() ) {
 	$attributes['class'] = isset( $attributes['class'] ) ? $attributes['class'] : 'epl-shortcode-listing';
 	?>
-	<div class="loop epl-shortcode">
-		<div class="loop-content <?php echo $attributes['class']; ?> <?php echo epl_template_class( $attributes['template'], 'archive' ); ?>">
+	<div class="loop epl-shortcode epl-clearfix">
+		<div class="loop-content <?php echo $attributes['class']; ?> <?php echo epl_template_class( $attributes['template'], 'archive' ); ?> epl-clearfix">
 			<?php
 			if ( $attributes['tools_top'] == 'on' ) {
 				do_action( 'epl_property_loop_start' );
@@ -36,7 +36,7 @@ if ( $query_open->have_posts() ) {
 			}
 			?>
 		</div>
-		<div class="loop-footer">
+		<div class="loop-footer epl-clearfix">
 				<?php
 					if ( $attributes['pagination'] == 'on' ) {
 						do_action( 'epl_pagination',array( 'query'	=> $query_open ) );
