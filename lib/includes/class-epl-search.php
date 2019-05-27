@@ -97,7 +97,7 @@ class EPL_SEARCH {
 		$this->query->is_page 		= false;
 		$this->query->is_single 	= false;
 		$this->query->is_singular 	= false;
-		$this->query->is_epl_search = true;
+		$this->query->is_epl_search	= true;
 		set_query_var('page_id',null);
 
 		//epl_print_r($this->query,true);
@@ -293,10 +293,10 @@ class EPL_SEARCH {
 				$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 
 			}
-			
+
 		}
 		else {
-			
+
 			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 		}
 
@@ -339,7 +339,7 @@ class EPL_SEARCH {
 	function epl_search_query_pre_search() {
 
 		foreach($this->meta_query as $index	=>	&$meta_query) {
-			
+
 			if( !isset($meta_query['key']) )
 				continue;
 
@@ -527,7 +527,7 @@ class EPL_SEARCH {
 				'terms'		=>	$value,
 			);
 		}
-		
+
 		$this->tax_query = apply_filters('epl_preprocess_search_tax_query',$this->tax_query);
 	}
 
