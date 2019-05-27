@@ -393,12 +393,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.3.1 May 23, 2019 =
+= 3.3.1 May 27, 2019 =
 
 * Tweak: Grid CSS tweaked when using Enhanced CSS option with some themes.
 * Tweak: Altered the options to the new [listing_element] shortcode for easier use and documentation.
-* Fix: Corrected a warning and notice errors when using the new [listing_advanced] shortcode with no options.
-* Fix: Corrected an error when using the new [listing_element] shortcode.
+* Tweak: Added epl-clearfix to shortcode template to better clear when using page builder plugins.
+* Fix: Warning and notice errors when using the new [listing_advanced] shortcode with no options.
+* Fix: Error when using the new [listing_element] shortcode.
+* Fix: Search new feature fix corrected when no post type is set.
 
 = 3.3 May 22, 2019 =
 
