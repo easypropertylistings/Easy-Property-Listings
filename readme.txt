@@ -397,7 +397,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * Tweak: Grid CSS tweaked when using Enhanced CSS option with some themes.
 * Tweak: Altered the options to the new [listing_element] shortcode for easier use and documentation.
-* Tweak: Added epl-clearfix to shortcode template to better clear whne using page builder plugins.
+* Tweak: Added epl-clearfix to shortcode template to better clear when using page builder plugins.
 * Fix: Warning and notice errors when using the new [listing_advanced] shortcode with no options.
 * Fix: Error when using the new [listing_element] shortcode.
 * Fix: Search new feature fix corrected when no post type is set.
