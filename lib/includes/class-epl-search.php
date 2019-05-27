@@ -92,10 +92,13 @@ class EPL_SEARCH {
 
 		$this->query->parse_query();
 
-		/** disable is_tax flag to avoid redirection to tax archive url */
-		$this->query->is_tax = false;
-
+		/** disable is_* flags which can create conflict with EPL search query flag to avoid redirection to tax archive url */
+		$this->query->is_tax 		= false;
+		$this->query->is_page 		= false;
+		$this->query->is_single 	= false;
+		$this->query->is_singular 	= false;
 		$this->query->is_epl_search = true;
+		set_query_var('page_id',null);
 
 		//epl_print_r($this->query,true);
 	}
