@@ -58,6 +58,14 @@
 }
 
 /**********************
+	Theme Setup attempt
+***********************/
+.epl-archive-default .epl-archive-default {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+/**********************
 	Loop
 ***********************/
 .epl-property-blog {
