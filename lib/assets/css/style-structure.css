@@ -57,13 +57,23 @@
 	border-color: #ebccd1;
 }
 
+
+
 /**********************
 	Theme Setup attempt
 ***********************/
-.epl-archive-default .epl-archive-default {
-	max-width: 900px;
-	margin: 0 auto;
+
+.epl-archive-default .loop {
+	/* max-width: 1170px; */
+	/* margin: 0 auto; */
 }
+@media screen and (max-width: 899px ) {
+	.epl-archive-default .loop {
+		/* padding-left: 20px; */
+		/* padding-right: 20px; */
+	}
+}
+
 
 /**********************
 	Loop
@@ -613,6 +623,10 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	float: none;
 	padding: 0 5px;
 	vertical-align: middle;
+}
+.epl-switch-view ul li.view-list,
+.epl-switch-view ul li.view-grid {
+	position: static;
 }
 .epl-switch-view li {
 	float: left;

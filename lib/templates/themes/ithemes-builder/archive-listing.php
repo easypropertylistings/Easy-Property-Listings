@@ -3,7 +3,7 @@
  * The Template for displaying all Easy Property Listings archive/loop posts with the iThemes Builder Theme Framework
  *
  * @package EPL
- * @subpackage Templates/Themes/Heuman
+ * @subpackage Templates/Themes/iThemes
  * @since 1.0
  */
 
@@ -19,7 +19,7 @@ function epl_archive_render_content() {
 				</h4>
 			</div>
 
-			<div class="loop-content">
+			<div class="loop-content <?php echo epl_template_class( 'builder', 'archive' ); ?>">
 				<?php do_action( 'epl_property_loop_start' ); ?>
 				<?php while ( have_posts() ) : // The Loop
 						the_post();
