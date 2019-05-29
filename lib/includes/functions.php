@@ -1556,7 +1556,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Dashboard Listing Columns' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'admin_general',
-			'help'		=>	__('Use the following settings to change how the Dashbord > Property or any listing of the types you have enabled display.' , 'easy-property-listings' ) . '<hr/>',
+			'help'		=>	__('Use the following settings to change how the Dashboard > Property or any listing of the types you have enabled display.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1811,7 +1811,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Advanced Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'advanced',
-			'help'		=>	sprintf( __('Additonal settings to control how Easy Property Listings works. For even more advanced filters and hooks, <a href="%s" target="_blank">visit the codex</a>.' , 'easy-property-listings' ) ,esc_url( 'https://codex.easypropertylistings.com.au/' ) ). '<hr/>',
+			'help'		=>	sprintf( __('Additional settings to control how Easy Property Listings works. For even more advanced filters and hooks, <a href="%s" target="_blank">visit the codex</a>.' , 'easy-property-listings' ) ,esc_url( 'https://codex.easypropertylistings.com.au/' ) ). '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'epl_use_core_css',
