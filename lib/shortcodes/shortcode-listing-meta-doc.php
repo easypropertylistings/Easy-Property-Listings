@@ -108,8 +108,9 @@ function epl_shortcode_listing_meta_doc_callback($atts) {
 
 									echo '<ul class="epl-meta-opt-list">';
 									foreach ($field['opts'] as $opt_key => $opt_label) {
+										$label = is_array( $opt_label ) ? $opt_label['label'] : $opt_label;
 										echo '<li class="epl-meta-opt-item">';
-											echo $opt_label;
+											echo $label;
 										echo '</li>';
 									}
 									echo '</ul>';
