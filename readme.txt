@@ -393,6 +393,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.3.2 May TBA, 2019 =
+
+* Fix: Missing post wrapper classes for iThemes builder and Heuman theme when using Listing Template extensions and masonry effect.
+
 = 3.3.1 May 27, 2019 =
 
 * Tweak: Grid CSS tweaked when using Enhanced CSS option with some themes.
