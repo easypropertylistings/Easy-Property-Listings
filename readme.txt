@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.2.1
-Stable Tag: 3.3
+Stable Tag: 3.3.1
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -393,14 +393,17 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.3.2 May 31, 2019 =
+
+* Tweak: Added epl-clearfix to shortcode template to better clear when using page builder plugins.
+* Fix: New search feature corrected when no post type is set.
+
 = 3.3.1 May 27, 2019 =
 
 * Tweak: Grid CSS tweaked when using Enhanced CSS option with some themes.
 * Tweak: Altered the options to the new [listing_element] shortcode for easier use and documentation.
-* Tweak: Added epl-clearfix to shortcode template to better clear when using page builder plugins.
 * Fix: Warning and notice errors when using the new [listing_advanced] shortcode with no options.
 * Fix: Error when using the new [listing_element] shortcode.
-* Fix: Search new feature fix corrected when no post type is set.
 
 = 3.3 May 22, 2019 =
 
