@@ -46,6 +46,10 @@ if ( ! empty( $selected_post_types ) ) :
 				$is_sb_current = $tabcounter == 1 ? 'epl-sb-current' : '';
 			}
 			$post_type_label = isset($epl_settings[ 'widget_label_'.$post_type ]) ? $epl_settings[ 'widget_label_'.$post_type ] : $post_type;
+
+			if($post_type == ''){
+				$post_type_label = epl_get_option('widget_label_all','All');
+			}
 			echo '<li data-tab="epl_ps_tab_' . $tabcounter . '" class="tab-link ' . $is_sb_current . '">' . $post_type_label . '</li>';
 			$tabcounter++;
 
@@ -89,7 +93,7 @@ if ( ! empty( $selected_post_types ) ) :
 					}
 
 					if ( $epl_frontend_field['key'] == 'search_house_category' && isset( $house_category_multiple ) && $house_category_multiple == 'on' ) {
-						$epl_frontend_field['multiple'] 	= true;
+						$epl_frontend_field['type'] 		= 'multiple_select';
 						$epl_frontend_field['query'] 		= array( 'query'	=> 'meta', 'compare' => 'IN' );
 					}
 

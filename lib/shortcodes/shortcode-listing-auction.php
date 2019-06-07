@@ -27,19 +27,23 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		 $property_types = array_keys($property_types);
 	}
 
-	extract( shortcode_atts( array(
-		'post_type' 		=>	$property_types, //Post Type
-		'status'		=>	array('current' , 'sold' , 'leased' ),
-		'limit'			=>	'10', // Number of maximum posts to show
-		'template'		=>	false, // Template can be set to "slim" for home open style template
-		'location'		=>	'', // Location slug. Should be a name like sorrento
-		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
-		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
-		'sortby'		=>	'', // Options: price, date : Default date
-		'sort_order'		=>	'DESC',
-		'query_object'		=>	'', // only for internal use . if provided use it instead of custom query
-		'pagination'		=> 	'on'
-	), $atts ) );
+	$attributes = shortcode_atts( array(
+		'post_type' 	=> $property_types, //Post Type
+		'status'	=> array('current' , 'sold' , 'leased' ),
+		'limit'		=> '10', // Number of maximum posts to show
+		'template'	=> false, // Template can be set to "slim" for home open style template
+		'location'	=> '', // Location slug. Should be a name like sorrento
+		'tools_top'	=> 'off', // Tools before the loop like Sorter and Grid on or off
+		'tools_bottom'	=> 'off', // Tools after the loop like pagination on or off
+		'sortby'	=> '', // Options: price, date, status : Default date
+		'sort_order'	=> 'DESC',
+		'query_object'	=> '', // only for internal use . if provided use it instead of custom query
+		'pagination'	=> 'on',
+		'instance_id'	=> '1',
+		'class'		=> ''
+	), $atts );
+
+	extract( $attributes );
 
 	if(is_string($post_type) && $post_type == 'rental') {
 		$meta_key_price = 'property_rent';
@@ -48,8 +52,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	}
 
 	$sort_options = array(
-		'price'			=>	$meta_key_price,
-		'date'			=>	'post_date'
+		'price'		=>	$meta_key_price,
+		'date'		=>	'post_date'
 	);
 	if( !is_array($post_type) ) {
 		$post_type 			= array_map('trim',explode(',',$post_type) );
@@ -65,7 +69,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	/** only properties which are not under offer should be allowed **/
 	$args['meta_query'][] = array(
 		'key'		=> 'property_under_offer',
-		'value'		=> 'no',
+		'value'		=> 'yes',
+		'compare'	=> '!='
 	);
 
 	/** only properties which are not auction should be allowed **/
@@ -105,18 +110,24 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	if( $sortby != '' ) {
 
 		if($sortby == 'price') {
-			$args['orderby']	=	'meta_value_num';
-			$args['meta_key']	=	$meta_key_price;
-		} else {
-			$args['orderby']	=	'post_date';
-			$args['order']		=	'DESC';
+			$args['orderby']	= 'meta_value_num';
+			$args['meta_key']	= $meta_key_price;
+		}  elseif ( $sortby == 'status' ) {
+			$args['orderby']	= 'meta_value';
+			$args['meta_key']	= 'property_status';
+		}  else {
+			$args['orderby']	= 'post_date';
+			$args['order']		= 'DESC';
 		}
-		$args['order']			=	$sort_order;
+		$args['order']			= $sort_order;
 	}
 
+	$args['instance_id'] = $attributes['instance_id'];
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-	$args = epl_add_orderby_args($args);
+	$args = epl_add_orderby_args($args,'shortcode','listing_auction');
 
+	/** Option to filter args */
+	$args = apply_filters('epl_shortcode_listing_auction_args',$args,$attributes);
 
 	$query_open = new WP_Query( $args );
 
@@ -126,7 +137,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template, 'archive' ); ?>">
+			<div class="loop-content epl-shortcode-listing <?php echo epl_template_class( $template, 'archive' ); echo $attributes['class']; ?>">
 				<?php
 					if ( $tools_top == 'on' ) {
 						do_action( 'epl_property_loop_start' );

@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Install
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
 */
@@ -44,7 +44,7 @@ function epl_install() {
 		'admin_unique_id'			=> 0,
 		'debug'					=> 0,
 		'display_bond'				=> 0,
-		'display_single_gallery'		=> 0,
+		'display_single_gallery'		=> 1,
 		'display_gallery_n'			=> 4,
 		'display_feature_columns'		=> 2,
 		'display_excerpt_length'		=> 10,
@@ -62,6 +62,7 @@ function epl_install() {
 		'label_under_offer'			=> __('Under Offer', 'easy-property-listings' ),
 		'label_leased'				=> __('Leased', 'easy-property-listings' ),
 		'label_sold'				=> __('Sold', 'easy-property-listings' ),
+		'widget_label_all'			=> __('All', 'easy-property-listings' ),
 		'widget_label_property'			=> __('Buy', 'easy-property-listings' ),
 		'widget_label_land'			=> __('Land', 'easy-property-listings' ),
 		'widget_label_rental'			=> __('Rent', 'easy-property-listings' ),
@@ -82,6 +83,7 @@ function epl_install() {
 		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
 		'epl_use_core_css'			=> 'off', // Means Enable CSS
 		'epl_css_legacy'			=> 'off', // Legacy styles disabled by default
+		'epl_css_enhanced'			=> 'on', // Enhanced styles enabled for new installations by default
 		'uninstall_on_delete'			=> 0,
 		'inspection_date_format'		=> 'l, dS F',
 		'inspection_time_format'		=> 'h:i a',
@@ -92,8 +94,9 @@ function epl_install() {
 		'min_reports_access'			=> 'level_10',
 		'activate_post_types'			=> array('property'),
 		'epl_default_country'			=> 'Australia',
-		'epl_icons_svg_listings'		=> 'off',
-		'epl_icons_svg_author'			=> 'off',
+		'epl_icons_svg_listings'		=> 'on',
+		'epl_icons_svg_author'			=> 'on',
+		'epl_plugin_mode'			=> 'production',
 	);
 
 	if(!empty($epl_settings)) {
@@ -194,22 +197,18 @@ function epl_plugin_updates() {
 		include( EPL_PATH_UPDATES.'epl-1.3.1.php' );
 		update_option( 'epl_version' ,'1.3');
 	}
-
 	if ( version_compare( $current_version, '2.1', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.php' );
 		update_option( 'epl_version' ,'2.1');
 	}
-
 	if ( version_compare( $current_version, '2.1.8', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.8.php' );
 		update_option( 'epl_version' ,'2.1.8');
 	}
-
 	if ( version_compare( $current_version, '2.1.11', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.1.11.php' );
 		update_option( 'epl_version' ,'2.1.11');
 	}
-
 	if ( version_compare( $current_version, '2.2', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-2.2.php' );
 		update_option( 'epl_version' ,'2.2');
@@ -233,6 +232,15 @@ function epl_plugin_updates() {
 	if ( version_compare( $current_version, '3.2', '<' ) ) {
 		include( EPL_PATH_UPDATES.'epl-3.2.php' );
 		update_option( 'epl_version' ,'3.2');
+	}
+	if ( version_compare( $current_version, '3.2.2', '<' ) ) {
+		 flush_rewrite_rules();
+		 update_option( 'epl_version' ,'3.2.2');
+	}
+	if ( version_compare( $current_version, '3.3', '<' ) ) {
+		include( EPL_PATH_UPDATES.'epl-3.3.php' );
+		flush_rewrite_rules();
+		update_option( 'epl_version' ,'3.3');
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );

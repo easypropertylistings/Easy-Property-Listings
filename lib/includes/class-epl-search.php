@@ -58,6 +58,8 @@ class EPL_SEARCH {
 	 */
 	function __construct($query,$data) {
 
+		$this->data = $data;
+
 		$this->query = $query;
 
 		$this->sanitize_data();
@@ -90,10 +92,13 @@ class EPL_SEARCH {
 
 		$this->query->parse_query();
 
-		/** disable is_tax flag to avoid redirection to tax archive url */
-		$this->query->is_tax = false;
-
-		$this->query->is_epl_search = true;
+		/** disable is_* flags which can create conflict with EPL search query flag to avoid redirection to tax archive url */
+		$this->query->is_tax 		= false;
+		$this->query->is_page 		= false;
+		$this->query->is_single 	= false;
+		$this->query->is_singular 	= false;
+		$this->query->is_epl_search	= true;
+		set_query_var('page_id',null);
 
 		//epl_print_r($this->query,true);
 	}
@@ -115,9 +120,17 @@ class EPL_SEARCH {
 	 */
 	protected function sanitize_data () {
 		$this->get_data   	= filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+
+		if (!empty($this->data)) {
+			$this->get_data = $this->data;
+		}
 		$this->get_data   	= apply_filters('epl_search_get_data',$this->get_data);
 		$this->post_data  	= filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 		$this->post_data   	= apply_filters('epl_search_post_data',$this->post_data);
+
+		if( !isset($this->get_data['property_status']) ) {
+			$this->get_data['property_status'] = '';
+		}
 	}
 
 	/**
@@ -209,6 +222,7 @@ class EPL_SEARCH {
 				$epl_post_types = array_keys( $epl_post_types );
 				$this->query->set( 'post_type', $epl_post_types );
 				$this->post_type = $epl_post_types;
+				$this->get_data['post_type'] = $this->post_type;
 			}
 		}
 	}
@@ -279,10 +293,10 @@ class EPL_SEARCH {
 				$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 
 			}
-			
+
 		}
 		else {
-			
+
 			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 		}
 
@@ -325,7 +339,7 @@ class EPL_SEARCH {
 	function epl_search_query_pre_search() {
 
 		foreach($this->meta_query as $index	=>	&$meta_query) {
-			
+
 			if( !isset($meta_query['key']) )
 				continue;
 
@@ -513,7 +527,7 @@ class EPL_SEARCH {
 				'terms'		=>	$value,
 			);
 		}
-		
+
 		$this->tax_query = apply_filters('epl_preprocess_search_tax_query',$this->tax_query);
 	}
 

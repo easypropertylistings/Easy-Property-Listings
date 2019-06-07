@@ -80,57 +80,60 @@ function epl_meta_box_inner_custom_box($post, $args) {
 						echo '<h3>'.__($group['label'], 'easy-property-listings' ).'</h3>';
 					}
 				?>
-				<table class="form-table epl-form-table">
-					<tbody>
-						<?php
-							$fields = $group['fields'];
-							$fields = array_filter($fields);
-							if(!empty($fields)) {
-								foreach($fields as $field) {
-									if(isset($field['exclude']) && !empty($field['exclude'])) {
-										if( in_array($post->post_type, $field['exclude']) ) {
-											continue;
-										}
-									}
-
-									if(isset($field['include']) && !empty($field['include'])) {
-										if( !in_array($post->post_type, $field['include']) ) {
-											continue;
-										}
-									}
-									$val = get_post_meta($post->ID, $field['name'], true);
-									if( has_action('epl_before_meta_field_'.$field['name']) ) {
-										do_action('epl_before_meta_field_'.$field['name'],$post,$val);
-									}
-									?>
-									<tr class="form-field">
-
-										<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
-										<th valign="top" scope="row">
-											<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
-										</th>
-										<?php endif; ?>
-
-										<?php if($group['columns'] > 1) { ?>
-											</tr><tr class="form-field">
-										<?php } ?>
-
-										<td>
-											<?php
-												epl_render_html_fields ($field,$val);
-											?>
-										</td>
-									</tr>
-									<?php
-										if( has_action('epl_after_meta_field_'.$field['name']) ) {
-											do_action('epl_after_meta_field_'.$field['name'],$post,$val);
-										}
-									?>
-								<?php }
+				<ul class="form-table epl-form-table">
+					<?php
+					$fields = $group['fields'];
+					$gp_field_width = isset( $group['width'] ) ? $group['width'] : '1';
+					$fields = array_filter($fields);
+					if(!empty($fields)) {
+						foreach($fields as $field) {
+							if(isset($field['exclude']) && !empty($field['exclude'])) {
+								if( in_array($post->post_type, $field['exclude']) ) {
+									continue;
+								}
 							}
-						?>
-					</tbody>
-				</table>
+
+							if(isset($field['include']) && !empty($field['include'])) {
+								if( !in_array($post->post_type, $field['include']) ) {
+									continue;
+								}
+							}
+							$val = get_post_meta($post->ID, $field['name'], true);
+							if( has_action('epl_before_meta_field_'.$field['name']) ) {
+								do_action('epl_before_meta_field_'.$field['name'],$post,$val);
+							}
+
+							$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
+							?>
+							<li id="epl_<?php echo $field['name']; ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo $field_width; ?> epl_<?php echo $field['name']; ?>_wrap epl-field-type-<?php echo $field['type'] ?>">
+
+								
+								<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
+								<div class="form-field epl-form-field-label">
+									<span valign="top" scope="row">
+										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
+									</span>
+								</div>
+								<?php endif; ?>
+								
+
+								<div id="epl_<?php echo $field['name']; ?>" class="form-field epl-form-field-value epl_<?php echo $field['name']; ?>">
+									<?php
+										epl_render_html_fields ($field,$val);
+									?>
+								</div>
+								
+							</li>
+							
+							<?php
+								if( has_action('epl_after_meta_field_'.$field['name']) ) {
+									do_action('epl_after_meta_field_'.$field['name'],$post,$val);
+								}
+							?>
+						<?php }
+					}
+					?>
+				</ul>
 			</div>
 			<?php
 		} ?>

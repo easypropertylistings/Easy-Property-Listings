@@ -29,6 +29,18 @@ function epl_get_author_meta() {
 }
 
 /**
+ * Print EPL property address
+ *
+ * @since 1.0
+ * @param integer $post_ID
+ * @return the string for address
+ */
+function epl_the_property_address( $post_ID = '' ) {
+	$address = epl_get_property_address($post_ID);
+	echo apply_filters('epl_the_property_address_filter', $address);
+}
+
+/**
  * Get EPL property address
  *
  * @since 1.0
@@ -79,6 +91,45 @@ function epl_get_property_address($post_ID='') {
 
 	$address = trim($address); $address = trim($address, ","); $address = trim($address);
 	return apply_filters('epl_get_property_address_filter', $address);
+}
+
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_postcode() {
+	$epl_display_label_postcode = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_postcode'])) {
+		$epl_display_label_postcode = $epl_settings['label_postcode'];
+	}
+	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
+}
+
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_bond( ) {
+	$epl_display_label_bond = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
+		$epl_display_label_bond = $epl_settings['label_bond'];
+	}
+	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
+}
+
+/**
+ * @depricated since 2.2. use epl_labels instead
+ */
+function epl_display_label_suburb( ) {
+	$epl_display_label_suburb = '';
+
+	global $epl_settings;
+	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
+		$epl_display_label_suburb = $epl_settings['label_suburb'];
+	}
+	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
 }
 
 // Front End Functions

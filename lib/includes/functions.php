@@ -3,8 +3,8 @@
  * Front End Functions
  *
  * @package     EPL
- * @subpackage  Functions/FrontEnd
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @subpackage  Functions/Global
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -192,6 +192,7 @@ function epl_get_currencies() {
 		'NOK'  => __( 'Norwegian Krone', 'easy-property-listings'  ),
 		'PHP'  => __( 'Philippine Pesos', 'easy-property-listings'  ),
 		'PLN'  => __( 'Polish Zloty', 'easy-property-listings'  ),
+		'PKR'  => __( 'Pakistani Rupee','easy-property-listings' ),
 		'QAR'  => __( 'Qatar Riyal (QAR)', 'easy-property-listings'  ),
 		'SGD'  => __( 'Singapore Dollar (&#36;)', 'easy-property-listings'  ),
 		'ZAR'  => __( 'South African Rand (R)', 'easy-property-listings'  ),
@@ -287,11 +288,10 @@ function epl_currency_formatted_amount( $price ) {
 		return epl_currency_filter( epl_format_amount( $price , true ) );
 	else
 		return epl_currency_filter( epl_format_amount( $price , false ) );
-
 }
 
 /**
- * Get the currency formatted amount
+ * Get labels
  *
  * @since 2.2
  * @param integer $key Settings meta key
@@ -304,7 +304,6 @@ function epl_labels( $key ) {
 	foreach($field_groups as $field_group) {
 		if($field_group['id']	==	'labels' || $field_group['id']	==	'address') {
 			$epl_labels = array_merge ( $epl_labels, array_filter($field_group['fields']) );
-
 		}
 	}
 	foreach($epl_labels as $label_key	=>	$label) {
@@ -319,54 +318,146 @@ function epl_labels( $key ) {
 }
 
 /**
- * @depricated since 2.2. use epl_labels instead
- */
-function epl_display_label_suburb( ) {
-	$epl_display_label_suburb = '';
-
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_suburb'])) {
-		$epl_display_label_suburb = $epl_settings['label_suburb'];
-	}
-	return apply_filters( 'epl_display_label_suburb', $epl_display_label_suburb );
-}
-
-/**
- * @depricated since 2.2. use epl_labels instead
- */
-function epl_display_label_bond( ) {
-	$epl_display_label_bond = '';
-
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_bond'])) {
-		$epl_display_label_bond = $epl_settings['label_bond'];
-	}
-	return apply_filters( 'epl_display_label_bond', $epl_display_label_bond );
-}
-
-/**
- * @depricated since 2.2. use epl_labels instead
- */
-function epl_display_label_postcode() {
-	$epl_display_label_postcode = '';
-
-	global $epl_settings;
-	if(!empty($epl_settings) && isset($epl_settings['label_postcode'])) {
-		$epl_display_label_postcode = $epl_settings['label_postcode'];
-	}
-	return apply_filters( 'epl_display_label_postcode', $epl_display_label_postcode );
-}
-
-/**
- * Print EPL property address
+ * Display or retrieve the current listing address based on user display selection with optional markup.
  *
- * @since 1.0
- * @param integer $post_ID
- * @return the string for address
+ * @since 3.3
+ *
+ * @param string $before   Optional. Markup to prepend to the title. Default empty.
+ * @param string $after    Optional. Markup to append to the title. Default empty.
+ * @param bool   $country  Optional. Whether to echo or return country. Default false for country.
+ * @param bool   $echo     Optional. Whether to echo or return the title. Default true for echo.
+ * @return string|void Current post title if $echo is false.
  */
-function epl_the_property_address( $post_ID = '' ) {
-	$address = epl_get_property_address($post_ID);
-	echo apply_filters('epl_the_property_address_filter', $address);
+function epl_the_address( $before = '', $after = '', $country = false, $echo = true ) {
+	$address = epl_get_the_address();
+
+        if ( strlen($address) == 0 )
+                return;
+
+        $address = $before . $address . $after;
+
+        if ( $echo )
+                echo $address;
+        else
+		return $address;
+}
+
+/**
+ * Retrieve address based on user display selection.
+ *
+ * @since 3.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ *
+ * @param  array  $address_args address components
+ * @param  array  $sep  override default seperators for each address components here
+ * @return [type]       [description]
+ *
+ */
+function epl_get_the_address( $address_args = array(), $sep = array(), $country = false ) {
+
+	$address = '';
+
+	$address_defaults = array(
+		'sub_number'		=>	'/',
+		'lot_number'		=>	' ',
+		'street_number'		=>	' ',
+		'street'			=>	', ',
+		'suburb'			=>	' ',
+		'city'			=>	' ',
+		'state'			=>	' ',
+		'postal_code'		=>	' ',
+		'country'		=>	' ',
+	);
+
+	// override default seperators for address components
+	$seps = array_merge( $address_defaults, $sep );
+
+	// Output the full address based on user selection
+	if( empty ( $address_args ) ) {
+		$address_args = array_keys( $address_defaults );
+	}
+
+	foreach( $address_args as $arg ) {
+
+		if( isset( $address_defaults[$arg] ) ) {
+
+			if( get_property_meta( 'property_address_display' ) != 'yes' && in_array( $arg, array( 'sub_number','lot_number', 'street_number', 'street' ) ) ) {
+				continue;
+			}
+
+			// Country hidden by default
+			if ( $country != true && in_array( $arg, array( 'country' ) ) )
+				continue;
+
+			$value = get_property_meta( 'property_address_' . $arg );
+
+			if( !empty($value) )
+				$address .= get_property_meta( 'property_address_' . $arg ) . $seps[$arg];
+		}
+	}
+
+	/**
+	 * Filters the post title.
+	 *
+	 * @since 3.3
+	 *
+	 * @param string $title The listing address.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_the_address', $address );
+}
+
+/**
+ * Display or retrieve the listing status label with optional markup.
+ *
+ * @since 3.3
+ *
+ * @param integer $post_ID
+ * @param string $meta_key
+ * @return the string/list for values
+ */
+function epl_the_status( $before = '', $after = '', $echo = true ) {
+	$status = epl_get_the_status();
+
+	$status_opts = epl_get_property_status_opts();
+
+        if ( strlen($status) == 0 )
+                return;
+
+        $status = $before . $status_opts[$status] . $after;
+
+        if ( $echo )
+                echo $status;
+        else
+                return $status;
+}
+
+/**
+ * Retrieve listing status.
+ *
+ * @since 3.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ * @return string
+ */
+function epl_get_the_status( $post = 0 ) {
+
+	$post = get_post( $post );
+
+	$status = get_property_meta( 'property_status' );
+	$status = isset( $status ) ? $status : '';
+	$id = isset( $post->ID ) ? $post->ID : 0;
+
+	/**
+	 * Filters the status.
+	 *
+	 * @since 3.3
+	 *
+	 * @param string $title The listing status.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_get_the_status', $status, $id );
 }
 
 /**
@@ -440,6 +531,62 @@ function epl_meta_location_label() {
 }
 
 /**
+ * Display or retrieve the under offer label with optional markup.
+ *
+ * @since 3.3
+ *
+ * @param string $before Optional. Markup to prepend to the formatted Under Offer label. Default empty.
+ * @param string $after  Optional. Markup to append to the formatted Under Offer label. Default empty.
+ * @param bool   $echo   Optional. Whether to echo or return the formatted Under Offer label. Default true for echo.
+ * @return string|void Current post title if $echo is false.
+ */
+function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
+	$under_offer = epl_get_the_under_offer();
+
+	$under_offer_label = epl_meta_under_offer_label();
+
+        if ( strlen($under_offer) == 0 )
+                return;
+
+        if ( strtolower($under_offer) != 'yes' && 'sold' != epl_get_the_status() )
+		return;
+
+        $under_offer = $before . $under_offer_label . $after;
+
+        if ( $echo )
+                echo $under_offer;
+        else
+                return $under_offer;
+}
+
+/**
+ * Retrieve listing under offer value.
+ *
+ * @since 3.3
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ * @return string
+ */
+function epl_get_the_under_offer( $post = 0 ) {
+
+	$post = get_post( $post );
+
+	$under_offer = get_property_meta( 'property_under_offer' );
+	$under_offer = 'yes' == get_property_meta( 'property_under_offer' ) && 'sold' != epl_get_the_status() ? $under_offer : '';
+	$id = isset( $post->ID ) ? $post->ID : 0;
+
+	/**
+	 * Filters the status.
+	 *
+	 * @since 3.3
+	 *
+	 * @param string $under_offer The Under Offer status.
+	 * @param int    $id    The post ID.
+	 */
+	return apply_filters( 'epl_get_the_under_offer', $under_offer, $id );
+}
+
+/**
  * Under Offer Label
  *
  * @since 2.1
@@ -465,22 +612,22 @@ function epl_meta_under_offer_label() {
  */
 function epl_listing_load_meta_property_category() {
 	$defaults = array(
-		'House'				=>	__('House', 'easy-property-listings' ),
-		'Unit'				=>	__('Unit', 'easy-property-listings' ),
-		'Townhouse'			=>	__('Townhouse', 'easy-property-listings' ),
-		'Villa'				=>	__('Villa', 'easy-property-listings' ),
-		'Apartment'			=>	__('Apartment', 'easy-property-listings' ),
-		'Flat'				=>	__('Flat', 'easy-property-listings' ),
-		'Studio'			=>	__('Studio', 'easy-property-listings' ),
-		'Warehouse'			=>	__('Warehouse', 'easy-property-listings' ),
-		'DuplexSemi-detached'		=>	__('Duplex Semi-detached', 'easy-property-listings' ),
-		'Alpine'			=>	__('Alpine', 'easy-property-listings' ),
-		'AcreageSemi-rural'		=>	__('Acreage Semi-rural', 'easy-property-listings' ),
-		'Retirement'			=>	__('Retirement', 'easy-property-listings' ),
-		'BlockOfUnits'			=>	__('Block Of Units', 'easy-property-listings' ),
-		'Terrace'			=>	__('Terrace', 'easy-property-listings' ),
-		'ServicedApartment'		=>	__('Serviced Apartment', 'easy-property-listings' ),
-		'Other'				=>	__('Other', 'easy-property-listings' )
+		'House'			=>	__('House', 'easy-property-listings' ),
+		'Unit'			=>	__('Unit', 'easy-property-listings' ),
+		'Townhouse'		=>	__('Townhouse', 'easy-property-listings' ),
+		'Villa'			=>	__('Villa', 'easy-property-listings' ),
+		'Apartment'		=>	__('Apartment', 'easy-property-listings' ),
+		'Flat'			=>	__('Flat', 'easy-property-listings' ),
+		'Studio'		=>	__('Studio', 'easy-property-listings' ),
+		'Warehouse'		=>	__('Warehouse', 'easy-property-listings' ),
+		'DuplexSemi-detached'	=>	__('Duplex Semi-detached', 'easy-property-listings' ),
+		'Alpine'		=>	__('Alpine', 'easy-property-listings' ),
+		'AcreageSemi-rural'	=>	__('Acreage Semi-rural', 'easy-property-listings' ),
+		'Retirement'		=>	__('Retirement', 'easy-property-listings' ),
+		'BlockOfUnits'		=>	__('Block Of Units', 'easy-property-listings' ),
+		'Terrace'		=>	__('Terrace', 'easy-property-listings' ),
+		'ServicedApartment'	=>	__('Serviced Apartment', 'easy-property-listings' ),
+		'Other'			=>	__('Other', 'easy-property-listings' )
 	);
 	return apply_filters( 'epl_listing_meta_property_category', $defaults );
 }
@@ -513,8 +660,8 @@ function epl_listing_meta_property_category_value( $key ) {
  */
 function epl_listing_load_meta_land_category() {
 	$defaults = array(
-		'Commercial'			=>	__('Commercial', 'easy-property-listings' ),
-		'Residential'			=>	__('Residential', 'easy-property-listings' )
+		'Commercial'		=>	__('Commercial', 'easy-property-listings' ),
+		'Residential'		=>	__('Residential', 'easy-property-listings' )
 	);
 	return apply_filters( 'epl_listing_meta_land_category', $defaults );
 }
@@ -541,15 +688,15 @@ function epl_listing_meta_land_category_value( $key ) {
  */
 function epl_listing_load_meta_commercial_category() {
 	$defaults = array(
-		'Commercial Farming'		=>	__('Commercial Farming', 'easy-property-listings' ),
-		'Land/Development'		=>	__('Land/Development', 'easy-property-listings' ),
-		'Hotel/Leisure'			=>	__('Hotel/Leisure', 'easy-property-listings' ),
-		'Industrial/Warehouse'		=>	__('Industrial/Warehouse', 'easy-property-listings' ),
-		'Medical/Consulting'		=>	__('Medical/Consulting', 'easy-property-listings' ),
-		'Offices'			=>	__('Offices', 'easy-property-listings' ),
-		'Retail'			=>	__('Retail', 'easy-property-listings' ),
-		'Showrooms/Bulky Goods'		=>	__('Showrooms/Bulky Goods', 'easy-property-listings' ),
-		'Other'				=>	__('Other', 'easy-property-listings' )
+		'Commercial Farming'	=>	__('Commercial Farming', 'easy-property-listings' ),
+		'Land/Development'	=>	__('Land/Development', 'easy-property-listings' ),
+		'Hotel/Leisure'		=>	__('Hotel/Leisure', 'easy-property-listings' ),
+		'Industrial/Warehouse'	=>	__('Industrial/Warehouse', 'easy-property-listings' ),
+		'Medical/Consulting'	=>	__('Medical/Consulting', 'easy-property-listings' ),
+		'Offices'		=>	__('Offices', 'easy-property-listings' ),
+		'Retail'		=>	__('Retail', 'easy-property-listings' ),
+		'Showrooms/Bulky Goods'	=>	__('Showrooms/Bulky Goods', 'easy-property-listings' ),
+		'Other'			=>	__('Other', 'easy-property-listings' )
 	);
 	return apply_filters( 'epl_listing_meta_commercial_category', $defaults );
 }
@@ -616,15 +763,15 @@ function epl_listing_load_meta_commercial_rent_period_value( $key ) {
  */
 function epl_listing_load_meta_rural_category() {
 	$defaults = array(
-		'Cropping'			=>	__('Cropping', 'easy-property-listings' ),
-		'Dairy'				=>	__('Dairy', 'easy-property-listings' ),
-		'Farmlet'			=>	__('Farmlet', 'easy-property-listings' ),
-		'Horticulture'			=>	__('Horticulture', 'easy-property-listings' ),
-		'Livestock'			=>	__('Livestock', 'easy-property-listings' ),
-		'Viticulture'			=>	__('Viticulture', 'easy-property-listings' ),
-		'MixedFarming'			=>	__('Mixed Farming', 'easy-property-listings' ),
-		'Lifestyle'			=>	__('Lifestyle', 'easy-property-listings' ),
-		'Other'				=>	__('Other', 'easy-property-listings' )
+		'Cropping'		=>	__('Cropping', 'easy-property-listings' ),
+		'Dairy'			=>	__('Dairy', 'easy-property-listings' ),
+		'Farmlet'		=>	__('Farmlet', 'easy-property-listings' ),
+		'Horticulture'		=>	__('Horticulture', 'easy-property-listings' ),
+		'Livestock'		=>	__('Livestock', 'easy-property-listings' ),
+		'Viticulture'		=>	__('Viticulture', 'easy-property-listings' ),
+		'MixedFarming'		=>	__('Mixed Farming', 'easy-property-listings' ),
+		'Lifestyle'		=>	__('Lifestyle', 'easy-property-listings' ),
+		'Other'			=>	__('Other', 'easy-property-listings' )
 	);
 	return apply_filters( 'epl_listing_meta_rural_category', $defaults );
 }
@@ -975,7 +1122,9 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 		case 'date':
 			$atts = '';
-			echo '<input type="text" class="epldatepicker" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+			$format 	= isset( $field['format'] ) ? $field['format'] : "Y-m-d" ;
+			$timepicker = isset( $field['timepicker'] ) ? $field['timepicker'] : false ;
+			echo '<input type="text" class="epldatepicker" data-format="'.$format.'"  data-timepicker="'.$timepicker.'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
 			break;
 
 
@@ -1039,7 +1188,6 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			echo '<span class="epl-help-text">'.__($field['help'], 'easy-property-listings' ).'</span>';
 		}
 	}
-
  }
 
 /**
@@ -1073,24 +1221,24 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 		}
 	}
 
-	$get_google_maps_api_key_uri = '<a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">' . __( 'Google Maps Api Key' , 'easy-property-listings') . '</a>';
+	$get_google_maps_api_key_uri = '<a target="_blank" href="https://developers.google.com/maps/documentation/javascript/get-api-key">' . __( 'Google Maps API Key' , 'easy-property-listings') . '</a>';
 
 
 	$epl_currency_positions = array(
-			'before'	=> __('Before - $10', 'easy-property-listings' ),
-			'after'		=> __('After - 10$', 'easy-property-listings' )
-			);
+		'before'	=> __('Before - $10', 'easy-property-listings' ),
+		'after'		=> __('After - 10$', 'easy-property-listings' )
+		);
 	$epl_currency_types = epl_get_currencies();
 	$epl_post_types = epl_get_post_types();
 	 if ( !function_exists('get_editable_roles') ) {
 		 require_once( ABSPATH . '/wp-admin/includes/user.php' );
 	 }
 	$roles = array(
-		'level_10'  =>  __('Administrator'),
-		'level_7'  =>  __('Editor'),
-		'level_2'  =>  __('Author'),
-		'level_1'  =>  __('Contributor'),
-		'level_0'  =>  __('Subscriber')
+		'level_10'	=>  __('Administrator', 'easy-property-listings' ),
+		'level_7'	=>  __('Editor', 'easy-property-listings' ),
+		'level_2'	=>  __('Author', 'easy-property-listings' ),
+		'level_1'	=>  __('Contributor', 'easy-property-listings' ),
+		'level_0'	=>  __('Subscriber', 'easy-property-listings' )
 	);
 	$fields = array(
 		array(
@@ -1121,6 +1269,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Address', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'address',
+			'help'		=>	__('Use these settings to adjust the address labels to suite your location and address format for your listings.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1192,7 +1341,15 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Labels', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'labels',
+			'help'		=>	__('Customise the labels that are used to show the status and information on the archive and individual listing pages.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
+
+				array(
+					'name'		=>	'label_new',
+					'label'		=>	__('New/Just Listed Label', 'easy-property-listings' ),
+					'type'		=>	'text',
+					'default'	=>	__('New' , 'easy-property-listings'  )
+				),
 
 				array(
 					'name'		=>	'sticker_new_range',
@@ -1200,13 +1357,6 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'type'		=>	'number',
 					'default'	=>	'7',
 					'help'		=>	__('Listings will have a "NEW" Sticker for the defined number of days.', 'easy-property-listings' )
-				),
-
-				array(
-					'name'		=>	'label_new',
-					'label'		=>	__('New/Just Listed Label', 'easy-property-listings' ),
-					'type'		=>	'text',
-					'default'	=>	__('New' , 'easy-property-listings'  )
 				),
 
 				array(
@@ -1245,6 +1395,13 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				),
 
 				array(
+					'name'		=>	'label_bond',
+					'label'		=>	__('Rental Bond/Deposit Label', 'easy-property-listings' ),
+					'type'		=>	'text',
+					'default'	=>	__('Bond', 'easy-property-listings' )
+				),
+
+				array(
 					'name'		=>	'display_bond',
 					'label'		=>	__('Rental Bond/Deposit Display', 'easy-property-listings' ),
 					'type'		=>	'radio',
@@ -1253,14 +1410,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 							0	=>	__('Disable', 'easy-property-listings' )
 					),
 					'help'		=>	__('Display the Bond/Deposit on rental listings.', 'easy-property-listings' )
-				),
-
-				array(
-					'name'		=>	'label_bond',
-					'label'		=>	__('Rental Bond/Deposit Label', 'easy-property-listings' ),
-					'type'		=>	'text',
-					'default'	=>	__('Bond', 'easy-property-listings' )
-				),
+				)
 			)
 		),
 
@@ -1268,7 +1418,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Listing Single View', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Configure the default options when viewing a single listing.', 'easy-property-listings' ),
+			'help'		=>	__('Configure the default options when viewing a single listing.', 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'display_single_gallery',
@@ -1278,7 +1428,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 						1	=>	__('Enable', 'easy-property-listings' ),
 						0	=>	__('Disable', 'easy-property-listings' )
 					),
-					'default'	=>	0,
+					'default'	=>	1,
 					'help'		=>	__('Images uploaded and attached to a listing will automatically display on the single listing page.', 'easy-property-listings' )
 				),
 
@@ -1311,7 +1461,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Listing Archive View', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'general',
-			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'easy-property-listings' ),
+			'help'		=>	__('Configure the default options for when viewing the archive listing pages.', 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'display_excerpt_length',
@@ -1349,9 +1499,14 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Search Widget: Tab Labels', 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'labels',
-			'help'		=>	__('Customise the tab labels of the EPL - Search Widget.', 'easy-property-listings' ),
+			'help'		=>	__('Customise the tab labels of the EPL - Search Widget or [listing_search] shortcode.', 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
-
+				array(
+					'name'		=>	'widget_label_all',
+					'label'		=>	__('All', 'easy-property-listings' ),
+					'type'		=>	'text',
+					'default'	=>	__('All', 'easy-property-listings' )
+				),
 				array(
 					'name'		=>	'widget_label_property',
 					'label'		=>	__('Property', 'easy-property-listings' ),
@@ -1401,6 +1556,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Dashboard Listing Columns' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'admin_general',
+			'help'		=>	__('Use the following settings to change how the Dashboard > Property or any listing of the types you have enabled display.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 
 				array(
@@ -1537,11 +1693,11 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			)
 		),
 
-
 		array(
 			'label'		=>	__('Currency' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'currency',
+			'help'		=>	sprintf( __('Select your default currency. If you can not find the currency you are looking for, you can add additional currencies with a filter, <a href="%s" target="_blank">visit the codex to see how</a>.' , 'easy-property-listings' ) , esc_url( 'https://codex.easypropertylistings.com.au/article/153-eplgetcurrencies' ) ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'currency',
@@ -1575,6 +1731,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Inspection Date & Time Format' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'inspection_date_time',
+			'help'		=>	__('These settings allow you to control how your inspection times display by default.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'inspection_date_format',
@@ -1619,6 +1776,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Contact Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'contact',
+			'help'		=>	__('You can allow access to the Contacts system for logged in users.' , 'easy-property-listings' ) . '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'	=>	'min_contact_access',
@@ -1635,6 +1793,8 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Reports Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'reports',
+			'help'		=>	__('You can allow access to the Reports system for logged in users.' , 'easy-property-listings' ) . '<hr/>',
+
 			'fields'	=>	array(
 				array(
 					'name'	=>	'min_reports_access',
@@ -1651,6 +1811,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			'label'		=>	__('Advanced Settings' , 'easy-property-listings' ),
 			'class'		=>	'core',
 			'id'		=>	'advanced',
+			'help'		=>	sprintf( __('Additional settings to control how Easy Property Listings works. For even more advanced filters and hooks, <a href="%s" target="_blank">visit the codex</a>.' , 'easy-property-listings' ) ,esc_url( 'https://codex.easypropertylistings.com.au/' ) ). '<hr/>',
 			'fields'	=>	array(
 				array(
 					'name'		=>	'epl_use_core_css',
@@ -1672,6 +1833,17 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					),
 					'default'	=>	'off',
 					'help'		=>	__('Check this to enable legacy css styles.' , 'easy-property-listings' )
+				),
+
+				array(
+					'name'		=>	'epl_css_enhanced',
+					'label'		=>	__('Enhanced Styles', 'easy-property-listings' ),
+					'type'		=>	'checkbox_option',
+					'opts'		=>	array(
+						'on'	=>	__('Enable', 'easy-property-listings' ),
+					),
+					'default'	=>	'off',
+					'help'		=>	__('Check this to enable enhanced structural css styles. This implements inline-block mode for a better grid format on your listings.' , 'easy-property-listings' )
 				),
 
 				array(
@@ -1714,6 +1886,18 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					'label'		=>	__('Google Maps API Key', 'easy-property-listings' ),
 					'type'		=>	'text',
 					'help'		=>	__("Register for a $get_google_maps_api_key_uri here." , 'easy-property-listings' )
+				),
+
+				array(
+					'name'		=>	'epl_plugin_mode',
+					'label'		=>	__('Mode', 'easy-property-listings' ),
+					'type'		=>	'radio',
+					'opts'		=>	array(
+						'development'	=>	__('Development', 'easy-property-listings' ),
+						'production'	=>	__('Production', 'easy-property-listings' )
+					),
+					'help'		=>	__('Production mode enqueue minified js & css for faster page loads.', 'easy-property-listings' ),
+					'default'	=>	'production'
 				),
 
 				array(
@@ -1804,23 +1988,40 @@ add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_cal
 * @param string $status Post Status like Publish, draft, future etc. default is publish
 * @return array
 */
-function epl_get_unique_post_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
+function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status='' ) {
 
     global $wpdb;
 
     if( empty( $key ) )
         return;
 
+    if($type == ''){
+    	$type = epl_get_core_post_types();
+    }
+
     $type = (array) $type;
     $type = array_map( 'sanitize_text_field', $type );
     $type_str = " ( '".implode("','", $type)."' ) ";
-    $res = $wpdb->get_col( $wpdb->prepare( "
+
+    $query = "
 SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
 LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+LEFT JOIN {$wpdb->postmeta} pm2 ON pm.post_id = pm2.post_id
 WHERE pm.meta_key = '%s'
 AND p.post_status = '%s'
 AND p.post_type IN $type_str
-", $key, $status ) );
+";
+
+if ( ! empty( $property_status ) ) {
+	$property_status = array_map( 'trim', explode( ',', $property_status ) );
+	if ( count( $property_status ) ) {
+		$query .= "
+		AND pm2.meta_key 		= 'property_status'
+		AND pm2.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
+	}
+}
+
+    $res = $wpdb->get_col( $wpdb->prepare( $query, $key, $status ) );
 
 	$res = array_filter($res);
 
@@ -1853,9 +2054,9 @@ AND p.post_type IN $type_str
  * @since 3.0
  */
 function epl_session_start() {
-    if(!session_id()) {
-        session_start();
-    }
+	if(!session_id()) {
+		session_start();
+	}
 }
 add_action('init', 'epl_session_start', 1);
 
@@ -1865,7 +2066,7 @@ add_action('init', 'epl_session_start', 1);
  * @since 3.0
  */
 function epl_session_end() {
-    session_destroy ();
+	session_destroy();
 }
 add_action('wp_logout', 'epl_session_end');
 add_action('wp_login', 'epl_session_end');
@@ -2130,6 +2331,21 @@ function epl_parse_atts($atts) {
 	if( empty($atts) )
 		return $atts;
 
+	$compare_operators = array(
+		'_min'		=>	'>=',
+		'_max'		=>	'<=',
+		'_not_equal'	=>	'!=',
+		'_like'		=>	'LIKE',
+		'_not_like'	=>	'NOT LIKE',
+		'_exists'	=>	'EXISTS',
+		'_not_exists'	=>	'NOT EXISTS',
+		'_in'		=>	'IN',
+		'_not_in'	=>	'NOT IN',
+		'_between'	=>	'BETWEEN',
+		'_not_between'	=>	'NOT BETWEEN'
+	);
+
+
 	foreach($atts as $key 	=>	&$value) {
 
 		$this_query = array(
@@ -2138,27 +2354,34 @@ function epl_parse_atts($atts) {
 		);
 
 		// check for meta
-		if( epl_starts_with($key,'epl_meta_') ) {
-			$key = preg_replace('/^epl_meta_/', '', $key);
+		if( epl_starts_with($key,'_') ) {
 
-			if( epl_ends_with($key,'_min') || epl_ends_with($key,'_max') ) {
+			$key = preg_replace('/^_/', '', $key);
 
-				if(epl_ends_with($key,'_min')) {
-					$key = preg_replace('/_min$/', '', $key);
-					$this_query['compare'] = '>=';
-				} else {
-					$key = preg_replace('/_max$/', '', $key);
-					$this_query['compare'] = '<=';
+			foreach($compare_operators as $look_for =>	$compare_operator) {
+
+				if( epl_ends_with($key,$look_for) ) {
+
+					$key = preg_replace('/'.$look_for.'$/', '', $key);
+					$this_query['compare'] = $compare_operator;
+
+					if( in_array($look_for, array('_in','_not_in', '_between', '_not_between') ) ){
+
+						$this_query['value'] =
+						array_map( 'trim', explode( ',', $this_query['value'] ) );
+					}
+
+					if( in_array($look_for, array('_exists','_not_exists') ) ){
+
+						unset($this_query['value']);
+					}
 				}
 			}
-
 			$this_query['key'] = $key;
-			$query['meta_query'][] = $this_query;
+			$query['meta_query'][$key.'_clause'] = $this_query;
 		}
-
 	}
 	return isset($query['meta_query'])?$query['meta_query'] : false;
-
 }
 
 /**
@@ -2336,3 +2559,63 @@ function epl_get_property_com_property_extent_opts() {
 		)
 	);
 }
+
+/**
+ * Get author id from name
+ *
+ * @since       3.1.1
+ */
+function epl_get_author_id_from_name($author) {
+	if( is_numeric($author) ) {
+		return absint($author);
+	} else {
+		$user = get_user_by( 'login', $author );
+		return $user->ID;
+	}
+}
+
+/**
+ * WP All Import Pro filter that processes property_price_global after updating or saving a post
+ *
+ * @since       3.3
+ */
+function epl_pmxi_import_post_saved($id) {
+
+	$post = get_post($id);
+
+	if( is_epl_post($post->post_type) ) {
+
+		if ( 'rental' == $post->post_type ) {
+			$price = get_post_meta($id,'property_rent',true);
+			update_post_meta($id,'property_price_global',$price);
+		} elseif ( 'commercial' == $post->post_type ) {
+			$price = get_post_meta($id,'property_price',true);
+			if($price == ''){
+				$price = get_post_meta($id,'property_com_rent',true);
+			}
+			update_post_meta($id,'property_price_global',$price);
+		} else {
+			$price = get_post_meta($id,'property_price',true);
+			update_post_meta($id,'property_price_global',$price);
+		}
+	}
+}
+add_action('pmxi_saved_post', 'epl_pmxi_import_post_saved', 10, 1);
+
+/**
+ * Load functions from child theme folder if present
+ *
+ * @since       3.3
+ */
+function epl_single_and_archive_functions() {
+
+	if(  is_epl_post_single() && file_exists(get_stylesheet_directory().'/easypropertylistings/functions-single.php' ) ) {
+		include_once(get_stylesheet_directory().'/easypropertylistings/functions-single.php' );
+	}
+
+	if( is_epl_post_archive() && file_exists(get_stylesheet_directory().'/easypropertylistings/functions-archive.php' ) ) {
+		include_once(get_stylesheet_directory().'/easypropertylistings/functions-archive.php' );
+	}
+}
+
+add_action('wp','epl_single_and_archive_functions',99);

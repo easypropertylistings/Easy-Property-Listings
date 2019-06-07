@@ -226,10 +226,10 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 	$comments = array();
 
 	$comments_query = array(
-		'post_type'	=>	epl_get_core_post_types(),
-		'number' => $total_items * 5,
-		'offset' => 0,
-		'order' => 'comment_date',
+		'type__in' =>	array('note','call','email','listing_alert'),
+		'number'        => $total_items * 5,
+		'offset'        => 0,
+		'order'         => 'comment_date',
 	);
 	if ( ! current_user_can( 'edit_posts' ) )
 		$comments_query['status'] = 'approve';
@@ -250,7 +250,7 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 	}
 
 	if ( $comments ) {
-		$activity_types = EPL_Contact::get_activity_types();
+		$activity_types = array();
 		echo '<div id="latest-comments" class="epl-dashboard-activity-feed activity-block epl-activity-block epl-feed-block">';
 		echo '<h3>' . __( 'Activity' ) . '</h3>';
 

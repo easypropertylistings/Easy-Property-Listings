@@ -19,37 +19,40 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return void
  */
 function epl_register_taxonomy_business_listings() {
+
+	$slug		= defined( 'EPL_BUSINESS_CAT_SLUG' ) ? EPL_BUSINESS_CAT_SLUG : 'business-category';
+	$hierarchical	= defined( 'EPL_BUSINESS_CAT_HIERARCHICAL' ) && EPL_BUSINESS_CAT_HIERARCHICAL ? false : true;
+	$rewrite	= defined( 'EPL_BUSINESS_CAT_DISABLE_REWRITE' ) && EPL_BUSINESS_CAT_DISABLE_REWRITE ? false : array( 'slug' => $slug, 'with_front' => true, 'hierarchical' => $hierarchical );
+	$rest		= defined( 'EPL_BUSINESS_CAT_DISABLE_REST' ) && EPL_BUSINESS_CAT_DISABLE_REST ? false : true;
+
 	$labels = array(
-		'name'                       => _x( 'Business Listings', 'Taxonomy General Name', 'easy-property-listings'  ),
-		'singular_name'              => _x( 'Business Listing', 'Taxonomy Singular Name', 'easy-property-listings'  ),
-		'menu_name'                  => __( 'Business Listings', 'easy-property-listings'  ),
-		'all_items'                  => __( 'All Business Listings', 'easy-property-listings'  ),
-		'parent_item'                => __( 'Parent Business Listing', 'easy-property-listings'  ),
-		'parent_item_colon'          => __( 'Parent Business Listing:', 'easy-property-listings'  ),
-		'new_item_name'              => __( 'New Business Listing Name', 'easy-property-listings'  ),
-		'add_new_item'               => __( 'Add New Business Listing', 'easy-property-listings'  ),
-		'edit_item'                  => __( 'Edit Business Listing', 'easy-property-listings'  ),
-		'update_item'                => __( 'Update Business Listing', 'easy-property-listings'  ),
-		'separate_items_with_commas' => __( 'Separate Business Listing with commas', 'easy-property-listings'  ),
-		'search_items'               => __( 'Search Business Listing', 'easy-property-listings'  ),
-		'add_or_remove_items'        => __( 'Add or remove Business Listing', 'easy-property-listings'  ),
-		'choose_from_most_used'      => __( 'Choose from the most used Business Listing', 'easy-property-listings'  ),
-		'not_found'                  => __( 'Business Listing Not Found', 'easy-property-listings'  ),
+		'name'				=> _x( 'Business Categories', 'Taxonomy General Name', 'easy-property-listings'  ),
+		'singular_name'			=> _x( 'Business Category', 'Taxonomy Singular Name', 'easy-property-listings'  ),
+		'menu_name'			=> __( 'Categories', 'easy-property-listings'  ),
+		'all_items'			=> __( 'All Business Categories', 'easy-property-listings'  ),
+		'parent_item'			=> __( 'Parent Business Category', 'easy-property-listings'  ),
+		'parent_item_colon'		=> __( 'Parent Business Category:', 'easy-property-listings'  ),
+		'new_item_name'			=> __( 'New Business Category Name', 'easy-property-listings'  ),
+		'add_new_item'			=> __( 'Add New Business Category', 'easy-property-listings'  ),
+		'edit_item'			=> __( 'Edit Business Category', 'easy-property-listings'  ),
+		'update_item'			=> __( 'Update Business Category', 'easy-property-listings'  ),
+		'separate_items_with_commas'	=> __( 'Separate Business Category with commas', 'easy-property-listings'  ),
+		'search_items'			=> __( 'Search Business Category', 'easy-property-listings'  ),
+		'add_or_remove_items'		=> __( 'Add or remove Business Category', 'easy-property-listings'  ),
+		'choose_from_most_used'		=> __( 'Choose from the most used Business Category', 'easy-property-listings'  ),
+		'not_found'			=> __( 'Business Category Not Found', 'easy-property-listings'  ),
 	);
-	$rewrite = array(
-		'slug'                       => 'business_listing',
-		'with_front'                 => true,
-		'hierarchical'               => false,
-	);
+
 	$args = array(
-		'labels'                     => $labels,
-		'hierarchical'               => true,
-		'public'                     => true,
-		'show_ui'                    => true,
-		'show_admin_column'          => true,
-		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => true,
-		'rewrite'                    => $rewrite,
+		'labels'			=> $labels,
+		'hierarchical'			=> $hierarchical,
+		'public'			=> true,
+		'show_ui'			=> true,
+		'show_admin_column'		=> true,
+		'show_in_nav_menus'		=> true,
+		'show_tagcloud'			=> true,
+		'show_in_rest'			=> $rest,
+		'rewrite'			=> $rewrite,
 	);
 	register_taxonomy( 'tax_business_listing', array( 'business' ) , $args );
 }

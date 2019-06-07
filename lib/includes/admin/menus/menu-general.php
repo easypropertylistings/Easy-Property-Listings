@@ -22,7 +22,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 				if($field['type'] == 'help')
 					continue;
 
-				if( $field['type'] == 'radio' || $field['type'] == 'checkbox' || $field['type'] == 'checkbox_single') {
+				if( $field['type'] == 'radio' || $field['type'] == 'checkbox' || $field['type'] == 'checkbox_single' || $field['type'] == 'checkbox_option') {
 					if(!isset($_REQUEST[ $field['name'] ])) {
 
 						$_REQUEST[ $field['name'] ] = '';
@@ -36,7 +36,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 				}
 				$epl_settings = get_option('epl_settings');
 
-				if( isset($field['default']) && $field['type'] != 'checkbox_single' ) {
+				if( isset($field['default']) && !in_array($field['type'], array('checkbox_single','checkbox_option')) ) {
 					if( !isset($_REQUEST[ $field['name'] ]) || $_REQUEST[ $field['name'] ] == '' ) {
 						$_REQUEST[ $field['name'] ] = $field['default'];
 					}
