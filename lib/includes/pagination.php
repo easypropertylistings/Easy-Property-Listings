@@ -399,6 +399,83 @@ if ( !function_exists( 'epl_get_multipage_link' ) ) :
 endif;
 
 /**
+ * Get next page URL for EPL archives / shortcodes
+ * @param  [type] $query [description]
+ * @return [type]        [description]
+ */
+function epl_get_next_page_link($query) {
+	$link =  next_posts( $query->max_num_pages, false );
+
+	if( $query->get('is_epl_shortcode') && 
+		in_array($query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
+		$link = epl_add_or_update_params($link,'pagination_id', $query->get('instance_id') );
+	}
+	return apply_filters('epl_get_next_page_link',$link);
+}
+
+/**
+ * Next page Link
+ * @param  [type] $query [description]
+ * @param  [type] $label [description]
+ * @return [type]        [description]
+ */
+function epl_next_post_link($query,$label=null) {
+
+	global $paged;
+	$nextpage = intval( $paged ) + 1;
+
+	if($nextpage <= $query->max_num_pages) {
+
+		if ( null === $label ) {
+	        $label = __( 'Next Page &raquo;', 'easy-property-listings'  );
+	    }
+
+		$attr = apply_filters( 'epl_next_posts_link_attributes', '' );
+		return '<a href="' . epl_get_next_page_link( $query ) . "\" $attr>" . preg_replace( '/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label ) . '</a>';
+	}
+
+	
+}
+
+/**
+ * Get Prev page URL for EPL archives / shortcodes
+ * @param  [type] $query [description]
+ * @return [type]        [description]
+ */
+function epl_get_prev_page_link($query) {
+
+	$link =  previous_posts( false );
+
+	if( $query->get('is_epl_shortcode') && 
+		in_array($query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
+		$link = epl_add_or_update_params($link,'pagination_id', $query->get('instance_id') );
+	}
+	return apply_filters('epl_get_prev_page_link',$link);
+}
+
+/**
+ * Prev page Link
+ * @param  [type] $query [description]
+ * @param  [type] $label [description]
+ * @return [type]        [description]
+ */
+function epl_prev_post_link($query,$label=null) {
+
+	global $paged;
+
+	if( $paged > 1 ) {
+
+		if ( null === $label ) {
+	        $label = __( '&laquo; Previous Page', 'easy-property-listings'  );
+	    }
+
+		$attr = apply_filters( 'epl_prev_posts_link_attributes', '' );
+		return '<a href="' . epl_get_prev_page_link( $query ) . "\" $attr>" . preg_replace( '/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label ) . '</a>';
+	}
+	
+}
+
+/**
  * WordPress Default Pagination *
  * @since 2.1
  */
@@ -415,7 +492,7 @@ function epl_wp_default_pagination($query = array() ) {
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
 		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'easy-property-listings'  ), $query_open->max_num_pages ); ?></div>
-		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'easy-property-listings'  ), $query_open->max_num_pages ); ?></div>
+		<div class="alignright"><?php echo epl_next_post_link($query_open); ?></div>
 	</div> <?php }
 
 }
