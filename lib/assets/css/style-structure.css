@@ -57,12 +57,10 @@
 	border-color: #ebccd1;
 }
 
-
-
 /**********************
 	Theme Setup attempt
 ***********************/
-
+/**
 .epl-archive-default .loop {
 	max-width: 1170px;
 	margin: 0 auto;
@@ -73,7 +71,7 @@
 		padding-right: 20px;
 	}
 }
-
+**/
 
 /**********************
 	Loop
