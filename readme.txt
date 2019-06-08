@@ -393,6 +393,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.3.3 June TBA, 2019 =
+
+* Tweak: CSS tweaked for list/grid mode preventing bullets appearing on some themes.
+* Fix: Missing post wrapper classes for iThemes builder and Heuman theme when using Listing Template extensions and masonry effect.
+* Fix: Using WordPress pagination with shortcodes corrected.
+
 = 3.3.2 May 31, 2019 =
 
 * Tweak: Added epl-clearfix to shortcode template to better clear when using page builder plugins.

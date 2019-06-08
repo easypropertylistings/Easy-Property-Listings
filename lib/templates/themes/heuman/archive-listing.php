@@ -26,7 +26,7 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<div class="post-list group">
+			<div class="post-list group <?php echo epl_template_class( 'heuman', 'archive' ); ?>">
 				<?php do_action( 'epl_property_loop_start' ); ?>
 					<?php $i = 1; echo '<div class="post-row">'; while ( have_posts() ): the_post(); ?>
 						<?php do_action( 'epl_property_blog' ); ?>

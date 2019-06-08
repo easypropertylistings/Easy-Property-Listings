@@ -1,10 +1,22 @@
+<?php
+/**
+ * The Default Template for displaying all Easy Property Listings archive/loop posts with the Genesis Theme Framework
+ *
+ * @package EPL
+ * @subpackage Templates/Themes/Divi
+ * @since 1.0
+ */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 <?php get_header(); ?>
 
 <div id="main-content">
 	<div class="container">
 		<div id="content-area" class="clearfix <?php echo epl_template_class( 'divi', 'archive' ); ?>">
 			<div id="left-area">
-		<?php
+			<?php
 			if ( have_posts() ) : ?>
 				<?php do_action( 'epl_property_loop_start' ); ?>
 			<?php
