@@ -1625,6 +1625,9 @@ function epl_add_or_update_params($url,$key,$value){
     if($a['host']){
         $result .= '//' . $a['host'];
     }
+    if($a['port']){
+        $result .= ':' . $a['port'];
+    }
     if($a['path']){
         $result .=  $a['path'];
     }
