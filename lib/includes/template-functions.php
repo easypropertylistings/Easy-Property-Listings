@@ -565,7 +565,7 @@ function epl_property_the_address() {
 	<?php } ?>
 	<span class="entry-title-sub">
 		<?php
-			if( $property->get_property_meta('property_com_display_suburb') != 'no' || $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+			if( $property->get_property_meta('property_com_display_suburb') == 'yes' || $property->get_property_meta('property_address_display') == 'yes' ) { ?>
 				<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb'); ?></span><?php
 				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 					echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';

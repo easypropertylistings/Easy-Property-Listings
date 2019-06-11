@@ -495,7 +495,7 @@ class EPL_Property_Meta {
 
 
 	/**
-	 * Formatted Address based on selected display option
+	 * Formatted Street level address based on selected display option
 	 *
 	 * @since 2.0
 	 * @return string formatted street address
