@@ -549,6 +549,7 @@ function epl_property_get_the_full_address(){
  * Get the full address
  *
  * @since 1.0
+ * @revised 3.3.3
  * @hooked epl_property_title
  * @hooked property_tab_address
  */
@@ -556,22 +557,31 @@ function epl_property_the_address() {
 
 	$epl_property_address_seperator	= apply_filters('epl_property_address_seperator',',');
 
-
-	global $property,$epl_settings;
+	global $property, $epl_settings;
 
 	?>
 	<?php if ( $property->get_property_meta('property_address_display') == 'yes' ) { ?>
 		<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
 	<?php } ?>
 	<span class="entry-title-sub">
+
 		<?php
-			if( $property->get_property_meta('property_com_display_suburb') == 'yes' || $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+			if ( $property->post_type == 'commercial' || $property->post_type == 'business' ){
+				if( $property->get_property_meta('property_com_display_suburb') == 'yes' || $property->get_property_meta('property_address_display') == 'yes' ) { ?>
+					<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb'); ?></span><?php
+					if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+						echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
+					}
+				}
+
+			} else { ?>
 				<span class="item-suburb"><?php echo $property->get_property_meta('property_address_suburb'); ?></span><?php
 				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 					echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
 				}
 			}
 		?>
+
 		<?php
 			if( $property->get_epl_settings('epl_enable_city_field') == 'yes' ) { ?>
 				<span class="item-city"><?php echo $property->get_property_meta('property_address_city'); ?></span><?php
