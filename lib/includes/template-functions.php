@@ -1625,6 +1625,9 @@ function epl_add_or_update_params($url,$key,$value){
     if($a['host']){
         $result .= '//' . $a['host'];
     }
+    if($a['port']){
+        $result .= ':' . $a['port'];
+    }
     if($a['path']){
         $result .=  $a['path'];
     }
@@ -2100,8 +2103,10 @@ function epl_get_shortcode_list() {
 function epl_home_pagination_fix( $query) {
 
 	global $wp_query;
-	$queried_post_type = isset( $query->query_vars['post_type'] ) ? $query->query_vars['post_type'] : '';
-	if( isset($wp_query->query['paged']) && in_array( $queried_post_type, epl_get_core_post_types() ) ){
+	$queried_post_type = isset( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array();
+	$diff = array_diff( $queried_post_type, epl_get_core_post_types() );
+	
+	if( isset($wp_query->query['paged']) && count($diff) == 0 ){
 		$query->set('paged', $wp_query->query['paged']);
 	}
 
