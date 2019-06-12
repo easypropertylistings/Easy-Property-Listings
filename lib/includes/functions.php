@@ -800,12 +800,18 @@ function epl_listing_load_meta_rural_category_value( $key ) {
  * @since 1.2
  * @param string $date
  * @return formatted date
+ * @revised 3.3
  */
 function epl_feedsync_format_date( $date ) {
     $date_example = '2014-07-22-16:45:56';
 
     $tempdate = explode('-',$date);
-	$date = $tempdate[0].'-'.$tempdate[1].'-'.$tempdate[2].' '.$tempdate[3];
+	$date = $tempdate[0].'-'.$tempdate[1].'-'.$tempdate[2];
+
+	if( isset($tempdate[3]) ){
+		$date .= ' '.$tempdate[3];
+	}
+
     return  date("Y-m-d H:i:s",strtotime($date));
 }
 
@@ -896,6 +902,7 @@ function epl_feedsync_switch_date_time($date_time=false,$old_time_zone='Australi
  * @since 2.1
  * @param array $field
  * @param string $val
+ * @revised 3.3
  */
 function epl_render_html_fields ( $field = array() , $val = '' ) {
  	global $post;
