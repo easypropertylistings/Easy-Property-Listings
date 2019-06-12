@@ -1,5 +1,21 @@
+<?php
+/**
+ * Content template for Author card
+ *
+ * @package     EPL
+ * @subpackage  Templates/Content
+ * @copyright   Copyright (c) 2019, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+?>
+
 <div class="epl-loop-author-box-wrapper">
-	
+
 	<div class="epl-loop-author-image">
 		<?php do_action('epl_author_thumbnail',$epl_author); ?>
 	</div>
