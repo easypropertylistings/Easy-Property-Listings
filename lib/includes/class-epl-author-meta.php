@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Classes/Author
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.3
  */
@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 1.3
  */
-
 if( !class_exists('EPL_Author_Meta') ) :
 
 	class EPL_Author_Meta {
@@ -226,7 +225,6 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 *
 		 * @since version 1.3
 		 */
-
 		function get_twitter_html( $html = '' , $style = 'i' ){
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
@@ -260,7 +258,6 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 *
 		 * @since version 3.3
 		 */
-
 		function get_instagram_html( $html = '' , $style = 'i' ){
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
@@ -294,7 +291,6 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 *
 		 * @since version 3.3
 		 */
-
 		function get_youtube_html( $html = '' , $style = 'i' ){
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
@@ -328,7 +324,6 @@ if( !class_exists('EPL_Author_Meta') ) :
 		 *
 		 * @since version 3.3
 		 */
-
 		function get_pinterest_html( $html = '' , $style = 'i' ){
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';

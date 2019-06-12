@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Meta
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -12,6 +12,11 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Get meta boxes
+ *
+ * @since 1.0
+ */
 function epl_get_meta_boxes() {
 
 	global $epl_settings;
@@ -1543,6 +1548,8 @@ function epl_get_meta_boxes() {
 
 /**
  * Get field labels from meta box
+ *
+ * @since 1.0
  * @return [type] [description]
  */
 function epl_get_meta_field_labels() {
@@ -1575,6 +1582,8 @@ function epl_get_meta_field_labels() {
 
 /**
  * Get meta field label
+ *
+ * @since 1.0
  * @param  string $key [description]
  * @return [type]      [description]
  */

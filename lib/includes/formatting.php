@@ -5,7 +5,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Formatting
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -238,7 +238,6 @@ function epl_currency_decimal_filter( $decimals = 2 ) {
 }
 add_filter( 'epl_sanitize_amount_decimals', 'epl_currency_decimal_filter' );
 add_filter( 'epl_format_amount_decimals', 'epl_currency_decimal_filter' );
-
 
 /**
  * Apply formatting to epl_the_excerpt

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * This shortcode generates meta fields documentation for all EPL post types
  * [listing_meta_doc post_type="property"] OR [listing_meta_doc] for all post types.
  *
- * @since       3.3.1
+ * @since       3.3.3
  */
 function epl_shortcode_listing_meta_doc_callback($atts) {
 

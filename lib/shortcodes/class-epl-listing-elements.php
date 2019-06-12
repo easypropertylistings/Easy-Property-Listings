@@ -9,7 +9,10 @@
  * @since       3.3
  */
 
-class EPL_LISTING_ELEMENTS {
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+class EPL_Listing_Elements {
 
 	function __construct() {
 		add_shortcode('listing_element',array($this,'listing_element') );
@@ -109,4 +112,4 @@ class EPL_LISTING_ELEMENTS {
 
 }
 
-new EPL_LISTING_ELEMENTS();
+new EPL_Listing_Elements();

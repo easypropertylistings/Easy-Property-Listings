@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage	Classes/Search
- * @copyright   Copyright (c) 2016, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
@@ -318,7 +318,7 @@ class EPL_Search_Fields {
 
 	}
 
-		/**
+	/**
 	 * Renders search frontend Radio field.
 	 *
 	 * @since  3.0

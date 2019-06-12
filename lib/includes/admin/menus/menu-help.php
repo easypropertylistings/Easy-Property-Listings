@@ -3,8 +3,8 @@
  * Help Page
  *
  * @package     EPL
- * @subpackage  Admin/Menus
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @subpackage  Admin/MenusHelp
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
  */
@@ -21,7 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				<p><?php _e('Nice! You installed Easy Property Listings and now you are ready to manage your listings.', 'easy-property-listings' ); ?>
 				<p><?php echo $link = sprintf( __('Below are some links and videos that will help you get started. If you still have questions, we have on-line documentation and tutorials packed with information or ask a question by opening a <a href="%s">support ticket</a>.', 'easy-property-listings' ) , esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) ); ?></p>
 				<hr>
-
 
 				<?php
 				/**
@@ -45,7 +44,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					</div>
 				</div>
 				<hr>
-
 
 				<?php
 				/**

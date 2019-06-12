@@ -52,8 +52,6 @@ $epl_license = get_option('epl_license');
 
 							//print_r($field)
 
-
-
 						?>
 							<div id="meta-sortables" class="meta-box-sortables tba-ui-sortable epl-menu-content">
 								<div id="epl-<?php echo $field['label']; ?>" class="postbox epl-menu-section epl-menu-license epl-<?php $field['type']; ?>">

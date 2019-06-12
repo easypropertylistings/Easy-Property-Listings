@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Classes/Updater
- * @copyright   Copyright (c) 2016, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  * @version	1.6.6
@@ -170,7 +170,7 @@ class EPL_SL_Plugin_Updater {
 			if( false === $version_info ) {
 
 				$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug, 'beta' => $this->beta ) );
-				
+
 				$this->set_version_info_cache( $version_info );
 			}
 
@@ -448,7 +448,7 @@ class EPL_SL_Plugin_Updater {
 					$version_info->$key = (array) $section;
 				}
 			}
-			
+
 			$this->set_version_info_cache( $version_info, $cache_key );
 
 		}

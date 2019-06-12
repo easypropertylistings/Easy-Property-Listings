@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Pagination
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.1
 */
@@ -27,47 +27,47 @@ function epl_fancy_pagination( $args = array() ) {
 	}
 
 	$args = wp_parse_args( $args, array(
-		'before' => '',
-		'after' => '',
-		'options' => array(),
-		'query' => $GLOBALS['wp_query'],
-		'type' => 'posts',
-		'echo' => true
+		'before' 	=> '',
+		'after' 	=> '',
+		'options' 	=> array(),
+		'query' 	=> $GLOBALS['wp_query'],
+		'type' 		=> 'posts',
+		'echo' 		=> true
 	) );
 
 	extract( $args, EXTR_SKIP );
 	$options = array(
-		'pages_text'    => __( 'Page %CURRENT_PAGE% of %TOTAL_PAGES%', 'easy-property-listings'  ),
-		'current_text'  => '%PAGE_NUMBER%',
-		'page_text'     => '%PAGE_NUMBER%',
-		'first_text'    => __( '&laquo; First', 'easy-property-listings'  ),
-		'last_text'     => __( 'Last &raquo;', 'easy-property-listings'  ),
-		'prev_text'     => __( '&laquo;', 'easy-property-listings'  ),
-		'next_text'     => __( '&raquo;', 'easy-property-listings'  ),
-		'dotleft_text'  => __( '...', 'easy-property-listings'  ),
-		'dotright_text' => __( '...', 'easy-property-listings'  ),
-		'num_pages' => 5,
-		'num_larger_page_numbers' => 3,
-		'larger_page_numbers_multiple' => 10,
-		'always_show' => false,
-		'use_pagenavi_css' => true,
-		'style' => 1,
+		'pages_text'			=> __( 'Page %CURRENT_PAGE% of %TOTAL_PAGES%', 'easy-property-listings'  ),
+		'current_text'			=> '%PAGE_NUMBER%',
+		'page_text'			=> '%PAGE_NUMBER%',
+		'first_text'			=> __( '&laquo; First', 'easy-property-listings'  ),
+		'last_text'			=> __( 'Last &raquo;', 'easy-property-listings'  ),
+		'prev_text'			=> __( '&laquo;', 'easy-property-listings'  ),
+		'next_text'			=> __( '&raquo;', 'easy-property-listings'  ),
+		'dotleft_text'			=> __( '...', 'easy-property-listings'  ),
+		'dotright_text'			=> __( '...', 'easy-property-listings'  ),
+		'num_pages'			=> 5,
+		'num_larger_page_numbers'	=> 3,
+		'larger_page_numbers_multiple'	=> 10,
+		'always_show'			=> false,
+		'use_pagenavi_css'		=> true,
+		'style'				=> 1,
 	);
 	$options = apply_filters('epl_pagination_options',$options);
-	$instance = new epl_pagination_Call( $args );
+	$instance = new EPL_Pagination_Call( $args );
 
 	list( $posts_per_page, $paged, $total_pages ) = $instance->get_pagination_args();
 
 	if ( 1 == $total_pages && !$options['always_show'] )
 		return;
 
-	$pages_to_show = absint( $options['num_pages'] );
-	$larger_page_to_show = absint( $options['num_larger_page_numbers'] );
-	$larger_page_multiple = absint( $options['larger_page_numbers_multiple'] );
-	$pages_to_show_minus_1 = $pages_to_show - 1;
-	$half_page_start = floor( $pages_to_show_minus_1/2 );
-	$half_page_end = ceil( $pages_to_show_minus_1/2 );
-	$start_page = $paged - $half_page_start;
+	$pages_to_show 		= absint( $options['num_pages'] );
+	$larger_page_to_show 	= absint( $options['num_larger_page_numbers'] );
+	$larger_page_multiple 	= absint( $options['larger_page_numbers_multiple'] );
+	$pages_to_show_minus_1 	= $pages_to_show - 1;
+	$half_page_start 	= floor( $pages_to_show_minus_1/2 );
+	$half_page_end 		= ceil( $pages_to_show_minus_1/2 );
+	$start_page 		= $paged - $half_page_start;
 
 	if ( $start_page <= 0 )
 		$start_page = 1;
@@ -226,22 +226,37 @@ function epl_fancy_pagination( $args = array() ) {
 }
 
 /**
- * epl_pagination_Call Class
+ * EPL_Pagination_Call Class
  *
  * @since 2.1
  */
-class epl_pagination_Call {
+class EPL_Pagination_Call {
 
 	protected $args;
 
+	/**
+	 * Get things started
+	 *
+	 * @since  2.1
+	 */
 	function __construct( $args ) {
 		$this->args = $args;
 	}
 
+	/**
+	 * Get the key
+	 *
+	 * @since  2.1
+	 */
 	function __get( $key ) {
 		return $this->args[ $key ];
 	}
 
+	/**
+	 * Get Pagination arguments
+	 *
+	 * @since  2.1
+	 */
 	function get_pagination_args() {
 		global $numpages;
 
@@ -271,6 +286,17 @@ class epl_pagination_Call {
 		return array( $posts_per_page, $paged, $total_pages );
 	}
 
+	/**
+	 * Get the single pagination
+	 *
+	 * @since  2.1
+	 * @param  string $page		page id.
+	 * @param  string $raw_text	text content.
+	 * @param  array  $attr 	attributes of page.
+	 * @param  array  $format 	format of single page.
+	 * @param  array  $tag 		attributes of single page tag.
+	 * @return string
+	 */
 	function get_single( $page, $raw_text, $attr, $format = '%PAGE_NUMBER%', $tag = 'a' ) {
 		if ( empty( $raw_text ) )
 			return '';
@@ -320,11 +346,16 @@ class epl_pagination_Call {
 		return apply_filters( 'epl_pagination_single_dot', $output );
 	}
 
+	/**
+	 * Get url
+	 *
+	 * @since  2.1
+	 */
 	function get_url( $page ) {
 
 		$link =  ( 'multipart' == $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
 
-		if( $this->query->get('is_epl_shortcode') && 
+		if( $this->query->get('is_epl_shortcode') &&
 			in_array($this->query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
 			$link = epl_add_or_update_params($link,'pagination_id', $this->query->get('instance_id') );
 		}
@@ -400,13 +431,15 @@ endif;
 
 /**
  * Get next page URL for EPL archives / shortcodes
+ *
+ * @since 3.3.3
  * @param  [type] $query [description]
  * @return [type]        [description]
  */
 function epl_get_next_page_link($query) {
 	$link =  next_posts( $query->max_num_pages, false );
 
-	if( $query->get('is_epl_shortcode') && 
+	if( $query->get('is_epl_shortcode') &&
 		in_array($query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
 		$link = epl_add_or_update_params($link,'pagination_id', $query->get('instance_id') );
 	}
@@ -415,6 +448,8 @@ function epl_get_next_page_link($query) {
 
 /**
  * Next page Link
+ *
+ * @since 3.3.3
  * @param  [type] $query [description]
  * @param  [type] $label [description]
  * @return [type]        [description]
@@ -427,18 +462,18 @@ function epl_next_post_link($query,$label=null) {
 	if($nextpage <= $query->max_num_pages) {
 
 		if ( null === $label ) {
-	        $label = __( 'Next Page &raquo;', 'easy-property-listings'  );
-	    }
+	        	$label = __( 'Next Page &raquo;', 'easy-property-listings'  );
+		}
 
 		$attr = apply_filters( 'epl_next_posts_link_attributes', '' );
 		return '<a href="' . epl_get_next_page_link( $query ) . "\" $attr>" . preg_replace( '/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label ) . '</a>';
 	}
-
-	
 }
 
 /**
  * Get Prev page URL for EPL archives / shortcodes
+ *
+ * @since 3.3.3
  * @param  [type] $query [description]
  * @return [type]        [description]
  */
@@ -446,7 +481,7 @@ function epl_get_prev_page_link($query) {
 
 	$link =  previous_posts( false );
 
-	if( $query->get('is_epl_shortcode') && 
+	if( $query->get('is_epl_shortcode') &&
 		in_array($query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
 		$link = epl_add_or_update_params($link,'pagination_id', $query->get('instance_id') );
 	}
@@ -455,6 +490,8 @@ function epl_get_prev_page_link($query) {
 
 /**
  * Prev page Link
+ *
+ * @since 3.3.3
  * @param  [type] $query [description]
  * @param  [type] $label [description]
  * @return [type]        [description]
@@ -466,18 +503,19 @@ function epl_prev_post_link($query,$label=null) {
 	if( $paged > 1 ) {
 
 		if ( null === $label ) {
-	        $label = __( '&laquo; Previous Page', 'easy-property-listings'  );
-	    }
+	        	$label = __( '&laquo; Previous Page', 'easy-property-listings'  );
+		}
 
 		$attr = apply_filters( 'epl_prev_posts_link_attributes', '' );
 		return '<a href="' . epl_get_prev_page_link( $query ) . "\" $attr>" . preg_replace( '/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label ) . '</a>';
 	}
-	
 }
 
 /**
- * WordPress Default Pagination *
+ * WordPress Default Pagination
+ *
  * @since 2.1
+ * @revised 3.3.3
  */
 function epl_wp_default_pagination($query = array() ) {
 	if(empty($query)) {

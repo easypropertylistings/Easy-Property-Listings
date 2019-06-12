@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Classes/Cron
- * @copyright   Copyright (c) 2016, Merv Barett
+ * @copyright   Copyright (c) 2019, Merv Barett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.2
 */
