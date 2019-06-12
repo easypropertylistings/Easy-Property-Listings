@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Assets/SVG
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.2
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * SVG Listing Icons Loaded in Head
  *
- * @since       3.2
+ * @since 3.2
  */
 function epl_load_svg_listing_icons_head() {
 
@@ -116,7 +116,7 @@ add_action('wp_head', 'epl_load_svg_listing_icons_head' , 90 );
 /**
  * SVG Social Media Icons Loaded in Head
  *
- * @since       3.2
+ * @since 3.2
  */
 function epl_load_svg_social_icons_head() {
 

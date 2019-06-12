@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Scripts/Styles
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Load and enqueue admin scripts and stylesheets
+ *
+ * @since 1.0
  */
 function epl_admin_enqueue_scripts($screen) {
 
@@ -64,6 +66,8 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 
 /**
  * Load and enqueue front end scripts and stylesheets
+ *
+ * @since 1.0
  */
 function epl_wp_enqueue_scripts() {
 	global $epl_settings;
@@ -147,6 +151,8 @@ add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
 
 /**
  * Load and enqueue admin styles
+ *
+ * @since 1.0
  */
 function epl_admin_styles() {
 
