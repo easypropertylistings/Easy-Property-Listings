@@ -1073,11 +1073,17 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 		case 'image':
 		case 'file':
+
+			if( is_array($val) ){
+				$val = isset($val['image_url_or_path']) ? $val['image_url_or_path'] : '';
+			}
+
 			if($val != '') {
 				$img = $val;
 			} else {
 				$img = plugin_dir_url( __DIR__ ).'assets/images/no_image.png';
 			}
+
 			echo '
 				<div class="epl-media-row">
 					<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />
