@@ -3,20 +3,18 @@
  * Shortcode Listing Template
  * @package     EPL
  * @subpackage  Templates/Content
- * @copyright   Copyright (c) 2015, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
+
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * @var $attributes array 		Shortcode Attributes.
+ * @var $attributes array 	Shortcode Attributes.
  * @var $query_open WP_Query 	Query object for listings.
  */
-
 if ( $query_open->have_posts() ) {
 	$attributes['class'] = isset( $attributes['class'] ) ? $attributes['class'] : 'epl-shortcode-listing';
 	?>

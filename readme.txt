@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.2.1
-Stable Tag: 3.3.1
+Stable Tag: 3.3.2
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -392,6 +392,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.3.3 June TBA, 2019 =
+
+* Tweak: CSS tweaked for list/grid mode preventing bullets appearing on some themes.
+* Fix: Missing post wrapper classes for iThemes builder and Heuman theme when using Listing Template extensions and masonry effect.
+* Fix: Using WordPress pagination with shortcodes corrected.
 
 = 3.3.2 May 31, 2019 =
 

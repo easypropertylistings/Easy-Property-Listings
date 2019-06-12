@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Meta
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -107,7 +107,7 @@ function epl_meta_box_inner_custom_box($post, $args) {
 							?>
 							<li id="epl_<?php echo $field['name']; ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo $field_width; ?> epl_<?php echo $field['name']; ?>_wrap epl-field-type-<?php echo $field['type'] ?>">
 
-								
+
 								<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
 								<div class="form-field epl-form-field-label">
 									<span valign="top" scope="row">
@@ -115,16 +115,16 @@ function epl_meta_box_inner_custom_box($post, $args) {
 									</span>
 								</div>
 								<?php endif; ?>
-								
+
 
 								<div id="epl_<?php echo $field['name']; ?>" class="form-field epl-form-field-value epl_<?php echo $field['name']; ?>">
 									<?php
 										epl_render_html_fields ($field,$val);
 									?>
 								</div>
-								
+
 							</li>
-							
+
 							<?php
 								if( has_action('epl_after_meta_field_'.$field['name']) ) {
 									do_action('epl_after_meta_field_'.$field['name'],$post,$val);
