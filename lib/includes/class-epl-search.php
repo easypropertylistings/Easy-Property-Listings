@@ -1,5 +1,24 @@
 <?php
+/**
+ * Search Object
+ *
+ * @package     EPL
+ * @subpackage	Classes/Search
+ * @copyright   Copyright (c) 2019, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.1
+ */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * EPL_SEARCH Class
+ *
+ * @since      3.1
+ */
 class EPL_SEARCH {
 
 	/**
