@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Contacts
- * @copyright   Copyright (c) 2016, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
@@ -256,7 +256,6 @@ function epl_new_contact_view() { ?>
 										'maxlength'	=>	'60',
 										'value'		=>	''
 									),
-
 								)
 							);
 
@@ -274,7 +273,7 @@ function epl_new_contact_view() { ?>
 							<input type="hidden" name="epl_action" value="new-contact" />
 							<input type="submit" id="epl-new-contact" class="button-primary" value="<?php _e( 'Create', 'easy-property-listings'  ); ?>" />
 						</span>
-						
+
 					</div>
 				</form>
 				<?php endif; ?>

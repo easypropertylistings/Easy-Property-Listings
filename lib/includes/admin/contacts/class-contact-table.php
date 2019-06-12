@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Contacts/Table
- * @copyright   Copyright (c) 2016, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
@@ -287,13 +287,13 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		$orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'id';
 
 		$args    = array(
-			'post_type'	=>	'epl_contact',
-			'posts_per_page'  => $this->get_items_per_page('contacts_per_page', $this->per_page),
-			'offset'  => $offset,
-			'order'   => $order,
-			'orderby' => $orderby,
-			'meta_query' => array(),
-			'tax_query' => array(),
+			'post_type'		=> 'epl_contact',
+			'posts_per_page'	=> $this->get_items_per_page('contacts_per_page', $this->per_page),
+			'offset'		=> $offset,
+			'order'			=> $order,
+			'orderby'		=> $orderby,
+			'meta_query'		=> array(),
+			'tax_query'		=> array(),
 		);
 
 		if( $search != '' ) {
@@ -307,21 +307,21 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 			if( !empty($name_search_array) ) {
 
 				$meta_name = array(
-					'relation'		=>	'OR'
+					'relation'		=> 'OR'
 				);
 
 				foreach($name_search_array as $component) {
 
 					$meta_name[] = array(
 						'key'     	=> 'contact_first_name',
-						'value'   	=> 	sanitize_text_field($component),
-						'compare'	=>	'LIKE'	
+						'value'   	=> sanitize_text_field($component),
+						'compare'	=> 'LIKE'
 					);
 
 					$meta_name[] = array(
 						'key'     	=> 'contact_last_name',
-						'value'   	=> 	sanitize_text_field($component),
-						'compare'	=>	'LIKE'	
+						'value'   	=> sanitize_text_field($component),
+						'compare'	=> 'LIKE'
 					);
 				}
 
@@ -340,8 +340,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		if( isset($_GET['tag_filter']) && $_GET['tag_filter'] != '' ){
 			$args['tax_query'][] = array(
 				'taxonomy'     	=> 'epl_contact_tag',
-				'field'   		=> 'id',
-				'terms'   		=> intval($_GET['tag_filter']),
+				'field'   	=> 'id',
+				'terms'   	=> intval($_GET['tag_filter']),
 			);
 		}
 
@@ -359,6 +359,12 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		return $data;
 	}
 
+	/**
+	 * Process bulk contact operations
+	 *
+	 * @access public
+	 * @since 3.3
+	 */
 	public function process_bulk_action() {
 
 	  	//Detect when a bulk action is being triggered...
@@ -371,10 +377,9 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 				$contact = new EPL_Contact( $id );
 				$contact->delete( $contact->id );
 			}
-
 		}
-
 	}
+
 	/**
 	 * Setup the final data for the table
 	 *
@@ -408,6 +413,12 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		) );
 	}
 
+	/**
+	 * Get bulk contact actions
+	 *
+	 * @access public
+	 * @since 3.3
+	 */
 	public function get_bulk_actions() {
 		$actions = array(
 			'bulk-delete' => __('Delete','easy-property-listings')
