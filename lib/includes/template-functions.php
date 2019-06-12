@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Templates
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -1276,7 +1276,7 @@ function epl_property_tab_section_after() {
 				$the_property_rural_feature_list .= $property->get_additional_rural_features_html($features_list);
 			}
 
-	?>
+		?>
 		<div class="epl-tab-section epl-tab-section-rural-features">
 			<h5 class="epl-tab-title epl-tab-title-rural-features tab-title"><?php echo apply_filters( 'epl_property_sub_title_rural_features' , __('Rural Features', 'easy-property-listings' ) ); ?></h5>
 			<div class="epl-tab-content tab-content">
@@ -1540,7 +1540,6 @@ function epl_switch_views() { ?>
 		</ul>
 	</div> <?php
 }
-
 add_action('epl_switch_views','epl_switch_views');
 
 /**
@@ -1574,7 +1573,6 @@ function epl_sorting_tool() {
 	</div>
 <?php
 }
-
 add_action('epl_sorting_tool','epl_sorting_tool');
 
 /**
@@ -1994,7 +1992,6 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 		}
 	}
 
-
 	$term_links = apply_filters( "term_links-$taxonomy", $term_links );
 
 	$html = $before;
@@ -2115,7 +2112,7 @@ function epl_home_pagination_fix( $query) {
 	global $wp_query;
 	$queried_post_type = isset( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array();
 	$diff = array_diff( $queried_post_type, epl_get_core_post_types() );
-	
+
 	if( isset($wp_query->query['paged']) && count($diff) == 0 ){
 		$query->set('paged', $wp_query->query['paged']);
 	}
@@ -2266,28 +2263,26 @@ function epl_apply_feeling_lucky_config() {
 	$epl_posts 	= array_keys($epl_posts);
 
 
-    // remove epl featured image on single pages in lucky mode
-    if( isset($epl_settings['epl_lucky_disable_single_thumb']) && $epl_settings['epl_lucky_disable_single_thumb'] == 'on') {
+	// remove epl featured image on single pages in lucky mode
+	if( isset($epl_settings['epl_lucky_disable_single_thumb']) && $epl_settings['epl_lucky_disable_single_thumb'] == 'on') {
 
 		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
 			remove_all_actions( 'epl_property_featured_image' );
 		}
-
 	}
 
-    // remove active theme's featured image on single pages in lucky mode
-    if( isset($epl_settings['epl_lucky_disable_theme_single_thumb']) && $epl_settings['epl_lucky_disable_theme_single_thumb'] == 'on') {
+	// remove active theme's featured image on single pages in lucky mode
+	if( isset($epl_settings['epl_lucky_disable_theme_single_thumb']) && $epl_settings['epl_lucky_disable_theme_single_thumb'] == 'on') {
 
 		if ( is_single() && in_array( get_post_type(), $epl_posts ) ) {
 			add_filter('post_thumbnail_html','epl_remove_single_thumbnail',20,5);
 		}
-
 	}
 
-    // remove featured image on archive pages in lucky mode
-    if( isset($epl_settings['epl_lucky_disable_archive_thumb']) && $epl_settings['epl_lucky_disable_archive_thumb'] == 'on') {
+	// remove featured image on archive pages in lucky mode
+	if( isset($epl_settings['epl_lucky_disable_archive_thumb']) && $epl_settings['epl_lucky_disable_archive_thumb'] == 'on') {
 
-    	if( is_post_type_archive($epl_posts) ) {
+	if( is_post_type_archive($epl_posts) ) {
 			add_filter('post_thumbnail_html','epl_remove_archive_thumbnail',20,5);
 		}
 	}
@@ -2582,16 +2577,14 @@ function epl_get_inspection_time_format() {
  */
 function epl_inspection_format($inspection_date) {
 
-	$formatted_date = '';
+	$formatted_date  = '';
 	$inspection_date = explode(' ',$inspection_date);
 
-
-	$date_format = epl_get_inspection_date_format();
-	$time_format = epl_get_inspection_time_format();
-
+	$date_format 	= epl_get_inspection_date_format();
+	$time_format 	= epl_get_inspection_time_format();
 
 	$date 		= isset($inspection_date[0]) ? date($date_format,strtotime($inspection_date[0])) : '';
-	$time_start = isset($inspection_date[1]) ? date($time_format,strtotime($inspection_date[1])) : '';
+	$time_start 	= isset($inspection_date[1]) ? date($time_format,strtotime($inspection_date[1])) : '';
 	$time_end 	= isset($inspection_date[3]) ? date($time_format,strtotime($inspection_date[3])) : '';
 
 	return "{$date} {$time_start} to {$time_end}";
@@ -2787,6 +2780,11 @@ function epl_archive_author_callback() {
 }
 add_action( 'epl_archive_author' , 'epl_archive_author_callback' );
 
+/**
+ * Contact capture action and messages
+ *
+ * @since 3.3
+ */
 function epl_contact_capture_action() {
 
 	$success = array(
@@ -2820,8 +2818,6 @@ function epl_contact_capture_action() {
 	if( trim($title) == '' && ( $_POST['epl_contact_email'] != '' ) ){
 		$title = $_POST['epl_contact_email'];
 	}
-
-
 
 	if ( empty( $contact->id ) ) {
 
