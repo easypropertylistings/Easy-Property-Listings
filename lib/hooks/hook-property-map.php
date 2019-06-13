@@ -5,7 +5,7 @@
  *
  * @package     EPL
  * @subpackage  Hooks/Map
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -58,6 +58,11 @@ function epl_property_map_default_callback() {
 }
 add_action('epl_property_map', 'epl_property_map_default_callback');
 
+/**
+ * Missing map key warning message
+ *
+ * @since 3.3
+ */
 function epl_map_api_key_warning() { ?>
 
 	<div class="epl-danger epl-warning-map-key" >

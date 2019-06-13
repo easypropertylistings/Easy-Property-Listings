@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2016, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
@@ -272,6 +272,22 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 }
 
 /**
+ * Grabs all of the selected date info and then redirects appropriately
+ *
+ * @since 3.3.3
+ *
+ * @param $data
+ */
+function epl_parse_report_dates($data) {
+
+	$dates = epl_get_report_dates();
+	$view  = epl_get_reporting_view();
+	wp_redirect( add_query_arg( $dates, admin_url( 'admin.php?page=epl-reports&view='. esc_attr( $view ) ) ) );
+
+}
+add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
+
+/**
  * Show report graph date filters
  *
  * @since 3.0
@@ -374,12 +390,16 @@ function epl_get_report_dates() {
 	$current_time = current_time( 'timestamp' );
 
 	$dates['range']      = isset( $_GET['range'] )   ? $_GET['range']   : 'this_month';
-	$dates['year']       = isset( $_GET['year'] )    ? $_GET['year']    : date( 'Y' );
-	$dates['year_end']   = isset( $_GET['year_end'] )? $_GET['year_end']: date( 'Y' );
-	$dates['m_start']    = isset( $_GET['m_start'] ) ? $_GET['m_start'] : 1;
-	$dates['m_end']      = isset( $_GET['m_end'] )   ? $_GET['m_end']   : 12;
-	$dates['day']        = isset( $_GET['day'] )     ? $_GET['day']     : 1;
-	$dates['day_end']    = isset( $_GET['day_end'] ) ? $_GET['day_end'] : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
+
+	if ( 'custom' !== $dates['range'] ) {
+		$dates['year']       = isset( $_GET['year'] )    ? $_GET['year']    : date( 'Y' );
+		$dates['year_end']   = isset( $_GET['year_end'] )? $_GET['year_end']: date( 'Y' );
+		$dates['m_start']    = isset( $_GET['m_start'] ) ? $_GET['m_start'] : 1;
+		$dates['m_end']      = isset( $_GET['m_end'] )   ? $_GET['m_end']   : 12;
+		$dates['day']        = isset( $_GET['day'] )     ? $_GET['day']     : 1;
+		$dates['day_end']    = isset( $_GET['day_end'] ) ? $_GET['day_end'] : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
+	}
+
 
 	// Modify dates based on predefined ranges
 	switch ( $dates['range'] ) :
@@ -459,34 +479,35 @@ function epl_get_report_dates() {
 		break;
 
 		case 'this_quarter' :
-			$month_now = date( 'n', $current_time );
+
+			$month_now 		= date( 'n', $current_time );
+			$dates['year']     	= date( 'Y', $current_time );
+			$dates['year_end'] 	= $dates['year'];
 
 			if ( $month_now <= 3 ) {
 
 				$dates['m_start'] = 1;
 				$dates['m_end']   = 4;
-				$dates['year']    = date( 'Y', $current_time );
 
 			} else if ( $month_now <= 6 ) {
 
 				$dates['m_start'] = 4;
 				$dates['m_end']   = 7;
-				$dates['year']    = date( 'Y', $current_time );
 
 			} else if ( $month_now <= 9 ) {
 
 				$dates['m_start'] = 7;
 				$dates['m_end']   = 10;
-				$dates['year']    = date( 'Y', $current_time );
 
 			} else {
 
 				$dates['m_start']  = 10;
 				$dates['m_end']    = 1;
-				$dates['year']     = date( 'Y', $current_time );
-				$dates['year_end'] = date( 'Y', $current_time ) + 1;
-
 			}
+
+			$dates['day']     = 1;
+			$dates['day_end'] = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
+
 		break;
 
 		case 'last_quarter' :
@@ -497,7 +518,6 @@ function epl_get_report_dates() {
 				$dates['m_start']  = 10;
 				$dates['m_end']    = 12;
 				$dates['year']     = date( 'Y', $current_time ) - 1; // Previous year
-				$dates['year_end'] = date( 'Y', $current_time ) - 1; // Previous year
 
 			} else if ( $month_now <= 6 ) {
 
@@ -518,15 +538,26 @@ function epl_get_report_dates() {
 				$dates['year']    = date( 'Y', $current_time );
 
 			}
+
+			$dates['day']      = 1;
+			$dates['day_end']  = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'],  $dates['year'] );
+			$dates['year_end'] = $dates['year'];
+
 		break;
 
 		case 'this_year' :
-			$dates['m_start'] = 1;
-			$dates['m_end']   = 12;
-			$dates['year']    = date( 'Y', $current_time );
+
+			$dates['day']      = 1;
+			$dates['m_start']  = 1;
+			$dates['m_end']    = 12;
+			$dates['year']     = date( 'Y', $current_time );
+			$dates['year_end'] = $dates['year'];
+
 		break;
 
 		case 'last_year' :
+
+			$dates['day']      = 1;
 			$dates['m_start']  = 1;
 			$dates['m_end']    = 12;
 			$dates['year']     = date( 'Y', $current_time ) - 1;

@@ -362,8 +362,8 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		'sub_number'		=>	'/',
 		'lot_number'		=>	' ',
 		'street_number'		=>	' ',
-		'street'			=>	', ',
-		'suburb'			=>	' ',
+		'street'		=>	', ',
+		'suburb'		=>	' ',
 		'city'			=>	' ',
 		'state'			=>	' ',
 		'postal_code'		=>	' ',
@@ -800,12 +800,18 @@ function epl_listing_load_meta_rural_category_value( $key ) {
  * @since 1.2
  * @param string $date
  * @return formatted date
+ * @revised 3.3
  */
 function epl_feedsync_format_date( $date ) {
     $date_example = '2014-07-22-16:45:56';
 
     $tempdate = explode('-',$date);
-	$date = $tempdate[0].'-'.$tempdate[1].'-'.$tempdate[2].' '.$tempdate[3];
+	$date = $tempdate[0].'-'.$tempdate[1].'-'.$tempdate[2];
+
+	if( isset($tempdate[3]) ){
+		$date .= ' '.$tempdate[3];
+	}
+
     return  date("Y-m-d H:i:s",strtotime($date));
 }
 
@@ -896,6 +902,7 @@ function epl_feedsync_switch_date_time($date_time=false,$old_time_zone='Australi
  * @since 2.1
  * @param array $field
  * @param string $val
+ * @revised 3.3
  */
 function epl_render_html_fields ( $field = array() , $val = '' ) {
  	global $post;
@@ -1073,11 +1080,17 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 
 		case 'image':
 		case 'file':
+
+			if( is_array($val) ){
+				$val = isset($val['image_url_or_path']) ? $val['image_url_or_path'] : '';
+			}
+
 			if($val != '') {
 				$img = $val;
 			} else {
 				$img = plugin_dir_url( __DIR__ ).'assets/images/no_image.png';
 			}
+
 			echo '
 				<div class="epl-media-row">
 					<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />
@@ -1990,20 +2003,20 @@ add_filter('epl_leased_label_status_filter', 'epl_leased_label_status_filter_cal
 */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status='' ) {
 
-    global $wpdb;
+	global $wpdb;
 
-    if( empty( $key ) )
-        return;
+	if( empty( $key ) )
+	return;
 
-    if($type == ''){
-    	$type = epl_get_core_post_types();
-    }
+	if($type == ''){
+		$type = epl_get_core_post_types();
+	}
 
-    $type = (array) $type;
-    $type = array_map( 'sanitize_text_field', $type );
-    $type_str = " ( '".implode("','", $type)."' ) ";
+	$type = (array) $type;
+	$type = array_map( 'sanitize_text_field', $type );
+	$type_str = " ( '".implode("','", $type)."' ) ";
 
-    $query = "
+	$query = "
 SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
 LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
 LEFT JOIN {$wpdb->postmeta} pm2 ON pm.post_id = pm2.post_id
@@ -2012,16 +2025,16 @@ AND p.post_status = '%s'
 AND p.post_type IN $type_str
 ";
 
-if ( ! empty( $property_status ) ) {
-	$property_status = array_map( 'trim', explode( ',', $property_status ) );
-	if ( count( $property_status ) ) {
-		$query .= "
-		AND pm2.meta_key 		= 'property_status'
-		AND pm2.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
+	if ( ! empty( $property_status ) ) {
+		$property_status = array_map( 'trim', explode( ',', $property_status ) );
+		if ( count( $property_status ) ) {
+			$query .= "
+			AND pm2.meta_key 		= 'property_status'
+			AND pm2.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
+		}
 	}
-}
 
-    $res = $wpdb->get_col( $wpdb->prepare( $query, $key, $status ) );
+	$res = $wpdb->get_col( $wpdb->prepare( $query, $key, $status ) );
 
 	$res = array_filter($res);
 
@@ -2104,7 +2117,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 				array(
 					'key' 		=> 'property_status',
 					'value' 	=> (array) $status,
-					'compare' => 'IN',
+					'compare' 	=> 'IN',
 				),
 			);
 
@@ -2118,8 +2131,8 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 				$args['meta_query'][] = array(
 					'key' 		=> $sold_key,
 					'value' 	=> array($sold_date_start,$sold_date_end),
-					'type'		=>	'DATE',
-					'compare'	=>	'BETWEEN'
+					'type'		=> 'DATE',
+					'compare'	=> 'BETWEEN'
 				);
 
 			} else {
@@ -2130,7 +2143,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 				$args['meta_query'][] = array(
 					'key' 		=> $sold_key,
 					'value' 	=> $sold_date,
-					'type'		=>	'DATE',
+					'type'		=> 'DATE',
 				);
 			}
 
@@ -2309,11 +2322,21 @@ function get_category_label($category) {
 	return $category;
 }
 
+/**
+ * Helper function starts with
+ *
+ * @since       3.3
+ */
 function epl_starts_with($haystack, $needle) {
     // search backwards starting from haystack length characters from the end
     return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== false;
 }
 
+/**
+ * Helper function ends with
+ *
+ * @since       3.3
+ */
 function epl_ends_with($haystack, $needle) {
     // search forward starting from end minus needle length characters
     return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
@@ -2617,5 +2640,4 @@ function epl_single_and_archive_functions() {
 		include_once(get_stylesheet_directory().'/easypropertylistings/functions-archive.php' );
 	}
 }
-
 add_action('wp','epl_single_and_archive_functions',99);

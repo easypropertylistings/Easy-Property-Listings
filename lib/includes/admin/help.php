@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Admin/Help
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
@@ -54,8 +54,6 @@ function epl_list_listings_contextual_help() {
 		'title'		=> __('Screen Content' , 'easy-property-listings' ),
 		'content'	=> $screen_content
 	) );
-
-
 
 	// Available Actions
 	$actions	= '<p>' . __( 'Hovering over a row in the listings list will display action links that allow you to manage your listings. You can perform the following actions:' , 'easy-property-listings'  ) . '</p>';

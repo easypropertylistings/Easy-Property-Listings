@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/ConditionalTags
- * @copyright   Copyright (c) 2015, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.2
  */
@@ -139,7 +139,7 @@ function is_epl_post_archive() {
 }
 
 /**
- * same as epl_listing_has_secondary_agent, kept for backward compatibility 
+ * same as epl_listing_has_secondary_agent, kept for backward compatibility
  * @return [type] [description]
  */
 function epl_listing_has_secondary_author() {
@@ -162,6 +162,7 @@ function epl_listing_has_secondary_agent() {
     }
     return $exists;
 }
+
 /**
  * check if listing has primary agent
  *

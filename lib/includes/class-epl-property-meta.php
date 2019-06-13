@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage	Classes/PropertyMeta
- * @copyright   Copyright (c) 2016, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
  */
@@ -70,14 +70,14 @@ class EPL_Property_Meta {
 	 */
 	public function __construct($post) {
 
-        $this->post 			= $post;
-        $this->epl_settings 		= epl_settings();
-        $this->meta 			= get_post_custom($post->ID);
-        $this->post_type 		= $this->post->post_type;
-        $this->property_post_type	= $this->post->post_type;
+	        $this->post 			= $post;
+	        $this->epl_settings 		= epl_settings();
+	        $this->meta 			= get_post_custom($post->ID);
+	        $this->post_type 		= $this->post->post_type;
+	        $this->property_post_type	= $this->post->post_type;
 
-        $this->epl_labels();
-    }
+	        $this->epl_labels();
+	}
 
 	/**
 	 * Define Admin labels in epl_settings global variable
@@ -495,7 +495,7 @@ class EPL_Property_Meta {
 
 
 	/**
-	 * Formatted Address based on selected display option
+	 * Formatted Street level address based on selected display option
 	 *
 	 * @since 2.0
 	 * @return string formatted street address

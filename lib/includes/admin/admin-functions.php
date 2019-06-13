@@ -12,6 +12,17 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+if ( ! function_exists( 'cal_days_in_month' ) ) {
+	/**
+	 * Fallback in case the calendar extension is not loaded in PHP
+	 *
+	 * @since 3.3.3
+	 */
+	function cal_days_in_month( $calendar, $month, $year ) {
+		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
+	}
+}
+
 /**
  * Flush Rewrite Rules
  *
@@ -423,10 +434,10 @@ function epl_handle_tools_form() {
 		$movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
 
 		if ( $movefile && ! isset( $movefile['error'] ) ) {
-		    $imported_data = file_get_contents($movefile['url']);
-		    $imported_data = epl_unserialize( $imported_data );
-		    $options_backup = get_option('epl_settings');
-		    update_option('epl_settings_backup',$options_backup);
+			$imported_data = file_get_contents($movefile['url']);
+			$imported_data = epl_unserialize( $imported_data );
+			$options_backup = get_option('epl_settings');
+			update_option('epl_settings_backup',$options_backup);
 			$status = update_option('epl_settings',$imported_data);
 		}
 
@@ -483,11 +494,11 @@ function epl_upgrade_db() {
 add_action('wp_ajax_epl_upgrade_db','epl_upgrade_db');
 
 /**
- * Check if neede to upgrade EPL Database to 3.3
+ * update user note comment type to note
  *
  * @since       3.3
  */
-function epl_upgrade_db_to_3_3() {
+function epl_update_user_note_type() {
 
 	$comments_query = new WP_Comment_Query;
 
@@ -505,14 +516,26 @@ function epl_upgrade_db_to_3_3() {
 			);
 		}
 	}
+}
 
-	$all_posts = get_posts(
-		array(
-			'post_type'		=>	epl_get_core_post_types(),
-			'post_status'	=>	'any',
-			'numberposts' 	=> -1
-		)
+/**
+ * Check if need to upgrade EPL Database to 3.3
+ *
+ * @since       3.3
+ */
+function epl_upgrade_db_to_3_3() {
+
+	$updated_listings = (array) get_option('epl_updated_global_price');
+	$current_batch = array();
+
+	$args = array(
+		'post_type'	=> epl_get_core_post_types(),
+		'post_status'	=> 'any',
+		'numberposts' 	=> 200, // 200 listings in single batch
+		'exclude'	=> $updated_listings
 	);
+
+	$all_posts = get_posts( $args );
 
 	if( !empty($all_posts) ) {
 
@@ -538,19 +561,34 @@ function epl_upgrade_db_to_3_3() {
 					update_post_meta($single->ID,'property_price_global',$price);
 				break;
 			}
+			$current_batch[] = $single->ID;
+			$updated_listings[] = $single->ID;
 		}
-	}
 
-	update_option('epl_db_upgraded_to','3.3');
-
-	wp_die(
-		json_encode(
-			array(
-				'status'	=>	'success',
-				'msg'	=>	__('Database upgraded successfully','easy-property-listings')
+		update_option('epl_updated_global_price',$updated_listings);
+		wp_die(
+			json_encode(
+				array(
+					'status'	=>	'success',
+					'buffer'	=>	'processing',
+					'msg'		=>	sprintf( __('Database upgrade in process, following listings updated : %s. Please wait...','easy-property-listings'), implode(', ',$current_batch)  )
+				)
 			)
-		)
-	);
+		);
+
+	} else {
+
+		update_option('epl_db_upgraded_to','3.3');
+		wp_die(
+			json_encode(
+				array(
+					'status'	=>	'success',
+					'buffer'	=>	'complete',
+					'msg'		=>	__('Database upgraded successfully','easy-property-listings')
+				)
+			)
+		);
+	}
 }
 
 /**
@@ -558,25 +596,31 @@ function epl_upgrade_db_to_3_3() {
  *
  * @since       3.3
  */
-function epl_sync_property_price_global() {
+function epl_sync_property_price_global($post_id, $post, $update) {
 
 	if( is_epl_post() ) {
-		if ( 'rental' == $_POST['post_type'] ) {
-			$price = get_post_meta($_POST['ID'],'property_rent',true);
-			update_post_meta($_POST['ID'],'property_price_global',$price);
-		} elseif ( 'commercial' == $_POST['post_type'] ) {
-			$price = get_post_meta($_POST['ID'],'property_price',true);
+
+		if ( 'rental' == $post->post_type ) {
+			$price = get_post_meta($post_id,'property_rent',true);
+			update_post_meta($post_id,'property_price_global',$price);
+
+		} elseif ( 'commercial' == $post->post_type ) {
+
+			$price = get_post_meta($post_id,'property_price',true);
 			if($price == ''){
-				$price = get_post_meta($_POST['ID'],'property_com_rent',true);
+				$price = get_post_meta($post_id,'property_com_rent',true);
 			}
-			update_post_meta($_POST['ID'],'property_price_global',$price);
+			update_post_meta($post_id,'property_price_global',$price);
+
 		} else {
-			$price = get_post_meta($_POST['ID'],'property_price',true);
-			update_post_meta($_POST['ID'],'property_price_global',$price);
+
+			$price = get_post_meta($post_id,'property_price',true);
+			update_post_meta($post_id,'property_price_global',$price);
 		}
 	}
 }
-add_action('save_post','epl_sync_property_price_global',40);
+
+add_action('save_post','epl_sync_property_price_global',40,3);
 
 /**
  * Filter the contacts comments
