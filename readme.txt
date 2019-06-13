@@ -393,11 +393,22 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.3.3 June TBA, 2019 =
+= 3.3.3 June 13, 2019 =
 
+* New: Shortcode [listing_meta_doc] for custom field documentation output.
 * Tweak: CSS tweaked for list/grid mode preventing bullets appearing on some themes.
+* Tweak: Added fallback function for reporting if PHP module not enabled on some servers.
+* Tweak: New installations will no longer see database upgrade notice as it is not required.
+* Tweak: Improvements to property_price_global function.
+* Tweak: Code optimisation and added internal documentation to functions missing notes.
+* Tweak: When importing listings a helper function would in some cases trigger a notice error.
+* Tweak: Attached files would in some cases produce an error on imported listings with no files attached in the dashbaord.
+* Fix: Reporting graphs were some times blank when viewing last year then this year.
+* Fix: Reworked database upgrade process for larger workloads processing 200 records at a time to prevent server timeouts.
 * Fix: Missing post wrapper classes for iThemes builder and Heuman theme when using Listing Template extensions and masonry effect.
-* Fix: Using WordPress pagination with shortcodes corrected.
+* Fix: Using default WordPress pagination with shortcodes corrected as they have all been enhanced to support multiple shortcodes on one page using the instance_id= option.
+* Fix: Pagination corrected for shortcodes when using on the site home page.
+* Fix: Commercial and Business listing types were not obeying the hide suburb option in some cases.
 
 = 3.3.2 May 31, 2019 =
 
