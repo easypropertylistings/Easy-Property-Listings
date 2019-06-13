@@ -402,7 +402,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Improvements to property_price_global function.
 * Tweak: Code optimisation and added internal documentation to functions missing notes.
 * Tweak: When importing listings a helper function would in some cases trigger a notice error.
-* Tweak: Attached files would in some cases produce an error on imported listings with no files attached in the dashbaord.
+* Tweak: Attached files would in some cases produce an error on imported listings with no files attached in the dashboard.
 * Fix: Reporting graphs were some times blank when viewing last year then this year.
 * Fix: Reworked database upgrade process for larger workloads processing 200 records at a time to prevent server timeouts.
 * Fix: Missing post wrapper classes for iThemes builder and Heuman theme when using Listing Template extensions and masonry effect.
