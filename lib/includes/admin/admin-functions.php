@@ -518,10 +518,10 @@ function epl_upgrade_db_to_3_3() {
 	$current_batch = array();
 
 	$args = array(
-		'post_type'		=>	epl_get_core_post_types(),
-		'post_status'	=>	'any',
-		'numberposts' 	=> 20, // 20 listings in single batch
-		'exclude'		=>	$updated_listings
+		'post_type'	=> epl_get_core_post_types(),
+		'post_status'	=> 'any',
+		'numberposts' 	=> 200, // 200 listings in single batch
+		'exclude'	=> $updated_listings
 	);
 
 	$all_posts = get_posts( $args );
