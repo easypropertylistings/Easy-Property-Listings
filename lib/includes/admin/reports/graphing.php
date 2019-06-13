@@ -274,7 +274,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 /**
  * Grabs all of the selected date info and then redirects appropriately
  *
- * @since 3.3
+ * @since 3.3.3
  *
  * @param $data
  */
@@ -286,6 +286,7 @@ function epl_parse_report_dates($data) {
 
 }
 add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
+
 /**
  * Show report graph date filters
  *
@@ -398,7 +399,7 @@ function epl_get_report_dates() {
 		$dates['day']        = isset( $_GET['day'] )     ? $_GET['day']     : 1;
 		$dates['day_end']    = isset( $_GET['day_end'] ) ? $_GET['day_end'] : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
 	}
-	
+
 
 	// Modify dates based on predefined ranges
 	switch ( $dates['range'] ) :
@@ -479,7 +480,7 @@ function epl_get_report_dates() {
 
 		case 'this_quarter' :
 
-			$month_now 			= date( 'n', $current_time );
+			$month_now 		= date( 'n', $current_time );
 			$dates['year']     	= date( 'Y', $current_time );
 			$dates['year_end'] 	= $dates['year'];
 
