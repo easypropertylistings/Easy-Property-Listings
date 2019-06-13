@@ -529,7 +529,7 @@ function epl_wp_default_pagination($query = array() ) {
 		$query_open = $query['query']; ?>
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'easy-property-listings'  ), $query_open->max_num_pages ); ?></div>
+		<div class="alignleft"><?php echo epl_prev_post_link($query_open); ?></div>
 		<div class="alignright"><?php echo epl_next_post_link($query_open); ?></div>
 	</div> <?php }
 
