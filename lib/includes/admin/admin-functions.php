@@ -13,8 +13,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! function_exists( 'cal_days_in_month' ) ) {
-	// Fallback in case the calendar extension is not loaded in PHP
-	// @since 3.3
+	/**
+	 * Fallback in case the calendar extension is not loaded in PHP
+	 *
+	 * @since 3.3.3
+	 */
 	function cal_days_in_month( $calendar, $month, $year ) {
 		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
 	}
@@ -431,10 +434,10 @@ function epl_handle_tools_form() {
 		$movefile = wp_handle_upload( $uploadedfile, $upload_overrides );
 
 		if ( $movefile && ! isset( $movefile['error'] ) ) {
-		    $imported_data = file_get_contents($movefile['url']);
-		    $imported_data = epl_unserialize( $imported_data );
-		    $options_backup = get_option('epl_settings');
-		    update_option('epl_settings_backup',$options_backup);
+			$imported_data = file_get_contents($movefile['url']);
+			$imported_data = epl_unserialize( $imported_data );
+			$options_backup = get_option('epl_settings');
+			update_option('epl_settings_backup',$options_backup);
 			$status = update_option('epl_settings',$imported_data);
 		}
 
@@ -526,10 +529,10 @@ function epl_upgrade_db_to_3_3() {
 	$current_batch = array();
 
 	$args = array(
-		'post_type'		=>	epl_get_core_post_types(),
-		'post_status'	=>	'any',
-		'numberposts' 	=> 20, // 20 listings in single batch
-		'exclude'		=>	$updated_listings
+		'post_type'	=> epl_get_core_post_types(),
+		'post_status'	=> 'any',
+		'numberposts' 	=> 200, // 200 listings in single batch
+		'exclude'	=> $updated_listings
 	);
 
 	$all_posts = get_posts( $args );
@@ -568,7 +571,7 @@ function epl_upgrade_db_to_3_3() {
 				array(
 					'status'	=>	'success',
 					'buffer'	=>	'processing',
-					'msg'		=>	sprintf( __('Database upgrade in process, following listings updated : %s.Please wait...','easy-property-listings'), implode(', ',$current_batch)  )
+					'msg'		=>	sprintf( __('Database upgrade in process, following listings updated : %s. Please wait...','easy-property-listings'), implode(', ',$current_batch)  )
 				)
 			)
 		);
@@ -581,7 +584,7 @@ function epl_upgrade_db_to_3_3() {
 				array(
 					'status'	=>	'success',
 					'buffer'	=>	'complete',
-					'msg'	=>	__('Database upgraded successfully','easy-property-listings')
+					'msg'		=>	__('Database upgraded successfully','easy-property-listings')
 				)
 			)
 		);
