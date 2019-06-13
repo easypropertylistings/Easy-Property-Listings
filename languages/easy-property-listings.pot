@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.3.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-06-13 02:22:37+00:00\n"
+"POT-Creation-Date: 2019-06-13 07:36:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -668,164 +668,164 @@ msgid ""
 "set, refresh page to dismiss notice."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:41
-#: lib/includes/admin/admin-functions.php:96
-#: lib/includes/admin/admin-functions.php:135
+#: lib/includes/admin/admin-functions.php:52
+#: lib/includes/admin/admin-functions.php:107
+#: lib/includes/admin/admin-functions.php:146
 msgid "Remove these ads?"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:43
+#: lib/includes/admin/admin-functions.php:54
 msgid "Purchase an extension remove me"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:61
+#: lib/includes/admin/admin-functions.php:72
 msgid "Core bundle for Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:67
-#: lib/includes/admin/admin-functions.php:160
+#: lib/includes/admin/admin-functions.php:78
+#: lib/includes/admin/admin-functions.php:171
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:639
 msgid "Advanced Mapping"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:73
-#: lib/includes/admin/admin-functions.php:166
+#: lib/includes/admin/admin-functions.php:84
+#: lib/includes/admin/admin-functions.php:177
 msgid "Sliders extension"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:79
-#: lib/includes/admin/admin-functions.php:172
+#: lib/includes/admin/admin-functions.php:90
+#: lib/includes/admin/admin-functions.php:183
 msgid "Staff Directory"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:85
-#: lib/includes/admin/admin-functions.php:178
+#: lib/includes/admin/admin-functions.php:96
+#: lib/includes/admin/admin-functions.php:189
 msgid "Listing Templates"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:97
-#: lib/includes/admin/admin-functions.php:136
+#: lib/includes/admin/admin-functions.php:108
+#: lib/includes/admin/admin-functions.php:147
 msgid "Purchase and activate any extension"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:115
+#: lib/includes/admin/admin-functions.php:126
 msgid "Check out the premium extensions"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:121
-#: lib/includes/admin/admin-functions.php:154
+#: lib/includes/admin/admin-functions.php:132
+#: lib/includes/admin/admin-functions.php:165
 msgid "Browse the extension store"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:203
+#: lib/includes/admin/admin-functions.php:214
 msgid "Purchase and activate any extension to remove these ads"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:261
+#: lib/includes/admin/admin-functions.php:272
 msgid "Import/Export"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:269
+#: lib/includes/admin/admin-functions.php:280
 msgid "Upgrade"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:321
+#: lib/includes/admin/admin-functions.php:332
 msgid "Import Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:327
+#: lib/includes/admin/admin-functions.php:338
 msgid "Import data"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:335
+#: lib/includes/admin/admin-functions.php:346
 msgid "Import exported file here. Warning! it will override all existing settings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:343
+#: lib/includes/admin/admin-functions.php:354
 msgid "Import"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:344
+#: lib/includes/admin/admin-functions.php:355
 msgid ""
 "WARNING! This will overwrite all existing option values, please proceed "
 "with caution"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:352
+#: lib/includes/admin/admin-functions.php:363
 msgid "Export Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:356
+#: lib/includes/admin/admin-functions.php:367
 msgid "Download File"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:358
+#: lib/includes/admin/admin-functions.php:369
 msgid ""
 "The following settings are exported. Easy Property Listings settings screen "
 "and any Extension settings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:373
+#: lib/includes/admin/admin-functions.php:384
 msgid "Upgrade Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:375
+#: lib/includes/admin/admin-functions.php:386
 msgid ""
 "Upgrading the database will copy all the listing pricing info into a "
 "unified price data column for searching and ordering. We recommend taking a "
 "database backup before performing this action."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:377
+#: lib/includes/admin/admin-functions.php:388
 msgid "Upgrade Database"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:379
+#: lib/includes/admin/admin-functions.php:390
 msgid "Processing..."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:450
+#: lib/includes/admin/admin-functions.php:461
 msgid "It looks like you upgraded to latest version of Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:452
+#: lib/includes/admin/admin-functions.php:463
 msgid ""
 "For better performance, we need to upgrade the database. You can upgrade "
 "the database by visiting tools page"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:457
+#: lib/includes/admin/admin-functions.php:468
 msgid "Take me to the upgrade tool"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:471
+#: lib/includes/admin/admin-functions.php:482
 msgid "Some error occured"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:563
+#: lib/includes/admin/admin-functions.php:574
 msgid "Database upgrade in process, following listings updated : %s.Please wait..."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:576
+#: lib/includes/admin/admin-functions.php:587
 msgid "Database upgraded successfully"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:629
-#: lib/includes/admin/admin-functions.php:642
-#: lib/includes/admin/admin-functions.php:650
+#: lib/includes/admin/admin-functions.php:640
+#: lib/includes/admin/admin-functions.php:653
+#: lib/includes/admin/admin-functions.php:661
 msgid "Note"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:634
+#: lib/includes/admin/admin-functions.php:645
 #: lib/includes/class-epl-contact.php:679
 msgid "Call"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:638
+#: lib/includes/admin/admin-functions.php:649
 msgid "Mail"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:646
+#: lib/includes/admin/admin-functions.php:657
 msgid "Alert"
 msgstr ""
 
@@ -2789,61 +2789,61 @@ msgstr ""
 msgid "Listings Over Time"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:282
+#: lib/includes/admin/reports/graphing.php:298
 #: lib/widgets/widget-admin-dashboard.php:322
 msgid "Today"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:283
+#: lib/includes/admin/reports/graphing.php:299
 msgid "Yesterday"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:284
+#: lib/includes/admin/reports/graphing.php:300
 msgid "This Week"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:285
+#: lib/includes/admin/reports/graphing.php:301
 msgid "Last Week"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:286
+#: lib/includes/admin/reports/graphing.php:302
 msgid "This Month"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:287
+#: lib/includes/admin/reports/graphing.php:303
 msgid "Last Month"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:288
+#: lib/includes/admin/reports/graphing.php:304
 msgid "This Quarter"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:289
+#: lib/includes/admin/reports/graphing.php:305
 msgid "Last Quarter"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:290
+#: lib/includes/admin/reports/graphing.php:306
 msgid "This Year"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:291
+#: lib/includes/admin/reports/graphing.php:307
 msgid "Last Year"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:292 lib/includes/functions.php:1758
+#: lib/includes/admin/reports/graphing.php:308 lib/includes/functions.php:1758
 #: lib/includes/functions.php:1776
 msgid "Custom"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:318
+#: lib/includes/admin/reports/graphing.php:334
 msgid "From"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:334
+#: lib/includes/admin/reports/graphing.php:350
 msgid "To"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:354
+#: lib/includes/admin/reports/graphing.php:370
 msgid "Filter"
 msgstr ""
 
