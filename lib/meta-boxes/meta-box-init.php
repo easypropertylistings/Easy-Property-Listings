@@ -217,6 +217,7 @@ function epl_get_meta_boxes() {
 							'opts'	=>	array(
 								'yes'	=>	__('Yes', 'easy-property-listings' ),
 							),
+							'import'	=>	'preserve'
 						)
 					)
 				)
@@ -298,7 +299,8 @@ function epl_get_meta_boxes() {
 							'label'		=>	__('Year Built', 'easy-property-listings' ),
 							'type'		=>	'text',
 							'maxlength'	=>	'4',
-							'width'		=>	'1'
+							'width'		=>	'1',
+							'import'	=>	'preserve'
 						),
 
 						array(
@@ -1515,7 +1517,8 @@ function epl_get_meta_boxes() {
 							'name'		=>	'property_owner',
 							'label'		=>	__('Contact ID','easy-property-listings' ),
 							'type'		=>	'text',
-							'help'		=>	__('Search for contact and update to save.','easy-property-listings' )
+							'help'		=>	__('Search for contact and update to save.','easy-property-listings' ),
+							'import'	=>	'preserve'
 						),
 					)
 				)
