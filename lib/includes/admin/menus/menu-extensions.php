@@ -17,6 +17,14 @@ $active_tab 	= isset($_GET['tab']) ? sanitize_title($_GET['tab']) : current( arr
 $active_sub_tab 	= isset($_GET['sub_tab']) ? sanitize_title($_GET['sub_tab']) : '';
 
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
+
+	if (
+		! isset( $_POST['epl_nonce_extension_form'] ) || 
+		! wp_verify_nonce( $_POST['epl_nonce_extension_form'], 'epl_nonce_extension_form' ) 
+	) {
+	   wp_die( __('Sorry, your nonce did not verify.','easy-property-listings') );
+	}
+
 	if(!empty($epl_extensions)) {
 		if(array_key_exists($active_tab, $epl_extensions)) {
 			$epl_settings = get_option('epl_settings');
@@ -188,6 +196,7 @@ $epl_settings = get_option('epl_settings');
 				<div class="epl-clear"></div>
 				<div class="epl-content-footer">
 					<input type="hidden" name="action" value="epl_settings" />
+					<?php wp_nonce_field( 'epl_nonce_extension_form', 'epl_nonce_extension_form' ); ?>
 					<input type="hidden" name="sub_tab" id="sub_tab" value="" />
 					<p class="submit">
 						<input type="submit" value="<?php _e('Save Changes', 'easy-property-listings' ); ?>" class="button button-primary" id="submit" name="submit">
