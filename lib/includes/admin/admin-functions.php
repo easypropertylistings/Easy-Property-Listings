@@ -407,6 +407,16 @@ function epl_handle_tools_form() {
 
     $action  = $_REQUEST['action'];
 
+    if( in_array($action, array('import') ) ){
+    	
+    	if (
+			! isset( $_POST['epl_nonce_tools_form'] ) || 
+			! wp_verify_nonce( $_POST['epl_nonce_tools_form'], 'epl_nonce_tools_form' ) 
+		) {
+		   wp_die( __('Sorry, your nonce did not verify.','easy-property-listings') );
+		}
+    }
+
     // sanitize post array
     $post_data	= filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
