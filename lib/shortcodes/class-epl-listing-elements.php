@@ -27,8 +27,41 @@ class EPL_Listing_Elements {
 
 	function listing_element($atts) {
 
+		global $property;
+
 		if( !isset($atts['type']) )
 			return;
+
+		if( is_null($property) ) {
+
+			$key_name = '';
+
+			switch( $atts['type'] ) {
+
+				case 'action' :
+					$key_name = 'action_key';
+				break;
+
+				case 'meta' :
+					$key_name = 'meta_key';
+				break;
+
+				case 'post' :
+					$key_name = 'post_key';
+				break;
+
+			}
+
+			ob_start();
+			echo '[ '.__('Listing','easy-property-listings').' '.ucwords($atts['type']);
+
+			if( $key_name != ''){
+				echo ' : '.ucwords(str_replace('_',' ',$atts[$key_name]));
+			}
+			echo ' ]';
+
+			return ob_get_clean();
+		}
 
 		switch( $atts['type'] ) {
 
