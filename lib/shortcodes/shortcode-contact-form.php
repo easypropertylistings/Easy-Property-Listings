@@ -46,6 +46,7 @@ function epl_contact_capture_form( $atts ) {
 	);
 	$contact_form->add_sections($fields);
 	$contact_form->add_fields();
+	$contact_form->add_nonce('epl_contact_widget');
 	echo '<div class="epl-contact-capture-form">';?>
 	<div class="epl-contact-capture-form-desc">
 		<?php

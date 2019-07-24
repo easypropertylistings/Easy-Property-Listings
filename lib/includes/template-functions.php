@@ -2797,6 +2797,14 @@ function epl_contact_capture_action() {
 		'msg'		=>	apply_filters('epl_contact_capture_fail_msg',__('Some issues with form submitted','easy-property-listings') )
 	);
 
+	if (
+		! isset( $_POST['epl_contact_widget'] ) || 
+		! wp_verify_nonce( $_POST['epl_contact_widget'], 'epl_contact_widget' ) 
+	) {
+	   wp_die( json_encode( $fail ) );
+	}
+
+
 	if( isset($_POST['epl_contact_anti_spam']) && $_POST['epl_contact_anti_spam'] != '' ){
 		wp_die( json_encode( $fail ) );
 	}
