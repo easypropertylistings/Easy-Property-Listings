@@ -23,7 +23,7 @@ function epl_load_svg_listing_icons_head() {
 
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
 		<defs>
-			<symbol id="epl-icon-svg-bed" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-bed" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-bed-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -40,7 +40,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-bath" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-bath" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-bath-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -59,7 +59,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-car" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-car" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-car-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -68,7 +68,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-air" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-air" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-air-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -88,7 +88,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-pool" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-pool" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-pool-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -125,7 +125,7 @@ function epl_load_svg_social_icons_head() {
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
 		<defs>
 
-			<symbol id="epl-icon-svg-email" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-email" class="epl-icon-fill epl-icon-social">
 				<path id="epl-icon-email-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 				<g id="epl-icon-email-shape-hollow" class="epl-icon-color-hollow">
 					<path class="st1" d="M77.2,39.8c-0.1-0.1-0.2-0.1-0.3-0.2V24c0-0.5-0.4-0.8-0.8-0.8h-20C56.1,23.1,56,23.1,56,23L51,19.1
@@ -140,7 +140,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-facebook" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-facebook" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-facebook-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -150,7 +150,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-twitter" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-twitter" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-twitter-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75.1c0,13.8-11.2,24.9-25,24.9H25C11.2,100,0,88.9,0,75.1v-50C0,11.3,11.2,0,25,0h50
 						c13.8,0,25,11.3,25,25.1V75.1z"/>
@@ -164,7 +164,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-linkedin" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-linkedin" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-linkedin-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -176,7 +176,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-google-plus" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-google-plus" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-google-plus-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -196,7 +196,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-youtube" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-youtube" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-youtube-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -208,7 +208,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-skype" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-skype" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-skype-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -229,7 +229,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-instagram" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-instagram" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-instagram-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -242,7 +242,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-pinterest" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-pinterest" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-pinterest-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
