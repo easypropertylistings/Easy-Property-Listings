@@ -39,6 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 		<div class="epl-tabs-content">
 			<form class="epl-tools-form" method="post" enctype="multipart/form-data">
+				<?php wp_nonce_field( 'epl_nonce_tools_form', 'epl_nonce_tools_form' ); ?>
 				<?php
 				if( isset($tabs[$current]) )
 					call_user_func($tabs[$current]['callback']);
