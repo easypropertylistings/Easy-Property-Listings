@@ -14,6 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 $fields = epl_get_admin_option_licence_fields();
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
+
+	if (
+		! isset( $_POST['epl_nonce_license_form'] ) || 
+		! wp_verify_nonce( $_POST['epl_nonce_license_form'], 'epl_nonce_license_form' ) 
+	) {
+	   wp_die( __('Sorry, your nonce did not verify.','easy-property-listings') );
+	}
+	
 	if(!empty($fields)) {
 		$epl_license = array();
 		foreach($fields as $field_group) {
@@ -164,6 +172,7 @@ $epl_license = get_option('epl_license');
 
 			<div class="epl-content-footer">
 				<input type="hidden" name="action" value="epl_settings" />
+				<?php wp_nonce_field( 'epl_nonce_license_form', 'epl_nonce_license_form' ); ?>
 				<p class="submit"><input type="submit" value="<?php _e('Save Changes', 'easy-property-listings' ); ?>" class="button button-primary" id="submit" name="submit"></p>
 			</div>
 		</form>
