@@ -205,7 +205,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'		=>	'property_inspection_times',
-							'label'		=>	__('Inspection Times ( one per line )', 'easy-property-listings' ),
+							'label'		=>	__('Inspection Times', 'easy-property-listings' ),
 							'type'		=>	'textarea',
 							'maxlength'	=>	'500'
 						),
