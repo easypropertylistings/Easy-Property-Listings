@@ -320,8 +320,22 @@ class EPL_METABOX {
 	                                            if(!isset($_POST[ $field['name'] ])) {
 	                                                $_POST[ $field['name'] ] = '';
 	                                            }
+	                                        } else if( in_array($field['type'], array('number','decimal')) ) {
+
+	                                        	/** validate numeric data */
+                                            	
+	                                            if( !is_numeric( $_POST[ $field['name'] ]) ){
+	                                            	continue;
+	                                            }
+
+	                                        }   else if( in_array($field['type'], array('url','file')) ) {
+
+	                                        	/** sanitize URLs */
+
+	                                            $_POST[ $field['name'] ] = esc_url( $_POST[ $field['name'] ] );
+
 	                                        } else if( $field['type'] == 'auction-date' && $_POST[ $field['name'] ] != '') {
-	                                            $epl_date = $_POST[ $field['name'] ];
+	                                            $epl_date = sanitize_text_field( $_POST[ $field['name'] ] );
 	                                            if(strpos($epl_date, 'T') !== FALSE){
 	                                                $epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
 	                                            } else {
@@ -332,7 +346,7 @@ class EPL_METABOX {
 	                                            }
 	                                            $_POST[ $field['name'] ] = $epl_date;
 	                                        } else if( $field['type'] == 'sold-date' && $_POST[ $field['name'] ] != '') {
-	                                            $epl_date = $_POST[ $field['name'] ];
+	                                            $epl_date = sanitize_text_field( $_POST[ $field['name'] ] );
 	                                            if(strpos($epl_date, 'T') !== FALSE){
 	                                                $epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
 	                                            } else {
@@ -343,8 +357,10 @@ class EPL_METABOX {
 	                                            }
 	                                            $_POST[ $field['name'] ] = $epl_date;
 	                                        }
-	                                        if( isset($_POST[ $field['name'] ]) )
-	                                        	update_post_meta( $post_ID, $field['name'], $_POST[ $field['name'] ] );
+	                                        if( isset($_POST[ $field['name'] ]) ){
+	                                        	$meta_value = sanitize_text_field( $_POST[ $field['name'] ] );
+	                                        	update_post_meta( $post_ID, $field['name'], $meta_value );
+	                                        }
 	                                    }
 	                                }
 	                            }

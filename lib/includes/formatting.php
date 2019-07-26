@@ -250,3 +250,19 @@ function epl_format_the_excerpt( $content ) {
 	return $content;
 }
 add_filter( 'epl_the_excerpt' , 'epl_format_the_excerpt' );
+
+/**
+ * Sanitizes a string key for EPL
+ *
+ * Keys are used as internal identifiers. Alphanumeric characters, dashes, underscores, stops, colons and slashes are allowed
+ *
+ * @since  3.5
+ * @param  string $key String key
+ * @return string Sanitized key
+ */
+function epl_sanitize_key( $key ) {
+
+	$raw_key = $key;
+	$key = preg_replace( '/[^a-zA-Z0-9_\-\.\:\/]/', '', $key );
+	return apply_filters( 'epl_sanitize_key', $key, $raw_key );
+}

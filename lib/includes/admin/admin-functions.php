@@ -538,7 +538,7 @@ function epl_upgrade_db() {
 		wp_die( json_encode(array('status'	=>	'fail', 'msg'	=>	__('Some error occured','easy-property-listings') ) ) );
 	}
 
-	$ver = $_POST['upgrade_to'];
+	$ver = abs( floatval($_POST['upgrade_to']) );
 
 	switch( $ver ) {
 
