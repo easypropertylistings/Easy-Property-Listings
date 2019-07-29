@@ -444,6 +444,11 @@ function epl_meta_contact( $args ) {
 			if( in_array($key,$post_fields) ) {
 				$field_updates[$key] = $value;
 			} else {
+				if( is_array($value) ){
+					$value			= array_map( 'sanitize_text_field',$value);
+				} else {
+					$value = sanitize_text_field($value);
+				}
 				$contact->update_meta($key,$value);
 			}
 		}
