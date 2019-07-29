@@ -328,6 +328,13 @@ class EPL_METABOX {
 	                                            	continue;
 	                                            }
 
+	                                        }   else if( in_array($field['type'], array('textarea')) ) {
+
+		                                            if( function_exists( 'sanitize_textarea_field' ) ){
+		                                            	$_POST[ $field['name'] ] = 
+		                                            	sanitize_textarea_field( $_POST[ $field['name'] ] );
+		                                            }
+
 	                                        }   else if( in_array($field['type'], array('url','file')) ) {
 
 	                                        	/** sanitize URLs */
@@ -358,7 +365,7 @@ class EPL_METABOX {
 	                                            $_POST[ $field['name'] ] = $epl_date;
 	                                        }
 	                                        if( isset($_POST[ $field['name'] ]) ){
-	                                        	$meta_value = sanitize_text_field( $_POST[ $field['name'] ] );
+	                                        	$meta_value = $_POST[ $field['name'] ];
 	                                        	update_post_meta( $post_ID, $field['name'], $meta_value );
 	                                        }
 	                                    }

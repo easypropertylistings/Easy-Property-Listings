@@ -37,7 +37,13 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 
 						$_REQUEST[ $field['name'] ] = '';
 					} else {
-						$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
+
+						if( is_array( $_REQUEST[ $field['name'] ] ) ){
+							$_REQUEST[ $field['name'] ] = array_map( 'sanitize_text_field', $_REQUEST[ $field['name'] ] );
+						} else {
+							$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
+						}
+						
 					}
 
 				}

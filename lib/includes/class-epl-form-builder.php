@@ -251,7 +251,7 @@ class EPL_FORM_BUILDER {
 		$field['id']    =   isset($field['id']) ? $field['id'] : '';
 
 		if( empty($field['id']) )
-			$field['id']    =   isset($field['name']) ? $field['name'] : '';
+			$field['id']    =   isset($field['name']) ? epl_sanitize_key($field['name']) : '';
 
 		$invalid_attributes = $this->invalid_attributes();
 
@@ -261,6 +261,9 @@ class EPL_FORM_BUILDER {
 				/** this attribute is not valid for current input type, lets skip it **/
 			} else {
 
+				if( $key == 'name' ){
+					$value = esc_attr($value);
+				}
 				if( isset($field['multiple']) && in_array($field['type'], array('select','checkbox') ) && $key == 'name') {
 					$value = $value.'[]';
 				}
@@ -680,7 +683,7 @@ class EPL_FORM_BUILDER {
 	 */
 	private function render_text($field) {
 
-		$field['value']	 = $this->get_value($field);
+		$field['value']	 = esc_attr( stripslashes( $this->get_value($field) ) );
 		$field['class']  = $this->get_class('field',$field);
 		$html 			 = "\n<input  ";
 		$html 			.= $this->get_attributes($field);
@@ -700,7 +703,7 @@ class EPL_FORM_BUILDER {
 		$html 			 = "\n<textarea  ";
 		$html 			.= $this->get_attributes($field);
 		$html 			.= '>';
-		$html			.= $value;
+		$html			.= esc_attr($value);
 		$html 			.= '</textarea>';
 		echo apply_filters($this->prefix.'form_'.$field["type"].'_tag',$html,$field);
 
@@ -723,7 +726,7 @@ class EPL_FORM_BUILDER {
 			if($option == $value)
 			$field['checked'] 	= 'checked' ;
 
-			$field['value']	 	= $option;
+			$field['value']	 	= esc_attr( stripslashes($option) );
 			$field['class']  	= $this->get_class('field',$field);
 			$html 			 	= "\n<input  ";
 			$html 				.= $this->get_attributes($field);
@@ -750,7 +753,7 @@ class EPL_FORM_BUILDER {
 			if($option == $value)
 			$field['checked'] 	= 'checked' ;
 
-			$field['value']	 	= $option;
+			$field['value']	 	= esc_attr( stripslashes($option) );
 			$field['class']  	= $this->get_class('field',$field);
 			$html 			 	= "\n<input  ";
 			$html 				.= $this->get_attributes($field);
@@ -766,7 +769,7 @@ class EPL_FORM_BUILDER {
 	 * @since 2.3
 	 */
 	private function render_wp_editor() {
-		$value	 		 = $this->get_value($field);
+		$value	 		 = stripslashes( $this->get_value($field) );
 		$field['class']  = $this->get_class('field',$field);
 		wp_editor($value,$field['name']);
 	}
@@ -784,9 +787,10 @@ class EPL_FORM_BUILDER {
 		$value 		 	 = $this->get_value($field);
 		$field['class']  = $this->get_class('field',$field);
 		$html 			 = "\n<select  ";
-		$html 			.= $this->get_attributes($field);
+		$html 			.= $this->get_attributes( stripslashes($field) );
 		$html 			.= ' >';
 		$value			= (array) $value;
+		$value			= array_map( 'sanitize_text_field',$value);
 
 		foreach($options as $option	=>	$label) {
 
