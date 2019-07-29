@@ -397,8 +397,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * New: Reset settings to default values Tool added.
 * Tweak: Ability to arrange EPL - Search Widget options dashboard field order.
-* Fix:
-* Fix:
+* Tweak: Wording alteration for Inspection Times - removed (one per line).
+* Tweak: Removed subscriber user type from Dashboard filtering by User.
+* Fix: [listing_element] shortcode will now display shortcode values when using frontend GUI builder.
+* Fix: Security enhancements.
 
 = 3.3.4 July 24, 2019 =
 
