@@ -1061,7 +1061,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 							$checked = 'checked="checked"';
 						}
 					}
-					echo '<span class="epl-field-row"><input type="checkbox" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'_'.$k.'" value="'.esc_attr($k).'" '.$checked.' /> <label for="'.esc_html($field['name']).'_'.epl_sanitize_key($k).'">'.__(esc_html($v), 'epl').'</label></span>';
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'_'.$k.'" value="'.esc_attr($k).'" '.$checked.' /> <label for="'.esc_html($field['name']).'_'.epl_sanitize_key($k).'">'.__(esc_html($v), 'easy-property-listings').'</label></span>';
 				}
 			}
 			break;
