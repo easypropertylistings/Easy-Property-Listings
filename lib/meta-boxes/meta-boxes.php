@@ -217,6 +217,12 @@ function epl_save_meta_boxes( $post_ID ) {
                                             	continue;
                                             }
 
+                                        }  else if( in_array($field['type'], array('textarea')) ) {
+
+                                            if( function_exists( 'sanitize_textarea_field' ) ){ 
+                                            	$_POST[ $field['name'] ] = sanitize_textarea_field( $_POST[ $field['name'] ] );
+                                            }
+
                                         }  else if( in_array($field['type'], array('url','file')) ) {
 
                                         	/** sanitize URLs */
@@ -252,7 +258,7 @@ function epl_save_meta_boxes( $post_ID ) {
 											$_POST[ $field['name'] ] = $epl_date;
 										}
 
-										$meta_value = sanitize_text_field( $_POST[ $field['name'] ] );
+										$meta_value = $_POST[ $field['name'] ];
 										update_post_meta( $post_ID, $field['name'], $meta_value );
 									}
 								}
