@@ -389,15 +389,15 @@ function epl_get_report_dates() {
 
 	$current_time = current_time( 'timestamp' );
 
-	$dates['range']      = isset( $_GET['range'] )   ? $_GET['range']   : 'this_month';
+	$dates['range']      = isset( $_GET['range'] )   ? sanitize_text_field( $_GET['range']  )  : 'this_month';
 
 	if ( 'custom' !== $dates['range'] ) {
-		$dates['year']       = isset( $_GET['year'] )    ? $_GET['year']    : date( 'Y' );
-		$dates['year_end']   = isset( $_GET['year_end'] )? $_GET['year_end']: date( 'Y' );
-		$dates['m_start']    = isset( $_GET['m_start'] ) ? $_GET['m_start'] : 1;
-		$dates['m_end']      = isset( $_GET['m_end'] )   ? $_GET['m_end']   : 12;
-		$dates['day']        = isset( $_GET['day'] )     ? $_GET['day']     : 1;
-		$dates['day_end']    = isset( $_GET['day_end'] ) ? $_GET['day_end'] : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
+		$dates['year']       = isset( $_GET['year'] )    ? sanitize_text_field( $_GET['year']  )    : date( 'Y' );
+		$dates['year_end']   = isset( $_GET['year_end'] )? sanitize_text_field( $_GET['year_end']  ): date( 'Y' );
+		$dates['m_start']    = isset( $_GET['m_start'] ) ? sanitize_text_field( $_GET['m_start']  ) : 1;
+		$dates['m_end']      = isset( $_GET['m_end'] )   ? sanitize_text_field( $_GET['m_end']  )   : 12;
+		$dates['day']        = isset( $_GET['day'] )     ? sanitize_text_field( $_GET['day']  )     : 1;
+		$dates['day_end']    = isset( $_GET['day_end'] ) ? sanitize_text_field( $_GET['day_end']  ) : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
 	}
 
 

@@ -271,6 +271,10 @@ function epl_get_tools_tab() {
 		'tools'	=>	array(
 			'label'		=>	__('Import/Export','easy-property-listings'),
 			'callback'	=>	'epl_settings_import_export'
+		),
+		'reset'	=>	array(
+			'label'		=>	__('Reset Settings','easy-property-listings'),
+			'callback'	=>	'epl_settings_reset'
 		)
 	);
 
@@ -375,6 +379,37 @@ function epl_settings_import_export() {
 }
 
 /**
+ * Reset EPL Settings :  Tools Settings Screen
+ *
+ * @since 3.5
+ */
+function epl_settings_reset() {
+
+	do_action('epl_pre_settings_reset_fields');
+
+	if( isset($_GET['epl_tools_submit']) && $_GET['epl_tools_submit'] == 'true') { ?>
+		<br>
+		<span style="color:#080"><?php _e('Settings resetted successfully!','easy-property-listings'); ?></span>
+	<?php
+	}
+
+	$url = '?page=epl-tools&tab=reset&action=reset&epl_tools_submit=true';
+
+	$url = wp_nonce_url( $url, $action = 'epl_reset_settings', $name = '_reset_wpnonce' );
+
+	echo '<h2>'.__('Reset EPL settings','easy-property-listings').'</h2>'; 
+
+	echo "<a class='button button-primary' href='".$url."'>".__('Reset','easy-property-listings')."</a>";
+	?>
+	<br>
+	<span style="color:#f00"><?php _e('Warning! It will override Easy Property Listings settings screen and any Extension settings','easy-property-listings'); ?></span>
+	<?php
+
+	do_action('epl_post_settings_reset_fields');
+
+}
+
+/**
  * Settings upgrade tab screen
  *
  * @since 3.3
@@ -405,7 +440,7 @@ function epl_handle_tools_form() {
     	return;
     }
 
-    $action  = $_REQUEST['action'];
+    $action  = sanitize_text_field($_REQUEST['action']);
 
     if( in_array($action, array('import') ) ){
     	
@@ -452,6 +487,17 @@ function epl_handle_tools_form() {
 		}
 
         break;
+
+        case 'reset' :
+        	if (!isset($_GET['_reset_wpnonce']) || !wp_verify_nonce($_GET['_reset_wpnonce'], 'epl_reset_settings')) {
+        		wp_die( __('Sorry, your nonce did not verify.','easy-property-listings') );
+        	} else {
+        		$epl_settings = epl_get_default_settings();
+        		epl_print_r($epl_settings);
+        		update_option( 'epl_settings', $epl_settings );
+        	}
+        	
+        break;
     }
 
 }
@@ -492,7 +538,7 @@ function epl_upgrade_db() {
 		wp_die( json_encode(array('status'	=>	'fail', 'msg'	=>	__('Some error occured','easy-property-listings') ) ) );
 	}
 
-	$ver = $_POST['upgrade_to'];
+	$ver = abs( floatval($_POST['upgrade_to']) );
 
 	switch( $ver ) {
 

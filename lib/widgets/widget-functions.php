@@ -26,7 +26,8 @@ function epl_search_widget_fields() {
 			'key'			=>	'title',
 			'label'			=>	__('Title','easy-property-listings'),
 			'type'			=>	'text',
-			'default'		=>	''
+			'default'		=>	'',
+			'order'			=>	10
 		),
 		array(
 			'key'			=>	'post_type',
@@ -35,6 +36,7 @@ function epl_search_widget_fields() {
 			'type'			=>	'select',
 			'multiple'		=>	true,
 			'options'		=>	$post_type_array,
+			'order'			=>	20
 		),
 		array(
 			'key'			=>	'style',
@@ -46,13 +48,15 @@ function epl_search_widget_fields() {
 				'wide'		=>	__('Wide' , 'easy-property-listings'),
 				'slim'		=>	__('Slim' , 'easy-property-listings'),
 				'fixed'		=>	__('Fixed Width' , 'easy-property-listings'),
-			)
+			),
+			'order'			=>	30
 		),
 		array(
 			'key'			=>	'show_property_status_frontend',
 			'label'			=>	__('Status','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	40
 		),
 		array(
 			'key'			=>	'property_status',
@@ -65,72 +69,84 @@ function epl_search_widget_fields() {
 				'sold'		=>	apply_filters( 'epl_sold_label_status_filter' , __('Sold', 'easy-property-listings') ),
 				'leased'	=>	apply_filters( 'epl_leased_label_status_filter' , __('Leased', 'easy-property-listings') )
 			),
+			'order'			=>	50
 		),
 		array(
 			'key'			=>	'search_id',
 			'label'			=>	__('Property ID','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	60
 		),
 		array(
 			'key'			=>	'search_address',
 			'label'			=>	__('Property Address','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	70
 		),
 		array(
 			'key'			=>	'search_location',
 			'label'			=>	epl_tax_location_label(),
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
+			'order'			=>	80
 		),
 		array(
 			'key'			=>	'search_city',
 			'label'			=>	epl_labels('label_city'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	90
 		),
 		array(
 			'key'			=>	'search_state',
 			'label'			=>	epl_labels('label_state'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	100
 		),
 		array(
 			'key'			=>	'search_postcode',
 			'label'			=>	epl_labels('label_postcode'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	110
 		),
 		array(
 			'key'			=>	'search_country',
 			'label'			=>	__('Country','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	120
 		),
 		array(
 			'key'			=>	'search_house_category',
 			'label'			=>	__('Category','easy-property-listings'),
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
+			'order'			=>	130
 		),
 		array(
 			'key'			=>	'house_category_multiple',
 			'label'			=>	__('Categories: Multi select','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	140
 		),
 		array(
 			'key'			=>	'search_price_global',
 			'label'			=>	__('Price Slider','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	150
 		),
 		array(
 			'key'			=>	'search_price',
 			'label'			=>	__('Price','easy-property-listings'),
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
+			'order'			=>	160
 		),
 
 		array(
@@ -138,42 +154,49 @@ function epl_search_widget_fields() {
 			'label'			=>	__('Bed','easy-property-listings'),
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
+			'order'			=>	170
 		),
 		array(
 			'key'			=>	'search_bath',
 			'label'			=>	__('Bath','easy-property-listings'),
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
+			'order'			=>	180
 		),
 		array(
 			'key'			=>	'search_rooms',
 			'label'			=>	__('Rooms','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	190
 		),
 		array(
 			'key'			=>	'search_car',
 			'label'			=>	__('Car','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	200
 		),
 		array(
 			'key'			=>	'search_land_area',
 			'label'			=>	__('Land Area','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	210
 		),
 		array(
 			'key'			=>	'search_building_area',
 			'label'			=>	__('Building Area','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	220
 		),
 		array(
 			'key'			=>	'search_features',
 			'label'			=>	__('Features','easy-property-listings'),
 			'default'		=>	'off',
 			'type'			=>	'checkbox',
+			'order'			=>	230
 		),
 
 		array(
@@ -181,14 +204,27 @@ function epl_search_widget_fields() {
 			'label'			=>	__('Other Search Options','easy-property-listings'),
 			'default'		=>	'on',
 			'type'			=>	'checkbox',
+			'order'			=>	240
 		),
 		array(
 			'key'			=>	'submit_label',
 			'label'			=>	__('Submit Label','easy-property-listings'),
 			'type'			=>	'text',
-			'default'		=>	__('Search','easy-property-listings')
+			'default'		=>	__('Search','easy-property-listings'),
+			'order'			=>	250
 		),
 	) );
+
+	$order = array();
+	foreach($fields as $field_key => $field_value) {
+
+		$fields[$field_value['key']] 	= $field_value;
+		$order[$field_value['key']] 	= isset($field_value['order']) ? $field_value['order'] : 245;
+		unset($fields[$field_key]);
+
+	}
+
+	array_multisort($order, SORT_ASC, $fields);
 
 	return $fields;
 }
