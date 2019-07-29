@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Get array of default settings
  * @return [type] [description]
- * @since 3.5
+ * @since 3.3.5
  */
 function epl_get_default_settings() {
 

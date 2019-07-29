@@ -381,7 +381,7 @@ function epl_settings_import_export() {
 /**
  * Reset EPL Settings :  Tools Settings Screen
  *
- * @since 3.5
+ * @since 3.3.5
  */
 function epl_settings_reset() {
 
