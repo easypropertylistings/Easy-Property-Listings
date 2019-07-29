@@ -406,7 +406,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * Tweak: Additional CSS classes added to SVG icons.
 * Fix: Loading custom CSS using the style-single.css now works correctly.
-* Fix: Important Security Update: XSS security flaw.
+* Important Security Update: Fix: XSS security flaw.
 
 = 3.3.3 June 13, 2019 =
 

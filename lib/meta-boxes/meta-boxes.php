@@ -209,27 +209,25 @@ function epl_save_meta_boxes( $post_ID ) {
 
 											$_POST[ $field['name'] ] = sanitize_text_field( $_POST[ $field['name'] ] );
 
-										}  else if( in_array($field['type'], array('number','decimal')) ) {
+										} else if( in_array($field['type'], array('number','decimal')) ) {
 
-                                        	/** validate numeric data */
-                                        	
-                                            if( !is_numeric( $_POST[ $field['name'] ]) ){
-                                            	continue;
-                                            }
+											/** validate numeric data */
+											if( !is_numeric( $_POST[ $field['name'] ]) ){
+												continue;
+											}
 
-                                        }  else if( in_array($field['type'], array('textarea')) ) {
+                                        					} else if( in_array($field['type'], array('textarea')) ) {
 
-                                            if( function_exists( 'sanitize_textarea_field' ) ){ 
-                                            	$_POST[ $field['name'] ] = sanitize_textarea_field( $_POST[ $field['name'] ] );
-                                            }
+											if( function_exists( 'sanitize_textarea_field' ) ){
+												$_POST[ $field['name'] ] = sanitize_textarea_field( $_POST[ $field['name'] ] );
+											}
 
-                                        }  else if( in_array($field['type'], array('url','file')) ) {
+										} else if( in_array($field['type'], array('url','file')) ) {
 
-                                        	/** sanitize URLs */
+											/** sanitize URLs */
+											$_POST[ $field['name'] ] = esc_url( $_POST[ $field['name'] ] );
 
-                                            $_POST[ $field['name'] ] = esc_url( $_POST[ $field['name'] ] );
-
-                                        } else if( $field['type'] == 'auction-date' && $_POST[ $field['name'] ] != '') {
+										} else if( $field['type'] == 'auction-date' && $_POST[ $field['name'] ] != '') {
 
 											$epl_date = $_POST[ $field['name'] ];
 											$epl_date = sanitize_text_field( $_POST[ $field['name'] ] );
@@ -286,7 +284,7 @@ function epl_get_terms_drop_list() {
 		$type_name,
 		array(
 			'hide_empty'	=>	0,
-			'parent'		=>	$parent_id
+			'parent'	=>	$parent_id
 		)
 	);
 	if ( !empty($terms) && !is_wp_error($terms) ) {
