@@ -393,11 +393,18 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.3.5 July 29, 2019 =
+
+* New: Reset settings to default values Tool added.
+* Tweak: Ability to arrange EPL - Search Widget options dashboard field order.
+* Fix:
+* Fix:
+
 = 3.3.4 July 24, 2019 =
 
 * Tweak: Additional CSS classes added to SVG icons.
 * Fix: Loading custom CSS using the style-single.css now works correctly.
-* Fix: Important Security Update: Nonce security applied to form fields.
+* Fix: Important Security Update: XSS security flaw.
 
 = 3.3.3 June 13, 2019 =
 
