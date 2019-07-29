@@ -58,7 +58,7 @@ class EPL_Listing_Elements {
 			}
 
 			ob_start();
-			echo '[ '.__('Listing Element','easy-property-listings').' '.ucwords($atts['type']);
+			echo '[ '.__('Listing','easy-property-listings').' '.ucwords($atts['type']);
 
 			if( $key_name != ''){
 				echo ': '.ucwords(str_replace('_',' ',$atts[$key_name]));
