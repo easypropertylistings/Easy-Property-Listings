@@ -27,7 +27,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			echo '<h1 class="nav-tab-wrapper">';
 			foreach( $tabs as $tab => $tab_options ){
 				$class = ( $tab == $current ) ? ' nav-tab-active' : '';
-				echo "<a class='nav-tab$class' href='?page=epl-tools&tab=$tab'>{$tab_options['label']}</a>";
+				$url = admin_url('admin.php?page=epl-tools&tab='.$tab);
+				$url = epl_show_reset_tab() ? add_query_arg( array('dev'	=>	'true'), $url ) : $url;
+
+				echo "<a class='nav-tab$class' href='".$url."'>{$tab_options['label']}</a>";
 			}
 			echo '</h1>';
 			?>
