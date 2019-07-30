@@ -139,7 +139,7 @@ function epl_wp_enqueue_scripts() {
 		'field_sliders'         => epl_get_field_sliders()
 	);
 
-	wp_enqueue_script('jquery-ui-touch-punch', $current_dir_path .'/js/jquery.ui.touch-punch.min.js', array('jquery-ui-slider') );
+	wp_enqueue_script('jquery-touch-punch');
 
 	wp_enqueue_script( 	'epl-js-lib',	$current_dir_path . 	'/js/epl'.$suffix.'.js', 						array('jquery'), EPL_PROPERTY_VER );
 
