@@ -39,7 +39,7 @@ function epl_admin_enqueue_scripts($screen) {
 		wp_enqueue_script(	'epl-jquery-validation-engine-lang-scripts', 	$current_dir_path . '/js/jquery-validationEngine-en'.$suffix.'.js',	array('jquery'),	EPL_PROPERTY_VER );
 		wp_enqueue_script(	'epl-jquery-validation-engine-scripts', 		$current_dir_path . '/js/jquery-validationEngine'.$suffix.'.js', 	array('jquery'),	EPL_PROPERTY_VER );
 		wp_enqueue_script(	'jquery-datetime-picker',				$current_dir_path . '/js/jquery-datetime-picker'.$suffix.'.js', 	array('jquery'),	EPL_PROPERTY_VER );
-		wp_enqueue_style(	'jquery-ui-datetime-picker-style',  		$current_dir_path . '/css/jquery-ui.min.css',			FALSE,		EPL_PROPERTY_VER );
+		wp_enqueue_style(	'jquery-ui-datetime-picker-style',  		$current_dir_path . '/css/jquery-ui'.$suffix.'.css',			FALSE,		EPL_PROPERTY_VER );
 
 		$js_vars = array(
 			'default_map_address' 	=> apply_filters('epl_default_map_address', epl_get_option('epl_default_country','Australia') ),

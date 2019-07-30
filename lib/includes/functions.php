@@ -89,7 +89,7 @@ function epl_get_thumbnail_sizes() {
  * Remote get function
  *
  * @since 1.0
- * @updated 3.5
+ * @updated 3.3.5
  */
 function epl_remote_url_get($url) {
 

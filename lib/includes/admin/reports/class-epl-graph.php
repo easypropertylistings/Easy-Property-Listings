@@ -142,7 +142,7 @@ class EPL_Graph {
 	public function load_scripts() {
 		// Use minified libraries if SCRIPT_DEBUG is turned off
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		wp_enqueue_script( 'epl-jquery-flot', EPL_PLUGIN_URL . 'lib/assets/js/jquery.flot' . $suffix . '.js' );
+		wp_enqueue_script( 'epl-jquery-flot', EPL_PLUGIN_URL . 'lib/assets/js/jquery-flot' . $suffix . '.js' );
 
 		do_action( 'epl_graph_load_scripts' );
 	}
