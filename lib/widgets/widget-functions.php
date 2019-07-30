@@ -877,16 +877,16 @@ function epl_widget_render_backend_field($field,$object,$value='') {
 		case "checkbox": ?>
 			<p>
 				<input
-					id="<?php echo $object->get_field_id($field['key']); ?>"
-					name="<?php echo $object->get_field_name($field['key']); ?>"
+					id="<?php echo esc_attr( $object->get_field_id($field['key']) ) ; ?>"
+					name="<?php echo esc_attr( $object->get_field_name($field['key']) ) ; ?>"
 					type="checkbox"
 						<?php
-							if(isset($value) && $value == 'on') {
+							if(isset($value) && esc_attr($value) == 'on') {
 								echo 'checked="checked"';
 							}
 						?>
 				/>
-				<label for="<?php echo $object->get_field_id($field['key']); ?>">
+				<label for="<?php echo esc_attr( $object->get_field_id($field['key']) ); ?>">
 					<?php echo $field['label']; ?>
 				</label>
 			</p> <?php
@@ -896,15 +896,15 @@ function epl_widget_render_backend_field($field,$object,$value='') {
 		// text
 		case "text": ?>
 			<p>
-				<label for="<?php echo $object->get_field_id($field['key']); ?>">
+				<label for="<?php echo esc_attr($object->get_field_id($field['key'])); ?>">
 					<?php echo $field['label']; ?>
 				</label>
 				<input
 					class="widefat"
-					id="<?php echo $object->get_field_id($field['key']); ?>"
-					name="<?php echo $object->get_field_name($field['key']); ?>"
+					id="<?php echo esc_attr($object->get_field_id($field['key'])); ?>"
+					name="<?php echo esc_attr($object->get_field_name($field['key'])); ?>"
 					type="text"
-					value="<?php echo $value; ?>"
+					value="<?php echo esc_attr($value); ?>"
 				/>
 			</p> <?php
 
@@ -913,16 +913,16 @@ function epl_widget_render_backend_field($field,$object,$value='') {
 		// textarea
 		case "textarea": ?>
 			<p>
-				<label for="<?php echo $object->get_field_id($field['key']); ?>">
-					<?php echo $field['label']; ?>
+				<label for="<?php echo esc_attr($object->get_field_id($field['key'])); ?>">
+					<?php echo esc_attr($field['label']); ?>
 				</label>
 				<textarea
 					class="widefat"
 					rows="10"
 					cols="20"
-					id="<?php echo $object->get_field_id($field['key']); ?>"
-					name="<?php echo $object->get_field_name($field['key']); ?>"
-					><?php echo $value; ?></textarea>
+					id="<?php echo esc_attr($object->get_field_id($field['key'])); ?>"
+					name="<?php echo esc_attr($object->get_field_name($field['key'])); ?>"
+					><?php echo esc_attr($value); ?></textarea>
 			</p> <?php
 
 			break;
@@ -930,18 +930,19 @@ function epl_widget_render_backend_field($field,$object,$value='') {
 		// select
 		case "select": ?>
 			<p>
-				<label for="<?php echo $object->get_field_id($field['key']); ?>">
-					<?php echo $field['label']; ?>
+				<label for="<?php echo esc_attr( $object->get_field_id($field['key']) ); ?>">
+					<?php echo esc_attr($field['label']); ?>
 				</label>
 
 				<select
 
 					<?php echo isset($field['multiple']) ? ' multiple ':' '; ?>
 					class="widefat"
-					id="<?php echo $object->get_field_id($field['key']); ?>"
-					name="<?php echo $object->get_field_name($field['key']); echo isset($field['multiple']) ? '[]':''; ?>">
+					id="<?php echo esc_attr( $object->get_field_id($field['key']) ); ?>"
+					name="<?php echo esc_attr( $object->get_field_name($field['key']) ); echo isset($field['multiple']) ? '[]':''; ?>">
 
 					<?php
+
 						foreach($field['options'] as $k=>$v) {
 							$selected = '';
 							if( isset($field['multiple']) ) {
@@ -956,7 +957,7 @@ function epl_widget_render_backend_field($field,$object,$value='') {
 									$selected = 'selected="selected"';
 								}
 							}
-							echo '<option value="'.$k.'" '.$selected.'>'.$v.'</option>';
+							echo '<option value="'.esc_attr($k).'" '.$selected.'>'.esc_attr($v).'</option>';
 						}
 					?>
 

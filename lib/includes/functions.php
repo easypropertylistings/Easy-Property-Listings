@@ -89,18 +89,12 @@ function epl_get_thumbnail_sizes() {
  * Remote get function
  *
  * @since 1.0
+ * @updated 3.3.5
  */
 function epl_remote_url_get($url) {
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$response = curl_exec($ch);
-	$response = json_decode($response);
-	if(!empty($response)) {
-		if($response->status == 'OK') {
-			return $response->results;
-		}
-	}
+
+	$response = wp_remote_get( $url );
+	return wp_remote_retrieve_body( $response );
 }
 
 /**

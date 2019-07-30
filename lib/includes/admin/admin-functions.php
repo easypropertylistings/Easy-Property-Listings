@@ -271,12 +271,17 @@ function epl_get_tools_tab() {
 		'tools'	=>	array(
 			'label'		=>	__('Import/Export','easy-property-listings'),
 			'callback'	=>	'epl_settings_import_export'
-		),
-		'reset'	=>	array(
-			'label'		=>	__('Reset Settings','easy-property-listings'),
-			'callback'	=>	'epl_settings_reset'
 		)
 	);
+
+	if( epl_show_reset_tab() ) :
+
+		$default_tabs['reset'] = array(
+			'label'		=>	__('Reset Settings','easy-property-listings'),
+			'callback'	=>	'epl_settings_reset'
+		);
+
+	endif;
 
 	if( epl_show_upgrade_tab() ) :
 
@@ -302,6 +307,19 @@ function epl_show_upgrade_tab() {
 	$upgraded = isset($_GET['dev']) ? true : $upgraded;
 
 	return $upgraded;
+}
+
+/**
+ * Display Upgrade Tab
+ *
+ * @since       3.4
+ */
+function epl_show_reset_tab() {
+	$show = false;
+
+	$show = isset($_GET['dev']) ? true : $show;
+
+	return $show;
 }
 
 /**
@@ -394,12 +412,13 @@ function epl_settings_reset() {
 	}
 
 	$url = '?page=epl-tools&tab=reset&action=reset&epl_tools_submit=true';
+	$url = add_query_arg( array('dev'	=>	'true'), $url );
 
 	$url = wp_nonce_url( $url, $action = 'epl_reset_settings', $name = '_reset_wpnonce' );
-
+	$confirm = __('Are you sure you want to reset all Easy Property Listings settings?','easy-property-listings');
 	echo '<h2>'.__('Reset Easy Property Listings to installation defaults','easy-property-listings').'</h2>';
 
-	echo "<a class='button button-primary' href='".$url."'>".__('Reset','easy-property-listings')."</a>";
+	echo "<a class='button button-primary' href='".$url."' onclick='return confirm(\"".$confirm."\")'>".__('Reset','easy-property-listings')."</a>";
 	?>
 	<br>
 	<span style="color:#f00"><?php _e('Warning! This will reset all your Easy Property Listings settings to their default values including extension settings.','easy-property-listings'); ?></span>
@@ -520,7 +539,7 @@ function epl_upgrade_admin_notice(){
 	     echo '<div class="notice notice-warning epl-upgrade-notice is-dismissible">
 	             <p><strong>'.$head.'</strong></p>
 	             <p>'.$msg.'</p>
-	             <p><a class="button" href="admin.php?page=epl-tools&tab=upgrade">'.__("Take me to the upgrade tool","easy-property-listings").'</a></p>
+	             <p><a class="button" href="'.admin_url('?page=epl-tools&tab=upgrade&dev=true').'">'.__("Take me to the upgrade tool","easy-property-listings").'</a></p>
 	         </div>';
  	endif;
 }
