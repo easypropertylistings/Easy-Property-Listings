@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.3.5\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-07-30 09:01:55+00:00\n"
+"POT-Creation-Date: 2019-07-30 09:52:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-contact-table.php:64
 #: lib/includes/admin/contacts/class-contact-table.php:198
 #: lib/includes/class-epl-author-meta.php:114
-#: lib/includes/class-epl-author-meta.php:122 lib/includes/functions.php:2297
+#: lib/includes/class-epl-author-meta.php:122 lib/includes/functions.php:2291
 #: lib/includes/template-functions.php:1699
 #: lib/post-types/post-type-contact.php:29
 #: lib/post-types/post-type-contact.php:30
@@ -46,7 +46,7 @@ msgstr ""
 #: lib/compatibility/author-meta-compat.php:41
 #: lib/includes/admin/contacts/contacts.php:462
 #: lib/includes/class-epl-author-meta.php:115
-#: lib/includes/class-epl-contact.php:680 lib/widgets/widget-functions.php:1416
+#: lib/includes/class-epl-contact.php:680 lib/widgets/widget-functions.php:1417
 msgid "Email"
 msgstr ""
 
@@ -156,8 +156,8 @@ msgstr ""
 #: lib/compatibility/listing-meta-compat.php:610
 #: lib/compatibility/listing-meta-compat.php:611
 #: lib/includes/admin/contacts/contact-actions.php:1223
-#: lib/includes/functions.php:1400 lib/includes/functions.php:1962
-#: lib/includes/functions.php:2445 lib/includes/install.php:48
+#: lib/includes/functions.php:1394 lib/includes/functions.php:1956
+#: lib/includes/functions.php:2439 lib/includes/install.php:48
 #: lib/post-types/post-types.php:53 lib/updates/epl-2.1.11.php:5
 #: lib/widgets/widget-admin-dashboard.php:136
 #: lib/widgets/widget-admin-dashboard.php:158
@@ -175,8 +175,8 @@ msgstr ""
 #: lib/compatibility/listing-meta-compat.php:629
 #: lib/compatibility/listing-meta-compat.php:630
 #: lib/compatibility/listing-meta-compat.php:631
-#: lib/compatibility/listing-meta-compat.php:645 lib/includes/functions.php:602
-#: lib/includes/functions.php:1393 lib/includes/functions.php:1975
+#: lib/compatibility/listing-meta-compat.php:645 lib/includes/functions.php:596
+#: lib/includes/functions.php:1387 lib/includes/functions.php:1969
 #: lib/includes/install.php:46 lib/updates/epl-2.1.php:6
 #: lib/widgets/widget-admin-dashboard.php:135
 #: lib/widgets/widget-admin-dashboard.php:157
@@ -188,8 +188,8 @@ msgstr ""
 #: lib/compatibility/listing-meta-compat.php:423
 #: lib/compatibility/listing-meta-compat.php:424
 #: lib/includes/admin/contacts/contact-actions.php:1224
-#: lib/includes/functions.php:1407 lib/includes/functions.php:1988
-#: lib/includes/functions.php:2449 lib/includes/install.php:47
+#: lib/includes/functions.php:1401 lib/includes/functions.php:1982
+#: lib/includes/functions.php:2443 lib/includes/install.php:47
 #: lib/post-types/post-types.php:57 lib/updates/epl-2.1.php:5
 #: lib/widgets/widget-admin-dashboard.php:117
 #: lib/widgets/widget-admin-dashboard.php:137
@@ -234,7 +234,7 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:678
 #: lib/includes/class-epl-property-meta.php:780
 #: lib/includes/class-epl-property-meta.php:788
-#: lib/includes/class-epl-property-meta.php:982 lib/includes/functions.php:2497
+#: lib/includes/class-epl-property-meta.php:982 lib/includes/functions.php:2491
 msgid "For Sale"
 msgstr ""
 
@@ -265,7 +265,7 @@ msgstr ""
 #: lib/compatibility/listing-meta-compat.php:639
 #: lib/compatibility/listing-meta-compat.php:640
 #: lib/includes/class-epl-property-meta.php:765
-#: lib/includes/class-epl-property-meta.php:978 lib/includes/functions.php:736
+#: lib/includes/class-epl-property-meta.php:978 lib/includes/functions.php:730
 msgid "P.A."
 msgstr ""
 
@@ -648,8 +648,8 @@ msgid ""
 "Maps API."
 msgstr ""
 
-#: lib/includes/admin/admin-actions.php:60 lib/includes/functions.php:1237
-#: lib/includes/functions.php:1899
+#: lib/includes/admin/admin-actions.php:60 lib/includes/functions.php:1231
+#: lib/includes/functions.php:1893
 msgid "Google Maps API Key"
 msgstr ""
 
@@ -659,7 +659,7 @@ msgid ""
 "<strong>Google Maps API</strong>."
 msgstr ""
 
-#: lib/includes/admin/admin-actions.php:63 lib/includes/functions.php:1824
+#: lib/includes/admin/admin-actions.php:63 lib/includes/functions.php:1818
 msgid "Advanced Settings"
 msgstr ""
 
@@ -726,139 +726,143 @@ msgstr ""
 msgid "Import/Export"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:276
+#: lib/includes/admin/admin-functions.php:280
 msgid "Reset Settings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:284
+#: lib/includes/admin/admin-functions.php:289
 msgid "Upgrade"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:336
+#: lib/includes/admin/admin-functions.php:354
 msgid "Import Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:342
+#: lib/includes/admin/admin-functions.php:360
 msgid "Import data"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:350
+#: lib/includes/admin/admin-functions.php:368
 msgid ""
 "Import exported file here. Warning! This will override all existing "
 "settings to default values."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:358
+#: lib/includes/admin/admin-functions.php:376
 msgid "Import"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:359
+#: lib/includes/admin/admin-functions.php:377
 msgid ""
 "WARNING! This will overwrite all existing option values, please proceed "
 "with caution."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:367
+#: lib/includes/admin/admin-functions.php:385
 msgid "Export Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:371
+#: lib/includes/admin/admin-functions.php:389
 msgid "Download File"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:373
+#: lib/includes/admin/admin-functions.php:391
 msgid ""
 "The following settings are exported. Easy Property Listings settings screen "
 "and any Extension settings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:392
+#: lib/includes/admin/admin-functions.php:410
 msgid "Settings reset successfully!"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:400
+#: lib/includes/admin/admin-functions.php:418
+msgid "Are you sure you want to reset all Easy Property Listings settings?"
+msgstr ""
+
+#: lib/includes/admin/admin-functions.php:419
 msgid "Reset Easy Property Listings to installation defaults"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:402
+#: lib/includes/admin/admin-functions.php:421
 msgid "Reset"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:405
+#: lib/includes/admin/admin-functions.php:424
 msgid ""
 "Warning! This will reset all your Easy Property Listings settings to their "
 "default values including extension settings."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:419
+#: lib/includes/admin/admin-functions.php:438
 msgid "Upgrade Options"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:421
+#: lib/includes/admin/admin-functions.php:440
 msgid ""
 "Upgrading the database will copy all the listing pricing info into a "
 "unified price data column for searching and ordering. We recommend taking a "
 "database backup before performing this action."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:423
+#: lib/includes/admin/admin-functions.php:442
 msgid "Upgrade Database"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:425
+#: lib/includes/admin/admin-functions.php:444
 msgid "Processing..."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:451
-#: lib/includes/admin/admin-functions.php:493
+#: lib/includes/admin/admin-functions.php:470
+#: lib/includes/admin/admin-functions.php:512
 #: lib/includes/admin/menus/menu-extensions.php:25
 #: lib/includes/admin/menus/menu-general.php:23
 #: lib/includes/admin/menus/menu-licenses.php:22
 msgid "Sorry, your nonce did not verify."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:516
+#: lib/includes/admin/admin-functions.php:535
 msgid "It looks like you upgraded to latest version of Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:518
+#: lib/includes/admin/admin-functions.php:537
 msgid ""
 "For better performance, we need to upgrade the database. You can upgrade "
 "the database by visiting tools page"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:523
+#: lib/includes/admin/admin-functions.php:542
 msgid "Take me to the upgrade tool"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:537
+#: lib/includes/admin/admin-functions.php:556
 msgid "Some error occured"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:629
+#: lib/includes/admin/admin-functions.php:648
 msgid "Database upgrade in process, following listings updated : %s. Please wait..."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:642
+#: lib/includes/admin/admin-functions.php:661
 msgid "Database upgraded successfully"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:695
-#: lib/includes/admin/admin-functions.php:708
-#: lib/includes/admin/admin-functions.php:716
+#: lib/includes/admin/admin-functions.php:714
+#: lib/includes/admin/admin-functions.php:727
+#: lib/includes/admin/admin-functions.php:735
 msgid "Note"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:700
+#: lib/includes/admin/admin-functions.php:719
 #: lib/includes/class-epl-contact.php:679
 msgid "Call"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:704
+#: lib/includes/admin/admin-functions.php:723
 msgid "Mail"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:712
+#: lib/includes/admin/admin-functions.php:731
 msgid "Alert"
 msgstr ""
 
@@ -1067,7 +1071,7 @@ msgstr ""
 #: lib/meta-boxes/meta-box-init.php:1389 lib/meta-boxes/meta-box-init.php:1404
 #: lib/meta-boxes/meta-box-init.php:1419 lib/meta-boxes/meta-box-init.php:1461
 #: lib/meta-boxes/meta-box-init.php:1476 lib/meta-boxes/meta-box-init.php:1492
-#: lib/widgets/widget-functions.php:27 lib/widgets/widget-functions.php:1393
+#: lib/widgets/widget-functions.php:27 lib/widgets/widget-functions.php:1394
 #: lib/widgets/widget-listing.php:249
 msgid "Title"
 msgstr ""
@@ -1111,7 +1115,7 @@ msgid "Lot"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1156
-#: lib/includes/functions.php:616 lib/meta-boxes/meta-box-init.php:808
+#: lib/includes/functions.php:610 lib/meta-boxes/meta-box-init.php:808
 msgid "Unit"
 msgstr ""
 
@@ -1149,7 +1153,7 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1222
-#: lib/includes/functions.php:2441 lib/post-types/post-types.php:47
+#: lib/includes/functions.php:2435 lib/post-types/post-types.php:47
 #: lib/post-types/post-types.php:541 lib/widgets/widget-admin-dashboard.php:116
 #: lib/widgets/widget-admin-dashboard.php:133
 #: lib/widgets/widget-admin-dashboard.php:155
@@ -1212,23 +1216,23 @@ msgid "Contact Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:233
-#: lib/widgets/widget-functions.php:1290 lib/widgets/widget-functions.php:1404
+#: lib/widgets/widget-functions.php:1291 lib/widgets/widget-functions.php:1405
 msgid "First Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:240
-#: lib/widgets/widget-functions.php:1297 lib/widgets/widget-functions.php:1410
+#: lib/widgets/widget-functions.php:1298 lib/widgets/widget-functions.php:1411
 msgid "Last Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:247
-#: lib/widgets/widget-functions.php:1304
+#: lib/widgets/widget-functions.php:1305
 msgid "Email *"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:254
 #: lib/includes/admin/contacts/contacts.php:453
-#: lib/widgets/widget-functions.php:1311 lib/widgets/widget-functions.php:1422
+#: lib/widgets/widget-functions.php:1312 lib/widgets/widget-functions.php:1423
 msgid "Phone"
 msgstr ""
 
@@ -1284,7 +1288,7 @@ msgstr ""
 msgid "Linked In"
 msgstr ""
 
-#: lib/includes/admin/contacts/contacts.php:553 lib/includes/functions.php:1282
+#: lib/includes/admin/contacts/contacts.php:553 lib/includes/functions.php:1276
 #: lib/post-types/post-type-business.php:88
 #: lib/post-types/post-type-commercial.php:86
 #: lib/post-types/post-type-commercial_land.php:87
@@ -1294,22 +1298,22 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: lib/includes/admin/contacts/contacts.php:571 lib/includes/functions.php:1292
+#: lib/includes/admin/contacts/contacts.php:571 lib/includes/functions.php:1286
 #: lib/includes/install.php:38 lib/includes/install.php:39
 msgid "Suburb"
 msgstr ""
 
-#: lib/includes/admin/contacts/contacts.php:578 lib/includes/functions.php:1318
+#: lib/includes/admin/contacts/contacts.php:578 lib/includes/functions.php:1312
 #: lib/includes/install.php:41 lib/updates/epl-2.2.php:6
 msgid "State"
 msgstr ""
 
-#: lib/includes/admin/contacts/contacts.php:585 lib/includes/functions.php:1325
+#: lib/includes/admin/contacts/contacts.php:585 lib/includes/functions.php:1319
 msgid "Postcode"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:603
-#: lib/includes/admin/menus/menu-help.php:130 lib/includes/functions.php:1252
+#: lib/includes/admin/menus/menu-help.php:130 lib/includes/functions.php:1246
 msgid "Author"
 msgstr ""
 
@@ -2050,51 +2054,51 @@ msgid "Supported Listing Types"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:396
-#: lib/includes/functions.php:155
+#: lib/includes/functions.php:149
 msgid "Property (Residential)"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:397
-#: lib/includes/functions.php:157 lib/includes/functions.php:1537
-#: lib/includes/functions.php:1539 lib/post-types/post-type-rental.php:30
+#: lib/includes/functions.php:151 lib/includes/functions.php:1531
+#: lib/includes/functions.php:1533 lib/post-types/post-type-rental.php:30
 #: lib/updates/epl-1.3.1.php:6
 msgid "Rental"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:398
-#: lib/includes/functions.php:156 lib/includes/functions.php:1531
-#: lib/includes/functions.php:1533 lib/includes/install.php:51
+#: lib/includes/functions.php:150 lib/includes/functions.php:1525
+#: lib/includes/functions.php:1527 lib/includes/install.php:51
 #: lib/post-types/post-type-land.php:29 lib/post-types/post-type-land.php:30
 #: lib/post-types/post-type-land.php:31 lib/updates/epl-1.3.1.php:5
 msgid "Land"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:399
-#: lib/includes/functions.php:158 lib/includes/functions.php:1543
-#: lib/includes/functions.php:1545 lib/includes/install.php:53
+#: lib/includes/functions.php:152 lib/includes/functions.php:1537
+#: lib/includes/functions.php:1539 lib/includes/install.php:53
 #: lib/post-types/post-type-rural.php:29 lib/post-types/post-type-rural.php:30
 #: lib/post-types/post-type-rural.php:31 lib/updates/epl-1.3.1.php:7
 msgid "Rural"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:400
-#: lib/includes/functions.php:159 lib/includes/functions.php:663
-#: lib/includes/functions.php:1549 lib/includes/functions.php:1551
+#: lib/includes/functions.php:153 lib/includes/functions.php:657
+#: lib/includes/functions.php:1543 lib/includes/functions.php:1545
 #: lib/includes/install.php:55 lib/post-types/post-type-commercial.php:30
 #: lib/updates/epl-1.3.1.php:9
 msgid "Commercial"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:401
-#: lib/includes/functions.php:160 lib/includes/functions.php:1555
-#: lib/includes/functions.php:1557 lib/includes/install.php:56
+#: lib/includes/functions.php:154 lib/includes/functions.php:1549
+#: lib/includes/functions.php:1551 lib/includes/install.php:56
 #: lib/post-types/post-type-commercial_land.php:31 lib/updates/epl-1.3.1.php:10
 msgid "Commercial Land"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:402
-#: lib/includes/functions.php:161 lib/includes/functions.php:1561
-#: lib/includes/functions.php:1563 lib/includes/install.php:54
+#: lib/includes/functions.php:155 lib/includes/functions.php:1555
+#: lib/includes/functions.php:1557 lib/includes/install.php:54
 #: lib/post-types/post-type-business.php:31 lib/updates/epl-1.3.1.php:8
 msgid "Business"
 msgstr ""
@@ -2281,7 +2285,7 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:545
-#: lib/includes/functions.php:1636
+#: lib/includes/functions.php:1630
 msgid "Theme Compatibility"
 msgstr ""
 
@@ -2755,7 +2759,7 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/menu-licenses.php:201
-#: lib/includes/functions.php:1228
+#: lib/includes/functions.php:1222
 msgid "Select Page"
 msgstr ""
 
@@ -2863,8 +2867,8 @@ msgstr ""
 msgid "Last Year"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:308 lib/includes/functions.php:1758
-#: lib/includes/functions.php:1776
+#: lib/includes/admin/reports/graphing.php:308 lib/includes/functions.php:1752
+#: lib/includes/functions.php:1770
 msgid "Custom"
 msgstr ""
 
@@ -3037,8 +3041,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:323
 #: lib/includes/class-epl-property-meta.php:672
 #: lib/includes/class-epl-property-meta.php:728
-#: lib/includes/class-epl-property-meta.php:772 lib/includes/functions.php:2465
-#: lib/includes/functions.php:2498 lib/widgets/widget-admin-dashboard.php:134
+#: lib/includes/class-epl-property-meta.php:772 lib/includes/functions.php:2459
+#: lib/includes/functions.php:2492 lib/widgets/widget-admin-dashboard.php:134
 #: lib/widgets/widget-admin-dashboard.php:156
 msgid "Auction"
 msgstr ""
@@ -3048,7 +3052,7 @@ msgid "now"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:636
-#: lib/includes/class-epl-property-meta.php:731 lib/includes/functions.php:1386
+#: lib/includes/class-epl-property-meta.php:731 lib/includes/functions.php:1380
 #: lib/includes/install.php:44
 msgid "POA"
 msgstr ""
@@ -3115,632 +3119,632 @@ msgstr ""
 msgid "Any"
 msgstr ""
 
-#: lib/includes/functions.php:175
+#: lib/includes/functions.php:169
 msgid "Australian Dollars (&#36;)"
 msgstr ""
 
-#: lib/includes/functions.php:176
+#: lib/includes/functions.php:170
 msgid "US Dollars (&#36;)"
 msgstr ""
 
-#: lib/includes/functions.php:177
+#: lib/includes/functions.php:171
 msgid "Euros (&euro;)"
 msgstr ""
 
-#: lib/includes/functions.php:178
+#: lib/includes/functions.php:172
 msgid "Pounds Sterling (&pound;)"
 msgstr ""
 
-#: lib/includes/functions.php:179
+#: lib/includes/functions.php:173
 msgid "Brazilian Real (R&#36;)"
 msgstr ""
 
-#: lib/includes/functions.php:180
+#: lib/includes/functions.php:174
 msgid "Canadian Dollars (&#36;)"
 msgstr ""
 
-#: lib/includes/functions.php:181
+#: lib/includes/functions.php:175
 msgid "Czech Koruna"
 msgstr ""
 
-#: lib/includes/functions.php:182
+#: lib/includes/functions.php:176
 msgid "Danish Krone"
 msgstr ""
 
-#: lib/includes/functions.php:183
+#: lib/includes/functions.php:177
 msgid "Hong Kong Dollar (&#36;)"
 msgstr ""
 
-#: lib/includes/functions.php:184
+#: lib/includes/functions.php:178
 msgid "Hungarian Forint"
 msgstr ""
 
-#: lib/includes/functions.php:185
+#: lib/includes/functions.php:179
 msgid "Indian Rupee (&#8377;)"
 msgstr ""
 
-#: lib/includes/functions.php:186
+#: lib/includes/functions.php:180
 msgid "Iranian Rial (&#65020;)"
 msgstr ""
 
-#: lib/includes/functions.php:187
+#: lib/includes/functions.php:181
 msgid "Israeli Shekel (&#8362;)"
 msgstr ""
 
-#: lib/includes/functions.php:188
+#: lib/includes/functions.php:182
 msgid "Japanese Yen (&yen;)"
 msgstr ""
 
-#: lib/includes/functions.php:189
+#: lib/includes/functions.php:183
 msgid "Malaysian Ringgits"
 msgstr ""
 
-#: lib/includes/functions.php:190
+#: lib/includes/functions.php:184
 msgid "Mexican Peso (&#36;)"
 msgstr ""
 
-#: lib/includes/functions.php:191
+#: lib/includes/functions.php:185
 msgid "New Zealand Dollar (&#36;)"
 msgstr ""
 
-#: lib/includes/functions.php:192
+#: lib/includes/functions.php:186
 msgid "Norwegian Krone"
 msgstr ""
 
-#: lib/includes/functions.php:193
+#: lib/includes/functions.php:187
 msgid "Philippine Pesos"
 msgstr ""
 
-#: lib/includes/functions.php:194
+#: lib/includes/functions.php:188
 msgid "Polish Zloty"
 msgstr ""
 
-#: lib/includes/functions.php:195
+#: lib/includes/functions.php:189
 msgid "Pakistani Rupee"
 msgstr ""
 
-#: lib/includes/functions.php:196
+#: lib/includes/functions.php:190
 msgid "Qatar Riyal (QAR)"
 msgstr ""
 
-#: lib/includes/functions.php:197
+#: lib/includes/functions.php:191
 msgid "Singapore Dollar (&#36;)"
 msgstr ""
 
-#: lib/includes/functions.php:198
+#: lib/includes/functions.php:192
 msgid "South African Rand (R)"
 msgstr ""
 
-#: lib/includes/functions.php:199
+#: lib/includes/functions.php:193
 msgid "Swedish Krona"
 msgstr ""
 
-#: lib/includes/functions.php:200
+#: lib/includes/functions.php:194
 msgid "Swiss Franc"
 msgstr ""
 
-#: lib/includes/functions.php:201
+#: lib/includes/functions.php:195
 msgid "Taiwan New Dollars"
 msgstr ""
 
-#: lib/includes/functions.php:202
+#: lib/includes/functions.php:196
 msgid "Thai Baht (&#3647;)"
 msgstr ""
 
-#: lib/includes/functions.php:203
+#: lib/includes/functions.php:197
 msgid "Turkish Lira (&#8378;)"
 msgstr ""
 
-#: lib/includes/functions.php:204
+#: lib/includes/functions.php:198
 msgid "Russian Rubles"
 msgstr ""
 
-#: lib/includes/functions.php:205
+#: lib/includes/functions.php:199
 msgid "United Arab Emirates, Dirham (AED)"
 msgstr ""
 
-#: lib/includes/functions.php:206
+#: lib/includes/functions.php:200
 msgid "Ukrainian Hryvnia (&#8372;)"
 msgstr ""
 
-#: lib/includes/functions.php:207
+#: lib/includes/functions.php:201
 msgid "Vietnamese đồng (&#8363;)"
 msgstr ""
 
-#: lib/includes/functions.php:528 lib/includes/functions.php:1311
+#: lib/includes/functions.php:522 lib/includes/functions.php:1305
 #: lib/includes/install.php:40 lib/updates/epl-2.2.php:5
 msgid "City"
 msgstr ""
 
-#: lib/includes/functions.php:615
+#: lib/includes/functions.php:609
 msgid "House"
 msgstr ""
 
-#: lib/includes/functions.php:617
+#: lib/includes/functions.php:611
 msgid "Townhouse"
 msgstr ""
 
-#: lib/includes/functions.php:618
+#: lib/includes/functions.php:612
 msgid "Villa"
 msgstr ""
 
-#: lib/includes/functions.php:619
+#: lib/includes/functions.php:613
 msgid "Apartment"
 msgstr ""
 
-#: lib/includes/functions.php:620
+#: lib/includes/functions.php:614
 msgid "Flat"
 msgstr ""
 
-#: lib/includes/functions.php:621
+#: lib/includes/functions.php:615
 msgid "Studio"
 msgstr ""
 
-#: lib/includes/functions.php:622
+#: lib/includes/functions.php:616
 msgid "Warehouse"
 msgstr ""
 
-#: lib/includes/functions.php:623
+#: lib/includes/functions.php:617
 msgid "Duplex Semi-detached"
 msgstr ""
 
-#: lib/includes/functions.php:624
+#: lib/includes/functions.php:618
 msgid "Alpine"
 msgstr ""
 
-#: lib/includes/functions.php:625
+#: lib/includes/functions.php:619
 msgid "Acreage Semi-rural"
 msgstr ""
 
-#: lib/includes/functions.php:626
+#: lib/includes/functions.php:620
 msgid "Retirement"
 msgstr ""
 
-#: lib/includes/functions.php:627
+#: lib/includes/functions.php:621
 msgid "Block Of Units"
 msgstr ""
 
-#: lib/includes/functions.php:628
+#: lib/includes/functions.php:622
 msgid "Terrace"
 msgstr ""
 
-#: lib/includes/functions.php:629
+#: lib/includes/functions.php:623
 msgid "Serviced Apartment"
 msgstr ""
 
-#: lib/includes/functions.php:630 lib/includes/functions.php:699
-#: lib/includes/functions.php:774
+#: lib/includes/functions.php:624 lib/includes/functions.php:693
+#: lib/includes/functions.php:768
 msgid "Other"
 msgstr ""
 
-#: lib/includes/functions.php:664
+#: lib/includes/functions.php:658
 msgid "Residential"
 msgstr ""
 
-#: lib/includes/functions.php:691
+#: lib/includes/functions.php:685
 msgid "Commercial Farming"
 msgstr ""
 
-#: lib/includes/functions.php:692
+#: lib/includes/functions.php:686
 msgid "Land/Development"
 msgstr ""
 
-#: lib/includes/functions.php:693
+#: lib/includes/functions.php:687
 msgid "Hotel/Leisure"
 msgstr ""
 
-#: lib/includes/functions.php:694
+#: lib/includes/functions.php:688
 msgid "Industrial/Warehouse"
 msgstr ""
 
-#: lib/includes/functions.php:695
+#: lib/includes/functions.php:689
 msgid "Medical/Consulting"
 msgstr ""
 
-#: lib/includes/functions.php:696
+#: lib/includes/functions.php:690
 msgid "Offices"
 msgstr ""
 
-#: lib/includes/functions.php:697
+#: lib/includes/functions.php:691
 msgid "Retail"
 msgstr ""
 
-#: lib/includes/functions.php:698
+#: lib/includes/functions.php:692
 msgid "Showrooms/Bulky Goods"
 msgstr ""
 
-#: lib/includes/functions.php:737
+#: lib/includes/functions.php:731
 msgid "NNN"
 msgstr ""
 
-#: lib/includes/functions.php:738
+#: lib/includes/functions.php:732
 msgid "Full Service"
 msgstr ""
 
-#: lib/includes/functions.php:739
+#: lib/includes/functions.php:733
 msgid "Gross Lease Rates"
 msgstr ""
 
-#: lib/includes/functions.php:766
+#: lib/includes/functions.php:760
 msgid "Cropping"
 msgstr ""
 
-#: lib/includes/functions.php:767
+#: lib/includes/functions.php:761
 msgid "Dairy"
 msgstr ""
 
-#: lib/includes/functions.php:768
+#: lib/includes/functions.php:762
 msgid "Farmlet"
 msgstr ""
 
-#: lib/includes/functions.php:769
+#: lib/includes/functions.php:763
 msgid "Horticulture"
 msgstr ""
 
-#: lib/includes/functions.php:770
+#: lib/includes/functions.php:764
 msgid "Livestock"
 msgstr ""
 
-#: lib/includes/functions.php:771
+#: lib/includes/functions.php:765
 msgid "Viticulture"
 msgstr ""
 
-#: lib/includes/functions.php:772
+#: lib/includes/functions.php:766
 msgid "Mixed Farming"
 msgstr ""
 
-#: lib/includes/functions.php:773
+#: lib/includes/functions.php:767
 msgid "Lifestyle"
 msgstr ""
 
-#: lib/includes/functions.php:1097
+#: lib/includes/functions.php:1091
 msgid "Add File"
 msgstr ""
 
-#: lib/includes/functions.php:1241
+#: lib/includes/functions.php:1235
 msgid "Before - $10"
 msgstr ""
 
-#: lib/includes/functions.php:1242
+#: lib/includes/functions.php:1236
 msgid "After - 10$"
 msgstr ""
 
-#: lib/includes/functions.php:1250
+#: lib/includes/functions.php:1244
 msgid "Administrator"
 msgstr ""
 
-#: lib/includes/functions.php:1251
+#: lib/includes/functions.php:1245
 msgid "Editor"
 msgstr ""
 
-#: lib/includes/functions.php:1253
+#: lib/includes/functions.php:1247
 msgid "Contributor"
 msgstr ""
 
-#: lib/includes/functions.php:1254
+#: lib/includes/functions.php:1248
 msgid "Subscriber"
 msgstr ""
 
-#: lib/includes/functions.php:1258
+#: lib/includes/functions.php:1252
 msgid "Listing Types and Location Taxonomy"
 msgstr ""
 
-#: lib/includes/functions.php:1261
+#: lib/includes/functions.php:1255
 msgid ""
 "Select the listing types you want to enable and press Save Changes. Refresh "
 "the page to see your new activated listing types."
 msgstr ""
 
-#: lib/includes/functions.php:1265
+#: lib/includes/functions.php:1259
 msgid "Listing Types to Enable"
 msgstr ""
 
-#: lib/includes/functions.php:1268
+#: lib/includes/functions.php:1262
 msgid ""
 "Note: If they are not visible on the front end visit Dashboard > Settings > "
 "Permalinks and press Save Changes."
 msgstr ""
 
-#: lib/includes/functions.php:1273
+#: lib/includes/functions.php:1267
 msgid "Location Taxonomy"
 msgstr ""
 
-#: lib/includes/functions.php:1275
+#: lib/includes/functions.php:1269
 msgid ""
 "After changing this setting visit Dashboard > Settings > Permalinks to save "
 "the settings."
 msgstr ""
 
-#: lib/includes/functions.php:1276
+#: lib/includes/functions.php:1270
 msgid "Location"
 msgstr ""
 
-#: lib/includes/functions.php:1285
+#: lib/includes/functions.php:1279
 msgid ""
 "Use these settings to adjust the address labels to suite your location and "
 "address format for your listings."
 msgstr ""
 
-#: lib/includes/functions.php:1290
+#: lib/includes/functions.php:1284
 msgid "Suburb/Town/City Label"
 msgstr ""
 
-#: lib/includes/functions.php:1297
+#: lib/includes/functions.php:1291
 msgid "Additional Address Field"
 msgstr ""
 
-#: lib/includes/functions.php:1300 lib/includes/functions.php:1333
-#: lib/includes/functions.php:1422 lib/includes/functions.php:1441
-#: lib/includes/functions.php:1608 lib/includes/functions.php:1619
-#: lib/includes/functions.php:1639 lib/includes/functions.php:1845
-#: lib/includes/functions.php:1856 lib/includes/functions.php:1867
-#: lib/includes/functions.php:1878 lib/includes/functions.php:1889
-#: lib/includes/functions.php:1921
+#: lib/includes/functions.php:1294 lib/includes/functions.php:1327
+#: lib/includes/functions.php:1416 lib/includes/functions.php:1435
+#: lib/includes/functions.php:1602 lib/includes/functions.php:1613
+#: lib/includes/functions.php:1633 lib/includes/functions.php:1839
+#: lib/includes/functions.php:1850 lib/includes/functions.php:1861
+#: lib/includes/functions.php:1872 lib/includes/functions.php:1883
+#: lib/includes/functions.php:1915
 msgid "Enable"
 msgstr ""
 
-#: lib/includes/functions.php:1301 lib/includes/functions.php:1334
-#: lib/includes/functions.php:1423 lib/includes/functions.php:1442
-#: lib/includes/functions.php:1609 lib/includes/functions.php:1620
-#: lib/includes/functions.php:1640 lib/includes/functions.php:1666
-#: lib/includes/functions.php:1676 lib/includes/functions.php:1692
-#: lib/includes/functions.php:1702 lib/includes/functions.php:1890
-#: lib/includes/functions.php:1922
+#: lib/includes/functions.php:1295 lib/includes/functions.php:1328
+#: lib/includes/functions.php:1417 lib/includes/functions.php:1436
+#: lib/includes/functions.php:1603 lib/includes/functions.php:1614
+#: lib/includes/functions.php:1634 lib/includes/functions.php:1660
+#: lib/includes/functions.php:1670 lib/includes/functions.php:1686
+#: lib/includes/functions.php:1696 lib/includes/functions.php:1884
+#: lib/includes/functions.php:1916
 msgid "Disable"
 msgstr ""
 
-#: lib/includes/functions.php:1304
+#: lib/includes/functions.php:1298
 msgid "Use when you need an additional Municipality/Town/City/Region."
 msgstr ""
 
-#: lib/includes/functions.php:1309
+#: lib/includes/functions.php:1303
 msgid "Additional Address Field Label"
 msgstr ""
 
-#: lib/includes/functions.php:1316
+#: lib/includes/functions.php:1310
 msgid "State/Province/Region Label"
 msgstr ""
 
-#: lib/includes/functions.php:1323
+#: lib/includes/functions.php:1317
 msgid "Postcode/ZIP Label"
 msgstr ""
 
-#: lib/includes/functions.php:1330
+#: lib/includes/functions.php:1324
 msgid "Display Country"
 msgstr ""
 
-#: lib/includes/functions.php:1337
+#: lib/includes/functions.php:1331
 msgid "Display country with listing address."
 msgstr ""
 
-#: lib/includes/functions.php:1342
+#: lib/includes/functions.php:1336
 msgid "Default Country"
 msgstr ""
 
-#: lib/includes/functions.php:1346
+#: lib/includes/functions.php:1340
 msgid "This is used for map when listing has no address details"
 msgstr ""
 
-#: lib/includes/functions.php:1354
+#: lib/includes/functions.php:1348
 msgid "Labels"
 msgstr ""
 
-#: lib/includes/functions.php:1357
+#: lib/includes/functions.php:1351
 msgid ""
 "Customise the labels that are used to show the status and information on "
 "the archive and individual listing pages."
 msgstr ""
 
-#: lib/includes/functions.php:1362
+#: lib/includes/functions.php:1356
 msgid "New/Just Listed Label"
 msgstr ""
 
-#: lib/includes/functions.php:1364 lib/includes/functions.php:2300
+#: lib/includes/functions.php:1358 lib/includes/functions.php:2294
 #: lib/includes/install.php:45 lib/updates/epl-1.3.1.php:15
 msgid "New"
 msgstr ""
 
-#: lib/includes/functions.php:1369
+#: lib/includes/functions.php:1363
 msgid "Keep Listings flagged \"New\" for"
 msgstr ""
 
-#: lib/includes/functions.php:1372
+#: lib/includes/functions.php:1366
 msgid "Listings will have a \"NEW\" Sticker for the defined number of days."
 msgstr ""
 
-#: lib/includes/functions.php:1377
+#: lib/includes/functions.php:1371
 msgid "Home Open Label"
 msgstr ""
 
-#: lib/includes/functions.php:1379 lib/includes/install.php:43
+#: lib/includes/functions.php:1373 lib/includes/install.php:43
 msgid "Home Open"
 msgstr ""
 
-#: lib/includes/functions.php:1384
+#: lib/includes/functions.php:1378
 msgid "No Price Label"
 msgstr ""
 
-#: lib/includes/functions.php:1391
+#: lib/includes/functions.php:1385
 msgid "Under Offer Label"
 msgstr ""
 
-#: lib/includes/functions.php:1398
+#: lib/includes/functions.php:1392
 msgid "Sold Label"
 msgstr ""
 
-#: lib/includes/functions.php:1405
+#: lib/includes/functions.php:1399
 msgid "Leased Label"
 msgstr ""
 
-#: lib/includes/functions.php:1412
+#: lib/includes/functions.php:1406
 msgid "Rental Bond/Deposit Label"
 msgstr ""
 
-#: lib/includes/functions.php:1414 lib/includes/install.php:37
+#: lib/includes/functions.php:1408 lib/includes/install.php:37
 #: lib/updates/epl-1.3.1.php:14
 msgid "Bond"
 msgstr ""
 
-#: lib/includes/functions.php:1419
+#: lib/includes/functions.php:1413
 msgid "Rental Bond/Deposit Display"
 msgstr ""
 
-#: lib/includes/functions.php:1425
+#: lib/includes/functions.php:1419
 msgid "Display the Bond/Deposit on rental listings."
 msgstr ""
 
-#: lib/includes/functions.php:1431
+#: lib/includes/functions.php:1425
 msgid "Listing Single View"
 msgstr ""
 
-#: lib/includes/functions.php:1434
+#: lib/includes/functions.php:1428
 msgid "Configure the default options when viewing a single listing."
 msgstr ""
 
-#: lib/includes/functions.php:1438
+#: lib/includes/functions.php:1432
 msgid "Automatically display image gallery?"
 msgstr ""
 
-#: lib/includes/functions.php:1445
+#: lib/includes/functions.php:1439
 msgid ""
 "Images uploaded and attached to a listing will automatically display on the "
 "single listing page."
 msgstr ""
 
-#: lib/includes/functions.php:1450
+#: lib/includes/functions.php:1444
 msgid "Gallery columns?"
 msgstr ""
 
-#: lib/includes/functions.php:1458
+#: lib/includes/functions.php:1452
 msgid "Feature list columns?"
 msgstr ""
 
-#: lib/includes/functions.php:1466
+#: lib/includes/functions.php:1460
 msgid "Video width on single listings"
 msgstr ""
 
-#: lib/includes/functions.php:1468
+#: lib/includes/functions.php:1462
 msgid "Width should be in pixels"
 msgstr ""
 
-#: lib/includes/functions.php:1474
+#: lib/includes/functions.php:1468
 msgid "Listing Archive View"
 msgstr ""
 
-#: lib/includes/functions.php:1477
+#: lib/includes/functions.php:1471
 msgid "Configure the default options for when viewing the archive listing pages."
 msgstr ""
 
-#: lib/includes/functions.php:1481
+#: lib/includes/functions.php:1475
 msgid "Excerpt words"
 msgstr ""
 
-#: lib/includes/functions.php:1485
+#: lib/includes/functions.php:1479
 msgid "This is ignored when using manual excerpts."
 msgstr ""
 
-#: lib/includes/functions.php:1489
+#: lib/includes/functions.php:1483
 msgid "Listing view type"
 msgstr ""
 
-#: lib/includes/functions.php:1492 lib/includes/template-functions.php:1536
+#: lib/includes/functions.php:1486 lib/includes/template-functions.php:1536
 #: lib/widgets/widget-listing.php:372
 msgid "List"
 msgstr ""
 
-#: lib/includes/functions.php:1493 lib/includes/template-functions.php:1538
+#: lib/includes/functions.php:1487 lib/includes/template-functions.php:1538
 msgid "Grid"
 msgstr ""
 
-#: lib/includes/functions.php:1500
+#: lib/includes/functions.php:1494
 msgid "Fancy pagination"
 msgstr ""
 
-#: lib/includes/functions.php:1503
+#: lib/includes/functions.php:1497
 msgid "No, use WordPress default pagination"
 msgstr ""
 
-#: lib/includes/functions.php:1504
+#: lib/includes/functions.php:1498
 msgid "Yes, use fancy navigation"
 msgstr ""
 
-#: lib/includes/functions.php:1512
+#: lib/includes/functions.php:1506
 msgid "Search Widget: Tab Labels"
 msgstr ""
 
-#: lib/includes/functions.php:1515
+#: lib/includes/functions.php:1509
 msgid ""
 "Customise the tab labels of the EPL - Search Widget or [listing_search] "
 "shortcode."
 msgstr ""
 
-#: lib/includes/functions.php:1519 lib/includes/functions.php:1521
+#: lib/includes/functions.php:1513 lib/includes/functions.php:1515
 #: lib/includes/install.php:49 lib/updates/epl-3.3.php:7
 #: lib/widgets/widget-functions.php:22
 msgid "All"
 msgstr ""
 
-#: lib/includes/functions.php:1525 lib/includes/functions.php:1527
+#: lib/includes/functions.php:1519 lib/includes/functions.php:1521
 #: lib/post-types/post-type-property.php:30
 #: lib/post-types/post-type-property.php:31 lib/updates/epl-1.3.1.php:4
 msgid "Property"
 msgstr ""
 
-#: lib/includes/functions.php:1569
+#: lib/includes/functions.php:1563
 msgid "Dashboard Listing Columns"
 msgstr ""
 
-#: lib/includes/functions.php:1572
+#: lib/includes/functions.php:1566
 msgid ""
 "Use the following settings to change how the Dashboard > Property or any "
 "listing of the types you have enabled display."
 msgstr ""
 
-#: lib/includes/functions.php:1577
+#: lib/includes/functions.php:1571
 msgid "Graph Max"
 msgstr ""
 
-#: lib/includes/functions.php:1580
+#: lib/includes/functions.php:1574
 msgid "Used for bar chart display on listings for sale."
 msgstr ""
 
-#: lib/includes/functions.php:1585
+#: lib/includes/functions.php:1579
 msgid "Graph Rental Max"
 msgstr ""
 
-#: lib/includes/functions.php:1588
+#: lib/includes/functions.php:1582
 msgid "Rental range."
 msgstr ""
 
-#: lib/includes/functions.php:1593
+#: lib/includes/functions.php:1587
 msgid "Image size"
 msgstr ""
 
-#: lib/includes/functions.php:1596
+#: lib/includes/functions.php:1590
 msgid "100 X 100"
 msgstr ""
 
-#: lib/includes/functions.php:1597
+#: lib/includes/functions.php:1591
 msgid "300 X 200"
 msgstr ""
 
-#: lib/includes/functions.php:1600
+#: lib/includes/functions.php:1594
 msgid "Size of the image shown in listing columns in admin area"
 msgstr ""
 
-#: lib/includes/functions.php:1605
+#: lib/includes/functions.php:1599
 msgid "Unique Listing ID column"
 msgstr ""
 
-#: lib/includes/functions.php:1616
+#: lib/includes/functions.php:1610
 msgid "Geocode Lat/Long results column"
 msgstr ""
 
-#: lib/includes/functions.php:1628
+#: lib/includes/functions.php:1622
 msgid "Theme Setup"
 msgstr ""
 
-#: lib/includes/functions.php:1631
+#: lib/includes/functions.php:1625
 msgid ""
 "The following settings will use your theme templates to generate your "
 "listing pages. If your listings appear too wide or your sidebar is in the "
@@ -3749,132 +3753,132 @@ msgid ""
 "tools_top=\"on\"] to display your listings with sorting and grid options."
 msgstr ""
 
-#: lib/includes/functions.php:1643
+#: lib/includes/functions.php:1637
 msgid ""
 "When using iThemes, Genesis frameworks or your listings look good, leave "
 "this disabled."
 msgstr ""
 
-#: lib/includes/functions.php:1649
+#: lib/includes/functions.php:1643
 msgid "Theme Setup: Featured Images"
 msgstr ""
 
-#: lib/includes/functions.php:1652
+#: lib/includes/functions.php:1646
 msgid ""
 "Some WordPress themes automatically display featured images on posts and "
 "pages which may cause you to see double on your listings. Use the following "
 "settings to adjust the featured image behaviour."
 msgstr ""
 
-#: lib/includes/functions.php:1658
+#: lib/includes/functions.php:1652
 msgid "Theme Featured Image Settings"
 msgstr ""
 
-#: lib/includes/functions.php:1663 lib/includes/functions.php:1689
+#: lib/includes/functions.php:1657 lib/includes/functions.php:1683
 msgid "Single Listing"
 msgstr ""
 
-#: lib/includes/functions.php:1673 lib/includes/functions.php:1699
+#: lib/includes/functions.php:1667 lib/includes/functions.php:1693
 msgid "Archive Listing"
 msgstr ""
 
-#: lib/includes/functions.php:1684
+#: lib/includes/functions.php:1678
 msgid "Easy Property Listings Featured Image Settings"
 msgstr ""
 
-#: lib/includes/functions.php:1710
+#: lib/includes/functions.php:1704
 msgid "Currency"
 msgstr ""
 
-#: lib/includes/functions.php:1713
+#: lib/includes/functions.php:1707
 msgid ""
 "Select your default currency. If you can not find the currency you are "
 "looking for, you can add additional currencies with a filter, <a "
 "href=\"%s\" target=\"_blank\">visit the codex to see how</a>."
 msgstr ""
 
-#: lib/includes/functions.php:1717
+#: lib/includes/functions.php:1711
 msgid "Currency Type"
 msgstr ""
 
-#: lib/includes/functions.php:1724
+#: lib/includes/functions.php:1718
 msgid "Symbol Position"
 msgstr ""
 
-#: lib/includes/functions.php:1731
+#: lib/includes/functions.php:1725
 msgid "Thousands Separator"
 msgstr ""
 
-#: lib/includes/functions.php:1737
+#: lib/includes/functions.php:1731
 msgid "Decimal Separator"
 msgstr ""
 
-#: lib/includes/functions.php:1744
+#: lib/includes/functions.php:1738
 msgid "Inspection Date & Time Format"
 msgstr ""
 
-#: lib/includes/functions.php:1747
+#: lib/includes/functions.php:1741
 msgid ""
 "These settings allow you to control how your inspection times display by "
 "default."
 msgstr ""
 
-#: lib/includes/functions.php:1751
+#: lib/includes/functions.php:1745
 msgid "Date Format"
 msgstr ""
 
-#: lib/includes/functions.php:1764
+#: lib/includes/functions.php:1758
 msgid "Custom Date Format"
 msgstr ""
 
-#: lib/includes/functions.php:1769
+#: lib/includes/functions.php:1763
 msgid "Time Format"
 msgstr ""
 
-#: lib/includes/functions.php:1775
+#: lib/includes/functions.php:1769
 msgid " ( 24 Hours Format ) "
 msgstr ""
 
-#: lib/includes/functions.php:1782
+#: lib/includes/functions.php:1776
 msgid "Custom Time Format"
 msgstr ""
 
-#: lib/includes/functions.php:1789
+#: lib/includes/functions.php:1783
 msgid "Contact Settings"
 msgstr ""
 
-#: lib/includes/functions.php:1792
+#: lib/includes/functions.php:1786
 msgid "You can allow access to the Contacts system for logged in users."
 msgstr ""
 
-#: lib/includes/functions.php:1796
+#: lib/includes/functions.php:1790
 msgid "Contact Access Level"
 msgstr ""
 
-#: lib/includes/functions.php:1806
+#: lib/includes/functions.php:1800
 msgid "Reports Settings"
 msgstr ""
 
-#: lib/includes/functions.php:1809
+#: lib/includes/functions.php:1803
 msgid "You can allow access to the Reports system for logged in users."
 msgstr ""
 
-#: lib/includes/functions.php:1814
+#: lib/includes/functions.php:1808
 msgid "Reports Access Level"
 msgstr ""
 
-#: lib/includes/functions.php:1827
+#: lib/includes/functions.php:1821
 msgid ""
 "Additional settings to control how Easy Property Listings works. For even "
 "more advanced filters and hooks, <a href=\"%s\" target=\"_blank\">visit the "
 "codex</a>."
 msgstr ""
 
-#: lib/includes/functions.php:1831
+#: lib/includes/functions.php:1825
 msgid "Disable Styles"
 msgstr ""
 
-#: lib/includes/functions.php:1834 lib/meta-boxes/meta-box-init.php:218
+#: lib/includes/functions.php:1828 lib/meta-boxes/meta-box-init.php:218
 #: lib/meta-boxes/meta-box-init.php:311 lib/meta-boxes/meta-box-init.php:321
 #: lib/meta-boxes/meta-box-init.php:330 lib/meta-boxes/meta-box-init.php:339
 #: lib/meta-boxes/meta-box-init.php:349 lib/meta-boxes/meta-box-init.php:405
@@ -3903,89 +3907,89 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: lib/includes/functions.php:1837
+#: lib/includes/functions.php:1831
 msgid "Check this to disable all elements."
 msgstr ""
 
-#: lib/includes/functions.php:1842
+#: lib/includes/functions.php:1836
 msgid "Legacy Styles"
 msgstr ""
 
-#: lib/includes/functions.php:1848
+#: lib/includes/functions.php:1842
 msgid "Check this to enable legacy css styles."
 msgstr ""
 
-#: lib/includes/functions.php:1853
+#: lib/includes/functions.php:1847
 msgid "Enhanced Styles"
 msgstr ""
 
-#: lib/includes/functions.php:1859
+#: lib/includes/functions.php:1853
 msgid ""
 "Check this to enable enhanced structural css styles. This implements "
 "inline-block mode for a better grid format on your listings."
 msgstr ""
 
-#: lib/includes/functions.php:1864
+#: lib/includes/functions.php:1858
 msgid "SVG Icons for Listings"
 msgstr ""
 
-#: lib/includes/functions.php:1870
+#: lib/includes/functions.php:1864
 msgid "Check this to enable SVG icons on listings."
 msgstr ""
 
-#: lib/includes/functions.php:1875
+#: lib/includes/functions.php:1869
 msgid "SVG Icons for Author Social Links"
 msgstr ""
 
-#: lib/includes/functions.php:1881
+#: lib/includes/functions.php:1875
 msgid "Check this to enable SVG icons on author social links."
 msgstr ""
 
-#: lib/includes/functions.php:1886
+#: lib/includes/functions.php:1880
 msgid "Google Maps API"
 msgstr ""
 
-#: lib/includes/functions.php:1893
+#: lib/includes/functions.php:1887
 msgid ""
 "Set to disabled if Google Maps API has already been loaded in your theme or "
 "other plugin."
 msgstr ""
 
-#: lib/includes/functions.php:1906
+#: lib/includes/functions.php:1900
 msgid "Mode"
 msgstr ""
 
-#: lib/includes/functions.php:1909
+#: lib/includes/functions.php:1903
 msgid "Development"
 msgstr ""
 
-#: lib/includes/functions.php:1910
+#: lib/includes/functions.php:1904
 msgid "Production"
 msgstr ""
 
-#: lib/includes/functions.php:1912
+#: lib/includes/functions.php:1906
 msgid "Production mode enqueue minified js & css for faster page loads."
 msgstr ""
 
-#: lib/includes/functions.php:1918
+#: lib/includes/functions.php:1912
 msgid "Remove Data on Uninstall?"
 msgstr ""
 
-#: lib/includes/functions.php:1924
+#: lib/includes/functions.php:1918
 msgid ""
 "Select Enable if you would like EPL to completely remove all of its data "
 "when the plugin is deleted."
 msgstr ""
 
-#: lib/includes/functions.php:1934
+#: lib/includes/functions.php:1928
 msgid "Beta Versions"
 msgstr ""
 
-#: lib/includes/functions.php:1940
+#: lib/includes/functions.php:1934
 msgid "Enable Beta Versions"
 msgstr ""
 
-#: lib/includes/functions.php:1943
+#: lib/includes/functions.php:1937
 msgid ""
 "Checking any of the checkboxes will opt you in to receive pre-release "
 "update notifications. You can opt-out at any time. Pre-release updates do "
@@ -3993,43 +3997,43 @@ msgid ""
 "update notifications."
 msgstr ""
 
-#: lib/includes/functions.php:2295
+#: lib/includes/functions.php:2289
 msgid "Appraisal"
 msgstr ""
 
-#: lib/includes/functions.php:2296
+#: lib/includes/functions.php:2290
 msgid "Buyer"
 msgstr ""
 
-#: lib/includes/functions.php:2298
+#: lib/includes/functions.php:2292
 msgid "Lead"
 msgstr ""
 
-#: lib/includes/functions.php:2299
+#: lib/includes/functions.php:2293
 msgid "Landlord"
 msgstr ""
 
-#: lib/includes/functions.php:2301
+#: lib/includes/functions.php:2295
 msgid "Past Customer"
 msgstr ""
 
-#: lib/includes/functions.php:2302
+#: lib/includes/functions.php:2296
 msgid "Seller"
 msgstr ""
 
-#: lib/includes/functions.php:2303
+#: lib/includes/functions.php:2297
 msgid "Tenant"
 msgstr ""
 
-#: lib/includes/functions.php:2304
+#: lib/includes/functions.php:2298
 msgid "Widget Lead"
 msgstr ""
 
-#: lib/includes/functions.php:2305
+#: lib/includes/functions.php:2299
 msgid "Under Contract"
 msgstr ""
 
-#: lib/includes/functions.php:2442 lib/post-types/post-types.php:48
+#: lib/includes/functions.php:2436 lib/post-types/post-types.php:48
 #: lib/post-types/post-types.php:542 lib/widgets/widget-admin-dashboard.php:118
 #: lib/widgets/widget-admin-dashboard.php:138
 #: lib/widgets/widget-admin-dashboard.php:159
@@ -4037,7 +4041,7 @@ msgstr ""
 msgid "Withdrawn"
 msgstr ""
 
-#: lib/includes/functions.php:2443 lib/post-types/post-types.php:49
+#: lib/includes/functions.php:2437 lib/post-types/post-types.php:49
 #: lib/post-types/post-types.php:543 lib/widgets/widget-admin-dashboard.php:119
 #: lib/widgets/widget-admin-dashboard.php:139
 #: lib/widgets/widget-admin-dashboard.php:160
@@ -4045,117 +4049,117 @@ msgstr ""
 msgid "Off Market"
 msgstr ""
 
-#: lib/includes/functions.php:2464 lib/includes/functions.php:2483
+#: lib/includes/functions.php:2458 lib/includes/functions.php:2477
 msgid "Exclusive"
 msgstr ""
 
-#: lib/includes/functions.php:2466
+#: lib/includes/functions.php:2460
 msgid "Multilist"
 msgstr ""
 
-#: lib/includes/functions.php:2467
+#: lib/includes/functions.php:2461
 msgid "Conjunctional"
 msgstr ""
 
-#: lib/includes/functions.php:2468 lib/includes/functions.php:2484
+#: lib/includes/functions.php:2462 lib/includes/functions.php:2478
 msgid "Open"
 msgstr ""
 
-#: lib/includes/functions.php:2469 lib/includes/functions.php:2501
-#: lib/includes/functions.php:2550 lib/post-types/post-type-business.php:249
+#: lib/includes/functions.php:2463 lib/includes/functions.php:2495
+#: lib/includes/functions.php:2544 lib/post-types/post-type-business.php:249
 msgid "Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2470
+#: lib/includes/functions.php:2464
 msgid "Set Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2499
+#: lib/includes/functions.php:2493
 msgid "Tender"
 msgstr ""
 
-#: lib/includes/functions.php:2500
+#: lib/includes/functions.php:2494
 msgid "EOI"
 msgstr ""
 
-#: lib/includes/functions.php:2502
+#: lib/includes/functions.php:2496
 msgid "Offers"
 msgstr ""
 
-#: lib/includes/functions.php:2515 lib/widgets/widget-functions.php:727
+#: lib/includes/functions.php:2509 lib/widgets/widget-functions.php:727
 #: lib/widgets/widget-functions.php:781
 msgid "Square"
 msgstr ""
 
-#: lib/includes/functions.php:2516 lib/widgets/widget-functions.php:728
+#: lib/includes/functions.php:2510 lib/widgets/widget-functions.php:728
 #: lib/widgets/widget-functions.php:782
 msgid "Square Meter"
 msgstr ""
 
-#: lib/includes/functions.php:2517 lib/widgets/widget-functions.php:729
+#: lib/includes/functions.php:2511 lib/widgets/widget-functions.php:729
 #: lib/widgets/widget-functions.php:783
 msgid "Acre"
 msgstr ""
 
-#: lib/includes/functions.php:2518 lib/widgets/widget-functions.php:730
+#: lib/includes/functions.php:2512 lib/widgets/widget-functions.php:730
 #: lib/widgets/widget-functions.php:784
 msgid "Hectare"
 msgstr ""
 
-#: lib/includes/functions.php:2519 lib/widgets/widget-functions.php:731
+#: lib/includes/functions.php:2513 lib/widgets/widget-functions.php:731
 #: lib/widgets/widget-functions.php:785
 msgid "Square Feet"
 msgstr ""
 
-#: lib/includes/functions.php:2532
+#: lib/includes/functions.php:2526
 msgid "Day"
 msgstr ""
 
-#: lib/includes/functions.php:2533
+#: lib/includes/functions.php:2527
 msgid "Daily"
 msgstr ""
 
-#: lib/includes/functions.php:2534
+#: lib/includes/functions.php:2528
 msgid "Week"
 msgstr ""
 
-#: lib/includes/functions.php:2535
+#: lib/includes/functions.php:2529
 msgid "Weekly"
 msgstr ""
 
-#: lib/includes/functions.php:2536
+#: lib/includes/functions.php:2530
 msgid "Month"
 msgstr ""
 
-#: lib/includes/functions.php:2537
+#: lib/includes/functions.php:2531
 msgid "Monthly"
 msgstr ""
 
-#: lib/includes/functions.php:2551
+#: lib/includes/functions.php:2545
 msgid "Lease"
 msgstr ""
 
-#: lib/includes/functions.php:2552
+#: lib/includes/functions.php:2546
 msgid "Both"
 msgstr ""
 
-#: lib/includes/functions.php:2565
+#: lib/includes/functions.php:2559
 msgid "Unknown"
 msgstr ""
 
-#: lib/includes/functions.php:2566
+#: lib/includes/functions.php:2560
 msgid "Vacant"
 msgstr ""
 
-#: lib/includes/functions.php:2567
+#: lib/includes/functions.php:2561
 msgid "Tenanted"
 msgstr ""
 
-#: lib/includes/functions.php:2580
+#: lib/includes/functions.php:2574
 msgid "Whole"
 msgstr ""
 
-#: lib/includes/functions.php:2581
+#: lib/includes/functions.php:2575
 msgid "Part"
 msgstr ""
 
@@ -5492,7 +5496,7 @@ msgstr ""
 
 #: lib/templates/content/content-listing-single-compatibility.php:48
 #: lib/templates/content/content-listing-single.php:70
-#: lib/widgets/widget-functions.php:1399
+#: lib/widgets/widget-functions.php:1400
 msgid "Description"
 msgstr ""
 
@@ -5682,7 +5686,7 @@ msgstr ""
 msgid "Other Search Options"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:211 lib/widgets/widget-functions.php:1448
+#: lib/widgets/widget-functions.php:211 lib/widgets/widget-functions.php:1449
 msgid "Submit Label"
 msgstr ""
 
@@ -5762,27 +5766,27 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1318 lib/widgets/widget-functions.php:1429
+#: lib/widgets/widget-functions.php:1319 lib/widgets/widget-functions.php:1430
 msgid "Subject"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1325 lib/widgets/widget-functions.php:1435
+#: lib/widgets/widget-functions.php:1326 lib/widgets/widget-functions.php:1436
 msgid "Message"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1349 lib/widgets/widget-functions.php:1450
+#: lib/widgets/widget-functions.php:1350 lib/widgets/widget-functions.php:1451
 msgid "Submit"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1395
+#: lib/widgets/widget-functions.php:1396
 msgid "Contact Form"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1441
+#: lib/widgets/widget-functions.php:1442
 msgid "Anti Spam"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1482
+#: lib/widgets/widget-functions.php:1483
 msgid "Price Search"
 msgstr ""
 
