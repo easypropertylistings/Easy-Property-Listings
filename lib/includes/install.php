@@ -13,6 +13,78 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Get array of default settings
+ * @return [type] [description]
+ * @since 3.3.5
+ */
+function epl_get_default_settings() {
+
+	return array(
+
+		'currency'                             => 'AUD',
+		'currency_position'                    => 'before',
+		'currency_thousands_separator'         => ',',
+		'currency_decimal_separator'           => '.',
+		'admin_unique_id'                      => 0,
+		'debug'                                => 0,
+		'display_bond'                         => 0,
+		'display_single_gallery'               => 1,
+		'display_gallery_n'                    => 4,
+		'display_feature_columns'              => 2,
+		'display_excerpt_length'               => 10,
+		'display_archive_view_type'            => 'list',
+		'use_fancy_navigation'                 => 0,
+		'label_bond'                           => __('Bond', 'easy-property-listings' ),
+		'label_location'                       => __('Suburb', 'easy-property-listings' ),
+		'label_suburb'                         => __('Suburb', 'easy-property-listings' ),
+		'label_city'                           => __('City', 'easy-property-listings' ),
+		'label_state'                          => __('State', 'easy-property-listings' ),
+		'label_postcode'                       => __('Post Code', 'easy-property-listings' ),
+		'label_home_open'                      => __('Home Open', 'easy-property-listings' ),
+		'label_poa'                            => __('POA', 'easy-property-listings' ),
+		'label_new'                            => __('New', 'easy-property-listings' ),
+		'label_under_offer'                    => __('Under Offer', 'easy-property-listings' ),
+		'label_leased'                         => __('Leased', 'easy-property-listings' ),
+		'label_sold'                           => __('Sold', 'easy-property-listings' ),
+		'widget_label_all'                     => __('All', 'easy-property-listings' ),
+		'widget_label_property'                => __('Buy', 'easy-property-listings' ),
+		'widget_label_land'                    => __('Land', 'easy-property-listings' ),
+		'widget_label_rental'                  => __('Rent', 'easy-property-listings' ),
+		'widget_label_rural'                   => __('Rural', 'easy-property-listings' ),
+		'widget_label_business'                => __('Business', 'easy-property-listings' ),
+		'widget_label_commercial'              => __('Commercial', 'easy-property-listings' ),
+		'widget_label_commercial_land'         => __('Commercial Land', 'easy-property-listings' ),
+		'epl_max_graph_sales_price'            => 2000000,
+		'epl_max_graph_rent_price'             => 2000,
+		'sticker_new_range'                    => 7,
+		'epl_admin_thumb_size'                 => 'admin-list-thumb',
+		'epl_enable_city_field'                => 'no',
+		'epl_enable_country_field'             => 'no',
+		'epl_feeling_lucky'                    => 'off',
+		'epl_lucky_disable_single_thumb'       => 'off',
+		'epl_lucky_disable_theme_single_thumb' => 'off',
+		'epl_lucky_disable_archive_thumb'      => 'off',
+		'epl_lucky_disable_epl_archive_thumb'  => 'off',
+		'epl_use_core_css'                     => 'off', // Means Enable CSS
+		'epl_css_legacy'                       => 'off', // Legacy styles disabled by default
+		'epl_css_enhanced'                     => 'on', // Enhanced styles enabled for new installations by default
+		'uninstall_on_delete'                  => 0,
+		'inspection_date_format'               => 'l, dS F',
+		'inspection_time_format'               => 'h:i a',
+		'custom_inspection_date_format'        => 'l, dS F',
+		'custom_inspection_time_format'        => 'h:i a',
+		'epl_video_width'                      => 600,
+		'min_contact_access'                   => 'level_10',
+		'min_reports_access'                   => 'level_10',
+		'activate_post_types'                  => array('property'),
+		'epl_default_country'                  => 'Australia',
+		'epl_icons_svg_listings'               => 'on',
+		'epl_icons_svg_author'                 => 'on',
+		'epl_plugin_mode'                      => 'production',
+	);
+}
+
+/**
  * Install
  *
  * Runs on plugin install by setting up the current version,
@@ -36,68 +108,7 @@ function epl_install() {
 	// Add default EPL Settings
 	$epl_settings = epl_settings();
 
-	$new_fields_defaults = array(
-		'currency'				=> 'AUD',
-		'currency_position'			=> 'before',
-		'currency_thousands_separator'		=> ',',
-		'currency_decimal_separator'		=> '.',
-		'admin_unique_id'			=> 0,
-		'debug'					=> 0,
-		'display_bond'				=> 0,
-		'display_single_gallery'		=> 1,
-		'display_gallery_n'			=> 4,
-		'display_feature_columns'		=> 2,
-		'display_excerpt_length'		=> 10,
-		'display_archive_view_type'		=> 'list',
-		'use_fancy_navigation'			=> 0,
-		'label_bond'				=> __('Bond', 'easy-property-listings' ),
-		'label_location'			=> __('Suburb', 'easy-property-listings' ),
-		'label_suburb'				=> __('Suburb', 'easy-property-listings' ),
-		'label_city'				=> __('City', 'easy-property-listings' ),
-		'label_state'				=> __('State', 'easy-property-listings' ),
-		'label_postcode'			=> __('Post Code', 'easy-property-listings' ),
-		'label_home_open'			=> __('Home Open', 'easy-property-listings' ),
-		'label_poa'				=> __('POA', 'easy-property-listings' ),
-		'label_new'				=> __('New', 'easy-property-listings' ),
-		'label_under_offer'			=> __('Under Offer', 'easy-property-listings' ),
-		'label_leased'				=> __('Leased', 'easy-property-listings' ),
-		'label_sold'				=> __('Sold', 'easy-property-listings' ),
-		'widget_label_all'			=> __('All', 'easy-property-listings' ),
-		'widget_label_property'			=> __('Buy', 'easy-property-listings' ),
-		'widget_label_land'			=> __('Land', 'easy-property-listings' ),
-		'widget_label_rental'			=> __('Rent', 'easy-property-listings' ),
-		'widget_label_rural'			=> __('Rural', 'easy-property-listings' ),
-		'widget_label_business'			=> __('Business', 'easy-property-listings' ),
-		'widget_label_commercial'		=> __('Commercial', 'easy-property-listings' ),
-		'widget_label_commercial_land'		=> __('Commercial Land', 'easy-property-listings' ),
-		'epl_max_graph_sales_price'		=> 2000000,
-		'epl_max_graph_rent_price'		=> 2000,
-		'sticker_new_range'			=> 7,
-		'epl_admin_thumb_size'			=> 'admin-list-thumb',
-		'epl_enable_city_field'			=> 'no',
-		'epl_enable_country_field'		=> 'no',
-		'epl_feeling_lucky'			=> 'off',
-		'epl_lucky_disable_single_thumb'	=> 'off',
-		'epl_lucky_disable_theme_single_thumb'	=> 'off',
-		'epl_lucky_disable_archive_thumb'	=> 'off',
-		'epl_lucky_disable_epl_archive_thumb'	=> 'off',
-		'epl_use_core_css'			=> 'off', // Means Enable CSS
-		'epl_css_legacy'			=> 'off', // Legacy styles disabled by default
-		'epl_css_enhanced'			=> 'on', // Enhanced styles enabled for new installations by default
-		'uninstall_on_delete'			=> 0,
-		'inspection_date_format'		=> 'l, dS F',
-		'inspection_time_format'		=> 'h:i a',
-		'custom_inspection_date_format'		=> 'l, dS F',
-		'custom_inspection_time_format'		=> 'h:i a',
-		'epl_video_width'			=> 600,
-		'min_contact_access'			=> 'level_10',
-		'min_reports_access'			=> 'level_10',
-		'activate_post_types'			=> array('property'),
-		'epl_default_country'			=> 'Australia',
-		'epl_icons_svg_listings'		=> 'on',
-		'epl_icons_svg_author'			=> 'on',
-		'epl_plugin_mode'			=> 'production',
-	);
+	$new_fields_defaults = epl_get_default_settings();
 
 	if(!empty($epl_settings)) {
 

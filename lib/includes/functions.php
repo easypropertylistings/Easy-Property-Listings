@@ -89,18 +89,12 @@ function epl_get_thumbnail_sizes() {
  * Remote get function
  *
  * @since 1.0
+ * @updated 3.3.5
  */
 function epl_remote_url_get($url) {
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$response = curl_exec($ch);
-	$response = json_decode($response);
-	if(!empty($response)) {
-		if($response->status == 'OK') {
-			return $response->results;
-		}
-	}
+
+	$response = wp_remote_get( $url );
+	return wp_remote_retrieve_body( $response );
 }
 
 /**
@@ -949,7 +943,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				$field_atts = 'data-dependency="true" data-type="taxonomy" data-type-name="'.$field['opt_args']['slug'].'" data-parent="'.$field['opt_args']['parent'].'" data-default="'.$val.'"';
 			}
 
-			echo '<select name="'.$field['name'].'" id="'.$field['name'].'" '.$field_atts.' class="dependency-'.$dependency.'">';
+			echo '<select name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" '.$field_atts.' class="dependency-'.$dependency.'">';
 				if(!empty($field['default'])) {
 					//echo '<option value="" selected="selected">'.__($field['default'], 'easy-property-listings' ).'</option>';
 				}
@@ -976,7 +970,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 							$v = $v['label'];
 						}
 
-						echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
+						echo '<option value="'.esc_attr($k).'" '.$selected.'>'.__(esc_html($v), 'easy-property-listings' ).'</option>';
 					}
 				} else {
 					echo '<option value=""> </option>';
@@ -986,7 +980,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 		case 'select_multiple':
 
 			$val = (array) $val;
-			echo '<select multiple name="'.$field['name'].'[]" id="'.$field['name'].'" >';
+			echo '<select multiple name="'.esc_attr($field['name']).'[]" id="'.epl_sanitize_key($field['name']).'" >';
 
 				if(isset($field['opts']) && !empty($field['opts'])) {
 					foreach($field['opts'] as $k=>$v) {
@@ -1010,7 +1004,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 							$v = $v['label'];
 						}
 
-						echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
+						echo '<option value="'.esc_attr($k).'" '.$selected.'>'.__(esc_html($v), 'easy-property-listings' ).'</option>';
 					}
 				} else {
 					echo '<option value=""> </option>';
@@ -1029,7 +1023,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 							$checked = 'checked="checked"';
 						}
 					}
-					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'[]" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'easy-property-listings' ).'</label></span>';
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.esc_attr($field['name']).'[]" id="'.epl_sanitize_key($field['name']).'_'.epl_sanitize_key($k).'" value="'.esc_attr($k).'" '.$checked.' /> <label for="'.esc_html($field['name']).'_'.$k.'">'.__(esc_html($v), 'easy-property-listings' ).'</label></span>';
 				}
 			}
 			break;
@@ -1047,7 +1041,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					}
 					if(count($field['opts']) == 1)
 						$v = $field['label'];
-					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'easy-property-listings' ).'</label></span>';
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'_'.$k.'" value="'.esc_attr($k).'" '.$checked.' /> <label for="'.esc_html($field['name']).'_'.epl_sanitize_key($k).'">'.__(esc_html($v), 'easy-property-listings' ).'</label></span>';
 				}
 			}
 			break;
@@ -1061,7 +1055,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 							$checked = 'checked="checked"';
 						}
 					}
-					echo '<span class="epl-field-row"><input type="checkbox" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'epl').'</label></span>';
+					echo '<span class="epl-field-row"><input type="checkbox" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'_'.$k.'" value="'.esc_attr($k).'" '.$checked.' /> <label for="'.esc_html($field['name']).'_'.epl_sanitize_key($k).'">'.__(esc_html($v), 'easy-property-listings').'</label></span>';
 				}
 			}
 			break;
@@ -1073,7 +1067,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 					if($val == $k) {
 						$checked = 'checked="checked"';
 					}
-					echo '<span class="epl-field-row"><input type="radio" name="'.$field['name'].'" id="'.$field['name'].'_'.$k.'" value="'.$k.'" '.$checked.' /> <label for="'.$field['name'].'_'.$k.'">'.__($v, 'easy-property-listings' ).'</label></span>';
+					echo '<span class="epl-field-row"><input type="radio" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'_'.$k.'" value="'.esc_attr($k).'" '.$checked.' /> <label for="'.esc_html($field['name']).'_'.epl_sanitize_key($k).'">'.__(esc_html($v), 'easy-property-listings' ).'</label></span>';
 				}
 			}
 			break;
@@ -1086,14 +1080,14 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			}
 
 			if($val != '') {
-				$img = $val;
+				$img = esc_attr( stripslashes($val) );
 			} else {
 				$img = plugin_dir_url( __DIR__ ).'assets/images/no_image.png';
 			}
 
 			echo '
 				<div class="epl-media-row">
-					<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" />
+					<input type="text" name="'.epl_sanitize_key($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.esc_attr(stripslashes($val)).'" />
 					&nbsp;&nbsp;<input type="button" name="epl_upload_button" class="button" value="'.__('Add File', 'easy-property-listings' ).'" />';
 
 					if( in_array( pathinfo($img, PATHINFO_EXTENSION), array('jpg','jpeg','png','gif') ) ) {
@@ -1106,69 +1100,69 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			break;
 
 		case 'editor':
-			wp_editor(stripslashes($val), $field['name'], $settings = array('textarea_rows'=>5));
+			wp_editor(stripslashes($val), esc_attr( $field['name'] ), $settings = array('textarea_rows'=>5));
 			break;
 
 		case 'textarea':
 			$atts = '';
 			if(isset($field['maxlength'] ) && $field['maxlength'] > 0) {
-				$atts = ' maxlength="'.$field['maxlength'].'"';
+				$atts = ' maxlength="'.absint($field['maxlength']).'"';
 			}
-			echo '<textarea name="'.$field['name'].'" id="'.$field['name'].'" '.$atts.'>'.stripslashes($val).'</textarea>';
+			echo '<textarea name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" '.$atts.'>'.stripslashes($val).'</textarea>';
 			break;
 
 		case'decimal':
 			$atts = '';
 			if($field['maxlength'] > 0) {
-				$atts = ' maxlength="'.$field['maxlength'].'"';
+				$atts = ' maxlength="'.absint($field['maxlength']).'"';
 			}
-			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[onlyNumberWithDecimal]]" '.$atts.' />';
+			echo '<input type="text" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.stripslashes($val).'" class="validate[custom[onlyNumberWithDecimal]]" '.$atts.' />';
 			break;
 
 		case 'number':
 			$atts = '';
 			if(isset($field['maxlength']) && $field['maxlength'] > 0) {
-				$atts = ' maxlength="'.$field['maxlength'].'"';
+				$atts = ' maxlength="'.absint($field['maxlength']).'"';
 			}
-			echo '<input type="number" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[onlyNumber]]" '.$atts.' />';
+			echo '<input type="number" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.esc_attr(stripslashes($val)).'" class="validate[custom[onlyNumber]]" '.$atts.' />';
 			break;
 
 		case 'date':
 			$atts = '';
 			$format 	= isset( $field['format'] ) ? $field['format'] : "Y-m-d" ;
 			$timepicker = isset( $field['timepicker'] ) ? $field['timepicker'] : false ;
-			echo '<input type="text" class="epldatepicker" data-format="'.$format.'"  data-timepicker="'.$timepicker.'" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+			echo '<input type="text" class="epldatepicker" data-format="'.$format.'"  data-timepicker="'.$timepicker.'" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.esc_attr(stripslashes($val)).'" '.$atts.' />';
 			break;
 
 
 		case 'auction-date':
 			$atts = '';
-			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+			echo '<input type="text" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.esc_attr(stripslashes($val)).'" '.$atts.' />';
 			break;
 
 		case 'sold-date':
 			$atts = '';
-			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" '.$atts.' />';
+			echo '<input type="text" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.esc_attr(stripslashes($val)).'" '.$atts.' />';
 			break;
 
 		case 'email':
-			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[email]]" />';
+			echo '<input type="text" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.esc_attr(stripslashes($val)).'" class="validate[custom[email]]" />';
 			break;
 
 		case 'url':
-			echo '<input type="text" name="'.$field['name'].'" id="'.$field['name'].'" value="'.stripslashes($val).'" class="validate[custom[url]]" />';
+			echo '<input type="text" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.esc_attr(stripslashes($val)).'" class="validate[custom[url]]" />';
 			break;
 		case 'button':
 			$classes = isset($field['class']) ? $field['class'] : '';
-			echo '<input type="button" name="'.$field['name'].'" id="'.$field['name'].'" value="'.$field['value'].'" class="'.$classes.'" />';
+			echo '<input type="button" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" value="'.esc_attr(stripslashes($field['value'])).'" class="'.$classes.'" />';
 			break;
 		case 'locked':
 			$atts = '';
-			echo '<span>'.stripslashes($val).'</span>';
+			echo '<span>'.esc_attr(stripslashes($val)).'</span>';
 			break;
 
 		case 'help':
-			echo '<div class="epl-help-container" id="'.isset($field['name']) ? $field['name'] : ''.'">
+			echo '<div class="epl-help-container" id="'.isset($field['name']) ? epl_sanitize_key($field['name']) : ''.'">
 					'.isset($field['content']) ? $field['content'] : ''.'
 				</div>';
 			break;
@@ -1184,7 +1178,7 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 				  $atts .= ''.$temp_key.'="'.$temp_value.'"';
 				}
 			}
-            echo '<input type="'.$field['type'].'" name="'.$field['name'].'" id="'.$field['name'].'" class="'.$classes.'"  value="'.stripslashes($val).'" '.$atts.' />';
+            echo '<input type="'.$field['type'].'" name="'.esc_attr($field['name']).'" id="'.epl_sanitize_key($field['name']).'" class="'.$classes.'"  value="'.esc_attr(stripslashes($val)).'" '.$atts.' />';
 	}
 
 	if( isset($field['geocoder']) ) {
@@ -1192,13 +1186,13 @@ function epl_render_html_fields ( $field = array() , $val = '' ) {
 			echo '<span class="epl-geocoder-button"></span>';
 		}
 
-		do_action('epl_admin_listing_map',stripslashes($val));
+		do_action('epl_admin_listing_map', esc_attr(stripslashes($val)) );
 	}
 
 	if(isset($field['help'])) {
 		$field['help'] = trim($field['help']);
 		if(!empty($field['help'])) {
-			echo '<span class="epl-help-text">'.__($field['help'], 'easy-property-listings' ).'</span>';
+			echo '<span class="epl-help-text">'.__(wp_kses_post($field['help']), 'easy-property-listings' ).'</span>';
 		}
 	}
  }

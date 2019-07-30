@@ -66,7 +66,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'easy-property-listings'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
 		</p>
 
 		<p>
@@ -74,7 +74,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 			<select class="widefat" id="<?php echo $this->get_field_id('d_columns'); ?>" name="<?php echo $this->get_field_name('d_columns'); ?>">
 				<?php
 					for ($i=1;$i<=6;$i++) {
-						echo '<option value="'.$i.'"'; if ($i==$instance['d_columns']) echo ' selected="selected"'; echo '>'. __($i, 'easy-property-listings') .'</option>';
+						echo '<option value="'.esc_attr($i).'"'; if ($i==$instance['d_columns']) echo ' selected="selected"'; echo '>'. __($i, 'easy-property-listings') .'</option>';
 					}
 				?>
 			</select>

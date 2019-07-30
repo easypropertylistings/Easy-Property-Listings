@@ -32,8 +32,11 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'epl_settings') {
 			foreach($ext_field_groups['fields'] as $ext_field_group) {
 				foreach($ext_field_group['fields'] as $field) {
 					if( $field['type'] == 'radio' || $field['type'] == 'checkbox' ) {
+
 						if(!isset($_REQUEST[ $field['name'] ])) {
 							$_REQUEST[ $field['name'] ] = '';
+						} else {
+							$_REQUEST[ $field['name'] ] = sanitize_text_field($_REQUEST[ $field['name'] ]);
 						}
 					}
 

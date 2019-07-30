@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.2.2
-Stable Tag: 3.3.4
+Stable Tag: 3.3.5
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -393,11 +393,23 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.3.5 July 30, 2019 =
+
+* New: Reset settings to default values tool page added viewable with &dev=true added to tools page URL.
+* Tweak: Ability to arrange EPL - Search Widget options dashboard field order.
+* Tweak: Wording alteration for Inspection Times - removed (one per line).
+* Tweak: Removed subscriber user type from Dashboard filtering by User.
+* Tweak: Now using WordPress jQuery touch punch JS script.
+* Tweak: Removed cURL php requirement and instead use WordPress helper function.
+* Fix: jQuery UI CSS now loading minified version in production mode.
+* Fix: [listing_element] shortcode will now display shortcode values when using frontend GUI builder.
+* Fix: Security enhancements.
+
 = 3.3.4 July 24, 2019 =
 
 * Tweak: Additional CSS classes added to SVG icons.
 * Fix: Loading custom CSS using the style-single.css now works correctly.
-* Fix: Important Security Update: Nonce security applied to form fields.
+* Important Security Update: Fix: XSS security flaw.
 
 = 3.3.3 June 13, 2019 =
 
