@@ -493,7 +493,6 @@ function epl_handle_tools_form() {
         		wp_die( __('Sorry, your nonce did not verify.','easy-property-listings') );
         	} else {
         		$epl_settings = epl_get_default_settings();
-        		epl_print_r($epl_settings);
         		update_option( 'epl_settings', $epl_settings );
         	}
 

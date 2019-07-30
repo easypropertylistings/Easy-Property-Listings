@@ -787,7 +787,7 @@ class EPL_FORM_BUILDER {
 		$value 		 	 = $this->get_value($field);
 		$field['class']  = $this->get_class('field',$field);
 		$html 			 = "\n<select  ";
-		$html 			.= $this->get_attributes( stripslashes($field) );
+		$html 			.= $this->get_attributes( $field );
 		$html 			.= ' >';
 		$value			= (array) $value;
 		$value			= array_map( 'sanitize_text_field',$value);
@@ -809,7 +809,7 @@ class EPL_FORM_BUILDER {
 				$label = $label['label'];
 			}
 			$html 			 	.= "\n<option  ";
-			$html 				.= 'value = "'.$option.'"';
+			$html 				.= 'value = "'.stripslashes($option).'"';
 
 			if( in_array($option,$value) )
 			$html 				.= ' selected = "selected" ';
