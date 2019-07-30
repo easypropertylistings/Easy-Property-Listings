@@ -312,7 +312,7 @@ function epl_show_upgrade_tab() {
 /**
  * Display Upgrade Tab
  *
- * @since       3.4
+ * @since       3.3.5
  */
 function epl_show_reset_tab() {
 	$show = false;

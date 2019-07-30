@@ -395,10 +395,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.3.5 July 29, 2019 =
 
-* New: Reset settings to default values Tool added.
+* New: Reset settings to default values tool page added viewable with &dev=true added to tools page URL.
 * Tweak: Ability to arrange EPL - Search Widget options dashboard field order.
 * Tweak: Wording alteration for Inspection Times - removed (one per line).
 * Tweak: Removed subscriber user type from Dashboard filtering by User.
+* Tweak: Now using WordPress jQuery touch punch JS script.
+* Tweak: Removed cURL php requirement and instead use WordPress helper function.
+* Fix: jQuery UI CSS now loading minified version in production mode.
 * Fix: [listing_element] shortcode will now display shortcode values when using frontend GUI builder.
 * Fix: Security enhancements.
 
