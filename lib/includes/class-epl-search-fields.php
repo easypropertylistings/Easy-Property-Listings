@@ -69,7 +69,7 @@ class EPL_Search_Fields {
 					class="in-field field-width <?php echo $field['meta_key']; ?>"
 					name="<?php echo $field['meta_key']; ?>"
 					id="<?php echo $field['meta_key']; ?>"
-					value="<?php echo $value; ?>"
+					value="<?php echo esc_attr($value); ?>"
 				/>
 			</div>
 		</div>
@@ -152,7 +152,7 @@ class EPL_Search_Fields {
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
 						foreach ( $field['options'] as $k => $v ) {
-							echo '<option value="' . esc_attr( $k ) . '"' . selected( $k, $value, false ) . '>' . $v . '</option>';
+							echo '<option value="' . esc_attr( $k ) . '"' . selected( $k, $value, false ) . '>' . esc_attr($v) . '</option>';
 						}
 					}
 					?>
@@ -196,7 +196,7 @@ class EPL_Search_Fields {
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
 						foreach ( $field['options'] as $k => $v ) {
 							$selected = in_array( $k, (array) $value ) ? true : false;
-							echo '<option value="' . esc_attr( $k ) . '"' . selected( $selected, true, false ) . '>' . $v . '</option>';
+							echo '<option value="' . esc_attr( $k ) . '"' . selected( $selected, true, false ) . '>' . esc_attr($v) . '</option>';
 						}
 					}
 					?>
@@ -235,7 +235,7 @@ class EPL_Search_Fields {
 					placeholder="<?php echo $placeholder; ?>"
 					name="<?php echo $field['meta_key']; ?>"
 					id="<?php echo $field['meta_key']; ?>"
-					value="<?php echo $value; ?>"
+					value="<?php echo esc_attr($value); ?>"
 				/>
 			</div>
 		</div>
@@ -264,7 +264,7 @@ class EPL_Search_Fields {
 		<input type="hidden" class="in-field field-width <?php echo $field['meta_key']; ?>"
 			name="<?php echo $field['meta_key']; ?>"
 			id="<?php echo $field['meta_key']; ?>"
-			value="<?php echo $value; ?>"
+			value="<?php echo esc_attr($value); ?>"
 		/>
 		<?php
 		if ( isset( $field['wrap_end'] ) ) {
