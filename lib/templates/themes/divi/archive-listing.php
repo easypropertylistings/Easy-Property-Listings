@@ -9,6 +9,7 @@
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
+?>
 
 <?php get_header(); ?>
 

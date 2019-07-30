@@ -72,9 +72,9 @@ function epl_custom_restrict_manage_posts() {
 		// filter by authors
 		wp_dropdown_users(
 			array(
-				'name' 				=> 'property_author',
-				'selected'			=> $property_author,
-				'show_option_all'	=> __('All Users','easy-property-listings' ),
+				'name' 			=> 	'property_author',
+				'selected'		=> 	$property_author,
+				'show_option_all'	=> 	__('All Users','easy-property-listings' ),
 				'role__not_in'		=>	array('subscriber')
 			)
 		);

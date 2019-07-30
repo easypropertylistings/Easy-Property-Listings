@@ -211,7 +211,7 @@ function epl_search_widget_fields() {
 			'label'			=>	__('Submit Label','easy-property-listings'),
 			'type'			=>	'text',
 			'default'		=>	__('Search','easy-property-listings'),
-			'order'			=>	250
+			'order'			=>	300
 		),
 	) );
 

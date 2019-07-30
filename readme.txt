@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.2.1
-Stable Tag: 3.3.2
+Tested up to: 5.2.2
+Stable Tag: 3.3.5
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
@@ -393,6 +393,21 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.3.5 July 29, 2019 =
+
+* New: Reset settings to default values Tool added.
+* Tweak: Ability to arrange EPL - Search Widget options dashboard field order.
+* Tweak: Wording alteration for Inspection Times - removed (one per line).
+* Tweak: Removed subscriber user type from Dashboard filtering by User.
+* Fix: [listing_element] shortcode will now display shortcode values when using frontend GUI builder.
+* Fix: Security enhancements.
+
+= 3.3.4 July 24, 2019 =
+
+* Tweak: Additional CSS classes added to SVG icons.
+* Fix: Loading custom CSS using the style-single.css now works correctly.
+* Important Security Update: Fix: XSS security flaw.
+
 = 3.3.3 June 13, 2019 =
 
 * New: Shortcode [listing_meta_doc] for custom field documentation output.
@@ -402,7 +417,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Improvements to property_price_global function.
 * Tweak: Code optimisation and added internal documentation to functions missing notes.
 * Tweak: When importing listings a helper function would in some cases trigger a notice error.
-* Tweak: Attached files would in some cases produce an error on imported listings with no files attached in the dashbaord.
+* Tweak: Attached files would in some cases produce an error on imported listings with no files attached in the dashboard.
 * Fix: Reporting graphs were some times blank when viewing last year then this year.
 * Fix: Reworked database upgrade process for larger workloads processing 200 records at a time to prevent server timeouts.
 * Fix: Missing post wrapper classes for iThemes builder and Heuman theme when using Listing Template extensions and masonry effect.

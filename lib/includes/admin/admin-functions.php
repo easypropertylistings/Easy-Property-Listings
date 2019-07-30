@@ -347,7 +347,7 @@ function epl_settings_import_export() {
 			<input type="file" name="epl_import" id="epl_import" />
 			<span class="epl-help-text">
 				<?php
-					_e('Import exported file here. Warning! it will override all existing settings','easy-property-listings');
+					_e('Import exported file here. Warning! This will override all existing settings to default values.','easy-property-listings');
 				?>
 			</span>
 		</div>
@@ -356,7 +356,7 @@ function epl_settings_import_export() {
 	<input type="hidden" name="action" value="import">
 	<div class="">
 		<input type="submit" name="epl_tools_submit" value="<?php _e('Import','easy-property-listings') ?>" class="epl-tools-submit button button-primary"/>
-		<span style="color:#f00"><?php _e('WARNING! This will overwrite all existing option values, please proceed with caution','easy-property-listings'); ?></span>
+		<span style="color:#f00"><?php _e('WARNING! This will overwrite all existing option values, please proceed with caution.','easy-property-listings'); ?></span>
 	</div>
 
 
@@ -381,7 +381,7 @@ function epl_settings_import_export() {
 /**
  * Reset EPL Settings :  Tools Settings Screen
  *
- * @since 3.5
+ * @since 3.3.5
  */
 function epl_settings_reset() {
 
@@ -389,7 +389,7 @@ function epl_settings_reset() {
 
 	if( isset($_GET['epl_tools_submit']) && $_GET['epl_tools_submit'] == 'true') { ?>
 		<br>
-		<span style="color:#080"><?php _e('Settings resetted successfully!','easy-property-listings'); ?></span>
+		<span style="color:#080"><?php _e('Settings reset successfully!','easy-property-listings'); ?></span>
 	<?php
 	}
 
@@ -397,12 +397,12 @@ function epl_settings_reset() {
 
 	$url = wp_nonce_url( $url, $action = 'epl_reset_settings', $name = '_reset_wpnonce' );
 
-	echo '<h2>'.__('Reset EPL settings','easy-property-listings').'</h2>'; 
+	echo '<h2>'.__('Reset Easy Property Listings to installation defaults','easy-property-listings').'</h2>';
 
 	echo "<a class='button button-primary' href='".$url."'>".__('Reset','easy-property-listings')."</a>";
 	?>
 	<br>
-	<span style="color:#f00"><?php _e('Warning! It will override Easy Property Listings settings screen and any Extension settings','easy-property-listings'); ?></span>
+	<span style="color:#f00"><?php _e('Warning! This will reset all your Easy Property Listings settings to their default values including extension settings.','easy-property-listings'); ?></span>
 	<?php
 
 	do_action('epl_post_settings_reset_fields');
@@ -443,10 +443,10 @@ function epl_handle_tools_form() {
     $action  = sanitize_text_field($_REQUEST['action']);
 
     if( in_array($action, array('import') ) ){
-    	
+
     	if (
-			! isset( $_POST['epl_nonce_tools_form'] ) || 
-			! wp_verify_nonce( $_POST['epl_nonce_tools_form'], 'epl_nonce_tools_form' ) 
+			! isset( $_POST['epl_nonce_tools_form'] ) ||
+			! wp_verify_nonce( $_POST['epl_nonce_tools_form'], 'epl_nonce_tools_form' )
 		) {
 		   wp_die( __('Sorry, your nonce did not verify.','easy-property-listings') );
 		}
@@ -496,7 +496,7 @@ function epl_handle_tools_form() {
         		epl_print_r($epl_settings);
         		update_option( 'epl_settings', $epl_settings );
         	}
-        	
+
         break;
     }
 

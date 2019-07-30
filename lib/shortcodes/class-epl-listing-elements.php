@@ -25,6 +25,11 @@ class EPL_Listing_Elements {
 
 	}
 
+	/**
+	 * Output example code or value if in th loop
+	 *
+	 * @since 3.3
+	 */
 	function listing_element($atts) {
 
 		global $property;
@@ -56,7 +61,7 @@ class EPL_Listing_Elements {
 			echo '[ '.__('Listing','easy-property-listings').' '.ucwords($atts['type']);
 
 			if( $key_name != ''){
-				echo ' : '.ucwords(str_replace('_',' ',$atts[$key_name]));
+				echo ': '.ucwords(str_replace('_',' ',$atts[$key_name]));
 			}
 			echo ' ]';
 
@@ -92,6 +97,11 @@ class EPL_Listing_Elements {
 		}
 	}
 
+	/**
+	 * Output action
+	 *
+	 * @since 3.3
+	 */
 	function epl_action($atts) {
 		if( !isset($atts['action_key']) )
 			return;
@@ -100,6 +110,11 @@ class EPL_Listing_Elements {
 		return ob_get_clean();
 	}
 
+	/**
+	 * Get meta
+	 *
+	 * @since 3.3
+	 */
 	function epl_meta($atts) {
 
 		if( !isset($atts['meta_key']) )
@@ -108,6 +123,11 @@ class EPL_Listing_Elements {
 		return get_property_meta($atts['meta_key']);
 	}
 
+	/**
+	 * Get post
+	 *
+	 * @since 3.3
+	 */
 	function post($atts) {
 
 		global $property;
@@ -125,18 +145,33 @@ class EPL_Listing_Elements {
 
 	}
 
+	/**
+	 * Get suburb profile
+	 *
+	 * @since 3.3
+	 */
 	function epl_suburb_profile(){
 
 		global $property;
 		echo $property->get_suburb_profile();
 	}
 
+	/**
+	 * Get formatted listing address
+	 *
+	 * @since 3.3
+	 */
 	function epl_formatted_address(){
 
 		global $property;
 		echo  $property->get_formatted_property_address();
 	}
 
+	/**
+	 * Get the excerpt
+	 *
+	 * @since 3.3
+	 */
 	function epl_the_excerpt(){
 
 		global $property;
