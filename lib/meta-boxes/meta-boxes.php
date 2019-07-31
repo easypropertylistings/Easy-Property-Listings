@@ -277,7 +277,7 @@ add_action( 'save_post', 'epl_save_meta_boxes' );
  */
 function epl_get_terms_drop_list() {
 	$_POST = array_map('trim', $_POST);
-	$post_data = array_map_recursive('sanitize_text_field',$_POST);
+	$post_data = epl_array_map_recursive('sanitize_text_field',$_POST);
 	extract($post_data);
 
 	$parent_id = (int) $parent_id;
