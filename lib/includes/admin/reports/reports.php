@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 */
 function epl_reports_page() {
 	$current_page = admin_url( 'edit.php?post_type=download&page=epl-reports' );
-	$active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'reports';
+	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field($_GET['tab']) : 'reports';
 	?>
 	<div class="wrap">
 		<h1 class="nav-tab-wrapper">
@@ -68,7 +68,7 @@ function epl_get_reporting_view( $default = 'property' ) {
 	if ( ! isset( $_GET['view'] ) || ! in_array( $_GET['view'], array_keys( epl_reports_default_views() ) ) ) {
 		$view = $default;
 	} else {
-		$view = $_GET['view'];
+		$view = sanitize_text_field($_GET['view']);
 	}
 
 	return apply_filters( 'epl_get_reporting_view', $view );
@@ -90,7 +90,7 @@ function epl_reports_tab_reports() {
 	$views        = epl_reports_default_views();
 
 	if ( isset( $_GET['view'] ) && array_key_exists( $_GET['view'], $views ) )
-		$current_view = $_GET['view'];
+		$current_view = sanitize_text_field($_GET['view']);
 
 	do_action( 'epl_reports_view_' . $current_view );
 
@@ -110,7 +110,7 @@ function epl_report_views() {
 	}
 
 	$views        = epl_reports_default_views();
-	$current_view = isset( $_GET['view'] ) ? $_GET['view'] : 'property';
+	$current_view = isset( $_GET['view'] ) ? sanitize_text_field($_GET['view']) : 'property';
 	?>
 	<form id="epl-reports-filter" method="get">
 		<select id="epl-reports-view" name="view">

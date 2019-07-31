@@ -101,7 +101,7 @@ add_action('contact_tag_edit_form_fields','epl_edit_contact_tag_bgcolor_field' )
 function epl_save_contact_tag_bgcolor($term_id) {
 
 	if( isset($_POST['epl_contact_tag_bgcolor']) )
-		epl_update_contact_tag_bgcolor($term_id,$_POST['epl_contact_tag_bgcolor']);
+		epl_update_contact_tag_bgcolor($term_id,sanitize_text_field($_POST['epl_contact_tag_bgcolor']));
 }
 add_action('create_term','epl_save_contact_tag_bgcolor');
 add_action('edit_term','epl_save_contact_tag_bgcolor');

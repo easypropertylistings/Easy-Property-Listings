@@ -62,7 +62,7 @@ function epl_custom_restrict_manage_posts() {
 			echo '<select name="property_status">';
 				echo '<option value="">'.__('Filter By Type', 'easy-property-listings' ).'</option>';
 				foreach($fields as $k=>$v) {
-					$selected = ($_GET['property_status'] == $k ? 'selected="selected"' : '');
+					$selected = (sanitize_text_field($_GET['property_status']) == $k ? 'selected="selected"' : '');
 					echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
 				}
 			echo '</select>';
@@ -101,7 +101,7 @@ function epl_custom_restrict_manage_posts() {
 
 		//Filter by Suburb
 		if(isset($_GET['property_custom_value'])) {
-			$val = stripslashes($_GET['property_custom_value']);
+			$val = stripslashes( sanitize_text_field($_GET['property_custom_value']) );
 		} else {
 			$val = '';
 		}
@@ -122,7 +122,7 @@ function epl_admin_posts_filter( $query ) {
 		if(isset($_GET['property_status']) && $_GET['property_status'] != '') {
 			$meta_query[] = array(
 				'key'       => 'property_status',
-				'value'     => $_GET['property_status']
+				'value'     => sanitize_text_field($_GET['property_status'])
 			);
 		}
 

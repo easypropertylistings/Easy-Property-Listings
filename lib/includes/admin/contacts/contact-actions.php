@@ -1370,6 +1370,7 @@ function epl_search_user() {
 
 	if( isset($_REQUEST['exclude_roles']) ) {
 		$exclude_roles = explode(',', $_REQUEST['exclude_roles'] );
+		$exclude_roles = array_map('sanitize_text_field',$exclude_roles);
 		$args['role__not_in'] = $exclude_roles;
 	}
 

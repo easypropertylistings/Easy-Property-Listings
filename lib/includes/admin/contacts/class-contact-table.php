@@ -253,7 +253,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * @return mixed string If search is present, false otherwise
 	 */
 	public function get_search() {
-		return ! empty( $_GET['s'] ) ? urldecode( trim( $_GET['s'] ) ) : false;
+		return ! empty( $_GET['s'] ) ? urldecode( trim( sanitize_text_field($_GET['s']) ) ) : false;
 	}
 
 	/**
@@ -264,7 +264,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * @return mixed string If search is present, false otherwise
 	 */
 	public function get_name_search() {
-		return ! empty( $_GET['s_contact_name'] ) ? urldecode( trim( $_GET['s_contact_name'] ) ) : false;
+		return ! empty( $_GET['s_contact_name'] ) ? urldecode( trim( sanitize_text_field($_GET['s_contact_name']) ) ) : false;
 	}
 
 	/**

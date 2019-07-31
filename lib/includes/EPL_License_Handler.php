@@ -489,7 +489,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 */
 		public function notices() {
 
-			if( ! isset( $_GET['page'] ) || 'epl-licenses' !== $_GET['page'] ) {
+			if( ! isset( $_GET['page'] ) || 'epl-licenses' !== sanitize_text_field( $_GET['page'] ) ) {
 				return;
 			}
 

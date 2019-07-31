@@ -127,7 +127,7 @@ class EPL_Welcome {
 	 * @return void
 	 */
 	public function tabs() {
-		$selected = isset( $_GET['page'] ) ? $_GET['page'] : 'epl-about';
+		$selected = isset( $_GET['page'] ) ? sanitize_text_field($_GET['page']) : 'epl-about';
 		?>
 		<h2 class="nav-tab-wrapper">
 			<a class="nav-tab <?php echo $selected == 'epl-about' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>">
