@@ -421,10 +421,10 @@ class EPL_SL_Plugin_Updater {
 
 			$api_params = array(
 				'edd_action' => 'get_version',
-				'item_name'  => isset( $data['item_name'] ) ? $data['item_name'] : false,
-				'item_id'    => isset( $data['item_id'] ) ? $data['item_id'] : false,
-				'slug'       => $_REQUEST['slug'],
-				'author'     => $data['author'],
+				'item_name'  => isset( $data['item_name'] ) ? sanitize_text_field($data['item_name']) : false,
+				'item_id'    => isset( $data['item_id'] ) ? sanitize_text_field($data['item_id']) : false,
+				'slug'       => sanitize_text_field($_REQUEST['slug']),
+				'author'     => sanitize_text_field($data['author']),
 				'url'        => home_url(),
 				'beta'       => ! empty( $data['beta'] )
 			);

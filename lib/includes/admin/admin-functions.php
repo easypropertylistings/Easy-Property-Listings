@@ -405,7 +405,7 @@ function epl_settings_reset() {
 
 	do_action('epl_pre_settings_reset_fields');
 
-	if( isset($_GET['epl_tools_submit']) && $_GET['epl_tools_submit'] == 'true') { ?>
+	if( isset($_GET['epl_tools_submit']) && sanitize_text_field($_GET['epl_tools_submit']) == 'true') { ?>
 		<br>
 		<span style="color:#080"><?php _e('Settings reset successfully!','easy-property-listings'); ?></span>
 	<?php
