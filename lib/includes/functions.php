@@ -2640,7 +2640,7 @@ add_action('wp','epl_single_and_archive_functions',99);
  * Recurisve array map for multi dimensional array
  * @since  3.3.5 [<description>]
  */
-function array_map_recursive($callback, $array) {
+function epl_array_map_recursive($callback, $array) {
   $func = function ($item) use (&$func, &$callback) {
     return is_array($item) ? array_map($func, $item) : call_user_func($callback, $item);
   };

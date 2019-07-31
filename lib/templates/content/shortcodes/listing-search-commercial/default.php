@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 extract( $atts );
 $selected_post_types = $atts['post_type'];
-$_GET = array_map_recursive('sanitize_text_field',$_GET);
+$_GET = epl_array_map_recursive('sanitize_text_field',$_GET);
 extract( $_GET );
 $queried_post_type = isset( $_GET['post_type'] ) ? sanitize_text_field($_GET['post_type']) : 'commercial';
 
