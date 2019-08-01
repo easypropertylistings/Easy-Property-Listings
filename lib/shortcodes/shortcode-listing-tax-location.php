@@ -10,7 +10,9 @@
  */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Listing Shortcode [listing_location]
@@ -23,145 +25,153 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
-	if(!empty($property_types)) {
-		 $property_types = array_keys($property_types);
+	if ( ! empty( $property_types ) ) {
+		 $property_types = array_keys( $property_types );
 	}
 
-	$attributes = shortcode_atts( array(
-		'post_type' 		=>	$property_types, //Post Type
-		'status'		=>	array('current' , 'sold' , 'leased' ),
-		'location'		=>	'', // Location slug
-		'location_id'		=>	'', // Location ID
-		'limit'			=>	'10', // Number of maximum posts to show
-		'offset'		=>	'', // Offset posts. When used, pagination is disabled
-		'template'		=>	false, // Template can be set to "slim" for home open style template
-		'tools_top'		=>	'off', // Tools before the loop like Sorter and Grid on or off
-		'tools_bottom'		=>	'off', // Tools after the loop like pagination on or off
-		'sortby'		=>	'', // Options: price, date, status : Default date
-		'sort_order'		=>	'DESC', // Sort by ASC or DESC
-		'pagination'		=> 	'on', // Enable or disable pagination
-		'instance_id'		=>	'1',
-		'class'			=>	''
-	), $atts );
+	$attributes = shortcode_atts(
+		array(
+			'post_type'    => $property_types, // Post Type
+			'status'       => array( 'current', 'sold', 'leased' ),
+			'location'     => '', // Location slug
+			'location_id'  => '', // Location ID
+			'limit'        => '10', // Number of maximum posts to show
+			'offset'       => '', // Offset posts. When used, pagination is disabled
+			'template'     => false, // Template can be set to "slim" for home open style template
+			'tools_top'    => 'off', // Tools before the loop like Sorter and Grid on or off
+			'tools_bottom' => 'off', // Tools after the loop like pagination on or off
+			'sortby'       => '', // Options: price, date, status : Default date
+			'sort_order'   => 'DESC', // Sort by ASC or DESC
+			'pagination'   => 'on', // Enable or disable pagination
+			'instance_id'  => '1',
+			'class'        => '',
+		),
+		$atts
+	);
 
 	extract( $attributes );
 
-	if(empty($post_type)) {
+	if ( empty( $post_type ) ) {
 		return;
 	}
-	if(is_string($post_type) && $post_type == 'rental') {
+	if ( is_string( $post_type ) && $post_type == 'rental' ) {
 		$meta_key_price = 'property_rent';
 	} else {
 		$meta_key_price = 'property_price';
 	}
 	$sort_options = array(
-		'price'			=>	$meta_key_price,
-		'date'			=>	'post_date'
+		'price' => $meta_key_price,
+		'date'  => 'post_date',
 	);
-	if( !is_array($post_type) ) {
-		$post_type 		= array_map('trim',explode(',',$post_type) );
+	if ( ! is_array( $post_type ) ) {
+		$post_type = array_map( 'trim', explode( ',', $post_type ) );
 	}
 	ob_start();
-	$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
-	$args = array(
-		'post_type' 		=>	$post_type,
-		'posts_per_page'	=>	$limit,
-		'paged' 		=>	$paged
+	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	$args  = array(
+		'post_type'      => $post_type,
+		'posts_per_page' => $limit,
+		'paged'          => $paged,
 	);
 
 	// Offset query does not work with pagination
-	if ( ! empty ( $offset ) ) {
-		$args['offset'] 	= $offset;
-		$pagination	 	= 'off'; // Disable pagination when offset is used
+	if ( ! empty( $offset ) ) {
+		$args['offset'] = $offset;
+		$pagination     = 'off'; // Disable pagination when offset is used
 	}
 
-	if(!empty($location) ) {
-		if( !is_array( $location ) ) {
-			$location = explode(",", $location);
-			$location = array_map('trim', $location);
+	if ( ! empty( $location ) ) {
+		if ( ! is_array( $location ) ) {
+			$location = explode( ',', $location );
+			$location = array_map( 'trim', $location );
 
 			$args['tax_query'][] = array(
-				'taxonomy'	=> 'location',
-				'field' 	=> 'slug',
-				'terms' 	=> $location
+				'taxonomy' => 'location',
+				'field'    => 'slug',
+				'terms'    => $location,
 			);
 		}
 	}
 
-	if(!empty($location_id) ) {
-		if( !is_array( $location_id ) ) {
-			$location_id = explode(",", $location_id);
-			$location_id = array_map('trim', $location_id);
+	if ( ! empty( $location_id ) ) {
+		if ( ! is_array( $location_id ) ) {
+			$location_id = explode( ',', $location_id );
+			$location_id = array_map( 'trim', $location_id );
 
 			$args['tax_query'][] = array(
-				'taxonomy'	=> 'location',
-				'field'		=> 'id',
-				'terms' 	=> $location_id
+				'taxonomy' => 'location',
+				'field'    => 'id',
+				'terms'    => $location_id,
 			);
 		}
 	}
 
-	if(!empty($status)) {
-		if(!is_array($status)) {
-			$status = explode(",", $status);
-			$status = array_map('trim', $status);
+	if ( ! empty( $status ) ) {
+		if ( ! is_array( $status ) ) {
+			$status = explode( ',', $status );
+			$status = array_map( 'trim', $status );
 
 			$args['meta_query'][] = array(
-				'key'		=> 'property_status',
-				'value'		=> $status,
-				'compare'	=> 'IN'
+				'key'     => 'property_status',
+				'value'   => $status,
+				'compare' => 'IN',
 			);
 		}
 	}
 
-	if( $sortby != '' ) {
+	if ( $sortby != '' ) {
 
-		if($sortby == 'price') {
-			$args['orderby']	= 'meta_value_num';
-			$args['meta_key']	= $meta_key_price;
+		if ( $sortby == 'price' ) {
+			$args['orderby']  = 'meta_value_num';
+			$args['meta_key'] = $meta_key_price;
 		} elseif ( $sortby == 'status' ) {
-			$args['orderby']	= 'meta_value';
-			$args['meta_key']	= 'property_status';
-		}  else {
-			$args['orderby']	= 'post_date';
-			$args['order']		= 'DESC';
+			$args['orderby']  = 'meta_value';
+			$args['meta_key'] = 'property_status';
+		} else {
+			$args['orderby'] = 'post_date';
+			$args['order']   = 'DESC';
 
 		}
-		$args['order']			= $sort_order;
+		$args['order'] = $sort_order;
 	}
 
 	$args['instance_id'] = $attributes['instance_id'];
 	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
-	$args = epl_add_orderby_args($args,'shortcode','listing_location');
+	$args = epl_add_orderby_args( $args, 'shortcode', 'listing_location' );
 
 	/** Option to filter args */
-	$args = apply_filters('epl_shortcode_listing_location_args',$args,$attributes);
-
+	$args = apply_filters( 'epl_shortcode_listing_location_args', $args, $attributes );
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-location <?php echo epl_template_class( $template, 'archive' ); echo $attributes['class']; ?>">
+			<div class="loop-content epl-shortcode-listing-location 
+			<?php
+			echo epl_template_class( $template, 'archive' );
+			echo $attributes['class'];
+			?>
+			">
 				<?php
-					if ( $tools_top == 'on' ) {
-						do_action( 'epl_property_loop_start' );
-					}
-					while ( $query_open->have_posts() ) {
-						$query_open->the_post();
+				if ( $tools_top == 'on' ) {
+					do_action( 'epl_property_loop_start' );
+				}
+				while ( $query_open->have_posts() ) {
+					$query_open->the_post();
 
-						$template = str_replace('_','-',$template);
-						epl_property_blog($template);
-					}
-					if ( $tools_bottom == 'on' ) {
-						do_action( 'epl_property_loop_end' );
-					}
+					$template = str_replace( '_', '-', $template );
+					epl_property_blog( $template );
+				}
+				if ( $tools_bottom == 'on' ) {
+					do_action( 'epl_property_loop_end' );
+				}
 
 				?>
 			</div>
 			<div class="loop-footer">
 				<?php
-					if( $pagination == 'on')
-					do_action('epl_pagination',array('query'	=>	$query_open));
+				if ( $pagination == 'on' ) {
+					do_action( 'epl_pagination', array( 'query' => $query_open ) );
+				}
 				?>
 			</div>
 		</div>
