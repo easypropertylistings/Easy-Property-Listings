@@ -9,7 +9,7 @@
  * @since       3.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This shortcode allows for you to capture contacts for listings
  *
  * @since 3.0
+ * @param array $atts Shortcode array of options.
  */
 function epl_contact_capture_form( $atts ) {
 
@@ -25,9 +26,9 @@ function epl_contact_capture_form( $atts ) {
 	$attributes = shortcode_atts( $defaults, $atts );
 	$fields     = epl_contact_capture_get_widget_fields( $attributes );
 
-	if ( isset( $attributes['submit'] ) && $attributes['submit'] != '' ) {
+	if ( isset( $attributes['submit'] ) && '' !== $attributes['submit'] ) {
 		foreach ( $fields as &$field ) {
-			if ( $field['name'] == 'epl_contact_submit' ) {
+			if ( 'epl_contact_submit' === $field['name'] ) {
 				$field['value'] = $attributes['submit'];
 			}
 		}
@@ -69,11 +70,13 @@ add_shortcode( 'listing_contact', 'epl_contact_capture_form' );
  * Contact Form Callback
  *
  * @since 3.0
+ * @param array $form_data
+ * @param array $request
  */
-function contact_capture_form_callback( $form_data, $request ) {
+function epl_contact_capture_form_callback( $form_data, $request ) {
 
-	if ( isset( $request['epl_contact_anti_spam'] ) && $request['epl_contact_anti_spam'] != '' ) {
-		// spam
+	if ( isset( $request['epl_contact_anti_spam'] ) && '' !== $request['epl_contact_anti_spam'] ) {
+		// spam.
 		return;
 	}
 
@@ -105,4 +108,4 @@ function contact_capture_form_callback( $form_data, $request ) {
 		}
 	}
 }
-add_action( 'epl_form_builder_contact_capture_form', 'contact_capture_form_callback', 10, 2 );
+add_action( 'epl_form_builder_contact_capture_form', 'epl_contact_capture_form_callback', 10, 2 );
