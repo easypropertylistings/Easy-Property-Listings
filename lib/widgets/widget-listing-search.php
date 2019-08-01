@@ -10,7 +10,9 @@
  */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * EPL_Widget_Property_Search class
@@ -20,11 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Property_Search extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, $name = __('EPL - Listing Search', 'easy-property-listings'), array( 'description' => __( 'Search listings.', 'easy-property-listings' ) ) );
+		parent::__construct( false, $name = __( 'EPL - Listing Search', 'easy-property-listings' ), array( 'description' => __( 'Search listings.', 'easy-property-listings' ) ) );
 		// Widget name for filter: epl_property_search
 	}
 
-	function widget($args, $instance) {
+	function widget( $args, $instance ) {
 
 		$defaults = epl_search_get_defaults();
 		$instance = wp_parse_args( (array) $instance, $defaults );
@@ -33,40 +35,40 @@ class EPL_Widget_Property_Search extends WP_Widget {
 
 		echo $before_widget;
 
-		$title	= apply_filters('widget_title', $instance['title']);
+		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		if ( $title ) {
 			echo $before_title . $title . $after_title;
 		}
 
 		if ( ! is_admin() ) {
-			echo epl_shortcode_listing_search_callback($instance);
+			echo epl_shortcode_listing_search_callback( $instance );
 		}
 
 		echo $after_widget;
 	}
 
-	function update($new_instance, $old_instance) {
-		$instance 	= $old_instance;
+	function update( $new_instance, $old_instance ) {
+		$instance   = $old_instance;
 		$all_fields = epl_search_widget_fields();
-		foreach($all_fields as $all_field) {
-			$instance[$all_field['key']] = epl_strip_tags($new_instance[$all_field['key']]);
+		foreach ( $all_fields as $all_field ) {
+			$instance[ $all_field['key'] ] = epl_strip_tags( $new_instance[ $all_field['key'] ] );
 		}
 		return $instance;
 	}
 
-	function form($instance) {
+	function form( $instance ) {
 
-		$defaults 			= epl_search_get_defaults();
-		$instance 			= wp_parse_args( (array) $instance, $defaults );
-		$instance 			= array_map('epl_esc_attr',$instance);
-		extract($instance);
-		$post_types			= $post_type;
-		$fields 			= epl_search_widget_fields();
+		$defaults = epl_search_get_defaults();
+		$instance = wp_parse_args( (array) $instance, $defaults );
+		$instance = array_map( 'epl_esc_attr', $instance );
+		extract( $instance );
+		$post_types = $post_type;
+		$fields     = epl_search_widget_fields();
 
-		foreach($fields as $field) {
-			$field_value	=	${$field['key']};
-			epl_widget_render_backend_field($field,$this,$field_value);
+		foreach ( $fields as $field ) {
+			$field_value = ${$field['key']};
+			epl_widget_render_backend_field( $field, $this, $field_value );
 		}
 	}
 }
