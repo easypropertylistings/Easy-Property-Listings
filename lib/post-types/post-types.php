@@ -98,7 +98,7 @@ function epl_custom_restrict_manage_posts() {
 			echo '<select name="property_custom_fields">';
 				echo '<option value="">' . __( 'Search For:', 'easy-property-listings' ) . '</option>';
 			foreach ( $custom_search_fields as $k => $v ) {
-				$selected = ( $_GET['property_custom_fields'] == $k ? 'selected="selected"' : '' );
+				$selected = ( $_GET['property_custom_fields'] === $k ? 'selected="selected"' : '' );
 				echo '<option value="' . $k . '" ' . $selected . '>' . __( $v, 'easy-property-listings' ) . '</option>';
 			}
 			echo '</select>';
@@ -118,25 +118,25 @@ function epl_custom_restrict_manage_posts() {
  * Admin Posts Filter.
  *
  * @since 1.0
- * @param $query WordPress query.
+ * @param array $query WordPress query.
  */
 function epl_admin_posts_filter( $query ) {
 	global $pagenow;
 	if ( is_admin() && 'edit.php' === $pagenow ) {
 		$meta_query = (array) $query->get( 'meta_query' );
 
-		if ( isset( $_GET['property_status'] ) && $_GET['property_status'] != '' ) {
+		if ( isset( $_GET['property_status'] ) && '' !== $_GET['property_status'] ) {
 			$meta_query[] = array(
 				'key'   => 'property_status',
 				'value' => sanitize_text_field( $_GET['property_status'] ),
 			);
 		}
 
-		if ( isset( $_GET['property_author'] ) && $_GET['property_author'] != '' ) {
+		if ( isset( $_GET['property_author'] ) && '' !== $_GET['property_author'] ) {
 			$query->set( 'author', intval( $_GET['property_author'] ) );
 		}
 
-		if ( isset( $_GET['property_custom_fields'] ) && trim( $_GET['property_custom_fields'] ) != '' && isset( $_GET['property_custom_value'] ) && trim( $_GET['property_custom_value'] ) != '' ) {
+		if ( isset( $_GET['property_custom_fields'] ) && trim( $_GET['property_custom_fields'] ) !== '' && isset( $_GET['property_custom_value'] ) && trim( $_GET['property_custom_value'] ) !== '' ) {
 
 			$meta_query[] = array(
 				'key'     => sanitize_text_field( $_GET['property_custom_fields'] ),
@@ -156,6 +156,7 @@ function epl_admin_posts_filter( $query ) {
  * Manage Property Columns Sorting.
  *
  * @since 1.0
+ * @param array $columns Columns.
  */
 function epl_manage_listings_sortable_columns( $columns ) {
 	$columns['property_featured'] = 'property_featured';
@@ -178,6 +179,7 @@ foreach ( $epl_posts  as $epl_post ) {
  * Manage Listing Columns Sorting.
  *
  * @since 1.0
+ * @param array $query WordPress query.
  */
 function epl_custom_orderby( $query ) {
 	if ( ! is_admin() ) {
@@ -186,27 +188,27 @@ function epl_custom_orderby( $query ) {
 
 	$orderby = $query->get( 'orderby' );
 
-	if ( 'property_price' == $orderby ) {
+	if ( 'property_price' === $orderby ) {
 		$query->set( 'meta_key', 'property_price' );
 		$query->set( 'orderby', 'meta_value_num' );
 	}
 
-	if ( 'property_rent' == $orderby ) {
+	if ( 'property_rent' === $orderby ) {
 		$query->set( 'meta_key', 'property_rent' );
 		$query->set( 'orderby', 'meta_value_num' );
 	}
 
-	if ( 'listing_id' == $orderby ) {
+	if ( 'listing_id' === $orderby ) {
 		$query->set( 'meta_key', 'property_unique_id' );
 		$query->set( 'orderby', 'meta_value' );
 	}
 
-	if ( 'property_thumb' == $orderby ) {
+	if ( 'property_thumb' === $orderby ) {
 		$query->set( 'meta_key', '_thumbnail_id' );
 		$query->set( 'orderby', 'meta_value' );
 	}
 
-	if ( 'property_featured' == $orderby ) {
+	if ( 'property_featured' === $orderby ) {
 		$query->set( 'meta_key', 'property_featured' );
 		$query->set( 'orderby', 'meta_value' );
 	}
@@ -293,7 +295,7 @@ function epl_manage_listing_column_listing_callback() {
 	}
 
 	if ( ! empty( $rooms ) ) {
-		if ( $rooms == 1 ) {
+		if ( 1 === $rooms ) {
 			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Room', 'easy-property-listings' ) , '</div>';
 		} else {
 			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Rooms', 'easy-property-listings' ) , '</div>';
@@ -304,7 +306,7 @@ function epl_manage_listing_column_listing_callback() {
 		echo '<div class="epl_meta_land_details">';
 		echo '<span class="epl_meta_land">' , $land , '</span>';
 
-		if ( $land_unit == 'squareMeter' ) {
+		if ( 'squareMeter' === $land_unit ) {
 			$land_unit = __( 'm&#178;', 'easy-property-listings' );
 		}
 
@@ -319,7 +321,7 @@ function epl_manage_listing_column_listing_callback() {
 			$homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 		}
 			$homeopen_list .= '</ul>';
-		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . $epl_settings['label_home_open'] . '</strong></span>' , $homeopen_list , '</div>';
+		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . epl_labels( 'label_home_open' ) . '</strong></span>' , $homeopen_list , '</div>';
 	}
 }
 add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_listing_callback' );
@@ -328,6 +330,8 @@ add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_list
  * Get Listing Labels.
  *
  * @since 3.3
+ * @param array  $args Array of arguments.
+ * @param string $returntype The type of retunr formatting filterable with epl_manage_listing_column_labels_return_type.
  */
 function epl_get_manage_listing_column_labels( $args = array(), $returntype = 'l' ) {
 
@@ -363,10 +367,11 @@ function epl_get_manage_listing_column_labels( $args = array(), $returntype = 'l
  * Featured Listing Label to Listing Details column.
  *
  * @since 3.3
+ * @param string $returntype The type of retunr formatting filterable with epl_manage_listing_column_labels_return_type.
  */
 function epl_manage_listing_column_labels_callback( $returntype = 'l' ) {
 
-	$returntype = $returntype == '' ? 'l' : $returntype;
+	$returntype = '' === $returntype ? 'l' : $returntype;
 
 	echo '<ul class="epl-listing-labels">' . epl_get_manage_listing_column_labels( array(), $returntype ) . '</ul>';
 
@@ -401,12 +406,10 @@ function epl_manage_listing_column_geo_callback() {
 	global $post;
 
 	$property_address_coordinates = get_post_meta( $post->ID, 'property_address_coordinates', true );
-	// If no duration is found, output a default message.
-	if ( $property_address_coordinates == ',' || empty( $property_address_coordinates ) ) {
+	// If no lat long coordinates saved, display default message.
+	if ( ',' === $property_address_coordinates || empty( $property_address_coordinates ) ) {
 		_e( 'No', 'easy-property-listings' );
-	}
-	// If there is a duration, append 'minutes' to the text string.
-	else {
+	} else {
 		echo $property_address_coordinates;
 	}
 }
@@ -439,7 +442,7 @@ function epl_manage_listing_column_price_callback() {
 	}
 
 	// Rental Listing Type Custom Values.
-	if ( 'rental' == $post->post_type ) {
+	if ( 'rental' === $post->post_type ) {
 
 		$price = $property->get_property_meta( 'property_rent' );
 		$view  = $property->get_property_meta( 'property_rent_view' );
@@ -454,13 +457,13 @@ function epl_manage_listing_column_price_callback() {
 	}
 
 	// Commercial Listing Lease Type Price.
-	if ( 'commercial' == $post->post_type && $property->get_property_meta( 'property_com_listing_type' ) == 'lease' ) {
+	if ( 'commercial' === $post->post_type && 'lease' === $property->get_property_meta( 'property_com_listing_type' ) ) {
 
-		// property_com_listing_type
-		// property_com_rent
-		// property_com_rent_period
-		// property_com_rent_range_min
-		// property_com_rent_range_max
+		// property_com_listing_type.
+		// property_com_rent.
+		// property_com_rent_period.
+		// property_com_rent_range_min.
+		// property_com_rent_range_max.
 
 		$price = $property->get_property_meta( 'property_com_rent' );
 
@@ -470,13 +473,13 @@ function epl_manage_listing_column_price_callback() {
 		}
 	}
 
-	if ( $property_status == 'Sold' ) {
+	if ( 'Sold' === $property_status ) {
 		$class = 'bar-home-sold';
-	} elseif ( $property_status == 'Leased' ) {
+	} elseif ( 'Leased' === $property_status ) {
 		$class = 'bar-home-sold';
 	} elseif ( ! empty( $property_under_offer ) && 'yes' == $property_under_offer ) {
 		$class = 'bar-under-offer';
-	} elseif ( $property_status == 'Current' ) {
+	} elseif ( 'Current' === $property_status ) {
 		$class = 'bar-home-open';
 	} else {
 		$class = '';
