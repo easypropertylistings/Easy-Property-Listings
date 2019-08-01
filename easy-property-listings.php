@@ -277,7 +277,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
-				require_once EPL_PATH_LIB . 'shortcodes/class-advanced-shortcode-listing.php';
+				require_once EPL_PATH_LIB . 'shortcodes/class-epl-advanced-shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/class-epl-listing-elements.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-advanced.php';
