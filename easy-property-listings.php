@@ -220,7 +220,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 							break;
 
 						case 'commercial_land':
-							require_once EPL_PATH_LIB . 'post-types/post-type-commercial_land.php';
+							require_once EPL_PATH_LIB . 'post-types/post-type-commercial-land.php';
 							break;
 
 						default:
