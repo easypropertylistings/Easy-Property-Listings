@@ -108,15 +108,12 @@ if ( is_admin() ) {
 		unset( $columns['comments'] );
 
 		// Geocode Column.
-		$geo_debug = epl_get_option( 'debug', 0 );
-		if ( 1 !== $geo_debug ) {
+		if ( 1 !== epl_get_option( 'debug', 0 ) ) {
 			unset( $columns['geo'] );
 		}
 
 		// Listing ID Column.
-
-		$admin_unique_id = epl_get_option( 'admin_unique_id', 0 );
-		if ( 1 !== $admin_unique_id ) {
+		if ( 1 !== epl_get_option( 'admin_unique_id', 0 ) ) {
 			unset( $columns['listing_id'] );
 		}
 

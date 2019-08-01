@@ -103,19 +103,17 @@ if ( is_admin() ) {
 			'date'              => __( 'Date', 'easy-property-listings' ),
 		) + $columns;
 
-		// unset author columns as duplicate of agent column
+		// unset author columns as duplicate of agent column.
 		unset( $columns['author'] );
 		unset( $columns['comments'] );
 
-		// Geocode Column
-		$geo_debug = ! empty( $epl_settings ) && isset( $epl_settings['debug'] ) ? $epl_settings['debug'] : 0;
-		if ( $geo_debug != 1 ) {
+		// Geocode Column.
+		if ( 1 !== epl_get_option( 'debug', 0 ) ) {
 			unset( $columns['geo'] );
 		}
 
-		// Listing ID Column
-		$admin_unique_id = ! empty( $epl_settings ) && isset( $epl_settings['admin_unique_id'] ) ? $epl_settings['admin_unique_id'] : 0;
-		if ( $admin_unique_id != 1 ) {
+		// Listing ID Column.
+		if ( 1 !== epl_get_option( 'admin_unique_id', 0 ) ) {
 			unset( $columns['listing_id'] );
 		}
 
