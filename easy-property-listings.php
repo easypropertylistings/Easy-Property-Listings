@@ -29,7 +29,9 @@
  */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 	/*
@@ -78,7 +80,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->search_fields->init();
 
-				define( 'EPL_RUNNING',true );
+				define( 'EPL_RUNNING', true );
 			}
 			return self::$instance;
 		}
@@ -101,11 +103,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			}
 			// Current Page
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
-				define("EPL_CURRENT_PAGE", basename($_SERVER['PHP_SELF']));
+				define( 'EPL_CURRENT_PAGE', basename( $_SERVER['PHP_SELF'] ) );
 			}
 			// Current Page
 			if ( ! defined( 'EPL_PLUGIN_FILE' ) ) {
-				define("EPL_PLUGIN_FILE", plugin_basename( __FILE__ ));
+				define( 'EPL_PLUGIN_FILE', plugin_basename( __FILE__ ) );
 			}
 			// Plugin Folder URL
 			if ( ! defined( 'EPL_PLUGIN_URL' ) ) {
@@ -176,45 +178,45 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-cron.php';
 
 			// Activate post types based on settings
-			if(isset($epl_settings['activate_post_types'])) {
+			if ( isset( $epl_settings['activate_post_types'] ) ) {
 				$epl_activated_post_types = $epl_settings['activate_post_types'];
 			} else {
 				$epl_activated_post_types = '';
 			}
 
-			if( is_array( $epl_activated_post_types ) ) {
-				foreach ( $epl_activated_post_types as $key => $value) {
+			if ( is_array( $epl_activated_post_types ) ) {
+				foreach ( $epl_activated_post_types as $key => $value ) {
 					switch ( $value ) {
 
-						case 'property' :
+						case 'property':
 							require_once EPL_PATH_LIB . 'post-types/post-type-property.php';
 							break;
 
-						case 'land' :
+						case 'land':
 							require_once EPL_PATH_LIB . 'post-types/post-type-land.php';
 							break;
 
-						case 'rental' :
+						case 'rental':
 							require_once EPL_PATH_LIB . 'post-types/post-type-rental.php';
 							break;
 
-						case 'rural' :
+						case 'rural':
 							require_once EPL_PATH_LIB . 'post-types/post-type-rural.php';
 							break;
 
-						case 'business' :
+						case 'business':
 							require_once EPL_PATH_LIB . 'post-types/post-type-business.php';
 							break;
 
-						case 'commercial' :
+						case 'commercial':
 							require_once EPL_PATH_LIB . 'post-types/post-type-commercial.php';
 							break;
 
-						case 'commercial_land' :
+						case 'commercial_land':
 							require_once EPL_PATH_LIB . 'post-types/post-type-commercial_land.php';
 							break;
 
-						default :
+						default:
 							break;
 					}
 				}
@@ -292,8 +294,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
 
-			if( file_exists(get_stylesheet_directory().'/easypropertylistings/functions.php' ) ) {
-				include_once(get_stylesheet_directory().'/easypropertylistings/functions.php' );
+			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
+				include_once( get_stylesheet_directory() . '/easypropertylistings/functions.php' );
 			}
 		}
 
@@ -310,8 +312,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			$epl_lang_dir = apply_filters( 'epl_languages_directory', $epl_lang_dir );
 
 			// Traditional WordPress plugin locale filter
-			$locale        = apply_filters( 'plugin_locale',  get_locale(), 'easy-property-listings' );
-			$mofile        = sprintf( '%1$s-%2$s.mo', 'easy-property-listings', $locale );
+			$locale = apply_filters( 'plugin_locale', get_locale(), 'easy-property-listings' );
+			$mofile = sprintf( '%1$s-%2$s.mo', 'easy-property-listings', $locale );
 
 			// Setup paths to current locale file
 			$mofile_local  = $epl_lang_dir . $mofile;
