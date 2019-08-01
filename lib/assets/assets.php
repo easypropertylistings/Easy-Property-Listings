@@ -57,7 +57,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 	}
 
 	// load admin style on help & documentation pages as well.
-	if ( $screen = 'edit.php' || $screen == 'toplevel_page_epl-general' || $screen == 'dashboard_page_epl-about' || $screen == 'dashboard_page_epl-getting-started' || $screen == 'toplevel_page_epl-tools' ) {
+	if ( 'edit.php' === $screen || 'toplevel_page_epl-general' === $screen || 'dashboard_page_epl-about' === $screen || 'dashboard_page_epl-getting-started' === $screen || 'toplevel_page_epl-tools' === $screen ) {
 		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin' . $suffix . '.css', false, EPL_PROPERTY_VER );
 	}
 
@@ -73,11 +73,10 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
  * @since 1.0
  */
 function epl_wp_enqueue_scripts() {
-	global $epl_settings;
 
 	$mode                  = epl_get_option( 'epl_plugin_mode', 'development' );
-	$suffix                = $mode == 'production' ? '.min' : '';
-	$epl_default_view_type = isset( $epl_settings['display_archive_view_type'] ) ? $epl_settings['display_archive_view_type'] : 'list';
+	$suffix                = 'production' === $mode ? '.min' : '';
+	$epl_default_view_type = epl_get_option( 'display_archive_view_type', 'list' );
 	$current_dir_path      = plugins_url( '', __FILE__ );
 	wp_register_script( 'epl-front-scripts', $current_dir_path . '/js/jquery-front-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER );
 
@@ -85,22 +84,22 @@ function epl_wp_enqueue_scripts() {
 
 		$googleapiurl = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
 
-		if ( epl_get_option( 'epl_google_api_key' ) != '' ) {
+		if ( epl_get_option( 'epl_google_api_key' ) !== '' ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 		}
 
-		if ( epl_get_option( 'epl_disable_google_api' ) != 'on' ) {
+		if ( epl_get_option( 'epl_disable_google_api' ) !== 'on' ) {
 			wp_enqueue_script( 'google-map-v-3', $googleapiurl );
 		}
 	}
 
 	// All CSS including Structual.
-	if ( isset( $epl_settings['epl_use_core_css'] ) && $epl_settings['epl_use_core_css'] == 'on' ) {
+	if ( epl_get_option( 'epl_use_core_css', 'off' ) === 'on' ) {
 
 	} else {
 
 		// Legacy CSS: on is to enable visual css, default off.
-		if ( isset( $epl_settings['epl_css_legacy'] ) && $epl_settings['epl_css_legacy'] == 'on' ) {
+		if ( epl_get_option( 'epl_css_legacy', 'off' ) === 'on' ) {
 
 			wp_enqueue_style( 'epl-front-styles', $current_dir_path . '/css/style-legacy' . $suffix . '.css', false, EPL_PROPERTY_VER );
 
@@ -111,7 +110,7 @@ function epl_wp_enqueue_scripts() {
 		}
 
 		// Enhanced CSS: on is to enable visual css, default on for new installations.
-		if ( isset( $epl_settings['epl_css_enhanced'] ) && $epl_settings['epl_css_enhanced'] == 'on' ) {
+		if ( epl_get_option( 'epl_css_enhanced', 'off' ) === 'on' ) {
 			wp_enqueue_style( 'epl-style-enhanced', $current_dir_path . '/css/style-enhanced' . $suffix . '.css', false, EPL_PROPERTY_VER );
 		}
 
@@ -159,19 +158,19 @@ add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
  */
 function epl_admin_styles() {
 
-	global $current_screen,$epl_settings;
+	global $current_screen;
 
-	if ( ! is_null( $current_screen ) && $current_screen->base != 'edit' ) {
+	if ( ! is_null( $current_screen ) && 'edit' !== $current_screen->base ) {
 		return;
 	}
 
-	$active_size = isset( $epl_settings['epl_admin_thumb_size'] ) ? $epl_settings['epl_admin_thumb_size'] : 'admin-list-thumb';
+	$active_size = epl_get_option( 'epl_admin_thumb_size', 'admin-list-thumb' );
 	$sizes       = get_epl_image_sizes();
 	$width       = '120px';
 
 	foreach ( $sizes as $size ) {
 		if ( $size['id'] == $active_size ) {
-			$width = $size['width'] + 20 . 'px';  // Add 20 pixels for padding
+			$width = $size['width'] + 20 . 'px';  // Add 20 pixels for padding.
 			break;
 		}
 	}
