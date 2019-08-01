@@ -1071,7 +1071,7 @@ add_action( 'pre_get_posts', 'epl_search_pre_get_posts' );
  * @since  2.3.1
  */
 function epl_is_search() {
-	if ( isset( $_REQUEST['action'] ) && 'epl_search' === $_REQUEST['action']  ) {
+	if ( isset( $_REQUEST['action'] ) && 'epl_search' === $_REQUEST['action'] ) {
 		return true;
 	}
 	return false;
@@ -1091,7 +1091,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		return;
 	}
 
-	if ( $type == '' ) {
+	if ( '' === $type ) {
 		$type = epl_get_core_post_types();
 	}
 
@@ -1105,8 +1105,8 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 	if ( ! empty( $results ) ) {
 
 		$return = array();
-		if ( $key == 'property_category' ) {
-			 $defaults = epl_listing_load_meta_property_category();
+		if ( 'property_category' === $key ) {
+			$defaults = epl_listing_load_meta_property_category();
 		}
 		foreach ( $results as $result ) {
 			if ( isset( $defaults ) && ! empty( $defaults ) ) {
@@ -1152,15 +1152,18 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
  * Esc Values
  *
  * @since  2.3.1
+ * @param string $text String output.
  */
 function epl_esc_like( $text ) {
-	 return addcslashes( $text, '_%\\' );
+	return addcslashes( $text, '_%\\' );
 }
 
 /**
  * Search Where
  *
  * @since  2.3.1
+ * @param string $where Return where.
+ * @param array  $wp_query WordPress query object.
  */
 function epl_listings_where( $where, $wp_query ) {
 	global $wpdb;
@@ -1174,9 +1177,10 @@ add_filter( 'posts_where', 'epl_listings_where', 10, 2 );
 /**
  * Get available terms based on post type & property status
  *
- * @param  string $post_type       [description]
- * @param  string $property_status [description]
- * @return [type]                  [description]
+ * @param  string $tax Taxonomy name.
+ * @param  string $post_type Post type name.
+ * @param  string $property_status Listing status.
+ * @return Available terms which is filterable with epl_get_available_terms.
  */
 function epl_get_available_terms( $tax = 'location', $post_type = '', $property_status = '' ) {
 	global $wpdb;
@@ -1224,6 +1228,8 @@ function epl_get_available_terms( $tax = 'location', $post_type = '', $property_
  * Search Get Locations
  *
  * @since  2.3.1
+ * @param  string $post_type Post type name.
+ * @param  string $property_status Listing status.
  */
 function epl_get_available_locations( $post_type = '', $property_status = '' ) {
 	return epl_get_available_terms( 'location', $post_type, $property_status );
@@ -1234,6 +1240,8 @@ function epl_get_available_locations( $post_type = '', $property_status = '' ) {
  * Pre Process Search Meta
  *
  * @since  2.3.1
+ * @param  array $meta_query Array of meta query.
+ * @param  array $form_fields Form fields.
  */
 function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
 	$range_sep  = apply_filters( 'search_field_range_seperator', '-' );
@@ -1245,7 +1253,7 @@ function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
 			&& ! is_array( $query['value'] ) ) {
 			$query['value'] = array_map( 'trim', explode( $option_sep, $query['value'] ) );
 
-			if ( isset( $form_fields[ $query['key'] ]['option_type'] ) && $form_fields[ $query['key'] ]['option_type'] == 'range' ) {
+			if ( isset( $form_fields[ $query['key'] ]['option_type'] ) && 'range' === $form_fields[ $query['key'] ]['option_type'] ) {
 				$query['value'] = array(
 					current( explode( $range_sep, current( $query['value'] ) ) ),
 					next( explode( $range_sep, end( $query['value'] ) ) ),
@@ -1255,69 +1263,6 @@ function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
 	}
 	return apply_filters( 'epl_preprocess_search_meta_query', $meta_query );
 }
-
-/**
- * example to enable multiple house category via filter
- **/
-
-/**
- * function epl_filter_search_widget_fields_frontend($fields) {
- *   foreach($fields as &$field) {
- *       if($field['key'] == 'search_house_category') {
- *           $field['multiple']  = true;
- *           $field['query']     = array('query' =>  'meta','compare'    =>  'IN' );
- *           break;
- *       }
- *   }
- *   return $fields;
- * }
- * add_filter('epl_search_widget_fields_frontend','epl_filter_search_widget_fields_frontend');
- **/
-
-
-/**
- * example to add land aea min max as single field  drop down
- **/
-
-/**
- * function epl_add_land_min_max_dropdown_field($fields) {
- *   foreach($fields as $field_key   =>  &$field) {
- *           if( in_array($field['meta_key'], array('property_land_area_min','property_land_area_max') ) ) {
- *           unset($fields[$field_key]);
- *           }
- *   }
- *   $fields[] =array(
- *       'key'           =>  'search_land_area',
- *       //'multiple'        =>  true,
- *       'meta_key'      =>  'property_land_area',
- *       'label'         =>  __('Land Area','easy-property-listings'),
- *       'type'          =>  'select',
- *       'option_filter'     =>  'property_land_area',
- *       'options'       =>  array(
- *                           '0-100'     =>  '0-100',
- *                           '100-200'   =>  '100-200',
- *                           '200-300'   =>  '200-300',
- *                           '300-400'   =>  '300-400',
- *                           '400-500'   =>  '400-500',
- *                           '500-600'   =>  '500-600',
- *                           '600-700'   =>  '600-700',
- *                           '700-800'   =>  '700-800',
- *                           '800-900'   =>  '800-900',
- *                           '900-1000'  =>  '900-1000',
- *       ),
- *         'option_type'   =>  'range', // provide range of option instead of option array
- *       'query'         =>  array(
- *                           'query'     =>  'meta',
- *                           'compare'   =>  'BETWEEN'
- *       ),
- *       'class'         =>  'epl-search-row-half',
- *       'wrap_start'        =>  'epl-search-row epl-search-land-area',
- *       'order'         =>  220
- *   );
- *   return $fields;
- * }
- * add_filter('epl_search_widget_fields_frontend','epl_add_land_min_max_dropdown_field');
- **/
 
 /**
  * Contacts widget form functions
