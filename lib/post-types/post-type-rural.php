@@ -1,6 +1,6 @@
 <?php
 /**
- * Register post type Rural
+ * Register post type Rural.
  *
  * @package     EPL
  * @subpackage  Functions/CPT
@@ -9,13 +9,13 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Registers and sets up the Rural custom post type
+ * Registers and sets up the Rural custom post type.
  *
  * @since 1.0
  * @return void
@@ -82,7 +82,8 @@ if ( is_admin() ) {
 	 * Manage Admin Rural Post Type Columns: Heading
 	 *
 	 * @since 1.0
-	 * @return void
+	 * @param array $columns Column array.
+	 * @return $columns with epl_post_type_commercial_land_admin_columns filter.
 	 */
 	function epl_manage_rural_columns_heading( $columns ) {
 		global $epl_settings;
@@ -101,19 +102,17 @@ if ( is_admin() ) {
 			'date'              => __( 'Date', 'easy-property-listings' ),
 		) + $columns;
 
-		// unset author columns as duplicate of agent column
+		// unset author columns as duplicate of agent column.
 		unset( $columns['author'] );
 		unset( $columns['comments'] );
 
-		// Geocode Column
-		$geo_debug = ! empty( $epl_settings ) && isset( $epl_settings['debug'] ) ? $epl_settings['debug'] : 0;
-		if ( $geo_debug != 1 ) {
+		// Geocode Column.
+		if ( 1 !== epl_get_option( 'debug', 0 ) ) {
 			unset( $columns['geo'] );
 		}
 
-		// Listing ID Column
-		$admin_unique_id = ! empty( $epl_settings ) && isset( $epl_settings['admin_unique_id'] ) ? $epl_settings['admin_unique_id'] : 0;
-		if ( $admin_unique_id != 1 ) {
+		// Listing ID Column.
+		if ( 1 !== epl_get_option( 'admin_unique_id', 0 ) ) {
 			unset( $columns['listing_id'] );
 		}
 
@@ -125,18 +124,20 @@ if ( is_admin() ) {
 	 * Manage Admin Rural Post Type Columns: Row Contents
 	 *
 	 * @since 1.0
+	 * @param var $column column.
+	 * @param int $post_id post id.
 	 */
 	function epl_manage_rural_columns_value( $column, $post_id ) {
 		global $post,$property,$epl_settings;
 		switch ( $column ) {
 
-			/* If displaying the 'Featured' image column. */
+			// If displaying the 'Featured' image column.
 			case 'property_featured':
 				do_action( 'epl_manage_listing_column_featured' );
 
 				break;
 
-			/* If displaying the 'Featured' image column. */
+			// If displaying the 'Featured' image column.
 			case 'property_thumb':
 				do_action( 'epl_manage_listing_column_property_thumb' );
 				break;
@@ -146,25 +147,25 @@ if ( is_admin() ) {
 
 				break;
 
-			/* If displaying the 'Listing ID' column. */
+			// If displaying the 'Listing ID' column.
 			case 'listing_id':
 				do_action( 'epl_manage_listing_column_listing_id' );
 
 				break;
 
-			/* If displaying the 'Geocoding' column. */
+			// If displaying the 'Geocoding' column.
 			case 'geo':
 				do_action( 'epl_manage_listing_column_geo' );
 
 				break;
 
-			/* If displaying the 'Price' column. */
+			// If displaying the 'Price' column.
 			case 'property_price':
 				do_action( 'epl_manage_listing_column_price' );
 
 				break;
 
-			/* If displaying the 'real-estate' column. */
+			// If displaying the 'real-estate' column.
 			case 'property_status':
 				do_action( 'epl_manage_listing_column_property_status' );
 
@@ -175,7 +176,7 @@ if ( is_admin() ) {
 
 				break;
 
-			/* Just break out of the switch statement for everything else. */
+			// Just break out of the switch statement for everything else.
 			default:
 				break;
 		}
