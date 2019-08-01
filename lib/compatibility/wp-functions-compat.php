@@ -1,6 +1,6 @@
 <?php
 /**
- * Wordpress core functions for keeping compatibility.
+ * WordPress core functions for keeping compatibility.
  *
  * @package     EPL
  * @subpackage  Compatibility/Shortcodes
@@ -9,8 +9,10 @@
  * @since       2.1.11
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'shortcode_exists' ) ) {
 	/**
