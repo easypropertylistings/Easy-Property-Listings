@@ -15,12 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * @var array  $atts 	Shortcode attributes.
+ * @var array  $atts    Shortcode attributes.
  */
 
 extract( $atts );
 $selected_post_types = $atts['post_type'];
-$_GET = epl_array_map_recursive('sanitize_text_field',$_GET);
+$_GET                = epl_array_map_recursive( 'sanitize_text_field', $_GET );
 extract( $_GET );
 $queried_post_type = isset( $_GET['post_type'] ) ? $_GET['post_type'] : '';
 
@@ -33,12 +33,12 @@ global $epl_settings;
 
 $tabcounter = 1;
 if ( ! empty( $selected_post_types ) ) :
-	if ( count( $selected_post_types ) > 1 ):
+	if ( count( $selected_post_types ) > 1 ) :
 		echo "<ul class='epl-search-tabs property_search-tabs epl-search-$style'>";
-		foreach ($selected_post_types as $post_type ) :
+		foreach ( $selected_post_types as $post_type ) :
 
-			if ( isset($_GET['action'] ) && $_GET['action'] == 'epl_search' ) {
-				if ( $queried_post_type ==  $post_type ) {
+			if ( isset( $_GET['action'] ) && $_GET['action'] == 'epl_search' ) {
+				if ( $queried_post_type == $post_type ) {
 					$is_sb_current = 'epl-sb-current';
 				} else {
 					$is_sb_current = '';
@@ -46,10 +46,10 @@ if ( ! empty( $selected_post_types ) ) :
 			} else {
 				$is_sb_current = $tabcounter == 1 ? 'epl-sb-current' : '';
 			}
-			$post_type_label = isset($epl_settings[ 'widget_label_'.$post_type ]) ? $epl_settings[ 'widget_label_'.$post_type ] : $post_type;
+			$post_type_label = isset( $epl_settings[ 'widget_label_' . $post_type ] ) ? $epl_settings[ 'widget_label_' . $post_type ] : $post_type;
 
-			if($post_type == ''){
-				$post_type_label = epl_get_option('widget_label_all','All');
+			if ( $post_type == '' ) {
+				$post_type_label = epl_get_option( 'widget_label_all', 'All' );
 			}
 			echo '<li data-tab="epl_ps_tab_' . $tabcounter . '" class="tab-link ' . $is_sb_current . '">' . $post_type_label . '</li>';
 			$tabcounter++;
@@ -64,8 +64,8 @@ if ( ! empty( $selected_post_types ) ) :
 
 	foreach ( $selected_post_types as $post_type ) :
 
-		if ( isset($_GET['action'] ) && $_GET['action'] == 'epl_search' ) {
-			if ( $queried_post_type ==  $post_type ) {
+		if ( isset( $_GET['action'] ) && $_GET['action'] == 'epl_search' ) {
+			if ( $queried_post_type == $post_type ) {
 				$is_sb_current = 'epl-sb-current';
 			} else {
 				$is_sb_current = '';
@@ -76,38 +76,43 @@ if ( ! empty( $selected_post_types ) ) :
 		?>
 		<div class="epl-search-form <?php echo $is_sb_current; ?>" id="epl_ps_tab_<?php echo $tabcounter; ?>">
 		<?php
-			if ( isset( $show_title ) && $show_title == 'true' ) {
-				if ( ! empty( $title ) ) {
-					?><h3><?php echo $title; ?></h3><?php
-				}
+		if ( isset( $show_title ) && $show_title == 'true' ) {
+			if ( ! empty( $title ) ) {
+				?>
+					<h3><?php echo $title; ?></h3>
+					<?php
 			}
+		}
 		?>
 		<form method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<input type="hidden" name="action" value="epl_search" />
 			<?php
-				$epl_frontend_fields = epl_search_widget_fields_frontend( $post_type,$property_status );
-				foreach ( $epl_frontend_fields as &$epl_frontend_field ) {
+				$epl_frontend_fields = epl_search_widget_fields_frontend( $post_type, $property_status );
+			foreach ( $epl_frontend_fields as &$epl_frontend_field ) {
 
-					if($epl_frontend_field['key'] == 'property_status' && $show_property_status_frontend == 'on'){
-						$epl_frontend_field['type'] =  'select';
-						$epl_frontend_field['config'] = 'on';
-					}
-
-					if ( $epl_frontend_field['key'] == 'search_house_category' && isset( $house_category_multiple ) && $house_category_multiple == 'on' ) {
-						$epl_frontend_field['type'] 		= 'multiple_select';
-						$epl_frontend_field['query'] 		= array( 'query'	=> 'meta', 'compare' => 'IN' );
-					}
-
-					$config	=	isset(${$epl_frontend_field['key']}) ? ${$epl_frontend_field['key']} : '';
-					if ( empty( $config ) && isset( $epl_frontend_field['config'] ) ) {
-						$config = $epl_frontend_field['config'];
-					}
-					$value	=	isset(${$epl_frontend_field['meta_key']}) ? ${$epl_frontend_field['meta_key']} : '';
-					epl_widget_render_frontend_fields( $epl_frontend_field,$config,$value,$post_type,$property_status );
+				if ( $epl_frontend_field['key'] == 'property_status' && $show_property_status_frontend == 'on' ) {
+					$epl_frontend_field['type']   = 'select';
+					$epl_frontend_field['config'] = 'on';
 				}
-				?>
+
+				if ( $epl_frontend_field['key'] == 'search_house_category' && isset( $house_category_multiple ) && $house_category_multiple == 'on' ) {
+					$epl_frontend_field['type']  = 'multiple_select';
+					$epl_frontend_field['query'] = array(
+						'query'   => 'meta',
+						'compare' => 'IN',
+					);
+				}
+
+				$config = isset( ${$epl_frontend_field['key']} ) ? ${$epl_frontend_field['key']} : '';
+				if ( empty( $config ) && isset( $epl_frontend_field['config'] ) ) {
+					$config = $epl_frontend_field['config'];
+				}
+				$value = isset( ${$epl_frontend_field['meta_key']} ) ? ${$epl_frontend_field['meta_key']} : '';
+				epl_widget_render_frontend_fields( $epl_frontend_field, $config, $value, $post_type, $property_status );
+			}
+			?>
 				<div class="epl-search-submit-row epl-search-submit property-type-search">
-					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __('Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
+					<input type="submit" value="<?php echo $submit_label != '' ? $submit_label : __( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
 				</div>
 			</form>
 			</div>
