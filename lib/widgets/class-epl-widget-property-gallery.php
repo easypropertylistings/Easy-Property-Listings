@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -21,11 +21,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class EPL_Widget_Property_Gallery extends WP_Widget {
 
+	/**
+	 * Construct the widget.
+	 *
+	 * @since 1.0.0
+	 */
 	function __construct() {
 		parent::__construct( false, $name = __( 'EPL - Listing Gallery', 'easy-property-listings' ), array( 'description' => __( 'Display image gallery.', 'easy-property-listings' ) ) );
-		// Widget name for filter: epl_property_gallery
+		// Widget name for filter: epl_property_gallery.
 	}
 
+	/**
+	 * Widget function.
+	 *
+	 * @since 1.0
+	 * @param array $args Widget arguments.
+	 * @param array $instance Widget instance.
+	 */
 	function widget( $args, $instance ) {
 
 		$defaults = array(
@@ -56,6 +68,13 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		}
 	}
 
+	/**
+	 * Widget update.
+	 *
+	 * @since 1.0
+	 * @param array $new_instance Old values.
+	 * @param array $old_instance New values.
+	 */
 	function update( $new_instance, $old_instance ) {
 		$instance              = $old_instance;
 		$instance['title']     = strip_tags( $new_instance['title'] );
@@ -63,6 +82,12 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		return $instance;
 	}
 
+	/**
+	 * Render the widget form.
+	 *
+	 * @since 1.0
+	 * @param array $instance options.
+	 */
 	function form( $instance ) {
 		$defaults = array(
 			'title'     => '',
@@ -84,7 +109,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 				<?php
 				for ( $i = 1;$i <= 6;$i++ ) {
 					echo '<option value="' . esc_attr( $i ) . '"';
-					if ( $i == $instance['d_columns'] ) {
+					if ( $i === $instance['d_columns'] ) {
 						echo ' selected="selected"';
 					} echo '>' . __( $i, 'easy-property-listings' ) . '</option>';
 				}
