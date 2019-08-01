@@ -97,12 +97,12 @@ function epl_shortcode_property_open_callback( $atts ) {
 		}
 	}
 
-	if ( $sortby != '' ) {
+	if ( '' !== $sortby ) {
 
-		if ( $sortby == 'price' ) {
+		if ( 'price' === $sortby ) {
 			$args['orderby']  = 'meta_value_num';
 			$args['meta_key'] = $meta_key_price;
-		} elseif ( $sortby == 'status' ) {
+		} elseif ( 'status' === $sortby ) {
 			$args['orderby']  = 'meta_value';
 			$args['meta_key'] = 'property_status';
 		} else {
@@ -114,10 +114,10 @@ function epl_shortcode_property_open_callback( $atts ) {
 	}
 
 	$args['instance_id'] = $attributes['instance_id'];
-	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
+	// add sortby arguments to query, if listings sorted by $_GET['sortby'];.
 	$args = epl_add_orderby_args( $args, 'shortcode', 'listing_open' );
 
-	/** Option to filter args */
+	// Option to filter args.
 	$args = apply_filters( 'epl_shortcode_listing_open_args', $args, $attributes );
 
 	$query_open = new WP_Query( $args );
@@ -130,7 +130,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 			?>
 			">
 				<?php
-				if ( $tools_top == 'on' ) {
+				if ( 'on' === $tools_top ) {
 					do_action( 'epl_property_loop_start' );
 				}
 				while ( $query_open->have_posts() ) {
@@ -139,7 +139,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 					$template = str_replace( '_', '-', $template );
 					epl_property_blog( $template );
 				}
-				if ( $tools_bottom == 'on' ) {
+				if ( 'on' === $tools_bottom ) {
 					do_action( 'epl_property_loop_end' );
 				}
 
@@ -147,7 +147,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 			</div>
 			<div class="loop-footer">
 				<?php
-				if ( $pagination == 'on' ) {
+				if ( 'on' === $pagination ) {
 					do_action( 'epl_pagination', array( 'query' => $query_open ) );
 				}
 				?>
