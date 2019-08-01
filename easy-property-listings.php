@@ -238,7 +238,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/widget-functions.php';
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-author.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
-			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-listing-gallery.php';
+			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-property-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-contact-capture.php';
 
