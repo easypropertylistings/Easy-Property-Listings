@@ -393,6 +393,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+
+= 3.4 August XX, 2019 =
+
+* Tweak: Removed listing meta compatibility files as they redundant from EPL version 1.3.
+
+
+
 = 3.3.5 July 30, 2019 =
 
 * New: Reset settings to default values tool page added viewable with &dev=true added to tools page URL.
