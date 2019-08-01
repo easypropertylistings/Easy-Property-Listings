@@ -9,4 +9,4 @@
  * @since       1.0
  */
 
-do_action('epl_render_archive_post');
+do_action( 'epl_render_archive_post' );
