@@ -62,7 +62,7 @@ class EPL_Advanced_Shortcode_Listing {
 	public $meta_key_price = 'property_price';
 
 	/**
-	 * Meta price key.
+	 * Construct the shortcode.
 	 *
 	 * @since 3.3.0
 	 * @param array $atts Shortcode attributes.

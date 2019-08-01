@@ -9,13 +9,23 @@
  * @since       3.3
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * EPL_Advanced_Shortcode_Listing Class
+ *
+ * @since 3.3.0
+ */
 class EPL_Listing_Elements {
 
+	/**
+	 * Construct the shortcode.
+	 *
+	 * @since 3.3.0
+	 */
 	function __construct() {
 		add_shortcode( 'listing_element', array( $this, 'listing_element' ) );
 		add_shortcode( 'epl_listing_action', array( $this, 'epl_action' ) );
@@ -31,6 +41,7 @@ class EPL_Listing_Elements {
 	 * Output example code or value if in th loop
 	 *
 	 * @since 3.3
+	 * @param array $atts Array of attributes.
 	 */
 	function listing_element( $atts ) {
 
@@ -63,7 +74,7 @@ class EPL_Listing_Elements {
 			ob_start();
 			echo '[ ' . __( 'Listing', 'easy-property-listings' ) . ' ' . ucwords( $atts['type'] );
 
-			if ( $key_name != '' ) {
+			if ( '' !== $key_name ) {
 				echo ': ' . ucwords( str_replace( '_', ' ', $atts[ $key_name ] ) );
 			}
 			echo ' ]';
@@ -104,6 +115,7 @@ class EPL_Listing_Elements {
 	 * Output action
 	 *
 	 * @since 3.3
+	 * @param array $atts Array of attributes for the action.
 	 */
 	function epl_action( $atts ) {
 		if ( ! isset( $atts['action_key'] ) ) {
@@ -118,6 +130,7 @@ class EPL_Listing_Elements {
 	 * Get meta
 	 *
 	 * @since 3.3
+	 * @param array $atts Array of attributes for the meta field.
 	 */
 	function epl_meta( $atts ) {
 
@@ -132,6 +145,7 @@ class EPL_Listing_Elements {
 	 * Get post
 	 *
 	 * @since 3.3
+	 * @param array $atts Array of attributes for the post object.
 	 */
 	function post( $atts ) {
 
