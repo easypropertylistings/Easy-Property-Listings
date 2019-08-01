@@ -169,7 +169,7 @@ function epl_admin_styles() {
 	$width       = '120px';
 
 	foreach ( $sizes as $size ) {
-		if ( $size['id'] == $active_size ) {
+		if ( $size['id'] === $active_size ) {
 			$width = $size['width'] + 20 . 'px';  // Add 20 pixels for padding.
 			break;
 		}
