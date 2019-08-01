@@ -23,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Added Commercial Category Support
  *
  * @since       1.1.1
+ * @param array $atts Shortcode attributes.
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -34,23 +35,23 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		array(
 			'post_type'               => $property_types,
 			'status'                  => array( 'current', 'sold', 'leased' ),
-			'commercial_listing_type' => '', // Listing Type, 'sale' , 'lease', 'both'
-			'category_key'            => '', // Meta field key
-			'category_value'          => '', // Meta field value
-			'category_compare'        => 'IN', // Compare using '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'EXISTS', 'NOT EXISTS', 'IN','NOT IN','BETWEEN','NOT BETWEEN'
-			'limit'                   => '10', // Number of maximum posts to show
-			'offset'                  => '', // Offset posts. When used, pagination is disabled
+			'commercial_listing_type' => '', // Listing Type, 'sale' , 'lease', 'both'.
+			'category_key'            => '', // Meta field key.
+			'category_value'          => '', // Meta field value.
+			'category_compare'        => 'IN', // Compare using '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'EXISTS', 'NOT EXISTS', 'IN','NOT IN','BETWEEN','NOT BETWEEN'.
+			'limit'                   => '10', // Number of maximum posts to show.
+			'offset'                  => '', // Offset posts. When used, pagination is disabled.
 			'author'                  => '', // Author of listings.
 			'agent'                   => '', // Agent of listings.
-			'template'                => false, // Template can be set to "slim" for home open style template
-			'location'                => '', // Location slug. Should be a name like sorrento
-			'tools_top'               => 'off', // Tools before the loop like Sorter and Grid on or off
-			'tools_bottom'            => 'off', // Tools after the loop like pagination on or off
-			'sortby'                  => '', // Options: price, date, status, rand (for random) : Default date
-			'sort_order'              => 'DESC', // Sort by ASC or DESC
-			'pagination'              => 'on', // Enable or disable pagination
-			'instance_id'             => '1',
-			'class'                   => '',
+			'template'                => false, // Template can be set to "slim" for home open style template.
+			'location'                => '', // Location slug. Should be a name like sorrento.
+			'tools_top'               => 'off', // Tools before the loop like Sorter and Grid on or off.
+			'tools_bottom'            => 'off', // Tools after the loop like pagination on or off.
+			'sortby'                  => '', // Options: price, date, status, rand (for random) : Default date.
+			'sort_order'              => 'DESC', // Sort by ASC or DESC.
+			'pagination'              => 'on', // Enable or disable pagination.
+			'instance_id'             => '1', // Set instance ID when using multiple shortcodes on the same page.
+			'class'                   => '', // Custom class.
 		),
 		$atts
 	);
@@ -61,7 +62,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		return;
 	}
 
-	if ( is_string( $post_type ) && $post_type == 'rental' ) {
+	if ( is_string( $post_type ) && 'rental' === $post_type ) {
 		$meta_key_price = 'property_rent';
 	} else {
 		$meta_key_price = 'property_price';
@@ -82,10 +83,10 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		'paged'          => $paged,
 	);
 
-	// Offset query does not work with pagination
+	// Offset query does not work with pagination.
 	if ( ! empty( $offset ) ) {
 		$args['offset'] = $offset;
-		$pagination     = 'off'; // Disable pagination when offset is used
+		$pagination     = 'off'; // Disable pagination when offset is used.
 	}
 
 	if ( ! empty( $location ) ) {
@@ -176,14 +177,14 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		);
 	}
 
-	if ( $sortby != '' ) {
+	if ( '' !== $sortby ) {
 
-		if ( $sortby == 'price' ) {
+		if ( 'price' === $sortby ) {
 			$args['orderby']  = 'meta_value_num';
 			$args['meta_key'] = $meta_key_price;
-		} elseif ( $sortby == 'rand' ) {
+		} elseif ( 'rand' === $sortby ) {
 			$args['orderby'] = 'rand';
-		} elseif ( $sortby == 'status' ) {
+		} elseif ( 'status' === $sortby ) {
 			$args['orderby']  = 'meta_value';
 			$args['meta_key'] = 'property_status';
 		} else {
@@ -194,10 +195,10 @@ function epl_shortcode_listing_category_callback( $atts ) {
 	}
 
 	$args['instance_id'] = $attributes['instance_id'];
-	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
+	// add sortby arguments to query, if listings sorted by $_GET['sortby'];.
 	$args = epl_add_orderby_args( $args, 'shortcode', 'listing_category' );
 
-	/** Option to filter args */
+	// Option to filter args.
 	$args = apply_filters( 'epl_shortcode_listing_category_args', $args, $attributes );
 
 	$query_open = new WP_Query( $args );
@@ -210,7 +211,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			?>
 			">
 				<?php
-				if ( $tools_top == 'on' ) {
+				if ( 'on' === $tools_top ) {
 					do_action( 'epl_property_loop_start' );
 				}
 				while ( $query_open->have_posts() ) {
@@ -219,14 +220,14 @@ function epl_shortcode_listing_category_callback( $atts ) {
 					$template = str_replace( '_', '-', $template );
 					epl_property_blog( $template );
 				}
-				if ( $tools_bottom == 'on' ) {
+				if ( 'on' === $tools_bottom ) {
 					do_action( 'epl_property_loop_end' );
 				}
 				?>
 			</div>
 			<div class="loop-footer">
 				<?php
-				if ( $pagination == 'on' ) {
+				if ( 'on' === $pagination ) {
 					do_action( 'epl_pagination', array( 'query' => $query_open ) );
 				}
 				?>
