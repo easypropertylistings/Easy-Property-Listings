@@ -360,7 +360,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 												if ( $instance['featured'] ) {
 													echo 'checked="checked"';}
 												?>
-			 />
+			/>
 			<label for="<?php echo $this->get_field_id( 'featured' ); ?>"><?php _e( 'Featured Properties', 'easy-property-listings' ); ?></label>
 		</p>
 
@@ -370,7 +370,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 												if ( $instance['open_house'] ) {
 													echo 'checked="checked"';}
 												?>
-			 />
+			/>
 			<label for="<?php echo $this->get_field_id( 'open_house' ); ?>"><?php echo epl_labels( 'label_home_open' ) . ' ' . __( 'Listings', 'easy-property-listings' ); ?></label>
 		</p>
 
@@ -380,7 +380,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 												if ( $instance['archive'] ) {
 													echo 'checked="checked"';}
 												?>
-			 />
+			/>
 			<label for="<?php echo $this->get_field_id( 'archive' ); ?>"><?php _e( 'Dynamic', 'easy-property-listings' ); ?></label>
 		</p>
 
@@ -390,7 +390,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 												if ( $instance['order_rand'] ) {
 													echo 'checked="checked"';}
 												?>
-			 />
+			/>
 			<label for="<?php echo $this->get_field_id( 'order_rand' ); ?>"><?php _e( 'Random Order', 'easy-property-listings' ); ?></label>
 		</p>
 
@@ -414,10 +414,12 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'display' ); ?>"><?php _e( 'Display Style', 'easy-property-listings' ); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id( 'display' ); ?>" name="<?php echo $this->get_field_name( 'display' ); ?>">
 				<?php
-					/** usage **
+					/**
+					 * Usage
 					 *
-					 *  add more templates to this by add key pair values to this array,
-					 *  key will be name of template example 'my-custom-widget-template.php' and value will be label for tpl, example 'My Template'
+					 * Add more templates to this by add key pair values to this array,
+					 * key will be name of template example 'my-custom-widget-template.php'
+					 * and value will be label for tpl, example 'My Template'
 					 */
 					$options = apply_filters(
 						'epl_listing_widget_templates',
@@ -464,81 +466,81 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_title' ); ?>" name="<?php echo $this->get_field_name( 'd_title' ); ?>"
-												  <?php
-													if ( $instance['d_title'] ) {
-														echo 'checked="checked"';}
-													?>
-			 />
+												<?php
+												if ( $instance['d_title'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_title' ); ?>"><?php _e( 'Property Headline', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'd_excerpt' ); ?>"
-												  <?php
-													if ( $instance['d_excerpt'] ) {
-														echo 'checked="checked"';}
-													?>
-			 />
+												<?php
+												if ( $instance['d_excerpt'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_excerpt' ); ?>"><?php _e( 'Excerpt', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_suburb' ); ?>" name="<?php echo $this->get_field_name( 'd_suburb' ); ?>"
-												  <?php
-													if ( $instance['d_suburb'] ) {
-														echo 'checked="checked"';}
-													?>
-			 />
+												<?php
+												if ( $instance['d_suburb'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_suburb' ); ?>"><?php echo epl_labels( 'label_suburb' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_street' ); ?>" name="<?php echo $this->get_field_name( 'd_street' ); ?>"
-												  <?php
-													if ( $instance['d_street'] ) {
-														echo 'checked="checked"';}
-													?>
-			 />
+												<?php
+												if ( $instance['d_street'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_street' ); ?>"><?php _e( 'Street Address', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_price' ); ?>" name="<?php echo $this->get_field_name( 'd_price' ); ?>"
-												  <?php
-													if ( $instance['d_price'] ) {
-														echo 'checked="checked"';}
-													?>
-			 />
+												<?php
+												if ( $instance['d_price'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_price' ); ?>"><?php _e( 'Price', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_more' ); ?>" name="<?php echo $this->get_field_name( 'd_more' ); ?>"
-												  <?php
-													if ( $instance['d_more'] ) {
-														echo 'checked="checked"';}
-													?>
-			 />
+												<?php
+												if ( $instance['d_more'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_more' ); ?>"><?php _e( 'Read More Button', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_inspection_time' ); ?>" name="<?php echo $this->get_field_name( 'd_inspection_time' ); ?>"
-												  <?php
-													if ( $instance['d_inspection_time'] ) {
-														echo 'checked="checked"';}
-													?>
-			 />
+												<?php
+												if ( $instance['d_inspection_time'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_inspection_time' ); ?>"><?php _e( 'Inspection Times', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_ical_link' ); ?>" name="<?php echo $this->get_field_name( 'd_ical_link' ); ?>"
-												  <?php
-													if ( $instance['d_ical_link'] ) {
-														echo 'checked="checked"';}
-													?>
-			 />
+												<?php
+												if ( $instance['d_ical_link'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_ical_link' ); ?>"><?php _e( 'Inspection Time iCal Link', 'easy-property-listings' ); ?></label>
 		</p>
 
