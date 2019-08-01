@@ -356,40 +356,40 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'featured' ); ?>" name="<?php echo $this->get_field_name( 'featured' ); ?>"
-												  <?php
-													if ( $instance['featured'] ) {
-														echo 'checked="checked"';}
-													?>
+												<?php
+												if ( $instance['featured'] ) {
+													echo 'checked="checked"';}
+												?>
 			 />
 			<label for="<?php echo $this->get_field_id( 'featured' ); ?>"><?php _e( 'Featured Properties', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'open_house' ); ?>" name="<?php echo $this->get_field_name( 'open_house' ); ?>"
-												  <?php
-													if ( $instance['open_house'] ) {
-														echo 'checked="checked"';}
-													?>
+												<?php
+												if ( $instance['open_house'] ) {
+													echo 'checked="checked"';}
+												?>
 			 />
 			<label for="<?php echo $this->get_field_id( 'open_house' ); ?>"><?php echo epl_labels( 'label_home_open' ) . ' ' . __( 'Listings', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'archive' ); ?>" name="<?php echo $this->get_field_name( 'archive' ); ?>"
-												  <?php
-													if ( $instance['archive'] ) {
-														echo 'checked="checked"';}
-													?>
+												<?php
+												if ( $instance['archive'] ) {
+													echo 'checked="checked"';}
+												?>
 			 />
 			<label for="<?php echo $this->get_field_id( 'archive' ); ?>"><?php _e( 'Dynamic', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'order_rand' ); ?>" name="<?php echo $this->get_field_name( 'order_rand' ); ?>"
-												  <?php
-													if ( $instance['order_rand'] ) {
-														echo 'checked="checked"';}
-													?>
+												<?php
+												if ( $instance['order_rand'] ) {
+													echo 'checked="checked"';}
+												?>
 			 />
 			<label for="<?php echo $this->get_field_id( 'order_rand' ); ?>"><?php _e( 'Random Order', 'easy-property-listings' ); ?></label>
 		</p>
