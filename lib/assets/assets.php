@@ -178,7 +178,7 @@ function epl_admin_styles() {
 	?>
 	<style>
 		.column-property_thumb {
-			width:<?php echo $width; ?>;
+			width: <?php echo $width; ?>;
 		}
 		.column-property_thumb img {
 			max-width: 100%;
