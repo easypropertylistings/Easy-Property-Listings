@@ -9,28 +9,30 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Load and enqueue admin scripts and stylesheets
+ * Load and enqueue admin scripts and stylesheets.
  *
  * @since 1.0
+ * @param string $screen Page hook.
+ * @return void
  */
 function epl_admin_enqueue_scripts( $screen ) {
 
 	$mode   = epl_get_option( 'epl_plugin_mode', 'development' );
-	$suffix = $mode == 'production' ? '.min' : '';
+	$suffix = 'production' === $mode ? '.min' : '';
 
 	$current_dir_path = plugins_url( '', __FILE__ );
 
-	if ( $screen == 'post.php' || $screen == 'post-new.php' || $screen == 'easy-property-listings_page_epl-extensions' || $screen == 'easy-property-listings_page_epl-settings' || $screen = 'easy-property-listings_page_epl-extensions' ) {
+	if ( 'post.php' === $screen || 'post-new.php' === $screen || 'easy-property-listings_page_epl-extensions' === $screen || 'easy-property-listings_page_epl-settings' === $screen || 'easy-property-listings_page_epl-extensions' === $screen ) {
 
 		$googleapiurl = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
 
-		if ( epl_get_option( 'epl_google_api_key' ) != '' ) {
+		if ( epl_get_option( 'epl_google_api_key' ) !== '' ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 		}
 
@@ -54,7 +56,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 
 	}
 
-	// load admin style on help & documentation pages as well
+	// load admin style on help & documentation pages as well.
 	if ( $screen = 'edit.php' || $screen == 'toplevel_page_epl-general' || $screen == 'dashboard_page_epl-about' || $screen == 'dashboard_page_epl-getting-started' || $screen == 'toplevel_page_epl-tools' ) {
 		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin' . $suffix . '.css', false, EPL_PROPERTY_VER );
 	}
@@ -66,7 +68,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 
 /**
- * Load and enqueue front end scripts and stylesheets
+ * Load and enqueue front end scripts and stylesheets.
  *
  * @since 1.0
  */
@@ -92,23 +94,23 @@ function epl_wp_enqueue_scripts() {
 		}
 	}
 
-	// All CSS includting Structual
+	// All CSS including Structual.
 	if ( isset( $epl_settings['epl_use_core_css'] ) && $epl_settings['epl_use_core_css'] == 'on' ) {
 
 	} else {
 
-		// Legacy CSS: on is to enable visual css, default off
+		// Legacy CSS: on is to enable visual css, default off.
 		if ( isset( $epl_settings['epl_css_legacy'] ) && $epl_settings['epl_css_legacy'] == 'on' ) {
 
 			wp_enqueue_style( 'epl-front-styles', $current_dir_path . '/css/style-legacy' . $suffix . '.css', false, EPL_PROPERTY_VER );
 
 		} else {
-			// Structural CSS
+			// Structural CSS.
 			wp_enqueue_style( 'epl-css-lib', $current_dir_path . '/css/style-structure' . $suffix . '.css', false, EPL_PROPERTY_VER );
 			wp_enqueue_style( 'epl-style', $current_dir_path . '/css/style' . $suffix . '.css', false, EPL_PROPERTY_VER );
 		}
 
-		// Enhanced CSS: on is to enable visual css, default on for new installations
+		// Enhanced CSS: on is to enable visual css, default on for new installations.
 		if ( isset( $epl_settings['epl_css_enhanced'] ) && $epl_settings['epl_css_enhanced'] == 'on' ) {
 			wp_enqueue_style( 'epl-style-enhanced', $current_dir_path . '/css/style-enhanced' . $suffix . '.css', false, EPL_PROPERTY_VER );
 		}
@@ -151,7 +153,7 @@ function epl_wp_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
 
 /**
- * Load and enqueue admin styles
+ * Load and enqueue admin styles.
  *
  * @since 1.0
  */
