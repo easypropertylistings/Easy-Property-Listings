@@ -9,7 +9,7 @@
  * @since       3.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -21,11 +21,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class EPL_Widget_Contact_Capture extends WP_Widget {
 
+	/**
+	 * Construct the widget.
+	 *
+	 * @since 1.0.0
+	 */
 	function __construct() {
 		parent::__construct( false, $name = __( 'EPL - Contact Form', 'easy-property-listings' ), array( 'description' => __( 'Add contact form to a sidebar.', 'easy-property-listings' ) ) );
-		// Widget name for filter: epl_contact_capture
+		// Widget name for filter: epl_contact_capture.
 	}
 
+	/**
+	 * Widget function.
+	 *
+	 * @since 1.0
+	 * @param array $args Widget arguments.
+	 * @param array $instance Widget instance.
+	 */
 	function widget( $args, $instance ) {
 
 		$defaults = epl_contact_capture_get_widget_defaults();
@@ -44,6 +56,13 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 		echo $after_widget;
 	}
 
+	/**
+	 * Widget update.
+	 *
+	 * @since 1.0
+	 * @param array $new_instance Old values.
+	 * @param array $old_instance New values.
+	 */
 	function update( $new_instance, $old_instance ) {
 		$instance   = $old_instance;
 		$all_fields = epl_contact_capture_widget_form_fields();
@@ -53,6 +72,12 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 		return $instance;
 	}
 
+	/**
+	 * Render the widget form.
+	 *
+	 * @since 1.0
+	 * @param array $instance options.
+	 */
 	function form( $instance ) {
 		$defaults = epl_contact_capture_get_widget_defaults();
 
