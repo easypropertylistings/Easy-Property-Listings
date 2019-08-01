@@ -7,7 +7,7 @@
  * @since 1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 get_header(); ?>
@@ -24,10 +24,10 @@ get_header(); ?>
 
 				<div class="entry-content loop-content <?php echo epl_template_class( 'default', 'archive' ); ?>">
 					<?php do_action( 'epl_property_loop_start' ); ?>
-					<?php while ( have_posts() ) : // The Loop
+					<?php while ( have_posts() ) : // The Loop.
 							the_post();
 							do_action('epl_property_blog');
-						endwhile; // end of one post
+						endwhile; // end of one post.
 					?>
 					<?php do_action( 'epl_property_loop_end' ); ?>
 				</div>
