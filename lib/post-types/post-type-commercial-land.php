@@ -9,13 +9,13 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Registers and sets up the Commercial Land custom post type
+ * Registers and sets up the Commercial Land custom post type.
  *
  * @since 1.0
  * @return void
@@ -72,17 +72,18 @@ function epl_register_custom_post_type_commercial_land() {
 add_action( 'init', 'epl_register_custom_post_type_commercial_land', 0 );
 
 /**
- * Manage Admin Commercial Land Post Type Columns
+ * Manage Admin Commercial Land Post Type Columns.
  *
  * @since 1.0
  * @return void
  */
 if ( is_admin() ) {
 	/**
-	 * Manage Admin Commercial Land Post Type Columns: Heading
+	 * Manage Admin Commercial Land Post Type Columns: Heading.
 	 *
 	 * @since 1.0
-	 * @return void
+	 * @param array $columns Column array.
+	 * @return $columns with epl_post_type_commercial_land_admin_columns filter.
 	 */
 	function epl_manage_commercial_land_columns_heading( $columns ) {
 		global $epl_settings;
@@ -123,56 +124,56 @@ if ( is_admin() ) {
 	add_filter( 'manage_edit-commercial_land_columns', 'epl_manage_commercial_land_columns_heading' );
 
 	/**
-	 * Manage Admin Commercial Land Post Type Columns: Row Contents
+	 * Manage Admin Commercial Land Post Type Columns: Row Contents.
 	 *
 	 * @since 1.0
 	 */
 	function epl_manage_commercial_land_columns_value( $column, $post_id ) {
 		switch ( $column ) {
 
-			/* If displaying the 'Featured' image column. */
+			// If displaying the 'Featured' image column.
 			case 'property_featured':
 				do_action( 'epl_manage_listing_column_featured' );
 
 				break;
 
-			/* If displaying the 'Featured' image column. */
+			// If displaying the 'Featured' image column.
 			case 'property_thumb':
 				do_action( 'epl_manage_listing_column_property_thumb' );
 
 				break;
 
-			/* If displaying the 'Listing Details' column. */
+			// If displaying the 'Listing Details' column.
 			case 'listing':
 				do_action( 'epl_manage_listing_column_listing' );
 
 				break;
 
-			/* If displaying the 'Listing ID' column. */
+			// If displaying the 'Listing ID' column.
 			case 'listing_id':
 				do_action( 'epl_manage_listing_column_listing_id' );
 
 				break;
 
-			/* If displaying the 'Geocoding' column. */
+			// If displaying the 'Geocoding' column.
 			case 'geo':
 				do_action( 'epl_manage_listing_column_geo' );
 
 				break;
 
-			/* If displaying the 'Price' column. */
+			// If displaying the 'Price' column.
 			case 'property_price':
 				do_action( 'epl_manage_listing_column_price' );
 
 				break;
 
-			/* If displaying the 'Commercial Land Listing Type' column. */
+			// If displaying the 'Commercial Land Listing Type' column.
 			case 'listing_type':
 				do_action( 'epl_manage_listing_column_listing_type' );
 
 				break;
 
-			/* If displaying the 'status' column. */
+			// If displaying the 'status' column.
 			case 'property_status':
 				do_action( 'epl_manage_listing_column_property_status' );
 
@@ -183,7 +184,7 @@ if ( is_admin() ) {
 
 				break;
 
-			/* Just break out of the switch statement for everything else. */
+			// Just break out of the switch statement for everything else.
 			default:
 				break;
 		}
