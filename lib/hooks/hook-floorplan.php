@@ -9,8 +9,10 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Outputs any floor plan links for virtual tours on the property templates
@@ -23,32 +25,33 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_button_floor_plan() {
 
-	$keys = array('property_floorplan','property_floorplan_2');
+	$keys = array( 'property_floorplan', 'property_floorplan_2' );
 
-	foreach($keys as $key) {
+	foreach ( $keys as $key ) {
 
-		$link 		= get_post_meta( get_the_ID() , $key , true );
-		$count 		= $key == 'property_floorplan' ? '': substr($key, -1);
-		$default 	= __('Floor Plan ', 'easy-property-listings') . $count;
-		$meta_label 	= get_post_meta( get_the_ID() , $key.'_label' , true );
-		$meta_label 	= $meta_label == '' ? $default : $meta_label;
+		$link       = get_post_meta( get_the_ID(), $key, true );
+		$count      = 'property_floorplan' === $key ? '' : substr( $key, -1 );
+		$default    = __( 'Floor Plan ', 'easy-property-listings' ) . $count;
+		$meta_label = get_post_meta( get_the_ID(), $key . '_label', true );
+		$meta_label = '' === $meta_label ? $default : $meta_label;
 
-		if( !empty($link) ) { ?>
+		if ( ! empty( $link ) ) { ?>
 
 			<button type="button" class="epl-button epl-floor-plan epl-floor-plan-<?php echo $count; ?>" onclick="window.open('<?php echo $link; ?>')">
 				<?php
-					$filter_key = str_replace('property_','',$key);
-					if( has_filter('epl_button_label_'.$filter_key) ) {
-						$label = apply_filters('epl_button_label_floorplan_' . $filter_key , $meta_label );
-					} else {
-						$label = apply_filters( 'epl_button_label_floorplan' , $meta_label );
-					}
+					$filter_key = str_replace( 'property_', '', $key );
+				if ( has_filter( 'epl_button_label_' . $filter_key ) ) {
+					$label = apply_filters( 'epl_button_label_floorplan_' . $filter_key, $meta_label );
+				} else {
+					$label = apply_filters( 'epl_button_label_floorplan', $meta_label );
+				}
 				?>
-				<?php echo $label ?>
-			</button> <?php
+				<?php echo $label; ?>
+			</button> 
+			<?php
 
 		}
 	}
 
 }
-add_action('epl_buttons_single_property', 'epl_button_floor_plan');
+add_action( 'epl_buttons_single_property', 'epl_button_floor_plan' );
