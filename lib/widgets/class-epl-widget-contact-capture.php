@@ -10,7 +10,9 @@
  */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * EPL_Widget_Contact_Capture class
@@ -20,43 +22,44 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class EPL_Widget_Contact_Capture extends WP_Widget {
 
 	function __construct() {
-		parent::__construct( false, $name = __('EPL - Contact Form', 'easy-property-listings'), array( 'description' => __( 'Add contact form to a sidebar.', 'easy-property-listings' ) ) );
+		parent::__construct( false, $name = __( 'EPL - Contact Form', 'easy-property-listings' ), array( 'description' => __( 'Add contact form to a sidebar.', 'easy-property-listings' ) ) );
 		// Widget name for filter: epl_contact_capture
 	}
 
-	function widget($args, $instance) {
+	function widget( $args, $instance ) {
 
 		$defaults = epl_contact_capture_get_widget_defaults();
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		extract( $args );
-		$title 		    = apply_filters('widget_title', $instance['title']);
+		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		echo $before_widget;
-		if ( $title )
+		if ( $title ) {
 			echo $before_title . $title . $after_title;
-		echo epl_contact_capture_form($instance);
+		}
+		echo epl_contact_capture_form( $instance );
 
 		echo $after_widget;
 	}
 
-	function update($new_instance, $old_instance) {
-		$instance 	= $old_instance;
+	function update( $new_instance, $old_instance ) {
+		$instance   = $old_instance;
 		$all_fields = epl_contact_capture_widget_form_fields();
-		foreach($all_fields as $all_field) {
-			$instance[$all_field['key']] = epl_strip_tags( $new_instance[$all_field['key']] , apply_filters( 'epl_contact_form_description_allowed_tags' , '<br><p><strong><div><span><hr><img>' ) );
+		foreach ( $all_fields as $all_field ) {
+			$instance[ $all_field['key'] ] = epl_strip_tags( $new_instance[ $all_field['key'] ], apply_filters( 'epl_contact_form_description_allowed_tags', '<br><p><strong><div><span><hr><img>' ) );
 		}
 		return $instance;
 	}
 
-	function form($instance) {
+	function form( $instance ) {
 		$defaults = epl_contact_capture_get_widget_defaults();
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		$instance = array_map( 'epl_esc_attr', $instance );
 		extract( $instance );
-		$fields     = epl_contact_capture_widget_form_fields();
+		$fields = epl_contact_capture_widget_form_fields();
 		foreach ( $fields as $field ) {
 			$field_value = ${$field['key']};
 			epl_widget_render_backend_field( $field, $this, $field_value );
