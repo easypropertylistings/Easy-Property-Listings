@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -21,11 +21,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class EPL_Widget_Author extends WP_Widget {
 
+	/**
+	 * Construct the widget.
+	 *
+	 * @since 1.0.0
+	 */
 	function __construct() {
 		parent::__construct( false, $name = __( 'EPL - Author', 'easy-property-listings' ), array( 'description' => __( 'Add an Author profile to a sidebar.', 'easy-property-listings' ) ) );
-		// Widget name for filter: epl_author
+		// Widget name for filter: epl_author.
 	}
 
+	/**
+	 * Widget function.
+	 *
+	 * @since 1.0
+	 * @param array $args Widget arguments.
+	 * @param array $instance Widget instance.
+	 */
 	function widget( $args, $instance ) {
 
 		$defaults = array(
@@ -48,15 +60,15 @@ class EPL_Widget_Author extends WP_Widget {
 		$username = $instance['username'];
 
 		if ( is_epl_post_single() ) {
-			// Only retrieve global $property variable if singluar
+			// Only retrieve global $property variable if singluar.
 			global $property;
 			$hide_author_box = $property->get_property_meta( 'property_agent_hide_author_box' );
 
 			$author_box = apply_filters( 'epl_widget_author_hide_widget', 'off' );
 
-			if ( $hide_author_box == 'yes' && $author_box == 'on' ) {
-				// Hide Author Box
-				// Disabled as it makes no sence
+			if ( 'yes' === $hide_author_box && 'on' === $author_box ) {
+				// Hide Author Box.
+				// Disabled as it makes no sence.
 			} else {
 				echo $before_widget;
 				if ( $title ) {
@@ -78,6 +90,13 @@ class EPL_Widget_Author extends WP_Widget {
 		}
 	}
 
+	/**
+	 * Widget update.
+	 *
+	 * @since 1.0
+	 * @param array $new_instance Old values.
+	 * @param array $old_instance New values.
+	 */
 	function update( $new_instance, $old_instance ) {
 		$instance             = $old_instance;
 		$instance['title']    = strip_tags( $new_instance['title'] );
@@ -89,6 +108,12 @@ class EPL_Widget_Author extends WP_Widget {
 		return $instance;
 	}
 
+	/**
+	 * Render the widget form.
+	 *
+	 * @since 1.0
+	 * @param array $instance options.
+	 */
 	function form( $instance ) {
 		$defaults = array(
 			'title'    => '',
@@ -120,31 +145,31 @@ class EPL_Widget_Author extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_image' ); ?>" name="<?php echo $this->get_field_name( 'd_image' ); ?>" 
-												  <?php
-													if ( $instance['d_image'] ) {
-														echo 'checked="checked"';}
-													?>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_image' ); ?>" name="<?php echo $this->get_field_name( 'd_image' ); ?>"
+												<?php
+												if ( $instance['d_image'] ) {
+													echo 'checked="checked"';}
+												?>
 			 />
 			<label for="<?php echo $this->get_field_id( 'd_image' ); ?>"><?php _e( 'Display Author Gravatar', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_icons' ); ?>" name="<?php echo $this->get_field_name( 'd_icons' ); ?>" 
-												  <?php
-													if ( $instance['d_icons'] ) {
-														echo 'checked="checked"';}
-													?>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_icons' ); ?>" name="<?php echo $this->get_field_name( 'd_icons' ); ?>"
+												<?php
+												if ( $instance['d_icons'] ) {
+													echo 'checked="checked"';}
+												?>
 			 />
 			<label for="<?php echo $this->get_field_id( 'd_icons' ); ?>"><?php _e( 'Display Icons', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_bio' ); ?>" name="<?php echo $this->get_field_name( 'd_bio' ); ?>" 
-												  <?php
-													if ( $instance['d_bio'] ) {
-														echo 'checked="checked"';}
-													?>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_bio' ); ?>" name="<?php echo $this->get_field_name( 'd_bio' ); ?>"
+												<?php
+												if ( $instance['d_bio'] ) {
+													echo 'checked="checked"';}
+												?>
 			 />
 			<label for="<?php echo $this->get_field_id( 'd_bio' ); ?>"><?php _e( 'Display Bio', 'easy-property-listings' ); ?></label>
 		</p>
