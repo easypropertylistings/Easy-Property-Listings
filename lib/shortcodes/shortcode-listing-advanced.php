@@ -9,7 +9,7 @@
  * @since       3.3
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * limit the number of entries that display. using  [listing limit="5"]
  *
  * @since       1.0
+ * @param array $atts Shortcode attributes.
  */
 function epl_shortcode_listing_advanced_callback( $atts ) {
 
