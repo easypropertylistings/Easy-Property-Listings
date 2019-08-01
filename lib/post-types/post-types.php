@@ -477,7 +477,7 @@ function epl_manage_listing_column_price_callback() {
 		$class = 'bar-home-sold';
 	} elseif ( 'Leased' === $property_status ) {
 		$class = 'bar-home-sold';
-	} elseif ( ! empty( $property_under_offer ) && 'yes' == $property_under_offer ) {
+	} elseif ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
 		$class = 'bar-under-offer';
 	} elseif ( 'Current' === $property_status ) {
 		$class = 'bar-home-open';
@@ -495,7 +495,7 @@ function epl_manage_listing_column_price_callback() {
 
 	// If we have a price to display in the bar.
 	if ( ! empty( $bar_price ) ) {
-		$barwidth = $max_price == 0 ? 0 : $bar_price / $max_price * 100;
+		$barwidth = 0 === $max_price ? 0 : $bar_price / $max_price * 100;
 		echo '<div class="epl-price-bar ' . $class . '">
 			<span style="width:' . $barwidth . '%"></span>
 		</div>';
@@ -504,21 +504,21 @@ function epl_manage_listing_column_price_callback() {
 		echo __( 'No price set', 'easy-property-listings' );
 	}
 
-	if ( ! empty( $property_under_offer ) && 'yes' == $property_under_offer ) {
-		// echo '<div class="type_under_offer">' .$property->label_under_offer. '</div>';
+	if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
+		// echo '<div class="type_under_offer">' .$property->label_under_offer. '</div>';.
 	}
 
 	// Display sold price.
 	if ( ! empty( $view ) ) {
 		echo '<div class="epl_meta_search_price">' . $property->get_price_plain_value() . ' ';
-		echo $property_status == 'Sold' ? epl_currency_formatted_amount( $sold_price ) : '';
+		echo 'Sold' === $property_status ? epl_currency_formatted_amount( $sold_price ) : '';
 		echo '</div>';
 	} else {
 		echo '<div class="epl_meta_price">' . $property->get_price_plain_value() . '</div>';
 	}
 
 	// Rental Listing Type.
-	if ( ! empty( $bond ) && $d_bond == 1 ) {
+	if ( ! empty( $bond ) && 1 === $d_bond ) {
 		echo '<div class="epl_meta_bond">' , epl_labels( 'label_bond' ) , ' ' , epl_currency_formatted_amount( $bond ) , '</div>';
 	}
 
@@ -526,12 +526,6 @@ function epl_manage_listing_column_price_callback() {
 	if ( ! empty( $lease_date ) ) {
 		echo '<div class="epl_meta_lease_date">' . __( 'Lease End:', 'easy-property-listings' ) . ' ' ,  $lease_date , '</div>';
 	}
-
-	/*
-	if($property_authority == 'auction' ) {
-		_e('Auction ','easy-property-listings' );
-		echo '<br>'.$property->get_property_auction(true);
-	}*/
 }
 add_action( 'epl_manage_listing_column_price', 'epl_manage_listing_column_price_callback' );
 
@@ -600,9 +594,9 @@ function epl_manage_listing_column_agent_callback() {
 	);
 
 	$property_second_agent = $property->get_property_meta( 'property_second_agent' );
-	if ( '' != $property_second_agent ) {
+	if ( '' !== $property_second_agent ) {
 		$second_author = get_user_by( 'login', $property_second_agent );
-		if ( $second_author !== false ) {
+		if ( false !== $second_author ) {
 			printf(
 				'<br><a href="%s">%s</a>',
 				esc_url(
@@ -632,7 +626,7 @@ function epl_manage_listing_column_featured_callback() {
 
 	global $property;
 
-	if ( $property->get_property_meta( 'property_featured' ) == 'yes' ) {
+	if ( 'yes' === $property->get_property_meta( 'property_featured' ) ) {
 		echo '<span class="dashicons dashicons-star-filled"></span>';
 	} else {
 		echo '<span class="dashicons dashicons-star-empty"></span>';
