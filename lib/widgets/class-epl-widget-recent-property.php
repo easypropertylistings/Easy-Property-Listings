@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -21,11 +21,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class EPL_Widget_Recent_Property extends WP_Widget {
 
+	/**
+	 * Construct the widget.
+	 *
+	 * @since 1.0.0
+	 */
 	function __construct() {
 		parent::__construct( false, __( 'EPL - Listing', 'easy-property-listings' ), array( 'description' => __( 'Add listings to a sidebar.', 'easy-property-listings' ) ) );
-		// Widget name for filter: epl_recent_property
+		// Widget name for filter: epl_recent_property.
 	}
 
+	/**
+	 * Widget function.
+	 *
+	 * @since 1.0
+	 * @param array $args Widget arguments.
+	 * @param array $instance Widget instance.
+	 */
 	function widget( $args, $instance ) {
 		$property_types = epl_get_active_post_types();
 		if ( ! empty( $property_types ) ) {
@@ -33,30 +45,30 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		}
 
 		$defaults = array(
-			'title'             => '', // widget title
-			'types'             => $property_types, // listing types to show in widget
-			'featured'          => 0, // show only featured listings ?
-			'status'            => array( 'current', 'sold', 'leased' ), // property status to show
-			'view'              => 'default', // template to render results : templates/content/widget/listing, override in theme
-			'display'           => 'image', // show featured image ?
-			'image'             => 'thumbnail', // image size
-			'archive'           => 0, // if this is selected, widget will dynamially show listings of currently displayed listing post type
-			'order_rand'        => 0, // randomly order ?
-			'open_house'        => 0, // show listings open for inspection ?
-			'd_title'           => 0, // show title of listing ?
+			'title'             => '', // widget title.
+			'types'             => $property_types, // listing types to show in widget.
+			'featured'          => 0, // show only featured listings.
+			'status'            => array( 'current', 'sold', 'leased' ), // property status to show.
+			'view'              => 'default', // template to render results : templates/content/widget/listing, override in theme.
+			'display'           => 'image', // show featured image.
+			'image'             => 'thumbnail', // image size.
+			'archive'           => 0, // if this is selected, widget will dynamially show listings of currently displayed listing post type.
+			'order_rand'        => 0, // randomly order.
+			'open_house'        => 0, // show listings open for inspection.
+			'd_title'           => 0, // show title of listing.
 
-			'more_text'         => __( 'Read More', 'easy-property-listings' ), // read more text
-			'd_excerpt'         => 'off', // show excerpt ?
-			'd_suburb'          => 'on', // show suburb ?
-			'd_street'          => 'on', // show street address ?
-			'd_price'           => 'on', // show listing price ?
-			'd_more'            => 'on', // show read more button ?
-			'd_inspection_time' => 'off', // show inspection dates
-			'd_ical_link'       => 'on', // link inspection dates to ical
+			'more_text'         => __( 'Read More', 'easy-property-listings' ), // read more text.
+			'd_excerpt'         => 'off', // show excerpt.
+			'd_suburb'          => 'on', // show suburb.
+			'd_street'          => 'on', // show street address.
+			'd_price'           => 'on', // show listing price.
+			'd_more'            => 'on', // show read more button.
+			'd_inspection_time' => 'off', // show inspection dates.
+			'd_ical_link'       => 'on', // link inspection dates to ical.
 
-			'd_icons'           => 'none', // show icons ? none | bed & bath | all
-			'p_number'          => 1, // number of listings to show
-			'p_skip'            => 0, // number of listings to skip
+			'd_icons'           => 'none', // show icons ? none | bed & bath | all.
+			'p_number'          => 1, // number of listings to show.
+			'p_skip'            => 0, // number of listings to skip.
 
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
@@ -133,6 +145,13 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		);
 	}
 
+	/**
+	 * Widget update.
+	 *
+	 * @since 1.0
+	 * @param array $new_instance Old values.
+	 * @param array $old_instance New values.
+	 */
 	function update( $new_instance, $old_instance ) {
 		$instance          = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
@@ -195,6 +214,12 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		return $instance;
 	}
 
+	/**
+	 * Render the widget form.
+	 *
+	 * @since 1.0
+	 * @param array $instance options.
+	 */
 	function form( $instance ) {
 
 		$defaults = array(
@@ -264,7 +289,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						if ( is_array( $instance['types'] ) ) {
 							$selected = in_array( $k, $instance['types'] ) ? true : false;
 						} else {
-							$selected = $k == $instance['types'] ? true : false;
+							$selected = $k === $instance['types'] ? true : false;
 						}
 						echo '<option value="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '"', $selected ? ' selected="selected"' : '', '>', __( $v, 'easy-property-listings' ), '</option>';
 					}
@@ -292,7 +317,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						if ( is_array( $instance['status'] ) ) {
 							$selected = in_array( $key, $instance['status'] ) ? true : false;
 						} else {
-							$selected = $key == $instance['status'] ? true : false;
+							$selected = $key === $instance['status'] ? true : false;
 						}
 						echo '<option value="' . esc_attr( $key ) . '" id="' . esc_attr( $key ) . '"' . selected( $selected, true, false ) . '>' . $value . '</option>';
 					}
@@ -306,7 +331,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				<?php
 				for ( $i = 1;$i <= 20;$i++ ) {
 					echo '<option value="' . $i . '"';
-					if ( $i == $instance['p_number'] ) {
+					if ( $i === $instance['p_number'] ) {
 						echo ' selected="selected"';
 					} echo '>' . __( $i, 'easy-property-listings' ) . '</option>';
 				}
@@ -320,7 +345,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				<?php
 				for ( $i = 0;$i <= 20;$i++ ) {
 					echo '<option value="' . $i . '"';
-					if ( $i == $instance['p_skip'] ) {
+					if ( $i === $instance['p_skip'] ) {
 						echo ' selected="selected"';
 					} echo '>' . __( $i, 'easy-property-listings' ) . '</option>';
 				}
@@ -330,7 +355,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'featured' ); ?>" name="<?php echo $this->get_field_name( 'featured' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'featured' ); ?>" name="<?php echo $this->get_field_name( 'featured' ); ?>"
 												  <?php
 													if ( $instance['featured'] ) {
 														echo 'checked="checked"';}
@@ -340,7 +365,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'open_house' ); ?>" name="<?php echo $this->get_field_name( 'open_house' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'open_house' ); ?>" name="<?php echo $this->get_field_name( 'open_house' ); ?>"
 												  <?php
 													if ( $instance['open_house'] ) {
 														echo 'checked="checked"';}
@@ -350,7 +375,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'archive' ); ?>" name="<?php echo $this->get_field_name( 'archive' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'archive' ); ?>" name="<?php echo $this->get_field_name( 'archive' ); ?>"
 												  <?php
 													if ( $instance['archive'] ) {
 														echo 'checked="checked"';}
@@ -360,7 +385,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'order_rand' ); ?>" name="<?php echo $this->get_field_name( 'order_rand' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'order_rand' ); ?>" name="<?php echo $this->get_field_name( 'order_rand' ); ?>"
 												  <?php
 													if ( $instance['order_rand'] ) {
 														echo 'checked="checked"';}
@@ -438,7 +463,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_title' ); ?>" name="<?php echo $this->get_field_name( 'd_title' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_title' ); ?>" name="<?php echo $this->get_field_name( 'd_title' ); ?>"
 												  <?php
 													if ( $instance['d_title'] ) {
 														echo 'checked="checked"';}
@@ -448,7 +473,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'd_excerpt' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'd_excerpt' ); ?>"
 												  <?php
 													if ( $instance['d_excerpt'] ) {
 														echo 'checked="checked"';}
@@ -458,7 +483,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_suburb' ); ?>" name="<?php echo $this->get_field_name( 'd_suburb' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_suburb' ); ?>" name="<?php echo $this->get_field_name( 'd_suburb' ); ?>"
 												  <?php
 													if ( $instance['d_suburb'] ) {
 														echo 'checked="checked"';}
@@ -468,7 +493,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_street' ); ?>" name="<?php echo $this->get_field_name( 'd_street' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_street' ); ?>" name="<?php echo $this->get_field_name( 'd_street' ); ?>"
 												  <?php
 													if ( $instance['d_street'] ) {
 														echo 'checked="checked"';}
@@ -478,7 +503,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_price' ); ?>" name="<?php echo $this->get_field_name( 'd_price' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_price' ); ?>" name="<?php echo $this->get_field_name( 'd_price' ); ?>"
 												  <?php
 													if ( $instance['d_price'] ) {
 														echo 'checked="checked"';}
@@ -488,7 +513,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_more' ); ?>" name="<?php echo $this->get_field_name( 'd_more' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_more' ); ?>" name="<?php echo $this->get_field_name( 'd_more' ); ?>"
 												  <?php
 													if ( $instance['d_more'] ) {
 														echo 'checked="checked"';}
@@ -498,7 +523,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_inspection_time' ); ?>" name="<?php echo $this->get_field_name( 'd_inspection_time' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_inspection_time' ); ?>" name="<?php echo $this->get_field_name( 'd_inspection_time' ); ?>"
 												  <?php
 													if ( $instance['d_inspection_time'] ) {
 														echo 'checked="checked"';}
@@ -508,7 +533,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_ical_link' ); ?>" name="<?php echo $this->get_field_name( 'd_ical_link' ); ?>" 
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_ical_link' ); ?>" name="<?php echo $this->get_field_name( 'd_ical_link' ); ?>"
 												  <?php
 													if ( $instance['d_ical_link'] ) {
 														echo 'checked="checked"';}
