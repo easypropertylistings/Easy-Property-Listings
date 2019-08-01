@@ -222,11 +222,8 @@ if ( is_admin() ) {
 				$lease_period         = get_post_meta( $post_id, 'property_com_rent_period', true );
 				$lease_date           = get_post_meta( $post_id, 'property_com_lease_end_date', true );
 
-				$max_price = '2000000';
+				$max_price = ( int ) epl_get_option( 'epl_max_graph_sales_price', '2000000' );
 
-				if ( isset( $epl_settings['epl_max_graph_sales_price'] ) ) {
-					$max_price = (int) $epl_settings['epl_max_graph_sales_price'];
-				}
 				$property_status    = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
 				$property_authority = get_post_meta( $post_id, 'property_authority', true );
 				$sold_price         = get_post_meta( $post_id, 'property_sold_price', true );
