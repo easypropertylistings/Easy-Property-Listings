@@ -125,6 +125,8 @@ if ( is_admin() ) {
 	 * Manage Admin Commercial Land Post Type Columns: Row Contents.
 	 *
 	 * @since 1.0
+	 * @param var $column column.
+	 * @param int $post_id post id.
 	 */
 	function epl_manage_commercial_land_columns_value( $column, $post_id ) {
 		switch ( $column ) {
