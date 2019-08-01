@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -27,25 +27,32 @@ get_header(); ?>
 					<?php
 						the_post();
 
-					if ( is_category() ) { // Category Archive
+					if ( is_category() ) { // Category Archive.
+						/* translators: %s: post type name */
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), single_cat_title( '', false ) );
-					} elseif ( is_tag() ) { // Tag Archive
+					} elseif ( is_tag() ) { // Tag Archive.
+						/* translators: %s: post type name */
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), single_tag_title( '', false ) );
-					} elseif ( is_tax() ) { // Tag Archive
+					} elseif ( is_tax() ) { // Tag Archive.
+						/* translators: %s: post type name */
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), builder_get_tax_term_title() );
-					} elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive
+					} elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive.
 						$title = post_type_archive_title( '', false );
-					} elseif ( is_author() ) { // Author Archive
+					} elseif ( is_author() ) { // Author Archive.
+						/* translators: %s: post type name */
 						$title = sprintf( __( 'Author Archive for %s', 'easy-property-listings' ), get_the_author() );
-					} elseif ( is_year() ) { // Year-Specific Archive
+					} elseif ( is_year() ) { // Year-Specific Archive.
+						/* translators: %s: post type name */
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), get_the_time( 'Y' ) );
-					} elseif ( is_month() ) { // Month-Specific Archive
+					} elseif ( is_month() ) { // Month-Specific Archive.
+						/* translators: %s: post type name */
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), get_the_time( 'F Y' ) );
-					} elseif ( is_day() ) { // Day-Specific Archive
+					} elseif ( is_day() ) { // Day-Specific Archive.
+						/* translators: %s: post type name */
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), get_the_date() );
-					} elseif ( is_time() ) { // Time-Specific Archive
+					} elseif ( is_time() ) { // Time-Specific Archive.
 						$title = __( 'Time Archive', 'easy-property-listings' );
-					} else { // Default catchall just in case
+					} else { // Default catchall just in case.
 						$title = __( 'Archive', 'easy-property-listings' );
 					}
 
@@ -62,7 +69,7 @@ get_header(); ?>
 
 			<div class="loop-content">
 				<?php
-				while ( have_posts() ) : // The Loop
+				while ( have_posts() ) : // The Loop.
 					the_post();
 					?>
 						<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -71,7 +78,9 @@ get_header(); ?>
 								<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 								<div class="entry-meta">
 									<?php
+									/* translators: %s: author name */
 									printf( __( 'By %s', 'easy-property-listings' ), '<span class="meta-author">' . builder_get_author_link() . '</span>' );
+									/* translators: %s: comment count */
 									do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', __( 'Comments %s', 'easy-property-listings' ), __( '(0)', 'easy-property-listings' ), __( '(1)', 'easy-property-listings' ), __( '(%)', 'easy-property-listings' ) );
 									?>
 								</div>
@@ -91,9 +100,17 @@ get_header(); ?>
 
 							<!-- categories, tags and comments -->
 							<div class="entry-footer clearfix">
-								<?php do_action( 'builder_comments_popup_link', '<div class="entry-meta alignright"><span class="comments">', '</span></div>', __( 'Comments %s', 'easy-property-listings' ), __( '(0)', 'easy-property-listings' ), __( '(1)', 'easy-property-listings' ), __( '(%)', 'easy-property-listings' ) ); ?>
+								<?php
+								/* translators: %s: author name */
+								do_action( 'builder_comments_popup_link', '<div class="entry-meta alignright"><span class="comments">', '</span></div>', __( 'Comments %s', 'easy-property-listings' ), __( '(0)', 'easy-property-listings' ), __( '(1)', 'easy-property-listings' ), __( '(%)', 'easy-property-listings' ) );
+								?>
 								<div class="entry-meta alignleft">
-									<div class="categories"><?php printf( __( 'Categories : %s', 'easy-property-listings' ), get_the_category_list( ', ' ) ); ?></div>
+									<div class="categories">
+										<?php
+										/* translators: %s: author name */
+										printf( __( 'Categories : %s', 'easy-property-listings' ), get_the_category_list( ', ' ) );
+										?>
+									</div>
 									<?php the_tags( '<div class="tags">' . __( 'Tags : ', 'easy-property-listings' ), ', ', '</div>' ); ?>
 								</div>
 							</div>
@@ -101,8 +118,8 @@ get_header(); ?>
 						<!-- end .post -->
 
 						<?php
-						comments_template(); // include comments template
-					endwhile; // end of one post
+						comments_template(); // include comments template.
+					endwhile; // end of one post.
 				?>
 			</div>
 
