@@ -9,7 +9,7 @@
  * @since       1.1.2
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * limit the number of entries that display. using  [listing_category limit="5"]
  *
  * @since       1.1.2
+ * @param array $atts Shortcode attributes.
  */
 function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -31,21 +32,21 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 
 	$attributes = shortcode_atts(
 		array(
-			'post_type'    => $property_types, // Post Type
+			'post_type'    => $property_types, // Post Type.
 			'status'       => array( 'current', 'sold', 'leased' ),
-			'feature'      => '', // Feature slug
-			'feature_id'   => '', // Feature ID
-			'limit'        => '10', // Number of maximum posts to show
-			'offset'       => '', // Offset posts. When used, pagination is disabled
-			'template'     => false, // Template can be set to "slim" for home open style template
-			'location'     => '', // Location slug. Should be a name like sorrento
-			'tools_top'    => 'off', // Tools before the loop like Sorter and Grid on or off
-			'tools_bottom' => 'off', // Tools after the loop like pagination on or off
-			'sortby'       => '', // Options: price, date, status : Default date
-			'sort_order'   => 'DESC', // Sort by ASC or DESC
-			'pagination'   => 'on', // Enable or disable pagination
-			'instance_id'  => '1',
-			'class'        => '',
+			'feature'      => '', // Feature slug.
+			'feature_id'   => '', // Feature ID.
+			'limit'        => '10', // Number of maximum posts to show.
+			'offset'       => '', // Offset posts. When used, pagination is disabled.
+			'template'     => false, // Template can be set to "slim" for home open style template.
+			'location'     => '', // Location slug. Should be a name like sorrento.
+			'tools_top'    => 'off', // Tools before the loop like Sorter and Grid on or off.
+			'tools_bottom' => 'off', // Tools after the loop like pagination on or off.
+			'sortby'       => '', // Options: price, date, status : Default date.
+			'sort_order'   => 'DESC', // Sort by ASC or DESC.
+			'pagination'   => 'on', // Enable or disable pagination.
+			'instance_id'  => '1', // Set instance ID when using multiple shortcodes on the same page.
+			'class'        => '', // Custom class.
 		),
 		$atts
 	);
@@ -56,7 +57,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		return;
 	}
 
-	if ( is_string( $post_type ) && $post_type == 'rental' ) {
+	if ( is_string( $post_type ) && 'rental' === $post_type ) {
 		$meta_key_price = 'property_rent';
 	} else {
 		$meta_key_price = 'property_price';
@@ -79,10 +80,10 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		'paged'          => $paged,
 	);
 
-	// Offset query does not work with pagination
+	// Offset query does not work with pagination.
 	if ( ! empty( $offset ) ) {
 		$args['offset'] = $offset;
-		$pagination     = 'off'; // Disable pagination when offset is used
+		$pagination     = 'off'; // Disable pagination when offset is used.
 	}
 
 	if ( ! empty( $feature ) ) {
@@ -136,12 +137,12 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 			);
 		}
 	}
-	if ( $sortby != '' ) {
+	if ( '' !== $sortby ) {
 
-		if ( $sortby == 'price' ) {
+		if ( 'price' === $sortby ) {
 			$args['orderby']  = 'meta_value_num';
 			$args['meta_key'] = $meta_key_price;
-		} elseif ( $sortby == 'status' ) {
+		} elseif ( 'status' === $sortby ) {
 			$args['orderby']  = 'meta_value';
 			$args['meta_key'] = 'property_status';
 		} else {
@@ -152,23 +153,23 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	}
 
 	$args['instance_id'] = $attributes['instance_id'];
-	// add sortby arguments to query, if listings sorted by $_GET['sortby'];
+	// add sortby arguments to query, if listings sorted by $_GET['sortby'];.
 	$args = epl_add_orderby_args( $args, 'shortcode', 'listing_feature' );
 
-	/** Option to filter args */
+	// Option to filter args.
 	$args = apply_filters( 'epl_shortcode_listing_feature_args', $args, $attributes );
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-feature 
+			<div class="loop-content epl-shortcode-listing-feature
 			<?php
 			echo epl_template_class( $template, 'archive' );
 			echo $attributes['class'];
 			?>
 			">
 				<?php
-				if ( $tools_top == 'on' ) {
+				if ( 'on' === $tools_top ) {
 					do_action( 'epl_property_loop_start' );
 				}
 				while ( $query_open->have_posts() ) {
@@ -176,14 +177,14 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 					$template = str_replace( '_', '-', $template );
 					epl_property_blog( $template );
 				}
-				if ( $tools_bottom == 'on' ) {
+				if ( 'on' === $tools_bottom ) {
 					do_action( 'epl_property_loop_end' );
 				}
 				?>
 			</div>
 			<div class="loop-footer">
 				<?php
-				if ( $pagination == 'on' ) {
+				if ( 'on' === $pagination ) {
 					do_action( 'epl_pagination', array( 'query' => $query_open ) );
 				}
 				?>
