@@ -1590,11 +1590,12 @@ function epl_sorting_tabs() {
 	$sorters = epl_sorting_options();
 
 	global $wp;
-	$current_url = home_url(add_query_arg(array($_GET), $wp->request)); ?>
+	$get_data 	= $_GET;
+	$get_data 	= array_map('sanitize_text_field', $get_data);
+	$current_url 	= home_url(add_query_arg(array($get_data), $wp->request)); ?>
 
 	<div class="epl-loop-tool epl-tool-sorting-tabs epl-properties-sorting epl-clearfix">
 		<ul id="epl-sort-tabs-listings">
-
 			<?php
 				foreach($sorters as $sorter) {
 					$href = epl_add_or_update_params($current_url,'sortby',$sorter['id']);
@@ -1621,28 +1622,28 @@ function epl_sorting_tabs() {
  */
 function epl_add_or_update_params($url,$key,$value){
 
-    $a = parse_url($url);
-    $query = isset($a['query']) ? $a['query'] : '';
-    parse_str($query,$params);
-    $params[$key] = $value;
-    $query = http_build_query($params);
-    $result = '';
-    if($a['scheme']){
-        $result .= $a['scheme'] . ':';
-    }
-    if($a['host']){
-        $result .= '//' . $a['host'];
-    }
-    if(!empty($a['port'])){
-        $result .= ':' . $a['port'];
-    }
-    if($a['path']){
-        $result .=  $a['path'];
-    }
-    if($query){
-        $result .=  '?' . $query;
-    }
-    return $result;
+	$a = parse_url($url);
+	$query = isset($a['query']) ? $a['query'] : '';
+	parse_str($query,$params);
+	$params[$key] = $value;
+	$query = http_build_query($params);
+	$result = '';
+	if($a['scheme']){
+		$result .= $a['scheme'] . ':';
+	}
+	if($a['host']){
+		$result .= '//' . $a['host'];
+	}
+	if(!empty($a['port'])){
+		$result .= ':' . $a['port'];
+	}
+	if($a['path']){
+		$result .=  $a['path'];
+	}
+	if($query){
+		$result .=  '?' . $query;
+	}
+	return $result;
 }
 
 /**
@@ -1678,7 +1679,6 @@ function epl_archive_sorting($query) {
 					$query->set( 'order', $sorter['order'] );
 					break;
 				}
-
 			}
 		}
 	}
@@ -1911,7 +1911,7 @@ function epl_process_event_cal_request () {
 			$type = sanitize_text_field($_GET['cal']);
 			switch($type) {
 				case 'ical':
-					$item = base64_decode($_GET['dt']);
+					$item = base64_decode( sanitize_text_field($_GET['dt']) );
 					if(is_numeric($item[0])) {
 						$post_id	= intval($_GET['propid']) ;
 						$timearr 	= explode(' ',$item);
@@ -2669,7 +2669,7 @@ function epl_add_orderby_args($args,$type='',$name='') {
 	}
 
 	$post_type = isset($args['post_type']) ? current($args['post_type']) : '';
-
+	$post_type = sanitize_text_field($post_type);
 	if(isset($_GET['sortby']) && trim($_GET['sortby']) != ''){
 
 		$orderby = sanitize_text_field(trim($_GET['sortby']));
@@ -2798,8 +2798,8 @@ function epl_contact_capture_action() {
 	);
 
 	if (
-		! isset( $_POST['epl_contact_widget'] ) || 
-		! wp_verify_nonce( $_POST['epl_contact_widget'], 'epl_contact_widget' ) 
+		! isset( $_POST['epl_contact_widget'] ) ||
+		! wp_verify_nonce( $_POST['epl_contact_widget'], 'epl_contact_widget' )
 	) {
 	   wp_die( json_encode( $fail ) );
 	}
@@ -2824,7 +2824,7 @@ function epl_contact_capture_action() {
 	}
 
 	if( trim($title) == '' && ( $_POST['epl_contact_email'] != '' ) ){
-		$title = $_POST['epl_contact_email'];
+		$title = sanitize_text_field($_POST['epl_contact_email']);
 	}
 
 	if ( empty( $contact->id ) ) {
@@ -2838,8 +2838,8 @@ function epl_contact_capture_action() {
 			$contact->update_meta('contact_last_name',$lname);
 			$contact->update_meta('contact_phones',array('phone' =>  $phone) );
 			$contact->update_meta('contact_category','widget');
-			$contact->attach_listing( $_POST['epl_contact_listing_id'] );
-			$contact->add_note( $_POST['epl_contact_note'],'note',$_POST['epl_contact_listing_id'] );
+			$contact->attach_listing( sanitize_text_field($_POST['epl_contact_listing_id']) );
+			$contact->add_note( sanitize_textarea_field($_POST['epl_contact_note']),'note',sanitize_text_field($_POST['epl_contact_listing_id']) );
 			wp_die( json_encode( $success ) );
 		} else {
 			wp_die( json_encode( $fail ) );
@@ -2847,8 +2847,8 @@ function epl_contact_capture_action() {
 	} else {
 
 		if ( $contact->update( array('name'	=>	$title ) ) ) {
-			$contact->add_note( $_POST['epl_contact_note'],'note',$_POST['epl_contact_listing_id'] );
-			$contact->attach_listing( $_POST['epl_contact_listing_id'] );
+			$contact->add_note( sanitize_textarea_field($_POST['epl_contact_note']),'note',sanitize_text_field($_POST['epl_contact_listing_id']) );
+			$contact->attach_listing( sanitize_text_field($_POST['epl_contact_listing_id']) );
 			wp_die( json_encode( $success ) );
 		} else {
 			wp_die( json_encode( $fail ) );

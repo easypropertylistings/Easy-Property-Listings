@@ -837,7 +837,7 @@ class EPL_CPT {
 						foreach ( $terms as $term ) {
 
 							// ...if filtered by this term make it selected.
-							if ( isset( $_GET[ $tax_slug ] ) && $_GET[ $tax_slug ] === $term->slug ) {
+							if ( isset( $_GET[ $tax_slug ] ) && sanitize_title( $_GET[ $tax_slug ] ) === $term->slug ) {
 
 								printf( '<option value="%s" selected="selected">%s (%s)</option>', $term->slug, $term->name, $term->count );
 

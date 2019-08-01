@@ -2089,7 +2089,7 @@ add_action('wp_login', 'epl_session_end');
  * @return int $count Sales
  */
 function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $hour = null, $status=null,$day_by_day=true ) {
-	$post_type = isset($_GET['view']) ? $_GET['view'] : 'property';
+	$post_type = isset($_GET['view']) ? sanitize_text_field($_GET['view']) : 'property';
 	$args = array(
 		'post_type'      => $post_type,
 		'nopaging'       => true,
@@ -2105,7 +2105,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 			$month_num  = is_null($month_num) ? 00 : $month_num;
 			$day 		= is_null($day) ? 00 : $day;
 			$year 		= is_null($year) ? 0000 : $year;
-			$range		= isset($_GET['range'])?$_GET['range']:'other';
+			$range		= isset($_GET['range']) ? sanitize_text_field($_GET['range']) :'other';
 
 			$args['meta_query'] = array(
 				array(
@@ -2635,3 +2635,15 @@ function epl_single_and_archive_functions() {
 	}
 }
 add_action('wp','epl_single_and_archive_functions',99);
+
+/**
+ * Recursive array map for multi dimensional array
+ * @since  3.3.5 [<description>]
+ */
+function epl_array_map_recursive($callback, $array) {
+	$func = function ($item) use (&$func, &$callback) {
+		return is_array($item) ? array_map($func, $item) : call_user_func($callback, $item);
+	};
+	return array_map($func, $array);
+}
+
