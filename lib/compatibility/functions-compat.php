@@ -99,7 +99,7 @@ function epl_get_property_address( $post_ID = '' ) {
 }
 
 /**
- * xxx.
+ * Get postcode label. Depreciated use epl_labels instead.
  *
  * @since 1.0
  * @depricated since 2.2. use epl_labels instead.
@@ -115,7 +115,7 @@ function epl_display_label_postcode() {
 }
 
 /**
- * xxx.
+ * Get bond label. Depreciated use epl_labels instead.
  *
  * @since 1.0
  * @depricated since 2.2. use epl_labels instead.
@@ -131,7 +131,7 @@ function epl_display_label_bond() {
 }
 
 /**
- * XXX.
+ * Get suburb label. Depreciated use epl_labels instead.
  *
  * @since 1.0
  * @depricated since 2.2. use epl_labels instead.
@@ -162,7 +162,7 @@ function epl_property_blog_default() {
 	global $property,$epl_settings;
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal Do Not Display Withdrawn or OffMarket listings.
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
 		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 		$option = '';
@@ -171,7 +171,7 @@ function epl_property_blog_default() {
 		}
 
 		$action_check = has_action( 'epl_loop_template' );
-		if ( $action_check != '' && $option !== 0 ) {
+		if ( '' !== $action_check && 0 !== $option ) {
 			do_action( 'epl_loop_template' );
 		} else {
 			epl_get_template_part( 'loop-listing-blog-default.php' );
@@ -192,7 +192,7 @@ function epl_property_blog_slim() {
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal.
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
 		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 		$option = '';
@@ -201,7 +201,7 @@ function epl_property_blog_slim() {
 		}
 
 		$action_check = has_action( 'epl_loop_template' );
-		if ( $action_check != '' && $option !== 0 ) {
+		if ( '' !== $action_check && 0 !== $option ) {
 			do_action( 'epl_loop_template' );
 		} else {
 			epl_get_template_part( 'loop-listing-blog-slim.php' );
@@ -209,7 +209,7 @@ function epl_property_blog_slim() {
 	} // End Status Removal.
 }
 
-/*
+/**
  * Listing Function for table open.
  *
  * @since 2.1.6
@@ -221,7 +221,7 @@ function epl_property_blog_table() {
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal.
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
 		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 		$option = '';
@@ -230,7 +230,7 @@ function epl_property_blog_table() {
 		}
 
 		$action_check = has_action( 'epl_loop_template' );
-		if ( $action_check != '' && $option !== 0 ) {
+		if ( '' !== $action_check && 0 !== $option ) {
 			do_action( 'epl_loop_template' );
 		} else {
 			epl_get_template_part( 'loop-listing-blog-table.php' );
@@ -238,7 +238,7 @@ function epl_property_blog_table() {
 	} // End Status Removal.
 }
 
-/*
+/**
  * Listing Function for table open.
  *
  * Kept for extensions which may be using this function.
@@ -252,7 +252,7 @@ function epl_property_blog_table_open() {
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal.
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
 		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 		$option = '';
@@ -261,7 +261,7 @@ function epl_property_blog_table_open() {
 		}
 
 		$action_check = has_action( 'epl_loop_template' );
-		if ( $action_check != '' && $option !== 0 ) {
+		if ( '' !== $action_check && 0 !== $option ) {
 			do_action( 'epl_loop_template' );
 		} else {
 			epl_get_template_part( 'loop-listing-blog-table-open.php' );
@@ -269,7 +269,7 @@ function epl_property_blog_table_open() {
 	} // End Status Removal.
 }
 
-/*
+/**
  * TEMPLATE - Leased/sold property list.
  *
  * Kept for extensions which may be using this function.
@@ -280,7 +280,7 @@ function epl_property_sold_leased() {
 	$property_suburb = get_post_custom_values( 'property_address_suburb' );
 	$post_id         = $property_suburb[0]['ID'];
 	$terms           = get_the_terms( $post->ID, 'location' );
-	if ( $terms != '' ) {
+	if ( '' !== $terms ) {
 		global $post;
 		foreach ( $terms as $term ) {
 			$term->slug;
@@ -289,7 +289,7 @@ function epl_property_sold_leased() {
 
 	$post_type = get_post_type();
 
-	if ( 'property' == $post_type ) {
+	if ( 'property' === $post_type ) {
 		$query = new WP_Query(
 			array(
 				'post_type'      => 'property',
@@ -303,7 +303,7 @@ function epl_property_sold_leased() {
 				'posts_per_page' => '5',
 			)
 		);
-	} elseif ( 'land' == $post_type ) {
+	} elseif ( 'land' === $post_type ) {
 		$query = new WP_Query(
 			array(
 				'post_type'       => 'land',
@@ -317,7 +317,7 @@ function epl_property_sold_leased() {
 				'posts_per_page'  => '5',
 			)
 		);
-	} elseif ( 'rural' == $post_type ) {
+	} elseif ( 'rural' === $post_type ) {
 		$query = new WP_Query(
 			array(
 				'post_type'      => 'rural',
@@ -349,7 +349,7 @@ function epl_property_sold_leased() {
 
 	if ( $query->have_posts() ) { ?>
 		<div class="epl-tab-section epl-tab-section-listing-history">
-			<?php if ( 'property' == $post_type || 'land' == $post_type || 'rural' == $post_type ) { ?>
+			<?php if ( 'property' === $post_type || 'land' === $post_type || 'rural' === $post_type ) { ?>
 				<h5 class="epl-tab-title epl-tab-title-sales tab-title"><?php _e( 'Recently Sold', 'easy-property-listings' ); ?></h5>
 			<?php } else { ?>
 				<h5 class="epl-tab-title epl-tab-title-leased tab-title"><?php _e( 'Recently Leased', 'easy-property-listings' ); ?></h5>
@@ -374,12 +374,16 @@ function epl_property_sold_leased() {
 	wp_reset_postdata();
 }
 
-/*
+/**
  * Staff Directory Card.
  *
  * Kept for extensions which may be using this function.
  *
  * @since 1.3
+ * @param string $display post id.
+ * @param string $image on off switch.
+ * @param string $title on off switch.
+ * @param string $icons styling switch.
  */
 function epl_property_author_card( $display, $image, $title, $icons ) {
 	global $property,$epl_author;
@@ -388,7 +392,7 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal.
-	if ( $property_status == 'withdrawn' || $property_status == 'offmarket' ) {
+	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
 		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 
@@ -406,10 +410,10 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 
 				<div class="entry-content">
 					<?php
-						// Heading Options
-					if ( $title == 'on' ) {
+					// Heading Options.
+					if ( 'on' === $title ) {
 						?>
-							<h5 class="property-meta heading"><?php echo $the_property_heading; ?></h5>
+						<h5 class="property-meta heading"><?php echo $the_property_heading; ?></h5>
 						<?php
 					}
 					?>
@@ -421,11 +425,11 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 					<!-- END Address -->
 
 					<?php
-						// Icon Options
-					if ( $icons == 'all' ) {
+					// Icon Options.
+					if ( 'all' === $icons ) {
 						?>
 							<div class="property-meta property-feature-icons"><?php epl_property_icons(); ?></div>
-						<?php } elseif ( $icons == 'bb' ) { ?>
+						<?php } elseif ( 'bb' === $icons ) { ?>
 							<div class="property-meta property-feature-icons"><?php echo epl_get_property_bb_icons(); ?></div>
 						<?php } ?>
 
