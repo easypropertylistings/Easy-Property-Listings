@@ -233,7 +233,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-features.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-business-listings.php';
-			require_once EPL_PATH_LIB . 'taxonomies/tax-contact_tags.php';
+			require_once EPL_PATH_LIB . 'taxonomies/tax-contact-tags.php';
 
 			require_once EPL_PATH_LIB . 'widgets/widget-functions.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-author.php';
