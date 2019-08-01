@@ -22,8 +22,8 @@ global $property;
 		<?php
 			do_action( 'epl_property_widgets_featured_image', $image );
 
-		if ( $d_inspection_time == 'on' ) :
-			$show_ical                 = $d_ical_link == 'on' ? true : false;
+		if ( 'on' === $d_inspection_time ) :
+			$show_ical                 = 'on' === $d_ical_link ? true : false;
 			$property_inspection_times = $property->get_property_inspection_times( $show_ical );
 			?>
 			<div class="epl-inspection-times">
@@ -34,13 +34,13 @@ global $property;
 
 	<div class="entry-content">
 		<?php
-		// Heading Options
-		if ( $title == 'on' ) {
+		// Heading Options.
+		if ( 'on' === $title ) {
 			?>
 			<h5 class="property-heading"><a href="<?php the_permalink(); ?>"><?php do_action( 'epl_property_heading' ); ?></a></h5>
 		<?php } ?>
 
-		<?php if ( $d_excerpt == 'on' ) { ?>
+		<?php if ( 'on' === $d_excerpt ) { ?>
 			<p class="property-heading">
 				<?php
 				if ( function_exists( 'epl_the_excerpt' ) ) {
@@ -58,24 +58,24 @@ global $property;
 		</div>
 
 		<?php
-		// Icon Options
-		if ( $icons == 'all' ) {
+		// Icon Options.
+		if ( 'all' === $icons ) {
 			?>
 			<div class="property-meta property-feature-icons"><?php epl_property_icons(); ?></div>
-		<?php } elseif ( $icons == 'bb' ) { ?>
+		<?php } elseif ( 'bb' === $icons ) { ?>
 			<div class="property-meta property-feature-icons"><?php echo epl_get_property_bb_icons(); ?></div>
 		<?php } ?>
 
 		<?php
-		// Price
-		if ( $d_price == 'on' ) {
+		// Price.
+		if ( 'on' === $d_price ) {
 			?>
 			<div class="property-meta price"><?php epl_property_price(); ?></div>
 		<?php } ?>
 
 		<?php
-		// Read More
-		if ( $d_more == 'on' ) {
+		// Read More.
+		if ( 'on' === $d_more ) {
 			?>
 			<form class="epl-property-button" action="<?php the_permalink(); ?>" method="post">
 				<input type=submit value="<?php echo $more_text; ?>" />
