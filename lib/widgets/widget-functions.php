@@ -9,7 +9,7 @@
  * @since       2.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -238,6 +238,8 @@ function epl_search_widget_fields() {
  * Number Suffix Callback
  *
  * @since 2.0
+ * @param string $v Value.
+ * @param string $suffix Suffix.
  */
 function epl_number_suffix_callback( $v, $suffix = ' +' ) {
 	return $v . '' . $suffix;
@@ -247,22 +249,20 @@ function epl_number_suffix_callback( $v, $suffix = ' +' ) {
  * Get the price slider default ranges
  *
  * @since 3.3
+ * @param string $post_type Post type.
+ * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
  */
 function epl_get_price_slider_array( $post_type = 'property', $transaction = 'default' ) {
 
-	if ( $post_type == '' ) {
-
+	if ( '' === $post_type ) {
 		$range       = range( 0, 10000000, 50000 );
 		$price_array = array_combine( $range, array_map( 'epl_currency_formatted_amount', $range ) );
 		$price_array = apply_filters( 'epl_listing_search_price_slider_global', $price_array );
-	}
-
-	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
-	elseif ( is_epl_rental_post( $post_type ) ) {
+	} elseif ( is_epl_rental_post( $post_type ) ) {
 		$range       = range( 50, 5000, 50 );
 		$price_array = array_combine( $range, array_map( 'epl_currency_formatted_amount', $range ) );
 
-		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type
+		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type.
 		$price_array = apply_filters( 'epl_listing_search_price_slider_rental', $price_array, $post_type, $transaction );
 	} else {
 		$range       = range( 50000, 10000000, 50000 );
@@ -271,31 +271,29 @@ function epl_get_price_slider_array( $post_type = 'property', $transaction = 'de
 	}
 
 	return $price_array;
-
 }
 
 /**
  * Get the price array for the price slider
  *
  * @since 3.1
+ * @param string $post_type Post type.
+ * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
  */
 function epl_get_price_array( $post_type = 'property', $transaction = 'default' ) {
 
-	if ( $post_type == '' ) {
+	if ( '' === $post_type ) {
 
 		$range = array_merge( range( 0, 1000, 50 ), range( 1100, 2000, 100 ), range( 2500, 5000, 500 ), range( 50000, 1000000, 50000 ), range( 1250000, 3000000, 250000 ), array( 4000000, 5000000, 10000000 ) );
 
 		$price_array = array_combine( $range, array_map( 'epl_currency_formatted_amount', $range ) );
 
 		$price_array = apply_filters( 'epl_listing_search_price_global', $price_array );
-	}
-
-	// the transaction param may come in handy in commerical search where we have both sale & lease commercial properties
-	elseif ( is_epl_rental_post( $post_type ) ) {
+	} elseif ( is_epl_rental_post( $post_type ) ) {
 		$range       = array_merge( range( 50, 1000, 50 ), range( 1100, 2000, 100 ), range( 2500, 5000, 500 ) );
 		$price_array = array_combine( $range, array_map( 'epl_currency_formatted_amount', $range ) );
 
-		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type
+		// the additional $post_type param passed to apply_filters will enable us to change price range for each post type.
 		$price_array = apply_filters( 'epl_listing_search_price_rental', $price_array, $post_type, $transaction );
 	} else {
 		$range       = array_merge( range( 50000, 1000000, 50000 ), range( 1250000, 3000000, 250000 ), array( 4000000, 5000000, 10000000 ) );
@@ -311,13 +309,15 @@ function epl_get_price_array( $post_type = 'property', $transaction = 'default' 
  * Get the price meta key
  *
  * @since 3.1
+ * @param string $post_type Post type.
+ * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
  */
 function epl_get_price_meta_key( $post_type = 'property', $transaction = 'default' ) {
 
-	// move from specific to general
-	if ( $post_type == 'commercial' ) {
+	// move from specific to general.
+	if ( 'commercial' === $post_type ) {
 
-		$price_meta_key = $transaction == 'lease' ? 'property_com_rent' : 'property_price';
+		$price_meta_key = 'lease' === $transaction ? 'property_com_rent' : 'property_price';
 
 	} elseif ( is_epl_rental_post( $post_type ) ) {
 
@@ -328,15 +328,18 @@ function epl_get_price_meta_key( $post_type = 'property', $transaction = 'defaul
 		$price_meta_key = 'property_price';
 	}
 
-	// use this filter to change property price meta key on the basis of post type & transaction
+	// use this filter to change property price meta key on the basis of post type & transaction.
 	return apply_filters( 'epl_price_meta_key', $price_meta_key, $post_type, $transaction );
 
 }
 
 /**
- * search widget form fields for search widget - frontend
+ * Search widget form fields for search widget - frontend
  *
  * @since 2.2
+ * @param string $post_type Post type.
+ * @param string $property_status Listing status.
+ * @param string $transaction_type Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
  */
 function epl_search_widget_fields_frontend( $post_type = '', $property_status = '', $transaction_type = 'default' ) {
 
@@ -905,7 +908,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
 					<?php echo $field['label']; ?>
 				</label>
-			</p> 
+			</p>
 			<?php
 
 			break;
@@ -924,7 +927,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					type="text"
 					value="<?php echo esc_attr( $value ); ?>"
 				/>
-			</p> 
+			</p>
 			<?php
 
 			break;
@@ -943,7 +946,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
 					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); ?>"
 					><?php echo esc_attr( $value ); ?></textarea>
-			</p> 
+			</p>
 			<?php
 
 			break;
@@ -988,7 +991,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					?>
 
 				</select>
-			</p> 
+			</p>
 			<?php
 
 			break;
