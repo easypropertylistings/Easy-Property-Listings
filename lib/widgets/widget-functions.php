@@ -886,12 +886,15 @@ function epl_search_get_defaults() {
  * Render widget field blocks -- for backend form
  *
  * @since 2.2
+ * @param array  $field Array of field type for the switch.
+ * @param array  $object Array of object.
+ * @param string $value Value.
  */
 function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 	switch ( $field['type'] ) {
 
-		// checkbox
+		// Checkbox.
 		case 'checkbox':
 			?>
 			<p>
@@ -900,7 +903,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); ?>"
 					type="checkbox"
 						<?php
-						if ( isset( $value ) && esc_attr( $value ) == 'on' ) {
+						if ( isset( $value ) && esc_attr( $value ) === 'on' ) {
 							echo 'checked="checked"';
 						}
 						?>
@@ -913,7 +916,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 			break;
 
-		// text
+		// Text.
 		case 'text':
 			?>
 			<p>
@@ -932,7 +935,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 			break;
 
-		// textarea
+		// Textarea.
 		case 'textarea':
 			?>
 			<p>
@@ -951,7 +954,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 			break;
 
-		// select
+		// Select.
 		case 'select':
 			?>
 			<p>
@@ -982,7 +985,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 							}
 						} else {
 
-							if ( isset( $value ) && $k == $value ) {
+							if ( isset( $value ) && $k === $value ) {
 								$selected = 'selected="selected"';
 							}
 						}
@@ -1002,11 +1005,16 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
  * Render widget field blocks -- for front-end form
  *
  * @since 2.2
+ * @param array  $field Array of options.
+ * @param string $config Config option.
+ * @param string $value Value.
+ * @param string $post_type Post type name.
+ * @param string $property_status Listing status.
  */
 function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 
-	if ( 'hidden' != $field['type'] && 'on' != $config ) {
-		if ( $field['key'] != 'property_status' ) {
+	if ( 'hidden' !== $field['type'] && 'on' !== $config ) {
+		if ( 'property_status' !== $field['key'] ) {
 			return;
 		}
 	}
@@ -1022,10 +1030,10 @@ function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $
  * Listings search.
  *
  * @since  2.3.1
- * @param  WP_Query $query
- * @param  array    $data       That contains epl search key value pairs and if it's empty it will replace by $_REQUEST
+ * @param  WP_Query $query      WordPress Query object.
+ * @param  array    $data       That contains epl search key value pairs and if it's empty it will replace by $_REQUEST.
  * @param  boolean  $get_posts  If set to true get_posts of WP_Query will execute on query and returns posts.
- * @return void
+ * @return Searched posts if query is set.
  */
 function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
 
@@ -1045,7 +1053,7 @@ function epl_search( WP_Query &$query, array $data = array(), $get_posts = false
  * Property Search Query
  *
  * @since  2.3.1
- * @param  WP_Query $query
+ * @param  WP_Query $query WordPress Query object.
  */
 function epl_search_pre_get_posts( $query ) {
 	if ( is_admin() || ! $query->is_main_query() ) {
@@ -1063,7 +1071,7 @@ add_action( 'pre_get_posts', 'epl_search_pre_get_posts' );
  * @since  2.3.1
  */
 function epl_is_search() {
-	if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'epl_search' ) {
+	if ( isset( $_REQUEST['action'] ) && 'epl_search' === $_REQUEST['action']  ) {
 		return true;
 	}
 	return false;
@@ -1073,6 +1081,9 @@ function epl_is_search() {
  * Get Meta Values
  *
  * @since  2.3.1
+ * @param string $key Meta key name.
+ * @param string $type Post type name.
+ * @param string $status Status type.
  */
 function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
