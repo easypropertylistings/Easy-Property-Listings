@@ -9,8 +9,10 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Outputs any commercial or business mini web links
@@ -21,31 +23,32 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since       1.0
  */
 function epl_button_mini_web() {
-	$mini_web	= get_post_meta( get_the_ID() , 'property_com_mini_web' , true );
-	$mini_web_2	= get_post_meta( get_the_ID() , 'property_com_mini_web_2' , true );
-	$mini_web_3	= get_post_meta( get_the_ID() , 'property_com_mini_web_3' , true );
+	$mini_web   = get_post_meta( get_the_ID(), 'property_com_mini_web', true );
+	$mini_web_2 = get_post_meta( get_the_ID(), 'property_com_mini_web_2', true );
+	$mini_web_3 = get_post_meta( get_the_ID(), 'property_com_mini_web_3', true );
 
 	$links = array();
-	if(!empty($mini_web)) {
+	if ( ! empty( $mini_web ) ) {
 		$links[] = $mini_web;
 	}
-	if(!empty($mini_web_2)) {
+	if ( ! empty( $mini_web_2 ) ) {
 		$links[] = $mini_web_2;
 	}
-	if(!empty($mini_web_3)) {
+	if ( ! empty( $mini_web_3 ) ) {
 		$links[] = $mini_web_3;
 	}
 
-	if ( !empty($links) ) {
-		foreach ( $links as $k=>$link ) {
-			if(!empty($link)) {
+	if ( ! empty( $links ) ) {
+		foreach ( $links as $k => $link ) {
+			if ( ! empty( $link ) ) {
 				$number_string = '';
-				if($k > 0) {
-					$number_string = ' ' . $k + 1;
+				if ( $k > 0 ) {
+					$number_string = ' ' . ( $k + 1 );
 				}
-				?><button type="button" class="epl-button epl-mini-web-link" onclick="window.open('<?php echo $link; ?>')"><?php echo apply_filters( 'epl_button_label_mini_web' , __('Mini Web ', 'easy-property-listings') ) . $number_string; ?></button><?php
+				?><button type="button" class="epl-button epl-mini-web-link" onclick="window.open('<?php echo $link; ?>')"><?php echo apply_filters( 'epl_button_label_mini_web', __( 'Mini Web ', 'easy-property-listings' ) ) . $number_string; ?></button>
+				<?php
 			}
 		}
 	}
 }
-add_action('epl_buttons_single_property', 'epl_button_mini_web');
+add_action( 'epl_buttons_single_property', 'epl_button_mini_web' );
