@@ -1590,13 +1590,12 @@ function epl_sorting_tabs() {
 	$sorters = epl_sorting_options();
 
 	global $wp;
-	$get_data 		= $_GET;
-	$get_data 		= array_map('sanitize_text_field', $get_data);
+	$get_data 	= $_GET;
+	$get_data 	= array_map('sanitize_text_field', $get_data);
 	$current_url 	= home_url(add_query_arg(array($get_data), $wp->request)); ?>
 
 	<div class="epl-loop-tool epl-tool-sorting-tabs epl-properties-sorting epl-clearfix">
 		<ul id="epl-sort-tabs-listings">
-
 			<?php
 				foreach($sorters as $sorter) {
 					$href = epl_add_or_update_params($current_url,'sortby',$sorter['id']);
@@ -1623,28 +1622,28 @@ function epl_sorting_tabs() {
  */
 function epl_add_or_update_params($url,$key,$value){
 
-    $a = parse_url($url);
-    $query = isset($a['query']) ? $a['query'] : '';
-    parse_str($query,$params);
-    $params[$key] = $value;
-    $query = http_build_query($params);
-    $result = '';
-    if($a['scheme']){
-        $result .= $a['scheme'] . ':';
-    }
-    if($a['host']){
-        $result .= '//' . $a['host'];
-    }
-    if(!empty($a['port'])){
-        $result .= ':' . $a['port'];
-    }
-    if($a['path']){
-        $result .=  $a['path'];
-    }
-    if($query){
-        $result .=  '?' . $query;
-    }
-    return $result;
+	$a = parse_url($url);
+	$query = isset($a['query']) ? $a['query'] : '';
+	parse_str($query,$params);
+	$params[$key] = $value;
+	$query = http_build_query($params);
+	$result = '';
+	if($a['scheme']){
+		$result .= $a['scheme'] . ':';
+	}
+	if($a['host']){
+		$result .= '//' . $a['host'];
+	}
+	if(!empty($a['port'])){
+		$result .= ':' . $a['port'];
+	}
+	if($a['path']){
+		$result .=  $a['path'];
+	}
+	if($query){
+		$result .=  '?' . $query;
+	}
+	return $result;
 }
 
 /**
@@ -1680,7 +1679,6 @@ function epl_archive_sorting($query) {
 					$query->set( 'order', $sorter['order'] );
 					break;
 				}
-
 			}
 		}
 	}
@@ -2800,8 +2798,8 @@ function epl_contact_capture_action() {
 	);
 
 	if (
-		! isset( $_POST['epl_contact_widget'] ) || 
-		! wp_verify_nonce( $_POST['epl_contact_widget'], 'epl_contact_widget' ) 
+		! isset( $_POST['epl_contact_widget'] ) ||
+		! wp_verify_nonce( $_POST['epl_contact_widget'], 'epl_contact_widget' )
 	) {
 	   wp_die( json_encode( $fail ) );
 	}

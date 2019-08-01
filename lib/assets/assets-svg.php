@@ -9,11 +9,13 @@
  * @since       3.2
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
- * SVG Listing Icons Loaded in Head
+ * SVG Listing Icons Loaded in Head.
  *
  * @since 3.2
  */
@@ -103,18 +105,18 @@ function epl_load_svg_listing_icons_head() {
 		</defs>
 	</svg>';
 
-	$svg_icons = apply_filters( 'epl_svg_icons' , $svg_icons );
+	$svg_icons = apply_filters( 'epl_svg_icons', $svg_icons );
 
-	// Only Load SVG icons if epl_icons_svg_listings is on
-	if ( epl_get_option('epl_icons_svg_listings') == 'on' ) {
+	// Only Load SVG icons if epl_icons_svg_listings is on.
+	if ( epl_get_option( 'epl_icons_svg_listings' ) === 'on' ) {
 		echo $svg_icons;
 	}
 
 }
-add_action('wp_head', 'epl_load_svg_listing_icons_head' , 90 );
+add_action( 'wp_head', 'epl_load_svg_listing_icons_head', 90 );
 
 /**
- * SVG Social Media Icons Loaded in Head
+ * SVG Social Media Icons Loaded in Head.
  *
  * @since 3.2
  */
@@ -257,11 +259,11 @@ function epl_load_svg_social_icons_head() {
 		</defs>
 	</svg>';
 
-	$social_icons = apply_filters( 'epl_svg_social_icons' , $social_icons );
+	$social_icons = apply_filters( 'epl_svg_social_icons', $social_icons );
 
-	// Only Load SVG icons if epl_icons_svg_author is on
-	if ( epl_get_option('epl_icons_svg_author') == 'on' ) {
+	// Only Load SVG icons if epl_icons_svg_author is on.
+	if ( epl_get_option( 'epl_icons_svg_author' ) === 'on' ) {
 		echo $social_icons;
 	}
 }
-add_action('wp_head', 'epl_load_svg_social_icons_head' , 90 );
+add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );

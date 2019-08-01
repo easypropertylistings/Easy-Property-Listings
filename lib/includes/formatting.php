@@ -256,7 +256,7 @@ add_filter( 'epl_the_excerpt' , 'epl_format_the_excerpt' );
  *
  * Keys are used as internal identifiers. Alphanumeric characters, dashes, underscores, stops, colons and slashes are allowed
  *
- * @since  3.5
+ * @since  3.3.5
  * @param  string $key String key
  * @return string Sanitized key
  */
