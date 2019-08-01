@@ -9,8 +9,10 @@
  * @since       3.3.1
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Listing Meta Doc [listing_meta_doc]
@@ -19,120 +21,121 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * [listing_meta_doc post_type="property"] OR [listing_meta_doc] for all post types.
  *
  * @since       3.3.3
+ * @param array $atts Shortcode attributes.
  */
-function epl_shortcode_listing_meta_doc_callback($atts) {
+function epl_shortcode_listing_meta_doc_callback( $atts ) {
 
-	$atts = shortcode_atts( array(
-		'post_type'	=> ''
-	), $atts );
+	$atts = shortcode_atts(
+		array(
+			'post_type' => '',
+		),
+		$atts
+	);
 
-	$meta_boxes 		= epl_get_meta_boxes();
+	$meta_boxes = epl_get_meta_boxes();
 	ob_start();
 	?>
 		<style>
 			ul.striped-list {
-			    list-style-type: none;
-			    margin: 0;
-			    padding: 0;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
 			}
 			ul.striped-list > li:nth-of-type(odd) {
-			    background-color: rgba(78, 168, 234, 0.1) ;
+				background-color: rgba(78, 168, 234, 0.1) ;
 			}
 			ul.striped-list > li {
-			    border-bottom: 1px solid rgb(221,221,221);
-			    padding: 6px;
+				border-bottom: 1px solid rgb(221,221,221);
+				padding: 6px;
 			}
 			ul.striped-list > li:last-child {
-			    border-bottom: none;
+				border-bottom: none;
 			}
 			.epl-meta-opt-list {
-			    margin-left: 35px !important;
+				margin-left: 35px !important;
 			}
 		</style>
 	<?php
-	if(!empty($meta_boxes)) {
-		foreach($meta_boxes as $epl_meta_box) {
+	if ( ! empty( $meta_boxes ) ) {
+		foreach ( $meta_boxes as $epl_meta_box ) {
 
 			$epl_meta_box['post_type'] = (array) $epl_meta_box['post_type'];
 
-			if( !empty($atts['post_type']) &&  !in_array($atts['post_type'], $epl_meta_box['post_type']) ) {
+			if ( ! empty( $atts['post_type'] ) && ! in_array( $atts['post_type'], $epl_meta_box['post_type'] ) ) {
 				continue;
 			}
 
-			// box heading
-			echo '<h4>'.$epl_meta_box['label'].'</h4>';
+			// Box heading.
+			echo '<h4>' . $epl_meta_box['label'] . '</h4>';
 
-			if(!empty($epl_meta_box['groups'])) {
-				foreach($epl_meta_box['groups'] as $group) {
+			if ( ! empty( $epl_meta_box['groups'] ) ) {
+				foreach ( $epl_meta_box['groups'] as $group ) {
 
 					echo '<div class="epl-meta-group-wrap">';
 
-					// group heading
-					if( !empty($group['label']) )
-						echo '<h4>'.$group['label'].'</h4>';
+					// Group heading.
+					if ( ! empty( $group['label'] ) ) {
+						echo '<h4>' . $group['label'] . '</h4>';
+					}
 
-	                $fields = $group['fields'];
-	                $fields = array_filter($fields);
-	                if(!empty($fields)) {
+					$fields = $group['fields'];
+					$fields = array_filter( $fields );
+					if ( ! empty( $fields ) ) {
 
-	                	echo '<ul class="striped-list epl-meta-fields-list">';
+						echo '<ul class="striped-list epl-meta-fields-list">';
 
-						foreach($fields as $field) {
+						foreach ( $fields as $field ) {
 
-							if(isset($field['exclude']) && !empty($field['exclude'])) {
-								if( !empty($atts['post_type']) && in_array($atts['post_type'], $field['exclude']) ) {
+							if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
+								if ( ! empty( $atts['post_type'] ) && in_array( $atts['post_type'], $field['exclude'] ) ) {
 									continue;
 								}
 							}
 
-							if(isset($field['include']) && !empty($field['include'])) {
-								if( !empty($atts['post_type']) &&  !in_array($atts['post_type'], $field['include']) ) {
+							if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
+								if ( ! empty( $atts['post_type'] ) && ! in_array( $atts['post_type'], $field['include'] ) ) {
 									continue;
 								}
 							}
 
 							echo '<li class="epl-meta-field-item">';
 
-							switch($field['type']) {
+							switch ( $field['type'] ) {
 
-								case 'text' :
-									echo '<strong>'.$field['name'].'</strong><span class="epl-meta-sep"> :: </span>'.$field['type'];
-								break;
+								case 'text':
+									echo '<strong>' . $field['name'] . '</strong><span class="epl-meta-sep"> :: </span>' . $field['type'];
+									break;
 
-								case 'checkbox_single' :
-									echo '<strong>'.$field['name'].'</strong><span class="epl-meta-sep"> :: </span> "yes" or "no"';
-								break;
+								case 'checkbox_single':
+									echo '<strong>' . $field['name'] . '</strong><span class="epl-meta-sep"> :: </span> "yes" or "no"';
+									break;
 
-								case 'select' :
-									echo '<strong>'.$field['name'].'</strong><span class="epl-meta-sep"> :: </span>'.$field['type'].' (drop down options) ';
+								case 'select':
+									echo '<strong>' . $field['name'] . '</strong><span class="epl-meta-sep"> :: </span>' . $field['type'] . ' (drop down options) ';
 
 									echo '<ul class="epl-meta-opt-list">';
-									foreach ($field['opts'] as $opt_key => $opt_label) {
+									foreach ( $field['opts'] as $opt_key => $opt_label ) {
 										$label = is_array( $opt_label ) ? $opt_label['label'] : $opt_label;
 										echo '<li class="epl-meta-opt-item">';
 											echo $label;
 										echo '</li>';
 									}
 									echo '</ul>';
-								break;
+									break;
 
-								default :
-									echo '<strong>'.$field['name'].'</strong><span class="epl-meta-sep"> :: </span>'.$field['type'];
-								break;
+								default:
+									echo '<strong>' . $field['name'] . '</strong><span class="epl-meta-sep"> :: </span>' . $field['type'];
+									break;
 							}
-
 							echo '</li>';
 						}
 						echo '</ul>';
-	                }
-
-	                echo '</div><hr>';
+					}
+					echo '</div><hr>';
 				}
 			}
 		}
-
 	}
-
 	return ob_get_clean();
 }
-add_shortcode('listing_meta_doc','epl_shortcode_listing_meta_doc_callback');
+add_shortcode( 'listing_meta_doc', 'epl_shortcode_listing_meta_doc_callback' );
