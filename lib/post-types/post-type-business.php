@@ -83,10 +83,10 @@ if ( is_admin() ) {
 	 * Manage Admin Business Post Type Columns: Heading.
 	 *
 	 * @since 1.0
-	 * @return void
+	 * @param array $columns Column array.
+	 * @return $columns with epl_post_type_business_admin_columns filter.
 	 */
 	function epl_manage_business_columns_heading( $columns ) {
-		global $epl_settings;
 
 		$columns = array(
 			'cb'                => '<input type="checkbox" />',
@@ -107,15 +107,16 @@ if ( is_admin() ) {
 		unset( $columns['author'] );
 		unset( $columns['comments'] );
 
-		// Geocode Column
-		$geo_debug = ! empty( $epl_settings ) && isset( $epl_settings['debug'] ) ? $epl_settings['debug'] : 0;
-		if ( $geo_debug != 1 ) {
+		// Geocode Column.
+		$geo_debug = epl_get_option( 'debug', 0 );
+		if ( 1 !== $geo_debug ) {
 			unset( $columns['geo'] );
 		}
 
-		// Listing ID Column
-		$admin_unique_id = ! empty( $epl_settings ) && isset( $epl_settings['admin_unique_id'] ) ? $epl_settings['admin_unique_id'] : 0;
-		if ( $admin_unique_id != 1 ) {
+		// Listing ID Column.
+
+		$admin_unique_id = epl_get_option( 'admin_unique_id', 0 );
+		if ( 1 !== $admin_unique_id ) {
 			unset( $columns['listing_id'] );
 		}
 
@@ -127,18 +128,20 @@ if ( is_admin() ) {
 	 * Manage Admin Business Post Type Columns: Row Contents.
 	 *
 	 * @since 1.0
+	 * @param var $column column.
+	 * @param int $post_id post id.
 	 */
 	function epl_manage_business_columns_value( $column, $post_id ) {
-		global $post,$property,$epl_settings;
+		global $post,$property;
 		switch ( $column ) {
 
-			/* If displaying the 'Featured' image column. */
+			// If displaying the 'Featured' image column.
 			case 'property_featured':
 				do_action( 'epl_manage_listing_column_featured' );
 
 				break;
 
-			/* If displaying the 'Featured' image column. */
+			// If displaying the 'Featured' image column.
 			case 'property_thumb':
 				do_action( 'epl_manage_listing_column_property_thumb_before' );
 				do_action( 'epl_manage_listing_column_property_thumb' );
@@ -147,7 +150,7 @@ if ( is_admin() ) {
 				break;
 
 			case 'listing':
-				/* Get the post meta. */
+				// Get the post meta.
 				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 				$heading                 = get_post_meta( $post_id, 'property_heading', true );
 
@@ -194,26 +197,26 @@ if ( is_admin() ) {
 						$homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 					}
 						$homeopen_list .= '</ul>';
-					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . $epl_settings['label_home_open'] . '</strong></span>' , $homeopen_list , '</div>';
+					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . epl_labels( 'label_home_open' ) . '</strong></span>' , $homeopen_list , '</div>';
 				}
 
 				do_action( 'epl_manage_business_listing_column_listing_details' );
 
 				break;
 
-			/* If displaying the 'Listing ID' column. */
+			// If displaying the 'Listing ID' column.
 			case 'listing_id':
 				do_action( 'epl_manage_listing_column_listing_id' );
 
 				break;
 
-			/* If displaying the 'Geocoding' column. */
+			// If displaying the 'Geocoding' column.
 			case 'geo':
 				do_action( 'epl_manage_listing_column_geo' );
 
 				break;
 
-			/* If displaying the 'Price' column. */
+			// If displaying the 'Price' column.
 			case 'property_price':
 				$price                = get_post_meta( $post_id, 'property_price', true );
 				$view                 = get_post_meta( $post_id, 'property_price_view', true );
@@ -223,6 +226,7 @@ if ( is_admin() ) {
 				$lease_date           = get_post_meta( $post_id, 'property_com_lease_end_date', true );
 
 				$max_price = '2000000';
+
 				if ( isset( $epl_settings['epl_max_graph_sales_price'] ) ) {
 					$max_price = (int) $epl_settings['epl_max_graph_sales_price'];
 				}
@@ -230,26 +234,26 @@ if ( is_admin() ) {
 				$property_authority = get_post_meta( $post_id, 'property_authority', true );
 				$sold_price         = get_post_meta( $post_id, 'property_sold_price', true );
 
-				if ( ! empty( $property_under_offer ) && 'yes' == $property_under_offer ) {
+				if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
 					$class = 'bar-under-offer';
-				} elseif ( $property_status == 'Current' ) {
+				} elseif ( 'Current' === $property_status ) {
 					$class = 'bar-home-open';
-				} elseif ( $property_status == 'Sold' || $property_status == 'Leased' ) {
+				} elseif ( 'Sold' === $property_status || 'Leased' === $property_status ) {
 					$class = 'bar-home-sold';
 				} else {
 					$class = '';
 				}
-				if ( $sold_price != '' ) {
-					$barwidth = $max_price == 0 ? 0 : $sold_price / $max_price * 100;
+				if ( '' !== $sold_price ) {
+					$barwidth = 0 === $max_price ? 0 : $sold_price / $max_price * 100;
 				} else {
-					$barwidth = $max_price == 0 ? 0 : $price / $max_price * 100;
+					$barwidth = 0 === $max_price ? 0 : $price / $max_price * 100;
 				}
 				echo '
 					<div class="epl-price-bar ' . $class . '">
 						<span style="width:' . $barwidth . '%"></span>
 					</div>';
 
-				if ( ! empty( $property_under_offer ) && 'yes' == $property_under_offer ) {
+				if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
 					echo '<div class="type_under_offer">' . $property->label_under_offer . '</div>';
 				}
 
@@ -269,7 +273,7 @@ if ( is_admin() ) {
 				if ( ! empty( $lease_date ) ) {
 					echo '<div class="epl_meta_lease_date">' . __( 'Lease End', 'easy-property-listings' ) . ': ' ,  $lease_date , '</div>';
 				}
-				if ( $property_authority == 'auction' ) {
+				if ( 'auction' === $property_authority ) {
 					_e( 'Auction ', 'easy-property-listings' );
 
 					echo '<br>' . $property->get_property_auction( true );
@@ -277,19 +281,19 @@ if ( is_admin() ) {
 
 				break;
 
-			/* If displaying the 'Commercial Listing Type' column. */
+			// If displaying the 'Commercial Listing Type' column.
 			case 'listing_type':
-				/* Get the post meta. */
+				// Get the post meta.
 				$listing_type = get_post_meta( $post_id, 'property_com_listing_type', true );
 
-				/* If no duration is found, output a default message. */
+				// If no duration is found, output a default message.
 				if ( ! empty( $listing_type ) ) {
 					echo $listing_type;
 				}
 
 				break;
 
-			/* If displaying the 'property_status' column. */
+			// If displaying the 'property_status' column.
 			case 'property_status':
 				do_action( 'epl_manage_listing_column_property_status' );
 
@@ -300,7 +304,7 @@ if ( is_admin() ) {
 
 				break;
 
-			/* Just break out of the switch statement for everything else. */
+			// Just break out of the switch statement for everything else.
 			default:
 				break;
 		}
@@ -312,6 +316,7 @@ if ( is_admin() ) {
 	 * Manage Business Columns Sorting
 	 *
 	 * @since 1.0
+	 * @param array $columns Column array.
 	 */
 	function epl_manage_business_sortable_columns( $columns ) {
 		$columns['property_status'] = 'property_status';
