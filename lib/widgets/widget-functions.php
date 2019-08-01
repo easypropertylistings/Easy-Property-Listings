@@ -1268,6 +1268,7 @@ function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
  * Contacts widget form functions
  *
  * @since  3.0
+ * @param  array $atts Array of attributes.
  */
 function epl_contact_capture_get_widget_fields( $atts ) {
 	$property_id = 0;
@@ -1340,12 +1341,12 @@ function epl_contact_capture_get_widget_fields( $atts ) {
 			'data-default' => 'on',
 		),
 	);
-	/** allow additional fields */
+	// Allow additional fields.
 	$all_fields = apply_filters( 'epl_contact_capture_get_widget_fields', $fields );
-	/** filter fields based on attributes */
+	// Filter fields based on attributes.
 	foreach ( $all_fields as $field_key => &$field ) {
 
-		if ( isset( $atts[ $field['name'] ] ) && $atts[ $field['name'] ] != 'on' ) {
+		if ( isset( $atts[ $field['name'] ] ) && 'on' !== $atts[ $field['name'] ] ) {
 			unset( $all_fields[ $field_key ] );
 		} else {
 			$field['data-default'] = 'on';
@@ -1363,8 +1364,8 @@ function epl_contact_capture_get_widget_defaults() {
 	$fields   = epl_contact_capture_widget_form_fields();
 	$defaults = array();
 	foreach ( $fields as $field ) {
-		if ( $field['type'] == 'checkbox' ) {
-			$defaults[ $field['key'] ] = ( isset( $field['default'] ) && $field['default'] == 'off' ) ? 'off' : 'on';
+		if ( 'checkbox' === $field['type'] ) {
+			$defaults[ $field['key'] ] = ( isset( $field['default'] ) && 'off' === $field['default'] ) ? 'off' : 'on';
 		} else {
 			$defaults[ $field['key'] ] = isset( $field['default'] ) ? $field['default'] : '';
 		}
