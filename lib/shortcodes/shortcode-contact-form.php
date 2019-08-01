@@ -70,8 +70,8 @@ add_shortcode( 'listing_contact', 'epl_contact_capture_form' );
  * Contact Form Callback
  *
  * @since 3.0
- * @param array $form_data
- * @param array $request
+ * @param array $form_data Array of form data.
+ * @param array $request Request from url for antispam check.
  */
 function epl_contact_capture_form_callback( $form_data, $request ) {
 
