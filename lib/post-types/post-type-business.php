@@ -248,7 +248,7 @@ if ( is_admin() ) {
 					</div>';
 
 				if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
-					echo '<div class="type_under_offer">' . epl_labels('label_under_offer') . '</div>';
+					echo '<div class="type_under_offer">' . epl_labels( 'label_under_offer' ) . '</div>';
 				}
 
 				if ( empty( $view ) ) {
