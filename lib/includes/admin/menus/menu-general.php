@@ -9,14 +9,13 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
 $fields = epl_get_admin_option_fields();
-if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'epl_settings' ) {
+if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 
 	if (
 		! isset( $_POST['epl_nonce_settings_form'] ) ||
@@ -30,11 +29,11 @@ if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'epl_settings' ) {
 			$field_group['fields'] = array_filter( $field_group['fields'] );
 			foreach ( $field_group['fields'] as $field ) {
 
-				if ( $field['type'] == 'help' ) {
+				if ( 'help' === $field['type'] ) {
 					continue;
 				}
 
-				if ( $field['type'] == 'radio' || $field['type'] == 'checkbox' || $field['type'] == 'checkbox_single' || $field['type'] == 'checkbox_option' ) {
+				if ( 'radio' === $field['type'] || 'checkbox' === $field['type'] || 'checkbox_single' === $field['type'] || 'checkbox_option' === $field['type'] ) {
 
 					if ( ! isset( $_REQUEST[ $field['name'] ] ) ) {
 
@@ -49,7 +48,7 @@ if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'epl_settings' ) {
 					}
 				}
 
-				if ( $field['type'] == 'text' ) {
+				if ( 'text' === $field['type'] ) {
 					if ( isset( $_REQUEST[ $field['name'] ] ) ) {
 						$_REQUEST[ $field['name'] ] = sanitize_text_field( $_REQUEST[ $field['name'] ] );
 					}
@@ -57,7 +56,7 @@ if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'epl_settings' ) {
 				$epl_settings = get_option( 'epl_settings' );
 
 				if ( isset( $field['default'] ) && ! in_array( $field['type'], array( 'checkbox_single', 'checkbox_option' ) ) ) {
-					if ( ! isset( $_REQUEST[ $field['name'] ] ) || $_REQUEST[ $field['name'] ] == '' ) {
+					if ( ! isset( $_REQUEST[ $field['name'] ] ) || '' === $_REQUEST[ $field['name'] ] ) {
 						$_REQUEST[ $field['name'] ] = $field['default'];
 					}
 				}
@@ -71,7 +70,7 @@ if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'epl_settings' ) {
 
 global $epl_settings;
 
-// get the latest saved settings
+// Get the latest saved settings. Needs re-write.
 $epl_settings = get_option( 'epl_settings' );
 ?>
 
@@ -95,7 +94,7 @@ $epl_settings = get_option( 'epl_settings' );
 									if ( ! empty( $field_group['label'] ) ) {
 										?>
 										<!--<div class="handlediv" title="Click to toggle"><br></div>-->
-										<h3 class="hndle ui-sortable-handle epl-section-title"><?php _e( esc_html( $field_group['label'] ), 'easy-property-listings' ); ?></h3>
+										<h3 class="hndle ui-sortable-handle epl-section-title"><?php echo esc_html( $field_group['label'] ); ?></h3>
 										<?php
 									}
 									?>
@@ -105,7 +104,8 @@ $epl_settings = get_option( 'epl_settings' );
 											<p>
 											<?php
 											if ( isset( $field_group['help'] ) ) {
-												_e( wp_kses_post( $field_group['help'] ), 'easy-property-listings' );}
+												echo wp_kses_post( $field_group['help'] );
+											}
 											?>
 											</p>
 											<?php
@@ -117,13 +117,13 @@ $epl_settings = get_option( 'epl_settings' );
 											?>
 											<div class="epl-field-wrapper epl-clearfix">
 												<div class="epl-field">
-													<?php if ( $field['type'] != 'help' ) { ?>
+													<?php if ( 'help' !== $field['type'] ) { ?>
 													<div class="epl-half-left">
-														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php _e( esc_html( $field['label'] ), 'easy-property-listings' ); ?></h4>
+														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php echo esc_html( $field['label']; ?></h4>
 
 													</div>
 													<?php } ?>
-													<div class="<?php echo $field['type'] == 'help' ? 'epl-full' : 'epl-half-right'; ?>">
+													<div class="<?php echo 'help' === $field['type'] ? 'epl-full' : 'epl-half-right'; ?>">
 														<?php
 															$val = '';
 														if ( isset( $epl_settings[ $field['name'] ] ) ) {
