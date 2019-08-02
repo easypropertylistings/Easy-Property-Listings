@@ -9,33 +9,39 @@
  * @since       3.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Show report graphs
  *
  * @since 3.0
+ * @param string $sold_status Listing sold status.
+ * @param string $current_status Listing current status.
+ * @param string $sold_color Listing sold hex color.
+ * @param string $current_color Listing current hex color.
  * @return void
-*/
-function epl_reports_graph($sold_status='sold',$current_status='current',$sold_color=null,$current_color=null) {
-	// Retrieve the queried dates
+ */
+function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', $sold_color = null, $current_color = null ) {
+	// Retrieve the queried dates.
 	$dates = epl_get_report_dates();
 
-	// Determine graph options
+	// Determine graph options.
 	switch ( $dates['range'] ) :
-		case 'today' :
-		case 'yesterday' :
-			$day_by_day	= true;
+		case 'today':
+		case 'yesterday':
+			$day_by_day = true;
 			break;
-		case 'last_year' :
-		case 'this_year' :
-		case 'last_quarter' :
-		case 'this_quarter' :
+		case 'last_year':
+		case 'this_year':
+		case 'last_quarter':
+		case 'this_quarter':
 			$day_by_day = false;
 			break;
-		case 'other' :
-			if( $dates['m_end'] - $dates['m_start'] >= 2 || $dates['year_end'] > $dates['year'] && ( $dates['m_start'] != '12' && $dates['m_end'] != '1' ) ) {
+		case 'other':
+			if ( $dates['m_end'] - $dates['m_start'] >= 2 || $dates['year_end'] > $dates['year'] && ( '12' !== $dates['m_start'] && '1' !== $dates['m_end'] ) ) {
 				$day_by_day = false;
 			} else {
 				$day_by_day = true;
@@ -46,37 +52,36 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 			break;
 	endswitch;
 
-	$current_listings_totals = 0.00; // Total current_listings for time period shown
-	$sales_totals    = 0;    // Total sales for time period shown
+	$current_listings_totals = 0.00; // Total current_listings for time period shown.
+	$sales_totals            = 0;    // Total sales for time period shown.
 
 	$listings_data = array();
 	$sales_data    = array();
 
-	if( $dates['range'] == 'today' || $dates['range'] == 'yesterday' ) {
-		// Hour by hour
+	if ( 'today' === $dates['range'] || 'yesterday' === $dates['range'] ) {
+		// Hour by hour.
 		$hour  = 1;
 		$month = $dates['m_start'];
 		while ( $hour <= 23 ) {
 
-			$sales    = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour,$sold_status,$day_by_day );
-			$current_listings = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour,$current_status,$day_by_day );
+			$sales            = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour, $sold_status, $day_by_day );
+			$current_listings = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour, $current_status, $day_by_day );
 
 			$sales_totals    += $sales;
 			$listings_totals += $current_listings;
 
-			$date            = mktime( $hour, 0, 0, $month, $dates['day'], $dates['year'] ) * 1000;
-			$sales_data[]    = array( $date, $sales );
+			$date                    = mktime( $hour, 0, 0, $month, $dates['day'], $dates['year'] ) * 1000;
+			$sales_data[]            = array( $date, $sales );
 			$current_listings_data[] = array( $date, $current_listings );
 
 			$hour++;
 		}
-
-	} elseif ( $dates['range'] == 'this_week' || $dates['range'] == 'last_week' ) {
+	} elseif ( 'this_week' === $dates['range'] || 'last_week' === $dates['range'] ) {
 
 		$num_of_days = cal_days_in_month( CAL_GREGORIAN, $dates['m_start'], $dates['year'] );
 
 		$report_dates = array();
-		$i = 0;
+		$i            = 0;
 		while ( $i <= 6 ) {
 
 			if ( ( $dates['day'] + $i ) <= $num_of_days ) {
@@ -97,33 +102,32 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 		}
 
 		foreach ( $report_dates as $report_date ) {
-			$sales = epl_get_sales_by_date( $report_date['day'], $report_date['month'], $report_date['year'],$sold_status,$day_by_day );
+			$sales         = epl_get_sales_by_date( $report_date['day'], $report_date['month'], $report_date['year'], $sold_status, $day_by_day );
 			$sales_totals += $sales;
 
-			$current_listings        = epl_get_sales_by_date( $report_date['day'], $report_date['month'], $report_date['year'] , null, $current_status,$day_by_day );
+			$current_listings         = epl_get_sales_by_date( $report_date['day'], $report_date['month'], $report_date['year'], null, $current_status, $day_by_day );
 			$current_listings_totals += $current_listings;
 
-			$date            = mktime( 0, 0, 0,  $report_date['month'], $report_date['day'], $report_date['year']  ) * 1000;
-			$sales_data[]    = array( $date, $sales );
+			$date                    = mktime( 0, 0, 0, $report_date['month'], $report_date['day'], $report_date['year'] ) * 1000;
+			$sales_data[]            = array( $date, $sales );
 			$current_listings_data[] = array( $date, $current_listings );
 		}
-
 	} else {
 
 		$y = $dates['year'];
 
-		while( $y <= $dates['year_end'] ) {
+		while ( $y <= $dates['year_end'] ) {
 
 			$last_year = false;
 
-			if( $dates['year'] == $dates['year_end'] ) {
+			if ( $dates['year'] === $dates['year_end'] ) {
 				$month_start = $dates['m_start'];
 				$month_end   = $dates['m_end'];
 				$last_year   = true;
-			} elseif( $y == $dates['year'] ) {
+			} elseif ( $y === $dates['year'] ) {
 				$month_start = $dates['m_start'];
 				$month_end   = 12;
-			} elseif ( $y == $dates['year_end'] ) {
+			} elseif ( $y === $dates['year_end'] ) {
 				$month_start = 01;
 				$month_end   = $dates['m_end'];
 			} else {
@@ -138,7 +142,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 
 					$d = $dates['day'];
 
-					if( $i == $month_end ) {
+					if ( $i === $month_end ) {
 
 						$num_of_days = $dates['day_end'];
 
@@ -147,40 +151,35 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 							$d = 1;
 
 						}
-
 					} else {
 
 						$num_of_days = cal_days_in_month( CAL_GREGORIAN, $i, $y );
 
 					}
 
-
-
-
 					while ( $d <= $num_of_days ) {
 
-						$sales = epl_get_sales_by_date( $d, $i, $y,null,$sold_status,$day_by_day );
+						$sales         = epl_get_sales_by_date( $d, $i, $y, null, $sold_status, $day_by_day );
 						$sales_totals += $sales;
 
-						$current_listings = epl_get_sales_by_date( $d, $i, $y, null, $current_status,$day_by_day );
+						$current_listings         = epl_get_sales_by_date( $d, $i, $y, null, $current_status, $day_by_day );
 						$current_listings_totals += $current_listings;
 
-						$date = mktime( 0, 0, 0, $i, $d, $y ) * 1000;
-						$sales_data[] = array( $date, $sales );
+						$date                    = mktime( 0, 0, 0, $i, $d, $y ) * 1000;
+						$sales_data[]            = array( $date, $sales );
 						$current_listings_data[] = array( $date, $current_listings );
 						$d++;
 
 					}
-
 				} else {
 
-					$sales = epl_get_sales_by_date( null, $i, $y, null, $sold_status,$day_by_day );
+					$sales         = epl_get_sales_by_date( null, $i, $y, null, $sold_status, $day_by_day );
 					$sales_totals += $sales;
 
-					$current_listings = epl_get_sales_by_date( null, $i, $y, null, $current_status,$day_by_day );
+					$current_listings         = epl_get_sales_by_date( null, $i, $y, null, $current_status, $day_by_day );
 					$current_listings_totals += $current_listings;
 
-					if( $i == $month_end && $last_year ) {
+					if ( $i === $month_end && $last_year ) {
 
 						$num_of_days = cal_days_in_month( CAL_GREGORIAN, $i, $y );
 
@@ -190,8 +189,8 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 
 					}
 
-					$date = mktime( 0, 0, 0, $i, $num_of_days, $y ) * 1000;
-					$sales_data[] = array( $date, $sales );
+					$date                    = mktime( 0, 0, 0, $i, $num_of_days, $y ) * 1000;
+					$sales_data[]            = array( $date, $sales );
 					$current_listings_data[] = array( $date, $current_listings );
 
 				}
@@ -202,32 +201,31 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 
 			$y++;
 		}
-
 	}
 
 	$data = array(
-		$current_status	=>	array(
-			'label'	=>	__( ucfirst($current_status), 'easy-property-listings'  ),
-			'id'	=>	$current_status,
-			'data'	=>	$current_listings_data
+		$current_status => array(
+			'label' => ucfirst( $current_status ),
+			'id'    => $current_status,
+			'data'  => $current_listings_data,
 		),
-		$sold_status	=>	array(
-			'label'	=>	__( ucfirst($sold_status), 'easy-property-listings'  ),
-			'id'	=>	$current_status,
-			'data'	=>	$sales_data
-		)
+		$sold_status    => array(
+			'label' => ucfirst( $sold_status ),
+			'id'    => $current_status,
+			'data'  => $sales_data,
+		),
 	);
 
-	! is_null($sold_color) ? $data[$sold_status]['color'] = $sold_color : null;
-	! is_null($current_color) ? $data[$current_status]['color'] = $current_color : null;
+	! is_null( $sold_color ) ? $data[ $sold_status ]['color']       = $sold_color : null;
+	! is_null( $current_color ) ? $data[ $current_status ]['color'] = $current_color : null;
 
-	// start our own output buffer
+	// Start our own output buffer.
 	ob_start();
 	?>
 	<div id="epl-dashboard-widgets-wrap">
 		<div class="metabox-holder" style="padding-top: 0;">
 			<div class="postbox">
-				<h3><span><?php _e('Listings Over Time','easy-property-listings'  ); ?></span></h3>
+				<h3><span><?php _e( 'Listings Over Time', 'easy-property-listings' ); ?></span></h3>
 
 				<div class="inside">
 					<?php
@@ -242,7 +240,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								_e( 'Total '.ucfirst($current_status).' listings for period shown: ', 'easy-property-listings'  );
+								_e( 'Total ' . ucfirst( $current_status ) . ' listings for period shown: ', 'easy-property-listings' );
 								echo epl_format_amount( $current_listings_totals );
 							?>
 						</strong>
@@ -250,7 +248,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								_e( 'Total '.ucfirst($sold_status).' listings for period shown: ', 'easy-property-listings'  );
+								_e( 'Total ' . ucfirst( $sold_status ) . ' listings for period shown: ', 'easy-property-listings' );
 								echo epl_format_amount( $sales_totals );
 							?>
 						</strong>
@@ -264,7 +262,7 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
 		</div>
 	</div>
 	<?php
-	// get output buffer contents and end our own buffer
+	// Get output buffer contents and end our own buffer.
 	$output = ob_get_contents();
 	ob_end_clean();
 
@@ -276,13 +274,13 @@ function epl_reports_graph($sold_status='sold',$current_status='current',$sold_c
  *
  * @since 3.3.3
  *
- * @param $data
+ * @param array $data Date data.
  */
-function epl_parse_report_dates($data) {
+function epl_parse_report_dates( $data ) {
 
 	$dates = epl_get_report_dates();
 	$view  = epl_get_reporting_view();
-	wp_redirect( add_query_arg( $dates, admin_url( 'admin.php?page=epl-reports&view='. esc_attr( $view ) ) ) );
+	wp_redirect( add_query_arg( $dates, admin_url( 'admin.php?page=epl-reports&view=' . esc_attr( $view ) ) ) );
 
 }
 add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
@@ -292,27 +290,30 @@ add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
  *
  * @since 3.0
  * @return void
-*/
+ */
 function epl_reports_graph_controls() {
-	$date_options = apply_filters( 'epl_report_date_options', array(
-		'today'        => __( 'Today', 'easy-property-listings'  ),
-		'yesterday'    => __( 'Yesterday', 'easy-property-listings'  ),
-		'this_week'    => __( 'This Week', 'easy-property-listings'  ),
-		'last_week'    => __( 'Last Week', 'easy-property-listings'  ),
-		'this_month'   => __( 'This Month', 'easy-property-listings'  ),
-		'last_month'   => __( 'Last Month', 'easy-property-listings'  ),
-		'this_quarter' => __( 'This Quarter', 'easy-property-listings'  ),
-		'last_quarter' => __( 'Last Quarter', 'easy-property-listings'  ),
-		'this_year'    => __( 'This Year', 'easy-property-listings'  ),
-		'last_year'    => __( 'Last Year', 'easy-property-listings'  ),
-		'other'        => __( 'Custom', 'easy-property-listings'  )
-	) );
+	$date_options = apply_filters(
+		'epl_report_date_options',
+		array(
+			'today'        => __( 'Today', 'easy-property-listings' ),
+			'yesterday'    => __( 'Yesterday', 'easy-property-listings' ),
+			'this_week'    => __( 'This Week', 'easy-property-listings' ),
+			'last_week'    => __( 'Last Week', 'easy-property-listings' ),
+			'this_month'   => __( 'This Month', 'easy-property-listings' ),
+			'last_month'   => __( 'Last Month', 'easy-property-listings' ),
+			'this_quarter' => __( 'This Quarter', 'easy-property-listings' ),
+			'last_quarter' => __( 'Last Quarter', 'easy-property-listings' ),
+			'this_year'    => __( 'This Year', 'easy-property-listings' ),
+			'last_year'    => __( 'Last Year', 'easy-property-listings' ),
+			'other'        => __( 'Custom', 'easy-property-listings' ),
+		)
+	);
 
 	$dates   = epl_get_report_dates();
-	$display = $dates['range'] == 'other' ? '' : 'style="display:none;"';
+	$display = 'other' === $dates['range'] ? '' : 'style="display:none;"';
 	$view    = epl_get_reporting_view();
 
-	if( empty( $dates['day_end'] ) ) {
+	if ( empty( $dates['day_end'] ) ) {
 		$dates['day_end'] = cal_days_in_month( CAL_GREGORIAN, date( 'n' ), date( 'Y' ) );
 	}
 
@@ -331,7 +332,7 @@ function epl_reports_graph_controls() {
 				</select>
 
 				<div id="epl-date-range-options" <?php echo $display; ?>>
-					<span><?php _e( 'From', 'easy-property-listings'  ); ?>&nbsp;</span>
+					<span><?php _e( 'From', 'easy-property-listings' ); ?>&nbsp;</span>
 					<select id="epl-graphs-month-start" name="m_start">
 						<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_start'] ); ?>><?php echo epl_month_num_to_name( $i ); ?></option>
@@ -347,7 +348,7 @@ function epl_reports_graph_controls() {
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['year'] ); ?>><?php echo $i; ?></option>
 						<?php endfor; ?>
 					</select>
-					<span><?php _e( 'To', 'easy-property-listings'  ); ?>&nbsp;</span>
+					<span><?php _e( 'To', 'easy-property-listings' ); ?>&nbsp;</span>
 					<select id="epl-graphs-month-end" name="m_end">
 						<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_end'] ); ?>><?php echo epl_month_num_to_name( $i ); ?></option>
@@ -367,7 +368,7 @@ function epl_reports_graph_controls() {
 
 				<div class="epl-graph-filter-submit graph-option-section">
 					<input type="hidden" name="epl_action" value="filter_reports" />
-					<input type="submit" class="button-secondary" value="<?php _e( 'Filter', 'easy-property-listings'  ); ?>"/>
+					<input type="submit" class="button-secondary" value="<?php _e( 'Filter', 'easy-property-listings' ); ?>"/>
 				</div>
 			</div>
 		</div>
@@ -383,38 +384,37 @@ function epl_reports_graph_controls() {
  *
  * @since 3.0
  * @return array
-*/
+ */
 function epl_get_report_dates() {
 	$dates = array();
 
 	$current_time = current_time( 'timestamp' );
 
-	$dates['range']      = isset( $_GET['range'] )   ? sanitize_text_field( $_GET['range']  )  : 'this_month';
+	$dates['range'] = isset( $_GET['range'] ) ? sanitize_text_field( $_GET['range'] ) : 'this_month';
 
 	if ( 'custom' !== $dates['range'] ) {
-		$dates['year']       = isset( $_GET['year'] )    ? sanitize_text_field( $_GET['year']  )    : date( 'Y' );
-		$dates['year_end']   = isset( $_GET['year_end'] )? sanitize_text_field( $_GET['year_end']  ): date( 'Y' );
-		$dates['m_start']    = isset( $_GET['m_start'] ) ? sanitize_text_field( $_GET['m_start']  ) : 1;
-		$dates['m_end']      = isset( $_GET['m_end'] )   ? sanitize_text_field( $_GET['m_end']  )   : 12;
-		$dates['day']        = isset( $_GET['day'] )     ? sanitize_text_field( $_GET['day']  )     : 1;
-		$dates['day_end']    = isset( $_GET['day_end'] ) ? sanitize_text_field( $_GET['day_end']  ) : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
+		$dates['year']     = isset( $_GET['year'] ) ? sanitize_text_field( $_GET['year'] ) : date( 'Y' );
+		$dates['year_end'] = isset( $_GET['year_end'] ) ? sanitize_text_field( $_GET['year_end'] ) : date( 'Y' );
+		$dates['m_start']  = isset( $_GET['m_start'] ) ? sanitize_text_field( $_GET['m_start'] ) : 1;
+		$dates['m_end']    = isset( $_GET['m_end'] ) ? sanitize_text_field( $_GET['m_end'] ) : 12;
+		$dates['day']      = isset( $_GET['day'] ) ? sanitize_text_field( $_GET['day'] ) : 1;
+		$dates['day_end']  = isset( $_GET['day_end'] ) ? sanitize_text_field( $_GET['day_end'] ) : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
 	}
 
-
-	// Modify dates based on predefined ranges
+	// Modify dates based on predefined ranges.
 	switch ( $dates['range'] ) :
 
-		case 'this_month' :
+		case 'this_month':
 			$dates['m_start']  = date( 'n', $current_time );
 			$dates['m_end']    = date( 'n', $current_time );
 			$dates['day']      = 1;
 			$dates['day_end']  = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
 			$dates['year']     = date( 'Y' );
 			$dates['year_end'] = date( 'Y' );
-		break;
+			break;
 
-		case 'last_month' :
-			if( date( 'n' ) == 1 ) {
+		case 'last_month':
+			if ( date( 'n' ) === 1 ) {
 				$dates['m_start']  = 12;
 				$dates['m_end']    = 12;
 				$dates['year']     = date( 'Y', $current_time ) - 1;
@@ -425,31 +425,30 @@ function epl_get_report_dates() {
 				$dates['year_end'] = $dates['year'];
 			}
 			$dates['day_end'] = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
-		break;
+			break;
 
-		case 'today' :
+		case 'today':
 			$dates['day']     = date( 'd', $current_time );
 			$dates['m_start'] = date( 'n', $current_time );
 			$dates['m_end']   = date( 'n', $current_time );
 			$dates['year']    = date( 'Y', $current_time );
-		break;
+			break;
 
-		case 'yesterday' :
-
+		case 'yesterday':
 			$year  = date( 'Y', $current_time );
 			$month = date( 'n', $current_time );
 			$day   = date( 'd', $current_time );
 
-			if ( $month == 1 && $day == 1 ) {
+			if ( 1 === $month && 1 === $day ) {
 
-				$year  -= 1;
+				$year -= 1;
 				$month = 12;
 				$day   = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
-			} elseif ( $month > 1 && $day == 1 ) {
+			} elseif ( $month > 1 && 1 === $day ) {
 
 				$month -= 1;
-				$day   = cal_days_in_month( CAL_GREGORIAN, $month, $year );
+				$day    = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
 			} else {
 
@@ -457,75 +456,74 @@ function epl_get_report_dates() {
 
 			}
 
-			$dates['day']       = $day;
-			$dates['m_start']   = $month;
-			$dates['m_end']     = $month;
-			$dates['year']      = $year;
-			$dates['year_end']  = $year;
-		break;
+			$dates['day']      = $day;
+			$dates['m_start']  = $month;
+			$dates['m_end']    = $month;
+			$dates['year']     = $year;
+			$dates['year_end'] = $year;
+			break;
 
-		case 'this_week' :
-		case 'last_week' :
-			$base_time = $dates['range'] === 'this_week' ? current_time( 'mysql' ) : date( 'Y-n-d h:i:s', current_time( 'timestamp' ) - WEEK_IN_SECONDS );
+		case 'this_week':
+		case 'last_week':
+			$base_time = 'this_week' === $dates['range'] ? current_time( 'mysql' ) : date( 'Y-n-d h:i:s', current_time( 'timestamp' ) - WEEK_IN_SECONDS );
 			$start_end = get_weekstartend( $base_time, get_option( 'start_of_week' ) );
 
-			$dates['day']      = date( 'd', $start_end['start'] );
-			$dates['m_start']  = date( 'n', $start_end['start'] );
-			$dates['year']     = date( 'Y', $start_end['start'] );
+			$dates['day']     = date( 'd', $start_end['start'] );
+			$dates['m_start'] = date( 'n', $start_end['start'] );
+			$dates['year']    = date( 'Y', $start_end['start'] );
 
 			$dates['day_end']  = date( 'd', $start_end['end'] );
 			$dates['m_end']    = date( 'n', $start_end['end'] );
 			$dates['year_end'] = date( 'Y', $start_end['end'] );
-		break;
+			break;
 
-		case 'this_quarter' :
-
-			$month_now 		= date( 'n', $current_time );
-			$dates['year']     	= date( 'Y', $current_time );
-			$dates['year_end'] 	= $dates['year'];
+		case 'this_quarter':
+			$month_now         = date( 'n', $current_time );
+			$dates['year']     = date( 'Y', $current_time );
+			$dates['year_end'] = $dates['year'];
 
 			if ( $month_now <= 3 ) {
 
 				$dates['m_start'] = 1;
 				$dates['m_end']   = 4;
 
-			} else if ( $month_now <= 6 ) {
+			} elseif ( $month_now <= 6 ) {
 
 				$dates['m_start'] = 4;
 				$dates['m_end']   = 7;
 
-			} else if ( $month_now <= 9 ) {
+			} elseif ( $month_now <= 9 ) {
 
 				$dates['m_start'] = 7;
 				$dates['m_end']   = 10;
 
 			} else {
 
-				$dates['m_start']  = 10;
-				$dates['m_end']    = 1;
+				$dates['m_start'] = 10;
+				$dates['m_end']   = 1;
 			}
 
 			$dates['day']     = 1;
 			$dates['day_end'] = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
 
-		break;
+			break;
 
-		case 'last_quarter' :
+		case 'last_quarter':
 			$month_now = date( 'n' );
 
 			if ( $month_now <= 3 ) {
 
-				$dates['m_start']  = 10;
-				$dates['m_end']    = 12;
-				$dates['year']     = date( 'Y', $current_time ) - 1; // Previous year
+				$dates['m_start'] = 10;
+				$dates['m_end']   = 12;
+				$dates['year']    = date( 'Y', $current_time ) - 1; // Previous year.
 
-			} else if ( $month_now <= 6 ) {
+			} elseif ( $month_now <= 6 ) {
 
 				$dates['m_start'] = 1;
 				$dates['m_end']   = 3;
 				$dates['year']    = date( 'Y', $current_time );
 
-			} else if ( $month_now <= 9 ) {
+			} elseif ( $month_now <= 9 ) {
 
 				$dates['m_start'] = 4;
 				$dates['m_end']   = 6;
@@ -540,29 +538,27 @@ function epl_get_report_dates() {
 			}
 
 			$dates['day']      = 1;
-			$dates['day_end']  = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'],  $dates['year'] );
+			$dates['day_end']  = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
 			$dates['year_end'] = $dates['year'];
 
-		break;
+			break;
 
-		case 'this_year' :
-
+		case 'this_year':
 			$dates['day']      = 1;
 			$dates['m_start']  = 1;
 			$dates['m_end']    = 12;
 			$dates['year']     = date( 'Y', $current_time );
 			$dates['year_end'] = $dates['year'];
 
-		break;
+			break;
 
-		case 'last_year' :
-
+		case 'last_year':
 			$dates['day']      = 1;
 			$dates['m_start']  = 1;
 			$dates['m_end']    = 12;
 			$dates['year']     = date( 'Y', $current_time ) - 1;
 			$dates['year_end'] = date( 'Y', $current_time ) - 1;
-		break;
+			break;
 
 	endswitch;
 
