@@ -39,7 +39,8 @@ function epl_get_author_meta() {
  */
 function epl_the_property_address( $post_ID = '' ) {
 	$address = epl_get_property_address( $post_ID );
-	echo apply_filters( 'epl_the_property_address_filter', $address );
+	$address = apply_filters( 'epl_the_property_address_filter', $address );
+	echo esc_attr( $address );
 }
 
 /**
@@ -161,10 +162,11 @@ function epl_property_blog_default() {
 
 	global $property,$epl_settings;
 	$property_status = $property->get_property_meta( 'property_status' );
+
 	// Status Removal Do Not Display Withdrawn or OffMarket listings.
-	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
+	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
-	} else {
+
 		$option = '';
 		if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_property_card_style'] ) ) {
 			$option = $epl_settings['epl_property_card_style'];
@@ -176,7 +178,7 @@ function epl_property_blog_default() {
 		} else {
 			epl_get_template_part( 'loop-listing-blog-default.php' );
 		}
-	} // End Status Removal
+	}
 }
 
 /**
@@ -192,9 +194,9 @@ function epl_property_blog_slim() {
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal.
-	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
+	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
-	} else {
+
 		$option = '';
 		if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_property_card_style'] ) ) {
 			$option = $epl_settings['epl_property_card_style'];
@@ -206,7 +208,7 @@ function epl_property_blog_slim() {
 		} else {
 			epl_get_template_part( 'loop-listing-blog-slim.php' );
 		}
-	} // End Status Removal.
+	}
 }
 
 /**
@@ -221,9 +223,9 @@ function epl_property_blog_table() {
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal.
-	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
+	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
-	} else {
+
 		$option = '';
 		if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_property_card_style'] ) ) {
 			$option = $epl_settings['epl_property_card_style'];
@@ -235,7 +237,7 @@ function epl_property_blog_table() {
 		} else {
 			epl_get_template_part( 'loop-listing-blog-table.php' );
 		}
-	} // End Status Removal.
+	}
 }
 
 /**
@@ -252,9 +254,8 @@ function epl_property_blog_table_open() {
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal.
-	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
+	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
-	} else {
 		$option = '';
 		if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_property_card_style'] ) ) {
 			$option = $epl_settings['epl_property_card_style'];
@@ -266,7 +267,7 @@ function epl_property_blog_table_open() {
 		} else {
 			epl_get_template_part( 'loop-listing-blog-table-open.php' );
 		}
-	} // End Status Removal.
+	}
 }
 
 /**
@@ -350,9 +351,9 @@ function epl_property_sold_leased() {
 	if ( $query->have_posts() ) { ?>
 		<div class="epl-tab-section epl-tab-section-listing-history">
 			<?php if ( 'property' === $post_type || 'land' === $post_type || 'rural' === $post_type ) { ?>
-				<h5 class="epl-tab-title epl-tab-title-sales tab-title"><?php _e( 'Recently Sold', 'easy-property-listings' ); ?></h5>
+				<h5 class="epl-tab-title epl-tab-title-sales tab-title"><?php esc_html_e( 'Recently Sold', 'easy-property-listings' ); ?></h5>
 			<?php } else { ?>
-				<h5 class="epl-tab-title epl-tab-title-leased tab-title"><?php _e( 'Recently Leased', 'easy-property-listings' ); ?></h5>
+				<h5 class="epl-tab-title epl-tab-title-leased tab-title"><?php esc_html_e( 'Recently Leased', 'easy-property-listings' ); ?></h5>
 			<?php } ?>
 			<div class="tab-content">
 				<ul>
@@ -362,7 +363,12 @@ function epl_property_sold_leased() {
 						?>
 
 							<!-- Suburb Tab -->
-							<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?><?php echo $suburb[0]; ?></a></li>
+							<li>
+								<a href="<?php the_permalink(); ?>">
+									<?php the_title(); ?>
+									<?php echo esc_attr( $suburb[0] ); ?>
+								</a>
+							</li>
 							<?php
 					}
 					?>
@@ -392,9 +398,9 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal.
-	if ( 'withdrawn' === $property_status || 'offmarket' === $property_status ) {
+	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
+
 		// Do Not Display Withdrawn or OffMarket listings.
-	} else {
 
 		?>
 			<div id="post-<?php the_ID(); ?>" style="width: 20%;margin-right: 1em;float: left;" class="epl-widget property-widget-image hentry">
@@ -413,7 +419,7 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 					// Heading Options.
 					if ( 'on' === $title ) {
 						?>
-						<h5 class="property-meta heading"><?php echo $the_property_heading; ?></h5>
+						<h5 class="property-meta heading"><?php echo wp_kses( $the_property_heading ); ?></h5>
 						<?php
 					}
 					?>
@@ -430,16 +436,16 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 						?>
 							<div class="property-meta property-feature-icons"><?php epl_property_icons(); ?></div>
 						<?php } elseif ( 'bb' === $icons ) { ?>
-							<div class="property-meta property-feature-icons"><?php echo epl_get_property_bb_icons(); ?></div>
+							<div class="property-meta property-feature-icons"><?php echo wp_kses( epl_get_property_bb_icons() ); ?></div>
 						<?php } ?>
 
 					<div class="property-meta price"><?php epl_property_price(); ?></div>
 					<form class="epl-property-button" action="<?php the_permalink(); ?>" method="post">
-						<input type=submit value="<?php _e( 'Read More', 'easy-property-listings' ); ?>" />
+						<input type=submit value="<?php esc_html_e( 'Read More', 'easy-property-listings' ); ?>" />
 					</form>
 				</div>
 			</div>
 
 		<?php
-	} // End Status Removal.
+	}
 }
