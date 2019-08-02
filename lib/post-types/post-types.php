@@ -429,10 +429,11 @@ add_action( 'epl_manage_listing_column_geo', 'epl_manage_listing_column_geo_call
 /**
  * Posts Types Column Price.
  *
- * @since 1.0
+ * @since 1.0.0
+ * @since 3.4.0 Now using epl_get_option function.
  */
 function epl_manage_listing_column_price_callback() {
-	global $post, $property, $epl_settings;
+	global $post, $property;
 
 	$price                = $property->get_property_meta( 'property_price' );
 	$view                 = $property->get_property_meta( 'property_price_view' );
@@ -446,11 +447,7 @@ function epl_manage_listing_column_price_callback() {
 	$d_bond               = '';
 	$bond                 = '';
 
-	$max_price = '2000000';
-
-	if ( isset( $epl_settings['epl_max_graph_sales_price'] ) ) {
-		$max_price = (int) $epl_settings['epl_max_graph_sales_price'];
-	}
+	$max_price = (int) epl_get_option( 'epl_max_graph_sales_price', '2000000' );
 
 	// Rental Listing Type Custom Values.
 	if ( 'rental' === $post->post_type ) {
@@ -458,13 +455,10 @@ function epl_manage_listing_column_price_callback() {
 		$price = $property->get_property_meta( 'property_rent' );
 		$view  = $property->get_property_meta( 'property_rent_view' );
 
-		$d_bond = $epl_settings['display_bond'];
+		$d_bond = epl_get_option( 'display_bond' );
 		$bond   = $property->get_property_meta( 'property_bond', false );
 
-		$max_price = '2000';
-		if ( isset( $epl_settings['epl_max_graph_rent_price'] ) ) {
-			$max_price = (int) $epl_settings['epl_max_graph_rent_price'];
-		}
+		$max_price = (int) epl_get_option( 'epl_max_graph_rent_price', '2000' );
 	}
 
 	// Commercial Listing Lease Type Price.
@@ -478,10 +472,7 @@ function epl_manage_listing_column_price_callback() {
 
 		$price = $property->get_property_meta( 'property_com_rent' );
 
-		$max_price = '2000';
-		if ( isset( $epl_settings['epl_max_graph_rent_price'] ) ) {
-			$max_price = (int) $epl_settings['epl_max_graph_rent_price'];
-		}
+		$max_price = (int) epl_get_option( 'epl_max_graph_rent_price', '2000' );
 	}
 
 	if ( 'Sold' === $property_status ) {
