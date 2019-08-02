@@ -57,7 +57,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 	}
 
 	// load admin style on help & documentation pages as well.
-	if ( 'edit.php' === $screen || 'toplevel_page_epl-general' === $screen || 'dashboard_page_epl-about' === $screen || 'dashboard_page_epl-getting-started' === $screen || 'toplevel_page_epl-tools' === $screen ) {
+	if ( 'edit.php' === $screen || 'toplevel_page_epl-general' === $screen || 'dashboard_page_epl-about' === $screen || 'dashboard_page_epl-getting-started' === $screen || 'easy-property-listings_page_epl-tools' === $screen || 'easy-property-listings_page_epl-addons' === $screen ) {
 		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin' . $suffix . '.css', false, EPL_PROPERTY_VER );
 	}
 
