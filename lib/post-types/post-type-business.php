@@ -209,70 +209,7 @@ if ( is_admin() ) {
 
 			// If displaying the 'Price' column.
 			case 'property_price':
-
 				do_action( 'epl_manage_listing_column_price' );
-
-
-
-
-
-				$price                = get_post_meta( $post_id, 'property_price', true );
-				$view                 = get_post_meta( $post_id, 'property_price_view', true );
-				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-				$lease                = get_post_meta( $post_id, 'property_com_rent', true );
-				$lease_period         = get_post_meta( $post_id, 'property_com_rent_period', true );
-				$lease_date           = get_post_meta( $post_id, 'property_com_lease_end_date', true );
-
-				$max_price = (int) epl_get_option( 'epl_max_graph_sales_price', '2000000' );
-
-				$property_status    = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				$property_authority = get_post_meta( $post_id, 'property_authority', true );
-				$sold_price         = get_post_meta( $post_id, 'property_sold_price', true );
-
-				if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
-					$class = 'bar-under-offer';
-				} elseif ( 'Current' === $property_status ) {
-					$class = 'bar-home-open';
-				} elseif ( 'Sold' === $property_status || 'Leased' === $property_status ) {
-					$class = 'bar-home-sold';
-				} else {
-					$class = '';
-				}
-				if ( '' !== $sold_price ) {
-					$barwidth = 0 === $max_price ? 0 : $sold_price / $max_price * 100;
-				} else {
-					$barwidth = 0 === $max_price ? 0 : $price / $max_price * 100;
-				}
-				echo '
-					<div class="epl-price-bar ' . $class . '">
-						<span style="width:' . $barwidth . '%"></span>
-					</div>';
-
-				if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
-					echo '<div class="type_under_offer">' . epl_labels( 'label_under_offer' ) . '</div>';
-				}
-
-				if ( empty( $view ) ) {
-					echo '<div class="epl_meta_search_price">' . __( 'Sale', 'easy-property-listings' ) . ': ' , epl_currency_formatted_amount( $price ), '</div>';
-				} else {
-					echo '<div class="epl_meta_price">' , $view , '</div>';
-				}
-
-				if ( ! empty( $lease ) ) {
-					if ( empty( $lease_period ) ) {
-						$lease_period = 'annual';
-					}
-					echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), ' ' ,epl_listing_load_meta_commercial_rent_period_value( $lease_period ) ,'</div>';
-				}
-
-				if ( ! empty( $lease_date ) ) {
-					echo '<div class="epl_meta_lease_date">' . __( 'Lease End', 'easy-property-listings' ) . ': ' ,  $lease_date , '</div>';
-				}
-				if ( 'auction' === $property_authority ) {
-					_e( 'Auction ', 'easy-property-listings' );
-
-					echo '<br>' . $property->get_property_auction( true );
-				}
 
 				break;
 

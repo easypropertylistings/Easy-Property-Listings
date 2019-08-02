@@ -503,10 +503,6 @@ function epl_manage_listing_column_price_callback() {
 		echo __( 'No price set', 'easy-property-listings' );
 	}
 
-	if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
-		// echo '<div class="type_under_offer">' .$property->label_under_offer. '</div>';.
-	}
-
 	// Display sold price.
 	if ( ! empty( $view ) ) {
 		echo '<div class="epl_meta_search_price">' . $property->get_price_plain_value() . ' ';
@@ -516,14 +512,22 @@ function epl_manage_listing_column_price_callback() {
 		echo '<div class="epl_meta_price">' . $property->get_price_plain_value() . '</div>';
 	}
 
-	// Rental Listing Type.
+	// Bond for rental listing type.
 	if ( ! empty( $bond ) && 1 === $d_bond ) {
 		echo '<div class="epl_meta_bond">' , epl_labels( 'label_bond' ) , ' ' , epl_currency_formatted_amount( $bond ) , '</div>';
 	}
 
-	// Commercial Listing Type.
+	// Lease period for commercial listing type.
 	if ( ! empty( $lease_date ) ) {
 		echo '<div class="epl_meta_lease_date">' . __( 'Lease End:', 'easy-property-listings' ) . ' ' ,  $lease_date , '</div>';
+	}
+
+	// Lease period for Commercial listing type.
+	if ( ! empty( $lease ) ) {
+		if ( empty( $lease_period ) ) {
+			$lease_period = 'annual';
+		}
+		echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), ' ' ,epl_listing_load_meta_commercial_rent_period_value( $lease_period ) ,'</div>';
 	}
 }
 add_action( 'epl_manage_listing_column_price', 'epl_manage_listing_column_price_callback' );
