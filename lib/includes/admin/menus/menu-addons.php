@@ -40,7 +40,8 @@ add_action( 'admin_menu', 'epl_add_ons_init' );
  * @return $cache
  */
 function epl_add_ons_get_feed() {
-	if ( false === ( $cache = get_transient( 'easypropertylistings_add_ons_feed' ) ) ) {
+	$cache = get_transient( 'easypropertylistings_add_ons_feed' );
+	if ( false === $cache ) {
 		$feed = wp_remote_get( 'https://easypropertylistings.com.au/?feed=addons', array( 'timeout' => 120 ) );
 		if ( ! is_wp_error( $feed ) ) {
 			if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 ) {
