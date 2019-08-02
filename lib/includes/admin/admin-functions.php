@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -19,6 +19,9 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	 * Fallback in case the calendar extension is not loaded in PHP
 	 *
 	 * @since 3.3.3
+	 * @param string $calendar Calendar type.
+	 * @param int    $month The month.
+	 * @param int    $year The year.
 	 */
 	function cal_days_in_month( $calendar, $month, $year ) {
 		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
@@ -47,7 +50,7 @@ add_action( 'init', 'epl_flush_rewrite_rules' );
  */
 function epl_dashboard_widget_offer_rough() {
 
-	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) == '1' ) {
+	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) === '1' ) {
 		return;
 	}
 
@@ -65,7 +68,7 @@ function epl_dashboard_widget_offer_rough() {
  */
 function epl_admin_sidebar() {
 
-	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) == '1' ) {
+	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) === '1' ) {
 		return;
 	}
 
@@ -120,7 +123,7 @@ function epl_admin_sidebar() {
  * @since 3.1.6
  */
 function epl_dashboard_widget_offer() {
-	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) == '1' ) {
+	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) === '1' ) {
 		return;
 	}
 
@@ -160,7 +163,7 @@ function epl_dashboard_widget_offer() {
  * @since 3.1.6
  */
 function epl_dashboard_widget_offer_post_types() {
-	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) == '1' ) {
+	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) === '1' ) {
 		return;
 	}
 
@@ -213,7 +216,7 @@ function epl_dashboard_widget_offer_post_types() {
  * @since 3.1.6
  */
 function epl_dashboard_widget_offer_post_types_last() {
-	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) == '1' ) {
+	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) === '1' ) {
 		return;
 	}
 
@@ -231,13 +234,13 @@ function epl_dashboard_widget_offer_post_types_last() {
  */
 function epl_extension_notice_offer() {
 
-	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) == '1' ) {
+	if ( has_filter( 'epl_extensions_options_filter_new' ) || get_transient( 'epl_admin_notices_display' ) === '1' ) {
 		return;
 	}
 
 	$screen = get_current_screen();
 
-	if ( is_epl_core_post() == true || $screen->id == 'easy-property-listings_page_epl-reports' || $screen->id == 'easy-property-listings_page_epl-contacts' || $screen->id == 'toplevel_page_epl-general' ) {
+	if ( is_epl_core_post() === true || 'easy-property-listings_page_epl-reports' === $screen->id || 'easy-property-listings_page_epl-contacts' === $screen->id || 'toplevel_page_epl-general' === $screen->id ) {
 
 		echo '<div class="notice notice-success" style="max-height: 130px; overflow: hidden;">';
 			echo '<div class="epl-offers epl-offers-left" style="box-sizing: border-box; width: 85%; float: left; height: 125px">';
@@ -255,8 +258,9 @@ add_action( 'admin_notices', 'epl_extension_notice_offer' );
 /**
  * Check if a given extensions has beta support enabled
  *
- * @param       string $slug The slug of the extension to check
- * @return      bool True if enabled, false otherwise
+ * @since  3.3.0
+ * @param  string $slug The slug of the extension to check.
+ * @return bool True if enabled, false otherwise.
  */
 function epl_extension_has_beta_support( $slug ) {
 
@@ -271,8 +275,7 @@ function epl_extension_has_beta_support( $slug ) {
 /**
  * EPL Tools Tabs
  *
- * @return [type] [description]
- * @since  3.3 [<description>]
+ * @since  3.3.0
  */
 function epl_get_tools_tab() {
 
@@ -321,7 +324,7 @@ function epl_show_upgrade_tab() {
 /**
  * Display Upgrade Tab
  *
- * @since       3.3.5
+ * @since 3.3.5
  */
 function epl_show_reset_tab() {
 	$show = false;
@@ -334,8 +337,9 @@ function epl_show_reset_tab() {
 /**
  * Serialize Variable
  *
- * @since 3.3
- * @return serialize string
+ * @since  3.3.0
+ * @param  string $data String of data to serialize.
+ * @return serialize string.
  */
 function epl_serialize( $data ) {
 	return base64_encode( serialize( $data ) );
@@ -344,8 +348,9 @@ function epl_serialize( $data ) {
 /**
  * Un-serialize Variable
  *
- * @since 3.3
- * @return un-serialized string
+ * @since  3.3.0
+ * @param  string $data String of data to serialize.
+ * @return un-serialized string.
  */
 function epl_unserialize( $data ) {
 	return unserialize( base64_decode( $data ) );
@@ -415,7 +420,7 @@ function epl_settings_reset() {
 
 	do_action( 'epl_pre_settings_reset_fields' );
 
-	if ( isset( $_GET['epl_tools_submit'] ) && sanitize_text_field( $_GET['epl_tools_submit'] ) == 'true' ) {
+	if ( isset( $_GET['epl_tools_submit'] ) && sanitize_text_field( $_GET['epl_tools_submit'] ) === 'true' ) {
 		?>
 		<br>
 		<span style="color:#080"><?php _e( 'Settings reset successfully!', 'easy-property-listings' ); ?></span>
@@ -442,7 +447,7 @@ function epl_settings_reset() {
 /**
  * Settings upgrade tab screen
  *
- * @since 3.3
+ * @since 3.3.0
  */
 function epl_settings_upgrade_tab() {
 
@@ -458,11 +463,11 @@ function epl_settings_upgrade_tab() {
 /**
  * Import and Export Form
  *
- * @since 3.3
+ * @since 3.3.0
  */
 function epl_handle_tools_form() {
 
-	if ( ! isset( $_GET['page'] ) || $_GET['page'] != 'epl-tools' || ! isset( $_REQUEST['epl_tools_submit'] ) ) {
+	if ( ! isset( $_GET['page'] ) || 'epl-tools' !== $_GET['page'] || ! isset( $_REQUEST['epl_tools_submit'] ) ) {
 		return;
 	}
 
@@ -482,7 +487,7 @@ function epl_handle_tools_form() {
 		}
 	}
 
-	// sanitize post array
+	// Sanitize post array.
 	$post_data = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
 
 	switch ( $action ) {
@@ -535,7 +540,7 @@ add_action( 'admin_init', 'epl_handle_tools_form' );
 /**
  * Upgrade Database Notice
  *
- * @since       3.3
+ * @since 3.3.0
  */
 function epl_upgrade_admin_notice() {
 
@@ -547,11 +552,11 @@ function epl_upgrade_admin_notice() {
 
 		$msg = __( 'For better performance, we need to upgrade the database. You can upgrade the database by visiting tools page', 'easy-property-listings' );
 
-		 echo '<div class="notice notice-warning epl-upgrade-notice is-dismissible">
-	             <p><strong>' . $head . '</strong></p>
-	             <p>' . $msg . '</p>
-	             <p><a class="button" href="' . admin_url( '?page=epl-tools&tab=upgrade&dev=true' ) . '">' . __( 'Take me to the upgrade tool', 'easy-property-listings' ) . '</a></p>
-	         </div>';
+		echo '<div class="notice notice-warning epl-upgrade-notice is-dismissible">
+			<p><strong>' . $head . '</strong></p>
+			<p>' . $msg . '</p>
+			<p><a class="button" href="' . admin_url( '?page=epl-tools&tab=upgrade&dev=true' ) . '">' . __( 'Take me to the upgrade tool', 'easy-property-listings' ) . '</a></p>
+		</div>';
 	endif;
 }
 add_action( 'admin_notices', 'epl_upgrade_admin_notice' );
@@ -559,7 +564,7 @@ add_action( 'admin_notices', 'epl_upgrade_admin_notice' );
 /**
  * Upgrade EPL Database to 3.3
  *
- * @since       3.3
+ * @since 3.3.0
  */
 function epl_upgrade_db() {
 
@@ -589,9 +594,9 @@ function epl_upgrade_db() {
 add_action( 'wp_ajax_epl_upgrade_db', 'epl_upgrade_db' );
 
 /**
- * update user note comment type to note
+ * Update user note comment type to note
  *
- * @since       3.3
+ * @since 3.3.0
  */
 function epl_update_user_note_type() {
 
@@ -618,7 +623,7 @@ function epl_update_user_note_type() {
 /**
  * Check if need to upgrade EPL Database to 3.3
  *
- * @since       3.3
+ * @since 3.3.0
  */
 function epl_upgrade_db_to_3_3() {
 
@@ -628,7 +633,7 @@ function epl_upgrade_db_to_3_3() {
 	$args = array(
 		'post_type'   => epl_get_core_post_types(),
 		'post_status' => 'any',
-		'numberposts' => 200, // 200 listings in single batch
+		'numberposts' => 200, // 200 listings in single batch.
 		'exclude'     => $updated_listings,
 	);
 
@@ -647,7 +652,7 @@ function epl_upgrade_db_to_3_3() {
 
 				case 'commercial':
 					$price = get_post_meta( $single->ID, 'property_price', true );
-					if ( $price == '' ) {
+					if ( '' === $price ) {
 						$price = get_post_meta( $single->ID, 'property_com_rent', true );
 					}
 					update_post_meta( $single->ID, 'property_price_global', $price );
@@ -668,6 +673,7 @@ function epl_upgrade_db_to_3_3() {
 				array(
 					'status' => 'success',
 					'buffer' => 'processing',
+					/* Translators: %s is a string of listing post ids. */
 					'msg'    => sprintf( __( 'Database upgrade in process, following listings updated : %s. Please wait...', 'easy-property-listings' ), implode( ', ', $current_batch ) ),
 				)
 			)
@@ -691,20 +697,23 @@ function epl_upgrade_db_to_3_3() {
 /**
  * Update the property_price_global when saving or updating an EPL post
  *
- * @since       3.3
+ * @since 3.3.0
+ * @param int   $post_id The post id.
+ * @param array $post The post object.
+ * @param array $update Update.
  */
 function epl_sync_property_price_global( $post_id, $post, $update ) {
 
 	if ( is_epl_post() ) {
 
-		if ( 'rental' == $post->post_type ) {
+		if ( 'rental' === $post->post_type ) {
 			$price = get_post_meta( $post_id, 'property_rent', true );
 			update_post_meta( $post_id, 'property_price_global', $price );
 
-		} elseif ( 'commercial' == $post->post_type ) {
+		} elseif ( 'commercial' === $post->post_type ) {
 
 			$price = get_post_meta( $post_id, 'property_price', true );
-			if ( $price == '' ) {
+			if ( '' === $price ) {
 				$price = get_post_meta( $post_id, 'property_com_rent', true );
 			}
 			update_post_meta( $post_id, 'property_price_global', $price );
@@ -722,7 +731,11 @@ add_action( 'save_post', 'epl_sync_property_price_global', 40, 3 );
 /**
  * Filter the contacts comments
  *
- * @since       3.3
+ * @since 3.3.0
+ * @param array  $avatar Update.
+ * @param string $id_or_email User ID or email address.
+ * @param array  $args Update.
+ * @return $avatar
  */
 function epl_get_avatar_filter( $avatar, $id_or_email, $args ) {
 
@@ -730,7 +743,7 @@ function epl_get_avatar_filter( $avatar, $id_or_email, $args ) {
 		return $avatar;
 	}
 
-	if ( $id_or_email->comment_agent != 'easy-property-listings' ) {
+	if ( 'easy-property-listings' !== $id_or_email->comment_agent ) {
 		return $avatar;
 	}
 
@@ -773,7 +786,7 @@ add_filter( 'pre_get_avatar', 'epl_get_avatar_filter', 10, 5 );
 /**
  * Update a featured listing when pressing the star icon
  *
- * @since       3.3
+ * @since 3.3.0
  */
 function epl_update_featured_listing() {
 
@@ -786,7 +799,7 @@ function epl_update_featured_listing() {
 	$featured    = get_post_meta( $id, 'property_featured', true );
 	$is_featured = 'no';
 
-	if ( $featured == 'yes' ) {
+	if ( 'yes' === $featured ) {
 		update_post_meta( $id, 'property_featured', '' );
 		$is_featured = 'no';
 	} else {
