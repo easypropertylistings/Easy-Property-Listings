@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -37,7 +37,7 @@ add_action( 'admin_menu', 'epl_add_ons_init' );
  * Gets the add-ons page feed.
  *
  * @since 1.0
- * @return void
+ * @return $cache
  */
 function epl_add_ons_get_feed() {
 	if ( false === ( $cache = get_transient( 'easypropertylistings_add_ons_feed' ) ) ) {
