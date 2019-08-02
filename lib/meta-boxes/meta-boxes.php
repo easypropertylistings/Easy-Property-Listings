@@ -9,32 +9,35 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+
+add_action( 'init', 'epl_meta_box_init' );
 
 /**
- * Variables List required for meta boxes
+ * Init rendering of the metabox
  *
  * @since 1.0
  */
-add_action('init', 'epl_meta_box_init');
-
 function epl_meta_box_init() {
 
 	global $epl_settings;
 	global $epl_meta_boxes;
 
-	$opts_property_status 			= epl_get_property_status_opts();
-	$opts_property_authority 		= epl_get_property_authority_opts();
-	$opts_property_exclusivity 		= epl_get_property_exclusivity_opts();
-	$opts_property_com_authority 		= epl_get_property_com_authority_opts();
-	$opts_area_unit 			= epl_get_property_area_unit_opts();
-	$opts_rent_period 			= epl_get_property_rent_period_opts();
-	$opts_property_com_listing_type 	= epl_get_property_com_listing_type_opts();
-	$opts_property_com_tenancy 		= epl_get_property_com_tenancy_opts();
-	$opts_property_com_property_extent 	= epl_get_property_com_property_extent_opts();
+	$opts_property_status              = epl_get_property_status_opts();
+	$opts_property_authority           = epl_get_property_authority_opts();
+	$opts_property_exclusivity         = epl_get_property_exclusivity_opts();
+	$opts_property_com_authority       = epl_get_property_com_authority_opts();
+	$opts_area_unit                    = epl_get_property_area_unit_opts();
+	$opts_rent_period                  = epl_get_property_rent_period_opts();
+	$opts_property_com_listing_type    = epl_get_property_com_listing_type_opts();
+	$opts_property_com_tenancy         = epl_get_property_com_tenancy_opts();
+	$opts_property_com_property_extent = epl_get_property_com_property_extent_opts();
 
-	$epl_meta_boxes 			= epl_get_meta_boxes();
+	$epl_meta_boxes = epl_get_meta_boxes();
 }
 
 
@@ -46,14 +49,14 @@ function epl_meta_box_init() {
 function epl_add_meta_boxes() {
 
 	global $epl_meta_boxes;
-	if(!empty($epl_meta_boxes)) {
-		foreach($epl_meta_boxes as $epl_meta_box) {
-			if( is_array($epl_meta_box['post_type']) ) {
-				foreach($epl_meta_box['post_type'] as $post_type) {
-					add_meta_box($epl_meta_box['id'], __( $epl_meta_box['label'], 'easy-property-listings'  ), 'epl_meta_box_inner_custom_box', $post_type, $epl_meta_box['context'], $epl_meta_box['priority'], $epl_meta_box);
+	if ( ! empty( $epl_meta_boxes ) ) {
+		foreach ( $epl_meta_boxes as $epl_meta_box ) {
+			if ( is_array( $epl_meta_box['post_type'] ) ) {
+				foreach ( $epl_meta_box['post_type'] as $post_type ) {
+					add_meta_box( $epl_meta_box['id'], $epl_meta_box['label'], 'epl_meta_box_inner_custom_box', $post_type, $epl_meta_box['context'], $epl_meta_box['priority'], $epl_meta_box );
 				}
 			} else {
-				add_meta_box($epl_meta_box['id'], __( $epl_meta_box['label'], 'easy-property-listings'  ), 'epl_meta_box_inner_custom_box', $epl_meta_box['post_type'], $epl_meta_box['context'], $epl_meta_box['priority'], $epl_meta_box);
+				add_meta_box( $epl_meta_box['id'], $epl_meta_box['label'], 'epl_meta_box_inner_custom_box', $epl_meta_box['post_type'], $epl_meta_box['context'], $epl_meta_box['priority'], $epl_meta_box );
 			}
 		}
 	}
@@ -64,80 +67,85 @@ add_action( 'add_meta_boxes', 'epl_add_meta_boxes' );
 /**
  * Add sub meta boxes to the post-edit page
  *
- * @since 1.0
+ * @param  [type] $post post variable.
+ * @param  [type] $args meta box array.
+ * @return void       [description]
+ * @since 1.0 [<description>]
  */
-function epl_meta_box_inner_custom_box($post, $args) {
+function epl_meta_box_inner_custom_box( $post, $args ) {
 
 	$groups = $args['args']['groups'];
-	$groups = array_filter($groups);
-	if(!empty($groups)) {
+	$groups = array_filter( $groups );
+	if ( ! empty( $groups ) ) {
 		wp_nonce_field( 'epl_inner_custom_box', 'epl_inner_custom_box_nonce' );
-		foreach($groups as $group) { ?>
-			<div class="epl-inner-div col-<?php echo $group['columns']; ?> table-<?php echo $args['args']['context']; ?>">
+		foreach ( $groups as $group ) { ?>
+			<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
 				<?php
-					$group['label'] = trim($group['label']);
-					if(!empty($group['label'])) {
-						echo '<h3>'.__($group['label'], 'easy-property-listings' ).'</h3>';
-					}
+					$group['label'] = trim( $group['label'] );
+				if ( ! empty( $group['label'] ) ) {
+					echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
+				}
 				?>
 				<ul class="form-table epl-form-table">
 					<?php
-					$fields = $group['fields'];
+					$fields         = $group['fields'];
 					$gp_field_width = isset( $group['width'] ) ? $group['width'] : '1';
-					$fields = array_filter($fields);
-					if(!empty($fields)) {
-						foreach($fields as $field) {
-							if(isset($field['exclude']) && !empty($field['exclude'])) {
-								if( in_array($post->post_type, $field['exclude']) ) {
+					$fields         = array_filter( $fields );
+					if ( ! empty( $fields ) ) {
+						foreach ( $fields as $field ) {
+							if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
+								if ( in_array( $post->post_type, $field['exclude'], true ) ) {
 									continue;
 								}
 							}
 
-							if(isset($field['include']) && !empty($field['include'])) {
-								if( !in_array($post->post_type, $field['include']) ) {
+							if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
+								if ( ! in_array( $post->post_type, $field['include'], true ) ) {
 									continue;
 								}
 							}
-							$val = get_post_meta($post->ID, $field['name'], true);
-							if( has_action('epl_before_meta_field_'.$field['name']) ) {
-								do_action('epl_before_meta_field_'.$field['name'],$post,$val);
+							$val = get_post_meta( $post->ID, $field['name'], true );
+							if ( has_action( 'epl_before_meta_field_' . $field['name'] ) ) {
+								do_action( 'epl_before_meta_field_' . $field['name'], $post, $val );
 							}
 
 							$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
 							?>
-							<li id="epl_<?php echo $field['name']; ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo $field_width; ?> epl_<?php echo $field['name']; ?>_wrap epl-field-type-<?php echo $field['type'] ?>">
+							<li id="epl_<?php echo epl_sanitize_key( $field['name'] ); ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo esc_attr( $field_width ); ?> epl_<?php echo esc_attr( $field['name'] ); ?>_wrap epl-field-type-<?php echo esc_attr( $field['type'] ); ?>">
 
 
-								<?php if($field['type'] != 'checkbox_single' || ( isset($field['opts']) && count($field['opts']) != 1 )  ): ?>
+								<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
 								<div class="form-field epl-form-field-label">
 									<span valign="top" scope="row">
-										<label for="<?php echo $field['name']; ?>"><?php _e($field['label'], 'easy-property-listings' ); ?></label>
+										<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_attr( $field['label'] ); ?></label>
 									</span>
 								</div>
 								<?php endif; ?>
 
 
-								<div id="epl_<?php echo $field['name']; ?>" class="form-field epl-form-field-value epl_<?php echo $field['name']; ?>">
+								<div id="epl_<?php echo esc_attr( $field['name'] ); ?>" class="form-field epl-form-field-value epl_<?php echo esc_attr( $field['name'] ); ?>">
 									<?php
-										epl_render_html_fields ($field,$val);
+										epl_render_html_fields( $field, $val );
 									?>
 								</div>
 
 							</li>
 
 							<?php
-								if( has_action('epl_after_meta_field_'.$field['name']) ) {
-									do_action('epl_after_meta_field_'.$field['name'],$post,$val);
-								}
+							if ( has_action( 'epl_after_meta_field_' . $field['name'] ) ) {
+								do_action( 'epl_after_meta_field_' . $field['name'], $post, $val );
+							}
 							?>
-						<?php }
+							<?php
+						}
 					}
 					?>
 				</ul>
 			</div>
 			<?php
-		} ?>
-		<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo $args['id']; ?>" />
+		}
+		?>
+		<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo esc_attr( $args['id'] ); ?>" />
 		<div class="epl-clear"></div>
 		<?php
 	}
@@ -146,117 +154,151 @@ function epl_meta_box_inner_custom_box($post, $args) {
 /**
  * Save and update meta box values to the post-edit page
  *
+ * @param  [type] $post_ID [description].
+ *
  * @since 1.0
  */
 function epl_save_meta_boxes( $post_ID ) {
-	if ( ! isset( $_POST['epl_inner_custom_box_nonce'] ) )
+
+	if ( ! isset( $_POST['epl_inner_custom_box_nonce'] ) ) {
 		return $post_ID;
-	$nonce = $_POST['epl_inner_custom_box_nonce'];
-	if ( ! wp_verify_nonce( $nonce, 'epl_inner_custom_box' ) )
+	}
+	if ( ! wp_verify_nonce( sanitize_key( $_POST['epl_inner_custom_box_nonce'] ), 'epl_inner_custom_box' ) ) {
 		return $post_ID;
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return $post_ID;
-	if ( 'page' == $_POST['post_type'] ) {
-		if ( ! current_user_can( 'edit_page', $post_ID ) )
+	}
+	if ( isset( $_POST['post_type'] ) && 'page' === $_POST['post_type'] ) {
+		if ( ! current_user_can( 'edit_page', $post_ID ) ) {
 			return $post_ID;
+		}
 	} else {
-		if ( ! current_user_can( 'edit_post', $post_ID ) )
-		return $post_ID;
+		if ( ! current_user_can( 'edit_post', $post_ID ) ) {
+			return $post_ID;
+		}
 	}
 
 	$epl_meta_box_ids = '';
-	if(isset($_POST['epl_meta_box_ids'])) {
-		$epl_meta_box_ids = $_POST['epl_meta_box_ids'];
+	if ( isset( $_POST['epl_meta_box_ids'] ) ) {
+		$epl_meta_box_ids = array_map( 'sanitize_text_field', wp_unslash( $_POST['epl_meta_box_ids'] ) );
 	}
 
-	if(!empty($epl_meta_box_ids)) {
+	if ( ! empty( $epl_meta_box_ids ) ) {
 		global $epl_meta_boxes;
-		if(!empty($epl_meta_boxes)) {
-			$epl_enable_import_geocode = get_option('epl_enable_import_geocode');
-			foreach($epl_meta_box_ids as $epl_meta_box_id) {
-				foreach($epl_meta_boxes as $epl_meta_box) {
-					if($epl_meta_box['id'] == $epl_meta_box_id) {
-						if(!empty($epl_meta_box['groups'])) {
-							foreach($epl_meta_box['groups'] as $group) {
+		if ( ! empty( $epl_meta_boxes ) ) {
+			$epl_enable_import_geocode = get_option( 'epl_enable_import_geocode' );
+			foreach ( $epl_meta_box_ids as $epl_meta_box_id ) {
+				foreach ( $epl_meta_boxes as $epl_meta_box ) {
+					if ( $epl_meta_box['id'] === $epl_meta_box_id ) {
+						if ( ! empty( $epl_meta_box['groups'] ) ) {
+							foreach ( $epl_meta_box['groups'] as $group ) {
 
 								$fields = $group['fields'];
-								if(!empty($fields)) {
-									foreach($fields as $field) {
-										if(isset($field['exclude']) && !empty($field['exclude'])) {
-											if( in_array($_POST['post_type'], $field['exclude']) ) {
+								if ( ! empty( $fields ) ) {
+									foreach ( $fields as $field ) {
+
+										if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
+											if ( in_array( $_POST['post_type'], $field['exclude'], true ) ) {
 												continue;
 											}
 										}
 
-										if(isset($field['include']) && !empty($field['include'])) {
-											if( !in_array($_POST['post_type'], $field['include']) ) {
+										if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
+											if ( ! in_array( $_POST['post_type'], $field['include'], true ) ) {
 												continue;
 											}
 										}
 
-										if( $field['type'] == 'radio' ) {
+										switch ( $field['type'] ) {
 
-											if(!isset($_POST[ $field['name'] ])) {
-												continue;
-											}
-											$_POST[ $field['name'] ] = sanitize_text_field( $_POST[ $field['name'] ] );
+											case 'radio':
+												if ( ! isset( $_POST[ $field['name'] ] ) ) {
+													continue;
+												}
 
-										} else if( $field['type'] == 'checkbox_single') {
+												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 
-											if(!isset($_POST[ $field['name'] ])) {
-												$_POST[ $field['name'] ] = '';
-											}
+												break;
 
-											$_POST[ $field['name'] ] = sanitize_text_field( $_POST[ $field['name'] ] );
+											case 'checkbox_single':
+												if ( ! isset( $_POST[ $field['name'] ] ) ) {
+													$meta_value = '';
+												} else {
+													$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
+												}
 
-										} else if( in_array($field['type'], array('number','decimal')) ) {
+												break;
 
-											/** validate numeric data */
-											if( !is_numeric( $_POST[ $field['name'] ]) ){
-												continue;
-											}
+											case 'number':
+											case 'decimal':
+												/** Validate numeric data */
+												if ( ! is_numeric( $_POST[ $field['name'] ] ) ) {
+													continue;
+												}
 
-                                        					} else if( in_array($field['type'], array('textarea')) ) {
+												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 
-											if( function_exists( 'sanitize_textarea_field' ) ){
-												$_POST[ $field['name'] ] = sanitize_textarea_field( $_POST[ $field['name'] ] );
-											}
+												break;
 
-										} else if( in_array($field['type'], array('url','file')) ) {
+											case 'textarea':
+												$meta_value = sanitize_textarea_field( wp_unslash( $_POST[ $field['name'] ] ) );
 
-											/** sanitize URLs */
-											$_POST[ $field['name'] ] = esc_url( $_POST[ $field['name'] ] );
+												break;
 
-										} else if( $field['type'] == 'auction-date' && $_POST[ $field['name'] ] != '') {
+											case 'url':
+											case 'file':
+												/** Sanitize URLs */
+												$meta_value = esc_url( wp_unslash( $_POST[ $field['name'] ] ) );
 
-											$epl_date = $_POST[ $field['name'] ];
-											$epl_date = sanitize_text_field( $_POST[ $field['name'] ] );
-											if(strpos($epl_date, 'T') !== FALSE){
-												$epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
-											} else {
-												$epl_date = DateTime::createFromFormat('Y-m-d-H:i:s', $epl_date);
+												break;
 
-												if($epl_date)
-													$epl_date = $epl_date->format('Y-m-d\TH:i');
-											}
-											$_POST[ $field['name'] ] = $epl_date;
+											case 'auction-date':
+												$meta_value = '';
 
-										} else if( $field['type'] == 'sold-date' && $_POST[ $field['name'] ] != '') {
+												if ( isset( $_POST[ $field['name'] ] ) ) {
 
-											$epl_date = $_POST[ $field['name'] ];
-											$epl_date = sanitize_text_field( $_POST[ $field['name'] ] );
-											if(strpos($epl_date, 'T') !== FALSE){
-												$epl_date = date("Y-m-d\TH:i",strtotime($epl_date));
-											} else {
-												$epl_date = DateTime::createFromFormat('Y-m-d', $epl_date);
+													$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 
-												if($epl_date)
-													$epl_date = $epl_date->format('Y-m-d');
-											}
-											$_POST[ $field['name'] ] = $epl_date;
+													if ( false !== strpos( $meta_value, 'T' ) ) {
+														$meta_value = date( 'Y-m-d\TH:i', strtotime( $meta_value ) );
+													} else {
+														$meta_value = DateTime::createFromFormat( 'Y-m-d-H:i:s', $meta_value );
+
+														if ( $meta_value ) {
+															$meta_value = $meta_value->format( 'Y-m-d\TH:i' );
+														}
+													}
+												}
+
+												break;
+
+											case 'sold-date':
+												$meta_value = '';
+
+												if ( isset( $_POST[ $field['name'] ] ) ) {
+
+													$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
+
+													if ( false !== strpos( $meta_value, 'T' ) ) {
+														$meta_value = date( 'Y-m-d\TH:i', strtotime( $meta_value ) );
+													} else {
+														$meta_value = DateTime::createFromFormat( 'Y-m-d', $meta_value );
+
+														if ( $meta_value ) {
+															$meta_value = $meta_value->format( 'Y-m-d' );
+														}
+													}
+												}
+
+												break;
+
+											default:
+												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
+
+												break;
 										}
-
-										$meta_value = $_POST[ $field['name'] ];
+										$meta_value = apply_filters( 'epl_field_save_meta_' . $field['name'], $meta_value );
 										update_post_meta( $post_ID, $field['name'], $meta_value );
 									}
 								}
@@ -269,40 +311,3 @@ function epl_save_meta_boxes( $post_ID ) {
 	}
 }
 add_action( 'save_post', 'epl_save_meta_boxes' );
-
-/**
- * Returns a dropdown list for terms
- *
- * @since 1.0
- */
-function epl_get_terms_drop_list() {
-	$_POST = array_map('trim', $_POST);
-	$post_data = epl_array_map_recursive('sanitize_text_field',$_POST);
-	extract($post_data);
-
-	$parent_id = (int) $parent_id;
-	$terms = get_terms(
-		$type_name,
-		array(
-			'hide_empty'	=>	0,
-			'parent'	=>	$parent_id
-		)
-	);
-	if ( !empty($terms) && !is_wp_error($terms) ) {
-		$arr = array('' => '');
-		foreach ( $terms as $term ) {
-			$arr[$term->term_id] = $term->name;
-		}
-
-		if(!empty($arr)) {
-			foreach($arr as $k=>$v) {
-				$selected = '';
-				if($default_value == $k) {
-					$selected = 'selected="selected"';
-				}
-				echo '<option value="'.$k.'" '.$selected.'>'.__($v, 'easy-property-listings' ).'</option>';
-			}
-		}
-	}
-}
-add_action( 'wp_ajax_epl_get_terms_drop_list', 'epl_get_terms_drop_list' );
