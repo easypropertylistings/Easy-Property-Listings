@@ -152,18 +152,6 @@ function epl_menu_extensions() {
 }
 
 /**
- * Extensions Compatibility Menu
- *
- * @since 1.0
- */
-function epl_menu_extensions_compat() {
-	if(!current_user_can('manage_options')) {
-		wp_die( __('You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
-	}
-	require_once 'menu-extensions-compat.php';
-}
-
-/**
  * Licenses Menu
  *
  * @since 1.0
