@@ -98,7 +98,6 @@ if ( is_admin() ) {
 			'listing_id'        => __( 'Unique ID', 'easy-property-listings' ),
 			'geo'               => __( 'Geo', 'easy-property-listings' ),
 			'property_status'   => __( 'Status', 'easy-property-listings' ),
-			'listing_type'      => __( 'Sale/Lease', 'easy-property-listings' ),
 			'agent'             => __( 'Agent', 'easy-property-listings' ),
 			'date'              => __( 'Date', 'easy-property-listings' ),
 		) + $columns;
@@ -132,7 +131,7 @@ if ( is_admin() ) {
 		global $post,$property;
 		switch ( $column ) {
 
-			// If displaying the 'Featured' image column.
+			// If displaying the 'Featured Star' column.
 			case 'property_featured':
 				do_action( 'epl_manage_listing_column_featured' );
 
@@ -140,64 +139,13 @@ if ( is_admin() ) {
 
 			// If displaying the 'Featured' image column.
 			case 'property_thumb':
-				do_action( 'epl_manage_listing_column_property_thumb_before' );
 				do_action( 'epl_manage_listing_column_property_thumb' );
-				do_action( 'epl_manage_listing_column_property_thumb_after' );
 
 				break;
 
+			// If displaying the 'Listing Details' column.
 			case 'listing':
-				// Get the post meta.
-				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
-				$heading                 = get_post_meta( $post_id, 'property_heading', true );
-
-				$category = get_post_meta( $post_id, 'property_commercial_category', true );
-				$homeopen = get_post_meta( $post_id, 'property_inspection_times', true );
-
-				$outgoings = get_post_meta( $post_id, 'property_com_outgoings', true );
-				$return    = get_post_meta( $post_id, 'property_com_return', true );
-
-				$land      = get_post_meta( $post_id, 'property_land_area', true );
-				$land_unit = get_post_meta( $post_id, 'property_land_area_unit', true );
-
-				if ( empty( $heading ) ) {
-					echo '<strong>' . __( 'Important! Set a Heading', 'easy-property-listings' ) . '</strong>';
-				} else {
-					echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
-				}
-
-				if ( ! empty( $category ) ) {
-					echo '<div class="epl_meta_category">Category: ' , $category , '</div>';
-				}
-
-				echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
-
-				if ( ! empty( $outgoings ) ) {
-					echo '<div class="epl_meta_outgoings">Outgoings: ' , epl_currency_formatted_amount( $outgoings ) , '</div>';
-				}
-
-				if ( ! empty( $return ) ) {
-					echo '<div class="epl_meta_baths">Return: ' , $return , '%</div>';
-				}
-
-				if ( ! empty( $land ) ) {
-					echo '<div class="epl_meta_land_details">';
-					echo '<span class="epl_meta_land">Land: ' , $land , '</span>';
-					echo '<span class="epl_meta_land_unit"> ' , $land_unit , '</span>';
-					echo '</div>';
-				}
-
-				if ( ! empty( $homeopen ) ) {
-					$homeopen          = array_filter( explode( "\n", $homeopen ) );
-						$homeopen_list = '<ul class="epl_meta_home_open">';
-					foreach ( $homeopen as $num => $item ) {
-						$homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
-					}
-						$homeopen_list .= '</ul>';
-					echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . epl_labels( 'label_home_open' ) . '</strong></span>' , $homeopen_list , '</div>';
-				}
-
-				do_action( 'epl_manage_business_listing_column_listing_details' );
+				do_action( 'epl_manage_listing_column_listing' );
 
 				break;
 
@@ -215,75 +163,7 @@ if ( is_admin() ) {
 
 			// If displaying the 'Price' column.
 			case 'property_price':
-				$price                = get_post_meta( $post_id, 'property_price', true );
-				$view                 = get_post_meta( $post_id, 'property_price_view', true );
-				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
-				$lease                = get_post_meta( $post_id, 'property_com_rent', true );
-				$lease_period         = get_post_meta( $post_id, 'property_com_rent_period', true );
-				$lease_date           = get_post_meta( $post_id, 'property_com_lease_end_date', true );
-
-				$max_price = (int) epl_get_option( 'epl_max_graph_sales_price', '2000000' );
-
-				$property_status    = ucfirst( get_post_meta( $post_id, 'property_status', true ) );
-				$property_authority = get_post_meta( $post_id, 'property_authority', true );
-				$sold_price         = get_post_meta( $post_id, 'property_sold_price', true );
-
-				if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
-					$class = 'bar-under-offer';
-				} elseif ( 'Current' === $property_status ) {
-					$class = 'bar-home-open';
-				} elseif ( 'Sold' === $property_status || 'Leased' === $property_status ) {
-					$class = 'bar-home-sold';
-				} else {
-					$class = '';
-				}
-				if ( '' !== $sold_price ) {
-					$barwidth = 0 === $max_price ? 0 : $sold_price / $max_price * 100;
-				} else {
-					$barwidth = 0 === $max_price ? 0 : $price / $max_price * 100;
-				}
-				echo '
-					<div class="epl-price-bar ' . $class . '">
-						<span style="width:' . $barwidth . '%"></span>
-					</div>';
-
-				if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
-					echo '<div class="type_under_offer">' . epl_labels( 'label_under_offer' ) . '</div>';
-				}
-
-				if ( empty( $view ) ) {
-					echo '<div class="epl_meta_search_price">' . __( 'Sale', 'easy-property-listings' ) . ': ' , epl_currency_formatted_amount( $price ), '</div>';
-				} else {
-					echo '<div class="epl_meta_price">' , $view , '</div>';
-				}
-
-				if ( ! empty( $lease ) ) {
-					if ( empty( $lease_period ) ) {
-						$lease_period = 'annual';
-					}
-					echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), ' ' ,epl_listing_load_meta_commercial_rent_period_value( $lease_period ) ,'</div>';
-				}
-
-				if ( ! empty( $lease_date ) ) {
-					echo '<div class="epl_meta_lease_date">' . __( 'Lease End', 'easy-property-listings' ) . ': ' ,  $lease_date , '</div>';
-				}
-				if ( 'auction' === $property_authority ) {
-					_e( 'Auction ', 'easy-property-listings' );
-
-					echo '<br>' . $property->get_property_auction( true );
-				}
-
-				break;
-
-			// If displaying the 'Commercial Listing Type' column.
-			case 'listing_type':
-				// Get the post meta.
-				$listing_type = get_post_meta( $post_id, 'property_com_listing_type', true );
-
-				// If no duration is found, output a default message.
-				if ( ! empty( $listing_type ) ) {
-					echo $listing_type;
-				}
+				do_action( 'epl_manage_listing_column_price' );
 
 				break;
 
@@ -293,6 +173,7 @@ if ( is_admin() ) {
 
 				break;
 
+			// If displaying the 'agent' column.
 			case 'agent':
 				do_action( 'epl_manage_listing_column_agent' );
 

@@ -129,9 +129,10 @@ if ( is_admin() ) {
 	 * @param int $post_id post id.
 	 */
 	function epl_manage_commercial_land_columns_value( $column, $post_id ) {
+
 		switch ( $column ) {
 
-			// If displaying the 'Featured' image column.
+			// If displaying the 'Featured Star' column.
 			case 'property_featured':
 				do_action( 'epl_manage_listing_column_featured' );
 
@@ -179,6 +180,7 @@ if ( is_admin() ) {
 
 				break;
 
+			// If displaying the 'agent' column.
 			case 'agent':
 				do_action( 'epl_manage_listing_column_agent' );
 

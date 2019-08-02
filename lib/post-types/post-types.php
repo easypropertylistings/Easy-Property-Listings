@@ -220,13 +220,14 @@ add_filter( 'pre_get_posts', 'epl_custom_orderby' );
 /**
  * Functions for post column contents.
  *
- * @since 2.2
+ * @since 2.2.0
+ * @since 3.4.0 Now using epl_get_option function.
  */
 function epl_manage_listing_column_property_thumb_callback() {
-	global $epl_settings;
 
 	if ( function_exists( 'the_post_thumbnail' ) ) {
-		$thumb_size = isset( $epl_settings['epl_admin_thumb_size'] ) ? $epl_settings['epl_admin_thumb_size'] : 'admin-list-thumb';
+		$thumb_size = epl_get_option( 'epl_admin_thumb_size', 'admin-list-thumb' );
+
 		the_post_thumbnail( $thumb_size );
 	}
 }
@@ -238,7 +239,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 1.0
  */
 function epl_manage_listing_column_listing_callback() {
-	global $post,$epl_settings,$property;
+	global $post,$property;
 
 	$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 	$heading                 = $property->get_property_meta( 'property_heading' );
@@ -254,20 +255,37 @@ function epl_manage_listing_column_listing_callback() {
 	$outgoings           = $property->get_property_meta( 'property_com_outgoings' );
 	$return              = $property->get_property_meta( 'property_com_return' );
 
+	$taking    = $property->get_property_meta( 'property_bus_takings' );
+	$franchise = $property->get_property_meta( 'property_bus_franchise' );
+	$taking    = $property->get_property_meta( 'property_bus_terms' );
+
 	if ( is_array( $commercial_category ) ) {
 		$commercial_category = implode( ', ', $commercial_category );
 	}
 
+	// Headinh.
 	if ( empty( $heading ) ) {
 		echo '<strong>' . __( 'Important! Set a Heading', 'easy-property-listings' ) . '</strong>';
 	} else {
 		echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
 	}
 
-	// Commercial Listing Type.
+	// Category for commercial listing lype.
 	if ( ! empty( $commercial_category ) ) {
 		echo '<div class="epl_meta_category">' , $commercial_category , '</div>';
 	}
+
+	// Need to factor in business category: <businessCategory id="1">.
+	// Need to factor in business category: 	<name>Food/Hospitality</name>.
+	// Need to factor in business category: 	<businessSubCategory>.
+	// Need to factor in business category: 	<name>Takeaway Food</name>.
+	// Need to factor in business category: 	</businessSubCategory>.
+	// Need to factor in business category: 		</businessCategory>.
+	// Need to factor in business category: 	<businessCategory id="2"/>.
+	// Need to factor in business category: 	<businessCategory id="3"/>.
+
+	// Need to factor in business fields: property_bus_takings (number).
+	// Need to factor in business fields: property_bus_franchise (yes/no).
 
 	// Listing Location Taxonomy.
 	echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
@@ -277,16 +295,17 @@ function epl_manage_listing_column_listing_callback() {
 		echo '<div class="epl_meta_category">' , $category , '</div>';
 	}
 
-	// Commercial Listing Type.
+	// Outgoings for commercial listing type.
 	if ( ! empty( $outgoings ) ) {
 		echo '<div class="epl_meta_outgoings">' . __( 'Outgoings:', 'easy-property-listings' ) . ' ' , epl_currency_formatted_amount( $outgoings ) , '</div>';
 	}
 
-	// Commercial Listing Type.
+	// Return for commercial listing type.
 	if ( ! empty( $return ) ) {
 		echo '<div class="epl_meta_return">' . __( 'Return:', 'easy-property-listings' ) . ' ' , $return , '%</div>';
 	}
 
+	// Bedrooms and Bathrooms.
 	if ( ! empty( $beds ) || ! empty( $baths ) ) {
 		echo '<div class="epl_meta_beds_baths">';
 			echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'easy-property-listings' ) , ' | </span>';
@@ -294,6 +313,7 @@ function epl_manage_listing_column_listing_callback() {
 		echo '</div>';
 	}
 
+	// Rooms.
 	if ( ! empty( $rooms ) ) {
 		if ( 1 === $rooms ) {
 			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Room', 'easy-property-listings' ) , '</div>';
@@ -302,6 +322,7 @@ function epl_manage_listing_column_listing_callback() {
 		}
 	}
 
+	// Land area.
 	if ( ! empty( $land ) ) {
 		echo '<div class="epl_meta_land_details">';
 		echo '<span class="epl_meta_land">' , $land , '</span>';
@@ -314,6 +335,7 @@ function epl_manage_listing_column_listing_callback() {
 		echo '</div>';
 	}
 
+	// Home Open date and time.
 	if ( ! empty( $homeopen ) ) {
 		$homeopen          = array_filter( explode( "\n", $homeopen ) );
 			$homeopen_list = '<ul class="epl_meta_home_open">';
@@ -378,9 +400,6 @@ function epl_manage_listing_column_labels_callback( $returntype = 'l' ) {
 }
 add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_labels_callback', 20, 1 );
 
-// Business Post Type needs updating.
-add_action( 'epl_manage_business_listing_column_listing_details', 'epl_manage_listing_column_labels_callback', 10, 1 );
-
 /**
  * Posts Types Column ID
  *
@@ -418,10 +437,11 @@ add_action( 'epl_manage_listing_column_geo', 'epl_manage_listing_column_geo_call
 /**
  * Posts Types Column Price.
  *
- * @since 1.0
+ * @since 1.0.0
+ * @since 3.4.0 Now using epl_get_option function.
  */
 function epl_manage_listing_column_price_callback() {
-	global $post, $property, $epl_settings;
+	global $post, $property;
 
 	$price                = $property->get_property_meta( 'property_price' );
 	$view                 = $property->get_property_meta( 'property_price_view' );
@@ -435,11 +455,7 @@ function epl_manage_listing_column_price_callback() {
 	$d_bond               = '';
 	$bond                 = '';
 
-	$max_price = '2000000';
-
-	if ( isset( $epl_settings['epl_max_graph_sales_price'] ) ) {
-		$max_price = (int) $epl_settings['epl_max_graph_sales_price'];
-	}
+	$max_price = (int) epl_get_option( 'epl_max_graph_sales_price', '2000000' );
 
 	// Rental Listing Type Custom Values.
 	if ( 'rental' === $post->post_type ) {
@@ -447,30 +463,24 @@ function epl_manage_listing_column_price_callback() {
 		$price = $property->get_property_meta( 'property_rent' );
 		$view  = $property->get_property_meta( 'property_rent_view' );
 
-		$d_bond = $epl_settings['display_bond'];
+		$d_bond = epl_get_option( 'display_bond' );
 		$bond   = $property->get_property_meta( 'property_bond', false );
 
-		$max_price = '2000';
-		if ( isset( $epl_settings['epl_max_graph_rent_price'] ) ) {
-			$max_price = (int) $epl_settings['epl_max_graph_rent_price'];
-		}
+		$max_price = (int) epl_get_option( 'epl_max_graph_rent_price', '2000' );
 	}
 
 	// Commercial Listing Lease Type Price.
 	if ( 'commercial' === $post->post_type && 'lease' === $property->get_property_meta( 'property_com_listing_type' ) ) {
 
-		// property_com_listing_type.
-		// property_com_rent.
-		// property_com_rent_period.
-		// property_com_rent_range_min.
-		// property_com_rent_range_max.
+		// Needs consideration and configuring property_com_listing_type.
+		// Needs consideration and configuring property_com_rent.
+		// Needs consideration and configuring property_com_rent_period.
+		// Needs consideration and configuring property_com_rent_range_min.
+		// Needs consideration and configuring property_com_rent_range_max.
 
 		$price = $property->get_property_meta( 'property_com_rent' );
 
-		$max_price = '2000';
-		if ( isset( $epl_settings['epl_max_graph_rent_price'] ) ) {
-			$max_price = (int) $epl_settings['epl_max_graph_rent_price'];
-		}
+		$max_price = (int) epl_get_option( 'epl_max_graph_rent_price', '2000' );
 	}
 
 	if ( 'Sold' === $property_status ) {
@@ -504,10 +514,6 @@ function epl_manage_listing_column_price_callback() {
 		echo __( 'No price set', 'easy-property-listings' );
 	}
 
-	if ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
-		// echo '<div class="type_under_offer">' .$property->label_under_offer. '</div>';.
-	}
-
 	// Display sold price.
 	if ( ! empty( $view ) ) {
 		echo '<div class="epl_meta_search_price">' . $property->get_price_plain_value() . ' ';
@@ -517,14 +523,22 @@ function epl_manage_listing_column_price_callback() {
 		echo '<div class="epl_meta_price">' . $property->get_price_plain_value() . '</div>';
 	}
 
-	// Rental Listing Type.
+	// Bond for rental listing type.
 	if ( ! empty( $bond ) && 1 === $d_bond ) {
 		echo '<div class="epl_meta_bond">' , epl_labels( 'label_bond' ) , ' ' , epl_currency_formatted_amount( $bond ) , '</div>';
 	}
 
-	// Commercial Listing Type.
+	// Lease period for commercial listing type.
 	if ( ! empty( $lease_date ) ) {
 		echo '<div class="epl_meta_lease_date">' . __( 'Lease End:', 'easy-property-listings' ) . ' ' ,  $lease_date , '</div>';
+	}
+
+	// Lease period for Commercial listing type.
+	if ( ! empty( $lease ) ) {
+		if ( empty( $lease_period ) ) {
+			$lease_period = 'annual';
+		}
+		echo '<div class="epl_meta_lease_price">Lease: ' , epl_currency_formatted_amount( $lease ), ' ' ,epl_listing_load_meta_commercial_rent_period_value( $lease_period ) ,'</div>';
 	}
 }
 add_action( 'epl_manage_listing_column_price', 'epl_manage_listing_column_price_callback' );
