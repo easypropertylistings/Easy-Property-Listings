@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -24,6 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class EPL_Welcome {
 
 	/**
+	 * The capability users should have to view the page
+	 *
 	 * @var string The capability users should have to view the page
 	 */
 	public $minimum_capability = 'edit_published_posts';
@@ -48,7 +50,7 @@ class EPL_Welcome {
 	 * @return void
 	 */
 	public function admin_menus() {
-		// About Page
+		// About Page.
 		add_dashboard_page(
 			__( 'Welcome to Easy Property Listings', 'easy-property-listings' ),
 			__( 'Welcome to Easy Property Listings', 'easy-property-listings' ),
@@ -57,7 +59,7 @@ class EPL_Welcome {
 			array( $this, 'about_screen' )
 		);
 
-		// Getting Started Page
+		// Getting Started Page.
 		add_dashboard_page(
 			__( 'Getting started with Easy Property Listings', 'easy-property-listings' ),
 			__( 'Getting started with Easy Property Listings', 'easy-property-listings' ),
@@ -66,7 +68,7 @@ class EPL_Welcome {
 			array( $this, 'getting_started_screen' )
 		);
 
-		// Credits Page
+		// Credits Page.
 		add_dashboard_page(
 			__( 'The people that build Easy Property Listings', 'easy-property-listings' ),
 			__( 'The people that build Easy Property Listings', 'easy-property-listings' ),
@@ -88,7 +90,7 @@ class EPL_Welcome {
 		remove_submenu_page( 'index.php', 'epl-getting-started' );
 		remove_submenu_page( 'index.php', 'epl-credits' );
 
-		// Badge for welcome page
+		// Badge for welcome page.
 		$badge_url = EPL_PLUGIN_URL . 'lib/assets/images/epl-wp-badge.png';
 		?>
 		<style type="text/css" media="screen">
@@ -132,13 +134,13 @@ class EPL_Welcome {
 		$selected = isset( $_GET['page'] ) ? sanitize_text_field( $_GET['page'] ) : 'epl-about';
 		?>
 		<h2 class="nav-tab-wrapper">
-			<a class="nav-tab <?php echo $selected == 'epl-about' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>">
+			<a class="nav-tab <?php echo 'epl-about' === $selected ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>">
 				<?php _e( "What's New", 'easy-property-listings' ); ?>
 			</a>
-			<a class="nav-tab <?php echo $selected == 'epl-getting-started' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>">
+			<a class="nav-tab <?php echo 'epl-getting-started' === $selected ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>">
 				<?php _e( 'Getting Started', 'easy-property-listings' ); ?>
 			</a>
-			<a class="nav-tab <?php echo $selected == 'epl-credits' ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-credits' ), 'index.php' ) ) ); ?>">
+			<a class="nav-tab <?php echo 'epl-credits' === $selected ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-credits' ), 'index.php' ) ) ); ?>">
 				<?php _e( 'Credits', 'easy-property-listings' ); ?>
 			</a>
 		</h2>
@@ -180,9 +182,24 @@ class EPL_Welcome {
 		list( $display_version ) = explode( '-', EPL_PROPERTY_VER );
 		?>
 		<div class="wrap about-wrap epl-about-wrap">
-			<h1><?php printf( __( 'Welcome to Easy Property Listings %s', 'easy-property-listings' ), $display_version ); ?></h1>
-			<div class="about-text"><?php printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'easy-property-listings' ), $display_version ); ?></div>
-			<div class="epl-badge"><?php printf( __( 'Version %s', 'easy-property-listings' ), $display_version ); ?></div>
+			<h1>
+				<?php
+					/* Translators: %s is the version number. */
+					printf( __( 'Welcome to Easy Property Listings %s', 'easy-property-listings' ), $display_version );
+				?>
+			</h1>
+			<div class="about-text">
+				<?php
+					/* Translators: %s is the version number. */
+					printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'easy-property-listings' ), $display_version );
+				?>
+			</div>
+			<div class="epl-badge">
+				<?php
+					/* Translators: %s is the version number. */
+					printf( __( 'Version %s', 'easy-property-listings' ), $display_version );
+				?>
+			</div>
 
 			<?php $this->tabs(); ?>
 
@@ -224,7 +241,12 @@ class EPL_Welcome {
 
 					<p><?php _e( 'Now that WordPress Gutenberg has been out and compatibility issues solved with the core WordPress team, we have enabled Gutenberg as default for Easy Property Listings. This also enables the REST API for all the custom post types.', 'easy-property-listings' ); ?></p>
 
-					<p><?php echo $link = sprintf( __( 'Prefer classic WordPress? We have you covered. If you have the <a href="%s" target="_blank">Classic Editor WordPress plugin</a> installed and activated your listing entry screens will revert to the classic WordPress experience.', 'easy-property-listings' ), esc_url( 'https://wordpress.org/plugins/classic-editor/' ) ); ?></p>
+					<p>
+						<?php
+							/* Translators: %s is a link. */
+							echo $link = sprintf( __( 'Prefer classic WordPress? We have you covered. If you have the <a href="%s" target="_blank">Classic Editor WordPress plugin</a> installed and activated your listing entry screens will revert to the classic WordPress experience.', 'easy-property-listings' ), esc_url( 'https://wordpress.org/plugins/classic-editor/' ) );
+						?>
+					</p>
 
 				</div>
 
@@ -349,9 +371,24 @@ class EPL_Welcome {
 		list( $display_version ) = explode( '-', EPL_PROPERTY_VER );
 		?>
 		<div class="wrap about-wrap epl-about-wrap epl-clearfix">
-			<h1><?php printf( __( 'Welcome to Easy Property Listings %s', 'easy-property-listings' ), $display_version ); ?></h1>
-			<div class="about-text"><?php printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'easy-property-listings' ), $display_version ); ?></div>
-			<div class="epl-badge"><?php printf( __( 'Version %s', 'easy-property-listings' ), $display_version ); ?></div>
+			<h1>
+				<?php
+					/* Translators: %s is the version number. */
+					printf( __( 'Welcome to Easy Property Listings %s', 'easy-property-listings' ), $display_version );
+				?>
+			</h1>
+			<div class="about-text">
+				<?php
+					/* Translators: %s is the version number. */
+					printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'easy-property-listings' ), $display_version );
+				?>
+			</div>
+			<div class="epl-badge">
+				<?php
+					/* Translators: %s is the version number. */
+					printf( __( 'Version %s', 'easy-property-listings' ), $display_version );
+				?>
+			</div>
 
 			<?php $this->tabs(); ?>
 
@@ -578,8 +615,18 @@ class EPL_Welcome {
 				<div class="feature-section">
 					<?php $theme_instructions = '<a href="http://codex.easypropertylistings.com.au/article/49-theme-setup">' . __( 'theme setup instructions can be found here', 'easy-property-listings' ) . '</a>'; ?>
 					<?php $custom_template_link = '<a href="http://codex.easypropertylistings.com.au/article/121-how-to-create-your-own-custom-theme-templates-or-modify-existing-ones-using-the-theme-template-loader">' . __( 'custom templates', 'easy-property-listings' ) . '</a>'; ?>
-					<h4 style="text-align: center;"><?php printf( __( 'Detailed %s.', 'easy-property-listings' ), $theme_instructions ); ?></h4>
-					<h4 style="text-align: center;"><?php printf( __( 'How to create your own %s.', 'easy-property-listings' ), $custom_template_link ); ?></h4>
+					<h4 style="text-align: center;">
+						<?php
+							/* Translators: %s is a link with translated words "theme setup instructions can be found here". */
+							printf( __( 'Detailed %s.', 'easy-property-listings' ), $theme_instructions );
+						?>
+					</h4>
+					<h4 style="text-align: center;">
+						<?php
+							/* Translators: %s is a link with translated words. "custom templates". */
+							printf( __( 'How to create your own %s.', 'easy-property-listings' ), $custom_template_link );
+						?>
+					</h4>
 				</div>
 			</div>
 
@@ -607,7 +654,12 @@ class EPL_Welcome {
 				<div class="feature-section col three-col">
 					<div class="col">
 						<h4><?php _e( 'Premium Support', 'easy-property-listings' ); ?></h4>
-						<p><?php echo $link = sprintf( __( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'easy-property-listings' ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) ); ?></p>
+						<p>
+							<?php
+								/* Translators: %s is a link. */
+								echo $link = sprintf( __( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'easy-property-listings' ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) );
+							?>
+						</p>
 					</div>
 
 					<div class="col">
