@@ -220,13 +220,14 @@ add_filter( 'pre_get_posts', 'epl_custom_orderby' );
 /**
  * Functions for post column contents.
  *
- * @since 2.2
+ * @since 2.2.0
+ * @since 3.4.0 Now using epl_get_option function.
  */
 function epl_manage_listing_column_property_thumb_callback() {
-	global $epl_settings;
 
 	if ( function_exists( 'the_post_thumbnail' ) ) {
-		$thumb_size = isset( $epl_settings['epl_admin_thumb_size'] ) ? $epl_settings['epl_admin_thumb_size'] : 'admin-list-thumb';
+		$thumb_size = epl_get_option( 'epl_admin_thumb_size', 'admin-list-thumb' );
+
 		the_post_thumbnail( $thumb_size );
 	}
 }
@@ -238,7 +239,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 1.0
  */
 function epl_manage_listing_column_listing_callback() {
-	global $post,$epl_settings,$property;
+	global $post,$property;
 
 	$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 	$heading                 = $property->get_property_meta( 'property_heading' );
@@ -254,10 +255,16 @@ function epl_manage_listing_column_listing_callback() {
 	$outgoings           = $property->get_property_meta( 'property_com_outgoings' );
 	$return              = $property->get_property_meta( 'property_com_return' );
 
+	$taking              = $property->get_property_meta( 'property_bus_takings' );
+	$franchise           = $property->get_property_meta( 'property_bus_franchise' );
+	$taking              = $property->get_property_meta( 'property_bus_terms' );
+
+
 	if ( is_array( $commercial_category ) ) {
 		$commercial_category = implode( ', ', $commercial_category );
 	}
 
+	// Headinh.
 	if ( empty( $heading ) ) {
 		echo '<strong>' . __( 'Important! Set a Heading', 'easy-property-listings' ) . '</strong>';
 	} else {
@@ -287,6 +294,7 @@ function epl_manage_listing_column_listing_callback() {
 		echo '<div class="epl_meta_return">' . __( 'Return:', 'easy-property-listings' ) . ' ' , $return , '%</div>';
 	}
 
+	// Bedrooms and Bathrooms.
 	if ( ! empty( $beds ) || ! empty( $baths ) ) {
 		echo '<div class="epl_meta_beds_baths">';
 			echo '<span class="epl_meta_beds">' , $beds , ' ' , __( 'Beds', 'easy-property-listings' ) , ' | </span>';
@@ -294,6 +302,7 @@ function epl_manage_listing_column_listing_callback() {
 		echo '</div>';
 	}
 
+	// Rooms.
 	if ( ! empty( $rooms ) ) {
 		if ( 1 === $rooms ) {
 			echo '<div class="epl_meta_rooms">' , $rooms , ' ' , __( 'Room', 'easy-property-listings' ) , '</div>';
@@ -302,6 +311,7 @@ function epl_manage_listing_column_listing_callback() {
 		}
 	}
 
+	// Land area.
 	if ( ! empty( $land ) ) {
 		echo '<div class="epl_meta_land_details">';
 		echo '<span class="epl_meta_land">' , $land , '</span>';
@@ -314,6 +324,7 @@ function epl_manage_listing_column_listing_callback() {
 		echo '</div>';
 	}
 
+	// Home Open date and time.
 	if ( ! empty( $homeopen ) ) {
 		$homeopen          = array_filter( explode( "\n", $homeopen ) );
 			$homeopen_list = '<ul class="epl_meta_home_open">';
