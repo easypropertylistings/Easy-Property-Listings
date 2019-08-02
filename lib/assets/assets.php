@@ -36,19 +36,19 @@ function epl_admin_enqueue_scripts( $screen ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 		}
 
-		wp_enqueue_script( 'google-map-v-3', $googleapiurl );
+		wp_enqueue_script( 'google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 
 		wp_enqueue_style( 'epl-jquery-validation-engine-style', $current_dir_path . '/css/validationEngine-jquery' . $suffix . '.css', false, EPL_PROPERTY_VER );
-		wp_enqueue_script( 'epl-jquery-validation-engine-lang-scripts', $current_dir_path . '/js/jquery-validationEngine-en' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER );
-		wp_enqueue_script( 'epl-jquery-validation-engine-scripts', $current_dir_path . '/js/jquery-validationEngine' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER );
-		wp_enqueue_script( 'jquery-datetime-picker', $current_dir_path . '/js/jquery-datetime-picker' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER );
+		wp_enqueue_script( 'epl-jquery-validation-engine-lang-scripts', $current_dir_path . '/js/jquery-validationEngine-en' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
+		wp_enqueue_script( 'epl-jquery-validation-engine-scripts', $current_dir_path . '/js/jquery-validationEngine' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
+		wp_enqueue_script( 'jquery-datetime-picker', $current_dir_path . '/js/jquery-datetime-picker' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
 		wp_enqueue_style( 'jquery-ui-datetime-picker-style', $current_dir_path . '/css/jquery-ui' . $suffix . '.css', false, EPL_PROPERTY_VER );
 
 		$js_vars = array(
 			'default_map_address' => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
 		);
 
-		wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER );
+		wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
 
 		wp_localize_script( 'epl-admin-scripts', 'epl_admin_vars', $js_vars );
 
@@ -61,7 +61,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin' . $suffix . '.css', false, EPL_PROPERTY_VER );
 	}
 
-	wp_enqueue_script( 'epl-js-lib', $current_dir_path . '/js/epl' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER );
+	wp_enqueue_script( 'epl-js-lib', $current_dir_path . '/js/epl' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
 
 	wp_enqueue_script( 'epl-admin-scripts' );
 }
@@ -78,7 +78,7 @@ function epl_wp_enqueue_scripts() {
 	$suffix                = 'production' === $mode ? '.min' : '';
 	$epl_default_view_type = epl_get_option( 'display_archive_view_type', 'list' );
 	$current_dir_path      = plugins_url( '', __FILE__ );
-	wp_register_script( 'epl-front-scripts', $current_dir_path . '/js/jquery-front-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER );
+	wp_register_script( 'epl-front-scripts', $current_dir_path . '/js/jquery-front-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
 
 	if ( is_epl_post() && shortcode_exists( 'listing_map' ) ) {
 
@@ -89,13 +89,13 @@ function epl_wp_enqueue_scripts() {
 		}
 
 		if ( epl_get_option( 'epl_disable_google_api' ) !== 'on' ) {
-			wp_enqueue_script( 'google-map-v-3', $googleapiurl );
+			wp_enqueue_script( 'google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 		}
 	}
 
 	// All CSS including Structual.
 	if ( epl_get_option( 'epl_use_core_css', 'off' ) === 'on' ) {
-
+		// Dont use css.
 	} else {
 
 		// Legacy CSS: on is to enable visual css, default off.
@@ -143,7 +143,7 @@ function epl_wp_enqueue_scripts() {
 
 	wp_enqueue_script( 'jquery-touch-punch' );
 
-	wp_enqueue_script( 'epl-js-lib', $current_dir_path . '/js/epl' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER );
+	wp_enqueue_script( 'epl-js-lib', $current_dir_path . '/js/epl' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
 
 	wp_localize_script( 'epl-front-scripts', 'epl_frontend_vars', $js_vars );
 	wp_enqueue_script( 'epl-front-scripts' );
@@ -178,7 +178,7 @@ function epl_admin_styles() {
 	?>
 	<style>
 		.column-property_thumb {
-			width: <?php echo $width; ?>;
+			width: <?php echo esc_html( $width ); ?>;
 		}
 		.column-property_thumb img {
 			max-width: 100%;
