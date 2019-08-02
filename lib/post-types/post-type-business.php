@@ -98,7 +98,6 @@ if ( is_admin() ) {
 			'listing_id'        => __( 'Unique ID', 'easy-property-listings' ),
 			'geo'               => __( 'Geo', 'easy-property-listings' ),
 			'property_status'   => __( 'Status', 'easy-property-listings' ),
-			'listing_type'      => __( 'Sale/Lease', 'easy-property-listings' ),
 			'agent'             => __( 'Agent', 'easy-property-listings' ),
 			'date'              => __( 'Date', 'easy-property-listings' ),
 		) + $columns;
@@ -140,13 +139,17 @@ if ( is_admin() ) {
 
 			// If displaying the 'Featured' image column.
 			case 'property_thumb':
-				do_action( 'epl_manage_listing_column_property_thumb_before' );
 				do_action( 'epl_manage_listing_column_property_thumb' );
-				do_action( 'epl_manage_listing_column_property_thumb_after' );
 
 				break;
 
 			case 'listing':
+
+
+				do_action( 'epl_manage_listing_column_listing' );
+
+
+
 				// Get the post meta.
 				$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 				$heading                 = get_post_meta( $post_id, 'property_heading', true );
@@ -181,9 +184,9 @@ if ( is_admin() ) {
 				}
 
 				if ( ! empty( $land ) ) {
-					echo '<div class="epl_meta_land_details">';
-					echo '<span class="epl_meta_land">Land: ' , $land , '</span>';
-					echo '<span class="epl_meta_land_unit"> ' , $land_unit , '</span>';
+					echo '<div class="epl_meta_wrapper epl_meta_land_details">';
+					echo '<span class="epl_meta epl_meta_land">Land: ' , $land , '</span>';
+					echo '<span class="epl_meta epl_meta_land_unit"> ' , $land_unit , '</span>';
 					echo '</div>';
 				}
 
@@ -215,6 +218,13 @@ if ( is_admin() ) {
 
 			// If displaying the 'Price' column.
 			case 'property_price':
+
+				do_action( 'epl_manage_listing_column_price' );
+
+
+
+
+
 				$price                = get_post_meta( $post_id, 'property_price', true );
 				$view                 = get_post_meta( $post_id, 'property_price_view', true );
 				$property_under_offer = get_post_meta( $post_id, 'property_under_offer', true );
@@ -275,24 +285,13 @@ if ( is_admin() ) {
 
 				break;
 
-			// If displaying the 'Commercial Listing Type' column.
-			case 'listing_type':
-				// Get the post meta.
-				$listing_type = get_post_meta( $post_id, 'property_com_listing_type', true );
-
-				// If no duration is found, output a default message.
-				if ( ! empty( $listing_type ) ) {
-					echo $listing_type;
-				}
-
-				break;
-
 			// If displaying the 'property_status' column.
 			case 'property_status':
 				do_action( 'epl_manage_listing_column_property_status' );
 
 				break;
 
+			// If displaying the 'agent' column.
 			case 'agent':
 				do_action( 'epl_manage_listing_column_agent' );
 

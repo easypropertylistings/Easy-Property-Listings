@@ -142,6 +142,7 @@ if ( is_admin() ) {
 
 				break;
 
+			// If displaying the 'Listing Details' column.
 			case 'listing':
 				do_action( 'epl_manage_listing_column_listing' );
 
@@ -164,12 +165,14 @@ if ( is_admin() ) {
 				do_action( 'epl_manage_listing_column_price' );
 
 				break;
+
 			// If displaying the 'property_status' column.
 			case 'property_status':
 				do_action( 'epl_manage_listing_column_property_status' );
 
 				break;
 
+			// If displaying the 'agent' column.
 			case 'agent':
 				do_action( 'epl_manage_listing_column_agent' );
 

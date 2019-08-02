@@ -174,6 +174,7 @@ if ( is_admin() ) {
 
 				break;
 
+			// If displaying the 'agent' column.
 			case 'agent':
 				do_action( 'epl_manage_listing_column_agent' );
 
