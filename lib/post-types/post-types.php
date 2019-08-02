@@ -255,10 +255,9 @@ function epl_manage_listing_column_listing_callback() {
 	$outgoings           = $property->get_property_meta( 'property_com_outgoings' );
 	$return              = $property->get_property_meta( 'property_com_return' );
 
-	$taking              = $property->get_property_meta( 'property_bus_takings' );
-	$franchise           = $property->get_property_meta( 'property_bus_franchise' );
-	$taking              = $property->get_property_meta( 'property_bus_terms' );
-
+	$taking    = $property->get_property_meta( 'property_bus_takings' );
+	$franchise = $property->get_property_meta( 'property_bus_franchise' );
+	$taking    = $property->get_property_meta( 'property_bus_terms' );
 
 	if ( is_array( $commercial_category ) ) {
 		$commercial_category = implode( ', ', $commercial_category );
