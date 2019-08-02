@@ -20,6 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  */
 function epl_button_read_more() {
-	?><button type="button" class="epl-button epl-read-more" onclick="location.href='<?php the_permalink(); ?>'"><?php echo apply_filters( 'epl_button_label_read_more', __( 'Read More ', 'easy-property-listings' ) ); ?></button>
+	?><button type="button" class="epl-button epl-read-more" onclick="location.href='<?php the_permalink(); ?>'"><?php echo apply_filters( 'epl_button_label_read_more', esc_html_e( 'Read More ', 'easy-property-listings' ) ); ?></button>
 	<?php
 }
