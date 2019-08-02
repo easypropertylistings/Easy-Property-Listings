@@ -97,11 +97,11 @@ $epl_settings = get_option( 'epl_settings' );
 		foreach ( $epl_extensions as $ext_key => $epl_extension ) {
 			$nav_active = $active_tab === $ext_key ? 'nav-tab-active' : '';
 			?>
-				<a class="nav-tab <?php echo $nav_active; ?>"
-					href="<?php echo admin_url( 'admin.php?page=epl-extensions&tab=' . sanitize_title( $ext_key ) ); ?>">
-					<?php echo $epl_extension['label']; ?>
-				</a>
-				<?php
+			<a class="nav-tab <?php echo $nav_active; ?>"
+				href="<?php echo admin_url( 'admin.php?page=epl-extensions&tab=' . sanitize_title( $ext_key ) ); ?>">
+				<?php echo $epl_extension['label']; ?>
+			</a>
+			<?php
 		}
 		?>
 	</h2>
