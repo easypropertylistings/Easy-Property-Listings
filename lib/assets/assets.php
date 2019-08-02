@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * [epl_get_admin_screens description]
+ *
  * @return [type] [description]
  *
  * @since 3.4 [<description>]
@@ -33,10 +34,10 @@ function epl_get_admin_screens() {
 		'easy-property-listings_page_epl-licenses',
 		'dashboard_page_epl-about',
 		'dashboard_page_epl-getting-started',
-		'edit.php'
+		'edit.php',
 	);
 
-	return apply_filters('epl_admin_screens', $screens);
+	return apply_filters( 'epl_admin_screens', $screens );
 }
 
 /**
@@ -53,7 +54,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 
 	$current_dir_path = plugins_url( '', __FILE__ );
 
-	if (  'edit.php' === $screen || 'post.php' === $screen || 'post-new.php' === $screen || 'easy-property-listings_page_epl-extensions' === $screen || 'easy-property-listings_page_epl-settings' === $screen || 'easy-property-listings_page_epl-extensions' === $screen ) {
+	if ( 'edit.php' === $screen || 'post.php' === $screen || 'post-new.php' === $screen || 'easy-property-listings_page_epl-extensions' === $screen || 'easy-property-listings_page_epl-settings' === $screen || 'easy-property-listings_page_epl-extensions' === $screen ) {
 
 		$googleapiurl = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
 
@@ -82,7 +83,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 	}
 
 	// load admin style on help & documentation pages as well.
-	if ( in_array($screen, epl_get_admin_screens(), true) ) {
+	if ( in_array( $screen, epl_get_admin_screens(), true ) ) {
 		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin' . $suffix . '.css', false, EPL_PROPERTY_VER );
 	}
 
