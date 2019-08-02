@@ -119,7 +119,7 @@ $epl_settings = get_option( 'epl_settings' );
 												<div class="epl-field">
 													<?php if ( 'help' !== $field['type'] ) { ?>
 													<div class="epl-half-left">
-														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php echo esc_html( $field['label']; ?></h4>
+														<h4 id="epl-field-<?php echo $field['name']; ?>" class="epl-setting-heading"><?php echo esc_html( $field['label']); ?></h4>
 
 													</div>
 													<?php } ?>
