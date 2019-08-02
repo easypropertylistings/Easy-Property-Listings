@@ -140,10 +140,10 @@ $epl_settings = get_option( 'epl_settings' );
 					}
 					if ( ! empty( $ext_field_group['label'] ) ) {
 						?>
-									<li class="<?php echo $current_class; ?>" data-tab="<?php echo 'tab-menu-' . sanitize_title( $ext_field_group['label'] ); ?>">
-										<?php echo $ext_field_group['label']; ?>
-									</li>
-									<?php
+						<li class="<?php echo $current_class; ?>" data-tab="<?php echo 'tab-menu-' . sanitize_title( $ext_field_group['label'] ); ?>">
+							<?php echo $ext_field_group['label']; ?>
+						</li>
+						<?php
 					}
 					$counter++;
 				}
