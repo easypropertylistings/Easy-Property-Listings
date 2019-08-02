@@ -302,7 +302,7 @@ function epl_contact_save_listing( $args ) {
 				$insert_meta_array[ $arg_key ] = $arg_value;
 			}
 		}
-		$insert_id = wp_insert_post( $insert_post_array )
+		$insert_id = wp_insert_post( $insert_post_array );
 		if ( $insert_id ) {
 			foreach ( $insert_meta_array as $meta_key => $meta_value ) {
 				update_post_meta( $insert_id, $meta_key, $meta_value );
