@@ -220,7 +220,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 							break;
 
 						case 'commercial_land':
-							require_once EPL_PATH_LIB . 'post-types/post-type-commercial_land.php';
+							require_once EPL_PATH_LIB . 'post-types/post-type-commercial-land.php';
 							break;
 
 						default:
@@ -232,15 +232,15 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'taxonomies/tax-location.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-features.php';
-			require_once EPL_PATH_LIB . 'taxonomies/tax-business_listings.php';
-			require_once EPL_PATH_LIB . 'taxonomies/tax-contact_tags.php';
+			require_once EPL_PATH_LIB . 'taxonomies/tax-business-listings.php';
+			require_once EPL_PATH_LIB . 'taxonomies/tax-contact-tags.php';
 
 			require_once EPL_PATH_LIB . 'widgets/widget-functions.php';
-			require_once EPL_PATH_LIB . 'widgets/widget-author.php';
-			require_once EPL_PATH_LIB . 'widgets/widget-listing.php';
-			require_once EPL_PATH_LIB . 'widgets/widget-listing-gallery.php';
-			require_once EPL_PATH_LIB . 'widgets/widget-listing-search.php';
-			require_once EPL_PATH_LIB . 'widgets/widget-contact-capture.php';
+			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-author.php';
+			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-recent-property.php';
+			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-property-gallery.php';
+			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-property-search.php';
+			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-contact-capture.php';
 
 			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-author-meta.php';
@@ -277,7 +277,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
-				require_once EPL_PATH_LIB . 'shortcodes/class-advanced-shortcode-listing.php';
+				require_once EPL_PATH_LIB . 'shortcodes/class-epl-advanced-shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/class-epl-listing-elements.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-advanced.php';

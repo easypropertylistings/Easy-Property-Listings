@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Settings Fields
  *
  * @package     EPL
@@ -9,8 +9,10 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 $epl_settings = epl_settings();
-extract($epl_settings);
+extract( $epl_settings );

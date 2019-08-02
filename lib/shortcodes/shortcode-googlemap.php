@@ -9,27 +9,36 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Listing Google Map [listing_map]
  *
  * @since       1.0
+ * @param array $atts Shortcode attributes.
+ * @param array $content Content.
  */
-function epl_shortcode_googlemap_callback($atts, $content = null) {
+function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	global $property;
-	extract( shortcode_atts( array(
-		'width' 		=> '100%',
-		'height' 		=> '350',
-		'zoom' 			=> '17',
-		'q' 			=> '',
-		'cord'			=> '',
-		'suburb_mode'		=> 0
-	), $atts) );
+	extract(
+		shortcode_atts(
+			array(
+				'width'       => '100%',
+				'height'      => '350',
+				'zoom'        => '17',
+				'q'           => '',
+				'cord'        => '',
+				'suburb_mode' => 0,
+			),
+			$atts
+		)
+	);
 
 	return '<div class="epl-tab-section">
-				<div style="width:'.$width.'; height:'.$height.'px" data-suburb_mode="'.$suburb_mode.'" data-cord="'.$cord.'" data-zoom="'.$zoom.'" data-id="'.$property->post->ID.'" data-address="'.$q.'" id="epl-default-map">
+				<div style="width:' . $width . '; height:' . $height . 'px" data-suburb_mode="' . $suburb_mode . '" data-cord="' . $cord . '" data-zoom="' . $zoom . '" data-id="' . $property->post->ID . '" data-address="' . $q . '" id="epl-default-map">
 			</div> </div>';
 }
-add_shortcode('listing_map', 'epl_shortcode_googlemap_callback');
+add_shortcode( 'listing_map', 'epl_shortcode_googlemap_callback' );

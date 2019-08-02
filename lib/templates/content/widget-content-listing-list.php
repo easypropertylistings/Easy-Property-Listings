@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Widget Property Template: List
  *
  * @package     EPL
@@ -9,11 +9,13 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
 
-<li id="post-<?php the_ID(); ?>" class="epl-widget-list-item <?php do_action('epl_property_widget_status_class'); ?>">
+<li id="post-<?php the_ID(); ?>" class="epl-widget-list-item <?php do_action( 'epl_property_widget_status_class' ); ?>">
 	<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 </li>

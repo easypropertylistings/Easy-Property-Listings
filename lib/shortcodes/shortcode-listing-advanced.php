@@ -9,8 +9,10 @@
  * @since       3.3
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Listing Shortcode [listing]
@@ -20,12 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * limit the number of entries that display. using  [listing limit="5"]
  *
  * @since       1.0
+ * @param array $atts Shortcode attributes.
  */
 function epl_shortcode_listing_advanced_callback( $atts ) {
 
-	$shortcode = new EPL_Advanced_Shortcode_Listing($atts);
+	$shortcode = new EPL_Advanced_Shortcode_Listing( $atts );
 
-	return	$shortcode->render();
+	return  $shortcode->render();
 
 }
 add_shortcode( 'listing_advanced', 'epl_shortcode_listing_advanced_callback' );

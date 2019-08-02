@@ -1,6 +1,6 @@
 <?php
 /**
- * Register post type :: Commercial
+ * Register post type :: Commercial Land
  *
  * @package     EPL
  * @subpackage  Functions/CPT
@@ -15,42 +15,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers and sets up the Commercial custom post type.
+ * Registers and sets up the Commercial Land custom post type.
  *
  * @since 1.0
  * @return void
  */
-function epl_register_custom_post_type_commercial() {
+function epl_register_custom_post_type_commercial_land() {
 
-	$archives = defined( 'EPL_COMMERCIAL_DISABLE_ARCHIVE' ) && EPL_COMMERCIAL_DISABLE_ARCHIVE ? false : true;
-	$slug     = defined( 'EPL_COMMERCIAL_SLUG' ) ? EPL_COMMERCIAL_SLUG : 'commercial';
-	$rewrite  = defined( 'EPL_COMMERCIAL_DISABLE_REWRITE' ) && EPL_COMMERCIAL_DISABLE_REWRITE ? false : array(
+	$archives = defined( 'EPL_COMMERCIAL_LAND_DISABLE_ARCHIVE' ) && EPL_COMMERCIAL_LAND_DISABLE_ARCHIVE ? false : true;
+	$slug     = defined( 'EPL_COMMERCIAL_LAND_SLUG' ) ? EPL_COMMERCIAL_LAND_SLUG : 'commercial-land';
+	$rewrite  = defined( 'EPL_COMMERCIAL_LAND_DISABLE_REWRITE' ) && EPL_COMMERCIAL_LAND_DISABLE_REWRITE ? false : array(
 		'slug'       => $slug,
 		'with_front' => false,
 	);
-	$rest     = defined( 'EPL_COMMERCIAL_DISABLE_REST' ) && EPL_COMMERCIAL_DISABLE_REST ? false : true;
+	$rest     = defined( 'EPL_COMMERCIAL_LAND_DISABLE_REST' ) && EPL_COMMERCIAL_LAND_DISABLE_REST ? false : true;
 
 	$labels = apply_filters(
-		'epl_commercial_labels',
+		'epl_commercial_land_labels',
 		array(
-			'name'               => __( 'Commercial Listings', 'easy-property-listings' ),
-			'singular_name'      => __( 'Commercial Listing', 'easy-property-listings' ),
-			'menu_name'          => __( 'Commercial', 'easy-property-listings' ),
+			'name'               => __( 'Commercial Land Listings', 'easy-property-listings' ),
+			'singular_name'      => __( 'Commercial Land Listing', 'easy-property-listings' ),
+			'menu_name'          => __( 'Commercial Land', 'easy-property-listings' ),
 			'add_new'            => __( 'Add New', 'easy-property-listings' ),
-			'add_new_item'       => __( 'Add New Commercial Listing', 'easy-property-listings' ),
-			'edit_item'          => __( 'Edit Commercial Listing', 'easy-property-listings' ),
-			'new_item'           => __( 'New Commercial Listing', 'easy-property-listings' ),
-			'update_item'        => __( 'Update Commercial Listing', 'easy-property-listings' ),
-			'all_items'          => __( 'All Commercial Listings', 'easy-property-listings' ),
-			'view_item'          => __( 'View Commercial Listing', 'easy-property-listings' ),
-			'search_items'       => __( 'Search Commercial Listing', 'easy-property-listings' ),
-			'not_found'          => __( 'Commercial Listing Not Found', 'easy-property-listings' ),
-			'not_found_in_trash' => __( 'Commercial Listing Not Found in Trash', 'easy-property-listings' ),
-			'parent_item_colon'  => __( 'Parent Commercial Listing:', 'easy-property-listings' ),
+			'add_new_item'       => __( 'Add New Commercial Land Listing', 'easy-property-listings' ),
+			'edit_item'          => __( 'Edit Commercial Land Listing', 'easy-property-listings' ),
+			'new_item'           => __( 'New Commercial Land Listing', 'easy-property-listings' ),
+			'update_item'        => __( 'Update Commercial Land Listing', 'easy-property-listings' ),
+			'all_items'          => __( 'All Commercial Land Listings', 'easy-property-listings' ),
+			'view_item'          => __( 'View Commercial Land Listing', 'easy-property-listings' ),
+			'search_items'       => __( 'Search Commercial Land Listing', 'easy-property-listings' ),
+			'not_found'          => __( 'Commercial Land Listing Not Found', 'easy-property-listings' ),
+			'not_found_in_trash' => __( 'Commercial Land Listing Not Found in Trash', 'easy-property-listings' ),
+			'parent_item_colon'  => __( 'Parent Commercial Land Listing:', 'easy-property-listings' ),
 		)
 	);
 
-	$commercial_args = array(
+	$commercial_land_args = array(
 		'labels'             => $labels,
 		'public'             => true,
 		'publicly_queryable' => true,
@@ -58,40 +58,40 @@ function epl_register_custom_post_type_commercial() {
 		'show_in_menu'       => true,
 		'query_var'          => true,
 		'rewrite'            => $rewrite,
-		'menu_icon'          => 'dashicons-welcome-widgets-menus',
+		'menu_icon'          => 'dashicons-image-crop',
 		'capability_type'    => 'post',
 		'has_archive'        => $archives,
 		'hierarchical'       => false,
-		'menu_position'      => '26.7',
+		'menu_position'      => '26.8',
 		'show_in_rest'       => $rest,
 		'taxonomies'         => array( 'location', 'tax_feature' ),
-		'supports'           => apply_filters( 'epl_commercial_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ) ),
+		'supports'           => apply_filters( 'epl_commercial_land_supports', array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ) ),
 	);
-	epl_register_post_type( 'commercial', 'Commercial', apply_filters( 'epl_commercial_post_type_args', $commercial_args ) );
+	epl_register_post_type( 'commercial_land', 'Commercial Land', apply_filters( 'epl_commercial_land_post_type_args', $commercial_land_args ) );
 }
-add_action( 'init', 'epl_register_custom_post_type_commercial', 0 );
+add_action( 'init', 'epl_register_custom_post_type_commercial_land', 0 );
 
 /**
- * Manage Admin Commercial Post Type Columns.
+ * Manage Admin Commercial Land Post Type Columns.
  *
  * @since 1.0
  * @return void
  */
 if ( is_admin() ) {
 	/**
-	 * Manage Admin Business Post Type Columns: Heading.
+	 * Manage Admin Commercial Land Post Type Columns: Heading.
 	 *
 	 * @since 1.0
 	 * @param array $columns Column array.
 	 * @return $columns with epl_post_type_commercial_land_admin_columns filter.
 	 */
-	function epl_manage_commercial_heading( $columns ) {
+	function epl_manage_commercial_land_columns_heading( $columns ) {
 		global $epl_settings;
 
 		$columns = array(
 			'cb'                => '<input type="checkbox" />',
 			'property_featured' => '<span class="dashicons dashicons-star-half"></span>' . '<span class="epl-manage-featured">' . __( 'Featured', 'easy-property-listings' ) . '</span>',
-			'property_thumb'    => __( 'Featured Image', 'easy-property-listings' ),
+			'property_thumb'    => __( 'Image', 'easy-property-listings' ),
 			'property_price'    => __( 'Price', 'easy-property-listings' ),
 			'title'             => __( 'Address', 'easy-property-listings' ),
 			'listing'           => __( 'Listing Details', 'easy-property-listings' ),
@@ -117,18 +117,18 @@ if ( is_admin() ) {
 			unset( $columns['listing_id'] );
 		}
 
-		return apply_filters( 'epl_post_type_commercial_admin_columns', $columns );
+		return apply_filters( 'epl_post_type_commercial_land_admin_columns', $columns );
 	}
-	add_filter( 'manage_edit-commercial_columns', 'epl_manage_commercial_heading' );
+	add_filter( 'manage_edit-commercial_land_columns', 'epl_manage_commercial_land_columns_heading' );
 
 	/**
-	 * Manage Admin Commercial Post Type Columns: Row Contents
+	 * Manage Admin Commercial Land Post Type Columns: Row Contents.
 	 *
 	 * @since 1.0
 	 * @param var $column column.
 	 * @param int $post_id post id.
 	 */
-	function epl_manage_commercial_columns_value( $column, $post_id ) {
+	function epl_manage_commercial_land_columns_value( $column, $post_id ) {
 
 		switch ( $column ) {
 
@@ -168,19 +168,19 @@ if ( is_admin() ) {
 
 				break;
 
-			// If displaying the 'Commercial Listing Type' column.
+			// If displaying the 'Commercial Land Listing Type' column.
 			case 'listing_type':
 				do_action( 'epl_manage_listing_column_listing_type' );
 
 				break;
 
-			// If displaying the 'property_status' column.
+			// If displaying the 'status' column.
 			case 'property_status':
 				do_action( 'epl_manage_listing_column_property_status' );
 
 				break;
 
-			// If displaying the 'Agent' column.
+			// If displaying the 'agent' column.
 			case 'agent':
 				do_action( 'epl_manage_listing_column_agent' );
 
@@ -191,5 +191,5 @@ if ( is_admin() ) {
 				break;
 		}
 	}
-	add_action( 'manage_commercial_posts_custom_column', 'epl_manage_commercial_columns_value', 10, 2 );
+	add_action( 'manage_commercial_land_posts_custom_column', 'epl_manage_commercial_land_columns_value', 10, 2 );
 }
