@@ -128,7 +128,7 @@ if ( is_admin() ) {
 	 * @param int $post_id post id.
 	 */
 	function epl_manage_rural_columns_value( $column, $post_id ) {
-		global $post,$property,$epl_settings;
+
 		switch ( $column ) {
 
 			// If displaying the 'Featured' image column.
@@ -140,6 +140,7 @@ if ( is_admin() ) {
 			// If displaying the 'Featured' image column.
 			case 'property_thumb':
 				do_action( 'epl_manage_listing_column_property_thumb' );
+
 				break;
 
 			case 'listing':

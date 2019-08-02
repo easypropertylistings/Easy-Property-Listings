@@ -127,9 +127,9 @@ if ( is_admin() ) {
 	 * @param int $post_id post id.
 	 */
 	function epl_manage_rental_columns_value( $column, $post_id ) {
-		global $post,$property;
-		global $epl_settings;
+
 		switch ( $column ) {
+
 			// If displaying the 'Featured' image column.
 			case 'property_featured':
 				do_action( 'epl_manage_listing_column_featured' );

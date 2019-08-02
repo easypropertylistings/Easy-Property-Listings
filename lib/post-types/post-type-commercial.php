@@ -129,6 +129,7 @@ if ( is_admin() ) {
 	 * @param int $post_id post id.
 	 */
 	function epl_manage_commercial_columns_value( $column, $post_id ) {
+
 		switch ( $column ) {
 
 			// If displaying the 'Featured' image column.
