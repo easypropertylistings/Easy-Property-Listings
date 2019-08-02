@@ -389,9 +389,6 @@ function epl_manage_listing_column_labels_callback( $returntype = 'l' ) {
 }
 add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_labels_callback', 20, 1 );
 
-// Business Post Type needs updating.
-add_action( 'epl_manage_business_listing_column_listing_details', 'epl_manage_listing_column_labels_callback', 10, 1 );
-
 /**
  * Posts Types Column ID
  *

@@ -193,8 +193,6 @@ if ( is_admin() ) {
 
 
 
-				do_action( 'epl_manage_business_listing_column_listing_details' );
-
 				break;
 
 			// If displaying the 'Listing ID' column.
