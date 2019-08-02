@@ -214,7 +214,7 @@ function epl_save_meta_boxes( $post_ID ) {
 
 											case 'radio':
 												if ( ! isset( $_POST[ $field['name'] ] ) ) {
-													continue;
+													continue 2;
 												}
 
 												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
@@ -234,7 +234,7 @@ function epl_save_meta_boxes( $post_ID ) {
 											case 'decimal':
 												/** Validate numeric data */
 												if ( ! is_numeric( $_POST[ $field['name'] ] ) ) {
-													continue;
+													continue 2;
 												}
 
 												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
