@@ -37,7 +37,7 @@ function epl_button_floor_plan() {
 
 		if ( ! empty( $link ) ) { ?>
 
-			<button type="button" class="epl-button epl-floor-plan epl-floor-plan-<?php echo $count; ?>" onclick="window.open('<?php echo $link; ?>')">
+			<button type="button" class="epl-button epl-floor-plan epl-floor-plan-<?php echo absint( $count ); ?>" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 					$filter_key = str_replace( 'property_', '', $key );
 				if ( has_filter( 'epl_button_label_' . $filter_key ) ) {
@@ -46,7 +46,7 @@ function epl_button_floor_plan() {
 					$label = apply_filters( 'epl_button_label_floorplan', $meta_label );
 				}
 				?>
-				<?php echo $label; ?>
+				<?php echo esc_attr( $label ); ?>
 			</button> 
 			<?php
 
