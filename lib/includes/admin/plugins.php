@@ -9,22 +9,25 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Plugins row action links adapted from Easy Digital Downloads
  *
  * @author Michael Cannon <mc@aihr.us>
  * @since 1.8
- * @param array $links already defined action links
- * @param string $file plugin file path and name being processed
+ * @param array  $links already defined action links.
+ * @param string $file plugin file path and name being processed.
  * @return array $links
  */
 function epl_plugin_action_links( $links, $file ) {
-	$settings_link = '<a href="' . admin_url( 'admin.php?page=epl-settings' ) . '">' . esc_html__( 'General Settings', 'easy-property-listings'  ) . '</a>';
-	if ( $file == 'easy-property-listings/easy-property-listings.php' )
+	$settings_link = '<a href="' . admin_url( 'admin.php?page=epl-settings' ) . '">' . esc_html__( 'General Settings', 'easy-property-listings' ) . '</a>';
+	if ( 'easy-property-listings/easy-property-listings.php' === $file ) {
 		array_unshift( $links, $settings_link );
+	}
 
 	return $links;
 }
@@ -35,17 +38,18 @@ add_filter( 'plugin_action_links', 'epl_plugin_action_links', 10, 2 );
  *
  * @author Michael Cannon <mc@aihr.us>
  * @since 1.8
- * @param array $input already defined meta links
- * @param string $file plugin file path and name being processed
+ * @param array  $input already defined meta links.
+ * @param string $file plugin file path and name being processed.
  * @return array $input
  */
 function epl_plugin_row_meta( $input, $file ) {
-	if ( $file != 'easy-property-listings/easy-property-listings.php' )
+	if ( 'easy-property-listings/easy-property-listings.php' !== $file ) {
 		return $input;
+	}
 
 	$links = array(
-		'<a href="' . admin_url( 'index.php?page=epl-getting-started' ) . '">' . esc_html__( 'Getting Started', 'easy-property-listings'  ) . '</a>',
-		'<a href="https://www.easypropertylistings.com.au/extensions/?utm_source=plugins-page&utm_medium=plugin-row&utm_campaign=admin">' . esc_html__( 'Add Ons', 'easy-property-listings'  ) . '</a>',
+		'<a href="' . admin_url( 'index.php?page=epl-getting-started' ) . '">' . esc_html__( 'Getting Started', 'easy-property-listings' ) . '</a>',
+		'<a href="https://www.easypropertylistings.com.au/extensions/?utm_source=plugins-page&utm_medium=plugin-row&utm_campaign=admin">' . esc_html__( 'Add Ons', 'easy-property-listings' ) . '</a>',
 	);
 
 	$input = array_merge( $input, $links );
