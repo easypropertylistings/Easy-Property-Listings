@@ -131,7 +131,7 @@ if ( is_admin() ) {
 		global $post,$property;
 		switch ( $column ) {
 
-			// If displaying the 'Featured' image column.
+			// If displaying the 'Featured Listing' image column.
 			case 'property_featured':
 				do_action( 'epl_manage_listing_column_featured' );
 
@@ -144,54 +144,7 @@ if ( is_admin() ) {
 				break;
 
 			case 'listing':
-
-
 				do_action( 'epl_manage_listing_column_listing' );
-
-
-
-				// Get the post meta.
-
-
-				$category = get_post_meta( $post_id, 'property_commercial_category', true );
-
-				$outgoings = get_post_meta( $post_id, 'property_com_outgoings', true );
-				$return    = get_post_meta( $post_id, 'property_com_return', true );
-
-				// property_bus_takings (number)
-				// property_bus_franchise (y/n)
-				// property_bus_terms (textarea)
-				// property_com_return
-
-				// return
-
-				// <businessCategory id="1">
-				//	<name>Food/Hospitality</name>
-				//	<businessSubCategory>
-				//	<name>Takeaway Food</name>
-
-				//	</businessSubCategory>
-				//		</businessCategory>
-				//	<businessCategory id="2"/>
-				//	<businessCategory id="3"/>
-
-
-
-				if ( ! empty( $category ) ) {
-					echo '<div class="epl_meta_category">Category: ' , $category , '</div>';
-				}
-
-
-
-				if ( ! empty( $outgoings ) ) {
-					echo '<div class="epl_meta_outgoings">Outgoings: ' , epl_currency_formatted_amount( $outgoings ) , '</div>';
-				}
-
-				if ( ! empty( $return ) ) {
-					echo '<div class="epl_meta_baths">Return: ' , $return , '%</div>';
-				}
-
-
 
 				break;
 

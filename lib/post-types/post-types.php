@@ -271,10 +271,22 @@ function epl_manage_listing_column_listing_callback() {
 		echo '<div class="type_heading"><strong>' , $heading , '</strong></div>';
 	}
 
-	// Commercial Listing Type.
+	// Category for commercial listing lype.
 	if ( ! empty( $commercial_category ) ) {
 		echo '<div class="epl_meta_category">' , $commercial_category , '</div>';
 	}
+
+	// Need to factor in business category: <businessCategory id="1">.
+	// Need to factor in business category: 	<name>Food/Hospitality</name>.
+	// Need to factor in business category: 	<businessSubCategory>.
+	// Need to factor in business category: 	<name>Takeaway Food</name>.
+	// Need to factor in business category: 	</businessSubCategory>.
+	// Need to factor in business category: 		</businessCategory>.
+	// Need to factor in business category: 	<businessCategory id="2"/>.
+	// Need to factor in business category: 	<businessCategory id="3"/>.
+
+	// Need to factor in business fields: property_bus_takings (number).
+	// Need to factor in business fields: property_bus_franchise (yes/no).
 
 	// Listing Location Taxonomy.
 	echo '<div class="type_suburb">' , $property_address_suburb , '</div>';
@@ -284,12 +296,12 @@ function epl_manage_listing_column_listing_callback() {
 		echo '<div class="epl_meta_category">' , $category , '</div>';
 	}
 
-	// Commercial Listing Type.
+	// Outgoings for commercial listing type.
 	if ( ! empty( $outgoings ) ) {
 		echo '<div class="epl_meta_outgoings">' . __( 'Outgoings:', 'easy-property-listings' ) . ' ' , epl_currency_formatted_amount( $outgoings ) , '</div>';
 	}
 
-	// Commercial Listing Type.
+	// Return for commercial listing type.
 	if ( ! empty( $return ) ) {
 		echo '<div class="epl_meta_return">' . __( 'Return:', 'easy-property-listings' ) . ' ' , $return , '%</div>';
 	}
@@ -461,11 +473,11 @@ function epl_manage_listing_column_price_callback() {
 	// Commercial Listing Lease Type Price.
 	if ( 'commercial' === $post->post_type && 'lease' === $property->get_property_meta( 'property_com_listing_type' ) ) {
 
-		// property_com_listing_type.
-		// property_com_rent.
-		// property_com_rent_period.
-		// property_com_rent_range_min.
-		// property_com_rent_range_max.
+		// Needs consideration and configuring property_com_listing_type.
+		// Needs consideration and configuring property_com_rent.
+		// Needs consideration and configuring property_com_rent_period.
+		// Needs consideration and configuring property_com_rent_range_min.
+		// Needs consideration and configuring property_com_rent_range_max.
 
 		$price = $property->get_property_meta( 'property_com_rent' );
 
