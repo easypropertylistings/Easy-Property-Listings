@@ -87,8 +87,9 @@ function epl_listings_contextual_help() {
 	);
 
 	// Property Suburb/Location.
-	$location_label	= epl_tax_location_label();
-	$location 	= '<p>' . sprintf( __( 'Add your listing %s as this is what powers the search by %s in the search widget.', 'easy-property-listings' ), $location_label ) . '</p>';
+	$location_label = epl_tax_location_label();
+	/* Translators: %s is the location label. */
+	$location = '<p>' . sprintf( __( 'Add your listing %1$s as this is what powers the search by %2$s in the search widget.', 'easy-property-listings' ), $location_label, $location_label ) . '</p>';
 
 	$screen->add_help_tab(
 		array(
