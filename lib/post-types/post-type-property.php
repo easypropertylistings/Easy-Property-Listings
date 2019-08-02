@@ -145,7 +145,6 @@ if ( is_admin() ) {
 				break;
 
 			// If displaying the 'Listing Details' column.
-
 			case 'listing':
 				do_action( 'epl_manage_listing_column_listing' );
 

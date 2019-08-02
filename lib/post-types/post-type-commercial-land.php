@@ -132,7 +132,7 @@ if ( is_admin() ) {
 
 		switch ( $column ) {
 
-			// If displaying the 'Featured' image column.
+			// If displaying the 'Featured Star' column.
 			case 'property_featured':
 				do_action( 'epl_manage_listing_column_featured' );
 
