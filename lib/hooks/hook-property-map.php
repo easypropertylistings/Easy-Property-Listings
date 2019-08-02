@@ -66,8 +66,8 @@ add_action( 'epl_property_map', 'epl_property_map_default_callback' );
 function epl_map_api_key_warning() { ?>
 
 	<div class="epl-danger epl-warning-map-key" >
-		<p> <?php _e( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings.', 'easy-property-listings' ); ?> <em>
-			<?php _e( 'Note: This message is only displayed to logged in administrators.', 'easy-property-listings' ); ?></em></p>
+		<p> <?php esc_html_e( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings.', 'easy-property-listings' ); ?> <em>
+			<?php esc_html_e( 'Note: This message is only displayed to logged in administrators.', 'easy-property-listings' ); ?></em></p>
 	</div> 
 	<?php
 
