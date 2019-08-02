@@ -9,7 +9,7 @@
  * @since       2.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -18,7 +18,7 @@ $epl_extensions = epl_get_new_admin_option_fields();
 $active_tab     = isset( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : current( array_keys( $epl_extensions ) );
 $active_sub_tab = isset( $_GET['sub_tab'] ) ? sanitize_title( $_GET['sub_tab'] ) : '';
 
-if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'epl_settings' ) {
+if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 
 	if (
 		! isset( $_POST['epl_nonce_extension_form'] ) ||
