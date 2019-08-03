@@ -445,53 +445,61 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			$option = get_option( $this->item_shortname . '_license_status' );
 
-			// Only display notices to admin users
+			// Only display notices to admin users.
 			if ( current_user_can( 'manage_options' ) ) {
 
-					// If there is no license key, output nag about ensuring key is set for automatic updates.
+				// If there is no license key, output nag about ensuring key is set for automatic updates.
 				if ( isset( $option['missing'] ) && $option['missing'] ) :
 					?>
-						<div class="error">
-							<p>
-							<?php
+					<div class="error">
+						<p>
+						<?php
 							printf(
 								__( 'No valid license key has been entered, so automatic updates for %1$s have been turned off. <a href="%2$s">Please click here to enter your license key and begin receiving automatic updates.</a>', 'easy-property-listings' ),
 								$this->item_name,
 								esc_url( add_query_arg( array( 'page' => 'epl-licenses' ), admin_url( 'admin.php' ) ) )
 							);
-							?>
-								</p>
-						</div>
-						<?php
-						endif;
+						?>
+						</p>
+					</div>
+					<?php
+				endif;
 
-						// If a key has expired, output nag about renewing the key.
+				// If a key has expired, output nag about renewing the key.
 				if ( isset( $option['expired'] ) && $option['expired'] ) :
 					?>
-						<div class="error">
-							<p><?php printf( __( 'Your license key for %1$s has expired. <a href="%2$s" target="_blank">Please click here to renew your license key and continue receiving automatic updates.</a>', 'easy-property-listings' ), $this->item_name, 'https://easypropertylistings.com.au/your-account/' ); ?></p>
-						</div>
-						<?php
-						endif;
+					<div class="error">
+						<p>
+							<?php
+								printf( __( 'Your license key for %1$s has expired. <a href="%2$s" target="_blank">Please click here to renew your license key and continue receiving automatic updates.</a>', 'easy-property-listings' ), $this->item_name, 'https://easypropertylistings.com.au/your-account/' );
+							?>
+						</p>
+					</div>
+					<?php
+				endif;
 
-						// If activation limit reached for the license
+				// If activation limit reached for the license.
 				if ( isset( $option['no_activations_left'] ) && $option['no_activations_left'] ) :
 					?>
-						<div class="error">
-							<p><?php printf( __( 'Your maximum usage limit for license key of %s has been reached. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ), $this->item_name ); ?></p>
-						</div>
-						<?php
-						endif;
+					<div class="error">
+						<p>
+							<?php printf( __( 'Your maximum usage limit for license key of %s has been reached. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ), $this->item_name ); ?></p>
+					</div>
+					<?php
+				endif;
 
-						// If a key is invalid, output nag about using another key.
+				// If a key is invalid, output nag about using another key.
 				if ( isset( $option['item_name_mismatch'] ) && $option['item_name_mismatch'] ) :
 					?>
-						<div class="error">
-							<p><?php printf( __( 'The license you entered for %s does not belong to it. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ), $this->item_name ); ?></p>
-						</div>
+					<div class="error">
+						<p>
+							<?php
+								printf( __( 'The license you entered for %s does not belong to it. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ), $this->item_name );
+							?>
+						</p>
+					</div>
 					<?php
-					endif;
-
+				endif;
 			}
 		}
 
