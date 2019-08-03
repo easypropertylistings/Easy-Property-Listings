@@ -109,7 +109,10 @@ function epl_load_svg_listing_icons_head() {
 
 	// Only Load SVG icons if epl_icons_svg_listings is on.
 	if ( epl_get_option( 'epl_icons_svg_listings' ) === 'on' ) {
-		echo $svg_icons;
+
+		$allowed_tags = epl_get_svg_allowed_tags();
+
+		echo wp_kses( $svg_icons, $allowed_tags );
 	}
 
 }
@@ -263,7 +266,92 @@ function epl_load_svg_social_icons_head() {
 
 	// Only Load SVG icons if epl_icons_svg_author is on.
 	if ( epl_get_option( 'epl_icons_svg_author' ) === 'on' ) {
-		echo $social_icons;
+
+		$allowed_tags = epl_get_svg_allowed_tags();
+
+		echo wp_kses( $social_icons, $allowed_tags );
 	}
 }
 add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );
+
+/**
+ * Whitelist display attribute for wp_kses_post
+ *
+ * @param  [type] $styles [description].
+ * @return [type]         [description]
+ *
+ * @since 3.4 [<description>]
+ */
+function epl_whitelist_display_attr( $styles ) {
+
+	$styles[] = 'display';
+	$styles[] = 'fill';
+	return $styles;
+}
+
+add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
+
+/**
+ * Svg Allowed tags
+ *
+ * @since  3.4 [<description>]
+ */
+function epl_get_svg_allowed_tags() {
+
+	$tags = array(
+		'svg'    => array(
+			'id'              => true,
+			'class'           => true,
+			'version'         => true,
+			'aria-hidden'     => true,
+			'aria-labelledby' => true,
+			'role'            => true,
+			'xmlns'           => true,
+			'width'           => true,
+			'height'          => true,
+			'viewbox'         => true,
+			'style'           => true,
+			'xmlns:xlink'     => true,
+		),
+		'g'      => array(
+			'id'        => true,
+			'fill'      => true,
+			'transform' => true,
+			'style'     => true,
+			'class'     => true,
+		),
+		'title'  => array( 'title' => true ),
+		'path'   => array(
+			'd'     => true,
+			'fill'  => true,
+			'style' => true,
+			'id'    => true,
+			'class' => true,
+		),
+		'defs'   => array(
+			'id'    => true,
+			'class' => true,
+			'style' => true,
+		),
+		'symbol' => array(
+			'id'    => true,
+			'class' => true,
+			'style' => true,
+		),
+		'rect'   => array(
+			'width'  => true,
+			'height' => true,
+			'style'  => true,
+			'class'  => true,
+			'x'      => true,
+			'y'      => true,
+			'rx'     => true,
+			'ry'     => true,
+			'fill'   => true,
+
+		),
+
+	);
+
+	return apply_filters( 'epl_svg_allowed_tags', $tags );
+}

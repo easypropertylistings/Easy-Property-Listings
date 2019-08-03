@@ -34,7 +34,7 @@ function epl_button_energy_certificate() {
 		$meta_label = '' === $meta_label ? $default : $meta_label;
 
 		if ( ! empty( $link ) ) { ?>
-			<button type="button" class="epl-button epl-energy-certificate" onclick="window.open('<?php echo $link; ?>')">
+			<button type="button" class="epl-button epl-energy-certificate" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 				if ( has_filter( 'epl_button_label_' . $key ) ) {
 					$label = apply_filters( 'epl_button_label_' . $key, $meta_label );
@@ -42,7 +42,7 @@ function epl_button_energy_certificate() {
 					$label = apply_filters( 'epl_button_label_energy_certificate', $meta_label );
 				}
 				?>
-				<?php echo $label; ?>
+				<?php echo esc_attr( $label ); ?>
 			</button> 
 			<?php
 
