@@ -34,7 +34,7 @@ function epl_button_external_link() {
 		$meta_label = '' === $meta_label ? $default : $meta_label;
 
 		if ( ! empty( $link ) ) { ?>
-			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo $link; ?>')">
+			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 
 				if ( has_filter( 'epl_button_label_' . $key ) ) {
@@ -43,7 +43,7 @@ function epl_button_external_link() {
 					$label = apply_filters( 'epl_button_label_tour', $meta_label );
 				}
 				?>
-				<?php echo $label; ?>
+				<?php echo esc_attr( $label ); ?>
 			</button> 
 			<?php
 
