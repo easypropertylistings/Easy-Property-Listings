@@ -815,7 +815,7 @@ class EPL_CPT {
 		global $wp_query;
 
 		// Must set this to the post type you want the filter(s) displayed on.
-		if ( $typenow == $this->post_type_name ) {
+		if ( $typenow === $this->post_type_name ) {
 
 			// If custom filters are defined use those.
 			if ( is_array( $this->filters ) ) {
@@ -958,8 +958,8 @@ class EPL_CPT {
 	 */
 	function load_edit() {
 
-		   // Run filter to sort columns when requested.
-		   $this->add_filter( 'request', array( &$this, 'sort_columns' ) );
+		// Run filter to sort columns when requested.
+		$this->add_filter( 'request', array( &$this, 'sort_columns' ) );
 
 	}
 
@@ -1006,10 +1006,10 @@ class EPL_CPT {
 			}
 
 			// Check if we're viewing this post type.
-			if ( isset( $vars['post_type'] ) && $this->post_type_name == $vars['post_type'] ) {
+			if ( isset( $vars['post_type'] ) && $this->post_type_name === $vars['post_type'] ) {
 
 				// find the meta key we want to order posts by.
-				if ( isset( $vars['orderby'] ) && $meta_key == $vars['orderby'] ) {
+				if ( isset( $vars['orderby'] ) && $meta_key === $vars['orderby'] ) {
 
 					// Merge the query vars with our custom variables.
 					$vars = array_merge(
@@ -1031,7 +1031,7 @@ class EPL_CPT {
 	 * Use this function to set the menu icon in the admin dashboard. Since WordPress v3.8
 	 * dashicons are used. For more information see @link http://melchoyce.github.io/dashicons/
 	 *
-	 * @param string $icon dashicon name
+	 * @param string $icon dashicon name.
 	 */
 	function menu_icon( $icon = 'dashicons-admin-page' ) {
 
