@@ -9,7 +9,7 @@
  * @since       3.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -17,43 +17,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * EPL_Contact Class
  *
- * @since 3.0
+ * @since 3.0.0
  */
 class EPL_Contact {
 
 	/**
 	 * The contact ID
 	 *
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	public $ID = 0;
 
 	/**
 	 * The contact's listing count
 	 *
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	public $listing_count = 0;
-
 
 	/**
 	 * The contact's email
 	 *
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	public $email;
 
 	/**
 	 * The contact's name
 	 *
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	public $name;
 
 	/**
 	 * The contact's creation date
 	 *
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	public $date_created;
 
@@ -74,7 +73,7 @@ class EPL_Contact {
 	/**
 	 * Get things going
 	 *
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	public function __construct( $_id_or_email = false ) {
 
@@ -273,7 +272,7 @@ class EPL_Contact {
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	public function __get( $key ) {
 
@@ -675,7 +674,7 @@ class EPL_Contact {
 	 * Returns all activity types
 	 *
 	 * @return mixed
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	public static function get_activity_types() {
 		return apply_filters(
@@ -694,7 +693,7 @@ class EPL_Contact {
 	 * Returns Contact Address
 	 *
 	 * @return mixed
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	function epl_contact_get_address() {
 
@@ -716,7 +715,7 @@ class EPL_Contact {
 	 * Returns Contact Primary Email
 	 *
 	 * @return mixed
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	function get_primary_email( $id ) {
 		$emails = get_post_meta( $id, 'contact_emails', true );
@@ -727,7 +726,7 @@ class EPL_Contact {
 	 * Returns Contact Email
 	 *
 	 * @return mixed
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	function get_emails() {
 
@@ -740,7 +739,7 @@ class EPL_Contact {
 				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-email epl-contact-icons"></span>
 				<?php echo $label . ' - ' . $mail_value; ?>
-				</span> 
+				</span>
 				<?php
 			}
 			$email_html = ob_get_clean();
@@ -752,7 +751,7 @@ class EPL_Contact {
 	 * Returns Contact Phone
 	 *
 	 * @return mixed
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	function get_phones() {
 
@@ -766,7 +765,7 @@ class EPL_Contact {
 				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-phone epl-contact-icons"></span>
 					<?php echo $label . ' - ' . $mail_value; ?>
-				</span> 
+				</span>
 				<?php
 			}
 			$email_html = ob_get_clean();
@@ -778,7 +777,7 @@ class EPL_Contact {
 	 * Returns Contact Category Label
 	 *
 	 * @return mixed
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	function get_category_label() {
 		$cat = $this->get_meta( 'contact_category' );
@@ -789,7 +788,7 @@ class EPL_Contact {
 	 * Returns Contact Category Name
 	 *
 	 * @return mixed
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	function get_category_name() {
 		return $this->get_meta( 'contact_category' );
