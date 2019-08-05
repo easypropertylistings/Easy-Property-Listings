@@ -751,7 +751,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 3.2.0
 		 */
 		function get_description() {
-			if ( $this->description != '' ) {
+			if ( '' !== $this->description ) {
 				return apply_filters( 'epl_author_description', $this->description, $this );
 			}
 		}
