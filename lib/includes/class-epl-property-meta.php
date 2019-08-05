@@ -514,9 +514,10 @@ class EPL_Property_Meta {
 	 * @return string formatted street address
 	 */
 	public function get_formatted_property_address() {
-		$street = $this->get_property_meta( 'property_address_lot_number' ) . ' ';
+		$street     = $this->get_property_meta( 'property_address_lot_number' ) . ' ';
+		$sub_number = $this->get_property_meta( 'property_address_sub_number' );
 
-		if ( '' !== $this->get_property_meta( 'property_address_sub_number' ) ) {
+		if ( ! empty( $sub_number ) ) {
 			$street .= $this->get_property_meta( 'property_address_sub_number' ) . '/';
 		}
 
