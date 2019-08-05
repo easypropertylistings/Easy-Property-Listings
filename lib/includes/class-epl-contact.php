@@ -24,6 +24,7 @@ class EPL_Contact {
 	/**
 	 * The contact ID
 	 *
+	 * @var int $ID Contact ID.
 	 * @since 3.0.0
 	 */
 	public $ID = 0;
@@ -31,6 +32,7 @@ class EPL_Contact {
 	/**
 	 * The contact's listing count
 	 *
+	 * @var int $listing_count Contact listing count.
 	 * @since 3.0.0
 	 */
 	public $listing_count = 0;
@@ -38,6 +40,7 @@ class EPL_Contact {
 	/**
 	 * The contact's email
 	 *
+	 * @var string $email Contact email address.
 	 * @since 3.0.0
 	 */
 	public $email;
@@ -45,6 +48,7 @@ class EPL_Contact {
 	/**
 	 * The contact's name
 	 *
+	 * @var string $name Contact name.
 	 * @since 3.0.0
 	 */
 	public $name;
@@ -52,6 +56,7 @@ class EPL_Contact {
 	/**
 	 * The contact's creation date
 	 *
+	 * @var string $date_created Contact date created.
 	 * @since 3.0.0
 	 */
 	public $date_created;
@@ -59,6 +64,7 @@ class EPL_Contact {
 	/**
 	 * The listing IDs associated with the contact
 	 *
+	 * @var string $listing_ids Contact associated listing ids.
 	 * @since  3.0
 	 */
 	public $listing_ids;
@@ -66,19 +72,20 @@ class EPL_Contact {
 	/**
 	 * Contact Notes
 	 *
+	 * @var string notes Contact notes.
 	 * @since  3.0
 	 */
 	public $notes;
 
-    /**
-     * Get things going
-     *
-     * @param bool $_id_or_email
-     * @since 3.0.0
-     */
+	/**
+	 * Get things going
+	 *
+	 * @param bool $_id_or_email
+	 * @since 3.0.0
+	 */
 	public function __construct( $_id_or_email = false ) {
 
-		if ( false === $_id_or_email || ( is_numeric( $_id_or_email ) && (int) $_id_or_email !== absint( $_id_or_email ) ) ) {
+		if ( false === $_id_or_email || ( is_numeric( $_id_or_email ) && absint( $_id_or_email ) !== (int) $_id_or_email ) ) {
 			return false;
 		}
 
@@ -122,7 +129,7 @@ class EPL_Contact {
 	 *
 	 * @since  3.0
 	 * @param  object $contact The Contact Object
-	 * @return bool             If the setup was successful or not
+	 * @return bool If the setup was successful or not
 	 */
 	private function setup_contact( $contact ) {
 
