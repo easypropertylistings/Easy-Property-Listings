@@ -10,10 +10,10 @@
  * @version 1.6.6
  */
 
-// uncomment this line for testing
-// set_site_transient( 'update_plugins', null );
+// uncomment this line for testing.
+// set_site_transient( 'update_plugins', null ); | Testing.
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -26,13 +26,55 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  */
 class EPL_SL_Plugin_Updater {
-	private $api_url     = '';
-	private $api_data    = array();
-	private $name        = '';
-	private $slug        = '';
-	private $version     = '';
+	/**
+	 * File
+	 *
+	 * @var string $api_url.
+	 */
+	private $api_url = '';
+
+	/**
+	 * API data
+	 *
+	 * @var string $api_data.
+	 */
+	private $api_data = array();
+
+	/**
+	 * Name
+	 *
+	 * @var string name.
+	 */
+	private $name = '';
+
+	/**
+	 * Slug
+	 *
+	 * @var string slug.
+	 */
+	private $slug = '';
+
+	/**
+	 * Version
+	 *
+	 * @var string $version.
+	 */
+	private $version = '';
+
+
+	/**
+	 * WP override
+	 *
+	 * @var bool $wp_override.
+	 */
 	private $wp_override = false;
-	private $cache_key   = '';
+
+	/**
+	 * Cache key
+	 *
+	 * @var string cache_key.
+	 */
+	private $cache_key = '';
 
 	/**
 	 * Class constructor.
@@ -102,7 +144,7 @@ class EPL_SL_Plugin_Updater {
 			$_transient_data = new stdClass;
 		}
 
-		if ( 'plugins.php' == $pagenow && is_multisite() ) {
+		if ( 'plugins.php' === $pagenow && is_multisite() ) {
 			return $_transient_data;
 		}
 
@@ -141,10 +183,10 @@ class EPL_SL_Plugin_Updater {
 	}
 
 	/**
-	 * show update nofication row -- needed for multisite subsites, because WP won't tell you otherwise!
+	 * Show update nofication row -- needed for multisite subsites, because WP won't tell you otherwise!
 	 *
-	 * @param string $file
-	 * @param array  $plugin
+	 * @param string $file PLugin file.
+	 * @param array  $plugin Plugin name.
 	 */
 	public function show_update_notification( $file, $plugin ) {
 
@@ -160,11 +202,11 @@ class EPL_SL_Plugin_Updater {
 			return;
 		}
 
-		if ( $this->name != $file ) {
+		if ( $this->name !== $file ) {
 			return;
 		}
 
-		// Remove our filter on the site transient
+		// Remove our filter on the site transient.
 		remove_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ), 10 );
 
 		$update_cache = get_site_transient( 'update_plugins' );
@@ -208,14 +250,14 @@ class EPL_SL_Plugin_Updater {
 
 		}
 
-		// Restore our filter
+		// Restore our filter.
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'check_update' ) );
 
 		if ( ! empty( $update_cache->response[ $this->name ] ) && version_compare( $this->version, $version_info->new_version, '<' ) ) {
 
-			// build a plugin list row, with update notification
+			// build a plugin list row, with update notification.
 			$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
-			// <tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange">
+			// <tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange">.
 			echo '<tr class="plugin-update-tr" id="' . $this->slug . '-update" data-slug="' . $this->slug . '" data-plugin="' . $this->slug . '/' . $file . '">';
 			echo '<td colspan="3" class="plugin-update colspanchange">';
 			echo '<div class="update-message notice inline notice-warning notice-alt">';
@@ -254,20 +296,20 @@ class EPL_SL_Plugin_Updater {
 	 *
 	 * @uses api_request()
 	 *
-	 * @param mixed  $_data
-	 * @param string $_action
-	 * @param object $_args
+	 * @param mixed  $_data Data.
+	 * @param string $_action Action name.
+	 * @param object $_args Arguments.
 	 * @return object $_data
 	 */
 	public function plugins_api_filter( $_data, $_action = '', $_args = null ) {
 
-		if ( $_action != 'plugin_information' ) {
+		if ( 'plugin_information' !== $_action ) {
 
 			return $_data;
 
 		}
 
-		if ( ! isset( $_args->slug ) || ( $_args->slug != $this->slug ) ) {
+		if ( ! isset( $_args->slug ) || ( $_args->slug !== $this->slug ) ) {
 
 			return $_data;
 
@@ -284,14 +326,14 @@ class EPL_SL_Plugin_Updater {
 
 		$cache_key = 'epl_api_request_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
 
-		// Get the transient where we store the api request for this plugin for 24 hours
+		// Get the transient where we store the api request for this plugin for 24 hours.
 		$epl_api_request_transient = $this->get_cached_version_info( $cache_key );
 
 		// If we have no transient-saved value, run the API, set a fresh transient with the API value, and return that value too right now.
 		if ( empty( $epl_api_request_transient ) ) {
 
 			$api_response = $this->api_request( 'plugin_information', $to_send );
-			// Expires in 3 hours
+			// Expires in 3 hours.
 			$this->set_version_info_cache( $api_response, $cache_key );
 			if ( false !== $api_response ) {
 				$_data = $api_response;
@@ -326,14 +368,14 @@ class EPL_SL_Plugin_Updater {
 
 
 	/**
-	 * Disable SSL verification in order to prevent download update failures
+	 * Disable SSL verification in order to prevent download update failures.
 	 *
-	 * @param array  $args
-	 * @param string $url
+	 * @param array  $args Arguments.
+	 * @param string $url URL.
 	 * @return object $array
 	 */
 	public function http_request_args( $args, $url ) {
-		// If it is an https request and we are performing a package download, disable ssl verification
+		// If it is an https request and we are performing a package download, disable ssl verification.
 		if ( strpos( $url, 'https://' ) !== false && strpos( $url, 'edd_action=package_download' ) ) {
 			$args['sslverify'] = false;
 		}
@@ -357,12 +399,12 @@ class EPL_SL_Plugin_Updater {
 
 		$data = array_merge( $this->api_data, $_data );
 
-		if ( $data['slug'] != $this->slug ) {
+		if ( $data['slug'] !== $this->slug ) {
 			return;
 		}
 
-		if ( $this->api_url == trailingslashit( home_url() ) ) {
-			return false; // Don't allow a plugin to ping itself
+		if ( trailingslashit( home_url() ) === $this->api_url ) {
+			return false; // Don't allow a plugin to ping itself.
 		}
 
 		$api_params = array(
@@ -412,11 +454,14 @@ class EPL_SL_Plugin_Updater {
 		return $request;
 	}
 
+	/**
+	 * Display change log
+	 */
 	public function show_changelog() {
 
 		global $epl_plugin_data;
 
-		if ( empty( $_REQUEST['edd_sl_action'] ) || 'view_plugin_changelog' != $_REQUEST['edd_sl_action'] ) {
+		if ( empty( $_REQUEST['edd_sl_action'] ) || 'view_plugin_changelog' !== $_REQUEST['edd_sl_action'] ) {
 			return;
 		}
 
@@ -487,7 +532,11 @@ class EPL_SL_Plugin_Updater {
 		exit;
 	}
 
-
+	/**
+	 * Get cached version info
+	 *
+	 * @param string $cache_key The cache key.
+	 */
 	public function get_cached_version_info( $cache_key = '' ) {
 
 		if ( empty( $cache_key ) ) {
@@ -495,11 +544,17 @@ class EPL_SL_Plugin_Updater {
 		}
 		$cache = get_option( $cache_key );
 		if ( empty( $cache['timeout'] ) || current_time( 'timestamp' ) > $cache['timeout'] ) {
-			return false; // Cache is expired
+			return false; // Cache is expired.
 		}
 		return json_decode( $cache['value'] );
 	}
 
+	/**
+	 * Set version info cache
+	 *
+	 * @param string $value The value.
+	 * @param string $cache_key The cache key.
+	 */
 	public function set_version_info_cache( $value = '', $cache_key = '' ) {
 
 		if ( empty( $cache_key ) ) {
