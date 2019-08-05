@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.DB.SlowDBQuery
+
 /**
  * Listing Open Shortcode
  *
@@ -27,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function epl_shortcode_property_open_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
 	if ( ! empty( $property_types ) ) {
-		 $property_types = array_keys( $property_types );
+		$property_types = array_keys( $property_types );
 	}
 
 	$attributes = shortcode_atts(
@@ -48,7 +50,17 @@ function epl_shortcode_property_open_callback( $atts ) {
 		$atts
 	);
 
-	extract( $attributes );
+	$post_type    = $attributes['post_type'];
+	$limit        = $attributes['limit'];
+	$template     = $attributes['template'];
+	$location     = $attributes['location'];
+	$tools_top    = $attributes['tools_top'];
+	$tools_bottom = $attributes['tools_bottom'];
+	$sortby       = $attributes['sortby'];
+	$sort_order   = $attributes['sort_order'];
+	$pagination   = $attributes['pagination'];
+	$instance_id  = $attributes['instance_id'];
+	$class        = $attributes['class'];
 
 	if ( is_string( $post_type ) && 'rental' === $post_type ) {
 		$meta_key_price = 'property_rent';
@@ -125,8 +137,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-location
 			<?php
-			echo epl_template_class( $template, 'archive' );
-			echo $attributes['class'];
+			echo esc_attr( epl_template_class( $template, 'archive' ) );
+			echo esc_attr( $attributes['class'] );
 			?>
 			">
 				<?php
