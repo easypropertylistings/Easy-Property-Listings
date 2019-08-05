@@ -461,7 +461,7 @@ class EPL_CPT {
 	 *
 	 * @see http://codex.wordpress.org/Function_Reference/register_taxonomy
 	 *
-	 * @param string $taxonomy_name The slug for the taxonomy.
+	 * @param string $taxonomy_names The slug for the taxonomy.
 	 * @param array  $options Taxonomy options.
 	 */
 	function register_taxonomy( $taxonomy_names, $options = array() ) {
@@ -476,10 +476,10 @@ class EPL_CPT {
 			'slug',
 		);
 
-		// if an array of names are passed
+		// If an array of names are passed.
 		if ( is_array( $taxonomy_names ) ) {
 
-			// Set the taxonomy name
+			// Set the taxonomy name.
 			$taxonomy_name = $taxonomy_names['taxonomy_name'];
 
 			// Cycle through possible names.
@@ -497,7 +497,7 @@ class EPL_CPT {
 					// Define the function to be used.
 					$method = 'get_' . $name;
 
-					// Generate the name
+					// Generate the name.
 					$$name = $this->$method( $taxonomy_name );
 
 				}
@@ -612,9 +612,9 @@ class EPL_CPT {
 			$new_columns = array();
 
 			// determine which column to add custom taxonomies after.
-			if ( in_array( 'post_tag', $this->taxonomies ) || $this->post_type_name === 'post' ) {
+			if ( in_array( 'post_tag', $this->taxonomies ) || 'post' === $this->post_type_name ) {
 				$after = 'tags';
-			} elseif ( in_array( 'category', $this->taxonomies ) || $this->post_type_name === 'post' ) {
+			} elseif ( in_array( 'category', $this->taxonomies ) || 'post' === $this->post_type_name ) {
 				$after = 'categories';
 			} elseif ( post_type_supports( $this->post_type_name, 'author' ) ) {
 				$after = 'author';
@@ -638,7 +638,7 @@ class EPL_CPT {
 						foreach ( $this->taxonomies as $tax ) {
 
 							// WordPress adds Categories and Tags automatically, ignore these.
-							if ( $tax !== 'category' && $tax !== 'post_tag' ) {
+							if ( 'category' !== $tax && 'post_tag' !== $tax ) {
 								// Get the taxonomy object for labels.
 								$taxonomy_object = get_taxonomy( $tax );
 
@@ -680,7 +680,6 @@ class EPL_CPT {
 
 			// If column is a taxonomy associated with the post type.
 			case ( taxonomy_exists( $column ) ):
-
 				// Get the taxonomy for the post.
 				$terms = get_the_terms( $post_id, $column );
 
@@ -736,7 +735,6 @@ class EPL_CPT {
 
 			// if the column is prepended with 'meta_', this will automagically retrieve the meta values and display them.
 			case ( preg_match( '/^meta_/', $column ) ? true : false ):
-
 				// Meta_book_author (meta key = book_author).
 				$x = substr( $column, 5 );
 
