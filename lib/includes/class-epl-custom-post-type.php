@@ -570,12 +570,12 @@ class EPL_CPT {
 				// Register the taxonomy if it doesn't exist.
 				if ( ! taxonomy_exists( $taxonomy_name ) ) {
 
-					// Register the taxonomy with WordPress
+					// Register the taxonomy with WordPress.
 					register_taxonomy( $taxonomy_name, $this->post_type_name, $options );
 
 				} else {
 
-					// If taxonomy exists, register it later with register_exisiting_taxonomies
+					// If taxonomy exists, register it later with register_exisiting_taxonomies.
 					$this->exisiting_taxonomies[] = $taxonomy_name;
 				}
 			}
@@ -606,12 +606,12 @@ class EPL_CPT {
 	 */
 	function add_admin_columns( $columns ) {
 
-		// If no user columns have been specified, add taxonomies
+		// If no user columns have been specified, add taxonomies.
 		if ( ! isset( $this->columns ) ) {
 
 			$new_columns = array();
 
-			// determine which column to add custom taxonomies after
+			// determine which column to add custom taxonomies after.
 			if ( in_array( 'post_tag', $this->taxonomies ) || $this->post_type_name === 'post' ) {
 				$after = 'tags';
 			} elseif ( in_array( 'category', $this->taxonomies ) || $this->post_type_name === 'post' ) {
@@ -622,13 +622,13 @@ class EPL_CPT {
 				$after = 'title';
 			}
 
-			// foreach exisiting columns
+			// Foreach exisiting columns.
 			foreach ( $columns as $key => $title ) {
 
-				// add exisiting column to the new column array
+				// Add exisiting column to the new column array.
 				$new_columns[ $key ] = $title;
 
-				// we want to add taxonomy columns after a specific column
+				// we want to add taxonomy columns after a specific column.
 				if ( $key === $after ) {
 
 					// If there are taxonomies registered to the post type.
@@ -637,7 +637,7 @@ class EPL_CPT {
 						// Create a column for each taxonomy.
 						foreach ( $this->taxonomies as $tax ) {
 
-							// WordPress adds Categories and Tags automatically, ignore these
+							// WordPress adds Categories and Tags automatically, ignore these.
 							if ( $tax !== 'category' && $tax !== 'post_tag' ) {
 								// Get the taxonomy object for labels.
 								$taxonomy_object = get_taxonomy( $tax );
@@ -650,7 +650,7 @@ class EPL_CPT {
 				}
 			}
 
-			// overide with new columns
+			// Overide with new columns.
 			$columns = $new_columns;
 
 		} else {
@@ -675,12 +675,13 @@ class EPL_CPT {
 		// Get WordPress $post object.
 		global $post;
 
-		// determine the column
+		// Determine the column.
 		switch ( $column ) {
 
 			// If column is a taxonomy associated with the post type.
 			case ( taxonomy_exists( $column ) ):
-				// Get the taxonomy for the post
+
+				// Get the taxonomy for the post.
 				$terms = get_the_terms( $post_id, $column );
 
 				// If we have terms.
@@ -718,7 +719,7 @@ class EPL_CPT {
 					// If no terms found.
 				} else {
 
-					// Get the taxonomy object for labels
+					// Get the taxonomy object for labels.
 					$taxonomy_object = get_taxonomy( $column );
 
 					// Echo no terms.
@@ -735,7 +736,8 @@ class EPL_CPT {
 
 			// if the column is prepended with 'meta_', this will automagically retrieve the meta values and display them.
 			case ( preg_match( '/^meta_/', $column ) ? true : false ):
-				// meta_book_author (meta key = book_author)
+
+				// Meta_book_author (meta key = book_author).
 				$x = substr( $column, 5 );
 
 				$meta = get_post_meta( $post->ID, $x );
@@ -817,12 +819,12 @@ class EPL_CPT {
 		// Must set this to the post type you want the filter(s) displayed on.
 		if ( $typenow == $this->post_type_name ) {
 
-			// if custom filters are defined use those
+			// If custom filters are defined use those.
 			if ( is_array( $this->filters ) ) {
 
 				$filters = $this->filters;
 
-				// else default to use all taxonomies associated with the post
+				// Else default to use all taxonomies associated with the post.
 			} else {
 
 				$filters = $this->taxonomies;
@@ -958,7 +960,7 @@ class EPL_CPT {
 	 */
 	function load_edit() {
 
-		   // Run filter to sort columns when requested
+		   // Run filter to sort columns when requested.
 		   $this->add_filter( 'request', array( &$this, 'sort_columns' ) );
 
 	}
@@ -975,13 +977,13 @@ class EPL_CPT {
 	 */
 	function sort_columns( $vars ) {
 
-		// Cycle through all sortable columns submitted by the user
+		// Cycle through all sortable columns submitted by the user.
 		foreach ( $this->sortable as $column => $values ) {
 
-			// Retrieve the meta key from the user submitted array of sortable columns
+			// Retrieve the meta key from the user submitted array of sortable columns.
 			$meta_key = $values[0];
 
-			// If the meta_key is a taxonomy
+			// If the meta_key is a taxonomy.
 			if ( taxonomy_exists( $meta_key ) ) {
 
 				// Sort by taxonomy.
@@ -993,25 +995,25 @@ class EPL_CPT {
 				$key = 'meta_key';
 			}
 
-			// If the optional parameter is set and is set to true
+			// If the optional parameter is set and is set to true.
 			if ( isset( $values[1] ) && true === $values[1] ) {
 
-				// Vaules needed to be ordered by integer value
+				// Vaules needed to be ordered by integer value.
 				$orderby = 'meta_value_num';
 
 			} else {
 
-				// Values are to be order by string value
+				// Values are to be order by string value.
 				$orderby = 'meta_value';
 			}
 
-			// Check if we're viewing this post type
+			// Check if we're viewing this post type.
 			if ( isset( $vars['post_type'] ) && $this->post_type_name == $vars['post_type'] ) {
 
-				// find the meta key we want to order posts by
+				// find the meta key we want to order posts by.
 				if ( isset( $vars['orderby'] ) && $meta_key == $vars['orderby'] ) {
 
-					// Merge the query vars with our custom variables
+					// Merge the query vars with our custom variables.
 					$vars = array_merge(
 						$vars,
 						array(
@@ -1041,7 +1043,7 @@ class EPL_CPT {
 
 		} else {
 
-			// Set a default menu icon
+			// Set a default menu icon.
 			$this->options['menu_icon'] = 'dashicons-admin-page';
 		}
 	}
