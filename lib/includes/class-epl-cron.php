@@ -9,7 +9,7 @@
  * @since       3.2
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.2
  */
 class EPL_Cron {
+
 	/**
 	 * Get things going
 	 *
@@ -38,7 +39,7 @@ class EPL_Cron {
 	 *
 	 * @since 3.2
 	 *
-	 * @param array $schedules
+	 * @param array $schedules Cron schedules.
 	 * @return array
 	 */
 	public function add_schedules( $schedules = array() ) {
