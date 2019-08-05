@@ -143,7 +143,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 */
 		private function includes() {
 			if ( ! class_exists( 'EPL_SL_Plugin_Updater' ) ) {
-				require_once 'EPL_SL_Plugin_Updater.php';
+				require_once 'class-epl-sl-plugin-updater.php';
 			}
 		}
 
