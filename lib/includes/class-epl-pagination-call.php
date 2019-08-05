@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * EPL_Pagination_Call Class
  *
  * @since 2.1
- * @since 3.4 Moved class to separate file.
+ * @since 3.4.0 Moved class to separate file.
  */
 class EPL_Pagination_Call {
 
