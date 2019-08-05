@@ -2332,7 +2332,7 @@ function epl_get_contact_categories() {
  */
 function get_category_label( $category ) {
 	foreach ( epl_get_contact_categories() as $key    => $cat ) {
-		if ( $key == $category ) {
+		if ( $key === $category ) {
 			return $cat;
 			break;
 		}
@@ -2343,28 +2343,32 @@ function get_category_label( $category ) {
 /**
  * Helper function starts with
  *
- * @since       3.3
+ * @param string $haystack String.
+ * @param string $needle String.
+ * @since 3.3
  */
 function epl_starts_with( $haystack, $needle ) {
 	// search backwards starting from haystack length characters from the end.
-	return $needle === '' || strrpos( $haystack, $needle, -strlen( $haystack ) ) !== false;
+	return '' === $needle || strrpos( $haystack, $needle, -strlen( $haystack ) ) !== false;
 }
 
 /**
  * Helper function ends with
  *
- * @since       3.3
+ * @param string $haystack String.
+ * @param string $needle String.
+ * @since 3.3
  */
 function epl_ends_with( $haystack, $needle ) {
 	// search forward starting from end minus needle length characters.
-	return $needle === '' || ( ( $temp = strlen( $haystack ) - strlen( $needle ) ) >= 0 && strpos( $haystack, $needle, $temp ) !== false );
+	return '' === $needle || ( ( $temp = strlen( $haystack ) - strlen( $needle ) ) >= 0 && strpos( $haystack, $needle, $temp ) !== false );
 }
 
 /**
  * Parse EPL shortcodes for meta queries
  *
- * @param  [type] $atts [description]
- * @return [type]       [description]
+ * @param  array $atts Attributes.
+ * @return array
  */
 function epl_parse_atts( $atts ) {
 
@@ -2395,7 +2399,7 @@ function epl_parse_atts( $atts ) {
 			'value'   => $value,
 		);
 
-		// check for meta
+		// check for meta.
 		if ( epl_starts_with( $key, '_' ) ) {
 
 			$key = preg_replace( '/^_/', '', $key );
@@ -2431,7 +2435,7 @@ function epl_parse_atts( $atts ) {
  *
  * Extensions should be added as 'extension-slug' => 'Extension Name'
  *
- * @return      array $extensions The array of extensions
+ * @return array $extensions The array of extensions
  */
 function epl_get_beta_enabled_extensions() {
 	return apply_filters( 'epl_beta_enabled_extensions', array() );
@@ -2440,7 +2444,7 @@ function epl_get_beta_enabled_extensions() {
 /**
  * Returns List of countries
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_countries_list() {
 
@@ -2452,7 +2456,7 @@ function epl_get_countries_list() {
 /**
  * Returns array containing Property Status
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_status_opts() {
 
@@ -2477,7 +2481,7 @@ function epl_get_property_status_opts() {
 /**
  * Returns array containing Property authority
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_authority_opts() {
 
@@ -2498,7 +2502,7 @@ function epl_get_property_authority_opts() {
 /**
  * Returns array containing Property exclusivity
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_exclusivity_opts() {
 
@@ -2514,7 +2518,7 @@ function epl_get_property_exclusivity_opts() {
 /**
  * Returns array containing Commercial Authority
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_com_authority_opts() {
 
@@ -2534,7 +2538,7 @@ function epl_get_property_com_authority_opts() {
 /**
  * Returns array containing area unit options
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_area_unit_opts() {
 
@@ -2553,7 +2557,7 @@ function epl_get_property_area_unit_opts() {
 /**
  * Returns array containing Rental period
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_rent_period_opts() {
 
@@ -2573,7 +2577,7 @@ function epl_get_property_rent_period_opts() {
 /**
  * Returns array containing Commercial Leasing Types
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_com_listing_type_opts() {
 
@@ -2590,7 +2594,7 @@ function epl_get_property_com_listing_type_opts() {
 /**
  * Returns array containing Commercial Tenancy
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_com_tenancy_opts() {
 
@@ -2607,7 +2611,7 @@ function epl_get_property_com_tenancy_opts() {
 /**
  * Returns array containing Commercial Land Extent
  *
- * @since   3.2
+ * @since 3.2
  */
 function epl_get_property_com_property_extent_opts() {
 
@@ -2623,7 +2627,8 @@ function epl_get_property_com_property_extent_opts() {
 /**
  * Get author id from name
  *
- * @since       3.1.1
+ * @param string $author Author name.
+ * @since 3.1.1
  */
 function epl_get_author_id_from_name( $author ) {
 	if ( is_numeric( $author ) ) {
@@ -2637,7 +2642,8 @@ function epl_get_author_id_from_name( $author ) {
 /**
  * WP All Import Pro filter that processes property_price_global after updating or saving a post
  *
- * @since       3.3
+ * @param string $id Post ID.
+ * @since 3.3
  */
 function epl_pmxi_import_post_saved( $id ) {
 
@@ -2645,12 +2651,12 @@ function epl_pmxi_import_post_saved( $id ) {
 
 	if ( is_epl_post( $post->post_type ) ) {
 
-		if ( 'rental' == $post->post_type ) {
+		if ( 'rental' === $post->post_type ) {
 			$price = get_post_meta( $id, 'property_rent', true );
 			update_post_meta( $id, 'property_price_global', $price );
-		} elseif ( 'commercial' == $post->post_type ) {
+		} elseif ( 'commercial' === $post->post_type ) {
 			$price = get_post_meta( $id, 'property_price', true );
-			if ( $price == '' ) {
+			if ( '' === $price ) {
 				$price = get_post_meta( $id, 'property_com_rent', true );
 			}
 			update_post_meta( $id, 'property_price_global', $price );
@@ -2665,7 +2671,7 @@ add_action( 'pmxi_saved_post', 'epl_pmxi_import_post_saved', 10, 1 );
 /**
  * Load functions from child theme folder if present
  *
- * @since       3.3
+ * @since 3.3
  */
 function epl_single_and_archive_functions() {
 
@@ -2682,7 +2688,9 @@ add_action( 'wp', 'epl_single_and_archive_functions', 99 );
 /**
  * Recursive array map for multi dimensional array
  *
- * @since  3.3.5 [<description>]
+ * @param string $callback Callback.
+ * @param array  $array Array.
+ * @since 3.3.5
  */
 function epl_array_map_recursive( $callback, $array ) {
 	$func = function ( $item ) use ( &$func, &$callback ) {
