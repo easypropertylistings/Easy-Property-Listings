@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.DB.SlowDBQuery
+
 /**
  * EPL_Advanced_Shortcode_Listing Class
  *
@@ -68,7 +70,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * @param array $atts Shortcode attributes.
 	 * @param array $overrides Array of variables to override defaults.
 	 */
-	function __construct( $atts, $overrides = array() ) {
+	public function __construct( $atts, $overrides = array() ) {
 		$this->atts = $atts;
 		$this->shortcode_atts();
 		$this->override_atts( $overrides );
@@ -82,7 +84,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * @since 3.3.0
 	 * @param array $overrides Array of variables to override defaults.
 	 */
-	function override_atts( $overrides ) {
+	public function override_atts( $overrides ) {
 
 		if ( ! empty( $overrides ) ) {
 
@@ -97,7 +99,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function get_default_post_types() {
+	public function get_default_post_types() {
 
 		$property_types = epl_get_active_post_types();
 		if ( ! empty( $property_types ) ) {
@@ -112,7 +114,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function get_meta_key_price() {
+	public function get_meta_key_price() {
 
 		if ( is_string( $this->attributes['post_type'] ) && 'rental' === $this->attributes['post_type'] ) {
 			$this->meta_key_price = 'property_rent';
@@ -128,7 +130,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function get_default_args() {
+	public function get_default_args() {
 
 		/**
 		 *
@@ -152,7 +154,7 @@ class EPL_Advanced_Shortcode_Listing {
 		$this->default_args = array(
 			'post_type'               => $this->get_default_post_types(), // Post Type.
 			'status'                  => array( 'current', 'sold', 'leased' ),
-			'commercial_listing_type' => '', // Listing Type, 'sale' , 'lease', 'both'.
+			'commercial_listing_type' => '', // Listing Type, sale lease and both.
 			'feature'                 => '', // Feature slug.
 			'feature_id'              => '', // Feature ID.
 			'limit'                   => '10', // Number of maximum posts to show.
@@ -187,7 +189,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function shortcode_atts() {
+	public function shortcode_atts() {
 		$this->attributes = shortcode_atts( $this->get_default_args(), $this->atts );
 	}
 
@@ -198,7 +200,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * @param string $key Meta key.
 	 * @param string $value Meta value.
 	 */
-	function set_attribute( $key, $value ) {
+	public function set_attribute( $key, $value ) {
 
 		if ( isset( $this->attributes[ $key ] ) ) {
 			$this->attributes[ $key ] = $value;
@@ -211,7 +213,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * @since 3.3
 	 * @param string $key Meta key.
 	 */
-	function get_attribute( $key ) {
+	public function get_attribute( $key ) {
 
 		return isset( $this->attributes[ $key ] ) ? $this->attributes[ $key ] : null;
 	}
@@ -221,7 +223,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_post_type() {
+	public function set_post_type() {
 		if ( ! is_array( $this->attributes['post_type'] ) ) {
 			$this->attributes['post_type'] =
 			array_map( 'trim', explode( ',', $this->attributes['post_type'] ) );
@@ -233,7 +235,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_initial_args() {
+	public function set_initial_args() {
 
 		$paged      = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 		$this->args = array(
@@ -248,7 +250,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_offset() {
+	public function set_offset() {
 
 		// Offset query does not work with pagination.
 		if ( ! empty( $this->attributes['offset'] ) ) {
@@ -262,7 +264,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_post__in() {
+	public function set_post__in() {
 		if ( ! empty( $this->attributes['post__in'] ) ) {
 			$post__in = array_map( 'trim', explode( ',', $this->attributes['post__in'] ) );
 			if ( ! empty( $post__in ) ) {
@@ -276,7 +278,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_post__not_in() {
+	public function set_post__not_in() {
 		if ( ! empty( $this->attributes['post__not_in'] ) ) {
 			$post__not_in = array_map( 'trim', explode( ',', $this->attributes['post__not_in'] ) );
 			if ( ! empty( $post__not_in ) ) {
@@ -290,7 +292,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function process_epl_atts() {
+	public function process_epl_atts() {
 
 		$this->args['meta_query'] = epl_parse_atts( $this->atts );
 	}
@@ -300,7 +302,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_author() {
+	public function set_author() {
 
 		// Listings of specified author.
 		if ( ! empty( $this->attributes['author'] ) ) {
@@ -318,7 +320,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_agent() {
+	public function set_agent() {
 
 		// Listings by specified agent.
 		if ( ! empty( $this->attributes['agent'] ) ) {
@@ -351,7 +353,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_featured() {
+	public function set_featured() {
 
 		// Featured listings.
 		if ( $this->attributes['featured'] ) {
@@ -367,7 +369,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_auction() {
+	public function set_auction() {
 
 		// Auction only listings.
 		if ( $this->attributes['auction'] ) {
@@ -383,7 +385,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_open_house() {
+	public function set_open_house() {
 
 		// Open house only.
 		if ( $this->attributes['open_house'] ) {
@@ -400,7 +402,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_location_tax_query() {
+	public function set_location_tax_query() {
 
 		// Location taxonomy.
 
@@ -436,7 +438,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_features_tax_query() {
+	public function set_features_tax_query() {
 
 		// Features taxonomy.
 
@@ -471,7 +473,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_status() {
+	public function set_status() {
 
 		if ( ! empty( $this->attributes['status'] ) ) {
 			if ( ! is_array( $this->attributes['status'] ) ) {
@@ -493,7 +495,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_commercial_listing_type() {
+	public function set_commercial_listing_type() {
 
 		/** Commercial listing type */
 		if ( ! empty( $this->attributes['commercial_listing_type'] ) ) {
@@ -514,7 +516,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_orderby() {
+	public function set_orderby() {
 
 		if ( ! empty( $this->attributes['sortby'] ) ) {
 			if ( 'price' === $this->attributes['sortby'] ) {
@@ -538,7 +540,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_orderby_clause() {
+	public function set_orderby_clause() {
 
 		/**
 		 * Advance orderby using named meta query clauses, will override default orderby.
@@ -572,7 +574,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function set_query() {
+	public function set_query() {
 
 		$this->query_open = new WP_Query( $this->args );
 
@@ -586,7 +588,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function get_wrap_template() {
+	public function get_wrap_template() {
 
 		$attributes['wrap_template'] = str_replace( '_', '-', $this->attributes['wrap_template'] );
 
@@ -600,7 +602,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function build_query() {
+	public function build_query() {
 
 		$this->set_post_type();
 		$this->set_initial_args();
@@ -626,7 +628,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 *
 	 * @since 3.3
 	 */
-	function render() {
+	public function render() {
 		$wrap_template = $this->get_wrap_template();
 		ob_start();
 		epl_get_template_part(
