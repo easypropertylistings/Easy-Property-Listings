@@ -70,11 +70,12 @@ class EPL_Contact {
 	 */
 	public $notes;
 
-	/**
-	 * Get things going
-	 *
-	 * @since 3.0.0
-	 */
+    /**
+     * Get things going
+     *
+     * @param bool $_id_or_email
+     * @since 3.0.0
+     */
 	public function __construct( $_id_or_email = false ) {
 
 		if ( false === $_id_or_email || ( is_numeric( $_id_or_email ) && (int) $_id_or_email !== absint( $_id_or_email ) ) ) {
