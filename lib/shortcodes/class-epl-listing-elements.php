@@ -26,7 +26,7 @@ class EPL_Listing_Elements {
 	 *
 	 * @since 3.3.0
 	 */
-	function __construct() {
+	public function __construct() {
 		add_shortcode( 'listing_element', array( $this, 'listing_element' ) );
 		add_shortcode( 'epl_listing_action', array( $this, 'epl_action' ) );
 		add_shortcode( 'epl_listing_meta', array( $this, 'epl_meta' ) );
@@ -43,7 +43,7 @@ class EPL_Listing_Elements {
 	 * @since 3.3
 	 * @param array $atts Array of attributes.
 	 */
-	function listing_element( $atts ) {
+	public function listing_element( $atts ) {
 
 		global $property;
 
@@ -72,43 +72,47 @@ class EPL_Listing_Elements {
 			}
 
 			ob_start();
-			echo '[ ' . __( 'Listing', 'easy-property-listings' ) . ' ' . ucwords( $atts['type'] );
+			echo '[ ' . esc_html__( 'Listing', 'easy-property-listings' ) . ' ' . esc_attr( ucwords( $atts['type'] ) );
 
 			if ( '' !== $key_name ) {
-				echo ': ' . ucwords( str_replace( '_', ' ', $atts[ $key_name ] ) );
+				echo ': ' . esc_attr( ucwords( str_replace( '_', ' ', $atts[ $key_name ] ) ) );
 			}
 			echo ' ]';
 
 			return ob_get_clean();
 		}
 
+		$return = '';
+
 		switch ( $atts['type'] ) {
 
 			case 'action':
-				return $this->epl_action( $atts );
-			break;
+				$return = $this->epl_action( $atts );
+				break;
 
 			case 'meta':
-				return $this->epl_meta( $atts );
-			break;
+				$return = $this->epl_meta( $atts );
+				break;
 
 			case 'post':
-				return $this->post( $atts );
-			break;
+				$return = $this->post( $atts );
+				break;
 
 			case 'suburb_profile':
-				return $this->epl_suburb_profile( $atts );
-			break;
+				$return = $this->epl_suburb_profile( $atts );
+				break;
 
 			case 'formatted_address':
-				return $this->epl_formatted_address( $atts );
-			break;
+				$return = $this->epl_formatted_address( $atts );
+				break;
 
 			case 'excerpt':
-				return $this->epl_the_excerpt( $atts );
-			break;
+				$return = $this->epl_the_excerpt( $atts );
+				break;
 
 		}
+
+		return $return;
 	}
 
 	/**
@@ -117,7 +121,7 @@ class EPL_Listing_Elements {
 	 * @since 3.3
 	 * @param array $atts Array of attributes for the action.
 	 */
-	function epl_action( $atts ) {
+	public function epl_action( $atts ) {
 		if ( ! isset( $atts['action_key'] ) ) {
 			return;
 		}
@@ -132,7 +136,7 @@ class EPL_Listing_Elements {
 	 * @since 3.3
 	 * @param array $atts Array of attributes for the meta field.
 	 */
-	function epl_meta( $atts ) {
+	public function epl_meta( $atts ) {
 
 		if ( ! isset( $atts['meta_key'] ) ) {
 			return;
@@ -147,20 +151,24 @@ class EPL_Listing_Elements {
 	 * @since 3.3
 	 * @param array $atts Array of attributes for the post object.
 	 */
-	function post( $atts ) {
+	public function post( $atts ) {
 
 		global $property;
+
+		$return = '';
 		switch ( $atts['post_key'] ) {
 
 			case 'permalink':
-				return get_permalink( $property->post->ID );
-			break;
+				$return = get_permalink( $property->post->ID );
+				break;
 
 			default:
-				return isset( $property->post->{$atts['post_key']} ) ? $property->post->{$atts['post_key']} : '';
-			break;
+				$return = isset( $property->post->{$atts['post_key']} ) ? $property->post->{$atts['post_key']} : '';
+				break;
 
 		}
+
+		return $return;
 
 	}
 
@@ -169,10 +177,10 @@ class EPL_Listing_Elements {
 	 *
 	 * @since 3.3
 	 */
-	function epl_suburb_profile() {
+	public function epl_suburb_profile() {
 
 		global $property;
-		echo $property->get_suburb_profile();
+		echo esc_html( $property->get_suburb_profile() );
 	}
 
 	/**
@@ -180,10 +188,10 @@ class EPL_Listing_Elements {
 	 *
 	 * @since 3.3
 	 */
-	function epl_formatted_address() {
+	public function epl_formatted_address() {
 
 		global $property;
-		echo  $property->get_formatted_property_address();
+		echo esc_html( $property->get_formatted_property_address() );
 	}
 
 	/**
@@ -191,10 +199,10 @@ class EPL_Listing_Elements {
 	 *
 	 * @since 3.3
 	 */
-	function epl_the_excerpt() {
+	public function epl_the_excerpt() {
 
 		global $property;
-		return epl_get_the_excerpt();
+		return esc_html( epl_get_the_excerpt() );
 	}
 
 }
