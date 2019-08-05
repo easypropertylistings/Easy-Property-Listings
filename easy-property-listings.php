@@ -180,7 +180,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			require_once EPL_PATH_LIB . 'assets/assets-svg.php';
-			require_once EPL_PATH_LIB . 'includes/class-epl-custom-post-type.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-cpt.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-form-builder.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-cron.php';
 
@@ -248,17 +248,19 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			require_once EPL_PATH_LIB . 'includes/error-tracking.php';
 
+			require_once EPL_PATH_LIB . 'includes/class-epl-pagination-call.php';
 			require_once EPL_PATH_LIB . 'includes/pagination.php';
+
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
 			require_once EPL_PATH_LIB . 'meta-boxes/meta-box-init.php';
 
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
-				require_once EPL_PATH_LIB . 'includes/class-epl-meta-boxes.php';
+				require_once EPL_PATH_LIB . 'includes/class-epl-metabox.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-actions.php';
-				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
+				require_once EPL_PATH_LIB . 'includes/class-epl-license.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
 				require_once EPL_PATH_LIB . 'includes/admin/menus/menus.php';
 				require_once EPL_PATH_LIB . 'includes/admin/menus/class-epl-welcome.php';

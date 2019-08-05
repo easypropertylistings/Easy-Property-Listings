@@ -244,7 +244,7 @@ class EPL_Welcome {
 					<p>
 						<?php
 							/* Translators: %s is a link. */
-							echo $link = sprintf( __( 'Prefer classic WordPress? We have you covered. If you have the <a href="%s" target="_blank">Classic Editor WordPress plugin</a> installed and activated your listing entry screens will revert to the classic WordPress experience.', 'easy-property-listings' ), esc_url( 'https://wordpress.org/plugins/classic-editor/' ) );
+							printf( __( 'Prefer classic WordPress? We have you covered. If you have the <a href="%s" target="_blank">Classic Editor WordPress plugin</a> installed and activated your listing entry screens will revert to the classic WordPress experience.', 'easy-property-listings' ), esc_url( 'https://wordpress.org/plugins/classic-editor/' ) );
 						?>
 					</p>
 
@@ -657,14 +657,24 @@ class EPL_Welcome {
 						<p>
 							<?php
 								/* Translators: %s is a link. */
-								echo $link = sprintf( __( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'easy-property-listings' ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) );
+								printf( __( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'easy-property-listings' ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) );
 							?>
 						</p>
 					</div>
 
 					<div class="col">
 						<h4><?php _e( 'Need Even Faster Support?', 'easy-property-listings' ); ?></h4>
-						<p><?php _e( '<a href="https://easypropertylistings.com.au/support-ticket/">Priority Support forums</a> are there for customers that need faster and/or more in-depth assistance.', 'easy-property-listings' ); ?></p>
+						<p><?php _e( '<a href="https://easypropertylistings.com.au/support-ticket/">Priority Support forums</a> are there for customers that need faster and/or more in-depth assistance.', 'easy-property-listings' ); ?>
+
+
+							<?php
+								/* Translators: %s is a link. */
+								printf( __( 'We do our best to provide the best support we can. If you encounter a problem or have a question, post a question in the <a href="%s">support forums</a>.', 'easy-property-listings' ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) );
+							?>
+
+
+
+						</p>
 					</div>
 
 					<div class="col last-feature">
@@ -698,7 +708,12 @@ class EPL_Welcome {
 					<div class="col last-feature">
 						<h3><?php _e( 'Extend With Extensions', 'easy-property-listings' ); ?></h3>
 						<h4><?php _e( '18 Extensions and many more coming', 'easy-property-listings' ); ?></h4>
-						<p><?php printf( __( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for %1$s, %2$s, %3$s, %4$s, %5$s, %6$s, and many, many more. Visit the %7$s to further enhance your real estate website.', 'easy-property-listings' ), $sl_link, $br_link, $am_link, $tm_link, $sd_link, $lp_link, $store ); ?></p>
+						<p>
+							<?php
+								/* Translators: %1$s, %2$s, %3$s, %4$s, %5$s, %6$s, %7$s are link s to extensions. */
+								printf( __( 'Add-on plug ins are available that greatly extend the default functionality of Easy Property Listings. There are extensions for %1$s, %2$s, %3$s, %4$s, %5$s, %6$s, and many, many more. Visit the %7$s to further enhance your real estate website.', 'easy-property-listings' ), $sl_link, $br_link, $am_link, $tm_link, $sd_link, $lp_link, $store );
+							?>
+						</p>
 
 						<h4><?php _e( 'Visit the Extension Store', 'easy-property-listings' ); ?></h4>
 						<p><a href="https://easypropertylistings.com.au/extensions/" target="_blank"><?php _e( 'The Extensions store', 'easy-property-listings' ); ?></a> <?php _e( 'has a list of all available extensions to make your real estate website even better.', 'easy-property-listings' ); ?></p>
@@ -720,9 +735,24 @@ class EPL_Welcome {
 		list( $display_version ) = explode( '-', EPL_PROPERTY_VER );
 		?>
 		<div class="wrap about-wrap epl-about-wrap">
-			<h1><?php printf( __( 'Welcome to Easy Property Listings %s', 'easy-property-listings' ), $display_version ); ?></h1>
-			<div class="about-text"><?php printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'easy-property-listings' ), $display_version ); ?></div>
-			<div class="epl-badge"><?php printf( __( 'Version %s', 'easy-property-listings' ), $display_version ); ?></div>
+			<h1>
+				<?php
+					/* Translators: %s is a version number. */
+					printf( __( 'Welcome to Easy Property Listings %s', 'easy-property-listings' ), $display_version );
+				?>
+			</h1>
+			<div class="about-text">
+				<?php
+					/* Translators: %s is a version number. */
+					printf( __( 'Thank you for updating to the latest version! Easy Property Listings %s is ready to make your real estate website faster, safer and better!', 'easy-property-listings' ), $display_version );
+				?>
+			</div>
+			<div class="epl-badge">
+				<?php
+					/* Translators: %s is a version number. */
+					printf( __( 'Version %s', 'easy-property-listings' ), $display_version );
+				?>
+			</div>
 
 			<?php $this->tabs(); ?>
 
@@ -755,6 +785,7 @@ class EPL_Welcome {
 			$contributor_list .= sprintf(
 				'<a href="%s" title="%s">',
 				esc_url( 'https://github.com/' . $contributor->login ),
+				/* Translators: %s is username form GitHub. */
 				esc_html( sprintf( __( 'View %s', 'easy-property-listings' ), $contributor->login ) )
 			);
 			$contributor_list .= sprintf( '<img src="%s" width="64" height="64" class="gravatar" alt="%s" />', esc_url( $contributor->avatar_url ), esc_html( $contributor->login ) );
@@ -785,7 +816,7 @@ class EPL_Welcome {
 
 		$response = wp_remote_get( 'https://api.github.com/repos/easypropertylistings/Easy-Property-Listings/contributors', array( 'sslverify' => false ) );
 
-		if ( is_wp_error( $response ) || 200 != wp_remote_retrieve_response_code( $response ) ) {
+		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return array();
 		}
 
@@ -809,25 +840,25 @@ class EPL_Welcome {
 	 * @return void
 	 */
 	public function epl_welcome() {
-		// Bail if no activation redirect
+		// Bail if no activation redirect.
 		if ( ! get_transient( '_epl_activation_redirect' ) ) {
 			return;
 		}
 
-		// Delete the redirect transient
+		// Delete the redirect transient.
 		delete_transient( '_epl_activation_redirect' );
 
-		// Bail if activating from network, or bulk
+		// Bail if activating from network, or bulk.
 		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 			return;
 		}
 
 		$upgrade = get_option( 'epl_version_upgraded_from' );
 
-		if ( ! $upgrade ) { // First time install
+		if ( ! $upgrade ) { // First time install.
 			wp_safe_redirect( admin_url( 'index.php?page=epl-getting-started' ) );
 			exit;
-		} else { // Update
+		} else { // Update.
 			wp_safe_redirect( admin_url( 'index.php?page=epl-about' ) );
 			exit;
 		}

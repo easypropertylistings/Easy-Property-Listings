@@ -9,17 +9,24 @@
  * @since       2.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 ?>
 
 <div class="wrap">
 	<div id="epl-menu-start-here" class="epl-menu-content-wrapper epl-menu-start-here">
 		<div class="epl-menu-content">
 			<div class="epl-menu-section epl-clearfix">
-				<h1><?php _e('Welcome to Easy Property Listings', 'easy-property-listings' ); ?></h1>
-				<p><?php _e('Nice! You installed Easy Property Listings and now you are ready to manage your listings.', 'easy-property-listings' ); ?>
-				<p><?php echo $link = sprintf( __('Below are some links and videos that will help you get started. If you still have questions, we have on-line documentation and tutorials packed with information or ask a question by opening a <a href="%s">support ticket</a>.', 'easy-property-listings' ) , esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) ); ?></p>
+				<h1><?php _e( 'Welcome to Easy Property Listings', 'easy-property-listings' ); ?></h1>
+				<p><?php _e( 'Nice! You installed Easy Property Listings and now you are ready to manage your listings.', 'easy-property-listings' ); ?>
+				<p>
+					<?php
+						/* Translators: %s is a link. */
+						printf( __( 'Below are some links and videos that will help you get started. If you still have questions, we have on-line documentation and tutorials packed with information or ask a question by opening a <a href="%s">support ticket</a>.', 'easy-property-listings' ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) );
+					?>
+				</p>
 				<hr>
 
 				<?php
@@ -27,19 +34,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				 * Author Level Quick Links visible to users who can edit_published_posts
 				 *
 				 * @since 2.0
-				**/
+				 **/
 				?>
 				<div id="links" class="epl-section-content">
 					<div class="epl-feature-section">
 						<h2 class="epl-section-title"><?php _e( 'Important Links', 'easy-property-listings' ); ?></h2>
 						<ul>
-							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-theme"><?php _e( 'What\'s New', 'easy-property-listings'  ); ?></a></li>
-							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'easy-property-listings'  ); ?></a></li>
-							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-changelog"><?php _e( 'Full Change Log', 'easy-property-listings'  ); ?></a></li>
-							<li><a href="http://codex.easypropertylistings.com.au/"><?php _e('Documentation', 'easy-property-listings' ); ?></a></li>
-							<li><a href="https://easypropertylistings.com.au/support-the-site/"><?php _e( 'Support the project', 'easy-property-listings'  ); ?></a></li>
-							<li><a href="https://easypropertylistings.com.au/support-ticket/"><?php _e( 'Visit Support', 'easy-property-listings'  ); ?></a></li>
-							<li><a href="https://wordpress.org/support/view/plugin-reviews/easy-property-listings"><strong><?php _e( 'Write a Review', 'easy-property-listings'  ); ?></strong></a></li>
+							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-theme"><?php _e( 'What\'s New', 'easy-property-listings' ); ?></a></li>
+							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php _e( 'Getting Started', 'easy-property-listings' ); ?></a></li>
+							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-changelog"><?php _e( 'Full Change Log', 'easy-property-listings' ); ?></a></li>
+							<li><a href="http://codex.easypropertylistings.com.au/"><?php _e( 'Documentation', 'easy-property-listings' ); ?></a></li>
+							<li><a href="https://easypropertylistings.com.au/support-the-site/"><?php _e( 'Support the project', 'easy-property-listings' ); ?></a></li>
+							<li><a href="https://easypropertylistings.com.au/support-ticket/"><?php _e( 'Visit Support', 'easy-property-listings' ); ?></a></li>
+							<li><a href="https://wordpress.org/support/view/plugin-reviews/easy-property-listings"><strong><?php _e( 'Write a Review', 'easy-property-listings' ); ?></strong></a></li>
 						</ul>
 					</div>
 				</div>
@@ -50,10 +57,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				 * Managing Users: Visible to Editor and Administrators only as the video goes into more detail about managing users.
 				 *
 				 * @since 2.1
-				**/
+				 **/
 
 				if ( current_user_can( 'edit_others_posts_not_ready' ) ) :
-				?>
+					?>
 				<div id="add-listing" class="epl-section-content epl-section-admin-tutorial">
 					<div class="epl-feature-section">
 						<div class="epl-col">
@@ -75,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 				<hr>
 				</div>
-				<?php endif;?>
+				<?php endif; ?>
 
 				<div id="add-listing" class="epl-section-content epl-section-author-tutorial">
 					<div class="epl-feature-section">
@@ -121,14 +128,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 					<div class="epl-feature-section">
 						<div class="epl-col">
-							<h3><?php _e( 'Title', 'easy-property-listings'  );?></h3>
-							<p><?php _e( 'When a property is being sold the "heading" is frequently changed and can cause link issues. Not to mention the search engine benefits. Use the full listing address as the title.', 'easy-property-listings'  );?></p>
+							<h3><?php _e( 'Title', 'easy-property-listings' ); ?></h3>
+							<p><?php _e( 'When a property is being sold the "heading" is frequently changed and can cause link issues. Not to mention the search engine benefits. Use the full listing address as the title.', 'easy-property-listings' ); ?></p>
 
-							<h3><?php _e( 'Content Editor', 'easy-property-listings'  );?></h3>
-							<p><?php _e( 'Enter your descriptive text for your listing here. Add images, insert shortcodes, or plain text.', 'easy-property-listings'  );?></p>
+							<h3><?php _e( 'Content Editor', 'easy-property-listings' ); ?></h3>
+							<p><?php _e( 'Enter your descriptive text for your listing here. Add images, insert shortcodes, or plain text.', 'easy-property-listings' ); ?></p>
 
-							<h3><?php _e( 'Author', 'easy-property-listings'  );?></h3>
-							<p><?php _e( 'Set the primary listing agent as the author. Update your contact details, bio and social media links from your profile.', 'easy-property-listings'  );?></p>
+							<h3><?php _e( 'Author', 'easy-property-listings' ); ?></h3>
+							<p><?php _e( 'Set the primary listing agent as the author. Update your contact details, bio and social media links from your profile.', 'easy-property-listings' ); ?></p>
 						</div>
 						<div class="epl-col epl-col-last">
 							<div class="featured-image">
@@ -139,13 +146,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 					<div class="epl-feature-section">
 						<div class="epl-col">
-							<h3><?php _e( 'Featured Image', 'easy-property-listings'  );?></h3>
-							<p><?php _e( 'Set your featured property image.' , 'easy-property-listings'  ); ?></p>
+							<h3><?php _e( 'Featured Image', 'easy-property-listings' ); ?></h3>
+							<p><?php _e( 'Set your featured property image.', 'easy-property-listings' ); ?></p>
 
-							<h3><?php _e( 'Listing Image Gallery', 'easy-property-listings'  );?></h3>
-							<p><?php _e( 'Add a gallery of images to your listings with the WordPress Add Media button.' , 'easy-property-listings'  ); ?></p>
+							<h3><?php _e( 'Listing Image Gallery', 'easy-property-listings' ); ?></h3>
+							<p><?php _e( 'Add a gallery of images to your listings with the WordPress Add Media button.', 'easy-property-listings' ); ?></p>
 
-							<p><?php _e( 'If set to automatic, just upload your images to the listing and press x to close the media upload box once the images are attached to the listing.', 'easy-property-listings'  );?></p>
+							<p><?php _e( 'If set to automatic, just upload your images to the listing and press x to close the media upload box once the images are attached to the listing.', 'easy-property-listings' ); ?></p>
 
 						</div>
 
@@ -156,16 +163,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 					<div class="epl-feature-section">
 						<div class="epl-col epl-half-left">
-							<h2><?php _e( 'Listing Details', 'easy-property-listings'  );?></h2>
+							<h2><?php _e( 'Listing Details', 'easy-property-listings' ); ?></h2>
 
-							<h3><?php _e( 'Heading', 'easy-property-listings'  );?></h3>
-							<p><?php _e( 'Enter the descriptive listing headline like "Great Property with Views".', 'easy-property-listings'  );?></p>
+							<h3><?php _e( 'Heading', 'easy-property-listings' ); ?></h3>
+							<p><?php _e( 'Enter the descriptive listing headline like "Great Property with Views".', 'easy-property-listings' ); ?></p>
 
-							<h3><?php _e( 'Second Listing Agent', 'easy-property-listings'  );?></h3>
-							<p><?php _e( 'If the listing has two real estate agents marketing it, enter their WordPress user name here. The primary agent is the post Author.', 'easy-property-listings'  );?></p>
+							<h3><?php _e( 'Second Listing Agent', 'easy-property-listings' ); ?></h3>
+							<p><?php _e( 'If the listing has two real estate agents marketing it, enter their WordPress user name here. The primary agent is the post Author.', 'easy-property-listings' ); ?></p>
 
-							<h3><?php _e( 'Inspection Times', 'easy-property-listings'  );?></h3>
-							<p><?php _e( 'Add your inspection dates. ', 'easy-property-listings'  );?></p>
+							<h3><?php _e( 'Inspection Times', 'easy-property-listings' ); ?></h3>
+							<p><?php _e( 'Add your inspection dates. ', 'easy-property-listings' ); ?></p>
 
 						</div>
 
@@ -176,10 +183,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 					<div class="epl-feature-section">
 						<div class="epl-col epl-half-left">
-							<h2><?php _e( 'Search by location', 'easy-property-listings'  );?></h2>
+							<h2><?php _e( 'Search by location', 'easy-property-listings' ); ?></h2>
 
-							<p><?php _e( 'Although the address details are added into the Property Address box the location search you also need to add the City/Suburb to the location search taxonomy.', 'easy-property-listings'  );?></p>
-							<p><?php _e( 'This works like post tags and will populate the search widget/shortcode with your listings and it will automatically filter out options if no listings have that option.', 'easy-property-listings'  );?></p>
+							<p><?php _e( 'Although the address details are added into the Property Address box the location search you also need to add the City/Suburb to the location search taxonomy.', 'easy-property-listings' ); ?></p>
+							<p><?php _e( 'This works like post tags and will populate the search widget/shortcode with your listings and it will automatically filter out options if no listings have that option.', 'easy-property-listings' ); ?></p>
 						</div>
 
 						<div class="epl-col epl-half-right">

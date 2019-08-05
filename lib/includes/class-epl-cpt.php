@@ -9,8 +9,10 @@
  * @since       2.3
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * EPL_CPT Class
@@ -24,7 +26,7 @@ class EPL_CPT {
 	 *
 	 * @var string $post_type_name Holds the name of the post type.
 	 */
-	 public $post_type_name;
+	public $post_type_name;
 
 	/**
 	 * Holds the singular name of the post type. This is a human friendly
@@ -32,7 +34,7 @@ class EPL_CPT {
 	 *
 	 * @var string $singular Post type singular name.
 	 */
-	 public $singular;
+	public $singular;
 
 	/**
 	 * Holds the plural name of the post type. This is a human friendly
@@ -114,7 +116,7 @@ class EPL_CPT {
 	 *
 	 * @var string $textdomain Used for internationalising. Defaults to "cpt" without quotes.
 	 */
-	public $textdomain = 'easy-property-listings' ;
+	public $textdomain = 'easy-property-listings';
 
 	/**
 	 * Constructor
@@ -126,14 +128,14 @@ class EPL_CPT {
 	 */
 	function __construct( $post_type_names, $options = array() ) {
 
-        // Check if post type names is a string or an array.
-        if ( is_array( $post_type_names ) ) {
+		// Check if post type names is a string or an array.
+		if ( is_array( $post_type_names ) ) {
 
 			// Add names to object.
 			$names = array(
 				'singular',
 				'plural',
-				'slug'
+				'slug',
 			);
 
 			// Set the post type name.
@@ -143,23 +145,23 @@ class EPL_CPT {
 			foreach ( $names as $name ) {
 
 				// If the name has been set by user.
-                if ( isset( $post_type_names[ $name ] ) ) {
+				if ( isset( $post_type_names[ $name ] ) ) {
 
-					// Use the user setting
+					// Use the user setting.
 					$this->$name = $post_type_names[ $name ];
 
-				// Else generate the name.
-                } else {
+					// Else generate the name.
+				} else {
 
-					// define the method to be used
+					// Define the method to be used.
 					$method = 'get_' . $name;
 
-					// Generate the name
+					// Generate the name.
 					$this->$name = $this->$method();
 				}
 			}
 
-		// Else the post type name is only supplied.
+			// Else the post type name is only supplied.
 		} else {
 
 			// Apply to post type name.
@@ -173,7 +175,7 @@ class EPL_CPT {
 
 			// Set the singular name label.
 			$this->singular = $this->get_singular();
-        	}
+		}
 
 		// Set the user submitted options to the object.
 		$this->options = $options;
@@ -215,9 +217,9 @@ class EPL_CPT {
 
 		} else {
 
-			// on fail return false
+			// On fail return false.
 			return false;
-        	}
+		}
 	}
 
 	/**
@@ -239,13 +241,13 @@ class EPL_CPT {
 			'plural',
 			'slug',
 			'options',
-			'taxonomies'
+			'taxonomies',
 		);
 
-		// If the variable is not a reserved variable
-        if ( ! in_array( $var, $reserved ) ) {
+		// If the variable is not a reserved variable.
+		if ( ! in_array( $var, $reserved ) ) {
 
-			// Write variable and value
+			// Write variable and value.
 			$this->$var = $value;
 		}
 	}
@@ -255,14 +257,14 @@ class EPL_CPT {
 	 *
 	 * Helper function to add add_action WordPress filters.
 	 *
-	 * @param string $action Name of the action.
-	 * @param string $function Function to hook that will run on action.
+	 * @param string  $action Name of the action.
+	 * @param string  $function Function to hook that will run on action.
 	 * @param integet $priority Order in which to execute the function, relation to other functions hooked to this action.
 	 * @param integer $accepted_args The number of arguments the function accepts.
 	 */
 	function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
 
-		// Pass variables into WordPress add_action function
+		// Pass variables into WordPress add_action function.
 		add_action( $action, $function, $priority, $accepted_args );
 	}
 
@@ -273,14 +275,14 @@ class EPL_CPT {
 	 *
 	 * @see http://codex.wordpress.org/Function_Reference/add_filter
 	 *
-	 * @param  string  $action           Name of the action to hook to, e.g 'init'.
-	 * @param  string  $function         Function to hook that will run on @action.
-	 * @param  int     $priority         Order in which to execute the function, relation to other function hooked to this action.
-	 * @param  int     $accepted_args    The number of arguements the function accepts.
+	 * @param  string $action           Name of the action to hook to, e.g 'init'.
+	 * @param  string $function         Function to hook that will run on @action.
+	 * @param  int    $priority         Order in which to execute the function, relation to other function hooked to this action.
+	 * @param  int    $accepted_args    The number of arguements the function accepts.
 	 */
 	function add_filter( $action, $function, $priority = 10, $accepted_args = 1 ) {
 
-		// Pass variables into Wordpress add_action function
+		// Pass variables into WordPress add_action function.
 		add_filter( $action, $function, $priority, $accepted_args );
 	}
 
@@ -304,10 +306,10 @@ class EPL_CPT {
 		$name = strtolower( $name );
 
 		// Replace spaces with hyphen.
-		$name = str_replace( " ", "-", $name );
+		$name = str_replace( ' ', '-', $name );
 
 		// Replace underscore with hyphen.
-		$name = str_replace( "_", "-", $name );
+		$name = str_replace( '_', '-', $name );
 
 		return $name;
 	}
@@ -382,7 +384,7 @@ class EPL_CPT {
 		}
 
 		// Return human friendly name.
-		return ucwords( strtolower( str_replace( "-", " ", str_replace( "_", " ", $name ) ) ) );
+		return ucwords( strtolower( str_replace( '-', ' ', str_replace( '_', ' ', $name ) ) ) );
 	}
 
 	/**
@@ -399,35 +401,45 @@ class EPL_CPT {
 
 		// Default labels.
 		$labels = array(
+			/* TODO: %s Strings should have translatable content. */
 			'name'               => sprintf( __( '%s', $this->textdomain ), $plural ),
 			'singular_name'      => sprintf( __( '%s', $this->textdomain ), $singular ),
 			'menu_name'          => sprintf( __( '%s', $this->textdomain ), $plural ),
 			'all_items'          => sprintf( __( '%s', $this->textdomain ), $plural ),
+			/* Translators: %s is the post type name. */
 			'add_new'            => __( 'Add New', $this->textdomain ),
+			/* Translators: %s is the post type name. */
 			'add_new_item'       => sprintf( __( 'Add New %s', $this->textdomain ), $singular ),
+			/* Translators: %s is the post type name. */
 			'edit_item'          => sprintf( __( 'Edit %s', $this->textdomain ), $singular ),
+			/* Translators: %s is the post type name. */
 			'new_item'           => sprintf( __( 'New %s', $this->textdomain ), $singular ),
+			/* Translators: %s is the post type name. */
 			'view_item'          => sprintf( __( 'View %s', $this->textdomain ), $singular ),
+			/* Translators: %s is the post type name. */
 			'search_items'       => sprintf( __( 'Search %s', $this->textdomain ), $plural ),
+			/* Translators: %s is the post type name. */
 			'not_found'          => sprintf( __( 'No %s found', $this->textdomain ), $plural ),
+			/* Translators: %s is the post type name. */
 			'not_found_in_trash' => sprintf( __( 'No %s found in Trash', $this->textdomain ), $plural ),
-			'parent_item_colon'  => sprintf( __( 'Parent %s:', $this->textdomain ), $singular )
+			/* Translators: %s is the post type name. */
+			'parent_item_colon'  => sprintf( __( 'Parent %s:', $this->textdomain ), $singular ),
 		);
 
 		// Default options.
 		$defaults = array(
-			'labels'			=>	$labels,
-			'public'			=>	true,
-			'publicly_queryable'		=>	true,
-			'show_ui'			=>	true,
-			'show_in_menu'			=>	true,
-			'query_var'			=>	true,
-			'rewrite'			=>	array( 'slug' => $slug ),
-			'capability_type'		=>	'post',
-			'has_archive'			=>	true,
-			'hierarchical'			=>	false,
-			'menu_position'			=>	'26.87',
-			'supports'			=>	array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' )
+			'labels'             => $labels,
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => $slug ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => '26.87',
+			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions' ),
 		);
 
 		// Merge user submitted options with defaults.
@@ -437,7 +449,7 @@ class EPL_CPT {
 		$this->options = $options;
 
 		// Check that the post type doesn't already exist.
-        if ( ! post_type_exists( $this->post_type_name ) ) {
+		if ( ! post_type_exists( $this->post_type_name ) ) {
 
 			// Register the post type.
 			register_post_type( $this->post_type_name, $options );
@@ -449,10 +461,10 @@ class EPL_CPT {
 	 *
 	 * @see http://codex.wordpress.org/Function_Reference/register_taxonomy
 	 *
-	 * @param string $taxonomy_name The slug for the taxonomy.
+	 * @param string $taxonomy_names The slug for the taxonomy.
 	 * @param array  $options Taxonomy options.
-	*/
-	function register_taxonomy($taxonomy_names, $options = array()) {
+	 */
+	function register_taxonomy( $taxonomy_names, $options = array() ) {
 
 		// Post type defaults to $this post type if unspecified.
 		$post_type = $this->post_type_name;
@@ -461,13 +473,13 @@ class EPL_CPT {
 		$names = array(
 			'singular',
 			'plural',
-			'slug'
+			'slug',
 		);
 
-		// if an array of names are passed
+		// If an array of names are passed.
 		if ( is_array( $taxonomy_names ) ) {
 
-			// Set the taxonomy name
+			// Set the taxonomy name.
 			$taxonomy_name = $taxonomy_names['taxonomy_name'];
 
 			// Cycle through possible names.
@@ -485,20 +497,20 @@ class EPL_CPT {
 					// Define the function to be used.
 					$method = 'get_' . $name;
 
-					// Generate the name
+					// Generate the name.
 					$$name = $this->$method( $taxonomy_name );
 
 				}
 			}
 
 			// Else if only the taxonomy_name has been supplied.
-		} else  {
+		} else {
 
 			// Create user friendly names.
 			$taxonomy_name = $taxonomy_names;
-			$singular = $this->get_singular( $taxonomy_name );
-			$plural   = $this->get_plural( $taxonomy_name );
-			$slug     = $this->get_slug( $taxonomy_name );
+			$singular      = $this->get_singular( $taxonomy_name );
+			$plural        = $this->get_plural( $taxonomy_name );
+			$slug          = $this->get_slug( $taxonomy_name );
 
 		}
 
@@ -525,11 +537,11 @@ class EPL_CPT {
 
 		// Default options.
 		$defaults = array(
-				'labels' 	=> $labels,
-				'hierarchical'	=> true,
-				'rewrite'	=> array(
-				'slug'		=> $slug
-			)
+			'labels'       => $labels,
+			'hierarchical' => true,
+			'rewrite'      => array(
+				'slug' => $slug,
+			),
 		);
 
 		// Merge default options with user submitted options.
@@ -558,12 +570,12 @@ class EPL_CPT {
 				// Register the taxonomy if it doesn't exist.
 				if ( ! taxonomy_exists( $taxonomy_name ) ) {
 
-					// Register the taxonomy with Wordpress
+					// Register the taxonomy with WordPress.
 					register_taxonomy( $taxonomy_name, $this->post_type_name, $options );
 
 				} else {
 
-					// If taxonomy exists, register it later with register_exisiting_taxonomies
+					// If taxonomy exists, register it later with register_exisiting_taxonomies.
 					$this->exisiting_taxonomies[] = $taxonomy_name;
 				}
 			}
@@ -577,8 +589,8 @@ class EPL_CPT {
 	 */
 	function register_exisiting_taxonomies() {
 
-		if( is_array( $this->exisiting_taxonomies ) ) {
-			foreach( $this->exisiting_taxonomies as $taxonomy_name ) {
+		if ( is_array( $this->exisiting_taxonomies ) ) {
+			foreach ( $this->exisiting_taxonomies as $taxonomy_name ) {
 				register_taxonomy_for_object_type( $taxonomy_name, $this->post_type_name );
 			}
 		}
@@ -594,39 +606,39 @@ class EPL_CPT {
 	 */
 	function add_admin_columns( $columns ) {
 
-		// If no user columns have been specified, add taxonomies
+		// If no user columns have been specified, add taxonomies.
 		if ( ! isset( $this->columns ) ) {
 
 			$new_columns = array();
 
-			// determine which column to add custom taxonomies after
-			if ( in_array( 'post_tag', $this->taxonomies ) || $this->post_type_name === 'post' ) {
+			// determine which column to add custom taxonomies after.
+			if ( in_array( 'post_tag', $this->taxonomies ) || 'post' === $this->post_type_name ) {
 				$after = 'tags';
-			} elseif( in_array( 'category', $this->taxonomies ) || $this->post_type_name === 'post' ) {
+			} elseif ( in_array( 'category', $this->taxonomies ) || 'post' === $this->post_type_name ) {
 				$after = 'categories';
-			} elseif( post_type_supports( $this->post_type_name, 'author' ) ) {
+			} elseif ( post_type_supports( $this->post_type_name, 'author' ) ) {
 				$after = 'author';
 			} else {
 				$after = 'title';
 			}
 
-			// foreach exisiting columns
-			foreach( $columns as $key => $title ) {
+			// Foreach exisiting columns.
+			foreach ( $columns as $key => $title ) {
 
-				// add exisiting column to the new column array
-				$new_columns[$key] = $title;
+				// Add exisiting column to the new column array.
+				$new_columns[ $key ] = $title;
 
-				// we want to add taxonomy columns after a specific column
-				if( $key === $after ) {
+				// we want to add taxonomy columns after a specific column.
+				if ( $key === $after ) {
 
 					// If there are taxonomies registered to the post type.
 					if ( is_array( $this->taxonomies ) ) {
 
 						// Create a column for each taxonomy.
-						foreach( $this->taxonomies as $tax ) {
+						foreach ( $this->taxonomies as $tax ) {
 
-							// WordPress adds Categories and Tags automatically, ignore these
-							if( $tax !== 'category' && $tax !== 'post_tag' ) {
+							// WordPress adds Categories and Tags automatically, ignore these.
+							if ( 'category' !== $tax && 'post_tag' !== $tax ) {
 								// Get the taxonomy object for labels.
 								$taxonomy_object = get_taxonomy( $tax );
 
@@ -638,7 +650,7 @@ class EPL_CPT {
 				}
 			}
 
-			// overide with new columns
+			// Overide with new columns.
 			$columns = $new_columns;
 
 		} else {
@@ -655,21 +667,20 @@ class EPL_CPT {
 	 *
 	 * Populate custom columns on the admin edit screen.
 	 *
-	 * @param string $column The name of the column.
+	 * @param string  $column The name of the column.
 	 * @param integer $post_id The post ID.
 	 */
 	function populate_admin_columns( $column, $post_id ) {
 
-		// Get wordpress $post object.
+		// Get WordPress $post object.
 		global $post;
 
-		// determine the column
-		switch( $column ) {
+		// Determine the column.
+		switch ( $column ) {
 
 			// If column is a taxonomy associated with the post type.
-			case ( taxonomy_exists( $column ) ) :
-
-				// Get the taxonomy for the post
+			case ( taxonomy_exists( $column ) ):
+				// Get the taxonomy for the post.
 				$terms = get_the_terms( $post_id, $column );
 
 				// If we have terms.
@@ -678,17 +689,23 @@ class EPL_CPT {
 					$output = array();
 
 					// Loop through each term, linking to the 'edit posts' page for the specific term.
-					foreach( $terms as $term ) {
+					foreach ( $terms as $term ) {
 
 						// Output is an array of terms associated with the post.
 						$output[] = sprintf(
 
 							// Define link.
 							'<a href="%s">%s</a>',
-
 							// Create filter url.
-							esc_url( add_query_arg( array( 'post_type' => $post->post_type, $column => $term->slug ), 'edit.php' ) ),
-
+							esc_url(
+								add_query_arg(
+									array(
+										'post_type' => $post->post_type,
+										$column     => $term->slug,
+									),
+									'edit.php'
+								)
+							),
 							// Create friendly term name.
 							esc_html( sanitize_term_field( 'name', $term->name, $term->term_id, $column, 'display' ) )
 						);
@@ -698,63 +715,67 @@ class EPL_CPT {
 					// Join the terms, separating them with a comma.
 					echo join( ', ', $output );
 
-				// If no terms found.
+					// If no terms found.
 				} else {
 
-					// Get the taxonomy object for labels
+					// Get the taxonomy object for labels.
 					$taxonomy_object = get_taxonomy( $column );
 
 					// Echo no terms.
 					printf( __( 'No %s', $this->textdomain ), $taxonomy_object->labels->name );
 				}
 
-			break;
+				break;
 
 			// If column is for the post ID.
-			case 'post_id' :
-
+			case 'post_id':
 				echo $post->ID;
 
-			break;
+				break;
 
 			// if the column is prepended with 'meta_', this will automagically retrieve the meta values and display them.
-			case ( preg_match( '/^meta_/', $column ) ? true : false ) :
-
-				// meta_book_author (meta key = book_author)
+			case ( preg_match( '/^meta_/', $column ) ? true : false ):
+				// Meta_book_author (meta key = book_author).
 				$x = substr( $column, 5 );
 
 				$meta = get_post_meta( $post->ID, $x );
 
-				echo join( ", ", $meta );
+				echo join( ', ', $meta );
 
-			break;
+				break;
 
 			// If the column is post thumbnail.
-			case 'icon' :
-
+			case 'icon':
 				// Create the edit link.
-				$link = esc_url( add_query_arg( array( 'post' => $post->ID, 'action' => 'edit' ), 'post.php' ) );
+				$link = esc_url(
+					add_query_arg(
+						array(
+							'post'   => $post->ID,
+							'action' => 'edit',
+						),
+						'post.php'
+					)
+				);
 
 				// If it post has a featured image.
 				if ( has_post_thumbnail() ) {
 
 					// Display post featured image with edit link.
 					echo '<a href="' . $link . '">';
-						the_post_thumbnail( array(60, 60) );
-                    echo '</a>';
+						the_post_thumbnail( array( 60, 60 ) );
+					echo '</a>';
 
 				} else {
 
 					// Display default media image with link.
-					echo '<a href="' . $link . '"><img src="'. site_url( '/wp-includes/images/crystal/default.png' ) .'" alt="' . $post->post_title . '" /></a>';
+					echo '<a href="' . $link . '"><img src="' . site_url( '/wp-includes/images/crystal/default.png' ) . '" alt="' . $post->post_title . '" /></a>';
 
 				}
 
-			break;
+				break;
 
 			// Default case checks if the column has a user function, this is most commonly used for custom fields.
-			default :
-
+			default:
 				// If there are user custom columns to populate.
 				if ( isset( $this->custom_populate_columns ) && is_array( $this->custom_populate_columns ) ) {
 
@@ -767,7 +788,7 @@ class EPL_CPT {
 					}
 				}
 
-			break;
+				break;
 		} // end switch( $column )
 	}
 
@@ -787,21 +808,21 @@ class EPL_CPT {
 	 *  Add taxtonomy filters
 	 *
 	 * Creates select fields for filtering posts by taxonomies on admin edit screen.
-	*/
+	 */
 	function add_taxonomy_filters() {
 
 		global $typenow;
 		global $wp_query;
 
 		// Must set this to the post type you want the filter(s) displayed on.
-		if ( $typenow == $this->post_type_name ) {
+		if ( $typenow === $this->post_type_name ) {
 
-			// if custom filters are defined use those
-            if ( is_array( $this->filters ) ) {
+			// If custom filters are defined use those.
+			if ( is_array( $this->filters ) ) {
 
 				$filters = $this->filters;
 
-			// else default to use all taxonomies associated with the post
+				// Else default to use all taxonomies associated with the post.
 			} else {
 
 				$filters = $this->taxonomies;
@@ -817,15 +838,15 @@ class EPL_CPT {
 
 					// Get taxonomy terms and order by name.
 					$args = array(
-						'orderby' => 'name',
-						'hide_empty' => false
+						'orderby'    => 'name',
+						'hide_empty' => false,
 					);
 
 					// Get taxonomy terms.
 					$terms = get_terms( $tax_slug, $args );
 
 					// If we have terms.
-                    if ( $terms ) {
+					if ( $terms ) {
 
 						// Set up select box.
 						printf( ' &nbsp;<select name="%s" class="postform">', $tax_slug );
@@ -841,7 +862,7 @@ class EPL_CPT {
 
 								printf( '<option value="%s" selected="selected">%s (%s)</option>', $term->slug, $term->name, $term->count );
 
-							// ...create option for taxonomy.
+								// ...create option for taxonomy.
 							} else {
 
 								printf( '<option value="%s">%s (%s)</option>', $term->slug, $term->name, $term->count );
@@ -865,12 +886,12 @@ class EPL_CPT {
 	function columns( $columns ) {
 
 		// If columns is set.
-        	if( isset( $columns ) ) {
+		if ( isset( $columns ) ) {
 
 			// Assign user submitted columns to object.
 			$this->columns = $columns;
 
-        	}
+		}
 	}
 
 	/**
@@ -878,7 +899,7 @@ class EPL_CPT {
 	 *
 	 * Define what and how to populate a speicific admin column.
 	 *
-	 * @param string $column_name The name of the column to populate.
+	 * @param string   $column_name The name of the column to populate.
 	 * @param function $function An anonyous function to run when populating the column.
 	 */
 	function populate_column( $column_name, $function ) {
@@ -912,18 +933,17 @@ class EPL_CPT {
 	 * Internal function that adds user defined sortable columns to WordPress default columns.
 	 *
 	 * @param array $columns Columns to be sortable.
-	 *
 	 */
-	 function make_columns_sortable( $columns ) {
+	function make_columns_sortable( $columns ) {
 
 		// For each sortable column.
 		foreach ( $this->sortable as $column => $values ) {
 
-			// Make an array to merge into wordpress sortable columns.
+			// Make an array to merge into WordPress sortable columns.
 			$sortable_columns[ $column ] = $values[0];
 		}
 
-		// Merge sortable columns array into wordpress sortable columns.
+		// Merge sortable columns array into WordPress sortable columns.
 		$columns = array_merge( $sortable_columns, $columns );
 
 		return $columns;
@@ -936,12 +956,12 @@ class EPL_CPT {
 	 *
 	 * @see http://codex.wordpress.org/Plugin_API/Filter_Reference/request
 	 */
-	 function load_edit() {
+	function load_edit() {
 
-	        // Run filter to sort columns when requested
-	        $this->add_filter( 'request', array( &$this, 'sort_columns' ) );
+		// Run filter to sort columns when requested.
+		$this->add_filter( 'request', array( &$this, 'sort_columns' ) );
 
-    	}
+	}
 
 	/**
 	 * Sort columns
@@ -955,48 +975,48 @@ class EPL_CPT {
 	 */
 	function sort_columns( $vars ) {
 
-        // Cycle through all sortable columns submitted by the user
-        foreach ( $this->sortable as $column => $values ) {
+		// Cycle through all sortable columns submitted by the user.
+		foreach ( $this->sortable as $column => $values ) {
 
-			// Retrieve the meta key from the user submitted array of sortable columns
-            $meta_key = $values[0];
+			// Retrieve the meta key from the user submitted array of sortable columns.
+			$meta_key = $values[0];
 
-			// If the meta_key is a taxonomy
-            if( taxonomy_exists( $meta_key ) ) {
+			// If the meta_key is a taxonomy.
+			if ( taxonomy_exists( $meta_key ) ) {
 
 				// Sort by taxonomy.
-				$key = "taxonomy";
+				$key = 'taxonomy';
 
 			} else {
 
 				// else by meta key.
-				$key = "meta_key";
-            }
+				$key = 'meta_key';
+			}
 
-            // If the optional parameter is set and is set to true
-            if ( isset( $values[1] ) && true === $values[1] ) {
+			// If the optional parameter is set and is set to true.
+			if ( isset( $values[1] ) && true === $values[1] ) {
 
-				// Vaules needed to be ordered by integer value
+				// Vaules needed to be ordered by integer value.
 				$orderby = 'meta_value_num';
 
 			} else {
 
-				// Values are to be order by string value
+				// Values are to be order by string value.
 				$orderby = 'meta_value';
 			}
 
-			// Check if we're viewing this post type
-			if ( isset( $vars['post_type'] ) && $this->post_type_name == $vars['post_type'] ) {
+			// Check if we're viewing this post type.
+			if ( isset( $vars['post_type'] ) && $this->post_type_name === $vars['post_type'] ) {
 
-				// find the meta key we want to order posts by
-				if ( isset( $vars['orderby'] ) && $meta_key == $vars['orderby'] ) {
+				// find the meta key we want to order posts by.
+				if ( isset( $vars['orderby'] ) && $meta_key === $vars['orderby'] ) {
 
-					// Merge the query vars with our custom variables
+					// Merge the query vars with our custom variables.
 					$vars = array_merge(
 						$vars,
 						array(
 							'meta_key' => $meta_key,
-							'orderby' => $orderby
+							'orderby'  => $orderby,
 						)
 					);
 				}
@@ -1011,18 +1031,18 @@ class EPL_CPT {
 	 * Use this function to set the menu icon in the admin dashboard. Since WordPress v3.8
 	 * dashicons are used. For more information see @link http://melchoyce.github.io/dashicons/
 	 *
-	 * @param string $icon dashicon name
+	 * @param string $icon dashicon name.
 	 */
-	 function menu_icon( $icon = "dashicons-admin-page" ) {
+	function menu_icon( $icon = 'dashicons-admin-page' ) {
 
-		if ( is_string( $icon ) && stripos( $icon, "dashicons" ) !== false ) {
+		if ( is_string( $icon ) && stripos( $icon, 'dashicons' ) !== false ) {
 
-			$this->options["menu_icon"] = $icon;
+			$this->options['menu_icon'] = $icon;
 
 		} else {
 
-			// Set a default menu icon
-			$this->options["menu_icon"] = "dashicons-admin-page";
+			// Set a default menu icon.
+			$this->options['menu_icon'] = 'dashicons-admin-page';
 		}
 	}
 

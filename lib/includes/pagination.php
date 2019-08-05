@@ -7,112 +7,133 @@
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.1
-*/
+ */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Pagination function
  *
+ * @param array $args Arguments.
  * @since 2.1
  */
 function epl_fancy_pagination( $args = array() ) {
-	if ( !is_array( $args ) ) {
+	if ( ! is_array( $args ) ) {
 		$argv = func_get_args();
 
 		$args = array();
-		foreach ( array( 'before', 'after', 'options' ) as $i => $key )
-			$args[ $key ] = isset( $argv[ $i ]) ? $argv[ $i ] : "";
+		foreach ( array( 'before', 'after', 'options' ) as $i => $key ) {
+			$args[ $key ] = isset( $argv[ $i ] ) ? $argv[ $i ] : '';
+		}
 	}
 
-	$args = wp_parse_args( $args, array(
-		'before' 	=> '',
-		'after' 	=> '',
-		'options' 	=> array(),
-		'query' 	=> $GLOBALS['wp_query'],
-		'type' 		=> 'posts',
-		'echo' 		=> true
-	) );
+	$args = wp_parse_args(
+		$args,
+		array(
+			'before'  => '',
+			'after'   => '',
+			'options' => array(),
+			'query'   => $GLOBALS['wp_query'],
+			'type'    => 'posts',
+			'echo'    => true,
+		)
+	);
 
 	extract( $args, EXTR_SKIP );
-	$options = array(
-		'pages_text'			=> __( 'Page %CURRENT_PAGE% of %TOTAL_PAGES%', 'easy-property-listings'  ),
-		'current_text'			=> '%PAGE_NUMBER%',
-		'page_text'			=> '%PAGE_NUMBER%',
-		'first_text'			=> __( '&laquo; First', 'easy-property-listings'  ),
-		'last_text'			=> __( 'Last &raquo;', 'easy-property-listings'  ),
-		'prev_text'			=> __( '&laquo;', 'easy-property-listings'  ),
-		'next_text'			=> __( '&raquo;', 'easy-property-listings'  ),
-		'dotleft_text'			=> __( '...', 'easy-property-listings'  ),
-		'dotright_text'			=> __( '...', 'easy-property-listings'  ),
-		'num_pages'			=> 5,
-		'num_larger_page_numbers'	=> 3,
-		'larger_page_numbers_multiple'	=> 10,
-		'always_show'			=> false,
-		'use_pagenavi_css'		=> true,
-		'style'				=> 1,
+	$options  = array(
+		'pages_text'                   => __( 'Page %CURRENT_PAGE% of %TOTAL_PAGES%', 'easy-property-listings' ),
+		'current_text'                 => '%PAGE_NUMBER%',
+		'page_text'                    => '%PAGE_NUMBER%',
+		'first_text'                   => __( '&laquo; First', 'easy-property-listings' ),
+		'last_text'                    => __( 'Last &raquo;', 'easy-property-listings' ),
+		'prev_text'                    => __( '&laquo;', 'easy-property-listings' ),
+		'next_text'                    => __( '&raquo;', 'easy-property-listings' ),
+		'dotleft_text'                 => __( '...', 'easy-property-listings' ),
+		'dotright_text'                => __( '...', 'easy-property-listings' ),
+		'num_pages'                    => 5,
+		'num_larger_page_numbers'      => 3,
+		'larger_page_numbers_multiple' => 10,
+		'always_show'                  => false,
+		'use_pagenavi_css'             => true,
+		'style'                        => 1,
 	);
-	$options = apply_filters('epl_pagination_options',$options);
+	$options  = apply_filters( 'epl_pagination_options', $options );
 	$instance = new EPL_Pagination_Call( $args );
 
 	list( $posts_per_page, $paged, $total_pages ) = $instance->get_pagination_args();
 
-	if ( 1 == $total_pages && !$options['always_show'] )
+	if ( 1 === $total_pages && ! $options['always_show'] ) {
 		return;
+	}
 
-	$pages_to_show 		= absint( $options['num_pages'] );
-	$larger_page_to_show 	= absint( $options['num_larger_page_numbers'] );
-	$larger_page_multiple 	= absint( $options['larger_page_numbers_multiple'] );
-	$pages_to_show_minus_1 	= $pages_to_show - 1;
-	$half_page_start 	= floor( $pages_to_show_minus_1/2 );
-	$half_page_end 		= ceil( $pages_to_show_minus_1/2 );
-	$start_page 		= $paged - $half_page_start;
+	$pages_to_show         = absint( $options['num_pages'] );
+	$larger_page_to_show   = absint( $options['num_larger_page_numbers'] );
+	$larger_page_multiple  = absint( $options['larger_page_numbers_multiple'] );
+	$pages_to_show_minus_1 = $pages_to_show - 1;
+	$half_page_start       = floor( $pages_to_show_minus_1 / 2 );
+	$half_page_end         = ceil( $pages_to_show_minus_1 / 2 );
+	$start_page            = $paged - $half_page_start;
 
-	if ( $start_page <= 0 )
+	if ( $start_page <= 0 ) {
 		$start_page = 1;
+	}
 
 	$end_page = $paged + $half_page_end;
 
-	if ( ( $end_page - $start_page ) != $pages_to_show_minus_1 )
+	if ( ( $end_page - $start_page ) !== $pages_to_show_minus_1 ) {
 		$end_page = $start_page + $pages_to_show_minus_1;
+	}
 
 	if ( $end_page > $total_pages ) {
 		$start_page = $total_pages - $pages_to_show_minus_1;
-		$end_page = $total_pages;
+		$end_page   = $total_pages;
 	}
 
-	if ( $start_page < 1 )
+	if ( $start_page < 1 ) {
 		$start_page = 1;
+	}
 
 	$out = '';
 	switch ( intval( $options['style'] ) ) {
-		// Normal
+		// Normal.
 		case 1:
-			// Text
-			if ( !empty( $options['pages_text'] ) ) {
+			// Text.
+			if ( ! empty( $options['pages_text'] ) ) {
 				$pages_text = str_replace(
-					array( "%CURRENT_PAGE%", "%TOTAL_PAGES%" ),
+					array( '%CURRENT_PAGE%', '%TOTAL_PAGES%' ),
 					array( number_format_i18n( $paged ), number_format_i18n( $total_pages ) ),
-				$options['pages_text'] );
-				$out .= "<span class='pages'>$pages_text</span>";
+					$options['pages_text']
+				);
+				$out       .= "<span class='pages'>$pages_text</span>";
 			}
 
 			$out = apply_filters( 'epl_pagination_before_page_numbers', $out, $start_page, $end_page );
 			if ( $start_page >= 2 && $pages_to_show < $total_pages ) {
-				// First
+				// First.
 				$first_text = str_replace( '%TOTAL_PAGES%', number_format_i18n( $total_pages ), $options['first_text'] );
-				$out .= $instance->get_single( 1, $first_text, array(
-					'class' => 'first'
-				), '%TOTAL_PAGES%' );
+				$out       .= $instance->get_single(
+					1,
+					$first_text,
+					array(
+						'class' => 'first',
+					),
+					'%TOTAL_PAGES%'
+				);
 			}
 
-			// Previous
-			if ( $paged > 1 && !empty( $options['prev_text'] ) ) {
-				$out .= $instance->get_single( $paged - 1, $options['prev_text'], array(
-					'class' => 'previouspostslink',
-					'rel'	=> 'prev'
-				) );
+			// Previous.
+			if ( $paged > 1 && ! empty( $options['prev_text'] ) ) {
+				$out .= $instance->get_single(
+					$paged - 1,
+					$options['prev_text'],
+					array(
+						'class' => 'previouspostslink',
+						'rel'   => 'prev',
+					)
+				);
 			}
 
 			if ( $start_page >= 2 && $pages_to_show < $total_pages ) {
@@ -121,18 +142,24 @@ function epl_fancy_pagination( $args = array() ) {
 				}
 			}
 
-			// Smaller pages
+			// Smaller pages.
 			$larger_pages_array = array();
-			if ( $larger_page_multiple )
-				for ( $i = $larger_page_multiple; $i <= $total_pages; $i+= $larger_page_multiple )
+			if ( $larger_page_multiple ) {
+				for ( $i = $larger_page_multiple; $i <= $total_pages; $i += $larger_page_multiple ) {
 					$larger_pages_array[] = $i;
+				}
+			}
 
 			$larger_page_start = 0;
 			foreach ( $larger_pages_array as $larger_page ) {
-				if ( $larger_page < ($start_page - $half_page_start) && $larger_page_start < $larger_page_to_show ) {
-					$out .= $instance->get_single( $larger_page, $options['page_text'], array(
-						'class' => 'smaller page',
-					) );
+				if ( $larger_page < ( $start_page - $half_page_start ) && $larger_page_start < $larger_page_to_show ) {
+					$out .= $instance->get_single(
+						$larger_page,
+						$options['page_text'],
+						array(
+							'class' => 'smaller page',
+						)
+					);
 					$larger_page_start++;
 				}
 			}
@@ -141,27 +168,35 @@ function epl_fancy_pagination( $args = array() ) {
 				$out .= $instance->get_single_dot( 'span', $options['dotleft_text'], array( 'class' => 'extend' ) );
 			}
 
-			// Page numbers
+			// Page numbers.
 			$timeline = 'smaller';
 			foreach ( range( $start_page, $end_page ) as $i ) {
-				if ( $i == $paged && ! empty( $options['current_text'] ) ) {
-					$out .= $instance->get_single( $i, $options['current_text'], array( 'class' => 'current' ), '%PAGE_NUMBER%', 'span' );
+				if ( $i === $paged && ! empty( $options['current_text'] ) ) {
+					$out     .= $instance->get_single( $i, $options['current_text'], array( 'class' => 'current' ), '%PAGE_NUMBER%', 'span' );
 					$timeline = 'larger';
 				} else {
-					$out .= $instance->get_single( $i, $options['page_text'], array(
-						'class' => "page $timeline",
-					) );
+					$out .= $instance->get_single(
+						$i,
+						$options['page_text'],
+						array(
+							'class' => "page $timeline",
+						)
+					);
 				}
 			}
 
-			// Large pages
+			// Large pages.
 			$larger_page_end = 0;
 			$larger_page_out = '';
 			foreach ( $larger_pages_array as $larger_page ) {
-				if ( $larger_page > ($end_page + $half_page_end) && $larger_page_end < $larger_page_to_show ) {
-					$larger_page_out .= $instance->get_single( $larger_page, $options['page_text'], array(
-						'class' => 'larger page',
-					) );
+				if ( $larger_page > ( $end_page + $half_page_end ) && $larger_page_end < $larger_page_to_show ) {
+					$larger_page_out .= $instance->get_single(
+						$larger_page,
+						$options['page_text'],
+						array(
+							'class' => 'larger page',
+						)
+					);
 					$larger_page_end++;
 				}
 			}
@@ -175,39 +210,49 @@ function epl_fancy_pagination( $args = array() ) {
 				$out .= $instance->get_single_dot( 'span', $options['dotright_text'], array( 'class' => 'extend' ) );
 			}
 
-			// Next
+			// Next.
 			if ( $paged < $total_pages && ! empty( $options['next_text'] ) ) {
-				$out .= $instance->get_single( $paged + 1, $options['next_text'], array(
-					'class' => 'nextpostslink',
-					'rel'	=> 'next',
-				) );
+				$out .= $instance->get_single(
+					$paged + 1,
+					$options['next_text'],
+					array(
+						'class' => 'nextpostslink',
+						'rel'   => 'next',
+					)
+				);
 			}
 
 			if ( $end_page < $total_pages ) {
-				// Last
-				$out .= $instance->get_single( $total_pages, $options['last_text'], array(
-					'class' => 'last',
-				), '%TOTAL_PAGES%' );
+				// Last.
+				$out .= $instance->get_single(
+					$total_pages,
+					$options['last_text'],
+					array(
+						'class' => 'last',
+					),
+					'%TOTAL_PAGES%'
+				);
 			}
 			$out = apply_filters( 'epl_pagination_after_page_numbers', $out, $start_page, $end_page );
 			break;
 
-		// Dropdown
+		// Dropdown.
 		case 2:
-			$out .= '<form action="" method="get">'."\n";
-			$out .= '<select size="1" onchange="document.location.href = this.options[this.selectedIndex].value;">'."\n";
+			$out .= '<form action="" method="get">' . "\n";
+			$out .= '<select size="1" onchange="document.location.href = this.options[this.selectedIndex].value;">' . "\n";
 
 			foreach ( range( 1, $total_pages ) as $i ) {
 				$page_num = $i;
-				if ( $page_num == 1 )
+				if ( 1 === $page_num ) {
 					$page_num = 0;
+				}
 
-				if ( $i == $paged ) {
+				if ( $i === $paged ) {
 					$current_page_text = str_replace( '%PAGE_NUMBER%', number_format_i18n( $i ), $options['current_text'] );
-					$out .= '<option value="'.esc_url( $instance->get_url( $page_num ) ).'" selected="selected" class="current">'.$current_page_text."</option>\n";
+					$out              .= '<option value="' . esc_url( $instance->get_url( $page_num ) ) . '" selected="selected" class="current">' . $current_page_text . "</option>\n";
 				} else {
 					$page_text = str_replace( '%PAGE_NUMBER%', number_format_i18n( $i ), $options['page_text'] );
-					$out .= '<option value="'.esc_url( $instance->get_url( $page_num ) ).'">'.$page_text."</option>\n";
+					$out      .= '<option value="' . esc_url( $instance->get_url( $page_num ) ) . '">' . $page_text . "</option>\n";
 				}
 			}
 
@@ -219,174 +264,39 @@ function epl_fancy_pagination( $args = array() ) {
 
 	$out = apply_filters( 'epl_pagination_html', $out );
 
-	if ( !$echo )
+	if ( ! $echo ) {
 		return $out;
+	}
 
 	echo $out;
 }
 
-/**
- * EPL_Pagination_Call Class
- *
- * @since 2.1
- */
-class EPL_Pagination_Call {
-
-	protected $args;
-
-	/**
-	 * Get things started
-	 *
-	 * @since  2.1
-	 */
-	function __construct( $args ) {
-		$this->args = $args;
-	}
-
-	/**
-	 * Get the key
-	 *
-	 * @since  2.1
-	 */
-	function __get( $key ) {
-		return $this->args[ $key ];
-	}
-
-	/**
-	 * Get Pagination arguments
-	 *
-	 * @since  2.1
-	 */
-	function get_pagination_args() {
-		global $numpages;
-
-		$query = $this->query;
-
-		switch( $this->type ) {
-		case 'multipart':
-			// Multipart page
-			$posts_per_page = 1;
-			$paged = max( 1, absint( get_query_var( 'page' ) ) );
-			$total_pages = max( 1, $numpages );
-			break;
-		case 'users':
-			// WP_User_Query
-			$posts_per_page = $query->query_vars['number'];
-			$paged = max( 1, floor( $query->query_vars['offset'] / $posts_per_page ) + 1 );
-			$total_pages = max( 1, ceil( $query->total_users / $posts_per_page ) );
-			break;
-		default:
-			// WP_Query
-			$posts_per_page = intval( $query->get( 'posts_per_page' ) );
-			$paged = max( 1, absint( $query->get( 'paged' ) ) );
-			$total_pages = max( 1, absint( $query->max_num_pages ) );
-			break;
-		}
-
-		return array( $posts_per_page, $paged, $total_pages );
-	}
-
-	/**
-	 * Get the single pagination
-	 *
-	 * @since  2.1
-	 * @param  string $page		page id.
-	 * @param  string $raw_text	text content.
-	 * @param  array  $attr 	attributes of page.
-	 * @param  array  $format 	format of single page.
-	 * @param  array  $tag 		attributes of single page tag.
-	 * @return string
-	 */
-	function get_single( $page, $raw_text, $attr, $format = '%PAGE_NUMBER%', $tag = 'a' ) {
-		if ( empty( $raw_text ) )
-			return '';
-
-		$text = str_replace( $format, number_format_i18n( $page ), $raw_text );
-		$text = apply_filters( 'epl_pagination_single_content_text', $text, $raw_text );
-
-		$attr['href'] = $this->get_url( $page );
-
-		list( $posts_per_page, $paged, $total_pages ) = $this->get_pagination_args();
-		$tag  = apply_filters( 'epl_pagination_single_tag', $tag, $page, $paged );
-
-		return apply_filters( 'epl_pagination_single', epl_pagination_html( $tag, $attr, $text ), $page, $paged, $total_pages, $posts_per_page );
-	}
-
-	/**
-	 * Outputting content of dot sigle elements.
-	 *
-	 * @since  2.3.1
-	 * @param  string $tag        tag of single dot.
-	 * @param  string $content    content of single dot.
-	 * @param  array  $attributes attributes of single dot tag.
-	 * @return string
-	 */
-	public function get_single_dot( $tag = 'span', $content = '...', array $attributes = array() ) {
-		$tag        = apply_filters( 'epl_pagination_single_dot_tag', $tag );
-		$content    = apply_filters( 'epl_pagination_single_dot_content', $content );
-		$attributes = apply_filters( 'epl_pagination_single_dot_attributes', $attributes );
-
-		$output = '<' . $tag;
-		if ( is_array( $attributes ) && count( $attributes ) ) {
-			foreach ( $attributes as $key => $value ) {
-				if ( ! empty( $key ) && ! empty( $value ) ) {
-					$output .= ' ' . $key . '="' . $value .'"';
-				}
-			}
-		}
-		// Tag is self closed.
-		if ( in_array( $tag, array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' ) ) ) {
-			$output .= ' />';
-		}
-		// Tag is not self closed.
-		else {
-			$output .= '>' . $content . '</' . $tag . '>';
-		}
-
-		return apply_filters( 'epl_pagination_single_dot', $output );
-	}
-
-	/**
-	 * Get url
-	 *
-	 * @since  2.1
-	 */
-	function get_url( $page ) {
-
-		$link =  ( 'multipart' == $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
-
-		if( $this->query->get('is_epl_shortcode') &&
-			in_array($this->query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
-			$link = epl_add_or_update_params($link,'pagination_id', $this->query->get('instance_id') );
-		}
-
-		return $link;
-	}
-}
-
-if ( ! function_exists( 'epl_pagination_html' ) ):
+if ( ! function_exists( 'epl_pagination_html' ) ) :
 
 	/**
 	 * Pagination HTML
 	 *
+	 * @param string $tag Wrapper tag.
 	 * @since 2.1
 	 */
 	function epl_pagination_html( $tag ) {
-		static $SELF_CLOSING_TAGS = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
+		static $self_closing_tags = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
 
 		$args = func_get_args();
 
 		$tag = array_shift( $args );
 
 		if ( is_array( $args[0] ) ) {
-			$closing = $tag;
+			$closing    = $tag;
 			$attributes = array_shift( $args );
 			foreach ( $attributes as $key => $value ) {
-				if ( false === $value )
+				if ( false === $value ) {
 					continue;
+				}
 
-				if ( true === $value )
+				if ( true === $value ) {
 					$value = $key;
+				}
 
 				$tag .= ' ' . $key . '="' . esc_attr( $value ) . '"';
 			}
@@ -394,7 +304,7 @@ if ( ! function_exists( 'epl_pagination_html' ) ):
 			list( $closing ) = explode( ' ', $tag, 2 );
 		}
 
-		if ( in_array( $closing, $SELF_CLOSING_TAGS ) ) {
+		if ( in_array( $closing, $self_closing_tags ) ) {
 			return "<{$tag} />";
 		}
 
@@ -404,65 +314,67 @@ if ( ! function_exists( 'epl_pagination_html' ) ):
 	}
 	endif;
 
-if ( !function_exists( 'epl_get_multipage_link' ) ) :
+if ( ! function_exists( 'epl_get_multipage_link' ) ) :
 
 	/**
 	 * Pagination Multipage link
 	 *
+	 * @param int $page Page number.
 	 * @since 2.1
 	 */
 	function epl_get_multipage_link( $page = 1 ) {
 		global $post, $wp_rewrite;
 
-		if ( 1 == $page ) {
+		if ( 1 === $page ) {
 			$url = get_permalink();
 		} else {
-			if ( '' == get_option('permalink_structure') || in_array( $post->post_status, array( 'draft', 'pending') ) )
+			if ( '' === get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
 				$url = add_query_arg( 'page', $page, get_permalink() );
-			elseif ( 'page' == get_option( 'show_on_front' ) && get_option('page_on_front') == $post->ID )
+			} elseif ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_on_front' ) === $post->ID ) {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $wp_rewrite->pagination_base . "/$page", 'single_paged' );
-			else
+			} else {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $page, 'single_paged' );
+			}
 		}
 
-		return esc_url($url);
+		return esc_url( $url );
 	}
 endif;
 
 /**
  * Get next page URL for EPL archives / shortcodes
  *
+ * @param  array $query WP Query object.
+ * @return string
  * @since 3.3.3
- * @param  [type] $query [description]
- * @return [type]        [description]
  */
-function epl_get_next_page_link($query) {
-	$link =  next_posts( $query->max_num_pages, false );
+function epl_get_next_page_link( $query ) {
+	$link = next_posts( $query->max_num_pages, false );
 
-	if( $query->get('is_epl_shortcode') &&
-		in_array($query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
-		$link = epl_add_or_update_params($link,'pagination_id', $query->get('instance_id') );
+	if ( $query->get( 'is_epl_shortcode' ) &&
+		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list() ) ) {
+		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
 	}
-	return apply_filters('epl_get_next_page_link',$link);
+	return apply_filters( 'epl_get_next_page_link', $link );
 }
 
 /**
  * Next page Link
  *
+ * @param  array  $query WP Query object.
+ * @param  string $label Pagination 'next' label.
+ * @return string
  * @since 3.3.3
- * @param  [type] $query [description]
- * @param  [type] $label [description]
- * @return [type]        [description]
  */
-function epl_next_post_link($query,$label=null) {
+function epl_next_post_link( $query, $label = null ) {
 
 	global $paged;
 	$nextpage = intval( $paged ) + 1;
 
-	if($nextpage <= $query->max_num_pages) {
+	if ( $nextpage <= $query->max_num_pages ) {
 
 		if ( null === $label ) {
-	        	$label = __( 'Next Page &raquo;', 'easy-property-listings'  );
+				$label = __( 'Next Page &raquo;', 'easy-property-listings' );
 		}
 
 		$attr = apply_filters( 'epl_next_posts_link_attributes', '' );
@@ -473,37 +385,37 @@ function epl_next_post_link($query,$label=null) {
 /**
  * Get Prev page URL for EPL archives / shortcodes
  *
+ * @param  array $query WP Query object.
+ * @return string
  * @since 3.3.3
- * @param  [type] $query [description]
- * @return [type]        [description]
  */
-function epl_get_prev_page_link($query) {
+function epl_get_prev_page_link( $query ) {
 
-	$link =  previous_posts( false );
+	$link = previous_posts( false );
 
-	if( $query->get('is_epl_shortcode') &&
-		in_array($query->get('epl_shortcode_name'),epl_get_shortcode_list() ) ){
-		$link = epl_add_or_update_params($link,'pagination_id', $query->get('instance_id') );
+	if ( $query->get( 'is_epl_shortcode' ) &&
+		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list() ) ) {
+		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
 	}
-	return apply_filters('epl_get_prev_page_link',$link);
+	return apply_filters( 'epl_get_prev_page_link', $link );
 }
 
 /**
  * Prev page Link
  *
  * @since 3.3.3
- * @param  [type] $query [description]
- * @param  [type] $label [description]
- * @return [type]        [description]
+ * @param  array  $query WP Query object.
+ * @param  string $label Pagination 'previous' label.
+ * @return string
  */
-function epl_prev_post_link($query,$label=null) {
+function epl_prev_post_link( $query, $label = null ) {
 
 	global $paged;
 
-	if( $paged > 1 ) {
+	if ( $paged > 1 ) {
 
 		if ( null === $label ) {
-	        	$label = __( '&laquo; Previous Page', 'easy-property-listings'  );
+				$label = __( '&laquo; Previous Page', 'easy-property-listings' );
 		}
 
 		$attr = apply_filters( 'epl_prev_posts_link_attributes', '' );
@@ -514,23 +426,29 @@ function epl_prev_post_link($query,$label=null) {
 /**
  * WordPress Default Pagination
  *
+ * @param  array $query WP Query object.
  * @since 2.1
  * @revised 3.3.3
  */
-function epl_wp_default_pagination($query = array() ) {
-	if(empty($query)) {
+function epl_wp_default_pagination( $query = array() ) {
+	if ( empty( $query ) ) {
 
-	?>
+		?>
 	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'easy-property-listings'  ) ); ?></div>
-		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'easy-property-listings'  ) ); ?></div>
-	</div> <?php  } else {
+		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'easy-property-listings' ) ); ?></div>
+		<div class="alignright"><?php next_posts_link( __( 'Next Page &raquo;', 'easy-property-listings' ) ); ?></div>
+	</div>
+		<?php
+	} else {
 
-		$query_open = $query['query']; ?>
+		$query_open = $query['query'];
+		?>
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft"><?php echo epl_prev_post_link($query_open); ?></div>
-		<div class="alignright"><?php echo epl_next_post_link($query_open); ?></div>
-	</div> <?php }
+		<div class="alignleft"><?php echo epl_prev_post_link( $query_open ); ?></div>
+		<div class="alignright"><?php echo epl_next_post_link( $query_open ); ?></div>
+	</div>
+		<?php
+	}
 
 }
