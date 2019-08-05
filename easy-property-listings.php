@@ -180,7 +180,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'assets/assets.php';
 			require_once EPL_PATH_LIB . 'assets/assets-svg.php';
-			require_once EPL_PATH_LIB . 'includes/class-epl-custom-post-type.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-cpt.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-form-builder.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-cron.php';
 
