@@ -67,8 +67,8 @@ function epl_create_property_object() {
 
 	if ( is_epl_post() ) {
 		$property = new EPL_Property_Meta( $post );
-		if ( $ID = epl_listing_has_secondary_author() ) {
-			$epl_author_secondary = new EPL_Author_meta( $ID );
+		if ( $id = epl_listing_has_secondary_author() ) {
+			$epl_author_secondary = new EPL_Author_meta( $id );
 		}
 	}
 }
@@ -88,7 +88,7 @@ function epl_property_single() {
 	}
 
 	$action_check = has_action( 'epl_single_template' );
-	if ( $action_check != '' && $d_option !== 0 ) {
+	if ( '' !== $action_check && 0 !== $d_option ) {
 		do_action( 'epl_single_template' );
 	} else {
 		epl_property_single_default();
@@ -98,6 +98,10 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
 
 /**
  * Featured Image template now loading through filter
+ *
+ * @param string $image_size Image size.
+ * @param string $image_class Image class.
+ * @param bool   $link Output link, default true.
  *
  * @since 1.2
  */
@@ -111,11 +115,11 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
 			<div class="epl-featured-image it-featured-image">
-				<?php if ( $link == true ) { ?>
+				<?php if ( true === $link ) { ?>
 					<a href="<?php the_permalink(); ?>">
 				<?php } ?>
 						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
-				<?php if ( $link == true ) { ?>
+				<?php if ( true === $link ) { ?>
 					</a>
 				<?php } ?>
 			</div>
@@ -130,11 +134,15 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 2 );
 /**
  * Featured Image on archive template now loading through filter
  *
+ * @param string $image_size Image size.
+ * @param string $image_class Image class.
+ * @param bool   $link Output link, default true.
+ *
  * @since 2.2
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true ) {
 
-	if ( $image_size == '' ) {
+	if ( '' === $image_size ) {
 		$image_size = 'epl-image-medium-crop';
 	}
 
@@ -146,7 +154,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 	if ( has_post_thumbnail() ) {
 		?>
 		<div class="epl-archive-entry-image">
-			<?php if ( $link == true ) { ?>
+			<?php if ( true === $link ) { ?>
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
 					<div class="epl-blog-image">
@@ -155,7 +163,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 						</div>
 						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
 					</div>
-			<?php if ( $link == true ) { ?>
+			<?php if ( true === $link ) { ?>
 				</a>
 			<?php } ?>
 		</div>
@@ -168,6 +176,10 @@ add_action( 'epl_property_archive_featured_image', 'epl_property_archive_feature
 /**
  * Featured Image in widgets
  *
+ * @param string $image_size Image size.
+ * @param string $image_class Image class.
+ * @param bool   $link Output link, default true.
+ *
  * @since 2.2
  */
 function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true ) {
@@ -175,13 +187,13 @@ function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-cr
 	if ( has_post_thumbnail() ) {
 		?>
 		<div class="epl-archive-entry-image">
-			<?php if ( $link == true ) { ?>
+			<?php if ( true === $link ) { ?>
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
 					<div class="epl-blog-image">
 						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
 					</div>
-			<?php if ( $link == true ) { ?>
+			<?php if ( true === $link ) { ?>
 				</a>
 			<?php } ?>
 		</div>
@@ -199,7 +211,7 @@ add_action( 'epl_property_widgets_featured_image', 'epl_property_widgets_feature
 function epl_property_single_default() {
 
 	global $epl_settings;
-	if ( isset( $epl_settings['epl_feeling_lucky'] ) && $epl_settings['epl_feeling_lucky'] == 'on' ) {
+	if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
 
 		epl_get_template_part( 'content-listing-single-compatibility.php' );
 
@@ -231,6 +243,9 @@ function epl_get_fallback_content_path() {
 /**
  * Attempts to load templates in order of priority
  *
+ * @param string $template Template name.
+ * @param array $arguments Array of options.
+ *
  * @since 3.0
  */
 function epl_get_template_part( $template, $arguments = array() ) {
@@ -242,7 +257,7 @@ function epl_get_template_part( $template, $arguments = array() ) {
 	if ( ! $template ) {
 		$template = $base_path . $default;
 		if ( ! file_exists( $template ) ) {
-			// fallback to core
+			// Fallback to core.
 			$base_path = epl_get_fallback_content_path();
 			$template  = $base_path . $default;
 		}
@@ -258,6 +273,9 @@ function epl_get_template_part( $template, $arguments = array() ) {
 /**
  * Modify the Excerpt length on Archive pages
  *
+ * @param string $length Excerpt length.
+ *
+ * @return int|string
  * @since 1.0
  */
 function epl_archive_custom_excerpt_length( $length ) {
@@ -266,7 +284,7 @@ function epl_archive_custom_excerpt_length( $length ) {
 	if ( ! empty( $epl_settings ) && isset( $epl_settings['display_excerpt_length'] ) ) {
 		$excerpt = $epl_settings['display_excerpt_length'];
 	}
-	if ( $excerpt == '' ) {
+	if ( '' === $excerpt ) {
 		return 22;
 	} else {
 		return $excerpt;
@@ -286,11 +304,13 @@ function epl_hide_listing_statuses() {
  *
  * Allows the use of one function where we can then select a different template when needed
  *
+ * @param string $template Template name.
+ *
  * @since 1.0
  */
 function epl_property_blog( $template = '' ) {
 
-	if ( $template == '' || $template == 'blog' ) {
+	if ( '' === $template || 'blog' === $template ) {
 		$template = 'default';
 	}
 	$template = str_replace( '_', '-', $template );
@@ -306,16 +326,16 @@ function epl_property_blog( $template = '' ) {
 		$option = $epl_settings['epl_property_card_style'];
 	}
 	$property_status = $property->get_property_meta( 'property_status' );
-	// Status Removal Do Not Display Withdrawn or OffMarket listings
+	// Status Removal Do Not Display Withdrawn or OffMarket listings.
 	if ( in_array( $property_status, epl_hide_listing_statuses() ) ) {
-		// Do Not Display Withdrawn or OffMarket listings
+		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 		$action_check = has_action( 'epl_loop_template' );
-		if ( $action_check != '' && $option !== 0 && in_array( $template, array( 'default', 'blog' ) ) ) {
+		if ( '' !== $action_check && $option !== 0 && in_array( $template, array( 'default', 'blog' ) ) ) {
 			do_action( 'epl_loop_template' );
 		} else {
 
-			if ( isset( $epl_settings['epl_feeling_lucky'] ) && $epl_settings['epl_feeling_lucky'] == 'on' ) {
+			if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
 
 				epl_get_template_part( 'loop-listing-blog-' . $template . '-compatibility.php' );
 
@@ -365,9 +385,9 @@ function epl_reset_post_author() {
 	global $post, $epl_author;
 	if ( class_exists( 'EPL_Author_meta' ) ) {
 
-		if ( is_epl_post() && ( $ID = epl_listing_has_primary_agent() ) ) {
+		if ( is_epl_post() && ( $id = epl_listing_has_primary_agent() ) ) {
 
-			$epl_author = new EPL_Author_meta( $ID );
+			$epl_author = new EPL_Author_meta( $id );
 
 		} else {
 
@@ -408,9 +428,22 @@ function epl_property_author_box_simple_grav() {
 /**
  * WIDGET LISTING : Listing Card
  *
+ * @param string $display Display style: list, hide-image, image-only, image.
+ * @param string $image Image.
+ * @param string $title Title.
+ * @param string $icons Icons.
+ * @param string $more_text Read More text.
+ * @param string $d_excerpt Display or not.
+ * @param string $d_suburb Display or not.
+ * @param string $d_street Display or not.
+ * @param string $d_price Display or not.
+ * @param string $d_more Display or not.
+ * @param string $d_inspection_time Display or not.
+ * @param string $d_ical_link Display or not.
+ *
  * @since 1.0
  */
-function epl_property_widget( $display, $image, $title, $icons, $more_text = "__('Read More','easy-property-listings' )", $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
+function epl_property_widget( $display, $image, $title, $icons, $more_text = "__( 'Read More','easy-property-listings' )", $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
 	global $property;
 
 	if ( is_null( $property ) ) {
