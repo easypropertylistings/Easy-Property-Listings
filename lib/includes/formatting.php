@@ -10,7 +10,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -21,23 +21,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Returns a sanitized amount by stripping out thousands separators.
  *
  * @since 1.0
- * @param string $amount Price amount to format
+ * @param string $amount Price amount to format.
  * @return string $amount Newly sanitized amount
  */
 function epl_sanitize_amount( $amount ) {
 	$thousands_sep = epl_get_thousands_separator();
 	$decimal_sep   = epl_get_decimal_separator();
 
-	// Sanitize the amount
-	if ( $decimal_sep == ',' && false !== ( $found = strpos( $amount, $decimal_sep ) ) ) {
-		if ( $thousands_sep == '.' && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
+	// Sanitize the amount.
+	if ( ',' === $decimal_sep && false !== ( $found = strpos( $amount, $decimal_sep ) ) ) {
+		if ( '.' === $thousands_sep && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
 			$amount = str_replace( $thousands_sep, '', $amount );
 		} elseif ( empty( $thousands_sep ) && false !== ( $found = strpos( $amount, '.' ) ) ) {
 			$amount = str_replace( '.', '', $amount );
 		}
 
 		$amount = str_replace( $decimal_sep, '.', $amount );
-	} elseif ( $thousands_sep == ',' && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
+	} elseif ( ',' === $thousands_sep && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
 		$amount = str_replace( $thousands_sep, '', $amount );
 	}
 
@@ -52,7 +52,7 @@ function epl_sanitize_amount( $amount ) {
  *
  * @since 1.0
  *
- * @param string $amount   Price amount to format
+ * @param string $amount   Price amount to format.
  * @param string $decimals Whether or not to use decimals.  Useful when set to false for non-currency numbers.
  *
  * @return string $amount Newly formatted amount or Price Not Available
@@ -61,15 +61,15 @@ function epl_format_amount( $amount, $decimals = false ) {
 	$thousands_sep = epl_get_thousands_separator();
 	$decimal_sep   = epl_get_decimal_separator();
 
-	// Format the amount
-	if ( $decimal_sep == ',' && false !== ( $found = strpos( $amount, $decimal_sep ) ) ) {
+	// Format the amount.
+	if ( ',' === $decimal_sep && false !== ( $found = strpos( $amount, $decimal_sep ) ) ) {
 		$whole  = substr( $amount, 0, $sep_found );
 		$part   = substr( $amount, $sep_found + 1, ( strlen( $amount ) - 1 ) );
 		$amount = $whole . '.' . $part;
 	}
 
-	// Strip , from the amount (if set as the thousands separator)
-	if ( $thousands_sep == ',' && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
+	// Strip , from the amount (if set as the thousands separator).
+	if ( ',' === $thousands_sep && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
 		$amount = str_replace( ',', '', $amount );
 	}
 
@@ -89,7 +89,7 @@ function epl_format_amount( $amount, $decimals = false ) {
  * Formats the currency display
  *
  * @since 1.0
- * @param string $price Price
+ * @param string $price Price.
  * @return array $currency Currencies displayed correctly
  */
 function epl_currency_filter( $price ) {
@@ -101,10 +101,10 @@ function epl_currency_filter( $price ) {
 	$negative = $price < 0;
 
 	if ( $negative ) {
-		$price = substr( $price, 1 ); // Remove proceeding "-" -
+		$price = substr( $price, 1 ); // Remove proceeding "-".
 	}
 
-	if ( $position == 'before' ) :
+	if ( 'before' === $position ) :
 		switch ( $currency ) :
 			case 'GBP':
 				$formatted = '&pound;' . $price;
@@ -211,7 +211,7 @@ function epl_currency_filter( $price ) {
 	endif;
 
 		if ( $negative ) {
-			// Prepend the minus sign before the currency sign
+			// Prepend the minus sign before the currency sign.
 			$formatted = '-' . $formatted;
 		}
 
@@ -222,7 +222,7 @@ function epl_currency_filter( $price ) {
  * Set the number of decimal places per currency
  *
  * @since 1.0
- * @param int $decimals Number of decimal places
+ * @param int $decimals Number of decimal places.
  * @return int $decimals
  */
 function epl_currency_decimal_filter( $decimals = 2 ) {
@@ -244,6 +244,7 @@ add_filter( 'epl_format_amount_decimals', 'epl_currency_decimal_filter' );
 /**
  * Apply formatting to epl_the_excerpt
  *
+ * @param string $content The content.
  * @since 3.1
  * @return int $decimals
  */
@@ -259,7 +260,7 @@ add_filter( 'epl_the_excerpt', 'epl_format_the_excerpt' );
  * Keys are used as internal identifiers. Alphanumeric characters, dashes, underscores, stops, colons and slashes are allowed
  *
  * @since  3.3.5
- * @param  string $key String key
+ * @param  string $key String key.
  * @return string Sanitized key
  */
 function epl_sanitize_key( $key ) {
