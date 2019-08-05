@@ -14,17 +14,52 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.WP.GlobalVariablesOverride
+// phpcs:disable WordPress.Security.NonceVerification
+
 /**
  * Listing Search Commercial Shortcode Default View
  *
  * @var array  $atts    Shortcode attributes.
  */
 
-extract( $atts );
+$title                         = $get_data['title'];
+$post_type                     = $get_data['post_type'];
+$style                         = $get_data['style'];
+$show_property_status_frontend = $get_data['show_property_status_frontend'];
+$property_status               = $get_data['property_status'];
+$search_id                     = $get_data['search_id'];
+$search_address                = $get_data['search_address'];
+$search_location               = $get_data['search_location'];
+$search_city                   = $get_data['search_city'];
+$search_state                  = $get_data['search_state'];
+$search_postcode               = $get_data['search_postcode'];
+$search_country                = $get_data['search_country'];
+$search_house_category         = $get_data['search_house_category'];
+$house_category_multiple       = $get_data['house_category_multiple'];
+$search_price_global           = $get_data['search_price_global'];
+$search_price                  = $get_data['search_price'];
+$search_land_area              = $get_data['search_land_area'];
+$search_building_area          = $get_data['search_building_area'];
+$search_com_authority          = $get_data['search_com_authority'];
+$search_com_listing_type       = $get_data['search_com_listing_type'];
+$search_com_rent_period        = $get_data['search_com_rent_period'];
+$search_com_tenancy            = $get_data['search_com_tenancy'];
+$submit_label                  = $get_data['submit_label'];
+
 $selected_post_types = $atts['post_type'];
-$_GET                = epl_array_map_recursive( 'sanitize_text_field', $_GET );
-extract( $_GET );
-$queried_post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( $_GET['post_type'] ) : 'commercial';
+$get_data            = epl_array_map_recursive( 'sanitize_text_field', $_GET );
+
+/** Overwrite Atts with Get data, if set */
+
+foreach ( $atts as $att_key => $att_val ) {
+
+	if ( ! empty( $get_data[ $att_key ] ) ) {
+		${$att_key} = $get_data[ $att_key ];
+	}
+}
+
+$queried_post_type = isset( $get_data['post_type'] ) ? sanitize_text_field( $get_data['post_type'] ) : 'commercial';
 
 if ( ! is_array( $selected_post_types ) ) {
 	$selected_post_types = explode( ',', $selected_post_types );
@@ -36,10 +71,10 @@ global $epl_settings;
 $tabcounter = 1;
 if ( ! empty( $selected_post_types ) ) :
 	if ( count( $selected_post_types ) > 1 ) :
-		echo "<ul class='epl-search-tabs property_search-tabs epl-search-$style'>";
+		echo "<ul class='epl-search-tabs property_search-tabs epl-search-" . esc_attr( $style ) . "'>";
 		foreach ( $selected_post_types as $post_type ) :
 
-			if ( isset( $_GET['action'] ) && 'epl_search' === $_GET['action'] ) {
+			if ( isset( $get_data['action'] ) && 'epl_search' === $get_data['action'] ) {
 				if ( $queried_post_type === $post_type ) {
 					$is_sb_current = 'epl-sb-current';
 				} else {
@@ -49,20 +84,20 @@ if ( ! empty( $selected_post_types ) ) :
 				$is_sb_current = 1 === $tabcounter ? 'epl-sb-current' : '';
 			}
 			$post_type_label = isset( $epl_settings[ 'widget_label_' . $post_type ] ) ? $epl_settings[ 'widget_label_' . $post_type ] : $post_type;
-			echo '<li data-tab="epl_ps_tab_' . $tabcounter . '" class="tab-link ' . $is_sb_current . '">' . $post_type_label . '</li>';
+			echo '<li data-tab="epl_ps_tab_' . esc_attr( $tabcounter ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
 			$tabcounter++;
 
 		endforeach;
 		echo '</ul>';
 	endif;
 	?>
-	<div class="epl-search-forms-wrapper epl-search-<?php echo $style; ?>">
+	<div class="epl-search-forms-wrapper epl-search-<?php echo esc_attr( $style ); ?>">
 	<?php
 	$tabcounter = 1; // reset tab counter.
 
 	foreach ( $selected_post_types as $post_type ) :
 
-		if ( isset( $_GET['action'] ) && 'epl_search' === $_GET['action'] ) {
+		if ( isset( $get_data['action'] ) && 'epl_search' === $get_data['action'] ) {
 			if ( $queried_post_type === $post_type ) {
 				$is_sb_current = 'epl-sb-current';
 			} else {
@@ -72,12 +107,12 @@ if ( ! empty( $selected_post_types ) ) :
 			$is_sb_current = 1 === $tabcounter ? 'epl-sb-current' : '';
 		}
 		?>
-		<div class="epl-search-form <?php echo $is_sb_current; ?>" id="epl_ps_tab_<?php echo $tabcounter; ?>">
+		<div class="epl-search-form <?php echo esc_attr( $is_sb_current ); ?>" id="epl_ps_tab_<?php echo esc_attr( $tabcounter ); ?>">
 		<?php
 		if ( isset( $show_title ) && 'true' === $show_title ) {
 			if ( ! empty( $title ) ) {
 				?>
-					<h3><?php echo $title; ?></h3>
+					<h3><?php echo esc_attr( $title ); ?></h3>
 					<?php
 			}
 		}
@@ -110,7 +145,7 @@ if ( ! empty( $selected_post_types ) ) :
 			}
 			?>
 				<div class="epl-search-submit-row epl-search-submit property-type-search">
-					<input type="submit" value="<?php echo '' !== $submit_label ? $submit_label : __( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
+					<input type="submit" value="<?php echo '' !== $submit_label ? esc_attr( $submit_label ) : esc_html__( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
 				</div>
 			</form>
 			</div>
