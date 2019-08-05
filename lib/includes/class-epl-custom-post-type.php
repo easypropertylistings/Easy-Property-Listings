@@ -9,7 +9,7 @@
  * @since       2.3
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -147,16 +147,16 @@ class EPL_CPT {
 				// If the name has been set by user.
 				if ( isset( $post_type_names[ $name ] ) ) {
 
-					// Use the user setting
+					// Use the user setting.
 					$this->$name = $post_type_names[ $name ];
 
 					// Else generate the name.
 				} else {
 
-					// define the method to be used
+					// Define the method to be used.
 					$method = 'get_' . $name;
 
-					// Generate the name
+					// Generate the name.
 					$this->$name = $this->$method();
 				}
 			}
@@ -217,7 +217,7 @@ class EPL_CPT {
 
 		} else {
 
-			// on fail return false
+			// On fail return false.
 			return false;
 		}
 	}
@@ -244,10 +244,10 @@ class EPL_CPT {
 			'taxonomies',
 		);
 
-		// If the variable is not a reserved variable
+		// If the variable is not a reserved variable.
 		if ( ! in_array( $var, $reserved ) ) {
 
-			// Write variable and value
+			// Write variable and value.
 			$this->$var = $value;
 		}
 	}
@@ -264,7 +264,7 @@ class EPL_CPT {
 	 */
 	function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
 
-		// Pass variables into WordPress add_action function
+		// Pass variables into WordPress add_action function.
 		add_action( $action, $function, $priority, $accepted_args );
 	}
 
@@ -282,7 +282,7 @@ class EPL_CPT {
 	 */
 	function add_filter( $action, $function, $priority = 10, $accepted_args = 1 ) {
 
-		// Pass variables into WordPress add_action function
+		// Pass variables into WordPress add_action function.
 		add_filter( $action, $function, $priority, $accepted_args );
 	}
 
@@ -401,18 +401,28 @@ class EPL_CPT {
 
 		// Default labels.
 		$labels = array(
+			/* TODO: %s Strings should have translatable content. */
 			'name'               => sprintf( __( '%s', $this->textdomain ), $plural ),
 			'singular_name'      => sprintf( __( '%s', $this->textdomain ), $singular ),
 			'menu_name'          => sprintf( __( '%s', $this->textdomain ), $plural ),
 			'all_items'          => sprintf( __( '%s', $this->textdomain ), $plural ),
+			/* Translators: %s is the post type name. */
 			'add_new'            => __( 'Add New', $this->textdomain ),
+			/* Translators: %s is the post type name. */
 			'add_new_item'       => sprintf( __( 'Add New %s', $this->textdomain ), $singular ),
+			/* Translators: %s is the post type name. */
 			'edit_item'          => sprintf( __( 'Edit %s', $this->textdomain ), $singular ),
+			/* Translators: %s is the post type name. */
 			'new_item'           => sprintf( __( 'New %s', $this->textdomain ), $singular ),
+			/* Translators: %s is the post type name. */
 			'view_item'          => sprintf( __( 'View %s', $this->textdomain ), $singular ),
+			/* Translators: %s is the post type name. */
 			'search_items'       => sprintf( __( 'Search %s', $this->textdomain ), $plural ),
+			/* Translators: %s is the post type name. */
 			'not_found'          => sprintf( __( 'No %s found', $this->textdomain ), $plural ),
+			/* Translators: %s is the post type name. */
 			'not_found_in_trash' => sprintf( __( 'No %s found in Trash', $this->textdomain ), $plural ),
+			/* Translators: %s is the post type name. */
 			'parent_item_colon'  => sprintf( __( 'Parent %s:', $this->textdomain ), $singular ),
 		);
 
