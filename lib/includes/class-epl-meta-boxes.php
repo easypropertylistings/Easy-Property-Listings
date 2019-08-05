@@ -389,7 +389,7 @@ class EPL_METABOX {
 													}
 												}
 												$_POST[ $field['name'] ] = $epl_date;
-											} elseif ( $field['type'] == 'sold-date' && $_POST[ $field['name'] ] != '' ) {
+											} elseif ( 'sold-date' === $field['type'] && '' !== $_POST[ $field['name'] ] ) {
 												$epl_date = sanitize_text_field( $_POST[ $field['name'] ] );
 												if ( strpos( $epl_date, 'T' ) !== false ) {
 													$epl_date = date( 'Y-m-d\TH:i', strtotime( $epl_date ) );
@@ -417,57 +417,3 @@ class EPL_METABOX {
 		}
 	}
 }
-
-/*********** sample usage *************
-
-$epl_dh_meta_boxes = array(
-	array(
-		'id'        =>  'epl-display-homes-section-id',
-		'label'     =>  'Location Details',
-		'post_type' =>  'display_home',
-		'context'   =>  'normal',
-		'priority'  =>  'high',
-		'groups'    =>  array(
-			array(
-				'columns'   =>  '1',
-				'label'     =>  '',
-				'fields'    =>  apply_filters('epl_dh_meta_fields',
-					array(
-
-						array(
-							'name'      =>  'display_home_name',
-							'label'     =>  'Location Address including state and postcode/zip',
-							'type'      =>  'text',
-							'maxlength' =>  '60'
-						),
-
-						array(
-							'name'      =>  'display_home_state',
-							'label'     =>  'State',
-							'type'      =>  'text',
-							'maxlength' =>  '10'
-						),
-
-						array(
-							'name'      =>  'display_home_postcode',
-							'label'     =>  'Postcode/Zip',
-							'type'      =>  'text',
-							'maxlength' =>  '60'
-						),
-
-						array(
-							'name'      =>  'display_home_video_url',
-							'label'     =>  'YouTube Video Link',
-							'type'      =>  'text',
-							'maxlength' =>  '60'
-						),
-					)
-				)
-			)
-		)
-	)
-);
-
-new EPL_METABOX($epl_dh_meta_boxes);
-
-***********   sample usage ends  */
