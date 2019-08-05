@@ -14,17 +14,53 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.Security.NonceVerification
+
 /**
  * Listing Search Shortcode Default View
  *
  * @var array  $atts    Shortcode attributes.
  */
 
-extract( $atts );
+$title                         = $atts['title']; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+$post_type                     = $atts['post_type']; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+$style                         = $atts['style'];
+$show_property_status_frontend = $atts['show_property_status_frontend'];
+$property_status               = $atts['property_status'];
+$search_id                     = $atts['search_id'];
+$search_address                = $atts['search_address'];
+$search_location               = $atts['search_location'];
+$search_city                   = $atts['search_city'];
+$search_state                  = $atts['search_state'];
+$search_postcode               = $atts['search_postcode'];
+$search_country                = $atts['search_country'];
+$search_house_category         = $atts['search_house_category'];
+$house_category_multiple       = $atts['house_category_multiple'];
+$search_price_global           = $atts['search_price_global'];
+$search_price                  = $atts['search_price'];
+$search_bed                    = $atts['search_bed'];
+$search_bath                   = $atts['search_bath'];
+$search_rooms                  = $atts['search_rooms'];
+$search_car                    = $atts['search_car'];
+$search_land_area              = $atts['search_land_area'];
+$search_building_area          = $atts['search_building_area'];
+$search_features               = $atts['search_features'];
+$search_other                  = $atts['search_other'];
+$submit_label                  = $atts['submit_label'];
+
 $selected_post_types = $atts['post_type'];
-$_GET                = epl_array_map_recursive( 'sanitize_text_field', $_GET );
-extract( $_GET );
-$queried_post_type = isset( $_GET['post_type'] ) ? $_GET['post_type'] : '';
+$get_data            = epl_array_map_recursive( 'sanitize_text_field', $_GET );
+
+/** Overwrite Atts with Get data, if set */
+
+foreach ( $atts as $att_key => $att_val ) {
+
+	if ( ! empty( $get_data[ $att_key ] ) ) {
+		${$att_key} = $get_data[ $att_key ];
+	}
+}
+
+$queried_post_type = isset( $get_data['post_type'] ) ? $get_data['post_type'] : '';
 
 if ( ! is_array( $selected_post_types ) ) {
 	$selected_post_types = explode( ',', $selected_post_types );
@@ -36,10 +72,10 @@ global $epl_settings;
 $tabcounter = 1;
 if ( ! empty( $selected_post_types ) ) :
 	if ( count( $selected_post_types ) > 1 ) :
-		echo "<ul class='epl-search-tabs property_search-tabs epl-search-$style'>";
-		foreach ( $selected_post_types as $post_type ) :
+		echo "<ul class='epl-search-tabs property_search-tabs epl-search-" . esc_attr( $style ) . "'>";
+		foreach ( $selected_post_types as $post_type ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 
-			if ( isset( $_GET['action'] ) && 'epl_search' === $_GET['action'] ) {
+			if ( isset( $get_data['action'] ) && 'epl_search' === $get_data['action'] ) {
 				if ( $queried_post_type === $post_type ) {
 					$is_sb_current = 'epl-sb-current';
 				} else {
@@ -53,20 +89,20 @@ if ( ! empty( $selected_post_types ) ) :
 			if ( '' === $post_type ) {
 				$post_type_label = epl_get_option( 'widget_label_all', 'All' );
 			}
-			echo '<li data-tab="epl_ps_tab_' . $tabcounter . '" class="tab-link ' . $is_sb_current . '">' . $post_type_label . '</li>';
+			echo '<li data-tab="epl_ps_tab_' . esc_attr( $tabcounter ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
 			$tabcounter++;
 
 		endforeach;
 		echo '</ul>';
 	endif;
 	?>
-	<div class="epl-search-forms-wrapper epl-search-<?php echo $style; ?>">
+	<div class="epl-search-forms-wrapper epl-search-<?php echo esc_attr( $style ); ?>">
 	<?php
 	$tabcounter = 1; // reset tab counter.
 
-	foreach ( $selected_post_types as $post_type ) :
+	foreach ( $selected_post_types as $post_type ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 
-		if ( isset( $_GET['action'] ) && 'epl_search' === $_GET['action'] ) {
+		if ( isset( $get_data['action'] ) && 'epl_search' === $get_data['action'] ) {
 			if ( $queried_post_type === $post_type ) {
 				$is_sb_current = 'epl-sb-current';
 			} else {
@@ -76,12 +112,12 @@ if ( ! empty( $selected_post_types ) ) :
 			$is_sb_current = 1 === $tabcounter ? 'epl-sb-current' : '';
 		}
 		?>
-		<div class="epl-search-form <?php echo $is_sb_current; ?>" id="epl_ps_tab_<?php echo $tabcounter; ?>">
+		<div class="epl-search-form <?php echo esc_attr( $is_sb_current ); ?>" id="epl_ps_tab_<?php echo esc_attr( $tabcounter ); ?>">
 		<?php
 		if ( isset( $show_title ) && 'true' === $show_title ) {
 			if ( ! empty( $title ) ) {
 				?>
-					<h3><?php echo $title; ?></h3>
+					<h3><?php echo esc_attr( $title ); ?></h3>
 					<?php
 			}
 		}
@@ -114,7 +150,7 @@ if ( ! empty( $selected_post_types ) ) :
 			}
 			?>
 				<div class="epl-search-submit-row epl-search-submit property-type-search">
-					<input type="submit" value="<?php echo '' !== $submit_label ? $submit_label : __( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
+					<input type="submit" value="<?php echo '' !== $submit_label ? esc_attr( $submit_label ) : esc_html__( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
 				</div>
 			</form>
 			</div>
