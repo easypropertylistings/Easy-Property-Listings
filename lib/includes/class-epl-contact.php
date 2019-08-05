@@ -107,7 +107,7 @@ class EPL_Contact {
 	/**
 	 * Get the primary email of contact / alias of get_primary_email
 	 *
-	 * @param $id
+	 * @param int $id Contact ID.
 	 * @return mixed
 	 * @since  3.0
 	 */
@@ -116,10 +116,10 @@ class EPL_Contact {
 	}
 
 	/**
-	 * update the primary email of contact
+	 * Update the primary email of contact
 	 *
-	 * @param $id
-	 * @param $value
+	 * @param int    $id Contact ID.
+	 * @param string $value Contact email.
 	 * @return bool|int
 	 * @since  3.0
 	 */
@@ -133,8 +133,8 @@ class EPL_Contact {
 	 * Given the contact data, let's set the variables
 	 *
 	 * @since  3.0
-	 * @param  object $contact The Contact Object
-	 * @return bool If the setup was successful or not
+	 * @param  object $contact The contact object.
+	 * @return bool If the setup was successful or not.
 	 */
 	private function setup_contact( $contact ) {
 
@@ -189,7 +189,7 @@ class EPL_Contact {
 			}
 		}
 
-		// Contact ID and email are the only things that are necessary, make sure they exist
+		// Contact ID and email are the only things that are necessary, make sure they exist.
 		if ( ! empty( $this->ID ) && ! empty( $this->email ) ) {
 			return true;
 		}
@@ -202,9 +202,9 @@ class EPL_Contact {
 	 * Retrieves a single contact from the database
 	 *
 	 * @access public
-	 * @param string $field
-	 * @param mixed  $value The Contact ID or email to search
-	 * @return mixed          Upon success, an object of the contact. Upon failure, NULL
+	 * @param string $field Type of field option, id or email.
+	 * @param mixed  $value The Contact ID or email to search.
+	 * @return mixed Upon success, an object of the contact. Upon failure, NULL
 	 * @since  3.0
 	 */
 	public function get_contact_by( $field = 'id', $value = 0 ) {
@@ -213,9 +213,8 @@ class EPL_Contact {
 			return null;
 		}
 
-		if ( 'id' == $field ) {
-			// Make sure the value is numeric to avoid casting objects, for example,
-			// to int 1.
+		if ( 'id' === $field ) {
+			// Make sure the value is numeric to avoid casting objects, for example, to int 1.
 			if ( ! is_numeric( $value ) ) {
 				return false;
 			}
@@ -264,7 +263,7 @@ class EPL_Contact {
 					foreach ( $matched_contacts->posts as $matched_contact ) {
 						$emails = get_post_meta( $matched_contact->ID, 'contact_emails', true );
 
-						if ( isset( $emails['email'] ) && $emails['email'] == $value ) {
+						if ( isset( $emails['email'] ) && $emails['email'] === $value ) {
 							$contact = $matched_contacts->post;
 						}
 					}
@@ -285,7 +284,7 @@ class EPL_Contact {
 	/**
 	 * Magic __get function to dispatch a call to retrieve a private property
 	 *
-	 * @param $key
+	 * @param string $key Meta key.
 	 * @return mixed|WP_Error
 	 * @since 3.0.0
 	 */
@@ -294,6 +293,7 @@ class EPL_Contact {
 		if ( method_exists( $this, 'get_' . $key ) ) {
 			return call_user_func( array( $this, 'get_' . $key ) );
 		} else {
+			/* Translators: %s is the meta key. */
 			return new WP_Error( 'epl-contact-invalid-property', sprintf( __( 'Can\'t get property %s', 'easy-property-listings' ), $key ) );
 		}
 	}
@@ -302,12 +302,12 @@ class EPL_Contact {
 	 * Creates a contact
 	 *
 	 * @since  3.0
-	 * @param  array $data Array of attributes for a contact
-	 * @return mixed        False if not a valid creation, Contact ID if user is found or valid creation
+	 * @param  array $data Array of attributes for a contact.
+	 * @return mixed False if not a valid creation, Contact ID if user is found or valid creation
 	 */
 	public function create( $data = array() ) {
 
-		if ( $this->ID != 0 || empty( $data ) ) {
+		if ( 0 !== $this->ID || empty( $data ) ) {
 			return false;
 		}
 
