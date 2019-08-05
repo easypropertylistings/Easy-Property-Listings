@@ -17,8 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Pagination function
  *
- * $param array $args Arguments.
- *
+ * @param array $args Arguments.
  * @since 2.1
  */
 function epl_fancy_pagination( $args = array() ) {
@@ -66,7 +65,7 @@ function epl_fancy_pagination( $args = array() ) {
 
 	list( $posts_per_page, $paged, $total_pages ) = $instance->get_pagination_args();
 
-	if ( 1 == $total_pages && ! $options['always_show'] ) {
+	if ( 1 === $total_pages && ! $options['always_show'] ) {
 		return;
 	}
 
@@ -84,7 +83,7 @@ function epl_fancy_pagination( $args = array() ) {
 
 	$end_page = $paged + $half_page_end;
 
-	if ( ( $end_page - $start_page ) != $pages_to_show_minus_1 ) {
+	if ( ( $end_page - $start_page ) !== $pages_to_show_minus_1 ) {
 		$end_page = $start_page + $pages_to_show_minus_1;
 	}
 
@@ -99,9 +98,9 @@ function epl_fancy_pagination( $args = array() ) {
 
 	$out = '';
 	switch ( intval( $options['style'] ) ) {
-		// Normal
+		// Normal.
 		case 1:
-			// Text
+			// Text.
 			if ( ! empty( $options['pages_text'] ) ) {
 				$pages_text = str_replace(
 					array( '%CURRENT_PAGE%', '%TOTAL_PAGES%' ),
@@ -113,7 +112,7 @@ function epl_fancy_pagination( $args = array() ) {
 
 			$out = apply_filters( 'epl_pagination_before_page_numbers', $out, $start_page, $end_page );
 			if ( $start_page >= 2 && $pages_to_show < $total_pages ) {
-				// First
+				// First.
 				$first_text = str_replace( '%TOTAL_PAGES%', number_format_i18n( $total_pages ), $options['first_text'] );
 				$out       .= $instance->get_single(
 					1,
@@ -125,7 +124,7 @@ function epl_fancy_pagination( $args = array() ) {
 				);
 			}
 
-			// Previous
+			// Previous.
 			if ( $paged > 1 && ! empty( $options['prev_text'] ) ) {
 				$out .= $instance->get_single(
 					$paged - 1,
@@ -143,7 +142,7 @@ function epl_fancy_pagination( $args = array() ) {
 				}
 			}
 
-			// Smaller pages
+			// Smaller pages.
 			$larger_pages_array = array();
 			if ( $larger_page_multiple ) {
 				for ( $i = $larger_page_multiple; $i <= $total_pages; $i += $larger_page_multiple ) {
@@ -169,10 +168,10 @@ function epl_fancy_pagination( $args = array() ) {
 				$out .= $instance->get_single_dot( 'span', $options['dotleft_text'], array( 'class' => 'extend' ) );
 			}
 
-			// Page numbers
+			// Page numbers.
 			$timeline = 'smaller';
 			foreach ( range( $start_page, $end_page ) as $i ) {
-				if ( $i == $paged && ! empty( $options['current_text'] ) ) {
+				if ( $i === $paged && ! empty( $options['current_text'] ) ) {
 					$out     .= $instance->get_single( $i, $options['current_text'], array( 'class' => 'current' ), '%PAGE_NUMBER%', 'span' );
 					$timeline = 'larger';
 				} else {
@@ -186,7 +185,7 @@ function epl_fancy_pagination( $args = array() ) {
 				}
 			}
 
-			// Large pages
+			// Large pages.
 			$larger_page_end = 0;
 			$larger_page_out = '';
 			foreach ( $larger_pages_array as $larger_page ) {
@@ -211,7 +210,7 @@ function epl_fancy_pagination( $args = array() ) {
 				$out .= $instance->get_single_dot( 'span', $options['dotright_text'], array( 'class' => 'extend' ) );
 			}
 
-			// Next
+			// Next.
 			if ( $paged < $total_pages && ! empty( $options['next_text'] ) ) {
 				$out .= $instance->get_single(
 					$paged + 1,
@@ -224,7 +223,7 @@ function epl_fancy_pagination( $args = array() ) {
 			}
 
 			if ( $end_page < $total_pages ) {
-				// Last
+				// Last.
 				$out .= $instance->get_single(
 					$total_pages,
 					$options['last_text'],
@@ -237,18 +236,18 @@ function epl_fancy_pagination( $args = array() ) {
 			$out = apply_filters( 'epl_pagination_after_page_numbers', $out, $start_page, $end_page );
 			break;
 
-		// Dropdown
+		// Dropdown.
 		case 2:
 			$out .= '<form action="" method="get">' . "\n";
 			$out .= '<select size="1" onchange="document.location.href = this.options[this.selectedIndex].value;">' . "\n";
 
 			foreach ( range( 1, $total_pages ) as $i ) {
 				$page_num = $i;
-				if ( $page_num == 1 ) {
+				if ( 1 === $page_num ) {
 					$page_num = 0;
 				}
 
-				if ( $i == $paged ) {
+				if ( $i === $paged ) {
 					$current_page_text = str_replace( '%PAGE_NUMBER%', number_format_i18n( $i ), $options['current_text'] );
 					$out              .= '<option value="' . esc_url( $instance->get_url( $page_num ) ) . '" selected="selected" class="current">' . $current_page_text . "</option>\n";
 				} else {
@@ -277,10 +276,11 @@ if ( ! function_exists( 'epl_pagination_html' ) ) :
 	/**
 	 * Pagination HTML
 	 *
+	 * @param string $tag Wrapper tag.
 	 * @since 2.1
 	 */
 	function epl_pagination_html( $tag ) {
-		static $SELF_CLOSING_TAGS = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
+		static $self_closting_tags = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
 
 		$args = func_get_args();
 
@@ -304,7 +304,7 @@ if ( ! function_exists( 'epl_pagination_html' ) ) :
 			list( $closing ) = explode( ' ', $tag, 2 );
 		}
 
-		if ( in_array( $closing, $SELF_CLOSING_TAGS ) ) {
+		if ( in_array( $closing, $self_closting_tags ) ) {
 			return "<{$tag} />";
 		}
 
