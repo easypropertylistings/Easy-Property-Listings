@@ -22,11 +22,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class EPL_Pagination_Call {
 
+	/**
+	 * Arguments
+	 *
+	 * @var array
+	 * @since  2.1
+	 */
 	protected $args;
 
 	/**
 	 * Get things started
 	 *
+	 * @param array $args Array of arguments.
 	 * @since  2.1
 	 */
 	function __construct( $args ) {
@@ -36,6 +43,7 @@ class EPL_Pagination_Call {
 	/**
 	 * Get the key
 	 *
+	 * @param array $key Key name.
 	 * @since  2.1
 	 */
 	function __get( $key ) {
@@ -54,19 +62,19 @@ class EPL_Pagination_Call {
 
 		switch ( $this->type ) {
 			case 'multipart':
-				// Multipart page
+				// Multipart page.
 				$posts_per_page = 1;
 				$paged          = max( 1, absint( get_query_var( 'page' ) ) );
 				$total_pages    = max( 1, $numpages );
 				break;
 			case 'users':
-				// WP_User_Query
+				// WP_User_Query.
 				$posts_per_page = $query->query_vars['number'];
 				$paged          = max( 1, floor( $query->query_vars['offset'] / $posts_per_page ) + 1 );
 				$total_pages    = max( 1, ceil( $query->total_users / $posts_per_page ) );
 				break;
 			default:
-				// WP_Query
+				// WP_Query.
 				$posts_per_page = intval( $query->get( 'posts_per_page' ) );
 				$paged          = max( 1, absint( $query->get( 'paged' ) ) );
 				$total_pages    = max( 1, absint( $query->max_num_pages ) );
@@ -128,9 +136,8 @@ class EPL_Pagination_Call {
 		// Tag is self closed.
 		if ( in_array( $tag, array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' ) ) ) {
 			$output .= ' />';
-		}
-		// Tag is not self closed.
-		else {
+		} else {
+			// Tag is not self closed.
 			$output .= '>' . $content . '</' . $tag . '>';
 		}
 
@@ -140,11 +147,12 @@ class EPL_Pagination_Call {
 	/**
 	 * Get url
 	 *
+	 * @param  string $page Page number.
 	 * @since  2.1
 	 */
 	function get_url( $page ) {
 
-		$link = ( 'multipart' == $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
+		$link = ( 'multipart' === $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
 
 		if ( $this->query->get( 'is_epl_shortcode' ) &&
 			in_array( $this->query->get( 'epl_shortcode_name' ), epl_get_shortcode_list() ) ) {
