@@ -473,7 +473,7 @@ function epl_property_widget( $display, $image, $title, $icons, $more_text = "__
 
 	// Status Removal
 	if ( in_array( $property_status, epl_hide_listing_statuses() ) ) {
-		// Do Not Display Withdrawn or OffMarket listings
+		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 		$arg_list = get_defined_vars();
 		if ( has_action( 'epl_listing_widget_template' ) ) {
@@ -481,7 +481,7 @@ function epl_property_widget( $display, $image, $title, $icons, $more_text = "__
 		} else {
 			epl_get_template_part( $tpl, $arg_list );
 		}
-	} // End Status Removal
+	} // End Status Removal.
 }
 
 /**
@@ -491,28 +491,30 @@ function epl_property_widget( $display, $image, $title, $icons, $more_text = "__
  */
 function epl_property_widget_list_option() {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
-	// Status Removal
+	// Status Removal.
 	if ( in_array( $property_status, epl_hide_listing_statuses() ) ) {
-		// Do Not Display Withdrawn or OffMarket listings
+		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 		epl_get_template_part( 'widget-content-listing-list.php' );
-	} // End Status Removal
+	} // End Status Removal.
 }
 
 /**
  * WIDGET LISTING : Image Only
  *
+ * @param string $image Image.
+ *
  * @since 1.0
  */
 function epl_property_widget_image_only_option( $image ) {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
-	// Status Removal
+	// Status Removal.
 	if ( in_array( $property_status, epl_hide_listing_statuses() ) ) {
-		// Do Not Display Withdrawn or OffMarket listings
+		// Do Not Display Withdrawn or OffMarket listings.
 	} else {
 		$arg_list = get_defined_vars();
 		epl_get_template_part( 'widget-content-listing-image.php', $arg_list );
-	} // End Status Removal
+	} // End Status Removal.
 }
 
 /**
@@ -536,7 +538,7 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
 	$arg_list = get_defined_vars();
 	epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
 
-	// Second Author
+	// Second Author.
 	if ( is_single() && ! is_null( $property ) ) {
 		if ( is_epl_post() && epl_listing_has_secondary_author() ) {
 				$epl_author = $epl_author_secondary;
@@ -549,6 +551,11 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
 /**
  * Display widget by username
  *
+ * @param string $d_image Display or not.
+ * @param string $d_icons Display or not.
+ * @param string $d_bio Display or not.
+ * @param string $username Display or not.
+ *
  * @since 3.3
  */
 function epl_show_author_widget_by_username( $d_image, $d_icons, $d_bio, $username ) {
@@ -556,7 +563,7 @@ function epl_show_author_widget_by_username( $d_image, $d_icons, $d_bio, $userna
 	$username = array_filter( $username );
 	foreach ( $username as $uname ) {
 		$author = get_user_by( 'login', sanitize_user( $uname ) );
-		if ( $author !== false ) {
+		if ( false !== $author ) {
 			$epl_author = new EPL_Author_meta( $author->ID );
 			$arg_list   = get_defined_vars();
 			epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
@@ -602,45 +609,45 @@ function epl_property_the_address() {
 	global $property, $epl_settings;
 
 	?>
-	<?php if ( $property->get_property_meta( 'property_address_display' ) == 'yes' ) { ?>
+	<?php if ( $property->get_property_meta( 'property_address_display' ) === 'yes' ) { ?>
 		<span class="item-street"><?php echo $property->get_formatted_property_address(); ?></span>
 	<?php } ?>
 	<span class="entry-title-sub">
 
 		<?php
-		if ( $property->post_type == 'commercial' || $property->post_type == 'business' ) {
+		if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 			if ( $property->get_property_meta( 'property_com_display_suburb' ) == 'yes' || $property->get_property_meta( 'property_address_display' ) == 'yes' ) {
 				?>
 					<span class="item-suburb"><?php echo $property->get_property_meta( 'property_address_suburb' ); ?></span>
-														 <?php
-															if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-																echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
-															}
+                         <?php
+                            if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+                                echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
+                            }
 			}
 		} else {
 			?>
 				<span class="item-suburb"><?php echo $property->get_property_meta( 'property_address_suburb' ); ?></span>
-													 <?php
-														if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-																					echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
-														}
+                    <?php
+                        if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+                                                    echo '<span class="item-seperator">' . $epl_property_address_seperator . '</span>';
+                        }
 		}
 		?>
 
 		<?php
-		if ( $property->get_epl_settings( 'epl_enable_city_field' ) == 'yes' ) {
+		if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
 			?>
 				<span class="item-city"><?php echo $property->get_property_meta( 'property_address_city' ); ?></span>
-												   <?php
+			<?php
 		}
 		?>
 		<span class="item-state"><?php echo $property->get_property_meta( 'property_address_state' ); ?></span>
 		<span class="item-pcode"><?php echo $property->get_property_meta( 'property_address_postal_code' ); ?></span>
 		<?php
-		if ( $property->get_epl_settings( 'epl_enable_country_field' ) == 'yes' ) {
+		if ( 'yes' === $property->get_epl_settings( 'epl_enable_country_field' ) ) {
 			?>
 				<span class="item-country"><?php echo $property->get_property_meta( 'property_address_country' ); ?></span>
-													  <?php
+			<?php
 		}
 		?>
 	</span>
@@ -660,7 +667,7 @@ add_action( 'epl_property_address', 'epl_property_the_address' );
 function epl_property_suburb() {
 	global $property;
 	// Commercial and Business Address
-	if ( $property->post_type == 'commercial' || $property->post_type == 'business' ) {
+	if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 		?>
 
 		<span class="entry-title-sub">
@@ -704,6 +711,10 @@ add_action( 'epl_property_price_content', 'epl_property_price' );
 /**
  * Get Property icons
  *
+ * @param array $args Arguments.
+ * @param string $returntype Type of return.
+ *
+ * @return false|string
  * @since 1.0
  * @revised 3.3
  */
@@ -747,7 +758,7 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 				break;
 
 			default:
-				// action to hook additional icons
+				// action to hook additional icons.
 				do_action( 'epl_get_property_icon_' . $icon );
 				break;
 		}
@@ -763,7 +774,7 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
  * @revised 3.3
  */
 function epl_property_icons( $returntype = 'i' ) {
-	$returntype = $returntype == '' ? 'i' : $returntype;
+	$returntype = '' === $returntype ? 'i' : $returntype;
 	echo epl_get_property_icons( array(), $returntype );
 }
 add_action( 'epl_property_icons', 'epl_property_icons', 10, 1 );
@@ -799,8 +810,8 @@ add_action( 'epl_property_land_category', 'epl_property_land_category' );
  */
 function epl_property_commercial_category() {
 	global $property;
-	if ( $property->post_type == 'commercial' ) {
-		if ( $property->get_property_meta( 'property_com_plus_outgoings' ) == 1 ) {
+	if ( 'commercial' === $property->post_type ) {
+		if ( $property->get_property_meta( 'property_com_plus_outgoings' ) === 1 ) {
 			echo '<div class="price-type">' . apply_filters( 'epl_property_sub_title_plus_outgoings_label', __( 'Plus Outgoings', 'easy-property-listings' ) ) . '</div>';
 		}
 		echo $property->get_property_commercial_category();
@@ -816,7 +827,7 @@ add_action( 'epl_property_commercial_category', 'epl_property_commercial_categor
  */
 function epl_property_available_dates() {
 	global $property;
-	if ( 'rental' == $property->post_type && $property->get_property_meta( 'property_date_available' ) != '' && $property->get_property_meta( 'property_status' ) != 'leased' ) {
+	if ( 'rental' === $property->post_type && $property->get_property_meta( 'property_date_available' ) !== '' && $property->get_property_meta( 'property_status' ) !== 'leased' ) {
 		// Rental Specifics
 		echo '<div class="property-meta date-available">' . apply_filters( 'epl_property_sub_title_available_from_label', __( 'Available from', 'easy-property-listings' ) ) . ' ', $property->get_property_available() , '</div>';
 	}
@@ -833,7 +844,7 @@ function epl_property_inspection_times() {
 	global $property;
 	$property_inspection_times = $property->get_property_inspection_times();
 	$label_home_open           = '';
-	if ( trim( $property_inspection_times ) != '' ) {
+	if ( trim( $property_inspection_times ) !== '' ) {
 		$label_home_open = $property->get_epl_settings( 'label_home_open' );
 
 		$label_home_open = apply_filters( 'epl_inspection_times_label', $label_home_open );
@@ -853,7 +864,7 @@ add_action( 'epl_property_inspection_times', 'epl_property_inspection_times' );
  * Getting heading/title of the listing.
  *
  * @since  2.3.1
- * @param  int|WP_Post|EPL_Property_Meta $listing
+ * @param  int|WP_Post|EPL_Property_Meta $listing Listing object.
  * @return string listing heading or title
  */
 function epl_get_property_heading( $listing = null ) {
@@ -881,6 +892,7 @@ function epl_get_property_heading( $listing = null ) {
 /**
  * Property Heading
  *
+ * @param  int|WP_Post|EPL_Property_Meta $listing Listing object.
  * @since 1.0
  * @hooked the_property_heading
  */
@@ -898,19 +910,19 @@ add_action( 'epl_property_heading', 'epl_property_heading' );
 function epl_property_secondary_heading() {
 	global $property;
 
-	if ( $property->post_type == 'property' || $property->post_type == 'rental' ) {
+	if ( 'property' === $property->post_type || 'rental' === $property->post_type ) {
 		echo $property->get_property_category( 'span', 'epl-property-category' );
 	}
 
-	if ( $property->post_type == 'rural' ) {
+	if ( 'rural' === $property->post_type ) {
 		echo $property->get_property_rural_category( 'span', 'epl-rural-category' );
 	}
 
-	if ( $property->post_type == 'commercial' || $property->post_type == 'commercial_land' ) {
+	if ( 'commercial' === $property->post_type || 'commercial_land' === $property->post_type ) {
 		echo $property->get_property_commercial_category( 'span', 'epl-commercial-category' );
 	}
 
-	if ( $property->get_property_meta( 'property_status' ) == 'sold' ) {
+	if ( 'sold' === $property->get_property_meta( 'property_status' ) ) {
 		echo ' <span class="sold-status">' . $property->label_sold . '</span>';
 	}
 	echo ' <span class="suburb"> - ' . $property->get_property_meta( 'property_address_suburb' ) . ' </span>';
@@ -949,13 +961,17 @@ function epl_get_video_host( $url ) {
 /**
  * Property Video HTML
  *
+ * @param string $property_video_url URL of video.
+ * @param int $width Width.
+ *
+ * @return string
  * @since 1.0
  * @revised 3.3
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
 	/** remove related videos from youtube */
-	if ( epl_get_video_host( $property_video_url ) == 'youtube' ) {
+	if ( epl_get_video_host( $property_video_url ) === 'youtube' ) {
 
 		if ( strpos( $property_video_url, '?' ) > 0 ) {
 			$property_video_url .= '&rel=0';
@@ -964,7 +980,7 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 		}
 	}
 	$width = epl_get_option( 'epl_video_width', $width );
-	if ( $property_video_url != '' ) {
+	if ( '' !== $property_video_url ) {
 		$video_html = '<div class="epl-video-container videoContainer">';
 
 			$video_html .= wp_oembed_get(
@@ -986,7 +1002,7 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 function epl_property_video_callback( $width = 600 ) {
 
 	global $property;
-	$video_width        = $width != '' ? $width : 600;
+	$video_width        = '' !== $width ? $width : 600;
 	$property_video_url = $property->get_property_meta( 'property_video_url' );
 	echo epl_get_video_html( $property_video_url, $video_width );
 
@@ -1037,21 +1053,21 @@ function epl_property_tab_section() {
 		switch ( $general_feature ) {
 
 			case 'category':
-				if ( 'property' == $post_type || 'rental' == $post_type ) {
+				if ( 'property' === $post_type || 'rental' === $post_type ) {
 					$the_property_feature_list .= $property->get_property_category( 'li' );
 				}
 
 				break;
 
 			case 'rural_category':
-				if ( 'rural' == $post_type ) {
+				if ( 'rural' === $post_type ) {
 					$the_property_feature_list .= $property->get_property_rural_category( 'li' );
 				}
 
 				break;
 
 			case 'commercial_category':
-				if ( 'commercial' == $post_type || 'commercial_land' == $post_type || 'business' == $post_type ) {
+				if ( 'commercial' === $post_type || 'commercial_land' === $post_type || 'business' === $post_type ) {
 					$the_property_feature_list .= $property->get_property_commercial_category( 'li' );
 				}
 
@@ -1182,7 +1198,7 @@ function epl_property_tab_section() {
 	);
 	$additional_features = apply_filters( 'epl_property_additional_features_list', $additional_features );
 
-	if ( 'property' == $property->post_type || 'rental' == $property->post_type || 'rural' == $property->post_type ) {
+	if ( 'property' === $property->post_type || 'rental' === $property->post_type || 'rural' === $property->post_type ) {
 		foreach ( $additional_features as $additional_feature ) {
 			$the_property_feature_list .= $property->get_additional_features_html( $additional_feature );
 		}
@@ -1190,7 +1206,7 @@ function epl_property_tab_section() {
 
 	$the_property_feature_list .= apply_filters( 'epl_the_property_feature_list_after', '' );
 
-	if ( $property->post_type != 'land' || $property->post_type != 'business' ) {
+	if ( 'land' !== $property->post_type || 'business' !== $property->post_type ) {
 		?>
 		<?php $property_features_title = apply_filters( 'epl_property_sub_title_property_features', __( 'Property Features', 'easy-property-listings' ) ); ?>
 		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo $property_features_title; ?></h5>
@@ -1203,17 +1219,16 @@ function epl_property_tab_section() {
 
 	<div class="epl-tab-content epl-tab-content-additional tab-content">
 		<?php
-			// Land Category
-		if ( 'land' == $property->post_type || 'commercial_land' == $property->post_type ) {
+		// Land Category.
+		if ( 'land' === $property->post_type || 'commercial_land' === $property->post_type ) {
 			echo '<div class="epl-land-category">' . $property->get_property_land_category( 'value' ) . '</div>';
 		}
 
-			// Commercial Options
-		if ( $property->post_type == 'commercial' ) {
-			if ( $property->get_property_meta( 'property_com_plus_outgoings' ) == 1 ) {
+		// Commercial Options.
+		if ( 'commercial' === $property->post_type ) {
+			if ( $property->get_property_meta( 'property_com_plus_outgoings' ) === 1 ) {
 				echo '<div class="epl-commercial-outgoings price-type">' . apply_filters( 'epl_property_sub_title_plus_outgoings', __( 'Plus Outgoings', 'easy-property-listings' ) ) . '</div>';
 			}
-			// echo $property->get_property_commercial_category();
 		}
 		?>
 	</div>
@@ -1230,7 +1245,7 @@ add_action( 'epl_property_tab_section', 'epl_property_tab_section' );
 function epl_property_tab_section_after() {
 	global $property;
 	$post_type = $property->post_type;
-	if ( 'commercial' == $post_type || 'business' == $post_type || 'commercial_land' == $post_type ) {
+	if ( 'commercial' === $post_type || 'business' === $post_type || 'commercial_land' === $post_type ) {
 
 		$the_property_commercial_feature_list = '';
 		$features_lists                       = array(
@@ -1250,12 +1265,12 @@ function epl_property_tab_section_after() {
 
 			$commercial_value = $property->get_property_meta( $feature );
 
-			if ( $commercial_value != '' ) {
+			if ( '' !== $commercial_value ) {
 				$result[] = $commercial_value;
 			}
 		}
 
-		// Display results if $result array is not empty
+		// Display results if $result array is not empty.
 		if ( ! empty( $result ) ) {
 
 			foreach ( $features_lists as $features_list ) {
@@ -1275,7 +1290,7 @@ function epl_property_tab_section_after() {
 		}
 	}
 
-	if ( $property->post_type == 'rural' ) {
+	if ( 'rural' === $property->post_type ) {
 		$the_property_rural_feature_list = '';
 		$features_lists                  = array(
 			'property_rural_fencing',
@@ -1287,7 +1302,7 @@ function epl_property_tab_section_after() {
 			'property_rural_carrying_capacity',
 		);
 
-		// Check for values in the rural features
+		// Check for values in the rural features.
 		$rural_value = '';
 
 		$result = array();
@@ -1296,12 +1311,12 @@ function epl_property_tab_section_after() {
 
 			$rural_value = $property->get_property_meta( $feature );
 
-			if ( $rural_value != '' ) {
+			if ( '' !== $rural_value ) {
 				$result[] = $rural_value;
 			}
 		}
 
-		// Display results if $result array is not empty
+		// Display results if $result array is not empty.
 		if ( ! empty( $result ) ) {
 
 			foreach ( $features_lists as $features_list ) {
@@ -1346,57 +1361,60 @@ function epl_get_property_price() {
 /**
  * Get listing Address for Widget
  *
+ * @param string $d_suburb Display or not.
+ * @param string $d_street Display or not.
+ *
  * @since 1.0
  */
 function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 	global $property;
-	if ( $property->post_type == 'commercial' || $property->post_type == 'business' ) {
-		// Address Display not Commercial or Business type
-		if ( $property->get_property_meta( 'property_address_display' ) == 'yes' ) {
+	if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
+		// Address Display not Commercial or Business type.
+		if ( $property->get_property_meta( 'property_address_display' ) === 'yes' ) {
 			?>
 			<?php
-			// Suburb
-			if ( $d_suburb == 'on' && $property->get_property_meta( 'property_com_display_suburb' ) == 'yes' ) {
+			// Suburb.
+			if ( 'on' === $d_suburb && 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) {
 				?>
 				<div class="property-meta suburb-name"><?php echo $property->get_property_meta( 'property_address_suburb' ); ?></div>
 			<?php } ?>
 
 			<?php
-			// Street
-			if ( $d_street == 'on' ) {
+			// Street.
+			if ( 'on' === $d_street ) {
 				?>
 				<div class="property-meta street-name"><?php echo $property->get_formatted_property_address(); ?></div>
 			<?php } ?>
 		<?php } else { ?>
 			<?php
-			// Suburb
-			if ( $d_suburb == 'on' && $property->get_property_meta( 'property_com_display_suburb' ) == 'yes' ) {
+			// Suburb.
+			if ( 'on' === $d_suburb && 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) {
 				?>
 				<div class="property-meta suburb-name"><?php echo $property->get_property_meta( 'property_address_suburb' ); ?></div>
 			<?php } ?>
 			<?php
 		}
 	} else {
-		// Address Display not Commercial or Business type
-		if ( $property->get_property_meta( 'property_address_display' ) == 'yes' ) {
+		// Address Display not Commercial or Business type.
+		if ( 'yes' === $property->get_property_meta( 'property_address_display' )  ) {
 			?>
 			<?php
 			// Suburb
-			if ( $d_suburb == 'on' ) {
+			if ( 'on' === $d_suburb ) {
 				?>
 				<div class="property-meta suburb-name"><?php echo $property->get_property_meta( 'property_address_suburb' ); ?></div>
 			<?php } ?>
 
 			<?php
 			// Street
-			if ( $d_street == 'on' ) {
+			if ( 'on' === $d_street ) {
 				?>
 				<div class="property-meta street-name"><?php echo $property->get_formatted_property_address(); ?></div>
 			<?php } ?>
 		<?php } else { ?>
 			<?php
 			// Suburb
-			if ( $d_suburb == 'on' ) {
+			if ( 'on' === $d_suburb ) {
 				?>
 				<div class="property-meta suburb-name"><?php echo $property->get_property_meta( 'property_address_suburb' ); ?></div>
 			<?php } ?>
