@@ -9,13 +9,15 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
  * Featured Image on archive template now loading through filter
+ *
+ * @param array $post Post object.
  *
  * @since 2.2
  */
@@ -30,23 +32,23 @@ function epl_reset_property_object( $post ) {
 	global $property;
 	$property = new EPL_Property_Meta( $post );
 
-	if ( $ID = epl_listing_has_primary_agent() ) {
+	if ( $id = epl_listing_has_primary_agent() ) {
 
-		$epl_author = new EPL_Author_meta( $ID );
+		$epl_author = new EPL_Author_meta( $id );
 
 	} else {
 
 		$epl_author = new EPL_Author_meta( $post->post_author );
 	}
 
-	if ( $SEC_ID = epl_listing_has_secondary_author() ) {
-		$epl_author_secondary = new EPL_Author_meta( $SEC_ID );
+	if ( $secondary_id = epl_listing_has_secondary_author() ) {
+		$epl_author_secondary = new EPL_Author_meta( $secondary_id );
 	}
 }
 add_action( 'the_post', 'epl_reset_property_object' );
 
 /**
- * make $property global available for hooks before the_post
+ * Make $property global available for hooks before the_post
  *
  * @since 2.2
  */
@@ -1555,7 +1557,7 @@ function epl_switch_views() {
 			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_grid', __( 'Grid', 'easy-property-listings' ) ); ?>" class="view-grid" data-view="grid">
 			</li>
 		</ul>
-	</div> 
+	</div>
 	<?php
 }
 add_action( 'epl_switch_views', 'epl_switch_views' );
@@ -1586,7 +1588,7 @@ function epl_sorting_tool() {
 				?>
 					<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
 						<?php echo $sorter['label']; ?>
-					</option> 
+					</option>
 					<?php
 			}
 			?>
@@ -1627,7 +1629,7 @@ function epl_sorting_tabs() {
 						<a href="<?php echo $href; ?>">
 						<?php echo $sorter['label']; ?>
 						</a>
-					</li> 
+					</li>
 					<?php
 			}
 			?>
