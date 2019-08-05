@@ -370,9 +370,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->get_twitter() ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon twitter-icon-24"
 							href="' . $this->get_twitter() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Twitter', 'easy-property-listings' ) . '"' . $link_target . '>' .
@@ -405,9 +405,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->get_instagram() ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon instagram-icon-24"
 							href="' . $this->get_instagram() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Instagram', 'easy-property-listings' ) . '"' . $link_target . '>' .
@@ -440,9 +440,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->get_youtube() ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon youtube-icon-24"
 							href="' . $this->get_youtube() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on YouTube', 'easy-property-listings' ) . '"' . $link_target . '>' .
@@ -475,9 +475,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->get_pinterest() ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon pinterest-icon-24"
 							href="' . $this->get_pinterest() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Pinterest', 'easy-property-listings' ) . '"' . $link_target . '>' .
@@ -534,9 +534,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->get_google() ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon google-icon-24"
 							href="' . $this->get_google() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Google', 'easy-property-listings' ) . '"' . $link_target . '>' .
@@ -592,9 +592,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->get_facebook() ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon facebook-icon-24"
 							href="' . $this->get_facebook() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Facebook', 'easy-property-listings' ) . '"' . $link_target . '>' .
@@ -650,9 +650,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->get_linkedin() ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 
 					$html = '
 						<a class="epl-author-icon author-icon linkedin-icon-24"
@@ -708,9 +708,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->get_skype() ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 
 					$html = '
 						<a class="epl-author-icon author-icon skype-icon-24"
