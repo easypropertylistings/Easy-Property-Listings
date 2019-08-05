@@ -1939,7 +1939,7 @@ function epl_get_admin_option_fields() {
 
 	);
 
-	if ( defined( 'EPL_BETA_VERSIONS' ) && EPL_BETA_VERSIONS == true ) {
+	if ( defined( 'EPL_BETA_VERSIONS' ) && EPL_BETA_VERSIONS === true ) {
 		$fields[] = array(
 			'label'  => __( 'Beta Versions', 'easy-property-listings' ),
 			'class'  => 'core',
@@ -1969,7 +1969,7 @@ function epl_get_admin_option_fields() {
 function epl_sold_label_status_filter_callback() {
 	global $epl_settings;
 	$epl_settings['label_sold'] = ! isset( $epl_settings['label_sold'] ) ? '' : $epl_settings['label_sold'];
-	$sold_label                 = $epl_settings['label_sold'] != 'Sold' || $epl_settings['label_sold'] != '' ? $epl_settings['label_sold'] : __( 'Sold', 'easy-property-listings' );
+	$sold_label                 = 'Sold' !== $epl_settings['label_sold'] || '' !== $epl_settings['label_sold'] ? $epl_settings['label_sold'] : __( 'Sold', 'easy-property-listings' );
 	return $sold_label;
 }
 add_filter( 'epl_sold_label_status_filter', 'epl_sold_label_status_filter_callback' );
@@ -1982,7 +1982,7 @@ add_filter( 'epl_sold_label_status_filter', 'epl_sold_label_status_filter_callba
 function epl_under_offer_label_status_filter_callback() {
 	global $epl_settings;
 	$epl_settings['label_under_offer'] = ! isset( $epl_settings['label_under_offer'] ) ? '' : $epl_settings['label_under_offer'];
-	$under_offer_label                 = $epl_settings['label_under_offer'] != 'Under Offer' || $epl_settings['label_under_offer'] != '' ? $epl_settings['label_under_offer'] : __( 'Under Offer', 'easy-property-listings' );
+	$under_offer_label                 = 'Under Offer' !== $epl_settings['label_under_offer'] || '' !== $epl_settings['label_under_offer'] ? $epl_settings['label_under_offer'] : __( 'Under Offer', 'easy-property-listings' );
 	return $under_offer_label;
 }
 add_filter( 'epl_under_offer_label_status_filter', 'epl_under_offer_label_status_filter_callback' );
@@ -1995,7 +1995,7 @@ add_filter( 'epl_under_offer_label_status_filter', 'epl_under_offer_label_status
 function epl_leased_label_status_filter_callback() {
 	global $epl_settings;
 	$epl_settings['label_leased'] = ! isset( $epl_settings['label_leased'] ) ? '' : $epl_settings['label_leased'];
-	$leased_label                 = $epl_settings['label_leased'] != 'Leased' || $epl_settings['label_leased'] != '' ? $epl_settings['label_leased'] : __( 'Leased', 'easy-property-listings' );
+	$leased_label                 = 'Leased' !== $epl_settings['label_leased'] || '' !== $epl_settings['label_leased'] ? $epl_settings['label_leased'] : __( 'Leased', 'easy-property-listings' );
 	return $leased_label;
 }
 add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_callback' );
@@ -2005,11 +2005,12 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * Author: Chinmoy Paul
  * Author URL: http://pwdtechnology.com
  *
- * @since 2.1.11
  * @param string $key Post Meta Key.
  * @param string $type Post Type. Default is post. You can pass custom post type here.
- * @param string $status Post Status like Publish, draft, future etc. default is publish
+ * @param string $status Post Status like Publish, draft, future etc. default is publish.
+ * @param string $property_status Listing status.
  * @return array
+ * @since 2.1.11
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
@@ -2019,7 +2020,7 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 		return;
 	}
 
-	if ( $type == '' ) {
+	if ( '' === $type ) {
 		$type = epl_get_core_post_types();
 	}
 
@@ -2096,12 +2097,14 @@ add_action( 'wp_login', 'epl_session_end' );
 /**
  * Get Sales Count By Date
  *
- * @since 3.0
- * @param int $day Day number
- * @param int $month_num Month number
- * @param int $year Year
- * @param int $hour Hour
+ * @param int  $day Day number.
+ * @param int  $month_num Month number.
+ * @param int  $year Year.
+ * @param int  $hour Hour.
+ * @param int  $status Listing status.
+ * @param bool $day_by_day Sales by day.
  * @return int $count Sales
+ * @since 3.0
  */
 function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $hour = null, $status = null, $day_by_day = true ) {
 	$post_type = isset( $_GET['view'] ) ? sanitize_text_field( $_GET['view'] ) : 'property';
@@ -2132,10 +2135,10 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 
 			if ( in_array( $range, array( 'other', 'last_year', 'this_year', 'last_quarter', 'this_quarter' ) ) ) {
 
-				$sold_key = $status == 'leased' ? 'property_date_available' : 'property_sold_date';
+				$sold_key = 'leased' === $status ? 'property_date_available' : 'property_sold_date';
 
 				$sold_date_end   = date( 'Y-m-d', strtotime( $year . '-' . $month_num . '-' . $day ) );
-				$sold_date_start = $day_by_day == true ? $sold_date_end : date( 'Y-m-01', strtotime( $year . '-' . $month_num . '-' . $day ) );
+				$sold_date_start = true === $day_by_day ? $sold_date_end : date( 'Y-m-01', strtotime( $year . '-' . $month_num . '-' . $day ) );
 
 				$args['meta_query'][] = array(
 					'key'     => $sold_key,
@@ -2146,7 +2149,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 
 			} else {
 
-				$sold_key  = $status == 'leased' ? 'property_date_available' : 'property_sold_date';
+				$sold_key  = 'leased' === $status ? 'property_date_available' : 'property_sold_date';
 				$sold_date = date( 'Y-m-d', strtotime( $year . '-' . $month_num . '-' . $day ) );
 
 				$args['meta_query'][] = array(
@@ -2177,7 +2180,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 	if ( false === $count ) {
 		$sales = new WP_Query( $args );
 		$count = (int) $sales->post_count;
-		// Cache the results for one hour
+		// Cache the results for one hour.
 		set_transient( $key, $count, HOUR_IN_SECONDS );
 	}
 
@@ -2191,7 +2194,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
  *
  * @since 3.0
  *
- * @param integer $n
+ * @param integer $n Month number.
  * @return string Short month name
  */
 function epl_month_num_to_name( $n ) {
@@ -2204,6 +2207,7 @@ function epl_month_num_to_name( $n ) {
  * Retrieve contacts from the database
  *
  * @access  public
+ * @param array $args Arguments.
  * @since   3.0
  */
 function epl_get_contacts( $args = array() ) {
@@ -2226,13 +2230,13 @@ function epl_get_contacts( $args = array() ) {
 
 	$where = ' WHERE 1=1 ';
 
-	// specific contacts
+	// specific contacts.
 	if ( ! empty( $args['ID'] ) ) {
 		$args['post__in'] = $args['ID'];
 
 	}
 
-	// specific contacts by email
+	// specific contacts by email.
 	if ( ! empty( $args['email'] ) ) {
 
 		$email_query = array(
@@ -2247,7 +2251,7 @@ function epl_get_contacts( $args = array() ) {
 		$args['meta_query'][] = $email_query;
 	}
 
-	// specific contacts by name
+	// specific contacts by name.
 	if ( ! empty( $args['name'] ) ) {
 		$args['post_title'] = $args['name'];
 	}
@@ -2259,7 +2263,7 @@ function epl_get_contacts( $args = array() ) {
 	$args['orderby'] = esc_sql( $args['orderby'] );
 	$args['order']   = esc_sql( $args['order'] );
 
-	if ( $contacts === false ) {
+	if ( false === $contacts ) {
 		$contacts = get_posts( $args );
 		wp_cache_set( $cache_key, $contacts, 'contacts', 3600 );
 	}
@@ -2322,6 +2326,7 @@ function epl_get_contact_categories() {
 /**
  * Get Contact Labels
  *
+ * @param string $category Category label.
  * @access  public
  * @since   3.0
  */
@@ -2341,7 +2346,7 @@ function get_category_label( $category ) {
  * @since       3.3
  */
 function epl_starts_with( $haystack, $needle ) {
-	// search backwards starting from haystack length characters from the end
+	// search backwards starting from haystack length characters from the end.
 	return $needle === '' || strrpos( $haystack, $needle, -strlen( $haystack ) ) !== false;
 }
 
@@ -2351,7 +2356,7 @@ function epl_starts_with( $haystack, $needle ) {
  * @since       3.3
  */
 function epl_ends_with( $haystack, $needle ) {
-	// search forward starting from end minus needle length characters
+	// search forward starting from end minus needle length characters.
 	return $needle === '' || ( ( $temp = strlen( $haystack ) - strlen( $needle ) ) >= 0 && strpos( $haystack, $needle, $temp ) !== false );
 }
 
