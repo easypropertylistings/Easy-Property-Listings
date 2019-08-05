@@ -108,7 +108,7 @@ class EPL_Property_Meta {
 			if ( $label_key  = $label['name'] ) {
 				$default = isset( $label['default'] ) ? $label['default'] : '';
 
-				if ( isset( $this->epl_settings[ $label_key ] ) && $this->epl_settings[ $label_key ] != '' ) {
+				if ( isset( $this->epl_settings[ $label_key ] ) && '' !== $this->epl_settings[ $label_key ] ) {
 					$this->{$label_key} = $this->epl_settings[ $label_key ];
 				} else {
 					$this->{$label_key} = $default;
@@ -132,7 +132,7 @@ class EPL_Property_Meta {
 		$value = null;
 		if ( isset( $this->meta[ $meta_key ] ) ) {
 			if ( isset( $this->meta[ $meta_key ][0] ) ) {
-				if ( $allowzero === true ) {
+				if ( true === $allowzero ) {
 					$value = maybe_unserialize( $this->meta[ $meta_key ][0] );
 				} elseif ( intval( $this->meta[ $meta_key ][0] ) == 0 ) {
 					$value = '';
@@ -158,10 +158,10 @@ class EPL_Property_Meta {
 			return;
 		}
 
-		$pit = $this->get_property_meta( $meta_key );
-		$pit = trim( $pit );
-		if ( $pit != '' ) {
-			$list = array_filter( explode( "\n", $pit ) );
+		$inspection_time = $this->get_property_meta( $meta_key );
+		$inspection_time = trim( $inspection_time );
+		if ( $inspection_time != '' ) {
+			$list = array_filter( explode( "\n", $inspection_time ) );
 			if ( ! empty( $list ) ) {
 				// There are inspection times.
 				$inspectarray = array();
@@ -872,8 +872,8 @@ class EPL_Property_Meta {
 
 		}
 
-		$pit = $this->get_property_meta( 'property_inspection_times' );
-		$pit = trim( $pit );
+		$inspection_time = $this->get_property_meta( 'property_inspection_times' );
+		$inspection_time = trim( $inspection_time );
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type ) {
 			$price_sticker = '';
 			if ( 'sold' == $this->get_property_meta( 'property_status' ) ) {
@@ -886,7 +886,7 @@ class EPL_Property_Meta {
 					$price_sticker .= '<span class="status-sticker new">' . $this->get_epl_settings( 'label_new' ) . '</span>';
 				}
 
-				if ( ! empty( $pit ) ) {
+				if ( ! empty( $inspection_time ) ) {
 					$price_sticker .= '<span class="status-sticker open">' . $this->get_epl_settings( 'label_home_open' ) . '</span>';
 				}
 			}
@@ -906,7 +906,7 @@ class EPL_Property_Meta {
 					$price_sticker .= '<span class="status-sticker new">' . $this->get_epl_settings( 'label_new' ) . '</span>';
 				}
 
-				if ( ! empty( $pit ) ) {
+				if ( ! empty( $inspection_time ) ) {
 					$price_sticker .= '<span class="status-sticker open">' . $this->get_epl_settings( 'label_home_open' ) . '</span>';
 				}
 			}
