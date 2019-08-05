@@ -280,7 +280,7 @@ if ( ! function_exists( 'epl_pagination_html' ) ) :
 	 * @since 2.1
 	 */
 	function epl_pagination_html( $tag ) {
-		static $self_closting_tags = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
+		static $self_closing_tags = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
 
 		$args = func_get_args();
 
@@ -304,7 +304,7 @@ if ( ! function_exists( 'epl_pagination_html' ) ) :
 			list( $closing ) = explode( ' ', $tag, 2 );
 		}
 
-		if ( in_array( $closing, $self_closting_tags ) ) {
+		if ( in_array( $closing, $self_closing_tags ) ) {
 			return "<{$tag} />";
 		}
 
@@ -319,17 +319,18 @@ if ( ! function_exists( 'epl_get_multipage_link' ) ) :
 	/**
 	 * Pagination Multipage link
 	 *
+	 * @param int $page Page number.
 	 * @since 2.1
 	 */
 	function epl_get_multipage_link( $page = 1 ) {
 		global $post, $wp_rewrite;
 
-		if ( 1 == $page ) {
+		if ( 1 === $page ) {
 			$url = get_permalink();
 		} else {
-			if ( '' == get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
+			if ( '' === get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
 				$url = add_query_arg( 'page', $page, get_permalink() );
-			} elseif ( 'page' == get_option( 'show_on_front' ) && get_option( 'page_on_front' ) == $post->ID ) {
+			} elseif ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_on_front' ) === $post->ID ) {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $wp_rewrite->pagination_base . "/$page", 'single_paged' );
 			} else {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $page, 'single_paged' );
@@ -343,9 +344,9 @@ endif;
 /**
  * Get next page URL for EPL archives / shortcodes
  *
+ * @param  array $query WP Query object.
+ * @return string
  * @since 3.3.3
- * @param  [type] $query [description]
- * @return [type]        [description]
  */
 function epl_get_next_page_link( $query ) {
 	$link = next_posts( $query->max_num_pages, false );
@@ -360,10 +361,10 @@ function epl_get_next_page_link( $query ) {
 /**
  * Next page Link
  *
+ * @param  array  $query WP Query object.
+ * @param  string $label Pagination 'next' label.
+ * @return string
  * @since 3.3.3
- * @param  [type] $query [description]
- * @param  [type] $label [description]
- * @return [type]        [description]
  */
 function epl_next_post_link( $query, $label = null ) {
 
@@ -384,9 +385,9 @@ function epl_next_post_link( $query, $label = null ) {
 /**
  * Get Prev page URL for EPL archives / shortcodes
  *
+ * @param  array $query WP Query object.
+ * @return string
  * @since 3.3.3
- * @param  [type] $query [description]
- * @return [type]        [description]
  */
 function epl_get_prev_page_link( $query ) {
 
@@ -403,9 +404,9 @@ function epl_get_prev_page_link( $query ) {
  * Prev page Link
  *
  * @since 3.3.3
- * @param  [type] $query [description]
- * @param  [type] $label [description]
- * @return [type]        [description]
+ * @param  array  $query WP Query object.
+ * @param  string $label Pagination 'previous' label.
+ * @return string
  */
 function epl_prev_post_link( $query, $label = null ) {
 
@@ -425,6 +426,7 @@ function epl_prev_post_link( $query, $label = null ) {
 /**
  * WordPress Default Pagination
  *
+ * @param  array $query WP Query object.
  * @since 2.1
  * @revised 3.3.3
  */
