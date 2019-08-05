@@ -9,7 +9,7 @@
  * @since       2.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -24,6 +24,7 @@ class EPL_Property_Meta {
 	/**
 	 * Global Instance
 	 *
+	 * @var $instance
 	 * @since 2.0
 	 */
 	static $instance;
@@ -63,11 +64,12 @@ class EPL_Property_Meta {
 	 */
 	public $property_post_type;
 
-	/**
-	 * Get things going
-	 *
-	 * @since 2.0
-	 */
+    /**
+     * Get things going
+     *
+     * @param $post
+     * @since 2.0
+     */
 	public function __construct( $post ) {
 
 			$this->post               = $post;
@@ -79,13 +81,13 @@ class EPL_Property_Meta {
 			$this->epl_labels();
 	}
 
-	/**
-	 * Define Admin labels in epl_settings global variable
-	 *
-	 * @since 2.0
-	 * @return array Adds the custom admin labels
-	 */
-	public function epl_labels() {
+    /**
+     * Define Admin labels in epl_settings global variable
+     *
+     * @return void Adds the custom admin labels
+     * @since 2.0
+     */
+    public function epl_labels() {
 
 		$field_groups = epl_get_admin_option_fields();
 
@@ -138,14 +140,15 @@ class EPL_Property_Meta {
 		return apply_filters( 'epl_meta_filter_' . $meta_key, $value );
 	}
 
-	/**
-	 * Outputs the inspection times based on settings format
-	 *
-	 * @since 2.0
-	 * @param  string $meta_key The meta key to get the value from default is property_inspection_times
-	 * @return mixed Return formatted inspection times with a iCal link
-	 */
-	public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
+    /**
+     * Outputs the inspection times based on settings format
+     *
+     * @param bool $ical
+     * @param string $meta_key The meta key to get the value from default is property_inspection_times
+     * @return mixed Return formatted inspection times with a iCal link
+     * @since 2.0
+     */
+    public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 		if ( 'leased' == $this->get_property_meta( 'property_status' ) || 'sold' == $this->get_property_meta( 'property_status' ) ) {
 			return;
 		}
@@ -209,15 +212,15 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Get the setting based on the key
-	 *
-	 * Usage is $property->get_epl_settings('meta_key') with the global $property variable defined
-	 *
-	 * @since 2.0
-	 * @param  string $meta_key The meta key to get the setting from
-	 * @return string Value of the setting or if not set nothing is returned
-	 */
-	public function get_epl_settings( $key ) {
+     * Get the setting based on the key
+     *
+     * Usage is $property->get_epl_settings('meta_key') with the global $property variable defined
+     *
+     * @param $key
+     * @return string Value of the setting or if not set nothing is returned
+     * @since 2.0
+     */
+    public function get_epl_settings( $key ) {
 		$value = '';
 		if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings[ $key ] ) ) {
 			$value = $this->epl_settings[ $key ];
@@ -332,12 +335,13 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Sold price display
-	 *
-	 * @since 2.0
-	 * @return string Return sold price if selected or nothing
-	 */
-	public function get_property_price_sold_display( $admin = false ) {
+     * Sold price display
+     *
+     * @since 2.0
+     * @param bool $admin
+     * @return string Return sold price if selected or nothing
+     */
+    public function get_property_price_sold_display( $admin = false ) {
 		$property_sold_price   = $this->get_property_meta( 'property_sold_price', false );
 		$property_sold_display = $this->get_property_meta( 'property_sold_price_display' );
 
@@ -351,12 +355,13 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Lease price display
-	 *
-	 * @since 3.1
-	 * @return string Return lease price if selected or nothing
-	 */
-	public function get_property_price_lease_display( $admin = false ) {
+     * Lease price display
+     *
+     * @since 3.1
+     * @param bool $admin
+     * @return string Return lease price if selected or nothing
+     */
+    public function get_property_price_lease_display( $admin = false ) {
 		$property_lease_price   = $this->get_property_price_display();
 		$property_lease_display = $this->get_property_meta( 'property_sold_price_display' );
 
@@ -472,12 +477,14 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Land category
-	 *
-	 * @since 2.0
-	 * @return string
-	 */
-	public function get_property_land_category( $tag = 'div', $class = 'land-category' ) {
+     * Land category
+     *
+     * @since 2.0
+     * @param string $tag
+     * @param string $class
+     * @return string
+     */
+    public function get_property_land_category( $tag = 'div', $class = 'land-category' ) {
 		if ( ! in_array( $this->post_type, array( 'land', 'commercial_land' ) ) ) {
 			return;
 		}
@@ -835,12 +842,13 @@ class EPL_Property_Meta {
 		return apply_filters( 'epl_get_price', $price );
 	}
 
-	/**
-	 * Price Sticker
-	 *
-	 * @since 2.0
-	 * @return string
-	 */
+    /**
+     * Price Sticker
+     *
+     * @return string
+     * @throws Exception
+     * @since 2.0
+     */
 	public function get_price_sticker() {
 		$price_sticker = '';
 		$date          = new DateTime( $this->post->post_date );
