@@ -104,20 +104,25 @@ class EPL_Contact {
 
 	}
 
-	/**
-	 * Get the primary email of contact / alias of get_primary_email
-	 *
-	 * @since  3.0
-	 */
+    /**
+     * Get the primary email of contact / alias of get_primary_email
+     *
+     * @param $id
+     * @return mixed
+     * @since  3.0
+     */
 	function get_contact_email( $id ) {
 		return $this->get_primary_email( $id );
 	}
 
-	/**
-	 * update the primary email of contact
-	 *
-	 * @since  3.0
-	 */
+    /**
+     * update the primary email of contact
+     *
+     * @param $id
+     * @param $value
+     * @return bool|int
+     * @since  3.0
+     */
 	function update_contact_email( $id, $value ) {
 		$emails          = (array) get_post_meta( $id, 'contact_emails', true );
 		$emails['email'] = $value;
@@ -193,15 +198,15 @@ class EPL_Contact {
 
 	}
 
-	/**
-	 * Retrieves a single contact from the database
-	 *
-	 * @access public
-	 * @since  3.0
-	 * @param  string $column id or email
-	 * @param  mixed  $value  The Contact ID or email to search
-	 * @return mixed          Upon success, an object of the contact. Upon failure, NULL
-	 */
+    /**
+     * Retrieves a single contact from the database
+     *
+     * @access public
+     * @param string $field
+     * @param mixed $value The Contact ID or email to search
+     * @return mixed          Upon success, an object of the contact. Upon failure, NULL
+     * @since  3.0
+     */
 	public function get_contact_by( $field = 'id', $value = 0 ) {
 
 		if ( empty( $field ) || empty( $value ) ) {
@@ -277,11 +282,13 @@ class EPL_Contact {
 		return $contact;
 	}
 
-	/**
-	 * Magic __get function to dispatch a call to retrieve a private property
-	 *
-	 * @since 3.0.0
-	 */
+    /**
+     * Magic __get function to dispatch a call to retrieve a private property
+     *
+     * @param $key
+     * @return mixed|WP_Error
+     * @since 3.0.0
+     */
 	public function __get( $key ) {
 
 		if ( method_exists( $this, 'get_' . $key ) ) {
@@ -350,11 +357,13 @@ class EPL_Contact {
 		return $created;
 	}
 
-	/**
-	 * Checking for contact
-	 *
-	 * @since  3.0
-	 */
+    /**
+     * Checking for contact
+     *
+     * @param null $email
+     * @return bool|WP_Post
+     * @since  3.0
+     */
 	function contact_exists( $email = null ) {
 		$matched_contacts = new WP_Query(
 			array(
@@ -433,7 +442,7 @@ class EPL_Contact {
 	 *
 	 * @since  3.0
 	 * @param  int $listing_id The listing ID to attach to the contact
-	 * @return bool            If the attachment was successfuly
+	 * @return bool            If the attachment was successfully
 	 */
 	public function attach_listing( $listing_id = 0 ) {
 
@@ -598,13 +607,15 @@ class EPL_Contact {
 		);
 	}
 
-	/**
-	 * Add a note for the contact
-	 *
-	 * @since  3.0
-	 * @param string $note The note to add
-	 * @return string|boolean The new note if added successfully, false otherwise
-	 */
+    /**
+     * Add a note for the contact
+     *
+     * @param string $note The note to add
+     * @param string $note_type
+     * @param int $listing_id
+     * @return string|boolean The new note if added successfully, false otherwise
+     * @since  3.0
+     */
 	public function add_note( $note = '', $note_type = 'note', $listing_id = 0 ) {
 
 		$note = trim( $note );
@@ -648,20 +659,25 @@ class EPL_Contact {
 		return wp_delete_post( $this->ID, true );
 	}
 
-	/**
-	 * Update Contact Meta
-	 *
-	 * @since  3.0
-	 */
+    /**
+     * Update Contact Meta
+     *
+     * @param $key
+     * @param $value
+     * @return bool|int
+     * @since  3.0
+     */
 	public function update_meta( $key, $value ) {
 		return update_post_meta( $this->ID, $key, $value );
 	}
 
-	/**
-	 * Get Contact Meta
-	 *
-	 * @since  3.0
-	 */
+    /**
+     * Get Contact Meta
+     *
+     * @param $key
+     * @return mixed
+     * @since  3.0
+     */
 	public function get_meta( $key ) {
 		return get_post_meta( $this->ID, $key, true );
 	}
@@ -719,12 +735,13 @@ class EPL_Contact {
 		return apply_filters( 'epl_contact_formatted_address', $addr );
 	}
 
-	/**
-	 * Returns Contact Primary Email
-	 *
-	 * @return mixed
-	 * @since 3.0.0
-	 */
+    /**
+     * Returns Contact Primary Email
+     *
+     * @param $id
+     * @return mixed
+     * @since 3.0.0
+     */
 	function get_primary_email( $id ) {
 		$emails = get_post_meta( $id, 'contact_emails', true );
 		return isset( $emails['email'] ) ? $emails['email'] : false;
