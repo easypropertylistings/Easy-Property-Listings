@@ -248,7 +248,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			require_once EPL_PATH_LIB . 'includes/error-tracking.php';
 
+			require_once EPL_PATH_LIB . 'includes/class-epl-pagination-call.php';
 			require_once EPL_PATH_LIB . 'includes/pagination.php';
+
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
 			require_once EPL_PATH_LIB . 'meta-boxes/meta-box-init.php';
 
