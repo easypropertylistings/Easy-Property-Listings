@@ -258,7 +258,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-actions.php';
-				require_once EPL_PATH_LIB . 'includes/EPL_License_Handler.php';
+				require_once EPL_PATH_LIB . 'includes/class-epl-license.php';
 				require_once EPL_PATH_LIB . 'includes/user.php';
 				require_once EPL_PATH_LIB . 'includes/admin/menus/menus.php';
 				require_once EPL_PATH_LIB . 'includes/admin/menus/class-epl-welcome.php';
