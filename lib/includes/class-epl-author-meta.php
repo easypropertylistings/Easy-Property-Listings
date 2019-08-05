@@ -9,7 +9,7 @@
  * @since       1.3
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -21,30 +21,161 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
+	/**
+	 * EPL_Author_Meta Class
+	 *
+	 * @since 1.3.0
+	 */
 	class EPL_Author_Meta {
 
+		/**
+		 * The user ID
+		 *
+		 * @since 1.3.0
+		 * @var string $author_id User ID.
+		 */
 		private $author_id;
+
+		/**
+		 * The user name
+		 *
+		 * @since 1.3.0
+		 * @var string $name User name.
+		 */
 		private $name;
+
+		/**
+		 * The user mobile phone number
+		 *
+		 * @since 1.3.0
+		 * @var string $mobile User mobile number.
+		 */
 		private $mobile;
+
+		/**
+		 * The user office phone number
+		 *
+		 * @since 3.3.0
+		 * @var string $office_phone User office phone.
+		 */
 		private $office_phone;
+
+		/**
+		 * The user Facebook URL
+		 *
+		 * @since 1.3.0
+		 * @var string $facebook User Facebook profile URL.
+		 */
 		private $facebook;
+
+		/**
+		 * The user LinkedIn URL
+		 *
+		 * @since 1.3.0
+		 * @var string $linkedin User LinkedIn profile URL.
+		 */
 		private $linkedin;
+
+		/**
+		 * The user Google Plus URL
+		 *
+		 * @since 1.3.0
+		 * @var string $google User Google Plus profile URL.
+		 */
 		private $google;
+
+		/**
+		 * The user Twitter URL
+		 *
+		 * @since 1.3.0
+		 * @var string $twitter User Twitter ID.
+		 */
 		private $twitter;
+
+		/**
+		 * The user Instagram URL
+		 *
+		 * @since 3.3.0
+		 * @var string $instagram User Instagram profile URL.
+		 */
 		private $instagram;
+
+		/**
+		 * The user Pinterest URL
+		 *
+		 * @since 3.3.0
+		 * @var string $pinterest User Pinterest profile URL.
+		 */
 		private $pinterest;
+
+		/**
+		 * The user YouTube URL
+		 *
+		 * @since 3.3.0
+		 * @var string $youtube User YouTube profile URL.
+		 */
 		private $youtube;
+
+		/**
+		 * The user email address
+		 *
+		 * @since 1.3.0
+		 * @var string $email User email address.
+		 */
 		private $email;
+
+		/**
+		 * The user Skype name
+		 *
+		 * @since 1.3.0
+		 * @var string $skype User Skype ID.
+		 */
 		private $skype;
+
+		/**
+		 * The user text slogan
+		 *
+		 * @since 1.3.0
+		 * @var string $slogan User Slogan text string.
+		 */
 		private $slogan;
+
+		/**
+		 * The user position
+		 *
+		 * @since 1.3.0
+		 * @var string $position User position text string.
+		 */
 		private $position;
+
+		/**
+		 * The user video profile
+		 *
+		 * @since 1.3.0
+		 * @var string $video User video profile URL.
+		 */
 		private $video;
+
+		/**
+		 * The user contact form shortcode
+		 *
+		 * @since 1.3.0
+		 * @var string $contact_form User contact shortcode.
+		 */
 		private $contact_form;
+
+		/**
+		 * The user bio
+		 *
+		 * @since 1.3.0
+		 * @var string $description User bio textarea.
+		 */
 		private $description;
 
 		/**
+		 * Get things started
 		 *
-		 * @param [type]
+		 * @param string $author_id The author WordPress user ID.
 		 */
 		function __construct( $author_id ) {
 			$this->author_id    = $author_id;
