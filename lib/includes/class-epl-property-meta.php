@@ -995,7 +995,7 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = value, d = string, l = list item, t = text.
-	 * @return string based on $returntype Options i = span, v = value, d = string, l = list item, t = text
+	 * @return string
 	 */
 	public function get_property_year_built( $returntype = 'i' ) {
 
@@ -1040,8 +1040,8 @@ class EPL_Property_Meta {
 	 * Get Bedrooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, v = value, d = string, l = list item, t = text, s = svg icon.
+	 * @return string
 	 */
 	public function get_property_bed( $returntype = 'i' ) {
 		if ( $this->get_property_meta( 'property_bedrooms', false ) == '' ) {
@@ -1096,8 +1096,8 @@ class EPL_Property_Meta {
 	 * Get Bathrooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item, s = svg icon.
+	 * @return string
 	 */
 	public function get_property_bath( $returntype = 'i' ) {
 		if ( $this->get_property_meta( 'property_bathrooms', false ) == '' ) {
@@ -1153,8 +1153,8 @@ class EPL_Property_Meta {
 	 * Get Rooms
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_rooms( $returntype = 'i' ) {
 		if ( $this->get_property_meta( 'property_rooms', false ) == '' ) {
@@ -1201,8 +1201,8 @@ class EPL_Property_Meta {
 	 * Caluclated value based on number of garages + carports
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item, s = svg icon.
+	 * @return string
 	 */
 	public function get_property_parking( $returntype = 'i' ) {
 
@@ -1265,8 +1265,8 @@ class EPL_Property_Meta {
 	 * Get Garage
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_garage( $returntype = 'i' ) {
 
@@ -1312,8 +1312,8 @@ class EPL_Property_Meta {
 	 * Get Carport
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_carport( $returntype = 'i' ) {
 
@@ -1358,8 +1358,8 @@ class EPL_Property_Meta {
 	 * Get Air Conditioning
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype  Options i = span, v = raw value, t = text, d = string, l = list item, s = svg icon.
+	 * @return string
 	 */
 	public function get_property_air_conditioning( $returntype = 'i' ) {
 
@@ -1415,8 +1415,8 @@ class EPL_Property_Meta {
 	 * Get Pool
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, s = svg icon, t = text
+	 * @param string $returntype Options Options i = span, v = raw value, t = text, d = string, l = list item, s = svg icon.
+	 * @return string
 	 */
 	public function get_property_pool( $returntype = 'i' ) {
 
@@ -1471,8 +1471,8 @@ class EPL_Property_Meta {
 	 * Get Security System
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item
-	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_security_system( $returntype = 'i' ) {
 
@@ -1519,8 +1519,8 @@ class EPL_Property_Meta {
 	 * Get Land Value
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item
-	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
 
@@ -1591,8 +1591,8 @@ class EPL_Property_Meta {
 	 * Get Building area
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item
-	 * @return string based on $returntype Options i = span, d = string, l = list item
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_building_area_value( $returntype = 'i' ) {
 
@@ -1663,8 +1663,8 @@ class EPL_Property_Meta {
 	 * Get Building Energy Rating
 	 *
 	 * @since 3.1.20
-	 * @param string $returntype Options i = span, d = string, l = list item,  t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item,  t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_energy_rating( $returntype = 'i' ) {
 
@@ -1708,8 +1708,8 @@ class EPL_Property_Meta {
 	 * Get New Construction
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_new_construction( $returntype = 'i' ) {
 
@@ -1754,8 +1754,8 @@ class EPL_Property_Meta {
 	 * Get Holiday Rental
 	 *
 	 * @since 3.2
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_holiday_rental( $returntype = 'i' ) {
 
@@ -1798,8 +1798,8 @@ class EPL_Property_Meta {
 	 * Get Furnished
 	 *
 	 * @since 3.2
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_furnished( $returntype = 'i' ) {
 
@@ -1843,8 +1843,8 @@ class EPL_Property_Meta {
 	 * Get Pets
 	 *
 	 * @since 3.3
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_pets( $returntype = 'i' ) {
 
