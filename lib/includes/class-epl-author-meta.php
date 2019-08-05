@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * EPL_Author_Meta Class
  *
- * @since 1.3
+ * @since 1.3.0
  */
 if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
@@ -175,6 +175,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get things started
 		 *
+		 * @since 1.3.0
 		 * @param string $author_id The author WordPress user ID.
 		 */
 		function __construct( $author_id ) {
@@ -201,6 +202,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get the global property object
 		 *
+		 * @since 1.3.0
 		 * @param  array $property Array of property object.
 		 * @return $return Array of values.
 		 */
@@ -215,7 +217,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Name
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
 		 */
 		function get_author_name() {
 			if ( '' !== $this->name ) {
@@ -226,7 +228,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get Email
 		 *
-		 * @since version 3.2
+		 * @since 3.2.0
 		 */
 		function get_email() {
 			if ( '' !== $this->email ) {
@@ -237,7 +239,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Email html Box
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_email_html( $html = '', $style = 'i' ) {
 
@@ -268,7 +272,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get Twitter
 		 *
-		 * @since version 3.2
+		 * @since 3.2.0
 		 */
 		function get_twitter() {
 
@@ -276,11 +280,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			if ( '' !== $this->twitter ) {
 
 				if ( ( strpos( $this->twitter, 'http://' ) === 0 ) || ( strpos( $this->twitter, 'https://' ) === 0 ) ) {
-					// absolute url
+					// absolute url.
 					$twitter = $this->twitter;
 
 				} else {
-					// relative url
+					// relative url.
 					$twitter = 'http://twitter.com/' . $this->twitter;
 				}
 			}
@@ -290,7 +294,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get Instagram
 		 *
-		 * @since version 3.3
+		 * @since 3.3.0
 		 */
 		function get_instagram() {
 
@@ -298,11 +302,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			if ( '' !== $this->instagram ) {
 
 				if ( ( strpos( $this->instagram, 'http://' ) === 0 ) || ( strpos( $this->instagram, 'https://' ) === 0 ) ) {
-					// absolute url
+					// absolute url.
 					$instagram = $this->instagram;
 
 				} else {
-					// relative url
+					// relative url.
 					$instagram = 'http://instagram.com/' . $this->instagram;
 				}
 			}
@@ -312,7 +316,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get YouTube
 		 *
-		 * @since version 3.3
+		 * @since 3.3.0
 		 */
 		function get_youtube() {
 
@@ -320,11 +324,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			if ( '' !== $this->youtube ) {
 
 				if ( ( strpos( $this->youtube, 'http://' ) === 0 ) || ( strpos( $this->youtube, 'https://' ) === 0 ) ) {
-					// absolute url
+					// absolute url.
 					$youtube = $this->youtube;
 
 				} else {
-					// relative url
+					// relative url.
 					$youtube = 'http://youtube.com/' . $this->youtube;
 				}
 			}
@@ -334,7 +338,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get Pinterest
 		 *
-		 * @since version 3.3
+		 * @since 3.3.0
 		 */
 		function get_pinterest() {
 
@@ -342,11 +346,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			if ( '' !== $this->pinterest ) {
 
 				if ( ( strpos( $this->pinterest, 'http://' ) === 0 ) || ( strpos( $this->pinterest, 'https://' ) === 0 ) ) {
-					// absolute url
+					// absolute url.
 					$pinterest = $this->pinterest;
 
 				} else {
-					// relative url
+					// relative url.
 					$pinterest = 'http://pinterest.com/' . $this->pinterest;
 				}
 			}
@@ -356,7 +360,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/*
 		 * Author Twitter html Box
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_twitter_html( $html = '', $style = 'i' ) {
 
@@ -389,7 +395,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/*
 		 * Author Instagram html Box
 		 *
-		 * @since version 3.3
+		 * @since 3.3.0
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_instagram_html( $html = '', $style = 'i' ) {
 
@@ -422,7 +430,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/*
 		 * Author Youtube html Box
 		 *
-		 * @since version 3.3
+		 * @since 3.3.0
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_youtube_html( $html = '', $style = 'i' ) {
 
@@ -455,7 +465,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/*
 		 * Author Pinterest html Box
 		 *
-		 * @since version 3.3
+		 * @since 3.3.0
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_pinterest_html( $html = '', $style = 'i' ) {
 
@@ -497,11 +509,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			if ( '' !== $this->google ) {
 
 				if ( ( strpos( $this->google, 'http://' ) === 0 ) || ( strpos( $this->google, 'https://' ) === 0 ) ) {
-					// absolute url
+					// absolute url.
 					$google = $this->google;
 
 				} else {
-					// relative url
+					// relative url.
 					$google = 'http://plus.google.com/' . $this->google;
 				}
 			}
@@ -513,6 +525,8 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 1.3.0
 		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_google_html( $html = '', $style = 'i' ) {
 
@@ -545,7 +559,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get Facebook
 		 *
-		 * @since version 3.2
+		 * @since 3.2.0
 		 */
 		function get_facebook() {
 
@@ -554,11 +568,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			if ( '' !== $this->facebook ) {
 
 				if ( ( strpos( $this->facebook, 'http://' ) === 0 ) || ( strpos( $this->facebook, 'https://' ) === 0 ) ) {
-					// absolute url
+					// absolute url.
 					$facebook = $this->facebook;
 
 				} else {
-					// relative url
+					// relative url.
 					$facebook = 'http://facebook.com/' . $this->facebook;
 				}
 			}
@@ -568,7 +582,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Facebook html Box
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_facebook_html( $html = '', $style = 'i' ) {
 
@@ -601,7 +617,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get linkedin
 		 *
-		 * @since version 3.2
+		 * @since 3.2.0
 		 */
 		function get_linkedin() {
 
@@ -610,11 +626,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			if ( '' !== $this->linkedin ) {
 
 				if ( ( strpos( $this->linkedin, 'http://' ) === 0 ) || ( strpos( $this->linkedin, 'https://' ) === 0 ) ) {
-					// absolute url
+					// absolute url.
 					$linkedin = $this->linkedin;
 
 				} else {
-					// relative url
+					// relative url.
 					$linkedin = 'http://linkedin.com/pub/' . $this->linkedin;
 				}
 			}
@@ -624,7 +640,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author LinkedIn html Box
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_linkedin_html( $html = '', $style = 'i' ) {
 
@@ -658,7 +676,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get skype
 		 *
-		 * @since version 3.2
+		 * @since 3.2.0
 		 */
 		function get_skype() {
 
@@ -666,11 +684,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			if ( '' !== $this->skype ) {
 
 				if ( ( strpos( $this->skype, 'skype:' ) === 0 ) ) {
-					// absolute url
+					// absolute url.
 					$skype = $this->skype;
 
 				} else {
-					// relative url
+					// relative url.
 					$skype = 'skype:' . $this->skype;
 				}
 			}
@@ -680,7 +698,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Skype html Box
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
 		 */
 		function get_skype_html( $html = '', $style = 'i' ) {
 
@@ -714,7 +734,8 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author video html Box
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
+		 * @param string $html String of video embed.
 		 */
 		function get_video_html( $html = '' ) {
 			if ( '' !== $this->video ) {
@@ -727,7 +748,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get description
 		 *
-		 * @since version 3.2
+		 * @since 3.2.0
 		 */
 		function get_description() {
 			if ( $this->description != '' ) {
@@ -738,7 +759,8 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author description html
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
+		 * @param string $html String of html output.
 		 */
 		function get_description_html( $html = '' ) {
 			if ( '' !== $this->get_description() ) {
@@ -760,7 +782,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author mobile
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
 		 */
 		function get_author_mobile() {
 			if ( '' !== $this->mobile ) {
@@ -771,7 +793,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author office phone
 		 *
-		 * @since version 3.3
+		 * @since 3.3.0
 		 */
 		function get_author_office_phone() {
 			if ( '' !== $this->office_phone ) {
@@ -780,9 +802,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		}
 
 		/**
-		 * Author Id
+		 * Author ID
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
 		 */
 		function get_author_id() {
 			if ( '' !== $this->author_id ) {
@@ -793,7 +815,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Slogan
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
 		 */
 		function get_author_slogan() {
 			if ( '' !== $this->slogan ) {
@@ -804,7 +826,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Position
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
 		 */
 		function get_author_position() {
 			if ( '' !== $this->position ) {
@@ -815,7 +837,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Contact Form
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
 		 */
 		function get_author_contact_form() {
 			if ( '' !== $this->contact_form ) {
