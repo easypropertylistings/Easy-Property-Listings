@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -68,9 +68,9 @@ function epl_get_default_settings() {
 		'epl_lucky_disable_theme_single_thumb' => 'off',
 		'epl_lucky_disable_archive_thumb'      => 'off',
 		'epl_lucky_disable_epl_archive_thumb'  => 'off',
-		'epl_use_core_css'                     => 'off', // Means Enable CSS
-		'epl_css_legacy'                       => 'off', // Legacy styles disabled by default
-		'epl_css_enhanced'                     => 'on', // Enhanced styles enabled for new installations by default
+		'epl_use_core_css'                     => 'off', // Means Enable CSS.
+		'epl_css_legacy'                       => 'off', // Legacy styles disabled by default.
+		'epl_css_enhanced'                     => 'on', // Enhanced styles enabled for new installations by default.
 		'uninstall_on_delete'                  => 0,
 		'inspection_date_format'               => 'l, dS F',
 		'inspection_time_format'               => 'h:i a',
@@ -105,20 +105,20 @@ function epl_get_default_settings() {
 function epl_install() {
 	global $wpdb, $epl_options, $wp_version;
 
-	// Clear the permalinks
+	// Clear the permalinks.
 	flush_rewrite_rules();
 
-	// Add default EPL Settings
+	// Add default EPL Settings.
 	$epl_settings = epl_settings();
 
 	$new_fields_defaults = epl_get_default_settings();
 
 	if ( ! empty( $epl_settings ) ) {
 
-		// possible upgrade
+		// possible upgrade.
 		foreach ( $new_fields_defaults as $key    => $value ) {
 			if ( ! isset( $epl_settings[ $key ] ) ) {
-				// sure upgrade, fields are not set lets set them for very first time
+				// sure upgrade, fields are not set lets set them for very first time.
 				$epl_settings[ $key ] = $value;
 			}
 		}
@@ -128,9 +128,9 @@ function epl_install() {
 	}
 	update_option( 'epl_settings', $epl_settings );
 
-	// Add Upgraded From Option
+	// Add Upgraded From Option.
 	$current_version = get_option( 'epl_version' );
-	if ( $current_version != '' ) {
+	if ( '' !== $current_version ) {
 		update_option( 'epl_version_upgraded_from', $current_version );
 
 	} else {
@@ -144,12 +144,12 @@ function epl_install() {
 		set_transient( 'epl_admin_notices_display', true, 60 * 60 * 24 * 14 );
 	}
 
-	// Bail if activating from network, or bulk
+	// Bail if activating from network, or bulk.
 	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 		return;
 	}
 	remove_role( 'epl_crm' );
-	// Add the transient to redirect
+	// Add the transient to redirect.
 	set_transient( '_epl_activation_redirect', true, 30 );
 }
 register_activation_hook( EPL_PLUGIN_FILE, 'epl_install' );
@@ -184,12 +184,12 @@ function epl_after_install() {
 
 	$activation_pages = get_transient( '_epl_activation_pages' );
 
-	// Exit if not in admin or the transient doesn't exist
+	// Exit if not in admin or the transient doesn't exist.
 	if ( false === $activation_pages ) {
 		return;
 	}
 
-	// Delete the transient
+	// Delete the transient.
 	delete_transient( '_epl_activation_pages' );
 
 	do_action( 'epl_after_install', $activation_pages );
@@ -231,7 +231,7 @@ function epl_plugin_updates() {
 		include( EPL_PATH_UPDATES . 'epl-3.0.php' );
 		update_option( 'epl_version', '3.0' );
 	}
-	if ( version_compare( $current_version, '30', '==' ) ) { // Fix for 3.0 version number
+	if ( version_compare( $current_version, '30', '==' ) ) { // Fix for 3.0 version number.
 		include( EPL_PATH_UPDATES . 'epl-3.1.php' );
 		update_option( 'epl_version', '3.1' );
 	}
@@ -248,8 +248,8 @@ function epl_plugin_updates() {
 		update_option( 'epl_version', '3.2' );
 	}
 	if ( version_compare( $current_version, '3.2.2', '<' ) ) {
-		 flush_rewrite_rules();
-		 update_option( 'epl_version', '3.2.2' );
+		flush_rewrite_rules();
+		update_option( 'epl_version', '3.2.2' );
 	}
 	if ( version_compare( $current_version, '3.3', '<' ) ) {
 		include( EPL_PATH_UPDATES . 'epl-3.3.php' );
