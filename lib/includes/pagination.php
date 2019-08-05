@@ -17,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Pagination function
  *
+ * $param array $args Arguments.
+ *
  * @since 2.1
  */
 function epl_fancy_pagination( $args = array() ) {
