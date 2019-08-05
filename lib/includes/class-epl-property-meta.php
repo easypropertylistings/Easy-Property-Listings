@@ -1041,7 +1041,7 @@ class EPL_Property_Meta {
 			return;
 		}
 
-		$returntype = $returntype === 'i' && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
+		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_bedrooms_return_type', $returntype );
 
 		$label    = apply_filters( 'epl_get_property_bedrooms_label', __( 'Bedrooms', 'easy-property-listings' ) );
@@ -1097,7 +1097,7 @@ class EPL_Property_Meta {
 			return;
 		}
 
-		$returntype = $returntype === 'i' && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
+		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_bathrooms_return_type', $returntype );
 
 		$label    = apply_filters( 'epl_get_property_bathrooms_label', __( 'Bathrooms', 'easy-property-listings' ) );
@@ -1203,14 +1203,14 @@ class EPL_Property_Meta {
 			return;
 		}
 
-		$returntype = $returntype === 'i' && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
+		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_parking_spaces_return_type', $returntype );
 
 		$property_garage  = intval( $this->get_property_meta( 'property_garage' ) );
 		$property_carport = intval( $this->get_property_meta( 'property_carport' ) );
 		$value            = $property_carport + $property_garage;
 
-		if ( $value === 0 ) {
+		if ( 0 === $value ) {
 			return;
 		}
 
@@ -1360,13 +1360,13 @@ class EPL_Property_Meta {
 			return;
 		}
 
-		$returntype = $returntype === 'i' && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
+		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_air_conditioning_return_type', $returntype );
 		$label      = apply_filters( 'epl_get_property_air_conditioning_label', __( 'Air Conditioning', 'easy-property-listings' ) );
 		$value      = $this->get_property_meta( 'property_air_conditioning' );
 		$return     = '';
 
-		if ( isset( $value ) && ( $value === 1 || $value === 'yes' ) ) {
+		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
 			switch ( $returntype ) {
 
@@ -1417,13 +1417,13 @@ class EPL_Property_Meta {
 			return;
 		}
 
-		$returntype = $returntype === 'i' && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
+		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_pool_return_type', $returntype );
 		$label      = apply_filters( 'epl_get_property_pool_label', __( 'Pool', 'easy-property-listings' ) );
 		$value      = $this->get_property_meta( 'property_pool' );
 		$return     = '';
 
-		if ( isset( $value ) && ( $value === 1 || $value === 'yes' ) ) {
+		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
 			switch ( $returntype ) {
 
@@ -1478,7 +1478,7 @@ class EPL_Property_Meta {
 		$value      = $this->get_property_meta( 'property_security_system' );
 		$return     = '';
 
-		if ( isset( $value ) && ( $value === 1 || $value === 'yes' ) ) {
+		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
 			switch ( $returntype ) {
 
@@ -1520,13 +1520,13 @@ class EPL_Property_Meta {
 		$property_land_area = $this->get_property_meta( 'property_land_area' );
 
 		$property_land_area_unit = $this->get_property_meta( 'property_land_area_unit' );
-		if ( $property_land_area_unit === 'squareMeter' ) {
+		if ( 'squareMeter' === $property_land_area_unit ) {
 			$property_land_area_unit = __( 'm&#178;', 'easy-property-listings' );
-		} elseif ( $property_land_area_unit === 'acre' ) {
+		} elseif ( 'acre' === $property_land_area_unit ) {
 			$property_land_area_unit = $property_land_area > 1 ? 'acres' : 'acre';
 			$property_land_area_unit = __( $property_land_area_unit, 'easy-property-listings' );
 		} else {
-			// translation for land area unit
+			// translation for land area unit.
 			$property_land_area_unit = __( $property_land_area_unit, 'easy-property-listings' );
 		}
 
@@ -1536,12 +1536,11 @@ class EPL_Property_Meta {
 
 			$label = apply_filters( 'epl_get_property_land_area_label', __( 'Land is', 'easy-property-listings' ) );
 
-			// Decimal
+			// Decimal.
 			if ( fmod( $property_land_area, 1 ) !== 0.00 ) {
 				$property_land_area_format = apply_filters( 'epl_property_land_area_format_decimal', number_format_i18n( $property_land_area, 2 ) );
-			}
-			// No decimal
-			else {
+			} else {
+				// No decimal.
 				$property_land_area_format = apply_filters( 'epl_property_land_area_format', number_format_i18n( $property_land_area ) );
 			}
 
@@ -1592,13 +1591,13 @@ class EPL_Property_Meta {
 		$building_area = $this->get_property_meta( 'property_building_area' );
 
 		$building_unit = $this->get_property_meta( 'property_building_area_unit' );
-		if ( $building_unit === 'squareMeter' ) {
+		if ( 'squareMeter' === $building_unit ) {
 			$building_unit = __( 'm&#178;', 'easy-property-listings' );
-		} elseif ( $building_unit === 'acre' ) {
+		} elseif ( 'acre' === $building_unit ) {
 			$building_unit = $building_area > 1 ? 'acres' : 'acre';
 			$building_unit = __( $building_unit, 'easy-property-listings' );
 		} else {
-			// translation for building area unit
+			// Translation for building area unit.
 			$building_unit = __( $building_unit, 'easy-property-listings' );
 		}
 
@@ -1608,12 +1607,11 @@ class EPL_Property_Meta {
 
 			$label = apply_filters( 'epl_get_property_building_area_label', __( 'Floor Area is', 'easy-property-listings' ) );
 
-			// Decimal
+			// Decimal.
 			if ( fmod( $building_area, 1 ) !== 0.00 ) {
 				$building_area_format = apply_filters( 'epl_property_building_area_format_decimal', number_format_i18n( $building_area, 2 ) );
-			}
-			// No decimal
-			else {
+			} else {
+				// No decimal.
 				$building_area_format = apply_filters( 'epl_property_building_area_format', number_format_i18n( $building_area ) );
 			}
 
@@ -1665,7 +1663,7 @@ class EPL_Property_Meta {
 		$return     = '';
 		$returntype = apply_filters( 'epl_get_property_energy_rating_return_type', $returntype );
 
-		if ( $value !== 0 || $value !== '' ) {
+		if ( 0 !== $value || '' !== $value ) {
 
 			$label = apply_filters( 'epl_get_property_energy_rating_label', __( 'Energy Rating', 'easy-property-listings' ) );
 			switch ( $returntype ) {
@@ -1710,7 +1708,7 @@ class EPL_Property_Meta {
 		$return     = '';
 		$returntype = apply_filters( 'epl_get_property_new_construction_return_type', $returntype );
 
-		if ( isset( $value ) && ( $value === 1 || $value === 'yes' ) ) {
+		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
 			$label = apply_filters( 'epl_get_property_new_construction_label', __( 'New Construction', 'easy-property-listings' ) );
 
@@ -1757,7 +1755,7 @@ class EPL_Property_Meta {
 		$return     = '';
 		$returntype = apply_filters( 'epl_get_property_holiday_rental_return_type', $returntype );
 
-		if ( isset( $value ) && ( $value === 1 || $value === 'yes' ) ) {
+		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
 			switch ( $returntype ) {
 
@@ -1799,7 +1797,7 @@ class EPL_Property_Meta {
 		$value      = $this->get_property_meta( 'property_furnished' );
 		$returntype = apply_filters( 'epl_get_property_furnished_return_type', $returntype );
 
-		if ( isset( $value ) && ( $value === 1 || $value === 'yes' ) ) {
+		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
 			$label = apply_filters( 'epl_get_property_furnished_label', __( 'Furnished', 'easy-property-listings' ) );
 
@@ -1844,7 +1842,7 @@ class EPL_Property_Meta {
 		$value      = $this->get_property_meta( 'property_pet_friendly' );
 		$returntype = apply_filters( 'epl_get_property_pet_friendly_return_type', $returntype );
 
-		if ( isset( $value ) && ( $value === 1 || $value === 'yes' ) ) {
+		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
 			$label = apply_filters( 'epl_get_property_pet_friendly_label', __( 'Pet Friendly', 'easy-property-listings' ) );
 
@@ -1881,15 +1879,15 @@ class EPL_Property_Meta {
 	 * Get Featured
 	 *
 	 * @since 3.3
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @return string
 	 */
 	public function get_property_featured( $returntype = 'i' ) {
 
 		$value      = $this->get_property_meta( 'property_featured' );
 		$returntype = apply_filters( 'epl_get_property_featured_return_type', $returntype );
 
-		if ( isset( $value ) && ( $value === 1 || $value === 'yes' ) ) {
+		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
 			$label = apply_filters( 'epl_get_property_featured_label', __( 'Featured', 'easy-property-listings' ) );
 
@@ -1926,7 +1924,7 @@ class EPL_Property_Meta {
 	 * Get Additional Features by meta key
 	 *
 	 * @since 2.0
-	 * @param string $metakey
+	 * @param string $metakey Meta key name.
 	 * @return mixed Value wrapped in a list item
 	 */
 	public function get_additional_features_html( $metakey ) {
@@ -1935,10 +1933,10 @@ class EPL_Property_Meta {
 
 		$return = '';
 
-		if ( $metavalue !== '' || intval( $metavalue ) !== 0 ) {
+		if ( '' !== $metavalue || intval( $metavalue ) !== 0 ) {
 
-			// Commercial Car Spaces : Label Issue (Returning 50 Com Car Spaces. Need to remove com
-			if ( $metakey === 'property_com_car_spaces' ) {
+			// Commercial Car Spaces : Label Issue (Returning 50 Com Car Spaces. Need to remove com.
+			if ( 'property_com_car_spaces' === $metakey ) {
 				$metavalue = $metavalue . apply_filters( 'epl_get_property_com_car_spaces_label', '' );
 			}
 
@@ -1963,7 +1961,7 @@ class EPL_Property_Meta {
 					break;
 
 				default:
-								$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . __( $metavalue, 'easy-property-listings' ) . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', __( $this->get_label_from_metakey( $metakey ), 'easy-property-listings' ) ) . '</li>';
+					$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . __( $metavalue, 'easy-property-listings' ) . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', __( $this->get_label_from_metakey( $metakey ), 'easy-property-listings' ) ) . '</li>';
 					break;
 			}
 		}
@@ -1974,12 +1972,12 @@ class EPL_Property_Meta {
 	 * Get Additional Rural Features by meta key
 	 *
 	 * @since 2.0
-	 * @param string $metakey
+	 * @param string $metakey Meta key name.
 	 * @return mixed Value formatted and wrapped in div with title
 	 */
 	public function get_additional_rural_features_html( $metakey ) {
 		$metavalue = $this->get_property_meta( $metakey );
-		if ( isset( $metavalue ) && $metavalue !== '' ) {
+		if ( isset( $metavalue ) && '' !== $metavalue ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_rural_' ) . '">
 						<h6>' . __( $this->get_label_from_metakey( $metakey, 'property_rural_' ), 'easy-property-listings' ) . '</h6>' .
 						'<p>' . __( $metavalue, 'easy-property-listings' ) . '</p>' .
@@ -1992,12 +1990,12 @@ class EPL_Property_Meta {
 	 * Get Additional Commercial Features by meta key
 	 *
 	 * @since 2.0
-	 * @param string $metakey
+	 * @param string $metakey Meta key name.
 	 * @return mixed Value formatted and wrapped in div with title
 	 */
 	public function get_additional_commerical_features_html( $metakey ) {
 		$metavalue = $this->get_property_meta( $metakey );
-		if ( isset( $metavalue ) && $metavalue !== '' ) {
+		if ( isset( $metavalue ) && '' !== $metavalue ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . __( $this->get_label_from_metakey( $metakey, 'property_com_' ), 'easy-property-listings' ) . '</h6>' .
 						'<p>' . __( $metavalue, 'easy-property-listings' ) . '</p>' .
@@ -2010,8 +2008,8 @@ class EPL_Property_Meta {
 	 * Get class name from meta key
 	 *
 	 * @since 2.0
-	 * @param string $key Meta key
-	 * @param string $search Meta key prefix to search for and remove from class, Default property_
+	 * @param string $key Meta key.
+	 * @param string $search Meta key prefix to search for and remove from class, property_ is default.
 	 * @return string Formatted class name
 	 */
 	public function get_class_from_metakey( $key, $search = 'property_' ) {
@@ -2022,8 +2020,8 @@ class EPL_Property_Meta {
 	 * Get Label from meta key
 	 *
 	 * @since 2.0
-	 * @param string $key Meta key
-	 * @param string $search Meta key prefix to search for and remove from class, Default property_
+	 * @param string $key Meta key.
+	 * @param string $search Meta key prefix to search for and remove from class, property_ is default.
 	 * @return string Formatted uppercase words
 	 * @depricated since 3.2
 	 */
