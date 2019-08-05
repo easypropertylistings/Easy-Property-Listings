@@ -9,56 +9,62 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
-* Modify the Excerpt length on archive pages
-*
-* @since 1.0
-*/
+ * Modify the Excerpt length on archive pages
+ *
+ * @param int $length Excerpt word length.
+ * @since 1.0
+ */
 function epl_excerpt_length( $length ) {
 	global $post;
-	if ($post->post_type == 'property')
+	if ( 'property' === $post->post_type ) {
 		return 16;
-	else if ($post->post_type == 'rental')
+	} elseif ( 'rental' === $post->post_type ) {
 		return 16;
-	else if ($post->post_type == 'commercial')
+	} elseif ( 'commercial' === $post->post_type ) {
 		return 16;
-	else if ($post->post_type == 'commercial_land')
+	} elseif ( 'commercial_land' === $post->post_type ) {
 		return 16;
-	else if ($post->post_type == 'business')
+	} elseif ( 'business' === $post->post_type ) {
 		return 16;
-	else if ($post->post_type == 'rural')
+	} elseif ( 'rural' === $post->post_type ) {
 		return 16;
-	else if ($post->post_type == 'land')
+	} elseif ( 'land' === $post->post_type ) {
 		return 16;
-	else if ($post->post_type == 'suburb')
+	} elseif ( 'suburb' === $post->post_type ) {
 		return 39;
-	else
+	} else {
 		return 55;
+	}
 }
-add_filter('excerpt_length', 'epl_excerpt_length' , 999);
+add_filter( 'excerpt_length', 'epl_excerpt_length', 999 );
 
 /**
-* Modify the Read More Link of archive pages which can be styled with
-* CSS using the epl-more-link selector
-*
-* @since 1.0
-**/
+ * Modify the Read More Link of archive pages which can be styled with
+ * CSS using the epl-more-link selector
+ *
+ * @param string $more Existing read more, normally three dots.
+ * @since 1.0
+ **/
 function epl_property_new_excerpt_more( $more ) {
 	global $post;
-	return '...<a href="'. get_permalink( $post->ID ) . '" class="epl-more-link">'.__('Read More', 'easy-property-listings' ).'&rarr;</a>';
+	return '...<a href="' . get_permalink( $post->ID ) . '" class="epl-more-link">' . __( 'Read More', 'easy-property-listings' ) . '&rarr;</a>';
 }
-add_filter('excerpt_more', 'epl_property_new_excerpt_more');
+add_filter( 'excerpt_more', 'epl_property_new_excerpt_more' );
 
 /**
  * Youtube Video Link Filter so the YouTube short links will work
  *
+ * @param string $text YouTube URL.
  * @since 1.0
  */
-function epl_get_youtube_id_from_url($text) {
-	$text = preg_replace("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", "$1", $text);
-	$text = explode('?',$text);
+function epl_get_youtube_id_from_url( $text ) {
+	$text = preg_replace( "/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", '$1', $text );
+	$text = explode( '?', $text );
 	return $text[0];
 }
