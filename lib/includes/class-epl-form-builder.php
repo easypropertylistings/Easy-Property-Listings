@@ -129,6 +129,11 @@ class EPL_FORM_BUILDER {
 		return isset( $this->{$key} ) ? $this->{$key} : null;
 	}
 
+	/**
+	 * Callbacks
+	 *
+	 * @since 2.3
+	 */
 	function callbacks() {
 
 		if ( isset( $_REQUEST[ $this->prefix . 'form_submit' ] ) ) {
@@ -308,7 +313,7 @@ class EPL_FORM_BUILDER {
 	function set_form_attributes( $key = '', $value = '' ) {
 
 		// If user wants to add a single attribute.
-		if ( $key != '' && is_string( $key ) ) {
+		if ( '' !== $key && is_string( $key ) ) {
 			$this->form_attributes[ $this->escape( 'text', $key ) ] = $this->escape( 'attribute', $value );
 
 		} elseif ( is_array( $key ) & ! empty( $key ) ) {
@@ -339,7 +344,7 @@ class EPL_FORM_BUILDER {
 			)
 		);
 
-		if ( $this->configuration['is_ajax'] == true ) {
+		if ( true === $this->configuration['is_ajax'] ) {
 			$this->form_attributes[ 'data-' . $this->prefix . 'ajax_submit' ] = 'true';
 		}
 	}
@@ -360,6 +365,8 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Escape necessary data
 	 *
+	 * @param string $type Field type.
+	 * @param array  $value Field value.
 	 * @since 2.3
 	 */
 	private function escape( $type = '', $value = '' ) {
@@ -386,6 +393,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Add multiple form sections at once
 	 *
+	 * @param array $sections Field sections.
 	 * @since 2.3
 	 */
 	function add_sections( $sections = array() ) {
@@ -398,6 +406,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Add single section to form
 	 *
+	 * @param array $section Field sections.
 	 * @since 2.3
 	 */
 	function add_section( $section = array() ) {
@@ -407,6 +416,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Add single field to form
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
 	function add_field( $field = array() ) {
@@ -421,6 +431,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Add multiple form fields at once
 	 *
+	 * @param array $fields Fields array.
 	 * @since 2.3
 	 */
 	function add_fields( $fields = array() ) {
@@ -457,12 +468,12 @@ class EPL_FORM_BUILDER {
 
 		ob_start();
 
-		if ( $this->get_configuration( 'form_wrap' ) == 'on' ) {
+		if ( 'on' === $this->get_configuration( 'form_wrap' ) ) {
 			do_action( 'before_' . $this->prefix . 'form_container_open' );
 			$this->render_form_container_open();
 		}
 
-		if ( $this->get_configuration( 'form_tag' ) == 'on' ) {
+		if ( 'on' === $this->get_configuration( 'form_tag' ) ) {
 			do_action( 'before_' . $this->prefix . 'form_open' );
 			$this->render_form_open();
 		}
@@ -475,12 +486,12 @@ class EPL_FORM_BUILDER {
 		$this->render_fields();
 		do_action( 'after_' . $this->prefix . 'form_fields' );
 
-		if ( $this->get_configuration( 'form_tag' ) == 'on' ) {
+		if ( 'on' === $this->get_configuration( 'form_tag' ) ) {
 			$this->render_form_close();
 			do_action( 'after_' . $this->prefix . 'form_close' );
 		}
 
-		if ( $this->get_configuration( 'form_wrap' ) == 'on' ) {
+		if ( 'on' === $this->get_configuration( 'form_wrap' ) ) {
 			$this->render_form_container_close();
 			do_action( 'after_' . $this->prefix . 'form_container_close' );
 		}
@@ -554,6 +565,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render single form section
 	 *
+	 * @param array $section Field section.
 	 * @since 2.3
 	 */
 	private function render_section( $section ) {
@@ -610,6 +622,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render single form field
 	 *
+	 * @param array $field Field array.
 	 * @since 2.3
 	 */
 	private function render_field( $field ) {
@@ -678,6 +691,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render field label
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
 	function render_field_label( $field = array() ) {
@@ -704,6 +718,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render text & similar fields
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
 	private function render_text( $field ) {
@@ -719,6 +734,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render textarea
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
 	private function render_textarea( $field ) {
@@ -737,6 +753,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render radio
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
 	private function render_radio( $field ) {
@@ -748,7 +765,7 @@ class EPL_FORM_BUILDER {
 
 		foreach ( $options as $option => $label ) {
 
-			if ( $option == $value ) {
+			if ( $option === $value ) {
 				$field['checked'] = 'checked';
 			}
 
@@ -765,6 +782,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render checkbox
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
 	private function render_checkbox( $field ) {
@@ -776,7 +794,7 @@ class EPL_FORM_BUILDER {
 
 		foreach ( $options as $option => $label ) {
 
-			if ( $option == $value ) {
+			if ( $option === $value ) {
 				$field['checked'] = 'checked';
 			}
 
@@ -804,6 +822,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render select
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
 	private function render_select( $field ) {
@@ -852,12 +871,13 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render nonce field
 	 *
+	 * @param string $action Action name.
 	 * @since 2.3
 	 */
 	function add_nonce( $action = '' ) {
 
 		$this->has_nonce   = true;
-		$this->nonce_key   = $action != '' ? $action : $this->prefix . 'nonce_action';
+		$this->nonce_key   = '' !== $action ? $action : $this->prefix . 'nonce_action';
 		$this->nonce_value = wp_create_nonce( $action );
 
 		$this->add_field(
