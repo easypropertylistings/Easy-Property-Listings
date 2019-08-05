@@ -247,9 +247,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			if ( '' !== $this->email ) {
 
-				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
-				if ( $style == 'i' ) {
+				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon email-icon-24"
 							href="mailto:' . $this->get_email() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Email', 'easy-property-listings' ) . '">' .
@@ -357,7 +357,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			return apply_filters( 'epl_author_pinterest', $pinterest, $this );
 		}
 
-		/*
+		/**
 		 * Author Twitter html Box
 		 *
 		 * @since 1.3.0
@@ -392,7 +392,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			return $html;
 		}
 
-		/*
+		/**
 		 * Author Instagram html Box
 		 *
 		 * @since 3.3.0
@@ -427,7 +427,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			return $html;
 		}
 
-		/*
+		/**
 		 * Author Youtube html Box
 		 *
 		 * @since 3.3.0
@@ -462,7 +462,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 			return $html;
 		}
 
-		/*
+		/**
 		 * Author Pinterest html Box
 		 *
 		 * @since 3.3.0
