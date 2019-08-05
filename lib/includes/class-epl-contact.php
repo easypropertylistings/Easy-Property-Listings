@@ -562,7 +562,7 @@ class EPL_Contact {
 	 * @param string $orderby
 	 * @param string $order
 	 *
-	 * @return array           The notes requsted
+	 * @return array           The notes requested
 	 */
 	public function get_notes( $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
 
@@ -603,7 +603,7 @@ class EPL_Contact {
 	 *
 	 * @since  3.0
 	 * @param string $note The note to add
-	 * @return string|boolean The new note if added succesfully, false otherwise
+	 * @return string|boolean The new note if added successfully, false otherwise
 	 */
 	public function add_note( $note = '', $note_type = 'note', $listing_id = 0 ) {
 
@@ -616,7 +616,7 @@ class EPL_Contact {
 
 		do_action( 'epl_contact_pre_add_note', $note, $this->ID );
 
-		$notedata = array(
+		$note_data = array(
 			'comment_post_ID'      => absint( $listing_id ),
 			'comment_author'       => $this->name,
 			'comment_author_email' => $this->email,
@@ -627,12 +627,12 @@ class EPL_Contact {
 		);
 
 		// Insert new note and get the note ID
-		if ( $note_id = wp_insert_comment( $notedata ) ) {
+		if ( $note_id = wp_insert_comment( $note_data ) ) {
 			$this->notes = $this->get_notes();
 			update_comment_meta( $note_id, 'epl_contact_id', $this->ID );
 		}
 
-		do_action( 'epl_contact_post_add_note', $this->notes, $notedata, $this->ID );
+		do_action( 'epl_contact_post_add_note', $this->notes, $note_data, $this->ID );
 
 		// Return the note object
 		return get_comment( $note_id );
