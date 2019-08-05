@@ -9,8 +9,10 @@
  * @since       3.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Print Errors
@@ -23,14 +25,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function epl_print_errors() {
 	$errors = epl_get_errors();
 	if ( $errors ) {
-		$classes = apply_filters( 'epl_error_class', array(
-			'epl_errors', 'epl-alert', 'epl-alert-error'
-		) );
+		$classes = apply_filters(
+			'epl_error_class',
+			array(
+				'epl_errors',
+				'epl-alert',
+				'epl-alert-error',
+			)
+		);
 		echo '<div class="' . implode( ' ', $classes ) . '">';
-		    // Loop error codes and display errors
-		   foreach ( $errors as $error_id => $error ) {
-		        echo '<p class="epl_error" id="epl_error_' . $error_id . '"><strong>' . __( 'Error', 'easy-property-listings' ) . '</strong>: ' . $error . '</p>';
-		   }
+			// Loop error codes and display errors.
+		foreach ( $errors as $error_id => $error ) {
+			echo '<p class="epl_error" id="epl_error_' . $error_id . '"><strong>' . __( 'Error', 'easy-property-listings' ) . '</strong>: ' . $error . '</p>';
+		}
 		echo '</div>';
 		epl_clear_errors();
 	}
@@ -45,7 +52,7 @@ function epl_print_errors() {
  * @return mixed array if errors are present, false if none found
  */
 function epl_get_errors() {
-	if( session_id() && isset($_SESSION['epl_errors']) ) {
+	if ( session_id() && isset( $_SESSION['epl_errors'] ) ) {
 		return $_SESSION['epl_errors'];
 	}
 
@@ -57,8 +64,8 @@ function epl_get_errors() {
  * Stores an error in a session var.
  *
  * @since 3.0
- * @param int $error_id ID of the error being set
- * @param string $error_message Message to store with the error
+ * @param int    $error_id ID of the error being set.
+ * @param string $error_message Message to store with the error.
  * @return void
  */
 function epl_set_error( $error_id, $error_message ) {
@@ -66,7 +73,7 @@ function epl_set_error( $error_id, $error_message ) {
 	if ( ! $errors ) {
 		$errors = array();
 	}
-	$errors[ $error_id ] = $error_message;
+	$errors[ $error_id ]    = $error_message;
 	$_SESSION['epl_errors'] = $errors;
 }
 
@@ -84,8 +91,7 @@ function epl_clear_errors() {
  * Removes (unsets) a stored error
  *
  * @since 3.0
- * @param int $error_id ID of the error being set
- * @return string
+ * @param int $error_id ID of the error being set.
  */
 function epl_unset_error( $error_id ) {
 	$errors = epl_get_errors();
@@ -96,29 +102,33 @@ function epl_unset_error( $error_id ) {
 }
 
 /**
- * pretty var dump
+ * Pretty var dump
  *
+ * @param string $var ID of the variable.
+ * @param bool   $die Die or not.
  * @since 3.0
  */
-function epl_var_dump($var,$die=false) {
-	echo "<pre class=\"epl_var_dump\">";
-	var_dump($var);
-	echo "</pre>";
-	if($die) {
+function epl_var_dump( $var, $die = false ) {
+	echo '<pre class="epl_var_dump">';
+	var_dump( $var );
+	echo '</pre>';
+	if ( $die ) {
 		die();
 	}
 }
 
 /**
- * pretty print_r
+ * Pretty print_r
  *
+ * @param array $var Array to be printed.
+ * @param bool  $die Die or not.
  * @since 3.0
  */
-function epl_print_r($var,$die=false) {
-	echo "<pre class=\"epl_print_r\">";
-	print_r($var);
-	echo "</pre>";
-	if($die) {
+function epl_print_r( $var, $die = false ) {
+	echo '<pre class="epl_print_r">';
+	print_r( $var );
+	echo '</pre>';
+	if ( $die ) {
 		die();
 	}
 }
