@@ -32,6 +32,7 @@ class EPL_Property_Meta {
 	/**
 	 * Global post
 	 *
+	 * @var $post
 	 * @since 2.0
 	 */
 	public $post;
@@ -39,6 +40,7 @@ class EPL_Property_Meta {
 	/**
 	 * Global epl_settings
 	 *
+	 * @var $epl_settings
 	 * @since 2.0
 	 */
 	public $epl_settings;
@@ -46,6 +48,7 @@ class EPL_Property_Meta {
 	/**
 	 * Global meta
 	 *
+	 * @var $meta
 	 * @since 2.0
 	 */
 	public $meta;
@@ -53,6 +56,7 @@ class EPL_Property_Meta {
 	/**
 	 * Global post type
 	 *
+	 * @var $post_type
 	 * @since 2.0
 	 */
 	public $post_type;
@@ -60,6 +64,7 @@ class EPL_Property_Meta {
 	/**
 	 * Global EPL Post Type
 	 *
+	 * @var $property_post_type
 	 * @since 2.0
 	 */
 	public $property_post_type;
@@ -67,7 +72,7 @@ class EPL_Property_Meta {
 	/**
 	 * Get things going
 	 *
-	 * @param $post
+	 * @param array $post Post object.
 	 * @since 2.0
 	 */
 	public function __construct( $post ) {
@@ -92,7 +97,7 @@ class EPL_Property_Meta {
 		$field_groups = epl_get_admin_option_fields();
 
 		foreach ( $field_groups as $field_group ) {
-			if ( $field_group['id'] == 'labels' ) {
+			if ( 'labels' === $field_group['id'] ) {
 				$epl_labels = array_filter( $field_group['fields'] );
 				break;
 			}
@@ -119,7 +124,7 @@ class EPL_Property_Meta {
 	 * Usage is $property->get_property_meta('meta_key') with the global $property variable defined
 	 *
 	 * @since 2.0
-	 * @param  string $meta_key The meta key to get the value
+	 * @param  string $meta_key The meta key to get the value.
 	 * @param  bool   $allowzero Return a 0 value or if false and a value of 0 return nothing. Default True.
 	 * @return string|integer   Return the value of the meta key, string, or integer.
 	 */
@@ -143,8 +148,8 @@ class EPL_Property_Meta {
 	/**
 	 * Outputs the inspection times based on settings format
 	 *
-	 * @param bool   $ical
-	 * @param string $meta_key The meta key to get the value from default is property_inspection_times
+	 * @param bool   $ical True to return link with iCal.
+	 * @param string $meta_key The meta key to get the value from default is property_inspection_times.
 	 * @return mixed Return formatted inspection times with a iCal link
 	 * @since 2.0
 	 */
@@ -158,7 +163,7 @@ class EPL_Property_Meta {
 		if ( $pit != '' ) {
 			$list = array_filter( explode( "\n", $pit ) );
 			if ( ! empty( $list ) ) {
-				// there are inspection times
+				// There are inspection times.
 				$inspectarray = array();
 				foreach ( $list as $num => $item ) {
 					if ( is_numeric( $item[0] ) ) {
@@ -168,20 +173,20 @@ class EPL_Property_Meta {
 							$item                                  = trim( $item );
 							$inspectarray[ strtotime( $endtime ) ] = $item;
 						} else {
-
+							// There are no inspection times.
 						}
 					} else {
 						$inspectarray[ $num ] = $item;
 					}
 				}
 				ksort( $inspectarray );
-				// update inspection times by removing past dates
+				// Update inspection times by removing past dates.
 				$new_inspection_meta = implode( "\n", $inspectarray );
 				update_post_meta( $this->post->ID, 'property_inspection_times', $new_inspection_meta );
 
 				$return = '';
 				if ( count( $inspectarray ) >= 1 ) {
-					// unordered list for multiple inspection times
+					// Unordered list for multiple inspection times.
 					foreach ( $inspectarray as $key => &$element ) {
 						if ( ! empty( $element ) ) {
 							$element_formatted = apply_filters( 'epl_inspection_format', $element );
@@ -216,7 +221,7 @@ class EPL_Property_Meta {
 	 *
 	 * Usage is $property->get_epl_settings('meta_key') with the global $property variable defined
 	 *
-	 * @param $key
+	 * @param string $key Option key name.
 	 * @return string Value of the setting or if not set nothing is returned
 	 * @since 2.0
 	 */
@@ -256,7 +261,7 @@ class EPL_Property_Meta {
 	 * Auction Date/Time
 	 *
 	 * @since 2.0
-	 * @param $admin Bool true/false
+	 * @param bool $admin true/false True will return on frontend.
 	 * @return string formatted auction date
 	 */
 	public function get_property_auction( $admin = false ) {
@@ -319,15 +324,15 @@ class EPL_Property_Meta {
 		} else {
 			$property_price = epl_currency_formatted_amount( $property_price_search );
 		}
-		// Auction Details and Price override
+		// Auction Details and Price override.
 		if ( $this->get_property_meta( 'property_authority' ) == 'auction' ) {
 			$property_price = apply_filters( 'epl_get_property_auction_label', __( 'Auction', 'easy-property-listings' ) ) . ' ' . $this->get_property_auction();
 		}
-		// Commercial Lease Override
+		// Commercial Lease Override.
 		if ( $this->get_property_meta( 'property_com_listing_type' ) == 'lease' ) {
 			$property_price = $property_price_view;
 		}
-		// Commercial Both Override
+		// Commercial Both Override.
 		if ( $this->get_property_meta( 'property_com_listing_type' ) == 'both' && $property_price_view != '' ) {
 			$property_price = $property_price_view;
 		}
@@ -358,7 +363,7 @@ class EPL_Property_Meta {
 	 * Lease price display
 	 *
 	 * @since 3.1
-	 * @param bool $admin
+	 * @param bool $admin True for front end usage.
 	 * @return string Return lease price if selected or nothing
 	 */
 	public function get_property_price_lease_display( $admin = false ) {
@@ -377,7 +382,7 @@ class EPL_Property_Meta {
 	 * Sold date display
 	 *
 	 * @since 2.0
-	 * @param integer $sold_price Sold price
+	 * @param integer $sold_price Sold price.
 	 * @return string Return sold date if sold
 	 */
 	public function get_property_price_sold_date( $sold_price = null ) {
@@ -443,7 +448,7 @@ class EPL_Property_Meta {
 	 * Rental Available Date
 	 *
 	 * @since 2.0
-	 * @param bool $admin
+	 * @param bool $admin True for front end usage.
 	 * @return string Formatted date
 	 */
 	public function get_property_available( $admin = false ) {
@@ -480,8 +485,8 @@ class EPL_Property_Meta {
 	 * Land category
 	 *
 	 * @since 2.0
-	 * @param string $tag
-	 * @param string $class
+	 * @param string $tag HTML wrapper type, default div.
+	 * @param string $class name, default land-category.
 	 * @return string
 	 */
 	public function get_property_land_category( $tag = 'div', $class = 'land-category' ) {
@@ -526,8 +531,8 @@ class EPL_Property_Meta {
 	 * Listing Category
 	 *
 	 * @since 2.0
-	 * @param string $tag HTML wrapper type, default div
-	 * @param string $class name, default property-category
+	 * @param string $tag HTML wrapper type, default div.
+	 * @param string $class name, default property-category.
 	 * @return string
 	 */
 	public function get_property_category( $tag = 'div', $class = 'property-category' ) {
@@ -548,8 +553,8 @@ class EPL_Property_Meta {
 	 * Get Commercial Category
 	 *
 	 * @since 2.0
-	 * @param string $tag HTML wrapper type, default div
-	 * @param string $class name, default commercial-category
+	 * @param string $tag HTML wrapper type, default div.
+	 * @param string $class name, default commercial-category.
 	 * @return string
 	 */
 	public function get_property_commercial_category( $tag = 'div', $class = 'commercial-category' ) {
@@ -569,8 +574,8 @@ class EPL_Property_Meta {
 	 * Get Rural Category
 	 *
 	 * @since 3.1.12
-	 * @param string $tag HTML wrapper type, default div
-	 * @param string $class name, default rural-category
+	 * @param string $tag HTML wrapper type, default div.
+	 * @param string $class name, default rural-category.
 	 * @return string
 	 */
 	public function get_property_rural_category( $tag = 'div', $class = 'rural-category' ) {
@@ -667,7 +672,7 @@ class EPL_Property_Meta {
 		} elseif ( 'commercial' == $this->post_type || 'business' == $this->post_type || 'commercial_land' == $this->post_type ) {
 			$rent_lease_type =
 				$this->get_property_meta( 'property_com_rent_period' ) != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : 'P.A.';
-			// Sale or Both
+			// Sale or Both.
 			$price_plain_value = '';
 			if ( $this->get_property_meta( 'property_com_listing_type' ) == 'sale' || $this->get_property_meta( 'property_com_listing_type' ) == 'both' ) {
 
@@ -681,7 +686,7 @@ class EPL_Property_Meta {
 					}
 				}
 			}
-			// Lease or Both
+			// Lease or Both.
 			if ( $this->get_property_meta( 'property_com_listing_type' ) == 'lease' || $this->get_property_meta( 'property_com_listing_type' ) == 'both' ) { // Both
 				$both = $this->get_property_meta( 'property_com_listing_type' ) == 'both' ? '<div class="epl-clear"></div>' : '';
 				if ( $this->get_property_com_rent() != '' && $this->get_property_price_display() == '' ) {
@@ -696,13 +701,15 @@ class EPL_Property_Meta {
 					}
 				}
 			}
-			// Status
+			// Status.
 			if ( 'sold' == $this->get_property_meta( 'property_status' ) ) {
 				$price_plain_value = $this->label_sold;
 			}
-			if ( 'yes' == $this->get_property_meta( 'property_under_offer' ) && 'sold' != $this->get_property_meta( 'property_status' ) ) { // Under Offer
+			// Under Offer.
+			if ( 'yes' == $this->get_property_meta( 'property_under_offer' ) && 'sold' != $this->get_property_meta( 'property_status' ) ) {
 				$price_plain_value = $this->label_under_offer;
 			}
+			// Leased.
 			if ( 'leased' == $this->get_property_meta( 'property_status' ) ) {
 				$price_plain_value = $this->label_leased;
 			}
@@ -721,10 +728,10 @@ class EPL_Property_Meta {
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type ) {
 			if ( 'sold' == $this->get_property_meta( 'property_status' ) ) {
 				$price = '<span class="page-price sold-status">' . $this->label_sold . $this->get_property_price_sold_display() . '</span>';
-			} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta( 'property_price_display' ) ) {   // Property
+			} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta( 'property_price_display' ) ) {   // Property.
 				$price = '<span class="page-price">' . $this->get_property_price_display() . '</span>';
 
-			} elseif ( $this->get_property_meta( 'property_authority' ) == 'auction' && 'no' == $this->get_property_meta( 'property_price_display' ) ) {  // Auction
+			} elseif ( $this->get_property_meta( 'property_authority' ) == 'auction' && 'no' == $this->get_property_meta( 'property_price_display' ) ) {  // Auction.
 				$price = '<span class="page-price auction">' . apply_filters( 'epl_get_property_auction_label', __( 'Auction', 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
 			} else {
 				$price_plain_value_poa = __( 'POA', 'easy-property-listings' );
@@ -761,15 +768,15 @@ class EPL_Property_Meta {
 			$rent_lease_type =
 				$this->get_property_meta( 'property_com_rent_period' ) != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
 
-			// Sale or both
+			// Sale or both.
 			$price = '';
 			if ( $this->get_property_meta( 'property_com_listing_type' ) == 'sale' || $this->get_property_meta( 'property_com_listing_type' ) == 'both' ) {
 
-				if ( $this->get_property_meta( 'property_com_authority' ) == 'auction' ) {    // Auction
+				if ( $this->get_property_meta( 'property_com_authority' ) == 'auction' ) {    // Auction.
 					$price = '<span class="page-price auction">' . apply_filters( 'epl_commercial_auction_label', __( 'Auction', 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
 				} elseif ( $this->get_property_meta( 'property_price_view' ) != '' && $this->get_property_meta( 'property_com_listing_type' ) == 'both' ) {
 					$price = '<span class="page-price"><span class="page-price-prefix"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_sale_and_lease_label', __( 'For Sale and Lease', 'easy-property-listings' ) ) . '</span> ' . $this->get_property_price_display() . '</span>';
-				} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta( 'property_price_display' ) ) {   // Property
+				} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta( 'property_price_display' ) ) {   // Property.
 					$price = '<span class="page-price"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . '</span> ' . $this->get_property_price_display() . $this->get_property_tax() . '</span>';
 				} else {
 					$price_plain_value = '';
@@ -780,11 +787,11 @@ class EPL_Property_Meta {
 				}
 			}
 
-			// Lease
+			// Lease.
 			if ( $this->get_property_meta( 'property_com_listing_type' ) == 'lease' ) {
 				$both = $this->get_property_meta( 'property_com_listing_type' ) == 'both' ? '<div class="epl-clear"></div>' : '';
 
-				// Show Price
+				// Show Price.
 				if ( $this->get_property_meta( 'property_price_display' ) == 'yes' ) {
 
 					if ( $this->get_property_price_display() != '' ) {
@@ -795,24 +802,24 @@ class EPL_Property_Meta {
 					}
 				}
 
-				// Hide Price
+				// Hide Price.
 				else {
 					if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings['label_poa'] ) ) {
 						$price .= $both . '<span class="page-price"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . '</span> ' . $this->epl_settings['label_poa'] . '</span>';
 					}
 				}
 
-				// Price text override
+				// Price text override.
 				if ( $this->get_property_meta( 'property_price_view' ) != '' ) {
 					$price = '<span class="page-price"><span class="page-price-prefix">' . $this->get_property_price_display() . '</span>';
 				}
 			}
 
-			// Both (Add Lease Price Details)
+			// Both (Add Lease Price Details).
 			if ( $this->get_property_meta( 'property_com_listing_type' ) == 'both' ) {
 				$both = $this->get_property_meta( 'property_com_listing_type' ) == 'both' ? '<div class="epl-clear"></div>' : '';
 
-				// Show Price
+				// Show Price.
 				if ( $this->get_property_meta( 'property_price_display' ) == 'yes' && $this->get_property_meta( 'property_price_view' ) == '' ) {
 
 					if ( $this->get_property_com_rent() != '' ) {
@@ -820,7 +827,7 @@ class EPL_Property_Meta {
 					}
 				}
 
-				// Hide Price
+				// Hide Price.
 				else {
 					if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings['label_poa'] ) && $this->get_property_meta( 'property_price_view' ) == '' ) {
 						$price .= $both . '<span class="page-price"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . '</span> ' . $this->epl_settings['label_poa'] . '</span>';
@@ -828,11 +835,11 @@ class EPL_Property_Meta {
 				}
 			}
 
-			// Status
+			// Status.
 			if ( 'sold' == $this->get_property_meta( 'property_status' ) ) {
 				$price = '<span class="page-price sold-status">' . $this->label_sold . '</span>' . $this->get_property_price_sold_display();
 			}
-			if ( 'yes' == $this->get_property_meta( 'property_under_offer' ) && 'sold' != $this->get_property_meta( 'property_status' ) ) { // Under Offer
+			if ( 'yes' == $this->get_property_meta( 'property_under_offer' ) && 'sold' != $this->get_property_meta( 'property_status' ) ) { // Under Offer.
 				$price = '<div class="page-price under-offer-status">' . $this->label_under_offer . '</div>';
 			}
 			if ( 'leased' == $this->get_property_meta( 'property_status' ) ) {
@@ -846,7 +853,7 @@ class EPL_Property_Meta {
 	 * Price Sticker
 	 *
 	 * @return string
-	 * @throws Exception
+	 * @throws Exception PHP 5.3 notice.
 	 * @since 2.0
 	 */
 	public function get_price_sticker() {
@@ -854,7 +861,7 @@ class EPL_Property_Meta {
 		$date          = new DateTime( $this->post->post_date );
 		$now           = new DateTime();
 
-		// php > 5.3
+		// php > 5.3.
 		if ( method_exists( $now, 'diff' ) ) {
 
 			$diff = $now->diff( $date );
@@ -872,7 +879,7 @@ class EPL_Property_Meta {
 			if ( 'sold' == $this->get_property_meta( 'property_status' ) ) {
 				$price_sticker .= '<span class="status-sticker sold">' . $this->label_sold . '</span>';
 			} else {
-				// Property
+				// Property.
 				$price_sticker = '';
 
 				if ( $this->get_epl_settings( 'sticker_new_range' ) >= $diff ) {
@@ -917,7 +924,7 @@ class EPL_Property_Meta {
 			}
 		}
 
-		do_action( 'epl_property_stickers', $this ); // add more stickers
+		do_action( 'epl_property_stickers', $this ); // Add more stickers.
 		return apply_filters( 'epl_get_price_sticker', $price_sticker );
 	}
 
@@ -932,7 +939,7 @@ class EPL_Property_Meta {
 		if ( 'property' == $this->post_type || 'land' == $this->post_type || 'rural' == $this->post_type ) {
 			if ( 'sold' == $this->get_property_meta( 'property_status' ) ) {
 				$l_price = '<li class="page-price sold-status">' . $this->label_sold . '</li>';
-			} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta( 'property_price_display' ) ) {   // Property
+			} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta( 'property_price_display' ) ) {   // Property.
 				$l_price = '<li class="page-price">' . $this->get_property_price_display() . '</li>';
 			} else {
 				if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings['label_poa'] ) ) {
@@ -961,7 +968,7 @@ class EPL_Property_Meta {
 				$this->get_property_meta( 'property_com_rent_period' ) != '' ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
 			if ( 'sold' == $this->get_property_meta( 'property_status' ) ) {
 				$l_price = '<li class="status-sticker sold">' . $this->label_sold . '</li>';
-			} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta( 'property_price_display' ) ) { // Property
+			} elseif ( '' != $this->get_property_price_display() && 'yes' == $this->get_property_meta( 'property_price_display' ) ) { // Property.
 				$l_price = '<li class="page-price"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . '</span> ' . $this->get_property_price_display() . $this->get_property_tax() . '</li>';
 			} else {
 				$price_plain_value = '';
@@ -987,8 +994,8 @@ class EPL_Property_Meta {
 	 * Get Year Built
 	 *
 	 * @since 2.0
-	 * @param string $returntype Options i = span, d = string, l = list item, t = text
-	 * @return string based on $returntype Options i = span, d = string, l = list item, t = text
+	 * @param string $returntype Options i = span, v = value, d = string, l = list item, t = text.
+	 * @return string based on $returntype Options i = span, v = value, d = string, l = list item, t = text
 	 */
 	public function get_property_year_built( $returntype = 'i' ) {
 
