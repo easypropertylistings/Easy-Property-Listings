@@ -9,7 +9,7 @@
  * @since       2.3
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -22,80 +22,94 @@ if ( ! defined( 'ABSPATH' ) ) {
 class EPL_FORM_BUILDER {
 
 	/**
-	 * prefix for this class, will be used for filters & actions
+	 * Prefix for this class, will be used for filters & actions
 	 *
+	 * @var string $prefix Prefix name.
 	 * @since 2.3
 	 */
 	private $prefix = 'epl_form_builder_';
 
 	/**
-	 * text domain for translation
+	 * Text domain for translation
 	 *
+	 * @var string $text_domain Text domain name.
 	 * @since 2.3
 	 */
 	private $text_domain = 'easy-property-listings';
 
 	/**
-	 * form fields
+	 * Form fields
 	 *
+	 * @var array $form_fields Form fields.
 	 * @since 2.3
 	 */
 	public $form_fields = array();
 
 	/**
-	 * form sections
+	 * Form sections
 	 *
+	 * @var array $form_sections Form sections.
 	 * @since 2.3
 	 */
 	public $form_sections = array();
 
 	/**
-	 * classes for form and fields
+	 * Classes for form and fields
 	 *
+	 * @var array $form_classes Form css classes.
 	 * @since 2.3
 	 */
 	private $form_classes = array();
 
 	/**
-	 * configuration of this form
+	 * Configuration of this form
 	 *
+	 * @var array $configuration Settings of the form.
 	 * @since 2.3
 	 */
 	public $configuration = array();
 
 	/**
-	 * form has nonce or not
+	 * Form has nonce or not
 	 *
+	 * @var bool $has_nonce Security field.
 	 * @since 2.3
 	 */
 	public $has_nonce = false;
 
 	/**
-	 * holds the list of form attributes, defaults & added by user
+	 * Holds the list of form attributes, defaults & added by user
 	 *
+	 * @var array $form_attributes Form options.
 	 * @since 2.3
 	 */
 	public $form_attributes = array();
 
+	/**
+	 * Get things going
+	 *
+	 * @param array $config Form ptions.
+	 * @since 2.3
+	 */
 	function __construct( $config = array() ) {
 
 		$defaults = array(
 			'form_tag'        => 'on',
 			'form_wrap'       => 'on',
-			'form_context'    => 'default', // default , meta , settings
+			'form_context'    => 'default', // default , meta , settings.
 			'callback_action' => null,
 			'is_ajax'         => false,
 		);
 
 		$this->configuration = shortcode_atts( $defaults, $config );
 
-		/** set form defaults */
+		// Set form defaults.
 		$this->set_defaults();
 
 	}
 
 	/**
-	 * call default & user submitted callbacks for this form upon form submission
+	 * Call default & user submitted callbacks for this form upon form submission
 	 *
 	 * @since 2.3
 	 * @return null
@@ -105,10 +119,11 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * call default & user submitted callbacks for this form upon form submission
+	 * Call default & user submitted callbacks for this form upon form submission
 	 *
-	 * @since 2.3
+	 * @param string $key Meta key.
 	 * @return string
+	 * @since 2.3
 	 */
 	function __get( $key ) {
 		return isset( $this->{$key} ) ? $this->{$key} : null;
@@ -118,10 +133,10 @@ class EPL_FORM_BUILDER {
 
 		if ( isset( $_REQUEST[ $this->prefix . 'form_submit' ] ) ) {
 
-			// hook to this action to save form data
+			// Hook to this action to save form data.
 			do_action( $this->prefix . 'save_form', get_object_vars( $this ), $_REQUEST );
 
-			// run user defined hook if applicable
+			// Run user defined hook if applicable.
 			if ( ! is_null( $this->configuration['callback_action'] ) ) {
 				do_action( $this->prefix . $this->configuration['callback_action'], get_object_vars( $this ), $_REQUEST );
 			}
@@ -131,6 +146,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Set form configuration
 	 *
+	 * @param string $key Meta key.
 	 * @since 2.3
 	 */
 	function get_configuration( $key = '' ) {
@@ -140,6 +156,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Get value
 	 *
+	 * @param string $field Field meta key.
 	 * @since 2.3
 	 */
 	function get_value( $field ) {
@@ -221,6 +238,8 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Get classes for wrappers, form , fields
 	 *
+	 * @param string $key Meta key.
+	 * @param array  $field Field type.
 	 * @since 2.3
 	 */
 	function get_class( $key = '', $field = array() ) {
@@ -231,7 +250,7 @@ class EPL_FORM_BUILDER {
 				$classes .= ' ' . $this->prefix . $key . '_' . $field['type'];
 			}
 
-			if ( $key == 'field' && isset( $field['class'] ) ) {
+			if ( 'field' === $key && isset( $field['class'] ) ) {
 
 				if ( is_array( $field['class'] ) && count( $field['class'] ) > 0 ) {
 					$classes .= implode( ' ', array_map( 'sanitize_html_class', $field['class'] ) );
@@ -246,6 +265,7 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Get Field Attributes
 	 *
+	 * @param array $field Fields.
 	 * @since 2.3
 	 */
 	function get_attributes( $field ) {
@@ -262,13 +282,13 @@ class EPL_FORM_BUILDER {
 		foreach ( $field as $key  => $value ) {
 
 			if ( isset( $invalid_attributes[ $key ] ) && ( in_array( $field['type'], $invalid_attributes[ $key ] ) || in_array( 'all', $invalid_attributes[ $key ] ) ) ) {
-				/** this attribute is not valid for current input type, lets skip it */
+				// This attribute is not valid for current input type, lets skip it.
 			} else {
 
-				if ( $key == 'name' ) {
+				if ( 'name' === $key ) {
 					$value = esc_attr( $value );
 				}
-				if ( isset( $field['multiple'] ) && in_array( $field['type'], array( 'select', 'checkbox' ) ) && $key == 'name' ) {
+				if ( isset( $field['multiple'] ) && in_array( $field['type'], array( 'select', 'checkbox' ) ) && 'name' === $key ) {
 					$value = $value . '[]';
 				}
 
@@ -281,17 +301,19 @@ class EPL_FORM_BUILDER {
 	/**
 	 * The function can be used to configure the attributes of form
 	 *
+	 * @param string $key Meta key.
+	 * @param array  $value Field value.
 	 * @since 2.3
 	 */
 	function set_form_attributes( $key = '', $value = '' ) {
 
-		/* if user wants to add a single attribute */
+		// If user wants to add a single attribute.
 		if ( $key != '' && is_string( $key ) ) {
 			$this->form_attributes[ $this->escape( 'text', $key ) ] = $this->escape( 'attribute', $value );
 
 		} elseif ( is_array( $key ) & ! empty( $key ) ) {
 
-			/* multiple attrubtes at once */
+			// Multiple attrubtes at once.
 			foreach ( $key as $index  => $val ) {
 				$this->form_attributes[ $this->escape( 'text', $index ) ] = $this->escape( 'attribute', $val );
 			}
@@ -299,7 +321,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * set default attributes for the form tag
+	 * Set default attributes for the form tag
 	 *
 	 * @since 2.3
 	 */
@@ -323,7 +345,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * setsup all the form defaults while object instantiation
+	 * Sets up all the form defaults while object instantiation
 	 *
 	 * @since 2.3
 	 */
@@ -336,7 +358,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * escape necessary data
+	 * Escape necessary data
 	 *
 	 * @since 2.3
 	 */
@@ -680,7 +702,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * render text & similar fields
+	 * Render text & similar fields
 	 *
 	 * @since 2.3
 	 */
@@ -695,7 +717,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * render textarea
+	 * Render textarea
 	 *
 	 * @since 2.3
 	 */
@@ -713,7 +735,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * render radio
+	 * Render radio
 	 *
 	 * @since 2.3
 	 */
@@ -741,7 +763,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * render checkbox
+	 * Render checkbox
 	 *
 	 * @since 2.3
 	 */
@@ -780,7 +802,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * render select
+	 * Render select
 	 *
 	 * @since 2.3
 	 */
@@ -828,7 +850,7 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * render nonce field
+	 * Render nonce field
 	 *
 	 * @since 2.3
 	 */
