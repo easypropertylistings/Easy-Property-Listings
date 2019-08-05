@@ -9,7 +9,7 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -19,8 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Looks to see if the specified setting exists, returns default if not
  *
- * @since 2.2
+ * @param string $key Meta key.
+ * @param bool   $default Returns default if not set.
  * @return mixed
+ * @since 2.2
  */
 function epl_get_option( $key = '', $default = false ) {
 	global $epl_settings;
@@ -90,8 +92,9 @@ function epl_get_thumbnail_sizes() {
 /**
  * Remote get function
  *
+ * @param string $url Url.
  * @since 1.0
- * @updated 3.3.5
+ * @since 3.3.5 Removed curl.
  */
 function epl_remote_url_get( $url ) {
 
@@ -102,6 +105,9 @@ function epl_remote_url_get( $url ) {
 /**
  * Register post type to EPL and WordPress
  *
+ * @param string $post_type Post type name.
+ * @param string $post_type_label Post type label.
+ * @param array  $args Arguments.
  * @since 1.0
  */
 function epl_register_post_type( $post_type = '', $post_type_label, $args = array() ) {
@@ -124,7 +130,7 @@ function epl_register_post_type( $post_type = '', $post_type_label, $args = arra
 		}
 	}
 
-	if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'epl_settings' ) {
+	if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 		$_SESSION['epl_actions']['epl_flush_rewrite_rules'] = true;
 	}
 }
@@ -157,7 +163,7 @@ function epl_get_post_types() {
 		'commercial_land' => __( 'Commercial Land', 'easy-property-listings' ),
 		'business'        => __( 'Business', 'easy-property-listings' ),
 	);
-	// allow 3rd party extensions to add custom posts as a part of epl
+	// allow 3rd party extensions to add custom posts as a part of epl.
 	return apply_filters( 'epl_post_types', $epl_post_types );
 }
 
@@ -274,14 +280,14 @@ function epl_get_decimal_separator() {
  * Get the currency formatted amount
  *
  * @since 1.0
- * @param integer $price
+ * @param integer $price The price.
  * @return string Currency Formatted price
  */
 function epl_currency_formatted_amount( $price ) {
 	$price_format           = apply_filters( 'epl_price_number_format', 'number' );
 	$price_format_com_lease = apply_filters( 'epl_price_number_format_commercial_lease', 'number' );
 
-	if ( $price_format == 'decimal' || $price_format_com_lease == 'decimal' ) {
+	if ( 'decimal' === $price_format || 'decimal' === $price_format_com_lease ) {
 		return epl_currency_filter( epl_format_amount( $price, true ) );
 	} else {
 		return epl_currency_filter( epl_format_amount( $price, false ) );
@@ -292,7 +298,7 @@ function epl_currency_formatted_amount( $price ) {
  * Get labels
  *
  * @since 2.2
- * @param integer $key Settings meta key
+ * @param integer $key Settings meta key.
  * @return string
  */
 function epl_labels( $key ) {
@@ -300,13 +306,13 @@ function epl_labels( $key ) {
 	$field_groups = epl_get_admin_option_fields();
 	$epl_labels   = array();
 	foreach ( $field_groups as $field_group ) {
-		if ( $field_group['id'] == 'labels' || $field_group['id'] == 'address' ) {
+		if ( 'labels' === $field_group['id'] || 'address' === $field_group['id'] ) {
 			$epl_labels = array_merge( $epl_labels, array_filter( $field_group['fields'] ) );
 		}
 	}
 	foreach ( $epl_labels as $label_key   => $label ) {
 
-		if ( isset( $label['default'] ) && $key == $label['name'] ) {
+		if ( isset( $label['default'] ) && $key === $label['name'] ) {
 
 			$label = isset( $epl_settings[ $key ] ) ? $epl_settings[ $key ] : $label['default'];
 
@@ -329,14 +335,14 @@ function epl_labels( $key ) {
 function epl_the_address( $before = '', $after = '', $country = false, $echo = true ) {
 	$address = epl_get_the_address();
 
-	if ( strlen( $address ) == 0 ) {
-			return;
+	if ( strlen( $address ) === 0 ) {
+		return;
 	}
 
 		$address = $before . $address . $after;
 
 	if ( $echo ) {
-			echo $address;
+		echo $address;
 	} else {
 		return $address;
 	}
@@ -345,13 +351,11 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
 /**
  * Retrieve address based on user display selection.
  *
+ * @param  array $address_args address components.
+ * @param  array $sep override default seperators for each address components here.
+ * @param  bool  $country  Return country with true, default false.
+ * @return string
  * @since 3.3
- *
- * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
- *
- * @param  array       $address_args address components
- * @param  array       $sep  override default seperators for each address components here
- * @return [type]       [description]
  */
 function epl_get_the_address( $address_args = array(), $sep = array(), $country = false ) {
 
@@ -369,10 +373,10 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		'country'       => ' ',
 	);
 
-	// override default seperators for address components
+	// override default seperators for address components.
 	$seps = array_merge( $address_defaults, $sep );
 
-	// Output the full address based on user selection
+	// Output the full address based on user selection.
 	if ( empty( $address_args ) ) {
 		$address_args = array_keys( $address_defaults );
 	}
@@ -381,12 +385,12 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 
 		if ( isset( $address_defaults[ $arg ] ) ) {
 
-			if ( get_property_meta( 'property_address_display' ) != 'yes' && in_array( $arg, array( 'sub_number', 'lot_number', 'street_number', 'street' ) ) ) {
+			if ( 'yes' !== get_property_meta( 'property_address_display' ) && in_array( $arg, array( 'sub_number', 'lot_number', 'street_number', 'street' ) ) ) {
 				continue;
 			}
 
-			// Country hidden by default
-			if ( $country != true && in_array( $arg, array( 'country' ) ) ) {
+			// Country hidden by default.
+			if ( true !== $country && in_array( $arg, array( 'country' ) ) ) {
 				continue;
 			}
 
@@ -414,8 +418,9 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
  *
  * @since 3.3
  *
- * @param integer $post_ID
- * @param string  $meta_key
+ * @param string $before Output string before.
+ * @param string $after Output string after.
+ * @param string $echo Echo the result.
  * @return the string/list for values
  */
 function epl_the_status( $before = '', $after = '', $echo = true ) {
@@ -423,14 +428,14 @@ function epl_the_status( $before = '', $after = '', $echo = true ) {
 
 	$status_opts = epl_get_property_status_opts();
 
-	if ( strlen( $status ) == 0 ) {
+	if ( strlen( $status ) === 0 ) {
 			return;
 	}
 
 		$status = $before . $status_opts[ $status ] . $after;
 
 	if ( $echo ) {
-			echo $status;
+		echo $status;
 	} else {
 		return $status;
 	}
@@ -467,12 +472,12 @@ function epl_get_the_status( $post = 0 ) {
  * Get EPL property meta data based on post id
  *
  * @since 1.0
- * @param integer $post_ID
- * @param string  $meta_key
+ * @param int    $post_ID The post ID.
+ * @param string $meta_key Meta key name.
  * @return the string/list for values
  */
 function epl_get_property_meta( $post_ID = '', $meta_key = '' ) {
-	if ( $post_ID == '' ) {
+	if ( '' === $post_ID ) {
 		$post_ID = get_the_ID();
 	}
 
@@ -488,9 +493,8 @@ function epl_get_property_meta( $post_ID = '', $meta_key = '' ) {
  * Print EPL property meta data
  *
  * @since 1.0
- * @param integer $post_ID
- * @param string  $meta_key
- * @return the string/list for values
+ * @param int    $post_ID The post ID.
+ * @param string $meta_key Meta key name.
  */
 function epl_the_property_meta( $post_ID = '', $meta_key ) {
 	$meta_value = epl_get_property_meta( $post_ID, $meta_key );
@@ -548,18 +552,18 @@ function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
 
 	$under_offer_label = epl_meta_under_offer_label();
 
-	if ( strlen( $under_offer ) == 0 ) {
-			return;
-	}
-
-	if ( strtolower( $under_offer ) != 'yes' && 'sold' != epl_get_the_status() ) {
+	if ( strlen( $under_offer ) === 0 ) {
 		return;
 	}
 
-		$under_offer = $before . $under_offer_label . $after;
+	if ( strtolower( $under_offer ) !== 'yes' && 'sold' !== epl_get_the_status() ) {
+		return;
+	}
+
+	$under_offer = $before . $under_offer_label . $after;
 
 	if ( $echo ) {
-			echo $under_offer;
+		echo $under_offer;
 	} else {
 		return $under_offer;
 	}
@@ -578,7 +582,7 @@ function epl_get_the_under_offer( $post = 0 ) {
 	$post = get_post( $post );
 
 	$under_offer = get_property_meta( 'property_under_offer' );
-	$under_offer = 'yes' == get_property_meta( 'property_under_offer' ) && 'sold' != epl_get_the_status() ? $under_offer : '';
+	$under_offer = 'yes' === get_property_meta( 'property_under_offer' ) && 'sold' !== epl_get_the_status() ? $under_offer : '';
 	$id          = isset( $post->ID ) ? $post->ID : 0;
 
 	/**
@@ -642,7 +646,7 @@ function epl_listing_load_meta_property_category() {
  * Custom Meta: Return Value of House Category
  *
  * @since 1.1
- * @param string $key
+ * @param string $key Meta key.
  * @return all the categories in array
  */
 function epl_listing_meta_property_category_value( $key ) {
@@ -676,7 +680,7 @@ function epl_listing_load_meta_land_category() {
  * Custom Meta: Return Value of Land Category
  *
  * @since 1.1
- * @param string $key
+ * @param string $key Meta key.
  * @return all the categories in array
  */
 function epl_listing_meta_land_category_value( $key ) {
@@ -711,7 +715,7 @@ function epl_listing_load_meta_commercial_category() {
  * Custom Meta: Return Value of Commercial Category
  *
  * @since 1.1
- * @param string $key
+ * @param string $key Meta key.
  * @return all the categories in array
  */
 function epl_listing_load_meta_commercial_category_value( $key ) {
@@ -750,7 +754,7 @@ function epl_listing_load_meta_commercial_rent_period() {
  * Custom Meta: Return Value of Commercial Rental Period
  *
  * @since 2.1
- * @param string $key
+ * @param string $key Meta key.
  * @return all the categories in array
  */
 function epl_listing_load_meta_commercial_rent_period_value( $key ) {
@@ -785,7 +789,7 @@ function epl_listing_load_meta_rural_category() {
  * Custom Meta: Return Value of Rural Category
  *
  * @since 1.1
- * @param string $key
+ * @param string $key Meta key.
  * @return all the categories in array
  */
 function epl_listing_load_meta_rural_category_value( $key ) {
@@ -803,7 +807,7 @@ function epl_listing_load_meta_rural_category_value( $key ) {
  * [epl_feedsync_format_date({./@modTime})]
  *
  * @since 1.2
- * @param string $date
+ * @param string $date Date.
  * @return formatted date
  * @revised 3.3
  */
@@ -828,12 +832,13 @@ function epl_feedsync_format_date( $date ) {
  * [epl_feedsync_format_date_auction({AUCDATE[1]},{AUC_TIME[1]})]
  *
  * @since 3.1.7
- * @param string $date
+ * @param string $date Date.
+ * @param string $time Time.
  * @return formatted date
  */
 function epl_feedsync_format_date_auction( $date, $time ) {
 
-	$date = str_replace( '/', '-', $date ); // Convert to european date format for strtotime function
+	$date = str_replace( '/', '-', $date ); // Convert to european date format for strtotime function.
 	return date( 'Y-M-d H:i:s', strtotime( $date . ' ' . $time ) );
 }
 
@@ -846,7 +851,7 @@ function epl_feedsync_format_date_auction( $date, $time ) {
  * [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})]
  *
  * @since 1.3
- * @param string $sub_value
+ * @param string $sub_value Address sub value.
  * @return formatted sub number/
  */
 function epl_feedsync_format_sub_number( $sub_value ) {
@@ -862,8 +867,9 @@ function epl_feedsync_format_sub_number( $sub_value ) {
  *
  * Processing Function for WP All Import and FeedSync
  *
- * @since 3.0
+ * @param string $value Value.
  * @return integer
+ * @since 3.0
  */
 function epl_feedsync_format_strip_currency( $value ) {
 	if ( $value ) {
@@ -880,8 +886,12 @@ function epl_feedsync_format_strip_currency( $value ) {
  * Processing Function for WP All Import and FeedSync
  * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
  *
- * @since 3.0
+ * @param bool   $date_time Swtich date time.
+ * @param string $old_time_zone Old Timezone.
+ * @param string $new_timezone New timezone.
+ * @param string $format Date format.
  * @return integer
+ * @since 3.0
  */
 function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Australia/Perth', $new_timezone = 'Australia/Sydney', $format = 'Y-m-d H:i:s' ) {
 
@@ -905,8 +915,8 @@ function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Au
  * Renders field array to html
  *
  * @since 2.1
- * @param array  $field
- * @param string $val
+ * @param array  $field Field array.
+ * @param string $val Value.
  * @revised 3.3
  */
 function epl_render_html_fields( $field = array(), $val = '' ) {
@@ -956,7 +966,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 
 			echo '<select name="' . esc_attr( $field['name'] ) . '" id="' . epl_sanitize_key( $field['name'] ) . '" ' . $field_atts . ' class="dependency-' . $dependency . '">';
 			if ( ! empty( $field['default'] ) ) {
-				// echo '<option value="" selected="selected">'.__($field['default'], 'easy-property-listings' ).'</option>';
+				// Test: echo '<option value="" selected="selected">'.__($field['default'], 'easy-property-listings' ).'</option>'; | info.
 			}
 
 			if ( isset( $field['opts'] ) && ! empty( $field['opts'] ) ) {
