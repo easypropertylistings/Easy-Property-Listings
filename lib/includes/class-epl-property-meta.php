@@ -538,9 +538,9 @@ class EPL_Property_Meta {
 
 		$property_category = epl_listing_meta_property_category_value( $this->get_property_meta( 'property_category' ) );
 
-		if ( $property_category == '' ) {
+		if ( '' === $property_category ) {
 			$property_category = $property_category;
-		} elseif ( $tag == 'none' || $tag == 'value' ) {
+		} elseif ( 'none' === $tag || 'value' === $tag ) {
 			$property_category = $property_category;
 		} else {
 			$property_category = '<' . $tag . ' class="' . $class . '">' . __( $property_category, 'easy-property-listings' ) . '</' . $tag . '>';
@@ -559,7 +559,7 @@ class EPL_Property_Meta {
 	public function get_property_commercial_category( $tag = 'div', $class = 'commercial-category' ) {
 		$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta( 'property_commercial_category' ) );
 
-		if ( $property_commercial_category == '' ) {
+		if ( '' === $property_commercial_category ) {
 			$property_commercial_category = $property_commercial_category;
 		} elseif ( $tag == 'none' || $tag == 'value' ) {
 			$property_commercial_category = $property_commercial_category;
