@@ -199,11 +199,13 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		}
 
 		/**
-		 * @param  [type]
-		 * @return [type]
+		 * Get the global property object
+		 *
+		 * @param  array $property Array of property object.
+		 * @return $return Array of values.
 		 */
 		function __get( $property ) {
-			if ( isset( $this->{$property} ) && $this->{$property} != '' ) {
+			if ( isset( $this->{$property} ) && '' !== $this->{$property} ) {
 				return $this->{$property};
 			} elseif ( $return = get_user_meta( $this->author_id, $property, true ) ) {
 				return $return;
@@ -216,7 +218,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 1.3
 		 */
 		function get_author_name() {
-			if ( $this->name != '' ) {
+			if ( '' !== $this->name ) {
 				return apply_filters( 'epl_author_name', $this->name, $this );
 			}
 		}
@@ -227,7 +229,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 3.2
 		 */
 		function get_email() {
-			if ( $this->email != '' ) {
+			if ( '' !== $this->email ) {
 				return apply_filters( 'epl_author_email', $this->email, $this );
 			}
 		}
@@ -239,7 +241,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 */
 		function get_email_html( $html = '', $style = 'i' ) {
 
-			if ( $this->email != '' ) {
+			if ( '' !== $this->email ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -271,7 +273,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		function get_twitter() {
 
 			$twitter = '';
-			if ( $this->twitter != '' ) {
+			if ( '' !== $this->twitter ) {
 
 				if ( ( strpos( $this->twitter, 'http://' ) === 0 ) || ( strpos( $this->twitter, 'https://' ) === 0 ) ) {
 					// absolute url
@@ -293,7 +295,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		function get_instagram() {
 
 			$instagram = '';
-			if ( $this->instagram != '' ) {
+			if ( '' !== $this->instagram ) {
 
 				if ( ( strpos( $this->instagram, 'http://' ) === 0 ) || ( strpos( $this->instagram, 'https://' ) === 0 ) ) {
 					// absolute url
@@ -315,7 +317,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		function get_youtube() {
 
 			$youtube = '';
-			if ( $this->youtube != '' ) {
+			if ( '' !== $this->youtube ) {
 
 				if ( ( strpos( $this->youtube, 'http://' ) === 0 ) || ( strpos( $this->youtube, 'https://' ) === 0 ) ) {
 					// absolute url
@@ -337,7 +339,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		function get_pinterest() {
 
 			$pinterest = '';
-			if ( $this->pinterest != '' ) {
+			if ( '' !== $this->pinterest ) {
 
 				if ( ( strpos( $this->pinterest, 'http://' ) === 0 ) || ( strpos( $this->pinterest, 'https://' ) === 0 ) ) {
 					// absolute url
@@ -360,7 +362,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( $this->get_twitter() != '' ) {
+			if ( '' !== $this->get_twitter() ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -393,7 +395,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( $this->get_instagram() != '' ) {
+			if ( '' !== $this->get_instagram() ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -426,7 +428,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( $this->get_youtube() != '' ) {
+			if ( '' !== $this->get_youtube() ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -459,7 +461,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( $this->get_pinterest() != '' ) {
+			if ( '' !== $this->get_pinterest() ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -486,12 +488,13 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get Google
 		 *
-		 * @since version 3.2
+		 * @since 3.2.0
+		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
 		 */
 		function get_google() {
 
 			$google = '';
-			if ( $this->google != '' ) {
+			if ( '' !== $this->google ) {
 
 				if ( ( strpos( $this->google, 'http://' ) === 0 ) || ( strpos( $this->google, 'https://' ) === 0 ) ) {
 					// absolute url
@@ -508,13 +511,14 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Google html Box
 		 *
-		 * @since version 1.3
+		 * @since 1.3.0
+		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
 		 */
 		function get_google_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( $this->get_google() != '' ) {
+			if ( '' !== $this->get_google() ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -547,7 +551,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$facebook = '';
 
-			if ( $this->facebook != '' ) {
+			if ( '' !== $this->facebook ) {
 
 				if ( ( strpos( $this->facebook, 'http://' ) === 0 ) || ( strpos( $this->facebook, 'https://' ) === 0 ) ) {
 					// absolute url
@@ -570,7 +574,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( $this->get_facebook() != '' ) {
+			if ( '' !== $this->get_facebook() ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -603,7 +607,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$linkedin = '';
 
-			if ( $this->linkedin != '' ) {
+			if ( '' !== $this->linkedin ) {
 
 				if ( ( strpos( $this->linkedin, 'http://' ) === 0 ) || ( strpos( $this->linkedin, 'https://' ) === 0 ) ) {
 					// absolute url
@@ -626,7 +630,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( $this->get_linkedin() != '' ) {
+			if ( '' !== $this->get_linkedin() ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -659,7 +663,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		function get_skype() {
 
 			$skype = '';
-			if ( $this->skype != '' ) {
+			if ( '' !== $this->skype ) {
 
 				if ( ( strpos( $this->skype, 'skype:' ) === 0 ) ) {
 					// absolute url
@@ -682,7 +686,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( $this->get_skype() != '' ) {
+			if ( '' !== $this->get_skype() ) {
 
 				$style = $style == 'i' && epl_get_option( 'epl_icons_svg_author' ) == 'on' ? 's' : $style;
 
@@ -713,7 +717,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 1.3
 		 */
 		function get_video_html( $html = '' ) {
-			if ( $this->video != '' ) {
+			if ( '' !== $this->video ) {
 				$video = apply_filters( 'epl_author_video_html', $this->video, $this );
 				$html  = wp_oembed_get( $video );
 			}
@@ -737,7 +741,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 1.3
 		 */
 		function get_description_html( $html = '' ) {
-			if ( $this->get_description() != '' ) {
+			if ( '' !== $this->get_description() ) {
 
 				$permalink = apply_filters( 'epl_author_profile_link', get_author_posts_url( $this->author_id ), $this );
 
@@ -759,7 +763,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 1.3
 		 */
 		function get_author_mobile() {
-			if ( $this->mobile != '' ) {
+			if ( '' !== $this->mobile ) {
 				return apply_filters( 'epl_author_mobile', $this->mobile, $this );
 			}
 		}
@@ -770,7 +774,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 3.3
 		 */
 		function get_author_office_phone() {
-			if ( $this->office_phone != '' ) {
+			if ( '' !== $this->office_phone ) {
 				return apply_filters( 'epl_author_office_phone', $this->office_phone, $this );
 			}
 		}
@@ -781,7 +785,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 1.3
 		 */
 		function get_author_id() {
-			if ( $this->author_id != '' ) {
+			if ( '' !== $this->author_id ) {
 				return apply_filters( 'epl_author_id', $this->author_id, $this );
 			}
 		}
@@ -792,7 +796,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 1.3
 		 */
 		function get_author_slogan() {
-			if ( $this->slogan != '' ) {
+			if ( '' !== $this->slogan ) {
 				return apply_filters( 'epl_author_slogan', $this->slogan, $this );
 			}
 		}
@@ -803,7 +807,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 1.3
 		 */
 		function get_author_position() {
-			if ( $this->position != '' ) {
+			if ( '' !== $this->position ) {
 				return apply_filters( 'epl_author_position', $this->position, $this );
 			}
 		}
@@ -814,9 +818,9 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since version 1.3
 		 */
 		function get_author_contact_form() {
-			if ( $this->contact_form != '' ) {
-				$cf = apply_filters( 'epl_author_contact_form', $this->contact_form, $this );
-				return do_shortcode( $cf );
+			if ( '' !== $this->contact_form ) {
+				$contact_form = apply_filters( 'epl_author_contact_form', $this->contact_form, $this );
+				return do_shortcode( $contact_form );
 			}
 		}
 	}
