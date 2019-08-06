@@ -61,6 +61,9 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		'price' => $meta_key_price,
 		'date'  => 'post_date',
 	);
+
+	$post_type = $attributes['post_type'];
+
 	if ( ! is_array( $attributes['post_type'] ) ) {
 		$post_type = array_map( 'trim', explode( ',', $attributes['post_type'] ) );
 	}
@@ -137,8 +140,8 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	$query_open = new WP_Query( $args );
 
-	if ( is_object( $query_object ) ) {
-		$query_open = $query_object;
+	if ( is_object( $attributes['query_object'] ) ) {
+		$query_open = $attributes['query_object'];
 	}
 
 	if ( $query_open->have_posts() ) { ?>
