@@ -65,7 +65,7 @@ add_action( 'init', 'epl_register_taxonomy_contact_tag', 0 );
 function epl_add_contact_tag_bgcolor_field() {
 
 	echo '<div class="form-field epl-contact-tag-bgwrap">
-			<label for="epl_contact_tag_bgcolor">' . __( 'Background Color', 'easy-property-listings' ) . '</label>
+			<label for="epl_contact_tag_bgcolor">' . esc_html__( 'Background Color', 'easy-property-listings' ) . '</label>
 			<input type="color" class="epl_contact_tag_bgcolor" name="epl_contact_tag_bgcolor" id="epl_contact_tag_bgcolor" value="" />
 		</div>';
 }
@@ -80,13 +80,16 @@ add_action( 'contact_tag_add_form_fields', 'epl_add_contact_tag_bgcolor_field' )
 function epl_edit_contact_tag_bgcolor_field( $taxonomy ) {
 
 	$bg_color = epl_get_contact_tag_bgcolor( $taxonomy->term_id );
+
+	wp_nonce_field( 'epl_contact_tag_bg_nonce', 'epl_contact_tag_bg_nonce' );
+
 	echo '
 		<tr class="form-field epl-contact-tag-bgwrap">
 			<th scope="row" valign="top">
-				<label for="epl_contact_tag_bgcolor">' . __( 'Background Color', 'easy-property-listings' ) . '</label>
+				<label for="epl_contact_tag_bgcolor">' . esc_html__( 'Background Color', 'easy-property-listings' ) . '</label>
 			</th>
 			<td class="eti-image-wrap">
-				<input type="color" class="epl_contact_tag_bgcolor" name="epl_contact_tag_bgcolor" id="epl_contact_tag_bgcolor" value="' . $bg_color . '" /><br />
+				<input type="color" class="epl_contact_tag_bgcolor" name="epl_contact_tag_bgcolor" id="epl_contact_tag_bgcolor" value="' . esc_html( $bg_color ) . '" /><br />
 			</td>
 		</tr>';
 
@@ -101,8 +104,14 @@ add_action( 'contact_tag_edit_form_fields', 'epl_edit_contact_tag_bgcolor_field'
  */
 function epl_save_contact_tag_bgcolor( $term_id ) {
 
+	if ( ! isset( $_POST['epl_contact_tag_bg_nonce'] )
+		|| ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['epl_contact_tag_bg_nonce'] ) ), 'epl_contact_tag_bg_nonce' )
+	) {
+		return;
+	}
+
 	if ( isset( $_POST['epl_contact_tag_bgcolor'] ) ) {
-		epl_update_contact_tag_bgcolor( $term_id, sanitize_text_field( $_POST['epl_contact_tag_bgcolor'] ) );
+		epl_update_contact_tag_bgcolor( $term_id, sanitize_text_field( wp_unslash( $_POST['epl_contact_tag_bgcolor'] ) ) );
 	}
 }
 add_action( 'create_term', 'epl_save_contact_tag_bgcolor' );

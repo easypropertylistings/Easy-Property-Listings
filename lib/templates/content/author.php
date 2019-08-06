@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.WP.GlobalVariablesOverride
+
 get_header(); ?>
 
 <div id="primary" class="site-content">
@@ -22,7 +24,7 @@ get_header(); ?>
 		?>
 		<div class="loop">
 			<div class="loop-header">
-				<?php echo epl_property_author_box(); ?>
+				<?php echo esc_html( epl_property_author_box() ); ?>
 				<h4 class="loop-title">
 					<?php
 						the_post();
@@ -57,9 +59,9 @@ get_header(); ?>
 					}
 
 					if ( is_paged() ) {
-						printf( '%s &ndash; Page %d', $title, get_query_var( 'paged' ) );
+						printf( '%s &ndash; Page %d', esc_attr( $title ), esc_attr( get_query_var( 'paged' ) ) );
 					} else {
-						echo $title;
+						echo esc_attr( $title );
 					}
 
 						rewind_posts();
@@ -79,9 +81,9 @@ get_header(); ?>
 								<div class="entry-meta">
 									<?php
 									/* translators: %s: author name */
-									printf( __( 'By %s', 'easy-property-listings' ), '<span class="meta-author">' . builder_get_author_link() . '</span>' );
+									printf( esc_html__( 'By %s', 'easy-property-listings' ), '<span class="meta-author">' . esc_url( builder_get_author_link() ) . '</span>' );
 									/* translators: %s: comment count */
-									do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', __( 'Comments %s', 'easy-property-listings' ), __( '(0)', 'easy-property-listings' ), __( '(1)', 'easy-property-listings' ), __( '(%)', 'easy-property-listings' ) );
+									do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', esc_html__( 'Comments %s', 'easy-property-listings' ), esc_html__( '(0)', 'easy-property-listings' ), esc_html__( '(1)', 'easy-property-listings' ), esc_html__( '(%)', 'easy-property-listings' ) );
 									?>
 								</div>
 
@@ -108,7 +110,7 @@ get_header(); ?>
 									<div class="categories">
 										<?php
 										/* translators: %s: author name */
-										printf( __( 'Categories : %s', 'easy-property-listings' ), get_the_category_list( ', ' ) );
+										printf( esc_html__( 'Categories : %s', 'easy-property-listings' ), esc_html( get_the_category_list( ', ' ) ) );
 										?>
 									</div>
 									<?php the_tags( '<div class="tags">' . __( 'Tags : ', 'easy-property-listings' ), ', ', '</div>' ); ?>

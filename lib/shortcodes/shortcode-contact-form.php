@@ -53,7 +53,7 @@ function epl_contact_capture_form( $atts ) {
 	echo '<div class="epl-contact-capture-form">';?>
 	<div class="epl-contact-capture-form-desc">
 		<?php
-			echo isset( $atts['description'] ) ? $atts['description'] : '';
+			echo isset( $atts['description'] ) ? esc_html( $atts['description'] ) : '';
 		?>
 	</div>
 	<?php

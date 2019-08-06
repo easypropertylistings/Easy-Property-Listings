@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.DB.SlowDBQuery
+
 /**
  * Listing Auction Shortcode
  *
@@ -27,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
 	if ( ! empty( $property_types ) ) {
-		 $property_types = array_keys( $property_types );
+		$property_types = array_keys( $property_types );
 	}
 
 	$attributes = shortcode_atts(
@@ -49,9 +51,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		$atts
 	);
 
-	extract( $attributes );
-
-	if ( is_string( $post_type ) && 'rental' === $post_type ) {
+	if ( is_string( $attributes['post_type'] ) && 'rental' === $attributes['post_type'] ) {
 		$meta_key_price = 'property_rent';
 	} else {
 		$meta_key_price = 'property_price';
@@ -61,14 +61,14 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		'price' => $meta_key_price,
 		'date'  => 'post_date',
 	);
-	if ( ! is_array( $post_type ) ) {
-		$post_type = array_map( 'trim', explode( ',', $post_type ) );
+	if ( ! is_array( $attributes['post_type'] ) ) {
+		$post_type = array_map( 'trim', explode( ',', $attributes['post_type'] ) );
 	}
 	ob_start();
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args  = array(
 		'post_type'      => $post_type,
-		'posts_per_page' => $limit,
+		'posts_per_page' => $attributes['limit'],
 		'paged'          => $paged,
 	);
 
@@ -85,9 +85,9 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		'value' => 'auction',
 	);
 
-	if ( ! empty( $location ) ) {
-		if ( ! is_array( $location ) ) {
-			$location = explode( ',', $location );
+	if ( ! empty( $attributes['location'] ) ) {
+		if ( ! is_array( $attributes['location'] ) ) {
+			$location = explode( ',', $attributes['location'] );
 			$location = array_map( 'trim', $location );
 
 			$args['tax_query'][] = array(
@@ -98,9 +98,9 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		}
 	}
 
-	if ( ! empty( $status ) ) {
-		if ( ! is_array( $status ) ) {
-			$status = explode( ',', $status );
+	if ( ! empty( $attributes['status'] ) ) {
+		if ( ! is_array( $attributes['status'] ) ) {
+			$status = explode( ',', $attributes['status'] );
 			$status = array_map( 'trim', $status );
 
 			$args['meta_query'][] = array(
@@ -113,19 +113,19 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		}
 	}
 
-	if ( '' !== $sortby ) {
+	if ( '' !== $attributes['sortby'] ) {
 
-		if ( 'price' === $sortby ) {
+		if ( 'price' === $attributes['sortby'] ) {
 			$args['orderby']  = 'meta_value_num';
 			$args['meta_key'] = $meta_key_price;
-		} elseif ( 'status' === $sortby ) {
+		} elseif ( 'status' === $attributes['sortby'] ) {
 			$args['orderby']  = 'meta_value';
 			$args['meta_key'] = 'property_status';
 		} else {
 			$args['orderby'] = 'post_date';
 			$args['order']   = 'DESC';
 		}
-		$args['order'] = $sort_order;
+		$args['order'] = $attributes['sort_order'];
 	}
 
 	$args['instance_id'] = $attributes['instance_id'];
@@ -145,27 +145,27 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing
 			<?php
-			echo epl_template_class( $template, 'archive' );
-			echo $attributes['class'];
+			echo esc_attr( epl_template_class( $attributes['template'], 'archive' ) );
+			echo esc_attr( $attributes['class'] );
 			?>
 			">
 				<?php
-				if ( 'on' === $tools_top ) {
+				if ( 'on' === $attributes['tools_top'] ) {
 					do_action( 'epl_property_loop_start' );
 				}
 				while ( $query_open->have_posts() ) {
 					$query_open->the_post();
-					$template = str_replace( '_', '-', $template );
+					$template = str_replace( '_', '-', $attributes['template'] );
 					epl_property_blog( $template );
 				}
-				if ( 'on' === $tools_bottom ) {
+				if ( 'on' === $attributes['tools_bottom'] ) {
 					do_action( 'epl_property_loop_end' );
 				}
 				?>
 			</div>
 			<div class="loop-footer">
 				<?php
-				if ( 'on' === $pagination ) {
+				if ( 'on' === $attributes['pagination'] ) {
 					do_action( 'epl_pagination', array( 'query' => $query_open ) );
 				}
 				?>

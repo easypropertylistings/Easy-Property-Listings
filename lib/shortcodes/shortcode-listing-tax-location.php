@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.DB.SlowDBQuery
+
 /**
  * Listing Shortcode [listing_location]
  *
@@ -27,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
 	if ( ! empty( $property_types ) ) {
-		 $property_types = array_keys( $property_types );
+		$property_types = array_keys( $property_types );
 	}
 
 	$attributes = shortcode_atts(
@@ -50,7 +52,21 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		$atts
 	);
 
-	extract( $attributes );
+	$post_type    = $attributes['post_type'];
+	$status       = $attributes['status'];
+	$limit        = $attributes['limit'];
+	$location     = $attributes['location'];
+	$location_id  = $attributes['location_id'];
+	$offset       = $attributes['offset'];
+	$agent        = $attributes['agent'];
+	$template     = $attributes['template'];
+	$tools_top    = $attributes['tools_top'];
+	$tools_bottom = $attributes['tools_bottom'];
+	$sortby       = $attributes['sortby'];
+	$sort_order   = $attributes['sort_order'];
+	$pagination   = $attributes['pagination'];
+	$instance_id  = $attributes['instance_id'];
+	$class        = $attributes['class'];
 
 	if ( empty( $post_type ) ) {
 		return;
@@ -148,8 +164,8 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-location
 			<?php
-			echo epl_template_class( $template, 'archive' );
-			echo $attributes['class'];
+			echo esc_attr( epl_template_class( $template, 'archive' ) );
+			echo esc_attr( $attributes['class'] );
 			?>
 			">
 				<?php

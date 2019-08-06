@@ -111,7 +111,7 @@ function epl_meta_box_inner_custom_box( $post, $args ) {
 
 							$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
 							?>
-							<li id="epl_<?php echo epl_sanitize_key( $field['name'] ); ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo esc_attr( $field_width ); ?> epl_<?php echo esc_attr( $field['name'] ); ?>_wrap epl-field-type-<?php echo esc_attr( $field['type'] ); ?>">
+							<li id="epl_<?php echo esc_attr( $field['name'] ); ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo esc_attr( $field_width ); ?> epl_<?php echo esc_attr( $field['name'] ); ?>_wrap epl-field-type-<?php echo esc_attr( $field['type'] ); ?>">
 
 
 								<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
@@ -249,7 +249,7 @@ function epl_save_meta_boxes( $post_ID ) {
 											case 'url':
 											case 'file':
 												/** Sanitize URLs */
-												$meta_value = esc_url( wp_unslash( $_POST[ $field['name'] ] ) );
+												$meta_value = esc_url_raw( wp_unslash( $_POST[ $field['name'] ] ) );
 
 												break;
 
