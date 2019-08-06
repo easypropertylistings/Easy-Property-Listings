@@ -35,6 +35,7 @@ function epl_get_admin_screens() {
 		'dashboard_page_epl-about',
 		'dashboard_page_epl-getting-started',
 		'edit.php',
+		'index.php',
 	);
 
 	return apply_filters( 'epl_admin_screens', $screens );
@@ -54,6 +55,14 @@ function epl_admin_enqueue_scripts( $screen ) {
 
 	$current_dir_path = plugins_url( '', __FILE__ );
 
+	$js_vars = array(
+		'default_map_address' => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
+	);
+
+	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
+
+	wp_localize_script( 'epl-admin-scripts', 'epl_admin_vars', $js_vars );
+
 	if ( 'edit.php' === $screen || 'post.php' === $screen || 'post-new.php' === $screen || 'easy-property-listings_page_epl-extensions' === $screen || 'easy-property-listings_page_epl-settings' === $screen || 'easy-property-listings_page_epl-extensions' === $screen ) {
 
 		$googleapiurl = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
@@ -70,20 +79,13 @@ function epl_admin_enqueue_scripts( $screen ) {
 		wp_enqueue_script( 'jquery-datetime-picker', $current_dir_path . '/js/jquery-datetime-picker' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
 		wp_enqueue_style( 'jquery-ui-datetime-picker-style', $current_dir_path . '/css/jquery-ui' . $suffix . '.css', false, EPL_PROPERTY_VER );
 
-		$js_vars = array(
-			'default_map_address' => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
-		);
-
-		wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
-
-		wp_localize_script( 'epl-admin-scripts', 'epl_admin_vars', $js_vars );
-
 		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin' . $suffix . '.css', false, EPL_PROPERTY_VER );
 
 	}
 
 	// load admin style on help & documentation pages as well.
 	if ( in_array( $screen, epl_get_admin_screens(), true ) ) {
+
 		wp_enqueue_style( 'epl-admin-styles', $current_dir_path . '/css/style-admin' . $suffix . '.css', false, EPL_PROPERTY_VER );
 	}
 
