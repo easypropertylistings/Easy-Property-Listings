@@ -64,8 +64,8 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	 * Widget update.
 	 *
 	 * @since 1.0
-	 * @param array $new_instance Old values.
-	 * @param array $old_instance New values.
+	 * @param array $new_instance New values.
+	 * @param array $old_instance Old values.
 	 */
 	function update( $new_instance, $old_instance ) {
 		$instance   = $old_instance;
