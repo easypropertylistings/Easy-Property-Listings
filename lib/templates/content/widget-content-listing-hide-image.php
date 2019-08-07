@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$property_inspection_times = $property->get_property_inspection_times( $show_ical );
 			?>
 			<div class="epl-inspection-times">
-				<?php echo $property_inspection_times; ?>
+				<?php echo wp_kses_post( $property_inspection_times ); ?>
 			</div>
 		<?php endif; ?>
 	</div>
@@ -61,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 			<div class="property-meta property-feature-icons"><?php epl_property_icons(); ?></div>
 		<?php } elseif ( 'bb' === $icons ) { ?>
-			<div class="property-meta property-feature-icons"><?php echo epl_get_property_bb_icons(); ?></div>
+			<div class="property-meta property-feature-icons"><?php echo wp_kses_post( epl_get_property_bb_icons() ); ?></div>
 		<?php } ?>
 
 		<?php
@@ -76,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( 'on' === $d_more ) {
 			?>
 			<form class="epl-property-button" action="<?php the_permalink(); ?>" method="post">
-				<input type=submit value="<?php echo $more_text; ?>" />
+				<input type=submit value="<?php echo esc_attr( $more_text ); ?>" />
 			</form>
 		<?php } ?>
 	</div>
