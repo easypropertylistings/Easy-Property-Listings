@@ -51,7 +51,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="epl-tab-wrapper tab-wrapper">
 			<div class="epl-tab-section epl-section-property-details">
-				<h5 class="epl-tab-title tab-title"><?php echo apply_filters( 'property_tab_title', __( 'Property Details', 'easy-property-listings' ) ); ?></h5>
+				<h5 class="epl-tab-title">
+					<?php
+						$title_details = apply_filters( 'property_tab_title', __( 'Property Details', 'easy-property-listings' ) );
+						echo esc_html( $title_details );
+					?>
+				</h5>
 				<div class="epl-tab-content tab-content">
 					<div class="epl-property-address property-details">
 						<h3 class="epl-tab-address tab-address">
@@ -69,7 +74,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 
 			<div class="epl-tab-section epl-section-description">
-				<h5 class="epl-tab-title tab-title"><?php echo apply_filters( 'epl_property_tab_title_description', __( 'Description', 'easy-property-listings' ) ); ?></h5>
+				<h5 class="epl-tab-title">
+					<?php
+						$title_desc = apply_filters( 'epl_property_tab_title_description', __( 'Description', 'easy-property-listings' ) );
+						echo esc_html( $title_desc );
+					?>
+				</h5>
 				<div class="epl-tab-content tab-content">
 					<!-- heading -->
 					<h2 class="entry-title"><?php do_action( 'epl_property_heading' ); ?></h2>
@@ -81,8 +91,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 						do_action( 'epl_property_the_content' );
 
 						do_action( 'epl_property_content_after' ); // For Extension Support.
-
-						// do_action('epl_property_video');.
 					?>
 				</div>
 			</div>
