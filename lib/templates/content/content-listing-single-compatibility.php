@@ -47,7 +47,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="epl-tab-wrapper tab-wrapper">
 
 			<div class="epl-tab-section epl-section-description">
-				<h5 class="epl-tab-title"><?php echo apply_filters( 'epl_property_tab_title_description', __( 'Description', 'easy-property-listings' ) ); ?></h5>
+				<h5 class="epl-tab-title">
+					<?php
+						$title_desc = apply_filters( 'epl_property_tab_title_description', __( 'Description', 'easy-property-listings' ) );
+						echo esc_html( $title_desc );
+					?>
+				</h5>
 				<div class="tab-content">
 					<!-- heading -->
 					<h2 class="entry-title"><?php do_action( 'epl_property_heading' ); ?></h2>
@@ -60,7 +65,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						do_action( 'epl_property_content_after' ); // For Extension Support.
 
-						// do_action('epl_property_video');.
 					?>
 				</div>
 			</div>
