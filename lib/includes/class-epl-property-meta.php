@@ -1664,7 +1664,7 @@ class EPL_Property_Meta {
 		$return     = '';
 		$returntype = apply_filters( 'epl_get_property_energy_rating_return_type', $returntype );
 
-		if ( 0 !== $value || '' !== $value ) {
+		if ( !empty( $value ) ) {
 
 			$label = apply_filters( 'epl_get_property_energy_rating_label', __( 'Energy Rating', 'easy-property-listings' ) );
 			switch ( $returntype ) {
