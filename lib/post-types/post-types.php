@@ -264,16 +264,16 @@ function epl_manage_listing_column_listing_callback() {
 		$commercial_category = implode( ', ', $commercial_category );
 	}
 
-	// Headinh.
+	// Heading.
 	if ( empty( $heading ) ) {
 		echo '<strong>' . esc_html__( 'Important! Set a Heading', 'easy-property-listings' ) . '</strong>';
 	} else {
-		echo '<div class="type_heading"><strong>' , esc_attr( $heading ) , '</strong></div>';
+		echo '<div class="type_heading"><strong>' , wp_kses( $heading, array( 'strong'	=>	array(), 'b'	=>	array() ) ) , '</strong></div>';
 	}
 
 	// Category for commercial listing lype.
 	if ( ! empty( $commercial_category ) ) {
-		echo '<div class="epl_meta_category">' , esc_attr( $commercial_category ) , '</div>';
+		echo '<div class="epl_meta_category">' , esc_html( $commercial_category ) , '</div>';
 	}
 
 	// Need to factor in business category: <businessCategory id="1">.
@@ -289,11 +289,13 @@ function epl_manage_listing_column_listing_callback() {
 	// Need to factor in business fields: property_bus_franchise (yes/no).
 
 	// Listing Location Taxonomy.
-	echo '<div class="type_suburb">' , esc_attr( $property_address_suburb ) , '</div>';
+	echo '<div class="type_suburb">' , wp_kses( $property_address_suburb, array( 'strong'	=>	array(), 'b'	=>	array(), 'a' => array(
+					'href' => array(),
+				) ) ) , '</div>';
 
 	// Listing Category.
 	if ( ! empty( $category ) ) {
-		echo '<div class="epl_meta_category">' , esc_attr( $category ) , '</div>';
+		echo '<div class="epl_meta_category">' , esc_html( $category ) , '</div>';
 	}
 
 	// Outgoings for commercial listing type.
@@ -344,7 +346,7 @@ function epl_manage_listing_column_listing_callback() {
 			$homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 		}
 			$homeopen_list .= '</ul>';
-		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . esc_attr( epl_labels( 'label_home_open' ) ) . '</strong></span>' , esc_html( $homeopen_list ) , '</div>';
+		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . esc_html( epl_labels( 'label_home_open' ) ) . '</strong></span>' , wp_kses_post( $homeopen_list ) , '</div>';
 	}
 }
 add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_listing_callback' );
