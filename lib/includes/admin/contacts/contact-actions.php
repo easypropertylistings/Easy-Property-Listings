@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function epl_edit_contact( $args ) {
 	if ( ! is_admin() || ! epl_contact_access() ) {
-		wp_die( __( 'You do not have permission to edit this contact.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have permission to edit this contact.', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -35,7 +35,7 @@ function epl_edit_contact( $args ) {
 	$nonce        = $args['_wpnonce'];
 
 	if ( ! wp_verify_nonce( $nonce, 'edit-contact' ) ) {
-		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Cheatin\' eh?!', 'easy-property-listings' ) );
 	}
 
 	$contact = new EPL_Contact( $contact_id );
@@ -52,7 +52,7 @@ function epl_edit_contact( $args ) {
 	$contact_info = wp_parse_args( $contact_info, $defaults );
 
 	if ( ! is_email( $contact_info['email'] ) ) {
-		epl_set_error( 'epl-invalid-email', __( 'Please enter a valid email address.', 'easy-property-listings' ) );
+		epl_set_error( 'epl-invalid-email', esc_html__( 'Please enter a valid email address.', 'easy-property-listings' ) );
 	}
 
 	if ( epl_get_errors() ) {
@@ -61,7 +61,7 @@ function epl_edit_contact( $args ) {
 
 	// Sanitize the inputs.
 	$contact_data          = array();
-	$contact_data['name']  = strip_tags( stripslashes( $contact_info['name'] ) );
+	$contact_data['name']  = wp_strip_all_tags( stripslashes( $contact_info['name'] ) );
 	$contact_data['email'] = $contact_info['email'];
 
 	$contact_data = apply_filters( 'epl_edit_contact_info', $contact_data, $contact_id );
@@ -87,7 +87,7 @@ function epl_edit_contact( $args ) {
 
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		header( 'Content-Type: application/json' );
-		echo json_encode( $output );
+		echo wp_json_encode( $output );
 		wp_die();
 	}
 
@@ -106,7 +106,7 @@ add_action( 'epl_edit-contact', 'epl_edit_contact', 10, 1 );
 function epl_contact_delete( $args ) {
 
 	if ( ! is_admin() || ! current_user_can( 'manage_options' ) ) {
-		wp_die( __( 'You do not have permission to delete this contact.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have permission to delete this contact.', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -118,15 +118,15 @@ function epl_contact_delete( $args ) {
 	$nonce      = $args['_wpnonce'];
 
 	if ( ! wp_verify_nonce( $nonce, 'delete-contact' ) ) {
-		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Cheatin\' eh?!', 'easy-property-listings' ) );
 	}
 
 	if ( ! $confirm ) {
-		epl_set_error( 'contact-delete-no-confirm', __( 'Please confirm you want to delete this contact', 'easy-property-listings' ) );
+		epl_set_error( 'contact-delete-no-confirm', esc_html__( 'Please confirm you want to delete this contact', 'easy-property-listings' ) );
 	}
 
 	if ( epl_get_errors() ) {
-		wp_redirect( admin_url( 'edit.php?page=epl-contacts&view=overview&id=' . $contact_id ) );
+		wp_safe_redirect( admin_url( 'edit.php?page=epl-contacts&view=overview&id=' . $contact_id ) );
 		exit;
 	}
 
@@ -155,18 +155,18 @@ function epl_contact_delete( $args ) {
 
 		} else {
 
-			epl_set_error( 'epl-contact-delete-failed', __( 'Error deleting contact', 'easy-property-listings' ) );
+			epl_set_error( 'epl-contact-delete-failed', esc_html__( 'Error deleting contact', 'easy-property-listings' ) );
 			$redirect = admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $contact_id );
 
 		}
 	} else {
 
-		epl_set_error( 'epl-contact-delete-invalid-id', __( 'Invalid Contact ID', 'easy-property-listings' ) );
+		epl_set_error( 'epl-contact-delete-invalid-id', esc_html__( 'Invalid Contact ID', 'easy-property-listings' ) );
 		$redirect = admin_url( 'admin.php?page=epl-contacts' );
 
 	}
 
-	wp_redirect( $redirect );
+	wp_safe_redirect( $redirect );
 	exit;
 
 }
@@ -182,7 +182,7 @@ add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
 function epl_contact_save_note( $args ) {
 
 	if ( ! is_admin() || ! epl_contact_access() ) {
-		wp_die( __( 'You do not have permission to save note.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have permission to save note.', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -197,11 +197,11 @@ function epl_contact_save_note( $args ) {
 	$nonce      = $args['add_contact_note_nonce'];
 
 	if ( ! wp_verify_nonce( $nonce, 'add_contact_note_nonce' ) ) {
-		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Cheatin\' eh?!', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $contact_note ) ) {
-		epl_set_error( 'empty-customer-note', __( 'A note is required', 'easy-property-listings' ) );
+		epl_set_error( 'empty-customer-note', esc_html__( 'A note is required', 'easy-property-listings' ) );
 	}
 
 	if ( epl_get_errors() ) {
@@ -218,8 +218,8 @@ function epl_contact_save_note( $args ) {
 
 		ob_start();
 		?>
-		<tr data-activity-id="<?php echo $note_object->comment_ID; ?>" id="activity-id-<?php echo $note_object->comment_ID; ?>" class="epl-contact-activity-row epl-contact-activity-<?php echo $note_object->comment_type; ?>" >
-			<td><?php echo stripslashes( $contact->get_activity_type( $note_object->comment_type ) ); ?></td>
+		<tr data-activity-id="<?php echo esc_attr( $note_object->comment_ID ); ?>" id="activity-id-<?php echo esc_attr( $note_object->comment_ID ); ?>" class="epl-contact-activity-row epl-contact-activity-<?php echo esc_attr( $note_object->comment_type ); ?>" >
+			<td><?php echo esc_attr( $contact->get_activity_type( $note_object->comment_type ) ); ?></td>
 			<td>
 				<?php
 				if ( $note_object->comment_post_ID > 0 ) {
@@ -228,16 +228,16 @@ function epl_contact_save_note( $args ) {
 					echo get_the_post_thumbnail( $note_object->comment_post_ID, array( 50, 50 ) );
 					echo '</span>';
 					echo '<span class="epl-contact-inline-lis-title">';
-					echo '<a href="' . get_permalink( $note_object->comment_post_ID ) . '">' . get_the_title( $note_object->comment_post_ID ) . '</a>';
+					echo '<a href="' . esc_url( get_permalink( $note_object->comment_post_ID ) ) . '">' . esc_attr( get_the_title( $note_object->comment_post_ID ) ) . '</a>';
 					echo '</span>';
 					echo '</div>';
 				}
-					echo stripslashes( $note_object->comment_content );
+					echo wp_kses_post( $note_object->comment_content );
 				?>
 			</td>
 			<td>
 				<?php
-					echo date_i18n( get_option( 'date_format' ), strtotime( $note_object->comment_date ) );
+					echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $note_object->comment_date ) ) );
 				?>
 			</td>
 		</tr>
@@ -246,7 +246,7 @@ function epl_contact_save_note( $args ) {
 		ob_end_clean();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			echo $output;
+			echo wp_kses_post( $output );
 			exit;
 		}
 
@@ -270,7 +270,7 @@ function epl_contact_save_listing( $args ) {
 	$contact_add_listing_role = apply_filters( 'epl_add_contacts_listing', 'manage_options' );
 
 	if ( ! is_admin() || ! current_user_can( $contact_add_listing_role ) ) {
-		wp_die( __( 'You do not have permission to add listing.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have permission to add listing.', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -284,7 +284,7 @@ function epl_contact_save_listing( $args ) {
 	$nonce = $args['add_contact_listing_nonce'];
 
 	if ( ! wp_verify_nonce( $nonce, 'add_contact_listing_nonce' ) ) {
-		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Cheatin\' eh?!', 'easy-property-listings' ) );
 	}
 	if ( epl_get_errors() ) {
 		epl_print_error();
@@ -316,15 +316,15 @@ function epl_contact_save_listing( $args ) {
 
 		ob_start();
 		?>
-		<tr data-activity-id="<?php echo $inserted_lisitng->ID; ?>" id="activity-id-<?php echo $inserted_lisitng->ID; ?>" class="epl-contact-activity-row " >
-			<td><?php echo $inserted_lisitng->post_type; ?></td>
+		<tr data-activity-id="<?php echo esc_attr( $inserted_lisitng->ID ); ?>" id="activity-id-<?php echo esc_attr( $inserted_lisitng->ID ); ?>" class="epl-contact-activity-row " >
+			<td><?php echo esc_attr( $inserted_lisitng->post_type ); ?></td>
 			<td>
 				<?php
-					echo '<a href="' . get_edit_post_link( $inserted_lisitng->ID ) . '">' . $inserted_lisitng->post_title . '</a>';
+					echo '<a href="' . esc_url( get_edit_post_link( $inserted_lisitng->ID ) ) . '">' . esc_attr( $inserted_lisitng->post_title ) . '</a>';
 				?>
 			</td>
 			<td>
-				<?php echo get_post_meta( $inserted_lisitng->ID, 'property_status', true ); ?>
+				<?php echo esc_attr( get_post_meta( $inserted_lisitng->ID, 'property_status', true ) ); ?>
 			</td>
 		</tr>
 		<?php
@@ -332,7 +332,7 @@ function epl_contact_save_listing( $args ) {
 		ob_end_clean();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			echo $output;
+			echo wp_kses_post( $output );
 			exit;
 		}
 
@@ -355,7 +355,7 @@ add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
 function epl_contact_assign_existing_listing( $args ) {
 
 	if ( ! is_admin() || ! epl_contact_access() ) {
-		wp_die( __( 'You do not have permission to assign listings.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have permission to assign listings.', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -374,15 +374,15 @@ function epl_contact_assign_existing_listing( $args ) {
 
 		ob_start();
 		?>
-		<tr data-activity-id="<?php echo $inserted_lisitng->ID; ?>" id="activity-id-<?php echo $inserted_lisitng->ID; ?>" class="epl-contact-activity-row " >
-			<td><?php echo $inserted_lisitng->post_type; ?></td>
+		<tr data-activity-id="<?php echo esc_attr( $inserted_lisitng->ID ); ?>" id="activity-id-<?php echo esc_attr( $inserted_lisitng->ID ); ?>" class="epl-contact-activity-row " >
+			<td><?php echo esc_attr( $inserted_lisitng->post_type ); ?></td>
 			<td>
 				<?php
-				echo '<a href="' . get_edit_post_link( $inserted_lisitng->ID ) . '">' . $inserted_lisitng->post_title . '</a>';
+				echo '<a href="' . esc_url( get_edit_post_link( $inserted_lisitng->ID ) ) . '">' . esc_attr( $inserted_lisitng->post_title ) . '</a>';
 				?>
 			</td>
 			<td>
-				<?php echo get_post_meta( $inserted_lisitng->ID, 'property_status', true ); ?>
+				<?php echo esc_attr( get_post_meta( $inserted_lisitng->ID, 'property_status', true ) ); ?>
 			</td>
 		</tr>
 		<?php
@@ -390,7 +390,7 @@ function epl_contact_assign_existing_listing( $args ) {
 		ob_end_clean();
 
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			echo $output;
+			echo wp_kses_post( $output );
 			exit;
 		}
 
@@ -413,7 +413,7 @@ add_action( 'epl_add-existing-contact-listing', 'epl_contact_assign_existing_lis
 function epl_meta_contact( $args ) {
 
 	if ( ! is_admin() || ! epl_contact_access() ) {
-		wp_die( __( 'You do not have permission to update this contact.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have permission to update this contact.', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -422,7 +422,7 @@ function epl_meta_contact( $args ) {
 
 	$nonce = $args['_wpnonce'];
 	if ( ! wp_verify_nonce( $nonce, 'meta-contact' ) ) {
-		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Cheatin\' eh?!', 'easy-property-listings' ) );
 	}
 
 	$contact_id = (int) $args['contact_id'];
@@ -455,7 +455,7 @@ function epl_meta_contact( $args ) {
 	wp_update_post( $field_updates );
 
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
-	wp_redirect( $redirect );
+	wp_safe_redirect( $redirect );
 	exit;
 
 }
@@ -471,7 +471,7 @@ add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
 function epl_new_contact( $args ) {
 
 	if ( ! is_admin() || ! epl_contact_access() ) {
-		wp_die( __( 'You do not have permission to create contacts.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have permission to create contacts.', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $args ) ) {
@@ -480,7 +480,7 @@ function epl_new_contact( $args ) {
 
 	$nonce = $args['_wpnonce'];
 	if ( ! wp_verify_nonce( $nonce, 'new-contact' ) ) {
-		wp_die( __( 'Cheatin\' uhh?!', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Cheatin\' uhh?!', 'easy-property-listings' ) );
 	}
 
 	$contact_id = (int) $args['contact_id'];
@@ -490,11 +490,11 @@ function epl_new_contact( $args ) {
 	}
 
 	if ( empty( $args['email'] ) || ! is_email( $args['email'] ) ) {
-		wp_die( __( 'Please provide valid email address', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Please provide valid email address', 'easy-property-listings' ) );
 	}
 
 	if ( $contact->contact_exists( $args['email'] ) ) {
-		wp_die( __( 'A contact with this email already exists !', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'A contact with this email already exists !', 'easy-property-listings' ) );
 	}
 
 	if ( empty( $args['title'] ) && ( ! empty( $args['first_name'] ) || ! empty( $args['last_name'] ) ) ) {
@@ -517,7 +517,7 @@ function epl_new_contact( $args ) {
 	$contact->update_meta( 'contact_category', 'new' );
 
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
-	wp_redirect( $redirect );
+	wp_safe_redirect( $redirect );
 	exit;
 
 }
@@ -529,10 +529,14 @@ add_action( 'epl_new-contact', 'epl_new_contact', 10, 1 );
  * @since 3.0
  */
 function epl_contact_category_update() {
+
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
 	if ( (int) $_POST['contact_id'] > 0 && ! empty( $_POST['type'] ) ) {
 
-		$contact = new EPL_Contact( $_POST['contact_id'] );
-		echo $contact->update_meta( 'contact_category', trim( $_POST['type'] ) );
+		$contact = new EPL_Contact( sanitize_text_field( wp_unslash( $_POST['contact_id'] )) );
+		$status =  $contact->update_meta( 'contact_category', esc_attr( trim( $_POST['type'] ) ) );
+		echo esc_attr( $status );
 		wp_die();
 	}
 }
@@ -545,6 +549,8 @@ add_action( 'wp_ajax_epl_contact_category_update', 'epl_contact_category_update'
  */
 function epl_contact_tag_add() {
 
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
 	if ( ( ! empty( $_POST['term_id'] ) ) ) {
 
 		if ( is_numeric( $_POST['term_id'] ) ) {
@@ -552,7 +558,7 @@ function epl_contact_tag_add() {
 		}
 
 		// update tag for a contact.
-		if ( (int) $_POST['contact_id'] > 0 ) {
+		if ( isset( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 ) {
 			$terms = wp_set_object_terms( absint( $_POST['contact_id'] ), $_POST['term_id'], 'epl_contact_tag', true );
 			wp_die( current( $terms ) );
 		} else {
@@ -582,6 +588,9 @@ add_action( 'wp_ajax_contact_tags_update', 'epl_contact_tag_add' );
  * @since 3.0
  */
 function epl_contact_tag_remove() {
+
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
 	if ( (int) $_POST['contact_id'] > 0 && (int) $_POST['term_id'] > 0 ) {
 
 		wp_remove_object_terms( absint( $_POST['contact_id'] ), absint( $_POST['term_id'] ), 'epl_contact_tag' );
@@ -601,7 +610,7 @@ function epl_contact_action_menus( $contact ) {
 	<div class="contact-action-menu epl-clearfix">
 		<ul class="epl_contact_quick_actions">
 			<li>
-				<a  class="contact-action-category" href="#" title="<?php _e( 'Contact Category' ); ?>">
+				<a  class="contact-action-category" href="#" title="<?php esc_html_e( 'Contact Category' ); ?>">
 					<span class="dashicons dashicons-flag"></span>
 					<b class="caret"></b>
 				</a>
@@ -618,7 +627,7 @@ function epl_contact_action_menus( $contact ) {
 			</li>
 
 			<li>
-				<a class="contact-action-tag" href="#" title="<?php _e( 'Contact Tags', 'easy-property-listings' ); ?>">
+				<a class="contact-action-tag" href="#" title="<?php esc_html_e( 'Contact Tags', 'easy-property-listings' ); ?>">
 					<span class="dashicons dashicons-tag"></span>
 					<b class="caret"></b>
 				</a>
@@ -740,7 +749,7 @@ add_action( 'epl_contact_assigned_tags', 'epl_contact_assigned_tags' );
  */
 function epl_contact_background_info( $contact ) {
 	echo '<div class="epl-contact-bg-info-wrap">';
-		echo '<h4>' . __( 'Background Info', 'easy-property-listings' ) . '</h4>';
+		echo '<h4>' . esc_html__( 'Background Info', 'easy-property-listings' ) . '</h4>';
 		echo '<div class="epl-contact-bg-info">';
 			echo $contact->background_info;
 		echo '</div>';
@@ -839,12 +848,12 @@ function epl_contact_contact_details( $contact ) {
 	<?php endif; ?>
 	<span class="contact-since epl-info-item">
 		<span class="dashicons dashicons-clock epl-contact-icons"></span>
-		<?php _e( 'Contact since', 'easy-property-listings' ); ?>
+		<?php esc_html_e( 'Contact since', 'easy-property-listings' ); ?>
 		<?php echo date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ); ?>
 	</span>
 	<span class="epl-contact-view-more">
 		<span class="dashicons dashicons-arrow-right-alt epl-contact-icons"></span>
-		<?php _e( 'View More', 'easy-property-listings' ); ?>
+		<?php esc_html_e( 'View More', 'easy-property-listings' ); ?>
 	</span>
 	<?php
 }
@@ -864,13 +873,13 @@ function epl_contact_recent_interests( $contact, $number = 10, $paged = 1, $orde
 	?>
 	<?php do_action( 'epl_contact_add_listing_form', $contact ); ?>
 	<h3 class="epl-contact-activity-title">
-		<?php _e( 'Listings', 'easy-property-listings' ); ?>
+		<?php esc_html_e( 'Listings', 'easy-property-listings' ); ?>
 	</h3>
 	<span class="epl-contact-add-old-listing-form-wrap">
-		<input id="epl_contact_listing_search" type="text" placeholder="<?php _e( 'Search Listings', 'easy-property-listings' ); ?>"/>
+		<input id="epl_contact_listing_search" type="text" placeholder="<?php esc_html_e( 'Search Listings', 'easy-property-listings' ); ?>"/>
 	</span>
-	<span class="epl-contact-or"><?php _e( 'Or', 'easy-property-listings' ); ?></span>
-	<span class="epl-contact-add-listing"><?php _e( 'Add New' ); ?></span>
+	<span class="epl-contact-or"><?php esc_html_e( 'Or', 'easy-property-listings' ); ?></span>
+	<span class="epl-contact-add-listing"><?php esc_html_e( 'Add New' ); ?></span>
 
 	<input type="hidden" id="epl-listing-table-orderby" value="<?php echo $orderby; ?>"/>
 	<input type="hidden" id="epl-listing-table-order" value="<?php echo $order; ?>">
@@ -892,8 +901,8 @@ add_action( 'epl_contact_recent_interests', 'epl_contact_recent_interests' );
 function epl_contact_recent_activities( $contact, $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
 	?>
 	<?php do_action( 'epl_contact_add_activity_form', $contact ); ?>
-	<h3 class="epl-contact-activity-title"><?php _e( 'Activities', 'easy-property-listings' ); ?> </h3>
-	<span class="epl-contact-add-activity"><?php _e( 'Add New' ); ?></span>
+	<h3 class="epl-contact-activity-title"><?php esc_html_e( 'Activities', 'easy-property-listings' ); ?> </h3>
+	<span class="epl-contact-add-activity"><?php esc_html_e( 'Add New' ); ?></span>
 	<input type="hidden" id="epl-contact-table-orderby" value="<?php echo $orderby; ?>"/>
 	<input type="hidden" id="epl-contact-table-order" value="<?php echo $order; ?>">
 	<?php
@@ -913,6 +922,8 @@ add_action( 'epl_contact_recent_activities', 'epl_contact_recent_activities' );
  */
 function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
 
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		extract( $_POST );
 	}
@@ -926,9 +937,9 @@ function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $o
 		<table class="wp-list-table widefat striped epl-contact-activities">
 			<thead>
 			<tr class="epl-contact-activities-table-heads">
-				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_type"><?php _e( 'Type', 'easy-property-listings' ); ?></th>
-				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_content"><?php _e( 'Comment', 'easy-property-listings' ); ?></th>
-				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_date"><?php _e( 'Date', 'easy-property-listings' ); ?></th>
+				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_type"><?php esc_html_e( 'Type', 'easy-property-listings' ); ?></th>
+				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_content"><?php esc_html_e( 'Comment', 'easy-property-listings' ); ?></th>
+				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_date"><?php esc_html_e( 'Date', 'easy-property-listings' ); ?></th>
 			</tr>
 			</thead>
 			<tbody>
@@ -956,11 +967,11 @@ function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $o
 					</tr>
 				<?php endforeach; ?>
 			<?php else : ?>
-				<tr><td colspan="5"><?php _e( 'No Activities', 'easy-property-listings' ); ?></td></tr>
+				<tr><td colspan="5"><?php esc_html_e( 'No Activities', 'easy-property-listings' ); ?></td></tr>
 			<?php endif; ?>
 			</tbody>
 		</table>
-		<span  data-page="<?php echo $paged + 1; ?>" class="epl-contact-load-activities"><?php _e( 'Load More' ); ?> </span>
+		<span  data-page="<?php echo $paged + 1; ?>" class="epl-contact-load-activities"><?php esc_html_e( 'Load More' ); ?> </span>
 	</div>
 	<?php
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
@@ -980,6 +991,8 @@ add_action( 'wp_ajax_epl_contact_get_activity_table', 'epl_contact_get_activitie
  * @since 3.0
  */
 function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
+
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		extract( $_POST );
@@ -1002,9 +1015,9 @@ function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $ord
 	<table class="wp-list-table widefat striped epl-contact-listings">
 		<thead>
 		<tr class="epl-contact-listings-table-heads">
-			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="listing_type"><?php _e( 'Type', 'easy-property-listings' ); ?></th>
-			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="post_content"><?php _e( 'Title', 'easy-property-listings' ); ?></th>
-			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="listing_status"><?php _e( 'Status', 'easy-property-listings' ); ?></th>
+			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="listing_type"><?php esc_html_e( 'Type', 'easy-property-listings' ); ?></th>
+			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="post_content"><?php esc_html_e( 'Title', 'easy-property-listings' ); ?></th>
+			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="listing_status"><?php esc_html_e( 'Status', 'easy-property-listings' ); ?></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -1023,7 +1036,7 @@ function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $ord
 				</tr>
 			<?php endforeach; ?>
 		<?php else : ?>
-			<tr><td colspan="5"><?php _e( 'No Listings Found', 'easy-property-listings' ); ?></td></tr>
+			<tr><td colspan="5"><?php esc_html_e( 'No Listings Found', 'easy-property-listings' ); ?></td></tr>
 		<?php endif; ?>
 		</tbody>
 	</table>
@@ -1044,7 +1057,7 @@ add_action( 'wp_ajax_epl_contact_get_listing_table', 'epl_contact_get_listings_h
 function epl_contact_add_activity_form( $contact ) {
 	$form_builder  = new EPL_FORM_BUILDER();
 	$listing_ids   = $contact->listing_ids;
-	$listings_opts = array( '' => __( 'No Listing' ) );
+	$listings_opts = array( '' => esc_html__( 'No Listing' ) );
 	if ( ! empty( $listing_ids ) ) {
 		$listings = get_posts(
 			array(
@@ -1060,7 +1073,7 @@ function epl_contact_add_activity_form( $contact ) {
 	}
 	$fields = array(
 		array(
-			'label'  => __( 'Add Activity', 'easy-property-listings' ),
+			'label'  => esc_html__( 'Add Activity', 'easy-property-listings' ),
 			'class'  => 'col-1 epl-inner-div',
 			'id'     => 'epl-contact-add-activity-wrap',
 			'help'   => '<hr/>',
@@ -1084,7 +1097,7 @@ function epl_contact_add_activity_form( $contact ) {
 				),
 				array(
 					'name'  => 'epl_contact_activity_submit',
-					'value' => __( 'Add', 'easy-property-listings' ),
+					'value' => esc_html__( 'Add', 'easy-property-listings' ),
 					'class' => 'button button-primary',
 					'type'  => 'submit',
 				),
@@ -1117,7 +1130,7 @@ function epl_contact_add_listing_form( $contact ) {
 	$listing_types = epl_get_active_post_types();
 	$fields        = array(
 		array(
-			'label'  => __( 'Add Listing', 'easy-property-listings' ),
+			'label'  => esc_html__( 'Add Listing', 'easy-property-listings' ),
 			'class'  => 'col-1 epl-inner-div',
 			'id'     => 'epl-contact-add-listing-wrap',
 			'help'   => '<hr/>',
@@ -1131,7 +1144,7 @@ function epl_contact_add_listing_form( $contact ) {
 				),
 				array(
 					'name'      => 'property_address_lot_number',
-					'label'     => __( 'Lot', 'easy-property-listings' ),
+					'label'     => esc_html__( 'Lot', 'easy-property-listings' ),
 					'type'      => 'text',
 					'maxlength' => '40',
 					'include'   => array( 'land', 'commercial_land' ),
@@ -1139,7 +1152,7 @@ function epl_contact_add_listing_form( $contact ) {
 
 				array(
 					'name'      => 'property_address_sub_number',
-					'label'     => __( 'Unit', 'easy-property-listings' ),
+					'label'     => esc_html__( 'Unit', 'easy-property-listings' ),
 					'type'      => 'text',
 					'maxlength' => '40',
 					'exclude'   => array( 'land', 'commercial_land' ),
@@ -1147,14 +1160,14 @@ function epl_contact_add_listing_form( $contact ) {
 
 				array(
 					'name'      => 'property_address_street_number',
-					'label'     => __( 'Street Number', 'easy-property-listings' ),
+					'label'     => esc_html__( 'Street Number', 'easy-property-listings' ),
 					'type'      => 'text',
 					'maxlength' => '40',
 				),
 
 				array(
 					'name'      => 'property_address_street',
-					'label'     => __( 'Street Name', 'easy-property-listings' ),
+					'label'     => esc_html__( 'Street Name', 'easy-property-listings' ),
 					'type'      => 'text',
 					'maxlength' => '80',
 				),
@@ -1182,18 +1195,18 @@ function epl_contact_add_listing_form( $contact ) {
 
 				array(
 					'name'      => 'property_address_country',
-					'label'     => __( 'Country', 'easy-property-listings' ),
+					'label'     => esc_html__( 'Country', 'easy-property-listings' ),
 					'type'      => 'text',
 					'maxlength' => '40',
 				),
 				array(
 					'name'  => 'post_title',
-					'label' => __( 'Full Address', 'easy-property-listings' ),
+					'label' => esc_html__( 'Full Address', 'easy-property-listings' ),
 					'type'  => 'text',
 				),
 				array(
 					'name'      => 'post_type',
-					'label'     => __( 'Listing Type', 'easy-property-listings' ),
+					'label'     => esc_html__( 'Listing Type', 'easy-property-listings' ),
 					'type'      => 'select',
 					'class'     => 'epl-contact-note-select',
 					'opts'      => $listing_types,
@@ -1201,15 +1214,15 @@ function epl_contact_add_listing_form( $contact ) {
 				),
 				array(
 					'name'      => 'property_status',
-					'label'     => __( 'Listing Status', 'easy-property-listings' ),
+					'label'     => esc_html__( 'Listing Status', 'easy-property-listings' ),
 					'type'      => 'select',
 					'class'     => 'epl-contact-note-select',
 					'opts'      => apply_filters(
 						'epl_contact_property_status',
 						array(
-							'current' => __( 'Current', 'easy-property-listings' ),
-							'sold'    => __( 'Sold', 'easy-property-listings' ),
-							'leased'  => __( 'Leased', 'easy-property-listings' ),
+							'current' => esc_html__( 'Current', 'easy-property-listings' ),
+							'sold'    => esc_html__( 'Sold', 'easy-property-listings' ),
+							'leased'  => esc_html__( 'Leased', 'easy-property-listings' ),
 						)
 					),
 					'maxlength' => '200',
@@ -1217,7 +1230,7 @@ function epl_contact_add_listing_form( $contact ) {
 
 				array(
 					'name'  => 'contact_listing_submit',
-					'value' => __( 'Add', 'easy-property-listings' ),
+					'value' => esc_html__( 'Add', 'easy-property-listings' ),
 					'class' => 'button button-primary',
 					'type'  => 'submit',
 				),
@@ -1271,7 +1284,7 @@ function epl_before_meta_field_property_owner( $post, $value ) {
 					' . $contact->heading . '
 				</div>
 				<a class="epl-listing-contact-url" href="' . $url . '">' .
-					__( 'View Contact' ) . '
+					esc_html__( 'View Contact' ) . '
 				</a>
 			</div>';
 	echo '</td></tr>';
@@ -1284,6 +1297,8 @@ add_action( 'epl_before_meta_field_property_owner', 'epl_before_meta_field_prope
  * @since 3.0
  */
 function epl_search_contact() {
+
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
 	$search_array = array(
 		'showposts'        => 6,
@@ -1325,6 +1340,8 @@ add_action( 'wp_ajax_epl_search_contact', 'epl_search_contact' );
  */
 function epl_search_contact_listing() {
 
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
 	$search_array = array(
 		's'           => sanitize_text_field( $_POST['s'] ),
 		'showposts'   => 6,
@@ -1354,6 +1371,8 @@ add_action( 'wp_ajax_epl_search_contact_listing', 'epl_search_contact_listing' )
  * @since 3.0
  */
 function epl_search_user() {
+
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
 	$args = array(
 		'search' => $_REQUEST['user_name'] . '*',
@@ -1391,7 +1410,7 @@ add_action( 'wp_ajax_epl_search_user', 'epl_search_user' );
 function epl_contact_save_note_note_tab( $args ) {
 
 	if ( ! is_admin() || ! epl_contact_access() ) {
-		wp_die( __( 'You do not have permission to save note.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have permission to save note.', 'easy-property-listings' ) );
 	}
 	if ( empty( $args ) ) {
 		return;
@@ -1403,10 +1422,10 @@ function epl_contact_save_note_note_tab( $args ) {
 	$contact_id = (int) $args['contact_id'];
 	$nonce      = $args['add_contact_note_nonce'];
 	if ( ! wp_verify_nonce( $nonce, 'add-contact-note' ) ) {
-		wp_die( __( 'Cheatin\' eh?!', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Cheatin\' eh?!', 'easy-property-listings' ) );
 	}
 	if ( empty( $contact_note ) ) {
-		epl_set_error( 'empty-contact-note', __( 'A note is required', 'easy-property-listings' ) );
+		epl_set_error( 'empty-contact-note', esc_html__( 'A note is required', 'easy-property-listings' ) );
 	}
 	if ( epl_get_errors() ) {
 		epl_set_error();
