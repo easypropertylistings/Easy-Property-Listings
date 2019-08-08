@@ -26,7 +26,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	 *
 	 * @since 1.0.0
 	 */
-	function __construct() {
+	public function __construct() {
 		parent::__construct( false, $name = __( 'EPL - Listing Search', 'easy-property-listings' ), array( 'description' => __( 'Search listings.', 'easy-property-listings' ) ) );
 		// Widget name for filter: epl_property_search.
 	}
@@ -38,12 +38,17 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
 	 */
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
+
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$defaults = epl_search_get_defaults();
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		extract( $args );
+		foreach ( $args as $arg_key => $arg_val ) {
+
+			${$arg_key} = $arg_val;
+		}
 
 		echo $before_widget;
 
@@ -67,7 +72,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	 * @param array $new_instance New values.
 	 * @param array $old_instance Old values.
 	 */
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance   = $old_instance;
 		$all_fields = epl_search_widget_fields();
 		foreach ( $all_fields as $all_field ) {
@@ -82,12 +87,19 @@ class EPL_Widget_Property_Search extends WP_Widget {
 	 * @since 1.0
 	 * @param array $instance options.
 	 */
-	function form( $instance ) {
+	public function form( $instance ) {
+
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$defaults = epl_search_get_defaults();
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		$instance = array_map( 'epl_esc_attr', $instance );
-		extract( $instance );
+
+		foreach ( $instance as $in_key => $in_val ) {
+
+			${$in_key} = $in_val;
+		}
+
 		$post_types = $post_type;
 		$fields     = epl_search_widget_fields();
 
