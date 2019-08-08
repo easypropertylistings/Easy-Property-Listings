@@ -46,7 +46,6 @@ function epl_status_dashboard_widget_callback() {
 	$activate_post_types = isset( $epl_settings['activate_post_types'] ) ? $epl_settings['activate_post_types'] : array();
 	$activate_post_types = apply_filters( 'epl_filter_dashboard_widget_posts', $activate_post_types ); ?>
 	<div class="main">
-		<?php // epl_dashboard_widget_offer();. ?>
 		<ul class="epl_status_list">
 		<?php
 		if ( ! empty( $activate_post_types ) ) {
@@ -55,9 +54,9 @@ function epl_status_dashboard_widget_callback() {
 				$clear = ( 0 === $counter % 2 && 0 !== $counter ) ? 'epl-clearfix' : '';
 				$count = wp_count_posts( $activate_post_type );
 				?>
-					<li class="epl_type_<?php echo $activate_post_type . ' ' . $clear; ?>">
-						<a href="edit.php?post_type=<?php echo $activate_post_type; ?>">
-							<strong><?php echo epl_get_plural( $count->publish, $activate_post_type ); ?></strong>
+					<li class="epl_type_<?php echo esc_attr( $activate_post_type . ' ' . $clear ); ?>">
+						<a href="edit.php?post_type=<?php echo esc_attr( $activate_post_type ); ?>">
+							<strong><?php echo esc_attr( epl_get_plural( $count->publish, $activate_post_type ) ); ?></strong>
 							<?php epl_posts_highlights( $activate_post_type ); ?>
 						</a>
 
@@ -80,33 +79,45 @@ function epl_status_dashboard_widget_callback() {
  * @param string $singular Option for the case.
  */
 function epl_get_plural( $count, $singular ) {
+	$return = false;
+
 	switch ( $singular ) {
 		case 'property':
-			return sprintf( _n( '1 ' . __( 'Property', 'easy-property-listings' ), '%s ' . __( 'Property', 'easy-property-listings' ), $count, 'easy-property-listings' ), $count );
-		break;
+			// translators: count.
+			$return = sprintf( _n( '%s Property', '%s Property', $count, 'easy-property-listings' ), $count );
+			break;
 		case 'land':
-			return sprintf( _n( '1 ' . __( 'Land', 'easy-property-listings' ), '%s ' . __( 'Land', 'easy-property-listings' ), $count, 'easy-property-listings' ), $count );
-		break;
+			// translators: count.
+			$return = sprintf( _n( '%s Land', '%s Land', $count, 'easy-property-listings' ), $count );
+			break;
 		case 'rental':
-			return sprintf( _n( '1 ' . __( 'Rental', 'easy-property-listings' ), '%s ' . __( 'Rental', 'easy-property-listings' ), $count, 'easy-property-listings' ), $count );
-		break;
+			// translators: count.
+			$return = sprintf( _n( '%s Rental', '%s Rental', $count, 'easy-property-listings' ), $count );
+			break;
 		case 'rural':
-			return sprintf( _n( '1 ' . __( 'Rural', 'easy-property-listings' ), '%s ' . __( 'Rural', 'easy-property-listings' ), $count, 'easy-property-listings' ), $count );
-		break;
+			// translators: count.
+			$return = sprintf( _n( '%s Rural', '%s Rural', $count, 'easy-property-listings' ), $count );
+			break;
 		case 'commercial':
-			return sprintf( _n( '1 ' . __( 'Commercial', 'easy-property-listings' ), '%s ' . __( 'Commercial', 'easy-property-listings' ), $count, 'easy-property-listings' ), $count );
-		break;
+			// translators: count.
+			$return = sprintf( _n( '%s Commercial', '%s Commercial', $count, 'easy-property-listings' ), $count );
+			break;
 		case 'commercial_land':
-			return sprintf( _n( '1 ' . __( 'Commercial Land', 'easy-property-listings' ), '%s ' . __( 'Commercial Land', 'easy-property-listings' ), $count, 'easy-property-listings' ), $count );
-		break;
+			// translators: count.
+			$return = sprintf( _n( '%s Commercial Land', '%s Commercial Land', $count, 'easy-property-listings' ), $count );
+			break;
 		case 'business':
-			return sprintf( _n( '1 ' . __( 'Business', 'easy-property-listings' ), '%s ' . __( 'Business', 'easy-property-listings' ), $count, 'easy-property-listings' ), $count );
-		break;
+			// translators: count.
+			$return = sprintf( _n( '%s Business', '%s Business', $count, 'easy-property-listings' ), $count );
+			break;
 		default:
 			$singular = ucwords( str_replace( 'epl', '', str_replace( '-', ' ', str_replace( '_', ' ', $singular ) ) ) );
-			return sprintf( _n( '1 ' . __( $singular, 'easy-property-listings' ), '%s ' . __( $singular, 'easy-property-listings' ), $count, 'easy-property-listings' ), $count );
-		break;
+			// translators: count.
+			$return = sprintf( _n( '%s ' . $singular, '%s ' . $singular, $count, 'easy-property-listings' ), $count );
+			break;
 	}
+
+	return $return;
 }
 
 /**
@@ -145,7 +156,7 @@ function epl_posts_highlights( $type ) {
 			foreach ( $filters as $filter_key     => $filter_value ) {
 				$count = epl_get_post_count( $type, $filter_value['key'], $filter_value['value'] );
 				if ( 0 !== $count ) {
-					echo '<span>' . $count . ' ' . $filter_value['string'] . ' </span>';
+					echo '<span>' . esc_attr( $count ) . ' ' . esc_attr( $filter_value['string'] ) . ' </span>';
 				}
 			}
 			break;
@@ -191,7 +202,7 @@ function epl_posts_highlights( $type ) {
 			foreach ( $filters as $filter_key     => $filter_value ) {
 				$count = epl_get_post_count( $type, $filter_value['key'], $filter_value['value'] );
 				if ( 0 !== $count ) {
-					echo '<span>' . $count . ' ' . $filter_value['string'] . ' </span>';
+					echo '<span>' . esc_attr( $count ) . ' ' . esc_attr( $filter_value['string'] ) . ' </span>';
 				}
 			}
 			break;
@@ -235,7 +246,7 @@ function epl_posts_highlights( $type ) {
 			foreach ( $filters as $filter_key     => $filter_value ) {
 				$count = epl_get_post_count( $type, $filter_value['key'], $filter_value['value'] );
 				if ( 0 !== $count ) {
-					echo '<span>' . $count . ' ' . $filter_value['string'] . ' </span>';
+					echo '<span>' . esc_attr( $count ) . ' ' . esc_attr( $filter_value['string'] ) . ' </span>';
 				}
 			}
 			break;
@@ -273,14 +284,12 @@ function epl_dashboard_activity_widget() {
 			)
 		);
 
-		// echo '</div>';.
-
 		$recent_comments = epl_dashboard_recent_comments();
 
 	if ( ! $recent_comments ) {
 		echo '<div class="no-activity">';
 		echo '<p class="smiley"></p>';
-		echo '<p>' . __( 'No activity yet!' ) . '</p>';
+		echo '<p>' . esc_html__( 'No activity yet!' ) . '</p>';
 		echo '</div>';
 	}
 
@@ -309,7 +318,9 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 		$comments_query['status'] = 'approve';
 	}
 
-	while ( count( $comments ) < $total_items && $possible = get_comments( $comments_query ) ) {
+	$possible       = get_comments( $comments_query );
+	$comments_count = count( $comments );
+	while ( $comments_count < $total_items && $possible ) {
 		if ( ! is_array( $possible ) ) {
 			break;
 		}
@@ -318,18 +329,20 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 				continue;
 			}
 			$comments[] = $comment;
-			if ( count( $comments ) === $total_items ) {
+			$com_count  = count( $comments );
+			if ( $com_count === $total_items ) {
 				break 2;
 			}
 		}
 		$comments_query['offset'] += $comments_query['number'];
 		$comments_query['number']  = $total_items * 10;
+		$comments_count            = count( $comments );
 	}
 
 	if ( $comments ) {
 		$activity_types = array();
 		echo '<div id="latest-comments" class="epl-dashboard-activity-feed activity-block epl-activity-block epl-feed-block">';
-		echo '<h3>' . __( 'Activity' ) . '</h3>';
+		echo '<h3>' . esc_html__( 'Activity' ) . '</h3>';
 
 		echo '<ul id="the-comment-list" data-wp-lists="list:comment">';
 		foreach ( $comments as $comment ) {
@@ -382,9 +395,9 @@ function epl_dashboard_recent_posts( $args ) {
 
 	if ( $posts->have_posts() ) {
 
-		echo '<div id="' . $args['id'] . '" class="epl-activity-block activity-block">';
+		echo '<div id="' . esc_attr( $args['id'] ) . '" class="epl-activity-block activity-block">';
 
-		echo '<h3>' . $args['title'] . '</h3>';
+		echo '<h3>' . esc_attr( $args['title'] ) . '</h3>';
 
 		echo '<ul>';
 
@@ -396,23 +409,23 @@ function epl_dashboard_recent_posts( $args ) {
 
 			$time = get_the_time( 'U' );
 			if ( date( 'Y-m-d', $time ) === $today ) {
-				$relative = __( 'Today' );
+				$relative = esc_html__( 'Today' );
 			} elseif ( date( 'Y-m-d', $time ) === $tomorrow ) {
-				$relative = __( 'Tomorrow' );
+				$relative = esc_html__( 'Tomorrow' );
 			} elseif ( date( 'Y', $time ) !== date( 'Y', current_time( 'timestamp' ) ) ) {
 				/* translators: date and time format for recent posts on the dashboard, from a different calendar year, see http://php.net/date */
-				$relative = date_i18n( __( 'M jS Y' ), $time );
+				$relative = date_i18n( esc_html__( 'M jS Y' ), $time );
 			} else {
 				/* translators: date and time format for recent posts on the dashboard, see http://php.net/date */
-				$relative = date_i18n( __( 'M jS' ), $time );
+				$relative = date_i18n( esc_html__( 'M jS' ), $time );
 			}
 
 			// Use the post edit link for those who can edit, the permalink otherwise.
 			$recent_post_link = current_user_can( 'edit_post', get_the_ID() ) ? get_edit_post_link() : get_permalink();
 
 			/* translators: 1: relative date, 2: time, 3: post edit link or permalink, 4: post title */
-			$format = __( '<span>%1$s, %2$s</span> <a href="%3$s">%4$s</a>' );
-			printf( "<li>$format</li>", $relative, get_the_time(), $recent_post_link, _draft_or_post_title() );
+			$format = wp_kses_post( __( '<span>%1$s, %2$s</span> <a href="%3$s">%4$s</a>' ) );
+			printf( "<li>$format</li>", $relative, get_the_time(), $recent_post_link, _draft_or_post_title() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		echo '</ul>';
