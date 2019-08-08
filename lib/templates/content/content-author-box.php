@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <!-- Author Box Container Tabbed -->
-<div id="epl-box<?php echo $epl_author->author_id; ?>" class="epl-author-box-container">
+<div id="epl-box<?php echo esc_attr( $epl_author->author_id ); ?>" class="epl-author-box-container">
 	<ul class="epl-author-tabs author-tabs">
 		<?php
 
@@ -27,8 +27,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 				<?php
 				ob_start();
-				echo apply_filters( 'epl_author_tab_' . $k . '_callback', call_user_func( 'epl_author_tab_' . str_replace( ' ', '_', $k ), $epl_author ), $epl_author );
-				$author_tab            = array( 'label' => $author_tab );
+				$output_html = apply_filters( 'epl_author_tab_' . $k . '_callback', call_user_func( 'epl_author_tab_' . str_replace( ' ', '_', $k ), $epl_author ), $epl_author );
+				$author_tab  = array( 'label' => $author_tab );
+
+				echo wp_kses_post( $output_html );
+
 				$author_tab['content'] = ob_get_clean();
 				// Remove tab if callback function output is ''.
 				if ( trim( $author_tab['content'] ) === '' ) {
@@ -38,9 +41,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				?>
 
-				<li class="tab-link <?php echo $current_class; ?>" data-tab="tab-<?php echo $counter; ?>"><?php _e( $author_tab['label'], 'easy-property-listings' ); ?></li>
-											   <?php
-												$counter ++;
+				<li class="tab-link <?php echo esc_attr( $current_class ); ?>" data-tab="tab-<?php echo esc_attr( $counter ); ?>"><?php echo esc_html( $author_tab['label'] ); ?></li>
+			<?php
+			$counter ++;
 		}
 		?>
 	</ul>
@@ -54,13 +57,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php
 			$counter = 1;
-		foreach ( $author_tabs as $k => $tab ) {
+		foreach ( $author_tabs as $k => $tab ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 			$current_tab   = strtolower( 'epl-author-' . $k );
 			$current_class = 1 === $counter ? 'epl-author-current' : '';
 			?>
-				<div id="tab-<?php echo $counter; ?>" class="<?php epl_author_class( $current_tab . ' epl-author-tab-content ' . $current_class ); ?>">
+				<div id="tab-<?php echo esc_attr( $counter ); ?>" class="<?php epl_author_class( $current_tab . ' epl-author-tab-content ' . $current_class ); ?>">
 					<?php
-					echo $tab['content'];
+					echo wp_kses_post( $tab['content'] );
 					?>
 				</div>
 				<?php

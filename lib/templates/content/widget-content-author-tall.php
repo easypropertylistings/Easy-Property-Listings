@@ -36,23 +36,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 
 			<?php do_action( 'epl_author_widget_before_title' ); ?>
-			<h5 class="epl-author-title author-title"><a href="<?php echo $permalink; ?>"><?php echo $author_title; ?></a></h5>
+			<h5 class="epl-author-title author-title"><a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_attr( $author_title ); ?></a></h5>
 			<?php do_action( 'epl_author_widget_after_title' ); ?>
 
-			<div class="epl-author-position author-position"><?php echo $epl_author->get_author_position(); ?></div>
+			<div class="epl-author-position author-position"><?php echo esc_attr( $epl_author->get_author_position() ); ?></div>
 
 			<?php do_action( 'epl_author_widget_before_contact' ); ?>
 			<div class="epl-author-contact author-contact">
-				<?php if ( '' !== $epl_author->get_author_mobile() ) { ?>
-					<span class="label-mobile"><?php apply_filters( 'epl_author_widget_label_mobile', _e( 'Mobile', 'easy-property-listings' ) ); ?> </span>
-					<span class="mobile"><?php echo $epl_author->get_author_mobile(); ?></span>
+				<?php if ( ! empty( $epl_author->get_author_mobile() ) ) { ?>
+					<span class="label-mobile">
+						<?php
+							$label_mobile = apply_filters( 'epl_author_widget_label_mobile', __( 'Mobile', 'easy-property-listings' ) );
+							echo esc_attr( $label_mobile );
+						?>
+					</span>
+					<span class="mobile"><?php echo esc_attr( $epl_author->get_author_mobile() ); ?></span>
 				<?php } ?>
 			</div>
 
 			<div class="epl-author-contact author-contact author-contact-office-phone">
-				<?php if ( '' !== $epl_author->get_author_office_phone() ) { ?>
-					<span class="label-office-phone"><?php apply_filters( 'epl_author_widget_label_office', _e( 'Office', 'easy-property-listings' ) ); ?></span>
-					<span class="office-phone"><?php echo $epl_author->get_author_office_phone(); ?></span>
+				<?php if ( ! empty( $epl_author->get_author_office_phone() ) ) { ?>
+					<span class="label-office-phone">
+						<?php
+						$label_office = apply_filters( 'epl_author_widget_label_office', esc_html__( 'Office', 'easy-property-listings' ) );
+							echo esc_attr( $label_office );
+						?>
+					</span>
+					<span class="office-phone"><?php echo esc_attr( $epl_author->get_author_office_phone() ); ?></span>
 				<?php } ?>
 			</div>
 
@@ -64,7 +74,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php
 						$social_icons = apply_filters( 'epl_display_author_social_icons', array( 'email', 'facebook', 'twitter', 'instagram', 'pinterest', 'linkedin', 'skype', 'youtube' ) );
 					foreach ( $social_icons as $social_icon ) {
-						echo call_user_func( array( $epl_author, 'get_' . $social_icon . '_html' ) );
+						$html_output = call_user_func( array( $epl_author, 'get_' . $social_icon . '_html' ) );
+
+						echo wp_kses_post( $html_output );
 					}
 					?>
 				</div>
@@ -74,7 +86,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php do_action( 'epl_author_widget_before_bio' ); ?>
 			<?php
 			if ( 'on' === $d_bio ) {
-				echo $epl_author->get_description_html();
+				echo wp_kses_post( $epl_author->get_description_html() );
 			}
 			?>
 			<?php do_action( 'epl_author_widget_after_bio' ); ?>

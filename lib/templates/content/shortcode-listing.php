@@ -24,7 +24,7 @@ if ( $query_open->have_posts() ) {
 	$attributes['class'] = isset( $attributes['class'] ) ? $attributes['class'] : 'epl-shortcode-listing';
 	?>
 	<div class="loop epl-shortcode epl-clearfix">
-		<div class="loop-content <?php echo $attributes['class']; ?> <?php echo epl_template_class( $attributes['template'], 'archive' ); ?> epl-clearfix">
+		<div class="loop-content <?php echo esc_attr( $attributes['class'] ); ?> <?php echo esc_attr( epl_template_class( $attributes['template'], 'archive' ) ); ?> epl-clearfix">
 			<?php
 			if ( 'on' === $attributes['tools_top'] ) {
 				do_action( 'epl_property_loop_start' );
@@ -50,5 +50,5 @@ if ( $query_open->have_posts() ) {
 	<?php
 	wp_reset_postdata();
 } else {
-	echo '<h3>' . __( 'Nothing found, please check back later.', 'easy-property-listings' ) . '</h3>';
+	echo '<h3>' . esc_html__( 'Nothing found, please check back later.', 'easy-property-listings' ) . '</h3>';
 }
