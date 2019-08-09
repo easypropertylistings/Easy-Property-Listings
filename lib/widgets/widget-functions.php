@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.DB.SlowDBQuery
+
 /**
  * Search widget form fields for search widget
  *
@@ -909,7 +911,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 						?>
 				/>
 				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
-					<?php echo $field['label']; ?>
+					<?php echo esc_attr( $field['label'] ); ?>
 				</label>
 			</p>
 			<?php
@@ -921,7 +923,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 			?>
 			<p>
 				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
-					<?php echo $field['label']; ?>
+					<?php echo esc_attr( $field['label'] ); ?>
 				</label>
 				<input
 					class="widefat"
@@ -967,10 +969,12 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					<?php echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="<?php
+					name="
+					<?php
 					echo esc_attr( $object->get_field_name( $field['key'] ) );
 					echo isset( $field['multiple'] ) ? '[]' : '';
-					?>">
+					?>
+					">
 
 					<?php
 
@@ -978,7 +982,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 						$selected = '';
 						if ( isset( $field['multiple'] ) ) {
 
-							if ( in_array( $k, $value ) ) {
+							if ( in_array( $k, $value, true ) ) {
 								$selected = 'selected="selected"';
 							}
 						} else {
@@ -987,7 +991,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 								$selected = 'selected="selected"';
 							}
 						}
-						echo '<option value="' . esc_attr( $k ) . '" ' . $selected . '>' . esc_attr( $v ) . '</option>';
+						echo '<option value="' . esc_attr( $k ) . '" ' . $selected . '>' . esc_attr( $v ) . '</option>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
 					?>
 
@@ -1017,7 +1021,7 @@ function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $
 		}
 	}
 
-	if ( ! empty( $field['exclude'] ) && in_array( $post_type, $field['exclude'] ) ) {
+	if ( ! empty( $field['exclude'] ) && in_array( $post_type, $field['exclude'], true ) ) {
 		return;
 	}
 
@@ -1034,7 +1038,7 @@ function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $
  * @return Searched posts if query is set.
  */
 function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
-
+	// phpcs:disable WordPress.Security.NonceVerification
 	if ( empty( $data ) ) {
 		$data = $_REQUEST;
 	}
@@ -1085,6 +1089,8 @@ function epl_is_search() {
  */
 function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
+	// phpcs:disable WordPress.DB
+
 	if ( empty( $key ) ) {
 		return;
 	}
@@ -1098,7 +1104,18 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 	$type_str = " ( '" . implode( "','", $type ) . "' ) ";
 
 	global $wpdb;
-	$results = $wpdb->get_results( $wpdb->prepare( "SELECT distinct(pm.`meta_value`) FROM {$wpdb->postmeta} pm LEFT JOIN {$wpdb->posts} p ON p.`ID` = pm.`post_id` WHERE pm.`meta_key` = '%s' AND p.`post_status` = '%s' AND p.`post_type` IN $type_str AND pm.`meta_value` != ''", $key, $status ) );
+
+	$query = "SELECT distinct(pm.`meta_value`) 
+		FROM {$wpdb->postmeta} pm 
+		LEFT JOIN {$wpdb->posts} p 
+		ON p.`ID` = pm.`post_id` 
+		WHERE pm.`meta_key` = %s 
+		AND p.`post_status` = %s 
+		AND p.`post_type` 
+		IN $type_str 
+		AND pm.`meta_value` != ''";
+
+	$results = $wpdb->get_results( $wpdb->prepare( $query, $key, $status ) );
 
 	if ( ! empty( $results ) ) {
 
@@ -1138,7 +1155,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 			$values = array();
 
 			foreach ( $return as $s_res ) {
-				$values[ $s_res ] = __( ucwords( $s_res ), 'easy-property-listings' );
+				$values[ $s_res ] = esc_html( ucwords( $s_res ) );
 			}
 		}
 
@@ -1165,7 +1182,10 @@ function epl_esc_like( $text ) {
  */
 function epl_listings_where( $where, $wp_query ) {
 	global $wpdb;
-	if ( $epl_post_title = $wp_query->get( 'epl_post_title' ) ) {
+
+	$epl_post_title = $wp_query->get( 'epl_post_title' );
+
+	if ( $epl_post_title ) {
 		$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql( epl_esc_like( $epl_post_title ) ) . '%\'';
 	}
 	return $where;
@@ -1247,7 +1267,7 @@ function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
 	foreach ( $meta_query as $key => &$query ) {
 
 		if ( isset( $query['compare'] ) && isset( $query['value'] )
-			&& in_array( strtoupper( $query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
+			&& in_array( strtoupper( $query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ), true )
 			&& ! is_array( $query['value'] ) ) {
 			$query['value'] = array_map( 'trim', explode( $option_sep, $query['value'] ) );
 

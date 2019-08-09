@@ -12,7 +12,7 @@
 get_header();
 ?>
 
-	<section id="primary" class="content-area epl-single-default <?php echo epl_get_active_theme_name(); ?>">
+	<section id="primary" class="content-area epl-single-default <?php echo esc_attr( epl_get_active_theme_name() ); ?>">
 		<main id="main" class="site-main">
 
 			<?php
@@ -21,9 +21,7 @@ get_header();
 			while ( have_posts() ) :
 				the_post();
 
-				// get_template_part( 'template-parts/content/content', 'single' );
-
-				do_action('epl_property_single');
+				do_action( 'epl_property_single' );
 
 				if ( is_singular( 'attachment' ) ) {
 					// Parent post navigation.

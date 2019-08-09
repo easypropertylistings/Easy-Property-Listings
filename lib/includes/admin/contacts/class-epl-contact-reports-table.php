@@ -14,6 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.Security.NonceVerification
+// phpcs:disable WordPress.DB.SlowDBQuery
+
 // Load WP_List_Table if not loaded.
 if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
@@ -92,10 +95,10 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		) {
 
 			if ( ! empty( $_REQUEST['orderby'] ) ) {
-				echo '<input type="hidden" name="orderby" value="' . sanitize_text_field( esc_attr( wp_unslash( $_REQUEST['orderby'] ) ) ) . '" />';
+				echo '<input type="hidden" name="orderby" value="' . esc_attr( sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) ) ) . '" />';
 			}
 			if ( ! empty( $_REQUEST['order'] ) ) {
-				echo '<input type="hidden" name="order" value="' . sanitize_text_field( esc_attr( wp_unslash( $_REQUEST['order'] ) ) ) . '" />';
+				echo '<input type="hidden" name="order" value="' . esc_attr( sanitize_text_field( wp_unslash( $_REQUEST['order'] ) ) ) . '" />';
 			}
 		}
 
@@ -198,7 +201,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		ob_start();
 		?>
 			<div class="epl-contact-assigned-tags-wrap epl-contact-list-table-tags">
-				<h4><?php echo $item['heading']; ?> </h4>
+				<h4><?php echo esc_attr( $item['heading'] ); ?> </h4>
 				<ul class="epl-contact-assigned-tags">
 					<?php
 						$contact_tags = wp_get_object_terms( $item['ID'], 'epl_contact_tag' );
@@ -206,7 +209,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 						if ( ! is_wp_error( $contact_tags ) ) {
 							foreach ( $contact_tags as $term ) {
 								$bgcolor = epl_get_contact_tag_bgcolor( $term->term_id );
-								echo '<li data-id="' . $term->term_id . '" id="contact-tag-' . $term->term_id . '" style="background:' . $bgcolor . '">' . esc_html( $term->name ) . '</li>';
+								echo '<li data-id="' . esc_attr( $term->term_id ) . '" id="contact-tag-' . esc_attr( $term->term_id ) . '" style="background:' . esc_attr( $bgcolor ) . '">' . esc_html( $term->name ) . '</li>';
 							}
 						}
 					}
@@ -245,7 +248,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * @param  [type] $item [description].
 	 * @return [type]       [description]
 	 */
-	function column_cb( $item ) {
+	public function column_cb( $item ) {
 		return sprintf(
 			'<input type="checkbox" name="bulk-delete[]" value="%s" />',
 			$item['ID']
@@ -287,7 +290,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * @return mixed string If search is present, false otherwise
 	 */
 	public function get_search() {
-		return ! empty( $_GET['s'] ) ? urldecode( trim( sanitize_text_field( $_GET['s'] ) ) ) : false;
+		return ! empty( $_GET['s'] ) ? urldecode( trim( sanitize_text_field( wp_unslash( $_GET['s'] ) ) ) ) : false;
 	}
 
 	/**
@@ -298,7 +301,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * @return mixed string If search is present, false otherwise
 	 */
 	public function get_name_search() {
-		return ! empty( $_GET['s_contact_name'] ) ? urldecode( trim( sanitize_text_field( $_GET['s_contact_name'] ) ) ) : false;
+		return ! empty( $_GET['s_contact_name'] ) ? urldecode( trim( sanitize_text_field( wp_unslash( $_GET['s_contact_name'] ) ) ) ) : false;
 	}
 
 	/**
@@ -317,8 +320,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		$offset      = $this->get_items_per_page( 'contacts_per_page', $this->per_page ) * ( $paged - 1 );
 		$search      = $this->get_search();
 		$name_search = $this->get_name_search();
-		$order       = isset( $_GET['order'] ) ? sanitize_text_field( $_GET['order'] ) : 'DESC';
-		$orderby     = isset( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'id';
+		$order       = isset( $_GET['order'] ) ? sanitize_text_field( wp_unslash( $_GET['order'] ) ) : 'DESC';
+		$orderby     = isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : 'id';
 
 		$args = array(
 			'post_type'      => 'epl_contact',
@@ -366,7 +369,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		if ( isset( $_GET['cat_filter'] ) && ! empty( $_GET['cat_filter'] ) ) {
 			$args['meta_query'][] = array(
 				'key'   => 'contact_category',
-				'value' => sanitize_text_field( $_GET['cat_filter'] ),
+				'value' => sanitize_text_field( wp_unslash( $_GET['cat_filter'] ) ),
 			);
 		}
 
@@ -403,7 +406,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		// Detect when a bulk action is being triggered...
 		if ( 'bulk-delete' === $this->current_action() ) {
 
-			$delete_ids = esc_sql( $_GET['bulk-delete'] );
+			$delete_ids = esc_sql( sanitize_text_field( wp_unslash( $_GET['bulk-delete'] ) ) );
 
 			// loop over the array of record IDs and delete them.
 			foreach ( $delete_ids as $id ) {
@@ -470,7 +473,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * @access public
 	 * @since 3.0
 	 */
-	function extra_tablenav( $which ) {
+	public function extra_tablenav( $which ) {
 		if ( 'top' === $which ) {
 			?>
 			<div class="alignleft actions bulkactions">
@@ -479,7 +482,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 				if ( $cats ) {
 					?>
 					<select name="cat_filter" class="epl_contact_type_filter">
-						<option value=""><?php _e( 'Type:' ); ?></option>
+						<option value=""><?php esc_html_e( 'Type:' ); ?></option>
 						<?php
 						foreach ( $cats as $cat_key  => $cat_value ) {
 							$selected = '';
@@ -487,8 +490,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 								$selected = ' selected = "selected"';
 							}
 							?>
-							<option value="<?php echo $cat_key; ?>" <?php echo $selected; ?>>
-								<?php echo $cat_value; ?>
+							<option value="<?php echo esc_attr( $cat_key ); ?>" <?php echo $selected; ?>>
+								<?php echo esc_attr( $cat_value ); ?>
 							</option> 
 							<?php
 						}

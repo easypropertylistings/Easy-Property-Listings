@@ -26,8 +26,8 @@ class EPL_Widget_Author extends WP_Widget {
 	 *
 	 * @since 1.0.0
 	 */
-	function __construct() {
-		parent::__construct( false, $name = __( 'EPL - Author', 'easy-property-listings' ), array( 'description' => __( 'Add an Author profile to a sidebar.', 'easy-property-listings' ) ) );
+	public function __construct() {
+		parent::__construct( false, $name = esc_html__( 'EPL - Author', 'easy-property-listings' ), array( 'description' => esc_html__( 'Add an Author profile to a sidebar.', 'easy-property-listings' ) ) );
 		// Widget name for filter: epl_author.
 	}
 
@@ -38,7 +38,9 @@ class EPL_Widget_Author extends WP_Widget {
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
 	 */
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
+
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$defaults = array(
 			'title'    => '',
@@ -51,13 +53,17 @@ class EPL_Widget_Author extends WP_Widget {
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		extract( $args );
-		$title    = apply_filters( 'widget_title', $instance['title'] );
-		$display  = $instance['display'];
-		$d_image  = $instance['d_image'];
-		$d_icons  = $instance['d_icons'];
-		$d_bio    = $instance['d_bio'];
-		$username = $instance['username'];
+		foreach ( $args as $arg_key => $arg_val ) {
+
+			${$arg_key} = $arg_val;
+		}
+
+		$title    = apply_filters( 'widget_title', esc_attr( $instance['title'] ) );
+		$username = esc_attr( $instance['username'] );
+		$display  = esc_attr( $instance['display'] );
+		$d_image  = esc_attr( $instance['d_image'] );
+		$d_icons  = esc_attr( $instance['d_icons'] );
+		$d_bio    = esc_attr( $instance['d_bio'] );
 
 		if ( is_epl_post_single() ) {
 			// Only retrieve global $property variable if singluar.
@@ -97,14 +103,14 @@ class EPL_Widget_Author extends WP_Widget {
 	 * @param array $new_instance Old values.
 	 * @param array $old_instance New values.
 	 */
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance             = $old_instance;
-		$instance['title']    = strip_tags( $new_instance['title'] );
-		$instance['username'] = strip_tags( $new_instance['username'] );
-		$instance['display']  = strip_tags( $new_instance['display'] );
-		$instance['d_image']  = strip_tags( $new_instance['d_image'] );
-		$instance['d_icons']  = strip_tags( $new_instance['d_icons'] );
-		$instance['d_bio']    = strip_tags( $new_instance['d_bio'] );
+		$instance['title']    = wp_strip_all_tags( $new_instance['title'] );
+		$instance['username'] = wp_strip_all_tags( $new_instance['username'] );
+		$instance['display']  = wp_strip_all_tags( $new_instance['display'] );
+		$instance['d_image']  = wp_strip_all_tags( $new_instance['d_image'] );
+		$instance['d_icons']  = wp_strip_all_tags( $new_instance['d_icons'] );
+		$instance['d_bio']    = wp_strip_all_tags( $new_instance['d_bio'] );
 		return $instance;
 	}
 
@@ -114,7 +120,10 @@ class EPL_Widget_Author extends WP_Widget {
 	 * @since 1.0
 	 * @param array $instance options.
 	 */
-	function form( $instance ) {
+	public function form( $instance ) {
+
+		// phpcs:disable WordPress.Security.EscapeOutput
+
 		$defaults = array(
 			'title'    => '',
 			'username' => '',
@@ -150,7 +159,7 @@ class EPL_Widget_Author extends WP_Widget {
 												if ( $instance['d_image'] ) {
 													echo 'checked="checked"';}
 												?>
-			 />
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_image' ); ?>"><?php _e( 'Display Author Gravatar', 'easy-property-listings' ); ?></label>
 		</p>
 
@@ -160,7 +169,7 @@ class EPL_Widget_Author extends WP_Widget {
 												if ( $instance['d_icons'] ) {
 													echo 'checked="checked"';}
 												?>
-			 />
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_icons' ); ?>"><?php _e( 'Display Icons', 'easy-property-listings' ); ?></label>
 		</p>
 
@@ -170,7 +179,7 @@ class EPL_Widget_Author extends WP_Widget {
 												if ( $instance['d_bio'] ) {
 													echo 'checked="checked"';}
 												?>
-			 />
+			/>
 			<label for="<?php echo $this->get_field_id( 'd_bio' ); ?>"><?php _e( 'Display Bio', 'easy-property-listings' ); ?></label>
 		</p>
 		<?php

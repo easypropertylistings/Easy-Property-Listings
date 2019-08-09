@@ -26,7 +26,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 *
 	 * @since 1.0.0
 	 */
-	function __construct() {
+	public function __construct() {
 		parent::__construct( false, $name = __( 'EPL - Listing Gallery', 'easy-property-listings' ), array( 'description' => __( 'Display image gallery.', 'easy-property-listings' ) ) );
 		// Widget name for filter: epl_property_gallery.
 	}
@@ -38,7 +38,9 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
 	 */
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
+
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$defaults = array(
 			'title'     => '',
@@ -46,7 +48,11 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		extract( $args );
+		foreach ( $args as $arg_key => $arg_val ) {
+
+			${$arg_key} = $arg_val;
+		}
+
 		$title       = apply_filters( 'widget_title', $instance['title'] );
 		$d_columns   = $instance['d_columns'];
 		$attachments = get_children(
@@ -75,10 +81,10 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * @param array $new_instance Old values.
 	 * @param array $old_instance New values.
 	 */
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		$instance              = $old_instance;
-		$instance['title']     = strip_tags( $new_instance['title'] );
-		$instance['d_columns'] = strip_tags( $new_instance['d_columns'] );
+		$instance['title']     = wp_strip_all_tags( $new_instance['title'] );
+		$instance['d_columns'] = wp_strip_all_tags( $new_instance['d_columns'] );
 		return $instance;
 	}
 
@@ -88,7 +94,10 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * @since 1.0
 	 * @param array $instance options.
 	 */
-	function form( $instance ) {
+	public function form( $instance ) {
+
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+
 		$defaults = array(
 			'title'     => '',
 			'd_columns' => '4',
@@ -99,19 +108,19 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		$d_columns = esc_attr( $instance['d_columns'] ); ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'easy-property-listings' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'd_columns' ); ?>"><?php _e( 'Number of columns', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'd_columns' ); ?>"><?php esc_html_e( 'Number of columns', 'easy-property-listings' ); ?></label>
 			<select class="widefat" id="<?php echo $this->get_field_id( 'd_columns' ); ?>" name="<?php echo $this->get_field_name( 'd_columns' ); ?>">
 				<?php
 				for ( $i = 1;$i <= 6;$i++ ) {
 					echo '<option value="' . esc_attr( $i ) . '"';
 					if ( $i === $instance['d_columns'] ) {
 						echo ' selected="selected"';
-					} echo '>' . __( $i, 'easy-property-listings' ) . '</option>';
+					} echo '>' . esc_html( $i ) . '</option>';
 				}
 				?>
 			</select>
