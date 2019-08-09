@@ -115,7 +115,7 @@ function epl_get_next_contact_link( $contact_id ) {
 		ORDER BY `ID` DESC
 		LIMIT 1
 	';
-
+	// phpcs:ignore WordPress.DB
 	$next = $wpdb->get_col( $query );
 
 	if ( ! empty( $next ) ) {
@@ -152,7 +152,7 @@ function epl_get_prev_contact_link( $contact_id ) {
 		ORDER BY `ID` DESC
 		LIMIT 1
 	';
-
+	// phpcs:ignore WordPress.DB
 	$next = $wpdb->get_col( $query );
 
 	if ( ! empty( $next ) ) {
