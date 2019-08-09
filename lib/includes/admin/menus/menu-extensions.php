@@ -134,7 +134,8 @@ $epl_settings = get_option( 'epl_settings' );
 						<ul>';
 				foreach ( $ext_field_groups['fields'] as $ext_field_group ) {
 
-					$current_class = 'tab-menu-' === $active_sub_tab . sanitize_title( $ext_field_group['label'] ) ? 'epl-fields-menu-current' : '';
+					$current_class = $active_sub_tab === 'tab-menu-'.sanitize_title( $ext_field_group['label'] ) ? 'epl-fields-menu-current' : '';
+
 					if ( '' === $active_sub_tab && 1 === $counter ) {
 						$current_class = 'epl-fields-menu-current';
 					}
@@ -157,7 +158,7 @@ $epl_settings = get_option( 'epl_settings' );
 					echo '<div class="epl-fields-tab-content">';
 					$counter = 1;
 					foreach ( $ext_field_groups['fields'] as $field_group ) {
-						$current_class = 'tab-menu-' === $active_sub_tab . sanitize_title( $field_group['label'] ) ? 'epl-fields-field-current' : '';
+						$current_class = $active_sub_tab === 'tab-menu-'.sanitize_title($field_group['label']) ? 'epl-fields-field-current' : '';
 						if ( '' === $active_sub_tab && 1 === $counter ) {
 							$current_class = 'epl-fields-field-current';
 						}
