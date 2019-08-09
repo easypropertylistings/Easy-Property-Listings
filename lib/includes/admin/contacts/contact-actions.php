@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.DB.SlowDBQuery
+
 /**
  * Processes a custom edit
  *
@@ -532,10 +534,10 @@ function epl_contact_category_update() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
-	if ( (int) $_POST['contact_id'] > 0 && ! empty( $_POST['type'] ) ) {
+	if ( ! empty( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 && ! empty( $_POST['type'] ) ) {
 
-		$contact = new EPL_Contact( sanitize_text_field( wp_unslash( $_POST['contact_id'] )) );
-		$status =  $contact->update_meta( 'contact_category', esc_attr( trim( $_POST['type'] ) ) );
+		$contact = new EPL_Contact( sanitize_text_field( wp_unslash( $_POST['contact_id'] ) ) );
+		$status  = $contact->update_meta( 'contact_category', trim( sanitize_text_field( wp_unslash( $_POST['type'] ) ) ) );
 		echo esc_attr( $status );
 		wp_die();
 	}
@@ -559,20 +561,20 @@ function epl_contact_tag_add() {
 
 		// update tag for a contact.
 		if ( isset( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 ) {
-			$terms = wp_set_object_terms( absint( $_POST['contact_id'] ), $_POST['term_id'], 'epl_contact_tag', true );
-			wp_die( current( $terms ) );
+			$terms = wp_set_object_terms( absint( wp_unslash( $_POST['contact_id'] ) ), absint( wp_unslash( $_POST['term_id'] ) ), 'epl_contact_tag', true );
+			wp_die( esc_attr( current( $terms ) ) );
 		} else {
 			// update the tag.
-			if ( $_POST['bg'] ) {
-				epl_update_contact_tag_bgcolor( $_POST['term_id'], $_POST['bg'] );
+			if ( ! empty( $_POST['bg'] ) ) {
+				epl_update_contact_tag_bgcolor( absint( wp_unslash( $_POST['term_id'] ) ), sanitize_text_field( wp_unslash( $_POST['bg'] ) ) );
 			}
 
-			if ( $_POST['label'] ) {
-				wp_update_term( $_POST['term_id'], 'epl_contact_tag', array( 'name' => $_POST['label'] ) );
+			if ( ! empty( $_POST['label'] ) ) {
+				wp_update_term( absint( wp_unslash( $_POST['term_id'] ) ), 'epl_contact_tag', array( 'name' => sanitize_text_field( wp_unslash( $_POST['label'] ) ) ) );
 			}
 
-			if ( $_POST['delete'] ) {
-				wp_delete_term( $_POST['term_id'], 'epl_contact_tag' );
+			if ( ! empty( $_POST['delete'] ) ) {
+				wp_delete_term( absint( wp_unslash( $_POST['term_id'] ) ), 'epl_contact_tag' );
 			}
 
 			wp_die( 1 );
@@ -591,9 +593,9 @@ function epl_contact_tag_remove() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
-	if ( (int) $_POST['contact_id'] > 0 && (int) $_POST['term_id'] > 0 ) {
+	if ( ! empty( $_POST['term_id'] ) && ! empty( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 && (int) $_POST['term_id'] > 0 ) {
 
-		wp_remove_object_terms( absint( $_POST['contact_id'] ), absint( $_POST['term_id'] ), 'epl_contact_tag' );
+		wp_remove_object_terms( absint( wp_unslash( $_POST['contact_id'] ) ), absint( wp_unslash( $_POST['term_id'] ) ), 'epl_contact_tag' );
 		wp_die( 1 );
 	}
 }
@@ -620,7 +622,7 @@ function epl_contact_action_menus( $contact ) {
 						$cats = epl_get_contact_categories();
 
 					foreach ( $cats as $cat_key   => $cat_label ) :
-						echo '<li> <a href="#" data-key="' . $cat_key . '" data-label="' . $cat_label . '">' . $cat_label . '</a></li>';
+						echo '<li> <a href="#" data-key="' . esc_attr( $cat_key ) . '" data-label="' . esc_attr( $cat_label ) . '">' . esc_attr( $cat_label ) . '</a></li>';
 						endforeach;
 					?>
 				</ul>
@@ -641,7 +643,7 @@ function epl_contact_action_menus( $contact ) {
 							foreach ( $contact_tags as $contact_tag ) {
 								$bgcolor = epl_get_contact_tag_bgcolor( $contact_tag->term_id );
 
-								echo '<li data-bg="' . $bgcolor . '" style="background:' . $bgcolor . ';color:#fff" data-id="' . $contact_tag->term_id . '" >' . $contact_tag->name . '</li>';
+								echo '<li data-bg="' . esc_attr( $bgcolor ) . '" style="background:' . esc_attr( $bgcolor ) . ';color:#fff" data-id="' . esc_attr( $contact_tag->term_id ) . '" >' . esc_attr( $contact_tag->name ) . '</li>';
 							}
 						}
 						?>
@@ -653,13 +655,13 @@ function epl_contact_action_menus( $contact ) {
 
 		<div class="epl_contact_pagination">
 			<?php if ( epl_get_prev_contact_link( $contact->id ) ) : ?>
-				<a class="epl_contact_pagination_prev " href="<?php echo epl_get_prev_contact_link( $contact->id ); ?>">
+				<a class="epl_contact_pagination_prev " href="<?php echo esc_url( epl_get_prev_contact_link( $contact->id ) ); ?>">
 					<span class="dashicons dashicons-arrow-left"></span>
 				</a>
 			<?php endif; ?>
 
 			<?php if ( epl_get_next_contact_link( $contact->id ) ) : ?>
-				<a class="epl_contact_pagination_next " href="<?php echo epl_get_next_contact_link( $contact->id ); ?>">
+				<a class="epl_contact_pagination_next " href="<?php echo esc_url( epl_get_next_contact_link( $contact->id ) ); ?>">
 					<span class="dashicons dashicons-arrow-right">
 					</span>
 				</a>
@@ -681,12 +683,12 @@ function epl_contact_entry_header( $contact ) {
 	<div class="epl-contact-entry-header">
 		<h1 class="epl-contact-title">
 			<?php
-				echo $contact->heading;
+				echo esc_attr( $contact->heading );
 			?>
 		</h1>
 		<span>
 			<?php
-				echo $contact->get_category_label();
+				echo esc_attr( $contact->get_category_label() );
 			?>
 		</span>
 	</div> 
@@ -703,10 +705,10 @@ add_action( 'epl_contact_entry_header', 'epl_contact_entry_header' );
 function epl_contact_entry_header_editable( $contact ) {
 	?>
 	<div class="epl-contact-entry-header">
-		<input class="epl-contact-title-editable" type="text" name="post_title" value="<?php echo $contact->heading; ?>"/>
+		<input class="epl-contact-title-editable" type="text" name="post_title" value="<?php echo esc_attr( $contact->heading ); ?>"/>
 		<span>
 			<?php
-			echo $contact->get_meta( 'contact_category' );
+			echo esc_attr( $contact->get_meta( 'contact_category' ) );
 			?>
 		</span>
 	</div>
@@ -730,7 +732,7 @@ function epl_contact_assigned_tags( $contact ) {
 				if ( ! is_wp_error( $contact_tags ) ) {
 					foreach ( $contact_tags as $term ) {
 						$bgcolor = epl_get_contact_tag_bgcolor( $term->term_id );
-						echo '<li data-id="' . $term->term_id . '" id="contact-tag-' . $term->term_id . '" style="background:' . $bgcolor . '">' . esc_html( $term->name ) . '<span class="dashicons dashicons-no epl-contact-tag-del"></span></li>';
+						echo '<li data-id="' . esc_attr( $term->term_id ) . '" id="contact-tag-' . esc_attr( $term->term_id ) . '" style="background:' . esc_attr( $bgcolor ) . '">' . esc_html( $term->name ) . '<span class="dashicons dashicons-no epl-contact-tag-del"></span></li>';
 					}
 				}
 			}
@@ -751,7 +753,7 @@ function epl_contact_background_info( $contact ) {
 	echo '<div class="epl-contact-bg-info-wrap">';
 		echo '<h4>' . esc_html__( 'Background Info', 'easy-property-listings' ) . '</h4>';
 		echo '<div class="epl-contact-bg-info">';
-			echo $contact->background_info;
+			echo wp_kses_post( $contact->background_info );
 		echo '</div>';
 
 	echo '</div>';
@@ -767,7 +769,10 @@ add_action( 'epl_contact_background_info', 'epl_contact_background_info' );
 function epl_contact_avatar( $contact ) {
 	?>
 	<div class="avatar-wrap left" id="contact-avatar">
-		<?php echo get_avatar( $contact->email, apply_filters( 'epl_contact_gravatar_size', 160 ) ); ?><br />
+		<?php
+			echo wp_kses_post( get_avatar( $contact->email, apply_filters( 'epl_contact_gravatar_size', 160 ) ) );
+		?>
+		<br />
 	</div>
 	<?php
 }
@@ -788,22 +793,22 @@ function epl_contact_social_icons( $contact ) {
 	?>
 
 	<?php if ( ! empty( $fb ) ) : ?>
-		<a href="<?php echo $fb; ?>">
+		<a href="<?php echo esc_url( $fb ); ?>">
 			<span class="epl-contact-social-icon">f</span>
 		</a>
 	<?php endif; ?>
 	<?php if ( ! empty( $twitter ) ) : ?>
-		<a href="<?php echo $twitter; ?>">
+		<a href="<?php echo esc_url( $twitter ); ?>">
 			<span class="epl-contact-social-icon">t</span>
 		</a>
 	<?php endif; ?>
 	<?php if ( ! empty( $gplus ) ) : ?>
-		<a href="<?php echo $gplus; ?>">
+		<a href="<?php echo esc_url( $gplus ); ?>">
 			<span class="epl-contact-social-icon">g+</span>
 		</a>
 	<?php endif; ?>
 	<?php if ( ! empty( $linked ) ) : ?>
-		<a href="<?php echo $linked; ?>">
+		<a href="<?php echo esc_url( $linked ); ?>">
 			<span class="epl-contact-social-icon">in</span>
 		</a>
 	<?php endif; ?>
@@ -823,13 +828,13 @@ function epl_contact_contact_details( $contact ) {
 
 	<span class="epl-contact-name epl-info-item editable">
 		<span data-key="name">
-			<?php echo $contact->get_meta( 'contact_first_name' ) . ' ' . $contact->get_meta( 'contact_last_name' ); ?>
+			<?php echo esc_attr( $contact->get_meta( 'contact_first_name' ) . ' ' . $contact->get_meta( 'contact_last_name' ) ); ?>
 		</span>
 	</span>
-	<?php echo $contact->get_emails(); ?>
+	<?php echo wp_kses_post( $contact->get_emails() ); ?>
 
 	<?php
-	echo $contact->get_phones();
+	echo wp_kses_post( $contact->get_phones() );
 		$web  = $contact->get_meta( 'contact_website' );
 		$addr = $contact->epl_contact_get_address();
 	?>
@@ -837,19 +842,19 @@ function epl_contact_contact_details( $contact ) {
 	<?php if ( ! empty( $web ) ) : ?>
 		<span class="contact_website epl-info-item editable" data-key="website">
 			<span class="dashicons dashicons-admin-site-alt3 epl-contact-icons"></span>
-			<?php echo $web; ?>
+			<?php echo esc_attr( $web ); ?>
 		</span>
 	<?php endif; ?>
 	<?php if ( ! empty( $addr ) ) : ?>
 			<span class="contact_website epl-info-item editable" data-key="address">
 				<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
-				<?php echo $addr; ?>
+				<?php echo esc_attr( $addr ); ?>
 			</span>
 	<?php endif; ?>
 	<span class="contact-since epl-info-item">
 		<span class="dashicons dashicons-clock epl-contact-icons"></span>
 		<?php esc_html_e( 'Contact since', 'easy-property-listings' ); ?>
-		<?php echo date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ); ?>
+		<?php echo esc_attr( date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ) ); ?>
 	</span>
 	<span class="epl-contact-view-more">
 		<span class="dashicons dashicons-arrow-right-alt epl-contact-icons"></span>
@@ -881,8 +886,8 @@ function epl_contact_recent_interests( $contact, $number = 10, $paged = 1, $orde
 	<span class="epl-contact-or"><?php esc_html_e( 'Or', 'easy-property-listings' ); ?></span>
 	<span class="epl-contact-add-listing"><?php esc_html_e( 'Add New' ); ?></span>
 
-	<input type="hidden" id="epl-listing-table-orderby" value="<?php echo $orderby; ?>"/>
-	<input type="hidden" id="epl-listing-table-order" value="<?php echo $order; ?>">
+	<input type="hidden" id="epl-listing-table-orderby" value="<?php echo esc_attr( $orderby ); ?>"/>
+	<input type="hidden" id="epl-listing-table-order" value="<?php echo esc_attr( $order ); ?>">
 	<?php
 	epl_contact_get_listings_html( $contact, $number, $paged, $orderby, $order );
 }
@@ -903,8 +908,8 @@ function epl_contact_recent_activities( $contact, $number = 10, $paged = 1, $ord
 	<?php do_action( 'epl_contact_add_activity_form', $contact ); ?>
 	<h3 class="epl-contact-activity-title"><?php esc_html_e( 'Activities', 'easy-property-listings' ); ?> </h3>
 	<span class="epl-contact-add-activity"><?php esc_html_e( 'Add New' ); ?></span>
-	<input type="hidden" id="epl-contact-table-orderby" value="<?php echo $orderby; ?>"/>
-	<input type="hidden" id="epl-contact-table-order" value="<?php echo $order; ?>">
+	<input type="hidden" id="epl-contact-table-orderby" value="<?php echo esc_attr( $orderby ); ?>"/>
+	<input type="hidden" id="epl-contact-table-order" value="<?php echo esc_attr( $order ); ?>">
 	<?php
 	epl_contact_get_activities_html( $contact, $number, $paged, $orderby, $order );
 }
@@ -922,10 +927,15 @@ add_action( 'epl_contact_recent_activities', 'epl_contact_recent_activities' );
  */
 function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
 
-	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
-
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-		extract( $_POST );
+
+		check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+		$contact = isset( $_POST['contact'] ) ? sanitize_text_field( wp_unslash( $_POST['contact'] ) ) : '';
+		$number  = isset( $_POST['number'] ) ? sanitize_text_field( wp_unslash( $_POST['number'] ) ) : '';
+		$paged   = isset( $_POST['paged'] ) ? sanitize_text_field( wp_unslash( $_POST['paged'] ) ) : '';
+		$orderby = isset( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : '';
+		$order   = isset( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : '';
 	}
 	if ( ! is_object( $contact ) ) {
 		$contact = new EPL_Contact( $contact );
@@ -937,33 +947,33 @@ function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $o
 		<table class="wp-list-table widefat striped epl-contact-activities">
 			<thead>
 			<tr class="epl-contact-activities-table-heads">
-				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_type"><?php esc_html_e( 'Type', 'easy-property-listings' ); ?></th>
-				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_content"><?php esc_html_e( 'Comment', 'easy-property-listings' ); ?></th>
-				<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="comment_date"><?php esc_html_e( 'Date', 'easy-property-listings' ); ?></th>
+				<th class="epl-sorted-<?php echo esc_attr( strtolower( $order ) ); ?>" data-sort="comment_type"><?php esc_html_e( 'Type', 'easy-property-listings' ); ?></th>
+				<th class="epl-sorted-<?php echo esc_attr( strtolower( $order ) ); ?>" data-sort="comment_content"><?php esc_html_e( 'Comment', 'easy-property-listings' ); ?></th>
+				<th class="epl-sorted-<?php echo esc_attr( strtolower( $order ) ); ?>" data-sort="comment_date"><?php esc_html_e( 'Date', 'easy-property-listings' ); ?></th>
 			</tr>
 			</thead>
 			<tbody>
 			<?php if ( ! empty( $activities ) ) : ?>
 				<?php foreach ( $activities as $activity ) : ?>
-					<tr data-activity-id="<?php echo $activity->comment_ID; ?>" id="activity-id-<?php echo $activity->comment_ID; ?>" class="epl-contact-activity-row epl-contact-activity-<?php echo $activity->comment_type; ?>" >
-						<td><?php echo $contact->get_activity_type( $activity->comment_type ); ?></td>
+					<tr data-activity-id="<?php echo esc_attr( $activity->comment_ID ); ?>" id="activity-id-<?php echo esc_attr( $activity->comment_ID ); ?>" class="epl-contact-activity-row epl-contact-activity-<?php echo esc_attr( $activity->comment_type ); ?>" >
+						<td><?php echo esc_attr( $contact->get_activity_type( $activity->comment_type ) ); ?></td>
 						<td>
 							<?php
 							if ( $activity->comment_post_ID > 0 ) {
 								echo '<div class="epl-contact-inline-lis-details">';
 								echo '<span class="epl-contact-inline-lis-img">';
-									echo get_the_post_thumbnail( $activity->comment_post_ID, array( 50, 50 ) );
+									echo wp_kses_post( get_the_post_thumbnail( $activity->comment_post_ID, array( 50, 50 ) ) );
 								echo '</span>';
 								echo '<span class="epl-contact-inline-lis-title">';
-								echo '<a href="' . get_permalink( $activity->comment_post_ID ) . '">' . get_the_title( $activity->comment_post_ID ) . '</a>';
+								echo '<a href="' . esc_url( get_permalink( $activity->comment_post_ID ) ) . '">' . esc_attr( get_the_title( $activity->comment_post_ID ) ) . '</a>';
 								echo '</span>';
 								echo '</div>';
 							}
 
-								echo  $activity->comment_content;
+								echo wp_kses_post( $activity->comment_content );
 							?>
 						</td>
-						<td><?php echo date_i18n( get_option( 'date_format' ), strtotime( $activity->comment_date ) ); ?></td>
+						<td><?php echo esc_attr( date_i18n( get_option( 'date_format' ), strtotime( $activity->comment_date ) ) ); ?></td>
 					</tr>
 				<?php endforeach; ?>
 			<?php else : ?>
@@ -971,7 +981,8 @@ function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $o
 			<?php endif; ?>
 			</tbody>
 		</table>
-		<span  data-page="<?php echo $paged + 1; ?>" class="epl-contact-load-activities"><?php esc_html_e( 'Load More' ); ?> </span>
+		<?php $new_paged = $paged + 1; ?>
+		<span  data-page="<?php echo esc_attr( $new_paged ); ?>" class="epl-contact-load-activities"><?php esc_html_e( 'Load More' ); ?> </span>
 	</div>
 	<?php
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
@@ -992,10 +1003,14 @@ add_action( 'wp_ajax_epl_contact_get_activity_table', 'epl_contact_get_activitie
  */
 function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
 
-	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
-
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-		extract( $_POST );
+
+		check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+		$contact = isset( $_POST['contact'] ) ? sanitize_text_field( wp_unslash( $_POST['contact'] ) ) : '';
+		$number  = isset( $_POST['number'] ) ? sanitize_text_field( wp_unslash( $_POST['number'] ) ) : '';
+		$paged   = isset( $_POST['paged'] ) ? sanitize_text_field( wp_unslash( $_POST['paged'] ) ) : '';
+		$orderby = isset( $_POST['orderby'] ) ? sanitize_text_field( wp_unslash( $_POST['orderby'] ) ) : '';
+		$order   = isset( $_POST['order'] ) ? sanitize_text_field( wp_unslash( $_POST['order'] ) ) : '';
 	}
 	if ( ! is_object( $contact ) ) {
 		$contact = new EPL_Contact( $contact );
@@ -1015,23 +1030,23 @@ function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $ord
 	<table class="wp-list-table widefat striped epl-contact-listings">
 		<thead>
 		<tr class="epl-contact-listings-table-heads">
-			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="listing_type"><?php esc_html_e( 'Type', 'easy-property-listings' ); ?></th>
-			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="post_content"><?php esc_html_e( 'Title', 'easy-property-listings' ); ?></th>
-			<th class="epl-sorted-<?php echo strtolower( $order ); ?>" data-sort="listing_status"><?php esc_html_e( 'Status', 'easy-property-listings' ); ?></th>
+			<th class="epl-sorted-<?php echo esc_attr( strtolower( $order ) ); ?>" data-sort="listing_type"><?php esc_html_e( 'Type', 'easy-property-listings' ); ?></th>
+			<th class="epl-sorted-<?php echo esc_attr( strtolower( $order ) ); ?>" data-sort="post_content"><?php esc_html_e( 'Title', 'easy-property-listings' ); ?></th>
+			<th class="epl-sorted-<?php echo esc_attr( strtolower( $order ) ); ?>" data-sort="listing_status"><?php esc_html_e( 'Status', 'easy-property-listings' ); ?></th>
 		</tr>
 		</thead>
 		<tbody>
 		<?php if ( ! empty( $activities ) ) : ?>
 			<?php foreach ( $activities as $inserted_lisitng ) : ?>
-				<tr data-activity-id="<?php echo $inserted_lisitng->ID; ?>" id="activity-id-<?php echo $inserted_lisitng->ID; ?>" class="epl-contact-activity-row " >
-					<td><?php echo $inserted_lisitng->post_type; ?></td>
+				<tr data-activity-id="<?php echo esc_attr( $inserted_lisitng->ID ); ?>" id="activity-id-<?php echo esc_attr( $inserted_lisitng->ID ); ?>" class="epl-contact-activity-row " >
+					<td><?php echo esc_attr( $inserted_lisitng->post_type ); ?></td>
 					<td>
 						<?php
-							echo '<a href="' . get_edit_post_link( $inserted_lisitng->ID ) . '">' . $inserted_lisitng->post_title . '</a>';
+							echo '<a href="' . esc_url( get_edit_post_link( $inserted_lisitng->ID ) ) . '">' . esc_attr( $inserted_lisitng->post_title ) . '</a>';
 						?>
 					</td>
 					<td>
-						<?php echo get_post_meta( $inserted_lisitng->ID, 'property_status', true ); ?>
+						<?php echo esc_attr( get_post_meta( $inserted_lisitng->ID, 'property_status', true ) ); ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>
@@ -1275,15 +1290,15 @@ function epl_before_meta_field_property_owner( $post, $value ) {
 	echo '
 			<div class="epl-listing-owner-details">
 				<div class="epl-listing-owner-grav">
-					' . get_avatar( $contact->email, apply_filters( 'epl_contact_gravatar_size', 160 ) ) . '
+					' . wp_kses_post( get_avatar( $contact->email, apply_filters( 'epl_contact_gravatar_size', 160 ) ) ) . '
 				</div>
 				<div class="epl-listing-owner-mail">
-					' . $contact->get_emails() . '
+					' . wp_kses_post( $contact->get_emails() ) . '
 				</div>
 				<div class="epl-listing-owner-heading">
-					' . $contact->heading . '
+					' . wp_kses_post( $contact->heading ) . '
 				</div>
-				<a class="epl-listing-contact-url" href="' . $url . '">' .
+				<a class="epl-listing-contact-url" href="' . esc_url( $url ) . '">' .
 					esc_html__( 'View Contact' ) . '
 				</a>
 			</div>';
@@ -1300,6 +1315,7 @@ function epl_search_contact() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
+	$u_name       = isset( $_POST['user_name'] ) ? sanitize_text_field( wp_unslash( $_POST['user_name'] ) ) : '';
 	$search_array = array(
 		'showposts'        => 6,
 		'post_type'        => 'epl_contact',
@@ -1309,12 +1325,12 @@ function epl_search_contact() {
 			'relation' => 'OR',
 			array(
 				'key'     => 'contact_first_name',
-				'value'   => sanitize_text_field( $_POST['user_name'] ),
+				'value'   => $u_name,
 				'compare' => 'LIKE',
 			),
 			array(
 				'key'     => 'contact_last_name',
-				'value'   => sanitize_text_field( $_POST['user_name'] ),
+				'value'   => $u_name,
 				'compare' => 'LIKE',
 			),
 		),
@@ -1325,7 +1341,7 @@ function epl_search_contact() {
 	if ( ! empty( $listings->posts ) ) {
 		echo '<ul class="epl-contact-listing-suggestion">';
 		foreach ( $listings->posts as  $listing ) {
-			echo '<li data-id="' . $listing->ID . '">' . get_post_meta( $listing->ID, 'contact_first_name', true ) . ' ' . get_post_meta( $listing->ID, 'contact_last_name', true ) . '</li>';
+			echo '<li data-id="' . esc_attr( $listing->ID ) . '">' . esc_attr( get_post_meta( $listing->ID, 'contact_first_name', true ) ) . ' ' . esc_attr( get_post_meta( $listing->ID, 'contact_last_name', true ) ) . '</li>';
 		}
 		echo '</ul>';
 	}
@@ -1341,9 +1357,9 @@ add_action( 'wp_ajax_epl_search_contact', 'epl_search_contact' );
 function epl_search_contact_listing() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
-
+	$search_term  = isset( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : '';
 	$search_array = array(
-		's'           => sanitize_text_field( $_POST['s'] ),
+		's'           => $search_term,
 		'showposts'   => 6,
 		'post_type'   => epl_get_core_post_types(),
 		'post_status' => 'publish',
@@ -1357,7 +1373,7 @@ function epl_search_contact_listing() {
 		echo '<ul class="epl-contact-owned-listing-suggestion striped">';
 		foreach ( $listings as  $listing ) {
 			$status = get_post_meta( $listing->ID, 'property_status', true );
-			echo '<li data-id="' . $listing->ID . '"><span class="epl-contact-listing-type">' . $listing->post_type . '</span>' . $listing->post_title . '<span class="epl-contact-listing-status type_' . $status . '">' . $status . '</span></li>';
+			echo '<li data-id="' . esc_attr( $listing->ID ) . '"><span class="epl-contact-listing-type">' . esc_attr( $listing->post_type ) . '</span>' . esc_attr( $listing->post_title ) . '<span class="epl-contact-listing-status type_' . esc_attr( $status ) . '">' . esc_attr( $status ) . '</span></li>';
 		}
 		echo '</ul>';
 	}
@@ -1374,13 +1390,15 @@ function epl_search_user() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
+	$search_term = isset( $_REQUEST['user_name'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['user_name'] ) ) : '';
+
 	$args = array(
-		'search' => $_REQUEST['user_name'] . '*',
+		'search' => $search_term . '*',
 		'number' => 5,
 	);
 
 	if ( isset( $_REQUEST['exclude_roles'] ) ) {
-		$exclude_roles        = explode( ',', $_REQUEST['exclude_roles'] );
+		$exclude_roles        = explode( ',', sanitize_text_field( wp_unslash( $_REQUEST['exclude_roles'] ) ) );
 		$exclude_roles        = array_map( 'sanitize_text_field', $exclude_roles );
 		$args['role__not_in'] = $exclude_roles;
 	}
@@ -1391,10 +1409,10 @@ function epl_search_user() {
 		ob_start();
 		echo '<ul class="epl-contact-user-suggestion">';
 		foreach ( $users as  $user ) {
-			echo '<li data-uname="' . $user->data->user_login . '" data-id="' . $user->ID . '">' . $user->data->display_name . '</li>';
+			echo '<li data-uname="' . esc_attr( $user->data->user_login ) . '" data-id="' . esc_attr( $user->ID ) . '">' . esc_attr( $user->data->display_name ) . '</li>';
 		}
 		echo '</ul>';
-		echo ob_get_clean();
+		echo wp_kses_post( ob_get_clean() );
 	}
 	exit;
 }
@@ -1443,24 +1461,24 @@ function epl_contact_save_note_note_tab( $args ) {
 			<span class="epl-note-content-meta">
 				<span class="epl-note-for-listing">
 					<?php
-					echo isset( $note_object->comment_post_ID ) ? get_the_title( $note_object->comment_post_ID ) : '';
+					echo isset( $note_object->comment_post_ID ) ? esc_attr( get_the_title( $note_object->comment_post_ID ) ) : '';
 					?>
 				</span>
 				<span class="epl-note-time">
 					<?php
-					echo date_i18n( get_option( 'date_format' ), strtotime( $note_object->comment_date ) );
+					echo esc_attr( date_i18n( get_option( 'date_format' ), strtotime( $note_object->comment_date ) ) );
 					?>
 				</span>
 			</span>
 			<span class="epl-note-content-wrap">
-				<?php echo stripslashes( $note_object->comment_content ); ?>
+				<?php echo wp_kses_post( stripslashes( $note_object->comment_content ) ); ?>
 			</span>
 		</div>
 		<?php
 		$output = ob_get_contents();
 		ob_end_clean();
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			echo $output;
+			echo wp_kses_post( $output );
 			exit;
 		}
 		return $note_object;
