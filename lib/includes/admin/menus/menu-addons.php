@@ -67,13 +67,13 @@ function epl_add_ons_page() {
 	ob_start(); ?>
 	<div class="wrap" id="epl-add-ons">
 		<h2>
-			<?php _e( 'Add Ons for Easy Property Listings', 'easy-property-listings' ); ?>
-			&nbsp;&mdash;&nbsp;<a href="https://easypropertylistings.com.au/extensions/?utm_source=plugin-addons-page&utm_medium=plugin&ytm_campaign=epl%20Addons%20Page&utm_content=All%20Extensions" class="button-primary" title="<?php _e( 'Browse All Extensions', 'easy-property-listings' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'easy-property-listings' ); ?></a>
+			<?php esc_html_e( 'Add Ons for Easy Property Listings', 'easy-property-listings' ); ?>
+			&nbsp;&mdash;&nbsp;<a href="https://easypropertylistings.com.au/extensions/?utm_source=plugin-addons-page&utm_medium=plugin&ytm_campaign=epl%20Addons%20Page&utm_content=All%20Extensions" class="button-primary" title="<?php esc_html_e( 'Browse All Extensions', 'easy-property-listings' ); ?>" target="_blank"><?php esc_html_e( 'Browse All Extensions', 'easy-property-listings' ); ?></a>
 		</h2>
-		<p><?php _e( 'These add-ons extend the functionality of Easy Property Listings.', 'easy-property-listings' ); ?></p>
-		<?php echo epl_add_ons_get_feed(); ?>
+		<p><?php esc_html_e( 'These add-ons extend the functionality of Easy Property Listings.', 'easy-property-listings' ); ?></p>
+		<?php echo wp_kses_post( epl_add_ons_get_feed() ); ?>
 	</div>
 	<?php
-	echo ob_get_clean();
+	echo wp_kses_post( ob_get_clean() );
 }
-echo epl_add_ons_page();
+echo wp_kses_post( epl_add_ons_page() );
