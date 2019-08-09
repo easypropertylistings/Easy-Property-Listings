@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$output_html = apply_filters( 'epl_author_tab_' . $k . '_callback', call_user_func( 'epl_author_tab_' . str_replace( ' ', '_', $k ), $epl_author ), $epl_author );
 				$author_tab  = array( 'label' => $author_tab );
 
-				echo wp_kses_post( $output_html );
+				echo $output_html; // phpcs:ignore WordPress.Security.EscapeOutput
 
 				$author_tab['content'] = ob_get_clean();
 				// Remove tab if callback function output is ''.
@@ -63,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 				<div id="tab-<?php echo esc_attr( $counter ); ?>" class="<?php epl_author_class( $current_tab . ' epl-author-tab-content ' . $current_class ); ?>">
 					<?php
-					echo wp_kses_post( $tab['content'] );
+					echo $tab['content']; // phpcs:ignore WordPress.Security.EscapeOutput
 					?>
 				</div>
 				<?php
