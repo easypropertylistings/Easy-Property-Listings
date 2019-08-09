@@ -125,7 +125,7 @@ function epl_admin_menu() {
  */
 function epl_menu_general() {
 	if ( ! current_user_can( 'edit_posts' ) ) {
-		wp_die( __( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-help.php';
 }
@@ -137,7 +137,7 @@ function epl_menu_general() {
  */
 function epl_menu_settings() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( __( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-general.php';
 }
@@ -149,7 +149,7 @@ function epl_menu_settings() {
  */
 function epl_menu_extensions() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( __( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-extensions.php';
 }
@@ -161,7 +161,7 @@ function epl_menu_extensions() {
  */
 function epl_menu_licenses() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( __( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-licenses.php';
 }
@@ -173,7 +173,7 @@ function epl_menu_licenses() {
  */
 function epl_menu_addons() {
 	if ( ! current_user_can( 'edit_published_posts' ) ) {
-		wp_die( __( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-addons.php';
 }
@@ -185,7 +185,7 @@ function epl_menu_addons() {
  */
 function epl_menu_help() {
 	if ( ! current_user_can( 'edit_posts' ) ) {
-		wp_die( __( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-help.php';
 }
@@ -197,7 +197,7 @@ function epl_menu_help() {
  */
 function epl_menu_tools() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( __( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'easy-property-listings' ) );
 	}
 	require_once 'menu-tools.php';
 }
