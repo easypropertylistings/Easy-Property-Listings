@@ -60,7 +60,7 @@ function epl_all_post_types() {
  */
 function is_epl_core_post( $type = null ) {
 	$type = is_null( $type ) ? get_post_type() : $type;
-	return in_array( $type, epl_get_core_post_types() );
+	return in_array( $type, epl_get_core_post_types(), true );
 }
 
 /**
@@ -71,7 +71,7 @@ function is_epl_core_post( $type = null ) {
  */
 function is_epl_sales_post( $type = null ) {
 	$type = is_null( $type ) ? get_post_type() : $type;
-	return in_array( $type, epl_get_core_sales_post_types() );
+	return in_array( $type, epl_get_core_sales_post_types(), true );
 }
 
 /**
@@ -82,7 +82,7 @@ function is_epl_sales_post( $type = null ) {
  */
 function is_epl_rental_post( $type = null ) {
 	$type = is_null( $type ) ? get_post_type() : $type;
-	return in_array( $type, epl_get_core_rental_post_types() );
+	return in_array( $type, epl_get_core_rental_post_types(), true );
 }
 
 /**
@@ -98,7 +98,7 @@ function is_epl_post( $type = null ) {
 	}
 
 	$type = null === $type ? get_post_type() : $type;
-	return  in_array( $type, epl_all_post_types() );
+	return  in_array( $type, epl_all_post_types(), true );
 }
 
 /**
@@ -129,7 +129,7 @@ function is_epl_post_type( $type ) {
 		return false;
 	}
 
-	return  ( in_array( $type, epl_all_post_types() ) && get_post_type() === $type );
+	return  ( in_array( $type, epl_all_post_types(), true ) && get_post_type() === $type );
 }
 
 /**
