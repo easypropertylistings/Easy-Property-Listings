@@ -268,7 +268,7 @@ function epl_dashboard_activity_widget() {
 				'max'       => 5,
 				'status'    => 'future',
 				'order'     => 'ASC',
-				'title'     => __( 'Listings Publishing Soon' ),
+				'title'     => __( 'Listings Publishing Soon', 'easy-property-listings' ),
 				'id'        => 'epl-future-posts',
 			)
 		);
@@ -279,7 +279,7 @@ function epl_dashboard_activity_widget() {
 				'max'       => 5,
 				'status'    => 'publish',
 				'order'     => 'ASC',
-				'title'     => __( 'Recently Published Listings' ),
+				'title'     => __( 'Recently Published Listings', 'easy-property-listings' ),
 				'id'        => 'epl-recent-posts',
 			)
 		);
@@ -289,7 +289,7 @@ function epl_dashboard_activity_widget() {
 	if ( ! $recent_comments ) {
 		echo '<div class="no-activity">';
 		echo '<p class="smiley"></p>';
-		echo '<p>' . esc_html__( 'No activity yet!' ) . '</p>';
+		echo '<p>' . esc_html__( 'No activity yet!', 'easy-property-listings' ) . '</p>';
 		echo '</div>';
 	}
 
@@ -342,7 +342,7 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 	if ( $comments ) {
 		$activity_types = array();
 		echo '<div id="latest-comments" class="epl-dashboard-activity-feed activity-block epl-activity-block epl-feed-block">';
-		echo '<h3>' . esc_html__( 'Activity' ) . '</h3>';
+		echo '<h3>' . esc_html__( 'Activity', 'easy-property-listings' ) . '</h3>';
 
 		echo '<ul id="the-comment-list" data-wp-lists="list:comment">';
 		foreach ( $comments as $comment ) {
@@ -409,22 +409,22 @@ function epl_dashboard_recent_posts( $args ) {
 
 			$time = get_the_time( 'U' );
 			if ( date( 'Y-m-d', $time ) === $today ) {
-				$relative = esc_html__( 'Today' );
+				$relative = esc_html__( 'Today', 'easy-property-listings' );
 			} elseif ( date( 'Y-m-d', $time ) === $tomorrow ) {
-				$relative = esc_html__( 'Tomorrow' );
+				$relative = esc_html__( 'Tomorrow', 'easy-property-listings' );
 			} elseif ( date( 'Y', $time ) !== date( 'Y', current_time( 'timestamp' ) ) ) {
 				/* translators: date and time format for recent posts on the dashboard, from a different calendar year, see http://php.net/date */
-				$relative = date_i18n( esc_html__( 'M jS Y' ), $time );
+				$relative = date_i18n( esc_html__( 'M jS Y', 'easy-property-listings' ), $time );
 			} else {
 				/* translators: date and time format for recent posts on the dashboard, see http://php.net/date */
-				$relative = date_i18n( esc_html__( 'M jS' ), $time );
+				$relative = date_i18n( esc_html__( 'M jS', 'easy-property-listings' ), $time );
 			}
 
 			// Use the post edit link for those who can edit, the permalink otherwise.
 			$recent_post_link = current_user_can( 'edit_post', get_the_ID() ) ? get_edit_post_link() : get_permalink();
 
 			/* translators: 1: relative date, 2: time, 3: post edit link or permalink, 4: post title */
-			$format = wp_kses_post( __( '<span>%1$s, %2$s</span> <a href="%3$s">%4$s</a>' ) );
+			$format = wp_kses_post( __( '<span>%1$s, %2$s</span> <a href="%3$s">%4$s</a>', 'easy-property-listings' ) );
 			printf( "<li>$format</li>", $relative, get_the_time(), $recent_post_link, _draft_or_post_title() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 

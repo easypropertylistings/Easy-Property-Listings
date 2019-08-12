@@ -1105,14 +1105,14 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
 	global $wpdb;
 
-	$query = "SELECT distinct(pm.`meta_value`) 
-		FROM {$wpdb->postmeta} pm 
-		LEFT JOIN {$wpdb->posts} p 
-		ON p.`ID` = pm.`post_id` 
-		WHERE pm.`meta_key` = %s 
-		AND p.`post_status` = %s 
-		AND p.`post_type` 
-		IN $type_str 
+	$query = "SELECT distinct(pm.`meta_value`)
+		FROM {$wpdb->postmeta} pm
+		LEFT JOIN {$wpdb->posts} p
+		ON p.`ID` = pm.`post_id`
+		WHERE pm.`meta_key` = %s
+		AND p.`post_status` = %s
+		AND p.`post_type`
+		IN $type_str
 		AND pm.`meta_value` != ''";
 
 	$results = $wpdb->get_results( $wpdb->prepare( $query, $key, $status ) );
@@ -1402,7 +1402,7 @@ function epl_contact_capture_widget_form_fields() {
 			'key'     => 'title',
 			'label'   => __( 'Title', 'easy-property-listings' ),
 			'type'    => 'text',
-			'default' => __( 'Contact Form' ),
+			'default' => __( 'Contact Form', 'easy-property-listings' ),
 		),
 		array(
 			'key'     => 'description',

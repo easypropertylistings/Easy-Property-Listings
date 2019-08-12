@@ -612,7 +612,7 @@ function epl_contact_action_menus( $contact ) {
 	<div class="contact-action-menu epl-clearfix">
 		<ul class="epl_contact_quick_actions">
 			<li>
-				<a  class="contact-action-category" href="#" title="<?php esc_html_e( 'Contact Category' ); ?>">
+				<a  class="contact-action-category" href="#" title="<?php esc_html_e( 'Contact Category', 'easy-property-listings' ); ?>">
 					<span class="dashicons dashicons-flag"></span>
 					<b class="caret"></b>
 				</a>
@@ -691,7 +691,7 @@ function epl_contact_entry_header( $contact ) {
 				echo esc_attr( $contact->get_category_label() );
 			?>
 		</span>
-	</div> 
+	</div>
 	<?php
 }
 add_action( 'epl_contact_entry_header', 'epl_contact_entry_header' );
@@ -884,7 +884,7 @@ function epl_contact_recent_interests( $contact, $number = 10, $paged = 1, $orde
 		<input id="epl_contact_listing_search" type="text" placeholder="<?php esc_html_e( 'Search Listings', 'easy-property-listings' ); ?>"/>
 	</span>
 	<span class="epl-contact-or"><?php esc_html_e( 'Or', 'easy-property-listings' ); ?></span>
-	<span class="epl-contact-add-listing"><?php esc_html_e( 'Add New' ); ?></span>
+	<span class="epl-contact-add-listing"><?php esc_html_e( 'Add New', 'easy-property-listings' ); ?></span>
 
 	<input type="hidden" id="epl-listing-table-orderby" value="<?php echo esc_attr( $orderby ); ?>"/>
 	<input type="hidden" id="epl-listing-table-order" value="<?php echo esc_attr( $order ); ?>">
@@ -907,7 +907,7 @@ function epl_contact_recent_activities( $contact, $number = 10, $paged = 1, $ord
 	?>
 	<?php do_action( 'epl_contact_add_activity_form', $contact ); ?>
 	<h3 class="epl-contact-activity-title"><?php esc_html_e( 'Activities', 'easy-property-listings' ); ?> </h3>
-	<span class="epl-contact-add-activity"><?php esc_html_e( 'Add New' ); ?></span>
+	<span class="epl-contact-add-activity"><?php esc_html_e( 'Add New', 'easy-property-listings' ); ?></span>
 	<input type="hidden" id="epl-contact-table-orderby" value="<?php echo esc_attr( $orderby ); ?>"/>
 	<input type="hidden" id="epl-contact-table-order" value="<?php echo esc_attr( $order ); ?>">
 	<?php
@@ -982,7 +982,7 @@ function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $o
 			</tbody>
 		</table>
 		<?php $new_paged = $paged + 1; ?>
-		<span  data-page="<?php echo esc_attr( $new_paged ); ?>" class="epl-contact-load-activities"><?php esc_html_e( 'Load More' ); ?> </span>
+		<span  data-page="<?php echo esc_attr( $new_paged ); ?>" class="epl-contact-load-activities"><?php esc_html_e( 'Load More', 'easy-property-listings' ); ?> </span>
 	</div>
 	<?php
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
@@ -1072,7 +1072,7 @@ add_action( 'wp_ajax_epl_contact_get_listing_table', 'epl_contact_get_listings_h
 function epl_contact_add_activity_form( $contact ) {
 	$form_builder  = new EPL_FORM_BUILDER();
 	$listing_ids   = $contact->listing_ids;
-	$listings_opts = array( '' => esc_html__( 'No Listing' ) );
+	$listings_opts = array( '' => esc_html__( 'No Listing', 'easy-property-listings' ) );
 	if ( ! empty( $listing_ids ) ) {
 		$listings = get_posts(
 			array(
@@ -1299,7 +1299,7 @@ function epl_before_meta_field_property_owner( $post, $value ) {
 					' . wp_kses_post( $contact->heading ) . '
 				</div>
 				<a class="epl-listing-contact-url" href="' . esc_url( $url ) . '">' .
-					esc_html__( 'View Contact' ) . '
+					esc_html__( 'View Contact', 'easy-property-listings' ) . '
 				</a>
 			</div>';
 	echo '</td></tr>';
