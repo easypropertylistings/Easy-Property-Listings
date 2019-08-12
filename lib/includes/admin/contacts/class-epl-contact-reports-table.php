@@ -215,7 +215,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 					}
 					?>
 				</ul>
-			</div> 
+			</div>
 			<?php
 			return ob_get_clean();
 	}
@@ -482,7 +482,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 				if ( $cats ) {
 					?>
 					<select name="cat_filter" class="epl_contact_type_filter">
-						<option value=""><?php esc_html_e( 'Type:' ); ?></option>
+						<option value=""><?php esc_html_e( 'Type:', 'easy-property-listings' ); ?></option>
 						<?php
 						foreach ( $cats as $cat_key  => $cat_value ) {
 							$selected = '';
@@ -492,7 +492,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 							?>
 							<option value="<?php echo esc_attr( $cat_key ); ?>" <?php echo $selected; ?>>
 								<?php echo esc_attr( $cat_value ); ?>
-							</option> 
+							</option>
 							<?php
 						}
 						?>

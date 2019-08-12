@@ -1559,7 +1559,7 @@ function epl_switch_views() {
 			<li title="<?php echo apply_filters( 'epl_switch_views_sorting_title_grid', __( 'Grid', 'easy-property-listings' ) ); ?>" class="view-grid" data-view="grid">
 			</li>
 		</ul>
-	</div> 
+	</div>
 	<?php
 }
 add_action( 'epl_switch_views', 'epl_switch_views' );
@@ -1590,7 +1590,7 @@ function epl_sorting_tool() {
 				?>
 					<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo $sorter['id']; ?>">
 						<?php echo $sorter['label']; ?>
-					</option> 
+					</option>
 					<?php
 			}
 			?>
@@ -1631,7 +1631,7 @@ function epl_sorting_tabs() {
 						<a href="<?php echo $href; ?>">
 						<?php echo $sorter['label']; ?>
 						</a>
-					</li> 
+					</li>
 					<?php
 			}
 			?>
@@ -2488,7 +2488,7 @@ function epl_get_the_excerpt( $deprecated = '' ) {
 	}
 
 	if ( post_password_required() ) {
-		return __( 'There is no excerpt because this is a protected post.' );
+		return esc_html__( 'There is no excerpt because this is a protected post.', 'easy-property-listings' );
 	}
 
 	return apply_filters( 'epl_get_the_excerpt', $post->post_excerpt );
