@@ -145,7 +145,7 @@ function epl_install() {
 	}
 
 	// Bail if activating from network, or bulk.
-	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
+	if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) { //phpcs:ignore
 		return;
 	}
 	remove_role( 'epl_crm' );
@@ -208,43 +208,43 @@ function epl_plugin_updates() {
 	$current_version = get_option( 'epl_version' );
 
 	if ( version_compare( $current_version, '1.3', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-1.3.1.php' );
+		include EPL_PATH_UPDATES . 'epl-1.3.1.php';
 		update_option( 'epl_version', '1.3' );
 	}
 	if ( version_compare( $current_version, '2.1', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-2.1.php' );
+		include EPL_PATH_UPDATES . 'epl-2.1.php';
 		update_option( 'epl_version', '2.1' );
 	}
 	if ( version_compare( $current_version, '2.1.8', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-2.1.8.php' );
+		include EPL_PATH_UPDATES . 'epl-2.1.8.php';
 		update_option( 'epl_version', '2.1.8' );
 	}
 	if ( version_compare( $current_version, '2.1.11', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-2.1.11.php' );
+		include EPL_PATH_UPDATES . 'epl-2.1.11.php';
 		update_option( 'epl_version', '2.1.11' );
 	}
 	if ( version_compare( $current_version, '2.2', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-2.2.php' );
+		include EPL_PATH_UPDATES . 'epl-2.2.php';
 		update_option( 'epl_version', '2.2' );
 	}
 	if ( version_compare( $current_version, '3.0', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-3.0.php' );
+		include EPL_PATH_UPDATES . 'epl-3.0.php';
 		update_option( 'epl_version', '3.0' );
 	}
 	if ( version_compare( $current_version, '30', '==' ) ) { // Fix for 3.0 version number.
-		include( EPL_PATH_UPDATES . 'epl-3.1.php' );
+		include EPL_PATH_UPDATES . 'epl-3.1.php';
 		update_option( 'epl_version', '3.1' );
 	}
 	if ( version_compare( $current_version, '3.1', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-3.1.php' );
+		include EPL_PATH_UPDATES . 'epl-3.1.php';
 		update_option( 'epl_version', '3.1' );
 	}
 	if ( version_compare( $current_version, '3.1.16', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-3.1.16.php' );
+		include EPL_PATH_UPDATES . 'epl-3.1.16.php';
 		update_option( 'epl_version', '3.1.16' );
 	}
 	if ( version_compare( $current_version, '3.2', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-3.2.php' );
+		include EPL_PATH_UPDATES . 'epl-3.2.php';
 		update_option( 'epl_version', '3.2' );
 	}
 	if ( version_compare( $current_version, '3.2.2', '<' ) ) {
@@ -252,7 +252,7 @@ function epl_plugin_updates() {
 		update_option( 'epl_version', '3.2.2' );
 	}
 	if ( version_compare( $current_version, '3.3', '<' ) ) {
-		include( EPL_PATH_UPDATES . 'epl-3.3.php' );
+		include EPL_PATH_UPDATES . 'epl-3.3.php';
 		flush_rewrite_rules();
 		update_option( 'epl_version', '3.3' );
 	}
