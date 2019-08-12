@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.DB.SlowDBQuery
+
 /**
  * EPL_Contact Class
  *
@@ -80,7 +82,7 @@ class EPL_Contact {
 	/**
 	 * Get things going
 	 *
-	 * @param bool $_id_or_email
+	 * @param bool $_id_or_email Contact ID or email.
 	 * @since 3.0.0
 	 */
 	public function __construct( $_id_or_email = false ) {
@@ -111,7 +113,7 @@ class EPL_Contact {
 	 * @return mixed
 	 * @since  3.0
 	 */
-	function get_contact_email( $id ) {
+	public function get_contact_email( $id ) {
 		return $this->get_primary_email( $id );
 	}
 
@@ -123,7 +125,7 @@ class EPL_Contact {
 	 * @return bool|int
 	 * @since  3.0
 	 */
-	function update_contact_email( $id, $value ) {
+	public function update_contact_email( $id, $value ) {
 		$emails          = (array) get_post_meta( $id, 'contact_emails', true );
 		$emails['email'] = $value;
 		return update_post_meta( $id, 'contact_emails', $emails );
@@ -326,7 +328,9 @@ class EPL_Contact {
 
 		$created = false;
 
-		if ( $contact = $this->contact_exists( $args['email'] ) ) {
+		$contact = $this->contact_exists( $args['email'] );
+
+		if ( $contact ) {
 			wp_update_post(
 				array(
 					'post_title' => $args['name'],
@@ -364,7 +368,7 @@ class EPL_Contact {
 	 * @return bool|WP_Post
 	 * @since  3.0
 	 */
-	function contact_exists( $email = null ) {
+	public function contact_exists( $email = null ) {
 		$matched_contacts = new WP_Query(
 			array(
 				'post_type'   => 'epl_contact',
@@ -456,9 +460,6 @@ class EPL_Contact {
 
 		} else {
 
-			if ( in_array( $listing_id, $this->listing_ids ) ) {
-			}
-
 			$this->listing_ids[] = $listing_id;
 
 			$new_listing_ids = array_unique( array_values( $this->listing_ids ) );
@@ -505,7 +506,7 @@ class EPL_Contact {
 
 		if ( ! empty( $this->listing_ids ) ) {
 
-			$pos = array_search( $listing_id, $this->listing_ids );
+			$pos = array_search( $listing_id, $this->listing_ids ); // phpcs:ignore
 			if ( false === $pos ) {
 				return false;
 			}
@@ -519,15 +520,14 @@ class EPL_Contact {
 
 		do_action( 'epl_contact_pre_remove_listing', $listing_id, $this->ID );
 
-		$listing_removed = $listing_added = update_post_meta( $this->ID, 'contact_interested_listings', $new_listing_ids );
+		$listing_added = update_post_meta( $this->ID, 'contact_interested_listings', $new_listing_ids );
 
-		if ( $listing_removed ) {
+		$listing_removed = $listing_added;
 
-		}
 		// Update the contacts of listing as well.
 		$contact_ids = get_post_meta( $listing_id, 'epl_interested_contacts', true );
 		if ( ! empty( $contact_ids ) ) {
-			$pos = array_search( $this->ID, $contact_ids );
+			$pos = array_search( $this->ID, $contact_ids ); // phpcs:ignore
 			if ( false !== $pos ) {
 				unset( $contact_ids[ $pos ] );
 				update_post_meta( $listing_id, 'epl_interested_contacts', $contact_ids );
@@ -638,7 +638,8 @@ class EPL_Contact {
 		);
 
 		// Insert new note and get the note ID.
-		if ( $note_id = wp_insert_comment( $note_data ) ) {
+		$note_id = wp_insert_comment( $note_data );
+		if ( $note_id ) {
 			$this->notes = $this->get_notes();
 			update_comment_meta( $note_id, 'epl_contact_id', $this->ID );
 		}
@@ -719,7 +720,7 @@ class EPL_Contact {
 	 * @return mixed
 	 * @since 3.0.0
 	 */
-	function epl_contact_get_address() {
+	public function epl_contact_get_address() {
 
 		$addr  = $this->get_meta( 'contact_street_number' ) . ' ';
 		$addr .= $this->get_meta( 'contact_street_name' ) . ' ';
@@ -742,7 +743,7 @@ class EPL_Contact {
 	 * @return mixed
 	 * @since 3.0.0
 	 */
-	function get_primary_email( $id ) {
+	public function get_primary_email( $id ) {
 		$emails = get_post_meta( $id, 'contact_emails', true );
 		return isset( $emails['email'] ) ? $emails['email'] : false;
 	}
@@ -753,7 +754,7 @@ class EPL_Contact {
 	 * @return mixed
 	 * @since 3.0.0
 	 */
-	function get_emails() {
+	public function get_emails() {
 
 		$emails = $this->get_meta( 'contact_emails' );
 		$emails = array_filter( $emails );
@@ -763,7 +764,7 @@ class EPL_Contact {
 				$label = ucwords( str_replace( '_', ' ', $mail_name ) ); ?>
 				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-email epl-contact-icons"></span>
-				<?php echo $label . ' - ' . $mail_value; ?>
+				<?php echo esc_attr( $label . ' - ' . $mail_value ); ?>
 				</span>
 				<?php
 			}
@@ -778,7 +779,7 @@ class EPL_Contact {
 	 * @return mixed
 	 * @since 3.0.0
 	 */
-	function get_phones() {
+	public function get_phones() {
 
 		$emails = $this->get_meta( 'contact_phones' );
 		$emails = array_filter( $emails );
@@ -789,7 +790,7 @@ class EPL_Contact {
 				?>
 				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-phone epl-contact-icons"></span>
-					<?php echo $label . ' - ' . $mail_value; ?>
+					<?php echo esc_attr( $label . ' - ' . $mail_value ); ?>
 				</span>
 				<?php
 			}
@@ -804,7 +805,7 @@ class EPL_Contact {
 	 * @return mixed
 	 * @since 3.0.0
 	 */
-	function get_category_label() {
+	public function get_category_label() {
 		$cat = $this->get_meta( 'contact_category' );
 		return get_category_label( $cat );
 	}
@@ -815,7 +816,7 @@ class EPL_Contact {
 	 * @return mixed
 	 * @since 3.0.0
 	 */
-	function get_category_name() {
+	public function get_category_name() {
 		return $this->get_meta( 'contact_category' );
 	}
 }
