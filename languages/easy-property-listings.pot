@@ -1,21 +1,22 @@
 # Copyright (C) 2019 Merv Barrett
 # This file is distributed under the same license as the Easy Property Listings package.
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.3.5\n"
-"Report-Msgid-Bugs-To: "
-"http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-07-31 11:22:08+00:00\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/easy-property-listings\n"
+"POT-Creation-Date: 2019-08-12 09:17+0800\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Merv Barrett <support@easypropertylistings.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_x;_ex;_n\n"
+"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;esc_html__;esc_html_e\n"
 "X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: epl-apidocs\n"
@@ -24,15 +25,13 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: apigen.neon\n"
 "X-Poedit-SearchPathExcluded-5: package.json\n"
 "X-Poedit-SearchPathExcluded-6: README.md\n"
-"X-Generator: grunt-wp-i18n 1.0.3\n"
 
 #: lib/compatibility/author-meta-compat.php:41
 #: lib/includes/admin/contacts/class-contact-table.php:64
 #: lib/includes/admin/contacts/class-contact-table.php:198
 #: lib/includes/class-epl-author-meta.php:114
 #: lib/includes/class-epl-author-meta.php:122 lib/includes/functions.php:2291
-#: lib/includes/template-functions.php:1699
-#: lib/post-types/post-type-contact.php:29
+#: lib/includes/template-functions.php:1699 lib/post-types/post-type-contact.php:29
 #: lib/post-types/post-type-contact.php:30
 msgid "Contact"
 msgstr ""
@@ -45,8 +44,8 @@ msgstr ""
 
 #: lib/compatibility/author-meta-compat.php:41
 #: lib/includes/admin/contacts/contacts.php:462
-#: lib/includes/class-epl-author-meta.php:115
-#: lib/includes/class-epl-contact.php:680 lib/widgets/widget-functions.php:1417
+#: lib/includes/class-epl-author-meta.php:115 lib/includes/class-epl-contact.php:680
+#: lib/widgets/widget-functions.php:1417
 msgid "Email"
 msgstr ""
 
@@ -137,9 +136,8 @@ msgid "Recently Leased"
 msgstr ""
 
 #: lib/compatibility/functions-compat.php:405
-#: lib/includes/class-epl-author-meta.php:623
-#: lib/includes/options-front-end.php:51 lib/widgets/widget-listing.php:46
-#: lib/widgets/widget-listing.php:209
+#: lib/includes/class-epl-author-meta.php:623 lib/includes/options-front-end.php:51
+#: lib/widgets/widget-listing.php:46 lib/widgets/widget-listing.php:209
 msgid "Read More"
 msgstr ""
 
@@ -160,9 +158,8 @@ msgstr ""
 #: lib/includes/functions.php:2439 lib/includes/install.php:48
 #: lib/post-types/post-types.php:53 lib/updates/epl-2.1.11.php:5
 #: lib/widgets/widget-admin-dashboard.php:136
-#: lib/widgets/widget-admin-dashboard.php:158
-#: lib/widgets/widget-functions.php:69 lib/widgets/widget-listing.php:153
-#: lib/widgets/widget-listing.php:279
+#: lib/widgets/widget-admin-dashboard.php:158 lib/widgets/widget-functions.php:69
+#: lib/widgets/widget-listing.php:153 lib/widgets/widget-listing.php:279
 msgid "Sold"
 msgstr ""
 
@@ -192,9 +189,8 @@ msgstr ""
 #: lib/includes/functions.php:2443 lib/includes/install.php:47
 #: lib/post-types/post-types.php:57 lib/updates/epl-2.1.php:5
 #: lib/widgets/widget-admin-dashboard.php:117
-#: lib/widgets/widget-admin-dashboard.php:137
-#: lib/widgets/widget-functions.php:70 lib/widgets/widget-listing.php:154
-#: lib/widgets/widget-listing.php:280
+#: lib/widgets/widget-admin-dashboard.php:137 lib/widgets/widget-functions.php:70
+#: lib/widgets/widget-listing.php:154 lib/widgets/widget-listing.php:280
 msgid "Leased"
 msgstr ""
 
@@ -557,8 +553,8 @@ msgstr ""
 
 #: lib/hooks/hook-property-map.php:69
 msgid ""
-"Ensure you have set a Google Maps API Key from Dashboard > Easy Property "
-"Listings > Settings."
+"Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings "
+"> Settings."
 msgstr ""
 
 #: lib/hooks/hook-property-map.php:70
@@ -571,28 +567,27 @@ msgstr ""
 
 #: lib/includes/EPL_License_Handler.php:446
 msgid ""
-"No valid license key has been entered, so automatic updates for %s have "
-"been turned off. <a href=\"%s\">Please click here to enter your license key "
-"and begin receiving automatic updates.</a>"
+"No valid license key has been entered, so automatic updates for %s have been "
+"turned off. <a href=\"%s\">Please click here to enter your license key and begin "
+"receiving automatic updates.</a>"
 msgstr ""
 
 #: lib/includes/EPL_License_Handler.php:457
 msgid ""
-"Your license key for %s has expired. <a href=\"%s\" "
-"target=\"_blank\">Please click here to renew your license key and continue "
-"receiving automatic updates.</a>"
+"Your license key for %s has expired. <a href=\"%s\" target=\"_blank\">Please "
+"click here to renew your license key and continue receiving automatic updates.</a>"
 msgstr ""
 
 #: lib/includes/EPL_License_Handler.php:466
 msgid ""
-"Your maximum usage limit for license key of %s has been reached. Please use "
-"a different key to continue receiving automatic updates."
+"Your maximum usage limit for license key of %s has been reached. Please use a "
+"different key to continue receiving automatic updates."
 msgstr ""
 
 #: lib/includes/EPL_License_Handler.php:475
 msgid ""
-"The license you entered for %s does not belong to it. Please use a "
-"different key to continue receiving automatic updates."
+"The license you entered for %s does not belong to it. Please use a different key "
+"to continue receiving automatic updates."
 msgstr ""
 
 #: lib/includes/EPL_License_Handler.php:508
@@ -609,8 +604,8 @@ msgstr ""
 
 #: lib/includes/EPL_License_Handler.php:523
 msgid ""
-"There was a problem activating your license key, please try again or "
-"contact support. Error code: %s"
+"There was a problem activating your license key, please try again or contact "
+"support. Error code: %s"
 msgstr ""
 
 #: lib/includes/EPL_License_Handler.php:557
@@ -619,14 +614,13 @@ msgstr ""
 
 #: lib/includes/EPL_SL_Plugin_Updater.php:213
 msgid ""
-"There is a new version of %1$s available. %2$s View version %3$s details "
-"%4$s."
+"There is a new version of %1$s available. %2$s View version %3$s details %4$s."
 msgstr ""
 
 #: lib/includes/EPL_SL_Plugin_Updater.php:221
 msgid ""
-"There is a new version of %1$s available. %2$s View version %3$s details "
-"%4$s or %5$s update now %6$s."
+"There is a new version of %1$s available. %2$s View version %3$s details %4$s or "
+"%5$s update now %6$s."
 msgstr ""
 
 #: lib/includes/EPL_SL_Plugin_Updater.php:412
@@ -644,8 +638,7 @@ msgstr ""
 
 #: lib/includes/admin/admin-actions.php:58
 msgid ""
-"As of June 22, 2016 Google has made API keys required for the Javascript "
-"Maps API."
+"As of June 22, 2016 Google has made API keys required for the Javascript Maps API."
 msgstr ""
 
 #: lib/includes/admin/admin-actions.php:60 lib/includes/functions.php:1231
@@ -655,8 +648,8 @@ msgstr ""
 
 #: lib/includes/admin/admin-actions.php:61
 msgid ""
-"To allow maps to function correctly please create a %s and enable "
-"<strong>Google Maps API</strong>."
+"To allow maps to function correctly please create a %s and enable <strong>Google "
+"Maps API</strong>."
 msgstr ""
 
 #: lib/includes/admin/admin-actions.php:63 lib/includes/functions.php:1818
@@ -665,8 +658,8 @@ msgstr ""
 
 #: lib/includes/admin/admin-actions.php:64
 msgid ""
-"Once complete enter your API key below under %s > Google Maps API Key. When "
-"set, refresh page to dismiss notice."
+"Once complete enter your API key below under %s > Google Maps API Key. When set, "
+"refresh page to dismiss notice."
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:52
@@ -744,8 +737,8 @@ msgstr ""
 
 #: lib/includes/admin/admin-functions.php:368
 msgid ""
-"Import exported file here. Warning! This will override all existing "
-"settings to default values."
+"Import exported file here. Warning! This will override all existing settings to "
+"default values."
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:376
@@ -754,8 +747,8 @@ msgstr ""
 
 #: lib/includes/admin/admin-functions.php:377
 msgid ""
-"WARNING! This will overwrite all existing option values, please proceed "
-"with caution."
+"WARNING! This will overwrite all existing option values, please proceed with "
+"caution."
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:385
@@ -768,8 +761,8 @@ msgstr ""
 
 #: lib/includes/admin/admin-functions.php:391
 msgid ""
-"The following settings are exported. Easy Property Listings settings screen "
-"and any Extension settings"
+"The following settings are exported. Easy Property Listings settings screen and "
+"any Extension settings"
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:410
@@ -800,9 +793,9 @@ msgstr ""
 
 #: lib/includes/admin/admin-functions.php:440
 msgid ""
-"Upgrading the database will copy all the listing pricing info into a "
-"unified price data column for searching and ordering. We recommend taking a "
-"database backup before performing this action."
+"Upgrading the database will copy all the listing pricing info into a unified "
+"price data column for searching and ordering. We recommend taking a database "
+"backup before performing this action."
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:442
@@ -827,8 +820,8 @@ msgstr ""
 
 #: lib/includes/admin/admin-functions.php:537
 msgid ""
-"For better performance, we need to upgrade the database. You can upgrade "
-"the database by visiting tools page"
+"For better performance, we need to upgrade the database. You can upgrade the "
+"database by visiting tools page"
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:542
@@ -853,8 +846,7 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:719
-#: lib/includes/class-epl-contact.php:679
+#: lib/includes/admin/admin-functions.php:719 lib/includes/class-epl-contact.php:679
 msgid "Call"
 msgstr ""
 
@@ -1032,8 +1024,8 @@ msgstr ""
 #: lib/post-types/post-type-commercial.php:31
 #: lib/post-types/post-type-commercial_land.php:32
 #: lib/post-types/post-type-contact.php:31 lib/post-types/post-type-land.php:32
-#: lib/post-types/post-type-property.php:32
-#: lib/post-types/post-type-rental.php:32 lib/post-types/post-type-rural.php:32
+#: lib/post-types/post-type-property.php:32 lib/post-types/post-type-rental.php:32
+#: lib/post-types/post-type-rural.php:32
 msgid "Add New"
 msgstr ""
 
@@ -1049,8 +1041,7 @@ msgstr ""
 #: lib/post-types/post-type-business.php:95
 #: lib/post-types/post-type-commercial.php:93
 #: lib/post-types/post-type-commercial_land.php:94
-#: lib/post-types/post-type-land.php:93
-#: lib/post-types/post-type-property.php:93
+#: lib/post-types/post-type-land.php:93 lib/post-types/post-type-property.php:93
 #: lib/post-types/post-type-rental.php:92 lib/post-types/post-type-rural.php:93
 msgid "Date"
 msgstr ""
@@ -1067,12 +1058,11 @@ msgstr ""
 #: lib/includes/admin/contacts/contacts.php:431
 #: lib/includes/admin/help-single.php:43
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:454
-#: lib/includes/admin/menus/menu-help.php:124
-#: lib/meta-boxes/meta-box-init.php:1389 lib/meta-boxes/meta-box-init.php:1404
-#: lib/meta-boxes/meta-box-init.php:1419 lib/meta-boxes/meta-box-init.php:1461
-#: lib/meta-boxes/meta-box-init.php:1476 lib/meta-boxes/meta-box-init.php:1492
-#: lib/widgets/widget-functions.php:27 lib/widgets/widget-functions.php:1394
-#: lib/widgets/widget-listing.php:249
+#: lib/includes/admin/menus/menu-help.php:124 lib/meta-boxes/meta-box-init.php:1389
+#: lib/meta-boxes/meta-box-init.php:1404 lib/meta-boxes/meta-box-init.php:1419
+#: lib/meta-boxes/meta-box-init.php:1461 lib/meta-boxes/meta-box-init.php:1476
+#: lib/meta-boxes/meta-box-init.php:1492 lib/widgets/widget-functions.php:27
+#: lib/widgets/widget-functions.php:1394 lib/widgets/widget-listing.php:249
 msgid "Title"
 msgstr ""
 
@@ -1080,8 +1070,7 @@ msgstr ""
 #: lib/post-types/post-type-business.php:92
 #: lib/post-types/post-type-commercial.php:90
 #: lib/post-types/post-type-commercial_land.php:91
-#: lib/post-types/post-type-land.php:91
-#: lib/post-types/post-type-property.php:91
+#: lib/post-types/post-type-land.php:91 lib/post-types/post-type-property.php:91
 #: lib/post-types/post-type-rental.php:90 lib/post-types/post-type-rural.php:91
 #: lib/widgets/widget-functions.php:56 lib/widgets/widget-functions.php:63
 #: lib/widgets/widget-functions.php:354
@@ -1120,21 +1109,18 @@ msgid "Unit"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1164
-#: lib/includes/admin/contacts/contacts.php:557
-#: lib/meta-boxes/meta-box-init.php:816
+#: lib/includes/admin/contacts/contacts.php:557 lib/meta-boxes/meta-box-init.php:816
 msgid "Street Number"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1171
-#: lib/includes/admin/contacts/contacts.php:564
-#: lib/meta-boxes/meta-box-init.php:823
+#: lib/includes/admin/contacts/contacts.php:564 lib/meta-boxes/meta-box-init.php:823
 msgid "Street Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1199
-#: lib/includes/admin/contacts/contacts.php:592
-#: lib/meta-boxes/meta-box-init.php:869 lib/widgets/widget-functions.php:118
-#: lib/widgets/widget-functions.php:431
+#: lib/includes/admin/contacts/contacts.php:592 lib/meta-boxes/meta-box-init.php:869
+#: lib/widgets/widget-functions.php:118 lib/widgets/widget-functions.php:431
 msgid "Country"
 msgstr ""
 
@@ -1156,9 +1142,8 @@ msgstr ""
 #: lib/includes/functions.php:2435 lib/post-types/post-types.php:47
 #: lib/post-types/post-types.php:541 lib/widgets/widget-admin-dashboard.php:116
 #: lib/widgets/widget-admin-dashboard.php:133
-#: lib/widgets/widget-admin-dashboard.php:155
-#: lib/widgets/widget-functions.php:68 lib/widgets/widget-listing.php:152
-#: lib/widgets/widget-listing.php:278
+#: lib/widgets/widget-admin-dashboard.php:155 lib/widgets/widget-functions.php:68
+#: lib/widgets/widget-listing.php:152 lib/widgets/widget-listing.php:278
 msgid "Current"
 msgstr ""
 
@@ -1292,8 +1277,7 @@ msgstr ""
 #: lib/post-types/post-type-business.php:88
 #: lib/post-types/post-type-commercial.php:86
 #: lib/post-types/post-type-commercial_land.php:87
-#: lib/post-types/post-type-land.php:87
-#: lib/post-types/post-type-property.php:87
+#: lib/post-types/post-type-land.php:87 lib/post-types/post-type-property.php:87
 #: lib/post-types/post-type-rental.php:86 lib/post-types/post-type-rural.php:87
 msgid "Address"
 msgstr ""
@@ -1364,21 +1348,19 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:39
 msgid ""
-"The title field and the big Post Editing Area are fixed in place, but you "
-"can reposition all the other boxes using drag and drop. You can also "
-"minimise or expand them by clicking the title bar of each box. Use the "
-"Screen Options tab to unhide more boxes (Location, Features, Property "
-"Address, Pricing, Linked Contact, Featured Image, Excerpt, Discussion, "
-"Comments, Slug, Author, Listing Details, Listing Features, Additional "
-"Features, Files and Links) or to choose a 1- or 2-column layout for this "
-"screen."
+"The title field and the big Post Editing Area are fixed in place, but you can "
+"reposition all the other boxes using drag and drop. You can also minimise or "
+"expand them by clicking the title bar of each box. Use the Screen Options tab to "
+"unhide more boxes (Location, Features, Property Address, Pricing, Linked Contact, "
+"Featured Image, Excerpt, Discussion, Comments, Slug, Author, Listing Details, "
+"Listing Features, Additional Features, Files and Links) or to choose a 1- or 2-"
+"column layout for this screen."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:43
 msgid ""
-"Enter a title for your post, for best results enter the full property "
-"address. After you enter a title, you’ll see the permalink below, which you "
-"can edit."
+"Enter a title for your post, for best results enter the full property address. "
+"After you enter a title, you’ll see the permalink below, which you can edit."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:45
@@ -1387,20 +1369,20 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:45
 msgid ""
-"Enter the text for your post. There are two modes of editing: Visual and "
-"Text. Choose the mode by clicking on the appropriate tab."
+"Enter the text for your post. There are two modes of editing: Visual and Text. "
+"Choose the mode by clicking on the appropriate tab."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:47
 msgid ""
-"Visual mode gives you a WYSIWYG editor. Click the last icon in the row to "
-"get a second row of controls."
+"Visual mode gives you a WYSIWYG editor. Click the last icon in the row to get a "
+"second row of controls."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:49
 msgid ""
-"The Text mode allows you to enter HTML along with your post text. Line "
-"breaks will be converted to paragraphs automatically."
+"The Text mode allows you to enter HTML along with your post text. Line breaks "
+"will be converted to paragraphs automatically."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:51
@@ -1412,16 +1394,15 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:53
 msgid ""
-"You can enable distraction-free writing mode using the icon to the right. "
-"This feature is not available for old browsers or devices with small "
-"screens, and requires that the full-height editor be enabled in Screen "
-"Options."
+"You can enable distraction-free writing mode using the icon to the right. This "
+"feature is not available for old browsers or devices with small screens, and "
+"requires that the full-height editor be enabled in Screen Options."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:55
 msgid ""
-"Keyboard users: When you’re working in the visual editor, you can use "
-"<code>Alt + F10</code> to access the toolbar."
+"Keyboard users: When you’re working in the visual editor, you can use <code>Alt + "
+"F10</code> to access the toolbar."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:59
@@ -1430,19 +1411,18 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:64
 msgid ""
-"You can upload and insert media (images, audio, documents, etc.) by "
-"clicking the Add Media button. You can select from the images and files "
-"already uploaded to the Media Library, or upload new media to add to your "
-"page or post. To manually create an image gallery, select the images to add "
-"and click the “Create a new gallery” button."
+"You can upload and insert media (images, audio, documents, etc.) by clicking the "
+"Add Media button. You can select from the images and files already uploaded to "
+"the Media Library, or upload new media to add to your page or post. To manually "
+"create an image gallery, select the images to add and click the “Create a new "
+"gallery” button."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:66
 msgid ""
-"You can also embed media from many popular websites including Twitter, "
-"YouTube, Flickr and others by pasting the media URL on its own line into "
-"the content of your post/page. Please refer to the Codex to learn more "
-"about embeds."
+"You can also embed media from many popular websites including Twitter, YouTube, "
+"Flickr and others by pasting the media URL on its own line into the content of "
+"your post/page. Please refer to the Codex to learn more about embeds."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:68
@@ -1451,11 +1431,10 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:68
 msgid ""
-"When your Easy Property Listings gallery settings are set to automatic the "
-"images that have been uploaded to this listing will automatically display "
-"and you cannot control the image order or exclude images. For full gallery "
-"control, disable the automatic gallery output and “Create a new gallery” "
-"for each listing."
+"When your Easy Property Listings gallery settings are set to automatic the images "
+"that have been uploaded to this listing will automatically display and you cannot "
+"control the image order or exclude images. For full gallery control, disable the "
+"automatic gallery output and “Create a new gallery” for each listing."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:72
@@ -1464,17 +1443,16 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:87
 msgid ""
-"Add the full listing address and generate the coordinates for the listing. "
-"You can drag the pin to adjust the lat/long coordinates of the listing. If "
-"you do not check the \"Display Street Address\" option the street number "
-"and street will not display to your visitor. You can also hide the map on a "
-"per listing basis."
+"Add the full listing address and generate the coordinates for the listing. You "
+"can drag the pin to adjust the lat/long coordinates of the listing. If you do not "
+"check the \"Display Street Address\" option the street number and street will not "
+"display to your visitor. You can also hide the map on a per listing basis."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:89
 msgid ""
-"If you do not check the \"Display Street Address\" option, the street "
-"number and street will not display to your visitor."
+"If you do not check the \"Display Street Address\" option, the street number and "
+"street will not display to your visitor."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:91
@@ -1494,9 +1472,9 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:102
 msgid ""
-"The search price should always be set as this will allow your visitor to "
-"narrow down their search. This number will be formatted as per your Easy "
-"Property Listings Currency settings."
+"The search price should always be set as this will allow your visitor to narrow "
+"down their search. This number will be formatted as per your Easy Property "
+"Listings Currency settings."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:104
@@ -1505,10 +1483,10 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:104
 msgid ""
-"This allows you to enter text as the price and allows you to enter a range, "
-"from price or anything you want to display. When entered this is displayed "
-"instead of the Search Price. No formatting is applied to the Price/Rent "
-"text so manually format the price you enter e.g. From $600,000."
+"This allows you to enter text as the price and allows you to enter a range, from "
+"price or anything you want to display. When entered this is displayed instead of "
+"the Search Price. No formatting is applied to the Price/Rent text so manually "
+"format the price you enter e.g. From $600,000."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:106
@@ -1517,14 +1495,14 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:106
 msgid ""
-"When this is not ticked your \"No Price Label\" will be displayed which you "
-"can adjust from settings. Your custom No Price label is currenty:"
+"When this is not ticked your \"No Price Label\" will be displayed which you can "
+"adjust from settings. Your custom No Price label is currenty:"
 msgstr ""
 
 #: lib/includes/admin/help-single.php:108
 msgid ""
-"Tick this when your listing is pending sale. The price will be replaced "
-"with your cusom label which is currently:"
+"Tick this when your listing is pending sale. The price will be replaced with your "
+"cusom label which is currently:"
 msgstr ""
 
 #: lib/includes/admin/help-single.php:110 lib/meta-boxes/meta-box-init.php:974
@@ -1533,8 +1511,8 @@ msgstr ""
 
 #: lib/includes/admin/help-single.php:110
 msgid ""
-"Once your listing is sold, you can enter the sale price and you can choose "
-"to \"Display Sale Price\" to your visitor."
+"Once your listing is sold, you can enter the sale price and you can choose to "
+"\"Display Sale Price\" to your visitor."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:114
@@ -1544,8 +1522,8 @@ msgstr ""
 #: lib/includes/admin/help-single.php:119
 msgid ""
 "Search for their name and select the contact and the contact ID will be "
-"determined. Publish/Update your listing and their details will be displayed "
-"for quick access."
+"determined. Publish/Update your listing and their details will be displayed for "
+"quick access."
 msgstr ""
 
 #: lib/includes/admin/help-single.php:123 lib/meta-boxes/meta-box-init.php:1506
@@ -1558,8 +1536,8 @@ msgstr ""
 
 #: lib/includes/admin/help.php:38
 msgid ""
-"This screen provides access to all of your posts. You can customize the "
-"display of this screen to suit your workflow."
+"This screen provides access to all of your posts. You can customize the display "
+"of this screen to suit your workflow."
 msgstr ""
 
 #: lib/includes/admin/help.php:43
@@ -1568,30 +1546,29 @@ msgstr ""
 
 #: lib/includes/admin/help.php:46
 msgid ""
-"You can hide/display columns based on your needs and decide how many "
-"listings to list per screen using the Screen Options tab."
+"You can hide/display columns based on your needs and decide how many listings to "
+"list per screen using the Screen Options tab."
 msgstr ""
 
 #: lib/includes/admin/help.php:47
 msgid ""
-"You can filter the list of listings by post status using the text links "
-"above the listings list to only show listings with that status. The default "
-"view is to show all listings."
+"You can filter the list of listings by post status using the text links above the "
+"listings list to only show listings with that status. The default view is to show "
+"all listings."
 msgstr ""
 
 #: lib/includes/admin/help.php:48
 msgid ""
-"You can view listings in a simple title list or with an excerpt using the "
-"Screen Options tab."
+"You can view listings in a simple title list or with an excerpt using the Screen "
+"Options tab."
 msgstr ""
 
 #: lib/includes/admin/help.php:49
 msgid ""
-"You can refine the list to show only listings in a specific category or "
-"from a specific month by using the dropdown menus above the listings list. "
-"Click the Filter button after making your selection. You also can refine "
-"the list by clicking on the listings author, category or tag in the "
-"listings list."
+"You can refine the list to show only listings in a specific category or from a "
+"specific month by using the dropdown menus above the listings list. Click the "
+"Filter button after making your selection. You also can refine the list by "
+"clicking on the listings author, category or tag in the listings list."
 msgstr ""
 
 #: lib/includes/admin/help.php:54
@@ -1600,8 +1577,8 @@ msgstr ""
 
 #: lib/includes/admin/help.php:59
 msgid ""
-"Hovering over a row in the listings list will display action links that "
-"allow you to manage your listings. You can perform the following actions:"
+"Hovering over a row in the listings list will display action links that allow you "
+"to manage your listings. You can perform the following actions:"
 msgstr ""
 
 #: lib/includes/admin/help.php:61
@@ -1610,8 +1587,8 @@ msgstr ""
 
 #: lib/includes/admin/help.php:61
 msgid ""
-"takes you to the editing screen for that listing. You can also reach that "
-"screen by clicking on the listing title."
+"takes you to the editing screen for that listing. You can also reach that screen "
+"by clicking on the listing title."
 msgstr ""
 
 #: lib/includes/admin/help.php:62
@@ -1620,8 +1597,8 @@ msgstr ""
 
 #: lib/includes/admin/help.php:62
 msgid ""
-"provides inline access to the metadata of your listing, allowing you to "
-"update listing details without leaving this screen."
+"provides inline access to the metadata of your listing, allowing you to update "
+"listing details without leaving this screen."
 msgstr ""
 
 #: lib/includes/admin/help.php:63
@@ -1630,8 +1607,8 @@ msgstr ""
 
 #: lib/includes/admin/help.php:63
 msgid ""
-"removes your listing from this list and places it in the trash, from which "
-"you can permanently delete it."
+"removes your listing from this list and places it in the trash, from which you "
+"can permanently delete it."
 msgstr ""
 
 #: lib/includes/admin/help.php:64
@@ -1640,9 +1617,9 @@ msgstr ""
 
 #: lib/includes/admin/help.php:64
 msgid ""
-"will show you what your draft listing will look like if you publish it. "
-"View will take you to your live site to view the listing. Which link is "
-"available depends on your listing status."
+"will show you what your draft listing will look like if you publish it. View will "
+"take you to your live site to view the listing. Which link is available depends "
+"on your listing status."
 msgstr ""
 
 #: lib/includes/admin/help.php:69
@@ -1651,16 +1628,16 @@ msgstr ""
 
 #: lib/includes/admin/help.php:75
 msgid ""
-"You can also edit or move multiple listings to the trash at once. Select "
-"the listings you want to act on using the checkboxes, then select the "
-"action you want to take from the Bulk Actions menu and click Apply."
+"You can also edit or move multiple listings to the trash at once. Select the "
+"listings you want to act on using the checkboxes, then select the action you want "
+"to take from the Bulk Actions menu and click Apply."
 msgstr ""
 
 #: lib/includes/admin/help.php:77
 msgid ""
-"When using Bulk Edit, you can change the metadata (features, author, etc.) "
-"for all selected posts at once. To remove a listing from the grouping, just "
-"click the x next to its name in the Bulk Edit area that appears."
+"When using Bulk Edit, you can change the metadata (features, author, etc.) for "
+"all selected posts at once. To remove a listing from the grouping, just click the "
+"x next to its name in the Bulk Edit area that appears."
 msgstr ""
 
 #: lib/includes/admin/help.php:81
@@ -1761,8 +1738,8 @@ msgstr ""
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:351
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:670
 msgid ""
-"Thank you for updating to the latest version! Easy Property Listings %s is "
-"ready to make your real estate website faster, safer and better!"
+"Thank you for updating to the latest version! Easy Property Listings %s is ready "
+"to make your real estate website faster, safer and better!"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:183
@@ -1777,10 +1754,9 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:192
 msgid ""
-"Easy Property Listings 3.3 is a major release with a huge number of new "
-"features for your real estate website. Whether you are a developer helping "
-"clients or you manage your site yourself, these features will help you "
-"showcase your listings."
+"Easy Property Listings 3.3 is a major release with a huge number of new features "
+"for your real estate website. Whether you are a developer helping clients or you "
+"manage your site yourself, these features will help you showcase your listings."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:195
@@ -1837,18 +1813,16 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:223
 msgid ""
-"Now that WordPress Gutenberg has been out and compatibility issues solved "
-"with the core WordPress team, we have enabled Gutenberg as default for Easy "
-"Property Listings. This also enables the REST API for all the custom post "
-"types."
+"Now that WordPress Gutenberg has been out and compatibility issues solved with "
+"the core WordPress team, we have enabled Gutenberg as default for Easy Property "
+"Listings. This also enables the REST API for all the custom post types."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:225
 msgid ""
-"Prefer classic WordPress? We have you covered. If you have the <a "
-"href=\"%s\" target=\"_blank\">Classic Editor WordPress plugin</a> installed "
-"and activated your listing entry screens will revert to the classic "
-"WordPress experience."
+"Prefer classic WordPress? We have you covered. If you have the <a href=\"%s\" "
+"target=\"_blank\">Classic Editor WordPress plugin</a> installed and activated "
+"your listing entry screens will revert to the classic WordPress experience."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:235
@@ -1857,42 +1831,39 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:239
 msgid ""
-"Major changes to underlying front end CSS is always a challenge. We know a "
-"large number of Easy Property Listings developers have applied a "
-"considerable amount of customisations to the default look and feel of the "
-"plugin. This is exactly what we hoped would happen and have seen some "
-"stunning examples."
+"Major changes to underlying front end CSS is always a challenge. We know a large "
+"number of Easy Property Listings developers have applied a considerable amount of "
+"customisations to the default look and feel of the plugin. This is exactly what "
+"we hoped would happen and have seen some stunning examples."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:241
 msgid ""
-"Saying this we understand that making wide sweeping changes can have "
-"unintended consequences to your site. We do not want that to happen to you. "
-"So we have added an option to enable Enhanced CSS from the Advanced "
-"Settings page."
+"Saying this we understand that making wide sweeping changes can have unintended "
+"consequences to your site. We do not want that to happen to you. So we have added "
+"an option to enable Enhanced CSS from the Advanced Settings page."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:243
 msgid ""
 "One of the changes this applies to is the grid mode view of your listings. "
-"Structurally this converts a float left block into an inline block for "
-"better wrapping of listings in grid mode and prevents white space appearing "
-"if your listings are not the exact same size."
+"Structurally this converts a float left block into an inline block for better "
+"wrapping of listings in grid mode and prevents white space appearing if your "
+"listings are not the exact same size."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:249
 msgid ""
-"If you install Easy Property Listings fresh this option will be "
-"automatically enabled, however if you are upgrading to 3.3 you will need to "
-"<strong>manually enable the option</strong> in the Advanced Settings and "
-"check that your customisations still work."
+"If you install Easy Property Listings fresh this option will be automatically "
+"enabled, however if you are upgrading to 3.3 you will need to <strong>manually "
+"enable the option</strong> in the Advanced Settings and check that your "
+"customisations still work."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:251
 msgid ""
-"A lot of work has gone into the Enhanced CSS that will be documented in the "
-"codex as there are a number of new classes that allow you to customise "
-"templates faster."
+"A lot of work has gone into the Enhanced CSS that will be documented in the codex "
+"as there are a number of new classes that allow you to customise templates faster."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:261
@@ -1905,10 +1876,10 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:266
 msgid ""
-"This release contains a number of improvements to the listing entry screens "
-"to trim them down in size significantly which should aid you with listing "
-"entry. We have also optimised the experience if you are using classic "
-"WordPress or Gutenberg."
+"This release contains a number of improvements to the listing entry screens to "
+"trim them down in size significantly which should aid you with listing entry. We "
+"have also optimised the experience if you are using classic WordPress or "
+"Gutenberg."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:270
@@ -1917,9 +1888,9 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:271
 msgid ""
-"Social profile icons has been altered to a more modern flat style that can "
-"be easily customised with CSS when using SVG versions or modify the PNG "
-"file. Any existing customisations are preserved."
+"Social profile icons has been altered to a more modern flat style that can be "
+"easily customised with CSS when using SVG versions or modify the PNG file. Any "
+"existing customisations are preserved."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:275
@@ -1931,9 +1902,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:276
 msgid ""
-"Unified price and listing type search is now possible. The result URL now "
-"only contains the options selected and you will also find a price slider "
-"solution."
+"Unified price and listing type search is now possible. The result URL now only "
+"contains the options selected and you will also find a price slider solution."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:285
@@ -1942,12 +1912,11 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:289
 msgid ""
-"Optomising your sites performance and keeping it running as fast possible "
-"has been a key cornerstone in development of Easy Property Listings since "
-"the beginning. We are further enhancing this with a production and "
-"development mode option that will use minified JS and CSS files. This is "
-"enabled by default and can be easily disabled from the Advanced Settings of "
-"Easy Property Listings."
+"Optomising your sites performance and keeping it running as fast possible has "
+"been a key cornerstone in development of Easy Property Listings since the "
+"beginning. We are further enhancing this with a production and development mode "
+"option that will use minified JS and CSS files. This is enabled by default and "
+"can be easily disabled from the Advanced Settings of Easy Property Listings."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:299
@@ -1960,8 +1929,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:304
 msgid ""
-"Now you can visit the Tools page and export your settings and import them "
-"into another project. This also exports and imports your extension settings."
+"Now you can visit the Tools page and export your settings and import them into "
+"another project. This also exports and imports your extension settings."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:308
@@ -1980,9 +1949,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:314
 msgid ""
-"There have been major code upgrades applied across a large number of "
-"funcations and features in the plugin, improving extensibility, performance "
-"and ease of use."
+"There have been major code upgrades applied across a large number of funcations "
+"and features in the plugin, improving extensibility, performance and ease of use."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:323
@@ -2005,8 +1973,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:367
 msgid ""
-"Use the tips below to get started using Easy Property Listings. You will be "
-"up and running in no time!"
+"Use the tips below to get started using Easy Property Listings. You will be up "
+"and running in no time!"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:371
@@ -2037,16 +2005,14 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:390
 msgid ""
-"Visit the general settings page and enable the listing types you need. Once "
-"you have pressed save visit the Permalinks page to re-fresh your sites "
-"permalinks."
+"Visit the general settings page and enable the listing types you need. Once you "
+"have pressed save visit the Permalinks page to re-fresh your sites permalinks."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:392
 msgid ""
-"Instead of classifying everything as a property, Easy Property Listings "
-"allows you to separate the different listing types which is better for SEO "
-"and RSS feeds."
+"Instead of classifying everything as a property, Easy Property Listings allows "
+"you to separate the different listing types which is better for SEO and RSS feeds."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:394
@@ -2105,28 +2071,27 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:419
 msgid ""
-"Doing this allows you to add \"Property\", \"Land\" and \"Rental\" pages to "
-"your WordPress menu. Add a new page for each listing type you activated."
+"Doing this allows you to add \"Property\", \"Land\" and \"Rental\" pages to your "
+"WordPress menu. Add a new page for each listing type you activated."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:421
 msgid ""
-"For example, lets say you have activated: Property, Rental and Land. Create "
-"three pages, one called \"Property\", another \"Land\" and the third "
-"\"Rental\" these will be the custom post type slugs/permalinks eg: "
-"property, rental and land."
+"For example, lets say you have activated: Property, Rental and Land. Create three "
+"pages, one called \"Property\", another \"Land\" and the third \"Rental\" these "
+"will be the custom post type slugs/permalinks eg: property, rental and land."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:423
 msgid ""
-"Publish a test \"Property Listing\" and visit your new property page and "
-"you will see the new property and others you have created."
+"Publish a test \"Property Listing\" and visit your new property page and you will "
+"see the new property and others you have created."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:425
 msgid ""
-"Now you can rename them to whatever you like eg: \"For Sale\", \"For Rent\" "
-"etc, but leave the slug/permalink as it was,"
+"Now you can rename them to whatever you like eg: \"For Sale\", \"For Rent\" etc, "
+"but leave the slug/permalink as it was,"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:425
@@ -2147,8 +2112,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:457
 msgid ""
-"When a property is being sold the \"heading\" is frequently changed and can "
-"cause permalink issues. Not to mention the search engine benefits."
+"When a property is being sold the \"heading\" is frequently changed and can cause "
+"permalink issues. Not to mention the search engine benefits."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:459
@@ -2157,10 +2122,10 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:460
 msgid ""
-"Select the author to show the name of the agent who has listed the property "
-"with their contact details. For best results each real estate agent should "
-"have their own WordPress user profile which allows for the output of their "
-"details on the listing and in widgets."
+"Select the author to show the name of the agent who has listed the property with "
+"their contact details. For best results each real estate agent should have their "
+"own WordPress user profile which allows for the output of their details on the "
+"listing and in widgets."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:469
@@ -2174,8 +2139,7 @@ msgstr ""
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:476
 #: lib/includes/admin/menus/menu-help.php:146
 msgid ""
-"Add a gallery of images to your listings with the WordPress Add Media "
-"button."
+"Add a gallery of images to your listings with the WordPress Add Media button."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:478
@@ -2184,10 +2148,9 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:480
 msgid ""
-"If set to automatic, just upload your images to the listing and press x to "
-"close the media upload box once the images are attached to the listing. You "
-"can also easily adjust the number of gallery columns from the plugin "
-"Display options."
+"If set to automatic, just upload your images to the listing and press x to close "
+"the media upload box once the images are attached to the listing. You can also "
+"easily adjust the number of gallery columns from the plugin Display options."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:482
@@ -2196,24 +2159,22 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:483
 msgid ""
-"Using a light box plug-in like Easy FancyBox, your automatic gallery images "
-"will use the light box effect."
+"Using a light box plug-in like Easy FancyBox, your automatic gallery images will "
+"use the light box effect."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:494
-#: lib/includes/admin/menus/menu-help.php:159
-#: lib/meta-boxes/meta-box-init.php:38 lib/post-types/post-type-business.php:89
+#: lib/includes/admin/menus/menu-help.php:159 lib/meta-boxes/meta-box-init.php:38
+#: lib/post-types/post-type-business.php:89
 #: lib/post-types/post-type-commercial.php:87
 #: lib/post-types/post-type-commercial_land.php:88
-#: lib/post-types/post-type-land.php:88
-#: lib/post-types/post-type-property.php:88
+#: lib/post-types/post-type-land.php:88 lib/post-types/post-type-property.php:88
 #: lib/post-types/post-type-rental.php:87 lib/post-types/post-type-rural.php:88
 msgid "Listing Details"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:500
-#: lib/includes/admin/menus/menu-help.php:161
-#: lib/meta-boxes/meta-box-init.php:50
+#: lib/includes/admin/menus/menu-help.php:161 lib/meta-boxes/meta-box-init.php:50
 msgid "Heading"
 msgstr ""
 
@@ -2223,34 +2184,34 @@ msgid "Enter the descriptive listing headline like \"Great Property with Views\"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:503
-#: lib/includes/admin/menus/menu-help.php:164
-#: lib/meta-boxes/meta-box-init.php:82 lib/post-types/post-types.php:86
+#: lib/includes/admin/menus/menu-help.php:164 lib/meta-boxes/meta-box-init.php:82
+#: lib/post-types/post-types.php:86
 msgid "Second Listing Agent"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:504
 #: lib/includes/admin/menus/menu-help.php:165
 msgid ""
-"If the listing has two real estate agents marketing it, enter their "
-"WordPress user name here. The primary agent is the post Author."
+"If the listing has two real estate agents marketing it, enter their WordPress "
+"user name here. The primary agent is the post Author."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:506
-#: lib/includes/admin/menus/menu-help.php:167
-#: lib/meta-boxes/meta-box-init.php:208 lib/widgets/widget-listing.php:441
+#: lib/includes/admin/menus/menu-help.php:167 lib/meta-boxes/meta-box-init.php:208
+#: lib/widgets/widget-listing.php:441
 msgid "Inspection Times"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:507
 msgid ""
-"Now supports multiple inspection times, add one per line. Past inspection "
-"dates will not display when using the new format."
+"Now supports multiple inspection times, add one per line. Past inspection dates "
+"will not display when using the new format."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:509
 msgid ""
-"The output is now wrapped in an iCal format so clicking on the date will "
-"open the users calendar."
+"The output is now wrapped in an iCal format so clicking on the date will open the "
+"users calendar."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:519
@@ -2261,17 +2222,16 @@ msgstr ""
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:524
 #: lib/includes/admin/menus/menu-help.php:181
 msgid ""
-"Although the address details are added into the Property Address box the "
-"location search you also need to add the City/Suburb to the location search "
-"taxonomy."
+"Although the address details are added into the Property Address box the location "
+"search you also need to add the City/Suburb to the location search taxonomy."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:525
 #: lib/includes/admin/menus/menu-help.php:182
 msgid ""
-"This works like post tags and will populate the search widget/shortcode "
-"with your listings and it will automatically filter out options if no "
-"listings have that option."
+"This works like post tags and will populate the search widget/shortcode with your "
+"listings and it will automatically filter out options if no listings have that "
+"option."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:539
@@ -2280,8 +2240,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:540
 msgid ""
-"We have done our best to integrate Easy Property Listings with all "
-"WordPress themes."
+"We have done our best to integrate Easy Property Listings with all WordPress "
+"themes."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:545
@@ -2291,15 +2251,15 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:546
 msgid ""
-"Once you add a listing and if your page is really wide or your sidebar is "
-"under the content enable Theme Compatibility mode from settings."
+"Once you add a listing and if your page is really wide or your sidebar is under "
+"the content enable Theme Compatibility mode from settings."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:548
 msgid ""
 "Review your listing and if you are seeing double images, hop back over to "
-"Settings page and either disable the theme feature image or the one "
-"provided by Easy Property Listings."
+"Settings page and either disable the theme feature image or the one provided by "
+"Easy Property Listings."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:550
@@ -2374,9 +2334,9 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:591
 msgid ""
-"Not all themes follow modern WordPress coding standards and these may take "
-"a little more time and experience to get working. If you just can not get "
-"it to work, visit"
+"Not all themes follow modern WordPress coding standards and these may take a "
+"little more time and experience to get working. If you just can not get it to "
+"work, visit"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:591
@@ -2389,11 +2349,10 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:593
 msgid ""
-"If the theme is available in the WordPress.org theme directory let us know "
-"the theme name and URL where we can download it in your support ticket. If "
-"its a premium theme or are in a hurry submit a priority support ticket "
-"along with the theme in a zip or a download link to it on a file sharing "
-"site like Dropbox."
+"If the theme is available in the WordPress.org theme directory let us know the "
+"theme name and URL where we can download it in your support ticket. If its a "
+"premium theme or are in a hurry submit a priority support ticket along with the "
+"theme in a zip or a download link to it on a file sharing site like Dropbox."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:603
@@ -2406,9 +2365,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:608
 msgid ""
-"We do our best to provide the best support we can. If you encounter a "
-"problem or have a question, post a question in the <a href=\"%s\">support "
-"forums</a>."
+"We do our best to provide the best support we can. If you encounter a problem or "
+"have a question, post a question in the <a href=\"%s\">support forums</a>."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:612
@@ -2417,9 +2375,9 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:613
 msgid ""
-"<a href=\"https://easypropertylistings.com.au/support-ticket/\">Priority "
-"Support forums</a> are there for customers that need faster and/or more "
-"in-depth assistance."
+"<a href=\"https://easypropertylistings.com.au/support-ticket/\">Priority Support "
+"forums</a> are there for customers that need faster and/or more in-depth "
+"assistance."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:617
@@ -2452,10 +2410,10 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:631
 msgid ""
-"New extensions that make Easy Property Listings even more powerful are "
-"released nearly every single week. Subscribe to the newsletter to stay up "
-"to date with our latest releases. <a href=\"http://eepurl.com/TRO9f\" "
-"target=\"_blank\">Sign up now</a> to ensure you do not miss a release!"
+"New extensions that make Easy Property Listings even more powerful are released "
+"nearly every single week. Subscribe to the newsletter to stay up to date with our "
+"latest releases. <a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up "
+"now</a> to ensure you do not miss a release!"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:633
@@ -2464,9 +2422,9 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:634
 msgid ""
-"<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to "
-"hear about the latest tutorial releases that explain how to take Easy "
-"Property Listings further."
+"<a href=\"http://eepurl.com/TRO9f\" target=\"_blank\">Sign up now</a> to hear "
+"about the latest tutorial releases that explain how to take Easy Property "
+"Listings further."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:637
@@ -2503,10 +2461,9 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:647
 msgid ""
-"Add-on plug ins are available that greatly extend the default functionality "
-"of Easy Property Listings. There are extensions for %s, %s, %s, %s, %s, %s, "
-"and many, many more. Visit the %s to further enhance your real estate "
-"website."
+"Add-on plug ins are available that greatly extend the default functionality of "
+"Easy Property Listings. There are extensions for %s, %s, %s, %s, %s, %s, and "
+"many, many more. Visit the %s to further enhance your real estate website."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:649
@@ -2519,15 +2476,15 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:650
 msgid ""
-"has a list of all available extensions to make your real estate website "
-"even better."
+"has a list of all available extensions to make your real estate website even "
+"better."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:675
 msgid ""
-"Easy Property Listings is created by a worldwide team of developers who aim "
-"to provide the #1 property listings platform for managing your real estate "
-"business through WordPress."
+"Easy Property Listings is created by a worldwide team of developers who aim to "
+"provide the #1 property listings platform for managing your real estate business "
+"through WordPress."
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-menu-welcome.php:702
@@ -2538,8 +2495,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-addons.php:49
 msgid ""
-"There was an error retrieving the extensions list from the server. Please "
-"try again later."
+"There was an error retrieving the extensions list from the server. Please try "
+"again later."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-addons.php:67
@@ -2577,12 +2534,11 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-extensions.php:96
 msgid ""
-"Configure your extension settings here. Visit the main settings page for "
-"more extension settings."
+"Configure your extension settings here. Visit the main settings page for more "
+"extension settings."
 msgstr ""
 
-#: lib/includes/admin/menus/menu-general.php:77
-#: lib/includes/admin/plugins.php:25
+#: lib/includes/admin/menus/menu-general.php:77 lib/includes/admin/plugins.php:25
 msgid "General Settings"
 msgstr ""
 
@@ -2596,16 +2552,15 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:21
 msgid ""
-"Nice! You installed Easy Property Listings and now you are ready to manage "
-"your listings."
+"Nice! You installed Easy Property Listings and now you are ready to manage your "
+"listings."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:22
 msgid ""
-"Below are some links and videos that will help you get started. If you "
-"still have questions, we have on-line documentation and tutorials packed "
-"with information or ask a question by opening a <a href=\"%s\">support "
-"ticket</a>."
+"Below are some links and videos that will help you get started. If you still have "
+"questions, we have on-line documentation and tutorials packed with information or "
+"ask a question by opening a <a href=\"%s\">support ticket</a>."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:34
@@ -2634,15 +2589,14 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:62
 msgid ""
-"You can add new users and assign them to listings or they can add their "
-"own. The user can also updated and edit the information displayed in their "
-"profile and make changes from their profile page."
+"You can add new users and assign them to listings or they can add their own. The "
+"user can also updated and edit the information displayed in their profile and "
+"make changes from their profile page."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:63
 msgid ""
-"Fast forward video to 5:00 minutes to see how you can quickly update your "
-"profile."
+"Fast forward video to 5:00 minutes to see how you can quickly update your profile."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:83
@@ -2651,15 +2605,14 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:84
 msgid ""
-"Managing your profile is very important to help you connect with your "
-"visitors and gives you an opportunity to tell them about how you can help "
-"them."
+"Managing your profile is very important to help you connect with your visitors "
+"and gives you an opportunity to tell them about how you can help them."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:86
 msgid ""
-"You can quickly edit your profile and update and add your phone number, "
-"social media links and bio or even add a video."
+"You can quickly edit your profile and update and add your phone number, social "
+"media links and bio or even add a video."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:88
@@ -2678,9 +2631,9 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:125
 msgid ""
-"When a property is being sold the \"heading\" is frequently changed and can "
-"cause link issues. Not to mention the search engine benefits. Use the full "
-"listing address as the title."
+"When a property is being sold the \"heading\" is frequently changed and can cause "
+"link issues. Not to mention the search engine benefits. Use the full listing "
+"address as the title."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:127
@@ -2689,14 +2642,14 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:128
 msgid ""
-"Enter your descriptive text for your listing here. Add images, insert "
-"shortcodes, or plain text."
+"Enter your descriptive text for your listing here. Add images, insert shortcodes, "
+"or plain text."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:131
 msgid ""
-"Set the primary listing agent as the author. Update your contact details, "
-"bio and social media links from your profile."
+"Set the primary listing agent as the author. Update your contact details, bio and "
+"social media links from your profile."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:142
@@ -2714,8 +2667,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:148
 msgid ""
-"If set to automatic, just upload your images to the listing and press x to "
-"close the media upload box once the images are attached to the listing."
+"If set to automatic, just upload your images to the listing and press x to close "
+"the media upload box once the images are attached to the listing."
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:168
@@ -2754,17 +2707,15 @@ msgstr ""
 
 #: lib/includes/admin/menus/menu-licenses.php:152
 msgid ""
-"Please make sure you have entered the correct value and that your key is "
-"not expired."
+"Please make sure you have entered the correct value and that your key is not "
+"expired."
 msgstr ""
 
-#: lib/includes/admin/menus/menu-licenses.php:201
-#: lib/includes/functions.php:1222
+#: lib/includes/admin/menus/menu-licenses.php:201 lib/includes/functions.php:1222
 msgid "Select Page"
 msgstr ""
 
-#: lib/includes/admin/menus/menu-tools.php:17
-#: lib/includes/admin/menus/menus.php:109
+#: lib/includes/admin/menus/menu-tools.php:17 lib/includes/admin/menus/menus.php:109
 #: lib/includes/admin/menus/menus.php:110
 msgid "Tools"
 msgstr ""
@@ -2806,19 +2757,15 @@ msgstr ""
 msgid "Licenses"
 msgstr ""
 
-#: lib/includes/admin/menus/menus.php:101
-#: lib/includes/admin/menus/menus.php:102 lib/includes/admin/plugins.php:48
+#: lib/includes/admin/menus/menus.php:101 lib/includes/admin/menus/menus.php:102
+#: lib/includes/admin/plugins.php:48
 msgid "Add Ons"
 msgstr ""
 
-#: lib/includes/admin/menus/menus.php:125
-#: lib/includes/admin/menus/menus.php:137
-#: lib/includes/admin/menus/menus.php:149
-#: lib/includes/admin/menus/menus.php:161
-#: lib/includes/admin/menus/menus.php:173
-#: lib/includes/admin/menus/menus.php:185
-#: lib/includes/admin/menus/menus.php:197
-#: lib/includes/admin/menus/menus.php:209
+#: lib/includes/admin/menus/menus.php:125 lib/includes/admin/menus/menus.php:137
+#: lib/includes/admin/menus/menus.php:149 lib/includes/admin/menus/menus.php:161
+#: lib/includes/admin/menus/menus.php:173 lib/includes/admin/menus/menus.php:185
+#: lib/includes/admin/menus/menus.php:197 lib/includes/admin/menus/menus.php:209
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
@@ -2944,8 +2891,7 @@ msgstr ""
 msgid "Admin Note"
 msgstr ""
 
-#: lib/includes/class-epl-contact.php:681
-#: lib/includes/template-functions.php:2646
+#: lib/includes/class-epl-contact.php:681 lib/includes/template-functions.php:2646
 #: lib/shortcodes/class-epl-listing-elements.php:61
 msgid "Listing"
 msgstr ""
@@ -3078,8 +3024,7 @@ msgid "Alarm System"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1530
-#: lib/includes/class-epl-property-meta.php:1602
-#: lib/post-types/post-types.php:302
+#: lib/includes/class-epl-property-meta.php:1602 lib/post-types/post-types.php:302
 msgid "m&#178;"
 msgstr ""
 
@@ -3107,15 +3052,13 @@ msgstr ""
 #: lib/post-types/post-type-business.php:85
 #: lib/post-types/post-type-commercial.php:83
 #: lib/post-types/post-type-commercial_land.php:84
-#: lib/post-types/post-type-land.php:84
-#: lib/post-types/post-type-property.php:84
+#: lib/post-types/post-type-land.php:84 lib/post-types/post-type-property.php:84
 #: lib/post-types/post-type-rental.php:83 lib/post-types/post-type-rural.php:84
 msgid "Featured"
 msgstr ""
 
 #: lib/includes/class-epl-search-fields.php:150
-#: lib/includes/class-epl-search-fields.php:193
-#: lib/widgets/widget-functions.php:67
+#: lib/includes/class-epl-search-fields.php:193 lib/widgets/widget-functions.php:67
 msgid "Any"
 msgstr ""
 
@@ -3431,8 +3374,8 @@ msgstr ""
 
 #: lib/includes/functions.php:1255
 msgid ""
-"Select the listing types you want to enable and press Save Changes. Refresh "
-"the page to see your new activated listing types."
+"Select the listing types you want to enable and press Save Changes. Refresh the "
+"page to see your new activated listing types."
 msgstr ""
 
 #: lib/includes/functions.php:1259
@@ -3451,8 +3394,8 @@ msgstr ""
 
 #: lib/includes/functions.php:1269
 msgid ""
-"After changing this setting visit Dashboard > Settings > Permalinks to save "
-"the settings."
+"After changing this setting visit Dashboard > Settings > Permalinks to save the "
+"settings."
 msgstr ""
 
 #: lib/includes/functions.php:1270
@@ -3531,8 +3474,8 @@ msgstr ""
 
 #: lib/includes/functions.php:1351
 msgid ""
-"Customise the labels that are used to show the status and information on "
-"the archive and individual listing pages."
+"Customise the labels that are used to show the status and information on the "
+"archive and individual listing pages."
 msgstr ""
 
 #: lib/includes/functions.php:1356
@@ -3674,8 +3617,7 @@ msgstr ""
 
 #: lib/includes/functions.php:1509
 msgid ""
-"Customise the tab labels of the EPL - Search Widget or [listing_search] "
-"shortcode."
+"Customise the tab labels of the EPL - Search Widget or [listing_search] shortcode."
 msgstr ""
 
 #: lib/includes/functions.php:1513 lib/includes/functions.php:1515
@@ -3685,8 +3627,8 @@ msgid "All"
 msgstr ""
 
 #: lib/includes/functions.php:1519 lib/includes/functions.php:1521
-#: lib/post-types/post-type-property.php:30
-#: lib/post-types/post-type-property.php:31 lib/updates/epl-1.3.1.php:4
+#: lib/post-types/post-type-property.php:30 lib/post-types/post-type-property.php:31
+#: lib/updates/epl-1.3.1.php:4
 msgid "Property"
 msgstr ""
 
@@ -3696,8 +3638,8 @@ msgstr ""
 
 #: lib/includes/functions.php:1566
 msgid ""
-"Use the following settings to change how the Dashboard > Property or any "
-"listing of the types you have enabled display."
+"Use the following settings to change how the Dashboard > Property or any listing "
+"of the types you have enabled display."
 msgstr ""
 
 #: lib/includes/functions.php:1571
@@ -3746,17 +3688,17 @@ msgstr ""
 
 #: lib/includes/functions.php:1625
 msgid ""
-"The following settings will use your theme templates to generate your "
-"listing pages. If your listings appear too wide or your sidebar is in the "
-"wrong place enable theme compatibility. When this is enabled you can use "
-"the included shortcodes like [listing post_type=\"property\" "
-"tools_top=\"on\"] to display your listings with sorting and grid options."
+"The following settings will use your theme templates to generate your listing "
+"pages. If your listings appear too wide or your sidebar is in the wrong place "
+"enable theme compatibility. When this is enabled you can use the included "
+"shortcodes like [listing post_type=\"property\" tools_top=\"on\"] to display your "
+"listings with sorting and grid options."
 msgstr ""
 
 #: lib/includes/functions.php:1637
 msgid ""
-"When using iThemes, Genesis frameworks or your listings look good, leave "
-"this disabled."
+"When using iThemes, Genesis frameworks or your listings look good, leave this "
+"disabled."
 msgstr ""
 
 #: lib/includes/functions.php:1643
@@ -3765,9 +3707,9 @@ msgstr ""
 
 #: lib/includes/functions.php:1646
 msgid ""
-"Some WordPress themes automatically display featured images on posts and "
-"pages which may cause you to see double on your listings. Use the following "
-"settings to adjust the featured image behaviour."
+"Some WordPress themes automatically display featured images on posts and pages "
+"which may cause you to see double on your listings. Use the following settings to "
+"adjust the featured image behaviour."
 msgstr ""
 
 #: lib/includes/functions.php:1652
@@ -3792,9 +3734,9 @@ msgstr ""
 
 #: lib/includes/functions.php:1707
 msgid ""
-"Select your default currency. If you can not find the currency you are "
-"looking for, you can add additional currencies with a filter, <a "
-"href=\"%s\" target=\"_blank\">visit the codex to see how</a>."
+"Select your default currency. If you can not find the currency you are looking "
+"for, you can add additional currencies with a filter, <a href=\"%s\" target="
+"\"_blank\">visit the codex to see how</a>."
 msgstr ""
 
 #: lib/includes/functions.php:1711
@@ -3819,8 +3761,7 @@ msgstr ""
 
 #: lib/includes/functions.php:1741
 msgid ""
-"These settings allow you to control how your inspection times display by "
-"default."
+"These settings allow you to control how your inspection times display by default."
 msgstr ""
 
 #: lib/includes/functions.php:1745
@@ -3869,9 +3810,8 @@ msgstr ""
 
 #: lib/includes/functions.php:1821
 msgid ""
-"Additional settings to control how Easy Property Listings works. For even "
-"more advanced filters and hooks, <a href=\"%s\" target=\"_blank\">visit the "
-"codex</a>."
+"Additional settings to control how Easy Property Listings works. For even more "
+"advanced filters and hooks, <a href=\"%s\" target=\"_blank\">visit the codex</a>."
 msgstr ""
 
 #: lib/includes/functions.php:1825
@@ -3925,8 +3865,8 @@ msgstr ""
 
 #: lib/includes/functions.php:1853
 msgid ""
-"Check this to enable enhanced structural css styles. This implements "
-"inline-block mode for a better grid format on your listings."
+"Check this to enable enhanced structural css styles. This implements inline-block "
+"mode for a better grid format on your listings."
 msgstr ""
 
 #: lib/includes/functions.php:1858
@@ -3951,8 +3891,8 @@ msgstr ""
 
 #: lib/includes/functions.php:1887
 msgid ""
-"Set to disabled if Google Maps API has already been loaded in your theme or "
-"other plugin."
+"Set to disabled if Google Maps API has already been loaded in your theme or other "
+"plugin."
 msgstr ""
 
 #: lib/includes/functions.php:1900
@@ -3977,8 +3917,8 @@ msgstr ""
 
 #: lib/includes/functions.php:1918
 msgid ""
-"Select Enable if you would like EPL to completely remove all of its data "
-"when the plugin is deleted."
+"Select Enable if you would like EPL to completely remove all of its data when the "
+"plugin is deleted."
 msgstr ""
 
 #: lib/includes/functions.php:1928
@@ -3991,10 +3931,9 @@ msgstr ""
 
 #: lib/includes/functions.php:1937
 msgid ""
-"Checking any of the checkboxes will opt you in to receive pre-release "
-"update notifications. You can opt-out at any time. Pre-release updates do "
-"not install automatically, you will still have the opportunity to ignore "
-"update notifications."
+"Checking any of the checkboxes will opt you in to receive pre-release update "
+"notifications. You can opt-out at any time. Pre-release updates do not install "
+"automatically, you will still have the opportunity to ignore update notifications."
 msgstr ""
 
 #: lib/includes/functions.php:2289
@@ -4036,16 +3975,16 @@ msgstr ""
 #: lib/includes/functions.php:2436 lib/post-types/post-types.php:48
 #: lib/post-types/post-types.php:542 lib/widgets/widget-admin-dashboard.php:118
 #: lib/widgets/widget-admin-dashboard.php:138
-#: lib/widgets/widget-admin-dashboard.php:159
-#: lib/widgets/widget-listing.php:155 lib/widgets/widget-listing.php:281
+#: lib/widgets/widget-admin-dashboard.php:159 lib/widgets/widget-listing.php:155
+#: lib/widgets/widget-listing.php:281
 msgid "Withdrawn"
 msgstr ""
 
 #: lib/includes/functions.php:2437 lib/post-types/post-types.php:49
 #: lib/post-types/post-types.php:543 lib/widgets/widget-admin-dashboard.php:119
 #: lib/widgets/widget-admin-dashboard.php:139
-#: lib/widgets/widget-admin-dashboard.php:160
-#: lib/widgets/widget-listing.php:156 lib/widgets/widget-listing.php:282
+#: lib/widgets/widget-admin-dashboard.php:160 lib/widgets/widget-listing.php:156
+#: lib/widgets/widget-listing.php:282
 msgid "Off Market"
 msgstr ""
 
@@ -4204,23 +4143,20 @@ msgid "..."
 msgstr ""
 
 #: lib/includes/pagination.php:465 lib/includes/pagination.php:526
-#: lib/templates/content/author.php:116
-#: lib/templates/themes/default/author.php:114
+#: lib/templates/content/author.php:116 lib/templates/themes/default/author.php:114
 #: lib/templates/themes/genesis/author.php:114
 #: lib/templates/themes/ithemes-builder/author.php:111
 msgid "Next Page &raquo;"
 msgstr ""
 
 #: lib/includes/pagination.php:506 lib/includes/pagination.php:525
-#: lib/templates/content/author.php:115
-#: lib/templates/themes/default/author.php:113
+#: lib/templates/content/author.php:115 lib/templates/themes/default/author.php:113
 #: lib/templates/themes/genesis/author.php:113
 #: lib/templates/themes/ithemes-builder/author.php:110
 msgid "&laquo; Previous Page"
 msgstr ""
 
-#: lib/includes/template-functions.php:753
-#: lib/includes/template-functions.php:1181
+#: lib/includes/template-functions.php:753 lib/includes/template-functions.php:1181
 #: lib/meta-boxes/meta-box-init.php:1244
 msgid "Plus Outgoings"
 msgstr ""
@@ -4233,13 +4169,11 @@ msgstr ""
 msgid "Property Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1234
-#: lib/meta-boxes/meta-box-init.php:1289
+#: lib/includes/template-functions.php:1234 lib/meta-boxes/meta-box-init.php:1289
 msgid "Commercial Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1281
-#: lib/meta-boxes/meta-box-init.php:1095
+#: lib/includes/template-functions.php:1281 lib/meta-boxes/meta-box-init.php:1095
 msgid "Rural Features"
 msgstr ""
 
@@ -4332,8 +4266,7 @@ msgstr ""
 msgid "Email is required"
 msgstr ""
 
-#: lib/includes/user.php:22
-#: lib/templates/content/widget-content-author-tall.php:41
+#: lib/includes/user.php:22 lib/templates/content/widget-content-author-tall.php:41
 msgid "Mobile"
 msgstr ""
 
@@ -4421,12 +4354,10 @@ msgstr ""
 msgid "Authority"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:131
-#: lib/post-types/post-type-business.php:90
+#: lib/meta-boxes/meta-box-init.php:131 lib/post-types/post-type-business.php:90
 #: lib/post-types/post-type-commercial.php:88
 #: lib/post-types/post-type-commercial_land.php:89
-#: lib/post-types/post-type-land.php:89
-#: lib/post-types/post-type-property.php:89
+#: lib/post-types/post-type-land.php:89 lib/post-types/post-type-property.php:89
 #: lib/post-types/post-type-rental.php:88 lib/post-types/post-type-rural.php:89
 msgid "Unique ID"
 msgstr ""
@@ -4773,8 +4704,7 @@ msgstr ""
 msgid "Search for contact and update to save."
 msgstr ""
 
-#: lib/post-types/post-type-business.php:29
-#: lib/post-types/post-type-business.php:30
+#: lib/post-types/post-type-business.php:29 lib/post-types/post-type-business.php:30
 msgid "Business Listings"
 msgstr ""
 
@@ -4820,8 +4750,7 @@ msgstr ""
 
 #: lib/post-types/post-type-business.php:86
 #: lib/post-types/post-type-commercial_land.php:85
-#: lib/post-types/post-type-land.php:85
-#: lib/post-types/post-type-property.php:85
+#: lib/post-types/post-type-land.php:85 lib/post-types/post-type-property.php:85
 #: lib/post-types/post-type-rental.php:84 lib/post-types/post-type-rural.php:85
 #: lib/widgets/widget-listing.php:369
 msgid "Image"
@@ -4830,8 +4759,7 @@ msgstr ""
 #: lib/post-types/post-type-business.php:87
 #: lib/post-types/post-type-commercial.php:85
 #: lib/post-types/post-type-commercial_land.php:86
-#: lib/post-types/post-type-land.php:86
-#: lib/post-types/post-type-property.php:86
+#: lib/post-types/post-type-land.php:86 lib/post-types/post-type-property.php:86
 #: lib/post-types/post-type-rural.php:86 lib/widgets/widget-functions.php:146
 #: lib/widgets/widget-listing.php:431
 msgid "Price"
@@ -4840,8 +4768,7 @@ msgstr ""
 #: lib/post-types/post-type-business.php:91
 #: lib/post-types/post-type-commercial.php:89
 #: lib/post-types/post-type-commercial_land.php:90
-#: lib/post-types/post-type-land.php:90
-#: lib/post-types/post-type-property.php:90
+#: lib/post-types/post-type-land.php:90 lib/post-types/post-type-property.php:90
 #: lib/post-types/post-type-rural.php:90
 msgid "Geo"
 msgstr ""
@@ -4855,8 +4782,7 @@ msgstr ""
 #: lib/post-types/post-type-business.php:94
 #: lib/post-types/post-type-commercial.php:92
 #: lib/post-types/post-type-commercial_land.php:93
-#: lib/post-types/post-type-land.php:92
-#: lib/post-types/post-type-property.php:92
+#: lib/post-types/post-type-land.php:92 lib/post-types/post-type-property.php:92
 #: lib/post-types/post-type-rental.php:91 lib/post-types/post-type-rural.php:92
 msgid "Agent"
 msgstr ""
@@ -5089,8 +5015,7 @@ msgstr ""
 msgid "Parent Listing:"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:29
-#: lib/post-types/post-type-rental.php:31
+#: lib/post-types/post-type-rental.php:29 lib/post-types/post-type-rental.php:31
 msgid "Rentals"
 msgstr ""
 
@@ -5330,8 +5255,7 @@ msgstr ""
 msgid "Contact Tag Not Found"
 msgstr ""
 
-#: lib/taxonomies/tax-contact_tags.php:67
-#: lib/taxonomies/tax-contact_tags.php:85
+#: lib/taxonomies/tax-contact_tags.php:67 lib/taxonomies/tax-contact_tags.php:85
 msgid "Background Color"
 msgstr ""
 
@@ -5412,29 +5336,25 @@ msgstr ""
 msgid "Archive for %s"
 msgstr ""
 
-#: lib/templates/content/author.php:40
-#: lib/templates/themes/default/author.php:38
+#: lib/templates/content/author.php:40 lib/templates/themes/default/author.php:38
 #: lib/templates/themes/genesis/author.php:38
 #: lib/templates/themes/ithemes-builder/author.php:35
 msgid "Author Archive for %s"
 msgstr ""
 
-#: lib/templates/content/author.php:52
-#: lib/templates/themes/default/author.php:50
+#: lib/templates/content/author.php:52 lib/templates/themes/default/author.php:50
 #: lib/templates/themes/genesis/author.php:50
 #: lib/templates/themes/ithemes-builder/author.php:47
 msgid "Time Archive"
 msgstr ""
 
-#: lib/templates/content/author.php:55
-#: lib/templates/themes/default/author.php:53
+#: lib/templates/content/author.php:55 lib/templates/themes/default/author.php:53
 #: lib/templates/themes/genesis/author.php:53
 #: lib/templates/themes/ithemes-builder/author.php:50
 msgid "Archive"
 msgstr ""
 
-#: lib/templates/content/author.php:78
-#: lib/templates/themes/default/author.php:76
+#: lib/templates/content/author.php:78 lib/templates/themes/default/author.php:76
 #: lib/templates/themes/genesis/author.php:76
 #: lib/templates/themes/ithemes-builder/author.php:74
 msgid "By %s"
@@ -5480,15 +5400,13 @@ msgstr ""
 msgid "(%)"
 msgstr ""
 
-#: lib/templates/content/author.php:100
-#: lib/templates/themes/default/author.php:98
+#: lib/templates/content/author.php:100 lib/templates/themes/default/author.php:98
 #: lib/templates/themes/genesis/author.php:98
 #: lib/templates/themes/ithemes-builder/author.php:95
 msgid "Categories : %s"
 msgstr ""
 
-#: lib/templates/content/author.php:101
-#: lib/templates/themes/default/author.php:99
+#: lib/templates/content/author.php:101 lib/templates/themes/default/author.php:99
 #: lib/templates/themes/genesis/author.php:99
 #: lib/templates/themes/ithemes-builder/author.php:96
 msgid "Tags : "
@@ -5572,21 +5490,21 @@ msgstr ""
 msgid "Tomorrow"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:327
 #. translators: date and time format for recent posts on the dashboard, from a
 #. different calendar year, see http:php.net/date
+#: lib/widgets/widget-admin-dashboard.php:327
 msgid "M jS Y"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:330
 #. translators: date and time format for recent posts on the dashboard, see
 #. http:php.net/date
+#: lib/widgets/widget-admin-dashboard.php:330
 msgid "M jS"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:337
 #. translators: 1: relative date, 2: time, 3: post edit link or permalink, 4:
 #. post title
+#: lib/widgets/widget-admin-dashboard.php:337
 msgid "<span>%1$s, %2$s</span> <a href=\"%3$s\">%4$s</a>"
 msgstr ""
 
@@ -5896,10 +5814,10 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Fast. Flexible. Forward-thinking solution for real estate agents using "
-"WordPress. Easy Property Listing is one of the most dynamic and feature "
-"rich Real Estate plugin for WordPress available on the market today. Built "
-"for scale, contact generation and works with any theme!"
+"Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. "
+"Easy Property Listing is one of the most dynamic and feature rich Real Estate "
+"plugin for WordPress available on the market today. Built for scale, contact "
+"generation and works with any theme!"
 msgstr ""
 
 #. Author of the plugin/theme
@@ -5943,6 +5861,6 @@ msgstr ""
 #: lib/templates/themes/twentynineteen/single-listing.php:32
 msgctxt "Parent post link"
 msgid ""
-"<span class=\"meta-nav\">Published in</span><br/><span "
-"class=\"post-title\">%title</span>"
+"<span class=\"meta-nav\">Published in</span><br/><span class=\"post-title\">"
+"%title</span>"
 msgstr ""
