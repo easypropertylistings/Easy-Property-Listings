@@ -43,8 +43,8 @@ function epl_listings_contextual_help() {
 	$screen->add_help_tab(
 		array(
 			'id'      => 'epl-listing-customising',
-			'title'   => __( 'Customising This Display' ),
-			'content' => '<p>' . __( 'The title field and the big Post Editing Area are fixed in place, but you can reposition all the other boxes using drag and drop. You can also minimise or expand them by clicking the title bar of each box. Use the Screen Options tab to unhide more boxes (Location, Features, Property Address, Pricing, Linked Contact, Featured Image, Excerpt, Discussion, Comments, Slug, Author, Listing Details, Listing Features, Additional Features, Files and Links) or to choose a 1- or 2-column layout for this screen.' ) . '</p>',
+			'title'   => __( 'Customising This Display', 'easy-property-listings' ),
+			'content' => '<p>' . __( 'The title field and the big Post Editing Area are fixed in place, but you can reposition all the other boxes using drag and drop. You can also minimise or expand them by clicking the title bar of each box. Use the Screen Options tab to unhide more boxes (Location, Features, Property Address, Pricing, Linked Contact, Featured Image, Excerpt, Discussion, Comments, Slug, Author, Listing Details, Listing Features, Additional Features, Files and Links) or to choose a 1- or 2-column layout for this screen.', 'easy-property-listings' ) . '</p>',
 		)
 	);
 
@@ -66,7 +66,7 @@ function epl_listings_contextual_help() {
 	$screen->add_help_tab(
 		array(
 			'id'      => 'epl-listing-configuration-two',
-			'title'   => __( 'Title and Post Editor' ),
+			'title'   => __( 'Title and Post Editor', 'easy-property-listings' ),
 			'content' => $title_editor,
 		)
 	);
@@ -81,7 +81,7 @@ function epl_listings_contextual_help() {
 	$screen->add_help_tab(
 		array(
 			'id'      => 'epl-listing-media',
-			'title'   => __( 'Inserting Media' ),
+			'title'   => __( 'Inserting Media', 'easy-property-listings' ),
 			'content' => $media,
 		)
 	);
@@ -109,7 +109,7 @@ function epl_listings_contextual_help() {
 	$screen->add_help_tab(
 		array(
 			'id'      => 'epl-listing-address',
-			'title'   => __( 'Property Address' ),
+			'title'   => __( 'Property Address', 'easy-property-listings' ),
 			'content' => $address,
 		)
 	);
