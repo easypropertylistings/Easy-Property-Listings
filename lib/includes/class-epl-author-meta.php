@@ -178,7 +178,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 * @param string $author_id The author WordPress user ID.
 		 */
-		function __construct( $author_id ) {
+		public function __construct( $author_id ) {
 			$this->author_id    = $author_id;
 			$this->name         = get_the_author_meta( 'display_name', $this->author_id );
 			$this->mobile       = get_the_author_meta( 'mobile', $this->author_id );
@@ -206,11 +206,15 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param  array $property Array of property object.
 		 * @return $return Array of values.
 		 */
-		function __get( $property ) {
-			if ( isset( $this->{$property} ) && '' !== $this->{$property} ) {
-				return $this->{$property};
-			} elseif ( $return = get_user_meta( $this->author_id, $property, true ) ) {
-				return $return;
+		public function __get( $property ) {
+			$prop_val  = ! empty( $this->{$property} ) ? $this->{$property} : false;
+			$prop_meta = get_user_meta( $this->author_id, $property, true );
+
+			if ( ! empty( $prop_val ) ) {
+				return $prop_val;
+
+			} elseif ( ! empty( $prop_meta ) ) {
+				return $prop_meta;
 			}
 		}
 
@@ -219,7 +223,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 1.3.0
 		 */
-		function get_author_name() {
+		public function get_author_name() {
 			if ( '' !== $this->name ) {
 				return apply_filters( 'epl_author_name', $this->name, $this );
 			}
@@ -230,7 +234,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.2.0
 		 */
-		function get_email() {
+		public function get_email() {
 			if ( '' !== $this->email ) {
 				return apply_filters( 'epl_author_email', $this->email, $this );
 			}
@@ -243,7 +247,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_email_html( $html = '', $style = 'i' ) {
+		public function get_email_html( $html = '', $style = 'i' ) {
 
 			if ( '' !== $this->email ) {
 
@@ -274,7 +278,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.2.0
 		 */
-		function get_twitter() {
+		public function get_twitter() {
 
 			$twitter = '';
 			if ( '' !== $this->twitter ) {
@@ -296,7 +300,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.3.0
 		 */
-		function get_instagram() {
+		public function get_instagram() {
 
 			$instagram = '';
 			if ( '' !== $this->instagram ) {
@@ -318,7 +322,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.3.0
 		 */
-		function get_youtube() {
+		public function get_youtube() {
 
 			$youtube = '';
 			if ( '' !== $this->youtube ) {
@@ -340,7 +344,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.3.0
 		 */
-		function get_pinterest() {
+		public function get_pinterest() {
 
 			$pinterest = '';
 			if ( '' !== $this->pinterest ) {
@@ -364,7 +368,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_twitter_html( $html = '', $style = 'i' ) {
+		public function get_twitter_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -399,7 +403,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_instagram_html( $html = '', $style = 'i' ) {
+		public function get_instagram_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -434,7 +438,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_youtube_html( $html = '', $style = 'i' ) {
+		public function get_youtube_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -469,7 +473,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_pinterest_html( $html = '', $style = 'i' ) {
+		public function get_pinterest_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -503,7 +507,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 3.2.0
 		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
 		 */
-		function get_google() {
+		public function get_google() {
 
 			$google = '';
 			if ( '' !== $this->google ) {
@@ -528,7 +532,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_google_html( $html = '', $style = 'i' ) {
+		public function get_google_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -561,7 +565,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.2.0
 		 */
-		function get_facebook() {
+		public function get_facebook() {
 
 			$facebook = '';
 
@@ -586,7 +590,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_facebook_html( $html = '', $style = 'i' ) {
+		public function get_facebook_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -619,7 +623,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.2.0
 		 */
-		function get_linkedin() {
+		public function get_linkedin() {
 
 			$linkedin = '';
 
@@ -644,7 +648,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_linkedin_html( $html = '', $style = 'i' ) {
+		public function get_linkedin_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -678,7 +682,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.2.0
 		 */
-		function get_skype() {
+		public function get_skype() {
 
 			$skype = '';
 			if ( '' !== $this->skype ) {
@@ -702,7 +706,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
 		 */
-		function get_skype_html( $html = '', $style = 'i' ) {
+		public function get_skype_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
@@ -737,7 +741,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 * @param string $html String of video embed.
 		 */
-		function get_video_html( $html = '' ) {
+		public function get_video_html( $html = '' ) {
 			if ( '' !== $this->video ) {
 				$video = apply_filters( 'epl_author_video_html', $this->video, $this );
 				$html  = wp_oembed_get( $video );
@@ -750,7 +754,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.2.0
 		 */
-		function get_description() {
+		public function get_description() {
 			if ( '' !== $this->description ) {
 				return apply_filters( 'epl_author_description', $this->description, $this );
 			}
@@ -762,7 +766,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 * @param string $html String of html output.
 		 */
-		function get_description_html( $html = '' ) {
+		public function get_description_html( $html = '' ) {
 			if ( '' !== $this->get_description() ) {
 
 				$permalink = apply_filters( 'epl_author_profile_link', get_author_posts_url( $this->author_id ), $this );
@@ -784,7 +788,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 1.3.0
 		 */
-		function get_author_mobile() {
+		public function get_author_mobile() {
 			if ( '' !== $this->mobile ) {
 				return apply_filters( 'epl_author_mobile', $this->mobile, $this );
 			}
@@ -795,7 +799,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 3.3.0
 		 */
-		function get_author_office_phone() {
+		public function get_author_office_phone() {
 			if ( '' !== $this->office_phone ) {
 				return apply_filters( 'epl_author_office_phone', $this->office_phone, $this );
 			}
@@ -806,7 +810,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 1.3.0
 		 */
-		function get_author_id() {
+		public function get_author_id() {
 			if ( '' !== $this->author_id ) {
 				return apply_filters( 'epl_author_id', $this->author_id, $this );
 			}
@@ -817,7 +821,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 1.3.0
 		 */
-		function get_author_slogan() {
+		public function get_author_slogan() {
 			if ( '' !== $this->slogan ) {
 				return apply_filters( 'epl_author_slogan', $this->slogan, $this );
 			}
@@ -828,7 +832,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 1.3.0
 		 */
-		function get_author_position() {
+		public function get_author_position() {
 			if ( '' !== $this->position ) {
 				return apply_filters( 'epl_author_position', $this->position, $this );
 			}
@@ -839,7 +843,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 *
 		 * @since 1.3.0
 		 */
-		function get_author_contact_form() {
+		public function get_author_contact_form() {
 			if ( '' !== $this->contact_form ) {
 				$contact_form = apply_filters( 'epl_author_contact_form', $this->contact_form, $this );
 				return do_shortcode( $contact_form );
