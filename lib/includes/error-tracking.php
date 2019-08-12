@@ -33,10 +33,10 @@ function epl_print_errors() {
 				'epl-alert-error',
 			)
 		);
-		echo '<div class="' . implode( ' ', $classes ) . '">';
+		echo '<div class="' . wp_kses_post( implode( ' ', $classes ) ) . '">';
 			// Loop error codes and display errors.
 		foreach ( $errors as $error_id => $error ) {
-			echo '<p class="epl_error" id="epl_error_' . $error_id . '"><strong>' . __( 'Error', 'easy-property-listings' ) . '</strong>: ' . $error . '</p>';
+			echo '<p class="epl_error" id="epl_error_' . esc_attr( $error_id ) . '"><strong>' . esc_html__( 'Error', 'easy-property-listings' ) . '</strong>: ' . wp_kses_post( $error ) . '</p>';
 		}
 		echo '</div>';
 		epl_clear_errors();
@@ -110,7 +110,7 @@ function epl_unset_error( $error_id ) {
  */
 function epl_var_dump( $var, $die = false ) {
 	echo '<pre class="epl_var_dump">';
-	var_dump( $var );
+	var_dump( $var ); //phpcs:ignore
 	echo '</pre>';
 	if ( $die ) {
 		die();
@@ -126,7 +126,7 @@ function epl_var_dump( $var, $die = false ) {
  */
 function epl_print_r( $var, $die = false ) {
 	echo '<pre class="epl_print_r">';
-	print_r( $var );
+	print_r( $var );//phpcs:ignore
 	echo '</pre>';
 	if ( $die ) {
 		die();
