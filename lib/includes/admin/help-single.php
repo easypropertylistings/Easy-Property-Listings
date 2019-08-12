@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function epl_listings_contextual_help() {
 	$screen = get_current_screen();
 
-	if ( ! in_array( $screen->id, epl_get_core_post_types() ) ) {
+	if ( ! in_array( $screen->id, epl_get_core_post_types(), true ) ) {
 		return;
 	}
 
