@@ -16,23 +16,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="wrap epl-wrap">
-	<h2><?php _e( 'Tools', 'easy-property-listings' ); ?></h2>
-	<p><?php _e( 'Visit the main settings page for Easy Property Listings Settings', 'easy-property-listings' ); ?></p>
+	<h2><?php esc_html_e( 'Tools', 'easy-property-listings' ); ?></h2>
+	<p><?php esc_html_e( 'Visit the main settings page for Easy Property Listings Settings', 'easy-property-listings' ); ?></p>
 
 	<div class="epl-content">
 
 		<div class="epl-tabs">
 			<?php
-			$tabs    = epl_get_tools_tab();
-			$current = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'tools'; // Default is import.
-
+			$tabs    = epl_get_tools_tab(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+			$current = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'tools';// phpcs:ignore WordPress.Security.NonceVerification
 			echo '<h1 class="nav-tab-wrapper">';
-			foreach ( $tabs as $tab => $tab_options ) {
+			foreach ( $tabs as $tab => $tab_options ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 				$class = ( $tab === $current ) ? ' nav-tab-active' : '';
 				$url   = admin_url( 'admin.php?page=epl-tools&tab=' . $tab );
 				$url   = epl_show_reset_tab() ? add_query_arg( array( 'dev' => 'true' ), $url ) : $url;
 
-				echo "<a class='nav-tab$class' href='" . $url . "'>{$tab_options['label']}</a>";
+				echo "<a class='nav-tab" . esc_url( $class ) . "' href='" . esc_url( $url ) . "'>" . esc_attr( $tab_options['label'] ) . '</a>';
 			}
 			echo '</h1>';
 			?>

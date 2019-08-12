@@ -58,7 +58,7 @@ class EPL_Graph {
 		$this->data = $_data;
 
 		// Generate unique ID.
-		$this->id = 'a' . md5( rand() );
+		$this->id = 'a' . md5( wp_rand() );
 
 		// Setup default options.
 		$this->options = array(
@@ -119,7 +119,7 @@ class EPL_Graph {
 	public function load_scripts() {
 		// Use minified libraries if SCRIPT_DEBUG is turned off.
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		wp_enqueue_script( 'epl-jquery-flot', EPL_PLUGIN_URL . 'lib/assets/js/jquery-flot' . $suffix . '.js' );
+		wp_enqueue_script( 'epl-jquery-flot', EPL_PLUGIN_URL . 'lib/assets/js/jquery-flot' . $suffix . '.js', array(), EPL_PROPERTY_VER, true );
 
 		do_action( 'epl_graph_load_scripts' );
 	}
@@ -142,12 +142,12 @@ class EPL_Graph {
 		<script type="text/javascript">
 			jQuery( document ).ready( function($) {
 				$.plot(
-					$("#epl-graph-<?php echo $this->id; ?>"),
+					$("#epl-graph-<?php echo esc_attr( $this->id ); ?>"),
 					[
 						<?php foreach ( $this->get_data() as $label => $data ) : ?>
 						{
 							label: "<?php echo esc_attr( $data['label'] ); ?>",
-							id: "<?php echo sanitize_key( $data['id'] ); ?>",
+							id: "<?php echo esc_attr( sanitize_key( $data['id'] ) ); ?>",
 
 							<?php if ( ! is_null( $data['color'] ) ) : ?>
 
@@ -158,7 +158,8 @@ class EPL_Graph {
 							data: [
 							<?php
 							foreach ( $data['data'] as $point ) {
-								echo '[' . implode( ',', $point ) . '],'; }
+								echo esc_attr( '[' . implode( ',', $point ) . '],' );
+							}
 							?>
 							],
 							points: {
@@ -173,7 +174,7 @@ class EPL_Graph {
 								show: <?php echo $this->options['lines'] ? 'true' : 'false'; ?>
 							},
 							<?php if ( $this->options['multiple_y_axes'] ) : ?>
-							yaxis: <?php echo $yaxis_count; ?>
+							yaxis: <?php echo esc_attr( $yaxis_count ); ?>
 							<?php endif; ?>
 						},
 							<?php
@@ -186,29 +187,29 @@ class EPL_Graph {
 						grid: {
 							show: true,
 							aboveData: false,
-							color: "<?php echo $this->options['color']; ?>",
-							backgroundColor: "<?php echo $this->options['bgcolor']; ?>",
-							borderColor: "<?php echo $this->options['bordercolor']; ?>",
-							borderWidth: <?php echo absint( $this->options['borderwidth'] ); ?>,
+							color: "<?php echo esc_attr( $this->options['color'] ); ?>",
+							backgroundColor: "<?php echo esc_attr( $this->options['bgcolor'] ); ?>",
+							borderColor: "<?php echo esc_attr( $this->options['bordercolor'] ); ?>",
+							borderWidth: <?php echo esc_attr( absint( $this->options['borderwidth'] ) ); ?>,
 							clickable: false,
 							hoverable: true
 						},
 						xaxis: {
-							mode: "<?php echo $this->options['x_mode']; ?>",
-							timeFormat: "<?php echo 'time' === $this->options['x_mode'] ? $this->options['time_format'] : ''; ?>",
-							tickSize: "<?php echo 'time' === $this->options['x_mode'] ? '' : $this->options['ticksize_num']; ?>",
+							mode: "<?php echo esc_attr( $this->options['x_mode'] ); ?>",
+							timeFormat: "<?php echo 'time' === $this->options['x_mode'] ? esc_attr( $this->options['time_format'] ) : ''; ?>",
+							tickSize: "<?php echo 'time' === $this->options['x_mode'] ? '' : esc_attr( $this->options['ticksize_num'] ); ?>",
 							<?php if ( 'time' !== $this->options['x_mode'] ) : ?>
-							tickDecimals: <?php echo $this->options['x_decimals']; ?>
+							tickDecimals: <?php echo esc_attr( $this->options['x_decimals'] ); ?>
 							<?php endif; ?>
 						},
 						yaxis: {
 							position: 'right',
 							axisLabelColor: '#ff0000',
 							min: 0,
-							mode: "<?php echo $this->options['y_mode']; ?>",
-							timeFormat: "<?php echo 'time' === $this->options['y_mode'] ? $this->options['time_format'] : ''; ?>",
+							mode: "<?php echo esc_attr( $this->options['y_mode'] ); ?>",
+							timeFormat: "<?php echo 'time' === $this->options['y_mode'] ? esc_attr( $this->options['time_format'] ) : ''; ?>",
 							<?php if ( 'time' !== $this->options['y_mode'] ) : ?>
-							tickDecimals: <?php echo $this->options['y_decimals']; ?>
+							tickDecimals: <?php echo esc_attr( $this->options['y_decimals'] ); ?>
 							<?php endif; ?>
 						}
 					}
@@ -229,7 +230,7 @@ class EPL_Graph {
 				}
 
 				var previousPoint = null;
-				$("#epl-graph-<?php echo $this->id; ?>").bind("plothover", function (event, pos, item) {
+				$("#epl-graph-<?php echo esc_attr( $this->id ); ?>").bind("plothover", function (event, pos, item) {
 					$("#x").text(pos.x.toFixed(2));
 					$("#y").text(pos.y.toFixed(2));
 					if (item) {
@@ -257,7 +258,7 @@ class EPL_Graph {
 			});
 
 		</script>
-		<div id="epl-graph-<?php echo $this->id; ?>" class="epl-graph" style="height: 300px;"></div>
+		<div id="epl-graph-<?php echo esc_attr( $this->id ); ?>" class="epl-graph" style="height: 300px;"></div>
 		<?php
 		return ob_get_clean();
 	}
@@ -269,7 +270,7 @@ class EPL_Graph {
 	 */
 	public function display() {
 		do_action( 'epl_before_graph', $this );
-		echo $this->build_graph();
+		echo $this->build_graph(); //phpcs:ignore WordPress.Security.EscapeOutput
 		do_action( 'epl_after_graph', $this );
 	}
 }

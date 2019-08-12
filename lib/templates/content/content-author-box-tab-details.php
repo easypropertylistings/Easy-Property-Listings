@@ -46,8 +46,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$social_icons = apply_filters( 'epl_display_author_social_icons', array( 'email', 'facebook', 'twitter', 'instagram', 'pinterest', 'linkedin', 'skype', 'youtube' ) );
 	foreach ( $social_icons as $social_icon ) {
 		$html = call_user_func( array( $epl_author, 'get_' . $social_icon . '_html' ) );
-		echo wp_kses_post( $html );
-	}
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput
+	} 
 	?>
 </div>
 
