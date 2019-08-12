@@ -31,8 +31,8 @@ function epl_add_elements_gui_button() {
 	<a href="#TB_inline?width=480&height=700&inlineId=epl_select_gui_opts"
   		class="thickbox button epl_listing_elements_link"
   		id="epl_add_elements_shortcode"
-  		title="' . __( 'Add Listing Elements', 'easy-property-listings' ) . '">
-	    <span class="epl_am_elements_gui_icon"></span> ' . __( 'Add Listing Elements', 'easy-property-listings' ) . '</a>';
+  		title="' . esc_html__( 'Add Listing Elements', 'easy-property-listings' ) . '">
+	    <span class="epl_am_elements_gui_icon"></span> ' . esc_html__( 'Add Listing Elements', 'easy-property-listings' ) . '</a>';
 }
 add_action( 'media_buttons', 'epl_add_elements_gui_button', 20 );
 
@@ -99,15 +99,15 @@ function epl_listing_elements_gui() {
 			<div class="wrap">
 
 					<div style="padding:15px 15px 0 15px;">
-						<h3 style="color:#5A5A5A!important; font-family:Georgia,Times New Roman,Times,serif!important; font-size:1.8em!important; font-weight:normal!important;"><?php _e( 'Insert Shortcode', 'easy-property-listings' ); ?></h3>
+						<h3 style="color:#5A5A5A!important; font-family:Georgia,Times New Roman,Times,serif!important; font-size:1.8em!important; font-weight:normal!important;"><?php esc_html_e( 'Insert Shortcode', 'easy-property-listings' ); ?></h3>
 					</div>
 
 					<div style="padding:15px 15px 0 15px;">
 
-						<span><?php _e( 'Select Shortcode Type', 'easy-property-listings' ); ?></span>
+						<span><?php esc_html_e( 'Select Shortcode Type', 'easy-property-listings' ); ?></span>
 
 						<select id="epl_elements_shortcode_types">
-							<option value="">  <?php _e( 'type', 'easy-property-listings' ); ?>  </option>
+							<option value="">  <?php esc_html_e( 'type', 'easy-property-listings' ); ?>  </option>
 					<?php
 						$types = array( 'action', 'meta', 'post', 'suburb_profile', 'formatted_address', 'excerpt' );
 					foreach ( $types as $type ) {
@@ -123,35 +123,35 @@ function epl_listing_elements_gui() {
 					<div style="padding:15px 15px 0 15px;">
 
 				<label for="epl_element_gui_val" style="width:50%;display: inline-block;">
-					<?php _e( 'Value', 'easy-property-listings' ); ?>
+					<?php esc_html_e( 'Value', 'easy-property-listings' ); ?>
 				</label> &nbsp;&nbsp;&nbsp;
 
 				<input type="text" id="epl_element_gui_val" />
 				</br></br>
-				<span class="epl-gui-help"><?php _e( 'Required for Types : action, meta, post', 'easy-property-listings' ); ?></span>
+				<span class="epl-gui-help"><?php esc_html_e( 'Required for Types : action, meta, post', 'easy-property-listings' ); ?></span>
 					</div>
 
 					<div style="padding:15px;">
-				<input type="button" class="button-primary" value="<?php _e( 'Insert', 'easy-property-listings' ); ?>" onclick="eplInsertElementsShortcode();"/>&nbsp;&nbsp;&nbsp;
-				<a class="button" style="color:#bbb;" href="#" onclick="tb_remove(); return false;"><?php _e( 'Cancel', 'easy-property-listings' ); ?></a>
+				<input type="button" class="button-primary" value="<?php esc_html_e( 'Insert', 'easy-property-listings' ); ?>" onclick="eplInsertElementsShortcode();"/>&nbsp;&nbsp;&nbsp;
+				<a class="button" style="color:#bbb;" href="#" onclick="tb_remove(); return false;"><?php esc_html_e( 'Cancel', 'easy-property-listings' ); ?></a>
 					</div>
 		</div>
 
 				<div class="epl-shortcode-gui-help">
-					<h4><?php _e( 'How to use this shortcode', 'easy-property-listings' ); ?></h4>
+					<h4><?php esc_html_e( 'How to use this shortcode', 'easy-property-listings' ); ?></h4>
 					<div>
 						<table class="widefat striped">
 							<thead>
 								<tr>
 									<th>
 										<strong>
-											<?php _e( 'Actions', 'easy-property-listings' ); ?>
+											<?php esc_html_e( 'Actions', 'easy-property-listings' ); ?>
 										</strong>
 
 									</th>
 									<th>
 										<strong>
-											<?php _e( 'Meta Fields', 'easy-property-listings' ); ?>
+											<?php esc_html_e( 'Meta Fields', 'easy-property-listings' ); ?>
 										</strong>
 
 									</th>
@@ -195,9 +195,9 @@ function epl_listing_elements_gui() {
 					</div>
 
 					<p>
-				<?php _e( 'For complete action reference visit', 'easy-property-listings' ); ?>
+				<?php esc_html_e( 'For complete action reference visit', 'easy-property-listings' ); ?>
 				<a target="_blank" href="http://docs.easypropertylistings.com.au/hook-docs.html">
-				<?php _e( 'Here', 'easy-property-listings' ); ?>
+				<?php esc_html_e( 'Here', 'easy-property-listings' ); ?>
 				</a>
 					</p>
 				</div>
