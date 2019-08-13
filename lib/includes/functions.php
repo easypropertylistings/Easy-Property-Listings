@@ -888,11 +888,13 @@ function epl_feedsync_format_strip_currency( $value ) {
  * Processing Function for WP All Import and FeedSync
  * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
  *
- * @param bool   $date_time Swtich date time.
+ * @param bool $date_time Swtich date time.
  * @param string $old_time_zone Old Timezone.
  * @param string $new_timezone New timezone.
  * @param string $format Date format.
+ *
  * @return integer
+ * @throws Exception
  * @since 3.0
  */
 function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Australia/Perth', $new_timezone = 'Australia/Sydney', $format = 'Y-m-d H:i:s' ) {
