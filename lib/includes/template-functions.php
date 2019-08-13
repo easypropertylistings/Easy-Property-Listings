@@ -784,10 +784,10 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 /**
  * Property icons
  *
- * @param string $returntype
- * @since      1.0 @revised 3.3
- *
- * @param      string $returntype  The returntype.
+ * @param string $returntype  The returntype.
+ * 
+ * @since 1.0.0
+ * @since 3.3.0 Revides.
  */
 function epl_property_icons( $returntype = 'i' ) {
 	$returntype = empty( $returntype ) ? 'i' : $returntype;
@@ -798,9 +798,9 @@ add_action( 'epl_property_icons', 'epl_property_icons', 10, 1 );
 /**
  * Property bed/bath icons.
  *
- * @since      1.0
+ * @since 1.0
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return string
  */
 function epl_get_property_bb_icons() {
 	global $property;
@@ -1728,11 +1728,12 @@ function epl_sorting_tabs() {
 /**
  * Update parameters
  *
- * @since      3.3
+ * @param <type> $url The url.
+ * @param <type> $key The key.
+ * @param <type> $value The value.
  *
- * @param      <type> $url    The url.
- * @param      <type> $key    The key.
- * @param      <type> $value  The value.
+ * @return string
+ * @since      3.3
  *
  */
 function epl_add_or_update_params( $url, $key, $value ) {
@@ -2165,11 +2166,10 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 /**
  * Get Property Meta
  *
- * @since      2.1
- *
  * @param string $key Meta key.
  *
- * @return     $key  The property meta.
+ * @return  string $key  The property meta.
+ * @since 2.1
  */
 function get_property_meta( $key ) {
 	global $property;
@@ -2179,9 +2179,9 @@ function get_property_meta( $key ) {
 /**
  * The Property Meta
  *
- * @since      2.1
+ * @since 2.1
  *
- * @param      <type> $key    The key.
+ * @param string $key    The key.
  */
 function the_property_meta( $key ) {
 	global  $property;
@@ -2264,9 +2264,9 @@ function epl_get_active_theme_name() {
 /**
  * Returns core shortcode names
  *
- * @since      3.3
+ * @return array
+ * @since 3.3
  *
- * @return     <type>  ( description_of_the_return_value )
  */
 function epl_get_shortcode_list() {
 	return array(
@@ -2487,21 +2487,14 @@ add_action( 'wp', 'epl_apply_feeling_lucky_config', 1 );
  * displayed on archive pages via theme & epl attempts to null the post
  * thumbnail image called from theme & display thumbnail image called from epl
  *
- * @since      2.2
- *
- * @param      string $html               The html.
- * @param      <type> $post_id            The post identifier.
- * @param      <type> $post_thumbnail_id  The post thumbnail identifier.
- * @param      <type> $size               The size.
- * @param      <type> $attr               The attribute.
+ * @param string $html               The html.
+ * @param string $post_id            The post identifier.
+ * @param string $post_thumbnail_id  The post thumbnail identifier.
+ * @param string $size               The size.
+ * @param string $attr               The attribute.
+ * @return null
  *
  * @since 2.2
- * @param $html
- * @param $post_id
- * @param $post_thumbnail_id
- * @param $size
- * @param $attr
- * @return string
  */
 function epl_remove_archive_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 
@@ -2532,10 +2525,10 @@ function epl_remove_archive_thumbnail( $html, $post_id, $post_thumbnail_id, $siz
  * @since      2.2
  *
  * @param      string $html               The html.
- * @param      <type> $post_id            The post identifier.
- * @param      <type> $post_thumbnail_id  The post thumbnail identifier.
- * @param      <type> $size               The size.
- * @param      <type> $attr               The attribute.
+ * @param      string $post_id            The post identifier.
+ * @param      string $post_thumbnail_id  The post thumbnail identifier.
+ * @param      string $size               The size.
+ * @param      string $attr               The attribute.
  *
  * @return     string  ( description_of_the_return_value )
  */
@@ -2574,7 +2567,7 @@ add_action( 'epl_property_the_content', 'epl_the_content' );
  *
  * @since      2.2
  *
- * @param      <type> $content  The content.
+ * @param      string $content  The content.
  *
  * @return     false|string
  */
@@ -2709,7 +2702,7 @@ function epl_strip_tags( $value, $allowed_tags = '' ) {
  *
  * @since      2.2
  *
- * @param      <type> $value  The value.
+ * @param      string $value  The value.
  *
  * @return string|void
  */
@@ -2775,9 +2768,9 @@ function epl_get_post_count( $type = '', $meta_key, $meta_value, $author_id = ''
 /**
  * Get the inspection date format
  *
- * @revised 3.3
+ * @since 3.3
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return string
  */
 function epl_get_inspection_date_format() {
 
@@ -2794,9 +2787,9 @@ function epl_get_inspection_date_format() {
 /**
  * Get the inspection time format
  *
- * @revised 3.3
+ * @since 3.3
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return     string
  */
 function epl_get_inspection_time_format() {
 
@@ -2816,7 +2809,7 @@ function epl_get_inspection_time_format() {
  *
  * @since      2.2
  *
- * @param      <type> $inspection_date  The inspection date.
+ * @param      array $inspection_date  The inspection date.
  *
  * @return     string
  */
@@ -2854,8 +2847,8 @@ function epl_count_total_contacts() {
  *
  * @since      3.0
  *
- * @param      <type> $comments  The comments.
- * @param      <type> $post_id   The post identifier.
+ * @param      array  $comments  The comments.
+ * @param      string $post_id   The post identifier.
  *
  * @return     mixed
  */
@@ -2906,7 +2899,7 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  *
  * @since      3.0
  *
- * @param      <type> $args   The arguments.
+ * @param      array  $args   The arguments.
  * @param      string $type   The type.
  * @param      string $name   The name.
  *
@@ -2994,7 +2987,7 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
  *
  * @since      3.1.16
  *
- * @param      <type> $classes  The classes.
+ * @param      array $classes  The classes.
  *
  * @return     array
  */

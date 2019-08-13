@@ -66,7 +66,7 @@ add_filter( 'excerpt_more', 'epl_property_new_excerpt_more' );
  *
  * @param string $text YouTube URL.
  *
- * @return
+ * @return string
  * @since 1.0
  */
 function epl_get_youtube_id_from_url( $text ) {

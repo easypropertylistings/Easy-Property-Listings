@@ -74,7 +74,7 @@ function epl_status_dashboard_widget_callback() {
 /**
  * Status Dashboard Widget Counter
  *
- * @param int $count Number.
+ * @param int    $count Number.
  * @param string $singular Option for the case.
  *
  * @return bool|string
