@@ -85,7 +85,7 @@ class EPL_SEARCH {
 	 * @param WP_Query $query object of the wp_query object.
 	 * @param array    $data  associative array for fields to search.
 	 */
-	function __construct( $query, $data ) {
+	public function __construct( $query, $data ) {
 
 		$this->data = $data;
 
@@ -230,7 +230,8 @@ class EPL_SEARCH {
 
 		if ( isset( $this->get_data['property_agent'] ) ) {
 			$property_agent = sanitize_title_with_dashes( $this->get_data['property_agent'] );
-			if ( $property_agent = get_user_by( 'slug', $property_agent ) ) {
+			$property_agent = get_user_by( 'slug', $property_agent );
+			if ( $property_agent ) {
 				$this->query->set( 'author__in', array( $property_agent->ID ) );
 			}
 		}
@@ -332,7 +333,7 @@ class EPL_SEARCH {
 				$query_type = isset( $this->form_fields[ $key ]['query']['query'] ) ?
 					$this->form_fields[ $key ]['query']['query'] : 'special';
 
-				if ( in_array( $key, $this->altered_fields() ) ) {
+				if ( in_array( $key, $this->altered_fields(), true ) ) {
 					return;
 				}
 
@@ -361,7 +362,7 @@ class EPL_SEARCH {
 	/**
 	 * Pre search query
 	 */
-	function epl_search_query_pre_search() {
+	public function epl_search_query_pre_search() {
 
 		foreach ( $this->meta_query as $index => &$meta_query ) {
 
@@ -396,7 +397,7 @@ class EPL_SEARCH {
 	 * Prepare meta query
 	 *
 	 * @param  array  $query_field Field to query.
-	 * @param  string $value Value of field
+	 * @param  string $value Value of field.
 	 */
 	protected function prepare_meta_query( $query_field, $value ) {
 
@@ -517,7 +518,7 @@ class EPL_SEARCH {
 		foreach ( $this->meta_query as $key => &$query ) {
 
 			if ( isset( $query['compare'] ) && isset( $query['value'] )
-				&& in_array( strtoupper( $query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
+				&& in_array( strtoupper( $query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ), true )
 				&& ! is_array( $query['value'] ) ) {
 				$query['value'] = array_map( 'trim', explode( $option_sep, $query['value'] ) );
 

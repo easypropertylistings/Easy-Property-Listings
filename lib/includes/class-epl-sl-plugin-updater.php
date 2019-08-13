@@ -13,6 +13,8 @@
 // uncomment this line for testing.
 // set_site_transient( 'update_plugins', null ); | Testing.
 
+// phpcs:disable WordPress.Security.NonceVerification
+
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -97,7 +99,7 @@ class EPL_SL_Plugin_Updater {
 		$this->version     = $_api_data['version'];
 		$this->wp_override = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
 		$this->beta        = ! empty( $this->api_data['beta'] ) ? true : false;
-		$this->cache_key   = md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
+		$this->cache_key   = md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) ); //phpcs:ignore
 
 		$epl_plugin_data[ $this->slug ] = $this->api_data;
 
@@ -141,7 +143,7 @@ class EPL_SL_Plugin_Updater {
 		global $pagenow;
 
 		if ( ! is_object( $_transient_data ) ) {
-			$_transient_data = new stdClass;
+			$_transient_data = new stdClass();
 		}
 
 		if ( 'plugins.php' === $pagenow && is_multisite() ) {
@@ -257,24 +259,25 @@ class EPL_SL_Plugin_Updater {
 
 			// build a plugin list row, with update notification.
 			$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
-			// <tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange">.
-			echo '<tr class="plugin-update-tr" id="' . $this->slug . '-update" data-slug="' . $this->slug . '" data-plugin="' . $this->slug . '/' . $file . '">';
+			echo '<tr class="plugin-update-tr" id="' . esc_attr( $this->slug ) . '-update" data-slug="' . esc_attr( $this->slug ) . '" data-plugin="' . esc_attr( $this->slug ) . '/' . esc_url( $file ) . '">';
 			echo '<td colspan="3" class="plugin-update colspanchange">';
 			echo '<div class="update-message notice inline notice-warning notice-alt">';
 
 			$changelog_link = self_admin_url( 'index.php?edd_sl_action=view_plugin_changelog&plugin=' . $this->name . '&slug=' . $this->slug . '&TB_iframe=true&width=772&height=911' );
 
 			if ( empty( $version_info->download_link ) ) {
-				printf(
-					__( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s.', 'easy-property-listings' ),
+
+				printf( // translators: plugin name, anchor change log, new version details.
+					wp_kses_post( __( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s.', 'easy-property-listings' ) ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
 					'</a>'
 				);
 			} else {
-				printf(
-					__( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s or %5$s update now %6$s.', 'easy-property-listings' ),
+
+				printf( // translators: plugin name, anchor change log, new version details, download / update links.
+					wp_kses_post( __( 'There is a new version of %1$s available. %2$s View version %3$s details %4$s or %5$s update now %6$s.', 'easy-property-listings' ) ),
 					esc_html( $version_info->name ),
 					'<a target="_blank" class="thickbox" href="' . esc_url( $changelog_link ) . '">',
 					esc_html( $version_info->new_version ),
@@ -284,7 +287,7 @@ class EPL_SL_Plugin_Updater {
 				);
 			}
 
-			do_action( "in_plugin_update_message-{$file}", $plugin, $version_info );
+			do_action( "in_plugin_update_message-{$file}", $plugin, $version_info ); //phpcs:ignore
 
 			echo '</div></td></tr>';
 		}
@@ -324,7 +327,7 @@ class EPL_SL_Plugin_Updater {
 			),
 		);
 
-		$cache_key = 'epl_api_request_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
+		$cache_key = 'epl_api_request_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) ); //phpcs:ignore
 
 		// Get the transient where we store the api request for this plugin for 24 hours.
 		$epl_api_request_transient = $this->get_cached_version_info( $cache_key );
@@ -474,10 +477,10 @@ class EPL_SL_Plugin_Updater {
 		}
 
 		if ( ! current_user_can( 'update_plugins' ) ) {
-			wp_die( __( 'You do not have permission to install plugin updates', 'easy-property-listings' ), __( 'Error', 'easy-property-listings' ), array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You do not have permission to install plugin updates', 'easy-property-listings' ), esc_html__( 'Error', 'easy-property-listings' ), array( 'response' => 403 ) );
 		}
 
-		$data         = $epl_plugin_data[ $_REQUEST['slug'] ];
+		$data         = $epl_plugin_data[ sanitize_text_field( wp_unslash( $_REQUEST['slug'] ) ) ];
 		$beta         = ! empty( $data['beta'] ) ? true : false;
 		$cache_key    = md5( 'epl_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_' . $beta . '_version_info' );
 		$version_info = $this->get_cached_version_info( $cache_key );
@@ -488,7 +491,7 @@ class EPL_SL_Plugin_Updater {
 				'edd_action' => 'get_version',
 				'item_name'  => isset( $data['item_name'] ) ? sanitize_text_field( $data['item_name'] ) : false,
 				'item_id'    => isset( $data['item_id'] ) ? sanitize_text_field( $data['item_id'] ) : false,
-				'slug'       => sanitize_text_field( $_REQUEST['slug'] ),
+				'slug'       => sanitize_text_field( wp_unslash( $_REQUEST['slug'] ) ),
 				'author'     => sanitize_text_field( $data['author'] ),
 				'url'        => home_url(),
 				'beta'       => ! empty( $data['beta'] ),
@@ -506,7 +509,7 @@ class EPL_SL_Plugin_Updater {
 			);
 
 			if ( ! is_wp_error( $request ) ) {
-				$version_info = json_decode( wp_remote_retrieve_body( $request ) );
+				$version_info = wp_json_decode( wp_remote_retrieve_body( $request ) );
 			}
 
 			if ( ! empty( $version_info ) && isset( $version_info->sections ) ) {
@@ -526,7 +529,7 @@ class EPL_SL_Plugin_Updater {
 		}
 
 		if ( ! empty( $version_info ) && isset( $version_info->sections['changelog'] ) ) {
-			echo '<div style="background:#fff;padding:10px;">' . $version_info->sections['changelog'] . '</div>';
+			echo '<div style="background:#fff;padding:10px;">' . wp_kses_post( $version_info->sections['changelog'] ) . '</div>';
 		}
 
 		exit;
@@ -546,7 +549,7 @@ class EPL_SL_Plugin_Updater {
 		if ( empty( $cache['timeout'] ) || current_time( 'timestamp' ) > $cache['timeout'] ) {
 			return false; // Cache is expired.
 		}
-		return json_decode( $cache['value'] );
+		return wp_json_decode( $cache['value'] );
 	}
 
 	/**
@@ -562,7 +565,7 @@ class EPL_SL_Plugin_Updater {
 		}
 		$data = array(
 			'timeout' => strtotime( '+3 hours', current_time( 'timestamp' ) ),
-			'value'   => json_encode( $value ),
+			'value'   => wp_json_encode( $value ),
 		);
 		update_option( $cache_key, $data, 'no' );
 	}

@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', $sold_color = null, $current_color = null ) {
 	// Retrieve the queried dates.
 	$dates = epl_get_report_dates();
-
+	// phpcs:disable
 	// Determine graph options.
 	switch ( $dates['range'] ) :
 		case 'today':
@@ -75,7 +75,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 			$current_listings_data[] = array( $date, $current_listings );
 
 			$hour++;
-		}
+		} // phpcs:enable
 	} elseif ( 'this_week' === $dates['range'] || 'last_week' === $dates['range'] ) {
 
 		$num_of_days = cal_days_in_month( CAL_GREGORIAN, $dates['m_start'], $dates['year'] );
@@ -225,7 +225,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 	<div id="epl-dashboard-widgets-wrap">
 		<div class="metabox-holder" style="padding-top: 0;">
 			<div class="postbox">
-				<h3><span><?php _e( 'Listings Over Time', 'easy-property-listings' ); ?></span></h3>
+				<h3><span><?php esc_html_e( 'Listings Over Time', 'easy-property-listings' ); ?></span></h3>
 
 				<div class="inside">
 					<?php
@@ -240,16 +240,20 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								_e( 'Total ' . ucfirst( $current_status ) . ' listings for period shown: ', 'easy-property-listings' );
-								echo epl_format_amount( $current_listings_totals );
+								// translators: status label.
+								echo sprintf( esc_html__( 'Total %s listings period shown : ', 'easy-property-listings' ), esc_attr( ucfirst( $current_status ) ) );
+
+								echo esc_attr( epl_format_amount( $current_listings_totals ) );
 							?>
 						</strong>
 					</p>
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								_e( 'Total ' . ucfirst( $sold_status ) . ' listings for period shown: ', 'easy-property-listings' );
-								echo epl_format_amount( $sales_totals );
+								// translators: status label.
+								echo sprintf( esc_html__( 'Total %s listings period shown : ', 'easy-property-listings' ), esc_attr( ucfirst( $sold_status ) ) );
+
+								echo esc_attr( epl_format_amount( $sales_totals ) );
 							?>
 						</strong>
 					</p>
@@ -266,7 +270,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 	$output = ob_get_contents();
 	ob_end_clean();
 
-	echo $output;
+	echo $output; //phpcs:ignore
 }
 
 /**
@@ -280,7 +284,7 @@ function epl_parse_report_dates( $data ) {
 
 	$dates = epl_get_report_dates();
 	$view  = epl_get_reporting_view();
-	wp_redirect( add_query_arg( $dates, admin_url( 'admin.php?page=epl-reports&view=' . esc_attr( $view ) ) ) );
+	wp_safe_redirect( add_query_arg( $dates, admin_url( 'admin.php?page=epl-reports&view=' . esc_attr( $view ) ) ) );
 
 }
 add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
@@ -331,44 +335,46 @@ function epl_reports_graph_controls() {
 					<?php endforeach; ?>
 				</select>
 
-				<div id="epl-date-range-options" <?php echo $display; ?>>
-					<span><?php _e( 'From', 'easy-property-listings' ); ?>&nbsp;</span>
+				<div id="epl-date-range-options" <?php echo esc_attr( $display ); ?>>
+					<span><?php esc_html_e( 'From', 'easy-property-listings' ); ?>&nbsp;</span>
 					<select id="epl-graphs-month-start" name="m_start">
 						<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
-							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_start'] ); ?>><?php echo epl_month_num_to_name( $i ); ?></option>
+							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_start'] ); ?>><?php echo esc_attr( epl_month_num_to_name( $i ) ); ?></option>
 						<?php endfor; ?>
 					</select>
 					<select id="epl-graphs-day-start" name="day">
 						<?php for ( $i = 1; $i <= 31; $i++ ) : ?>
-							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['day'] ); ?>><?php echo $i; ?></option>
+							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['day'] ); ?>><?php echo esc_attr( $i ); ?></option>
 						<?php endfor; ?>
 					</select>
 					<select id="epl-graphs-year-start" name="year">
-						<?php for ( $i = 2007; $i <= date( 'Y' ); $i++ ) : ?>
-							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['year'] ); ?>><?php echo $i; ?></option>
+						<?php $curr_year = date( 'Y' ); ?>
+
+						<?php for ( $i = 2007; $i <= $curr_year; $i++ ) : ?>
+							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['year'] ); ?>><?php echo esc_attr( $i ); ?></option>
 						<?php endfor; ?>
 					</select>
-					<span><?php _e( 'To', 'easy-property-listings' ); ?>&nbsp;</span>
+					<span><?php esc_html_e( 'To', 'easy-property-listings' ); ?>&nbsp;</span>
 					<select id="epl-graphs-month-end" name="m_end">
 						<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
-							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_end'] ); ?>><?php echo epl_month_num_to_name( $i ); ?></option>
+							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_end'] ); ?>><?php echo esc_attr( epl_month_num_to_name( $i ) ); ?></option>
 						<?php endfor; ?>
 					</select>
 					<select id="epl-graphs-day-end" name="day_end">
 						<?php for ( $i = 1; $i <= 31; $i++ ) : ?>
-							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['day_end'] ); ?>><?php echo $i; ?></option>
+							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['day_end'] ); ?>><?php echo esc_attr( $i ); ?></option>
 						<?php endfor; ?>
 					</select>
 					<select id="epl-graphs-year-end" name="year_end">
-						<?php for ( $i = 2007; $i <= date( 'Y' ); $i++ ) : ?>
-						<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['year_end'] ); ?>><?php echo $i; ?></option>
+						<?php for ( $i = 2007; $i <= $curr_year; $i++ ) : ?>
+						<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['year_end'] ); ?>><?php echo esc_attr( $i ); ?></option>
 						<?php endfor; ?>
 					</select>
 				</div>
 
 				<div class="epl-graph-filter-submit graph-option-section">
 					<input type="hidden" name="epl_action" value="filter_reports" />
-					<input type="submit" class="button-secondary" value="<?php _e( 'Filter', 'easy-property-listings' ); ?>"/>
+					<input type="submit" class="button-secondary" value="<?php esc_html_e( 'Filter', 'easy-property-listings' ); ?>"/>
 				</div>
 			</div>
 		</div>
@@ -386,19 +392,22 @@ function epl_reports_graph_controls() {
  * @return array
  */
 function epl_get_report_dates() {
+
+	// phpcs:disable WordPress.Security.NonceVerification
+
 	$dates = array();
 
 	$current_time = current_time( 'timestamp' );
 
-	$dates['range'] = isset( $_GET['range'] ) ? sanitize_text_field( $_GET['range'] ) : 'this_month';
+	$dates['range'] = isset( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : 'this_month';
 
 	if ( 'custom' !== $dates['range'] ) {
-		$dates['year']     = isset( $_GET['year'] ) ? sanitize_text_field( $_GET['year'] ) : date( 'Y' );
-		$dates['year_end'] = isset( $_GET['year_end'] ) ? sanitize_text_field( $_GET['year_end'] ) : date( 'Y' );
-		$dates['m_start']  = isset( $_GET['m_start'] ) ? sanitize_text_field( $_GET['m_start'] ) : 1;
-		$dates['m_end']    = isset( $_GET['m_end'] ) ? sanitize_text_field( $_GET['m_end'] ) : 12;
-		$dates['day']      = isset( $_GET['day'] ) ? sanitize_text_field( $_GET['day'] ) : 1;
-		$dates['day_end']  = isset( $_GET['day_end'] ) ? sanitize_text_field( $_GET['day_end'] ) : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
+		$dates['year']     = isset( $_GET['year'] ) ? sanitize_text_field( wp_unslash( $_GET['year'] ) ) : date( 'Y' );
+		$dates['year_end'] = isset( $_GET['year_end'] ) ? sanitize_text_field( wp_unslash( $_GET['year_end'] ) ) : date( 'Y' );
+		$dates['m_start']  = isset( $_GET['m_start'] ) ? sanitize_text_field( wp_unslash( $_GET['m_start'] ) ) : 1;
+		$dates['m_end']    = isset( $_GET['m_end'] ) ? sanitize_text_field( wp_unslash( $_GET['m_end'] ) ) : 12;
+		$dates['day']      = isset( $_GET['day'] ) ? sanitize_text_field( wp_unslash( $_GET['day'] ) ) : 1;
+		$dates['day_end']  = isset( $_GET['day_end'] ) ? sanitize_text_field( wp_unslash( $_GET['day_end'] ) ) : cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
 	}
 
 	// Modify dates based on predefined ranges.
@@ -441,18 +450,18 @@ function epl_get_report_dates() {
 
 			if ( 1 === $month && 1 === $day ) {
 
-				$year -= 1;
+				$year--;
 				$month = 12;
 				$day   = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
 			} elseif ( $month > 1 && 1 === $day ) {
 
-				$month -= 1;
-				$day    = cal_days_in_month( CAL_GREGORIAN, $month, $year );
+				$month--;
+				$day = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
 			} else {
 
-				$day -= 1;
+				$day--;
 
 			}
 
@@ -559,8 +568,9 @@ function epl_get_report_dates() {
 			$dates['year']     = date( 'Y', $current_time ) - 1;
 			$dates['year_end'] = date( 'Y', $current_time ) - 1;
 			break;
-
+	//phpcs:disable		
 	endswitch;
 
-	return apply_filters( 'epl_report_dates', $dates );
+	return apply_filters( 'epl_report_dates', $dates ); 
 }
+//phpcs:enable

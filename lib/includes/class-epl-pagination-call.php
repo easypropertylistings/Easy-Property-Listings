@@ -36,7 +36,7 @@ class EPL_Pagination_Call {
 	 * @param array $args Array of arguments.
 	 * @since  2.1
 	 */
-	function __construct( $args ) {
+	public function __construct( $args ) {
 		$this->args = $args;
 	}
 
@@ -46,7 +46,7 @@ class EPL_Pagination_Call {
 	 * @param array $key Key name.
 	 * @since  2.1
 	 */
-	function __get( $key ) {
+	public function __get( $key ) {
 		return $this->args[ $key ];
 	}
 
@@ -55,7 +55,7 @@ class EPL_Pagination_Call {
 	 *
 	 * @since  2.1
 	 */
-	function get_pagination_args() {
+	public function get_pagination_args() {
 		global $numpages;
 
 		$query = $this->query;
@@ -95,7 +95,7 @@ class EPL_Pagination_Call {
 	 * @param  array  $tag      attributes of single page tag.
 	 * @return string
 	 */
-	function get_single( $page, $raw_text, $attr, $format = '%PAGE_NUMBER%', $tag = 'a' ) {
+	public function get_single( $page, $raw_text, $attr, $format = '%PAGE_NUMBER%', $tag = 'a' ) {
 		if ( empty( $raw_text ) ) {
 			return '';
 		}
@@ -134,7 +134,7 @@ class EPL_Pagination_Call {
 			}
 		}
 		// Tag is self closed.
-		if ( in_array( $tag, array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' ) ) ) {
+		if ( in_array( $tag, array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' ), true ) ) {
 			$output .= ' />';
 		} else {
 			// Tag is not self closed.
@@ -150,12 +150,12 @@ class EPL_Pagination_Call {
 	 * @param  string $page Page number.
 	 * @since  2.1
 	 */
-	function get_url( $page ) {
+	public function get_url( $page ) {
 
 		$link = ( 'multipart' === $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
 
 		if ( $this->query->get( 'is_epl_shortcode' ) &&
-			in_array( $this->query->get( 'epl_shortcode_name' ), epl_get_shortcode_list() ) ) {
+			in_array( $this->query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
 			$link = epl_add_or_update_params( $link, 'pagination_id', $this->query->get( 'instance_id' ) );
 		}
 

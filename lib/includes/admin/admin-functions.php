@@ -55,9 +55,9 @@ function epl_dashboard_widget_offer_rough() {
 	}
 
 	echo '<div class="epl-internal-ad">';
-		echo '<div>' . __( 'Remove these ads?', 'easy-property-listings' ) . '</div>';
+		echo '<div>' . esc_html__( 'Remove these ads?', 'easy-property-listings' ) . '</div>';
 
-		echo '<div><a href="https://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_store">' . __( 'Purchase an extension remove me', 'easy-property-listings' ) . '</a></div>';
+		echo '<div><a href="https://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_store">' . esc_html__( 'Purchase an extension remove me', 'easy-property-listings' ) . '</a></div>';
 	echo '</div>';
 }
 
@@ -76,43 +76,43 @@ function epl_admin_sidebar() {
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/core-bundle/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_core',
 			'img'   => 'banner-dash-wide.png',
-			'alt'   => __( 'Core bundle for Easy Property Listings', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Core bundle for Easy Property Listings', 'easy-property-listings' ),
 			'width' => 261,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_advanced_map',
 			'img'   => 'offer-advanced-mapping.png',
-			'alt'   => __( 'Advanced Mapping', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Advanced Mapping', 'easy-property-listings' ),
 			'width' => 261,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/sliders/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_sliders',
 			'img'   => 'offer-sliders.png',
-			'alt'   => __( 'Sliders extension', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Sliders extension', 'easy-property-listings' ),
 			'width' => 261,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/staff-directory/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_staff_directory',
 			'img'   => 'offer-staff-directory.png',
-			'alt'   => __( 'Staff Directory', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Staff Directory', 'easy-property-listings' ),
 			'width' => 261,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/listing-templates/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_listing_templates',
 			'img'   => 'offer-templates.png',
-			'alt'   => __( 'Listing Templates', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Listing Templates', 'easy-property-listings' ),
 			'width' => 261,
 		),
 	);
 	$i               = 0;
 	foreach ( $service_banners as $banner ) {
-		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="' . $banner['width'] . '" src="' . plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
+		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
 		$i ++;
 	}
 	?>
 	<div class="epl-admin-offer" style="margin-bottom: 1em;">
-		<div><span><?php _e( 'Remove these ads?', 'easy-property-listings' ); ?><span></div>
-		<div><a href="http://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_store"><?php _e( 'Purchase and activate any extension', 'easy-property-listings' ); ?> &#x27F6;</a></div>
+		<div><span><?php esc_html_e( 'Remove these ads?', 'easy-property-listings' ); ?><span></div>
+		<div><a href="http://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=settings_link&utm_campaign=epl_extension_store"><?php esc_html_e( 'Purchase and activate any extension', 'easy-property-listings' ); ?> &#x27F6;</a></div>
 	</div>
 	<?php
 }
@@ -131,28 +131,28 @@ function epl_dashboard_widget_offer() {
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/core-bundle/?utm_source=offers&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_core',
 			'img'   => 'banner-dash-wide.png',
-			'alt'   => __( 'Check out the premium extensions', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Check out the premium extensions', 'easy-property-listings' ),
 			'width' => 261,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_store',
 			'img'   => 'banner-dash-wide-store.png',
-			'alt'   => __( 'Browse the extension store', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Browse the extension store', 'easy-property-listings' ),
 			'width' => 125,
 		),
 	);
 	$i               = 0;
 	foreach ( $service_banners as $banner ) {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '">
-			<img style="margin-right: 0.5em" width="' . $banner['width'] . '" src="' . plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
+			<img style="margin-right: 0.5em" width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
 		      </a>';
 		$i ++;
 	}
 	?>
 
 	<div class="epl-admin-offer" style="margin-bottom: 1em;">
-		<div><span><?php _e( 'Remove these ads?', 'easy-property-listings' ); ?><span></div>
-		<div><a href="http://easypropertylistings.com.au/extensions/"><?php _e( 'Purchase and activate any extension', 'easy-property-listings' ); ?> &#x27F6;</a></div>
+		<div><span><?php esc_html_e( 'Remove these ads?', 'easy-property-listings' ); ?><span></div>
+		<div><a href="http://easypropertylistings.com.au/extensions/"><?php esc_html_e( 'Purchase and activate any extension', 'easy-property-listings' ); ?> &#x27F6;</a></div>
 	</div>
 	<?php
 }
@@ -171,38 +171,38 @@ function epl_dashboard_widget_offer_post_types() {
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=post_link&utm_campaign=epl_extensions',
 			'img'   => 'banner-dash-wide-store.png',
-			'alt'   => __( 'Browse the extension store', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Browse the extension store', 'easy-property-listings' ),
 			'width' => 125,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=offers&utm_medium=description_tab&utm_content=post_link&utm_campaign=epl_extension_advanced_map',
 			'img'   => 'offer-advanced-mapping.png',
-			'alt'   => __( 'Advanced Mapping', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Advanced Mapping', 'easy-property-listings' ),
 			'width' => 175,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/sliders/?utm_source=offers&utm_medium=description_tab&utm_content=post_link&utm_campaign=epl_extension_sliders',
 			'img'   => 'offer-sliders.png',
-			'alt'   => __( 'Sliders extension', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Sliders extension', 'easy-property-listings' ),
 			'width' => 175,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/staff-directory/?utm_source=offers&utm_medium=description_tab&utm_content=post_link&utm_campaign=epl_extension_staff_directory',
 			'img'   => 'offer-staff-directory.png',
-			'alt'   => __( 'Staff Directory', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Staff Directory', 'easy-property-listings' ),
 			'width' => 175,
 		),
 		array(
 			'url'   => 'https://easypropertylistings.com.au/extensions/listing-templates/?utm_source=offers&utm_medium=description_tab&utm_content=post_link&utm_campaign=epl_extension_listing_templates',
 			'img'   => 'offer-templates.png',
-			'alt'   => __( 'Listing Templates', 'easy-property-listings' ),
+			'alt'   => esc_html__( 'Listing Templates', 'easy-property-listings' ),
 			'width' => 175,
 		),
 	);
 	$i               = 0;
 	foreach ( $service_banners as $banner ) {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '">
-			<img style="display: block; float: left; margin: 0.5em 0.5em 0.5em 0" width="' . $banner['width'] . '" src="' . plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
+			<img style="display: block; float: left; margin: 0.5em 0.5em 0.5em 0" width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
 		      </a>';
 		$i ++;
 	}
@@ -221,7 +221,7 @@ function epl_dashboard_widget_offer_post_types_last() {
 	}
 
 	echo '<a target="_blank" href="https://easypropertylistings.com.au/extensions/?utm_source=offers&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_store">
-			<img style="display: block; float: right; margin: 0.5em 0 0.5em 0.5em" width="125" src="' . plugins_url( 'lib/assets/images/' . 'banner-dash-wide-store-reverse.png', EPL_PLUGIN_FILE ) . '" alt="' . __( 'Purchase and activate any extension to remove these ads', 'easy-property-listings' ) . '"/>
+			<img style="display: block; float: right; margin: 0.5em 0 0.5em 0.5em" width="125" src="' . esc_url( plugins_url( 'lib/assets/images/banner-dash-wide-store-reverse.png', EPL_PLUGIN_FILE ) ) . '" alt="' . esc_html__( 'Purchase and activate any extension to remove these ads', 'easy-property-listings' ) . '"/>
 		</a>';
 	?>
 	<?php
@@ -266,7 +266,7 @@ function epl_extension_has_beta_support( $slug ) {
 
 	$enabled_betas = epl_get_option( 'enabled_betas', array() );
 	$return        = false;
-	if ( in_array( $slug, $enabled_betas ) ) {
+	if ( in_array( $slug, $enabled_betas, true ) ) {
 		$return = true;
 	}
 	return $return;
@@ -281,7 +281,7 @@ function epl_get_tools_tab() {
 
 	$default_tabs = array(
 		'tools' => array(
-			'label'    => __( 'Import/Export', 'easy-property-listings' ),
+			'label'    => esc_html__( 'Import/Export', 'easy-property-listings' ),
 			'callback' => 'epl_settings_import_export',
 		),
 	);
@@ -289,7 +289,7 @@ function epl_get_tools_tab() {
 	if ( epl_show_reset_tab() ) :
 
 		$default_tabs['reset'] = array(
-			'label'    => __( 'Reset Settings', 'easy-property-listings' ),
+			'label'    => esc_html__( 'Reset Settings', 'easy-property-listings' ),
 			'callback' => 'epl_settings_reset',
 		);
 
@@ -298,7 +298,7 @@ function epl_get_tools_tab() {
 	if ( epl_show_upgrade_tab() ) :
 
 		$default_tabs['upgrade'] = array(
-			'label'    => __( 'Upgrade', 'easy-property-listings' ),
+			'label'    => esc_html__( 'Upgrade', 'easy-property-listings' ),
 			'callback' => 'epl_settings_upgrade_tab',
 		);
 
@@ -313,7 +313,7 @@ function epl_get_tools_tab() {
  * @since       3.3
  */
 function epl_show_upgrade_tab() {
-
+	// phpcs:disable WordPress.Security.NonceVerification
 	$upgraded = get_option( 'epl_db_upgraded_to' ) < 3.3 ? true : false;
 
 	$upgraded = isset( $_GET['dev'] ) ? true : $upgraded;
@@ -342,7 +342,7 @@ function epl_show_reset_tab() {
  * @return serialize string.
  */
 function epl_serialize( $data ) {
-	return base64_encode( serialize( $data ) );
+	return base64_encode( serialize( $data ) ); //phpcs:ignore
 }
 
 /**
@@ -353,7 +353,7 @@ function epl_serialize( $data ) {
  * @return un-serialized string.
  */
 function epl_unserialize( $data ) {
-	return unserialize( base64_decode( $data ) );
+	return unserialize( base64_decode( $data ) ); //phpcs:ignore
 }
 
 /**
@@ -365,14 +365,14 @@ function epl_settings_import_export() {
 
 	do_action( 'epl_pre_import_fields' );
 
-	echo '<h2>' . __( 'Import Options', 'easy-property-listings' ) . '</h2>';
+	echo '<h2>' . esc_html__( 'Import Options', 'easy-property-listings' ) . '</h2>';
 	?>
 
 	<div class="epl-field">
 		<div class="epl-label-wrap">
 			<label class="epl-label epl-label-epl_import" for="epl_import">
 				<?php
-					_e( 'Import data', 'easy-property-listings' );
+					esc_html_e( 'Import data', 'easy-property-listings' );
 				?>
 			</label>
 		</div>
@@ -380,7 +380,7 @@ function epl_settings_import_export() {
 			<input type="file" name="epl_import" id="epl_import" />
 			<span class="epl-help-text">
 				<?php
-					_e( 'Import exported file here. Warning! This will override all existing settings to default values.', 'easy-property-listings' );
+					esc_html_e( 'Import exported file here. Warning! This will override all existing settings to default values.', 'easy-property-listings' );
 				?>
 			</span>
 		</div>
@@ -388,8 +388,8 @@ function epl_settings_import_export() {
 
 	<input type="hidden" name="action" value="import">
 	<div class="">
-		<input type="submit" name="epl_tools_submit" value="<?php _e( 'Import', 'easy-property-listings' ); ?>" class="epl-tools-submit button button-primary"/>
-		<span style="color:#f00"><?php _e( 'WARNING! This will overwrite all existing option values, please proceed with caution.', 'easy-property-listings' ); ?></span>
+		<input type="submit" name="epl_tools_submit" value="<?php esc_html_e( 'Import', 'easy-property-listings' ); ?>" class="epl-tools-submit button button-primary"/>
+		<span style="color:#f00"><?php esc_html_e( 'WARNING! This will overwrite all existing option values, please proceed with caution.', 'easy-property-listings' ); ?></span>
 	</div>
 
 
@@ -397,13 +397,13 @@ function epl_settings_import_export() {
 
 	do_action( 'epl_post_import_fields' );
 
-	echo '<h2>' . __( 'Export Options', 'easy-property-listings' ) . '</h2>';
+	echo '<h2>' . esc_html__( 'Export Options', 'easy-property-listings' ) . '</h2>';
 
-	$tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'tools';
+	$tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'tools';
 
-	echo "<a class='button button-primary' href='?page=epl-tools&tab=$tab&action=export&epl_tools_submit=true'>" . __( 'Download File', 'easy-property-listings' ) . '</a>';
+	echo "<a class='button button-primary' href='" . esc_url( '?page=epl-tools&tab=$tab&action=export&epl_tools_submit=true' ) . "'>" . esc_html__( 'Download File', 'easy-property-listings' ) . '</a>';
 	?>
-	<span style="color:#f00"><?php _e( 'The following settings are exported. Easy Property Listings settings screen and any Extension settings', 'easy-property-listings' ); ?></span>
+	<span style="color:#f00"><?php esc_html_e( 'The following settings are exported. Easy Property Listings settings screen and any Extension settings', 'easy-property-listings' ); ?></span>
 	<?php
 
 	do_action( 'epl_pre_export_fields' );
@@ -420,10 +420,10 @@ function epl_settings_reset() {
 
 	do_action( 'epl_pre_settings_reset_fields' );
 
-	if ( isset( $_GET['epl_tools_submit'] ) && sanitize_text_field( $_GET['epl_tools_submit'] ) === 'true' ) {
+	if ( isset( $_GET['epl_tools_submit'] ) && 'true' === sanitize_text_field( wp_unslash( $_GET['epl_tools_submit'] ) ) ) {
 		?>
 		<br>
-		<span style="color:#080"><?php _e( 'Settings reset successfully!', 'easy-property-listings' ); ?></span>
+		<span style="color:#080"><?php esc_html_e( 'Settings reset successfully!', 'easy-property-listings' ); ?></span>
 		<?php
 	}
 
@@ -431,13 +431,13 @@ function epl_settings_reset() {
 	$url = add_query_arg( array( 'dev' => 'true' ), $url );
 
 	$url     = wp_nonce_url( $url, $action = 'epl_reset_settings', $name = '_reset_wpnonce' );
-	$confirm = __( 'Are you sure you want to reset all Easy Property Listings settings?', 'easy-property-listings' );
-	echo '<h2>' . __( 'Reset Easy Property Listings to installation defaults', 'easy-property-listings' ) . '</h2>';
+	$confirm = esc_html__( 'Are you sure you want to reset all Easy Property Listings settings?', 'easy-property-listings' );
+	echo '<h2>' . esc_html__( 'Reset Easy Property Listings to installation defaults', 'easy-property-listings' ) . '</h2>';
 
-	echo "<a class='button button-primary' href='" . $url . "' onclick='return confirm(\"" . $confirm . "\")'>" . __( 'Reset', 'easy-property-listings' ) . '</a>';
+	echo "<a class='button button-primary' href='" . esc_url( $url ) . "' onclick='return confirm(\"" . esc_html( $confirm ) . "\")'>" . esc_html__( 'Reset', 'easy-property-listings' ) . '</a>';
 	?>
 	<br>
-	<span style="color:#f00"><?php _e( 'Warning! This will reset all your Easy Property Listings settings to their default values including extension settings.', 'easy-property-listings' ); ?></span>
+	<span style="color:#f00"><?php esc_html_e( 'Warning! This will reset all your Easy Property Listings settings to their default values including extension settings.', 'easy-property-listings' ); ?></span>
 	<?php
 
 	do_action( 'epl_post_settings_reset_fields' );
@@ -451,13 +451,13 @@ function epl_settings_reset() {
  */
 function epl_settings_upgrade_tab() {
 
-	echo '<h2>' . __( 'Upgrade Options', 'easy-property-listings' ) . '</h2>';
+	echo '<h2>' . esc_html__( 'Upgrade Options', 'easy-property-listings' ) . '</h2>';
 
-	echo '<div style="color:red">' . __( 'Upgrading the database will copy all the listing pricing info into a unified price data column for searching and ordering. We recommend taking a database backup before performing this action.', 'easy-property-listings' ) . '</div>';
+	echo '<div style="color:red">' . esc_html__( 'Upgrading the database will copy all the listing pricing info into a unified price data column for searching and ordering. We recommend taking a database backup before performing this action.', 'easy-property-listings' ) . '</div>';
 
-	echo "<div><br><a class='button button-primary epl-upgrade-btn' data-upgrade='3.3' href='#'>" . __( 'Upgrade Database', 'easy-property-listings' ) . '</a></div>';
+	echo "<div><br><a class='button button-primary epl-upgrade-btn' data-upgrade='3.3' href='#'>" . esc_html__( 'Upgrade Database', 'easy-property-listings' ) . '</a></div>';
 
-	echo '<div style="display:none;" class="epl-ajax-notice">' . __( 'Processing...', 'easy-property-listings' ) . '</div>';
+	echo '<div style="display:none;" class="epl-ajax-notice">' . esc_html__( 'Processing...', 'easy-property-listings' ) . '</div>';
 }
 
 /**
@@ -475,15 +475,15 @@ function epl_handle_tools_form() {
 		return;
 	}
 
-	$action = sanitize_text_field( $_REQUEST['action'] );
+	$action = sanitize_text_field( wp_unslash( $_REQUEST['action'] ) );
 
-	if ( in_array( $action, array( 'import' ) ) ) {
+	if ( in_array( $action, array( 'import' ), true ) ) {
 
 		if (
 			! isset( $_POST['epl_nonce_tools_form'] ) ||
-			! wp_verify_nonce( $_POST['epl_nonce_tools_form'], 'epl_nonce_tools_form' )
+			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['epl_nonce_tools_form'] ) ), 'epl_nonce_tools_form' )
 		) {
-			wp_die( __( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
+			wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
 		}
 	}
 
@@ -504,28 +504,33 @@ function epl_handle_tools_form() {
 			header( 'Pragma: public' );
 			ob_clean();
 			flush();
-			echo epl_serialize( $export );
+			echo epl_serialize( $export ); // phpcs:ignore
 			die;
-		break;
+		break; // phpcs:ignore
 
 		case 'import':
-			$uploadedfile     = $_FILES['epl_import'];
-			$upload_overrides = array( 'test_form' => false );
-			$movefile         = wp_handle_upload( $uploadedfile, $upload_overrides );
+			$uploadedfile     = isset( $_FILES['epl_import']  ) ?  wp_unslash( $_FILES['epl_import'] ) : false; //phpcs:ignore
 
-			if ( $movefile && ! isset( $movefile['error'] ) ) {
-				$imported_data  = file_get_contents( $movefile['url'] );
-				$imported_data  = epl_unserialize( $imported_data );
-				$options_backup = get_option( 'epl_settings' );
-				update_option( 'epl_settings_backup', $options_backup );
-				$status = update_option( 'epl_settings', $imported_data );
-			}
+			if ( $uploadedfile ) :
+
+				$upload_overrides = array( 'test_form' => false );
+				$movefile         = wp_handle_upload( $uploadedfile, $upload_overrides );
+
+				if ( $movefile && ! isset( $movefile['error'] ) ) {
+					$imported_data  = epl_remote_url_get( $movefile['url'] );
+					$imported_data  = epl_unserialize( $imported_data );
+					$options_backup = get_option( 'epl_settings' );
+					update_option( 'epl_settings_backup', $options_backup );
+					$status = update_option( 'epl_settings', $imported_data );
+				}
+
+			endif;
 
 			break;
 
 		case 'reset':
-			if ( ! isset( $_GET['_reset_wpnonce'] ) || ! wp_verify_nonce( $_GET['_reset_wpnonce'], 'epl_reset_settings' ) ) {
-				wp_die( __( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
+			if ( ! isset( $_GET['_reset_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_reset_wpnonce'] ) ), 'epl_reset_settings' ) ) {
+				wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
 			} else {
 				$epl_settings = epl_get_default_settings();
 				update_option( 'epl_settings', $epl_settings );
@@ -548,14 +553,14 @@ function epl_upgrade_admin_notice() {
 
 	if ( $upgraded_to < 3.3 && current_user_can( 'administrator' ) ) :
 
-		$head = __( 'It looks like you upgraded to latest version of Easy Property Listings', 'easy-property-listings' );
+		$head = esc_html__( 'It looks like you upgraded to latest version of Easy Property Listings', 'easy-property-listings' );
 
-		$msg = __( 'For better performance, we need to upgrade the database. You can upgrade the database by visiting tools page', 'easy-property-listings' );
+		$msg = esc_html__( 'For better performance, we need to upgrade the database. You can upgrade the database by visiting tools page', 'easy-property-listings' );
 
 		echo '<div class="notice notice-warning epl-upgrade-notice is-dismissible">
-			<p><strong>' . $head . '</strong></p>
-			<p>' . $msg . '</p>
-			<p><a class="button" href="' . admin_url( 'admin.php?page=epl-tools&tab=upgrade&dev=true' ) . '">' . __( 'Take me to the upgrade tool', 'easy-property-listings' ) . '</a></p>
+			<p><strong>' . esc_html( $head ) . '</strong></p>
+			<p>' . esc_html( $msg ) . '</p>
+			<p><a class="button" href="' . esc_url( admin_url( 'admin.php?page=epl-tools&tab=upgrade&dev=true' ) ) . '">' . esc_html__( 'Take me to the upgrade tool', 'easy-property-listings' ) . '</a></p>
 		</div>';
 	endif;
 }
@@ -570,10 +575,10 @@ function epl_upgrade_db() {
 
 	if ( ! isset( $_POST['upgrade_to'] ) ) {
 		wp_die(
-			json_encode(
+			wp_json_encode(
 				array(
 					'status' => 'fail',
-					'msg'    => __(
+					'msg'    => esc_html__(
 						'Some error occured',
 						'easy-property-listings'
 					),
@@ -600,7 +605,7 @@ add_action( 'wp_ajax_epl_upgrade_db', 'epl_upgrade_db' );
  */
 function epl_update_user_note_type() {
 
-	$comments_query = new WP_Comment_Query;
+	$comments_query = new WP_Comment_Query();
 
 	$comments = $comments_query->query(
 		array(
@@ -633,7 +638,8 @@ function epl_upgrade_db_to_3_3() {
 	$args = array(
 		'post_type'   => epl_get_core_post_types(),
 		'post_status' => 'any',
-		'numberposts' => 200, // 200 listings in single batch.
+		'numberposts' => 200, // phpcs:ignore
+		// 200 listings in single batch.
 		'exclude'     => $updated_listings,
 	);
 
@@ -669,12 +675,12 @@ function epl_upgrade_db_to_3_3() {
 
 		update_option( 'epl_updated_global_price', $updated_listings );
 		wp_die(
-			json_encode(
+			wp_json_encode(
 				array(
 					'status' => 'success',
 					'buffer' => 'processing',
 					/* Translators: %s is a string of listing post ids. */
-					'msg'    => sprintf( __( 'Database upgrade in process, following listings updated : %s. Please wait...', 'easy-property-listings' ), implode( ', ', $current_batch ) ),
+					'msg'    => sprintf( esc_html__( 'Database upgrade in process, following listings updated : %s. Please wait...', 'easy-property-listings' ), implode( ', ', $current_batch ) ),
 				)
 			)
 		);
@@ -683,11 +689,11 @@ function epl_upgrade_db_to_3_3() {
 
 		update_option( 'epl_db_upgraded_to', '3.3' );
 		wp_die(
-			json_encode(
+			wp_json_encode(
 				array(
 					'status' => 'success',
 					'buffer' => 'complete',
-					'msg'    => __( 'Database upgraded successfully', 'easy-property-listings' ),
+					'msg'    => esc_html__( 'Database upgraded successfully', 'easy-property-listings' ),
 				)
 			)
 		);
@@ -747,28 +753,28 @@ function epl_get_avatar_filter( $avatar, $id_or_email, $args ) {
 		return $avatar;
 	}
 
-	$label = __( 'Note', 'easy-property-listings' );
+	$label = esc_html__( 'Note', 'easy-property-listings' );
 
 	switch ( $id_or_email->comment_type ) {
 
 		case 'call':
-			$label = __( 'Call', 'easy-property-listings' );
+			$label = esc_html__( 'Call', 'easy-property-listings' );
 			break;
 
 		case 'email':
-			$label = __( 'Mail', 'easy-property-listings' );
+			$label = esc_html__( 'Mail', 'easy-property-listings' );
 			break;
 
 		case 'note':
-			$label = __( 'Note', 'easy-property-listings' );
+			$label = esc_html__( 'Note', 'easy-property-listings' );
 			break;
 
 		case 'listing_alert':
-			$label = __( 'Alert', 'easy-property-listings' );
+			$label = esc_html__( 'Alert', 'easy-property-listings' );
 			break;
 
 		default:
-			$label = __( 'Note', 'easy-property-listings' );
+			$label = esc_html__( 'Note', 'easy-property-listings' );
 			break;
 	}
 
@@ -808,7 +814,7 @@ function epl_update_featured_listing() {
 	}
 
 	wp_die(
-		json_encode(
+		wp_json_encode(
 			array(
 				'status'   => 'successful',
 				'featured' => $is_featured,

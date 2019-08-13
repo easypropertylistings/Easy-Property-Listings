@@ -29,15 +29,15 @@ function epl_sanitize_amount( $amount ) {
 	$decimal_sep   = epl_get_decimal_separator();
 
 	// Sanitize the amount.
-	if ( ',' === $decimal_sep && false !== ( $found = strpos( $amount, $decimal_sep ) ) ) {
-		if ( '.' === $thousands_sep && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
+	if ( ',' === $decimal_sep && false !== ( strpos( $amount, $decimal_sep ) ) ) {
+		if ( '.' === $thousands_sep && false !== ( strpos( $amount, $thousands_sep ) ) ) {
 			$amount = str_replace( $thousands_sep, '', $amount );
-		} elseif ( empty( $thousands_sep ) && false !== ( $found = strpos( $amount, '.' ) ) ) {
+		} elseif ( empty( $thousands_sep ) && false !== ( strpos( $amount, '.' ) ) ) {
 			$amount = str_replace( '.', '', $amount );
 		}
 
 		$amount = str_replace( $decimal_sep, '.', $amount );
-	} elseif ( ',' === $thousands_sep && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
+	} elseif ( ',' === $thousands_sep && false !== ( strpos( $amount, $thousands_sep ) ) ) {
 		$amount = str_replace( $thousands_sep, '', $amount );
 	}
 
@@ -62,14 +62,14 @@ function epl_format_amount( $amount, $decimals = false ) {
 	$decimal_sep   = epl_get_decimal_separator();
 
 	// Format the amount.
-	if ( ',' === $decimal_sep && false !== ( $found = strpos( $amount, $decimal_sep ) ) ) {
+	if ( ',' === $decimal_sep && false !== ( strpos( $amount, $decimal_sep ) ) ) {
 		$whole  = substr( $amount, 0, $sep_found );
 		$part   = substr( $amount, $sep_found + 1, ( strlen( $amount ) - 1 ) );
 		$amount = $whole . '.' . $part;
 	}
 
 	// Strip , from the amount (if set as the thousands separator).
-	if ( ',' === $thousands_sep && false !== ( $found = strpos( $amount, $thousands_sep ) ) ) {
+	if ( ',' === $thousands_sep && false !== ( strpos( $amount, $thousands_sep ) ) ) {
 		$amount = str_replace( ',', '', $amount );
 	}
 
@@ -103,7 +103,7 @@ function epl_currency_filter( $price ) {
 	if ( $negative ) {
 		$price = substr( $price, 1 ); // Remove proceeding "-".
 	}
-
+	//phpcs:disable
 	if ( 'before' === $position ) :
 		switch ( $currency ) :
 			case 'GBP':
@@ -216,6 +216,7 @@ function epl_currency_filter( $price ) {
 		}
 
 		return $formatted;
+		//phpcs:enable
 }
 
 /**

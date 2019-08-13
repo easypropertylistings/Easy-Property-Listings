@@ -126,7 +126,7 @@ class EPL_CPT {
 	 * @param mixed $post_type_names The name(s) of the post type, accepts (post type name, slug, plural, singular).
 	 * @param array $options User submitted options.
 	 */
-	function __construct( $post_type_names, $options = array() ) {
+	public function __construct( $post_type_names, $options = array() ) {
 
 		// Check if post type names is a string or an array.
 		if ( is_array( $post_type_names ) ) {
@@ -207,7 +207,7 @@ class EPL_CPT {
 	 * @param string $var The variable you would like to retrieve.
 	 * @return mixed Returns the value on success, boolean false whe it fails.
 	 */
-	function get( $var ) {
+	public function get( $var ) {
 
 		// If the variable exists.
 		if ( $this->$var ) {
@@ -231,7 +231,7 @@ class EPL_CPT {
 	 * @param mixed $var The variable you would like to create/overwrite.
 	 * @param mixed $value The value you would like to set to the variable.
 	 */
-	function set( $var, $value ) {
+	public function set( $var, $value ) {
 
 		// An array of reserved variables that cannot be overwritten.
 		$reserved = array(
@@ -245,7 +245,7 @@ class EPL_CPT {
 		);
 
 		// If the variable is not a reserved variable.
-		if ( ! in_array( $var, $reserved ) ) {
+		if ( ! in_array( $var, $reserved, true ) ) {
 
 			// Write variable and value.
 			$this->$var = $value;
@@ -262,7 +262,7 @@ class EPL_CPT {
 	 * @param integet $priority Order in which to execute the function, relation to other functions hooked to this action.
 	 * @param integer $accepted_args The number of arguments the function accepts.
 	 */
-	function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
+	public function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
 
 		// Pass variables into WordPress add_action function.
 		add_action( $action, $function, $priority, $accepted_args );
@@ -280,7 +280,7 @@ class EPL_CPT {
 	 * @param  int    $priority         Order in which to execute the function, relation to other function hooked to this action.
 	 * @param  int    $accepted_args    The number of arguements the function accepts.
 	 */
-	function add_filter( $action, $function, $priority = 10, $accepted_args = 1 ) {
+	public function add_filter( $action, $function, $priority = 10, $accepted_args = 1 ) {
 
 		// Pass variables into WordPress add_action function.
 		add_filter( $action, $function, $priority, $accepted_args );
@@ -294,7 +294,7 @@ class EPL_CPT {
 	 * @param  string $name Name to slugify.
 	 * @return string $name Returns the slug.
 	 */
-	function get_slug( $name = null ) {
+	public function get_slug( $name = null ) {
 
 		// If no name set use the post type name.
 		if ( ! isset( $name ) ) {
@@ -326,7 +326,7 @@ class EPL_CPT {
 	 * @param  string $name The slug name you want to pluralize.
 	 * @return string the friendly pluralized name.
 	 */
-	function get_plural( $name = null ) {
+	public function get_plural( $name = null ) {
 
 		// If no name is passed the post_type_name is used.
 		if ( ! isset( $name ) ) {
@@ -350,7 +350,7 @@ class EPL_CPT {
 	 * @param string $name The slug name you want to unpluralize.
 	 * @return string The friendly singular name.
 	 */
-	function get_singular( $name = null ) {
+	public function get_singular( $name = null ) {
 
 		// If no name is passed the post_type_name is used.
 		if ( ! isset( $name ) ) {
@@ -375,7 +375,7 @@ class EPL_CPT {
 	 * @param string $name The name you want to make friendly.
 	 * @return string The human friendly name.
 	 */
-	function get_human_friendly( $name = null ) {
+	public function get_human_friendly( $name = null ) {
 
 		// If no name is passed the post_type_name is used.
 		if ( ! isset( $name ) ) {
@@ -392,7 +392,7 @@ class EPL_CPT {
 	 *
 	 * @see http://codex.wordpress.org/Function_Reference/register_post_type
 	 */
-	function register_post_type() {
+	public function register_post_type() {
 
 		// Friendly post type names.
 		$plural   = $this->plural;
@@ -401,29 +401,37 @@ class EPL_CPT {
 
 		// Default labels.
 		$labels = array(
-			/* TODO: %s Strings should have translatable content. */
-			'name'               => sprintf( __( '%s', $this->textdomain ), $plural ),
-			'singular_name'      => sprintf( __( '%s', $this->textdomain ), $singular ),
-			'menu_name'          => sprintf( __( '%s', $this->textdomain ), $plural ),
-			'all_items'          => sprintf( __( '%s', $this->textdomain ), $plural ),
+
+			/*
+			TODO: %s Strings should have translatable content.
+			*/
+
 			/* Translators: %s is the post type name. */
-			'add_new'            => __( 'Add New', $this->textdomain ),
+			'name'               => $plural,
 			/* Translators: %s is the post type name. */
-			'add_new_item'       => sprintf( __( 'Add New %s', $this->textdomain ), $singular ),
+			'singular_name'      => $singular,
 			/* Translators: %s is the post type name. */
-			'edit_item'          => sprintf( __( 'Edit %s', $this->textdomain ), $singular ),
+			'menu_name'          => $plural,
 			/* Translators: %s is the post type name. */
-			'new_item'           => sprintf( __( 'New %s', $this->textdomain ), $singular ),
+			'all_items'          => $plural,
 			/* Translators: %s is the post type name. */
-			'view_item'          => sprintf( __( 'View %s', $this->textdomain ), $singular ),
+			'add_new'            => __( 'Add New', 'easy-property-listings' ),
 			/* Translators: %s is the post type name. */
-			'search_items'       => sprintf( __( 'Search %s', $this->textdomain ), $plural ),
+			'add_new_item'       => sprintf( __( 'Add New %s', 'easy-property-listings' ), $singular ),
 			/* Translators: %s is the post type name. */
-			'not_found'          => sprintf( __( 'No %s found', $this->textdomain ), $plural ),
+			'edit_item'          => sprintf( __( 'Edit %s', 'easy-property-listings' ), $singular ),
 			/* Translators: %s is the post type name. */
-			'not_found_in_trash' => sprintf( __( 'No %s found in Trash', $this->textdomain ), $plural ),
+			'new_item'           => sprintf( __( 'New %s', 'easy-property-listings' ), $singular ),
 			/* Translators: %s is the post type name. */
-			'parent_item_colon'  => sprintf( __( 'Parent %s:', $this->textdomain ), $singular ),
+			'view_item'          => sprintf( __( 'View %s', 'easy-property-listings' ), $singular ),
+			/* Translators: %s is the post type name. */
+			'search_items'       => sprintf( __( 'Search %s', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is the post type name. */
+			'not_found'          => sprintf( __( 'No %s found', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is the post type name. */
+			'not_found_in_trash' => sprintf( __( 'No %s found in Trash', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is the post type name. */
+			'parent_item_colon'  => sprintf( __( 'Parent %s:', 'easy-property-listings' ), $singular ),
 		);
 
 		// Default options.
@@ -464,7 +472,7 @@ class EPL_CPT {
 	 * @param string $taxonomy_names The slug for the taxonomy.
 	 * @param array  $options Taxonomy options.
 	 */
-	function register_taxonomy( $taxonomy_names, $options = array() ) {
+	public function register_taxonomy( $taxonomy_names, $options = array() ) {
 
 		// Post type defaults to $this post type if unspecified.
 		$post_type = $this->post_type_name;
@@ -516,23 +524,40 @@ class EPL_CPT {
 
 		// Default labels.
 		$labels = array(
-			'name'                       => sprintf( __( '%s', $this->textdomain ), $plural ),
-			'singular_name'              => sprintf( __( '%s', $this->textdomain ), $singular ),
-			'menu_name'                  => sprintf( __( '%s', $this->textdomain ), $plural ),
-			'all_items'                  => sprintf( __( 'All %s', $this->textdomain ), $plural ),
-			'edit_item'                  => sprintf( __( 'Edit %s', $this->textdomain ), $singular ),
-			'view_item'                  => sprintf( __( 'View %s', $this->textdomain ), $singular ),
-			'update_item'                => sprintf( __( 'Update %s', $this->textdomain ), $singular ),
-			'add_new_item'               => sprintf( __( 'Add New %s', $this->textdomain ), $singular ),
-			'new_item_name'              => sprintf( __( 'New %s Name', $this->textdomain ), $singular ),
-			'parent_item'                => sprintf( __( 'Parent %s', $this->textdomain ), $plural ),
-			'parent_item_colon'          => sprintf( __( 'Parent %s:', $this->textdomain ), $plural ),
-			'search_items'               => sprintf( __( 'Search %s', $this->textdomain ), $plural ),
-			'popular_items'              => sprintf( __( 'Popular %s', $this->textdomain ), $plural ),
-			'separate_items_with_commas' => sprintf( __( 'Seperate %s with commas', $this->textdomain ), $plural ),
-			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', $this->textdomain ), $plural ),
-			'choose_from_most_used'      => sprintf( __( 'Choose from most used %s', $this->textdomain ), $plural ),
-			'not_found'                  => sprintf( __( 'No %s found', $this->textdomain ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'name'                       => $plural,
+			/* Translators: %s is taxonomy label. */
+			'singular_name'              => $singular,
+			/* Translators: %s is taxonomy label. */
+			'menu_name'                  => $plural,
+			/* Translators: %s is taxonomy label. */
+			'all_items'                  => sprintf( __( 'All %s', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'edit_item'                  => sprintf( __( 'Edit %s', 'easy-property-listings' ), $singular ),
+			/* Translators: %s is taxonomy label. */
+			'view_item'                  => sprintf( __( 'View %s', 'easy-property-listings' ), $singular ),
+			/* Translators: %s is taxonomy label. */
+			'update_item'                => sprintf( __( 'Update %s', 'easy-property-listings' ), $singular ),
+			/* Translators: %s is taxonomy label. */
+			'add_new_item'               => sprintf( __( 'Add New %s', 'easy-property-listings' ), $singular ),
+			/* Translators: %s is taxonomy label. */
+			'new_item_name'              => sprintf( __( 'New %s Name', 'easy-property-listings' ), $singular ),
+			/* Translators: %s is taxonomy label. */
+			'parent_item'                => sprintf( __( 'Parent %s', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'parent_item_colon'          => sprintf( __( 'Parent %s:', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'search_items'               => sprintf( __( 'Search %s', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'popular_items'              => sprintf( __( 'Popular %s', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'separate_items_with_commas' => sprintf( __( 'Seperate %s with commas', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'choose_from_most_used'      => sprintf( __( 'Choose from most used %s', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is taxonomy label. */
+			'not_found'                  => sprintf( __( 'No %s found', 'easy-property-listings' ), $plural ),
 		);
 
 		// Default options.
@@ -560,7 +585,7 @@ class EPL_CPT {
 	 *
 	 * Cycles through taxonomies added with the class and registers them.
 	 */
-	function register_taxonomies() {
+	public function register_taxonomies() {
 
 		if ( is_array( $this->taxonomy_settings ) ) {
 
@@ -587,7 +612,7 @@ class EPL_CPT {
 	 *
 	 * Cycles through exisiting taxonomies and registers them after the post type has been registered
 	 */
-	function register_exisiting_taxonomies() {
+	public function register_exisiting_taxonomies() {
 
 		if ( is_array( $this->exisiting_taxonomies ) ) {
 			foreach ( $this->exisiting_taxonomies as $taxonomy_name ) {
@@ -604,7 +629,7 @@ class EPL_CPT {
 	 * @param array $columns Columns to be added to the admin edit screen.
 	 * @return array
 	 */
-	function add_admin_columns( $columns ) {
+	public function add_admin_columns( $columns ) {
 
 		// If no user columns have been specified, add taxonomies.
 		if ( ! isset( $this->columns ) ) {
@@ -612,9 +637,9 @@ class EPL_CPT {
 			$new_columns = array();
 
 			// determine which column to add custom taxonomies after.
-			if ( in_array( 'post_tag', $this->taxonomies ) || 'post' === $this->post_type_name ) {
+			if ( in_array( 'post_tag', $this->taxonomies, true ) || 'post' === $this->post_type_name ) {
 				$after = 'tags';
-			} elseif ( in_array( 'category', $this->taxonomies ) || 'post' === $this->post_type_name ) {
+			} elseif ( in_array( 'category', $this->taxonomies, true ) || 'post' === $this->post_type_name ) {
 				$after = 'categories';
 			} elseif ( post_type_supports( $this->post_type_name, 'author' ) ) {
 				$after = 'author';
@@ -643,7 +668,8 @@ class EPL_CPT {
 								$taxonomy_object = get_taxonomy( $tax );
 
 								// Column key is the slug, value is friendly name.
-								$new_columns[ $tax ] = sprintf( __( '%s', $this->textdomain ), $taxonomy_object->labels->name );
+								/* Translators: %s is taxonomy label. */
+								$new_columns[ $tax ] = $taxonomy_object->labels->name;
 							}
 						}
 					}
@@ -670,7 +696,7 @@ class EPL_CPT {
 	 * @param string  $column The name of the column.
 	 * @param integer $post_id The post ID.
 	 */
-	function populate_admin_columns( $column, $post_id ) {
+	public function populate_admin_columns( $column, $post_id ) {
 
 		// Get WordPress $post object.
 		global $post;
@@ -713,7 +739,7 @@ class EPL_CPT {
 					}
 
 					// Join the terms, separating them with a comma.
-					echo join( ', ', $output );
+					echo join( ', ', wp_kses_post( $output ) );
 
 					// If no terms found.
 				} else {
@@ -722,14 +748,15 @@ class EPL_CPT {
 					$taxonomy_object = get_taxonomy( $column );
 
 					// Echo no terms.
-					printf( __( 'No %s', $this->textdomain ), $taxonomy_object->labels->name );
+					// translators: tax label.
+					printf( esc_html__( 'No %s', 'easy-property-listings' ), esc_attr( $taxonomy_object->labels->name ) );
 				}
 
 				break;
 
 			// If column is for the post ID.
 			case 'post_id':
-				echo $post->ID;
+				echo esc_attr( $post->ID );
 
 				break;
 
@@ -740,7 +767,7 @@ class EPL_CPT {
 
 				$meta = get_post_meta( $post->ID, $x );
 
-				echo join( ', ', $meta );
+				echo join( ', ', wp_kses_post( $meta ) );
 
 				break;
 
@@ -761,14 +788,14 @@ class EPL_CPT {
 				if ( has_post_thumbnail() ) {
 
 					// Display post featured image with edit link.
-					echo '<a href="' . $link . '">';
+					echo '<a href="' . esc_url( $link ) . '">';
 						the_post_thumbnail( array( 60, 60 ) );
 					echo '</a>';
 
 				} else {
 
 					// Display default media image with link.
-					echo '<a href="' . $link . '"><img src="' . site_url( '/wp-includes/images/crystal/default.png' ) . '" alt="' . $post->post_title . '" /></a>';
+					echo '<a href="' . esc_url( $link ) . '"><img src="' . esc_url( site_url( '/wp-includes/images/crystal/default.png' ) ) . '" alt="' . esc_attr( $post->post_title ) . '" /></a>';
 
 				}
 
@@ -789,7 +816,7 @@ class EPL_CPT {
 				}
 
 				break;
-		} // end switch( $column )
+		} // end switch
 	}
 
 	/**
@@ -799,7 +826,7 @@ class EPL_CPT {
 	 *
 	 * @param array $filters An array of taxonomy filters to display.
 	 */
-	function filters( $filters = array() ) {
+	public function filters( $filters = array() ) {
 
 		$this->filters = $filters;
 	}
@@ -809,7 +836,7 @@ class EPL_CPT {
 	 *
 	 * Creates select fields for filtering posts by taxonomies on admin edit screen.
 	 */
-	function add_taxonomy_filters() {
+	public function add_taxonomy_filters() {
 
 		global $typenow;
 		global $wp_query;
@@ -849,23 +876,24 @@ class EPL_CPT {
 					if ( $terms ) {
 
 						// Set up select box.
-						printf( ' &nbsp;<select name="%s" class="postform">', $tax_slug );
+						printf( ' &nbsp;<select name="%s" class="postform">', esc_attr( $tax_slug ) );
 
 						// Default show all.
-						printf( '<option value="0">%s</option>', sprintf( __( 'Show all %s', $this->textdomain ), $tax->label ) );
+						// translators: tax label.
+						printf( '<option value="0">%s</option>', sprintf( esc_html__( 'Show all %s', 'easy-property-listings' ), esc_attr( $tax->label ) ) );
 
 						// Foreach term create an option field...
 						foreach ( $terms as $term ) {
 
 							// ...if filtered by this term make it selected.
-							if ( isset( $_GET[ $tax_slug ] ) && sanitize_title( $_GET[ $tax_slug ] ) === $term->slug ) {
-
-								printf( '<option value="%s" selected="selected">%s (%s)</option>', $term->slug, $term->name, $term->count );
+							if ( isset( $_GET[ $tax_slug ] ) && sanitize_title( wp_unslash( $_GET[ $tax_slug ] ) ) === $term->slug ) { // phpcs:ignore
+								// translators: tax slug, tax name, tax count.
+								printf( '<option value="%s" selected="selected">%s (%s)</option>', esc_attr( $term->slug ), esc_attr( $term->name ), esc_attr( $term->count ) );
 
 								// ...create option for taxonomy.
 							} else {
-
-								printf( '<option value="%s">%s (%s)</option>', $term->slug, $term->name, $term->count );
+								// translators: tax slug, tax name, tax count.
+								printf( '<option value="%s">%s (%s)</option>', esc_attr( $term->slug ), esc_attr( $term->name ), esc_attr( $term->count ) );
 							}
 						}
 						// End the select field.
@@ -883,7 +911,7 @@ class EPL_CPT {
 	 *
 	 * @param array $columns An array of columns to be displayed.
 	 */
-	function columns( $columns ) {
+	public function columns( $columns ) {
 
 		// If columns is set.
 		if ( isset( $columns ) ) {
@@ -902,7 +930,7 @@ class EPL_CPT {
 	 * @param string   $column_name The name of the column to populate.
 	 * @param function $function An anonyous function to run when populating the column.
 	 */
-	function populate_column( $column_name, $function ) {
+	public function populate_column( $column_name, $function ) {
 
 		$this->custom_populate_columns[ $column_name ] = $function;
 
@@ -915,7 +943,7 @@ class EPL_CPT {
 	 *
 	 * @param array $columns An array of columns that are sortable.
 	 */
-	function sortable( $columns = array() ) {
+	public function sortable( $columns = array() ) {
 
 		// Assign user defined sortable columns to object variable.
 		$this->sortable = $columns;
@@ -934,7 +962,7 @@ class EPL_CPT {
 	 *
 	 * @param array $columns Columns to be sortable.
 	 */
-	function make_columns_sortable( $columns ) {
+	public function make_columns_sortable( $columns ) {
 
 		// For each sortable column.
 		foreach ( $this->sortable as $column => $values ) {
@@ -956,7 +984,7 @@ class EPL_CPT {
 	 *
 	 * @see http://codex.wordpress.org/Plugin_API/Filter_Reference/request
 	 */
-	function load_edit() {
+	public function load_edit() {
 
 		// Run filter to sort columns when requested.
 		$this->add_filter( 'request', array( &$this, 'sort_columns' ) );
@@ -973,7 +1001,7 @@ class EPL_CPT {
 	 * @param array $vars The query vars submitted by user.
 	 * @return array A sorted array.
 	 */
-	function sort_columns( $vars ) {
+	public function sort_columns( $vars ) {
 
 		// Cycle through all sortable columns submitted by the user.
 		foreach ( $this->sortable as $column => $values ) {
@@ -1015,7 +1043,7 @@ class EPL_CPT {
 					$vars = array_merge(
 						$vars,
 						array(
-							'meta_key' => $meta_key,
+							'meta_key' => $meta_key, // phpcs:ignore
 							'orderby'  => $orderby,
 						)
 					);
@@ -1033,7 +1061,7 @@ class EPL_CPT {
 	 *
 	 * @param string $icon dashicon name.
 	 */
-	function menu_icon( $icon = 'dashicons-admin-page' ) {
+	public function menu_icon( $icon = 'dashicons-admin-page' ) {
 
 		if ( is_string( $icon ) && stripos( $icon, 'dashicons' ) !== false ) {
 
@@ -1051,7 +1079,7 @@ class EPL_CPT {
 	 *
 	 * @param string $textdomain Textdomain used for translation.
 	 */
-	function set_textdomain( $textdomain ) {
-		$this->textdomain = $textdomain;
+	public function set_textdomain( $textdomain ) {
+		$this->textdomain = 'easy-property-listings';
 	}
 }

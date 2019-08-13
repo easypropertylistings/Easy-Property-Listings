@@ -60,7 +60,7 @@ class EPL_METABOX {
 	 * @param string $prefix Prefix of meta box.
 	 * @param string $text_domain Text domain name.
 	 */
-	function __construct( $epl_meta_boxes, $prefix = 'epl_', $text_domain = 'easy-property-listings' ) {
+	public function __construct( $epl_meta_boxes, $prefix = 'epl_', $text_domain = 'easy-property-listings' ) {
 
 		$this->epl_meta_boxes = $epl_meta_boxes;
 
@@ -86,7 +86,7 @@ class EPL_METABOX {
 	 * @param integet $priority Order in which to execute the function, relation to other functions hooked to this action.
 	 * @param integer $accepted_args The number of arguments the function accepts.
 	 */
-	function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
+	public function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
 
 		// Pass variables into WordPress add_action function.
 		add_action( $action, $function, $priority, $accepted_args );
@@ -104,7 +104,7 @@ class EPL_METABOX {
 	 * @param  int    $priority         Order in which to execute the function, relation to other function hooked to this action.
 	 * @param  int    $accepted_args    The number of arguements the function accepts.
 	 */
-	function add_filter( $action, $function, $priority = 10, $accepted_args = 1 ) {
+	public function add_filter( $action, $function, $priority = 10, $accepted_args = 1 ) {
 
 		// Pass variables into WordPress add_action function.
 		add_filter( $action, $function, $priority, $accepted_args );
@@ -117,7 +117,7 @@ class EPL_METABOX {
 	 *
 	 * @link http://codex.easypropertylistings.com.au/article/127-epllistingmetaboxes-filter
 	 */
-	function add_meta_boxes() {
+	public function add_meta_boxes() {
 
 		if ( ! empty( $this->epl_meta_boxes ) ) {
 			foreach ( $this->epl_meta_boxes as $epl_meta_box ) {
@@ -129,7 +129,7 @@ class EPL_METABOX {
 						foreach ( $epl_meta_box['post_type'] as $post_type ) {
 							$this->add_meta_box(
 								$epl_meta_box['id'],
-								__( $epl_meta_box['label'], $this->text_domain ),
+								$epl_meta_box['label'],
 								'inner_meta_box',
 								$post_type,
 								$epl_meta_box['context'],
@@ -140,7 +140,7 @@ class EPL_METABOX {
 					} else {
 						$this->add_meta_box(
 							$epl_meta_box['id'],
-							__( $epl_meta_box['label'], $this->text_domain ),
+							$epl_meta_box['label'],
 							'inner_meta_box',
 							$epl_meta_box['post_type'],
 							$epl_meta_box['context'],
@@ -156,7 +156,7 @@ class EPL_METABOX {
 						foreach ( $epl_meta_box['post_type'] as $post_type ) {
 							$this->add_meta_box(
 								$epl_meta_box['id'],
-								__( $epl_meta_box['label'], $this->text_domain ),
+								$epl_meta_box['label'],
 								'inner_meta_box',
 								$post_type,
 								$epl_meta_box['context'],
@@ -167,7 +167,7 @@ class EPL_METABOX {
 					} else {
 						$this->add_meta_box(
 							$epl_meta_box['id'],
-							__( $epl_meta_box['label'], $this->text_domain ),
+							$epl_meta_box['label'],
 							'inner_meta_box',
 							$epl_meta_box['post_type'],
 							$epl_meta_box['context'],
@@ -220,17 +220,17 @@ class EPL_METABOX {
 	 * @param array $post Post object.
 	 * @param array $args Array of options.
 	 */
-	function inner_meta_box( $post, $args ) {
+	public function inner_meta_box( $post, $args ) {
 		$groups = $args['args']['groups'];
 		$groups = array_filter( $groups );
 		if ( ! empty( $groups ) ) {
 			wp_nonce_field( $this->prefix . 'inner_custom_box', $this->prefix . 'inner_custom_box_nonce' );
 			foreach ( $groups as $group ) { ?>
-			<div class="epl-inner-div col-<?php echo $group['columns']; ?> table-<?php echo $args['args']['context']; ?>">
+			<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
 						<?php
 						$group['label'] = trim( $group['label'] );
 						if ( ! empty( $group['label'] ) ) {
-							echo '<h3>' . __( $group['label'], $this->text_domain ) . '</h3>';
+							echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
 						}
 						?>
 					<table class="form-table epl-form-table">
@@ -241,13 +241,13 @@ class EPL_METABOX {
 								if ( ! empty( $fields ) ) {
 									foreach ( $fields as $field ) {
 										if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
-											if ( in_array( $post->post_type, $field['exclude'] ) ) {
+											if ( in_array( $post->post_type, $field['exclude'], true ) ) {
 												continue;
 											}
 										}
 
 										if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
-											if ( ! in_array( $post->post_type, $field['include'] ) ) {
+											if ( ! in_array( $post->post_type, $field['include'], true ) ) {
 												continue;
 											}
 										}
@@ -255,7 +255,7 @@ class EPL_METABOX {
 								<tr class="form-field">
 										<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
 									<th valign="top" scope="row">
-										<label for="<?php echo $field['name']; ?>"><?php _e( $field['label'], 'easy-property-listings' ); ?></label>
+										<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_html( $field['label'] ); ?></label>
 									</th>
 									<?php endif; ?>
 
@@ -280,7 +280,7 @@ class EPL_METABOX {
 				<?php
 			}
 			?>
-		<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo $args['id']; ?>" />
+		<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo esc_attr( $args['id'] ); ?>" />
 		<div class="epl-clear"></div>
 			<?php
 		}
@@ -293,13 +293,13 @@ class EPL_METABOX {
 	 * @see https://codex.wordpress.org/Plugin_API/Action_Reference/save_post
 	 * @param int $post_ID The post ID.
 	 */
-	function save_meta_box( $post_ID ) {
+	public function save_meta_box( $post_ID ) {
 
 		if ( ! isset( $_POST[ $this->prefix . 'inner_custom_box_nonce' ] ) ) {
 			return $post_ID;
 		}
 
-		$nonce = $_POST[ $this->prefix . 'inner_custom_box_nonce' ];
+		$nonce = $_POST[ $this->prefix . 'inner_custom_box_nonce' ]; //phpcs:ignore
 
 		if ( ! wp_verify_nonce( $nonce, $this->prefix . 'inner_custom_box' ) ) {
 			return $post_ID;
@@ -309,7 +309,7 @@ class EPL_METABOX {
 			return $post_ID;
 		}
 
-		if ( 'page' === $_POST['post_type'] ) {
+		if ( isset( $_POST['post_type'] ) && 'page' === $_POST['post_type'] ) {
 			if ( ! current_user_can( 'edit_page', $post_ID ) ) {
 				return $post_ID;
 			}
@@ -321,7 +321,7 @@ class EPL_METABOX {
 
 		$epl_meta_box_ids = '';
 		if ( isset( $_POST['epl_meta_box_ids'] ) ) {
-			$epl_meta_box_ids = $_POST['epl_meta_box_ids'];
+			$epl_meta_box_ids = wp_unslash( $_POST['epl_meta_box_ids'] ); //phpcs:ignore
 		}
 
 		if ( ! empty( $epl_meta_box_ids ) ) {
@@ -338,14 +338,14 @@ class EPL_METABOX {
 
 											// Dont go further if the current post type is in excluded list of the current field.
 											if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
-												if ( in_array( $_POST['post_type'], $field['exclude'] ) ) {
+												if ( isset( $_POST['post_type'] ) && in_array( $_POST['post_type'], $field['exclude'], true ) ) {
 													continue;
 												}
 											}
 
 											// Dont go further if the current post type is not in included list of the current field.
 											if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
-												if ( ! in_array( $_POST['post_type'], $field['include'] ) ) {
+												if ( ! in_array( $_POST['post_type'], $field['include'] ) ) { // phpcs:ignore
 													continue;
 												}
 											}
@@ -358,27 +358,27 @@ class EPL_METABOX {
 												if ( ! isset( $_POST[ $field['name'] ] ) ) {
 													$_POST[ $field['name'] ] = '';
 												}
-											} elseif ( in_array( $field['type'], array( 'number', 'decimal' ) ) ) {
+											} elseif ( in_array( $field['type'], array( 'number', 'decimal' ), true ) ) {
 
 												// Validate numeric data.
 
 												if ( ! is_numeric( $_POST[ $field['name'] ] ) ) {
 													continue;
 												}
-											} elseif ( in_array( $field['type'], array( 'textarea' ) ) ) {
+											} elseif ( in_array( $field['type'], array( 'textarea' ), true ) ) {
 
 												if ( function_exists( 'sanitize_textarea_field' ) ) {
 													$_POST[ $field['name'] ] =
-													sanitize_textarea_field( $_POST[ $field['name'] ] );
+													sanitize_textarea_field( wp_unslash( $_POST[ $field['name'] ] ) );
 												}
-											} elseif ( in_array( $field['type'], array( 'url', 'file' ) ) ) {
+											} elseif ( in_array( $field['type'], array( 'url', 'file' ), true ) ) {
 
 												// Sanitize URLs.
 
-												$_POST[ $field['name'] ] = esc_url( $_POST[ $field['name'] ] );
+												$_POST[ $field['name'] ] = esc_url_raw( wp_unslash( $_POST[ $field['name'] ] ) );
 
 											} elseif ( 'auction-date' === $field['type'] && '' !== $_POST[ $field['name'] ] ) {
-												$epl_date = sanitize_text_field( $_POST[ $field['name'] ] );
+												$epl_date = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 												if ( strpos( $epl_date, 'T' ) !== false ) {
 													$epl_date = date( 'Y-m-d\TH:i', strtotime( $epl_date ) );
 												} else {
@@ -390,7 +390,7 @@ class EPL_METABOX {
 												}
 												$_POST[ $field['name'] ] = $epl_date;
 											} elseif ( 'sold-date' === $field['type'] && '' !== $_POST[ $field['name'] ] ) {
-												$epl_date = sanitize_text_field( $_POST[ $field['name'] ] );
+												$epl_date = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 												if ( strpos( $epl_date, 'T' ) !== false ) {
 													$epl_date = date( 'Y-m-d\TH:i', strtotime( $epl_date ) );
 												} else {
@@ -403,7 +403,7 @@ class EPL_METABOX {
 												$_POST[ $field['name'] ] = $epl_date;
 											}
 											if ( isset( $_POST[ $field['name'] ] ) ) {
-												$meta_value = $_POST[ $field['name'] ];
+												$meta_value = wp_unslash( $_POST[ $field['name'] ] ); // phpcs:ignore
 												update_post_meta( $post_ID, $field['name'], $meta_value );
 											}
 										}

@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.Security.NonceVerification
+
 /**
  * EPL_FORM_BUILDER Class
  *
@@ -91,7 +93,7 @@ class EPL_FORM_BUILDER {
 	 * @param array $config Form ptions.
 	 * @since 2.3
 	 */
-	function __construct( $config = array() ) {
+	public function __construct( $config = array() ) {
 
 		$defaults = array(
 			'form_tag'        => 'on',
@@ -114,7 +116,7 @@ class EPL_FORM_BUILDER {
 	 * @since 2.3
 	 * @return null
 	 */
-	function __destruct() {
+	public function __destruct() {
 		$this->callbacks();
 	}
 
@@ -125,7 +127,7 @@ class EPL_FORM_BUILDER {
 	 * @return string
 	 * @since 2.3
 	 */
-	function __get( $key ) {
+	public function __get( $key ) {
 		return isset( $this->{$key} ) ? $this->{$key} : null;
 	}
 
@@ -134,7 +136,7 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function callbacks() {
+	public function callbacks() {
 
 		if ( isset( $_REQUEST[ $this->prefix . 'form_submit' ] ) ) {
 
@@ -154,7 +156,7 @@ class EPL_FORM_BUILDER {
 	 * @param string $key Meta key.
 	 * @since 2.3
 	 */
-	function get_configuration( $key = '' ) {
+	public function get_configuration( $key = '' ) {
 		return isset( $this->configuration[ $key ] ) ? $this->configuration[ $key ] : false;
 	}
 
@@ -164,8 +166,8 @@ class EPL_FORM_BUILDER {
 	 * @param string $field Field meta key.
 	 * @since 2.3
 	 */
-	function get_value( $field ) {
-
+	public function get_value( $field ) {
+		// phpcs:disable
 		switch ( $this->configuration['form_context'] ) {
 
 			case 'default':
@@ -183,6 +185,7 @@ class EPL_FORM_BUILDER {
 			break;
 
 		}
+		// phpcs:enable
 	}
 
 	/**
@@ -190,7 +193,7 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function set_form_classes() {
+	public function set_form_classes() {
 
 		$this->form_classes = apply_filters(
 			$this->prefix . 'form_classes',
@@ -229,7 +232,7 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function invalid_attributes() {
+	public function invalid_attributes() {
 		return apply_filters(
 			$this->prefix . 'invalid_attributes',
 			array(
@@ -247,7 +250,7 @@ class EPL_FORM_BUILDER {
 	 * @param array  $field Field type.
 	 * @since 2.3
 	 */
-	function get_class( $key = '', $field = array() ) {
+	public function get_class( $key = '', $field = array() ) {
 
 		if ( isset( $this->form_classes[ $key ] ) ) {
 			$classes = implode( ' ', array_map( 'sanitize_html_class', $this->form_classes[ $key ] ) );
@@ -273,7 +276,7 @@ class EPL_FORM_BUILDER {
 	 * @param array $field Fields.
 	 * @since 2.3
 	 */
-	function get_attributes( $field ) {
+	public function get_attributes( $field ) {
 
 		$html        = '';
 		$field['id'] = isset( $field['id'] ) ? $field['id'] : '';
@@ -286,14 +289,14 @@ class EPL_FORM_BUILDER {
 
 		foreach ( $field as $key  => $value ) {
 
-			if ( isset( $invalid_attributes[ $key ] ) && ( in_array( $field['type'], $invalid_attributes[ $key ] ) || in_array( 'all', $invalid_attributes[ $key ] ) ) ) {
+			if ( isset( $invalid_attributes[ $key ] ) && ( in_array( $field['type'], $invalid_attributes[ $key ], true ) || in_array( 'all', $invalid_attributes[ $key ], true ) ) ) { //phpcs:ignore
 				// This attribute is not valid for current input type, lets skip it.
 			} else {
 
 				if ( 'name' === $key ) {
 					$value = esc_attr( $value );
 				}
-				if ( isset( $field['multiple'] ) && in_array( $field['type'], array( 'select', 'checkbox' ) ) && 'name' === $key ) {
+				if ( isset( $field['multiple'] ) && in_array( $field['type'], array( 'select', 'checkbox' ), true ) && 'name' === $key ) {
 					$value = $value . '[]';
 				}
 
@@ -304,13 +307,13 @@ class EPL_FORM_BUILDER {
 	}
 
 	/**
-	 * The function can be used to configure the attributes of form
+	 * The public function can be used to configure the attributes of form
 	 *
 	 * @param string $key Meta key.
 	 * @param array  $value Field value.
 	 * @since 2.3
 	 */
-	function set_form_attributes( $key = '', $value = '' ) {
+	public function set_form_attributes( $key = '', $value = '' ) {
 
 		// If user wants to add a single attribute.
 		if ( '' !== $key && is_string( $key ) ) {
@@ -370,7 +373,7 @@ class EPL_FORM_BUILDER {
 	 * @since 2.3
 	 */
 	private function escape( $type = '', $value = '' ) {
-
+		// phpcs:disable
 		switch ( $type ) {
 
 			case 'url':
@@ -387,7 +390,7 @@ class EPL_FORM_BUILDER {
 			break;
 			case 'attribute':
 				return esc_attr( $value );
-		}
+		} // phpcs:enable
 	}
 
 	/**
@@ -396,7 +399,7 @@ class EPL_FORM_BUILDER {
 	 * @param array $sections Field sections.
 	 * @since 2.3
 	 */
-	function add_sections( $sections = array() ) {
+	public function add_sections( $sections = array() ) {
 
 		foreach ( $sections as $section ) {
 			$this->add_section( $section );
@@ -409,7 +412,7 @@ class EPL_FORM_BUILDER {
 	 * @param array $section Field sections.
 	 * @since 2.3
 	 */
-	function add_section( $section = array() ) {
+	public function add_section( $section = array() ) {
 		$this->form_sections[] = $section;
 	}
 
@@ -419,7 +422,7 @@ class EPL_FORM_BUILDER {
 	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
-	function add_field( $field = array() ) {
+	public function add_field( $field = array() ) {
 		foreach ( $field as $key  => &$val ) {
 			if ( is_string( $val ) ) {
 				$val = esc_attr( $val );
@@ -434,7 +437,7 @@ class EPL_FORM_BUILDER {
 	 * @param array $fields Fields array.
 	 * @since 2.3
 	 */
-	function add_fields( $fields = array() ) {
+	public function add_fields( $fields = array() ) {
 
 		foreach ( $fields as $field ) {
 			$this->add_field( $field );
@@ -464,7 +467,7 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function render_form() {
+	public function render_form() {
 
 		ob_start();
 
@@ -496,7 +499,7 @@ class EPL_FORM_BUILDER {
 			do_action( 'after_' . $this->prefix . 'form_container_close' );
 		}
 
-		echo ob_get_clean();
+		echo ob_get_clean(); // phpcs:ignore
 	}
 
 	/**
@@ -504,12 +507,12 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function render_form_container_open() {
+	public function render_form_container_open() {
 
 		$html  = "\n<div  ";
-		$html .= 'class ="' . $this->get_class( 'form_container' ) . '" ';
+		$html .= 'class ="' . esc_attr( $this->get_class( 'form_container' ) ) . '" ';
 		$html .= '>';
-		echo apply_filters( $this->prefix . 'form_container_open_tag', $html, $this->form_attributes );
+		echo wp_kses_post( apply_filters( $this->prefix . 'form_container_open_tag', $html, $this->form_attributes ) );
 	}
 
 	/**
@@ -517,9 +520,9 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function render_form_container_close() {
+	public function render_form_container_close() {
 
-		echo apply_filters( $this->prefix . 'form_container_close_tag', "\n</div>", $this->form_attributes );
+		echo wp_kses_post( apply_filters( $this->prefix . 'form_container_close_tag', "\n</div>", $this->form_attributes ) );
 	}
 
 	/**
@@ -527,14 +530,14 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function render_form_open() {
+	public function render_form_open() {
 
 		$html = "\n<form  ";
 		foreach ( $this->form_attributes as $key  => $value ) {
 			$html .= $key . '="' . $value . '" ';
 		}
 		$html .= ' >';
-		echo apply_filters( $this->prefix . 'form_open_tag', $html, $this->form_attributes );
+		echo wp_kses_post( apply_filters( $this->prefix . 'form_open_tag', $html, $this->form_attributes ) );
 	}
 
 	/**
@@ -542,9 +545,9 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function render_form_close() {
+	public function render_form_close() {
 
-		echo apply_filters( $this->prefix . 'form_close_tag', "\n</form>", $this->form_attributes );
+		echo wp_kses_post( apply_filters( $this->prefix . 'form_close_tag', "\n</form>", $this->form_attributes ) );
 	}
 
 	/**
@@ -575,21 +578,21 @@ class EPL_FORM_BUILDER {
 		$section_label = isset( $section['label'] ) ? $section['label'] : '';
 		$section_help  = isset( $section['help'] ) ? $section['help'] : ''; ?>
 
-		<div id="<?php echo $section_id; ?>" class="<?php echo $section_class; ?>" >
+		<div id="<?php echo esc_attr( $section_id ); ?>" class="<?php echo esc_attr( $section_class ); ?>" >
 
-			<span class="<?php echo $this->prefix . 'section_label'; ?>">
+			<span class="<?php echo esc_attr( $this->prefix . 'section_label' ); ?>">
 				<?php
-					echo $section_label;
+					echo esc_attr( $section_label );
 				?>
 			</span>
 
-			<span class="<?php echo $this->prefix . 'section_help'; ?>">
+			<span class="<?php echo esc_attr( $this->prefix . 'section_help' ); ?>">
 				<?php
-					echo $section_help;
+					echo esc_attr( $section_help );
 				?>
 			</span>
 
-			<div class="<?php echo $this->prefix . 'section_fields'; ?>">
+			<div class="<?php echo esc_attr( $this->prefix . 'section_fields' ); ?>">
 				<?php
 				if ( ! empty( $section['fields'] ) ) {
 					foreach ( $section['fields'] as $field ) {
@@ -670,12 +673,12 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function render_field_container_open() {
+	public function render_field_container_open() {
 
 		$html  = "\n<div  ";
 		$html .= 'class ="' . $this->get_class( 'field_container' ) . '" ';
 		$html .= '>';
-		echo apply_filters( $this->prefix . 'field_container_open_tag', $html, $this->form_attributes );
+		echo wp_kses_post( apply_filters( $this->prefix . 'field_container_open_tag', $html, $this->form_attributes ) );
 	}
 
 	/**
@@ -683,9 +686,9 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @since 2.3
 	 */
-	function render_field_container_close() {
+	public function render_field_container_close() {
 
-		echo apply_filters( $this->prefix . 'field_container_close_tag', "\n</div>", $this->form_attributes );
+		echo wp_kses_post( apply_filters( $this->prefix . 'field_container_close_tag', "\n</div>", $this->form_attributes ) );
 	}
 
 	/**
@@ -694,7 +697,7 @@ class EPL_FORM_BUILDER {
 	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
-	function render_field_label( $field = array() ) {
+	public function render_field_label( $field = array() ) {
 
 		$wrapper  = "\n<span  ";
 		$wrapper .= 'class ="' . $this->get_class( 'label_container', $field ) . '" ';
@@ -712,7 +715,7 @@ class EPL_FORM_BUILDER {
 
 		$wrapper .= "\n</span>";
 
-		echo apply_filters( $this->prefix . 'field_label_html', $wrapper, $field );
+		echo wp_kses_post( apply_filters( $this->prefix . 'field_label_html', $wrapper, $field ) );
 	}
 
 	/**
@@ -728,7 +731,7 @@ class EPL_FORM_BUILDER {
 		$html           = "\n<input  ";
 		$html          .= $this->get_attributes( $field );
 		$html          .= ' />';
-		echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
+		echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
 	}
 
 	/**
@@ -746,7 +749,7 @@ class EPL_FORM_BUILDER {
 		$html          .= '>';
 		$html          .= esc_attr( $value );
 		$html          .= '</textarea>';
-		echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
+		echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
 
 	}
 
@@ -774,7 +777,7 @@ class EPL_FORM_BUILDER {
 			$html           = "\n<input  ";
 			$html          .= $this->get_attributes( $field );
 			$html          .= ' >' . $label;
-			echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
+			echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
 			unset( $field['checked'] );
 		}
 	}
@@ -803,7 +806,7 @@ class EPL_FORM_BUILDER {
 			$html           = "\n<input  ";
 			$html          .= $this->get_attributes( $field );
 			$html          .= ' >' . $label;
-			echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
+			echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
 			unset( $field['checked'] );
 		}
 	}
@@ -842,13 +845,13 @@ class EPL_FORM_BUILDER {
 
 			if ( is_array( $label ) ) {
 				if ( isset( $label['exclude'] ) && ! empty( $label['exclude'] ) ) {
-					if ( in_array( $post->post_type, $label['exclude'] ) ) {
+					if ( in_array( $post->post_type, $label['exclude'], true ) ) {
 						continue;
 					}
 				}
 
 				if ( isset( $label['include'] ) && ! empty( $label['include'] ) ) {
-					if ( ! in_array( $post->post_type, $label['include'] ) ) {
+					if ( ! in_array( $post->post_type, $label['include'], true ) ) {
 						continue;
 					}
 				}
@@ -857,7 +860,7 @@ class EPL_FORM_BUILDER {
 			$html .= "\n<option  ";
 			$html .= 'value = "' . stripslashes( $option ) . '"';
 
-			if ( in_array( $option, $value ) ) {
+			if ( in_array( $option, $value, true ) ) {
 				$html .= ' selected = "selected" ';
 			}
 
@@ -865,7 +868,7 @@ class EPL_FORM_BUILDER {
 
 		}
 		$html .= "\n</select>";
-		echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
+		echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
 	}
 
 	/**
@@ -874,7 +877,7 @@ class EPL_FORM_BUILDER {
 	 * @param string $action Action name.
 	 * @since 2.3
 	 */
-	function add_nonce( $action = '' ) {
+	public function add_nonce( $action = '' ) {
 
 		$this->has_nonce   = true;
 		$this->nonce_key   = '' !== $action ? $action : $this->prefix . 'nonce_action';

@@ -91,4 +91,4 @@ class EPL_Cron {
 	}
 
 }
-$epl_cron = new EPL_Cron;
+$epl_cron = new EPL_Cron();
