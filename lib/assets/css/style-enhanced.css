@@ -362,6 +362,7 @@ width: 100%;
 .epl-listing-grid-view-forced,
 .epl-listing-grid-view-forced.hentry,
 .builder-module-content .epl-listing-grid-view-forced.hentry {
+	/*noinspection CssReplaceWithShorthandSafely*/
 	margin: 0;
 	margin-right: -4px; /** unable to implement font-size: 0 on parent element */
 	padding: 0;
