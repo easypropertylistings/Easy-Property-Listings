@@ -2526,10 +2526,10 @@ function epl_remove_archive_thumbnail( $html, $post_id, $post_thumbnail_id, $siz
  * @since      2.2
  *
  * @param      string $html               The html.
- * @param      <type> $post_id            The post identifier.
- * @param      <type> $post_thumbnail_id  The post thumbnail identifier.
- * @param      <type> $size               The size.
- * @param      <type> $attr               The attribute.
+ * @param      string $post_id            The post identifier.
+ * @param      string $post_thumbnail_id  The post thumbnail identifier.
+ * @param      string $size               The size.
+ * @param      string $attr               The attribute.
  *
  * @return     string  ( description_of_the_return_value )
  */
@@ -2568,7 +2568,7 @@ add_action( 'epl_property_the_content', 'epl_the_content' );
  *
  * @since      2.2
  *
- * @param      <type> $content  The content.
+ * @param      string $content  The content.
  *
  * @return     false|string
  */
@@ -2703,7 +2703,7 @@ function epl_strip_tags( $value, $allowed_tags = '' ) {
  *
  * @since      2.2
  *
- * @param      <type> $value  The value.
+ * @param      string $value  The value.
  *
  * @return string|void
  */
@@ -2769,9 +2769,9 @@ function epl_get_post_count( $type = '', $meta_key, $meta_value, $author_id = ''
 /**
  * Get the inspection date format
  *
- * @revised 3.3
+ * @since 3.3
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return string
  */
 function epl_get_inspection_date_format() {
 
@@ -2788,9 +2788,9 @@ function epl_get_inspection_date_format() {
 /**
  * Get the inspection time format
  *
- * @revised 3.3
+ * @since 3.3
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return     string
  */
 function epl_get_inspection_time_format() {
 
@@ -2810,7 +2810,7 @@ function epl_get_inspection_time_format() {
  *
  * @since      2.2
  *
- * @param      <type> $inspection_date  The inspection date.
+ * @param      array $inspection_date  The inspection date.
  *
  * @return     string
  */
@@ -2848,8 +2848,8 @@ function epl_count_total_contacts() {
  *
  * @since      3.0
  *
- * @param      <type> $comments  The comments.
- * @param      <type> $post_id   The post identifier.
+ * @param      array  $comments  The comments.
+ * @param      string $post_id   The post identifier.
  *
  * @return     mixed
  */
@@ -2900,7 +2900,7 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  *
  * @since      3.0
  *
- * @param      <type> $args   The arguments.
+ * @param      array  $args   The arguments.
  * @param      string $type   The type.
  * @param      string $name   The name.
  *
@@ -2988,7 +2988,7 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
  *
  * @since      3.1.16
  *
- * @param      <type> $classes  The classes.
+ * @param      array $classes  The classes.
  *
  * @return     array
  */
