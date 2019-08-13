@@ -243,9 +243,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Email html Box
 		 *
-		 * @since 1.3.0
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 1.3.0
 		 */
 		public function get_email_html( $html = '', $style = 'i' ) {
 
@@ -364,9 +366,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Twitter html Box
 		 *
-		 * @since 1.3.0
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 1.3.0
 		 */
 		public function get_twitter_html( $html = '', $style = 'i' ) {
 
@@ -399,9 +403,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Instagram html Box
 		 *
-		 * @since 3.3.0
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 3.3.0
 		 */
 		public function get_instagram_html( $html = '', $style = 'i' ) {
 
@@ -434,9 +440,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Youtube html Box
 		 *
-		 * @since 3.3.0
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 3.3.0
 		 */
 		public function get_youtube_html( $html = '', $style = 'i' ) {
 
@@ -469,9 +477,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Pinterest html Box
 		 *
-		 * @since 3.3.0
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 3.3.0
 		 */
 		public function get_pinterest_html( $html = '', $style = 'i' ) {
 
@@ -527,10 +537,12 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Google html Box
 		 *
-		 * @since 1.3.0
-		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
+		 * @since 1.3.0
 		 */
 		public function get_google_html( $html = '', $style = 'i' ) {
 
@@ -586,9 +598,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Facebook html Box
 		 *
-		 * @since 1.3.0
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 1.3.0
 		 */
 		public function get_facebook_html( $html = '', $style = 'i' ) {
 
@@ -644,9 +658,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author LinkedIn html Box
 		 *
-		 * @since 1.3.0
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 1.3.0
 		 */
 		public function get_linkedin_html( $html = '', $style = 'i' ) {
 
@@ -702,9 +718,11 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author Skype html Box
 		 *
-		 * @since 1.3.0
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 * @since 1.3.0
 		 */
 		public function get_skype_html( $html = '', $style = 'i' ) {
 
@@ -738,8 +756,10 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author video html Box
 		 *
-		 * @since 1.3.0
 		 * @param string $html String of video embed.
+		 *
+		 * @return mixed|void
+		 * @since 1.3.0
 		 */
 		public function get_video_html( $html = '' ) {
 			if ( '' !== $this->video ) {
@@ -763,8 +783,10 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Author description html
 		 *
-		 * @since 1.3.0
 		 * @param string $html String of html output.
+		 *
+		 * @return mixed|void
+		 * @since 1.3.0
 		 */
 		public function get_description_html( $html = '' ) {
 			if ( '' !== $this->get_description() ) {

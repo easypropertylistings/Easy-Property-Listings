@@ -18,10 +18,12 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	/**
 	 * Fallback in case the calendar extension is not loaded in PHP
 	 *
-	 * @since 3.3.3
 	 * @param string $calendar Calendar type.
-	 * @param int    $month The month.
-	 * @param int    $year The year.
+	 * @param int $month The month.
+	 * @param int $year The year.
+	 *
+	 * @return false|string
+	 * @since 3.3.3
 	 */
 	function cal_days_in_month( $calendar, $month, $year ) {
 		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );

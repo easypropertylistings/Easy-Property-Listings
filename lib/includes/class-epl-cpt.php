@@ -961,6 +961,8 @@ class EPL_CPT {
 	 * Internal function that adds user defined sortable columns to WordPress default columns.
 	 *
 	 * @param array $columns Columns to be sortable.
+	 *
+	 * @return array
 	 */
 	public function make_columns_sortable( $columns ) {
 
