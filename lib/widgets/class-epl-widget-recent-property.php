@@ -162,7 +162,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		if ( isset( $new_instance['types'] ) && is_array( $new_instance['types'] ) ) {
 			$types = array();
 			foreach ( $new_instance['types'] as $type ) {
-				if ( array_keyesc_html_exists( $type, $epl_post_types ) ) {
+				if ( array_key_exists( $type, $epl_post_types ) ) {
 					$types[] = $type;
 				}
 			}
@@ -184,7 +184,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		if ( isset( $new_instance['status'] ) && is_array( $new_instance['status'] ) ) {
 			$statuses = array();
 			foreach ( $new_instance['status'] as $status ) {
-				if ( array_keyesc_html_exists( $status, $listing_statuses ) ) {
+				if ( array_key_exists( $status, $listing_statuses ) ) {
 					$statuses[] = $status;
 				}
 			}
