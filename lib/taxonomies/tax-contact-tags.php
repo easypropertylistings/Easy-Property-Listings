@@ -131,12 +131,12 @@ function epl_get_contact_tag_bgcolor( $term_id ) {
 
 	$term_bg = isset( $all_bgs[ $term_id ] ) ? $all_bgs[ $term_id ] : '';
 
-	if ( '' === $term_bg && function_exists( 'get_term_meta' ) ) {
+	if ( empty( $term_bg ) && function_exists( 'get_term_meta' ) ) {
 
 		$term_bg = get_term_meta( $term_id, 'term_bg', true );
 	}
 
-	return '' === $term_bg ? '#43ac6d' : $term_bg;
+	return empty( $term_bg ) ? '#43ac6d' : $term_bg;
 }
 
 /**
