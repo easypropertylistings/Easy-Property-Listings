@@ -973,7 +973,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			if ( isset( $field['opts'] ) && ! empty( $field['opts'] ) ) {
 				foreach ( $field['opts'] as $k => $v ) {
 					$selected = '';
-					if ( $val === $k ) {
+					if ( $val == $k ) { //phpcs:ignore
 						$selected = 'selected';
 					}
 
@@ -1055,7 +1055,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 					$checked = '';
 					if ( ! empty( $val ) ) {
 						$checkbox_single_options = apply_filters( 'epl_checkbox_single_check_options', array( 1, 'yes', 'on', 'true', '1' ) );
-						if ( $k === $val || in_array( $val, $checkbox_single_options, true ) ) {
+						if ( $k == $val || in_array( $val, $checkbox_single_options, true ) ) { //phpcs:ignore
 							$checked = 'checked';
 						}
 					}
@@ -1072,7 +1072,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 				foreach ( $field['opts'] as $k => $v ) {
 					$checked = '';
 					if ( ! empty( $val ) ) {
-						if ( $k === $val ) {
+						if ( $k == $val ) { //phpcs:ignore
 							$checked = 'checked';
 						}
 					}
@@ -1085,7 +1085,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			if ( ! empty( $field['opts'] ) ) {
 				foreach ( $field['opts'] as $k => $v ) {
 					$checked = '';
-					if ( ( int ) $val === $k ) {
+					if ( $val == $k ) { //phpcs:ignore
 						$checked = 'checked';
 					}
 					echo '<span class="epl-field-row"><input type="radio" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '" value="' . esc_attr( $k ) . '" ' . esc_attr( $checked ) . ' /> <label for="' . esc_html( $field['name'] ) . '_' . esc_attr( $k ) . '">' . esc_html( $v ) . '</label></span>';
@@ -2025,7 +2025,7 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 		return;
 	}
 
-	if ( '' === $type ) {
+	if ( empty( $type ) ) {
 		$type = epl_get_core_post_types();
 	}
 
@@ -2361,7 +2361,7 @@ function get_category_label( $category ) {
  */
 function epl_starts_with( $haystack, $needle ) {
 	// search backwards starting from haystack length characters from the end.
-	return '' === $needle || strrpos( $haystack, $needle, -strlen( $haystack ) ) !== false;
+	return empty( $needle ) || strrpos( $haystack, $needle, -strlen( $haystack ) ) !== false;
 }
 
 /**
@@ -2376,7 +2376,7 @@ function epl_starts_with( $haystack, $needle ) {
 function epl_ends_with( $haystack, $needle ) {
 	// search forward starting from end minus needle length characters.
 	$temp = strlen( $haystack ) - strlen( $needle );
-	return '' === $needle || ( $temp >= 0 && strpos( $haystack, $needle, $temp ) !== false );
+	return empty( $needle ) || ( $temp >= 0 && strpos( $haystack, $needle, $temp ) !== false );
 }
 
 /**
@@ -2673,7 +2673,7 @@ function epl_pmxi_import_post_saved( $id ) {
 			update_post_meta( $id, 'property_price_global', $price );
 		} elseif ( 'commercial' === $post->post_type ) {
 			$price = get_post_meta( $id, 'property_price', true );
-			if ( '' === $price ) {
+			if ( empty( $price ) ) {
 				$price = get_post_meta( $id, 'property_com_rent', true );
 			}
 			update_post_meta( $id, 'property_price_global', $price );

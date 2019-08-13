@@ -325,7 +325,7 @@ class EPL_FORM_BUILDER {
 	public function set_form_attributes( $key = '', $value = '' ) {
 
 		// If user wants to add a single attribute.
-		if ( '' !== $key && is_string( $key ) ) {
+		if ( !empty( $key ) && is_string( $key ) ) {
 			$this->form_attributes[ $this->escape( 'text', $key ) ] = $this->escape( 'attribute', $value );
 
 		} elseif ( is_array( $key ) & ! empty( $key ) ) {
@@ -891,7 +891,7 @@ class EPL_FORM_BUILDER {
 	public function add_nonce( $action = '' ) {
 
 		$this->has_nonce   = true;
-		$this->nonce_key   = '' !== $action ? $action : $this->prefix . 'nonce_action';
+		$this->nonce_key   = !empty( $action ) ? $action : $this->prefix . 'nonce_action';
 		$this->nonce_value = wp_create_nonce( $action );
 
 		$this->add_field(

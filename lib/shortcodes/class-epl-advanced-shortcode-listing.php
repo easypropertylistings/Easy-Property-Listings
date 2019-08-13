@@ -594,7 +594,7 @@ class EPL_Advanced_Shortcode_Listing {
 
 		$attributes['wrap_template'] = str_replace( '_', '-', $this->attributes['wrap_template'] );
 
-		$wrap_template = '' === $this->attributes['wrap_template'] ? 'shortcode-listing.php' : 'shortcode-listing-' . $this->attributes['wrap_template'] . '.php';
+		$wrap_template = empty( $this->attributes['wrap_template'] ) ? 'shortcode-listing.php' : 'shortcode-listing-' . $this->attributes['wrap_template'] . '.php';
 
 		return $wrap_template;
 	}

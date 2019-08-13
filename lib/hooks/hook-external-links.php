@@ -31,7 +31,7 @@ function epl_button_external_link() {
 		$count      = 'property_external_link' === $key ? '' : substr( $key, -1 );
 		$default    = __( 'Tour ', 'easy-property-listings' ) . $count;
 		$meta_label = get_post_meta( get_the_ID(), $key . '_label', true );
-		$meta_label = '' === $meta_label ? $default : $meta_label;
+		$meta_label = empty( $meta_label ) ? $default : $meta_label;
 
 		if ( ! empty( $link ) ) { ?>
 			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo esc_url( $link ); ?>')">
