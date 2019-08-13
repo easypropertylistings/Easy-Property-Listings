@@ -65,7 +65,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 
 				$epl_settings = get_option( 'epl_settings' );
 
-				if ( isset( $field['default'] ) && ! in_array( $field['type'], array( 'checkbox_single', 'checkbox_option' ), true ) ) {
+				if ( isset( $field['default'] ) && ! in_array( $field['type'], array( 'checkbox_single', 'checkbox_option','radio' ), true ) ) {
 
 					if ( ! $field_value ) {
 
