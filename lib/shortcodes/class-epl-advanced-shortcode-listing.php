@@ -210,8 +210,10 @@ class EPL_Advanced_Shortcode_Listing {
 	/**
 	 * Get attributes
 	 *
-	 * @since 3.3
 	 * @param string $key Meta key.
+	 *
+	 * @return mixed|null
+	 * @since 3.3
 	 */
 	public function get_attribute( $key ) {
 

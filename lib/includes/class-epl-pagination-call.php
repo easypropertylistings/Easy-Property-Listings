@@ -44,6 +44,8 @@ class EPL_Pagination_Call {
 	 * Get the key
 	 *
 	 * @param array $key Key name.
+	 *
+	 * @return mixed
 	 * @since  2.1
 	 */
 	public function __get( $key ) {
@@ -87,13 +89,14 @@ class EPL_Pagination_Call {
 	/**
 	 * Get the single pagination
 	 *
-	 * @since  2.1
-	 * @param  string $page     page id.
-	 * @param  string $raw_text text content.
-	 * @param  array  $attr     attributes of page.
-	 * @param  array  $format   format of single page.
-	 * @param  array  $tag      attributes of single page tag.
+	 * @param string $page page id.
+	 * @param string $raw_text text content.
+	 * @param array $attr attributes of page.
+	 * @param string $format format of single page.
+	 * @param string $tag attributes of single page tag.
+	 *
 	 * @return string
+	 * @since  2.1
 	 */
 	public function get_single( $page, $raw_text, $attr, $format = '%PAGE_NUMBER%', $tag = 'a' ) {
 		if ( empty( $raw_text ) ) {
@@ -147,7 +150,9 @@ class EPL_Pagination_Call {
 	/**
 	 * Get url
 	 *
-	 * @param  string $page Page number.
+	 * @param string $page Page number.
+	 *
+	 * @return string
 	 * @since  2.1
 	 */
 	public function get_url( $page ) {

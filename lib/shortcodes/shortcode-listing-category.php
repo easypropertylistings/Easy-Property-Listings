@@ -24,8 +24,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * limit the number of entries that display. using  [listing_category limit="5"]
  * Added Commercial Category Support
  *
- * @since       1.1.1
  * @param array $atts Shortcode attributes.
+ *
+ * @return false|string|void
+ * @since       1.1.1
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	$property_types = epl_get_active_post_types();

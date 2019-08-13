@@ -21,8 +21,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * [listing_advanced post_type="property,rental" status="current,sold,leased" template="default"] option. You can also
  * limit the number of entries that display. using  [listing limit="5"]
  *
- * @since       1.0
  * @param array $atts Shortcode attributes.
+ *
+ * @return false|string
+ * @since       1.0
  */
 function epl_shortcode_listing_advanced_callback( $atts ) {
 

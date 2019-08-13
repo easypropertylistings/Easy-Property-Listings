@@ -23,8 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * [listing post_type="property,rental" status="current,sold,leased" template="default"] option. You can also
  * limit the number of entries that display. using  [listing limit="5"]
  *
- * @since       1.0
  * @param array $atts Shortcode attributes.
+ *
+ * @return false|string
+ * @since       1.0
  */
 function epl_shortcode_listing_callback( $atts ) {
 
@@ -196,8 +198,10 @@ add_shortcode( 'listing', 'epl_shortcode_listing_callback' );
 /**
  * Listing Shortcode Sorting
  *
- * @since 1.0
  * @param array $sorters Array of sorters.
+ *
+ * @return array
+ * @since 1.0
  */
 function epl_sorting_options_callback( $sorters ) {
 	foreach ( $sorters as $key => &$sorter ) {

@@ -154,6 +154,8 @@ class EPL_FORM_BUILDER {
 	 * Set form configuration
 	 *
 	 * @param string $key Meta key.
+	 *
+	 * @return bool|mixed
 	 * @since 2.3
 	 */
 	public function get_configuration( $key = '' ) {
@@ -164,6 +166,8 @@ class EPL_FORM_BUILDER {
 	 * Get value
 	 *
 	 * @param string $field Field meta key.
+	 *
+	 * @return mixed|string
 	 * @since 2.3
 	 */
 	public function get_value( $field ) {
@@ -247,7 +251,10 @@ class EPL_FORM_BUILDER {
 	 * Get classes for wrappers, form , fields
 	 *
 	 * @param string $key Meta key.
-	 * @param array  $field Field type.
+	 * @param array $field Field type.
+	 *
+	 * @return string
+	 * @return string
 	 * @since 2.3
 	 */
 	public function get_class( $key = '', $field = array() ) {
@@ -274,6 +281,9 @@ class EPL_FORM_BUILDER {
 	 * Get Field Attributes
 	 *
 	 * @param array $field Fields.
+	 *
+	 * @return string
+	 * @return string
 	 * @since 2.3
 	 */
 	public function get_attributes( $field ) {
@@ -310,7 +320,8 @@ class EPL_FORM_BUILDER {
 	 * The public function can be used to configure the attributes of form
 	 *
 	 * @param string $key Meta key.
-	 * @param array  $value Field value.
+	 * @param string $value Field value.
+	 *
 	 * @since 2.3
 	 */
 	public function set_form_attributes( $key = '', $value = '' ) {
@@ -369,9 +380,11 @@ class EPL_FORM_BUILDER {
 	 * Escape necessary data
 	 *
 	 * @param string $type Field type.
-	 * @param array  $value Field value.
+	 * @param string $value Field value.
+	 *
+	 * @return string|void
 	 * @since 2.3
-	 */
+*/
 	private function escape( $type = '', $value = '' ) {
 		// phpcs:disable
 		switch ( $type ) {

@@ -95,8 +95,10 @@ class EPL_Graph {
 	/**
 	 * Get an option
 	 *
-	 * @since 3.0
 	 * @param string $key The option key to get.
+	 *
+	 * @return bool|mixed
+	 * @since 3.0
 	 */
 	public function get( $key ) {
 		return isset( $this->options[ $key ] ) ? $this->options[ $key ] : false;

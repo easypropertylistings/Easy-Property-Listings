@@ -259,7 +259,7 @@ class EPL_CPT {
 	 *
 	 * @param string  $action Name of the action.
 	 * @param string  $function Function to hook that will run on action.
-	 * @param integet $priority Order in which to execute the function, relation to other functions hooked to this action.
+	 * @param int     $priority Order in which to execute the function, relation to other functions hooked to this action.
 	 * @param integer $accepted_args The number of arguments the function accepts.
 	 */
 	public function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
@@ -961,6 +961,8 @@ class EPL_CPT {
 	 * Internal function that adds user defined sortable columns to WordPress default columns.
 	 *
 	 * @param array $columns Columns to be sortable.
+	 *
+	 * @return array
 	 */
 	public function make_columns_sortable( $columns ) {
 

@@ -101,9 +101,10 @@ add_action( 'epl_edit-contact', 'epl_edit_contact', 10, 1 );
 /**
  * Delete a contact
  *
+ * @param array $args The $_POST array being passeed.
+ *
+ * @return void Wether it was a successful deletion
  * @since  3.0
- * @param  array $args The $_POST array being passeed.
- * @return int         Wether it was a successful deletion
  */
 function epl_contact_delete( $args ) {
 
@@ -409,8 +410,8 @@ add_action( 'epl_add-existing-contact-listing', 'epl_contact_assign_existing_lis
  * Processes a custom edit
  *
  * @since  3.0
- * @param  array $args The $_POST array being passeed.
- * @return array $output Response messages
+ * @param array $args The $_POST array being passeed.
+ * @return bool|void $output Response messages
  */
 function epl_meta_contact( $args ) {
 
@@ -467,8 +468,8 @@ add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
  * Create a new contact from backend
  *
  * @since  3.0
- * @param  array $args The $_POST array being passeed.
- * @return array $output Response messages
+ * @param array $args The $_POST array being passeed.
+ * @return bool|void $output Response messages
  */
 function epl_new_contact( $args ) {
 
@@ -868,10 +869,10 @@ add_action( 'epl_contact_contact_details', 'epl_contact_contact_details' );
  * Contact Recent Interest in Listings
  *
  * @param [type] $contact object.
- * @param [type] $number number of interests.
- * @param [type] $paged page number.
- * @param [type] $orderby sort order.
- * @param [type] $order desc or asc.
+ * @param int $number
+ * @param int $paged
+ * @param string $orderby
+ * @param string $order
  * @since 3.0
  */
 function epl_contact_recent_interests( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
@@ -897,10 +898,10 @@ add_action( 'epl_contact_recent_interests', 'epl_contact_recent_interests' );
  * Contact Recent Activities
  *
  * @param [type] $contact object.
- * @param [type] $number number of interests.
- * @param [type] $paged page number.
- * @param [type] $orderby sort order.
- * @param [type] $order desc or asc.
+ * @param int $number
+ * @param int $paged
+ * @param string $orderby
+ * @param string $order
  * @since 3.0
  */
 function epl_contact_recent_activities( $contact, $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
@@ -919,10 +920,10 @@ add_action( 'epl_contact_recent_activities', 'epl_contact_recent_activities' );
  * Contact Get Activities HTML
  *
  * @param [type] $contact object.
- * @param [type] $number number of interests.
- * @param [type] $paged page number.
- * @param [type] $orderby sort order.
- * @param [type] $order desc or asc.
+ * @param int $number
+ * @param int $paged
+ * @param string $orderby
+ * @param string $order
  * @since 3.0
  */
 function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
@@ -995,10 +996,10 @@ add_action( 'wp_ajax_epl_contact_get_activity_table', 'epl_contact_get_activitie
  * Contact Get Listings HTML
  *
  * @param [type] $contact object.
- * @param [type] $number number of interests.
- * @param [type] $paged page number.
- * @param [type] $orderby sort order.
- * @param [type] $order desc or asc.
+ * @param int $number
+ * @param int $paged
+ * @param string $orderby
+ * @param string $order
  * @since 3.0
  */
 function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {

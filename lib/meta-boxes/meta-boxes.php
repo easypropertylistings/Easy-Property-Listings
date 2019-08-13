@@ -156,6 +156,7 @@ function epl_meta_box_inner_custom_box( $post, $args ) {
  *
  * @param  [type] $post_ID [description].
  *
+ * @return mixed
  * @since 1.0
  */
 function epl_save_meta_boxes( $post_ID ) {

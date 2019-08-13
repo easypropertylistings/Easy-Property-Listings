@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Get EPL author meta.
  *
+ * @return void list of author meta variables
  * @since 1.0
- * @return the list of author meta variables
  */
 function epl_get_author_meta() {
 	global $epl_author_meta_sent;
@@ -33,9 +33,10 @@ function epl_get_author_meta() {
 /**
  * Print EPL property address.
  *
- * @since 1.0
- * @param integer $post_ID post id.
+ * @param string $post_ID post id.
+ *
  * @return void
+ * @since 1.0
  */
 function epl_the_property_address( $post_ID = '' ) {
 	$address = epl_get_property_address( $post_ID );
@@ -46,9 +47,10 @@ function epl_the_property_address( $post_ID = '' ) {
 /**
  * Get EPL property address.
  *
+ * @param string $post_ID post id.
+ *
+ * @return string The address
  * @since 1.0
- * @param integer $post_ID post id.
- * @return the string for address
  */
 function epl_get_property_address( $post_ID = '' ) {
 	if ( '' === $post_ID ) {

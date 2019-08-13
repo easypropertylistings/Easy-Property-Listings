@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Modify the Excerpt length on archive pages
  *
  * @param int $length Excerpt word length.
+ *
+ * @return int
  * @since 1.0
  */
 function epl_excerpt_length( $length ) {
@@ -49,6 +51,8 @@ add_filter( 'excerpt_length', 'epl_excerpt_length', 999 );
  * CSS using the epl-more-link selector
  *
  * @param string $more Existing read more, normally three dots.
+ *
+ * @return string
  * @since 1.0
  **/
 function epl_property_new_excerpt_more( $more ) {
@@ -61,6 +65,8 @@ add_filter( 'excerpt_more', 'epl_property_new_excerpt_more' );
  * Youtube Video Link Filter so the YouTube short links will work
  *
  * @param string $text YouTube URL.
+ *
+ * @return
  * @since 1.0
  */
 function epl_get_youtube_id_from_url( $text ) {

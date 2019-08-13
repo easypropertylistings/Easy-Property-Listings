@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Settings updates for 1.3.1
  *

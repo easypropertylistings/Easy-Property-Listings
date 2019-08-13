@@ -373,9 +373,10 @@ class EPL_SL_Plugin_Updater {
 	/**
 	 * Disable SSL verification in order to prevent download update failures.
 	 *
-	 * @param array  $args Arguments.
+	 * @param array $args Arguments.
 	 * @param string $url URL.
-	 * @return object $array
+	 *
+	 * @return array $array
 	 */
 	public function http_request_args( $args, $url ) {
 		// If it is an https request and we are performing a package download, disable ssl verification.
@@ -539,6 +540,8 @@ class EPL_SL_Plugin_Updater {
 	 * Get cached version info
 	 *
 	 * @param string $cache_key The cache key.
+	 *
+	 * @return bool
 	 */
 	public function get_cached_version_info( $cache_key = '' ) {
 

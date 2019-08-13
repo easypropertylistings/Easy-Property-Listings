@@ -23,7 +23,7 @@ function epl_load_svg_listing_icons_head() {
 
 	$svg_icons = '
 
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="hide" style="display:none">
 		<defs>
 			<symbol id="epl-icon-svg-bed" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-bed-shape-container" class="epl-icon-shape-container">
@@ -277,10 +277,11 @@ add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );
 /**
  * Whitelist display attribute for wp_kses_post
  *
- * @param  [type] $styles [description].
- * @return [type]         [description]
+ * @param  string $styles Allowed SVG names.
  *
- * @since 3.4 [<description>]
+ * @return array|string
+ *
+ * @since 3.4
  */
 function epl_whitelist_display_attr( $styles ) {
 
@@ -294,7 +295,7 @@ add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
 /**
  * Svg Allowed tags
  *
- * @since  3.4 [<description>]
+ * @since  3.4
  */
 function epl_get_svg_allowed_tags() {
 

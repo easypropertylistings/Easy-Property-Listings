@@ -23,8 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * [listing_location post_type="property" location="sorrento" location_id="6" status="current,sold,leased" template="default"] option. You can also
  * limit the number of entries that display. using  [listing_location limit="5"]
  *
- * @since       1.1.2
  * @param array $atts Shortcode attributes.
+ *
+ * @return false|string|void
+ * @since       1.1.2
  */
 function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$property_types = epl_get_active_post_types();

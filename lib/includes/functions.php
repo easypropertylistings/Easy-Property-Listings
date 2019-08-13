@@ -93,8 +93,10 @@ function epl_get_thumbnail_sizes() {
  * Remote get function
  *
  * @param string $url Url.
- * @since 1.0
+ *
+ * @return string
  * @since 3.3.5 Removed curl.
+ * @since 1.0
  */
 function epl_remote_url_get( $url ) {
 
@@ -279,9 +281,10 @@ function epl_get_decimal_separator() {
 /**
  * Get the currency formatted amount
  *
- * @since 1.0
  * @param integer $price The price.
+ *
  * @return string Currency Formatted price
+ * @since 1.0
  */
 function epl_currency_formatted_amount( $price ) {
 	$price_format           = apply_filters( 'epl_price_number_format', 'number' );
@@ -420,7 +423,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
  *
  * @param string $before Output string before.
  * @param string $after Output string after.
- * @param string $echo Echo the result.
+ * @param bool $echo Echo the result.
  * @return the string/list for values
  */
 function epl_the_status( $before = '', $after = '', $echo = true ) {
@@ -472,7 +475,7 @@ function epl_get_the_status( $post = 0 ) {
  * Get EPL property meta data based on post id
  *
  * @since 1.0
- * @param int    $post_ID The post ID.
+ * @param string $post_ID The post ID.
  * @param string $meta_key Meta key name.
  * @return the string/list for values
  */
@@ -494,7 +497,7 @@ function epl_get_property_meta( $post_ID = '', $meta_key = '' ) {
  * Print EPL property meta data
  *
  * @since 1.0
- * @param int    $post_ID The post ID.
+ * @param string $post_ID The post ID.
  * @param string $meta_key Meta key name.
  */
 function epl_the_property_meta( $post_ID = '', $meta_key ) {
@@ -885,11 +888,13 @@ function epl_feedsync_format_strip_currency( $value ) {
  * Processing Function for WP All Import and FeedSync
  * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
  *
- * @param bool   $date_time Swtich date time.
+ * @param bool $date_time Swtich date time.
  * @param string $old_time_zone Old Timezone.
  * @param string $new_timezone New timezone.
  * @param string $format Date format.
+ *
  * @return integer
+ * @throws Exception
  * @since 3.0
  */
 function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Australia/Perth', $new_timezone = 'Australia/Sydney', $format = 'Y-m-d H:i:s' ) {
@@ -2208,7 +2213,10 @@ function epl_month_num_to_name( $n ) {
  * Retrieve contacts from the database
  *
  * @access  public
+ *
  * @param array $args Arguments.
+ *
+ * @return bool|int[]|mixed|WP_Post[]
  * @since   3.0
  */
 function epl_get_contacts( $args = array() ) {
@@ -2328,7 +2336,9 @@ function epl_get_contact_categories() {
  * Get Contact Labels
  *
  * @param string $category Category label.
+ *
  * @access  public
+ * @return string
  * @since   3.0
  */
 function get_category_label( $category ) {
@@ -2345,6 +2355,8 @@ function get_category_label( $category ) {
  *
  * @param string $haystack String.
  * @param string $needle String.
+ *
+ * @return bool
  * @since 3.3
  */
 function epl_starts_with( $haystack, $needle ) {
@@ -2357,6 +2369,8 @@ function epl_starts_with( $haystack, $needle ) {
  *
  * @param string $haystack String.
  * @param string $needle String.
+ *
+ * @return bool
  * @since 3.3
  */
 function epl_ends_with( $haystack, $needle ) {
@@ -2629,6 +2643,8 @@ function epl_get_property_com_property_extent_opts() {
  * Get author id from name
  *
  * @param string $author Author name.
+ *
+ * @return int
  * @since 3.1.1
  */
 function epl_get_author_id_from_name( $author ) {
@@ -2690,7 +2706,9 @@ add_action( 'wp', 'epl_single_and_archive_functions', 99 );
  * Recursive array map for multi dimensional array
  *
  * @param string $callback Callback.
- * @param array  $array Array.
+ * @param array $array Array.
+ *
+ * @return array
  * @since 3.3.5
  */
 function epl_array_map_recursive( $callback, $array ) {

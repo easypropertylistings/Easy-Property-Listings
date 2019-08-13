@@ -17,8 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Query filter for property_address_suburb custom field sortable in posts listing.
  *
- * @since 1.0
  * @param array $vars variables.
+ *
+ * @return array
+ * @since 1.0
  */
 function epl_property_address_suburb_column_orderby( $vars ) {
 	if ( isset( $vars['orderby'] ) && 'property_address_suburb' === $vars['orderby'] ) {
@@ -156,8 +158,10 @@ function epl_admin_posts_filter( $query ) {
 /**
  * Manage Property Columns Sorting.
  *
- * @since 1.0
  * @param array $columns Columns.
+ *
+ * @return array
+ * @since 1.0
  */
 function epl_manage_listings_sortable_columns( $columns ) {
 	$columns['property_featured'] = 'property_featured';
@@ -268,7 +272,13 @@ function epl_manage_listing_column_listing_callback() {
 	if ( empty( $heading ) ) {
 		echo '<strong>' . esc_html__( 'Important! Set a Heading', 'easy-property-listings' ) . '</strong>';
 	} else {
-		echo '<div class="type_heading"><strong>' , wp_kses( $heading, array( 'strong'	=>	array(), 'b'	=>	array() ) ) , '</strong></div>';
+		echo '<div class="type_heading"><strong>' , wp_kses(
+			$heading,
+			array(
+				'strong' => array(),
+				'b'      => array(),
+			)
+		) , '</strong></div>';
 	}
 
 	// Category for commercial listing lype.
@@ -289,9 +299,16 @@ function epl_manage_listing_column_listing_callback() {
 	// Need to factor in business fields: property_bus_franchise (yes/no).
 
 	// Listing Location Taxonomy.
-	echo '<div class="type_suburb">' , wp_kses( $property_address_suburb, array( 'strong'	=>	array(), 'b'	=>	array(), 'a' => array(
-					'href' => array(),
-				) ) ) , '</div>';
+	echo '<div class="type_suburb">' , wp_kses(
+		$property_address_suburb,
+		array(
+			'strong' => array(),
+			'b'      => array(),
+			'a'      => array(
+				'href' => array(),
+			),
+		)
+	) , '</div>';
 
 	// Listing Category.
 	if ( ! empty( $category ) ) {
@@ -354,9 +371,11 @@ add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_list
 /**
  * Get Listing Labels.
  *
- * @since 3.3
  * @param array  $args Array of arguments.
  * @param string $returntype The type of retunr formatting filterable with epl_manage_listing_column_labels_return_type.
+ *
+ * @return false|string
+ * @since 3.3
  */
 function epl_get_manage_listing_column_labels( $args = array(), $returntype = 'l' ) {
 

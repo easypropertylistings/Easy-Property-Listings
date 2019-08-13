@@ -74,9 +74,11 @@ function epl_status_dashboard_widget_callback() {
 /**
  * Status Dashboard Widget Counter
  *
- * @since 1.3
- * @param int    $count Number.
+ * @param int $count Number.
  * @param string $singular Option for the case.
+ *
+ * @return bool|string
+ * @since 1.3
  */
 function epl_get_plural( $count, $singular ) {
 	$return = false;
@@ -121,7 +123,7 @@ function epl_get_plural( $count, $singular ) {
 }
 
 /**
- * Status Dashboard Widget Hghlights
+ * Status Dashboard Widget Highlights
  *
  * @since 1.3
  * @param string $type Option for the case.
