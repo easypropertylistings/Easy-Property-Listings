@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.3.5.5\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-08-12 03:55:16+00:00\n"
+"POT-Creation-Date: 2019-08-13 01:34:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,7 +37,7 @@ msgid "Recently Leased"
 msgstr ""
 
 #: lib/compatibility/functions-compat.php:444
-#: lib/includes/class-epl-author-meta.php:774
+#: lib/includes/class-epl-author-meta.php:778
 #: lib/includes/options-front-end.php:56
 #: lib/widgets/class-epl-widget-recent-property.php:60
 #: lib/widgets/class-epl-widget-recent-property.php:240
@@ -252,63 +252,63 @@ msgid "Processing..."
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:486
-#: lib/includes/admin/admin-functions.php:528
+#: lib/includes/admin/admin-functions.php:533
 #: lib/includes/admin/menus/menu-extensions.php:27
 #: lib/includes/admin/menus/menu-general.php:24
 #: lib/includes/admin/menus/menu-licenses.php:29
 msgid "Sorry, your nonce did not verify."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:551
+#: lib/includes/admin/admin-functions.php:556
 msgid "It looks like you upgraded to latest version of Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:553
+#: lib/includes/admin/admin-functions.php:558
 msgid ""
 "For better performance, we need to upgrade the database. You can upgrade "
 "the database by visiting tools page"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:558
+#: lib/includes/admin/admin-functions.php:563
 msgid "Take me to the upgrade tool"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:576
+#: lib/includes/admin/admin-functions.php:581
 msgid "Some error occured"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:677
+#: lib/includes/admin/admin-functions.php:683
 #. Translators: %s is a string of listing post ids.
 msgid "Database upgrade in process, following listings updated : %s. Please wait..."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:690
+#: lib/includes/admin/admin-functions.php:696
 msgid "Database upgraded successfully"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:750
-#: lib/includes/admin/admin-functions.php:763
-#: lib/includes/admin/admin-functions.php:771
+#: lib/includes/admin/admin-functions.php:756
+#: lib/includes/admin/admin-functions.php:769
+#: lib/includes/admin/admin-functions.php:777
 msgid "Note"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:755
-#: lib/includes/class-epl-contact.php:709
+#: lib/includes/admin/admin-functions.php:761
+#: lib/includes/class-epl-contact.php:710
 msgid "Call"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:759
+#: lib/includes/admin/admin-functions.php:765
 msgid "Mail"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:767
+#: lib/includes/admin/admin-functions.php:773
 msgid "Alert"
 msgstr ""
 
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:70
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:233
-#: lib/includes/class-epl-author-meta.php:255
-#: lib/includes/class-epl-author-meta.php:263 lib/includes/functions.php:2313
+#: lib/includes/class-epl-author-meta.php:259
+#: lib/includes/class-epl-author-meta.php:267 lib/includes/functions.php:2313
 #: lib/includes/template-functions.php:1726
 #: lib/post-types/post-type-contact.php:36
 #: lib/post-types/post-type-contact.php:37
@@ -477,7 +477,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:887
 #: lib/includes/admin/contacts/contact-actions.php:910
 #: lib/includes/admin/contacts/contacts.php:74
-#: lib/includes/class-epl-cpt.php:410 lib/post-types/post-type-business.php:39
+#: lib/includes/class-epl-cpt.php:418 lib/post-types/post-type-business.php:39
 #: lib/post-types/post-type-commercial-land.php:39
 #: lib/post-types/post-type-commercial.php:39
 #: lib/post-types/post-type-contact.php:38 lib/post-types/post-type-land.php:39
@@ -735,8 +735,8 @@ msgid "Company"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:471
-#: lib/includes/class-epl-author-meta.php:256
-#: lib/includes/class-epl-contact.php:710 lib/widgets/widget-functions.php:1426
+#: lib/includes/class-epl-author-meta.php:260
+#: lib/includes/class-epl-contact.php:711 lib/widgets/widget-functions.php:1426
 msgid "Email"
 msgstr ""
 
@@ -765,12 +765,12 @@ msgid "Social Networks"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:532
-#: lib/includes/class-epl-author-meta.php:601 lib/includes/user.php:29
+#: lib/includes/class-epl-author-meta.php:605 lib/includes/user.php:29
 msgid "Facebook"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:539
-#: lib/includes/class-epl-author-meta.php:379 lib/includes/user.php:28
+#: lib/includes/class-epl-author-meta.php:383 lib/includes/user.php:28
 msgid "Twitter"
 msgstr ""
 
@@ -2050,9 +2050,10 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:791
-#: lib/includes/class-epl-cpt.php:418 lib/includes/class-epl-cpt.php:524
+#: lib/includes/class-epl-cpt.php:426 lib/includes/class-epl-cpt.php:538
 #. Translators: %s is username form GitHub.
 #. Translators: %s is the post type name.
+#. Translators: %s is taxonomy label.
 msgid "View %s"
 msgstr ""
 
@@ -2288,7 +2289,7 @@ msgid "Settings"
 msgstr ""
 
 #: lib/includes/admin/menus/menus.php:63 lib/includes/admin/menus/menus.php:64
-#: lib/includes/admin/reports/reports.php:41
+#: lib/includes/admin/reports/reports.php:43
 msgid "Reports"
 msgstr ""
 
@@ -2327,280 +2328,294 @@ msgstr ""
 msgid "Listings Over Time"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:298
+#: lib/includes/admin/reports/graphing.php:244
+#: lib/includes/admin/reports/graphing.php:254
+#. translators: status label.
+msgid "Total %s listings period shown : "
+msgstr ""
+
+#: lib/includes/admin/reports/graphing.php:302
 #: lib/widgets/widget-admin-dashboard.php:412
 msgid "Today"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:299
+#: lib/includes/admin/reports/graphing.php:303
 msgid "Yesterday"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:300
+#: lib/includes/admin/reports/graphing.php:304
 msgid "This Week"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:301
+#: lib/includes/admin/reports/graphing.php:305
 msgid "Last Week"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:302
+#: lib/includes/admin/reports/graphing.php:306
 msgid "This Month"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:303
+#: lib/includes/admin/reports/graphing.php:307
 msgid "Last Month"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:304
+#: lib/includes/admin/reports/graphing.php:308
 msgid "This Quarter"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:305
+#: lib/includes/admin/reports/graphing.php:309
 msgid "Last Quarter"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:306
+#: lib/includes/admin/reports/graphing.php:310
 msgid "This Year"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:307
+#: lib/includes/admin/reports/graphing.php:311
 msgid "Last Year"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:308 lib/includes/functions.php:1768
+#: lib/includes/admin/reports/graphing.php:312 lib/includes/functions.php:1768
 #: lib/includes/functions.php:1786
 msgid "Custom"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:335
+#: lib/includes/admin/reports/graphing.php:339
 msgid "From"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:351
+#: lib/includes/admin/reports/graphing.php:357
 msgid "To"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:371
+#: lib/includes/admin/reports/graphing.php:377
 msgid "Filter"
 msgstr ""
 
-#: lib/includes/admin/reports/reports.php:97
+#: lib/includes/admin/reports/reports.php:99
 msgid "You do not have permission to access this report"
 msgstr ""
 
-#: lib/includes/admin/reports/reports.php:97
-#: lib/includes/class-epl-sl-plugin-updater.php:477
+#: lib/includes/admin/reports/reports.php:99
+#: lib/includes/class-epl-sl-plugin-updater.php:480
 #: lib/includes/error-tracking.php:39
 msgid "Error"
 msgstr ""
 
-#: lib/includes/admin/reports/reports.php:129
+#: lib/includes/admin/reports/reports.php:131
 msgid "Report Type"
 msgstr ""
 
-#: lib/includes/admin/reports/reports.php:138
+#: lib/includes/admin/reports/reports.php:140
 msgid "Show"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:255
-#: lib/includes/class-epl-author-meta.php:263
+#: lib/includes/class-epl-author-meta.php:259
+#: lib/includes/class-epl-author-meta.php:267
 msgid "by Email"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:378
-#: lib/includes/class-epl-author-meta.php:386
-#: lib/includes/class-epl-author-meta.php:413
-#: lib/includes/class-epl-author-meta.php:421
-#: lib/includes/class-epl-author-meta.php:448
-#: lib/includes/class-epl-author-meta.php:456
-#: lib/includes/class-epl-author-meta.php:483
-#: lib/includes/class-epl-author-meta.php:491
-#: lib/includes/class-epl-author-meta.php:542
-#: lib/includes/class-epl-author-meta.php:550
-#: lib/includes/class-epl-author-meta.php:600
-#: lib/includes/class-epl-author-meta.php:608
-#: lib/includes/class-epl-author-meta.php:659
-#: lib/includes/class-epl-author-meta.php:667
-#: lib/includes/class-epl-author-meta.php:717
-#: lib/includes/class-epl-author-meta.php:725
+#: lib/includes/class-epl-author-meta.php:382
+#: lib/includes/class-epl-author-meta.php:390
+#: lib/includes/class-epl-author-meta.php:417
+#: lib/includes/class-epl-author-meta.php:425
+#: lib/includes/class-epl-author-meta.php:452
+#: lib/includes/class-epl-author-meta.php:460
+#: lib/includes/class-epl-author-meta.php:487
+#: lib/includes/class-epl-author-meta.php:495
+#: lib/includes/class-epl-author-meta.php:546
+#: lib/includes/class-epl-author-meta.php:554
+#: lib/includes/class-epl-author-meta.php:604
+#: lib/includes/class-epl-author-meta.php:612
+#: lib/includes/class-epl-author-meta.php:663
+#: lib/includes/class-epl-author-meta.php:671
+#: lib/includes/class-epl-author-meta.php:721
+#: lib/includes/class-epl-author-meta.php:729
 msgid "Follow"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:378
-#: lib/includes/class-epl-author-meta.php:386
+#: lib/includes/class-epl-author-meta.php:382
+#: lib/includes/class-epl-author-meta.php:390
 msgid "on Twitter"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:413
-#: lib/includes/class-epl-author-meta.php:421
+#: lib/includes/class-epl-author-meta.php:417
+#: lib/includes/class-epl-author-meta.php:425
 msgid "on Instagram"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:414 lib/includes/user.php:32
+#: lib/includes/class-epl-author-meta.php:418 lib/includes/user.php:32
 msgid "Instagram"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:448
-#: lib/includes/class-epl-author-meta.php:456
+#: lib/includes/class-epl-author-meta.php:452
+#: lib/includes/class-epl-author-meta.php:460
 msgid "on YouTube"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:449
+#: lib/includes/class-epl-author-meta.php:453
 msgid "YouTube"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:483
-#: lib/includes/class-epl-author-meta.php:491
+#: lib/includes/class-epl-author-meta.php:487
+#: lib/includes/class-epl-author-meta.php:495
 msgid "on Pinterest"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:484 lib/includes/user.php:33
+#: lib/includes/class-epl-author-meta.php:488 lib/includes/user.php:33
 msgid "Pinterest"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:542
-#: lib/includes/class-epl-author-meta.php:550
+#: lib/includes/class-epl-author-meta.php:546
+#: lib/includes/class-epl-author-meta.php:554
 msgid "on Google"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:543
+#: lib/includes/class-epl-author-meta.php:547
 msgid "Google"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:600
-#: lib/includes/class-epl-author-meta.php:608
+#: lib/includes/class-epl-author-meta.php:604
+#: lib/includes/class-epl-author-meta.php:612
 msgid "on Facebook"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:659
-#: lib/includes/class-epl-author-meta.php:667
+#: lib/includes/class-epl-author-meta.php:663
+#: lib/includes/class-epl-author-meta.php:671
 msgid "on LinkedIn"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:660 lib/includes/user.php:31
+#: lib/includes/class-epl-author-meta.php:664 lib/includes/user.php:31
 msgid "LinkedIn"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:717
-#: lib/includes/class-epl-author-meta.php:725
+#: lib/includes/class-epl-author-meta.php:721
+#: lib/includes/class-epl-author-meta.php:729
 msgid "on Skype"
 msgstr ""
 
-#: lib/includes/class-epl-author-meta.php:718 lib/includes/user.php:27
+#: lib/includes/class-epl-author-meta.php:722 lib/includes/user.php:27
 msgid "Skype"
 msgstr ""
 
-#: lib/includes/class-epl-contact.php:297
+#: lib/includes/class-epl-contact.php:299
 #. Translators: %s is the meta key.
 msgid "Can't get property %s"
 msgstr ""
 
-#: lib/includes/class-epl-contact.php:707
+#: lib/includes/class-epl-contact.php:708
 msgid "User Activity"
 msgstr ""
 
-#: lib/includes/class-epl-contact.php:708
+#: lib/includes/class-epl-contact.php:709
 msgid "Admin Note"
 msgstr ""
 
-#: lib/includes/class-epl-contact.php:711
+#: lib/includes/class-epl-contact.php:712
 #: lib/includes/template-functions.php:2682
 #: lib/shortcodes/class-epl-listing-elements.php:75
 msgid "Listing"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:405 lib/includes/class-epl-cpt.php:406
-#: lib/includes/class-epl-cpt.php:407 lib/includes/class-epl-cpt.php:408
-#: lib/includes/class-epl-cpt.php:519 lib/includes/class-epl-cpt.php:520
-#: lib/includes/class-epl-cpt.php:521 lib/includes/class-epl-cpt.php:646
-msgid "%s"
-msgstr ""
-
-#: lib/includes/class-epl-cpt.php:412 lib/includes/class-epl-cpt.php:526
+#: lib/includes/class-epl-cpt.php:420 lib/includes/class-epl-cpt.php:542
 #: lib/taxonomies/tax-location.php:38
 #. Translators: %s is the post type name.
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Add New %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:414 lib/includes/class-epl-cpt.php:523
+#: lib/includes/class-epl-cpt.php:422 lib/includes/class-epl-cpt.php:536
 #: lib/taxonomies/tax-location.php:39
 #. Translators: %s is the post type name.
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Edit %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:416
+#: lib/includes/class-epl-cpt.php:424
 #. Translators: %s is the post type name.
 msgid "New %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:420 lib/includes/class-epl-cpt.php:530
+#: lib/includes/class-epl-cpt.php:428 lib/includes/class-epl-cpt.php:550
 #: lib/taxonomies/tax-location.php:42
 #. Translators: %s is the post type name.
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Search %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:422 lib/includes/class-epl-cpt.php:535
+#: lib/includes/class-epl-cpt.php:430 lib/includes/class-epl-cpt.php:560
 #. Translators: %s is the post type name.
+#. Translators: %s is taxonomy label.
 msgid "No %s found"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:424
+#: lib/includes/class-epl-cpt.php:432
 #. Translators: %s is the post type name.
 msgid "No %s found in Trash"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:426 lib/includes/class-epl-cpt.php:529
+#: lib/includes/class-epl-cpt.php:434 lib/includes/class-epl-cpt.php:548
 #. Translators: %s is the post type name.
+#. Translators: %s is taxonomy label.
 msgid "Parent %s:"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:522 lib/taxonomies/tax-location.php:34
+#: lib/includes/class-epl-cpt.php:534 lib/taxonomies/tax-location.php:34
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "All %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:525 lib/taxonomies/tax-location.php:40
+#: lib/includes/class-epl-cpt.php:540 lib/taxonomies/tax-location.php:40
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Update %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:527 lib/taxonomies/tax-location.php:37
+#: lib/includes/class-epl-cpt.php:544 lib/taxonomies/tax-location.php:37
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "New %s Name"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:528 lib/taxonomies/tax-location.php:35
+#: lib/includes/class-epl-cpt.php:546 lib/taxonomies/tax-location.php:35
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Parent %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:531
+#: lib/includes/class-epl-cpt.php:552
+#. Translators: %s is taxonomy label.
 msgid "Popular %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:532 lib/taxonomies/tax-location.php:41
+#: lib/includes/class-epl-cpt.php:554 lib/taxonomies/tax-location.php:41
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Seperate %s with commas"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:533 lib/taxonomies/tax-location.php:43
+#: lib/includes/class-epl-cpt.php:556 lib/taxonomies/tax-location.php:43
+#. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Add or remove %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:534
+#: lib/includes/class-epl-cpt.php:558
+#. Translators: %s is taxonomy label.
 msgid "Choose from most used %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:725
+#: lib/includes/class-epl-cpt.php:752
+#. translators: tax label.
 msgid "No %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:855
+#: lib/includes/class-epl-cpt.php:883
+#. translators: tax label.
 msgid "Show all %s"
 msgstr ""
 
@@ -2608,58 +2623,63 @@ msgstr ""
 msgid "Once Weekly"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:512
+#: lib/includes/class-epl-license.php:516
+#. translators: item name.
 msgid ""
 "No valid license key has been entered, so automatic updates for %1$s have "
 "been turned off. <a href=\"%2$s\">Please click here to enter your license "
 "key and begin receiving automatic updates.</a>"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:528
+#: lib/includes/class-epl-license.php:533
+#. translators: item name.
 msgid ""
 "Your license key for %1$s has expired. <a href=\"%2$s\" "
 "target=\"_blank\">Please click here to renew your license key and continue "
 "receiving automatic updates.</a>"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:540
+#: lib/includes/class-epl-license.php:547
+#. translators: item name.
 msgid ""
 "Your maximum usage limit for license key of %s has been reached. Please use "
 "a different key to continue receiving automatic updates."
 msgstr ""
 
-#: lib/includes/class-epl-license.php:551
+#: lib/includes/class-epl-license.php:561
+#. translators: item name.
 msgid ""
 "The license you entered for %s does not belong to it. Please use a "
 "different key to continue receiving automatic updates."
 msgstr ""
 
-#: lib/includes/class-epl-license.php:584
+#: lib/includes/class-epl-license.php:594
 msgid "This license does not belong to the product you have entered it for."
 msgstr ""
 
-#: lib/includes/class-epl-license.php:588
+#: lib/includes/class-epl-license.php:598
 msgid "This license does not have any activations left"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:592
+#: lib/includes/class-epl-license.php:602
 msgid "This license key is expired. Please renew it."
 msgstr ""
 
-#: lib/includes/class-epl-license.php:596
+#: lib/includes/class-epl-license.php:607
+#. translators: error.
 msgid ""
 "There was a problem activating your license key, please try again or "
 "contact support. Error code: %s"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:631
+#: lib/includes/class-epl-license.php:642
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:329
-#: lib/includes/class-epl-property-meta.php:679
-#: lib/includes/class-epl-property-meta.php:734
-#: lib/includes/class-epl-property-meta.php:775 lib/includes/functions.php:2492
+#: lib/includes/class-epl-property-meta.php:327
+#: lib/includes/class-epl-property-meta.php:682
+#: lib/includes/class-epl-property-meta.php:744
+#: lib/includes/class-epl-property-meta.php:785 lib/includes/functions.php:2492
 #: lib/includes/functions.php:2529 lib/widgets/widget-admin-dashboard.php:174
 #: lib/widgets/widget-admin-dashboard.php:223
 msgid "Auction"
@@ -2669,153 +2689,153 @@ msgstr ""
 msgid "now"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:618
-#: lib/includes/class-epl-property-meta.php:620
+#: lib/includes/class-epl-property-meta.php:617
+#: lib/includes/class-epl-property-meta.php:619
 msgid "Inc. GST"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:622
+#: lib/includes/class-epl-property-meta.php:621
 msgid "GST"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:646
-#: lib/includes/class-epl-property-meta.php:736 lib/includes/functions.php:1396
+#: lib/includes/class-epl-property-meta.php:746 lib/includes/functions.php:1396
 #: lib/includes/install.php:47
 msgid "POA"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:669
-#: lib/includes/class-epl-property-meta.php:764
+#: lib/includes/class-epl-property-meta.php:670
+#: lib/includes/class-epl-property-meta.php:774
 msgid "TBA"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:681
 #: lib/includes/class-epl-property-meta.php:684
-#: lib/includes/class-epl-property-meta.php:779
-#: lib/includes/class-epl-property-meta.php:785
-#: lib/includes/class-epl-property-meta.php:966 lib/includes/functions.php:2528
+#: lib/includes/class-epl-property-meta.php:687
+#: lib/includes/class-epl-property-meta.php:789
+#: lib/includes/class-epl-property-meta.php:795
+#: lib/includes/class-epl-property-meta.php:978 lib/includes/functions.php:2528
 msgid "For Sale"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:692
-#: lib/includes/class-epl-property-meta.php:694
 #: lib/includes/class-epl-property-meta.php:696
-#: lib/includes/class-epl-property-meta.php:699
-#: lib/includes/class-epl-property-meta.php:796
-#: lib/includes/class-epl-property-meta.php:799
-#: lib/includes/class-epl-property-meta.php:804
-#: lib/includes/class-epl-property-meta.php:822
-#: lib/includes/class-epl-property-meta.php:827
-#: lib/includes/class-epl-property-meta.php:979
-#: lib/includes/class-epl-property-meta.php:981
+#: lib/includes/class-epl-property-meta.php:698
+#: lib/includes/class-epl-property-meta.php:700
+#: lib/includes/class-epl-property-meta.php:703
+#: lib/includes/class-epl-property-meta.php:806
+#: lib/includes/class-epl-property-meta.php:809
+#: lib/includes/class-epl-property-meta.php:814
+#: lib/includes/class-epl-property-meta.php:832
+#: lib/includes/class-epl-property-meta.php:837
+#: lib/includes/class-epl-property-meta.php:991
+#: lib/includes/class-epl-property-meta.php:993
 msgid "For Lease"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:768
-#: lib/includes/class-epl-property-meta.php:962 lib/includes/functions.php:745
+#: lib/includes/class-epl-property-meta.php:778
+#: lib/includes/class-epl-property-meta.php:974 lib/includes/functions.php:745
 msgid "P.A."
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:777
+#: lib/includes/class-epl-property-meta.php:787
 msgid "For Sale and Lease"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1002
+#: lib/includes/class-epl-property-meta.php:1015
 msgid "Built"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1048
+#: lib/includes/class-epl-property-meta.php:1061
 #: lib/meta-boxes/meta-box-init.php:244
 msgid "Bedrooms"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1049
+#: lib/includes/class-epl-property-meta.php:1062
 msgid "bed"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1104
+#: lib/includes/class-epl-property-meta.php:1120
 #: lib/meta-boxes/meta-box-init.php:252 lib/widgets/widget-functions.php:625
 msgid "Bathrooms"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1105
+#: lib/includes/class-epl-property-meta.php:1121
 msgid "bath"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1160
+#: lib/includes/class-epl-property-meta.php:1179
 #: lib/meta-boxes/meta-box-init.php:294 lib/post-types/post-types.php:324
 #: lib/widgets/widget-functions.php:174 lib/widgets/widget-functions.php:644
 msgid "Rooms"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1218
+#: lib/includes/class-epl-property-meta.php:1240
 msgid "Parking Spaces"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1273
+#: lib/includes/class-epl-property-meta.php:1297
 msgid "garage"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1319
+#: lib/includes/class-epl-property-meta.php:1345
 msgid "carport"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1366
+#: lib/includes/class-epl-property-meta.php:1394
 #: lib/meta-boxes/meta-box-init.php:329 lib/widgets/widget-functions.php:813
 msgid "Air Conditioning"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1423
+#: lib/includes/class-epl-property-meta.php:1453
 #: lib/meta-boxes/meta-box-init.php:320 lib/widgets/widget-functions.php:828
 msgid "Pool"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1478
+#: lib/includes/class-epl-property-meta.php:1508
 msgid "Alarm System"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1525
-#: lib/includes/class-epl-property-meta.php:1596
+#: lib/includes/class-epl-property-meta.php:1555
+#: lib/includes/class-epl-property-meta.php:1626
 #: lib/post-types/post-types.php:334
 msgid "m&#178;"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1538
-#: lib/includes/class-epl-property-meta.php:1550
+#: lib/includes/class-epl-property-meta.php:1568
+#: lib/includes/class-epl-property-meta.php:1580
 msgid "Land is"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1609
-#: lib/includes/class-epl-property-meta.php:1621
+#: lib/includes/class-epl-property-meta.php:1639
+#: lib/includes/class-epl-property-meta.php:1651
 msgid "Floor Area is"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1669
+#: lib/includes/class-epl-property-meta.php:1699
 #: lib/meta-boxes/meta-box-init.php:396 lib/meta-boxes/meta-box-init.php:752
 msgid "Energy Rating"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1714
+#: lib/includes/class-epl-property-meta.php:1744
 #: lib/meta-boxes/meta-box-init.php:310
 msgid "New Construction"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1754
+#: lib/includes/class-epl-property-meta.php:1784
 #: lib/meta-boxes/meta-box-init.php:1085
 msgid "Holiday Rental"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1803
+#: lib/includes/class-epl-property-meta.php:1833
 #: lib/meta-boxes/meta-box-init.php:1076
 msgid "Furnished"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1848
+#: lib/includes/class-epl-property-meta.php:1878
 #: lib/meta-boxes/meta-box-init.php:347
 msgid "Pet Friendly"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1893
+#: lib/includes/class-epl-property-meta.php:1923
 #: lib/post-types/post-type-business.php:93
 #: lib/post-types/post-type-commercial-land.php:93
 #: lib/post-types/post-type-commercial.php:93
@@ -2831,19 +2851,22 @@ msgstr ""
 msgid "Any"
 msgstr ""
 
-#: lib/includes/class-epl-sl-plugin-updater.php:269
+#: lib/includes/class-epl-sl-plugin-updater.php:271
+#. translators: plugin name, anchor change log, new version details.
 msgid ""
 "There is a new version of %1$s available. %2$s View version %3$s details "
 "%4$s."
 msgstr ""
 
-#: lib/includes/class-epl-sl-plugin-updater.php:277
+#: lib/includes/class-epl-sl-plugin-updater.php:280
+#. translators: plugin name, anchor change log, new version details, download /
+#. update links.
 msgid ""
 "There is a new version of %1$s available. %2$s View version %3$s details "
 "%4$s or %5$s update now %6$s."
 msgstr ""
 
-#: lib/includes/class-epl-sl-plugin-updater.php:477
+#: lib/includes/class-epl-sl-plugin-updater.php:480
 msgid "You do not have permission to install plugin updates"
 msgstr ""
 
