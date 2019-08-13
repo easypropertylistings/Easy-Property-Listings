@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Settings updates for 3.1
  *
