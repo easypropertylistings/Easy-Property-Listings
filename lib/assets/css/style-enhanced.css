@@ -394,12 +394,12 @@ width: 100%;
 
 /** Slim **/
 .epl-property-blog-slim.epl-listing-grid-view .property-box-right {
-    /* min-height: 0; */
+	/* In some cases use: min-height: 0; */
 }
 @media screen and (max-width: 767px) {
 	.epl-property-blog .property-box-left,
 	.epl-property-blog .property-box-right {
-		/* width: 100%; */
+		/* In some cases use: width: 100%; */
 	}
 	.epl-property-blog .property-content-wrapper {
 		margin: 0;
@@ -427,8 +427,8 @@ width: 100%;
 	.epl-listing-grid-view-forced,
 	.epl-listing-grid-view-forced.hentry,
 	.builder-module-content .epl-listing-grid-view-forced.hentry {
-		/* width: 100%; */
-		/* display: block; */
+		/* In some cases use: width: 100%; */
+		/* In some cases use: display: block; */
 	}
 }
 @media screen and (max-width: 500px) {
@@ -445,7 +445,7 @@ width: 100%;
 	.epl-property-blog,
 	.epl-property-blog.hentry,
 	.builder-module-content .epl-property-blog.hentry {
-		/* max-width: 600px; */
+		/* In some cases use: max-width: 600px; */
 	}
 	.epl-property-blog .property-box-left,
 	.epl-property-blog .property-box-right {
