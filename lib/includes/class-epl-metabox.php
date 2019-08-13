@@ -81,9 +81,9 @@ class EPL_METABOX {
 	 *
 	 * Helper function to add add_action WordPress filters.
 	 *
-	 * @param string  $action Name of the action.
-	 * @param string  $function Function to hook that will run on action.
-	 * @param integet $priority Order in which to execute the function, relation to other functions hooked to this action.
+	 * @param string $action Name of the action.
+	 * @param string $function Function to hook that will run on action.
+	 * @param int $priority Order in which to execute the function, relation to other functions hooked to this action.
 	 * @param integer $accepted_args The number of arguments the function accepts.
 	 */
 	public function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
@@ -185,20 +185,21 @@ class EPL_METABOX {
 	 * Class wrapper for WordPress function add_meta_box
 	 *
 	 * @see https://codex.wordpress.org/Function_Reference/add_meta_box
-	 * @param string   $id            Meta box ID (used in the 'id' attribute for the meta box).
-	 * @param string   $label         Title of the meta box.
-	 * @param callable $func          Function that fills the box with the desired content.
+	 *
+	 * @param string $id Meta box ID (used in the 'id' attribute for the meta box).
+	 * @param string $label Title of the meta box.
+	 * @param string $func Function that fills the box with the desired content.
 	 *                                The function should echo its output.
-	 * @param array    $post_type     Post type name.
-	 * @param string   $context       Optional. The context within the screen where the boxes
+	 * @param array $post_type Post type name.
+	 * @param string $context Optional. The context within the screen where the boxes
 	 *                                should display. Available contexts vary from screen to
 	 *                                screen. Post edit screen contexts include 'normal', 'side',
 	 *                                and 'advanced'. Comments screen contexts include 'normal'
 	 *                                and 'side'. Menus meta boxes (accordion sections) all use
 	 *                                the 'side' context. Global default is 'advanced'.
-	 * @param string   $priority      Optional. The priority within the context where the boxes
+	 * @param string $priority Optional. The priority within the context where the boxes
 	 *                                should show ('high', 'low'). Default 'default'.
-	 * @param array    $args          Optional. Data that should be set as the $args property
+	 * @param array $args Optional. Data that should be set as the $args property
 	 *                                of the box array (which is the second parameter passed
 	 *                                to your callback). Default null.
 	 */

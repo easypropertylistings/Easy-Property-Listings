@@ -165,9 +165,10 @@ function epl_get_prev_contact_link( $contact_id ) {
 /**
  * Contact Fields
  *
- * @param  [type] $contact_fields [description].
- * @param  [type] $contact        [description].
- * @return [type]                 [description].
+ * @param $contact_fields
+ * @param $contact
+ *
+ * @return array [type]                 [description].
  * @since  3.0 [<description>]
  */
 function epl_contact_contact_fields( $contact_fields, $contact ) {

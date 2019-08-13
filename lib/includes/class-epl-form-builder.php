@@ -320,7 +320,8 @@ class EPL_FORM_BUILDER {
 	 * The public function can be used to configure the attributes of form
 	 *
 	 * @param string $key Meta key.
-	 * @param array  $value Field value.
+	 * @param string $value Field value.
+	 *
 	 * @since 2.3
 	 */
 	public function set_form_attributes( $key = '', $value = '' ) {
@@ -379,11 +380,11 @@ class EPL_FORM_BUILDER {
 	 * Escape necessary data
 	 *
 	 * @param string $type Field type.
-	 * @param array $value Field value.
+	 * @param string $value Field value.
 	 *
 	 * @return string|void
 	 * @since 2.3
-	 */
+*/
 	private function escape( $type = '', $value = '' ) {
 		// phpcs:disable
 		switch ( $type ) {

@@ -160,7 +160,7 @@ function is_epl_post_archive() {
 /**
  * Same as epl_listing_has_secondary_agent, kept for backward compatibility
  *
- * @return [type] [description]
+ * @return bool|int [type] [description]
  */
 function epl_listing_has_secondary_author() {
 	return epl_listing_has_secondary_agent();

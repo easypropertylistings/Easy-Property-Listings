@@ -16,6 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Load Custom Template from Plugin Directory
  *
+ * @param $template
+ *
+ * @return string
  * @since 1.0
  */
 function epl_load_core_templates($template) {
@@ -150,6 +153,8 @@ add_action('epl_render_archive_post','epl_render_archive_post');
  * Add extra class for twentysixteen theme
  *
  * @since 3.0
+ * @param $class
+ * @return string
  */
 function epl_active_theme_name_twentysixteen($class) {
 

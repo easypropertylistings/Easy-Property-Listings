@@ -281,9 +281,10 @@ function epl_get_decimal_separator() {
 /**
  * Get the currency formatted amount
  *
- * @since 1.0
  * @param integer $price The price.
+ *
  * @return string Currency Formatted price
+ * @since 1.0
  */
 function epl_currency_formatted_amount( $price ) {
 	$price_format           = apply_filters( 'epl_price_number_format', 'number' );
@@ -422,7 +423,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
  *
  * @param string $before Output string before.
  * @param string $after Output string after.
- * @param string $echo Echo the result.
+ * @param bool $echo Echo the result.
  * @return the string/list for values
  */
 function epl_the_status( $before = '', $after = '', $echo = true ) {
@@ -474,7 +475,7 @@ function epl_get_the_status( $post = 0 ) {
  * Get EPL property meta data based on post id
  *
  * @since 1.0
- * @param int    $post_ID The post ID.
+ * @param string $post_ID The post ID.
  * @param string $meta_key Meta key name.
  * @return the string/list for values
  */
@@ -495,7 +496,7 @@ function epl_get_property_meta( $post_ID = '', $meta_key = '' ) {
  * Print EPL property meta data
  *
  * @since 1.0
- * @param int    $post_ID The post ID.
+ * @param string $post_ID The post ID.
  * @param string $meta_key Meta key name.
  */
 function epl_the_property_meta( $post_ID = '', $meta_key ) {

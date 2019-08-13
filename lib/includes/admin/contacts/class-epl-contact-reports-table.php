@@ -164,8 +164,9 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	/**
 	 * Name for each columns
 	 *
-	 * @param  [type] $item [description].
-	 * @return [type]       [description]
+	 * @param  array $item Column items.
+	 *
+	 * @return string
 	 */
 	public function column_name( $item ) {
 
@@ -184,8 +185,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	/**
 	 * Type for each column
 	 *
-	 * @param  [type] $item [description].
-	 * @return [type]       [description]
+	 * @param  array $item Column items.
+	 * @return string
 	 */
 	public function column_type( $item ) {
 		return '<span class="epl-contact-type">' . $item['type'] . ' </span>';
@@ -194,8 +195,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	/**
 	 * Column summary for each column.
 	 *
-	 * @param  [type] $item [description].
-	 * @return [type]       [description]
+	 * @param  array $item Column items.
+	 * @return string
 	 */
 	public function column_summary( $item ) {
 		ob_start();
@@ -245,8 +246,8 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	/**
 	 * Render checkbox column
 	 *
-	 * @param  [type] $item [description].
-	 * @return [type]       [description]
+	 * @param  array $item Column items.
+	 * @return string
 	 */
 	public function column_cb( $item ) {
 		return sprintf(

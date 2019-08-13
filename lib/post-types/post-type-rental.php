@@ -80,9 +80,10 @@ if ( is_admin() ) {
 	/**
 	 * Manage Admin Rental Post Type Columns: Heading.
 	 *
-	 * @since 1.0
 	 * @param array $columns Column array.
-	 * @return $columns with epl_post_type_commercial_land_admin_columns filter.
+	 *
+	 * @return mixed|void $columns with epl_post_type_commercial_land_admin_columns filter.
+	 * @since 1.0
 	 */
 	function epl_manage_rental_columns_heading( $columns ) {
 		global $epl_settings;

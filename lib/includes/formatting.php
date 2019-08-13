@@ -50,12 +50,12 @@ function epl_sanitize_amount( $amount ) {
 /**
  * Returns a nicely formatted amount.
  *
- * @since 1.0
- *
- * @param string $amount   Price amount to format.
- * @param string $decimals Whether or not to use decimals.  Useful when set to false for non-currency numbers.
+ * @param string $amount Price amount to format.
+ * @param bool $decimals Whether or not to use decimals.  Useful when set to false for non-currency numbers.
  *
  * @return string $amount Newly formatted amount or Price Not Available
+ * @since 1.0
+ *
  */
 function epl_format_amount( $amount, $decimals = false ) {
 	$thousands_sep = epl_get_thousands_separator();
@@ -88,9 +88,10 @@ function epl_format_amount( $amount, $decimals = false ) {
 /**
  * Formats the currency display
  *
- * @since 1.0
  * @param string $price Price.
- * @return array $currency Currencies displayed correctly
+ *
+ * @return string $currency Currencies displayed correctly
+ * @since 1.0
  */
 function epl_currency_filter( $price ) {
 	$currency          = epl_get_currency();

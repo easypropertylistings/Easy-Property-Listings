@@ -60,12 +60,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * Insures that only one instance of Easy_Property_Listings exists in memory at any one time.
 		 * Also prevents needing to define globals all over the place.
 		 *
+		 * @return Easy_Property_Listings one true Easy_Property_Listings
+		 * @uses Easy_Property_Listings::includes() Include the required files
+		 * @see  EPL()
 		 * @since 1.0
 		 * @static
 		 * @staticvar array $instance
-		 * @uses Easy_Property_Listings::includes() Include the required files
-		 * @see EPL()
-		 * @return The one true Easy_Property_Listings
 		 */
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {

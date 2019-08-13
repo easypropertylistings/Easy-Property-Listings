@@ -1556,8 +1556,8 @@ function epl_get_meta_boxes() {
 /**
  * Get field labels from meta box
  *
+ * @return mixed|void
  * @since 1.0
- * @return [type] [description]
  */
 function epl_get_meta_field_labels() {
 
@@ -1590,9 +1590,10 @@ function epl_get_meta_field_labels() {
 /**
  * Get meta field label
  *
+ * @param string $key Meta key name.
+ *
+ * @return mixed|void
  * @since 1.0
- * @param  string $key [description].
- * @return [type]      [description]
  */
 function epl_get_meta_field_label( $key = '' ) {
 

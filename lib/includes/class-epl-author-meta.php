@@ -202,9 +202,10 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		/**
 		 * Get the global property object
 		 *
+		 * @param array $property Array of property object.
+		 *
+		 * @return bool|mixed $return Array of values.
 		 * @since 1.3.0
-		 * @param  array $property Array of property object.
-		 * @return $return Array of values.
 		 */
 		public function __get( $property ) {
 			$prop_val  = ! empty( $this->{$property} ) ? $this->{$property} : false;

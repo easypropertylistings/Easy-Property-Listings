@@ -15,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * [epl_get_admin_screens description]
+ * Get admin screens that EPL uses
  *
- * @return [type] [description]
+ * @return mixed|void
  *
- * @since 3.4 [<description>]
+ * @since 3.4
  */
 function epl_get_admin_screens() {
 

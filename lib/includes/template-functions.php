@@ -17,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Featured Image on archive template now loading through filter
  *
+ * @param $post
+ *
  * @since 2.2
  */
 function epl_reset_property_object( $post ) {
@@ -98,6 +100,9 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  * Featured Image template now loading through filter
  *
  * @since 1.2
+ * @param string $image_size
+ * @param string $image_class
+ * @param bool $link
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
@@ -129,6 +134,9 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 2 );
  * Featured Image on archive template now loading through filter
  *
  * @since 2.2
+ * @param string $image_size
+ * @param string $image_class
+ * @param bool $link
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true ) {
 
@@ -167,6 +175,9 @@ add_action( 'epl_property_archive_featured_image', 'epl_property_archive_feature
  * Featured Image in widgets
  *
  * @since 2.2
+ * @param string $image_size
+ * @param string $image_class
+ * @param bool $link
  */
 function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true ) {
 
@@ -230,6 +241,8 @@ function epl_get_fallback_content_path() {
  * Attempts to load templates in order of priority
  *
  * @since 3.0
+ * @param $template
+ * @param array $arguments
  */
 function epl_get_template_part( $template, $arguments = array() ) {
 
@@ -257,6 +270,8 @@ function epl_get_template_part( $template, $arguments = array() ) {
  * Modify the Excerpt length on Archive pages
  *
  * @since 1.0
+ * @param $length
+ * @return int|string
  */
 function epl_archive_custom_excerpt_length( $length ) {
 	global $epl_settings;
@@ -285,6 +300,7 @@ function epl_hide_listing_statuses() {
  * Allows the use of one function where we can then select a different template when needed
  *
  * @since 1.0
+ * @param string $template
  */
 function epl_property_blog( $template = '' ) {
 
@@ -407,6 +423,18 @@ function epl_property_author_box_simple_grav() {
  * WIDGET LISTING : Listing Card
  *
  * @since 1.0
+ * @param $display
+ * @param $image
+ * @param $title
+ * @param $icons
+ * @param string $more_text
+ * @param $d_excerpt
+ * @param $d_suburb
+ * @param $d_street
+ * @param $d_price
+ * @param $d_more
+ * @param $d_inspection_time
+ * @param $d_ical_link
  */
 function epl_property_widget( $display, $image, $title, $icons, $more_text = "__('Read More','easy-property-listings' )", $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
 	global $property;
@@ -468,6 +496,7 @@ function epl_property_widget_list_option() {
  * WIDGET LISTING : Image Only
  *
  * @since 1.0
+ * @param $image
  */
 function epl_property_widget_image_only_option( $image ) {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
@@ -485,6 +514,10 @@ function epl_property_widget_image_only_option( $image ) {
  *
  * @since 1.0
  * @revised 3.3
+ * @param $d_image
+ * @param $d_icons
+ * @param $d_bio
+ * @param $username
  */
 function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $username ) {
 
@@ -515,6 +548,10 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
  * Display widget by username
  *
  * @since 3.3
+ * @param $d_image
+ * @param $d_icons
+ * @param $d_bio
+ * @param $username
  */
 function epl_show_author_widget_by_username( $d_image, $d_icons, $d_bio, $username ) {
 	$username = explode( ',', $username );
@@ -671,6 +708,9 @@ add_action( 'epl_property_price_content', 'epl_property_price' );
  *
  * @since 1.0
  * @revised 3.3
+ * @param array $args
+ * @param string $returntype
+ * @return false|string
  */
 function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 
@@ -726,6 +766,7 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
  *
  * @since 1.0
  * @revised 3.3
+ * @param string $returntype
  */
 function epl_property_icons( $returntype = 'i' ) {
 	$returntype = empty( $returntype ) ? 'i' : $returntype;
@@ -852,6 +893,7 @@ function epl_get_property_heading( $listing = null ) {
  *
  * @since 1.0
  * @hooked the_property_heading
+ * @param null $listing
  */
 function epl_property_heading( $listing = null ) {
 	echo epl_get_property_heading( $listing );
@@ -901,6 +943,8 @@ function epl_property_category() {
  * Video type
  *
  * @since 3.3
+ * @param $url
+ * @return string
  */
 function epl_get_video_host( $url ) {
 
@@ -920,6 +964,9 @@ function epl_get_video_host( $url ) {
  *
  * @since 1.0
  * @revised 3.3
+ * @param string $property_video_url
+ * @param int $width
+ * @return string
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
@@ -951,6 +998,7 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
  * @since 1.0
  * @revised 3.3
  * @hooked property_after_content
+ * @param int $width
  */
 function epl_property_video_callback( $width = 600 ) {
 
@@ -1316,6 +1364,8 @@ function epl_get_property_price() {
  * Get listing Address for Widget
  *
  * @since 1.0
+ * @param string $d_suburb
+ * @param string $d_street
  */
 function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 	global $property;
@@ -1378,6 +1428,8 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
  * Get Sorting Options
  *
  * @since 2.0
+ * @param null $post_type
+ * @return mixed|void
  */
 function epl_sorting_options( $post_type = null ) {
 
@@ -1496,6 +1548,7 @@ add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
  *
  * @since 3.3
  *
+ * @param array $args
  * @return string
  */
 function get_epl_listing_toolbar_items( $args = array() ) {
@@ -1645,6 +1698,9 @@ function epl_sorting_tabs() {
  *
  * @since 3.3
  *
+ * @param $url
+ * @param $key
+ * @param $value
  * @return string
  */
 function epl_add_or_update_params( $url, $key, $value ) {
@@ -1677,6 +1733,7 @@ function epl_add_or_update_params( $url, $key, $value ) {
  * Archive Sorting
  *
  * @since 2.0
+ * @param $query
  */
 function epl_archive_sorting( $query ) {
 	$post_types_sold   = array( 'property', 'land', 'commercial', 'business', 'commercial_land', 'location_profile', 'rural' );
@@ -1733,6 +1790,7 @@ function epl_author_tabs() {
  * Author Class
  *
  * @since 2.0
+ * @param $classes
  */
 function epl_author_class( $classes ) {
 	$classes = explode( ' ', $classes . ' epl-author-box author-box' );
@@ -1747,6 +1805,8 @@ function epl_author_class( $classes ) {
  * Author Tab ID
  *
  * @since 2.0
+ * @param array $epl_author
+ * @return false|string
  */
 function epl_author_tab_author_id( $epl_author = array() ) {
 
@@ -1770,6 +1830,7 @@ function epl_author_tab_author_id( $epl_author = array() ) {
  * Author Tab Image
  *
  * @since 2.0
+ * @param array $epl_author
  */
 function epl_author_tab_image( $epl_author = array() ) {
 
@@ -1787,6 +1848,7 @@ add_action( 'epl_author_thumbnail', 'epl_author_tab_image', 10, 2 );
  * Author Tab Description
  *
  * @since 1.0
+ * @param array $epl_author
  */
 function epl_author_tab_description( $epl_author = array() ) {
 	if ( empty( $epl_author ) ) {
@@ -1799,6 +1861,7 @@ function epl_author_tab_description( $epl_author = array() ) {
  * Author Tab Video
  *
  * @since 1.0
+ * @param array $epl_author
  */
 function epl_author_tab_video( $epl_author = array() ) {
 	if ( empty( $epl_author ) ) {
@@ -1814,6 +1877,7 @@ function epl_author_tab_video( $epl_author = array() ) {
  * Author Tab Contact Form
  *
  * @since 1.0
+ * @param array $epl_author
  */
 function epl_author_tab_contact_form( $epl_author = array() ) {
 	if ( empty( $epl_author ) ) {
@@ -1920,6 +1984,11 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
  * Used to mark home inspection on apple devices
  *
  * @since 2.0
+ * @param string $start
+ * @param string $end
+ * @param string $name
+ * @param string $description
+ * @param string $location
  */
 function epl_create_ical_file( $start = '', $end = '', $name = '', $description = '', $location = '' ) {
 
@@ -1999,6 +2068,12 @@ add_action( 'wp_ajax_nopriv_epl_update_listing_coordinates', 'epl_update_listing
  *
  * @since 2.1
  * @revised 3.3
+ * @param $id
+ * @param $taxonomy
+ * @param string $before
+ * @param string $sep
+ * @param string $after
+ * @return bool|false|string|WP_Error|WP_Term[]
  */
 function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
 	$terms = get_the_terms( $id, $taxonomy );
@@ -2046,6 +2121,8 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
  * Get Property Meta
  *
  * @since 2.1
+ * @param $key
+ * @return
  */
 function get_property_meta( $key ) {
 	global $property;
@@ -2056,6 +2133,7 @@ function get_property_meta( $key ) {
  * The Property Meta
  *
  * @since 2.1
+ * @param $key
  */
 function the_property_meta( $key ) {
 	global  $property;
@@ -2066,6 +2144,9 @@ function the_property_meta( $key ) {
  * Template Class
  *
  * @since 2.1
+ * @param bool $class
+ * @param string $context
+ * @return mixed|void
  */
 function epl_template_class( $class = false, $context = 'single' ) {
 
@@ -2082,6 +2163,7 @@ function epl_template_class( $class = false, $context = 'single' ) {
  * Pagination
  *
  * @since 2.1
+ * @param array $query
  */
 function epl_pagination( $query = array() ) {
 	global $epl_settings;
@@ -2145,6 +2227,7 @@ function epl_get_shortcode_list() {
  *
  * @since 2.1.2
  * @revised 3.3
+ * @param $query
  */
 function epl_home_pagination_fix( $query ) {
 
@@ -2206,6 +2289,7 @@ add_action( 'wp', 'epl_hide_map_from_front', 10 );
  * Disable paging on listing widget
  *
  * @since 2.1.8
+ * @param $query
  */
 function epl_nopaging( $query ) {
 	$restrict_paging = $query->get( 'epl_nopaging' );
@@ -2344,6 +2428,12 @@ add_action( 'wp', 'epl_apply_feeling_lucky_config', 1 );
  * attempts to null the post thumbnail image called from theme & display thumbnail image called from epl
  *
  * @since 2.2
+ * @param $html
+ * @param $post_id
+ * @param $post_thumbnail_id
+ * @param $size
+ * @param $attr
+ * @return string
  */
 function epl_remove_archive_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 
@@ -2372,6 +2462,12 @@ function epl_remove_archive_thumbnail( $html, $post_id, $post_thumbnail_id, $siz
  * A workaround to avoid duplicate thumbnails for single listings
  *
  * @since 2.2
+ * @param $html
+ * @param $post_id
+ * @param $post_thumbnail_id
+ * @param $size
+ * @param $attr
+ * @return string
  */
 function epl_remove_single_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 
@@ -2407,6 +2503,8 @@ add_action( 'epl_property_the_content', 'epl_the_content' );
  * Custom property the_content
  *
  * @since 2.2
+ * @param $content
+ * @return false|string
  */
 function epl_feeling_lucky( $content ) {
 
@@ -2443,6 +2541,8 @@ add_filter( 'the_content', 'epl_feeling_lucky' );
  * Custom property the_excerpt
  *
  * @since 2.2
+ * @param string $text
+ * @return mixed|void
  */
 function epl_trim_excerpt( $text = '' ) {
 
@@ -2476,6 +2576,8 @@ function epl_the_excerpt() {
  * Custom property the_excerpt
  *
  * @since 2.2
+ * @param string $deprecated
+ * @return mixed|string|void
  */
 function epl_get_the_excerpt( $deprecated = '' ) {
 	if ( ! empty( $deprecated ) ) {
@@ -2498,6 +2600,9 @@ function epl_get_the_excerpt( $deprecated = '' ) {
  * Syntax Highlighter
  *
  * @since 2.2
+ * @param string $str
+ * @param string $class
+ * @return string
  */
 function epl_syntax_highlight( $str = '', $class = '' ) {
 
@@ -2525,6 +2630,8 @@ function epl_strip_tags( $value, $allowed_tags = '' ) {
  * Esc Attr
  *
  * @since 2.2
+ * @param $value
+ * @return string|void
  */
 function epl_esc_attr( $value ) {
 
@@ -2538,6 +2645,11 @@ function epl_esc_attr( $value ) {
  * Post Count
  *
  * @since 2.2
+ * @param string $type
+ * @param $meta_key
+ * @param $meta_value
+ * @param string $author_id
+ * @return
  */
 function epl_get_post_count( $type = '', $meta_key, $meta_value, $author_id = '' ) {
 	global $wpdb;
@@ -2617,6 +2729,8 @@ function epl_get_inspection_time_format() {
  * Inspection Format
  *
  * @since 2.2
+ * @param $inspection_date
+ * @return string
  */
 function epl_inspection_format( $inspection_date ) {
 
@@ -2668,7 +2782,7 @@ add_filter( 'comments_array', 'epl_filter_listing_comments_array', 10, 2 );
  * Archive Page Title
  *
  * @since 3.0
- * @return Output the archive title
+ * @return void the archive title
  */
 function epl_archive_title_callback() {
 	the_post();
@@ -2698,7 +2812,10 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  * Shortcode Sorter
  *
  * @since 3.0
- * @return $args
+ * @param $args
+ * @param string $type
+ * @param string $name
+ * @return mixed $args
  */
 function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 
@@ -2736,6 +2853,7 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
  * Shortcode Sorter
  *
  * @since 3.1.5
+ * @param string $shortcode
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
@@ -2779,6 +2897,8 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
  * Add Listing Status and Under Offer to Post Class
  *
  * @since 3.1.16
+ * @param $classes
+ * @return array
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 

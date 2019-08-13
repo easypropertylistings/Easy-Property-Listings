@@ -277,10 +277,11 @@ add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );
 /**
  * Whitelist display attribute for wp_kses_post
  *
- * @param  [type] $styles [description].
- * @return [type]         [description]
+ * @param  string $styles Allowed SVG names.
  *
- * @since 3.4 [<description>]
+ * @return array
+ *
+ * @since 3.4
  */
 function epl_whitelist_display_attr( $styles ) {
 
@@ -294,7 +295,7 @@ add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
 /**
  * Svg Allowed tags
  *
- * @since  3.4 [<description>]
+ * @since  3.4
  */
 function epl_get_svg_allowed_tags() {
 

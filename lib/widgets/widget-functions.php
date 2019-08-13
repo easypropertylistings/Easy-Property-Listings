@@ -1041,11 +1041,12 @@ function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $
 /**
  * Listings search.
  *
+ * @param WP_Query $query WordPress Query object.
+ * @param array $data That contains epl search key value pairs and if it's empty it will replace by $_REQUEST.
+ * @param boolean $get_posts If set to true get_posts of WP_Query will execute on query and returns posts.
+ *
+ * @return array posts if query is set.
  * @since  2.3.1
- * @param  WP_Query $query      WordPress Query object.
- * @param  array    $data       That contains epl search key value pairs and if it's empty it will replace by $_REQUEST.
- * @param  boolean  $get_posts  If set to true get_posts of WP_Query will execute on query and returns posts.
- * @return Searched posts if query is set.
  */
 function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
 	// phpcs:disable WordPress.Security.NonceVerification

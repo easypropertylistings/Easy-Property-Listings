@@ -909,10 +909,11 @@ function epl_add_contact_screen_options() {
 /**
  * Contact Table Options
  *
- * @param  [type] $status [description].
- * @param  [type] $option [description].
- * @param  [type] $value  [description].
- * @return [type]         [description]
+ * @param $status
+ * @param $option
+ * @param $value
+ *
+ * @return mixed [type]         [description]
  */
 function epl_contact_table_set_option( $status, $option, $value ) {
 	return $value;
