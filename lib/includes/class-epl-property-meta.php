@@ -1051,7 +1051,10 @@ class EPL_Property_Meta {
 	 * @return string
 	 */
 	public function get_property_bed( $returntype = 'i' ) {
-		if ( $this->get_property_meta( 'property_bedrooms', false ) === '' ) {
+
+		$value    = $this->get_property_meta( 'property_bedrooms' );
+
+		if ( empty( $value ) ) {
 			return;
 		}
 
@@ -1060,7 +1063,7 @@ class EPL_Property_Meta {
 
 		$label    = apply_filters( 'epl_get_property_bedrooms_label', __( 'Bedrooms', 'easy-property-listings' ) );
 		$singular = apply_filters( 'epl_get_property_bed_label', __( 'bed', 'easy-property-listings' ) );
-		$value    = $this->get_property_meta( 'property_bedrooms' );
+		
 		$return   = '';
 
 		switch ( $returntype ) {
@@ -1500,13 +1503,15 @@ class EPL_Property_Meta {
 	 */
 	public function get_property_security_system( $returntype = 'i' ) {
 
-		if ( $this->get_property_meta( 'property_security_system' ) === '' ) {
+		$value      = $this->get_property_meta( 'property_security_system' );
+
+		if ( empty( $value ) ) {
 			return;
 		}
 
 		$returntype = apply_filters( 'epl_get_property_security_system_return_type', $returntype );
 		$label      = apply_filters( 'epl_get_property_security_system_label', __( 'Alarm System', 'easy-property-listings' ) );
-		$value      = $this->get_property_meta( 'property_security_system' );
+		
 		$return     = '';
 
 		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
