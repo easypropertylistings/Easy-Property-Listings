@@ -724,8 +724,8 @@ class EPL_Contact {
 
 		$addr  = $this->get_meta( 'contact_street_number' ) . ' ';
 		$addr .= $this->get_meta( 'contact_street_name' ) . ' ';
-
-		if ( $this->get_meta( 'contact_suburb' ) !== '' ) {
+		$contact_suburb = $this->get_meta( 'contact_suburb' );
+		if ( !empty( $contact_suburb ) ) {
 			$addr .= $this->get_meta( 'contact_suburb' ) . ', ';
 		}
 
