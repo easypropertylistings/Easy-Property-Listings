@@ -2254,9 +2254,8 @@ function epl_get_active_theme() {
  * Returns active theme name as a css class with prefix for use in default
  * templates
  *
+ * @return mixed|void
  * @since      2.1.2
- *
- * @return     <type>  ( description_of_the_return_value )
  */
 function epl_get_active_theme_name() {
 	$epl_class_prefix = apply_filters( 'epl_active_theme_prefix', 'epl-active-theme-' );
