@@ -1577,7 +1577,7 @@ add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
  */
 function epl_listing_toolbar_items() {
 
-	echo wp_kses_post( get_epl_listing_toolbar_items() );
+	echo get_epl_listing_toolbar_items(); //phpcs:ignore;
 
 }
 add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
