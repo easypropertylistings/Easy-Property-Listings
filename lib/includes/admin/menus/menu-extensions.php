@@ -76,7 +76,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 
 			// Remaining fields are probably dynamic fields added via javascript/jquery save them as well if they are not already in $epl_settings.
 			foreach ( $_REQUEST as $dynamic_key  => $dynamic_value ) {
-				if ( '' !== $dynamic_value ) {
+				if ( !empty( $dynamic_value ) ) {
 					$epl_settings[ $dynamic_key ] = $dynamic_value;
 				}
 			}
@@ -136,7 +136,7 @@ $epl_settings = get_option( 'epl_settings' );
 
 					$current_class = $active_sub_tab === 'tab-menu-'.sanitize_title( $ext_field_group['label'] ) ? 'epl-fields-menu-current' : '';
 
-					if ( '' === $active_sub_tab && 1 === $counter ) {
+					if ( empty( $active_sub_tab ) && 1 === $counter ) {
 						$current_class = 'epl-fields-menu-current';
 					}
 					if ( ! empty( $ext_field_group['label'] ) ) {
@@ -159,7 +159,7 @@ $epl_settings = get_option( 'epl_settings' );
 					$counter = 1;
 					foreach ( $ext_field_groups['fields'] as $field_group ) {
 						$current_class = $active_sub_tab === 'tab-menu-'.sanitize_title($field_group['label']) ? 'epl-fields-field-current' : '';
-						if ( '' === $active_sub_tab && 1 === $counter ) {
+						if ( empty( $active_sub_tab ) && 1 === $counter ) {
 							$current_class = 'epl-fields-field-current';
 						}
 						?>
