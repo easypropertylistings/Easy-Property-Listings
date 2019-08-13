@@ -741,9 +741,9 @@ add_action( 'save_post', 'epl_sync_property_price_global', 40, 3 );
  * Filter the contacts comments
  *
  * @since 3.3.0
- * @param array $avatar Update.
+ * @param array  $avatar Update.
  * @param string $id_or_email User ID or email address.
- * @param array $args Update.
+ * @param array  $args Update.
  * @return array|string $avatar
  */
 function epl_get_avatar_filter( $avatar, $id_or_email, $args ) {
