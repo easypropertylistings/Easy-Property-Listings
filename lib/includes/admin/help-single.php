@@ -123,7 +123,7 @@ function epl_listings_contextual_help() {
 
 	$pricing .= '<p><strong>' . __( 'Display Price', 'easy-property-listings' ) . '</strong> — ' . __( 'When this is not ticked your "No Price Label" will be displayed which you can adjust from settings. Your custom No Price label is currenty:', 'easy-property-listings' ) . ' <code>' . $label_poa . '</code></p>';
 
-	$pricing .= '<p><strong>' . epl_meta_under_offer_label() . '</strong> — ' . __( 'Tick this when your listing is pending sale. The price will be replaced with your cusom label which is currently:', 'easy-property-listings' ) . ' <code>' . epl_meta_under_offer_label() . '</code></p>';
+	$pricing .= '<p><strong>' . epl_meta_under_offer_label() . '</strong> — ' . __( 'Tick this when your listing is pending sale. The price will be replaced with your custom label which is currently:', 'easy-property-listings' ) . ' <code>' . epl_meta_under_offer_label() . '</code></p>';
 
 	$pricing .= '<p><strong>' . __( 'Sale Price', 'easy-property-listings' ) . '</strong> — ' . __( 'Once your listing is sold, you can enter the sale price and you can choose to "Display Sale Price" to your visitor.', 'easy-property-listings' ) . '</p>';
 

@@ -253,7 +253,7 @@ function epl_number_suffix_callback( $v, $suffix = ' +' ) {
  * Get the price slider default ranges
  *
  * @param string $post_type Post type.
- * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
+ * @param string $transaction Transaction param may come in handy in commercial search where we have both sale & lease commercial properties.
  *
  * @return array|false|mixed|void
  * @since 3.3
@@ -283,7 +283,7 @@ function epl_get_price_slider_array( $post_type = 'property', $transaction = 'de
  * Get the price array for the price slider
  *
  * @param string $post_type Post type.
- * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
+ * @param string $transaction Transaction param may come in handy in commercial search where we have both sale & lease commercial properties.
  *
  * @return array|false|mixed|void
  * @since 3.1
@@ -317,7 +317,7 @@ function epl_get_price_array( $post_type = 'property', $transaction = 'default' 
  * Get the price meta key
  *
  * @param string $post_type Post type.
- * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
+ * @param string $transaction Transaction param may come in handy in commercial search where we have both sale & lease commercial properties.
  *
  * @return mixed|void
  * @since 3.1
@@ -348,7 +348,7 @@ function epl_get_price_meta_key( $post_type = 'property', $transaction = 'defaul
  *
  * @param string $post_type Post type.
  * @param string $property_status Listing status.
- * @param string $transaction_type Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
+ * @param string $transaction_type Transaction param may come in handy in commercial search where we have both sale & lease commercial properties.
  *
  * @return mixed|void
  * @since 2.2
@@ -1279,8 +1279,7 @@ function epl_get_available_locations( $post_type = '', $property_status = '' ) {
  * @since  2.3.1
  */
 function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
-	$range_sep  = apply_filters( 'search_field_range_seperator', '-' );
-	$option_sep = apply_filters( 'search_field_option_seperator', ',' );
+	$range_sep  = apply_filters( 'epl_search_field_range_separator', '-' );
 	foreach ( $meta_query as $key => &$query ) {
 
 		if ( isset( $query['compare'] ) && isset( $query['value'] )
