@@ -373,7 +373,7 @@ class EPL_SL_Plugin_Updater {
 	/**
 	 * Disable SSL verification in order to prevent download update failures.
 	 *
-	 * @param array $args Arguments.
+	 * @param array  $args Arguments.
 	 * @param string $url URL.
 	 *
 	 * @return array $array
