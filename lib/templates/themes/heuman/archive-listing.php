@@ -53,7 +53,6 @@ endwhile;
 			<div class="post-list group">
 				<?php do_action( 'epl_property_search_not_found' ); ?>
 			</div>
-		</div>
 	</div><!--/.pad-->
 
 </section><!--/.content-->
