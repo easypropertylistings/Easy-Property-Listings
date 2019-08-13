@@ -983,7 +983,22 @@ h3.epl-welcome-sub-heading {
 	line-height: 1.6;
 	height: auto;
 }
+/***** Popover box *****/
+.epl-popover-element {
+	padding: 15px 15px 0 15px;
+}
+.epl-popover-title {
 
+}
+.epl-gui-help {
+
+}
+.epl-label {
+
+}
+.epl-popover-table {
+
+}
 /***** Contact Styles *****/
 #epl-item-tab-wrapper {
 	margin-left: -1px;
