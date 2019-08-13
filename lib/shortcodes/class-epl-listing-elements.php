@@ -137,8 +137,10 @@ class EPL_Listing_Elements {
 	/**
 	 * Get meta
 	 *
-	 * @since 3.3
 	 * @param array $atts Array of attributes for the meta field.
+	 *
+	 * @return string|void
+	 * @since 3.3
 	 */
 	public function epl_meta( $atts ) {
 
