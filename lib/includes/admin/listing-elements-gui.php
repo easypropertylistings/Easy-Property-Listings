@@ -49,7 +49,7 @@ function epl_listing_elements_gui() {
 		}
 		#TB_ajaxContent .wrap select, #TB_ajaxContent .wrap input {
 			width: 200px;
-			margin: 7px 25px 10px 0px;
+			margin: 7px 25px 10px 0;
 		}
 		#TB_ajaxContent .wrap span {
 			width: 100%;
