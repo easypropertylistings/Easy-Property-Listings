@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$url   = admin_url( 'admin.php?page=epl-tools&tab=' . $tab );
 				$url   = epl_show_reset_tab() ? add_query_arg( array( 'dev' => 'true' ), $url ) : $url;
 
-				echo "<a class='nav-tab" . esc_url( $class ) . "' href='" . esc_url( $url ) . "'>" . esc_attr( $tab_options['label'] ) . '</a>';
+				echo "<a class='nav-tab" . esc_attr( $class ) . "' href='" . esc_url( $url ) . "'>" . esc_attr( $tab_options['label'] ) . '</a>';
 			}
 			echo '</h1>';
 			?>
