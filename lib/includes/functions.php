@@ -93,8 +93,10 @@ function epl_get_thumbnail_sizes() {
  * Remote get function
  *
  * @param string $url Url.
- * @since 1.0
+ *
+ * @return string
  * @since 3.3.5 Removed curl.
+ * @since 1.0
  */
 function epl_remote_url_get( $url ) {
 
@@ -2207,7 +2209,10 @@ function epl_month_num_to_name( $n ) {
  * Retrieve contacts from the database
  *
  * @access  public
+ *
  * @param array $args Arguments.
+ *
+ * @return bool|int[]|mixed|WP_Post[]
  * @since   3.0
  */
 function epl_get_contacts( $args = array() ) {
@@ -2327,7 +2332,9 @@ function epl_get_contact_categories() {
  * Get Contact Labels
  *
  * @param string $category Category label.
+ *
  * @access  public
+ * @return string
  * @since   3.0
  */
 function get_category_label( $category ) {
@@ -2345,6 +2352,8 @@ function get_category_label( $category ) {
  *
  * @param string $haystack String.
  * @param string $needle String.
+ *
+ * @return bool
  * @since 3.3
  */
 function epl_starts_with( $haystack, $needle ) {
@@ -2357,6 +2366,8 @@ function epl_starts_with( $haystack, $needle ) {
  *
  * @param string $haystack String.
  * @param string $needle String.
+ *
+ * @return bool
  * @since 3.3
  */
 function epl_ends_with( $haystack, $needle ) {
@@ -2628,6 +2639,8 @@ function epl_get_property_com_property_extent_opts() {
  * Get author id from name
  *
  * @param string $author Author name.
+ *
+ * @return int
  * @since 3.1.1
  */
 function epl_get_author_id_from_name( $author ) {
@@ -2689,7 +2702,9 @@ add_action( 'wp', 'epl_single_and_archive_functions', 99 );
  * Recursive array map for multi dimensional array
  *
  * @param string $callback Callback.
- * @param array  $array Array.
+ * @param array $array Array.
+ *
+ * @return array
  * @since 3.3.5
  */
 function epl_array_map_recursive( $callback, $array ) {

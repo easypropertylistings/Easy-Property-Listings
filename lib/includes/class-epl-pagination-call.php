@@ -44,6 +44,8 @@ class EPL_Pagination_Call {
 	 * Get the key
 	 *
 	 * @param array $key Key name.
+	 *
+	 * @return mixed
 	 * @since  2.1
 	 */
 	public function __get( $key ) {
@@ -147,7 +149,9 @@ class EPL_Pagination_Call {
 	/**
 	 * Get url
 	 *
-	 * @param  string $page Page number.
+	 * @param string $page Page number.
+	 *
+	 * @return string
 	 * @since  2.1
 	 */
 	public function get_url( $page ) {

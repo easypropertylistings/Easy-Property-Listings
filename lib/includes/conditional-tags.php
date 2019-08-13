@@ -56,6 +56,8 @@ function epl_all_post_types() {
  * Check if post is core epl post
  *
  * @param string $type EPL post type.
+ *
+ * @return bool
  * @since 2.3
  */
 function is_epl_core_post( $type = null ) {
@@ -67,6 +69,8 @@ function is_epl_core_post( $type = null ) {
  * Check if post is sales post
  *
  * @param string $type EPL post type.
+ *
+ * @return bool
  * @since 2.3
  */
 function is_epl_sales_post( $type = null ) {
@@ -78,6 +82,8 @@ function is_epl_sales_post( $type = null ) {
  * Check if post is rental post
  *
  * @param string $type EPL post type.
+ *
+ * @return bool
  * @since 2.3
  */
 function is_epl_rental_post( $type = null ) {
@@ -89,6 +95,8 @@ function is_epl_rental_post( $type = null ) {
  * Check if current post is of epl
  *
  * @param string $type EPL post type.
+ *
+ * @return bool
  * @since 2.2
  */
 function is_epl_post( $type = null ) {
@@ -120,6 +128,8 @@ function is_epl_post_single() {
  * Check if cpt is from epl
  *
  * @param string $type EPL post type.
+ *
+ * @return bool
  * @since 2.2
  */
 function is_epl_post_type( $type ) {

@@ -23,8 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * [listing_open post_type="property,rental"] option. You can also
  * limit the number of entries that display. using  [epl-property-open limit="5"]
  *
- * @since       1.0
  * @param array $atts Shortcode attributes.
+ *
+ * @return false|string
+ * @since       1.0
  */
 function epl_shortcode_property_open_callback( $atts ) {
 	$property_types = epl_get_active_post_types();

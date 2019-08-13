@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * are used in the author widgets and profile boxes
  *
  * @param array $contactmethods User contact methods.
+ *
+ * @return array
  * @since 1.0
  */
 function epl_property_admin_contact( $contactmethods ) {
@@ -129,6 +131,8 @@ function epl_add_custom_user_profile_fields( $user ) { ?>
  * Save and update additional author profile box information
  *
  * @param int $user_id User ID.
+ *
+ * @return bool
  * @since 1.0
  */
 function epl_save_custom_user_profile_fields( $user_id ) {

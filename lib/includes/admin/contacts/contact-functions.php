@@ -92,6 +92,7 @@ add_filter( 'epl_contact_tabs', 'epl_register_delete_contact_tab', PHP_INT_MAX, 
  *
  * @param [type] $contact_id Contact ID.
  *
+ * @return string|void
  * @since  3.0
  */
 function epl_get_next_contact_link( $contact_id ) {
@@ -128,6 +129,7 @@ function epl_get_next_contact_link( $contact_id ) {
  *
  * @param [type] $contact_id Contact ID.
  *
+ * @return string|void
  * @since  3.0
  */
 function epl_get_prev_contact_link( $contact_id ) {

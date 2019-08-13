@@ -291,7 +291,10 @@ class EPL_METABOX {
 	 * used to save all the meta fields
 	 *
 	 * @see https://codex.wordpress.org/Plugin_API/Action_Reference/save_post
+	 *
 	 * @param int $post_ID The post ID.
+	 *
+	 * @return int
 	 */
 	public function save_meta_box( $post_ID ) {
 

@@ -148,9 +148,11 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	/**
 	 * Widget update.
 	 *
-	 * @since 1.0
 	 * @param array $new_instance Old values.
 	 * @param array $old_instance New values.
+	 *
+	 * @return array
+	 * @since 1.0
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance          = $old_instance;

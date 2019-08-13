@@ -539,6 +539,8 @@ class EPL_SL_Plugin_Updater {
 	 * Get cached version info
 	 *
 	 * @param string $cache_key The cache key.
+	 *
+	 * @return bool
 	 */
 	public function get_cached_version_info( $cache_key = '' ) {
 

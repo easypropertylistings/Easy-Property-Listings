@@ -2507,9 +2507,11 @@ function epl_syntax_highlight( $str = '', $class = '' ) {
 /**
  * Strip Tags
  *
- * @since 2.2
  * @param string $value
  * @param string $allowed_tags
+ *
+ * @return string
+ * @since 2.2
  */
 function epl_strip_tags( $value, $allowed_tags = '' ) {
 

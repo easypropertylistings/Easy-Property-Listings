@@ -59,6 +59,8 @@ add_action( 'after_setup_theme', 'epl_image_sizes' );
  * Gives the hard cropped image a friendly name
  *
  * @param array $epl_sizes Array of image sizes.
+ *
+ * @return array
  * @since 1.0
  */
 function epl_image_size_names_choose( $epl_sizes ) {
@@ -113,6 +115,8 @@ add_action( 'pre_get_posts', 'epl_custom_post_author_archive' );
  * will be part of the form.
  *
  * @param string $value Form pre populating field.
+ *
+ * @return string
  * @since 1.0
  */
 function epl_populate_post_author_email( $value ) {

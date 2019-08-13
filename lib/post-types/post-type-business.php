@@ -190,8 +190,10 @@ if ( is_admin() ) {
 	/**
 	 * Manage Business Columns Sorting
 	 *
-	 * @since 1.0
 	 * @param array $columns Column array.
+	 *
+	 * @return array
+	 * @since 1.0
 	 */
 	function epl_manage_business_sortable_columns( $columns ) {
 		$columns['property_status'] = 'property_status';
