@@ -2120,9 +2120,9 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 /**
  * Get Property Meta
  *
- * @param $key
+ * @param string $key Meta key.
  *
- * @return
+ * @return $key Meta key value
  * @since 2.1
  */
 function get_property_meta( $key ) {
@@ -2645,12 +2645,12 @@ function epl_esc_attr( $value ) {
 /**
  * Post Count
  *
- * @param string $type
- * @param $meta_key
- * @param $meta_value
- * @param string $author_id
+ * @param string $type Type.
+ * @param string $meta_key Meta key name.
+ * @param string $meta_value Value.
+ * @param string $author_id Author ID.
  *
- * @return
+ * @return null
  * @since 2.2
  */
 function epl_get_post_count( $type = '', $meta_key, $meta_value, $author_id = '' ) {

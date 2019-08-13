@@ -19,8 +19,8 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	 * Fallback in case the calendar extension is not loaded in PHP
 	 *
 	 * @param string $calendar Calendar type.
-	 * @param int $month The month.
-	 * @param int $year The year.
+	 * @param int    $month The month.
+	 * @param int    $year The year.
 	 *
 	 * @return false|string
 	 * @since 3.3.3
