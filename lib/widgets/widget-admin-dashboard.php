@@ -123,7 +123,7 @@ function epl_get_plural( $count, $singular ) {
 }
 
 /**
- * Status Dashboard Widget Hghlights
+ * Status Dashboard Widget Highlights
  *
  * @since 1.3
  * @param string $type Option for the case.

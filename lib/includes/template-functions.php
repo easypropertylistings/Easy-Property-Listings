@@ -287,7 +287,7 @@ function epl_archive_custom_excerpt_length( $length ) {
 }
 
 /**
- * Since 3.1.20  filter which listing status shouldnt be displayed
+ * Since 3.1.20  filter which listing status should not be displayed
  */
 function epl_hide_listing_statuses() {
 
