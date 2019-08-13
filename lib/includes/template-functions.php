@@ -2120,9 +2120,10 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 /**
  * Get Property Meta
  *
- * @since 2.1
  * @param $key
+ *
  * @return
+ * @since 2.1
  */
 function get_property_meta( $key ) {
 	global $property;
@@ -2644,12 +2645,13 @@ function epl_esc_attr( $value ) {
 /**
  * Post Count
  *
- * @since 2.2
  * @param string $type
  * @param $meta_key
  * @param $meta_value
  * @param string $author_id
+ *
  * @return
+ * @since 2.2
  */
 function epl_get_post_count( $type = '', $meta_key, $meta_value, $author_id = '' ) {
 	global $wpdb;
