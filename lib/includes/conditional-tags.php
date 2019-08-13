@@ -106,7 +106,7 @@ function is_epl_post( $type = null ) {
 	}
 
 	$type = null === $type ? get_post_type() : $type;
-	return  in_array( $type, epl_all_post_types(), true );
+	return in_array( $type, epl_all_post_types(), true );
 }
 
 /**
@@ -121,7 +121,7 @@ function is_epl_post_single() {
 		return false;
 	}
 
-	return  is_singular( epl_all_post_types() );
+	return is_singular( epl_all_post_types() );
 }
 
 /**
@@ -139,7 +139,7 @@ function is_epl_post_type( $type ) {
 		return false;
 	}
 
-	return  ( in_array( $type, epl_all_post_types(), true ) && get_post_type() === $type );
+	return ( in_array( $type, epl_all_post_types(), true ) && get_post_type() === $type );
 }
 
 /**
@@ -154,7 +154,7 @@ function is_epl_post_archive() {
 		return false;
 	}
 
-	return  is_post_type_archive( epl_all_post_types() );
+	return is_post_type_archive( epl_all_post_types() );
 }
 
 /**
