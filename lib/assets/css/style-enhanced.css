@@ -506,7 +506,6 @@ width: 100%;
 .epl-property-blog-image-cover.epl-listing-grid-view-forced:hover .epl-blog-image img {
 	-webkit-transition: all 500ms;
 	-moz-transition: all  500ms;
-	-ms-transition: all  500ms;
 	transition: all  500ms;
 }
 .epl-property-blog-image-cover.epl-listing-grid-view .property-content-wrapper:hover,
