@@ -330,7 +330,8 @@ if ( ! function_exists( 'epl_get_multipage_link' ) ) :
 		if ( 1 === $page ) {
 			$url = get_permalink();
 		} else {
-			if ( '' === get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
+			$opt_permalink_str = get_option( 'permalink_structure' );
+			if ( empty( $opt_permalink_str ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
 				$url = add_query_arg( 'page', $page, get_permalink() );
 			} elseif ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_on_front' ) === $post->ID ) {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $wp_rewrite->pagination_base . "/$page", 'single_paged' );
