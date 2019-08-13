@@ -1280,6 +1280,7 @@ function epl_get_available_locations( $post_type = '', $property_status = '' ) {
  */
 function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
 	$range_sep  = apply_filters( 'epl_search_field_range_separator', '-' );
+	$option_sep = apply_filters( 'epl_search_field_option_separator', ',' );
 	foreach ( $meta_query as $key => &$query ) {
 
 		if ( isset( $query['compare'] ) && isset( $query['value'] )
