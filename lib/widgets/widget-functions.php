@@ -239,9 +239,11 @@ function epl_search_widget_fields() {
 /**
  * Number Suffix Callback
  *
- * @since 2.0
  * @param string $v Value.
  * @param string $suffix Suffix.
+ *
+ * @return string
+ * @since 2.0
  */
 function epl_number_suffix_callback( $v, $suffix = ' +' ) {
 	return $v . '' . $suffix;
@@ -250,9 +252,11 @@ function epl_number_suffix_callback( $v, $suffix = ' +' ) {
 /**
  * Get the price slider default ranges
  *
- * @since 3.3
  * @param string $post_type Post type.
- * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
+ * @param string $transaction Transaction param may come in handy in commercial search where we have both sale & lease commercial properties.
+ *
+ * @return array|false|mixed|void
+ * @since 3.3
  */
 function epl_get_price_slider_array( $post_type = 'property', $transaction = 'default' ) {
 
@@ -278,9 +282,11 @@ function epl_get_price_slider_array( $post_type = 'property', $transaction = 'de
 /**
  * Get the price array for the price slider
  *
- * @since 3.1
  * @param string $post_type Post type.
- * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
+ * @param string $transaction Transaction param may come in handy in commercial search where we have both sale & lease commercial properties.
+ *
+ * @return array|false|mixed|void
+ * @since 3.1
  */
 function epl_get_price_array( $post_type = 'property', $transaction = 'default' ) {
 
@@ -310,9 +316,11 @@ function epl_get_price_array( $post_type = 'property', $transaction = 'default' 
 /**
  * Get the price meta key
  *
- * @since 3.1
  * @param string $post_type Post type.
- * @param string $transaction Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
+ * @param string $transaction Transaction param may come in handy in commercial search where we have both sale & lease commercial properties.
+ *
+ * @return mixed|void
+ * @since 3.1
  */
 function epl_get_price_meta_key( $post_type = 'property', $transaction = 'default' ) {
 
@@ -338,10 +346,12 @@ function epl_get_price_meta_key( $post_type = 'property', $transaction = 'defaul
 /**
  * Search widget form fields for search widget - frontend
  *
- * @since 2.2
  * @param string $post_type Post type.
  * @param string $property_status Listing status.
- * @param string $transaction_type Transaction param may come in handy in commerical search where we have both sale & lease commercial properties.
+ * @param string $transaction_type Transaction param may come in handy in commercial search where we have both sale & lease commercial properties.
+ *
+ * @return mixed|void
+ * @since 2.2
  */
 function epl_search_widget_fields_frontend( $post_type = '', $property_status = '', $transaction_type = 'default' ) {
 
@@ -515,7 +525,6 @@ function epl_search_widget_fields_frontend( $post_type = '', $property_status = 
 				'key'           => 'search_price_global',
 				'meta_key'      => 'property_price_global_from',
 				'label'         => __( 'Search Price From', 'easy-property-listings' ),
-				'type'          => 'select',
 				'option_filter' => 'global_price_from',
 				'options'       => $price_slider_array,
 				'type'          => 'select',
@@ -532,7 +541,6 @@ function epl_search_widget_fields_frontend( $post_type = '', $property_status = 
 				'key'           => 'search_price_global',
 				'meta_key'      => 'property_price_global_to',
 				'label'         => __( 'Search Price To', 'easy-property-listings' ),
-				'type'          => 'select',
 				'option_filter' => 'global_price_to',
 				'options'       => $price_slider_array,
 				'type'          => 'select',
@@ -549,7 +557,6 @@ function epl_search_widget_fields_frontend( $post_type = '', $property_status = 
 				'key'           => 'search_price',
 				'meta_key'      => 'property_price_from',
 				'label'         => __( 'Price From', 'easy-property-listings' ),
-				'type'          => 'select',
 				'option_filter' => 'price_from',
 				'options'       => $price_array,
 				'type'          => 'select',
@@ -566,7 +573,6 @@ function epl_search_widget_fields_frontend( $post_type = '', $property_status = 
 				'key'           => 'search_price',
 				'meta_key'      => 'property_price_to',
 				'label'         => __( 'Price To', 'easy-property-listings' ),
-				'type'          => 'select',
 				'option_filter' => 'price_to',
 				'options'       => $price_array,
 				'type'          => 'select',
@@ -1031,11 +1037,12 @@ function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $
 /**
  * Listings search.
  *
+ * @param WP_Query $query WordPress Query object.
+ * @param array $data That contains epl search key value pairs and if it's empty it will replace by $_REQUEST.
+ * @param boolean $get_posts If set to true get_posts of WP_Query will execute on query and returns posts.
+ *
+ * @return array posts if query is set.
  * @since  2.3.1
- * @param  WP_Query $query      WordPress Query object.
- * @param  array    $data       That contains epl search key value pairs and if it's empty it will replace by $_REQUEST.
- * @param  boolean  $get_posts  If set to true get_posts of WP_Query will execute on query and returns posts.
- * @return Searched posts if query is set.
  */
 function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
 	// phpcs:disable WordPress.Security.NonceVerification
@@ -1082,10 +1089,12 @@ function epl_is_search() {
 /**
  * Get Meta Values
  *
- * @since  2.3.1
  * @param string $key Meta key name.
  * @param string $type Post type name.
  * @param string $status Status type.
+ *
+ * @return mixed|void
+ * @since  2.3.1
  */
 function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
@@ -1166,8 +1175,10 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 /**
  * Esc Values
  *
- * @since  2.3.1
  * @param string $text String output.
+ *
+ * @return string
+ * @since  2.3.1
  */
 function epl_esc_like( $text ) {
 	return addcslashes( $text, '_%\\' );
@@ -1176,9 +1187,11 @@ function epl_esc_like( $text ) {
 /**
  * Search Where
  *
- * @since  2.3.1
  * @param string $where Return where.
- * @param array  $wp_query WordPress query object.
+ * @param array $wp_query WordPress query object.
+ *
+ * @return string
+ * @since  2.3.1
  */
 function epl_listings_where( $where, $wp_query ) {
 	global $wpdb;
@@ -1245,9 +1258,11 @@ function epl_get_available_terms( $tax = 'location', $post_type = '', $property_
 /**
  * Search Get Locations
  *
+ * @param string $post_type Post type name.
+ * @param string $property_status Listing status.
+ *
+ * @return Available
  * @since  2.3.1
- * @param  string $post_type Post type name.
- * @param  string $property_status Listing status.
  */
 function epl_get_available_locations( $post_type = '', $property_status = '' ) {
 	return epl_get_available_terms( 'location', $post_type, $property_status );
@@ -1257,13 +1272,15 @@ function epl_get_available_locations( $post_type = '', $property_status = '' ) {
 /**
  * Pre Process Search Meta
  *
+ * @param array $meta_query Array of meta query.
+ * @param array $form_fields Form fields.
+ *
+ * @return mixed|void
  * @since  2.3.1
- * @param  array $meta_query Array of meta query.
- * @param  array $form_fields Form fields.
  */
 function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
-	$range_sep  = apply_filters( 'search_field_range_seperator', '-' );
-	$option_sep = apply_filters( 'search_field_option_seperator', ',' );
+	$range_sep  = apply_filters( 'epl_search_field_range_separator', '-' );
+	$option_sep = apply_filters( 'epl_search_field_option_separator', ',' );
 	foreach ( $meta_query as $key => &$query ) {
 
 		if ( isset( $query['compare'] ) && isset( $query['value'] )
@@ -1285,8 +1302,10 @@ function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
 /**
  * Contacts widget form functions
  *
+ * @param array $atts Array of attributes.
+ *
+ * @return mixed|void
  * @since  3.0
- * @param  array $atts Array of attributes.
  */
 function epl_contact_capture_get_widget_fields( $atts ) {
 	$property_id = 0;

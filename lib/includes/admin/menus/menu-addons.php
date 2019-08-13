@@ -36,8 +36,8 @@ add_action( 'admin_menu', 'epl_add_ons_init' );
  *
  * Gets the add-ons page feed.
  *
+ * @return mixed|string $cache
  * @since 1.0
- * @return $cache
  */
 function epl_add_ons_get_feed() {
 	$cache = get_transient( 'easypropertylistings_add_ons_feed' );

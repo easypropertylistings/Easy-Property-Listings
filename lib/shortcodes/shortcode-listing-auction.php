@@ -23,8 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * [listing_auction post_type="property,rental" status="current,sold,leased" template="default"] option. You can also
  * limit the number of entries that display. using  [listing_auction limit="5"]
  *
- * @since       1.0
  * @param array $atts Shortcode attributes.
+ *
+ * @return false|string
+ * @since       1.0
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();

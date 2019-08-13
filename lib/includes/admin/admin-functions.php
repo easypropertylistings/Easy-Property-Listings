@@ -18,10 +18,12 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	/**
 	 * Fallback in case the calendar extension is not loaded in PHP
 	 *
-	 * @since 3.3.3
 	 * @param string $calendar Calendar type.
 	 * @param int    $month The month.
 	 * @param int    $year The year.
+	 *
+	 * @return false|string
+	 * @since 3.3.3
 	 */
 	function cal_days_in_month( $calendar, $month, $year ) {
 		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
@@ -348,9 +350,10 @@ function epl_serialize( $data ) {
 /**
  * Un-serialize Variable
  *
+ * @param string $data String of data to serialize.
+ *
+ * @return mixed un-serialized string.
  * @since  3.3.0
- * @param  string $data String of data to serialize.
- * @return un-serialized string.
  */
 function epl_unserialize( $data ) {
 	return unserialize( base64_decode( $data ) ); //phpcs:ignore
@@ -741,7 +744,7 @@ add_action( 'save_post', 'epl_sync_property_price_global', 40, 3 );
  * @param array  $avatar Update.
  * @param string $id_or_email User ID or email address.
  * @param array  $args Update.
- * @return $avatar
+ * @return array|string $avatar
  */
 function epl_get_avatar_filter( $avatar, $id_or_email, $args ) {
 

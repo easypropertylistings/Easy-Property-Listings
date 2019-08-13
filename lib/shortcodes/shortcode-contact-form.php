@@ -17,8 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * This shortcode allows for you to capture contacts for listings
  *
- * @since 3.0
  * @param array $atts Shortcode array of options.
+ *
+ * @return false|string
+ * @since 3.0
  */
 function epl_contact_capture_form( $atts ) {
 

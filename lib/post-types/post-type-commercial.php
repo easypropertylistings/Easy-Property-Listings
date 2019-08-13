@@ -81,9 +81,10 @@ if ( is_admin() ) {
 	/**
 	 * Manage Admin Business Post Type Columns: Heading.
 	 *
-	 * @since 1.0
 	 * @param array $columns Column array.
-	 * @return $columns with epl_post_type_commercial_land_admin_columns filter.
+	 *
+	 * @return mixed|void $columns with epl_post_type_commercial_land_admin_columns filter.
+	 * @since 1.0
 	 */
 	function epl_manage_commercial_heading( $columns ) {
 		global $epl_settings;
@@ -125,8 +126,8 @@ if ( is_admin() ) {
 	 * Manage Admin Commercial Post Type Columns: Row Contents
 	 *
 	 * @since 1.0
-	 * @param var $column column.
-	 * @param int $post_id post id.
+	 * @param string $column column.
+	 * @param int    $post_id post id.
 	 */
 	function epl_manage_commercial_columns_value( $column, $post_id ) {
 

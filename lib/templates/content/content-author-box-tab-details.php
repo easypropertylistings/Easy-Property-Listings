@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	foreach ( $social_icons as $social_icon ) {
 		$html = call_user_func( array( $epl_author, 'get_' . $social_icon . '_html' ) );
 		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput
-	} 
+	}
 	?>
 </div>
 

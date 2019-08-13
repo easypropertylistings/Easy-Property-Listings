@@ -249,7 +249,7 @@
 }
 .epl-property-single.view-expanded .property-pricing-details .property-feature-icons,
 .epl-property-single.view-condensed .property-pricing-details{
-    float: right;
+	float: right;
 }
 .epl-property-single.view-expanded  .item-street,
 .epl-property-single.view-expanded  .page-price-rent {

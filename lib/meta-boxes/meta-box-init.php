@@ -1317,7 +1317,6 @@ function epl_get_meta_boxes() {
 						array(
 							'name'      => 'property_com_car_spaces',
 							'label'     => __( 'Car Spaces', 'easy-property-listings' ),
-							'type'      => 'number',
 							'type'      => 'textarea',
 							'maxlength' => '5',
 						),
@@ -1494,7 +1493,6 @@ function epl_get_meta_boxes() {
 						array(
 							'name'      => 'property_energy_certificate_label',
 							'label'     => __( 'Title', 'easy-property-listings' ),
-							'type'      => 'file',
 							'type'      => 'text',
 							'maxlength' => '40',
 							'width'     => '3',
@@ -1556,8 +1554,8 @@ function epl_get_meta_boxes() {
 /**
  * Get field labels from meta box
  *
+ * @return mixed|void
  * @since 1.0
- * @return [type] [description]
  */
 function epl_get_meta_field_labels() {
 
@@ -1590,9 +1588,10 @@ function epl_get_meta_field_labels() {
 /**
  * Get meta field label
  *
+ * @param string $key Meta key name.
+ *
+ * @return mixed|void
  * @since 1.0
- * @param  string $key [description].
- * @return [type]      [description]
  */
 function epl_get_meta_field_label( $key = '' ) {
 

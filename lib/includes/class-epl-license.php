@@ -649,7 +649,10 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 * Adds this plugin to the beta page
 		 *
 		 * @access  public
-		 * @param   array $products Beta products.
+		 *
+		 * @param array $products Beta products.
+		 *
+		 * @return array
 		 * @since   2.6.11
 		 */
 		public function register_beta_support( $products ) {

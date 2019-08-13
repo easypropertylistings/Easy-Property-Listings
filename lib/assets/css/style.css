@@ -141,23 +141,23 @@
 
 /** Author loop box */
 .epl-loop-author-box-wrapper {
-    position: relative;
-    overflow: hidden;
-    border-top: 1px solid #eef3f6;
-    padding: 13px 0;
+	position: relative;
+	overflow: hidden;
+	border-top: 1px solid #eef3f6;
+	padding: 13px 0;
 }
 .epl-loop-author-image {
-    float: left;
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+	float: left;
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
 }
 .epl-loop-author-content {
-    float: left;
+	float: left;
 }
 .epl-loop-author-title {
-    line-height: 30px;
-    font-size: 13px;
+	line-height: 30px;
+	font-size: 13px;
 }
 
 /* Single Tab Content */
@@ -289,8 +289,8 @@ ul.epl-striped > *:nth-child(2n+1) {
 	list-style-type: none;
 }
 .epl-inspection-times ul.home-open-wrapper li {
-    line-height: 1.2;
-    margin-left: 0;
+	line-height: 1.2;
+	margin-left: 0;
 }
 .epl-inspection-times .epl-inspection-times-label {
 	margin: 0.5em 0 0;
@@ -350,25 +350,25 @@ ul.epl-striped > *:nth-child(2n+1) {
 
 /** Sorting Tabs */
 #epl-sort-tabs-listings {
-    list-style: none;
+	list-style: none;
 }
 
 #epl-sort-tabs-listings li {
-    display: inline-block;
-    outline: none;
-    border: 1px solid #ddd;
-    margin: 5px;
-    background: transparent;
+	display: inline-block;
+	outline: none;
+	border: 1px solid #ddd;
+	margin: 5px;
+	background: transparent;
 }
 
 #epl-sort-tabs-listings a {
-    text-decoration: none;
-    border: none;
-    box-shadow: unset;
-    color: #666;
-    display: block;
-    padding: 2px 10px;
-    background: #fff;
+	text-decoration: none;
+	border: none;
+	box-shadow: unset;
+	color: #666;
+	display: block;
+	padding: 2px 10px;
+	background: #fff;
 
 }
 #epl-sort-tabs-listings a:hover {
@@ -376,16 +376,16 @@ ul.epl-striped > *:nth-child(2n+1) {
 }
 
 #epl-sort-tabs-listings .epl-sortby-list.epl-sortby-selected a{
-    background: #666;
-    color: #fff
+	background: #666;
+	color: #fff
 }
 
 /** contact capture form */
 .epl-contact-widget-msgs.epl-contact-widget-msg-fail {
-    color: #f00;
+	color: #f00;
 }
 .epl-contact-widget-msgs.epl-contact-widget-msg-success {
-    color: #080;
+	color: #080;
 }
 
 @media screen and (max-width: 500px) {

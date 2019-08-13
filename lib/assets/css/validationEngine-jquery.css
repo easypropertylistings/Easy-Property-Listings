@@ -1,5 +1,3 @@
-
-
 /* Z-INDEX */
 .formError {
 	z-index: 990;
@@ -59,7 +57,6 @@
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
-	-o-border-radius: 6px;
 }
 .formError.inline .formErrorContent {
 	box-shadow: none;
@@ -70,7 +67,6 @@
 	border-radius: 0;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
-	-o-border-radius: 0;
 }
 .greenPopup .formErrorContent {
 	background: #33be40;

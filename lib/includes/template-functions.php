@@ -20,9 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Featured Image on archive template now loading through filter
  *
- * @since      2.2
+ * @param $post
  *
- * @param      <type> $post   The post.
+ * @since 2.2
  */
 function epl_reset_property_object( $post ) {
 
@@ -253,10 +253,9 @@ function epl_get_fallback_content_path() {
 /**
  * Attempts to load templates in order of priority
  *
- * @since      3.0
- *
- * @param      <type> $template   The template.
- * @param      array  $arguments  The arguments.
+ * @since 3.0
+ * @param $template
+ * @param array $arguments
  */
 function epl_get_template_part( $template, $arguments = array() ) {
 
@@ -286,11 +285,9 @@ function epl_get_template_part( $template, $arguments = array() ) {
 /**
  * Modify the Excerpt length on Archive pages
  *
- * @since      1.0
- *
- * @param      <type> $length  The length.
- *
- * @return     integer|string  ( description_of_the_return_value )
+ * @since 1.0
+ * @param $length
+ * @return int|string
  */
 function epl_archive_custom_excerpt_length( $length ) {
 	global $epl_settings;
@@ -306,9 +303,7 @@ function epl_archive_custom_excerpt_length( $length ) {
 }
 
 /**
- * Since 3.1.20  filter which listing status shouldnt be displayed
- *
- * @return     <type>  ( description_of_the_return_value )
+ * Since 3.1.20  filter which listing status should not be displayed
  */
 function epl_hide_listing_statuses() {
 
@@ -448,18 +443,18 @@ function epl_property_author_box_simple_grav() {
  *
  * @since      1.0
  *
- * @param      <type> $display            The display.
- * @param      <type> $image              The image.
- * @param      <type> $title              The title.
- * @param      <type> $icons              The icons.
+ * @param      string $display            The display.
+ * @param      string $image              The image.
+ * @param      string $title              The title.
+ * @param      string $icons              The icons.
  * @param      string $more_text          The more text.
- * @param      <type> $d_excerpt          The d excerpt.
- * @param      <type> $d_suburb           The d suburb.
- * @param      <type> $d_street           The d street.
- * @param      <type> $d_price            The d price.
- * @param      <type> $d_more             The d more.
- * @param      <type> $d_inspection_time  The d inspection time.
- * @param      <type> $d_ical_link        The d ical link.
+ * @param      string $d_excerpt          The d excerpt.
+ * @param      string $d_suburb           The d suburb.
+ * @param      string $d_street           The d street.
+ * @param      string $d_price            The d price.
+ * @param      string $d_more             The d more.
+ * @param      string $d_inspection_time  The d inspection time.
+ * @param      string $d_ical_link        The d ical link.
  */
 function epl_property_widget( $display, $image, $title, $icons, $more_text = "__('Read More','easy-property-listings' )", $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
 	global $property;
@@ -520,7 +515,7 @@ function epl_property_widget_list_option() {
  *
  * @since      1.0
  *
- * @param      <type> $image  The image.
+ * @param      string $image  The image.
  */
 function epl_property_widget_image_only_option( $image ) {
 	$property_status = get_post_meta( get_the_ID(), 'property_status', true );
@@ -537,10 +532,10 @@ function epl_property_widget_image_only_option( $image ) {
  *
  * @since      1.0 @revised 3.3
  *
- * @param      <type> $d_image   The d image.
- * @param      <type> $d_icons   The d icons.
- * @param      <type> $d_bio     The d bio.
- * @param      <type> $username  The username.
+ * @param      string $d_image   The d image.
+ * @param      string $d_icons   The d icons.
+ * @param      string $d_bio     The d bio.
+ * @param      string $username  The username.
  */
 function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $username ) {
 
@@ -572,10 +567,10 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
  *
  * @since      3.3
  *
- * @param      <type> $d_image   The d image.
- * @param      <type> $d_icons   The d icons.
- * @param      <type> $d_bio     The d bio.
- * @param      <type> $username  The username.
+ * @param      string $d_image   The d image.
+ * @param      string $d_icons   The d icons.
+ * @param      string $d_bio     The d bio.
+ * @param      string $username  The username.
  */
 function epl_show_author_widget_by_username( $d_image, $d_icons, $d_bio, $username ) {
 	$username = explode( ',', $username );
@@ -735,7 +730,7 @@ add_action( 'epl_property_price_content', 'epl_property_price' );
  * @param      array  $args        The arguments.
  * @param      string $returntype  The returntype.
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return false|string
  */
 function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 
@@ -789,6 +784,7 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 /**
  * Property icons
  *
+ * @param string $returntype
  * @since      1.0 @revised 3.3
  *
  * @param      string $returntype  The returntype.
@@ -918,9 +914,10 @@ function epl_get_property_heading( $listing = null ) {
 /**
  * Property Heading
  *
+ * @since 1.0
  * @since      1.0 @hooked the_property_heading
  *
- * @param      <type> $listing  The listing.
+ * @param      string $listing  The listing.
  */
 function epl_property_heading( $listing = null ) {
 	echo wp_kses_post( epl_get_property_heading( $listing ) );
@@ -1468,7 +1465,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
  *
  * @param      boolean $post_type  The post type.
  *
- * @return     <type>   ( description_of_the_return_value )
+ * @return     mixed|void
  */
 function epl_sorting_options( $post_type = null ) {
 	// phpcs:disable WordPress.Security.NonceVerification
@@ -1587,9 +1584,9 @@ add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
  *
  * @since      3.3
  *
- * @param      array $args   The arguments.
+ * @param array $args   The arguments.
  *
- * @return     string
+ * @return string
  */
 function get_epl_listing_toolbar_items( $args = array() ) {
 
@@ -1737,7 +1734,6 @@ function epl_sorting_tabs() {
  * @param      <type> $key    The key.
  * @param      <type> $value  The value.
  *
- * @return     string
  */
 function epl_add_or_update_params( $url, $key, $value ) {
 
@@ -1770,7 +1766,7 @@ function epl_add_or_update_params( $url, $key, $value ) {
  *
  * @since      2.0
  *
- * @param      <type> $query  The query.
+ * @param     array $query  The query.
  */
 function epl_archive_sorting( $query ) {
 	$post_types_sold   = array( 'property', 'land', 'commercial', 'business', 'commercial_land', 'location_profile', 'rural' );
@@ -1849,7 +1845,7 @@ function epl_author_class( $classes ) {
  *
  * @param      array $epl_author  The epl author.
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return false|string
  */
 function epl_author_tab_author_id( $epl_author = array() ) {
 
@@ -2122,7 +2118,7 @@ add_action( 'wp_ajax_nopriv_epl_update_listing_coordinates', 'epl_update_listing
  * @param      string $sep       The separator.
  * @param      string $after     The after.
  *
- * @return     boolean|string  ( description_of_the_return_value )
+ * @return bool|false|string|WP_Error|WP_Term[]
  */
 function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
 	$terms = get_the_terms( $id, $taxonomy );
@@ -2171,9 +2167,9 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
  *
  * @since      2.1
  *
- * @param      <type> $key    The key.
+ * @param string $key Meta key.
  *
- * @return     <type>  The property meta.
+ * @return     $key  The property meta.
  */
 function get_property_meta( $key ) {
 	global $property;
@@ -2200,7 +2196,7 @@ function the_property_meta( $key ) {
  * @param      boolean $class    The class.
  * @param      string  $context  The context.
  *
- * @return     <type>   ( description_of_the_return_value )
+ * @return mixed|void
  */
 function epl_template_class( $class = false, $context = 'single' ) {
 
@@ -2499,7 +2495,13 @@ add_action( 'wp', 'epl_apply_feeling_lucky_config', 1 );
  * @param      <type> $size               The size.
  * @param      <type> $attr               The attribute.
  *
- * @return     string  ( description_of_the_return_value )
+ * @since 2.2
+ * @param $html
+ * @param $post_id
+ * @param $post_thumbnail_id
+ * @param $size
+ * @param $attr
+ * @return string
  */
 function epl_remove_archive_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 
@@ -2574,7 +2576,7 @@ add_action( 'epl_property_the_content', 'epl_the_content' );
  *
  * @param      <type> $content  The content.
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return     false|string
  */
 function epl_feeling_lucky( $content ) {
 
@@ -2613,7 +2615,7 @@ add_filter( 'the_content', 'epl_feeling_lucky' );
  *
  * @param      string $text   The text.
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return mixed|void
  */
 function epl_trim_excerpt( $text = '' ) {
 
@@ -2650,7 +2652,7 @@ function epl_the_excerpt() {
  *
  * @param      string $deprecated  The deprecated.
  *
- * @return     string  ( description_of_the_return_value )
+ * @return mixed|string|void
  */
 function epl_get_the_excerpt( $deprecated = '' ) {
 	if ( ! empty( $deprecated ) ) {
@@ -2677,7 +2679,7 @@ function epl_get_the_excerpt( $deprecated = '' ) {
  * @param      string $str    The string.
  * @param      string $class  The class.
  *
- * @return     string  ( description_of_the_return_value )
+ * @return     string
  */
 function epl_syntax_highlight( $str = '', $class = '' ) {
 
@@ -2692,7 +2694,7 @@ function epl_syntax_highlight( $str = '', $class = '' ) {
  * @param      string $value the value.
  * @param      string $allowed_tags allowed tags.
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return string
  */
 function epl_strip_tags( $value, $allowed_tags = '' ) {
 
@@ -2709,7 +2711,7 @@ function epl_strip_tags( $value, $allowed_tags = '' ) {
  *
  * @param      <type> $value  The value.
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return string|void
  */
 function epl_esc_attr( $value ) {
 
@@ -2725,11 +2727,11 @@ function epl_esc_attr( $value ) {
  * @since      2.2
  *
  * @param      string $type        The type.
- * @param      <type> $meta_key    The meta key.
- * @param      <type> $meta_value  The meta value.
+ * @param      string $meta_key    The meta key.
+ * @param      string $meta_value  The meta value.
  * @param      string $author_id   The author identifier.
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return     null
  */
 function epl_get_post_count( $type = '', $meta_key, $meta_value, $author_id = '' ) {
 	global $wpdb;
@@ -2816,7 +2818,7 @@ function epl_get_inspection_time_format() {
  *
  * @param      <type> $inspection_date  The inspection date.
  *
- * @return     string  ( description_of_the_return_value )
+ * @return     string
  */
 function epl_inspection_format( $inspection_date ) {
 
@@ -2870,7 +2872,8 @@ add_filter( 'comments_array', 'epl_filter_listing_comments_array', 10, 2 );
 /**
  * Archive Page Title
  *
- * @since      3.0
+ * @since 3.0
+ * @return void the archive title
  */
 function epl_archive_title_callback() {
 	the_post();
@@ -2907,7 +2910,7 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  * @param      string $type   The type.
  * @param      string $name   The name.
  *
- * @return     $args
+ * @return mixed $args
  */
 function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 
@@ -2993,7 +2996,7 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
  *
  * @param      <type> $classes  The classes.
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return     array
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 

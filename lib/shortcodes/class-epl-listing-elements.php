@@ -40,8 +40,10 @@ class EPL_Listing_Elements {
 	/**
 	 * Output example code or value if in th loop
 	 *
-	 * @since 3.3
 	 * @param array $atts Array of attributes.
+	 *
+	 * @return false|string|void
+	 * @since 3.3
 	 */
 	public function listing_element( $atts ) {
 
@@ -118,8 +120,10 @@ class EPL_Listing_Elements {
 	/**
 	 * Output action
 	 *
-	 * @since 3.3
 	 * @param array $atts Array of attributes for the action.
+	 *
+	 * @return false|string|void
+	 * @since 3.3
 	 */
 	public function epl_action( $atts ) {
 		if ( ! isset( $atts['action_key'] ) ) {
@@ -148,8 +152,10 @@ class EPL_Listing_Elements {
 	/**
 	 * Get post
 	 *
-	 * @since 3.3
 	 * @param array $atts Array of attributes for the post object.
+	 *
+	 * @return false|string
+	 * @since 3.3
 	 */
 	public function post( $atts ) {
 

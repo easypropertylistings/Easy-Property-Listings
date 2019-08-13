@@ -17,9 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Listing Google Map [listing_map]
  *
- * @since       1.0
  * @param array $atts Shortcode attributes.
  * @param array $content Content.
+ *
+ * @return string
+ * @since       1.0
  */
 function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	global $property;
