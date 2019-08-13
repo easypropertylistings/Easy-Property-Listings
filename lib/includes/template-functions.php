@@ -242,9 +242,9 @@ function epl_get_content_path() {
 /**
  * Template Fallback Path
  *
+ * @return mixed|void
  * @since      3.0
  *
- * @return
  */
 function epl_get_fallback_content_path() {
 	return apply_filters( 'epl_templates_fallback_base_path', EPL_PATH_TEMPLATES_CONTENT );
@@ -305,8 +305,8 @@ function epl_archive_custom_excerpt_length( $length ) {
 /**
  * Filter which listing status should not be displayed
  *
+ * @return mixed|void
  * @since 3.1.20
- * @return
  */
 function epl_hide_listing_statuses() {
 
