@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * EPL_Property_Meta Class
  *
- * @var $property
  * @since      2.0
  */
 class EPL_Property_Meta {
