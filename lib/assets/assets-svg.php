@@ -279,7 +279,7 @@ add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );
  *
  * @param  string $styles Allowed SVG names.
  *
- * @return array
+ * @return array|string
  *
  * @since 3.4
  */
