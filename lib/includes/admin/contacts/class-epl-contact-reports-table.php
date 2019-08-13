@@ -404,12 +404,12 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 */
 	public function process_bulk_action() {
 
-		// Detect when a bulk action is being triggered...
+		// Detect when a bulk action is being triggered.
 		if ( 'bulk-delete' === $this->current_action() ) {
 
 			$delete_ids = esc_sql( sanitize_text_field( wp_unslash( $_GET['bulk-delete'] ) ) );
 
-			// loop over the array of record IDs and delete them.
+			// Loop over the array of record IDs and delete them.
 			foreach ( $delete_ids as $id ) {
 				$contact = new EPL_Contact( $id );
 				$contact->delete( $contact->id );
