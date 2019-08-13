@@ -248,6 +248,8 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @param string $key Meta key.
 	 * @param array  $field Field type.
+	 *
+	 * @return string
 	 * @since 2.3
 	 */
 	public function get_class( $key = '', $field = array() ) {
@@ -274,6 +276,8 @@ class EPL_FORM_BUILDER {
 	 * Get Field Attributes
 	 *
 	 * @param array $field Fields.
+	 *
+	 * @return string
 	 * @since 2.3
 	 */
 	public function get_attributes( $field ) {

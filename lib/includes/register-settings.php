@@ -35,7 +35,7 @@ function epl_get_settings() {
  * EPL Settings Function for returning all or by settings meta_key
  *
  * @param string $meta_key Meta key name.
- * @return all the settings in array
+ * @return array All the settings in array
  * @since 1.0
  */
 function epl_settings( $meta_key = '' ) {
@@ -50,5 +50,4 @@ function epl_settings( $meta_key = '' ) {
 	} else {
 		return $epl_settings;
 	}
-	return $epl_settings;
 }
