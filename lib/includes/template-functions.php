@@ -1927,7 +1927,7 @@ function epl_author_tab_contact_form( $epl_author = array() ) {
 	if ( empty( $epl_author ) ) {
 		global $epl_author;
 	}
-	echo wp_kses_post( $epl_author->get_author_contact_form() );
+	echo $epl_author->get_author_contact_form(); //phpcs:ignore
 }
 
 /**
