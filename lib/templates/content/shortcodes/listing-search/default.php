@@ -86,7 +86,7 @@ if ( ! empty( $selected_post_types ) ) :
 			}
 			$post_type_label = isset( $epl_settings[ 'widget_label_' . $post_type ] ) ? $epl_settings[ 'widget_label_' . $post_type ] : $post_type;
 
-			if ( '' === $post_type ) {
+			if ( empty( $post_type ) ) {
 				$post_type_label = epl_get_option( 'widget_label_all', 'All' );
 			}
 			echo '<li data-tab="epl_ps_tab_' . esc_attr( $tabcounter ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
@@ -150,7 +150,7 @@ if ( ! empty( $selected_post_types ) ) :
 			}
 			?>
 				<div class="epl-search-submit-row epl-search-submit property-type-search">
-					<input type="submit" value="<?php echo '' !== $submit_label ? esc_attr( $submit_label ) : esc_html__( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
+					<input type="submit" value="<?php echo !empty( $submit_label ) ? esc_attr( $submit_label ) : esc_html__( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
 				</div>
 			</form>
 			</div>

@@ -661,7 +661,7 @@ function epl_upgrade_db_to_3_3() {
 
 				case 'commercial':
 					$price = get_post_meta( $single->ID, 'property_price', true );
-					if ( '' === $price ) {
+					if ( empty( $price ) ) {
 						$price = get_post_meta( $single->ID, 'property_com_rent', true );
 					}
 					update_post_meta( $single->ID, 'property_price_global', $price );
@@ -722,7 +722,7 @@ function epl_sync_property_price_global( $post_id, $post, $update ) {
 		} elseif ( 'commercial' === $post->post_type ) {
 
 			$price = get_post_meta( $post_id, 'property_price', true );
-			if ( '' === $price ) {
+			if ( empty( $price ) ) {
 				$price = get_post_meta( $post_id, 'property_com_rent', true );
 			}
 			update_post_meta( $post_id, 'property_price_global', $price );
