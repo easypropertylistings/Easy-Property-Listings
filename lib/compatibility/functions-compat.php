@@ -49,7 +49,7 @@ function epl_the_property_address( $post_ID = '' ) {
  *
  * @param string $post_ID post id.
  *
- * @return the string for address
+ * @return string The address
  * @since 1.0
  */
 function epl_get_property_address( $post_ID = '' ) {
