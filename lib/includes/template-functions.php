@@ -2168,7 +2168,7 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
  *
  * @param string $key Meta key.
  *
- * @return  $key  The property meta.
+ * @return  string $key  The property meta.
  * @since 2.1
  */
 function get_property_meta( $key ) {
