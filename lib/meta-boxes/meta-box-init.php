@@ -1317,7 +1317,6 @@ function epl_get_meta_boxes() {
 						array(
 							'name'      => 'property_com_car_spaces',
 							'label'     => __( 'Car Spaces', 'easy-property-listings' ),
-							'type'      => 'number',
 							'type'      => 'textarea',
 							'maxlength' => '5',
 						),
@@ -1494,7 +1493,6 @@ function epl_get_meta_boxes() {
 						array(
 							'name'      => 'property_energy_certificate_label',
 							'label'     => __( 'Title', 'easy-property-listings' ),
-							'type'      => 'file',
 							'type'      => 'text',
 							'maxlength' => '40',
 							'width'     => '3',
