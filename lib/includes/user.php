@@ -27,11 +27,10 @@ function epl_property_admin_contact( $contactmethods ) {
 	$contactmethods['skype']        = __( 'Skype', 'easy-property-listings' );
 	$contactmethods['twitter']      = __( 'Twitter', 'easy-property-listings' );
 	$contactmethods['facebook']     = __( 'Facebook', 'easy-property-listings' );
-	// $contactmethods['google']     = __( 'Google Plus', 'easy-property-listings' );
-	$contactmethods['linkedin']  = __( 'LinkedIn', 'easy-property-listings' );
-	$contactmethods['instagram'] = __( 'Instagram', 'easy-property-listings' );
-	$contactmethods['pinterest'] = __( 'Pinterest', 'easy-property-listings' );
-	$contactmethods['youtube']   = __( 'Youtube', 'easy-property-listings' );
+	$contactmethods['linkedin']     = __( 'LinkedIn', 'easy-property-listings' );
+	$contactmethods['instagram']    = __( 'Instagram', 'easy-property-listings' );
+	$contactmethods['pinterest']    = __( 'Pinterest', 'easy-property-listings' );
+	$contactmethods['youtube']      = __( 'Youtube', 'easy-property-listings' );
 	return $contactmethods;
 }
 add_filter( 'user_contactmethods', 'epl_property_admin_contact', 10, 1 );
@@ -88,8 +87,8 @@ function epl_get_custom_user_profile_fields() {
  */
 function epl_add_custom_user_profile_fields( $user ) { ?>
 
-	<h3><?php _e( 'Easy Property Listings: Author Box Profile', 'easy-property-listings' ); ?></h3>
-	<p><?php _e( 'The following details will appear in your author box and widgets.', 'easy-property-listings' ); ?></p>
+	<h3><?php esc_html_e( 'Easy Property Listings: Author Box Profile', 'easy-property-listings' ); ?></h3>
+	<p><?php esc_html_e( 'The following details will appear in your author box and widgets.', 'easy-property-listings' ); ?></p>
 
 	<table class="form-table">
 		<?php
@@ -99,21 +98,21 @@ function epl_add_custom_user_profile_fields( $user ) { ?>
 			?>
 				<tr>
 					<th>
-						<label for="<?php echo $user_field['name']; ?>">
-							<?php echo $user_field['label']; ?>
+						<label for="<?php echo esc_attr( $user_field['name'] ); ?>">
+							<?php echo esc_attr( $user_field['label'] ); ?>
 						</label>
 					</th>
 					<td>
 						<input
 							type="text"
-							name="<?php echo $user_field['name']; ?>"
-							id="<?php echo $user_field['name']; ?>"
-							value="<?php echo get_the_author_meta( $user_field['name'], $user->ID ); ?>"
+							name="<?php echo esc_attr( $user_field['name'] ); ?>"
+							id="<?php echo esc_attr( $user_field['name'] ); ?>"
+							value="<?php echo wp_kses_post( get_the_author_meta( $user_field['name'], $user->ID ) ); ?>"
 							class="regular-text"
 						/><br />
 						<span class="description">
 							<?php
-							echo isset( $user_field['description'] ) ? $user_field['description'] : '';
+							echo isset( $user_field['description'] ) ? wp_kses_post( $user_field['description'] ) : '';
 							?>
 						</span>
 					</td>
@@ -140,8 +139,8 @@ function epl_save_custom_user_profile_fields( $user_id ) {
 
 	foreach ( $user_fields as $user_field ) {
 
-		if ( isset( $_POST[ $user_field['name'] ] ) ) {
-			update_user_meta( $user_id, $user_field['name'], sanitize_text_field( $_POST[ $user_field['name'] ] ) );
+		if ( isset( $_POST[ $user_field['name'] ] ) ) { //phpcs:ignore
+			update_user_meta( $user_id, $user_field['name'], sanitize_text_field( wp_unslash( $_POST[ $user_field['name'] ] ) ) ); //phpcs:ignore
 		}
 	}
 }
