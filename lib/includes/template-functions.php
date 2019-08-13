@@ -20,13 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Featured Image on archive template now loading through filter
  *
- * @param $post
+ * @param array $post Post object.
  *
  * @since 2.2
  */
 function epl_reset_property_object( $post ) {
 
-	global $epl_author,$epl_author_secondary;
+	global $epl_author, $epl_author_secondary;
 
 	if ( ! is_epl_post() ) {
 		return;
@@ -244,7 +244,7 @@ function epl_get_content_path() {
  *
  * @since      3.0
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return
  */
 function epl_get_fallback_content_path() {
 	return apply_filters( 'epl_templates_fallback_base_path', EPL_PATH_TEMPLATES_CONTENT );
@@ -254,8 +254,8 @@ function epl_get_fallback_content_path() {
  * Attempts to load templates in order of priority
  *
  * @since 3.0
- * @param $template
- * @param array $arguments
+ * @param string $template Template name.
+ * @param array  $arguments Options to pass to template.
  */
 function epl_get_template_part( $template, $arguments = array() ) {
 
@@ -286,7 +286,7 @@ function epl_get_template_part( $template, $arguments = array() ) {
  * Modify the Excerpt length on Archive pages
  *
  * @since 1.0
- * @param $length
+ * @param string $length Excerpt word length.
  * @return int|string
  */
 function epl_archive_custom_excerpt_length( $length ) {
@@ -303,7 +303,10 @@ function epl_archive_custom_excerpt_length( $length ) {
 }
 
 /**
- * Since 3.1.20  filter which listing status should not be displayed
+ * Filter which listing status should not be displayed
+ *
+ * @since 3.1.20
+ * @return
  */
 function epl_hide_listing_statuses() {
 
