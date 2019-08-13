@@ -257,9 +257,9 @@ class EPL_CPT {
 	 *
 	 * Helper function to add add_action WordPress filters.
 	 *
-	 * @param string $action Name of the action.
-	 * @param string $function Function to hook that will run on action.
-	 * @param int $priority Order in which to execute the function, relation to other functions hooked to this action.
+	 * @param string  $action Name of the action.
+	 * @param string  $function Function to hook that will run on action.
+	 * @param int     $priority Order in which to execute the function, relation to other functions hooked to this action.
 	 * @param integer $accepted_args The number of arguments the function accepts.
 	 */
 	public function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
