@@ -1180,9 +1180,10 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			break;
 
 		case 'help':
-			$content = isset( $field['content'] ) ? $field['content'] : '';
+			$content = isset($field['content']) ? $field['content'] : '';
+			$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
 			//phpcs:ignore
-			echo '<div class="epl-help-container" id="' . isset( $field['name'] ) ? esc_attr( $field['name'] ) : '' . '">
+			echo '<div class="epl-help-container" id="'.$help_id.'">
 					' . wp_kses_post( $content ) . '
 				</div>';
 			break;
