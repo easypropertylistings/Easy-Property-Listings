@@ -251,9 +251,8 @@ class EPL_FORM_BUILDER {
 	 * Get classes for wrappers, form , fields
 	 *
 	 * @param string $key Meta key.
-	 * @param array $field Field type.
+	 * @param array  $field Field type.
 	 *
-	 * @return string
 	 * @return string
 	 * @since 2.3
 	 */
@@ -282,7 +281,6 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @param array $field Fields.
 	 *
-	 * @return string
 	 * @return string
 	 * @since 2.3
 	 */
@@ -384,7 +382,7 @@ class EPL_FORM_BUILDER {
 	 *
 	 * @return string|void
 	 * @since 2.3
-*/
+	 */
 	private function escape( $type = '', $value = '' ) {
 		// phpcs:disable
 		switch ( $type ) {
@@ -521,11 +519,11 @@ class EPL_FORM_BUILDER {
 	 * @since 2.3
 	 */
 	public function render_form_container_open() {
-
+		// phpcs:disable WordPress.Security.EscapeOutput
 		$html  = "\n<div  ";
 		$html .= 'class ="' . esc_attr( $this->get_class( 'form_container' ) ) . '" ';
 		$html .= '>';
-		echo wp_kses_post( apply_filters( $this->prefix . 'form_container_open_tag', $html, $this->form_attributes ) );
+		echo apply_filters( $this->prefix . 'form_container_open_tag', $html, $this->form_attributes );
 	}
 
 	/**
@@ -535,7 +533,7 @@ class EPL_FORM_BUILDER {
 	 */
 	public function render_form_container_close() {
 
-		echo wp_kses_post( apply_filters( $this->prefix . 'form_container_close_tag', "\n</div>", $this->form_attributes ) );
+		echo apply_filters( $this->prefix . 'form_container_close_tag', "\n</div>", $this->form_attributes );
 	}
 
 	/**
@@ -550,7 +548,7 @@ class EPL_FORM_BUILDER {
 			$html .= $key . '="' . $value . '" ';
 		}
 		$html .= ' >';
-		echo wp_kses_post( apply_filters( $this->prefix . 'form_open_tag', $html, $this->form_attributes ) );
+		echo apply_filters( $this->prefix . 'form_open_tag', $html, $this->form_attributes );
 	}
 
 	/**
@@ -560,7 +558,7 @@ class EPL_FORM_BUILDER {
 	 */
 	public function render_form_close() {
 
-		echo wp_kses_post( apply_filters( $this->prefix . 'form_close_tag', "\n</form>", $this->form_attributes ) );
+		echo apply_filters( $this->prefix . 'form_close_tag', "\n</form>", $this->form_attributes );
 	}
 
 	/**
@@ -691,7 +689,7 @@ class EPL_FORM_BUILDER {
 		$html  = "\n<div  ";
 		$html .= 'class ="' . $this->get_class( 'field_container' ) . '" ';
 		$html .= '>';
-		echo wp_kses_post( apply_filters( $this->prefix . 'field_container_open_tag', $html, $this->form_attributes ) );
+		echo apply_filters( $this->prefix . 'field_container_open_tag', $html, $this->form_attributes );
 	}
 
 	/**
@@ -701,7 +699,7 @@ class EPL_FORM_BUILDER {
 	 */
 	public function render_field_container_close() {
 
-		echo wp_kses_post( apply_filters( $this->prefix . 'field_container_close_tag', "\n</div>", $this->form_attributes ) );
+		echo apply_filters( $this->prefix . 'field_container_close_tag', "\n</div>", $this->form_attributes );
 	}
 
 	/**
@@ -728,7 +726,7 @@ class EPL_FORM_BUILDER {
 
 		$wrapper .= "\n</span>";
 
-		echo wp_kses_post( apply_filters( $this->prefix . 'field_label_html', $wrapper, $field ) );
+		echo apply_filters( $this->prefix . 'field_label_html', $wrapper, $field );
 	}
 
 	/**
@@ -744,7 +742,7 @@ class EPL_FORM_BUILDER {
 		$html           = "\n<input  ";
 		$html          .= $this->get_attributes( $field );
 		$html          .= ' />';
-		echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
+		echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
 	}
 
 	/**
@@ -762,7 +760,7 @@ class EPL_FORM_BUILDER {
 		$html          .= '>';
 		$html          .= esc_attr( $value );
 		$html          .= '</textarea>';
-		echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
+		echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
 
 	}
 
@@ -790,7 +788,7 @@ class EPL_FORM_BUILDER {
 			$html           = "\n<input  ";
 			$html          .= $this->get_attributes( $field );
 			$html          .= ' >' . $label;
-			echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
+			echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
 			unset( $field['checked'] );
 		}
 	}
@@ -819,7 +817,7 @@ class EPL_FORM_BUILDER {
 			$html           = "\n<input  ";
 			$html          .= $this->get_attributes( $field );
 			$html          .= ' >' . $label;
-			echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
+			echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
 			unset( $field['checked'] );
 		}
 	}
@@ -881,7 +879,7 @@ class EPL_FORM_BUILDER {
 
 		}
 		$html .= "\n</select>";
-		echo wp_kses_post( apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field ) );
+		echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
 	}
 
 	/**
