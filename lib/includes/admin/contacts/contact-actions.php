@@ -869,8 +869,8 @@ add_action( 'epl_contact_contact_details', 'epl_contact_contact_details' );
  * Contact Recent Interest in Listings
  *
  * @param [type] $contact object.
- * @param int $number
- * @param int $paged
+ * @param int    $number
+ * @param int    $paged
  * @param string $orderby
  * @param string $order
  * @since 3.0
@@ -898,8 +898,8 @@ add_action( 'epl_contact_recent_interests', 'epl_contact_recent_interests' );
  * Contact Recent Activities
  *
  * @param [type] $contact object.
- * @param int $number
- * @param int $paged
+ * @param int    $number
+ * @param int    $paged
  * @param string $orderby
  * @param string $order
  * @since 3.0
@@ -920,8 +920,8 @@ add_action( 'epl_contact_recent_activities', 'epl_contact_recent_activities' );
  * Contact Get Activities HTML
  *
  * @param [type] $contact object.
- * @param int $number
- * @param int $paged
+ * @param int    $number
+ * @param int    $paged
  * @param string $orderby
  * @param string $order
  * @since 3.0
@@ -996,8 +996,8 @@ add_action( 'wp_ajax_epl_contact_get_activity_table', 'epl_contact_get_activitie
  * Contact Get Listings HTML
  *
  * @param [type] $contact object.
- * @param int $number
- * @param int $paged
+ * @param int    $number
+ * @param int    $paged
  * @param string $orderby
  * @param string $order
  * @since 3.0
