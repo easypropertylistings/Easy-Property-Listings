@@ -1085,7 +1085,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			if ( ! empty( $field['opts'] ) ) {
 				foreach ( $field['opts'] as $k => $v ) {
 					$checked = '';
-					if ( $val === $k ) {
+					if ( ( int ) $val === $k ) {
 						$checked = 'checked';
 					}
 					echo '<span class="epl-field-row"><input type="radio" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '" value="' . esc_attr( $k ) . '" ' . esc_attr( $checked ) . ' /> <label for="' . esc_html( $field['name'] ) . '_' . esc_attr( $k ) . '">' . esc_html( $v ) . '</label></span>';

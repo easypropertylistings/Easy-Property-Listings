@@ -1984,7 +1984,7 @@ function epl_property_gallery() {
 				<?php
 					$gallery_shortcode = '[gallery columns="' . $d_gallery_n . '" link="file"]';
 					$gallery           = apply_filters( 'epl_property_gallery_shortcode', $gallery_shortcode, $d_gallery_n );
-					echo wp_kses_post( do_shortcode( $gallery ) );
+					echo do_shortcode( $gallery ); // phpcs:ignore
 				?>
 			</div>
 		</div>
