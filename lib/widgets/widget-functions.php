@@ -1211,7 +1211,7 @@ add_filter( 'posts_where', 'epl_listings_where', 10, 2 );
  * @param  string $tax Taxonomy name.
  * @param  string $post_type Post type name.
  * @param  string $property_status Listing status.
- * @return Available terms which is filterable with epl_get_available_terms.
+ * @return mixed terms which is filterable with epl_get_available_terms.
  */
 function epl_get_available_terms( $tax = 'location', $post_type = '', $property_status = '' ) {
 	global $wpdb;
@@ -1261,7 +1261,7 @@ function epl_get_available_terms( $tax = 'location', $post_type = '', $property_
  * @param string $post_type Post type name.
  * @param string $property_status Listing status.
  *
- * @return Available
+ * @return string
  * @since  2.3.1
  */
 function epl_get_available_locations( $post_type = '', $property_status = '' ) {
