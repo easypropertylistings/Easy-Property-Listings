@@ -2170,7 +2170,6 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
  *
  * @return  $key  The property meta.
  * @since 2.1
- *
  */
 function get_property_meta( $key ) {
 	global $property;
