@@ -51,11 +51,10 @@ function epl_sanitize_amount( $amount ) {
  * Returns a nicely formatted amount.
  *
  * @param string $amount Price amount to format.
- * @param bool $decimals Whether or not to use decimals.  Useful when set to false for non-currency numbers.
+ * @param bool   $decimals Whether or not to use decimals.  Useful when set to false for non-currency numbers.
  *
  * @return string $amount Newly formatted amount or Price Not Available
  * @since 1.0
- *
  */
 function epl_format_amount( $amount, $decimals = false ) {
 	$thousands_sep = epl_get_thousands_separator();

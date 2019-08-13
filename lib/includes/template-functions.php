@@ -20,13 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Featured Image on archive template now loading through filter
  *
- * @param $post
+ * @param array $post Post object.
  *
  * @since 2.2
  */
 function epl_reset_property_object( $post ) {
 
-	global $epl_author,$epl_author_secondary;
+	global $epl_author, $epl_author_secondary;
 
 	if ( ! is_epl_post() ) {
 		return;
@@ -242,9 +242,9 @@ function epl_get_content_path() {
 /**
  * Template Fallback Path
  *
+ * @return mixed|void
  * @since      3.0
  *
- * @return     <type>  ( description_of_the_return_value )
  */
 function epl_get_fallback_content_path() {
 	return apply_filters( 'epl_templates_fallback_base_path', EPL_PATH_TEMPLATES_CONTENT );
@@ -254,8 +254,8 @@ function epl_get_fallback_content_path() {
  * Attempts to load templates in order of priority
  *
  * @since 3.0
- * @param $template
- * @param array $arguments
+ * @param string $template Template name.
+ * @param array  $arguments Options to pass to template.
  */
 function epl_get_template_part( $template, $arguments = array() ) {
 
@@ -286,7 +286,7 @@ function epl_get_template_part( $template, $arguments = array() ) {
  * Modify the Excerpt length on Archive pages
  *
  * @since 1.0
- * @param $length
+ * @param string $length Excerpt word length.
  * @return int|string
  */
 function epl_archive_custom_excerpt_length( $length ) {
@@ -303,7 +303,10 @@ function epl_archive_custom_excerpt_length( $length ) {
 }
 
 /**
- * Since 3.1.20  filter which listing status should not be displayed
+ * Filter which listing status should not be displayed
+ *
+ * @return mixed|void
+ * @since 3.1.20
  */
 function epl_hide_listing_statuses() {
 
@@ -530,7 +533,8 @@ function epl_property_widget_image_only_option( $image ) {
 /**
  * WIDGET LISTING : Widget Tall Card
  *
- * @since      1.0 @revised 3.3
+ * @since 1.0
+ * @since 3.3 Revised.
  *
  * @param      string $d_image   The d image.
  * @param      string $d_icons   The d icons.
@@ -614,7 +618,8 @@ function epl_property_get_the_full_address() {
 /**
  * Get the full address
  *
- * @since      1.0 @revised 3.3.3
+ * @since 1.0
+ * @since 3.3.3 Revised.
  * @hooked epl_property_title
  * @hooked property_tab_address
  */
@@ -676,8 +681,8 @@ add_action( 'epl_property_address', 'epl_property_the_address' );
 /**
  * Suburb Name Kept for listing templates extensions which use this function
  *
- * @since      1.3
- * @revised 3.1.18
+ * @since 1.3
+ * @since 3.1.18 Revised.
  */
 function epl_property_suburb() {
 	global $property;
@@ -725,12 +730,13 @@ add_action( 'epl_property_price_content', 'epl_property_price' );
 /**
  * Get Property icons
  *
- * @since      1.0 @revised 3.3
- *
  * @param      array  $args        The arguments.
  * @param      string $returntype  The returntype.
  *
  * @return false|string
+ *
+ * @since 1.0
+ * @since 3.3.3 Added switch.
  */
 function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 
@@ -987,14 +993,14 @@ function epl_get_video_host( $url ) {
 /**
  * Property Video HTML
  *
- * @since      1.0
- *
- * @revised 3.3
  *
  * @param      string  $property_video_url  The property video url.
  * @param      integer $width               The width.
  *
- * @return     string   ( description_of_the_return_value )
+ * @return     string
+ *
+ * @since 1.0
+ * @since 3.3
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
@@ -1023,12 +1029,11 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 /**
  * Video Output Function
  *
- * @since      1.0
- *
- * @revised 3.3
  * @hooked property_after_content
  *
  * @param      integer $width  The width.
+ * @since 1.0
+ * @since 3.3 Revised.
  */
 function epl_property_video_callback( $width = 600 ) {
 
@@ -1569,8 +1574,8 @@ add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
 /**
  * Switch Sorting Wrapper
  *
- * @since      2.0
- * @revised 3.3
+ * @since 2.0
+ * @since 3.3 Revised.
  */
 function epl_listing_toolbar_items() {
 
@@ -1655,9 +1660,8 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
 /**
  * Displays the Switch Sorting select options
  *
- * @since      2.0
- *
- * @revised 3.3
+ * @since 2.0
+ * @since 3.3 Revised.
  */
 function epl_sorting_tool() {
 	$sortby = '';
@@ -1953,9 +1957,8 @@ add_action( 'epl_archive_utility_wrap_end', 'epl_archive_utility_wrap_after' );
 /**
  * Listing Image Gallery
  *
- * @since      1.0
- *
- * @revised 3.3
+ * @since 1.0
+ * @since 3.3 Revised.
  */
 function epl_property_gallery() {
 
@@ -2111,15 +2114,16 @@ add_action( 'wp_ajax_nopriv_epl_update_listing_coordinates', 'epl_update_listing
 /**
  * Adapted from wp core to add additional filters
  *
- * @since      2.1 @revised 3.3
- *
- * @param      <type> $id        The identifier.
- * @param      <type> $taxonomy  The taxonomy.
+ * @param      string $id        The identifier.
+ * @param      string $taxonomy  The taxonomy.
  * @param      string $before    The before.
  * @param      string $sep       The separator.
  * @param      string $after     The after.
  *
  * @return bool|false|string|WP_Error|WP_Term[]
+ *
+ * @since 2.1
+ * @since 3.3 Revised.
  */
 function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
 	$terms = get_the_terms( $id, $taxonomy );
@@ -2251,9 +2255,8 @@ function epl_get_active_theme() {
  * Returns active theme name as a css class with prefix for use in default
  * templates
  *
+ * @return mixed|void
  * @since      2.1.2
- *
- * @return     <type>  ( description_of_the_return_value )
  */
 function epl_get_active_theme_name() {
 	$epl_class_prefix = apply_filters( 'epl_active_theme_prefix', 'epl-active-theme-' );
@@ -2283,9 +2286,10 @@ function epl_get_shortcode_list() {
 /**
  * Pagination fix for home
  *
- * @since      2.1.2 @revised 3.3
+ * @param      array $query  The query.
  *
- * @param      <type> $query  The query.
+ * @since 2.1.2
+ * @since 3.3 Revised.
  */
 function epl_home_pagination_fix( $query ) {
 
@@ -3018,7 +3022,7 @@ add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
 /**
  * Get the author loop
  *
- * @revised 3.3
+ * @since 3.3
  */
 function epl_archive_author_callback() {
 	global $epl_author_secondary;

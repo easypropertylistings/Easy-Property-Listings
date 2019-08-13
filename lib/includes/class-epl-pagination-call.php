@@ -91,7 +91,7 @@ class EPL_Pagination_Call {
 	 *
 	 * @param string $page page id.
 	 * @param string $raw_text text content.
-	 * @param array $attr attributes of page.
+	 * @param array  $attr attributes of page.
 	 * @param string $format format of single page.
 	 * @param string $tag attributes of single page tag.
 	 *
