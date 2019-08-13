@@ -125,8 +125,8 @@ if ( is_admin() ) {
 	 * Manage Admin Business Post Type Columns: Row Contents.
 	 *
 	 * @since 1.0
-	 * @param var $column column.
-	 * @param int $post_id post id.
+	 * @param string $column column.
+	 * @param int    $post_id post id.
 	 */
 	function epl_manage_business_columns_value( $column, $post_id ) {
 		global $post,$property;

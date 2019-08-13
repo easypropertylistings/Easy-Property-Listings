@@ -126,8 +126,8 @@ if ( is_admin() ) {
 	 *
 	 * @since 1.0
 	 * @revised 3.3
-	 * @param var $column column.
-	 * @param int $post_id post id.
+	 * @param string $column column.
+	 * @param int    $post_id post id.
 	 */
 	function epl_manage_property_columns_value( $column, $post_id ) {
 
