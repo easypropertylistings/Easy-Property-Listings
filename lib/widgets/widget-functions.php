@@ -1038,8 +1038,8 @@ function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $
  * Listings search.
  *
  * @param WP_Query $query WordPress Query object.
- * @param array $data That contains epl search key value pairs and if it's empty it will replace by $_REQUEST.
- * @param boolean $get_posts If set to true get_posts of WP_Query will execute on query and returns posts.
+ * @param array    $data That contains epl search key value pairs and if it's empty it will replace by $_REQUEST.
+ * @param boolean  $get_posts If set to true get_posts of WP_Query will execute on query and returns posts.
  *
  * @return array posts if query is set.
  * @since  2.3.1
@@ -1188,7 +1188,7 @@ function epl_esc_like( $text ) {
  * Search Where
  *
  * @param string $where Return where.
- * @param array $wp_query WordPress query object.
+ * @param array  $wp_query WordPress query object.
  *
  * @return string
  * @since  2.3.1
@@ -1550,5 +1550,5 @@ function epl_get_field_sliders() {
 		*/
 	);
 
-	return  apply_filters( 'epl_search_slider_fields', $sliders );
+	return apply_filters( 'epl_search_slider_fields', $sliders );
 }
