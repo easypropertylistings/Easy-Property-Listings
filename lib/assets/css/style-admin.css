@@ -775,6 +775,7 @@ h3.epl-welcome-sub-heading {
 	color: #21759b;
 	content: "\f102";
 	float: left;
+	/*noinspection CssNoGenericFontName*/
 	font-family: dashicons;
 	font-size: 2em;
 	font-variant: normal;

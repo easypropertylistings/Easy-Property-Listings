@@ -314,7 +314,6 @@ ul.epl-striped > *:nth-child(2n+1) {
 
 }
 .epl-pagination .pages {
-	border: none;
 	border: 1px solid #ccc;
 }
 .epl-pagination a,
