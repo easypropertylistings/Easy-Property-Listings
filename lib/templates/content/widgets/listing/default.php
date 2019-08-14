@@ -14,10 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-echo esc_attr( $args['before_widget'] );
+echo wp_kses_post( $args['before_widget'] );
 $title = apply_filters( 'widget_title', $instance['title'] ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 if ( strlen( trim( $title ) ) ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride
-	echo esc_attr( $args['before_title'] ) . esc_attr( trim( $title ) ) . esc_attr( $args['after_title'] );
+	echo wp_kses_post( $args['before_title'] ) . wp_kses_post( trim( $title ) ) . wp_kses_post( $args['after_title'] );
 }
 
 if ( $query->have_posts() ) {
@@ -35,4 +35,4 @@ if ( $query->have_posts() ) {
 	}
 	echo '</div>';
 }
-echo esc_attr( $args['after_widget'] );
+echo wp_kses_post( $args['after_widget'] );
