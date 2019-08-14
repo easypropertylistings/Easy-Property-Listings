@@ -173,7 +173,7 @@ function epl_fancy_pagination( $args = array() ) {
 			// Page numbers.
 			$timeline = 'smaller';
 			foreach ( range( $start_page, $end_page ) as $i ) {
-				if ( $i === $paged && ! empty( $options['current_text'] ) ) {
+				if ( $i == $paged && ! empty( $options['current_text'] ) ) { //phpcs:ignore
 					$out     .= $instance->get_single( $i, $options['current_text'], array( 'class' => 'current' ), '%PAGE_NUMBER%', 'span' );
 					$timeline = 'larger';
 				} else {
@@ -249,7 +249,7 @@ function epl_fancy_pagination( $args = array() ) {
 					$page_num = 0;
 				}
 
-				if ( $i === $paged ) {
+				if ( $i == $paged ) { //phpcs:ignore
 					$current_page_text = str_replace( '%PAGE_NUMBER%', number_format_i18n( $i ), $options['current_text'] );
 					$out              .= '<option value="' . esc_url( $instance->get_url( $page_num ) ) . '" selected="selected" class="current">' . $current_page_text . "</option>\n";
 				} else {

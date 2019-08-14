@@ -633,7 +633,7 @@ class EPL_Property_Meta {
 	 */
 	public function get_price_plain_value() {
 
-		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type ) {
+		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type || 'business' === $this->post_type ) {
 			$price_display = $this->get_property_price_display();
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$price_plain_value = $this->label_sold;
@@ -669,7 +669,7 @@ class EPL_Property_Meta {
 			} else {
 				$price_plain_value = __( 'TBA', 'easy-property-listings' );
 			}
-		} elseif ( 'commercial' === $this->post_type || 'business' === $this->post_type || 'commercial_land' === $this->post_type ) {
+		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$price_display    = $this->get_property_price_display();
 			$prop_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$rent_lease_type  =
