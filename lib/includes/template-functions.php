@@ -639,16 +639,16 @@ function epl_property_the_address() {
 		if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 			if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
 			?>
-				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
-				<?php
+				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span><?php //phpcs:disable
+				// Note if the php tag is on the next line it causes a space to appear after the suburb eg name , which is incorrect.
 				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 				}
 			}
 		} else {
 			?>
-			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
-			<?php
+			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span><?php //phpcs:disable
+			// Note if the php tag is on the next line it causes a space to appear after the suburb eg name , which is incorrect.
 			if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 				echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 			}
