@@ -1511,28 +1511,28 @@ function epl_get_field_sliders() {
 			'label'     => __( 'Price Search', 'easy-property-listings' ),
 			'prefix'    => '$',
 			'suffix'    => '',
-			'seperator' => ' - ',
+			'separator' => ' - ',
 		), /**
 		'epl_field_slider_property_price'   =>  array(
 			'els'       =>  array('property_price_from','property_price_to'),
 			'label'     => __('Price','easy-property-listings'),
 			'prefix'    => '$',
 			'suffix'    => '',
-			'seperator' => ' - '
+			'separator' => ' - '
 		),
 		'epl_field_slider_property_bedrooms'    =>  array(
 			'els'       =>  array('property_bedrooms_min','property_bedrooms_max'),
 			'label'     => __('Bedrooms','easy-property-listings'),
 			'prefix'    => '',
 			'suffix'    => '',
-			'seperator' => ' - '
+			'separator' => ' - '
 		),
 		'epl_field_slider_property_land_area'   =>  array(
 			'els'       =>  array('property_land_area_min','property_land_area_max'),
 			'label'     => __('Land Area','easy-property-listings'),
 			'prefix'    => '',
 			'suffix'    => 'm<sup>2</sup>',
-			'seperator' => ' - ',
+			'separator' => ' - ',
 			'min'       => 0,
 			'max'       => 2000,
 			'step'      => 10
@@ -1542,7 +1542,7 @@ function epl_get_field_sliders() {
 			'label'     => __('Building Area','easy-property-listings'),
 			'prefix'    => '',
 			'suffix'    => 'sq',
-			'seperator' => ' - ',
+			'separator' => ' - ',
 			'min'       => 0,
 			'max'       => 2000,
 			'step'      => 10

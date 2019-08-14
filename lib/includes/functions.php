@@ -355,7 +355,7 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
  * Retrieve address based on user display selection.
  *
  * @param  array $address_args address components.
- * @param  array $sep override default seperators for each address components here.
+ * @param  array $sep override default separators for each address components here.
  * @param  bool  $country  Return country with true, default false.
  * @return string
  * @since 3.3
@@ -376,7 +376,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		'country'       => ' ',
 	);
 
-	// override default seperators for address components.
+	// override default separators for address components.
 	$seps = array_merge( $address_defaults, $sep );
 
 	// Output the full address based on user selection.

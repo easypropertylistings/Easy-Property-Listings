@@ -512,8 +512,8 @@ class EPL_SEARCH {
 	 */
 	protected function preprocess_meta_query() {
 
-		$range_sep  = apply_filters( 'search_field_range_seperator', '-' );
-		$option_sep = apply_filters( 'search_field_option_seperator', ',' );
+		$range_sep  = apply_filters( 'epl_search_field_range_separator', '-' );
+		$option_sep = apply_filters( 'epl_search_field_option_separator', ',' );
 
 		foreach ( $this->meta_query as $key => &$query ) {
 
