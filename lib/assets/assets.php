@@ -170,7 +170,7 @@ function epl_wp_enqueue_scripts() {
 		'image_base'            => EPL_PLUGIN_URL . 'lib/assets/images/',
 		'field_sliders'         => epl_get_field_sliders(),
 	);
-
+	wp_enqueue_script( 'jquery-ui-slider' );
 	wp_enqueue_script( 'jquery-touch-punch' );
 
 	wp_enqueue_script( 'epl-js-lib', $current_dir_path . '/js/epl' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
