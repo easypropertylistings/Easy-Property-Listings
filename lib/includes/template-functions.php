@@ -625,7 +625,7 @@ function epl_property_get_the_full_address() {
  */
 function epl_property_the_address() {
 
-	$epl_property_address_seperator = apply_filters( 'epl_property_address_seperator', ',' );
+	$epl_property_address_separator = apply_filters( 'epl_property_address_separator', ',' );
 
 	global $property, $epl_settings;
 
@@ -643,7 +643,7 @@ function epl_property_the_address() {
 				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 				<?php
 				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-					echo '<span class="item-seperator">' . esc_attr( $epl_property_address_seperator ) . '</span>';
+					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 				}
 			}
 		} else {
@@ -651,7 +651,7 @@ function epl_property_the_address() {
 			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 			<?php
 			if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-				echo '<span class="item-seperator">' . esc_attr( $epl_property_address_seperator ) . '</span>';
+				echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 			}
 		}
 		?>
