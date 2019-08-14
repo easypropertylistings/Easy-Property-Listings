@@ -9,7 +9,7 @@ Tested up to: 5.2.2
 Stable Tag: 3.3.5
 License: GNU Version 2 or Any Later Version
 
-Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
+Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
 
 == Description ==
 
