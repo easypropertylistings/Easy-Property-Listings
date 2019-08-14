@@ -132,7 +132,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// Setup hooks.
 			$this->includes();
 			$this->hooks();
-
 			// phpcs:ignore // Test $this->auto_updater(); code.
 			// phpcs:ignore // Test $this->maybe_validate_license(); code.
 		}
@@ -165,6 +164,8 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			// Updater.
 			add_action( 'admin_init', array( $this, 'auto_updater' ), 0 );
+
+			add_action( 'admin_init', array( $this, 'maybe_validate_license' ), 0 );
 
 			add_action( 'in_plugin_update_message-' . plugin_basename( $this->file ), array( $this, 'plugin_row_license_missing' ), 10, 2 );
 
@@ -373,7 +374,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 * @access  private
 		 * @return  void
 		 */
-		private function maybe_validate_license() {
+		public function maybe_validate_license() {
 
 			// uncomment next two lines for testing.
 			// $this->validate_license(); | Testing.
