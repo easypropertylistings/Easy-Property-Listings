@@ -975,9 +975,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					<?php echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="
-					<?php
-					echo esc_attr( $object->get_field_name( $field['key'] ) );
+					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) );
 					echo isset( $field['multiple'] ) ? '[]' : '';
 					?>
 					">
@@ -988,16 +986,16 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 						$selected = '';
 						if ( isset( $field['multiple'] ) ) {
 
-							if ( in_array( $k, $value, true ) ) {
-								$selected = 'selected="selected"';
+							if ( in_array( $k, $value, true ) ) { 
+								$selected = ' selected ';
 							}
 						} else {
 
-							if ( isset( $value ) && $k === $value ) {
-								$selected = 'selected="selected"';
+							if ( isset( $value ) && $k == $value ) { // phpcs:ignore 
+								$selected = ' selected ';
 							}
 						}
-						echo '<option value="' . esc_attr( $k ) . '" ' . $selected . '>' . esc_attr( $v ) . '</option>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo '<option value="' . esc_attr( $k ) . '" ' . esc_attr( $selected ) . '>' . esc_attr( $v ) . '</option>';
 					}
 					?>
 

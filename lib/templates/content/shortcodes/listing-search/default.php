@@ -50,13 +50,12 @@ $submit_label                  = $atts['submit_label'];
 
 $selected_post_types = $atts['post_type'];
 $get_data            = epl_array_map_recursive( 'sanitize_text_field', $_GET );
-
 /** Overwrite Atts with Get data, if set */
 
-foreach ( $atts as $att_key => $att_val ) {
+foreach ( $get_data as $get_key => $get_val ) {
 
-	if ( ! empty( $get_data[ $att_key ] ) ) {
-		${$att_key} = $get_data[ $att_key ];
+	if ( ! empty( $get_data[ $get_key ] ) ) {
+		${$get_key} = $get_val;
 	}
 }
 

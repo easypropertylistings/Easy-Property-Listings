@@ -510,7 +510,7 @@ class EPL_SL_Plugin_Updater {
 			);
 
 			if ( ! is_wp_error( $request ) ) {
-				$version_info = wp_json_decode( wp_remote_retrieve_body( $request ) );
+				$version_info = json_decode( wp_remote_retrieve_body( $request ) );
 			}
 
 			if ( ! empty( $version_info ) && isset( $version_info->sections ) ) {
@@ -552,7 +552,7 @@ class EPL_SL_Plugin_Updater {
 		if ( empty( $cache['timeout'] ) || current_time( 'timestamp' ) > $cache['timeout'] ) {
 			return false; // Cache is expired.
 		}
-		return wp_json_decode( $cache['value'] );
+		return json_decode( $cache['value'] );
 	}
 
 	/**
