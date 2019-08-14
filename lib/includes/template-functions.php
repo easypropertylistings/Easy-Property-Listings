@@ -633,6 +633,7 @@ function epl_property_the_address() {
 	<?php if ( 'yes' === $property->get_property_meta( 'property_address_display' ) ) { ?>
 		<span class="item-street"><?php echo wp_kses_post( $property->get_formatted_property_address() ); ?></span>
 	<?php } ?>
+
 	<span class="entry-title-sub">
 
 		<?php
