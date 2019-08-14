@@ -58,7 +58,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'd_title'           => 0, // show title of listing.
 
 			'more_text'         => __( 'Read More', 'easy-property-listings' ), // read more text.
-			'desc_html_excerpt' => 'off', // show excerpt.
+			'd_excerpt' 		=> 'off', // show excerpt.
 			'd_suburb'          => 'on', // show suburb.
 			'd_street'          => 'on', // show street address.
 			'd_price'           => 'on', // show listing price.
@@ -201,7 +201,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$instance['d_title']    = wp_strip_all_tags( $new_instance['d_title'] );
 
 		$instance['more_text']         = wp_strip_all_tags( $new_instance['more_text'] );
-		$instance['desc_html_excerpt'] = wp_strip_all_tags( $new_instance['desc_html_excerpt'] );
+		$instance['d_excerpt'] = wp_strip_all_tags( $new_instance['d_excerpt'] );
 		$instance['d_suburb']          = wp_strip_all_tags( $new_instance['d_suburb'] );
 		$instance['d_street']          = wp_strip_all_tags( $new_instance['d_street'] );
 		$instance['d_price']           = wp_strip_all_tags( $new_instance['d_price'] );
@@ -240,7 +240,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'd_title'           => 0,
 
 			'more_text'         => __( 'Read More', 'easy-property-listings' ),
-			'desc_html_excerpt' => 'off',
+			'd_excerpt' => 'off',
 			'd_suburb'          => 'on',
 			'd_street'          => 'on',
 			'd_price'           => 'on',
@@ -263,7 +263,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$d_title  = esc_attr( $instance['d_title'] );
 
 		$more_text         = esc_attr( $instance['more_text'] );
-		$desc_html_excerpt = esc_attr( $instance['desc_html_excerpt'] );
+		$d_excerpt = esc_attr( $instance['d_excerpt'] );
 		$d_suburb          = esc_attr( $instance['d_suburb'] );
 		$d_street          = esc_attr( $instance['d_street'] );
 		$d_price           = esc_attr( $instance['d_price'] );
@@ -479,13 +479,13 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'desc_html_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'desc_html_excerpt' ); ?>"
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'd_excerpt' ); ?>"
 												<?php
-												if ( $instance['desc_html_excerpt'] ) {
+												if ( $instance['d_excerpt'] ) {
 													echo 'checked="checked"';}
 												?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'desc_html_excerpt' ); ?>"><?php esc_html_e( 'Excerpt', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'd_excerpt' ); ?>"><?php esc_html_e( 'Excerpt', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
