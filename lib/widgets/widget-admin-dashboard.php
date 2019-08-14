@@ -157,7 +157,7 @@ function epl_posts_highlights( $type ) {
 
 			foreach ( $filters as $filter_key     => $filter_value ) {
 				$count = epl_get_post_count( $type, $filter_value['key'], $filter_value['value'] );
-				if ( 0 !== $count ) {
+				if ( 0 !== ( int ) $count ) {
 					echo '<span>' . esc_attr( $count ) . ' ' . esc_attr( $filter_value['string'] ) . ' </span>';
 				}
 			}
@@ -203,7 +203,7 @@ function epl_posts_highlights( $type ) {
 			);
 			foreach ( $filters as $filter_key     => $filter_value ) {
 				$count = epl_get_post_count( $type, $filter_value['key'], $filter_value['value'] );
-				if ( 0 !== $count ) {
+				if ( 0 !== ( int ) $count ) {
 					echo '<span>' . esc_attr( $count ) . ' ' . esc_attr( $filter_value['string'] ) . ' </span>';
 				}
 			}
@@ -247,7 +247,7 @@ function epl_posts_highlights( $type ) {
 			);
 			foreach ( $filters as $filter_key     => $filter_value ) {
 				$count = epl_get_post_count( $type, $filter_value['key'], $filter_value['value'] );
-				if ( 0 !== $count ) {
+				if ( 0 !== ( int ) $count ) {
 					echo '<span>' . esc_attr( $count ) . ' ' . esc_attr( $filter_value['string'] ) . ' </span>';
 				}
 			}
