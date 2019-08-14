@@ -638,37 +638,37 @@ function epl_property_the_address() {
 		<?php
 		if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 			if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
-				?>
-					<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
-														<?php
-														if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-															echo '<span class="item-seperator">' . esc_attr( $epl_property_address_seperator ) . '</span>';
-														}
+			?>
+				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+				<?php
+				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+					echo '<span class="item-seperator">' . esc_attr( $epl_property_address_seperator ) . '</span>';
+				}
 			}
 		} else {
 			?>
-				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
-													<?php
-													if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-																				echo '<span class="item-seperator">' . esc_attr( $epl_property_address_seperator ) . '</span>';
-													}
+			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+			<?php
+			if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+				echo '<span class="item-seperator">' . esc_attr( $epl_property_address_seperator ) . '</span>';
+			}
 		}
 		?>
 
 		<?php
 		if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
-			?>
-				<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ); ?></span>
-			<?php
+		?>
+			<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ); ?></span>
+		<?php
 		}
 		?>
 		<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ); ?></span>
 		<span class="item-pcode"><?php echo esc_attr( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
 		<?php
 		if ( 'yes' === $property->get_epl_settings( 'epl_enable_country_field' ) ) {
-			?>
-				<span class="item-country"><?php echo esc_attr( $property->get_property_meta( 'property_address_country' ) ); ?></span>
-												<?php
+		?>
+			<span class="item-country"><?php echo esc_attr( $property->get_property_meta( 'property_address_country' ) ); ?></span>
+		<?php
 		}
 		?>
 	</span>
@@ -791,7 +791,7 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
  * Property icons
  *
  * @param string $returntype  The returntype.
- * 
+ *
  * @since 1.0.0
  * @since 3.3.0 Revides.
  */
