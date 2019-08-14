@@ -76,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					foreach ( $social_icons as $social_icon ) {
 						$html_output = call_user_func( array( $epl_author, 'get_' . $social_icon . '_html' ) );
 
-						echo wp_kses_post( $html_output );
+						echo $html_output; //phpcs:ignore
 					}
 					?>
 				</div>
