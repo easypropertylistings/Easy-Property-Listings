@@ -71,6 +71,7 @@ function epl_get_default_settings() {
 		'epl_use_core_css'                     => 'off', // Means Enable CSS.
 		'epl_css_legacy'                       => 'off', // Legacy styles disabled by default.
 		'epl_css_enhanced'                     => 'on', // Enhanced styles enabled for new installations by default.
+		'epl_disable_google_api'               => 'off',
 		'uninstall_on_delete'                  => 0,
 		'inspection_date_format'               => 'l, dS F',
 		'inspection_time_format'               => 'h:i a',
