@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.3.5.8\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-08-14 01:26:19+00:00\n"
+"POT-Creation-Date: 2019-08-14 06:24:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -523,7 +523,7 @@ msgstr ""
 #: lib/meta-boxes/meta-box-init.php:1422 lib/meta-boxes/meta-box-init.php:1464
 #: lib/meta-boxes/meta-box-init.php:1479 lib/meta-boxes/meta-box-init.php:1495
 #: lib/widgets/class-epl-widget-recent-property.php:282
-#: lib/widgets/widget-functions.php:33 lib/widgets/widget-functions.php:1422
+#: lib/widgets/widget-functions.php:33 lib/widgets/widget-functions.php:1420
 msgid "Title"
 msgstr ""
 
@@ -694,23 +694,23 @@ msgid "Contact Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:239
-#: lib/widgets/widget-functions.php:1318 lib/widgets/widget-functions.php:1433
+#: lib/widgets/widget-functions.php:1316 lib/widgets/widget-functions.php:1431
 msgid "First Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:246
-#: lib/widgets/widget-functions.php:1325 lib/widgets/widget-functions.php:1439
+#: lib/widgets/widget-functions.php:1323 lib/widgets/widget-functions.php:1437
 msgid "Last Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:253
-#: lib/widgets/widget-functions.php:1332
+#: lib/widgets/widget-functions.php:1330
 msgid "Email *"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:260
 #: lib/includes/admin/contacts/contacts.php:462
-#: lib/widgets/widget-functions.php:1339 lib/widgets/widget-functions.php:1451
+#: lib/widgets/widget-functions.php:1337 lib/widgets/widget-functions.php:1449
 msgid "Phone"
 msgstr ""
 
@@ -736,7 +736,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:471
 #: lib/includes/class-epl-author-meta.php:263
-#: lib/includes/class-epl-contact.php:711 lib/widgets/widget-functions.php:1445
+#: lib/includes/class-epl-contact.php:711 lib/widgets/widget-functions.php:1443
 msgid "Email"
 msgstr ""
 
@@ -1434,7 +1434,7 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:301
-#: lib/templates/content/shortcodes/listing-search/default.php:153
+#: lib/templates/content/shortcodes/listing-search/default.php:152
 #: lib/templates/content/shortcodes/listing-search-commercial/default.php:148
 #: lib/widgets/widget-functions.php:219
 msgid "Search"
@@ -5453,7 +5453,7 @@ msgstr ""
 
 #: lib/templates/content/content-listing-single-compatibility.php:52
 #: lib/templates/content/content-listing-single.php:79
-#: lib/widgets/widget-functions.php:1428
+#: lib/widgets/widget-functions.php:1426
 msgid "Description"
 msgstr ""
 
@@ -5794,7 +5794,7 @@ msgstr ""
 msgid "Other Search Options"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:217 lib/widgets/widget-functions.php:1477
+#: lib/widgets/widget-functions.php:217 lib/widgets/widget-functions.php:1475
 msgid "Submit Label"
 msgstr ""
 
@@ -5874,27 +5874,27 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1346 lib/widgets/widget-functions.php:1458
+#: lib/widgets/widget-functions.php:1344 lib/widgets/widget-functions.php:1456
 msgid "Subject"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1353 lib/widgets/widget-functions.php:1464
+#: lib/widgets/widget-functions.php:1351 lib/widgets/widget-functions.php:1462
 msgid "Message"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1377 lib/widgets/widget-functions.php:1479
+#: lib/widgets/widget-functions.php:1375 lib/widgets/widget-functions.php:1477
 msgid "Submit"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1424
+#: lib/widgets/widget-functions.php:1422
 msgid "Contact Form"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1470
+#: lib/widgets/widget-functions.php:1468
 msgid "Anti Spam"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1511
+#: lib/widgets/widget-functions.php:1509
 msgid "Price Search"
 msgstr ""
 
