@@ -635,7 +635,6 @@ function epl_property_the_address() {
 	<?php } ?>
 
 	<span class="entry-title-sub">
-
 		<?php
 		if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 			if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
