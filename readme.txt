@@ -393,7 +393,6 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-
 = 3.4 August 16, 2019 =
 
 * MAJOR Security Update Release. Important to update to the latest version to protect your website. Easy Property Listings has been reviewed and approved by the WordPress plugin team.
