@@ -421,8 +421,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: jQuery UI CSS now loading minified version in production mode.
 * Fix: [listing_element] shortcode will now display shortcode values when using frontend GUI builder.
 * Fix: Loading custom CSS using the style-single.css now works correctly.
-* Important Security Update:
 * Fix: XSS security flaw.
+* Important Security Update.
 
 = 3.3.3 June 13, 2019 =
 
