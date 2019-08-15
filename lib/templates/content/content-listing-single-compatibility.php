@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-single epl-property-single view-expanded epl-property-single-compatibility' ); ?>>
-	<div class="entry-header epl-header epl-clearfix">
+	<div class="epl-header epl-clearfix">
 
 		<?php do_action( 'epl_property_featured_image' ); ?>
 
@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 
-	<div class="entry-content epl-content epl-clearfix">
+	<div class="epl-content epl-clearfix">
 
 		<div class="epl-tab-wrapper tab-wrapper">
 
@@ -87,7 +87,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 	<!-- categories, tags and comments -->
-	<div class="entry-footer epl-clearfix">
+	<div class="epl-footer epl-clearfix">
 		<div class="entry-meta">
 			<?php
 			wp_link_pages(

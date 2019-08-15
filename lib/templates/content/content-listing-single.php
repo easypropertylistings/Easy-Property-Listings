@@ -113,7 +113,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 	<!-- categories, tags and comments -->
-	<div class="entry-footer epl-clearfix">
+	<div class="entry-footer epl-footer epl-clearfix">
 		<div class="entry-meta">
 			<?php
 			wp_link_pages(
