@@ -3,7 +3,7 @@
  *
  * @package	EPL
  * @since	3.1
- * @version	3.3
+ * @version	3.4
  * @subpackage	Structure CSS
  * @copyright	Copyright (c) 2019, Merv Barrett
  * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -1014,6 +1014,9 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	margin:0;
 	padding:0;
 	height: auto;
+}
+.epl-author-image img.avatar {
+	width: auto;
 }
 .epl-author-box .epl-author-slogan {
 	font-size: 1.2em;
