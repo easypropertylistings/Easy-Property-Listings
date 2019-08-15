@@ -1153,7 +1153,7 @@ class EPL_Property_Meta {
 
 			case 's':
 				$svg    = '<svg viewBox="0 0 100 100" class="epl-icon-svg-bath"><use xlink:href="#epl-icon-svg-bath"></use></svg>';
-				$return = '<div class="epl-icon-svg-container epl-icon-container-bed">
+				$return = '<div class="epl-icon-svg-container epl-icon-container-bath">
 						<div class="epl-icon epl-icon-svg bath" title="' . $label . '">' . $svg . '</div>
 						<div class="icon-value">' . $value . '</div>
 					</div>';
@@ -1271,7 +1271,7 @@ class EPL_Property_Meta {
 
 			case 's':
 				$svg    = '<svg viewBox="0 0 100 100" class="epl-icon-svg-car"><use xlink:href="#epl-icon-svg-car"></use></svg>';
-				$return = '<div class="epl-icon-svg-container epl-icon-container-bed">
+				$return = '<div class="epl-icon-svg-container epl-icon-container-car">
 						<div class="epl-icon epl-icon-svg car" title="' . $label . '">' . $svg . '</div>
 						<div class="icon-value">' . $value . '</div>
 					</div>';
