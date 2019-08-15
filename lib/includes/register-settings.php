@@ -9,8 +9,10 @@
  * @since       1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * EPL Get Settings
@@ -20,11 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function epl_get_settings() {
 	global $epl_settings;
-	if(!empty($epl_settings)) {
+	if ( ! empty( $epl_settings ) ) {
 		return $epl_settings;
 	}
 
-	$epl_settings = get_option('epl_settings');
+	$epl_settings = get_option( 'epl_settings' );
 
 	return $epl_settings;
 }
@@ -32,20 +34,20 @@ function epl_get_settings() {
 /**
  * EPL Settings Function for returning all or by settings meta_key
  *
+ * @param string $meta_key Meta key name.
+ * @return array All the settings in array
  * @since 1.0
- * @return all the settings in array
  */
 function epl_settings( $meta_key = '' ) {
 	global $epl_settings;
-	if(!empty($epl_settings)) {
+	if ( ! empty( $epl_settings ) ) {
 		return $epl_settings;
 	}
 
-	$epl_settings = get_option('epl_settings');
-	if(!empty($meta_key)) {
+	$epl_settings = get_option( 'epl_settings' );
+	if ( ! empty( $meta_key ) ) {
 		return $epl_settings[ $meta_key ];
 	} else {
 		return $epl_settings;
 	}
-	return $epl_settings;
 }

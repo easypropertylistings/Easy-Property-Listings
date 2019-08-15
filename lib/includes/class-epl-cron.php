@@ -7,10 +7,12 @@
  * @copyright   Copyright (c) 2019, Merv Barett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.2
-*/
+ */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * EPL_Cron Class
@@ -20,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 3.2
  */
 class EPL_Cron {
+
 	/**
 	 * Get things going
 	 *
@@ -27,8 +30,8 @@ class EPL_Cron {
 	 * @see EPL_Cron::weekly_events()
 	 */
 	public function __construct() {
-		add_filter( 'cron_schedules', array( $this, 'add_schedules'   ) );
-		add_action( 'wp',             array( $this, 'schedule_events' ) );
+		add_filter( 'cron_schedules', array( $this, 'add_schedules' ) );
+		add_action( 'wp', array( $this, 'schedule_events' ) );
 	}
 
 	/**
@@ -36,14 +39,14 @@ class EPL_Cron {
 	 *
 	 * @since 3.2
 	 *
-	 * @param array $schedules
+	 * @param array $schedules Cron schedules.
 	 * @return array
 	 */
 	public function add_schedules( $schedules = array() ) {
 		// Adds once weekly to the existing schedules.
 		$schedules['weekly'] = array(
 			'interval' => 604800,
-			'display'  => __( 'Once Weekly', 'easy-property-listings' )
+			'display'  => __( 'Once Weekly', 'easy-property-listings' ),
 		);
 
 		return $schedules;
@@ -88,4 +91,4 @@ class EPL_Cron {
 	}
 
 }
-$epl_cron = new EPL_Cron;
+$epl_cron = new EPL_Cron();

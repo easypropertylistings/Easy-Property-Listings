@@ -3,7 +3,7 @@
  *
  * @package	EPL
  * @since	3.1
- * @version	3.3
+ * @version	3.4
  * @subpackage	Structure CSS
  * @copyright	Copyright (c) 2019, Merv Barrett
  * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -249,7 +249,7 @@
 }
 .epl-property-single.view-expanded .property-pricing-details .property-feature-icons,
 .epl-property-single.view-condensed .property-pricing-details{
-    float: right;
+	float: right;
 }
 .epl-property-single.view-expanded  .item-street,
 .epl-property-single.view-expanded  .page-price-rent {
@@ -344,7 +344,7 @@
 	margin: 0.5em 0;
 }
 .property-feature-icons .icon {
-	padding: 0px 10px 4px 25px;
+	padding: 0 10px 4px 25px;
 	width: 20px;
 	height: 20px;
 	overflow: hidden;
@@ -416,7 +416,6 @@
 .epl-button {
 	display: inline-block;
 	margin-bottom: 0;
-	font-weight: 400;
 	text-align: center;
 	vertical-align: middle;
 	cursor: pointer;
@@ -438,7 +437,6 @@
 }
 .epl-button:hover {
 	color: #FFFFFF;
-	text-decoration: none;
 	background: #888888;
 	border: 1px solid transparent;
 	text-decoration: none;
@@ -451,8 +449,7 @@
 	padding: 0;
 	margin: 0;
 	border: 1px solid transparent;
-	background-image: none;
-	background: transparent;
+	background: transparent none;
 	font-weight: 400;
 	text-decoration: none;
 	text-shadow: none;
@@ -498,8 +495,8 @@
 	margin: 0 auto;
 }
 ul.epl_ui_tab_menu_wrapper{
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 .epl_ui_tab_menu_wrapper_vertical {
@@ -542,7 +539,7 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	display: inherit;
 }
 
-/*************** accordian **************/
+/*************** Accordion **************/
 .epl_ui_accordion_wrapper{
 	width: 100%;
 	margin: 2% auto;
@@ -941,23 +938,23 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 
 /** epl contact form widget **/
 .epl-contact-capture-form {
-    padding: 10px 0;
+	padding: 10px 0;
 }
 .epl-contact-capture-form-desc {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 .epl-contact-capture-form .epl_form_builder_label {
-    display: block;
-    font-size: 0.8em;
-    margin: 5px 0;
+	display: block;
+	font-size: 0.8em;
+	margin: 5px 0;
 }
 .epl-contact-capture-form #epl_contact_submit {
-    margin: 10px 0;
-    width: 100%;
+	margin: 10px 0;
+	width: 100%;
 }
 .epl-contact-capture-form input, .epl-contact-capture-form textarea {
-    display: inline-block;
-    width: 95%;
+	display: inline-block;
+	width: 95%;
 }
 
 /* Author Styling */
@@ -1017,6 +1014,9 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	margin:0;
 	padding:0;
 	height: auto;
+}
+.epl-author-image img.avatar {
+	width: auto;
 }
 .epl-author-box .epl-author-slogan {
 	font-size: 1.2em;
@@ -1411,8 +1411,6 @@ li.tbhead.current {
 }
 .epl-search-wide .epl-search-row-text .in-field {
 	width: 100%;
-	/* display: block; */
-	/* margin: 0; */
 }
 .epl-search-wide .epl-property_location,
 .epl-search-wide .epl-property_category {

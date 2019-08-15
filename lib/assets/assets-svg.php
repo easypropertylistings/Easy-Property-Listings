@@ -9,11 +9,13 @@
  * @since       3.2
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
- * SVG Listing Icons Loaded in Head
+ * SVG Listing Icons Loaded in Head.
  *
  * @since 3.2
  */
@@ -21,7 +23,7 @@ function epl_load_svg_listing_icons_head() {
 
 	$svg_icons = '
 
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="hide" style="display:none">
 		<defs>
 			<symbol id="epl-icon-svg-bed" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-bed-shape-container" class="epl-icon-shape-container">
@@ -103,18 +105,21 @@ function epl_load_svg_listing_icons_head() {
 		</defs>
 	</svg>';
 
-	$svg_icons = apply_filters( 'epl_svg_icons' , $svg_icons );
+	$svg_icons = apply_filters( 'epl_svg_icons', $svg_icons );
 
-	// Only Load SVG icons if epl_icons_svg_listings is on
-	if ( epl_get_option('epl_icons_svg_listings') == 'on' ) {
-		echo $svg_icons;
+	// Only Load SVG icons if epl_icons_svg_listings is on.
+	if ( epl_get_option( 'epl_icons_svg_listings' ) === 'on' ) {
+
+		$allowed_tags = epl_get_svg_allowed_tags();
+
+		echo wp_kses( $svg_icons, $allowed_tags );
 	}
 
 }
-add_action('wp_head', 'epl_load_svg_listing_icons_head' , 90 );
+add_action( 'wp_head', 'epl_load_svg_listing_icons_head', 90 );
 
 /**
- * SVG Social Media Icons Loaded in Head
+ * SVG Social Media Icons Loaded in Head.
  *
  * @since 3.2
  */
@@ -257,11 +262,93 @@ function epl_load_svg_social_icons_head() {
 		</defs>
 	</svg>';
 
-	$social_icons = apply_filters( 'epl_svg_social_icons' , $social_icons );
+	$social_icons = apply_filters( 'epl_svg_social_icons', $social_icons );
 
-	// Only Load SVG icons if epl_icons_svg_author is on
-	if ( epl_get_option('epl_icons_svg_author') == 'on' ) {
-		echo $social_icons;
+	// Only Load SVG icons if epl_icons_svg_author is on.
+	if ( epl_get_option( 'epl_icons_svg_author' ) === 'on' ) {
+
+		$allowed_tags = epl_get_svg_allowed_tags();
+
+		echo wp_kses( $social_icons, $allowed_tags );
 	}
 }
-add_action('wp_head', 'epl_load_svg_social_icons_head' , 90 );
+add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );
+
+/**
+ * Whitelist display attribute for wp_kses_post
+ *
+ * @param  string $styles Allowed SVG names.
+ *
+ * @return array|string
+ *
+ * @since 3.4
+ */
+function epl_whitelist_display_attr( $styles ) {
+
+	$styles[] = 'display';
+	$styles[] = 'fill';
+	return $styles;
+}
+add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
+
+/**
+ * Svg Allowed tags
+ *
+ * @since  3.4
+ */
+function epl_get_svg_allowed_tags() {
+
+	$tags = array(
+		'svg'    => array(
+			'id'              => true,
+			'class'           => true,
+			'version'         => true,
+			'aria-hidden'     => true,
+			'aria-labelledby' => true,
+			'role'            => true,
+			'xmlns'           => true,
+			'width'           => true,
+			'height'          => true,
+			'viewbox'         => true,
+			'style'           => true,
+			'xmlns:xlink'     => true,
+		),
+		'g'      => array(
+			'id'        => true,
+			'fill'      => true,
+			'transform' => true,
+			'style'     => true,
+			'class'     => true,
+		),
+		'title'  => array( 'title' => true ),
+		'path'   => array(
+			'd'     => true,
+			'fill'  => true,
+			'style' => true,
+			'id'    => true,
+			'class' => true,
+		),
+		'defs'   => array(
+			'id'    => true,
+			'class' => true,
+			'style' => true,
+		),
+		'symbol' => array(
+			'id'    => true,
+			'class' => true,
+			'style' => true,
+		),
+		'rect'   => array(
+			'width'  => true,
+			'height' => true,
+			'style'  => true,
+			'class'  => true,
+			'x'      => true,
+			'y'      => true,
+			'rx'     => true,
+			'ry'     => true,
+			'fill'   => true,
+		),
+	);
+	return apply_filters( 'epl_svg_allowed_tags', $tags );
+}
