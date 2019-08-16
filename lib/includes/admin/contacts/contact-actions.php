@@ -473,7 +473,7 @@ add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
  */
 function epl_new_contact( $args ) {
 
-	$args = array_map('trim', $args);
+	$args = array_map( 'trim', $args );
 
 	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( esc_html__( 'You do not have permission to create contacts.', 'easy-property-listings' ) );
