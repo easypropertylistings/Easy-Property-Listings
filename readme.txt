@@ -399,6 +399,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * WordPress standards coding applied to all plugin files and code.
 * This is a critical update to Easy Property Listings plugin that is focused on security enhancements. Update you site to this version.
 * New: Reset settings to default values tool page added viewable with &dev=true added to tools page URL.
+* New: Added autocomplete option to meta-fields array.
 * Tweak: Internal code documentation enhanced.
 * Tweak: Admin, structure, style, enhanced, legacy CSS optimisations.
 * Tweak: JS enhancements, improvements and optimisations.
