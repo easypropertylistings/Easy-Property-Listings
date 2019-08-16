@@ -507,7 +507,8 @@ function epl_new_contact( $args ) {
 	if ( empty( $args['title'] ) && ( ! empty( $args['email'] ) ) ) {
 		$args['title'] = $args['email'];
 	}
-
+	var_dump( trim( $args['title'] ) );
+	epl_print_r($args,true);
 	$contact->update(
 		array(
 			'name'  => $args['title'],
