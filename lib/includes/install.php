@@ -131,7 +131,7 @@ function epl_install() {
 
 	// Add Upgraded From Option.
 	$current_version = get_option( 'epl_version' );
-	if ( !empty( $current_version ) ) {
+	if ( ! empty( $current_version ) ) {
 		update_option( 'epl_version_upgraded_from', $current_version );
 
 	} else {
