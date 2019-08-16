@@ -792,8 +792,8 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		public function get_description_html( $html = '' ) {
 
 			$desc_html = $this->get_description();
-			
-			if ( !empty( $desc_html ) ) {
+
+			if ( ! empty( $desc_html ) ) {
 
 				$permalink = apply_filters( 'epl_author_profile_link', get_author_posts_url( $this->author_id ), $this );
 
