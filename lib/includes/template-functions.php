@@ -2264,7 +2264,6 @@ function epl_get_active_theme_name() {
  *
  * @return array
  * @since 3.3
- *
  */
 function epl_get_shortcode_list() {
 	return array(
