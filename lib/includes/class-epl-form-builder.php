@@ -599,7 +599,7 @@ class EPL_FORM_BUILDER {
 
 			<span class="<?php echo esc_attr( $this->prefix . 'section_help' ); ?>">
 				<?php
-					echo esc_attr( $section_help );
+					echo wp_kses_post( $section_help );
 				?>
 			</span>
 
