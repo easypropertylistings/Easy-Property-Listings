@@ -381,22 +381,22 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// return; | Testing.
 
 			// Perform a request to validate the license.
-			$validate = get_transient( '_epl_validate_license' );
-			if ( false === $validate ) {
-				// Only run every 24 hours.
-				$timestamp = get_option( 'epl_license_updates' );
-				if ( ! $timestamp ) {
-					$timestamp = strtotime( '+24 hours' );
-					update_option( 'epl_license_updates', $timestamp );
-					$this->validate_license();
+			// Only run every 24 hours.
+			$opt_key = 'epl_license_updates_'.$this->item_shortname;
+
+			$timestamp = get_option( $opt_key );
+			
+			if ( ! $timestamp ) {
+				$timestamp = strtotime( '+24 hours' );
+				update_option( $opt_key, $timestamp );
+				$this->validate_license();
+			} else {
+				$current_timestamp = time();
+				if ( $current_timestamp < $timestamp ) {
+					return;
 				} else {
-					$current_timestamp = time();
-					if ( $current_timestamp < $timestamp ) {
-						return;
-					} else {
-						update_option( 'epl_license_updates', strtotime( '+24 hours' ) );
-						$this->validate_license();
-					}
+					update_option( $opt_key, strtotime( '+24 hours' ) );
+					$this->validate_license();
 				}
 			}
 		}
