@@ -756,7 +756,7 @@ class EPL_Contact {
 	 */
 	public function get_emails() {
 
-		$emails = ( array ) $this->get_meta( 'contact_emails' );
+		$emails = (array) $this->get_meta( 'contact_emails' );
 		$emails = array_filter( $emails );
 		if ( ! empty( $emails ) ) {
 			ob_start();
