@@ -1197,7 +1197,7 @@ body .ui-tooltip {
 
 .epl-lf-search-forms-wrapper .epl-search-submit-row{
 	float:none;
-	 display:none;
+	display:none;
 }
 .epl-lf-search-form > div:not(.epl-lf-range-slider) , .epl-lf-search-form > div:not(.epl-search-row.epl-search-land-area),  .epl-lf-search-form > div:not(.epl-search-row.epl-search-building-area) {
 	width: 30.3% !important;
@@ -1205,14 +1205,13 @@ body .ui-tooltip {
 
 }
 .blockDiv {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #FFF;
-  width: 0;
-  height: 0;
-  z-index: 10;
-
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #FFF;
+	width: 0;
+	height: 0;
+	z-index: 10;
 }
 .epl-lf-range-slider .field{
 	margin: 0;
@@ -1220,5 +1219,5 @@ body .ui-tooltip {
 	position: relative;
 }
 .epl-search-form .ui-slider-horizontal {
-   top: 0;
+	top: 0;
 }
