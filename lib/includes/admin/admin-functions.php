@@ -316,7 +316,12 @@ function epl_get_tools_tab() {
  */
 function epl_show_upgrade_tab() {
 	// phpcs:disable WordPress.Security.NonceVerification
-	$upgraded = get_option( 'epl_db_upgraded_to' ) < 3.3 ? true : false;
+	$upgraded_to = get_option( 'epl_db_upgraded_to' );
+
+	if( empty( $upgraded_to ) )
+		return false;
+	
+	$upgraded = $upgraded_to < 3.3 ? true : false;
 
 	$upgraded = isset( $_GET['dev'] ) ? true : $upgraded;
 
