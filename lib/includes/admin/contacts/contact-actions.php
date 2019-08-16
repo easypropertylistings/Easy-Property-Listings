@@ -553,7 +553,7 @@ add_action( 'wp_ajax_epl_contact_category_update', 'epl_contact_category_update'
 function epl_contact_tag_add() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
-	
+
 	if ( ( ! empty( $_POST['term_id'] ) ) ) {
 
 		$term_id = sanitize_text_field( wp_unslash( $_POST['term_id'] ) );
