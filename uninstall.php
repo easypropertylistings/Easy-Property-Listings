@@ -7,29 +7,38 @@
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.2
-*/
+ */
 
 // Exit if accessed directly
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) exit;
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+	exit;
+}
 
 // Load EPL file
-include_once( 'easy-property-listings.php' );
+require_once 'easy-property-listings.php';
 
 global $wpdb, $wp_roles;
 
-if( epl_get_option( 'uninstall_on_delete' ) == 1 ) {
+if ( epl_get_option( 'uninstall_on_delete' ) == 1 ) {
 
 	/** Delete All the Custom Post Types */
-	$epl_taxonomies = array( 'location', 'tax_feature', 'tax_business_listing', );
+	$epl_taxonomies = array( 'location', 'tax_feature', 'tax_business_listing' );
 	$epl_post_types = array( 'property', 'rental', 'land', 'rural', 'commercial', 'commercial_land' );
 	foreach ( $epl_post_types as $post_type ) {
 
 		$epl_taxonomies = array_merge( $epl_taxonomies, get_object_taxonomies( $post_type ) );
-		$items = get_posts( array( 'post_type' => $post_type, 'post_status' => 'any', 'numberposts' => -1, 'fields' => 'ids' ) );
+		$items          = get_posts(
+			array(
+				'post_type'   => $post_type,
+				'post_status' => 'any',
+				'numberposts' => -1,
+				'fields'      => 'ids',
+			)
+		);
 
 		if ( $items ) {
 			foreach ( $items as $item ) {
-				wp_delete_post( $item, true);
+				wp_delete_post( $item, true );
 			}
 		}
 	}

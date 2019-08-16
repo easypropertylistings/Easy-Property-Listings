@@ -113,12 +113,12 @@ function epl_listing_elements_gui() {
 				<select id="epl_elements_shortcode_types">
 					<option value=""><?php esc_html_e( 'type', 'easy-property-listings' ); ?></option>
 					<?php
-                    $types = array( 'action', 'meta', 'post', 'suburb_profile', 'formatted_address', 'excerpt' );
-                    foreach ( $types as $type ) {
-                        ?>
-                        <option value="<?php echo esc_html( $type ); ?>"><?php echo esc_html( $type ); ?></option>
-                    <?php
-                    }
+					$types = array( 'action', 'meta', 'post', 'suburb_profile', 'formatted_address', 'excerpt' );
+					foreach ( $types as $type ) {
+						?>
+						<option value="<?php echo esc_html( $type ); ?>"><?php echo esc_html( $type ); ?></option>
+						<?php
+					}
 					?>
 				</select>
 			</div>

@@ -127,14 +127,14 @@ function epl_admin_posts_filter( $query ) {
 	if ( is_admin() && 'edit.php' === $pagenow ) {
 		$meta_query = (array) $query->get( 'meta_query' );
 
-		if ( isset( $_GET['property_status'] ) && !empty( $_GET['property_status'] ) ) {
+		if ( isset( $_GET['property_status'] ) && ! empty( $_GET['property_status'] ) ) {
 			$meta_query[] = array(
 				'key'   => 'property_status',
 				'value' => sanitize_text_field( wp_unslash( $_GET['property_status'] ) ),
 			);
 		}
 
-		if ( isset( $_GET['property_author'] ) && !empty( $_GET['property_author'] ) ) {
+		if ( isset( $_GET['property_author'] ) && ! empty( $_GET['property_author'] ) ) {
 			$author = intval( $_GET['property_author'] ); // WPCS: XSS ok.
 			$query->set( 'author', $author );
 		}
@@ -630,7 +630,7 @@ function epl_manage_listing_column_agent_callback() {
 	);
 
 	$property_second_agent = $property->get_property_meta( 'property_second_agent' );
-	if ( !empty( $property_second_agent ) ) {
+	if ( ! empty( $property_second_agent ) ) {
 		$second_author = get_user_by( 'login', $property_second_agent );
 		if ( false !== $second_author ) {
 			printf(

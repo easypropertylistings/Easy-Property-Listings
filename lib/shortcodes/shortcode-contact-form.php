@@ -28,7 +28,7 @@ function epl_contact_capture_form( $atts ) {
 	$attributes = shortcode_atts( $defaults, $atts );
 	$fields     = epl_contact_capture_get_widget_fields( $attributes );
 
-	if ( isset( $attributes['submit'] ) && !empty( $attributes['submit'] ) ) {
+	if ( isset( $attributes['submit'] ) && ! empty( $attributes['submit'] ) ) {
 		foreach ( $fields as &$field ) {
 			if ( 'epl_contact_submit' === $field['name'] ) {
 				$field['value'] = $attributes['submit'];
@@ -77,7 +77,7 @@ add_shortcode( 'listing_contact', 'epl_contact_capture_form' );
  */
 function epl_contact_capture_form_callback( $form_data, $request ) {
 
-	if ( isset( $request['epl_contact_anti_spam'] ) && !empty( $attributes['submit'] ) ) {
+	if ( isset( $request['epl_contact_anti_spam'] ) && ! empty( $attributes['submit'] ) ) {
 		// spam.
 		return;
 	}

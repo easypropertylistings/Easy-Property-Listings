@@ -52,7 +52,7 @@ add_filter( 'admin_body_class', 'epl_add_admin_body_class' );
  */
 function epl_admin_google_maps_api_notification() {
 
-	$screen = get_current_screen();
+	$screen         = get_current_screen();
 	$opt_google_key = epl_get_option( 'epl_google_api_key' );
 	if ( 'easy-property-listings_page_epl-settings' === $screen->id ) {
 
