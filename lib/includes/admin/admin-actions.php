@@ -66,7 +66,7 @@ function epl_admin_google_maps_api_notification() {
 					<?php $link = '<strong><a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">' . __( 'Google Maps API Key', 'easy-property-listings' ) . '</a></strong>'; ?>
 					<?php
 						/* Translators: %s is a link. */
-						printf( esc_html__( 'To allow maps to function correctly please create a %s and enable <strong>Google Maps API</strong>.', 'easy-property-listings' ), $link ); // phpcs:ignore
+						printf( wp_kses_post( __( 'To allow maps to function correctly please create a %s and enable <strong>Google Maps API</strong>.', 'easy-property-listings' ) ), $link ); // phpcs:ignore
 					?>
 					<br>
 
