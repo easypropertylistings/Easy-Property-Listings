@@ -233,7 +233,7 @@ function epl_property_single_default() {
  *
  * @since      2.0
  *
- * @return
+ * @return string
  */
 function epl_get_content_path() {
 	return apply_filters( 'epl_templates_base_path', EPL_PATH_TEMPLATES_CONTENT );
@@ -1374,9 +1374,9 @@ add_action( 'epl_property_tab_section_after', 'epl_property_tab_section_after' )
 /**
  * Get price sticker
  *
+ * @return
  * @since      1.0
  *
- * @return
  */
 function epl_get_price_sticker() {
 	global $property;
@@ -1386,9 +1386,8 @@ function epl_get_price_sticker() {
 /**
  * Get Property Price
  *
- * @since      1.0
- *
- * @return
+ * @return string
+ * @since 1.0
  */
 function epl_get_property_price() {
 	global $property;
@@ -1808,7 +1807,7 @@ add_action( 'pre_get_posts', 'epl_archive_sorting' );
  *
  * @since      1.0
  *
- * @return
+ * @return array
  */
 function epl_author_tabs() {
 	global $epl_author;
@@ -2232,7 +2231,7 @@ add_action( 'epl_pagination', 'epl_pagination' );
  *
  * @since      3.0
  *
- * @return
+ * @return string
  */
 function epl_get_active_theme() {
 	if ( function_exists( 'wp_get_theme' ) ) { // wp version >= 3.4.
@@ -2265,7 +2264,6 @@ function epl_get_active_theme_name() {
  *
  * @return array
  * @since 3.3
- *
  */
 function epl_get_shortcode_list() {
 	return array(

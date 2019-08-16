@@ -206,7 +206,20 @@ class EPL_Welcome {
 			<?php $this->tabs(); ?>
 
 			<div class="changelog headline-feature epl-clearfix">
-				<h2><?php esc_html_e( 'Major Release with Huge Improvements', 'easy-property-listings' ); ?></h2>
+				<h2><?php esc_html_e( 'Major Maintenance and Security Upgrade', 'easy-property-listings' ); ?></h2>
+
+				<div class="feature-section">
+
+					<p class="lead-description"><?php esc_html_e( 'This release is light on new features as it is primarily focused on keeping your real estate website safe from potential security threats. We have edited every line of code to ensure WordPress coding standards and security precautions have been implemented throughout the plugin.', 'easy-property-listings' ); ?></p>
+				</div>
+
+
+			</div>
+
+			<hr/>
+
+			<div class="changelog headline-feature epl-clearfix">
+				<h2><?php esc_html_e( 'Highlights from Easy Property Listings 3.3', 'easy-property-listings' ); ?></h2>
 
 				<div class="feature-section">
 

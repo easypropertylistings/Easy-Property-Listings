@@ -199,7 +199,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		);
 	}
 
-	if ( !empty( $sortby ) ) {
+	if ( ! empty( $sortby ) ) {
 
 		if ( 'price' === $sortby ) {
 			$args['orderby']  = 'meta_value_num';

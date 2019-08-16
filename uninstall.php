@@ -9,19 +9,19 @@
  * @since       2.2
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// Load EPL file
+// Load EPL file.
 require_once 'easy-property-listings.php';
 
 global $wpdb, $wp_roles;
 
 if ( epl_get_option( 'uninstall_on_delete' ) == 1 ) {
 
-	/** Delete All the Custom Post Types */
+	// Delete All the Custom Post Types.
 	$epl_taxonomies = array( 'location', 'tax_feature', 'tax_business_listing' );
 	$epl_post_types = array( 'property', 'rental', 'land', 'rural', 'commercial', 'commercial_land' );
 	foreach ( $epl_post_types as $post_type ) {
@@ -43,12 +43,12 @@ if ( epl_get_option( 'uninstall_on_delete' ) == 1 ) {
 		}
 	}
 
-	/** Delete All the Terms & Taxonomies */
+	// Delete All the Terms & Taxonomies.
 	foreach ( array_unique( array_filter( $epl_taxonomies ) ) as $taxonomy ) {
 
 		$terms = $wpdb->get_results( $wpdb->prepare( "SELECT t.*, tt.* FROM $wpdb->terms AS t INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy IN ('%s') ORDER BY t.name ASC", $taxonomy ) );
 
-		// Delete Terms
+		// Delete Terms.
 		if ( $terms ) {
 			foreach ( $terms as $term ) {
 				$wpdb->delete( $wpdb->term_taxonomy, array( 'term_taxonomy_id' => $term->term_taxonomy_id ) );
@@ -56,15 +56,14 @@ if ( epl_get_option( 'uninstall_on_delete' ) == 1 ) {
 			}
 		}
 
-		// Delete Taxonomies
+		// Delete Taxonomies.
 		$wpdb->delete( $wpdb->term_taxonomy, array( 'taxonomy' => $taxonomy ), array( '%s' ) );
 	}
 
-	/** Delete all the Plugin Options */
+	//Delete all the Plugin Options.
 	delete_option( 'epl_settings' );
 	delete_option( 'epl_version' );
 	delete_option( 'epl_version_upgraded_from' );
 	delete_option( 'epl_rewrite_rules' );
 	delete_option( 'epl_license' );
-
 }
