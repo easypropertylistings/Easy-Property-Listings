@@ -289,7 +289,6 @@ function epl_whitelist_display_attr( $styles ) {
 	$styles[] = 'fill';
 	return $styles;
 }
-
 add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
 
 /**
@@ -349,10 +348,7 @@ function epl_get_svg_allowed_tags() {
 			'rx'     => true,
 			'ry'     => true,
 			'fill'   => true,
-
 		),
-
 	);
-
 	return apply_filters( 'epl_svg_allowed_tags', $tags );
 }

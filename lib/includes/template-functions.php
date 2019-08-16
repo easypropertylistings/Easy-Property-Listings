@@ -233,7 +233,7 @@ function epl_property_single_default() {
  *
  * @since      2.0
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return
  */
 function epl_get_content_path() {
 	return apply_filters( 'epl_templates_base_path', EPL_PATH_TEMPLATES_CONTENT );
@@ -638,7 +638,7 @@ function epl_property_the_address() {
 		<?php
 		if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 			if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
-			?>
+			    ?>
 				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span><?php //phpcs:disable
 				// Note if the php tag is on the next line it causes a space to appear after the suburb eg name , which is incorrect.
 				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
@@ -972,10 +972,8 @@ function epl_property_category() {
  * Video type
  *
  * @since      3.3
- *
- * @param      <type> $url    The url.
- *
- * @return     string  ( description_of_the_return_value )
+ * @param string $url    The url.
+ * @return string
  */
 function epl_get_video_host( $url ) {
 
@@ -992,7 +990,6 @@ function epl_get_video_host( $url ) {
 
 /**
  * Property Video HTML
- *
  *
  * @param      string  $property_video_url  The property video url.
  * @param      integer $width               The width.
@@ -1379,7 +1376,7 @@ add_action( 'epl_property_tab_section_after', 'epl_property_tab_section_after' )
  *
  * @since      1.0
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return
  */
 function epl_get_price_sticker() {
 	global $property;
@@ -1391,7 +1388,7 @@ function epl_get_price_sticker() {
  *
  * @since      1.0
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return
  */
 function epl_get_property_price() {
 	global $property;
@@ -1732,13 +1729,12 @@ function epl_sorting_tabs() {
 /**
  * Update parameters
  *
- * @param <type> $url The url.
- * @param <type> $key The key.
- * @param <type> $value The value.
+ * @param string $url The url.
+ * @param string $key The key.
+ * @param string $value The value.
  *
  * @return string
- * @since      3.3
- *
+ * @since 3.3
  */
 function epl_add_or_update_params( $url, $key, $value ) {
 
@@ -1812,7 +1808,7 @@ add_action( 'pre_get_posts', 'epl_archive_sorting' );
  *
  * @since      1.0
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return
  */
 function epl_author_tabs() {
 	global $epl_author;
@@ -2236,7 +2232,7 @@ add_action( 'epl_pagination', 'epl_pagination' );
  *
  * @since      3.0
  *
- * @return     <type>  ( description_of_the_return_value )
+ * @return
  */
 function epl_get_active_theme() {
 	if ( function_exists( 'wp_get_theme' ) ) { // wp version >= 3.4.
@@ -2352,7 +2348,7 @@ add_action( 'wp', 'epl_hide_map_from_front', 10 );
  *
  * @since      2.1.8
  *
- * @param      <type> $query  The query.
+ * @param      array $query  The query.
  */
 function epl_nopaging( $query ) {
 	$restrict_paging = $query->get( 'epl_nopaging' );

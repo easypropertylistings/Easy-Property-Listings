@@ -118,7 +118,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		}
 	}
 
-	if ( !empty( $attributes['sortby'] ) ) {
+	if ( ! empty( $attributes['sortby'] ) ) {
 
 		if ( 'price' === $attributes['sortby'] ) {
 			$args['orderby']  = 'meta_value_num';
