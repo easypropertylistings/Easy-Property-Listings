@@ -108,7 +108,7 @@ class EPL_Property_Meta {
 			if ( $label_key ) {
 				$default = isset( $label['default'] ) ? $label['default'] : '';
 
-				if ( isset( $this->epl_settings[ $label_key ] ) && !empty( $this->epl_settings[ $label_key ] ) ) {
+				if ( isset( $this->epl_settings[ $label_key ] ) && ! empty( $this->epl_settings[ $label_key ] ) ) {
 					$this->{$label_key} = $this->epl_settings[ $label_key ];
 				} else {
 					$this->{$label_key} = $default;
@@ -160,7 +160,7 @@ class EPL_Property_Meta {
 
 		$inspection_time = $this->get_property_meta( $meta_key );
 		$inspection_time = trim( $inspection_time );
-		if ( !empty( $inspection_time ) ) {
+		if ( ! empty( $inspection_time ) ) {
 			$list = array_filter( explode( "\n", $inspection_time ) );
 			if ( ! empty( $list ) ) {
 				// There are inspection times.
@@ -775,8 +775,8 @@ class EPL_Property_Meta {
 			}
 		} elseif ( 'commercial' === $this->post_type || 'business' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
-			$rent_lease_type =
-				!empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
+			$rent_lease_type      =
+				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
 
 			// Sale or both.
 			$price = '';
