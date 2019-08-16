@@ -1374,9 +1374,8 @@ add_action( 'epl_property_tab_section_after', 'epl_property_tab_section_after' )
 /**
  * Get price sticker
  *
- * @return
+ * @return string
  * @since      1.0
- *
  */
 function epl_get_price_sticker() {
 	global $property;
