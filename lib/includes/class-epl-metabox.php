@@ -381,7 +381,7 @@ class EPL_METABOX {
 
 												$_POST[ $field['name'] ] = esc_url_raw( wp_unslash( $_POST[ $field['name'] ] ) );
 
-											} elseif ( 'auction-date' === $field['type'] && !empty( $_POST[ $field['name'] ] ) ) {
+											} elseif ( 'auction-date' === $field['type'] && ! empty( $_POST[ $field['name'] ] ) ) {
 												$epl_date = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 												if ( strpos( $epl_date, 'T' ) !== false ) {
 													$epl_date = date( 'Y-m-d\TH:i', strtotime( $epl_date ) );
@@ -393,7 +393,7 @@ class EPL_METABOX {
 													}
 												}
 												$_POST[ $field['name'] ] = $epl_date;
-											} elseif ( 'sold-date' === $field['type'] && !empty( $_POST[ $field['name'] ] ) ) {
+											} elseif ( 'sold-date' === $field['type'] && ! empty( $_POST[ $field['name'] ] ) ) {
 												$epl_date = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 												if ( strpos( $epl_date, 'T' ) !== false ) {
 													$epl_date = date( 'Y-m-d\TH:i', strtotime( $epl_date ) );
