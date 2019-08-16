@@ -605,7 +605,7 @@ add_action( 'wp_ajax_epl_contact_tag_remove', 'epl_contact_tag_remove' );
 /**
  * Contact Action Menus, Renders contact action menus
  *
- * @param [type] $contact contact object.
+ * @param array $contact contact object.
  * @since 3.0
  */
 function epl_contact_action_menus( $contact ) {
@@ -676,7 +676,7 @@ add_action( 'epl_contact_action_menus', 'epl_contact_action_menus' );
 /**
  * Contact Entry Header, Renders contact header
  *
- * @param [type] $contact contact Object.
+ * @param array $contact contact Object.
  * @since 3.0
  */
 function epl_contact_entry_header( $contact ) {
@@ -700,7 +700,7 @@ add_action( 'epl_contact_entry_header', 'epl_contact_entry_header' );
 /**
  * Contact Header Editable
  *
- * @param [type] $contact object.
+ * @param array $contact object.
  * @since 3.0
  */
 function epl_contact_entry_header_editable( $contact ) {
@@ -720,7 +720,7 @@ add_action( 'epl_contact_entry_header_editable', 'epl_contact_entry_header_edita
 /**
  * Contact Assigned Tags
  *
- * @param [type] $contact object.
+ * @param array $contact object.
  * @since 3.0
  */
 function epl_contact_assigned_tags( $contact ) {
@@ -747,7 +747,7 @@ add_action( 'epl_contact_assigned_tags', 'epl_contact_assigned_tags' );
 /**
  * Contact Background Info
  *
- * @param [type] $contact object.
+ * @param array $contact object.
  * @since 3.0
  */
 function epl_contact_background_info( $contact ) {
@@ -764,7 +764,7 @@ add_action( 'epl_contact_background_info', 'epl_contact_background_info' );
 /**
  * Contact Avatar Image
  *
- * @param [type] $contact object.
+ * @param array $contact object.
  * @since 3.0
  */
 function epl_contact_avatar( $contact ) {
@@ -782,7 +782,7 @@ add_action( 'epl_contact_avatar', 'epl_contact_avatar' );
 /**
  * Contact Social Icons
  *
- * @param [type] $contact object.
+ * @param array $contact object.
  * @since 3.0
  */
 function epl_contact_social_icons( $contact ) {
@@ -821,7 +821,7 @@ add_action( 'epl_contact_social_icons', 'epl_contact_social_icons' );
 /**
  * Contact Details
  *
- * @param [type] $contact object.
+ * @param array $contact object.
  * @since 3.0
  */
 function epl_contact_contact_details( $contact ) {
@@ -868,11 +868,11 @@ add_action( 'epl_contact_contact_details', 'epl_contact_contact_details' );
 /**
  * Contact Recent Interest in Listings
  *
- * @param [type] $contact object.
- * @param int    $number
- * @param int    $paged
- * @param string $orderby
- * @param string $order
+ * @param array  $contact object.
+ * @param int    $number Number page.
+ * @param int    $paged Paging or not.
+ * @param string $orderby Order by.
+ * @param string $order Order ASC or DESC.
  * @since 3.0
  */
 function epl_contact_recent_interests( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
@@ -897,11 +897,11 @@ add_action( 'epl_contact_recent_interests', 'epl_contact_recent_interests' );
 /**
  * Contact Recent Activities
  *
- * @param [type] $contact object.
- * @param int    $number
- * @param int    $paged
- * @param string $orderby
- * @param string $order
+ * @param array  $contact object.
+ * @param int    $number Number page.
+ * @param int    $paged Paging or not.
+ * @param string $orderby Order by.
+ * @param string $order Order ASC or DESC.
  * @since 3.0
  */
 function epl_contact_recent_activities( $contact, $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
@@ -919,11 +919,11 @@ add_action( 'epl_contact_recent_activities', 'epl_contact_recent_activities' );
 /**
  * Contact Get Activities HTML
  *
- * @param [type] $contact object.
- * @param int    $number
- * @param int    $paged
- * @param string $orderby
- * @param string $order
+ * @param array  $contact object.
+ * @param int    $number Number page.
+ * @param int    $paged Paging or not.
+ * @param string $orderby Order by.
+ * @param string $order Order ASC or DESC.
  * @since 3.0
  */
 function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
@@ -995,11 +995,11 @@ add_action( 'wp_ajax_epl_contact_get_activity_table', 'epl_contact_get_activitie
 /**
  * Contact Get Listings HTML
  *
- * @param [type] $contact object.
- * @param int    $number
- * @param int    $paged
- * @param string $orderby
- * @param string $order
+ * @param array  $contact object.
+ * @param int    $number Number page.
+ * @param int    $paged Paging or not.
+ * @param string $orderby Order by.
+ * @param string $order Order ASC or DESC.
  * @since 3.0
  */
 function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
@@ -1067,7 +1067,7 @@ add_action( 'wp_ajax_epl_contact_get_listing_table', 'epl_contact_get_listings_h
 /**
  * Contact Add Activity Form
  *
- * @param [type] $contact object.
+ * @param array $contact object.
  * @since 3.0
  */
 function epl_contact_add_activity_form( $contact ) {
@@ -1137,7 +1137,7 @@ add_action( 'epl_contact_add_activity_form', 'epl_contact_add_activity_form' );
 /**
  * Contact Add Listing Form
  *
- * @param [type] $contact contact object.
+ * @param array $contact contact object.
  * @since 3.0
  */
 function epl_contact_add_listing_form( $contact ) {
@@ -1270,8 +1270,8 @@ add_action( 'epl_contact_add_listing_form', 'epl_contact_add_listing_form' );
 /**
  * Displays Contact details in listing owner meta box
  *
- * @param [type] $post object.
- * @param [type] $value contact ID.
+ * @param array  $post object.
+ * @param string $value contact ID.
  * @since 3.0
  */
 function epl_before_meta_field_property_owner( $post, $value ) {
