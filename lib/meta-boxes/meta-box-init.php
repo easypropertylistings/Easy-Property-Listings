@@ -118,6 +118,7 @@ function epl_get_meta_boxes() {
 							'label'     => __( 'Date Listed', 'easy-property-listings' ),
 							'type'      => 'date',
 							'maxlength' => '100',
+							'autocomplete'	=>	'off'
 						),
 
 						array(
@@ -156,6 +157,7 @@ function epl_get_meta_boxes() {
 							'label'     => __( 'XML Importer Mod Date', 'easy-property-listings' ),
 							'type'      => 'text',
 							'maxlength' => '60',
+							'autocomplete'	=>	'off'
 						),
 
 						array(
@@ -936,6 +938,7 @@ function epl_get_meta_boxes() {
 							'label'     => __( 'Auction Date', 'easy-property-listings' ),
 							'type'      => 'auction-date',
 							'maxlength' => '100',
+							'autocomplete'	=>	'off'
 						),
 
 						array(
@@ -985,6 +988,7 @@ function epl_get_meta_boxes() {
 							'label'     => __( 'Sale Date', 'easy-property-listings' ),
 							'type'      => 'sold-date',
 							'maxlength' => '100',
+							'autocomplete'	=>	'off'
 						),
 
 						array(
@@ -1062,6 +1066,7 @@ function epl_get_meta_boxes() {
 							'label'     => __( 'Date Available', 'easy-property-listings' ),
 							'type'      => 'date',
 							'maxlength' => '100',
+							'autocomplete'	=>	'off'
 						),
 
 						array(
@@ -1069,6 +1074,7 @@ function epl_get_meta_boxes() {
 							'label'     => __( 'Leased Date', 'easy-property-listings' ),
 							'type'      => 'date',
 							'maxlength' => '100',
+							'autocomplete'	=>	'off'
 						),
 
 						array(
@@ -1211,6 +1217,7 @@ function epl_get_meta_boxes() {
 							'label'     => __( 'Lease End Date', 'easy-property-listings' ),
 							'type'      => 'date',
 							'maxlength' => '100',
+							'autocomplete'	=>	'off'
 						),
 
 						array(

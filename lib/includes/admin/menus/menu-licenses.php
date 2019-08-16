@@ -35,16 +35,13 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 			foreach ( $field_group['fields'] as $field ) {
 
 				$field_value = isset( $_REQUEST['epl_license'][ 'epl_' . $field['name'] ] ) ?
-				wp_unslash( $_REQUEST['epl_license'][ 'epl_' . $field['name'] ] ) : false; // phpcs:ignore WordPress.Security
+				wp_unslash( $_REQUEST['epl_license'][ 'epl_' . $field['name'] ] ) : ''; // phpcs:ignore WordPress.Security
 
 				if ( 'text' === $field['type'] ) {
 
-					if ( $field_value ) {
+					$field_value = sanitize_text_field( $field_value );
 
-						$field_value = sanitize_text_field( $field_value );
-
-						$epl_license[ $field['name'] ] = $field_value;
-					}
+					$epl_license[ $field['name'] ] = $field_value;
 				}
 			}
 		}

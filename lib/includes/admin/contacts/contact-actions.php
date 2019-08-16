@@ -553,29 +553,31 @@ add_action( 'wp_ajax_epl_contact_category_update', 'epl_contact_category_update'
 function epl_contact_tag_add() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
-
+	
 	if ( ( ! empty( $_POST['term_id'] ) ) ) {
 
-		if ( is_numeric( $_POST['term_id'] ) ) {
-			$_POST['term_id'] = (int) $_POST['term_id'];
+		$term_id = sanitize_text_field( wp_unslash( $_POST['term_id'] ) );
+
+		if ( is_numeric( $term_id ) ) {
+			$term_id = (int) $term_id;
 		}
 
 		// update tag for a contact.
 		if ( isset( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 ) {
-			$terms = wp_set_object_terms( absint( wp_unslash( $_POST['contact_id'] ) ), absint( wp_unslash( $_POST['term_id'] ) ), 'epl_contact_tag', true );
+			$terms = wp_set_object_terms( absint( wp_unslash( $_POST['contact_id'] ) ), $term_id, 'epl_contact_tag', true );
 			wp_die( esc_attr( current( $terms ) ) );
 		} else {
 			// update the tag.
 			if ( ! empty( $_POST['bg'] ) ) {
-				epl_update_contact_tag_bgcolor( absint( wp_unslash( $_POST['term_id'] ) ), sanitize_text_field( wp_unslash( $_POST['bg'] ) ) );
+				epl_update_contact_tag_bgcolor( $term_id, sanitize_text_field( wp_unslash( $_POST['bg'] ) ) );
 			}
 
 			if ( ! empty( $_POST['label'] ) ) {
-				wp_update_term( absint( wp_unslash( $_POST['term_id'] ) ), 'epl_contact_tag', array( 'name' => sanitize_text_field( wp_unslash( $_POST['label'] ) ) ) );
+				wp_update_term( $term_id, 'epl_contact_tag', array( 'name' => sanitize_text_field( wp_unslash( $_POST['label'] ) ) ) );
 			}
 
 			if ( ! empty( $_POST['delete'] ) ) {
-				wp_delete_term( absint( wp_unslash( $_POST['term_id'] ) ), 'epl_contact_tag' );
+				wp_delete_term( $term_id, 'epl_contact_tag' );
 			}
 
 			wp_die( 1 );

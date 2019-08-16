@@ -335,7 +335,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				<?php
 				for ( $i = 1;$i <= 20;$i++ ) {
 					echo '<option value="' . $i . '"';
-					if ( $i === $instance['p_number'] ) {
+					if ( $i == $instance['p_number'] ) { //phpcs:ignore
 						echo ' selected="selected"';
 					} echo '>' . $i . '</option>';
 				}
@@ -349,7 +349,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				<?php
 				for ( $i = 0;$i <= 20;$i++ ) {
 					echo '<option value="' . $i . '"';
-					if ( $i === $instance['p_skip'] ) {
+					if ( $i == $instance['p_skip'] ) { //phpcs:ignore
 						echo ' selected="selected"';
 					} echo '>' . $i . '</option>';
 				}

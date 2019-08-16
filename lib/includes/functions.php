@@ -1133,7 +1133,11 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 		case 'decimal':
 			$atts = '';
 			if ( $field['maxlength'] > 0 ) {
-				$atts = ' maxlength="' . absint( $field['maxlength'] ) . '"';
+				$atts .= ' maxlength="' . absint( $field['maxlength'] ) . '"';
+			}
+
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( $val ) . '" class="validate[custom[onlyNumberWithDecimal]]" ' . wp_kses_post( $atts ) . ' />';
 			break;
@@ -1141,13 +1145,19 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 		case 'number':
 			$atts = '';
 			if ( isset( $field['maxlength'] ) && $field['maxlength'] > 0 ) {
-				$atts = ' maxlength="' . absint( $field['maxlength'] ) . '"';
+				$atts .= ' maxlength="' . absint( $field['maxlength'] ) . '"';
+			}
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			echo '<input type="number" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" class="validate[custom[onlyNumber]]" ' . wp_kses_post( $atts ) . ' />';
 			break;
 
 		case 'date':
 			$atts       = '';
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
+			}
 			$format     = isset( $field['format'] ) ? $field['format'] : 'Y-m-d';
 			$timepicker = isset( $field['timepicker'] ) ? $field['timepicker'] : false;
 			echo '<input type="text" class="epldatepicker" data-format="' . esc_attr( $format ) . '"  data-timepicker="' . esc_attr( $timepicker ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" ' . wp_kses_post( $atts ) . ' />';
@@ -1155,20 +1165,37 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 
 		case 'auction-date':
 			$atts = '';
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
+			}
 			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" ' . wp_kses_post( $atts ) . ' />';
 			break;
 
 		case 'sold-date':
 			$atts = '';
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
+			}
 			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" ' . wp_kses_post( $atts ) . ' />';
 			break;
 
 		case 'email':
-			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" class="validate[custom[email]]" />';
+			$atts = '';
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
+			}
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
+			}
+			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" class="validate[custom[email]]" ' . wp_kses_post( $atts ) . ' />';
 			break;
 
 		case 'url':
-			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" class="validate[custom[url]]" />';
+			$atts = '';
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
+			}
+			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" class="validate[custom[url]]" ' . wp_kses_post( $atts ) . ' />';
 			break;
 		case 'button':
 			$classes = isset( $field['class'] ) ? $field['class'] : '';
@@ -1192,6 +1219,9 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			$atts = '';
 			if ( isset( $field['maxlength'] ) && $field['maxlength'] > 0 ) {
 				$atts .= ' maxlength="' . $field['maxlength'] . '"';
+			}
+			if ( !empty( $field['autocomplete'] ) ) {
+				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			$classes = isset( $field['class'] ) ? $field['class'] : '';
 			foreach ( $field as $temp_key => $temp_value ) {
