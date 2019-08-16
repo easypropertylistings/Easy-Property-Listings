@@ -318,7 +318,7 @@ function epl_show_upgrade_tab() {
 	// phpcs:disable WordPress.Security.NonceVerification
 	$upgraded_to = get_option( 'epl_db_upgraded_to' );
 
-	if ( empty( $upgraded_to ) ) {
+	if ( !isset( $_GET['dev'] ) && empty( $upgraded_to ) ) {
 		return false;
 	}
 
