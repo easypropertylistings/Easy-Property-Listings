@@ -120,7 +120,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 				<?php
 				for ( $i = 1;$i <= 6;$i++ ) {
 					echo '<option value="' . esc_attr( $i ) . '"';
-					if ( $i === $instance['d_columns'] ) {
+					if ( $i == $instance['d_columns'] ) { //phpcs:ignore
 						echo ' selected="selected"';
 					} echo '>' . esc_html( $i ) . '</option>';
 				}
