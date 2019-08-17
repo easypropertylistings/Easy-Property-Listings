@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// phpcs:disable WordPress.Security.NonceVerification
+
 /**
  * Load Custom Template from Plugin Directory
  *
@@ -52,7 +54,7 @@ function epl_load_core_templates( $template ) {
 			if ( is_array( $_GET['post_type'] ) ) {
 				$post_tpl = 'search-listing.php';
 			} else {
-				$post_tpl = 'search-' . sanitize_title( $_GET['post_type'] ) . '.php';
+				$post_tpl = 'search-' . sanitize_title( wp_unslash( $_GET['post_type'] ) ) . '.php';
 			}
 		}
 		$find[] = $post_tpl;

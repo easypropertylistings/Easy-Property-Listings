@@ -44,7 +44,10 @@ function epl_fancy_pagination( $args = array() ) {
 		)
 	);
 
-	extract( $args, EXTR_SKIP );
+	foreach ( $args as $args_key => $args_value ) {
+		${$args_key} = $args_value;
+	}
+
 	$options  = array(
 		'pages_text'                   => __( 'Page %CURRENT_PAGE% of %TOTAL_PAGES%', 'easy-property-listings' ),
 		'current_text'                 => '%PAGE_NUMBER%',
@@ -270,7 +273,7 @@ function epl_fancy_pagination( $args = array() ) {
 		return $out;
 	}
 
-	echo $out;
+	echo $out; //phpcs:ignore
 }
 
 if ( ! function_exists( 'epl_pagination_html' ) ) :
@@ -306,7 +309,7 @@ if ( ! function_exists( 'epl_pagination_html' ) ) :
 			list( $closing ) = explode( ' ', $tag, 2 );
 		}
 
-		if ( in_array( $closing, $self_closing_tags ) ) {
+		if ( in_array( $closing, $self_closing_tags, true ) ) {
 			return "<{$tag} />";
 		}
 
@@ -331,7 +334,7 @@ if ( ! function_exists( 'epl_get_multipage_link' ) ) :
 			$url = get_permalink();
 		} else {
 			$opt_permalink_str = get_option( 'permalink_structure' );
-			if ( empty( $opt_permalink_str ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
+			if ( empty( $opt_permalink_str ) || in_array( $post->post_status, array( 'draft', 'pending' ), true ) ) {
 				$url = add_query_arg( 'page', $page, get_permalink() );
 			} elseif ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_on_front' ) === $post->ID ) {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $wp_rewrite->pagination_base . "/$page", 'single_paged' );
@@ -355,7 +358,7 @@ function epl_get_next_page_link( $query ) {
 	$link = next_posts( $query->max_num_pages, false );
 
 	if ( $query->get( 'is_epl_shortcode' ) &&
-		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list() ) ) {
+		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
 		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
 	}
 	return apply_filters( 'epl_get_next_page_link', $link );
@@ -397,7 +400,7 @@ function epl_get_prev_page_link( $query ) {
 	$link = previous_posts( false );
 
 	if ( $query->get( 'is_epl_shortcode' ) &&
-		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list() ) ) {
+		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
 		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
 	}
 	return apply_filters( 'epl_get_prev_page_link', $link );
@@ -448,8 +451,8 @@ function epl_wp_default_pagination( $query = array() ) {
 		?>
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft"><?php echo epl_prev_post_link( $query_open ); ?></div>
-		<div class="alignright"><?php echo epl_next_post_link( $query_open ); ?></div>
+		<div class="alignleft"><?php echo esc_url( epl_prev_post_link( $query_open ) ); ?></div>
+		<div class="alignright"><?php echo esc_url( epl_next_post_link( $query_open ) ); ?></div>
 	</div>
 		<?php
 	}

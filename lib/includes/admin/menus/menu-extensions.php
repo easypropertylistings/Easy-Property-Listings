@@ -15,16 +15,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $epl_extensions = epl_get_new_admin_option_fields();
-$active_tab     = isset( $_GET['tab'] ) ? sanitize_title( $_GET['tab'] ) : current( array_keys( $epl_extensions ) );
-$active_sub_tab = isset( $_GET['sub_tab'] ) ? sanitize_title( $_GET['sub_tab'] ) : '';
+$active_tab     = isset( $_GET['tab'] ) ? sanitize_title( wp_unslash( $_GET['tab'] ) ) : current( array_keys( $epl_extensions ) );
+$active_sub_tab = isset( $_GET['sub_tab'] ) ? sanitize_title( wp_unslash( $_GET['sub_tab'] ) ) : '';
 
 if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 
 	if (
 		! isset( $_POST['epl_nonce_extension_form'] ) ||
-		! wp_verify_nonce( $_POST['epl_nonce_extension_form'], 'epl_nonce_extension_form' )
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['epl_nonce_extension_form'] ) ), 'epl_nonce_extension_form' )
 	) {
-		wp_die( __( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
+		wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
 	}
 
 	if ( ! empty( $epl_extensions ) ) {
@@ -38,23 +38,23 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 						if ( ! isset( $_REQUEST[ $field['name'] ] ) ) {
 							$_REQUEST[ $field['name'] ] = '';
 						} else {
-							$_REQUEST[ $field['name'] ] = sanitize_text_field( $_REQUEST[ $field['name'] ] );
+							$_REQUEST[ $field['name'] ] = sanitize_text_field( wp_unslash( $_REQUEST[ $field['name'] ] ) );
 						}
 					}
 
 					if ( 'text' === $field['type'] ) {
 
 						if ( isset( $_REQUEST[ $field['name'] ] ) && is_array( $_REQUEST[ $field['name'] ] ) ) {
-							array_walk_recursive( $_REQUEST[ $field['name'] ], 'sanitize_text_field' );
+							array_walk_recursive( wp_unslash( $_REQUEST[ $field['name'] ] ), 'sanitize_text_field' ); //phpcs:ignore
 						}
 
 						if ( isset( $_REQUEST[ $field['name'] ] ) && is_string( $_REQUEST[ $field['name'] ] ) ) {
-							$_REQUEST[ $field['name'] ] = sanitize_text_field( $_REQUEST[ $field['name'] ] );
+							$_REQUEST[ $field['name'] ] = sanitize_text_field( wp_unslash( $_REQUEST[ $field['name'] ] ) );
 						}
 					}
 
 					if ( isset( $_REQUEST[ $field['name'] ] ) ) {
-						$epl_settings[ $field['name'] ] = $_REQUEST[ $field['name'] ];
+						$epl_settings[ $field['name'] ] = wp_unslash( $_REQUEST[ $field['name'] ] ); //phpcs:ignore
 
 						// Remove fields after adding them to epl_settings.
 						unset( $_REQUEST[ $field['name'] ] );
@@ -90,16 +90,16 @@ $epl_settings = get_option( 'epl_settings' );
 
 ?>
 <div class="wrap">
-	<h2><?php _e( 'Extensions Settings', 'easy-property-listings' ); ?></h2>
-	<p><?php _e( 'Configure your extension settings here. Visit the main settings page for more extension settings.', 'easy-property-listings' ); ?></p>
+	<h2><?php esc_html_e( 'Extensions Settings', 'easy-property-listings' ); ?></h2>
+	<p><?php esc_html_e( 'Configure your extension settings here. Visit the main settings page for more extension settings.', 'easy-property-listings' ); ?></p>
 	<h2 class="nav-tab-wrapper epl-nav-tab-wrapper">
 		<?php
 		foreach ( $epl_extensions as $ext_key => $epl_extension ) {
 			$nav_active = $active_tab === $ext_key ? 'nav-tab-active' : '';
 			?>
-			<a class="nav-tab <?php echo $nav_active; ?>"
-				href="<?php echo admin_url( 'admin.php?page=epl-extensions&tab=' . sanitize_title( $ext_key ) ); ?>">
-				<?php echo $epl_extension['label']; ?>
+			<a class="nav-tab <?php echo esc_attr( $nav_active ); ?>"
+				href="<?php echo esc_url( admin_url( 'admin.php?page=epl-extensions&tab=' . sanitize_title( $ext_key ) ) ); ?>">
+				<?php echo esc_attr( $epl_extension['label'] ); ?>
 			</a>
 			<?php
 		}
@@ -117,8 +117,8 @@ $epl_settings = get_option( 'epl_settings' );
 			foreach ( $ext_field_groups['fields'] as $ext_field_group ) {
 
 				if ( isset( $ext_field_group['intro'] ) && ! empty( $ext_field_group['intro'] ) ) {
-					echo '<div class="epl-field epl-field-intro" data-help="tab-menu-' . sanitize_title( $ext_field_group['label'] ) . '">';
-					echo $ext_field_group['intro'];
+					echo '<div class="epl-field epl-field-intro" data-help="tab-menu-' . esc_attr( sanitize_title( $ext_field_group['label'] ) ) . '">';
+					echo wp_kses_post( $ext_field_group['intro'] );
 					echo '</div>';
 				}
 			}
@@ -134,15 +134,15 @@ $epl_settings = get_option( 'epl_settings' );
 						<ul>';
 				foreach ( $ext_field_groups['fields'] as $ext_field_group ) {
 
-					$current_class = $active_sub_tab === 'tab-menu-' . sanitize_title( $ext_field_group['label'] ) ? 'epl-fields-menu-current' : '';
+					$current_class = 'tab-menu-' . esc_attr( sanitize_title( $ext_field_group['label'] ) ) === $active_sub_tab ? 'epl-fields-menu-current' : '';
 
 					if ( empty( $active_sub_tab ) && 1 === $counter ) {
 						$current_class = 'epl-fields-menu-current';
 					}
 					if ( ! empty( $ext_field_group['label'] ) ) {
 						?>
-						<li class="<?php echo $current_class; ?>" data-tab="<?php echo 'tab-menu-' . sanitize_title( $ext_field_group['label'] ); ?>">
-							<?php echo $ext_field_group['label']; ?>
+						<li class="<?php echo esc_attr( $current_class ); ?>" data-tab="<?php echo 'tab-menu-' . esc_attr( sanitize_title( $ext_field_group['label'] ) ); ?>">
+							<?php echo esc_attr( $ext_field_group['label'] ); ?>
 						</li>
 						<?php
 					}
@@ -158,21 +158,21 @@ $epl_settings = get_option( 'epl_settings' );
 					echo '<div class="epl-fields-tab-content">';
 					$counter = 1;
 					foreach ( $ext_field_groups['fields'] as $field_group ) {
-						$current_class = $active_sub_tab === 'tab-menu-' . sanitize_title( $field_group['label'] ) ? 'epl-fields-field-current' : '';
+						$current_class = 'tab-menu-' . sanitize_title( $field_group['label'] ) === $active_sub_tab ? 'epl-fields-field-current' : '';
 						if ( empty( $active_sub_tab ) && 1 === $counter ) {
 							$current_class = 'epl-fields-field-current';
 						}
 						?>
 
-						<div class="<?php echo $current_class; ?> epl-fields-single-menu" id="<?php echo 'tab-menu-' . sanitize_title( $field_group['label'] ); ?>">
+						<div class="<?php echo esc_attr( $current_class ); ?> epl-fields-single-menu" id="<?php echo 'tab-menu-' . esc_attr( sanitize_title( $field_group['label'] ) ); ?>">
 							<?php foreach ( $field_group['fields'] as $field ) { ?>
 							<div class="epl-field">
 								<div class="epl-help-entry-header">
-									<div class="epl_help_entry_content<?php // echo $field['name'];. ?>"><?php // _e($field['help'], 'easy-property-listings' );. ?></div>
+									<div class="epl_help_entry_content"></div>
 								</div>
 								<?php if ( 'help' !== $field['type'] ) { ?>
 									<div class="epl-half-left">
-										<label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label>
+										<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_attr( $field['label'] ); ?></label>
 									</div>
 								<?php } ?>
 								<div class="<?php echo 'help' === $field['type'] ? 'epl-full' : 'epl-half-right'; ?>">
@@ -197,7 +197,7 @@ $epl_settings = get_option( 'epl_settings' );
 					<?php wp_nonce_field( 'epl_nonce_extension_form', 'epl_nonce_extension_form' ); ?>
 					<input type="hidden" name="sub_tab" id="sub_tab" value="" />
 					<p class="submit">
-						<input type="submit" value="<?php _e( 'Save Changes', 'easy-property-listings' ); ?>" class="button button-primary" id="submit" name="submit">
+						<input type="submit" value="<?php esc_html_e( 'Save Changes', 'easy-property-listings' ); ?>" class="button button-primary" id="submit" name="submit">
 					</p>
 				</div>
 			</form>
