@@ -82,7 +82,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 
 global $epl_settings;
 
-// Get the latest saved settings. Needs re-write.
+// TODO: Get the latest saved settings. Needs re-write.
 $epl_settings = get_option( 'epl_settings' );
 ?>
 
