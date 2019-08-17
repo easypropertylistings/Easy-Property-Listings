@@ -52,11 +52,13 @@ add_filter( 'admin_body_class', 'epl_add_admin_body_class' );
  */
 function epl_admin_google_maps_api_notification() {
 
-	$screen = get_current_screen();
-	$opt_google_key = epl_get_option( 'epl_google_api_key' );
-	if ( 'easy-property-listings_page_epl-settings' === $screen->id ) {
+	$screen             = get_current_screen();
+	$opt_google_disable = epl_get_option( 'epl_disable_google_api' );
+	$opt_google_key     = epl_get_option( 'epl_google_api_key' );
 
-		if ( current_user_can( 'manage_options' ) && 'on' !== epl_get_option( 'epl_disable_google_api' ) && empty( $opt_google_key ) ) {
+	if ( 'easy-property-listings_page_epl-settings' === $screen->id && current_user_can( 'manage_options' ) ) {
+
+		if ( 'on' === $opt_google_disable || empty ( $opt_google_key ) ) {
 			?>
 			<div class="notice notice-error is-dismissible">
 				<h3 class="epl-text-red" style="color:#dd3d36"><?php esc_html_e( 'Easy Property Listings requires a Google API key for mapping', 'easy-property-listings' ); ?></h3>
@@ -66,7 +68,7 @@ function epl_admin_google_maps_api_notification() {
 					<?php $link = '<strong><a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">' . __( 'Google Maps API Key', 'easy-property-listings' ) . '</a></strong>'; ?>
 					<?php
 						/* Translators: %s is a link. */
-						printf( esc_html__( 'To allow maps to function correctly please create a %s and enable <strong>Google Maps API</strong>.', 'easy-property-listings' ), $link ); // phpcs:ignore
+						printf( wp_kses_post( __( 'To allow maps to function correctly please create a %s and enable <strong>Google Maps API</strong>.', 'easy-property-listings' ) ), $link ); // phpcs:ignore
 					?>
 					<br>
 

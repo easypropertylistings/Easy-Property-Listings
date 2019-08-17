@@ -316,7 +316,13 @@ function epl_get_tools_tab() {
  */
 function epl_show_upgrade_tab() {
 	// phpcs:disable WordPress.Security.NonceVerification
-	$upgraded = get_option( 'epl_db_upgraded_to' ) < 3.3 ? true : false;
+	$upgraded_to = get_option( 'epl_db_upgraded_to' );
+
+	if ( ! isset( $_GET['dev'] ) && empty( $upgraded_to ) ) {
+		return false;
+	}
+
+	$upgraded = $upgraded_to < 3.3 ? true : false;
 
 	$upgraded = isset( $_GET['dev'] ) ? true : $upgraded;
 
@@ -554,7 +560,7 @@ function epl_upgrade_admin_notice() {
 
 	$upgraded_to = get_option( 'epl_db_upgraded_to' );
 
-	if ( !empty( $upgraded_to ) && $upgraded_to < 3.3 && current_user_can( 'administrator' ) ) :
+	if ( ! empty( $upgraded_to ) && $upgraded_to < 3.3 && current_user_can( 'administrator' ) ) :
 
 		$head = esc_html__( 'It looks like you upgraded to latest version of Easy Property Listings', 'easy-property-listings' );
 

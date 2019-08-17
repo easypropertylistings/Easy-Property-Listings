@@ -58,7 +58,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'd_title'           => 0, // show title of listing.
 
 			'more_text'         => __( 'Read More', 'easy-property-listings' ), // read more text.
-			'd_excerpt' 		=> 'off', // show excerpt.
+			'd_excerpt'         => 'off', // show excerpt.
 			'd_suburb'          => 'on', // show suburb.
 			'd_street'          => 'on', // show street address.
 			'd_price'           => 'on', // show listing price.
@@ -201,7 +201,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$instance['d_title']    = wp_strip_all_tags( $new_instance['d_title'] );
 
 		$instance['more_text']         = wp_strip_all_tags( $new_instance['more_text'] );
-		$instance['d_excerpt'] = wp_strip_all_tags( $new_instance['d_excerpt'] );
+		$instance['d_excerpt']         = wp_strip_all_tags( $new_instance['d_excerpt'] );
 		$instance['d_suburb']          = wp_strip_all_tags( $new_instance['d_suburb'] );
 		$instance['d_street']          = wp_strip_all_tags( $new_instance['d_street'] );
 		$instance['d_price']           = wp_strip_all_tags( $new_instance['d_price'] );
@@ -240,7 +240,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'd_title'           => 0,
 
 			'more_text'         => __( 'Read More', 'easy-property-listings' ),
-			'd_excerpt' => 'off',
+			'd_excerpt'         => 'off',
 			'd_suburb'          => 'on',
 			'd_street'          => 'on',
 			'd_price'           => 'on',
@@ -262,12 +262,12 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$archive  = esc_attr( $instance['archive'] );
 		$d_title  = esc_attr( $instance['d_title'] );
 
-		$more_text         = esc_attr( $instance['more_text'] );
+		$more_text = esc_attr( $instance['more_text'] );
 		$d_excerpt = esc_attr( $instance['d_excerpt'] );
-		$d_suburb          = esc_attr( $instance['d_suburb'] );
-		$d_street          = esc_attr( $instance['d_street'] );
-		$d_price           = esc_attr( $instance['d_price'] );
-		$d_more            = esc_attr( $instance['d_more'] );
+		$d_suburb  = esc_attr( $instance['d_suburb'] );
+		$d_street  = esc_attr( $instance['d_street'] );
+		$d_price   = esc_attr( $instance['d_price'] );
+		$d_more    = esc_attr( $instance['d_more'] );
 
 		$d_icons           = esc_attr( $instance['d_icons'] );
 		$p_number          = esc_attr( $instance['p_number'] );
@@ -335,7 +335,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				<?php
 				for ( $i = 1;$i <= 20;$i++ ) {
 					echo '<option value="' . $i . '"';
-					if ( $i === $instance['p_number'] ) {
+					if ( $i == $instance['p_number'] ) { //phpcs:ignore
 						echo ' selected="selected"';
 					} echo '>' . $i . '</option>';
 				}
@@ -349,7 +349,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				<?php
 				for ( $i = 0;$i <= 20;$i++ ) {
 					echo '<option value="' . $i . '"';
-					if ( $i === $instance['p_skip'] ) {
+					if ( $i == $instance['p_skip'] ) { //phpcs:ignore
 						echo ' selected="selected"';
 					} echo '>' . $i . '</option>';
 				}

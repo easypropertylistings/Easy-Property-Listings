@@ -76,7 +76,7 @@ class EPL_Listing_Elements {
 			ob_start();
 			echo '[ ' . esc_html__( 'Listing', 'easy-property-listings' ) . ' ' . esc_attr( ucwords( $atts['type'] ) );
 
-			if ( !empty( $key_name ) ) {
+			if ( ! empty( $key_name ) ) {
 				echo ': ' . esc_attr( ucwords( str_replace( '_', ' ', $atts[ $key_name ] ) ) );
 			}
 			echo ' ]';

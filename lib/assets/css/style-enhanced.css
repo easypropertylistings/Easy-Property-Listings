@@ -287,7 +287,6 @@ width: 100%;
 	line-height: 1.2;
 }
 .epl-property-blog .epl-property-blog-entry-wrapper {
-	/* margin: 0; */
 	padding: 0;
 }
 .epl-property-blog .property-box-left {
@@ -297,7 +296,6 @@ width: 100%;
 	min-height: 0;
 }
 .epl-property-blog .property-box-right {
-	/* padding: 0; */
 	padding-bottom: 0.5em;
 	margin:0;
 	width: 60%;

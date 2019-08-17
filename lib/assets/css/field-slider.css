@@ -465,7 +465,7 @@ button.ui-button::-moz-focus-inner {
 	padding: 0;
 	width: 100%;
 	/* support: IE10, see #8844 */
-	list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+	list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP//yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
 }
 .ui-menu .ui-menu-divider {
 	margin: 5px -2px 5px -2px;
@@ -640,10 +640,10 @@ button.ui-button::-moz-focus-inner {
 }
 
 .ui-slider-horizontal {
-    height: 5px;
-    position: relative;
-    top: 12px;
-    margin: 10px 0;
+	height: 5px;
+	position: relative;
+	top: 12px;
+	margin: 10px 0;
 }
 .ui-slider-horizontal .ui-slider-handle {
 	top:-9px;
@@ -1192,27 +1192,26 @@ body .ui-tooltip {
 	width:auto!important;
 }
 .epl-lf-search-forms-wrapper {
-    max-width: none !important;
+	max-width: none !important;
 }
 
 .epl-lf-search-forms-wrapper .epl-search-submit-row{
 	float:none;
-	 display:none;
+	display:none;
 }
 .epl-lf-search-form > div:not(.epl-lf-range-slider) , .epl-lf-search-form > div:not(.epl-search-row.epl-search-land-area),  .epl-lf-search-form > div:not(.epl-search-row.epl-search-building-area) {
-    width: 30.3% !important;
-    min-width:200px;
-   
+	width: 30.3% !important;
+	min-width:200px;
+
 }
 .blockDiv {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #FFF;
-  width: 0;
-  height: 0;
-  z-index: 10;
-  
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #FFF;
+	width: 0;
+	height: 0;
+	z-index: 10;
 }
 .epl-lf-range-slider .field{
 	margin: 0;
@@ -1220,5 +1219,5 @@ body .ui-tooltip {
 	position: relative;
 }
 .epl-search-form .ui-slider-horizontal {
-   top: 0;
+	top: 0;
 }

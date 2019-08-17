@@ -722,10 +722,10 @@ class EPL_Contact {
 	 */
 	public function epl_contact_get_address() {
 
-		$addr  = $this->get_meta( 'contact_street_number' ) . ' ';
-		$addr .= $this->get_meta( 'contact_street_name' ) . ' ';
+		$addr           = $this->get_meta( 'contact_street_number' ) . ' ';
+		$addr          .= $this->get_meta( 'contact_street_name' ) . ' ';
 		$contact_suburb = $this->get_meta( 'contact_suburb' );
-		if ( !empty( $contact_suburb ) ) {
+		if ( ! empty( $contact_suburb ) ) {
 			$addr .= $this->get_meta( 'contact_suburb' ) . ', ';
 		}
 
@@ -756,7 +756,7 @@ class EPL_Contact {
 	 */
 	public function get_emails() {
 
-		$emails = $this->get_meta( 'contact_emails' );
+		$emails = (array) $this->get_meta( 'contact_emails' );
 		$emails = array_filter( $emails );
 		if ( ! empty( $emails ) ) {
 			ob_start();

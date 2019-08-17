@@ -71,7 +71,8 @@ function epl_get_default_settings() {
 		'epl_use_core_css'                     => 'off', // Means Enable CSS.
 		'epl_css_legacy'                       => 'off', // Legacy styles disabled by default.
 		'epl_css_enhanced'                     => 'on', // Enhanced styles enabled for new installations by default.
-		'epl_disable_google_api'               => 0,
+		'epl_google_api_key'                   => '',
+		'epl_disable_google_api'               => 'on',
 		'uninstall_on_delete'                  => 0,
 		'inspection_date_format'               => 'l, dS F',
 		'inspection_time_format'               => 'h:i a',
@@ -131,7 +132,7 @@ function epl_install() {
 
 	// Add Upgraded From Option.
 	$current_version = get_option( 'epl_version' );
-	if ( !empty( $current_version ) ) {
+	if ( ! empty( $current_version ) ) {
 		update_option( 'epl_version_upgraded_from', $current_version );
 
 	} else {

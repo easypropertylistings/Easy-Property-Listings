@@ -225,7 +225,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 */
 		public function get_author_name() {
-			if ( !empty( $this->name ) ) {
+			if ( ! empty( $this->name ) ) {
 				return apply_filters( 'epl_author_name', $this->name, $this );
 			}
 		}
@@ -236,7 +236,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 3.2.0
 		 */
 		public function get_email() {
-			if ( !empty( $this->email ) ) {
+			if ( ! empty( $this->email ) ) {
 				return apply_filters( 'epl_author_email', $this->email, $this );
 			}
 		}
@@ -252,7 +252,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 */
 		public function get_email_html( $html = '', $style = 'i' ) {
 
-			if ( !empty( $this->email ) ) {
+			if ( ! empty( $this->email ) ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
 
@@ -284,7 +284,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		public function get_twitter() {
 
 			$twitter = '';
-			if ( !empty( $this->twitter ) ) {
+			if ( ! empty( $this->twitter ) ) {
 
 				if ( ( strpos( $this->twitter, 'http://' ) === 0 ) || ( strpos( $this->twitter, 'https://' ) === 0 ) ) {
 					// absolute url.
@@ -306,7 +306,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		public function get_instagram() {
 
 			$instagram = '';
-			if ( !empty( $this->instagram ) ) {
+			if ( ! empty( $this->instagram ) ) {
 
 				if ( ( strpos( $this->instagram, 'http://' ) === 0 ) || ( strpos( $this->instagram, 'https://' ) === 0 ) ) {
 					// absolute url.
@@ -328,7 +328,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		public function get_youtube() {
 
 			$youtube = '';
-			if ( !empty( $this->youtube ) ) {
+			if ( ! empty( $this->youtube ) ) {
 
 				if ( ( strpos( $this->youtube, 'http://' ) === 0 ) || ( strpos( $this->youtube, 'https://' ) === 0 ) ) {
 					// absolute url.
@@ -350,7 +350,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		public function get_pinterest() {
 
 			$pinterest = '';
-			if ( !empty( $this->pinterest ) ) {
+			if ( ! empty( $this->pinterest ) ) {
 
 				if ( ( strpos( $this->pinterest, 'http://' ) === 0 ) || ( strpos( $this->pinterest, 'https://' ) === 0 ) ) {
 					// absolute url.
@@ -521,7 +521,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		public function get_google() {
 
 			$google = '';
-			if ( !empty( $this->google ) ) {
+			if ( ! empty( $this->google ) ) {
 
 				if ( ( strpos( $this->google, 'http://' ) === 0 ) || ( strpos( $this->google, 'https://' ) === 0 ) ) {
 					// absolute url.
@@ -582,7 +582,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$facebook = '';
 
-			if ( !empty( $this->facebook ) ) {
+			if ( ! empty( $this->facebook ) ) {
 
 				if ( ( strpos( $this->facebook, 'http://' ) === 0 ) || ( strpos( $this->facebook, 'https://' ) === 0 ) ) {
 					// absolute url.
@@ -642,7 +642,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 
 			$linkedin = '';
 
-			if ( !empty( $this->linkedin ) ) {
+			if ( ! empty( $this->linkedin ) ) {
 
 				if ( ( strpos( $this->linkedin, 'http://' ) === 0 ) || ( strpos( $this->linkedin, 'https://' ) === 0 ) ) {
 					// absolute url.
@@ -702,7 +702,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		public function get_skype() {
 
 			$skype = '';
-			if ( !empty( $this->skype ) ) {
+			if ( ! empty( $this->skype ) ) {
 
 				if ( ( strpos( $this->skype, 'skype:' ) === 0 ) ) {
 					// absolute url.
@@ -763,7 +763,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 */
 		public function get_video_html( $html = '' ) {
-			if ( !empty( $this->video ) ) {
+			if ( ! empty( $this->video ) ) {
 				$video = apply_filters( 'epl_author_video_html', $this->video, $this );
 				$html  = wp_oembed_get( $video );
 			}
@@ -776,7 +776,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 3.2.0
 		 */
 		public function get_description() {
-			if ( !empty( $this->description )  ) {
+			if ( ! empty( $this->description ) ) {
 				return apply_filters( 'epl_author_description', $this->description, $this );
 			}
 		}
@@ -790,7 +790,10 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 */
 		public function get_description_html( $html = '' ) {
-			if ( '' !== $this->get_description() ) {
+
+			$desc_html = $this->get_description();
+
+			if ( ! empty( $desc_html ) ) {
 
 				$permalink = apply_filters( 'epl_author_profile_link', get_author_posts_url( $this->author_id ), $this );
 
@@ -812,7 +815,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 */
 		public function get_author_mobile() {
-			if ( !empty( $this->mobile ) ) {
+			if ( ! empty( $this->mobile ) ) {
 				return apply_filters( 'epl_author_mobile', $this->mobile, $this );
 			}
 		}
@@ -823,7 +826,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 3.3.0
 		 */
 		public function get_author_office_phone() {
-			if ( !empty( $this->office_phone ) ) {
+			if ( ! empty( $this->office_phone ) ) {
 				return apply_filters( 'epl_author_office_phone', $this->office_phone, $this );
 			}
 		}
@@ -834,7 +837,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 */
 		public function get_author_id() {
-			if ( !empty( $this->author_id ) ) {
+			if ( ! empty( $this->author_id ) ) {
 				return apply_filters( 'epl_author_id', $this->author_id, $this );
 			}
 		}
@@ -845,7 +848,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 */
 		public function get_author_slogan() {
-			if ( !empty( $this->slogan ) ) {
+			if ( ! empty( $this->slogan ) ) {
 				return apply_filters( 'epl_author_slogan', $this->slogan, $this );
 			}
 		}
@@ -856,7 +859,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 */
 		public function get_author_position() {
-			if ( !empty( $this->position ) ) {
+			if ( ! empty( $this->position ) ) {
 				return apply_filters( 'epl_author_position', $this->position, $this );
 			}
 		}
@@ -867,7 +870,7 @@ if ( ! class_exists( 'EPL_Author_Meta' ) ) :
 		 * @since 1.3.0
 		 */
 		public function get_author_contact_form() {
-			if ( !empty( $this->contact_form ) ) {
+			if ( ! empty( $this->contact_form ) ) {
 				$contact_form = apply_filters( 'epl_author_contact_form', $this->contact_form, $this );
 				return do_shortcode( $contact_form );
 			}

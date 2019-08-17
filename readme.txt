@@ -393,13 +393,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-
 = 3.4 August 16, 2019 =
 
 * MAJOR Security Update Release. Important to update to the latest version to protect your website. Easy Property Listings has been reviewed and approved by the WordPress plugin team.
 * WordPress standards coding applied to all plugin files and code.
 * This is a critical update to Easy Property Listings plugin that is focused on security enhancements. Update you site to this version.
 * New: Reset settings to default values tool page added viewable with &dev=true added to tools page URL.
+* New: Added autocomplete option to meta-fields array.
 * Tweak: Internal code documentation enhanced.
 * Tweak: Admin, structure, style, enhanced, legacy CSS optimisations.
 * Tweak: JS enhancements, improvements and optimisations.
@@ -413,6 +413,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Removed cURL php requirement and instead use WordPress helper function.
 * Tweak: Additional CSS classes added to SVG icons.
 * Tweak: Fix bath and car svg wrapper class name.
+* Tweak: Author box will no longer display bio tab is user bio is empty.
 * Fix: Minimised scripts and css in admin areas to EPL pages.
 * Fix: Versioning added to epl js scripts.
 * Fix: Upgrade database on new installs message no longer displaying as no action is required.
@@ -421,8 +422,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: jQuery UI CSS now loading minified version in production mode.
 * Fix: [listing_element] shortcode will now display shortcode values when using frontend GUI builder.
 * Fix: Loading custom CSS using the style-single.css now works correctly.
-* Important Security Update:
 * Fix: XSS security flaw.
+* Important Security Update.
 
 = 3.3.3 June 13, 2019 =
 

@@ -325,7 +325,7 @@ class EPL_FORM_BUILDER {
 	public function set_form_attributes( $key = '', $value = '' ) {
 
 		// If user wants to add a single attribute.
-		if ( !empty( $key ) && is_string( $key ) ) {
+		if ( ! empty( $key ) && is_string( $key ) ) {
 			$this->form_attributes[ $this->escape( 'text', $key ) ] = $this->escape( 'attribute', $value );
 
 		} elseif ( is_array( $key ) & ! empty( $key ) ) {
@@ -599,7 +599,7 @@ class EPL_FORM_BUILDER {
 
 			<span class="<?php echo esc_attr( $this->prefix . 'section_help' ); ?>">
 				<?php
-					echo esc_attr( $section_help );
+					echo wp_kses_post( $section_help );
 				?>
 			</span>
 
@@ -825,9 +825,10 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render Editior
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
-	private function render_wp_editor() {
+	private function render_wp_editor( $field ) {
 		$value          = stripslashes( $this->get_value( $field ) );
 		$field['class'] = $this->get_class( 'field', $field );
 		wp_editor( $value, $field['name'] );
@@ -891,7 +892,7 @@ class EPL_FORM_BUILDER {
 	public function add_nonce( $action = '' ) {
 
 		$this->has_nonce   = true;
-		$this->nonce_key   = !empty( $action ) ? $action : $this->prefix . 'nonce_action';
+		$this->nonce_key   = ! empty( $action ) ? $action : $this->prefix . 'nonce_action';
 		$this->nonce_value = wp_create_nonce( $action );
 
 		$this->add_field(

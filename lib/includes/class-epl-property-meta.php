@@ -108,7 +108,7 @@ class EPL_Property_Meta {
 			if ( $label_key ) {
 				$default = isset( $label['default'] ) ? $label['default'] : '';
 
-				if ( isset( $this->epl_settings[ $label_key ] ) && !empty( $this->epl_settings[ $label_key ] ) ) {
+				if ( isset( $this->epl_settings[ $label_key ] ) && ! empty( $this->epl_settings[ $label_key ] ) ) {
 					$this->{$label_key} = $this->epl_settings[ $label_key ];
 				} else {
 					$this->{$label_key} = $default;
@@ -160,7 +160,7 @@ class EPL_Property_Meta {
 
 		$inspection_time = $this->get_property_meta( $meta_key );
 		$inspection_time = trim( $inspection_time );
-		if ( !empty( $inspection_time ) ) {
+		if ( ! empty( $inspection_time ) ) {
 			$list = array_filter( explode( "\n", $inspection_time ) );
 			if ( ! empty( $list ) ) {
 				// There are inspection times.
@@ -633,6 +633,8 @@ class EPL_Property_Meta {
 	 */
 	public function get_price_plain_value() {
 
+		$price_plain_value = '';
+
 		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type || 'business' === $this->post_type ) {
 			$price_display = $this->get_property_price_display();
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -775,8 +777,8 @@ class EPL_Property_Meta {
 			}
 		} elseif ( 'commercial' === $this->post_type || 'business' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
-			$rent_lease_type =
-				!empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
+			$rent_lease_type      =
+				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
 
 			// Sale or both.
 			$price = '';
@@ -941,6 +943,8 @@ class EPL_Property_Meta {
 	 */
 	public function get_l_price() {
 		$price_display = $this->get_property_price_display();
+		$l_price       = '';
+
 		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type ) {
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$l_price = '<li class="page-price sold-status">' . $this->label_sold . '</li>';
@@ -1833,6 +1837,7 @@ class EPL_Property_Meta {
 
 		$value      = $this->get_property_meta( 'property_furnished' );
 		$returntype = apply_filters( 'epl_get_property_furnished_return_type', $returntype );
+		$return     = '';
 
 		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
@@ -1878,6 +1883,7 @@ class EPL_Property_Meta {
 
 		$value      = $this->get_property_meta( 'property_pet_friendly' );
 		$returntype = apply_filters( 'epl_get_property_pet_friendly_return_type', $returntype );
+		$return     = '';
 
 		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
@@ -1923,6 +1929,7 @@ class EPL_Property_Meta {
 
 		$value      = $this->get_property_meta( 'property_featured' );
 		$returntype = apply_filters( 'epl_get_property_featured_return_type', $returntype );
+		$return     = '';
 
 		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
