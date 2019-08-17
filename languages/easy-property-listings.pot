@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.3.5.12\n"
+"Project-Id-Version: Easy Property Listings 3.4\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-08-17 02:27:29+00:00\n"
+"POT-Creation-Date: 2019-08-17 04:35:37+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,33 +74,33 @@ msgstr ""
 msgid "Read More "
 msgstr ""
 
-#: lib/includes/admin/admin-actions.php:62
+#: lib/includes/admin/admin-actions.php:64
 msgid "Easy Property Listings requires a Google API key for mapping"
 msgstr ""
 
-#: lib/includes/admin/admin-actions.php:64
+#: lib/includes/admin/admin-actions.php:66
 msgid ""
 "As of June 22, 2016 Google has made API keys required for the Javascript "
 "Maps API."
 msgstr ""
 
-#: lib/includes/admin/admin-actions.php:66 lib/includes/functions.php:1282
+#: lib/includes/admin/admin-actions.php:68 lib/includes/functions.php:1282
 #: lib/includes/functions.php:1944
 msgid "Google Maps API Key"
 msgstr ""
 
-#: lib/includes/admin/admin-actions.php:69
+#: lib/includes/admin/admin-actions.php:71
 #. Translators: %s is a link.
 msgid ""
 "To allow maps to function correctly please create a %s and enable "
 "<strong>Google Maps API</strong>."
 msgstr ""
 
-#: lib/includes/admin/admin-actions.php:73 lib/includes/functions.php:1868
+#: lib/includes/admin/admin-actions.php:75 lib/includes/functions.php:1868
 msgid "Advanced Settings"
 msgstr ""
 
-#: lib/includes/admin/admin-actions.php:76
+#: lib/includes/admin/admin-actions.php:78
 #. Translators: %s is a link to advanced settings.
 msgid ""
 "Once complete enter your API key below under %s > Google Maps API Key. When "
