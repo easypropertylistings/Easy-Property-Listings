@@ -633,6 +633,8 @@ class EPL_Property_Meta {
 	 */
 	public function get_price_plain_value() {
 
+		$price_plain_value = '';
+
 		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type || 'business' === $this->post_type ) {
 			$price_display = $this->get_property_price_display();
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -941,6 +943,8 @@ class EPL_Property_Meta {
 	 */
 	public function get_l_price() {
 		$price_display = $this->get_property_price_display();
+		$l_price       = '';
+
 		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type ) {
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$l_price = '<li class="page-price sold-status">' . $this->label_sold . '</li>';
@@ -1833,6 +1837,7 @@ class EPL_Property_Meta {
 
 		$value      = $this->get_property_meta( 'property_furnished' );
 		$returntype = apply_filters( 'epl_get_property_furnished_return_type', $returntype );
+		$return     = '';
 
 		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
@@ -1878,6 +1883,7 @@ class EPL_Property_Meta {
 
 		$value      = $this->get_property_meta( 'property_pet_friendly' );
 		$returntype = apply_filters( 'epl_get_property_pet_friendly_return_type', $returntype );
+		$return     = '';
 
 		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 
@@ -1923,6 +1929,7 @@ class EPL_Property_Meta {
 
 		$value      = $this->get_property_meta( 'property_featured' );
 		$returntype = apply_filters( 'epl_get_property_featured_return_type', $returntype );
+		$return     = '';
 
 		if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
 

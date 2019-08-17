@@ -825,9 +825,10 @@ class EPL_FORM_BUILDER {
 	/**
 	 * Render Editior
 	 *
+	 * @param array $field Fields array.
 	 * @since 2.3
 	 */
-	private function render_wp_editor() {
+	private function render_wp_editor( $field ) {
 		$value          = stripslashes( $this->get_value( $field ) );
 		$field['class'] = $this->get_class( 'field', $field );
 		wp_editor( $value, $field['name'] );
