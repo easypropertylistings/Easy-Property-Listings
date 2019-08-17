@@ -56,10 +56,6 @@ function epl_admin_google_maps_api_notification() {
 	$opt_google_disable = epl_get_option( 'epl_disable_google_api' );
 	$opt_google_key     = epl_get_option( 'epl_google_api_key' );
 
-
-	echo '>>>>' . $opt_google_disable . '<<<<';
-	echo '>>>>' . $opt_google_key . '<<<<';
-
 	if ( 'easy-property-listings_page_epl-settings' === $screen->id && current_user_can( 'manage_options' ) ) {
 
 		if ( 'on' !== $opt_google_disable && '' !== $opt_google_key ) {
