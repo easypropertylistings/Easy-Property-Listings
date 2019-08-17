@@ -58,7 +58,7 @@ function epl_admin_google_maps_api_notification() {
 
 	if ( 'easy-property-listings_page_epl-settings' === $screen->id && current_user_can( 'manage_options' ) ) {
 
-		if ( 'on' !== $opt_google_disable && '' !== $opt_google_key ) {
+		if ( 'on' === $opt_google_disable && '' !== $opt_google_key ) {
 			?>
 			<div class="notice notice-error is-dismissible">
 				<h3 class="epl-text-red" style="color:#dd3d36"><?php esc_html_e( 'Easy Property Listings requires a Google API key for mapping', 'easy-property-listings' ); ?></h3>
