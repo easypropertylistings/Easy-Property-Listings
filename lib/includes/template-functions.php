@@ -681,6 +681,7 @@ add_action( 'epl_property_address', 'epl_property_the_address' );
 /**
  * Suburb Name Kept for listing templates extensions which use this function
  *
+ * @return string The listing suburb.
  * @since 1.3
  * @since 3.1.18 Revised.
  */
