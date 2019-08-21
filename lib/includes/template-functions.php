@@ -2556,7 +2556,7 @@ function epl_the_content() {
 
 	global $property;
 	$content = apply_filters( 'epl_get_the_content', get_the_content() );
-	echo wp_kses_post( str_replace( ']]>', ']]&gt;', $content ) );
+	echo str_replace( ']]>', ']]&gt;', $content ); //phpcs:ignore
 }
 add_action( 'epl_property_the_content', 'epl_the_content' );
 
