@@ -1498,6 +1498,7 @@ function epl_get_owners() {
  * Get price slider
  *
  * @since 3.3
+ * @since  3.4.1 Currency support for search field sliders
  */
 function epl_get_field_sliders() {
 
