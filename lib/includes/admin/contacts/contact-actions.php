@@ -1390,6 +1390,7 @@ add_action( 'wp_ajax_epl_search_contact_listing', 'epl_search_contact_listing' )
  * Search Users
  *
  * @since 3.0
+ * @since  3.4.1 removed wp_kses_post filter to support data atts in output
  */
 function epl_search_user() {
 
