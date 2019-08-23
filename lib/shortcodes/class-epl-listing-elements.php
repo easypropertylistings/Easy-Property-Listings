@@ -101,15 +101,15 @@ class EPL_Listing_Elements {
 				break;
 
 			case 'suburb_profile':
-				$return = $this->epl_suburb_profile( $atts );
+				$return = $this->epl_suburb_profile();
 				break;
 
 			case 'formatted_address':
-				$return = $this->epl_formatted_address( $atts );
+				$return = $this->epl_formatted_address();
 				break;
 
 			case 'excerpt':
-				$return = $this->epl_the_excerpt( $atts );
+				$return = $this->epl_the_excerpt();
 				break;
 
 		}

@@ -412,7 +412,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 			// Loop over the array of record IDs and delete them.
 			foreach ( $delete_ids as $id ) {
 				$contact = new EPL_Contact( $id );
-				$contact->delete( $contact->id );
+				$contact->delete();
 			}
 		}
 	}

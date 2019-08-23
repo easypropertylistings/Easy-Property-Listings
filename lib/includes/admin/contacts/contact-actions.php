@@ -150,7 +150,7 @@ function epl_contact_delete( $args ) {
 			}
 		}
 
-		$success = $contact->delete( $contact->id );
+		$success = $contact->delete();
 
 		if ( $success ) {
 
