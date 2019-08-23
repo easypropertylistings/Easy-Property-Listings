@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get meta boxes
  *
  * @since 1.0
+ * @since 3.4.1 added property_price_currency,property_rent_currency,property_floorplan_mod_date
  */
 function epl_get_meta_boxes() {
 
@@ -163,6 +164,13 @@ function epl_get_meta_boxes() {
 						array(
 							'name'      => 'property_images_mod_date',
 							'label'     => __( 'Image Modified Date', 'easy-property-listings' ),
+							'type'      => 'hidden',
+							'maxlength' => '60',
+						),
+
+						array(
+							'name'      => 'property_floorplan_mod_date',
+							'label'     => __( 'Floorplan Modified Date', 'easy-property-listings' ),
 							'type'      => 'hidden',
 							'maxlength' => '60',
 						),
@@ -920,6 +928,13 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
+							'name'      => 'property_price_currency',
+							'label'     => __( 'Currency', 'easy-property-listings' ),
+							'type'      => 'hidden',
+							'maxlength' => '10'
+						),
+
+						array(
 							'name'      => 'property_price',
 							'label'     => __( 'Search Price', 'easy-property-listings' ),
 							'type'      => apply_filters( 'epl_price_number_format', 'decimal' ),
@@ -1022,6 +1037,13 @@ function epl_get_meta_boxes() {
 							'label'     => __( 'Global Price', 'easy-property-listings' ),
 							'type'      => 'hidden',
 							'maxlength' => '50',
+						),
+
+						array(
+							'name'      => 'property_rent_currency',
+							'label'     => __( 'Currency', 'easy-property-listings' ),
+							'type'      => 'hidden',
+							'maxlength' => '10'
 						),
 
 						array(
