@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.4\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-08-17 04:35:37+00:00\n"
+"POT-Creation-Date: 2019-08-23 13:50:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,19 +28,19 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-6: README.md\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: lib/compatibility/functions-compat.php:356
+#: lib/compatibility/functions-compat.php:357
 msgid "Recently Sold"
 msgstr ""
 
-#: lib/compatibility/functions-compat.php:358
+#: lib/compatibility/functions-compat.php:359
 msgid "Recently Leased"
 msgstr ""
 
-#: lib/compatibility/functions-compat.php:446
+#: lib/compatibility/functions-compat.php:447
 #: lib/includes/class-epl-author-meta.php:804
 #: lib/includes/options-front-end.php:60
 #: lib/widgets/class-epl-widget-recent-property.php:60
-#: lib/widgets/class-epl-widget-recent-property.php:242
+#: lib/widgets/class-epl-widget-recent-property.php:256
 msgid "Read More"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgid "Unnamed Contact"
 msgstr ""
 
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:177
-#: lib/widgets/class-epl-widget-recent-property.php:404
+#: lib/widgets/class-epl-widget-recent-property.php:418
 msgid "View"
 msgstr ""
 
@@ -365,7 +365,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:238
 #: lib/includes/admin/contacts/contact-actions.php:886
 #: lib/includes/admin/contacts/contact-functions.php:60
-#: lib/widgets/class-epl-widget-recent-property.php:378
+#: lib/widgets/class-epl-widget-recent-property.php:392
 #: lib/widgets/widget-admin-dashboard.php:26
 msgid "Listings"
 msgstr ""
@@ -387,7 +387,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:203
 #: lib/includes/admin/contacts/contact-actions.php:290
 #: lib/includes/admin/contacts/contact-actions.php:428
-#: lib/includes/admin/contacts/contact-actions.php:1448
+#: lib/includes/admin/contacts/contact-actions.php:1449
 msgid "Cheatin' eh?!"
 msgstr ""
 
@@ -412,12 +412,12 @@ msgid "Invalid Contact ID"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:188
-#: lib/includes/admin/contacts/contact-actions.php:1436
+#: lib/includes/admin/contacts/contact-actions.php:1437
 msgid "You do not have permission to save note."
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:207
-#: lib/includes/admin/contacts/contact-actions.php:1451
+#: lib/includes/admin/contacts/contact-actions.php:1452
 msgid "A note is required"
 msgstr ""
 
@@ -519,11 +519,11 @@ msgstr ""
 #: lib/includes/admin/help-single.php:52
 #: lib/includes/admin/menus/class-epl-welcome.php:508
 #: lib/includes/admin/menus/menu-help.php:131
-#: lib/meta-boxes/meta-box-init.php:1399 lib/meta-boxes/meta-box-init.php:1414
-#: lib/meta-boxes/meta-box-init.php:1429 lib/meta-boxes/meta-box-init.php:1471
-#: lib/meta-boxes/meta-box-init.php:1486 lib/meta-boxes/meta-box-init.php:1502
-#: lib/widgets/class-epl-widget-recent-property.php:282
-#: lib/widgets/widget-functions.php:33 lib/widgets/widget-functions.php:1422
+#: lib/meta-boxes/meta-box-init.php:1421 lib/meta-boxes/meta-box-init.php:1436
+#: lib/meta-boxes/meta-box-init.php:1451 lib/meta-boxes/meta-box-init.php:1493
+#: lib/meta-boxes/meta-box-init.php:1508 lib/meta-boxes/meta-box-init.php:1524
+#: lib/widgets/class-epl-widget-recent-property.php:296
+#: lib/widgets/widget-functions.php:33 lib/widgets/widget-functions.php:1419
 msgid "Title"
 msgstr ""
 
@@ -561,30 +561,30 @@ msgid "Add Listing"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1167
-#: lib/meta-boxes/meta-box-init.php:806
+#: lib/meta-boxes/meta-box-init.php:814
 msgid "Lot"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1175
-#: lib/includes/functions.php:630 lib/meta-boxes/meta-box-init.php:814
+#: lib/includes/functions.php:630 lib/meta-boxes/meta-box-init.php:822
 msgid "Unit"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1183
 #: lib/includes/admin/contacts/contacts.php:569
-#: lib/meta-boxes/meta-box-init.php:822
+#: lib/meta-boxes/meta-box-init.php:830
 msgid "Street Number"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1190
 #: lib/includes/admin/contacts/contacts.php:576
-#: lib/meta-boxes/meta-box-init.php:829
+#: lib/meta-boxes/meta-box-init.php:837
 msgid "Street Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1218
 #: lib/includes/admin/contacts/contacts.php:604
-#: lib/meta-boxes/meta-box-init.php:875 lib/widgets/widget-functions.php:124
+#: lib/meta-boxes/meta-box-init.php:883 lib/widgets/widget-functions.php:124
 #: lib/widgets/widget-functions.php:456
 msgid "Country"
 msgstr ""
@@ -594,13 +594,13 @@ msgid "Full Address"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1229
-#: lib/meta-boxes/meta-box-init.php:106
-#: lib/widgets/class-epl-widget-recent-property.php:287
+#: lib/meta-boxes/meta-box-init.php:107
+#: lib/widgets/class-epl-widget-recent-property.php:301
 msgid "Listing Type"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1237
-#: lib/widgets/class-epl-widget-recent-property.php:306
+#: lib/widgets/class-epl-widget-recent-property.php:320
 msgid "Listing Status"
 msgstr ""
 
@@ -608,7 +608,7 @@ msgstr ""
 #: lib/includes/functions.php:2512 lib/post-types/post-types.php:54
 #: lib/post-types/post-types.php:580
 #: lib/widgets/class-epl-widget-recent-property.php:177
-#: lib/widgets/class-epl-widget-recent-property.php:312
+#: lib/widgets/class-epl-widget-recent-property.php:326
 #: lib/widgets/widget-admin-dashboard.php:139
 #: lib/widgets/widget-admin-dashboard.php:171
 #: lib/widgets/widget-admin-dashboard.php:220
@@ -621,7 +621,7 @@ msgstr ""
 #: lib/includes/functions.php:2516 lib/includes/install.php:51
 #: lib/post-types/post-types.php:60 lib/updates/epl-2.1.11.php:18
 #: lib/widgets/class-epl-widget-recent-property.php:178
-#: lib/widgets/class-epl-widget-recent-property.php:313
+#: lib/widgets/class-epl-widget-recent-property.php:327
 #: lib/widgets/widget-admin-dashboard.php:186
 #: lib/widgets/widget-admin-dashboard.php:235
 #: lib/widgets/widget-functions.php:75
@@ -633,7 +633,7 @@ msgstr ""
 #: lib/includes/functions.php:2520 lib/includes/install.php:50
 #: lib/post-types/post-types.php:64 lib/updates/epl-2.1.php:18
 #: lib/widgets/class-epl-widget-recent-property.php:179
-#: lib/widgets/class-epl-widget-recent-property.php:314
+#: lib/widgets/class-epl-widget-recent-property.php:328
 #: lib/widgets/widget-admin-dashboard.php:144
 #: lib/widgets/widget-admin-dashboard.php:191
 #: lib/widgets/widget-functions.php:76
@@ -694,23 +694,23 @@ msgid "Contact Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:239
-#: lib/widgets/widget-functions.php:1318 lib/widgets/widget-functions.php:1433
+#: lib/widgets/widget-functions.php:1315 lib/widgets/widget-functions.php:1430
 msgid "First Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:246
-#: lib/widgets/widget-functions.php:1325 lib/widgets/widget-functions.php:1439
+#: lib/widgets/widget-functions.php:1322 lib/widgets/widget-functions.php:1436
 msgid "Last Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:253
-#: lib/widgets/widget-functions.php:1332
+#: lib/widgets/widget-functions.php:1329
 msgid "Email *"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:260
 #: lib/includes/admin/contacts/contacts.php:462
-#: lib/widgets/widget-functions.php:1339 lib/widgets/widget-functions.php:1451
+#: lib/widgets/widget-functions.php:1336 lib/widgets/widget-functions.php:1448
 msgid "Phone"
 msgstr ""
 
@@ -736,7 +736,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:471
 #: lib/includes/class-epl-author-meta.php:263
-#: lib/includes/class-epl-contact.php:711 lib/widgets/widget-functions.php:1445
+#: lib/includes/class-epl-contact.php:711 lib/widgets/widget-functions.php:1442
 msgid "Email"
 msgstr ""
 
@@ -987,7 +987,7 @@ msgid ""
 "location if required. You can also hide the map on a per listing basis."
 msgstr ""
 
-#: lib/includes/admin/help-single.php:112 lib/meta-boxes/meta-box-init.php:783
+#: lib/includes/admin/help-single.php:112 lib/meta-boxes/meta-box-init.php:791
 #: lib/widgets/widget-functions.php:89
 msgid "Property Address"
 msgstr ""
@@ -1031,7 +1031,7 @@ msgid ""
 "with your custom label which is currently:"
 msgstr ""
 
-#: lib/includes/admin/help-single.php:128 lib/meta-boxes/meta-box-init.php:981
+#: lib/includes/admin/help-single.php:128 lib/meta-boxes/meta-box-init.php:996
 msgid "Sale Price"
 msgstr ""
 
@@ -1052,7 +1052,7 @@ msgid ""
 "for quick access."
 msgstr ""
 
-#: lib/includes/admin/help-single.php:144 lib/meta-boxes/meta-box-init.php:1515
+#: lib/includes/admin/help-single.php:144 lib/meta-boxes/meta-box-init.php:1537
 msgid "Linked Contact"
 msgstr ""
 
@@ -1446,8 +1446,8 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:314
-#: lib/templates/content/shortcodes/listing-search/default.php:152
-#: lib/templates/content/shortcodes/listing-search-commercial/default.php:148
+#: lib/templates/content/shortcodes/listing-search/default.php:137
+#: lib/templates/content/shortcodes/listing-search-commercial/default.php:135
 #: lib/widgets/widget-functions.php:219
 msgid "Search"
 msgstr ""
@@ -1725,7 +1725,7 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:548
 #: lib/includes/admin/menus/menu-help.php:166
-#: lib/meta-boxes/meta-box-init.php:40 lib/post-types/post-type-business.php:98
+#: lib/meta-boxes/meta-box-init.php:41 lib/post-types/post-type-business.php:98
 #: lib/post-types/post-type-commercial-land.php:98
 #: lib/post-types/post-type-commercial.php:98
 #: lib/post-types/post-type-land.php:98
@@ -1736,7 +1736,7 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:554
 #: lib/includes/admin/menus/menu-help.php:168
-#: lib/meta-boxes/meta-box-init.php:52
+#: lib/meta-boxes/meta-box-init.php:53
 msgid "Heading"
 msgstr ""
 
@@ -1747,7 +1747,7 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:557
 #: lib/includes/admin/menus/menu-help.php:171
-#: lib/meta-boxes/meta-box-init.php:84 lib/post-types/post-types.php:93
+#: lib/meta-boxes/meta-box-init.php:85 lib/post-types/post-types.php:93
 msgid "Second Listing Agent"
 msgstr ""
 
@@ -1760,8 +1760,8 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:560
 #: lib/includes/admin/menus/menu-help.php:174
-#: lib/meta-boxes/meta-box-init.php:212
-#: lib/widgets/class-epl-widget-recent-property.php:538
+#: lib/meta-boxes/meta-box-init.php:220
+#: lib/widgets/class-epl-widget-recent-property.php:552
 msgid "Inspection Times"
 msgstr ""
 
@@ -2122,8 +2122,16 @@ msgid ""
 "your listings."
 msgstr ""
 
-#: lib/includes/admin/menus/menu-help.php:41
+#: lib/includes/admin/menus/menu-help.php:27
 #. Translators: %s is a link.
+msgid ""
+"Below are some links and videos that will help you get started. If you "
+"still have questions, we have on-line documentation and tutorials packed "
+"with information or ask a question by opening a <a href=\"%s\">support "
+"ticket</a>."
+msgstr ""
+
+#: lib/includes/admin/menus/menu-help.php:41
 msgid "Important Links"
 msgstr ""
 
@@ -2336,71 +2344,71 @@ msgstr ""
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:228
+#: lib/includes/admin/reports/graphing.php:229
 msgid "Listings Over Time"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:244
-#: lib/includes/admin/reports/graphing.php:254
+#: lib/includes/admin/reports/graphing.php:245
+#: lib/includes/admin/reports/graphing.php:255
 #. translators: status label.
 msgid "Total %s listings period shown : "
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:302
+#: lib/includes/admin/reports/graphing.php:303
 #: lib/widgets/widget-admin-dashboard.php:414
 msgid "Today"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:303
+#: lib/includes/admin/reports/graphing.php:304
 msgid "Yesterday"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:304
+#: lib/includes/admin/reports/graphing.php:305
 msgid "This Week"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:305
+#: lib/includes/admin/reports/graphing.php:306
 msgid "Last Week"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:306
+#: lib/includes/admin/reports/graphing.php:307
 msgid "This Month"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:307
+#: lib/includes/admin/reports/graphing.php:308
 msgid "Last Month"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:308
+#: lib/includes/admin/reports/graphing.php:309
 msgid "This Quarter"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:309
+#: lib/includes/admin/reports/graphing.php:310
 msgid "Last Quarter"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:310
+#: lib/includes/admin/reports/graphing.php:311
 msgid "This Year"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:311
+#: lib/includes/admin/reports/graphing.php:312
 msgid "Last Year"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:312 lib/includes/functions.php:1802
+#: lib/includes/admin/reports/graphing.php:313 lib/includes/functions.php:1802
 #: lib/includes/functions.php:1820
 msgid "Custom"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:339
+#: lib/includes/admin/reports/graphing.php:340
 msgid "From"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:357
+#: lib/includes/admin/reports/graphing.php:358
 msgid "To"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:377
+#: lib/includes/admin/reports/graphing.php:378
 msgid "Filter"
 msgstr ""
 
@@ -2757,7 +2765,7 @@ msgid "Built"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1069
-#: lib/meta-boxes/meta-box-init.php:246
+#: lib/meta-boxes/meta-box-init.php:254
 msgid "Bedrooms"
 msgstr ""
 
@@ -2766,7 +2774,7 @@ msgid "bed"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1128
-#: lib/meta-boxes/meta-box-init.php:254 lib/widgets/widget-functions.php:631
+#: lib/meta-boxes/meta-box-init.php:262 lib/widgets/widget-functions.php:631
 msgid "Bathrooms"
 msgstr ""
 
@@ -2775,7 +2783,7 @@ msgid "bath"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1187
-#: lib/meta-boxes/meta-box-init.php:296 lib/post-types/post-types.php:341
+#: lib/meta-boxes/meta-box-init.php:304 lib/post-types/post-types.php:341
 #: lib/widgets/widget-functions.php:174 lib/widgets/widget-functions.php:650
 msgid "Rooms"
 msgstr ""
@@ -2793,12 +2801,12 @@ msgid "carport"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1402
-#: lib/meta-boxes/meta-box-init.php:331 lib/widgets/widget-functions.php:819
+#: lib/meta-boxes/meta-box-init.php:339 lib/widgets/widget-functions.php:819
 msgid "Air Conditioning"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1461
-#: lib/meta-boxes/meta-box-init.php:322 lib/widgets/widget-functions.php:834
+#: lib/meta-boxes/meta-box-init.php:330 lib/widgets/widget-functions.php:834
 msgid "Pool"
 msgstr ""
 
@@ -2823,27 +2831,27 @@ msgid "Floor Area is"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1709
-#: lib/meta-boxes/meta-box-init.php:398 lib/meta-boxes/meta-box-init.php:754
+#: lib/meta-boxes/meta-box-init.php:406 lib/meta-boxes/meta-box-init.php:762
 msgid "Energy Rating"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1754
-#: lib/meta-boxes/meta-box-init.php:312
+#: lib/meta-boxes/meta-box-init.php:320
 msgid "New Construction"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1794
-#: lib/meta-boxes/meta-box-init.php:1091
+#: lib/meta-boxes/meta-box-init.php:1113
 msgid "Holiday Rental"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1844
-#: lib/meta-boxes/meta-box-init.php:1082
+#: lib/meta-boxes/meta-box-init.php:1104
 msgid "Furnished"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1890
-#: lib/meta-boxes/meta-box-init.php:349
+#: lib/meta-boxes/meta-box-init.php:357
 msgid "Pet Friendly"
 msgstr ""
 
@@ -3418,7 +3426,7 @@ msgid "Listing view type"
 msgstr ""
 
 #: lib/includes/functions.php:1535 lib/includes/template-functions.php:1645
-#: lib/widgets/class-epl-widget-recent-property.php:434
+#: lib/widgets/class-epl-widget-recent-property.php:448
 msgid "List"
 msgstr ""
 
@@ -3556,7 +3564,8 @@ msgstr ""
 msgid "Easy Property Listings Featured Image Settings"
 msgstr ""
 
-#: lib/includes/functions.php:1753
+#: lib/includes/functions.php:1753 lib/meta-boxes/meta-box-init.php:932
+#: lib/meta-boxes/meta-box-init.php:1044
 msgid "Currency"
 msgstr ""
 
@@ -3650,32 +3659,32 @@ msgstr ""
 msgid "Disable Styles"
 msgstr ""
 
-#: lib/includes/functions.php:1879 lib/meta-boxes/meta-box-init.php:222
-#: lib/meta-boxes/meta-box-init.php:315 lib/meta-boxes/meta-box-init.php:325
-#: lib/meta-boxes/meta-box-init.php:334 lib/meta-boxes/meta-box-init.php:343
-#: lib/meta-boxes/meta-box-init.php:353 lib/meta-boxes/meta-box-init.php:409
-#: lib/meta-boxes/meta-box-init.php:435 lib/meta-boxes/meta-box-init.php:444
-#: lib/meta-boxes/meta-box-init.php:453 lib/meta-boxes/meta-box-init.php:462
-#: lib/meta-boxes/meta-box-init.php:471 lib/meta-boxes/meta-box-init.php:480
-#: lib/meta-boxes/meta-box-init.php:489 lib/meta-boxes/meta-box-init.php:498
-#: lib/meta-boxes/meta-box-init.php:507 lib/meta-boxes/meta-box-init.php:516
-#: lib/meta-boxes/meta-box-init.php:525 lib/meta-boxes/meta-box-init.php:533
-#: lib/meta-boxes/meta-box-init.php:542 lib/meta-boxes/meta-box-init.php:551
-#: lib/meta-boxes/meta-box-init.php:568 lib/meta-boxes/meta-box-init.php:577
-#: lib/meta-boxes/meta-box-init.php:586 lib/meta-boxes/meta-box-init.php:595
-#: lib/meta-boxes/meta-box-init.php:604 lib/meta-boxes/meta-box-init.php:613
-#: lib/meta-boxes/meta-box-init.php:630 lib/meta-boxes/meta-box-init.php:639
-#: lib/meta-boxes/meta-box-init.php:648 lib/meta-boxes/meta-box-init.php:657
-#: lib/meta-boxes/meta-box-init.php:666 lib/meta-boxes/meta-box-init.php:675
-#: lib/meta-boxes/meta-box-init.php:684 lib/meta-boxes/meta-box-init.php:693
-#: lib/meta-boxes/meta-box-init.php:702 lib/meta-boxes/meta-box-init.php:772
-#: lib/meta-boxes/meta-box-init.php:800 lib/meta-boxes/meta-box-init.php:846
-#: lib/meta-boxes/meta-box-init.php:893 lib/meta-boxes/meta-box-init.php:949
-#: lib/meta-boxes/meta-box-init.php:958 lib/meta-boxes/meta-box-init.php:967
-#: lib/meta-boxes/meta-box-init.php:999 lib/meta-boxes/meta-box-init.php:1053
-#: lib/meta-boxes/meta-box-init.php:1085 lib/meta-boxes/meta-box-init.php:1094
-#: lib/meta-boxes/meta-box-init.php:1258 lib/meta-boxes/meta-box-init.php:1276
-#: lib/meta-boxes/meta-box-init.php:1364
+#: lib/includes/functions.php:1879 lib/meta-boxes/meta-box-init.php:230
+#: lib/meta-boxes/meta-box-init.php:323 lib/meta-boxes/meta-box-init.php:333
+#: lib/meta-boxes/meta-box-init.php:342 lib/meta-boxes/meta-box-init.php:351
+#: lib/meta-boxes/meta-box-init.php:361 lib/meta-boxes/meta-box-init.php:417
+#: lib/meta-boxes/meta-box-init.php:443 lib/meta-boxes/meta-box-init.php:452
+#: lib/meta-boxes/meta-box-init.php:461 lib/meta-boxes/meta-box-init.php:470
+#: lib/meta-boxes/meta-box-init.php:479 lib/meta-boxes/meta-box-init.php:488
+#: lib/meta-boxes/meta-box-init.php:497 lib/meta-boxes/meta-box-init.php:506
+#: lib/meta-boxes/meta-box-init.php:515 lib/meta-boxes/meta-box-init.php:524
+#: lib/meta-boxes/meta-box-init.php:533 lib/meta-boxes/meta-box-init.php:541
+#: lib/meta-boxes/meta-box-init.php:550 lib/meta-boxes/meta-box-init.php:559
+#: lib/meta-boxes/meta-box-init.php:576 lib/meta-boxes/meta-box-init.php:585
+#: lib/meta-boxes/meta-box-init.php:594 lib/meta-boxes/meta-box-init.php:603
+#: lib/meta-boxes/meta-box-init.php:612 lib/meta-boxes/meta-box-init.php:621
+#: lib/meta-boxes/meta-box-init.php:638 lib/meta-boxes/meta-box-init.php:647
+#: lib/meta-boxes/meta-box-init.php:656 lib/meta-boxes/meta-box-init.php:665
+#: lib/meta-boxes/meta-box-init.php:674 lib/meta-boxes/meta-box-init.php:683
+#: lib/meta-boxes/meta-box-init.php:692 lib/meta-boxes/meta-box-init.php:701
+#: lib/meta-boxes/meta-box-init.php:710 lib/meta-boxes/meta-box-init.php:780
+#: lib/meta-boxes/meta-box-init.php:808 lib/meta-boxes/meta-box-init.php:854
+#: lib/meta-boxes/meta-box-init.php:901 lib/meta-boxes/meta-box-init.php:964
+#: lib/meta-boxes/meta-box-init.php:973 lib/meta-boxes/meta-box-init.php:982
+#: lib/meta-boxes/meta-box-init.php:1014 lib/meta-boxes/meta-box-init.php:1075
+#: lib/meta-boxes/meta-box-init.php:1107 lib/meta-boxes/meta-box-init.php:1116
+#: lib/meta-boxes/meta-box-init.php:1280 lib/meta-boxes/meta-box-init.php:1298
+#: lib/meta-boxes/meta-box-init.php:1386
 msgid "Yes"
 msgstr ""
 
@@ -3813,7 +3822,7 @@ msgstr ""
 #: lib/includes/functions.php:2513 lib/post-types/post-types.php:55
 #: lib/post-types/post-types.php:581
 #: lib/widgets/class-epl-widget-recent-property.php:180
-#: lib/widgets/class-epl-widget-recent-property.php:315
+#: lib/widgets/class-epl-widget-recent-property.php:329
 #: lib/widgets/widget-admin-dashboard.php:149
 #: lib/widgets/widget-admin-dashboard.php:196
 #: lib/widgets/widget-admin-dashboard.php:240
@@ -3823,7 +3832,7 @@ msgstr ""
 #: lib/includes/functions.php:2514 lib/post-types/post-types.php:56
 #: lib/post-types/post-types.php:582
 #: lib/widgets/class-epl-widget-recent-property.php:181
-#: lib/widgets/class-epl-widget-recent-property.php:316
+#: lib/widgets/class-epl-widget-recent-property.php:330
 #: lib/widgets/widget-admin-dashboard.php:154
 #: lib/widgets/widget-admin-dashboard.php:201
 #: lib/widgets/widget-admin-dashboard.php:245
@@ -4002,7 +4011,7 @@ msgstr ""
 
 #: lib/includes/template-functions.php:838
 #: lib/includes/template-functions.php:1263
-#: lib/meta-boxes/meta-box-init.php:1255
+#: lib/meta-boxes/meta-box-init.php:1277
 msgid "Plus Outgoings"
 msgstr ""
 
@@ -4015,12 +4024,12 @@ msgid "Property Features"
 msgstr ""
 
 #: lib/includes/template-functions.php:1315
-#: lib/meta-boxes/meta-box-init.php:1300
+#: lib/meta-boxes/meta-box-init.php:1322
 msgid "Commercial Features"
 msgstr ""
 
 #: lib/includes/template-functions.php:1361
-#: lib/meta-boxes/meta-box-init.php:1105
+#: lib/meta-boxes/meta-box-init.php:1127
 msgid "Rural Features"
 msgstr ""
 
@@ -4168,43 +4177,43 @@ msgstr ""
 msgid "The following details will appear in your author box and widgets."
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:63
+#: lib/meta-boxes/meta-box-init.php:64
 msgid "Listing Agent(s)"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:67 lib/post-types/post-types.php:91
+#: lib/meta-boxes/meta-box-init.php:68 lib/post-types/post-types.php:91
 msgid "Office ID"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:75 lib/post-types/post-types.php:92
+#: lib/meta-boxes/meta-box-init.php:76 lib/post-types/post-types.php:92
 msgid "Listing Agent"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:78
+#: lib/meta-boxes/meta-box-init.php:79
 msgid "Search for primary agent."
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:87
+#: lib/meta-boxes/meta-box-init.php:88
 msgid "Search for secondary agent."
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:93 lib/meta-boxes/meta-box-init.php:96
+#: lib/meta-boxes/meta-box-init.php:94 lib/meta-boxes/meta-box-init.php:97
 msgid "Hide Author Box"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:111
+#: lib/meta-boxes/meta-box-init.php:112
 msgid "Property Status"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:118
+#: lib/meta-boxes/meta-box-init.php:119
 msgid "Date Listed"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:126
+#: lib/meta-boxes/meta-box-init.php:127
 msgid "Authority"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:134
+#: lib/meta-boxes/meta-box-init.php:135
 #: lib/post-types/post-type-business.php:99
 #: lib/post-types/post-type-commercial-land.php:99
 #: lib/post-types/post-type-commercial.php:99
@@ -4214,505 +4223,509 @@ msgstr ""
 msgid "Unique ID"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:141 lib/widgets/widget-functions.php:467
+#: lib/meta-boxes/meta-box-init.php:142 lib/widgets/widget-functions.php:467
 msgid "House Category"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:149 lib/widgets/widget-functions.php:479
+#: lib/meta-boxes/meta-box-init.php:150 lib/widgets/widget-functions.php:479
 msgid "Rural Category"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:157
+#: lib/meta-boxes/meta-box-init.php:158
 msgid "XML Importer Mod Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:165
+#: lib/meta-boxes/meta-box-init.php:166
 msgid "Image Modified Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:172
-msgid "Commercial Authority"
+#: lib/meta-boxes/meta-box-init.php:173
+msgid "Floorplan Modified Date"
 msgstr ""
 
 #: lib/meta-boxes/meta-box-init.php:180
-msgid "Exclusivity"
+msgid "Commercial Authority"
 msgstr ""
 
 #: lib/meta-boxes/meta-box-init.php:188
+msgid "Exclusivity"
+msgstr ""
+
+#: lib/meta-boxes/meta-box-init.php:196
 msgid "Commercial Listing Type"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:196 lib/widgets/widget-functions.php:503
+#: lib/meta-boxes/meta-box-init.php:204 lib/widgets/widget-functions.php:503
 msgid "Commercial Category"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:207
+#: lib/meta-boxes/meta-box-init.php:215
 msgid "Display Details"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:219
+#: lib/meta-boxes/meta-box-init.php:227
 msgid "Featured Listing"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:233
+#: lib/meta-boxes/meta-box-init.php:241
 msgid "Listing Features"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:242
+#: lib/meta-boxes/meta-box-init.php:250
 msgid "House Features"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:261
+#: lib/meta-boxes/meta-box-init.php:269
 msgid "Toilet"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:268
+#: lib/meta-boxes/meta-box-init.php:276
 msgid "Ensuite"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:275
+#: lib/meta-boxes/meta-box-init.php:283
 msgid "Garage"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:282
+#: lib/meta-boxes/meta-box-init.php:290
 msgid "Carport"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:289
+#: lib/meta-boxes/meta-box-init.php:297
 msgid "Open Parking Spaces"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:303
+#: lib/meta-boxes/meta-box-init.php:311
 msgid "Year Built"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:340
+#: lib/meta-boxes/meta-box-init.php:348
 msgid "Security System"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:362 lib/meta-boxes/meta-box-init.php:712
+#: lib/meta-boxes/meta-box-init.php:370 lib/meta-boxes/meta-box-init.php:720
 msgid "Land Details"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:366 lib/meta-boxes/meta-box-init.php:724
+#: lib/meta-boxes/meta-box-init.php:374 lib/meta-boxes/meta-box-init.php:732
 #: lib/widgets/widget-functions.php:188
 msgid "Land Area"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:374 lib/meta-boxes/meta-box-init.php:731
+#: lib/meta-boxes/meta-box-init.php:382 lib/meta-boxes/meta-box-init.php:739
 msgid "Land Unit"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:382 lib/meta-boxes/meta-box-init.php:738
+#: lib/meta-boxes/meta-box-init.php:390 lib/meta-boxes/meta-box-init.php:746
 #: lib/widgets/widget-functions.php:195
 msgid "Building Area"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:390 lib/meta-boxes/meta-box-init.php:746
+#: lib/meta-boxes/meta-box-init.php:398 lib/meta-boxes/meta-box-init.php:754
 msgid "Building Unit"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:406 lib/meta-boxes/meta-box-init.php:769
+#: lib/meta-boxes/meta-box-init.php:414 lib/meta-boxes/meta-box-init.php:777
 msgid "Fully Fenced"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:419
+#: lib/meta-boxes/meta-box-init.php:427
 msgid "Additional Features"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:427
+#: lib/meta-boxes/meta-box-init.php:435
 msgid "Internal"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:432
+#: lib/meta-boxes/meta-box-init.php:440
 msgid "Remote Garage"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:441
+#: lib/meta-boxes/meta-box-init.php:449
 msgid "Secure Parking"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:450
+#: lib/meta-boxes/meta-box-init.php:458
 msgid "Study"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:459
+#: lib/meta-boxes/meta-box-init.php:467
 msgid "Dishwasher"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:468
+#: lib/meta-boxes/meta-box-init.php:476
 msgid "Built In Robes"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:477
+#: lib/meta-boxes/meta-box-init.php:485
 msgid "Gym"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:486
+#: lib/meta-boxes/meta-box-init.php:494
 msgid "Workshop"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:495
+#: lib/meta-boxes/meta-box-init.php:503
 msgid "Rumpus Room"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:504
+#: lib/meta-boxes/meta-box-init.php:512
 msgid "Floor Boards"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:513
+#: lib/meta-boxes/meta-box-init.php:521
 msgid "Broadband"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:522
+#: lib/meta-boxes/meta-box-init.php:530
 msgid "Pay TV"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:530
+#: lib/meta-boxes/meta-box-init.php:538
 msgid "Vacuum System"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:539
+#: lib/meta-boxes/meta-box-init.php:547
 msgid "Intercom"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:548
+#: lib/meta-boxes/meta-box-init.php:556
 msgid "Spa"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:560
+#: lib/meta-boxes/meta-box-init.php:568
 msgid "External"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:565
+#: lib/meta-boxes/meta-box-init.php:573
 msgid "Tennis Court"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:574
+#: lib/meta-boxes/meta-box-init.php:582
 msgid "Balcony"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:583
+#: lib/meta-boxes/meta-box-init.php:591
 msgid "Deck"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:592
+#: lib/meta-boxes/meta-box-init.php:600
 msgid "Courtyard"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:601
+#: lib/meta-boxes/meta-box-init.php:609
 msgid "Outdoor Entertaining"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:610
+#: lib/meta-boxes/meta-box-init.php:618
 msgid "Shed"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:622
+#: lib/meta-boxes/meta-box-init.php:630
 msgid "Heating & Cooling"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:627
+#: lib/meta-boxes/meta-box-init.php:635
 msgid "Ducted Heating"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:636
+#: lib/meta-boxes/meta-box-init.php:644
 msgid "Ducted Cooling"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:645
+#: lib/meta-boxes/meta-box-init.php:653
 msgid "Split System Heating"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:654
+#: lib/meta-boxes/meta-box-init.php:662
 msgid "Hydronic Heating"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:663
+#: lib/meta-boxes/meta-box-init.php:671
 msgid "Split System Aircon"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:672
+#: lib/meta-boxes/meta-box-init.php:680
 msgid "Gas Heating"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:681
+#: lib/meta-boxes/meta-box-init.php:689
 msgid "Reverse Cycle Aircon"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:690
+#: lib/meta-boxes/meta-box-init.php:698
 msgid "Evaporative Cooling"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:699
+#: lib/meta-boxes/meta-box-init.php:707
 msgid "Open Fire Place"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:761 lib/widgets/widget-functions.php:491
+#: lib/meta-boxes/meta-box-init.php:769 lib/widgets/widget-functions.php:491
 msgid "Land Category"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:797
+#: lib/meta-boxes/meta-box-init.php:805
 msgid "Display Street Address?"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:843
+#: lib/meta-boxes/meta-box-init.php:851
 msgid "Display"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:882
+#: lib/meta-boxes/meta-box-init.php:890
 msgid "Coordinates"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:884
+#: lib/meta-boxes/meta-box-init.php:892
 msgid "Drag the pin to manually set listing coordinates"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:890
+#: lib/meta-boxes/meta-box-init.php:898
 msgid "Hide Map"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:904
+#: lib/meta-boxes/meta-box-init.php:912
 msgid "Pricing"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:917 lib/meta-boxes/meta-box-init.php:1022
+#: lib/meta-boxes/meta-box-init.php:925 lib/meta-boxes/meta-box-init.php:1037
 msgid "Global Price"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:924
+#: lib/meta-boxes/meta-box-init.php:939
 msgid "Search Price"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:931
+#: lib/meta-boxes/meta-box-init.php:946
 msgid "Price Text"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:938
+#: lib/meta-boxes/meta-box-init.php:953
 msgid "Auction Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:946
+#: lib/meta-boxes/meta-box-init.php:961
 msgid "Display Price?"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:964
+#: lib/meta-boxes/meta-box-init.php:979
 msgid "House and Land Package"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:977
+#: lib/meta-boxes/meta-box-init.php:992
 msgid "Sale Details"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:988
+#: lib/meta-boxes/meta-box-init.php:1003
 msgid "Sale Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:996
+#: lib/meta-boxes/meta-box-init.php:1011
 msgid "Display Sale Price"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1009
+#: lib/meta-boxes/meta-box-init.php:1024
 msgid "Rental Pricing"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1029
+#: lib/meta-boxes/meta-box-init.php:1051
 msgid "Rent Amount"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1036
+#: lib/meta-boxes/meta-box-init.php:1058
 msgid "Rent Period"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1043
+#: lib/meta-boxes/meta-box-init.php:1065
 msgid "Rent Text"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1050
+#: lib/meta-boxes/meta-box-init.php:1072
 msgid "Display Rent?"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1066
+#: lib/meta-boxes/meta-box-init.php:1088
 msgid "Date Available"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1074
+#: lib/meta-boxes/meta-box-init.php:1096
 msgid "Leased Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1117
+#: lib/meta-boxes/meta-box-init.php:1139
 msgid "Fencing"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1124
+#: lib/meta-boxes/meta-box-init.php:1146
 msgid "Annual Rainfall"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1131
+#: lib/meta-boxes/meta-box-init.php:1153
 msgid "Soil Types"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1138
+#: lib/meta-boxes/meta-box-init.php:1160
 msgid "Improvements"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1145
+#: lib/meta-boxes/meta-box-init.php:1167
 msgid "Council Rates"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1152
+#: lib/meta-boxes/meta-box-init.php:1174
 msgid "Irrigation"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1159
+#: lib/meta-boxes/meta-box-init.php:1181
 msgid "Carrying Capacity"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1166
+#: lib/meta-boxes/meta-box-init.php:1188
 msgid "Services"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1177
+#: lib/meta-boxes/meta-box-init.php:1199
 msgid "Leasing"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1189
+#: lib/meta-boxes/meta-box-init.php:1211
 msgid "Commercial Rent"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1192
+#: lib/meta-boxes/meta-box-init.php:1214
 msgid "Price Text in Pricing box over-rides displayed price"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1193
+#: lib/meta-boxes/meta-box-init.php:1215
 msgid "Select Display Price to show."
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1197
+#: lib/meta-boxes/meta-box-init.php:1219
 msgid "Lease Period"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1203
+#: lib/meta-boxes/meta-box-init.php:1225
 msgid "Rent Range Min"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1210
+#: lib/meta-boxes/meta-box-init.php:1232
 msgid "Rent Range Max"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1217
+#: lib/meta-boxes/meta-box-init.php:1239
 msgid "Lease End Date"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1225
+#: lib/meta-boxes/meta-box-init.php:1247
 msgid "Property Extent"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1239
+#: lib/meta-boxes/meta-box-init.php:1261
 msgid "Tenant Status"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1247
+#: lib/meta-boxes/meta-box-init.php:1269
 msgid "Commercial Outgoings"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1265
+#: lib/meta-boxes/meta-box-init.php:1287
 msgid "Takings"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1273
+#: lib/meta-boxes/meta-box-init.php:1295
 msgid "Franchise"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1283
+#: lib/meta-boxes/meta-box-init.php:1305
 msgid "Return"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1290
+#: lib/meta-boxes/meta-box-init.php:1312
 msgid "Terms"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1312
+#: lib/meta-boxes/meta-box-init.php:1334
 msgid "Further Options"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1319
+#: lib/meta-boxes/meta-box-init.php:1341
 msgid "Zone"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1326 lib/widgets/widget-functions.php:669
+#: lib/meta-boxes/meta-box-init.php:1348 lib/widgets/widget-functions.php:669
 msgid "Car Spaces"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1333
+#: lib/meta-boxes/meta-box-init.php:1355
 msgid "Highlight 1"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1340
+#: lib/meta-boxes/meta-box-init.php:1362
 msgid "Highlight 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1347
+#: lib/meta-boxes/meta-box-init.php:1369
 msgid "Highlight 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1354
+#: lib/meta-boxes/meta-box-init.php:1376
 msgid "Parking Comments"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1361
+#: lib/meta-boxes/meta-box-init.php:1383
 msgid "Is Multiple"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1374
+#: lib/meta-boxes/meta-box-init.php:1396
 msgid "Files and Links"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1386
+#: lib/meta-boxes/meta-box-init.php:1408
 msgid "Video URL"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1392
+#: lib/meta-boxes/meta-box-init.php:1414
 msgid "External Link"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1407
+#: lib/meta-boxes/meta-box-init.php:1429
 msgid "External Link 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1422
+#: lib/meta-boxes/meta-box-init.php:1444
 msgid "External Link 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1437
+#: lib/meta-boxes/meta-box-init.php:1459
 msgid "Mini Website URL"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1443
+#: lib/meta-boxes/meta-box-init.php:1465
 msgid "Mini Website URL 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1449
+#: lib/meta-boxes/meta-box-init.php:1471
 msgid "Mini Website URL 3"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1464
+#: lib/meta-boxes/meta-box-init.php:1486
 msgid "Floorplan"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1479
+#: lib/meta-boxes/meta-box-init.php:1501
 msgid "Floorplan 2"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1494
+#: lib/meta-boxes/meta-box-init.php:1516
 msgid "Energy Certificate"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1527
+#: lib/meta-boxes/meta-box-init.php:1549
 msgid "Contact ID"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1529
+#: lib/meta-boxes/meta-box-init.php:1551
 msgid "Search for contact and update to save."
 msgstr ""
 
@@ -4766,7 +4779,7 @@ msgstr ""
 #: lib/post-types/post-type-land.php:95
 #: lib/post-types/post-type-property.php:95
 #: lib/post-types/post-type-rental.php:94 lib/post-types/post-type-rural.php:95
-#: lib/widgets/class-epl-widget-recent-property.php:431
+#: lib/widgets/class-epl-widget-recent-property.php:445
 msgid "Image"
 msgstr ""
 
@@ -4776,7 +4789,7 @@ msgstr ""
 #: lib/post-types/post-type-land.php:96
 #: lib/post-types/post-type-property.php:96
 #: lib/post-types/post-type-rural.php:96
-#: lib/widgets/class-epl-widget-recent-property.php:518
+#: lib/widgets/class-epl-widget-recent-property.php:532
 #: lib/widgets/widget-functions.php:152
 msgid "Price"
 msgstr ""
@@ -5465,7 +5478,7 @@ msgstr ""
 
 #: lib/templates/content/content-listing-single-compatibility.php:52
 #: lib/templates/content/content-listing-single.php:79
-#: lib/widgets/widget-functions.php:1428
+#: lib/widgets/widget-functions.php:1425
 msgid "Description"
 msgstr ""
 
@@ -5525,32 +5538,32 @@ msgstr ""
 msgid "Add an Author profile to a sidebar."
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:148
+#: lib/widgets/class-epl-widget-author.php:156
 #: lib/widgets/class-epl-widget-property-gallery.php:113
 msgid "Title:"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:153
+#: lib/widgets/class-epl-widget-author.php:161
 msgid "Username:"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:154
+#: lib/widgets/class-epl-widget-author.php:162
 msgid "Type to search users"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:155
+#: lib/widgets/class-epl-widget-author.php:163
 msgid "Search for users, supports multiple"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:165
+#: lib/widgets/class-epl-widget-author.php:173
 msgid "Display Author Gravatar"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:175
+#: lib/widgets/class-epl-widget-author.php:183
 msgid "Display Icons"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:185
+#: lib/widgets/class-epl-widget-author.php:193
 msgid "Display Bio"
 msgstr ""
 
@@ -5590,80 +5603,80 @@ msgstr ""
 msgid "Add listings to a sidebar."
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:285
+#: lib/widgets/class-epl-widget-recent-property.php:299
 msgid "Query Settings"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:344
+#: lib/widgets/class-epl-widget-recent-property.php:358
 msgid "Number of Properties"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:358
+#: lib/widgets/class-epl-widget-recent-property.php:372
 msgid "Properties to Skip"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:368
+#: lib/widgets/class-epl-widget-recent-property.php:382
 msgid "Featured Properties"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:388
+#: lib/widgets/class-epl-widget-recent-property.php:402
 msgid "Dynamic"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:398
+#: lib/widgets/class-epl-widget-recent-property.php:412
 msgid "Random Order"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:401
+#: lib/widgets/class-epl-widget-recent-property.php:415
 msgid "Display Settings"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:407
+#: lib/widgets/class-epl-widget-recent-property.php:421
 #: lib/widgets/widget-functions.php:53
 msgid "Default"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:418
+#: lib/widgets/class-epl-widget-recent-property.php:432
 msgid "Display Style"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:432
+#: lib/widgets/class-epl-widget-recent-property.php:446
 msgid "Image Only"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:433
+#: lib/widgets/class-epl-widget-recent-property.php:447
 msgid "Hide Image"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:445
+#: lib/widgets/class-epl-widget-recent-property.php:459
 msgid "Image Size"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:458
+#: lib/widgets/class-epl-widget-recent-property.php:472
 msgid "Icon Style"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:478
+#: lib/widgets/class-epl-widget-recent-property.php:492
 msgid "Property Headline"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:488
+#: lib/widgets/class-epl-widget-recent-property.php:502
 msgid "Excerpt"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:508
+#: lib/widgets/class-epl-widget-recent-property.php:522
 msgid "Street Address"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:528
+#: lib/widgets/class-epl-widget-recent-property.php:542
 msgid "Read More Button"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:548
+#: lib/widgets/class-epl-widget-recent-property.php:562
 msgid "Inspection Time iCal Link"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:552
+#: lib/widgets/class-epl-widget-recent-property.php:566
 msgid "Read More Label"
 msgstr ""
 
@@ -5806,7 +5819,7 @@ msgstr ""
 msgid "Other Search Options"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:217 lib/widgets/widget-functions.php:1477
+#: lib/widgets/widget-functions.php:217 lib/widgets/widget-functions.php:1474
 msgid "Submit Label"
 msgstr ""
 
@@ -5886,27 +5899,27 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1346 lib/widgets/widget-functions.php:1458
+#: lib/widgets/widget-functions.php:1343 lib/widgets/widget-functions.php:1455
 msgid "Subject"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1353 lib/widgets/widget-functions.php:1464
+#: lib/widgets/widget-functions.php:1350 lib/widgets/widget-functions.php:1461
 msgid "Message"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1377 lib/widgets/widget-functions.php:1479
+#: lib/widgets/widget-functions.php:1374 lib/widgets/widget-functions.php:1476
 msgid "Submit"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1424
+#: lib/widgets/widget-functions.php:1421
 msgid "Contact Form"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1470
+#: lib/widgets/widget-functions.php:1467
 msgid "Anti Spam"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1511
+#: lib/widgets/widget-functions.php:1522
 msgid "Price Search"
 msgstr ""
 
