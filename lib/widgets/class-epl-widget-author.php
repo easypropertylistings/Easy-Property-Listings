@@ -107,12 +107,20 @@ class EPL_Widget_Author extends WP_Widget {
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance             = $old_instance;
-		$instance['title']    = wp_strip_all_tags( $new_instance['title'] );
-		$instance['username'] = wp_strip_all_tags( $new_instance['username'] );
-		$instance['display']  = wp_strip_all_tags( $new_instance['display'] );
-		$instance['d_image']  = wp_strip_all_tags( $new_instance['d_image'] );
-		$instance['d_icons']  = wp_strip_all_tags( $new_instance['d_icons'] );
-		$instance['d_bio']    = wp_strip_all_tags( $new_instance['d_bio'] );
+
+		$all_fields = array('title','username','display','d_image','d_icons','d_bio');
+		
+		foreach ( $all_fields as $all_field ) {
+
+			if ( isset( $new_instance[ $all_field ] ) ) {
+				$instance[ $all_field ] = epl_strip_tags( $new_instance[ $all_field ] );
+			} else {
+
+				$instance[ $all_field ] = '';
+
+			}
+			
+		}
 		return $instance;
 	}
 
