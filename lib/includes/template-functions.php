@@ -244,7 +244,6 @@ function epl_get_content_path() {
  *
  * @return mixed|void
  * @since      3.0
- *
  */
 function epl_get_fallback_content_path() {
 	return apply_filters( 'epl_templates_fallback_base_path', EPL_PATH_TEMPLATES_CONTENT );
