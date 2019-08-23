@@ -186,7 +186,7 @@ function epl_new_contact_view() {
 
 	<?php
 	if ( isset( $_GET['id'] ) ) {
-		$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
+		$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . intval( wp_unslash( $_GET['id'] ) ) );
 		wp_safe_redirect( $redirect );
 		exit();
 	}

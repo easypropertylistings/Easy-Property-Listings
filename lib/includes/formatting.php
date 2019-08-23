@@ -59,9 +59,10 @@ function epl_sanitize_amount( $amount ) {
 function epl_format_amount( $amount, $decimals = false ) {
 	$thousands_sep = epl_get_thousands_separator();
 	$decimal_sep   = epl_get_decimal_separator();
-
+	$formatted = '';
 	// Format the amount.
-	if ( ',' === $decimal_sep && false !== ( strpos( $amount, $decimal_sep ) ) ) {
+	$sep_found = strpos( $amount, $decimal_sep );
+	if ( ',' === $decimal_sep && false !== $sep_found ) {
 		$whole  = substr( $amount, 0, $sep_found );
 		$part   = substr( $amount, $sep_found + 1, ( strlen( $amount ) - 1 ) );
 		$amount = $whole . '.' . $part;

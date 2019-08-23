@@ -62,6 +62,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 		// Hour by hour.
 		$hour  = 1;
 		$month = $dates['m_start'];
+		$listings_totals = 0;
 		while ( $hour <= 23 ) {
 
 			$sales            = epl_get_sales_by_date( $dates['day'], $month, $dates['year'], $hour, $sold_status, $day_by_day );

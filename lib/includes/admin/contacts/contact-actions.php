@@ -212,7 +212,7 @@ function epl_contact_save_note( $args ) {
 		return;
 	}
 
-	do_action( 'epl_pre_insert_contact_note', $contact_id, $new_note, $listing_id, $note_type );
+	do_action( 'epl_pre_insert_contact_note', $contact_id, $note_type, $listing_id, $note_type );
 
 	$contact     = new EPL_Contact( $contact_id );
 	$note_object = $contact->add_note( $contact_note, $note_type, $listing_id );
@@ -1455,7 +1455,7 @@ function epl_contact_save_note_note_tab( $args ) {
 		epl_set_error();
 		return;
 	}
-	do_action( 'epl_pre_insert_contact_note', $contact_id, $new_note, $listing_id, $note_type );
+	do_action( 'epl_pre_insert_contact_note', $contact_id, $contact_note, $listing_id, $note_type );
 
 	$contact     = new EPL_contact( $contact_id );
 	$note_object = $contact->add_note( $contact_note, $note_type, $listing_id );

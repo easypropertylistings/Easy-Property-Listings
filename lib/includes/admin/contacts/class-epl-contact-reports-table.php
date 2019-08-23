@@ -488,10 +488,10 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 						foreach ( $cats as $cat_key  => $cat_value ) {
 							$selected = '';
 							if ( isset( $_GET['cat_filter'] ) && $_GET['cat_filter'] === $cat_key ) {
-								$selected = ' selected = "selected"';
+								$selected = ' selected ';
 							}
 							?>
-							<option value="<?php echo esc_attr( $cat_key ); ?>" <?php echo $selected; ?>>
+							<option value="<?php echo esc_attr( $cat_key ); ?>" <?php echo esc_attr( $selected ); ?>>
 								<?php echo esc_attr( $cat_value ); ?>
 							</option>
 							<?php

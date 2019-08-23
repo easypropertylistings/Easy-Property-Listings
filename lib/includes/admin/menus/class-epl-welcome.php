@@ -160,7 +160,7 @@ class EPL_Welcome {
 		if ( ! $file ) {
 			$readme = '<p>' . esc_html__( 'No valid changelog was found.', 'easy-property-listings' ) . '</p>';
 		} else {
-			$readme = file_get_contents( $file );
+			$readme = file_get_contents( $file ); //phpcs:ignore
 			$readme = nl2br( esc_html( $readme ) );
 			$readme = explode( '== Changelog ==', $readme );
 			$readme = end( $readme );
