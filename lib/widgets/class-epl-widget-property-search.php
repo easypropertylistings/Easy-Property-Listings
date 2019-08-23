@@ -78,7 +78,15 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$instance   = $old_instance;
 		$all_fields = epl_search_widget_fields();
 		foreach ( $all_fields as $all_field ) {
-			$instance[ $all_field['key'] ] = epl_strip_tags( $new_instance[ $all_field['key'] ] );
+
+			if ( isset( $new_instance[ $all_field['key'] ] ) ) {
+				$instance[ $all_field['key'] ] = epl_strip_tags( $new_instance[ $all_field['key'] ] );
+			} else {
+
+				$instance[ $all_field['key'] ] = '';
+
+			}
+			
 		}
 		return $instance;
 	}

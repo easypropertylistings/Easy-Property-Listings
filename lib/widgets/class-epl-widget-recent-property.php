@@ -192,27 +192,41 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				$instance['status'] = $statuses;
 			}
 		}
-		$instance['featured']   = wp_strip_all_tags( $new_instance['featured'] );
-		$instance['view']       = wp_strip_all_tags( $new_instance['view'] );
-		$instance['display']    = wp_strip_all_tags( $new_instance['display'] );
-		$instance['image']      = wp_strip_all_tags( $new_instance['image'] );
-		$instance['archive']    = wp_strip_all_tags( $new_instance['archive'] );
-		$instance['open_house'] = wp_strip_all_tags( $new_instance['open_house'] );
-		$instance['d_title']    = wp_strip_all_tags( $new_instance['d_title'] );
 
-		$instance['more_text']         = wp_strip_all_tags( $new_instance['more_text'] );
-		$instance['d_excerpt']         = wp_strip_all_tags( $new_instance['d_excerpt'] );
-		$instance['d_suburb']          = wp_strip_all_tags( $new_instance['d_suburb'] );
-		$instance['d_street']          = wp_strip_all_tags( $new_instance['d_street'] );
-		$instance['d_price']           = wp_strip_all_tags( $new_instance['d_price'] );
-		$instance['d_more']            = wp_strip_all_tags( $new_instance['d_more'] );
-		$instance['d_inspection_time'] = wp_strip_all_tags( $new_instance['d_inspection_time'] );
-		$instance['d_ical_link']       = wp_strip_all_tags( $new_instance['d_ical_link'] );
+		$all_fields = array(
+			'featured',
+			'view',
+			'display',
+			'image',
+			'archive',
+			'open_house',
+			'd_title',
+			'more_text',
+			'd_excerpt',
+			'd_suburb',
+			'd_street',
+			'd_price',
+			'd_more',
+			'd_inspection_time',
+			'd_ical_link',
+			'd_icons',
+			'p_number',
+			'p_skip',
+			'order_rand'
+		);
 
-		$instance['d_icons']    = wp_strip_all_tags( $new_instance['d_icons'] );
-		$instance['p_number']   = wp_strip_all_tags( $new_instance['p_number'] );
-		$instance['p_skip']     = wp_strip_all_tags( $new_instance['p_skip'] );
-		$instance['order_rand'] = wp_strip_all_tags( $new_instance['order_rand'] );
+		foreach ( $all_fields as $all_field ) {
+
+			if ( isset( $new_instance[ $all_field ] ) ) {
+				$instance[ $all_field ] = epl_strip_tags( $new_instance[ $all_field ] );
+			} else {
+
+				$instance[ $all_field ] = '';
+
+			}
+			
+		}
+
 		return $instance;
 	}
 
