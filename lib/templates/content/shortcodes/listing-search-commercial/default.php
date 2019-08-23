@@ -22,29 +22,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @var array  $atts    Shortcode attributes.
  */
-$title                         = $atts['title'];
-$post_type                     = $atts['post_type'];
-$style                         = $atts['style'];
-$show_property_status_frontend = $atts['show_property_status_frontend'];
-$property_status               = $atts['property_status'];
-$search_id                     = $atts['search_id'];
-$search_address                = $atts['search_address'];
-$search_location               = $atts['search_location'];
-$search_city                   = $atts['search_city'];
-$search_state                  = $atts['search_state'];
-$search_postcode               = $atts['search_postcode'];
-$search_country                = $atts['search_country'];
-$search_house_category         = $atts['search_house_category'];
-$house_category_multiple       = $atts['house_category_multiple'];
-$search_price_global           = $atts['search_price_global'];
-$search_price                  = $atts['search_price'];
-$search_land_area              = $atts['search_land_area'];
-$search_building_area          = $atts['search_building_area'];
-$search_com_authority          = $atts['search_com_authority'];
-$search_com_listing_type       = $atts['search_com_listing_type'];
-$search_com_rent_period        = $atts['search_com_rent_period'];
-$search_com_tenancy            = $atts['search_com_tenancy'];
-$submit_label                  = $atts['submit_label'];
+foreach ( $atts as $atts_key => $atts_val ) {
+
+	if ( is_array( $atts_val ) ) {
+		$atts_val = epl_array_map_recursive( 'sanitize_text_field', $atts_val );
+	} else {
+		${$atts_key} = sanitize_text_field( $atts_val );
+	}
+	
+}
 
 $selected_post_types = $atts['post_type'];
 $get_data            = epl_array_map_recursive( 'sanitize_text_field', $_GET );

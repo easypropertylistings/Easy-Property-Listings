@@ -21,12 +21,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @var array  $atts    Shortcode attributes.
  */
-
 foreach ( $atts as $atts_key => $atts_val ) {
 
-	if ( ! empty( $atts[ $atts_key ] ) ) {
-		${$atts_key} = $atts_val;
+	if ( is_array( $atts_val ) ) {
+		$atts_val = epl_array_map_recursive( 'sanitize_text_field', $atts_val );
+	} else {
+		${$atts_key} = sanitize_text_field( $atts_val );
 	}
+	
 }
 
 $selected_post_types = $atts['post_type'];
