@@ -1505,12 +1505,25 @@ function epl_get_owners() {
  */
 function epl_get_field_sliders() {
 
+	$currency          = epl_currency_filter('');
+	$currency_position = epl_get_currency_position();
+
+	$position = ( isset( $currency_position ) && ! empty( $currency_position ) ) ? $currency_position : 'before';
+
+	if( 'before' === $position ) {
+		$prefix = $currency;
+		$suffix = '';
+	} else {
+		$suffix = $currency;
+		$prefix = '';
+	}
+
 	$sliders = array(
 		'epl_field_slider_property_price_global' => array(
 			'els'       => array( 'property_price_global_from', 'property_price_global_to' ),
 			'label'     => __( 'Price Search', 'easy-property-listings' ),
-			'prefix'    => '$',
-			'suffix'    => '',
+			'prefix'    => $prefix,
+			'suffix'    => $suffix,
 			'separator' => ' - ',
 		), /**
 		'epl_field_slider_property_price'   =>  array(
