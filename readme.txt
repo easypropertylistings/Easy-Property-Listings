@@ -398,6 +398,8 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Hidden meta fields for currency support, and floor plan modified date time.
 * Tweak: Support for meta fields file type to support as an array of data.
 * Tweak: Allow embeds and scripts in meta fields like floor plans and energy certificates to support an array of data which is handy during data import.
+* Tweak: Corrected undefined variables in widgets since WordPress 5.2.2.
+* Tweak: Admin contacts added wrapper classes to contact values.
 * Fix: Currency support for search widget price sliders.
 * Fix: Commercial search fix, widget select type field fix: not saving.
 * Fix: Agent search suggestions in admin.
