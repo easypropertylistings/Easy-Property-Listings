@@ -282,6 +282,7 @@ function epl_property_blog_table_open() {
 function epl_property_sold_leased() {
 	$property_suburb = get_post_custom_values( 'property_address_suburb' );
 	$post_id         = $property_suburb[0]['ID'];
+	$post           = get_post( $post_id );
 	$terms           = get_the_terms( $post->ID, 'location' );
 	if ( ! empty( $terms ) ) {
 		global $post;

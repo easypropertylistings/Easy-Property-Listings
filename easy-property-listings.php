@@ -102,7 +102,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			}
 			// Current Page.
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
-				define( 'EPL_CURRENT_PAGE', basename( $_SERVER['PHP_SELF'] ) );
+				define( 'EPL_CURRENT_PAGE', basename( sanitize_text_field( wp_unslash( $_SERVER['PHP_SELF'] ) ) ) );
 			}
 			// Plugin Root File.
 			if ( ! defined( 'EPL_PLUGIN_FILE' ) ) {
@@ -304,7 +304,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
 
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
-				include_once( get_stylesheet_directory() . '/easypropertylistings/functions.php' );
+				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';
 			}
 		}
 
@@ -354,7 +354,7 @@ endif; // End if class_exists check.
  * @since 1.0
  * @return object The one true Easy_Property_Listings Instance
  */
-function EPL() {
+function EPL() { //phpcs:ignore
 	return Easy_Property_Listings::instance();
 }
 
