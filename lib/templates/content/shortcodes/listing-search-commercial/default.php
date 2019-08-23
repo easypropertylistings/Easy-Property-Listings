@@ -22,30 +22,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @var array  $atts    Shortcode attributes.
  */
+foreach ( $atts as $atts_key => $atts_val ) {
 
-$title                         = $get_data['title'];
-$post_type                     = $get_data['post_type'];
-$style                         = $get_data['style'];
-$show_property_status_frontend = $get_data['show_property_status_frontend'];
-$property_status               = $get_data['property_status'];
-$search_id                     = $get_data['search_id'];
-$search_address                = $get_data['search_address'];
-$search_location               = $get_data['search_location'];
-$search_city                   = $get_data['search_city'];
-$search_state                  = $get_data['search_state'];
-$search_postcode               = $get_data['search_postcode'];
-$search_country                = $get_data['search_country'];
-$search_house_category         = $get_data['search_house_category'];
-$house_category_multiple       = $get_data['house_category_multiple'];
-$search_price_global           = $get_data['search_price_global'];
-$search_price                  = $get_data['search_price'];
-$search_land_area              = $get_data['search_land_area'];
-$search_building_area          = $get_data['search_building_area'];
-$search_com_authority          = $get_data['search_com_authority'];
-$search_com_listing_type       = $get_data['search_com_listing_type'];
-$search_com_rent_period        = $get_data['search_com_rent_period'];
-$search_com_tenancy            = $get_data['search_com_tenancy'];
-$submit_label                  = $get_data['submit_label'];
+	if ( is_array( $atts_val ) ) {
+		$atts_val = epl_array_map_recursive( 'sanitize_text_field', $atts_val );
+	} else {
+		${$atts_key} = sanitize_text_field( $atts_val );
+	}
+	
+}
 
 $selected_post_types = $atts['post_type'];
 $get_data            = epl_array_map_recursive( 'sanitize_text_field', $_GET );

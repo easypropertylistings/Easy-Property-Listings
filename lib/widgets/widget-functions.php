@@ -975,12 +975,8 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					<?php echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="
-					<?php
-					echo esc_attr( $object->get_field_name( $field['key'] ) );
-					echo isset( $field['multiple'] ) ? '[]' : '';
-					?>
-					">
+					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) );
+					echo isset( $field['multiple'] ) ? '[]' : ''; ?>">
 
 					<?php
 
@@ -988,7 +984,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 						$selected = '';
 						if ( isset( $field['multiple'] ) ) {
 
-							if ( in_array( $k, $value, true ) ) {
+							if ( in_array( $k, (array) $value, true ) ) {
 								$selected = ' selected ';
 							}
 						} else {
@@ -1505,12 +1501,25 @@ function epl_get_owners() {
  */
 function epl_get_field_sliders() {
 
+	$currency          = epl_currency_filter('');
+	$currency_position = epl_get_currency_position();
+
+	$position = ( isset( $currency_position ) && ! empty( $currency_position ) ) ? $currency_position : 'before';
+
+	if( 'before' === $position ) {
+		$prefix = $currency;
+		$suffix = '';
+	} else {
+		$suffix = $currency;
+		$prefix = '';
+	}
+
 	$sliders = array(
 		'epl_field_slider_property_price_global' => array(
 			'els'       => array( 'property_price_global_from', 'property_price_global_to' ),
 			'label'     => __( 'Price Search', 'easy-property-listings' ),
-			'prefix'    => '$',
-			'suffix'    => '',
+			'prefix'    => $prefix,
+			'suffix'    => $suffix,
 			'separator' => ' - ',
 		), /**
 		'epl_field_slider_property_price'   =>  array(

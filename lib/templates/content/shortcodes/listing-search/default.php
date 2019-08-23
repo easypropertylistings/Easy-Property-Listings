@@ -21,32 +21,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @var array  $atts    Shortcode attributes.
  */
+foreach ( $atts as $atts_key => $atts_val ) {
 
-$title                         = $atts['title']; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
-$post_type                     = $atts['post_type']; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
-$style                         = $atts['style'];
-$show_property_status_frontend = $atts['show_property_status_frontend'];
-$property_status               = $atts['property_status'];
-$search_id                     = $atts['search_id'];
-$search_address                = $atts['search_address'];
-$search_location               = $atts['search_location'];
-$search_city                   = $atts['search_city'];
-$search_state                  = $atts['search_state'];
-$search_postcode               = $atts['search_postcode'];
-$search_country                = $atts['search_country'];
-$search_house_category         = $atts['search_house_category'];
-$house_category_multiple       = $atts['house_category_multiple'];
-$search_price_global           = $atts['search_price_global'];
-$search_price                  = $atts['search_price'];
-$search_bed                    = $atts['search_bed'];
-$search_bath                   = $atts['search_bath'];
-$search_rooms                  = $atts['search_rooms'];
-$search_car                    = $atts['search_car'];
-$search_land_area              = $atts['search_land_area'];
-$search_building_area          = $atts['search_building_area'];
-$search_features               = $atts['search_features'];
-$search_other                  = $atts['search_other'];
-$submit_label                  = $atts['submit_label'];
+	if ( is_array( $atts_val ) ) {
+		$atts_val = epl_array_map_recursive( 'sanitize_text_field', $atts_val );
+	} else {
+		${$atts_key} = sanitize_text_field( $atts_val );
+	}
+	
+}
 
 $selected_post_types = $atts['post_type'];
 $get_data            = epl_array_map_recursive( 'sanitize_text_field', $_GET );

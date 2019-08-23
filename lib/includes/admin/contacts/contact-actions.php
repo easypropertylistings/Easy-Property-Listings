@@ -1417,7 +1417,7 @@ function epl_search_user() {
 			echo '<li data-uname="' . esc_attr( $user->data->user_login ) . '" data-id="' . esc_attr( $user->ID ) . '">' . esc_attr( $user->data->display_name ) . '</li>';
 		}
 		echo '</ul>';
-		echo wp_kses_post( ob_get_clean() );
+		echo ob_get_clean(); //phpcs:ignore
 	}
 	exit;
 }
