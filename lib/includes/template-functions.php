@@ -244,7 +244,6 @@ function epl_get_content_path() {
  *
  * @return mixed|void
  * @since      3.0
- *
  */
 function epl_get_fallback_content_path() {
 	return apply_filters( 'epl_templates_fallback_base_path', EPL_PATH_TEMPLATES_CONTENT );
@@ -681,6 +680,7 @@ add_action( 'epl_property_address', 'epl_property_the_address' );
 /**
  * Suburb Name Kept for listing templates extensions which use this function
  *
+ * @return string The listing suburb.
  * @since 1.3
  * @since 3.1.18 Revised.
  */

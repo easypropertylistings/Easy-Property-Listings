@@ -382,10 +382,10 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			// Perform a request to validate the license.
 			// Only run every 24 hours.
-			$opt_key = 'epl_license_updates_'.$this->item_shortname;
+			$opt_key = 'epl_license_updates_' . $this->item_shortname;
 
 			$timestamp = get_option( $opt_key );
-			
+
 			if ( ! $timestamp ) {
 				$timestamp = strtotime( '+24 hours' );
 				update_option( $opt_key, $timestamp );

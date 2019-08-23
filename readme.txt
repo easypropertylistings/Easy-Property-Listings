@@ -413,6 +413,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Removed cURL php requirement and instead use WordPress helper function.
 * Tweak: Additional CSS classes added to SVG icons.
 * Tweak: Fix bath and car svg wrapper class name.
+* Tweak: Author box will no longer display bio tab is user bio is empty.
 * Fix: Minimised scripts and css in admin areas to EPL pages.
 * Fix: Versioning added to epl js scripts.
 * Fix: Upgrade database on new installs message no longer displaying as no action is required.

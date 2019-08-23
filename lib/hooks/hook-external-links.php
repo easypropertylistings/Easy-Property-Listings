@@ -33,15 +33,15 @@ function epl_button_external_link() {
 		$meta_label = get_post_meta( get_the_ID(), $key . '_label', true );
 		$meta_label = empty( $meta_label ) ? $default : $meta_label;
 
-		if( is_array( $link ) ) { // Fallback if meta data is saved as an array.
+		if ( is_array( $link ) ) { // Fallback if meta data is saved as an array.
 
-			if( ! empty( $link['image_url_or_path'] ) ) {
+			if ( ! empty( $link['image_url_or_path'] ) ) {
 				$link = $link['image_url_or_path'];
 			} else {
 				$link = '';
 			}
 		}
-		
+
 		if ( ! empty( $link ) ) { ?>
 			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
