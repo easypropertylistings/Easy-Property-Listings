@@ -972,15 +972,12 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 				<select
 
-					<?php echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
+					<?php
+					// Autoformatting breaks secect boxes in widgets.
+					echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="
-					<?php
-					echo esc_attr( $object->get_field_name( $field['key'] ) );
-					echo isset( $field['multiple'] ) ? '[]' : '';
-					?>
-					">
+					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); echo isset( $field['multiple'] ) ? '[]' : ''; ?>">
 
 					<?php
 
@@ -993,7 +990,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 							}
 						} else {
 
-							if ( isset( $value ) && $k == $value ) { // phpcs:ignore 
+							if ( isset( $value ) && $k == $value ) { // phpcs:ignore
 								$selected = ' selected ';
 							}
 						}
