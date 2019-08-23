@@ -973,7 +973,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 				<select
 
 					<?php
-					// Autoformatting breaks secect boxes in widgets.
+					// Autoformatting breaks select boxes in widgets.
 					echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
