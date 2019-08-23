@@ -753,6 +753,7 @@ class EPL_Contact {
 	 *
 	 * @return mixed
 	 * @since 3.0.0
+	 * @since 3.4.1 Added value span wrapper.
 	 */
 	public function get_emails() {
 
@@ -764,7 +765,7 @@ class EPL_Contact {
 				$label = ucwords( str_replace( '_', ' ', $mail_name ) ); ?>
 				<span class="contact-email epl-info-item editable" data-key="email">
 					<span class="dashicons dashicons-email epl-contact-icons"></span>
-				<?php echo esc_attr( $label . ' - ' . $mail_value ); ?>
+					<span class="epl-contact-value"><?php echo esc_attr( $label . ' - ' . $mail_value ); ?></span>
 				</span>
 				<?php
 			}
@@ -778,19 +779,20 @@ class EPL_Contact {
 	 *
 	 * @return mixed
 	 * @since 3.0.0
+	 * @since 3.4.1 Renamed emails to phones and added value span wrapper.
 	 */
 	public function get_phones() {
 
-		$emails = $this->get_meta( 'contact_phones' );
-		$emails = array_filter( $emails );
-		if ( ! empty( $emails ) ) {
+		$phone_numbers = $this->get_meta( 'contact_phones' );
+		$phone_numbers = array_filter( $phone_numbers );
+		if ( ! empty( $phone_numbers ) ) {
 			ob_start();
-			foreach ( $emails as $mail_name   => $mail_value ) {
+			foreach ( $phone_numbers as $mail_name => $mail_value ) {
 				$label = ucwords( str_replace( '_', ' ', $mail_name ) );
 				?>
-				<span class="contact-email epl-info-item editable" data-key="email">
+				<span class="contact-phone epl-info-item editable" data-key="phone">
 					<span class="dashicons dashicons-phone epl-contact-icons"></span>
-					<?php echo esc_attr( $label . ' - ' . $mail_value ); ?>
+					<span class="epl-contact-value"><?php echo esc_attr( $label . ' - ' . $mail_value ); ?></span>
 				</span>
 				<?php
 			}
