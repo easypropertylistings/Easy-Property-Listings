@@ -975,8 +975,12 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					<?php echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) );
-					echo isset( $field['multiple'] ) ? '[]' : ''; ?>">
+					name="
+					<?php
+					echo esc_attr( $object->get_field_name( $field['key'] ) );
+					echo isset( $field['multiple'] ) ? '[]' : '';
+					?>
+					">
 
 					<?php
 
@@ -1502,12 +1506,12 @@ function epl_get_owners() {
  */
 function epl_get_field_sliders() {
 
-	$currency          = epl_currency_filter('');
+	$currency          = epl_currency_filter( '' );
 	$currency_position = epl_get_currency_position();
 
 	$position = ( isset( $currency_position ) && ! empty( $currency_position ) ) ? $currency_position : 'before';
 
-	if( 'before' === $position ) {
+	if ( 'before' === $position ) {
 		$prefix = $currency;
 		$suffix = '';
 	} else {
