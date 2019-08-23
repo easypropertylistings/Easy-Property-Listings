@@ -975,12 +975,8 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					<?php echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="
-					<?php
-					echo esc_attr( $object->get_field_name( $field['key'] ) );
-					echo isset( $field['multiple'] ) ? '[]' : '';
-					?>
-					">
+					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) );
+					echo isset( $field['multiple'] ) ? '[]' : ''; ?>">
 
 					<?php
 
@@ -988,7 +984,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 						$selected = '';
 						if ( isset( $field['multiple'] ) ) {
 
-							if ( in_array( $k, $value, true ) ) {
+							if ( in_array( $k, (array) $value, true ) ) {
 								$selected = ' selected ';
 							}
 						} else {
