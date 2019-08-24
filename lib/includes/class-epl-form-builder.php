@@ -307,7 +307,7 @@ class EPL_FORM_BUILDER {
 				if ( isset( $field['multiple'] ) && in_array( $field['type'], array( 'select', 'checkbox' ), true ) && 'name' === $key ) {
 					$value = $value . '[]';
 				}
-
+				$value = is_array( $value ) ? implode( ',', $value ) : $value;
 				$html .= $key . '="' . $value . '" ';
 			}
 		}
