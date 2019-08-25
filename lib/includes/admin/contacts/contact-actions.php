@@ -150,7 +150,7 @@ function epl_contact_delete( $args ) {
 			}
 		}
 
-		$success = $contact->delete( $contact->id );
+		$success = $contact->delete();
 
 		if ( $success ) {
 
@@ -212,7 +212,7 @@ function epl_contact_save_note( $args ) {
 		return;
 	}
 
-	do_action( 'epl_pre_insert_contact_note', $contact_id, $new_note, $listing_id, $note_type );
+	do_action( 'epl_pre_insert_contact_note', $contact_id, $note_type, $listing_id, $note_type );
 
 	$contact     = new EPL_Contact( $contact_id );
 	$note_object = $contact->add_note( $contact_note, $note_type, $listing_id );
@@ -827,43 +827,45 @@ add_action( 'epl_contact_social_icons', 'epl_contact_social_icons' );
  *
  * @param array $contact object.
  * @since 3.0
+ * @since 3.4.1 Added wrapper classes to contact values.
  */
 function epl_contact_contact_details( $contact ) {
 	?>
 
 	<span class="epl-contact-name epl-info-item editable">
 		<span data-key="name">
-			<?php echo esc_attr( $contact->get_meta( 'contact_first_name' ) . ' ' . $contact->get_meta( 'contact_last_name' ) ); ?>
+			<span class="epl-contact-value"><?php echo esc_attr( $contact->get_meta( 'contact_first_name' ) . ' ' . $contact->get_meta( 'contact_last_name' ) ); ?></span>
 		</span>
 	</span>
 	<?php echo wp_kses_post( $contact->get_emails() ); ?>
 
 	<?php
-	echo wp_kses_post( $contact->get_phones() );
+		echo wp_kses_post( $contact->get_phones() );
 		$web  = $contact->get_meta( 'contact_website' );
 		$addr = $contact->epl_contact_get_address();
 	?>
 
 	<?php if ( ! empty( $web ) ) : ?>
-		<span class="contact_website epl-info-item editable" data-key="website">
+		<span class="contact-website epl-info-item editable" data-key="website">
 			<span class="dashicons dashicons-admin-site-alt3 epl-contact-icons"></span>
-			<?php echo esc_attr( $web ); ?>
+			<span class="epl-contact-value"><?php echo esc_attr( $web ); ?></span>
 		</span>
 	<?php endif; ?>
+	<?php // TODO: Fix this as it should not display if address is empty. ?>
 	<?php if ( ! empty( $addr ) ) : ?>
-			<span class="contact_website epl-info-item editable" data-key="address">
-				<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
-				<?php echo esc_attr( $addr ); ?>
-			</span>
+		<span class="contact-address epl-info-item editable" data-key="address">
+			<span class="dashicons dashicons-admin-home epl-contact-icons"></span>
+			<span class="epl-contact-value"><?php echo esc_attr( $addr ); ?></span>
+		</span>
 	<?php endif; ?>
 	<span class="contact-since epl-info-item">
 		<span class="dashicons dashicons-clock epl-contact-icons"></span>
-		<?php esc_html_e( 'Contact since', 'easy-property-listings' ); ?>
-		<?php echo esc_attr( date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ) ); ?>
+		<span class="epl-contact-value"><?php esc_html_e( 'Contact since', 'easy-property-listings' ); ?>
+		<?php echo esc_attr( date_i18n( get_option( 'date_format' ), strtotime( $contact->date_created ) ) ); ?></span>
 	</span>
 	<span class="epl-contact-view-more">
 		<span class="dashicons dashicons-arrow-right-alt epl-contact-icons"></span>
-		<?php esc_html_e( 'View More', 'easy-property-listings' ); ?>
+		<span class="epl-contact-value"><?php esc_html_e( 'View More', 'easy-property-listings' ); ?></span>
 	</span>
 	<?php
 }
@@ -1390,6 +1392,7 @@ add_action( 'wp_ajax_epl_search_contact_listing', 'epl_search_contact_listing' )
  * Search Users
  *
  * @since 3.0
+ * @since  3.4.1 removed wp_kses_post filter to support data atts in output
  */
 function epl_search_user() {
 
@@ -1417,7 +1420,7 @@ function epl_search_user() {
 			echo '<li data-uname="' . esc_attr( $user->data->user_login ) . '" data-id="' . esc_attr( $user->ID ) . '">' . esc_attr( $user->data->display_name ) . '</li>';
 		}
 		echo '</ul>';
-		echo wp_kses_post( ob_get_clean() );
+		echo ob_get_clean(); //phpcs:ignore
 	}
 	exit;
 }
@@ -1454,7 +1457,7 @@ function epl_contact_save_note_note_tab( $args ) {
 		epl_set_error();
 		return;
 	}
-	do_action( 'epl_pre_insert_contact_note', $contact_id, $new_note, $listing_id, $note_type );
+	do_action( 'epl_pre_insert_contact_note', $contact_id, $contact_note, $listing_id, $note_type );
 
 	$contact     = new EPL_contact( $contact_id );
 	$note_object = $contact->add_note( $contact_note, $note_type, $listing_id );

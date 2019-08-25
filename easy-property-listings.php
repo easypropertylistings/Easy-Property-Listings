@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.4
+ * Version: 3.4.1
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.4
+ * @version 3.4.1
  */
 
 // Exit if accessed directly.
@@ -94,7 +94,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.4' );
+				define( 'EPL_PROPERTY_VER', '3.4.1' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -102,7 +102,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			}
 			// Current Page.
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
-				define( 'EPL_CURRENT_PAGE', basename( $_SERVER['PHP_SELF'] ) );
+				define( 'EPL_CURRENT_PAGE', basename( sanitize_text_field( wp_unslash( $_SERVER['PHP_SELF'] ) ) ) );
 			}
 			// Plugin Root File.
 			if ( ! defined( 'EPL_PLUGIN_FILE' ) ) {
@@ -304,7 +304,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
 
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
-				include_once( get_stylesheet_directory() . '/easypropertylistings/functions.php' );
+				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';
 			}
 		}
 
@@ -354,7 +354,7 @@ endif; // End if class_exists check.
  * @since 1.0
  * @return object The one true Easy_Property_Listings Instance
  */
-function EPL() {
+function EPL() { //phpcs:ignore
 	return Easy_Property_Listings::instance();
 }
 

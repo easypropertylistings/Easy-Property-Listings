@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<p>
 					<?php
 						/* Translators: %s is a link. */
-						printf( wp_kses_post( 'Below are some links and videos that will help you get started. If you still have questions, we have on-line documentation and tutorials packed with information or ask a question by opening a <a href="%s">support ticket</a>.', 'easy-property-listings' ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) );
+						printf( wp_kses_post( __( 'Below are some links and videos that will help you get started. If you still have questions, we have on-line documentation and tutorials packed with information or ask a question by opening a <a href="%s">support ticket</a>.', 'easy-property-listings' ) ), esc_url( 'https://easypropertylistings.com.au/support-ticket/' ) );
 					?>
 				</p>
 				<hr>

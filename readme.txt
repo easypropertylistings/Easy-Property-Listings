@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.2.2
-Stable Tag: 3.3.5
+Stable Tag: 3.4
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -392,6 +392,20 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.1 August 25, 2019 =
+
+* New: Hidden meta fields for currency support, and floor plan modified date time.
+* Tweak: Support for meta fields file type to support as an array of data.
+* Tweak: Allow embeds and scripts in meta fields like floor plans and energy certificates to support an array of data which is handy during data import.
+* Tweak: Corrected undefined variables in widgets since WordPress 5.2.2.
+* Tweak: Admin contacts added wrapper classes to contact values.
+* Fix: Currency support for search widget price sliders.
+* Fix: Commercial search fix, widget select type field fix: not saving.
+* Fix: Agent search suggestions in admin.
+* Fix: Reports graph date display issues.
+* Fix: Search templates will no longer ignore custom fields added using filters.
+* Fix: When adding dynamic content to a listing using the WordPress editor default WordPress behaviour is restored allowing page builder content to display correctly.
 
 = 3.4 August 16, 2019 =
 

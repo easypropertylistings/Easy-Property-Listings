@@ -244,7 +244,6 @@ function epl_get_content_path() {
  *
  * @return mixed|void
  * @since      3.0
- *
  */
 function epl_get_fallback_content_path() {
 	return apply_filters( 'epl_templates_fallback_base_path', EPL_PATH_TEMPLATES_CONTENT );
@@ -2556,7 +2555,7 @@ function epl_the_content() {
 
 	global $property;
 	$content = apply_filters( 'epl_get_the_content', get_the_content() );
-	echo wp_kses_post( str_replace( ']]>', ']]&gt;', $content ) );
+	echo str_replace( ']]>', ']]&gt;', $content ); //phpcs:ignore
 }
 add_action( 'epl_property_the_content', 'epl_the_content' );
 
