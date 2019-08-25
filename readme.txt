@@ -393,7 +393,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.4.1 August 23, 2019 =
+= 3.4.1 August 25, 2019 =
 
 * New: Hidden meta fields for currency support, and floor plan modified date time.
 * Tweak: Support for meta fields file type to support as an array of data.
@@ -403,6 +403,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Fix: Currency support for search widget price sliders.
 * Fix: Commercial search fix, widget select type field fix: not saving.
 * Fix: Agent search suggestions in admin.
+* Fix: Reports graph date display issues.
 * Fix: Search templates will no longer ignore custom fields added using filters.
 * Fix: When adding dynamic content to a listing using the WordPress editor default WordPress behaviour is restored allowing page builder content to display correctly.
 
