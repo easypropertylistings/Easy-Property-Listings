@@ -9,104 +9,210 @@
  * @since       3.3
  */
 
-class EPL_LISTING_ELEMENTS {
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-	function __construct() {
-		add_shortcode('listing_element',array($this,'listing_element') );
-		add_shortcode('epl_listing_action',array($this,'epl_action') );
-		add_shortcode('epl_listing_meta',array($this,'epl_meta') );
-		add_shortcode('epl_listing_post',array($this,'post') );
-		add_action('epl_suburb_profile',array($this,'epl_suburb_profile') );
-		add_action('epl_listing_address',array($this,'epl_formatted_address') );
-		add_shortcode('epl_listing_excerpt',array($this,'epl_the_excerpt') );
+/**
+ * EPL_Advanced_Shortcode_Listing Class
+ *
+ * @since 3.3.0
+ */
+class EPL_Listing_Elements {
+
+	/**
+	 * Construct the shortcode.
+	 *
+	 * @since 3.3.0
+	 */
+	public function __construct() {
+		add_shortcode( 'listing_element', array( $this, 'listing_element' ) );
+		add_shortcode( 'epl_listing_action', array( $this, 'epl_action' ) );
+		add_shortcode( 'epl_listing_meta', array( $this, 'epl_meta' ) );
+		add_shortcode( 'epl_listing_post', array( $this, 'post' ) );
+		add_action( 'epl_suburb_profile', array( $this, 'epl_suburb_profile' ) );
+		add_action( 'epl_listing_address', array( $this, 'epl_formatted_address' ) );
+		add_shortcode( 'epl_listing_excerpt', array( $this, 'epl_the_excerpt' ) );
 
 	}
 
-	function listing_element($atts) {
+	/**
+	 * Output example code or value if in th loop
+	 *
+	 * @param array $atts Array of attributes.
+	 *
+	 * @return false|string|void
+	 * @since 3.3
+	 */
+	public function listing_element( $atts ) {
 
-		if( !isset($atts['type']) )
+		global $property;
+
+		if ( ! isset( $atts['type'] ) ) {
 			return;
+		}
 
-		switch( $atts['type'] ) {
+		if ( is_null( $property ) ) {
 
-			case 'action' :
-				return $this->epl_action($atts);
-			break;
+			$key_name = '';
 
-			case 'meta' :
-				return $this->epl_meta($atts);
-			break;
+			switch ( $atts['type'] ) {
 
-			case 'post' :
-				return $this->post($atts);
-			break;
+				case 'action':
+					$key_name = 'action_key';
+					break;
 
-			case 'suburb_profile' :
-				return $this->epl_suburb_profile($atts);
-			break;
+				case 'meta':
+					$key_name = 'meta_key';
+					break;
 
-			case 'formatted_address' :
-				return $this->epl_formatted_address($atts);
-			break;
+				case 'post':
+					$key_name = 'post_key';
+					break;
 
-			case 'excerpt' :
-				return $this->epl_the_excerpt($atts);
-			break;
+			}
+
+			ob_start();
+			echo '[ ' . esc_html__( 'Listing', 'easy-property-listings' ) . ' ' . esc_attr( ucwords( $atts['type'] ) );
+
+			if ( ! empty( $key_name ) ) {
+				echo ': ' . esc_attr( ucwords( str_replace( '_', ' ', $atts[ $key_name ] ) ) );
+			}
+			echo ' ]';
+
+			return ob_get_clean();
+		}
+
+		$return = '';
+
+		switch ( $atts['type'] ) {
+
+			case 'action':
+				$return = $this->epl_action( $atts );
+				break;
+
+			case 'meta':
+				$return = $this->epl_meta( $atts );
+				break;
+
+			case 'post':
+				$return = $this->post( $atts );
+				break;
+
+			case 'suburb_profile':
+				$return = $this->epl_suburb_profile();
+				break;
+
+			case 'formatted_address':
+				$return = $this->epl_formatted_address();
+				break;
+
+			case 'excerpt':
+				$return = $this->epl_the_excerpt();
+				break;
 
 		}
+
+		return $return;
 	}
 
-	function epl_action($atts) {
-		if( !isset($atts['action_key']) )
+	/**
+	 * Output action
+	 *
+	 * @param array $atts Array of attributes for the action.
+	 *
+	 * @return false|string|void
+	 * @since 3.3
+	 */
+	public function epl_action( $atts ) {
+		if ( ! isset( $atts['action_key'] ) ) {
 			return;
+		}
 		ob_start();
-		do_action($atts['action_key']);
+		do_action( $atts['action_key'] );
 		return ob_get_clean();
 	}
 
-	function epl_meta($atts) {
+	/**
+	 * Get meta
+	 *
+	 * @param array $atts Array of attributes for the meta field.
+	 *
+	 * @return string|void
+	 * @since 3.3
+	 */
+	public function epl_meta( $atts ) {
 
-		if( !isset($atts['meta_key']) )
+		if ( ! isset( $atts['meta_key'] ) ) {
 			return;
+		}
 
-		return get_property_meta($atts['meta_key']);
+		return get_property_meta( $atts['meta_key'] );
 	}
 
-	function post($atts) {
+	/**
+	 * Get post
+	 *
+	 * @param array $atts Array of attributes for the post object.
+	 *
+	 * @return false|string
+	 * @since 3.3
+	 */
+	public function post( $atts ) {
 
 		global $property;
-		switch($atts['post_key']) {
 
-			case 'permalink' :
-				return get_permalink($property->post->ID);
-			break;
+		$return = '';
+		switch ( $atts['post_key'] ) {
 
-			default :
-				return isset($property->post->{$atts['post_key']}) ? $property->post->{$atts['post_key']} : '';
-			break;
+			case 'permalink':
+				$return = get_permalink( $property->post->ID );
+				break;
+
+			default:
+				$return = isset( $property->post->{$atts['post_key']} ) ? $property->post->{$atts['post_key']} : '';
+				break;
 
 		}
 
+		return $return;
+
 	}
 
-	function epl_suburb_profile(){
+	/**
+	 * Get suburb profile
+	 *
+	 * @since 3.3
+	 */
+	public function epl_suburb_profile() {
 
 		global $property;
-		echo $property->get_suburb_profile();
+		echo esc_html( $property->get_suburb_profile() );
 	}
 
-	function epl_formatted_address(){
+	/**
+	 * Get formatted listing address
+	 *
+	 * @since 3.3
+	 */
+	public function epl_formatted_address() {
 
 		global $property;
-		echo  $property->get_formatted_property_address();
+		echo esc_html( $property->get_formatted_property_address() );
 	}
 
-	function epl_the_excerpt(){
+	/**
+	 * Get the excerpt
+	 *
+	 * @since 3.3
+	 */
+	public function epl_the_excerpt() {
 
 		global $property;
-		return epl_get_the_excerpt();
+		return esc_html( epl_get_the_excerpt() );
 	}
 
 }
 
-new EPL_LISTING_ELEMENTS();
+new EPL_Listing_Elements();

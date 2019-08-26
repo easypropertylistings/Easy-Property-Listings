@@ -3,13 +3,19 @@
  * The Template for displaying all Easy Property Listings archive/loop posts with the iThemes Builder Theme Framework
  *
  * @package EPL
- * @subpackage Templates/Themes/Heuman
+ * @subpackage Templates/Themes/iThemes
  * @since 1.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
-
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+/**
+ * Render archive content
+ *
+ * @since 1.0 [<description>]
+ */
 function epl_archive_render_content() {
 	if ( have_posts() ) : ?>
 		<div class="loop">
@@ -19,12 +25,13 @@ function epl_archive_render_content() {
 				</h4>
 			</div>
 
-			<div class="loop-content">
+			<div class="loop-content <?php echo esc_attr( epl_template_class( 'builder', 'archive' ) ); ?>">
 				<?php do_action( 'epl_property_loop_start' ); ?>
-				<?php while ( have_posts() ) : // The Loop
+				<?php
+				while ( have_posts() ) : // The Loop.
 						the_post();
-						do_action('epl_property_blog');
-					endwhile; // end of one post
+						do_action( 'epl_property_blog' );
+					endwhile; // end of one post.
 				?>
 				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div>
@@ -32,16 +39,17 @@ function epl_archive_render_content() {
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
-					<?php do_action('epl_pagination'); ?>
+					<?php do_action( 'epl_pagination' ); ?>
 				</div>
 			</div>
 		</div>
 		<?php
-	else :
-		//do_action( 'builder_template_show_not_found' );
-		?><div class="hentry">
+		else :
+			?>
+		<div class="hentry">
 			<?php do_action( 'epl_property_search_not_found' ); ?>
-		</div><?php
+		</div>
+			<?php
 	endif;
 }
 add_action( 'builder_layout_engine_render_content', 'epl_archive_render_content' );

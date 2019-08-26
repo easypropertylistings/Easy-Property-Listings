@@ -7,18 +7,20 @@
  * @since 2.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 get_header(); ?>
 
 <section class="content">
 
-	<?php get_template_part('inc/page-title'); ?>
+	<?php get_template_part( 'inc/page-title' ); ?>
 
 	<div class="pad group">
 
-		<?php if ((category_description() != '') && !is_paged()) : ?>
+		<?php if ( ( category_description() ) && ! is_paged() ) : ?>
 			<div class="notebox">
 				<?php echo category_description(); ?>
 			</div>
@@ -26,21 +28,31 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<div class="post-list group">
+			<div class="post-list group <?php echo esc_attr( epl_template_class( 'heuman', 'archive' ) ); ?>">
 				<?php do_action( 'epl_property_loop_start' ); ?>
-					<?php $i = 1; echo '<div class="post-row">'; while ( have_posts() ): the_post(); ?>
+					<?php
+					$i = 1;
+					echo '<div class="post-row">';
+					while ( have_posts() ) :
+						the_post();
+						?>
 						<?php do_action( 'epl_property_blog' ); ?>
-					<?php if($i % 2 == 0) { echo '</div><div class="post-row">'; } $i++; endwhile; echo '</div>'; ?>
+						<?php
+						if ( 0 === $i % 2 ) {
+							echo '</div><div class="post-row">';
+						} $i++;
+endwhile;
+					echo '</div>';
+					?>
 				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div><!--/.post-list-->
 
-			<?php get_template_part('inc/pagination'); ?>
+			<?php get_template_part( 'inc/pagination' ); ?>
 			<?php do_action( 'epl_property_loop_end' ); ?>
 		<?php endif; ?>
 			<div class="post-list group">
 				<?php do_action( 'epl_property_search_not_found' ); ?>
 			</div>
-		</div>
 	</div><!--/.pad-->
 
 </section><!--/.content-->

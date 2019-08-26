@@ -4,18 +4,23 @@
  *
  * @package     EPL
  * @subpackage  Shortcode/Listing Search
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.2
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * This shortcode allows for you to specify the property type(s) using
  * [listing_search title="" post_type="property" property_status="current/sold/leased" search_house_category="on/off" search_price="on/off" search_bed="on/off" search_bath="on/off" search_car="on/off" search_other="on/off"] option
  *
+ * @param array $atts Shortcode attributes.
+ *
+ * @return false|string
  * @since       1.2
  */
 function epl_shortcode_listing_search_callback( $atts ) {

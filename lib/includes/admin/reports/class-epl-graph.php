@@ -6,13 +6,15 @@
  *
  * @package     EPL
  * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2016, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * EPL_Graph Class
@@ -20,32 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @since 3.0
  */
 class EPL_Graph {
-
-	/*
-
-	Simple example:
-
-	data format for each point: array( location on x, location on y )
-
-	$data = array(
-
-		'Label' => array(
-			array( 1, 5 ),
-			array( 3, 8 ),
-			array( 10, 2 )
-		),
-
-		'Second Label' => array(
-			array( 1, 7 ),
-			array( 4, 5 ),
-			array( 12, 8 )
-		)
-	);
-
-	$graph = new EPL_Graph( $data );
-	$graph->display();
-
-	*/
 
 	/**
 	 * Data to graph
@@ -75,15 +51,16 @@ class EPL_Graph {
 	 * Get things started
 	 *
 	 * @since 3.0
+	 * @param string $_data the data.
 	 */
 	public function __construct( $_data ) {
 
 		$this->data = $_data;
 
-		// Generate unique ID
-		$this->id   = 'a' . md5( rand() );
+		// Generate unique ID.
+		$this->id = 'a' . md5( wp_rand() );
 
-		// Setup default options;
+		// Setup default options.
 		$this->options = array(
 			'y_mode'          => null,
 			'x_mode'          => null,
@@ -100,16 +77,16 @@ class EPL_Graph {
 			'borderwidth'     => 2,
 			'bars'            => false,
 			'lines'           => true,
-			'points'          => true
+			'points'          => true,
 		);
 	}
 
 	/**
 	 * Set an option
 	 *
-	 * @param $key The option key to set
-	 * @param $value The value to assign to the key
-	 * @since 3.0
+	 * @since 3.0.0
+	 * @param string $key The option key to set.
+	 * @param string $value The value to assign to the key.
 	 */
 	public function set( $key, $value ) {
 		$this->options[ $key ] = $value;
@@ -118,7 +95,9 @@ class EPL_Graph {
 	/**
 	 * Get an option
 	 *
-	 * @param $key The option key to get
+	 * @param string $key The option key to get.
+	 *
+	 * @return bool|mixed
 	 * @since 3.0
 	 */
 	public function get( $key ) {
@@ -140,9 +119,9 @@ class EPL_Graph {
 	 * @since 3.0
 	 */
 	public function load_scripts() {
-		// Use minified libraries if SCRIPT_DEBUG is turned off
+		// Use minified libraries if SCRIPT_DEBUG is turned off.
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		wp_enqueue_script( 'epl-jquery-flot', EPL_PLUGIN_URL . 'lib/assets/js/jquery.flot' . $suffix . '.js' );
+		wp_enqueue_script( 'epl-jquery-flot', EPL_PLUGIN_URL . 'lib/assets/js/jquery-flot' . $suffix . '.js', array(), EPL_PROPERTY_VER, true );
 
 		do_action( 'epl_graph_load_scripts' );
 	}
@@ -161,24 +140,30 @@ class EPL_Graph {
 		$this->load_scripts();
 
 		ob_start();
-?>
+		?>
 		<script type="text/javascript">
 			jQuery( document ).ready( function($) {
 				$.plot(
-					$("#epl-graph-<?php echo $this->id; ?>"),
+					$("#epl-graph-<?php echo esc_attr( $this->id ); ?>"),
 					[
-						<?php foreach( $this->get_data() as $label => $data ) : ?>
+						<?php foreach ( $this->get_data() as $label => $data ) : ?>
 						{
 							label: "<?php echo esc_attr( $data['label'] ); ?>",
-							id: "<?php echo sanitize_key( $data['id'] ); ?>",
+							id: "<?php echo esc_attr( sanitize_key( $data['id'] ) ); ?>",
 
-							<?php if( !is_null($data['color'])) : ?>
+							<?php if ( ! is_null( $data['color'] ) ) : ?>
 
 								color: "<?php echo esc_attr( $data['color'] ); ?>",
 
 							<?php endif; ?>
 							// data format is: [ point on x, value on y ]
-							data: [<?php foreach( $data['data'] as $point ) { echo '[' . implode( ',', $point ) . '],'; } ?>],
+							data: [
+							<?php
+							foreach ( $data['data'] as $point ) {
+								echo esc_attr( '[' . implode( ',', $point ) . '],' );
+							}
+							?>
+							],
 							points: {
 								show: <?php echo $this->options['points'] ? 'true' : 'false'; ?>,
 							},
@@ -190,40 +175,43 @@ class EPL_Graph {
 							lines: {
 								show: <?php echo $this->options['lines'] ? 'true' : 'false'; ?>
 							},
-							<?php if( $this->options['multiple_y_axes'] ) : ?>
-							yaxis: <?php echo $yaxis_count; ?>
+							<?php if ( $this->options['multiple_y_axes'] ) : ?>
+							yaxis: <?php echo esc_attr( $yaxis_count ); ?>
 							<?php endif; ?>
 						},
-						<?php $yaxis_count++; endforeach; ?>
+							<?php
+							$yaxis_count++;
+							endforeach;
+						?>
 					],
 					{
 						// Options
 						grid: {
 							show: true,
 							aboveData: false,
-							color: "<?php echo $this->options['color']; ?>",
-							backgroundColor: "<?php echo $this->options['bgcolor']; ?>",
-							borderColor: "<?php echo $this->options['bordercolor']; ?>",
-							borderWidth: <?php echo absint( $this->options['borderwidth'] ); ?>,
+							color: "<?php echo esc_attr( $this->options['color'] ); ?>",
+							backgroundColor: "<?php echo esc_attr( $this->options['bgcolor'] ); ?>",
+							borderColor: "<?php echo esc_attr( $this->options['bordercolor'] ); ?>",
+							borderWidth: <?php echo esc_attr( absint( $this->options['borderwidth'] ) ); ?>,
 							clickable: false,
 							hoverable: true
 						},
 						xaxis: {
-							mode: "<?php echo $this->options['x_mode']; ?>",
-							timeFormat: "<?php echo $this->options['x_mode'] == 'time' ? $this->options['time_format'] : ''; ?>",
-							tickSize: "<?php echo $this->options['x_mode'] == 'time' ? '' : $this->options['ticksize_num']; ?>",
-							<?php if( $this->options['x_mode'] != 'time' ) : ?>
-							tickDecimals: <?php echo $this->options['x_decimals']; ?>
+							mode: "<?php echo esc_attr( $this->options['x_mode'] ); ?>",
+							timeFormat: "<?php echo 'time' === $this->options['x_mode'] ? esc_attr( $this->options['time_format'] ) : ''; ?>",
+							tickSize: "<?php echo 'time' === $this->options['x_mode'] ? '' : esc_attr( $this->options['ticksize_num'] ); ?>",
+							<?php if ( 'time' !== $this->options['x_mode'] ) : ?>
+							tickDecimals: <?php echo esc_attr( $this->options['x_decimals'] ); ?>
 							<?php endif; ?>
 						},
 						yaxis: {
 							position: 'right',
 							axisLabelColor: '#ff0000',
 							min: 0,
-							mode: "<?php echo $this->options['y_mode']; ?>",
-							timeFormat: "<?php echo $this->options['y_mode'] == 'time' ? $this->options['time_format'] : ''; ?>",
-							<?php if( $this->options['y_mode'] != 'time' ) : ?>
-							tickDecimals: <?php echo $this->options['y_decimals']; ?>
+							mode: "<?php echo esc_attr( $this->options['y_mode'] ); ?>",
+							timeFormat: "<?php echo 'time' === $this->options['y_mode'] ? esc_attr( $this->options['time_format'] ) : ''; ?>",
+							<?php if ( 'time' !== $this->options['y_mode'] ) : ?>
+							tickDecimals: <?php echo esc_attr( $this->options['y_decimals'] ); ?>
 							<?php endif; ?>
 						}
 					}
@@ -244,7 +232,7 @@ class EPL_Graph {
 				}
 
 				var previousPoint = null;
-				$("#epl-graph-<?php echo $this->id; ?>").bind("plothover", function (event, pos, item) {
+				$("#epl-graph-<?php echo esc_attr( $this->id ); ?>").bind("plothover", function (event, pos, item) {
 					$("#x").text(pos.x.toFixed(2));
 					$("#y").text(pos.y.toFixed(2));
 					if (item) {
@@ -272,7 +260,7 @@ class EPL_Graph {
 			});
 
 		</script>
-		<div id="epl-graph-<?php echo $this->id; ?>" class="epl-graph" style="height: 300px;"></div>
+		<div id="epl-graph-<?php echo esc_attr( $this->id ); ?>" class="epl-graph" style="height: 300px;"></div>
 		<?php
 		return ob_get_clean();
 	}
@@ -284,7 +272,7 @@ class EPL_Graph {
 	 */
 	public function display() {
 		do_action( 'epl_before_graph', $this );
-		echo $this->build_graph();
+		echo $this->build_graph(); //phpcs:ignore WordPress.Security.EscapeOutput
 		do_action( 'epl_after_graph', $this );
 	}
 }

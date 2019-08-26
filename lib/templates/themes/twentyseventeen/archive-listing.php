@@ -23,42 +23,42 @@ get_header(); ?>
 		</header><!-- .page-header -->
 	<?php endif; ?>
 
-	<div id="primary" class="content-area <?php echo epl_get_active_theme_name(); ?>">
-		<main id="main" class="site-main <?php echo epl_template_class( 'twentyseventeen', 'archive' ); ?>" role="main">
+	<div id="primary" class="content-area <?php echo esc_attr( epl_get_active_theme_name() ); ?>">
+		<main id="main" class="site-main <?php echo esc_attr( epl_template_class( 'twentyseventeen', 'archive' ) ); ?>" role="main">
 
 		<?php
-		if ( have_posts() ) : ?>
+		if ( have_posts() ) :
+			?>
 			<?php
 			do_action( 'epl_property_loop_start' );
 			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+			while ( have_posts() ) :
+				the_post();
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				do_action('epl_property_blog');
+				do_action( 'epl_property_blog' );
 
 			endwhile;
 
 			do_action( 'epl_property_loop_end' );
 
 			// Previous/next page navigation.
-			do_action('epl_pagination');
+			do_action( 'epl_pagination' );
 
-		else :
+			else :
 
-			?><div class="hentry">
+				?>
+			<div class="hentry">
 				<?php do_action( 'epl_property_search_not_found' ); ?>
 			</div>
-			<?php
+				<?php
 
-		endif; ?>
+		endif;
+			?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
 	<?php get_sidebar(); ?>
 </div><!-- .wrap -->
 
-<?php get_footer();
+<?php
+get_footer();

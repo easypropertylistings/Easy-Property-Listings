@@ -1,62 +1,91 @@
 <?php
+/**
+ * Search Object
+ *
+ * @package     EPL
+ * @subpackage  Classes/Search
+ * @copyright   Copyright (c) 2019, Merv Barrett
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       3.1
+ */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * EPL_SEARCH Class
+ *
+ * @since      3.1
+ */
 class EPL_SEARCH {
 
 	/**
 	 * WP_QUERY Object
 	 *
+	 * @var array
 	 */
 	private $query;
 
 	/**
 	 * Search data received from search widget / seach shortcode via GET method
+	 *
 	 * @var array
 	 */
 	private $get_data = array();
 
 	/**
 	 * Search data received from search widget / seach shortcode via POST method
+	 *
 	 * @var array
 	 */
 	private $post_data = array();
 
 	/**
 	 * Meta query array
+	 *
 	 * @var array
 	 */
 	private $meta_query = array();
 
 	/**
 	 * Tax query array
+	 *
 	 * @var array
 	 */
 	private $tax_query = array();
 
 	/**
 	 * Fields to be skipped
+	 *
 	 * @var array
 	 */
 	private $skip_field = array();
 
 	/**
 	 * Post type to search for
+	 *
 	 * @var string
 	 */
 	private $post_type;
 
 	/**
-	 * transaction type for current post type sale/lease
+	 * Transaction type for current post type sale/lease
+	 *
 	 * @var string
 	 */
 	private $transaction_type = null;
 
 
 	/**
+	 * Get things going
+	 *
 	 * @since  3.2
-	 * @param WP_Query $query object of the wp_query object
-	 * @param array $data  associative array for fields to search
+	 * @param WP_Query $query object of the wp_query object.
+	 * @param array    $data  associative array for fields to search.
 	 */
-	function __construct($query,$data) {
+	public function __construct( $query, $data ) {
 
 		$this->data = $data;
 
@@ -66,7 +95,7 @@ class EPL_SEARCH {
 
 		$this->skip_unnecessary_fields();
 
-		$this->query = apply_filters('epl_search_query_before_processing',$this->query,$this->get_data);
+		$this->query = apply_filters( 'epl_search_query_before_processing', $this->query, $this->get_data );
 
 		$this->set_per_page();
 
@@ -84,80 +113,79 @@ class EPL_SEARCH {
 
 		$this->epl_search_query_pre_search();
 
-		$this->query = apply_filters('epl_search_query_pre_search',$this->query,$this->get_data);
+		$this->query = apply_filters( 'epl_search_query_pre_search', $this->query, $this->get_data );
 
 		$this->set_query();
 
-		$this->query = apply_filters('epl_search_query_pre_parse',$this->query,$this->get_data);
+		$this->query = apply_filters( 'epl_search_query_pre_parse', $this->query, $this->get_data );
 
 		$this->query->parse_query();
 
-		/** disable is_* flags which can create conflict with EPL search query flag to avoid redirection to tax archive url */
-		$this->query->is_tax 		= false;
-		$this->query->is_page 		= false;
-		$this->query->is_single 	= false;
-		$this->query->is_singular 	= false;
-		$this->query->is_epl_search	= true;
-		set_query_var('page_id',null);
-
-		//epl_print_r($this->query,true);
+		// Disable is_* flags which can create conflict with EPL search query flag to avoid redirection to tax archive url.
+		$this->query->is_tax        = false;
+		$this->query->is_page       = false;
+		$this->query->is_single     = false;
+		$this->query->is_singular   = false;
+		$this->query->is_epl_search = true;
+		set_query_var( 'page_id', null );
 	}
 
 	/**
 	 * These are list of fields which are not directly queried,
 	 * but their value is used to query other meta data / post data / tax data
+	 *
 	 * @return array
 	 */
 	protected function altered_fields() {
-		return apply_filters('epl_search_altered_fields',array(
-			'property_unique_id'
-		));
+		return apply_filters(
+			'epl_search_altered_fields',
+			array(
+				'property_unique_id',
+			)
+		);
 	}
 
 	/**
 	 * Sanitize whole GET & POST array, insures security from XSS
-	 *
 	 */
-	protected function sanitize_data () {
-		$this->get_data   	= filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+	protected function sanitize_data() {
+		$this->get_data = filter_input_array( INPUT_GET, FILTER_SANITIZE_STRING );
 
-		if (!empty($this->data)) {
+		if ( ! empty( $this->data ) ) {
 			$this->get_data = $this->data;
 		}
-		$this->get_data   	= apply_filters('epl_search_get_data',$this->get_data);
-		$this->post_data  	= filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-		$this->post_data   	= apply_filters('epl_search_post_data',$this->post_data);
+		$this->get_data  = apply_filters( 'epl_search_get_data', $this->get_data );
+		$this->post_data = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
+		$this->post_data = apply_filters( 'epl_search_post_data', $this->post_data );
 
-		if( !isset($this->get_data['property_status']) ) {
+		if ( ! isset( $this->get_data['property_status'] ) ) {
 			$this->get_data['property_status'] = '';
 		}
 	}
 
 	/**
-	 * set list of fields which are not to be queried
-	 * @return null
+	 * Set list of fields which are not to be queried
 	 */
 	protected function fields_to_skip() {
-		// keys of fields to be skipped
-		$fields = array('action');
-		$this->skip_fields =  apply_filters('epl_skip_search_fields',$fields,$this->get_data);
+		// Keys of fields to be skipped.
+		$fields            = array( 'action' );
+		$this->skip_fields = apply_filters( 'epl_skip_search_fields', $fields, $this->get_data );
 	}
 
 	/**
 	 * Skip unnecessay fields
-	 * @return 3.2
 	 */
 	protected function skip_unnecessary_fields() {
 
 		$this->fields_to_skip();
 
-		if( !empty($this->skip_fields) ) {
+		if ( ! empty( $this->skip_fields ) ) {
 
-			foreach( $this->skip_fields as $key =>	&$field) {
+			foreach ( $this->skip_fields as $key => &$field ) {
 
-				if( isset($this->get_data[$key]) ) {
+				if ( isset( $this->get_data[ $key ] ) ) {
 
-					unset($this->get_data[$key]);
+					unset( $this->get_data[ $key ] );
 				}
 			}
 		}
@@ -169,7 +197,7 @@ class EPL_SEARCH {
 	 */
 	protected function set_per_page() {
 
-		$posts_per_page = apply_filters('epl_search_results_per_page',get_option( 'posts_per_page' ) );
+		$posts_per_page = apply_filters( 'epl_search_results_per_page', get_option( 'posts_per_page' ) );
 		$this->query->set( 'posts_per_page', $posts_per_page );
 
 	}
@@ -189,8 +217,8 @@ class EPL_SEARCH {
 	 */
 	protected function set_title() {
 
-		if(isset($this->get_data['property_address']) ) {
-			$this->query->set( 'epl_post_title', sanitize_text_field($this->get_data['property_address']) );
+		if ( isset( $this->get_data['property_address'] ) ) {
+			$this->query->set( 'epl_post_title', sanitize_text_field( $this->get_data['property_address'] ) );
 		}
 
 	}
@@ -202,8 +230,9 @@ class EPL_SEARCH {
 
 		if ( isset( $this->get_data['property_agent'] ) ) {
 			$property_agent = sanitize_title_with_dashes( $this->get_data['property_agent'] );
-			if ( $property_agent = get_user_by( 'slug', $property_agent ) ) {
-	            $this->query->set( 'author__in' , array( $property_agent->ID) );
+			$property_agent = get_user_by( 'slug', $property_agent );
+			if ( $property_agent ) {
+				$this->query->set( 'author__in', array( $property_agent->ID ) );
 			}
 		}
 	}
@@ -221,7 +250,7 @@ class EPL_SEARCH {
 			if ( ! empty( $epl_post_types ) ) {
 				$epl_post_types = array_keys( $epl_post_types );
 				$this->query->set( 'post_type', $epl_post_types );
-				$this->post_type = $epl_post_types;
+				$this->post_type             = $epl_post_types;
 				$this->get_data['post_type'] = $this->post_type;
 			}
 		}
@@ -229,15 +258,14 @@ class EPL_SEARCH {
 
 	/**
 	 * Modify meta keys according to data received, for special cases
-	 * @return null
 	 */
 	protected function modify_fields() {
 
-		// if  post type is commercial and listing type is set, accordingly change the price meta key
-		if( ($this->post_type == 'commercial' ||  $this->post_type == 'commercial_land' ) && isset( $this->get_data['property_com_listing_type'] ) ) {
+		// if  post type is commercial and listing type is set, accordingly change the price meta key.
+		if ( ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) && isset( $this->get_data['property_com_listing_type'] ) ) {
 
-			$type = $this->get_data['property_com_listing_type'];
-			$this->transaction_type = $type == 'lease' ? 'lease' : 'sale';
+			$type                   = $this->get_data['property_com_listing_type'];
+			$this->transaction_type = 'lease' === $type ? 'lease' : 'sale';
 
 		}
 	}
@@ -282,9 +310,9 @@ class EPL_SEARCH {
 	 */
 	protected function prepare_query() {
 
-		if($this->get_data['post_type'] == 'commercial' || $this->get_data['post_type'] == 'commercial_land' ) {
+		if ( 'commercial' === $this->get_data['post_type'] || 'commercial_land' === $this->get_data['post_type'] ) {
 
-			if( function_exists('epl_listing_search_commercial_widget_fields_frontend') ) {
+			if ( function_exists( 'epl_listing_search_commercial_widget_fields_frontend' ) ) {
 
 				$this->form_fields = epl_listing_search_commercial_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 
@@ -293,134 +321,130 @@ class EPL_SEARCH {
 				$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 
 			}
-
-		}
-		else {
+		} else {
 
 			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 		}
 
-		foreach($this->get_data as $key =>	$data) {
+		foreach ( $this->get_data as $key => $data ) {
 
-			if( isset($this->form_fields[$key]) ) {
+			if ( isset( $this->form_fields[ $key ] ) ) {
 
-				$query_type = isset($this->form_fields[$key]['query']['query']) ?
-					$this->form_fields[$key]['query']['query'] : 'special';
+				$query_type = isset( $this->form_fields[ $key ]['query']['query'] ) ?
+					$this->form_fields[ $key ]['query']['query'] : 'special';
 
-				if( in_array($key,$this->altered_fields() ) ) {
+				if ( in_array( $key, $this->altered_fields(), true ) ) {
 					return;
 				}
 
-				switch($query_type) {
+				switch ( $query_type ) {
 
-					case 'meta' :
+					case 'meta':
+						$this->prepare_meta_query( $this->form_fields[ $key ], $data );
 
-						$this->prepare_meta_query($this->form_fields[$key],$data);
+						break;
 
-					break;
+					case 'tax':
+						$this->prepare_tax_query( $this->form_fields[ $key ], $data );
 
-					case 'tax' :
+						break;
 
-						$this->prepare_tax_query($this->form_fields[$key],$data);
+					case 'special':
+						$this->prepare_special_query( $this->form_fields[ $key ], $data );
 
-					break;
-
-					case 'special' :
-
-						$this->prepare_special_query($this->form_fields[$key],$data);
-
-					break;
+						break;
 				}
 			}
 		}
 
 	}
 
-	function epl_search_query_pre_search() {
+	/**
+	 * Pre search query
+	 */
+	public function epl_search_query_pre_search() {
 
-		foreach($this->meta_query as $index	=>	&$meta_query) {
+		foreach ( $this->meta_query as $index => &$meta_query ) {
 
-			if( !isset($meta_query['key']) )
+			if ( ! isset( $meta_query['key'] ) ) {
 				continue;
+			}
 
-			if($meta_query['key'] == 'property_com_listing_type' ) {
+			if ( 'property_com_listing_type' === $meta_query['key'] ) {
 
-				$meta_query['compare'] 	= 'IN';
+				$meta_query['compare'] = 'IN';
 
-				switch($meta_query['value']) {
+				switch ( $meta_query['value'] ) {
 
 					case 'sale':
-						$meta_query['value']	= array('sale','both');
-					break;
+						$meta_query['value'] = array( 'sale', 'both' );
+						break;
 
 					case 'lease':
-						$meta_query['value']	= array('lease','both');
-					break;
+						$meta_query['value'] = array( 'lease', 'both' );
+						break;
 
-					default :
-						$meta_query['value']	= array('lease','both','sale');
-					break;
+					default:
+						$meta_query['value'] = array( 'lease', 'both', 'sale' );
+						break;
 
 				}
-
 			}
 		}
 	}
 
 	/**
 	 * Prepare meta query
-	 * @param  [type] $query_field [description]
-	 * @param  [type] $value       [description]
-	 * @return [type]              [description]
+	 *
+	 * @param  array  $query_field Field to query.
+	 * @param  string $value Value of field.
 	 */
-	protected function prepare_meta_query($query_field,$value) {
+	protected function prepare_meta_query( $query_field, $value ) {
 
-		if( $this->is_query_multiple($query_field) ) {
+		if ( $this->is_query_multiple( $query_field ) ) {
 
-			$this->multiple_meta_query($query_field,$value);
+			$this->multiple_meta_query( $query_field, $value );
 
 		} else {
 
-			$this->single_meta_query($query_field,$value);
+			$this->single_meta_query( $query_field, $value );
 		}
 	}
 
 	/**
 	 * Checks if given meta query is multiple
-	 * @param  [type]  $query_field [description]
-	 * @return boolean              [description]
+	 *
+	 * @param  array $query_field Field to query.
+	 * @return boolean
 	 */
-	protected function is_query_multiple($query_field) {
+	protected function is_query_multiple( $query_field ) {
 
-		if(
-			isset( $query_field['query']['multiple'] ) &&
-			$query_field['query']['multiple'] == true
-		)
-		return true;
-
+		if ( isset( $query_field['query']['multiple'] ) && true === $query_field['query']['multiple'] ) {
+			return true;
+		}
 		return false;
 
 	}
 
 	/**
 	 * Returns relationship for the multiple query
-	 * @param  [type] $query_field [description]
-	 * @return [type]              [description]
+	 *
+	 * @param  array $query_field Field to query.
+	 * @return string
 	 */
-	protected function multiple_relation($query_field) {
+	protected function multiple_relation( $query_field ) {
 
-		return isset( $query_field['query']['relation'] ) ?
-			$query_field['query']['relation'] : 'OR';
+		return isset( $query_field['query']['relation'] ) ? $query_field['query']['relation'] : 'OR';
 
 	}
 
 	/**
-	 * set multiple meta query
-	 * @param  [type] $query_field [description]
-	 * @param  [type] $data        [description]
-	 * @return [type]              [description]
+	 * Set multiple meta query
+	 *
+	 * @param  array  $query_field Field to query.
+	 * @param  string $data Data value.
 	 */
-	protected function multiple_meta_query($query_field,$data) {
+	protected function multiple_meta_query( $query_field, $data ) {
 
 		if ( empty( $data ) ) {
 			return;
@@ -428,19 +452,19 @@ class EPL_SEARCH {
 
 		$this_meta_query = array();
 
-		if( isset( $query_field['meta_key'] ) && !empty($query_field['meta_key']) ) {
+		if ( isset( $query_field['meta_key'] ) && ! empty( $query_field['meta_key'] ) ) {
 
-			$this_meta_query['relation'] = $this->multiple_relation($query_field);
+			$this_meta_query['relation'] = $this->multiple_relation( $query_field );
 
-			if( !empty( $query_field['query']['sub_queries'] ) ) {
+			if ( ! empty( $query_field['query']['sub_queries'] ) ) {
 
 				foreach ( $query_field['query']['sub_queries'] as $sub_query ) {
 
-					$this_sub_query = array(
-						'key'		=>	$sub_query['key'],
-						'value'		=>	$data,
-						'type'		=>	$sub_query['type'],
-						'compare'	=>	$sub_query['compare'],
+					$this_sub_query    = array(
+						'key'     => $sub_query['key'],
+						'value'   => $data,
+						'type'    => $sub_query['type'],
+						'compare' => $sub_query['compare'],
 					);
 					$this_meta_query[] = $this_sub_query;
 				}
@@ -452,12 +476,12 @@ class EPL_SEARCH {
 	}
 
 	/**
-	 * set single meta query
-	 * @param  [type] $query_field [description]
-	 * @param  [type] $data        [description]
-	 * @return [type]              [description]
+	 * Set single meta query
+	 *
+	 * @param  array  $query_field Field to query.
+	 * @param  string $data Data value.
 	 */
-	protected function single_meta_query($query_field,$data) {
+	protected function single_meta_query( $query_field, $data ) {
 
 		$query_meta_key = isset( $query_field['query']['key'] ) ?
 			$query_field['query']['key'] :
@@ -466,8 +490,8 @@ class EPL_SEARCH {
 		if ( isset( $data ) && ! empty( $data ) ) {
 
 			$this_meta_query = array(
-				'key'	=>	$query_meta_key,
-				'value'	=>	$data,
+				'key'   => $query_meta_key,
+				'value' => $data,
 			);
 
 			isset( $query_field['query']['compare'] ) ?
@@ -485,66 +509,66 @@ class EPL_SEARCH {
 
 	/**
 	 * Preprocess meta query
-	 * @return [type] [description]
 	 */
 	protected function preprocess_meta_query() {
 
-	    $range_sep  = apply_filters('search_field_range_seperator','-');
-	    $option_sep = apply_filters('search_field_option_seperator',',');
+		$range_sep  = apply_filters( 'epl_search_field_range_separator', '-' );
+		$option_sep = apply_filters( 'epl_search_field_option_separator', ',' );
 
-	    foreach($this->meta_query as $key =>  &$query) {
+		foreach ( $this->meta_query as $key => &$query ) {
 
-	        if ( isset( $query['compare'] ) && isset( $query['value'] )
-	            && in_array( strtoupper( $query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ) )
-	            && ! is_array( $query['value'] ) ) {
-	            $query['value'] = array_map( 'trim', explode( $option_sep, $query['value'] ) );
+			if ( isset( $query['compare'] ) && isset( $query['value'] )
+				&& in_array( strtoupper( $query['compare'] ), array( 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN' ), true )
+				&& ! is_array( $query['value'] ) ) {
+				$query['value'] = array_map( 'trim', explode( $option_sep, $query['value'] ) );
 
-	            if( isset($this->form_fields[$query['key']]['option_type']) && $this->form_fields[$query['key']]['option_type'] == 'range') {
-	                $query['value'] = array(
-	                    current (explode( $range_sep, current($query['value']) ) ),
-	                    next (explode( $range_sep, end($query['value']) ) )
-	                );
-	            }
-	        }
-	    }
-	    $this->meta_query = apply_filters('epl_preprocess_search_meta_query',$this->meta_query);
+				if ( isset( $this->form_fields[ $query['key'] ]['option_type'] ) && 'range' === $this->form_fields[ $query['key'] ]['option_type'] ) {
+					$query['value'] = array(
+						current( explode( $range_sep, current( $query['value'] ) ) ),
+						next( explode( $range_sep, end( $query['value'] ) ) ),
+					);
+				}
+			}
+		}
+		$this->meta_query = apply_filters( 'epl_preprocess_search_meta_query', $this->meta_query );
 	}
 
 	/**
 	 * Prepare taxonomy query
-	 * @param  [type] $query_field [description]
-	 * @param  [type] $value       [description]
-	 * @return [type]              [description]
+	 *
+	 * @param  array  $query_field Field to query.
+	 * @param  string $value Data value.
 	 */
-	protected function prepare_tax_query($query_field,$value) {
+	protected function prepare_tax_query( $query_field, $value ) {
 
 		$value = (array) $value;
-		$value = array_filter($value);
-		if( !empty( $value ) ) {
+		$value = array_filter( $value );
+		if ( ! empty( $value ) ) {
 			$this->tax_query[] = array(
-				'taxonomy'	=>	preg_replace('/^property_/', '', $query_field['meta_key']),
-				'field'		=>	'id',
-				'terms'		=>	$value,
+				'taxonomy' => preg_replace( '/^property_/', '', $query_field['meta_key'] ),
+				'field'    => 'id',
+				'terms'    => $value,
 			);
 		}
 
-		$this->tax_query = apply_filters('epl_preprocess_search_tax_query',$this->tax_query);
+		$this->tax_query = apply_filters( 'epl_preprocess_search_tax_query', $this->tax_query );
 	}
 
 	/**
-	 * [prepare_special_query description]
-	 * @param  [type] $query_field [description]
-	 * @param  [type] $value       [description]
-	 * @return [type]              [description]
+	 * Prepare special query
+	 *
+	 * @param  array  $query_field Field to query.
+	 * @param  string $value Data value.
 	 */
-	protected function prepare_special_query($query_field,$value) {
+	protected function prepare_special_query( $query_field, $value ) {
 
-		$this->query = apply_filters('epl_search_special_query',$this->query,$query_field,$value);
+		$this->query = apply_filters( 'epl_search_special_query', $this->query, $query_field, $value );
 	}
 
 	/**
 	 * Return array of posts based on search data
-	 * @return [type] [description]
+	 *
+	 * @return array
 	 */
 	public function get_posts() {
 

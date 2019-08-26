@@ -7,23 +7,28 @@
  * @since 1.0
  */
 
- // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 get_header(); ?>
 
 <section class="content">
 
-	<?php get_template_part('inc/page-title'); ?>
+	<?php get_template_part( 'inc/page-title' ); ?>
 
 	<div class="pad group">
 
-		<?php while ( have_posts() ): the_post(); ?>
+		<?php
+		while ( have_posts() ) :
+			the_post();
+			?>
 			<article <?php post_class(); ?>>
 				<div class="post-inner group">
 
 					<h1 class="post-title"><?php the_title(); ?></h1>
-					<p class="post-byline"><?php _e('by','hueman'); ?> <?php the_author_posts_link(); ?> &middot; <?php the_time(get_option('date_format')); ?></p>
+					<p class="post-byline"><?php esc_html_e( 'by', 'easy-property-listings' ); ?> <?php wp_kses_post( the_author_posts_link() ); ?> &middot; <?php the_time( get_option( 'date_format' ) ); ?></p>
 
 					<?php do_action( 'epl_property_single' ); ?>
 
@@ -32,7 +37,14 @@ get_header(); ?>
 					<div class="entry">
 						<div class="entry-inner">
 							<?php the_content(); ?>
-							<?php wp_link_pages(array('before'=>'<div class="post-pages">'.__('Pages:','hueman'),'after'=>'</div>')); ?>
+							<?php
+							wp_link_pages(
+								array(
+									'before' => '<div class="post-pages">' . __( 'Pages:', 'easy-property-listings' ),
+									'after'  => '</div>',
+								)
+							);
+							?>
 						</div>
 						<div class="clear"></div>
 					</div><!--/.entry-->
@@ -43,22 +55,28 @@ get_header(); ?>
 
 		<div class="clear"></div>
 
-		<?php the_tags('<p class="post-tags"><span>'.__('Tags:','hueman').'</span> ','','</p>'); ?>
+		<?php the_tags( '<p class="post-tags"><span>' . __( 'Tags:', 'easy-property-listings' ) . '</span> ', '', '</p>' ); ?>
 
-		<?php if ( ( ot_get_option( 'author-bio' ) != 'off' ) && get_the_author_meta( 'description' ) ): ?>
+		<?php if ( ( 'off' !== ot_get_option( 'author-bio' ) ) && get_the_author_meta( 'description' ) ) : ?>
 			<div class="author-bio">
-				<div class="bio-avatar"><?php echo get_avatar(get_the_author_meta('user_email'),'128'); ?></div>
-				<p class="bio-name"><?php the_author_meta('display_name'); ?></p>
-				<p class="bio-desc"><?php the_author_meta('description'); ?></p>
+				<div class="bio-avatar"><?php echo get_avatar( get_the_author_meta( 'user_email' ), '128' ); ?></div>
+				<p class="bio-name"><?php the_author_meta( 'display_name' ); ?></p>
+				<p class="bio-desc"><?php the_author_meta( 'description' ); ?></p>
 				<div class="clear"></div>
 			</div>
 		<?php endif; ?>
 
-		<?php if ( ot_get_option( 'post-nav' ) == 'content') { get_template_part('inc/post-nav'); } ?>
+		<?php
+		if ( 'content' === ot_get_option( 'post-nav' ) ) {
+			get_template_part( 'inc/post-nav' ); }
+		?>
 
-		<?php if ( ot_get_option( 'related-posts' ) != '1' ) { get_template_part('inc/related-posts'); } ?>
+		<?php
+		if ( 1 !== (int) ot_get_option( 'related-posts' ) ) {
+			get_template_part( 'inc/related-posts' ); }
+		?>
 
-		<?php comments_template('/comments.php',true); ?>
+		<?php comments_template( '/comments.php', true ); ?>
 
 	</div><!--/.pad-->
 

@@ -4,14 +4,16 @@
  *
  * @package     EPL
  * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2016, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
-
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+// phpcs:disable WordPress.Security.NonceVerification
 /**
  * Reports Page
  *
@@ -19,14 +21,26 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since 3.0
  * @return void
-*/
+ */
 function epl_reports_page() {
 	$current_page = admin_url( 'edit.php?post_type=download&page=epl-reports' );
-	$active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'reports';
+	$active_tab   = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'reports';
 	?>
 	<div class="wrap">
 		<h1 class="nav-tab-wrapper">
-			<a href="<?php echo add_query_arg( array( 'tab' => 'reports', 'settings-updated' => false ), $current_page ); ?>" class="nav-tab <?php echo $active_tab == 'reports' ? 'nav-tab-active' : ''; ?>"><?php _e( 'Reports', 'easy-property-listings'  ); ?></a>
+			<a href="
+			<?php
+			echo esc_url(
+				add_query_arg(
+					array(
+						'tab'              => 'reports',
+						'settings-updated' => false,
+					),
+					$current_page
+				)
+			);
+			?>
+			" class="nav-tab <?php echo 'reports' === $active_tab ? esc_attr( 'nav-tab-active' ) : ''; ?>"><?php esc_html_e( 'Reports', 'easy-property-listings' ); ?></a>
 			<?php do_action( 'epl_reports_tabs' ); ?>
 		</h1>
 
@@ -61,14 +75,13 @@ function epl_reports_default_views() {
  *
  * @since 3.0
  * @return string $view Report View
- *
  */
 function epl_get_reporting_view( $default = 'property' ) {
 
-	if ( ! isset( $_GET['view'] ) || ! in_array( $_GET['view'], array_keys( epl_reports_default_views() ) ) ) {
+	if ( ! isset( $_GET['view'] ) || ! in_array( $_GET['view'], array_keys( epl_reports_default_views() ), true ) ) {
 		$view = $default;
 	} else {
-		$view = $_GET['view'];
+		$view = sanitize_text_field( wp_unslash( $_GET['view'] ) );
 	}
 
 	return apply_filters( 'epl_get_reporting_view', $view );
@@ -83,14 +96,15 @@ function epl_get_reporting_view( $default = 'property' ) {
 function epl_reports_tab_reports() {
 
 	if ( ! is_admin() || ! epl_reports_access() ) {
-		wp_die( __( 'You do not have permission to access this report', 'easy-property-listings'  ), __( 'Error', 'easy-property-listings'  ), array( 'response' => 403 ) );
+		wp_die( esc_html__( 'You do not have permission to access this report', 'easy-property-listings' ), esc_html__( 'Error', 'easy-property-listings' ), array( 'response' => 403 ) );
 	}
 
 	$current_view = 'property';
 	$views        = epl_reports_default_views();
 
-	if ( isset( $_GET['view'] ) && array_key_exists( $_GET['view'], $views ) )
-		$current_view = $_GET['view'];
+	if ( isset( $_GET['view'] ) && array_key_exists( sanitize_text_field( wp_unslash( $_GET['view'] ) ), $views ) ) {
+		$current_view = sanitize_text_field( wp_unslash( $_GET['view'] ) );
+	}
 
 	do_action( 'epl_reports_view_' . $current_view );
 
@@ -110,20 +124,20 @@ function epl_report_views() {
 	}
 
 	$views        = epl_reports_default_views();
-	$current_view = isset( $_GET['view'] ) ? $_GET['view'] : 'property';
+	$current_view = isset( $_GET['view'] ) ? sanitize_text_field( wp_unslash( $_GET['view'] ) ) : 'property';
 	?>
 	<form id="epl-reports-filter" method="get">
 		<select id="epl-reports-view" name="view">
-			<option value="-1"><?php _e( 'Report Type', 'easy-property-listings'  ); ?></option>
+			<option value="-1"><?php esc_html_e( 'Report Type', 'easy-property-listings' ); ?></option>
 			<?php foreach ( $views as $view_id => $label ) : ?>
-				<option value="<?php echo esc_attr( $view_id ); ?>" <?php selected( $view_id, $current_view ); ?>><?php echo $label; ?></option>
+				<option value="<?php echo esc_attr( $view_id ); ?>" <?php selected( $view_id, $current_view ); ?>><?php echo esc_attr( $label ); ?></option>
 			<?php endforeach; ?>
 		</select>
 
 		<?php do_action( 'epl_report_view_actions' ); ?>
 
 		<input type="hidden" name="page" value="epl-reports"/>
-		<?php submit_button( __( 'Show', 'easy-property-listings'  ), 'secondary', 'submit', false ); ?>
+		<?php submit_button( __( 'Show', 'easy-property-listings' ), 'secondary', 'submit', false ); ?>
 	</form>
 	<?php
 	do_action( 'epl_report_view_actions_after' );
@@ -145,7 +159,7 @@ function epl_reports_property() {
 		<div class="alignleft actions"><?php epl_report_views(); ?></div>
 	</div>
 	<?php
-	epl_reports_graph('sold','current','#e50000','#a5df41');
+	epl_reports_graph( 'sold', 'current', '#e50000', '#a5df41' );
 }
 add_action( 'epl_reports_view_property', 'epl_reports_property' );
 
@@ -165,7 +179,7 @@ function epl_reports_rental() {
 		<div class="alignleft actions"><?php epl_report_views(); ?></div>
 	</div>
 	<?php
-	epl_reports_graph('leased','current','#e50000','#a5df41');
+	epl_reports_graph( 'leased', 'current', '#e50000', '#a5df41' );
 }
 add_action( 'epl_reports_view_rental', 'epl_reports_rental' );
 
@@ -185,7 +199,7 @@ function epl_reports_land() {
 		<div class="alignleft actions"><?php epl_report_views(); ?></div>
 	</div>
 	<?php
-	epl_reports_graph('sold','current','#e50000','#a5df41');
+	epl_reports_graph( 'sold', 'current', '#e50000', '#a5df41' );
 }
 add_action( 'epl_reports_view_land', 'epl_reports_land' );
 
@@ -205,7 +219,7 @@ function epl_reports_commercial() {
 		<div class="alignleft actions"><?php epl_report_views(); ?></div>
 	</div>
 	<?php
-	epl_reports_graph('sold','current','#e50000','#a5df41');
+	epl_reports_graph( 'sold', 'current', '#e50000', '#a5df41' );
 }
 add_action( 'epl_reports_view_commercial', 'epl_reports_commercial' );
 
@@ -225,7 +239,7 @@ function epl_reports_commercial_land() {
 		<div class="alignleft actions"><?php epl_report_views(); ?></div>
 	</div>
 	<?php
-	epl_reports_graph('sold','current','#e50000','#a5df41');
+	epl_reports_graph( 'sold', 'current', '#e50000', '#a5df41' );
 }
 add_action( 'epl_reports_view_commercial_land', 'epl_reports_commercial_land' );
 
@@ -245,7 +259,7 @@ function epl_reports_business() {
 		<div class="alignleft actions"><?php epl_report_views(); ?></div>
 	</div>
 	<?php
-	epl_reports_graph('sold','current','#e50000','#a5df41');
+	epl_reports_graph( 'sold', 'current', '#e50000', '#a5df41' );
 }
 add_action( 'epl_reports_view_business', 'epl_reports_business' );
 
@@ -265,7 +279,7 @@ function epl_reports_rural() {
 		<div class="alignleft actions"><?php epl_report_views(); ?></div>
 	</div>
 	<?php
-	epl_reports_graph('sold','current','#e50000','#a5df41');
+	epl_reports_graph( 'sold', 'current', '#e50000', '#a5df41' );
 }
 add_action( 'epl_reports_view_rural', 'epl_reports_rural' );
 
@@ -275,7 +289,7 @@ add_action( 'epl_reports_view_rural', 'epl_reports_rural' );
  * @since  3.0
  */
 function epl_reports_access() {
-	$allowed = epl_get_option('min_reports_access');
-	$allowed = empty($allowed) ? 'level_10' : $allowed;
-	return current_user_can($allowed) ? true : false;
+	$allowed = epl_get_option( 'min_reports_access' );
+	$allowed = empty( $allowed ) ? 'level_10' : $allowed;
+	return current_user_can( $allowed ) ? true : false;
 }

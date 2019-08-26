@@ -5,11 +5,11 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.2.1
-Stable Tag: 3.3.1
+Tested up to: 5.2.2
+Stable Tag: 3.4.1
 License: GNU Version 2 or Any Later Version
 
-Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale and contact generation and works with any theme.
+Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
 
 == Description ==
 
@@ -392,6 +392,69 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.1 August 25, 2019 =
+
+* New: Hidden meta fields for currency support, and floor plan modified date time.
+* Tweak: Support for meta fields file type to support as an array of data.
+* Tweak: Allow embeds and scripts in meta fields like floor plans and energy certificates to support an array of data which is handy during data import.
+* Tweak: Corrected undefined variables in widgets since WordPress 5.2.2.
+* Tweak: Admin contacts added wrapper classes to contact values.
+* Fix: Currency support for search widget price sliders.
+* Fix: Commercial search fix, widget select type field fix: not saving.
+* Fix: Agent search suggestions in admin.
+* Fix: Reports graph date display issues.
+* Fix: Search templates will no longer ignore custom fields added using filters.
+* Fix: When adding dynamic content to a listing using the WordPress editor default WordPress behaviour is restored allowing page builder content to display correctly.
+
+= 3.4 August 16, 2019 =
+
+* MAJOR Security Update Release. Important to update to the latest version to protect your website. Easy Property Listings has been reviewed and approved by the WordPress plugin team.
+* WordPress standards coding applied to all plugin files and code.
+* This is a critical update to Easy Property Listings plugin that is focused on security enhancements. Update you site to this version.
+* New: Reset settings to default values tool page added viewable with &dev=true added to tools page URL.
+* New: Added autocomplete option to meta-fields array.
+* Tweak: Internal code documentation enhanced.
+* Tweak: Admin, structure, style, enhanced, legacy CSS optimisations.
+* Tweak: JS enhancements, improvements and optimisations.
+* Tweak: Removed depreciated author meta compatibility file.
+* Tweak: Removed depreciated listing meta compatibility file.
+* Tweak: Removed depreciated extensions compatibility file.
+* Tweak: Ability to arrange EPL - Search Widget options dashboard field order.
+* Tweak: Wording alteration for Inspection Times - removed (one per line).
+* Tweak: Removed subscriber user type from Dashboard filtering by User.
+* Tweak: Now using WordPress jQuery touch punch JS script.
+* Tweak: Removed cURL php requirement and instead use WordPress helper function.
+* Tweak: Additional CSS classes added to SVG icons.
+* Tweak: Fix bath and car svg wrapper class name.
+* Tweak: Author box will no longer display bio tab is user bio is empty.
+* Fix: Minimised scripts and css in admin areas to EPL pages.
+* Fix: Versioning added to epl js scripts.
+* Fix: Upgrade database on new installs message no longer displaying as no action is required.
+* Fix: Business listing type pricing.
+* Fix: Translation strings corrected in several places across the entire plugin. Internal translation guides added.
+* Fix: jQuery UI CSS now loading minified version in production mode.
+* Fix: [listing_element] shortcode will now display shortcode values when using frontend GUI builder.
+* Fix: Loading custom CSS using the style-single.css now works correctly.
+* Fix: XSS security flaw.
+* Important Security Update.
+
+= 3.3.3 June 13, 2019 =
+
+* New: Shortcode [listing_meta_doc] for custom field documentation output.
+* Tweak: CSS tweaked for list/grid mode preventing bullets appearing on some themes.
+* Tweak: Added fallback function for reporting if PHP module not enabled on some servers.
+* Tweak: New installations will no longer see database upgrade notice as it is not required.
+* Tweak: Improvements to property_price_global function.
+* Tweak: Code optimisation and added internal documentation to functions missing notes.
+* Tweak: When importing listings a helper function would in some cases trigger a notice error.
+* Tweak: Attached files would in some cases produce an error on imported listings with no files attached in the dashboard.
+* Fix: Reporting graphs were some times blank when viewing last year then this year.
+* Fix: Reworked database upgrade process for larger workloads processing 200 records at a time to prevent server timeouts.
+* Fix: Missing post wrapper classes for iThemes builder and Heuman theme when using Listing Template extensions and masonry effect.
+* Fix: Using default WordPress pagination with shortcodes corrected as they have all been enhanced to support multiple shortcodes on one page using the instance_id= option.
+* Fix: Pagination corrected for shortcodes when using on the site home page.
+* Fix: Commercial and Business listing types were not obeying the hide suburb option in some cases.
 
 = 3.3.2 May 31, 2019 =
 

@@ -4,26 +4,28 @@
  *
  * @package     EPL
  * @subpackage  Assets/SVG
- * @copyright   Copyright (c) 2014, Merv Barrett
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.2
  */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
- * SVG Listing Icons Loaded in Head
+ * SVG Listing Icons Loaded in Head.
  *
- * @since       3.2
+ * @since 3.2
  */
 function epl_load_svg_listing_icons_head() {
 
 	$svg_icons = '
 
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="hide" style="display:none">
 		<defs>
-			<symbol id="epl-icon-svg-bed" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-bed" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-bed-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -40,7 +42,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-bath" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-bath" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-bath-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -59,7 +61,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-car" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-car" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-car-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -68,7 +70,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-air" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-air" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-air-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -88,7 +90,7 @@ function epl_load_svg_listing_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-pool" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-pool" class="epl-icon-fill epl-icon-listing">
 				<g id="epl-icon-pool-shape-container" class="epl-icon-shape-container">
 					<rect class="epl-icon-shape-part-container" width="100" height="100" style="fill:none"/>
 				</g>
@@ -103,20 +105,23 @@ function epl_load_svg_listing_icons_head() {
 		</defs>
 	</svg>';
 
-	$svg_icons = apply_filters( 'epl_svg_icons' , $svg_icons );
+	$svg_icons = apply_filters( 'epl_svg_icons', $svg_icons );
 
-	// Only Load SVG icons if epl_icons_svg_listings is on
-	if ( epl_get_option('epl_icons_svg_listings') == 'on' ) {
-		echo $svg_icons;
+	// Only Load SVG icons if epl_icons_svg_listings is on.
+	if ( epl_get_option( 'epl_icons_svg_listings' ) === 'on' ) {
+
+		$allowed_tags = epl_get_svg_allowed_tags();
+
+		echo wp_kses( $svg_icons, $allowed_tags );
 	}
 
 }
-add_action('wp_head', 'epl_load_svg_listing_icons_head' , 90 );
+add_action( 'wp_head', 'epl_load_svg_listing_icons_head', 90 );
 
 /**
- * SVG Social Media Icons Loaded in Head
+ * SVG Social Media Icons Loaded in Head.
  *
- * @since       3.2
+ * @since 3.2
  */
 function epl_load_svg_social_icons_head() {
 
@@ -125,7 +130,7 @@ function epl_load_svg_social_icons_head() {
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="hide" style="display:none">
 		<defs>
 
-			<symbol id="epl-icon-svg-email" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-email" class="epl-icon-fill epl-icon-social">
 				<path id="epl-icon-email-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 				<g id="epl-icon-email-shape-hollow" class="epl-icon-color-hollow">
 					<path class="st1" d="M77.2,39.8c-0.1-0.1-0.2-0.1-0.3-0.2V24c0-0.5-0.4-0.8-0.8-0.8h-20C56.1,23.1,56,23.1,56,23L51,19.1
@@ -140,7 +145,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-facebook" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-facebook" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-facebook-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -150,7 +155,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-twitter" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-twitter" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-twitter-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75.1c0,13.8-11.2,24.9-25,24.9H25C11.2,100,0,88.9,0,75.1v-50C0,11.3,11.2,0,25,0h50
 						c13.8,0,25,11.3,25,25.1V75.1z"/>
@@ -164,7 +169,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-linkedin" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-linkedin" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-linkedin-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -176,7 +181,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-google-plus" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-google-plus" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-google-plus-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -196,7 +201,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-youtube" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-youtube" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-youtube-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -208,7 +213,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-skype" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-skype" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-skype-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -229,7 +234,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-instagram" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-instagram" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-instagram-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -242,7 +247,7 @@ function epl_load_svg_social_icons_head() {
 				</g>
 			</symbol>
 
-			<symbol id="epl-icon-svg-pinterest" class="epl-icon-fill">
+			<symbol id="epl-icon-svg-pinterest" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-pinterest-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
 					<g>
@@ -257,11 +262,93 @@ function epl_load_svg_social_icons_head() {
 		</defs>
 	</svg>';
 
-	$social_icons = apply_filters( 'epl_svg_social_icons' , $social_icons );
+	$social_icons = apply_filters( 'epl_svg_social_icons', $social_icons );
 
-	// Only Load SVG icons if epl_icons_svg_author is on
-	if ( epl_get_option('epl_icons_svg_author') == 'on' ) {
-		echo $social_icons;
+	// Only Load SVG icons if epl_icons_svg_author is on.
+	if ( epl_get_option( 'epl_icons_svg_author' ) === 'on' ) {
+
+		$allowed_tags = epl_get_svg_allowed_tags();
+
+		echo wp_kses( $social_icons, $allowed_tags );
 	}
 }
-add_action('wp_head', 'epl_load_svg_social_icons_head' , 90 );
+add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );
+
+/**
+ * Whitelist display attribute for wp_kses_post
+ *
+ * @param  string $styles Allowed SVG names.
+ *
+ * @return array|string
+ *
+ * @since 3.4
+ */
+function epl_whitelist_display_attr( $styles ) {
+
+	$styles[] = 'display';
+	$styles[] = 'fill';
+	return $styles;
+}
+add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
+
+/**
+ * Svg Allowed tags
+ *
+ * @since  3.4
+ */
+function epl_get_svg_allowed_tags() {
+
+	$tags = array(
+		'svg'    => array(
+			'id'              => true,
+			'class'           => true,
+			'version'         => true,
+			'aria-hidden'     => true,
+			'aria-labelledby' => true,
+			'role'            => true,
+			'xmlns'           => true,
+			'width'           => true,
+			'height'          => true,
+			'viewbox'         => true,
+			'style'           => true,
+			'xmlns:xlink'     => true,
+		),
+		'g'      => array(
+			'id'        => true,
+			'fill'      => true,
+			'transform' => true,
+			'style'     => true,
+			'class'     => true,
+		),
+		'title'  => array( 'title' => true ),
+		'path'   => array(
+			'd'     => true,
+			'fill'  => true,
+			'style' => true,
+			'id'    => true,
+			'class' => true,
+		),
+		'defs'   => array(
+			'id'    => true,
+			'class' => true,
+			'style' => true,
+		),
+		'symbol' => array(
+			'id'    => true,
+			'class' => true,
+			'style' => true,
+		),
+		'rect'   => array(
+			'width'  => true,
+			'height' => true,
+			'style'  => true,
+			'class'  => true,
+			'x'      => true,
+			'y'      => true,
+			'rx'     => true,
+			'ry'     => true,
+			'fill'   => true,
+		),
+	);
+	return apply_filters( 'epl_svg_allowed_tags', $tags );
+}
