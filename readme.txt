@@ -393,6 +393,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.2 August 27, 2019 =
+
+* Fix: Issue when using WordPress default pagination, output corrected.
+
 = 3.4.1 August 25, 2019 =
 
 * New: Hidden meta fields for currency support, and floor plan modified date time.
