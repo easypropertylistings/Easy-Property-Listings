@@ -451,8 +451,8 @@ function epl_wp_default_pagination( $query = array() ) {
 		?>
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft"><?php echo esc_url( epl_prev_post_link( $query_open ) ); ?></div>
-		<div class="alignright"><?php echo esc_url( epl_next_post_link( $query_open ) ); ?></div>
+		<div class="alignleft"><?php echo wp_kses_post( epl_prev_post_link( $query_open ) ); ?></div>
+		<div class="alignright"><?php echo wp_kses_post( epl_next_post_link( $query_open ) ); ?></div>
 	</div>
 		<?php
 	}
