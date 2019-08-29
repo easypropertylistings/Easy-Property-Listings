@@ -393,6 +393,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.3 August 29, 2019 =
+
+* Fix: Displaying of Geo and Unique ID columns in admin.
+
 = 3.4.2 August 27, 2019 =
 
 * Fix: Issue when using WordPress default pagination, output corrected.
