@@ -88,13 +88,9 @@ add_action( 'wp', 'epl_create_property_object' );
  */
 function epl_property_single() {
 	global $epl_settings;
-	$d_option = '';
-	if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_display_single_property'] ) ) {
-		$d_option = (int) $epl_settings['epl_display_single_property'];
-	}
 
 	$action_check = has_action( 'epl_single_template' );
-	if ( ! empty( $action_check ) && 0 !== $d_option ) {
+	if ( ! empty( $action_check ) ) {
 		do_action( 'epl_single_template' );
 	} else {
 		epl_property_single_default();
@@ -335,16 +331,13 @@ function epl_property_blog( $template = '' ) {
 	if ( is_null( $property ) ) {
 		return;
 	}
-	$option = '';
-	if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_property_card_style'] ) ) {
-		$option = (int) $epl_settings['epl_property_card_style'];
-	}
+
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal Do Not Display Withdrawn or OffMarket listings.
 	if ( ! in_array( $property_status, epl_hide_listing_statuses(), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
 		$action_check = has_action( 'epl_loop_template' );
-		if ( ! empty( $action_check ) && 0 !== $option && in_array( $template, array( 'default', 'blog' ), true ) ) {
+		if ( ! empty( $action_check ) && in_array( $template, array( 'default', 'blog' ), true ) ) {
 			do_action( 'epl_loop_template' );
 		} else {
 
