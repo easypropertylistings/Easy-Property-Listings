@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.2.2
-Stable Tag: 3.4.1
+Stable Tag: 3.4.3
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -392,6 +392,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.3 August 29, 2019 =
+
+* Fix: Displaying of Geo and Unique ID columns in admin.
+
+= 3.4.2 August 27, 2019 =
+
+* Fix: Issue when using WordPress default pagination, output corrected.
 
 = 3.4.1 August 25, 2019 =
 
