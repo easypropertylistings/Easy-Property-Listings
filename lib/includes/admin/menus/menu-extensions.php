@@ -38,7 +38,15 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 						if ( ! isset( $_REQUEST[ $field['name'] ] ) ) {
 							$_REQUEST[ $field['name'] ] = '';
 						} else {
-							$_REQUEST[ $field['name'] ] = sanitize_text_field( wp_unslash( $_REQUEST[ $field['name'] ] ) );
+							if ( is_array( $_REQUEST[ $field['name'] ] ) ) {
+
+								$_REQUEST[ $field['name'] ] = array_map( 'sanitize_text_field', wp_unslash( $_REQUEST[ $field['name'] ] ) );
+
+							} else {
+
+								$_REQUEST[ $field['name'] ] = sanitize_text_field( wp_unslash( $_REQUEST[ $field['name'] ] ) );
+							}
+							
 						}
 					}
 
@@ -80,6 +88,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 					$epl_settings[ $dynamic_key ] = $dynamic_value;
 				}
 			}
+
 			update_option( 'epl_settings', $epl_settings );
 		}
 	}
