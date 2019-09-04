@@ -393,6 +393,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.4 September 4, 2019 =
+
+* Fix: Checkbox array options not saving correctly in extensions settings.
+* Fix: Removed default template check for loop and single templates as this caused incorrect templates to load in some cases.
+
 = 3.4.3 August 29, 2019 =
 
 * Fix: Displaying of Geo and Unique ID columns in admin.
