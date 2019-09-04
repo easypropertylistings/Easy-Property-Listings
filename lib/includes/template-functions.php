@@ -84,7 +84,8 @@ add_action( 'wp', 'epl_create_property_object' );
 /**
  * Selecting Card Display Style
  *
- * @since      1.0
+ * @since 1.0
+ * @since 3.4.4 Removed default template check for single templates as this caused incorrect templates to load in some cases.
  */
 function epl_property_single() {
 	global $epl_settings;
@@ -314,9 +315,10 @@ function epl_hide_listing_statuses() {
  * Allows the use of one function where we can then select a different template
  * when needed
  *
- * @since      1.0
+ * @since 1.0.0
+ * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
  *
- * @param      string $template  The template.
+ * @param string $template  The template.
  */
 function epl_property_blog( $template = '' ) {
 

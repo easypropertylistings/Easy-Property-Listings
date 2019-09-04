@@ -34,24 +34,18 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 			foreach ( $ext_field_groups['fields'] as $ext_field_group ) {
 				foreach ( $ext_field_group['fields'] as $field ) {
 					if ( 'radio' === $field['type'] || 'checkbox' === $field['type'] ) {
-
 						if ( ! isset( $_REQUEST[ $field['name'] ] ) ) {
 							$_REQUEST[ $field['name'] ] = '';
 						} else {
 							if ( is_array( $_REQUEST[ $field['name'] ] ) ) {
-
 								$_REQUEST[ $field['name'] ] = array_map( 'sanitize_text_field', wp_unslash( $_REQUEST[ $field['name'] ] ) );
-
 							} else {
-
 								$_REQUEST[ $field['name'] ] = sanitize_text_field( wp_unslash( $_REQUEST[ $field['name'] ] ) );
 							}
-							
 						}
 					}
 
 					if ( 'text' === $field['type'] ) {
-
 						if ( isset( $_REQUEST[ $field['name'] ] ) && is_array( $_REQUEST[ $field['name'] ] ) ) {
 							array_walk_recursive( wp_unslash( $_REQUEST[ $field['name'] ] ), 'sanitize_text_field' ); //phpcs:ignore
 						}
