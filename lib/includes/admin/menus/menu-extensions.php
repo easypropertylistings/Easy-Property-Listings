@@ -216,6 +216,14 @@ $epl_settings = get_option( 'epl_settings' );
  */
 function epl_get_new_admin_option_fields() {
 	$fields = array();
+
+	/**
+	 * Passes an array of extensions options.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $fields The array of extension options.
+	 */
 	$fields = apply_filters( 'epl_extensions_options_filter_new', $fields );
 	return $fields;
 }
