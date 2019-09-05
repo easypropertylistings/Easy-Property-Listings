@@ -1006,7 +1006,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			if ( isset( $field['opts'] ) && ! empty( $field['opts'] ) ) {
 				foreach ( $field['opts'] as $k => $v ) {
 					$selected = '';
-					if ( in_array( $k, $val, true ) ) {
+					if ( in_array( $k, $val ) ) {
 						$selected = 'selected';
 					}
 
@@ -1040,7 +1040,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 					if ( ! empty( $val ) ) {
 
 						$val = (array) $val;
-						if ( in_array( $k, $val, true ) ) {
+						if ( in_array( $k, $val ) ) {
 							$checked = 'checked';
 						}
 					}
