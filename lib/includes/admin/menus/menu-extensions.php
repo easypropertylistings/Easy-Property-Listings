@@ -212,7 +212,8 @@ $epl_settings = get_option( 'epl_settings' );
 /**
  * Get Extension Settings
  *
- * @since 2.0
+ * @since 2.0.0
+ * @return array Extensions options.
  */
 function epl_get_new_admin_option_fields() {
 	$fields = array();
