@@ -423,8 +423,8 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
  *
  * @param string $before Output string before.
  * @param string $after Output string after.
- * @param bool $echo Echo the result.
- * @return the string/list for values
+ * @param bool   $echo Echo the result.
+ * @return string/list for values
  */
 function epl_the_status( $before = '', $after = '', $echo = true ) {
 	$status = epl_get_the_status();
@@ -888,13 +888,13 @@ function epl_feedsync_format_strip_currency( $value ) {
  * Processing Function for WP All Import and FeedSync
  * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
  *
- * @param bool $date_time Swtich date time.
+ * @param bool   $date_time Swtich date time.
  * @param string $old_time_zone Old Timezone.
  * @param string $new_timezone New timezone.
  * @param string $format Date format.
  *
  * @return integer
- * @throws Exception
+ * @throws exception Exception.
  * @since 3.0
  */
 function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Australia/Perth', $new_timezone = 'Australia/Sydney', $format = 'Y-m-d H:i:s' ) {
@@ -1006,7 +1006,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			if ( isset( $field['opts'] ) && ! empty( $field['opts'] ) ) {
 				foreach ( $field['opts'] as $k => $v ) {
 					$selected = '';
-					if ( in_array( $k, $val ) ) {
+					if ( in_array( $k, $val ) ) { //phpcs:ignore
 						$selected = 'selected';
 					}
 
@@ -1040,7 +1040,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 					if ( ! empty( $val ) ) {
 
 						$val = (array) $val;
-						if ( in_array( $k, $val ) ) {
+						if ( in_array( $k, $val ) ) { //phpcs:ignore
 							$checked = 'checked';
 						}
 					}
@@ -1136,7 +1136,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 				$atts .= ' maxlength="' . absint( $field['maxlength'] ) . '"';
 			}
 
-			if ( !empty( $field['autocomplete'] ) ) {
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( $val ) . '" class="validate[custom[onlyNumberWithDecimal]]" ' . wp_kses_post( $atts ) . ' />';
@@ -1147,15 +1147,15 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			if ( isset( $field['maxlength'] ) && $field['maxlength'] > 0 ) {
 				$atts .= ' maxlength="' . absint( $field['maxlength'] ) . '"';
 			}
-			if ( !empty( $field['autocomplete'] ) ) {
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			echo '<input type="number" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" class="validate[custom[onlyNumber]]" ' . wp_kses_post( $atts ) . ' />';
 			break;
 
 		case 'date':
-			$atts       = '';
-			if ( !empty( $field['autocomplete'] ) ) {
+			$atts = '';
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			$format     = isset( $field['format'] ) ? $field['format'] : 'Y-m-d';
@@ -1165,7 +1165,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 
 		case 'auction-date':
 			$atts = '';
-			if ( !empty( $field['autocomplete'] ) ) {
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" ' . wp_kses_post( $atts ) . ' />';
@@ -1173,7 +1173,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 
 		case 'sold-date':
 			$atts = '';
-			if ( !empty( $field['autocomplete'] ) ) {
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" ' . wp_kses_post( $atts ) . ' />';
@@ -1181,10 +1181,10 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 
 		case 'email':
 			$atts = '';
-			if ( !empty( $field['autocomplete'] ) ) {
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
-			if ( !empty( $field['autocomplete'] ) ) {
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" class="validate[custom[email]]" ' . wp_kses_post( $atts ) . ' />';
@@ -1192,7 +1192,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 
 		case 'url':
 			$atts = '';
-			if ( !empty( $field['autocomplete'] ) ) {
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			echo '<input type="text" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '" value="' . esc_attr( stripslashes( $val ) ) . '" class="validate[custom[url]]" ' . wp_kses_post( $atts ) . ' />';
@@ -1207,7 +1207,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			break;
 
 		case 'help':
-			$content = isset($field['content']) ? $field['content'] : '';
+			$content = isset( $field['content'] ) ? $field['content'] : '';
 			$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
 			//phpcs:ignore
 			echo '<div class="epl-help-container" id="'.$help_id.'">
@@ -1220,7 +1220,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
 			if ( isset( $field['maxlength'] ) && $field['maxlength'] > 0 ) {
 				$atts .= ' maxlength="' . $field['maxlength'] . '"';
 			}
-			if ( !empty( $field['autocomplete'] ) ) {
+			if ( ! empty( $field['autocomplete'] ) ) {
 				$atts .= ' autocomplete="' . esc_attr( $field['autocomplete'] ) . '"';
 			}
 			$classes = isset( $field['class'] ) ? $field['class'] : '';
@@ -2737,7 +2737,7 @@ add_action( 'wp', 'epl_single_and_archive_functions', 99 );
  * Recursive array map for multi dimensional array
  *
  * @param string $callback Callback.
- * @param array $array Array.
+ * @param array  $array Array.
  *
  * @return array
  * @since 3.3.5
