@@ -393,6 +393,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.5 September 5, 2019 =
+
+* Fix: Editor custom field type stripping html.
+* Fix: Remove strict type for checkbox & select multiple field types which prevented saving number type array options.
+
 = 3.4.4 September 4, 2019 =
 
 * Fix: Checkbox array options not saving correctly in extensions settings.
