@@ -393,6 +393,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.6 September 5, 2019 =
+
+* Tweak: Support for polygon tag in svg.
+* Fix: Price display error in admin columns on commercial listings types that were set to both sale and lease.
+* Fix: Home open title appearing in admin columns when imported data was empty.
+
 = 3.4.5 September 5, 2019 =
 
 * Fix: Editor custom field type stripping html.
