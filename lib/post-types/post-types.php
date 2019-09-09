@@ -249,6 +249,7 @@ function epl_manage_listing_column_listing_callback() {
 	$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 	$heading                 = $property->get_property_meta( 'property_heading' );
 	$homeopen                = $property->get_property_meta( 'property_inspection_times' );
+	$homeopen 				 = trim( $homeopen );
 	$beds                    = $property->get_property_meta( 'property_bedrooms' );
 	$baths                   = $property->get_property_meta( 'property_bathrooms' );
 	$rooms                   = $property->get_property_meta( 'property_rooms', false );
@@ -538,7 +539,7 @@ function epl_manage_listing_column_price_callback() {
 
 	// Display sold price.
 	if ( ! empty( $view ) ) {
-		echo '<div class="epl_meta_search_price">' . esc_html( $property->get_price_plain_value() ) . ' ';
+		echo '<div class="epl_meta_search_price">' . wp_kses_post( $property->get_price_plain_value() ) . ' ';
 		echo 'Sold' === $property_status ? esc_html( epl_currency_formatted_amount( $sold_price ) ) : '';
 		echo '</div>';
 	} else {

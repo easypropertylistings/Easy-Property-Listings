@@ -349,6 +349,10 @@ function epl_get_svg_allowed_tags() {
 			'ry'     => true,
 			'fill'   => true,
 		),
+		'polygon'	=>	array(
+			'class'		=>	true,
+			'points'	=>	true
+		)
 	);
 	return apply_filters( 'epl_svg_allowed_tags', $tags );
 }
