@@ -86,7 +86,6 @@ class EPL_Widget_Property_Search extends WP_Widget {
 				$instance[ $all_field['key'] ] = '';
 
 			}
-			
 		}
 		return $instance;
 	}
