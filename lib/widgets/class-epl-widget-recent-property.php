@@ -212,7 +212,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'd_icons',
 			'p_number',
 			'p_skip',
-			'order_rand'
+			'order_rand',
 		);
 
 		foreach ( $all_fields as $all_field ) {
@@ -224,7 +224,6 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				$instance[ $all_field ] = '';
 
 			}
-			
 		}
 
 		return $instance;
