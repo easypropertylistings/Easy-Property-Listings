@@ -59,7 +59,7 @@ function epl_sanitize_amount( $amount ) {
 function epl_format_amount( $amount, $decimals = false ) {
 	$thousands_sep = epl_get_thousands_separator();
 	$decimal_sep   = epl_get_decimal_separator();
-	$formatted = '';
+	$formatted     = '';
 	// Format the amount.
 	$sep_found = strpos( $amount, $decimal_sep );
 	if ( ',' === $decimal_sep && false !== $sep_found ) {
