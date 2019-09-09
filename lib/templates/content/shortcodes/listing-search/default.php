@@ -7,8 +7,8 @@
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
- * @since  		3.4.0 Security fixes as per WP standards
- * @since  		3.4.1 Fixed search templates error : ignoring field added via filters
+ * @since       3.4.0 Security fixes as per WP standards
+ * @since       3.4.1 Fixed search templates error : ignoring field added via filters
  */
 
 // Exit if accessed directly.
@@ -30,7 +30,6 @@ foreach ( $atts as $atts_key => $atts_val ) {
 	} else {
 		${$atts_key} = sanitize_text_field( $atts_val );
 	}
-	
 }
 
 $selected_post_types = $atts['post_type'];

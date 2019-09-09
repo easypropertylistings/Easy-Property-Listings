@@ -374,7 +374,7 @@ function epl_get_next_page_link( $query ) {
  */
 function epl_next_post_link( $query, $label = null ) {
 
-	$paged = $query->get('paged');
+	$paged = $query->get( 'paged' );
 
 	$nextpage = intval( $paged ) + 1;
 

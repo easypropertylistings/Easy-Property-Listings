@@ -299,7 +299,7 @@ add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
 function epl_get_svg_allowed_tags() {
 
 	$tags = array(
-		'svg'    => array(
+		'svg'     => array(
 			'id'              => true,
 			'class'           => true,
 			'version'         => true,
@@ -313,32 +313,32 @@ function epl_get_svg_allowed_tags() {
 			'style'           => true,
 			'xmlns:xlink'     => true,
 		),
-		'g'      => array(
+		'g'       => array(
 			'id'        => true,
 			'fill'      => true,
 			'transform' => true,
 			'style'     => true,
 			'class'     => true,
 		),
-		'title'  => array( 'title' => true ),
-		'path'   => array(
+		'title'   => array( 'title' => true ),
+		'path'    => array(
 			'd'     => true,
 			'fill'  => true,
 			'style' => true,
 			'id'    => true,
 			'class' => true,
 		),
-		'defs'   => array(
+		'defs'    => array(
 			'id'    => true,
 			'class' => true,
 			'style' => true,
 		),
-		'symbol' => array(
+		'symbol'  => array(
 			'id'    => true,
 			'class' => true,
 			'style' => true,
 		),
-		'rect'   => array(
+		'rect'    => array(
 			'width'  => true,
 			'height' => true,
 			'style'  => true,
@@ -348,6 +348,10 @@ function epl_get_svg_allowed_tags() {
 			'rx'     => true,
 			'ry'     => true,
 			'fill'   => true,
+		),
+		'polygon' => array(
+			'class'  => true,
+			'points' => true,
 		),
 	);
 	return apply_filters( 'epl_svg_allowed_tags', $tags );
