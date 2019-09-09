@@ -106,10 +106,10 @@ class EPL_Widget_Author extends WP_Widget {
 	 * @since 1.0
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$instance             = $old_instance;
+		$instance = $old_instance;
 
-		$all_fields = array('title','username','display','d_image','d_icons','d_bio');
-		
+		$all_fields = array( 'title', 'username', 'display', 'd_image', 'd_icons', 'd_bio' );
+
 		foreach ( $all_fields as $all_field ) {
 
 			if ( isset( $new_instance[ $all_field ] ) ) {
@@ -119,7 +119,6 @@ class EPL_Widget_Author extends WP_Widget {
 				$instance[ $all_field ] = '';
 
 			}
-			
 		}
 		return $instance;
 	}
