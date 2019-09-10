@@ -60,7 +60,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$location     = $attributes['location'];
 	$location_id  = $attributes['location_id'];
 	$offset       = $attributes['offset'];
-	$agent        = $attributes['agent'];
+	//$agent        = $attributes['agent'];
 	$template     = $attributes['template'];
 	$tools_top    = $attributes['tools_top'];
 	$tools_bottom = $attributes['tools_bottom'];
