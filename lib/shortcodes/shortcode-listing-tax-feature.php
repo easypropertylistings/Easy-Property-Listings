@@ -61,7 +61,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$feature      = $attributes['feature'];
 	$feature_id   = $attributes['feature_id'];
 	$offset       = $attributes['offset'];
-	$agent        = $attributes['agent'];
+	//$agent        = $attributes['agent'];
 	$template     = $attributes['template'];
 	$location     = $attributes['location'];
 	$tools_top    = $attributes['tools_top'];
