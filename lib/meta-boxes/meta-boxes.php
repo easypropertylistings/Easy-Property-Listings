@@ -294,6 +294,11 @@ function epl_save_meta_boxes( $post_ID ) {
 
 												break;
 
+											case 'editor':
+												$meta_value = wp_unslash( $_POST[ $field['name'] ] ) ; //phpcs:ignore
+
+												break;
+
 											default:
 												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 

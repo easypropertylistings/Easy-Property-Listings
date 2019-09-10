@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.2.2
-Stable Tag: 3.4.3
+Tested up to: 5.2.3
+Stable Tag: 3.4.6
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -392,6 +392,22 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.6 September 9, 2019 =
+
+* Tweak: Support for polygon tag in SVG icons.
+* Fix: Price display error in admin columns on commercial listings types that were set to both sale and lease.
+* Fix: Home open title appearing in admin columns when imported data was empty.
+
+= 3.4.5 September 5, 2019 =
+
+* Fix: Editor custom field type stripping html.
+* Fix: Remove strict type for checkbox & select multiple field types which prevented saving number type array options.
+
+= 3.4.4 September 4, 2019 =
+
+* Fix: Checkbox array options not saving correctly in extensions settings.
+* Fix: Removed default template check for loop and single templates as this caused incorrect templates to load in some cases.
 
 = 3.4.3 August 29, 2019 =
 

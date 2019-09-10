@@ -75,7 +75,7 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 		$instance   = $old_instance;
 		$all_fields = epl_contact_capture_widget_form_fields();
 		foreach ( $all_fields as $all_field ) {
-			
+
 			if ( isset( $new_instance[ $all_field['key'] ] ) ) {
 				$instance[ $all_field['key'] ] = epl_strip_tags( $new_instance[ $all_field['key'] ], apply_filters( 'epl_contact_form_description_allowed_tags', '<br><p><strong><div><span><hr><img>' ) );
 			} else {
