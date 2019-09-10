@@ -353,6 +353,9 @@ function epl_get_svg_allowed_tags() {
 			'class'  => true,
 			'points' => true,
 		),
+		'use'		=>	array(
+			'xlink:href'	=>	true
+		)
 	);
 	return apply_filters( 'epl_svg_allowed_tags', $tags );
 }
