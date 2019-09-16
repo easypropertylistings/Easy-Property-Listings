@@ -522,7 +522,7 @@ class EPL_Property_Meta {
 
 		$street = '';
 
-		$lot_number     = $this->get_property_meta( 'property_address_lot_number' );
+		$lot_number = $this->get_property_meta( 'property_address_lot_number' );
 		if ( ! empty( $lot_number ) ) {
 			$street .= $lot_number . ' ';
 		}
