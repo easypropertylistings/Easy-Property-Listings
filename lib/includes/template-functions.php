@@ -971,12 +971,19 @@ add_action( 'epl_property_secondary_heading', 'epl_property_secondary_heading' )
 /**
  * Property Category
  *
- * @since      1.0
+ * @since 1.0.0
+ * @since 3.4.9 Removed passed 'value' option, added epl_property_category hook and passing of tag and class.
  */
-function epl_property_category() {
+function epl_property_category( $tag = 'div', $class = 'property-category' ) {
 	global $property;
-	echo wp_kses_post( $property->get_property_category( 'value' ) );
+
+	if ( empty ( $tag ) ) {
+		$tag = 'div';
+	}
+
+	echo wp_kses_post( $property->get_property_category( $tag, $class ) );
 }
+add_action( 'epl_property_category' , 'epl_property_category', 10, 2 );
 
 /**
  * Video type
