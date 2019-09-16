@@ -736,7 +736,7 @@ class EPL_Property_Meta {
 		$prop_price_view = $this->get_property_meta( 'property_price_view' );
 		$prop_com_rent   = $this->get_property_com_rent();
 		$price           = '';
-		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type ) {
+		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type || 'business' === $this->post_type ) {
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$price = '<span class="page-price sold-status">' . $this->label_sold . $this->get_property_price_sold_display() . '</span>';
 			} elseif ( ! empty( $price_display ) && 'yes' === $this->get_property_meta( 'property_price_display' ) ) {   // Property.
@@ -775,7 +775,7 @@ class EPL_Property_Meta {
 			} else {
 				$price = '<span class="page-price">' . __( 'TBA', 'easy-property-listings' ) . '</span>';
 			}
-		} elseif ( 'commercial' === $this->post_type || 'business' === $this->post_type || 'commercial_land' === $this->post_type ) {
+		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$rent_lease_type      =
 				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
@@ -881,7 +881,7 @@ class EPL_Property_Meta {
 
 		$inspection_time = $this->get_property_meta( 'property_inspection_times' );
 		$inspection_time = trim( $inspection_time );
-		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type ) {
+		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type || 'business' === $this->post_type ) {
 			$price_sticker = '';
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$price_sticker .= '<span class="status-sticker sold">' . $this->label_sold . '</span>';
@@ -917,7 +917,7 @@ class EPL_Property_Meta {
 					$price_sticker .= '<span class="status-sticker open">' . $this->get_epl_settings( 'label_home_open' ) . '</span>';
 				}
 			}
-		} elseif ( 'commercial' === $this->post_type || 'business' === $this->post_type || 'commercial_land' === $this->post_type ) {
+		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$price_sticker = '';
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$price_sticker .= '<span class="status-sticker sold">' . $this->label_sold . '</span>';
@@ -945,7 +945,7 @@ class EPL_Property_Meta {
 		$price_display = $this->get_property_price_display();
 		$l_price       = '';
 
-		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type ) {
+		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type || 'business' === $this->post_type ) {
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$l_price = '<li class="page-price sold-status">' . $this->label_sold . '</li>';
 			} elseif ( ! empty( $price_display ) && 'yes' === $this->get_property_meta( 'property_price_display' ) ) {   // Property.
@@ -972,7 +972,7 @@ class EPL_Property_Meta {
 				$l_price = '<li class="page-price sold-status">' . $this->label_leased . '</li>';
 
 			}
-		} elseif ( 'commercial' === $this->post_type || 'business' === $this->post_type || 'commercial_land' === $this->post_type ) {
+		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$prop_com_rent        = $this->get_property_com_rent();
 			$rent_lease_type      =
