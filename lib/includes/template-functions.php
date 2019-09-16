@@ -586,9 +586,9 @@ function epl_show_author_widget_by_username( $d_image, $d_icons, $d_bio, $userna
 /**
  * Get the full address
  *
- * @since      1.0
+ * @return string  The full address of the listing.
  *
- * @return     string  ( description_of_the_return_value )
+ * @since 1.0.0
  */
 function epl_property_get_the_full_address() {
 	global $property;
@@ -614,12 +614,15 @@ function epl_property_get_the_full_address() {
  *
  * @since 1.0
  * @since 3.3.3 Revised.
+ * @since 3.4.8 Correcgted separator location to appear AFTER the street name.
  * @hooked epl_property_title
  * @hooked property_tab_address
  */
 function epl_property_the_address() {
 
-	$epl_property_address_separator = apply_filters( 'epl_property_address_separator', ',' );
+	$epl_property_address_separator        = apply_filters( 'epl_property_address_separator', ',' );
+	$epl_property_address_separator_suburb = apply_filters( 'epl_property_address_separator_suburb', false );
+	$epl_property_address_separator_city   = apply_filters( 'epl_property_address_separator_city', false );
 
 	global $property, $epl_settings;
 
@@ -633,17 +636,17 @@ function epl_property_the_address() {
 		if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 			if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
 			    ?>
-				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span><?php //phpcs:disable
-				// Note if the php tag is on the next line it causes a space to appear after the suburb eg name , which is incorrect.
-				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+				<?php
+				if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 				}
 			}
 		} else {
 			?>
-			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span><?php //phpcs:disable
-			// Note if the php tag is on the next line it causes a space to appear after the suburb eg name , which is incorrect.
-			if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+			<?php
+			if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 				echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 			}
 		}
@@ -653,7 +656,10 @@ function epl_property_the_address() {
 		if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
 		?>
 			<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ); ?></span>
-		<?php
+			<?php
+			if ( true === $epl_property_address_separator_city && strlen( trim( $property->get_property_meta( 'property_address_city' ) ) ) ) {
+				echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+			}
 		}
 		?>
 		<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ); ?></span>
