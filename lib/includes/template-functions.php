@@ -988,9 +988,10 @@ add_action( 'epl_property_category' , 'epl_property_category', 10, 2 );
 /**
  * Video type
  *
- * @since      3.3
  * @param string $url    The url.
  * @return string
+ *
+ * @since 3.3.0
  */
 function epl_get_video_host( $url ) {
 
