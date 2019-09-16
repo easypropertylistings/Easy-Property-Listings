@@ -395,7 +395,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.4.8 September 16, 2019 =
 
+* Tweak: Added filter to optionally control separator output to appear after suburb with epl_property_address_separator_suburb or after the city with the epl_property_address_separator_city filter.
 * Fix: Correction to address separator placement that appeared after suburb in some cases.
+* Fix: Passing the third link parameter to the feature image through a hook has been corrected.
 
 = 3.4.7 September 16, 2019 =
 
