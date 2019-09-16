@@ -510,6 +510,9 @@ class EPL_Property_Meta {
 	/**
 	 * Formatted Street level address based on selected display option
 	 *
+	 * @param bool   $street_separator Output a address separator after the street address.
+	 * @param string $separator_symbol Symbol to use as the address separator, default is a comma.
+	 *
 	 * @return string formatted street address
 	 *
 	 * @since 2.0.0
@@ -540,7 +543,7 @@ class EPL_Property_Meta {
 
 			if ( true === $street_separator ) {
 				$separator_symbol = apply_filters( 'epl_property_address_separator', $separator_symbol );
-				$street           .= $separator_symbol;
+				$street          .= $separator_symbol;
 			}
 		}
 		return apply_filters( 'epl_get_formatted_property_address', $street );
