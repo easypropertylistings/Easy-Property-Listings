@@ -515,7 +515,9 @@ class EPL_Property_Meta {
 	 * @since 2.0.0
 	 * @since 3.4.8 Corrected spacing if value is present. Implemtend separator with existing filter.
 	 */
-	public function get_formatted_property_address( $street = '', $separator = true, $separator_symbol = ',' ) {
+	public function get_formatted_property_address( $separator = false, $separator_symbol = ',' ) {
+
+		$street = '';
 
 		$lot_number     = $this->get_property_meta( 'property_address_lot_number' );
 		if ( ! empty( $lot_number ) ) {
