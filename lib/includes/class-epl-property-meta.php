@@ -513,7 +513,7 @@ class EPL_Property_Meta {
 	 * @return string formatted street address
 	 *
 	 * @since 2.0.0
-	 * @since 3.4.8 Corrected spacing if value is present. Implemtend separator with existing filter.
+	 * @since 3.4.8 Corrected spacing if value is present. Implemented separator with existing filter.
 	 */
 	public function get_formatted_property_address( $separator = false, $separator_symbol = ',' ) {
 
