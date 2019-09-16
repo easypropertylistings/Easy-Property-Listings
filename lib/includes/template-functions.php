@@ -622,11 +622,15 @@ function epl_property_get_the_full_address() {
  */
 function epl_property_the_address( $street_separator = true, $separator_symbol = ',' ) {
 
+	global $property, $epl_settings;
+
+	if( ! is_bool( $street_separator ) ) {
+		$street_separator  = true;
+	}
+
 	$epl_property_address_separator        = apply_filters( 'epl_property_address_separator', ',' );
 	$epl_property_address_separator_suburb = apply_filters( 'epl_property_address_separator_suburb', false );
 	$epl_property_address_separator_city   = apply_filters( 'epl_property_address_separator_city', false );
-
-	global $property, $epl_settings;
 
 	?>
 	<?php if ( 'yes' === $property->get_property_meta( 'property_address_display' ) ) { ?>

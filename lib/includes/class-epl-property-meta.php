@@ -539,7 +539,7 @@ class EPL_Property_Meta {
 			$street .= $street_name;
 
 			if ( true === $street_separator ) {
-				$separator_symbol = apply_filters( 'epl_property_address_separator', ',' );
+				$separator_symbol = apply_filters( 'epl_property_address_separator', $separator_symbol );
 				$street           .= $separator_symbol;
 			}
 		}
