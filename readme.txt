@@ -393,6 +393,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.7 September 16, 2019 =
+
+* Tweak: Whitelist use tag for SVG usage.
+* Fix: Correct business listing type pricing display, behaves like listing for sale.
+
 = 3.4.6 September 9, 2019 =
 
 * Tweak: Support for polygon tag in SVG icons.
