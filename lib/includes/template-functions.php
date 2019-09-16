@@ -102,11 +102,12 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
 /**
  * Featured Image template now loading through filter
  *
- * @since      1.2
- *
  * @param      string  $image_size   The image size.
  * @param      string  $image_class  The image class.
  * @param      boolean $link         The link.
+ *
+ * @since      1.2.0
+ * @since      3.4.8 Corrected missing parameter count to 3.
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
@@ -131,8 +132,8 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 	}
 
 }
-add_action( 'epl_property_featured_image', 'epl_property_featured_image', 10, 2 );
-add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 2 );
+add_action( 'epl_property_featured_image', 'epl_property_featured_image', 10, 3 );
+add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
 
 /**
  * Featured Image on archive template now loading through filter
@@ -586,9 +587,9 @@ function epl_show_author_widget_by_username( $d_image, $d_icons, $d_bio, $userna
 /**
  * Get the full address
  *
- * @since      1.0
+ * @return string  The full address of the listing.
  *
- * @return     string  ( description_of_the_return_value )
+ * @since 1.0.0
  */
 function epl_property_get_the_full_address() {
 	global $property;
@@ -612,20 +613,24 @@ function epl_property_get_the_full_address() {
 /**
  * Get the full address
  *
- * @since 1.0
- * @since 3.3.3 Revised.
  * @hooked epl_property_title
  * @hooked property_tab_address
+ *
+ * @since 1.0
+ * @since 3.3.3 Revised.
+ * @since 3.4.8 Corrected separator location to appear AFTER the street name.
  */
-function epl_property_the_address() {
+function epl_property_the_address( $street_separator = true ) {
 
-	$epl_property_address_separator = apply_filters( 'epl_property_address_separator', ',' );
+	$epl_property_address_separator        = apply_filters( 'epl_property_address_separator', ',' );
+	$epl_property_address_separator_suburb = apply_filters( 'epl_property_address_separator_suburb', false );
+	$epl_property_address_separator_city   = apply_filters( 'epl_property_address_separator_city', false );
 
 	global $property, $epl_settings;
 
 	?>
 	<?php if ( 'yes' === $property->get_property_meta( 'property_address_display' ) ) { ?>
-		<span class="item-street"><?php echo wp_kses_post( $property->get_formatted_property_address() ); ?></span>
+		<span class="item-street"><?php echo wp_kses_post( $property->get_formatted_property_address( $street_separator ) ); ?></span>
 	<?php } ?>
 
 	<span class="entry-title-sub">
@@ -633,17 +638,17 @@ function epl_property_the_address() {
 		if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 			if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
 			    ?>
-				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span><?php //phpcs:disable
-				// Note if the php tag is on the next line it causes a space to appear after the suburb eg name , which is incorrect.
-				if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+				<?php
+				if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 				}
 			}
 		} else {
 			?>
-			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span><?php //phpcs:disable
-			// Note if the php tag is on the next line it causes a space to appear after the suburb eg name , which is incorrect.
-			if ( strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+			<?php
+			if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 				echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 			}
 		}
@@ -653,7 +658,10 @@ function epl_property_the_address() {
 		if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
 		?>
 			<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ); ?></span>
-		<?php
+			<?php
+			if ( true === $epl_property_address_separator_city && strlen( trim( $property->get_property_meta( 'property_address_city' ) ) ) ) {
+				echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+			}
 		}
 		?>
 		<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ); ?></span>
@@ -668,9 +676,9 @@ function epl_property_the_address() {
 	</span>
 	<?php
 }
-add_action( 'epl_property_title', 'epl_property_the_address' );
-add_action( 'epl_property_tab_address', 'epl_property_the_address' );
-add_action( 'epl_property_address', 'epl_property_the_address' );
+add_action( 'epl_property_title', 'epl_property_the_address', 10 , 1 );
+add_action( 'epl_property_tab_address', 'epl_property_the_address', 10 , 1 );
+add_action( 'epl_property_address', 'epl_property_the_address', 10 , 1 );
 
 /**
  * Suburb Name Kept for listing templates extensions which use this function

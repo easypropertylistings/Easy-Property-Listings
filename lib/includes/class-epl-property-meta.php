@@ -510,20 +510,39 @@ class EPL_Property_Meta {
 	/**
 	 * Formatted Street level address based on selected display option
 	 *
-	 * @since 2.0
 	 * @return string formatted street address
+	 *
+	 * @since 2.0.0
+	 * @since 3.4.8 Corrected spacing if value is present. Implemented separator with existing filter.
 	 */
-	public function get_formatted_property_address() {
-		$street     = $this->get_property_meta( 'property_address_lot_number' ) . ' ';
-		$sub_number = $this->get_property_meta( 'property_address_sub_number' );
+	public function get_formatted_property_address( $separator = false, $separator_symbol = ',' ) {
 
-		if ( ! empty( $sub_number ) ) {
-			$street .= $this->get_property_meta( 'property_address_sub_number' ) . '/';
+		$street = '';
+
+		$lot_number     = $this->get_property_meta( 'property_address_lot_number' );
+		if ( ! empty( $lot_number ) ) {
+			$street .= $lot_number . ' ';
 		}
 
-		$street .= $this->get_property_meta( 'property_address_street_number' ) . ' ';
-		$street .= $this->get_property_meta( 'property_address_street' ) . ' ';
+		$sub_number = $this->get_property_meta( 'property_address_sub_number' );
+		if ( ! empty( $sub_number ) ) {
+			$street .= $sub_number . '/';
+		}
 
+		$street_number = $this->get_property_meta( 'property_address_street_number' );
+		if ( ! empty( $street_number ) ) {
+			$street .= $street_number . ' ';
+		}
+
+		$street_name = $this->get_property_meta( 'property_address_street' );
+		if ( ! empty( $street_name ) ) {
+			$street .= $street_name;
+
+			if ( true === $separator ) {
+				$separator_symbol = apply_filters( 'epl_property_address_separator', ',' );
+				$street           .= $separator_symbol;
+			}
+		}
 		return apply_filters( 'epl_get_formatted_property_address', $street );
 	}
 
