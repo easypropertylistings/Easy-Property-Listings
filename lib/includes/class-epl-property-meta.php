@@ -515,7 +515,7 @@ class EPL_Property_Meta {
 	 * @since 2.0.0
 	 * @since 3.4.8 Corrected spacing if value is present. Implemented separator with existing filter.
 	 */
-	public function get_formatted_property_address( $separator = false, $separator_symbol = ',' ) {
+	public function get_formatted_property_address( $street_separator = true, $separator_symbol = ',' ) {
 
 		$street = '';
 
@@ -538,7 +538,7 @@ class EPL_Property_Meta {
 		if ( ! empty( $street_name ) ) {
 			$street .= $street_name;
 
-			if ( true === $separator ) {
+			if ( true === $street_separator ) {
 				$separator_symbol = apply_filters( 'epl_property_address_separator', ',' );
 				$street           .= $separator_symbol;
 			}

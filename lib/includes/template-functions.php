@@ -620,7 +620,7 @@ function epl_property_get_the_full_address() {
  * @since 3.3.3 Revised.
  * @since 3.4.8 Corrected separator location to appear AFTER the street name.
  */
-function epl_property_the_address( $street_separator = true ) {
+function epl_property_the_address( $street_separator = true, $separator_symbol = ',' ) {
 
 	$epl_property_address_separator        = apply_filters( 'epl_property_address_separator', ',' );
 	$epl_property_address_separator_suburb = apply_filters( 'epl_property_address_separator_suburb', false );
@@ -630,7 +630,7 @@ function epl_property_the_address( $street_separator = true ) {
 
 	?>
 	<?php if ( 'yes' === $property->get_property_meta( 'property_address_display' ) ) { ?>
-		<span class="item-street"><?php echo wp_kses_post( $property->get_formatted_property_address( $street_separator ) ); ?></span>
+		<span class="item-street"><?php echo wp_kses_post( $property->get_formatted_property_address( $street_separator, $separator_symbol ) ); ?></span>
 	<?php } ?>
 
 	<span class="entry-title-sub">
@@ -676,9 +676,9 @@ function epl_property_the_address( $street_separator = true ) {
 	</span>
 	<?php
 }
-add_action( 'epl_property_title', 'epl_property_the_address', 10 , 1 );
-add_action( 'epl_property_tab_address', 'epl_property_the_address', 10 , 1 );
-add_action( 'epl_property_address', 'epl_property_the_address', 10 , 1 );
+add_action( 'epl_property_title', 'epl_property_the_address', 10 , 2 );
+add_action( 'epl_property_tab_address', 'epl_property_the_address', 10 , 2 );
+add_action( 'epl_property_address', 'epl_property_the_address', 10 , 2 );
 
 /**
  * Suburb Name Kept for listing templates extensions which use this function
