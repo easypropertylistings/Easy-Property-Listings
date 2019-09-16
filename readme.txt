@@ -393,6 +393,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.8 September 16, 2019 =
+
+* Fix: Correction to address separator placement that appeared after suburb in some cases.
+
 = 3.4.7 September 16, 2019 =
 
 * Tweak: Whitelist use tag for SVG usage.
