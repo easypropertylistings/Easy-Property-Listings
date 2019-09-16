@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.4.7\n"
+"Project-Id-Version: Easy Property Listings 3.4.8\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-09-16 02:39:31+00:00\n"
+"POT-Creation-Date: 2019-09-16 07:13:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -309,7 +309,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:234
 #: lib/includes/class-epl-author-meta.php:262
 #: lib/includes/class-epl-author-meta.php:270 lib/includes/functions.php:2353
-#: lib/includes/template-functions.php:1812
+#: lib/includes/template-functions.php:1827
 #: lib/post-types/post-type-contact.php:36
 #: lib/post-types/post-type-contact.php:37
 msgid "Contact"
@@ -2532,7 +2532,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:712
-#: lib/includes/template-functions.php:2875
+#: lib/includes/template-functions.php:2890
 #: lib/shortcodes/class-epl-listing-elements.php:77
 msgid "Listing"
 msgstr ""
@@ -2697,9 +2697,9 @@ msgid "Enter valid license key for automatic updates."
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:327
-#: lib/includes/class-epl-property-meta.php:684
-#: lib/includes/class-epl-property-meta.php:746
-#: lib/includes/class-epl-property-meta.php:788 lib/includes/functions.php:2538
+#: lib/includes/class-epl-property-meta.php:706
+#: lib/includes/class-epl-property-meta.php:768
+#: lib/includes/class-epl-property-meta.php:810 lib/includes/functions.php:2538
 #: lib/includes/functions.php:2575 lib/widgets/widget-admin-dashboard.php:176
 #: lib/widgets/widget-admin-dashboard.php:225
 msgid "Auction"
@@ -2709,153 +2709,154 @@ msgstr ""
 msgid "now"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:617
-#: lib/includes/class-epl-property-meta.php:619
+#: lib/includes/class-epl-property-meta.php:639
+#: lib/includes/class-epl-property-meta.php:641
 msgid "Inc. GST"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:621
+#: lib/includes/class-epl-property-meta.php:643
 msgid "GST"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:648
-#: lib/includes/class-epl-property-meta.php:748 lib/includes/functions.php:1429
+#: lib/includes/class-epl-property-meta.php:670
+#: lib/includes/class-epl-property-meta.php:770 lib/includes/functions.php:1429
 #: lib/includes/install.php:47
 msgid "POA"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:672
-#: lib/includes/class-epl-property-meta.php:776
+#: lib/includes/class-epl-property-meta.php:694
+#: lib/includes/class-epl-property-meta.php:798
 msgid "TBA"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:686
-#: lib/includes/class-epl-property-meta.php:689
-#: lib/includes/class-epl-property-meta.php:792
-#: lib/includes/class-epl-property-meta.php:798
-#: lib/includes/class-epl-property-meta.php:983 lib/includes/functions.php:2574
+#: lib/includes/class-epl-property-meta.php:708
+#: lib/includes/class-epl-property-meta.php:711
+#: lib/includes/class-epl-property-meta.php:814
+#: lib/includes/class-epl-property-meta.php:820
+#: lib/includes/class-epl-property-meta.php:1005
+#: lib/includes/functions.php:2574
 msgid "For Sale"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:698
-#: lib/includes/class-epl-property-meta.php:700
-#: lib/includes/class-epl-property-meta.php:702
-#: lib/includes/class-epl-property-meta.php:705
-#: lib/includes/class-epl-property-meta.php:809
-#: lib/includes/class-epl-property-meta.php:812
-#: lib/includes/class-epl-property-meta.php:817
-#: lib/includes/class-epl-property-meta.php:835
-#: lib/includes/class-epl-property-meta.php:840
-#: lib/includes/class-epl-property-meta.php:996
-#: lib/includes/class-epl-property-meta.php:998
+#: lib/includes/class-epl-property-meta.php:720
+#: lib/includes/class-epl-property-meta.php:722
+#: lib/includes/class-epl-property-meta.php:724
+#: lib/includes/class-epl-property-meta.php:727
+#: lib/includes/class-epl-property-meta.php:831
+#: lib/includes/class-epl-property-meta.php:834
+#: lib/includes/class-epl-property-meta.php:839
+#: lib/includes/class-epl-property-meta.php:857
+#: lib/includes/class-epl-property-meta.php:862
+#: lib/includes/class-epl-property-meta.php:1018
+#: lib/includes/class-epl-property-meta.php:1020
 msgid "For Lease"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:781
-#: lib/includes/class-epl-property-meta.php:979 lib/includes/functions.php:749
+#: lib/includes/class-epl-property-meta.php:803
+#: lib/includes/class-epl-property-meta.php:1001 lib/includes/functions.php:749
 msgid "P.A."
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:790
+#: lib/includes/class-epl-property-meta.php:812
 msgid "For Sale and Lease"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1020
+#: lib/includes/class-epl-property-meta.php:1042
 msgid "Built"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1069
+#: lib/includes/class-epl-property-meta.php:1091
 #: lib/meta-boxes/meta-box-init.php:254
 msgid "Bedrooms"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1070
+#: lib/includes/class-epl-property-meta.php:1092
 msgid "bed"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1128
+#: lib/includes/class-epl-property-meta.php:1150
 #: lib/meta-boxes/meta-box-init.php:262 lib/widgets/widget-functions.php:631
 msgid "Bathrooms"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1129
+#: lib/includes/class-epl-property-meta.php:1151
 msgid "bath"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1187
+#: lib/includes/class-epl-property-meta.php:1209
 #: lib/meta-boxes/meta-box-init.php:304 lib/post-types/post-types.php:342
 #: lib/widgets/widget-functions.php:174 lib/widgets/widget-functions.php:650
 msgid "Rooms"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1248
+#: lib/includes/class-epl-property-meta.php:1270
 msgid "Parking Spaces"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1305
+#: lib/includes/class-epl-property-meta.php:1327
 msgid "garage"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1353
+#: lib/includes/class-epl-property-meta.php:1375
 msgid "carport"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1402
+#: lib/includes/class-epl-property-meta.php:1424
 #: lib/meta-boxes/meta-box-init.php:339 lib/widgets/widget-functions.php:819
 msgid "Air Conditioning"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1461
+#: lib/includes/class-epl-property-meta.php:1483
 #: lib/meta-boxes/meta-box-init.php:330 lib/widgets/widget-functions.php:834
 msgid "Pool"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1518
+#: lib/includes/class-epl-property-meta.php:1540
 msgid "Alarm System"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1565
-#: lib/includes/class-epl-property-meta.php:1636
+#: lib/includes/class-epl-property-meta.php:1587
+#: lib/includes/class-epl-property-meta.php:1658
 #: lib/post-types/post-types.php:352
 msgid "m&#178;"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1578
-#: lib/includes/class-epl-property-meta.php:1590
+#: lib/includes/class-epl-property-meta.php:1600
+#: lib/includes/class-epl-property-meta.php:1612
 msgid "Land is"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1649
-#: lib/includes/class-epl-property-meta.php:1661
+#: lib/includes/class-epl-property-meta.php:1671
+#: lib/includes/class-epl-property-meta.php:1683
 msgid "Floor Area is"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1709
+#: lib/includes/class-epl-property-meta.php:1731
 #: lib/meta-boxes/meta-box-init.php:406 lib/meta-boxes/meta-box-init.php:762
 msgid "Energy Rating"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1754
+#: lib/includes/class-epl-property-meta.php:1776
 #: lib/meta-boxes/meta-box-init.php:320
 msgid "New Construction"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1794
+#: lib/includes/class-epl-property-meta.php:1816
 #: lib/meta-boxes/meta-box-init.php:1113
 msgid "Holiday Rental"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1844
+#: lib/includes/class-epl-property-meta.php:1866
 #: lib/meta-boxes/meta-box-init.php:1104
 msgid "Furnished"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1890
+#: lib/includes/class-epl-property-meta.php:1912
 #: lib/meta-boxes/meta-box-init.php:357
 msgid "Pet Friendly"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1936
+#: lib/includes/class-epl-property-meta.php:1958
 #: lib/post-types/post-type-business.php:94
 #: lib/post-types/post-type-commercial-land.php:94
 #: lib/post-types/post-type-commercial.php:94
@@ -3425,12 +3426,12 @@ msgstr ""
 msgid "Listing view type"
 msgstr ""
 
-#: lib/includes/functions.php:1535 lib/includes/template-functions.php:1640
+#: lib/includes/functions.php:1535 lib/includes/template-functions.php:1655
 #: lib/widgets/class-epl-widget-recent-property.php:447
 msgid "List"
 msgstr ""
 
-#: lib/includes/functions.php:1536 lib/includes/template-functions.php:1642
+#: lib/includes/functions.php:1536 lib/includes/template-functions.php:1657
 msgid "Grid"
 msgstr ""
 
@@ -4009,118 +4010,118 @@ msgstr ""
 msgid "&laquo; Previous Page"
 msgstr ""
 
-#: lib/includes/template-functions.php:833
-#: lib/includes/template-functions.php:1258
+#: lib/includes/template-functions.php:848
+#: lib/includes/template-functions.php:1273
 #: lib/meta-boxes/meta-box-init.php:1277
 msgid "Plus Outgoings"
 msgstr ""
 
-#: lib/includes/template-functions.php:852
+#: lib/includes/template-functions.php:867
 msgid "Available from"
 msgstr ""
 
-#: lib/includes/template-functions.php:1239
+#: lib/includes/template-functions.php:1254
 msgid "Property Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1310
+#: lib/includes/template-functions.php:1325
 #: lib/meta-boxes/meta-box-init.php:1322
 msgid "Commercial Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1356
+#: lib/includes/template-functions.php:1371
 #: lib/meta-boxes/meta-box-init.php:1127
 msgid "Rural Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1476
+#: lib/includes/template-functions.php:1491
 msgid "Price: High to Low"
 msgstr ""
 
-#: lib/includes/template-functions.php:1484
+#: lib/includes/template-functions.php:1499
 msgid "Price: Low to High"
 msgstr ""
 
-#: lib/includes/template-functions.php:1493
+#: lib/includes/template-functions.php:1508
 msgid "Date: Newest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1501
+#: lib/includes/template-functions.php:1516
 msgid "Date: Oldest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1508
+#: lib/includes/template-functions.php:1523
 msgid "Status : Current First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1517
+#: lib/includes/template-functions.php:1532
 msgid "Status : Sold/Leased First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1526
+#: lib/includes/template-functions.php:1541
 msgid " A-Z"
 msgstr ""
 
-#: lib/includes/template-functions.php:1535
+#: lib/includes/template-functions.php:1550
 msgid " Z-A"
 msgstr ""
 
-#: lib/includes/template-functions.php:1667
+#: lib/includes/template-functions.php:1682
 msgid "Sort"
 msgstr ""
 
-#: lib/includes/template-functions.php:1809
+#: lib/includes/template-functions.php:1824
 msgid "About"
 msgstr ""
 
-#: lib/includes/template-functions.php:1810
+#: lib/includes/template-functions.php:1825
 msgid "Bio"
 msgstr ""
 
-#: lib/includes/template-functions.php:1811
+#: lib/includes/template-functions.php:1826
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:2653
+#: lib/includes/template-functions.php:2668
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:2869
+#: lib/includes/template-functions.php:2884
 #. translators: term name.
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:2871
+#: lib/includes/template-functions.php:2886
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:2941
+#: lib/includes/template-functions.php:2956
 #: lib/templates/content/shortcode-listing.php:53
 #. translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:2944
+#: lib/includes/template-functions.php:2959
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:2959
+#: lib/includes/template-functions.php:2974
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:2961
+#: lib/includes/template-functions.php:2976
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3034
+#: lib/includes/template-functions.php:3049
 msgid "Form submitted successfully"
 msgstr ""
 
-#: lib/includes/template-functions.php:3039
+#: lib/includes/template-functions.php:3054
 msgid "Some issues with form submitted"
 msgstr ""
 
-#: lib/includes/template-functions.php:3058
+#: lib/includes/template-functions.php:3073
 msgid "Email is required"
 msgstr ""
 
