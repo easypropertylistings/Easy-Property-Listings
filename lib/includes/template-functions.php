@@ -616,6 +616,7 @@ function epl_property_get_the_full_address() {
  * @hooked epl_property_title
  * @hooked property_tab_address
  *
+ * @param bool   $full Set to false to only display the street address.
  * @param bool   $street_separator Display the street separator.
  * @param string $separator_symbol Symbol to use as the street separator, default is a comma.
  *
@@ -976,13 +977,16 @@ add_action( 'epl_property_secondary_heading', 'epl_property_secondary_heading' )
 /**
  * Property Category
  *
+ * @param string $tag The div tag.
+ * @param string $class The css class name.
+ *
  * @since 1.0.0
  * @since 3.4.9 Removed passed 'value' option, added epl_property_category hook and passing of tag and class.
  */
 function epl_property_category( $tag = 'div', $class = 'property-category' ) {
 	global $property;
 
-	if ( empty ( $tag ) ) {
+	if ( empty( $tag ) ) {
 		$tag = 'div';
 	}
 
@@ -2046,13 +2050,15 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
 /**
  * Used to mark home inspection on apple devices
  *
+ * @param string $start The start.
+ * @param string $end The end.
+ * @param string $name The name.
+ * @param string $description The description.
+ * @param string $location The location.
+ * @param null $post_id
+ *
  * @since      2.0
  *
- * @param      string $start        The start.
- * @param      string $end          The end.
- * @param      string $name         The name.
- * @param      string $description  The description.
- * @param      string $location     The location.
  */
 function epl_create_ical_file( $start = '', $end = '', $name = '', $description = '', $location = '', $post_id = null ) {
 
