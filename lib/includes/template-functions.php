@@ -644,7 +644,7 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 
 	<?php
 	if ( true === $full ) {
-	?>
+		?>
 		<span class="entry-title-sub">
 			<?php
 			if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
@@ -686,7 +686,7 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 			}
 			?>
 		</span>
-	<?php
+		<?php
 	}
 }
 add_action( 'epl_property_title', 'epl_property_the_address', 10, 3 );
@@ -992,7 +992,7 @@ function epl_property_category( $tag = 'div', $class = 'property-category' ) {
 
 	echo wp_kses_post( $property->get_property_category( $tag, $class ) );
 }
-add_action( 'epl_property_category' , 'epl_property_category', 10, 2 );
+add_action( 'epl_property_category', 'epl_property_category', 10, 2 );
 
 /**
  * Video type
@@ -2055,23 +2055,22 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
  * @param string $name The name.
  * @param string $description The description.
  * @param string $location The location.
- * @param null $post_id
+ * @param null   $post_id
  *
  * @since      2.0
- *
  */
 function epl_create_ical_file( $start = '', $end = '', $name = '', $description = '', $location = '', $post_id = null ) {
 
-	if( is_null( $post_id ) ) {
+	if ( is_null( $post_id ) ) {
 		$post_id = get_the_ID();
 	}
 
-	$description = str_replace( "\n", "\\n", str_replace(";", "\;", str_replace(",",'\,', $description ) ) );
-	$uid = $post_id.current_time('timestamp');
-	$url = get_permalink( $post_id );
-	$args = get_defined_vars();
-	$args = apply_filters( 'epl_ical_args', $args );
-	$data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $start ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $end ) ) . "\nLOCATION:" . $location . "\nURL: ".$url."\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:". $uid ."\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $name . "\nDESCRIPTION:" . $description . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
+	$description = str_replace( "\n", "\\n", str_replace( ';', '\;', str_replace( ',', '\,', $description ) ) );
+	$uid         = $post_id . current_time( 'timestamp' );
+	$url         = get_permalink( $post_id );
+	$args        = get_defined_vars();
+	$args        = apply_filters( 'epl_ical_args', $args );
+	$data        = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $start ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $end ) ) . "\nLOCATION:" . $location . "\nURL: " . $url . "\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:" . $uid . "\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $name . "\nDESCRIPTION:" . $description . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
 
 	header( 'Content-type:text/calendar' );
 	header( 'Content-Disposition: attachment; filename="' . $name . '.ics"' );
