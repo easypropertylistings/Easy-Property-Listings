@@ -696,7 +696,6 @@ add_action( 'epl_property_address', 'epl_property_the_address', 10, 3 );
 /**
  * Suburb Name Kept for listing templates extensions which use this function
  *
- * @return string The listing suburb.
  * @since 1.3
  * @since 3.1.18 Revised.
  */
@@ -2055,9 +2054,10 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
  * @param string $name The name.
  * @param string $description The description.
  * @param string $location The location.
- * @param null   $post_id
+ * @param null   $post_id The post ID.
  *
- * @since      2.0
+ * @since 2.0.0
+ * @since 3.4.9 Corrected issue where output was trimmed, added better unique ID and URL to output.
  */
 function epl_create_ical_file( $start = '', $end = '', $name = '', $description = '', $location = '', $post_id = null ) {
 
