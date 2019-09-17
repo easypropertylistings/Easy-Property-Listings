@@ -616,74 +616,86 @@ function epl_property_get_the_full_address() {
  * @hooked epl_property_title
  * @hooked property_tab_address
  *
+ * @param bool   $full Set to false to only display the street address.
+ * @param bool   $street_separator Display the street separator.
+ * @param string $separator_symbol Symbol to use as the street separator, default is a comma.
+ *
  * @since 1.0
  * @since 3.3.3 Revised.
- * @since 3.4.8 Corrected separator location to appear AFTER the street name.
+ * @since 3.4.8 Corrected separator location to appear AFTER the street name and options to control display.
+ * @since 3.4.9 Added option allowing passing of $full parameter as false to restrict output to street items only.
  */
-function epl_property_the_address( $street_separator = true ) {
+function epl_property_the_address( $full = true, $street_separator = true, $separator_symbol = ',' ) {
+
+	global $property, $epl_settings;
+
+	if ( ! is_bool( $full ) ) {
+		$full = true;
+	}
 
 	$epl_property_address_separator        = apply_filters( 'epl_property_address_separator', ',' );
 	$epl_property_address_separator_suburb = apply_filters( 'epl_property_address_separator_suburb', false );
 	$epl_property_address_separator_city   = apply_filters( 'epl_property_address_separator_city', false );
 
-	global $property, $epl_settings;
-
 	?>
 	<?php if ( 'yes' === $property->get_property_meta( 'property_address_display' ) ) { ?>
-		<span class="item-street"><?php echo wp_kses_post( $property->get_formatted_property_address( $street_separator ) ); ?></span>
+		<span class="item-street"><?php echo wp_kses_post( $property->get_formatted_property_address( $street_separator, $separator_symbol ) ); ?></span>
 	<?php } ?>
 
-	<span class="entry-title-sub">
-		<?php
-		if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
-			if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
-			    ?>
+	<?php
+	if ( true === $full ) {
+		?>
+		<span class="entry-title-sub">
+			<?php
+			if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
+				if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
+					?>
+					<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+					<?php
+					if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
+						echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+					}
+				}
+			} else {
+				?>
 				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 				<?php
 				if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
 					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
 				}
 			}
-		} else {
 			?>
-			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
-			<?php
-			if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-				echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
-			}
-		}
-		?>
 
-		<?php
-		if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
-		?>
-			<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ); ?></span>
 			<?php
-			if ( true === $epl_property_address_separator_city && strlen( trim( $property->get_property_meta( 'property_address_city' ) ) ) ) {
-				echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+			if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
+				?>
+				<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ); ?></span>
+				<?php
+				if ( true === $epl_property_address_separator_city && strlen( trim( $property->get_property_meta( 'property_address_city' ) ) ) ) {
+					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+				}
 			}
-		}
-		?>
-		<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ); ?></span>
-		<span class="item-pcode"><?php echo esc_attr( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
+			?>
+			<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ); ?></span>
+			<span class="item-pcode"><?php echo esc_attr( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
+			<?php
+			if ( 'yes' === $property->get_epl_settings( 'epl_enable_country_field' ) ) {
+				?>
+				<span class="item-country"><?php echo esc_attr( $property->get_property_meta( 'property_address_country' ) ); ?></span>
+				<?php
+			}
+			?>
+		</span>
 		<?php
-		if ( 'yes' === $property->get_epl_settings( 'epl_enable_country_field' ) ) {
-		?>
-			<span class="item-country"><?php echo esc_attr( $property->get_property_meta( 'property_address_country' ) ); ?></span>
-		<?php
-		}
-		?>
-	</span>
-	<?php
+	}
 }
-add_action( 'epl_property_title', 'epl_property_the_address', 10 , 1 );
-add_action( 'epl_property_tab_address', 'epl_property_the_address', 10 , 1 );
-add_action( 'epl_property_address', 'epl_property_the_address', 10 , 1 );
+add_action( 'epl_property_title', 'epl_property_the_address', 10, 3 );
+add_action( 'epl_property_tab_address', 'epl_property_the_address', 10, 3 );
+add_action( 'epl_property_address', 'epl_property_the_address', 10, 3 );
 
 /**
  * Suburb Name Kept for listing templates extensions which use this function
  *
- * @return string The listing suburb.
  * @since 1.3
  * @since 3.1.18 Revised.
  */
@@ -964,19 +976,30 @@ add_action( 'epl_property_secondary_heading', 'epl_property_secondary_heading' )
 /**
  * Property Category
  *
- * @since      1.0
+ * @param string $tag The div tag.
+ * @param string $class The css class name.
+ *
+ * @since 1.0.0
+ * @since 3.4.9 Removed passed 'value' option, added epl_property_category hook and passing of tag and class.
  */
-function epl_property_category() {
+function epl_property_category( $tag = 'div', $class = 'property-category' ) {
 	global $property;
-	echo wp_kses_post( $property->get_property_category( 'value' ) );
+
+	if ( empty( $tag ) ) {
+		$tag = 'div';
+	}
+
+	echo wp_kses_post( $property->get_property_category( $tag, $class ) );
 }
+add_action( 'epl_property_category', 'epl_property_category', 10, 2 );
 
 /**
  * Video type
  *
- * @since      3.3
  * @param string $url    The url.
  * @return string
+ *
+ * @since 3.3.0
  */
 function epl_get_video_host( $url ) {
 
@@ -2026,26 +2049,28 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
 /**
  * Used to mark home inspection on apple devices
  *
- * @since      2.0
+ * @param string $start The start.
+ * @param string $end The end.
+ * @param string $name The name.
+ * @param string $description The description.
+ * @param string $location The location.
+ * @param null   $post_id The post ID.
  *
- * @param      string $start        The start.
- * @param      string $end          The end.
- * @param      string $name         The name.
- * @param      string $description  The description.
- * @param      string $location     The location.
+ * @since 2.0.0
+ * @since 3.4.9 Corrected issue where output was trimmed, added better unique ID and URL to output.
  */
 function epl_create_ical_file( $start = '', $end = '', $name = '', $description = '', $location = '', $post_id = null ) {
 
-	if( is_null( $post_id ) ) {
+	if ( is_null( $post_id ) ) {
 		$post_id = get_the_ID();
 	}
 
-	$description = str_replace( "\n", "\\n", str_replace(";", "\;", str_replace(",",'\,', $description ) ) );
-	$uid = $post_id.current_time('timestamp');
-	$url = get_permalink( $post_id );
-	$args = get_defined_vars();
-	$args = apply_filters( 'epl_ical_args', $args );
-	$data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $start ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $end ) ) . "\nLOCATION:" . $location . "\nURL: ".$url."\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:". $uid ."\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $name . "\nDESCRIPTION:" . $description . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
+	$description = str_replace( "\n", "\\n", str_replace( ';', '\;', str_replace( ',', '\,', $description ) ) );
+	$uid         = $post_id . current_time( 'timestamp' );
+	$url         = get_permalink( $post_id );
+	$args        = get_defined_vars();
+	$args        = apply_filters( 'epl_ical_args', $args );
+	$data        = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $start ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $end ) ) . "\nLOCATION:" . $location . "\nURL: " . $url . "\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:" . $uid . "\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $name . "\nDESCRIPTION:" . $description . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
 
 	header( 'Content-type:text/calendar' );
 	header( 'Content-Disposition: attachment; filename="' . $name . '.ics"' );

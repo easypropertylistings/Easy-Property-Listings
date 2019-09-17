@@ -510,16 +510,19 @@ class EPL_Property_Meta {
 	/**
 	 * Formatted Street level address based on selected display option
 	 *
+	 * @param bool   $street_separator Output a address separator after the street address.
+	 * @param string $separator_symbol Symbol to use as the address separator, default is a comma.
+	 *
 	 * @return string formatted street address
 	 *
 	 * @since 2.0.0
 	 * @since 3.4.8 Corrected spacing if value is present. Implemented separator with existing filter.
 	 */
-	public function get_formatted_property_address( $separator = false, $separator_symbol = ',' ) {
+	public function get_formatted_property_address( $street_separator = true, $separator_symbol = ',' ) {
 
 		$street = '';
 
-		$lot_number     = $this->get_property_meta( 'property_address_lot_number' );
+		$lot_number = $this->get_property_meta( 'property_address_lot_number' );
 		if ( ! empty( $lot_number ) ) {
 			$street .= $lot_number . ' ';
 		}
@@ -538,9 +541,9 @@ class EPL_Property_Meta {
 		if ( ! empty( $street_name ) ) {
 			$street .= $street_name;
 
-			if ( true === $separator ) {
-				$separator_symbol = apply_filters( 'epl_property_address_separator', ',' );
-				$street           .= $separator_symbol;
+			if ( true === $street_separator ) {
+				$separator_symbol = apply_filters( 'epl_property_address_separator', $separator_symbol );
+				$street          .= $separator_symbol;
 			}
 		}
 		return apply_filters( 'epl_get_formatted_property_address', $street );
