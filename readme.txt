@@ -397,7 +397,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 * New: Added the listing URL to the iCal card.
 * New: Enhanced the epl_property_address action hook to support multiple address parameters to easier control output in templates.
-* New: Enhanced the epl_property_category action hook to support tag and class that is passed through in tempaltes.
+* New: Enhanced the epl_property_category action hook to support tag and class that is passed through in templates.
 * Fix: iCal inspection time cards were trimming the description.
 
 = 3.4.8 September 16, 2019 =
