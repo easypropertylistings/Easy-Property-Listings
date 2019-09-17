@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.2.3
-Stable Tag: 3.4.7
+Stable Tag: 3.4.8
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -392,6 +392,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.9 September 17, 2019 =
+
+* New: Added the listing URL to the iCal card.
+* New: Enhanced the epl_property_address action hook to support multiple address parameters to easier control output in templates.
+* New: Enhanced the epl_property_category action hook to support tag and class that is passed through in templates.
+* Fix: iCal inspection time cards were trimming the description.
 
 = 3.4.8 September 16, 2019 =
 
