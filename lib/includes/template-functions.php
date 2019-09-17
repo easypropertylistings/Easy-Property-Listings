@@ -2067,10 +2067,11 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 	}
 
 	$description = str_replace( "\n", "\\n", str_replace(";", "\;", str_replace(",",'\,', $description ) ) );
-	
+	$uid = $post_id.current_time('timestamp');
+	$url = get_permalink( $post_id );
 	$args = get_defined_vars();
 	$args = apply_filters( 'epl_ical_args', $args );
-	$data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $start ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $end ) ) . "\nLOCATION:" . $location . "\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:". $post_id ."\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $name . "\nDESCRIPTION:" . $description . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
+	$data = "BEGIN:VCALENDAR\nVERSION:2.0\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $start ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $end ) ) . "\nLOCATION:" . $location . "\nURL: ".$url."\nTRANSP: OPAQUE\nSEQUENCE:0\nUID:". $uid ."\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $name . "\nDESCRIPTION:" . $description . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
 
 	header( 'Content-type:text/calendar' );
 	header( 'Content-Disposition: attachment; filename="' . $name . '.ics"' );
