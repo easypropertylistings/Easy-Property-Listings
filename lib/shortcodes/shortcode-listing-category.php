@@ -192,11 +192,20 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			$category_value = array_map( 'trim', $category_value );
 		}
 
-		$args['meta_query'][] = array(
+		$this_mq = array(
 			'key'     => $category_key,
 			'value'   => $category_value,
 			'compare' => $category_compare,
 		);
+
+		if ( in_array( $category_compare, array( 'BETWEEN', 'NOT BETWEEN' ), true ) ) {
+
+			if( is_numeric( $category_value[0] ) ){
+				$this_mq['type'] = 'numeric';
+			}
+			
+		}
+		$args['meta_query'][] = $this_mq;
 	}
 
 	if ( ! empty( $sortby ) ) {
