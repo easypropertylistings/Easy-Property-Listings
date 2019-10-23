@@ -235,11 +235,15 @@ More information at [Easy Property Listings.com.au](https://easypropertylistings
 
 **Follow this plugin on [GitHub](https://github.com/easypropertylistings/Easy-Property-Listings)**
 
+**Inspections**
+
+With the [inspections](https://easypropertylistings.com.au/extensions/inspections/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_inspections) extension for Easy Property Listings adds open for inspection lists (stock lists) and printing capabilities to your site.
+
 **Advanced Mapping**
 
 [Advanced Map](https://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_advanced_map) Create a beautiful map showcasing your listings with a powerful shortcode.
 
-**Brochures and Stock List Extension**
+**Brochures**
 
 With the [brochures](https://easypropertylistings.com.au/extensions/brochures/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_brochures) extension for Easy Property Listings you can create printable brochures and stock lists for your listings. There are several options to control the brochure styles and templates. Or create your own!
 
