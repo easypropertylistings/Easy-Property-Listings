@@ -2461,6 +2461,14 @@ function epl_parse_atts( $atts ) {
 
 						$this_query['value'] =
 						array_map( 'trim', explode( ',', $this_query['value'] ) );
+
+						if ( in_array( $look_for, array( '_between', '_not_between' ), true ) ) {
+
+							if( is_numeric( $this_query['value'][0] ) ) {
+								$this_query['type'] = 'numeric';
+							}
+							
+						}
 					}
 
 					if ( in_array( $look_for, array( '_exists', '_not_exists' ), true ) ) {
