@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.4.9\n"
+"Project-Id-Version: Easy Property Listings 3.4.10\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-09-17 08:02:00+00:00\n"
+"POT-Creation-Date: 2019-10-23 02:50:10+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -605,37 +605,37 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1245
-#: lib/includes/functions.php:2512 lib/post-types/post-types.php:54
+#: lib/includes/functions.php:2520 lib/post-types/post-types.php:54
 #: lib/post-types/post-types.php:581
 #: lib/widgets/class-epl-widget-recent-property.php:177
 #: lib/widgets/class-epl-widget-recent-property.php:325
-#: lib/widgets/widget-admin-dashboard.php:139
-#: lib/widgets/widget-admin-dashboard.php:171
-#: lib/widgets/widget-admin-dashboard.php:220
+#: lib/widgets/widget-admin-dashboard.php:140
+#: lib/widgets/widget-admin-dashboard.php:172
+#: lib/widgets/widget-admin-dashboard.php:221
 #: lib/widgets/widget-functions.php:74
 msgid "Current"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1246
 #: lib/includes/functions.php:1443 lib/includes/functions.php:2008
-#: lib/includes/functions.php:2516 lib/includes/install.php:51
+#: lib/includes/functions.php:2524 lib/includes/install.php:51
 #: lib/post-types/post-types.php:60 lib/updates/epl-2.1.11.php:18
 #: lib/widgets/class-epl-widget-recent-property.php:178
 #: lib/widgets/class-epl-widget-recent-property.php:326
-#: lib/widgets/widget-admin-dashboard.php:186
-#: lib/widgets/widget-admin-dashboard.php:235
+#: lib/widgets/widget-admin-dashboard.php:187
+#: lib/widgets/widget-admin-dashboard.php:236
 #: lib/widgets/widget-functions.php:75
 msgid "Sold"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1247
 #: lib/includes/functions.php:1450 lib/includes/functions.php:2034
-#: lib/includes/functions.php:2520 lib/includes/install.php:50
+#: lib/includes/functions.php:2528 lib/includes/install.php:50
 #: lib/post-types/post-types.php:64 lib/updates/epl-2.1.php:18
 #: lib/widgets/class-epl-widget-recent-property.php:179
 #: lib/widgets/class-epl-widget-recent-property.php:327
-#: lib/widgets/widget-admin-dashboard.php:144
-#: lib/widgets/widget-admin-dashboard.php:191
+#: lib/widgets/widget-admin-dashboard.php:145
+#: lib/widgets/widget-admin-dashboard.php:192
 #: lib/widgets/widget-functions.php:76
 msgid "Leased"
 msgstr ""
@@ -2355,7 +2355,7 @@ msgid "Total %s listings period shown : "
 msgstr ""
 
 #: lib/includes/admin/reports/graphing.php:303
-#: lib/widgets/widget-admin-dashboard.php:414
+#: lib/widgets/widget-admin-dashboard.php:415
 msgid "Today"
 msgstr ""
 
@@ -2699,9 +2699,9 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:327
 #: lib/includes/class-epl-property-meta.php:706
 #: lib/includes/class-epl-property-meta.php:768
-#: lib/includes/class-epl-property-meta.php:810 lib/includes/functions.php:2538
-#: lib/includes/functions.php:2575 lib/widgets/widget-admin-dashboard.php:176
-#: lib/widgets/widget-admin-dashboard.php:225
+#: lib/includes/class-epl-property-meta.php:810 lib/includes/functions.php:2546
+#: lib/includes/functions.php:2583 lib/widgets/widget-admin-dashboard.php:177
+#: lib/widgets/widget-admin-dashboard.php:226
 msgid "Auction"
 msgstr ""
 
@@ -2734,7 +2734,7 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:814
 #: lib/includes/class-epl-property-meta.php:820
 #: lib/includes/class-epl-property-meta.php:1005
-#: lib/includes/functions.php:2574
+#: lib/includes/functions.php:2582
 msgid "For Sale"
 msgstr ""
 
@@ -3030,8 +3030,8 @@ msgstr ""
 
 #: lib/includes/functions.php:616 lib/includes/functions.php:1436
 #: lib/includes/functions.php:2021 lib/includes/install.php:49
-#: lib/updates/epl-2.1.php:19 lib/widgets/widget-admin-dashboard.php:181
-#: lib/widgets/widget-admin-dashboard.php:230
+#: lib/updates/epl-2.1.php:19 lib/widgets/widget-admin-dashboard.php:182
+#: lib/widgets/widget-admin-dashboard.php:231
 msgid "Under Offer"
 msgstr ""
 
@@ -3820,137 +3820,137 @@ msgstr ""
 msgid "Under Contract"
 msgstr ""
 
-#: lib/includes/functions.php:2513 lib/post-types/post-types.php:55
+#: lib/includes/functions.php:2521 lib/post-types/post-types.php:55
 #: lib/post-types/post-types.php:582
 #: lib/widgets/class-epl-widget-recent-property.php:180
 #: lib/widgets/class-epl-widget-recent-property.php:328
-#: lib/widgets/widget-admin-dashboard.php:149
-#: lib/widgets/widget-admin-dashboard.php:196
-#: lib/widgets/widget-admin-dashboard.php:240
+#: lib/widgets/widget-admin-dashboard.php:150
+#: lib/widgets/widget-admin-dashboard.php:197
+#: lib/widgets/widget-admin-dashboard.php:241
 msgid "Withdrawn"
 msgstr ""
 
-#: lib/includes/functions.php:2514 lib/post-types/post-types.php:56
+#: lib/includes/functions.php:2522 lib/post-types/post-types.php:56
 #: lib/post-types/post-types.php:583
 #: lib/widgets/class-epl-widget-recent-property.php:181
 #: lib/widgets/class-epl-widget-recent-property.php:329
-#: lib/widgets/widget-admin-dashboard.php:154
-#: lib/widgets/widget-admin-dashboard.php:201
-#: lib/widgets/widget-admin-dashboard.php:245
+#: lib/widgets/widget-admin-dashboard.php:155
+#: lib/widgets/widget-admin-dashboard.php:202
+#: lib/widgets/widget-admin-dashboard.php:246
 msgid "Off Market"
 msgstr ""
 
-#: lib/includes/functions.php:2537 lib/includes/functions.php:2558
+#: lib/includes/functions.php:2545 lib/includes/functions.php:2566
 msgid "Exclusive"
 msgstr ""
 
-#: lib/includes/functions.php:2539
+#: lib/includes/functions.php:2547
 msgid "Multilist"
 msgstr ""
 
-#: lib/includes/functions.php:2540
+#: lib/includes/functions.php:2548
 msgid "Conjunctional"
 msgstr ""
 
-#: lib/includes/functions.php:2541 lib/includes/functions.php:2559
+#: lib/includes/functions.php:2549 lib/includes/functions.php:2567
 msgid "Open"
 msgstr ""
 
-#: lib/includes/functions.php:2542 lib/includes/functions.php:2578
-#: lib/includes/functions.php:2633
+#: lib/includes/functions.php:2550 lib/includes/functions.php:2586
+#: lib/includes/functions.php:2641
 msgid "Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2543
+#: lib/includes/functions.php:2551
 msgid "Set Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2576
+#: lib/includes/functions.php:2584
 msgid "Tender"
 msgstr ""
 
-#: lib/includes/functions.php:2577
+#: lib/includes/functions.php:2585
 msgid "EOI"
 msgstr ""
 
-#: lib/includes/functions.php:2579
+#: lib/includes/functions.php:2587
 msgid "Offers"
 msgstr ""
 
-#: lib/includes/functions.php:2594 lib/widgets/widget-functions.php:749
+#: lib/includes/functions.php:2602 lib/widgets/widget-functions.php:749
 #: lib/widgets/widget-functions.php:804
 msgid "Square"
 msgstr ""
 
-#: lib/includes/functions.php:2595 lib/widgets/widget-functions.php:750
+#: lib/includes/functions.php:2603 lib/widgets/widget-functions.php:750
 #: lib/widgets/widget-functions.php:805
 msgid "Square Meter"
 msgstr ""
 
-#: lib/includes/functions.php:2596 lib/widgets/widget-functions.php:751
+#: lib/includes/functions.php:2604 lib/widgets/widget-functions.php:751
 #: lib/widgets/widget-functions.php:806
 msgid "Acre"
 msgstr ""
 
-#: lib/includes/functions.php:2597 lib/widgets/widget-functions.php:752
+#: lib/includes/functions.php:2605 lib/widgets/widget-functions.php:752
 #: lib/widgets/widget-functions.php:807
 msgid "Hectare"
 msgstr ""
 
-#: lib/includes/functions.php:2598 lib/widgets/widget-functions.php:753
+#: lib/includes/functions.php:2606 lib/widgets/widget-functions.php:753
 #: lib/widgets/widget-functions.php:808
 msgid "Square Feet"
 msgstr ""
 
-#: lib/includes/functions.php:2613
+#: lib/includes/functions.php:2621
 msgid "Day"
 msgstr ""
 
-#: lib/includes/functions.php:2614
+#: lib/includes/functions.php:2622
 msgid "Daily"
 msgstr ""
 
-#: lib/includes/functions.php:2615
+#: lib/includes/functions.php:2623
 msgid "Week"
 msgstr ""
 
-#: lib/includes/functions.php:2616
+#: lib/includes/functions.php:2624
 msgid "Weekly"
 msgstr ""
 
-#: lib/includes/functions.php:2617
+#: lib/includes/functions.php:2625
 msgid "Month"
 msgstr ""
 
-#: lib/includes/functions.php:2618
+#: lib/includes/functions.php:2626
 msgid "Monthly"
 msgstr ""
 
-#: lib/includes/functions.php:2634
+#: lib/includes/functions.php:2642
 msgid "Lease"
 msgstr ""
 
-#: lib/includes/functions.php:2635
+#: lib/includes/functions.php:2643
 msgid "Both"
 msgstr ""
 
-#: lib/includes/functions.php:2650
+#: lib/includes/functions.php:2658
 msgid "Unknown"
 msgstr ""
 
-#: lib/includes/functions.php:2651
+#: lib/includes/functions.php:2659
 msgid "Vacant"
 msgstr ""
 
-#: lib/includes/functions.php:2652
+#: lib/includes/functions.php:2660
 msgid "Tenanted"
 msgstr ""
 
-#: lib/includes/functions.php:2667
+#: lib/includes/functions.php:2675
 msgid "Whole"
 msgstr ""
 
-#: lib/includes/functions.php:2668
+#: lib/includes/functions.php:2676
 msgid "Part"
 msgstr ""
 
@@ -5685,88 +5685,88 @@ msgstr ""
 msgid "Easy Property Listings Activities"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:89
+#: lib/widgets/widget-admin-dashboard.php:90
 #. translators: count.
 msgid "%s Property"
 msgid_plural "%s Property"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/widgets/widget-admin-dashboard.php:93
+#: lib/widgets/widget-admin-dashboard.php:94
 #. translators: count.
 msgid "%s Land"
 msgid_plural "%s Land"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/widgets/widget-admin-dashboard.php:97
+#: lib/widgets/widget-admin-dashboard.php:98
 #. translators: count.
 msgid "%s Rental"
 msgid_plural "%s Rental"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/widgets/widget-admin-dashboard.php:101
+#: lib/widgets/widget-admin-dashboard.php:102
 #. translators: count.
 msgid "%s Rural"
 msgid_plural "%s Rural"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/widgets/widget-admin-dashboard.php:105
+#: lib/widgets/widget-admin-dashboard.php:106
 #. translators: count.
 msgid "%s Commercial"
 msgid_plural "%s Commercial"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/widgets/widget-admin-dashboard.php:109
+#: lib/widgets/widget-admin-dashboard.php:110
 #. translators: count.
 msgid "%s Commercial Land"
 msgid_plural "%s Commercial Land"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/widgets/widget-admin-dashboard.php:113
+#: lib/widgets/widget-admin-dashboard.php:114
 #. translators: count.
 msgid "%s Business"
 msgid_plural "%s Business"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/widgets/widget-admin-dashboard.php:273
+#: lib/widgets/widget-admin-dashboard.php:274
 msgid "Listings Publishing Soon"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:284
+#: lib/widgets/widget-admin-dashboard.php:285
 msgid "Recently Published Listings"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:294
+#: lib/widgets/widget-admin-dashboard.php:295
 msgid "No activity yet!"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:347
+#: lib/widgets/widget-admin-dashboard.php:348
 msgid "Activity"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:416
+#: lib/widgets/widget-admin-dashboard.php:417
 msgid "Tomorrow"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:419
+#: lib/widgets/widget-admin-dashboard.php:420
 #. translators: date and time format for recent posts on the dashboard, from a
 #. different calendar year, see http:php.net/date
 msgid "M jS Y"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:422
+#: lib/widgets/widget-admin-dashboard.php:423
 #. translators: date and time format for recent posts on the dashboard, see
 #. http:php.net/date
 msgid "M jS"
 msgstr ""
 
-#: lib/widgets/widget-admin-dashboard.php:429
+#: lib/widgets/widget-admin-dashboard.php:430
 #. translators: 1: relative date, 2: time, 3: post edit link or permalink, 4:
 #. post title
 msgid "<span>%1$s, %2$s</span> <a href=\"%3$s\">%4$s</a>"
