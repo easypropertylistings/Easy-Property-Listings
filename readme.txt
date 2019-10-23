@@ -393,6 +393,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.10 October 23, 2019 =
+
+* Fix: Shortcodes [listing_category] and [listing_advanced] when using numbers to filter ranges. e.g. category_compare="BETWEEN" and NOT_BETWEEN.
+* Fix: Issue with listings dashboard widget when no post types are active.
+
 = 3.4.9 September 17, 2019 =
 
 * New: Added the listing URL to the iCal card.

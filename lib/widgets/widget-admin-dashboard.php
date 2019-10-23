@@ -39,7 +39,8 @@ add_action( 'wp_dashboard_setup', 'epl_add_dashboard_widgets' );
 /**
  * Status Dashboard Widget
  *
- * @since 1.3
+ * @since 1.3.0
+ * @since 3.4.10 Corrected issue with listings dashboard widget when no post types are active.
  */
 function epl_status_dashboard_widget_callback() {
 

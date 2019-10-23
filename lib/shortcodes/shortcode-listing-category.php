@@ -200,10 +200,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 
 		if ( in_array( $category_compare, array( 'BETWEEN', 'NOT BETWEEN' ), true ) ) {
 
-			if( is_numeric( $category_value[0] ) ){
+			if ( is_numeric( $category_value[0] ) ) {
 				$this_meta_query['type'] = 'numeric';
 			}
-			
 		}
 		$args['meta_query'][] = $this_meta_query;
 	}
