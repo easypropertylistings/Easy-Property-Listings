@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.2.3
-Stable Tag: 3.4.9
+Stable Tag: 3.4.10
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -235,11 +235,15 @@ More information at [Easy Property Listings.com.au](https://easypropertylistings
 
 **Follow this plugin on [GitHub](https://github.com/easypropertylistings/Easy-Property-Listings)**
 
+**Inspections**
+
+With the [inspections](https://easypropertylistings.com.au/extensions/inspections/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_inspections) extension for Easy Property Listings adds open for inspection lists (stock lists) and printing capabilities to your site.
+
 **Advanced Mapping**
 
 [Advanced Map](https://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_advanced_map) Create a beautiful map showcasing your listings with a powerful shortcode.
 
-**Brochures and Stock List Extension**
+**Brochures**
 
 With the [brochures](https://easypropertylistings.com.au/extensions/brochures/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_brochures) extension for Easy Property Listings you can create printable brochures and stock lists for your listings. There are several options to control the brochure styles and templates. Or create your own!
 
@@ -392,6 +396,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.10 October 23, 2019 =
+
+* Fix: Shortcodes [listing_category] and [listing_advanced] when using numbers to filter ranges. e.g. category_compare="BETWEEN" and NOT_BETWEEN.
+* Fix: Issue with listings dashboard widget when no post types are active.
 
 = 3.4.9 September 17, 2019 =
 
