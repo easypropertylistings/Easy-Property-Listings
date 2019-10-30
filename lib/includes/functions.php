@@ -819,7 +819,7 @@ function epl_feedsync_format_date( $date ) {
 	$date_example = '2014-07-22-16:45:56';
 
 	$tempdate = explode( '-', $date );
-	$date     = $tempdate[0] . '-' . $tempdate[1] . '-' . $tempdate[2];
+	$date     = $tempdate[0];
 	if ( isset( $tempdate[1] ) ) {
 		$date .= '-' . $tempdate[1];
 	}
