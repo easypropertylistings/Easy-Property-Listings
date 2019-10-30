@@ -819,8 +819,13 @@ function epl_feedsync_format_date( $date ) {
 	$date_example = '2014-07-22-16:45:56';
 
 	$tempdate = explode( '-', $date );
-	$date     = $tempdate[0] . '-' . $tempdate[1] . '-' . $tempdate[2];
-
+	$date     = $tempdate[0];
+	if ( isset( $tempdate[1] ) ) {
+		$date .= '-' . $tempdate[1];
+	}
+	if ( isset( $tempdate[2] ) ) {
+		$date .= '-' . $tempdate[2];
+	}
 	if ( isset( $tempdate[3] ) ) {
 		$date .= ' ' . $tempdate[3];
 	}
@@ -2704,6 +2709,10 @@ function epl_get_author_id_from_name( $author ) {
 function epl_pmxi_import_post_saved( $id ) {
 
 	$post = get_post( $id );
+
+	if( is_null( $post ) ){
+		return;
+	}
 
 	if ( is_epl_post( $post->post_type ) ) {
 
