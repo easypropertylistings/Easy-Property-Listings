@@ -5,7 +5,7 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.2.3
+Tested up to: 5.2.4
 Stable Tag: 3.4.10
 License: GNU Version 2 or Any Later Version
 
@@ -396,6 +396,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.11 October 30, 2019 =
+
+* Fix: Empty check in date function to prevent notice errors during listing imports.
+* Fix: Index check in iCal function and additional check to avoid notices.
 
 = 3.4.10 October 23, 2019 =
 
