@@ -2705,6 +2705,10 @@ function epl_pmxi_import_post_saved( $id ) {
 
 	$post = get_post( $id );
 
+	if( is_null( $post ) ){
+		return;
+	}
+
 	if ( is_epl_post( $post->post_type ) ) {
 
 		if ( 'rental' === $post->post_type ) {
