@@ -2097,9 +2097,15 @@ function epl_process_event_cal_request() {
 					if ( is_numeric( $item[0] ) ) {
 						$post_id   = isset( $_GET['propid'] ) ? intval( $_GET['propid'] ) : 0;
 						$timearr   = explode( ' ', $item );
-						$starttime = current( $timearr ) . ' ' . $timearr[1];
+						$starttime = current( $timearr );
+						if ( isset( $timearr[1] ) ) {
+							$starttime .= ' ' . $timearr[1];
+						}
 						$endtime   = current( $timearr ) . ' ' . end( $timearr );
 						$post      = get_post( $post_id );
+						if( is_null( $post ) ) {
+							return;
+						}
 						$subject   = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
 
 						$address      = '';
