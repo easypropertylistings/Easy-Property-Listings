@@ -36,6 +36,7 @@ function epl_get_admin_screens() {
 		'dashboard_page_epl-getting-started',
 		'edit.php',
 		'index.php',
+		'widgets.php'
 	);
 
 	return apply_filters( 'epl_admin_screens', $screens );
