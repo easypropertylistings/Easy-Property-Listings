@@ -61,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 			<div class="property-meta property-feature-icons"><?php epl_property_icons(); ?></div>
 		<?php } elseif ( 'bb' === $icons ) { ?>
-			<div class="property-meta property-feature-icons"><?php echo wp_kses_post( epl_get_property_bb_icons() ); ?></div>
+			<div class="property-meta property-feature-icons"><?php echo epl_get_property_bb_icons(); ?></div>
 		<?php } ?>
 
 		<?php

@@ -2,8 +2,8 @@
  * EPL Structural CSS
  *
  * @package	EPL
- * @since	3.1
- * @version	3.4
+ * @since	3.1.0
+ * @version	3.4.13
  * @subpackage	Structure CSS
  * @copyright	Copyright (c) 2019, Merv Barrett
  * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -1164,7 +1164,9 @@ li.tbhead.current {
 .epl-container-grid-4,
 .epl-container-grid-5,
 .epl-container-grid-6 {
-	float:left;
+	display: inline-block;
+	margin-right: -4px;
+	vertical-align: top;
 }
 .epl-container-grid-1 {
 	width:100%;
