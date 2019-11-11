@@ -239,10 +239,12 @@ class EPL_SEARCH {
 
 	/**
 	 * Set post type for query
+	 *
+	 * @since 3.4.12 Added support for 'all' post type.
 	 */
 	protected function set_post_type() {
 
-		if ( isset( $this->get_data['post_type'] ) && ! empty( $this->get_data['post_type'] ) ) {
+		if ( isset( $this->get_data['post_type'] ) && ! empty( $this->get_data['post_type'] ) && 'all' !== $this->get_data['post_type'] ) {
 			$this->query->set( 'post_type', $this->get_data['post_type'] );
 			$this->post_type = $this->get_data['post_type'];
 		} else {
