@@ -397,8 +397,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.4.12 November 11, 2019 =
+= 3.4.13 November 11, 2019 =
 
+* Tweak: Listing widget: Custom template display, file extension no longer required and file name format enforced to the format widget-content-listing-{template_name}.php
+* Fix: Search was not searching correctly when no post type was set.
 * Fix: Listing Widget bed/bath only icons SVG output.
 
 = 3.4.12 November 1, 2019 =
