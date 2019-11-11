@@ -400,6 +400,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 = 3.4.13 November 11, 2019 =
 
 * Tweak: Listing widget: Custom template display, file extension no longer required and file name format enforced to the format widget-content-listing-{template_name}.php
+* Tweak: CSS convert helper grid class to inline-block instead of float left.
 * Fix: Search was not searching correctly when no post type was set.
 * Fix: Listing Widget bed/bath only icons SVG output.
 
