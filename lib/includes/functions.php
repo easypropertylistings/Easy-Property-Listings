@@ -2484,7 +2484,6 @@ function epl_parse_atts( $atts ) {
 							if( is_numeric( $this_query['value'][0] ) ) {
 								$this_query['type'] = 'numeric';
 							}
-
 						}
 					}
 
