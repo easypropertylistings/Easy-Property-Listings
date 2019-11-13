@@ -16,7 +16,7 @@ get_header();
 	if ( have_posts() ) :
 		?>
 		<div class="loop section-inner medium">
-			<div class="loop-content <?php echo esc_attr( epl_template_class( 'default', 'single' ) ); ?>">
+			<div class="loop-content <?php echo esc_attr( epl_template_class( 'twentytwenty', 'single' ) ); ?>">
 				<?php
 				while ( have_posts() ) : // The Loop.
 					the_post();

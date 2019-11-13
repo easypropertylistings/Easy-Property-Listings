@@ -911,6 +911,16 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 		margin: calc(3 * 1rem) calc(10% + 60px) calc(1rem / 2);
 	}
 }
+/* Twenty Twenty */
+.epl-template-twentytwenty {
+
+}
+.singular .epl-template-twentytwenty .entry-header {
+	background: transparent;
+}
+.epl-template-twentytwenty .entry-content {
+	max-width: 100%;
+}
 /*****************************
 	Shortcodes
 ******************************/

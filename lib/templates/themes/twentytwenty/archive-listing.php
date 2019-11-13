@@ -26,7 +26,7 @@ get_header();
 
 		<div class="section-inner medium loop pad">
 
-			<div class="loop-content <?php echo esc_attr( epl_template_class( 'default', 'archive' ) ); ?>">
+			<div class="loop-content <?php echo esc_attr( epl_template_class( 'twentytwenty', 'archive' ) ); ?>">
 				<?php do_action( 'epl_property_loop_start' ); ?>
 				<?php
 				while ( have_posts() ) : // The Loop.
