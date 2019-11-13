@@ -68,6 +68,18 @@ function epl_is_genesis_framework_theme() {
 }
 
 /**
+ * Determine if TwentyTwenty is loaded
+ *
+ * @since 3.4.14
+ */
+function epl_is_twenty_twenty_theme() {
+	if ( function_exists( 'twentytwenty_theme_support' ) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * Used in the widgets by appending the registered image sizes
  *
  * @since 1.0
@@ -2472,12 +2484,10 @@ function epl_parse_atts( $atts ) {
 							if( is_numeric( $this_query['value'][0] ) ) {
 								$this_query['type'] = 'numeric';
 							}
-							
 						}
 					}
 
 					if ( in_array( $look_for, array( '_exists', '_not_exists' ), true ) ) {
-
 						unset( $this_query['value'] );
 					}
 				}
