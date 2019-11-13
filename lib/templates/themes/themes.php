@@ -108,7 +108,8 @@ add_filter( 'template_include', 'epl_load_core_templates' );
 /**
  * Template Loader for Single Listings
  *
- * @since 2.0
+ * @since 2.0.0
+ * @since 3.4.14 Added TwentyTwenty theme support.
  */
 function epl_render_single_post() {
 
@@ -134,7 +135,8 @@ add_action( 'epl_render_single_post', 'epl_render_single_post' );
 /**
  * Template Loader for Archive
  *
- * @since 2.0
+ * @since 2.0.0
+ * @since 3.4.14 Added TwentyTwenty theme support.
  */
 function epl_render_archive_post() {
 
