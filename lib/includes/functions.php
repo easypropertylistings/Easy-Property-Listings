@@ -2488,7 +2488,6 @@ function epl_parse_atts( $atts ) {
 					}
 
 					if ( in_array( $look_for, array( '_exists', '_not_exists' ), true ) ) {
-
 						unset( $this_query['value'] );
 					}
 				}
