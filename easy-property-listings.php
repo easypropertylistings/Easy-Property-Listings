@@ -77,6 +77,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->includes();
 				// Search fields displayer object.
 				self::$instance->search_fields = new EPL_Search_Fields();
+				self::$instance->session       = new EPL_Session();
 				self::$instance->search_fields->init();
 
 				define( 'EPL_RUNNING', true );
@@ -152,6 +153,10 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
+			// disable php sessions, use WP sessions
+			if ( ! defined( 'EPL_USE_PHP_SESSIONS' ) ) {
+				define( 'EPL_USE_PHP_SESSIONS', false );
+			}
 		}
 
 		/**
@@ -170,7 +175,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'includes/register-settings.php';
 			$epl_settings = epl_get_settings();
-
+			require_once EPL_PATH_LIB . 'includes/class-epl-session.php';
 			require_once EPL_PATH_LIB . 'includes/actions.php';
 			require_once EPL_PATH_LIB . 'includes/functions.php';
 			require_once EPL_COMPATABILITY . 'functions-compat.php';

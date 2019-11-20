@@ -2113,29 +2113,6 @@ AND p.post_type IN $type_str
 }
 
 /**
- * Session Start
- *
- * @since 3.0
- */
-function epl_session_start() {
-	if ( ! session_id() ) {
-		session_start();
-	}
-}
-add_action( 'init', 'epl_session_start', 1 );
-
-/**
- * Session End
- *
- * @since 3.0
- */
-function epl_session_end() {
-	session_destroy();
-}
-add_action( 'wp_logout', 'epl_session_end' );
-add_action( 'wp_login', 'epl_session_end' );
-
-/**
  * Get Sales Count By Date
  *
  * @param int  $day Day number.
