@@ -347,7 +347,7 @@ function epl_show_reset_tab() {
  *
  * @since  3.3.0
  * @param  string $data String of data to serialize.
- * @return serialize string.
+ * @return string.
  */
 function epl_serialize( $data ) {
 	return base64_encode( serialize( $data ) ); //phpcs:ignore

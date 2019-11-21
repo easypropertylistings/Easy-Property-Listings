@@ -397,6 +397,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.15 November 21, 2019 =
+
+* New: Migrated from PHP Session to WP Session to prevent WordPress > Tools > Site Health REST API error.
+* Fix: City label missing translation string.
+
 = 3.4.14 November 13, 2019 =
 
 * New: Support for WordPress 5.3 TwentyTwenty theme.

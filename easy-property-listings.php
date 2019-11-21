@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.4.14
+ * Version: 3.4.15
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.4.14
+ * @version 3.4.15
  */
 
 // Exit if accessed directly.
@@ -77,6 +77,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->includes();
 				// Search fields displayer object.
 				self::$instance->search_fields = new EPL_Search_Fields();
+				self::$instance->session       = new EPL_Session();
 				self::$instance->search_fields->init();
 
 				define( 'EPL_RUNNING', true );
@@ -94,7 +95,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.4.14' );
+				define( 'EPL_PROPERTY_VER', '3.4.15' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -152,6 +153,10 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
+			// Disable php sessions, use WP sessions.
+			if ( ! defined( 'EPL_USE_PHP_SESSIONS' ) ) {
+				define( 'EPL_USE_PHP_SESSIONS', false );
+			}
 		}
 
 		/**
@@ -170,7 +175,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'includes/register-settings.php';
 			$epl_settings = epl_get_settings();
-
+			require_once EPL_PATH_LIB . 'includes/class-epl-session.php';
 			require_once EPL_PATH_LIB . 'includes/actions.php';
 			require_once EPL_PATH_LIB . 'includes/functions.php';
 			require_once EPL_COMPATABILITY . 'functions-compat.php';
