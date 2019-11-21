@@ -49,13 +49,13 @@ function epl_print_errors() {
  * If errors exist, they are returned.
  *
  * @since 3.0
+ * @since 3.1.15 switched to EPL Session class for session handling.
  * @return mixed array if errors are present, false if none found
  */
 function epl_get_errors() {
-	if ( session_id() && isset( $_SESSION['epl_errors'] ) ) {
-		return $_SESSION['epl_errors'];
-	}
-
+	$errors = EPL()->session->get( 'epl_errors' );
+	$errors = apply_filters( 'epl_errors', $errors );
+	return $errors;
 }
 
 /**
@@ -64,6 +64,7 @@ function epl_get_errors() {
  * Stores an error in a session var.
  *
  * @since 3.0
+ * @since 3.1.15 switched to EPL Session class for session handling.
  * @param int    $error_id ID of the error being set.
  * @param string $error_message Message to store with the error.
  * @return void
@@ -74,30 +75,32 @@ function epl_set_error( $error_id, $error_message ) {
 		$errors = array();
 	}
 	$errors[ $error_id ]    = $error_message;
-	$_SESSION['epl_errors'] = $errors;
+	EPL()->session->set( 'epl_errors', $errors );
 }
 
 /**
  * Clears all stored errors.
  *
  * @since 3.0
+ * @since 3.1.15 switched to EPL Session class for session handling.
  * @return void
  */
 function epl_clear_errors() {
-	$_SESSION['epl_errors'] = null;
+	EPL()->session->set( 'epl_errors', null );
 }
 
 /**
  * Removes (unsets) a stored error
  *
  * @since 3.0
+ * @since 3.1.15 switched to EPL Session class for session handling.
  * @param int $error_id ID of the error being set.
  */
 function epl_unset_error( $error_id ) {
 	$errors = epl_get_errors();
 	if ( $errors ) {
 		unset( $errors[ $error_id ] );
-		$_SESSION['epl_errors'] = $errors;
+		EPL()->session->set( 'epl_errors', $errors );
 	}
 }
 

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * EPL Get Settings
  *
  * @since 1.0
- * @return all the settings in array
+ * @return array $epl_settings The settings in array
  */
 function epl_get_settings() {
 	global $epl_settings;
