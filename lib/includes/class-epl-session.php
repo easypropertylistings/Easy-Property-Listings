@@ -12,7 +12,9 @@
  */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * EPL_Session Class
@@ -62,9 +64,9 @@ class EPL_Session {
 
 		$this->use_php_sessions = $this->use_php_sessions();
 
-		if( $this->use_php_sessions ) {
+		if ( $this->use_php_sessions ) {
 
-			if( is_multisite() ) {
+			if ( is_multisite() ) {
 
 				$this->prefix = '_' . get_current_blog_id();
 
@@ -75,18 +77,17 @@ class EPL_Session {
 
 		} else {
 
-			if( ! $this->should_start_session() ) {
+			if ( ! $this->should_start_session() ) {
 				return;
 			}
 
 			// Use WP_Session (default)
-
 			if ( ! defined( 'WP_SESSION_COOKIE' ) ) {
 				define( 'WP_SESSION_COOKIE', 'epl_wp_session' );
 			}
 
 			if ( ! class_exists( 'Recursive_ArrayAccess' ) ) {
-				
+
 				require_once EPL_PATH_LIB . 'includes/libraries/class-recursive-arrayaccess.php';
 			}
 
@@ -116,8 +117,8 @@ class EPL_Session {
 	 */
 	public function init() {
 
-		if( $this->use_php_sessions ) {
-			$this->session = isset( $_SESSION['epl' . $this->prefix ] ) && is_array( $_SESSION['epl' . $this->prefix ] ) ? $_SESSION['epl' . $this->prefix ] : array();
+		if ( $this->use_php_sessions ) {
+			$this->session = isset( $_SESSION[ 'epl' . $this->prefix ] ) && is_array( $_SESSION[ 'epl' . $this->prefix ] ) ? $_SESSION[ 'epl' . $this->prefix ] : array();
 		} else {
 			$this->session = WP_Session::get_instance();
 		}
@@ -176,7 +177,6 @@ class EPL_Session {
 				} else {
 					$return = json_decode( $this->session[ $key ], true );
 				}
-
 			}
 		}
 
@@ -188,7 +188,7 @@ class EPL_Session {
 	 *
 	 * @since 3.4.15
 	 *
-	 * @param string $key Session key
+	 * @param string           $key Session key
 	 * @param int|string|array $value Session variable
 	 * @return mixed Session variable
 	 */
@@ -202,9 +202,9 @@ class EPL_Session {
 			$this->session[ $key ] = esc_attr( $value );
 		}
 
-		if( $this->use_php_sessions ) {
+		if ( $this->use_php_sessions ) {
 
-			$_SESSION['epl' . $this->prefix ] = $this->session;
+			$_SESSION[ 'epl' . $this->prefix ] = $this->session;
 		}
 
 		return $this->session[ $key ];
@@ -253,11 +253,11 @@ class EPL_Session {
 		if ( ! $epl_use_php_sessions ) {
 
 			// Attempt to detect if the server supports PHP sessions
-			if( function_exists( 'session_start' ) ) {
+			if ( function_exists( 'session_start' ) ) {
 
 				$this->set( 'epl_use_php_sessions', 1 );
 
-				if( $this->get( 'epl_use_php_sessions' ) ) {
+				if ( $this->get( 'epl_use_php_sessions' ) ) {
 
 					$ret = true;
 
@@ -265,9 +265,7 @@ class EPL_Session {
 					update_option( 'epl_use_php_sessions', true );
 
 				}
-
 			}
-
 		} else {
 			$ret = $epl_use_php_sessions;
 		}
@@ -275,7 +273,7 @@ class EPL_Session {
 		// Enable or disable PHP Sessions based on the EPL_USE_PHP_SESSIONS constant
 		if ( defined( 'EPL_USE_PHP_SESSIONS' ) && EPL_USE_PHP_SESSIONS ) {
 			$ret = true;
-		} else if ( defined( 'EPL_USE_PHP_SESSIONS' ) && ! EPL_USE_PHP_SESSIONS ) {
+		} elseif ( defined( 'EPL_USE_PHP_SESSIONS' ) && ! EPL_USE_PHP_SESSIONS ) {
 			$ret = false;
 		}
 
@@ -292,25 +290,24 @@ class EPL_Session {
 
 		$start_session = true;
 
-		if( ! empty( $_SERVER[ 'REQUEST_URI' ] ) ) {
+		if ( ! empty( $_SERVER['REQUEST_URI'] ) ) {
 
 			$blacklist = $this->get_blacklist();
-			$uri       = ltrim( $_SERVER[ 'REQUEST_URI' ], '/' );
+			$uri       = ltrim( $_SERVER['REQUEST_URI'], '/' );
 			$uri       = untrailingslashit( $uri );
 
-			if( in_array( $uri, $blacklist ) ) {
+			if ( in_array( $uri, $blacklist ) ) {
 				$start_session = false;
 			}
 
-			if( false !== strpos( $uri, 'feed=' ) ) {
+			if ( false !== strpos( $uri, 'feed=' ) ) {
 				$start_session = false;
 			}
 
-			if( false !== strpos( $uri, 'wp_scrape_key' ) ) {
+			if ( false !== strpos( $uri, 'wp_scrape_key' ) ) {
 				// Starting sessions while saving the file editor can break the save process, so don't start
 				$start_session = false;
 			}
-
 		}
 
 		return apply_filters( 'epl_start_session', $start_session );
@@ -327,20 +324,22 @@ class EPL_Session {
 	 */
 	public function get_blacklist() {
 
-		$blacklist = apply_filters( 'epl_session_start_uri_blacklist', array(
-			'feed',
-			'feed/rss',
-			'feed/rss2',
-			'feed/rdf',
-			'feed/atom',
-			'comments/feed'
-		) );
+		$blacklist = apply_filters(
+			'epl_session_start_uri_blacklist', array(
+				'feed',
+				'feed/rss',
+				'feed/rss2',
+				'feed/rdf',
+				'feed/atom',
+				'comments/feed',
+			)
+		);
 
 		// Look to see if WordPress is in a sub folder or this is a network site that uses sub folders
 		$folder = str_replace( network_home_url(), '', get_site_url() );
 
-		if( ! empty( $folder ) ) {
-			foreach( $blacklist as $path ) {
+		if ( ! empty( $folder ) ) {
+			foreach ( $blacklist as $path ) {
 				$blacklist[] = $folder . '/' . $path;
 			}
 		}
@@ -353,11 +352,11 @@ class EPL_Session {
 	 */
 	public function maybe_start_session() {
 
-		if( ! $this->should_start_session() ) {
+		if ( ! $this->should_start_session() ) {
 			return;
 		}
 
-		if( ! session_id() && ! headers_sent() ) {
+		if ( ! session_id() && ! headers_sent() ) {
 			session_start();
 		}
 	}
