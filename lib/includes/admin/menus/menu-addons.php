@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Code adapted from Easy Digital Downloads
  *
  * @since 1.0
- * @global $epl_add_ons_page EPL Add-ons Pages
+ * @global $epl_add_ons_page
  * @return void
  */
 function epl_add_ons_init() {

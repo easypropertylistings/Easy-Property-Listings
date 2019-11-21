@@ -108,7 +108,8 @@ add_filter( 'template_include', 'epl_load_core_templates' );
 /**
  * Template Loader for Single Listings
  *
- * @since 2.0
+ * @since 2.0.0
+ * @since 3.4.14 Added TwentyTwenty theme support.
  */
 function epl_render_single_post() {
 
@@ -118,6 +119,8 @@ function epl_render_single_post() {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
 	} elseif ( epl_is_divi_framework_theme() ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'divi/';
+	} elseif ( epl_is_twenty_twenty_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'twentytwenty/';
 	} elseif ( file_exists( EPL_PATH_TEMPLATES_POST_TYPES . epl_get_active_theme() ) ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . trailingslashit( epl_get_active_theme() );
 	} else {
@@ -132,7 +135,8 @@ add_action( 'epl_render_single_post', 'epl_render_single_post' );
 /**
  * Template Loader for Archive
  *
- * @since 2.0
+ * @since 2.0.0
+ * @since 3.4.14 Added TwentyTwenty theme support.
  */
 function epl_render_archive_post() {
 
@@ -142,6 +146,8 @@ function epl_render_archive_post() {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES_GENESIS;
 	} elseif ( epl_is_divi_framework_theme() ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'divi/';
+	} elseif ( epl_is_twenty_twenty_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'twentytwenty/';
 	} elseif ( file_exists( EPL_PATH_TEMPLATES_POST_TYPES . epl_get_active_theme() ) ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . trailingslashit( epl_get_active_theme() );
 	} else {

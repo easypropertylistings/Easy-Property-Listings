@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.2.4
-Stable Tag: 3.4.12
+Tested up to: 5.3
+Stable Tag: 3.4.14
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -397,8 +397,16 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.4.12 November 11, 2019 =
+= 3.4.14 November 13, 2019 =
 
+* New: Support for WordPress 5.3 TwentyTwenty theme.
+* Fix: Custom additional features hook corrected as custom features were outputting incorrectly.
+
+= 3.4.13 November 11, 2019 =
+
+* Tweak: Listing widget: Custom template display, file extension no longer required and file name format enforced to the format widget-content-listing-{template_name}.php
+* Tweak: CSS convert helper grid class to inline-block instead of float left.
+* Fix: Search was not searching correctly when no post type was set.
 * Fix: Listing Widget bed/bath only icons SVG output.
 
 = 3.4.12 November 1, 2019 =

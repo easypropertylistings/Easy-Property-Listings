@@ -453,7 +453,7 @@ function epl_property_author_box_simple_grav() {
  * @param      string $d_more             The d more.
  * @param      string $d_inspection_time  The d inspection time.
  * @param      string $d_ical_link        The d ical link.
- * 
+ *
  * @since 3.4.13 for custom display, file extension not required and file name format enforced to the format widget-content-listing-{$display}.php
  */
 function epl_property_widget( $display, $image, $title, $icons, $more_text = "__('Read More','easy-property-listings' )", $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
@@ -481,7 +481,7 @@ function epl_property_widget( $display, $image, $title, $icons, $more_text = "__
 		default:
 			$tpl = $display;
 			if ( ! epl_starts_with( $tpl, 'widget-content-listing' ) ) {
-				$tpl = 'widget-content-listing-'. $tpl;
+				$tpl = 'widget-content-listing-' . $tpl;
 			}
 			if ( ! epl_ends_with( $tpl, '.php' ) ) {
 				$tpl .= '.php';

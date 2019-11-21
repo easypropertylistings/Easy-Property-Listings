@@ -3,7 +3,7 @@
  *
  * @package	EPL
  * @since	3.1.0
- * @version	3.4.13
+ * @version	3.4.14
  * @subpackage	Structure CSS
  * @copyright	Copyright (c) 2019, Merv Barrett
  * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -910,6 +910,16 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 	.epl-active-theme-twentynineteen .epl-loop-footer {
 		margin: calc(3 * 1rem) calc(10% + 60px) calc(1rem / 2);
 	}
+}
+/* Twenty Twenty */
+.epl-template-twentytwenty {
+
+}
+.singular .epl-template-twentytwenty .entry-header {
+	background: transparent;
+}
+.epl-template-twentytwenty .entry-content {
+	max-width: 100%;
 }
 /*****************************
 	Shortcodes

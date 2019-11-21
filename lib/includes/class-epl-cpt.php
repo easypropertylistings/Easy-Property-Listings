@@ -927,8 +927,8 @@ class EPL_CPT {
 	 *
 	 * Define what and how to populate a speicific admin column.
 	 *
-	 * @param string   $column_name The name of the column to populate.
-	 * @param function $function An anonyous function to run when populating the column.
+	 * @param string $column_name The name of the column to populate.
+	 * @param string $function An anonyous function to run when populating the column.
 	 */
 	public function populate_column( $column_name, $function ) {
 
