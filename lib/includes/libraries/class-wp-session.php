@@ -53,15 +53,12 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	/**
 	 * Retrieve the current session instance.
 	 *
-	 * @param bool $session_id Session ID from which to populate data.
-	 *
 	 * @return bool|WP_Session
 	 */
 	public static function get_instance() {
 		if ( ! self::$instance ) {
 			self::$instance = new self();
 		}
-
 		return self::$instance;
 	}
 
@@ -70,7 +67,6 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 * Will rebuild the session collection from the given session ID if it exists. Otherwise, will
 	 * create a new session with that ID.
 	 *
-	 * @param $session_id
 	 * @uses apply_filters Calls `wp_session_expiration` to determine how long until sessions expire.
 	 */
 	protected function __construct() {
@@ -91,7 +87,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 			$this->expires     = $cookie_crumbs[1];
 			$this->exp_variant = $cookie_crumbs[2];
 
-			// Update the session expiration if we're past the variant time
+			// Update the session expiration if we're past the variant time.
 			if ( time() > $this->exp_variant ) {
 				$this->set_expiration();
 				delete_option( "_wp_session_expires_{$this->session_id}" );
@@ -153,7 +149,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	/**
 	 * Checks if is valid md5 string
 	 *
-	 * @param string $md5
+	 * @param string $md5 String.
 	 * @return int
 	 */
 	protected function is_valid_md5( $md5 = '' ) {
@@ -203,7 +199,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	/**
 	 * Decodes a JSON string and, if the object is an array, overwrites the session container with its contents.
 	 *
-	 * @param string $data
+	 * @param string $data Data.
 	 *
 	 * @return bool
 	 */
