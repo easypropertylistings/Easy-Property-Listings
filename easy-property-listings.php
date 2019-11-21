@@ -153,7 +153,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS' ) ) {
 				define( 'EPL_PATH_TEMPLATES_POST_TYPES_GENESIS', EPL_PATH_TEMPLATES_POST_TYPES . 'genesis/' );
 			}
-			// disable php sessions, use WP sessions
+			// Disable php sessions, use WP sessions.
 			if ( ! defined( 'EPL_USE_PHP_SESSIONS' ) ) {
 				define( 'EPL_USE_PHP_SESSIONS', false );
 			}
