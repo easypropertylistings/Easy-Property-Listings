@@ -489,7 +489,7 @@ function epl_get_the_status( $post = 0 ) {
  * @since 1.0
  * @param string $post_ID The post ID.
  * @param string $meta_key Meta key name.
- * @return the string/list for values
+ * @return string Value.
  */
 function epl_get_property_meta( $post_ID = '', $meta_key = '' ) {
 
@@ -521,7 +521,7 @@ function epl_the_property_meta( $post_ID = '', $meta_key ) {
  * Taxonomy Location Label
  *
  * @since 1.0
- * @return all the settings in array
+ * @return string Location label.
  */
 function epl_tax_location_label() {
 	$label_location = '';
@@ -530,7 +530,7 @@ function epl_tax_location_label() {
 		$label_location = trim( $epl_settings['label_location'] );
 	}
 	if ( empty( $label_location ) ) {
-		$label_location = 'City';
+		$label_location = esc_html__( 'City', 'easy-property-listings' );
 	}
 	return $label_location;
 }
