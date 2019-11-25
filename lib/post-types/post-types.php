@@ -124,7 +124,7 @@ function epl_custom_restrict_manage_posts() {
 function epl_admin_posts_filter( $query ) {
 	// phpcs:disable WordPress.Security.NonceVerification
 	global $pagenow;
-	if ( is_admin() && 'edit.php' === $pagenow ) {
+	if ( is_admin() && 'edit.php' === $pagenow && in_array( $query->get( 'post_type' ), epl_get_core_post_types(), true ) ) {
 		$meta_query = (array) $query->get( 'meta_query' );
 
 		if ( isset( $_GET['property_status'] ) && ! empty( $_GET['property_status'] ) ) {
