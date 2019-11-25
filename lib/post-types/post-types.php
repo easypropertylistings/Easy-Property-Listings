@@ -143,12 +143,12 @@ function epl_admin_posts_filter( $query ) {
 				'relation' => 'OR',
 				array(
 					'key'   => 'property_agent',
-					'value' => $author_object->user_login
+					'value' => $author_object->user_login,
 				),
 				array(
 					'key'   => 'property_second_agent',
-					'value' => $author_object->user_login
-				)
+					'value' => $author_object->user_login,
+				),
 			);
 		}
 
