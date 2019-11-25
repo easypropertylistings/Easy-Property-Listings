@@ -140,14 +140,14 @@ function epl_admin_posts_filter( $query ) {
 			$author = intval( $_GET['property_author'] ); // WPCS: XSS ok.
 			$author_object = get_user_by( 'id', $author );
 			$meta_query[] = array(
-				'relation'	=>	'OR',
+				'relation' => 'OR',
 				array(
-					'key'     => 'property_agent',
-					'value'   => $author_object->user_login
+					'key'   => 'property_agent',
+					'value' => $author_object->user_login
 				),
 				array(
-					'key'     => 'property_second_agent',
-					'value'   => $author_object->user_login
+					'key'   => 'property_second_agent',
+					'value' => $author_object->user_login
 				)
 			);
 		}

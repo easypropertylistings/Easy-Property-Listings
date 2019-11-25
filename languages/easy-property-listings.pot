@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.4.16\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-11-25 08:02:12+00:00\n"
+"POT-Creation-Date: 2019-11-25 08:03:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -606,7 +606,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1245
 #: lib/includes/functions.php:2512 lib/post-types/post-types.php:54
-#: lib/post-types/post-types.php:583
+#: lib/post-types/post-types.php:594
 #: lib/widgets/class-epl-widget-recent-property.php:177
 #: lib/widgets/class-epl-widget-recent-property.php:325
 #: lib/widgets/widget-admin-dashboard.php:140
@@ -2784,7 +2784,7 @@ msgid "bath"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1209
-#: lib/meta-boxes/meta-box-init.php:304 lib/post-types/post-types.php:344
+#: lib/meta-boxes/meta-box-init.php:304 lib/post-types/post-types.php:355
 #: lib/widgets/widget-functions.php:174 lib/widgets/widget-functions.php:650
 msgid "Rooms"
 msgstr ""
@@ -2817,7 +2817,7 @@ msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1587
 #: lib/includes/class-epl-property-meta.php:1658
-#: lib/post-types/post-types.php:354
+#: lib/post-types/post-types.php:365
 msgid "m&#178;"
 msgstr ""
 
@@ -3822,7 +3822,7 @@ msgid "Under Contract"
 msgstr ""
 
 #: lib/includes/functions.php:2513 lib/post-types/post-types.php:55
-#: lib/post-types/post-types.php:584
+#: lib/post-types/post-types.php:595
 #: lib/widgets/class-epl-widget-recent-property.php:180
 #: lib/widgets/class-epl-widget-recent-property.php:328
 #: lib/widgets/widget-admin-dashboard.php:150
@@ -3832,7 +3832,7 @@ msgid "Withdrawn"
 msgstr ""
 
 #: lib/includes/functions.php:2514 lib/post-types/post-types.php:56
-#: lib/post-types/post-types.php:585
+#: lib/post-types/post-types.php:596
 #: lib/widgets/class-epl-widget-recent-property.php:181
 #: lib/widgets/class-epl-widget-recent-property.php:329
 #: lib/widgets/widget-admin-dashboard.php:155
@@ -5145,39 +5145,39 @@ msgstr ""
 msgid "Search Value."
 msgstr ""
 
-#: lib/post-types/post-types.php:276
+#: lib/post-types/post-types.php:287
 msgid "Important! Set a Heading"
 msgstr ""
 
-#: lib/post-types/post-types.php:323
+#: lib/post-types/post-types.php:334
 msgid "Outgoings:"
 msgstr ""
 
-#: lib/post-types/post-types.php:328
+#: lib/post-types/post-types.php:339
 msgid "Return:"
 msgstr ""
 
-#: lib/post-types/post-types.php:334
+#: lib/post-types/post-types.php:345
 msgid "Beds"
 msgstr ""
 
-#: lib/post-types/post-types.php:335
+#: lib/post-types/post-types.php:346
 msgid "Baths"
 msgstr ""
 
-#: lib/post-types/post-types.php:342
+#: lib/post-types/post-types.php:353
 msgid "Room"
 msgstr ""
 
-#: lib/post-types/post-types.php:455
+#: lib/post-types/post-types.php:466
 msgid "No"
 msgstr ""
 
-#: lib/post-types/post-types.php:539
+#: lib/post-types/post-types.php:550
 msgid "No price set"
 msgstr ""
 
-#: lib/post-types/post-types.php:558
+#: lib/post-types/post-types.php:569
 msgid "Lease End:"
 msgstr ""
 
