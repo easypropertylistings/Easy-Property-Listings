@@ -118,8 +118,10 @@ function epl_custom_restrict_manage_posts() {
 /**
  * Admin Posts Filter.
  *
- * @since 1.0
  * @param array $query WordPress query.
+ *
+ * @since 1.0.0
+ * @since 3.4.16 Filter by property author now shows results for both primary and secondary author.
  */
 function epl_admin_posts_filter( $query ) {
 	// phpcs:disable WordPress.Security.NonceVerification
