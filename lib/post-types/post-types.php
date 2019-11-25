@@ -138,7 +138,18 @@ function epl_admin_posts_filter( $query ) {
 
 		if ( isset( $_GET['property_author'] ) && ! empty( $_GET['property_author'] ) ) {
 			$author = intval( $_GET['property_author'] ); // WPCS: XSS ok.
-			$query->set( 'author', $author );
+			$author_object = get_user_by( 'id', $author );
+			$meta_query[] = array(
+				'relation'	=>	'OR',
+				array(
+					'key'     => 'property_agent',
+					'value'   => $author_object->user_login
+				),
+				array(
+					'key'     => 'property_second_agent',
+					'value'   => $author_object->user_login
+				)
+			);
 		}
 
 		if ( ! empty( $_GET['property_custom_value'] ) && ! empty( $_GET['property_custom_fields'] ) ) {
