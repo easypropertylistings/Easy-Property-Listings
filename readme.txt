@@ -397,6 +397,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.16 November 25, 2019 =
+
+* Fix: Added check for post type in epl_admin_posts_filter to avoid conflict with other plugins like ninja forms.
+
 = 3.4.15 November 21, 2019 =
 
 * New: Migrated from PHP Session to WP Session to prevent WordPress > Tools > Site Health REST API error.
