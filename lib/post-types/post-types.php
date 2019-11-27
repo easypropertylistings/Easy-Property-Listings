@@ -118,8 +118,10 @@ function epl_custom_restrict_manage_posts() {
 /**
  * Admin Posts Filter.
  *
- * @since 1.0
  * @param array $query WordPress query.
+ *
+ * @since 1.0.0
+ * @since 3.4.16 Filter by property author now shows results for both primary and secondary author.
  */
 function epl_admin_posts_filter( $query ) {
 	// phpcs:disable WordPress.Security.NonceVerification
@@ -138,15 +140,15 @@ function epl_admin_posts_filter( $query ) {
 			$author = intval( $_GET['property_author'] ); // WPCS: XSS ok.
 			$author_object = get_user_by( 'id', $author );
 			$meta_query[] = array(
-				'relation'	=>	'OR',
+				'relation' => 'OR',
 				array(
-					'key'     => 'property_agent',
-					'value'   => $author_object->user_login
+					'key'   => 'property_agent',
+					'value' => $author_object->user_login,
 				),
 				array(
-					'key'     => 'property_second_agent',
-					'value'   => $author_object->user_login
-				)
+					'key'   => 'property_second_agent',
+					'value' => $author_object->user_login,
+				),
 			);
 		}
 

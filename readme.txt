@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.3
-Stable Tag: 3.4.14
+Stable Tag: 3.4.15
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -396,6 +396,16 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.16 November 25, 2019 =
+
+* Fix: Added check for post type in epl_admin_posts_filter to avoid conflict with other plugins like ninja forms.
+* Fix: Filter by property author now shows results for both primary and secondary author.
+
+= 3.4.15 November 21, 2019 =
+
+* New: Migrated from PHP Session to WP Session to prevent WordPress > Tools > Site Health REST API error.
+* Fix: City label missing translation string.
 
 = 3.4.14 November 13, 2019 =
 
