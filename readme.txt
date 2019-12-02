@@ -397,6 +397,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.17 December 2, 2019 =
+
+* Tweak: Moved Readme widget option to appear before the Read me label.
+* Tweak: Wrapper for wp_doing_ajax with fallback for 3.7 versions of WordPress or lower.
+* Fix: SVG filtering now allows circle tag correcting issue with LinkedIn icon missing a dot.
+* Fix: Empty values not getting saved for decimals and numbers.
+
 = 3.4.16 November 25, 2019 =
 
 * Fix: Added check for post type in epl_admin_posts_filter to avoid conflict with other plugins like ninja forms.

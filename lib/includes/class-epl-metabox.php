@@ -296,6 +296,7 @@ class EPL_METABOX {
 	 * @param int $post_ID The post ID.
 	 *
 	 * @return int
+	 * @since 3.4.17	Fixed issue : empty values not getting saved for decimals & numbers
 	 */
 	public function save_meta_box( $post_ID ) {
 
@@ -366,7 +367,7 @@ class EPL_METABOX {
 
 												// Validate numeric data.
 
-												if ( ! is_numeric( $_POST[ $field['name'] ] ) ) {
+												if ( ! is_numeric( $_POST[ $field['name'] ] ) && ! empty( $_POST[ $field['name'] ] ) ) {
 													continue;
 												}
 											} elseif ( in_array( $field['type'], array( 'textarea' ), true ) ) {

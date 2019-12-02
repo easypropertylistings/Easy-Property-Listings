@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.4.16\n"
+"Project-Id-Version: Easy Property Listings 3.4.17\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2019-11-25 08:03:07+00:00\n"
+"POT-Creation-Date: 2019-12-02 05:30:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1761,7 +1761,7 @@ msgstr ""
 #: lib/includes/admin/menus/class-epl-welcome.php:560
 #: lib/includes/admin/menus/menu-help.php:174
 #: lib/meta-boxes/meta-box-init.php:220
-#: lib/widgets/class-epl-widget-recent-property.php:551
+#: lib/widgets/class-epl-widget-recent-property.php:541
 msgid "Inspection Times"
 msgstr ""
 
@@ -2532,7 +2532,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:712
-#: lib/includes/template-functions.php:2933
+#: lib/includes/template-functions.php:2948
 #: lib/shortcodes/class-epl-listing-elements.php:77
 msgid "Listing"
 msgstr ""
@@ -4083,46 +4083,46 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:2711
+#: lib/includes/template-functions.php:2726
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:2927
+#: lib/includes/template-functions.php:2942
 #. translators: term name.
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:2929
+#: lib/includes/template-functions.php:2944
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:2999
+#: lib/includes/template-functions.php:3014
 #: lib/templates/content/shortcode-listing.php:53
 #. translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3002
+#: lib/includes/template-functions.php:3017
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3017
+#: lib/includes/template-functions.php:3032
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:3019
+#: lib/includes/template-functions.php:3034
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3092
+#: lib/includes/template-functions.php:3107
 msgid "Form submitted successfully"
 msgstr ""
 
-#: lib/includes/template-functions.php:3097
+#: lib/includes/template-functions.php:3112
 msgid "Some issues with form submitted"
 msgstr ""
 
-#: lib/includes/template-functions.php:3116
+#: lib/includes/template-functions.php:3131
 msgid "Email is required"
 msgstr ""
 
@@ -5670,12 +5670,12 @@ msgstr ""
 msgid "Street Address"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-recent-property.php:541
-msgid "Read More Button"
+#: lib/widgets/class-epl-widget-recent-property.php:551
+msgid "Inspection Time iCal Link"
 msgstr ""
 
 #: lib/widgets/class-epl-widget-recent-property.php:561
-msgid "Inspection Time iCal Link"
+msgid "Read More Button"
 msgstr ""
 
 #: lib/widgets/class-epl-widget-recent-property.php:565
