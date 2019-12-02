@@ -2330,6 +2330,21 @@ function epl_get_shortcode_list() {
 }
 
 /**
+ * Wrapper for wp_doing_ajax with fallback for lower WP versions
+ *
+ * @return     bool  True if its an ajax request
+ * @since      3.4.17
+ */
+function epl_wp_doing_ajax() {
+
+	if( function_exists( 'wp_doing_ajax' ) ) {
+		return wp_doing_ajax();
+	} else {
+		return apply_filters( 'wp_doing_ajax', defined( 'DOING_AJAX' ) && DOING_AJAX );
+	}
+}
+
+/**
  * Pagination fix for home
  *
  * @param      array $query  The query.
@@ -2350,7 +2365,7 @@ function epl_home_pagination_fix( $query ) {
 	$shortcodes = epl_get_shortcode_list();
 
 	if ( $query->get( 'is_epl_shortcode' ) &&
-		in_array( $query->get( 'epl_shortcode_name' ), $shortcodes, true ) && ! wp_doing_ajax() ) {
+		in_array( $query->get( 'epl_shortcode_name' ), $shortcodes, true ) && ! epl_wp_doing_ajax() ) {
 
 		if ( isset( $_GET['pagination_id'] ) && $_GET['pagination_id'] === $query->get( 'instance_id' ) ) {
 			$query->set( 'paged', $query->get( 'paged' ) );
