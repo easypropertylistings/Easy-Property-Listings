@@ -21,7 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $content Content.
  *
  * @return string
- * @since       1.0
+ * @since 1.0.0
+ * @since 3.4.18 Added wrapper class epl-section-map.
  */
 function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	global $property;
