@@ -397,6 +397,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.18 December 10, 2019 =
+
+* Tweak: Added a wrapper css class epl-section-map to the default map output wrapper.
+* Fix: Internal help page video link was not working correctly for Adding Listing.
+
 = 3.4.17 December 2, 2019 =
 
 * Tweak: Moved Readme widget option to appear before the Read me label.
