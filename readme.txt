@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.2.4
-Stable Tag: 3.4.10
+Tested up to: 5.3
+Stable Tag: 3.4.16
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -396,6 +396,39 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.17 December 2, 2019 =
+
+* Tweak: Moved Readme widget option to appear before the Read me label.
+* Tweak: Wrapper for wp_doing_ajax with fallback for 3.7 versions of WordPress or lower.
+* Fix: SVG filtering now allows circle tag correcting issue with LinkedIn icon missing a dot.
+* Fix: Empty values not getting saved for decimals and numbers.
+
+= 3.4.16 November 25, 2019 =
+
+* Fix: Added check for post type in epl_admin_posts_filter to avoid conflict with other plugins like ninja forms.
+* Fix: Filter by property author now shows results for both primary and secondary author.
+
+= 3.4.15 November 21, 2019 =
+
+* New: Migrated from PHP Session to WP Session to prevent WordPress > Tools > Site Health REST API error.
+* Fix: City label missing translation string.
+
+= 3.4.14 November 13, 2019 =
+
+* New: Support for WordPress 5.3 TwentyTwenty theme.
+* Fix: Custom additional features hook corrected as custom features were outputting incorrectly.
+
+= 3.4.13 November 11, 2019 =
+
+* Tweak: Listing widget: Custom template display, file extension no longer required and file name format enforced to the format widget-content-listing-{template_name}.php
+* Tweak: CSS convert helper grid class to inline-block instead of float left.
+* Fix: Search was not searching correctly when no post type was set.
+* Fix: Listing Widget bed/bath only icons SVG output.
+
+= 3.4.12 November 1, 2019 =
+
+* Fix: Loading admin css and js on appearance > widgets screens.
 
 = 3.4.11 October 30, 2019 =
 

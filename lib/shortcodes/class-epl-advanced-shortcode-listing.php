@@ -51,7 +51,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Array of arguments passed to WP_Query.
 	 *
 	 * @since 3.3.0
-	 * @var type $args Arguments.
+	 * @var array $args Arguments.
 	 */
 	public $args;
 
@@ -59,7 +59,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Meta price key.
 	 *
 	 * @since 3.3.0
-	 * @var type $meta_key_price Default price meta value.
+	 * @var string $meta_key_price Default price meta value.
 	 */
 	public $meta_key_price = 'property_price';
 

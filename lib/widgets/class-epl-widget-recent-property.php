@@ -532,16 +532,6 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_more' ); ?>" name="<?php echo $this->get_field_name( 'd_more' ); ?>"
-												<?php
-												if ( $instance['d_more'] ) {
-													echo 'checked="checked"';}
-												?>
-			/>
-			<label for="<?php echo $this->get_field_id( 'd_more' ); ?>"><?php esc_html_e( 'Read More Button', 'easy-property-listings' ); ?></label>
-		</p>
-
-		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_inspection_time' ); ?>" name="<?php echo $this->get_field_name( 'd_inspection_time' ); ?>"
 												<?php
 												if ( $instance['d_inspection_time'] ) {
@@ -559,6 +549,16 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 												?>
 			/>
 			<label for="<?php echo $this->get_field_id( 'd_ical_link' ); ?>"><?php esc_html_e( 'Inspection Time iCal Link', 'easy-property-listings' ); ?></label>
+		</p>
+
+		<p>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_more' ); ?>" name="<?php echo $this->get_field_name( 'd_more' ); ?>"
+												<?php
+												if ( $instance['d_more'] ) {
+													echo 'checked="checked"';}
+												?>
+			/>
+			<label for="<?php echo $this->get_field_id( 'd_more' ); ?>"><?php esc_html_e( 'Read More Button', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
