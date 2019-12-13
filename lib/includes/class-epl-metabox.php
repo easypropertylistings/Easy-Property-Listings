@@ -220,6 +220,8 @@ class EPL_METABOX {
 	 *
 	 * @param array $post Post object.
 	 * @param array $args Array of options.
+	 * 
+	 * @since 3.4.19 Updated to new html structure for fields using html lists
 	 */
 	public function inner_meta_box( $post, $args ) {
 		$groups = $args['args']['groups'];
@@ -227,57 +229,69 @@ class EPL_METABOX {
 		if ( ! empty( $groups ) ) {
 			wp_nonce_field( $this->prefix . 'inner_custom_box', $this->prefix . 'inner_custom_box_nonce' );
 			foreach ( $groups as $group ) { ?>
-			<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
-						<?php
+				<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
+					<?php
 						$group['label'] = trim( $group['label'] );
-						if ( ! empty( $group['label'] ) ) {
-							echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
-						}
-						?>
-					<table class="form-table epl-form-table">
-					<tbody>
-								<?php
-								$fields = $group['fields'];
-								$fields = array_filter( $fields );
-								if ( ! empty( $fields ) ) {
-									foreach ( $fields as $field ) {
-										if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
-											if ( in_array( $post->post_type, $field['exclude'], true ) ) {
-												continue;
-											}
-										}
-
-										if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
-											if ( ! in_array( $post->post_type, $field['include'], true ) ) {
-												continue;
-											}
-										}
-										?>
-								<tr class="form-field">
-										<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
-									<th valign="top" scope="row">
-										<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_html( $field['label'] ); ?></label>
-									</th>
-									<?php endif; ?>
-
-										<?php if ( $group['columns'] > 1 ) { ?>
-										</tr><tr class="form-field">
-									<?php } ?>
-
-									<td>
-										<?php
-											$val = get_post_meta( $post->ID, $field['name'], true );
-											epl_render_html_fields( $field, $val );
-										?>
-									</td>
-								</tr>
-										<?php
+					if ( ! empty( $group['label'] ) ) {
+						echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
+					}
+					?>
+					<ul class="form-table epl-form-table">
+						<?php
+						$fields         = $group['fields'];
+						$gp_field_width = isset( $group['width'] ) ? $group['width'] : '1';
+						$fields         = array_filter( $fields );
+						if ( ! empty( $fields ) ) {
+							foreach ( $fields as $field ) {
+								if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
+									if ( in_array( $post->post_type, $field['exclude'], true ) ) {
+										continue;
 									}
 								}
+
+								if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
+									if ( ! in_array( $post->post_type, $field['include'], true ) ) {
+										continue;
+									}
+								}
+								$val = get_post_meta( $post->ID, $field['name'], true );
+								if ( has_action( 'epl_before_meta_field_' . $field['name'] ) ) {
+									do_action( 'epl_before_meta_field_' . $field['name'], $post, $val );
+								}
+
+								$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
 								?>
-					</tbody>
-				</table>
-			</div>
+								<li id="epl_<?php echo esc_attr( $field['name'] ); ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo esc_attr( $field_width ); ?> epl_<?php echo esc_attr( $field['name'] ); ?>_wrap epl-field-type-<?php echo esc_attr( $field['type'] ); ?>">
+
+
+									<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
+									<div class="form-field epl-form-field-label">
+										<span valign="top" scope="row">
+											<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_attr( $field['label'] ); ?></label>
+										</span>
+									</div>
+									<?php endif; ?>
+
+
+									<div id="epl_<?php echo esc_attr( $field['name'] ); ?>" class="form-field epl-form-field-value epl_<?php echo esc_attr( $field['name'] ); ?>">
+										<?php
+											epl_render_html_fields( $field, $val );
+										?>
+									</div>
+
+								</li>
+
+								<?php
+								if ( has_action( 'epl_after_meta_field_' . $field['name'] ) ) {
+									do_action( 'epl_after_meta_field_' . $field['name'], $post, $val );
+								}
+								?>
+								<?php
+							}
+						}
+						?>
+					</ul>
+				</div>
 				<?php
 			}
 			?>
