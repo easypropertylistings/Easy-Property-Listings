@@ -21,7 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $content Content.
  *
  * @return string
- * @since       1.0
+ * @since 1.0.0
+ * @since 3.4.18 Added wrapper class epl-section-map.
  */
 function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	global $property;
@@ -37,7 +38,7 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 		$atts
 	);
 
-	return '<div class="epl-tab-section">
+	return '<div class="epl-tab-section epl-section-map">
 				<div style="width:' . esc_attr( $atts['width'] ) . '; height:' . esc_attr( $atts['height'] ) . 'px" data-suburb_mode="' . esc_attr( $atts['suburb_mode'] ) . '" data-cord="' . esc_attr( $atts['cord'] ) . '" data-zoom="' . esc_attr( $atts['zoom'] ) . '" data-id="' . esc_attr( $property->post->ID ) . '" data-address="' . esc_attr( $atts['q'] ) . '" id="epl-default-map">
 			</div> </div>';
 }

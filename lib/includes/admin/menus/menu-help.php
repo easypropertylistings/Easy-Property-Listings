@@ -120,7 +120,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php $video_add_listing_id = 'h6B8LLecfbw'; ?>
 
 								<div class="video-container">
-									<iframe width="475" height="267" src="//www.youtube.com/embed/<?php esc_attr( $video_add_listing_id ); ?>" frameborder="0" allowfullscreen ></iframe>
+									<iframe width="475" height="267" src="//www.youtube.com/embed/<?php echo esc_attr( $video_add_listing_id ); ?>" frameborder="0" allowfullscreen ></iframe>
 								</div>
 							</div>
 						</div>
