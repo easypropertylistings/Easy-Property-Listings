@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.3
-Stable Tag: 3.4.15
+Stable Tag: 3.4.16
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -396,6 +396,13 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.17 December 2, 2019 =
+
+* Tweak: Moved Readme widget option to appear before the Read me label.
+* Tweak: Wrapper for wp_doing_ajax with fallback for 3.7 versions of WordPress or lower.
+* Fix: SVG filtering now allows circle tag correcting issue with LinkedIn icon missing a dot.
+* Fix: Empty values not getting saved for decimals and numbers.
 
 = 3.4.16 November 25, 2019 =
 
