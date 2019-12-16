@@ -397,6 +397,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.19 December 17, 2019 =
+
+* New: Added epl_recent_property_widget_default_args and epl_recent_property_widget_query filters for defaults and query args making targeting widget query easier in pre_get_posts.
+* Tweak: Updated to new html structure for fields using html lists.
+
 = 3.4.18 December 10, 2019 =
 
 * Tweak: Added a wrapper css class epl-section-map to the default map output wrapper.
