@@ -397,10 +397,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.4.19 December 17, 2019 =
+= 3.4.19 December 19, 2019 =
 
 * New: Added epl_recent_property_widget_default_args and epl_recent_property_widget_query filters for defaults and query args making targeting widget query easier in pre_get_posts.
-* Tweak: Updated to new html structure for fields using html lists.
+* Tweak: Updated to new html structure for fields using html lists in new custom post types for extensions.
+* Tweak: Removed article wrapper from Divi Template.
 
 = 3.4.18 December 10, 2019 =
 
