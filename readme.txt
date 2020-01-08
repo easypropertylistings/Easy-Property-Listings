@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.3
-Stable Tag: 3.4.16
+Tested up to: 5.3.2
+Stable Tag: 3.4.18
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -396,6 +396,17 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.19 December 19, 2019 =
+
+* New: Added epl_recent_property_widget_default_args and epl_recent_property_widget_query filters for defaults and query args making targeting widget query easier in pre_get_posts.
+* Tweak: Updated to new html structure for fields using html lists in new custom post types for extensions.
+* Tweak: Removed article wrapper from Divi Template.
+
+= 3.4.18 December 10, 2019 =
+
+* Tweak: Added a wrapper css class epl-section-map to the default map output wrapper.
+* Fix: Internal help page video link was not working correctly for Adding Listing.
 
 = 3.4.17 December 2, 2019 =
 

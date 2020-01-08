@@ -37,6 +37,8 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	 * @since 1.0
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
+	 *
+	 * @since 3.4.19 Added filters for defaults & query args Making targeting Widget query easier in pre_get_posts
 	 */
 	public function widget( $args, $instance ) {
 		$property_types = epl_get_active_post_types();
@@ -71,6 +73,8 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			'p_skip'            => 0, // number of listings to skip.
 
 		);
+
+		$defaults = apply_filters( 'epl_recent_property_widget_default_args', $defaults );
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		if ( ! is_array( $instance['types'] ) ) {
@@ -133,8 +137,13 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		if ( 'on' === $instance['order_rand'] ) {
 			$query_args['orderby'] = 'rand';
 		}
+		$query_args['is_epl_widget']                 = true;
+		$query_args['is_epl_recent_property_widget'] = true;
+		$query_args['epl_widget_instance']           = $this->id;
 
+		$query_args = apply_filters( 'epl_recent_property_widget_query', $query_args, $instance, $args );
 		$query = new WP_Query( $query_args );
+
 		epl_get_template_part(
 			'widgets/listing/' . ( strlen( trim( $instance['view'] ) ) ? trim( $instance['view'] ) : 'default' ) . '.php',
 			array(
