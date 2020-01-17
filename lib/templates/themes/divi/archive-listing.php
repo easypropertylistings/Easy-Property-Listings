@@ -5,6 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/Divi
  * @since 1.0
+ * @since 3.4.19 Remved article wrapper
  */
 
 // Exit if accessed directly.
@@ -28,11 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					the_post();
 					$post_format = get_post_format();
 					?>
-
-					<article>
-
-						<?php do_action( 'epl_property_blog' ); ?>
-					</article> <!-- .et_pb_post -->
+					<?php do_action( 'epl_property_blog' ); ?>
 					<?php
 					endwhile;
 				?>
