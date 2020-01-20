@@ -3194,3 +3194,32 @@ function epl_contact_capture_action() {
 }
 add_action( 'wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action' );
 add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action' );
+
+/**
+ * Get Post ID from Unique ID
+ * @param  string $unique_id Unique ID
+ * @return mixed false if not found, else Post ID
+ * @since 3.5.0
+ */
+function epl_get_post_id_from_unique_id( $unique_id = '' ) {
+
+	if( '' === $unique_id )
+		return false;
+
+	$args = array(
+		'meta_key'       => 'property_unique_id',
+		'meta_value'     => $unique_id,
+		'post_type'      => epl_get_core_post_types(),
+		'post_status'    => 'publish',
+		'posts_per_page' => -1
+	);
+
+	$posts = get_posts($args);
+
+	if( ! empty( $posts ) ) {
+		$post = current( $posts );
+		return $post->ID;
+	}
+
+	return false;
+}

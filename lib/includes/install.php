@@ -107,9 +107,6 @@ function epl_get_default_settings() {
 function epl_install() {
 	global $wpdb, $epl_options, $wp_version;
 
-	// Clear the permalinks.
-	flush_rewrite_rules();
-
 	// Add default EPL Settings.
 	$epl_settings = epl_settings();
 
@@ -151,6 +148,10 @@ function epl_install() {
 		return;
 	}
 	remove_role( 'epl_crm' );
+
+	// Clear the permalinks.
+	flush_rewrite_rules();
+	
 	// Add the transient to redirect.
 	set_transient( '_epl_activation_redirect', true, 30 );
 }
