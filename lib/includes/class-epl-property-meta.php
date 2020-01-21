@@ -1246,6 +1246,7 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item, s = svg icon.
 	 * @return string
+	 * @since 3.4.20 new filter epl_total_parking_spaces for value.
 	 */
 	public function get_property_parking( $returntype = 'i' ) {
 
@@ -1262,6 +1263,7 @@ class EPL_Property_Meta {
 		$property_garage  = intval( $this->get_property_meta( 'property_garage' ) );
 		$property_carport = intval( $this->get_property_meta( 'property_carport' ) );
 		$value            = $property_carport + $property_garage;
+		$value 			  = apply_filters( 'epl_total_parking_spaces', $value ); 				
 
 		if ( 0 === $value ) {
 			return;
