@@ -397,9 +397,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.20 January 22, 2020 =
+
 * New: Filter added to the parking spaces function epl_total_parking_spaces allowing you to alter the value of the parking icons.
-
-
+* New: Helper function to get the WordPress post id from the property_unique_id field.
+* Tweak: Better flushing of permalinks when settings are saved or on install.
 
 = 3.4.19 December 19, 2019 =
 
