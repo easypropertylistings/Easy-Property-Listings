@@ -397,6 +397,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.21 January 22, 2020 =
+
+* Tweak: Corrected the new parking filter.
+
 = 3.4.20 January 22, 2020 =
 
 * New: Filter epl_total_parking_spaces added to the parking spaces function allowing you to alter the total value of the parking icons.
