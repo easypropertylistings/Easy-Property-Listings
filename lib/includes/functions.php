@@ -122,7 +122,9 @@ function epl_remote_url_get( $url ) {
  * @param string $post_type Post type name.
  * @param string $post_type_label Post type label.
  * @param array  $args Arguments.
- * @since 1.0
+ *
+ * @since 1.0.0
+ * @since 3.4.20 flush permalinks after new settings are saved.
  */
 function epl_register_post_type( $post_type = '', $post_type_label, $args = array() ) {
 	if ( empty( $post_type ) ) {
@@ -145,7 +147,7 @@ function epl_register_post_type( $post_type = '', $post_type_label, $args = arra
 	}
 
 	if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) { //phpcs:ignore
-		$_SESSION['epl_actions']['epl_flush_rewrite_rules'] = true;
+		update_option( 'epl_rewrite_rules', false );
 	}
 }
 
