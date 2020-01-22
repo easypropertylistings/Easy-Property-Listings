@@ -1263,7 +1263,7 @@ class EPL_Property_Meta {
 		$property_garage  = intval( $this->get_property_meta( 'property_garage' ) );
 		$property_carport = intval( $this->get_property_meta( 'property_carport' ) );
 		$value            = $property_carport + $property_garage;
-		$value 			  = apply_filters( 'epl_total_parking_spaces', $value ); 				
+		$value            = apply_filters( 'epl_total_parking_spaces', $value );
 
 		if ( 0 === $value ) {
 			return;

@@ -397,6 +397,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+* New: Filter added to the parking spaces function epl_total_parking_spaces allowing you to alter the value of the parking icons.
+
+
+
 = 3.4.19 December 19, 2019 =
 
 * New: Added epl_recent_property_widget_default_args and epl_recent_property_widget_query filters for defaults and query args making targeting widget query easier in pre_get_posts.

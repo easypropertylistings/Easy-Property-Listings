@@ -98,11 +98,13 @@ function epl_get_default_settings() {
  * pages. After successful install, the user is redirected to the EPL Welcome
  * screen.
  *
- * @since 1.0
  * @global $wpdb
  * @global $epl_options
  * @global $wp_version
  * @return void
+ *
+ * @since 1.0
+ * @since 3.4.20 Altered order of flush permalinks function.
  */
 function epl_install() {
 	global $wpdb, $epl_options, $wp_version;
@@ -151,7 +153,7 @@ function epl_install() {
 
 	// Clear the permalinks.
 	flush_rewrite_rules();
-	
+
 	// Add the transient to redirect.
 	set_transient( '_epl_activation_redirect', true, 30 );
 }
