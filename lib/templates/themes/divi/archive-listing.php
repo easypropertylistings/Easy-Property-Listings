@@ -5,7 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/Divi
  * @since 1.0
- * @since 3.4.19 Remved article wrapper
+ * @since 3.4.19 Removed article wrapper
  */
 
 // Exit if accessed directly.
