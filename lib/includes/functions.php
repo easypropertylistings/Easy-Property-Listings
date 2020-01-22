@@ -122,8 +122,9 @@ function epl_remote_url_get( $url ) {
  * @param string $post_type Post type name.
  * @param string $post_type_label Post type label.
  * @param array  $args Arguments.
+ *
  * @since 1.0.0
- * @since 3.4.20 flush permalinks after new settings are saved
+ * @since 3.4.20 flush permalinks after new settings are saved.
  */
 function epl_register_post_type( $post_type = '', $post_type_label, $args = array() ) {
 	if ( empty( $post_type ) ) {
