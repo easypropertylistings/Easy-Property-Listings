@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.3.2
-Stable Tag: 3.4.18
+Stable Tag: 3.4.21
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -396,6 +396,16 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.21 January 22, 2020 =
+
+* Tweak: Corrected the new parking filter.
+
+= 3.4.20 January 22, 2020 =
+
+* New: Filter epl_total_parking_spaces added to the parking spaces function allowing you to alter the total value of the parking icons.
+* New: Helper epl_get_post_id_from_unique_id function to get the WordPress post id from the property_unique_id field.
+* Tweak: Better flushing of permalinks when settings are saved or on install.
 
 = 3.4.19 December 19, 2019 =
 
