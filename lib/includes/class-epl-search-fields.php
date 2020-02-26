@@ -334,6 +334,7 @@ class EPL_Search_Fields {
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
 	 * @return void
+	 * @since  3.4.22 : For attribute added for checkbox labels
 	 */
 	public function render_checkbox_multiple( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -358,7 +359,7 @@ class EPL_Search_Fields {
 								id="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>"
 								value="<?php echo esc_attr( $k ); ?>"
 								class="in-field field-width <?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" />
-							<label class="epl-search-checkbox-label"><?php echo esc_attr( $v ); ?></label>
+							<label for="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" class="epl-search-checkbox-label"><?php echo esc_attr( $v ); ?></label>
 																				<?php
 						}
 					}
