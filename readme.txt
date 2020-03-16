@@ -397,6 +397,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.23 March 16, 2020 =
+
+* Tweak: Altered the admin output of property category to use the label instead of value.
+
 = 3.4.22 February 26, 2020 =
 
 * Fix: For attribute added for checkbox labels in search.

@@ -301,13 +301,13 @@ function epl_manage_listing_column_listing_callback() {
 	}
 
 	// Need to factor in business category: <businessCategory id="1">.
-	// Need to factor in business category: 	<name>Food/Hospitality</name>.
-	// Need to factor in business category: 	<businessSubCategory>.
-	// Need to factor in business category: 	<name>Takeaway Food</name>.
-	// Need to factor in business category: 	</businessSubCategory>.
-	// Need to factor in business category: 		</businessCategory>.
-	// Need to factor in business category: 	<businessCategory id="2"/>.
-	// Need to factor in business category: 	<businessCategory id="3"/>.
+	// Need to factor in business category: <name>Food/Hospitality</name>.
+	// Need to factor in business category: <businessSubCategory>.
+	// Need to factor in business category: <name>Takeaway Food</name>.
+	// Need to factor in business category: </businessSubCategory>.
+	// Need to factor in business category: </businessCategory>.
+	// Need to factor in business category: <businessCategory id="2"/>.
+	// Need to factor in business category: <businessCategory id="3"/>.
 
 	// Need to factor in business fields: property_bus_takings (number).
 	// Need to factor in business fields: property_bus_franchise (yes/no).
@@ -326,7 +326,8 @@ function epl_manage_listing_column_listing_callback() {
 
 	// Listing Category.
 	if ( ! empty( $category ) ) {
-		echo '<div class="epl_meta_category">' , esc_html( $category ) , '</div>';
+		$property_category = $property->get_property_category( $category );
+		echo '<div class="epl_meta_category">' , wp_kses_post( $property_category ) , '</div>';
 	}
 
 	// Outgoings for commercial listing type.
