@@ -254,7 +254,8 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
 /**
  * Posts Types Columns.
  *
- * @since 1.0
+ * @since 1.0.0
+ * @since 3.4.23 Altered the admin output of property_category to use the label instead of value.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -326,7 +327,7 @@ function epl_manage_listing_column_listing_callback() {
 
 	// Listing Category.
 	if ( ! empty( $category ) ) {
-		$property_category = $property->get_property_category( $category );
+		$property_category = $property->get_property_category( 'span', 'epl_meta_property_category' );
 		echo '<div class="epl_meta_category">' , wp_kses_post( $property_category ) , '</div>';
 	}
 
