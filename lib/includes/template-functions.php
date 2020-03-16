@@ -319,6 +319,8 @@ function epl_hide_listing_statuses() {
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
  *
+ * @since 3.4.23 Removed compatiblity template for loop
+ *
  * @param string $template  The template.
  */
 function epl_property_blog( $template = '' ) {
@@ -344,15 +346,9 @@ function epl_property_blog( $template = '' ) {
 			do_action( 'epl_loop_template' );
 		} else {
 
-			if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
-
-				epl_get_template_part( 'loop-listing-blog-' . $template . '-compatibility.php' );
-
-			} else {
-				$tpl_name = 'loop-listing-blog-' . $template . '.php';
-				$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
-				epl_get_template_part( $tpl_name );
-			}
+			$tpl_name = 'loop-listing-blog-' . $template . '.php';
+			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
+			epl_get_template_part( $tpl_name );
 		}
 	} // End Status Removal.
 }
@@ -3055,6 +3051,8 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
  * @param      array $classes  The classes.
  *
  * @return     array
+ *
+ * @since 	   3.4.23 added compatiblity class.
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 
@@ -3076,6 +3074,11 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 			$classes[]    = $class_prefix . strtolower( $commercial_type );
 		}
 	}
+
+	if( 'on' === epl_get_option('epl_feeling_lucky', 'off') && is_epl_post_archive() ) {
+		$classes[]    = 'epl-property-blog-compatibility';
+	}
+
 	return $classes;
 }
 add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
