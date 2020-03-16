@@ -2769,7 +2769,7 @@ function epl_strip_tags( $value, $allowed_tags = '' ) {
  */
 function epl_esc_attr( $value ) {
 
-	if ( ! is_array( $value ) ) {
+	if ( is_string( $value ) ) {
 		return esc_attr( $value );
 	}
 	return $value;
