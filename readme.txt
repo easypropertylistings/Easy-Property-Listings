@@ -397,6 +397,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.22 February 26, 2020 =
+
+* Fix: For attribute added for checkbox labels in search.
+
 = 3.4.21 January 22, 2020 =
 
 * Tweak: Corrected the new parking filter.

@@ -327,14 +327,14 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Radio field.
 	 *
-	 * @since  3.0
+	 * @since  3.0.0
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
 	 * @return void
-	 * @since  3.4.22 : For attribute added for checkbox labels
+	 * @since  3.4.22 For attribute added for checkbox labels.
 	 */
 	public function render_checkbox_multiple( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
