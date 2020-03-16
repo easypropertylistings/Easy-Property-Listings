@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
 Tested up to: 5.3.2
-Stable Tag: 3.4.21
+Stable Tag: 3.4.22
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -396,6 +396,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 8. Home open shortcode and Multi Author widget
 
 == Changelog ==
+
+= 3.4.23 March 16, 2020 =
+
+* Tweak: Altered the admin output of property category to use the label instead of value.
+
+= 3.4.22 February 26, 2020 =
+
+* Fix: For attribute added for checkbox labels in search.
 
 = 3.4.21 January 22, 2020 =
 
