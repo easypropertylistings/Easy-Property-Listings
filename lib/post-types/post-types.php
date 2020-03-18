@@ -254,7 +254,9 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
 /**
  * Posts Types Columns.
  *
- * @since 1.0
+ * @since 1.0.0
+ * @since 3.4.23 Altered the admin output of property_category to use the label instead of value.
+ * @since 3.4.23 Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -301,13 +303,13 @@ function epl_manage_listing_column_listing_callback() {
 	}
 
 	// Need to factor in business category: <businessCategory id="1">.
-	// Need to factor in business category: 	<name>Food/Hospitality</name>.
-	// Need to factor in business category: 	<businessSubCategory>.
-	// Need to factor in business category: 	<name>Takeaway Food</name>.
-	// Need to factor in business category: 	</businessSubCategory>.
-	// Need to factor in business category: 		</businessCategory>.
-	// Need to factor in business category: 	<businessCategory id="2"/>.
-	// Need to factor in business category: 	<businessCategory id="3"/>.
+	// Need to factor in business category: <name>Food/Hospitality</name>.
+	// Need to factor in business category: <businessSubCategory>.
+	// Need to factor in business category: <name>Takeaway Food</name>.
+	// Need to factor in business category: </businessSubCategory>.
+	// Need to factor in business category: </businessCategory>.
+	// Need to factor in business category: <businessCategory id="2"/>.
+	// Need to factor in business category: <businessCategory id="3"/>.
 
 	// Need to factor in business fields: property_bus_takings (number).
 	// Need to factor in business fields: property_bus_franchise (yes/no).
@@ -326,7 +328,8 @@ function epl_manage_listing_column_listing_callback() {
 
 	// Listing Category.
 	if ( ! empty( $category ) ) {
-		echo '<div class="epl_meta_category">' , esc_html( $category ) , '</div>';
+		$property_category = $property->get_property_category( 'span', 'epl_meta_property_category' );
+		echo '<div class="epl_meta_category">' , wp_kses_post( $property_category ) , '</div>';
 	}
 
 	// Outgoings for commercial listing type.
@@ -364,6 +367,7 @@ function epl_manage_listing_column_listing_callback() {
 		if ( 'squareMeter' === $land_unit ) {
 			$land_unit = esc_html__( 'm&#178;', 'easy-property-listings' );
 		}
+		$land_unit = apply_filters( 'epl_property_land_area_unit_label', $land_unit );
 
 		echo '<span class="epl_meta_land_unit"> ' , esc_attr( $land_unit ) , '</span>';
 		echo '</div>';

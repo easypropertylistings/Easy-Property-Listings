@@ -65,7 +65,6 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 			}
 
 			// Adding some way for dynamic fields to be added to epl_settings array.
-
 			// Settings page params.
 			$page_params = apply_filters( 'epl_settings_page_params', array( 'tab', 'page', 'sub_tab', 'action', 'submit' ) );
 

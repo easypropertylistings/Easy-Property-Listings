@@ -12,7 +12,6 @@
 
 // uncomment this line for testing.
 // set_site_transient( 'update_plugins', null ); | Testing.
-
 // phpcs:disable WordPress.Security.NonceVerification
 
 // Exit if accessed directly.

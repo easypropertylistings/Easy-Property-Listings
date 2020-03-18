@@ -9,7 +9,7 @@
  * @subpackage Session
  * @since   3.6.0
  */
- 
+
 /**
  * WordPress Session class for managing user session data.
  *
@@ -69,8 +69,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 * @uses apply_filters Calls `wp_session_expiration` to determine how long until sessions expire.
 	 */
 	private function __construct() {
-		if ( isset( $_COOKIE[WP_SESSION_COOKIE] ) ) {
-			$this->session_id = stripslashes( $_COOKIE[WP_SESSION_COOKIE] );
+		if ( isset( $_COOKIE[ WP_SESSION_COOKIE ] ) ) {
+			$this->session_id = stripslashes( $_COOKIE[ WP_SESSION_COOKIE ] );
 		} else {
 			$this->session_id = $this->generate_id();
 		}
@@ -123,10 +123,10 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 
 		$session_list[ $this->session_id ] = $this->expires;
 
-		foreach( $session_list as $id => $expires ) {
+		foreach ( $session_list as $id => $expires ) {
 			if ( time() > $this->expires ) {
 				delete_option( "_wp_session_{$id}" );
-				unset( $session_list[$id] );
+				unset( $session_list[ $id ] );
 			}
 		}
 
@@ -170,7 +170,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 			delete_option( "_wp_session_{$this->session_id}" );
 
 			$session_list = get_option( '_wp_session_list', array() );
-			unset ($session_list[ $this->session_id ] );
+			unset( $session_list[ $this->session_id ] );
 			update_option( '_wp_session_list', $session_list );
 		}
 
@@ -185,7 +185,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 * @return bool
 	 */
 	public function session_started() {
-		return !!self::$instance;
+		return ! ! self::$instance;
 	}
 
 	/**
@@ -218,7 +218,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 * @return boolean true on success or false on failure.
 	 */
 	public function offsetExists( $offset ) {
-		return isset( $this->container[ $offset ]) ;
+		return isset( $this->container[ $offset ] );
 	}
 
 	/**

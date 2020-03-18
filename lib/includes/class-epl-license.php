@@ -379,7 +379,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// uncomment next two lines for testing.
 			// $this->validate_license(); | Testing.
 			// return; | Testing.
-
 			// Perform a request to validate the license.
 			// Only run every 24 hours.
 			$opt_key = 'epl_license_updates_' . $this->item_shortname;

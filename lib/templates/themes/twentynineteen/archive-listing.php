@@ -55,7 +55,6 @@ get_header();
 
 			// Previous/next page navigation.
 			// twentynineteen_the_posts_navigation();.
-
 			?>
 			<div class="loop-footer epl-loop-footer">
 				<!-- Previous/Next page navigation -->
