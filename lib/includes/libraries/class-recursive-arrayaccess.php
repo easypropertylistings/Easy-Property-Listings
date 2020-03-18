@@ -10,7 +10,7 @@
  * @since 3.6.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -39,7 +39,7 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	/**
 	 * Default object constructor.
 	 *
-	 * @param array $data
+	 * @param array $data Array of data.
 	 */
 	protected function __construct( $data = array() ) {
 		foreach ( $data as $key => $value ) {
@@ -109,7 +109,7 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 * @link http://php.net/manual/en/arrayaccess.offsetset.php
 	 *
 	 * @param mixed $offset The offset to assign the value to.
-	 * @param mixed $value  The value to set.
+	 * @param mixed $data   The value to set.
 	 *
 	 * @return void
 	 */
@@ -117,7 +117,7 @@ class Recursive_ArrayAccess implements ArrayAccess {
 		if ( is_array( $data ) ) {
 			$data = new self( $data );
 		}
-		if ( $offset === null ) { // don't forget this!
+		if ( null === $offset ) { // Don't forget this!
 			$this->container[] = $data;
 		} else {
 			$this->container[ $offset ] = $data;
