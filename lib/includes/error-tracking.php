@@ -74,7 +74,7 @@ function epl_set_error( $error_id, $error_message ) {
 	if ( ! $errors ) {
 		$errors = array();
 	}
-	$errors[ $error_id ]    = $error_message;
+	$errors[ $error_id ] = $error_message;
 	EPL()->session->set( 'epl_errors', $errors );
 }
 
