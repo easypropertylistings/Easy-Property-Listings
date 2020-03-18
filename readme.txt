@@ -397,9 +397,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.4.23 March 16, 2020 =
+= 3.4.23 March 18, 2020 =
 
 * Tweak: Altered the admin output of property category to use the label instead of value.
+* Tweak: Removed compatibility template for loop as we are passing the class using post_class filter. If you were using loop-listing-blog-default-compatibility.php in your template remove -compatibility from the filename.
+* Fix: Security function check.
 
 = 3.4.22 February 26, 2020 =
 

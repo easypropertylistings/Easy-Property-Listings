@@ -318,8 +318,7 @@ function epl_hide_listing_statuses() {
  *
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
- *
- * @since 3.4.23 Removed compatiblity template for loop
+ * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
  *
  * @param string $template  The template.
  */
@@ -2761,11 +2760,11 @@ function epl_strip_tags( $value, $allowed_tags = '' ) {
 /**
  * Esc Attr
  *
- * @since      2.2
- *
- * @param      string $value  The value.
- *
+ * @param string $value  The value.
  * @return string|void
+ *
+ * @since 2.2.0
+ * @since 3.4.23 Fix security function check from array to string.
  */
 function epl_esc_attr( $value ) {
 
@@ -2778,7 +2777,7 @@ function epl_esc_attr( $value ) {
 /**
  * Post Count
  *
- * @since      2.2
+ * @since      2.2.0
  *
  * @param      string $type        The type.
  * @param      string $meta_key    The meta key.
@@ -3046,13 +3045,12 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
 /**
  * Add Listing Status and Under Offer to Post Class
  *
- * @since      3.1.16
- *
  * @param      array $classes  The classes.
  *
  * @return     array
  *
- * @since 	   3.4.23 added compatiblity class.
+ * @since 3.1.16
+ * @since 3.4.23 Added compatiblity class.
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 
@@ -3075,8 +3073,8 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 		}
 	}
 
-	if( 'on' === epl_get_option('epl_feeling_lucky', 'off') && is_epl_post_archive() ) {
-		$classes[]    = 'epl-property-blog-compatibility';
+	if( 'on' === epl_get_option( 'epl_feeling_lucky', 'off' ) && is_epl_post_archive() ) {
+		$classes[] = 'epl-property-blog-compatibility';
 	}
 
 	return $classes;
