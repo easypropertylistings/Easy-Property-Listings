@@ -3199,7 +3199,7 @@ add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_ac
 /**
  * Get Post ID from Unique ID
  *
- * @param  string $unique_id Unique ID
+ * @param  string $unique_id Unique ID.
  * @return mixed false if not found, else Post ID
  * @since 3.5.0
  */
