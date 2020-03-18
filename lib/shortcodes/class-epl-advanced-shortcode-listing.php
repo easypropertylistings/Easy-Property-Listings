@@ -407,7 +407,6 @@ class EPL_Advanced_Shortcode_Listing {
 	public function set_location_tax_query() {
 
 		// Location taxonomy.
-
 		// Query by slug.
 		if ( ! empty( $this->attributes['location'] ) ) {
 			if ( ! is_array( $this->attributes['location'] ) ) {
@@ -443,7 +442,6 @@ class EPL_Advanced_Shortcode_Listing {
 	public function set_features_tax_query() {
 
 		// Features taxonomy.
-
 		// Query by slug.
 		if ( ! empty( $this->attributes['feature'] ) ) {
 			if ( ! is_array( $this->attributes['feature'] ) ) {
