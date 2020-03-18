@@ -2332,7 +2332,7 @@ function epl_get_shortcode_list() {
  */
 function epl_wp_doing_ajax() {
 
-	if( function_exists( 'wp_doing_ajax' ) ) {
+	if ( function_exists( 'wp_doing_ajax' ) ) {
 		return wp_doing_ajax();
 	} else {
 		return apply_filters( 'wp_doing_ajax', defined( 'DOING_AJAX' ) && DOING_AJAX );
@@ -3073,7 +3073,7 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 		}
 	}
 
-	if( 'on' === epl_get_option( 'epl_feeling_lucky', 'off' ) && is_epl_post_archive() ) {
+	if ( 'on' === epl_get_option( 'epl_feeling_lucky', 'off' ) && is_epl_post_archive() ) {
 		$classes[] = 'epl-property-blog-compatibility';
 	}
 
@@ -3198,26 +3198,28 @@ add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_ac
 
 /**
  * Get Post ID from Unique ID
+ *
  * @param  string $unique_id Unique ID
  * @return mixed false if not found, else Post ID
  * @since 3.5.0
  */
 function epl_get_post_id_from_unique_id( $unique_id = '' ) {
 
-	if( '' === $unique_id )
+	if ( '' === $unique_id ) {
 		return false;
+	}
 
 	$args = array(
 		'meta_key'       => 'property_unique_id',
 		'meta_value'     => $unique_id,
 		'post_type'      => epl_get_core_post_types(),
 		'post_status'    => 'publish',
-		'posts_per_page' => -1
+		'posts_per_page' => -1,
 	);
 
-	$posts = get_posts($args);
+	$posts = get_posts( $args );
 
-	if( ! empty( $posts ) ) {
+	if ( ! empty( $posts ) ) {
 		$post = current( $posts );
 		return $post->ID;
 	}
