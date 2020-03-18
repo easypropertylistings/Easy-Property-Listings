@@ -11,7 +11,9 @@
  */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Recursive array class to allow multidimensional array access.
@@ -72,8 +74,8 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	}
 
 	/**
-	* ArrayAccess Implementation
-	**/
+	 * ArrayAccess Implementation
+	 **/
 
 	/**
 	 * Whether a offset exists
@@ -85,7 +87,7 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 * @return boolean true on success or false on failure.
 	 */
 	public function offsetExists( $offset ) {
-		return isset( $this->container[ $offset ]) ;
+		return isset( $this->container[ $offset ] );
 	}
 
 	/**
