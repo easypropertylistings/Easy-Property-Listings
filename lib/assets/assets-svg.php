@@ -295,7 +295,7 @@ add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
  * Svg Allowed tags
  *
  * @since  3.4
- * @since  3.4.17	Allows circle tag.
+ * @since  3.4.17   Allows circle tag.
  */
 function epl_get_svg_allowed_tags() {
 
@@ -357,14 +357,14 @@ function epl_get_svg_allowed_tags() {
 		'use'     => array(
 			'xlink:href' => true,
 		),
-		'circle'    => array(
-			'style'  => true,
-			'class'  => true,
-			'id'     => true,
-			'cx'     => true,
-			'cy'     => true,
-			'r'      => true
-		)
+		'circle'  => array(
+			'style' => true,
+			'class' => true,
+			'id'    => true,
+			'cx'    => true,
+			'cy'    => true,
+			'r'     => true,
+		),
 
 	);
 	return apply_filters( 'epl_svg_allowed_tags', $tags );
