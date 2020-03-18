@@ -256,6 +256,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  *
  * @since 1.0.0
  * @since 3.4.23 Altered the admin output of property_category to use the label instead of value.
+ * @since 3.4.23 Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -366,6 +367,7 @@ function epl_manage_listing_column_listing_callback() {
 		if ( 'squareMeter' === $land_unit ) {
 			$land_unit = esc_html__( 'm&#178;', 'easy-property-listings' );
 		}
+		$land_unit = apply_filters( 'epl_property_land_area_unit_label', $land_unit );
 
 		echo '<span class="epl_meta_land_unit"> ' , esc_attr( $land_unit ) , '</span>';
 		echo '</div>';
