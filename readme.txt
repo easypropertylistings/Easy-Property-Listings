@@ -397,6 +397,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.24 March 20, 2020 =
+
+* Tweak: Refactored mini web url output by adding, epl_button_label_mini_web filters for labels.
+* Tweak: Added full image size as option with selecting image sizes using epl_get_thumbnail_sizes function.
+
 = 3.4.23 March 18, 2020 =
 
 * Tweak: Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
