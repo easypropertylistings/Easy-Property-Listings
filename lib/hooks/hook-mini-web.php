@@ -21,34 +21,37 @@ if ( ! defined( 'ABSPATH' ) ) {
  * property as a mini web links they will be output on the template
  *
  * @since       1.0
+ * @since 		3.4.24 refactored, added epl_button_label_{$key} filter for labels.
  */
 function epl_button_mini_web() {
-	$mini_web   = get_post_meta( get_the_ID(), 'property_com_mini_web', true );
-	$mini_web_2 = get_post_meta( get_the_ID(), 'property_com_mini_web_2', true );
-	$mini_web_3 = get_post_meta( get_the_ID(), 'property_com_mini_web_3', true );
 
-	$links = array();
-	if ( ! empty( $mini_web ) ) {
-		$links[] = $mini_web;
-	}
-	if ( ! empty( $mini_web_2 ) ) {
-		$links[] = $mini_web_2;
-	}
-	if ( ! empty( $mini_web_3 ) ) {
-		$links[] = $mini_web_3;
-	}
+	$keys = array( 'property_com_mini_web', 'property_com_mini_web_2', 'property_com_mini_web_3' );
 
-	if ( ! empty( $links ) ) {
-		foreach ( $links as $k => $link ) {
-			if ( ! empty( $link ) ) {
-				$number_string = '';
-				if ( $k > 0 ) {
-					$number_string = ' ' . ( $k + 1 );
-				}
-				?><button type="button" class="epl-button epl-mini-web-link" onclick="window.open('<?php echo esc_url( $link ); ?>')"><?php echo apply_filters( 'epl_button_label_mini_web', esc_html__( 'Mini Web ', 'easy-property-listings' ) ) . absint( $number_string ); ?></button>
+	foreach ( $keys as $key ) {
+
+		$link       	= get_post_meta( get_the_ID(), $key, true );
+		$count      	= 'property_com_mini_web' === $key ? '' : substr( $key, -1 );
+		$meta_label    	= __( 'Mini Web ', 'easy-property-listings' ) . $count;
+
+		// for class
+		$count = empty( $count ) ? '1' : $count;
+
+		if ( ! empty( $link ) ) { ?>
+			<button type="button" class="epl-button epl-mini-web-link <?php echo 'epl-mini-web-link-'.$count; ?>" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
-			}
+
+				if ( has_filter( 'epl_button_label_' . $key ) ) {
+					$label = apply_filters( 'epl_button_label_' . $key, $meta_label );
+				} else {
+					$label = apply_filters( 'epl_button_label_mini_web', $meta_label );
+				}
+				?>
+				<?php echo esc_attr( $label ); ?>
+			</button> 
+			<?php
+
 		}
 	}
+
 }
 add_action( 'epl_buttons_single_property', 'epl_button_mini_web' );
