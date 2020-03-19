@@ -87,10 +87,12 @@ function epl_is_twenty_twenty_theme() {
  */
 function epl_get_thumbnail_sizes() {
 	global $_wp_additional_image_sizes;
-	$sizes = array();
+	$sizes = array(
+		'full'	=>	array()
+	);
 	foreach ( get_intermediate_image_sizes() as $s ) {
 		$sizes[ $s ] = array( 0, 0 );
-		if ( in_array( $s, array( 'thumbnail', 'medium', 'large', 'full' ), true ) ) {
+		if ( in_array( $s, array( 'thumbnail', 'medium', 'large' ), true ) ) {
 			$sizes[ $s ][0] = get_option( $s . '_size_w' );
 			$sizes[ $s ][1] = get_option( $s . '_size_h' );
 		} else {
