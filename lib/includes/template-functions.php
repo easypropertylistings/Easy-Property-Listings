@@ -318,6 +318,7 @@ function epl_hide_listing_statuses() {
  *
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
+ * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
  *
  * @param string $template  The template.
  */
@@ -344,15 +345,9 @@ function epl_property_blog( $template = '' ) {
 			do_action( 'epl_loop_template' );
 		} else {
 
-			if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
-
-				epl_get_template_part( 'loop-listing-blog-' . $template . '-compatibility.php' );
-
-			} else {
-				$tpl_name = 'loop-listing-blog-' . $template . '.php';
-				$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
-				epl_get_template_part( $tpl_name );
-			}
+			$tpl_name = 'loop-listing-blog-' . $template . '.php';
+			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
+			epl_get_template_part( $tpl_name );
 		}
 	} // End Status Removal.
 }
@@ -2337,7 +2332,7 @@ function epl_get_shortcode_list() {
  */
 function epl_wp_doing_ajax() {
 
-	if( function_exists( 'wp_doing_ajax' ) ) {
+	if ( function_exists( 'wp_doing_ajax' ) ) {
 		return wp_doing_ajax();
 	} else {
 		return apply_filters( 'wp_doing_ajax', defined( 'DOING_AJAX' ) && DOING_AJAX );
@@ -2765,15 +2760,15 @@ function epl_strip_tags( $value, $allowed_tags = '' ) {
 /**
  * Esc Attr
  *
- * @since      2.2
- *
- * @param      string $value  The value.
- *
+ * @param string $value  The value.
  * @return string|void
+ *
+ * @since 2.2.0
+ * @since 3.4.23 Fix security function check from array to string.
  */
 function epl_esc_attr( $value ) {
 
-	if ( ! is_array( $value ) ) {
+	if ( is_string( $value ) ) {
 		return esc_attr( $value );
 	}
 	return $value;
@@ -2782,7 +2777,7 @@ function epl_esc_attr( $value ) {
 /**
  * Post Count
  *
- * @since      2.2
+ * @since      2.2.0
  *
  * @param      string $type        The type.
  * @param      string $meta_key    The meta key.
@@ -3050,11 +3045,12 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
 /**
  * Add Listing Status and Under Offer to Post Class
  *
- * @since      3.1.16
- *
  * @param      array $classes  The classes.
  *
  * @return     array
+ *
+ * @since 3.1.16
+ * @since 3.4.23 Added compatiblity class.
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 
@@ -3076,6 +3072,11 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 			$classes[]    = $class_prefix . strtolower( $commercial_type );
 		}
 	}
+
+	if ( 'on' === epl_get_option( 'epl_feeling_lucky', 'off' ) && is_epl_post_archive() ) {
+		$classes[] = 'epl-property-blog-compatibility';
+	}
+
 	return $classes;
 }
 add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
@@ -3197,26 +3198,28 @@ add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_ac
 
 /**
  * Get Post ID from Unique ID
- * @param  string $unique_id Unique ID
+ *
+ * @param  string $unique_id Unique ID.
  * @return mixed false if not found, else Post ID
  * @since 3.5.0
  */
 function epl_get_post_id_from_unique_id( $unique_id = '' ) {
 
-	if( '' === $unique_id )
+	if ( '' === $unique_id ) {
 		return false;
+	}
 
 	$args = array(
 		'meta_key'       => 'property_unique_id',
 		'meta_value'     => $unique_id,
 		'post_type'      => epl_get_core_post_types(),
 		'post_status'    => 'publish',
-		'posts_per_page' => -1
+		'posts_per_page' => -1,
 	);
 
-	$posts = get_posts($args);
+	$posts = get_posts( $args );
 
-	if( ! empty( $posts ) ) {
+	if ( ! empty( $posts ) ) {
 		$post = current( $posts );
 		return $post->ID;
 	}

@@ -6,7 +6,7 @@
  * @subpackage  Meta
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.0.0
  */
 
 // Exit if accessed directly.
@@ -18,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get meta boxes
  *
  * @since 1.0
- * @since 3.4.1 added property_price_currency,property_rent_currency,property_floorplan_mod_date
+ * @since 3.4.1 Added property_price_currency,property_rent_currency,property_floorplan_mod_date.
+ * @since 3.4.23 Ordered the additional featured items to a-z order.
  */
 function epl_get_meta_boxes() {
 
@@ -436,35 +437,8 @@ function epl_get_meta_boxes() {
 					'fields'  => array(
 
 						array(
-							'name'  => 'property_remote_garage',
-							'label' => __( 'Remote Garage', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_secure_parking',
-							'label' => __( 'Secure Parking', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_study',
-							'label' => __( 'Study', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_dishwasher',
-							'label' => __( 'Dishwasher', 'easy-property-listings' ),
+							'name'  => 'property_broadband',
+							'label' => __( 'Broadband', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -481,26 +455,8 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'  => 'property_gym',
-							'label' => __( 'Gym', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_workshop',
-							'label' => __( 'Workshop', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_rumpus_room',
-							'label' => __( 'Rumpus Room', 'easy-property-listings' ),
+							'name'  => 'property_dishwasher',
+							'label' => __( 'Dishwasher', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -517,25 +473,8 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'  => 'property_broadband',
-							'label' => __( 'Broadband', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_pay_tv',
-							'label' => __( 'Pay TV', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-						array(
-							'name'  => 'property_vacuum_system',
-							'label' => __( 'Vacuum System', 'easy-property-listings' ),
+							'name'  => 'property_gym',
+							'label' => __( 'Gym', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -552,8 +491,71 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
+							'name'  => 'property_pay_tv',
+							'label' => __( 'Pay TV', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_remote_garage',
+							'label' => __( 'Remote Garage', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_rumpus_room',
+							'label' => __( 'Rumpus Room', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_secure_parking',
+							'label' => __( 'Secure Parking', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
 							'name'  => 'property_spa',
 							'label' => __( 'Spa', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_study',
+							'label' => __( 'Study', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_vacuum_system',
+							'label' => __( 'Vacuum System', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_workshop',
+							'label' => __( 'Workshop', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -569,15 +571,6 @@ function epl_get_meta_boxes() {
 					'fields'  => array(
 
 						array(
-							'name'  => 'property_tennis_court',
-							'label' => __( 'Tennis Court', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
 							'name'  => 'property_balcony',
 							'label' => __( 'Balcony', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
@@ -587,8 +580,8 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'  => 'property_deck',
-							'label' => __( 'Deck', 'easy-property-listings' ),
+							'name'  => 'property_courtyard',
+							'label' => __( 'Courtyard', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -596,8 +589,8 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'  => 'property_courtyard',
-							'label' => __( 'Courtyard', 'easy-property-listings' ),
+							'name'  => 'property_deck',
+							'label' => __( 'Deck', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -621,6 +614,15 @@ function epl_get_meta_boxes() {
 								'yes' => __( 'Yes', 'easy-property-listings' ),
 							),
 						),
+
+						array(
+							'name'  => 'property_tennis_court',
+							'label' => __( 'Tennis Court', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
 					),
 				),
 
@@ -629,15 +631,6 @@ function epl_get_meta_boxes() {
 					'columns' => '3',
 					'label'   => __( 'Heating & Cooling', 'easy-property-listings' ),
 					'fields'  => array(
-
-						array(
-							'name'  => 'property_ducted_heating',
-							'label' => __( 'Ducted Heating', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
 
 						array(
 							'name'  => 'property_ducted_cooling',
@@ -649,44 +642,8 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'  => 'property_split_system_heating',
-							'label' => __( 'Split System Heating', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_hydronic_heating',
-							'label' => __( 'Hydronic Heating', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_split_system_aircon',
-							'label' => __( 'Split System Aircon', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_gas_heating',
-							'label' => __( 'Gas Heating', 'easy-property-listings' ),
-							'type'  => 'checkbox_single',
-							'opts'  => array(
-								'yes' => __( 'Yes', 'easy-property-listings' ),
-							),
-						),
-
-						array(
-							'name'  => 'property_reverse_cycle_aircon',
-							'label' => __( 'Reverse Cycle Aircon', 'easy-property-listings' ),
+							'name'  => 'property_ducted_heating',
+							'label' => __( 'Ducted Heating', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -703,8 +660,53 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
+							'name'  => 'property_gas_heating',
+							'label' => __( 'Gas Heating', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_hydronic_heating',
+							'label' => __( 'Hydronic Heating', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
 							'name'  => 'property_open_fire_place',
 							'label' => __( 'Open Fire Place', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_reverse_cycle_aircon',
+							'label' => __( 'Reverse Cycle Aircon', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_split_system_aircon',
+							'label' => __( 'Split System Aircon', 'easy-property-listings' ),
+							'type'  => 'checkbox_single',
+							'opts'  => array(
+								'yes' => __( 'Yes', 'easy-property-listings' ),
+							),
+						),
+
+						array(
+							'name'  => 'property_split_system_heating',
+							'label' => __( 'Split System Heating', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),

@@ -719,7 +719,6 @@ class EPL_CPT {
 
 						// Output is an array of terms associated with the post.
 						$output[] = sprintf(
-
 							// Define link.
 							'<a href="%s">%s</a>',
 							// Create filter url.
