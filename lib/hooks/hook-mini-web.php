@@ -4,9 +4,9 @@
  *
  * @package     EPL
  * @subpackage  Hooks/WebLink
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.0.0
  */
 
 // Exit if accessed directly.
@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * When the hook epl_buttons_single_property is used and the commercial/business
  * property as a mini web links they will be output on the template
  *
- * @since       1.0
- * @since 		3.4.24 refactored, added epl_button_label_{$key} filter for labels.
+ * @since 1.0.0
+ * @since 3.4.24 Refactored, added epl_button_label_{$key} filter for labels.
  */
 function epl_button_mini_web() {
 
@@ -33,7 +33,7 @@ function epl_button_mini_web() {
 		$count      	= 'property_com_mini_web' === $key ? '' : substr( $key, -1 );
 		$meta_label    	= __( 'Mini Web ', 'easy-property-listings' ) . $count;
 
-		// for class
+		// For class.
 		$count = empty( $count ) ? '1' : $count;
 
 		if ( ! empty( $link ) ) { ?>
@@ -47,11 +47,9 @@ function epl_button_mini_web() {
 				}
 				?>
 				<?php echo esc_attr( $label ); ?>
-			</button> 
+			</button>
 			<?php
-
 		}
 	}
-
 }
 add_action( 'epl_buttons_single_property', 'epl_button_mini_web' );

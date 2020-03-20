@@ -4,9 +4,9 @@
  *
  * @package     EPL
  * @subpackage  Hooks/FloorPlan
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.0.0
  */
 
 // Exit if accessed directly.
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * has floor plans links they will be output on the template
  *
  * @since 1.0
- * @revised 3.3
+ * @since 3.3.0
  * @since 3.4.24 Fixed floor plan label filter.
  */
 function epl_button_floor_plan() {
@@ -56,7 +56,7 @@ function epl_button_floor_plan() {
 				}
 				?>
 				<?php echo esc_attr( $label ); ?>
-			</button> 
+			</button>
 			<?php
 
 		}
