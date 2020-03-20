@@ -29,15 +29,15 @@ function epl_button_mini_web() {
 
 	foreach ( $keys as $key ) {
 
-		$link       	= get_post_meta( get_the_ID(), $key, true );
-		$count      	= 'property_com_mini_web' === $key ? '' : substr( $key, -1 );
-		$meta_label    	= __( 'Mini Web ', 'easy-property-listings' ) . $count;
+		$link       = get_post_meta( get_the_ID(), $key, true );
+		$count      = 'property_com_mini_web' === $key ? '' : substr( $key, -1 );
+		$meta_label = __( 'Mini Web ', 'easy-property-listings' ) . $count;
 
 		// For class.
 		$count = empty( $count ) ? '1' : $count;
 
 		if ( ! empty( $link ) ) { ?>
-			<button type="button" class="epl-button epl-mini-web-link <?php echo 'epl-mini-web-link-'.$count; ?>" onclick="window.open('<?php echo esc_url( $link ); ?>')">
+			<button type="button" class="epl-button epl-mini-web-link <?php echo 'epl-mini-web-link-' . $count; ?>" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 
 				if ( has_filter( 'epl_button_label_' . $key ) ) {
