@@ -399,9 +399,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 = 3.4.24 March 20, 2020 =
 
+* New: Read More button action hook epl_button_read_more to use in templates accepts a passed $label.
 * Tweak: Corrected Floor Plan spelling into 2 words.
 * Tweak: Refactored mini web url output by adding, epl_button_label_mini_web filters for labels.
 * Tweak: Added full image size as option with selecting image sizes using epl_get_thumbnail_sizes function.
+* Fix: Floor plan label filter was incorrect. Filters are now epl_button_label_floorplan & epl_button_label_floorplan_2.
 
 = 3.4.23 March 18, 2020 =
 
