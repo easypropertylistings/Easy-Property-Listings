@@ -34,6 +34,11 @@ module.exports = function( grunt ) {
 			},
 		},
 
+		// Remove all .min.css files.
+		clean: {
+			css: ['lib/assets/css/*.min.css'],
+		},
+
 		// Minify all .css files.
 		cssmin: {
 			minify: {
@@ -135,6 +140,7 @@ module.exports = function( grunt ) {
 
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-checktextdomain' );
+	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
@@ -142,6 +148,7 @@ module.exports = function( grunt ) {
 	// Register tasks
 	grunt.registerTask( 'default', [
 		'uglify',
+		'cleancss',
 		'css',
 		'checktextdomain',
 		'makepot'
@@ -149,6 +156,10 @@ module.exports = function( grunt ) {
 
 	grunt.registerTask( 'js', [
 		'uglify:frontend'
+	]);
+
+	grunt.registerTask( 'cleancss', [
+		'clean'
 	]);
 
 	grunt.registerTask( 'css', [
