@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0
  * @revised 3.3
- * @since 3.4.24 Fixed floorplan label filter.
+ * @since 3.4.24 Fixed floor plan label filter.
  */
 function epl_button_floor_plan() {
 
