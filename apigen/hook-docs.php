@@ -58,24 +58,55 @@ class EPL_HookFinder {
 
 	public static function process_hooks() {
 		// If we have one, get the PHP files from it.
-		$template_files 	= self::get_files( '*.php', GLOB_MARK, '../lib/templates/' );
-		//$template_files[]	= '../includes/template-functions.php';
+		$admin_files  	               = self::get_files( '*.php', GLOB_MARK, '../lib/includes/admin/' );
+		$admin_contacts_files  	       = self::get_files( '*.php', GLOB_MARK, '../lib/includes/admin/contacts/' );
+		$admin_menus_files  	       = self::get_files( '*.php', GLOB_MARK, '../lib/includes/admin/menus/' );
+		$admin_reports_files  	       = self::get_files( '*.php', GLOB_MARK, '../lib/includes/admin/reports/' );
 
-		$shortcode_files 	= self::get_files( '*.php', GLOB_MARK, '../lib/shortcodes/' );
+		$assets_files  	               = self::get_files( '*.php', GLOB_MARK, '../lib/assets/' );
+		$class_files  	               = self::get_files( '*.php', GLOB_MARK, '../lib/includes/' );
+		$hooks_files  	               = self::get_files( '*.php', GLOB_MARK, '../lib/hooks/' );
+		$libraries_files  	       = self::get_files( '*.php', GLOB_MARK, '../lib/includes/libraries/' );
+		$meta_boxes_files  	       = self::get_files( '*.php', GLOB_MARK, '../lib/meta-boxes/' );
+		$post_types_files  	       = self::get_files( '*.php', GLOB_MARK, '../lib/post-types/' );
+		$shortcode_files  	       = self::get_files( '*.php', GLOB_MARK, '../lib/shortcodes/' );
+		$taxonomies_files  	       = self::get_files( '*.php', GLOB_MARK, '../lib/taxonomies/' );
+
+		$template_files 	       = self::get_files( '*.php', GLOB_MARK, '../lib/templates/' );
+		$template_content_files        = self::get_files( '*.php', GLOB_MARK, '../lib/templates/content/' );
+		$template_content_shortcodes_listing_search_files = self::get_files( '*.php', GLOB_MARK, '../lib/templates/content/shortcodes/listing-search/' );
+		$template_theme_default_files  = self::get_files( '*.php', GLOB_MARK, '../lib/templates/content/' );
+
+		$template_widget_listing_files = self::get_files( '*.php', GLOB_MARK, '../lib/templates/content/widgets/listing/' );
+
 		$widget_files	 	= self::get_files( '*.php', GLOB_MARK, '../lib/widgets/' );
-		$admin_files 		= self::get_files( '*.php', GLOB_MARK, '../lib/includes/admin/' );
-		$class_files 		= self::get_files( '*.php', GLOB_MARK, '../lib/includes/' );
+
 		$other_files		= array(
 			'../easy-property-listings.php'
 		);
 
 		self::$files_to_scan = array(
-			'Template Hooks'  => $template_files,
-			'Shortcode Hooks' => $shortcode_files,
-			'Widget Hooks'    => $widget_files,
-			'Class Hooks'     => $class_files,
-			'Admin Hooks'     => $admin_files,
-			'Other Hooks'     => $other_files,
+			'Admin Hooks'                        => $admin_files,
+			'Admin | Contacts Hooks'             => $admin_contacts_files,
+			'Admin | Menus Hooks'                => $admin_menus_files,
+			'Admin | Reports Hooks'              => $admin_reports_files,
+
+			'Assets Hooks'                       => $assets_files,
+			'Class and Includes Hooks'           => $class_files,
+			'Hooks for Buttons'                  => $hooks_files,
+			'Libraries Hooks'                    => $libraries_files,
+			'Meta Boxes and Custom Fields Hooks' => $meta_boxes_files,
+			'Post Types'                         => $post_types_files,
+			'Shortcode Hooks'                    => $shortcode_files,
+			'Taxonomies Hooks'                   => $taxonomies_files,
+
+			'Template Hooks'                     => $template_files,
+			'Templates | Content Hooks'          => $template_content_files,
+			'Templates | Shortcode Listing Search Hooks' => $template_content_shortcodes_listing_search_files,
+			'Templates | Theme Default Hooks'    => $template_theme_default_files,
+			'Templates | Widget Hooks'           => $template_widget_listing_files,
+			'Widget Hooks'                       => $widget_files,
+			'Other Hooks'                        => $other_files,
 		);
 
 		$scanned = array();
