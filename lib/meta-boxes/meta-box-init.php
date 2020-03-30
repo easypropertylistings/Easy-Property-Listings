@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Meta
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0.0
  */
@@ -171,7 +171,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'      => 'property_floorplan_mod_date',
-							'label'     => __( 'Floorplan Modified Date', 'easy-property-listings' ),
+							'label'     => __( 'Floor plan Modified Date', 'easy-property-listings' ),
 							'type'      => 'hidden',
 							'maxlength' => '60',
 						),
@@ -1485,7 +1485,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'  => 'property_floorplan',
-							'label' => __( 'Floorplan', 'easy-property-listings' ),
+							'label' => __( 'Floor plan', 'easy-property-listings' ),
 							'type'  => 'file',
 							'width' => '2-3',
 						),
@@ -1500,7 +1500,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'  => 'property_floorplan_2',
-							'label' => __( 'Floorplan 2', 'easy-property-listings' ),
+							'label' => __( 'Floor plan 2', 'easy-property-listings' ),
 							'type'  => 'file',
 							'width' => '2-3',
 						),

@@ -5,7 +5,9 @@ apigen generate -s /Users/Merv/Sites/easypropertylistings-dev/wp-content/plugins
 INCREMENT version in apigen file
 
 Terminal Command:
+
 apigen generate
+
 (Execute from core plugin folder)
 
 http://localhost:8888/easypropertylistings-dev/wp-content/plugins/Easy-Property-Listings/apigen/hook-docs.php

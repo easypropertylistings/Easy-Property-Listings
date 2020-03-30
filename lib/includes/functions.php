@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Global
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -83,10 +83,13 @@ function epl_is_twenty_twenty_theme() {
  * Used in the widgets by appending the registered image sizes
  *
  * @since 1.0
+ * @since 3.4.24 Added full size in array.
  */
 function epl_get_thumbnail_sizes() {
 	global $_wp_additional_image_sizes;
-	$sizes = array();
+	$sizes = array(
+		'full'	=>	array()
+	);
 	foreach ( get_intermediate_image_sizes() as $s ) {
 		$sizes[ $s ] = array( 0, 0 );
 		if ( in_array( $s, array( 'thumbnail', 'medium', 'large' ), true ) ) {

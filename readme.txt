@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.3.2
-Stable Tag: 3.4.23
+Tested up to: 5.4
+Stable Tag: 3.4.24
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -397,6 +397,14 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.24 March 20, 2020 =
+
+* New: Read More button action hook epl_button_read_more to use in templates accepts a passed $label.
+* Tweak: Corrected Floor Plan spelling into 2 words.
+* Tweak: Refactored mini web url output by adding, epl_button_label_mini_web filters for labels.
+* Tweak: Added full image size as option with selecting image sizes using epl_get_thumbnail_sizes function.
+* Fix: Floor plan label filter was incorrect. Filters are now epl_button_label_floorplan & epl_button_label_floorplan_2.
+
 = 3.4.23 March 18, 2020 =
 
 * Tweak: Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
@@ -622,7 +630,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * New: Enabled Mini Website URL meta field as a number of REAXML providers are now using 3D Tours along with support for custom button titles.
 * New: Able to configure sorting dropdown as tabs.
 * New: EPL - Author widget supports single or multiple users with user searching capabilities. Allowing you to use the widget and set a specific agent or WordPress user.
-* New: Floorplan uploader now support a custom label added to the listing entry screen. Label filter is still in place.
+* New: Floor plan uploader now support a custom label added to the listing entry screen. Label filter is still in place.
 * New: External Links now 3 are now supported with a custom label. Label filter is still in place.
 * New: Mini Website URL, 2 are supported with a custom label. Label filter is still in place.
 * New: Energy Certificate supports a custom label. Label filter is still in place.
@@ -674,9 +682,9 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: Replaced grid/list icon with a better quality one.
 * Tweak: Replaced all internal icons.
 * Tweak: Several older functions moved to depreciated functions for future removal.
-* Tweak: Converted floorplan button into button element instead of link with button styling. This makes all buttons consistent.
+* Tweak: Converted floor plan button into button element instead of link with button styling. This makes all buttons consistent.
 * Tweak: When using custom image sizes we've improved the admin image sizes to not exceed the column sizes when managing listings from the dashboard.
-* Tweak: Floorplan opens link in another window by default to match other buttons.
+* Tweak: Floor plan opens link in another window by default to match other buttons.
 * Tweak: Contacts system better displays contact information. IE hiding empty fields when nothing is set.
 * Tweak: Default sorting is now using the hidden and automatically generated property_price_global value which allows sorting taxonomy filtered listings.
 * Tweak: Custom taxonomy features now output a class to the list item for css targeting.
@@ -974,7 +982,7 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * Tweak: On activation the Property post type is enabled by default.
 * Tweak: Improvements to listing widget.
 * Tweak: Inspection time and date format improved.
-* Tweak: File option added to external links for floorplans.
+* Tweak: File option added to external links for floor plans.
 * Tweak: Template wrappers prefixed for details, property meta, icons, address, content.
 * Tweak: Languages moved for better compatibility with translation plugins.
 * Tweak: Listing search widget status label.

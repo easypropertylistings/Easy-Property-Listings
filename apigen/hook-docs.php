@@ -57,25 +57,32 @@ class EPL_HookFinder {
 	}
 
 	public static function process_hooks() {
-		// If we have one, get the PHP files from it.
-		$template_files 	= self::get_files( '*.php', GLOB_MARK, '../lib/templates/' );
-		//$template_files[]	= '../includes/template-functions.php';
-
-		$shortcode_files 	= self::get_files( '*.php', GLOB_MARK, '../lib/shortcodes/' );
-		$widget_files	 	= self::get_files( '*.php', GLOB_MARK, '../lib/widgets/' );
-		$admin_files 		= self::get_files( '*.php', GLOB_MARK, '../lib/includes/admin/' );
-		$class_files 		= self::get_files( '*.php', GLOB_MARK, '../lib/includes/' );
-		$other_files		= array(
+		$assets_files  	     = self::get_files( '*.php', GLOB_MARK, '../lib/assets/' );
+		$compatibility_files = self::get_files( '*.php', GLOB_MARK, '../lib/compatibility/' );
+		$includes_files      = self::get_files( '*.php', GLOB_MARK, '../lib/includes/' );
+		$hooks_files  	     = self::get_files( '*.php', GLOB_MARK, '../lib/hooks/' );
+		$meta_boxes_files    = self::get_files( '*.php', GLOB_MARK, '../lib/meta-boxes/' );
+		$post_types_files    = self::get_files( '*.php', GLOB_MARK, '../lib/post-types/' );
+		$shortcode_files     = self::get_files( '*.php', GLOB_MARK, '../lib/shortcodes/' );
+		$taxonomies_files    = self::get_files( '*.php', GLOB_MARK, '../lib/taxonomies/' );
+		$template_files      = self::get_files( '*.php', GLOB_MARK, '../lib/templates/' );
+		$widget_files        = self::get_files( '*.php', GLOB_MARK, '../lib/widgets/' );
+		$other_files         = array(
 			'../easy-property-listings.php'
 		);
 
 		self::$files_to_scan = array(
-			'Template Hooks'  => $template_files,
-			'Shortcode Hooks' => $shortcode_files,
-			'Widget Hooks'    => $widget_files,
-			'Class Hooks'     => $class_files,
-			'Admin Hooks'     => $admin_files,
-			'Other Hooks'     => $other_files,
+			'Assets Folder Hooks'        => $assets_files,
+			'Compatibility Folder Hooks' => $compatibility_files,
+			'Includes Folder Hooks'      => $includes_files,
+			'Hooks Folder Hooks'         => $hooks_files,
+			'Meta Boxes Folder Hooks'    => $meta_boxes_files,
+			'Post Types'                 => $post_types_files,
+			'Shortcode Hooks'            => $shortcode_files,
+			'Taxonomies Hooks'           => $taxonomies_files,
+			'Template Hooks'             => $template_files,
+			'Widget Hooks'               => $widget_files,
+			'Other Hooks'                => $other_files,
 		);
 
 		$scanned = array();

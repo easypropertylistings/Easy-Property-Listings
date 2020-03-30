@@ -1,12 +1,12 @@
 <?php
 /**
- * Hook for External Link Buttons on Property Templates
+ * Hook for Energy certificate on Property Templates
  *
  * @package     EPL
  * @subpackage  Hooks/EnergyCertificate
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       3.2
+ * @since       3.2.0
  */
 
 // Exit if accessed directly.
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * When the hook epl_buttons_single_property is used and the property
  * has an energy certificate they will be output on the template
  *
- * @since 3.2
+ * @since 3.2.0
  */
 function epl_button_energy_certificate() {
 
@@ -52,11 +52,10 @@ function epl_button_energy_certificate() {
 				}
 				?>
 				<?php echo esc_attr( $label ); ?>
-			</button> 
+			</button>
 			<?php
 
 		}
 	}
-
 }
 add_action( 'epl_buttons_single_property', 'epl_button_energy_certificate' );
