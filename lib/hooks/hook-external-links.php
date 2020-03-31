@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * has external links they will be output on the template
  *
  * @since 1.0.0
+ * @since 3.4.25 filter epl_show_{key} eg epl_show_property_external_link to disable button rendering.
  */
 function epl_button_external_link() {
 
@@ -42,7 +43,7 @@ function epl_button_external_link() {
 			}
 		}
 
-		if ( ! empty( $link ) ) { ?>
+		if ( ! empty( $link ) && apply_filters( 'epl_show_'.$key, true ) ) { ?>
 			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 

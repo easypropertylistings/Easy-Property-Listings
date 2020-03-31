@@ -23,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  * @since 3.3.0
  * @since 3.4.24 Fixed floor plan label filter.
+ * @since 3.4.25 filter epl_show_{key} eg epl_show_property_floorplan to disable button rendering.
  */
 function epl_button_floor_plan() {
 
@@ -44,7 +45,7 @@ function epl_button_floor_plan() {
 				$link = '';
 			}
 		}
-		if ( ! empty( $link ) ) { ?>
+		if ( ! empty( $link ) && apply_filters( 'epl_show_'.$key, true ) ) { ?>
 
 			<button type="button" class="epl-button epl-floor-plan epl-floor-plan-<?php echo absint( $count ); ?>" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php

@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * has an energy certificate they will be output on the template
  *
  * @since 3.2.0
+ * @since 3.4.25 filter epl_show_{key} eg epl_show_property_energy_certificate to disable button rendering.
  */
 function epl_button_energy_certificate() {
 
@@ -42,7 +43,7 @@ function epl_button_energy_certificate() {
 			}
 		}
 
-		if ( ! empty( $link ) ) { ?>
+		if ( ! empty( $link ) && apply_filters( 'epl_show_'.$key, true ) ) { ?>
 			<button type="button" class="epl-button epl-energy-certificate" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 				if ( has_filter( 'epl_button_label_' . $key ) ) {

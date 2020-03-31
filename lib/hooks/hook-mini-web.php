@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  * @since 3.4.24 Refactored, added epl_button_label_{$key} filter for labels.
+ * @since 3.4.25 filter epl_show_{key} eg epl_show_property_com_mini_web to disable button rendering.
  */
 function epl_button_mini_web() {
 
@@ -36,7 +37,7 @@ function epl_button_mini_web() {
 		// Counter so pass.
 		$count = empty( $count ) ? '1' : $count;
 
-		if ( ! empty( $link ) ) { ?>
+		if ( ! empty( $link ) && apply_filters( 'epl_show_'.$key, true ) ) { ?>
 			<button type="button" class="epl-button epl-mini-web-link <?php echo 'epl-mini-web-link-' . esc_attr( $count ); ?>" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 
