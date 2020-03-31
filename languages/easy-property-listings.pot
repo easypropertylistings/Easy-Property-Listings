@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.4.24\n"
+"Project-Id-Version: Easy Property Listings 3.4.25\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2020-03-20 09:36:49+00:00\n"
+"POT-Creation-Date: 2020-03-31 06:36:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,19 +44,19 @@ msgstr ""
 msgid "Read More"
 msgstr ""
 
-#: lib/hooks/hook-energy-certificate.php:32
+#: lib/hooks/hook-energy-certificate.php:33
 msgid "Energy Certificate "
 msgstr ""
 
-#: lib/hooks/hook-external-links.php:32
+#: lib/hooks/hook-external-links.php:33
 msgid "Tour "
 msgstr ""
 
-#: lib/hooks/hook-floorplan.php:35
+#: lib/hooks/hook-floorplan.php:36
 msgid "Floor Plan "
 msgstr ""
 
-#: lib/hooks/hook-mini-web.php:34
+#: lib/hooks/hook-mini-web.php:35
 msgid "Mini Web "
 msgstr ""
 

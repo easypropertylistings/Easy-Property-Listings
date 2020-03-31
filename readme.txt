@@ -397,6 +397,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.25 March 31, 2020 =
+
+* New: Filters added to floorplan, external link, mini web and energy certificate that allow you to disable then through a filter, great for extensions to control the default button. eg set the epl_show_property_energy_certificate to false to disable button rendering.
+
 = 3.4.24 March 20, 2020 =
 
 * New: Read More button action hook epl_button_read_more to use in templates accepts a passed $label.
