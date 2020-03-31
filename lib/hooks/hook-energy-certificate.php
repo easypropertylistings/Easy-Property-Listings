@@ -43,7 +43,7 @@ function epl_button_energy_certificate() {
 			}
 		}
 
-		if ( ! empty( $link ) && apply_filters( 'epl_show_'.$key, true ) ) { ?>
+		if ( ! empty( $link ) && apply_filters( 'epl_show_' . $key, true ) ) { ?>
 			<button type="button" class="epl-button epl-energy-certificate" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 				if ( has_filter( 'epl_button_label_' . $key ) ) {

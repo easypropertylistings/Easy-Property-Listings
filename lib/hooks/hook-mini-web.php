@@ -37,7 +37,7 @@ function epl_button_mini_web() {
 		// Counter so pass.
 		$count = empty( $count ) ? '1' : $count;
 
-		if ( ! empty( $link ) && apply_filters( 'epl_show_'.$key, true ) ) { ?>
+		if ( ! empty( $link ) && apply_filters( 'epl_show_' . $key, true ) ) { ?>
 			<button type="button" class="epl-button epl-mini-web-link <?php echo 'epl-mini-web-link-' . esc_attr( $count ); ?>" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 

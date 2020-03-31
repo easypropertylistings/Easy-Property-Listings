@@ -43,7 +43,7 @@ function epl_button_external_link() {
 			}
 		}
 
-		if ( ! empty( $link ) && apply_filters( 'epl_show_'.$key, true ) ) { ?>
+		if ( ! empty( $link ) && apply_filters( 'epl_show_' . $key, true ) ) { ?>
 			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 
