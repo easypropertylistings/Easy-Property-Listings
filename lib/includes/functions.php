@@ -80,6 +80,18 @@ function epl_is_twenty_twenty_theme() {
 }
 
 /**
+ * Determine if Avada is loaded
+ *
+ * @since 3.4.26
+ */
+function epl_is_avada_theme() {
+	if ( function_exists( 'Avada' ) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * Used in the widgets by appending the registered image sizes
  *
  * @since 1.0
