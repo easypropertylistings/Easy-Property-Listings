@@ -27,7 +27,7 @@ global $post;
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
 		<?php
-			do_action('epl_property_single');
+			do_action( 'epl_property_single' );
 			comments_template(); // include comments template
 		?>
 	<?php endwhile; ?>
