@@ -1,16 +1,17 @@
 <?php
 /**
- * EPL Archives template
+ * The Default Template for displaying all Easy Property Listings archive/loop posts with the Avada Theme
  *
- * @package Avada
- * @subpackage Templates
- * @theme_version 6.2.2
+ * @package EPL
+ * @subpackage Templates/Themes/Avada
+ * @since 3.4.26
  */
 
-// Do not allow directly accessing this file.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit( 'Direct script access denied.' );
+	exit;
 }
+
 get_header(); ?>
 
 <section id="content" <?php Avada()->layout->add_class( 'content_class' ); ?> <?php Avada()->layout->add_style( 'content_style' ); ?>>

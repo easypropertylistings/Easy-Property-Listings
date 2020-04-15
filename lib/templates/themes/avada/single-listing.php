@@ -1,16 +1,17 @@
 <?php
 /**
- * EPL Single Template
+ * The Default Template for displaying all Easy Property Listings single posts with the Avada Theme
  *
- * @package Avada
- * @subpackage Templates
- * @theme_version 6.2.2
+ * @package EPL
+ * @subpackage Templates/Themes/Avada
+ * @since 3.4.26
  */
 
-// Do not allow directly accessing this file.
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit( 'Direct script access denied.' );
+	exit;
 }
+
 global $post;
 ?>
 <?php get_header(); ?>
