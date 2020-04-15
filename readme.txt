@@ -397,6 +397,12 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.26 April 15, 2020 =
+
+* New: Added Avada theme support.
+* Tweak: Re-ordered commercial authority options.
+* Tweak: Minor function optimisations.
+
 = 3.4.25 March 31, 2020 =
 
 * New: Filters added to floorplan, external link, mini web and energy certificate that allow you to disable then through a filter, great for extensions to control the default button. eg set the epl_show_property_energy_certificate to false to disable button rendering.

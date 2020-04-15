@@ -140,8 +140,9 @@ function epl_remote_url_get( $url ) {
  *
  * @since 1.0.0
  * @since 3.4.20 flush permalinks after new settings are saved.
+ * @since 3.4.26 Set $post_type_label to blank by default.
  */
-function epl_register_post_type( $post_type = '', $post_type_label, $args = array() ) {
+function epl_register_post_type( $post_type = '', $post_type_label = '', $args = array() ) {
 	if ( empty( $post_type ) ) {
 		return;
 	}
@@ -525,11 +526,13 @@ function epl_get_property_meta( $post_ID = '', $meta_key = '' ) {
 /**
  * Print EPL property meta data
  *
- * @since 1.0
  * @param string $post_ID The post ID.
  * @param string $meta_key Meta key name.
+ *
+ * @since 1.0.0
+ * @since 3.4.26 Set $meta_key variable as blank.
  */
-function epl_the_property_meta( $post_ID = '', $meta_key ) {
+function epl_the_property_meta( $post_ID = '', $meta_key = '' ) {
 	$meta_value = epl_get_property_meta( $post_ID, $meta_key );
 	echo wp_kses_post( apply_filters( 'epl_the_property_meta_filter', $meta_value ) );
 }
@@ -712,9 +715,10 @@ function epl_listing_load_meta_land_category() {
 /**
  * Custom Meta: Return Value of Land Category
  *
- * @since 1.1
  * @param string $key Meta key.
  * @return array the categories in array
+ *
+ * @since 1.1.0
  */
 function epl_listing_meta_land_category_value( $key ) {
 	$array = epl_listing_load_meta_land_category();
