@@ -20,8 +20,8 @@ global $post;
 	<?php $post_pagination = get_post_meta( $post->ID, 'pyre_post_pagination', true ); ?>
 	<?php if ( ( Avada()->settings->get( 'blog_pn_nav' ) && 'no' !== $post_pagination ) || ( ! Avada()->settings->get( 'blog_pn_nav' ) && 'yes' === $post_pagination ) ) : ?>
 		<div class="single-navigation clearfix">
-			<?php previous_post_link( '%link', esc_attr__( 'Previous', 'Avada' ) ); ?>
-			<?php next_post_link( '%link', esc_attr__( 'Next', 'Avada' ) ); ?>
+			<?php previous_post_link( '%link', esc_attr__( 'Previous', 'easy-property-listings' ) ); ?>
+			<?php next_post_link( '%link', esc_attr__( 'Next', 'easy-property-listings' ) ); ?>
 		</div>
 	<?php endif; ?>
 
