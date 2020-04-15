@@ -28,7 +28,7 @@ Now you can promote your listings and automate lead generation
 * Display listings in a responsive list or grid format.
 * 100s of ready to use theme templates available for free.
 * No code necessary. Infinite options. Just select and save.
-* Instantly works with popular themes Genesis, Headway, iThemes Builder.
+* Instantly works with popular themes Genesis, Headway, iThemes Builder, Avada.
 * Fully customisable and works with any Theme or framework.
 * Personalise for your market in seconds.
 * 100% responsive and mobile ready.
@@ -179,9 +179,16 @@ Extensive near instant response to support, we just want to help.
 * Author Box that is easy to customise: multiple agents, tabbed, video, bio, social media links and extendible with the Staff Directory extension.
 * Author widget supporting multiple authors.
 
+**Developers**
+
+* Extensive documentation in the [codex]().
+* A plugin that allows editing with hundreds of hooks and filters, bend EPL to your will.
+* Learn now to use Hooks and Filters.
+* Review the extensive list of hooks and filters for developers.
+
 **Shortcodes**
 
-Several short codes to insert your listings into posts and pages with many customisable options. [Shortcode documentation](http://codex.easypropertylistings.com.au/category/25-shortcodes?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg). These short codes allow you to display listings any way and anywhere you like.
+Several short codes to insert your listings into posts and pages with many customisable options. [Shortcode documentation](https://codex.easypropertylistings.com.au/category/25-shortcodes?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg). These short codes allow you to display listings any way and anywhere you like.
 
 * [listing]
 * [listing_category]
@@ -197,7 +204,7 @@ Several short codes to insert your listings into posts and pages with many custo
 
 **Listing**
 
-The [listing] shortcode allows you to output your listings on pages and posts with advanced filtering options for listing types, order, status filtering, locations and much more which you can [read about the settings and options here](http://codex.easypropertylistings.com.au/article/24-listing?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg).
+The [listing] shortcode allows you to output your listings on pages and posts with advanced filtering options for listing types, order, status filtering, locations and much more which you can [read about the settings and options here](https://codex.easypropertylistings.com.au/article/24-listing?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg).
 
 **Listing Open**
 
@@ -205,11 +212,11 @@ The [listing_open] shortcode quickly outputs listings that have scheduled open f
 
 **Listing Search**
 
-The [listing_search] shortcode allows you to place the search widget anywhere you like. Just added to the plugin are new styles to output [listing_search style="wide"] and [listing_search style="slim"] variations. You can also enable the tabbed option with [listing_search post_type="property,rental,land"] and you can adjust the tab labels from the plugin settings page. More [details about the listing_search shortcode can be found here](http://codex.easypropertylistings.com.au/article/122-listingsearch?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg). If you use the search widget you can easily select your options from the widget editor. Enable the tabbed search by multi selecting the listing types with Ctrl on your pc or Command on a mac keyboard.
+The [listing_search] shortcode allows you to place the search widget anywhere you like. Just added to the plugin are new styles to output [listing_search style="wide"] and [listing_search style="slim"] variations. You can also enable the tabbed option with [listing_search post_type="property,rental,land"] and you can adjust the tab labels from the plugin settings page. More [details about the listing_search shortcode can be found here](https://codex.easypropertylistings.com.au/article/122-listingsearch?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg). If you use the search widget you can easily select your options from the widget editor. Enable the tabbed search by multi selecting the listing types with Ctrl on your pc or Command on a mac keyboard.
 
 **Listing Category**
 
-Use the [listing_category] short code to filter listings by any variable you want to use. Easy Property Listings has over 30 variables available for each listing type to create specialised pages for anything. Read the [detailed documentation](http://codex.easypropertylistings.com.au/article/26-listingcategory?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg) about this advanced shortcode.
+Use the [listing_category] short code to filter listings by any variable you want to use. Easy Property Listings has over 30 variables available for each listing type to create specialised pages for anything. Read the [detailed documentation](https://codex.easypropertylistings.com.au/article/26-listingcategory?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg) about this advanced shortcode.
 
 **Use any theme**
 
@@ -322,7 +329,7 @@ Easy Property Listings includes a theme compatibility mode that works great for 
 
 **Manual Theme Setup**
 
-To get the best result from Easy Property Listings on your real estate website you need to manually perform [Theme Setup](http://codex.easypropertylistings.com.au/article/49-theme-setup) using some copy and paste which gives you greater control over your listings. This will enable a better display and will make the plugin look great on any WordPress theme. If you need theme setup assistance first check the [theme support forum](https://easypropertylistings.com.au/support/forum/theme-support/) as we have already created many [Templates for WordPress themes](http://codex.easypropertylistings.com.au/article/185-theme-templates).
+To get the best result from Easy Property Listings on your real estate website you need to manually perform [Theme Setup](https://codex.easypropertylistings.com.au/article/49-theme-setup?utm_source=readme&utm_medium=manual_theme_tab&utm_content=codex_link&utm_campaign=codex_theme_setup) using some copy and paste which gives you greater control over your listings. This will enable a better display and will make the plugin look great on any WordPress theme. If you need theme setup assistance first check the [theme support forum](https://easypropertylistings.com.au/support/forum/theme-support/?utm_source=readme&utm_medium=manual_theme_tab&utm_content=codex_link&utm_campaign=forum) as we have already created many [Templates for WordPress themes](https://codex.easypropertylistings.com.au/article/185-theme-templates?utm_source=readme&utm_medium=manual_theme_tab&utm_content=codex_link&utm_campaign=codex_theme_templates).
 
 **Getting Started**
 
@@ -334,7 +341,7 @@ To get the best result from Easy Property Listings on your real estate website y
 Theme Setup: Featured Images to adjust how your featured images appear. If you see two featured images play with the settings until it looks great.
 6. Add widgets, shortcodes and listings.
 7. Have a cup of coffee as you'll be amazed at how quickly and easily you created an advanced Real Estate listing website.
-8. For detailed setup instructions, visit the official [Documentation](http://codex.easypropertylistings.com.au/) page.
+8. For detailed setup instructions, visit the official [Documentation](https://codex.easypropertylistings.com.au/?utm_source=readme&utm_medium=getting_started_tab&utm_content=codex_link&utm_campaign=codex) page.
 9. Visit the [Extension Store](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions) to further enhance your real estate website with cool SEO focused tools.
 
 == Frequently Asked Questions ==
@@ -345,11 +352,11 @@ Absolutely, Easy Property Listings is built from the ground up for scale, speed 
 
 = We want to display less or more info on the archive and single listing views, how can we create a unique customised look? =
 
-You can use the Easy Property Listings template loading system that lets you place all the plugin templates inside themes/YOUR_THEME/easypropertylistings/ folder and edit everything. You can [read more about how to do that here](http://codex.easypropertylistings.com.au/article/303-how-to-create-custom-widget-templates-using-the-theme-template-loader?utm_source=readme&utm_medium=faq_tab&utm_content=templates&utm_campaign=epl_documentation).
+You can use the Easy Property Listings template loading system that lets you place all the plugin templates inside themes/YOUR_THEME/easypropertylistings/ folder and edit everything. You can [read more about how to do that here](https://codex.easypropertylistings.com.au/article/303-how-to-create-custom-widget-templates-using-the-theme-template-loader?utm_source=readme&utm_medium=faq_tab&utm_content=templates&utm_campaign=epl_documentation).
 
 = How do I setup my WordPress theme to work with Easy Property Listings =
 
-In order for correct integration with your WordPress theme please follow these instructions [WordPress Theme configuration instructions](http://codex.easypropertylistings.com.au/article/49-theme-setup).
+In order for correct integration with your WordPress theme please follow these instructions [WordPress Theme configuration instructions](https://codex.easypropertylistings.com.au/article/49-theme-setup?utm_source=readme&utm_medium=description_tab&utm_content=codex_link&utm_campaign=codex_theme_setup).
 
 These instructions are also located inside the plugin. Visit Dashboard > Easy Property Listings > Help > Getting Started > Setup your theme to work with the plugin
 
