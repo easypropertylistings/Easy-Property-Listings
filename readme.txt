@@ -137,7 +137,7 @@ Track your business growth with beautiful instant, reports
 
 Grow your online success with premium add-ons
 
-* 300+ listings on one map… sold! [Advanced Mapping](https://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=wordpressorg).
+* 300+ listings on one map… sold! [Advanced Mapping](https://easypropertylistings.com.au/extensions/advanced-mapping/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_advanced_mapping).
 * Your a winner, be proud and show off your Awards.
 * Let your happy customers share how good you are with Testimonials.
 * Print customised Brochures and stock lists easily.
@@ -181,10 +181,9 @@ Extensive near instant response to support, we just want to help.
 
 **Developers**
 
-* Extensive documentation in the [codex]().
-* A plugin that allows editing with hundreds of hooks and filters, bend EPL to your will.
-* Learn now to use Hooks and Filters.
-* Review the extensive list of hooks and filters for developers.
+* Extensive documentation in the [codex](https://codex.easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=developers_link&utm_campaign=codex).
+* A plugin that allows editing with hundreds of [hooks and filters](http://docs.easypropertylistings.com.au/hook-docs.html?utm_source=readme&utm_medium=description_tab&utm_content=developers_link&utm_campaign=docs), bend EPL to your will.
+* Learn now to use [Hooks: Action and Filters reference](https://codex.easypropertylistings.com.au/article/301-hooks-action-and-filter-reference?utm_source=readme&utm_medium=description_tab&utm_content=developers_link&utm_campaign=hooks) guide.
 
 **Shortcodes**
 
@@ -254,6 +253,10 @@ With the [inspections](https://easypropertylistings.com.au/extensions/inspection
 
 With the [brochures](https://easypropertylistings.com.au/extensions/brochures/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_brochures) extension for Easy Property Listings you can create printable brochures and stock lists for your listings. There are several options to control the brochure styles and templates. Or create your own!
 
+**Custom Buttons**
+
+With the [custom buttons](https://easypropertylistings.com.au/extensions/custom-buttons/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_custom_buttons) extension for Easy Property Listings allows you to add custom buttons to your listings that can link to a file, external website or link on your own site. Great for lead generation.
+
 **Frontend Submissions**
 
 [Frontend Submissions](https://easypropertylistings.com.au/extensions/frontend-submissions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_frontend_submissions) Frontend Submissions provides a the ability to submit listings via a frontend form for review using a shortcode. They can also edit submitted listings from the frontend of your website.
@@ -282,7 +285,7 @@ With the [brochures](https://easypropertylistings.com.au/extensions/brochures/?u
 
 [Testimonial Manager](https://easypropertylistings.com.au/extensions/testimonial-manager/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extension_testimonial_manager) Testimonials can be an effective way to get more listings. They add credibility and builds trust. With this plugin, quickly add testimonials and have them link with properties in specific locations.
 
-[Many more extensions can be found here](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions).
+[Many more extensions can be found here](https://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=store).
 
 **Languages**
 
@@ -305,7 +308,7 @@ Easy Property Listings needs help for translation:
 15. Brazilian Portuguese - pt_BR - [Dionizio Bach | DJIO](https://www.djio.com.br/wordpress/)
 16. Portuguese
 
-Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/).
+Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/?utm_source=readme&utm_medium=description_tab&utm_content=translations_link&utm_campaign=language).
 
 == Installation ==
 
@@ -388,8 +391,9 @@ Place the php function on your single.php template in your theme <?php do_action
 
 Yes, through the addition of one or more of the add-on integrations, you can quickly integrate third party buttons to listings. The add-on gateways currently available:
 
-* [1form](https://easypropertylistings.com.au/extensions/1form/)
-* [Inspect Real Estate](https://easypropertylistings.com.au/extensions/inspect-real-estate/)
+* [1form](https://easypropertylistings.com.au/extensions/1form/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_1form)
+* [Inspect Real Estate](https://easypropertylistings.com.au/extensions/inspect-real-estate/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_inspect_real_estate)
+* [Rate My Agent](https://easypropertylistings.com.au/extensions/rate-my-agent/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_rate_my_agent)
 
 == Screenshots ==
 
