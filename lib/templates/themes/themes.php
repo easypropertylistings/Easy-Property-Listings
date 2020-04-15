@@ -5,9 +5,9 @@
  *
  * @package     EPL
  * @subpackage  Templates/Themes
- * @copyright   Copyright (c) 2015, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.0.0
  */
 
 // Exit if accessed directly.
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string $template Template name.
  *
  * @return string
- * @since 1.0
+ * @since 1.0.0
  */
 function epl_load_core_templates( $template ) {
 
@@ -110,6 +110,7 @@ add_filter( 'template_include', 'epl_load_core_templates' );
  *
  * @since 2.0.0
  * @since 3.4.14 Added TwentyTwenty theme support.
+ * @since 3.4.26 Added Avada theme support.
  */
 function epl_render_single_post() {
 
@@ -121,6 +122,8 @@ function epl_render_single_post() {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'divi/';
 	} elseif ( epl_is_twenty_twenty_theme() ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'twentytwenty/';
+	} elseif ( epl_is_avada_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'avada/';
 	} elseif ( file_exists( EPL_PATH_TEMPLATES_POST_TYPES . epl_get_active_theme() ) ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . trailingslashit( epl_get_active_theme() );
 	} else {
@@ -137,6 +140,7 @@ add_action( 'epl_render_single_post', 'epl_render_single_post' );
  *
  * @since 2.0.0
  * @since 3.4.14 Added TwentyTwenty theme support.
+ * @since 3.4.26 Added Avada theme support.
  */
 function epl_render_archive_post() {
 
@@ -148,6 +152,8 @@ function epl_render_archive_post() {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'divi/';
 	} elseif ( epl_is_twenty_twenty_theme() ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'twentytwenty/';
+	} elseif ( epl_is_avada_theme() ) {
+		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . 'avada/';
 	} elseif ( file_exists( EPL_PATH_TEMPLATES_POST_TYPES . epl_get_active_theme() ) ) {
 		$template_path = EPL_PATH_TEMPLATES_POST_TYPES . trailingslashit( epl_get_active_theme() );
 	} else {
@@ -162,9 +168,10 @@ add_action( 'epl_render_archive_post', 'epl_render_archive_post' );
 /**
  * Add extra class for twentysixteen theme
  *
- * @since 3.0
  * @param string $class Class name.
  * @return string
+ *
+ * @since 3.0.0
  */
 function epl_active_theme_name_twentysixteen( $class ) {
 
