@@ -2582,6 +2582,7 @@ function epl_get_property_exclusivity_opts() {
  * Returns array containing Commercial Authority
  *
  * @since 3.2
+ * @since 3.4.26 Re-ordered options.
  */
 function epl_get_property_com_authority_opts() {
 
@@ -2590,10 +2591,10 @@ function epl_get_property_com_authority_opts() {
 		array(
 			'Forsale' => __( 'For Sale', 'easy-property-listings' ),
 			'auction' => __( 'Auction', 'easy-property-listings' ),
-			'tender'  => __( 'Tender', 'easy-property-listings' ),
 			'eoi'     => __( 'EOI', 'easy-property-listings' ),
-			'Sale'    => __( 'Sale', 'easy-property-listings' ),
 			'offers'  => __( 'Offers', 'easy-property-listings' ),
+			'Sale'    => __( 'Sale', 'easy-property-listings' ),
+			'tender'  => __( 'Tender', 'easy-property-listings' ),
 		)
 	);
 }
