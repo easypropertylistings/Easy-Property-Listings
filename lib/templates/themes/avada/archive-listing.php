@@ -20,13 +20,13 @@ get_header(); ?>
 		?>
 		<div class="loop pad">
 
-			<div class="entry-content loop-content <?php echo epl_template_class( 'default', 'archive' ); ?>">
+			<div class="entry-content loop-content <?php echo esc_attr( epl_template_class( 'default', 'archive' ) ); ?>">
 				<?php do_action( 'epl_property_loop_start' ); ?>
 				<?php
-				while ( have_posts() ) : // The Loop
+				while ( have_posts() ) : // The Loop.
 						the_post();
 						do_action( 'epl_property_blog' );
-					endwhile; // end of one post
+					endwhile; // End of one post.
 				?>
 				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div>
@@ -51,4 +51,3 @@ get_header(); ?>
 <?php
 get_footer();
 
-/* Omit closing PHP tag to avoid "Headers already sent" issues. */

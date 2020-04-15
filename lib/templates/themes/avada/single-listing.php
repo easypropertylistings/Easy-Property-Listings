@@ -28,7 +28,7 @@ global $post;
 		<?php the_post(); ?>
 		<?php
 			do_action( 'epl_property_single' );
-			comments_template(); // include comments template
+			comments_template(); // Include comments template.
 		?>
 	<?php endwhile; ?>
 	<?php wp_reset_postdata(); ?>
@@ -37,4 +37,3 @@ global $post;
 <?php
 get_footer();
 
-/* Omit closing PHP tag to avoid "Headers already sent" issues. */
