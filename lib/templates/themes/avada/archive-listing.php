@@ -16,14 +16,16 @@ get_header(); ?>
 <section id="content" <?php Avada()->layout->add_class( 'content_class' ); ?> <?php Avada()->layout->add_style( 'content_style' ); ?>>
 
 	<?php
-	if ( have_posts() ) : ?>
+	if ( have_posts() ) :
+		?>
 		<div class="loop pad">
 
 			<div class="entry-content loop-content <?php echo epl_template_class( 'default', 'archive' ); ?>">
 				<?php do_action( 'epl_property_loop_start' ); ?>
-				<?php while ( have_posts() ) : // The Loop
+				<?php
+				while ( have_posts() ) : // The Loop
 						the_post();
-						do_action('epl_property_blog');
+						do_action( 'epl_property_blog' );
 					endwhile; // end of one post
 				?>
 				<?php do_action( 'epl_property_loop_end' ); ?>
@@ -32,13 +34,14 @@ get_header(); ?>
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
-					<?php do_action('epl_pagination'); ?>
+					<?php do_action( 'epl_pagination' ); ?>
 				</div>
 			</div>
 		</div>
-	<?php
+		<?php
 	else :
-		?><div class="hentry">
+		?>
+		<div class="hentry">
 			<?php do_action( 'epl_property_search_not_found' ); ?>
 		</div>
 	<?php endif; ?>
