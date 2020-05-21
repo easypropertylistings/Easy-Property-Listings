@@ -152,6 +152,7 @@ class EPL_Property_Meta {
 	 * @param string $meta_key The meta key to get the value from default is property_inspection_times.
 	 * @return mixed Return formatted inspection times with a iCal link
 	 * @since 2.0
+	 * @since 3.4.27 Added filter for href, handling of non date inspection values.
 	 */
 	public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 		if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -160,6 +161,9 @@ class EPL_Property_Meta {
 
 		$inspection_time = $this->get_property_meta( $meta_key );
 		$inspection_time = trim( $inspection_time );
+
+		$not_date = array();
+
 		if ( ! empty( $inspection_time ) ) {
 			$list = array_filter( explode( "\n", $inspection_time ) );
 			if ( ! empty( $list ) ) {
@@ -174,6 +178,7 @@ class EPL_Property_Meta {
 							$inspectarray[ strtotime( $endtime ) ] = $item;
 						}
 					} else {
+						$not_date[ $num ] = $num;
 						$inspectarray[ $num ] = $item;
 					}
 				}
@@ -186,23 +191,38 @@ class EPL_Property_Meta {
 				if ( count( $inspectarray ) >= 1 ) {
 					// Unordered list for multiple inspection times.
 					foreach ( $inspectarray as $key => &$element ) {
-						if ( ! empty( $element ) ) {
-							$element_formatted = apply_filters( 'epl_inspection_format', $element );
-							$return           .= "<li class='home-open-date'>";
 
-							if ( $ical ) {
-								//phpcs:disable
-								$return .= "<a
-											class ='epl_inspection_calendar'
-											href='" . get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element ) ) . '&propid=' . $this->post->ID . "' >"
-											. $element_formatted . '
-										</a>';
-								//phpcs:enable
+						$return           .= "<li class='home-open-date epl-no-inspection-date'>";
+
+						if ( ! empty( $element ) ) {
+
+							if( in_array( $key, $not_date ) ) {
+
+								// handle inspections that are not date.
+								$return 	.= $element;
+
 							} else {
-								$return .= $element_formatted;
+
+								$href = get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element ) ) . '&propid=' . $this->post->ID;
+
+								$href = apply_filters( 'epl_inpsection_link', $href );
+
+								$element_formatted = apply_filters( 'epl_inspection_format', $element );
+
+								if ( $ical ) {
+									//phpcs:disable
+									$return .= "<a
+												class ='epl_inspection_calendar'
+												href='" . $href . "' >"
+												. $element_formatted . '
+											</a>';
+									//phpcs:enable
+								} else {
+									$return .= $element_formatted;
+								}
 							}
 
-								$return .= '</li>';
+							$return .= '</li>';
 						}
 					}
 					if ( ! empty( $return ) ) {
@@ -748,6 +768,7 @@ class EPL_Property_Meta {
 	 * Get Price
 	 *
 	 * @since 2.0
+	 * @since 3.4.27	Fixed rent period translation.
 	 * @return string
 	 */
 	public function get_price() {
@@ -784,7 +805,10 @@ class EPL_Property_Meta {
 				$price  = '<span class="page-price-rent">';
 				$price .= '<span class="page-price" style="margin-right:0;">' . $this->get_property_rent() . '</span>';
 				if ( empty( $prop_rent_view ) ) {
-					$price .= '<span class="rent-period">' . $epl_property_price_rent_separator . '' . ucfirst( $this->get_property_meta( 'property_rent_period' ) ) . '</span>';
+					$rent_period_value = $this->get_property_meta( 'property_rent_period' );
+					$rent_options = epl_get_property_rent_period_opts();
+					$rent_period_label = isset( $rent_options[ $rent_period_value ] ) ? $rent_options[ $rent_period_value ] : ucfirst( $rent_period_value );
+					$price .= '<span class="rent-period">' . $epl_property_price_rent_separator . '' . $rent_period_label . '</span>';
 				}
 				$price    .= '</span>';
 				$prop_bond = $this->get_property_bond();

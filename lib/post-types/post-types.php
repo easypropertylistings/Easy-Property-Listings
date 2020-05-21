@@ -257,6 +257,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 1.0.0
  * @since 3.4.23 Altered the admin output of property_category to use the label instead of value.
  * @since 3.4.23 Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
+ * @since 3.4.27 Fixed html escaping issue and formatting for land size.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -362,14 +363,14 @@ function epl_manage_listing_column_listing_callback() {
 	// Land area.
 	if ( ! empty( $land ) ) {
 		echo '<div class="epl_meta_land_details">';
-		echo '<span class="epl_meta_land">' , esc_attr( $land ) , '</span>';
+		echo '<span class="epl_meta_land">' , wp_kses_post( epl_format_amount( $land, true ) ) , '</span>';
 
 		if ( 'squareMeter' === $land_unit ) {
 			$land_unit = esc_html__( 'm&#178;', 'easy-property-listings' );
 		}
 		$land_unit = apply_filters( 'epl_property_land_area_unit_label', $land_unit );
 
-		echo '<span class="epl_meta_land_unit"> ' , esc_attr( $land_unit ) , '</span>';
+		echo '<span class="epl_meta_land_unit"> ' , wp_kses_post( $land_unit ) , '</span>';
 		echo '</div>';
 	}
 
@@ -560,7 +561,7 @@ function epl_manage_listing_column_price_callback() {
 		echo 'Sold' === $property_status ? esc_html( epl_currency_formatted_amount( $sold_price ) ) : '';
 		echo '</div>';
 	} else {
-		echo '<div class="epl_meta_price">' . esc_html( $property->get_price_plain_value() ) . '</div>';
+		echo '<div class="epl_meta_price">' . wp_kses_post( $property->get_price_plain_value() ) . '</div>';
 	}
 
 	// Bond for rental listing type.

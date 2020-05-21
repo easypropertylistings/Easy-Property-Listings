@@ -389,8 +389,9 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
  * @param  bool  $country  Return country with true, default false.
  * @return string
  * @since 3.3
+ * @since 3.4.27	Added support for prefix.
  */
-function epl_get_the_address( $address_args = array(), $sep = array(), $country = false ) {
+function epl_get_the_address( $address_args = array(), $sep = array(), $country = false, $prefix = array() ) {
 
 	$address = '';
 
@@ -406,8 +407,22 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		'country'       => ' ',
 	);
 
+	$prefix_defaults = array(
+		'sub_number'    => '',
+		'lot_number'    => '',
+		'street_number' => '',
+		'street'        => '',
+		'suburb'        => '',
+		'city'          => '',
+		'state'         => '',
+		'postal_code'   => '',
+		'country'       => ''
+	);
+
 	// override default separators for address components.
 	$seps = array_merge( $address_defaults, $sep );
+
+	$prefix = array_merge( $prefix_defaults, $prefix );
 
 	// Output the full address based on user selection.
 	if ( empty( $address_args ) ) {
@@ -430,7 +445,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 			$value = get_property_meta( 'property_address_' . $arg );
 
 			if ( ! empty( $value ) ) {
-				$address .= get_property_meta( 'property_address_' . $arg ) . $seps[ $arg ];
+				$address .= $prefix[ $args ].get_property_meta( 'property_address_' . $arg ) . $seps[ $arg ];
 			}
 		}
 	}

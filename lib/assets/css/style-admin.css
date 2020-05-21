@@ -904,6 +904,9 @@ h3.epl-welcome-sub-heading {
 	color: #fff;
 	background: #aaa;
 }
+.epl-notes-grav + .dashboard-comment-wrap {
+    padding-left: 63px;
+}
 .epl-notes-label {
 	display: block;
 	text-align: center;
