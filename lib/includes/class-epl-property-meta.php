@@ -178,7 +178,7 @@ class EPL_Property_Meta {
 							$inspectarray[ strtotime( $endtime ) ] = $item;
 						}
 					} else {
-						$not_date[ $num ] = $num;
+						$not_date[ $num ]     = $num;
 						$inspectarray[ $num ] = $item;
 					}
 				}
@@ -192,14 +192,14 @@ class EPL_Property_Meta {
 					// Unordered list for multiple inspection times.
 					foreach ( $inspectarray as $key => &$element ) {
 
-						$return           .= "<li class='home-open-date epl-no-inspection-date'>";
+						$return .= "<li class='home-open-date epl-no-inspection-date'>";
 
 						if ( ! empty( $element ) ) {
 
-							if( in_array( $key, $not_date ) ) {
+							if ( in_array( $key, $not_date ) ) {
 
 								// handle inspections that are not date.
-								$return 	.= $element;
+								$return .= $element;
 
 							} else {
 
@@ -768,7 +768,7 @@ class EPL_Property_Meta {
 	 * Get Price
 	 *
 	 * @since 2.0
-	 * @since 3.4.27	Fixed rent period translation.
+	 * @since 3.4.27    Fixed rent period translation.
 	 * @return string
 	 */
 	public function get_price() {
@@ -806,9 +806,9 @@ class EPL_Property_Meta {
 				$price .= '<span class="page-price" style="margin-right:0;">' . $this->get_property_rent() . '</span>';
 				if ( empty( $prop_rent_view ) ) {
 					$rent_period_value = $this->get_property_meta( 'property_rent_period' );
-					$rent_options = epl_get_property_rent_period_opts();
+					$rent_options      = epl_get_property_rent_period_opts();
 					$rent_period_label = isset( $rent_options[ $rent_period_value ] ) ? $rent_options[ $rent_period_value ] : ucfirst( $rent_period_value );
-					$price .= '<span class="rent-period">' . $epl_property_price_rent_separator . '' . $rent_period_label . '</span>';
+					$price            .= '<span class="rent-period">' . $epl_property_price_rent_separator . '' . $rent_period_label . '</span>';
 				}
 				$price    .= '</span>';
 				$prop_bond = $this->get_property_bond();
@@ -2090,8 +2090,8 @@ class EPL_Property_Meta {
 		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
-			          '<p>' . $metavalue . '</p>' .
-			          '</div>';
+					  '<p>' . $metavalue . '</p>' .
+					  '</div>';
 			return apply_filters( 'epl_get_additional_commercial_features_html', $return );
 		}
 	}
@@ -2110,8 +2110,8 @@ class EPL_Property_Meta {
 		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
-			          '<p>' . $metavalue . '</p>' .
-			          '</div>';
+					  '<p>' . $metavalue . '</p>' .
+					  '</div>';
 			return apply_filters( 'epl_get_additional_commerical_features_html', $return );
 		}
 	}
