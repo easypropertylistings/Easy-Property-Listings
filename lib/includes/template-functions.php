@@ -3477,7 +3477,7 @@ function epl_get_stickers_array() {
 
 					foreach ( $conditions as $condition_key => $condition_condition ) {
 
-						if ( $compare === '=' ) {
+						if ( '=' === $compare ) {
 
 							if ( is_array( $condition_condition ) ) {
 								if ( ! in_array( get_property_meta( $condition_key ), $condition_condition ) ) {
