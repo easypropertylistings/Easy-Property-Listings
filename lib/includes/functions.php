@@ -943,10 +943,10 @@ function epl_feedsync_format_strip_currency( $value ) {
  * Processing Function for WP All Import and FeedSync
  * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
  *
- * @param bool   $date_time Swtich date time.
+ * @param bool   $date_time     Switch date time.
  * @param string $old_time_zone Old Timezone.
- * @param string $new_timezone New timezone.
- * @param string $format Date format.
+ * @param string $new_timezone  New timezone.
+ * @param string $format        Date format.
  *
  * @return integer
  * @throws exception Exception.
@@ -1808,7 +1808,7 @@ function epl_get_admin_option_fields() {
 			'label'  => __( 'Currency', 'easy-property-listings' ),
 			'class'  => 'core',
 			'id'     => 'currency',
-			// translators: currency artice link.
+			// Translators: Currency article link.
 			'help'   => sprintf( __( 'Select your default currency. If you can not find the currency you are looking for, you can add additional currencies with a filter, <a href="%s" target="_blank">visit the codex to see how</a>.', 'easy-property-listings' ), esc_url( 'https://codex.easypropertylistings.com.au/article/153-eplgetcurrencies' ) ) . '<hr/>',
 			'fields' => array(
 				array(
