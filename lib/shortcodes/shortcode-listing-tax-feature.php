@@ -27,6 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return false|string|void
  * @since       1.1.2
+ * @since 		3.4.27 fixed the issue : no spaces between classes when both class & template attributs are set.
  */
 function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -183,7 +184,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-feature
 			<?php
-			echo esc_attr( epl_template_class( $template, 'archive' ) );
+			echo esc_attr( epl_template_class( $template, 'archive' ) ).' ';
 			echo esc_attr( $attributes['class'] );
 			?>
 			">
