@@ -147,7 +147,6 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  *
  * @since      2.2
  * @since        3.4.27 additional param to disable / enable stickers
- *
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
@@ -167,7 +166,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
 					<div class="epl-blog-image">
-						<?php if( $stickers ) :  ?>
+						<?php if ( $stickers ) : ?>
 						<div class="epl-stickers-wrapper">
 							<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
 						</div>
@@ -296,8 +295,9 @@ function epl_get_template_part( $template, $arguments = array() ) {
  */
 function epl_archive_custom_excerpt_length( $length ) {
 
-	if( !is_epl_post() ) 
+	if ( ! is_epl_post() ) {
 		return $length;
+	}
 
 	return epl_get_option( 'display_excerpt_length', 22 );
 }
@@ -1060,10 +1060,10 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 /**
  * Convert embed URLs to non embed URLs for WP Oembed compatiblity.
  *
- * @param      string  $url    The url
+ * @param      string $url    The url
  *
- * @return     string 	converted URL
- * @since 	   3.4.27	
+ * @return     string   converted URL
+ * @since      3.4.27
  */
 function epl_convert_youtube_embed_url( $url ) {
 
@@ -1071,8 +1071,8 @@ function epl_convert_youtube_embed_url( $url ) {
 
 		$video_id = epl_get_youtube_id_from_url( $url );
 
-		if( !empty( $video_id) ) {
-			$url = 'https://www.youtube.com/watch?v='.$video_id;
+		if ( ! empty( $video_id ) ) {
+			$url = 'https://www.youtube.com/watch?v=' . $video_id;
 		}
 	}
 
@@ -3256,66 +3256,73 @@ function epl_get_post_id_from_unique_id( $unique_id = '' ) {
 
 /**
  * Renders stickers, based on meta values, an alternative to epl_price_stickers.
- * 
- * @param      array  $options   The options
- * @param      array  $stickers  The stickers
- * @since      3.4.27 		 
+ *
+ * @param      array $options   The options
+ * @param      array $stickers  The stickers
+ * @since      3.4.27
  */
 function epl_stickers( $options = array(), $stickers = array() ) {
 
 	global $post;
 
-	if( !is_epl_post() )
+	if ( ! is_epl_post() ) {
 		return;
+	}
 
 	$default_options = array(
-		'wrap'			=>	false,
-		'wrap_class'	=>	'epl-stickers-wrapper',
-		'wrapper_tag'	=>	'div',
-		'sticker_tag'	=>	'span',
-		'sticker_class'	=>	'status-sticker',
-		'max_stickers'	=>	2
+		'wrap'          => false,
+		'wrap_class'    => 'epl-stickers-wrapper',
+		'wrapper_tag'   => 'div',
+		'sticker_tag'   => 'span',
+		'sticker_class' => 'status-sticker',
+		'max_stickers'  => 2,
 	);
 
 	$sticker_counts = 0;
 
 	$options = array_merge( $default_options, $options );
 
-	if( empty( $stickers ) )
+	if ( empty( $stickers ) ) {
 		$stickers = epl_get_stickers_array();
+	}
 
 	$options = apply_filters( 'epl_stickers_options', $options );
 
-	if( $options[ 'wrap'] )
-		echo '<'.$options[ 'wrapper_tag' ].' class="'.$options[ 'wrap_class' ].'">';
+	if ( $options['wrap'] ) {
+		echo '<' . $options['wrapper_tag'] . ' class="' . $options['wrap_class'] . '">';
+	}
 
 	foreach ( $stickers as $key => $sticker ) {
 
-		if( $sticker_counts == $default_options['max_stickers'] )
-			break; ?>
+		if ( $sticker_counts == $default_options['max_stickers'] ) {
+			break;
+		}
+		?>
 
-		<<?php echo esc_attr( $options['sticker_tag'] ) ?> class="<?php echo esc_attr( $options['sticker_class'].' '.$sticker[ 'class' ] ); ?>">
+		<<?php echo esc_attr( $options['sticker_tag'] ); ?> class="<?php echo esc_attr( $options['sticker_class'] . ' ' . $sticker['class'] ); ?>">
 			<?php
-				echo isset( $sticker[ 'before' ] ) ? 
-				wp_kses_post( $sticker[ 'before' ] ) : '';
-				echo wp_kses_post( $sticker[ 'label' ] );
-				echo isset( $sticker[ 'after' ] ) ? 
-				wp_kses_post( $sticker[ 'after' ] ) : '';
+				echo isset( $sticker['before'] ) ?
+				wp_kses_post( $sticker['before'] ) : '';
+				echo wp_kses_post( $sticker['label'] );
+				echo isset( $sticker['after'] ) ?
+				wp_kses_post( $sticker['after'] ) : '';
 			?>
-		</<?php echo esc_attr( $options['sticker_tag'] ) ?>> <?php
+		</<?php echo esc_attr( $options['sticker_tag'] ); ?>> 
+					 <?php
 
-		$sticker_counts++;
+						$sticker_counts++;
 	}
 
-	if( $options[ 'wrap'] )
-		echo '</'.$options[ 'wrapper_tag' ].'>';
+	if ( $options['wrap'] ) {
+		echo '</' . $options['wrapper_tag'] . '>';
+	}
 
 }
 
 /**
  * Returns stickers array based on type, status etc.
- * 
- * @since      3.4.27 		 
+ *
+ * @since      3.4.27
  */
 function epl_get_stickers_array() {
 
@@ -3323,100 +3330,100 @@ function epl_get_stickers_array() {
 
 	$stickers = array(
 
-		'under_offer'			=>	array(
-			'conditions'			=>	array(
-				'property_status'			=>	'current',
-				'property_under_offer'		=>	array( 'yes' ),
+		'under_offer'      => array(
+			'conditions' => array(
+				'property_status'      => 'current',
+				'property_under_offer' => array( 'yes' ),
 			),
-			'type'				=>	epl_get_core_post_types(),
-			'label'				=>	epl_get_option( 'label_under_offer' ),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'under-offer'
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_under_offer' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'under-offer',
 		),
-		'home_open'			=>	array(
-			'conditions'			=>	array(
-				'property_inspection_times'			=>	array( null, ''),
+		'home_open'        => array(
+			'conditions' => array(
+				'property_inspection_times' => array( null, '' ),
 			),
-			'compare'			=>	'!=',
-			'type'				=>	epl_get_core_post_types(),
-			'label'				=>	epl_get_option( 'label_home_open'),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'open'
+			'compare'    => '!=',
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_home_open' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'open',
 		),
 
-		'new'			=>	array(
-			'type'				=>	epl_get_core_post_types(),
-			'label'				=>	epl_get_option( 'label_new' ),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'new'
+		'new'              => array(
+			'type'   => epl_get_core_post_types(),
+			'label'  => epl_get_option( 'label_new' ),
+			'before' => '',
+			'after'  => '',
+			'class'  => 'new',
 
 		),
-		'rental_lease'	=>	array(
-			'conditions'			=>	array(
-				'property_status'			=>	'current',
+		'rental_lease'     => array(
+			'conditions' => array(
+				'property_status' => 'current',
 			),
-			'type'				=>	array( 'rental' ),
-			'label'				=>	__( 'For Lease', 'easy-property-listings'),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'for-lease'
+			'type'       => array( 'rental' ),
+			'label'      => __( 'For Lease', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-lease',
 		),
-		'leased'			=>	array(
-			'conditions'			=>	array(
-				'property_status'			=>	'leased',
+		'leased'           => array(
+			'conditions' => array(
+				'property_status' => 'leased',
 			),
-			'type'				=>	array( 'rental', 'commercial_land', 'commercial' ),
-			'label'				=>	epl_get_option( 'label_leased'),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'leased'
+			'type'       => array( 'rental', 'commercial_land', 'commercial' ),
+			'label'      => epl_get_option( 'label_leased' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'leased',
 		),
-		'current_sales'			=>	array(
-			'conditions'			=>	array(
-				'property_status'			=>	'current',
+		'current_sales'    => array(
+			'conditions' => array(
+				'property_status' => 'current',
 			),
-			'type'				=>	array( 'property', 'rural', 'land', 'business' ),
-			'label'				=>	__( 'For Sale', 'easy-property-listings'),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'for-sale'
+			'type'       => array( 'property', 'rural', 'land', 'business' ),
+			'label'      => __( 'For Sale', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-sale',
 		),
-		'sold'			=>	array(
-			'conditions'			=>	array(
-				'property_status'			=>	'sold',
+		'sold'             => array(
+			'conditions' => array(
+				'property_status' => 'sold',
 			),
-			'type'				=>	epl_get_core_post_types(),
-			'label'				=>	epl_get_option( 'label_sold'),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'sold'
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_sold' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'sold',
 		),
-		'commercial_sale'			=>	array(
-			'conditions'			=>	array(
-				'property_status'			=>	'current',
-				'property_com_listing_type'	=>	array( 'sale', 'both' ),
+		'commercial_sale'  => array(
+			'conditions' => array(
+				'property_status'           => 'current',
+				'property_com_listing_type' => array( 'sale', 'both' ),
 			),
-			'type'				=>	array( 'commercial', 'commercial_land' ),
-			'label'				=>	__( 'For Sale', 'easy-property-listings'),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'for-sale'
+			'type'       => array( 'commercial', 'commercial_land' ),
+			'label'      => __( 'For Sale', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-sale',
 		),
-		'commercial_lease'			=>	array(
-			'conditions'			=>	array(
-				'property_status'			=>	'current',
-				'property_com_listing_type'	=>	array( 'lease' ),
+		'commercial_lease' => array(
+			'conditions' => array(
+				'property_status'           => 'current',
+				'property_com_listing_type' => array( 'lease' ),
 			),
-			'type'				=>	array( 'commercial', 'commercial_land' ),
-			'label'				=>	__( 'For Lease', 'easy-property-listings'),
-			'before'			=>	'',
-			'after'				=>	'',
-			'class'				=>	'for-lease'
-		)
-		
+			'type'       => array( 'commercial', 'commercial_land' ),
+			'label'      => __( 'For Lease', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-lease',
+		),
+
 	);
 
 	/**
@@ -3428,17 +3435,18 @@ function epl_get_stickers_array() {
 
 	$return = array();
 
-	foreach ($stickers as $key => $sticker ) {
-		
-		if( !empty( $sticker ) && is_array( $sticker ) ) {
+	foreach ( $stickers as $key => $sticker ) {
 
-			if( !in_array( get_post_type(), $sticker[ 'type'] ) )
+		if ( ! empty( $sticker ) && is_array( $sticker ) ) {
+
+			if ( ! in_array( get_post_type(), $sticker['type'] ) ) {
 				continue;
+			}
 
-			if( 'new' === $key ) {
+			if ( 'new' === $key ) {
 
-				$date          = new DateTime( $post->post_date );
-				$now           = new DateTime();
+				$date = new DateTime( $post->post_date );
+				$now  = new DateTime();
 
 				// php > 5.3.
 				if ( method_exists( $now, 'diff' ) ) {
@@ -3451,65 +3459,63 @@ function epl_get_stickers_array() {
 
 				}
 
-				if ( epl_get_option( 'sticker_new_range' ) >= $diff ) { 
+				if ( epl_get_option( 'sticker_new_range' ) >= $diff ) {
 
 					$return[ $key ] = array(
-						'label'		=>	$sticker[ 'label' ],
-						'class'		=>	$sticker[ 'class' ],
-						'before'	=>	$sticker[ 'before' ],
-						'after'		=>	$sticker[ 'after' ]
+						'label'  => $sticker['label'],
+						'class'  => $sticker['class'],
+						'before' => $sticker['before'],
+						'after'  => $sticker['after'],
 					);
 				}
-			} else { 
+			} else {
 
-				$conditions = $sticker[ 'conditions' ];
-				$compare 	= isset( $sticker[ 'compare' ] ) ? $sticker[ 'compare' ] : '=';
+				$conditions = $sticker['conditions'];
+				$compare    = isset( $sticker['compare'] ) ? $sticker['compare'] : '=';
 
-				if( !empty( $conditions ) ) {
+				if ( ! empty( $conditions ) ) {
 
-					foreach ($conditions as $condition_key => $condition_condition ) {
-						
-						if( $compare === '=' ) {
+					foreach ( $conditions as $condition_key => $condition_condition ) {
 
-							if( is_array( $condition_condition ) ) {
-								if( !in_array( get_property_meta( $condition_key ), $condition_condition ) ) {
+						if ( $compare === '=' ) {
+
+							if ( is_array( $condition_condition ) ) {
+								if ( ! in_array( get_property_meta( $condition_key ), $condition_condition ) ) {
 									continue 2;
 								}
 							} else {
 
-								if( get_property_meta( $condition_key ) !== $condition_condition ) {
+								if ( get_property_meta( $condition_key ) !== $condition_condition ) {
 									continue 2;
 								}
 							}
-							
-						} elseif( $compare === '!=' ) {
-							if( is_array( $condition_condition ) ) {
-								if( in_array( get_property_meta( $condition_key ), $condition_condition ) ) {
+						} elseif ( $compare === '!=' ) {
+							if ( is_array( $condition_condition ) ) {
+								if ( in_array( get_property_meta( $condition_key ), $condition_condition ) ) {
 									continue 2;
 								}
 							} else {
 
-								if( get_property_meta( $condition_key ) === $condition_condition ) {
+								if ( get_property_meta( $condition_key ) === $condition_condition ) {
 									continue 2;
 								}
 							}
 						}
 
 						$return[ $key ] = array(
-							'label'		=>	$sticker[ 'label' ],
-							'class'		=>	$sticker[ 'class' ],
-							'before'	=>	$sticker[ 'before' ],
-							'after'		=>	$sticker[ 'after' ]
+							'label'  => $sticker['label'],
+							'class'  => $sticker['class'],
+							'before' => $sticker['before'],
+							'after'  => $sticker['after'],
 						);
 					}
 				}
-
 			}
 		}
 	}
 
 	/**
-	 * List of stickers for current listing, hook here if only need to change labels, 
+	 * List of stickers for current listing, hook here if only need to change labels,
 	 * class etc for displayed labels.
 	 */
 	return apply_filters( 'epl_stickers_array', $return );
