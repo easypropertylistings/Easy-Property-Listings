@@ -2314,7 +2314,7 @@ function epl_get_active_theme() {
 
 	} else {
 		// older versions.
-		$active_theme = get_current_theme(); //phpcs:ignore
+		$active_theme = wp_get_theme(); //phpcs:ignore
 	}
 	$active_theme = str_replace( ' ', '', strtolower( $active_theme ) );
 	return apply_filters( 'epl_active_theme', $active_theme );
@@ -3257,9 +3257,10 @@ function epl_get_post_id_from_unique_id( $unique_id = '' ) {
 /**
  * Renders stickers, based on meta values, an alternative to epl_price_stickers.
  *
- * @param      array $options   The options
- * @param      array $stickers  The stickers
- * @since      3.4.27
+ * @param array $options  The options.
+ * @param array $stickers The stickers.
+ *
+ * @since 3.4.27
  */
 function epl_stickers( $options = array(), $stickers = array() ) {
 
@@ -3289,12 +3290,12 @@ function epl_stickers( $options = array(), $stickers = array() ) {
 	$options = apply_filters( 'epl_stickers_options', $options );
 
 	if ( $options['wrap'] ) {
-		echo '<' . $options['wrapper_tag'] . ' class="' . $options['wrap_class'] . '">';
+		echo '<' . esc_attr( $options['wrapper_tag'] ) . ' class="' . esc_attr( $options['wrap_class'] ) . '">';
 	}
 
 	foreach ( $stickers as $key => $sticker ) {
 
-		if ( $sticker_counts == $default_options['max_stickers'] ) {
+		if ( $sticker_counts === $default_options['max_stickers'] ) {
 			break;
 		}
 		?>
@@ -3308,13 +3309,12 @@ function epl_stickers( $options = array(), $stickers = array() ) {
 				wp_kses_post( $sticker['after'] ) : '';
 			?>
 		</<?php echo esc_attr( $options['sticker_tag'] ); ?>> 
-					 <?php
-
-						$sticker_counts++;
+			<?php
+				$sticker_counts++;
 	}
 
 	if ( $options['wrap'] ) {
-		echo '</' . $options['wrapper_tag'] . '>';
+		echo '</' . esc_attr( $options['wrapper_tag'] ) . '>';
 	}
 
 }
