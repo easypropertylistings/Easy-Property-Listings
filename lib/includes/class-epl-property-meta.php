@@ -2075,10 +2075,33 @@ class EPL_Property_Meta {
 		}
 	}
 
+
+
 	/**
 	 * Get Additional Commercial Features by meta key
 	 *
-	 * @since 2.0
+	 * @since 2.0.0
+	 * @since 3.4.27
+	 * @param string $metakey Meta key name.
+	 * @return mixed Value formatted and wrapped in div with title
+	 */
+	public function get_additional_commercial_features_html( $metakey ) {
+		$metavalue = $this->get_property_meta( $metakey );
+		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
+			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
+						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
+			          '<p>' . $metavalue . '</p>' .
+			          '</div>';
+			return apply_filters( 'epl_get_additional_commercial_features_html', $return );
+		}
+	}
+
+	/**
+	 * Get Additional Commercial Features by meta key.
+	 *
+	 * Spelling error in this function. Retained to prevent issues.
+	 *
+	 * @since 2.0.0
 	 * @param string $metakey Meta key name.
 	 * @return mixed Value formatted and wrapped in div with title
 	 */
@@ -2087,8 +2110,8 @@ class EPL_Property_Meta {
 		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
-						'<p>' . $metavalue . '</p>' .
-					'</div>';
+			          '<p>' . $metavalue . '</p>' .
+			          '</div>';
 			return apply_filters( 'epl_get_additional_commerical_features_html', $return );
 		}
 	}
