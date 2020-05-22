@@ -408,6 +408,11 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+= 3.4.27 May 13, 2020 =
+
+* Tweak: Helper class epl-grid-hidden block display on list mode.
+* Fix: Admin side issue with land size displaying html.
+
 = 3.4.26 April 15, 2020 =
 
 * New: Added Avada theme support.
