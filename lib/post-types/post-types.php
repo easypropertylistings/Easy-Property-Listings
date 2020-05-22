@@ -264,8 +264,8 @@ function epl_manage_listing_column_listing_callback() {
 
 	$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 	$heading                 = $property->get_property_meta( 'property_heading' );
-	$homeopen                = $property->get_property_meta( 'property_inspection_times' );
-	$homeopen                = trim( $homeopen );
+	$home_open                = $property->get_property_meta( 'property_inspection_times' );
+	$home_open                = trim( $home_open );
 	$beds                    = $property->get_property_meta( 'property_bedrooms' );
 	$baths                   = $property->get_property_meta( 'property_bathrooms' );
 	$rooms                   = $property->get_property_meta( 'property_rooms', false );
@@ -375,14 +375,14 @@ function epl_manage_listing_column_listing_callback() {
 	}
 
 	// Home Open date and time.
-	if ( ! empty( $homeopen ) ) {
-		$homeopen          = array_filter( explode( "\n", $homeopen ) );
-			$homeopen_list = '<ul class="epl_meta_home_open">';
-		foreach ( $homeopen as $num => $item ) {
-			$homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
+	if ( ! empty( $home_open ) ) {
+		$home_open          = array_filter( explode( "\n", $home_open ) );
+			$home_open_list = '<ul class="epl_meta_home_open">';
+		foreach ( $home_open as $num => $item ) {
+			$home_open_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 		}
-			$homeopen_list .= '</ul>';
-		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . esc_html( epl_labels( 'label_home_open' ) ) . '</strong></span>' , wp_kses_post( $homeopen_list ) , '</div>';
+			$home_open_list .= '</ul>';
+		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . esc_html( epl_labels( 'label_home_open' ) ) . '</strong></span>' , wp_kses_post( $home_open_list ) , '</div>';
 	}
 }
 add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_listing_callback' );
@@ -546,9 +546,9 @@ function epl_manage_listing_column_price_callback() {
 
 	// If we have a price to display in the bar.
 	if ( ! empty( $bar_price ) ) {
-		$barwidth = 0 === $max_price ? 0 : $bar_price / $max_price * 100;
+		$bar_width = 0 === $max_price ? 0 : $bar_price / $max_price * 100;
 		echo '<div class="epl-price-bar ' . esc_html( $class ) . '">
-			<span style="width:' . esc_html( $barwidth ) . '%"></span>
+			<span style="width:' . esc_html( $bar_width ) . '%"></span>
 		</div>';
 		// Otherwise, there is no price set.
 	} else {
