@@ -811,10 +811,10 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 /**
  * Property icons
  *
- * @param string $returntype  The returntype.
+ * @param string $returntype The returntype.
  *
  * @since 1.0.0
- * @since 3.3.0 Revides.
+ * @since 3.3.0 Revised.
  */
 function epl_property_icons( $returntype = 'i' ) {
 	$returntype = empty( $returntype ) ? 'i' : $returntype;
@@ -1058,12 +1058,12 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 }
 
 /**
- * Convert embed URLs to non embed URLs for WP Oembed compatiblity.
+ * Convert embed URLs to non embed URLs for WP Oembed compatibility.
  *
- * @param      string $url    The url
+ * @param  string $url The url.
  *
- * @return     string   converted URL
- * @since      3.4.27
+ * @return string   converted URL
+ * @since  3.4.27
  */
 function epl_convert_youtube_embed_url( $url ) {
 
@@ -3077,7 +3077,7 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
  * @return     array
  *
  * @since 3.1.16
- * @since 3.4.23 Added compatiblity class.
+ * @since 3.4.23 Added compatibility class.
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 
