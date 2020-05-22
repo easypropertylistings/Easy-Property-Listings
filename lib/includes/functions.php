@@ -384,12 +384,14 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
 /**
  * Retrieve address based on user display selection.
  *
- * @param  array $address_args address components.
- * @param  array $sep override default separators for each address components here.
- * @param  bool  $country  Return country with true, default false.
+ * @param array $address_args Address components.
+ * @param array $sep          Override default separators for each address components here.
+ * @param bool  $country      Return country with true, default false.
+ * @param array $prefix       Customise the prefix for each address component.
+ *
  * @return string
  * @since 3.3
- * @since 3.4.27	Added support for prefix.
+ * @since 3.4.27    Added support for prefix.
  */
 function epl_get_the_address( $address_args = array(), $sep = array(), $country = false, $prefix = array() ) {
 
@@ -419,7 +421,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		'country'       => ''
 	);
 
-	// override default separators for address components.
+	// Override default separators for address components.
 	$seps = array_merge( $address_defaults, $sep );
 
 	$prefix = array_merge( $prefix_defaults, $prefix );
