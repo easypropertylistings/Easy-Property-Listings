@@ -77,6 +77,8 @@ function epl_create_property_object() {
 			$epl_author_secondary = new EPL_Author_meta( $ID );
 		}
 	}
+
+	add_filter( 'excerpt_length', 'epl_archive_custom_excerpt_length', 999 );
 }
 
 add_action( 'wp', 'epl_create_property_object' );
@@ -138,13 +140,15 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
 /**
  * Featured Image on archive template now loading through filter
  *
- * @since      2.2
+ * @param string $image_size  The image size.
+ * @param string $image_class The image class.
+ * @param bool   $link        Enable or disable the link with true/false. Default true.
+ * @param bool   $stickers    Enable or disable the stickers with true/false. Default true.
  *
- * @param      string  $image_size   The image size.
- * @param      string  $image_class  The image class.
- * @param      boolean $link         The link.
+ * @since      2.2
+ * @since        3.4.27 additional param to disable / enable stickers
  */
-function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true ) {
+function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
 	if ( empty( $image_size ) ) {
 		$image_size = 'epl-image-medium-crop';
@@ -162,9 +166,11 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
 					<div class="epl-blog-image">
+						<?php if ( $stickers ) : ?>
 						<div class="epl-stickers-wrapper">
 							<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
 						</div>
+						<?php endif; ?>
 						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
 					</div>
 			<?php if ( true === $link ) { ?>
@@ -283,21 +289,19 @@ function epl_get_template_part( $template, $arguments = array() ) {
  * Modify the Excerpt length on Archive pages
  *
  * @since 1.0
+ * @since 3.4.27 Alter length only for EPL posts.
  * @param string $length Excerpt word length.
  * @return int|string
  */
 function epl_archive_custom_excerpt_length( $length ) {
-	global $epl_settings;
-	$excerpt = '';
-	if ( ! empty( $epl_settings ) && isset( $epl_settings['display_excerpt_length'] ) ) {
-		$excerpt = $epl_settings['display_excerpt_length'];
+
+	if ( ! is_epl_post() ) {
+		return $length;
 	}
-	if ( ! empty( $excerpt ) ) {
-		return 22;
-	} else {
-		return $excerpt;
-	}
+
+	return epl_get_option( 'display_excerpt_length', 22 );
 }
+
 
 /**
  * Filter which listing status should not be displayed
@@ -329,7 +333,6 @@ function epl_property_blog( $template = '' ) {
 	}
 	$template = str_replace( '_', '-', $template );
 
-	add_filter( 'excerpt_length', 'epl_archive_custom_excerpt_length', 999 );
 	global $epl_settings,$property;
 
 	if ( is_null( $property ) ) {
@@ -808,10 +811,10 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 /**
  * Property icons
  *
- * @param string $returntype  The returntype.
+ * @param string $returntype The returntype.
  *
  * @since 1.0.0
- * @since 3.3.0 Revides.
+ * @since 3.3.0 Revised.
  */
 function epl_property_icons( $returntype = 'i' ) {
 	$returntype = empty( $returntype ) ? 'i' : $returntype;
@@ -1033,6 +1036,8 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 	/** Remove related videos from youtube */
 	if ( 'youtube' === epl_get_video_host( $property_video_url ) ) {
 
+		$property_video_url = epl_convert_youtube_embed_url( $property_video_url );
+
 		if ( strpos( $property_video_url, '?' ) > 0 ) {
 			$property_video_url .= '&rel=0';
 		} else {
@@ -1050,6 +1055,28 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 		$video_html     .= '</div>';
 		return $video_html;
 	}
+}
+
+/**
+ * Convert embed URLs to non embed URLs for WP Oembed compatibility.
+ *
+ * @param  string $url The url.
+ *
+ * @return string   converted URL
+ * @since  3.4.27
+ */
+function epl_convert_youtube_embed_url( $url ) {
+
+	if ( strpos( $url, 'embed' ) > 0 ) {
+
+		$video_id = epl_get_youtube_id_from_url( $url );
+
+		if ( ! empty( $video_id ) ) {
+			$url = 'https://www.youtube.com/watch?v=' . $video_id;
+		}
+	}
+
+	return apply_filters( 'epl_youtube_embed_url', $url );
 }
 
 /**
@@ -2287,7 +2314,7 @@ function epl_get_active_theme() {
 
 	} else {
 		// older versions.
-		$active_theme = get_current_theme(); //phpcs:ignore
+		$active_theme = wp_get_theme(); //phpcs:ignore
 	}
 	$active_theme = str_replace( ' ', '', strtolower( $active_theme ) );
 	return apply_filters( 'epl_active_theme', $active_theme );
@@ -3050,7 +3077,7 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
  * @return     array
  *
  * @since 3.1.16
- * @since 3.4.23 Added compatiblity class.
+ * @since 3.4.23 Added compatibility class.
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 
@@ -3225,4 +3252,271 @@ function epl_get_post_id_from_unique_id( $unique_id = '' ) {
 	}
 
 	return false;
+}
+
+/**
+ * Renders stickers, based on meta values, an alternative to epl_price_stickers.
+ *
+ * @param array $options  The options.
+ * @param array $stickers The stickers.
+ *
+ * @since 3.4.27
+ */
+function epl_stickers( $options = array(), $stickers = array() ) {
+
+	global $post;
+
+	if ( ! is_epl_post() ) {
+		return;
+	}
+
+	$default_options = array(
+		'wrap'          => false,
+		'wrap_class'    => 'epl-stickers-wrapper',
+		'wrapper_tag'   => 'div',
+		'sticker_tag'   => 'span',
+		'sticker_class' => 'status-sticker',
+		'max_stickers'  => 2,
+	);
+
+	$sticker_counts = 0;
+
+	$options = array_merge( $default_options, $options );
+
+	if ( empty( $stickers ) ) {
+		$stickers = epl_get_stickers_array();
+	}
+
+	$options = apply_filters( 'epl_stickers_options', $options );
+
+	if ( $options['wrap'] ) {
+		echo '<' . esc_attr( $options['wrapper_tag'] ) . ' class="' . esc_attr( $options['wrap_class'] ) . '">';
+	}
+
+	foreach ( $stickers as $key => $sticker ) {
+
+		if ( $sticker_counts === $default_options['max_stickers'] ) {
+			break;
+		}
+		?>
+
+		<<?php echo esc_attr( $options['sticker_tag'] ); ?> class="<?php echo esc_attr( $options['sticker_class'] . ' ' . $sticker['class'] ); ?>">
+			<?php
+				echo isset( $sticker['before'] ) ?
+				wp_kses_post( $sticker['before'] ) : '';
+				echo wp_kses_post( $sticker['label'] );
+				echo isset( $sticker['after'] ) ?
+				wp_kses_post( $sticker['after'] ) : '';
+			?>
+		</<?php echo esc_attr( $options['sticker_tag'] ); ?>> 
+			<?php
+				$sticker_counts++;
+	}
+
+	if ( $options['wrap'] ) {
+		echo '</' . esc_attr( $options['wrapper_tag'] ) . '>';
+	}
+
+}
+
+/**
+ * Returns stickers array based on type, status etc.
+ *
+ * @since      3.4.27
+ */
+function epl_get_stickers_array() {
+
+	global $post;
+
+	$stickers = array(
+
+		'under_offer'      => array(
+			'conditions' => array(
+				'property_status'      => 'current',
+				'property_under_offer' => array( 'yes' ),
+			),
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_under_offer' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'under-offer',
+		),
+		'home_open'        => array(
+			'conditions' => array(
+				'property_inspection_times' => array( null, '' ),
+			),
+			'compare'    => '!=',
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_home_open' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'open',
+		),
+
+		'new'              => array(
+			'type'   => epl_get_core_post_types(),
+			'label'  => epl_get_option( 'label_new' ),
+			'before' => '',
+			'after'  => '',
+			'class'  => 'new',
+
+		),
+		'rental_lease'     => array(
+			'conditions' => array(
+				'property_status' => 'current',
+			),
+			'type'       => array( 'rental' ),
+			'label'      => __( 'For Lease', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-lease',
+		),
+		'leased'           => array(
+			'conditions' => array(
+				'property_status' => 'leased',
+			),
+			'type'       => array( 'rental', 'commercial_land', 'commercial' ),
+			'label'      => epl_get_option( 'label_leased' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'leased',
+		),
+		'current_sales'    => array(
+			'conditions' => array(
+				'property_status' => 'current',
+			),
+			'type'       => array( 'property', 'rural', 'land', 'business' ),
+			'label'      => __( 'For Sale', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-sale',
+		),
+		'sold'             => array(
+			'conditions' => array(
+				'property_status' => 'sold',
+			),
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_sold' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'sold',
+		),
+		'commercial_sale'  => array(
+			'conditions' => array(
+				'property_status'           => 'current',
+				'property_com_listing_type' => array( 'sale', 'both' ),
+			),
+			'type'       => array( 'commercial', 'commercial_land' ),
+			'label'      => __( 'For Sale', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-sale',
+		),
+		'commercial_lease' => array(
+			'conditions' => array(
+				'property_status'           => 'current',
+				'property_com_listing_type' => array( 'lease' ),
+			),
+			'type'       => array( 'commercial', 'commercial_land' ),
+			'label'      => __( 'For Lease', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-lease',
+		),
+
+	);
+
+	/**
+	 * Hook into this array to add / remove stickers based on conditions.
+	 *
+	 * @var        callable
+	 */
+	$stickers = apply_filters( 'epl_available_stickers', $stickers );
+
+	$return = array();
+
+	foreach ( $stickers as $key => $sticker ) {
+
+		if ( ! empty( $sticker ) && is_array( $sticker ) ) {
+
+			if ( ! in_array( get_post_type(), $sticker['type'], true ) ) {
+				continue;
+			}
+
+			if ( 'new' === $key ) {
+
+				$date = new DateTime( $post->post_date );
+				$now  = new DateTime();
+
+				// php > 5.3.
+				if ( method_exists( $now, 'diff' ) ) {
+
+					$diff = $now->diff( $date );
+					$diff = $diff->days;
+				} else {
+					$diff = strtotime( $now->format( 'M d Y ' ) ) - strtotime( $date->format( 'M d Y ' ) );
+					$diff = floor( $diff / 3600 / 24 );
+
+				}
+
+				if ( epl_get_option( 'sticker_new_range' ) >= $diff ) {
+
+					$return[ $key ] = array(
+						'label'  => $sticker['label'],
+						'class'  => $sticker['class'],
+						'before' => $sticker['before'],
+						'after'  => $sticker['after'],
+					);
+				}
+			} else {
+
+				$conditions = $sticker['conditions'];
+				$compare    = isset( $sticker['compare'] ) ? $sticker['compare'] : '=';
+
+				if ( ! empty( $conditions ) ) {
+
+					foreach ( $conditions as $condition_key => $condition_condition ) {
+
+						if ( '=' === $compare ) {
+
+							if ( is_array( $condition_condition ) ) {
+								if ( ! in_array( get_property_meta( $condition_key ), $condition_condition, true ) ) {
+									continue 2;
+								}
+							} else {
+
+								if ( get_property_meta( $condition_key ) !== $condition_condition ) {
+									continue 2;
+								}
+							}
+						} elseif ( '!=' === $compare ) {
+							if ( is_array( $condition_condition ) ) {
+								if ( in_array( get_property_meta( $condition_key ), $condition_condition, true ) ) {
+									continue 2;
+								}
+							} else {
+
+								if ( get_property_meta( $condition_key ) === $condition_condition ) {
+									continue 2;
+								}
+							}
+						}
+
+						$return[ $key ] = array(
+							'label'  => $sticker['label'],
+							'class'  => $sticker['class'],
+							'before' => $sticker['before'],
+							'after'  => $sticker['after'],
+						);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * List of stickers for current listing, hook here if only need to change labels,
+	 * class etc for displayed labels.
+	 */
+	return apply_filters( 'epl_stickers_array', $return );
 }

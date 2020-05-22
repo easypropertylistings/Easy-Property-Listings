@@ -448,3 +448,38 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 		<?php
 	}
 }
+
+/**
+ * Modify the Excerpt length on archive pages
+ *
+ * @param int $length Excerpt word length.
+ *
+ * @return int
+ * @since 1.0.0
+ * @since 3.4.27 Depreciated function and deactivated filter.
+ */
+function epl_excerpt_length( $length ) {
+	global $post;
+	if ( 'property' === $post->post_type ) {
+		return 16;
+	} elseif ( 'rental' === $post->post_type ) {
+		return 16;
+	} elseif ( 'commercial' === $post->post_type ) {
+		return 16;
+	} elseif ( 'commercial_land' === $post->post_type ) {
+		return 16;
+	} elseif ( 'business' === $post->post_type ) {
+		return 16;
+	} elseif ( 'rural' === $post->post_type ) {
+		return 16;
+	} elseif ( 'land' === $post->post_type ) {
+		return 16;
+	} elseif ( 'suburb' === $post->post_type ) {
+		return 39;
+	} else {
+		return 55;
+	}
+}
+/**
+ * Filter Removed. add_filter( 'excerpt_length', 'epl_excerpt_length', 999 ); Removed due to fix.
+ */
