@@ -257,14 +257,15 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 1.0.0
  * @since 3.4.23 Altered the admin output of property_category to use the label instead of value.
  * @since 3.4.23 Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
+ * @since 3.4.27 Fixed html escaping issue and formatting for land size.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
 
 	$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 	$heading                 = $property->get_property_meta( 'property_heading' );
-	$homeopen                = $property->get_property_meta( 'property_inspection_times' );
-	$homeopen                = trim( $homeopen );
+	$home_open                = $property->get_property_meta( 'property_inspection_times' );
+	$home_open                = trim( $home_open );
 	$beds                    = $property->get_property_meta( 'property_bedrooms' );
 	$baths                   = $property->get_property_meta( 'property_bathrooms' );
 	$rooms                   = $property->get_property_meta( 'property_rooms', false );
@@ -297,22 +298,24 @@ function epl_manage_listing_column_listing_callback() {
 		) , '</strong></div>';
 	}
 
-	// Category for commercial listing lype.
+	// Category for commercial listing type.
 	if ( ! empty( $commercial_category ) ) {
 		echo '<div class="epl_meta_category">' , esc_html( $commercial_category ) , '</div>';
 	}
 
-	// Need to factor in business category: <businessCategory id="1">.
-	// Need to factor in business category: <name>Food/Hospitality</name>.
-	// Need to factor in business category: <businessSubCategory>.
-	// Need to factor in business category: <name>Takeaway Food</name>.
-	// Need to factor in business category: </businessSubCategory>.
-	// Need to factor in business category: </businessCategory>.
-	// Need to factor in business category: <businessCategory id="2"/>.
-	// Need to factor in business category: <businessCategory id="3"/>.
-
-	// Need to factor in business fields: property_bus_takings (number).
-	// Need to factor in business fields: property_bus_franchise (yes/no).
+	/**
+	 * TODO: Factor in Business category.
+	 * Need to factor in business category: <businessCategory id="1">.
+	 * Need to factor in business category: <name>Food/Hospitality</name>.
+	 * Need to factor in business category: <businessSubCategory>.
+	 * Need to factor in business category: <name>Takeaway Food</name>.
+	 * Need to factor in business category: </businessSubCategory>.
+	 * Need to factor in business category: </businessCategory>.
+	 * Need to factor in business category: <businessCategory id="2"/>.
+	 * Need to factor in business category: <businessCategory id="3"/>.
+	 * Need to factor in business fields: property_bus_takings (number).
+	 * Need to factor in business fields: property_bus_franchise (yes/no).
+	 */
 
 	// Listing Location Taxonomy.
 	echo '<div class="type_suburb">' , wp_kses(
@@ -362,26 +365,26 @@ function epl_manage_listing_column_listing_callback() {
 	// Land area.
 	if ( ! empty( $land ) ) {
 		echo '<div class="epl_meta_land_details">';
-		echo '<span class="epl_meta_land">' , esc_attr( $land ) , '</span>';
+		echo '<span class="epl_meta_land">' , wp_kses_post( epl_format_amount( $land, true ) ) , '</span>';
 
 		if ( 'squareMeter' === $land_unit ) {
 			$land_unit = esc_html__( 'm&#178;', 'easy-property-listings' );
 		}
 		$land_unit = apply_filters( 'epl_property_land_area_unit_label', $land_unit );
 
-		echo '<span class="epl_meta_land_unit"> ' , esc_attr( $land_unit ) , '</span>';
+		echo '<span class="epl_meta_land_unit"> ' , wp_kses_post( $land_unit ) , '</span>';
 		echo '</div>';
 	}
 
 	// Home Open date and time.
-	if ( ! empty( $homeopen ) ) {
-		$homeopen          = array_filter( explode( "\n", $homeopen ) );
-			$homeopen_list = '<ul class="epl_meta_home_open">';
-		foreach ( $homeopen as $num => $item ) {
-			$homeopen_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
+	if ( ! empty( $home_open ) ) {
+		$home_open          = array_filter( explode( "\n", $home_open ) );
+			$home_open_list = '<ul class="epl_meta_home_open">';
+		foreach ( $home_open as $num => $item ) {
+			$home_open_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
 		}
-			$homeopen_list .= '</ul>';
-		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . esc_html( epl_labels( 'label_home_open' ) ) . '</strong></span>' , wp_kses_post( $homeopen_list ) , '</div>';
+			$home_open_list .= '</ul>';
+		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . esc_html( epl_labels( 'label_home_open' ) ) . '</strong></span>' , wp_kses_post( $home_open_list ) , '</div>';
 	}
 }
 add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_listing_callback' );
@@ -390,7 +393,7 @@ add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_list
  * Get Listing Labels.
  *
  * @param array  $args Array of arguments.
- * @param string $returntype The type of retunr formatting filterable with epl_manage_listing_column_labels_return_type.
+ * @param string $returntype The type of return formatting filterable with epl_manage_listing_column_labels_return_type.
  *
  * @return false|string
  * @since 3.3
@@ -429,7 +432,7 @@ function epl_get_manage_listing_column_labels( $args = array(), $returntype = 'l
  * Featured Listing Label to Listing Details column.
  *
  * @since 3.3
- * @param string $returntype The type of retunr formatting filterable with epl_manage_listing_column_labels_return_type.
+ * @param string $returntype The type of return formatting filterable with epl_manage_listing_column_labels_return_type.
  */
 function epl_manage_listing_column_labels_callback( $returntype = 'l' ) {
 
@@ -512,11 +515,14 @@ function epl_manage_listing_column_price_callback() {
 	// Commercial Listing Lease Type Price.
 	if ( 'commercial' === $post->post_type && 'lease' === $property->get_property_meta( 'property_com_listing_type' ) ) {
 
-		// Needs consideration and configuring property_com_listing_type.
-		// Needs consideration and configuring property_com_rent.
-		// Needs consideration and configuring property_com_rent_period.
-		// Needs consideration and configuring property_com_rent_range_min.
-		// Needs consideration and configuring property_com_rent_range_max.
+		/**
+		 * TODO: Commercial features consideration.
+		 * Needs consideration and configuring property_com_listing_type.
+		 * Needs consideration and configuring property_com_rent.
+		 * Needs consideration and configuring property_com_rent_period.
+		 * Needs consideration and configuring property_com_rent_range_min.
+		 * Needs consideration and configuring property_com_rent_range_max.
+		 */
 
 		$price = $property->get_property_meta( 'property_com_rent' );
 
@@ -545,9 +551,9 @@ function epl_manage_listing_column_price_callback() {
 
 	// If we have a price to display in the bar.
 	if ( ! empty( $bar_price ) ) {
-		$barwidth = 0 === $max_price ? 0 : $bar_price / $max_price * 100;
+		$bar_width = 0 === $max_price ? 0 : $bar_price / $max_price * 100;
 		echo '<div class="epl-price-bar ' . esc_html( $class ) . '">
-			<span style="width:' . esc_html( $barwidth ) . '%"></span>
+			<span style="width:' . esc_html( $bar_width ) . '%"></span>
 		</div>';
 		// Otherwise, there is no price set.
 	} else {
@@ -560,7 +566,7 @@ function epl_manage_listing_column_price_callback() {
 		echo 'Sold' === $property_status ? esc_html( epl_currency_formatted_amount( $sold_price ) ) : '';
 		echo '</div>';
 	} else {
-		echo '<div class="epl_meta_price">' . esc_html( $property->get_price_plain_value() ) . '</div>';
+		echo '<div class="epl_meta_price">' . wp_kses_post( $property->get_price_plain_value() ) . '</div>';
 	}
 
 	// Bond for rental listing type.

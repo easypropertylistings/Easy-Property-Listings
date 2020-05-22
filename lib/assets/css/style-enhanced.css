@@ -38,6 +38,9 @@
 .epl-listing-grid-view-forced .epl-list-hidden {
 	display: block;
 }
+.epl-grid-hidden {
+	display: block;
+}
 .epl-listing-grid-view .epl-grid-hidden,
 .epl-listing-grid-view-forced .epl-grid-hidden {
 	display: none;

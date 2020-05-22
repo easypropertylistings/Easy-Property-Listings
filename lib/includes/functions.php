@@ -384,13 +384,16 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
 /**
  * Retrieve address based on user display selection.
  *
- * @param  array $address_args address components.
- * @param  array $sep override default separators for each address components here.
- * @param  bool  $country  Return country with true, default false.
+ * @param array $address_args Address components.
+ * @param array $sep          Override default separators for each address components here.
+ * @param bool  $country      Return country with true, default false.
+ * @param array $prefix       Customise the prefix for each address component.
+ *
  * @return string
  * @since 3.3
+ * @since 3.4.27    Added support for prefix.
  */
-function epl_get_the_address( $address_args = array(), $sep = array(), $country = false ) {
+function epl_get_the_address( $address_args = array(), $sep = array(), $country = false, $prefix = array() ) {
 
 	$address = '';
 
@@ -406,8 +409,22 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		'country'       => ' ',
 	);
 
-	// override default separators for address components.
+	$prefix_defaults = array(
+		'sub_number'    => '',
+		'lot_number'    => '',
+		'street_number' => '',
+		'street'        => '',
+		'suburb'        => '',
+		'city'          => '',
+		'state'         => '',
+		'postal_code'   => '',
+		'country'       => ''
+	);
+
+	// Override default separators for address components.
 	$seps = array_merge( $address_defaults, $sep );
+
+	$prefix = array_merge( $prefix_defaults, $prefix );
 
 	// Output the full address based on user selection.
 	if ( empty( $address_args ) ) {
@@ -430,7 +447,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 			$value = get_property_meta( 'property_address_' . $arg );
 
 			if ( ! empty( $value ) ) {
-				$address .= get_property_meta( 'property_address_' . $arg ) . $seps[ $arg ];
+				$address .= $prefix[ $args ].get_property_meta( 'property_address_' . $arg ) . $seps[ $arg ];
 			}
 		}
 	}
@@ -926,10 +943,10 @@ function epl_feedsync_format_strip_currency( $value ) {
  * Processing Function for WP All Import and FeedSync
  * [epl_feedsync_switch_date_time({firstDate[1]},"Australia/Perth","Australia/Sydney")]
  *
- * @param bool   $date_time Swtich date time.
+ * @param bool   $date_time     Switch date time.
  * @param string $old_time_zone Old Timezone.
- * @param string $new_timezone New timezone.
- * @param string $format Date format.
+ * @param string $new_timezone  New timezone.
+ * @param string $format        Date format.
  *
  * @return integer
  * @throws exception Exception.
@@ -1791,7 +1808,7 @@ function epl_get_admin_option_fields() {
 			'label'  => __( 'Currency', 'easy-property-listings' ),
 			'class'  => 'core',
 			'id'     => 'currency',
-			// translators: currency artice link.
+			// Translators: Currency article link.
 			'help'   => sprintf( __( 'Select your default currency. If you can not find the currency you are looking for, you can add additional currencies with a filter, <a href="%s" target="_blank">visit the codex to see how</a>.', 'easy-property-listings' ), esc_url( 'https://codex.easypropertylistings.com.au/article/153-eplgetcurrencies' ) ) . '<hr/>',
 			'fields' => array(
 				array(

@@ -408,6 +408,24 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
+The [change log](https://easypropertylistings.com.au/change-log/?utm_source=readme&utm_medium=change_log_tab&utm_content=changes&utm_campaign=epl_change_log) can now be found [here at Easy Property Listings](https://easypropertylistings.com.au/change-log/?utm_source=readme&utm_medium=change_log_tab&utm_content=changes&utm_campaign=epl_change_log). This change was made to aid translators in translating the plugin to 100% and not need to translate the long change log items.
+
+= 3.4.27 May 22, 2020 =
+
+* New: Removed change log from plugin, this change was made to aid translators in translating the plugin to 100% and not need to translate the long change log items.
+* New: Added sticker support to allow the disabling of image stickers to the epl_property_archive_featured_image function.
+* New: Added filter epl_inspection_link to handle inspection time link. Allowing handling of non date inspection values in the get_property_inspection_times function.
+* New: Added prefix support to epl_get_the_address helper function.
+* New: Stickers helper function epl_stickers which renders stickers, based on meta values, an alternative to the epl_price_stickers function.
+* Tweak: Helper class epl-grid-hidden block display on list mode.
+* Tweak: Better support for various YouTube style links.
+* Fix: Escaping issue and formatting for land size in admin.
+* Fix: Dashboard activity widget comment positioning.
+* Fix: Translation issue with rent period.
+* Fix: Issue with excerpt length option not working correctly with some themes.
+* Fix: Depreciated epl_excerpt_length function and filter. Retained function for compatibility.
+* Fix: No spaces between classes when both class & template attributes are set.
+
 = 3.4.26 April 15, 2020 =
 
 * New: Added Avada theme support.

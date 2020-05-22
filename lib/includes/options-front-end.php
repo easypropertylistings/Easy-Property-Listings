@@ -15,38 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Modify the Excerpt length on archive pages
- *
- * @param int $length Excerpt word length.
- *
- * @return int
- * @since 1.0
- */
-function epl_excerpt_length( $length ) {
-	global $post;
-	if ( 'property' === $post->post_type ) {
-		return 16;
-	} elseif ( 'rental' === $post->post_type ) {
-		return 16;
-	} elseif ( 'commercial' === $post->post_type ) {
-		return 16;
-	} elseif ( 'commercial_land' === $post->post_type ) {
-		return 16;
-	} elseif ( 'business' === $post->post_type ) {
-		return 16;
-	} elseif ( 'rural' === $post->post_type ) {
-		return 16;
-	} elseif ( 'land' === $post->post_type ) {
-		return 16;
-	} elseif ( 'suburb' === $post->post_type ) {
-		return 39;
-	} else {
-		return 55;
-	}
-}
-add_filter( 'excerpt_length', 'epl_excerpt_length', 999 );
-
-/**
  * Modify the Read More Link of archive pages which can be styled with
  * CSS using the epl-more-link selector
  *
