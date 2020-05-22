@@ -3480,7 +3480,7 @@ function epl_get_stickers_array() {
 						if ( '=' === $compare ) {
 
 							if ( is_array( $condition_condition ) ) {
-								if ( ! in_array( get_property_meta( $condition_key ), $condition_condition ) ) {
+								if ( ! in_array( get_property_meta( $condition_key ), $condition_condition, true ) ) {
 									continue 2;
 								}
 							} else {
@@ -3489,9 +3489,9 @@ function epl_get_stickers_array() {
 									continue 2;
 								}
 							}
-						} elseif ( $compare === '!=' ) {
+						} elseif ( '!=' === $compare ) {
 							if ( is_array( $condition_condition ) ) {
-								if ( in_array( get_property_meta( $condition_key ), $condition_condition ) ) {
+								if ( in_array( get_property_meta( $condition_key ), $condition_condition, true ) ) {
 									continue 2;
 								}
 							} else {
