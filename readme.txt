@@ -408,10 +408,26 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 
 == Changelog ==
 
-= 3.4.27 May 13, 2020 =
+The change log can now be found her at Easy Property Listings. This change was made to aid translators in translating the plugin to 100% and not need to translate the long change log items.
 
+= 3.4.27 May 22, 2020 =
+
+
+REMOVED CHANGE LOG
+
+
+* New: Added sticker support to allow the disabling of image stickers to the epl_property_archive_featured_image function.
+* New: Added filter epl_inspection_link to handle inspection time link. Allowing handling of non date inspection values in the get_property_inspection_times function.
+* New: Added prefix support to epl_get_the_address helper function.
+* New: Stickers helper function epl_stickers which renders stickers, based on meta values, an alternative to the epl_price_stickers function.
 * Tweak: Helper class epl-grid-hidden block display on list mode.
-* Fix: Admin side issue with land size displaying html.
+* Tweak: Better support for various YouTube style links.
+* Fix: Escaping issue and formatting for land size in admin.
+* Fix: Dashboard activity widget comment positioning.
+* Fix: Translation issue with rent period.
+* Fix: Issue with excerpt length option not working correctly with some themes.
+* Fix: No spaces between classes when both class & template attributes are set.
+
 
 = 3.4.26 April 15, 2020 =
 
