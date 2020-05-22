@@ -426,6 +426,7 @@ REMOVED CHANGE LOG
 * Fix: Dashboard activity widget comment positioning.
 * Fix: Translation issue with rent period.
 * Fix: Issue with excerpt length option not working correctly with some themes.
+* Fix: Depreciated epl_excerpt_length function and filter. Retained function for compatibility.
 * Fix: No spaces between classes when both class & template attributes are set.
 
 
