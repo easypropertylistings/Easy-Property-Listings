@@ -298,7 +298,7 @@ function epl_manage_listing_column_listing_callback() {
 		) , '</strong></div>';
 	}
 
-	// Category for commercial listing lype.
+	// Category for commercial listing type.
 	if ( ! empty( $commercial_category ) ) {
 		echo '<div class="epl_meta_category">' , esc_html( $commercial_category ) , '</div>';
 	}
@@ -391,7 +391,7 @@ add_action( 'epl_manage_listing_column_listing', 'epl_manage_listing_column_list
  * Get Listing Labels.
  *
  * @param array  $args Array of arguments.
- * @param string $returntype The type of retunr formatting filterable with epl_manage_listing_column_labels_return_type.
+ * @param string $returntype The type of return formatting filterable with epl_manage_listing_column_labels_return_type.
  *
  * @return false|string
  * @since 3.3
@@ -430,7 +430,7 @@ function epl_get_manage_listing_column_labels( $args = array(), $returntype = 'l
  * Featured Listing Label to Listing Details column.
  *
  * @since 3.3
- * @param string $returntype The type of retunr formatting filterable with epl_manage_listing_column_labels_return_type.
+ * @param string $returntype The type of return formatting filterable with epl_manage_listing_column_labels_return_type.
  */
 function epl_manage_listing_column_labels_callback( $returntype = 'l' ) {
 
