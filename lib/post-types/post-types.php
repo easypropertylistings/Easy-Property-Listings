@@ -303,17 +303,19 @@ function epl_manage_listing_column_listing_callback() {
 		echo '<div class="epl_meta_category">' , esc_html( $commercial_category ) , '</div>';
 	}
 
-	// Need to factor in business category: <businessCategory id="1">.
-	// Need to factor in business category: <name>Food/Hospitality</name>.
-	// Need to factor in business category: <businessSubCategory>.
-	// Need to factor in business category: <name>Takeaway Food</name>.
-	// Need to factor in business category: </businessSubCategory>.
-	// Need to factor in business category: </businessCategory>.
-	// Need to factor in business category: <businessCategory id="2"/>.
-	// Need to factor in business category: <businessCategory id="3"/>.
-
-	// Need to factor in business fields: property_bus_takings (number).
-	// Need to factor in business fields: property_bus_franchise (yes/no).
+	/**
+	 * TODO: Factor in Business category.
+	 * Need to factor in business category: <businessCategory id="1">.
+	 * Need to factor in business category: <name>Food/Hospitality</name>.
+	 * Need to factor in business category: <businessSubCategory>.
+	 * Need to factor in business category: <name>Takeaway Food</name>.
+	 * Need to factor in business category: </businessSubCategory>.
+	 * Need to factor in business category: </businessCategory>.
+	 * Need to factor in business category: <businessCategory id="2"/>.
+	 * Need to factor in business category: <businessCategory id="3"/>.
+	 * Need to factor in business fields: property_bus_takings (number).
+	 * Need to factor in business fields: property_bus_franchise (yes/no).
+	 */
 
 	// Listing Location Taxonomy.
 	echo '<div class="type_suburb">' , wp_kses(
