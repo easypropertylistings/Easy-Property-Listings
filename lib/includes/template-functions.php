@@ -3439,7 +3439,7 @@ function epl_get_stickers_array() {
 
 		if ( ! empty( $sticker ) && is_array( $sticker ) ) {
 
-			if ( ! in_array( get_post_type(), $sticker['type'] ) ) {
+			if ( ! in_array( get_post_type(), $sticker['type'], true ) ) {
 				continue;
 			}
 
