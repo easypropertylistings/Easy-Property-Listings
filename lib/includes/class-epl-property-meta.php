@@ -205,7 +205,7 @@ class EPL_Property_Meta {
 
 								$href = get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element ) ) . '&propid=' . $this->post->ID;
 
-								$href = apply_filters( 'epl_inpsection_link', $href );
+								$href = apply_filters( 'epl_inspection_link', $href );
 
 								$element_formatted = apply_filters( 'epl_inspection_format', $element );
 
