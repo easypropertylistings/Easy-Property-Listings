@@ -35,6 +35,12 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.28 May 25, 2020 =
+
+* New: Globally loading shortcodes and widgets in order to allow page builders to use widgets.
+* New: Helper action epl_property_status used to output the listing status in templates.
+* Tweak: Enhancements to the new stickers function. 
+
 = 3.4.27 May 22, 2020 =
 
 * New: Removed change log from plugin, this change was made to aid translators in translating the plugin to 100% and not need to translate the long change log items.

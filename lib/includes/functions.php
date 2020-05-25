@@ -391,7 +391,7 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
  *
  * @return string
  * @since 3.3
- * @since 3.4.27    Added support for prefix.
+ * @since 3.4.27 Added support for prefix.
  */
 function epl_get_the_address( $address_args = array(), $sep = array(), $country = false, $prefix = array() ) {
 

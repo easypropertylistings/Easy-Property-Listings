@@ -2075,8 +2075,6 @@ class EPL_Property_Meta {
 		}
 	}
 
-
-
 	/**
 	 * Get Additional Commercial Features by meta key
 	 *
