@@ -3322,7 +3322,12 @@ function epl_stickers( $options = array(), $stickers = array() ) {
 /**
  * Returns stickers array based on type, status etc.
  *
- * @since      3.4.27
+ * @param array $sticker_keys Array of keys.
+ *
+ * @return mixed|void
+ *
+ * @since 3.4.28 Added array and filter.
+ * @since 3.4.27
  */
 function epl_get_stickers_array( $sticker_keys = array() ) {
 
@@ -3440,7 +3445,7 @@ function epl_get_stickers_array( $sticker_keys = array() ) {
 	/**
 	 * Hook into this array to add / remove stickers based on conditions.
 	 *
-	 * @var        callable
+	 * @var callable
 	 */
 	$stickers = apply_filters( 'epl_available_stickers', $stickers );
 
@@ -3515,8 +3520,11 @@ function epl_get_stickers_array( $sticker_keys = array() ) {
 /**
  * Check if sticker condition is valid.
  *
- * @param      <type> $condition  The condition
- * @since       3.4.28
+ * @param string $condition The condition.
+ * @param string $compare   Comparison.
+ *
+ * @return bool
+ * @since 3.4.28
  */
 function epl_sticker_is_condition_valid( $condition, $compare = '=' ) {
 
@@ -3545,9 +3553,10 @@ function epl_sticker_is_condition_valid( $condition, $compare = '=' ) {
 /**
  * Property Status Labels.
  *
- * @param      array $statues  The statues
- * @param      array $options  The options
- * @since      3.4.28
+ * @param array $statues  The statues.
+ * @param array $options  The options.
+ *
+ * @since 3.4.28
  */
 function epl_property_status( $statues = array(), $options = array() ) {
 
@@ -3578,5 +3587,4 @@ function epl_property_status( $statues = array(), $options = array() ) {
 	$options = array_merge( $default_options, (array) $options );
 	epl_stickers( $options, $stickers );
 }
-
-add_action( 'epl_property_status', 'epl_property_status' );
+add_action( 'epl_property_status', 'epl_property_status', 10, 2 );
