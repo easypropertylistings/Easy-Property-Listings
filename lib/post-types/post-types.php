@@ -368,7 +368,7 @@ function epl_manage_listing_column_listing_callback() {
 		$decimal_formatted = apply_filters( 'epl_land_value_decimal_format', false );
 
 		if( $decimal_formatted ) {
-			$land = epl_format_amount( $land, true );
+			$land = epl_format_amount( $land, true, true );
 		}
 		echo '<div class="epl_meta_land_details">';
 		echo '<span class="epl_meta_land">' , wp_kses_post( $land ) , '</span>';
