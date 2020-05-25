@@ -3326,8 +3326,9 @@ function epl_stickers( $options = array(), $stickers = array() ) {
  *
  * @return mixed|void
  *
- * @since 3.4.28 Added array and filter.
+ * @throws Exception
  * @since 3.4.27
+ * @since 3.4.28 Added array and filter.
  */
 function epl_get_stickers_array( $sticker_keys = array() ) {
 
@@ -3455,7 +3456,7 @@ function epl_get_stickers_array( $sticker_keys = array() ) {
 
 		$add_sticker = false;
 
-		if ( ! empty( $sticker_keys ) && ! in_array( $key, $sticker_keys ) ) {
+		if ( ! empty( $sticker_keys ) && ! in_array( $key, $sticker_keys, true ) ) {
 			continue;
 		}
 
@@ -3553,9 +3554,10 @@ function epl_sticker_is_condition_valid( $condition, $compare = '=' ) {
 /**
  * Property Status Labels.
  *
- * @param array $statues  The statues.
- * @param array $options  The options.
+ * @param array $statues The statues.
+ * @param array $options The options.
  *
+ * @throws Exception
  * @since 3.4.28
  */
 function epl_property_status( $statues = array(), $options = array() ) {
