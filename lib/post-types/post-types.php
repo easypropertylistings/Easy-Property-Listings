@@ -365,7 +365,7 @@ function epl_manage_listing_column_listing_callback() {
 	// Land area.
 	if ( ! empty( $land ) ) {
 
-		$decimal_formatted = apply_filters( 'epl_land_value_decimal_format', false );
+		$decimal_formatted = apply_filters( 'epl_land_value_decimal_format', true );
 
 		if ( $decimal_formatted ) {
 			$land = epl_format_amount( $land, true, true );
