@@ -51,7 +51,7 @@ function epl_sanitize_amount( $amount ) {
  * Returns a nicely formatted amount.
  *
  * @param string $amount          Price amount to format.
- * @param bool   $decimals        Whether or not to use decimals.  Useful when set to false for non-currency numbers.
+ * @param bool   $decimals        Whether or not to use decimals. Useful when set to false for non-currency numbers.
  * @param bool   $preserve_format Whether to preserve amount format ie int / floats.
  *
  * @return string $amount Newly formatted amount or Price Not Available
