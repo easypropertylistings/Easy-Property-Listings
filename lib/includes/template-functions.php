@@ -3257,9 +3257,10 @@ function epl_get_post_id_from_unique_id( $unique_id = '' ) {
 /**
  * Renders stickers, based on meta values, an alternative to epl_price_stickers.
  *
- * @param array $options  The options.
+ * @param array $options The options.
  * @param array $stickers The stickers.
  *
+ * @throws Exception
  * @since 3.4.27
  */
 function epl_stickers( $options = array(), $stickers = array() ) {
@@ -3521,7 +3522,7 @@ function epl_get_stickers_array( $sticker_keys = array() ) {
 /**
  * Check if sticker condition is valid.
  *
- * @param string $condition The condition.
+ * @param array  $condition The condition.
  * @param string $compare   Comparison.
  *
  * @return bool
