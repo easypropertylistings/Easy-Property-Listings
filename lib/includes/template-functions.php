@@ -3324,7 +3324,7 @@ function epl_stickers( $options = array(), $stickers = array() ) {
  *
  * @since      3.4.27
  */
-function epl_get_stickers_array() {
+function epl_get_stickers_array( $sticker_keys = array() ) {
 
 	global $post;
 
@@ -3401,10 +3401,21 @@ function epl_get_stickers_array() {
 			'after'      => '',
 			'class'      => 'sold',
 		),
+		'commercial_sale_lease'  => array(
+			'conditions' => array(
+				'property_status'           => 'current',
+				'property_com_listing_type' => array( 'both' ),
+			),
+			'type'       => array( 'commercial', 'commercial_land' ),
+			'label'      => __( 'For Sale & Lease', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-sale',
+		),
 		'commercial_sale'  => array(
 			'conditions' => array(
 				'property_status'           => 'current',
-				'property_com_listing_type' => array( 'sale', 'both' ),
+				'property_com_listing_type' => array( 'sale' ),
 			),
 			'type'       => array( 'commercial', 'commercial_land' ),
 			'label'      => __( 'For Sale', 'easy-property-listings' ),
@@ -3436,6 +3447,11 @@ function epl_get_stickers_array() {
 	$return = array();
 
 	foreach ( $stickers as $key => $sticker ) {
+
+		$add_sticker = false;
+
+		if( !empty( $sticker_keys ) && !in_array( $key, $sticker_keys ) )
+			continue;
 
 		if ( ! empty( $sticker ) && is_array( $sticker ) ) {
 
@@ -3473,43 +3489,17 @@ function epl_get_stickers_array() {
 				$conditions = $sticker['conditions'];
 				$compare    = isset( $sticker['compare'] ) ? $sticker['compare'] : '=';
 
-				if ( ! empty( $conditions ) ) {
+				$add_sticker = epl_sticker_is_condition_valid( $conditions, $compare );
 
-					foreach ( $conditions as $condition_key => $condition_condition ) {
+			}
 
-						if ( '=' === $compare ) {
-
-							if ( is_array( $condition_condition ) ) {
-								if ( ! in_array( get_property_meta( $condition_key ), $condition_condition, true ) ) {
-									continue 2;
-								}
-							} else {
-
-								if ( get_property_meta( $condition_key ) !== $condition_condition ) {
-									continue 2;
-								}
-							}
-						} elseif ( '!=' === $compare ) {
-							if ( is_array( $condition_condition ) ) {
-								if ( in_array( get_property_meta( $condition_key ), $condition_condition, true ) ) {
-									continue 2;
-								}
-							} else {
-
-								if ( get_property_meta( $condition_key ) === $condition_condition ) {
-									continue 2;
-								}
-							}
-						}
-
-						$return[ $key ] = array(
-							'label'  => $sticker['label'],
-							'class'  => $sticker['class'],
-							'before' => $sticker['before'],
-							'after'  => $sticker['after'],
-						);
-					}
-				}
+			if( $add_sticker ) {
+				$return[ $key ] = array(
+					'label'  => $sticker['label'],
+					'class'  => $sticker['class'],
+					'before' => $sticker['before'],
+					'after'  => $sticker['after'],
+				);
 			}
 		}
 	}
@@ -3520,3 +3510,72 @@ function epl_get_stickers_array() {
 	 */
 	return apply_filters( 'epl_stickers_array', $return );
 }
+
+/**
+ * Check if sticker condition is valid.
+ *
+ * @param      <type>  $condition  The condition
+ * @since 		3.4.28
+ */
+function epl_sticker_is_condition_valid( $condition, $compare = '=' ) {
+
+	$condition_met 		= 0;
+	$total_condition 	= count($condition);
+	$match				= false;
+
+	foreach ($condition as $key => $value ) {
+		
+		if( is_array( $value ) ) {
+
+			if( in_array( get_property_meta( $key ), $value, true ) ) {
+				$condition_met++;
+			}
+		} else {
+			if ( get_property_meta( $key ) === $value ) {
+				$condition_met++;
+			}
+		}
+	}
+	$match = $total_condition === $condition_met ? true : false;
+
+	return '=' === $compare ? $match : !$match;
+}
+
+/**
+ * Property Status Labels.
+ *
+ * @param      array  $statues  The statues
+ * @param      array  $options  The options
+ * @since      3.4.28 
+ */	
+function epl_property_status( $statues = array(), $options = array() ) {
+
+	$statues_defaults = array(
+		'commercial_lease',
+		'commercial_sale',
+		'rental_lease',
+		'leased',
+		'sold',
+		'current_sales',
+		'commercial_sale_lease'
+	);
+
+	$statues = array_merge( $statues_defaults, (array) $statues );
+
+	$statues = apply_filters( 'epl_property_status_keys', $statues );
+
+	$stickers = epl_get_stickers_array( $statues );
+
+	$default_options = array(
+		'wrap'			=>	true,
+		'wrap_class'	=>	'epl-listing-status',
+		'wrapper_tag'   => 'div',
+		'sticker_tag'   => 'span',
+		'sticker_class'	=>	'epl-widget-status-label',
+	);
+
+	$options = array_merge( $default_options, ( array ) $options );
+	epl_stickers( $options, $stickers );
+}
+
+add_action( 'epl_property_status', 'epl_property_status' );
