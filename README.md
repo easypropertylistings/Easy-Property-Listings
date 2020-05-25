@@ -37,9 +37,12 @@ There are various ways you can contribute:
 
 = 3.4.28 May 25, 2020 =
 
+* New: Option added to number formatting function to trim decimal numbers. 
+* New: Admin filter epl_land_value_decimal_format for land value decimal formatting.
 * New: Globally loading shortcodes and widgets in order to allow page builders to use widgets.
 * New: Helper action epl_property_status used to output the listing status in templates.
-* Tweak: Enhancements to the new stickers function. 
+* Tweak: Enhancements to the new stickers function.
+* Tweak. Altered land formatting in admin to remove decimals from land values unless they have decimal places.
 
 = 3.4.27 May 22, 2020 =
 
