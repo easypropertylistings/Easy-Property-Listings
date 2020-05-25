@@ -264,8 +264,8 @@ function epl_manage_listing_column_listing_callback() {
 
 	$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 	$heading                 = $property->get_property_meta( 'property_heading' );
-	$home_open                = $property->get_property_meta( 'property_inspection_times' );
-	$home_open                = trim( $home_open );
+	$home_open               = $property->get_property_meta( 'property_inspection_times' );
+	$home_open               = trim( $home_open );
 	$beds                    = $property->get_property_meta( 'property_bedrooms' );
 	$baths                   = $property->get_property_meta( 'property_bathrooms' );
 	$rooms                   = $property->get_property_meta( 'property_rooms', false );
@@ -367,7 +367,7 @@ function epl_manage_listing_column_listing_callback() {
 
 		$decimal_formatted = apply_filters( 'epl_land_value_decimal_format', false );
 
-		if( $decimal_formatted ) {
+		if ( $decimal_formatted ) {
 			$land = epl_format_amount( $land, true, true );
 		}
 		echo '<div class="epl_meta_land_details">';
