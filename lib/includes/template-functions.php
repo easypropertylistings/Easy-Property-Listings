@@ -145,8 +145,8 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  * @param bool   $link        Enable or disable the link with true/false. Default true.
  * @param bool   $stickers    Enable or disable the stickers with true/false. Default true.
  *
- * @since      2.2
- * @since        3.4.27 additional param to disable / enable stickers
+ * @since 2.2
+ * @since 3.4.27 additional param to disable / enable stickers
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
