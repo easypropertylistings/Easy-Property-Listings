@@ -364,8 +364,14 @@ function epl_manage_listing_column_listing_callback() {
 
 	// Land area.
 	if ( ! empty( $land ) ) {
+
+		$decimal_formatted = apply_filters( 'epl_land_value_decimal_format', false );
+
+		if( $decimal_formatted ) {
+			$land = epl_format_amount( $land, true, true );
+		}
 		echo '<div class="epl_meta_land_details">';
-		echo '<span class="epl_meta_land">' , wp_kses_post( epl_format_amount( $land, true ) ) , '</span>';
+		echo '<span class="epl_meta_land">' , wp_kses_post( $land ) , '</span>';
 
 		if ( 'squareMeter' === $land_unit ) {
 			$land_unit = esc_html__( 'm&#178;', 'easy-property-listings' );
