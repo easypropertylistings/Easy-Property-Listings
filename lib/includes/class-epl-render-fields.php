@@ -282,7 +282,7 @@ class EPL_Render_Fields {
 		if( !empty( $field[ 'data' ] ) ) {
 			foreach ( $field[ 'data' ] as $data_key => $data_value ) {
 
-				if( !epl_starts_with( $key, 'data-' ) ) {
+				if( !epl_starts_with( $data_key, 'data-' ) ) {
 					$data_key = 'data-'.$data_key;
 				}
 				
