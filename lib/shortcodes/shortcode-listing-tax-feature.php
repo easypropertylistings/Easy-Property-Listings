@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts Shortcode attributes.
  *
  * @return false|string|void
- * @since       1.1.2
- * @since 		3.4.27 fixed the issue : no spaces between classes when both class & template attributs are set.
+ * @since 1.1.2
+ * @since 3.4.27 Fixed the issue: no spaces between classes when both class & template attributs are set.
  */
 function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -62,7 +62,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$feature      = $attributes['feature'];
 	$feature_id   = $attributes['feature_id'];
 	$offset       = $attributes['offset'];
-	//$agent        = $attributes['agent'];
+	//$agent      = $attributes['agent'];
 	$template     = $attributes['template'];
 	$location     = $attributes['location'];
 	$tools_top    = $attributes['tools_top'];

@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.4.27\n"
+"Project-Id-Version: Easy Property Listings 3.4.28\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2020-05-22 02:28:44+00:00\n"
+"POT-Creation-Date: 2020-05-25 05:24:44+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -606,7 +606,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1245
 #: lib/includes/functions.php:2550 lib/post-types/post-types.php:54
-#: lib/post-types/post-types.php:604
+#: lib/post-types/post-types.php:610
 #: lib/widgets/class-epl-widget-recent-property.php:186
 #: lib/widgets/class-epl-widget-recent-property.php:334
 #: lib/widgets/widget-admin-dashboard.php:140
@@ -2734,8 +2734,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:838
 #: lib/includes/class-epl-property-meta.php:844
 #: lib/includes/class-epl-property-meta.php:1029
-#: lib/includes/functions.php:2613 lib/includes/template-functions.php:3389
-#: lib/includes/template-functions.php:3410
+#: lib/includes/functions.php:2613 lib/includes/template-functions.php:3396
+#: lib/includes/template-functions.php:3428
 msgid "For Sale"
 msgstr ""
 
@@ -2750,8 +2750,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:886
 #: lib/includes/class-epl-property-meta.php:1042
 #: lib/includes/class-epl-property-meta.php:1044
-#: lib/includes/template-functions.php:3369
-#: lib/includes/template-functions.php:3421
+#: lib/includes/template-functions.php:3376
+#: lib/includes/template-functions.php:3439
 msgid "For Lease"
 msgstr ""
 
@@ -2820,7 +2820,7 @@ msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1610
 #: lib/includes/class-epl-property-meta.php:1681
-#: lib/post-types/post-types.php:371
+#: lib/post-types/post-types.php:377
 msgid "m&#178;"
 msgstr ""
 
@@ -3825,7 +3825,7 @@ msgid "Under Contract"
 msgstr ""
 
 #: lib/includes/functions.php:2551 lib/post-types/post-types.php:55
-#: lib/post-types/post-types.php:605
+#: lib/post-types/post-types.php:611
 #: lib/widgets/class-epl-widget-recent-property.php:189
 #: lib/widgets/class-epl-widget-recent-property.php:337
 #: lib/widgets/widget-admin-dashboard.php:150
@@ -3835,7 +3835,7 @@ msgid "Withdrawn"
 msgstr ""
 
 #: lib/includes/functions.php:2552 lib/post-types/post-types.php:56
-#: lib/post-types/post-types.php:606
+#: lib/post-types/post-types.php:612
 #: lib/widgets/class-epl-widget-recent-property.php:190
 #: lib/widgets/class-epl-widget-recent-property.php:338
 #: lib/widgets/widget-admin-dashboard.php:155
@@ -4127,6 +4127,10 @@ msgstr ""
 
 #: lib/includes/template-functions.php:3159
 msgid "Email is required"
+msgstr ""
+
+#: lib/includes/template-functions.php:3417
+msgid "For Sale & Lease"
 msgstr ""
 
 #: lib/includes/user.php:27
@@ -5172,15 +5176,15 @@ msgstr ""
 msgid "Room"
 msgstr ""
 
-#: lib/post-types/post-types.php:473
+#: lib/post-types/post-types.php:479
 msgid "No"
 msgstr ""
 
-#: lib/post-types/post-types.php:560
+#: lib/post-types/post-types.php:566
 msgid "No price set"
 msgstr ""
 
-#: lib/post-types/post-types.php:579
+#: lib/post-types/post-types.php:585
 msgid "Lease End:"
 msgstr ""
 
