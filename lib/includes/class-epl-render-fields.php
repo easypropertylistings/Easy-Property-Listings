@@ -278,7 +278,7 @@ class EPL_Render_Fields {
 	 */
 	public function get_data_attributes( $field ) {
 
-		$atts_html = '';
+		$atts_html = "";
 		if( !empty( $field[ 'data' ] ) ) {
 			foreach ( $field[ 'data' ] as $data_key => $data_value ) {
 
@@ -287,7 +287,7 @@ class EPL_Render_Fields {
 				}
 				
 				if( !is_array( $data_value ) && !is_object( $data_value ) ) {
-					$atts_html .= $data_key.'="'.$data_value.'" ';
+					$atts_html .= $data_key."='".$data_value."'";
 				}
 			}
 		}
@@ -295,7 +295,7 @@ class EPL_Render_Fields {
 		foreach ($field as $key => $value) {
 			
 			if( epl_starts_with( $key, 'data-' ) && !is_array( $value ) && !is_object( $value ) ) {
-				$atts_html .= $key.'="'.$value.'" ';
+				$atts_html .= $key."='".$value."'";
 			}
 		}
 
