@@ -78,6 +78,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				// Search fields displayer object.
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->session       = new EPL_Session();
+				self::$instance->render_fields = new EPL_Render_Fields();
 				self::$instance->search_fields->init();
 
 				define( 'EPL_RUNNING', true );
@@ -308,6 +309,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-render-fields.php';
 
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
 				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';
