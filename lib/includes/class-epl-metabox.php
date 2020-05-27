@@ -226,78 +226,96 @@ class EPL_METABOX {
 	public function inner_meta_box( $post, $args ) {
 		$groups = $args['args']['groups'];
 		$groups = array_filter( $groups );
+		$render_as = empty( $args['args'][ 'render_as' ] ) ? 'default' : sanitize_text_field( $args['args']['render_as'] );
+		// tabs-horizontal and tabs-vertical are supported
 		if ( ! empty( $groups ) ) {
 			wp_nonce_field( $this->prefix . 'inner_custom_box', $this->prefix . 'inner_custom_box_nonce' );
+			if( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { 
+				// wrapper for tabs
+				echo '<div class="epl-group-tab-wrapper epl-'.sanitize_text_field( $render_as ).'">';
+			}
+			if( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { ?>
+				<ul class="epl-group-tabs"> <?php
+				foreach ( $groups as $group ) {
+					echo '<li><a href="#epl-field-group-'.esc_attr( $group['id'] ).'"><h3>' . esc_attr( $group['label'] ) . '</h3></a></li>';
+				} ?>
+				</ul> <?php
+			}
 			foreach ( $groups as $group ) { ?>
-				<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
-					<?php
-						$group['label'] = trim( $group['label'] );
-					if ( ! empty( $group['label'] ) ) {
-						echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
-					}
-					?>
-					<ul class="form-table epl-form-table">
+				<div id="epl-field-group-<?php echo esc_attr( $group['id'] ); ?>">
+					<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
 						<?php
-						$fields         = $group['fields'];
-						$gp_field_width = isset( $group['width'] ) ? $group['width'] : '1';
-						$fields         = array_filter( $fields );
-						if ( ! empty( $fields ) ) {
-							foreach ( $fields as $field ) {
-								if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
-									if ( in_array( $post->post_type, $field['exclude'], true ) ) {
-										continue;
-									}
-								}
-
-								if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
-									if ( ! in_array( $post->post_type, $field['include'], true ) ) {
-										continue;
-									}
-								}
-								$val = get_post_meta( $post->ID, $field['name'], true );
-								if ( has_action( 'epl_before_meta_field_' . $field['name'] ) ) {
-									do_action( 'epl_before_meta_field_' . $field['name'], $post, $val );
-								}
-
-								$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
-								?>
-								<li id="epl_<?php echo esc_attr( $field['name'] ); ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo esc_attr( $field_width ); ?> epl_<?php echo esc_attr( $field['name'] ); ?>_wrap epl-field-type-<?php echo esc_attr( $field['type'] ); ?>">
-
-
-									<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
-									<div class="form-field epl-form-field-label">
-										<span valign="top" scope="row">
-											<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_attr( $field['label'] ); ?></label>
-										</span>
-									</div>
-									<?php endif; ?>
-
-
-									<div id="epl_<?php echo esc_attr( $field['name'] ); ?>" class="form-field epl-form-field-value epl_<?php echo esc_attr( $field['name'] ); ?>">
-										<?php
-											epl_render_html_fields( $field, $val );
-										?>
-									</div>
-
-								</li>
-
-								<?php
-								if ( has_action( 'epl_after_meta_field_' . $field['name'] ) ) {
-									do_action( 'epl_after_meta_field_' . $field['name'], $post, $val );
-								}
-								?>
-								<?php
-							}
+							$group['label'] = trim( $group['label'] );
+						if ( ! empty( $group['label'] ) && !in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
+							echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
 						}
 						?>
-					</ul>
+						<ul class="form-table epl-form-table">
+							<?php
+							$fields         = $group['fields'];
+							$gp_field_width = isset( $group['width'] ) ? $group['width'] : '1';
+							$fields         = array_filter( $fields );
+							if ( ! empty( $fields ) ) {
+								foreach ( $fields as $field ) {
+									if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
+										if ( in_array( $post->post_type, $field['exclude'], true ) ) {
+											continue;
+										}
+									}
+
+									if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
+										if ( ! in_array( $post->post_type, $field['include'], true ) ) {
+											continue;
+										}
+									}
+									$val = get_post_meta( $post->ID, $field['name'], true );
+									if ( has_action( 'epl_before_meta_field_' . $field['name'] ) ) {
+										do_action( 'epl_before_meta_field_' . $field['name'], $post, $val );
+									}
+
+									$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
+									?>
+									<li id="epl_<?php echo esc_attr( $field['name'] ); ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo esc_attr( $field_width ); ?> epl_<?php echo esc_attr( $field['name'] ); ?>_wrap epl-field-type-<?php echo esc_attr( $field['type'] ); ?>">
+
+
+										<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
+										<div class="form-field epl-form-field-label">
+											<span valign="top" scope="row">
+												<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_attr( $field['label'] ); ?></label>
+											</span>
+										</div>
+										<?php endif; ?>
+
+
+										<div id="epl_<?php echo esc_attr( $field['name'] ); ?>" class="form-field epl-form-field-value epl_<?php echo esc_attr( $field['name'] ); ?>">
+											<?php
+												epl_render_html_fields( $field, $val );
+											?>
+										</div>
+
+									</li>
+
+									<?php
+									if ( has_action( 'epl_after_meta_field_' . $field['name'] ) ) {
+										do_action( 'epl_after_meta_field_' . $field['name'], $post, $val );
+									}
+									?>
+									<?php
+								}
+							}
+							?>
+						</ul>
+					</div>
 				</div>
 				<?php
-			}
-			?>
-		<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo esc_attr( $args['id'] ); ?>" />
-		<div class="epl-clear"></div>
+			} ?>
+			<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo esc_attr( $args['id'] ); ?>" />
+			<div class="epl-clear"></div>
 			<?php
+			if( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { 
+				// wrapper end
+				echo '</div>';
+			}
 		}
 	}
 

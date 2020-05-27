@@ -288,14 +288,20 @@ class EPL_Render_Fields {
 				
 				if( !is_array( $data_value ) && !is_object( $data_value ) ) {
 					$atts_html .= $data_key."='".$data_value."'";
+				} else {
+					$atts_html .= $data_key."='".json_encode( $data_value )."'";
 				}
 			}
 		}
 
 		foreach ($field as $key => $value) {
 			
-			if( epl_starts_with( $key, 'data-' ) && !is_array( $value ) && !is_object( $value ) ) {
-				$atts_html .= $key."='".$value."'";
+			if( epl_starts_with( $key, 'data-' ) ) {
+				if( !is_array( $value ) && !is_object( $value ) ) {
+					$atts_html .= $key."='".$value."'";
+				} else {
+					$atts_html .= $key."='".json_encode( $value )."'";
+				}
 			}
 		}
 
