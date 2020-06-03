@@ -2294,9 +2294,13 @@ li.epl_ui_tab_menu_current h3 {
 	margin-bottom: 2em;
 	padding: 0 2em;
 }
-.epl_ui_tab_content_current{
-	display: inherit;
+.epl_ui_tab_content_current {
+    display: flex;
+    flex-grow: 1;
 }
 .epl_ui_tab_menu > a:focus, .epl_ui_tab_menu > a:active {
     box-shadow: none;
+}
+.epl-group-tab-wrapper .epl-inner-div.col-3, .epl-group-tab-wrapper .epl-inner-div.col-2{
+	width:100%;
 }

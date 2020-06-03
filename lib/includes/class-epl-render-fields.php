@@ -52,8 +52,10 @@ class EPL_Render_Fields {
 		add_action( 'epl_render_field_button', array( $this, 'default' ), 10, 2 );
 		add_action( 'epl_render_field_color', array( $this, 'default' ), 10, 2 );
 		add_action( 'epl_render_field_text', array( $this, 'default' ), 10, 2 );
+		add_action( 'epl_render_field_submit', array( $this, 'default' ), 10, 2 );
 		add_action( 'epl_render_field_locked', array( $this, 'locked' ), 10, 2 );
 		add_action( 'epl_render_field_help', array( $this, 'help' ), 10, 2 );
+
 	}
 
 	/**
@@ -658,7 +660,7 @@ class EPL_Render_Fields {
 	 */
 	public function default( $field, $val ) {
 
-		if( !in_array( $field[ 'type' ], array( 'button', 'number', 'color' ), true ) ) {
+		if( !in_array( $field[ 'type' ], array( 'button', 'number', 'color', 'submit' ), true ) ) {
 			$field[ 'type' ] = 'text';
 		}
 		echo $this->get_opening_field_tag( 'input', $field, true ); //phpcs:ignore
