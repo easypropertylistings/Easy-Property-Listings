@@ -2100,9 +2100,13 @@ h3.epl-contact-activity-title {
 	.fixed .column-listing,
 	.fixed .column-property_status,
 	.fixed .column-property_price,
+	.fixed .column-property_featured,
 	.fixed .column-listing_id,
 	.fixed .column-geo,
 	.fixed .column-agent {
+		display:none;
+	}
+	.wp-list-table tr:not(.inline-edit-row):not(.no-items) td.property_thumb::before {
 		display:none;
 	}
 	.epl-col,
