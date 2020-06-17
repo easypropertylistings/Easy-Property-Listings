@@ -43,7 +43,6 @@ There are various ways you can contribute:
 * Tweak: Render HTML class & style for tabs.
 * Fix: Issue when changing select into a select_multiple field was not saving.
 * Fix: Json rendering in data-attributes.
-* Fix: Typo.
 * Fix: Hidden field type.
 * Fix: Search widget was not rendering in page builders.
 * Fix: Admin css on mobile.
