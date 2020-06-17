@@ -224,29 +224,33 @@ class EPL_METABOX {
 	 * @since 3.4.19 Updated to new html structure for fields using html lists
 	 */
 	public function inner_meta_box( $post, $args ) {
-		$groups = $args['args']['groups'];
-		$groups = array_filter( $groups );
-		$render_as = empty( $args['args'][ 'render_as' ] ) ? 'default' : sanitize_text_field( $args['args']['render_as'] );
+		$groups    = $args['args']['groups'];
+		$groups    = array_filter( $groups );
+		$render_as = empty( $args['args']['render_as'] ) ? 'default' : sanitize_text_field( $args['args']['render_as'] );
 		// tabs-horizontal and tabs-vertical are supported
 		if ( ! empty( $groups ) ) {
 			wp_nonce_field( $this->prefix . 'inner_custom_box', $this->prefix . 'inner_custom_box_nonce' );
-			if( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { 
+			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
 				// wrapper for tabs
-				echo '<div class="epl-group-tab-wrapper epl-'.sanitize_text_field( $render_as ).'">';
+				echo '<div class="epl-group-tab-wrapper epl-' . sanitize_text_field( $render_as ) . '">';
 			}
-			if( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { ?>
-				<ul class="epl-group-tabs"> <?php
+			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { ?>
+				<ul class="epl-group-tabs"> 
+				<?php
 				foreach ( $groups as $group ) {
-					echo '<li><a href="#epl-field-group-'.esc_attr( $group['id'] ).'"><h3>' . esc_attr( $group['label'] ) . '</h3></a></li>';
-				} ?>
-				</ul> <?php
+					echo '<li><a href="#epl-field-group-' . esc_attr( $group['id'] ) . '"><h3>' . esc_attr( $group['label'] ) . '</h3></a></li>';
+				}
+				?>
+				</ul> 
+				<?php
 			}
-			foreach ( $groups as $group ) { ?>
+			foreach ( $groups as $group ) {
+				?>
 				<div id="epl-field-group-<?php echo esc_attr( $group['id'] ); ?>">
 					<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
 						<?php
 							$group['label'] = trim( $group['label'] );
-						if ( ! empty( $group['label'] ) && !in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
+						if ( ! empty( $group['label'] ) && ! in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
 							echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
 						}
 						?>
@@ -308,11 +312,12 @@ class EPL_METABOX {
 					</div>
 				</div>
 				<?php
-			} ?>
+			}
+			?>
 			<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo esc_attr( $args['id'] ); ?>" />
 			<div class="epl-clear"></div>
 			<?php
-			if( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { 
+			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
 				// wrapper end
 				echo '</div>';
 			}
