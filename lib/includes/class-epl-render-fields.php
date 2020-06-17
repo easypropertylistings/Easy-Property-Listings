@@ -54,18 +54,18 @@ class EPL_Render_Fields {
 		add_action( 'epl_render_field_image', array( $this, 'file' ), 10, 2 ); // File and image.
 		add_action( 'epl_render_field_editor', array( $this, 'editor' ), 10, 2 );
 		add_action( 'epl_render_field_textarea', array( $this, 'textarea' ), 10, 2 );
-		add_action( 'epl_render_field_decimal', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_number', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_date', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_auction-date', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_sold-date', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_email', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_url', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_button', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_color', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_text', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_hidden', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_submit', array( $this, 'default' ), 10, 2 );
+		add_action( 'epl_render_field_decimal', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_number', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_date', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_auction-date', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_sold-date', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_email', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_url', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_button', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_color', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_text', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_hidden', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_submit', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_locked', array( $this, 'locked' ), 10, 2 );
 		add_action( 'epl_render_field_help', array( $this, 'help' ), 10, 2 );
 
@@ -682,7 +682,7 @@ class EPL_Render_Fields {
 	 * @param array  $field The field.
 	 * @param string $val   The value.
 	 */
-	public function default( $field, $val ) {
+	public function render_default( $field, $val ) {
 
 		if ( ! in_array( $field['type'], array( 'button', 'number', 'color', 'submit' ), true ) ) {
 			$field['type'] = 'text';
