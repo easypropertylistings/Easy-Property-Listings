@@ -158,7 +158,7 @@ function epl_meta_box_inner_custom_box( $post, $args ) {
  *
  * @return mixed
  * @since 1.0
- * @since 3.4.17	Fixed issue : empty values not getting saved for decimals & numbers
+ * @since 3.4.17    Fixed issue : empty values not getting saved for decimals & numbers
  */
 function epl_save_meta_boxes( $post_ID ) {
 
@@ -302,7 +302,6 @@ function epl_save_meta_boxes( $post_ID ) {
 
 											case 'checkbox':
 											case 'select_multiple':
-
 												$meta_value = ( array ) wp_unslash( $_POST[ $field['name'] ] ) ; //phpcs:ignore
 
 												break;
@@ -313,10 +312,10 @@ function epl_save_meta_boxes( $post_ID ) {
 												break;
 										}
 
-										if( empty( $meta_value ) ) {
+										if ( empty( $meta_value ) ) {
 
-											if( is_array( $_POST[ $field['name'] ] ) ) {
-												$meta_value = array_map( 'sanitize_text_field', wp_unslash( $_POST[$field['name'] ] ) );
+											if ( is_array( $_POST[ $field['name'] ] ) ) {
+												$meta_value = array_map( 'sanitize_text_field', wp_unslash( $_POST[ $field['name'] ] ) );
 											} else {
 												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 											}
