@@ -355,7 +355,7 @@ class EPL_Render_Fields {
 
 		$html = '<' . $tag . ' ';
 
-		if ( ! empty( $field['type'] ) && ! in_array( $field['type'], array( 'select', 'select_multiple', 'textarea' ) ) ) {
+		if ( ! empty( $field['type'] ) && ! in_array( $field['type'], array( 'select', 'select_multiple', 'textarea' ), true ) ) {
 			$html .= ' type ="' . esc_attr( $field['type'] ) . '" ';
 			$html .= ' value ="' . esc_attr( stripslashes( $field['value'] ) ) . '" ';
 		}
