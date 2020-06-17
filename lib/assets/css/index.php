@@ -1,4 +1,10 @@
 <?php
 /**
- * Do not modify the files in this folder.
+ * Index file
+ *
+ * @package EPL
+ * @since 1.0.0
  */
+
+/* Silence is golden, and we agree. */
+
