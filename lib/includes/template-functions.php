@@ -3327,7 +3327,7 @@ function epl_stickers( $options = array(), $stickers = array() ) {
  *
  * @return mixed|void
  *
- * @throws Exception
+ * @throws Exception Something.
  * @since 3.4.27
  * @since 3.4.28 Added array and filter.
  */
