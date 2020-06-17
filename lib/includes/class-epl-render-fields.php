@@ -6,7 +6,8 @@
  * @subpackage  Classes/RenderFields
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       3.4.29
+ * @since       2.3
+ * @since       3.4.29 Moved from meta-boxes into its own class for more extensibility
  */
 
 // Exit if accessed directly.
@@ -19,7 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Handles rendering of html fields for EPL settings, meta boxes etc.
  *
- * @since      3.4.29
+ * @since 2.3
+ * @since 3.4.29 Moved from meta-boxes into its own class for more extensibility.
  */
 class EPL_Render_Fields {
 
@@ -62,8 +64,8 @@ class EPL_Render_Fields {
 	/**
 	 * { function_description }
 	 *
-	 * @param      <type>  $field  The field
-	 * @param      <type>  $val    The value
+	 * @param      <type> $field  The field
+	 * @param      <type> $val    The value
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
@@ -71,30 +73,30 @@ class EPL_Render_Fields {
 
 		$field = apply_filters( 'pre_process_field_params', $field );
 
-		if( 'date' === $field[ 'type' ] ) {
-			$field[ 'data-format' ] 	= isset( $field['format'] ) ? $field['format'] : 'Y-m-d';
-			$field[ 'data-timepicker' ] = isset( $field['timepicker'] ) ? $field['timepicker'] : false;
+		if ( 'date' === $field['type'] ) {
+			$field['data-format']     = isset( $field['format'] ) ? $field['format'] : 'Y-m-d';
+			$field['data-timepicker'] = isset( $field['timepicker'] ) ? $field['timepicker'] : false;
 		}
 
-		$field[ 'id' ]           = $this->get_id( $field );
-		$field[ 'name' ]         = $this->get_name( $field );
-		$field[ 'class' ]        = $this->get_class( $field );
-		$field[ 'data' ]         = $this->get_data_attributes( $field );
-		$field[ 'min' ]          = $this->get_min( $field );
-		$field[ 'max' ]          = $this->get_max( $field );
-		$field[ 'maxlength' ]    = $this->get_maxlength( $field );
-		$field[ 'placeholder' ]  = $this->get_placeholder( $field );
-		$field[ 'autocomplete' ] = $this->get_autocomplete( $field );
-		$field[ 'multiple' ]     = $this->is_multiple( $field );
-		$field[ 'required' ]     = $this->is_required( $field );
-		$field[ 'value' ]     	 = 'button' === $field[ 'type' ] ? $field[ 'value' ] : $val;
+		$field['id']           = $this->get_id( $field );
+		$field['name']         = $this->get_name( $field );
+		$field['class']        = $this->get_class( $field );
+		$field['data']         = $this->get_data_attributes( $field );
+		$field['min']          = $this->get_min( $field );
+		$field['max']          = $this->get_max( $field );
+		$field['maxlength']    = $this->get_maxlength( $field );
+		$field['placeholder']  = $this->get_placeholder( $field );
+		$field['autocomplete'] = $this->get_autocomplete( $field );
+		$field['multiple']     = $this->is_multiple( $field );
+		$field['required']     = $this->is_required( $field );
+		$field['value']        = 'button' === $field['type'] ? $field['value'] : $val;
 		return apply_filters( 'post_process_field_params', $field );
 	}
 
 	/**
 	 * Gets the minimum.
 	 *
-	 * @param      <type>  $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     <type>  The minimum.
 	 */
@@ -105,18 +107,18 @@ class EPL_Render_Fields {
 	/**
 	 * Determines whether the specified field is multiple.
 	 *
-	 * @param      <type>   $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     boolean  True if the specified field is multiple, False otherwise.
 	 */
 	public function is_multiple( $field ) {
-		return 'select_multiple' === $field[ 'type' ] ? ' multiple ' : '';
+		return 'select_multiple' === $field['type'] ? ' multiple ' : '';
 	}
 
 	/**
 	 * Gets the maximum.
 	 *
-	 * @param      <type>  $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     <type>  The maximum.
 	 */
@@ -127,7 +129,7 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the maxlength.
 	 *
-	 * @param      <type>  $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     <type>  The maxlength.
 	 */
@@ -138,7 +140,7 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the placeholder.
 	 *
-	 * @param      <type>  $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     <type>  The placeholder.
 	 */
@@ -149,7 +151,7 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the autocomplete.
 	 *
-	 * @param      <type>  $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     <type>  The autocomplete.
 	 */
@@ -160,25 +162,25 @@ class EPL_Render_Fields {
 	/**
 	 * Determines whether the specified field is required.
 	 *
-	 * @param      <type>   $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     boolean  True if the specified field is required, False otherwise.
 	 */
 	public function is_required( $field ) {
-		return !empty( $field['required'] ) ?  ' required ' : '';
+		return ! empty( $field['required'] ) ? ' required ' : '';
 	}
 
 	/**
 	 * Gets the identifier.
 	 *
-	 * @param      <type>   $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     boolean  The identifier.
 	 */
 	public function get_id( $field ) {
 		$id = isset( $field['id'] ) ? $field['id'] : '';
 
-		if( empty( $id ) ) {
+		if ( empty( $id ) ) {
 			$id = isset( $field['name'] ) ? $field['name'] : '';
 		}
 
@@ -188,7 +190,7 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the name.
 	 *
-	 * @param      <type>  $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     <type>  The name.
 	 */
@@ -199,7 +201,7 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the decimal validation class.
 	 *
-	 * @param      array   $field  The field
+	 * @param      array $field  The field
 	 *
 	 * @return     <type>  The decimal validation class.
 	 */
@@ -210,7 +212,7 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the number validation class.
 	 *
-	 * @param      array   $field  The field
+	 * @param      array $field  The field
 	 *
 	 * @return     <type>  The number validation class.
 	 */
@@ -221,7 +223,7 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the email validation class.
 	 *
-	 * @param      array   $field  The field
+	 * @param      array $field  The field
 	 *
 	 * @return     <type>  The email validation class.
 	 */
@@ -232,7 +234,7 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the url validation class.
 	 *
-	 * @param      array   $field  The field
+	 * @param      array $field  The field
 	 *
 	 * @return     <type>  The url validation class.
 	 */
@@ -243,67 +245,67 @@ class EPL_Render_Fields {
 	/**
 	 * Gets the class.
 	 *
-	 * @param      <type>   $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     boolean  The class.
 	 */
 	public function get_class( $field ) {
 
-		$classes = isset( $field[ 'class'] ) ? $field[ 'class'] : '';
+		$classes = isset( $field['class'] ) ? $field['class'] : '';
 
-		if( !is_array( $classes ) ) {
+		if ( ! is_array( $classes ) ) {
 			$classes = explode( ' ', $classes );
 		}
 		$classes = implode( ' ', array_map( 'sanitize_html_class', $classes ) );
 
 		// append validation classes
-		if( 'decimal' === $field[ 'type' ] ) {
-			$classes .= ' '. $this->get_decimal_validation_class( $field );
-		} elseif( 'number' === $field[ 'type' ] ) {
-			$classes .= ' '. $this->get_number_validation_class( $field );
-		} elseif( 'email' === $field[ 'type' ] ) {
-			$classes .= ' '. $this->get_email_validation_class( $field );
-		} elseif( 'url' === $field[ 'type' ] ) {
-			$classes .= ' '. $this->get_url_validation_class( $field );
-		} elseif( 'date' === $field[ 'type' ] ) {
+		if ( 'decimal' === $field['type'] ) {
+			$classes .= ' ' . $this->get_decimal_validation_class( $field );
+		} elseif ( 'number' === $field['type'] ) {
+			$classes .= ' ' . $this->get_number_validation_class( $field );
+		} elseif ( 'email' === $field['type'] ) {
+			$classes .= ' ' . $this->get_email_validation_class( $field );
+		} elseif ( 'url' === $field['type'] ) {
+			$classes .= ' ' . $this->get_url_validation_class( $field );
+		} elseif ( 'date' === $field['type'] ) {
 			$classes .= ' epldatepicker ';
 		}
 
 		// append type class
-		$classes .= ' '.$this->class_prefix.sanitize_text_field( $field['type'] );
+		$classes .= ' ' . $this->class_prefix . sanitize_text_field( $field['type'] );
 		return $classes;
 	}
 
 	/**
 	 * Gets the data attributes.
 	 *
-	 * @param      <type>  $field  The field
+	 * @param      <type> $field  The field
 	 */
 	public function get_data_attributes( $field ) {
 
-		$atts_html = "";
-		if( !empty( $field[ 'data' ] ) ) {
-			foreach ( $field[ 'data' ] as $data_key => $data_value ) {
+		$atts_html = '';
+		if ( ! empty( $field['data'] ) ) {
+			foreach ( $field['data'] as $data_key => $data_value ) {
 
-				if( !epl_starts_with( $data_key, 'data-' ) ) {
-					$data_key = 'data-'.$data_key;
+				if ( ! epl_starts_with( $data_key, 'data-' ) ) {
+					$data_key = 'data-' . $data_key;
 				}
-				
-				if( !is_array( $data_value ) && !is_object( $data_value ) ) {
-					$atts_html .= $data_key."='".$data_value."'";
+
+				if ( ! is_array( $data_value ) && ! is_object( $data_value ) ) {
+					$atts_html .= $data_key . "='" . $data_value . "'";
 				} else {
-					$atts_html .= $data_key."='".json_encode( $data_value )."'";
+					$atts_html .= $data_key . "='" . json_encode( $data_value ) . "'";
 				}
 			}
 		}
 
-		foreach ($field as $key => $value) {
-			
-			if( epl_starts_with( $key, 'data-' ) ) {
-				if( !is_array( $value ) && !is_object( $value ) ) {
-					$atts_html .= $key."='".$value."'";
+		foreach ( $field as $key => $value ) {
+
+			if ( epl_starts_with( $key, 'data-' ) ) {
+				if ( ! is_array( $value ) && ! is_object( $value ) ) {
+					$atts_html .= $key . "='" . $value . "'";
 				} else {
-					$atts_html .= $key."='".json_encode( $value )."'";
+					$atts_html .= $key . "='" . json_encode( $value ) . "'";
 				}
 			}
 		}
@@ -315,79 +317,79 @@ class EPL_Render_Fields {
 	/**
 	 * Determines whether the specified field is name array.
 	 *
-	 * @param      <type>   $field  The field
+	 * @param      <type> $field  The field
 	 *
 	 * @return     boolean  True if the specified field is name array, False otherwise.
 	 */
 	public function is_name_array( $field ) {
 
 		$name_arrays = apply_filters( 'epl_form_field_name_arrays', array( 'select_multiple', 'checkbox' ) );
-		return in_array( $field[ 'type' ], $name_arrays, true ) ? true : false;
+		return in_array( $field['type'], $name_arrays, true ) ? true : false;
 
 	}
 
 	/**
 	 * Gets the opening field tag.
 	 *
-	 * @param      string   $tag         The tag
-	 * @param      <type>   $field       The field
-	 * @param      boolean  $self_close  The self close
+	 * @param      string  $tag         The tag
+	 * @param      <type>  $field       The field
+	 * @param      boolean $self_close  The self close
 	 *
 	 * @return     string   The opening field tag.
 	 */
-	public function get_opening_field_tag($tag = 'input', $field, $self_close = false ) {
+	public function get_opening_field_tag( $tag = 'input', $field, $self_close = false ) {
 
 		$tag = sanitize_key( $tag );
 
-		$html = '<'.$tag.' ';
+		$html = '<' . $tag . ' ';
 
-		if( !empty( $field['type'] ) && !in_array( $field['type'], array( 'select','select_multiple', 'textarea' ) ) ) {
-			$html .= ' type ="'.esc_attr( $field['type'] ).'" ';
-			$html .= ' value ="'.esc_attr( stripslashes( $field['value'] ) ).'" ';
+		if ( ! empty( $field['type'] ) && ! in_array( $field['type'], array( 'select', 'select_multiple', 'textarea' ) ) ) {
+			$html .= ' type ="' . esc_attr( $field['type'] ) . '" ';
+			$html .= ' value ="' . esc_attr( stripslashes( $field['value'] ) ) . '" ';
 		}
 
-		if( !empty( $field['multiple'] ) ) {
+		if ( ! empty( $field['multiple'] ) ) {
 			$html .= esc_attr( $field['multiple'] );
 		}
 
-		if( !empty( $field['min'] ) ) {
-			$html .= ' min ="'.esc_attr( $field['min'] ).'" ';
+		if ( ! empty( $field['min'] ) ) {
+			$html .= ' min ="' . esc_attr( $field['min'] ) . '" ';
 		}
 
-		if( !empty( $field['max'] ) ) {
-			$html .= ' max ="'.esc_attr( $field['max'] ).'" ';
+		if ( ! empty( $field['max'] ) ) {
+			$html .= ' max ="' . esc_attr( $field['max'] ) . '" ';
 		}
 
-		if( !empty( $field['maxlength'] ) ) {
-			$html .= ' maxlength ="'.esc_attr( $field['maxlength'] ).'" ';
+		if ( ! empty( $field['maxlength'] ) ) {
+			$html .= ' maxlength ="' . esc_attr( $field['maxlength'] ) . '" ';
 		}
 
-		if( !empty( $field['class'] ) ) {
-			$html .= ' class ="'.esc_attr( $field['class'] ).'" ';
+		if ( ! empty( $field['class'] ) ) {
+			$html .= ' class ="' . esc_attr( $field['class'] ) . '" ';
 		}
 
-		if( !empty( $field['name'] ) ) {
+		if ( ! empty( $field['name'] ) ) {
 			$name = esc_attr( $field['name'] );
-			if( $this->is_name_array( $field ) ) {
+			if ( $this->is_name_array( $field ) ) {
 				$name .= '[]';
 			}
-			$html .= ' name ="'.$name.'" ';
+			$html .= ' name ="' . $name . '" ';
 		}
 
-		if( !empty( $field['id'] ) ) {
-			$html .= ' id ="'.esc_attr( $field['id'] ).'" ';
+		if ( ! empty( $field['id'] ) ) {
+			$html .= ' id ="' . esc_attr( $field['id'] ) . '" ';
 		}
 
-		if( !empty( $field['placeholder'] ) ) {
-			$html .= ' placeholder ="'.esc_attr( $field['placeholder'] ).'" ';
+		if ( ! empty( $field['placeholder'] ) ) {
+			$html .= ' placeholder ="' . esc_attr( $field['placeholder'] ) . '" ';
 		}
 
-		if( !empty( $field['autocomplete'] ) ) {
-			$html .= ' autocomplete ="'.esc_attr( $field['autocomplete'] ).'" ';
+		if ( ! empty( $field['autocomplete'] ) ) {
+			$html .= ' autocomplete ="' . esc_attr( $field['autocomplete'] ) . '" ';
 		}
 
-		if( !empty( $field['data'] ) ) {
-			$html .= ' '.wp_kses_post( $field['data'] );
+		if ( ! empty( $field['data'] ) ) {
+			$html .= ' ' . wp_kses_post( $field['data'] );
 		}
 
 		$html .= $self_close ? '/>' : '>';
@@ -398,20 +400,20 @@ class EPL_Render_Fields {
 	/**
 	 * Renders the field based on field type
 	 *
-	 * @param      array   $field  The field
-	 * @param      string  $val    The value
+	 * @param      array  $field  The field
+	 * @param      string $val    The value
 	 */
-	public function render( $field = array(), $val= '') {
+	public function render( $field = array(), $val = '' ) {
 
 		global $post;
 
-		if( !is_null( $post ) ) {
+		if ( ! is_null( $post ) ) {
 			$this->post = $post;
 		}
 
-		$type  = sanitize_text_field( $field[ 'type' ] );
+		$type  = sanitize_text_field( $field['type'] );
 		$field = $this->process_field_params( $field, $val );
-		do_action( 'epl_render_field_'.$type, $field, $val );
+		do_action( 'epl_render_field_' . $type, $field, $val );
 
 		if ( isset( $field['geocoder'] ) ) {
 			if ( 'true' == $field['geocoder'] ) { //phpcs:ignore
@@ -432,13 +434,13 @@ class EPL_Render_Fields {
 	/**
 	 * Renders select
 	 *
-	 * @param      <type>  $field  The field
-	 * @param      <type>  $val    The value
+	 * @param      <type> $field  The field
+	 * @param      <type> $val    The value
 	 */
 	public function select( $field, $val ) {
 
-		if( $this->is_multiple( $field ) ) {
-			$val = ( array ) $val;
+		if ( $this->is_multiple( $field ) ) {
+			$val = (array) $val;
 		}
 
 		echo $this->get_opening_field_tag( 'select', $field ); //phpcs:ignore
@@ -448,7 +450,7 @@ class EPL_Render_Fields {
 			foreach ( $field['opts'] as $k => $v ) {
 				$selected = '';
 
-				if( $this->is_multiple( $field ) ) {
+				if ( $this->is_multiple( $field ) ) {
 					if ( in_array( $k, $val ) ) { //phpcs:ignore
 						$selected = 'selected';
 					}
@@ -457,17 +459,16 @@ class EPL_Render_Fields {
 						$selected = 'selected';
 					}
 				}
-				
 
 				if ( is_array( $v ) ) {
 					if ( isset( $v['exclude'] ) && ! empty( $v['exclude'] ) ) {
-						if ( !is_null( $this->post ) && in_array( $this->post->post_type, $v['exclude'], true ) ) {
+						if ( ! is_null( $this->post ) && in_array( $this->post->post_type, $v['exclude'], true ) ) {
 							continue;
 						}
 					}
 
 					if ( isset( $v['include'] ) && ! empty( $v['include'] ) ) {
-						if ( !is_null( $this->post ) && !in_array( $this->post->post_type, $v['include'], true ) ) {
+						if ( ! is_null( $this->post ) && ! in_array( $this->post->post_type, $v['include'], true ) ) {
 							continue;
 						}
 					}
@@ -485,8 +486,8 @@ class EPL_Render_Fields {
 	/**
 	 * Renders checkbox
 	 *
-	 * @param      <type>  $field  The field
-	 * @param      <type>  $val    The value
+	 * @param      <type> $field  The field
+	 * @param      <type> $val    The value
 	 */
 	public function checkbox( $field, $val ) {
 
@@ -516,10 +517,10 @@ class EPL_Render_Fields {
 	/**
 	 * Renders checkbox single
 	 *
-	 * @param      <type>  $field  The field
-	 * @param      <type>  $val    The value
+	 * @param      <type> $field  The field
+	 * @param      <type> $val    The value
 	 */
-	public function checkbox_single(  $field, $val ) {
+	public function checkbox_single( $field, $val ) {
 
 		if ( ! empty( $field['opts'] ) ) {
 			foreach ( $field['opts'] as $k => $v ) {
@@ -541,10 +542,10 @@ class EPL_Render_Fields {
 	/**
 	 * Renders checkbox option
 	 *
-	 * @param      <type>  $field  The field
-	 * @param      <type>  $val    The value
+	 * @param      <type> $field  The field
+	 * @param      <type> $val    The value
 	 */
-	public function checkbox_option(  $field, $val ) {
+	public function checkbox_option( $field, $val ) {
 
 		if ( ! empty( $field['opts'] ) ) {
 			foreach ( $field['opts'] as $k => $v ) {
@@ -562,8 +563,8 @@ class EPL_Render_Fields {
 	/**
 	 * Renders radio
 	 *
-	 * @param      <type>  $field  The field
-	 * @param      <type>  $val    The value
+	 * @param      <type> $field  The field
+	 * @param      <type> $val    The value
 	 */
 	public function radio( $field, $val ) {
 
@@ -581,8 +582,8 @@ class EPL_Render_Fields {
 	/**
 	 * Renders file / image
 	 *
-	 * @param      <type>   $field  The field
-	 * @param      boolean  $val    The value
+	 * @param      <type>  $field  The field
+	 * @param      boolean $val    The value
 	 */
 	public function file( $field, $val ) {
 		if ( is_array( $val ) ) {
@@ -611,22 +612,25 @@ class EPL_Render_Fields {
 	/**
 	 * Renders editor
 	 *
-	 * @param      <type>  $field  The field
-	 * @param      <type>  $val    The value
+	 * @param      <type> $field  The field
+	 * @param      <type> $val    The value
 	 */
 	public function editor( $field, $val ) {
-		wp_editor( 
-			stripslashes( $val ), 
-			esc_attr( $field['id'] ), 
-			$settings = array( 'textarea_rows' => 5, 'editor_class'	=>	$field['class'] ) 
+		wp_editor(
+			stripslashes( $val ),
+			esc_attr( $field['id'] ),
+			$settings = array(
+				'textarea_rows' => 5,
+				'editor_class'  => $field['class'],
+			)
 		);
 	}
 
 	/**
 	 * Renders textarea
 	 *
-	 * @param      <type>  $field  The field
-	 * @param      <type>  $val    The value
+	 * @param      <type> $field  The field
+	 * @param      <type> $val    The value
 	 */
 	public function textarea( $field, $val ) {
 		echo $this->get_opening_field_tag( 'textarea', $field ); //phpcs:ignore
@@ -639,7 +643,7 @@ class EPL_Render_Fields {
 	 */
 	public function locked( $field, $val ) {
 
-		echo '<span>' . esc_attr( stripslashes( $field[ 'value' ] ) ) . '</span>';
+		echo '<span>' . esc_attr( stripslashes( $field['value'] ) ) . '</span>';
 	}
 
 	/**
@@ -657,12 +661,11 @@ class EPL_Render_Fields {
 
 	/**
 	 * Renders default input types
-	 * 
 	 */
 	public function default( $field, $val ) {
 
-		if( !in_array( $field[ 'type' ], array( 'button', 'number', 'color', 'submit' ), true ) ) {
-			$field[ 'type' ] = 'text';
+		if ( ! in_array( $field['type'], array( 'button', 'number', 'color', 'submit' ), true ) ) {
+			$field['type'] = 'text';
 		}
 		echo $this->get_opening_field_tag( 'input', $field, true ); //phpcs:ignore
 	}
