@@ -652,6 +652,9 @@ class EPL_Render_Fields {
 
 	/**
 	 * Renders locked
+	 *
+	 * @param array  $field The field.
+	 * @param string $val   The value.
 	 */
 	public function locked( $field, $val ) {
 
@@ -676,6 +679,9 @@ class EPL_Render_Fields {
 
 	/**
 	 * Renders default input types
+	 *
+	 * @param array  $field The field.
+	 * @param string $val   The value.
 	 */
 	public function default( $field, $val ) {
 
