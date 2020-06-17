@@ -3,10 +3,10 @@
  * Render HTML Fields
  *
  * @package     EPL
- * @subpackage  Classes/Metaboxs
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Classes/RenderFields
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       2.3
+ * @since       3.4.29
  */
 
 // Exit if accessed directly.
@@ -15,9 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * EPL_RENDER_FIELDS class.
+ * EPL_Render_Fields class.
  *
- * handles rendering of html fields for EPL settings, meta boxes etc.
+ * Handles rendering of html fields for EPL settings, meta boxes etc.
  *
  * @since      3.4.29
  */

@@ -47,7 +47,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		private static $instance;
 
 		/**
-		 * EPL search fields displayer object.
+		 * EPL search fields display object.
 		 *
 		 * @since 3.0
 		 * @var   EPL_Search_Fields
@@ -69,13 +69,13 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 */
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {
-				self::$instance = new Easy_Property_Listings;
+				self::$instance = new Easy_Property_Listings();
 				self::$instance->setup_constants();
 
 				add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
 
 				self::$instance->includes();
-				// Search fields displayer object.
+				// Search fields display object.
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->session       = new EPL_Session();
 				self::$instance->render_fields = new EPL_Render_Fields();
@@ -130,7 +130,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_TEMPLATES' ) ) {
 				define( 'EPL_PATH_TEMPLATES', EPL_PATH_LIB . 'templates/' );
 			}
-			// Plugin Path Compatability.
+			// Plugin Path Compatibility.
 			if ( ! defined( 'EPL_COMPATABILITY' ) ) {
 				define( 'EPL_COMPATABILITY', EPL_PATH_LIB . 'compatibility/' );
 			}

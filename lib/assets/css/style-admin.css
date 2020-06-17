@@ -905,7 +905,7 @@ h3.epl-welcome-sub-heading {
 	background: #aaa;
 }
 .epl-notes-grav + .dashboard-comment-wrap {
-    padding-left: 63px;
+	padding-left: 63px;
 }
 .epl-notes-label {
 	display: block;
@@ -2219,30 +2219,30 @@ h3.epl-contact-activity-title {
 }
 /* Tabs */
 .epl_ui_tab_wrapper_vertical {
-    display: flex;
+	display: flex;
 }
 .epl_ui_tab_wrapper_horizontal{
 	display: flex;
 	flex-direction: column;
 }
 ul.epl_ui_tab_menu_wrapper_horizontal {
-    padding: 0;
-    list-style: none;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
 }
 ul.epl_ui_tab_menu_wrapper_vertical {
-    padding: 0;
-    list-style: none;
-    border-right: 2px solid #eee;
-    box-sizing: border-box;
-    flex-basis: 20%;
-    flex-shrink: 0;
+	padding: 0;
+	list-style: none;
+	border-right: 2px solid #eee;
+	box-sizing: border-box;
+	flex-basis: 20%;
+	flex-shrink: 0;
 }
 ul.epl_ui_tab_menu_wrapper_vertical.epl_ui_tab_menu_wrapper_horizontal {
-    display: flex;
+	display: flex;
 }
 
 ul.epl_ui_tab_menu_wrapper_vertical li.epl_ui_tab_menu {
@@ -2270,14 +2270,14 @@ ul.epl_ui_tab_menu_wrapper_horizontal li.epl_ui_tab_menu {
 	width: 100%;
 }
 ul.epl_ui_tab_menu_wrapper_vertical li.epl_ui_tab_menu_current {
-    border: 2px solid #eee;
-    margin-bottom: 0;
-    border-right: 5px solid #fff;
-    border-left: 3px solid #0071A1;
+	border: 2px solid #eee;
+	margin-bottom: 0;
+	border-right: 5px solid #fff;
+	border-left: 3px solid #0071A1;
 }
 ul.epl_ui_tab_menu_wrapper_horizontal li.epl_ui_tab_menu_current {
-    border-color: #eee;
-    border-bottom-color: #fff;
+	border-color: #eee;
+	border-bottom-color: #fff;
 }
 .epl_ui_tab_menu > a {
 	text-decoration: none;
@@ -2299,11 +2299,11 @@ li.epl_ui_tab_menu_current h3 {
 	padding: 0 2em;
 }
 .epl_ui_tab_content_current {
-    display: flex;
-    flex-grow: 1;
+	display: flex;
+	flex-grow: 1;
 }
 .epl_ui_tab_menu > a:focus, .epl_ui_tab_menu > a:active {
-    box-shadow: none;
+	box-shadow: none;
 }
 .epl-group-tab-wrapper .epl-inner-div.col-3, .epl-group-tab-wrapper .epl-inner-div.col-2{
 	width:100%;

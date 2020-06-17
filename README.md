@@ -35,6 +35,19 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.29 June 17, 2020 =
+
+* New: Converted render field function to class for with control and flexibility.
+* New: Custom body classes epl-single-listing for single and epl-post-type-archive for search results pages.
+* Tweak: Meta box tabs and conditional fields.
+* Tweak: Render HTML class & style for tabs.
+* Fix: Issue when changing select into a select_multiple field was not saving.
+* Fix: Json rendering in data-attributes.
+* Fix: Typo.
+* Fix: Hidden field type.
+* Fix: Search widget was not rendering in page builders.
+* Fix: Admin css on mobile.
+
 = 3.4.28 May 25, 2020 =
 
 * New: Option added to number formatting function to trim decimal numbers. 
