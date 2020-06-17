@@ -306,7 +306,7 @@ class EPL_Render_Fields {
 				if ( ! is_array( $data_value ) && ! is_object( $data_value ) ) {
 					$atts_html .= $data_key . "='" . $data_value . "'";
 				} else {
-					$atts_html .= $data_key . "='" . json_encode( $data_value ) . "'";
+					$atts_html .= $data_key . "='" . wp_json_encode( $data_value ) . "'";
 				}
 			}
 		}
@@ -317,7 +317,7 @@ class EPL_Render_Fields {
 				if ( ! is_array( $value ) && ! is_object( $value ) ) {
 					$atts_html .= $key . "='" . $value . "'";
 				} else {
-					$atts_html .= $key . "='" . json_encode( $value ) . "'";
+					$atts_html .= $key . "='" . wp_json_encode( $value ) . "'";
 				}
 			}
 		}
