@@ -447,7 +447,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 			$value = get_property_meta( 'property_address_' . $arg );
 
 			if ( ! empty( $value ) ) {
-				$address .= $prefix[ $args ] . get_property_meta( 'property_address_' . $arg ) . $seps[ $arg ];
+				$address .= $prefix[ $arg ] . get_property_meta( 'property_address_' . $arg ) . $seps[ $arg ];
 			}
 		}
 	}
