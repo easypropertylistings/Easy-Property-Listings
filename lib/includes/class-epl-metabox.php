@@ -232,7 +232,7 @@ class EPL_METABOX {
 			wp_nonce_field( $this->prefix . 'inner_custom_box', $this->prefix . 'inner_custom_box_nonce' );
 			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
 				// Wrapper for tabs.
-				echo '<div class="epl-group-tab-wrapper epl-' . esc_html( $render_as ) . '">';
+				echo '<div class="epl-group-tab-wrapper epl-' . esc_attr( $render_as ) . '">';
 			}
 			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { ?>
 				<ul class="epl-group-tabs"> 
