@@ -3558,7 +3558,7 @@ function epl_sticker_is_condition_valid( $condition, $compare = '=' ) {
  * @param array $statues The statues.
  * @param array $options The options.
  *
- * @throws Exception
+ * @throws Exception Summary.
  * @since 3.4.28
  */
 function epl_property_status( $statues = array(), $options = array() ) {
