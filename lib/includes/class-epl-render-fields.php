@@ -594,7 +594,7 @@ class EPL_Render_Fields {
 	/**
 	 * Renders file / image
 	 *
-	 * @param array   $field The field.
+	 * @param array  $field The field.
 	 * @param string $val   The value.
 	 */
 	public function file( $field, $val ) {
