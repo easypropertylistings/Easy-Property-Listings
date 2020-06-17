@@ -227,11 +227,11 @@ class EPL_METABOX {
 		$groups    = $args['args']['groups'];
 		$groups    = array_filter( $groups );
 		$render_as = empty( $args['args']['render_as'] ) ? 'default' : sanitize_text_field( $args['args']['render_as'] );
-		// tabs-horizontal and tabs-vertical are supported
+		// This supports both tabs-horizontal and tabs-vertical options.
 		if ( ! empty( $groups ) ) {
 			wp_nonce_field( $this->prefix . 'inner_custom_box', $this->prefix . 'inner_custom_box_nonce' );
 			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
-				// wrapper for tabs
+				// Wrapper for tabs.
 				echo '<div class="epl-group-tab-wrapper epl-' . sanitize_text_field( $render_as ) . '">';
 			}
 			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { ?>
@@ -318,7 +318,7 @@ class EPL_METABOX {
 			<div class="epl-clear"></div>
 			<?php
 			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
-				// wrapper end
+				// Wrapper end.
 				echo '</div>';
 			}
 		}
