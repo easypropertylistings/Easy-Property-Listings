@@ -657,7 +657,6 @@ class EPL_Render_Fields {
 	 * @param string $val   The value.
 	 */
 	public function locked( $field, $val ) {
-
 		echo '<span>' . esc_attr( stripslashes( $field['value'] ) ) . '</span>';
 	}
 
