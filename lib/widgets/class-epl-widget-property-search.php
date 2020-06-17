@@ -58,9 +58,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		if ( ! is_admin() ) {
-			echo epl_shortcode_listing_search_callback( $instance );
-		}
+		echo epl_shortcode_listing_search_callback( $instance );
 
 		echo $after_widget;
 	}

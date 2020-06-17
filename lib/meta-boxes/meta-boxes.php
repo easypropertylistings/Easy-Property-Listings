@@ -300,10 +300,26 @@ function epl_save_meta_boxes( $post_ID ) {
 
 												break;
 
+											case 'checkbox':
+											case 'select_multiple':
+
+												$meta_value = ( array ) wp_unslash( $_POST[ $field['name'] ] ) ; //phpcs:ignore
+
+												break;
+
 											default:
 												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 
 												break;
+										}
+
+										if( empty( $meta_value ) ) {
+
+											if( is_array( $_POST[ $field['name'] ] ) ) {
+												$meta_value = array_map( 'sanitize_text_field', wp_unslash( $_POST[$field['name'] ] ) );
+											} else {
+												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
+											}
 										}
 										$meta_value = apply_filters( 'epl_field_save_meta_' . $field['name'], $meta_value );
 										update_post_meta( $post_ID, $field['name'], $meta_value );
