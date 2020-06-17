@@ -54,18 +54,18 @@ class EPL_Render_Fields {
 		add_action( 'epl_render_field_image', array( $this, 'file' ), 10, 2 ); // File and image.
 		add_action( 'epl_render_field_editor', array( $this, 'editor' ), 10, 2 );
 		add_action( 'epl_render_field_textarea', array( $this, 'textarea' ), 10, 2 );
-		add_action( 'epl_render_field_decimal', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_number', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_date', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_auction-date', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_sold-date', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_email', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_url', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_button', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_color', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_text', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_hidden', array( $this, 'default' ), 10, 2 );
-		add_action( 'epl_render_field_submit', array( $this, 'default' ), 10, 2 );
+		add_action( 'epl_render_field_decimal', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_number', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_date', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_auction-date', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_sold-date', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_email', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_url', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_button', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_color', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_text', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_hidden', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_submit', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_locked', array( $this, 'locked' ), 10, 2 );
 		add_action( 'epl_render_field_help', array( $this, 'help' ), 10, 2 );
 
@@ -306,7 +306,7 @@ class EPL_Render_Fields {
 				if ( ! is_array( $data_value ) && ! is_object( $data_value ) ) {
 					$atts_html .= $data_key . "='" . $data_value . "'";
 				} else {
-					$atts_html .= $data_key . "='" . json_encode( $data_value ) . "'";
+					$atts_html .= $data_key . "='" . wp_json_encode( $data_value ) . "'";
 				}
 			}
 		}
@@ -317,7 +317,7 @@ class EPL_Render_Fields {
 				if ( ! is_array( $value ) && ! is_object( $value ) ) {
 					$atts_html .= $key . "='" . $value . "'";
 				} else {
-					$atts_html .= $key . "='" . json_encode( $value ) . "'";
+					$atts_html .= $key . "='" . wp_json_encode( $value ) . "'";
 				}
 			}
 		}
@@ -355,7 +355,7 @@ class EPL_Render_Fields {
 
 		$html = '<' . $tag . ' ';
 
-		if ( ! empty( $field['type'] ) && ! in_array( $field['type'], array( 'select', 'select_multiple', 'textarea' ) ) ) {
+		if ( ! empty( $field['type'] ) && ! in_array( $field['type'], array( 'select', 'select_multiple', 'textarea' ), true ) ) {
 			$html .= ' type ="' . esc_attr( $field['type'] ) . '" ';
 			$html .= ' value ="' . esc_attr( stripslashes( $field['value'] ) ) . '" ';
 		}
@@ -682,7 +682,7 @@ class EPL_Render_Fields {
 	 * @param array  $field The field.
 	 * @param string $val   The value.
 	 */
-	public function default( $field, $val ) {
+	public function render_default( $field, $val ) {
 
 		if ( ! in_array( $field['type'], array( 'button', 'number', 'color', 'submit' ), true ) ) {
 			$field['type'] = 'text';
