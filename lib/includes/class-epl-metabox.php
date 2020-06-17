@@ -203,7 +203,7 @@ class EPL_METABOX {
 	 *                                 of the box array (which is the second parameter passed
 	 *                                 to your callback). Default null.
 	 */
-	public function add_meta_box( $id = '', $label = '', $func = 'inner_meta_box', $post_type = array(), $context = 'normal', $priority = 'default', $args ) {
+	public function add_meta_box( $id = '', $label = '', $func = 'inner_meta_box', $post_type = array(), $context = 'normal', $priority = 'default', $args = null ) {
 		add_meta_box(
 			$id,
 			$label,
