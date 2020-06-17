@@ -100,7 +100,7 @@ function epl_is_avada_theme() {
 function epl_get_thumbnail_sizes() {
 	global $_wp_additional_image_sizes;
 	$sizes = array(
-		'full'	=>	array()
+		'full' => array(),
 	);
 	foreach ( get_intermediate_image_sizes() as $s ) {
 		$sizes[ $s ] = array( 0, 0 );
@@ -418,7 +418,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 		'city'          => '',
 		'state'         => '',
 		'postal_code'   => '',
-		'country'       => ''
+		'country'       => '',
 	);
 
 	// Override default separators for address components.
@@ -447,7 +447,7 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
 			$value = get_property_meta( 'property_address_' . $arg );
 
 			if ( ! empty( $value ) ) {
-				$address .= $prefix[ $args ].get_property_meta( 'property_address_' . $arg ) . $seps[ $arg ];
+				$address .= $prefix[ $args ] . get_property_meta( 'property_address_' . $arg ) . $seps[ $arg ];
 			}
 		}
 	}
@@ -2175,7 +2175,7 @@ function epl_parse_atts( $atts ) {
 
 						if ( in_array( $look_for, array( '_between', '_not_between' ), true ) ) {
 
-							if( is_numeric( $this_query['value'][0] ) ) {
+							if ( is_numeric( $this_query['value'][0] ) ) {
 								$this_query['type'] = 'numeric';
 							}
 						}
@@ -2415,7 +2415,7 @@ function epl_pmxi_import_post_saved( $id ) {
 
 	$post = get_post( $id );
 
-	if( is_null( $post ) ){
+	if ( is_null( $post ) ) {
 		return;
 	}
 

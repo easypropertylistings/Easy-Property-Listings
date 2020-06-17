@@ -3595,22 +3595,21 @@ add_action( 'epl_property_status', 'epl_property_status', 10, 2 );
 /**
  * Add Body classes for EPL Single & Archive Pages.
  *
- * @param      array  $classes  The classes
+ * @param      array $classes  The classes
  *
  * @return     array  $classes  Modified classes.
  * @since      3.4.29
  */
 function epl_body_classes( $classes ) {
 
-
-	if( is_epl_post_single() ) {
+	if ( is_epl_post_single() ) {
 		$classes[] = 'epl-single-listing';
-		$classes[] = 'epl-single-'.get_post_type();
+		$classes[] = 'epl-single-' . get_post_type();
 	}
 
-	if( is_epl_post_archive() ) {
+	if ( is_epl_post_archive() ) {
 		$classes[] = 'epl-post-type-archive';
-		$classes[] = 'epl-post-type-archive-'.get_post_type();
+		$classes[] = 'epl-post-type-archive-' . get_post_type();
 	}
 
 	return $classes;
