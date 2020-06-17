@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.4.28
+ * Version: 3.4.29
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.4.28
+ * @version 3.4.29
  */
 
 // Exit if accessed directly.
@@ -47,7 +47,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		private static $instance;
 
 		/**
-		 * EPL search fields displayer object.
+		 * EPL search fields display object.
 		 *
 		 * @since 3.0
 		 * @var   EPL_Search_Fields
@@ -69,15 +69,16 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 */
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {
-				self::$instance = new Easy_Property_Listings;
+				self::$instance = new Easy_Property_Listings();
 				self::$instance->setup_constants();
 
 				add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
 
 				self::$instance->includes();
-				// Search fields displayer object.
+				// Search fields display object.
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->session       = new EPL_Session();
+				self::$instance->render_fields = new EPL_Render_Fields();
 				self::$instance->search_fields->init();
 
 				define( 'EPL_RUNNING', true );
@@ -95,7 +96,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.4.28' );
+				define( 'EPL_PROPERTY_VER', '3.4.29' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -129,7 +130,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_TEMPLATES' ) ) {
 				define( 'EPL_PATH_TEMPLATES', EPL_PATH_LIB . 'templates/' );
 			}
-			// Plugin Path Compatability.
+			// Plugin Path Compatibility.
 			if ( ! defined( 'EPL_COMPATABILITY' ) ) {
 				define( 'EPL_COMPATABILITY', EPL_PATH_LIB . 'compatibility/' );
 			}
@@ -308,6 +309,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-render-fields.php';
 
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
 				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';

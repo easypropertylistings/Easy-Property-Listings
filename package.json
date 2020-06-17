@@ -1,7 +1,7 @@
 {
   "name": "easy-property-listings",
   "title": "Easy Property Listings",
-  "version": "3.4.28",
+  "version": "3.4.29",
   "homepage": "https://easypropertylistings.com.au/",
   "repository": {
     "type": "git",
@@ -23,5 +23,9 @@
   "engines": {
     "node": ">=0.8.0",
     "npm": ">=1.1.0"
+  },
+  "dependencies": {
+    "uglify": "^0.1.5",
+    "uglify-js": "^3.9.4"
   }
 }
