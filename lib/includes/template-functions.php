@@ -3260,7 +3260,7 @@ function epl_get_post_id_from_unique_id( $unique_id = '' ) {
  * @param array $options The options.
  * @param array $stickers The stickers.
  *
- * @throws Exception
+ * @throws Exception Something.
  * @since 3.4.27
  */
 function epl_stickers( $options = array(), $stickers = array() ) {
@@ -3595,7 +3595,7 @@ add_action( 'epl_property_status', 'epl_property_status', 10, 2 );
 /**
  * Add Body classes for EPL Single & Archive Pages.
  *
- * @param      array $classes  The classes
+ * @param      array $classes  The classes.
  *
  * @return     array  $classes  Modified classes.
  * @since      3.4.29
