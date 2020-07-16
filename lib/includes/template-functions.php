@@ -1109,8 +1109,9 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
 /**
  * Property Tab section details output
  *
- * @since      1.0
- * @since      3.4.14 Bug Fix : custom features callback output wrongly placed.
+ * @since 1.0.0
+ * @since 3.4.14 Fix: Custom features callback output wrongly placed.
+ * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @hooked property_tab_section
  */
 function epl_property_tab_section() {
