@@ -1301,7 +1301,7 @@ function epl_property_tab_section() {
 	if ( 'land' !== $property->post_type || 'business' !== $property->post_type ) {
 		?>
 		<?php $property_features_title = apply_filters( 'epl_property_sub_title_property_features', __( 'Property Features', 'easy-property-listings' ) ); ?>
-		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo esc_attr( $property_features_title ); ?></h5>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo wp_kses_post( $property_features_title ); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<ul class="epl-property-features listing-info epl-tab-<?php echo esc_attr( $property->get_epl_settings( 'display_feature_columns' ) ); ?>-columns">
 					<?php echo wp_kses_post( $the_property_feature_list . ' ' . $property->get_features_from_taxonomy() ); ?>
