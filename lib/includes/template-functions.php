@@ -146,7 +146,8 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  * @param bool   $stickers    Enable or disable the stickers with true/false. Default true.
  *
  * @since 2.2
- * @since 3.4.27 additional param to disable / enable stickers
+ * @since 3.4.27 New: Additional param to disable / enable stickers
+ * @since 3.4.30 Fix: Missing parameter filter. Increased from 3 to 4.
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
@@ -181,7 +182,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 	}
 
 }
-add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 3 );
+add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 4 );
 
 /**
  * Featured Image in widgets
