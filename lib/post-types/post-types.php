@@ -1,4 +1,4 @@
-	<?php
+<?php
 /**
  * Custom Post Types Functions
  *

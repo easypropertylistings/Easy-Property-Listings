@@ -37,8 +37,11 @@ There are various ways you can contribute:
 
 = 3.4.30 September 4, 2020 =
 
-*
-
+* Fix: Depreciated JS ready function.
+* New: Render password field support.
+* Fix: Search only variables can be passed via reference.
+* Fix: Archive featured image filter missing parameter filter. Increased from 3 to 4.
+* Fix: Property Features title set to pass basic html.
 
 = 3.4.29 June 17, 2020 =
 
