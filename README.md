@@ -35,6 +35,11 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.30 September 4, 2020 =
+
+*
+
+
 = 3.4.29 June 17, 2020 =
 
 * New: Converted render field function to class for with control and flexibility.
