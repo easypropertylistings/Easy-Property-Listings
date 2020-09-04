@@ -1,4 +1,4 @@
-<?php
+	<?php
 /**
  * Custom Post Types Functions
  *
@@ -258,6 +258,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 3.4.23 Altered the admin output of property_category to use the label instead of value.
  * @since 3.4.23 Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
  * @since 3.4.27 Fixed html escaping issue and formatting for land size.
+ * @since 3.4.30 Using epl_get_meta_field_label for dynamic labels.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -337,12 +338,12 @@ function epl_manage_listing_column_listing_callback() {
 
 	// Outgoings for commercial listing type.
 	if ( ! empty( $outgoings ) ) {
-		echo '<div class="epl_meta_outgoings">' . esc_html__( 'Outgoings:', 'easy-property-listings' ) . ' ' , esc_html( epl_currency_formatted_amount( $outgoings ) ) , '</div>';
+		echo '<div class="epl_meta_outgoings">' . epl_get_meta_field_label( 'property_com_outgoings' ) . ': ' , esc_html( epl_currency_formatted_amount( $outgoings ) ) , '</div>';
 	}
 
 	// Return for commercial listing type.
 	if ( ! empty( $return ) ) {
-		echo '<div class="epl_meta_return">' . esc_html__( 'Return:', 'easy-property-listings' ) . ' ' , esc_html( $return ) , '%</div>';
+		echo '<div class="epl_meta_return">' . epl_get_meta_field_label( 'property_com_return' ) . ': ' , esc_html( $return ) , '%</div>';
 	}
 
 	// Bedrooms and Bathrooms.
@@ -358,7 +359,7 @@ function epl_manage_listing_column_listing_callback() {
 		if ( 1 === absint( $rooms ) ) {
 			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html__( 'Room', 'easy-property-listings' ) , '</div>';
 		} else {
-			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html__( 'Rooms', 'easy-property-listings' ) , '</div>';
+			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , epl_get_meta_field_label( 'property_rooms' ) , '</div>';
 		}
 	}
 
