@@ -1,11 +1,11 @@
 ﻿=== Easy Property Listings ===
-Author URI: http://www.realestateconnected.com.au/
+Author URI: https://www.realestateconnected.com.au/
 Plugin URI: https://easypropertylistings.com.au/
 Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.4.2
+Tested up to: 5.5.1
 Stable Tag: 3.4.29
 License: GNU Version 2 or Any Later Version
 
