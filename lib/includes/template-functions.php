@@ -146,7 +146,8 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  * @param bool   $stickers    Enable or disable the stickers with true/false. Default true.
  *
  * @since 2.2
- * @since 3.4.27 additional param to disable / enable stickers
+ * @since 3.4.27 New: Additional param to disable / enable stickers
+ * @since 3.4.30 Fix: Missing parameter filter. Increased from 3 to 4.
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
@@ -181,7 +182,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 	}
 
 }
-add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 3 );
+add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 4 );
 
 /**
  * Featured Image in widgets
@@ -1109,8 +1110,9 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
 /**
  * Property Tab section details output
  *
- * @since      1.0
- * @since      3.4.14 Bug Fix : custom features callback output wrongly placed.
+ * @since 1.0.0
+ * @since 3.4.14 Fix: Custom features callback output wrongly placed.
+ * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @hooked property_tab_section
  */
 function epl_property_tab_section() {
@@ -1301,7 +1303,7 @@ function epl_property_tab_section() {
 	if ( 'land' !== $property->post_type || 'business' !== $property->post_type ) {
 		?>
 		<?php $property_features_title = apply_filters( 'epl_property_sub_title_property_features', __( 'Property Features', 'easy-property-listings' ) ); ?>
-		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo esc_attr( $property_features_title ); ?></h5>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo wp_kses_post( $property_features_title ); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<ul class="epl-property-features listing-info epl-tab-<?php echo esc_attr( $property->get_epl_settings( 'display_feature_columns' ) ); ?>-columns">
 					<?php echo wp_kses_post( $the_property_feature_list . ' ' . $property->get_features_from_taxonomy() ); ?>

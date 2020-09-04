@@ -511,6 +511,9 @@ class EPL_SEARCH {
 
 	/**
 	 * Preprocess meta query
+	 *
+	 * @since 3.1.0
+	 * @since 3.4.30 Fix: Only variables can be passed via reference.
 	 */
 	protected function preprocess_meta_query() {
 
@@ -525,9 +528,11 @@ class EPL_SEARCH {
 				$query['value'] = array_map( 'trim', explode( $option_sep, $query['value'] ) );
 
 				if ( isset( $this->form_fields[ $query['key'] ]['option_type'] ) && 'range' === $this->form_fields[ $query['key'] ]['option_type'] ) {
+					$current        = explode( $range_sep, current( $query['value'] ) );
+					$next           = explode( $range_sep, end( $query['value'] ) );
 					$query['value'] = array(
-						current( explode( $range_sep, current( $query['value'] ) ) ),
-						next( explode( $range_sep, end( $query['value'] ) ) ),
+						current( $current ),
+						next( $next ),
 					);
 				}
 			}

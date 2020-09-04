@@ -66,6 +66,7 @@ class EPL_Render_Fields {
 		add_action( 'epl_render_field_text', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_hidden', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_submit', array( $this, 'render_default' ), 10, 2 );
+		add_action( 'epl_render_field_password', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_locked', array( $this, 'locked' ), 10, 2 );
 		add_action( 'epl_render_field_help', array( $this, 'help' ), 10, 2 );
 
