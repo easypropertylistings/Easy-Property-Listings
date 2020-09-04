@@ -42,6 +42,7 @@ There are various ways you can contribute:
 * Fix: Search only variables can be passed via reference.
 * Fix: Archive featured image filter missing parameter filter. Increased from 3 to 4.
 * Fix: Property Features title set to pass basic html.
+* Fix: Admin commercial options now using epl_get_meta_field_label for dynamic labels.
 
 = 3.4.29 June 17, 2020 =
 
