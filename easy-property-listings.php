@@ -241,12 +241,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'taxonomies/tax-business-listings.php';
 			require_once EPL_PATH_LIB . 'taxonomies/tax-contact-tags.php';
 
+			require_once EPL_PATH_LIB . 'widgets/class-epl-widget.php';
 			require_once EPL_PATH_LIB . 'widgets/widget-functions.php';
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-author.php';
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-recent-property.php';
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-property-gallery.php';
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-property-search.php';
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-contact-capture.php';
+			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-epl-tabs.php';
 
 			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-author-meta.php';
@@ -294,6 +296,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
 			require_once EPL_PATH_LIB . 'shortcodes/class-epl-advanced-shortcode-listing.php';
+			require_once EPL_PATH_LIB . 'shortcodes/class-epl-tabs-shortcode.php';
 			require_once EPL_PATH_LIB . 'shortcodes/class-epl-listing-elements.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-advanced.php';
@@ -305,6 +308,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-location.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-meta-doc.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-epl-tabs.php';
 
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
