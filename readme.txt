@@ -29,6 +29,7 @@ Now you can promote your listings and automate lead generation
 * 100s of ready to use theme templates available for free.
 * No code necessary. Infinite options. Just select and save.
 * Instantly works with popular themes Genesis, Headway, iThemes Builder, Avada.
+* Great with page builders like Elementor, WP Bakery, Visual Composer.
 * Fully customisable and works with any Theme or framework.
 * Personalise for your market in seconds.
 * 100% responsive and mobile ready.
