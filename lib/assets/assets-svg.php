@@ -21,6 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function epl_load_svg_listing_icons_head() {
 
+	global $epl_listing_svgs_loaded;
+
+	if( $epl_listing_svgs_loaded )
+		return;
+	
+	$epl_listing_svgs_loaded = true;
+
 	$svg_icons = '
 
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="hide" style="display:none">
@@ -116,16 +123,7 @@ function epl_load_svg_listing_icons_head() {
 	}
 
 }
-/**
- * Load SVG using wp_body_open introduced in wp 5.2
- *
- * @since 3.4.31
- */
-if ( function_exists( 'wp_body_open' ) ) {
-	add_action( 'wp_body_open', 'epl_load_svg_listing_icons_head', 10 );
-} else {
-	add_action( 'wp_head', 'epl_load_svg_listing_icons_head', 900 );
-}
+
 
 /**
  * SVG Social Media Icons Loaded in Head.
@@ -133,6 +131,13 @@ if ( function_exists( 'wp_body_open' ) ) {
  * @since 3.2
  */
 function epl_load_svg_social_icons_head() {
+
+	global $epl_social_svgs_loaded;
+
+	if( $epl_social_svgs_loaded )
+		return;
+	
+	$epl_social_svgs_loaded = true;
 
 	$social_icons = '
 
@@ -283,17 +288,6 @@ function epl_load_svg_social_icons_head() {
 }
 
 /**
- * Load Social SVG using wp_body_open introduced in wp 5.2
- *
- * @since 3.4.31
- */
-if ( function_exists( 'wp_body_open' ) ) {
-	add_action( 'wp_body_open', 'epl_load_svg_social_icons_head', 10 );
-} else {
-	add_action( 'wp_head', 'epl_load_svg_social_icons_head', 900 );
-}
-
-/**
  * Whitelist display attribute for wp_kses_post
  *
  * @param  string $styles Allowed SVG names.
@@ -388,3 +382,33 @@ function epl_get_svg_allowed_tags() {
 	);
 	return apply_filters( 'epl_svg_allowed_tags', $tags );
 }
+
+/**
+ * Initiate EPL listings & social Svgs.
+ * 
+ * @since 3.4.32
+ */
+function epl_init_svgs() {
+	
+	global $epl_listing_svgs_loaded, $epl_social_svgs_loaded;
+	$epl_listing_svgs_loaded = false;
+	$epl_social_svgs_loaded = false;
+
+	/**
+	 * Load SVG using wp_body_open introduced in wp 5.2
+	 *
+	 * @since 3.4.31
+	 */
+	add_action( 'wp_body_open', 'epl_load_svg_listing_icons_head', 10 );
+	add_action( 'wp_footer', 'epl_load_svg_listing_icons_head', 900 );
+	
+	/**
+	 * Load Social SVG using wp_body_open introduced in wp 5.2
+	 *
+	 * @since 3.4.31
+	 */
+	add_action( 'wp_body_open', 'epl_load_svg_social_icons_head', 10 );
+	add_action( 'wp_footer', 'epl_load_svg_social_icons_head', 900 );
+
+}
+add_action( 'wp', 'epl_init_svgs' );
