@@ -35,6 +35,10 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.32 September 23, 2020 =
+
+* Fix: Further enhancements to loading SVG icons as many themes are missing wp_body_open. SVG's now fallback to load in the footer.
+
 = 3.4.31 September 17, 2020 =
 
 * Fix: SVG Icons preventing favicon from loading in some themes. SVG's are now loading in body tag using wp_body_open hook introduced in WordPress 5.2.
