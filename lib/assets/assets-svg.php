@@ -116,7 +116,16 @@ function epl_load_svg_listing_icons_head() {
 	}
 
 }
-add_action( 'wp_head', 'epl_load_svg_listing_icons_head', 90 );
+/**
+ * Load SVG using wp_body_open introduced in wp 5.2
+ *
+ * @since 3.4.31
+ */
+if ( function_exists( 'wp_body_open' ) ) {
+	add_action( 'wp_body_open', 'epl_load_svg_listing_icons_head', 10 );
+} else {
+	add_action( 'wp_head', 'epl_load_svg_listing_icons_head', 900 );
+}
 
 /**
  * SVG Social Media Icons Loaded in Head.
@@ -272,7 +281,17 @@ function epl_load_svg_social_icons_head() {
 		echo wp_kses( $social_icons, $allowed_tags );
 	}
 }
-add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );
+
+/**
+ * Load Social SVG using wp_body_open introduced in wp 5.2
+ *
+ * @since 3.4.31
+ */
+if ( function_exists( 'wp_body_open' ) ) {
+	add_action( 'wp_body_open', 'epl_load_svg_social_icons_head', 10 );
+} else {
+	add_action( 'wp_head', 'epl_load_svg_social_icons_head', 900 );
+}
 
 /**
  * Whitelist display attribute for wp_kses_post

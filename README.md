@@ -35,6 +35,10 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.31 September 17, 2020 =
+
+* Fix: SVG Icons preventing favicon from loading in some themes. SVG's are now loading in body tag using wp_body_open hook introduced in WordPress 5.2.
+
 = 3.4.30 September 4, 2020 =
 
 * Fix: Depreciated JS ready function.
