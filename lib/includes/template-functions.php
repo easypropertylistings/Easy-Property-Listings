@@ -3049,7 +3049,8 @@ add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_call
 /**
  * Search Not Found Messages
  *
- * @since      3.1.8
+ * @since 3.1.8
+ * @since 3.4.33 Tweak: Search results not found filter epl_property_search_not_found_title allows basic html to be passed.
  */
 function epl_property_search_not_found_callback() {
 
@@ -3060,7 +3061,7 @@ function epl_property_search_not_found_callback() {
 	?>
 
 	<div class="epl-search-not-found-title entry-header clearfix">
-		<h3 class="entry-title"><?php echo esc_attr( $title ); ?></h3>
+		<h3 class="entry-title"><?php echo wp_kses_post( $title ); ?></h3>
 	</div>
 
 	<div class="epl-search-not-found-message entry-content clearfix">
@@ -3311,7 +3312,7 @@ function epl_stickers( $options = array(), $stickers = array() ) {
 				echo isset( $sticker['after'] ) ?
 				wp_kses_post( $sticker['after'] ) : '';
 			?>
-		</<?php echo esc_attr( $options['sticker_tag'] ); ?>> 
+		</<?php echo esc_attr( $options['sticker_tag'] ); ?>>
 			<?php
 				$sticker_counts++;
 	}
