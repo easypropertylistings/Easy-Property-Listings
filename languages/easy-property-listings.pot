@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.4.32\n"
+"Project-Id-Version: Easy Property Listings 3.4.33\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
 "POT-Creation-Date: 2020-09-23 05:23:22+00:00\n"
