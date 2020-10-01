@@ -560,7 +560,8 @@ class EPL_Render_Fields {
 	 *
 	 * @param array  $field The field.
 	 * @param string $val   The value.
-	 * @since 		 3.4.34 Added hidden empty field for checkboxes so that they always show up in $_POST data while saving.
+	 *
+	 * @since 3.4.34 Tweak: Added hidden empty field for checkboxes so that they always show up in $_POST data while saving.
 	 */
 	public function checkbox_option( $field, $val ) {
 
