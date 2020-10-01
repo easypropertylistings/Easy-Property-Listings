@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.4.33\n"
+"Project-Id-Version: Easy Property Listings 3.4.34\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2020-09-24 01:48:28+00:00\n"
+"POT-Creation-Date: 2020-10-01 04:07:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2629,12 +2629,12 @@ msgstr ""
 msgid "Choose from most used %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:751
+#: lib/includes/class-epl-cpt.php:752
 #. translators: tax label.
 msgid "No %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:882
+#: lib/includes/class-epl-cpt.php:883
 #. translators: tax label.
 msgid "Show all %s"
 msgstr ""
@@ -2869,7 +2869,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: lib/includes/class-epl-render-fields.php:615
+#: lib/includes/class-epl-render-fields.php:623
 msgid "Add File"
 msgstr ""
 
