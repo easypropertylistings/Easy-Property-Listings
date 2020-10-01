@@ -24,9 +24,10 @@ function epl_load_svg_listing_icons_head() {
 
 	global $epl_listing_svgs_loaded;
 
-	if( $epl_listing_svgs_loaded )
+	if ( $epl_listing_svgs_loaded ) {
 		return;
-	
+	}
+
 	$epl_listing_svgs_loaded = true;
 
 	$svg_icons = '
@@ -136,9 +137,10 @@ function epl_load_svg_social_icons_head() {
 
 	global $epl_social_svgs_loaded;
 
-	if( $epl_social_svgs_loaded )
+	if ( $epl_social_svgs_loaded ) {
 		return;
-	
+	}
+
 	$epl_social_svgs_loaded = true;
 
 	$social_icons = '
@@ -387,14 +389,14 @@ function epl_get_svg_allowed_tags() {
 
 /**
  * Initiate EPL listings & social Svgs.
- * 
+ *
  * @since 3.4.32
  */
 function epl_init_svgs() {
-	
+
 	global $epl_listing_svgs_loaded, $epl_social_svgs_loaded;
 	$epl_listing_svgs_loaded = false;
-	$epl_social_svgs_loaded = false;
+	$epl_social_svgs_loaded  = false;
 
 	/**
 	 * Load SVG using wp_body_open introduced in wp 5.2
@@ -403,7 +405,7 @@ function epl_init_svgs() {
 	 */
 	add_action( 'wp_body_open', 'epl_load_svg_listing_icons_head', 10 );
 	add_action( 'wp_footer', 'epl_load_svg_listing_icons_head', 900 );
-	
+
 	/**
 	 * Load Social SVG using wp_body_open introduced in wp 5.2
 	 *
