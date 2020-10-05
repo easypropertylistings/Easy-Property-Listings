@@ -110,8 +110,9 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  *
  * @since      1.2.0
  * @since      3.4.8 Corrected missing parameter count to 3.
+ * @since      3.5.0 Added sticker support to featured image, default is disabled.
  */
-function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
+function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true, $stickers = false ) {
 
 	/**
 	 * Filter: Allow user or extension to enable or disable link behaviour on featured image.
@@ -124,7 +125,12 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 				<?php if ( true === $link ) { ?>
 					<a href="<?php the_permalink(); ?>">
 				<?php } ?>
-						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
+					<?php if ( $stickers ) : ?>
+						<div class="epl-stickers-wrapper">
+							<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
+						</div>
+					<?php endif; ?>
+					<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
 				<?php if ( true === $link ) { ?>
 					</a>
 				<?php } ?>
@@ -134,8 +140,8 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 	}
 
 }
-add_action( 'epl_property_featured_image', 'epl_property_featured_image', 10, 3 );
-add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
+add_action( 'epl_property_featured_image', 'epl_property_featured_image', 10, 4 );
+add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 4 );
 
 /**
  * Featured Image on archive template now loading through filter
