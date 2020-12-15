@@ -760,7 +760,7 @@ class EPL_CPT {
 
 				break;
 
-			// if the column is prepended with 'meta_', this will automagically retrieve the meta values and display them.
+			// If the column is prepended with 'meta_', this will automagically retrieve the meta values and display them.
 			case ( preg_match( '/^meta_/', $column ) ? true : false ):
 				// Meta_book_author (meta key = book_author).
 				$x = substr( $column, 5 );

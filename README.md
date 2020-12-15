@@ -35,6 +35,11 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.34 October 1, 2020 =
+
+* Fix: Admin columns output escaping.
+* Tweak: Added hidden empty field for checkboxes so that they always show up in $_POST data while saving.
+
 = 3.4.33 September 24, 2020 =
 
 * Tweak: Search results not found filter epl_property_search_not_found_title allows basic html to be passed.
