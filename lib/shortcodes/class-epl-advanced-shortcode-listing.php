@@ -560,13 +560,12 @@ class EPL_Advanced_Shortcode_Listing {
 			unset( $this->args['order'] );
 		}
 
-		$args['instance_id'] = $this->attributes['instance_id'];
+		$this->args['instance_id'] = $this->attributes['instance_id'];
 
 		// add sortby arguments to query, if listings sorted by $_GET['sortby'];.
-		$args = epl_add_orderby_args( $args, 'shortcode', 'listing_advanced' );
-
+		$this->args = epl_add_orderby_args( $this->args, 'shortcode', 'listing_advanced' );
 		// Option to filter args.
-		$args = apply_filters( 'epl_shortcode_listing_advanced_args', $this->args, $this->attributes );
+		$this->args = apply_filters( 'epl_shortcode_listing_advanced_args', $this->args, $this->attributes );
 	}
 
 	/**
