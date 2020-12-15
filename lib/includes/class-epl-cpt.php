@@ -695,6 +695,7 @@ class EPL_CPT {
 	 *
 	 * @param string  $column The name of the column.
 	 * @param integer $post_id The post ID.
+	 * @since 3.4.33 Fixed the output escaping.
 	 */
 	public function populate_admin_columns( $column, $post_id ) {
 
@@ -738,7 +739,7 @@ class EPL_CPT {
 					}
 
 					// Join the terms, separating them with a comma.
-					echo join( ', ', wp_kses_post( $output ) );
+					echo join( ', ', array_map( 'wp_kses_post', $output ) );
 
 					// If no terms found.
 				} else {
@@ -759,7 +760,7 @@ class EPL_CPT {
 
 				break;
 
-			// if the column is prepended with 'meta_', this will automagically retrieve the meta values and display them.
+			// If the column is prepended with 'meta_', this will automagically retrieve the meta values and display them.
 			case ( preg_match( '/^meta_/', $column ) ? true : false ):
 				// Meta_book_author (meta key = book_author).
 				$x = substr( $column, 5 );

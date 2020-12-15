@@ -532,6 +532,8 @@ class EPL_Render_Fields {
 	 *
 	 * @param array  $field The field.
 	 * @param string $val   The value.
+	 *
+	 * @since 3.4.34 Tweak: Added hidden empty field for checkboxes so that they always show up in $_POST data while saving.
 	 */
 	public function checkbox_single( $field, $val ) {
 
@@ -547,7 +549,9 @@ class EPL_Render_Fields {
 				if ( 1 === count( $field['opts'] ) ) {
 					$v = $field['label'];
 				}
-				echo '<span class="epl-field-row"><input type="checkbox" name="' . esc_attr( $field['name'] ) . '" class="' . esc_attr( $field['class'] ) . '" ' . wp_kses_post( $field['data'] ) . ' id="' . esc_attr( $field['id'] ) . '_' . esc_attr( $k ) . '" value="' . esc_attr( $k ) . '" ' . esc_attr( $checked ) . ' /> <label for="' . esc_html( $field['id'] ) . '_' . esc_attr( $k ) . '">' . esc_html( $v ) . '</label></span>';
+				echo '<span class="epl-field-row">
+				<input type="hidden" name="' . esc_attr( $field['name'] ) . '" value="" />
+				<input type="checkbox" name="' . esc_attr( $field['name'] ) . '" class="' . esc_attr( $field['class'] ) . '" ' . wp_kses_post( $field['data'] ) . ' id="' . esc_attr( $field['id'] ) . '_' . esc_attr( $k ) . '" value="' . esc_attr( $k ) . '" ' . esc_attr( $checked ) . ' /> <label for="' . esc_html( $field['id'] ) . '_' . esc_attr( $k ) . '">' . esc_html( $v ) . '</label></span>';
 			}
 		}
 	}
@@ -557,6 +561,8 @@ class EPL_Render_Fields {
 	 *
 	 * @param array  $field The field.
 	 * @param string $val   The value.
+	 *
+	 * @since 3.4.34 Tweak: Added hidden empty field for checkboxes so that they always show up in $_POST data while saving.
 	 */
 	public function checkbox_option( $field, $val ) {
 
@@ -568,7 +574,9 @@ class EPL_Render_Fields {
 						$checked = 'checked';
 					}
 				}
-				echo '<span class="epl-field-row"><input type="checkbox" name="' . esc_attr( $field['name'] ) . '" ' . wp_kses_post( $field['data'] ) . ' id="' . esc_attr( $field['id'] ) . '_' . esc_attr( $k ) . '" class="' . esc_attr( $field['class'] ) . '" value="' . esc_attr( $k ) . '" ' . esc_attr( $checked ) . ' /> <label for="' . esc_html( $field['id'] ) . '_' . esc_attr( $k ) . '">' . esc_html( $v ) . '</label></span>';
+				echo '<span class="epl-field-row">
+				<input type="hidden" name="' . esc_attr( $field['name'] ) . '" value="" />
+				<input type="checkbox" name="' . esc_attr( $field['name'] ) . '" ' . wp_kses_post( $field['data'] ) . ' id="' . esc_attr( $field['id'] ) . '_' . esc_attr( $k ) . '" class="' . esc_attr( $field['class'] ) . '" value="' . esc_attr( $k ) . '" ' . esc_attr( $checked ) . ' /> <label for="' . esc_html( $field['id'] ) . '_' . esc_attr( $k ) . '">' . esc_html( $v ) . '</label></span>';
 			}
 		}
 	}

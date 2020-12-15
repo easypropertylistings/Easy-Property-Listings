@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * EPL_Advanced_Shortcode_Listing Class
+ * EPL_Listing_Elements Class
  *
  * @since 3.3.0
  */
