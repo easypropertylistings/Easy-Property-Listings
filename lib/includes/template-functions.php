@@ -2490,7 +2490,7 @@ add_action( 'wp_ajax_nopriv_epl_update_default_view', 'epl_update_default_view' 
  * Custom the_content filter
  *
  * @since      2.2
- * @since 	   3.4.35 Added support for WP blocks rendering	
+ * @since      3.4.35 Added support for WP blocks rendering
  */
 function epl_the_content_filters() {
 
