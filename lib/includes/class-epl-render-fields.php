@@ -690,10 +690,11 @@ class EPL_Render_Fields {
 	 *
 	 * @param array  $field The field.
 	 * @param string $val   The value.
+	 * @since 3.4.35 fixed hidden field rendering.
 	 */
 	public function render_default( $field, $val ) {
 
-		if ( ! in_array( $field['type'], array( 'button', 'number', 'color', 'submit' ), true ) ) {
+		if ( ! in_array( $field['type'], array( 'button', 'number', 'color', 'submit', 'hidden' ), true ) ) {
 			$field['type'] = 'text';
 		}
 		echo $this->get_opening_field_tag( 'input', $field, true ); //phpcs:ignore

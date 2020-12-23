@@ -1383,6 +1383,7 @@ class EPL_Property_Meta {
 	 * Get Carport
 	 *
 	 * @since 2.0
+	 * @since 3.4.5 Fixed the incorrect meta key
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
 	 */
@@ -1396,7 +1397,7 @@ class EPL_Property_Meta {
 
 		$returntype = apply_filters( 'epl_get_property_carport_return_type', $returntype );
 		$label      = apply_filters( 'epl_get_property_carport_label', __( 'carport', 'easy-property-listings' ) );
-		$value      = $this->get_property_meta( 'property_garage' );
+		$value      = $this->get_property_meta( 'property_carport' );
 		$return     = '';
 
 		switch ( $returntype ) {
@@ -2015,6 +2016,7 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $metakey Meta key name.
 	 * @return mixed Value wrapped in a list item
+	 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
 	 */
 	public function get_additional_features_html( $metakey ) {
 
@@ -2037,6 +2039,7 @@ class EPL_Property_Meta {
 				case 'Y':
 				case 'y':
 				case 'on':
+				case 'true':
 					$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
 					break;
 
@@ -2046,6 +2049,7 @@ class EPL_Property_Meta {
 				case 'N':
 				case 'n':
 				case 'off':
+				case 'false':
 					$return = '';
 					break;
 
