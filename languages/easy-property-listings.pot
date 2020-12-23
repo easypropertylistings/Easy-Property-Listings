@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.4.34\n"
+"Project-Id-Version: Easy Property Listings 3.4.35\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2020-10-01 04:07:19+00:00\n"
+"POT-Creation-Date: 2020-12-23 04:39:28+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2532,7 +2532,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:712
-#: lib/includes/template-functions.php:2972
+#: lib/includes/template-functions.php:2974
 #: lib/shortcodes/class-epl-listing-elements.php:77
 msgid "Listing"
 msgstr ""
@@ -2734,8 +2734,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:838
 #: lib/includes/class-epl-property-meta.php:844
 #: lib/includes/class-epl-property-meta.php:1029
-#: lib/includes/functions.php:2292 lib/includes/template-functions.php:3399
-#: lib/includes/template-functions.php:3431
+#: lib/includes/functions.php:2292 lib/includes/template-functions.php:3401
+#: lib/includes/template-functions.php:3433
 msgid "For Sale"
 msgstr ""
 
@@ -2750,8 +2750,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:886
 #: lib/includes/class-epl-property-meta.php:1042
 #: lib/includes/class-epl-property-meta.php:1044
-#: lib/includes/template-functions.php:3379
-#: lib/includes/template-functions.php:3442
+#: lib/includes/template-functions.php:3381
+#: lib/includes/template-functions.php:3444
 msgid "For Lease"
 msgstr ""
 
@@ -2800,66 +2800,66 @@ msgstr ""
 msgid "garage"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1398
+#: lib/includes/class-epl-property-meta.php:1399
 msgid "carport"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1447
+#: lib/includes/class-epl-property-meta.php:1448
 #: lib/meta-boxes/meta-box-init.php:340 lib/widgets/widget-functions.php:819
 msgid "Air Conditioning"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1506
+#: lib/includes/class-epl-property-meta.php:1507
 #: lib/meta-boxes/meta-box-init.php:331 lib/widgets/widget-functions.php:834
 msgid "Pool"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1563
+#: lib/includes/class-epl-property-meta.php:1564
 msgid "Alarm System"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1610
-#: lib/includes/class-epl-property-meta.php:1681
+#: lib/includes/class-epl-property-meta.php:1611
+#: lib/includes/class-epl-property-meta.php:1682
 #: lib/post-types/post-types.php:378
 msgid "m&#178;"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1623
-#: lib/includes/class-epl-property-meta.php:1635
+#: lib/includes/class-epl-property-meta.php:1624
+#: lib/includes/class-epl-property-meta.php:1636
 msgid "Land is"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1694
-#: lib/includes/class-epl-property-meta.php:1706
+#: lib/includes/class-epl-property-meta.php:1695
+#: lib/includes/class-epl-property-meta.php:1707
 msgid "Floor Area is"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1754
+#: lib/includes/class-epl-property-meta.php:1755
 #: lib/meta-boxes/meta-box-init.php:407 lib/meta-boxes/meta-box-init.php:764
 msgid "Energy Rating"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1799
+#: lib/includes/class-epl-property-meta.php:1800
 #: lib/meta-boxes/meta-box-init.php:321
 msgid "New Construction"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1839
+#: lib/includes/class-epl-property-meta.php:1840
 #: lib/meta-boxes/meta-box-init.php:1115
 msgid "Holiday Rental"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1889
+#: lib/includes/class-epl-property-meta.php:1890
 #: lib/meta-boxes/meta-box-init.php:1106
 msgid "Furnished"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1935
+#: lib/includes/class-epl-property-meta.php:1936
 #: lib/meta-boxes/meta-box-init.php:358
 msgid "Pet Friendly"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1981
+#: lib/includes/class-epl-property-meta.php:1982
 #: lib/post-types/post-type-business.php:94
 #: lib/post-types/post-type-commercial-land.php:94
 #: lib/post-types/post-type-commercial.php:94
@@ -4086,50 +4086,50 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:2750
+#: lib/includes/template-functions.php:2752
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:2966
+#: lib/includes/template-functions.php:2968
 #. translators: term name.
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:2968
+#: lib/includes/template-functions.php:2970
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:3038
+#: lib/includes/template-functions.php:3040
 #: lib/templates/content/shortcode-listing.php:53
 #. translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3041
+#: lib/includes/template-functions.php:3043
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3057
+#: lib/includes/template-functions.php:3059
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:3059
+#: lib/includes/template-functions.php:3061
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3138
+#: lib/includes/template-functions.php:3140
 msgid "Form submitted successfully"
 msgstr ""
 
-#: lib/includes/template-functions.php:3143
+#: lib/includes/template-functions.php:3145
 msgid "Some issues with form submitted"
 msgstr ""
 
-#: lib/includes/template-functions.php:3162
+#: lib/includes/template-functions.php:3164
 msgid "Email is required"
 msgstr ""
 
-#: lib/includes/template-functions.php:3420
+#: lib/includes/template-functions.php:3422
 msgid "For Sale & Lease"
 msgstr ""
 
