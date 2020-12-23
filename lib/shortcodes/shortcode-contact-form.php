@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * This shortcode allows for you to capture contacts for listings
+ * Listing Contact Shortcode [listing_contact] This shortcode allows for you to capture contacts for listings
  *
  * @param array $atts Shortcode array of options.
  *

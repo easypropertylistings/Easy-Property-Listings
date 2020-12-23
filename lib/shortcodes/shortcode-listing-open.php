@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // phpcs:disable WordPress.DB.SlowDBQuery
 
 /**
- * Listing Open Shortcode
+ * Listing Open Shortcode [listing_open]
  *
  * This shortcode allows for you to specify the property type(s) using
  * [listing_open post_type="property,rental"] option. You can also

@@ -3,7 +3,7 @@
  * SHORTCODE :: Listing Feature [listing_feature]
  *
  * @package     EPL
- * @subpackage  Shortcode/Listing Feature
+ * @subpackage  Shortcode/ListingFeature
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.1.2
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // phpcs:disable WordPress.DB.SlowDBQuery
 
 /**
- * Listing Feature
+ * Listing Feature [listing_feature]
  *
  * This shortcode allows for you to specify feature property type(s) using
  * [listing_feature post_type="property" status="current,sold,leased" feature_id="" feature="" template="default"] option. You can also
