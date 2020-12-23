@@ -539,6 +539,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Set orderby clause
 	 *
 	 * @since 3.3
+	 * @since 3.4.35 Fixed the issue : [listing_advanced] not marked as EPL shortcode in WP_Query object
 	 */
 	public function set_orderby_clause() {
 
