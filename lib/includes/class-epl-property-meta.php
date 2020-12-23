@@ -1383,7 +1383,7 @@ class EPL_Property_Meta {
 	 * Get Carport
 	 *
 	 * @since 2.0
-	 * @since 3.4.6 Fixed the incorrect meta key
+	 * @since 3.4.5 Fixed the incorrect meta key
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
 	 */
