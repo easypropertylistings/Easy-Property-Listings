@@ -3,7 +3,7 @@
  * Register custom meta fields for property post types
  *
  * @package     EPL
- * @subpackage  Meta
+ * @subpackage  Meta/InitCustomFields
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0.0

@@ -3,7 +3,7 @@
  * Contact Functions
  *
  * @package     EPL
- * @subpackage  Contacts/Functions
+ * @subpackage  Admin/ContactsFunctions
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0

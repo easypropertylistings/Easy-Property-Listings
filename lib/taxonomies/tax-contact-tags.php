@@ -3,7 +3,7 @@
  * TAXONOMY Contact Tag
  *
  * @package     EPL
- * @subpackage  Taxonomy
+ * @subpackage  Taxonomy/ContactTag
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0

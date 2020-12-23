@@ -3,7 +3,7 @@
  * WIDGET :: Property Search
  *
  * @package     EPL
- * @subpackage  Widget/Search
+ * @subpackage  Widget/Classes/Search
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

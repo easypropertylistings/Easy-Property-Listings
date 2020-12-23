@@ -3,7 +3,7 @@
  * Register post type :: Business
  *
  * @package     EPL
- * @subpackage  Functions/CPT
+ * @subpackage  PostTypes/Business
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

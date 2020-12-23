@@ -1,9 +1,9 @@
 <?php
 /**
- * SHORTCODE :: Listing [listing_advanced]
+ * SHORTCODE :: Listing Advanced [listing_advanced]
  *
  * @package     EPL
- * @subpackage  Shortcode/Listing
+ * @subpackage  Classes/ListingAdvanced
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.3.0

@@ -3,7 +3,7 @@
  * Extensions License Menu page
  *
  * @package     EPL
- * @subpackage  Admin/Menus
+ * @subpackage  Admin/MenusLicenses
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -92,7 +92,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 																	if ( $val === $k ) {
 																		$selected = 'selected="selected"';
 																	}
-																	echo '<option value="' . esc_attr( $k ) . '" ' . $selected . '>' . esc_attr( $v ) . '</option>'; // phpcs:ignore 
+																	echo '<option value="' . esc_attr( $k ) . '" ' . $selected . '>' . esc_attr( $v ) . '</option>'; // phpcs:ignore
 																}
 															}
 																echo '</select>';
@@ -107,7 +107,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 																			$checked = 'checked="checked"';
 																		}
 																	}
-																	echo '<span class="epl-field-row"><input type="checkbox" name="' . esc_attr( $field['name'] ) . '[]" id="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '" value="' . esc_attr( $k ) . '" ' . $checked . ' /> <label for="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '">' . esc_attr( $v ) . '</label></span>'; // phpcs:ignore 
+																	echo '<span class="epl-field-row"><input type="checkbox" name="' . esc_attr( $field['name'] ) . '[]" id="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '" value="' . esc_attr( $k ) . '" ' . $checked . ' /> <label for="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '">' . esc_attr( $v ) . '</label></span>'; // phpcs:ignore
 																}
 															}
 															break;
@@ -119,7 +119,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 																	if ( $val === $k ) {
 																		$checked = 'checked="checked"';
 																	}
-																	echo '<span class="epl-field-row"><input type="radio" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '" value="' . esc_attr( $k ) . '" ' . $checked . ' /> <label for="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '">' . esc_attr( $v ) . '</label></span>'; // phpcs:ignore 
+																	echo '<span class="epl-field-row"><input type="radio" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '" value="' . esc_attr( $k ) . '" ' . $checked . ' /> <label for="' . esc_attr( $field['name'] ) . '_' . esc_attr( $k ) . '">' . esc_attr( $v ) . '</label></span>'; // phpcs:ignore
 																}
 															}
 															break;

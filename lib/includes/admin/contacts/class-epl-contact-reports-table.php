@@ -3,7 +3,7 @@
  * Contact Reports Table Class
  *
  * @package     EPL
- * @subpackage  Contacts/Table
+ * @subpackage  Admin/Classes/ContactsTable
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
