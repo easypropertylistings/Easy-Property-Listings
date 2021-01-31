@@ -3,7 +3,7 @@
  * Menu Tools
  *
  * @package     EPL
- * @subpackage  Admin/Menu-Tools
+ * @subpackage  Admin/MenuTools
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.3

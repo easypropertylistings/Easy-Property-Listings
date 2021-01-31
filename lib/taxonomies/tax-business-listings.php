@@ -1,9 +1,9 @@
 <?php
 /**
- * TAXONOMY Business Listings
+ * TAXONOMY Business Categories
  *
  * @package     EPL
- * @subpackage  Taxonomy
+ * @subpackage  Taxonomy/BusinessCategories
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

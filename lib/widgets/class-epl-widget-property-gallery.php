@@ -3,7 +3,7 @@
  * WIDGET :: Property Gallery
  *
  * @package     EPL
- * @subpackage  Widget/Gallery
+ * @subpackage  Widget/Classes/Gallery
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

@@ -3,7 +3,7 @@
  * Metabox Oject
  *
  * @package     EPL
- * @subpackage  Classes/Metaboxs
+ * @subpackage  Classes/MetaboxesCustomFields
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
@@ -235,13 +235,13 @@ class EPL_METABOX {
 				echo '<div class="epl-group-tab-wrapper epl-' . esc_attr( $render_as ) . '">';
 			}
 			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { ?>
-				<ul class="epl-group-tabs"> 
+				<ul class="epl-group-tabs">
 				<?php
 				foreach ( $groups as $group ) {
 					echo '<li><a href="#epl-field-group-' . esc_attr( $group['id'] ) . '"><h3>' . esc_attr( $group['label'] ) . '</h3></a></li>';
 				}
 				?>
-				</ul> 
+				</ul>
 				<?php
 			}
 			foreach ( $groups as $group ) {

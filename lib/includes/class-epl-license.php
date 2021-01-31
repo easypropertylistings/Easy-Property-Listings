@@ -2,7 +2,7 @@
 /**
  * EPL License
  *
- * @package     EPL_License Class
+ * @package     EPL
  * @subpackage  Classes/License
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License

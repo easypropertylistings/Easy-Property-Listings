@@ -3,7 +3,7 @@
  * Register post type :: Property
  *
  * @package     EPL
- * @subpackage  Functions/CPT
+ * @subpackage  PostTypes/Property
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

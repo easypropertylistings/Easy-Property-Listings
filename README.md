@@ -35,6 +35,14 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.35 December 23, 2020 =
+
+* Tweak: Added support for WordPress 5.6 blocks rendering.
+* Tweak: Support for true/false values in features checklist.
+* Fix: [listing_advanced] not marked as EPL shortcode in WP_Query object.
+* Fix: Incorrect meta key in carport function.
+* Fix: Hidden field rendering.
+
 = 3.4.34 October 1, 2020 =
 
 * Fix: Admin columns output escaping.
