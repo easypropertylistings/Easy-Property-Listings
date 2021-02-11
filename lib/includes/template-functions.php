@@ -865,23 +865,42 @@ function epl_property_commercial_category() {
 add_action( 'epl_property_commercial_category', 'epl_property_commercial_category' );
 
 /**
- * Business Category
+ * Business Categories
  *
  * @param string $tag The div tag.
  * @param string $class The css class name.
  *
  * @since 3.5.0
  */
-function epl_business_category( $tag = 'div', $class = 'property-category' ) {
+function epl_business_categories( $tag = 'ul', $class = 'business-category' ) {
 	global $property;
 
 	if ( empty( $tag ) ) {
-		$tag = 'div';
+		$tag = 'ul';
 	}
 
 	echo wp_kses_post( $property->get_property_business_category( $tag, $class ) );
 }
-add_action( 'epl_property_business_category', 'epl_business_category', 10, 2 );
+add_action( 'epl_property_business_categories', 'epl_business_categories', 10, 2 );
+
+/**
+ * Business Parent Category
+ *
+ * @param string $tag The div tag.
+ * @param string $class The css class name.
+ *
+ * @since 3.5.0
+ */
+function epl_business_parent_category( $tag = 'span', $class = 'business-parent-category' ) {
+	global $property;
+
+	if ( empty( $tag ) ) {
+		$tag = 'span';
+	}
+
+	echo wp_kses_post( $property->get_property_business_parent_category( $tag, $class ) );
+}
+add_action( 'epl_property_business_parent_category', 'epl_business_parent_category', 10, 2 );
 
 /**
  * Property Available Dates

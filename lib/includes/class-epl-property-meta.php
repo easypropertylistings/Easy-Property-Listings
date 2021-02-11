@@ -613,7 +613,7 @@ class EPL_Property_Meta {
 	}
 
 	/**
-	 * Get Business Category
+	 * Get Business Categories
 	 *
 	 * @param string $tag HTML wrapper type, default div.
 	 * @param string $class name, default commercial-category.
@@ -621,8 +621,8 @@ class EPL_Property_Meta {
 	 *
 	 * @since 3.5.0
 	 */
-	public function get_property_business_category( $tag = 'div', $class = 'commercial-category' ) {
-		$property_business_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta( 'property_commercial_category' ) );
+	public function get_property_business_categories( $tag = 'ul', $class = 'business-category' ) {
+		$property_business_category = epl_load_business_terms( $this->post->ID );
 
 		if ( empty( $property_business_category ) ) {
 			$property_business_category = $property_business_category;
@@ -631,7 +631,30 @@ class EPL_Property_Meta {
 		} else {
 			$property_business_category = '<' . $tag . ' class="' . $class . '">' . $property_business_category . '</' . $tag . '>';
 		}
-		return apply_filters( 'epl_get_property_business_category', $property_business_category );
+		return apply_filters( 'epl_get_property_business_categories', $property_business_category );
+	}
+
+	/**
+	 * Get Business Parent Category
+	 *
+	 * @param string $tag HTML wrapper type, default div.
+	 * @param string $class name, default commercial-category.
+	 * @return string
+	 *
+	 * @since 3.5.0
+	 */
+	public function get_property_business_parent_category( $tag = 'span', $class = 'business-parent-category' ) {
+		$property_business_category = epl_get_business_parent_category( $this->post->ID, 'all' );
+
+		$category = '';
+
+		if ( is_array( $property_business_category ) ) {
+			foreach ( $property_business_category as $term ) {
+				$category .= '<' . $tag . ' class="' . $class . ' ' . $term->slug . '">' . $term->name . '</' . $tag . '> ';
+			}
+		}
+
+		return apply_filters( 'epl_get_property_business_parent_category', $category );
 	}
 
 	/**

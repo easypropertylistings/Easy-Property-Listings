@@ -854,6 +854,30 @@ function epl_listing_load_meta_rural_category_value( $key ) {
 }
 
 /**
+ * Custom Meta: Return Business Categories
+ *
+ * @since 3.5.0
+ * @param string $key Meta key.
+ * @return array the categories in array
+ */
+function epl_load_business_terms( $id ) {
+	$terms = get_the_term_list( $id, 'tax_business_listing', '<li>', '</li><li>', '</li>' );
+	return $terms;
+}
+
+/**
+ * Get parent business category
+ *
+ * @since 3.5.0
+ * @param string $key Meta key.
+ * @return array the categories in array
+ */
+function epl_get_business_parent_category( $id, $fields = 'names' ) {
+	$terms = wp_get_post_terms( $id, 'tax_business_listing', array( 'fields' => $fields, 'parent' => 0 ) );
+	return $terms;
+}
+
+/**
  * REAXML Date Processing Function for WP All Import and FeedSync
  *
  * Some imports set the current date instead of the date from the REAXML file.
