@@ -613,6 +613,28 @@ class EPL_Property_Meta {
 	}
 
 	/**
+	 * Get Business Category
+	 *
+	 * @param string $tag HTML wrapper type, default div.
+	 * @param string $class name, default commercial-category.
+	 * @return string
+	 *
+	 * @since 3.5.0
+	 */
+	public function get_property_business_category( $tag = 'div', $class = 'commercial-category' ) {
+		$property_business_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta( 'property_commercial_category' ) );
+
+		if ( empty( $property_business_category ) ) {
+			$property_business_category = $property_business_category;
+		} elseif ( 'none' === $tag || 'value' === $tag ) {
+			$property_business_category = $property_business_category;
+		} else {
+			$property_business_category = '<' . $tag . ' class="' . $class . '">' . $property_business_category . '</' . $tag . '>';
+		}
+		return apply_filters( 'epl_get_property_business_category', $property_business_category );
+	}
+
+	/**
 	 * Get Rural Category
 	 *
 	 * @since 3.1.12

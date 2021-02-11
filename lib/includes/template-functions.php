@@ -865,6 +865,25 @@ function epl_property_commercial_category() {
 add_action( 'epl_property_commercial_category', 'epl_property_commercial_category' );
 
 /**
+ * Business Category
+ *
+ * @param string $tag The div tag.
+ * @param string $class The css class name.
+ *
+ * @since 3.5.0
+ */
+function epl_business_category( $tag = 'div', $class = 'property-category' ) {
+	global $property;
+
+	if ( empty( $tag ) ) {
+		$tag = 'div';
+	}
+
+	echo wp_kses_post( $property->get_property_business_category( $tag, $class ) );
+}
+add_action( 'epl_property_business_category', 'epl_business_category', 10, 2 );
+
+/**
  * Property Available Dates
  *
  * @since      1.0 @hooked property_available_dates
