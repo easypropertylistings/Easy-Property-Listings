@@ -1035,7 +1035,7 @@ function epl_get_admin_option_fields() {
 		array(
 			'label'  => __( 'Listing Types and Location Taxonomy', 'easy-property-listings' ),
 			'class'  => 'core',
-			'id'     => 'general',
+			'id'     => 'general_listing_types',
 			'help'   => __( 'Select the listing types you want to enable and press Save Changes. Refresh the page to see your new activated listing types.', 'easy-property-listings' ) . '<hr/>',
 			'fields' => array(
 				array(
@@ -1207,7 +1207,7 @@ function epl_get_admin_option_fields() {
 		array(
 			'label'  => __( 'Listing Single View', 'easy-property-listings' ),
 			'class'  => 'core',
-			'id'     => 'general',
+			'id'     => 'general_single_view',
 			'help'   => __( 'Configure the default options when viewing a single listing.', 'easy-property-listings' ) . '<hr/>',
 			'fields' => array(
 				array(
@@ -1250,7 +1250,7 @@ function epl_get_admin_option_fields() {
 		array(
 			'label'  => __( 'Listing Archive View', 'easy-property-listings' ),
 			'class'  => 'core',
-			'id'     => 'general',
+			'id'     => 'general_archive_view',
 			'help'   => __( 'Configure the default options for when viewing the archive listing pages.', 'easy-property-listings' ) . '<hr/>',
 			'fields' => array(
 				array(

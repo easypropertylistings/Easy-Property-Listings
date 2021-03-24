@@ -2322,6 +2322,7 @@ function epl_template_class( $class = false, $context = 'single' ) {
  * @param      array $query  The query.
  */
 function epl_pagination( $query = array() ) {
+	
 	global $epl_settings;
 	$fancy_on = 1 === (int) epl_get_option( 'use_fancy_navigation', 0 ) ? 1 : 0;
 	if ( $fancy_on ) {

@@ -199,7 +199,7 @@ class EPL_Search_Fields {
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
 						foreach ( $field['options'] as $k => $v ) {
-							$selected = in_array( $k, (array) $value, true ) ? true : false;
+							$selected = in_array( $k, (array) $value ) ? true : false;
 							echo '<option value="' . esc_attr( $k ) . '"' . selected( $selected, true, false ) . '>' . esc_attr( $v ) . '</option>';
 						}
 					}

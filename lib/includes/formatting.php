@@ -278,3 +278,72 @@ function epl_sanitize_key( $key ) {
 	$key     = preg_replace( '/[^a-zA-Z0-9_\-\.\:\/]/', '', $key );
 	return apply_filters( 'epl_sanitize_key', $key, $raw_key );
 }
+
+/**
+ * Sanitize multiple checkbox
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized array values
+ */
+function epl_sanitize_checkbox_multiple( $values ) {
+	
+	$multi_values = !is_array( $values ) ? explode( ',', $values ) : $values;
+
+	return !empty( $multi_values ) ? array_map( 'sanitize_text_field', $multi_values ) : array();
+}
+
+/**
+ * Sanitize number
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_number( $value ) {
+	return absint( $value );
+}
+
+/**
+ * Sanitize text
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_text( $value ) {
+	return sanitize_text_field( $value );
+}
+
+/**
+ * Sanitize single checkbox
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_checkbox( $value ) {
+	return sanitize_text_field( $value );
+}
+
+/**
+ * Sanitize single radio
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_radio( $value ) {
+	return sanitize_text_field( $value );
+}
+
+/**
+ * Sanitize single radio
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_select( $value ) {
+	return sanitize_text_field( $value );
+}

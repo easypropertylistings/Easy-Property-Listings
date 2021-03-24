@@ -189,6 +189,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-cpt.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-form-builder.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-cron.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-customizer.php';
 
 			// Activate post types based on settings.
 			if ( isset( $epl_settings['activate_post_types'] ) ) {
