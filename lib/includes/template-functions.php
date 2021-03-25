@@ -324,6 +324,7 @@ function epl_hide_listing_statuses() {
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
  * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
+ * @since 3.4.36 Additional action support for listing templates.
  *
  * @param string $template  The template.
  */
@@ -344,11 +345,34 @@ function epl_property_blog( $template = '' ) {
 	// Status Removal Do Not Display Withdrawn or OffMarket listings.
 	if ( ! in_array( $property_status, epl_hide_listing_statuses(), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
+		
+		$action_check_type = has_action( 'epl_loop_template_'.$property->post->post_type );
 		$action_check = has_action( 'epl_loop_template' );
-		if ( ! empty( $action_check ) && in_array( $template, array( 'default', 'blog' ), true ) ) {
-			do_action( 'epl_loop_template' );
-		} else {
+		$action_check_core = false;
+		$action_exists = false;
 
+		if( in_array( $property->post->post_type, epl_get_core_post_types(), true ) ) {
+			$action_check_core = has_action( 'epl_loop_template_listing' );
+		}
+
+		if( in_array( $template, array( 'default', 'blog' ), true ) ) {
+
+
+			// check for action in order of priority : epl_loop_template_{post_type} > epl_loop_template_listing ( only for core )  > epl_loop_template. 
+			if ( ! empty( $action_check_type ) ) {
+				do_action( 'epl_loop_template_'.$property->post->post_type );
+				$action_exists = true;
+			} else if ( ! empty( $action_check_core ) ) {
+				do_action( 'epl_loop_template_listing' );
+				$action_exists = true;
+			}  else if ( ! empty( $action_check ) ) {
+				do_action( 'epl_loop_template' );
+				$action_exists = true;
+			}
+		}
+		
+		// fallback to core template
+		if( !$action_exists ){
 			$tpl_name = 'loop-listing-blog-' . $template . '.php';
 			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
 			epl_get_template_part( $tpl_name );
