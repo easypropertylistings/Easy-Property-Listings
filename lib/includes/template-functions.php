@@ -324,7 +324,7 @@ function epl_hide_listing_statuses() {
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
  * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
- * @since 3.4.36 Additional action support for listing templates.
+ * @since 3.4.36 New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.
  *
  * @param string $template  The template.
  */
