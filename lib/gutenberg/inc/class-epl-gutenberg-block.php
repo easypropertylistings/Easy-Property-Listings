@@ -64,10 +64,11 @@ if ( ! class_exists( 'EPL_Gutenberg_Block' ) ) {
 			if ( ( is_admin() ) && ( ( isset( $_REQUEST['post'] ) ) && ( ! empty( $_REQUEST['post'] ) ) ) && ( ( isset( $_REQUEST['action'] ) ) && ( 'edit' === $_REQUEST['action'] ) ) ) {
 				return $content;
 			}
-
+			
 			if ( ! empty( $content ) ) {
 				$content = $this->convert_block_markers_to_shortcode( $content, $this->block_slug, $this->shortcode_slug, $this->self_closing );
 			}
+			
 			return $content;
 		}
 
@@ -132,10 +133,12 @@ if ( ! class_exists( 'EPL_Gutenberg_Block' ) ) {
 		 * @return string $content
 		 */
 		public function convert_block_markers_to_shortcode( $content = '', $block_slug = '', $shortcode_slug = '', $self_closing = false ) {
+			
 			if ( ( ! empty( $content ) ) && ( ! empty( $block_slug ) ) && ( ! empty( $shortcode_slug ) ) ) {
 				$pattern_atts_array = array();
 				if ( true === $self_closing ) {
 					preg_match_all( '#<!--\s+wp:' . $this->block_base . '/' . $block_slug . '(.*?) /-->#is', $content, $ar );
+					
 					if ( ( isset( $ar[0] ) ) && ( is_array( $ar[0] ) ) && ( ! empty( $ar[0] ) ) ) {
 						if ( ( isset( $ar[1] ) ) && ( is_array( $ar[1] ) ) && ( ! empty( $ar[1] ) ) ) {
 							foreach ( $ar[1] as $pattern_key => $pattern_atts_json ) {
@@ -241,7 +244,6 @@ if ( ! class_exists( 'EPL_Gutenberg_Block' ) ) {
 					}
 				}
 			}
-
 			return $content;
 		}
 

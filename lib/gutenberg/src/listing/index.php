@@ -18,7 +18,7 @@ if ( ( class_exists( 'EPL_Gutenberg_Block' ) ) && ( ! class_exists( 'EPL_Gutenbe
 		 */
 		public function __construct() {
 			$this->shortcode_slug   = 'listing';
-			$this->block_slug       = 'listing';
+			$this->block_slug       = 'listing-display';
 			$this->block_attributes = array(
 				'post_type' =>  [
 					'type' =>  'array',
