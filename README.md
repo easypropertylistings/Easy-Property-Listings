@@ -35,6 +35,11 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.36 March 25, 2021 =
+
+* New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.
+* Fix: Corrected issue with multi select where values are numbers.
+
 = 3.4.35 December 23, 2020 =
 
 * Tweak: Added support for WordPress 5.6 blocks rendering.

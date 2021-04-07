@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.6
-Stable Tag: 3.4.35
+Tested up to: 5.7
+Stable Tag: 3.4.36
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.

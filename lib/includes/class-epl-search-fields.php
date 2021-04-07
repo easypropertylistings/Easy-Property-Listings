@@ -179,6 +179,7 @@ class EPL_Search_Fields {
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
 	 * @return void
+	 * @since  3.4.36  Fix: Corrected issue with multi select where values are numbers.
 	 */
 	public function render_multiple_select( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
