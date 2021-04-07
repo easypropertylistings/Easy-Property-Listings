@@ -2,7 +2,7 @@
 .idea
 
 # Grunt
-/node_modules/
+node_modules/
 
 # OS X metadata
 .DS_Store
