@@ -2471,3 +2471,29 @@ function epl_array_map_recursive( $callback, $array ) {
 	return array_map( $func, $array );
 }
 
+
+/**
+ * Get single EPL post
+ *
+ * @param string $callback Callback.
+ * @param array  $array Array.
+ *
+ * @return array
+ * @since 3.5.0
+ */
+function epl_get_single_post( $post_type = '' ) {
+
+	if ( ( ! empty( $post_type ) ) && ( in_array( $post_type, epl_get_core_post_types() ) ) ) {
+		$post_query_args = array(
+			'post_type'      => $post_type,
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+			'fields'         => 'ids',
+		);
+
+		$post_query = new WP_Query( $post_query_args );
+		if ( ( is_a( $post_query, 'WP_Query' ) ) && ( property_exists( $post_query, 'posts' ) ) && ( ! empty( $post_query->posts ) ) ) {
+			return $post_query->posts[0];
+		}
+	}
+}
