@@ -110,27 +110,35 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  *
  * @since      1.2.0
  * @since      3.4.8 Corrected missing parameter count to 3.
+ * @since 	   3.4.37 Added filter epl_property_featured_image_args to control all params & epl_no_property_featured_image action.
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
+	$args = apply_filters( 'epl_property_featured_image_args', [
+		'image_size'	=>	$image_size,
+		'image_class'	=>	$image_class,
+		'link'			=>	$link
+	] );
 	/**
 	 * Filter: Allow user or extension to enable or disable link behaviour on featured image.
 	 */
-	$link = apply_filters( 'epl_property_featured_image_link', $link );
+	$args['link'] = apply_filters( 'epl_property_featured_image_link', $args['link'] );
 
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
 			<div class="epl-featured-image it-featured-image">
-				<?php if ( true === $link ) { ?>
+				<?php if ( true === $args['link'] ) { ?>
 					<a href="<?php the_permalink(); ?>">
 				<?php } ?>
-						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
-				<?php if ( true === $link ) { ?>
+						<?php the_post_thumbnail( $args['image_size'], array( 'class' => $args['image_class'] ) ); ?>
+				<?php if ( true === $args['link'] ) { ?>
 					</a>
 				<?php } ?>
 			</div>
 		</div>
 		<?php
+	} else {
+		do_action( 'epl_no_property_featured_image');
 	}
 
 }
@@ -148,6 +156,7 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  * @since 2.2
  * @since 3.4.27 New: Additional param to disable / enable stickers
  * @since 3.4.30 Fix: Missing parameter filter. Increased from 3 to 4.
+ * @since 3.4.37 Added filter epl_property_archive_featured_image to control all params & epl_no_archive_featured_image action if no featured image.
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
@@ -155,30 +164,38 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 		$image_size = 'epl-image-medium-crop';
 	}
 
+	$args = apply_filters( 'epl_property_archive_featured_image_args', [
+		'image_size'	=>	$image_size,
+		'image_class'	=>	$image_class,
+		'link'			=>	$link,
+		'stickers'		=>	$stickers
+	] );
 	/**
 	 * Filter: Allow user or extension to enable or disable link behaviour on archive image.
 	 */
-	$link = apply_filters( 'epl_property_archive_featured_image_link', $link );
+	$args['link'] = apply_filters( 'epl_property_archive_featured_image_link', $args['link'] );
 
 	if ( has_post_thumbnail() ) {
 		?>
 		<div class="epl-archive-entry-image">
-			<?php if ( true === $link ) { ?>
+			<?php if ( true === $args['link'] ) { ?>
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
 					<div class="epl-blog-image">
-						<?php if ( $stickers ) : ?>
+						<?php if ( $args['stickers'] ) : ?>
 						<div class="epl-stickers-wrapper">
 							<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
 						</div>
 						<?php endif; ?>
-						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
+						<?php the_post_thumbnail( $args['image_size'], array( 'class' => $args['image_class'] ) ); ?>
 					</div>
-			<?php if ( true === $link ) { ?>
+			<?php if ( true === $args['link'] ) { ?>
 				</a>
 			<?php } ?>
 		</div>
 		<?php
+	} else {
+		do_action( 'epl_no_archive_featured_image', $args );
 	}
 
 }
@@ -260,11 +277,12 @@ function epl_get_fallback_content_path() {
  * @since 3.0
  * @param string $template Template name.
  * @param array  $arguments Options to pass to template.
+ * @since 3.4.37 New: additional param default_template to pass the default template which will be used if the template is not found.
  */
-function epl_get_template_part( $template, $arguments = array() ) {
+function epl_get_template_part( $template, $arguments = array(), $default_template=false ) {
 
 	$base_path = epl_get_content_path();
-	$default   = $template;
+	$default   = $default_template ? $default_template : $template;
 	$find[]    = epl_template_path() . $template;
 	$template  = locate_template( array_unique( $find ) );
 	if ( ! $template ) {
@@ -325,10 +343,10 @@ function epl_hide_listing_statuses() {
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
  * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
  * @since 3.4.36 New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.
- *
+ * @since 3.4.37 New: additional param default to pass the default template which will be used if the template is not found.
  * @param string $template  The template.
  */
-function epl_property_blog( $template = '' ) {
+function epl_property_blog( $template = '', $default = 'default' ) {
 
 	if ( empty( $template ) || 'blog' === $template ) {
 		$template = 'default';
@@ -374,7 +392,7 @@ function epl_property_blog( $template = '' ) {
 		if ( ! $action_exists ) {
 			$tpl_name = 'loop-listing-blog-' . $template . '.php';
 			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
-			epl_get_template_part( $tpl_name );
+			epl_get_template_part( $tpl_name,[], 'loop-listing-blog-' . $default . '.php' );
 		}
 	} // End Status Removal.
 }
@@ -3627,6 +3645,7 @@ add_action( 'epl_property_status', 'epl_property_status', 10, 2 );
  *
  * @return     array  $classes  Modified classes.
  * @since      3.4.29
+ * @since 	   3.4.37 Added custom classes for epl search results.
  */
 function epl_body_classes( $classes ) {
 
@@ -3638,6 +3657,11 @@ function epl_body_classes( $classes ) {
 	if ( is_epl_post_archive() ) {
 		$classes[] = 'epl-post-type-archive';
 		$classes[] = 'epl-post-type-archive-' . get_post_type();
+	}
+
+	if ( epl_is_search() ) {
+		$classes[] = 'epl-post-type-archive';
+		$classes[] = 'epl-search-results';
 	}
 
 	return $classes;

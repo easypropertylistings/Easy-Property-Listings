@@ -671,6 +671,7 @@ class EPL_Property_Meta {
 	 * Plain price value
 	 *
 	 * @since 2.0
+	 * @since 3.4.37 Added filter epl_pa_price for P.A label.
 	 * @return string
 	 */
 	public function get_price_plain_value() {
@@ -717,7 +718,7 @@ class EPL_Property_Meta {
 			$price_display    = $this->get_property_price_display();
 			$prop_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$rent_lease_type  =
-				! empty( $prop_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : 'P.A.';
+				! empty( $prop_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : apply_filters( 'epl_pa_label', __( 'P.A.', 'easy-property-listings' ) );
 			// Sale or Both.
 			$price_plain_value = '';
 			if ( $this->get_property_meta( 'property_com_listing_type' ) === 'sale' || $this->get_property_meta( 'property_com_listing_type' ) === 'both' ) {
@@ -769,6 +770,7 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @since 3.4.27    Fixed rent period translation.
+	 * @since 3.4.37 Added filter epl_pa_price for P.A label.
 	 * @return string
 	 */
 	public function get_price() {
@@ -824,7 +826,7 @@ class EPL_Property_Meta {
 		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$rent_lease_type      =
-				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
+				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : apply_filters( 'epl_pa_label', __( 'P.A.', 'easy-property-listings' ) );
 
 			// Sale or both.
 			$price = '';
@@ -985,6 +987,7 @@ class EPL_Property_Meta {
 	 * Get list style price
 	 *
 	 * @since 2.0
+	 * @since 3.4.37 Added filter epl_pa_price for P.A label.
 	 * @return string
 	 */
 	public function get_l_price() {
@@ -1022,7 +1025,7 @@ class EPL_Property_Meta {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$prop_com_rent        = $this->get_property_com_rent();
 			$rent_lease_type      =
-				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
+				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : apply_filters( 'epl_pa_label', __( 'P.A.', 'easy-property-listings' ) );
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$l_price = '<li class="status-sticker sold">' . $this->label_sold . '</li>';
 			} elseif ( ! empty( $price_display ) && 'yes' === $this->get_property_meta( 'property_price_display' ) ) { // Property.
