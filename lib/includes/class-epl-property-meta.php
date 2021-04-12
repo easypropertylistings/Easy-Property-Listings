@@ -1603,6 +1603,7 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @since 3.4.37 Fix: don't display land area when it's < 0.
 	 * @return string
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
@@ -1622,7 +1623,7 @@ class EPL_Property_Meta {
 
 		$property_land_area_unit = apply_filters( 'epl_property_land_area_unit_label', $property_land_area_unit );
 
-		if ( is_numeric( $this->get_property_meta( 'property_land_area' ) ) ) {
+		if ( is_numeric( $this->get_property_meta( 'property_land_area' ) ) && 0 < $this->get_property_meta( 'property_land_area' ) ) {
 
 			$label = apply_filters( 'epl_get_property_land_area_label', __( 'Land is', 'easy-property-listings' ) );
 
