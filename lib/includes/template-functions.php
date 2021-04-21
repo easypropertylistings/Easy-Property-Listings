@@ -23,10 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $post Post object.
  *
  * @since 2.2
+ * @since 		3.5 Support for third & fourth agent
  */
 function epl_reset_property_object( $post ) {
 
-	global $epl_author, $epl_author_secondary;
+	global $epl_author, $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 
 	if ( ! is_epl_post() ) {
 		return;
@@ -49,6 +50,18 @@ function epl_reset_property_object( $post ) {
 	if ( $SEC_ID ) {
 		$epl_author_secondary = new EPL_Author_meta( $SEC_ID );
 	}
+
+	$third_ID = epl_listing_has_third_agent();
+
+	if ( $third_ID ) {
+		$epl_author_third = new EPL_Author_meta( $third_ID );
+	}
+
+	$fourth_ID = epl_listing_has_fourth_agent();
+
+	if ( $fourth_ID ) {
+		$epl_author_fourth = new EPL_Author_meta( $fourth_ID );
+	}
 }
 add_action( 'the_post', 'epl_reset_property_object' );
 
@@ -56,10 +69,11 @@ add_action( 'the_post', 'epl_reset_property_object' );
  * Make $property global available for hooks before the_post
  *
  * @since      2.2
+ * @since 		3.5 Support for third & fourth agent
  */
 function epl_create_property_object() {
 
-	global $post,$property,$epl_author,$epl_author_secondary;
+	global $post,$property,$epl_author,$epl_author_secondary, $epl_author_third, $epl_author_fourth;
 
 	if ( is_author() ) {
 		$author_id  = get_query_var( 'author' );
@@ -75,6 +89,17 @@ function epl_create_property_object() {
 		$ID       = epl_listing_has_secondary_author();
 		if ( $ID ) {
 			$epl_author_secondary = new EPL_Author_meta( $ID );
+		}
+		$third_ID = epl_listing_has_third_agent();
+
+		if ( $third_ID ) {
+			$epl_author_third = new EPL_Author_meta( $third_ID );
+		}
+
+		$fourth_ID = epl_listing_has_fourth_agent();
+
+		if ( $fourth_ID ) {
+			$epl_author_fourth = new EPL_Author_meta( $fourth_ID );
 		}
 	}
 
@@ -402,12 +427,21 @@ add_action( 'epl_property_blog', 'epl_property_blog', 10, 1 );
  * Renders default author box
  *
  * @since      3.2
+ * @since 		3.5 Support for third & fourth agent
  */
 function epl_property_author_default() {
-	global $epl_author_secondary;
+	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box.php' );
-	if ( is_epl_post() && epl_listing_has_secondary_author() ) {
-		epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_secondary ) );
+	if ( is_epl_post() ) {
+		if( epl_listing_has_secondary_author() ) {
+			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_secondary ) );
+		}
+		if( epl_listing_has_third_agent() ) {
+			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_third ) );
+		}
+		if( epl_listing_has_fourth_agent() ) {
+			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_fourth ) );
+		}
 		epl_reset_post_author();
 	}
 }
@@ -452,28 +486,48 @@ add_action( 'epl_single_author', 'epl_property_author_box', 10 );
  * AUTHOR CARD : Standard
  *
  * @since      1.0
+ * @since 		3.5 Support for third & fourth agent
  */
 function epl_property_author_box_simple_card() {
-	global $property,$epl_author,$epl_author_secondary;
+
+	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box-simple-card.php' );
-	if ( is_epl_post() && epl_listing_has_secondary_author() ) {
+	if ( is_epl_post() ) {
+		if( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_secondary ) );
+		}
+		if( epl_listing_has_third_agent() ) {
+			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_third ) );
+		}
+		if( epl_listing_has_fourth_agent() ) {
+			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_fourth ) );
+		}
+		epl_reset_post_author();
 	}
-	epl_reset_post_author();
 }
 
 /**
  * AUTHOR CARD : Gravatar
  *
  * @since      1.0
+ * @since 		3.5 Support for third & fourth agent		
  */
 function epl_property_author_box_simple_grav() {
-	global $property,$epl_author,$epl_author_secondary;
+
+	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box-simple-grav.php' );
-	if ( is_epl_post() && epl_listing_has_secondary_author() ) {
+	if ( is_epl_post() ) {
+		if( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_secondary ) );
+		}
+		if( epl_listing_has_third_agent() ) {
+			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_third ) );
+		}
+		if( epl_listing_has_fourth_agent() ) {
+			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_fourth ) );
+		}
+		epl_reset_post_author();
 	}
-	epl_reset_post_author();
 }
 
 /**
@@ -591,7 +645,7 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
 		return;
 	}
 
-	global $property,$epl_author,$epl_author_secondary;
+	global $property,$epl_author,$epl_author_secondary,$epl_author_third, $epl_author_fourth;
 	if ( is_null( $epl_author ) ) {
 		return;
 	}
@@ -601,11 +655,22 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
 
 	// Second Author.
 	if ( is_single() && ! is_null( $property ) ) {
-		if ( is_epl_post() && epl_listing_has_secondary_author() ) {
+		
+		if ( is_epl_post() ) {
+			if( epl_listing_has_secondary_author() ) {
 				$epl_author = $epl_author_secondary;
 				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
+			}
+			if( epl_listing_has_third_agent() ) {
+				$epl_author = $epl_author_third;
+				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
+			}
+			if( epl_listing_has_fourth_agent() ) {
+				$epl_author = $epl_author_fourth;
+				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
+			}
+			epl_reset_post_author();
 		}
-		epl_reset_post_author();
 	}
 }
 
@@ -3160,10 +3225,19 @@ add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
  * @since 3.3
  */
 function epl_archive_author_callback() {
-	global $epl_author_secondary;
+	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-archive-card.php' );
-	if ( is_epl_post() && epl_listing_has_secondary_author() ) {
-		epl_get_template_part( 'content-author-archive-card.php', array( 'epl_author' => $epl_author_secondary ) );
+	
+	if ( is_epl_post() ) {
+		if( epl_listing_has_secondary_author() ) {
+			epl_get_template_part( 'content-author-archive-card.php', array( 'epl_author' => $epl_author_secondary ) );
+		}
+		if( epl_listing_has_third_agent() ) {
+			epl_get_template_part( 'content-author-archive-card', array( 'epl_author' => $epl_author_third ) );
+		}
+		if( epl_listing_has_fourth_agent() ) {
+			epl_get_template_part( 'content-author-archive-card', array( 'epl_author' => $epl_author_fourth ) );
+		}
 		epl_reset_post_author();
 	}
 }

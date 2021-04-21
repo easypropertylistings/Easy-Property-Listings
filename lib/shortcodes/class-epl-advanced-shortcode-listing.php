@@ -321,6 +321,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Set the agent
 	 *
 	 * @since 3.3
+	 * @since 3.5 support for third & fourth agent
 	 */
 	public function set_agent() {
 
@@ -344,6 +345,25 @@ class EPL_Advanced_Shortcode_Listing {
 					'value'   => array( $single_agent, sanitize_user( $single_agent ) ),
 					'compare' => 'IN',
 				);
+
+				if( 
+					in_array( 'commercial', $this->attributes['post_type'], true ) ||
+					in_array( 'commercial_land', $this->attributes['post_type'], true ) ||
+					in_array( 'business', $this->attributes['post_type'], true ) 
+				) {
+
+					$agent_meta_query[] = array(
+						'key'     => 'property_third_agent',
+						'value'   => array( $single_agent, sanitize_user( $single_agent ) ),
+						'compare' => 'IN',
+					);
+					$agent_meta_query[] = array(
+						'key'     => 'property_fourth_agent',
+						'value'   => array( $single_agent, sanitize_user( $single_agent ) ),
+						'compare' => 'IN',
+					);
+
+				}
 			}
 
 			$this->args['meta_query']['agent_clause'] = $agent_meta_query;
