@@ -771,6 +771,7 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @since 3.4.27    Fixed rent period translation.
 	 * @since 3.4.37 Added filter epl_pa_price for P.A label.
+	 * @since 3.4.37 commercial listing type "both" now shows sale & lease prices.
 	 * @return string
 	 */
 	public function get_price() {
@@ -835,7 +836,20 @@ class EPL_Property_Meta {
 				if ( $this->get_property_meta( 'property_com_authority' ) === 'auction' ) {    // Auction.
 					$price = '<span class="page-price auction">' . apply_filters( 'epl_commercial_auction_label', __( 'Auction', 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
 				} elseif ( ! empty( $prop_price_view ) && $this->get_property_meta( 'property_com_listing_type' ) === 'both' ) {
-					$price = '<span class="page-price"><span class="page-price-prefix"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_sale_and_lease_label', __( 'For Sale and Lease', 'easy-property-listings' ) ) . '</span> ' . $this->get_property_price_display() . '</span>';
+					$price = '<span class="page-price">
+									<span class="page-price-prefix">
+										<span class="page-price-prefix">' . 
+											apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . ':
+										</span> ' . $this->get_property_price_display() . '
+									</span>
+									<div class="epl-clear"></div>
+									<span class="page-price-prefix">
+										<span class="page-price-prefix">' . 
+											apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . ':
+										</span> ' . $this->get_property_com_rent() . ' ' . $rent_lease_type . '
+									</span>
+								</span>
+								';
 				} elseif ( ! empty( $price_display ) && 'yes' === $this->get_property_meta( 'property_price_display' ) ) {   // Property.
 					$price = '<span class="page-price"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . '</span> ' . $this->get_property_price_display() . $this->get_property_tax() . '</span>';
 				} else {
