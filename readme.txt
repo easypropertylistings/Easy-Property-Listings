@@ -378,7 +378,7 @@ The easiest way to display the archive page for your listing:
 
 = Is there a sample import file I can use to setup a demo real estate web site? =
 
-Yes! Simply go to Tools > Import and install the WordPress Importer, then navigate to wp-content/plugins/easy-property-listing/assets/ and select the sample-property-import.xml file. This will create several sample properties for you, make sure the "property" type is activated.
+Yes! Simply go to Tools > Import and install the WordPress Importer, then navigate to wp-content/plugins/easy-property-listing/lib/assets/ and select the sample-property-import.xml file. This will create several sample properties for you, make sure the "property" type is activated.
 
 = Getting a 404 error? =
 
