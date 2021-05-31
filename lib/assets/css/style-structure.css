@@ -488,6 +488,9 @@
 	width: 100%;
 	height: 100%;
 }
+.epl-local-video {
+	max-height: 450px;
+}
 
 /* Tabs */
 .epl_ui_tab_wrapper{

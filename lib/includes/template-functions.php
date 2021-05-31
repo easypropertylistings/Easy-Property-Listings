@@ -1164,7 +1164,7 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 			if( $video_embed_html ) {
 				$video_html     .=  $video_embed_html;
 			} else {
-				$video_html     .= '<video controls width="'.$width.'">
+				$video_html     .= '<video class="epl-local-video" controls width="'.$width.'">
 						<source src="'.$property_video_url.'">
 					</video>';
 			}
