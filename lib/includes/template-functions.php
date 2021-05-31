@@ -1137,6 +1137,7 @@ function epl_get_video_host( $url ) {
  *
  * @since 1.0
  * @since 3.3
+ * @since 3.4.37 Support for external/local hosted video formats like mp4, mov etc.
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
@@ -1155,11 +1156,21 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 	if ( ! empty( $property_video_url ) ) {
 		$video_html = '<div class="epl-video-container videoContainer">';
 
-			$video_html .= wp_oembed_get(
+			$video_embed_html = wp_oembed_get(
 				$property_video_url,
 				array( 'width' => apply_filters( 'epl_property_video_width', $width ) )
 			);
+
+			if( $video_embed_html ) {
+				$video_html     .=  $video_embed_html;
+			} else {
+				$video_html     .= '<video controls width="'.$width.'">
+						<source src="'.$property_video_url.'">
+					</video>';
+			}
+
 		$video_html     .= '</div>';
+		
 		return $video_html;
 	}
 }
