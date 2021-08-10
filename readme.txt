@@ -5,7 +5,7 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.7
+Tested up to: 5.8
 Stable Tag: 3.4.36
 License: GNU Version 2 or Any Later Version
 
@@ -378,7 +378,7 @@ The easiest way to display the archive page for your listing:
 
 = Is there a sample import file I can use to setup a demo real estate web site? =
 
-Yes! Simply go to Tools > Import and install the WordPress Importer, then navigate to wp-content/plugins/easy-property-listing/assets/ and select the sample-property-import.xml file. This will create several sample properties for you, make sure the "property" type is activated.
+Yes! Simply go to Tools > Import and install the WordPress Importer, then navigate to wp-content/plugins/easy-property-listing/lib/assets/ and select the sample-property-import.xml file. This will create several sample properties for you, make sure the "property" type is activated.
 
 = Getting a 404 error? =
 

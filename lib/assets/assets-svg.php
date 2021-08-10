@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * SVG Listing Icons Loaded in Head.
  *
  * @since 3.2
- * @since 3.4.32 make sure its loaded only once using global e$pl_listing_svgs_loaded.
+ * @since 3.4.32 make sure its loaded only once using global $epl_listing_svgs_loaded.
  */
 function epl_load_svg_listing_icons_head() {
 
