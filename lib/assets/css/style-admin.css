@@ -399,6 +399,7 @@ h3.epl-welcome-sub-heading {
 }
 .epl-media-row {
 	width: 100%;
+	display: flex;
 }
 .epl-form-field-wrap.epl-grid-1 .epl-media-row input[type="text"] {
 	width: 60%!important;
