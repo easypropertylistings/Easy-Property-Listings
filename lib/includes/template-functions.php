@@ -1054,6 +1054,7 @@ function epl_get_video_host( $url ) {
  *
  * @since 1.0
  * @since 3.3
+ * @since 3.5 mp4 video support in video field.
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
@@ -1072,10 +1073,15 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 	if ( ! empty( $property_video_url ) ) {
 		$video_html = '<div class="epl-video-container videoContainer">';
 
-			$video_html .= wp_oembed_get(
-				$property_video_url,
-				array( 'width' => apply_filters( 'epl_property_video_width', $width ) )
-			);
+			if ( strpos($property_video_url, 'mp4') !== false ) {
+			        $video_html .= do_shortcode( '[video src="'.$property_video_url.'" width="'.apply_filters( 'epl_property_video_width', $width ).'"]' );
+		  	} else {
+		  		$video_html .= wp_oembed_get(
+					$property_video_url,
+					array( 'width' => apply_filters( 'epl_property_video_width', $width ) )
+				);
+		  	}
+			
 		$video_html     .= '</div>';
 		return $video_html;
 	}
@@ -2315,6 +2321,7 @@ function epl_template_class( $class = false, $context = 'single' ) {
  * @param      array $query  The query.
  */
 function epl_pagination( $query = array() ) {
+	
 	global $epl_settings;
 	$fancy_on = 1 === (int) epl_get_option( 'use_fancy_navigation', 0 ) ? 1 : 0;
 	if ( $fancy_on ) {

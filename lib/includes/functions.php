@@ -1035,7 +1035,7 @@ function epl_get_admin_option_fields() {
 		array(
 			'label'  => __( 'Listing Types and Location Taxonomy', 'easy-property-listings' ),
 			'class'  => 'core',
-			'id'     => 'general',
+			'id'     => 'general_listing_types',
 			'help'   => __( 'Select the listing types you want to enable and press Save Changes. Refresh the page to see your new activated listing types.', 'easy-property-listings' ) . '<hr/>',
 			'fields' => array(
 				array(
@@ -1207,7 +1207,7 @@ function epl_get_admin_option_fields() {
 		array(
 			'label'  => __( 'Listing Single View', 'easy-property-listings' ),
 			'class'  => 'core',
-			'id'     => 'general',
+			'id'     => 'general_single_view',
 			'help'   => __( 'Configure the default options when viewing a single listing.', 'easy-property-listings' ) . '<hr/>',
 			'fields' => array(
 				array(
@@ -1250,7 +1250,7 @@ function epl_get_admin_option_fields() {
 		array(
 			'label'  => __( 'Listing Archive View', 'easy-property-listings' ),
 			'class'  => 'core',
-			'id'     => 'general',
+			'id'     => 'general_archive_view',
 			'help'   => __( 'Configure the default options for when viewing the archive listing pages.', 'easy-property-listings' ) . '<hr/>',
 			'fields' => array(
 				array(
@@ -2471,3 +2471,29 @@ function epl_array_map_recursive( $callback, $array ) {
 	return array_map( $func, $array );
 }
 
+
+/**
+ * Get single EPL post
+ *
+ * @param string $callback Callback.
+ * @param array  $array Array.
+ *
+ * @return array
+ * @since 3.5.0
+ */
+function epl_get_single_post( $post_type = '' ) {
+
+	if ( ( ! empty( $post_type ) ) && ( in_array( $post_type, epl_get_core_post_types() ) ) ) {
+		$post_query_args = array(
+			'post_type'      => $post_type,
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+			'fields'         => 'ids',
+		);
+
+		$post_query = new WP_Query( $post_query_args );
+		if ( ( is_a( $post_query, 'WP_Query' ) ) && ( property_exists( $post_query, 'posts' ) ) && ( ! empty( $post_query->posts ) ) ) {
+			return $post_query->posts[0];
+		}
+	}
+}
