@@ -687,8 +687,8 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'  => 'property_reverse_cycle_aircon',
-							'label' => __( 'Reverse Cycle Aircon', 'easy-property-listings' ),
+							'name'  => 'property_split_system_aircon',
+							'label' => __( 'Split System Aircon', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),

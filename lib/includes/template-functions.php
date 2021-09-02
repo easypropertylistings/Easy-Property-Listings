@@ -1326,37 +1326,46 @@ function epl_property_tab_section() {
 	$the_property_feature_list .= apply_filters( 'epl_the_property_feature_list_before_additional_features', '' );
 
 	$additional_features = array(
-		'property_remote_garage',
-		'property_secure_parking',
-		'property_study',
-		'property_dishwasher',
-		'property_built_in_robes',
-		'property_gym',
-		'property_workshop',
-		'property_rumpus_room',
-		'property_floor_boards',
+
+		/* TODO: Sub Heading for Internal/External/Heating and Cooling. */
+
+		// Internal.
 		'property_broadband',
-		'property_pay_tv',
-		'property_vacuum_system',
+		'property_built_in_robes',
+		'property_dishwasher',
+		'property_floor_boards',
+		'property_gym',
 		'property_intercom',
+		'property_pay_tv',
+		'property_remote_garage',
+		'property_rumpus_room',
+		'property_secure_parking',
 		'property_spa',
-		'property_tennis_court',
+		'property_study',
+		'property_vacuum_system',
+		'property_workshop',
+
+		// External.
 		'property_balcony',
-		'property_deck',
 		'property_courtyard',
+		'property_deck',
 		'property_outdoor_entertaining',
 		'property_shed',
-		'property_open_fire_place',
-		'property_ducted_heating',
-		'property_ducted_cooling',
-		'property_split_system_heating',
-		'property_hydronic_heating',
-		'property_split_system_aircon',
-		'property_gas_heating',
-		'property_reverse_cycle_aircon',
-		'property_evaporative_cooling',
+		'property_tennis_court',
 		'property_land_fully_fenced',
+
+		// Heating & Cooling.
+		'property_ducted_cooling',
+		'property_ducted_heating',
+		'property_evaporative_cooling',
+		'property_gas_heating',
+		'property_hydronic_heating',
+		'property_open_fire_place',
+		'property_split_system_aircon',
+		'property_split_system_heating',
+		'property_reverse_cycle_aircon',
 	);
+
 	$additional_features = apply_filters( 'epl_property_additional_features_list', $additional_features );
 
 	if ( 'property' === $property->post_type || 'rental' === $property->post_type || 'rural' === $property->post_type ) {
