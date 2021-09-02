@@ -101,7 +101,7 @@ $epl_settings = get_option( 'epl_settings' );
 								$field_class = isset( $field_group['class'] ) ? $field_group['class'] : 'extension';
 								?>
 
-								<div id="epl-<?php echo esc_attr( $field_id ); ?>" class="postbox epl-menu-section epl-<?php echo esc_attr( $field_class ); ?>">
+								<div id="epl-<?php echo esc_attr( $field_id ); ?>" class="epl-dashboard-widget postbox epl-menu-section epl-<?php echo esc_attr( $field_class ); ?>">
 									<?php
 									if ( ! empty( $field_group['label'] ) ) {
 										?>
@@ -130,12 +130,12 @@ $epl_settings = get_option( 'epl_settings' );
 											<div class="epl-field-wrapper epl-clearfix">
 												<div class="epl-field">
 													<?php if ( 'help' !== $field['type'] ) { ?>
-													<div class="epl-half-left">
+													<div class="epl-field-title">
 														<h4 id="epl-field-<?php echo esc_attr( $field['name'] ); ?>" class="epl-setting-heading"><?php echo esc_html( $field['label'] ); ?></h4>
 
 													</div>
 													<?php } ?>
-													<div class="<?php echo 'help' === $field['type'] ? 'epl-full' : 'epl-half-right'; ?>">
+													<div class="<?php echo 'help' === $field['type'] ? 'epl-full' : 'epl-field-options'; ?>">
 														<?php
 															$val = '';
 														if ( isset( $epl_settings[ $field['name'] ] ) ) {
