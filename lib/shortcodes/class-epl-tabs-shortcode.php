@@ -1,10 +1,10 @@
 <?php
 /**
- * SHORTCODE :: Listing [listing_advanced]
+ * SHORTCODE :: Tabs [epl_tabs]
  *
  * @package     EPL
  * @subpackage  Shortcode/Listing
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2021, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.5.0
  */
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // phpcs:disable WordPress.DB.SlowDBQuery
 
 /**
- * EPL_Advanced_Shortcode_Listing Class
+ * EPL_Tabs_Shortcode Class
  *
  * @since 3.5.0
  */
@@ -53,17 +53,17 @@ class EPL_Tabs_Shortcode {
 	 * @since 3.5.0
 	 * @var array $tabs Tabs.
 	 */
-    public $tabs;
+	public $tabs;
     
-    /**
+	/**
 	 * Shortcode Content.
 	 *
 	 * @since 3.5.0
 	 * @var array $content Content.
 	 */
-    public $content;
+	public $content;
     
-     /**
+	/**
 	 * Shortcode ID.
 	 *
 	 * @since 3.5.0
@@ -76,18 +76,18 @@ class EPL_Tabs_Shortcode {
 	 *
 	 * @since 3.5.0
 	 * @param array $atts Shortcode attributes.
-     * @param string Shortcode content.
+	 * @param string Shortcode content.
 	 * @param array $overrides Array of variables to override defaults.
 	 */
 	public function __construct( $atts, $content, $overrides = array(), $tab = false ) {
 
-        if( !$tab ) {
-            $this->atts = $atts;
-            $this->content = $content;
-            $this->shortcode_atts();
-            $this->override_atts( $overrides );
-            self::$id++;
-        }
+		if( !$tab ) {
+			$this->atts = $atts;
+			$this->content = $content;
+			$this->shortcode_atts();
+			$this->override_atts( $overrides );
+			self::$id++;
+		}
 	}
 
 	/**
@@ -118,18 +118,18 @@ class EPL_Tabs_Shortcode {
 		 */
 
 		$this->default_args = array(
-            'id'                      => self::$id,
-            'class'                   => '',
-            'wrap_class'              => '', // wrapper class.
-            'template'                => false,
-            'title'                   => '',
-            'type'                    => 'horizontal'
+			'id'         => self::$id,
+			'class'      => '',
+			'wrap_class' => '', // wrapper class.
+			'template'   => false,
+			'title'      => '',
+			'type'       => 'horizontal'
 		);
 
 		return $this->default_args;
-    }
+	}
     
-    /**
+	/**
 	 * Get default options.
 	 *
 	 * @since 3.5
@@ -139,10 +139,9 @@ class EPL_Tabs_Shortcode {
 		/**
 		 * Default args for single tab.
 		 */
-
 		$this->tab_default_args = array(
-            'id'                        => '',
-			'title'                     => __('Tab Title', 'easy-property-listings')
+			'id'    => '',
+			'title' => __( 'Tab Title', 'easy-property-listings' )
 		);
 
 		return $this->tab_default_args;
@@ -165,7 +164,6 @@ class EPL_Tabs_Shortcode {
 	 * @param string $value Meta value.
 	 */
 	public function set_attribute( $key, $value ) {
-
 		if ( isset( $this->attributes[ $key ] ) ) {
 			$this->attributes[ $key ] = $value;
 		}
@@ -180,36 +178,35 @@ class EPL_Tabs_Shortcode {
 	 * @since 3.5
 	 */
 	public function get_attribute( $key ) {
-
 		return isset( $this->attributes[ $key ] ) ? $this->attributes[ $key ] : null;
-    }
+	}
 
-    /**
+	/**
 	 * Process individual tabs
 	 *
 	 * @param array $atts Shortcode attributes.
-     * @param string Shortcode content.
+	 * @param string Shortcode content.
 	 *
 	 * @return string
 	 * @since 3.5
 	 */
-    function render_tab( $atts, $content ) {
+	public function render_tab( $atts, $content ) {
         
-        $atts               = shortcode_atts( $this->get_tab_default_args(), $atts );
-        $atts['id']         = $atts['id'] ?: rawurldecode( sanitize_title( $atts['title'] ) );;
-        $atts['title']      = sanitize_text_field( $atts['title'] );
-        // Save tab details to be used later.
-        $this->tabs[] = $atts; 
-        ob_start(); ?>
-        <div class="epl-tab-single" id="<?php echo esc_attr( 'epl-tab-'.$atts['id'] ); ?>">
-            <?php
-                echo do_shortcode($content);
-            ?>
-        </div> <?php
-        return ob_get_clean();
-    }
+		$atts          = shortcode_atts( $this->get_tab_default_args(), $atts );
+		$atts['id']    = $atts['id'] ?: rawurldecode( sanitize_title( $atts['title'] ) );;
+		$atts['title'] = sanitize_text_field( $atts['title'] );
+		// Save tab details to be used later.
+		$this->tabs[] = $atts; 
+		ob_start(); ?>
+			<div class="epl-tab-single" id="<?php echo esc_attr( 'epl-tab-'.$atts['id'] ); ?>">
+				<?php
+				echo do_shortcode($content);
+				?>
+			</div> <?php
+		return ob_get_clean();
+	}
     
-    /**
+	/**
 	 * Get the template
 	 *
 	 * @since 3.5.0
