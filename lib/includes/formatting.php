@@ -5,7 +5,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Formatting
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -50,13 +50,16 @@ function epl_sanitize_amount( $amount ) {
 /**
  * Returns a nicely formatted amount.
  *
- * @param string $amount Price amount to format.
- * @param bool   $decimals Whether or not to use decimals.  Useful when set to false for non-currency numbers.
+ * @param string $amount          Price amount to format.
+ * @param bool   $decimals        Whether or not to use decimals. Useful when set to false for non-currency numbers.
+ * @param bool   $preserve_format Whether to preserve amount format ie int / floats.
  *
  * @return string $amount Newly formatted amount or Price Not Available
- * @since 1.0
+ *
+ * @since 1.0.0
+ * @since 3.4.28 $preserve_format param added.
  */
-function epl_format_amount( $amount, $decimals = false ) {
+function epl_format_amount( $amount, $decimals = false, $preserve_format = false ) {
 	$thousands_sep = epl_get_thousands_separator();
 	$decimal_sep   = epl_get_decimal_separator();
 	$formatted     = '';
@@ -76,9 +79,13 @@ function epl_format_amount( $amount, $decimals = false ) {
 	if ( empty( $amount ) ) {
 		$amount = 0;
 	}
+	if ( $preserve_format && false === ( strpos( $amount, $decimal_sep ) ) ) {
+		$decimals = false;
+	}
 
 	$decimals = apply_filters( 'epl_format_amount_decimals', $decimals ? 2 : 0, $amount );
 	if ( is_numeric( $amount ) ) {
+
 		$formatted = number_format( $amount, $decimals, $decimal_sep, $thousands_sep );
 	}
 
@@ -270,4 +277,73 @@ function epl_sanitize_key( $key ) {
 	$raw_key = $key;
 	$key     = preg_replace( '/[^a-zA-Z0-9_\-\.\:\/]/', '', $key );
 	return apply_filters( 'epl_sanitize_key', $key, $raw_key );
+}
+
+/**
+ * Sanitize multiple checkbox
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized array values
+ */
+function epl_sanitize_checkbox_multiple( $values ) {
+	
+	$multi_values = !is_array( $values ) ? explode( ',', $values ) : $values;
+
+	return !empty( $multi_values ) ? array_map( 'sanitize_text_field', $multi_values ) : array();
+}
+
+/**
+ * Sanitize number
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_number( $value ) {
+	return absint( $value );
+}
+
+/**
+ * Sanitize text
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_text( $value ) {
+	return sanitize_text_field( $value );
+}
+
+/**
+ * Sanitize single checkbox
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_checkbox( $value ) {
+	return sanitize_text_field( $value );
+}
+
+/**
+ * Sanitize single radio
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_radio( $value ) {
+	return sanitize_text_field( $value );
+}
+
+/**
+ * Sanitize single radio
+ *
+ * @since  3.5.0
+ * @param  array $values.
+ * @return array Sanitized values
+ */
+function epl_sanitize_select( $value ) {
+	return sanitize_text_field( $value );
 }

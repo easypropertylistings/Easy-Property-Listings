@@ -3,8 +3,8 @@
  * Register Settings
  *
  * @package     EPL
- * @subpackage  Settings
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Functions/Settings
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -51,3 +51,17 @@ function epl_settings( $meta_key = '' ) {
 		return $epl_settings;
 	}
 }
+
+/**
+ * Re init EPL settings for customizer
+ *
+ * @since 3.5.0
+ */
+function epl_customize_preview_init() {
+
+	global $epl_settings;
+
+	$epl_settings = get_option( 'epl_settings' );
+
+}
+add_action( 'customize_preview_init', 'epl_customize_preview_init');

@@ -168,7 +168,6 @@ function epl_property_blog_default() {
 	// Status Removal Do Not Display Withdrawn or OffMarket listings.
 	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
-
 		$option = '';
 		if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_property_card_style'] ) ) {
 			$option = $epl_settings['epl_property_card_style'];
@@ -198,7 +197,6 @@ function epl_property_blog_slim() {
 	// Status Removal.
 	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
-
 		$option = '';
 		if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_property_card_style'] ) ) {
 			$option = $epl_settings['epl_property_card_style'];
@@ -227,7 +225,6 @@ function epl_property_blog_table() {
 	// Status Removal.
 	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
-
 		$option = '';
 		if ( ! empty( $epl_settings ) && isset( $epl_settings['epl_property_card_style'] ) ) {
 			$option = $epl_settings['epl_property_card_style'];
@@ -404,7 +401,6 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 	if ( ! in_array( $property_status, array( 'withdrawn', 'offmarket' ), true ) ) {
 
 		// Do Not Display Withdrawn or OffMarket listings.
-
 		?>
 			<div id="post-<?php the_ID(); ?>" style="width: 20%;margin-right: 1em;float: left;" class="epl-widget property-widget-image hentry">
 				<div class="entry-header">
@@ -452,3 +448,38 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 		<?php
 	}
 }
+
+/**
+ * Modify the Excerpt length on archive pages
+ *
+ * @param int $length Excerpt word length.
+ *
+ * @return int
+ * @since 1.0.0
+ * @since 3.4.27 Depreciated function and deactivated filter.
+ */
+function epl_excerpt_length( $length ) {
+	global $post;
+	if ( 'property' === $post->post_type ) {
+		return 16;
+	} elseif ( 'rental' === $post->post_type ) {
+		return 16;
+	} elseif ( 'commercial' === $post->post_type ) {
+		return 16;
+	} elseif ( 'commercial_land' === $post->post_type ) {
+		return 16;
+	} elseif ( 'business' === $post->post_type ) {
+		return 16;
+	} elseif ( 'rural' === $post->post_type ) {
+		return 16;
+	} elseif ( 'land' === $post->post_type ) {
+		return 16;
+	} elseif ( 'suburb' === $post->post_type ) {
+		return 39;
+	} else {
+		return 55;
+	}
+}
+/**
+ * Filter Removed. add_filter( 'excerpt_length', 'epl_excerpt_length', 999 ); Removed due to fix.
+ */

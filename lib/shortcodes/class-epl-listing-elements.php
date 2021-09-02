@@ -3,8 +3,8 @@
  * Listing Elements Shortcode class
  *
  * @package     EPL
- * @subpackage  Classes/Listing-Elements
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Classes/ListingElements
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.3
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * EPL_Advanced_Shortcode_Listing Class
+ * EPL_Listing_Elements Class
  *
  * @since 3.3.0
  */

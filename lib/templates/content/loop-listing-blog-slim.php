@@ -3,8 +3,8 @@
  * Loop Property Template: Slim home open list
  *
  * @package     EPL
- * @subpackage  Templates/Content
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Templates/LoopListingBlogSlim
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */

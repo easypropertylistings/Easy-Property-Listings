@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Admin/Functions
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -832,3 +832,50 @@ function epl_update_featured_listing() {
 	);
 }
 add_action( 'wp_ajax_epl_update_featured_listing', 'epl_update_featured_listing' );
+
+
+/**
+ * Load the plugin translations into wp.i18n for use in JavaScript markers
+ *
+ * @since 3.5.0
+ */
+function epl_load_inline_script_locale_data() {
+	static $loaded = false;
+
+	if ( false === $loaded ) {
+		$loaded      = true;
+		$locale_data = epl_get_locale_data( 'easy-property-listings' );
+		wp_add_inline_script(
+			'wp-i18n',
+			'wp.i18n.setLocaleData( ' . json_encode( $locale_data ) . ', "easy-property-listings" );'
+		);
+	}
+}
+
+/**
+ * Load the translations MO file into memory.
+ *
+ * @since 3.5.0
+ * @return array Array of transated strings.
+ */
+function epl_get_locale_data() {
+	
+	$translations = get_translations_for_domain( 'easy-property-listings'  );
+
+	$locale = array(
+		'' => array(
+			'domain' =>  'easy-property-listings',
+			'lang'   => is_admin() ? get_user_locale() : get_locale(),
+		),
+	);
+
+	if ( ! empty( $translations->headers['Plural-Forms'] ) ) {
+		$locale['']['plural_forms'] = $translations->headers['Plural-Forms'];
+	}
+
+	foreach ( $translations->entries as $msgid => $entry ) {
+		$locale[ $msgid ] = $entry->translations;
+	}
+
+	return $locale;
+}

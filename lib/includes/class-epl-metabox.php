@@ -3,7 +3,7 @@
  * Metabox Oject
  *
  * @package     EPL
- * @subpackage  Classes/Metaboxs
+ * @subpackage  Classes/MetaboxesCustomFields
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
@@ -203,7 +203,7 @@ class EPL_METABOX {
 	 *                                 of the box array (which is the second parameter passed
 	 *                                 to your callback). Default null.
 	 */
-	public function add_meta_box( $id = '', $label = '', $func = 'inner_meta_box', $post_type = array(), $context = 'normal', $priority = 'default', $args ) {
+	public function add_meta_box( $id = '', $label = '', $func = 'inner_meta_box', $post_type = array(), $context = 'normal', $priority = 'default', $args = null ) {
 		add_meta_box(
 			$id,
 			$label,
@@ -220,84 +220,107 @@ class EPL_METABOX {
 	 *
 	 * @param array $post Post object.
 	 * @param array $args Array of options.
-	 * 
+	 *
 	 * @since 3.4.19 Updated to new html structure for fields using html lists
 	 */
 	public function inner_meta_box( $post, $args ) {
-		$groups = $args['args']['groups'];
-		$groups = array_filter( $groups );
+		$groups    = $args['args']['groups'];
+		$groups    = array_filter( $groups );
+		$render_as = empty( $args['args']['render_as'] ) ? 'default' : sanitize_text_field( $args['args']['render_as'] );
+		// This supports both tabs-horizontal and tabs-vertical options.
 		if ( ! empty( $groups ) ) {
 			wp_nonce_field( $this->prefix . 'inner_custom_box', $this->prefix . 'inner_custom_box_nonce' );
-			foreach ( $groups as $group ) { ?>
-				<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
-					<?php
-						$group['label'] = trim( $group['label'] );
-					if ( ! empty( $group['label'] ) ) {
-						echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
-					}
-					?>
-					<ul class="form-table epl-form-table">
+			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
+				// Wrapper for tabs.
+				echo '<div class="epl-group-tab-wrapper epl-' . esc_attr( $render_as ) . '">';
+			}
+			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) { ?>
+				<ul class="epl-group-tabs">
+				<?php
+				foreach ( $groups as $group ) {
+					echo '<li><a href="#epl-field-group-' . esc_attr( $group['id'] ) . '"><h3>' . esc_attr( $group['label'] ) . '</h3></a></li>';
+				}
+				?>
+				</ul>
+				<?php
+			}
+			foreach ( $groups as $group ) {
+				?>
+				<div id="epl-field-group-<?php echo esc_attr( $group['id'] ); ?>">
+					<div class="epl-inner-div col-<?php echo esc_attr( $group['columns'] ); ?> table-<?php echo esc_attr( $args['args']['context'] ); ?>">
 						<?php
-						$fields         = $group['fields'];
-						$gp_field_width = isset( $group['width'] ) ? $group['width'] : '1';
-						$fields         = array_filter( $fields );
-						if ( ! empty( $fields ) ) {
-							foreach ( $fields as $field ) {
-								if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
-									if ( in_array( $post->post_type, $field['exclude'], true ) ) {
-										continue;
-									}
-								}
-
-								if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
-									if ( ! in_array( $post->post_type, $field['include'], true ) ) {
-										continue;
-									}
-								}
-								$val = get_post_meta( $post->ID, $field['name'], true );
-								if ( has_action( 'epl_before_meta_field_' . $field['name'] ) ) {
-									do_action( 'epl_before_meta_field_' . $field['name'], $post, $val );
-								}
-
-								$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
-								?>
-								<li id="epl_<?php echo esc_attr( $field['name'] ); ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo esc_attr( $field_width ); ?> epl_<?php echo esc_attr( $field['name'] ); ?>_wrap epl-field-type-<?php echo esc_attr( $field['type'] ); ?>">
-
-
-									<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
-									<div class="form-field epl-form-field-label">
-										<span valign="top" scope="row">
-											<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_attr( $field['label'] ); ?></label>
-										</span>
-									</div>
-									<?php endif; ?>
-
-
-									<div id="epl_<?php echo esc_attr( $field['name'] ); ?>" class="form-field epl-form-field-value epl_<?php echo esc_attr( $field['name'] ); ?>">
-										<?php
-											epl_render_html_fields( $field, $val );
-										?>
-									</div>
-
-								</li>
-
-								<?php
-								if ( has_action( 'epl_after_meta_field_' . $field['name'] ) ) {
-									do_action( 'epl_after_meta_field_' . $field['name'], $post, $val );
-								}
-								?>
-								<?php
-							}
+							$group['label'] = trim( $group['label'] );
+						if ( ! empty( $group['label'] ) && ! in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
+							echo '<h3>' . esc_attr( $group['label'] ) . '</h3>';
 						}
 						?>
-					</ul>
+						<ul class="form-table epl-form-table">
+							<?php
+							$fields         = $group['fields'];
+							$gp_field_width = isset( $group['width'] ) ? $group['width'] : '1';
+							$fields         = array_filter( $fields );
+							if ( ! empty( $fields ) ) {
+								foreach ( $fields as $field ) {
+									if ( isset( $field['exclude'] ) && ! empty( $field['exclude'] ) ) {
+										if ( in_array( $post->post_type, $field['exclude'], true ) ) {
+											continue;
+										}
+									}
+
+									if ( isset( $field['include'] ) && ! empty( $field['include'] ) ) {
+										if ( ! in_array( $post->post_type, $field['include'], true ) ) {
+											continue;
+										}
+									}
+									$val = get_post_meta( $post->ID, $field['name'], true );
+									if ( has_action( 'epl_before_meta_field_' . $field['name'] ) ) {
+										do_action( 'epl_before_meta_field_' . $field['name'], $post, $val );
+									}
+
+									$field_width = isset( $field['width'] ) ? $field['width'] : $gp_field_width;
+									?>
+									<li id="epl_<?php echo esc_attr( $field['name'] ); ?>_wrap" class="epl-form-field-wrap epl-grid-<?php echo esc_attr( $field_width ); ?> epl_<?php echo esc_attr( $field['name'] ); ?>_wrap epl-field-type-<?php echo esc_attr( $field['type'] ); ?>">
+
+
+										<?php if ( 'checkbox_single' !== $field['type'] || ( isset( $field['opts'] ) && 1 !== count( $field['opts'] ) ) ) : ?>
+										<div class="form-field epl-form-field-label">
+											<span valign="top" scope="row">
+												<label for="<?php echo esc_attr( $field['name'] ); ?>"><?php echo esc_attr( $field['label'] ); ?></label>
+											</span>
+										</div>
+										<?php endif; ?>
+
+
+										<div id="epl_<?php echo esc_attr( $field['name'] ); ?>" class="form-field epl-form-field-value epl_<?php echo esc_attr( $field['name'] ); ?>">
+											<?php
+												epl_render_html_fields( $field, $val );
+											?>
+										</div>
+
+									</li>
+
+									<?php
+									if ( has_action( 'epl_after_meta_field_' . $field['name'] ) ) {
+										do_action( 'epl_after_meta_field_' . $field['name'], $post, $val );
+									}
+									?>
+									<?php
+								}
+							}
+							?>
+						</ul>
+					</div>
 				</div>
 				<?php
 			}
 			?>
-		<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo esc_attr( $args['id'] ); ?>" />
-		<div class="epl-clear"></div>
+			<input type="hidden" name="epl_meta_box_ids[]" value="<?php echo esc_attr( $args['id'] ); ?>" />
+			<div class="epl-clear"></div>
 			<?php
+			if ( in_array( $render_as, array( 'tabs-horizontal', 'tabs-vertical' ), true ) ) {
+				// Wrapper end.
+				echo '</div>';
+			}
 		}
 	}
 
@@ -310,7 +333,7 @@ class EPL_METABOX {
 	 * @param int $post_ID The post ID.
 	 *
 	 * @return int
-	 * @since 3.4.17	Fixed issue : empty values not getting saved for decimals & numbers
+	 * @since 3.4.17    Fixed issue : empty values not getting saved for decimals & numbers
 	 */
 	public function save_meta_box( $post_ID ) {
 
@@ -380,7 +403,6 @@ class EPL_METABOX {
 											} elseif ( in_array( $field['type'], array( 'number', 'decimal' ), true ) ) {
 
 												// Validate numeric data.
-
 												if ( ! is_numeric( $_POST[ $field['name'] ] ) && ! empty( $_POST[ $field['name'] ] ) ) {
 													continue;
 												}
@@ -393,7 +415,6 @@ class EPL_METABOX {
 											} elseif ( in_array( $field['type'], array( 'url', 'file' ), true ) ) {
 
 												// Sanitize URLs.
-
 												$_POST[ $field['name'] ] = esc_url_raw( wp_unslash( $_POST[ $field['name'] ] ) );
 
 											} elseif ( 'auction-date' === $field['type'] && ! empty( $_POST[ $field['name'] ] ) ) {

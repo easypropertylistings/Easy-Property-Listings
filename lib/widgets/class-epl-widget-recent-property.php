@@ -3,7 +3,7 @@
  * WIDGET :: Recent Property
  *
  * @package     EPL
- * @subpackage  Widget/Listing
+ * @subpackage  Widget/Classes/Listing
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -142,7 +142,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		$query_args['epl_widget_instance']           = $this->id;
 
 		$query_args = apply_filters( 'epl_recent_property_widget_query', $query_args, $instance, $args );
-		$query = new WP_Query( $query_args );
+		$query      = new WP_Query( $query_args );
 
 		epl_get_template_part(
 			'widgets/listing/' . ( strlen( trim( $instance['view'] ) ) ? trim( $instance['view'] ) : 'default' ) . '.php',

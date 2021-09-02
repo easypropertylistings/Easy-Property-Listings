@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/Templates
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -77,6 +77,8 @@ function epl_create_property_object() {
 			$epl_author_secondary = new EPL_Author_meta( $ID );
 		}
 	}
+
+	add_filter( 'excerpt_length', 'epl_archive_custom_excerpt_length', 999 );
 }
 
 add_action( 'wp', 'epl_create_property_object' );
@@ -138,13 +140,16 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
 /**
  * Featured Image on archive template now loading through filter
  *
- * @since      2.2
+ * @param string $image_size  The image size.
+ * @param string $image_class The image class.
+ * @param bool   $link        Enable or disable the link with true/false. Default true.
+ * @param bool   $stickers    Enable or disable the stickers with true/false. Default true.
  *
- * @param      string  $image_size   The image size.
- * @param      string  $image_class  The image class.
- * @param      boolean $link         The link.
+ * @since 2.2
+ * @since 3.4.27 New: Additional param to disable / enable stickers
+ * @since 3.4.30 Fix: Missing parameter filter. Increased from 3 to 4.
  */
-function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true ) {
+function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
 	if ( empty( $image_size ) ) {
 		$image_size = 'epl-image-medium-crop';
@@ -162,9 +167,11 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
 					<div class="epl-blog-image">
+						<?php if ( $stickers ) : ?>
 						<div class="epl-stickers-wrapper">
 							<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
 						</div>
+						<?php endif; ?>
 						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
 					</div>
 			<?php if ( true === $link ) { ?>
@@ -175,7 +182,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 	}
 
 }
-add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 3 );
+add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 4 );
 
 /**
  * Featured Image in widgets
@@ -283,21 +290,19 @@ function epl_get_template_part( $template, $arguments = array() ) {
  * Modify the Excerpt length on Archive pages
  *
  * @since 1.0
+ * @since 3.4.27 Alter length only for EPL posts.
  * @param string $length Excerpt word length.
  * @return int|string
  */
 function epl_archive_custom_excerpt_length( $length ) {
-	global $epl_settings;
-	$excerpt = '';
-	if ( ! empty( $epl_settings ) && isset( $epl_settings['display_excerpt_length'] ) ) {
-		$excerpt = $epl_settings['display_excerpt_length'];
+
+	if ( ! is_epl_post() ) {
+		return $length;
 	}
-	if ( ! empty( $excerpt ) ) {
-		return 22;
-	} else {
-		return $excerpt;
-	}
+
+	return epl_get_option( 'display_excerpt_length', 22 );
 }
+
 
 /**
  * Filter which listing status should not be displayed
@@ -318,6 +323,8 @@ function epl_hide_listing_statuses() {
  *
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
+ * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
+ * @since 3.4.36 New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.
  *
  * @param string $template  The template.
  */
@@ -328,7 +335,6 @@ function epl_property_blog( $template = '' ) {
 	}
 	$template = str_replace( '_', '-', $template );
 
-	add_filter( 'excerpt_length', 'epl_archive_custom_excerpt_length', 999 );
 	global $epl_settings,$property;
 
 	if ( is_null( $property ) ) {
@@ -339,20 +345,36 @@ function epl_property_blog( $template = '' ) {
 	// Status Removal Do Not Display Withdrawn or OffMarket listings.
 	if ( ! in_array( $property_status, epl_hide_listing_statuses(), true ) ) {
 		// Do Not Display Withdrawn or OffMarket listings.
-		$action_check = has_action( 'epl_loop_template' );
-		if ( ! empty( $action_check ) && in_array( $template, array( 'default', 'blog' ), true ) ) {
-			do_action( 'epl_loop_template' );
-		} else {
 
-			if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
+		$action_check_type = has_action( 'epl_loop_template_' . $property->post->post_type );
+		$action_check      = has_action( 'epl_loop_template' );
+		$action_check_core = false;
+		$action_exists     = false;
 
-				epl_get_template_part( 'loop-listing-blog-' . $template . '-compatibility.php' );
+		if ( in_array( $property->post->post_type, epl_get_core_post_types(), true ) ) {
+			$action_check_core = has_action( 'epl_loop_template_listing' );
+		}
 
-			} else {
-				$tpl_name = 'loop-listing-blog-' . $template . '.php';
-				$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
-				epl_get_template_part( $tpl_name );
+		if ( in_array( $template, array( 'default', 'blog' ), true ) ) {
+
+			// Check for action in order of priority : epl_loop_template_{post_type} > epl_loop_template_listing ( only for core )  > epl_loop_template.
+			if ( ! empty( $action_check_type ) ) {
+				do_action( 'epl_loop_template_' . $property->post->post_type );
+				$action_exists = true;
+			} elseif ( ! empty( $action_check_core ) ) {
+				do_action( 'epl_loop_template_listing' );
+				$action_exists = true;
+			} elseif ( ! empty( $action_check ) ) {
+				do_action( 'epl_loop_template' );
+				$action_exists = true;
 			}
+		}
+
+		// Fallback to core template.
+		if ( ! $action_exists ) {
+			$tpl_name = 'loop-listing-blog-' . $template . '.php';
+			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
+			epl_get_template_part( $tpl_name );
 		}
 	} // End Status Removal.
 }
@@ -813,10 +835,10 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 /**
  * Property icons
  *
- * @param string $returntype  The returntype.
+ * @param string $returntype The returntype.
  *
  * @since 1.0.0
- * @since 3.3.0 Revides.
+ * @since 3.3.0 Revised.
  */
 function epl_property_icons( $returntype = 'i' ) {
 	$returntype = empty( $returntype ) ? 'i' : $returntype;
@@ -864,6 +886,44 @@ function epl_property_commercial_category() {
 	}
 }
 add_action( 'epl_property_commercial_category', 'epl_property_commercial_category' );
+
+/**
+ * Business Categories
+ *
+ * @param string $tag The div tag.
+ * @param string $class The css class name.
+ *
+ * @since 3.5.0
+ */
+function epl_business_categories( $tag = 'ul', $class = 'business-category' ) {
+	global $property;
+
+	if ( empty( $tag ) ) {
+		$tag = 'ul';
+	}
+
+	echo wp_kses_post( $property->get_property_business_category( $tag, $class ) );
+}
+add_action( 'epl_property_business_categories', 'epl_business_categories', 10, 2 );
+
+/**
+ * Business Parent Category
+ *
+ * @param string $tag The div tag.
+ * @param string $class The css class name.
+ *
+ * @since 3.5.0
+ */
+function epl_business_parent_category( $tag = 'span', $class = 'business-parent-category' ) {
+	global $property;
+
+	if ( empty( $tag ) ) {
+		$tag = 'span';
+	}
+
+	echo wp_kses_post( $property->get_property_business_parent_category( $tag, $class ) );
+}
+add_action( 'epl_property_business_parent_category', 'epl_business_parent_category', 10, 2 );
 
 /**
  * Property Available Dates
@@ -1032,11 +1092,14 @@ function epl_get_video_host( $url ) {
  *
  * @since 1.0
  * @since 3.3
+ * @since 3.5 mp4 video support in video field.
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
 	/** Remove related videos from youtube */
 	if ( 'youtube' === epl_get_video_host( $property_video_url ) ) {
+
+		$property_video_url = epl_convert_youtube_embed_url( $property_video_url );
 
 		if ( strpos( $property_video_url, '?' ) > 0 ) {
 			$property_video_url .= '&rel=0';
@@ -1048,13 +1111,40 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 	if ( ! empty( $property_video_url ) ) {
 		$video_html = '<div class="epl-video-container videoContainer">';
 
-			$video_html .= wp_oembed_get(
-				$property_video_url,
-				array( 'width' => apply_filters( 'epl_property_video_width', $width ) )
-			);
+			if ( strpos($property_video_url, 'mp4') !== false ) {
+			        $video_html .= do_shortcode( '[video src="'.$property_video_url.'" width="'.apply_filters( 'epl_property_video_width', $width ).'"]' );
+		  	} else {
+		  		$video_html .= wp_oembed_get(
+					$property_video_url,
+					array( 'width' => apply_filters( 'epl_property_video_width', $width ) )
+				);
+		  	}
+			
 		$video_html     .= '</div>';
 		return $video_html;
 	}
+}
+
+/**
+ * Convert embed URLs to non embed URLs for WP Oembed compatibility.
+ *
+ * @param  string $url The url.
+ *
+ * @return string   converted URL
+ * @since  3.4.27
+ */
+function epl_convert_youtube_embed_url( $url ) {
+
+	if ( strpos( $url, 'embed' ) > 0 ) {
+
+		$video_id = epl_get_youtube_id_from_url( $url );
+
+		if ( ! empty( $video_id ) ) {
+			$url = 'https://www.youtube.com/watch?v=' . $video_id;
+		}
+	}
+
+	return apply_filters( 'epl_youtube_embed_url', $url );
 }
 
 /**
@@ -1087,8 +1177,9 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
 /**
  * Property Tab section details output
  *
- * @since      1.0
- * @since      3.4.14 Bug Fix : custom features callback output wrongly placed.
+ * @since 1.0.0
+ * @since 3.4.14 Fix: Custom features callback output wrongly placed.
+ * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @hooked property_tab_section
  */
 function epl_property_tab_section() {
@@ -1288,7 +1379,7 @@ function epl_property_tab_section() {
 	if ( 'land' !== $property->post_type || 'business' !== $property->post_type ) {
 		?>
 		<?php $property_features_title = apply_filters( 'epl_property_sub_title_property_features', __( 'Property Features', 'easy-property-listings' ) ); ?>
-		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo esc_attr( $property_features_title ); ?></h5>
+		<h5 class="epl-tab-title epl-tab-title-property-features tab-title"><?php echo wp_kses_post( $property_features_title ); ?></h5>
 			<div class="epl-tab-content tab-content">
 				<ul class="epl-property-features listing-info epl-tab-<?php echo esc_attr( $property->get_epl_settings( 'display_feature_columns' ) ); ?>-columns">
 					<?php echo wp_kses_post( $the_property_feature_list . ' ' . $property->get_features_from_taxonomy() ); ?>
@@ -2277,6 +2368,7 @@ function epl_template_class( $class = false, $context = 'single' ) {
  * @param      array $query  The query.
  */
 function epl_pagination( $query = array() ) {
+	
 	global $epl_settings;
 	$fancy_on = 1 === (int) epl_get_option( 'use_fancy_navigation', 0 ) ? 1 : 0;
 	if ( $fancy_on ) {
@@ -2301,7 +2393,7 @@ function epl_get_active_theme() {
 
 	} else {
 		// older versions.
-		$active_theme = get_current_theme(); //phpcs:ignore
+		$active_theme = wp_get_theme(); //phpcs:ignore
 	}
 	$active_theme = str_replace( ' ', '', strtolower( $active_theme ) );
 	return apply_filters( 'epl_active_theme', $active_theme );
@@ -2346,7 +2438,7 @@ function epl_get_shortcode_list() {
  */
 function epl_wp_doing_ajax() {
 
-	if( function_exists( 'wp_doing_ajax' ) ) {
+	if ( function_exists( 'wp_doing_ajax' ) ) {
 		return wp_doing_ajax();
 	} else {
 		return apply_filters( 'wp_doing_ajax', defined( 'DOING_AJAX' ) && DOING_AJAX );
@@ -2475,6 +2567,7 @@ add_action( 'wp_ajax_nopriv_epl_update_default_view', 'epl_update_default_view' 
  * Custom the_content filter
  *
  * @since      2.2
+ * @since      3.4.35 Added support for WP blocks rendering
  */
 function epl_the_content_filters() {
 
@@ -2490,6 +2583,7 @@ function epl_the_content_filters() {
 		add_filter( 'epl_get_the_content', array( &$vidembed, 'run_shortcode' ), 8 );
 		add_filter( 'epl_get_the_content', array( &$vidembed, 'autoembed' ), 8 );
 		add_filter( 'epl_get_the_content', 'do_shortcode', 11 );
+		add_filter( 'epl_get_the_content', 'do_blocks', 11 );
 	}
 
 	add_filter( 'epl_get_the_excerpt', 'epl_trim_excerpt' );
@@ -2774,15 +2868,15 @@ function epl_strip_tags( $value, $allowed_tags = '' ) {
 /**
  * Esc Attr
  *
- * @since      2.2
- *
- * @param      string $value  The value.
- *
+ * @param string $value  The value.
  * @return string|void
+ *
+ * @since 2.2.0
+ * @since 3.4.23 Fix security function check from array to string.
  */
 function epl_esc_attr( $value ) {
 
-	if ( ! is_array( $value ) ) {
+	if ( is_string( $value ) ) {
 		return esc_attr( $value );
 	}
 	return $value;
@@ -2791,7 +2885,7 @@ function epl_esc_attr( $value ) {
 /**
  * Post Count
  *
- * @since      2.2
+ * @since      2.2.0
  *
  * @param      string $type        The type.
  * @param      string $meta_key    The meta key.
@@ -3034,7 +3128,8 @@ add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_call
 /**
  * Search Not Found Messages
  *
- * @since      3.1.8
+ * @since 3.1.8
+ * @since 3.4.33 Tweak: Search results not found filter epl_property_search_not_found_title allows basic html to be passed.
  */
 function epl_property_search_not_found_callback() {
 
@@ -3045,7 +3140,7 @@ function epl_property_search_not_found_callback() {
 	?>
 
 	<div class="epl-search-not-found-title entry-header clearfix">
-		<h3 class="entry-title"><?php echo esc_attr( $title ); ?></h3>
+		<h3 class="entry-title"><?php echo wp_kses_post( $title ); ?></h3>
 	</div>
 
 	<div class="epl-search-not-found-message entry-content clearfix">
@@ -3059,11 +3154,12 @@ add_action( 'epl_property_search_not_found', 'epl_property_search_not_found_call
 /**
  * Add Listing Status and Under Offer to Post Class
  *
- * @since      3.1.16
- *
  * @param      array $classes  The classes.
  *
  * @return     array
+ *
+ * @since 3.1.16
+ * @since 3.4.23 Added compatibility class.
  */
 function epl_property_post_class_listing_status_callback( $classes ) {
 
@@ -3085,6 +3181,11 @@ function epl_property_post_class_listing_status_callback( $classes ) {
 			$classes[]    = $class_prefix . strtolower( $commercial_type );
 		}
 	}
+
+	if ( 'on' === epl_get_option( 'epl_feeling_lucky', 'off' ) && is_epl_post_archive() ) {
+		$classes[] = 'epl-property-blog-compatibility';
+	}
+
 	return $classes;
 }
 add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
@@ -3206,29 +3307,393 @@ add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_ac
 
 /**
  * Get Post ID from Unique ID
- * @param  string $unique_id Unique ID
+ *
+ * @param  string $unique_id Unique ID.
  * @return mixed false if not found, else Post ID
  * @since 3.5.0
  */
 function epl_get_post_id_from_unique_id( $unique_id = '' ) {
 
-	if( '' === $unique_id )
+	if ( '' === $unique_id ) {
 		return false;
+	}
 
 	$args = array(
 		'meta_key'       => 'property_unique_id',
 		'meta_value'     => $unique_id,
 		'post_type'      => epl_get_core_post_types(),
 		'post_status'    => 'publish',
-		'posts_per_page' => -1
+		'posts_per_page' => -1,
 	);
 
-	$posts = get_posts($args);
+	$posts = get_posts( $args );
 
-	if( ! empty( $posts ) ) {
+	if ( ! empty( $posts ) ) {
 		$post = current( $posts );
 		return $post->ID;
 	}
 
 	return false;
 }
+
+/**
+ * Renders stickers, based on meta values, an alternative to epl_price_stickers.
+ *
+ * @param array $options The options.
+ * @param array $stickers The stickers.
+ *
+ * @throws Exception Something.
+ * @since 3.4.27
+ */
+function epl_stickers( $options = array(), $stickers = array() ) {
+
+	global $post;
+
+	if ( ! is_epl_post() ) {
+		return;
+	}
+
+	$default_options = array(
+		'wrap'          => false,
+		'wrap_class'    => 'epl-stickers-wrapper',
+		'wrapper_tag'   => 'div',
+		'sticker_tag'   => 'span',
+		'sticker_class' => 'status-sticker',
+		'max_stickers'  => 2,
+	);
+
+	$sticker_counts = 0;
+
+	$options = array_merge( $default_options, $options );
+
+	if ( empty( $stickers ) ) {
+		$stickers = epl_get_stickers_array();
+	}
+
+	$options = apply_filters( 'epl_stickers_options', $options );
+
+	if ( $options['wrap'] ) {
+		echo '<' . esc_attr( $options['wrapper_tag'] ) . ' class="' . esc_attr( $options['wrap_class'] ) . '">';
+	}
+
+	foreach ( $stickers as $key => $sticker ) {
+
+		if ( $sticker_counts === $default_options['max_stickers'] ) {
+			break;
+		}
+		?>
+
+		<<?php echo esc_attr( $options['sticker_tag'] ); ?> class="<?php echo esc_attr( $options['sticker_class'] . ' ' . $sticker['class'] ); ?>">
+			<?php
+				echo isset( $sticker['before'] ) ?
+				wp_kses_post( $sticker['before'] ) : '';
+				echo wp_kses_post( $sticker['label'] );
+				echo isset( $sticker['after'] ) ?
+				wp_kses_post( $sticker['after'] ) : '';
+			?>
+		</<?php echo esc_attr( $options['sticker_tag'] ); ?>>
+			<?php
+				$sticker_counts++;
+	}
+
+	if ( $options['wrap'] ) {
+		echo '</' . esc_attr( $options['wrapper_tag'] ) . '>';
+	}
+
+}
+
+/**
+ * Returns stickers array based on type, status etc.
+ *
+ * @param array $sticker_keys Array of keys.
+ *
+ * @return mixed|void
+ *
+ * @throws Exception Something.
+ * @since 3.4.27
+ * @since 3.4.28 Added array and filter.
+ */
+function epl_get_stickers_array( $sticker_keys = array() ) {
+
+	global $post;
+
+	$stickers = array(
+
+		'under_offer'           => array(
+			'conditions' => array(
+				'property_status'      => 'current',
+				'property_under_offer' => array( 'yes' ),
+			),
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_under_offer' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'under-offer',
+		),
+		'home_open'             => array(
+			'conditions' => array(
+				'property_inspection_times' => array( null, '' ),
+			),
+			'compare'    => '!=',
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_home_open' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'open',
+		),
+
+		'new'                   => array(
+			'type'   => epl_get_core_post_types(),
+			'label'  => epl_get_option( 'label_new' ),
+			'before' => '',
+			'after'  => '',
+			'class'  => 'new',
+
+		),
+		'rental_lease'          => array(
+			'conditions' => array(
+				'property_status' => 'current',
+			),
+			'type'       => array( 'rental' ),
+			'label'      => __( 'For Lease', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-lease',
+		),
+		'leased'                => array(
+			'conditions' => array(
+				'property_status' => 'leased',
+			),
+			'type'       => array( 'rental', 'commercial_land', 'commercial' ),
+			'label'      => epl_get_option( 'label_leased' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'leased',
+		),
+		'current_sales'         => array(
+			'conditions' => array(
+				'property_status' => 'current',
+			),
+			'type'       => array( 'property', 'rural', 'land', 'business' ),
+			'label'      => __( 'For Sale', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-sale',
+		),
+		'sold'                  => array(
+			'conditions' => array(
+				'property_status' => 'sold',
+			),
+			'type'       => epl_get_core_post_types(),
+			'label'      => epl_get_option( 'label_sold' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'sold',
+		),
+		'commercial_sale_lease' => array(
+			'conditions' => array(
+				'property_status'           => 'current',
+				'property_com_listing_type' => array( 'both' ),
+			),
+			'type'       => array( 'commercial', 'commercial_land' ),
+			'label'      => __( 'For Sale & Lease', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-sale',
+		),
+		'commercial_sale'       => array(
+			'conditions' => array(
+				'property_status'           => 'current',
+				'property_com_listing_type' => array( 'sale' ),
+			),
+			'type'       => array( 'commercial', 'commercial_land' ),
+			'label'      => __( 'For Sale', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-sale',
+		),
+		'commercial_lease'      => array(
+			'conditions' => array(
+				'property_status'           => 'current',
+				'property_com_listing_type' => array( 'lease' ),
+			),
+			'type'       => array( 'commercial', 'commercial_land' ),
+			'label'      => __( 'For Lease', 'easy-property-listings' ),
+			'before'     => '',
+			'after'      => '',
+			'class'      => 'for-lease',
+		),
+
+	);
+
+	/**
+	 * Hook into this array to add / remove stickers based on conditions.
+	 *
+	 * @var callable
+	 */
+	$stickers = apply_filters( 'epl_available_stickers', $stickers );
+
+	$return = array();
+
+	foreach ( $stickers as $key => $sticker ) {
+
+		$add_sticker = false;
+
+		if ( ! empty( $sticker_keys ) && ! in_array( $key, $sticker_keys, true ) ) {
+			continue;
+		}
+
+		if ( ! empty( $sticker ) && is_array( $sticker ) ) {
+
+			if ( ! in_array( get_post_type(), $sticker['type'], true ) ) {
+				continue;
+			}
+
+			if ( 'new' === $key ) {
+
+				$date = new DateTime( $post->post_date );
+				$now  = new DateTime();
+
+				// php > 5.3.
+				if ( method_exists( $now, 'diff' ) ) {
+
+					$diff = $now->diff( $date );
+					$diff = $diff->days;
+				} else {
+					$diff = strtotime( $now->format( 'M d Y ' ) ) - strtotime( $date->format( 'M d Y ' ) );
+					$diff = floor( $diff / 3600 / 24 );
+
+				}
+
+				if ( epl_get_option( 'sticker_new_range' ) >= $diff ) {
+
+					$return[ $key ] = array(
+						'label'  => $sticker['label'],
+						'class'  => $sticker['class'],
+						'before' => $sticker['before'],
+						'after'  => $sticker['after'],
+					);
+				}
+			} else {
+
+				$conditions = $sticker['conditions'];
+				$compare    = isset( $sticker['compare'] ) ? $sticker['compare'] : '=';
+
+				$add_sticker = epl_sticker_is_condition_valid( $conditions, $compare );
+
+			}
+
+			if ( $add_sticker ) {
+				$return[ $key ] = array(
+					'label'  => $sticker['label'],
+					'class'  => $sticker['class'],
+					'before' => $sticker['before'],
+					'after'  => $sticker['after'],
+				);
+			}
+		}
+	}
+
+	/**
+	 * List of stickers for current listing, hook here if only need to change labels,
+	 * class etc for displayed labels.
+	 */
+	return apply_filters( 'epl_stickers_array', $return );
+}
+
+/**
+ * Check if sticker condition is valid.
+ *
+ * @param array  $condition The condition.
+ * @param string $compare   Comparison.
+ *
+ * @return bool
+ * @since 3.4.28
+ */
+function epl_sticker_is_condition_valid( $condition, $compare = '=' ) {
+
+	$condition_met   = 0;
+	$total_condition = count( $condition );
+	$match           = false;
+
+	foreach ( $condition as $key => $value ) {
+
+		if ( is_array( $value ) ) {
+
+			if ( in_array( get_property_meta( $key ), $value, true ) ) {
+				$condition_met++;
+			}
+		} else {
+			if ( get_property_meta( $key ) === $value ) {
+				$condition_met++;
+			}
+		}
+	}
+	$match = $total_condition === $condition_met ? true : false;
+
+	return '=' === $compare ? $match : ! $match;
+}
+
+/**
+ * Property Status Labels.
+ *
+ * @param array $statues The statues.
+ * @param array $options The options.
+ *
+ * @throws Exception Summary.
+ * @since 3.4.28
+ */
+function epl_property_status( $statues = array(), $options = array() ) {
+
+	$statues_defaults = array(
+		'commercial_lease',
+		'commercial_sale',
+		'rental_lease',
+		'leased',
+		'sold',
+		'current_sales',
+		'commercial_sale_lease',
+	);
+
+	$statues = array_merge( $statues_defaults, (array) $statues );
+
+	$statues = apply_filters( 'epl_property_status_keys', $statues );
+
+	$stickers = epl_get_stickers_array( $statues );
+
+	$default_options = array(
+		'wrap'          => true,
+		'wrap_class'    => 'epl-listing-status',
+		'wrapper_tag'   => 'div',
+		'sticker_tag'   => 'span',
+		'sticker_class' => 'epl-widget-status-label',
+	);
+
+	$options = array_merge( $default_options, (array) $options );
+	epl_stickers( $options, $stickers );
+}
+add_action( 'epl_property_status', 'epl_property_status', 10, 2 );
+
+/**
+ * Add Body classes for EPL Single & Archive Pages.
+ *
+ * @param      array $classes  The classes.
+ *
+ * @return     array  $classes  Modified classes.
+ * @since      3.4.29
+ */
+function epl_body_classes( $classes ) {
+
+	if ( is_epl_post_single() ) {
+		$classes[] = 'epl-single-listing';
+		$classes[] = 'epl-single-' . get_post_type();
+	}
+
+	if ( is_epl_post_archive() ) {
+		$classes[] = 'epl-post-type-archive';
+		$classes[] = 'epl-post-type-archive-' . get_post_type();
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'epl_body_classes', 10 );

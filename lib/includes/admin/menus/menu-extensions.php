@@ -3,8 +3,8 @@
  * Extension Settings
  *
  * @package     EPL
- * @subpackage  Admin/Menus
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Admin/MenusExtensions
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
  */
@@ -65,7 +65,6 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 			}
 
 			// Adding some way for dynamic fields to be added to epl_settings array.
-
 			// Settings page params.
 			$page_params = apply_filters( 'epl_settings_page_params', array( 'tab', 'page', 'sub_tab', 'action', 'submit' ) );
 
@@ -212,10 +211,19 @@ $epl_settings = get_option( 'epl_settings' );
 /**
  * Get Extension Settings
  *
- * @since 2.0
+ * @since 2.0.0
+ * @return array Extensions options.
  */
 function epl_get_new_admin_option_fields() {
 	$fields = array();
+
+	/**
+	 * Passes an array of extensions options.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param array $fields The array of extension options.
+	 */
 	$fields = apply_filters( 'epl_extensions_options_filter_new', $fields );
 	return $fields;
 }

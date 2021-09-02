@@ -3,7 +3,7 @@
  * SHORTCODE :: Listing Feature [listing_feature]
  *
  * @package     EPL
- * @subpackage  Shortcode/Listing Feature
+ * @subpackage  Shortcode/ListingFeature
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.1.2
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // phpcs:disable WordPress.DB.SlowDBQuery
 
 /**
- * Listing Feature
+ * Listing Feature [listing_feature]
  *
  * This shortcode allows for you to specify feature property type(s) using
  * [listing_feature post_type="property" status="current,sold,leased" feature_id="" feature="" template="default"] option. You can also
@@ -26,7 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts Shortcode attributes.
  *
  * @return false|string|void
- * @since       1.1.2
+ * @since 1.1.2
+ * @since 3.4.27 Fixed the issue: no spaces between classes when both class & template attributs are set.
  */
 function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -61,7 +62,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$feature      = $attributes['feature'];
 	$feature_id   = $attributes['feature_id'];
 	$offset       = $attributes['offset'];
-	//$agent        = $attributes['agent'];
+	//$agent      = $attributes['agent'];
 	$template     = $attributes['template'];
 	$location     = $attributes['location'];
 	$tools_top    = $attributes['tools_top'];
@@ -183,7 +184,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-feature
 			<?php
-			echo esc_attr( epl_template_class( $template, 'archive' ) );
+			echo esc_attr( epl_template_class( $template, 'archive' ) ).' ';
 			echo esc_attr( $attributes['class'] );
 			?>
 			">

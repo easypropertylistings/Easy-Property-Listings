@@ -3,8 +3,8 @@
  * Contact Actions
  *
  * @package     EPL
- * @subpackage  Contacts/Actions
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Admin/ContactsActions
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */

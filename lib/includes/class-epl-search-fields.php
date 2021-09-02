@@ -179,6 +179,7 @@ class EPL_Search_Fields {
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
 	 * @return void
+	 * @since  3.4.36  Fix: Corrected issue with multi select where values are numbers.
 	 */
 	public function render_multiple_select( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -199,7 +200,7 @@ class EPL_Search_Fields {
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
 						foreach ( $field['options'] as $k => $v ) {
-							$selected = in_array( $k, (array) $value, true ) ? true : false;
+							$selected = in_array( $k, (array) $value ) ? true : false;
 							echo '<option value="' . esc_attr( $k ) . '"' . selected( $selected, true, false ) . '>' . esc_attr( $v ) . '</option>';
 						}
 					}
@@ -327,13 +328,14 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Radio field.
 	 *
-	 * @since  3.0
+	 * @since  3.0.0
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
 	 * @return void
+	 * @since  3.4.22 For attribute added for checkbox labels.
 	 */
 	public function render_checkbox_multiple( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -358,7 +360,7 @@ class EPL_Search_Fields {
 								id="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>"
 								value="<?php echo esc_attr( $k ); ?>"
 								class="in-field field-width <?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" />
-							<label class="epl-search-checkbox-label"><?php echo esc_attr( $v ); ?></label>
+							<label for="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" class="epl-search-checkbox-label"><?php echo esc_attr( $v ); ?></label>
 																				<?php
 						}
 					}

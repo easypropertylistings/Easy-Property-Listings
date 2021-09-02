@@ -3,7 +3,7 @@
  * WIDGET :: Property Search
  *
  * @package     EPL
- * @subpackage  Widget/Search
+ * @subpackage  Widget/Classes/Search
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
@@ -58,9 +58,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			echo $before_title . $title . $after_title;
 		}
 
-		if ( ! is_admin() ) {
-			echo epl_shortcode_listing_search_callback( $instance );
-		}
+		echo epl_shortcode_listing_search_callback( $instance );
 
 		echo $after_widget;
 	}

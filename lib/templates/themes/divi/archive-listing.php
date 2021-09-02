@@ -1,6 +1,6 @@
 <?php
 /**
- * The Default Template for displaying all Easy Property Listings archive/loop posts with the Genesis Theme Framework
+ * The Default Template for displaying all Easy Property Listings archive/loop posts with the Divi Theme Framework
  *
  * @package EPL
  * @subpackage Templates/Themes/Divi

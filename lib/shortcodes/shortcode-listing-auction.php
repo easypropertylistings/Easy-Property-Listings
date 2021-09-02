@@ -3,8 +3,8 @@
  * SHORTCODE :: Listing Auction [listing_auction]
  *
  * @package     EPL
- * @subpackage  Shortcode/Listing Auction
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Shortcode/ListingAuction
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // phpcs:disable WordPress.DB.SlowDBQuery
 
 /**
- * Listing Auction Shortcode
+ * Listing Auction Shortcode [listing_auction]
  *
  * This shortcode allows for you to specify the property type(s) using
  * [listing_auction post_type="property,rental" status="current,sold,leased" template="default"] option. You can also

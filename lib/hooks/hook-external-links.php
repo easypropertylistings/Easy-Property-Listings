@@ -4,9 +4,9 @@
  *
  * @package     EPL
  * @subpackage  Hooks/ExternalLinks
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.0.0
  */
 
 // Exit if accessed directly.
@@ -20,7 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * When the hook epl_buttons_single_property is used and the property
  * has external links they will be output on the template
  *
- * @since 1.0
+ * @since 1.0.0
+ * @since 3.4.25 filter epl_show_{key} eg epl_show_property_external_link to disable button rendering.
  */
 function epl_button_external_link() {
 
@@ -42,7 +43,7 @@ function epl_button_external_link() {
 			}
 		}
 
-		if ( ! empty( $link ) ) { ?>
+		if ( ! empty( $link ) && apply_filters( 'epl_show_' . $key, true ) ) { ?>
 			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 
@@ -53,7 +54,7 @@ function epl_button_external_link() {
 				}
 				?>
 				<?php echo esc_attr( $label ); ?>
-			</button> 
+			</button>
 			<?php
 
 		}

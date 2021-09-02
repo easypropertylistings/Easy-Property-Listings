@@ -3,7 +3,7 @@
  * Author Card used in Widget
  *
  * @package     EPL
- * @subpackage  Templates/Content
+ * @subpackage  Templates/WidgetContentAuthorTall
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0

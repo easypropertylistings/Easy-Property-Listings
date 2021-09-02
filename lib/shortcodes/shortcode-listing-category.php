@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // phpcs:disable WordPress.DB.SlowDBQuery
 
 /**
- * Listing Category
+ * Listing Category [listing_category]
  *
  * This shortcode allows for you to specify the property type(s) using
  * [listing_category post_type="property" status="current,sold,leased" category_key="property_rural_category" category_key="farm"] option. You can also

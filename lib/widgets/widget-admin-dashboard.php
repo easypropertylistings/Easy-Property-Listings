@@ -3,7 +3,7 @@
  * DASHBOARD WIDGET :: Easy Property Listings Status
  *
  * @package     EPL
- * @subpackage  Admin/DashboardWidget
+ * @subpackage  Widget/Admin/Dashboard
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.3

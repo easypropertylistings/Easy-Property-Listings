@@ -3,10 +3,10 @@
  * Register custom meta fields for property post types
  *
  * @package     EPL
- * @subpackage  Meta
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Meta/InitCustomFields
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.0.0
  */
 
 // Exit if accessed directly.
@@ -18,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get meta boxes
  *
  * @since 1.0
- * @since 3.4.1 added property_price_currency,property_rent_currency,property_floorplan_mod_date
+ * @since 3.4.1 Added property_price_currency,property_rent_currency,property_floorplan_mod_date.
+ * @since 3.4.23 Ordered the additional featured items to a-z order.
  */
 function epl_get_meta_boxes() {
 
@@ -170,7 +171,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'      => 'property_floorplan_mod_date',
-							'label'     => __( 'Floorplan Modified Date', 'easy-property-listings' ),
+							'label'     => __( 'Floor plan Modified Date', 'easy-property-listings' ),
 							'type'      => 'hidden',
 							'maxlength' => '60',
 						),
@@ -695,8 +696,8 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'  => 'property_split_system_heating',
-							'label' => __( 'Split System Heating', 'easy-property-listings' ),
+							'name'  => 'property_split_system_aircon',
+							'label' => __( 'Split System Aircon', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -704,8 +705,8 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'  => 'property_reverse_cycle_aircon',
-							'label' => __( 'Reverse Cycle Aircon', 'easy-property-listings' ),
+							'name'  => 'property_split_system_heating',
+							'label' => __( 'Split System Heating', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
 							'opts'  => array(
 								'yes' => __( 'Yes', 'easy-property-listings' ),
@@ -1484,7 +1485,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'  => 'property_floorplan',
-							'label' => __( 'Floorplan', 'easy-property-listings' ),
+							'label' => __( 'Floor plan', 'easy-property-listings' ),
 							'type'  => 'file',
 							'width' => '2-3',
 						),
@@ -1499,7 +1500,7 @@ function epl_get_meta_boxes() {
 
 						array(
 							'name'  => 'property_floorplan_2',
-							'label' => __( 'Floorplan 2', 'easy-property-listings' ),
+							'label' => __( 'Floor plan 2', 'easy-property-listings' ),
 							'type'  => 'file',
 							'width' => '2-3',
 						),

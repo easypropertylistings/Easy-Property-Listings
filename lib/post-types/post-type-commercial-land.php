@@ -3,8 +3,8 @@
  * Register post type :: Commercial Land
  *
  * @package     EPL
- * @subpackage  Functions/CPT
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  PostTypes/CommercialLand
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */

@@ -3,8 +3,8 @@
  * Add-ons
  *
  * @package     EPL
- * @subpackage  Admin/Menus
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Admin/MenusAddons
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */

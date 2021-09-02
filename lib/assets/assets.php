@@ -3,8 +3,8 @@
  * Scripts & Styles
  *
  * @package     EPL
- * @subpackage  Scripts/Styles
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Assets/ScriptsStyles
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -36,7 +36,7 @@ function epl_get_admin_screens() {
 		'dashboard_page_epl-getting-started',
 		'edit.php',
 		'index.php',
-		'widgets.php'
+		'widgets.php',
 	);
 
 	return apply_filters( 'epl_admin_screens', $screens );

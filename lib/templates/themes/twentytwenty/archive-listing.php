@@ -41,8 +41,6 @@ get_header();
 				<!-- Previous/Next page navigation -->
 				<div class="loop-utility clearfix">
 					<?php do_action( 'epl_pagination' ); ?>
-
-					<?php //get_template_part( 'template-parts/pagination' ); // Twenty Twenty Pagination ?>
 				</div>
 			</div>
 		</div>

@@ -1,10 +1,10 @@
 <?php
 /**
- * SHORTCODE :: Listing [listing]
+ * SHORTCODE :: Listing Advanced [listing_advanced]
  *
  * @package     EPL
- * @subpackage  Shortcode/Listing
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Shortcode/ListingAdvanced
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.3
  */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Listing Shortcode [listing]
+ * Listing Shortcode [listing_advanced]
  *
  * This shortcode allows for you to specify the property type(s) using
  * [listing_advanced post_type="property,rental" status="current,sold,leased" template="default"] option. You can also

@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Classes/PropertyMeta
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
  */
@@ -152,6 +152,7 @@ class EPL_Property_Meta {
 	 * @param string $meta_key The meta key to get the value from default is property_inspection_times.
 	 * @return mixed Return formatted inspection times with a iCal link
 	 * @since 2.0
+	 * @since 3.4.27 Added filter for href, handling of non date inspection values.
 	 */
 	public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 		if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -160,6 +161,9 @@ class EPL_Property_Meta {
 
 		$inspection_time = $this->get_property_meta( $meta_key );
 		$inspection_time = trim( $inspection_time );
+
+		$not_date = array();
+
 		if ( ! empty( $inspection_time ) ) {
 			$list = array_filter( explode( "\n", $inspection_time ) );
 			if ( ! empty( $list ) ) {
@@ -174,6 +178,7 @@ class EPL_Property_Meta {
 							$inspectarray[ strtotime( $endtime ) ] = $item;
 						}
 					} else {
+						$not_date[ $num ]     = $num;
 						$inspectarray[ $num ] = $item;
 					}
 				}
@@ -186,23 +191,38 @@ class EPL_Property_Meta {
 				if ( count( $inspectarray ) >= 1 ) {
 					// Unordered list for multiple inspection times.
 					foreach ( $inspectarray as $key => &$element ) {
-						if ( ! empty( $element ) ) {
-							$element_formatted = apply_filters( 'epl_inspection_format', $element );
-							$return           .= "<li class='home-open-date'>";
 
-							if ( $ical ) {
-								//phpcs:disable
-								$return .= "<a
-											class ='epl_inspection_calendar'
-											href='" . get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element ) ) . '&propid=' . $this->post->ID . "' >"
-											. $element_formatted . '
-										</a>';
-								//phpcs:enable
+						$return .= "<li class='home-open-date epl-no-inspection-date'>";
+
+						if ( ! empty( $element ) ) {
+
+							if ( in_array( $key, $not_date ) ) {
+
+								// handle inspections that are not date.
+								$return .= $element;
+
 							} else {
-								$return .= $element_formatted;
+
+								$href = get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element ) ) . '&propid=' . $this->post->ID;
+
+								$href = apply_filters( 'epl_inspection_link', $href );
+
+								$element_formatted = apply_filters( 'epl_inspection_format', $element );
+
+								if ( $ical ) {
+									//phpcs:disable
+									$return .= "<a
+												class ='epl_inspection_calendar'
+												href='" . $href . "' >"
+												. $element_formatted . '
+											</a>';
+									//phpcs:enable
+								} else {
+									$return .= $element_formatted;
+								}
 							}
 
-								$return .= '</li>';
+							$return .= '</li>';
 						}
 					}
 					if ( ! empty( $return ) ) {
@@ -593,6 +613,51 @@ class EPL_Property_Meta {
 	}
 
 	/**
+	 * Get Business Categories
+	 *
+	 * @param string $tag HTML wrapper type, default div.
+	 * @param string $class name, default commercial-category.
+	 * @return string
+	 *
+	 * @since 3.5.0
+	 */
+	public function get_property_business_categories( $tag = 'ul', $class = 'business-category' ) {
+		$property_business_category = epl_load_business_terms( $this->post->ID );
+
+		if ( empty( $property_business_category ) ) {
+			$property_business_category = $property_business_category;
+		} elseif ( 'none' === $tag || 'value' === $tag ) {
+			$property_business_category = $property_business_category;
+		} else {
+			$property_business_category = '<' . $tag . ' class="' . $class . '">' . $property_business_category . '</' . $tag . '>';
+		}
+		return apply_filters( 'epl_get_property_business_categories', $property_business_category );
+	}
+
+	/**
+	 * Get Business Parent Category
+	 *
+	 * @param string $tag HTML wrapper type, default div.
+	 * @param string $class name, default commercial-category.
+	 * @return string
+	 *
+	 * @since 3.5.0
+	 */
+	public function get_property_business_parent_category( $tag = 'span', $class = 'business-parent-category' ) {
+		$property_business_category = epl_get_business_parent_category( $this->post->ID, 'all' );
+
+		$category = '';
+
+		if ( is_array( $property_business_category ) ) {
+			foreach ( $property_business_category as $term ) {
+				$category .= '<' . $tag . ' class="' . $class . ' ' . $term->slug . '">' . $term->name . '</' . $tag . '> ';
+			}
+		}
+
+		return apply_filters( 'epl_get_property_business_parent_category', $category );
+	}
+
+	/**
 	 * Get Rural Category
 	 *
 	 * @since 3.1.12
@@ -748,6 +813,7 @@ class EPL_Property_Meta {
 	 * Get Price
 	 *
 	 * @since 2.0
+	 * @since 3.4.27    Fixed rent period translation.
 	 * @return string
 	 */
 	public function get_price() {
@@ -784,7 +850,10 @@ class EPL_Property_Meta {
 				$price  = '<span class="page-price-rent">';
 				$price .= '<span class="page-price" style="margin-right:0;">' . $this->get_property_rent() . '</span>';
 				if ( empty( $prop_rent_view ) ) {
-					$price .= '<span class="rent-period">' . $epl_property_price_rent_separator . '' . ucfirst( $this->get_property_meta( 'property_rent_period' ) ) . '</span>';
+					$rent_period_value = $this->get_property_meta( 'property_rent_period' );
+					$rent_options      = epl_get_property_rent_period_opts();
+					$rent_period_label = isset( $rent_options[ $rent_period_value ] ) ? $rent_options[ $rent_period_value ] : ucfirst( $rent_period_value );
+					$price            .= '<span class="rent-period">' . $epl_property_price_rent_separator . '' . $rent_period_label . '</span>';
 				}
 				$price    .= '</span>';
 				$prop_bond = $this->get_property_bond();
@@ -1359,6 +1428,7 @@ class EPL_Property_Meta {
 	 * Get Carport
 	 *
 	 * @since 2.0
+	 * @since 3.4.5 Fixed the incorrect meta key
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
 	 */
@@ -1372,7 +1442,7 @@ class EPL_Property_Meta {
 
 		$returntype = apply_filters( 'epl_get_property_carport_return_type', $returntype );
 		$label      = apply_filters( 'epl_get_property_carport_label', __( 'carport', 'easy-property-listings' ) );
-		$value      = $this->get_property_meta( 'property_garage' );
+		$value      = $this->get_property_meta( 'property_carport' );
 		$return     = '';
 
 		switch ( $returntype ) {
@@ -1991,6 +2061,7 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $metakey Meta key name.
 	 * @return mixed Value wrapped in a list item
+	 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
 	 */
 	public function get_additional_features_html( $metakey ) {
 
@@ -2013,6 +2084,7 @@ class EPL_Property_Meta {
 				case 'Y':
 				case 'y':
 				case 'on':
+				case 'true':
 					$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
 					break;
 
@@ -2022,6 +2094,7 @@ class EPL_Property_Meta {
 				case 'N':
 				case 'n':
 				case 'off':
+				case 'false':
 					$return = '';
 					break;
 
@@ -2054,7 +2127,28 @@ class EPL_Property_Meta {
 	/**
 	 * Get Additional Commercial Features by meta key
 	 *
-	 * @since 2.0
+	 * @since 2.0.0
+	 * @since 3.4.27
+	 * @param string $metakey Meta key name.
+	 * @return mixed Value formatted and wrapped in div with title
+	 */
+	public function get_additional_commercial_features_html( $metakey ) {
+		$metavalue = $this->get_property_meta( $metakey );
+		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
+			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
+						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
+					  '<p>' . $metavalue . '</p>' .
+					  '</div>';
+			return apply_filters( 'epl_get_additional_commercial_features_html', $return );
+		}
+	}
+
+	/**
+	 * Get Additional Commercial Features by meta key.
+	 *
+	 * Spelling error in this function. Retained to prevent issues.
+	 *
+	 * @since 2.0.0
 	 * @param string $metakey Meta key name.
 	 * @return mixed Value formatted and wrapped in div with title
 	 */
@@ -2063,8 +2157,8 @@ class EPL_Property_Meta {
 		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
-						'<p>' . $metavalue . '</p>' .
-					'</div>';
+					  '<p>' . $metavalue . '</p>' .
+					  '</div>';
 			return apply_filters( 'epl_get_additional_commerical_features_html', $return );
 		}
 	}

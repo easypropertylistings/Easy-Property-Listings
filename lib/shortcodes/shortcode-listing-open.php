@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Shortcode/ListingOpen
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // phpcs:disable WordPress.DB.SlowDBQuery
 
 /**
- * Listing Open Shortcode
+ * Listing Open Shortcode [listing_open]
  *
  * This shortcode allows for you to specify the property type(s) using
  * [listing_open post_type="property,rental"] option. You can also

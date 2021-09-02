@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Classes/Updater
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  * @version 1.6.6
@@ -12,7 +12,6 @@
 
 // uncomment this line for testing.
 // set_site_transient( 'update_plugins', null ); | Testing.
-
 // phpcs:disable WordPress.Security.NonceVerification
 
 // Exit if accessed directly.

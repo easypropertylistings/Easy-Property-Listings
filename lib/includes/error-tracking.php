@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Functions/ErrorTracking
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
@@ -74,7 +74,7 @@ function epl_set_error( $error_id, $error_message ) {
 	if ( ! $errors ) {
 		$errors = array();
 	}
-	$errors[ $error_id ]    = $error_message;
+	$errors[ $error_id ] = $error_message;
 	EPL()->session->set( 'epl_errors', $errors );
 }
 

@@ -3,8 +3,8 @@
  * Register custom meta fields for property post types
  *
  * @package     EPL
- * @subpackage  Meta
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Meta/Meta
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
@@ -158,7 +158,7 @@ function epl_meta_box_inner_custom_box( $post, $args ) {
  *
  * @return mixed
  * @since 1.0
- * @since 3.4.17	Fixed issue : empty values not getting saved for decimals & numbers
+ * @since 3.4.17    Fixed issue : empty values not getting saved for decimals & numbers
  */
 function epl_save_meta_boxes( $post_ID ) {
 
@@ -300,10 +300,25 @@ function epl_save_meta_boxes( $post_ID ) {
 
 												break;
 
+											case 'checkbox':
+											case 'select_multiple':
+												$meta_value = ( array ) wp_unslash( $_POST[ $field['name'] ] ) ; //phpcs:ignore
+
+												break;
+
 											default:
 												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 
 												break;
+										}
+
+										if ( empty( $meta_value ) ) {
+
+											if ( is_array( $_POST[ $field['name'] ] ) ) {
+												$meta_value = array_map( 'sanitize_text_field', wp_unslash( $_POST[ $field['name'] ] ) );
+											} else {
+												$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
+											}
 										}
 										$meta_value = apply_filters( 'epl_field_save_meta_' . $field['name'], $meta_value );
 										update_post_meta( $post_ID, $field['name'], $meta_value );

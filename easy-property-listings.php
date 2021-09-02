@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.4.21
+ * Version: 3.4.36
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.4.21
+ * @version 3.4.36
  */
 
 // Exit if accessed directly.
@@ -47,7 +47,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		private static $instance;
 
 		/**
-		 * EPL search fields displayer object.
+		 * EPL search fields display object.
 		 *
 		 * @since 3.0
 		 * @var   EPL_Search_Fields
@@ -69,15 +69,16 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 */
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Easy_Property_Listings ) ) {
-				self::$instance = new Easy_Property_Listings;
+				self::$instance = new Easy_Property_Listings();
 				self::$instance->setup_constants();
 
 				add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
 
 				self::$instance->includes();
-				// Search fields displayer object.
+				// Search fields display object.
 				self::$instance->search_fields = new EPL_Search_Fields();
 				self::$instance->session       = new EPL_Session();
+				self::$instance->render_fields = new EPL_Render_Fields();
 				self::$instance->search_fields->init();
 
 				define( 'EPL_RUNNING', true );
@@ -95,7 +96,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.4.21' );
+				define( 'EPL_PROPERTY_VER', '3.4.36' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -129,7 +130,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			if ( ! defined( 'EPL_PATH_TEMPLATES' ) ) {
 				define( 'EPL_PATH_TEMPLATES', EPL_PATH_LIB . 'templates/' );
 			}
-			// Plugin Path Compatability.
+			// Plugin Path Compatibility.
 			if ( ! defined( 'EPL_COMPATABILITY' ) ) {
 				define( 'EPL_COMPATABILITY', EPL_PATH_LIB . 'compatibility/' );
 			}
@@ -188,6 +189,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-cpt.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-form-builder.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-cron.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-customizer.php';
 
 			// Activate post types based on settings.
 			if ( isset( $epl_settings['activate_post_types'] ) ) {
@@ -283,19 +285,6 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
-				require_once EPL_PATH_LIB . 'shortcodes/class-epl-advanced-shortcode-listing.php';
-				require_once EPL_PATH_LIB . 'shortcodes/class-epl-listing-elements.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-advanced.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-contact-form.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-location.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
-				require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-meta-doc.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
 				require_once EPL_PATH_LIB . 'hooks/hook-floorplan.php';
@@ -304,9 +293,25 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'hooks/hook-energy-certificate.php';
 			}
 
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
+			require_once EPL_PATH_LIB . 'shortcodes/class-epl-advanced-shortcode-listing.php';
+			require_once EPL_PATH_LIB . 'shortcodes/class-epl-listing-elements.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-advanced.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-search.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-contact-form.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-open.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-category.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-feature.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-tax-location.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-meta-doc.php';
+
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-render-fields.php';
+			require_once EPL_PATH_LIB . 'gutenberg/index.php';
 
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
 				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';

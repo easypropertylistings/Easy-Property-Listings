@@ -3,8 +3,8 @@
  * Graphing Functions
  *
  * @package     EPL
- * @subpackage  Admin/Reports
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Admin/ReportsGraphing
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.0
  */
@@ -569,9 +569,9 @@ function epl_get_report_dates() {
 			$dates['year']     = date( 'Y', $current_time ) - 1;
 			$dates['year_end'] = date( 'Y', $current_time ) - 1;
 			break;
-	//phpcs:disable		
+	//phpcs:disable
 	endswitch;
 
-	return apply_filters( 'epl_report_dates', $dates ); 
+	return apply_filters( 'epl_report_dates', $dates );
 }
 //phpcs:enable

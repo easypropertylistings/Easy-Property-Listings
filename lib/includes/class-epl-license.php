@@ -2,9 +2,9 @@
 /**
  * EPL License
  *
- * @package     EPL_License Class
+ * @package     EPL
  * @subpackage  Classes/License
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.1
  */
@@ -379,7 +379,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			// uncomment next two lines for testing.
 			// $this->validate_license(); | Testing.
 			// return; | Testing.
-
 			// Perform a request to validate the license.
 			// Only run every 24 hours.
 			$opt_key = 'epl_license_updates_' . $this->item_shortname;

@@ -4,7 +4,7 @@
  *
  * @package     EPL
  * @subpackage  Assets/SVG
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.2
  */
@@ -18,8 +18,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * SVG Listing Icons Loaded in Head.
  *
  * @since 3.2
+ * @since 3.4.32 make sure its loaded only once using global $epl_listing_svgs_loaded.
  */
 function epl_load_svg_listing_icons_head() {
+
+	global $epl_listing_svgs_loaded;
+
+	if ( $epl_listing_svgs_loaded ) {
+		return;
+	}
+
+	$epl_listing_svgs_loaded = true;
 
 	$svg_icons = '
 
@@ -116,14 +125,23 @@ function epl_load_svg_listing_icons_head() {
 	}
 
 }
-add_action( 'wp_head', 'epl_load_svg_listing_icons_head', 90 );
+
 
 /**
  * SVG Social Media Icons Loaded in Head.
  *
  * @since 3.2
+ * @since 3.4.32 make sure its loaded only once using global epl_social_svgs_loaded.
  */
 function epl_load_svg_social_icons_head() {
+
+	global $epl_social_svgs_loaded;
+
+	if ( $epl_social_svgs_loaded ) {
+		return;
+	}
+
+	$epl_social_svgs_loaded = true;
 
 	$social_icons = '
 
@@ -272,7 +290,6 @@ function epl_load_svg_social_icons_head() {
 		echo wp_kses( $social_icons, $allowed_tags );
 	}
 }
-add_action( 'wp_head', 'epl_load_svg_social_icons_head', 90 );
 
 /**
  * Whitelist display attribute for wp_kses_post
@@ -295,7 +312,7 @@ add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
  * Svg Allowed tags
  *
  * @since  3.4
- * @since  3.4.17	Allows circle tag.
+ * @since  3.4.17   Allows circle tag.
  */
 function epl_get_svg_allowed_tags() {
 
@@ -357,15 +374,45 @@ function epl_get_svg_allowed_tags() {
 		'use'     => array(
 			'xlink:href' => true,
 		),
-		'circle'    => array(
-			'style'  => true,
-			'class'  => true,
-			'id'     => true,
-			'cx'     => true,
-			'cy'     => true,
-			'r'      => true
-		)
+		'circle'  => array(
+			'style' => true,
+			'class' => true,
+			'id'    => true,
+			'cx'    => true,
+			'cy'    => true,
+			'r'     => true,
+		),
 
 	);
 	return apply_filters( 'epl_svg_allowed_tags', $tags );
 }
+
+/**
+ * Initiate EPL listings & social Svgs.
+ *
+ * @since 3.4.32
+ */
+function epl_init_svgs() {
+
+	global $epl_listing_svgs_loaded, $epl_social_svgs_loaded;
+	$epl_listing_svgs_loaded = false;
+	$epl_social_svgs_loaded  = false;
+
+	/**
+	 * Load SVG using wp_body_open introduced in wp 5.2
+	 *
+	 * @since 3.4.31
+	 */
+	add_action( 'wp_body_open', 'epl_load_svg_listing_icons_head', 10 );
+	add_action( 'wp_footer', 'epl_load_svg_listing_icons_head', 900 );
+
+	/**
+	 * Load Social SVG using wp_body_open introduced in wp 5.2
+	 *
+	 * @since 3.4.31
+	 */
+	add_action( 'wp_body_open', 'epl_load_svg_social_icons_head', 10 );
+	add_action( 'wp_footer', 'epl_load_svg_social_icons_head', 900 );
+
+}
+add_action( 'wp', 'epl_init_svgs' );

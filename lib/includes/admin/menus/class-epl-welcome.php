@@ -3,8 +3,8 @@
  * Welcome Page Class
  *
  * @package     EPL
- * @subpackage  Admin/Welcome
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @subpackage  Admin/Classes/Welcome
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
  */
