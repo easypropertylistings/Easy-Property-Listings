@@ -6,7 +6,7 @@
  * @subpackage  Classes/CustomPostType
  * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       2.3
+ * @since       2.3.0
  */
 
 // Exit if accessed directly.
@@ -17,7 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * EPL_CPT Class
  *
- * @since 2.3
+ * @since 2.3.0
+ * @since 3.5.0 Added view_items support.
  */
 class EPL_CPT {
 
