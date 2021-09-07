@@ -425,6 +425,8 @@ class EPL_CPT {
 			/* Translators: %s is the post type name. */
 			'view_item'          => sprintf( __( 'View %s', 'easy-property-listings' ), $singular ),
 			/* Translators: %s is the post type name. */
+			'view_items'         => sprintf( __( 'View %s', 'easy-property-listings' ), $plural ),
+			/* Translators: %s is the post type name. */
 			'search_items'       => sprintf( __( 'Search %s', 'easy-property-listings' ), $plural ),
 			/* Translators: %s is the post type name. */
 			'not_found'          => sprintf( __( 'No %s found', 'easy-property-listings' ), $plural ),
