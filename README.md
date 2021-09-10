@@ -35,6 +35,10 @@ There are various ways you can contribute:
 
 ## Change Log ##
 
+= 3.4.37 September 11, 2021 =
+
+* Tweak: WordPress 5.8.1 introduced a CSS tweak the broke the flow of the admin fields on the listing entry screen.
+
 = 3.4.36 March 25, 2021 =
 
 * New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.

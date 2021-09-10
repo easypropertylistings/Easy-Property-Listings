@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: http://www.realestateconnected.com.au/
- * Version: 3.4.36
+ * Version: 3.4.37
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -37,19 +37,19 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 	/**
 	 * Main Easy_Property_Listings Class
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
 	 */
 	final class Easy_Property_Listings {
 		/**
 		 * @var Easy_Property_Listings The one true Easy_Property_Listings
-		 * @since 1.0
+		 * @since 1.0.0
 		 */
 		private static $instance;
 
 		/**
 		 * EPL search fields display object.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
 		 * @var   EPL_Search_Fields
 		 */
 		public $search_fields;
@@ -63,7 +63,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * @return Easy_Property_Listings one true Easy_Property_Listings
 		 * @uses Easy_Property_Listings::includes() Include the required files
 		 * @see  EPL()
-		 * @since 1.0
+		 * @since 1.0.0
 		 * @static
 		 * @staticvar array $instance
 		 */
@@ -90,13 +90,13 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * Setup plugin constants
 		 *
 		 * @access public
-		 * @since 1.0
+		 * @since 1.0.0
 		 * @return void
 		 */
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.4.36' );
+				define( 'EPL_PROPERTY_VER', '3.4.37' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -164,7 +164,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * Include required files.
 		 *
 		 * @access private
-		 * @since 1.0
+		 * @since 1.0.0
 		 * @return void
 		 */
 		private function includes() {
@@ -359,7 +359,7 @@ endif; // End if class_exists check.
  *
  * Example: <?php $epl = EPL(); ?>
  *
- * @since 1.0
+ * @since 1.0.0
  * @return object The one true Easy_Property_Listings Instance
  */
 function EPL() { //phpcs:ignore

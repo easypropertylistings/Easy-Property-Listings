@@ -2,10 +2,10 @@
  * EPL Admin CSS
  *
  * @package	EPL
- * @since	1.0
- * @version	3.4
+ * @since	1.0.0
+ * @version	3.4.37
  * @subpackage	Admin CSS
- * @copyright	Copyright (c) 2019, Merv Barrett
+ * @copyright	Copyright (c) 2021, Merv Barrett
  * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
@@ -496,6 +496,9 @@ h3.epl-welcome-sub-heading {
 	margin-right: -4px;
 	vertical-align: top;
 	text-align: left;
+}
+.epl-inner-div .epl-form-field-wrap {
+	margin-right: -4px;
 }
 .epl-form-field-wrap.epl-grid-5 {
 	width: 20%;
