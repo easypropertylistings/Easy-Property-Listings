@@ -22,7 +22,7 @@ global $property;
 		<?php do_action( 'epl_property_before_content' ); ?>
 			<?php if ( has_post_thumbnail() ) : ?>
 				<div class="property-box property-box-left property-featured-image-wrapper">
-					<?php do_action( 'epl_property_archive_featured_image' ); ?>
+					<?php do_action( 'epl_property_archive_featured_image', 'epl-image-large-crop' ); ?>
 					<!-- Home Open -->
 					<?php do_action( 'epl_property_inspection_times' ); ?>
 				</div>
