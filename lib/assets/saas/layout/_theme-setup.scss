@@ -1,0 +1,13 @@
+@use '../abstracts'as *;
+
+/*********************************************
+	Theme Setup
+*********************************************/
+
+.epl-archive-default {
+	width: 100%;
+	max-width: $container-width;
+	margin: 0 auto;
+	padding: $container-padding;
+	overflow: visible;
+}

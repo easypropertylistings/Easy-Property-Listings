@@ -1,3 +1,4 @@
+@use '../abstracts'as *;
 
 /**********************
 	Loop
@@ -21,10 +22,55 @@
 
 
 .epl-property-blog {
+	max-width: 100% !important;
 	a {
 		//text-decoration: none;
 	}
+	
+	.property-box {
+		box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		float:left;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	.property-box img {
+		max-width: 100%;
+		width: 100%;
+		height: 100% !important;
+		display: block;
+		
+		object-fit: cover;
+	}
+	.property-box-left {
+		
+	}
+	.property-box-right {
+		
+	}
 }
+.epl-archive-entry-image {
+	height: 100%;
+	
+	a {
+		display: block;
+		box-shadow: none;
+		height: 100%;
+		width: 100%;
+	}
+}
+
+
+.epl-blog-image {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: red;
+}
+
+
 .epl-property-blog-entry-wrapper {
 	
 	float: none;
@@ -35,14 +81,34 @@
 	padding: 0;
 	overflow: hidden;
 	
-	display: grid;
-	grid-template-columns: 1fr;
-	
-	
-	
-	
-}
+	display: block;
 
+	
+
+}
+@media screen and ( min-width: $mobile-width ) {
+	.epl-property-blog-entry-wrapper {
+		display: grid;
+		grid-template-columns: 300px 1fr;
+		gap: 1em;
+		
+		align-items: center;
+	}
+}
+@media screen and ( min-width: $mobile-width-large ) {
+	.epl-property-blog-entry-wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1em;
+	}
+}
+@media screen and ( min-width: $tablet-width-portrait ) {
+	.epl-property-blog-entry-wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1em;
+	}
+}
 
 
 
@@ -57,7 +123,6 @@
 	margin: 0;
 	padding: 0;
 }
-
 
 
 
@@ -83,26 +148,7 @@
 	padding: 0;
 }
 
-/* Property Card and Blog*/
-.epl-property-blog .property-box {
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	float:left;
-	width: 50%;
-}
-.epl-property-blog .property-box img {
-	max-width: 100%;
-	height: auto;
-	display: block;
-}
-.epl-property-blog .property-box-left {
-	width: 50%;
-	padding-right: 1em;
-	background: transparent;
-}
-.epl-property-blog .property-box-right {
-	width:50%;
-}
+
 /* Property Card and Blog*/
 .epl-property-blog.epl-listing-grid-view .property-box,
 .epl-property-blog.epl-listing-grid-view-forced .property-box {
@@ -125,9 +171,7 @@
 .epl-property-blog.epl-listing-grid-view-forced .property-box-right {
 	width:100%;
 }
-.epl-blog-image {
-	position: relative;
-}
+
 .epl-stickers-wrapper {
 	position: absolute;
 	left: 0;
@@ -139,10 +183,7 @@
 	padding: 0.3em 1em;
 	margin-right: 0;
 }
-.epl-property-blog .epl-archive-entry-image a {
-	display: block;
-	box-shadow: none;
-}
+
 /* Width Ready Classes */
 .property-box-left.epl-one-third {
 	width: 33%;
