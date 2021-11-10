@@ -1,73 +1,50 @@
 @use '../abstracts'as *;
 
 /*********************************************
-Grid CSS Classes
+	Helpers
 *********************************************/
 
-.epl-grid-block-outer-wrapper {
-
+.epl_print_r,
+.epl_var_dump {
+	background: gray;
+	color: #ffffff;
+	width: 100% !important;
+	z-index: 9999;
 }
-.epl-grid-block {
-
+.epl-success,
+.epl-info,
+.epl-warning,
+.epl-danger {
+	margin: 0;
+	padding: 5px;
+	border-left: 3px solid;
+	font-size: 10px;
 }
-
-.epl-grid-element-outer-wrapper {
-	
+.epl-success p,
+.epl-info p,
+.epl-warning p,
+.epl-danger p {
+	margin: 0;
+	padding: 0;
+	line-height: 1.2;
 }
-.epl-grid-sidebar-outer-wrapper {
-	
+.epl-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
 }
-
-
-.container-wrap {
-	
+.epl-info {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
 }
-.container-wrap-outer-wrapper {
-	max-width: $container-width;
-	margin: 0 auto;
+.epl-warning {
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc;
 }
-@media screen and ( max-width: $container-width ) {
-	.container-wrap-outer-wrapper {
-		padding-left: $container-padding;
-		padding-right: $container-padding;
-	}
+.epl-danger {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
 }
-
-
-.container-wrap-back {
-	padding: 2em 0;
-}
-
-.rec-link-back {
-	
-	a {
-		color: $color-primary;
-		display: flex;
-		align-items: center;
-		gap: 1em;
-		line-height: 2;
-	}
-	
-	i {
-		font-size: 3em;
-		line-height: 1;
-	}
-}
-
-
-.epl-section-full-width {
-	max-width: $container-width-full;
-	margin: 0 auto;
-}
-
-.epl-section-wide {
-	max-width: $container-width-wide;
-	margin: 0 auto;
-}
-
-.epl-section-narrow {
-	max-width: $container-width;
-	margin: 0 auto;
-}
-
-

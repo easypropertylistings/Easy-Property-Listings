@@ -1,3 +1,22 @@
+// Responsive.
+$desktop-width: 1500px;
+$laptop-width: 1400px;
+
+// Container.
+$container-width-full: 100%;
+$container-width-extra-wide: 1500px;
+$container-width-wide: 1400px;
+$container-width: 1200px;
+
+$container-padding: 1.2em;
+
+$tablet-width-landscape: 1024px;
+$tablet-width-portrait: 768px;
+$mobile-width: 500px;
+
+
+
+
 // Colors.
 $color-black: #000000;
 $color-white: #ffffff;
@@ -93,6 +112,10 @@ $border-radius-buttons: 0;
 
 
 
+
+
+
+
 // Fonts.
 $font-family-sans-serif: "Varela Round", Sans-serif;
 $font-family-display: $font-family-sans-serif;
@@ -133,18 +156,3 @@ $icon-plan: url( 'images/icon-plan-janine.svg' ) no-repeat;
 // Document.
 $icon-document: url( 'images/icon-document-janine.svg' ) no-repeat;
 
-// Responsive.
-$desktop-width: 1500px;
-$laptop-width: 1400px;
-
-// Container.
-$container-width-full: 100%;
-$container-width-extra-wide: 1500px;
-$container-width-wide: 1400px;
-$container-width: 1200px;
-
-$container-padding: 1.2em;
-
-$tablet-width-landscape: 1024px;
-$tablet-width-portrait: 768px;
-$mobile-width: 500px;
