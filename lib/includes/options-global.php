@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get list of all EPL image sizes
  *
  * @since 3.2.3
+ * @since 3.5.0 Registering a larger image crop size.
  */
 function get_epl_image_sizes() {
 	return apply_filters(
@@ -25,14 +26,20 @@ function get_epl_image_sizes() {
 		array(
 			array(
 				'id'     => 'admin-list-thumb',
-				'height' => 100,
 				'width'  => 100,
+				'height' => 100,
 				'crop'   => true,
 			),
 			array(
 				'id'     => 'epl-image-medium-crop',
-				'height' => 200,
 				'width'  => 300,
+				'height' => 200,
+				'crop'   => true,
+			),
+			array(
+				'id'     => 'epl-image-large-crop',
+				'width'  => 600,
+				'height' => 400,
 				'crop'   => true,
 			),
 		)

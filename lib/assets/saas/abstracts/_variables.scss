@@ -1,0 +1,150 @@
+// Colors.
+$color-black: #000000;
+$color-white: #ffffff;
+
+// Project.
+
+$color-blue: #00aeef;
+
+
+$color-grey: #414142;
+$color-grey-dark: #333133;
+$color-grey-light: #a7a9ac;
+
+
+$color-page-light-grey: #f7f8f9;
+
+
+
+
+
+
+
+
+// Other.
+
+$color-dark-blue: #004680;
+
+$color-orange: #e65b11;
+
+$color-red: #ed1c24;
+$color-dark-red: #9e0b0f;
+$color-light-blue: #004a97;
+$color-yellow: #f8f14b;
+
+$color-gold: #d4ae71;
+$color-light-gold: #f5eee3;
+$color-gold-opacity: rgba(212, 174, 113, 0.7);
+
+$color-dark-tan: #d0c9c3;
+$color-dark-tan-opacity: rgba(208, 201, 195, 0.3);
+
+
+
+
+$color-white-shade: #f7f7f7;
+$color-purple: #442943;
+$color-purple-30: #7336729c;
+
+$color-cream: #f8e5cd;
+$color-coffee: #b9a282;
+
+$color-green: #09816c;
+
+$color-tan: #e2ca7c;
+
+
+
+// Colors.
+$color-primary: $color-blue;
+$color-primary-dark: $color-dark-blue;
+
+
+
+
+$color-secondary: $color-grey;
+$color-secondary-dark: $color-grey-dark;
+$color-secondary-light: $color-grey-light;
+
+
+$color-oposite: $color-yellow;
+$color-accent: $color-grey;
+$color-alternate: $color-orange;
+
+$color-tint: $color-grey-light;
+
+$color-body: $color-secondary;
+$color-text: $color-secondary;
+$color-page: $color-page-light-grey;
+
+// Shadow.
+$box-shadow: 2px 2px 6px 3px rgb(91 103 112 / 45%);
+$box-shadow: none;
+$box-shadow-dark: 0 4px 6px 1px #dedede;
+$box-shadow-dark: none;
+
+// Borders.
+$border-form: 2px solid $color-secondary;
+$border-form-active: 3px solid $color-primary;
+
+$border-radius: 0;
+$border-radius-form: 0;
+$border-radius-buttons: 0;
+
+
+
+// Fonts.
+$font-family-sans-serif: "Varela Round", Sans-serif;
+$font-family-display: $font-family-sans-serif;
+$font-family-fontawesome: "Font Awesome 5 Free";
+
+$line-height: 1.4;
+
+// Select.
+$select-arrow: "images/select-arrow.svg";
+$select-arrow-large: "images/select-arrow-large.svg";
+
+// Bed.
+$icon-bed: url( 'images/icon-fa-bed-solid.svg' ) no-repeat;
+$icon-bed-white: url( 'images/icon-fa-bed-solid-white.svg' ) no-repeat;
+
+// Bath.
+$icon-bath: url( 'images/icon-fa-bath-solid.svg' ) no-repeat;
+$icon-bath-white: url( 'images/icon-fa-bath-solid-white.svg' ) no-repeat;
+
+// Car.
+$icon-car: url( 'images/icon-fa-car-solid.svg' ) no-repeat;
+$icon-car-white: url( 'images/icon-fa-car-solid-white.svg' ) no-repeat;
+
+// Marker.
+$icon-marker: url( 'images/icon-fa-map-marker-alt-solid.svg' ) no-repeat;
+$icon-marker-white: url( 'images/icon-fa-bed-map-marker-alt-white.svg' ) no-repeat;
+
+// Land 
+$icon-land: url( 'images/icon-fa-vector-square-solid.svg' ) no-repeat;
+$icon-land-white: url( 'images/icon-fa-vector-square-solid-white.svg' ) no-repeat;
+
+
+
+
+// Plan.
+$icon-plan: url( 'images/icon-plan-janine.svg' ) no-repeat;
+
+// Document.
+$icon-document: url( 'images/icon-document-janine.svg' ) no-repeat;
+
+// Responsive.
+$desktop-width: 1500px;
+$laptop-width: 1400px;
+
+// Container.
+$container-width-full: 100%;
+$container-width-extra-wide: 1500px;
+$container-width-wide: 1400px;
+$container-width: 1200px;
+
+$container-padding: 1.2em;
+
+$tablet-width-landscape: 1024px;
+$tablet-width-portrait: 768px;
+$mobile-width: 500px;

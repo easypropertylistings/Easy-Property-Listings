@@ -1,0 +1,73 @@
+@use '../abstracts'as *;
+
+/*********************************************
+Grid CSS Classes
+*********************************************/
+
+.epl-grid-block-outer-wrapper {
+
+}
+.epl-grid-block {
+
+}
+
+.epl-grid-element-outer-wrapper {
+	
+}
+.epl-grid-sidebar-outer-wrapper {
+	
+}
+
+
+.container-wrap {
+	
+}
+.container-wrap-outer-wrapper {
+	max-width: $container-width;
+	margin: 0 auto;
+}
+@media screen and ( max-width: $container-width ) {
+	.container-wrap-outer-wrapper {
+		padding-left: $container-padding;
+		padding-right: $container-padding;
+	}
+}
+
+
+.container-wrap-back {
+	padding: 2em 0;
+}
+
+.rec-link-back {
+	
+	a {
+		color: $color-primary;
+		display: flex;
+		align-items: center;
+		gap: 1em;
+		line-height: 2;
+	}
+	
+	i {
+		font-size: 3em;
+		line-height: 1;
+	}
+}
+
+
+.epl-section-full-width {
+	max-width: $container-width-full;
+	margin: 0 auto;
+}
+
+.epl-section-wide {
+	max-width: $container-width-wide;
+	margin: 0 auto;
+}
+
+.epl-section-narrow {
+	max-width: $container-width;
+	margin: 0 auto;
+}
+
+

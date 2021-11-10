@@ -1,0 +1,23 @@
+@use '../abstracts'as *;
+
+/*********************************************
+EPL Core Reset CSS Classes
+*********************************************/
+
+.epl-property-blog .property-box {
+	width: initial;
+}
+
+
+
+@media screen and (max-width: 500px) {
+	.epl-property-blog, 
+	.epl-property-blog.hentry {
+		    width: 100%;
+		    max-width: 100%;
+		    margin: 0 auto 20px;
+		    float: none;
+		    clear: both;
+		}
+}
+
