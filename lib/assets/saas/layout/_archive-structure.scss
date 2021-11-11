@@ -1,6 +1,24 @@
 @use '../abstracts'as *;
 
 /**********************
+	Loop - Tools
+***********************/
+.epl-loop-tools-wrap {
+	grid-column: 1 / -1;
+}
+
+.epl-template-default {
+	display: grid;
+	grid-template-columns: $grid-repeat-medium;
+}
+
+
+
+
+
+
+
+/**********************
 	Loop
 ***********************/
 .epl-property-blog {
@@ -8,6 +26,8 @@
 	margin: 0;
 	padding: 0;
 	width: 100%;
+	
+	grid-column: 1 / -1;
 }
 .epl-property-blog.hentry,
 .builder-module-content .epl-property-blog.hentry {
@@ -122,6 +142,8 @@
 	//width: 33.3%;
 	margin: 0;
 	padding: 0;
+	
+	grid-column: initial;
 }
 
 

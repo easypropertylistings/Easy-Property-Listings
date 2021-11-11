@@ -17,7 +17,8 @@ $mobile-width: 500px;
 
 
 $grid-repeat-xlarge: repeat(auto-fill, minmax( 600px, 1fr ) );
-$grid-repeat-large: repeat(auto-fill, minmax( 300px, 1fr ) );
+$grid-repeat-large: repeat(auto-fill, minmax( 400px, 1fr ) );
+$grid-repeat-medium: repeat(auto-fill, minmax( 300px, 1fr ) );
 $grid-repeat-small: repeat(auto-fill, minmax( 200px, 1fr ) );
 
 // Colors.

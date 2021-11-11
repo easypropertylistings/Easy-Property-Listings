@@ -2439,6 +2439,75 @@ li.tbhead.current {
   zoom: 1;
 }
 
+/*****************************
+	Pagination - Squares
+****************************/
+body .epl-pagination {
+  clear: both;
+  margin: 60px 0 !important;
+  text-align: center;
+  position: relative;
+}
+
+body .epl-pagination a,
+body .epl-pagination span {
+  text-decoration: none;
+  border: 1px solid #00aeef;
+  margin: 0.3em;
+  display: inline-block;
+  background: transparent;
+  color: #00aeef;
+  line-height: 40px;
+  min-width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 0;
+  font-weight: 600;
+}
+
+body .epl-pagination .pages {
+  border: 1px solid #00aeef;
+  display: none;
+}
+
+body .epl-pagination a.first,
+body .epl-pagination a.last {
+  border-left: 1px solid #00aeef;
+  border-right: 1px solid #00aeef;
+}
+
+body .epl-pagination a.last {
+  width: auto;
+}
+
+body .epl-pagination .pages {
+  padding: 0.2em 1em;
+  width: auto;
+}
+
+body .epl-pagination a:hover,
+body .epl-pagination span.current {
+  background: #00aeef;
+  border-color: #00aeef;
+  display: inline-block;
+}
+
+body .epl-pagination a:hover {
+  background: #00aeef;
+  display: inline-block;
+  color: #ffffff;
+}
+
+body .epl-pagination ul li:hover a,
+body .epl-pagination ul li.active a {
+  background: #414142;
+}
+
+body .epl-pagination ul li:hover a:after,
+body .epl-pagination ul li.active a:after {
+  background: #414142;
+}
+
 /*********************************************
 	Theme Setup
 *********************************************/
@@ -2451,6 +2520,18 @@ li.tbhead.current {
 }
 
 /**********************
+	Loop - Tools
+***********************/
+.epl-loop-tools-wrap {
+  grid-column: 1/-1;
+}
+
+.epl-template-default {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/**********************
 	Loop
 ***********************/
 .epl-property-blog {
@@ -2458,6 +2539,7 @@ li.tbhead.current {
   margin: 0;
   padding: 0;
   width: 100%;
+  grid-column: 1/-1;
 }
 
 .epl-property-blog.hentry,
@@ -2543,6 +2625,7 @@ li.tbhead.current {
   clear: none !important;
   margin: 0;
   padding: 0;
+  grid-column: initial;
 }
 
 .epl-property-blog a.more-link,

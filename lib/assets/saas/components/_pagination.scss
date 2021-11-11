@@ -1,0 +1,70 @@
+@use '../abstracts' as *;
+
+/*****************************
+	Pagination - Squares
+****************************/
+body .epl-pagination {
+	clear: both;
+	margin: 60px 0 !important;
+	text-align: center;
+	position: relative;
+}
+
+body .epl-pagination a,
+body .epl-pagination span {
+	text-decoration: none;
+	border: 1px solid $color-primary;
+	margin: 0.3em;
+	display: inline-block;
+	background: transparent;
+	color: $color-primary;
+	line-height: 40px;
+	min-width: 50px;
+	height: 50px;
+	position: relative;
+	border-radius: 0;
+	font-weight: 600;
+}
+
+body .epl-pagination .pages {
+	border: 1px solid $color-primary;
+	display: none;
+}
+
+body .epl-pagination a.first,
+body .epl-pagination a.last {
+	border-left: 1px solid $color-primary;
+	border-right: 1px solid $color-primary;
+}
+body .epl-pagination a.last {
+	width: auto;
+	
+}
+
+body .epl-pagination .pages {
+	padding: 0.2em 1em;
+	width: auto;
+}
+
+body .epl-pagination a:hover,
+body .epl-pagination span.current {
+	background: $color-primary;
+	border-color: $color-primary;
+	display: inline-block;
+}
+
+body .epl-pagination a:hover {
+	background: $color-primary;
+	display: inline-block;
+	color: $color-white;
+}
+
+body .epl-pagination ul li:hover a,
+body .epl-pagination ul li.active a {
+	background: $color-grey;
+}
+
+body .epl-pagination ul li:hover a:after,
+body .epl-pagination ul li.active a:after {
+	background: $color-grey;
+}
