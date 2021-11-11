@@ -87,6 +87,11 @@ $color-white-tint-10: rgba(255,255,255, 0.1);
 $color-white-tint-20: rgba(255,255,255, 0.2);
 $color-white-tint-30: rgba(255,255,255, 0.3);
 $color-white-tint-40: rgba(255,255,255, 0.4);
+$color-white-tint-50: rgba(255,255,255, 0.5);
+$color-white-tint-60: rgba(255,255,255, 0.6);
+$color-white-tint-70: rgba(255,255,255, 0.7);
+$color-white-tint-80: rgba(255,255,255, 0.8);
+$color-white-tint-90: rgba(255,255,255, 0.9);
 
 
 // Color Builds.
@@ -128,8 +133,33 @@ $icon-fill-frame: $color-primary-light;
 $icon-fill-base: $color-primary-dark;
 
 
-$icon-container-margin: 2em;
-$icon-container-padding: 0.3em;
+// .property-feature-icons
+$icon-wrapper-height: auto;
+$icon-wrapper-width: auto;
+
+
+$icon-wrapper-margin: 1em 0;
+$icon-wrapper-padding: 1em;
+$icon-wrapper-background: $color-white-tint-30;
+$icon-wrapper-border: 3px solid $color-white-tint-50;
+$icon-wrapper-border-radius: 2em;
+
+$icon-wrapper-display: flex;
+$icon-wrapper-flex-direction: row;
+$icon-wrapper-flex-wrap: nowrap;
+$icon-wrapper-justify-content: center;
+$icon-wrapper-align-items: center;
+$icon-wrapper-column-gap: 1em;
+$icon-wrapper-row-gap: 2em;
+
+
+
+
+
+
+// .epl-icon-svg-container
+$icon-container-margin: 0;
+$icon-container-padding: 0.5em;
 
 $icon-container-width: 2em;
 $icon-container-height: 1em;
@@ -144,10 +174,32 @@ $icon-container-line-height: 1em;
 
 
 $icon-container-justify-content: center;
+$icon-container-align-items: center;
 $icon-container-flex-direction: row;
-$icon-container-flex-gap: 1em;
+$icon-container-flex-gap: 0.5em;
 
 
+
+
+
+
+// .epl-icon
+$icon-width: 2em;
+$icon-height: 2em;
+$icon-line-height: 1;
+
+
+
+
+
+
+// .icon-value
+$icon-value-display: block;
+$icon-value-margin: 0;
+$icon-value-padding: 0;
+$icon-value-vertical-align: middle;
+$icon-value-font-size: 1em;
+$icon-value-line-height: 1;
 
 
 
@@ -185,11 +237,22 @@ $line-height: 1.4;
 $select-arrow: "images/select-arrow.svg";
 $select-arrow-large: "images/select-arrow-large.svg";
 
+
+
+
 // Bed.
+$icon-bed-png-background: transparent url(../images/icon-sprites.png) 0 -120px no-repeat;
+
+// Bath.
+
+
+
+// PNG Icons. ##################################################
+
 $icon-bed: url( 'images/icon-fa-bed-solid.svg' ) no-repeat;
 $icon-bed-white: url( 'images/icon-fa-bed-solid-white.svg' ) no-repeat;
 
-// Bath.
+
 $icon-bath: url( 'images/icon-fa-bath-solid.svg' ) no-repeat;
 $icon-bath-white: url( 'images/icon-fa-bath-solid-white.svg' ) no-repeat;
 
