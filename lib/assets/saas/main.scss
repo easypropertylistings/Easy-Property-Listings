@@ -25,3 +25,8 @@
 
 @use 'layout/archive-structure';
 @use 'layout/archive-listing';
+@use 'layout/shortcode-structure';
+
+
+// Themes.
+@use 'themes/twenty-twenty-one';

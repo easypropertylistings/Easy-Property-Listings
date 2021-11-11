@@ -21,6 +21,18 @@ $grid-repeat-large: repeat(auto-fill, minmax( 400px, 1fr ) );
 $grid-repeat-medium: repeat(auto-fill, minmax( 300px, 1fr ) );
 $grid-repeat-small: repeat(auto-fill, minmax( 200px, 1fr ) );
 
+
+$gap: 1em;
+$gap-column: $gap;
+$gap-row: $gap;
+
+
+$list-mode-display-style: flex;
+$list-mode-flex-direction: column; // flex-start, flex-end, center.
+$list-mode-flex-alignment: center; // flex-start, flex-end, center.
+
+
+
 // Colors.
 $color-black: #000000;
 $color-white: #ffffff;
