@@ -1,8 +1,10 @@
-// Responsive.
+// Responsive. ##################################################
 $desktop-width: 1500px;
 $laptop-width: 1400px;
 
-// Container.
+
+
+// Container. ##################################################
 $container-width-full: 100%;
 $container-width-extra-wide: 1500px;
 $container-width-wide: 1400px;
@@ -33,13 +35,20 @@ $list-mode-flex-alignment: center; // flex-start, flex-end, center.
 
 
 
-// Colors.
+// Colors. ##################################################
 $color-black: #000000;
 $color-white: #ffffff;
 
-// Project.
 
-$color-blue: #00aeef;
+$color-blue: #4ea9ea;
+$color-blue-light: #a8d4f4;
+$color-blue-dark: #3464b8;
+
+
+$color-orange: #FFA500;
+
+
+
 
 
 $color-grey: #414142;
@@ -52,56 +61,55 @@ $color-page-light-grey: #f7f8f9;
 
 
 
-
-
-
-
-// Other.
+// Color Range.
 
 $color-dark-blue: #004680;
-
 $color-orange: #e65b11;
-
 $color-red: #ed1c24;
 $color-dark-red: #9e0b0f;
 $color-light-blue: #004a97;
 $color-yellow: #f8f14b;
-
 $color-gold: #d4ae71;
 $color-light-gold: #f5eee3;
 $color-gold-opacity: rgba(212, 174, 113, 0.7);
-
 $color-dark-tan: #d0c9c3;
 $color-dark-tan-opacity: rgba(208, 201, 195, 0.3);
-
-
-
-
 $color-white-shade: #f7f7f7;
 $color-purple: #442943;
 $color-purple-30: #7336729c;
-
 $color-cream: #f8e5cd;
 $color-coffee: #b9a282;
-
 $color-green: #09816c;
-
 $color-tan: #e2ca7c;
 
+// Tints.
+$color-white-tint-10: rgba(255,255,255, 0.1);
+$color-white-tint-20: rgba(255,255,255, 0.2);
+$color-white-tint-30: rgba(255,255,255, 0.3);
+$color-white-tint-40: rgba(255,255,255, 0.4);
 
 
-// Colors.
+// Color Builds.
+
 $color-primary: $color-blue;
-$color-primary-dark: $color-dark-blue;
+$color-primary-dark: $color-blue-dark;
+$color-primary-light: $color-blue-light;
+
+
+
+$color-secondary: $color-orange;
+$color-secondary-dark: $color-blue-dark;
 
 
 
 
-$color-secondary: $color-grey;
-$color-secondary-dark: $color-grey-dark;
+
+
 $color-secondary-light: $color-grey-light;
 
 
+
+// Color Other.
 $color-oposite: $color-yellow;
 $color-accent: $color-grey;
 $color-alternate: $color-orange;
@@ -112,13 +120,47 @@ $color-body: $color-secondary;
 $color-text: $color-secondary;
 $color-page: $color-page-light-grey;
 
-// Shadow.
+
+
+// Icons. ##################################################
+$icon-fill-global: $color-primary;
+$icon-fill-frame: $color-primary-light;
+$icon-fill-base: $color-primary-dark;
+
+
+$icon-container-margin: 2em;
+$icon-container-padding: 0.3em;
+
+$icon-container-width: 2em;
+$icon-container-height: 1em;
+
+$icon-container-background: $color-white-tint-30;
+
+$icon-container-border: 1px solid $color-primary;
+$icon-container-border-color: green;
+
+$icon-container-border-radius: 10em;
+$icon-container-line-height: 1em;
+
+
+$icon-container-justify-content: center;
+$icon-container-flex-direction: row;
+$icon-container-flex-gap: 1em;
+
+
+
+
+
+// Shadow. ##################################################
 $box-shadow: 2px 2px 6px 3px rgb(91 103 112 / 45%);
 $box-shadow: none;
 $box-shadow-dark: 0 4px 6px 1px #dedede;
 $box-shadow-dark: none;
 
-// Borders.
+
+
+
+// Borders. ##################################################
 $border-form: 2px solid $color-secondary;
 $border-form-active: 3px solid $color-primary;
 

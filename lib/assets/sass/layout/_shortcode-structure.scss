@@ -1,0 +1,16 @@
+@use '../abstracts'as *;
+
+/**********************
+	Shortcode Structure
+***********************/
+
+.epl-template-blog.grid-mode {
+	.epl-switch-view {
+		display: none;
+	}
+	.epl-property-blog-entry-wrapper {
+		display: grid;
+		grid-template-columns: 1fr;
+		column-gap: $gap-column;
+	}
+}

@@ -1,0 +1,52 @@
+@use '../abstracts' as *;
+
+/*****************************
+	Icons
+****************************/
+
+
+/** Overall Fill **/
+.epl-icon-fill g {
+	fill: $icon-fill-global;
+}
+
+/** Frame Fill **/
+.epl-icon-fill .epl-icon-shape-frame {
+	fill: $icon-fill-frame;
+}
+.epl-icon-fill .epl-icon-color-base {
+	fill: $icon-fill-base;
+}
+
+
+.epl-icon-svg-container {
+	background: $icon-container-background;
+	
+	border: $icon-container-border;
+	border-radius: $icon-container-border-radius;
+	padding: $icon-container-padding;
+	
+	
+	display: flex;
+	flex-direction: $icon-container-flex-direction;
+	gap: $icon-container-flex-gap;
+	justify-content: $icon-container-justify-content;
+}
+
+
+
+/** Container and size **/
+.epl-icon-svg-container .epl-icon-svg,
+.epl-icon-svg-container .epl-author-icon-svg {
+	width: $icon-container-width;
+	height: $icon-container-height;
+}
+
+.epl-icon-svg-container .epl-icon svg {
+	line-height: $icon-container-line-height;
+}
+.epl-icon-svg-container .icon-value {
+	font-size: 1.4em;
+	text-align: center;
+	line-height: 50px;
+}
