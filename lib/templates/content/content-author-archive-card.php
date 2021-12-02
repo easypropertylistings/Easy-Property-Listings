@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$author_title = apply_filters( 'epl_author_profile_title', get_the_author_meta( 'display_name', $epl_author->author_id ), $epl_author );
 			?>
 			<a href="<?php echo esc_url( $permalink ); ?>">
-				<?php echo esc_attr( $author_title ); ?>
+				<?php echo esc_html( $author_title ); ?>
 			</a>
 		</div>
 	</div>
