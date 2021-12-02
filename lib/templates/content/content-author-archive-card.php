@@ -6,7 +6,8 @@
  * @subpackage  Templates/ContentAuthorArchiveCard
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.0.0
+ * @since       3.4.38 Corrected esc_attr
  */
 
 // Exit if accessed directly.
