@@ -50,5 +50,5 @@ if ( $query_open->have_posts() ) {
 	<?php
 	wp_reset_postdata();
 } else {
-	echo '<h3>' . esc_html__( 'Nothing found, please check back later.', 'easy-property-listings' ) . '</h3>';
+	do_action( 'epl_shortcode_results_message' );
 }
