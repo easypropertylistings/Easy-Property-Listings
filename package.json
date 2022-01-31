@@ -14,10 +14,11 @@
     "grunt-checktextdomain": "^1.0.1",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-jshint": "^2.1.0",
+    "grunt-contrib-jshint": "^3.1.1",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-pot": "^0.3.0",
+    "grunt-update": "^0.2.3",
     "grunt-wp-i18n": "^1.0.3"
   },
   "engines": {
