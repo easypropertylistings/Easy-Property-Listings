@@ -7,6 +7,8 @@ module.exports = function( grunt ) {
 
 	grunt.initConfig({
 
+		pkg: grunt.file.readJSON('package.json'),
+
 		// Setting folder templates.
 		dirs: {
 			css: 'lib/assets/css',
@@ -116,6 +118,7 @@ module.exports = function( grunt ) {
 						'tests/.*',
 						'tmp/.*'
 					],
+					updateTimestamp: true,    // Whether the POT-Creation-Date should be updated without other changes.
 					potHeaders: {
 						'report-msgid-bugs-to': 'https://wordpress.org/support/plugin/easy-property-listings',
 						'last-translator': 'Merv Barrett <support@easypropertylistings.com.au>',
@@ -132,7 +135,8 @@ module.exports = function( grunt ) {
 						'X-Poedit-SearchPathExcluded-4': 'apigen.neon',
 						'X-Poedit-SearchPathExcluded-5': 'package.json',
 						'X-Poedit-SearchPathExcluded-6': 'README.md'
-					}
+					},
+					updatePoFiles: true // To use this option is need to have gettext installed.
 				}
 			}
 		},
