@@ -6,7 +6,8 @@
  * @subpackage  Templates/ContentAuthorArchiveCard
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @since       1.0.0
+ * @since       3.4.38 Corrected esc_attr
  */
 
 // Exit if accessed directly.
@@ -29,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$author_title = apply_filters( 'epl_author_profile_title', get_the_author_meta( 'display_name', $epl_author->author_id ), $epl_author );
 			?>
 			<a href="<?php echo esc_url( $permalink ); ?>">
-				<?php echo esc_attr( $author_title ); ?>
+				<?php echo esc_html( $author_title ); ?>
 			</a>
 		</div>
 	</div>

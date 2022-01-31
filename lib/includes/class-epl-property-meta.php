@@ -671,6 +671,7 @@ class EPL_Property_Meta {
 	 * Plain price value
 	 *
 	 * @since 2.0
+	 * @since 3.4.38 Using label_poa for no rental price.
 	 * @return string
 	 */
 	public function get_price_plain_value() {
@@ -711,7 +712,11 @@ class EPL_Property_Meta {
 				$price_plain_value = $this->label_leased . ' ' . $this->get_property_rent();
 
 			} else {
-				$price_plain_value = __( 'TBA', 'easy-property-listings' );
+				if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings['label_poa'] ) ) {
+					$price_plain_value = $this->epl_settings['label_poa'];
+				} else {
+					$price_plain_value = __( 'TBA', 'easy-property-listings' );
+				}
 			}
 		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$price_display    = $this->get_property_price_display();
@@ -769,6 +774,7 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @since 3.4.27    Fixed rent period translation.
+	 * @since 3.4.28    Using label_poa for no rental price.
 	 * @return string
 	 */
 	public function get_price() {
@@ -819,7 +825,11 @@ class EPL_Property_Meta {
 				$price = '<span class="page-price sold-status">' . $this->label_leased . '</span>';
 
 			} else {
-				$price = '<span class="page-price">' . __( 'TBA', 'easy-property-listings' ) . '</span>';
+				$price_plain_value_poa = __( 'TBA', 'easy-property-listings' );
+				if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings['label_poa'] ) ) {
+					$price_plain_value_poa = $this->epl_settings['label_poa'];
+				}
+				$price = '<span class="page-price">' . $price_plain_value_poa . '</span>';
 			}
 		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
