@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $post Post object.
  *
  * @since 2.2
- * @since 		3.5 Support for third & fourth agent
+ * @since 3.4.38 Support for third & fourth agents.
  */
 function epl_reset_property_object( $post ) {
 
