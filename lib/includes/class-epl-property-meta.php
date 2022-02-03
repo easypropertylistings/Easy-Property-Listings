@@ -671,7 +671,7 @@ class EPL_Property_Meta {
 	 * Plain price value
 	 *
 	 * @since 2.0
-	 * @since 3.4.38 Using label_poa for no rental price.
+	 * @since 3.4.38 Using label_poa for no rental price. Added epl_price_rent_period filter.
 	 * @return string
 	 */
 	public function get_price_plain_value() {
@@ -699,7 +699,9 @@ class EPL_Property_Meta {
 			$prop_rent = $this->get_property_rent();
 			if ( ! empty( $prop_rent ) && 'yes' === $this->get_property_meta( 'property_rent_display' ) && 'leased' !== $this->get_property_meta( 'property_status' ) ) {
 
-				$price_plain_value = $this->get_property_rent() . '/' . ucfirst( $this->get_property_meta( 'property_rent_period' ) );
+				$price_rent_period = $this->get_property_meta('property_rent_period');
+				$price_rent_period = apply_filters( 'epl_price_rent_period' , $price_rent_period );
+				$price_plain_value = $this->get_property_rent() . '/' .  __( ucfirst( $price_rent_period ), 'easy-property-listings');
 				$prop_rent_view    = $this->get_property_meta( 'property_rent_view' );
 				if ( ! empty( $prop_rent_view ) ) {
 					$price_plain_value = $this->get_property_meta( 'property_rent_view' );
@@ -774,7 +776,7 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @since 3.4.27    Fixed rent period translation.
-	 * @since 3.4.28    Using label_poa for no rental price.
+	 * @since 3.4.28    Using label_poa for no rental price. Added epl_price_rent_period filter.
 	 * @return string
 	 */
 	public function get_price() {
@@ -794,11 +796,11 @@ class EPL_Property_Meta {
 			} elseif ( 'auction' === $this->get_property_meta( 'property_authority' ) && 'no' === $this->get_property_meta( 'property_price_display' ) ) {  // Auction.
 				$price = '<span class="page-price auction">' . apply_filters( 'epl_get_property_auction_label', __( 'Auction', 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
 			} else {
-				$price_plain_value_poa = __( 'POA', 'easy-property-listings' );
+				$price_poa = __( 'POA', 'easy-property-listings' );
 				if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings['label_poa'] ) ) {
-					$price_plain_value_poa = $this->epl_settings['label_poa'];
+					$price_poa = $this->epl_settings['label_poa'];
 				}
-				$price = '<span class="page-price">' . $price_plain_value_poa . '</span>';
+				$price = '<span class="page-price">' . $price_poa . '</span>';
 			}
 			if ( 'yes' === $this->get_property_meta( 'property_under_offer' ) && 'sold' !== $this->get_property_meta( 'property_status' ) ) {
 				$price = '<span class="page-price under-offer-status">' . $this->label_under_offer . '</span>';
@@ -806,15 +808,16 @@ class EPL_Property_Meta {
 		} elseif ( 'rental' === $this->post_type ) {
 			if ( ! empty( $prop_rent ) && 'yes' === $this->get_property_meta( 'property_rent_display' ) && 'leased' !== $this->get_property_meta( 'property_status' ) ) {
 
-				$epl_property_price_rent_separator = apply_filters( 'epl_property_price_rent_separator', '/' );
+				$rent_separator = apply_filters( 'epl_property_price_rent_separator', '/' );
 
 				$price  = '<span class="page-price-rent">';
 				$price .= '<span class="page-price" style="margin-right:0;">' . $this->get_property_rent() . '</span>';
 				if ( empty( $prop_rent_view ) ) {
 					$rent_period_value = $this->get_property_meta( 'property_rent_period' );
+					$rent_period_value = apply_filters( 'epl_price_rent_period' , $rent_period_value );
 					$rent_options      = epl_get_property_rent_period_opts();
 					$rent_period_label = isset( $rent_options[ $rent_period_value ] ) ? $rent_options[ $rent_period_value ] : ucfirst( $rent_period_value );
-					$price            .= '<span class="rent-period">' . $epl_property_price_rent_separator . '' . $rent_period_label . '</span>';
+					$price            .= '<span class="rent-period">' . $rent_separator . '' . $rent_period_label . '</span>';
 				}
 				$price    .= '</span>';
 				$prop_bond = $this->get_property_bond();
@@ -825,11 +828,11 @@ class EPL_Property_Meta {
 				$price = '<span class="page-price sold-status">' . $this->label_leased . '</span>';
 
 			} else {
-				$price_plain_value_poa = __( 'TBA', 'easy-property-listings' );
+				$price_poa = __( 'TBA', 'easy-property-listings' );
 				if ( ! empty( $this->epl_settings ) && isset( $this->epl_settings['label_poa'] ) ) {
-					$price_plain_value_poa = $this->epl_settings['label_poa'];
+					$price_poa = $this->epl_settings['label_poa'];
 				}
-				$price = '<span class="page-price">' . $price_plain_value_poa . '</span>';
+				$price = '<span class="page-price">' . $price_poa . '</span>';
 			}
 		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
@@ -994,8 +997,10 @@ class EPL_Property_Meta {
 	/**
 	 * Get list style price
 	 *
-	 * @since 2.0
 	 * @return string
+	 *
+	 * @since 2.0.0
+	 * @since 3.4.38 Added epl_price_rent_period filter.
 	 */
 	public function get_l_price() {
 		$price_display = $this->get_property_price_display();
@@ -1018,15 +1023,15 @@ class EPL_Property_Meta {
 		} elseif ( 'rental' === $this->post_type ) {
 			$prop_rent = $this->get_property_rent();
 			if ( ! empty( $prop_rent ) && 'yes' === $this->get_property_meta( 'property_rent_display' ) && 'leased' !== $this->get_property_meta( 'property_status' ) ) {
-
+				$price_rent_period = $this->get_property_meta('property_rent_period');
+				$price_rent_period = apply_filters( 'epl_price_rent_period' , $price_rent_period );
 				$l_price = '<li class="page-price-rent">
 							<span class="page-price" style="margin-right:0;">' . $this->get_property_rent() . '</span>
-							<span class="rent-period">/' . $this->get_property_meta( 'property_rent_period' ) . '</span>
+							<span class="rent-period">/' . $price_rent_period . '</span>
 						</li>';
 
 			} elseif ( 'leased' === $this->get_property_meta( 'property_status' ) ) {
 				$l_price = '<li class="page-price sold-status">' . $this->label_leased . '</li>';
-
 			}
 		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
