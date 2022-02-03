@@ -5,8 +5,8 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.8.1
-Stable Tag: 3.4.36
+Tested up to: 5.9
+Stable Tag: 3.4.37
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
@@ -308,6 +308,7 @@ Easy Property Listings needs help for translation:
 14. Arabic
 15. Brazilian Portuguese - pt_BR - [Dionizio Bach | DJIO](https://www.djio.com.br/wordpress/)
 16. Portuguese
+17. Finnish - Thanks to Eevastiina Hyvönen.
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/?utm_source=readme&utm_medium=description_tab&utm_content=translations_link&utm_campaign=language).
 

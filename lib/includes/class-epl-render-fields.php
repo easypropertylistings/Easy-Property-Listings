@@ -349,8 +349,11 @@ class EPL_Render_Fields {
 	 * @param boolean $self_close The self close.
 	 *
 	 * @return     string   The opening field tag.
+	 *
+	 * @since 2.3.0
+	 * @since 3.4.38 PHP 8.0 fix for Required parameter $field follows optional parameter $tag.
 	 */
-	public function get_opening_field_tag( $tag = 'input', $field, $self_close = false ) {
+	public function get_opening_field_tag( $tag = 'input', $field = [], $self_close = false ) {
 
 		$tag = sanitize_key( $tag );
 

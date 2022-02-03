@@ -91,6 +91,26 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
+							'name'      => 'property_third_agent',
+							'label'     => __( 'Third Listing Agent', 'easy-property-listings' ),
+							'type'      => 'text',
+							'maxlength' => '40',
+							'help'      => __( 'Search for third agent.', 'easy-property-listings' ),
+							'class'     => 'epl-property-second-agent',
+							'include'	=> ['business', 'commercial', 'commercial_land']	
+						),
+
+						array(
+							'name'      => 'property_fourth_agent',
+							'label'     => __( 'Fourth Listing Agent', 'easy-property-listings' ),
+							'type'      => 'text',
+							'maxlength' => '40',
+							'help'      => __( 'Search for fourth agent.', 'easy-property-listings' ),
+							'class'     => 'epl-property-second-agent',
+							'include'	=> ['business', 'commercial', 'commercial_land']
+						),
+
+						array(
 							'name'  => 'property_agent_hide_author_box',
 							'label' => __( 'Hide Author Box', 'easy-property-listings' ),
 							'type'  => 'checkbox_single',
