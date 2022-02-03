@@ -1629,8 +1629,9 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
-	 * @since 3.4.37 Fix: don't display land area when it's < 0.
 	 * @return string
+	 *
+	 * @since 3.4.38 Fix: Don't display land area when it's < 0.
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
 
