@@ -4,6 +4,7 @@
  * @package	EPL
  * @since	3.1.0
  * @version	3.4.14
+ * @version	3.4.38 Updated switch.png to switch.svg
  * @subpackage	Structure CSS
  * @copyright	Copyright (c) 2019, Merv Barrett
  * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -641,19 +642,21 @@ ul.epl_ui_tab_menu_wrapper li.epl_ui_tab_menu_current{
 .epl-switch-view li.view-list {
 	background-attachment: scroll;
 	background-clip: border-box;
-	background-image: url("../images/switch.png");
+	background-image: url("../images/switch.svg");
 	background-origin: padding-box;
 	background-position: -15px -14px;
+	background-size: 33px 31px;
 	background-repeat: no-repeat;
 	height: 18px;
 }
 .epl-switch-view li.view-grid {
 	background-attachment: scroll;
 	background-clip: border-box;
-	background-image: url("../images/switch.png");
+	background-image: url("../images/switch.svg");
 	background-origin: padding-box;
 	background-position: 5px -14px;
 	background-repeat: no-repeat;
+	background-size: 33px 31px;
 	height: 18px;
 	margin: 0;
 }
