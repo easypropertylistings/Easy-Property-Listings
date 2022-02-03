@@ -21,11 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * has an energy certificate they will be output on the template
  *
  * @since 3.2.0
- * @since 3.4.25 filter epl_show_{key} eg epl_show_property_energy_certificate to disable button rendering.
+ * @since 3.4.25 filter epl_show_{key} e.g. epl_show_property_energy_certificate to disable button rendering.
  */
 function epl_button_energy_certificate() {
 
-	$keys = array( 'property_energy_certificate' );
+	$keys = apply_filters( 'epl_energy_certificate_keys', array( 'property_energy_certificate' ) );
 
 	foreach ( $keys as $key ) {
 		$link       = get_post_meta( get_the_ID(), $key, true );

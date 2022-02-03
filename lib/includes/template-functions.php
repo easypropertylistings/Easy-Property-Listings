@@ -1165,11 +1165,11 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 				array( 'width' => apply_filters( 'epl_property_video_width', $width ) )
 			);
 
-			if( $video_embed_html ) {
+			if ( $video_embed_html ) {
 				$video_html     .=  $video_embed_html;
 			} else {
-				$video_html     .= '<video class="epl-local-video" controls width="'.$width.'">
-						<source src="'.$property_video_url.'">
+				$video_html     .= '<video class="epl-local-video" controls width="' . $width . '">
+						<source src="' . $property_video_url . '">
 					</video>';
 			}
 
