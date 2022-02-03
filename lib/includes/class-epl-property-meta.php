@@ -853,7 +853,7 @@ class EPL_Property_Meta {
 											apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . ':
 										</span> ' . $this->get_property_price_display() . '
 									</span>
-									<div class="epl-clear"></div>
+									<span class="epl-clear"></span>
 									<span class="page-price-prefix">
 										<span class="page-price-prefix">' .
 											apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . ':
@@ -2122,8 +2122,8 @@ class EPL_Property_Meta {
 		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
-					  '<p>' . $metavalue . '</p>' .
-					  '</div>';
+						'<p>' . $metavalue . '</p>' .
+					'</div>';
 			return apply_filters( 'epl_get_additional_commercial_features_html', $return );
 		}
 	}
@@ -2142,8 +2142,8 @@ class EPL_Property_Meta {
 		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
-					  '<p>' . $metavalue . '</p>' .
-					  '</div>';
+						'<p>' . $metavalue . '</p>' .
+						'</div>';
 			return apply_filters( 'epl_get_additional_commerical_features_html', $return );
 		}
 	}
