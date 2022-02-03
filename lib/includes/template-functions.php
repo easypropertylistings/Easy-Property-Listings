@@ -3146,7 +3146,7 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 }
 
 /**
- * Shortcode Sorter
+ * Shortcode Results Not Found Message
  *
  * @since      3.1.5
  *
