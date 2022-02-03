@@ -68,8 +68,8 @@ add_action( 'the_post', 'epl_reset_property_object' );
 /**
  * Make $property global available for hooks before the_post
  *
- * @since      2.2
- * @since 		3.5 Support for third & fourth agent
+ * @since 2.2
+ * @since 3.5 Support for third & fourth agent.
  */
 function epl_create_property_object() {
 
@@ -135,15 +135,18 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  *
  * @since      1.2.0
  * @since      3.4.8 Corrected missing parameter count to 3.
- * @since 	   3.4.37 Added filter epl_property_featured_image_args to control all params & epl_no_property_featured_image action.
+ * @since      3.4.37 Added filter epl_property_featured_image_args to control all params & epl_no_property_featured_image action.
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
-	$args = apply_filters( 'epl_property_featured_image_args', [
-		'image_size'	=>	$image_size,
-		'image_class'	=>	$image_class,
-		'link'			=>	$link
-	] );
+	$args = apply_filters(
+		'epl_property_featured_image_args',
+		array(
+			'image_size'  => $image_size,
+			'image_class' => $image_class,
+			'link'        => $link,
+		)
+	);
 	/**
 	 * Filter: Allow user or extension to enable or disable link behaviour on featured image.
 	 */
@@ -163,7 +166,7 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 		</div>
 		<?php
 	} else {
-		do_action( 'epl_no_property_featured_image');
+		do_action( 'epl_no_property_featured_image' );
 	}
 
 }
@@ -189,12 +192,15 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 		$image_size = 'epl-image-medium-crop';
 	}
 
-	$args = apply_filters( 'epl_property_archive_featured_image_args', [
-		'image_size'	=>	$image_size,
-		'image_class'	=>	$image_class,
-		'link'			=>	$link,
-		'stickers'		=>	$stickers
-	] );
+	$args = apply_filters(
+		'epl_property_archive_featured_image_args',
+		array(
+			'image_size'  => $image_size,
+			'image_class' => $image_class,
+			'link'        => $link,
+			'stickers'    => $stickers,
+		)
+	);
 	/**
 	 * Filter: Allow user or extension to enable or disable link behaviour on archive image.
 	 */
@@ -304,7 +310,7 @@ function epl_get_fallback_content_path() {
  * @param array  $arguments Options to pass to template.
  * @since 3.4.37 New: additional param default_template to pass the default template which will be used if the template is not found.
  */
-function epl_get_template_part( $template, $arguments = array(), $default_template=false ) {
+function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
 
 	$base_path = epl_get_content_path();
 	$default   = $default_template ? $default_template : $template;
@@ -417,7 +423,7 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 		if ( ! $action_exists ) {
 			$tpl_name = 'loop-listing-blog-' . $template . '.php';
 			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
-			epl_get_template_part( $tpl_name,[], 'loop-listing-blog-' . $default . '.php' );
+			epl_get_template_part( $tpl_name, array(), 'loop-listing-blog-' . $default . '.php' );
 		}
 	} // End Status Removal.
 }
@@ -427,19 +433,19 @@ add_action( 'epl_property_blog', 'epl_property_blog', 10, 1 );
  * Renders default author box
  *
  * @since      3.2
- * @since 		3.5 Support for third & fourth agent
+ * @since       3.5 Support for third & fourth agent
  */
 function epl_property_author_default() {
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box.php' );
 	if ( is_epl_post() ) {
-		if( epl_listing_has_secondary_author() ) {
+		if ( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_secondary ) );
 		}
-		if( epl_listing_has_third_agent() ) {
+		if ( epl_listing_has_third_agent() ) {
 			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_third ) );
 		}
-		if( epl_listing_has_fourth_agent() ) {
+		if ( epl_listing_has_fourth_agent() ) {
 			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_fourth ) );
 		}
 		epl_reset_post_author();
@@ -486,20 +492,20 @@ add_action( 'epl_single_author', 'epl_property_author_box', 10 );
  * AUTHOR CARD : Standard
  *
  * @since      1.0
- * @since 		3.5 Support for third & fourth agent
+ * @since       3.5 Support for third & fourth agent
  */
 function epl_property_author_box_simple_card() {
 
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box-simple-card.php' );
 	if ( is_epl_post() ) {
-		if( epl_listing_has_secondary_author() ) {
+		if ( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_secondary ) );
 		}
-		if( epl_listing_has_third_agent() ) {
+		if ( epl_listing_has_third_agent() ) {
 			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_third ) );
 		}
-		if( epl_listing_has_fourth_agent() ) {
+		if ( epl_listing_has_fourth_agent() ) {
 			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_fourth ) );
 		}
 		epl_reset_post_author();
@@ -510,20 +516,20 @@ function epl_property_author_box_simple_card() {
  * AUTHOR CARD : Gravatar
  *
  * @since      1.0
- * @since 		3.5 Support for third & fourth agent		
+ * @since       3.5 Support for third & fourth agent
  */
 function epl_property_author_box_simple_grav() {
 
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box-simple-grav.php' );
 	if ( is_epl_post() ) {
-		if( epl_listing_has_secondary_author() ) {
+		if ( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_secondary ) );
 		}
-		if( epl_listing_has_third_agent() ) {
+		if ( epl_listing_has_third_agent() ) {
 			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_third ) );
 		}
-		if( epl_listing_has_fourth_agent() ) {
+		if ( epl_listing_has_fourth_agent() ) {
 			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_fourth ) );
 		}
 		epl_reset_post_author();
@@ -556,7 +562,7 @@ function epl_property_widget( $display, $image, $title, $icons, $more_text, $d_e
 	if ( is_null( $property ) ) {
 		return;
 	}
-	
+
 	if ( empty( $more_text ) ) {
 		$more_text = apply_filters( 'epl_property_widget_read_more', __( 'Read More', 'easy-property-listings' ) );
 	}
@@ -659,17 +665,17 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
 
 	// Second Author.
 	if ( is_single() && ! is_null( $property ) ) {
-		
+
 		if ( is_epl_post() ) {
-			if( epl_listing_has_secondary_author() ) {
+			if ( epl_listing_has_secondary_author() ) {
 				$epl_author = $epl_author_secondary;
 				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
 			}
-			if( epl_listing_has_third_agent() ) {
+			if ( epl_listing_has_third_agent() ) {
 				$epl_author = $epl_author_third;
 				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
 			}
-			if( epl_listing_has_fourth_agent() ) {
+			if ( epl_listing_has_fourth_agent() ) {
 				$epl_author = $epl_author_fourth;
 				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
 			}
@@ -1165,16 +1171,16 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 				array( 'width' => apply_filters( 'epl_property_video_width', $width ) )
 			);
 
-			if ( $video_embed_html ) {
-				$video_html     .=  $video_embed_html;
-			} else {
-				$video_html     .= '<video class="epl-local-video" controls width="' . $width . '">
+		if ( $video_embed_html ) {
+			$video_html .= $video_embed_html;
+		} else {
+			$video_html .= '<video class="epl-local-video" controls width="' . $width . '">
 						<source src="' . $property_video_url . '">
 					</video>';
-			}
+		}
 
-		$video_html     .= '</div>';
-		
+		$video_html .= '</div>';
+
 		return $video_html;
 	}
 }
@@ -3243,15 +3249,15 @@ add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
 function epl_archive_author_callback() {
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-archive-card.php' );
-	
+
 	if ( is_epl_post() ) {
-		if( epl_listing_has_secondary_author() ) {
+		if ( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-archive-card.php', array( 'epl_author' => $epl_author_secondary ) );
 		}
-		if( epl_listing_has_third_agent() ) {
+		if ( epl_listing_has_third_agent() ) {
 			epl_get_template_part( 'content-author-archive-card', array( 'epl_author' => $epl_author_third ) );
 		}
-		if( epl_listing_has_fourth_agent() ) {
+		if ( epl_listing_has_fourth_agent() ) {
 			epl_get_template_part( 'content-author-archive-card', array( 'epl_author' => $epl_author_fourth ) );
 		}
 		epl_reset_post_author();
@@ -3735,7 +3741,7 @@ add_action( 'epl_property_status', 'epl_property_status', 10, 2 );
  *
  * @return     array  $classes  Modified classes.
  * @since      3.4.29
- * @since 	   3.4.37 Added custom classes for epl search results.
+ * @since      3.4.37 Added custom classes for epl search results.
  */
 function epl_body_classes( $classes ) {
 
