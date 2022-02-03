@@ -23,10 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  * @since 3.4.24 Refactored, added epl_button_label_{$key} filter for labels.
  * @since 3.4.25 filter epl_show_{key} eg epl_show_property_com_mini_web to disable button rendering.
+ * @since 3.4.37 Added filter epl_mini_web_keys to support additional mini web links.
  */
 function epl_button_mini_web() {
 
-	$keys = array( 'property_com_mini_web', 'property_com_mini_web_2', 'property_com_mini_web_3' );
+	$keys = apply_filters( 'epl_mini_web_keys', array( 'property_com_mini_web', 'property_com_mini_web_2', 'property_com_mini_web_3' ) );
 
 	foreach ( $keys as $key ) {
 

@@ -671,6 +671,7 @@ class EPL_Property_Meta {
 	 * Plain price value
 	 *
 	 * @since 2.0
+	 * @since 3.4.37 Added filter epl_pa_price for P.A label.
 	 * @return string
 	 */
 	public function get_price_plain_value() {
@@ -717,7 +718,7 @@ class EPL_Property_Meta {
 			$price_display    = $this->get_property_price_display();
 			$prop_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$rent_lease_type  =
-				! empty( $prop_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : 'P.A.';
+				! empty( $prop_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : apply_filters( 'epl_pa_label', __( 'P.A.', 'easy-property-listings' ) );
 			// Sale or Both.
 			$price_plain_value = '';
 			if ( $this->get_property_meta( 'property_com_listing_type' ) === 'sale' || $this->get_property_meta( 'property_com_listing_type' ) === 'both' ) {
@@ -769,6 +770,8 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @since 3.4.27    Fixed rent period translation.
+	 * @since 3.4.37 Added filter epl_pa_price for P.A label.
+	 * @since 3.4.37 commercial listing type "both" now shows sale & lease prices.
 	 * @return string
 	 */
 	public function get_price() {
@@ -824,7 +827,7 @@ class EPL_Property_Meta {
 		} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$rent_lease_type      =
-				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
+				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : apply_filters( 'epl_pa_label', __( 'P.A.', 'easy-property-listings' ) );
 
 			// Sale or both.
 			$price = '';
@@ -833,7 +836,20 @@ class EPL_Property_Meta {
 				if ( $this->get_property_meta( 'property_com_authority' ) === 'auction' ) {    // Auction.
 					$price = '<span class="page-price auction">' . apply_filters( 'epl_commercial_auction_label', __( 'Auction', 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
 				} elseif ( ! empty( $prop_price_view ) && $this->get_property_meta( 'property_com_listing_type' ) === 'both' ) {
-					$price = '<span class="page-price"><span class="page-price-prefix"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_sale_and_lease_label', __( 'For Sale and Lease', 'easy-property-listings' ) ) . '</span> ' . $this->get_property_price_display() . '</span>';
+					$price = '<span class="page-price">
+									<span class="page-price-prefix">
+										<span class="page-price-prefix">' . 
+											apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . ':
+										</span> ' . $this->get_property_price_display() . '
+									</span>
+									<div class="epl-clear"></div>
+									<span class="page-price-prefix">
+										<span class="page-price-prefix">' . 
+											apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . ':
+										</span> ' . $this->get_property_com_rent() . ' ' . $rent_lease_type . '
+									</span>
+								</span>
+								';
 				} elseif ( ! empty( $price_display ) && 'yes' === $this->get_property_meta( 'property_price_display' ) ) {   // Property.
 					$price = '<span class="page-price"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . '</span> ' . $this->get_property_price_display() . $this->get_property_tax() . '</span>';
 				} else {
@@ -985,6 +1001,7 @@ class EPL_Property_Meta {
 	 * Get list style price
 	 *
 	 * @since 2.0
+	 * @since 3.4.37 Added filter epl_pa_price for P.A label.
 	 * @return string
 	 */
 	public function get_l_price() {
@@ -1022,7 +1039,7 @@ class EPL_Property_Meta {
 			$prop_com_rent_period = $this->get_property_meta( 'property_com_rent_period' );
 			$prop_com_rent        = $this->get_property_com_rent();
 			$rent_lease_type      =
-				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : __( 'P.A.', 'easy-property-listings' );
+				! empty( $prop_com_rent_period ) ? epl_listing_load_meta_commercial_rent_period_value( $this->get_property_meta( 'property_com_rent_period' ) ) : apply_filters( 'epl_pa_label', __( 'P.A.', 'easy-property-listings' ) );
 			if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 				$l_price = '<li class="status-sticker sold">' . $this->label_sold . '</li>';
 			} elseif ( ! empty( $price_display ) && 'yes' === $this->get_property_meta( 'property_price_display' ) ) { // Property.
@@ -1600,6 +1617,7 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+	 * @since 3.4.37 Fix: don't display land area when it's < 0.
 	 * @return string
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
@@ -1619,7 +1637,7 @@ class EPL_Property_Meta {
 
 		$property_land_area_unit = apply_filters( 'epl_property_land_area_unit_label', $property_land_area_unit );
 
-		if ( is_numeric( $this->get_property_meta( 'property_land_area' ) ) ) {
+		if ( is_numeric( $this->get_property_meta( 'property_land_area' ) ) && 0 < $this->get_property_meta( 'property_land_area' ) ) {
 
 			$label = apply_filters( 'epl_get_property_land_area_label', __( 'Land is', 'easy-property-listings' ) );
 
