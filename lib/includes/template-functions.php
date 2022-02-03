@@ -310,7 +310,7 @@ function epl_get_fallback_content_path() {
  * @param bool   $default_template Pass a default template.
  *
  * @since 3.0
- * @since 3.4.38 New: Additional paramater default_template to pass the default template which will be used if the template is not found.
+ * @since 3.4.38 New: Additional parameter default_template to pass the default template which will be used if the template is not found.
  */
 function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
 
@@ -743,7 +743,7 @@ function epl_property_get_the_full_address() {
  * @hooked epl_property_title
  * @hooked property_tab_address
  *
- * @param bool   $full Set to false to only display the street address.
+ * @param bool   $full Set to false too only display the street address.
  * @param bool   $street_separator Display the street separator.
  * @param string $separator_symbol Symbol to use as the street separator, default is a comma.
  *
@@ -1155,7 +1155,7 @@ function epl_get_video_host( $url ) {
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
-	/** Remove related videos from youtube */
+	// Remove related videos from YouTube.
 	if ( 'youtube' === epl_get_video_host( $property_video_url ) ) {
 
 		$property_video_url = epl_convert_youtube_embed_url( $property_video_url );
@@ -1242,7 +1242,7 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
  * Property Tab section details output
  *
  * @since 1.0.0
- * @since 3.4.14 Fix: Custom features callback output wrongly placed.
+ * @since 3.4.14 Fix: Custom features' callback output wrongly placed.
  * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @hooked property_tab_section
  */
@@ -1567,7 +1567,7 @@ add_action( 'epl_property_tab_section_after', 'epl_property_tab_section_after' )
  * Get price sticker
  *
  * @return string
- * @since      1.0
+ * @since  1.0
  */
 function epl_get_price_sticker() {
 	global $property;
@@ -2213,7 +2213,7 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_before', 1 );
 add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
 
 /**
- * Used to mark home inspection on apple devices
+ * Used to mark home inspection on Apple devices
  *
  * @param string $start The start.
  * @param string $end The end.
@@ -2487,7 +2487,7 @@ function epl_get_shortcode_list() {
 /**
  * Wrapper for wp_doing_ajax with fallback for lower WP versions
  *
- * @return     bool  True if its an ajax request
+ * @return     bool  True if it's an ajax request
  * @since      3.4.17
  */
 function epl_wp_doing_ajax() {
@@ -2655,7 +2655,7 @@ function epl_compatibility_archive_class_callback() {
 }
 
 /**
- * Apply the i'm feeling lucky theme options
+ * Apply I'm feeling lucky theme options
  *
  * @since      2.2
  */
@@ -2725,7 +2725,7 @@ function epl_remove_archive_thumbnail( $html, $post_id, $post_thumbnail_id, $siz
 	}
 
 	if ( is_epl_post_archive() ) { //phpcs:ignore
-		// allow archive listing images as well as widget images.
+		// Allow archive listing images as well as widget images.
 		if ( //phpcs:ignore
 			doing_action( 'epl_property_archive_featured_image' ) ||
 			doing_action( 'epl_property_widgets_featured_image' ) ||
@@ -3661,7 +3661,7 @@ function epl_get_stickers_array( $sticker_keys = array() ) {
 
 	/**
 	 * List of stickers for current listing, hook here if only need to change labels,
-	 * class etc for displayed labels.
+	 * Class etc. for displayed labels.
 	 */
 	return apply_filters( 'epl_stickers_array', $return );
 }
