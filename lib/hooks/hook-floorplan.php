@@ -23,8 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  * @since 3.3.0
  * @since 3.4.24 Fixed floor plan label filter.
- * @since 3.4.25 filter epl_show_{key} eg epl_show_property_floorplan to disable button rendering.
- * @since 3.4.37 Added filter epl_floorplan_keys to support additional floorplans.
+ * @since 3.4.25 filter epl_show_{key} e.g. epl_show_property_floorplan to disable button rendering.
+ * @since 3.4.38 Added filter epl_floorplan_keys to support additional floor plans.
  */
 function epl_button_floor_plan() {
 
@@ -33,12 +33,12 @@ function epl_button_floor_plan() {
 	foreach ( $keys as $key ) {
 
 		$link       = get_post_meta( get_the_ID(), $key, true );
-		$count      = 'property_floorplan' === $key ? '' : substr( $key, -1 );
+		$count      = 'property_floorplan' === $key ? '' : substr( $key, - 1 );
 		$default    = __( 'Floor Plan ', 'easy-property-listings' ) . $count;
 		$meta_label = get_post_meta( get_the_ID(), $key . '_label', true );
 		$meta_label = empty( $meta_label ) ? $default : $meta_label;
 
-		if ( is_array( $link ) ) { // Fallback if meta data is saved as an array.
+		if ( is_array( $link ) ) { // Fallback if metadata is saved as an array.
 
 			if ( ! empty( $link['image_url_or_path'] ) ) {
 				$link = $link['image_url_or_path'];
@@ -48,9 +48,10 @@ function epl_button_floor_plan() {
 		}
 		if ( ! empty( $link ) && apply_filters( 'epl_show_' . $key, true ) ) { ?>
 
-			<button type="button" class="epl-button epl-floor-plan epl-floor-plan-<?php echo absint( $count ); ?>" onclick="window.open('<?php echo esc_url( $link ); ?>')">
+			<button type="button" class="epl-button epl-floor-plan epl-floor-plan-<?php echo absint( $count ); ?>"
+					onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
-					$filter_key = str_replace( 'property_', '', $key );
+				$filter_key = str_replace( 'property_', '', $key );
 				if ( has_filter( 'epl_button_label_' . $filter_key ) ) {
 					$label = apply_filters( 'epl_button_label_' . $filter_key, $meta_label );
 				} else {
@@ -65,4 +66,5 @@ function epl_button_floor_plan() {
 	}
 
 }
+
 add_action( 'epl_buttons_single_property', 'epl_button_floor_plan' );

@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  * @since 3.4.25 filter epl_show_{key} e.g. epl_show_property_external_link to disable button rendering.
- * @since 3.4.37 Added filter epl_external_link_keys to support additional external links.
+ * @since 3.4.38 Added filter epl_external_link_keys to support additional external links.
  */
 function epl_button_external_link() {
 
@@ -52,7 +52,8 @@ function epl_button_external_link() {
 		}
 
 		if ( ! empty( $link ) && apply_filters( 'epl_show_' . $key, true ) ) { ?>
-			<button type="button" class="epl-button epl-external-link" onclick="window.open('<?php echo esc_url( $link ); ?>')">
+			<button type="button" class="epl-button epl-external-link"
+					onclick="window.open('<?php echo esc_url( $link ); ?>')">
 				<?php
 
 				if ( has_filter( 'epl_button_label_' . $key ) ) {
@@ -68,4 +69,5 @@ function epl_button_external_link() {
 		}
 	}
 }
+
 add_action( 'epl_buttons_single_property', 'epl_button_external_link' );
