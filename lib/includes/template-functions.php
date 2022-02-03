@@ -135,7 +135,7 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  *
  * @since      1.2.0
  * @since      3.4.8 Corrected missing parameter count to 3.
- * @since      3.4.37 Added filter epl_property_featured_image_args to control all params & epl_no_property_featured_image action.
+ * @since      3.4.38 Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
@@ -184,7 +184,7 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  * @since 2.2
  * @since 3.4.27 New: Additional param to disable / enable stickers
  * @since 3.4.30 Fix: Missing parameter filter. Increased from 3 to 4.
- * @since 3.4.37 Added filter epl_property_archive_featured_image to control all params & epl_no_archive_featured_image action if no featured image.
+ * @since 3.4.38 Added filter epl_property_archive_featured_image to control all parameters & epl_no_archive_featured_image action if no featured image.
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
@@ -305,10 +305,12 @@ function epl_get_fallback_content_path() {
 /**
  * Attempts to load templates in order of priority
  *
- * @since 3.0
  * @param string $template Template name.
  * @param array  $arguments Options to pass to template.
- * @since 3.4.37 New: additional param default_template to pass the default template which will be used if the template is not found.
+ * @param bool   $default_template Pass a default template.
+ *
+ * @since 3.0
+ * @since 3.4.38 New: Additional paramater default_template to pass the default template which will be used if the template is not found.
  */
 function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
 
