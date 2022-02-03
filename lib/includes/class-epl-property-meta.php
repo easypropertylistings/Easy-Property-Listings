@@ -701,7 +701,7 @@ class EPL_Property_Meta {
 
 				$price_rent_period = $this->get_property_meta( 'property_rent_period' );
 				$price_rent_period = apply_filters( 'epl_price_rent_period', $price_rent_period );
-				$price_plain_value = $this->get_property_rent() . '/' . __( ucfirst( $price_rent_period ), 'easy-property-listings' );
+				$price_plain_value = $this->get_property_rent() . '/' . ucfirst( $price_rent_period );
 				$prop_rent_view    = $this->get_property_meta( 'property_rent_view' );
 				if ( ! empty( $prop_rent_view ) ) {
 					$price_plain_value = $this->get_property_meta( 'property_rent_view' );
