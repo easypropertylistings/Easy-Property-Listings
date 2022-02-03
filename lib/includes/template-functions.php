@@ -372,12 +372,14 @@ function epl_hide_listing_statuses() {
  * Allows the use of one function where we can then select a different template
  * when needed
  *
+ * @param string $template The template.
+ * @param string $default  Optional template name.
+ *
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
  * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
  * @since 3.4.36 New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.
- * @since 3.4.37 New: additional param default to pass the default template which will be used if the template is not found.
- * @param string $template  The template.
+ * @since 3.4.38 New: Additional parameters default to pass the default template which will be used if the template is not found.
  */
 function epl_property_blog( $template = '', $default = 'default' ) {
 
@@ -434,8 +436,8 @@ add_action( 'epl_property_blog', 'epl_property_blog', 10, 1 );
 /**
  * Renders default author box
  *
- * @since      3.2
- * @since       3.5 Support for third & fourth agent
+ * @since 3.2
+ * @since 3.4.38 Support for third & fourth agent.
  */
 function epl_property_author_default() {
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
@@ -470,7 +472,7 @@ function epl_property_author_box() {
 /**
  * Reset post author
  *
- * @since      1.0
+ * @since 1.0
  */
 function epl_reset_post_author() {
 	global $post, $epl_author;
@@ -493,8 +495,8 @@ add_action( 'epl_single_author', 'epl_property_author_box', 10 );
 /**
  * AUTHOR CARD : Standard
  *
- * @since      1.0
- * @since       3.5 Support for third & fourth agent
+ * @since 1.0
+ * @since 3.4.38 Support for third & fourth agent.
  */
 function epl_property_author_box_simple_card() {
 
@@ -517,8 +519,8 @@ function epl_property_author_box_simple_card() {
 /**
  * AUTHOR CARD : Gravatar
  *
- * @since      1.0
- * @since       3.5 Support for third & fourth agent
+ * @since 1.0
+ * @since 3.4.38 Support for third & fourth agent.
  */
 function epl_property_author_box_simple_grav() {
 
@@ -556,6 +558,7 @@ function epl_property_author_box_simple_grav() {
  *
  * @since 1.0.0
  * @since 3.4.13 for custom display, file extension not required and file name format enforced to the format widget-content-listing-{$display}.php
+ * @since 3.4.38 Support for third & fourth agent.
  * @since 3.4.38 PHP 8.0 fix for parameter following optional parameter. Moved $more_text. Added epl_property_widget_read_more filter.
  */
 function epl_property_widget( $display, $image, $title, $icons, $more_text, $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
@@ -593,7 +596,6 @@ function epl_property_widget( $display, $image, $title, $icons, $more_text, $d_e
 				$tpl .= '.php';
 			}
 			break;
-
 	}
 
 	// Status Removal.
@@ -1149,7 +1151,7 @@ function epl_get_video_host( $url ) {
  *
  * @since 1.0
  * @since 3.3
- * @since 3.4.37 Support for external/local hosted video formats like mp4, mov etc.
+ * @since 3.4.38 Support for external/local hosted video formats like mp4, mov etc.
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
@@ -3066,12 +3068,12 @@ function epl_count_total_contacts() {
 /**
  * Hide contacts notes from showing on frontend
  *
- * @since      3.0
- *
  * @param      array  $comments  The comments.
  * @param      string $post_id   The post identifier.
  *
- * @return     mixed
+ * @return     array
+ *@since      3.0
+ *
  */
 function epl_filter_listing_comments_array( $comments, $post_id ) {
 	foreach ( $comments as $key   => &$comment ) {
@@ -3161,9 +3163,9 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 /**
  * Shortcode Results Not Found Message
  *
- * @since      3.1.5
+ * @param string $shortcode  The shortcode.
  *
- * @param      string $shortcode  The shortcode.
+ * @since 3.1.5
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
@@ -3247,6 +3249,7 @@ add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
  * Get the author loop
  *
  * @since 3.3
+ * @since 3.4.38 Support for trird & forth listing agents.
  */
 function epl_archive_author_callback() {
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
@@ -3743,7 +3746,7 @@ add_action( 'epl_property_status', 'epl_property_status', 10, 2 );
  *
  * @return     array  $classes  Modified classes.
  * @since      3.4.29
- * @since      3.4.37 Added custom classes for epl search results.
+ * @since      3.4.38 Added epl-search-results custom body class for search results.
  */
 function epl_body_classes( $classes ) {
 
