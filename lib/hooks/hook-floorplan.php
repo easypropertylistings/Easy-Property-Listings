@@ -24,10 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.3.0
  * @since 3.4.24 Fixed floor plan label filter.
  * @since 3.4.25 filter epl_show_{key} eg epl_show_property_floorplan to disable button rendering.
+ * @since 3.4.37 Added filter epl_floorplan_keys to support additional floorplans.
  */
 function epl_button_floor_plan() {
 
-	$keys = array( 'property_floorplan', 'property_floorplan_2' );
+	$keys = apply_filters( 'epl_floorplan_keys', array( 'property_floorplan', 'property_floorplan_2' ) );
 
 	foreach ( $keys as $key ) {
 

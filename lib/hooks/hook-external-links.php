@@ -22,10 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  * @since 3.4.25 filter epl_show_{key} eg epl_show_property_external_link to disable button rendering.
+ * @since 3.4.37 Added filter epl_external_link_keys to support additional external links.
  */
 function epl_button_external_link() {
 
-	$keys = array( 'property_external_link', 'property_external_link_2', 'property_external_link_3' );
+	$keys = apply_filters( 'epl_external_link_keys', array( 'property_external_link', 'property_external_link_2', 'property_external_link_3' ) );
 
 	foreach ( $keys as $key ) {
 		$link       = get_post_meta( get_the_ID(), $key, true );
