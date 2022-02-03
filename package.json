@@ -1,7 +1,7 @@
 {
   "name": "easy-property-listings",
   "title": "Easy Property Listings",
-  "version": "3.4.35",
+  "version": "3.4.38",
   "homepage": "https://easypropertylistings.com.au/",
   "repository": {
     "type": "git",
@@ -10,19 +10,22 @@
   "license": "GPL-3.0+",
   "main": "Gruntfile.js",
   "devDependencies": {
-    "grunt": "^1.1.0",
+    "grunt": "^1.4.1",
     "grunt-checktextdomain": "^1.0.1",
     "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-jshint": "^2.1.0",
-    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-jshint": "^3.1.1",
+    "grunt-contrib-uglify": "^5.0.1",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-pot": "^0.3.0",
-    "grunt-wp-i18n": "^1.0.3"
+    "grunt-force-task": "^3.0.0",
+    "grunt-replace": "^2.0.2",
+    "grunt-wp-i18n": "^1.0.3",
+    "load-grunt-tasks": "^5.1.0",
+    "makepot": "^0.3.0"
   },
   "engines": {
     "node": ">=0.8.0",
-    "npm": ">=1.1.0"
+    "npm": ">=6.9.0"
   },
   "dependencies": {
     "uglify": "^0.1.5",

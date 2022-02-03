@@ -2,7 +2,12 @@
 module.exports = function( grunt ) {
 	'use strict';
 
+	// Load multiple grunt tasks using globbing patterns
+	require('load-grunt-tasks')(grunt);
+
 	grunt.initConfig({
+
+		pkg: grunt.file.readJSON('package.json'),
 
 		// Setting folder templates.
 		dirs: {
@@ -101,29 +106,10 @@ module.exports = function( grunt ) {
 
 		// Generate POT files.
 		makepot: {
-			options: {
-				type: 'wp-plugin',
-				domainPath: 'languages',
-				potHeaders: {
-					'report-msgid-bugs-to' : 'http://wordpress.org/support/plugin/easy-property-listings',
-					'last-translator' : 'Merv Barrett <support@easypropertylistings.com.au>',
-					'language-team' : 'Real Estate Connected <support@realestateconnected.com.au>',
-					'Plural-Forms': 'nplurals=2; plural=(n > 1);',
-					'X-Poedit-SourceCharset' : 'UTF-8',
-					'X-Poedit-KeywordsList' : '__;_e;_x;_ex;_n;esc_html__;esc_html_e;esc_html_x;esc_attr__;esc_attr_e;esc_attr_x',
-					'X-Poedit-Basepath' : '..',
-					'X-Poedit-SearchPath-0' : '.',
-					'X-Poedit-SearchPathExcluded-0' : 'node_modules',
-					'X-Poedit-SearchPathExcluded-1' : 'epl-apidocs',
-					'X-Poedit-SearchPathExcluded-2' : 'apigen',
-					'X-Poedit-SearchPathExcluded-3' : 'Gruntfile.js',
-					'X-Poedit-SearchPathExcluded-4' : 'apigen.neon',
-					'X-Poedit-SearchPathExcluded-5' : 'package.json',
-					'X-Poedit-SearchPathExcluded-6' : 'README.md'
-				}
-			},
-			dist: {
+			target: {
 				options: {
+					domainPath: 'languages',
+					type: 'wp-plugin',
 					potFilename: 'easy-property-listings.pot',
 					exclude: [
 						'node_modules/.*',
@@ -131,7 +117,26 @@ module.exports = function( grunt ) {
 						'apigen/.*',
 						'tests/.*',
 						'tmp/.*'
-					]
+					],
+					updateTimestamp: true,    // Whether the POT-Creation-Date should be updated without other changes.
+					potHeaders: {
+						'report-msgid-bugs-to': 'https://wordpress.org/support/plugin/easy-property-listings',
+						'last-translator': 'Merv Barrett <support@easypropertylistings.com.au>',
+						'language-team': 'Real Estate Connected <support@realestateconnected.com.au>',
+						'Plural-Forms': 'nplurals=2; plural=(n > 1);',
+						'X-Poedit-SourceCharset': 'UTF-8',
+						'X-Poedit-KeywordsList': '__;_e;_x;_ex;_n;esc_html__;esc_html_e;esc_html_x;esc_attr__;esc_attr_e;esc_attr_x',
+						'X-Poedit-Basepath': '..',
+						'X-Poedit-SearchPath-0': '.',
+						'X-Poedit-SearchPathExcluded-0': 'node_modules',
+						'X-Poedit-SearchPathExcluded-1': 'epl-apidocs',
+						'X-Poedit-SearchPathExcluded-2': 'apigen',
+						'X-Poedit-SearchPathExcluded-3': 'Gruntfile.js',
+						'X-Poedit-SearchPathExcluded-4': 'apigen.neon',
+						'X-Poedit-SearchPathExcluded-5': 'package.json',
+						'X-Poedit-SearchPathExcluded-6': 'README.md'
+					},
+					updatePoFiles: true // To use this option is need to have gettext installed.
 				}
 			}
 		},

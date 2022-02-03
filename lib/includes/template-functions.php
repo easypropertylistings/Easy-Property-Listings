@@ -533,13 +533,11 @@ function epl_property_author_box_simple_grav() {
 /**
  * WIDGET LISTING : Listing Card
  *
- * @since      1.0
- *
  * @param      string $display            The display.
  * @param      string $image              The image.
  * @param      string $title              The title.
  * @param      string $icons              The icons.
- * @param      string $more_text          The more text.
+ * @param      string $more_text          The more text with epl_property_widget_read_more filter.
  * @param      string $d_excerpt          The d excerpt.
  * @param      string $d_suburb           The d suburb.
  * @param      string $d_street           The d street.
@@ -548,13 +546,19 @@ function epl_property_author_box_simple_grav() {
  * @param      string $d_inspection_time  The d inspection time.
  * @param      string $d_ical_link        The d ical link.
  *
+ * @since 1.0.0
  * @since 3.4.13 for custom display, file extension not required and file name format enforced to the format widget-content-listing-{$display}.php
+ * @since 3.4.38 PHP 8.0 fix for parameter following optional parameter. Moved $more_text. Added epl_property_widget_read_more filter.
  */
-function epl_property_widget( $display, $image, $title, $icons, $more_text = "__('Read More','easy-property-listings' )", $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
+function epl_property_widget( $display, $image, $title, $icons, $more_text, $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
 	global $property;
 
 	if ( is_null( $property ) ) {
 		return;
+	}
+	
+	if ( empty( $more_text ) ) {
+		$more_text = apply_filters( 'epl_property_widget_read_more', __( 'Read More', 'easy-property-listings' ) );
 	}
 
 	$property_status = $property->get_property_meta( 'property_status' );
@@ -2925,16 +2929,17 @@ function epl_esc_attr( $value ) {
 /**
  * Post Count
  *
- * @since      2.2.0
- *
  * @param      string $type        The type.
  * @param      string $meta_key    The meta key.
  * @param      string $meta_value  The meta value.
  * @param      string $author_id   The author identifier.
  *
  * @return     null
+ *
+ * @since      2.2.0
+ * @since      3.4.38 PHP 8.0 fix.
  */
-function epl_get_post_count( $type = '', $meta_key, $meta_value, $author_id = '' ) {
+function epl_get_post_count( $type, $meta_key, $meta_value, $author_id = '' ) {
 	global $wpdb;
 
 	$sql = "
