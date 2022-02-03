@@ -401,7 +401,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 3.3
-	 * @since 3.4.37 fix: bulk action delete not working.
+	 * @since 3.4.38 Fix: bulk action delete not working.
 	 */
 	public function process_bulk_action() {
 
@@ -412,13 +412,12 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 			$delete_ids = array_map( 'sanitize_text_field', $delete_ids );
 
 			// Loop over the array of record IDs and delete them.
-			if( !empty( $delete_ids ) ) {
+			if ( ! empty( $delete_ids ) ) {
 				foreach ( $delete_ids as $id ) {
 					$contact = new EPL_Contact( $id );
 					$contact->delete();
 				}
 			}
-			
 		}
 	}
 
