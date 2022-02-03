@@ -21,21 +21,28 @@ if ( ! defined( 'ABSPATH' ) ) {
  * has external links they will be output on the template
  *
  * @since 1.0.0
- * @since 3.4.25 filter epl_show_{key} eg epl_show_property_external_link to disable button rendering.
+ * @since 3.4.25 filter epl_show_{key} e.g. epl_show_property_external_link to disable button rendering.
  * @since 3.4.37 Added filter epl_external_link_keys to support additional external links.
  */
 function epl_button_external_link() {
 
-	$keys = apply_filters( 'epl_external_link_keys', array( 'property_external_link', 'property_external_link_2', 'property_external_link_3' ) );
+	$keys = apply_filters(
+		'epl_external_link_keys',
+		array(
+			'property_external_link',
+			'property_external_link_2',
+			'property_external_link_3',
+		)
+	);
 
 	foreach ( $keys as $key ) {
 		$link       = get_post_meta( get_the_ID(), $key, true );
-		$count      = 'property_external_link' === $key ? '' : substr( $key, -1 );
+		$count      = 'property_external_link' === $key ? '' : substr( $key, - 1 );
 		$default    = __( 'Tour ', 'easy-property-listings' ) . $count;
 		$meta_label = get_post_meta( get_the_ID(), $key . '_label', true );
 		$meta_label = empty( $meta_label ) ? $default : $meta_label;
 
-		if ( is_array( $link ) ) { // Fallback if meta data is saved as an array.
+		if ( is_array( $link ) ) { // Fallback if metadata is saved as an array.
 
 			if ( ! empty( $link['image_url_or_path'] ) ) {
 				$link = $link['image_url_or_path'];
@@ -60,6 +67,5 @@ function epl_button_external_link() {
 
 		}
 	}
-
 }
 add_action( 'epl_buttons_single_property', 'epl_button_external_link' );
