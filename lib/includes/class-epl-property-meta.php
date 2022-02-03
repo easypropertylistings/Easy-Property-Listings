@@ -699,9 +699,9 @@ class EPL_Property_Meta {
 			$prop_rent = $this->get_property_rent();
 			if ( ! empty( $prop_rent ) && 'yes' === $this->get_property_meta( 'property_rent_display' ) && 'leased' !== $this->get_property_meta( 'property_status' ) ) {
 
-				$price_rent_period = $this->get_property_meta('property_rent_period');
-				$price_rent_period = apply_filters( 'epl_price_rent_period' , $price_rent_period );
-				$price_plain_value = $this->get_property_rent() . '/' .  __( ucfirst( $price_rent_period ), 'easy-property-listings');
+				$price_rent_period = $this->get_property_meta( 'property_rent_period' );
+				$price_rent_period = apply_filters( 'epl_price_rent_period', $price_rent_period );
+				$price_plain_value = $this->get_property_rent() . '/' . __( ucfirst( $price_rent_period ), 'easy-property-listings' );
 				$prop_rent_view    = $this->get_property_meta( 'property_rent_view' );
 				if ( ! empty( $prop_rent_view ) ) {
 					$price_plain_value = $this->get_property_meta( 'property_rent_view' );
@@ -815,7 +815,7 @@ class EPL_Property_Meta {
 				$price .= '<span class="page-price" style="margin-right:0;">' . $this->get_property_rent() . '</span>';
 				if ( empty( $prop_rent_view ) ) {
 					$rent_period_value = $this->get_property_meta( 'property_rent_period' );
-					$rent_period_value = apply_filters( 'epl_price_rent_period' , $rent_period_value );
+					$rent_period_value = apply_filters( 'epl_price_rent_period', $rent_period_value );
 					$rent_options      = epl_get_property_rent_period_opts();
 					$rent_period_label = isset( $rent_options[ $rent_period_value ] ) ? $rent_options[ $rent_period_value ] : ucfirst( $rent_period_value );
 					$price            .= '<span class="rent-period">' . $rent_separator . '' . $rent_period_label . '</span>';
@@ -849,13 +849,13 @@ class EPL_Property_Meta {
 				} elseif ( ! empty( $prop_price_view ) && $this->get_property_meta( 'property_com_listing_type' ) === 'both' ) {
 					$price = '<span class="page-price">
 									<span class="page-price-prefix">
-										<span class="page-price-prefix">' . 
+										<span class="page-price-prefix">' .
 											apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . ':
 										</span> ' . $this->get_property_price_display() . '
 									</span>
 									<div class="epl-clear"></div>
 									<span class="page-price-prefix">
-										<span class="page-price-prefix">' . 
+										<span class="page-price-prefix">' .
 											apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . ':
 										</span> ' . $this->get_property_com_rent() . ' ' . $rent_lease_type . '
 									</span>
@@ -1037,9 +1037,9 @@ class EPL_Property_Meta {
 		} elseif ( 'rental' === $this->post_type ) {
 			$prop_rent = $this->get_property_rent();
 			if ( ! empty( $prop_rent ) && 'yes' === $this->get_property_meta( 'property_rent_display' ) && 'leased' !== $this->get_property_meta( 'property_status' ) ) {
-				$price_rent_period = $this->get_property_meta('property_rent_period');
-				$price_rent_period = apply_filters( 'epl_price_rent_period' , $price_rent_period );
-				$l_price = '<li class="page-price-rent">
+				$price_rent_period = $this->get_property_meta( 'property_rent_period' );
+				$price_rent_period = apply_filters( 'epl_price_rent_period', $price_rent_period );
+				$l_price           = '<li class="page-price-rent">
 							<span class="page-price" style="margin-right:0;">' . $this->get_property_rent() . '</span>
 							<span class="rent-period">/' . $price_rent_period . '</span>
 						</li>';
