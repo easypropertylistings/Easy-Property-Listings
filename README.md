@@ -55,6 +55,7 @@ There are various ways you can contribute:
 - New: Additional parameters default_template to pass the default template which will be used if the template is not found.
 - New: Support for external/local hosted video formats like mp4, mov etc.
 - New: Added epl-search-results custom body class for search results.
+- New: Added filter epl_number_suffix for suffix.
 - Tweak: Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
 - Tweak: Added filter epl_property_archive_featured_image to control all parameters & epl_no_archive_featured_image action if no featured image.
 - Fix: Removed un-needed slider-handle.png requirements.
