@@ -40,6 +40,7 @@ There are various ways you can contribute:
 
 = 3.4.38 February 03, 2022 =
 
+- New: Shortcode template fallback. If a template file does not exist then the default will load instead of producing an error.
 - New: Updated switch.png graphic to switch.svg for lossless scaling.
 - New: Finnish Translation Added. Thanks to Eevastiina Hyvönen.
 - New: Updated frontend scripts.
@@ -54,14 +55,19 @@ There are various ways you can contribute:
 - New: Support for 3rd and 4th listing agents on commercial listings.
 - New: Additional parameters default_template to pass the default template which will be used if the template is not found.
 - New: Support for external/local hosted video formats like mp4, mov etc.
-- New: Added epl-search-results custom body class for search results.
+- New: Added custom body class epl-search-results for search results.
 - New: Added filter epl_number_suffix for suffix.
+- New: Added epl_get_property_available_date_time_separator filter for date/time separator.
+- New: Added epl_get_property_auction_date_time_separator filter for date/time separator.
+- Tweak: Admin area CSS. thumbnail aligned to the right for file type meta fields.
 - Tweak: Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
 - Tweak: Added filter epl_property_archive_featured_image to control all parameters & epl_no_archive_featured_image action if no featured image.
+- Fix: [listing_element] shortcode fatal error with global $property.
 - Fix: Removed un-needed slider-handle.png requirements.
 - Fix: Contacts system, bulk delete action not working.
 - Fix: Don't display land area when it's < 0.
-- Fix for required parameter $field follows optional parameter $tag.
+- Fix: For required parameter $field follows optional parameter $tag.
+- Fix: jQuery error and sort function in some cases.
 
 = 3.4.37 September 11, 2021 =
 

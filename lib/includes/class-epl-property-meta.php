@@ -278,13 +278,15 @@ class EPL_Property_Meta {
 	/**
 	 * Auction Date/Time
 	 *
-	 * @since 2.0
 	 * @param bool $admin true/false True will return on frontend.
 	 * @return string formatted auction date
+	 *
+	 * @since 2.0.0
+	 * @since 3.4.38 Added epl_get_property_auction_date_time_separator filter for date/time separator.
 	 */
 	public function get_property_auction( $admin = false ) {
 
-		$date_time_sep = ' \a\t ';
+		$date_time_sep = apply_filters( 'epl_get_property_auction_date_time_separator', ' \a\t ' );
 
 		$date_format = epl_get_inspection_date_format();
 		$time_format = epl_get_inspection_time_format();
@@ -467,13 +469,15 @@ class EPL_Property_Meta {
 	/**
 	 * Rental Available Date
 	 *
-	 * @since 2.0
 	 * @param bool $admin True for front end usage.
 	 * @return string Formatted date
+	 *
+	 * @since 2.0.0
+	 * @since 3.4.38 Added epl_get_property_available_date_time_separator filter for date/time separator.
 	 */
 	public function get_property_available( $admin = false ) {
 
-		$date_time_sep = ' \a\t ';
+		$date_time_sep = apply_filters( 'epl_get_property_available_date_time_separator', ' \a\t ' );
 
 		$date_format = epl_get_inspection_date_format();
 		$time_format = epl_get_inspection_time_format();
