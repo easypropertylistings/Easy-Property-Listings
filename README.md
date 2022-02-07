@@ -10,7 +10,7 @@ More information can be found at [easypropertylistings.com.au](https://easyprope
 
 ### Installation
 
-For detailed setup instructions, visit the official [Documentation](http://codex.easypropertylistings.com.au/) page.
+For detailed setup instructions, visit the official [Documentation](https://codex.easypropertylistings.com.au/) page.
 
 1. You can clone the GitHub repository: `https://github.com/easypropertylistings/Easy-Property-Listings.git`
 2. Or download it directly as a ZIP file: `https://github.com/easypropertylistings/Easy-Property-Listings/archive/master.zip`

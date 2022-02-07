@@ -115,7 +115,7 @@ class EPL_METABOX {
 	 *
 	 * See how to register custom field metaboxes to listings here.
 	 *
-	 * @link http://codex.easypropertylistings.com.au/article/127-epllistingmetaboxes-filter
+	 * @link https://codex.easypropertylistings.com.au/article/127-epllistingmetaboxes-filter
 	 */
 	public function add_meta_boxes() {
 
