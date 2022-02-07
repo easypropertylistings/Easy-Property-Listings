@@ -38,7 +38,7 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.38 February 03, 2022 =
+= 3.4.38 February 07, 2022 =
 
 - New: Shortcode template fallback. If a template file does not exist then the default will load instead of producing an error.
 - New: Updated switch.png graphic to switch.svg for lossless scaling.
