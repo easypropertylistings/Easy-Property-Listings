@@ -249,6 +249,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-contact-capture.php';
 
 			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
+                        require_once EPL_PATH_LIB . 'includes/class-epl-author.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-author-meta.php';
 			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
