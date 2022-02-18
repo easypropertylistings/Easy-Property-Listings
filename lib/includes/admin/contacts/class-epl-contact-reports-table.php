@@ -401,18 +401,22 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 3.3
+	 * @since 3.4.38 Fix: bulk action delete not working.
 	 */
 	public function process_bulk_action() {
 
 		// Detect when a bulk action is being triggered.
 		if ( 'bulk-delete' === $this->current_action() ) {
 
-			$delete_ids = esc_sql( sanitize_text_field( wp_unslash( $_GET['bulk-delete'] ) ) );
+			$delete_ids = wp_unslash( $_GET['bulk-delete'] );
+			$delete_ids = array_map( 'sanitize_text_field', $delete_ids );
 
 			// Loop over the array of record IDs and delete them.
-			foreach ( $delete_ids as $id ) {
-				$contact = new EPL_Contact( $id );
-				$contact->delete();
+			if ( ! empty( $delete_ids ) ) {
+				foreach ( $delete_ids as $id ) {
+					$contact = new EPL_Contact( $id );
+					$contact->delete();
+				}
 			}
 		}
 	}

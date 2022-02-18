@@ -172,12 +172,43 @@ function epl_listing_has_secondary_author() {
  * @since 3.2
  */
 function epl_listing_has_secondary_agent() {
+	return epl_listing_is_agent_available( 'property_second_agent' );
+}
+
+/**
+ * Check if listing has third agent
+ *
+ * @since 3.4.38
+ */
+function epl_listing_has_third_agent() {
+	return epl_listing_is_agent_available( 'property_third_agent' );
+}
+
+/**
+ * Check if listing has fourth agent
+ *
+ * @since 3.4.38
+ */
+function epl_listing_has_fourth_agent() {
+	return epl_listing_is_agent_available( 'property_fourth_agent' );
+}
+
+/**
+ * Check if agent exists
+ *
+ * @param string $agent_key Agent Key.
+ *
+ * @return false|int $agent_author Return an array.
+ *
+ * @since 3.4.38
+ */
+function epl_listing_is_agent_available( $agent_key = 'property_second_agent' ) {
 	$exists                = false;
-	$property_second_agent = get_property_meta( 'property_second_agent' );
-	if ( ! empty( $property_second_agent ) ) {
-		$second_author = get_user_by( 'login', sanitize_user( $property_second_agent ) );
-		if ( false !== $second_author ) {
-			$exists = $second_author->ID;
+	$agent = get_property_meta( $agent_key );
+	if ( ! empty( $agent ) ) {
+		$agent_author = get_user_by( 'login', sanitize_user( $agent ) );
+		if ( false !== $agent_author ) {
+			$exists = $agent_author->ID;
 		}
 	}
 	return $exists;

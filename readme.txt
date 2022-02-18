@@ -308,6 +308,7 @@ Easy Property Listings needs help for translation:
 14. Arabic
 15. Brazilian Portuguese - pt_BR - [Dionizio Bach | DJIO](https://www.djio.com.br/wordpress/)
 16. Portuguese
+17. Finnish - Thanks to Eevastiina Hyvönen.
 
 Would you like to help translate the plugin into more languages? [Join our Translations Forum](https://easypropertylistings.com.au/support/forum/translations/?utm_source=readme&utm_medium=description_tab&utm_content=translations_link&utm_campaign=language).
 

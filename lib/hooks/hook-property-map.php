@@ -31,6 +31,7 @@ function epl_property_map_default_callback() {
 		if ( $show_warning && is_user_logged_in() && current_user_can( 'administrator' ) ) {
 			epl_map_api_key_warning();
 		}
+
 		return;
 	}
 
@@ -53,6 +54,7 @@ function epl_property_map_default_callback() {
 		echo do_shortcode( '[listing_map zoom=14 suburb_mode=1 q="' . $address . '"]' );
 	}
 }
+
 add_action( 'epl_property_map', 'epl_property_map_default_callback' );
 
 /**
@@ -62,9 +64,10 @@ add_action( 'epl_property_map', 'epl_property_map_default_callback' );
  */
 function epl_map_api_key_warning() { ?>
 
-	<div class="epl-danger epl-warning-map-key" >
-		<p> <?php esc_html_e( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings.', 'easy-property-listings' ); ?> <em>
-			<?php esc_html_e( 'Note: This message is only displayed to logged in administrators.', 'easy-property-listings' ); ?></em></p>
+	<div class="epl-danger epl-warning-map-key">
+		<p><?php esc_html_e( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings.', 'easy-property-listings' ); ?>
+			<em><?php esc_html_e( 'Note: This message is only displayed to logged in administrators.', 'easy-property-listings' ); ?></em>
+		</p>
 	</div>
 	<?php
 }
