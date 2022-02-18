@@ -10,7 +10,7 @@ More information can be found at [easypropertylistings.com.au](https://easyprope
 
 ### Installation
 
-For detailed setup instructions, visit the official [Documentation](http://codex.easypropertylistings.com.au/) page.
+For detailed setup instructions, visit the official [Documentation](https://codex.easypropertylistings.com.au/) page.
 
 1. You can clone the GitHub repository: `https://github.com/easypropertylistings/Easy-Property-Listings.git`
 2. Or download it directly as a ZIP file: `https://github.com/easypropertylistings/Easy-Property-Listings/archive/master.zip`
@@ -38,35 +38,36 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.38 February 03, 2022 =
+= 3.4.38 February 07, 2022 =
 
-- Fix: Removed un-needed slider-handle.png requirements.
+- New: Shortcode template fallback. If a template file does not exist then the default will load instead of producing an error.
 - New: Updated switch.png graphic to switch.svg for lossless scaling.
 - New: Finnish Translation Added. Thanks to Eevastiina Hyvönen.
-
 - New: Updated frontend scripts.
-
-- New: Filters added for buttons (energy external link, floor plans, mini web) to support adding more: epl_external_link_keys, epl_floorplan_keys, epl_mini_web_keys,
-- Fix: Bulk action delete not working.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- New: Filter added for energy certificate: epl_energy_certificate_keys
+- New: Filter added for external link: epl_external_link_keys
+- New: Filter added for floor plans: epl_floorplan_keys
+- New: Filter added for mini web: epl_mini_web_keys
+- New: Filter added for widget read more: epl_property_widget_read_more
+- New: Rental pricing. Using label_poa for no rental price.
+- New: Added epl_price_rent_period filter.
+- New: Added filter epl_pa_price for P.A label.
+- New: Support for 3rd and 4th listing agents on commercial listings.
+- New: Additional parameters default_template to pass the default template which will be used if the template is not found.
+- New: Support for external/local hosted video formats like mp4, mov etc.
+- New: Added custom body class epl-search-results for search results.
+- New: Added filter epl_number_suffix for suffix.
+- New: Added epl_get_property_available_date_time_separator filter for date/time separator.
+- New: Added epl_get_property_auction_date_time_separator filter for date/time separator.
+- Tweak: Admin area CSS. thumbnail aligned to the right for file type meta fields.
+- Tweak: Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
+- Tweak: Added filter epl_property_archive_featured_image to control all parameters & epl_no_archive_featured_image action if no featured image.
+- Fix: [listing_element] shortcode fatal error with global $property.
+- Fix: Removed un-needed slider-handle.png requirements.
+- Fix: Contacts system, bulk delete action not working.
+- Fix: Don't display land area when it's < 0.
+- Fix: For required parameter $field follows optional parameter $tag.
+- Fix: jQuery error and sort function in some cases.
 
 = 3.4.37 September 11, 2021 =
 

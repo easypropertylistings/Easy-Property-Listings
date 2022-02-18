@@ -178,7 +178,7 @@ function epl_listing_has_secondary_agent() {
 /**
  * Check if listing has third agent
  *
- * @since 3.5
+ * @since 3.4.38
  */
 function epl_listing_has_third_agent() {
 	return epl_listing_is_agent_available( 'property_third_agent' );
@@ -187,7 +187,7 @@ function epl_listing_has_third_agent() {
 /**
  * Check if listing has fourth agent
  *
- * @since 3.5
+ * @since 3.4.38
  */
 function epl_listing_has_fourth_agent() {
 	return epl_listing_is_agent_available( 'property_fourth_agent' );
@@ -196,9 +196,11 @@ function epl_listing_has_fourth_agent() {
 /**
  * Check if agent exists
  *
- * @param string $agent_key
- * @return void
- * @since 3.5
+ * @param string $agent_key Agent Key.
+ *
+ * @return false|int $agent_author Return an array.
+ *
+ * @since 3.4.38
  */
 function epl_listing_is_agent_available( $agent_key = 'property_second_agent' ) {
 	$exists                = false;

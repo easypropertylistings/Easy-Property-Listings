@@ -278,13 +278,15 @@ class EPL_Property_Meta {
 	/**
 	 * Auction Date/Time
 	 *
-	 * @since 2.0
 	 * @param bool $admin true/false True will return on frontend.
 	 * @return string formatted auction date
+	 *
+	 * @since 2.0.0
+	 * @since 3.4.38 Added epl_get_property_auction_date_time_separator filter for date/time separator.
 	 */
 	public function get_property_auction( $admin = false ) {
 
-		$date_time_sep = ' \a\t ';
+		$date_time_sep = apply_filters( 'epl_get_property_auction_date_time_separator', ' \a\t ' );
 
 		$date_format = epl_get_inspection_date_format();
 		$time_format = epl_get_inspection_time_format();
@@ -467,13 +469,15 @@ class EPL_Property_Meta {
 	/**
 	 * Rental Available Date
 	 *
-	 * @since 2.0
 	 * @param bool $admin True for front end usage.
 	 * @return string Formatted date
+	 *
+	 * @since 2.0.0
+	 * @since 3.4.38 Added epl_get_property_available_date_time_separator filter for date/time separator.
 	 */
 	public function get_property_available( $admin = false ) {
 
-		$date_time_sep = ' \a\t ';
+		$date_time_sep = apply_filters( 'epl_get_property_available_date_time_separator', ' \a\t ' );
 
 		$date_format = epl_get_inspection_date_format();
 		$time_format = epl_get_inspection_time_format();
@@ -701,7 +705,7 @@ class EPL_Property_Meta {
 
 				$price_rent_period = $this->get_property_meta( 'property_rent_period' );
 				$price_rent_period = apply_filters( 'epl_price_rent_period', $price_rent_period );
-				$price_plain_value = $this->get_property_rent() . '/' . __( ucfirst( $price_rent_period ), 'easy-property-listings' );
+				$price_plain_value = $this->get_property_rent() . '/' . ucfirst( $price_rent_period );
 				$prop_rent_view    = $this->get_property_meta( 'property_rent_view' );
 				if ( ! empty( $prop_rent_view ) ) {
 					$price_plain_value = $this->get_property_meta( 'property_rent_view' );
@@ -853,7 +857,7 @@ class EPL_Property_Meta {
 											apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . ':
 										</span> ' . $this->get_property_price_display() . '
 									</span>
-									<div class="epl-clear"></div>
+									<span class="epl-clear"></span>
 									<span class="page-price-prefix">
 										<span class="page-price-prefix">' .
 											apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . ':
@@ -1629,8 +1633,9 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
-	 * @since 3.4.37 Fix: don't display land area when it's < 0.
 	 * @return string
+	 *
+	 * @since 3.4.38 Fix: Don't display land area when it's < 0.
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
 
@@ -2122,8 +2127,8 @@ class EPL_Property_Meta {
 		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
-					  '<p>' . $metavalue . '</p>' .
-					  '</div>';
+						'<p>' . $metavalue . '</p>' .
+					'</div>';
 			return apply_filters( 'epl_get_additional_commercial_features_html', $return );
 		}
 	}
@@ -2142,8 +2147,8 @@ class EPL_Property_Meta {
 		if ( isset( $metavalue ) && ! empty( $metavalue ) ) {
 			$return = '<div class="' . $this->get_class_from_metakey( $metakey, $search = 'property_com_' ) . '">
 						<h6>' . $this->get_label_from_metakey( $metakey, 'property_com_' ) . '</h6>' .
-					  '<p>' . $metavalue . '</p>' .
-					  '</div>';
+						'<p>' . $metavalue . '</p>' .
+						'</div>';
 			return apply_filters( 'epl_get_additional_commerical_features_html', $return );
 		}
 	}

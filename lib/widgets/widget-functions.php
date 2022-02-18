@@ -243,9 +243,11 @@ function epl_search_widget_fields() {
  * @param string $suffix Suffix.
  *
  * @return string
- * @since 2.0
+ * @since 2.0.0
+ * @since 3.4.38 Added filter epl_number_suffix for select numbers suffix.
  */
 function epl_number_suffix_callback( $v, $suffix = ' +' ) {
+	$suffix = apply_filters( 'epl_number_suffix_callback', $suffix );
 	return $v . '' . $suffix;
 }
 
