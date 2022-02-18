@@ -250,7 +250,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
                         require_once EPL_PATH_LIB . 'includes/class-epl-author.php';
-			require_once EPL_PATH_LIB . 'includes/class-epl-author-meta.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-author-loader.php';
+                        require_once EPL_PATH_LIB . 'includes/class-epl-author-meta.php';
 			require_once EPL_PATH_LIB . 'includes/conditional-tags.php';
 			require_once EPL_PATH_LIB . 'includes/template-functions.php';
 			require_once EPL_PATH_LIB . 'includes/error-tracking.php';
