@@ -28,7 +28,13 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 	 */
 	class EPL_Author_Loader {
 
-                public $object;
+		/**
+		 * Object.
+		 *
+		 * @var string $object Object.
+		 * @since 3.4.39
+		 */
+		public $object;
 
 		/**
 		 * Initiates the loader class and dynamically populates methods & properties for this class from the selected class.
@@ -37,46 +43,43 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 * @param string $author_id The author WordPress user ID.
 		 */
 		public function __construct( $author_id ) {
-                        
-                        $class_name = apply_filters( 'epl_author_class_name', 'EPL_Author' );
-                        
-                        if( class_exists( $class_name ) ) {
 
-                                $this->object = new $class_name( $author_id );
-                        } else {
+			$class_name = apply_filters( 'epl_author_class_name', 'EPL_Author' );
 
-                                // fallback to default class
-                                $this->object = new EPL_Author( $author_id );
-
-                        }
-
-                        $this->import_class_properties();
+			if ( class_exists( $class_name ) ) {
+					$this->object = new $class_name( $author_id );
+			} else {
+					// Fallback to default class.
+					$this->object = new EPL_Author( $author_id );
+			}
+			$this->import_class_properties();
 
 		}
 
-                /**
+		/**
 		 * Copy class properties from selected class to this class.
 		 *
 		 * @since 3.4.39
 		 */
-                public function import_class_properties() {   
+		public function import_class_properties() {
+			foreach ( get_object_vars( $this->object ) as $key => $value ) {
+				$this->$key = $value;
+			}
+		}
 
-                    foreach ( get_object_vars( $this->object ) as $key => $value ) {
-                        $this->$key = $value;
-                    }
-                }
-
-                /**
+		/**
 		 * Invoke methods from selected class when called through load class object.
+		 *
+		 * @param array $name Array of property object.
+		 * @param array $arguments Array of property object.
 		 *
 		 * @since 3.4.39
 		 */
-                function __call( $name, $arguments ) {
-                        
-                        return call_user_func_array( array($this->object, $name ), $arguments );
-                }
+		public function __call( $name, $arguments ) {
+				return call_user_func_array( array( $this->object, $name ), $arguments );
+		}
 
-                /**
+		/**
 		 * Get the global property object
 		 *
 		 * @param array $property Array of property object.
