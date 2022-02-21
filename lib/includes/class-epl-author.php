@@ -1,12 +1,13 @@
 <?php
 /**
- * EPL Author Class
+ * EPL Author Class. Allows for overriding.
  *
  * @package     EPL
  * @subpackage  Classes/AuthorMeta
- * @copyright   Copyright (c) 2020, Merv Barrett
+ * @copyright   Copyright (c) 2022, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.3
+ * @since       1.3.0
+ * @since       3.4.39 Allows for overriding.
  */
 
 // Exit if accessed directly.
