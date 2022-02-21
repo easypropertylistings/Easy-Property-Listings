@@ -136,6 +136,8 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  * @since      1.2.0
  * @since      3.4.8 Corrected missing parameter count to 3.
  * @since      3.4.38 Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
+ * @since      3.4.39 Added missing arguments variable to epl_no_property_featured_image action.
+
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
@@ -166,7 +168,7 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 		</div>
 		<?php
 	} else {
-		do_action( 'epl_no_property_featured_image' );
+		do_action( 'epl_no_property_featured_image', $args );
 	}
 
 }
