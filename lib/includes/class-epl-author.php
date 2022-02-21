@@ -288,11 +288,11 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 			if ( ! empty( $this->twitter ) ) {
 
 				if ( ( strpos( $this->twitter, 'http://' ) === 0 ) || ( strpos( $this->twitter, 'https://' ) === 0 ) ) {
-					// absolute url.
+					// Absolute url.
 					$twitter = $this->twitter;
 
 				} else {
-					// relative url.
+					// Relative url.
 					$twitter = 'http://twitter.com/' . $this->twitter;
 				}
 			}
@@ -440,7 +440,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		}
 
 		/**
-		 * Author Youtube html Box
+		 * Author YouTube html Box
 		 *
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
