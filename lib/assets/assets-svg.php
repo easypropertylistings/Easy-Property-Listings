@@ -313,6 +313,7 @@ add_filter( 'safe_style_css', 'epl_whitelist_display_attr' );
  *
  * @since  3.4
  * @since  3.4.17   Allows circle tag.
+ * @since  3.4.39   Added stroke and stroke-width.
  */
 function epl_get_svg_allowed_tags() {
 
@@ -340,11 +341,13 @@ function epl_get_svg_allowed_tags() {
 		),
 		'title'   => array( 'title' => true ),
 		'path'    => array(
-			'd'     => true,
-			'fill'  => true,
-			'style' => true,
-			'id'    => true,
-			'class' => true,
+			'd'            => true,
+			'fill'         => true,
+			'style'        => true,
+			'id'           => true,
+			'class'        => true,
+			'stroke'       => true,
+			'stroke-width' => true,
 		),
 		'defs'    => array(
 			'id'    => true,
@@ -357,30 +360,36 @@ function epl_get_svg_allowed_tags() {
 			'style' => true,
 		),
 		'rect'    => array(
-			'width'  => true,
-			'height' => true,
-			'style'  => true,
-			'class'  => true,
-			'x'      => true,
-			'y'      => true,
-			'rx'     => true,
-			'ry'     => true,
-			'fill'   => true,
+			'width'        => true,
+			'height'       => true,
+			'style'        => true,
+			'class'        => true,
+			'x'            => true,
+			'y'            => true,
+			'rx'           => true,
+			'ry'           => true,
+			'fill'         => true,
+			'stroke'       => true,
+			'stroke-width' => true,
 		),
 		'polygon' => array(
-			'class'  => true,
-			'points' => true,
+			'class'        => true,
+			'points'       => true,
+			'stroke'       => true,
+			'stroke-width' => true,
 		),
 		'use'     => array(
 			'xlink:href' => true,
 		),
 		'circle'  => array(
-			'style' => true,
-			'class' => true,
-			'id'    => true,
-			'cx'    => true,
-			'cy'    => true,
-			'r'     => true,
+			'style'        => true,
+			'class'        => true,
+			'id'           => true,
+			'cx'           => true,
+			'cy'           => true,
+			'r'            => true,
+			'stroke'       => true,
+			'stroke-width' => true,
 		),
 
 	);

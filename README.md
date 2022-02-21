@@ -41,6 +41,7 @@ There are various ways you can contribute:
 = 3.4.39 February 21, 2022 =
 
 - Tweak: Adjustment to the $epl_author class to allow override and extending.
+- Tweak: Added stroke and stroke-width to SVG allowed tags.
 - Fix: Added missing arguments variable in epl_no_property_featured_image action.
 - Fix: Using correctly spelt get_additional_commercial_features_html function.
 
