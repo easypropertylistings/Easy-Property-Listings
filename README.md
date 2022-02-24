@@ -38,7 +38,7 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.39 February 21, 2022 =
+= 3.4.39 February 24, 2022 =
 
 - Tweak: Adjustment to the $epl_author class to allow override and extending.
 - Tweak: Added stroke and stroke-width to SVG allowed tags.
