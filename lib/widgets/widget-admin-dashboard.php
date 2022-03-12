@@ -259,7 +259,8 @@ function epl_posts_highlights( $type ) {
 /**
  * Activity Dashboard Widget
  *
- * @since 3.0
+ * @since 3.0.0
+ * @since 3.4.40 Fix: Order corrected to newest first in dashboard activity widget.
  */
 function epl_dashboard_activity_widget() {
 
@@ -281,7 +282,7 @@ function epl_dashboard_activity_widget() {
 				'post_type' => epl_get_core_post_types(),
 				'max'       => 5,
 				'status'    => 'publish',
-				'order'     => 'ASC',
+				'order'     => 'DESC',
 				'title'     => __( 'Recently Published Listings', 'easy-property-listings' ),
 				'id'        => 'epl-recent-posts',
 			)
