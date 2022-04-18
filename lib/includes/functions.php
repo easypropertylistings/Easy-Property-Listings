@@ -1781,6 +1781,7 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @param string $property_status Listing status.
  * @return array
  * @since 2.1.11
+ * @since 3.4.39 Results will be sorted in a-z order
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
@@ -1837,6 +1838,8 @@ AND p.post_type IN $type_str
 	foreach ( $res as $s_res ) {
 		$results[ $s_res ] = ucwords( $s_res );
 	}
+
+        asort( $results );
 
 	return apply_filters( 'epl_get_unique_post_meta_values', $results, $key, $type );
 }
