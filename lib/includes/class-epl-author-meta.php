@@ -7,6 +7,7 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.3
+ * @since       3.4.39 Alias of EPL_Author_Loader class. Kept for backward compatiblility.
  */
 
 // Exit if accessed directly.

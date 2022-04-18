@@ -1,12 +1,13 @@
 <?php
 /**
- * EPL Author Class
+ * EPL Author Class. Allows for overriding.
  *
  * @package     EPL
  * @subpackage  Classes/AuthorMeta
- * @copyright   Copyright (c) 2020, Merv Barrett
+ * @copyright   Copyright (c) 2022, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.3
+ * @since       1.3.0
+ * @since       3.4.39 Allows for overriding.
  */
 
 // Exit if accessed directly.
@@ -37,7 +38,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		public $author_id;
 
 		/**
-		 * The user name
+		 * The username
 		 *
 		 * @since 1.3.0
 		 * @var string $name User name.
@@ -282,16 +283,16 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 * @since 3.2.0
 		 */
 		public function get_twitter() {
-                        
+
 			$twitter = '';
 			if ( ! empty( $this->twitter ) ) {
 
 				if ( ( strpos( $this->twitter, 'http://' ) === 0 ) || ( strpos( $this->twitter, 'https://' ) === 0 ) ) {
-					// absolute url.
+					// Absolute url.
 					$twitter = $this->twitter;
 
 				} else {
-					// relative url.
+					// Relative url.
 					$twitter = 'http://twitter.com/' . $this->twitter;
 				}
 			}
@@ -309,11 +310,11 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 			if ( ! empty( $this->instagram ) ) {
 
 				if ( ( strpos( $this->instagram, 'http://' ) === 0 ) || ( strpos( $this->instagram, 'https://' ) === 0 ) ) {
-					// absolute url.
+					// Absolute url.
 					$instagram = $this->instagram;
 
 				} else {
-					// relative url.
+					// Relative url.
 					$instagram = 'http://instagram.com/' . $this->instagram;
 				}
 			}
@@ -331,11 +332,11 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 			if ( ! empty( $this->youtube ) ) {
 
 				if ( ( strpos( $this->youtube, 'http://' ) === 0 ) || ( strpos( $this->youtube, 'https://' ) === 0 ) ) {
-					// absolute url.
+					// Absolute url.
 					$youtube = $this->youtube;
 
 				} else {
-					// relative url.
+					// Relative url.
 					$youtube = 'http://youtube.com/' . $this->youtube;
 				}
 			}
@@ -353,11 +354,11 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 			if ( ! empty( $this->pinterest ) ) {
 
 				if ( ( strpos( $this->pinterest, 'http://' ) === 0 ) || ( strpos( $this->pinterest, 'https://' ) === 0 ) ) {
-					// absolute url.
+					// Absolute url.
 					$pinterest = $this->pinterest;
 
 				} else {
-					// relative url.
+					// Relative url.
 					$pinterest = 'http://pinterest.com/' . $this->pinterest;
 				}
 			}
@@ -439,7 +440,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		}
 
 		/**
-		 * Author Youtube html Box
+		 * Author YouTube html Box
 		 *
 		 * @param string $html String of html.
 		 * @param string $style Option of returntype.
@@ -542,8 +543,9 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 * @param string $style Option of returntype.
 		 *
 		 * @return mixed|string|void
-		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
+		 *
 		 * @since 1.3.0
+		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
 		 */
 		public function get_google_html( $html = '', $style = 'i' ) {
 
@@ -581,7 +583,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		public function get_facebook() {
 
 			$facebook = '';
-                        
+
 			if ( ! empty( $this->facebook ) ) {
 
 				if ( ( strpos( $this->facebook, 'http://' ) === 0 ) || ( strpos( $this->facebook, 'https://' ) === 0 ) ) {
@@ -705,11 +707,11 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 			if ( ! empty( $this->skype ) ) {
 
 				if ( ( strpos( $this->skype, 'skype:' ) === 0 ) ) {
-					// absolute url.
+					// Absolute url.
 					$skype = $this->skype;
 
 				} else {
-					// relative url.
+					// Relative url.
 					$skype = 'skype:' . $this->skype;
 				}
 			}

@@ -136,6 +136,8 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  * @since      1.2.0
  * @since      3.4.8 Corrected missing parameter count to 3.
  * @since      3.4.38 Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
+ * @since      3.4.39 Added missing arguments variable to epl_no_property_featured_image action.
+
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
@@ -166,7 +168,7 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 		</div>
 		<?php
 	} else {
-		do_action( 'epl_no_property_featured_image' );
+		do_action( 'epl_no_property_featured_image', $args );
 	}
 
 }
@@ -1465,7 +1467,8 @@ add_action( 'epl_property_tab_section', 'epl_property_tab_section' );
  * Property Tab section details output for commercial, business and commercial
  * land
  *
- * @since      1.0 @hooked property_after_tab_section
+ * @since 1.0.0  @hooked property_after_tab_section
+ * @since 3.4.39 Using correctly spelt get_additional_commercial_features_html function.
  */
 function epl_property_tab_section_after() {
 	global $property;
@@ -1499,7 +1502,7 @@ function epl_property_tab_section_after() {
 		if ( ! empty( $result ) ) {
 
 			foreach ( $features_lists as $features_list ) {
-				$the_property_commercial_feature_list .= $property->get_additional_commerical_features_html( $features_list );
+				$the_property_commercial_feature_list .= $property->get_additional_commercial_features_html( $features_list );
 			}
 
 			?>
