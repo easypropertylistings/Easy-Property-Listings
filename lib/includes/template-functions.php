@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $post Post object.
  *
  * @since 2.2
- * @since 		3.5 Support for third & fourth agent
+ * @since 3.4.38 Support for third & fourth agents.
  */
 function epl_reset_property_object( $post ) {
 
@@ -68,8 +68,8 @@ add_action( 'the_post', 'epl_reset_property_object' );
 /**
  * Make $property global available for hooks before the_post
  *
- * @since      2.2
- * @since 		3.5 Support for third & fourth agent
+ * @since 2.2
+ * @since 3.5 Support for third & fourth agent.
  */
 function epl_create_property_object() {
 
@@ -135,15 +135,20 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  *
  * @since      1.2.0
  * @since      3.4.8 Corrected missing parameter count to 3.
- * @since 	   3.4.37 Added filter epl_property_featured_image_args to control all params & epl_no_property_featured_image action.
+ * @since      3.4.38 Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
+ * @since      3.4.39 Added missing arguments variable to epl_no_property_featured_image action.
+
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
-	$args = apply_filters( 'epl_property_featured_image_args', [
-		'image_size'	=>	$image_size,
-		'image_class'	=>	$image_class,
-		'link'			=>	$link
-	] );
+	$args = apply_filters(
+		'epl_property_featured_image_args',
+		array(
+			'image_size'  => $image_size,
+			'image_class' => $image_class,
+			'link'        => $link,
+		)
+	);
 	/**
 	 * Filter: Allow user or extension to enable or disable link behaviour on featured image.
 	 */
@@ -163,7 +168,7 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 		</div>
 		<?php
 	} else {
-		do_action( 'epl_no_property_featured_image');
+		do_action( 'epl_no_property_featured_image', $args );
 	}
 
 }
@@ -181,7 +186,7 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  * @since 2.2
  * @since 3.4.27 New: Additional param to disable / enable stickers
  * @since 3.4.30 Fix: Missing parameter filter. Increased from 3 to 4.
- * @since 3.4.37 Added filter epl_property_archive_featured_image to control all params & epl_no_archive_featured_image action if no featured image.
+ * @since 3.4.38 Added filter epl_property_archive_featured_image to control all parameters & epl_no_archive_featured_image action if no featured image.
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
@@ -189,12 +194,15 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 		$image_size = 'epl-image-medium-crop';
 	}
 
-	$args = apply_filters( 'epl_property_archive_featured_image_args', [
-		'image_size'	=>	$image_size,
-		'image_class'	=>	$image_class,
-		'link'			=>	$link,
-		'stickers'		=>	$stickers
-	] );
+	$args = apply_filters(
+		'epl_property_archive_featured_image_args',
+		array(
+			'image_size'  => $image_size,
+			'image_class' => $image_class,
+			'link'        => $link,
+			'stickers'    => $stickers,
+		)
+	);
 	/**
 	 * Filter: Allow user or extension to enable or disable link behaviour on archive image.
 	 */
@@ -299,12 +307,14 @@ function epl_get_fallback_content_path() {
 /**
  * Attempts to load templates in order of priority
  *
- * @since 3.0
  * @param string $template Template name.
  * @param array  $arguments Options to pass to template.
- * @since 3.4.37 New: additional param default_template to pass the default template which will be used if the template is not found.
+ * @param bool   $default_template Pass a default template.
+ *
+ * @since 3.0
+ * @since 3.4.38 New: Additional parameter default_template to pass the default template which will be used if the template is not found.
  */
-function epl_get_template_part( $template, $arguments = array(), $default_template=false ) {
+function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
 
 	$base_path = epl_get_content_path();
 	$default   = $default_template ? $default_template : $template;
@@ -364,12 +374,14 @@ function epl_hide_listing_statuses() {
  * Allows the use of one function where we can then select a different template
  * when needed
  *
+ * @param string $template The template.
+ * @param string $default  Optional template name.
+ *
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
  * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
  * @since 3.4.36 New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.
- * @since 3.4.37 New: additional param default to pass the default template which will be used if the template is not found.
- * @param string $template  The template.
+ * @since 3.4.38 New: Additional parameters default to pass the default template which will be used if the template is not found.
  */
 function epl_property_blog( $template = '', $default = 'default' ) {
 
@@ -417,7 +429,7 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 		if ( ! $action_exists ) {
 			$tpl_name = 'loop-listing-blog-' . $template . '.php';
 			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
-			epl_get_template_part( $tpl_name,[], 'loop-listing-blog-' . $default . '.php' );
+			epl_get_template_part( $tpl_name, array(), 'loop-listing-blog-' . $default . '.php' );
 		}
 	} // End Status Removal.
 }
@@ -426,20 +438,20 @@ add_action( 'epl_property_blog', 'epl_property_blog', 10, 1 );
 /**
  * Renders default author box
  *
- * @since      3.2
- * @since 		3.5 Support for third & fourth agent
+ * @since 3.2
+ * @since 3.4.38 Support for third & fourth agent.
  */
 function epl_property_author_default() {
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box.php' );
 	if ( is_epl_post() ) {
-		if( epl_listing_has_secondary_author() ) {
+		if ( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_secondary ) );
 		}
-		if( epl_listing_has_third_agent() ) {
+		if ( epl_listing_has_third_agent() ) {
 			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_third ) );
 		}
-		if( epl_listing_has_fourth_agent() ) {
+		if ( epl_listing_has_fourth_agent() ) {
 			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_author_fourth ) );
 		}
 		epl_reset_post_author();
@@ -462,7 +474,7 @@ function epl_property_author_box() {
 /**
  * Reset post author
  *
- * @since      1.0
+ * @since 1.0
  */
 function epl_reset_post_author() {
 	global $post, $epl_author;
@@ -485,21 +497,21 @@ add_action( 'epl_single_author', 'epl_property_author_box', 10 );
 /**
  * AUTHOR CARD : Standard
  *
- * @since      1.0
- * @since 		3.5 Support for third & fourth agent
+ * @since 1.0
+ * @since 3.4.38 Support for third & fourth agent.
  */
 function epl_property_author_box_simple_card() {
 
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box-simple-card.php' );
 	if ( is_epl_post() ) {
-		if( epl_listing_has_secondary_author() ) {
+		if ( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_secondary ) );
 		}
-		if( epl_listing_has_third_agent() ) {
+		if ( epl_listing_has_third_agent() ) {
 			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_third ) );
 		}
-		if( epl_listing_has_fourth_agent() ) {
+		if ( epl_listing_has_fourth_agent() ) {
 			epl_get_template_part( 'content-author-box-simple-card.php', array( 'epl_author' => $epl_author_fourth ) );
 		}
 		epl_reset_post_author();
@@ -509,21 +521,21 @@ function epl_property_author_box_simple_card() {
 /**
  * AUTHOR CARD : Gravatar
  *
- * @since      1.0
- * @since 		3.5 Support for third & fourth agent		
+ * @since 1.0
+ * @since 3.4.38 Support for third & fourth agent.
  */
 function epl_property_author_box_simple_grav() {
 
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-box-simple-grav.php' );
 	if ( is_epl_post() ) {
-		if( epl_listing_has_secondary_author() ) {
+		if ( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_secondary ) );
 		}
-		if( epl_listing_has_third_agent() ) {
+		if ( epl_listing_has_third_agent() ) {
 			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_third ) );
 		}
-		if( epl_listing_has_fourth_agent() ) {
+		if ( epl_listing_has_fourth_agent() ) {
 			epl_get_template_part( 'content-author-box-simple-grav.php', array( 'epl_author' => $epl_author_fourth ) );
 		}
 		epl_reset_post_author();
@@ -548,6 +560,7 @@ function epl_property_author_box_simple_grav() {
  *
  * @since 1.0.0
  * @since 3.4.13 for custom display, file extension not required and file name format enforced to the format widget-content-listing-{$display}.php
+ * @since 3.4.38 Support for third & fourth agent.
  * @since 3.4.38 PHP 8.0 fix for parameter following optional parameter. Moved $more_text. Added epl_property_widget_read_more filter.
  */
 function epl_property_widget( $display, $image, $title, $icons, $more_text, $d_excerpt, $d_suburb, $d_street, $d_price, $d_more, $d_inspection_time, $d_ical_link ) {
@@ -556,7 +569,7 @@ function epl_property_widget( $display, $image, $title, $icons, $more_text, $d_e
 	if ( is_null( $property ) ) {
 		return;
 	}
-	
+
 	if ( empty( $more_text ) ) {
 		$more_text = apply_filters( 'epl_property_widget_read_more', __( 'Read More', 'easy-property-listings' ) );
 	}
@@ -585,7 +598,6 @@ function epl_property_widget( $display, $image, $title, $icons, $more_text, $d_e
 				$tpl .= '.php';
 			}
 			break;
-
 	}
 
 	// Status Removal.
@@ -659,17 +671,17 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
 
 	// Second Author.
 	if ( is_single() && ! is_null( $property ) ) {
-		
+
 		if ( is_epl_post() ) {
-			if( epl_listing_has_secondary_author() ) {
+			if ( epl_listing_has_secondary_author() ) {
 				$epl_author = $epl_author_secondary;
 				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
 			}
-			if( epl_listing_has_third_agent() ) {
+			if ( epl_listing_has_third_agent() ) {
 				$epl_author = $epl_author_third;
 				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
 			}
-			if( epl_listing_has_fourth_agent() ) {
+			if ( epl_listing_has_fourth_agent() ) {
 				$epl_author = $epl_author_fourth;
 				epl_get_template_part( 'widget-content-author-tall.php', $arg_list );
 			}
@@ -733,7 +745,7 @@ function epl_property_get_the_full_address() {
  * @hooked epl_property_title
  * @hooked property_tab_address
  *
- * @param bool   $full Set to false to only display the street address.
+ * @param bool   $full Set to false too only display the street address.
  * @param bool   $street_separator Display the street separator.
  * @param string $separator_symbol Symbol to use as the street separator, default is a comma.
  *
@@ -1141,11 +1153,11 @@ function epl_get_video_host( $url ) {
  *
  * @since 1.0
  * @since 3.3
- * @since 3.4.37 Support for external/local hosted video formats like mp4, mov etc.
+ * @since 3.4.38 Support for external/local hosted video formats like mp4, mov etc.
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
-	/** Remove related videos from youtube */
+	// Remove related videos from YouTube.
 	if ( 'youtube' === epl_get_video_host( $property_video_url ) ) {
 
 		$property_video_url = epl_convert_youtube_embed_url( $property_video_url );
@@ -1165,16 +1177,16 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 				array( 'width' => apply_filters( 'epl_property_video_width', $width ) )
 			);
 
-			if( $video_embed_html ) {
-				$video_html     .=  $video_embed_html;
-			} else {
-				$video_html     .= '<video class="epl-local-video" controls width="'.$width.'">
-						<source src="'.$property_video_url.'">
+		if ( $video_embed_html ) {
+			$video_html .= $video_embed_html;
+		} else {
+			$video_html .= '<video class="epl-local-video" controls width="' . $width . '">
+						<source src="' . $property_video_url . '">
 					</video>';
-			}
+		}
 
-		$video_html     .= '</div>';
-		
+		$video_html .= '</div>';
+
 		return $video_html;
 	}
 }
@@ -1232,7 +1244,7 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
  * Property Tab section details output
  *
  * @since 1.0.0
- * @since 3.4.14 Fix: Custom features callback output wrongly placed.
+ * @since 3.4.14 Fix: Custom features' callback output wrongly placed.
  * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @hooked property_tab_section
  */
@@ -1455,7 +1467,8 @@ add_action( 'epl_property_tab_section', 'epl_property_tab_section' );
  * Property Tab section details output for commercial, business and commercial
  * land
  *
- * @since      1.0 @hooked property_after_tab_section
+ * @since 1.0.0  @hooked property_after_tab_section
+ * @since 3.4.39 Using correctly spelt get_additional_commercial_features_html function.
  */
 function epl_property_tab_section_after() {
 	global $property;
@@ -1489,7 +1502,7 @@ function epl_property_tab_section_after() {
 		if ( ! empty( $result ) ) {
 
 			foreach ( $features_lists as $features_list ) {
-				$the_property_commercial_feature_list .= $property->get_additional_commerical_features_html( $features_list );
+				$the_property_commercial_feature_list .= $property->get_additional_commercial_features_html( $features_list );
 			}
 
 			?>
@@ -1557,7 +1570,7 @@ add_action( 'epl_property_tab_section_after', 'epl_property_tab_section_after' )
  * Get price sticker
  *
  * @return string
- * @since      1.0
+ * @since  1.0
  */
 function epl_get_price_sticker() {
 	global $property;
@@ -2203,7 +2216,7 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_before', 1 );
 add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
 
 /**
- * Used to mark home inspection on apple devices
+ * Used to mark home inspection on Apple devices
  *
  * @param string $start The start.
  * @param string $end The end.
@@ -2477,7 +2490,7 @@ function epl_get_shortcode_list() {
 /**
  * Wrapper for wp_doing_ajax with fallback for lower WP versions
  *
- * @return     bool  True if its an ajax request
+ * @return     bool  True if it's an ajax request
  * @since      3.4.17
  */
 function epl_wp_doing_ajax() {
@@ -2645,7 +2658,7 @@ function epl_compatibility_archive_class_callback() {
 }
 
 /**
- * Apply the i'm feeling lucky theme options
+ * Apply I'm feeling lucky theme options
  *
  * @since      2.2
  */
@@ -2715,7 +2728,7 @@ function epl_remove_archive_thumbnail( $html, $post_id, $post_thumbnail_id, $siz
 	}
 
 	if ( is_epl_post_archive() ) { //phpcs:ignore
-		// allow archive listing images as well as widget images.
+		// Allow archive listing images as well as widget images.
 		if ( //phpcs:ignore
 			doing_action( 'epl_property_archive_featured_image' ) ||
 			doing_action( 'epl_property_widgets_featured_image' ) ||
@@ -3058,12 +3071,12 @@ function epl_count_total_contacts() {
 /**
  * Hide contacts notes from showing on frontend
  *
- * @since      3.0
- *
  * @param      array  $comments  The comments.
  * @param      string $post_id   The post identifier.
  *
- * @return     mixed
+ * @return     array
+ *@since      3.0
+ *
  */
 function epl_filter_listing_comments_array( $comments, $post_id ) {
 	foreach ( $comments as $key   => &$comment ) {
@@ -3153,9 +3166,9 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 /**
  * Shortcode Results Not Found Message
  *
- * @since      3.1.5
+ * @param string $shortcode  The shortcode.
  *
- * @param      string $shortcode  The shortcode.
+ * @since 3.1.5
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
@@ -3239,19 +3252,20 @@ add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
  * Get the author loop
  *
  * @since 3.3
+ * @since 3.4.38 Support for trird & forth listing agents.
  */
 function epl_archive_author_callback() {
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	epl_get_template_part( 'content-author-archive-card.php' );
-	
+
 	if ( is_epl_post() ) {
-		if( epl_listing_has_secondary_author() ) {
+		if ( epl_listing_has_secondary_author() ) {
 			epl_get_template_part( 'content-author-archive-card.php', array( 'epl_author' => $epl_author_secondary ) );
 		}
-		if( epl_listing_has_third_agent() ) {
+		if ( epl_listing_has_third_agent() ) {
 			epl_get_template_part( 'content-author-archive-card', array( 'epl_author' => $epl_author_third ) );
 		}
-		if( epl_listing_has_fourth_agent() ) {
+		if ( epl_listing_has_fourth_agent() ) {
 			epl_get_template_part( 'content-author-archive-card', array( 'epl_author' => $epl_author_fourth ) );
 		}
 		epl_reset_post_author();
@@ -3650,7 +3664,7 @@ function epl_get_stickers_array( $sticker_keys = array() ) {
 
 	/**
 	 * List of stickers for current listing, hook here if only need to change labels,
-	 * class etc for displayed labels.
+	 * Class etc. for displayed labels.
 	 */
 	return apply_filters( 'epl_stickers_array', $return );
 }
@@ -3735,7 +3749,7 @@ add_action( 'epl_property_status', 'epl_property_status', 10, 2 );
  *
  * @return     array  $classes  Modified classes.
  * @since      3.4.29
- * @since 	   3.4.37 Added custom classes for epl search results.
+ * @since      3.4.38 Added epl-search-results custom body class for search results.
  */
 function epl_body_classes( $classes ) {
 

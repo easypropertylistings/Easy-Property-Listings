@@ -30,7 +30,7 @@ function epl_list_listings_contextual_help() {
 		'<p><strong>' . sprintf(
 			__( 'For more information:', 'easy-property-listings' ) . '</strong></p>' .
 			/* Translators: %s is a link. */
-			'<p>' . sprintf( __( '<a href="%s">Documentation on how to add a listing</a>.', 'easy-property-listings' ), esc_url( 'http://codex.easypropertylistings.com.au/article/135-how-to-add-a-listing-to-easy-property-listings' ) )
+			'<p>' . sprintf( __( '<a href="%s">Documentation on how to add a listing</a>.', 'easy-property-listings' ), esc_url( 'https://codex.easypropertylistings.com.au/article/135-how-to-add-a-listing-to-easy-property-listings' ) )
 		) . '</p>' .
 		/* Translators: %s is a link. */
 		'<p>' . sprintf( __( 'Visit the <a href="%s">Store</a>', 'easy-property-listings' ), esc_url( 'https://easypropertylistings.com.au/extensions/' ) ) . '</p>' .

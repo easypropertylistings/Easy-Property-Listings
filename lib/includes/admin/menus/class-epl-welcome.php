@@ -617,7 +617,7 @@ class EPL_Welcome {
 							<li><?php esc_html_e( 'Divi by Elegant Themes.', 'easy-property-listings' ); ?></li>
 							<li><?php esc_html_e( 'Many others, add a listing and see how it looks.', 'easy-property-listings' ); ?></li>
 						</ul>
-						<p><?php esc_html_e( 'We have a selection of pre configured templates here for many popular themes', 'easy-property-listings' ); ?> <a href="http://codex.easypropertylistings.com.au/article/185-theme-templates"><?php esc_html_e( 'here', 'easy-property-listings' ); ?></a>.</p>
+						<p><?php esc_html_e( 'We have a selection of pre configured templates here for many popular themes', 'easy-property-listings' ); ?> <a href="https://codex.easypropertylistings.com.au/article/185-theme-templates"><?php esc_html_e( 'here', 'easy-property-listings' ); ?></a>.</p>
 					</div>
 				</div>
 			</div>
@@ -628,8 +628,8 @@ class EPL_Welcome {
 				<h2 id="theme-instructions" class="epl-welcome-sub-heading"><?php esc_html_e( 'Advanced instructions', 'easy-property-listings' ); ?></h2>
 
 				<div class="feature-section">
-					<?php $theme_instructions = '<a href="http://codex.easypropertylistings.com.au/article/49-theme-setup">' . esc_html__( 'theme setup instructions can be found here', 'easy-property-listings' ) . '</a>'; ?>
-					<?php $custom_template_link = '<a href="http://codex.easypropertylistings.com.au/article/121-how-to-create-your-own-custom-theme-templates-or-modify-existing-ones-using-the-theme-template-loader">' . esc_html__( 'custom templates', 'easy-property-listings' ) . '</a>'; ?>
+					<?php $theme_instructions = '<a href="https://codex.easypropertylistings.com.au/article/49-theme-setup">' . esc_html__( 'theme setup instructions can be found here', 'easy-property-listings' ) . '</a>'; ?>
+					<?php $custom_template_link = '<a href="https://codex.easypropertylistings.com.au/article/121-how-to-create-your-own-custom-theme-templates-or-modify-existing-ones-using-the-theme-template-loader">' . esc_html__( 'custom templates', 'easy-property-listings' ) . '</a>'; ?>
 					<h4 style="text-align: center;">
 						<?php
 							/* Translators: %s is a link with translated words "theme setup instructions can be found here". */
@@ -694,7 +694,7 @@ class EPL_Welcome {
 
 					<div class="col last-feature">
 						<h4><?php esc_html_e( 'Documentation and Short Codes', 'easy-property-listings' ); ?></h4>
-						<p><?php esc_html_e( 'Read the', 'easy-property-listings' ); ?> <a href="http://codex.easypropertylistings.com.au/"><?php esc_html_e( 'documentation', 'easy-property-listings' ); ?></a> <?php esc_html_e( ' and instructions on how to use the included', 'easy-property-listings' ); ?> <a href="http://codex.easypropertylistings.com.au/category/25-shortcodes"><?php esc_html_e( 'shortcodes', 'easy-property-listings' ); ?></a>.</p>
+						<p><?php esc_html_e( 'Read the', 'easy-property-listings' ); ?> <a href="https://codex.easypropertylistings.com.au/"><?php esc_html_e( 'documentation', 'easy-property-listings' ); ?></a> <?php esc_html_e( ' and instructions on how to use the included', 'easy-property-listings' ); ?> <a href="https://codex.easypropertylistings.com.au/category/25-shortcodes"><?php esc_html_e( 'shortcodes', 'easy-property-listings' ); ?></a>.</p>
 					</div>
 				</div>
 			</div>

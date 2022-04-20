@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-theme"><?php esc_html_e( 'What\'s New', 'easy-property-listings' ); ?></a></li>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-getting-started' ), 'index.php' ) ) ); ?>"><?php esc_html_e( 'Getting Started', 'easy-property-listings' ); ?></a></li>
 							<li><a href="<?php echo esc_url( admin_url( add_query_arg( array( 'page' => 'epl-about' ), 'index.php' ) ) ); ?>#guide-changelog"><?php esc_html_e( 'Full Change Log', 'easy-property-listings' ); ?></a></li>
-							<li><a href="http://codex.easypropertylistings.com.au/"><?php esc_html_e( 'Documentation', 'easy-property-listings' ); ?></a></li>
+							<li><a href="https://codex.easypropertylistings.com.au/"><?php esc_html_e( 'Documentation', 'easy-property-listings' ); ?></a></li>
 							<li><a href="https://easypropertylistings.com.au/support-the-site/"><?php esc_html_e( 'Support the project', 'easy-property-listings' ); ?></a></li>
 							<li><a href="https://easypropertylistings.com.au/support-ticket/"><?php esc_html_e( 'Visit Support', 'easy-property-listings' ); ?></a></li>
 							<li><a href="https://wordpress.org/support/view/plugin-reviews/easy-property-listings"><strong><?php esc_html_e( 'Write a Review', 'easy-property-listings' ); ?></strong></a></li>
