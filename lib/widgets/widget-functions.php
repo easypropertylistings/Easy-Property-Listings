@@ -1103,7 +1103,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		return;
 	}
 
-	if ( empty( $type ) ) {
+	if ( empty( $type ) || 'all' === $type ) {
 		$type = epl_get_core_post_types();
 	}
 
