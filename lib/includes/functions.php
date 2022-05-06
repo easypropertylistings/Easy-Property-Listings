@@ -1782,6 +1782,7 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @return array
  * @since 2.1.11
  * @since 3.4.40 Tweak: Search selection results will be sorted in a-z order.
+ * @since 3.4.40 Fix: Search address options fixed for the all search tab.
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
