@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.4.40\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2022-05-06 05:31:44+00:00\n"
+"POT-Creation-Date: 2022-05-06 05:53:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -308,7 +308,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:70
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:234
 #: lib/includes/class-epl-author.php:263 lib/includes/class-epl-author.php:271
-#: lib/includes/functions.php:2067 lib/includes/template-functions.php:2012
+#: lib/includes/functions.php:2068 lib/includes/template-functions.php:2012
 #: lib/post-types/post-type-contact.php:36
 #: lib/post-types/post-type-contact.php:37
 msgid "Contact"
@@ -604,7 +604,7 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1245
-#: lib/includes/functions.php:2232 lib/post-types/post-types.php:54
+#: lib/includes/functions.php:2233 lib/post-types/post-types.php:54
 #: lib/post-types/post-types.php:611
 #: lib/widgets/class-epl-widget-recent-property.php:186
 #: lib/widgets/class-epl-widget-recent-property.php:334
@@ -617,7 +617,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1246
 #: lib/includes/functions.php:1177 lib/includes/functions.php:1742
-#: lib/includes/functions.php:2236 lib/includes/install.php:51
+#: lib/includes/functions.php:2237 lib/includes/install.php:51
 #: lib/post-types/post-types.php:60 lib/updates/epl-2.1.11.php:18
 #: lib/widgets/class-epl-widget-recent-property.php:187
 #: lib/widgets/class-epl-widget-recent-property.php:335
@@ -629,7 +629,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1247
 #: lib/includes/functions.php:1184 lib/includes/functions.php:1768
-#: lib/includes/functions.php:2240 lib/includes/install.php:50
+#: lib/includes/functions.php:2241 lib/includes/install.php:50
 #: lib/post-types/post-types.php:64 lib/updates/epl-2.1.php:18
 #: lib/widgets/class-epl-widget-recent-property.php:188
 #: lib/widgets/class-epl-widget-recent-property.php:336
@@ -2681,8 +2681,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:349
 #: lib/includes/class-epl-property-meta.php:737
 #: lib/includes/class-epl-property-meta.php:802
-#: lib/includes/class-epl-property-meta.php:852 lib/includes/functions.php:2258
-#: lib/includes/functions.php:2296 lib/widgets/widget-admin-dashboard.php:177
+#: lib/includes/class-epl-property-meta.php:852 lib/includes/functions.php:2259
+#: lib/includes/functions.php:2297 lib/widgets/widget-admin-dashboard.php:177
 #: lib/widgets/widget-admin-dashboard.php:226
 msgid "Auction"
 msgstr ""
@@ -2723,7 +2723,7 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:869
 #: lib/includes/class-epl-property-meta.php:875
 #: lib/includes/class-epl-property-meta.php:1062
-#: lib/includes/functions.php:2295 lib/includes/template-functions.php:3546
+#: lib/includes/functions.php:2296 lib/includes/template-functions.php:3546
 #: lib/includes/template-functions.php:3578
 msgid "For Sale"
 msgstr ""
@@ -3303,7 +3303,7 @@ msgstr ""
 msgid "New/Just Listed Label"
 msgstr ""
 
-#: lib/includes/functions.php:1141 lib/includes/functions.php:2070
+#: lib/includes/functions.php:1141 lib/includes/functions.php:2071
 #: lib/includes/install.php:48 lib/updates/epl-1.3.1.php:28
 msgid "New"
 msgstr ""
@@ -3769,43 +3769,43 @@ msgid ""
 "update notifications."
 msgstr ""
 
-#: lib/includes/functions.php:2065
+#: lib/includes/functions.php:2066
 msgid "Appraisal"
 msgstr ""
 
-#: lib/includes/functions.php:2066
+#: lib/includes/functions.php:2067
 msgid "Buyer"
 msgstr ""
 
-#: lib/includes/functions.php:2068
+#: lib/includes/functions.php:2069
 msgid "Lead"
 msgstr ""
 
-#: lib/includes/functions.php:2069
+#: lib/includes/functions.php:2070
 msgid "Landlord"
 msgstr ""
 
-#: lib/includes/functions.php:2071
+#: lib/includes/functions.php:2072
 msgid "Past Customer"
 msgstr ""
 
-#: lib/includes/functions.php:2072
+#: lib/includes/functions.php:2073
 msgid "Seller"
 msgstr ""
 
-#: lib/includes/functions.php:2073
+#: lib/includes/functions.php:2074
 msgid "Tenant"
 msgstr ""
 
-#: lib/includes/functions.php:2074
+#: lib/includes/functions.php:2075
 msgid "Widget Lead"
 msgstr ""
 
-#: lib/includes/functions.php:2075
+#: lib/includes/functions.php:2076
 msgid "Under Contract"
 msgstr ""
 
-#: lib/includes/functions.php:2233 lib/post-types/post-types.php:55
+#: lib/includes/functions.php:2234 lib/post-types/post-types.php:55
 #: lib/post-types/post-types.php:612
 #: lib/widgets/class-epl-widget-recent-property.php:189
 #: lib/widgets/class-epl-widget-recent-property.php:337
@@ -3815,7 +3815,7 @@ msgstr ""
 msgid "Withdrawn"
 msgstr ""
 
-#: lib/includes/functions.php:2234 lib/post-types/post-types.php:56
+#: lib/includes/functions.php:2235 lib/post-types/post-types.php:56
 #: lib/post-types/post-types.php:613
 #: lib/widgets/class-epl-widget-recent-property.php:190
 #: lib/widgets/class-epl-widget-recent-property.php:338
@@ -3825,117 +3825,117 @@ msgstr ""
 msgid "Off Market"
 msgstr ""
 
-#: lib/includes/functions.php:2257 lib/includes/functions.php:2278
+#: lib/includes/functions.php:2258 lib/includes/functions.php:2279
 msgid "Exclusive"
 msgstr ""
 
-#: lib/includes/functions.php:2259
+#: lib/includes/functions.php:2260
 msgid "Multilist"
 msgstr ""
 
-#: lib/includes/functions.php:2260
+#: lib/includes/functions.php:2261
 msgid "Conjunctional"
 msgstr ""
 
-#: lib/includes/functions.php:2261 lib/includes/functions.php:2279
+#: lib/includes/functions.php:2262 lib/includes/functions.php:2280
 msgid "Open"
 msgstr ""
 
-#: lib/includes/functions.php:2262 lib/includes/functions.php:2299
-#: lib/includes/functions.php:2354
+#: lib/includes/functions.php:2263 lib/includes/functions.php:2300
+#: lib/includes/functions.php:2355
 msgid "Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2263
+#: lib/includes/functions.php:2264
 msgid "Set Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2297
+#: lib/includes/functions.php:2298
 msgid "EOI"
 msgstr ""
 
-#: lib/includes/functions.php:2298
+#: lib/includes/functions.php:2299
 msgid "Offers"
 msgstr ""
 
-#: lib/includes/functions.php:2300
+#: lib/includes/functions.php:2301
 msgid "Tender"
 msgstr ""
 
-#: lib/includes/functions.php:2315 lib/widgets/widget-functions.php:751
+#: lib/includes/functions.php:2316 lib/widgets/widget-functions.php:751
 #: lib/widgets/widget-functions.php:806
 msgid "Square"
 msgstr ""
 
-#: lib/includes/functions.php:2316 lib/widgets/widget-functions.php:752
+#: lib/includes/functions.php:2317 lib/widgets/widget-functions.php:752
 #: lib/widgets/widget-functions.php:807
 msgid "Square Meter"
 msgstr ""
 
-#: lib/includes/functions.php:2317 lib/widgets/widget-functions.php:753
+#: lib/includes/functions.php:2318 lib/widgets/widget-functions.php:753
 #: lib/widgets/widget-functions.php:808
 msgid "Acre"
 msgstr ""
 
-#: lib/includes/functions.php:2318 lib/widgets/widget-functions.php:754
+#: lib/includes/functions.php:2319 lib/widgets/widget-functions.php:754
 #: lib/widgets/widget-functions.php:809
 msgid "Hectare"
 msgstr ""
 
-#: lib/includes/functions.php:2319 lib/widgets/widget-functions.php:755
+#: lib/includes/functions.php:2320 lib/widgets/widget-functions.php:755
 #: lib/widgets/widget-functions.php:810
 msgid "Square Feet"
 msgstr ""
 
-#: lib/includes/functions.php:2334
+#: lib/includes/functions.php:2335
 msgid "Day"
 msgstr ""
 
-#: lib/includes/functions.php:2335
+#: lib/includes/functions.php:2336
 msgid "Daily"
 msgstr ""
 
-#: lib/includes/functions.php:2336
+#: lib/includes/functions.php:2337
 msgid "Week"
 msgstr ""
 
-#: lib/includes/functions.php:2337
+#: lib/includes/functions.php:2338
 msgid "Weekly"
 msgstr ""
 
-#: lib/includes/functions.php:2338
+#: lib/includes/functions.php:2339
 msgid "Month"
 msgstr ""
 
-#: lib/includes/functions.php:2339
+#: lib/includes/functions.php:2340
 msgid "Monthly"
 msgstr ""
 
-#: lib/includes/functions.php:2355
+#: lib/includes/functions.php:2356
 msgid "Lease"
 msgstr ""
 
-#: lib/includes/functions.php:2356
+#: lib/includes/functions.php:2357
 msgid "Both"
 msgstr ""
 
-#: lib/includes/functions.php:2371
+#: lib/includes/functions.php:2372
 msgid "Unknown"
 msgstr ""
 
-#: lib/includes/functions.php:2372
+#: lib/includes/functions.php:2373
 msgid "Vacant"
 msgstr ""
 
-#: lib/includes/functions.php:2373
+#: lib/includes/functions.php:2374
 msgid "Tenanted"
 msgstr ""
 
-#: lib/includes/functions.php:2388
+#: lib/includes/functions.php:2389
 msgid "Whole"
 msgstr ""
 
-#: lib/includes/functions.php:2389
+#: lib/includes/functions.php:2390
 msgid "Part"
 msgstr ""
 
