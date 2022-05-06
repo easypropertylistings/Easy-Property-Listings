@@ -1791,7 +1791,7 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 		return;
 	}
 
-	if ( empty( $type ) ) {
+	if ( empty( $type ) || 'all' === $type ) {
 		$type = epl_get_core_post_types();
 	}
 
