@@ -4,9 +4,9 @@
  *
  * @package     EPL
  * @subpackage  Widget/Admin/Dashboard
- * @copyright   Copyright (c) 2019, Merv Barrett
+ * @copyright   Copyright (c) 2022, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.3
+ * @since       1.3.0
  */
 
 // Exit if accessed directly.
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Add Dashboard Widgets
  *
- * @since 1.3
+ * @since 1.3.0
  */
 function epl_add_dashboard_widgets() {
 
@@ -79,7 +79,7 @@ function epl_status_dashboard_widget_callback() {
  * @param string $singular Option for the case.
  *
  * @return bool|string
- * @since 1.3
+ * @since 1.3.0
  */
 function epl_get_plural( $count, $singular ) {
 	$return = false;
@@ -126,7 +126,7 @@ function epl_get_plural( $count, $singular ) {
 /**
  * Status Dashboard Widget Highlights
  *
- * @since 1.3
+ * @since 1.3.0
  * @param string $type Option for the case.
  */
 function epl_posts_highlights( $type ) {
@@ -305,7 +305,7 @@ function epl_dashboard_activity_widget() {
 /**
  * Show Comments section.
  *
- * @since 3.0
+ * @since 3.0.0
  *
  * @param int $total_items Optional. Number of comments to query. Default 5.
  * @return bool False if no comments were found. True otherwise.
@@ -371,7 +371,7 @@ function epl_dashboard_recent_comments( $total_items = 5 ) {
 /**
  * Generates Publishing Soon and Recently Published listings.
  *
- * @since 3.0
+ * @since 3.0.0
  *
  * @param array $args {
  *     An array of query and display arguments.
