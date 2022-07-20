@@ -1088,6 +1088,7 @@ add_action( 'epl_property_heading', 'epl_property_heading' );
  * Property Heading
  *
  * @since      1.0 @hooked property_secondary_heading
+ * @since      3.4.41 Fix : Added land category
  */
 function epl_property_secondary_heading() {
 	global $property;
@@ -1098,6 +1099,10 @@ function epl_property_secondary_heading() {
 
 	if ( 'rural' === $property->post_type ) {
 		echo wp_kses_post( $property->get_property_rural_category( 'span', 'epl-rural-category' ) );
+	}
+
+        if ( 'land' === $property->post_type ) {
+		echo wp_kses_post( $property->get_property_land_category( 'span', 'epl-land-category' ) );
 	}
 
 	if ( 'commercial' === $property->post_type || 'commercial_land' === $property->post_type ) {
