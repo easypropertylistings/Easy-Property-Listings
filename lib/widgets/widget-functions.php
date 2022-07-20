@@ -1094,6 +1094,7 @@ function epl_is_search() {
  *
  * @return mixed|void
  * @since  2.3.1
+ * @since  3.4.40 Fix: Search category options fixed for the all search tab.
  */
 function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
@@ -1103,7 +1104,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		return;
 	}
 
-	if ( empty( $type ) ) {
+	if ( empty( $type ) || 'all' === $type ) {
 		$type = epl_get_core_post_types();
 	}
 

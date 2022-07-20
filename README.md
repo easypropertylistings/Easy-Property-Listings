@@ -38,6 +38,13 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.40 May 06, 2022 =
+
+- Fix: Search category options fixed for the all search tab.
+- Fix: Search address options fixed for the all search tab.
+- Fix: Order corrected to display the newest first in dashboard activity widget.
+- Tweak: Search selection results will be sorted in a-z order.
+
 = 3.4.39 February 24, 2022 =
 
 - Tweak: Adjustment to the $epl_author class to allow override and extending.

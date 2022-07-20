@@ -1781,6 +1781,8 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @param string $property_status Listing status.
  * @return array
  * @since 2.1.11
+ * @since 3.4.40 Tweak: Search selection results will be sorted in a-z order.
+ * @since 3.4.40 Fix: Search address options fixed for the all search tab.
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
@@ -1790,7 +1792,7 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 		return;
 	}
 
-	if ( empty( $type ) ) {
+	if ( empty( $type ) || 'all' === $type ) {
 		$type = epl_get_core_post_types();
 	}
 
@@ -1837,6 +1839,8 @@ AND p.post_type IN $type_str
 	foreach ( $res as $s_res ) {
 		$results[ $s_res ] = ucwords( $s_res );
 	}
+
+	asort( $results );
 
 	return apply_filters( 'epl_get_unique_post_meta_values', $results, $key, $type );
 }
