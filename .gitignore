@@ -1,5 +1,6 @@
 # Editors
 .idea
+.nova
 
 # Grunt
 /node_modules/
