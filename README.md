@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.41 July 26, 2022 =
+
+- Fix: Only the default template was loading in shortcodes.
+- Fix: Added land category to the epl_property_secondary_heading hook.
+
 = 3.4.40 May 06, 2022 =
 
 - Fix: Search category options fixed for the all search tab.

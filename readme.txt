@@ -5,7 +5,7 @@ Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires at least: 3.9
-Tested up to: 5.9.3
+Tested up to: 6.0.1
 Stable Tag: 3.4.40
 License: GNU Version 2 or Any Later Version
 
