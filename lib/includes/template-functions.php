@@ -137,7 +137,6 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  * @since      3.4.8 Corrected missing parameter count to 3.
  * @since      3.4.38 Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
  * @since      3.4.39 Added missing arguments variable to epl_no_property_featured_image action.
-
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
@@ -313,21 +312,26 @@ function epl_get_fallback_content_path() {
  *
  * @since 3.0
  * @since 3.4.38 New: Additional parameter default_template to pass the default template which will be used if the template is not found.
+ * @since 3.4.41 Fix: Only the default template was loading.
  */
 function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
 
-	$base_path = epl_get_content_path();
-	$default   = $default_template ? $default_template : $template;
-	$find[]    = epl_template_path() . $template;
-	$template  = locate_template( array_unique( $find ) );
-	if ( ! $template ) {
-		$template = $base_path . $default;
+	$base_path         = epl_get_content_path();
+	$default           = $default_template ? $default_template : $template;
+	$find[]            = epl_template_path() . $template;
+	$template_location = locate_template( array_unique( $find ) );
+
+	if ( ! $template_location ) {
+		$template = $base_path . $template;
 		if ( ! file_exists( $template ) ) {
 			// fallback to core.
 			$base_path = epl_get_fallback_content_path();
 			$template  = $base_path . $default;
 		}
+	} else {
+				$template = $template_location;
 	}
+
 	if ( ! isset( $arguments['epl_author'] ) ) {
 		global $epl_author;
 	}
@@ -1078,6 +1082,7 @@ add_action( 'epl_property_heading', 'epl_property_heading' );
  * Property Heading
  *
  * @since      1.0 @hooked property_secondary_heading
+ * @since      3.4.41 Fix: Added land category.
  */
 function epl_property_secondary_heading() {
 	global $property;
@@ -1088,6 +1093,10 @@ function epl_property_secondary_heading() {
 
 	if ( 'rural' === $property->post_type ) {
 		echo wp_kses_post( $property->get_property_rural_category( 'span', 'epl-rural-category' ) );
+	}
+
+	if ( 'land' === $property->post_type ) {
+		echo wp_kses_post( $property->get_property_land_category( 'span', 'epl-land-category' ) );
 	}
 
 	if ( 'commercial' === $property->post_type || 'commercial_land' === $property->post_type ) {
@@ -3075,8 +3084,7 @@ function epl_count_total_contacts() {
  * @param      string $post_id   The post identifier.
  *
  * @return     array
- *@since      3.0
- *
+ * @since      3.0
  */
 function epl_filter_listing_comments_array( $comments, $post_id ) {
 	foreach ( $comments as $key   => &$comment ) {
@@ -3129,7 +3137,7 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  * @param      string $type   The type.
  * @param      string $name   The name.
  *
- * @return mixed $args
+ * @return array $args
  */
 function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 
