@@ -22,9 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return string
  * @since 1.0
+ * @since 3.4.42 Fix : Notice when $post is null
  **/
 function epl_property_new_excerpt_more( $more ) {
 	global $post;
+        if( is_null( $post ) ) {
+		return $more;
+	}
 	return '...<a href="' . get_permalink( $post->ID ) . '" class="epl-more-link">' . __( 'Read More', 'easy-property-listings' ) . '&rarr;</a>';
 }
 add_filter( 'excerpt_more', 'epl_property_new_excerpt_more' );
