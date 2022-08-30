@@ -1163,6 +1163,7 @@ function epl_get_video_host( $url ) {
  * @since 1.0
  * @since 3.3
  * @since 3.4.38 Support for external/local hosted video formats like mp4, mov etc.
+ * @since 3.4.42 added support for youtube shorts.
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
@@ -1170,7 +1171,7 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 	if ( 'youtube' === epl_get_video_host( $property_video_url ) ) {
 
 		$property_video_url = epl_convert_youtube_embed_url( $property_video_url );
-
+                
 		if ( strpos( $property_video_url, '?' ) > 0 ) {
 			$property_video_url .= '&rel=0';
 		} else {
@@ -1210,10 +1211,10 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
  */
 function epl_convert_youtube_embed_url( $url ) {
 
-	if ( strpos( $url, 'embed' ) > 0 ) {
+	if ( strpos( $url, 'embed' ) > 0 || strpos( $url, 'shorts' ) > 0 ) {
 
 		$video_id = epl_get_youtube_id_from_url( $url );
-
+                
 		if ( ! empty( $video_id ) ) {
 			$url = 'https://www.youtube.com/watch?v=' . $video_id;
 		}
@@ -1230,13 +1231,17 @@ function epl_convert_youtube_embed_url( $url ) {
  * @param      integer $width  The width.
  * @since 1.0
  * @since 3.3 Revised.
+ * @since 3.4.42 Added check for empty videos.
  */
 function epl_property_video_callback( $width = 600 ) {
 
 	global $property;
 	$video_width        = ! empty( $width ) ? $width : 600;
 	$property_video_url = $property->get_property_meta( 'property_video_url' );
-	echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
+
+        if( '' !== $property_video_url ) {
+                echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
+        }
 
 }
 add_action( 'epl_property_video', 'epl_property_video_callback', 10, 1 );
@@ -1666,6 +1671,8 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
  * Get Sorting Options
  *
  * @since      2.0
+ * 
+ * @since      3.4.42 Option to sort by title.
  *
  * @param      boolean $post_type  The post type.
  *
@@ -1746,6 +1753,14 @@ function epl_sorting_options( $post_type = null ) {
 				'key'     => 'property_address_suburb',
 				'order'   => 'DESC',
 				'orderby' => 'meta_value',
+
+			),
+                        array(
+				'id'    => 'title',
+				'label' => __( 'Title', 'easy-property-listings' ),
+				'type'  => 'post',
+				'key'   => 'post_title',
+				'order' => 'ASC',
 
 			),
 		)
