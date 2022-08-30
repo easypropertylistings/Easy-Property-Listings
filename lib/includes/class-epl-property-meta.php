@@ -508,10 +508,12 @@ class EPL_Property_Meta {
 	/**
 	 * Land category
 	 *
-	 * @since 2.0
 	 * @param string $tag HTML wrapper type, default div.
 	 * @param string $class name, default land-category.
 	 * @return string
+	 *
+	 * @since 2.0.0
+	 * @since 3.4.42 Fix: Filter name was incorrect changed to epl_get_property_land_category.
 	 */
 	public function get_property_land_category( $tag = 'div', $class = 'land-category' ) {
 		if ( ! in_array( $this->post_type, array( 'land', 'commercial_land' ), true ) ) {
@@ -527,9 +529,8 @@ class EPL_Property_Meta {
 		} else {
 			$land_category = '<' . $tag . ' class="' . $class . '">' . $land_category . '</' . $tag . '>';
 		}
-		return apply_filters( 'epl_get_property_rural_category', $land_category );
+		return apply_filters( 'epl_get_property_land_category', $land_category );
 	}
-
 
 	/**
 	 * Formatted Street level address based on selected display option
