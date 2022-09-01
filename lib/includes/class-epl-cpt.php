@@ -551,7 +551,7 @@ class EPL_CPT {
 			/* Translators: %s is taxonomy label. */
 			'popular_items'              => sprintf( __( 'Popular %s', 'easy-property-listings' ), $plural ),
 			/* Translators: %s is taxonomy label. */
-			'separate_items_with_commas' => sprintf( __( 'Seperate %s with commas', 'easy-property-listings' ), $plural ),
+			'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', 'easy-property-listings' ), $plural ),
 			/* Translators: %s is taxonomy label. */
 			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', 'easy-property-listings' ), $plural ),
 			/* Translators: %s is taxonomy label. */
