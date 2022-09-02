@@ -508,10 +508,12 @@ class EPL_Property_Meta {
 	/**
 	 * Land category
 	 *
-	 * @since 2.0
 	 * @param string $tag HTML wrapper type, default div.
 	 * @param string $class name, default land-category.
 	 * @return string
+	 *
+	 * @since 2.0.0
+	 * @since 3.4.42 Fix: Filter name was incorrect changed to epl_get_property_land_category.
 	 */
 	public function get_property_land_category( $tag = 'div', $class = 'land-category' ) {
 		if ( ! in_array( $this->post_type, array( 'land', 'commercial_land' ), true ) ) {
@@ -527,9 +529,8 @@ class EPL_Property_Meta {
 		} else {
 			$land_category = '<' . $tag . ' class="' . $class . '">' . $land_category . '</' . $tag . '>';
 		}
-		return apply_filters( 'epl_get_property_rural_category', $land_category );
+		return apply_filters( 'epl_get_property_land_category', $land_category );
 	}
-
 
 	/**
 	 * Formatted Street level address based on selected display option
@@ -2054,6 +2055,7 @@ class EPL_Property_Meta {
 	 * @param string $metakey Meta key name.
 	 * @return mixed Value wrapped in a list item
 	 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
+         * @since 3.4.42 Parking Comments Label before value
 	 */
 	public function get_additional_features_html( $metakey ) {
 
@@ -2091,7 +2093,12 @@ class EPL_Property_Meta {
 					break;
 
 				default:
-					$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
+                                        if( 'property_com_parking_comments' == $metakey ) {
+                                                $return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' '.$metavalue . '</li>';
+                                        } else {
+                                                $return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
+                                        }
+					
 					break;
 			}
 		}

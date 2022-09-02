@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Search widget form fields for search widget
  *
  * @since 2.0
+ * @since 3.4.42 Added filters for any & current status labels
  */
 function epl_search_widget_fields() {
 
@@ -70,8 +71,8 @@ function epl_search_widget_fields() {
 				'default' => '',
 				'type'    => 'select',
 				'options' => array(
-					''        => __( 'Any', 'easy-property-listings' ),
-					'current' => __( 'Current', 'easy-property-listings' ),
+					''        => apply_filters( 'epl_any_label_status_filter', __( 'Any', 'easy-property-listings' ) ),
+					'current' => apply_filters( 'epl_current_label_status_filter', __( 'Current', 'easy-property-listings' ) ),
 					'sold'    => apply_filters( 'epl_sold_label_status_filter', __( 'Sold', 'easy-property-listings' ) ),
 					'leased'  => apply_filters( 'epl_leased_label_status_filter', __( 'Leased', 'easy-property-listings' ) ),
 				),
