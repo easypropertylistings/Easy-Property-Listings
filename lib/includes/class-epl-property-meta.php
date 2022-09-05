@@ -1637,6 +1637,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 *
 	 * @since 3.4.38 Fix: Don't display land area when it's < 0.
+         * @since 3.4.42 Fix : Fatal error if area is non numeric.
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
 
@@ -1660,7 +1661,7 @@ class EPL_Property_Meta {
 			$label = apply_filters( 'epl_get_property_land_area_label', __( 'Land is', 'easy-property-listings' ) );
 
 			// Decimal.
-			if ( fmod( $property_land_area, 1 ) !== 0.00 ) {
+			if ( fmod( floatval( $property_land_area ), 1 ) !== 0.00 ) {
 				$property_land_area_format = apply_filters( 'epl_property_land_area_format_decimal', number_format_i18n( $property_land_area, 2 ) );
 			} else {
 				// No decimal.
@@ -1708,6 +1709,7 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
+         * @since 3.4.42 Fix : Fatal error if area is non numeric.
 	 */
 	public function get_property_building_area_value( $returntype = 'i' ) {
 
@@ -1731,7 +1733,7 @@ class EPL_Property_Meta {
 			$label = apply_filters( 'epl_get_property_building_area_label', __( 'Floor Area is', 'easy-property-listings' ) );
 
 			// Decimal.
-			if ( fmod( $building_area, 1 ) !== 0.00 ) {
+			if ( fmod( floatval( $building_area ), 1 ) !== 0.00 ) {
 				$building_area_format = apply_filters( 'epl_property_building_area_format_decimal', number_format_i18n( $building_area, 2 ) );
 			} else {
 				// No decimal.
@@ -2053,6 +2055,7 @@ class EPL_Property_Meta {
 	 * @param string $metakey Meta key name.
 	 * @return mixed Value wrapped in a list item
 	 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
+         * @since 3.4.42 Parking Comments Label before value
 	 */
 	public function get_additional_features_html( $metakey ) {
 
@@ -2090,7 +2093,12 @@ class EPL_Property_Meta {
 					break;
 
 				default:
-					$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
+                                        if( 'property_com_parking_comments' == $metakey ) {
+                                                $return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' '.$metavalue . '</li>';
+                                        } else {
+                                                $return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
+                                        }
+					
 					break;
 			}
 		}
