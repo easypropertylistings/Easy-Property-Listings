@@ -1163,9 +1163,11 @@ function epl_get_video_host( $url ) {
  * @since 1.0
  * @since 3.3
  * @since 3.4.38 Support for external/local hosted video formats like mp4, mov etc.
- * @since 3.4.42 added support for youtube shorts.
+ * @since 3.4.42 added support for youtube shorts & filter for video URL.
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
+
+        $property_video_url = apply_filters( 'epl_property_video_url', $property_video_url );
 
 	// Remove related videos from YouTube.
 	if ( 'youtube' === epl_get_video_host( $property_video_url ) ) {
