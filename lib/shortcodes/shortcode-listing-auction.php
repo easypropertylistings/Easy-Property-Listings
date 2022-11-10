@@ -27,6 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return false|string
  * @since       1.0
+ * @since       3.4.42 Fix : Missing commercial auction listings
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -86,8 +87,15 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	// Only properties which are not auction should be allowed.
 	$args['meta_query'][] = array(
-		'key'   => 'property_authority',
-		'value' => 'auction',
+		'relation'      =>      'OR',
+		[
+			'key'   => 'property_authority',
+			'value' => 'auction',
+		],
+		[
+			'key'   => 'property_com_authority',
+			'value' => 'auction',
+		]
 	);
 
 	if ( ! empty( $attributes['location'] ) ) {
