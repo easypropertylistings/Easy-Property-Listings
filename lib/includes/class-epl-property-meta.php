@@ -153,6 +153,7 @@ class EPL_Property_Meta {
 	 * @return mixed Return formatted inspection times with a iCal link
 	 * @since 2.0
 	 * @since 3.4.27 Added filter for href, handling of non date inspection values.
+         * @since 3.4.27 Added filter for deciding whether to remove inspection entry.
 	 */
 	public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 		if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -173,7 +174,9 @@ class EPL_Property_Meta {
 					if ( is_numeric( $item[0] ) ) {
 						$timearr = explode( ' ', $item );
 						$endtime = current( $timearr ) . ' ' . end( $timearr );
-						if ( strtotime( $endtime ) > current_time( 'timestamp' ) ) {
+						$maybe_delete_inspection = strtotime( $endtime ) < current_time( 'timestamp', 1 );
+                                                $maybe_delete_inspection = apply_filters( 'epl_maybe_delete_inspection', $maybe_delete_inspection, $endtime, $item );
+						if ( !$maybe_delete_inspection ) {
 							$item                                  = trim( $item );
 							$inspectarray[ strtotime( $endtime ) ] = $item;
 						}
@@ -1637,6 +1640,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 *
 	 * @since 3.4.38 Fix: Don't display land area when it's < 0.
+         * @since 3.4.42 Fix : Fatal error if area is non numeric.
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
 
@@ -1660,7 +1664,7 @@ class EPL_Property_Meta {
 			$label = apply_filters( 'epl_get_property_land_area_label', __( 'Land is', 'easy-property-listings' ) );
 
 			// Decimal.
-			if ( fmod( $property_land_area, 1 ) !== 0.00 ) {
+			if ( fmod( floatval( $property_land_area ), 1 ) !== 0.00 ) {
 				$property_land_area_format = apply_filters( 'epl_property_land_area_format_decimal', number_format_i18n( $property_land_area, 2 ) );
 			} else {
 				// No decimal.
@@ -1708,6 +1712,7 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
+         * @since 3.4.42 Fix : Fatal error if area is non numeric.
 	 */
 	public function get_property_building_area_value( $returntype = 'i' ) {
 
@@ -1731,7 +1736,7 @@ class EPL_Property_Meta {
 			$label = apply_filters( 'epl_get_property_building_area_label', __( 'Floor Area is', 'easy-property-listings' ) );
 
 			// Decimal.
-			if ( fmod( $building_area, 1 ) !== 0.00 ) {
+			if ( fmod( floatval( $building_area ), 1 ) !== 0.00 ) {
 				$building_area_format = apply_filters( 'epl_property_building_area_format_decimal', number_format_i18n( $building_area, 2 ) );
 			} else {
 				// No decimal.
