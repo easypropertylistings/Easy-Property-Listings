@@ -4,7 +4,7 @@
  *
  * @package EPL
  * @subpackage Templates/Themes/Avada
- * @since 3.4.26
+ * @updated 3.4.41
  */
 
 // Exit if accessed directly.
