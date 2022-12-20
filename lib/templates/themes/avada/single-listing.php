@@ -16,11 +16,11 @@ global $post;
 ?>
 <?php get_header(); ?>
 
-<section id="content" style="<?php esc_attr_e( apply_filters( 'awb_content_tag_style', '' ) ); ?>">
+<section id="content">
 	<?php if ( fusion_get_option( 'blog_pn_nav' ) ) : ?>
 		<div class="single-navigation clearfix">
-			<?php previous_post_link( '%link', esc_attr__( 'Previous', 'Avada' ) ); ?>
-			<?php next_post_link( '%link', esc_attr__( 'Next', 'Avada' ) ); ?>
+			<?php previous_post_link( '%link', esc_attr__( 'Previous', 'easy-property-listings' ) ); ?>
+			<?php next_post_link( '%link', esc_attr__( 'Next', 'easy-property-listings' ) ); ?>
 		</div>
 	<?php endif; ?>
 
