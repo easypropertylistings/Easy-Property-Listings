@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-<section id="content" class="<?php esc_attr_e( apply_filters( 'awb_content_tag_class', '' ) ); ?>" style="<?php esc_attr_e( apply_filters( 'awb_content_tag_style', '' ) ); ?>">
+<section id="content" class="<?php esc_attr( apply_filters( 'awb_content_tag_class', '' ) ); ?>" style="<?php esc_attr( apply_filters( 'awb_content_tag_style', '' ) ); ?>">
 
 	<?php
 	if ( have_posts() ) :
