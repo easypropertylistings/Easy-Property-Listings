@@ -27,7 +27,7 @@ if ( $query_open->have_posts() ) {
 		<div class="loop-content <?php echo esc_attr( $attributes['class'] ); ?> <?php echo esc_attr( epl_template_class( $attributes['template'], 'archive' ) ); ?> epl-clearfix">
 			<?php
 			if ( 'on' === $attributes['tools_top'] ) {
-				do_action( 'epl_property_loop_start' );
+				do_action( 'epl_property_loop_start', $attributes );
 			}
 			while ( $query_open->have_posts() ) {
 				$query_open->the_post();
