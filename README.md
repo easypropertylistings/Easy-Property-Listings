@@ -38,6 +38,14 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.43 January 9, 2023 =
+
+- Fix: Avada archive listing template updated.
+
+= 3.4.42 December 20, 2022 =
+
+- Fix: Avada single listing template updated.
+
 = 3.4.41 July 26, 2022 =
 
 - Fix: Only the default template was loading in shortcodes.
