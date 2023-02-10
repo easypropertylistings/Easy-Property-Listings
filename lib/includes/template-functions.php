@@ -2517,9 +2517,10 @@ function epl_get_active_theme_name() {
  *
  * @return array
  * @since 3.3
+ * @since 3.4.4 added filter epl_get_shortcode_list
  */
 function epl_get_shortcode_list() {
-	return array(
+	return apply_filters( 'epl_get_shortcode_list', array(
 		'listing',
 		'listing_category',
 		'listing_open',
@@ -2527,7 +2528,7 @@ function epl_get_shortcode_list() {
 		'listing_location',
 		'listing_auction',
 		'listing_advanced',
-	);
+	) );
 }
 
 /**
