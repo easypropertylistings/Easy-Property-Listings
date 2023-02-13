@@ -69,6 +69,13 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 */
 		private $author;
 
+                /**
+		 * Item shortname
+		 *
+		 * @var string $file.
+		 */
+                private $item_shortname_without_prefix;
+
 		/**
 		 * API URL
 		 *
