@@ -46,6 +46,9 @@ function epl_get_admin_screens() {
  * Load and enqueue admin scripts and stylesheets.
  *
  * @since 1.0
+ * 
+ * @since 3.4.44 Fixed callback error for google maps.
+ * 
  * @param string $screen Page hook.
  * @return void
  */
@@ -100,6 +103,8 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 
 /**
  * Load and enqueue front end scripts and stylesheets.
+ * 
+ * @since 3.4.44 Fixed callback error for google maps.
  *
  * @since 1.0
  */
@@ -113,7 +118,7 @@ function epl_wp_enqueue_scripts() {
 
 	if ( is_epl_post() && shortcode_exists( 'listing_map' ) ) {
 
-		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
+		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype';
 		$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 		if ( ! empty( $epl_google_api_key ) ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
