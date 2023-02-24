@@ -61,7 +61,6 @@ function epl_admin_enqueue_scripts( $screen ) {
 
 	$js_vars = array(
 		'default_map_address' => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
-
 		'ajax_nonce'          => wp_create_nonce( 'epl_ajax_nonce' ),
 	);
 
@@ -175,6 +174,8 @@ function epl_wp_enqueue_scripts() {
 		'ajaxurl'               => admin_url( 'admin-ajax.php' ),
 		'image_base'            => EPL_PLUGIN_URL . 'lib/assets/images/',
 		'field_sliders'         => epl_get_field_sliders(),
+                'range_html'            => epl_get_range_slider_label_html()         
+
 	);
 	wp_enqueue_script( 'jquery-ui-slider' );
 	wp_enqueue_script( 'jquery-touch-punch' );
@@ -236,3 +237,22 @@ function epl_admin_styles() {
 	<?php
 }
 add_action( 'admin_head', 'epl_admin_styles' );
+
+/**
+ * Template for range slider label
+ *
+ * @since 3.4.4
+ * 
+ * @return string
+ */
+function epl_get_range_slider_label_html() { 
+
+        ob_start(); ?>
+
+        <span class="epl-lf-label-txt"> {range_start} {range_sep} {range_end} </span> <?php
+
+        $html = ob_get_clean();
+
+        return apply_filters( 'epl_get_range_slider_label_html', $html );
+
+}
