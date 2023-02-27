@@ -7,6 +7,7 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
+ * @since       3.4.4 Added field type class for field wrapper and custom wrapper class support through wrapper_class.
  */
 
 // Exit if accessed directly.
@@ -168,7 +169,7 @@ $epl_settings = get_option( 'epl_settings' );
 
 						<div class="<?php echo esc_attr( $current_class ); ?> epl-fields-single-menu" id="<?php echo 'tab-menu-' . esc_attr( sanitize_title( $field_group['label'] ) ); ?>">
 							<?php foreach ( $field_group['fields'] as $field ) { ?>
-							<div class="epl-field">
+							<div class="epl-field epl-field-<?php echo esc_attr( $field['type'] ); ?> <?php !empty( $field['wrapper_class'] ) ? esc_attr( $field['wrapper_class'] ) : ''; ?>">
 								<div class="epl-help-entry-header">
 									<div class="epl_help_entry_content"></div>
 								</div>
