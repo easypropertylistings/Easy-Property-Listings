@@ -1210,6 +1210,7 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
  *
  * @return string   converted URL
  * @since  3.4.27
+ * @since 3.4.4 Added support for youtube shorts videos.
  */
 function epl_convert_youtube_embed_url( $url ) {
 
@@ -1882,6 +1883,7 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  *
  * @since 2.0
  * @since 3.3 Revised.
+ * @since 3.5 Unique ID for sort dropdown per instance.
  * @since 3.5 gets the shortcode attributes as param 
  */
 function epl_sorting_tool( $attributes = [] ) {
@@ -1896,10 +1898,11 @@ function epl_sorting_tool( $attributes = [] ) {
 		$set_instance_id = sanitize_text_field( wp_unslash( $_GET['instance_id'] ) );
 	}
 	$sorters = epl_sorting_options();
+        $id = !empty( $instance_id ) ? $instance_id : '1';
 	?>
 
 	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
-		<select class="epl-sort-listings" id="epl-sort-listings" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
+		<select class="epl-sort-listings" id="epl-sort-listings-<?php echo esc_attr( $instance_id ); ?>" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
 			<option <?php selected( $sortby, '' ); ?> value="">
 				<?php echo esc_attr( apply_filters( 'epl_switch_views_sorting_title_sort', esc_html__( 'Sort', 'easy-property-listings' ) ) ); ?>
 			</option>

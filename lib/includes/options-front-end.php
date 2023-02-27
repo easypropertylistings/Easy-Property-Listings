@@ -40,6 +40,7 @@ add_filter( 'excerpt_more', 'epl_property_new_excerpt_more' );
  *
  * @return string
  * @since 1.0
+ * @since 3.4.4 Added support for youtube shorts videos.
  */
 function epl_get_youtube_id_from_url( $text ) {
 	$text = preg_replace( "/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user|shorts)\/))([^\?&\"'>]+)/", '$1', $text );
