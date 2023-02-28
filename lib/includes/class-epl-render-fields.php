@@ -8,6 +8,7 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
  * @since       3.4.29 Moved from meta-boxes into its own class for more extensibility
+ * @since       3.4.44 Added field type help
  */
 
 // Exit if accessed directly.
@@ -69,6 +70,7 @@ class EPL_Render_Fields {
 		add_action( 'epl_render_field_password', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_locked', array( $this, 'locked' ), 10, 2 );
 		add_action( 'epl_render_field_help', array( $this, 'help' ), 10, 2 );
+                add_action( 'epl_render_field_html', array( $this, 'html' ), 10, 2 );
 
 	}
 
@@ -684,6 +686,22 @@ class EPL_Render_Fields {
 		$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
 		//phpcs:ignore
 		echo '<div class="epl-help-container" id="'.$help_id.'">
+				' . wp_kses_post( $content ) . '
+			</div>';
+	}
+
+        /**
+	 * Renders html
+	 *
+	 * @param array  $field The field.
+	 * @param string $val   The value.
+	 */
+	public function html( $field, $val ) {
+
+		$content = isset( $field['content'] ) ? $field['content'] : '';
+		$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
+		//phpcs:ignore
+		echo '<div class="epl-html-container" id="'.$help_id.'">
 				' . wp_kses_post( $content ) . '
 			</div>';
 	}
