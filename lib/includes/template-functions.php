@@ -1163,14 +1163,17 @@ function epl_get_video_host( $url ) {
  * @since 1.0
  * @since 3.3
  * @since 3.4.38 Support for external/local hosted video formats like mp4, mov etc.
+ * @since 3.4.42 added support for youtube shorts & filter for video URL.
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
+
+        $property_video_url = apply_filters( 'epl_property_video_url', $property_video_url );
 
 	// Remove related videos from YouTube.
 	if ( 'youtube' === epl_get_video_host( $property_video_url ) ) {
 
 		$property_video_url = epl_convert_youtube_embed_url( $property_video_url );
-
+                
 		if ( strpos( $property_video_url, '?' ) > 0 ) {
 			$property_video_url .= '&rel=0';
 		} else {
@@ -1207,13 +1210,14 @@ function epl_get_video_html( $property_video_url = '', $width = 600 ) {
  *
  * @return string   converted URL
  * @since  3.4.27
+ * @since 3.4.4 Added support for youtube shorts videos.
  */
 function epl_convert_youtube_embed_url( $url ) {
 
-	if ( strpos( $url, 'embed' ) > 0 ) {
+	if ( strpos( $url, 'embed' ) > 0 || strpos( $url, 'shorts' ) > 0 ) {
 
 		$video_id = epl_get_youtube_id_from_url( $url );
-
+                
 		if ( ! empty( $video_id ) ) {
 			$url = 'https://www.youtube.com/watch?v=' . $video_id;
 		}
@@ -1230,13 +1234,17 @@ function epl_convert_youtube_embed_url( $url ) {
  * @param      integer $width  The width.
  * @since 1.0
  * @since 3.3 Revised.
+ * @since 3.4.42 Added check for empty videos.
  */
 function epl_property_video_callback( $width = 600 ) {
 
 	global $property;
 	$video_width        = ! empty( $width ) ? $width : 600;
 	$property_video_url = $property->get_property_meta( 'property_video_url' );
-	echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
+
+        if( '' !== $property_video_url ) {
+                echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
+        }
 
 }
 add_action( 'epl_property_video', 'epl_property_video_callback', 10, 1 );
@@ -1666,6 +1674,8 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
  * Get Sorting Options
  *
  * @since      2.0
+ * 
+ * @since      3.4.42 Option to sort by title.
  *
  * @param      boolean $post_type  The post type.
  *
@@ -1748,6 +1758,14 @@ function epl_sorting_options( $post_type = null ) {
 				'orderby' => 'meta_value',
 
 			),
+                        array(
+				'id'    => 'title',
+				'label' => __( 'Title', 'easy-property-listings' ),
+				'type'  => 'post',
+				'key'   => 'post_title',
+				'order' => 'ASC',
+
+			),
 		)
 	);
 }
@@ -1756,16 +1774,17 @@ function epl_sorting_options( $post_type = null ) {
  * Switch Sorting Wrapper
  *
  * @since      3.3
+ * @since      3.5 gets the shortcode attributes as param 
  */
-function epl_tools_utility_wrapper() {
+function epl_tools_utility_wrapper( $attributes = [] ) {
 
 	// Wrapper Start.
-	do_action( 'epl_archive_utility_wrap_start' );
+	do_action( 'epl_archive_utility_wrap_start', $attributes );
 
-		do_action( 'epl_add_custom_menus' );
+		do_action( 'epl_add_custom_menus', $attributes );
 
 	// Wrapper End.
-	do_action( 'epl_archive_utility_wrap_end' );
+	do_action( 'epl_archive_utility_wrap_end', $attributes );
 
 }
 add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
@@ -1775,10 +1794,10 @@ add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
  *
  * @since 2.0
  * @since 3.3 Revised.
+ * @since      3.5 gets the shortcode attributes as param 
  */
-function epl_listing_toolbar_items() {
-
-	echo get_epl_listing_toolbar_items(); //phpcs:ignore;
+function epl_listing_toolbar_items( $attributes = [], $args = [] ) {
+	echo get_epl_listing_toolbar_items( $attributes, $args ); //phpcs:ignore;
 
 }
 add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
@@ -1787,12 +1806,14 @@ add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
  * Retrieves the switch and sorting options normally right aligned
  *
  * @since      3.3
+ * 
+ * @since      3.5 gets the shortcode attributes as param 
  *
  * @param array $args   The arguments.
  *
  * @return string
  */
-function get_epl_listing_toolbar_items( $args = array() ) {
+function get_epl_listing_toolbar_items( $attributes = [], $args = [] ) {
 
 	$defaults = array(
 		'switch_views',
@@ -1800,7 +1821,7 @@ function get_epl_listing_toolbar_items( $args = array() ) {
 	);
 
 	$tools = apply_filters( 'epl_listing_toolbar_items', $defaults );
-
+        
 	ob_start();
 
 	// Wrapper.
@@ -1808,25 +1829,26 @@ function get_epl_listing_toolbar_items( $args = array() ) {
 		?>
 		<div class="epl-loop-tools epl-loop-tools-switch-sort epl-switching-sorting-wrap">
 			<?php
+                        
 			foreach ( $tools as $tool ) {
 
 				if ( ! empty( $args ) && ! in_array( $tool, $args, true ) ) {
 					continue;
 				}
-
+                                
 				switch ( $tool ) {
 
 					case 'switch_views':
-						do_action( 'epl_switch_views' );
+						do_action( 'epl_switch_views', $attributes );
 						break;
 
 					case 'sorting_tool':
-						do_action( 'epl_sorting_tool' );
+						do_action( 'epl_sorting_tool', $attributes );
 						break;
 
 					default:
 						// action to hook additional tools.
-						do_action( 'epl_listing_toolbar_' . $tool );
+						do_action( 'epl_listing_toolbar_' . $tool, $attributes );
 						break;
 				}
 			}
@@ -1861,27 +1883,42 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  *
  * @since 2.0
  * @since 3.3 Revised.
+ * @since 3.5 Unique ID for sort dropdown per instance.
+ * @since 3.5 gets the shortcode attributes as param 
  */
-function epl_sorting_tool() {
+function epl_sorting_tool( $attributes = [] ) {
+
+        $instance_id = !empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '';
 	$sortby = '';
+        $set_instance_id = '';
 	if ( ! empty( $_GET['sortby'] ) ) {
 		$sortby = sanitize_text_field( wp_unslash( $_GET['sortby'] ) );
 	}
+        if ( ! empty( $_GET['instance_id'] ) ) {
+		$set_instance_id = sanitize_text_field( wp_unslash( $_GET['instance_id'] ) );
+	}
 	$sorters = epl_sorting_options();
+        $id = !empty( $instance_id ) ? $instance_id : '1';
 	?>
 
 	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
-		<select id="epl-sort-listings">
+		<select class="epl-sort-listings" id="epl-sort-listings-<?php echo esc_attr( $instance_id ); ?>" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
 			<option <?php selected( $sortby, '' ); ?> value="">
 				<?php echo esc_attr( apply_filters( 'epl_switch_views_sorting_title_sort', esc_html__( 'Sort', 'easy-property-listings' ) ) ); ?>
 			</option>
 			<?php
 			foreach ( $sorters as $sorter ) {
-				?>
-					<option <?php selected( $sortby, $sorter['id'] ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
-						<?php echo esc_attr( $sorter['label'] ); ?>
-					</option>
-					<?php
+
+                                if( !empty( $instance_id  ) ) {
+                                        $sortbyinstance         = $set_instance_id.'_'.$sortby;
+                                        $sorter_id              = $instance_id.'_'.$sorter['id'];
+                                } else {
+                                        $sortbyinstance         = $sortby;
+                                        $sorter_id              = $sorter['id'];
+                                } ?>
+                                <option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
+                                        <?php echo esc_attr( $sorter['label'] ); ?>
+                                </option> <?php
 			}
 			?>
 		</select>
@@ -2483,9 +2520,10 @@ function epl_get_active_theme_name() {
  *
  * @return array
  * @since 3.3
+ * @since 3.4.4 added filter epl_get_shortcode_list
  */
 function epl_get_shortcode_list() {
-	return array(
+	return apply_filters( 'epl_get_shortcode_list', array(
 		'listing',
 		'listing_category',
 		'listing_open',
@@ -2493,7 +2531,7 @@ function epl_get_shortcode_list() {
 		'listing_location',
 		'listing_auction',
 		'listing_advanced',
-	);
+	) );
 }
 
 /**
@@ -3132,7 +3170,7 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  * Shortcode Sorter
  *
  * @since      3.0
- *
+ * @since      3.5 sortby based on instance_id
  * @param      array  $args   The arguments.
  * @param      string $type   The type.
  * @param      string $name   The name.
@@ -3140,7 +3178,7 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  * @return array $args
  */
 function epl_add_orderby_args( $args, $type = '', $name = '' ) {
-
+        
 	if ( 'shortcode' === $type ) {
 		$args['is_epl_shortcode']   = true;
 		$args['epl_shortcode_name'] = $name;
@@ -3149,7 +3187,15 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 	$post_type = isset( $args['post_type'] ) ? current( $args['post_type'] ) : '';
 	$post_type = sanitize_text_field( wp_unslash( $post_type ) );
 	$orderby   = isset( $_GET['sortby'] ) ? sanitize_text_field( wp_unslash( $_GET['sortby'] ) ) : '';
-	if ( ! empty( $orderby ) ) {
+
+        $instance_id = !empty( $args['instance_id'] ) ? sanitize_text_field( $args['instance_id'] ) : '';
+        $set_instance_id = '';
+	
+        if ( ! empty( $_GET['instance_id'] ) ) {
+		$set_instance_id = sanitize_text_field( wp_unslash( $_GET['instance_id'] ) );
+	}
+        
+	if ( ! empty( $orderby ) &&( !empty( $instance_id ) && $instance_id === $set_instance_id ) ) {
 
 		$sorters = epl_sorting_options( $post_type );
 

@@ -77,6 +77,13 @@ class EPL_SL_Plugin_Updater {
 	 */
 	private $cache_key = '';
 
+        /**
+	 * beta
+	 *
+	 * @var bool cache_key.
+	 */
+	private $beta = false;
+
 	/**
 	 * Class constructor.
 	 *

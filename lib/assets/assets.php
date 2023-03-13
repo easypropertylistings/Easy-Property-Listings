@@ -46,6 +46,9 @@ function epl_get_admin_screens() {
  * Load and enqueue admin scripts and stylesheets.
  *
  * @since 1.0
+ * 
+ * @since 3.4.44 Fixed callback error for google maps.
+ * 
  * @param string $screen Page hook.
  * @return void
  */
@@ -58,7 +61,6 @@ function epl_admin_enqueue_scripts( $screen ) {
 
 	$js_vars = array(
 		'default_map_address' => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
-
 		'ajax_nonce'          => wp_create_nonce( 'epl_ajax_nonce' ),
 	);
 
@@ -68,7 +70,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 
 	if ( 'edit.php' === $screen || 'post.php' === $screen || 'post-new.php' === $screen || 'easy-property-listings_page_epl-extensions' === $screen || 'easy-property-listings_page_epl-settings' === $screen || 'easy-property-listings_page_epl-extensions' === $screen ) {
 
-		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
+		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype';
 		$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 		if ( ! empty( $epl_google_api_key ) ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
@@ -100,6 +102,8 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 
 /**
  * Load and enqueue front end scripts and stylesheets.
+ * 
+ * @since 3.4.44 Fixed callback error for google maps.
  *
  * @since 1.0
  */
@@ -113,7 +117,7 @@ function epl_wp_enqueue_scripts() {
 
 	if ( is_epl_post() && shortcode_exists( 'listing_map' ) ) {
 
-		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
+		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype';
 		$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 		if ( ! empty( $epl_google_api_key ) ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
@@ -170,6 +174,8 @@ function epl_wp_enqueue_scripts() {
 		'ajaxurl'               => admin_url( 'admin-ajax.php' ),
 		'image_base'            => EPL_PLUGIN_URL . 'lib/assets/images/',
 		'field_sliders'         => epl_get_field_sliders(),
+                'range_html'            => epl_get_range_slider_label_html()         
+
 	);
 	wp_enqueue_script( 'jquery-ui-slider' );
 	wp_enqueue_script( 'jquery-touch-punch' );
@@ -231,3 +237,22 @@ function epl_admin_styles() {
 	<?php
 }
 add_action( 'admin_head', 'epl_admin_styles' );
+
+/**
+ * Template for range slider label
+ *
+ * @since 3.4.4
+ * 
+ * @return string
+ */
+function epl_get_range_slider_label_html() { 
+
+        ob_start(); ?>
+
+        <span class="epl-lf-label-txt"> {range_start} {range_sep} {range_end} </span> <?php
+
+        $html = ob_get_clean();
+
+        return apply_filters( 'epl_get_range_slider_label_html', $html );
+
+}

@@ -99,6 +99,7 @@ function epl_format_amount( $amount, $decimals = false, $preserve_format = false
  *
  * @return string $currency Currencies displayed correctly
  * @since 1.0
+ * @since 3.4.42 fixed the appended dash sign for field sliders.
  */
 function epl_currency_filter( $price ) {
 	$currency          = epl_get_currency();
@@ -106,7 +107,7 @@ function epl_currency_filter( $price ) {
 
 	$position = ( isset( $currency_position ) && ! empty( $currency_position ) ) ? $currency_position : 'before';
 
-	$negative = $price < 0;
+	$negative = floatval( $price ) < 0;
 
 	if ( $negative ) {
 		$price = substr( $price, 1 ); // Remove proceeding "-".
