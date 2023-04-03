@@ -26,8 +26,195 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 	 *
 	 * @since 3.4.39
 	 */
-	#[AllowDynamicProperties]
+	
 	class EPL_Author_Loader {
+
+                /**
+		 * The user ID
+		 *
+		 * @since 3.4.44
+		 * @var string $author_id User ID.
+		 */
+		public $author_id;
+
+		/**
+		 * The username
+		 *
+		 * @since 3.4.44
+		 * @var string $name User name.
+		 */
+		public $name;
+
+		/**
+		 * The user mobile phone number
+		 *
+		 * @since 3.4.44
+		 * @var string $mobile User mobile number.
+		 */
+		public $mobile;
+
+		/**
+		 * The user office phone number
+		 *
+		 * @since 3.3.0
+		 * @var string $office_phone User office phone.
+		 */
+		public $office_phone;
+
+		/**
+		 * The user Facebook URL
+		 *
+		 * @since 3.4.44
+		 * @var string $facebook User Facebook profile URL.
+		 */
+		public $facebook;
+
+		/**
+		 * The user LinkedIn URL
+		 *
+		 * @since 3.4.44
+		 * @var string $linkedin User LinkedIn profile URL.
+		 */
+		public $linkedin;
+
+		/**
+		 * The user Google Plus URL
+		 *
+		 * @since 3.4.44
+		 * @var string $google User Google Plus profile URL.
+		 */
+		public $google;
+
+		/**
+		 * The user Twitter URL
+		 *
+		 * @since 3.4.44
+		 * @var string $twitter User Twitter ID.
+		 */
+		public $twitter;
+
+		/**
+		 * The user Instagram URL
+		 *
+		 * @since 3.3.0
+		 * @var string $instagram User Instagram profile URL.
+		 */
+		public $instagram;
+
+		/**
+		 * The user Pinterest URL
+		 *
+		 * @since 3.3.0
+		 * @var string $pinterest User Pinterest profile URL.
+		 */
+		public $pinterest;
+
+		/**
+		 * The user YouTube URL
+		 *
+		 * @since 3.3.0
+		 * @var string $youtube User YouTube profile URL.
+		 */
+		public $youtube;
+
+		/**
+		 * The user email address
+		 *
+		 * @since 3.4.44
+		 * @var string $email User email address.
+		 */
+		public $email;
+
+		/**
+		 * The user Skype name
+		 *
+		 * @since 3.4.44
+		 * @var string $skype User Skype ID.
+		 */
+		public $skype;
+
+		/**
+		 * The user text slogan
+		 *
+		 * @since 3.4.44
+		 * @var string $slogan User Slogan text string.
+		 */
+		public $slogan;
+
+		/**
+		 * The user position
+		 *
+		 * @since 3.4.44
+		 * @var string $position User position text string.
+		 */
+		public $position;
+
+		/**
+		 * The user video profile
+		 *
+		 * @since 3.4.44
+		 * @var string $video User video profile URL.
+		 */
+		public $video;
+
+		/**
+		 * The user contact form shortcode
+		 *
+		 * @since 3.4.44
+		 * @var string $contact_form User contact shortcode.
+		 */
+		public $contact_form;
+
+		/**
+		 * The user bio
+		 *
+		 * @since 3.4.44
+		 * @var string $description User bio textarea.
+		 */
+		public $description;
+
+                /**
+		 * Staff ID
+		 *
+		 * @since 3.4.44
+		 * @var string Staff ID used in staff dir extension.
+		 */
+		public $staff_id;
+
+                /**
+		 * Directory
+		 *
+		 * @since 3.4.44
+                */
+		public $directory;
+
+                /**
+		 * First Name
+		 *
+		 * @since 3.4.44
+                */
+		public $first_name;
+
+                /**
+		 * Last Name
+		 *
+		 * @since 3.4.44
+                */
+		public $last_name;
+
+                /**
+		 * Secondary Email
+		 *
+		 * @since 3.4.44
+                */
+		public $secondary_email;
+
+                /**
+		 * Whatsapp
+		 *
+		 * @since 3.4.44
+                */
+		public $whatsapp;
 
 		/**
 		 * Object.

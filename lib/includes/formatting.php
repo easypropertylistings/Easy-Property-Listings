@@ -58,11 +58,17 @@ function epl_sanitize_amount( $amount ) {
  *
  * @since 1.0.0
  * @since 3.4.28 $preserve_format param added.
+ * @since 3.4.44 Fixed warning for strpos when amount is empty.
  */
 function epl_format_amount( $amount, $decimals = false, $preserve_format = false ) {
 	$thousands_sep = epl_get_thousands_separator();
 	$decimal_sep   = epl_get_decimal_separator();
 	$formatted     = '';
+
+        if( empty( $amount ) ) {
+                return $amount;
+        }
+
 	// Format the amount.
 	$sep_found = strpos( $amount, $decimal_sep );
 	if ( ',' === $decimal_sep && false !== $sep_found ) {

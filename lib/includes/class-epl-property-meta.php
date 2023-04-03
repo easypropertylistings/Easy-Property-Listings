@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since      2.0
  */
-#[AllowDynamicProperties]
+
 class EPL_Property_Meta {
 
 	/**
@@ -69,6 +69,70 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 */
 	public $property_post_type;
+
+        /**
+         * Label New
+         *
+         * @since 3.4.44
+        */
+        public $label_new;
+
+        /**
+         * Sticker new range
+         *
+         * @since 3.4.44
+        */
+        public $sticker_new_range;
+
+        /**
+         * label_home_open 
+         *
+         * @since 3.4.44
+        */
+        public $label_home_open;
+
+        /**
+         * label_poa  
+         *
+         * @since 3.4.44
+        */
+        public $label_poa;
+
+        /**
+         * label_under_offer   
+         *
+         * @since 3.4.44
+        */
+        public $label_under_offer ;
+
+        /**
+         * label_sold   
+         *
+         * @since 3.4.44
+        */
+        public $label_sold;
+
+        /**
+         * label_leased  
+         *
+         * @since 3.4.44
+        */
+        public $label_leased;
+
+        /**
+         * label_bond  
+         *
+         * @since 3.4.44
+        */
+        public $label_bond;
+
+        /**
+         * display_bond  
+         *
+         * @since 3.4.44
+        */
+        public $display_bond;
+        
 
 	/**
 	 * Get things going
