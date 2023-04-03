@@ -38,9 +38,14 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.44 March 28, 2023 =
+
+- New:
+- Fix: PHP 8.1 and 8.2 improvements.
+
 = 3.4.43 January 9, 2023 =
 
-- Fix: Avada archive listing template updated.
+- Fix: Avada theme archive listing template updated.
 
 = 3.4.42 December 20, 2022 =
 

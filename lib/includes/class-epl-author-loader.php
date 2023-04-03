@@ -26,6 +26,7 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 	 *
 	 * @since 3.4.39
 	 */
+	#[AllowDynamicProperties]
 	class EPL_Author_Loader {
 
 		/**

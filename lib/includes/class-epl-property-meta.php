@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since      2.0
  */
+#[AllowDynamicProperties]
 class EPL_Property_Meta {
 
 	/**

@@ -1010,13 +1010,19 @@ add_action( 'epl_property_available_dates', 'epl_property_available_dates' );
 /**
  * Property Inspection Times
  *
- * @since      1.0 @hooked property_inspection_times
+ * @since 1.0 @hooked property_inspection_times
+ * @since 3.4.44 Improvements for PHP 8.2
  */
 function epl_property_inspection_times() {
 	global $property;
 	$property_inspection_times = $property->get_property_inspection_times();
 	$label_home_open           = '';
-	$property_inspection_times = trim( $property_inspection_times );
+	
+	if ( ! empty( $property_inspection_times ) ) {
+		$property_inspection_times = trim( $property_inspection_times );
+	} else {
+		return;
+	}
 
 	if ( ! empty( $property_inspection_times ) ) {
 		$label_home_open = $property->get_epl_settings( 'label_home_open' );
