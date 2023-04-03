@@ -965,12 +965,20 @@ function epl_get_property_bb_icons() {
 /**
  * Property land category
  *
- * @since      1.0
  * @hooked property_land_category
+ *
+ * @since 1.0
+ * @since 3.4.44 Fixed warning for preg_replace when value is empty.
  */
 function epl_property_land_category() {
 	global $property;
-	echo wp_kses_post( $property->get_property_land_category() );
+	$land_category = $property->get_property_land_category();
+	
+	if ( empty( $land_category ) ) {
+		return $land_category;
+	}
+	
+	echo wp_kses_post( $land_category );
 }
 add_action( 'epl_property_land_category', 'epl_property_land_category' );
 
