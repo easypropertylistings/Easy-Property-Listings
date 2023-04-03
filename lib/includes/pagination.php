@@ -436,6 +436,7 @@ function epl_prev_post_link( $query, $label = null ) {
  * @param  array $query WP Query object.
  * @since 2.1
  * @revised 3.3.3
+ * @since 3.4.44 Fixed warning for wp_kses_post when empty link.
  */
 function epl_wp_default_pagination( $query = array() ) {
 	if ( empty( $query ) ) {
@@ -452,8 +453,21 @@ function epl_wp_default_pagination( $query = array() ) {
 		?>
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft"><?php echo wp_kses_post( epl_prev_post_link( $query_open ) ); ?></div>
-		<div class="alignright"><?php echo wp_kses_post( epl_next_post_link( $query_open ) ); ?></div>
+		<div class="alignleft">
+                        <?php 
+                                if( !empty( epl_prev_post_link( $query_open ) ) ) {
+                                        echo wp_kses_post( epl_prev_post_link( $query_open ) ); 
+                                }
+                                
+                        ?>
+                </div>
+		<div class="alignright">
+                        <?php
+                                if( !empty( epl_next_post_link( $query_open ) ) ) {
+                                        echo wp_kses_post( epl_next_post_link( $query_open ) );
+                                } 
+                        ?>
+                </div>
 	</div>
 		<?php
 	}
