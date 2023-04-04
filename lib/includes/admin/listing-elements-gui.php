@@ -64,13 +64,13 @@ function epl_listing_elements_gui() {
 
 			var type = jQuery('#epl_elements_shortcode_types').val();
 
-			if(type != '') {
+			if (type != '') {
 				shortcode += "type='"+type+"' ";
 			}
 
 			var val = jQuery('#epl_element_gui_val').val();
 
-			if(val != '') {
+			if (val != '') {
 
 				switch( type ) {
 

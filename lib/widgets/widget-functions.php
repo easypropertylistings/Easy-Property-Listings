@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Search widget form fields for search widget
  *
  * @since 2.0
- * @since 3.4.42 Added filters for any & current status labels
+ * @since 3.4.44 Added epl_any_label_status_filter and epl_current_label_status_filter filters for any and current status labels.
  */
 function epl_search_widget_fields() {
 

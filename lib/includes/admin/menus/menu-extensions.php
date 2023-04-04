@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
- * @since       3.4.4 Added field type class for field wrapper and custom wrapper class support through wrapper_class.
+ * @since       3.4.44 Added field type class for field wrapper and custom wrapper class support through wrapper_class.
  */
 
 // Exit if accessed directly.

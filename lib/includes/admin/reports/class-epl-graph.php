@@ -241,8 +241,8 @@ class EPL_Graph {
 							$("#epl-flot-tooltip").remove();
 							var x = item.datapoint[0].toFixed(2),
 							y = item.datapoint[1].toFixed(2);
-							if( item.series.id == 'earnings' ) {
-								if( epl_vars.currency_pos == 'before' ) {
+							if ( item.series.id == 'earnings' ) {
+								if ( epl_vars.currency_pos == 'before' ) {
 									epl_flot_tooltip( item.pageX, item.pageY, item.series.label + ' ' + epl_vars.currency_sign + y );
 								} else {
 									epl_flot_tooltip( item.pageX, item.pageY, item.series.label + ' ' + y + epl_vars.currency_sign );

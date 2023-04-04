@@ -65,7 +65,7 @@ function epl_format_amount( $amount, $decimals = false, $preserve_format = false
 	$decimal_sep   = epl_get_decimal_separator();
 	$formatted     = '';
 
-        if( empty( $amount ) ) {
+        if ( empty( $amount ) ) {
                 return $amount;
         }
 
@@ -105,7 +105,7 @@ function epl_format_amount( $amount, $decimals = false, $preserve_format = false
  *
  * @return string $currency Currencies displayed correctly
  * @since 1.0
- * @since 3.4.42 fixed the appended dash sign for field sliders.
+ * @since 3.4.44 fixed the appended dash sign for field sliders.
  */
 function epl_currency_filter( $price ) {
 	$currency          = epl_get_currency();

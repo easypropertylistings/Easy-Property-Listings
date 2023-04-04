@@ -68,7 +68,7 @@ $.Autocompleter = function(input, options) {
 	};
 
 	var globalFailure = null;
-	if(options.failure != null && typeof options.failure == "function") {
+	if (options.failure != null && typeof options.failure == "function" ) {
 	  globalFailure = options.failure;
 	}
 

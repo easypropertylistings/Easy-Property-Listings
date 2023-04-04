@@ -146,7 +146,7 @@ function wp_session_cleanup() {
 				// Get the session ID by parsing the option_name
 				$session_id = substr( $expiration->option_name, 20 );
 
-				if( (int) -1 === (int) $session_id || ! preg_match( '/^[a-f0-9]{32}$/', $session_id ) ) {
+				if ( (int) -1 === (int) $session_id || ! preg_match( '/^[a-f0-9]{32}$/', $session_id ) ) {
 					continue;
 				}
 
