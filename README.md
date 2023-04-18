@@ -38,10 +38,32 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.44 March 28, 2023 =
+= 3.4.44 April 4, 2023 =
 
-- New:
+- New: Added filter epl_maybe_delete_inspection for deciding whether to remove inspection entry.
+- New: Added field type class for field wrapper and custom wrapper class support through wrapper_class.
+- New: Range slider epl_get_range_slider_label_html filter to allow changing html for range slider with {range_start} {range_sep} {range_end} components.
+- New: Changed jQuery target #epl-sort-listings to .epl-sort-listings to support multiple instances of sorting dropdown on page.
+- New: Filter for land category epl_get_property_land_category was incorrect.
+- New: Added help field type in meta boxes fields that will render html.
+- New: Support for YouTube shorts.
+- New: Added support for YouTube shorts and epl_property_video_url filter for video URL.
+- New: Option to sort by title.
+- New: Added epl_get_shortcode_list filter.
+- New: Added epl_any_label_status_filter and epl_current_label_status_filter filters for any and current status labels.
+- Tweak: Option sortby based on instance_id now.
+- Tweak: Parking Comments label before value.
+- Tweak: Added check for empty videos.
+- Tweak: Unique ID for sort dropdown per instance.
+- Tweak: Get shortcode attributes as parameter.
+- Fix: Missing commercial auction listings in listing_action shortcode.
+- Fix: Warning for preg_replace when value is empty.
+- Fix: Warning for wp_kses_post when empty link.
+- Fix: Notice when $post is null.
+- Fix: Appended dash sign for field sliders.
+- Fix: Error if area is non numeric in land or building values when using imported data.
 - Fix: PHP 8.1 and 8.2 improvements.
+- Fix: Fixed callback error for google maps.
 
 = 3.4.43 January 9, 2023 =
 

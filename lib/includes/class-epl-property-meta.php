@@ -218,7 +218,7 @@ class EPL_Property_Meta {
 	 * @return mixed Return formatted inspection times with a iCal link
 	 * @since 2.0
 	 * @since 3.4.27 Added filter for href, handling of non date inspection values.
-         * @since 3.4.27 Added filter for deciding whether to remove inspection entry.
+         * @since 3.4.44 Added filter for deciding whether to remove inspection entry.
 	 */
 	public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 		if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -2123,7 +2123,7 @@ class EPL_Property_Meta {
 	 * @param string $metakey Meta key name.
 	 * @return mixed Value wrapped in a list item
 	 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
-         * @since 3.4.42 Parking Comments Label before value
+         * @since 3.4.44 Parking Comments Label before value.
 	 */
 	public function get_additional_features_html( $metakey ) {
 
@@ -2161,7 +2161,7 @@ class EPL_Property_Meta {
 					break;
 
 				default:
-                                        if( 'property_com_parking_comments' == $metakey ) {
+                                        if ( 'property_com_parking_comments' === $metakey ) {
                                                 $return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' '.$metavalue . '</li>';
                                         } else {
                                                 $return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';

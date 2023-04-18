@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts Shortcode attributes.
  *
  * @return false|string
- * @since       1.0
- * @since       3.4.42 Fix : Missing commercial auction listings
+ * @since 1.0
+ * @since 3.4.44 Fix: Missing commercial auction listings in shortcode.
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();

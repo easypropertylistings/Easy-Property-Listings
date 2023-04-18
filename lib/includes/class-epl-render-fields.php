@@ -7,8 +7,8 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.3
- * @since       3.4.29 Moved from meta-boxes into its own class for more extensibility
- * @since       3.4.44 Added field type help
+ * @since       3.4.29 Moved from meta-boxes into its own class for more extensibility.
+ * @since       3.4.44 Added help field type in meta boxes fields.
  */
 
 // Exit if accessed directly.
