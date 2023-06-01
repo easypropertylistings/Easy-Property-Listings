@@ -188,6 +188,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 				'leased'    => __( 'Leased', 'easy-property-listings' ),
 				'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
 				'offmarket' => __( 'Off Market', 'easy-property-listings' ),
+                                'deleted'   => __( 'Deleted', 'easy-property-listings' ),
 			)
 		);
 		if ( isset( $new_instance['status'] ) && is_array( $new_instance['status'] ) ) {
@@ -336,6 +337,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 							'leased'    => __( 'Leased', 'easy-property-listings' ),
 							'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
 							'offmarket' => __( 'Off Market', 'easy-property-listings' ),
+                                                        'deleted'   => __( 'Deleted', 'easy-property-listings' ),
 						)
 					);
 				if ( count( $options ) ) {

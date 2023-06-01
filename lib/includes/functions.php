@@ -2232,6 +2232,7 @@ function epl_get_property_status_opts() {
 		array(
 			'current'   => __( 'Current', 'easy-property-listings' ),
 			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
+                        'deleted' => __( 'Deleted', 'easy-property-listings' ),
 			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
 			'sold'      => array(
 				'label'   => apply_filters( 'epl_sold_label_status_filter', __( 'Sold', 'easy-property-listings' ) ),

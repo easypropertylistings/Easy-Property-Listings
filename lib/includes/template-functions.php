@@ -369,7 +369,7 @@ function epl_archive_custom_excerpt_length( $length ) {
  */
 function epl_hide_listing_statuses() {
 
-	return apply_filters( 'epl_hide_listing_statuses', array( 'withdrawn', 'offmarket' ) );
+	return apply_filters( 'epl_hide_listing_statuses', array( 'withdrawn', 'offmarket', 'deleted' ) );
 }
 
 /**
