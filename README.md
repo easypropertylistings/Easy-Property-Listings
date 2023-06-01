@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.45 April 27, 2023 =
+
+- Fix: JS Issue - Assignment to constant variable.
+
 = 3.4.44 April 4, 2023 =
 
 - New: Added filter epl_maybe_delete_inspection for deciding whether to remove inspection entry.
