@@ -2851,7 +2851,7 @@ add_action( 'epl_property_the_content', 'epl_the_content' );
  *
  * @since      2.2
  * 
- * @since 3.4.45 Fix: Comptiability mode accidentally styling in admin area.
+ * @since 3.4.45 Fix: Compatibility mode accidentally styling in admin area.
  *
  * @param      string $content  The content.
  *
