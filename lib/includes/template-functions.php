@@ -2859,6 +2859,10 @@ function epl_feeling_lucky( $content ) {
 
 	global $epl_settings;
 
+        if( is_admin() ) {
+                return $content;
+        }
+
 	if ( ! isset( $epl_settings['epl_feeling_lucky'] ) || 'on' !== $epl_settings['epl_feeling_lucky'] ) {
 		return $content;
 	}
