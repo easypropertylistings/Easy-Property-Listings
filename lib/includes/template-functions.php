@@ -366,9 +366,9 @@ function epl_archive_custom_excerpt_length( $length ) {
  *
  * @return mixed|void
  * @since 3.1.20
+ * @since 3.4.45 Added deleted status.
  */
 function epl_hide_listing_statuses() {
-
 	return apply_filters( 'epl_hide_listing_statuses', array( 'withdrawn', 'offmarket', 'deleted' ) );
 }
 
