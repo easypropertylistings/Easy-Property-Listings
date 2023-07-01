@@ -38,9 +38,12 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.45 April 27, 2023 =
+= 3.4.45 July 1, 2023 =
 
+- New: Deleted status added for REAXML support.
+- Tweak: Reordered status options.
 - Fix: JS Issue - Assignment to constant variable.
+- Fix: Compatibility mode accidentally styling in admin area.
 
 = 3.4.44 April 4, 2023 =
 
