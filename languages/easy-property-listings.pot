@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.4.45\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-07-01 01:35:08+00:00\n"
+"POT-Creation-Date: 2023-07-01 01:52:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -523,7 +523,7 @@ msgstr ""
 #: lib/meta-boxes/meta-box-init.php:1473 lib/meta-boxes/meta-box-init.php:1515
 #: lib/meta-boxes/meta-box-init.php:1530 lib/meta-boxes/meta-box-init.php:1546
 #: lib/widgets/class-epl-widget-recent-property.php:306
-#: lib/widgets/widget-functions.php:34 lib/widgets/widget-functions.php:1423
+#: lib/widgets/widget-functions.php:34 lib/widgets/widget-functions.php:1422
 msgid "Title"
 msgstr ""
 
@@ -535,7 +535,7 @@ msgstr ""
 #: lib/post-types/post-type-property.php:101
 #: lib/post-types/post-type-rental.php:100
 #: lib/post-types/post-type-rural.php:101 lib/widgets/widget-functions.php:63
-#: lib/widgets/widget-functions.php:70 lib/widgets/widget-functions.php:379
+#: lib/widgets/widget-functions.php:70 lib/widgets/widget-functions.php:378
 msgid "Status"
 msgstr ""
 
@@ -585,7 +585,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:1220
 #: lib/includes/admin/contacts/contacts.php:604
 #: lib/meta-boxes/meta-box-init.php:905 lib/widgets/widget-functions.php:125
-#: lib/widgets/widget-functions.php:459
+#: lib/widgets/widget-functions.php:458
 msgid "Country"
 msgstr ""
 
@@ -694,23 +694,23 @@ msgid "Contact Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:239
-#: lib/widgets/widget-functions.php:1319 lib/widgets/widget-functions.php:1434
+#: lib/widgets/widget-functions.php:1318 lib/widgets/widget-functions.php:1433
 msgid "First Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:246
-#: lib/widgets/widget-functions.php:1326 lib/widgets/widget-functions.php:1440
+#: lib/widgets/widget-functions.php:1325 lib/widgets/widget-functions.php:1439
 msgid "Last Name"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:253
-#: lib/widgets/widget-functions.php:1333
+#: lib/widgets/widget-functions.php:1332
 msgid "Email *"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:260
 #: lib/includes/admin/contacts/contacts.php:462
-#: lib/widgets/widget-functions.php:1340 lib/widgets/widget-functions.php:1452
+#: lib/widgets/widget-functions.php:1339 lib/widgets/widget-functions.php:1451
 msgid "Phone"
 msgstr ""
 
@@ -736,7 +736,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:471
 #: lib/includes/class-epl-author.php:264 lib/includes/class-epl-contact.php:711
-#: lib/widgets/widget-functions.php:1446
+#: lib/widgets/widget-functions.php:1445
 msgid "Email"
 msgstr ""
 
@@ -2760,7 +2760,7 @@ msgid "bed"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1276
-#: lib/meta-boxes/meta-box-init.php:283 lib/widgets/widget-functions.php:634
+#: lib/meta-boxes/meta-box-init.php:283 lib/widgets/widget-functions.php:633
 msgid "Bathrooms"
 msgstr ""
 
@@ -2770,7 +2770,7 @@ msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1335
 #: lib/meta-boxes/meta-box-init.php:325 lib/widgets/widget-functions.php:175
-#: lib/widgets/widget-functions.php:653
+#: lib/widgets/widget-functions.php:652
 msgid "Rooms"
 msgstr ""
 
@@ -2787,12 +2787,12 @@ msgid "carport"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1550
-#: lib/meta-boxes/meta-box-init.php:360 lib/widgets/widget-functions.php:822
+#: lib/meta-boxes/meta-box-init.php:360 lib/widgets/widget-functions.php:821
 msgid "Air Conditioning"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1609
-#: lib/meta-boxes/meta-box-init.php:351 lib/widgets/widget-functions.php:837
+#: lib/meta-boxes/meta-box-init.php:351 lib/widgets/widget-functions.php:836
 msgid "Pool"
 msgstr ""
 
@@ -3873,28 +3873,28 @@ msgstr ""
 msgid "Tender"
 msgstr ""
 
-#: lib/includes/functions.php:2318 lib/widgets/widget-functions.php:752
-#: lib/widgets/widget-functions.php:807
+#: lib/includes/functions.php:2318 lib/widgets/widget-functions.php:751
+#: lib/widgets/widget-functions.php:806
 msgid "Square"
 msgstr ""
 
-#: lib/includes/functions.php:2319 lib/widgets/widget-functions.php:753
-#: lib/widgets/widget-functions.php:808
+#: lib/includes/functions.php:2319 lib/widgets/widget-functions.php:752
+#: lib/widgets/widget-functions.php:807
 msgid "Square Meter"
 msgstr ""
 
-#: lib/includes/functions.php:2320 lib/widgets/widget-functions.php:754
-#: lib/widgets/widget-functions.php:809
+#: lib/includes/functions.php:2320 lib/widgets/widget-functions.php:753
+#: lib/widgets/widget-functions.php:808
 msgid "Acre"
 msgstr ""
 
-#: lib/includes/functions.php:2321 lib/widgets/widget-functions.php:755
-#: lib/widgets/widget-functions.php:810
+#: lib/includes/functions.php:2321 lib/widgets/widget-functions.php:754
+#: lib/widgets/widget-functions.php:809
 msgid "Hectare"
 msgstr ""
 
-#: lib/includes/functions.php:2322 lib/widgets/widget-functions.php:756
-#: lib/widgets/widget-functions.php:811
+#: lib/includes/functions.php:2322 lib/widgets/widget-functions.php:755
+#: lib/widgets/widget-functions.php:810
 msgid "Square Feet"
 msgstr ""
 
@@ -4239,11 +4239,11 @@ msgstr ""
 msgid "Unique ID"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:163 lib/widgets/widget-functions.php:470
+#: lib/meta-boxes/meta-box-init.php:163 lib/widgets/widget-functions.php:469
 msgid "House Category"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:171 lib/widgets/widget-functions.php:482
+#: lib/meta-boxes/meta-box-init.php:171 lib/widgets/widget-functions.php:481
 msgid "Rural Category"
 msgstr ""
 
@@ -4271,7 +4271,7 @@ msgstr ""
 msgid "Commercial Listing Type"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:225 lib/widgets/widget-functions.php:506
+#: lib/meta-boxes/meta-box-init.php:225 lib/widgets/widget-functions.php:505
 msgid "Commercial Category"
 msgstr ""
 
@@ -4477,7 +4477,7 @@ msgstr ""
 msgid "Split System Heating"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:791 lib/widgets/widget-functions.php:494
+#: lib/meta-boxes/meta-box-init.php:791 lib/widgets/widget-functions.php:493
 msgid "Land Category"
 msgstr ""
 
@@ -4669,7 +4669,7 @@ msgstr ""
 msgid "Zone"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:1370 lib/widgets/widget-functions.php:672
+#: lib/meta-boxes/meta-box-init.php:1370 lib/widgets/widget-functions.php:671
 msgid "Car Spaces"
 msgstr ""
 
@@ -5293,7 +5293,7 @@ msgid "Background Color"
 msgstr ""
 
 #: lib/taxonomies/tax-features.php:37 lib/widgets/widget-functions.php:203
-#: lib/widgets/widget-functions.php:703
+#: lib/widgets/widget-functions.php:702
 msgid "Features"
 msgstr ""
 
@@ -5486,7 +5486,7 @@ msgstr ""
 
 #: lib/templates/content/content-listing-single-compatibility.php:52
 #: lib/templates/content/content-listing-single.php:79
-#: lib/widgets/widget-functions.php:1429
+#: lib/widgets/widget-functions.php:1428
 msgid "Description"
 msgstr ""
 
@@ -5829,107 +5829,107 @@ msgstr ""
 msgid "Other Search Options"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:218 lib/widgets/widget-functions.php:1478
+#: lib/widgets/widget-functions.php:218 lib/widgets/widget-functions.php:1477
 msgid "Submit Label"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:392
+#: lib/widgets/widget-functions.php:391
 msgid "Search by Property ID"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:393
+#: lib/widgets/widget-functions.php:392
 msgid "Search ID"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:405
+#: lib/widgets/widget-functions.php:404
 msgid "Search by Address"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:406
+#: lib/widgets/widget-functions.php:405
 msgid "Search Address"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:518
+#: lib/widgets/widget-functions.php:517
 msgid "Business Category"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:530
+#: lib/widgets/widget-functions.php:529
 msgid "Search Price From"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:546
+#: lib/widgets/widget-functions.php:545
 msgid "Search Price To"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:562
+#: lib/widgets/widget-functions.php:561
 msgid "Price From"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:578
+#: lib/widgets/widget-functions.php:577
 msgid "Price To"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:594
+#: lib/widgets/widget-functions.php:593
 msgid "Bedrooms Min"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:614
+#: lib/widgets/widget-functions.php:613
 msgid "Bedrooms Max"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:714
+#: lib/widgets/widget-functions.php:713
 msgid "Land Min"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:723 lib/widgets/widget-functions.php:768
+#: lib/widgets/widget-functions.php:722 lib/widgets/widget-functions.php:767
 msgid "Min"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:730
+#: lib/widgets/widget-functions.php:729
 msgid "Land Max"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:732 lib/widgets/widget-functions.php:786
+#: lib/widgets/widget-functions.php:731 lib/widgets/widget-functions.php:785
 msgid "Max"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:745 lib/widgets/widget-functions.php:800
+#: lib/widgets/widget-functions.php:744 lib/widgets/widget-functions.php:799
 msgid "Area Unit"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:767
+#: lib/widgets/widget-functions.php:766
 msgid "Building Min"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:784
+#: lib/widgets/widget-functions.php:783
 msgid "Building Max"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:851
+#: lib/widgets/widget-functions.php:850
 msgid "Security"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1347 lib/widgets/widget-functions.php:1459
+#: lib/widgets/widget-functions.php:1346 lib/widgets/widget-functions.php:1458
 msgid "Subject"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1354 lib/widgets/widget-functions.php:1465
+#: lib/widgets/widget-functions.php:1353 lib/widgets/widget-functions.php:1464
 msgid "Message"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1378 lib/widgets/widget-functions.php:1480
+#: lib/widgets/widget-functions.php:1377 lib/widgets/widget-functions.php:1479
 msgid "Submit"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1425
+#: lib/widgets/widget-functions.php:1424
 msgid "Contact Form"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1471
+#: lib/widgets/widget-functions.php:1470
 msgid "Anti Spam"
 msgstr ""
 
-#: lib/widgets/widget-functions.php:1526
+#: lib/widgets/widget-functions.php:1525
 msgid "Price Search"
 msgstr ""
 
