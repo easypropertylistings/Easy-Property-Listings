@@ -41,7 +41,8 @@ There are various ways you can contribute:
 = 3.4.45 July 1, 2023 =
 
 - New: Deleted status added for REAXML support.
-- Tweak: Reordered status options.
+- Tweak: Reordered status options in edit post and admin search filtering.
+- Tweak: Pass user provided attributes to the [listing_search] Shortcode template.
 - Fix: JS Issue - Assignment to constant variable.
 - Fix: Compatibility mode accidentally styling in admin area.
 

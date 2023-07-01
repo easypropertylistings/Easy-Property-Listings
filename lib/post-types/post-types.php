@@ -44,18 +44,15 @@ add_filter( 'parse_query', 'epl_admin_posts_filter' );
  * Add custom filters to post type posts listings.
  *
  * @since 1.0
+ * @since 3.4.45 Added deleted status. Reordered status options.
  */
 function epl_custom_restrict_manage_posts() {
 	global $post_type;
 	if ( 'property' === $post_type || 'rental' === $post_type || 'land' === $post_type || 'commercial' === $post_type || 'rural' === $post_type || 'business' === $post_type || 'holiday_rental' === $post_type || 'commercial_land' === $post_type ) {
 
 		// Filter by property_status.
-		$fields = array(
-			'current'   => __( 'Current', 'easy-property-listings' ),
-			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
-			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
-                        'deleted' => __( 'Deleted', 'easy-property-listings' ),
-		);
+		$fields = array();
+		$fields['current'] = __( 'Current', 'easy-property-listings' );
 
 		if ( 'rental' !== $post_type && 'holiday_rental' !== $post_type ) {
 			$fields['sold'] = apply_filters( 'epl_sold_label_status_filter', __( 'Sold', 'easy-property-listings' ) );
@@ -64,6 +61,10 @@ function epl_custom_restrict_manage_posts() {
 		if ( 'rental' === $post_type || 'holiday_rental' === $post_type || 'commercial' === $post_type || 'business' === $post_type || 'commercial_land' === $post_type ) {
 			$fields['leased'] = apply_filters( 'epl_leased_label_status_filter', __( 'Leased', 'easy-property-listings' ) );
 		}
+
+		$fields['withdrawn'] = __( 'Withdrawn', 'easy-property-listings' );
+		$fields['offmarket'] = __( 'Off Market', 'easy-property-listings' );
+		$fields['deleted'] = __( 'Deleted', 'easy-property-listings' );
 
 		if ( ! empty( $fields ) ) {
 			$_GET['property_status'] = isset( $_GET['property_status'] ) ? sanitize_text_field( wp_unslash( $_GET['property_status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
@@ -601,6 +602,7 @@ add_action( 'epl_manage_listing_column_price', 'epl_manage_listing_column_price_
  * Posts Types Column Status.
  *
  * @since 1.0
+ * @since 3.4.45 Added deleted status. Re-ordered.
  */
 function epl_manage_listing_column_property_status_callback() {
 	global $post, $property;
@@ -610,10 +612,10 @@ function epl_manage_listing_column_property_status_callback() {
 		'epl_labels_property_status_filter',
 		array(
 			'current'   => __( 'Current', 'easy-property-listings' ),
-			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
-			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
 			'sold'      => $property->label_sold,
 			'leased'    => $property->label_leased,
+			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
+			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
                         'deleted'   => __( 'Deleted', 'easy-property-listings' ),
 		)
 	);
