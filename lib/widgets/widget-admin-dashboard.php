@@ -126,8 +126,10 @@ function epl_get_plural( $count, $singular ) {
 /**
  * Status Dashboard Widget Highlights
  *
- * @since 1.3.0
  * @param string $type Option for the case.
+ *
+ * @since 1.3.0
+ * @since 3.4.45 Added deleted status.
  */
 function epl_posts_highlights( $type ) {
 	switch ( $type ) {
@@ -201,15 +203,15 @@ function epl_posts_highlights( $type ) {
 					'value'  => 'withdrawn',
 					'string' => __( 'Withdrawn', 'easy-property-listings' ),
 				),
-                                array(
-					'key'    => 'property_status',
-					'value'  => 'deleted',
-					'string' => __( 'Deleted', 'easy-property-listings' ),
-				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'offmarket',
 					'string' => __( 'Off Market', 'easy-property-listings' ),
+				),
+				array(
+					'key'    => 'property_status',
+					'value'  => 'deleted',
+					'string' => __( 'Deleted', 'easy-property-listings' ),
 				),
 			);
 			foreach ( $filters as $filter_key     => $filter_value ) {
