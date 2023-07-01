@@ -22,12 +22,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return false|string
  * @since       1.2
+ * @since       3.4.46 added user provided atts to the template.
  */
 function epl_shortcode_listing_search_callback( $atts ) {
 	$attributes = shortcode_atts( epl_search_get_defaults(), $atts );
 	ob_start();
 	// Rendering view of listing search shortcode.
-	epl_get_template_part( 'shortcodes/listing-search/' . ( ! empty( $attributes['view'] ) ? trim( $attributes['view'] ) . '.php' : 'default.php' ), array( 'atts' => $attributes ) );
+	epl_get_template_part( 'shortcodes/listing-search/' . ( ! empty( $attributes['view'] ) ? trim( $attributes['view'] ) . '.php' : 'default.php' ), array( 'atts' => $attributes, 'user_atts'      =>    $atts   ) );
 	return ob_get_clean();
 }
 add_shortcode( 'listing_search', 'epl_shortcode_listing_search_callback' );

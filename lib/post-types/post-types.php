@@ -54,6 +54,7 @@ function epl_custom_restrict_manage_posts() {
 			'current'   => __( 'Current', 'easy-property-listings' ),
 			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
 			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
+                        'deleted' => __( 'Deleted', 'easy-property-listings' ),
 		);
 
 		if ( 'rental' !== $post_type && 'holiday_rental' !== $post_type ) {
@@ -613,6 +614,7 @@ function epl_manage_listing_column_property_status_callback() {
 			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
 			'sold'      => $property->label_sold,
 			'leased'    => $property->label_leased,
+                        'deleted'   => __( 'Deleted', 'easy-property-listings' ),
 		)
 	);
 	if ( ! empty( $property_status ) ) {

@@ -154,6 +154,11 @@ function epl_posts_highlights( $type ) {
 					'value'  => 'offmarket',
 					'string' => __( 'Off Market', 'easy-property-listings' ),
 				),
+                                array(
+					'key'    => 'property_status',
+					'value'  => 'deleted',
+					'string' => __( 'Deleted', 'easy-property-listings' ),
+				),
 			);
 
 			foreach ( $filters as $filter_key     => $filter_value ) {
@@ -195,6 +200,11 @@ function epl_posts_highlights( $type ) {
 					'key'    => 'property_status',
 					'value'  => 'withdrawn',
 					'string' => __( 'Withdrawn', 'easy-property-listings' ),
+				),
+                                array(
+					'key'    => 'property_status',
+					'value'  => 'deleted',
+					'string' => __( 'Deleted', 'easy-property-listings' ),
 				),
 				array(
 					'key'    => 'property_status',
@@ -244,6 +254,11 @@ function epl_posts_highlights( $type ) {
 					'key'    => 'property_status',
 					'value'  => 'offmarket',
 					'string' => __( 'Off Market', 'easy-property-listings' ),
+				),
+                                array(
+					'key'    => 'property_status',
+					'value'  => 'deleted',
+					'string' => __( 'Deleted', 'easy-property-listings' ),
 				),
 			);
 			foreach ( $filters as $filter_key     => $filter_value ) {
