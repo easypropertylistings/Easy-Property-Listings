@@ -360,8 +360,7 @@ function epl_search_widget_fields_frontend( $post_type = '', $property_status = 
 
 	$price_array        = epl_get_price_array( $post_type, $transaction_type );
 	$price_slider_array = epl_get_price_slider_array( $post_type, $transaction_type );
-
-	$price_meta_key = epl_get_price_meta_key( $post_type, $transaction_type );
+	$price_meta_key     = epl_get_price_meta_key( $post_type, $transaction_type );
 
 	$fields = apply_filters(
 		'epl_search_widget_fields_frontend',

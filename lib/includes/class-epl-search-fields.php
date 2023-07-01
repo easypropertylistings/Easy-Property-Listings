@@ -347,25 +347,23 @@ class EPL_Search_Fields {
 				<?php echo esc_attr( apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] ) ); ?>
 			</label>
 			<div class="field">
-
-					<?php
-					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
-						foreach ( $field['options'] as $k => $v ) {
-							$checked = in_array( $k, (array) $value, true ) ? 'checked' : '';
-							?>
-							<input
-								type="checkbox"
-								<?php echo ' ' . esc_attr( $checked ) . ' '; ?>
-								name="<?php echo esc_attr( $field['meta_key'] ); ?>[]"
-								id="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>"
-								value="<?php echo esc_attr( $k ); ?>"
-								class="in-field field-width <?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" />
-							<label for="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" class="epl-search-checkbox-label"><?php echo esc_attr( $v ); ?></label>
-							<?php
-						}
+				<?php
+				if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
+					foreach ( $field['options'] as $k => $v ) {
+						$checked = in_array( $k, (array) $value, true ) ? 'checked' : '';
+						?>
+						<input
+							type="checkbox"
+							<?php echo ' ' . esc_attr( $checked ) . ' '; ?>
+							name="<?php echo esc_attr( $field['meta_key'] ); ?>[]"
+							id="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>"
+							value="<?php echo esc_attr( $k ); ?>"
+							class="in-field field-width <?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" />
+						<label for="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" class="epl-search-checkbox-label"><?php echo esc_attr( $v ); ?></label>
+						<?php
 					}
-					?>
-
+				}
+				?>
 			</div>
 		</div>
 		<?php
