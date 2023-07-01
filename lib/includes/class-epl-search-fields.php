@@ -361,7 +361,7 @@ class EPL_Search_Fields {
 								value="<?php echo esc_attr( $k ); ?>"
 								class="in-field field-width <?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" />
 							<label for="<?php echo esc_attr( $field['meta_key'] ) . '_' . esc_attr( $k ); ?>" class="epl-search-checkbox-label"><?php echo esc_attr( $v ); ?></label>
-																				<?php
+							<?php
 						}
 					}
 					?>
