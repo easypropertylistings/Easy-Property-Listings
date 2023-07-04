@@ -2224,6 +2224,7 @@ function epl_get_countries_list() {
  * Returns array containing Property Status
  *
  * @since 3.2
+ * @since 3.4.45 Added deleted status. Re-orderd status options.
  */
 function epl_get_property_status_opts() {
 
@@ -2231,9 +2232,6 @@ function epl_get_property_status_opts() {
 		'epl_opts_property_status_filter',
 		array(
 			'current'   => __( 'Current', 'easy-property-listings' ),
-			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
-                        'deleted' => __( 'Deleted', 'easy-property-listings' ),
-			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
 			'sold'      => array(
 				'label'   => apply_filters( 'epl_sold_label_status_filter', __( 'Sold', 'easy-property-listings' ) ),
 				'exclude' => array( 'rental' ),
@@ -2242,6 +2240,9 @@ function epl_get_property_status_opts() {
 				'label'   => apply_filters( 'epl_leased_label_status_filter', __( 'Leased', 'easy-property-listings' ) ),
 				'include' => array( 'rental', 'commercial', 'commercial_land', 'business' ),
 			),
+			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
+			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
+			'deleted'   => __( 'Deleted', 'easy-property-listings' ),
 		)
 	);
 }

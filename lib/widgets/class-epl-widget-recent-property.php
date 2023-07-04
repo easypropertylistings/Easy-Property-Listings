@@ -162,6 +162,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	 *
 	 * @return array
 	 * @since 1.0
+	 * @since 3.4.45 Added deleted status.
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance          = $old_instance;

@@ -366,9 +366,9 @@ function epl_archive_custom_excerpt_length( $length ) {
  *
  * @return mixed|void
  * @since 3.1.20
+ * @since 3.4.45 Added deleted status.
  */
 function epl_hide_listing_statuses() {
-
 	return apply_filters( 'epl_hide_listing_statuses', array( 'withdrawn', 'offmarket', 'deleted' ) );
 }
 
@@ -2849,19 +2849,19 @@ add_action( 'epl_property_the_content', 'epl_the_content' );
 /**
  * Custom property the_content
  *
- * @since      2.2
- * 
+ *
+ * @param string $content  The content.
+ *
+ * @return false|string
+ *
+ * @since 2.2
  * @since 3.4.45 Fix: Compatibility mode accidentally styling in admin area.
- *
- * @param      string $content  The content.
- *
- * @return     false|string
  */
 function epl_feeling_lucky( $content ) {
 
 	global $epl_settings;
 
-        if( is_admin() ) {
+        if ( is_admin() ) {
                 return $content;
         }
 
