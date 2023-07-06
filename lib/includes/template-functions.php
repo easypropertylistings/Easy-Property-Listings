@@ -2939,8 +2939,8 @@ function epl_the_excerpt() {
  *
  * @return mixed|string|void
  *
- * @since      2.2
- * @since      3.4.46 Fixed support for arguments.
+ * @since 2.2
+ * @since 3.4.46 Fixed support for arguments when in theme comptability mode.
  */
 function epl_get_the_excerpt( $post = null ) {
 
@@ -2949,9 +2949,9 @@ function epl_get_the_excerpt( $post = null ) {
 	}
 
 	if ( $post instanceof WP_Post ) {
-			$post = get_post( $post );
+		$post = get_post( $post );
 	} else {
-			$post = get_post();
+		$post = get_post();
 	}
 
 	if ( empty( $post ) ) {
@@ -2976,7 +2976,6 @@ function epl_get_the_excerpt( $post = null ) {
  * @return     string
  */
 function epl_syntax_highlight( $str = '', $class = '' ) {
-
 	return '<pre><code class="' . $class . '">' . htmlentities( $str ) . '</code></pre>';
 }
 
@@ -3050,13 +3049,13 @@ function epl_get_post_count( $type, $meta_key, $meta_value, $author_id = '' ) {
 	if ( ! empty( $author_id ) ) {
 		$user_info = get_userdata( $author_id );
 		$sql      .= " AND (
-						p.post_author =  $author_id
-						OR (
-							pm2.meta_key 	= 'property_second_agent'
-							AND
-							pm2.meta_value 	= '$user_info->user_login'
-						)
-					)";
+			p.post_author =  $author_id
+			OR (
+				pm2.meta_key 	= 'property_second_agent'
+				AND
+				pm2.meta_value 	= '$user_info->user_login'
+			)
+		)";
 	}
 	$sql  .= "
 		AND p.ID = pm.post_id
