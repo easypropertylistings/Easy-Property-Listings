@@ -2932,17 +2932,24 @@ function epl_the_excerpt() {
  * Custom property the_excerpt
  *
  * @since      2.2
- *
+ * @since      3.4.46 fixed support for arg 
+ * 
  * @param      string $deprecated  The deprecated.
  *
  * @return mixed|string|void
  */
-function epl_get_the_excerpt( $deprecated = '' ) {
-	if ( ! empty( $deprecated ) ) {
+function epl_get_the_excerpt( $post = null ) {
+
+	if ( is_bool( $post ) ) {
 		_deprecated_argument( __FUNCTION__, '2.3' );
 	}
 
-	$post = get_post();
+        if ( $post instanceof WP_Post ) {
+                $post = get_post( $post );
+        } else {
+                $post = get_post();
+        }
+	
 	if ( empty( $post ) ) {
 		return '';
 	}
