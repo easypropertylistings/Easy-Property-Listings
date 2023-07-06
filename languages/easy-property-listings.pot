@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.4.45\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-07-01 01:53:14+00:00\n"
+"POT-Creation-Date: 2023-07-06 08:27:18+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -308,7 +308,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:70
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:234
 #: lib/includes/class-epl-author.php:263 lib/includes/class-epl-author.php:271
-#: lib/includes/functions.php:2068 lib/includes/template-functions.php:2070
+#: lib/includes/functions.php:2068 lib/includes/template-functions.php:2072
 #: lib/post-types/post-type-contact.php:36
 #: lib/post-types/post-type-contact.php:37
 msgid "Contact"
@@ -2515,7 +2515,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:712
-#: lib/includes/template-functions.php:3173
+#: lib/includes/template-functions.php:3183
 #: lib/shortcodes/class-epl-listing-elements.php:77
 msgid "Listing"
 msgstr ""
@@ -2724,8 +2724,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:938
 #: lib/includes/class-epl-property-meta.php:944
 #: lib/includes/class-epl-property-meta.php:1131
-#: lib/includes/functions.php:2298 lib/includes/template-functions.php:3619
-#: lib/includes/template-functions.php:3651
+#: lib/includes/functions.php:2298 lib/includes/template-functions.php:3629
+#: lib/includes/template-functions.php:3661
 msgid "For Sale"
 msgstr ""
 
@@ -2741,8 +2741,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:986
 #: lib/includes/class-epl-property-meta.php:1144
 #: lib/includes/class-epl-property-meta.php:1146
-#: lib/includes/template-functions.php:3599
-#: lib/includes/template-functions.php:3662
+#: lib/includes/template-functions.php:3609
+#: lib/includes/template-functions.php:3672
 msgid "For Lease"
 msgstr ""
 
@@ -4066,61 +4066,61 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
-#: lib/includes/template-functions.php:2067
+#: lib/includes/template-functions.php:2069
 msgid "About"
 msgstr ""
 
-#: lib/includes/template-functions.php:2068
+#: lib/includes/template-functions.php:2070
 msgid "Bio"
 msgstr ""
 
-#: lib/includes/template-functions.php:2069
+#: lib/includes/template-functions.php:2071
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:2951
+#: lib/includes/template-functions.php:2962
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:3167
+#: lib/includes/template-functions.php:3177
 #. translators: term name.
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:3169
+#: lib/includes/template-functions.php:3179
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:3248
+#: lib/includes/template-functions.php:3258
 #. translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3251
+#: lib/includes/template-functions.php:3261
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3267
+#: lib/includes/template-functions.php:3277
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:3269
+#: lib/includes/template-functions.php:3279
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3358
+#: lib/includes/template-functions.php:3368
 msgid "Form submitted successfully"
 msgstr ""
 
-#: lib/includes/template-functions.php:3363
+#: lib/includes/template-functions.php:3373
 msgid "Some issues with form submitted"
 msgstr ""
 
-#: lib/includes/template-functions.php:3382
+#: lib/includes/template-functions.php:3392
 msgid "Email is required"
 msgstr ""
 
-#: lib/includes/template-functions.php:3640
+#: lib/includes/template-functions.php:3650
 msgid "For Sale & Lease"
 msgstr ""
 
