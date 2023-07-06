@@ -2940,7 +2940,7 @@ function epl_the_excerpt() {
  * @return mixed|string|void
  *
  * @since 2.2
- * @since 3.4.46 Fixed support for arguments when in theme comptability mode.
+ * @since 3.4.46 Fix: Support for arguments when in theme compatibility mode and using the_excerpt.
  */
 function epl_get_the_excerpt( $post = null ) {
 
