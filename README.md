@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.46 July 6, 2023 =
+
+- Fix: Support for arguments with epl_the_excerpt when in theme compatibility mode.
+
 = 3.4.45 July 1, 2023 =
 
 - New: Deleted status added for REAXML support.

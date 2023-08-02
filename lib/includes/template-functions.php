@@ -973,11 +973,11 @@ function epl_get_property_bb_icons() {
 function epl_property_land_category() {
 	global $property;
 	$land_category = $property->get_property_land_category();
-	
+
 	if ( empty( $land_category ) ) {
 		return $land_category;
 	}
-	
+
 	echo wp_kses_post( $land_category );
 }
 add_action( 'epl_property_land_category', 'epl_property_land_category' );
@@ -1025,7 +1025,7 @@ function epl_property_inspection_times() {
 	global $property;
 	$property_inspection_times = $property->get_property_inspection_times();
 	$label_home_open           = '';
-	
+
 	if ( ! empty( $property_inspection_times ) ) {
 		$property_inspection_times = trim( $property_inspection_times );
 	} else {
@@ -1181,13 +1181,13 @@ function epl_get_video_host( $url ) {
  */
 function epl_get_video_html( $property_video_url = '', $width = 600 ) {
 
-        $property_video_url = apply_filters( 'epl_property_video_url', $property_video_url );
+		$property_video_url = apply_filters( 'epl_property_video_url', $property_video_url );
 
 	// Remove related videos from YouTube.
 	if ( 'youtube' === epl_get_video_host( $property_video_url ) ) {
 
 		$property_video_url = epl_convert_youtube_embed_url( $property_video_url );
-                
+
 		if ( strpos( $property_video_url, '?' ) > 0 ) {
 			$property_video_url .= '&rel=0';
 		} else {
@@ -1231,7 +1231,7 @@ function epl_convert_youtube_embed_url( $url ) {
 	if ( strpos( $url, 'embed' ) > 0 || strpos( $url, 'shorts' ) > 0 ) {
 
 		$video_id = epl_get_youtube_id_from_url( $url );
-                
+
 		if ( ! empty( $video_id ) ) {
 			$url = 'https://www.youtube.com/watch?v=' . $video_id;
 		}
@@ -1256,9 +1256,9 @@ function epl_property_video_callback( $width = 600 ) {
 	$video_width        = ! empty( $width ) ? $width : 600;
 	$property_video_url = $property->get_property_meta( 'property_video_url' );
 
-        if ( '' !== $property_video_url ) {
-                echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
-        }
+	if ( '' !== $property_video_url ) {
+			echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
+	}
 
 }
 add_action( 'epl_property_video', 'epl_property_video_callback', 10, 1 );
@@ -1771,7 +1771,7 @@ function epl_sorting_options( $post_type = null ) {
 				'orderby' => 'meta_value',
 
 			),
-                        array(
+			array(
 				'id'    => 'title',
 				'label' => __( 'Title', 'easy-property-listings' ),
 				'type'  => 'post',
@@ -1787,9 +1787,9 @@ function epl_sorting_options( $post_type = null ) {
  * Switch Sorting Wrapper
  *
  * @since 3.3
- * @since  3.4.44 Get shortcode attributes as parameter. 
+ * @since  3.4.44 Get shortcode attributes as parameter.
  */
-function epl_tools_utility_wrapper( $attributes = [] ) {
+function epl_tools_utility_wrapper( $attributes = array() ) {
 
 	// Wrapper Start.
 	do_action( 'epl_archive_utility_wrap_start', $attributes );
@@ -1807,9 +1807,9 @@ add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
  *
  * @since 2.0
  * @since 3.3 Revised.
- * @since 3.4.44 Get shortcode attributes as parameter. 
+ * @since 3.4.44 Get shortcode attributes as parameter.
  */
-function epl_listing_toolbar_items( $attributes = [], $args = [] ) {
+function epl_listing_toolbar_items( $attributes = array(), $args = array() ) {
 	echo get_epl_listing_toolbar_items( $attributes, $args ); //phpcs:ignore;
 }
 add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
@@ -1818,14 +1818,14 @@ add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
  * Retrieves the switch and sorting options normally right aligned
  *
  * @since      3.3
- * 
- * @since      3.5 gets the shortcode attributes as param 
+ *
+ * @since      3.5 gets the shortcode attributes as param
  *
  * @param array $args   The arguments.
  *
  * @return string
  */
-function get_epl_listing_toolbar_items( $attributes = [], $args = [] ) {
+function get_epl_listing_toolbar_items( $attributes = array(), $args = array() ) {
 
 	$defaults = array(
 		'switch_views',
@@ -1833,7 +1833,7 @@ function get_epl_listing_toolbar_items( $attributes = [], $args = [] ) {
 	);
 
 	$tools = apply_filters( 'epl_listing_toolbar_items', $defaults );
-        
+
 	ob_start();
 
 	// Wrapper.
@@ -1841,13 +1841,13 @@ function get_epl_listing_toolbar_items( $attributes = [], $args = [] ) {
 		?>
 		<div class="epl-loop-tools epl-loop-tools-switch-sort epl-switching-sorting-wrap">
 			<?php
-                        
+
 			foreach ( $tools as $tool ) {
 
 				if ( ! empty( $args ) && ! in_array( $tool, $args, true ) ) {
 					continue;
 				}
-                                
+
 				switch ( $tool ) {
 
 					case 'switch_views':
@@ -1896,21 +1896,21 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  * @since 2.0
  * @since 3.3 Revised.
  * @since 3.4.44 Unique ID for sort dropdown per instance.
- * @since 3.4.44 Get shortcode attributes as parameter. 
+ * @since 3.4.44 Get shortcode attributes as parameter.
  */
-function epl_sorting_tool( $attributes = [] ) {
+function epl_sorting_tool( $attributes = array() ) {
 
-        $instance_id = !empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '';
-	$sortby = '';
-        $set_instance_id = '';
+		$instance_id     = ! empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '';
+	$sortby              = '';
+		$set_instance_id = '';
 	if ( ! empty( $_GET['sortby'] ) ) {
 		$sortby = sanitize_text_field( wp_unslash( $_GET['sortby'] ) );
 	}
-        if ( ! empty( $_GET['instance_id'] ) ) {
+	if ( ! empty( $_GET['instance_id'] ) ) {
 		$set_instance_id = sanitize_text_field( wp_unslash( $_GET['instance_id'] ) );
 	}
 	$sorters = epl_sorting_options();
-        $id = !empty( $instance_id ) ? $instance_id : '1';
+		$id  = ! empty( $instance_id ) ? $instance_id : '1';
 	?>
 
 	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
@@ -1921,16 +1921,18 @@ function epl_sorting_tool( $attributes = [] ) {
 			<?php
 			foreach ( $sorters as $sorter ) {
 
-                                if ( !empty( $instance_id  ) ) {
-                                        $sortbyinstance         = $set_instance_id.'_'.$sortby;
-                                        $sorter_id              = $instance_id.'_'.$sorter['id'];
-                                } else {
-                                        $sortbyinstance         = $sortby;
-                                        $sorter_id              = $sorter['id'];
-                                } ?>
-                                <option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
-                                        <?php echo esc_attr( $sorter['label'] ); ?>
-                                </option> <?php
+				if ( ! empty( $instance_id ) ) {
+						$sortbyinstance = $set_instance_id . '_' . $sortby;
+						$sorter_id      = $instance_id . '_' . $sorter['id'];
+				} else {
+						$sortbyinstance = $sortby;
+						$sorter_id      = $sorter['id'];
+				}
+				?>
+								<option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
+										<?php echo esc_attr( $sorter['label'] ); ?>
+								</option> 
+								<?php
 			}
 			?>
 		</select>
@@ -2535,15 +2537,18 @@ function epl_get_active_theme_name() {
  * @since 3.4.44 Added epl_get_shortcode_list filter.
  */
 function epl_get_shortcode_list() {
-	return apply_filters( 'epl_get_shortcode_list', array(
-		'listing',
-		'listing_category',
-		'listing_open',
-		'listing_feature',
-		'listing_location',
-		'listing_auction',
-		'listing_advanced',
-	) );
+	return apply_filters(
+		'epl_get_shortcode_list',
+		array(
+			'listing',
+			'listing_category',
+			'listing_open',
+			'listing_feature',
+			'listing_location',
+			'listing_auction',
+			'listing_advanced',
+		)
+	);
 }
 
 /**
@@ -2849,7 +2854,6 @@ add_action( 'epl_property_the_content', 'epl_the_content' );
 /**
  * Custom property the_content
  *
- *
  * @param string $content  The content.
  *
  * @return false|string
@@ -2861,9 +2865,9 @@ function epl_feeling_lucky( $content ) {
 
 	global $epl_settings;
 
-        if ( is_admin() ) {
-                return $content;
-        }
+	if ( is_admin() ) {
+			return $content;
+	}
 
 	if ( ! isset( $epl_settings['epl_feeling_lucky'] ) || 'on' !== $epl_settings['epl_feeling_lucky'] ) {
 		return $content;
@@ -2931,12 +2935,12 @@ function epl_the_excerpt() {
 /**
  * Custom property the_excerpt
  *
- * @since      2.2
- * @since      3.4.46 fixed support for arg 
- * 
- * @param      string $deprecated  The deprecated.
+ * @param      string $post The post content.
  *
  * @return mixed|string|void
+ *
+ * @since 2.2
+ * @since 3.4.46 Fix: Support for arguments when in theme compatibility mode and using the_excerpt.
  */
 function epl_get_the_excerpt( $post = null ) {
 
@@ -2944,12 +2948,12 @@ function epl_get_the_excerpt( $post = null ) {
 		_deprecated_argument( __FUNCTION__, '2.3' );
 	}
 
-        if ( $post instanceof WP_Post ) {
-                $post = get_post( $post );
-        } else {
-                $post = get_post();
-        }
-	
+	if ( $post instanceof WP_Post ) {
+		$post = get_post( $post );
+	} else {
+		$post = get_post();
+	}
+
 	if ( empty( $post ) ) {
 		return '';
 	}
@@ -2972,7 +2976,6 @@ function epl_get_the_excerpt( $post = null ) {
  * @return     string
  */
 function epl_syntax_highlight( $str = '', $class = '' ) {
-
 	return '<pre><code class="' . $class . '">' . htmlentities( $str ) . '</code></pre>';
 }
 
@@ -3046,13 +3049,13 @@ function epl_get_post_count( $type, $meta_key, $meta_value, $author_id = '' ) {
 	if ( ! empty( $author_id ) ) {
 		$user_info = get_userdata( $author_id );
 		$sql      .= " AND (
-						p.post_author =  $author_id
-						OR (
-							pm2.meta_key 	= 'property_second_agent'
-							AND
-							pm2.meta_value 	= '$user_info->user_login'
-						)
-					)";
+			p.post_author =  $author_id
+			OR (
+				pm2.meta_key 	= 'property_second_agent'
+				AND
+				pm2.meta_value 	= '$user_info->user_login'
+			)
+		)";
 	}
 	$sql  .= "
 		AND p.ID = pm.post_id
@@ -3204,7 +3207,7 @@ add_action( 'epl_the_archive_title', 'epl_archive_title_callback' );
  * @since      3.4.44 Option sortby based on instance_id now.
  */
 function epl_add_orderby_args( $args, $type = '', $name = '' ) {
-        
+
 	if ( 'shortcode' === $type ) {
 		$args['is_epl_shortcode']   = true;
 		$args['epl_shortcode_name'] = $name;
@@ -3214,14 +3217,14 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 	$post_type = sanitize_text_field( wp_unslash( $post_type ) );
 	$orderby   = isset( $_GET['sortby'] ) ? sanitize_text_field( wp_unslash( $_GET['sortby'] ) ) : '';
 
-        $instance_id = !empty( $args['instance_id'] ) ? sanitize_text_field( $args['instance_id'] ) : '';
-        $set_instance_id = '';
-	
-        if ( ! empty( $_GET['instance_id'] ) ) {
+		$instance_id     = ! empty( $args['instance_id'] ) ? sanitize_text_field( $args['instance_id'] ) : '';
+		$set_instance_id = '';
+
+	if ( ! empty( $_GET['instance_id'] ) ) {
 		$set_instance_id = sanitize_text_field( wp_unslash( $_GET['instance_id'] ) );
 	}
-        
-	if ( ! empty( $orderby ) &&( !empty( $instance_id ) && $instance_id === $set_instance_id ) ) {
+
+	if ( ! empty( $orderby ) && ( ! empty( $instance_id ) && $instance_id === $set_instance_id ) ) {
 
 		$sorters = epl_sorting_options( $post_type );
 
