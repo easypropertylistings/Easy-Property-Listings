@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.47 August 3, 2023 =
+
+- Tweak: Additional options added to alter the default behaviour of the accordion feature. Custom classes supported to enable accordions.
+
 = 3.4.46 July 6, 2023 =
 
 - Fix: Support for arguments with epl_the_excerpt when in theme compatibility mode.
