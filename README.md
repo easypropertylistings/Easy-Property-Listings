@@ -40,7 +40,7 @@ There are various ways you can contribute:
 
 = 3.4.47 August 3, 2023 =
 
-- Tweak: Additional options added to accordion to alter the defualt behaviour of the accordion feature.
+- Tweak: Additional options added to alter the defualt behaviour of the accordion feature. Custom classes supported to enable accordions.
 
 = 3.4.46 July 6, 2023 =
 
