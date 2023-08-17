@@ -104,6 +104,7 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
  * Load and enqueue front end scripts and stylesheets.
  * 
  * @since 3.4.44 Fixed callback error for google maps.
+ * @since 3.4.48 fix : price formatting as per settings in price slider.
  *
  * @since 1.0
  */
@@ -174,7 +175,9 @@ function epl_wp_enqueue_scripts() {
 		'ajaxurl'               => admin_url( 'admin-ajax.php' ),
 		'image_base'            => EPL_PLUGIN_URL . 'lib/assets/images/',
 		'field_sliders'         => epl_get_field_sliders(),
-                'range_html'            => epl_get_range_slider_label_html()         
+                'range_html'            => epl_get_range_slider_label_html(),
+                'thousand_sep'          => epl_get_option( 'currency_thousands_separator' ),
+                'decimal_sep'           => epl_get_option( 'currency_decimal_separator' )         
 
 	);
 	wp_enqueue_script( 'jquery-ui-slider' );

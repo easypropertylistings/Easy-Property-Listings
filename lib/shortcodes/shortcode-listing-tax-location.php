@@ -166,8 +166,8 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-location
 			<?php
-			echo esc_attr( epl_template_class( $template, 'archive' ) );
-			echo esc_attr( $attributes['class'] );
+			echo ' '.esc_attr( epl_template_class( $template, 'archive' ) );
+			echo ' '.esc_attr( $attributes['class'] );
 			?>
 			">
 				<?php
