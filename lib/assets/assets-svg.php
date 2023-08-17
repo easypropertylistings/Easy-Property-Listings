@@ -132,6 +132,7 @@ function epl_load_svg_listing_icons_head() {
  *
  * @since 3.2
  * @since 3.4.32 make sure its loaded only once using global epl_social_svgs_loaded.
+ * @since 3.4.48 Removed duplicate ID from social SVG.
  */
 function epl_load_svg_social_icons_head() {
 
@@ -190,10 +191,10 @@ function epl_load_svg_social_icons_head() {
 			<symbol id="epl-icon-svg-linkedin" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-linkedin-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
-					<g>
-						<rect id="epl-icon-linkedin-shape-hollow" class="epl-icon-color-hollow" x="18.8" y="39.6" width="14.6" height="41.7"/>
-						<circle id="epl-icon-linkedin-shape-hollow" class="epl-icon-color-hollow" cx="26" cy="26" r="7.3"/>
-						<path id="epl-icon-linkedin-shape-hollow" class="epl-icon-color-hollow"  d="M81.2,58.4c0-11.2-2.4-18.8-15.5-18.8c-6.3,0-10.5,2.3-12.3,5.6h-0.2v-5.6H41.7v41.7h12.1V60.6
+					<g id="epl-icon-linkedin-shape-hollow">
+						<rect class="epl-icon-color-hollow" x="18.8" y="39.6" width="14.6" height="41.7"/>
+						<circle class="epl-icon-color-hollow" cx="26" cy="26" r="7.3"/>
+						<path class="epl-icon-color-hollow"  d="M81.2,58.4c0-11.2-2.4-18.8-15.5-18.8c-6.3,0-10.5,2.3-12.3,5.6h-0.2v-5.6H41.7v41.7h12.1V60.6
 							c0-5.4,1-10.7,7.8-10.7c6.6,0,7.2,6.2,7.2,11.1v20.3h12.5L81.2,58.4L81.2,58.4z"/>
 					</g>
 				</g>
@@ -202,11 +203,11 @@ function epl_load_svg_social_icons_head() {
 			<symbol id="epl-icon-svg-google-plus" class="epl-icon-fill epl-icon-social">
 				<g>
 					<path id="epl-icon-google-plus-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75c0,13.8-11.2,25-25,25H25C11.2,100,0,88.8,0,75V25C0,11.2,11.2,0,25,0h50c13.8,0,25,11.2,25,25V75z"/>
-					<g>
-						<path id="epl-icon-google-plus-shape-hollow" class="epl-icon-color-hollow" d="M66.5,60.8h2.7c0.7,0,1.3-0.6,1.3-1.3V50h9.4c0.7,0,1.3-0.6,1.3-1.3V46c0-0.7-0.6-1.3-1.3-1.3h-9.4v-9.4
+					<g id="epl-icon-google-plus-shape-hollow">
+						<path class="epl-icon-color-hollow" d="M66.5,60.8h2.7c0.7,0,1.3-0.6,1.3-1.3V50h9.4c0.7,0,1.3-0.6,1.3-1.3V46c0-0.7-0.6-1.3-1.3-1.3h-9.4v-9.4
 							c0-0.7-0.6-1.3-1.3-1.3h-2.7c-0.7,0-1.3,0.6-1.3,1.3v9.4h-9.4c-0.7,0-1.3,0.6-1.3,1.3v2.7c0,0.7,0.6,1.3,1.3,1.3h9.4v9.4
 							C65.2,60.2,65.8,60.8,66.5,60.8z"/>
-						<path id="epl-icon-google-plus-shape-hollow" class="epl-icon-color-hollow" d="M29.4,77.2c2.4,0.6,4.9,0.9,7.6,0.9c2.4,0,4.7-0.3,6.8-0.9c6.6-1.9,10.8-6.8,10.8-12.4
+						<path class="epl-icon-color-hollow" d="M29.4,77.2c2.4,0.6,4.9,0.9,7.6,0.9c2.4,0,4.7-0.3,6.8-0.9c6.6-1.9,10.8-6.8,10.8-12.4
 							c0-5.4-1.7-8.6-6.3-11.9c-2-1.4-3.8-3.5-3.8-4.1c0-1.2,0.1-1.7,2.7-3.7c3.3-2.6,5.2-6.1,5.2-9.7c0-3.3-1-6.2-2.7-8.3h1.3
 							c0.3,0,0.5-0.1,0.8-0.2l3.7-2.7c0.5-0.3,0.7-0.9,0.5-1.5c-0.2-0.5-0.7-0.9-1.2-0.9H38.1c-1.8,0-3.7,0.3-5.5,0.9
 							c-6,2.1-10.3,7.2-10.3,12.5c0,7.5,5.8,13.2,13.6,13.4c-0.2,0.6-0.2,1.2-0.2,1.8c0,1.2,0.3,2.2,0.9,3.3c-0.1,0-0.1,0-0.2,0

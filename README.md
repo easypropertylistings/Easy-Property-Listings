@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.48 August 18, 2023 =
+
+- Fix: Price formatting anomaly as per settings in price slider.
+- Fix: Missing space between classes names for shortcode open & location.
+
 = 3.4.47 August 3, 2023 =
 
 - Tweak: Additional options added to alter the default behaviour of the accordion feature. Custom classes supported to enable accordions.
