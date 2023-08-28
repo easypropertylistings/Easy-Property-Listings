@@ -55,6 +55,7 @@ class EPL_Render_Fields {
 		add_action( 'epl_render_field_image', array( $this, 'file' ), 10, 2 ); // File and image.
 		add_action( 'epl_render_field_editor', array( $this, 'editor' ), 10, 2 );
 		add_action( 'epl_render_field_textarea', array( $this, 'textarea' ), 10, 2 );
+                add_action( 'epl_render_field_textarea_html', array( $this, 'textarea_html' ), 10, 2 );
 		add_action( 'epl_render_field_decimal', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_number', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_date', array( $this, 'render_default' ), 10, 2 );
@@ -661,6 +662,18 @@ class EPL_Render_Fields {
 	public function textarea( $field, $val ) {
 		echo $this->get_opening_field_tag( 'textarea', $field ); //phpcs:ignore
 		echo wp_kses_post( stripslashes( $val ) );
+		echo '</textarea>';
+	}
+
+        /**
+	 * Renders textarea_html
+	 *
+	 * @param array  $field The field.
+	 * @param string $val   The value.
+	 */
+	public function textarea_html( $field, $val ) {
+		echo $this->get_opening_field_tag( 'textarea', $field ); //phpcs:ignore
+		echo esc_textarea( $val );
 		echo '</textarea>';
 	}
 
