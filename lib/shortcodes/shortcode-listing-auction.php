@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return false|string
  * @since 1.0
  * @since 3.4.44 Fix: Missing commercial auction listings in shortcode.
- * @since 3.4.48 Fixed class name. Passing shortcode results message shotcode type.
+ * @since 3.4.48 Fixed class name. Passing shortcode results message shortcode type.
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();

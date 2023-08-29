@@ -670,6 +670,8 @@ class EPL_Render_Fields {
 	 *
 	 * @param array  $field The field.
 	 * @param string $val   The value.
+	 *
+	 * @since 3.4.48
 	 */
 	public function textarea_html( $field, $val ) {
 		echo $this->get_opening_field_tag( 'textarea', $field ); //phpcs:ignore
@@ -700,7 +702,7 @@ class EPL_Render_Fields {
 		$content = isset( $field['content'] ) ? $field['content'] : '';
 		$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
 		//phpcs:ignore
-		echo '<div class="epl-help-container" id="'. esc_attr( $help_id ) . '">
+		echo '<div class="epl-help-container" id="' . esc_attr( $help_id ) . '">
 				' . wp_kses_post( $content ) . '
 			</div>';
 	}
