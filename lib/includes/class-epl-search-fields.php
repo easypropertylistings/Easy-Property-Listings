@@ -185,14 +185,14 @@ class EPL_Search_Fields {
 		if ( isset( $field['wrap_start'] ) ) {
 			echo '<div class="' . esc_attr( $field['wrap_start'] ) . '">';
 		}
-                $field_label = esc_attr( apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] ) );
+                $field_label = apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] );
 		?>
 		<div class="epl-search-row epl-search-row-select epl-<?php echo esc_attr( $field['meta_key'] ); ?> fm-block <?php echo isset( $field['class'] ) ? esc_attr( $field['class'] ) : ''; ?>">
 			<label for="<?php echo esc_attr( $field['meta_key'] ); ?>" class="epl-search-label fm-label">
-				<?php echo $field_label; ?>
+				<?php echo esc_html( $field_label ); ?>
 			</label>
 			<div class="field">
-				<select aria-label="<?php echo $field_label; ?>" name="<?php echo esc_attr( $field['meta_key'] ); ?>[]"
+				<select aria-label="<?php echo esc_attr( $field_label ); ?>" name="<?php echo esc_attr( $field['meta_key'] ); ?>[]"
 					id="<?php echo esc_attr( $field['meta_key'] ); ?>"
 					class="in-field field-width field-multiple <?php echo esc_attr( $field['meta_key'] ); ?>" multiple>
 					<option value="">
