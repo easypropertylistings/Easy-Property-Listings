@@ -43,8 +43,8 @@ There are various ways you can contribute:
 - New: Support for Namibian dollar.
 - New: Field type textarea_html which works like the editor field type but without loading the MCE buttons.
 - Tweak: Removed duplicate ID from social SVG.
-- Tweak: Shortcode results not found classes passed for each shorcode type.
-- Tweak: Seqarch not found container added for easier styling.
+- Tweak: Shortcode results not found classes passed for each shortcode type.
+- Tweak: Search not found container added for easier styling.
 - Tweak: Accessibility label added for select field.
 - Fix: Class name is now unique for [listing_open], [listing_location], [listing_auction], [listing_category], [listing_feature] shortcodes.
 - Fix: Price formatting anomaly as per settings in price slider.
