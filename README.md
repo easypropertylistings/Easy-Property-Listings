@@ -38,10 +38,12 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.48 August 18, 2023 =
+= 3.4.48 August 29, 2023 =
 
+- Tweak: Removed duplicate ID from social SVG.
 - Fix: Price formatting anomaly as per settings in price slider.
 - Fix: Missing space between classes names for shortcode open & location.
+- Fix: PHP 8.1 warning when no user role set for user.
 
 = 3.4.47 August 3, 2023 =
 
