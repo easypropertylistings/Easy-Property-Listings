@@ -204,6 +204,7 @@ function epl_get_post_types() {
  *
  * @since 1.0
  * @return array $currencies A list of the available currencies
+ * @since 3.4.48 support for Namibian dollar.
  */
 function epl_get_currencies() {
 	$currencies = array(
@@ -223,6 +224,7 @@ function epl_get_currencies() {
 		'JPY'  => __( 'Japanese Yen (&yen;)', 'easy-property-listings' ),
 		'MYR'  => __( 'Malaysian Ringgits', 'easy-property-listings' ),
 		'MXN'  => __( 'Mexican Peso (&#36;)', 'easy-property-listings' ),
+                'NAD'  => __( 'Namibian Dollar (&#36;)', 'easy-property-listings'),
 		'NZD'  => __( 'New Zealand Dollar (&#36;)', 'easy-property-listings' ),
 		'NOK'  => __( 'Norwegian Krone', 'easy-property-listings' ),
 		'PHP'  => __( 'Philippine Pesos', 'easy-property-listings' ),
@@ -2477,3 +2479,18 @@ function epl_array_map_recursive( $callback, $array ) {
 	return array_map( $func, $array );
 }
 
+/**
+ * Sanitize function to allow certain safe html tags.
+ *
+ * @param string $content string.
+ * @param array  $content sanitized html content.
+ *
+ * @return string
+ * @since 3.4.48
+ */
+function epl_sanitize_html_tags( $content ) {
+
+        $allowed_tags = wp_kses_allowed_html('post');
+
+        return wp_kses($content, $allowed_tags);
+}

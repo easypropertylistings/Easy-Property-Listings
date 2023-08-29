@@ -248,6 +248,11 @@ function epl_save_meta_boxes( $post_ID ) {
 
 												break;
 
+                                                                                        case 'textarea_html':
+                                                                                                $meta_value = epl_sanitize_html_tags( wp_unslash( $_POST[ $field['name'] ] ) );
+
+                                                                                                break;
+
 											case 'url':
 											case 'file':
 												/** Sanitize URLs */

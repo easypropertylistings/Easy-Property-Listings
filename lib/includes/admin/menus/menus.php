@@ -22,6 +22,7 @@ add_action( 'admin_menu', 'epl_admin_menu' );
  * Admin Menus
  *
  * @since 1.0
+ * @since 3.4.48 fixed warnings when no user role set for user.
  */
 function epl_admin_menu() {
 	global $epl_contact_page_hook;
@@ -55,7 +56,7 @@ function epl_admin_menu() {
 	$function   = 'epl_contacts_page';
 	$this_user  = wp_get_current_user();
 	if ( epl_contact_access() ) {
-		$capability            = $this_user->roles[0];
+		$capability            = !empty(  $this_user->roles[0] ) ?  $this_user->roles[0] : 'manage_options';
 		$epl_contact_page_hook = add_submenu_page( $main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 	}
 
