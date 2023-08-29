@@ -27,8 +27,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts Shortcode attributes.
  *
  * @return false|string|void
- * @since       1.1.1
- * @since 		3.5 support for third and fourth agents.
+ * @since 1.1.1
+ * @since 3.5 support for third and fourth agents.
+ * @since 3.4.48 Fixed class name.
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -169,10 +170,9 @@ function epl_shortcode_listing_category_callback( $atts ) {
 				'compare' => 'IN',
 			);
 
-			if( 
-				in_array( 'commercial', $post_type, true ) ||
+			if ( in_array( 'commercial', $post_type, true ) ||
 				in_array( 'commercial_land', $post_type, true ) ||
-				in_array( 'business', $post_type, true ) 
+				in_array( 'business', $post_type, true )
 			) {
 
 				$agent_meta_query[] = array(
@@ -256,8 +256,8 @@ function epl_shortcode_listing_category_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-category
 			<?php
-			echo esc_attr( epl_template_class( $template, 'archive' ) );
-			echo esc_attr( $attributes['class'] );
+			echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) );
+			echo ' ' . esc_attr( $attributes['class'] );
 			?>
 			">
 				<?php

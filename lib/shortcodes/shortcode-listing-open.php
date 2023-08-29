@@ -26,7 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts Shortcode attributes.
  *
  * @return false|string
- * @since       1.0
+ * @since 1.0
+ * @since 3.4.48 Fixed class name.
  */
 function epl_shortcode_property_open_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -139,8 +140,8 @@ function epl_shortcode_property_open_callback( $atts ) {
 		<div class="loop epl-shortcode">
 			<div class="loop-content epl-shortcode-listing-open
 			<?php
-			echo ' '.esc_attr( epl_template_class( $template, 'archive' ) );
-			echo ' '.esc_attr( $attributes['class'] );
+			echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) );
+			echo ' ' . esc_attr( $attributes['class'] );
 			?>
 			">
 				<?php

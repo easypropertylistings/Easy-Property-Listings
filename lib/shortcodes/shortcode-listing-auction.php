@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return false|string
  * @since 1.0
  * @since 3.4.44 Fix: Missing commercial auction listings in shortcode.
+ * @since 3.4.48 Fixed class name.
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -156,10 +157,10 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing
+			<div class="loop-content epl-shortcode-listing-auction
 			<?php
-			echo esc_attr( epl_template_class( $attributes['template'], 'archive' ) );
-			echo esc_attr( $attributes['class'] );
+			echo ' ' . esc_attr( epl_template_class( $attributes['template'], 'archive' ) );
+			echo ' ' . esc_attr( $attributes['class'] );
 			?>
 			">
 				<?php
