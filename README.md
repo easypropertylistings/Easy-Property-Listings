@@ -43,8 +43,9 @@ There are various ways you can contribute:
 - Support for Namibian dollar.
 - New: Field type textarea_html which works like the editor field type but without loading the MCE buttons.
 - Tweak: Removed duplicate ID from social SVG.
+- Tweak: Shortcode results not found classes passed for each shorcode type.
+- Tweak: Seqarch not found container added for easier styling.
 - Fix: Class name is now unique for [listing_open], [listing_location], [listing_auction], [listing_category], [listing_feature] shortcodes.
-- Fix: Class name is now unique for shortcode.
 - Fix: Price formatting anomaly as per settings in price slider.
 - Fix: Missing space between classes names for shortcode open & location.
 - Fix: PHP 8.1 warning when no user role set for user.

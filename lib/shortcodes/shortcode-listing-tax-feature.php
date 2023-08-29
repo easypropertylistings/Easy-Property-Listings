@@ -183,12 +183,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-feature
-			<?php
-			echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) ).' ';
-			echo ' ' . esc_attr( $attributes['class'] );
-			?>
-			">
+			<div class="loop-content epl-shortcode-listing-feature <?php echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
 				if ( 'on' === $tools_top ) {
 					do_action( 'epl_property_loop_start' );

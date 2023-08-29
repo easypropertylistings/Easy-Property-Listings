@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return false|string
  * @since 1.0
  * @since 3.4.44 Fix: Missing commercial auction listings in shortcode.
- * @since 3.4.48 Fixed class name.
+ * @since 3.4.48 Fixed class name. Passing shortcode results message shotcode type.
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -157,12 +157,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-auction
-			<?php
-			echo ' ' . esc_attr( epl_template_class( $attributes['template'], 'archive' ) );
-			echo ' ' . esc_attr( $attributes['class'] );
-			?>
-			">
+			<div class="loop-content epl-shortcode-listing-auction <?php echo ' ' . esc_attr( epl_template_class( $attributes['template'], 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
 				if ( 'on' === $attributes['tools_top'] ) {
 					do_action( 'epl_property_loop_start' );
@@ -187,7 +182,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		do_action( 'epl_shortcode_results_message' );
+		do_action( 'epl_shortcode_results_message', 'auction' );
 	}
 	wp_reset_postdata();
 	return ob_get_clean();
