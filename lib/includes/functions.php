@@ -2196,7 +2196,7 @@ function epl_parse_atts( $atts ) {
 			$query['meta_query'][ $key . '_clause' ] = $this_query;
 		}
 	}
-	return isset( $query['meta_query'] ) ? $query['meta_query'] : false;
+	return isset( $query['meta_query'] ) ? $query['meta_query'] : array();
 }
 
 /**
