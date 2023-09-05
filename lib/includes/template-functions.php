@@ -3252,6 +3252,7 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
  * @param string $shortcode  The shortcode.
  *
  * @since 3.1.5
+ * @since 3.4.48 Added new class for the message removed incorrect class name.
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
@@ -3261,7 +3262,7 @@ function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 		$title = apply_filters( 'epl_shortcode_results_message_title_open', __( 'Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ) );
 	}
 
-	echo '<h3 class="epl-shortcode-listing-open epl-alert">' . esc_attr( $title ) . '</h3>';
+	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . esc_attr( $title ) . '</h3>';
 
 }
 add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_callback' );
@@ -3271,21 +3272,22 @@ add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_call
  *
  * @since 3.1.8
  * @since 3.4.33 Tweak: Search results not found filter epl_property_search_not_found_title allows basic html to be passed.
+ * @since 3.4.48 Container added to search not found.
  */
 function epl_property_search_not_found_callback() {
 
-	$title = apply_filters( 'epl_property_search_not_found_title', __( 'Listing not Found', 'easy-property-listings' ) );
-
+	$title   = apply_filters( 'epl_property_search_not_found_title', __( 'Listing not Found', 'easy-property-listings' ) );
 	$message = apply_filters( 'epl_property_search_not_found_message', __( 'Listing not found, expand your search criteria and try again.', 'easy-property-listings' ) );
 
 	?>
+	<div class="epl-search-not-found">
+		<div class="epl-search-not-found-title entry-header clearfix">
+			<h3 class="entry-title"><?php echo wp_kses_post( $title ); ?></h3>
+		</div>
 
-	<div class="epl-search-not-found-title entry-header clearfix">
-		<h3 class="entry-title"><?php echo wp_kses_post( $title ); ?></h3>
-	</div>
-
-	<div class="epl-search-not-found-message entry-content clearfix">
-		<p><?php echo wp_kses_post( $message ); ?></p>
+		<div class="epl-search-not-found-message entry-content clearfix">
+			<p><?php echo wp_kses_post( $message ); ?></p>
+		</div>
 	</div>
 
 	<?php

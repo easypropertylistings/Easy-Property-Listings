@@ -172,20 +172,21 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Multiple Select field.
 	 *
-	 * @since  3.0
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
 	 * @return void
-	 * @since  3.4.36  Fix: Corrected issue with multi select where values are numbers.
+	 * @since  3.0
+	 * @since 3.4.36 Fix: Corrected issue with multi select where values are numbers.
+	 * @since 3.4.48 Tweak: Accessibility label added for select field.
 	 */
 	public function render_multiple_select( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
 			echo '<div class="' . esc_attr( $field['wrap_start'] ) . '">';
 		}
-                $field_label = apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] );
+				$field_label = apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] );
 		?>
 		<div class="epl-search-row epl-search-row-select epl-<?php echo esc_attr( $field['meta_key'] ); ?> fm-block <?php echo isset( $field['class'] ) ? esc_attr( $field['class'] ) : ''; ?>">
 			<label for="<?php echo esc_attr( $field['meta_key'] ); ?>" class="epl-search-label fm-label">

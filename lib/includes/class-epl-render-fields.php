@@ -23,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 2.3
  * @since 3.4.29 Moved from meta-boxes into its own class for more extensibility.
+ * @since 3.4.48 New: Field type textarea_html which works like the editor field type but without loading the MCE buttons.
  */
 class EPL_Render_Fields {
 
@@ -55,7 +56,7 @@ class EPL_Render_Fields {
 		add_action( 'epl_render_field_image', array( $this, 'file' ), 10, 2 ); // File and image.
 		add_action( 'epl_render_field_editor', array( $this, 'editor' ), 10, 2 );
 		add_action( 'epl_render_field_textarea', array( $this, 'textarea' ), 10, 2 );
-                add_action( 'epl_render_field_textarea_html', array( $this, 'textarea_html' ), 10, 2 );
+		add_action( 'epl_render_field_textarea_html', array( $this, 'textarea_html' ), 10, 2 );
 		add_action( 'epl_render_field_decimal', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_number', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_date', array( $this, 'render_default' ), 10, 2 );
@@ -71,8 +72,7 @@ class EPL_Render_Fields {
 		add_action( 'epl_render_field_password', array( $this, 'render_default' ), 10, 2 );
 		add_action( 'epl_render_field_locked', array( $this, 'locked' ), 10, 2 );
 		add_action( 'epl_render_field_help', array( $this, 'help' ), 10, 2 );
-                add_action( 'epl_render_field_html', array( $this, 'html' ), 10, 2 );
-
+		add_action( 'epl_render_field_html', array( $this, 'html' ), 10, 2 );
 	}
 
 	/**
@@ -356,7 +356,7 @@ class EPL_Render_Fields {
 	 * @since 2.3.0
 	 * @since 3.4.38 PHP 8.0 fix for Required parameter $field follows optional parameter $tag.
 	 */
-	public function get_opening_field_tag( $tag = 'input', $field = [], $self_close = false ) {
+	public function get_opening_field_tag( $tag = 'input', $field = array(), $self_close = false ) {
 
 		$tag = sanitize_key( $tag );
 
@@ -665,11 +665,13 @@ class EPL_Render_Fields {
 		echo '</textarea>';
 	}
 
-        /**
+	/**
 	 * Renders textarea_html
 	 *
 	 * @param array  $field The field.
 	 * @param string $val   The value.
+	 *
+	 * @since 3.4.48
 	 */
 	public function textarea_html( $field, $val ) {
 		echo $this->get_opening_field_tag( 'textarea', $field ); //phpcs:ignore
@@ -692,29 +694,33 @@ class EPL_Render_Fields {
 	 *
 	 * @param array  $field The field.
 	 * @param string $val   The value.
+	 *
+	 * @since 3.4.48 Added escaping on id.
 	 */
 	public function help( $field, $val ) {
 
 		$content = isset( $field['content'] ) ? $field['content'] : '';
 		$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
 		//phpcs:ignore
-		echo '<div class="epl-help-container" id="'.$help_id.'">
+		echo '<div class="epl-help-container" id="' . esc_attr( $help_id ) . '">
 				' . wp_kses_post( $content ) . '
 			</div>';
 	}
 
-        /**
+	/**
 	 * Renders html
 	 *
 	 * @param array  $field The field.
 	 * @param string $val   The value.
+	 *
+	 * @since 3.4.48 Added escaping on id.
 	 */
 	public function html( $field, $val ) {
 
 		$content = isset( $field['content'] ) ? $field['content'] : '';
 		$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
 		//phpcs:ignore
-		echo '<div class="epl-html-container" id="'.$help_id.'">
+		echo '<div class="epl-html-container" id="' . esc_attr( $help_id ) . '">
 				' . wp_kses_post( $content ) . '
 			</div>';
 	}

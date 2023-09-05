@@ -158,7 +158,8 @@ function epl_meta_box_inner_custom_box( $post, $args ) {
  *
  * @return mixed
  * @since 1.0
- * @since 3.4.17    Fixed issue : empty values not getting saved for decimals & numbers
+ * @since 3.4.17 Fixed issue : empty values not getting saved for decimals & numbers.
+ * @since 3.4.48 New field type textarea_html added.
  */
 function epl_save_meta_boxes( $post_ID ) {
 

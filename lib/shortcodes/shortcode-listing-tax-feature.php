@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return false|string|void
  * @since 1.1.2
  * @since 3.4.27 Fixed the issue: no spaces between classes when both class & template attributs are set.
+ * @since 3.4.48 Fixed class name.
  */
 function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -182,12 +183,7 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-feature
-			<?php
-			echo esc_attr( epl_template_class( $template, 'archive' ) ).' ';
-			echo esc_attr( $attributes['class'] );
-			?>
-			">
+			<div class="loop-content epl-shortcode-listing-feature <?php echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
 				if ( 'on' === $tools_top ) {
 					do_action( 'epl_property_loop_start' );

@@ -26,7 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts Shortcode attributes.
  *
  * @return false|string|void
- * @since       1.1.2
+ * @since 1.1.2
+ * @since 3.4.48 Fixed class name.
  */
 function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -54,13 +55,13 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		$atts
 	);
 
-	$post_type    = $attributes['post_type'];
-	$status       = $attributes['status'];
-	$limit        = $attributes['limit'];
-	$location     = $attributes['location'];
-	$location_id  = $attributes['location_id'];
-	$offset       = $attributes['offset'];
-	//$agent        = $attributes['agent'];
+	$post_type   = $attributes['post_type'];
+	$status      = $attributes['status'];
+	$limit       = $attributes['limit'];
+	$location    = $attributes['location'];
+	$location_id = $attributes['location_id'];
+	$offset      = $attributes['offset'];
+	// $agent        = $attributes['agent'];
 	$template     = $attributes['template'];
 	$tools_top    = $attributes['tools_top'];
 	$tools_bottom = $attributes['tools_bottom'];
@@ -164,12 +165,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-location
-			<?php
-			echo ' '.esc_attr( epl_template_class( $template, 'archive' ) );
-			echo ' '.esc_attr( $attributes['class'] );
-			?>
-			">
+			<div class="loop-content epl-shortcode-listing-location <?php echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
 				if ( 'on' === $tools_top ) {
 					do_action( 'epl_property_loop_start' );
@@ -196,7 +192,7 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		</div>
 		<?php
 	} else {
-		do_action( 'epl_shortcode_results_message' );
+		do_action( 'epl_shortcode_results_message', 'location' );
 	}
 	wp_reset_postdata();
 	return ob_get_clean();

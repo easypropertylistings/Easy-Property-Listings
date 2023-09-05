@@ -38,10 +38,18 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.48 August 18, 2023 =
+= 3.4.48 August 29, 2023 =
 
+- New: Support for Namibian dollar.
+- New: Field type textarea_html which works like the editor field type but without loading the MCE buttons.
+- Tweak: Removed duplicate ID from social SVG.
+- Tweak: Shortcode results not found classes passed for each shortcode type.
+- Tweak: Search not found container added for easier styling.
+- Tweak: Accessibility label added for select field.
+- Fix: Class name is now unique for [listing_open], [listing_location], [listing_auction], [listing_category], [listing_feature] shortcodes.
 - Fix: Price formatting anomaly as per settings in price slider.
 - Fix: Missing space between classes names for shortcode open & location.
+- Fix: PHP 8.1 warning when no user role set for user.
 
 = 3.4.47 August 3, 2023 =
 

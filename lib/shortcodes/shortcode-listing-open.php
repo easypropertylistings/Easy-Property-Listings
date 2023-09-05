@@ -26,7 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts Shortcode attributes.
  *
  * @return false|string
- * @since       1.0
+ * @since 1.0
+ * @since 3.4.48 Fixed class name.
  */
 function epl_shortcode_property_open_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -137,12 +138,7 @@ function epl_shortcode_property_open_callback( $atts ) {
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
 		<div class="loop epl-shortcode">
-			<div class="loop-content epl-shortcode-listing-open
-			<?php
-			echo ' '.esc_attr( epl_template_class( $template, 'archive' ) );
-			echo ' '.esc_attr( $attributes['class'] );
-			?>
-			">
+			<div class="loop-content epl-shortcode-listing-open <?php echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
 				if ( 'on' === $tools_top ) {
 					do_action( 'epl_property_loop_start' );

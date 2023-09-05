@@ -50,5 +50,5 @@ if ( $query_open->have_posts() ) {
 	<?php
 	wp_reset_postdata();
 } else {
-	do_action( 'epl_shortcode_results_message' );
+	do_action( 'epl_shortcode_results_message', 'default' );
 }
