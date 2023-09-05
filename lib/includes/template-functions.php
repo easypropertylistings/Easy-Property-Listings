@@ -386,9 +386,10 @@ function epl_hide_listing_statuses() {
  * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
  * @since 3.4.36 New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.
  * @since 3.4.38 New: Additional parameters default to pass the default template which will be used if the template is not found.
+ * @since 3.4.49 New: Additional args for custom template action : epl_loop_template_{$post_type}, epl_loop_template.
  */
 function epl_property_blog( $template = '', $default = 'default' ) {
-
+        
 	if ( empty( $template ) || 'blog' === $template ) {
 		$template = 'default';
 	}
@@ -414,30 +415,27 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 			$action_check_core = has_action( 'epl_loop_template_listing' );
 		}
 
-		if ( in_array( $template, array( 'default', 'blog' ), true ) ) {
-
-			// Check for action in order of priority : epl_loop_template_{post_type} > epl_loop_template_listing ( only for core )  > epl_loop_template.
-			if ( ! empty( $action_check_type ) ) {
-				do_action( 'epl_loop_template_' . $property->post->post_type );
-				$action_exists = true;
-			} elseif ( ! empty( $action_check_core ) ) {
-				do_action( 'epl_loop_template_listing' );
-				$action_exists = true;
-			} elseif ( ! empty( $action_check ) ) {
-				do_action( 'epl_loop_template' );
-				$action_exists = true;
-			}
-		}
+		// Check for action in order of priority : epl_loop_template_{post_type} > epl_loop_template_listing ( only for core )  > epl_loop_template.
+                if ( ! empty( $action_check_type ) ) {
+                        do_action( 'epl_loop_template_' . $property->post->post_type, get_defined_vars() );
+                        $action_exists = true;
+                } elseif ( ! empty( $action_check_core ) ) {
+                        do_action( 'epl_loop_template_listing', get_defined_vars() );
+                        $action_exists = true;
+                } elseif ( ! empty( $action_check ) ) {
+                        do_action( 'epl_loop_template', get_defined_vars() );
+                        $action_exists = true;
+                }
 
 		// Fallback to core template.
 		if ( ! $action_exists ) {
 			$tpl_name = 'loop-listing-blog-' . $template . '.php';
-			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name );
+			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name, get_defined_vars() );
 			epl_get_template_part( $tpl_name, array(), 'loop-listing-blog-' . $default . '.php' );
 		}
 	} // End Status Removal.
 }
-add_action( 'epl_property_blog', 'epl_property_blog', 10, 1 );
+add_action( 'epl_property_blog', 'epl_property_blog', 10, 2 );
 
 /**
  * Renders default author box
