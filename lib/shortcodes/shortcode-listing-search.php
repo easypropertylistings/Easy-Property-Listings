@@ -23,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return false|string
  * @since       1.2
  * @since       3.4.45 Tweak: Pass user provided attributes to the [listing_search] Shortcode template.
+ * @since       3.4.49 Support for instance ID, fallback generates unique instance ID automatically, added support for 'status' in shortcodes.
  */
 function epl_shortcode_listing_search_callback( $atts ) {
 

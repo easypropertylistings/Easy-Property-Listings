@@ -2132,6 +2132,7 @@ function epl_ends_with( $haystack, $needle ) {
  *
  * @param  array $atts Attributes.
  * @return array
+ * @since 3.4.49 make sure an array is returned to be compatible with function return type.
  */
 function epl_parse_atts( $atts ) {
 
