@@ -77,6 +77,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'post_type'      => $attributes['post_type'],
 		'posts_per_page' => $attributes['limit'],
 		'paged'          => absint( $paged ),
+                'meta_query'     => []
 	);
 
 	// Offset query does not work with pagination.
