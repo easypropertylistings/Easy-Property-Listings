@@ -244,7 +244,7 @@ function epl_fancy_pagination( $args = array() ) {
 		// Dropdown.
 		case 2:
 			$out .= '<form action="" method="get">' . "\n";
-			$out .= '<select size="1" onchange="document.location.href = this.options[this.selectedIndex].value;">' . "\n";
+			$out .= '<select aria-label="'.esc_html_e( 'Pagination', 'easy-property-listings') .'" size="1" onchange="document.location.href = this.options[this.selectedIndex].value;">' . "\n";
 
 			foreach ( range( 1, $total_pages ) as $i ) {
 				$page_num = $i;

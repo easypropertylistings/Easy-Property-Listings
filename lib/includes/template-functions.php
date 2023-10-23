@@ -1912,7 +1912,7 @@ function epl_sorting_tool( $attributes = array() ) {
 	?>
 
 	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
-		<select class="epl-sort-listings" id="epl-sort-listings-<?php echo esc_attr( $instance_id ); ?>" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
+		<select aria-label="<?php _e( 'Sort Listings', 'easy-property-listings'); ?>" ="epl-sort-listings" id="epl-sort-listings-<?php echo esc_attr( $instance_id ); ?>" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
 			<option <?php selected( $sortby, '' ); ?> value="">
 				<?php echo esc_attr( apply_filters( 'epl_switch_views_sorting_title_sort', esc_html__( 'Sort', 'easy-property-listings' ) ) ); ?>
 			</option>

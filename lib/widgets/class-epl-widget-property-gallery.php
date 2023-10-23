@@ -116,7 +116,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'd_columns' ); ?>"><?php esc_html_e( 'Number of columns', 'easy-property-listings' ); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id( 'd_columns' ); ?>" name="<?php echo $this->get_field_name( 'd_columns' ); ?>">
+			<select aria-label="<?php esc_html_e('Number of columns', 'easy-property-listings'); ?>"  class="widefat" id="<?php echo $this->get_field_id( 'd_columns' ); ?>" name="<?php echo $this->get_field_name( 'd_columns' ); ?>">
 				<?php
 				for ( $i = 1;$i <= 6;$i++ ) {
 					echo '<option value="' . esc_attr( $i ) . '"';
