@@ -985,7 +985,9 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 					<?php
 					// Autoformatting breaks select boxes in widgets.
-					echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
+					// TODO: this is a bit messy and is missing esc_attr for multiple and the name= below.
+					echo isset( $field['multiple'] ) ? ' multiple ' : ' ';
+					?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
 					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); echo isset( $field['multiple'] ) ? '[]' : ''; ?>">
