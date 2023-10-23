@@ -2132,6 +2132,8 @@ function epl_ends_with( $haystack, $needle ) {
  *
  * @param  array $atts Attributes.
  * @return array
+ *
+ * @since 3.4.49 Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
  */
 function epl_parse_atts( $atts ) {
 

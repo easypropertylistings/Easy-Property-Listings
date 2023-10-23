@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.4.49 October 23, 2023 =
+
+- Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
+- Fix: Floor plans, energy certificate, external links and min web labels using esc_html instead of esc_attr.
+
 = 3.4.48 August 29, 2023 =
 
 - New: Support for Namibian dollar.
