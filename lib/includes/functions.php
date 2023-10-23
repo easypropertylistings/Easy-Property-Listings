@@ -928,7 +928,7 @@ function epl_feedsync_format_sub_number( $sub_value ) {
  * Processing Function for WP All Import and FeedSync
  *
  * @param string $value Value.
- * @return integer
+ * @return float|void Currently as number.
  * @since 3.0
  */
 function epl_feedsync_format_strip_currency( $value ) {
@@ -950,7 +950,7 @@ function epl_feedsync_format_strip_currency( $value ) {
  * @param string $new_timezone  New timezone.
  * @param string $format        Date format.
  *
- * @return integer
+ * @return string
  * @throws exception Exception.
  * @since 3.0
  */
