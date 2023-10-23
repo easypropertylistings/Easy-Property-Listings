@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return false|string
  * @since       1.0
+ * @since       3.4.49 make sure meta_query in arg is defined as array, prior usage.
  */
 function epl_shortcode_listing_callback( $atts ) {
 
@@ -77,6 +78,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'post_type'      => $attributes['post_type'],
 		'posts_per_page' => $attributes['limit'],
 		'paged'          => absint( $paged ),
+                'meta_query'     => []
 	);
 
 	// Offset query does not work with pagination.

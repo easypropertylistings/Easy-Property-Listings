@@ -2496,3 +2496,39 @@ function epl_sanitize_html_tags( $content ) {
 
 		return wp_kses( $content, $allowed_tags );
 }
+
+/**
+ * Function to generate a unique tab counter for search forms.
+ *
+ * @return int
+ * @since 3.4.49
+ */
+function epl_generate_unique_tab_counter() {
+        
+        global $epl_search_shortcode_counter;
+
+        if( empty( $epl_search_shortcode_counter ) ) {
+                $epl_search_shortcode_counter = 0;
+        }
+
+        $epl_search_shortcode_counter++;
+        return $epl_search_shortcode_counter;
+}
+
+/**
+ * Function to generate a unique instance counter for search forms.
+ *
+ * @return int
+ * @since 3.4.49
+ */
+function epl_generate_search_instance_counter() {
+        
+        global $epl_search_instance_counter;
+
+        if( empty( $epl_search_instance_counter ) ) {
+                $epl_search_instance_counter = 0;
+        }
+
+        $epl_search_instance_counter++;
+        return $epl_search_instance_counter;
+}

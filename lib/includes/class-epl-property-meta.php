@@ -1008,6 +1008,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 * @throws Exception PHP 5.3 notice.
 	 * @since 2.0
+         * @since 3.4.49 Added fix for trim when string string is null.
 	 */
 	public function get_price_sticker() {
 		$price_sticker = '';
@@ -1025,7 +1026,7 @@ class EPL_Property_Meta {
 
 		}
 
-		$inspection_time = $this->get_property_meta( 'property_inspection_times' );
+		$inspection_time = !is_null( $this->get_property_meta( 'property_inspection_times' ) ) ? $this->get_property_meta( 'property_inspection_times' ) : '';
 		$inspection_time = trim( $inspection_time );
 		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type || 'business' === $this->post_type ) {
 			$price_sticker = '';

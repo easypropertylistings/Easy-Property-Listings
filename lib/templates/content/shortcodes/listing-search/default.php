@@ -9,6 +9,7 @@
  * @since       3.0
  * @since       3.4.0 Security fixes as per WP standards
  * @since       3.4.1 Fixed search templates error : ignoring field added via filters
+ * @since       3.4.49 Each shortcode now will have unique instance ID & each tab a unique tab ID.
  */
 
 // Exit if accessed directly.
@@ -52,11 +53,17 @@ if ( ! is_array( $selected_post_types ) ) {
 
 global $epl_settings;
 
-$tabcounter = 1;
+$global_counters = [];
+$tabcounter = 1; ?>
+<div data-instance-id="<?php echo esc_attr( $atts['instance_id'] ) ?>" id="epl-search-container-instance-<?php echo esc_attr( $atts['instance_id'] ) ?>" class="epl-search-container"> <?php
+
 if ( ! empty( $selected_post_types ) ) :
 	if ( count( $selected_post_types ) > 1 ) :
 		echo "<ul class='epl-search-tabs property_search-tabs epl-search-" . esc_attr( $style ) . "'>";
 		foreach ( $selected_post_types as $post_type ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride
+
+                        $global_tab_counter = epl_generate_unique_tab_counter();
+                        $global_counters[$tabcounter] = $global_tab_counter;
 
 			if ( isset( $get_data['action'] ) && 'epl_search' === $get_data['action'] ) {
 				if ( $queried_post_type === $post_type ) {
@@ -72,7 +79,7 @@ if ( ! empty( $selected_post_types ) ) :
 			if ( empty( $post_type ) ) {
 				$post_type_label = epl_get_option( 'widget_label_all', 'All' );
 			}
-			echo '<li data-tab="epl_ps_tab_' . esc_attr( $tabcounter ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
+			echo '<li data-tab="epl_ps_tab_' . esc_attr(  $global_counters[$tabcounter] ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
 			$tabcounter++;
 
 		endforeach;
@@ -95,7 +102,7 @@ if ( ! empty( $selected_post_types ) ) :
 			$is_sb_current = 1 === $tabcounter ? 'epl-sb-current' : '';
 		}
 		?>
-		<div class="epl-search-form <?php echo esc_attr( $is_sb_current ); ?>" id="epl_ps_tab_<?php echo esc_attr( $tabcounter ); ?>">
+		<div class="epl-search-form <?php echo esc_attr( $is_sb_current ); ?>" id="epl_ps_tab_<?php echo esc_attr(  $global_counters[$tabcounter] ); ?>">
 		<?php
 		if ( isset( $show_title ) && 'true' === $show_title ) {
 			if ( ! empty( $title ) ) {
@@ -135,6 +142,8 @@ if ( ! empty( $selected_post_types ) ) :
 				<div class="epl-search-submit-row epl-search-submit property-type-search">
 					<input type="submit" value="<?php echo ! empty( $submit_label ) ? esc_attr( $submit_label ) : esc_html__( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
 				</div>
+                                <input type="hidden" name="instance_id" value="<?php echo esc_attr( $atts['instance_id'] ) ?>">
+                                <input type="hidden" name="form_tab" value="<?php echo esc_attr( $global_counters[$tabcounter] ) ?>">
 			</form>
 			</div>
 		<?php
@@ -143,3 +152,4 @@ if ( ! empty( $selected_post_types ) ) :
 	?>
 	</div>
 	<?php endif; ?>
+</div>

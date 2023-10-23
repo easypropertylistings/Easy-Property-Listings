@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 2.0
  * @since 3.4.44 Added epl_any_label_status_filter and epl_current_label_status_filter filters for any and current status labels.
+ * @since 3.4.49 Support for instance_id.
  */
 function epl_search_widget_fields() {
 
@@ -57,6 +58,14 @@ function epl_search_widget_fields() {
 					'fixed'   => __( 'Fixed Width', 'easy-property-listings' ),
 				),
 				'order'   => 30,
+			),
+                        array(
+				'key'     => 'instance_id',
+				'label'   => __( 'Form Instance ID', 'easy-property-listings' ),
+				'type'    => 'number',
+				'default' => __( '', 'easy-property-listings' ),
+				'order'   => 300,
+                                'help'    => __( 'Leave empty to generate it automatically', 'easy-property-listings' ),
 			),
 			array(
 				'key'     => 'show_property_status_frontend',
