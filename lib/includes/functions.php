@@ -481,10 +481,10 @@ function epl_the_status( $before = '', $after = '', $echo = true ) {
 	$status_opts = epl_get_property_status_opts();
 
 	if ( strlen( $status ) === 0 ) {
-			return;
+		return;
 	}
 
-		$status = $before . $status_opts[ $status ] . $after;
+	$status = $before . $status_opts[ $status ] . $after;
 
 	if ( $echo ) {
 		echo wp_kses_post( $status );
