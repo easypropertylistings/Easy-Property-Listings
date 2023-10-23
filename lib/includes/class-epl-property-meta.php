@@ -33,6 +33,7 @@ class EPL_Property_Meta {
 	 * Global post
 	 *
 	 * @var $post
+	 *
 	 * @since 2.0
 	 */
 	public $post;
@@ -41,6 +42,7 @@ class EPL_Property_Meta {
 	 * Global epl_settings
 	 *
 	 * @var $epl_settings
+	 *
 	 * @since 2.0
 	 */
 	public $epl_settings;
@@ -49,6 +51,7 @@ class EPL_Property_Meta {
 	 * Global meta
 	 *
 	 * @var $meta
+	 *
 	 * @since 2.0
 	 */
 	public $meta;
@@ -57,6 +60,7 @@ class EPL_Property_Meta {
 	 * Global post type
 	 *
 	 * @var $post_type
+	 *
 	 * @since 2.0
 	 */
 	public $post_type;
@@ -65,68 +69,87 @@ class EPL_Property_Meta {
 	 * Global EPL Post Type
 	 *
 	 * @var $property_post_type
+	 *
 	 * @since 2.0
 	 */
 	public $property_post_type;
 
 	/**
-	 * @var label_new
+	 * Label New option
+	 *
+	 * @var $label_new
 	 *
 	 * @since 3.4.44
 	 */
 	public $label_new;
 
 	/**
-	 * @var sticker_new_range
+	 * Sticker Range
+	 *
+	 * @var $sticker_new_range
 	 *
 	 * @since 3.4.44
 	 */
 	public $sticker_new_range;
 
 	/**
-	 * @var label_home_open
+	 * Label: Home Open
+	 *
+	 * @var $label_home_open
 	 *
 	 * @since 3.4.44
 	 */
 	public $label_home_open;
 
 	/**
-	 * @var label_poa
+	 * Label: POA
+	 *
+	 * @var $label_poa
 	 *
 	 * @since 3.4.44
 	 */
 	public $label_poa;
 
 	/**
-	 * @var label_under_offer
+	 * Label: Under Offer
+	 *
+	 * @var $label_under_offer
 	 *
 	 * @since 3.4.44
 	 */
 	public $label_under_offer;
 
 	/**
-	 * @var label_sold
+	 * Label: Sold
+	 *
+	 * @var $label_sold
 	 *
 	 * @since 3.4.44
 	 */
 	public $label_sold;
 
 	/**
-	 * @var label_leased
+	 * Label: Leased
+	 *
+	 * @var $label_leased
 	 *
 	 * @since 3.4.44
 	 */
 	public $label_leased;
 
 	/**
-	 * @var label_bond
+	 * Label: Bond
+	 *
+	 * @var $label_bond
 	 *
 	 * @since 3.4.44
 	 */
 	public $label_bond;
 
 	/**
-	 * @var display_bond
+	 * Display Bond option
+	 *
+	 * @var $display_bond
 	 *
 	 * @since 3.4.44
 	 */
