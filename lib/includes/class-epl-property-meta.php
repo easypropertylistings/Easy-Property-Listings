@@ -69,69 +69,68 @@ class EPL_Property_Meta {
 	 */
 	public $property_post_type;
 
-		/**
-		 * Label New
-		 *
-		 * @since 3.4.44
-		 */
-		public $label_new;
+	/**
+	 * @var label_new
+	 *
+	 * @since 3.4.44
+	 */
+	public $label_new;
 
-		/**
-		 * Sticker new range
-		 *
-		 * @since 3.4.44
-		 */
-		public $sticker_new_range;
+	/**
+	 * @var sticker_new_range
+	 *
+	 * @since 3.4.44
+	 */
+	public $sticker_new_range;
 
-		/**
-		 * label_home_open
-		 *
-		 * @since 3.4.44
-		 */
-		public $label_home_open;
+	/**
+	 * @var label_home_open
+	 *
+	 * @since 3.4.44
+	 */
+	public $label_home_open;
 
-		/**
-		 * label_poa
-		 *
-		 * @since 3.4.44
-		 */
-		public $label_poa;
+	/**
+	 * @var label_poa
+	 *
+	 * @since 3.4.44
+	 */
+	public $label_poa;
 
-		/**
-		 * label_under_offer
-		 *
-		 * @since 3.4.44
-		 */
-		public $label_under_offer;
+	/**
+	 * @var label_under_offer
+	 *
+	 * @since 3.4.44
+	 */
+	public $label_under_offer;
 
-		/**
-		 * label_sold
-		 *
-		 * @since 3.4.44
-		 */
-		public $label_sold;
+	/**
+	 * @var label_sold
+	 *
+	 * @since 3.4.44
+	 */
+	public $label_sold;
 
-		/**
-		 * label_leased
-		 *
-		 * @since 3.4.44
-		 */
-		public $label_leased;
+	/**
+	 * @var label_leased
+	 *
+	 * @since 3.4.44
+	 */
+	public $label_leased;
 
-		/**
-		 * label_bond
-		 *
-		 * @since 3.4.44
-		 */
-		public $label_bond;
+	/**
+	 * @var label_bond
+	 *
+	 * @since 3.4.44
+	 */
+	public $label_bond;
 
-		/**
-		 * display_bond
-		 *
-		 * @since 3.4.44
-		 */
-		public $display_bond;
-
+	/**
+	 * @var display_bond
+	 *
+	 * @since 3.4.44
+	 */
+	public $display_bond;
 
 	/**
 	 * Get things going
