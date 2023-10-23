@@ -59,13 +59,13 @@ function epl_search_widget_fields() {
 				),
 				'order'   => 30,
 			),
-                        array(
+			array(
 				'key'     => 'instance_id',
 				'label'   => __( 'Form Instance ID', 'easy-property-listings' ),
 				'type'    => 'number',
 				'default' => __( '', 'easy-property-listings' ),
 				'order'   => 300,
-                                'help'    => __( 'Leave empty to generate it automatically', 'easy-property-listings' ),
+				'help'    => __( 'Leave empty to generate it automatically', 'easy-property-listings' ),
 			),
 			array(
 				'key'     => 'show_property_status_frontend',
@@ -985,7 +985,9 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 					<?php
 					// Autoformatting breaks select boxes in widgets.
-					echo isset( $field['multiple'] ) ? ' multiple ' : ' '; ?>
+					// TODO: this is a bit messy and is missing esc_attr for multiple and the name= below.
+					echo isset( $field['multiple'] ) ? ' multiple ' : ' ';
+					?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
 					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); echo isset( $field['multiple'] ) ? '[]' : ''; ?>">

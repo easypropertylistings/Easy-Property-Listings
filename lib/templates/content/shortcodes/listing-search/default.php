@@ -53,17 +53,45 @@ if ( ! is_array( $selected_post_types ) ) {
 
 global $epl_settings;
 
-$global_counters = [];
-$tabcounter = 1; ?>
-<div data-instance-id="<?php echo esc_attr( $atts['instance_id'] ) ?>" id="epl-search-container-instance-<?php echo esc_attr( $atts['instance_id'] ) ?>" class="epl-search-container"> <?php
+$global_counters = array();
+$tabcounter      = 1;
+?>
+<div data-instance-id="<?php echo esc_attr( $atts['instance_id'] ); ?>" id="epl-search-container-instance-<?php echo esc_attr( $atts['instance_id'] ); ?>" class="epl-search-container">
+	<?php
+	if ( ! empty( $selected_post_types ) ) :
+		if ( count( $selected_post_types ) > 1 ) :
+			echo "<ul class='epl-search-tabs property_search-tabs epl-search-" . esc_attr( $style ) . "'>";
+			foreach ( $selected_post_types as $post_type ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 
-if ( ! empty( $selected_post_types ) ) :
-	if ( count( $selected_post_types ) > 1 ) :
-		echo "<ul class='epl-search-tabs property_search-tabs epl-search-" . esc_attr( $style ) . "'>";
+				$global_tab_counter             = epl_generate_unique_tab_counter();
+				$global_counters[ $tabcounter ] = $global_tab_counter;
+
+				if ( isset( $get_data['action'] ) && 'epl_search' === $get_data['action'] ) {
+					if ( $queried_post_type === $post_type ) {
+						$is_sb_current = 'epl-sb-current';
+					} else {
+						$is_sb_current = '';
+					}
+				} else {
+					$is_sb_current = 1 === $tabcounter ? 'epl-sb-current' : '';
+				}
+				$post_type_label = isset( $epl_settings[ 'widget_label_' . $post_type ] ) ? $epl_settings[ 'widget_label_' . $post_type ] : $post_type;
+
+				if ( empty( $post_type ) ) {
+					$post_type_label = epl_get_option( 'widget_label_all', 'All' );
+				}
+				echo '<li data-tab="epl_ps_tab_' . esc_attr( $global_counters[ $tabcounter ] ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
+				$tabcounter++;
+
+			endforeach;
+			echo '</ul>';
+		endif;
+		?>
+		<div class="epl-search-forms-wrapper epl-search-<?php echo esc_attr( $style ); ?>">
+		<?php
+		$tabcounter = 1; // reset tab counter.
+
 		foreach ( $selected_post_types as $post_type ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride
-
-                        $global_tab_counter = epl_generate_unique_tab_counter();
-                        $global_counters[$tabcounter] = $global_tab_counter;
 
 			if ( isset( $get_data['action'] ) && 'epl_search' === $get_data['action'] ) {
 				if ( $queried_post_type === $post_type ) {
@@ -74,82 +102,55 @@ if ( ! empty( $selected_post_types ) ) :
 			} else {
 				$is_sb_current = 1 === $tabcounter ? 'epl-sb-current' : '';
 			}
-			$post_type_label = isset( $epl_settings[ 'widget_label_' . $post_type ] ) ? $epl_settings[ 'widget_label_' . $post_type ] : $post_type;
-
-			if ( empty( $post_type ) ) {
-				$post_type_label = epl_get_option( 'widget_label_all', 'All' );
-			}
-			echo '<li data-tab="epl_ps_tab_' . esc_attr(  $global_counters[$tabcounter] ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
-			$tabcounter++;
-
-		endforeach;
-		echo '</ul>';
-	endif;
-	?>
-	<div class="epl-search-forms-wrapper epl-search-<?php echo esc_attr( $style ); ?>">
-	<?php
-	$tabcounter = 1; // reset tab counter.
-
-	foreach ( $selected_post_types as $post_type ) : // phpcs:ignore WordPress.WP.GlobalVariablesOverride
-
-		if ( isset( $get_data['action'] ) && 'epl_search' === $get_data['action'] ) {
-			if ( $queried_post_type === $post_type ) {
-				$is_sb_current = 'epl-sb-current';
-			} else {
-				$is_sb_current = '';
-			}
-		} else {
-			$is_sb_current = 1 === $tabcounter ? 'epl-sb-current' : '';
-		}
-		?>
-		<div class="epl-search-form <?php echo esc_attr( $is_sb_current ); ?>" id="epl_ps_tab_<?php echo esc_attr(  $global_counters[$tabcounter] ); ?>">
-		<?php
-		if ( isset( $show_title ) && 'true' === $show_title ) {
-			if ( ! empty( $title ) ) {
-				?>
-					<h3><?php echo esc_attr( $title ); ?></h3>
-					<?php
-			}
-		}
-		?>
-		<form method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<input type="hidden" name="action" value="epl_search" />
+			?>
+			<div class="epl-search-form <?php echo esc_attr( $is_sb_current ); ?>" id="epl_ps_tab_<?php echo esc_attr( $global_counters[ $tabcounter ] ); ?>">
 			<?php
-				$epl_frontend_fields = epl_search_widget_fields_frontend( $post_type, $property_status );
-			foreach ( $epl_frontend_fields as &$epl_frontend_field ) {
-
-				if ( 'property_status' === $epl_frontend_field['key'] && 'on' === $show_property_status_frontend ) {
-					$epl_frontend_field['type']   = 'select';
-					$epl_frontend_field['config'] = 'on';
+			if ( isset( $show_title ) && 'true' === $show_title ) {
+				if ( ! empty( $title ) ) {
+					?>
+					<h3><?php echo esc_html( $title ); ?></h3>
+					<?php
 				}
-
-				if ( 'search_house_category' === $epl_frontend_field['key'] && isset( $house_category_multiple ) && 'on' === $house_category_multiple ) {
-					$epl_frontend_field['type']  = 'multiple_select';
-					$epl_frontend_field['query'] = array(
-						'query'   => 'meta',
-						'compare' => 'IN',
-					);
-				}
-
-				$config = isset( ${$epl_frontend_field['key']} ) ? ${$epl_frontend_field['key']} : '';
-				if ( empty( $config ) && isset( $epl_frontend_field['config'] ) ) {
-					$config = $epl_frontend_field['config'];
-				}
-				$value = isset( ${$epl_frontend_field['meta_key']} ) ? ${$epl_frontend_field['meta_key']} : '';
-				epl_widget_render_frontend_fields( $epl_frontend_field, $config, $value, $post_type, $property_status );
 			}
 			?>
-				<div class="epl-search-submit-row epl-search-submit property-type-search">
-					<input type="submit" value="<?php echo ! empty( $submit_label ) ? esc_attr( $submit_label ) : esc_html__( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
+			<form method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<input type="hidden" name="action" value="epl_search" />
+				<?php
+					$epl_frontend_fields = epl_search_widget_fields_frontend( $post_type, $property_status );
+				foreach ( $epl_frontend_fields as &$epl_frontend_field ) {
+
+					if ( 'property_status' === $epl_frontend_field['key'] && 'on' === $show_property_status_frontend ) {
+						$epl_frontend_field['type']   = 'select';
+						$epl_frontend_field['config'] = 'on';
+					}
+
+					if ( 'search_house_category' === $epl_frontend_field['key'] && isset( $house_category_multiple ) && 'on' === $house_category_multiple ) {
+						$epl_frontend_field['type']  = 'multiple_select';
+						$epl_frontend_field['query'] = array(
+							'query'   => 'meta',
+							'compare' => 'IN',
+						);
+					}
+
+					$config = isset( ${$epl_frontend_field['key']} ) ? ${$epl_frontend_field['key']} : '';
+					if ( empty( $config ) && isset( $epl_frontend_field['config'] ) ) {
+						$config = $epl_frontend_field['config'];
+					}
+					$value = isset( ${$epl_frontend_field['meta_key']} ) ? ${$epl_frontend_field['meta_key']} : '';
+					epl_widget_render_frontend_fields( $epl_frontend_field, $config, $value, $post_type, $property_status );
+				}
+				?>
+					<div class="epl-search-submit-row epl-search-submit property-type-search">
+						<input type="submit" value="<?php echo ! empty( $submit_label ) ? esc_attr( $submit_label ) : esc_html__( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
+					</div>
+					<input type="hidden" name="instance_id" value="<?php echo esc_attr( $atts['instance_id'] ); ?>">
+					<input type="hidden" name="form_tab" value="<?php echo esc_attr( $global_counters[ $tabcounter ] ); ?>">
+				</form>
 				</div>
-                                <input type="hidden" name="instance_id" value="<?php echo esc_attr( $atts['instance_id'] ) ?>">
-                                <input type="hidden" name="form_tab" value="<?php echo esc_attr( $global_counters[$tabcounter] ) ?>">
-			</form>
-			</div>
-		<?php
-		$tabcounter++;
-	endforeach;
-	?>
-	</div>
+			<?php
+			$tabcounter++;
+		endforeach;
+		?>
+		</div>
 	<?php endif; ?>
 </div>

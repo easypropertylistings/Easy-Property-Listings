@@ -38,8 +38,13 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.49 October 23, 2023 =
+= 3.4.49 October 25, 2023 =
 
+- New: Additional args for custom template action: epl*loop_template*{$post_type}, epl_loop_template.
+- New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically.
+- New: Added support for 'status' in search shortcodes.
+- Tweak: Shortcodes, make sure meta_query in arg is defined as array, prior to usage.
+- Fix: Price Sticker, inspections code trim string when is null.
 - Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
 - Fix: Floor plans, energy certificate, external links and min web labels using esc_html instead of esc_attr.
 
