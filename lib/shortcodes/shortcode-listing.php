@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
- * @since 		3.5 support for third and fourth agents.
+ * @since       3.5 support for third and fourth agents.
  */
 
 // Exit if accessed directly.
@@ -78,7 +78,7 @@ function epl_shortcode_listing_callback( $atts ) {
 		'post_type'      => $attributes['post_type'],
 		'posts_per_page' => $attributes['limit'],
 		'paged'          => absint( $paged ),
-                'meta_query'     => []
+		'meta_query'     => array(),
 	);
 
 	// Offset query does not work with pagination.
@@ -118,10 +118,9 @@ function epl_shortcode_listing_callback( $atts ) {
 				'value'   => array( $single_agent, sanitize_user( $single_agent ) ),
 				'compare' => 'IN',
 			);
-			if( 
-				in_array( 'commercial', $attributes['post_type'], true ) ||
+			if ( in_array( 'commercial', $attributes['post_type'], true ) ||
 				in_array( 'commercial_land', $attributes['post_type'], true ) ||
-				in_array( 'business', $attributes['post_type'], true ) 
+				in_array( 'business', $attributes['post_type'], true )
 			) {
 
 				$agent_meta_query[] = array(
