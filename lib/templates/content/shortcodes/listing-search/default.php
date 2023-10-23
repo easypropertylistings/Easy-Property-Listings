@@ -103,13 +103,13 @@ $tabcounter      = 1;
 				$is_sb_current = 1 === $tabcounter ? 'epl-sb-current' : '';
 			}
 			?>
-			<div class="epl-search-form <?php echo esc_attr( $is_sb_current ); ?>" id="epl_ps_tab_<?php echo esc_attr(  $global_counters[$tabcounter] ); ?>">
+			<div class="epl-search-form <?php echo esc_attr( $is_sb_current ); ?>" id="epl_ps_tab_<?php echo esc_attr( $global_counters[$tabcounter] ); ?>">
 			<?php
 			if ( isset( $show_title ) && 'true' === $show_title ) {
 				if ( ! empty( $title ) ) {
 					?>
-						<h3><?php echo esc_attr( $title ); ?></h3>
-						<?php
+					<h3><?php echo esc_html( $title ); ?></h3>
+					<?php
 				}
 			}
 			?>
@@ -143,8 +143,8 @@ $tabcounter      = 1;
 					<div class="epl-search-submit-row epl-search-submit property-type-search">
 						<input type="submit" value="<?php echo ! empty( $submit_label ) ? esc_attr( $submit_label ) : esc_html__( 'Search', 'easy-property-listings' ); ?>" class="epl-search-btn" />
 					</div>
-					<input type="hidden" name="instance_id" value="<?php echo esc_attr( $atts['instance_id'] ) ?>">
-					<input type="hidden" name="form_tab" value="<?php echo esc_attr( $global_counters[$tabcounter] ) ?>">
+					<input type="hidden" name="instance_id" value="<?php echo esc_attr( $atts['instance_id'] ); ?>">
+					<input type="hidden" name="form_tab" value="<?php echo esc_attr( $global_counters[$tabcounter] ); ?>">
 				</form>
 				</div>
 			<?php
