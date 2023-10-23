@@ -19,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since      2.0
  */
-
 class EPL_Property_Meta {
 
 	/**
@@ -70,69 +69,69 @@ class EPL_Property_Meta {
 	 */
 	public $property_post_type;
 
-        /**
-         * Label New
-         *
-         * @since 3.4.44
-        */
-        public $label_new;
+		/**
+		 * Label New
+		 *
+		 * @since 3.4.44
+		 */
+		public $label_new;
 
-        /**
-         * Sticker new range
-         *
-         * @since 3.4.44
-        */
-        public $sticker_new_range;
+		/**
+		 * Sticker new range
+		 *
+		 * @since 3.4.44
+		 */
+		public $sticker_new_range;
 
-        /**
-         * label_home_open 
-         *
-         * @since 3.4.44
-        */
-        public $label_home_open;
+		/**
+		 * label_home_open
+		 *
+		 * @since 3.4.44
+		 */
+		public $label_home_open;
 
-        /**
-         * label_poa  
-         *
-         * @since 3.4.44
-        */
-        public $label_poa;
+		/**
+		 * label_poa
+		 *
+		 * @since 3.4.44
+		 */
+		public $label_poa;
 
-        /**
-         * label_under_offer   
-         *
-         * @since 3.4.44
-        */
-        public $label_under_offer ;
+		/**
+		 * label_under_offer
+		 *
+		 * @since 3.4.44
+		 */
+		public $label_under_offer;
 
-        /**
-         * label_sold   
-         *
-         * @since 3.4.44
-        */
-        public $label_sold;
+		/**
+		 * label_sold
+		 *
+		 * @since 3.4.44
+		 */
+		public $label_sold;
 
-        /**
-         * label_leased  
-         *
-         * @since 3.4.44
-        */
-        public $label_leased;
+		/**
+		 * label_leased
+		 *
+		 * @since 3.4.44
+		 */
+		public $label_leased;
 
-        /**
-         * label_bond  
-         *
-         * @since 3.4.44
-        */
-        public $label_bond;
+		/**
+		 * label_bond
+		 *
+		 * @since 3.4.44
+		 */
+		public $label_bond;
 
-        /**
-         * display_bond  
-         *
-         * @since 3.4.44
-        */
-        public $display_bond;
-        
+		/**
+		 * display_bond
+		 *
+		 * @since 3.4.44
+		 */
+		public $display_bond;
+
 
 	/**
 	 * Get things going
@@ -218,7 +217,7 @@ class EPL_Property_Meta {
 	 * @return mixed Return formatted inspection times with a iCal link
 	 * @since 2.0
 	 * @since 3.4.27 Added filter for href, handling of non date inspection values.
-         * @since 3.4.44 Added filter for deciding whether to remove inspection entry.
+	 * @since 3.4.44 Added filter for deciding whether to remove inspection entry.
 	 */
 	public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 		if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -237,11 +236,11 @@ class EPL_Property_Meta {
 				$inspectarray = array();
 				foreach ( $list as $num => $item ) {
 					if ( is_numeric( $item[0] ) ) {
-						$timearr = explode( ' ', $item );
-						$endtime = current( $timearr ) . ' ' . end( $timearr );
-						$maybe_delete_inspection = strtotime( $endtime ) < current_time( 'timestamp', 1 );
-                                                $maybe_delete_inspection = apply_filters( 'epl_maybe_delete_inspection', $maybe_delete_inspection, $endtime, $item );
-						if ( !$maybe_delete_inspection ) {
+						$timearr                 = explode( ' ', $item );
+						$endtime                 = current( $timearr ) . ' ' . end( $timearr );
+						$maybe_delete_inspection = strtotime( $endtime ) < time();
+												$maybe_delete_inspection = apply_filters( 'epl_maybe_delete_inspection', $maybe_delete_inspection, $endtime, $item );
+						if ( ! $maybe_delete_inspection ) {
 							$item                                  = trim( $item );
 							$inspectarray[ strtotime( $endtime ) ] = $item;
 						}
@@ -1008,7 +1007,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 * @throws Exception PHP 5.3 notice.
 	 * @since 2.0
-         * @since 3.4.49 Added fix for trim when string string is null.
+	 * @since 3.4.49 Added fix for trim when string string is null.
 	 */
 	public function get_price_sticker() {
 		$price_sticker = '';
@@ -1026,7 +1025,7 @@ class EPL_Property_Meta {
 
 		}
 
-		$inspection_time = !is_null( $this->get_property_meta( 'property_inspection_times' ) ) ? $this->get_property_meta( 'property_inspection_times' ) : '';
+		$inspection_time = ! is_null( $this->get_property_meta( 'property_inspection_times' ) ) ? $this->get_property_meta( 'property_inspection_times' ) : '';
 		$inspection_time = trim( $inspection_time );
 		if ( 'property' === $this->post_type || 'land' === $this->post_type || 'rural' === $this->post_type || 'business' === $this->post_type ) {
 			$price_sticker = '';
@@ -1706,7 +1705,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 *
 	 * @since 3.4.38 Fix: Don't display land area when it's < 0.
-         * @since 3.4.42 Fix : Fatal error if area is non numeric.
+	 * @since 3.4.42 Fix : Fatal error if area is non numeric.
 	 */
 	public function get_property_land_value( $returntype = 'i' ) {
 
@@ -1778,7 +1777,7 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
-         * @since 3.4.42 Fix : Fatal error if area is non numeric.
+	 * @since 3.4.42 Fix : Fatal error if area is non numeric.
 	 */
 	public function get_property_building_area_value( $returntype = 'i' ) {
 
@@ -2124,7 +2123,7 @@ class EPL_Property_Meta {
 	 * @param string $metakey Meta key name.
 	 * @return mixed Value wrapped in a list item
 	 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
-         * @since 3.4.44 Parking Comments Label before value.
+	 * @since 3.4.44 Parking Comments Label before value.
 	 */
 	public function get_additional_features_html( $metakey ) {
 
@@ -2162,12 +2161,12 @@ class EPL_Property_Meta {
 					break;
 
 				default:
-                                        if ( 'property_com_parking_comments' === $metakey ) {
-                                                $return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' '.$metavalue . '</li>';
-                                        } else {
-                                                $return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
-                                        }
-					
+					if ( 'property_com_parking_comments' === $metakey ) {
+							$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' ' . $metavalue . '</li>';
+					} else {
+							$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
+					}
+
 					break;
 			}
 		}
