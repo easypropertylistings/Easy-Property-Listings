@@ -2132,7 +2132,8 @@ function epl_ends_with( $haystack, $needle ) {
  *
  * @param  array $atts Attributes.
  * @return array
- * @since 3.4.49 make sure an array is returned to be compatible with function return type.
+ *
+ * @since 3.4.49 Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
  */
 function epl_parse_atts( $atts ) {
 
@@ -2197,7 +2198,7 @@ function epl_parse_atts( $atts ) {
 			$query['meta_query'][ $key . '_clause' ] = $this_query;
 		}
 	}
-	return isset( $query['meta_query'] ) ? $query['meta_query'] : [];
+	return isset( $query['meta_query'] ) ? $query['meta_query'] : array();
 }
 
 /**
