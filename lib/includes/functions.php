@@ -2484,17 +2484,16 @@ function epl_array_map_recursive( $callback, $array ) {
 /**
  * Sanitize function to allow certain safe html tags.
  *
- * @param string $content string.
- * @param array  $content sanitized html content.
+ * @param array $content sanitized html content.
  *
  * @return string
  * @since 3.4.48
  */
 function epl_sanitize_html_tags( $content ) {
 
-		$allowed_tags = wp_kses_allowed_html( 'post' );
+	$allowed_tags = wp_kses_allowed_html( 'post' );
 
-		return wp_kses( $content, $allowed_tags );
+	return wp_kses( $content, $allowed_tags );
 }
 
 /**
@@ -2504,15 +2503,15 @@ function epl_sanitize_html_tags( $content ) {
  * @since 3.4.49
  */
 function epl_generate_unique_tab_counter() {
-        
-        global $epl_search_shortcode_counter;
 
-        if( empty( $epl_search_shortcode_counter ) ) {
-                $epl_search_shortcode_counter = 0;
-        }
+		global $epl_search_shortcode_counter;
 
-        $epl_search_shortcode_counter++;
-        return $epl_search_shortcode_counter;
+	if ( empty( $epl_search_shortcode_counter ) ) {
+			$epl_search_shortcode_counter = 0;
+	}
+
+		$epl_search_shortcode_counter++;
+		return $epl_search_shortcode_counter;
 }
 
 /**
@@ -2522,13 +2521,13 @@ function epl_generate_unique_tab_counter() {
  * @since 3.4.49
  */
 function epl_generate_search_instance_counter() {
-        
-        global $epl_search_instance_counter;
 
-        if( empty( $epl_search_instance_counter ) ) {
-                $epl_search_instance_counter = 0;
-        }
+		global $epl_search_instance_counter;
 
-        $epl_search_instance_counter++;
-        return $epl_search_instance_counter;
+	if ( empty( $epl_search_instance_counter ) ) {
+			$epl_search_instance_counter = 0;
+	}
+
+		$epl_search_instance_counter++;
+		return $epl_search_instance_counter;
 }
