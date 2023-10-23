@@ -56,7 +56,7 @@ global $epl_settings;
 $global_counters = array();
 $tabcounter      = 1;
 ?>
-<div data-instance-id="<?php echo esc_attr( $atts['instance_id'] ) ?>" id="epl-search-container-instance-<?php echo esc_attr( $atts['instance_id'] ) ?>" class="epl-search-container">
+<div data-instance-id="<?php echo esc_attr( $atts['instance_id'] ); ?>" id="epl-search-container-instance-<?php echo esc_attr( $atts['instance_id'] ); ?>" class="epl-search-container">
 	<?php
 	if ( ! empty( $selected_post_types ) ) :
 		if ( count( $selected_post_types ) > 1 ) :
