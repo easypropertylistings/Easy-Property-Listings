@@ -201,7 +201,7 @@ function epl_listing_elements_gui() {
 
 			<p>
 				<?php esc_html_e( 'For complete action reference visit', 'easy-property-listings' ); ?>
-				<a target="_blank" href="http://docs.easypropertylistings.com.au/hook-docs.html">
+				<a target="_blank" href="https://docs.easypropertylistings.com.au/hook-docs.html">
 					<?php esc_html_e( 'Here', 'easy-property-listings' ); ?>.
 				</a>
 			</p>
