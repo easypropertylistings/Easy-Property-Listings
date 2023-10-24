@@ -242,7 +242,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	 * Render the widget form.
 	 *
 	 * @since 1.0
-	 * @since 3.4.49 Refactored escaping elements.
+	 * @since 3.4.49 Refactored escaping elements. Removed unnecessary variables.
 	 * @param array $instance options.
 	 */
 	public function form( $instance ) {
@@ -275,33 +275,11 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		$title = esc_attr( $instance['title'] );
-
-		$featured = esc_attr( $instance['featured'] );
-		$display  = esc_attr( $instance['display'] );
-		$image    = esc_attr( $instance['image'] );
-		$archive  = esc_attr( $instance['archive'] );
-		$d_title  = esc_attr( $instance['d_title'] );
-
-		$more_text = esc_attr( $instance['more_text'] );
-		$d_excerpt = esc_attr( $instance['d_excerpt'] );
-		$d_suburb  = esc_attr( $instance['d_suburb'] );
-		$d_street  = esc_attr( $instance['d_street'] );
-		$d_price   = esc_attr( $instance['d_price'] );
-		$d_more    = esc_attr( $instance['d_more'] );
-
-		$d_icons           = esc_attr( $instance['d_icons'] );
-		$p_number          = esc_attr( $instance['p_number'] );
-		$p_skip            = esc_attr( $instance['p_skip'] );
-		$order_rand        = esc_attr( $instance['order_rand'] );
-		$open_house        = esc_attr( $instance['open_house'] );
-		$d_inspection_time = esc_attr( $instance['d_inspection_time'] );
-		$d_ical_link       = esc_attr( $instance['d_ical_link'] );
 		?>
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title', 'easy-property-listings' ); ?></label>
-			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 		<p> <strong><?php esc_html_e( 'Query Settings', 'easy-property-listings' ); ?></strong></p>
 		<p>
@@ -572,7 +550,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'more_text' ) ); ?>"><?php esc_html_e( 'Read More Label', 'easy-property-listings' ); ?></label>
-			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $more_text ); ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $instance['more_text'] ); ?>" />
 		</p>
 
 		<?php
