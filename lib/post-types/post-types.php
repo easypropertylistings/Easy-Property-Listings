@@ -341,12 +341,12 @@ function epl_manage_listing_column_listing_callback() {
 
 	// Outgoings for commercial listing type.
 	if ( ! empty( $outgoings ) ) {
-		echo '<div class="epl_meta_outgoings">' . epl_get_meta_field_label( 'property_com_outgoings' ) . ': ' , esc_html( epl_currency_formatted_amount( $outgoings ) ) , '</div>';
+		echo '<div class="epl_meta_outgoings">' . esc_html( epl_get_meta_field_label( 'property_com_outgoings' ) ) . ': ' , esc_html( epl_currency_formatted_amount( $outgoings ) ) , '</div>';
 	}
 
 	// Return for commercial listing type.
 	if ( ! empty( $return ) ) {
-		echo '<div class="epl_meta_return">' . epl_get_meta_field_label( 'property_com_return' ) . ': ' , esc_html( $return ) , '%</div>';
+		echo '<div class="epl_meta_return">' . esc_html( epl_get_meta_field_label( 'property_com_return' ) ) . ': ' , esc_html( $return ) , '%</div>';
 	}
 
 	// Bedrooms and Bathrooms.
