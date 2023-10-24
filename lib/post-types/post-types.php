@@ -45,7 +45,7 @@ add_filter( 'parse_query', 'epl_admin_posts_filter' );
  *
  * @since 1.0
  * @since 3.4.45 Added deleted status. Reordered status options.
- * @since 3.4.49 Added accessibility labels to select elements.
+ * @since 3.4.49 Added accessibility labels to select elements. Removed : from Seearch For.
  */
 function epl_custom_restrict_manage_posts() {
 	global $post_type;
@@ -101,7 +101,7 @@ function epl_custom_restrict_manage_posts() {
 		if ( ! empty( $custom_search_fields ) ) {
 			$sel = isset( $_GET['property_custom_fields'] ) ? sanitize_text_field( wp_unslash( $_GET['property_custom_fields'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 			echo '<select aria-label="' . esc_attr__( 'Search For', 'easy-property-listings' ) . '" name="property_custom_fields">';
-				echo '<option value="">' . esc_html__( 'Search For:', 'easy-property-listings' ) . '</option>';
+				echo '<option value="">' . esc_html__( 'Search For', 'easy-property-listings' ) . '</option>';
 			foreach ( $custom_search_fields as $k => $v ) {
 				echo '<option value="' . esc_attr( $k ) . '" ' . selected( $sel, $k, false ) . '>' . esc_attr( $v ) . '</option>';
 			}
