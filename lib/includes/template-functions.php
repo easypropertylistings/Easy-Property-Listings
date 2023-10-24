@@ -389,7 +389,7 @@ function epl_hide_listing_statuses() {
  * @since 3.4.49 New: Additional args for custom template action : epl_loop_template_{$post_type}, epl_loop_template.
  */
 function epl_property_blog( $template = '', $default = 'default' ) {
-        
+
 	if ( empty( $template ) || 'blog' === $template ) {
 		$template = 'default';
 	}
@@ -416,16 +416,16 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 		}
 
 		// Check for action in order of priority : epl_loop_template_{post_type} > epl_loop_template_listing ( only for core )  > epl_loop_template.
-                if ( ! empty( $action_check_type ) ) {
-                        do_action( 'epl_loop_template_' . $property->post->post_type, get_defined_vars() );
-                        $action_exists = true;
-                } elseif ( ! empty( $action_check_core ) ) {
-                        do_action( 'epl_loop_template_listing', get_defined_vars() );
-                        $action_exists = true;
-                } elseif ( ! empty( $action_check ) ) {
-                        do_action( 'epl_loop_template', get_defined_vars() );
-                        $action_exists = true;
-                }
+		if ( ! empty( $action_check_type ) ) {
+				do_action( 'epl_loop_template_' . $property->post->post_type, get_defined_vars() );
+				$action_exists = true;
+		} elseif ( ! empty( $action_check_core ) ) {
+				do_action( 'epl_loop_template_listing', get_defined_vars() );
+				$action_exists = true;
+		} elseif ( ! empty( $action_check ) ) {
+				do_action( 'epl_loop_template', get_defined_vars() );
+				$action_exists = true;
+		}
 
 		// Fallback to core template.
 		if ( ! $action_exists ) {
@@ -1895,12 +1895,13 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  * @since 3.3 Revised.
  * @since 3.4.44 Unique ID for sort dropdown per instance.
  * @since 3.4.44 Get shortcode attributes as parameter.
+ * @since 3.4.49 Added accessibility labels to select elements.
  */
 function epl_sorting_tool( $attributes = array() ) {
 
-		$instance_id     = ! empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '';
-	$sortby              = '';
-		$set_instance_id = '';
+	$instance_id     = ! empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '';
+	$sortby          = '';
+	$set_instance_id = '';
 	if ( ! empty( $_GET['sortby'] ) ) {
 		$sortby = sanitize_text_field( wp_unslash( $_GET['sortby'] ) );
 	}
@@ -1912,9 +1913,9 @@ function epl_sorting_tool( $attributes = array() ) {
 	?>
 
 	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
-		<select aria-label="<?php _e( 'Sort Listings', 'easy-property-listings'); ?>" ="epl-sort-listings" id="epl-sort-listings-<?php echo esc_attr( $instance_id ); ?>" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
+		<select aria-label="<?php esc_attr_e( 'Sort Listings', 'easy-property-listings' ); ?>" class="epl-sort-listings" id="epl-sort-listings-<?php echo esc_attr( $instance_id ); ?>" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
 			<option <?php selected( $sortby, '' ); ?> value="">
-				<?php echo esc_attr( apply_filters( 'epl_switch_views_sorting_title_sort', esc_html__( 'Sort', 'easy-property-listings' ) ) ); ?>
+				<?php echo esc_html( apply_filters( 'epl_switch_views_sorting_title_sort', __( 'Sort', 'easy-property-listings' ) ) ); ?>
 			</option>
 			<?php
 			foreach ( $sorters as $sorter ) {
@@ -1990,10 +1991,10 @@ function epl_sorting_tabs() {
  */
 function epl_add_or_update_params( $url, $key, $value ) {
 
-        if( empty( $url ) ) {
-                return $url;
-        }
-        
+	if ( empty( $url ) ) {
+			return $url;
+	}
+
 	$a     = wp_parse_url( $url );
 	$query = isset( $a['query'] ) ? $a['query'] : '';
 	parse_str( $query, $params );
