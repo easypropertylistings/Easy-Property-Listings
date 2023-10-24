@@ -708,7 +708,7 @@ function epl_contact_notes_view( $contact ) {
 				<input type="hidden" name="epl_action" value="add-contact-note" />
 				<br />
 				<label class ="epl-contact-select-label" >
-					<select aria-label="<?php esc_attr_e('Select listing for note', 'easy-property-listings'); ?>" class="epl-contact-note-select" id="contact-note-listing">
+					<select aria-label="<?php esc_attr_e( 'Select listing for note', 'easy-property-listings' ); ?>" class="epl-contact-note-select" id="contact-note-listing">
 						<option value=''><?php esc_html_e( 'Note for Listing', 'easy-property-listings' ); ?></option>
 						<?php
 						if ( ! empty( $contact->listing_ids ) ) {
@@ -720,7 +720,7 @@ function epl_contact_notes_view( $contact ) {
 					</select>
 				</label>
 				<label class ="epl-contact-select-label" >
-					<select aria-label="<?php esc_attr_e('Seelct label for note', 'easy-property-listings'); ?>" class="epl-contact-note-select" id="contact-activity-type">
+					<select aria-label="<?php esc_attr_e( 'Select label for note', 'easy-property-listings' ); ?>" class="epl-contact-note-select" id="contact-activity-type">
 						<?php
 						foreach ( $contact->get_activity_types() as $act_key => $act_name ) {
 							echo '<option value="' . esc_attr( $act_key ) . '">' . esc_attr( $act_name ) . '</option>';
@@ -914,7 +914,7 @@ function epl_add_contact_screen_options() {
  * @param string $option Option.
  * @param string $value Value.
  *
- * @return mixed
+ * @return string
  */
 function epl_contact_table_set_option( $status, $option, $value ) {
 	return $value;
