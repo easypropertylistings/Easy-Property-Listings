@@ -1921,17 +1921,17 @@ function epl_sorting_tool( $attributes = array() ) {
 			foreach ( $sorters as $sorter ) {
 
 				if ( ! empty( $instance_id ) ) {
-						$sortbyinstance = $set_instance_id . '_' . $sortby;
-						$sorter_id      = $instance_id . '_' . $sorter['id'];
+					$sortbyinstance = $set_instance_id . '_' . $sortby;
+					$sorter_id      = $instance_id . '_' . $sorter['id'];
 				} else {
-						$sortbyinstance = $sortby;
-						$sorter_id      = $sorter['id'];
+					$sortbyinstance = $sortby;
+					$sorter_id      = $sorter['id'];
 				}
 				?>
-								<option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
-										<?php echo esc_attr( $sorter['label'] ); ?>
-								</option> 
-								<?php
+				<option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
+					<?php echo esc_attr( $sorter['label'] ); ?>
+				</option>
+				<?php
 			}
 			?>
 		</select>
@@ -1943,7 +1943,7 @@ add_action( 'epl_sorting_tool', 'epl_sorting_tool' );
 /**
  * Displays the Sorting tabs
  *
- * @since      3.3
+ * @since 3.3
  */
 function epl_sorting_tabs() {
 	$sortby = '';
