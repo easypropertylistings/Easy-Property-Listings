@@ -975,9 +975,8 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 		// Select.
 		case 'select':
-
-                        $is_multiple = isset( $field['multiple'] ) ? ' multiple ' : ' ';
-                        $name =  isset( $field['multiple'] ) ? $object->get_field_name( $field['key'] ).'[]' : '';
+						$is_multiple = isset( $field['multiple'] ) ? ' multiple ' : ' ';
+						$name        = isset( $field['multiple'] ) ? $object->get_field_name( $field['key'] ) . '[]' : '';
 			?>
 			<p>
 				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
