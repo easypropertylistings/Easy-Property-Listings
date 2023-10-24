@@ -68,7 +68,7 @@ function epl_custom_restrict_manage_posts() {
 
 		if ( ! empty( $fields ) ) {
 			$_GET['property_status'] = isset( $_GET['property_status'] ) ? sanitize_text_field( wp_unslash( $_GET['property_status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-			echo '<select name="property_status">';
+			echo '<select aria-label="'.esc_html_e('Property Status', 'easy-property-listings').'"  name="property_status">';
 				echo '<option value="">' . esc_html__( 'Filter By Type', 'easy-property-listings' ) . '</option>';
 			foreach ( $fields as $k => $v ) {
 				$selected = ( sanitize_text_field( wp_unslash( $_GET['property_status'] ) ) === $k ? 'selected="selected"' : '' );  // phpcs:ignore WordPress.Security.NonceVerification
@@ -99,7 +99,7 @@ function epl_custom_restrict_manage_posts() {
 
 		if ( ! empty( $custom_search_fields ) ) {
 			$sel = isset( $_GET['property_custom_fields'] ) ? sanitize_text_field( wp_unslash( $_GET['property_custom_fields'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-			echo '<select name="property_custom_fields">';
+			echo '<select aria-label="'.esc_html_e('Custom field value', 'easy-property-listings') .'" name="property_custom_fields">';
 				echo '<option value="">' . esc_html__( 'Search For:', 'easy-property-listings' ) . '</option>';
 			foreach ( $custom_search_fields as $k => $v ) {
 				echo '<option value="' . esc_attr( $k ) . '" ' . selected( $sel, $k, false ) . '>' . esc_attr( $v ) . '</option>';
@@ -560,7 +560,7 @@ function epl_manage_listing_column_price_callback() {
 
 	// If we have a price to display in the bar.
 	if ( ! empty( $bar_price ) ) {
-		$bar_width = 0 === $max_price ? 0 : $bar_price / $max_price * 100;
+		$bar_width = 0 === $max_price ? 0 : intval( $bar_price ) / $max_price * 100;
 		echo '<div class="epl-price-bar ' . esc_html( $class ) . '">
 			<span style="width:' . esc_html( $bar_width ) . '%"></span>
 		</div>';

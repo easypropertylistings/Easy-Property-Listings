@@ -975,6 +975,9 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 		// Select.
 		case 'select':
+
+                        $is_multiple = isset( $field['multiple'] ) ? ' multiple ' : ' ';
+                        $name =  isset( $field['multiple'] ) ? $object->get_field_name( $field['key'] ).'[]' : '';
 			?>
 			<p>
 				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
@@ -983,14 +986,10 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 				<select
 
-					<?php
-					// Autoformatting breaks select boxes in widgets.
-					// TODO: this is a bit messy and is missing esc_attr for multiple and the name= below.
-					echo isset( $field['multiple'] ) ? ' multiple ' : ' ';
-					?>
+					<?php echo esc_attr( $is_multiple ); ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); echo isset( $field['multiple'] ) ? '[]' : ''; ?>">
+					name="<?php echo esc_attr( $name ); ?>">
 
 					<?php
 

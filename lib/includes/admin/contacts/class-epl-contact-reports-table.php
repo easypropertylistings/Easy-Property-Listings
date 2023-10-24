@@ -486,7 +486,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 				$cats = epl_get_contact_categories();
 				if ( $cats ) {
 					?>
-					<select name="cat_filter" class="epl_contact_type_filter">
+					<select aria-label="<?php esc_html_e( 'Category Filter', 'easy-property-listings' ); ?>" name="cat_filter" class="epl_contact_type_filter">
 						<option value=""><?php esc_html_e( 'Type:', 'easy-property-listings' ); ?></option>
 						<?php
 						foreach ( $cats as $cat_key  => $cat_value ) {
