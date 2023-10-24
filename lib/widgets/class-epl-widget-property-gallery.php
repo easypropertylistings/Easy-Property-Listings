@@ -36,6 +36,8 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * Widget function.
 	 *
 	 * @since 1.0
+	 * @since 3.4.49 Added escaping to elements.
+	 *
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
 	 */
@@ -65,7 +67,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		if ( ! empty( $attachments ) ) {
 			echo $before_widget;
 			if ( $title ) {
-				echo $before_title . $title . $after_title;
+				echo $before_title . esc_html( $title ) . $after_title;
 			}
 
 			$gall = '[gallery columns="' . $d_columns . '" link="file"]';
