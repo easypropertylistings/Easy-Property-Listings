@@ -94,7 +94,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * Render the widget form.
 	 *
 	 * @since 1.0
-	 * @since 3.4.49 Refactored escaping elements.
+	 * @since 3.4.49 Refactored escaping elements. Removed unnecessary variables.
 	 * @param array $instance options.
 	 */
 	public function form( $instance ) {
@@ -105,12 +105,11 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		$title     = esc_attr( $instance['title'] );
-		$d_columns = esc_attr( $instance['d_columns'] ); ?>
+		?>
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'easy-property-listings' ); ?></label>
-			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 
 		<p>
