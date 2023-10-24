@@ -45,6 +45,7 @@ There are various ways you can contribute:
 - New: Added support for 'status' in search shortcodes.
 - Tweak: Shortcodes, make sure meta_query in arg is defined as array, prior to usage.
 - Tweak: Added accessibility labels to select elements.
+- Tweak: Escaping additional widget elements.
 - Fix: Price Sticker, inspections code trim string when is null.
 - Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
 - Fix: Floor plans, energy certificate, external links and min web labels using esc_html instead of esc_attr.
