@@ -80,9 +80,7 @@ class EPL_Widget_Property_Search extends WP_Widget {
 			if ( isset( $new_instance[ $all_field['key'] ] ) ) {
 				$instance[ $all_field['key'] ] = epl_strip_tags( $new_instance[ $all_field['key'] ] );
 			} else {
-
 				$instance[ $all_field['key'] ] = '';
-
 			}
 		}
 		return $instance;
