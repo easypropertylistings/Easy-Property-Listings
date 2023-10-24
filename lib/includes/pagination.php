@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return mixed|string|void
  * @since 2.1
+ * @since 3.4.49 Added accessibility labels to select elements.
  */
 function epl_fancy_pagination( $args = array() ) {
 	if ( ! is_array( $args ) ) {
@@ -244,7 +245,7 @@ function epl_fancy_pagination( $args = array() ) {
 		// Dropdown.
 		case 2:
 			$out .= '<form action="" method="get">' . "\n";
-			$out .= '<select aria-label="'.esc_html_e( 'Pagination', 'easy-property-listings') .'" size="1" onchange="document.location.href = this.options[this.selectedIndex].value;">' . "\n";
+			$out .= '<select aria-label="' . esc_attr_e( 'Pagination', 'easy-property-listings' ) . '" size="1" onchange="document.location.href = this.options[this.selectedIndex].value;">' . "\n";
 
 			foreach ( range( 1, $total_pages ) as $i ) {
 				$page_num = $i;
@@ -454,20 +455,20 @@ function epl_wp_default_pagination( $query = array() ) {
 
 	<div class="epl-paginate-default-wrapper epl-clearfix">
 		<div class="alignleft">
-                        <?php 
-                                if ( !empty( epl_prev_post_link( $query_open ) ) ) {
-                                        echo wp_kses_post( epl_prev_post_link( $query_open ) ); 
-                                }
-                                
-                        ?>
-                </div>
+						<?php
+						if ( ! empty( epl_prev_post_link( $query_open ) ) ) {
+								echo wp_kses_post( epl_prev_post_link( $query_open ) );
+						}
+
+						?>
+				</div>
 		<div class="alignright">
-                        <?php
-                                if ( !empty( epl_next_post_link( $query_open ) ) ) {
-                                        echo wp_kses_post( epl_next_post_link( $query_open ) );
-                                } 
-                        ?>
-                </div>
+						<?php
+						if ( ! empty( epl_next_post_link( $query_open ) ) ) {
+								echo wp_kses_post( epl_next_post_link( $query_open ) );
+						}
+						?>
+				</div>
 	</div>
 		<?php
 	}
