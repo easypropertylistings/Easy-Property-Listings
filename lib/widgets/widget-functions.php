@@ -994,12 +994,10 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					foreach ( $field['options'] as $k => $v ) {
 						$selected = '';
 						if ( isset( $field['multiple'] ) ) {
-
 							if ( in_array( $k, (array) $value, true ) ) {
 								$selected = ' selected ';
 							}
 						} else {
-
 							if ( isset( $value ) && $k == $value ) { // phpcs:ignore
 								$selected = ' selected ';
 							}
