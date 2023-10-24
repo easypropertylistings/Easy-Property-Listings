@@ -278,10 +278,12 @@ function epl_manage_listing_column_listing_callback() {
 	$land_unit               = $property->get_property_meta( 'property_land_area_unit' );
 	$category                = $property->get_property_meta( 'property_category' );
 
+	// Commercial Specific fields.
 	$commercial_category = $property->get_property_meta( 'property_commercial_category' );
 	$outgoings           = $property->get_property_meta( 'property_com_outgoings' );
 	$return              = $property->get_property_meta( 'property_com_return' );
 
+	// Business Specific fields.
 	$taking    = $property->get_property_meta( 'property_bus_takings' );
 	$franchise = $property->get_property_meta( 'property_bus_franchise' );
 	$taking    = $property->get_property_meta( 'property_bus_terms' );
