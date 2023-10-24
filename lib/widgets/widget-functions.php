@@ -905,6 +905,8 @@ function epl_search_get_defaults() {
  * Render widget field blocks -- for backend form
  *
  * @since 2.2
+ * @since 3.4.49 Added number field type.
+ *
  * @param array  $field Array of field type for the switch.
  * @param array  $object Array of object.
  * @param string $value Value.
@@ -1006,6 +1008,25 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					}
 					?>
 				</select>
+			</p>
+			<?php
+
+			break;
+
+		// Number.
+		case 'number':
+			?>
+			<p>
+				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
+					<?php echo esc_attr( $field['label'] ); ?>
+				</label>
+				<input
+					class="widefat"
+					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
+					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); ?>"
+					type="number"
+					value="<?php echo esc_attr( $value ); ?>"
+				/>
 			</p>
 			<?php
 
