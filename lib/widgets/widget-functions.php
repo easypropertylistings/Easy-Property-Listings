@@ -984,7 +984,6 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 				</label>
 
 				<select
-
 					<?php echo esc_attr( $is_multiple ); ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
@@ -1008,7 +1007,6 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 						echo '<option value="' . esc_attr( $k ) . '" ' . esc_attr( $selected ) . '>' . esc_attr( $v ) . '</option>';
 					}
 					?>
-
 				</select>
 			</p>
 			<?php
