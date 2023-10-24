@@ -60,14 +60,6 @@ function epl_search_widget_fields() {
 				'order'   => 30,
 			),
 			array(
-				'key'     => 'instance_id',
-				'label'   => __( 'Form Instance ID', 'easy-property-listings' ),
-				'type'    => 'number',
-				'default' => '',
-				'order'   => 300,
-				'help'    => __( 'Leave empty to generate it automatically', 'easy-property-listings' ),
-			),
-			array(
 				'key'     => 'show_property_status_frontend',
 				'label'   => __( 'Status', 'easy-property-listings' ),
 				'default' => 'off',
@@ -221,6 +213,14 @@ function epl_search_widget_fields() {
 				'default' => 'on',
 				'type'    => 'checkbox',
 				'order'   => 240,
+			),
+			array(
+				'key'     => 'instance_id',
+				'label'   => __( 'Form Instance ID', 'easy-property-listings' ),
+				'type'    => 'number',
+				'default' => '',
+				'order'   => 290,
+				'help'    => __( 'Leave empty to generate it automatically', 'easy-property-listings' ),
 			),
 			array(
 				'key'     => 'submit_label',
