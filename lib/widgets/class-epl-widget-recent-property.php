@@ -231,9 +231,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 			if ( isset( $new_instance[ $all_field ] ) ) {
 				$instance[ $all_field ] = epl_strip_tags( $new_instance[ $all_field ] );
 			} else {
-
 				$instance[ $all_field ] = '';
-
 			}
 		}
 
@@ -244,11 +242,10 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	 * Render the widget form.
 	 *
 	 * @since 1.0
+	 * @since 3.4.49 Refactored escaping elements.
 	 * @param array $instance options.
 	 */
 	public function form( $instance ) {
-
-		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$defaults = array(
 			'title'             => '',
@@ -303,13 +300,13 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title', 'easy-property-listings' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title', 'easy-property-listings' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p> <strong><?php esc_html_e( 'Query Settings', 'easy-property-listings' ); ?></strong></p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'types' ); ?>"><?php esc_html_e( 'Listing Type', 'easy-property-listings' ); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id( 'types' ); ?>" name="<?php echo $this->get_field_name( 'types' ); ?>[]" multiple="multiple">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'types' ) ); ?>"><?php esc_html_e( 'Listing Type', 'easy-property-listings' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'types' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'types' ) ); ?>[]" multiple="multiple">
 				<?php
 					$options = epl_get_active_post_types();
 				if ( ! empty( $options ) ) {
@@ -319,7 +316,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						} else {
 							$selected = $k === $instance['types'] ? true : false;
 						}
-						echo '<option value="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '"', $selected ? ' selected="selected"' : '', '>', $v, '</option>';
+						echo '<option value="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '"', $selected ? ' selected="selected"' : '', '>', esc_html( $v ), '</option>';
 					}
 				}
 				?>
@@ -327,8 +324,8 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'status' ); ?>"><?php esc_html_e( 'Listing Status', 'easy-property-listings' ); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id( 'status' ); ?>" name="<?php echo $this->get_field_name( 'status' ); ?>[]" multiple="multiple">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'status' ) ); ?>"><?php esc_html_e( 'Listing Status', 'easy-property-listings' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'status' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'status' ) ); ?>[]" multiple="multiple">
 				<?php
 					$options = apply_filters(
 						'epl_widget_listing_property_status',
@@ -348,7 +345,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						} else {
 							$selected = $key === $instance['status'] ? true : false;
 						}
-						echo '<option value="' . esc_attr( $key ) . '" id="' . esc_attr( $key ) . '"' . selected( $selected, true, false ) . '>' . $value . '</option>';
+						echo '<option value="' . esc_attr( $key ) . '" id="' . esc_attr( $key ) . '"' . selected( $selected, true, false ) . '>' . esc_html( $value ) . '</option>';
 					}
 				}
 				?>
@@ -356,83 +353,83 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<select id="<?php echo $this->get_field_id( 'p_number' ); ?>" name="<?php echo $this->get_field_name( 'p_number' ); ?>">
+			<select id="<?php echo esc_attr( $this->get_field_id( 'p_number' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'p_number' ) ); ?>">
 				<?php
 				for ( $i = 1;$i <= 20;$i++ ) {
-					echo '<option value="' . $i . '"';
+					echo '<option value="' . esc_attr( $i ) . '"';
 					if ( $i == $instance['p_number'] ) { //phpcs:ignore
 						echo ' selected="selected"';
-					} echo '>' . $i . '</option>';
+					} echo '>' . esc_html( $i ) . '</option>';
 				}
 				?>
 			</select>
-			<label for="<?php echo $this->get_field_id( 'p_number' ); ?>"><?php esc_html_e( 'Number of Properties', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'p_number' ) ); ?>"><?php esc_html_e( 'Number of Properties', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<select id="<?php echo $this->get_field_id( 'p_skip' ); ?>" name="<?php echo $this->get_field_name( 'p_skip' ); ?>">
+			<select id="<?php echo esc_attr( $this->get_field_id( 'p_skip' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'p_skip' ) ); ?>">
 				<?php
 				for ( $i = 0;$i <= 20;$i++ ) {
-					echo '<option value="' . $i . '"';
+					echo '<option value="' . esc_attr( $i ) . '"';
 					if ( $i == $instance['p_skip'] ) { //phpcs:ignore
 						echo ' selected="selected"';
-					} echo '>' . $i . '</option>';
+					} echo '>' . esc_html( $i ) . '</option>';
 				}
 				?>
 			</select>
-			<label for="<?php echo $this->get_field_id( 'p_skip' ); ?>"><?php esc_html_e( 'Properties to Skip', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'p_skip' ) ); ?>"><?php esc_html_e( 'Properties to Skip', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'featured' ); ?>" name="<?php echo $this->get_field_name( 'featured' ); ?>"
-												<?php
-												if ( $instance['featured'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'featured' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'featured' ) ); ?>"
+				<?php
+				if ( $instance['featured'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'featured' ); ?>"><?php esc_html_e( 'Featured Properties', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'featured' ) ); ?>"><?php esc_html_e( 'Featured Properties', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'open_house' ); ?>" name="<?php echo $this->get_field_name( 'open_house' ); ?>"
-												<?php
-												if ( $instance['open_house'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'open_house' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'open_house' ) ); ?>"
+				<?php
+				if ( $instance['open_house'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'open_house' ); ?>"><?php echo epl_labels( 'label_home_open' ) . ' ' . __( 'Listings', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'open_house' ) ); ?>"><?php echo esc_html( epl_labels( 'label_home_open' ) ) . ' ' . esc_html__( 'Listings', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'archive' ); ?>" name="<?php echo $this->get_field_name( 'archive' ); ?>"
-												<?php
-												if ( $instance['archive'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'archive' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'archive' ) ); ?>"
+				<?php
+				if ( $instance['archive'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'archive' ); ?>"><?php esc_html_e( 'Dynamic', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'archive' ) ); ?>"><?php esc_html_e( 'Dynamic', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'order_rand' ); ?>" name="<?php echo $this->get_field_name( 'order_rand' ); ?>"
-												<?php
-												if ( $instance['order_rand'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'order_rand' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'order_rand' ) ); ?>"
+				<?php
+				if ( $instance['order_rand'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'order_rand' ); ?>"><?php esc_html_e( 'Random Order', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'order_rand' ) ); ?>"><?php esc_html_e( 'Random Order', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p> <strong><?php esc_html_e( 'Display Settings', 'easy-property-listings' ); ?></strong></p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'view' ); ?>"><?php esc_html_e( 'View', 'easy-property-listings' ); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id( 'view' ); ?>" name="<?php echo $this->get_field_name( 'view' ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'view' ) ); ?>"><?php esc_html_e( 'View', 'easy-property-listings' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'view' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'view' ) ); ?>">
 				<?php
 				$options = apply_filters( 'epl_listing_widget_view', array( 'default' => __( 'Default', 'easy-property-listings' ) ) );
 				if ( count( $options ) ) {
 					foreach ( $options as $key => $value ) {
-						echo '<option value="' . esc_attr( $key ) . '"' . selected( $key, $instance['view'], false ) . '>' . $value . '</option>';
+						echo '<option value="' . esc_attr( $key ) . '"' . selected( $key, $instance['view'], false ) . '>' . esc_html( $value ) . '</option>';
 					}
 				}
 				?>
@@ -440,8 +437,8 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'display' ); ?>"><?php esc_html_e( 'Display Style', 'easy-property-listings' ); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id( 'display' ); ?>" name="<?php echo $this->get_field_name( 'display' ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'display' ) ); ?>"><?php esc_html_e( 'Display Style', 'easy-property-listings' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'display' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'display' ) ); ?>">
 				<?php
 					/**
 					 * Usage
@@ -460,32 +457,32 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						)
 					);
 				foreach ( $options as $option_key    => $option_label ) {
-					echo '<option value="' . $option_key . '" id="' . $option_key . '"', $instance['display'] === $option_key ? ' selected="selected"' : '', '>', $option_label, '</option>';
+					echo '<option value="' . esc_attr( $option_key ) . '" id="' . esc_attr( $option_key ) . '"', $instance['display'] === $option_key ? ' selected="selected"' : '', '>', esc_html( $option_label ), '</option>';
 				}
 				?>
 			</select>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'image' ); ?>"><?php esc_html_e( 'Image Size', 'easy-property-listings' ); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id( 'image' ); ?>" name="<?php echo $this->get_field_name( 'image' ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'image' ) ); ?>"><?php esc_html_e( 'Image Size', 'easy-property-listings' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'image' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'image' ) ); ?>">
 				<?php
 					$sizes = epl_get_thumbnail_sizes();
 				foreach ( $sizes as $k => $v ) {
 					$v = implode( ' x ', $v );
-					echo '<option class="widefat" value="' . $k . '" id="' . $k . '"', $instance['image'] === $k ? ' selected="selected"' : '', '>', $k . ' (' . $v . ' )', '</option>';
+					echo '<option class="widefat" value="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '"', $instance['image'] === $k ? ' selected="selected"' : '', '>', esc_html( $k ) . ' (' . esc_html( $v ) . ' )', '</option>';
 				}
 				?>
 			</select>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'd_icons' ); ?>"><?php esc_html_e( 'Icon Style', 'easy-property-listings' ); ?></label>
-			<select class="widefat" id="<?php echo $this->get_field_id( 'd_icons' ); ?>" name="<?php echo $this->get_field_name( 'd_icons' ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_icons' ) ); ?>"><?php esc_html_e( 'Icon Style', 'easy-property-listings' ); ?></label>
+			<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'd_icons' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_icons' ) ); ?>">
 				<?php
 					$options = array( 'none', 'all', 'beds/baths' );
 				foreach ( $options as $option ) {
-					echo '<option value="' . $option . '" id="' . $option . '"', $instance['d_icons'] === $option ? ' selected="selected"' : '', '>', $option, '</option>';
+					echo '<option value="' . esc_attr( $option ) . '" id="' . esc_attr( $option ) . '"', $instance['d_icons'] === $option ? ' selected="selected"' : '', '>', esc_html( $option ), '</option>';
 				}
 				?>
 			</select>
@@ -494,88 +491,88 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_title' ); ?>" name="<?php echo $this->get_field_name( 'd_title' ); ?>"
-												<?php
-												if ( $instance['d_title'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_title' ) ); ?>"
+				<?php
+				if ( $instance['d_title'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_title' ); ?>"><?php esc_html_e( 'Property Headline', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_title' ) ); ?>"><?php esc_html_e( 'Property Headline', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'd_excerpt' ); ?>"
-												<?php
-												if ( $instance['d_excerpt'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_excerpt' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_excerpt' ) ); ?>"
+				<?php
+				if ( $instance['d_excerpt'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_excerpt' ); ?>"><?php esc_html_e( 'Excerpt', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_excerpt' ) ); ?>"><?php esc_html_e( 'Excerpt', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_suburb' ); ?>" name="<?php echo $this->get_field_name( 'd_suburb' ); ?>"
-												<?php
-												if ( $instance['d_suburb'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_suburb' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_suburb' ) ); ?>"
+				<?php
+				if ( $instance['d_suburb'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_suburb' ); ?>"><?php echo epl_labels( 'label_suburb' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_suburb' ) ); ?>"><?php echo esc_html( epl_labels( 'label_suburb' ) ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_street' ); ?>" name="<?php echo $this->get_field_name( 'd_street' ); ?>"
-												<?php
-												if ( $instance['d_street'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_street' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_street' ) ); ?>"
+				<?php
+				if ( $instance['d_street'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_street' ); ?>"><?php esc_html_e( 'Street Address', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_street' ) ); ?>"><?php esc_html_e( 'Street Address', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_price' ); ?>" name="<?php echo $this->get_field_name( 'd_price' ); ?>"
-												<?php
-												if ( $instance['d_price'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_price' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_price' ) ); ?>"
+				<?php
+				if ( $instance['d_price'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_price' ); ?>"><?php esc_html_e( 'Price', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_price' ) ); ?>"><?php esc_html_e( 'Price', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_inspection_time' ); ?>" name="<?php echo $this->get_field_name( 'd_inspection_time' ); ?>"
-												<?php
-												if ( $instance['d_inspection_time'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_inspection_time' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_inspection_time' ) ); ?>"
+				<?php
+				if ( $instance['d_inspection_time'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_inspection_time' ); ?>"><?php esc_html_e( 'Inspection Times', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_inspection_time' ) ); ?>"><?php esc_html_e( 'Inspection Times', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_ical_link' ); ?>" name="<?php echo $this->get_field_name( 'd_ical_link' ); ?>"
-												<?php
-												if ( $instance['d_ical_link'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_ical_link' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_ical_link' ) ); ?>"
+				<?php
+				if ( $instance['d_ical_link'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_ical_link' ); ?>"><?php esc_html_e( 'Inspection Time iCal Link', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_ical_link' ) ); ?>"><?php esc_html_e( 'Inspection Time iCal Link', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_more' ); ?>" name="<?php echo $this->get_field_name( 'd_more' ); ?>"
-												<?php
-												if ( $instance['d_more'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_more' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_more' ) ); ?>"
+				<?php
+				if ( $instance['d_more'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_more' ); ?>"><?php esc_html_e( 'Read More Button', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_more' ) ); ?>"><?php esc_html_e( 'Read More Button', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'more_text' ); ?>"><?php esc_html_e( 'Read More Label', 'easy-property-listings' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'more_text' ); ?>" name="<?php echo $this->get_field_name( 'more_text' ); ?>" type="text" value="<?php echo $more_text; ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'more_text' ) ); ?>"><?php esc_html_e( 'Read More Label', 'easy-property-listings' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'more_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'more_text' ) ); ?>" type="text" value="<?php echo esc_attr( $more_text ); ?>" />
 		</p>
 
 		<?php
