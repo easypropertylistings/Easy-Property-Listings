@@ -164,30 +164,30 @@ class EPL_Widget_Author extends WP_Widget {
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_image' ); ?>" name="<?php echo $this->get_field_name( 'd_image' ); ?>"
-												<?php
-												if ( $instance['d_image'] ) {
-													echo 'checked="checked"';}
-												?>
+				<?php
+				if ( $instance['d_image'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
 			<label for="<?php echo $this->get_field_id( 'd_image' ); ?>"><?php _e( 'Display Author Gravatar', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_icons' ); ?>" name="<?php echo $this->get_field_name( 'd_icons' ); ?>"
-												<?php
-												if ( $instance['d_icons'] ) {
-													echo 'checked="checked"';}
-												?>
+				<?php
+				if ( $instance['d_icons'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
 			<label for="<?php echo $this->get_field_id( 'd_icons' ); ?>"><?php _e( 'Display Icons', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_bio' ); ?>" name="<?php echo $this->get_field_name( 'd_bio' ); ?>"
-												<?php
-												if ( $instance['d_bio'] ) {
-													echo 'checked="checked"';}
-												?>
+				<?php
+				if ( $instance['d_bio'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
 			<label for="<?php echo $this->get_field_id( 'd_bio' ); ?>"><?php _e( 'Display Bio', 'easy-property-listings' ); ?></label>
 		</p>
