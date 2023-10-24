@@ -495,6 +495,7 @@ add_action( 'epl_manage_listing_column_geo', 'epl_manage_listing_column_geo_call
  *
  * @since 1.0.0
  * @since 3.4.0 Now using epl_get_option function.
+ * @since 3.4.49 Set the bar value to integer.
  */
 function epl_manage_listing_column_price_callback() {
 	global $post, $property;
@@ -565,8 +566,8 @@ function epl_manage_listing_column_price_callback() {
 	// If we have a price to display in the bar.
 	if ( ! empty( $bar_price ) ) {
 		$bar_width = 0 === $max_price ? 0 : intval( $bar_price ) / $max_price * 100;
-		echo '<div class="epl-price-bar ' . esc_html( $class ) . '">
-			<span style="width:' . esc_html( $bar_width ) . '%"></span>
+		echo '<div class="epl-price-bar ' . esc_attr( $class ) . '">
+			<span style="width:' . esc_attr( $bar_width ) . '%"></span>
 		</div>';
 		// Otherwise, there is no price set.
 	} else {
