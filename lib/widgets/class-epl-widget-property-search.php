@@ -103,7 +103,6 @@ class EPL_Widget_Property_Search extends WP_Widget {
 		$instance = array_map( 'epl_esc_attr', $instance );
 
 		foreach ( $instance as $in_key => $in_val ) {
-
 			${$in_key} = $in_val;
 		}
 
