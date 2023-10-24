@@ -1806,11 +1806,12 @@ add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
  * @since 2.0
  * @since 3.3 Revised.
  * @since 3.4.44 Get shortcode attributes as parameter.
+ * @since 3.4.49 Args missing second value.
  */
 function epl_listing_toolbar_items( $attributes = array(), $args = array() ) {
 	echo get_epl_listing_toolbar_items( $attributes, $args ); //phpcs:ignore;
 }
-add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
+add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10, 2 );
 
 /**
  * Retrieves the switch and sorting options normally right aligned
@@ -1856,7 +1857,7 @@ function get_epl_listing_toolbar_items( $attributes = array(), $args = array() )
 						break;
 
 					default:
-						// action to hook additional tools.
+						// Action to hook additional tools.
 						do_action( 'epl_listing_toolbar_' . $tool, $attributes );
 						break;
 				}
