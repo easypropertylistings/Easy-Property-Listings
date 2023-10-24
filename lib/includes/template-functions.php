@@ -1987,12 +1987,12 @@ function epl_sorting_tabs() {
  *
  * @return string
  * @since 3.3
- * @since 3.4.49 fixed : warning when url empty.
+ * @since 3.4.49 Fix: Warning when url empty.
  */
 function epl_add_or_update_params( $url, $key, $value ) {
 
 	if ( empty( $url ) ) {
-			return $url;
+		return $url;
 	}
 
 	$a     = wp_parse_url( $url );
