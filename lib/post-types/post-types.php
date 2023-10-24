@@ -363,7 +363,7 @@ function epl_manage_listing_column_listing_callback() {
 		if ( 1 === absint( $rooms ) ) {
 			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html__( 'Room', 'easy-property-listings' ) , '</div>';
 		} else {
-			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html__( epl_get_meta_field_label( 'property_rooms' ) ) , '</div>';
+			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html( epl_get_meta_field_label( 'property_rooms' ) ) , '</div>';
 		}
 	}
 
