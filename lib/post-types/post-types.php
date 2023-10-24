@@ -262,6 +262,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 3.4.23 Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
  * @since 3.4.27 Fixed html escaping issue and formatting for land size.
  * @since 3.4.30 Using epl_get_meta_field_label for dynamic labels.
+ * @since 3.4.49 Escaping values.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -362,7 +363,7 @@ function epl_manage_listing_column_listing_callback() {
 		if ( 1 === absint( $rooms ) ) {
 			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html__( 'Room', 'easy-property-listings' ) , '</div>';
 		} else {
-			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , epl_get_meta_field_label( 'property_rooms' ) , '</div>';
+			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html__( epl_get_meta_field_label( 'property_rooms' ) ) , '</div>';
 		}
 	}
 
