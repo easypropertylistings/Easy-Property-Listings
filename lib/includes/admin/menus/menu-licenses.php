@@ -79,7 +79,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 												</div>
 												<div class="epl-full">
 													<?php
-														$val = get_option( $field['name'] );
+													$val = get_option( $field['name'] );
 													switch ( $field['type'] ) {
 														case 'select':
 															echo '<select aria-label="' . esc_attr( $field['name'] ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '">';
