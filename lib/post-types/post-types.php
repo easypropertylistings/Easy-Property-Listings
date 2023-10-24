@@ -51,7 +51,7 @@ function epl_custom_restrict_manage_posts() {
 	if ( 'property' === $post_type || 'rental' === $post_type || 'land' === $post_type || 'commercial' === $post_type || 'rural' === $post_type || 'business' === $post_type || 'holiday_rental' === $post_type || 'commercial_land' === $post_type ) {
 
 		// Filter by property_status.
-		$fields = array();
+		$fields            = array();
 		$fields['current'] = __( 'Current', 'easy-property-listings' );
 
 		if ( 'rental' !== $post_type && 'holiday_rental' !== $post_type ) {
@@ -64,11 +64,11 @@ function epl_custom_restrict_manage_posts() {
 
 		$fields['withdrawn'] = __( 'Withdrawn', 'easy-property-listings' );
 		$fields['offmarket'] = __( 'Off Market', 'easy-property-listings' );
-		$fields['deleted'] = __( 'Deleted', 'easy-property-listings' );
+		$fields['deleted']   = __( 'Deleted', 'easy-property-listings' );
 
 		if ( ! empty( $fields ) ) {
 			$_GET['property_status'] = isset( $_GET['property_status'] ) ? sanitize_text_field( wp_unslash( $_GET['property_status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-			echo '<select aria-label="'.esc_html_e('Property Status', 'easy-property-listings').'"  name="property_status">';
+			echo '<select aria-label="' . esc_attr_e( 'Property Status', 'easy-property-listings' ) . '"  name="property_status">';
 				echo '<option value="">' . esc_html__( 'Filter By Type', 'easy-property-listings' ) . '</option>';
 			foreach ( $fields as $k => $v ) {
 				$selected = ( sanitize_text_field( wp_unslash( $_GET['property_status'] ) ) === $k ? 'selected="selected"' : '' );  // phpcs:ignore WordPress.Security.NonceVerification
@@ -99,7 +99,7 @@ function epl_custom_restrict_manage_posts() {
 
 		if ( ! empty( $custom_search_fields ) ) {
 			$sel = isset( $_GET['property_custom_fields'] ) ? sanitize_text_field( wp_unslash( $_GET['property_custom_fields'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-			echo '<select aria-label="'.esc_html_e('Custom field value', 'easy-property-listings') .'" name="property_custom_fields">';
+			echo '<select aria-label="' . esc_html_e( 'Custom field value', 'easy-property-listings' ) . '" name="property_custom_fields">';
 				echo '<option value="">' . esc_html__( 'Search For:', 'easy-property-listings' ) . '</option>';
 			foreach ( $custom_search_fields as $k => $v ) {
 				echo '<option value="' . esc_attr( $k ) . '" ' . selected( $sel, $k, false ) . '>' . esc_attr( $v ) . '</option>';
@@ -139,9 +139,9 @@ function epl_admin_posts_filter( $query ) {
 		}
 
 		if ( isset( $_GET['property_author'] ) && ! empty( $_GET['property_author'] ) ) {
-			$author = intval( $_GET['property_author'] ); // WPCS: XSS ok.
+			$author        = intval( $_GET['property_author'] ); // WPCS: XSS ok.
 			$author_object = get_user_by( 'id', $author );
-			$meta_query[] = array(
+			$meta_query[]  = array(
 				'relation' => 'OR',
 				array(
 					'key'   => 'property_agent',
@@ -616,7 +616,7 @@ function epl_manage_listing_column_property_status_callback() {
 			'leased'    => $property->label_leased,
 			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
 			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
-                        'deleted'   => __( 'Deleted', 'easy-property-listings' ),
+			'deleted'   => __( 'Deleted', 'easy-property-listings' ),
 		)
 	);
 	if ( ! empty( $property_status ) ) {
