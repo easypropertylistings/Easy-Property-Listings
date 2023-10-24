@@ -98,8 +98,6 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 */
 	public function form( $instance ) {
 
-		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-
 		$defaults = array(
 			'title'     => '',
 			'd_columns' => '4',
@@ -110,12 +108,12 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		$d_columns = esc_attr( $instance['d_columns'] ); ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'easy-property-listings' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'easy-property-listings' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'd_columns' ); ?>"><?php esc_html_e( 'Number of columns', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_columns' ) ); ?>"><?php esc_html_e( 'Number of columns', 'easy-property-listings' ); ?></label>
 			<select aria-label="<?php esc_attr_e( 'Number of columns', 'easy-property-listings' ); ?>"  class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'd_columns' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_columns' ) ); ?>">
 				<?php
 				for ( $i = 1;$i <= 6;$i++ ) {
