@@ -7,6 +7,7 @@
  * @copyright   Copyright (c) 2014, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
+ * @since       3.4.49 Added accessibility labels to select elements.
  */
 
 // Exit if accessed directly.
@@ -81,7 +82,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 														$val = get_option( $field['name'] );
 													switch ( $field['type'] ) {
 														case 'select':
-															echo '<select aria-label="'.esc_html_e( $field["name"] ).'" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '">';
+															echo '<select aria-label="'.esc_attr( $field["name"] ).'" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '">';
 															if ( ! empty( $field['default'] ) ) {
 																echo '<option value="" selected="selected">' . esc_attr( $field['default'] ) . '</option>';
 															}
