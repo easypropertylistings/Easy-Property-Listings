@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.4.48\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-10-24 06:14:40+00:00\n"
+"POT-Creation-Date: 2023-10-24 08:31:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -609,8 +609,8 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1245
-#: lib/includes/functions.php:2238 lib/post-types/post-types.php:55
-#: lib/post-types/post-types.php:614
+#: lib/includes/functions.php:2238 lib/post-types/post-types.php:56
+#: lib/post-types/post-types.php:619
 #: lib/widgets/class-epl-widget-recent-property.php:187
 #: lib/widgets/class-epl-widget-recent-property.php:336
 #: lib/widgets/widget-admin-dashboard.php:142
@@ -623,7 +623,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:1246
 #: lib/includes/functions.php:1179 lib/includes/functions.php:1744
 #: lib/includes/functions.php:2240 lib/includes/install.php:51
-#: lib/post-types/post-types.php:58 lib/updates/epl-2.1.11.php:18
+#: lib/post-types/post-types.php:59 lib/updates/epl-2.1.11.php:18
 #: lib/widgets/class-epl-widget-recent-property.php:188
 #: lib/widgets/class-epl-widget-recent-property.php:337
 #: lib/widgets/widget-admin-dashboard.php:194
@@ -635,7 +635,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:1247
 #: lib/includes/functions.php:1186 lib/includes/functions.php:1770
 #: lib/includes/functions.php:2244 lib/includes/install.php:50
-#: lib/post-types/post-types.php:62 lib/updates/epl-2.1.php:18
+#: lib/post-types/post-types.php:63 lib/updates/epl-2.1.php:18
 #: lib/widgets/class-epl-widget-recent-property.php:189
 #: lib/widgets/class-epl-widget-recent-property.php:338
 #: lib/widgets/widget-admin-dashboard.php:147
@@ -1760,7 +1760,7 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:557
 #: lib/includes/admin/menus/menu-help.php:171
-#: lib/meta-boxes/meta-box-init.php:86 lib/post-types/post-types.php:95
+#: lib/meta-boxes/meta-box-init.php:86 lib/post-types/post-types.php:96
 msgid "Second Listing Agent"
 msgstr ""
 
@@ -2843,7 +2843,7 @@ msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:1738
 #: lib/includes/class-epl-property-meta.php:1810
-#: lib/post-types/post-types.php:380
+#: lib/post-types/post-types.php:384
 msgid "m&#178;"
 msgstr ""
 
@@ -3851,8 +3851,8 @@ msgstr ""
 msgid "Under Contract"
 msgstr ""
 
-#: lib/includes/functions.php:2247 lib/post-types/post-types.php:65
-#: lib/post-types/post-types.php:617
+#: lib/includes/functions.php:2247 lib/post-types/post-types.php:66
+#: lib/post-types/post-types.php:622
 #: lib/widgets/class-epl-widget-recent-property.php:190
 #: lib/widgets/class-epl-widget-recent-property.php:339
 #: lib/widgets/widget-admin-dashboard.php:152
@@ -3861,8 +3861,8 @@ msgstr ""
 msgid "Withdrawn"
 msgstr ""
 
-#: lib/includes/functions.php:2248 lib/post-types/post-types.php:66
-#: lib/post-types/post-types.php:618
+#: lib/includes/functions.php:2248 lib/post-types/post-types.php:67
+#: lib/post-types/post-types.php:623
 #: lib/widgets/class-epl-widget-recent-property.php:191
 #: lib/widgets/class-epl-widget-recent-property.php:340
 #: lib/widgets/widget-admin-dashboard.php:157
@@ -3871,8 +3871,8 @@ msgstr ""
 msgid "Off Market"
 msgstr ""
 
-#: lib/includes/functions.php:2249 lib/post-types/post-types.php:67
-#: lib/post-types/post-types.php:619
+#: lib/includes/functions.php:2249 lib/post-types/post-types.php:68
+#: lib/post-types/post-types.php:624
 #: lib/widgets/class-epl-widget-recent-property.php:192
 #: lib/widgets/class-epl-widget-recent-property.php:341
 #: lib/widgets/widget-admin-dashboard.php:162
@@ -4230,11 +4230,11 @@ msgstr ""
 msgid "Listing Agent(s)"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:69 lib/post-types/post-types.php:93
+#: lib/meta-boxes/meta-box-init.php:69 lib/post-types/post-types.php:94
 msgid "Office ID"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:77 lib/post-types/post-types.php:94
+#: lib/meta-boxes/meta-box-init.php:77 lib/post-types/post-types.php:95
 msgid "Listing Agent"
 msgstr ""
 
@@ -4266,7 +4266,7 @@ msgstr ""
 msgid "Hide Author Box"
 msgstr ""
 
-#: lib/meta-boxes/meta-box-init.php:133 lib/post-types/post-types.php:71
+#: lib/meta-boxes/meta-box-init.php:133
 msgid "Property Status"
 msgstr ""
 
@@ -5188,55 +5188,51 @@ msgstr ""
 msgid "Parent Rural Listing:"
 msgstr ""
 
-#: lib/post-types/post-types.php:72
+#: lib/post-types/post-types.php:72 lib/post-types/post-types.php:73
 msgid "Filter By Type"
 msgstr ""
 
-#: lib/post-types/post-types.php:86
+#: lib/post-types/post-types.php:87
 msgid "All Users"
 msgstr ""
 
-#: lib/post-types/post-types.php:96 lib/widgets/widget-functions.php:92
+#: lib/post-types/post-types.php:97 lib/widgets/widget-functions.php:92
 msgid "Property ID"
 msgstr ""
 
-#: lib/post-types/post-types.php:102
-msgid "Custom field value"
+#: lib/post-types/post-types.php:103 lib/post-types/post-types.php:104
+msgid "Search For"
 msgstr ""
 
-#: lib/post-types/post-types.php:103
-msgid "Search For:"
-msgstr ""
-
-#: lib/post-types/post-types.php:116
+#: lib/post-types/post-types.php:117
 msgid "Search Value."
 msgstr ""
 
-#: lib/post-types/post-types.php:293
+#: lib/post-types/post-types.php:297
 msgid "Important! Set a Heading"
 msgstr ""
 
-#: lib/post-types/post-types.php:354
+#: lib/post-types/post-types.php:358
 msgid "Beds"
 msgstr ""
 
-#: lib/post-types/post-types.php:355
+#: lib/post-types/post-types.php:359
 msgid "Baths"
 msgstr ""
 
-#: lib/post-types/post-types.php:362
+#: lib/post-types/post-types.php:366
 msgid "Room"
 msgstr ""
 
-#: lib/post-types/post-types.php:482
+#: lib/post-types/post-types.php:486
 msgid "No"
 msgstr ""
 
-#: lib/post-types/post-types.php:569
+#: lib/post-types/post-types.php:574
 msgid "No price set"
 msgstr ""
 
-#: lib/post-types/post-types.php:588
+#: lib/post-types/post-types.php:593
 msgid "Lease End:"
 msgstr ""
 
@@ -5593,16 +5589,16 @@ msgstr ""
 msgid "Previous post:"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:30
+#: lib/widgets/class-epl-widget-author.php:31
 msgid "EPL - Author"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-author.php:30
+#: lib/widgets/class-epl-widget-author.php:31
 msgid "Add an Author profile to a sidebar."
 msgstr ""
 
 #: lib/widgets/class-epl-widget-author.php:155
-#: lib/widgets/class-epl-widget-property-gallery.php:113
+#: lib/widgets/class-epl-widget-property-gallery.php:112
 msgid "Title:"
 msgstr ""
 
@@ -5638,16 +5634,16 @@ msgstr ""
 msgid "Add contact form to a sidebar."
 msgstr ""
 
-#: lib/widgets/class-epl-widget-property-gallery.php:30
+#: lib/widgets/class-epl-widget-property-gallery.php:31
 msgid "EPL - Listing Gallery"
 msgstr ""
 
-#: lib/widgets/class-epl-widget-property-gallery.php:30
+#: lib/widgets/class-epl-widget-property-gallery.php:31
 msgid "Display image gallery."
 msgstr ""
 
+#: lib/widgets/class-epl-widget-property-gallery.php:117
 #: lib/widgets/class-epl-widget-property-gallery.php:118
-#: lib/widgets/class-epl-widget-property-gallery.php:119
 msgid "Number of columns"
 msgstr ""
 
