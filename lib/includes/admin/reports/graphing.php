@@ -294,6 +294,8 @@ add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
  * Show report graph date filters
  *
  * @since 3.0
+ * @since 3.4.49 Added accessibility labels to select elements.
+ *
  * @return void
  */
 function epl_reports_graph_controls() {
@@ -330,7 +332,7 @@ function epl_reports_graph_controls() {
 				<input type="hidden" name="page" value="epl-reports"/>
 				<input type="hidden" name="view" value="<?php echo esc_attr( $view ); ?>"/>
 
-				<select aria-label="<?php esc_html_e( 'Date Options', 'easy-property-listings' ); ?>" id="epl-graphs-date-options" name="range">
+				<select aria-label="<?php esc_attr_e( 'Date Options', 'easy-property-listings' ); ?>" id="epl-graphs-date-options" name="range">
 				<?php foreach ( $date_options as $key => $option ) : ?>
 						<option value="<?php echo esc_attr( $key ); ?>"<?php selected( $key, $dates['range'] ); ?>><?php echo esc_html( $option ); ?></option>
 					<?php endforeach; ?>
@@ -338,17 +340,17 @@ function epl_reports_graph_controls() {
 
 				<div id="epl-date-range-options" <?php echo esc_attr( $display ); ?>>
 					<span><?php esc_html_e( 'From', 'easy-property-listings' ); ?>&nbsp;</span>
-					<select aria-label="<?php esc_html_e( 'Start month', 'easy-property-listings' ); ?>" id="epl-graphs-month-start" name="m_start">
+					<select aria-label="<?php esc_attr_e( 'Start month', 'easy-property-listings' ); ?>" id="epl-graphs-month-start" name="m_start">
 						<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_start'] ); ?>><?php echo esc_attr( epl_month_num_to_name( $i ) ); ?></option>
 						<?php endfor; ?>
 					</select>
-					<select aria-label="<?php esc_html_e( 'Day', 'easy-property-listings' ); ?>"  id="epl-graphs-day-start" name="day">
+					<select aria-label="<?php esc_attr_e( 'Day', 'easy-property-listings' ); ?>"  id="epl-graphs-day-start" name="day">
 						<?php for ( $i = 1; $i <= 31; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['day'] ); ?>><?php echo esc_attr( $i ); ?></option>
 						<?php endfor; ?>
 					</select>
-					<select aria-label="<?php esc_html_e( 'Year', 'easy-property-listings' ); ?>"  id="epl-graphs-year-start" name="year">
+					<select aria-label="<?php esc_attr_e( 'Year', 'easy-property-listings' ); ?>"  id="epl-graphs-year-start" name="year">
 						<?php $curr_year = date( 'Y' ); ?>
 
 						<?php for ( $i = 2007; $i <= $curr_year; $i++ ) : ?>
@@ -356,17 +358,17 @@ function epl_reports_graph_controls() {
 						<?php endfor; ?>
 					</select>
 					<span><?php esc_html_e( 'To', 'easy-property-listings' ); ?>&nbsp;</span>
-					<select aria-label="<?php esc_html_e( 'Month End', 'easy-property-listings' ); ?>"  id="epl-graphs-month-end" name="m_end">
+					<select aria-label="<?php esc_attr_e( 'Month End', 'easy-property-listings' ); ?>"  id="epl-graphs-month-end" name="m_end">
 						<?php for ( $i = 1; $i <= 12; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['m_end'] ); ?>><?php echo esc_attr( epl_month_num_to_name( $i ) ); ?></option>
 						<?php endfor; ?>
 					</select>
-					<select aria-label="<?php esc_html_e( 'Day end', 'easy-property-listings' ); ?>"  id="epl-graphs-day-end" name="day_end">
+					<select aria-label="<?php esc_attr_e( 'Day end', 'easy-property-listings' ); ?>"  id="epl-graphs-day-end" name="day_end">
 						<?php for ( $i = 1; $i <= 31; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['day_end'] ); ?>><?php echo esc_attr( $i ); ?></option>
 						<?php endfor; ?>
 					</select>
-					<select aria-label="<?php esc_html_e( 'Year end', 'easy-property-listings' ); ?>"  id="epl-graphs-year-end" name="year_end">
+					<select aria-label="<?php esc_attr_e( 'Year end', 'easy-property-listings' ); ?>"  id="epl-graphs-year-end" name="year_end">
 						<?php for ( $i = 2007; $i <= $curr_year; $i++ ) : ?>
 						<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['year_end'] ); ?>><?php echo esc_attr( $i ); ?></option>
 						<?php endfor; ?>
@@ -375,7 +377,7 @@ function epl_reports_graph_controls() {
 
 				<div class="epl-graph-filter-submit graph-option-section">
 					<input type="hidden" name="epl_action" value="filter_reports" />
-					<input type="submit" class="button-secondary" value="<?php esc_html_e( 'Filter', 'easy-property-listings' ); ?>"/>
+					<input type="submit" class="button-secondary" value="<?php esc_attr_e( 'Filter', 'easy-property-listings' ); ?>"/>
 				</div>
 			</div>
 		</div>
