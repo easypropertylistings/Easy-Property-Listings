@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * EPL_Widget_Property_Gallery class
  *
  * @since 1.0
+ * @since 3.4.49 Added accessibility labels to select elements. Escaping value missing.
  */
 class EPL_Widget_Property_Gallery extends WP_Widget {
 
@@ -49,7 +50,6 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		foreach ( $args as $arg_key => $arg_val ) {
-
 			${$arg_key} = $arg_val;
 		}
 
@@ -116,7 +116,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'd_columns' ); ?>"><?php esc_html_e( 'Number of columns', 'easy-property-listings' ); ?></label>
-			<select aria-label="<?php esc_html_e('Number of columns', 'easy-property-listings'); ?>"  class="widefat" id="<?php echo $this->get_field_id( 'd_columns' ); ?>" name="<?php echo $this->get_field_name( 'd_columns' ); ?>">
+			<select aria-label="<?php esc_attr_e( 'Number of columns', 'easy-property-listings' ); ?>"  class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'd_columns' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_columns' ) ); ?>">
 				<?php
 				for ( $i = 1;$i <= 6;$i++ ) {
 					echo '<option value="' . esc_attr( $i ) . '"';
