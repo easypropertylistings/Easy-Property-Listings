@@ -2118,7 +2118,7 @@ function epl_author_tab_author_id( $epl_author = array() ) {
 
 	ob_start();
 
-		epl_get_template_part( 'content-author-box-tab-details.php', $arg_list );
+	epl_get_template_part( 'content-author-box-tab-details.php', $arg_list );
 
 	return ob_get_clean();
 }
