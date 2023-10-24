@@ -94,6 +94,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * Render the widget form.
 	 *
 	 * @since 1.0
+	 * @since 3.4.49 Refactored escaping elements.
 	 * @param array $instance options.
 	 */
 	public function form( $instance ) {
