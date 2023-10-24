@@ -1816,7 +1816,6 @@ add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
  * Retrieves the switch and sorting options normally right aligned
  *
  * @since      3.3
- *
  * @since      3.5 gets the shortcode attributes as param
  *
  * @param array $args   The arguments.
