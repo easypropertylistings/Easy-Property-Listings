@@ -82,7 +82,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 														$val = get_option( $field['name'] );
 													switch ( $field['type'] ) {
 														case 'select':
-															echo '<select aria-label="' . esc_attr( $field["name"] ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '">';
+															echo '<select aria-label="' . esc_attr( $field['name'] ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['name'] ) . '">';
 															if ( ! empty( $field['default'] ) ) {
 																echo '<option value="" selected="selected">' . esc_attr( $field['default'] ) . '</option>';
 															}
