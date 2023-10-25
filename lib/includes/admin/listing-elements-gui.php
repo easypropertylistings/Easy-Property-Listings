@@ -40,6 +40,7 @@ add_action( 'media_buttons', 'epl_add_elements_gui_button', 20 );
  * Action target that displays the popup to insert a map to a post
  *
  * @since 3.3
+ * @since 3.4.49 Added accessibility labels to select elements.
  */
 function epl_listing_elements_gui() {
 	?>
@@ -110,7 +111,7 @@ function epl_listing_elements_gui() {
 					<?php esc_html_e( 'Select Shortcode Type', 'easy-property-listings' ); ?>
 				</h4>
 
-				<select aria-label="<?php esc_html_e( 'Select Shortcode Type', 'easy-property-listings' ); ?>" id="epl_elements_shortcode_types">
+				<select aria-label="<?php esc_attr_e( 'Select Shortcode Type', 'easy-property-listings' ); ?>" id="epl_elements_shortcode_types">
 					<option value=""><?php esc_html_e( 'type', 'easy-property-listings' ); ?></option>
 					<?php
 					$types = array( 'action', 'meta', 'post', 'suburb_profile', 'formatted_address', 'excerpt' );
@@ -200,7 +201,7 @@ function epl_listing_elements_gui() {
 
 			<p>
 				<?php esc_html_e( 'For complete action reference visit', 'easy-property-listings' ); ?>
-				<a target="_blank" href="http://docs.easypropertylistings.com.au/hook-docs.html">
+				<a target="_blank" href="https://docs.easypropertylistings.com.au/hook-docs.html">
 					<?php esc_html_e( 'Here', 'easy-property-listings' ); ?>.
 				</a>
 			</p>

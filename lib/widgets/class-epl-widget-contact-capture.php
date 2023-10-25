@@ -35,6 +35,8 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 	 * Widget function.
 	 *
 	 * @since 1.0
+	 * @since 3.4.49 Added escaping to elements.
+	 *
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
 	 */
@@ -47,7 +49,6 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		foreach ( $args as $arg_key => $arg_val ) {
-
 			${$arg_key} = $arg_val;
 		}
 
@@ -55,7 +56,7 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 
 		echo $before_widget;
 		if ( $title ) {
-			echo $before_title . $title . $after_title;
+			echo $before_title . esc_html( $title ) . $after_title;
 		}
 		echo epl_contact_capture_form( $instance );
 

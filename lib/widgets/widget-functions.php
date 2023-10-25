@@ -60,14 +60,6 @@ function epl_search_widget_fields() {
 				'order'   => 30,
 			),
 			array(
-				'key'     => 'instance_id',
-				'label'   => __( 'Form Instance ID', 'easy-property-listings' ),
-				'type'    => 'number',
-				'default' => __( '', 'easy-property-listings' ),
-				'order'   => 300,
-				'help'    => __( 'Leave empty to generate it automatically', 'easy-property-listings' ),
-			),
-			array(
 				'key'     => 'show_property_status_frontend',
 				'label'   => __( 'Status', 'easy-property-listings' ),
 				'default' => 'off',
@@ -221,6 +213,14 @@ function epl_search_widget_fields() {
 				'default' => 'on',
 				'type'    => 'checkbox',
 				'order'   => 240,
+			),
+			array(
+				'key'     => 'instance_id',
+				'label'   => __( 'Form Instance ID', 'easy-property-listings' ),
+				'type'    => 'number',
+				'default' => '',
+				'order'   => 290,
+				'help'    => __( 'Leave empty to generate it automatically', 'easy-property-listings' ),
 			),
 			array(
 				'key'     => 'submit_label',
@@ -905,6 +905,8 @@ function epl_search_get_defaults() {
  * Render widget field blocks -- for backend form
  *
  * @since 2.2
+ * @since 3.4.49 Added number field type.
+ *
  * @param array  $field Array of field type for the switch.
  * @param array  $object Array of object.
  * @param string $value Value.
@@ -975,9 +977,8 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 		// Select.
 		case 'select':
-
-                        $is_multiple = isset( $field['multiple'] ) ? ' multiple ' : ' ';
-                        $name =  isset( $field['multiple'] ) ? $object->get_field_name( $field['key'] ).'[]' : '';
+			$is_multiple = isset( $field['multiple'] ) ? ' multiple ' : ' ';
+			$name        = isset( $field['multiple'] ) ? $object->get_field_name( $field['key'] ) . '[]' : '';
 			?>
 			<p>
 				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
@@ -985,7 +986,6 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 				</label>
 
 				<select
-
 					<?php echo esc_attr( $is_multiple ); ?>
 					class="widefat"
 					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
@@ -996,12 +996,10 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 					foreach ( $field['options'] as $k => $v ) {
 						$selected = '';
 						if ( isset( $field['multiple'] ) ) {
-
 							if ( in_array( $k, (array) $value, true ) ) {
 								$selected = ' selected ';
 							}
 						} else {
-
 							if ( isset( $value ) && $k == $value ) { // phpcs:ignore
 								$selected = ' selected ';
 							}
@@ -1009,8 +1007,26 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 						echo '<option value="' . esc_attr( $k ) . '" ' . esc_attr( $selected ) . '>' . esc_attr( $v ) . '</option>';
 					}
 					?>
-
 				</select>
+			</p>
+			<?php
+
+			break;
+
+		// Number.
+		case 'number':
+			?>
+			<p>
+				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
+					<?php echo esc_attr( $field['label'] ); ?>
+				</label>
+				<input
+					class="widefat"
+					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
+					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); ?>"
+					type="number"
+					value="<?php echo esc_attr( $value ); ?>"
+				/>
 			</p>
 			<?php
 

@@ -389,7 +389,7 @@ function epl_hide_listing_statuses() {
  * @since 3.4.49 New: Additional args for custom template action : epl_loop_template_{$post_type}, epl_loop_template.
  */
 function epl_property_blog( $template = '', $default = 'default' ) {
-        
+
 	if ( empty( $template ) || 'blog' === $template ) {
 		$template = 'default';
 	}
@@ -416,16 +416,16 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 		}
 
 		// Check for action in order of priority : epl_loop_template_{post_type} > epl_loop_template_listing ( only for core )  > epl_loop_template.
-                if ( ! empty( $action_check_type ) ) {
-                        do_action( 'epl_loop_template_' . $property->post->post_type, get_defined_vars() );
-                        $action_exists = true;
-                } elseif ( ! empty( $action_check_core ) ) {
-                        do_action( 'epl_loop_template_listing', get_defined_vars() );
-                        $action_exists = true;
-                } elseif ( ! empty( $action_check ) ) {
-                        do_action( 'epl_loop_template', get_defined_vars() );
-                        $action_exists = true;
-                }
+		if ( ! empty( $action_check_type ) ) {
+				do_action( 'epl_loop_template_' . $property->post->post_type, get_defined_vars() );
+				$action_exists = true;
+		} elseif ( ! empty( $action_check_core ) ) {
+				do_action( 'epl_loop_template_listing', get_defined_vars() );
+				$action_exists = true;
+		} elseif ( ! empty( $action_check ) ) {
+				do_action( 'epl_loop_template', get_defined_vars() );
+				$action_exists = true;
+		}
 
 		// Fallback to core template.
 		if ( ! $action_exists ) {
@@ -1806,17 +1806,17 @@ add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
  * @since 2.0
  * @since 3.3 Revised.
  * @since 3.4.44 Get shortcode attributes as parameter.
+ * @since 3.4.49 Args missing second value.
  */
 function epl_listing_toolbar_items( $attributes = array(), $args = array() ) {
 	echo get_epl_listing_toolbar_items( $attributes, $args ); //phpcs:ignore;
 }
-add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10 );
+add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10, 2 );
 
 /**
  * Retrieves the switch and sorting options normally right aligned
  *
  * @since      3.3
- *
  * @since      3.5 gets the shortcode attributes as param
  *
  * @param array $args   The arguments.
@@ -1857,7 +1857,7 @@ function get_epl_listing_toolbar_items( $attributes = array(), $args = array() )
 						break;
 
 					default:
-						// action to hook additional tools.
+						// Action to hook additional tools.
 						do_action( 'epl_listing_toolbar_' . $tool, $attributes );
 						break;
 				}
@@ -1895,12 +1895,13 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  * @since 3.3 Revised.
  * @since 3.4.44 Unique ID for sort dropdown per instance.
  * @since 3.4.44 Get shortcode attributes as parameter.
+ * @since 3.4.49 Added accessibility labels to select elements.
  */
 function epl_sorting_tool( $attributes = array() ) {
 
-		$instance_id     = ! empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '';
-	$sortby              = '';
-		$set_instance_id = '';
+	$instance_id     = ! empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '';
+	$sortby          = '';
+	$set_instance_id = '';
 	if ( ! empty( $_GET['sortby'] ) ) {
 		$sortby = sanitize_text_field( wp_unslash( $_GET['sortby'] ) );
 	}
@@ -1912,25 +1913,25 @@ function epl_sorting_tool( $attributes = array() ) {
 	?>
 
 	<div class="epl-loop-tool epl-tool-sorting epl-properties-sorting epl-clearfix">
-		<select aria-label="<?php _e( 'Sort Listings', 'easy-property-listings'); ?>" ="epl-sort-listings" id="epl-sort-listings-<?php echo esc_attr( $instance_id ); ?>" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
+		<select aria-label="<?php esc_attr_e( 'Sort Listings', 'easy-property-listings' ); ?>" class="epl-sort-listings" id="epl-sort-listings-<?php echo esc_attr( $instance_id ); ?>" data-instance-id="<?php echo esc_attr( $instance_id ); ?>">
 			<option <?php selected( $sortby, '' ); ?> value="">
-				<?php echo esc_attr( apply_filters( 'epl_switch_views_sorting_title_sort', esc_html__( 'Sort', 'easy-property-listings' ) ) ); ?>
+				<?php echo esc_html( apply_filters( 'epl_switch_views_sorting_title_sort', __( 'Sort', 'easy-property-listings' ) ) ); ?>
 			</option>
 			<?php
 			foreach ( $sorters as $sorter ) {
 
 				if ( ! empty( $instance_id ) ) {
-						$sortbyinstance = $set_instance_id . '_' . $sortby;
-						$sorter_id      = $instance_id . '_' . $sorter['id'];
+					$sortbyinstance = $set_instance_id . '_' . $sortby;
+					$sorter_id      = $instance_id . '_' . $sorter['id'];
 				} else {
-						$sortbyinstance = $sortby;
-						$sorter_id      = $sorter['id'];
+					$sortbyinstance = $sortby;
+					$sorter_id      = $sorter['id'];
 				}
 				?>
-								<option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
-										<?php echo esc_attr( $sorter['label'] ); ?>
-								</option> 
-								<?php
+				<option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
+					<?php echo esc_attr( $sorter['label'] ); ?>
+				</option>
+				<?php
 			}
 			?>
 		</select>
@@ -1942,7 +1943,7 @@ add_action( 'epl_sorting_tool', 'epl_sorting_tool' );
 /**
  * Displays the Sorting tabs
  *
- * @since      3.3
+ * @since 3.3
  */
 function epl_sorting_tabs() {
 	$sortby = '';
@@ -1986,14 +1987,14 @@ function epl_sorting_tabs() {
  *
  * @return string
  * @since 3.3
- * @since 3.4.49 fixed : warning when url empty.
+ * @since 3.4.49 Fix: Warning when url empty.
  */
 function epl_add_or_update_params( $url, $key, $value ) {
 
-        if( empty( $url ) ) {
-                return $url;
-        }
-        
+	if ( empty( $url ) ) {
+		return $url;
+	}
+
 	$a     = wp_parse_url( $url );
 	$query = isset( $a['query'] ) ? $a['query'] : '';
 	parse_str( $query, $params );
@@ -2117,7 +2118,7 @@ function epl_author_tab_author_id( $epl_author = array() ) {
 
 	ob_start();
 
-		epl_get_template_part( 'content-author-box-tab-details.php', $arg_list );
+	epl_get_template_part( 'content-author-box-tab-details.php', $arg_list );
 
 	return ob_get_clean();
 }

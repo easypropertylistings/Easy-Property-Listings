@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * EPL_Widget_Author class
  *
  * @since 1.0
+ * @since 3.4.49 Refactored escaping elements.
  */
 class EPL_Widget_Author extends WP_Widget {
 
@@ -35,6 +36,8 @@ class EPL_Widget_Author extends WP_Widget {
 	 * Widget function.
 	 *
 	 * @since 1.0
+	 * @since 3.4.49 Removed unnecessary variables and escaping elements.
+	 *
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
 	 */
@@ -54,11 +57,10 @@ class EPL_Widget_Author extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		foreach ( $args as $arg_key => $arg_val ) {
-
 			${$arg_key} = $arg_val;
 		}
 
-		$title    = apply_filters( 'widget_title', esc_attr( $instance['title'] ) );
+		$title    = apply_filters( 'widget_title', $instance['title'] );
 		$username = esc_attr( $instance['username'] );
 		$display  = esc_attr( $instance['display'] );
 		$d_image  = esc_attr( $instance['d_image'] );
@@ -69,8 +71,7 @@ class EPL_Widget_Author extends WP_Widget {
 			// Only retrieve global $property variable if singluar.
 			global $property;
 			$hide_author_box = $property->get_property_meta( 'property_agent_hide_author_box' );
-
-			$author_box = apply_filters( 'epl_widget_author_hide_widget', 'off' );
+			$author_box      = apply_filters( 'epl_widget_author_hide_widget', 'off' );
 
 			if ( 'yes' === $hide_author_box && 'on' === $author_box ) {
 				// Hide Author Box.
@@ -78,19 +79,18 @@ class EPL_Widget_Author extends WP_Widget {
 			} else {
 				echo $before_widget;
 				if ( $title ) {
-					echo $before_title . $title . $after_title;
+					echo $before_title . esc_html( $title ) . $after_title;
 				}
-					epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $username );
+				epl_property_author_box_simple_card_tall( $instance['d_image'], $instance['d_icons'], $instance['d_bio'], $instance['username'] );
 
 				echo $after_widget;
 			}
 		} else {
-
 			echo $before_widget;
 			if ( $title ) {
-				echo $before_title . $title . $after_title;
+				echo $before_title . esc_html( $title ) . $after_title;
 			}
-				epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $username );
+			epl_property_author_box_simple_card_tall( $instance['d_image'], $instance['d_icons'], $instance['d_bio'], $instance['username'] );
 
 			echo $after_widget;
 		}
@@ -127,11 +127,10 @@ class EPL_Widget_Author extends WP_Widget {
 	 * Render the widget form.
 	 *
 	 * @since 1.0
+	 * @since 3.4.49 Added escapoing to elements.
 	 * @param array $instance options.
 	 */
 	public function form( $instance ) {
-
-		// phpcs:disable WordPress.Security.EscapeOutput
 
 		$defaults = array(
 			'title'    => '',
@@ -152,44 +151,44 @@ class EPL_Widget_Author extends WP_Widget {
 		$d_bio    = esc_attr( $instance['d_bio'] ); ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'easy-property-listings' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'easy-property-listings' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'username' ); ?>"><?php _e( 'Username:', 'easy-property-listings' ); ?></label>
-			<input autocomplete="off" class="widefat epl-widget-author-username" id="<?php echo $this->get_field_id( 'username' ); ?>" name="<?php echo $this->get_field_name( 'username' ); ?>" type="text" value="<?php echo $username; ?>" placeholder="<?php _e( 'Type to search users', 'easy-property-listings' ); ?>"/>
-			<span class="help"><?php _e( 'Search for users, supports multiple', 'easy-property-listings' ); ?></span>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'username' ) ); ?>"><?php esc_html_e( 'Username:', 'easy-property-listings' ); ?></label>
+			<input autocomplete="off" class="widefat epl-widget-author-username" id="<?php echo esc_attr( $this->get_field_id( 'username' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'username' ) ); ?>" type="text" value="<?php echo esc_attr( $username ); ?>" placeholder="<?php esc_html_e( 'Type to search users', 'easy-property-listings' ); ?>"/>
+			<span class="help"><?php esc_html_e( 'Search for users, supports multiple', 'easy-property-listings' ); ?></span>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_image' ); ?>" name="<?php echo $this->get_field_name( 'd_image' ); ?>"
-												<?php
-												if ( $instance['d_image'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_image' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_image' ) ); ?>"
+				<?php
+				if ( $instance['d_image'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_image' ); ?>"><?php _e( 'Display Author Gravatar', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_image' ) ); ?>"><?php esc_html_e( 'Display Author Gravatar', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_icons' ); ?>" name="<?php echo $this->get_field_name( 'd_icons' ); ?>"
-												<?php
-												if ( $instance['d_icons'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_icons' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_icons' ) ); ?>"
+				<?php
+				if ( $instance['d_icons'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_icons' ); ?>"><?php _e( 'Display Icons', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_icons' ) ); ?>"><?php esc_html_e( 'Display Icons', 'easy-property-listings' ); ?></label>
 		</p>
 
 		<p>
-			<input type="checkbox" id="<?php echo $this->get_field_id( 'd_bio' ); ?>" name="<?php echo $this->get_field_name( 'd_bio' ); ?>"
-												<?php
-												if ( $instance['d_bio'] ) {
-													echo 'checked="checked"';}
-												?>
+			<input type="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'd_bio' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_bio' ) ); ?>"
+				<?php
+				if ( $instance['d_bio'] ) {
+					echo 'checked="checked"';}
+				?>
 			/>
-			<label for="<?php echo $this->get_field_id( 'd_bio' ); ?>"><?php _e( 'Display Bio', 'easy-property-listings' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_bio' ) ); ?>"><?php esc_html_e( 'Display Bio', 'easy-property-listings' ); ?></label>
 		</p>
 		<?php
 	}

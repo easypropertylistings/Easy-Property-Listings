@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * EPL_Widget_Property_Gallery class
  *
  * @since 1.0
+ * @since 3.4.49 Added accessibility labels to select elements. Escaping value missing.
  */
 class EPL_Widget_Property_Gallery extends WP_Widget {
 
@@ -35,6 +36,8 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * Widget function.
 	 *
 	 * @since 1.0
+	 * @since 3.4.49 Added escaping to elements.
+	 *
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
 	 */
@@ -49,7 +52,6 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
 		foreach ( $args as $arg_key => $arg_val ) {
-
 			${$arg_key} = $arg_val;
 		}
 
@@ -65,7 +67,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		if ( ! empty( $attachments ) ) {
 			echo $before_widget;
 			if ( $title ) {
-				echo $before_title . $title . $after_title;
+				echo $before_title . esc_html( $title ) . $after_title;
 			}
 
 			$gall = '[gallery columns="' . $d_columns . '" link="file"]';
@@ -94,11 +96,10 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * Render the widget form.
 	 *
 	 * @since 1.0
+	 * @since 3.4.49 Refactored escaping elements. Removed unnecessary variables.
 	 * @param array $instance options.
 	 */
 	public function form( $instance ) {
-
-		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$defaults = array(
 			'title'     => '',
@@ -106,17 +107,16 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		$title     = esc_attr( $instance['title'] );
-		$d_columns = esc_attr( $instance['d_columns'] ); ?>
+		?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'easy-property-listings' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'easy-property-listings' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'd_columns' ); ?>"><?php esc_html_e( 'Number of columns', 'easy-property-listings' ); ?></label>
-			<select aria-label="<?php esc_html_e('Number of columns', 'easy-property-listings'); ?>"  class="widefat" id="<?php echo $this->get_field_id( 'd_columns' ); ?>" name="<?php echo $this->get_field_name( 'd_columns' ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'd_columns' ) ); ?>"><?php esc_html_e( 'Number of columns', 'easy-property-listings' ); ?></label>
+			<select aria-label="<?php esc_attr_e( 'Number of columns', 'easy-property-listings' ); ?>"  class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'd_columns' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'd_columns' ) ); ?>">
 				<?php
 				for ( $i = 1;$i <= 6;$i++ ) {
 					echo '<option value="' . esc_attr( $i ) . '"';

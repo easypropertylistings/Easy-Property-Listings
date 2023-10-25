@@ -45,13 +45,14 @@ add_filter( 'parse_query', 'epl_admin_posts_filter' );
  *
  * @since 1.0
  * @since 3.4.45 Added deleted status. Reordered status options.
+ * @since 3.4.49 Added accessibility labels to select elements. Removed : from Seearch For.
  */
 function epl_custom_restrict_manage_posts() {
 	global $post_type;
 	if ( 'property' === $post_type || 'rental' === $post_type || 'land' === $post_type || 'commercial' === $post_type || 'rural' === $post_type || 'business' === $post_type || 'holiday_rental' === $post_type || 'commercial_land' === $post_type ) {
 
 		// Filter by property_status.
-		$fields = array();
+		$fields            = array();
 		$fields['current'] = __( 'Current', 'easy-property-listings' );
 
 		if ( 'rental' !== $post_type && 'holiday_rental' !== $post_type ) {
@@ -64,11 +65,11 @@ function epl_custom_restrict_manage_posts() {
 
 		$fields['withdrawn'] = __( 'Withdrawn', 'easy-property-listings' );
 		$fields['offmarket'] = __( 'Off Market', 'easy-property-listings' );
-		$fields['deleted'] = __( 'Deleted', 'easy-property-listings' );
+		$fields['deleted']   = __( 'Deleted', 'easy-property-listings' );
 
 		if ( ! empty( $fields ) ) {
 			$_GET['property_status'] = isset( $_GET['property_status'] ) ? sanitize_text_field( wp_unslash( $_GET['property_status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-			echo '<select aria-label="'.esc_html_e('Property Status', 'easy-property-listings').'"  name="property_status">';
+			echo '<select aria-label="' . esc_attr__( 'Filter By Type', 'easy-property-listings' ) . '"  name="property_status">';
 				echo '<option value="">' . esc_html__( 'Filter By Type', 'easy-property-listings' ) . '</option>';
 			foreach ( $fields as $k => $v ) {
 				$selected = ( sanitize_text_field( wp_unslash( $_GET['property_status'] ) ) === $k ? 'selected="selected"' : '' );  // phpcs:ignore WordPress.Security.NonceVerification
@@ -99,8 +100,8 @@ function epl_custom_restrict_manage_posts() {
 
 		if ( ! empty( $custom_search_fields ) ) {
 			$sel = isset( $_GET['property_custom_fields'] ) ? sanitize_text_field( wp_unslash( $_GET['property_custom_fields'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-			echo '<select aria-label="'.esc_html_e('Custom field value', 'easy-property-listings') .'" name="property_custom_fields">';
-				echo '<option value="">' . esc_html__( 'Search For:', 'easy-property-listings' ) . '</option>';
+			echo '<select aria-label="' . esc_attr__( 'Search For', 'easy-property-listings' ) . '" name="property_custom_fields">';
+				echo '<option value="">' . esc_html__( 'Search For', 'easy-property-listings' ) . '</option>';
 			foreach ( $custom_search_fields as $k => $v ) {
 				echo '<option value="' . esc_attr( $k ) . '" ' . selected( $sel, $k, false ) . '>' . esc_attr( $v ) . '</option>';
 			}
@@ -139,9 +140,9 @@ function epl_admin_posts_filter( $query ) {
 		}
 
 		if ( isset( $_GET['property_author'] ) && ! empty( $_GET['property_author'] ) ) {
-			$author = intval( $_GET['property_author'] ); // WPCS: XSS ok.
+			$author        = intval( $_GET['property_author'] ); // WPCS: XSS ok.
 			$author_object = get_user_by( 'id', $author );
-			$meta_query[] = array(
+			$meta_query[]  = array(
 				'relation' => 'OR',
 				array(
 					'key'   => 'property_agent',
@@ -261,6 +262,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 3.4.23 Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
  * @since 3.4.27 Fixed html escaping issue and formatting for land size.
  * @since 3.4.30 Using epl_get_meta_field_label for dynamic labels.
+ * @since 3.4.49 Escaping values.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -276,10 +278,12 @@ function epl_manage_listing_column_listing_callback() {
 	$land_unit               = $property->get_property_meta( 'property_land_area_unit' );
 	$category                = $property->get_property_meta( 'property_category' );
 
+	// Commercial Specific fields.
 	$commercial_category = $property->get_property_meta( 'property_commercial_category' );
 	$outgoings           = $property->get_property_meta( 'property_com_outgoings' );
 	$return              = $property->get_property_meta( 'property_com_return' );
 
+	// Business Specific fields.
 	$taking    = $property->get_property_meta( 'property_bus_takings' );
 	$franchise = $property->get_property_meta( 'property_bus_franchise' );
 	$taking    = $property->get_property_meta( 'property_bus_terms' );
@@ -340,12 +344,12 @@ function epl_manage_listing_column_listing_callback() {
 
 	// Outgoings for commercial listing type.
 	if ( ! empty( $outgoings ) ) {
-		echo '<div class="epl_meta_outgoings">' . epl_get_meta_field_label( 'property_com_outgoings' ) . ': ' , esc_html( epl_currency_formatted_amount( $outgoings ) ) , '</div>';
+		echo '<div class="epl_meta_outgoings">' . esc_html( epl_get_meta_field_label( 'property_com_outgoings' ) ) . ': ' , esc_html( epl_currency_formatted_amount( $outgoings ) ) , '</div>';
 	}
 
 	// Return for commercial listing type.
 	if ( ! empty( $return ) ) {
-		echo '<div class="epl_meta_return">' . epl_get_meta_field_label( 'property_com_return' ) . ': ' , esc_html( $return ) , '%</div>';
+		echo '<div class="epl_meta_return">' . esc_html( epl_get_meta_field_label( 'property_com_return' ) ) . ': ' , esc_html( $return ) , '%</div>';
 	}
 
 	// Bedrooms and Bathrooms.
@@ -361,7 +365,7 @@ function epl_manage_listing_column_listing_callback() {
 		if ( 1 === absint( $rooms ) ) {
 			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html__( 'Room', 'easy-property-listings' ) , '</div>';
 		} else {
-			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , epl_get_meta_field_label( 'property_rooms' ) , '</div>';
+			echo '<div class="epl_meta_rooms">' , esc_attr( $rooms ) , ' ' , esc_html( epl_get_meta_field_label( 'property_rooms' ) ) , '</div>';
 		}
 	}
 
@@ -491,6 +495,7 @@ add_action( 'epl_manage_listing_column_geo', 'epl_manage_listing_column_geo_call
  *
  * @since 1.0.0
  * @since 3.4.0 Now using epl_get_option function.
+ * @since 3.4.49 Set the bar value to integer.
  */
 function epl_manage_listing_column_price_callback() {
 	global $post, $property;
@@ -561,8 +566,8 @@ function epl_manage_listing_column_price_callback() {
 	// If we have a price to display in the bar.
 	if ( ! empty( $bar_price ) ) {
 		$bar_width = 0 === $max_price ? 0 : intval( $bar_price ) / $max_price * 100;
-		echo '<div class="epl-price-bar ' . esc_html( $class ) . '">
-			<span style="width:' . esc_html( $bar_width ) . '%"></span>
+		echo '<div class="epl-price-bar ' . esc_attr( $class ) . '">
+			<span style="width:' . esc_attr( $bar_width ) . '%"></span>
 		</div>';
 		// Otherwise, there is no price set.
 	} else {
@@ -616,7 +621,7 @@ function epl_manage_listing_column_property_status_callback() {
 			'leased'    => $property->label_leased,
 			'withdrawn' => __( 'Withdrawn', 'easy-property-listings' ),
 			'offmarket' => __( 'Off Market', 'easy-property-listings' ),
-                        'deleted'   => __( 'Deleted', 'easy-property-listings' ),
+			'deleted'   => __( 'Deleted', 'easy-property-listings' ),
 		)
 	);
 	if ( ! empty( $property_status ) ) {
