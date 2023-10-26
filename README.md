@@ -38,14 +38,21 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.4.49 October 25, 2023 =
+= 3.5 October 30, 2023 =
 
 - New: Additional args for custom template action: epl*loop_template*{$post_type}, epl_loop_template.
-- New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically.
+- New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically. Allowing multiple search with tabs not interfering with each other.
 - New: Added support for 'status' in search shortcodes.
+- New: Support for conditional fields in extension settings.
+- New: Support for number type field for widget settings.
 - Tweak: Shortcodes, make sure meta_query in arg is defined as array, prior to usage.
 - Tweak: Added accessibility labels to select elements.
 - Tweak: Escaping additional widget elements.
+- Tweak: Correct spelling of Separate.
+- Tweak: Additional PHP 8.2 code improvements.
+- Tweak: Prevent importing non text files in settings.
+- Fix: Toolbar items function missing arguments.
+- Fix: Improvements to settings imports if file is incorrectly uploaded.
 - Fix: Price Sticker, inspections code trim string when is null.
 - Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
 - Fix: Floor plans, energy certificate, external links and min web labels using esc_html instead of esc_attr.
