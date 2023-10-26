@@ -45,7 +45,7 @@ add_filter( 'parse_query', 'epl_admin_posts_filter' );
  *
  * @since 1.0
  * @since 3.4.45 Added deleted status. Reordered status options.
- * @since 3.4.49 Added accessibility labels to select elements. Removed: from Search For.
+ * @since 3.5 Added accessibility labels to select elements. Removed: from Search For.
  */
 function epl_custom_restrict_manage_posts() {
 	global $post_type;
@@ -262,7 +262,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 3.4.23 Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.
  * @since 3.4.27 Fixed html escaping issue and formatting for land size.
  * @since 3.4.30 Using epl_get_meta_field_label for dynamic labels.
- * @since 3.4.49 Escaping values.
+ * @since 3.5 Escaping values.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -495,7 +495,7 @@ add_action( 'epl_manage_listing_column_geo', 'epl_manage_listing_column_geo_call
  *
  * @since 1.0.0
  * @since 3.4.0 Now using epl_get_option function.
- * @since 3.4.49 Set the bar value to integer.
+ * @since 3.5 Set the bar value to integer.
  */
 function epl_manage_listing_column_price_callback() {
 	global $post, $property;

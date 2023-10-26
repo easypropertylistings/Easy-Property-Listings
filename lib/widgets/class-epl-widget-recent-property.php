@@ -242,7 +242,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	 * Render the widget form.
 	 *
 	 * @since 1.0
-	 * @since 3.4.49 Refactored escaping elements. Removed unnecessary variables.
+	 * @since 3.5 Refactored escaping elements. Removed unnecessary variables.
 	 * @param array $instance options.
 	 */
 	public function form( $instance ) {

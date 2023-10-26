@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * EPL_Widget_Property_Gallery class
  *
  * @since 1.0
- * @since 3.4.49 Added accessibility labels to select elements. Escaping value missing.
+ * @since 3.5 Added accessibility labels to select elements. Escaping value missing.
  */
 class EPL_Widget_Property_Gallery extends WP_Widget {
 
@@ -36,7 +36,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * Widget function.
 	 *
 	 * @since 1.0
-	 * @since 3.4.49 Added escaping to elements.
+	 * @since 3.5 Added escaping to elements.
 	 *
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.
@@ -96,7 +96,7 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 	 * Render the widget form.
 	 *
 	 * @since 1.0
-	 * @since 3.4.49 Refactored escaping elements. Removed unnecessary variables.
+	 * @since 3.5 Refactored escaping elements. Removed unnecessary variables.
 	 * @param array $instance options.
 	 */
 	public function form( $instance ) {
