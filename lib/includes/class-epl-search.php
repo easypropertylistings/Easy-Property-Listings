@@ -24,7 +24,7 @@ class EPL_SEARCH {
 	/**
 	 * WP_QUERY Object
 	 *
-	 * @var array
+	 * @var object
 	 */
 	private $query;
 
@@ -76,6 +76,27 @@ class EPL_SEARCH {
 	 * @var string
 	 */
 	private $transaction_type = null;
+
+        /**
+	 * Holds the submitted form data.
+	 *
+	 * @var array $data form data.
+	 */
+        public $data;
+
+        /**
+	 * Holds skipped fields.
+	 *
+	 * @var array $skip_fields Skipped fields.
+	 */
+        public $skip_fields;
+
+        /**
+	 * Holds Array of form fields.
+	 *
+	 * @var array $form_fields form fields.
+	 */
+        public $form_fields;
 
 
 	/**
