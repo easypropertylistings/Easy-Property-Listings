@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.4.48\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-10-26 06:52:52+00:00\n"
+"POT-Creation-Date: 2023-10-26 07:26:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2647,7 +2647,7 @@ msgstr ""
 #: lib/includes/class-epl-cpt.php:554 lib/taxonomies/tax-location.php:41
 #. Translators: %s is taxonomy label.
 #. translators: %s: Location.
-msgid "Seperate %s with commas"
+msgid "Separate %s with commas"
 msgstr ""
 
 #: lib/includes/class-epl-cpt.php:556 lib/taxonomies/tax-location.php:43
