@@ -45,7 +45,7 @@ add_filter( 'parse_query', 'epl_admin_posts_filter' );
  *
  * @since 1.0
  * @since 3.4.45 Added deleted status. Reordered status options.
- * @since 3.4.49 Added accessibility labels to select elements. Removed : from Seearch For.
+ * @since 3.4.49 Added accessibility labels to select elements. Removed: from Search For.
  */
 function epl_custom_restrict_manage_posts() {
 	global $post_type;
