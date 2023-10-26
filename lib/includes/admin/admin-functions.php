@@ -473,6 +473,7 @@ function epl_settings_upgrade_tab() {
  * Import and Export Form
  *
  * @since 3.3.0
+ * @since 3.4.8 Fixed import function.
  */
 function epl_handle_tools_form() {
 
@@ -483,17 +484,21 @@ function epl_handle_tools_form() {
 	if ( ! isset( $_REQUEST['action'] ) ) {
 		return;
 	}
-
+        
 	$action = sanitize_text_field( wp_unslash( $_REQUEST['action'] ) );
-
+        
 	if ( in_array( $action, array( 'import' ), true ) ) {
-
+                
 		if (
 			! isset( $_POST['epl_nonce_tools_form'] ) ||
 			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['epl_nonce_tools_form'] ) ), 'epl_nonce_tools_form' )
 		) {
 			wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
 		}
+
+                if ( empty( $_FILES['epl_import'] ) || empty( $_FILES['epl_import']['full_path']) ) {
+                        wp_die( esc_html__( 'Missing import file. Please provide an import file.', 'easy-property-listings' ) );
+                }
 	}
 
 	// Sanitize post array.
@@ -518,22 +523,17 @@ function epl_handle_tools_form() {
 		break; // phpcs:ignore
 
 		case 'import':
-			$uploadedfile     = isset( $_FILES['epl_import']  ) ?  wp_unslash( $_FILES['epl_import'] ) : false; //phpcs:ignore
+			
+			$upload_overrides = array( 'test_form' => false );
+                        $movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides );
 
-			if ( $uploadedfile ) :
-
-				$upload_overrides = array( 'test_form' => false );
-				$movefile         = wp_handle_upload( $uploadedfile, $upload_overrides );
-
-				if ( $movefile && ! isset( $movefile['error'] ) ) {
-					$imported_data  = epl_remote_url_get( $movefile['url'] );
-					$imported_data  = epl_unserialize( $imported_data );
-					$options_backup = get_option( 'epl_settings' );
-					update_option( 'epl_settings_backup', $options_backup );
-					$status = update_option( 'epl_settings', $imported_data );
-				}
-
-			endif;
+                        if ( $movefile && ! isset( $movefile['error'] ) ) {
+                                $imported_data  = epl_remote_url_get( $movefile['url'] );
+                                $imported_data  = epl_unserialize( $imported_data );
+                                $options_backup = get_option( 'epl_settings' );
+                                update_option( 'epl_settings_backup', $options_backup );
+                                $status = update_option( 'epl_settings', $imported_data );
+                        }
 
 			break;
 
