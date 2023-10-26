@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.4.48\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-10-26 06:10:45+00:00\n"
+"POT-Creation-Date: 2023-10-26 06:52:52+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -252,7 +252,7 @@ msgid "Processing..."
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:496
-#: lib/includes/admin/admin-functions.php:542
+#: lib/includes/admin/admin-functions.php:546
 #: lib/includes/admin/menus/menu-extensions.php:28
 #: lib/includes/admin/menus/menu-general.php:24
 #: lib/includes/admin/menus/menu-licenses.php:30
@@ -263,49 +263,53 @@ msgstr ""
 msgid "Missing import file. Please provide an import file."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:565
+#: lib/includes/admin/admin-functions.php:504
+msgid "The file you uploaded does not appear to be a valid import file."
+msgstr ""
+
+#: lib/includes/admin/admin-functions.php:569
 msgid "It looks like you upgraded to latest version of Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:567
+#: lib/includes/admin/admin-functions.php:571
 msgid ""
 "For better performance, we need to upgrade the database. You can upgrade "
 "the database by visiting tools page"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:572
+#: lib/includes/admin/admin-functions.php:576
 msgid "Take me to the upgrade tool"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:590
+#: lib/includes/admin/admin-functions.php:594
 msgid "Some error occured"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:692
+#: lib/includes/admin/admin-functions.php:696
 #. Translators: %s is a string of listing post ids.
 msgid "Database upgrade in process, following listings updated : %s. Please wait..."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:705
+#: lib/includes/admin/admin-functions.php:709
 msgid "Database upgraded successfully"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:765
-#: lib/includes/admin/admin-functions.php:778
-#: lib/includes/admin/admin-functions.php:786
+#: lib/includes/admin/admin-functions.php:769
+#: lib/includes/admin/admin-functions.php:782
+#: lib/includes/admin/admin-functions.php:790
 msgid "Note"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:770
+#: lib/includes/admin/admin-functions.php:774
 #: lib/includes/class-epl-contact.php:710
 msgid "Call"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:774
+#: lib/includes/admin/admin-functions.php:778
 msgid "Mail"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:782
+#: lib/includes/admin/admin-functions.php:786
 msgid "Alert"
 msgstr ""
 
