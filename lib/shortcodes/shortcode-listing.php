@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
- * @since       3.5 support for third and fourth agents.
+ * @since       3.4 support for third and fourth agents.
  */
 
 // Exit if accessed directly.
