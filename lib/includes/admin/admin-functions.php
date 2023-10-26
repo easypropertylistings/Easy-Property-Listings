@@ -499,6 +499,10 @@ function epl_handle_tools_form() {
                 if ( empty( $_FILES['epl_import'] ) || empty( $_FILES['epl_import']['full_path']) ) {
                         wp_die( esc_html__( 'Missing import file. Please provide an import file.', 'easy-property-listings' ) );
                 }
+
+                if ( empty( $_FILES['epl_import']['type'] ) || ! in_array( strtolower( $_FILES['epl_import']['type'] ), ['text/plain'], true ) ) {
+                        wp_die( esc_html__( 'The file you uploaded does not appear to be a valid import file.', 'easy-property-listings' ) );
+                }
 	}
 
 	// Sanitize post array.
