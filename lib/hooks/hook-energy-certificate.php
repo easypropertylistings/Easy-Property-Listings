@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.2.0
  * @since 3.4.25 filter epl_show_{key} e.g. epl_show_property_energy_certificate to disable button rendering.
  * @since 3.4.38 Added filter epl_energy_certificate_keys to support additional energy certificates.
- * @since 3.4.49 Fix for label to use esc_html instead of esc_attr.
+ * @since 3.5 Fix for label to use esc_html instead of esc_attr.
  */
 function epl_button_energy_certificate() {
 

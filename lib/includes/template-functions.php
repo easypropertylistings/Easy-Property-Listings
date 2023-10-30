@@ -399,7 +399,7 @@ function epl_hide_listing_statuses() {
  * @since 3.4.23 Removed compatibility template for loop as we are passing the class using post_class filter.
  * @since 3.4.36 New: Additional action support for listing templates. Actions are: epl_loop_template_{post_type}, epl_loop_template_listing.
  * @since 3.4.38 New: Additional parameters default to pass the default template which will be used if the template is not found.
- * @since 3.4.49 New: Additional args for custom template action : epl_loop_template_{$post_type}, epl_loop_template.
+ * @since 3.5 New: Additional args for custom template action : epl_loop_template_{$post_type}, epl_loop_template.
  */
 function epl_property_blog( $template = '', $default = 'default' ) {
 
@@ -1819,7 +1819,7 @@ add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
  * @since 2.0
  * @since 3.3 Revised.
  * @since 3.4.44 Get shortcode attributes as parameter.
- * @since 3.4.49 Args missing second value.
+ * @since 3.5 Args missing second value.
  */
 function epl_listing_toolbar_items( $attributes = array(), $args = array() ) {
 	echo get_epl_listing_toolbar_items( $attributes, $args ); //phpcs:ignore;
@@ -1908,7 +1908,7 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  * @since 3.3 Revised.
  * @since 3.4.44 Unique ID for sort dropdown per instance.
  * @since 3.4.44 Get shortcode attributes as parameter.
- * @since 3.4.49 Added accessibility labels to select elements.
+ * @since 3.5 Added accessibility labels to select elements.
  */
 function epl_sorting_tool( $attributes = array() ) {
 
@@ -2000,7 +2000,7 @@ function epl_sorting_tabs() {
  *
  * @return string
  * @since 3.3
- * @since 3.4.49 Fix: Warning when url empty.
+ * @since 3.5 Fix: Warning when url empty.
  */
 function epl_add_or_update_params( $url, $key, $value ) {
 

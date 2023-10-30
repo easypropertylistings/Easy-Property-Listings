@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.4.24 Fixed floor plan label filter.
  * @since 3.4.25 filter epl_show_{key} e.g. epl_show_property_floorplan to disable button rendering.
  * @since 3.4.38 Added filter epl_floorplan_keys to support additional floor plans.
- * @since 3.4.49 Fix for label to use esc_html instead of esc_attr.
+ * @since 3.5 Fix for label to use esc_html instead of esc_attr.
  */
 function epl_button_floor_plan() {
 

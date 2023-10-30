@@ -477,7 +477,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 3.0
-	 * @since 3.4.49 Added accessibility labels to select elements.
+	 * @since 3.5 Added accessibility labels to select elements.
 	 */
 	public function extra_tablenav( $which ) {
 		if ( 'top' === $which ) {

@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
- * @since       3.5 support for third and fourth agents.
+ * @since       3.4 support for third and fourth agents.
  */
 
 // Exit if accessed directly.
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return false|string
  * @since       1.0
- * @since       3.4.49 make sure meta_query in arg is defined as array, prior usage.
+ * @since       3.5 make sure meta_query in arg is defined as array, prior usage.
  */
 function epl_shortcode_listing_callback( $atts ) {
 

@@ -40,7 +40,7 @@ add_action( 'media_buttons', 'epl_add_elements_gui_button', 20 );
  * Action target that displays the popup to insert a map to a post
  *
  * @since 3.3
- * @since 3.4.49 Added accessibility labels to select elements.
+ * @since 3.5 Added accessibility labels to select elements.
  */
 function epl_listing_elements_gui() {
 	?>
