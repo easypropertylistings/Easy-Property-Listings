@@ -294,7 +294,7 @@ add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
  * Show report graph date filters
  *
  * @since 3.0
- * @since 3.4.49 Added accessibility labels to select elements.
+ * @since 3.5 Added accessibility labels to select elements.
  *
  * @return void
  */

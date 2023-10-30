@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 2.0
  * @since 3.4.44 Added epl_any_label_status_filter and epl_current_label_status_filter filters for any and current status labels.
- * @since 3.4.49 Support for instance_id.
+ * @since 3.5 Support for instance_id.
  */
 function epl_search_widget_fields() {
 
@@ -905,7 +905,7 @@ function epl_search_get_defaults() {
  * Render widget field blocks -- for backend form
  *
  * @since 2.2
- * @since 3.4.49 Added number field type.
+ * @since 3.5 Added number field type.
  *
  * @param array  $field Array of field type for the switch.
  * @param array  $object Array of object.

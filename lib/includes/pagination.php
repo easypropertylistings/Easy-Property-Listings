@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return mixed|string|void
  * @since 2.1
- * @since 3.4.49 Added accessibility labels to select elements.
+ * @since 3.5 Added accessibility labels to select elements.
  */
 function epl_fancy_pagination( $args = array() ) {
 	if ( ! is_array( $args ) ) {

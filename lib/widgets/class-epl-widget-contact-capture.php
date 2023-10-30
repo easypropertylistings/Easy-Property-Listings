@@ -35,7 +35,7 @@ class EPL_Widget_Contact_Capture extends WP_Widget {
 	 * Widget function.
 	 *
 	 * @since 1.0
-	 * @since 3.4.49 Added escaping to elements.
+	 * @since 3.5 Added escaping to elements.
 	 *
 	 * @param array $args Widget arguments.
 	 * @param array $instance Widget instance.

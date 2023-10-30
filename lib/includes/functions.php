@@ -2133,7 +2133,7 @@ function epl_ends_with( $haystack, $needle ) {
  * @param  array $atts Attributes.
  * @return array
  *
- * @since 3.4.49 Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
+ * @since 3.5 Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
  */
 function epl_parse_atts( $atts ) {
 
@@ -2500,7 +2500,7 @@ function epl_sanitize_html_tags( $content ) {
  * Function to generate a unique tab counter for search forms.
  *
  * @return int
- * @since 3.4.49
+ * @since 3.5
  */
 function epl_generate_unique_tab_counter() {
 
@@ -2518,7 +2518,7 @@ function epl_generate_unique_tab_counter() {
  * Function to generate a unique instance counter for search forms.
  *
  * @return int
- * @since 3.4.49
+ * @since 3.5
  */
 function epl_generate_search_instance_counter() {
 

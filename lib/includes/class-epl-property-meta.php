@@ -1036,7 +1036,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 * @throws Exception PHP 5.3 notice.
 	 * @since 2.0
-	 * @since 3.4.49 Added fix for trim when string string is null.
+	 * @since 3.5 Added fix for trim when string string is null.
 	 */
 	public function get_price_sticker() {
 		$price_sticker = '';

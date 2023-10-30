@@ -9,7 +9,7 @@
  * @since       3.0
  * @since       3.4.0 Security fixes as per WP standards
  * @since       3.4.1 Fixed search templates error : ignoring field added via filters
- * @since       3.4.49 Each shortcode now will have unique instance ID & each tab a unique tab ID.
+ * @since       3.5 Each shortcode now will have unique instance ID & each tab a unique tab ID.
  */
 
 // Exit if accessed directly.

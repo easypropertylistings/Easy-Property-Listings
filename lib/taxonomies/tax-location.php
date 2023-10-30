@@ -38,7 +38,7 @@ function epl_register_taxonomy_location() {
 		'add_new_item'               => sprintf( __( 'Add New %s', 'easy-property-listings' ), $location_label ), /* translators: %s: Location. */
 		'edit_item'                  => sprintf( __( 'Edit %s', 'easy-property-listings' ), $location_label ), /* translators: %s: Location. */
 		'update_item'                => sprintf( __( 'Update %s', 'easy-property-listings' ), $location_label ), /* translators: %s: Location. */
-		'separate_items_with_commas' => sprintf( __( 'Seperate %s with commas', 'easy-property-listings' ), $location_label ), /* translators: %s: Location. */
+		'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', 'easy-property-listings' ), $location_label ), /* translators: %s: Location. */
 		'search_items'               => sprintf( __( 'Search %s', 'easy-property-listings' ), $location_label ), /* translators: %s: Location. */
 		'add_or_remove_items'        => sprintf( __( 'Add or remove %s', 'easy-property-listings' ), $location_label ), /* translators: %s: Location. */
 		'choose_from_most_used'      => sprintf( __( 'Choose from the most used %s', 'easy-property-listings' ), $location_label ), /* translators: %s: Location. */

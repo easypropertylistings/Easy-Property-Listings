@@ -678,7 +678,7 @@ function epl_contact_meta_view( $contact ) {
  * @param array $contact The Contact being displayed.
  *
  * @since 3.0
- * @since 3.4.49 Added accessibility labels to select elements.
+ * @since 3.5 Added accessibility labels to select elements.
  *
  * @return void
  */
