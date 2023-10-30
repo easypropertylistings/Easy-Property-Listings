@@ -186,6 +186,7 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  * @since 3.4.27 New: Additional param to disable / enable stickers
  * @since 3.4.30 Fix: Missing parameter filter. Increased from 3 to 4.
  * @since 3.4.38 Added filter epl_property_archive_featured_image to control all parameters & epl_no_archive_featured_image action if no featured image.
+ * @since 3.5.0  Replaced stickers html with an action hook epl_stickers_featured_image.
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
@@ -214,11 +215,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
 					<div class="epl-blog-image">
-						<?php if ( $args['stickers'] ) : ?>
-						<div class="epl-stickers-wrapper">
-							<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
-						</div>
-						<?php endif; ?>
+                                                <?php do_action('epl_stickers_featured_image', $args ); ?>
 						<?php the_post_thumbnail( $args['image_size'], array( 'class' => $args['image_class'] ) ); ?>
 					</div>
 			<?php if ( true === $args['link'] ) { ?>
@@ -232,6 +229,22 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 
 }
 add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 4 );
+
+/**
+ * Featured image sticker callback.
+ *
+ * @since      3.5.0
+ *
+ * @param      string  $args   Arguments.
+ */
+function epl_stickers_featured_image( $args ) { 
+        if ( $args['stickers'] ) : ?>
+        <div class="epl-stickers-wrapper">
+                <?php echo wp_kses_post( epl_get_price_sticker() ); ?>
+        </div> 
+        <?php endif; 
+}
+add_action( 'epl_stickers_featured_image', 'epl_stickers_featured_image');
 
 /**
  * Featured Image in widgets
@@ -472,6 +485,7 @@ function epl_property_author_box() {
 		epl_property_author_default();
 	}
 }
+add_action( 'epl_single_author', 'epl_property_author_box', 10 );
 
 /**
  * Reset post author
@@ -494,7 +508,6 @@ function epl_reset_post_author() {
 		}
 	}
 }
-add_action( 'epl_single_author', 'epl_property_author_box', 10 );
 
 /**
  * AUTHOR CARD : Standard

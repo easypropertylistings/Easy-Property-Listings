@@ -563,25 +563,33 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0.0
 	 * @since 3.4.38 Added epl_get_property_available_date_time_separator filter for date/time separator.
+         * @since 3.5.0 Fixed time shown when only date string.
 	 */
 	public function get_property_available( $admin = false ) {
-
-		$date_time_sep = apply_filters( 'epl_get_property_available_date_time_separator', ' \a\t ' );
-
-		$date_format = epl_get_inspection_date_format();
-		$time_format = epl_get_inspection_time_format();
-		$format      = $date_format . $date_time_sep . $time_format;
-
-		if ( $admin ) {
-			$format = apply_filters( 'epl_property_available_date_format_admin', $format );
-		} else {
-			$format = apply_filters( 'epl_property_available_date_format', $format );
-		}
 
 		if ( isset( $this->meta['property_date_available'] ) ) {
 			if ( isset( $this->meta['property_date_available'][0] ) ) {
 				if ( ! empty( $this->meta['property_date_available'][0] ) ) {
-					$av_date_array = date_parse( $this->meta['property_date_available'][0] );
+
+                                        $av_date_array = date_parse( $this->meta['property_date_available'][0] );
+                                        $date_format = epl_get_inspection_date_format();
+
+                                        if( isset( $av_date_array['hour'] ) && false === $av_date_array['hour'] ) {
+                                                $format      = $date_format;
+                                        } else {
+                                                
+                                                $date_time_sep = apply_filters( 'epl_get_property_available_date_time_separator', ' \a\t ' );
+                                                $time_format = epl_get_inspection_time_format();
+                                                $format      = $date_format . $date_time_sep . $time_format;
+                                        }
+
+                                        if ( $admin ) {
+                                                $format = apply_filters( 'epl_property_available_date_format_admin', $format );
+                                        } else {
+                                                $format = apply_filters( 'epl_property_available_date_format', $format );
+                                        }
+
+					
 					$av_date       = ( isset( $av_date_array['year'] ) && isset( $av_date_array['month'] ) && isset( $av_date_array['day'] ) ) ?
 						$av_date_array['year'] . '-' . $av_date_array['month'] . '-' . $av_date_array['day'] : $this->meta['property_date_available'][0];
 					if ( current_time( 'timestamp' ) > strtotime( $av_date ) ) {

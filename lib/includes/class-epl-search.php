@@ -166,17 +166,30 @@ class EPL_SEARCH {
 		);
 	}
 
+        /**
+	 * Sanitize an array of data recursively.
+         * @since 3.5.0
+	 */
+        public function sanitize_recursive($data) {
+                if (is_array($data)) {
+                    return array_map( [$this, 'sanitize_recursive' ], $data);
+                } else {
+                    return sanitize_text_field($data);
+                }
+        }
+
 	/**
 	 * Sanitize whole GET & POST array, insures security from XSS
+         * @since 3.5.0 replaced depricated code for sanitization.
 	 */
 	protected function sanitize_data() {
-		$this->get_data = filter_input_array( INPUT_GET, FILTER_SANITIZE_STRING );
 
+		$this->get_data = $this->sanitize_recursive( $_GET );
 		if ( ! empty( $this->data ) ) {
 			$this->get_data = $this->data;
 		}
 		$this->get_data  = apply_filters( 'epl_search_get_data', $this->get_data );
-		$this->post_data = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
+		$this->post_data = $this->sanitize_recursive( $_POST );
 		$this->post_data = apply_filters( 'epl_search_post_data', $this->post_data );
 
 		if ( ! isset( $this->get_data['property_status'] ) ) {
