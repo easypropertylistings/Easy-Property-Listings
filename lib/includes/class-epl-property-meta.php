@@ -563,6 +563,7 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0.0
 	 * @since 3.4.38 Added epl_get_property_available_date_time_separator filter for date/time separator.
+         * @since 3.5.0 Fixed time shown when only date string.
 	 */
 	public function get_property_available( $admin = false ) {
 

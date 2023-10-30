@@ -168,6 +168,7 @@ class EPL_SEARCH {
 
         /**
 	 * Sanitize an array of data recursively.
+         * @since 3.5.0
 	 */
         public function sanitize_recursive($data) {
                 if (is_array($data)) {

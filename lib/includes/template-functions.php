@@ -186,6 +186,7 @@ add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
  * @since 3.4.27 New: Additional param to disable / enable stickers
  * @since 3.4.30 Fix: Missing parameter filter. Increased from 3 to 4.
  * @since 3.4.38 Added filter epl_property_archive_featured_image to control all parameters & epl_no_archive_featured_image action if no featured image.
+ * @since 3.5.0  Replaced stickers html with an action hook epl_stickers_featured_image.
  */
 function epl_property_archive_featured_image( $image_size = 'epl-image-medium-crop', $image_class = 'teaser-left-thumb', $link = true, $stickers = true ) {
 
