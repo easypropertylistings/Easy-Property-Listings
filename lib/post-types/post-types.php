@@ -608,6 +608,7 @@ add_action( 'epl_manage_listing_column_price', 'epl_manage_listing_column_price_
  *
  * @since 1.0
  * @since 3.4.45 Added deleted status. Re-ordered.
+ * @since 3.5 Corrected esc function for label.
  */
 function epl_manage_listing_column_property_status_callback() {
 	global $post, $property;
@@ -625,7 +626,7 @@ function epl_manage_listing_column_property_status_callback() {
 		)
 	);
 	if ( ! empty( $property_status ) ) {
-		echo '<span class="type_' . esc_attr( strtolower( $property_status ) ) . '">' . esc_attr( $labels_property_status[ $property_status ] ) . '</span>';
+		echo '<span class="type_' . esc_attr( strtolower( $property_status ) ) . '">' . esc_html( $labels_property_status[ $property_status ] ) . '</span>';
 	}
 }
 add_action( 'epl_manage_listing_column_property_status', 'epl_manage_listing_column_property_status_callback' );
