@@ -214,11 +214,7 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
 					<div class="epl-blog-image">
-						<?php if ( $args['stickers'] ) : ?>
-						<div class="epl-stickers-wrapper">
-							<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
-						</div>
-						<?php endif; ?>
+                                                <?php do_action('epl_stickers_featured_image', $args ); ?>
 						<?php the_post_thumbnail( $args['image_size'], array( 'class' => $args['image_class'] ) ); ?>
 					</div>
 			<?php if ( true === $args['link'] ) { ?>
@@ -232,6 +228,22 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 
 }
 add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 4 );
+
+/**
+ * Featured image sticker callback.
+ *
+ * @since      3.5.0
+ *
+ * @param      string  $args   Arguments.
+ */
+function epl_stickers_featured_image( $args ) { 
+        if ( $args['stickers'] ) : ?>
+        <div class="epl-stickers-wrapper">
+                <?php echo wp_kses_post( epl_get_price_sticker() ); ?>
+        </div> 
+        <?php endif; 
+}
+add_action( 'epl_stickers_featured_image', 'epl_stickers_featured_image');
 
 /**
  * Featured Image in widgets
@@ -472,6 +484,7 @@ function epl_property_author_box() {
 		epl_property_author_default();
 	}
 }
+add_action( 'epl_single_author', 'epl_property_author_box', 10 );
 
 /**
  * Reset post author
@@ -494,7 +507,6 @@ function epl_reset_post_author() {
 		}
 	}
 }
-add_action( 'epl_single_author', 'epl_property_author_box', 10 );
 
 /**
  * AUTHOR CARD : Standard
