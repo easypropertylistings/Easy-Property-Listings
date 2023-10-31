@@ -266,7 +266,7 @@ add_action( 'epl_add-contact-note', 'epl_contact_save_note', 10, 1 );
  * Save a contact listing being added
  *
  * @param  array|false $args The $_POST array being passeed.
- * @return object
+ * @return object|false
  *
  * @since  3.0
  * @since  3.5.0 Fix epl_print_errors function name.
@@ -355,7 +355,7 @@ add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
  *
  * @since  3.0
  * @param  array $args The $_POST array being passeed.
- * @return object
+ * @return object|false
  */
 function epl_contact_assign_existing_listing( $args ) {
 
@@ -364,7 +364,7 @@ function epl_contact_assign_existing_listing( $args ) {
 	}
 
 	if ( empty( $args ) ) {
-		return;
+		return null;
 	}
 
 	do_action( 'epl_pre_assign_contact_listing', $args );
