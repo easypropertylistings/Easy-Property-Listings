@@ -40,6 +40,7 @@ There are various ways you can contribute:
 
 = 3.5 October 30, 2023 =
 
+- New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
 - New: Filters added to alter an empty value if required: epl_get_year_built_empty_value, epl_get_property_bed_empty_value, epl_get_property_bath_empty_value, epl_get_property_rooms_empty_value, epl_get_parking_spaces_empty_value, epl_get_property_garage_empty_value, epl_get_property_carport_empty_value, epl_get_air_conditioning_empty_value, epl_get_property_pool_empty_value, epl_get_security_system_empty_value
 - New: Using the global status function to get status labels.
 - New: Renamed Google Maps script name.
