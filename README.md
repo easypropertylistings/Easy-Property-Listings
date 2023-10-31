@@ -40,6 +40,7 @@ There are various ways you can contribute:
 
 = 3.5 October 30, 2023 =
 
+- New: Using the global status function to get status labels.
 - New: Renamed Google Maps script name.
 - New: Display hidden fields in admin when editing listings.
 - New: Additional args for custom template action: epl*loop_template*{$post_type}, epl_loop_template.

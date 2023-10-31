@@ -2268,14 +2268,14 @@ function epl_get_property_status_opts() {
  *
  * @since 3.5.0
  *
- * @param bool   $status Status status valuet.
+ * @param bool   $status Status status value.
  * @return string $label Status label.
  */
 function epl_get_the_status_label( $status = '' ) {
 	
 	$status_opts = epl_get_property_status_opts();
 
-	if ( strlen( $status ) === 0 ) {
+	if ( 0 === strlen( $status ) ) {
 		return;
 	}
 
