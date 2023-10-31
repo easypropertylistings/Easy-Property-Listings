@@ -180,7 +180,7 @@ add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
  *
  * @since  3.0
  * @param  array $args The $_POST array being passeed.
- * @return object         the comment object
+ * @return bool|string|void         the comment object
  */
 function epl_contact_save_note( $args ) {
 
