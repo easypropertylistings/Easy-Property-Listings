@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Processes a custom edit
  *
  * @since  3.0
- * @param  array $args The $_POST array being passeed.
+ * @param  array|false $args The $_POST array being passeed.
  * @return array $output Response messages
  */
 function epl_edit_contact( $args ) {
@@ -29,7 +29,7 @@ function epl_edit_contact( $args ) {
 	}
 
 	if ( empty( $args ) ) {
-		return;
+		return null;
 	}
 
 	$contact_info = $args['contactinfo'];
@@ -58,7 +58,7 @@ function epl_edit_contact( $args ) {
 	}
 
 	if ( epl_get_errors() ) {
-		return;
+		return null;
 	}
 
 	// Sanitize the inputs.
@@ -180,7 +180,7 @@ add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
  *
  * @since  3.0
  * @param  array $args The $_POST array being passeed.
- * @return object         the comment object
+ * @return bool|string|void         the comment object
  */
 function epl_contact_save_note( $args ) {
 
@@ -265,9 +265,11 @@ add_action( 'epl_add-contact-note', 'epl_contact_save_note', 10, 1 );
 /**
  * Save a contact listing being added
  *
+ * @param  array|false $args The $_POST array being passeed.
+ * @return object|false
+ *
  * @since  3.0
- * @param  array $args The $_POST array being passeed.
- * @return object
+ * @since  3.5.0 Fix epl_print_errors function name.
  */
 function epl_contact_save_listing( $args ) {
 	$contact_add_listing_role = apply_filters( 'epl_add_contacts_listing', 'manage_options' );
@@ -277,7 +279,7 @@ function epl_contact_save_listing( $args ) {
 	}
 
 	if ( empty( $args ) ) {
-		return;
+		return null;
 	}
 
 	$post_fields = array( 'post_title', 'post_type' );
@@ -290,8 +292,8 @@ function epl_contact_save_listing( $args ) {
 		wp_die( esc_html__( 'Cheatin\' eh?!', 'easy-property-listings' ) );
 	}
 	if ( epl_get_errors() ) {
-		epl_print_error();
-		return;
+		epl_print_errors();
+		return null;
 	}
 
 	do_action( 'epl_pre_insert_contact_listing', $args );
@@ -353,7 +355,7 @@ add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
  *
  * @since  3.0
  * @param  array $args The $_POST array being passeed.
- * @return object
+ * @return object|false
  */
 function epl_contact_assign_existing_listing( $args ) {
 
@@ -362,7 +364,7 @@ function epl_contact_assign_existing_listing( $args ) {
 	}
 
 	if ( empty( $args ) ) {
-		return;
+		return null;
 	}
 
 	do_action( 'epl_pre_assign_contact_listing', $args );
@@ -609,10 +611,10 @@ add_action( 'wp_ajax_epl_contact_tag_remove', 'epl_contact_tag_remove' );
 /**
  * Contact Action Menus, Renders contact action menus
  *
- * @param array $contact contact object.
+ * @param EPL_Contact $contact contact object.
  * @since 3.0
  */
-function epl_contact_action_menus( $contact ) {
+function epl_contact_action_menus( EPL_Contact $contact ) {
 	?>
 	<div class="contact-action-menu epl-clearfix">
 		<ul class="epl_contact_quick_actions">
@@ -680,21 +682,17 @@ add_action( 'epl_contact_action_menus', 'epl_contact_action_menus' );
 /**
  * Contact Entry Header, Renders contact header
  *
- * @param array $contact contact Object.
+ * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_entry_header( $contact ) {
+function epl_contact_entry_header( EPL_Contact $contact ) {
 	?>
 	<div class="epl-contact-entry-header">
 		<h1 class="epl-contact-title">
-			<?php
-				echo esc_attr( $contact->heading );
-			?>
+			<?php echo esc_html( $contact->heading ); ?>
 		</h1>
 		<span>
-			<?php
-				echo esc_attr( $contact->get_category_label() );
-			?>
+			<?php echo esc_html( $contact->get_category_label() ); ?>
 		</span>
 	</div>
 	<?php
@@ -704,17 +702,15 @@ add_action( 'epl_contact_entry_header', 'epl_contact_entry_header' );
 /**
  * Contact Header Editable
  *
- * @param array $contact object.
+ * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_entry_header_editable( $contact ) {
+function epl_contact_entry_header_editable( EPL_Contact $contact ) {
 	?>
 	<div class="epl-contact-entry-header">
 		<input class="epl-contact-title-editable" type="text" name="post_title" value="<?php echo esc_attr( $contact->heading ); ?>"/>
 		<span>
-			<?php
-			echo esc_attr( $contact->get_meta( 'contact_category' ) );
-			?>
+			<?php echo esc_html( $contact->get_meta( 'contact_category' ) ); ?>
 		</span>
 	</div>
 	<?php
@@ -724,10 +720,10 @@ add_action( 'epl_contact_entry_header_editable', 'epl_contact_entry_header_edita
 /**
  * Contact Assigned Tags
  *
- * @param array $contact object.
+ * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_assigned_tags( $contact ) {
+function epl_contact_assigned_tags( EPL_Contact $contact ) {
 	?>
 	<div class="epl-contact-assigned-tags-wrap">
 		<ul class="epl-contact-assigned-tags">
@@ -751,10 +747,10 @@ add_action( 'epl_contact_assigned_tags', 'epl_contact_assigned_tags' );
 /**
  * Contact Background Info
  *
- * @param array $contact object.
+ * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_background_info( $contact ) {
+function epl_contact_background_info( EPL_Contact $contact ) {
 	echo '<div class="epl-contact-bg-info-wrap">';
 		echo '<h4>' . esc_html__( 'Background Info', 'easy-property-listings' ) . '</h4>';
 		echo '<div class="epl-contact-bg-info">';
@@ -768,15 +764,13 @@ add_action( 'epl_contact_background_info', 'epl_contact_background_info' );
 /**
  * Contact Avatar Image
  *
- * @param array $contact object.
+ * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_avatar( $contact ) {
+function epl_contact_avatar( EPL_Contact $contact ) {
 	?>
 	<div class="avatar-wrap left" id="contact-avatar">
-		<?php
-			echo wp_kses_post( get_avatar( $contact->email, apply_filters( 'epl_contact_gravatar_size', 160 ) ) );
-		?>
+		<?php echo wp_kses_post( get_avatar( $contact->email, apply_filters( 'epl_contact_gravatar_size', 160 ) ) ); ?>
 		<br />
 	</div>
 	<?php
@@ -786,10 +780,10 @@ add_action( 'epl_contact_avatar', 'epl_contact_avatar' );
 /**
  * Contact Social Icons
  *
- * @param array $contact object.
+ * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_social_icons( $contact ) {
+function epl_contact_social_icons( EPL_Contact $contact ) {
 
 	$fb      = $contact->get_meta( 'contact_facebook' );
 	$twitter = $contact->get_meta( 'contact_twitter' );
@@ -825,11 +819,11 @@ add_action( 'epl_contact_social_icons', 'epl_contact_social_icons' );
 /**
  * Contact Details
  *
- * @param array $contact object.
+ * @param EPL_Contact $contact Contact object.
  * @since 3.0
  * @since 3.4.1 Added wrapper classes to contact values.
  */
-function epl_contact_contact_details( $contact ) {
+function epl_contact_contact_details( EPL_Contact $contact ) {
 	?>
 
 	<span class="epl-contact-name epl-info-item editable">
@@ -874,14 +868,14 @@ add_action( 'epl_contact_contact_details', 'epl_contact_contact_details' );
 /**
  * Contact Recent Interest in Listings
  *
- * @param array  $contact object.
- * @param int    $number Number page.
- * @param int    $paged Paging or not.
- * @param string $orderby Order by.
- * @param string $order Order ASC or DESC.
+ * @param EPL_Contact $contact Contact object.
+ * @param int         $number Number page.
+ * @param int         $paged Paging or not.
+ * @param string      $orderby Order by.
+ * @param string      $order Order ASC or DESC.
  * @since 3.0
  */
-function epl_contact_recent_interests( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
+function epl_contact_recent_interests( EPL_Contact $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
 	?>
 	<?php do_action( 'epl_contact_add_listing_form', $contact ); ?>
 	<h3 class="epl-contact-activity-title">
@@ -1430,9 +1424,11 @@ add_action( 'wp_ajax_epl_search_user', 'epl_search_user' );
 /**
  * Save a customer note being added
  *
- * @since  3.0
  * @param  array $args The $_POST array being passeed.
- * @return object         the comment object
+ * @return bool|string|void The comment object
+ *
+ * @since  3.0
+ * @since  3.5.0 Error message added.
  */
 function epl_contact_save_note_note_tab( $args ) {
 
@@ -1455,7 +1451,7 @@ function epl_contact_save_note_note_tab( $args ) {
 		epl_set_error( 'empty-contact-note', esc_html__( 'A note is required', 'easy-property-listings' ) );
 	}
 	if ( epl_get_errors() ) {
-		epl_set_error();
+		epl_set_error( 'contact-error', esc_html__( 'An error occured', 'easy-property-listings' ) );
 		return;
 	}
 	do_action( 'epl_pre_insert_contact_note', $contact_id, $contact_note, $listing_id, $note_type );

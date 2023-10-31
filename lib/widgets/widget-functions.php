@@ -365,7 +365,7 @@ function epl_get_price_meta_key( $post_type = 'property', $transaction = 'defaul
  *
  * @return mixed|void
  * @since 2.2
- * @since 3.5.0 Status labels are coming throgh global filter epl_opts_property_status_filter.
+ * @since 3.5.0 Status labels are coming from global filter epl_opts_property_status_filter.
  */
 function epl_search_widget_fields_frontend( $post_type = '', $property_status = '', $transaction_type = 'default' ) {
 
