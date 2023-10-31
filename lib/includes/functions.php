@@ -2298,21 +2298,21 @@ function epl_get_the_status_label( $status = '' ) {
  */
 function epl_get_available_status_list( $key, $type ) {
 
-        $statues = epl_get_unique_post_meta_values( $key, $type );
+        $status_list = epl_get_unique_post_meta_values( $key, $type );
 
         $available = array();
 
-        if( empty( $statues) ) {
+        if( empty( $status_list) ) {
 
                 return array();
         }
 
-        foreach( $statues as $key => $key_label ) {
+        foreach( $status_list as $key => $key_label ) {
 
                 $available[ $key ] = epl_get_the_status_label( $key );
         }
 
-        return $available;
+        return apply_filters( 'epl_get_available_status_list', $available, $key, $type);
 }
 
 /**
