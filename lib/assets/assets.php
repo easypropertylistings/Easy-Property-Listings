@@ -46,10 +46,10 @@ function epl_get_admin_screens() {
  * Load and enqueue admin scripts and stylesheets.
  *
  * @since 1.0
- * 
+ *
  * @since 3.4.44 Fixed callback error for google maps.
- * @since 3.5 Renamed Google Maps script name.
- * 
+ * @since 3.5 Renamed Google Maps script name. Display hidden fields.
+ *
  * @param string $screen Page hook.
  * @return void
  */
@@ -61,9 +61,9 @@ function epl_admin_enqueue_scripts( $screen ) {
 	$current_dir_path = plugins_url( '', __FILE__ );
 
 	$js_vars = array(
-		'default_map_address'           => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
-		'ajax_nonce'                    => wp_create_nonce( 'epl_ajax_nonce' ),
-                'display_hidden_fields'         => epl_get_option( 'display_hidden_fields', 0)  
+		'default_map_address'   => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
+		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),
+		'display_hidden_fields' => epl_get_option( 'display_hidden_fields', 0 ),
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
@@ -104,9 +104,9 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 
 /**
  * Load and enqueue front end scripts and stylesheets.
- * 
- * @since 3.4.44 Fixed callback error for google maps.
- * @since 3.4.48 fix : price formatting as per settings in price slider.
+ *
+ * @since 3.4.44 Fix: Callback error for google maps.
+ * @since 3.4.48 Fix: Price formatting as per settings in price slider.
  *
  * @since 1.0
  */
@@ -132,7 +132,7 @@ function epl_wp_enqueue_scripts() {
 	}
 
 	// All CSS including Structual.
-	if ( epl_get_option( 'epl_use_core_css', 'off' ) === 'on' ) {
+	if ( 'on' === epl_get_option( 'epl_use_core_css', 'off' ) ) {
 		// Dont use css.
 	} else {
 
@@ -177,9 +177,9 @@ function epl_wp_enqueue_scripts() {
 		'ajaxurl'               => admin_url( 'admin-ajax.php' ),
 		'image_base'            => EPL_PLUGIN_URL . 'lib/assets/images/',
 		'field_sliders'         => epl_get_field_sliders(),
-                'range_html'            => epl_get_range_slider_label_html(),
-                'thousand_sep'          => epl_get_option( 'currency_thousands_separator' ),
-                'decimal_sep'           => epl_get_option( 'currency_decimal_separator' )         
+		'range_html'            => epl_get_range_slider_label_html(),
+		'thousand_sep'          => epl_get_option( 'currency_thousands_separator' ),
+		'decimal_sep'           => epl_get_option( 'currency_decimal_separator' ),
 
 	);
 	wp_enqueue_script( 'jquery-ui-slider' );
@@ -247,17 +247,18 @@ add_action( 'admin_head', 'epl_admin_styles' );
  * Template for range slider label
  *
  * @since 3.4.4
- * 
+ *
  * @return string
  */
-function epl_get_range_slider_label_html() { 
+function epl_get_range_slider_label_html() {
 
-        ob_start(); ?>
+	ob_start();
+	?>
+	<span class="epl-lf-label-txt"> {range_start} {range_sep} {range_end} </span>
+	<?php
 
-        <span class="epl-lf-label-txt"> {range_start} {range_sep} {range_end} </span> <?php
+	$html = ob_get_clean();
 
-        $html = ob_get_clean();
-
-        return apply_filters( 'epl_get_range_slider_label_html', $html );
+	return apply_filters( 'epl_get_range_slider_label_html', $html );
 
 }

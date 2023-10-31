@@ -1346,7 +1346,7 @@ function epl_get_admin_option_fields() {
 		),
 
 		array(
-			'label'  => __( 'Dashboard Listing Columns', 'easy-property-listings' ),
+			'label'  => __( 'Listings', 'easy-property-listings' ),
 			'class'  => 'core',
 			'id'     => 'admin_general',
 			'help'   => __( 'Use the following settings to change how the Dashboard > Property or any listing of the types you have enabled display.', 'easy-property-listings' ) . '<hr/>',
@@ -2268,14 +2268,14 @@ function epl_get_property_status_opts() {
  *
  * @since 3.5.0
  *
- * @param bool   $status Status status valuet.
+ * @param bool   $status Status status value.
  * @return string $label Status label.
  */
 function epl_get_the_status_label( $status = '' ) {
 	
 	$status_opts = epl_get_property_status_opts();
 
-	if ( strlen( $status ) === 0 ) {
+	if ( 0 === strlen( $status ) ) {
 		return;
 	}
 
