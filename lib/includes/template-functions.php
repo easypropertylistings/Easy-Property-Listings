@@ -3443,7 +3443,7 @@ function epl_contact_capture_action() {
 
 	$contact_listing_note = isset( $_POST['epl_contact_note'] ) ?
 	sanitize_text_field( wp_unslash( $_POST['epl_contact_note'] ) ) : false;
-	if ( empty( $contact->id ) ) {
+	if ( empty( $contact->ID ) ) {
 
 		$contact_data = array(
 			'name'  => $title,

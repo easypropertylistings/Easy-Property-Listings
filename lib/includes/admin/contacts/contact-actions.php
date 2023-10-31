@@ -217,7 +217,7 @@ function epl_contact_save_note( $args ) {
 	$contact     = new EPL_Contact( $contact_id );
 	$note_object = $contact->add_note( $contact_note, $note_type, $listing_id );
 
-	if ( ! empty( $note_object ) && ! empty( $contact->id ) ) {
+	if ( ! empty( $note_object ) && ! empty( $contact->ID ) ) {
 
 		ob_start();
 		?>
@@ -661,14 +661,14 @@ function epl_contact_action_menus( EPL_Contact $contact ) {
 		</ul>
 
 		<div class="epl_contact_pagination">
-			<?php if ( epl_get_prev_contact_link( $contact->id ) ) : ?>
-				<a class="epl_contact_pagination_prev " href="<?php echo esc_url( epl_get_prev_contact_link( $contact->id ) ); ?>">
+			<?php if ( epl_get_prev_contact_link( $contact->ID ) ) : ?>
+				<a class="epl_contact_pagination_prev " href="<?php echo esc_url( epl_get_prev_contact_link( $contact->ID ) ); ?>">
 					<span class="dashicons dashicons-arrow-left"></span>
 				</a>
 			<?php endif; ?>
 
-			<?php if ( epl_get_next_contact_link( $contact->id ) ) : ?>
-				<a class="epl_contact_pagination_next " href="<?php echo esc_url( epl_get_next_contact_link( $contact->id ) ); ?>">
+			<?php if ( epl_get_next_contact_link( $contact->ID ) ) : ?>
+				<a class="epl_contact_pagination_next " href="<?php echo esc_url( epl_get_next_contact_link( $contact->ID ) ); ?>">
 					<span class="dashicons dashicons-arrow-right">
 					</span>
 				</a>
@@ -728,7 +728,7 @@ function epl_contact_assigned_tags( EPL_Contact $contact ) {
 	<div class="epl-contact-assigned-tags-wrap">
 		<ul class="epl-contact-assigned-tags">
 			<?php
-				$contact_tags = wp_get_object_terms( $contact->id, 'epl_contact_tag' );
+				$contact_tags = wp_get_object_terms( $contact->ID, 'epl_contact_tag' );
 			if ( ! empty( $contact_tags ) ) {
 				if ( ! is_wp_error( $contact_tags ) ) {
 					foreach ( $contact_tags as $term ) {
@@ -1022,7 +1022,7 @@ function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $ord
 			'post_type'      => array( 'property', 'rural', 'commercial', 'commercial_land', 'business', 'rental', 'land' ),
 			'post_status'    => 'publish',
 			'meta_key'       => 'property_owner',
-			'meta_value'     => $contact->id,
+			'meta_value'     => $contact->ID,
 			'posts_per_page' => -1,
 		)
 	);
@@ -1157,7 +1157,7 @@ function epl_contact_add_listing_form( $contact ) {
 					'name'  => 'property_owner',
 					'label' => '',
 					'type'  => 'hidden',
-					'value' => $contact->id,
+					'value' => $contact->ID,
 				),
 				array(
 					'name'      => 'property_address_lot_number',
@@ -1459,7 +1459,7 @@ function epl_contact_save_note_note_tab( $args ) {
 	$contact     = new EPL_contact( $contact_id );
 	$note_object = $contact->add_note( $contact_note, $note_type, $listing_id );
 
-	if ( ! empty( $note_object ) && ! empty( $contact->id ) ) {
+	if ( ! empty( $note_object ) && ! empty( $contact->ID ) ) {
 		ob_start();
 		?>
 		<div class="epl-contact-note-wrapper dashboard-comment-wrap comment-item epl-admin-note">
