@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Processes a custom edit
  *
  * @since  3.0
- * @param  array $args The $_POST array being passeed.
+ * @param  array|false $args The $_POST array being passeed.
  * @return array $output Response messages
  */
 function epl_edit_contact( $args ) {
@@ -29,7 +29,7 @@ function epl_edit_contact( $args ) {
 	}
 
 	if ( empty( $args ) ) {
-		return;
+		return null;
 	}
 
 	$contact_info = $args['contactinfo'];
@@ -58,7 +58,7 @@ function epl_edit_contact( $args ) {
 	}
 
 	if ( epl_get_errors() ) {
-		return;
+		return null;
 	}
 
 	// Sanitize the inputs.
@@ -265,9 +265,11 @@ add_action( 'epl_add-contact-note', 'epl_contact_save_note', 10, 1 );
 /**
  * Save a contact listing being added
  *
- * @since  3.0
- * @param  array $args The $_POST array being passeed.
+ * @param  array|false $args The $_POST array being passeed.
  * @return object
+ *
+ * @since  3.0
+ * @since  3.5.0 Fix epl_print_errors function name.
  */
 function epl_contact_save_listing( $args ) {
 	$contact_add_listing_role = apply_filters( 'epl_add_contacts_listing', 'manage_options' );
@@ -277,7 +279,7 @@ function epl_contact_save_listing( $args ) {
 	}
 
 	if ( empty( $args ) ) {
-		return;
+		return null;
 	}
 
 	$post_fields = array( 'post_title', 'post_type' );
@@ -290,8 +292,8 @@ function epl_contact_save_listing( $args ) {
 		wp_die( esc_html__( 'Cheatin\' eh?!', 'easy-property-listings' ) );
 	}
 	if ( epl_get_errors() ) {
-		epl_print_error();
-		return;
+		epl_print_errors();
+		return null;
 	}
 
 	do_action( 'epl_pre_insert_contact_listing', $args );
