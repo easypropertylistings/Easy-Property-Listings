@@ -1145,6 +1145,7 @@ add_action( 'epl_contact_add_activity_form', 'epl_contact_add_activity_form' );
  *
  * @param array $contact contact object.
  * @since 3.0
+ * @since 3.5.0 Using the global function to get status labels.
  */
 function epl_contact_add_listing_form( $contact ) {
 	global $epl_settings;
@@ -1242,9 +1243,9 @@ function epl_contact_add_listing_form( $contact ) {
 					'opts'      => apply_filters(
 						'epl_contact_property_status',
 						array(
-							'current' => esc_html__( 'Current', 'easy-property-listings' ),
-							'sold'    => esc_html__( 'Sold', 'easy-property-listings' ),
-							'leased'  => esc_html__( 'Leased', 'easy-property-listings' ),
+							'current' => epl_get_the_status_label( 'current' ),
+							'sold'    => epl_get_the_status_label( 'sold' ),
+							'leased'  => epl_get_the_status_label( 'leased' ),
 						)
 					),
 					'maxlength' => '200',

@@ -1400,6 +1400,17 @@ function epl_get_admin_option_fields() {
 					),
 					'default' => 0,
 				),
+
+                                array(
+					'name'    => 'display_hidden_fields',
+					'label'   => __( 'Display Hidden Fields', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						1 => __( 'Enable', 'easy-property-listings' ),
+						0 => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 0,
+				),
 			),
 		),
 
@@ -2249,6 +2260,29 @@ function epl_get_property_status_opts() {
 			'deleted'   => __( 'Deleted', 'easy-property-listings' ),
 		)
 	);
+}
+
+/**
+ * Returns the status label for given status value.
+ *
+ * @since 3.5.0
+ *
+ * @param bool   $status Status status valuet.
+ * @return string $label Status label.
+ */
+function epl_get_the_status_label( $status = '' ) {
+	
+	$status_opts = epl_get_property_status_opts();
+
+	if ( strlen( $status ) === 0 ) {
+		return;
+	}
+
+	$status_data = $status_opts[ $status ];
+
+        $label = is_array( $status_data ) && isset( $status_data['label'] ) ? $status_data['label'] : $status_data;
+
+	return $label;
 }
 
 /**
