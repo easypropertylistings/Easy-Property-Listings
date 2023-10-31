@@ -40,6 +40,7 @@ There are various ways you can contribute:
 
 = 3.5 October 30, 2023 =
 
+- New: Filters added to alter an empty value if required: epl_get_year_built_empty_value, epl_get_property_bed_empty_value, epl_get_property_bath_empty_value, epl_get_property_rooms_empty_value, epl_get_parking_spaces_empty_value, epl_get_property_garage_empty_value, epl_get_property_carport_empty_value, epl_get_air_conditioning_empty_value, epl_get_property_pool_empty_value, epl_get_security_system_empty_value
 - New: Using the global status function to get status labels.
 - New: Renamed Google Maps script name.
 - New: Display hidden fields in admin when editing listings.

@@ -332,10 +332,11 @@ function epl_currency_formatted_amount( $price ) {
 /**
  * Get labels
  *
- * @since 2.2
  * @param integer $key Settings meta key.
  * @return string
- * @since 3.5.0 Added hidden field show option
+ *
+ * @since 2.2
+ * @since 3.5.0 New: Display hidden field option.
  */
 function epl_labels( $key ) {
 	global $epl_settings;
