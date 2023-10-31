@@ -88,7 +88,7 @@ function epl_contact_capture_form_callback( $form_data, $request ) {
 	$phone   = isset( $request['epl_contact_phone'] ) ? sanitize_text_field( $request['epl_contact_phone'] ) : '';
 	$title   = isset( $request['epl_contact_title'] ) ? sanitize_text_field( $request['epl_contact_title'] ) : '';
 
-	if ( empty( $contact->id ) ) {
+	if ( empty( $contact->ID ) ) {
 
 		$contact_data = array(
 			'name'  => $title,

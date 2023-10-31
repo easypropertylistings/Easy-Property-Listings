@@ -32,6 +32,14 @@ class EPL_Contact {
 	public $ID = 0;
 
 	/**
+	 * The contact ID Fallback
+	 *
+	 * @var int $id Contact ID.
+	 * @since 3.0.0
+	 */
+	public $id = 0;
+
+	/**
 	 * The contact's listing count
 	 *
 	 * @var int $listing_count Contact listing count.

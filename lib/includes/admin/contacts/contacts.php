@@ -142,7 +142,7 @@ function epl_render_contact_view( $view, $callbacks ) {
 					<?php $class = $active ? 'active' : 'inactive'; ?>
 
 					<?php if ( ! $active ) : ?>
-					<a title="<?php echo esc_attr( $tab['title'] ); ?>" aria-label="<?php echo esc_attr( $tab['title'] ); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=epl-contacts&view=' . $key . '&id=' . $contact->id ) ); ?>">
+					<a title="<?php echo esc_attr( $tab['title'] ); ?>" aria-label="<?php echo esc_attr( $tab['title'] ); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=epl-contacts&view=' . $key . '&id=' . $contact->ID ) ); ?>">
 					<?php endif; ?>
 
 					<li class="<?php echo sanitize_html_class( $class ); ?>"><span class="dashicons <?php echo sanitize_html_class( $tab['dashicon'] ); ?>"></span></li>
@@ -316,7 +316,7 @@ function epl_contacts_view( $contact ) {
 
 
 	<div class="epl-info-wrapper epl-contact-section epl-contact-single-display">
-		<input type="hidden" id="epl_contact_id" value="<?php echo esc_attr( $contact->id ); ?>"/>
+		<input type="hidden" id="epl_contact_id" value="<?php echo esc_attr( $contact->ID ); ?>"/>
 
 		<div class="epl-item-info epl-contact-info">
 
@@ -389,7 +389,7 @@ function epl_contact_meta_view( $contact ) {
 
 				<div class="epl-contact-edit-main-wrapper left">
 
-					<input type="hidden" id="epl_contact_id" value="<?php echo esc_attr( $contact->id ); ?>"/>
+					<input type="hidden" id="epl_contact_id" value="<?php echo esc_attr( $contact->ID ); ?>"/>
 
 					<div class="epl-contact-info epl-meta-contact">
 						<?php do_action( 'epl_contact_meta_fields', $contact ); ?>
@@ -675,14 +675,14 @@ function epl_contact_meta_view( $contact ) {
 /**
  * View the notes of a contact
  *
- * @param array $contact The Contact being displayed.
+ * @param EPL_Contact $contact The Contact being displayed.
  *
  * @since 3.0
  * @since 3.5 Added accessibility labels to select elements.
  *
  * @return void
  */
-function epl_contact_notes_view( $contact ) {
+function epl_contact_notes_view( EPL_Contact $contact ) {
 
 	$paged       = isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ? absint( wp_unslash( $_GET['paged'] ) ) : 1;
 	$paged       = absint( $paged );
@@ -701,10 +701,10 @@ function epl_contact_notes_view( $contact ) {
 
 		<?php if ( 1 === $paged ) : ?>
 		<div style="display: block; margin-bottom: 35px;">
-			<form id="epl-add-contact-note" method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=epl-contacts&view=notes&id=' . $contact->id ) ); ?>">
+			<form id="epl-add-contact-note" method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=epl-contacts&view=notes&id=' . $contact->ID ) ); ?>">
 				<textarea id="contact-note" name="contact_note" class="epl-contact-note-input" rows="10"></textarea>
 				<br />
-				<input type="hidden" id="epl-contact-id" name="contact_id" value="<?php echo esc_attr( $contact->id ); ?>" />
+				<input type="hidden" id="epl-contact-id" name="contact_id" value="<?php echo esc_attr( $contact->ID ); ?>" />
 				<input type="hidden" name="epl_action" value="add-contact-note" />
 				<br />
 				<label class ="epl-contact-select-label" >
@@ -799,7 +799,7 @@ function epl_contacts_delete_view( $contact ) {
 
 	<div class="epl-info-wrapper epl-contact-section">
 
-		<form id="epl-delete-contact-form" method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $contact->id ) ); ?>">
+		<form id="epl-delete-contact-form" method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=epl-contacts&view=delete&id=' . $contact->ID ) ); ?>">
 
 			<div class="epl-item-notes-header">
 				<?php echo wp_kses_post( get_avatar( $contact->email, 30 ) ); ?> <span><?php echo esc_attr( $contact->name ); ?></span>
@@ -817,11 +817,11 @@ function epl_contacts_delete_view( $contact ) {
 				</span>
 
 				<span id="epl-contact-edit-actions">
-					<input type="hidden" name="contact_id" value="<?php echo esc_attr( $contact->id ); ?>" />
+					<input type="hidden" name="contact_id" value="<?php echo esc_attr( $contact->ID ); ?>" />
 					<?php wp_nonce_field( 'delete-contact', '_wpnonce', false, true ); ?>
 					<input type="hidden" name="epl_action" value="delete-contact" />
 					<input type="submit" disabled="disabled" id="epl-delete-contact" class="button-primary" value="<?php esc_html_e( 'Delete Contact', 'easy-property-listings' ); ?>" />
-					<a id="epl-delete-contact-cancel" href="<?php echo esc_attr( admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $contact->id ) ); ?>" class="delete"><?php esc_html_e( 'Cancel', 'easy-property-listings' ); ?></a>
+					<a id="epl-delete-contact-cancel" href="<?php echo esc_attr( admin_url( 'admin.php?page=epl-contacts&view=overview&id=' . $contact->ID ) ); ?>" class="delete"><?php esc_html_e( 'Cancel', 'easy-property-listings' ); ?></a>
 				</span>
 
 			</div>
@@ -856,7 +856,7 @@ function epl_contacts_listing_view( $contact ) {
 
 
 	<div class="epl-info-wrapper epl-contact-section epl-contact-single-display">
-		<input type="hidden" id="epl_contact_id" value="<?php echo esc_attr( $contact->id ); ?>"/>
+		<input type="hidden" id="epl_contact_id" value="<?php echo esc_attr( $contact->ID ); ?>"/>
 
 		<div class="epl-item-info epl-contact-info">
 
