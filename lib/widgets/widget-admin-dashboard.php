@@ -130,6 +130,7 @@ function epl_get_plural( $count, $singular ) {
  *
  * @since 1.3.0
  * @since 3.4.45 Added deleted status.
+ * @since 3.5.0 Using the global function to get status labels.
  */
 function epl_posts_highlights( $type ) {
 	switch ( $type ) {
@@ -139,27 +140,27 @@ function epl_posts_highlights( $type ) {
 				array(
 					'key'    => 'property_status',
 					'value'  => 'current',
-					'string' => __( 'Current', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'current' ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'leased',
-					'string' => apply_filters( 'epl_leased_label_status_filter', __( 'Leased', 'easy-property-listings' ) ),
+					'string' => apply_filters( 'epl_leased_label_status_filter', epl_get_the_status_label( 'leased' ) ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'withdrawn',
-					'string' => __( 'Withdrawn', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'withdrawn' ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'offmarket',
-					'string' => __( 'Off Market', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'offmarket' ),
 				),
                                 array(
 					'key'    => 'property_status',
 					'value'  => 'deleted',
-					'string' => __( 'Deleted', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'deleted' ),
 				),
 			);
 
@@ -176,7 +177,7 @@ function epl_posts_highlights( $type ) {
 				array(
 					'key'    => 'property_status',
 					'value'  => 'current',
-					'string' => __( 'Current', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'current' ),
 				),
 				array(
 					'key'    => 'property_authority',
@@ -191,27 +192,27 @@ function epl_posts_highlights( $type ) {
 				array(
 					'key'    => 'property_status',
 					'value'  => 'sold',
-					'string' => apply_filters( 'epl_sold_label_status_filter', __( 'Sold', 'easy-property-listings' ) ),
+					'string' => apply_filters( 'epl_sold_label_status_filter', epl_get_the_status_label( 'sold' ) ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'leased',
-					'string' => apply_filters( 'epl_leased_label_status_filter', __( 'Leased', 'easy-property-listings' ) ),
+					'string' => apply_filters( 'epl_leased_label_status_filter', epl_get_the_status_label( 'leased' ) ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'withdrawn',
-					'string' => __( 'Withdrawn', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'withdrawn' ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'offmarket',
-					'string' => __( 'Off Market', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'offmarket' ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'deleted',
-					'string' => __( 'Deleted', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'deleted' ),
 				),
 			);
 			foreach ( $filters as $filter_key     => $filter_value ) {
@@ -230,7 +231,7 @@ function epl_posts_highlights( $type ) {
 				array(
 					'key'    => 'property_status',
 					'value'  => 'current',
-					'string' => __( 'Current', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'current' ),
 				),
 				array(
 					'key'    => 'property_authority',
@@ -245,22 +246,22 @@ function epl_posts_highlights( $type ) {
 				array(
 					'key'    => 'property_status',
 					'value'  => 'sold',
-					'string' => apply_filters( 'epl_sold_label_status_filter', __( 'Sold', 'easy-property-listings' ) ),
+					'string' => apply_filters( 'epl_sold_label_status_filter', epl_get_the_status_label( 'sold' ) ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'withdrawn',
-					'string' => __( 'Withdrawn', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'withdrawn' )
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'offmarket',
-					'string' => __( 'Off Market', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'offmarket' )
 				),
                                 array(
 					'key'    => 'property_status',
 					'value'  => 'deleted',
-					'string' => __( 'Deleted', 'easy-property-listings' ),
+					'string' => epl_get_the_status_label( 'deleted' )
 				),
 			);
 			foreach ( $filters as $filter_key     => $filter_value ) {

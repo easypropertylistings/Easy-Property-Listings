@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 2.0
  * @since 3.4.44 Added epl_any_label_status_filter and epl_current_label_status_filter filters for any and current status labels.
  * @since 3.5 Support for instance_id.
+ * @since 3.5.0 Using the global function to get status labels.
  */
 function epl_search_widget_fields() {
 
@@ -73,9 +74,9 @@ function epl_search_widget_fields() {
 				'type'    => 'select',
 				'options' => array(
 					''        => apply_filters( 'epl_any_label_status_filter', __( 'Any', 'easy-property-listings' ) ),
-					'current' => apply_filters( 'epl_current_label_status_filter', __( 'Current', 'easy-property-listings' ) ),
-					'sold'    => apply_filters( 'epl_sold_label_status_filter', __( 'Sold', 'easy-property-listings' ) ),
-					'leased'  => apply_filters( 'epl_leased_label_status_filter', __( 'Leased', 'easy-property-listings' ) ),
+					'current' => apply_filters( 'epl_current_label_status_filter', epl_get_the_status_label( 'current' ) ),
+					'sold'    => apply_filters( 'epl_sold_label_status_filter', epl_get_the_status_label( 'sold' ) ),
+					'leased'  => apply_filters( 'epl_leased_label_status_filter', epl_get_the_status_label( 'leased' ) ),
 				),
 				'order'   => 50,
 			),

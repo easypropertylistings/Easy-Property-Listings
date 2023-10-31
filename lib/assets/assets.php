@@ -61,8 +61,9 @@ function epl_admin_enqueue_scripts( $screen ) {
 	$current_dir_path = plugins_url( '', __FILE__ );
 
 	$js_vars = array(
-		'default_map_address' => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
-		'ajax_nonce'          => wp_create_nonce( 'epl_ajax_nonce' ),
+		'default_map_address'           => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
+		'ajax_nonce'                    => wp_create_nonce( 'epl_ajax_nonce' ),
+                'display_hidden_fields'         => epl_get_option( 'display_hidden_fields', 0)  
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
