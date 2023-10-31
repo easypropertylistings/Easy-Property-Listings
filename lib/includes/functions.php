@@ -1346,7 +1346,7 @@ function epl_get_admin_option_fields() {
 		),
 
 		array(
-			'label'  => __( 'Listings Admin', 'easy-property-listings' ),
+			'label'  => __( 'Listings', 'easy-property-listings' ),
 			'class'  => 'core',
 			'id'     => 'admin_general',
 			'help'   => __( 'Use the following settings to change how the Dashboard > Property or any listing of the types you have enabled display.', 'easy-property-listings' ) . '<hr/>',
