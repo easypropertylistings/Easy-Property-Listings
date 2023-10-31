@@ -63,6 +63,30 @@ class EPL_Contact {
 	 */
 	public $date_created;
 
+        /**
+	 * The contact's background info
+	 *
+	 * @var string $background_info.
+	 * @since 3.5.0
+	 */
+	public $background_info;
+
+        /**
+	 * The contact's type
+	 *
+	 * @var string $type.
+	 * @since 3.5.0
+	 */
+	public $type;
+
+        /**
+	 * The contact's heading
+	 *
+	 * @var string $heading.
+	 * @since 3.5.0
+	 */
+	public $heading;
+
 	/**
 	 * The listing IDs associated with the contact
 	 *
@@ -137,6 +161,7 @@ class EPL_Contact {
 	 * @since  3.0
 	 * @param  object $contact The contact object.
 	 * @return bool If the setup was successful or not.
+         * @since 3.5.0 Fixed case of property ID.
 	 */
 	private function setup_contact( $contact ) {
 
@@ -150,7 +175,7 @@ class EPL_Contact {
 
 				case 'ID':
 					$this->$key = $contact->ID;
-					$this->id   = $contact->ID;
+					$this->ID   = $contact->ID;
 					break;
 
 				case 'email':

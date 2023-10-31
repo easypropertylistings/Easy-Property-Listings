@@ -2288,6 +2288,34 @@ function epl_get_the_status_label( $status = '' ) {
 }
 
 /**
+ * Returns the array of status available in the site as key, label pair.
+ *
+ * @since 3.5.0
+ *
+ * @param string $key Post Meta Key.
+ * @param string $type Post Type. Default is post. You can pass custom post type here.
+ * @return string $label Status label.
+ */
+function epl_get_available_status_list( $key, $type ) {
+
+        $statues = epl_get_unique_post_meta_values( $key, $type );
+
+        $available = array();
+
+        if( empty( $statues) ) {
+
+                return array();
+        }
+
+        foreach( $statues as $key => $key_label ) {
+
+                $available[ $key ] = epl_get_the_status_label( $key );
+        }
+
+        return $available;
+}
+
+/**
  * Returns array containing Property authority
  *
  * @since 3.2
