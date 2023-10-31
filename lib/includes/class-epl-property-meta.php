@@ -1184,18 +1184,22 @@ class EPL_Property_Meta {
 	 *
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = value, d = string, l = list item, t = text.
-	 * @return string
+	 * @return 
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_year_built( $returntype = 'i' ) {
 
 		$year_built = $this->get_property_meta( 'property_year_built', false );
+                $label      = apply_filters( 'epl_get_property_year_built_label', __( 'Built', 'easy-property-listings' ) );
+
 		if ( empty( $year_built ) ) {
-			return;
+			return apply_filters( 'epl_get_year_built_empty_value', null, $returntype, $year_built, $label );
 		}
 
 		$returntype = apply_filters( 'epl_get_property_year_built_return_type', $returntype );
 		$value      = $this->get_property_meta( 'property_year_built' );
-		$label      = apply_filters( 'epl_get_property_year_built_label', __( 'Built', 'easy-property-listings' ) );
+		
 		$return     = '';
 
 		switch ( $returntype ) {
@@ -1232,19 +1236,22 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = value, d = string, l = list item, t = text, s = svg icon.
 	 * @return string
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_bed( $returntype = 'i' ) {
 
 		$value = $this->get_property_meta( 'property_bedrooms' );
+                $label    = apply_filters( 'epl_get_property_bedrooms_label', __( 'Bedrooms', 'easy-property-listings' ) );
 
 		if ( empty( $value ) ) {
-			return;
+			return apply_filters( 'epl_get_property_bed_empty_value', null, $returntype, $value, $label );
 		}
 
 		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_bedrooms_return_type', $returntype );
 
-		$label    = apply_filters( 'epl_get_property_bedrooms_label', __( 'Bedrooms', 'easy-property-listings' ) );
+		
 		$singular = apply_filters( 'epl_get_property_bed_label', __( 'bed', 'easy-property-listings' ) );
 
 		$return = '';
@@ -1291,19 +1298,22 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item, s = svg icon.
 	 * @return string
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_bath( $returntype = 'i' ) {
 
-		$bathrooms = $this->get_property_meta( 'property_bathrooms', false );
+		$bathrooms      = $this->get_property_meta( 'property_bathrooms', false );
+                $label          = apply_filters( 'epl_get_property_bathrooms_label', __( 'Bathrooms', 'easy-property-listings' ) );
 
 		if ( empty( $bathrooms ) ) {
-			return;
+			return apply_filters( 'epl_get_property_bath_empty_value', null, $returntype, $bathrooms, $label );
 		}
 
 		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_bathrooms_return_type', $returntype );
 
-		$label    = apply_filters( 'epl_get_property_bathrooms_label', __( 'Bathrooms', 'easy-property-listings' ) );
+		
 		$singular = apply_filters( 'epl_get_property_bath_label', __( 'bath', 'easy-property-listings' ) );
 		$value    = $this->get_property_meta( 'property_bathrooms' );
 		$return   = '';
@@ -1351,18 +1361,21 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_rooms( $returntype = 'i' ) {
 
 		$rooms = $this->get_property_meta( 'property_rooms', false );
+                $label  = apply_filters( 'epl_get_property_rooms_label', __( 'Rooms', 'easy-property-listings' ) );
 
 		if ( empty( $rooms ) ) {
-			return;
+			return apply_filters( 'epl_get_property_rooms_empty_value', null, $returntype, $rooms, $label );
 		}
 
 		$returntype = apply_filters( 'epl_get_property_rooms_return_type', $returntype );
 
-		$label  = apply_filters( 'epl_get_property_rooms_label', __( 'Rooms', 'easy-property-listings' ) );
+		
 		$value  = $this->get_property_meta( 'property_rooms' );
 		$return = '';
 
@@ -1404,6 +1417,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 * @since 3.4.20 New filter epl_total_parking_spaces for value.
 	 * @since 3.4.21 Removed first check.
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_parking( $returntype = 'i' ) {
 
@@ -1417,12 +1431,13 @@ class EPL_Property_Meta {
 		$property_carport = intval( $this->get_property_meta( 'property_carport' ) );
 		$value            = $property_carport + $property_garage;
 		$value            = apply_filters( 'epl_total_parking_spaces', $value );
+                $label            = apply_filters( 'epl_get_parking_spaces_label', __( 'Parking Spaces', 'easy-property-listings' ) );
 
 		if ( 0 === $value ) {
-			return;
+			return apply_filters( 'epl_get_parking_spaces_empty_value', null, $returntype, $value, $label );
 		}
 
-		$label  = apply_filters( 'epl_get_parking_spaces_label', __( 'Parking Spaces', 'easy-property-listings' ) );
+		
 		$return = '';
 
 		switch ( $returntype ) {
@@ -1468,18 +1483,21 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_garage( $returntype = 'i' ) {
 
 		$prop_garage = $this->get_property_meta( 'property_garage' );
+                $label  = apply_filters( 'epl_get_property_garage_label', __( 'garage', 'easy-property-listings' ) );
 
 		if ( empty( $prop_garage ) ) {
-			return;
+			return apply_filters( 'epl_get_property_garage_empty_value', null, $returntype, $prop_garage, $label );
 		}
 
 		$returntype = apply_filters( 'epl_get_property_garage_return_type', $returntype );
 
-		$label  = apply_filters( 'epl_get_property_garage_label', __( 'garage', 'easy-property-listings' ) );
+		
 		$value  = $this->get_property_meta( 'property_garage' );
 		$return = '';
 
@@ -1518,17 +1536,20 @@ class EPL_Property_Meta {
 	 * @since 3.4.5 Fixed the incorrect meta key
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_carport( $returntype = 'i' ) {
 
 		$prop_carport = $this->get_property_meta( 'property_carport' );
+                $label      = apply_filters( 'epl_get_property_carport_label', __( 'carport', 'easy-property-listings' ) );
 
 		if ( empty( $prop_carport ) ) {
-			return;
+			return apply_filters( 'epl_get_property_carport_empty_value', null, $returntype, $prop_carport, $label );
 		}
 
 		$returntype = apply_filters( 'epl_get_property_carport_return_type', $returntype );
-		$label      = apply_filters( 'epl_get_property_carport_label', __( 'carport', 'easy-property-listings' ) );
+		
 		$value      = $this->get_property_meta( 'property_carport' );
 		$return     = '';
 
@@ -1566,18 +1587,21 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype  Options i = span, v = raw value, t = text, d = string, l = list item, s = svg icon.
 	 * @return string
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_air_conditioning( $returntype = 'i' ) {
 
 		$prop_ac = $this->get_property_meta( 'property_air_conditioning' );
+                $label      = apply_filters( 'epl_get_property_air_conditioning_label', __( 'Air Conditioning', 'easy-property-listings' ) );
 
 		if ( empty( $prop_ac ) ) {
-			return;
+			return apply_filters( 'epl_get_air_conditioning_empty_value', null, $returntype, $prop_ac, $label );
 		}
 
 		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_air_conditioning_return_type', $returntype );
-		$label      = apply_filters( 'epl_get_property_air_conditioning_label', __( 'Air Conditioning', 'easy-property-listings' ) );
+		
 		$value      = $this->get_property_meta( 'property_air_conditioning' );
 		$return     = '';
 
@@ -1625,18 +1649,21 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options Options i = span, v = raw value, t = text, d = string, l = list item, s = svg icon.
 	 * @return string
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_pool( $returntype = 'i' ) {
 
 		$prop_pool = $this->get_property_meta( 'property_pool' );
+                $label      = apply_filters( 'epl_get_property_pool_label', __( 'Pool', 'easy-property-listings' ) );
 
 		if ( empty( $prop_pool ) ) {
-			return;
+			return apply_filters( 'epl_get_property_pool_empty_value', null, $returntype, $prop_pool, $label );
 		}
 
 		$returntype = 'i' === $returntype && epl_get_option( 'epl_icons_svg_listings' ) === 'on' ? 's' : $returntype;
 		$returntype = apply_filters( 'epl_get_property_pool_return_type', $returntype );
-		$label      = apply_filters( 'epl_get_property_pool_label', __( 'Pool', 'easy-property-listings' ) );
+		
 		$value      = $this->get_property_meta( 'property_pool' );
 		$return     = '';
 
@@ -1683,17 +1710,20 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
 	 * @return string
+         * 
+         * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_security_system( $returntype = 'i' ) {
 
 		$value = $this->get_property_meta( 'property_security_system' );
+                $label      = apply_filters( 'epl_get_property_security_system_label', __( 'Alarm System', 'easy-property-listings' ) );
 
 		if ( empty( $value ) ) {
-			return;
+			return apply_filters( 'epl_get_security_system_empty_value', null, $returntype, $value, $label );
 		}
 
 		$returntype = apply_filters( 'epl_get_property_security_system_return_type', $returntype );
-		$label      = apply_filters( 'epl_get_property_security_system_label', __( 'Alarm System', 'easy-property-listings' ) );
+		
 
 		$return = '';
 
