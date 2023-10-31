@@ -7,6 +7,7 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
+ * @since       3.5.0 epl_property_tab_section hook is replaced with epl_property_features.
  */
 
 // Exit if accessed directly.
@@ -97,7 +98,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<?php do_action( 'epl_property_tab_section_before' ); ?>
 			<div class="epl-tab-section epl-tab-section-features">
-				<?php do_action( 'epl_property_tab_section' ); ?>
+				<?php do_action( 'epl_property_features' ); ?>
 			</div>
 			<?php do_action( 'epl_property_tab_section_after' ); ?>
 
