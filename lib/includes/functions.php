@@ -1403,7 +1403,7 @@ function epl_get_admin_option_fields() {
 					'default' => 0,
 				),
 
-                                array(
+				array(
 					'name'    => 'display_hidden_fields',
 					'label'   => __( 'Display Hidden Fields', 'easy-property-listings' ),
 					'type'    => 'radio',
@@ -2269,11 +2269,11 @@ function epl_get_property_status_opts() {
  *
  * @since 3.5.0
  *
- * @param bool   $status Status status value.
+ * @param bool $status Status status value.
  * @return string $label Status label.
  */
 function epl_get_the_status_label( $status = '' ) {
-	
+
 	$status_opts = epl_get_property_status_opts();
 
 	if ( 0 === strlen( $status ) ) {
@@ -2282,7 +2282,7 @@ function epl_get_the_status_label( $status = '' ) {
 
 	$status_data = $status_opts[ $status ];
 
-        $label = is_array( $status_data ) && isset( $status_data['label'] ) ? $status_data['label'] : $status_data;
+		$label = is_array( $status_data ) && isset( $status_data['label'] ) ? $status_data['label'] : $status_data;
 
 	return $label;
 }
@@ -2298,21 +2298,21 @@ function epl_get_the_status_label( $status = '' ) {
  */
 function epl_get_available_status_list( $key, $type ) {
 
-        $status_list = epl_get_unique_post_meta_values( $key, $type );
+		$status_list = epl_get_unique_post_meta_values( $key, $type );
 
-        $available = array();
+		$available = array();
 
-        if( empty( $status_list) ) {
+	if ( empty( $status_list ) ) {
 
-                return array();
-        }
+			return array();
+	}
 
-        foreach( $status_list as $key => $key_label ) {
+	foreach ( $status_list as $key => $key_label ) {
 
-                $available[ $key ] = epl_get_the_status_label( $key );
-        }
+			$available[ $key ] = epl_get_the_status_label( $key );
+	}
 
-        return apply_filters( 'epl_get_available_status_list', $available, $key, $type);
+		return apply_filters( 'epl_get_available_status_list', $available, $key, $type );
 }
 
 /**
