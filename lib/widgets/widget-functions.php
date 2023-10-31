@@ -365,6 +365,7 @@ function epl_get_price_meta_key( $post_type = 'property', $transaction = 'defaul
  *
  * @return mixed|void
  * @since 2.2
+ * @since 3.5.0 Status labels are coming throgh global filter epl_opts_property_status_filter.
  */
 function epl_search_widget_fields_frontend( $post_type = '', $property_status = '', $transaction_type = 'default' ) {
 
@@ -388,7 +389,7 @@ function epl_search_widget_fields_frontend( $post_type = '', $property_status = 
 				'label'         => __( 'Status', 'easy-property-listings' ),
 				'type'          => 'hidden',
 				'option_filter' => 'property_status',
-				'options'       => epl_get_unique_post_meta_values( 'property_status', $post_type ),
+				'options'       => epl_get_available_status_list( 'property_status', $post_type ),
 				'query'         => array(
 					'query'   => 'meta',
 					'compare' => 'IN',
