@@ -48,6 +48,7 @@ function epl_get_admin_screens() {
  * @since 1.0
  * 
  * @since 3.4.44 Fixed callback error for google maps.
+ * @since 3.5 Renamed Google Maps script name.
  * 
  * @param string $screen Page hook.
  * @return void
@@ -77,7 +78,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 		}
 
-		wp_enqueue_script( 'google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
+		wp_enqueue_script( 'epl-google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 
 		wp_enqueue_style( 'epl-jquery-validation-engine-style', $current_dir_path . '/css/validationEngine-jquery' . $suffix . '.css', false, EPL_PROPERTY_VER );
 		wp_enqueue_script( 'epl-jquery-validation-engine-lang-scripts', $current_dir_path . '/js/jquery-validationEngine-en' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
