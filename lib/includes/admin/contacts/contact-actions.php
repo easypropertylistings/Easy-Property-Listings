@@ -1430,9 +1430,11 @@ add_action( 'wp_ajax_epl_search_user', 'epl_search_user' );
 /**
  * Save a customer note being added
  *
- * @since  3.0
  * @param  array $args The $_POST array being passeed.
- * @return object         the comment object
+ * @return bool|string|void The comment object
+ *
+ * @since  3.0
+ * @since  3.5.0 Error message added.
  */
 function epl_contact_save_note_note_tab( $args ) {
 
@@ -1455,7 +1457,7 @@ function epl_contact_save_note_note_tab( $args ) {
 		epl_set_error( 'empty-contact-note', esc_html__( 'A note is required', 'easy-property-listings' ) );
 	}
 	if ( epl_get_errors() ) {
-		epl_set_error();
+		epl_set_error( 'contact-error', esc_html__( 'An error occured', 'easy-property-listings' ) );
 		return;
 	}
 	do_action( 'epl_pre_insert_contact_note', $contact_id, $contact_note, $listing_id, $note_type );
