@@ -914,7 +914,7 @@ function epl_search_get_defaults() {
  *
  * @since 2.2
  */
-function epl_widget_render_backend_field( $field, WP_Widget $object, $value = '' ) {
+function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
 	switch ( $field['type'] ) {
 
