@@ -126,7 +126,7 @@ function epl_custom_restrict_manage_posts() {
  * @since 1.0.0
  * @since 3.4.16 Filter by property author now shows results for both primary and secondary author.
  */
-function epl_admin_posts_filter( WP_Query $query ) {
+function epl_admin_posts_filter( $query ) {
 	// phpcs:disable WordPress.Security.NonceVerification
 	global $pagenow;
 	if ( is_admin() && 'edit.php' === $pagenow && in_array( $query->get( 'post_type' ), epl_get_core_post_types(), true ) ) {
@@ -202,7 +202,7 @@ foreach ( $epl_posts  as $epl_post ) {
  * @since 1.0
  * @param WP_Query $query WordPress query.
  */
-function epl_custom_orderby( WP_Query $query ) {
+function epl_custom_orderby( $query ) {
 	if ( ! is_admin() ) {
 		return;
 	}

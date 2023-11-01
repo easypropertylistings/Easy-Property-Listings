@@ -1072,7 +1072,7 @@ function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $
  * @return array posts if query is set.
  * @since  2.3.1
  */
-function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
+function epl_search( &$query, array $data = array(), $get_posts = false ) {
 	// phpcs:disable WordPress.Security.NonceVerification
 	if ( empty( $data ) ) {
 		$data = $_REQUEST;
