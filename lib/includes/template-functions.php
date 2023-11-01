@@ -3273,6 +3273,7 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
  *
  * @since 3.1.5
  * @since 3.4.48 Added new class for the message removed incorrect class name.
+ * @since 3.5 Tweak: Shortcode results message allow basic html.
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
@@ -3282,7 +3283,7 @@ function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 		$title = apply_filters( 'epl_shortcode_results_message_title_open', __( 'Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ) );
 	}
 
-	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . esc_attr( $title ) . '</h3>';
+	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $title ) . '</h3>';
 
 }
 add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_callback' );
