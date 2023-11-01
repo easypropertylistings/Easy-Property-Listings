@@ -614,7 +614,7 @@ add_action( 'wp_ajax_epl_contact_tag_remove', 'epl_contact_tag_remove' );
  * @param EPL_Contact $contact contact object.
  * @since 3.0
  */
-function epl_contact_action_menus( EPL_Contact $contact ) {
+function epl_contact_action_menus( $contact ) {
 	?>
 	<div class="contact-action-menu epl-clearfix">
 		<ul class="epl_contact_quick_actions">
@@ -685,7 +685,7 @@ add_action( 'epl_contact_action_menus', 'epl_contact_action_menus' );
  * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_entry_header( EPL_Contact $contact ) {
+function epl_contact_entry_header( $contact ) {
 	?>
 	<div class="epl-contact-entry-header">
 		<h1 class="epl-contact-title">
@@ -705,7 +705,7 @@ add_action( 'epl_contact_entry_header', 'epl_contact_entry_header' );
  * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_entry_header_editable( EPL_Contact $contact ) {
+function epl_contact_entry_header_editable( $contact ) {
 	?>
 	<div class="epl-contact-entry-header">
 		<input class="epl-contact-title-editable" type="text" name="post_title" value="<?php echo esc_attr( $contact->heading ); ?>"/>
@@ -723,7 +723,7 @@ add_action( 'epl_contact_entry_header_editable', 'epl_contact_entry_header_edita
  * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_assigned_tags( EPL_Contact $contact ) {
+function epl_contact_assigned_tags( $contact ) {
 	?>
 	<div class="epl-contact-assigned-tags-wrap">
 		<ul class="epl-contact-assigned-tags">
@@ -750,7 +750,7 @@ add_action( 'epl_contact_assigned_tags', 'epl_contact_assigned_tags' );
  * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_background_info( EPL_Contact $contact ) {
+function epl_contact_background_info( $contact ) {
 	echo '<div class="epl-contact-bg-info-wrap">';
 		echo '<h4>' . esc_html__( 'Background Info', 'easy-property-listings' ) . '</h4>';
 		echo '<div class="epl-contact-bg-info">';
@@ -767,7 +767,7 @@ add_action( 'epl_contact_background_info', 'epl_contact_background_info' );
  * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_avatar( EPL_Contact $contact ) {
+function epl_contact_avatar( $contact ) {
 	?>
 	<div class="avatar-wrap left" id="contact-avatar">
 		<?php echo wp_kses_post( get_avatar( $contact->email, apply_filters( 'epl_contact_gravatar_size', 160 ) ) ); ?>
@@ -783,7 +783,7 @@ add_action( 'epl_contact_avatar', 'epl_contact_avatar' );
  * @param EPL_Contact $contact Contact object.
  * @since 3.0
  */
-function epl_contact_social_icons( EPL_Contact $contact ) {
+function epl_contact_social_icons( $contact ) {
 
 	$fb      = $contact->get_meta( 'contact_facebook' );
 	$twitter = $contact->get_meta( 'contact_twitter' );
@@ -823,7 +823,7 @@ add_action( 'epl_contact_social_icons', 'epl_contact_social_icons' );
  * @since 3.0
  * @since 3.4.1 Added wrapper classes to contact values.
  */
-function epl_contact_contact_details( EPL_Contact $contact ) {
+function epl_contact_contact_details( $contact ) {
 	?>
 
 	<span class="epl-contact-name epl-info-item editable">
@@ -875,7 +875,7 @@ add_action( 'epl_contact_contact_details', 'epl_contact_contact_details' );
  * @param string      $order Order ASC or DESC.
  * @since 3.0
  */
-function epl_contact_recent_interests( EPL_Contact $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
+function epl_contact_recent_interests( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
 	?>
 	<?php do_action( 'epl_contact_add_listing_form', $contact ); ?>
 	<h3 class="epl-contact-activity-title">
@@ -970,7 +970,6 @@ function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $o
 								echo '</span>';
 								echo '</div>';
 							}
-
 								echo wp_kses_post( $activity->comment_content );
 							?>
 						</td>
