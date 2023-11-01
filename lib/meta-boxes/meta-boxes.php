@@ -154,7 +154,7 @@ function epl_meta_box_inner_custom_box( $post, $args ) {
 /**
  * Save and update meta box values to the post-edit page
  *
- * @param  [type] $post_ID [description].
+ * @param  string $post_ID [description].
  *
  * @return mixed
  * @since 1.0

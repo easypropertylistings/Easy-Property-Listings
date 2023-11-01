@@ -40,12 +40,13 @@ There are various ways you can contribute:
 
 = 3.5 October 30, 2023 =
 
+- New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
 - New: Filters added to alter an empty value if required: epl_get_year_built_empty_value, epl_get_property_bed_empty_value, epl_get_property_bath_empty_value, epl_get_property_rooms_empty_value, epl_get_parking_spaces_empty_value, epl_get_property_garage_empty_value, epl_get_property_carport_empty_value, epl_get_air_conditioning_empty_value, epl_get_property_pool_empty_value, epl_get_security_system_empty_value
 - New: Using the global status function to get status labels.
-- New: Renamed Google Maps script name.
+- New: Prefixed Google Maps API key script name.
 - New: Display hidden fields in admin when editing listings.
 - New: Additional args for custom template action: epl*loop_template*{$post_type}, epl_loop_template.
-- New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically. Allowing multiple search with tabs not interfering with each other.
+- New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically. Allowing multiple search with tabs on the same page to not clash with each other.
 - New: Added support for 'status' in search shortcodes.
 - New: Support for conditional fields in extension settings.
 - New: Support for number type field for widget settings.
@@ -55,6 +56,7 @@ There are various ways you can contribute:
 - Tweak: Correct spelling of Separate.
 - Tweak: Additional PHP 8.2 code improvements.
 - Tweak: Prevent importing non text files in settings.
+- Fix: Availability time is only shown when there is a date.
 - Fix: Toolbar items function missing arguments.
 - Fix: Improvements to settings imports if file is incorrectly uploaded.
 - Fix: Price Sticker, inspections code trim string when is null.

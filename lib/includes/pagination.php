@@ -351,7 +351,7 @@ endif;
 /**
  * Get next page URL for EPL archives / shortcodes
  *
- * @param  array $query WP Query object.
+ * @param  WP_Query $query WP Query object.
  * @return string
  * @since 3.3.3
  */
@@ -368,8 +368,8 @@ function epl_get_next_page_link( $query ) {
 /**
  * Next page Link
  *
- * @param  array  $query WP Query object.
- * @param  string $label Pagination 'next' label.
+ * @param  WP_Query $query WP Query object.
+ * @param  string   $label Pagination 'next' label.
  * @return string
  * @since 3.3.3
  */
