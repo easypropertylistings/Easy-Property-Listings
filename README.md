@@ -46,7 +46,7 @@ There are various ways you can contribute:
 - New: Prefixed Google Maps API key script name.
 - New: Display hidden fields in admin when editing listings.
 - New: Additional args for custom template action: epl*loop_template*{$post_type}, epl_loop_template.
-- New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically. Allowing multiple search with tabs not interfering with each other.
+- New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically. Allowing multiple search with tabs on the same page to not clash with each other.
 - New: Added support for 'status' in search shortcodes.
 - New: Support for conditional fields in extension settings.
 - New: Support for number type field for widget settings.
