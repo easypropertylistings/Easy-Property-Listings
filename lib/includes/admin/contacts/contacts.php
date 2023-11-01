@@ -678,7 +678,7 @@ function epl_contact_meta_view( $contact ) {
  * @param EPL_Contact $contact The Contact being displayed.
  *
  * @since 3.0
- * @since 3.5 Added accessibility labels to select elements.
+ * @since 3.5 Added accessibility labels to select elements & fix paginated link warnings when empty.
  *
  * @return void
  */
@@ -774,7 +774,11 @@ function epl_contact_notes_view( $contact ) {
 		</div>
 		<div class="epl-note-pagination">
 			<?php
-				echo wp_kses_post( paginate_links( $pagination_args ) );
+                                $paginated_links = paginate_links( $pagination_args );
+                                if( !is_null( $paginated_links ) ) {
+                                        echo wp_kses_post( $paginated_links );
+                                }
+				
 			?>
 		</div>
 

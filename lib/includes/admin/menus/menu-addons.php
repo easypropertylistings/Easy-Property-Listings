@@ -74,6 +74,6 @@ function epl_add_ons_page() {
 		<?php echo wp_kses_post( epl_add_ons_get_feed() ); ?>
 	</div>
 	<?php
-	echo wp_kses_post( ob_get_clean() );
+	return wp_kses_post( ob_get_clean() );
 }
 echo wp_kses_post( epl_add_ons_page() );
