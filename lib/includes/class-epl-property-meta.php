@@ -571,8 +571,8 @@ class EPL_Property_Meta {
 			if ( isset( $this->meta['property_date_available'][0] ) ) {
 				if ( ! empty( $this->meta['property_date_available'][0] ) ) {
 
-										$av_date_array = date_parse( $this->meta['property_date_available'][0] );
-										$date_format   = epl_get_inspection_date_format();
+					$av_date_array = date_parse( $this->meta['property_date_available'][0] );
+					$date_format   = epl_get_inspection_date_format();
 
 					if ( isset( $av_date_array['hour'] ) && false === $av_date_array['hour'] ) {
 							$format = $date_format;
@@ -613,7 +613,7 @@ class EPL_Property_Meta {
 	 */
 	public function get_property_land_category( $tag = 'div', $class = 'land-category' ) {
 		if ( ! in_array( $this->post_type, array( 'land', 'commercial_land' ), true ) ) {
-			return;
+			return null;
 		}
 
 		$land_category = epl_listing_meta_land_category_value( $this->get_property_meta( 'property_land_category' ) );
@@ -949,19 +949,19 @@ class EPL_Property_Meta {
 					$price = '<span class="page-price auction">' . apply_filters( 'epl_commercial_auction_label', __( 'Auction', 'easy-property-listings' ) ) . ' ' . $this->get_property_auction() . '</span>';
 				} elseif ( ! empty( $prop_price_view ) && $this->get_property_meta( 'property_com_listing_type' ) === 'both' ) {
 					$price = '<span class="page-price">
-									<span class="page-price-prefix">
-										<span class="page-price-prefix">' .
-											apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . ':
-										</span> ' . $this->get_property_price_display() . '
-									</span>
-									<span class="epl-clear"></span>
-									<span class="page-price-prefix">
-										<span class="page-price-prefix">' .
-											apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . ':
-										</span> ' . $this->get_property_com_rent() . ' ' . $rent_lease_type . '
-									</span>
-								</span>
-								';
+							<span class="page-price-prefix">
+								<span class="page-price-prefix">' .
+									apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . ':
+								</span> ' . $this->get_property_price_display() . '
+							</span>
+							<span class="epl-clear"></span>
+							<span class="page-price-prefix">
+								<span class="page-price-prefix">' .
+									apply_filters( 'epl_commercial_for_lease_label', __( 'For Lease', 'easy-property-listings' ) ) . ':
+								</span> ' . $this->get_property_com_rent() . ' ' . $rent_lease_type . '
+							</span>
+						</span>
+						';
 				} elseif ( ! empty( $price_display ) && 'yes' === $this->get_property_meta( 'property_price_display' ) ) {   // Property.
 					$price = '<span class="page-price"><span class="page-price-prefix">' . apply_filters( 'epl_commercial_for_sale_label', __( 'For Sale', 'easy-property-listings' ) ) . '</span> ' . $this->get_property_price_display() . $this->get_property_tax() . '</span>';
 				} else {

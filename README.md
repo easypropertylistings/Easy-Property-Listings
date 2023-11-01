@@ -44,7 +44,7 @@ There are various ways you can contribute:
 - New: Filters added to alter an empty value if required: epl_get_year_built_empty_value, epl_get_property_bed_empty_value, epl_get_property_bath_empty_value, epl_get_property_rooms_empty_value, epl_get_parking_spaces_empty_value, epl_get_property_garage_empty_value, epl_get_property_carport_empty_value, epl_get_air_conditioning_empty_value, epl_get_property_pool_empty_value, epl_get_security_system_empty_value
 - New: Label filter for parking wording epl_get_parking_spaces_label.
 - New: Using the global status function to get status labels.
-- New: Renamed Google Maps script name.
+- New: Prefixed Google Maps API key script name.
 - New: Display hidden fields in admin when editing listings.
 - New: Additional args for custom template action: epl*loop_template*{$post_type}, epl_loop_template.
 - New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically. Allowing multiple search with tabs not interfering with each other.
