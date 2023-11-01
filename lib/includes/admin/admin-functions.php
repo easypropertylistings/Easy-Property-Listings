@@ -473,7 +473,7 @@ function epl_settings_upgrade_tab() {
  * Import and Export Form
  *
  * @since 3.3.0
- * @since 3.4.8 Fixed import function.
+ * @since 3.5 Fixed import function.
  */
 function epl_handle_tools_form() {
 

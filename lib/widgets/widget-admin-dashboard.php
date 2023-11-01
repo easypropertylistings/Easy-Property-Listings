@@ -130,7 +130,7 @@ function epl_get_plural( $count, $singular ) {
  *
  * @since 1.3.0
  * @since 3.4.45 Added deleted status.
- * @since 3.5.0 Using the global function to get status labels.
+ * @since 3.5.0 Using global function to get status labels.
  */
 function epl_posts_highlights( $type ) {
 	switch ( $type ) {
@@ -157,7 +157,7 @@ function epl_posts_highlights( $type ) {
 					'value'  => 'offmarket',
 					'string' => epl_get_the_status_label( 'offmarket' ),
 				),
-                                array(
+				array(
 					'key'    => 'property_status',
 					'value'  => 'deleted',
 					'string' => epl_get_the_status_label( 'deleted' ),
@@ -251,17 +251,17 @@ function epl_posts_highlights( $type ) {
 				array(
 					'key'    => 'property_status',
 					'value'  => 'withdrawn',
-					'string' => epl_get_the_status_label( 'withdrawn' )
+					'string' => epl_get_the_status_label( 'withdrawn' ),
 				),
 				array(
 					'key'    => 'property_status',
 					'value'  => 'offmarket',
-					'string' => epl_get_the_status_label( 'offmarket' )
+					'string' => epl_get_the_status_label( 'offmarket' ),
 				),
-                                array(
+				array(
 					'key'    => 'property_status',
 					'value'  => 'deleted',
-					'string' => epl_get_the_status_label( 'deleted' )
+					'string' => epl_get_the_status_label( 'deleted' ),
 				),
 			);
 			foreach ( $filters as $filter_key     => $filter_value ) {

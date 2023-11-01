@@ -682,7 +682,7 @@ function epl_contact_meta_view( $contact ) {
  *
  * @return void
  */
-function epl_contact_notes_view( EPL_Contact $contact ) {
+function epl_contact_notes_view( $contact ) {
 
 	$paged       = isset( $_GET['paged'] ) && is_numeric( $_GET['paged'] ) ? absint( wp_unslash( $_GET['paged'] ) ) : 1;
 	$paged       = absint( $paged );
@@ -713,7 +713,7 @@ function epl_contact_notes_view( EPL_Contact $contact ) {
 						<?php
 						if ( ! empty( $contact->listing_ids ) ) {
 							foreach ( $contact->listing_ids as $listing_id ) {
-								echo '<option value="' . esc_attr( $listing_id ) . '">' . esc_attr( get_the_title( $listing_id ) ) . '</option>';
+								echo '<option value="' . esc_attr( $listing_id ) . '">' . esc_html( get_the_title( $listing_id ) ) . '</option>';
 							}
 						}
 						?>
@@ -723,7 +723,7 @@ function epl_contact_notes_view( EPL_Contact $contact ) {
 					<select aria-label="<?php esc_attr_e( 'Select label for note', 'easy-property-listings' ); ?>" class="epl-contact-note-select" id="contact-activity-type">
 						<?php
 						foreach ( $contact->get_activity_types() as $act_key => $act_name ) {
-							echo '<option value="' . esc_attr( $act_key ) . '">' . esc_attr( $act_name ) . '</option>';
+							echo '<option value="' . esc_attr( $act_key ) . '">' . esc_html( $act_name ) . '</option>';
 						}
 						?>
 					</select>

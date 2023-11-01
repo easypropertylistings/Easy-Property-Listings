@@ -906,12 +906,13 @@ function epl_search_get_defaults() {
 /**
  * Render widget field blocks -- for backend form
  *
- * @since 2.2
+ * @param array     $field Array of field type for the switch.
+ * @param WP_Widget $object Array of object.
+ * @param string    $value Value.
+ *
  * @since 3.5 Added number field type.
  *
- * @param array  $field Array of field type for the switch.
- * @param array  $object Array of object.
- * @param string $value Value.
+ * @since 2.2
  */
 function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 
@@ -1071,7 +1072,7 @@ function epl_widget_render_frontend_fields( $field, $config = '', $value = '', $
  * @return array posts if query is set.
  * @since  2.3.1
  */
-function epl_search( WP_Query &$query, array $data = array(), $get_posts = false ) {
+function epl_search( &$query, array $data = array(), $get_posts = false ) {
 	// phpcs:disable WordPress.Security.NonceVerification
 	if ( empty( $data ) ) {
 		$data = $_REQUEST;
