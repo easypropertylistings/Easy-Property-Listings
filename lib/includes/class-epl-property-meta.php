@@ -1413,7 +1413,7 @@ class EPL_Property_Meta {
 	 * @return string
 	 * @since 3.4.20 New filter epl_total_parking_spaces for value.
 	 * @since 3.4.21 Removed first check.
-	 * @since 3.5.0 Added filter for empty values. New epl_get_parking_spaces_label filter.
+	 * @since 3.5.0 Added filter for empty values.
 	 */
 	public function get_property_parking( $returntype = 'i' ) {
 
@@ -1427,7 +1427,7 @@ class EPL_Property_Meta {
 		$property_carport = intval( $this->get_property_meta( 'property_carport' ) );
 		$value            = $property_carport + $property_garage;
 		$value            = apply_filters( 'epl_total_parking_spaces', $value );
-				$label    = apply_filters( 'epl_get_parking_spaces_label', __( 'Parking Spaces', 'easy-property-listings' ) );
+		$label            = apply_filters( 'epl_get_parking_spaces_label', __( 'Parking Spaces', 'easy-property-listings' ) );
 
 		if ( 0 === $value ) {
 			return apply_filters( 'epl_get_parking_spaces_empty_value', null, $returntype, $value, $label );

@@ -77,26 +77,26 @@ class EPL_SEARCH {
 	 */
 	private $transaction_type = null;
 
-        /**
+	/**
 	 * Holds the submitted form data.
 	 *
 	 * @var array $data form data.
 	 */
-        public $data;
+	public $data;
 
-        /**
+	/**
 	 * Holds skipped fields.
 	 *
 	 * @var array $skip_fields Skipped fields.
 	 */
-        public $skip_fields;
+	public $skip_fields;
 
-        /**
+	/**
 	 * Holds Array of form fields.
 	 *
 	 * @var array $form_fields form fields.
 	 */
-        public $form_fields;
+	public $form_fields;
 
 
 	/**
@@ -166,21 +166,24 @@ class EPL_SEARCH {
 		);
 	}
 
-        /**
+	/**
 	 * Sanitize an array of data recursively.
-         * @since 3.5.0
+	 *
+	 * @param array|string $data The data to be sanitized.
+	 * @since 3.5.0
 	 */
-        public function sanitize_recursive($data) {
-                if (is_array($data)) {
-                    return array_map( [$this, 'sanitize_recursive' ], $data);
-                } else {
-                    return sanitize_text_field($data);
-                }
-        }
+	public function sanitize_recursive( $data ) {
+		if ( is_array( $data ) ) {
+			return array_map( array( $this, 'sanitize_recursive' ), $data );
+		} else {
+			return sanitize_text_field( $data );
+		}
+	}
 
 	/**
 	 * Sanitize whole GET & POST array, insures security from XSS
-         * @since 3.5.0 replaced depricated code for sanitization.
+	 *
+	 * @since 3.5.0 replaced depricated code for sanitization.
 	 */
 	protected function sanitize_data() {
 
@@ -210,58 +213,45 @@ class EPL_SEARCH {
 	 * Skip unnecessay fields
 	 */
 	protected function skip_unnecessary_fields() {
-
 		$this->fields_to_skip();
-
 		if ( ! empty( $this->skip_fields ) ) {
-
 			foreach ( $this->skip_fields as $key => &$field ) {
-
 				if ( isset( $this->get_data[ $key ] ) ) {
-
 					unset( $this->get_data[ $key ] );
 				}
 			}
 		}
-
 	}
 
 	/**
 	 * Set per page for query
 	 */
 	protected function set_per_page() {
-
 		$posts_per_page = apply_filters( 'epl_search_results_per_page', get_option( 'posts_per_page' ) );
 		$this->query->set( 'posts_per_page', $posts_per_page );
-
 	}
 
 	/**
 	 * Set pagination for query
 	 */
 	protected function set_pagination() {
-
 		$paged = $this->query->get( 'paged', 1 );
 		$this->query->set( 'paged', $paged );
-
 	}
 
 	/**
 	 * Set title for query
 	 */
 	protected function set_title() {
-
 		if ( isset( $this->get_data['property_address'] ) ) {
 			$this->query->set( 'epl_post_title', sanitize_text_field( $this->get_data['property_address'] ) );
 		}
-
 	}
 
 	/**
 	 * Set property agent for query
 	 */
 	protected function set_property_agent() {
-
 		if ( isset( $this->get_data['property_agent'] ) ) {
 			$property_agent = sanitize_title_with_dashes( $this->get_data['property_agent'] );
 			$property_agent = get_user_by( 'slug', $property_agent );
@@ -277,7 +267,6 @@ class EPL_SEARCH {
 	 * @since 3.4.12 Added support for 'all' post type.
 	 */
 	protected function set_post_type() {
-
 		if ( isset( $this->get_data['post_type'] ) && ! empty( $this->get_data['post_type'] ) && 'all' !== $this->get_data['post_type'] ) {
 			$this->query->set( 'post_type', $this->get_data['post_type'] );
 			$this->post_type = $this->get_data['post_type'];
@@ -296,7 +285,6 @@ class EPL_SEARCH {
 	 * Modify meta keys according to data received, for special cases
 	 */
 	protected function modify_fields() {
-
 		// if  post type is commercial and listing type is set, accordingly change the price meta key.
 		if ( ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) && isset( $this->get_data['property_com_listing_type'] ) ) {
 
@@ -306,36 +294,28 @@ class EPL_SEARCH {
 		}
 	}
 
-
 	/**
 	 * Set queries meta, Tax
 	 */
 	protected function set_query() {
-
 		$this->set_meta_query();
-
 		$this->set_tax_query();
-
 	}
 
 	/**
 	 * Set meta query for the search object
 	 */
 	protected function set_meta_query() {
-
 		$this->preprocess_meta_query();
-
 		if ( ! empty( $this->meta_query ) ) {
 			$this->query->set( 'meta_query', $this->meta_query );
 		}
-
 	}
 
 	/**
 	 * Set tax query for the search object
 	 */
 	protected function set_tax_query() {
-
 		if ( ! empty( $this->tax_query ) ) {
 			$this->query->set( 'tax_query', $this->tax_query );
 		}
@@ -347,18 +327,13 @@ class EPL_SEARCH {
 	protected function prepare_query() {
 
 		if ( 'commercial' === $this->get_data['post_type'] || 'commercial_land' === $this->get_data['post_type'] ) {
-
 			if ( function_exists( 'epl_listing_search_commercial_widget_fields_frontend' ) ) {
-
 				$this->form_fields = epl_listing_search_commercial_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 
 			} else {
-
 				$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
-
 			}
 		} else {
-
 			$this->form_fields = epl_search_widget_fields_frontend( $this->get_data['post_type'], $this->get_data['property_status'], $this->transaction_type );
 		}
 
@@ -519,9 +494,7 @@ class EPL_SEARCH {
 	 */
 	protected function single_meta_query( $query_field, $data ) {
 
-		$query_meta_key = isset( $query_field['query']['key'] ) ?
-			$query_field['query']['key'] :
-			$query_field['meta_key'];
+		$query_meta_key = isset( $query_field['query']['key'] ) ? $query_field['query']['key'] : $query_field['meta_key'];
 
 		if ( isset( $data ) && ! empty( $data ) ) {
 
