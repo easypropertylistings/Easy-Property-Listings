@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $args Shortcode options.
  *
  * @since 1.0.0
- * @since 3.5.0 Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.
+ * @since 3.5.0 Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page. Filter: epl_map_display_defaults added.
  */
 function epl_property_map_default_callback( $args ) {
 
@@ -31,7 +31,7 @@ function epl_property_map_default_callback( $args ) {
 		'zoom'   => '17',
 	);
 
-        $args = wp_parse_args( $args, apply_filters( 'epl_map_display_defaults', $defaults ) );
+	$args = wp_parse_args( $args, apply_filters( 'epl_map_display_defaults', $defaults ) );
 
 	global $property;
 
@@ -42,7 +42,6 @@ function epl_property_map_default_callback( $args ) {
 		if ( $show_warning && is_user_logged_in() && current_user_can( 'administrator' ) ) {
 			epl_map_api_key_warning();
 		}
-
 		return;
 	}
 
