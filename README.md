@@ -50,7 +50,10 @@ There are various ways you can contribute:
 - New: Added support for 'status' in search shortcodes.
 - New: Support for conditional fields in extension settings.
 - New: Support for number type field for widget settings.
-
+- New: Edit Listing google maps error message added.
+- New: epl_get_property_meta_label helper function to get the meta value as label.
+- New: [listing_results] Shortcode to display listing search results in page builders and themes. This shortcode will load the search results loop. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
+- Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.
 - Tweak: Shortcode results message allow basic html.
 - Tweak: Shortcodes, make sure meta_query in arg is defined as array, prior to usage.
 - Tweak: Added accessibility labels to select elements.
@@ -58,8 +61,10 @@ There are various ways you can contribute:
 - Tweak: Correct spelling of Separate.
 - Tweak: Additional PHP 8.2 code improvements.
 - Tweak: Prevent importing non text files in settings.
+- Fix: Contacts, fix paginated link warnings when empty.
 - Fix: Availability time is only shown when there is a date.
 - Fix: Toolbar items function missing arguments.
+- Fix: Notice error on add-ons page.
 - Fix: Improvements to settings imports if file is incorrectly uploaded.
 - Fix: Price Sticker, inspections code trim string when is null.
 - Fix: PHP 8.2 Automatic conversion of false to array is deprecated fix.
