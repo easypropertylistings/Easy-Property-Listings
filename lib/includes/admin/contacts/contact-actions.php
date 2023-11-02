@@ -822,6 +822,7 @@ add_action( 'epl_contact_social_icons', 'epl_contact_social_icons' );
  * @param EPL_Contact $contact Contact object.
  * @since 3.0
  * @since 3.4.1 Added wrapper classes to contact values.
+ * @since 3.5.0 Fixed 8.2 warnings when phone/email is empty.
  */
 function epl_contact_contact_details( $contact ) {
 	?>
@@ -831,10 +832,19 @@ function epl_contact_contact_details( $contact ) {
 			<span class="epl-contact-value"><?php echo esc_attr( $contact->get_meta( 'contact_first_name' ) . ' ' . $contact->get_meta( 'contact_last_name' ) ); ?></span>
 		</span>
 	</span>
-	<?php echo wp_kses_post( $contact->get_emails() ); ?>
+	<?php 
+                $contact_emails = $contact->get_emails();
+                if( !is_null( $contact_emails ) ) {
+                        echo wp_kses_post( $contact_emails ); 
+                }
+                
+        ?>
 
 	<?php
-		echo wp_kses_post( $contact->get_phones() );
+                $contact_phones = $contact->get_phones();
+                if( !is_null( $contact_phones ) ) {
+                        echo wp_kses_post( $contact_phones ); 
+                }
 		$web  = $contact->get_meta( 'contact_website' );
 		$addr = $contact->epl_contact_get_address();
 	?>
