@@ -54,6 +54,7 @@ There are various ways you can contribute:
 - New: epl_get_property_meta_label helper function to get the meta value as label.
 - New: [listing_results] Shortcode to display listing search results in page builders and themes. This shortcode will load the search results loop. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
 - New: Twitter X icon added to SVG and sprites PNG.
+- New: Edit Listing when you manually edit the map coordinates the map preview will update.
 - Tweak: Welcome screen removed and images to minimise translation requirements. Visit https://easypropertylistings.com.au/whats-new/ instead.
 - Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.
 - Tweak: Shortcode results message allow basic html.
@@ -63,7 +64,8 @@ There are various ways you can contribute:
 - Tweak: Correct spelling of Separate.
 - Tweak: Additional PHP 8.2 code improvements.
 - Tweak: Prevent importing non text files in settings.
-- Fix: Contacts, fix paginated link warnings when empty.
+- Fix: Removed referenced to builder functions.
+- Fix: Contacts, PHP 8.2 fix paginated link warnings when phone, name, email is empty.
 - Fix: Availability time is only shown when there is a date.
 - Fix: Toolbar items function missing arguments.
 - Fix: Notice error on add-ons page.
