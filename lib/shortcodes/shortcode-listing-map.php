@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string
  * @since 1.0.0
  * @since 3.4.18 Added wrapper class epl-section-map.
- * @since 3.5.0 Fixed warnings. renamed file.
+ * @since 3.5.0 Fixed warnings. Added width, height and zoop options, allowed usage on any page and renamed file.
  */
 function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	global $property;
@@ -51,7 +51,7 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	}
 
 	if ( ! is_epl_post() ) {
-		// Enquue the Google Maps script if the shortcode is loaded on a page.
+		// Enqueue the Google Maps script if the shortcode is loaded on a page.
 		epl_shortcode_googlemap_enqueue();
 	}
 
