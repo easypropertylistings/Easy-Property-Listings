@@ -311,7 +311,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'hooks/hook-energy-certificate.php';
 			}
 
-			require_once EPL_PATH_LIB . 'shortcodes/shortcode-googlemap.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-map.php';
 			require_once EPL_PATH_LIB . 'shortcodes/class-epl-advanced-shortcode-listing.php';
 			require_once EPL_PATH_LIB . 'shortcodes/class-epl-listing-elements.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing.php';
