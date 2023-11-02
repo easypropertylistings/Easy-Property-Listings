@@ -34,14 +34,14 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 		$id = $property->post->ID;
 	}
 
-		$defaults = array(
-			'width'       => '100%',  // Pass the width.
-			'height'      => '350px', // Pass the height.
-			'zoom'        => '17',    // Map zoom level.
-			'q'           => '',      // The Address to query.
-			'cord'        => '',      // Lat/Long coordinates.
-			'suburb_mode' => 0,       // Suburb mode.
-		);
+	$defaults = array(
+		'width'       => '100%',  // Pass the width.
+		'height'      => '350px', // Pass the height.
+		'zoom'        => '17',    // Map zoom level.
+		'q'           => '',      // The Address to query.
+		'cord'        => '',      // Lat/Long coordinates.
+		'suburb_mode' => 0,       // Suburb mode.
+	);
 
 	$attributes = shortcode_atts(
 		$defaults,
