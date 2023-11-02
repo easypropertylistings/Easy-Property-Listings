@@ -5,7 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/iThemesBuilder
  * @since 1.0
- * @since 3.5.0 removed builder_get_tax_term_title() method call.
+ * @since 3.5.0 removed builder_get_tax_term_title() & builder_get_author_link() method call
  */
 
 // Exit if accessed directly.
@@ -75,7 +75,7 @@ function render_content() {
 								<div class="entry-meta">
 									<?php
 									// translators: author link.
-									printf( esc_html__( 'By %s', 'easy-property-listings' ), '<span class="meta-author">' . wp_kses_post( builder_get_author_link() ) . '</span>' );
+									printf( esc_html__( 'By %s', 'easy-property-listings' ), '<span class="meta-author">' . wp_kses_post( get_the_author_link() ) . '</span>' );
 									// translators: comments count.
 									do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', esc_html__( 'Comments %s', 'easy-property-listings' ), esc_html__( '(0)', 'easy-property-listings' ), esc_html__( '(1)', 'easy-property-listings' ), esc_html__( '(%)', 'easy-property-listings' ) );
 									?>

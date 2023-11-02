@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
- * @since 3.5.0 removed builder_get_tax_term_title() method call.
+ * @since 3.5.0 removed builder_get_tax_term_title() & builder_get_author_link() method call.
  */
 
 // Exit if accessed directly.
@@ -83,7 +83,7 @@ get_header(); ?>
 								<div class="entry-meta">
 									<?php
 									/* translators: %s: author name */
-									printf( esc_html__( 'By %s', 'easy-property-listings' ), '<span class="meta-author">' . esc_url( builder_get_author_link() ) . '</span>' );
+									printf( esc_html__( 'By %s', 'easy-property-listings' ), '<span class="meta-author">' . esc_url( get_the_author_link() ) . '</span>' );
 									/* translators: %s: comment count */
 									do_action( 'builder_comments_popup_link', '<span class="meta-comments">&middot; ', '</span>', esc_html__( 'Comments %s', 'easy-property-listings' ), esc_html__( '(0)', 'easy-property-listings' ), esc_html__( '(1)', 'easy-property-listings' ), esc_html__( '(%)', 'easy-property-listings' ) );
 									?>
