@@ -51,6 +51,7 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	}
 
 	if ( ! is_epl_post() ) {
+		// Enquue the Google Maps script if the shortcode is loaded on a page.
 		epl_shortcode_googlemap_enqueue();
 	}
 
