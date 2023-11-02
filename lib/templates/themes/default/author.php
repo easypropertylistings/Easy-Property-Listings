@@ -5,6 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/Default
  * @since 1.0
+ * @since 3.5.0 removed builder_get_tax_term_title() method call.
  */
 
 // Exit if accessed directly.
@@ -32,7 +33,8 @@ get_header(); ?>
 					} elseif ( is_tag() ) { // translators: Tag Archive.
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), single_tag_title( '', false ) );
 					} elseif ( is_tax() ) { // translators: Tag Archive.
-						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), builder_get_tax_term_title() );
+                                                $term = get_queried_object(); 
+						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), $term->name );
 					} elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // translators: Post Type Archive.
 						$title = post_type_archive_title( '', false );
 					} elseif ( is_author() ) { // translators: Author Archive.

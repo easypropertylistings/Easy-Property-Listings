@@ -20,7 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-function epl_property_map_default_callback() {
+function epl_property_map_default_callback( $args ) {
+
+        $defaults = array(
+                'width'       => '100%',
+                'height'      => '350',
+                'zoom'        => '17',
+        );
+
+        $args = wp_parse_args( $args, $defaults );
 
 	global $property;
 
@@ -44,7 +52,7 @@ function epl_property_map_default_callback() {
 		// Use coordinates if they are already present.
 		$coordinates = $property->get_property_meta( 'property_address_coordinates' );
 
-		echo do_shortcode( '[listing_map zoom=14 cord="' . $coordinates . '" q="' . $address . '"]' );
+		echo do_shortcode( '[listing_map zoom=14 width="'.$args['width'].'" height="'.$args['height'].'" zoom="'.$args['zoom'].'" cord="' . $coordinates . '" q="' . $address . '"]' );
 	} else {
 
 		$address  = $property->get_property_meta( 'property_address_suburb' ) . ', ';
