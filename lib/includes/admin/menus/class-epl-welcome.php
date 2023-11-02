@@ -206,165 +206,20 @@ class EPL_Welcome {
 			<?php $this->tabs(); ?>
 
 			<div class="changelog headline-feature epl-clearfix">
-				<h2><?php esc_html_e( 'Major Maintenance and Security Upgrade', 'easy-property-listings' ); ?></h2>
+				<h2><?php esc_html_e( 'Visit Easy Property Listings to Discover What\'s New', 'easy-property-listings' ); ?></h2>
 
 				<div class="feature-section">
-
-					<p class="lead-description"><?php esc_html_e( 'This release is light on new features as it is primarily focused on keeping your real estate website safe from potential security threats. We have edited every line of code to ensure WordPress coding standards and security precautions have been implemented throughout the plugin.', 'easy-property-listings' ); ?></p>
-				</div>
-
-
-			</div>
-
-			<hr/>
-
-			<div class="changelog headline-feature epl-clearfix">
-				<h2><?php esc_html_e( 'Highlights from Easy Property Listings 3.3', 'easy-property-listings' ); ?></h2>
-
-				<div class="feature-section">
-
-					<p class="lead-description"><?php esc_html_e( 'Easy Property Listings 3.3 is a major release with a huge number of new features for your real estate website. Whether you are a developer helping clients or you manage your site yourself, these features will help you showcase your listings.', 'easy-property-listings' ); ?></p>
-				</div>
-
-				<h4 style="text-align:center"><?php esc_html_e( 'Standout Upgrades', 'easy-property-listings' ); ?></h4>
-
-				<div class="feature-section">
-					<ul style="text-align: center;">
-						<li><?php esc_html_e( 'Gutenberg enabled with REST API.', 'easy-property-listings' ); ?></li>
-						<li><?php esc_html_e( 'Price slider search and major search upgrades.', 'easy-property-listings' ); ?></li>
-						<li><?php esc_html_e( 'New super awesome [listing_advanced] shortcode.', 'easy-property-listings' ); ?></li>
-
-						<li><?php esc_html_e( 'Re-created Social icons and several others.', 'easy-property-listings' ); ?></li>
-						<li><?php esc_html_e( 'Agent profile links for Instagram, Pinterest and YouTube.', 'easy-property-listings' ); ?></li>
-						<li><?php esc_html_e( 'Minified code with production and development mode.', 'easy-property-listings' ); ?></li>
-						<li><?php esc_html_e( 'Listing administration screens slimmed.', 'easy-property-listings' ); ?></li>
-						<li><?php esc_html_e( 'Set listings as featured even with imports.', 'easy-property-listings' ); ?></li>
-						<li><?php esc_html_e( 'Tools to import and export settings.', 'easy-property-listings' ); ?></li>
-						<li><?php esc_html_e( 'Unified search.', 'easy-property-listings' ); ?></li>
-						<li><a href="#guide-changelog"><?php esc_html_e( 'So much more.', 'easy-property-listings' ); ?></a></li>
-					</ul>
+					<p class="lead-description"><?php esc_html_e( 'By removing the what\'s new page we can aid translators in translating the plugin into more languages.', 'easy-property-listings' ); ?></p>
 				</div>
 			</div>
 
-			<hr/>
-
-			<div class="changelog headline-feature epl-clearfix">
-
-				<h2><?php esc_html_e( 'Gutenberg Support', 'easy-property-listings' ); ?></h2>
-
-				<div class="feature-section">
-
-					<p><?php esc_html_e( 'Now that WordPress Gutenberg has been out and compatibility issues solved with the core WordPress team, we have enabled Gutenberg as default for Easy Property Listings. This also enables the REST API for all the custom post types.', 'easy-property-listings' ); ?></p>
-
-					<p>
-						<?php
-							/* Translators: %s is a link. */
-							printf( __( 'Prefer classic WordPress? We have you covered. If you have the <a href="%s" target="_blank">Classic Editor WordPress plugin</a> installed and activated your listing entry screens will revert to the classic WordPress experience.', 'easy-property-listings' ), esc_url( 'https://wordpress.org/plugins/classic-editor/' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
-						?>
-					</p>
-
-				</div>
-
-			</div>
-
-			<hr/>
-
-			<div class="changelog headline-feature epl-clearfix">
-
-				<h2><?php esc_html_e( 'Grid Mode and Enhanced CSS Styles', 'easy-property-listings' ); ?></h2>
-
-				<div class="feature-section">
-
-					<p><?php esc_html_e( 'Major changes to underlying front end CSS is always a challenge. We know a large number of Easy Property Listings developers have applied a considerable amount of customisations to the default look and feel of the plugin. This is exactly what we hoped would happen and have seen some stunning examples.', 'easy-property-listings' ); ?></p>
-
-					<p><?php esc_html_e( 'Saying this we understand that making wide sweeping changes can have unintended consequences to your site. We do not want that to happen to you. So we have added an option to enable Enhanced CSS from the Advanced Settings page.', 'easy-property-listings' ); ?></p>
-
-					<p><?php esc_html_e( 'One of the changes this applies to is the grid mode view of your listings. Structurally this converts a float left block into an inline block for better wrapping of listings in grid mode and prevents white space appearing if your listings are not the exact same size.', 'easy-property-listings' ); ?></p>
-
-					<div class="featured-image">
-						<img src="<?php echo esc_url( EPL_PLUGIN_URL . 'lib/assets/images/screenshots/grid-mode.png' ); ?>" class="epl-welcome-featured-image"/>
-					</div>
-
-					<p><?php _e( 'If you install Easy Property Listings fresh this option will be automatically enabled, however if you are upgrading to 3.3 you will need to <strong>manually enable the option</strong> in the Advanced Settings and check that your customisations still work.', 'easy-property-listings' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
-
-					<p><?php esc_html_e( 'A lot of work has gone into the Enhanced CSS that will be documented in the codex as there are a number of new classes that allow you to customise templates faster.', 'easy-property-listings' ); ?></p>
-
-				</div>
-
-			</div>
-
-			<hr/>
-
-			<div class="changelog headline-feature epl-clearfix">
-
-				<h2 id="feature-enhanced-styles" class="about-description" style="text-align: center;"><?php esc_html_e( 'Improvements for Everyone', 'easy-property-listings' ); ?></h2>
-
-				<div class="feature-section col three-col">
-					<div class="col">
-						<h4><?php esc_html_e( 'Listing Entry', 'easy-property-listings' ); ?></h4>
-						<p><?php esc_html_e( 'This release contains a number of improvements to the listing entry screens to trim them down in size significantly which should aid you with listing entry. We have also optimised the experience if you are using classic WordPress or Gutenberg.', 'easy-property-listings' ); ?></p>
-					</div>
-
-					<div class="col">
-						<h4><?php esc_html_e( 'New Social Icons', 'easy-property-listings' ); ?></h4>
-						<p><?php esc_html_e( 'Social profile icons has been altered to a more modern flat style that can be easily customised with CSS when using SVG versions or modify the PNG file. Any existing customisations are preserved.', 'easy-property-listings' ); ?></p>
-					</div>
-
-					<div class="col last-feature">
-						<h4><?php esc_html_e( 'Search', 'easy-property-listings' ); ?></h4>
-						<p><?php esc_html_e( 'Unified price and listing type search is now possible. The result URL now only contains the options selected and you will also find a price slider solution.', 'easy-property-listings' ); ?></p>
-					</div>
-				</div>
-			</div>
-
-			<hr/>
-
-			<div class="changelog headline-feature epl-clearfix">
-
-				<h2><?php esc_html_e( 'Production and Development Mode', 'easy-property-listings' ); ?></h2>
-
-				<div class="feature-section">
-
-					<p><?php esc_html_e( 'Optomising your sites performance and keeping it running as fast possible has been a key cornerstone in development of Easy Property Listings since the beginning. We are further enhancing this with a production and development mode option that will use minified JS and CSS files. This is enabled by default and can be easily disabled from the Advanced Settings of Easy Property Listings.', 'easy-property-listings' ); ?></p>
-
-				</div>
-
-			</div>
-
-			<hr/>
-
-			<div class="changelog headline-feature epl-clearfix">
-
-				<h2 id="feature-enhanced-styles" class="about-description" style="text-align: center;"><?php esc_html_e( 'WordPress Developers', 'easy-property-listings' ); ?></h2>
-
-				<div class="feature-section col three-col">
-					<div class="col">
-						<h4><?php esc_html_e( 'Import and Export Settings', 'easy-property-listings' ); ?></h4>
-						<p><?php esc_html_e( 'Now you can visit the Tools page and export your settings and import them into another project. This also exports and imports your extension settings.', 'easy-property-listings' ); ?></p>
-					</div>
-
-					<div class="col">
-						<h4><?php esc_html_e( 'Shortcodes Updates', 'easy-property-listings' ); ?></h4>
-						<p><?php esc_html_e( 'Often you want to easily set the default sort of your shortcodes to feature current listings first. Well now you can with the sortby=status option.', 'easy-property-listings' ); ?></p>
-					</div>
-
-					<div class="col last-feature">
-						<h4><?php esc_html_e( 'Code Upgrades', 'easy-property-listings' ); ?></h4>
-						<p><?php esc_html_e( 'There have been major code upgrades applied across a large number of funcations and features in the plugin, improving extensibility, performance and ease of use.', 'easy-property-listings' ); ?></p>
-					</div>
-				</div>
-			</div>
-
-			<hr/>
 
 			<div class="changelog headline-feature">
 
 				<h2 id="guide-changelog"><?php esc_html_e( 'Full Change Log', 'easy-property-listings' ); ?></h2>
 
 				<div class="feature-section">
-
 					<?php echo wp_kses_post( $this->parse_readme() ); ?>
-
 				</div>
 			</div>
 
