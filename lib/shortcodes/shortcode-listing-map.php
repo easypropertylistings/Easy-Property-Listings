@@ -43,10 +43,10 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 			'suburb_mode' => 0,       // Suburb mode.
 		);
 
-		$attributes = shortcode_atts(
-			apply_filters( 'epl_map_display_defaults', $defaults ),
-			$atts
-		);
+	$attributes = shortcode_atts(
+		$defaults,
+		$atts
+	);
 
 	if ( empty( $attributes['cord'] ) && empty( $attributes['q'] ) ) {
 		return '';
