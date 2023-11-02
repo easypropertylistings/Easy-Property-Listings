@@ -31,7 +31,7 @@ function epl_property_map_default_callback( $args ) {
 		'zoom'   => '17',
 	);
 
-	$args = wp_parse_args( $args, $defaults );
+        $args = wp_parse_args( $args, apply_filters( 'epl_map_display_defaults', $defaults ) );
 
 	global $property;
 

@@ -44,7 +44,7 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
         );
 
 	$attributes = shortcode_atts(
-		apply_filters( 'epl_map_display_defaults', $defaults ),
+		$defaults,
 		$atts
 	);
 
