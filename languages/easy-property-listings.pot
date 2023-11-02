@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.5\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-11-02 08:37:40+00:00\n"
+"POT-Creation-Date: 2023-11-02 09:01:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,13 +66,13 @@ msgstr ""
 msgid "Mini Web "
 msgstr ""
 
-#: lib/hooks/hook-property-map.php:79
+#: lib/hooks/hook-property-map.php:78
 msgid ""
 "Ensure you have set a Google Maps API Key from Dashboard > Easy Property "
 "Listings > Settings."
 msgstr ""
 
-#: lib/hooks/hook-property-map.php:80
+#: lib/hooks/hook-property-map.php:79
 msgid "Note: This message is only displayed to logged in administrators."
 msgstr ""
 

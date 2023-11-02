@@ -36,12 +36,12 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 
 	$attributes = shortcode_atts(
 		array(
-			'width'       => '100%', // Pass the width in pixels or percent. When using pixels do not pass the px suffix.
-			'height'      => '350',  // Pass the height in pixels. When using pixels do not pass the px suffix.
-			'zoom'        => '17',   // Map zoom level.
-			'q'           => '',     // The Address to query.
-			'cord'        => '',     // Lat/Long coordinates.
-			'suburb_mode' => 0,      // Suburb mode.
+			'width'       => '100%',  // Pass the width.
+			'height'      => '350px', // Pass the height.
+			'zoom'        => '17',    // Map zoom level.
+			'q'           => '',      // The Address to query.
+			'cord'        => '',      // Lat/Long coordinates.
+			'suburb_mode' => 0,       // Suburb mode.
 		),
 		$atts
 	);
@@ -56,7 +56,7 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	}
 
 	return '<div class="epl-tab-section epl-section-map epl-default-map-wrapper">
-			<div style="width:' . esc_attr( $attributes['width'] ) . '; height:' . esc_attr( $attributes['height'] ) . 'px" data-suburb_mode="' . esc_attr( $attributes['suburb_mode'] ) . '" data-cord="' . esc_attr( $attributes['cord'] ) . '" data-zoom="' . esc_attr( $attributes['zoom'] ) . '" data-id="' . esc_attr( $id ) . '" data-address="' . esc_attr( $attributes['q'] ) . '" class="epl-map-shortcode" id="epl-default-map"></div>
+			<div style="width:' . esc_attr( $attributes['width'] ) . '; height:' . esc_attr( $attributes['height'] ) . '" data-suburb_mode="' . esc_attr( $attributes['suburb_mode'] ) . '" data-cord="' . esc_attr( $attributes['cord'] ) . '" data-zoom="' . esc_attr( $attributes['zoom'] ) . '" data-id="' . esc_attr( $id ) . '" data-address="' . esc_attr( $attributes['q'] ) . '" class="epl-map-shortcode" id="epl-default-map"></div>
 		</div>';
 }
 add_shortcode( 'listing_map', 'epl_shortcode_googlemap_callback' );
