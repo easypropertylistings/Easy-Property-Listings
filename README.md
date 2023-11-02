@@ -53,6 +53,8 @@ There are various ways you can contribute:
 - New: Edit Listing google maps error message added.
 - New: epl_get_property_meta_label helper function to get the meta value as label.
 - New: [listing_results] Shortcode to display listing search results in page builders and themes. This shortcode will load the search results loop. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
+- New: Twitter X icon added to SVG and sprites PNG.
+- Tweak: Welcome screen removed and images to minimise translation requirements. Visit https://easypropertylistings.com.au/whats-new/ instead.
 - Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.
 - Tweak: Shortcode results message allow basic html.
 - Tweak: Shortcodes, make sure meta_query in arg is defined as array, prior to usage.

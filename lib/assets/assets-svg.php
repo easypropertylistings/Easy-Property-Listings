@@ -133,6 +133,7 @@ function epl_load_svg_listing_icons_head() {
  * @since 3.2
  * @since 3.4.32 make sure its loaded only once using global epl_social_svgs_loaded.
  * @since 3.4.48 Removed duplicate ID from social SVG.
+ * @since 3.5 Added Twitter X icon.
  */
 function epl_load_svg_social_icons_head() {
 
@@ -184,6 +185,16 @@ function epl_load_svg_social_icons_head() {
 							c0,6.1,4.4,11.2,10.3,12.4c-1.1,0.3-2.2,0.4-3.4,0.4c-0.8,0-1.6-0.1-2.4-0.2c1.6,5,6.4,8.7,12,8.8c-4.4,3.4-9.9,5.4-15.9,5.4
 							c-1,0-2.1-0.1-3.1-0.2c5.7,3.6,12.4,5.7,19.7,5.7c23.6,0,36.5-19.2,36.5-35.9c0-0.5,0-1.1,0-1.6c2.5-1.8,4.7-4,6.4-6.5
 							c-2.3,1-4.8,1.7-7.4,2C76.6,31.4,78.6,28.9,79.6,26z"/>
+					</g>
+				</g>
+			</symbol>
+			
+			<symbol id="epl-icon-svg-twitter-x" class="epl-icon-fill epl-icon-social">
+				<g>
+					<path id="epl-icon-twitter-x-shape-base" class="epl-icon-shape-base epl-icon-color-base" d="M100,75.1c0,13.8-11.2,24.9-25,24.9H25C11.2,100,0,88.9,0,75.1v-50C0,11.3,11.2,0,25,0h50
+						c13.8,0,25,11.3,25,25.1V75.1z"/>
+					<g>
+						<path id="epl-icon-twitter-x-shape-hollow" class="epl-icon-color-hollow" class="cls-2" d="m72.23,16.37h11.33l-24.74,28.27,29.11,38.48h-22.78l-17.86-23.33-20.41,23.33h-11.34l26.46-30.24L14.09,16.37h23.36l16.13,21.32,18.66-21.32Zm-3.98,59.98h6.27L34.03,22.79h-6.74l40.96,53.56Z"/>
 					</g>
 				</g>
 			</symbol>

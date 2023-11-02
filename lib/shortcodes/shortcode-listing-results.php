@@ -77,7 +77,7 @@ function epl_listing_results_loop_callback( $atts ) {
 
 			<?php do_action( 'epl_property_search_not_found' ); ?>
 
-		<?php
+			<?php
 		endif;
 	}
 
