@@ -48,7 +48,7 @@ function epl_get_admin_screens() {
  * @since 1.0
  *
  * @since 3.4.44 Fixed callback error for google maps.
- * @since 3.5 Renamed Google Maps script name. Display hidden fields.
+ * @since 3.5 Renamed Google Maps script name. Display hidden fields. Added Google maps error message.
  *
  * @param string $screen Page hook.
  * @return void
@@ -64,8 +64,8 @@ function epl_admin_enqueue_scripts( $screen ) {
 		'default_map_address'   => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
 		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),
 		'display_hidden_fields' => epl_get_option( 'display_hidden_fields', 0 ),
-                'google_api_error'      => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
-                'google_api_key'        => epl_get_option( 'epl_google_api_key' )
+		'google_api_error'      => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
+		'google_api_key'        => epl_get_option( 'epl_google_api_key' ),
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.5\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-11-01 01:49:14+00:00\n"
+"POT-Creation-Date: 2023-11-02 03:21:01+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,6 +27,12 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-5: package.json\n"
 "X-Poedit-SearchPathExcluded-6: README.md\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: lib/assets/assets.php:67
+msgid ""
+"Ensure you have set a Google Maps API Key from Dashboard > Easy Property "
+"Listings > Settings"
+msgstr ""
 
 #: lib/compatibility/functions-compat.php:354
 msgid "Recently Sold"
@@ -60,13 +66,13 @@ msgstr ""
 msgid "Mini Web "
 msgstr ""
 
-#: lib/hooks/hook-property-map.php:68
+#: lib/hooks/hook-property-map.php:76
 msgid ""
 "Ensure you have set a Google Maps API Key from Dashboard > Easy Property "
 "Listings > Settings."
 msgstr ""
 
-#: lib/hooks/hook-property-map.php:69
+#: lib/hooks/hook-property-map.php:77
 msgid "Note: This message is only displayed to logged in administrators."
 msgstr ""
 
@@ -324,7 +330,7 @@ msgstr ""
 
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:71
 #: lib/includes/admin/contacts/contacts.php:73
-#: lib/includes/admin/contacts/contacts.php:901
+#: lib/includes/admin/contacts/contacts.php:905
 #: lib/includes/admin/menus/menus.php:53 lib/includes/admin/menus/menus.php:54
 #: lib/post-types/post-type-contact.php:35
 msgid "Contacts"
@@ -639,7 +645,7 @@ msgid "Contact Notes"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-functions.php:83
-#: lib/includes/admin/contacts/contacts.php:823
+#: lib/includes/admin/contacts/contacts.php:827
 msgid "Delete Contact"
 msgstr ""
 
@@ -816,11 +822,11 @@ msgstr ""
 msgid "No Contact Notes"
 msgstr ""
 
-#: lib/includes/admin/contacts/contacts.php:813
+#: lib/includes/admin/contacts/contacts.php:817
 msgid "Are you sure you want to delete this contact?"
 msgstr ""
 
-#: lib/includes/admin/contacts/contacts.php:824
+#: lib/includes/admin/contacts/contacts.php:828
 #: lib/includes/admin/listing-elements-gui.php:140
 msgid "Cancel"
 msgstr ""
@@ -2742,8 +2748,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:966
 #: lib/includes/class-epl-property-meta.php:972
 #: lib/includes/class-epl-property-meta.php:1160
-#: lib/includes/functions.php:2364 lib/includes/template-functions.php:3651
-#: lib/includes/template-functions.php:3683
+#: lib/includes/functions.php:2364 lib/includes/template-functions.php:3652
+#: lib/includes/template-functions.php:3684
 msgid "For Sale"
 msgstr ""
 
@@ -2759,8 +2765,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1014
 #: lib/includes/class-epl-property-meta.php:1173
 #: lib/includes/class-epl-property-meta.php:1175
-#: lib/includes/template-functions.php:3631
-#: lib/includes/template-functions.php:3694
+#: lib/includes/template-functions.php:3632
+#: lib/includes/template-functions.php:3695
 msgid "For Lease"
 msgstr ""
 
@@ -4011,18 +4017,18 @@ msgid "Pagination"
 msgstr ""
 
 #: lib/includes/pagination.php:385 lib/includes/pagination.php:448
-#: lib/templates/content/author.php:132
-#: lib/templates/themes/default/author.php:124
-#: lib/templates/themes/genesis/author.php:124
-#: lib/templates/themes/ithemes-builder/author.php:124
+#: lib/templates/content/author.php:134
+#: lib/templates/themes/default/author.php:126
+#: lib/templates/themes/genesis/author.php:126
+#: lib/templates/themes/ithemes-builder/author.php:126
 msgid "Next Page &raquo;"
 msgstr ""
 
 #: lib/includes/pagination.php:426 lib/includes/pagination.php:447
-#: lib/templates/content/author.php:131
-#: lib/templates/themes/default/author.php:123
-#: lib/templates/themes/genesis/author.php:123
-#: lib/templates/themes/ithemes-builder/author.php:123
+#: lib/templates/content/author.php:133
+#: lib/templates/themes/default/author.php:125
+#: lib/templates/themes/genesis/author.php:125
+#: lib/templates/themes/ithemes-builder/author.php:125
 msgid "&laquo; Previous Page"
 msgstr ""
 
@@ -4115,36 +4121,36 @@ msgstr ""
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:3279
+#: lib/includes/template-functions.php:3280
 #. translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3282
+#: lib/includes/template-functions.php:3283
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3299
+#: lib/includes/template-functions.php:3300
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:3300
+#: lib/includes/template-functions.php:3301
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3390
+#: lib/includes/template-functions.php:3391
 msgid "Form submitted successfully"
 msgstr ""
 
-#: lib/includes/template-functions.php:3395
+#: lib/includes/template-functions.php:3396
 msgid "Some issues with form submitted"
 msgstr ""
 
-#: lib/includes/template-functions.php:3414
+#: lib/includes/template-functions.php:3415
 msgid "Email is required"
 msgstr ""
 
-#: lib/includes/template-functions.php:3672
+#: lib/includes/template-functions.php:3673
 msgid "For Sale & Lease"
 msgstr ""
 
@@ -5384,27 +5390,27 @@ msgstr ""
 msgid "%s Not Found"
 msgstr ""
 
-#: lib/templates/content/author.php:34 lib/templates/content/author.php:37
-#: lib/templates/content/author.php:40 lib/templates/content/author.php:48
-#: lib/templates/content/author.php:51 lib/templates/content/author.php:54
-#: lib/templates/themes/default/author.php:31
-#: lib/templates/themes/default/author.php:33
-#: lib/templates/themes/default/author.php:35
-#: lib/templates/themes/default/author.php:41
+#: lib/templates/content/author.php:35 lib/templates/content/author.php:38
+#: lib/templates/content/author.php:42 lib/templates/content/author.php:50
+#: lib/templates/content/author.php:53 lib/templates/content/author.php:56
+#: lib/templates/themes/default/author.php:32
+#: lib/templates/themes/default/author.php:34
+#: lib/templates/themes/default/author.php:37
 #: lib/templates/themes/default/author.php:43
 #: lib/templates/themes/default/author.php:45
-#: lib/templates/themes/genesis/author.php:31
-#: lib/templates/themes/genesis/author.php:33
-#: lib/templates/themes/genesis/author.php:35
-#: lib/templates/themes/genesis/author.php:41
+#: lib/templates/themes/default/author.php:47
+#: lib/templates/themes/genesis/author.php:32
+#: lib/templates/themes/genesis/author.php:34
+#: lib/templates/themes/genesis/author.php:37
 #: lib/templates/themes/genesis/author.php:43
 #: lib/templates/themes/genesis/author.php:45
-#: lib/templates/themes/ithemes-builder/author.php:31
-#: lib/templates/themes/ithemes-builder/author.php:33
-#: lib/templates/themes/ithemes-builder/author.php:35
-#: lib/templates/themes/ithemes-builder/author.php:41
+#: lib/templates/themes/genesis/author.php:47
+#: lib/templates/themes/ithemes-builder/author.php:32
+#: lib/templates/themes/ithemes-builder/author.php:34
+#: lib/templates/themes/ithemes-builder/author.php:37
 #: lib/templates/themes/ithemes-builder/author.php:43
 #: lib/templates/themes/ithemes-builder/author.php:45
+#: lib/templates/themes/ithemes-builder/author.php:47
 #. translators: %s: post type name
 #. translators: Category Archive.
 #. translators: Tag Archive.
@@ -5415,96 +5421,96 @@ msgstr ""
 msgid "Archive for %s"
 msgstr ""
 
-#: lib/templates/content/author.php:45
-#: lib/templates/themes/default/author.php:39
-#: lib/templates/themes/genesis/author.php:39
-#: lib/templates/themes/ithemes-builder/author.php:39
+#: lib/templates/content/author.php:47
+#: lib/templates/themes/default/author.php:41
+#: lib/templates/themes/genesis/author.php:41
+#: lib/templates/themes/ithemes-builder/author.php:41
 #. translators: %s: post type name
 #. translators: Author Archive.
 msgid "Author Archive for %s"
-msgstr ""
-
-#: lib/templates/content/author.php:56
-#: lib/templates/themes/default/author.php:47
-#: lib/templates/themes/genesis/author.php:47
-#: lib/templates/themes/ithemes-builder/author.php:47
-#. translators: Time-Specific Archive.
-msgid "Time Archive"
 msgstr ""
 
 #: lib/templates/content/author.php:58
 #: lib/templates/themes/default/author.php:49
 #: lib/templates/themes/genesis/author.php:49
 #: lib/templates/themes/ithemes-builder/author.php:49
+#. translators: Time-Specific Archive.
+msgid "Time Archive"
+msgstr ""
+
+#: lib/templates/content/author.php:60
+#: lib/templates/themes/default/author.php:51
+#: lib/templates/themes/genesis/author.php:51
+#: lib/templates/themes/ithemes-builder/author.php:51
 #. translators: Default catchall just in case.
 msgid "Archive"
 msgstr ""
 
-#: lib/templates/content/author.php:84
-#: lib/templates/themes/default/author.php:76
-#: lib/templates/themes/genesis/author.php:76
-#: lib/templates/themes/ithemes-builder/author.php:76
+#: lib/templates/content/author.php:86
+#: lib/templates/themes/default/author.php:78
+#: lib/templates/themes/genesis/author.php:78
+#: lib/templates/themes/ithemes-builder/author.php:78
 #. translators: %s: author name
 #. translators: author link.
 msgid "By %s"
 msgstr ""
 
-#: lib/templates/content/author.php:86 lib/templates/content/author.php:107
-#: lib/templates/themes/default/author.php:78
-#: lib/templates/themes/default/author.php:99
-#: lib/templates/themes/genesis/author.php:78
-#: lib/templates/themes/genesis/author.php:99
-#: lib/templates/themes/ithemes-builder/author.php:78
-#: lib/templates/themes/ithemes-builder/author.php:99
+#: lib/templates/content/author.php:88 lib/templates/content/author.php:109
+#: lib/templates/themes/default/author.php:80
+#: lib/templates/themes/default/author.php:101
+#: lib/templates/themes/genesis/author.php:80
+#: lib/templates/themes/genesis/author.php:101
+#: lib/templates/themes/ithemes-builder/author.php:80
+#: lib/templates/themes/ithemes-builder/author.php:101
 #. translators: %s: comment count
 #. translators: %s: author name
 #. translators: comments count.
 msgid "Comments %s"
 msgstr ""
 
-#: lib/templates/content/author.php:86 lib/templates/content/author.php:107
-#: lib/templates/themes/default/author.php:78
-#: lib/templates/themes/default/author.php:99
-#: lib/templates/themes/genesis/author.php:78
-#: lib/templates/themes/genesis/author.php:99
-#: lib/templates/themes/ithemes-builder/author.php:78
-#: lib/templates/themes/ithemes-builder/author.php:99
+#: lib/templates/content/author.php:88 lib/templates/content/author.php:109
+#: lib/templates/themes/default/author.php:80
+#: lib/templates/themes/default/author.php:101
+#: lib/templates/themes/genesis/author.php:80
+#: lib/templates/themes/genesis/author.php:101
+#: lib/templates/themes/ithemes-builder/author.php:80
+#: lib/templates/themes/ithemes-builder/author.php:101
 msgid "(0)"
 msgstr ""
 
-#: lib/templates/content/author.php:86 lib/templates/content/author.php:107
-#: lib/templates/themes/default/author.php:78
-#: lib/templates/themes/default/author.php:99
-#: lib/templates/themes/genesis/author.php:78
-#: lib/templates/themes/genesis/author.php:99
-#: lib/templates/themes/ithemes-builder/author.php:78
-#: lib/templates/themes/ithemes-builder/author.php:99
+#: lib/templates/content/author.php:88 lib/templates/content/author.php:109
+#: lib/templates/themes/default/author.php:80
+#: lib/templates/themes/default/author.php:101
+#: lib/templates/themes/genesis/author.php:80
+#: lib/templates/themes/genesis/author.php:101
+#: lib/templates/themes/ithemes-builder/author.php:80
+#: lib/templates/themes/ithemes-builder/author.php:101
 msgid "(1)"
 msgstr ""
 
-#: lib/templates/content/author.php:86 lib/templates/content/author.php:107
-#: lib/templates/themes/default/author.php:78
-#: lib/templates/themes/default/author.php:99
-#: lib/templates/themes/genesis/author.php:78
-#: lib/templates/themes/genesis/author.php:99
-#: lib/templates/themes/ithemes-builder/author.php:78
-#: lib/templates/themes/ithemes-builder/author.php:99
+#: lib/templates/content/author.php:88 lib/templates/content/author.php:109
+#: lib/templates/themes/default/author.php:80
+#: lib/templates/themes/default/author.php:101
+#: lib/templates/themes/genesis/author.php:80
+#: lib/templates/themes/genesis/author.php:101
+#: lib/templates/themes/ithemes-builder/author.php:80
+#: lib/templates/themes/ithemes-builder/author.php:101
 msgid "(%)"
 msgstr ""
 
-#: lib/templates/content/author.php:113
-#: lib/templates/themes/default/author.php:105
-#: lib/templates/themes/genesis/author.php:105
-#: lib/templates/themes/ithemes-builder/author.php:105
+#: lib/templates/content/author.php:115
+#: lib/templates/themes/default/author.php:107
+#: lib/templates/themes/genesis/author.php:107
+#: lib/templates/themes/ithemes-builder/author.php:107
 #. translators: %s: author name
 #. translators: category list.
 msgid "Categories : %s"
 msgstr ""
 
-#: lib/templates/content/author.php:116
-#: lib/templates/themes/default/author.php:108
-#: lib/templates/themes/genesis/author.php:108
-#: lib/templates/themes/ithemes-builder/author.php:108
+#: lib/templates/content/author.php:118
+#: lib/templates/themes/default/author.php:110
+#: lib/templates/themes/genesis/author.php:110
+#: lib/templates/themes/ithemes-builder/author.php:110
 msgid "Tags : "
 msgstr ""
 

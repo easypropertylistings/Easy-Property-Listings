@@ -50,6 +50,8 @@ There are various ways you can contribute:
 - New: Added support for 'status' in search shortcodes.
 - New: Support for conditional fields in extension settings.
 - New: Support for number type field for widget settings.
+
+- Tweak: Shortcode results message allow basic html.
 - Tweak: Shortcodes, make sure meta_query in arg is defined as array, prior to usage.
 - Tweak: Added accessibility labels to select elements.
 - Tweak: Escaping additional widget elements.
