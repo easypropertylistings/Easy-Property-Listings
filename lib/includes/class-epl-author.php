@@ -373,6 +373,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|string|void
 		 * @since 1.3.0
+		 * @since 3.5.0 Switched to Twitter X icon.
 		 */
 		public function get_twitter_html( $html = '', $style = 'i' ) {
 
@@ -389,7 +390,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 							apply_filters( 'epl_author_icon_twitter', __( 'Twitter', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
-					$svg  = '<svg viewBox="0 0 100 100" class="epl-icon-svg-twitter"><use xlink:href="#epl-icon-svg-twitter"></use></svg>';
+					$svg  = '<svg viewBox="0 0 100 100" class="epl-icon-svg-twitter-x"><use xlink:href="#epl-icon-svg-twitter-x"></use></svg>';
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-twitter">
 							<a class="epl-author-icon-svg author-icon-svg twitter-icon"
