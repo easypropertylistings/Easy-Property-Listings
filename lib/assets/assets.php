@@ -48,7 +48,7 @@ function epl_get_admin_screens() {
  * @since 1.0
  *
  * @since 3.4.44 Fixed callback error for google maps.
- * @since 3.5 Renamed Google Maps script name. Display hidden fields.
+ * @since 3.5 Renamed Google Maps script name. Display hidden fields. Added Google maps error message.
  *
  * @param string $screen Page hook.
  * @return void
