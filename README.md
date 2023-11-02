@@ -40,7 +40,7 @@ There are various ways you can contribute:
 
 = 3.5 October 30, 2023 =
 
-- New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
+- New: Hook Replaced: epl_property_tab_section replaced with epl_property_features, the older hook is kept for backward compatibility.
 - New: Filters added to alter an empty value if required: epl_get_year_built_empty_value, epl_get_property_bed_empty_value, epl_get_property_bath_empty_value, epl_get_property_rooms_empty_value, epl_get_parking_spaces_empty_value, epl_get_property_garage_empty_value, epl_get_property_carport_empty_value, epl_get_air_conditioning_empty_value, epl_get_property_pool_empty_value, epl_get_security_system_empty_value
 - New: Using the global status function to get status labels.
 - New: Prefixed Google Maps API key script name.
@@ -51,7 +51,7 @@ There are various ways you can contribute:
 - New: Support for conditional fields in extension settings.
 - New: Support for number type field for widget settings.
 - New: Edit Listing google maps error message added.
-- New: epl_get_property_meta_label helper function to get the meta value as label.
+- New: Helper Function: epl_get_property_meta_label allowing you to get the meta value as label.
 - New: [listing_results] Shortcode to display listing search results in page builders and themes. This shortcode will load the search results loop. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
 - New: Twitter X icon added to SVG and sprites PNG.
 - New: Edit Listing when you manually edit the map coordinates the map preview will update.
