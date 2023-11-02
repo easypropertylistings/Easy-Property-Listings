@@ -27,7 +27,7 @@ function epl_property_map_default_callback( $args ) {
 
 	$defaults = array(
 		'width'  => '100%',
-		'height' => '350',
+		'height' => '350px',
 		'zoom'   => '17',
 	);
 
@@ -65,7 +65,6 @@ function epl_property_map_default_callback( $args ) {
 		echo do_shortcode( '[listing_map zoom=14 suburb_mode=1 q="' . $address . '"]' );
 	}
 }
-
 add_action( 'epl_property_map', 'epl_property_map_default_callback' );
 
 /**
