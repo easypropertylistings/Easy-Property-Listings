@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string
  * @since 1.0.0
  * @since 3.4.18 Added wrapper class epl-section-map.
- * @since 3.5.0 Fixed warnings.
+ * @since 3.5.0 Fixed warnings. renamed file.
  */
 function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 	global $property;
@@ -68,13 +68,13 @@ add_shortcode( 'listing_map', 'epl_shortcode_googlemap_callback' );
  */
 function epl_shortcode_googlemap_enqueue() {
 
-		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype';
-		$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
+	$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype';
+	$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 	if ( ! empty( $epl_google_api_key ) ) {
-			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
+		$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 	}
 
 	if ( epl_get_option( 'epl_disable_google_api' ) !== 'on' ) {
-			wp_enqueue_script( 'google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
+		wp_enqueue_script( 'google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 	}
 }
