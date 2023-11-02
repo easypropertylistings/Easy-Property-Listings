@@ -55,8 +55,8 @@ function epl_shortcode_googlemap_callback( $atts, $content = null ) {
 		epl_shortcode_googlemap_enqueue();
 	}
 
-	return '<div class="epl-tab-section epl-section-map">
-			<div style="width:' . esc_attr( $atts['width'] ) . '; height:' . esc_attr( $atts['height'] ) . 'px" data-suburb_mode="' . esc_attr( $atts['suburb_mode'] ) . '" data-cord="' . esc_attr( $atts['cord'] ) . '" data-zoom="' . esc_attr( $atts['zoom'] ) . '" data-id="' . esc_attr( $id ) . '" data-address="' . esc_attr( $atts['q'] ) . '" id="epl-default-map"></div>
+	return '<div class="epl-tab-section epl-section-map epl-default-map-wrapper">
+			<div style="width:' . esc_attr( $atts['width'] ) . '; height:' . esc_attr( $atts['height'] ) . 'px" data-suburb_mode="' . esc_attr( $atts['suburb_mode'] ) . '" data-cord="' . esc_attr( $atts['cord'] ) . '" data-zoom="' . esc_attr( $atts['zoom'] ) . '" data-id="' . esc_attr( $id ) . '" data-address="' . esc_attr( $atts['q'] ) . '" class="epl-map-shortcode" id="epl-default-map"></div>
 		</div>';
 }
 add_shortcode( 'listing_map', 'epl_shortcode_googlemap_callback' );

@@ -66,6 +66,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 		'display_hidden_fields' => epl_get_option( 'display_hidden_fields', 0 ),
 		'google_api_error'      => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
 		'google_api_key'        => epl_get_option( 'epl_google_api_key' ),
+                'google_map_disabled'   => epl_get_option( 'epl_disable_google_api' )
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
