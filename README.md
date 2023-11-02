@@ -51,10 +51,11 @@ There are various ways you can contribute:
 - New: Support for conditional fields in extension settings.
 - New: Support for number type field for widget settings.
 - New: Edit Listing google maps error message added.
+- New: Edit Listing when you manually edit the map coordinates the map preview will update.
 - New: Helper Function: epl_get_property_meta_label allowing you to get the meta value as label.
 - New: [listing_results] Shortcode to display listing search results in page builders and themes. This shortcode will load the search results loop. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
 - New: Twitter X icon added to SVG and sprites PNG.
-- New: Edit Listing when you manually edit the map coordinates the map preview will update.
+- New: Filter: epl_map_display_defaults to alter the default map display options.
 - Tweak: Welcome screen removed and images to minimise translation requirements. Visit https://easypropertylistings.com.au/whats-new/ instead.
 - Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.
 - Tweak: Shortcode results message allow basic html.
