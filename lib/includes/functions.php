@@ -2595,28 +2595,26 @@ function epl_generate_search_instance_counter() {
 }
 
 /**
- * Get the meta value as label.
+ * Get the meta value as label helper function.
  *
- * @param string $meta_key the meta key.
- * 
+ * @param string $meta_key The meta key to get the label for.
+ *
  * @return mixed
  * @since 3.5
  */
-function get_property_meta_label( $meta_key ) {
+function epl_get_property_meta_label( $meta_key ) {
 
-        $value = get_property_meta( $meta_key );
+	$value  = get_property_meta( $meta_key );
+	$return = $value;
 
-        $return = $value;
+	if ( function_exists( 'epl_get_' . $meta_key . '_opts' ) ) {
 
-        if( function_exists( 'epl_get_'.$meta_key.'_opts' ) ) {
+		$labels = call_user_func( 'epl_get_' . $meta_key . '_opts' );
 
-                $labels = call_user_func( 'epl_get_'.$meta_key.'_opts' );
+		if ( is_string( $value ) && isset( $labels[ $value ] ) ) {
+			$return = $labels[ $value ];
+		}
+	}
 
-                if( is_string( $value ) && isset( $labels[ $value ] ) ) {
-
-                        $return = $labels[ $value ];
-                }
-        }
-
-        return $return;
+	return $return;
 }
