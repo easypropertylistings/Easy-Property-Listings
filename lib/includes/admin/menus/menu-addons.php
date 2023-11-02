@@ -60,8 +60,10 @@ function epl_add_ons_get_feed() {
  *
  * Renders the add-ons page content.
  *
+ * @return string
+ *
  * @since 1.0
- * @return void
+ * @since 3.5.0 Fix: Notice error on add-ons page.
  */
 function epl_add_ons_page() {
 	ob_start(); ?>
