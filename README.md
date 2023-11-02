@@ -64,8 +64,8 @@ There are various ways you can contribute:
 - Tweak: Correct spelling of Separate.
 - Tweak: Additional PHP 8.2 code improvements.
 - Tweak: Prevent importing non text files in settings.
-- Fix: Removed referenced to builder\_ functions.
-- Fix: Contacts, fix paginated link warnings when empty.
+- Fix: Removed referenced to builder functions.
+- Fix: Contacts, PHP 8.2 fix paginated link warnings when phone, name, email is empty.
 - Fix: Availability time is only shown when there is a date.
 - Fix: Toolbar items function missing arguments.
 - Fix: Notice error on add-ons page.
