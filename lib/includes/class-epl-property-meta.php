@@ -243,7 +243,7 @@ class EPL_Property_Meta {
 	 */
 	public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 		if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
-			return;
+			return null;
 		}
 
 		$inspection_time = $this->get_property_meta( $meta_key );
@@ -261,7 +261,7 @@ class EPL_Property_Meta {
 						$timearr                 = explode( ' ', $item );
 						$endtime                 = current( $timearr ) . ' ' . end( $timearr );
 						$maybe_delete_inspection = strtotime( $endtime ) < time();
-												$maybe_delete_inspection = apply_filters( 'epl_maybe_delete_inspection', $maybe_delete_inspection, $endtime, $item );
+						$maybe_delete_inspection = apply_filters( 'epl_maybe_delete_inspection', $maybe_delete_inspection, $endtime, $item );
 						if ( ! $maybe_delete_inspection ) {
 							$item                                  = trim( $item );
 							$inspectarray[ strtotime( $endtime ) ] = $item;
@@ -301,10 +301,10 @@ class EPL_Property_Meta {
 								if ( $ical ) {
 									//phpcs:disable
 									$return .= "<a
-												class ='epl_inspection_calendar'
-												href='" . $href . "' >"
-												. $element_formatted . '
-											</a>';
+										class ='epl_inspection_calendar'
+										href='" . $href . "' >"
+										. $element_formatted . '
+									</a>';
 									//phpcs:enable
 								} else {
 									$return .= $element_formatted;
