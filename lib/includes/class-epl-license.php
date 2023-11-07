@@ -409,6 +409,8 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 		/**
 		 * Validate license
+                 * 
+                 * @since 3.5 Fix : Automatic conversion of false to array is deprecated
 		 *
 		 * @access  private
 		 * @return  void
@@ -443,11 +445,13 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			if ( isset( $license_data->error ) ) {
 
+                                $option                        = get_option( $this->item_shortname . '_license_status' );
+                                $option                        = false === $option ? array() : $option; 
+
 				switch ( $license_data->error ) {
 
 					case 'missing':
 						set_transient( $this->item_shortname . '_license_active', false, DAY_IN_SECONDS );
-						$option                        = get_option( $this->item_shortname . '_license_status' );
 						$option['expired']             = false;
 						$option['no_activations_left'] = false;
 						$option['item_name_mismatch']  = false;
@@ -457,7 +461,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 					case 'expired':
 						set_transient( $this->item_shortname . '_license_active', false, DAY_IN_SECONDS );
-						$option                        = get_option( $this->item_shortname . '_license_status' );
 						$option['expired']             = true;
 						$option['no_activations_left'] = false;
 						$option['item_name_mismatch']  = false;
@@ -467,7 +470,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 					case 'no_activations_left':
 						set_transient( $this->item_shortname . '_license_active', false, DAY_IN_SECONDS );
-						$option                        = get_option( $this->item_shortname . '_license_status' );
 						$option['expired']             = false;
 						$option['no_activations_left'] = true;
 						$option['item_name_mismatch']  = false;
@@ -477,7 +479,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 					case 'item_name_mismatch':
 						set_transient( $this->item_shortname . '_license_active', false, DAY_IN_SECONDS );
-						$option                        = get_option( $this->item_shortname . '_license_status' );
 						$option['expired']             = false;
 						$option['no_activations_left'] = false;
 						$option['item_name_mismatch']  = true;
