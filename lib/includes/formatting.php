@@ -165,7 +165,10 @@ function epl_currency_filter( $price ) {
 				break;
 			case 'ZAR':
 				$formatted = 'R' . $price;
-				break;
+                break;
+            case 'CZK':
+                $formatted = 'K&#269;' . $price;
+                break;
 			default:
 				$formatted = $currency . ' ' . $price;
 				break;
@@ -218,6 +221,9 @@ function epl_currency_filter( $price ) {
 				case 'ZAR':
 					$formatted = $price . 'R';
 					break;
+                case 'CZK':
+                    $formatted = $price . ' K&#269;';
+                    break;
 				default:
 					$formatted = $price . ' ' . $currency;
 					break;
