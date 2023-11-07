@@ -56,6 +56,8 @@ There are various ways you can contribute:
 - New: [listing_results] Shortcode to display listing search results in page builders and themes. This shortcode will load the search results loop. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
 - New: Twitter X icon added to SVG and sprites PNG.
 - New: Filter: epl_map_display_defaults to alter the default map display options.
+- New: Czech translation of plugin by RadZah.
+  New: Czech currency support to properly format price.
 - Tweak: Welcome screen removed and images to minimise translation requirements. Visit https://easypropertylistings.com.au/whats-new/ instead.
 - Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.
 - Tweak: Shortcode results message allow basic html.
