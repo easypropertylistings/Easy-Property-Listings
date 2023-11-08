@@ -69,12 +69,12 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 */
 		private $author;
 
-                /**
+		/**
 		 * Item shortname
 		 *
 		 * @var string $file.
 		 */
-                private $item_shortname_without_prefix;
+		private $item_shortname_without_prefix;
 
 		/**
 		 * API URL
@@ -409,8 +409,8 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 		/**
 		 * Validate license
-                 * 
-                 * @since 3.5 Fix : Automatic conversion of false to array is deprecated
+		 *
+		 * @since 3.5 Fix : Automatic conversion of false to array is deprecated
 		 *
 		 * @access  private
 		 * @return  void
@@ -445,8 +445,8 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			if ( isset( $license_data->error ) ) {
 
-                                $option                        = get_option( $this->item_shortname . '_license_status' );
-                                $option                        = false === $option ? array() : $option; 
+								$option = get_option( $this->item_shortname . '_license_status' );
+								$option = false === $option ? array() : $option;
 
 				switch ( $license_data->error ) {
 
@@ -520,7 +520,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 						<p>
 						<?php
 
-							printf( // translators: item name.
+							printf( // Translators: item name.
 								wp_kses_post( __( 'No valid license key has been entered, so automatic updates for %1$s have been turned off. <a href="%2$s">Please click here to enter your license key and begin receiving automatic updates.</a>', 'easy-property-listings' ) ),
 								esc_attr( $this->item_name ),
 								esc_url( add_query_arg( array( 'page' => 'epl-licenses' ), admin_url( 'admin.php' ) ) )
@@ -537,7 +537,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 					<div class="error">
 						<p>
 							<?php
-								// translators: item name.
+								// Translators: item name.
 								printf( wp_kses_post( __( 'Your license key for %1$s has expired. <a href="%2$s" target="_blank">Please click here to renew your license key and continue receiving automatic updates.</a>', 'easy-property-listings' ) ), esc_attr( $this->item_name ), 'https://easypropertylistings.com.au/your-account/' );
 							?>
 						</p>
@@ -554,7 +554,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 								// translators: item name.
 								printf( wp_kses_post( __( 'Your maximum usage limit for license key of %s has been reached. Please use a different key to continue receiving automatic updates.', 'easy-property-listings' ) ), esc_attr( $this->item_name ) );
 							?>
-								</p>
+						</p>
 					</div>
 					<?php
 				endif;

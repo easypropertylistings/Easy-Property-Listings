@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.5\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-11-07 03:34:23+00:00\n"
+"POT-Creation-Date: 2023-11-08 02:29:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2433,56 +2433,56 @@ msgstr ""
 msgid "Once Weekly"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:523
-#. translators: item name.
+#: lib/includes/class-epl-license.php:524
+#. Translators: item name.
 msgid ""
 "No valid license key has been entered, so automatic updates for %1$s have "
 "been turned off. <a href=\"%2$s\">Please click here to enter your license "
 "key and begin receiving automatic updates.</a>"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:540
-#. translators: item name.
+#: lib/includes/class-epl-license.php:541
+#. Translators: item name.
 msgid ""
 "Your license key for %1$s has expired. <a href=\"%2$s\" "
 "target=\"_blank\">Please click here to renew your license key and continue "
 "receiving automatic updates.</a>"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:554
+#: lib/includes/class-epl-license.php:555
 #. translators: item name.
 msgid ""
 "Your maximum usage limit for license key of %s has been reached. Please use "
 "a different key to continue receiving automatic updates."
 msgstr ""
 
-#: lib/includes/class-epl-license.php:568
+#: lib/includes/class-epl-license.php:569
 #. translators: item name.
 msgid ""
 "The license you entered for %s does not belong to it. Please use a "
 "different key to continue receiving automatic updates."
 msgstr ""
 
-#: lib/includes/class-epl-license.php:601
+#: lib/includes/class-epl-license.php:602
 msgid "This license does not belong to the product you have entered it for."
 msgstr ""
 
-#: lib/includes/class-epl-license.php:605
+#: lib/includes/class-epl-license.php:606
 msgid "This license does not have any activations left"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:609
+#: lib/includes/class-epl-license.php:610
 msgid "This license key is expired. Please renew it."
 msgstr ""
 
-#: lib/includes/class-epl-license.php:614
+#: lib/includes/class-epl-license.php:615
 #. translators: error.
 msgid ""
 "There was a problem activating your license key, please try again or "
 "contact support. Error code: %s"
 msgstr ""
 
-#: lib/includes/class-epl-license.php:649
+#: lib/includes/class-epl-license.php:650
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 
