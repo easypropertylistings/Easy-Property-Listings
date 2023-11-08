@@ -1411,6 +1411,7 @@ function epl_get_admin_option_fields() {
 						1 => __( 'Enable', 'easy-property-listings' ),
 						0 => __( 'Disable', 'easy-property-listings' ),
 					),
+					'help'    => __( 'Display hidden fields on the edit listing screen.', 'easy-property-listings' ),
 					'default' => 0,
 				),
 			),
