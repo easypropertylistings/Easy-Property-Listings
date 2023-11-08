@@ -57,7 +57,8 @@ There are various ways you can contribute:
 - New: Twitter X icon added to SVG and sprites PNG.
 - New: Filter: epl_map_display_defaults to alter the default map display options.
 - New: Czech translation of plugin by RadZah.
-  New: Czech currency support to properly format price.
+- New: Czech currency support to properly format price.
+- New: Unique IDs for all field wrappers.
 - Tweak: Welcome screen removed and images to minimise translation requirements. Visit https://easypropertylistings.com.au/whats-new/ instead.
 - Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.
 - Tweak: Shortcode results message allow basic html.
