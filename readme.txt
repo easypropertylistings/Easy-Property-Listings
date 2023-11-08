@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, CRM, contact management, reports
 Requires PHP: 7.1
 Requires at least: 3.9
-Tested up to: 6.3.3
+Tested up to: 6.4
 Stable Tag: 3.4.49
 License: GNU Version 2 or Any Later Version
 
