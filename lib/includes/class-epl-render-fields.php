@@ -355,7 +355,7 @@ class EPL_Render_Fields {
 	 *
 	 * @since 2.3.0
 	 * @since 3.4.38 PHP 8.0 fix for Required parameter $field follows optional parameter $tag.
-         * @since 3.5    data attributes support for field type help.
+	 * @since 3.5    data attributes support for field type help.
 	 */
 	public function get_opening_field_tag( $tag = 'input', $field = array(), $self_close = false ) {
 
@@ -704,7 +704,7 @@ class EPL_Render_Fields {
 		$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
 		//phpcs:ignore
 		echo '<div class="epl-help-container">
-                        '.$this->get_opening_field_tag( 'div', $field ).'
+                        ' . $this->get_opening_field_tag( 'div', $field ) . '
 				' . wp_kses_post( $content ) . '
 			</div></div>';
 	}
