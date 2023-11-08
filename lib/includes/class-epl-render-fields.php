@@ -355,6 +355,7 @@ class EPL_Render_Fields {
 	 *
 	 * @since 2.3.0
 	 * @since 3.4.38 PHP 8.0 fix for Required parameter $field follows optional parameter $tag.
+         * @since 3.5    data attributes support for field type help.
 	 */
 	public function get_opening_field_tag( $tag = 'input', $field = array(), $self_close = false ) {
 
@@ -362,7 +363,7 @@ class EPL_Render_Fields {
 
 		$html = '<' . $tag . ' ';
 
-		if ( ! empty( $field['type'] ) && ! in_array( $field['type'], array( 'select', 'select_multiple', 'textarea' ), true ) ) {
+		if ( ! empty( $field['type'] ) && ! in_array( $field['type'], array( 'select', 'select_multiple', 'textarea', 'help' ), true ) ) {
 			$html .= ' type ="' . esc_attr( $field['type'] ) . '" ';
 			$html .= ' value ="' . esc_attr( stripslashes( $field['value'] ) ) . '" ';
 		}
@@ -702,9 +703,10 @@ class EPL_Render_Fields {
 		$content = isset( $field['content'] ) ? $field['content'] : '';
 		$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
 		//phpcs:ignore
-		echo '<div class="epl-help-container" id="' . esc_attr( $help_id ) . '">
+		echo '<div class="epl-help-container">
+                        '.$this->get_opening_field_tag( 'div', $field ).'
 				' . wp_kses_post( $content ) . '
-			</div>';
+			</div></div>';
 	}
 
 	/**
@@ -734,7 +736,7 @@ class EPL_Render_Fields {
 	 */
 	public function render_default( $field, $val ) {
 
-		if ( ! in_array( $field['type'], array( 'button', 'number', 'color', 'submit', 'hidden' ), true ) ) {
+		if ( ! in_array( $field['type'], array( 'button', 'number', 'color', 'submit' ), true ) ) {
 			$field['type'] = 'text';
 		}
 		echo $this->get_opening_field_tag( 'input', $field, true ); //phpcs:ignore
