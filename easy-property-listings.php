@@ -54,7 +54,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 */
 		public $search_fields;
 
-                /**
+		/**
 		 * EPL session.
 		 *
 		 * @since 3.0.0
@@ -62,7 +62,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 */
 		public $session;
 
-                /**
+		/**
 		 * Render Fields.
 		 *
 		 * @since 3.0.0
@@ -71,7 +71,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public $render_fields;
 
 
-                /**
+		/**
 		 * Main Easy_Property_Listings Instance
 		 *
 		 * Insures that only one instance of Easy_Property_Listings exists in memory at any one time.
