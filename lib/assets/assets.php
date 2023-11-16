@@ -48,7 +48,7 @@ function epl_get_admin_screens() {
  * @since 1.0
  *
  * @since 3.4.44 Fixed callback error for google maps.
- * @since 3.5 Renamed Google Maps script name. Display hidden fields. Added Google maps error message.
+ * @since 3.5 Renamed Google Maps script name to: epl-google-map-v-3. Display hidden fields. Added Google maps error message.
  *
  * @param string $screen Page hook.
  * @return void
@@ -108,10 +108,10 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 /**
  * Load and enqueue front end scripts and stylesheets.
  *
+* @since 1.0
  * @since 3.4.44 Fix: Callback error for google maps.
  * @since 3.4.48 Fix: Price formatting as per settings in price slider.
- *
- * @since 1.0
+ * @since 3.5.1 Tweak: Google Maps Prefixed to: epl-google-map-v-3
  */
 function epl_wp_enqueue_scripts() {
 
@@ -130,7 +130,7 @@ function epl_wp_enqueue_scripts() {
 		}
 
 		if ( epl_get_option( 'epl_disable_google_api' ) !== 'on' ) {
-			wp_enqueue_script( 'google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
+			wp_enqueue_script( 'epl-google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 		}
 	}
 
