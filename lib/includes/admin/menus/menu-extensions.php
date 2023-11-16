@@ -8,7 +8,7 @@
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
  * @since       3.4.44 Added field type class for field wrapper and custom wrapper class support through wrapper_class.
- * @since       3.5 unique IDs for all field wrappers
+ * @since       3.5 Unique IDs for all field wrappers.
  */
 
 // Exit if accessed directly.

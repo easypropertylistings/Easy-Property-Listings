@@ -38,26 +38,30 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5 November 3, 2023 =
+= 3.5.1 November 16, 2023 = 
+- Tweak: Admin script Google Maps Prefixed to: epl-google-map-v-3
+
+= 3.5 November 8, 2023 =
 
 - New: Hook Replaced: epl_property_tab_section replaced with epl_property_features, the older hook is kept for backward compatibility.
 - New: Filters added to alter an empty value if required: epl_get_year_built_empty_value, epl_get_property_bed_empty_value, epl_get_property_bath_empty_value, epl_get_property_rooms_empty_value, epl_get_parking_spaces_empty_value, epl_get_property_garage_empty_value, epl_get_property_carport_empty_value, epl_get_air_conditioning_empty_value, epl_get_property_pool_empty_value, epl_get_security_system_empty_value
 - New: Using the global status function to get status labels.
-- New: Prefixed Google Maps API key script name.
+- New: Prefixed Google Maps API key script name to: epl-google-map-v-3.
+- New: Edit Listing google maps error message added.
 - New: Display hidden fields in admin when editing listings.
 - New: Additional args for custom template action: epl*loop_template*{$post_type}, epl_loop_template.
 - New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically. Allowing multiple search with tabs on the same page to not clash with each other.
 - New: Added support for 'status' in search shortcodes.
 - New: Support for conditional fields in extension settings.
 - New: Support for number type field for widget settings.
-- New: Edit Listing google maps error message added.
 - New: Edit Listing when you manually edit the map coordinates the map preview will update.
 - New: Helper Function: epl_get_property_meta_label allowing you to get the meta value as label.
 - New: [listing_results] Shortcode to display listing search results in page builders and themes. This shortcode will load the search results loop. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.
 - New: Twitter X icon added to SVG and sprites PNG.
 - New: Filter: epl_map_display_defaults to alter the default map display options.
 - New: Czech translation of plugin by RadZah.
-  New: Czech currency support to properly format price.
+- New: Czech currency support to properly format price.
+- New: Unique IDs for all field wrappers.
 - Tweak: Welcome screen removed and images to minimise translation requirements. Visit https://easypropertylistings.com.au/whats-new/ instead.
 - Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.
 - Tweak: Shortcode results message allow basic html.
