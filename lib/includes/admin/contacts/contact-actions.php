@@ -832,19 +832,19 @@ function epl_contact_contact_details( $contact ) {
 			<span class="epl-contact-value"><?php echo esc_attr( $contact->get_meta( 'contact_first_name' ) . ' ' . $contact->get_meta( 'contact_last_name' ) ); ?></span>
 		</span>
 	</span>
-	<?php 
-                $contact_emails = $contact->get_emails();
-                if( !is_null( $contact_emails ) ) {
-                        echo wp_kses_post( $contact_emails ); 
-                }
-                
-        ?>
+	<?php
+				$contact_emails = $contact->get_emails();
+	if ( ! is_null( $contact_emails ) ) {
+			echo wp_kses_post( $contact_emails );
+	}
+
+	?>
 
 	<?php
-                $contact_phones = $contact->get_phones();
-                if( !is_null( $contact_phones ) ) {
-                        echo wp_kses_post( $contact_phones ); 
-                }
+				$contact_phones = $contact->get_phones();
+	if ( ! is_null( $contact_phones ) ) {
+			echo wp_kses_post( $contact_phones );
+	}
 		$web  = $contact->get_meta( 'contact_website' );
 		$addr = $contact->epl_contact_get_address();
 	?>
@@ -1416,11 +1416,9 @@ function epl_search_user() {
 		$args['role__not_in'] = $exclude_roles;
 	}
 
-        $args = apply_filters( 'epl_search_user_args', $args );
-
+	$args  = apply_filters( 'epl_search_user_args', $args );
 	$users = get_users( $args );
-
-        $users = apply_filters( 'epl_search_user_results', $users, $args );
+	$users = apply_filters( 'epl_search_user_results', $users, $args );
 
 	if ( ! empty( $users ) && ! is_wp_error( $users ) ) {
 		ob_start();
