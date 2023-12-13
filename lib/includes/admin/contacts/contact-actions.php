@@ -1397,6 +1397,7 @@ add_action( 'wp_ajax_epl_search_contact_listing', 'epl_search_contact_listing' )
  *
  * @since 3.0
  * @since  3.4.1 removed wp_kses_post filter to support data atts in output
+ * @since  3.5.1 Added filter for args & results.
  */
 function epl_search_user() {
 
@@ -1415,7 +1416,11 @@ function epl_search_user() {
 		$args['role__not_in'] = $exclude_roles;
 	}
 
+        $args = apply_filters( 'epl_search_user_args', $args );
+
 	$users = get_users( $args );
+
+        $users = apply_filters( 'epl_search_user_results', $users, $args );
 
 	if ( ! empty( $users ) && ! is_wp_error( $users ) ) {
 		ob_start();
