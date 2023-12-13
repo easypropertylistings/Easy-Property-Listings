@@ -38,8 +38,8 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.1 November 16, 2023 = 
-- Tweak: Admin script Google Maps Prefixed to: epl-google-map-v-3
+= 3.5.1 December 13, 2023 = 
+- New: Filters added for Staff Directory search: epl_search_user_args and epl_search_user_results filters.
 
 = 3.5 November 8, 2023 =
 
