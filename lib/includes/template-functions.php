@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Property Object
  *
- * @param array $post Post object.
+ * @param WP_Post $post Post object.
  *
  * @since 2.2
  * @since 3.4.38 Support for third & fourth agents.
@@ -35,13 +35,11 @@ function epl_reset_property_object( $post ) {
 
 	global $property;
 	$property = new EPL_Property_Meta( $post );
-	$ID = epl_listing_has_primary_agent(); //phpcs:ignore
+	$ID       = epl_listing_has_primary_agent(); //phpcs:ignore
 	if ( $ID ) {
-
 		$epl_author = new EPL_Author_meta( $ID ); //phpcs:ignore
 
 	} else {
-
 		$epl_author = new EPL_Author_meta( $post->post_author );
 	}
 
@@ -233,18 +231,18 @@ add_action( 'epl_property_archive_featured_image', 'epl_property_archive_feature
 /**
  * Featured image sticker callback.
  *
- * @since      3.5.0
+ * @since 3.5.0
  *
- * @param      string $args   Arguments.
+ * @param array $args   Arguments.
  */
 function epl_stickers_featured_image( $args ) {
 	if ( $args['stickers'] ) :
 		?>
 		<div class="epl-stickers-wrapper">
-				<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
-		</div> 
+			<?php echo wp_kses_post( epl_get_price_sticker() ); ?>
+		</div>
 		<?php
-		endif;
+	endif;
 }
 add_action( 'epl_stickers_featured_image', 'epl_stickers_featured_image' );
 
@@ -265,16 +263,15 @@ function epl_property_widgets_featured_image( $image_size = 'epl-image-medium-cr
 			<?php if ( $link ) { ?>
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
-					<div class="epl-blog-image">
-						<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
-					</div>
+				<div class="epl-blog-image">
+					<?php the_post_thumbnail( $image_size, array( 'class' => $image_class ) ); ?>
+				</div>
 			<?php if ( $link ) { ?>
 				</a>
 			<?php } ?>
 		</div>
 		<?php
 	}
-
 }
 add_action( 'epl_property_widgets_featured_image', 'epl_property_widgets_featured_image', 10, 3 );
 
@@ -287,9 +284,7 @@ function epl_property_single_default() {
 
 	global $epl_settings;
 	if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
-
 		epl_get_template_part( 'content-listing-single-compatibility.php' );
-
 	} else {
 		$single_tpl = 'content-listing-single.php';
 		$single_tpl = apply_filters( 'epl_property_single_default', $single_tpl );
@@ -339,12 +334,12 @@ function epl_get_template_part( $template, $arguments = array(), $default_templa
 	if ( ! $template_location ) {
 		$template = $base_path . $template;
 		if ( ! file_exists( $template ) ) {
-			// fallback to core.
+			// Fallback to core.
 			$base_path = epl_get_fallback_content_path();
 			$template  = $base_path . $default;
 		}
 	} else {
-				$template = $template_location;
+		$template = $template_location;
 	}
 
 	if ( ! isset( $arguments['epl_author'] ) ) {
@@ -939,7 +934,7 @@ function epl_get_property_icons( $args = array(), $returntype = 'i' ) {
 				break;
 
 			default:
-				// action to hook additional icons.
+				// Action to hook additional icons.
 				do_action( 'epl_get_property_icon_' . $icon );
 				break;
 		}
@@ -1050,12 +1045,12 @@ function epl_property_inspection_times() {
 
 		$label_home_open = apply_filters( 'epl_inspection_times_label', $label_home_open );
 		?>
-	<div class="epl-inspection-times">
-		<span class="epl-inspection-times-label">
-			<?php echo wp_kses_post( $label_home_open ); ?>
-		</span>
-		<?php echo wp_kses_post( $property_inspection_times ); ?>
-	</div>
+		<div class="epl-inspection-times">
+			<span class="epl-inspection-times-label">
+				<?php echo wp_kses_post( $label_home_open ); ?>
+			</span>
+			<?php echo wp_kses_post( $property_inspection_times ); ?>
+		</div>
 		<?php
 	}
 }
@@ -1068,7 +1063,7 @@ add_action( 'epl_property_inspection_times', 'epl_property_inspection_times' );
  *
  * @param      mixed $listing listing instance.
  *
- * @return     string                         listing heading or title
+ * @return     string listing heading or title
  */
 function epl_get_property_heading( $listing = null ) {
 	if ( null === $listing ) {
@@ -1270,7 +1265,7 @@ function epl_property_video_callback( $width = 600 ) {
 	$property_video_url = $property->get_property_meta( 'property_video_url' );
 
 	if ( '' !== $property_video_url ) {
-			echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
+		echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
 	}
 
 }
@@ -1599,14 +1594,14 @@ function epl_property_tab_section_after() {
 			}
 
 			?>
-		<div class="epl-tab-section epl-tab-section-rural-features">
-			<h5 class="epl-tab-title epl-tab-title-rural-features tab-title"><?php echo wp_kses_post( apply_filters( 'epl_property_sub_title_rural_features', __( 'Rural Features', 'easy-property-listings' ) ) ); ?></h5>
-			<div class="epl-tab-content tab-content">
-				<div class="epl-rural-features listing-info">
-					<?php echo wp_kses_post( $the_property_rural_feature_list ); ?>
+			<div class="epl-tab-section epl-tab-section-rural-features">
+				<h5 class="epl-tab-title epl-tab-title-rural-features tab-title"><?php echo wp_kses_post( apply_filters( 'epl_property_sub_title_rural_features', __( 'Rural Features', 'easy-property-listings' ) ) ); ?></h5>
+				<div class="epl-tab-content tab-content">
+					<div class="epl-rural-features listing-info">
+						<?php echo wp_kses_post( $the_property_rural_feature_list ); ?>
+					</div>
 				</div>
 			</div>
-		</div>
 			<?php
 		}
 	}
@@ -1802,8 +1797,10 @@ function epl_sorting_options( $post_type = null ) {
 /**
  * Switch Sorting Wrapper
  *
+ * @param array $attributes Attributes.
+ *
  * @since 3.3
- * @since  3.4.44 Get shortcode attributes as parameter.
+ * @since 3.4.44 Get shortcode attributes as parameter.
  */
 function epl_tools_utility_wrapper( $attributes = array() ) {
 
@@ -1821,10 +1818,13 @@ add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
 /**
  * Switch Sorting Wrapper
  *
- * @since 2.0
- * @since 3.3 Revised.
+ * @param array $attributes Attributes.
+ * @param array $args       Arguments.
+ *
  * @since 3.4.44 Get shortcode attributes as parameter.
  * @since 3.5 Args missing second value.
+ * @since 2.0
+ * @since 3.3 Revised.
  */
 function epl_listing_toolbar_items( $attributes = array(), $args = array() ) {
 	echo get_epl_listing_toolbar_items( $attributes, $args ); //phpcs:ignore;
@@ -1834,12 +1834,13 @@ add_action( 'epl_add_custom_menus', 'epl_listing_toolbar_items', 10, 2 );
 /**
  * Retrieves the switch and sorting options normally right aligned
  *
- * @since      3.3
- * @since      3.5 gets the shortcode attributes as param
- *
- * @param array $args   The arguments.
+ * @param array $attributes Attributes.
+ * @param array $args       Arguments.
  *
  * @return string
+ *
+ * @since      3.3
+ * @since      3.5 gets the shortcode attributes as param
  */
 function get_epl_listing_toolbar_items( $attributes = array(), $args = array() ) {
 
@@ -1909,11 +1910,13 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
 /**
  * Displays the Switch Sorting select options
  *
- * @since 2.0
+ * @param array $attributes Attributes.
+ *
  * @since 3.3 Revised.
  * @since 3.4.44 Unique ID for sort dropdown per instance.
  * @since 3.4.44 Get shortcode attributes as parameter.
  * @since 3.5 Added accessibility labels to select elements.
+ * @since 2.0
  */
 function epl_sorting_tool( $attributes = array() ) {
 
@@ -2040,9 +2043,9 @@ function epl_add_or_update_params( $url, $key, $value ) {
 /**
  * Archive Sorting
  *
- * @since      2.0
+ * @param  WP_Query $query  The query.
  *
- * @param     array $query  The query.
+ * @since  2.0
  */
 function epl_archive_sorting( $query ) {
 	$post_types_sold   = array( 'property', 'land', 'commercial', 'business', 'commercial_land', 'location_profile', 'rural' );
@@ -2432,15 +2435,11 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 		}
 
 		if ( true === apply_filters( 'epl_features_taxonomy_link_filter', true ) ) {
-
 			$term_links[] = '<li class="epl-tax-' . $taxonomy . ' ' . $term->slug . ' ">' .
 						'<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>'
 					. '</li>' . $sep;
-
 		} else {
-
 			$term_links[] = '<li class="epl-tax-' . $taxonomy . ' ' . $term->slug . ' ">' . $term->name . '</li>' . $sep;
-
 		}
 	}
 
@@ -2592,7 +2591,7 @@ function epl_wp_doing_ajax() {
 /**
  * Pagination fix for home
  *
- * @param      array $query  The query.
+ * @param WP_Query $query  The query.
  *
  * @since 2.1.2
  * @since 3.3 Revised.
@@ -2656,9 +2655,9 @@ add_action( 'wp', 'epl_hide_map_from_front', 10 );
 /**
  * Disable paging on listing widget
  *
- * @since      2.1.8
+ * @since 2.1.8
  *
- * @param      array $query  The query.
+ * @param  WP_Query $query  The query.
  */
 function epl_nopaging( $query ) {
 	$restrict_paging = $query->get( 'epl_nopaging' );
@@ -3005,12 +3004,12 @@ function epl_syntax_highlight( $str = '', $class = '' ) {
 /**
  * Strip Tags
  *
- * @since      2.2
- *
  * @param      string $value the value.
  * @param      string $allowed_tags allowed tags.
  *
- * @return string
+ * @return array|string
+ *
+ * @since      2.2
  */
 function epl_strip_tags( $value, $allowed_tags = '' ) {
 
@@ -3133,7 +3132,7 @@ function epl_get_inspection_time_format() {
  *
  * @since      2.2
  *
- * @param      array $inspection_date  The inspection date.
+ * @param      string $inspection_date  The inspection date.
  *
  * @return     string
  */
@@ -3196,7 +3195,7 @@ function epl_archive_title_callback() {
 
 	if ( is_tax() && function_exists( 'epl_is_search' ) && false === epl_is_search() ) { // Tag Archive.
 		$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-		// translators: term name.
+		// Translators: term name.
 		$title = sprintf( __( 'Property in %s', 'easy-property-listings' ), $term->name );
 	} elseif ( function_exists( 'epl_is_search' ) && epl_is_search() ) { // Search Result.
 		$title = apply_filters( 'epl_archive_title_search_result', __( 'Search Result', 'easy-property-listings' ) );
@@ -3207,7 +3206,7 @@ function epl_archive_title_callback() {
 	}
 
 	if ( is_paged() ) {
-		// translators: title, page number.
+		// Translators: title, page number.
 		printf( '%s &ndash; Page %d', esc_attr( $title ), esc_attr( get_query_var( 'paged' ) ) );
 	} else {
 		echo wp_kses_post( apply_filters( 'epl_archive_title_default', $title ) );
@@ -3240,8 +3239,8 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
 	$post_type = sanitize_text_field( wp_unslash( $post_type ) );
 	$orderby   = isset( $_GET['sortby'] ) ? sanitize_text_field( wp_unslash( $_GET['sortby'] ) ) : '';
 
-		$instance_id     = ! empty( $args['instance_id'] ) ? sanitize_text_field( $args['instance_id'] ) : '';
-		$set_instance_id = '';
+	$instance_id     = ! empty( $args['instance_id'] ) ? sanitize_text_field( $args['instance_id'] ) : '';
+	$set_instance_id = '';
 
 	if ( ! empty( $_GET['instance_id'] ) ) {
 		$set_instance_id = sanitize_text_field( wp_unslash( $_GET['instance_id'] ) );
