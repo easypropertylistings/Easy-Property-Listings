@@ -362,20 +362,20 @@ function epl_get_next_page_link( $query ) {
 	if ( $query->get( 'is_epl_shortcode' ) &&
 		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
 
-                $permalink_structure = get_option('permalink_structure');
+				$permalink_structure = get_option( 'permalink_structure' );
 
-                if( empty( $permalink_structure ) ) {
+		if ( empty( $permalink_structure ) ) {
 
-                        $page = $query->get( 'paged' );
+				$page = $query->get( 'paged' );
 
-                        if ( ! $page ) {
-                                $page = 1;
-                        }
+			if ( ! $page ) {
+						$page = 1;
+			}
 
-                        $page++;
-                
-                        $link = epl_add_or_update_params( $link, 'paged', $page );
-                }       
+				$page++;
+
+				$link = epl_add_or_update_params( $link, 'paged', $page );
+		}
 
 		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
 	}
@@ -421,20 +421,20 @@ function epl_get_prev_page_link( $query ) {
 
 	if ( $query->get( 'is_epl_shortcode' ) &&
 		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
-                $permalink_structure = get_option('permalink_structure');
+				$permalink_structure = get_option( 'permalink_structure' );
 
-                if( empty( $permalink_structure ) ) {
+		if ( empty( $permalink_structure ) ) {
 
-                        $page = $query->get( 'paged' );
+				$page = $query->get( 'paged' );
 
-                        if ( ! $page ) {
-                                $page = 1;
-                        }
+			if ( ! $page ) {
+						$page = 1;
+			}
 
-                        $page--;
-                
-                        $link = epl_add_or_update_params( $link, 'paged', $page );
-                } 
+				$page--;
+
+				$link = epl_add_or_update_params( $link, 'paged', $page );
+		}
 		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
 	}
 	return apply_filters( 'epl_get_prev_page_link', $link );
