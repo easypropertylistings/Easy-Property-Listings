@@ -2411,7 +2411,7 @@ add_action( 'wp_ajax_nopriv_epl_update_listing_coordinates', 'epl_update_listing
  *
  * @since 2.1
  * @since 3.3 Revised.
- * @since 3.5.1 dynamic class name for item based on taxonomy.
+ * @since 3.5.1 Dynamic class name for item based on taxonomy.
  */
 function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after = '' ) {
 	$terms = get_the_terms( $id, $taxonomy );
@@ -2433,13 +2433,13 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
 
 		if ( true === apply_filters( 'epl_features_taxonomy_link_filter', true ) ) {
 
-			$term_links[] = '<li class="epl-tax-'.$taxonomy.' ' . $term->slug . ' ">' .
+			$term_links[] = '<li class="epl-tax-' . $taxonomy . ' ' . $term->slug . ' ">' .
 						'<a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a>'
 					. '</li>' . $sep;
 
 		} else {
 
-			$term_links[] = '<li class="epl-tax-'.$taxonomy.' ' . $term->slug . ' ">' . $term->name . '</li>' . $sep;
+			$term_links[] = '<li class="epl-tax-' . $taxonomy . ' ' . $term->slug . ' ">' . $term->name . '</li>' . $sep;
 
 		}
 	}
@@ -3883,6 +3883,7 @@ add_filter( 'body_class', 'epl_body_classes', 10 );
 
 /**
  * Wrapper Start for Author Box
+ *
  * @since 3.5.1
  */
 function epl_single_author_wrapper_start() {
@@ -3894,6 +3895,7 @@ add_action( 'epl_single_author', 'epl_single_author_wrapper_start', 1 );
 
 /**
  * Wrapper end for Author Box
+ *
  * @since 3.5.1
  */
 function epl_single_author_wrapper_end() {
