@@ -17,8 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Registers and sets up the Property custom post type.
  *
- * @since 1.0
  * @return void
+ *
+ * @since 3.5.1 View Listings added for plural.
  */
 function epl_register_custom_post_type_property() {
 
@@ -43,6 +44,7 @@ function epl_register_custom_post_type_property() {
 			'update_item'        => __( 'Update Listing', 'easy-property-listings' ),
 			'all_items'          => __( 'All Listings', 'easy-property-listings' ),
 			'view_item'          => __( 'View Listing', 'easy-property-listings' ),
+			'view_items'         => __( 'View Listings', 'easy-property-listings' ),
 			'search_items'       => __( 'Search Listing', 'easy-property-listings' ),
 			'not_found'          => __( 'Listing Not Found', 'easy-property-listings' ),
 			'not_found_in_trash' => __( 'Listing Not Found in Trash', 'easy-property-listings' ),

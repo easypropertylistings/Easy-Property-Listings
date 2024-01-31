@@ -18,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Registers and sets up the Contact custom post type
  *
  * @since 3.0
- * @since 3.5.1 Plural for viewing posts.
+ * @since 3.5.1 Plural for viewing contacts.
+ *
  * @return void
  */
 function epl_register_custom_post_type_contact() {

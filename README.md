@@ -44,6 +44,7 @@ There are various ways you can contribute:
 - New: Author box wrapper class epl-author-box-wrapper added to contain author boxes.
 - New: Session epl_wp_session_delimiter filter for changing the default cookie session delimiter.
 - Tweak: Dynamic class name for item based on taxonomy when using the epl_get_the_term_list function.
+_ Tweak: View Listings added from archive page.
 - Fix: Shortcode pagination when permalinks are plain.
 
 = 3.5 November 8, 2023 =

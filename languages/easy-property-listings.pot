@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.5.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2024-01-31 05:34:57+00:00\n"
+"POT-Creation-Date: 2024-01-31 05:42:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -323,8 +323,8 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:234
 #: lib/includes/class-epl-author.php:263 lib/includes/class-epl-author.php:271
 #: lib/includes/functions.php:2084 lib/includes/template-functions.php:2097
-#: lib/post-types/post-type-contact.php:37
 #: lib/post-types/post-type-contact.php:38
+#: lib/post-types/post-type-contact.php:39
 msgid "Contact"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contacts.php:73
 #: lib/includes/admin/contacts/contacts.php:904
 #: lib/includes/admin/menus/menus.php:53 lib/includes/admin/menus/menus.php:54
-#: lib/post-types/post-type-contact.php:36
+#: lib/post-types/post-type-contact.php:37
 msgid "Contacts"
 msgstr ""
 
@@ -495,12 +495,12 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:898
 #: lib/includes/admin/contacts/contact-actions.php:921
 #: lib/includes/admin/contacts/contacts.php:74
-#: lib/includes/class-epl-cpt.php:420 lib/post-types/post-type-business.php:39
-#: lib/post-types/post-type-commercial-land.php:39
-#: lib/post-types/post-type-commercial.php:39
-#: lib/post-types/post-type-contact.php:39 lib/post-types/post-type-land.php:39
-#: lib/post-types/post-type-property.php:39
-#: lib/post-types/post-type-rental.php:39 lib/post-types/post-type-rural.php:39
+#: lib/includes/class-epl-cpt.php:420 lib/post-types/post-type-business.php:41
+#: lib/post-types/post-type-commercial-land.php:41
+#: lib/post-types/post-type-commercial.php:41
+#: lib/post-types/post-type-contact.php:40 lib/post-types/post-type-land.php:41
+#: lib/post-types/post-type-property.php:40
+#: lib/post-types/post-type-rental.php:41 lib/post-types/post-type-rural.php:41
 #. Translators: %s is the post type name.
 msgid "Add New"
 msgstr ""
@@ -514,13 +514,13 @@ msgid "Comment"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:963
-#: lib/post-types/post-type-business.php:103
-#: lib/post-types/post-type-commercial-land.php:104
-#: lib/post-types/post-type-commercial.php:104
-#: lib/post-types/post-type-land.php:103
-#: lib/post-types/post-type-property.php:103
-#: lib/post-types/post-type-rental.php:102
-#: lib/post-types/post-type-rural.php:103
+#: lib/post-types/post-type-business.php:106
+#: lib/post-types/post-type-commercial-land.php:107
+#: lib/post-types/post-type-commercial.php:107
+#: lib/post-types/post-type-land.php:106
+#: lib/post-types/post-type-property.php:105
+#: lib/post-types/post-type-rental.php:105
+#: lib/post-types/post-type-rural.php:106
 msgid "Date"
 msgstr ""
 
@@ -547,13 +547,13 @@ msgid "Title"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1045
-#: lib/post-types/post-type-business.php:101
-#: lib/post-types/post-type-commercial-land.php:101
-#: lib/post-types/post-type-commercial.php:101
-#: lib/post-types/post-type-land.php:101
-#: lib/post-types/post-type-property.php:101
-#: lib/post-types/post-type-rental.php:100
-#: lib/post-types/post-type-rural.php:101 lib/widgets/widget-functions.php:65
+#: lib/post-types/post-type-business.php:104
+#: lib/post-types/post-type-commercial-land.php:104
+#: lib/post-types/post-type-commercial.php:104
+#: lib/post-types/post-type-land.php:104
+#: lib/post-types/post-type-property.php:103
+#: lib/post-types/post-type-rental.php:103
+#: lib/post-types/post-type-rural.php:104 lib/widgets/widget-functions.php:65
 #: lib/widgets/widget-functions.php:72 lib/widgets/widget-functions.php:389
 msgid "Status"
 msgstr ""
@@ -624,7 +624,7 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1313
-#: lib/post-types/post-type-contact.php:45
+#: lib/post-types/post-type-contact.php:46
 msgid "View Contact"
 msgstr ""
 
@@ -770,12 +770,13 @@ msgid "Linked In"
 msgstr ""
 
 #: lib/includes/admin/contacts/contacts.php:565 lib/includes/functions.php:1064
-#: lib/post-types/post-type-business.php:97
-#: lib/post-types/post-type-commercial-land.php:97
-#: lib/post-types/post-type-commercial.php:97
-#: lib/post-types/post-type-land.php:97
-#: lib/post-types/post-type-property.php:97
-#: lib/post-types/post-type-rental.php:96 lib/post-types/post-type-rural.php:97
+#: lib/post-types/post-type-business.php:100
+#: lib/post-types/post-type-commercial-land.php:100
+#: lib/post-types/post-type-commercial.php:100
+#: lib/post-types/post-type-land.php:100
+#: lib/post-types/post-type-property.php:99
+#: lib/post-types/post-type-rental.php:99
+#: lib/post-types/post-type-rural.php:100
 msgid "Address"
 msgstr ""
 
@@ -1362,7 +1363,7 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:306
 #: lib/includes/functions.php:192 lib/includes/functions.php:1318
-#: lib/includes/functions.php:1320 lib/post-types/post-type-rental.php:37
+#: lib/includes/functions.php:1320 lib/post-types/post-type-rental.php:39
 #: lib/updates/epl-1.3.1.php:19
 msgid "Rental"
 msgstr ""
@@ -1370,23 +1371,23 @@ msgstr ""
 #: lib/includes/admin/menus/class-epl-welcome.php:307
 #: lib/includes/functions.php:191 lib/includes/functions.php:1312
 #: lib/includes/functions.php:1314 lib/includes/install.php:54
-#: lib/post-types/post-type-land.php:36 lib/post-types/post-type-land.php:37
-#: lib/post-types/post-type-land.php:38 lib/updates/epl-1.3.1.php:18
+#: lib/post-types/post-type-land.php:38 lib/post-types/post-type-land.php:39
+#: lib/post-types/post-type-land.php:40 lib/updates/epl-1.3.1.php:18
 msgid "Land"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:308
 #: lib/includes/functions.php:193 lib/includes/functions.php:1324
 #: lib/includes/functions.php:1326 lib/includes/install.php:56
-#: lib/post-types/post-type-rural.php:36 lib/post-types/post-type-rural.php:37
-#: lib/post-types/post-type-rural.php:38 lib/updates/epl-1.3.1.php:20
+#: lib/post-types/post-type-rural.php:38 lib/post-types/post-type-rural.php:39
+#: lib/post-types/post-type-rural.php:40 lib/updates/epl-1.3.1.php:20
 msgid "Rural"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:309
 #: lib/includes/functions.php:194 lib/includes/functions.php:730
 #: lib/includes/functions.php:1330 lib/includes/functions.php:1332
-#: lib/includes/install.php:58 lib/post-types/post-type-commercial.php:38
+#: lib/includes/install.php:58 lib/post-types/post-type-commercial.php:40
 #: lib/updates/epl-1.3.1.php:22
 msgid "Commercial"
 msgstr ""
@@ -1394,14 +1395,14 @@ msgstr ""
 #: lib/includes/admin/menus/class-epl-welcome.php:310
 #: lib/includes/functions.php:195 lib/includes/functions.php:1336
 #: lib/includes/functions.php:1338 lib/includes/install.php:59
-#: lib/post-types/post-type-commercial-land.php:38 lib/updates/epl-1.3.1.php:23
+#: lib/post-types/post-type-commercial-land.php:40 lib/updates/epl-1.3.1.php:23
 msgid "Commercial Land"
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:311
 #: lib/includes/functions.php:196 lib/includes/functions.php:1342
 #: lib/includes/functions.php:1344 lib/includes/install.php:57
-#: lib/post-types/post-type-business.php:38 lib/updates/epl-1.3.1.php:21
+#: lib/post-types/post-type-business.php:40 lib/updates/epl-1.3.1.php:21
 msgid "Business"
 msgstr ""
 
@@ -1504,12 +1505,14 @@ msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:403
 #: lib/includes/admin/menus/menu-help.php:166
-#: lib/meta-boxes/meta-box-init.php:42 lib/post-types/post-type-business.php:98
-#: lib/post-types/post-type-commercial-land.php:98
-#: lib/post-types/post-type-commercial.php:98
-#: lib/post-types/post-type-land.php:98
-#: lib/post-types/post-type-property.php:98
-#: lib/post-types/post-type-rental.php:97 lib/post-types/post-type-rural.php:98
+#: lib/meta-boxes/meta-box-init.php:42
+#: lib/post-types/post-type-business.php:101
+#: lib/post-types/post-type-commercial-land.php:101
+#: lib/post-types/post-type-commercial.php:101
+#: lib/post-types/post-type-land.php:101
+#: lib/post-types/post-type-property.php:100
+#: lib/post-types/post-type-rental.php:100
+#: lib/post-types/post-type-rural.php:101
 msgid "Listing Details"
 msgstr ""
 
@@ -2003,7 +2006,7 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/menu-help.php:149
-#: lib/post-types/post-type-commercial.php:95
+#: lib/post-types/post-type-commercial.php:98
 msgid "Featured Image"
 msgstr ""
 
@@ -2650,12 +2653,12 @@ msgid "Pet Friendly"
 msgstr ""
 
 #: lib/includes/class-epl-property-meta.php:2141
-#: lib/post-types/post-type-business.php:94
-#: lib/post-types/post-type-commercial-land.php:94
-#: lib/post-types/post-type-commercial.php:94
-#: lib/post-types/post-type-land.php:94
-#: lib/post-types/post-type-property.php:94
-#: lib/post-types/post-type-rental.php:93 lib/post-types/post-type-rural.php:94
+#: lib/post-types/post-type-business.php:97
+#: lib/post-types/post-type-commercial-land.php:97
+#: lib/post-types/post-type-commercial.php:97
+#: lib/post-types/post-type-land.php:97
+#: lib/post-types/post-type-property.php:96
+#: lib/post-types/post-type-rental.php:96 lib/post-types/post-type-rural.php:97
 msgid "Featured"
 msgstr ""
 
@@ -3274,8 +3277,8 @@ msgid "All"
 msgstr ""
 
 #: lib/includes/functions.php:1306 lib/includes/functions.php:1308
-#: lib/post-types/post-type-property.php:37
-#: lib/post-types/post-type-property.php:38 lib/updates/epl-1.3.1.php:17
+#: lib/post-types/post-type-property.php:38
+#: lib/post-types/post-type-property.php:39 lib/updates/epl-1.3.1.php:17
 msgid "Property"
 msgstr ""
 
@@ -3768,7 +3771,7 @@ msgstr ""
 msgid "Buy"
 msgstr ""
 
-#: lib/includes/install.php:55 lib/post-types/post-type-rental.php:95
+#: lib/includes/install.php:55 lib/post-types/post-type-rental.php:98
 msgid "Rent"
 msgstr ""
 
@@ -4048,12 +4051,13 @@ msgid "Authority"
 msgstr ""
 
 #: lib/meta-boxes/meta-box-init.php:156
-#: lib/post-types/post-type-business.php:99
-#: lib/post-types/post-type-commercial-land.php:99
-#: lib/post-types/post-type-commercial.php:99
-#: lib/post-types/post-type-land.php:99
-#: lib/post-types/post-type-property.php:99
-#: lib/post-types/post-type-rental.php:98 lib/post-types/post-type-rural.php:99
+#: lib/post-types/post-type-business.php:102
+#: lib/post-types/post-type-commercial-land.php:102
+#: lib/post-types/post-type-commercial.php:102
+#: lib/post-types/post-type-land.php:102
+#: lib/post-types/post-type-property.php:101
+#: lib/post-types/post-type-rental.php:101
+#: lib/post-types/post-type-rural.php:102
 msgid "Unique ID"
 msgstr ""
 
@@ -4563,401 +4567,429 @@ msgstr ""
 msgid "Search for contact and update to save."
 msgstr ""
 
-#: lib/post-types/post-type-business.php:36
-#: lib/post-types/post-type-business.php:37
+#: lib/post-types/post-type-business.php:38
+#: lib/post-types/post-type-business.php:39
 msgid "Business Listings"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:40
+#: lib/post-types/post-type-business.php:42
 msgid "Add New Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:41
+#: lib/post-types/post-type-business.php:43
 msgid "Edit Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:42
+#: lib/post-types/post-type-business.php:44
 msgid "New Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:43
+#: lib/post-types/post-type-business.php:45
 msgid "Update Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:44
+#: lib/post-types/post-type-business.php:46
 msgid "All Business Listings"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:45
+#: lib/post-types/post-type-business.php:47
 msgid "View Business Listing"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:46
-msgid "Search Business Listing"
-msgstr ""
-
-#: lib/post-types/post-type-business.php:47
-msgid "Business Listing Not Found"
-msgstr ""
-
 #: lib/post-types/post-type-business.php:48
-msgid "Business Listing Not Found in Trash"
+msgid "View Business Listings"
 msgstr ""
 
 #: lib/post-types/post-type-business.php:49
+msgid "Search Business Listing"
+msgstr ""
+
+#: lib/post-types/post-type-business.php:50
+msgid "Business Listing Not Found"
+msgstr ""
+
+#: lib/post-types/post-type-business.php:51
+msgid "Business Listing Not Found in Trash"
+msgstr ""
+
+#: lib/post-types/post-type-business.php:52
 msgid "Parent Business Listing:"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:95
-#: lib/post-types/post-type-commercial-land.php:95
-#: lib/post-types/post-type-land.php:95
-#: lib/post-types/post-type-property.php:95
-#: lib/post-types/post-type-rental.php:94 lib/post-types/post-type-rural.php:95
+#: lib/post-types/post-type-business.php:98
+#: lib/post-types/post-type-commercial-land.php:98
+#: lib/post-types/post-type-land.php:98
+#: lib/post-types/post-type-property.php:97
+#: lib/post-types/post-type-rental.php:97 lib/post-types/post-type-rural.php:98
 #: lib/widgets/class-epl-widget-recent-property.php:432
 msgid "Image"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:96
-#: lib/post-types/post-type-commercial-land.php:96
-#: lib/post-types/post-type-commercial.php:96
-#: lib/post-types/post-type-land.php:96
-#: lib/post-types/post-type-property.php:96
-#: lib/post-types/post-type-rural.php:96
+#: lib/post-types/post-type-business.php:99
+#: lib/post-types/post-type-commercial-land.php:99
+#: lib/post-types/post-type-commercial.php:99
+#: lib/post-types/post-type-land.php:99
+#: lib/post-types/post-type-property.php:98
+#: lib/post-types/post-type-rural.php:99
 #: lib/widgets/class-epl-widget-recent-property.php:519
 #: lib/widgets/widget-functions.php:155
 msgid "Price"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:100
-#: lib/post-types/post-type-commercial-land.php:100
-#: lib/post-types/post-type-commercial.php:100
-#: lib/post-types/post-type-land.php:100
-#: lib/post-types/post-type-property.php:100
-#: lib/post-types/post-type-rural.php:100
+#: lib/post-types/post-type-business.php:103
+#: lib/post-types/post-type-commercial-land.php:103
+#: lib/post-types/post-type-commercial.php:103
+#: lib/post-types/post-type-land.php:103
+#: lib/post-types/post-type-property.php:102
+#: lib/post-types/post-type-rural.php:103
 msgid "Geo"
 msgstr ""
 
-#: lib/post-types/post-type-business.php:102
-#: lib/post-types/post-type-commercial-land.php:103
-#: lib/post-types/post-type-commercial.php:103
-#: lib/post-types/post-type-land.php:102
-#: lib/post-types/post-type-property.php:102
-#: lib/post-types/post-type-rental.php:101
-#: lib/post-types/post-type-rural.php:102
+#: lib/post-types/post-type-business.php:105
+#: lib/post-types/post-type-commercial-land.php:106
+#: lib/post-types/post-type-commercial.php:106
+#: lib/post-types/post-type-land.php:105
+#: lib/post-types/post-type-property.php:104
+#: lib/post-types/post-type-rental.php:104
+#: lib/post-types/post-type-rural.php:105
 msgid "Agent"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:36
+#: lib/post-types/post-type-commercial-land.php:38
 msgid "Commercial Land Listings"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:37
+#: lib/post-types/post-type-commercial-land.php:39
 msgid "Commercial Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:40
+#: lib/post-types/post-type-commercial-land.php:42
 msgid "Add New Commercial Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:41
+#: lib/post-types/post-type-commercial-land.php:43
 msgid "Edit Commercial Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:42
+#: lib/post-types/post-type-commercial-land.php:44
 msgid "New Commercial Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:43
+#: lib/post-types/post-type-commercial-land.php:45
 msgid "Update Commercial Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:44
+#: lib/post-types/post-type-commercial-land.php:46
 msgid "All Commercial Land Listings"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:45
+#: lib/post-types/post-type-commercial-land.php:47
 msgid "View Commercial Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:46
-msgid "Search Commercial Land Listing"
-msgstr ""
-
-#: lib/post-types/post-type-commercial-land.php:47
-msgid "Commercial Land Listing Not Found"
-msgstr ""
-
 #: lib/post-types/post-type-commercial-land.php:48
-msgid "Commercial Land Listing Not Found in Trash"
+msgid "View Commercial Land Listings"
 msgstr ""
 
 #: lib/post-types/post-type-commercial-land.php:49
+msgid "Search Commercial Land Listing"
+msgstr ""
+
+#: lib/post-types/post-type-commercial-land.php:50
+msgid "Commercial Land Listing Not Found"
+msgstr ""
+
+#: lib/post-types/post-type-commercial-land.php:51
+msgid "Commercial Land Listing Not Found in Trash"
+msgstr ""
+
+#: lib/post-types/post-type-commercial-land.php:52
 msgid "Parent Commercial Land Listing:"
 msgstr ""
 
-#: lib/post-types/post-type-commercial-land.php:102
-#: lib/post-types/post-type-commercial.php:102
+#: lib/post-types/post-type-commercial-land.php:105
+#: lib/post-types/post-type-commercial.php:105
 msgid "Sale/Lease"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:36
+#: lib/post-types/post-type-commercial.php:38
 msgid "Commercial Listings"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:37
+#: lib/post-types/post-type-commercial.php:39
 msgid "Commercial Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:40
+#: lib/post-types/post-type-commercial.php:42
 msgid "Add New Commercial Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:41
+#: lib/post-types/post-type-commercial.php:43
 msgid "Edit Commercial Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:42
+#: lib/post-types/post-type-commercial.php:44
 msgid "New Commercial Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:43
+#: lib/post-types/post-type-commercial.php:45
 msgid "Update Commercial Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:44
+#: lib/post-types/post-type-commercial.php:46
 msgid "All Commercial Listings"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:45
+#: lib/post-types/post-type-commercial.php:47
 msgid "View Commercial Listing"
 msgstr ""
 
-#: lib/post-types/post-type-commercial.php:46
-msgid "Search Commercial Listing"
-msgstr ""
-
-#: lib/post-types/post-type-commercial.php:47
-msgid "Commercial Listing Not Found"
-msgstr ""
-
 #: lib/post-types/post-type-commercial.php:48
-msgid "Commercial Listing Not Found in Trash"
+msgid "View Commercial Listings"
 msgstr ""
 
 #: lib/post-types/post-type-commercial.php:49
+msgid "Search Commercial Listing"
+msgstr ""
+
+#: lib/post-types/post-type-commercial.php:50
+msgid "Commercial Listing Not Found"
+msgstr ""
+
+#: lib/post-types/post-type-commercial.php:51
+msgid "Commercial Listing Not Found in Trash"
+msgstr ""
+
+#: lib/post-types/post-type-commercial.php:52
 msgid "Parent Commercial Listing:"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:40
+#: lib/post-types/post-type-contact.php:41
 msgid "Add New Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:41
+#: lib/post-types/post-type-contact.php:42
 msgid "Edit Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:42
+#: lib/post-types/post-type-contact.php:43
 msgid "New Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:43
+#: lib/post-types/post-type-contact.php:44
 msgid "Update Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:44
+#: lib/post-types/post-type-contact.php:45
 msgid "All Contacts"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:46
+#: lib/post-types/post-type-contact.php:47
 msgid "View Contacts"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:47
+#: lib/post-types/post-type-contact.php:48
 msgid "Search Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:48
+#: lib/post-types/post-type-contact.php:49
 msgid "Contact Not Found"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:49
+#: lib/post-types/post-type-contact.php:50
 msgid "Contact Not Found in Trash"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:50
+#: lib/post-types/post-type-contact.php:51
 msgid "Parent Contact:"
 msgstr ""
 
-#: lib/post-types/post-type-land.php:40
+#: lib/post-types/post-type-land.php:42
 msgid "Add New Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-land.php:41
+#: lib/post-types/post-type-land.php:43
 msgid "Edit Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-land.php:42
+#: lib/post-types/post-type-land.php:44
 msgid "New Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-land.php:43
+#: lib/post-types/post-type-land.php:45
 msgid "Update Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-land.php:44
+#: lib/post-types/post-type-land.php:46
 msgid "All Land Listings"
 msgstr ""
 
-#: lib/post-types/post-type-land.php:45
+#: lib/post-types/post-type-land.php:47
 msgid "View Land Listing"
 msgstr ""
 
-#: lib/post-types/post-type-land.php:46
-msgid "Search Land Listing"
-msgstr ""
-
-#: lib/post-types/post-type-land.php:47
-msgid "Land Listing Not Found"
-msgstr ""
-
 #: lib/post-types/post-type-land.php:48
-msgid "Land Listing Not Found in Trash"
+msgid "View Land Listings"
 msgstr ""
 
 #: lib/post-types/post-type-land.php:49
+msgid "Search Land Listing"
+msgstr ""
+
+#: lib/post-types/post-type-land.php:50
+msgid "Land Listing Not Found"
+msgstr ""
+
+#: lib/post-types/post-type-land.php:51
+msgid "Land Listing Not Found in Trash"
+msgstr ""
+
+#: lib/post-types/post-type-land.php:52
 msgid "Parent Land Listing:"
 msgstr ""
 
-#: lib/post-types/post-type-property.php:36
+#: lib/post-types/post-type-property.php:37
 msgid "Properties"
 msgstr ""
 
-#: lib/post-types/post-type-property.php:40
+#: lib/post-types/post-type-property.php:41
 msgid "Add New Listing"
 msgstr ""
 
-#: lib/post-types/post-type-property.php:41
+#: lib/post-types/post-type-property.php:42
 msgid "Edit Listing"
 msgstr ""
 
-#: lib/post-types/post-type-property.php:42
+#: lib/post-types/post-type-property.php:43
 msgid "New Listing"
 msgstr ""
 
-#: lib/post-types/post-type-property.php:43
+#: lib/post-types/post-type-property.php:44
 msgid "Update Listing"
 msgstr ""
 
-#: lib/post-types/post-type-property.php:44
+#: lib/post-types/post-type-property.php:45
 msgid "All Listings"
 msgstr ""
 
-#: lib/post-types/post-type-property.php:45
+#: lib/post-types/post-type-property.php:46
 msgid "View Listing"
 msgstr ""
 
-#: lib/post-types/post-type-property.php:46
-msgid "Search Listing"
-msgstr ""
-
 #: lib/post-types/post-type-property.php:47
-msgid "Listing Not Found"
+msgid "View Listings"
 msgstr ""
 
 #: lib/post-types/post-type-property.php:48
-msgid "Listing Not Found in Trash"
+msgid "Search Listing"
 msgstr ""
 
 #: lib/post-types/post-type-property.php:49
+msgid "Listing Not Found"
+msgstr ""
+
+#: lib/post-types/post-type-property.php:50
+msgid "Listing Not Found in Trash"
+msgstr ""
+
+#: lib/post-types/post-type-property.php:51
 msgid "Parent Listing:"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:36
 #: lib/post-types/post-type-rental.php:38
+#: lib/post-types/post-type-rental.php:40
 msgid "Rentals"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:40
+#: lib/post-types/post-type-rental.php:42
 msgid "Add New Rental"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:41
+#: lib/post-types/post-type-rental.php:43
 msgid "Edit Rental"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:42
+#: lib/post-types/post-type-rental.php:44
 msgid "New Rental"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:43
+#: lib/post-types/post-type-rental.php:45
 msgid "Update Rental"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:44
+#: lib/post-types/post-type-rental.php:46
 msgid "All Rentals"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:45
+#: lib/post-types/post-type-rental.php:47
 msgid "View Rental"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:46
-msgid "Search Rentals"
-msgstr ""
-
-#: lib/post-types/post-type-rental.php:47
-msgid "Rental Not Found"
-msgstr ""
-
 #: lib/post-types/post-type-rental.php:48
-msgid "Rental Not Found in Trash"
+msgid "View Rentals"
 msgstr ""
 
 #: lib/post-types/post-type-rental.php:49
+msgid "Search Rentals"
+msgstr ""
+
+#: lib/post-types/post-type-rental.php:50
+msgid "Rental Not Found"
+msgstr ""
+
+#: lib/post-types/post-type-rental.php:51
+msgid "Rental Not Found in Trash"
+msgstr ""
+
+#: lib/post-types/post-type-rental.php:52
 msgid "Parent Rental:"
 msgstr ""
 
-#: lib/post-types/post-type-rental.php:99
+#: lib/post-types/post-type-rental.php:102
 msgid "Geocoded"
 msgstr ""
 
-#: lib/post-types/post-type-rural.php:40
+#: lib/post-types/post-type-rural.php:42
 msgid "Add New Rural Listing"
 msgstr ""
 
-#: lib/post-types/post-type-rural.php:41
+#: lib/post-types/post-type-rural.php:43
 msgid "Edit Rural Listing"
 msgstr ""
 
-#: lib/post-types/post-type-rural.php:42
+#: lib/post-types/post-type-rural.php:44
 msgid "New Rural Listing"
 msgstr ""
 
-#: lib/post-types/post-type-rural.php:43
+#: lib/post-types/post-type-rural.php:45
 msgid "Update Rural Listing"
 msgstr ""
 
-#: lib/post-types/post-type-rural.php:44
+#: lib/post-types/post-type-rural.php:46
 msgid "All Rural Listings"
 msgstr ""
 
-#: lib/post-types/post-type-rural.php:45
+#: lib/post-types/post-type-rural.php:47
 msgid "View Rural Listing"
 msgstr ""
 
-#: lib/post-types/post-type-rural.php:46
-msgid "Search Rural Listing"
-msgstr ""
-
-#: lib/post-types/post-type-rural.php:47
-msgid "Rural Listing Not Found"
-msgstr ""
-
 #: lib/post-types/post-type-rural.php:48
-msgid "Rural Listing Not Found in Trash"
+msgid "View Rural Listings"
 msgstr ""
 
 #: lib/post-types/post-type-rural.php:49
+msgid "Search Rural Listing"
+msgstr ""
+
+#: lib/post-types/post-type-rural.php:50
+msgid "Rural Listing Not Found"
+msgstr ""
+
+#: lib/post-types/post-type-rural.php:51
+msgid "Rural Listing Not Found in Trash"
+msgstr ""
+
+#: lib/post-types/post-type-rural.php:52
 msgid "Parent Rural Listing:"
 msgstr ""
 
