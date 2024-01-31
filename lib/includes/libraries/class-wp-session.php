@@ -137,7 +137,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	/**
 	 * Set the session cookie
 	 *
-	 * @since 3.5.2 Uses $this->get_session_delimiter('||') to get delimiter.
+	 * @since 3.5.1 Uses $this->get_session_delimiter('||') to get delimiter.
 	 */
 	protected function set_cookie() {
 		$delimiter = $this->get_session_delimiter( '||' );
