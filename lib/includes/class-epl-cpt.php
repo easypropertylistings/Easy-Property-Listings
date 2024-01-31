@@ -391,6 +391,8 @@ class EPL_CPT {
 	 * Register Post Type
 	 *
 	 * @see http://codex.wordpress.org/Function_Reference/register_post_type
+	 *
+	 * @since 3.5.1 Plural for viewing posts.
 	 */
 	public function register_post_type() {
 
@@ -424,6 +426,8 @@ class EPL_CPT {
 			'new_item'           => sprintf( __( 'New %s', 'easy-property-listings' ), $singular ),
 			/* Translators: %s is the post type name. */
 			'view_item'          => sprintf( __( 'View %s', 'easy-property-listings' ), $singular ),
+			/* Translators: %s is the post type name. */
+			'view_items'         => sprintf( __( 'View %s', 'easy-property-listings' ), $plural ),
 			/* Translators: %s is the post type name. */
 			'search_items'       => sprintf( __( 'Search %s', 'easy-property-listings' ), $plural ),
 			/* Translators: %s is the post type name. */

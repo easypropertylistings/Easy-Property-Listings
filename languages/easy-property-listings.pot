@@ -1,15 +1,15 @@
-# Copyright (C) 2023 Merv Barrett
+# Copyright (C) 2024 Merv Barrett
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy Property Listings 3.5.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2023-12-13 04:30:29+00:00\n"
+"POT-Creation-Date: 2024-01-31 04:30:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Merv Barrett <support@easypropertylistings.com.au>\n"
 "Language-Team: Real Estate Connected <support@realestateconnected.com.au>\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -323,8 +323,8 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:234
 #: lib/includes/class-epl-author.php:263 lib/includes/class-epl-author.php:271
 #: lib/includes/functions.php:2084 lib/includes/template-functions.php:2094
-#: lib/post-types/post-type-contact.php:36
 #: lib/post-types/post-type-contact.php:37
+#: lib/post-types/post-type-contact.php:38
 msgid "Contact"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contacts.php:73
 #: lib/includes/admin/contacts/contacts.php:904
 #: lib/includes/admin/menus/menus.php:53 lib/includes/admin/menus/menus.php:54
-#: lib/post-types/post-type-contact.php:35
+#: lib/post-types/post-type-contact.php:36
 msgid "Contacts"
 msgstr ""
 
@@ -495,10 +495,10 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:898
 #: lib/includes/admin/contacts/contact-actions.php:921
 #: lib/includes/admin/contacts/contacts.php:74
-#: lib/includes/class-epl-cpt.php:418 lib/post-types/post-type-business.php:39
+#: lib/includes/class-epl-cpt.php:420 lib/post-types/post-type-business.php:39
 #: lib/post-types/post-type-commercial-land.php:39
 #: lib/post-types/post-type-commercial.php:39
-#: lib/post-types/post-type-contact.php:38 lib/post-types/post-type-land.php:39
+#: lib/post-types/post-type-contact.php:39 lib/post-types/post-type-land.php:39
 #: lib/post-types/post-type-property.php:39
 #: lib/post-types/post-type-rental.php:39 lib/post-types/post-type-rural.php:39
 #. Translators: %s is the post type name.
@@ -624,7 +624,7 @@ msgid "Listing Status"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:1313
-#: lib/post-types/post-type-contact.php:44
+#: lib/post-types/post-type-contact.php:45
 msgid "View Contact"
 msgstr ""
 
@@ -1841,7 +1841,8 @@ msgid ""
 msgstr ""
 
 #: lib/includes/admin/menus/class-epl-welcome.php:659
-#: lib/includes/class-epl-cpt.php:426 lib/includes/class-epl-cpt.php:538
+#: lib/includes/class-epl-cpt.php:428 lib/includes/class-epl-cpt.php:430
+#: lib/includes/class-epl-cpt.php:542
 #. Translators: %s is username form GitHub.
 #. Translators: %s is the post type name.
 #. Translators: %s is taxonomy label.
@@ -2327,7 +2328,7 @@ msgstr ""
 msgid "Listing"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:420 lib/includes/class-epl-cpt.php:542
+#: lib/includes/class-epl-cpt.php:422 lib/includes/class-epl-cpt.php:546
 #: lib/taxonomies/tax-location.php:38
 #. Translators: %s is the post type name.
 #. Translators: %s is taxonomy label.
@@ -2335,7 +2336,7 @@ msgstr ""
 msgid "Add New %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:422 lib/includes/class-epl-cpt.php:536
+#: lib/includes/class-epl-cpt.php:424 lib/includes/class-epl-cpt.php:540
 #: lib/taxonomies/tax-location.php:39
 #. Translators: %s is the post type name.
 #. Translators: %s is taxonomy label.
@@ -2343,12 +2344,12 @@ msgstr ""
 msgid "Edit %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:424
+#: lib/includes/class-epl-cpt.php:426
 #. Translators: %s is the post type name.
 msgid "New %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:428 lib/includes/class-epl-cpt.php:550
+#: lib/includes/class-epl-cpt.php:432 lib/includes/class-epl-cpt.php:554
 #: lib/taxonomies/tax-location.php:42
 #. Translators: %s is the post type name.
 #. Translators: %s is taxonomy label.
@@ -2356,75 +2357,75 @@ msgstr ""
 msgid "Search %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:430 lib/includes/class-epl-cpt.php:560
+#: lib/includes/class-epl-cpt.php:434 lib/includes/class-epl-cpt.php:564
 #. Translators: %s is the post type name.
 #. Translators: %s is taxonomy label.
 msgid "No %s found"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:432
+#: lib/includes/class-epl-cpt.php:436
 #. Translators: %s is the post type name.
 msgid "No %s found in Trash"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:434 lib/includes/class-epl-cpt.php:548
+#: lib/includes/class-epl-cpt.php:438 lib/includes/class-epl-cpt.php:552
 #. Translators: %s is the post type name.
 #. Translators: %s is taxonomy label.
 msgid "Parent %s:"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:534 lib/taxonomies/tax-location.php:34
+#: lib/includes/class-epl-cpt.php:538 lib/taxonomies/tax-location.php:34
 #. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "All %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:540 lib/taxonomies/tax-location.php:40
+#: lib/includes/class-epl-cpt.php:544 lib/taxonomies/tax-location.php:40
 #. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Update %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:544 lib/taxonomies/tax-location.php:37
+#: lib/includes/class-epl-cpt.php:548 lib/taxonomies/tax-location.php:37
 #. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "New %s Name"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:546 lib/taxonomies/tax-location.php:35
+#: lib/includes/class-epl-cpt.php:550 lib/taxonomies/tax-location.php:35
 #. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Parent %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:552
+#: lib/includes/class-epl-cpt.php:556
 #. Translators: %s is taxonomy label.
 msgid "Popular %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:554 lib/taxonomies/tax-location.php:41
+#: lib/includes/class-epl-cpt.php:558 lib/taxonomies/tax-location.php:41
 #. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Separate %s with commas"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:556 lib/taxonomies/tax-location.php:43
+#: lib/includes/class-epl-cpt.php:560 lib/taxonomies/tax-location.php:43
 #. Translators: %s is taxonomy label.
 #. translators: %s: Location.
 msgid "Add or remove %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:558
+#: lib/includes/class-epl-cpt.php:562
 #. Translators: %s is taxonomy label.
 msgid "Choose from most used %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:752
+#: lib/includes/class-epl-cpt.php:756
 #. translators: tax label.
 msgid "No %s"
 msgstr ""
 
-#: lib/includes/class-epl-cpt.php:883
+#: lib/includes/class-epl-cpt.php:887
 #. translators: tax label.
 msgid "Show all %s"
 msgstr ""
@@ -4747,39 +4748,43 @@ msgstr ""
 msgid "Parent Commercial Listing:"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:39
+#: lib/post-types/post-type-contact.php:40
 msgid "Add New Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:40
+#: lib/post-types/post-type-contact.php:41
 msgid "Edit Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:41
+#: lib/post-types/post-type-contact.php:42
 msgid "New Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:42
+#: lib/post-types/post-type-contact.php:43
 msgid "Update Contact"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:43
+#: lib/post-types/post-type-contact.php:44
 msgid "All Contacts"
 msgstr ""
 
-#: lib/post-types/post-type-contact.php:45
-msgid "Search Contact"
-msgstr ""
-
 #: lib/post-types/post-type-contact.php:46
-msgid "Contact Not Found"
+msgid "View Contacts"
 msgstr ""
 
 #: lib/post-types/post-type-contact.php:47
-msgid "Contact Not Found in Trash"
+msgid "Search Contact"
 msgstr ""
 
 #: lib/post-types/post-type-contact.php:48
+msgid "Contact Not Found"
+msgstr ""
+
+#: lib/post-types/post-type-contact.php:49
+msgid "Contact Not Found in Trash"
+msgstr ""
+
+#: lib/post-types/post-type-contact.php:50
 msgid "Parent Contact:"
 msgstr ""
 

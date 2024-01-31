@@ -41,6 +41,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 	 */
 	final class Easy_Property_Listings {
 		/**
+		 * Instance
+		 *
 		 * @var Easy_Property_Listings The one true Easy_Property_Listings
 		 * @since 1.0.0
 		 */

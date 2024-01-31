@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // phpcs:disable WordPress.Security.NonceVerification
 
 /**
- * Featured Image on archive template now loading through filter
+ * Property Object
  *
  * @param array $post Post object.
  *
@@ -3360,7 +3360,7 @@ add_filter( 'post_class', 'epl_property_post_class_listing_status_callback' );
  * Get the author loop
  *
  * @since 3.3
- * @since 3.4.38 Support for trird & forth listing agents.
+ * @since 3.4.38 Support for third & forth listing agents.
  */
 function epl_archive_author_callback() {
 	global $epl_author_secondary, $epl_author_third, $epl_author_fourth;
