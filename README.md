@@ -38,7 +38,8 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.1 January 31, 2024 = 
+= 3.5.1 January 31, 2024 =
+
 - New: Filters added for Staff Directory search: epl_search_user_args and epl_search_user_results filters.
 - New: Author box wrapper class epl-author-box-wrapper added to contain author boxes.
 - New: Session epl_wp_session_delimiter filter for changing the default cookie session delimiter.

@@ -102,7 +102,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	}
 
 	/**
-	 * Session delimiter. Propvides filter to change the default || delimiter.
+	 * Session delimiter. Provides filter to change the default || delimiter.
 	 *
 	 * @param string $delimiter Delimiter for the session.
 	 * @since 3.5.1
