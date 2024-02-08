@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<ul class="epl-author-tabs author-tabs">
 		<?php
 
-			$author_tabs = epl_author_tabs();
+			$author_tabs = epl_author_tabs( $epl_author );
 			$counter     = 1;
 		foreach ( $author_tabs as $k  => &$author_tab ) {
 			$current_class = 1 === $counter ? 'epl-author-current' : '';
