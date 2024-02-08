@@ -30,7 +30,7 @@ function epl_get_option( $key = '', $default = false ) {
 	global $epl_settings;
 
         // check for zeros
-        if( isset( $epl_settings[ $key ] ) && '0' ==  $epl_settings[ $key ] ) {
+        if( isset( $epl_settings[ $key ] ) && is_numeric( $epl_settings[ $key ] ) && 0 ===  (int) $epl_settings[ $key ] ) {
                 $value = 0;
         } else {
                 // preserve empty check for rest of the values to preserve the behaviour : if value empty, then return default;
