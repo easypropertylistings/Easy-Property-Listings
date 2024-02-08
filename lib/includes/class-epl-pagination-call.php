@@ -153,19 +153,20 @@ class EPL_Pagination_Call {
 	 * @param string $page Page number.
 	 *
 	 * @return string
-	 * @since  2.1
-         * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
+	 *
+	 * @since 2.1
+	 * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
 	 */
 	public function get_url( $page ) {
 		$link = ( 'multipart' === $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
 
 		if ( $this->query->get( 'is_epl_shortcode' ) &&
 			in_array( $this->query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
-                        $permalink_structure = get_option('permalink_structure');
+			$permalink_structure = get_option( 'permalink_structure' );
 
-                        if( empty( $permalink_structure ) ) {
-                                $link = epl_add_or_update_params( $link, 'paged', $page );
-                        }
+			if ( empty( $permalink_structure ) ) {
+				$link = epl_add_or_update_params( $link, 'paged', $page );
+			}
 			$link = epl_add_or_update_params( $link, 'pagination_id', $this->query->get( 'instance_id' ) );
 		}
 

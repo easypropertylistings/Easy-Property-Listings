@@ -68,21 +68,17 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 * create a new session with that ID.
 	 *
 	 * @uses apply_filters Calls `wp_session_expiration` to determine how long until sessions expire.
-         * @since 3.5.2 Uses $this->get_session_delimiter('||') to get delimiter.
+	 * @since 3.5.1 Uses $this->get_session_delimiter('||') to get delimiter.
 	 */
 	protected function __construct() {
 		if ( isset( $_COOKIE[ WP_SESSION_COOKIE ] ) ) {
 			$cookie        = stripslashes( $_COOKIE[ WP_SESSION_COOKIE ] );
-			$cookie_crumbs = explode(  $this->get_session_delimiter('||'), $cookie );
+			$cookie_crumbs = explode( $this->get_session_delimiter( '||' ), $cookie );
 
 			if ( $this->is_valid_md5( $cookie_crumbs[0] ) ) {
-
 				$this->session_id = $cookie_crumbs[0];
-
 			} else {
-
 				$this->regenerate_id( true );
-
 			}
 
 			$this->expires     = $cookie_crumbs[1];
@@ -105,14 +101,15 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 
 	}
 
-        /**
-         * Session delimiter. Propvides filter to change the default || delimiter.
-         * 
-         * @since 3.5.2
-         */
-        protected function get_session_delimiter( $delimiter ='||' ) {
-                return apply_filters( 'epl_wp_session_delimiter', $delimiter );
-        }
+	/**
+	 * Session delimiter. Provides filter to change the default || delimiter.
+	 *
+	 * @param string $delimiter Delimiter for the session.
+	 * @since 3.5.1
+	 */
+	protected function get_session_delimiter( $delimiter = '||' ) {
+		return apply_filters( 'epl_wp_session_delimiter', $delimiter );
+	}
 
 	/**
 	 * Set both the expiration time and the expiration variant.
@@ -139,10 +136,11 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 
 	/**
 	 * Set the session cookie
-         * @since 3.5.2 Uses $this->get_session_delimiter('||') to get delimiter.
+	 *
+	 * @since 3.5.1 Uses $this->get_session_delimiter('||') to get delimiter.
 	 */
 	protected function set_cookie() {
-                $delimiter = $this->get_session_delimiter('||');
+		$delimiter = $this->get_session_delimiter( '||' );
 		@setcookie( WP_SESSION_COOKIE, $this->session_id . $delimiter . $this->expires . $delimiter . $this->exp_variant, $this->expires, COOKIEPATH, COOKIE_DOMAIN );
 	}
 
@@ -277,7 +275,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return mixed
 	 */
-        #[\ReturnTypeWillChange]
+	#[\ReturnTypeWillChange]
 	public function current() {
 		return current( $this->container );
 	}
@@ -289,7 +287,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return mixed
 	 */
-        #[\ReturnTypeWillChange]
+	#[\ReturnTypeWillChange]
 	public function key() {
 		return key( $this->container );
 	}
@@ -301,7 +299,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return void
 	 */
-        #[\ReturnTypeWillChange]
+	#[\ReturnTypeWillChange]
 	public function next() {
 		next( $this->container );
 	}
@@ -313,7 +311,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return void
 	 */
-        #[\ReturnTypeWillChange]
+	#[\ReturnTypeWillChange]
 	public function rewind() {
 		reset( $this->container );
 	}
@@ -325,7 +323,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return bool
 	 */
-        #[\ReturnTypeWillChange]
+	#[\ReturnTypeWillChange]
 	public function valid() {
 		return $this->offsetExists( $this->key() );
 	}
@@ -341,7 +339,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return int
 	 */
-        #[\ReturnTypeWillChange]
+	#[\ReturnTypeWillChange]
 	public function count() {
 		return count( $this->container );
 	}

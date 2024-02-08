@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Registers and sets up the Contact custom post type
  *
  * @since 3.0
+ * @since 3.5.1 Plural for viewing contacts.
+ *
  * @return void
  */
 function epl_register_custom_post_type_contact() {
@@ -42,6 +44,7 @@ function epl_register_custom_post_type_contact() {
 			'update_item'        => __( 'Update Contact', 'easy-property-listings' ),
 			'all_items'          => __( 'All Contacts', 'easy-property-listings' ),
 			'view_item'          => __( 'View Contact', 'easy-property-listings' ),
+			'view_items'         => __( 'View Contacts', 'easy-property-listings' ),
 			'search_items'       => __( 'Search Contact', 'easy-property-listings' ),
 			'not_found'          => __( 'Contact Not Found', 'easy-property-listings' ),
 			'not_found_in_trash' => __( 'Contact Not Found in Trash', 'easy-property-listings' ),

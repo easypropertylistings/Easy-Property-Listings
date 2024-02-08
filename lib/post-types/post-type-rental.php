@@ -17,8 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Registers and sets up the Rental custom post type
  *
- * @since 1.0
  * @return void
+ *
+ * @since 1.0
+ * @since 3.5.1 View Listings added for plural.
  */
 function epl_register_custom_post_type_rental() {
 
@@ -43,6 +45,7 @@ function epl_register_custom_post_type_rental() {
 			'update_item'        => __( 'Update Rental', 'easy-property-listings' ),
 			'all_items'          => __( 'All Rentals', 'easy-property-listings' ),
 			'view_item'          => __( 'View Rental', 'easy-property-listings' ),
+			'view_items'         => __( 'View Rentals', 'easy-property-listings' ),
 			'search_items'       => __( 'Search Rentals', 'easy-property-listings' ),
 			'not_found'          => __( 'Rental Not Found', 'easy-property-listings' ),
 			'not_found_in_trash' => __( 'Rental Not Found in Trash', 'easy-property-listings' ),
