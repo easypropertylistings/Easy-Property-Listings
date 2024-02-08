@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Registers and sets up the Land custom post type.
  *
  * @since 1.0
+ * @since 3.5.1 View Land Listings added for plural.
+ *
  * @return void
  */
 function epl_register_custom_post_type_land() {
@@ -43,6 +45,7 @@ function epl_register_custom_post_type_land() {
 			'update_item'        => __( 'Update Land Listing', 'easy-property-listings' ),
 			'all_items'          => __( 'All Land Listings', 'easy-property-listings' ),
 			'view_item'          => __( 'View Land Listing', 'easy-property-listings' ),
+			'view_items'         => __( 'View Land Listings', 'easy-property-listings' ),
 			'search_items'       => __( 'Search Land Listing', 'easy-property-listings' ),
 			'not_found'          => __( 'Land Listing Not Found', 'easy-property-listings' ),
 			'not_found_in_trash' => __( 'Land Listing Not Found in Trash', 'easy-property-listings' ),

@@ -362,20 +362,20 @@ function epl_get_next_page_link( $query ) {
 	if ( $query->get( 'is_epl_shortcode' ) &&
 		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
 
-                $permalink_structure = get_option('permalink_structure');
+		$permalink_structure = get_option( 'permalink_structure' );
 
-                if( empty( $permalink_structure ) ) {
+		if ( empty( $permalink_structure ) ) {
 
-                        $page = $query->get( 'paged' );
+			$page = $query->get( 'paged' );
 
-                        if ( ! $page ) {
-                                $page = 1;
-                        }
+			if ( ! $page ) {
+				$page = 1;
+			}
 
-                        $page++;
-                
-                        $link = epl_add_or_update_params( $link, 'paged', $page );
-                }       
+			$page++;
+
+			$link = epl_add_or_update_params( $link, 'paged', $page );
+		}
 
 		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
 	}
@@ -399,7 +399,7 @@ function epl_next_post_link( $query, $label = null ) {
 	if ( $nextpage <= $query->max_num_pages ) {
 
 		if ( null === $label ) {
-				$label = __( 'Next Page &raquo;', 'easy-property-listings' );
+			$label = __( 'Next Page &raquo;', 'easy-property-listings' );
 		}
 
 		$attr = apply_filters( 'epl_next_posts_link_attributes', '' );
@@ -410,7 +410,7 @@ function epl_next_post_link( $query, $label = null ) {
 /**
  * Get Prev page URL for EPL archives / shortcodes
  *
- * @param  array $query WP Query object.
+ * @param  WP_Query $query WP Query object.
  * @return string
  * @since 3.3.3
  * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
@@ -421,20 +421,20 @@ function epl_get_prev_page_link( $query ) {
 
 	if ( $query->get( 'is_epl_shortcode' ) &&
 		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
-                $permalink_structure = get_option('permalink_structure');
+			$permalink_structure = get_option( 'permalink_structure' );
 
-                if( empty( $permalink_structure ) ) {
+		if ( empty( $permalink_structure ) ) {
 
-                        $page = $query->get( 'paged' );
+			$page = $query->get( 'paged' );
 
-                        if ( ! $page ) {
-                                $page = 1;
-                        }
+			if ( ! $page ) {
+				$page = 1;
+			}
 
-                        $page--;
-                
-                        $link = epl_add_or_update_params( $link, 'paged', $page );
-                } 
+			$page--;
+
+			$link = epl_add_or_update_params( $link, 'paged', $page );
+		}
 		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
 	}
 	return apply_filters( 'epl_get_prev_page_link', $link );
@@ -444,8 +444,8 @@ function epl_get_prev_page_link( $query ) {
  * Prev page Link
  *
  * @since 3.3.3
- * @param  array  $query WP Query object.
- * @param  string $label Pagination 'previous' label.
+ * @param  WP_Query $query WP Query object.
+ * @param  string   $label Pagination 'previous' label.
  * @return string
  */
 function epl_prev_post_link( $query, $label = null ) {
@@ -455,7 +455,7 @@ function epl_prev_post_link( $query, $label = null ) {
 	if ( $paged > 1 ) {
 
 		if ( null === $label ) {
-				$label = __( '&laquo; Previous Page', 'easy-property-listings' );
+			$label = __( '&laquo; Previous Page', 'easy-property-listings' );
 		}
 
 		$attr = apply_filters( 'epl_prev_posts_link_attributes', '' );
@@ -466,14 +466,13 @@ function epl_prev_post_link( $query, $label = null ) {
 /**
  * WordPress Default Pagination
  *
- * @param  array $query WP Query object.
+ * @param  WP_Query $query WP Query object.
  * @since 2.1
  * @revised 3.3.3
  * @since 3.4.44 Fixed warning for wp_kses_post when empty link.
  */
 function epl_wp_default_pagination( $query = array() ) {
 	if ( empty( $query ) ) {
-
 		?>
 	<div class="epl-paginate-default-wrapper epl-clearfix">
 		<div class="alignleft"><?php previous_posts_link( __( '&laquo; Previous Page', 'easy-property-listings' ) ); ?></div>
@@ -481,28 +480,23 @@ function epl_wp_default_pagination( $query = array() ) {
 	</div>
 		<?php
 	} else {
-
 		$query_open = $query['query'];
 		?>
-
-	<div class="epl-paginate-default-wrapper epl-clearfix">
-		<div class="alignleft">
-						<?php
-						if ( ! empty( epl_prev_post_link( $query_open ) ) ) {
-								echo wp_kses_post( epl_prev_post_link( $query_open ) );
-						}
-
-						?>
-				</div>
-		<div class="alignright">
-						<?php
-						if ( ! empty( epl_next_post_link( $query_open ) ) ) {
-								echo wp_kses_post( epl_next_post_link( $query_open ) );
-						}
-						?>
-				</div>
-	</div>
-		<?php
+		<div class="epl-paginate-default-wrapper epl-clearfix">
+			<div class="alignleft">
+				<?php
+				if ( ! empty( epl_prev_post_link( $query_open ) ) ) {
+						echo wp_kses_post( epl_prev_post_link( $query_open ) );
+				}
+				?>
+			</div>
+			<div class="alignright">
+				<?php
+				if ( ! empty( epl_next_post_link( $query_open ) ) ) {
+						echo wp_kses_post( epl_next_post_link( $query_open ) );
+				}
+				?>
+			</div>
+		</div><?php
 	}
-
 }

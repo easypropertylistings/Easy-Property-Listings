@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Registers and sets up the Commercial Land custom post type.
  *
  * @since 1.0
+ * @since 3.5.1 View Commercial Land Listings added for plural.
+ *
  * @return void
  */
 function epl_register_custom_post_type_commercial_land() {
@@ -43,6 +45,7 @@ function epl_register_custom_post_type_commercial_land() {
 			'update_item'        => __( 'Update Commercial Land Listing', 'easy-property-listings' ),
 			'all_items'          => __( 'All Commercial Land Listings', 'easy-property-listings' ),
 			'view_item'          => __( 'View Commercial Land Listing', 'easy-property-listings' ),
+			'view_items'         => __( 'View Commercial Land Listings', 'easy-property-listings' ),
 			'search_items'       => __( 'Search Commercial Land Listing', 'easy-property-listings' ),
 			'not_found'          => __( 'Commercial Land Listing Not Found', 'easy-property-listings' ),
 			'not_found_in_trash' => __( 'Commercial Land Listing Not Found in Trash', 'easy-property-listings' ),

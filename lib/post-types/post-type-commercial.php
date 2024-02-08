@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Registers and sets up the Commercial custom post type.
  *
  * @since 1.0
+ * @since 3.5.1 View Commercial Listings added for plural.
+ *
  * @return void
  */
 function epl_register_custom_post_type_commercial() {
@@ -43,6 +45,7 @@ function epl_register_custom_post_type_commercial() {
 			'update_item'        => __( 'Update Commercial Listing', 'easy-property-listings' ),
 			'all_items'          => __( 'All Commercial Listings', 'easy-property-listings' ),
 			'view_item'          => __( 'View Commercial Listing', 'easy-property-listings' ),
+			'view_items'         => __( 'View Commercial Listings', 'easy-property-listings' ),
 			'search_items'       => __( 'Search Commercial Listing', 'easy-property-listings' ),
 			'not_found'          => __( 'Commercial Listing Not Found', 'easy-property-listings' ),
 			'not_found_in_trash' => __( 'Commercial Listing Not Found in Trash', 'easy-property-listings' ),
