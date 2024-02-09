@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.2 February 09, 2024 =
+
+- Tweak: Added check to identify 0 values so that it's not ignored by empty check.
+
 = 3.5.1 January 31, 2024 =
 
 - New: Filters added for Staff Directory search: epl_search_user_args and epl_search_user_results filters.
