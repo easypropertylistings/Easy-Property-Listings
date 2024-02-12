@@ -103,6 +103,9 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 
 	/**
 	 * Session delimiter. Provides filter to change the default || delimiter.
+         * 
+         * A notice for session might appear when we switch delimiter while already a cookie is set,
+         * That's because new delimiter tries to explode session cookies saved using old delimiter.
 	 *
 	 * @param string $delimiter Delimiter for the session.
 	 * @since 3.5.1
