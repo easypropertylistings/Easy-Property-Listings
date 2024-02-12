@@ -38,9 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.2 February 09, 2024 =
+= 3.5.2 February 12, 2024 =
 
-- Tweak: Added check to identify 0 values so that it's not ignored by empty check.
+- Tweak: Google Maps now load asynchoronously.
+- Tweak: Added check to identify 0 values so that it's not ignored by empty check whne using epl_get_option function. Added a 
 
 = 3.5.1 January 31, 2024 =
 
