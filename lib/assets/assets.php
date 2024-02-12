@@ -49,7 +49,7 @@ function epl_get_admin_screens() {
  *
  * @since 3.4.44 Fixed callback error for google maps.
  * @since 3.5 Renamed Google Maps script name to: epl-google-map-v-3. Display hidden fields. Added Google maps error message.
- *
+ * @since 3.5.2 added loading=async for maps to load map asynchoronously
  * @param string $screen Page hook.
  * @return void
  */
@@ -112,6 +112,7 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
  * @since 3.4.44 Fix: Callback error for google maps.
  * @since 3.4.48 Fix: Price formatting as per settings in price slider.
  * @since 3.5.1 Tweak: Google Maps Prefixed to: epl-google-map-v-3
+ * @since 3.5.2 added loading=async for maps to load map asynchoronously.
  */
 function epl_wp_enqueue_scripts() {
 
@@ -123,7 +124,7 @@ function epl_wp_enqueue_scripts() {
 
 	if ( is_epl_post() && shortcode_exists( 'listing_map' ) ) {
 
-		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype';
+		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype&loading=async';
 		$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 		if ( ! empty( $epl_google_api_key ) ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
