@@ -1285,8 +1285,9 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
  * @since 1.0.0
  * @since 3.4.14 Fix: Custom features' callback output wrongly placed.
  * @since 3.4.30 Fix: Property Features title set to pass basic html.
- * @since 3.5.0 New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
- * @since 3.5.2 Removed duplicate property category.
+ * @since 3.5.0  New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
+ * @since 3.5.2  Tweak: Removed addiitonal property category appearing in additional features list.
+ *
  * @hooked property_tab_section
  */
 function epl_property_tab_section() {
@@ -2084,16 +2085,18 @@ add_action( 'pre_get_posts', 'epl_archive_sorting' );
 /**
  * Author Tabs
  *
- * @since      1.0
+ * @param array|null $epl_author EPL author object.
  *
  * @return array
+ *
+ * @since 1.0.0
  * @since 3.5.2 Passes param $epl_author so it can be passed to tabs filter.
  */
 function epl_author_tabs( $epl_author = null ) {
-	
-        if( is_null( $epl_author ) ) {
-                global $epl_author;
-        }
+
+	if ( is_null( $epl_author ) ) {
+		global $epl_author;
+	}
 	$author_tabs = array(
 		'author_id'    => __( 'About', 'easy-property-listings' ),
 		'description'  => __( 'Bio', 'easy-property-listings' ),
@@ -2107,9 +2110,9 @@ function epl_author_tabs( $epl_author = null ) {
 /**
  * Author Class
  *
- * @since      2.0
+ * @since 2.0
  *
- * @param      string $classes  The classes.
+ * @param string $classes  The classes.
  */
 function epl_author_class( $classes ) {
 	$classes = explode( ' ', $classes . ' epl-author-box author-box' );
@@ -3191,8 +3194,9 @@ add_filter( 'comments_array', 'epl_filter_listing_comments_array', 10, 2 );
 /**
  * Archive Page Title
  *
- * @since 3.0
  * @return void the archive title
+ *
+ * @since 3.0.0
  * @since 3.5.2 Added filter epl_archive_title to alter archive title.
  */
 function epl_archive_title_callback() {
@@ -3206,7 +3210,7 @@ function epl_archive_title_callback() {
 		$title = apply_filters( 'epl_archive_title_search_result', __( 'Search Result', 'easy-property-listings' ) );
 	} elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive.
 		$title = post_type_archive_title( '', false );
-                $title = apply_filters( 'epl_archive_title', __( $title, 'easy-property-listings' ) );
+		$title = apply_filters( 'epl_archive_title_post_type', $title );
 	} else { // Default catchall just in case.
 		$title = apply_filters( 'epl_archive_title_fallback', __( 'Listing', 'easy-property-listings' ) );
 	}
