@@ -68,16 +68,17 @@ add_shortcode( 'listing_map', 'epl_shortcode_googlemap_callback' );
  * Loads google map script on non EPL pages if listing_map shortcode is called.
  *
  * @since 3.5.0
+ * @since 3.5.3 Google Maps async. Prefix added.
  */
 function epl_shortcode_googlemap_enqueue() {
 
-	$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype';
+	$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype&loading=async';
 	$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 	if ( ! empty( $epl_google_api_key ) ) {
 		$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 	}
 
 	if ( epl_get_option( 'epl_disable_google_api' ) !== 'on' ) {
-		wp_enqueue_script( 'google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
+		wp_enqueue_script( 'epl-google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 	}
 }
