@@ -6,7 +6,9 @@
  * @subpackage  Templates/ContentAuthorBox
  * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ *
+ * @since       1.0.0
+ * @since       3.5.2 Added check to identify 0 values so that it's not ignored by empty check.
  */
 
 // Exit if accessed directly.
@@ -61,13 +63,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			$current_tab   = strtolower( 'epl-author-' . $k );
 			$current_class = 1 === $counter ? 'epl-author-current' : '';
 			?>
-				<div id="tab-<?php echo esc_attr( $counter ); ?>" class="<?php epl_author_class( $current_tab . ' epl-author-tab-content ' . $current_class ); ?>">
-					<?php
-					echo $tab['content']; // phpcs:ignore WordPress.Security.EscapeOutput
-					?>
-				</div>
+			<div id="tab-<?php echo esc_attr( $counter ); ?>" class="<?php epl_author_class( $current_tab . ' epl-author-tab-content ' . $current_class ); ?>">
 				<?php
-				$counter ++;
+				echo $tab['content']; // phpcs:ignore WordPress.Security.EscapeOutput
+				?>
+			</div>
+			<?php
+			$counter ++;
 		}
 		?>
 	</div>

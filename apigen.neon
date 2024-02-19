@@ -21,7 +21,7 @@ charset: [UTF-8]
 main: EPL
 
 # title of generated documentation
-title: Easy Property Listings 3.5.1 Code Reference
+title: Easy Property Listings 3.5.2 Code Reference
 
 # base url used for sitemap (useful for public doc)
 baseUrl: http://docs.easypropertylistings.com.au/

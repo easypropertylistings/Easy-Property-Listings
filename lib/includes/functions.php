@@ -21,7 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @param string $key Meta key.
  * @param bool   $default Returns default if not set.
+ *
  * @return mixed
+ *
  * @since 2.2
  * @since 3.5.2 Added check to identify 0 values so that it's not ignored by empty check.
  */

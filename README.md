@@ -38,9 +38,13 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.2 February 09, 2024 =
+= 3.5.2 February 12, 2024 =
 
-- Tweak: Added check to identify 0 values so that it's not ignored by empty check.
+- New: Added epl_archive_title_post_type archive page title post type filter.
+- Tweak: Author Tabs now pass the $epl_author so it can be passed to the tabs filter.
+- Tweak: Google Maps now load asynchronous.
+- Tweak: Added check to identify 0 values so that it's not ignored by empty check when using epl_get_option function.
+- Tweak: Removed additional property category appearing in additional features list.
 
 = 3.5.1 January 31, 2024 =
 

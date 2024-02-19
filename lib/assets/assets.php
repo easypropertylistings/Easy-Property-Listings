@@ -45,12 +45,13 @@ function epl_get_admin_screens() {
 /**
  * Load and enqueue admin scripts and stylesheets.
  *
- * @since 1.0
- *
- * @since 3.4.44 Fixed callback error for google maps.
- * @since 3.5 Renamed Google Maps script name to: epl-google-map-v-3. Display hidden fields. Added Google maps error message.
- * @since 3.5.2 added loading=async for maps to load map asynchoronously
  * @param string $screen Page hook.
+ *
+ * @since 1.0.0
+ * @since 3.4.44 Fixed callback error for google maps.
+ * @since 3.5    Renamed Google Maps script name to: epl-google-map-v-3. Display hidden fields. Added Google maps error message.
+ * @since 3.5.2  New: Google Maps load asynchoronously.
+ *
  * @return void
  */
 function epl_admin_enqueue_scripts( $screen ) {
@@ -66,7 +67,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 		'display_hidden_fields' => epl_get_option( 'display_hidden_fields', 0 ),
 		'google_api_error'      => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
 		'google_api_key'        => epl_get_option( 'epl_google_api_key' ),
-                'google_map_disabled'   => epl_get_option( 'epl_disable_google_api' )
+		'google_map_disabled'   => epl_get_option( 'epl_disable_google_api' ),
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
@@ -108,11 +109,11 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 /**
  * Load and enqueue front end scripts and stylesheets.
  *
-* @since 1.0
+ * @since 1.0
  * @since 3.4.44 Fix: Callback error for google maps.
  * @since 3.4.48 Fix: Price formatting as per settings in price slider.
- * @since 3.5.1 Tweak: Google Maps Prefixed to: epl-google-map-v-3
- * @since 3.5.2 added loading=async for maps to load map asynchoronously.
+ * @since 3.5.1  Tweak: Google Maps Prefixed to: epl-google-map-v-3
+ * @since 3.5.2  New: Google Maps load asynchoronously.
  */
 function epl_wp_enqueue_scripts() {
 
