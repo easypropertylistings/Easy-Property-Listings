@@ -323,12 +323,14 @@ function epl_get_fallback_content_path() {
  * @since 3.0
  * @since 3.4.38 New: Additional parameter default_template to pass the default template which will be used if the template is not found.
  * @since 3.4.41 Fix: Only the default template was loading.
+ * @since 3.5.3  Hook to filter find array as well as final template.       
  */
 function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
 
 	$base_path         = epl_get_content_path();
 	$default           = $default_template ? $default_template : $template;
 	$find[]            = epl_template_path() . $template;
+        $find              = apply_filters( 'epl_template_part_find', $find, $template, $arguments, $default_template );     
 	$template_location = locate_template( array_unique( $find ) );
 
 	if ( ! $template_location ) {
@@ -350,7 +352,7 @@ function epl_get_template_part( $template, $arguments = array(), $default_templa
 		${$key} = $val;
 	}
 
-	include $template;
+	include apply_filters( 'epl_get_template_part', $template, $arguments, $default_template );
 }
 
 /**
