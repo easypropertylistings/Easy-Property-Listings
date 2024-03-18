@@ -240,6 +240,7 @@ class EPL_Property_Meta {
 	 * @since 2.0
 	 * @since 3.4.27 Added filter for href, handling of non date inspection values.
 	 * @since 3.4.44 Added filter for deciding whether to remove inspection entry.
+         * @since 3.5.3  Fix : Deprecation warning - Make sure inspection time is not null before passing through trim.
 	 */
 	public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 		if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -247,7 +248,7 @@ class EPL_Property_Meta {
 		}
 
 		$inspection_time = $this->get_property_meta( $meta_key );
-		$inspection_time = trim( $inspection_time );
+		$inspection_time = !is_null( $inspection_time ) ? trim( $inspection_time ) : '';
 
 		$not_date = array();
 

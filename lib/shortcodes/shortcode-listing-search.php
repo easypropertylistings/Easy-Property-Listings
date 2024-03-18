@@ -24,6 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since       1.2
  * @since       3.4.45 Tweak: Pass user provided attributes to the [listing_search] Shortcode template.
  * @since       3.5 Support for instance ID, fallback generates unique instance ID automatically, added support for 'status' in shortcodes.
+ * @since       3.5.3 Filter to disable default template & action to add custom template.
  */
 function epl_shortcode_listing_search_callback( $atts ) {
 
@@ -40,8 +41,12 @@ function epl_shortcode_listing_search_callback( $atts ) {
                 $attributes['property_status'] = $atts['status'];
         }
 	ob_start();
-	// Rendering view of listing search shortcode.
-	epl_get_template_part( 'shortcodes/listing-search/' . ( ! empty( $attributes['view'] ) ? trim( $attributes['view'] ) . '.php' : 'default.php' ), array( 'atts' => $attributes, 'user_atts' => $atts ) );
+        if( apply_filters( 'epl_search_should_load_default_template', true, $attributes, $atts ) ) {
+                // Rendering view of listing search shortcode.
+                epl_get_template_part( 'shortcodes/listing-search/' . ( ! empty( $attributes['view'] ) ? trim( $attributes['view'] ) . '.php' : 'default.php' ), array( 'atts' => $attributes, 'user_atts' => $atts ) );
+        } else {
+                do_action( 'epl_search_load_template', $attributes, $atts );
+        }
 	return ob_get_clean();
 }
 add_shortcode( 'listing_search', 'epl_shortcode_listing_search_callback' );
