@@ -2395,8 +2395,12 @@ add_action( 'init', 'epl_process_event_cal_request' );
  * Add coordinates to meta for faster loading on second view
  *
  * @since      2.1
+ * @since      3.5.3 Removed nopriv access & added nonce 
  */
 function epl_update_listing_coordinates() {
+
+        check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
 	if ( ( ! isset( $_POST['listid'] ) || 0 === intval( $_POST['listid'] ) ) || empty( $_POST['coordinates'] ) ) {
 		return;
 	}
@@ -2408,7 +2412,6 @@ function epl_update_listing_coordinates() {
 	}
 }
 add_action( 'wp_ajax_epl_update_listing_coordinates', 'epl_update_listing_coordinates' );
-add_action( 'wp_ajax_nopriv_epl_update_listing_coordinates', 'epl_update_listing_coordinates' );
 
 /**
  * Adapted from wp core to add additional filters
