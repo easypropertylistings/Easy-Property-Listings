@@ -3896,13 +3896,11 @@ function epl_body_classes( $classes ) {
 add_filter( 'body_class', 'epl_body_classes', 10 );
 
 /**
- * Wrapper Start for Author Box
+ * Get total agent count for listing.
  *
- * @since 3.5.1
- * @since 3.5.3 Added counter class for number of agents.
+ * @since 3.5.3
  */
-function epl_single_author_wrapper_start() {
-
+function epl_get_total_agent_count() {
         $counter = 1;
 
         $second_agent  = get_property_meta( 'property_second_agent' );
@@ -3911,8 +3909,58 @@ function epl_single_author_wrapper_start() {
         $counter = !empty( $second_agent ) ? $counter + 1 : $counter;
         $counter = !empty( $third_agent ) ? $counter + 1 : $counter;
         $counter = !empty( $fourth_agent ) ? $counter + 1 : $counter;
+        
+        return $counter;
+}
+
+/**
+ * Get active agent count for listing.
+ *
+ * @since 3.5.3
+ */
+function epl_get_active_agent_count() {
+
+        global $epl_author;
+
+        $agents = [ $epl_author->author_id ];
+
+        $second_agent  = get_property_meta( 'property_second_agent' );
+        $third_agent   = get_property_meta( 'property_third_agent' );
+        $fourth_agent  = get_property_meta( 'property_fourth_agent' );
+
+        $second_author  = get_user_by( 'login', $second_agent );
+        $third_author   = get_user_by( 'login', $third_agent );
+        $fourth_author  = get_user_by( 'login', $fourth_agent );
+
+        if ( false !== $second_author ) {
+                $agents[] = $second_author->ID;
+        }
+        if ( false !== $third_author ) {
+                $agents[] = $third_author->ID;
+        }
+        if ( false !== $fourth_author ) {
+                $agents[] = $fourth_author->ID;
+        }
+
+        $agents = array_unique( $agents );
+
+        $count = count( $agents );
+        
+        return apply_filters( 'epl_get_active_agent_count', $count );
+}
+
+/**
+ * Wrapper Start for Author Box
+ *
+ * @since 3.5.1
+ * @since 3.5.3 Added counter class for number of agents.
+ */
+function epl_single_author_wrapper_start() {
+
+        $counter = epl_get_total_agent_count();
+        $active = epl_get_active_agent_count();
 	?>
-	<div class="epl-author-box-wrapper epl-author-box-wrapper--count-<?php echo esc_attr( $counter ); ?>">
+	<div class="epl-author-box-wrapper epl-author-box-wrapper--count-<?php echo esc_attr( $active ); ?> epl-author-box-wrapper--total-<?php echo esc_attr( $counter ); ?> ">
 	<?php
 }
 add_action( 'epl_single_author', 'epl_single_author_wrapper_start', 1 );
