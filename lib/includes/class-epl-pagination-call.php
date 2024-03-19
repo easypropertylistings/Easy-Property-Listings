@@ -156,6 +156,7 @@ class EPL_Pagination_Call {
 	 *
 	 * @since 2.1
 	 * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
+         * @since 3.5.3 Fixed sorting not working for pagination on shortcode.
 	 */
 	public function get_url( $page ) {
 		$link = ( 'multipart' === $this->type ) ? get_multipage_link( $page ) : get_pagenum_link( $page );
@@ -168,6 +169,7 @@ class EPL_Pagination_Call {
 				$link = epl_add_or_update_params( $link, 'paged', $page );
 			}
 			$link = epl_add_or_update_params( $link, 'pagination_id', $this->query->get( 'instance_id' ) );
+                        $link = epl_add_or_update_params( $link, 'instance_id', $this->query->get( 'instance_id' ) );
 		}
 
 		return $link;

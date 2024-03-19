@@ -1812,6 +1812,7 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @since 2.1.11
  * @since 3.4.40 Tweak: Search selection results will be sorted in a-z order.
  * @since 3.4.40 Fix: Search address options fixed for the all search tab.
+ * @since 3.5.3 Prepared statement for SQL.
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
@@ -1838,14 +1839,24 @@ AND p.post_status = '%s'
 AND p.post_type IN $type_str
 ";
 
-	if ( ! empty( $property_status ) ) {
-		$property_status = array_map( 'trim', explode( ',', $property_status ) );
-		if ( count( $property_status ) ) {
-			$query .= "
-			AND pm2.meta_key 		= 'property_status'
-			AND pm2.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
-		}
-	}
+        if ( ! empty( $property_status ) ) {
+
+                $property_status = array_map( 'trim', explode( ',', $property_status ) );
+                
+                if ( count( $property_status ) ) {
+
+                        $query .= "
+                        AND pm2.meta_key = 'property_status'
+                        AND pm2.meta_value IN ('";
+
+                        $prepared_status = array();
+                        foreach( $property_status as $single_status ) {
+                                $prepared_status[] = $wpdb->prepare( '%s', $single_status );
+                        }
+
+                        $query.= implode( ',', $prepared_status )."')";
+                }
+        }
 
 	$res = $wpdb->get_col( $wpdb->prepare( $query, $key, $status ) ); // phpcs:ignore
 
