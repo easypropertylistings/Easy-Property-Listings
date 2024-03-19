@@ -38,6 +38,16 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.3 March 19, 2024 =
+
+- New: Added counter class for number of agents in agent wrapper.
+- New: Display linked agent name in admin agents post type columns.
+- Fix: Sorting not working for pagination on shortcode.
+- Fix: Missing currency prefix in range slider for [listing_search] shortcode.
+- Fix: Security patch. Ajax nonce in JS variables.
+- Fix: Security patch. Prepared statement for SQL status variable.
+- Fix: Security patch. Removed no private access & added nonce for mapping coordinates.
+
 = 3.5.2 February 12, 2024 =
 
 - New: Added epl_archive_title_post_type archive page title post type filter.
