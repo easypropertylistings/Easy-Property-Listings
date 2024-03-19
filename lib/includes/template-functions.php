@@ -3896,10 +3896,20 @@ add_filter( 'body_class', 'epl_body_classes', 10 );
  * Wrapper Start for Author Box
  *
  * @since 3.5.1
+ * @since 3.5.3 Added counter class for number of agents.
  */
 function epl_single_author_wrapper_start() {
+
+        $counter = 1;
+
+        $second_agent  = get_property_meta( 'property_second_agent' );
+        $third_agent   = get_property_meta( 'property_third_agent' );
+        $fourth_agent  = get_property_meta( 'property_fourth_agent' );
+        $counter = !empty( $second_agent ) ? $counter + 1 : $counter;
+        $counter = !empty( $third_agent ) ? $counter + 1 : $counter;
+        $counter = !empty( $fourth_agent ) ? $counter + 1 : $counter;
 	?>
-	<div class="epl-author-box-wrapper">
+	<div class="epl-author-box-wrapper epl-author-box-wrapper--count-<?php echo esc_attr( $counter ); ?>">
 	<?php
 }
 add_action( 'epl_single_author', 'epl_single_author_wrapper_start', 1 );

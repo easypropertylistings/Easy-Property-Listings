@@ -650,6 +650,49 @@ function epl_manage_listing_column_listing_type_callback() {
 add_action( 'epl_manage_listing_column_listing_type', 'epl_manage_listing_column_listing_type_callback' );
 
 /**
+ * Show agent name in column.
+ * 
+ * @since 3.5.3.
+ */
+function epl_show_agent_name_in_column() {
+
+        global $property, $post;
+
+        $agent_keys = [ 'property_second_agent', 'property_third_agent', 'property_fourth_agent'];
+
+        foreach( $agent_keys as $agent_key ) {
+
+                $agent = $property->get_property_meta( $agent_key );
+                
+                if ( ! empty( $agent ) ) {
+                        $current_author = get_user_by( 'login', $agent );
+                        if ( false !== $current_author ) {
+                                printf(
+                                        '<br><a href="%s">%s</a>',
+                                        esc_url(
+                                                add_query_arg(
+                                                        array(
+                                                                'post_type' => $post->post_type,
+                                                                'author'    => $current_author->ID,
+                                                        ),
+                                                        'edit.php'
+                                                )
+                                        ),
+                                        esc_html( get_the_author_meta( 'display_name', $current_author->ID ) )
+                                );
+        
+                        } else {
+                                printf(
+                                        '<br>%s',
+                                        $agent
+                                ); 
+                        }
+                        epl_reset_post_author();
+                }
+        }
+}
+
+/**
  * Posts Types Agent/Author
  *
  * @since 1.0
@@ -671,27 +714,7 @@ function epl_manage_listing_column_agent_callback() {
 		get_the_author()
 	);
 
-	$property_second_agent = $property->get_property_meta( 'property_second_agent' );
-	if ( ! empty( $property_second_agent ) ) {
-		$second_author = get_user_by( 'login', $property_second_agent );
-		if ( false !== $second_author ) {
-			printf(
-				'<br><a href="%s">%s</a>',
-				esc_url(
-					add_query_arg(
-						array(
-							'post_type' => $post->post_type,
-							'author'    => $second_author->ID,
-						),
-						'edit.php'
-					)
-				),
-				esc_html( get_the_author_meta( 'display_name', $second_author->ID ) )
-			);
-
-		}
-		epl_reset_post_author();
-	}
+	epl_show_agent_name_in_column();
 }
 add_action( 'epl_manage_listing_column_agent', 'epl_manage_listing_column_agent_callback' );
 
