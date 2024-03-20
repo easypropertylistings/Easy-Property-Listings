@@ -1808,11 +1808,13 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @param string $type Post Type. Default is post. You can pass custom post type here.
  * @param string $status Post Status like Publish, draft, future etc. default is publish.
  * @param string $property_status Listing status.
- * @return array
+ *
+ * @return void
+ *
  * @since 2.1.11
  * @since 3.4.40 Tweak: Search selection results will be sorted in a-z order.
  * @since 3.4.40 Fix: Search address options fixed for the all search tab.
- * @since 3.5.3 Prepared statement for SQL.
+ * @since 3.5.3  Fix: Prepared statement for SQL.
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
@@ -1831,35 +1833,34 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 	$type_str = " ( '" . implode( "','", $type ) . "' ) ";
 
 	$query = "
-SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
-LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
-LEFT JOIN {$wpdb->postmeta} pm2 ON pm.post_id = pm2.post_id
-WHERE pm.meta_key = '%s'
-AND p.post_status = '%s'
-AND p.post_type IN $type_str
-";
+	SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+	LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+	LEFT JOIN {$wpdb->postmeta} pm2 ON pm.post_id = pm2.post_id
+	WHERE pm.meta_key = '%s'
+	AND p.post_status = '%s'
+	AND p.post_type IN $type_str
+	";
 
-        if ( ! empty( $property_status ) ) {
+	if ( ! empty( $property_status ) ) {
 
-                $property_status = array_map( 'trim', explode( ',', $property_status ) );
-                
-                if ( count( $property_status ) ) {
+		$property_status = array_map( 'trim', explode( ',', $property_status ) );
 
-                        $query .= "
+		if ( count( $property_status ) ) {
+
+			$query .= "
                         AND pm2.meta_key = 'property_status'
                         AND pm2.meta_value IN ('";
 
-                        $prepared_status = array();
-                        foreach( $property_status as $single_status ) {
-                                $prepared_status[] = $wpdb->prepare( '%s', $single_status );
-                        }
+			$prepared_status = array();
+			foreach ( $property_status as $single_status ) {
+				$prepared_status[] = $wpdb->prepare( '%s', $single_status );
+			}
 
-                        $query.= implode( ',', $prepared_status )."')";
-                }
-        }
+			$query .= implode( ',', $prepared_status ) . "')";
+		}
+	}
 
 	$res = $wpdb->get_col( $wpdb->prepare( $query, $key, $status ) ); // phpcs:ignore
-
 	$res = array_filter( $res );
 
 	foreach ( $res as $key => &$elem ) {
@@ -1872,8 +1873,7 @@ AND p.post_type IN $type_str
 		}
 	}
 
-	$res = array_filter( $res );
-
+	$res     = array_filter( $res );
 	$results = array();
 
 	foreach ( $res as $s_res ) {
