@@ -670,4 +670,4 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		}
 	}
 
-endif; // end class_exists check.
+endif; // End class_exists check.
