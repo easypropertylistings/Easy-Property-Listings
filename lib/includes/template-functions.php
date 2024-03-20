@@ -212,10 +212,10 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 			<?php if ( true === $args['link'] ) { ?>
 				<a href="<?php the_permalink(); ?>">
 			<?php } ?>
-					<div class="epl-blog-image">
-												<?php do_action( 'epl_stickers_featured_image', $args ); ?>
-						<?php the_post_thumbnail( $args['image_size'], array( 'class' => $args['image_class'] ) ); ?>
-					</div>
+				<div class="epl-blog-image">
+					<?php do_action( 'epl_stickers_featured_image', $args ); ?>
+					<?php the_post_thumbnail( $args['image_size'], array( 'class' => $args['image_class'] ) ); ?>
+				</div>
 			<?php if ( true === $args['link'] ) { ?>
 				</a>
 			<?php } ?>
@@ -323,14 +323,14 @@ function epl_get_fallback_content_path() {
  * @since 3.0
  * @since 3.4.38 New: Additional parameter default_template to pass the default template which will be used if the template is not found.
  * @since 3.4.41 Fix: Only the default template was loading.
- * @since 3.5.3  Hook to filter find array as well as final template.       
+ * @since 3.5.3  Hook to filter find array as well as final template.
  */
 function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
 
 	$base_path         = epl_get_content_path();
 	$default           = $default_template ? $default_template : $template;
 	$find[]            = epl_template_path() . $template;
-        $find              = apply_filters( 'epl_template_part_find', $find, $template, $arguments, $default_template );     
+	$find              = apply_filters( 'epl_template_part_find', $find, $template, $arguments, $default_template );
 	$template_location = locate_template( array_unique( $find ) );
 
 	if ( ! $template_location ) {
@@ -407,7 +407,7 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 	}
 	$template = str_replace( '_', '-', $template );
 
-	global $epl_settings,$property;
+	global $epl_settings, $property;
 
 	if ( is_null( $property ) ) {
 		return;
@@ -498,11 +498,8 @@ function epl_reset_post_author() {
 		$ID = epl_listing_has_primary_agent();
 
 		if ( is_epl_post() && $ID ) {
-
 			$epl_author = new EPL_Author_meta( $ID );
-
 		} else {
-
 			$epl_author = new EPL_Author_meta( $post->post_author );
 		}
 	}
@@ -637,8 +634,7 @@ function epl_property_widget_list_option() {
 	if ( ! in_array( $property_status, epl_hide_listing_statuses(), true ) ) {
 		epl_get_template_part( 'widget-content-listing-list.php' );
 	}
-} // End Status Removal.
-
+}
 
 /**
  * WIDGET LISTING : Image Only
@@ -653,8 +649,8 @@ function epl_property_widget_image_only_option( $image ) {
 	if ( ! in_array( $property_status, epl_hide_listing_statuses(), true ) ) {
 		$arg_list = get_defined_vars();
 	}
-		epl_get_template_part( 'widget-content-listing-image.php', $arg_list );
-} // End Status Removal.
+	epl_get_template_part( 'widget-content-listing-image.php', $arg_list );
+}
 
 
 /**
@@ -1061,11 +1057,11 @@ add_action( 'epl_property_inspection_times', 'epl_property_inspection_times' );
 /**
  * Getting heading/title of the listing.
  *
- * @since      2.3.1
+ * @param mixed $listing listing instance.
  *
- * @param      mixed $listing listing instance.
+ * @since 2.3.1
  *
- * @return     string listing heading or title
+ * @return string listing heading or title
  */
 function epl_get_property_heading( $listing = null ) {
 	if ( null === $listing ) {
@@ -2394,12 +2390,12 @@ add_action( 'init', 'epl_process_event_cal_request' );
 /**
  * Add coordinates to meta for faster loading on second view
  *
- * @since      2.1
- * @since      3.5.3 Removed nopriv access & added nonce 
+ * @since 2.1
+ * @since 3.5.3 Removed nopriv access & added nonce.
  */
 function epl_update_listing_coordinates() {
 
-        check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
 	if ( ( ! isset( $_POST['listid'] ) || 0 === intval( $_POST['listid'] ) ) || empty( $_POST['coordinates'] ) ) {
 		return;
@@ -2900,7 +2896,7 @@ function epl_feeling_lucky( $content ) {
 	global $epl_settings;
 
 	if ( is_admin() ) {
-			return $content;
+		return $content;
 	}
 
 	if ( ! isset( $epl_settings['epl_feeling_lucky'] ) || 'on' !== $epl_settings['epl_feeling_lucky'] ) {
@@ -3901,16 +3897,16 @@ add_filter( 'body_class', 'epl_body_classes', 10 );
  * @since 3.5.3
  */
 function epl_get_total_agent_count() {
-        $counter = 1;
+	$counter = 1;
 
-        $second_agent  = get_property_meta( 'property_second_agent' );
-        $third_agent   = get_property_meta( 'property_third_agent' );
-        $fourth_agent  = get_property_meta( 'property_fourth_agent' );
-        $counter = !empty( $second_agent ) ? $counter + 1 : $counter;
-        $counter = !empty( $third_agent ) ? $counter + 1 : $counter;
-        $counter = !empty( $fourth_agent ) ? $counter + 1 : $counter;
-        
-        return $counter;
+	$second_agent = get_property_meta( 'property_second_agent' );
+	$third_agent  = get_property_meta( 'property_third_agent' );
+	$fourth_agent = get_property_meta( 'property_fourth_agent' );
+	$counter      = ! empty( $second_agent ) ? $counter + 1 : $counter;
+	$counter      = ! empty( $third_agent ) ? $counter + 1 : $counter;
+	$counter      = ! empty( $fourth_agent ) ? $counter + 1 : $counter;
+
+	return $counter;
 }
 
 /**
@@ -3920,33 +3916,32 @@ function epl_get_total_agent_count() {
  */
 function epl_get_active_agent_count() {
 
-        global $epl_author;
+	global $epl_author;
 
-        $agents = [ $epl_author->author_id ];
+	$agents = array( $epl_author->author_id );
 
-        $second_agent  = get_property_meta( 'property_second_agent' );
-        $third_agent   = get_property_meta( 'property_third_agent' );
-        $fourth_agent  = get_property_meta( 'property_fourth_agent' );
+	$second_agent = get_property_meta( 'property_second_agent' );
+	$third_agent  = get_property_meta( 'property_third_agent' );
+	$fourth_agent = get_property_meta( 'property_fourth_agent' );
 
-        $second_author  = get_user_by( 'login', $second_agent );
-        $third_author   = get_user_by( 'login', $third_agent );
-        $fourth_author  = get_user_by( 'login', $fourth_agent );
+	$second_author = get_user_by( 'login', $second_agent );
+	$third_author  = get_user_by( 'login', $third_agent );
+	$fourth_author = get_user_by( 'login', $fourth_agent );
 
-        if ( false !== $second_author ) {
-                $agents[] = $second_author->ID;
-        }
-        if ( false !== $third_author ) {
-                $agents[] = $third_author->ID;
-        }
-        if ( false !== $fourth_author ) {
-                $agents[] = $fourth_author->ID;
-        }
+	if ( false !== $second_author ) {
+		$agents[] = $second_author->ID;
+	}
+	if ( false !== $third_author ) {
+		$agents[] = $third_author->ID;
+	}
+	if ( false !== $fourth_author ) {
+		$agents[] = $fourth_author->ID;
+	}
 
-        $agents = array_unique( $agents );
+	$agents = array_unique( $agents );
+	$count  = count( $agents );
 
-        $count = count( $agents );
-        
-        return apply_filters( 'epl_get_active_agent_count', $count );
+	return apply_filters( 'epl_get_active_agent_count', $count );
 }
 
 /**
@@ -3957,8 +3952,8 @@ function epl_get_active_agent_count() {
  */
 function epl_single_author_wrapper_start() {
 
-        $counter = epl_get_total_agent_count();
-        $active = epl_get_active_agent_count();
+	$counter = epl_get_total_agent_count();
+	$active  = epl_get_active_agent_count();
 	?>
 	<div class="epl-author-box-wrapper epl-author-box-wrapper--count-<?php echo esc_attr( $active ); ?> epl-author-box-wrapper--total-<?php echo esc_attr( $counter ); ?> ">
 	<?php
