@@ -45,6 +45,7 @@ There are various ways you can contribute:
 - New: Filter: epl_template_part_find to filter find array as well as final template.
 - New: Search Filter epl_search_should_load_default_template to disable default template and epl_search_load_template action to add custom search template.
 - Fix: Inspection times deprecation warning.
+- Fix: Inspection timezone issue.
 - Fix: Sorting not working for pagination on shortcode.
 - Fix: Missing currency prefix in range slider for [listing_search] shortcode.
 - Fix: Security patch. Ajax nonce in JS variables.
