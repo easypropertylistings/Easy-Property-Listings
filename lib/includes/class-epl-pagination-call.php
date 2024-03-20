@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 3.5.3 Check for class
  */
-if ( ! class_exists( 'EPL_License' ) ) :
+if ( ! class_exists( 'EPL_Pagination_Call' ) ) :
 	/**
 	 * EPL_Pagination_Call Class
 	 *
@@ -181,4 +181,4 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			return $link;
 		}
 	}
-endif;
+endif; // End class_exists check.
