@@ -665,27 +665,30 @@ function epl_show_agent_name_in_column() {
                 $agent = $property->get_property_meta( $agent_key );
                 
                 if ( ! empty( $agent ) ) {
+
                         $current_author = get_user_by( 'login', $agent );
-                        if ( false !== $current_author ) {
-                                printf(
-                                        '<br><a href="%s">%s</a>',
-                                        esc_url(
-                                                add_query_arg(
-                                                        array(
-                                                                'post_type' => $post->post_type,
-                                                                'author'    => $current_author->ID,
-                                                        ),
-                                                        'edit.php'
-                                                )
+                        
+                        if ( false !== $current_author ) { 
+                                
+                                $url = add_query_arg(
+                                        array(
+                                                'post_type' => $post->post_type,
+                                                'author'    => $current_author->ID,
                                         ),
-                                        esc_html( get_the_author_meta( 'display_name', $current_author->ID ) )
-                                );
+                                        'edit.php'
+                                ); ?>
+
+                                <div class="epl-meta epl-meta--agent epl-meta--primary">
+                                        <span class="epl-agent epl-agent--name">
+                                                <a href="<?php echo esc_url( $url ); ?>">
+                                                        <?php echo esc_html( get_the_author_meta( 'display_name', $current_author->ID ) ); ?>
+                                                </a>
+                                        </span>
+                                </div> <?php
         
-                        } else {
-                                printf(
-                                        '<br>%s',
-                                        $agent
-                                ); 
+                        } else { ?>
+
+                                <span class="epl-agent epl-agent--name"><?php echo esc_html( $agent ); ?></span> <?php
                         }
                         epl_reset_post_author();
                 }
