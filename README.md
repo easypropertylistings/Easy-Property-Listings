@@ -41,7 +41,10 @@ There are various ways you can contribute:
 = 3.5.3 March 19, 2024 =
 
 - New: Added counter class for number of agents in agent wrapper.
-- New: Display linked agent name in admin agents post type columns.
+- New: Display linked agent name in admin agents post type columns. The username will display unlinked if there is no associated user profile.
+- New: Filter: epl_template_part_find to filter find array as well as final template.
+- New: Search Filter epl_search_should_load_default_template to disable default template and epl_search_load_template action to add custom search template.
+- Fix: Inspection times deprecation warning.
 - Fix: Sorting not working for pagination on shortcode.
 - Fix: Missing currency prefix in range slider for [listing_search] shortcode.
 - Fix: Security patch. Ajax nonce in JS variables.
