@@ -432,7 +432,7 @@ function epl_get_manage_listing_column_labels( $args = array(), $returntype = 'l
 				break;
 
 			default:
-				// action to hook additional icons.
+				// Action to hook additional icons.
 				do_action( 'epl_get_manage_listing_column_label_' . $label );
 				break;
 		}
@@ -538,8 +538,7 @@ function epl_manage_listing_column_price_callback() {
 		 * Needs consideration and configuring property_com_rent_range_max.
 		 */
 
-		$price = $property->get_property_meta( 'property_com_rent' );
-
+		$price     = $property->get_property_meta( 'property_com_rent' );
 		$max_price = (int) epl_get_option( 'epl_max_graph_rent_price', '2000' );
 	}
 
@@ -651,48 +650,49 @@ add_action( 'epl_manage_listing_column_listing_type', 'epl_manage_listing_column
 
 /**
  * Show agent name in column.
- * 
+ *
  * @since 3.5.3.
  */
 function epl_show_agent_name_in_column() {
 
-        global $property, $post;
+	global $property, $post;
 
-        $agent_keys = [ 'property_second_agent', 'property_third_agent', 'property_fourth_agent'];
+	$agent_keys = array( 'property_second_agent', 'property_third_agent', 'property_fourth_agent' );
 
-        foreach( $agent_keys as $agent_key ) {
+	foreach ( $agent_keys as $agent_key ) {
 
-                $agent = $property->get_property_meta( $agent_key );
-                
-                if ( ! empty( $agent ) ) {
+		$agent = $property->get_property_meta( $agent_key );
 
-                        $current_author = get_user_by( 'login', $agent );
-                        
-                        if ( false !== $current_author ) { 
-                                
-                                $url = add_query_arg(
-                                        array(
-                                                'post_type' => $post->post_type,
-                                                'author'    => $current_author->ID,
-                                        ),
-                                        'edit.php'
-                                ); ?>
+		if ( ! empty( $agent ) ) {
 
-                                <div class="epl-meta epl-meta--agent epl-meta--primary">
-                                        <span class="epl-agent epl-agent--name">
-                                                <a href="<?php echo esc_url( $url ); ?>">
-                                                        <?php echo esc_html( get_the_author_meta( 'display_name', $current_author->ID ) ); ?>
-                                                </a>
-                                        </span>
-                                </div> <?php
-        
-                        } else { ?>
+			$current_author = get_user_by( 'login', $agent );
 
-                                <span class="epl-agent epl-agent--name"><?php echo esc_html( $agent ); ?></span> <?php
-                        }
-                        epl_reset_post_author();
-                }
-        }
+			if ( false !== $current_author ) {
+
+				$url = add_query_arg(
+					array(
+						'post_type' => $post->post_type,
+						'author'    => $current_author->ID,
+					),
+					'edit.php'
+				);
+				?>
+				<div class="epl-meta epl-meta--agent epl-meta--primary">
+					<span class="epl-agent epl-agent--name">
+						<a href="<?php echo esc_url( $url ); ?>">
+							<?php echo esc_html( get_the_author_meta( 'display_name', $current_author->ID ) ); ?>
+						</a>
+					</span>
+				</div>
+				<?php
+			} else {
+				?>
+				<span class="epl-agent epl-agent--name"><?php echo esc_html( $agent ); ?></span>
+				<?php
+			}
+			epl_reset_post_author();
+		}
+	}
 }
 
 /**
