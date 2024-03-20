@@ -75,7 +75,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 			$this->session_id = $this->generate_id();
 		}
 
-		$this->expires = time() + intval( apply_filters( 'wp_session_expiration', 24 * 60 ) );
+		$this->expires = current_time('timestamp') + intval( apply_filters( 'wp_session_expiration', 24 * 60 ) );
 
 		$this->read_data();
 
@@ -124,7 +124,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 		$session_list[ $this->session_id ] = $this->expires;
 
 		foreach ( $session_list as $id => $expires ) {
-			if ( time() > $this->expires ) {
+			if ( current_time('timestamp') > $this->expires ) {
 				delete_option( "_wp_session_{$id}" );
 				unset( $session_list[ $id ] );
 			}
@@ -176,7 +176,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 
 		$this->session_id = $this->generate_id();
 
-		setcookie( WP_SESSION_COOKIE, $this->session_id, time() + $this->expires, COOKIEPATH, COOKIE_DOMAIN );
+		setcookie( WP_SESSION_COOKIE, $this->session_id, current_time('timestamp') + $this->expires, COOKIEPATH, COOKIE_DOMAIN );
 	}
 
 	/**
