@@ -86,7 +86,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 			$this->exp_variant = $cookie_crumbs[2];
 
 			// Update the session expiration if we're past the variant time.
-			if ( current_time('timestamp') > $this->exp_variant ) {
+			if ( epl_get_local_timestamp() > $this->exp_variant ) {
 				$this->set_expiration();
 				delete_option( "_wp_session_expires_{$this->session_id}" );
 				add_option( "_wp_session_expires_{$this->session_id}", $this->expires, '', 'no' );
@@ -135,8 +135,8 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 * @uses apply_filters Calls `wp_session_expiration` to get the standard expiration time for sessions.
 	 */
 	protected function set_expiration() {
-		$this->exp_variant = current_time('timestamp') + (int) apply_filters( 'wp_session_expiration_variant', 24 * 60 );
-		$this->expires     = current_time('timestamp') + (int) apply_filters( 'wp_session_expiration', 30 * 60 );
+		$this->exp_variant = epl_get_local_timestamp() + (int) apply_filters( 'wp_session_expiration_variant', 24 * 60 );
+		$this->expires     = epl_get_local_timestamp() + (int) apply_filters( 'wp_session_expiration', 30 * 60 );
 	}
 
 	/**

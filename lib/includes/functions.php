@@ -973,7 +973,7 @@ function epl_feedsync_format_strip_currency( $value ) {
 function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Australia/Perth', $new_timezone = 'Australia/Sydney', $format = 'Y-m-d H:i:s' ) {
 
 	if ( ! $date_time ) {
-		$date_time = date( 'Y-m-d H:i:s', current_time('timestamp') );
+		$date_time = date( 'Y-m-d H:i:s', epl_get_local_timestamp() );
 	}
 	if ( ! $old_time_zone ) {
 		$old_time_zone = 'Australia/Perth';
@@ -1561,9 +1561,9 @@ function epl_get_admin_option_fields() {
 					'type'  => 'radio',
 					'opts'  => array(
 
-						'd-M-Y'                         => date( 'd-M-Y', current_time('timestamp') ),
-						'l, dS F'                       => date( 'l, dS F', current_time('timestamp') ),
-						'D d M'                         => date( 'D d M', current_time('timestamp') ),
+						'd-M-Y'                         => date( 'd-M-Y', epl_get_local_timestamp() ),
+						'l, dS F'                       => date( 'l, dS F', epl_get_local_timestamp() ),
+						'D d M'                         => date( 'D d M', epl_get_local_timestamp() ),
 						'custom_inspection_date_format' => __( 'Custom', 'easy-property-listings' ),
 
 					),
@@ -1579,9 +1579,9 @@ function epl_get_admin_option_fields() {
 					'type'  => 'radio',
 					'opts'  => array(
 
-						'h:i A'                         => date( 'h:i A', current_time('timestamp') ),
-						'h:i a'                         => date( 'h:i a', current_time('timestamp') ),
-						'H:i'                           => date( 'h:i', current_time('timestamp') ) . __( ' ( 24 Hours Format ) ', 'easy-property-listings' ),
+						'h:i A'                         => date( 'h:i A', epl_get_local_timestamp() ),
+						'h:i a'                         => date( 'h:i a', epl_get_local_timestamp() ),
+						'H:i'                           => date( 'h:i', epl_get_local_timestamp() ) . __( ' ( 24 Hours Format ) ', 'easy-property-listings' ),
 						'custom_inspection_time_format' => __( 'Custom', 'easy-property-listings' ),
 
 					),
@@ -2644,4 +2644,14 @@ function epl_get_property_meta_label( $meta_key ) {
 	}
 
 	return $return;
+}
+
+/**
+ * Returns the localised timestamp
+ * 
+ * @since 3.5.3
+ */
+function epl_get_local_timestamp() {
+        $local_time  = current_datetime();
+        return $local_time->getTimestamp() + $local_time->getOffset();
 }
