@@ -968,11 +968,12 @@ function epl_feedsync_format_strip_currency( $value ) {
  * @return string
  * @throws exception Exception.
  * @since 3.0
+ * @since 3.5.3 Update to return local timestamp.
  */
 function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Australia/Perth', $new_timezone = 'Australia/Sydney', $format = 'Y-m-d H:i:s' ) {
 
 	if ( ! $date_time ) {
-		$date_time = date( 'Y-m-d H:i:s', time() );
+		$date_time = date( 'Y-m-d H:i:s', epl_get_local_timestamp() );
 	}
 	if ( ! $old_time_zone ) {
 		$old_time_zone = 'Australia/Perth';
@@ -1003,6 +1004,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
  * Admin options settings
  *
  * @since 2.1
+ * @since 3.5.3 Updated to return local timestamp.
  */
 function epl_get_admin_option_fields() {
 	global $epl_settings;
@@ -1559,9 +1561,9 @@ function epl_get_admin_option_fields() {
 					'type'  => 'radio',
 					'opts'  => array(
 
-						'd-M-Y'                         => date( 'd-M-Y', time() ),
-						'l, dS F'                       => date( 'l, dS F', time() ),
-						'D d M'                         => date( 'D d M', time() ),
+						'd-M-Y'                         => date( 'd-M-Y', epl_get_local_timestamp() ),
+						'l, dS F'                       => date( 'l, dS F', epl_get_local_timestamp() ),
+						'D d M'                         => date( 'D d M', epl_get_local_timestamp() ),
 						'custom_inspection_date_format' => __( 'Custom', 'easy-property-listings' ),
 
 					),
@@ -1577,9 +1579,9 @@ function epl_get_admin_option_fields() {
 					'type'  => 'radio',
 					'opts'  => array(
 
-						'h:i A'                         => date( 'h:i A', time() ),
-						'h:i a'                         => date( 'h:i a', time() ),
-						'H:i'                           => date( 'h:i', time() ) . __( ' ( 24 Hours Format ) ', 'easy-property-listings' ),
+						'h:i A'                         => date( 'h:i A', epl_get_local_timestamp() ),
+						'h:i a'                         => date( 'h:i a', epl_get_local_timestamp() ),
+						'H:i'                           => date( 'h:i', epl_get_local_timestamp() ) . __( ' ( 24 Hours Format ) ', 'easy-property-listings' ),
 						'custom_inspection_time_format' => __( 'Custom', 'easy-property-listings' ),
 
 					),
@@ -1804,14 +1806,17 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * Author: Chinmoy Paul
  * Author URL: http://pwdtechnology.com
  *
- * @param string $key Post Meta Key.
- * @param string $type Post Type. Default is post. You can pass custom post type here.
- * @param string $status Post Status like Publish, draft, future etc. default is publish.
+ * @param string $key             Post Meta Key.
+ * @param string $type            Post Type. Default is post. You can pass custom post type here.
+ * @param string $status          Post Status like Publish, draft, future etc. default is publish.
  * @param string $property_status Listing status.
- * @return array
+ *
+ * @return void
+ *
  * @since 2.1.11
  * @since 3.4.40 Tweak: Search selection results will be sorted in a-z order.
  * @since 3.4.40 Fix: Search address options fixed for the all search tab.
+ * @since 3.5.3  Fix: Prepared statement for SQL.
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
@@ -1830,25 +1835,34 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 	$type_str = " ( '" . implode( "','", $type ) . "' ) ";
 
 	$query = "
-SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
-LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
-LEFT JOIN {$wpdb->postmeta} pm2 ON pm.post_id = pm2.post_id
-WHERE pm.meta_key = '%s'
-AND p.post_status = '%s'
-AND p.post_type IN $type_str
-";
+	SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+	LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+	LEFT JOIN {$wpdb->postmeta} pm2 ON pm.post_id = pm2.post_id
+	WHERE pm.meta_key = '%s'
+	AND p.post_status = '%s'
+	AND p.post_type IN $type_str
+	";
 
 	if ( ! empty( $property_status ) ) {
+
 		$property_status = array_map( 'trim', explode( ',', $property_status ) );
+
 		if ( count( $property_status ) ) {
+
 			$query .= "
-			AND pm2.meta_key 		= 'property_status'
-			AND pm2.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
+                        AND pm2.meta_key = 'property_status'
+                        AND pm2.meta_value IN ('";
+
+			$prepared_status = array();
+			foreach ( $property_status as $single_status ) {
+				$prepared_status[] = $wpdb->prepare( '%s', $single_status );
+			}
+
+			$query .= implode( ',', $prepared_status ) . "')";
 		}
 	}
 
 	$res = $wpdb->get_col( $wpdb->prepare( $query, $key, $status ) ); // phpcs:ignore
-
 	$res = array_filter( $res );
 
 	foreach ( $res as $key => &$elem ) {
@@ -1861,8 +1875,7 @@ AND p.post_type IN $type_str
 		}
 	}
 
-	$res = array_filter( $res );
-
+	$res     = array_filter( $res );
 	$results = array();
 
 	foreach ( $res as $s_res ) {
@@ -2631,4 +2644,14 @@ function epl_get_property_meta_label( $meta_key ) {
 	}
 
 	return $return;
+}
+
+/**
+ * Returns the localised timestamp
+ * 
+ * @since 3.5.3
+ */
+function epl_get_local_timestamp() {
+        $local_time  = current_datetime();
+        return $local_time->getTimestamp() + $local_time->getOffset();
 }

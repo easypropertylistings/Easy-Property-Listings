@@ -67,6 +67,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @param $session_id
 	 * @uses apply_filters Calls `wp_session_expiration` to determine how long until sessions expire.
+	 *
+	 * @since 3.5.3 Updated to return local timestamp.
 	 */
 	private function __construct() {
 		if ( isset( $_COOKIE[ WP_SESSION_COOKIE ] ) ) {
@@ -75,7 +77,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 			$this->session_id = $this->generate_id();
 		}
 
-		$this->expires = time() + intval( apply_filters( 'wp_session_expiration', 24 * 60 ) );
+		$this->expires = epl_get_local_timestamp() + intval( apply_filters( 'wp_session_expiration', 24 * 60 ) );
 
 		$this->read_data();
 
@@ -118,13 +120,18 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 		update_option( "_wp_session_{$this->session_id}", $this->container );
 	}
 
+	/**
+	 * Write the data from the current session to the data storage system.
+	 *
+	 * @since 3.5.3 Updated to return local timestamp.
+	 */
 	private function touch_session() {
 		$session_list = get_option( '_wp_session_list', array() );
 
 		$session_list[ $this->session_id ] = $this->expires;
 
 		foreach ( $session_list as $id => $expires ) {
-			if ( time() > $this->expires ) {
+			if ( epl_get_local_timestamp() > $this->expires ) {
 				delete_option( "_wp_session_{$id}" );
 				unset( $session_list[ $id ] );
 			}
@@ -176,7 +183,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 
 		$this->session_id = $this->generate_id();
 
-		setcookie( WP_SESSION_COOKIE, $this->session_id, time() + $this->expires, COOKIEPATH, COOKIE_DOMAIN );
+		setcookie( WP_SESSION_COOKIE, $this->session_id, epl_get_local_timestamp() + $this->expires, COOKIEPATH, COOKIE_DOMAIN );
 	}
 
 	/**

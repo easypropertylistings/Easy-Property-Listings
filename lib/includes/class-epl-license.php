@@ -379,6 +379,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 * Check if validating license
 		 *
 		 * @access  private
+		 *
+		 * @since 3.5.3 Update to return local timestamp.
+		 *
 		 * @return  void
 		 */
 		public function maybe_validate_license() {
@@ -397,7 +400,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				update_option( $opt_key, $timestamp );
 				$this->validate_license();
 			} else {
-				$current_timestamp = time();
+				$current_timestamp = epl_get_local_timestamp();
 				if ( $current_timestamp < $timestamp ) {
 					return;
 				} else {
@@ -670,4 +673,4 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		}
 	}
 
-endif; // end class_exists check.
+endif; // End class_exists check.

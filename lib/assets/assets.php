@@ -114,6 +114,7 @@ add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
  * @since 3.4.48 Fix: Price formatting as per settings in price slider.
  * @since 3.5.1  Tweak: Google Maps Prefixed to: epl-google-map-v-3
  * @since 3.5.2  New: Google Maps load asynchoronously.
+ * @since 3.5.3  Ajax nonce in JS vars.
  */
 function epl_wp_enqueue_scripts() {
 
@@ -177,6 +178,7 @@ function epl_wp_enqueue_scripts() {
 	}
 
 	$js_vars = array(
+		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),
 		'site_url'              => esc_url( home_url( '/' ) ),
 		'epl_default_view_type' => $epl_default_view_type,
 		'ajaxurl'               => admin_url( 'admin-ajax.php' ),

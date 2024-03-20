@@ -355,6 +355,7 @@ endif;
  * @return string
  * @since 3.3.3
  * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
+ * @since 3.5.3 Fixed sorting not working for pagination on shortcode.
  */
 function epl_get_next_page_link( $query ) {
 	$link = next_posts( $query->max_num_pages, false );
@@ -378,6 +379,7 @@ function epl_get_next_page_link( $query ) {
 		}
 
 		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
+		$link = epl_add_or_update_params( $link, 'instance_id', $query->get( 'instance_id' ) );
 	}
 	return apply_filters( 'epl_get_next_page_link', $link );
 }
@@ -392,8 +394,7 @@ function epl_get_next_page_link( $query ) {
  */
 function epl_next_post_link( $query, $label = null ) {
 
-	$paged = $query->get( 'paged' );
-
+	$paged    = $query->get( 'paged' );
 	$nextpage = intval( $paged ) + 1;
 
 	if ( $nextpage <= $query->max_num_pages ) {
@@ -414,6 +415,7 @@ function epl_next_post_link( $query, $label = null ) {
  * @return string
  * @since 3.3.3
  * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
+ * @since 3.5.3 Fixed sorting not working for pagination on shortcode.
  */
 function epl_get_prev_page_link( $query ) {
 
@@ -436,6 +438,7 @@ function epl_get_prev_page_link( $query ) {
 			$link = epl_add_or_update_params( $link, 'paged', $page );
 		}
 		$link = epl_add_or_update_params( $link, 'pagination_id', $query->get( 'instance_id' ) );
+		$link = epl_add_or_update_params( $link, 'instance_id', $query->get( 'instance_id' ) );
 	}
 	return apply_filters( 'epl_get_prev_page_link', $link );
 }
@@ -467,8 +470,9 @@ function epl_prev_post_link( $query, $label = null ) {
  * WordPress Default Pagination
  *
  * @param  WP_Query $query WP Query object.
+ *
  * @since 2.1
- * @revised 3.3.3
+ * @since 3.3.3  Revised.
  * @since 3.4.44 Fixed warning for wp_kses_post when empty link.
  */
 function epl_wp_default_pagination( $query = array() ) {
@@ -486,17 +490,18 @@ function epl_wp_default_pagination( $query = array() ) {
 			<div class="alignleft">
 				<?php
 				if ( ! empty( epl_prev_post_link( $query_open ) ) ) {
-						echo wp_kses_post( epl_prev_post_link( $query_open ) );
+					echo wp_kses_post( epl_prev_post_link( $query_open ) );
 				}
 				?>
 			</div>
 			<div class="alignright">
 				<?php
 				if ( ! empty( epl_next_post_link( $query_open ) ) ) {
-						echo wp_kses_post( epl_next_post_link( $query_open ) );
+					echo wp_kses_post( epl_next_post_link( $query_open ) );
 				}
 				?>
 			</div>
-		</div><?php
+		</div>
+		<?php
 	}
 }
