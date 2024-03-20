@@ -38,9 +38,9 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.3 March 19, 2024 =
+= 3.5.3 March 20, 2024 =
 
-- New: Added counter class for number of agents in agent wrapper.
+- New: Added counter class for number of agents in agent wrapper and a total count class.
 - New: Display linked agent name in admin agents post type columns. The username will display unlinked if there is no associated user profile.
 - New: Filter: epl_template_part_find to filter find array as well as final template.
 - New: Search Filter epl_search_should_load_default_template to disable default template and epl_search_load_template action to add custom search template.
