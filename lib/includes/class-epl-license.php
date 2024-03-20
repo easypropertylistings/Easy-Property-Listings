@@ -397,7 +397,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				update_option( $opt_key, $timestamp );
 				$this->validate_license();
 			} else {
-				$current_timestamp = time();
+				$current_timestamp = current_time('timestamp');
 				if ( $current_timestamp < $timestamp ) {
 					return;
 				} else {

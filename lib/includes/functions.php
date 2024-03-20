@@ -968,11 +968,12 @@ function epl_feedsync_format_strip_currency( $value ) {
  * @return string
  * @throws exception Exception.
  * @since 3.0
+ * @since 3.5.3 Update to return local timestamp.
  */
 function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Australia/Perth', $new_timezone = 'Australia/Sydney', $format = 'Y-m-d H:i:s' ) {
 
 	if ( ! $date_time ) {
-		$date_time = date( 'Y-m-d H:i:s', time() );
+		$date_time = date( 'Y-m-d H:i:s', current_time('timestamp') );
 	}
 	if ( ! $old_time_zone ) {
 		$old_time_zone = 'Australia/Perth';
@@ -1003,6 +1004,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
  * Admin options settings
  *
  * @since 2.1
+ * @since 3.5.3 Updated to return local timestamp.
  */
 function epl_get_admin_option_fields() {
 	global $epl_settings;
@@ -1559,9 +1561,9 @@ function epl_get_admin_option_fields() {
 					'type'  => 'radio',
 					'opts'  => array(
 
-						'd-M-Y'                         => date( 'd-M-Y', time() ),
-						'l, dS F'                       => date( 'l, dS F', time() ),
-						'D d M'                         => date( 'D d M', time() ),
+						'd-M-Y'                         => date( 'd-M-Y', current_time('timestamp') ),
+						'l, dS F'                       => date( 'l, dS F', current_time('timestamp') ),
+						'D d M'                         => date( 'D d M', current_time('timestamp') ),
 						'custom_inspection_date_format' => __( 'Custom', 'easy-property-listings' ),
 
 					),
@@ -1577,9 +1579,9 @@ function epl_get_admin_option_fields() {
 					'type'  => 'radio',
 					'opts'  => array(
 
-						'h:i A'                         => date( 'h:i A', time() ),
-						'h:i a'                         => date( 'h:i a', time() ),
-						'H:i'                           => date( 'h:i', time() ) . __( ' ( 24 Hours Format ) ', 'easy-property-listings' ),
+						'h:i A'                         => date( 'h:i A', current_time('timestamp') ),
+						'h:i a'                         => date( 'h:i a', current_time('timestamp') ),
+						'H:i'                           => date( 'h:i', current_time('timestamp') ) . __( ' ( 24 Hours Format ) ', 'easy-property-listings' ),
 						'custom_inspection_time_format' => __( 'Custom', 'easy-property-listings' ),
 
 					),
