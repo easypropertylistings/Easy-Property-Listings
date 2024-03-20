@@ -178,7 +178,7 @@ function epl_wp_enqueue_scripts() {
 	}
 
 	$js_vars = array(
-                'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),
+		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),
 		'site_url'              => esc_url( home_url( '/' ) ),
 		'epl_default_view_type' => $epl_default_view_type,
 		'ajaxurl'               => admin_url( 'admin-ajax.php' ),
