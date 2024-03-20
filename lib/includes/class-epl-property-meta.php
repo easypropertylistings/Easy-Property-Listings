@@ -267,7 +267,8 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 						if ( is_numeric( $item[0] ) ) {
 							$timearr                 = explode( ' ', $item );
 							$endtime                 = current( $timearr ) . ' ' . end( $timearr );
-							$maybe_delete_inspection = strtotime( $endtime ) < current_time('timestamp');
+                                                        
+							$maybe_delete_inspection = strtotime( $endtime ) < epl_get_local_timestamp();
 							$maybe_delete_inspection = apply_filters( 'epl_maybe_delete_inspection', $maybe_delete_inspection, $endtime, $item );
 							if ( ! $maybe_delete_inspection ) {
 								$item                                  = trim( $item );
