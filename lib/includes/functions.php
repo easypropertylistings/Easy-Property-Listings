@@ -1804,9 +1804,9 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * Author: Chinmoy Paul
  * Author URL: http://pwdtechnology.com
  *
- * @param string $key Post Meta Key.
- * @param string $type Post Type. Default is post. You can pass custom post type here.
- * @param string $status Post Status like Publish, draft, future etc. default is publish.
+ * @param string $key             Post Meta Key.
+ * @param string $type            Post Type. Default is post. You can pass custom post type here.
+ * @param string $status          Post Status like Publish, draft, future etc. default is publish.
  * @param string $property_status Listing status.
  *
  * @return void
