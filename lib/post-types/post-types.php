@@ -657,7 +657,11 @@ function epl_show_agent_name_in_column() {
 
 	global $property, $post;
 
-	$agent_keys = array( 'property_second_agent', 'property_third_agent', 'property_fourth_agent' );
+	$agent_keys = array(
+		'property_second_agent',
+		'property_third_agent',
+		'property_fourth_agent',
+	);
 
 	foreach ( $agent_keys as $agent_key ) {
 
@@ -668,7 +672,6 @@ function epl_show_agent_name_in_column() {
 			$current_author = get_user_by( 'login', $agent );
 
 			if ( false !== $current_author ) {
-
 				$url = add_query_arg(
 					array(
 						'post_type' => $post->post_type,
@@ -677,7 +680,7 @@ function epl_show_agent_name_in_column() {
 					'edit.php'
 				);
 				?>
-				<div class="epl-meta epl-meta--agent epl-meta--primary">
+				<div class="epl-meta epl-meta--agent epl-meta--<?php echo esc_attr( $agent_key ); ?>">
 					<span class="epl-agent epl-agent--name">
 						<a href="<?php echo esc_url( $url ); ?>">
 							<?php echo esc_html( get_the_author_meta( 'display_name', $current_author->ID ) ); ?>
@@ -687,7 +690,9 @@ function epl_show_agent_name_in_column() {
 				<?php
 			} else {
 				?>
-				<span class="epl-agent epl-agent--name"><?php echo esc_html( $agent ); ?></span>
+				<div class="epl-meta epl-meta--agent epl-meta--<?php echo esc_attr( $agent_key ); ?>">
+					<span class="epl-agent epl-agent--name"><?php echo esc_html( $agent ); ?></span>
+				</div>
 				<?php
 			}
 			epl_reset_post_author();
