@@ -247,6 +247,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @since 3.4.27 Added filter for href, handling of non date inspection values.
 		 * @since 3.4.44 Added filter for deciding whether to remove inspection entry.
 		 * @since 3.5.3  Fix: Deprecation warning - Make sure inspection time is not null before passing through trim.
+		 * @since 3.5.3  Update to use local timestamp.
 		 */
 		public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 			if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -265,9 +266,9 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 					$inspectarray = array();
 					foreach ( $list as $num => $item ) {
 						if ( is_numeric( $item[0] ) ) {
-							$timearr                 = explode( ' ', $item );
-							$endtime                 = current( $timearr ) . ' ' . end( $timearr );
-                                                        
+							$timearr = explode( ' ', $item );
+							$endtime = current( $timearr ) . ' ' . end( $timearr );
+
 							$maybe_delete_inspection = strtotime( $endtime ) < epl_get_local_timestamp();
 							$maybe_delete_inspection = apply_filters( 'epl_maybe_delete_inspection', $maybe_delete_inspection, $endtime, $item );
 							if ( ! $maybe_delete_inspection ) {

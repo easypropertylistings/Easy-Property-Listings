@@ -67,6 +67,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @param $session_id
 	 * @uses apply_filters Calls `wp_session_expiration` to determine how long until sessions expire.
+	 *
+	 * @since 3.5.3 Updated to return local timestamp.
 	 */
 	private function __construct() {
 		if ( isset( $_COOKIE[ WP_SESSION_COOKIE ] ) ) {
@@ -118,6 +120,11 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 		update_option( "_wp_session_{$this->session_id}", $this->container );
 	}
 
+	/**
+	 * Write the data from the current session to the data storage system.
+	 *
+	 * @since 3.5.3 Updated to return local timestamp.
+	 */
 	private function touch_session() {
 		$session_list = get_option( '_wp_session_list', array() );
 

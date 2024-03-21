@@ -44,7 +44,9 @@ There are various ways you can contribute:
 - New: Display linked agent name in admin agents post type columns. The username will display unlinked if there is no associated user profile.
 - New: Filter: epl_template_part_find to filter find array as well as final template.
 - New: Search Filter epl_search_should_load_default_template to disable default template and epl_search_load_template action to add custom search template.
+- New: Function epl_get_local_timestamp to get local time.
 - Fix: Inspection times deprecation warning.
+- Fix: Inspection issue where the users current time was reporting incorrect value due to timezone.
 - Fix: Sorting not working for pagination on shortcode.
 - Fix: Missing currency prefix in range slider for [listing_search] shortcode.
 - Fix: Security patch. Ajax nonce in JS variables.

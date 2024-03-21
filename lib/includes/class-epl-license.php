@@ -379,6 +379,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 * Check if validating license
 		 *
 		 * @access  private
+		 *
+		 * @since 3.5.3 Update to return local timestamp.
+		 *
 		 * @return  void
 		 */
 		public function maybe_validate_license() {
