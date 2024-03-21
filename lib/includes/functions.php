@@ -2174,6 +2174,7 @@ function epl_ends_with( $haystack, $needle ) {
  * @return array
  *
  * @since 3.5 Fix: PHP 8.2. Automatic conversion of false to array is deprecated fix.
+ * @since 3.5.4 Fix: Min & Max not working.
  */
 function epl_parse_atts( $atts ) {
 
@@ -2227,6 +2228,13 @@ function epl_parse_atts( $atts ) {
 								$this_query['type'] = 'numeric';
 							}
 						}
+					}
+
+                                        if ( in_array( $look_for, array( '_min', '_max' ), true ) ) {
+
+						if ( is_numeric( $this_query['value'] ) ) {
+                                                        $this_query['type'] = 'numeric';
+                                                }
 					}
 
 					if ( in_array( $look_for, array( '_exists', '_not_exists' ), true ) ) {
