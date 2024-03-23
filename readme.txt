@@ -203,6 +203,7 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_element]
 * [listing_contact]
 * [listing_results]
+* [listing_meta_doc]
 
 **Listing**
 
