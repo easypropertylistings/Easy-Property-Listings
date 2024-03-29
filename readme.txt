@@ -10,7 +10,7 @@ Tested up to: 6.4.3
 Stable Tag: 3.5.3
 License: GNU Version 2 or Any Later Version
 
-Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management, contact generation and works with any theme.
+Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management and works with any theme.
 
 == Description ==
 
@@ -203,6 +203,7 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_element]
 * [listing_contact]
 * [listing_results]
+* [listing_meta_doc]
 
 **Listing**
 
