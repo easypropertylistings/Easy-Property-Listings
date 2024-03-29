@@ -51,6 +51,7 @@ function epl_get_admin_screens() {
  * @since 3.4.44 Fixed callback error for google maps.
  * @since 3.5    Renamed Google Maps script name to: epl-google-map-v-3. Display hidden fields. Added Google maps error message.
  * @since 3.5.2  New: Google Maps load asynchoronously.
+ * @since 3.5.4  Display warning note when display address is unchecked.
  *
  * @return void
  */
@@ -61,6 +62,13 @@ function epl_admin_enqueue_scripts( $screen ) {
 
 	$current_dir_path = plugins_url( '', __FILE__ );
 
+        $display_address_note = sprintf( 
+                __( 'Note: When Display Street Address is unchecked the %1$s is used. See the %2$scodex%3$s', 'easy-property-listings' ),
+                epl_get_option('label_location'), 
+                '<a href="' . esc_url( 'https://codex.easypropertylistings.com.au/article/430-how-the-address-system-works' ) . '" target="_blank">', 
+                '</a>'
+        );
+
 	$js_vars = array(
 		'default_map_address'   => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
 		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),
@@ -68,6 +76,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 		'google_api_error'      => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
 		'google_api_key'        => epl_get_option( 'epl_google_api_key' ),
 		'google_map_disabled'   => epl_get_option( 'epl_disable_google_api' ),
+                'display_address_note'  => esc_html( $display_address_note )     
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
