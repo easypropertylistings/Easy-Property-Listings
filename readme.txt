@@ -7,7 +7,7 @@ Tags: real estate, property, listings, CRM, contact management, reports
 Requires PHP: 7.1
 Requires at least: 3.9
 Tested up to: 6.4.3
-Stable Tag: 3.5.3
+Stable Tag: 3.5.4
 License: GNU Version 2 or Any Later Version
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management and works with any theme.
