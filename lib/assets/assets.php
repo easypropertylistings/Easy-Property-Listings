@@ -57,17 +57,16 @@ function epl_get_admin_screens() {
  */
 function epl_admin_enqueue_scripts( $screen ) {
 
-	$mode   = epl_get_option( 'epl_plugin_mode', 'development' );
-	$suffix = 'production' === $mode ? '.min' : '';
-
-	$current_dir_path = plugins_url( '', __FILE__ );
-
-        $display_address_note = sprintf( 
-                __( 'Note: When Display Street Address is unchecked the %1$s is used. See the %2$scodex%3$s', 'easy-property-listings' ),
-                epl_get_option('label_location'), 
-                '<a href="' . esc_url( 'https://codex.easypropertylistings.com.au/article/430-how-the-address-system-works' ) . '" target="_blank">', 
-                '</a>'
-        );
+	$mode                 = epl_get_option( 'epl_plugin_mode', 'development' );
+	$suffix               = 'production' === $mode ? '.min' : '';
+	$current_dir_path     = plugins_url( '', __FILE__ );
+	$display_address_note = sprintf(
+		// Translators: %1$s: is Location Label, %2$ is the link start, and  %3$s is the link end.
+		__( 'When \'Display Street Address\' is unchecked, the map pin uses %1$s for positioning. Refer to the %2$s codex %3$s for further details.', 'easy-property-listings' ),
+		epl_get_option( 'label_suburb' ),
+		'<a href="' . esc_url( 'https://codex.easypropertylistings.com.au/article/430-how-the-address-system-works' ) . '" target="_blank">',
+		'</a>'
+	);
 
 	$js_vars = array(
 		'default_map_address'   => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
@@ -76,7 +75,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 		'google_api_error'      => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
 		'google_api_key'        => epl_get_option( 'epl_google_api_key' ),
 		'google_map_disabled'   => epl_get_option( 'epl_disable_google_api' ),
-                'display_address_note'  => esc_html( $display_address_note )     
+		'display_address_note'  => esc_html( $display_address_note ),
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
