@@ -472,10 +472,11 @@ add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
  * @since  3.0
  * @param array $args The $_POST array being passeed.
  * @return bool|void $output Response messages
+ * @since 3.5.4 Fix security issues.
  */
 function epl_new_contact( $args ) {
 
-	$args = array_map( 'trim', $args );
+	$args = array_map( 'sanitize_text_field', $args );
 
 	if ( ! is_admin() || ! epl_contact_access() ) {
 		wp_die( esc_html__( 'You do not have permission to create contacts.', 'easy-property-listings' ) );
@@ -485,46 +486,51 @@ function epl_new_contact( $args ) {
 		return;
 	}
 
-	$nonce = $args['_wpnonce'];
+	$nonce = isset( $args['_wpnonce'] ) ? sanitize_text_field( $args['_wpnonce'] ) : '';
 	if ( ! wp_verify_nonce( $nonce, 'new-contact' ) ) {
 		wp_die( esc_html__( 'Cheatin\' uhh?!', 'easy-property-listings' ) );
 	}
 
-	$contact_id = (int) $args['contact_id'];
+	$contact_id = isset( $args['contact_id'] ) ? (int) $args['contact_id'] : 0;
 	$contact    = new EPL_Contact( $contact_id );
 	if ( empty( $contact->ID ) ) {
 		return false;
 	}
 
-	if ( empty( $args['email'] ) || ! is_email( $args['email'] ) ) {
+        $email = isset( $args['email'] ) ? sanitize_email( $args['email'] ) : '';
+	if ( empty( $email ) || ! is_email( $email ) ) {
 		wp_die( esc_html__( 'Please provide valid email address', 'easy-property-listings' ) );
 	}
 
-	if ( $contact->contact_exists( $args['email'] ) ) {
+	if ( $contact->contact_exists( $email ) ) {
 		wp_die( esc_html__( 'A contact with this email already exists !', 'easy-property-listings' ) );
 	}
 
-	if ( empty( $args['title'] ) && ( ! empty( $args['first_name'] ) || ! empty( $args['last_name'] ) ) ) {
-		$args['title'] = $args['first_name'] . ' ' . $args['last_name'];
-	}
+        $first_name     = isset( $args['first_name'] ) ? sanitize_text_field( $args['first_name'] ) : '';
+        $last_name      = isset( $args['last_name'] ) ? sanitize_text_field( $args['last_name'] ) : '';
+        $title          = isset( $args['title'] ) ? sanitize_text_field( $args['title'] ) : '';
 
-	if ( empty( $args['title'] ) && ( ! empty( $args['email'] ) ) ) {
-		$args['title'] = $args['email'];
-	}
+        if ( empty( $title ) && ( ! empty( $first_name ) || ! empty( $last_name ) ) ) {
+                $title = $first_name . ' ' . $last_name;
+        }
+
+	if ( empty( $title ) && ( ! empty( $email ) ) ) {
+                $title = $email;
+        }
 
 	$contact->update(
-		array(
-			'name'  => $args['title'],
-			'email' => $args['email'],
-		)
-	);
-	$contact->update_meta( 'contact_first_name', $args['first_name'] );
-	$contact->update_meta( 'contact_last_name', $args['last_name'] );
-	$contact->update_meta( 'contact_phones', array( 'phone' => $args['phone'] ) );
-	$contact->update_meta( 'contact_category', 'new' );
+                array(
+                    'name'  => esc_html( $title ),
+                    'email' => esc_html( $email ),
+                )
+        );
+        $contact->update_meta( 'contact_first_name', $first_name );
+        $contact->update_meta( 'contact_last_name', $last_name );
+        $contact->update_meta( 'contact_phones', array( 'phone' => sanitize_text_field( $args['phone'] ) ) );
+        $contact->update_meta( 'contact_category', 'new' );
 
-	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
-	wp_safe_redirect( $redirect );
+        $redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . esc_attr( $contact_id ) );
+        wp_safe_redirect( $redirect );
 	exit;
 
 }
