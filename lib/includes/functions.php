@@ -2230,11 +2230,10 @@ function epl_parse_atts( $atts ) {
 						}
 					}
 
-                                        if ( in_array( $look_for, array( '_min', '_max' ), true ) ) {
-
+					if ( in_array( $look_for, array( '_min', '_max' ), true ) ) {
 						if ( is_numeric( $this_query['value'] ) ) {
-                                                        $this_query['type'] = 'numeric';
-                                                }
+							$this_query['type'] = 'numeric';
+						}
 					}
 
 					if ( in_array( $look_for, array( '_exists', '_not_exists' ), true ) ) {
@@ -2622,7 +2621,7 @@ function epl_generate_search_instance_counter() {
 	global $epl_search_instance_counter;
 
 	if ( empty( $epl_search_instance_counter ) ) {
-			$epl_search_instance_counter = 0;
+		$epl_search_instance_counter = 0;
 	}
 
 	$epl_search_instance_counter++;
@@ -2656,10 +2655,10 @@ function epl_get_property_meta_label( $meta_key ) {
 
 /**
  * Returns the localised timestamp
- * 
+ *
  * @since 3.5.3
  */
 function epl_get_local_timestamp() {
-        $local_time  = current_datetime();
-        return $local_time->getTimestamp() + $local_time->getOffset();
+	$local_time = current_datetime();
+	return $local_time->getTimestamp() + $local_time->getOffset();
 }
