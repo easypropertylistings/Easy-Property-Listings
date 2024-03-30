@@ -469,10 +469,12 @@ add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
 /**
  * Create a new contact from backend
  *
- * @since  3.0
  * @param array $args The $_POST array being passeed.
- * @return bool|void $output Response messages
+ *
+ * @since 3.0
  * @since 3.5.4 Fix security issues.
+ *
+ * @return bool|void $output Response messages
  */
 function epl_new_contact( $args ) {
 
