@@ -145,7 +145,7 @@ function epl_wp_enqueue_scripts() {
 		}
 	}
 
-	// All CSS including Structual.
+	// All CSS including Structural.
 	if ( 'on' === epl_get_option( 'epl_use_core_css', 'off' ) ) {
 		// Dont use css.
 	} else {
