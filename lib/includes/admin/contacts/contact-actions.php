@@ -497,7 +497,7 @@ function epl_new_contact( $args ) {
 		return false;
 	}
 
-        $email = isset( $args['email'] ) ? sanitize_email( $args['email'] ) : '';
+	$email = isset( $args['email'] ) ? sanitize_email( $args['email'] ) : '';
 	if ( empty( $email ) || ! is_email( $email ) ) {
 		wp_die( esc_html__( 'Please provide valid email address', 'easy-property-listings' ) );
 	}
@@ -506,31 +506,31 @@ function epl_new_contact( $args ) {
 		wp_die( esc_html__( 'A contact with this email already exists !', 'easy-property-listings' ) );
 	}
 
-        $first_name     = isset( $args['first_name'] ) ? sanitize_text_field( $args['first_name'] ) : '';
-        $last_name      = isset( $args['last_name'] ) ? sanitize_text_field( $args['last_name'] ) : '';
-        $title          = isset( $args['title'] ) ? sanitize_text_field( $args['title'] ) : '';
+	$first_name = isset( $args['first_name'] ) ? sanitize_text_field( $args['first_name'] ) : '';
+	$last_name  = isset( $args['last_name'] ) ? sanitize_text_field( $args['last_name'] ) : '';
+	$title      = isset( $args['title'] ) ? sanitize_text_field( $args['title'] ) : '';
 
-        if ( empty( $title ) && ( ! empty( $first_name ) || ! empty( $last_name ) ) ) {
-                $title = $first_name . ' ' . $last_name;
-        }
+	if ( empty( $title ) && ( ! empty( $first_name ) || ! empty( $last_name ) ) ) {
+		$title = $first_name . ' ' . $last_name;
+	}
 
 	if ( empty( $title ) && ( ! empty( $email ) ) ) {
-                $title = $email;
-        }
+		$title = $email;
+	}
 
 	$contact->update(
-                array(
-                    'name'  => esc_html( $title ),
-                    'email' => esc_html( $email ),
-                )
-        );
-        $contact->update_meta( 'contact_first_name', $first_name );
-        $contact->update_meta( 'contact_last_name', $last_name );
-        $contact->update_meta( 'contact_phones', array( 'phone' => sanitize_text_field( $args['phone'] ) ) );
-        $contact->update_meta( 'contact_category', 'new' );
+		array(
+			'name'  => esc_html( $title ),
+			'email' => esc_html( $email ),
+		)
+	);
+		$contact->update_meta( 'contact_first_name', $first_name );
+		$contact->update_meta( 'contact_last_name', $last_name );
+		$contact->update_meta( 'contact_phones', array( 'phone' => sanitize_text_field( $args['phone'] ) ) );
+		$contact->update_meta( 'contact_category', 'new' );
 
-        $redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . esc_attr( $contact_id ) );
-        wp_safe_redirect( $redirect );
+		$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . esc_attr( $contact_id ) );
+		wp_safe_redirect( $redirect );
 	exit;
 
 }
