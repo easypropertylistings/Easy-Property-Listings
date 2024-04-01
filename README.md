@@ -38,6 +38,12 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.3 April 2, 2024 =
+
+- New: Display map position warning note when display address is unchecked.
+- Fix: Contact form submission sanitise entries.
+- Fix: [listing_advanced] Shortcode _min and _max option not working correctly.
+
 = 3.5.3 March 20, 2024 =
 
 - New: Added counter class for number of agents in agent wrapper and a total count class.
