@@ -123,7 +123,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			}
 			// Current Page.
 			if ( ! defined( 'EPL_CURRENT_PAGE' ) ) {
-				$php_self = ! empty( $_SERVER['PHP_SELF'] ) ? wp_unslash( $_SERVER['PHP_SELF'] ) : '';
+				$php_self = ! empty( $_SERVER['PHP_SELF'] ) ? sanitize_text_field( wp_unslash( $_SERVER['PHP_SELF'] ) ) : '';
 				define( 'EPL_CURRENT_PAGE', basename( sanitize_text_field( $php_self ) ) );
 			}
 			// Plugin Root File.
