@@ -21,7 +21,9 @@
                 "grunt-replace": "^2.0.2",
                 "grunt-wp-i18n": "^1.0.3",
                 "load-grunt-tasks": "^5.1.0",
-                "makepot": "^0.3.0"
+                "makepot": "^0.3.0",
+                "@wordpress/prettier-config": "2.17.0",
+                "prettier": "npm:wp-prettier@^2.8.5"
         },
         "engines": {
                 "node": ">=0.8.0",
