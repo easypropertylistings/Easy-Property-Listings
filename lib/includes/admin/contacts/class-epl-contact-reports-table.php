@@ -426,8 +426,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 				wp_die( 'fail' );
 			}
 
-			$delete_ids = isset( $_GET['bulk-delete'] ) ? (array) wp_unslash( $_GET['bulk-delete'] ) : array();
-			$delete_ids = array_map( 'absint', $delete_ids );
+			$delete_ids = isset( $_GET['bulk-delete'] ) ? (array) array_map( 'absint', wp_unslash( $_GET['bulk-delete'] ) ) : array();
 
 			// Loop over the array of record IDs and delete them.
 			if ( ! empty( $delete_ids ) ) {
