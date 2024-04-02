@@ -2392,10 +2392,15 @@ add_action( 'init', 'epl_process_event_cal_request' );
  *
  * @since 2.1
  * @since 3.5.3 Removed nopriv access & added nonce.
+ * @since 3.5.4 Check user permissions.
  */
 function epl_update_listing_coordinates() {
 
-	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+        check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+        if( !current_user_can( 'manage_options' ) ) {
+                wp_die('fail');
+        }
 
 	if ( ( ! isset( $_POST['listid'] ) || 0 === intval( $_POST['listid'] ) ) || empty( $_POST['coordinates'] ) ) {
 		return;
