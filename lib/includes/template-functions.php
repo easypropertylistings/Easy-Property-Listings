@@ -2392,7 +2392,7 @@ add_action( 'init', 'epl_process_event_cal_request' );
  *
  * @since 2.1
  * @since 3.5.3 Removed nopriv access & added nonce.
- * @since 3.5.4 Check user permissions.
+ * @since 3.5.4 Fix: Check user permissions on coordinate generation.
  */
 function epl_update_listing_coordinates() {
 
