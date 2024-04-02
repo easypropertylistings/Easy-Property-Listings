@@ -408,7 +408,7 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	public function process_bulk_action() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-				return;
+			return;
 		}
 
 		// Detect when a bulk action is being triggered.
