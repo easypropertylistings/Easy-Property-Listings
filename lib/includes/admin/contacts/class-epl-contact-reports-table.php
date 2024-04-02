@@ -400,29 +400,30 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 	 * Process bulk contact operations
 	 *
 	 * @access public
+	 *
 	 * @since 3.3
-	 * @since 3.4.38 Fix: bulk action delete not working.
-         * @since 3.5.4  Fix: nonce & permission confirmation before processing.
+	 * @since 3.4.38 Fix: Bulk action delete not working.
+	 * @since 3.5.4  Fix: Contacts bulk processing nonce & permission confirmation before processing.
 	 */
 	public function process_bulk_action() {
 
-                if( !current_user_can( 'manage_options' ) ) {
-                        return;
-                }
+		if ( ! current_user_can( 'manage_options' ) ) {
+				return;
+		}
 
 		// Detect when a bulk action is being triggered.
 		if ( 'bulk-delete' === $this->current_action() ) {
 
-                        if ( !isset( $_GET['_wpnonce'] ) || empty( $_GET['_wpnonce'] ) ) {
-                                wp_die( 'fail' );
-                        }
-        
-                        $nonce  = sanitize_text_field( $_GET['_wpnonce'] );
-                        $action = 'bulk-' . $this->_args['plural'];
-                    
-                        if ( ! wp_verify_nonce( $nonce, $action ) ){
-                                wp_die( 'fail' );
-                        }
+			if ( ! isset( $_GET['_wpnonce'] ) || empty( $_GET['_wpnonce'] ) ) {
+				wp_die( 'fail' );
+			}
+
+			$nonce  = sanitize_text_field( $_GET['_wpnonce'] );
+			$action = 'bulk-' . $this->_args['plural'];
+
+			if ( ! wp_verify_nonce( $nonce, $action ) ) {
+				wp_die( 'fail' );
+			}
 
 			$delete_ids = wp_unslash( $_GET['bulk-delete'] );
 			$delete_ids = array_map( 'sanitize_text_field', $delete_ids );

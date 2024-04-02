@@ -41,6 +41,8 @@ There are various ways you can contribute:
 = 3.5.3 April 2, 2024 =
 
 - New: Display map position warning note when display address is unchecked.
+- Tweak: Sanitisation check on global page consant. 
+- Fix: Contacts bulk processing nonce & permission confirmation before processing.
 - Fix: Contact form submission sanitise entries.
 - Fix: [listing_advanced] Shortcode _min and _max option not working correctly.
 
