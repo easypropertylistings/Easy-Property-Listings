@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.5.4\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2024-04-02 04:23:23+00:00\n"
+"POT-Creation-Date: 2024-04-02 06:24:50+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -362,7 +362,7 @@ msgid "View"
 msgstr ""
 
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:178
-#: lib/includes/admin/contacts/class-epl-contact-reports-table.php:483
+#: lib/includes/admin/contacts/class-epl-contact-reports-table.php:485
 msgid "Delete"
 msgstr ""
 
@@ -396,11 +396,11 @@ msgstr ""
 msgid "Date Created"
 msgstr ""
 
-#: lib/includes/admin/contacts/class-epl-contact-reports-table.php:506
+#: lib/includes/admin/contacts/class-epl-contact-reports-table.php:508
 msgid "Category Filter"
 msgstr ""
 
-#: lib/includes/admin/contacts/class-epl-contact-reports-table.php:507
+#: lib/includes/admin/contacts/class-epl-contact-reports-table.php:509
 msgid "Type:"
 msgstr ""
 
