@@ -414,31 +414,28 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		// Detect when a bulk action is being triggered.
 		if ( 'bulk-delete' === $this->current_action() ) {
 
-			if (  isset( $_GET['_wpnonce'] ) && !empty( $_GET['_wpnonce'] ) ) {
-				$nonce  = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
+			if ( isset( $_GET['_wpnonce'] ) && ! empty( $_GET['_wpnonce'] ) ) {
+				$nonce = sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) );
 			} else {
-                                wp_die( 'fail' );
-                        }
+				wp_die( 'fail' );
+			}
 
-			
 			$action = 'bulk-' . $this->_args['plural'];
 
 			if ( ! wp_verify_nonce( $nonce, $action ) ) {
 				wp_die( 'fail' );
 			}
 
-                        $delete_ids = isset( $_GET['bulk-delete'] ) ? (array) $_GET['bulk-delete'] : array();
-                        $delete_ids = array_map( 'absint', wp_unslash( $delete_ids ) );
+			$delete_ids = isset( $_GET['bulk-delete'] ) ? (array) $_GET['bulk-delete'] : array();
+			$delete_ids = array_map( 'absint', wp_unslash( $delete_ids ) );
 
-                        // Loop over the array of record IDs and delete them.
-                        if ( ! empty( $delete_ids ) ) {
-                                foreach ( $delete_ids as $id ) {
-                                        $contact = new EPL_Contact( $id );
-                                        $contact->delete();
-                                }
-                        }
-
-			
+			// Loop over the array of record IDs and delete them.
+			if ( ! empty( $delete_ids ) ) {
+				foreach ( $delete_ids as $id ) {
+					$contact = new EPL_Contact( $id );
+					$contact->delete();
+				}
+			}
 		}
 	}
 
