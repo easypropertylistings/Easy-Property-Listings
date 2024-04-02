@@ -2396,11 +2396,11 @@ add_action( 'init', 'epl_process_event_cal_request' );
  */
 function epl_update_listing_coordinates() {
 
-        check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
-        if( !current_user_can( 'manage_options' ) ) {
-                wp_die('fail');
-        }
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'fail' );
+	}
 
 	if ( ( ! isset( $_POST['listid'] ) || 0 === intval( $_POST['listid'] ) ) || empty( $_POST['coordinates'] ) ) {
 		return;
