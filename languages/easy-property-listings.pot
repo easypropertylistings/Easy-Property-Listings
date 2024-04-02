@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.5.3\n"
+"Project-Id-Version: Easy Property Listings 3.5.4\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2024-03-20 07:49:30+00:00\n"
+"POT-Creation-Date: 2024-03-30 01:52:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +28,15 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-6: README.md\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: lib/assets/assets.php:68
+#: lib/assets/assets.php:65
+#. Translators: %1$s: is Location Label, %2$ is the link start, and  %3$s is
+#. the link end.
+msgid ""
+"When 'Display Street Address' is unchecked, the map pin uses %1$s for "
+"positioning. Refer to the %2$s codex %3$s for further details."
+msgstr ""
+
+#: lib/assets/assets.php:75
 msgid ""
 "Ensure you have set a Google Maps API Key from Dashboard > Easy Property "
 "Listings > Settings"
@@ -364,19 +372,19 @@ msgid "Summary"
 msgstr ""
 
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:236
-#: lib/includes/admin/contacts/contact-actions.php:755
+#: lib/includes/admin/contacts/contact-actions.php:763
 #: lib/includes/admin/contacts/contacts.php:639
 msgid "Background Info"
 msgstr ""
 
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:237
-#: lib/includes/admin/contacts/contact-actions.php:961
-#: lib/includes/admin/contacts/contact-actions.php:1043
+#: lib/includes/admin/contacts/contact-actions.php:969
+#: lib/includes/admin/contacts/contact-actions.php:1051
 msgid "Type"
 msgstr ""
 
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:238
-#: lib/includes/admin/contacts/contact-actions.php:892
+#: lib/includes/admin/contacts/contact-actions.php:900
 #: lib/includes/admin/contacts/contact-functions.php:60
 #: lib/includes/functions.php:1365
 #: lib/widgets/class-epl-widget-recent-property.php:379
@@ -405,7 +413,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:203
 #: lib/includes/admin/contacts/contact-actions.php:292
 #: lib/includes/admin/contacts/contact-actions.php:430
-#: lib/includes/admin/contacts/contact-actions.php:1460
+#: lib/includes/admin/contacts/contact-actions.php:1468
 msgid "Cheatin' eh?!"
 msgstr ""
 
@@ -430,12 +438,12 @@ msgid "Invalid Contact ID"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:188
-#: lib/includes/admin/contacts/contact-actions.php:1448
+#: lib/includes/admin/contacts/contact-actions.php:1456
 msgid "You do not have permission to save note."
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:207
-#: lib/includes/admin/contacts/contact-actions.php:1463
+#: lib/includes/admin/contacts/contact-actions.php:1471
 msgid "A note is required"
 msgstr ""
 
@@ -451,49 +459,49 @@ msgstr ""
 msgid "You do not have permission to update this contact."
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:481
+#: lib/includes/admin/contacts/contact-actions.php:484
 msgid "You do not have permission to create contacts."
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:490
+#: lib/includes/admin/contacts/contact-actions.php:493
 msgid "Cheatin' uhh?!"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:500
+#: lib/includes/admin/contacts/contact-actions.php:504
 msgid "Please provide valid email address"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:504
+#: lib/includes/admin/contacts/contact-actions.php:508
 msgid "A contact with this email already exists !"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:622
+#: lib/includes/admin/contacts/contact-actions.php:630
 msgid "Contact Category"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:639
+#: lib/includes/admin/contacts/contact-actions.php:647
 #: lib/taxonomies/tax-contact-tags.php:27
 msgid "Contact Tags"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:867
+#: lib/includes/admin/contacts/contact-actions.php:875
 msgid "Contact since"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:872
+#: lib/includes/admin/contacts/contact-actions.php:880
 msgid "View More"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:895
+#: lib/includes/admin/contacts/contact-actions.php:903
 msgid "Search Listings"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:897
+#: lib/includes/admin/contacts/contact-actions.php:905
 msgid "Or"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:898
-#: lib/includes/admin/contacts/contact-actions.php:921
+#: lib/includes/admin/contacts/contact-actions.php:906
+#: lib/includes/admin/contacts/contact-actions.php:929
 #: lib/includes/admin/contacts/contacts.php:74
 #: lib/includes/class-epl-cpt.php:420 lib/post-types/post-type-business.php:41
 #: lib/post-types/post-type-commercial-land.php:41
@@ -505,15 +513,15 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:920
+#: lib/includes/admin/contacts/contact-actions.php:928
 msgid "Activities"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:962
+#: lib/includes/admin/contacts/contact-actions.php:970
 msgid "Comment"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:963
+#: lib/includes/admin/contacts/contact-actions.php:971
 #: lib/post-types/post-type-business.php:106
 #: lib/post-types/post-type-commercial-land.php:107
 #: lib/post-types/post-type-commercial.php:107
@@ -524,15 +532,15 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:990
+#: lib/includes/admin/contacts/contact-actions.php:998
 msgid "No Activities"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:995
+#: lib/includes/admin/contacts/contact-actions.php:1003
 msgid "Load More"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1044
+#: lib/includes/admin/contacts/contact-actions.php:1052
 #: lib/includes/admin/contacts/contacts.php:439
 #: lib/includes/admin/help-single.php:52
 #: lib/includes/admin/menus/class-epl-welcome.php:363
@@ -546,7 +554,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1045
+#: lib/includes/admin/contacts/contact-actions.php:1053
 #: lib/post-types/post-type-business.php:104
 #: lib/post-types/post-type-commercial-land.php:104
 #: lib/post-types/post-type-commercial.php:104
@@ -558,77 +566,77 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1064
+#: lib/includes/admin/contacts/contact-actions.php:1072
 msgid "No Listings Found"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1085
+#: lib/includes/admin/contacts/contact-actions.php:1093
 msgid "No Listing"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1101
+#: lib/includes/admin/contacts/contact-actions.php:1109
 msgid "Add Activity"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1125
-#: lib/includes/admin/contacts/contact-actions.php:1259
+#: lib/includes/admin/contacts/contact-actions.php:1133
+#: lib/includes/admin/contacts/contact-actions.php:1267
 msgid "Add"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1159
+#: lib/includes/admin/contacts/contact-actions.php:1167
 msgid "Add Listing"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1173
+#: lib/includes/admin/contacts/contact-actions.php:1181
 #: lib/meta-boxes/meta-box-init.php:836
 msgid "Lot"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1181
+#: lib/includes/admin/contacts/contact-actions.php:1189
 #: lib/includes/functions.php:696 lib/meta-boxes/meta-box-init.php:844
 msgid "Unit"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1189
+#: lib/includes/admin/contacts/contact-actions.php:1197
 #: lib/includes/admin/contacts/contacts.php:569
 #: lib/meta-boxes/meta-box-init.php:852
 msgid "Street Number"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1196
+#: lib/includes/admin/contacts/contact-actions.php:1204
 #: lib/includes/admin/contacts/contacts.php:576
 #: lib/meta-boxes/meta-box-init.php:859
 msgid "Street Name"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1224
+#: lib/includes/admin/contacts/contact-actions.php:1232
 #: lib/includes/admin/contacts/contacts.php:604
 #: lib/meta-boxes/meta-box-init.php:905 lib/widgets/widget-functions.php:127
 #: lib/widgets/widget-functions.php:469
 msgid "Country"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1230
+#: lib/includes/admin/contacts/contact-actions.php:1238
 msgid "Full Address"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1235
+#: lib/includes/admin/contacts/contact-actions.php:1243
 #: lib/meta-boxes/meta-box-init.php:128
 #: lib/widgets/class-epl-widget-recent-property.php:287
 msgid "Listing Type"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1243
+#: lib/includes/admin/contacts/contact-actions.php:1251
 #: lib/widgets/class-epl-widget-recent-property.php:306
 msgid "Listing Status"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1313
+#: lib/includes/admin/contacts/contact-actions.php:1321
 #: lib/post-types/post-type-contact.php:46
 msgid "View Contact"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1466
+#: lib/includes/admin/contacts/contact-actions.php:1474
 msgid "An error occured"
 msgstr ""
 
@@ -2195,7 +2203,7 @@ msgstr ""
 msgid "Start month"
 msgstr ""
 
-#: lib/includes/admin/reports/graphing.php:348 lib/includes/functions.php:2430
+#: lib/includes/admin/reports/graphing.php:348 lib/includes/functions.php:2437
 msgid "Day"
 msgstr ""
 
@@ -2493,8 +2501,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:447
 #: lib/includes/class-epl-property-meta.php:843
 #: lib/includes/class-epl-property-meta.php:908
-#: lib/includes/class-epl-property-meta.php:958 lib/includes/functions.php:2354
-#: lib/includes/functions.php:2392 lib/widgets/widget-admin-dashboard.php:185
+#: lib/includes/class-epl-property-meta.php:958 lib/includes/functions.php:2361
+#: lib/includes/functions.php:2399 lib/widgets/widget-admin-dashboard.php:185
 #: lib/widgets/widget-admin-dashboard.php:239
 msgid "Auction"
 msgstr ""
@@ -2535,7 +2543,7 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:975
 #: lib/includes/class-epl-property-meta.php:981
 #: lib/includes/class-epl-property-meta.php:1169
-#: lib/includes/functions.php:2391 lib/includes/template-functions.php:3665
+#: lib/includes/functions.php:2398 lib/includes/template-functions.php:3665
 #: lib/includes/template-functions.php:3697
 msgid "For Sale"
 msgstr ""
@@ -3153,7 +3161,7 @@ msgid "Sold Label"
 msgstr ""
 
 #: lib/includes/functions.php:1196 lib/includes/functions.php:1773
-#: lib/includes/functions.php:2280 lib/includes/install.php:51
+#: lib/includes/functions.php:2287 lib/includes/install.php:51
 #: lib/updates/epl-2.1.11.php:18
 msgid "Sold"
 msgstr ""
@@ -3163,7 +3171,7 @@ msgid "Leased Label"
 msgstr ""
 
 #: lib/includes/functions.php:1203 lib/includes/functions.php:1799
-#: lib/includes/functions.php:2284 lib/includes/install.php:50
+#: lib/includes/functions.php:2291 lib/includes/install.php:50
 #: lib/updates/epl-2.1.php:18
 msgid "Leased"
 msgstr ""
@@ -3637,129 +3645,129 @@ msgstr ""
 msgid "Under Contract"
 msgstr ""
 
-#: lib/includes/functions.php:2278
+#: lib/includes/functions.php:2285
 msgid "Current"
 msgstr ""
 
-#: lib/includes/functions.php:2287
+#: lib/includes/functions.php:2294
 msgid "Withdrawn"
 msgstr ""
 
-#: lib/includes/functions.php:2288
+#: lib/includes/functions.php:2295
 msgid "Off Market"
 msgstr ""
 
-#: lib/includes/functions.php:2289
+#: lib/includes/functions.php:2296
 msgid "Deleted"
 msgstr ""
 
-#: lib/includes/functions.php:2353 lib/includes/functions.php:2374
+#: lib/includes/functions.php:2360 lib/includes/functions.php:2381
 msgid "Exclusive"
 msgstr ""
 
-#: lib/includes/functions.php:2355
+#: lib/includes/functions.php:2362
 msgid "Multilist"
 msgstr ""
 
-#: lib/includes/functions.php:2356
+#: lib/includes/functions.php:2363
 msgid "Conjunctional"
 msgstr ""
 
-#: lib/includes/functions.php:2357 lib/includes/functions.php:2375
+#: lib/includes/functions.php:2364 lib/includes/functions.php:2382
 msgid "Open"
 msgstr ""
 
-#: lib/includes/functions.php:2358 lib/includes/functions.php:2395
-#: lib/includes/functions.php:2450
+#: lib/includes/functions.php:2365 lib/includes/functions.php:2402
+#: lib/includes/functions.php:2457
 msgid "Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2359
+#: lib/includes/functions.php:2366
 msgid "Set Sale"
 msgstr ""
 
-#: lib/includes/functions.php:2393
+#: lib/includes/functions.php:2400
 msgid "EOI"
 msgstr ""
 
-#: lib/includes/functions.php:2394
+#: lib/includes/functions.php:2401
 msgid "Offers"
 msgstr ""
 
-#: lib/includes/functions.php:2396
+#: lib/includes/functions.php:2403
 msgid "Tender"
 msgstr ""
 
-#: lib/includes/functions.php:2411 lib/widgets/widget-functions.php:762
+#: lib/includes/functions.php:2418 lib/widgets/widget-functions.php:762
 #: lib/widgets/widget-functions.php:817
 msgid "Square"
 msgstr ""
 
-#: lib/includes/functions.php:2412 lib/widgets/widget-functions.php:763
+#: lib/includes/functions.php:2419 lib/widgets/widget-functions.php:763
 #: lib/widgets/widget-functions.php:818
 msgid "Square Meter"
 msgstr ""
 
-#: lib/includes/functions.php:2413 lib/widgets/widget-functions.php:764
+#: lib/includes/functions.php:2420 lib/widgets/widget-functions.php:764
 #: lib/widgets/widget-functions.php:819
 msgid "Acre"
 msgstr ""
 
-#: lib/includes/functions.php:2414 lib/widgets/widget-functions.php:765
+#: lib/includes/functions.php:2421 lib/widgets/widget-functions.php:765
 #: lib/widgets/widget-functions.php:820
 msgid "Hectare"
 msgstr ""
 
-#: lib/includes/functions.php:2415 lib/widgets/widget-functions.php:766
+#: lib/includes/functions.php:2422 lib/widgets/widget-functions.php:766
 #: lib/widgets/widget-functions.php:821
 msgid "Square Feet"
 msgstr ""
 
-#: lib/includes/functions.php:2431
+#: lib/includes/functions.php:2438
 msgid "Daily"
 msgstr ""
 
-#: lib/includes/functions.php:2432
+#: lib/includes/functions.php:2439
 msgid "Week"
 msgstr ""
 
-#: lib/includes/functions.php:2433
+#: lib/includes/functions.php:2440
 msgid "Weekly"
 msgstr ""
 
-#: lib/includes/functions.php:2434
+#: lib/includes/functions.php:2441
 msgid "Month"
 msgstr ""
 
-#: lib/includes/functions.php:2435
+#: lib/includes/functions.php:2442
 msgid "Monthly"
 msgstr ""
 
-#: lib/includes/functions.php:2451
+#: lib/includes/functions.php:2458
 msgid "Lease"
 msgstr ""
 
-#: lib/includes/functions.php:2452
+#: lib/includes/functions.php:2459
 msgid "Both"
 msgstr ""
 
-#: lib/includes/functions.php:2467
+#: lib/includes/functions.php:2474
 msgid "Unknown"
 msgstr ""
 
-#: lib/includes/functions.php:2468
+#: lib/includes/functions.php:2475
 msgid "Vacant"
 msgstr ""
 
-#: lib/includes/functions.php:2469
+#: lib/includes/functions.php:2476
 msgid "Tenanted"
 msgstr ""
 
-#: lib/includes/functions.php:2484
+#: lib/includes/functions.php:2491
 msgid "Whole"
 msgstr ""
 
-#: lib/includes/functions.php:2485
+#: lib/includes/functions.php:2492
 msgid "Part"
 msgstr ""
 
