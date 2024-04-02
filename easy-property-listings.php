@@ -109,7 +109,10 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		 * Setup plugin constants
 		 *
 		 * @access public
+		 *
 		 * @since 1.0.0
+		 * @since 3.5.4 Tweak: Sanitisation check on global page constant.
+		 *
 		 * @return void
 		 */
 		public function setup_constants() {
