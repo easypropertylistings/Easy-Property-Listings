@@ -415,14 +415,14 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		if ( 'bulk-delete' === $this->current_action() ) {
 
 			if ( ! isset( $_GET['_wpnonce'] ) || empty( $_GET['_wpnonce'] ) ) {
-					wp_die( 'fail' );
+				wp_die( 'fail' );
 			}
 
 			$nonce  = sanitize_text_field( $_GET['_wpnonce'] );
 			$action = 'bulk-' . $this->_args['plural'];
 
 			if ( ! wp_verify_nonce( $nonce, $action ) ) {
-					wp_die( 'fail' );
+				wp_die( 'fail' );
 			}
 
 			$delete_ids = wp_unslash( $_GET['bulk-delete'] );
