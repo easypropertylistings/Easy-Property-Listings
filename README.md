@@ -38,7 +38,7 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.3 April 3, 2024 =
+= 3.5.4 April 3, 2024 =
 
 - New: Display map position warning note when display address is unchecked.
 - Tweak: Sanitisation check on global page constant.
