@@ -42,6 +42,7 @@ There are various ways you can contribute:
 
 - New: Display map position warning note when display address is unchecked.
 - Tweak: Sanitisation check on global page constant.
+- Fix: Admin css help text wrapping with textarea field.
 - Fix: Check user permissions on coordinate generation.
 - Fix: Contacts bulk processing nonce & permission confirmation before processing.
 - Fix: Contact form submission sanitise entries.
