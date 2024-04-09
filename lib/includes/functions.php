@@ -1817,6 +1817,7 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @since 3.4.40 Tweak: Search selection results will be sorted in a-z order.
  * @since 3.4.40 Fix: Search address options fixed for the all search tab.
  * @since 3.5.3  Fix: Prepared statement for SQL.
+ * @since 3.5.4  Fix: DB error due to double escaping.
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
@@ -1849,16 +1850,8 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 
 		if ( count( $property_status ) ) {
 
-			$query .= "
-                        AND pm2.meta_key = 'property_status'
-                        AND pm2.meta_value IN ('";
-
-			$prepared_status = array();
-			foreach ( $property_status as $single_status ) {
-				$prepared_status[] = $wpdb->prepare( '%s', $single_status );
-			}
-
-			$query .= implode( ',', $prepared_status ) . "')";
+                        $status_placeholders = implode( ',', array_fill( 0, count( $property_status ), '%s' ) );
+			$query .= $wpdb->prepare(" AND pm2.meta_key = 'property_status' AND pm2.meta_value IN ($status_placeholders) ", $property_status);
 		}
 	}
 
