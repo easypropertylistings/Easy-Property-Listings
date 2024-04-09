@@ -38,10 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.3 April 2, 2024 =
+= 3.5.4 April 3, 2024 =
 
 - New: Display map position warning note when display address is unchecked.
-- Tweak: Sanitisation check on global page consant.
+- Tweak: Sanitisation check on global page constant.
+- Fix: Admin css help text wrapping with textarea field.
 - Fix: Check user permissions on coordinate generation.
 - Fix: Contacts bulk processing nonce & permission confirmation before processing.
 - Fix: Contact form submission sanitise entries.

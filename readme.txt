@@ -3,10 +3,10 @@ Author URI: https://easypropertylistings.com.au/
 Plugin URI: https://easypropertylistings.com.au/
 Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
-Tags: real estate, property, listings, CRM, contact management, reports
+Tags: real estate, property, listings, rental, reports
 Requires PHP: 7.1
 Requires at least: 3.9
-Tested up to: 6.4.3
+Tested up to: 6.5
 Stable Tag: 3.5.4
 License: GNU Version 2 or Any Later Version
 
