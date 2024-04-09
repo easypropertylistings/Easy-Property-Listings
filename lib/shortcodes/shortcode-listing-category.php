@@ -257,7 +257,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			<div class="loop-content epl-shortcode-listing-category <?php echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
 				if ( 'on' === $tools_top ) {
-					do_action( 'epl_property_loop_start' );
+					do_action( 'epl_property_loop_start', $attributes );
 				}
 				while ( $query_open->have_posts() ) {
 					$query_open->the_post();
