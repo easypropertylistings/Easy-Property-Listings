@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.5 April 10, 2024 =
+
+- Fix: [listing_search] shortcode passing the status database error due to double escaping.
+- Fix: [listing_feature], [listing_category], [listing_open], [listing_location], [listing_auction] shortcodes sorting not working.
+
 = 3.5.4 April 3, 2024 =
 
 - New: Display map position warning note when display address is unchecked.

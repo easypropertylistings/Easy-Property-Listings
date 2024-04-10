@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return false|string
  * @since 1.0
  * @since 3.4.48 Fixed class name.
+ * @since 3.5.5 Sorting not working.
  */
 function epl_shortcode_property_open_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -38,16 +39,16 @@ function epl_shortcode_property_open_callback( $atts ) {
 	$attributes = shortcode_atts(
 		array(
 			'post_type'    => $property_types, // Post Type.
-			'limit'        => '-1', // Number of maximum posts to show.
-			'template'     => false, // Template. slim, table.
-			'location'     => '', // Location slug. Should be a name like sorrento.
-			'tools_top'    => 'off', // Tools before the loop like Sorter and Grid on or off.
-			'tools_bottom' => 'off', // Tools after the loop like pagination on or off.
-			'sortby'       => '', // Options: price, date : Default date.
+			'limit'        => '-1',   // Number of maximum posts to show.
+			'template'     => false,  // Template. slim, table.
+			'location'     => '',     // Location slug. Should be a name like sorrento.
+			'tools_top'    => 'off',  // Tools before the loop like Sorter and Grid on or off.
+			'tools_bottom' => 'off',  // Tools after the loop like pagination on or off.
+			'sortby'       => '',     // Options: price, date : Default date.
 			'sort_order'   => 'DESC', // Sort by ASC or DESC.
-			'pagination'   => 'on', // Enable or disable pagination.
-			'instance_id'  => '1', // Set instance ID when using multiple shortcodes on the same page.
-			'class'        => '', // Custom class.
+			'pagination'   => 'on',   // Enable or disable pagination.
+			'instance_id'  => '1',    // Set instance ID when using multiple shortcodes on the same page.
+			'class'        => '',     // Custom class.
 
 		),
 		$atts
@@ -122,8 +123,6 @@ function epl_shortcode_property_open_callback( $atts ) {
 			$args['meta_key'] = 'property_status';
 		} else {
 			$args['orderby'] = 'post_date';
-			$args['order']   = 'DESC';
-
 		}
 		$args['order'] = $sort_order;
 	}

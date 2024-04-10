@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return false|string|void
  * @since 1.1.2
  * @since 3.4.48 Fixed class name.
+ * @since 3.5.5 Sorting not working.
  */
 function epl_shortcode_listing_tax_location_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -39,18 +40,18 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 		array(
 			'post_type'    => $property_types, // Post Type.
 			'status'       => array( 'current', 'sold', 'leased' ),
-			'location'     => '', // Location slug.
-			'location_id'  => '', // Location ID.
-			'limit'        => '10', // Number of maximum posts to show.
-			'offset'       => '', // Offset posts. When used, pagination is disabled.
-			'template'     => false, // Template can be set to "slim" for home open style template.
-			'tools_top'    => 'off', // Tools before the loop like Sorter and Grid on or off.
-			'tools_bottom' => 'off', // Tools after the loop like pagination on or off.
-			'sortby'       => '', // Options: price, date, status : Default date.
+			'location'     => '',     // Location slug.
+			'location_id'  => '',     // Location ID.
+			'limit'        => '10',   // Number of maximum posts to show.
+			'offset'       => '',     // Offset posts. When used, pagination is disabled.
+			'template'     => false,  // Template can be set to "slim" for home open style template.
+			'tools_top'    => 'off',  // Tools before the loop like Sorter and Grid on or off.
+			'tools_bottom' => 'off',  // Tools after the loop like pagination on or off.
+			'sortby'       => '',     // Options: price, date, status : Default date.
 			'sort_order'   => 'DESC', // Sort by ASC or DESC.
-			'pagination'   => 'on', // Enable or disable pagination.
-			'instance_id'  => '1', // Set instance ID when using multiple shortcodes on the same page.
-			'class'        => '', // Custom class.
+			'pagination'   => 'on',   // Enable or disable pagination.
+			'instance_id'  => '1',    // Set instance ID when using multiple shortcodes on the same page.
+			'class'        => '',     // Custom class.
 		),
 		$atts
 	);
@@ -149,8 +150,6 @@ function epl_shortcode_listing_tax_location_callback( $atts ) {
 			$args['meta_key'] = 'property_status';
 		} else {
 			$args['orderby'] = 'post_date';
-			$args['order']   = 'DESC';
-
 		}
 		$args['order'] = $sort_order;
 	}
