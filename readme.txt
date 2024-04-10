@@ -192,6 +192,7 @@ Extensive near instant response to support, we just want to help.
 Several short codes to insert your listings into posts and pages with many customisable options. [Shortcode documentation](https://codex.easypropertylistings.com.au/category/25-shortcodes?utm_source=readme&utm_medium=description_tab&utm_content=documentation_link&utm_campaign=wordpressorg). These short codes allow you to display listings any way and anywhere you like.
 
 * [listing]
+* [listing_advanced]
 * [listing_category]
 * [listing_open]
 * [listing_map]
@@ -199,7 +200,6 @@ Several short codes to insert your listings into posts and pages with many custo
 * [listing_feature]
 * [listing_location]
 * [listing_auction]
-* [listing_advanced]
 * [listing_element]
 * [listing_contact]
 * [listing_results]
