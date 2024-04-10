@@ -29,6 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  * @since 3.4.44 Fix: Missing commercial auction listings in shortcode.
  * @since 3.4.48 Fixed class name. Passing shortcode results message shortcode type.
+ * @since 3.5.5 Sorting not working.
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -40,17 +41,17 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		array(
 			'post_type'    => $property_types, // Post Type.
 			'status'       => array( 'current', 'sold', 'leased' ),
-			'limit'        => '10', // Number of maximum posts to show.
-			'template'     => false, // Template can be set to "slim" for home open style template.
-			'location'     => '', // Location slug. Should be a name like sorrento.
-			'tools_top'    => 'off', // Tools before the loop like Sorter and Grid on or off.
-			'tools_bottom' => 'off', // Tools after the loop like pagination on or off.
-			'sortby'       => '', // Options: price, date, status : Default date.
+			'limit'        => '10',   // Number of maximum posts to show.
+			'template'     => false,  // Template can be set to "slim" for home open style template.
+			'location'     => '',     // Location slug. Should be a name like sorrento.
+			'tools_top'    => 'off',  // Tools before the loop like Sorter and Grid on or off.
+			'tools_bottom' => 'off',  // Tools after the loop like pagination on or off.
+			'sortby'       => '',     // Options: price, date, status : Default date.
 			'sort_order'   => 'DESC', // Sort order ASC or DESC.
-			'query_object' => '', // only for internal use . if provided use it instead of custom query.
-			'pagination'   => 'on', // Pagination on or off.
-			'instance_id'  => '1', // Set instance ID when using multiple shortcodes on the same page.
-			'class'        => '', // Custom class.
+			'query_object' => '',     // only for internal use . if provided use it instead of custom query.
+			'pagination'   => 'on',   // Pagination on or off.
+			'instance_id'  => '1',    // Set instance ID when using multiple shortcodes on the same page.
+			'class'        => '',     // Custom class.
 		),
 		$atts
 	);
@@ -88,15 +89,15 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 
 	// Only properties which are not auction should be allowed.
 	$args['meta_query'][] = array(
-		'relation'      =>      'OR',
-		[
+		'relation' => 'OR',
+		array(
 			'key'   => 'property_authority',
 			'value' => 'auction',
-		],
-		[
+		),
+		array(
 			'key'   => 'property_com_authority',
 			'value' => 'auction',
-		]
+		),
 	);
 
 	if ( ! empty( $attributes['location'] ) ) {
@@ -137,7 +138,6 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 			$args['meta_key'] = 'property_status';
 		} else {
 			$args['orderby'] = 'post_date';
-			$args['order']   = 'DESC';
 		}
 		$args['order'] = $attributes['sort_order'];
 	}
@@ -160,7 +160,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 			<div class="loop-content epl-shortcode-listing-auction <?php echo ' ' . esc_attr( epl_template_class( $attributes['template'], 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
 				if ( 'on' === $attributes['tools_top'] ) {
-					do_action( 'epl_property_loop_start' );
+					do_action( 'epl_property_loop_start', $attributes );
 				}
 				while ( $query_open->have_posts() ) {
 					$query_open->the_post();
