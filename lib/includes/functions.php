@@ -1849,8 +1849,6 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 		$property_status = array_map( 'trim', explode( ',', $property_status ) );
 
 		if ( count( $property_status ) ) {
-			$property_status = array_map( 'trim', explode( ',', $property_status ) );
-			$status_placeholders = array_fill( 0, count( $property_status ), '%s' );
 			$prepared_status_values = array();
 			foreach ( $property_status as $status ) {
 				$prepared_status_values[] = $wpdb->prepare( '%s', $status );
