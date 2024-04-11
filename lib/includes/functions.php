@@ -1850,8 +1850,8 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 
 		if ( count( $property_status ) ) {
 			$prepared_status_values = array();
-			foreach ( $property_status as $status ) {
-				$prepared_status_values[] = $wpdb->prepare( '%s', $status );
+			foreach ( $property_status as $status_value ) {
+				$prepared_status_values[] = $wpdb->prepare( '%s', $status_value );
 			}
 
 			$in_clause = implode( ',', $prepared_status_values );
