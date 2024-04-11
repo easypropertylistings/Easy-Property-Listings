@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.6 April 11, 2024 =
+
+- Fix: [listing_search] shortcode the status variable was being overwritten when the status option was passed to the shortcode causing state values to not display.
+
 = 3.5.5 April 10, 2024 =
 
 - Fix: [listing_search] shortcode passing the status database error due to double escaping.

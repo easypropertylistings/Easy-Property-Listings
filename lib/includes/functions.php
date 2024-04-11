@@ -1818,6 +1818,7 @@ add_filter( 'epl_leased_label_status_filter', 'epl_leased_label_status_filter_ca
  * @since 3.4.40 Fix: Search address options fixed for the all search tab.
  * @since 3.5.3  Fix: Prepared statement for SQL.
  * @since 3.5.5  Fix: DB error due to double escaping.
+ * @since 3.5.6  Fix: Status variable overwritten when status option was passed to the shortcode.
  */
 function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publish', $property_status = '' ) {
 
