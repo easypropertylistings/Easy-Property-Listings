@@ -2658,6 +2658,14 @@ function epl_get_property_meta_label( $meta_key ) {
  * @since 3.5.3
  */
 function epl_get_local_timestamp() {
-	$local_time = current_datetime();
+	
+	if ( function_exists( 'current_datetime' ) ) {
+		$local_time = current_datetime();
+	} else {
+		$local_time = current_time();
+	}
+	
 	return $local_time->getTimestamp() + $local_time->getOffset();
 }
+
+
