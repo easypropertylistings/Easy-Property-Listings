@@ -1284,7 +1284,7 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
  * @since 3.4.14 Fix: Custom features' callback output wrongly placed.
  * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @since 3.5.0  New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
- * @since 3.5.2  Tweak: Removed addiitonal property category appearing in additional features list.
+ * @since 3.5.2  Tweak: Removed additional property category appearing in additional features list.
  *
  * @hooked property_tab_section
  */
