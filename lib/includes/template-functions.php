@@ -1508,8 +1508,11 @@ add_action( 'epl_property_features', 'epl_property_tab_section' );
  * Property Tab section details output for commercial, business and commercial
  * land
  *
- * @since 1.0.0  @hooked property_after_tab_section
+ * @hooked property_after_tab_section
+ *
+ * @since 1.0.0  
  * @since 3.4.39 Using correctly spelt get_additional_commercial_features_html function.
+ * @since 3.5.7  Filters added; epl_property_commercial_features_list and epl_property_rural_features_list filters.
  */
 function epl_property_tab_section_after() {
 	global $property;
@@ -2321,6 +2324,7 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
  *
  * @since 2.0.0
  * @since 3.4.9 Corrected issue where output was trimmed, added better unique ID and URL to output.
+ * @since 3.5.7 Updated to allow passing of extra details to ical.
  */
 function epl_create_ical_file( $start = '', $end = '', $name = '', $description = '', $location = '', $post_id = null ) {
 
@@ -2345,10 +2349,10 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 }
 
 /**
- * Output iCal clickable dates
+ * Output iCal clickable dates. Use the epl_ical_args filter to alter the labels.
  *
  * @since      2.0
- * @since      3.5.7 different subject for auction
+ * @since      3.5.7 Different subject for auction. 
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
