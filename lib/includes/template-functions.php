@@ -1525,6 +1525,8 @@ function epl_property_tab_section_after() {
 			'property_com_zone',
 		);
 
+                $features_lists = apply_filters( 'epl_property_commercial_features_list', $features_lists);
+
 		// Check for values in the commercial features.
 		$commercial_value = '';
 
@@ -1570,6 +1572,8 @@ function epl_property_tab_section_after() {
 			'property_rural_irrigation',
 			'property_rural_carrying_capacity',
 		);
+
+                $features_lists = apply_filters( 'epl_property_rural_features_list', $features_lists);
 
 		// Check for values in the rural features.
 		$rural_value = '';
@@ -2330,7 +2334,7 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 	$prodid      = '-//' . get_bloginfo( 'name' ) . '/EPL//NONSGML v1.0//EN';
 	$args        = get_defined_vars();
 	$args        = apply_filters( 'epl_ical_args', $args );
-	$data        = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:" . $prodid . "\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $start ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $end ) ) . "\nLOCATION:" . $location . "\nURL:" . $url . "\nTRANSP:OPAQUE\nSEQUENCE:0\nUID:" . $uid . "\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $name . "\nDESCRIPTION:" . $description . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
+	$data        = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:" . $args['prodid'] . "\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $args['start'] ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $args['end'] ) ) . "\nLOCATION:" . $args['location'] . "\nURL:" . $args['url'] . "\nTRANSP:OPAQUE\nSEQUENCE:0\nUID:" . $args['uid'] . "\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $args['name'] . "\nDESCRIPTION:" . $args['description'] . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
 
 	header( 'Content-type:text/calendar' );
 	header( 'Content-Disposition: attachment; filename="' . $name . '.ics"' );
@@ -2344,6 +2348,7 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
  * Output iCal clickable dates
  *
  * @since      2.0
+ * @since      3.5.7 different subject for auction
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
@@ -2365,7 +2370,13 @@ function epl_process_event_cal_request() {
 						if ( is_null( $post ) ) {
 							return;
 						}
+
 						$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+
+                                                if( isset( $_GET['event_type'] ) && 'auction' == sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
+
+                                                        $subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+                                                }
 
 						$address      = '';
 						$prop_sub_num = get_post_meta( $post_id, 'property_address_sub_number', true );
