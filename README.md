@@ -40,9 +40,9 @@ There are various ways you can contribute:
 
 = 3.5.6 June 1, 2024 =
 
--   New: Filter for commercial features: epl_property_commercial_features_list filter.
--   New: Filter for rural features: epl_property_rural_features_list filter.
--   Tweak: New
+-   New: Filters for commercial and rural features: epl_property_commercial_features_list and epl_property_rural_features_list filters.
+-   Tweak: Different subject for auction ical event use the epl_ical_args filter to alter the labels.
+-   Tweak: Updated to allow passing of extra details to ical through the epl_ical_args filter.
 
 = 3.5.6 April 11, 2024 =
 
