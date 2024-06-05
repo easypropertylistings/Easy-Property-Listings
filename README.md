@@ -38,11 +38,13 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.6 June 1, 2024 =
+= 3.5.7 June 6, 2024 =
 
 -   New: Filters for commercial and rural features: epl_property_commercial_features_list and epl_property_rural_features_list filters.
+-   New: WordPress timezone functions added for compatibility as they are not available prior to WordPress 5.3.0.
 -   Tweak: Different subject for auction ical event use the epl_ical_args filter to alter the labels.
 -   Tweak: Updated to allow passing of extra details to ical through the epl_ical_args filter.
+-   Tweak: Shortcode instance_id set to 1 to better enable sorting. When using epl_sorting_tool hook $attributes is required.
 
 = 3.5.6 April 11, 2024 =
 
