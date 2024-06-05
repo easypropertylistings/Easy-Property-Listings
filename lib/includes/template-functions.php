@@ -1923,7 +1923,7 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  */
 function epl_sorting_tool( $attributes = array() ) {
 
-	$instance_id     = ! empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '';
+	$instance_id     = ! empty( $attributes['instance_id'] ) ? sanitize_text_field( $attributes['instance_id'] ) : '1';
 	$sortby          = '';
 	$set_instance_id = '';
 	if ( ! empty( $_GET['sortby'] ) ) {
