@@ -1918,11 +1918,12 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  *
  * @param array $attributes Attributes.
  *
+ * @since 2.0
  * @since 3.3 Revised.
  * @since 3.4.44 Unique ID for sort dropdown per instance.
  * @since 3.4.44 Get shortcode attributes as parameter.
  * @since 3.5 Added accessibility labels to select elements.
- * @since 2.0
+ * @since 3.5.7 Instance ID default to 1 to enable sorting. The $attributes option is required.
  */
 function epl_sorting_tool( $attributes = array() ) {
 
