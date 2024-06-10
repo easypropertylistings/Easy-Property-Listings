@@ -1510,7 +1510,7 @@ add_action( 'epl_property_features', 'epl_property_tab_section' );
  *
  * @hooked property_after_tab_section
  *
- * @since 1.0.0  
+ * @since 1.0.0
  * @since 3.4.39 Using correctly spelt get_additional_commercial_features_html function.
  * @since 3.5.7  Filters added; epl_property_commercial_features_list and epl_property_rural_features_list filters.
  */
@@ -1528,7 +1528,7 @@ function epl_property_tab_section_after() {
 			'property_com_zone',
 		);
 
-                $features_lists = apply_filters( 'epl_property_commercial_features_list', $features_lists);
+		$features_lists = apply_filters( 'epl_property_commercial_features_list', $features_lists );
 
 		// Check for values in the commercial features.
 		$commercial_value = '';
@@ -1576,7 +1576,7 @@ function epl_property_tab_section_after() {
 			'property_rural_carrying_capacity',
 		);
 
-                $features_lists = apply_filters( 'epl_property_rural_features_list', $features_lists);
+		$features_lists = apply_filters( 'epl_property_rural_features_list', $features_lists );
 
 		// Check for values in the rural features.
 		$rural_value = '';

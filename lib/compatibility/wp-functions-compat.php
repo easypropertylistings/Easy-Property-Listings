@@ -51,25 +51,24 @@ if ( ! function_exists( 'wp_timezone_string' ) ) {
 	 *
 	 * @return string PHP timezone name or a ±HH:MM offset.
 	 */
-        function wp_timezone_string() {
-                $timezone_string = get_option( 'timezone_string' );
-        
-                if ( $timezone_string ) {
-                        return $timezone_string;
-                }
-        
-                $offset  = (float) get_option( 'gmt_offset' );
-                $hours   = (int) $offset;
-                $minutes = ( $offset - $hours );
-        
-                $sign      = ( $offset < 0 ) ? '-' : '+';
-                $abs_hour  = abs( $hours );
-                $abs_mins  = abs( $minutes * 60 );
-                $tz_offset = sprintf( '%s%02d:%02d', $sign, $abs_hour, $abs_mins );
-        
-                return $tz_offset;
-        }
-        
+	function wp_timezone_string() {
+		$timezone_string = get_option( 'timezone_string' );
+
+		if ( $timezone_string ) {
+			return $timezone_string;
+		}
+
+		$offset  = (float) get_option( 'gmt_offset' );
+		$hours   = (int) $offset;
+		$minutes = ( $offset - $hours );
+
+		$sign      = ( $offset < 0 ) ? '-' : '+';
+		$abs_hour  = abs( $hours );
+		$abs_mins  = abs( $minutes * 60 );
+		$tz_offset = sprintf( '%s%02d:%02d', $sign, $abs_hour, $abs_mins );
+
+		return $tz_offset;
+	}
 }
 
 if ( ! function_exists( 'wp_timezone' ) ) {
@@ -82,10 +81,9 @@ if ( ! function_exists( 'wp_timezone' ) ) {
 	 *
 	 * @return DateTimeZone Timezone object.
 	 */
-        function wp_timezone() {
-                return new DateTimeZone( wp_timezone_string() );
-        }
-        
+	function wp_timezone() {
+		return new DateTimeZone( wp_timezone_string() );
+	}
 }
 
 if ( ! function_exists( 'current_datetime' ) ) {
@@ -96,8 +94,7 @@ if ( ! function_exists( 'current_datetime' ) ) {
 	 *
 	 * @return DateTimeImmutable Date and time object.
 	 */
-        function current_datetime() {
-                return new DateTimeImmutable( 'now', wp_timezone() );
-        }
-        
+	function current_datetime() {
+		return new DateTimeImmutable( 'now', wp_timezone() );
+	}
 }

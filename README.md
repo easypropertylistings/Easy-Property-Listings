@@ -38,7 +38,7 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.7 June 6, 2024 =
+= 3.5.7 June 10, 2024 =
 
 -   New: Filters for commercial and rural features: epl_property_commercial_features_list and epl_property_rural_features_list filters.
 -   New: WordPress timezone functions added for compatibility as they are not available prior to WordPress 5.3.0.
