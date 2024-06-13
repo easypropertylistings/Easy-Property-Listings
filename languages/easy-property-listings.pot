@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.5.6\n"
+"Project-Id-Version: Easy Property Listings 3.5.7\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2024-04-11 05:40:24+00:00\n"
+"POT-Creation-Date: 2024-06-10 08:18:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -330,7 +330,7 @@ msgstr ""
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:70
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:234
 #: lib/includes/class-epl-author.php:263 lib/includes/class-epl-author.php:271
-#: lib/includes/functions.php:2109 lib/includes/template-functions.php:2102
+#: lib/includes/functions.php:2109 lib/includes/template-functions.php:2110
 #: lib/post-types/post-type-contact.php:38
 #: lib/post-types/post-type-contact.php:39
 msgid "Contact"
@@ -545,7 +545,7 @@ msgstr ""
 #: lib/includes/admin/help-single.php:52
 #: lib/includes/admin/menus/class-epl-welcome.php:363
 #: lib/includes/admin/menus/menu-help.php:131
-#: lib/includes/template-functions.php:1786
+#: lib/includes/template-functions.php:1793
 #: lib/meta-boxes/meta-box-init.php:1443 lib/meta-boxes/meta-box-init.php:1458
 #: lib/meta-boxes/meta-box-init.php:1473 lib/meta-boxes/meta-box-init.php:1515
 #: lib/meta-boxes/meta-box-init.php:1530 lib/meta-boxes/meta-box-init.php:1546
@@ -2334,7 +2334,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:745
-#: lib/includes/template-functions.php:3221
+#: lib/includes/template-functions.php:3237
 #: lib/shortcodes/class-epl-listing-elements.php:77
 msgid "Listing"
 msgstr ""
@@ -2502,7 +2502,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:843
 #: lib/includes/class-epl-property-meta.php:908
 #: lib/includes/class-epl-property-meta.php:958 lib/includes/functions.php:2360
-#: lib/includes/functions.php:2398 lib/widgets/widget-admin-dashboard.php:185
+#: lib/includes/functions.php:2398 lib/includes/template-functions.php:2383
+#: lib/widgets/widget-admin-dashboard.php:185
 #: lib/widgets/widget-admin-dashboard.php:239
 msgid "Auction"
 msgstr ""
@@ -2543,8 +2544,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:975
 #: lib/includes/class-epl-property-meta.php:981
 #: lib/includes/class-epl-property-meta.php:1169
-#: lib/includes/functions.php:2397 lib/includes/template-functions.php:3670
-#: lib/includes/template-functions.php:3702
+#: lib/includes/functions.php:2397 lib/includes/template-functions.php:3686
+#: lib/includes/template-functions.php:3718
 msgid "For Sale"
 msgstr ""
 
@@ -2560,8 +2561,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1023
 #: lib/includes/class-epl-property-meta.php:1182
 #: lib/includes/class-epl-property-meta.php:1184
-#: lib/includes/template-functions.php:3650
-#: lib/includes/template-functions.php:3713
+#: lib/includes/template-functions.php:3666
+#: lib/includes/template-functions.php:3729
 msgid "For Lease"
 msgstr ""
 
@@ -3247,12 +3248,12 @@ msgstr ""
 msgid "Listing view type"
 msgstr ""
 
-#: lib/includes/functions.php:1288 lib/includes/template-functions.php:1899
+#: lib/includes/functions.php:1288 lib/includes/template-functions.php:1906
 #: lib/widgets/class-epl-widget-recent-property.php:435
 msgid "List"
 msgstr ""
 
-#: lib/includes/functions.php:1289 lib/includes/template-functions.php:1901
+#: lib/includes/functions.php:1289 lib/includes/template-functions.php:1908
 msgid "Grid"
 msgstr ""
 
@@ -3845,111 +3846,111 @@ msgstr ""
 msgid "Property Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1551
+#: lib/includes/template-functions.php:1556
 #: lib/meta-boxes/meta-box-init.php:1344
 msgid "Commercial Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1597
+#: lib/includes/template-functions.php:1604
 #: lib/meta-boxes/meta-box-init.php:1149
 msgid "Rural Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1718
+#: lib/includes/template-functions.php:1725
 msgid "Price: High to Low"
 msgstr ""
 
-#: lib/includes/template-functions.php:1726
+#: lib/includes/template-functions.php:1733
 msgid "Price: Low to High"
 msgstr ""
 
-#: lib/includes/template-functions.php:1735
+#: lib/includes/template-functions.php:1742
 msgid "Date: Newest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1743
+#: lib/includes/template-functions.php:1750
 msgid "Date: Oldest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1750
+#: lib/includes/template-functions.php:1757
 msgid "Status : Current First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1759
+#: lib/includes/template-functions.php:1766
 msgid "Status : Sold/Leased First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1768
+#: lib/includes/template-functions.php:1775
 msgid " A-Z"
 msgstr ""
 
-#: lib/includes/template-functions.php:1777
+#: lib/includes/template-functions.php:1784
 msgid " Z-A"
 msgstr ""
 
-#: lib/includes/template-functions.php:1936
+#: lib/includes/template-functions.php:1944
 msgid "Sort Listings"
 msgstr ""
 
-#: lib/includes/template-functions.php:1938
+#: lib/includes/template-functions.php:1946
 msgid "Sort"
 msgstr ""
 
-#: lib/includes/template-functions.php:2099
+#: lib/includes/template-functions.php:2107
 msgid "About"
 msgstr ""
 
-#: lib/includes/template-functions.php:2100
+#: lib/includes/template-functions.php:2108
 msgid "Bio"
 msgstr ""
 
-#: lib/includes/template-functions.php:2101
+#: lib/includes/template-functions.php:2109
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:2997
+#: lib/includes/template-functions.php:3013
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:3214
+#: lib/includes/template-functions.php:3230
 #. Translators: term name.
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:3216
+#: lib/includes/template-functions.php:3232
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:3298
+#: lib/includes/template-functions.php:3314
 #. Translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3301
+#: lib/includes/template-functions.php:3317
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3318
+#: lib/includes/template-functions.php:3334
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:3319
+#: lib/includes/template-functions.php:3335
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3409
+#: lib/includes/template-functions.php:3425
 msgid "Form submitted successfully"
 msgstr ""
 
-#: lib/includes/template-functions.php:3414
+#: lib/includes/template-functions.php:3430
 msgid "Some issues with form submitted"
 msgstr ""
 
-#: lib/includes/template-functions.php:3433
+#: lib/includes/template-functions.php:3449
 msgid "Email is required"
 msgstr ""
 
-#: lib/includes/template-functions.php:3691
+#: lib/includes/template-functions.php:3707
 msgid "For Sale & Lease"
 msgstr ""
 

@@ -1284,7 +1284,7 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
  * @since 3.4.14 Fix: Custom features' callback output wrongly placed.
  * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @since 3.5.0  New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
- * @since 3.5.2  Tweak: Removed addiitonal property category appearing in additional features list.
+ * @since 3.5.2  Tweak: Removed additional property category appearing in additional features list.
  *
  * @hooked property_tab_section
  */
@@ -1510,7 +1510,7 @@ add_action( 'epl_property_features', 'epl_property_tab_section' );
  *
  * @hooked property_after_tab_section
  *
- * @since 1.0.0  
+ * @since 1.0.0
  * @since 3.4.39 Using correctly spelt get_additional_commercial_features_html function.
  * @since 3.5.7  Filters added; epl_property_commercial_features_list and epl_property_rural_features_list filters.
  */
@@ -1528,7 +1528,7 @@ function epl_property_tab_section_after() {
 			'property_com_zone',
 		);
 
-                $features_lists = apply_filters( 'epl_property_commercial_features_list', $features_lists);
+		$features_lists = apply_filters( 'epl_property_commercial_features_list', $features_lists );
 
 		// Check for values in the commercial features.
 		$commercial_value = '';
@@ -1576,7 +1576,7 @@ function epl_property_tab_section_after() {
 			'property_rural_carrying_capacity',
 		);
 
-                $features_lists = apply_filters( 'epl_property_rural_features_list', $features_lists);
+		$features_lists = apply_filters( 'epl_property_rural_features_list', $features_lists );
 
 		// Check for values in the rural features.
 		$rural_value = '';
@@ -1918,11 +1918,12 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  *
  * @param array $attributes Attributes.
  *
+ * @since 2.0
  * @since 3.3 Revised.
  * @since 3.4.44 Unique ID for sort dropdown per instance.
  * @since 3.4.44 Get shortcode attributes as parameter.
  * @since 3.5 Added accessibility labels to select elements.
- * @since 2.0
+ * @since 3.5.7 Instance ID default to 1 to enable sorting. The $attributes option is required.
  */
 function epl_sorting_tool( $attributes = array() ) {
 
