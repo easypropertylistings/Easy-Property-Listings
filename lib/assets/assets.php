@@ -52,6 +52,7 @@ function epl_get_admin_screens() {
  * @since 3.5    Renamed Google Maps script name to: epl-google-map-v-3. Display hidden fields. Added Google maps error message.
  * @since 3.5.2  New: Google Maps load asynchoronously.
  * @since 3.5.4  Display warning note when display address is unchecked.
+ * @since 3.5.8  Using version 3.55 of gmap to avoid deprication notice for markers.
  *
  * @return void
  */
@@ -84,7 +85,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 
 	if ( 'edit.php' === $screen || 'post.php' === $screen || 'post-new.php' === $screen || 'easy-property-listings_page_epl-extensions' === $screen || 'easy-property-listings_page_epl-settings' === $screen || 'easy-property-listings_page_epl-extensions' === $screen ) {
 
-		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype&loading=async';
+		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.55&callback=Function.prototype&loading=async';
 		$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 		if ( ! empty( $epl_google_api_key ) ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
@@ -134,7 +135,7 @@ function epl_wp_enqueue_scripts() {
 
 	if ( is_epl_post() && shortcode_exists( 'listing_map' ) ) {
 
-		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=Function.prototype&loading=async';
+		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.55&libraries=marker&loading=async&callback=EPL_Default_Map_Loader';
 		$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 		if ( ! empty( $epl_google_api_key ) ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
