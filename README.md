@@ -38,6 +38,12 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.8 August 7, 2024 =
+
+-   New: Added REST API support for custom meta fields.
+-   New: Google Map loader function.
+-   Tweak: Changed google maps version to 3.55 to remove markers warning.
+
 = 3.5.7 June 10, 2024 =
 
 -   New: Filters for commercial and rural features: epl_property_commercial_features_list and epl_property_rural_features_list filters.
