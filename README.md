@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.9 August 12, 2024 =
+
+-   Tweak: Globally load hooks and frontend functions to allow page builders like Elementor to access them in the editor.
+
 = 3.5.8 August 7, 2024 =
 
 -   New: Added REST API support for custom meta fields.
