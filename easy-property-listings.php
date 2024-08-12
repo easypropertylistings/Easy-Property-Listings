@@ -118,7 +118,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.5.8' );
+				define( 'EPL_PROPERTY_VER', '3.5.9' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
