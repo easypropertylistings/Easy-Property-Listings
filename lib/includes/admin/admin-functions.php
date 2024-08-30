@@ -530,16 +530,16 @@ function epl_verify_nonce() {
  * @since 3.5.10
  */
 function epl_validate_import_file() {
-        
+
 	if ( empty( $_FILES['epl_import'] ) || empty( $_FILES['epl_import']['name'] ) ) {
 		wp_die( esc_html__( 'Missing import file. Please provide an import file.', 'easy-property-listings' ) );
 	}
 
-        if ( isset( $_FILES['epl_import']['error'] ) && $_FILES['epl_import']['error'] > 0 ) {
+	if ( isset( $_FILES['epl_import']['error'] ) && $_FILES['epl_import']['error'] > 0 ) {
 		wp_die( esc_html__( 'Error uploading the import file.', 'easy-property-listings' ) );
 	}
 
-	if ( empty( $_FILES['epl_import']['type'] ) || ! in_array( strtolower( $_FILES['epl_import']['type'] ), ['text/plain'], true ) ) {
+	if ( empty( $_FILES['epl_import']['type'] ) || ! in_array( strtolower( $_FILES['epl_import']['type'] ), array( 'text/plain' ), true ) ) {
 		wp_die( esc_html__( 'The file you uploaded does not appear to be a valid import file.', 'easy-property-listings' ) );
 	}
 }
