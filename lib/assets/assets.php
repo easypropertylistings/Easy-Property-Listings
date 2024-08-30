@@ -134,7 +134,7 @@ function epl_wp_enqueue_scripts() {
 
 	if ( is_epl_post() && shortcode_exists( 'listing_map' ) ) {
 
-		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.55&callback=Function.prototype&loading=async';
+		$googleapiurl       = 'https://maps.googleapis.com/maps/api/js?v=3.55&libraries=marker&loading=async&callback=EPL_Default_Map_Loader';
 		$epl_google_api_key = epl_get_option( 'epl_google_api_key' );
 		if ( ! empty( $epl_google_api_key ) ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
