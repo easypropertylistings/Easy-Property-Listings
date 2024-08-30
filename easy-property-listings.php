@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: https://www.realestateconnected.com.au/
- * Version: 3.5.7
+ * Version: 3.5.9
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.5.7
+ * @version 3.5.9
  */
 
 // Exit if accessed directly.
@@ -118,7 +118,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.5.7' );
+				define( 'EPL_PROPERTY_VER', '3.5.9' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -308,15 +308,15 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'includes/admin/listing-elements-gui.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
-				require_once EPL_PATH_LIB . 'includes/options-front-end.php';
-				require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
-				require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
-				require_once EPL_PATH_LIB . 'hooks/hook-floorplan.php';
-				require_once EPL_PATH_LIB . 'hooks/hook-mini-web.php';
-				require_once EPL_PATH_LIB . 'hooks/hook-read-more.php';
-				require_once EPL_PATH_LIB . 'hooks/hook-energy-certificate.php';
 			}
-
+			
+			require_once EPL_PATH_LIB . 'includes/options-front-end.php';
+			require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
+			require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';
+			require_once EPL_PATH_LIB . 'hooks/hook-floorplan.php';
+			require_once EPL_PATH_LIB . 'hooks/hook-mini-web.php';
+			require_once EPL_PATH_LIB . 'hooks/hook-read-more.php';
+			require_once EPL_PATH_LIB . 'hooks/hook-energy-certificate.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-map.php';
 			require_once EPL_PATH_LIB . 'shortcodes/class-epl-advanced-shortcode-listing.php';
 			require_once EPL_PATH_LIB . 'shortcodes/class-epl-listing-elements.php';
@@ -336,7 +336,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-render-fields.php';
-                        require_once EPL_PATH_LIB . 'includes/class-epl-rest-api.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-rest-api.php';
 
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
 				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';
