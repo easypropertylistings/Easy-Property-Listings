@@ -2353,7 +2353,7 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
  * Output iCal clickable dates. Use the epl_ical_args filter to alter the labels.
  *
  * @since      2.0
- * @since      3.5.7 Different subject for auction. 
+ * @since      3.5.7 Different subject for auction.
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
@@ -2378,10 +2378,9 @@ function epl_process_event_cal_request() {
 
 						$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
 
-                                                if( isset( $_GET['event_type'] ) && 'auction' == sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
-
-                                                        $subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
-                                                }
+						if ( isset( $_GET['event_type'] ) && 'auction' == sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
+							$subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+						}
 
 						$address      = '';
 						$prop_sub_num = get_post_meta( $post_id, 'property_address_sub_number', true );
@@ -3939,13 +3938,13 @@ function epl_get_total_agent_count() {
  * @return int|false The user ID if found, false otherwise.
  */
 function epl_get_agent_id_by_login( $login ) {
-        if ( ! empty( $login ) ) {
+	if ( ! empty( $login ) ) {
 		$user = get_user_by( 'login', $login );
 		return $user ? $user->ID : false;
-        }
-        return false;
+	}
+		return false;
 }
-    
+
 /**
  * Get the count of active agents.
  *
@@ -3955,18 +3954,18 @@ function epl_get_agent_id_by_login( $login ) {
  * @return int The count of unique active agents.
  */
 function epl_get_active_agent_count() {
-        global $epl_author;
-    
-	$agents           = array( $epl_author->author_id );
-	
-	$second_agent     = get_property_meta( 'property_second_agent' );
-	$third_agent      = get_property_meta( 'property_third_agent' );
-	$fourth_agent     = get_property_meta( 'property_fourth_agent' );
-	
+		global $epl_author;
+
+	$agents = array( $epl_author->author_id );
+
+	$second_agent = get_property_meta( 'property_second_agent' );
+	$third_agent  = get_property_meta( 'property_third_agent' );
+	$fourth_agent = get_property_meta( 'property_fourth_agent' );
+
 	$second_author_id = epl_get_agent_id_by_login( $second_agent );
 	$third_author_id  = epl_get_agent_id_by_login( $third_agent );
 	$fourth_author_id = epl_get_agent_id_by_login( $fourth_agent );
-	
+
 	if ( false !== $second_author_id ) {
 		$agents[] = $second_author_id;
 	}
@@ -3976,10 +3975,10 @@ function epl_get_active_agent_count() {
 	if ( false !== $fourth_author_id ) {
 		$agents[] = $fourth_author_id;
 	}
-	
+
 	$agents = array_unique( $agents );
 	$count  = count( $agents );
-	
+
 	return apply_filters( 'epl_get_active_agent_count', $count );
 }
 
