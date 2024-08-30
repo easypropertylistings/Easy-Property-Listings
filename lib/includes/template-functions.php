@@ -3933,15 +3933,15 @@ function epl_get_total_agent_count() {
 /**
  * Helper function to get user ID by login.
  *
- * @since 3.5.8
+ * @since 3.5.10
  *
  * @param string $login The login name of the user.
  * @return int|false The user ID if found, false otherwise.
  */
 function epl_get_agent_id_by_login( $login ) {
         if ( ! empty( $login ) ) {
-            $user = get_user_by( 'login', $login );
-            return $user ? $user->ID : false;
+		$user = get_user_by( 'login', $login );
+		return $user ? $user->ID : false;
         }
         return false;
 }
@@ -3950,37 +3950,37 @@ function epl_get_agent_id_by_login( $login ) {
  * Get the count of active agents.
  *
  * @since 3.5.3
+ * @since 3.5.10 Fix: blank agents.
  *
  * @return int The count of unique active agents.
  */
 function epl_get_active_agent_count() {
         global $epl_author;
     
-        $agents = array( $epl_author->author_id );
-    
-        $second_agent = get_property_meta( 'property_second_agent' );
-        $third_agent  = get_property_meta( 'property_third_agent' );
-        $fourth_agent = get_property_meta( 'property_fourth_agent' );
-    
-        $second_author_id = epl_get_agent_id_by_login( $second_agent );
-        $third_author_id  = epl_get_agent_id_by_login( $third_agent );
-        $fourth_author_id = epl_get_agent_id_by_login( $fourth_agent );
-    
-        if ( false !== $second_author_id ) {
-            $agents[] = $second_author_id;
-        }
-        if ( false !== $third_author_id ) {
-            $agents[] = $third_author_id;
-        }
-        if ( false !== $fourth_author_id ) {
-            $agents[] = $fourth_author_id;
-        }
-    
-        $agents = array_unique( $agents );
-    
-        $count = count( $agents );
-    
-        return apply_filters( 'epl_get_active_agent_count', $count );
+	$agents           = array( $epl_author->author_id );
+	
+	$second_agent     = get_property_meta( 'property_second_agent' );
+	$third_agent      = get_property_meta( 'property_third_agent' );
+	$fourth_agent     = get_property_meta( 'property_fourth_agent' );
+	
+	$second_author_id = epl_get_agent_id_by_login( $second_agent );
+	$third_author_id  = epl_get_agent_id_by_login( $third_agent );
+	$fourth_author_id = epl_get_agent_id_by_login( $fourth_agent );
+	
+	if ( false !== $second_author_id ) {
+		$agents[] = $second_author_id;
+	}
+	if ( false !== $third_author_id ) {
+		$agents[] = $third_author_id;
+	}
+	if ( false !== $fourth_author_id ) {
+		$agents[] = $fourth_author_id;
+	}
+	
+	$agents = array_unique( $agents );
+	$count  = count( $agents );
+	
+	return apply_filters( 'epl_get_active_agent_count', $count );
 }
 
 /**

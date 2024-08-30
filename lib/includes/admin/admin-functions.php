@@ -474,6 +474,7 @@ function epl_settings_upgrade_tab() {
  *
  * @since 3.3.0
  * @since 3.5 Fixed import function.
+ * @since 3.5.10 Fix: Tools Import function adjusted with more checked before performing the settings import.
  */
 function epl_handle_tools_form() {
 	if ( ! isset( $_GET['page'] ) || 'epl-tools' !== $_GET['page'] || ! isset( $_REQUEST['epl_tools_submit'] ) ) {
@@ -511,7 +512,8 @@ add_action( 'admin_init', 'epl_handle_tools_form' );
 
 /**
  * Verify nonce for the tools form.
- * @since 3.5.8
+ *
+ * @since 3.5.10
  */
 function epl_verify_nonce() {
 	if (
@@ -524,7 +526,8 @@ function epl_verify_nonce() {
 
 /**
  * Validate the import file.
- * @since 3.5.8
+ *
+ * @since 3.5.10
  */
 function epl_validate_import_file() {
         
@@ -543,7 +546,8 @@ function epl_validate_import_file() {
 
 /**
  * Export the settings.
- * @since 3.5.8
+ *
+ * @since 3.5.10
  */
 function epl_export_settings() {
 	$export = get_option( 'epl_settings' );
@@ -563,7 +567,8 @@ function epl_export_settings() {
 
 /**
  * Import the settings.
- * @since 3.5.8
+ *
+ * @since 3.5.10
  */
 function epl_import_settings() {
 	$upload_overrides = array( 'test_form' => false );
@@ -580,7 +585,8 @@ function epl_import_settings() {
 
 /**
  * Reset the settings.
- * @since 3.5.8
+ *
+ * @since 3.5.10
  */
 function epl_reset_settings() {
 	if ( ! isset( $_GET['_reset_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_reset_wpnonce'] ) ), 'epl_reset_settings' ) ) {

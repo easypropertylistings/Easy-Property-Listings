@@ -26,6 +26,7 @@ class EPL_Search_Fields {
 	 * Initialize hooks.
 	 *
 	 * @since  3.0
+	 *
 	 * @return void
 	 */
 	public function init() {
@@ -44,14 +45,16 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Text field.
 	 *
-	 * @since  3.0
-         * @since  3.5.8 Icon support added.
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
+	 *
 	 * @return void
+	 *
+	 * @since  3.0
+         * @since  3.5.10 Icon support added.
 	 */
 	public function render_text( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -65,7 +68,7 @@ class EPL_Search_Fields {
 			</label>
 			<div class="field">
                                 <?php if( !empty( $field['icon'] ) ) : ?>
-                                        <i class="epl-search-builder-field-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
+                                        <i class="epl-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
                                 <?php endif; ?>
 				<input
 					placeholder="<?php echo esc_attr( $placeholder ); ?>"
@@ -86,14 +89,16 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Checkbox field.
 	 *
-	 * @since  3.0
-         * @since  3.5.8 Icon support added.
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
+	 *
 	 * @return void
+	 *
+	 * @since  3.0
+         * @since  3.5.10 Icon support added.
 	 */
 	public function render_checkbox( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -101,7 +106,7 @@ class EPL_Search_Fields {
 		}
 		?>
                 <?php if( !empty( $field['icon'] ) ) : ?>
-                        <i class="epl-search-builder-field-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
+                        <i class="epl-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
                 <?php endif; ?>
 		<span class="epl-search-row epl-search-row-checkbox <?php echo isset( $field['class'] ) ? esc_attr( $field['class'] ) : ''; ?>">
 			<input type="checkbox" name="<?php echo esc_attr( $field['meta_key'] ); ?>" id="<?php echo esc_attr( $field['meta_key'] ); ?>" class="in-field <?php echo esc_attr( $field['meta_key'] ); ?>"
@@ -123,14 +128,16 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Select field.
 	 *
-	 * @since  3.0
-         * @since  3.5.8 Icon support added.
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
+	 *
 	 * @return void
+	 *
+	 * @since  3.0
+         * @since  3.5.10 Icon support added.
 	 */
 	public function render_select( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 
@@ -155,7 +162,7 @@ class EPL_Search_Fields {
 			</label>
 			<div class="field">
                                 <?php if( !empty( $field['icon'] ) ) : ?>
-                                        <i class="epl-search-builder-field-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
+                                        <i class="epl-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
                                 <?php endif; ?>
 				<select
 					name="<?php echo esc_attr( $field['meta_key'] ); ?>"
@@ -189,17 +196,19 @@ class EPL_Search_Fields {
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
+	 *
 	 * @return void
-	 * @since  3.0
+	 *
+	 * @since 3.0
 	 * @since 3.4.36 Fix: Corrected issue with multi select where values are numbers.
 	 * @since 3.4.48 Tweak: Accessibility label added for select field.
-         * @since  3.5.8 Icon support added.
+         * @since 3.5.10 Icon support added.
 	 */
 	public function render_multiple_select( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
 			echo '<div class="' . esc_attr( $field['wrap_start'] ) . '">';
 		}
-				$field_label = apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] );
+		$field_label = apply_filters( 'epl_search_widget_label_' . $field['meta_key'], $field['label'] );
 		?>
 		<div class="epl-search-row epl-search-row-select epl-<?php echo esc_attr( $field['meta_key'] ); ?> fm-block <?php echo isset( $field['class'] ) ? esc_attr( $field['class'] ) : ''; ?>">
 			<label for="<?php echo esc_attr( $field['meta_key'] ); ?>" class="epl-search-label fm-label">
@@ -207,7 +216,7 @@ class EPL_Search_Fields {
 			</label>
 			<div class="field">
                                 <?php if( !empty( $field['icon'] ) ) : ?>
-                                        <i class="epl-search-builder-field-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
+                                        <i class="epl-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
                                 <?php endif; ?>
 				<select aria-label="<?php echo esc_attr( $field_label ); ?>" name="<?php echo esc_attr( $field['meta_key'] ); ?>[]"
 					id="<?php echo esc_attr( $field['meta_key'] ); ?>"
@@ -235,14 +244,16 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Number field.
 	 *
-	 * @since  3.0
-         * @since  3.5.8 Icon support added.
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
+	 *
 	 * @return void
+	 *
+	 * @since  3.0
+         * @since  3.5.10 Icon support added.
 	 */
 	public function render_number( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -256,7 +267,7 @@ class EPL_Search_Fields {
 			</label>
 			<div class="field">
                                 <?php if( !empty( $field['icon'] ) ) : ?>
-                                        <i class="epl-search-builder-field-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
+                                        <i class="epl-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
                                 <?php endif; ?>
 				<input type="number" class="in-field field-width <?php echo esc_attr( $field['meta_key'] ); ?>"
 					placeholder="<?php echo esc_attr( $placeholder ); ?>"
@@ -275,13 +286,15 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Hidden field.
 	 *
-	 * @since  3.0
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
+	 *
 	 * @return void
+	 *
+	 * @since  3.0
 	 */
 	public function render_hidden( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -302,14 +315,16 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Radio field.
 	 *
-	 * @since  3.0
-         * @since  3.5.8 Icon support added.
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
+	 *
 	 * @return void
+	 *
+	 * @since  3.0
+         * @since  3.5.10 Icon support added.
 	 */
 	public function render_radio( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -322,7 +337,7 @@ class EPL_Search_Fields {
 			</label>
 			<div class="field">
                                 <?php if( !empty( $field['icon'] ) ) : ?>
-                                        <i class="epl-search-builder-field-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
+                                        <i class="epl-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
                                 <?php endif; ?>
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
@@ -353,15 +368,17 @@ class EPL_Search_Fields {
 	/**
 	 * Renders search frontend Radio field.
 	 *
-	 * @since  3.0.0
-         * @since  3.5.8 Icon support added.
 	 * @param  array  $field The field.
 	 * @param  string $config Configuration.
 	 * @param  string $value Value.
 	 * @param  string $post_type Post type name.
 	 * @param  string $property_status Listing status.
+	 *
 	 * @return void
+	 *
+	 * @since  3.0.0
 	 * @since  3.4.22 For attribute added for checkbox labels.
+         * @since  3.5.10 Icon support added.
 	 */
 	public function render_checkbox_multiple( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 		if ( isset( $field['wrap_start'] ) ) {
@@ -374,7 +391,7 @@ class EPL_Search_Fields {
 			</label>
 			<div class="field">
                                 <?php if( !empty( $field['icon'] ) ) : ?>
-                                        <i class="epl-search-builder-field-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
+                                        <i class="epl-icon <?php echo esc_attr( $field['icon'] ); ?>"></i>
                                 <?php endif; ?>
 				<?php
 				if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
