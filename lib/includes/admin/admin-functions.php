@@ -476,7 +476,6 @@ function epl_settings_upgrade_tab() {
  * @since 3.5 Fixed import function.
  */
 function epl_handle_tools_form() {
-
 	if ( ! isset( $_GET['page'] ) || 'epl-tools' !== $_GET['page'] || ! isset( $_REQUEST['epl_tools_submit'] ) ) {
 		return;
 	}
@@ -484,76 +483,113 @@ function epl_handle_tools_form() {
 	if ( ! isset( $_REQUEST['action'] ) ) {
 		return;
 	}
-        
+
 	$action = sanitize_text_field( wp_unslash( $_REQUEST['action'] ) );
-        
-	if ( in_array( $action, array( 'import' ), true ) ) {
-                
-		if (
-			! isset( $_POST['epl_nonce_tools_form'] ) ||
-			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['epl_nonce_tools_form'] ) ), 'epl_nonce_tools_form' )
-		) {
-			wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
-		}
 
-                if ( empty( $_FILES['epl_import'] ) || empty( $_FILES['epl_import']['full_path']) ) {
-                        wp_die( esc_html__( 'Missing import file. Please provide an import file.', 'easy-property-listings' ) );
-                }
-
-                if ( empty( $_FILES['epl_import']['type'] ) || ! in_array( strtolower( $_FILES['epl_import']['type'] ), ['text/plain'], true ) ) {
-                        wp_die( esc_html__( 'The file you uploaded does not appear to be a valid import file.', 'easy-property-listings' ) );
-                }
+	if ( 'import' === $action ) {
+		epl_verify_nonce();
+		epl_validate_import_file();
 	}
 
-	// Sanitize post array.
 	$post_data = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
 
 	switch ( $action ) {
-
 		case 'export':
-			$export = get_option( 'epl_settings' );
-
-			header( 'Content-Description: File Transfer' );
-			header( 'Content-Type: application/octet-stream' );
-			header( 'Content-Disposition: attachment; filename=epl-settings-export.txt' );
-			header( 'Content-Transfer-Encoding: binary' );
-			header( 'Expires: 0' );
-			header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
-			header( 'Pragma: public' );
-			ob_clean();
-			flush();
-			echo epl_serialize( $export ); // phpcs:ignore
-			die;
-		break; // phpcs:ignore
+			epl_export_settings();
+			break;
 
 		case 'import':
-			
-			$upload_overrides = array( 'test_form' => false );
-                        $movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides );
-
-                        if ( $movefile && ! isset( $movefile['error'] ) ) {
-                                $imported_data  = epl_remote_url_get( $movefile['url'] );
-                                $imported_data  = epl_unserialize( $imported_data );
-                                $options_backup = get_option( 'epl_settings' );
-                                update_option( 'epl_settings_backup', $options_backup );
-                                $status = update_option( 'epl_settings', $imported_data );
-                        }
-
+			epl_import_settings();
 			break;
 
 		case 'reset':
-			if ( ! isset( $_GET['_reset_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_reset_wpnonce'] ) ), 'epl_reset_settings' ) ) {
-				wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
-			} else {
-				$epl_settings = epl_get_default_settings();
-				update_option( 'epl_settings', $epl_settings );
-			}
-
+			epl_reset_settings();
 			break;
 	}
-
 }
 add_action( 'admin_init', 'epl_handle_tools_form' );
+
+/**
+ * Verify nonce for the tools form.
+ * @since 3.5.8
+ */
+function epl_verify_nonce() {
+	if (
+		! isset( $_POST['epl_nonce_tools_form'] ) ||
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['epl_nonce_tools_form'] ) ), 'epl_nonce_tools_form' )
+	) {
+		wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
+	}
+}
+
+/**
+ * Validate the import file.
+ * @since 3.5.8
+ */
+function epl_validate_import_file() {
+        
+	if ( empty( $_FILES['epl_import'] ) || empty( $_FILES['epl_import']['name'] ) ) {
+		wp_die( esc_html__( 'Missing import file. Please provide an import file.', 'easy-property-listings' ) );
+	}
+
+        if ( isset( $_FILES['epl_import']['error'] ) && $_FILES['epl_import']['error'] > 0 ) {
+		wp_die( esc_html__( 'Error uploading the import file.', 'easy-property-listings' ) );
+	}
+
+	if ( empty( $_FILES['epl_import']['type'] ) || ! in_array( strtolower( $_FILES['epl_import']['type'] ), ['text/plain'], true ) ) {
+		wp_die( esc_html__( 'The file you uploaded does not appear to be a valid import file.', 'easy-property-listings' ) );
+	}
+}
+
+/**
+ * Export the settings.
+ * @since 3.5.8
+ */
+function epl_export_settings() {
+	$export = get_option( 'epl_settings' );
+
+	header( 'Content-Description: File Transfer' );
+	header( 'Content-Type: application/octet-stream' );
+	header( 'Content-Disposition: attachment; filename=epl-settings-export.txt' );
+	header( 'Content-Transfer-Encoding: binary' );
+	header( 'Expires: 0' );
+	header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
+	header( 'Pragma: public' );
+	ob_clean();
+	flush();
+	echo epl_serialize( $export ); // phpcs:ignore
+	die;
+}
+
+/**
+ * Import the settings.
+ * @since 3.5.8
+ */
+function epl_import_settings() {
+	$upload_overrides = array( 'test_form' => false );
+	$movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides );
+
+	if ( $movefile && ! isset( $movefile['error'] ) ) {
+		$imported_data  = epl_remote_url_get( $movefile['url'] );
+		$imported_data  = epl_unserialize( $imported_data );
+		$options_backup = get_option( 'epl_settings' );
+		update_option( 'epl_settings_backup', $options_backup );
+		$status = update_option( 'epl_settings', $imported_data );
+	}
+}
+
+/**
+ * Reset the settings.
+ * @since 3.5.8
+ */
+function epl_reset_settings() {
+	if ( ! isset( $_GET['_reset_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_reset_wpnonce'] ) ), 'epl_reset_settings' ) ) {
+		wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
+	} else {
+		$epl_settings = epl_get_default_settings();
+		update_option( 'epl_settings', $epl_settings );
+	}
+}
 
 /**
  * Upgrade Database Notice
