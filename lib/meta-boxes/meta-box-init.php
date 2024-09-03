@@ -98,7 +98,7 @@ function epl_get_meta_boxes() {
 							'maxlength' => '40',
 							'help'      => __( 'Search for third agent.', 'easy-property-listings' ),
 							'class'     => 'epl-property-second-agent',
-							'include'	=> ['business', 'commercial', 'commercial_land']	
+							'include'   => array( 'business', 'commercial', 'commercial_land' ),
 						),
 
 						array(
@@ -108,7 +108,7 @@ function epl_get_meta_boxes() {
 							'maxlength' => '40',
 							'help'      => __( 'Search for fourth agent.', 'easy-property-listings' ),
 							'class'     => 'epl-property-second-agent',
-							'include'	=> ['business', 'commercial', 'commercial_land']
+							'include'   => array( 'business', 'commercial', 'commercial_land' ),
 						),
 
 						array(
@@ -137,11 +137,11 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'      => 'property_list_date',
-							'label'     => __( 'Date Listed', 'easy-property-listings' ),
-							'type'      => 'date',
-							'maxlength' => '100',
-							'autocomplete'	=>	'off'
+							'name'         => 'property_list_date',
+							'label'        => __( 'Date Listed', 'easy-property-listings' ),
+							'type'         => 'date',
+							'maxlength'    => '100',
+							'autocomplete' => 'off',
 						),
 
 						array(
@@ -176,11 +176,11 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'      => 'property_mod_date',
-							'label'     => __( 'XML Importer Mod Date', 'easy-property-listings' ),
-							'type'      => 'text',
-							'maxlength' => '60',
-							'autocomplete'	=>	'off'
+							'name'         => 'property_mod_date',
+							'label'        => __( 'XML Importer Mod Date', 'easy-property-listings' ),
+							'type'         => 'text',
+							'maxlength'    => '60',
+							'autocomplete' => 'off',
 						),
 
 						array(
@@ -954,7 +954,7 @@ function epl_get_meta_boxes() {
 							'name'      => 'property_price_currency',
 							'label'     => __( 'Currency', 'easy-property-listings' ),
 							'type'      => 'hidden',
-							'maxlength' => '10'
+							'maxlength' => '10',
 						),
 
 						array(
@@ -972,11 +972,11 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'      => 'property_auction',
-							'label'     => __( 'Auction Date', 'easy-property-listings' ),
-							'type'      => 'auction-date',
-							'maxlength' => '100',
-							'autocomplete'	=>	'off'
+							'name'         => 'property_auction',
+							'label'        => __( 'Auction Date', 'easy-property-listings' ),
+							'type'         => 'auction-date',
+							'maxlength'    => '100',
+							'autocomplete' => 'off',
 						),
 
 						array(
@@ -1022,11 +1022,11 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'      => 'property_sold_date',
-							'label'     => __( 'Sale Date', 'easy-property-listings' ),
-							'type'      => 'sold-date',
-							'maxlength' => '100',
-							'autocomplete'	=>	'off'
+							'name'         => 'property_sold_date',
+							'label'        => __( 'Sale Date', 'easy-property-listings' ),
+							'type'         => 'sold-date',
+							'maxlength'    => '100',
+							'autocomplete' => 'off',
 						),
 
 						array(
@@ -1066,7 +1066,7 @@ function epl_get_meta_boxes() {
 							'name'      => 'property_rent_currency',
 							'label'     => __( 'Currency', 'easy-property-listings' ),
 							'type'      => 'hidden',
-							'maxlength' => '10'
+							'maxlength' => '10',
 						),
 
 						array(
@@ -1107,19 +1107,19 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'      => 'property_date_available',
-							'label'     => __( 'Date Available', 'easy-property-listings' ),
-							'type'      => 'date',
-							'maxlength' => '100',
-							'autocomplete'	=>	'off'
+							'name'         => 'property_date_available',
+							'label'        => __( 'Date Available', 'easy-property-listings' ),
+							'type'         => 'date',
+							'maxlength'    => '100',
+							'autocomplete' => 'off',
 						),
 
 						array(
-							'name'      => 'property_date_leased',
-							'label'     => __( 'Leased Date', 'easy-property-listings' ),
-							'type'      => 'date',
-							'maxlength' => '100',
-							'autocomplete'	=>	'off'
+							'name'         => 'property_date_leased',
+							'label'        => __( 'Leased Date', 'easy-property-listings' ),
+							'type'         => 'date',
+							'maxlength'    => '100',
+							'autocomplete' => 'off',
 						),
 
 						array(
@@ -1258,11 +1258,11 @@ function epl_get_meta_boxes() {
 						),
 
 						array(
-							'name'      => 'property_com_lease_end_date',
-							'label'     => __( 'Lease End Date', 'easy-property-listings' ),
-							'type'      => 'date',
-							'maxlength' => '100',
-							'autocomplete'	=>	'off'
+							'name'         => 'property_com_lease_end_date',
+							'label'        => __( 'Lease End Date', 'easy-property-listings' ),
+							'type'         => 'date',
+							'maxlength'    => '100',
+							'autocomplete' => 'off',
 						),
 
 						array(
@@ -1597,9 +1597,8 @@ function epl_get_meta_boxes() {
 					}
 				}
 			} else {
-
-                                unset( $epl_meta_boxes[ $box_index ] );
-                        }
+				unset( $epl_meta_boxes[ $box_index ] );
+			}
 		}
 	}
 
