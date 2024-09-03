@@ -7,6 +7,7 @@
  * @copyright   Copyright (c) 2024, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.5.8
+ * @since 3.5.10 Fix error when group fields are empty.
  */
 
 // Exit if accessed directly.
@@ -90,8 +91,13 @@ if ( ! class_exists( 'EPL_Rest_API' ) ) :
 
 						foreach ( $epl_meta_box['groups'] as $group ) {
 
-							$fields = $group['fields'];
-							$fields = array_filter( $fields );
+                                                        if ( isset( $group['fields'] ) && is_array( $group['fields'] ) ) {
+                                                                $fields = $group['fields'];
+                                                                $fields = array_filter( $fields );
+
+                                                        } else {
+                                                                $fields = [];
+                                                        }
 
 							if ( ! empty( $fields ) ) {
 

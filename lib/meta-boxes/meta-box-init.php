@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0
  * @since 3.4.1 Added property_price_currency,property_rent_currency,property_floorplan_mod_date.
  * @since 3.4.23 Ordered the additional featured items to a-z order.
+ * @since 3.5.10 Fix warning when group is unset using filter.
  */
 function epl_get_meta_boxes() {
 
@@ -1581,7 +1582,7 @@ function epl_get_meta_boxes() {
 
 	if ( ! empty( $epl_meta_boxes ) ) {
 
-		foreach ( $epl_meta_boxes as &$epl_meta_box ) {
+		foreach ( $epl_meta_boxes as $box_index => &$epl_meta_box ) {
 			$meta_box_block_id = str_replace( '-', '_', $epl_meta_box['id'] );
 			$epl_meta_box      = apply_filters( 'epl_meta_box_block_' . $meta_box_block_id, $epl_meta_box );
 			if ( ! empty( $epl_meta_box['groups'] ) ) {
@@ -1595,7 +1596,10 @@ function epl_get_meta_boxes() {
 						}
 					}
 				}
-			}
+			} else {
+
+                                unset( $epl_meta_boxes[ $box_index ] );
+                        }
 		}
 	}
 

@@ -263,6 +263,7 @@ add_action( 'epl_manage_listing_column_property_thumb', 'epl_manage_listing_colu
  * @since 3.4.27 Fixed html escaping issue and formatting for land size.
  * @since 3.4.30 Using epl_get_meta_field_label for dynamic labels.
  * @since 3.5 Escaping values.
+ * @since 3.5.10 Fix warning for trim when home_open is null.
  */
 function epl_manage_listing_column_listing_callback() {
 	global $post,$property;
@@ -270,7 +271,7 @@ function epl_manage_listing_column_listing_callback() {
 	$property_address_suburb = get_the_term_list( $post->ID, 'location', '', ', ', '' );
 	$heading                 = $property->get_property_meta( 'property_heading' );
 	$home_open               = $property->get_property_meta( 'property_inspection_times' );
-	$home_open               = trim( $home_open );
+	$home_open               = is_string( $home_open ) ? trim( $home_open ) : '';
 	$beds                    = $property->get_property_meta( 'property_bedrooms' );
 	$baths                   = $property->get_property_meta( 'property_bathrooms' );
 	$rooms                   = $property->get_property_meta( 'property_rooms', false );
