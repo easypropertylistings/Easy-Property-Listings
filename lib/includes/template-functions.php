@@ -337,6 +337,7 @@ function epl_get_template_part( $template, $arguments = array(), $default_templa
 
 	if ( ! $template_location ) {
 		$template = $base_path . $template;
+                $original_template = $template;
 		if ( ! file_exists( $template ) ) {
 			// Fallback to core.
 			$base_path = epl_get_fallback_content_path();
