@@ -7,7 +7,6 @@
  * @copyright   Copyright (c) 2024, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.5.8
- * @since 3.5.10 Fix error when group fields are empty.
  */
 
 // Exit if accessed directly.
@@ -42,6 +41,8 @@ if ( ! class_exists( 'EPL_Rest_API' ) ) :
 		 * @return EPL_Rest_API instance
 		 * @static
 		 * @staticvar array $instance
+		 *
+		 * @since 3.5.8
 		 */
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof EPL_Rest_API ) ) {
@@ -53,6 +54,8 @@ if ( ! class_exists( 'EPL_Rest_API' ) ) :
 
 		/**
 		 * Add hooks to Rest API.
+		 *
+		 * @since 3.5.8
 		 */
 		public function hooks() {
 			foreach ( epl_get_core_post_types() as $post_type ) {
@@ -68,6 +71,9 @@ if ( ! class_exists( 'EPL_Rest_API' ) ) :
 		 * @param array $request  The request.
 		 *
 		 * @return WP_REST_Response $response
+		 *
+		 * @since 3.5.8
+		 * @since 3.5.10 Fix error when group fields are empty.
 		 */
 		public function meta_to_rest_api( $response, $post, $request ) {
 
@@ -91,13 +97,13 @@ if ( ! class_exists( 'EPL_Rest_API' ) ) :
 
 						foreach ( $epl_meta_box['groups'] as $group ) {
 
-                                                        if ( isset( $group['fields'] ) && is_array( $group['fields'] ) ) {
-                                                                $fields = $group['fields'];
-                                                                $fields = array_filter( $fields );
+							if ( isset( $group['fields'] ) && is_array( $group['fields'] ) ) {
+								$fields = $group['fields'];
+								$fields = array_filter( $fields );
 
-                                                        } else {
-                                                                $fields = [];
-                                                        }
+							} else {
+								$fields = array();
+							}
 
 							if ( ! empty( $fields ) ) {
 

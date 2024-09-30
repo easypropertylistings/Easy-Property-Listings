@@ -38,12 +38,15 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.10 August 30, 2024 =
+= 3.5.10 September 3, 2024 =
 
 -   New: Icon support added to search fields for easier adding of icons to input and select fields.
 -   New: Helper function epl_get_agent_id_by_login to get the user ID by login.
 -   Fix: Tools Import function adjusted with more checked before performing the settings import.
 -   Fix: Agent count throwing warning when agent is not there.
+-   Fix: REST error when meta field group fields are empty.
+-   Fix: Warning when meta field group is unset using filter.
+-   Fix: Warning for trim when home_open is null.
 
 = 3.5.9 August 12, 2024 =
 
