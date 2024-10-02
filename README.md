@@ -40,7 +40,7 @@ There are various ways you can contribute:
 
 = 3.5.11 October 2, 2024 =
 
--   New: Pass the original template in the filter.
+-   New: Pass the original template name in the epl_get_template_part filter.
 -   Tweak: Removed unnecessary uppercase function for status in admin columns.
 -   Fix: WordPress pagination not using return value in write context.
 
