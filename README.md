@@ -38,6 +38,12 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.11 October 2, 2024 =
+
+-   New: Pass the original template in the filter.
+-   Tweak: Removed unnecessary uppercase function for status in admin columns.
+-   Fix: Pagination not using return return value in write context.
+
 = 3.5.10 September 3, 2024 =
 
 -   New: Icon support added to search fields for easier adding of icons to input and select fields.
