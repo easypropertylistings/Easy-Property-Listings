@@ -473,8 +473,8 @@ function epl_prev_post_link( $query, $label = null ) {
  *
  * @since 2.1
  * @since 3.3.3  Revised.
- * @since 3.4.44 Fixed warning for wp_kses_post when empty link.
- * @since 3.5.11  Fixed error : Can’t use function return value in write contex.
+ * @since 3.4.44 Fix: Warning for wp_kses_post when empty link.
+ * @since 3.5.11 Fix: Pagination not using return return value in write context.
  */
 function epl_wp_default_pagination( $query = array() ) {
 	if ( empty( $query ) ) {
@@ -490,7 +490,7 @@ function epl_wp_default_pagination( $query = array() ) {
 		<div class="epl-paginate-default-wrapper epl-clearfix">
 			<div class="alignleft">
 				<?php
-                                $prev_post_link = epl_prev_post_link( $query_open );
+				$prev_post_link = epl_prev_post_link( $query_open );
 				if ( ! empty( $prev_post_link ) ) {
 					echo wp_kses_post( epl_prev_post_link( $query_open ) );
 				}
@@ -498,7 +498,7 @@ function epl_wp_default_pagination( $query = array() ) {
 			</div>
 			<div class="alignright">
 				<?php
-                                $next_post_link  = epl_next_post_link( $query_open );
+				$next_post_link = epl_next_post_link( $query_open );
 				if ( ! empty( $next_post_link ) ) {
 					echo wp_kses_post( epl_next_post_link( $query_open ) );
 				}

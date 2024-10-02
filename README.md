@@ -42,7 +42,7 @@ There are various ways you can contribute:
 
 -   New: Pass the original template in the filter.
 -   Tweak: Removed unnecessary uppercase function for status in admin columns.
--   Fix: Pagination not using return return value in write context.
+-   Fix: WordPress pagination not using return value in write context.
 
 = 3.5.10 September 3, 2024 =
 
