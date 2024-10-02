@@ -328,7 +328,7 @@ function epl_get_fallback_content_path() {
  */
 function epl_get_template_part( $template, $arguments = array(), $default_template = false ) {
 
-        $original_template = $template;
+	$original_template = $template;
 	$base_path         = epl_get_content_path();
 	$default           = $default_template ? $default_template : $template;
 	$find[]            = epl_template_path() . $template;
@@ -336,8 +336,8 @@ function epl_get_template_part( $template, $arguments = array(), $default_templa
 	$template_location = locate_template( array_unique( $find ) );
 
 	if ( ! $template_location ) {
-		$template = $base_path . $template;
-                $original_template = $template;
+		$template          = $base_path . $template;
+		$original_template = $template;
 		if ( ! file_exists( $template ) ) {
 			// Fallback to core.
 			$base_path = epl_get_fallback_content_path();
