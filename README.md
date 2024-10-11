@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.12 October 11, 2024 =
+
+-   Fix: Typo in frontend scripts.
+
 = 3.5.11 October 2, 2024 =
 
 -   New: Pass the original template name in the epl_get_template_part filter.
