@@ -495,15 +495,16 @@ add_action( 'epl_manage_listing_column_geo', 'epl_manage_listing_column_geo_call
  * Posts Types Column Price.
  *
  * @since 1.0.0
- * @since 3.4.0 Now using epl_get_option function.
- * @since 3.5 Set the bar value to integer.
+ * @since 3.4.0  Now using epl_get_option function.
+ * @since 3.5    Set the bar value to integer.
+ * @since 3.5.11 Removed unnecessary uppercase function for status in admin columns.
  */
 function epl_manage_listing_column_price_callback() {
 	global $post, $property;
 
 	$price                = $property->get_property_meta( 'property_price' );
 	$view                 = $property->get_property_meta( 'property_price_view' );
-	$property_status      = ucfirst( $property->get_property_meta( 'property_status' ) );
+	$property_status      = $property->get_property_meta( 'property_status' );
 	$property_authority   = $property->get_property_meta( 'property_authority' );
 	$sold_price           = $property->get_property_meta( 'property_sold_price' );
 	$property_under_offer = $property->get_property_meta( 'property_under_offer' );
@@ -512,8 +513,7 @@ function epl_manage_listing_column_price_callback() {
 	$lease_date           = $property->get_property_meta( 'property_com_lease_end_date' );
 	$d_bond               = '';
 	$bond                 = '';
-
-	$max_price = (int) epl_get_option( 'epl_max_graph_sales_price', '2000000' );
+	$max_price            = (int) epl_get_option( 'epl_max_graph_sales_price', '2000000' );
 
 	// Rental Listing Type Custom Values.
 	if ( 'rental' === $post->post_type ) {
@@ -543,13 +543,13 @@ function epl_manage_listing_column_price_callback() {
 		$max_price = (int) epl_get_option( 'epl_max_graph_rent_price', '2000' );
 	}
 
-	if ( 'Sold' === $property_status ) {
+	if ( 'sold' === $property_status ) {
 		$class = 'bar-home-sold';
-	} elseif ( 'Leased' === $property_status ) {
+	} elseif ( 'leased' === $property_status ) {
 		$class = 'bar-home-sold';
 	} elseif ( ! empty( $property_under_offer ) && 'yes' === $property_under_offer ) {
 		$class = 'bar-under-offer';
-	} elseif ( 'Current' === $property_status ) {
+	} elseif ( 'current' === $property_status ) {
 		$class = 'bar-home-open';
 	} else {
 		$class = '';
@@ -577,7 +577,7 @@ function epl_manage_listing_column_price_callback() {
 	// Display sold price.
 	if ( ! empty( $view ) ) {
 		echo '<div class="epl_meta_search_price">' . wp_kses_post( $property->get_price_plain_value() ) . ' ';
-		echo 'Sold' === $property_status ? esc_html( epl_currency_formatted_amount( $sold_price ) ) : '';
+		echo 'sold' === $property_status ? esc_html( epl_currency_formatted_amount( $sold_price ) ) : '';
 		echo '</div>';
 	} else {
 		echo '<div class="epl_meta_price">' . wp_kses_post( $property->get_price_plain_value() ) . '</div>';
