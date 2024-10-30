@@ -4012,3 +4012,18 @@ function epl_single_author_wrapper_end() {
 	<?php
 }
 add_action( 'epl_single_author', 'epl_single_author_wrapper_end', 99 );
+
+/**
+ * Check if the value is truthy / falsy.
+ */
+function epl_value_bool_checker( $value ) {
+
+        $truthy_values = array( 1, 'yes', 'true' );
+        $truthy_values = apply_filters( 'epl_truthy_values', $truthy_values );
+
+        if ( in_array( $value, $truthy_values, true ) ) {
+                return true;
+        } else {
+            return false;
+        }
+}

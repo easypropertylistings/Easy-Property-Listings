@@ -1612,7 +1612,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			$value  = $this->get_property_meta( 'property_air_conditioning' );
 			$return = '';
 
-			if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
+			if ( epl_value_bool_checker( $value ) ) {
 
 				switch ( $returntype ) {
 
@@ -1674,7 +1674,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			$value  = $this->get_property_meta( 'property_pool' );
 			$return = '';
 
-			if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
+			if ( epl_value_bool_checker( $value ) ) {
 
 				switch ( $returntype ) {
 
@@ -1733,7 +1733,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 			$return = '';
 
-			if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
+			if ( epl_value_bool_checker( $value ) ) {
 
 				switch ( $returntype ) {
 
@@ -1967,7 +1967,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			$return     = '';
 			$returntype = apply_filters( 'epl_get_property_new_construction_return_type', $returntype );
 
-			if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
+			if ( epl_value_bool_checker( $value ) ) {
 
 				$label = apply_filters( 'epl_get_property_new_construction_label', __( 'New Construction', 'easy-property-listings' ) );
 
@@ -2014,7 +2014,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			$return     = '';
 			$returntype = apply_filters( 'epl_get_property_holiday_rental_return_type', $returntype );
 
-			if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
+			if ( epl_value_bool_checker( $value ) ) {
 
 				switch ( $returntype ) {
 
@@ -2057,7 +2057,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			$returntype = apply_filters( 'epl_get_property_furnished_return_type', $returntype );
 			$return     = '';
 
-			if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
+			if ( epl_value_bool_checker( $value ) ) {
 
 				$label = apply_filters( 'epl_get_property_furnished_label', __( 'Furnished', 'easy-property-listings' ) );
 
@@ -2103,7 +2103,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			$returntype = apply_filters( 'epl_get_property_pet_friendly_return_type', $returntype );
 			$return     = '';
 
-			if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
+			if ( epl_value_bool_checker( $value ) ) {
 
 				$label = apply_filters( 'epl_get_property_pet_friendly_label', __( 'Pet Friendly', 'easy-property-listings' ) );
 
@@ -2149,7 +2149,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			$returntype = apply_filters( 'epl_get_property_featured_return_type', $returntype );
 			$return     = '';
 
-			if ( isset( $value ) && ( 1 === $value || 'yes' === $value ) ) {
+			if ( epl_value_bool_checker( $value ) ) {
 
 				$label = apply_filters( 'epl_get_property_featured_label', __( 'Featured', 'easy-property-listings' ) );
 

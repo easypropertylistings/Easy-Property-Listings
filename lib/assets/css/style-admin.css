@@ -2478,3 +2478,105 @@ li.epl_ui_tab_menu_current h3 {
         background-color: #f2dede;
         border-color: #ebccd1;
 }
+
+/** Radio switches **/
+.epl-radio-switch {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 10px;
+        color: #666666;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 19px;
+        margin: 0;
+        padding: 0 5px;
+        position: absolute;
+        right: 8px;
+        top: 14px;
+        z-index: 9999;
+}
+.epl-radio-switch-input {
+        position: absolute;
+        margin-left: -9999px;
+        visibility: hidden;
+}
+
+.epl-radio-switch-input + label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+}
+
+.epl-radio-switch-input--yes-no + label{
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        overflow: hidden;
+}
+input.epl-radio-switch-input--yes-no + label::before,
+input.epl-radio-switch-input--yes-no + label::after {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        color: #fff;
+        font-family: 'Roboto Slab', serif;
+        font-size: 20px;
+        text-align: center;
+        line-height: 60px;
+}
+input.epl-radio-switch-input--yes-no + label::before {
+        background-color: #dddddd;
+        content: attr(data-off);
+        -webkit-transition: -webkit-transform 0.5s;
+        -moz-transition: -moz-transform 0.5s;
+        -o-transition: -o-transform 0.5s;
+        transition: transform 0.5s;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+}
+input.epl-radio-switch-input--yes-no + label::after {
+        background-color: #40D752;
+        content: attr(data-on);
+        -webkit-transition: -webkit-transform 0.5s;
+        -moz-transition: -moz-transform 0.5s;
+        -o-transition: -o-transform 0.5s;
+        transition: transform 0.5s;
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+}
+input.epl-radio-switch-input--yes-no:checked + label::before {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+}
+input.epl-radio-switch-input--yes-no:checked + label::after {
+        -webkit-transform: rotateY(0);
+        -moz-transform: rotateY(0);
+        -ms-transform: rotateY(0);
+        -o-transform: rotateY(0);
+        transform: rotateY(0);
+}
