@@ -248,6 +248,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @since 3.4.44 Added filter for deciding whether to remove inspection entry.
 		 * @since 3.5.3  Fix: Deprecation warning - Make sure inspection time is not null before passing through trim.
 		 * @since 3.5.3  Update to use local timestamp.
+		 * @since 3.5.13 Tweak: Target blank added to ical link.
 		 */
 		public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 			if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -311,7 +312,8 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 										//phpcs:disable
 										$return .= "<a
 											class ='epl_inspection_calendar'
-											href='" . $href . "' >"
+											href='" . $href . "'
+											target='_blank' >"
 											. $element_formatted . '
 										</a>';
 										//phpcs:enable
