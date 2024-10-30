@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.5.13\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2024-10-30 04:31:53+00:00\n"
+"POT-Creation-Date: 2024-10-30 04:59:26+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2645,27 +2645,27 @@ msgstr ""
 msgid "Energy Rating"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:1972
+#: lib/includes/class-epl-property-meta.php:1975
 #: lib/meta-boxes/meta-box-init.php:342
 msgid "New Construction"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:2012
+#: lib/includes/class-epl-property-meta.php:2018
 #: lib/meta-boxes/meta-box-init.php:1136
 msgid "Holiday Rental"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:2062
+#: lib/includes/class-epl-property-meta.php:2071
 #: lib/meta-boxes/meta-box-init.php:1127
 msgid "Furnished"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:2108
+#: lib/includes/class-epl-property-meta.php:2120
 #: lib/meta-boxes/meta-box-init.php:379
 msgid "Pet Friendly"
 msgstr ""
 
-#: lib/includes/class-epl-property-meta.php:2154
+#: lib/includes/class-epl-property-meta.php:2169
 #: lib/post-types/post-type-business.php:97
 #: lib/post-types/post-type-commercial-land.php:97
 #: lib/post-types/post-type-commercial.php:97
