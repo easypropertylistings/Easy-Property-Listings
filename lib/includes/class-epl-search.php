@@ -102,9 +102,9 @@ class EPL_SEARCH {
 	/**
 	 * Get things going
 	 *
-	 * @since  3.2
-         * 
-         * @since 3.5.13 setting pagename to null on search pages.
+	 * @since 3.2
+	 * @since 3.5.13 Setting page name to null on search pages.
+	 *
 	 * @param WP_Query $query object of the wp_query object.
 	 * @param array    $data  associative array for fields to search.
 	 */
@@ -151,7 +151,7 @@ class EPL_SEARCH {
 		$this->query->is_singular   = false;
 		$this->query->is_epl_search = true;
 		set_query_var( 'page_id', null );
-                set_query_var( 'pagename', null );
+		set_query_var( 'pagename', null );
 	}
 
 	/**

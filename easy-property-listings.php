@@ -306,11 +306,11 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'includes/admin/help.php';
 				require_once EPL_PATH_LIB . 'includes/admin/help-single.php';
 				require_once EPL_PATH_LIB . 'includes/admin/listing-elements-gui.php';
-                                require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-images.php';
+				// require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-images.php'; // Image management pending.
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 			}
-			
+
 			require_once EPL_PATH_LIB . 'includes/options-front-end.php';
 			require_once EPL_PATH_LIB . 'hooks/hook-property-map.php';
 			require_once EPL_PATH_LIB . 'hooks/hook-external-links.php';

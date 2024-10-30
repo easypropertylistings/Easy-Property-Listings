@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.13 October 30, 2024 =
+
+-   Tweak: Target blank added to ical link.
+-   Fix: Search setting page name to null for ajax results issue.
+
 = 3.5.12 October 11, 2024 =
 
 -   Fix: Typo in frontend scripts.
