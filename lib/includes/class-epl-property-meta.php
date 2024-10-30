@@ -242,7 +242,9 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @param bool   $ical True to return link with iCal.
 		 * @param string $meta_key The meta key to get the value from default is property_inspection_times.
+		 *
 		 * @return mixed Return formatted inspection times with a iCal link
+		 *
 		 * @since 2.0
 		 * @since 3.4.27 Added filter for href, handling of non date inspection values.
 		 * @since 3.4.44 Added filter for deciding whether to remove inspection entry.
