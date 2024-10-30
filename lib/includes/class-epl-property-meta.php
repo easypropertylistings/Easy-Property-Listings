@@ -1957,9 +1957,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get New Construction
 		 *
-		 * @since 2.0
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 2.0
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_new_construction( $returntype = 'i' ) {
 
@@ -2003,9 +2006,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get Holiday Rental
 		 *
-		 * @since 3.2
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 3.2
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_holiday_rental( $returntype = 'i' ) {
 
@@ -2047,9 +2053,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get Furnished
 		 *
-		 * @since 3.2
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 3.2
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_furnished( $returntype = 'i' ) {
 
@@ -2093,9 +2102,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get Pets
 		 *
-		 * @since 3.3
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 3.3
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_pets( $returntype = 'i' ) {
 
@@ -2139,9 +2151,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get Featured
 		 *
-		 * @since 3.3
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 3.3
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_featured( $returntype = 'i' ) {
 
