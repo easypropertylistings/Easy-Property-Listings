@@ -80,7 +80,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
-        wp_register_script( 'wp-color-picker-alpha', $current_dir_path . '/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), EPL_PROPERTY_VER, false );
+        //wp_register_script( 'wp-color-picker-alpha', $current_dir_path . '/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), EPL_PROPERTY_VER, false );
 
 	wp_localize_script( 'epl-admin-scripts', 'epl_admin_vars', $js_vars );
 
