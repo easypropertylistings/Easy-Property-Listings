@@ -111,6 +111,7 @@ add_action( 'wp', 'epl_create_property_object' );
  *
  * @since 1.0
  * @since 3.4.4 Removed default template check for single templates as this caused incorrect templates to load in some cases.
+ * @since 3.6 Sidebar control option.
  */
 function epl_property_single() {
 	global $epl_settings;
@@ -120,7 +121,6 @@ function epl_property_single() {
 		do_action( 'epl_single_template' );
 	} else {
 		epl_property_single_default();
-		epl_get_sidebar();
 	}
 }
 add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
@@ -145,7 +145,7 @@ function epl_get_sidebar() {
 	}
 
 }
-//add_action( 'epl_get_sidebar', 'epl_get_sidebar' );
+add_action( 'epl_get_sidebar', 'epl_get_sidebar' );
 
 /**
  * Featured Image template now loading through filter
