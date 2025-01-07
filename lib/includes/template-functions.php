@@ -312,19 +312,6 @@ function epl_property_single_default() {
 		return;
 	}
 	
-	
-	
-	if ( epl_get_option( 'theme_setup_css', 'on' ) ) {
-		
-		if ( class_exists( 'EPL_Admin_CSS' ) ) {
-	
-                        $epl_theme_setup_single_css = EPL_Admin_CSS::get_instance();
-                        
-                        echo $epl_theme_setup_single_css->single_css();
-                        
-                }
-	}
-	
 	if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
 		epl_get_template_part( 'content-listing-single-compatibility.php' );
 	} else {
@@ -458,17 +445,7 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 		return;
 	}
 
-        if ( epl_get_option( 'theme_setup_css', 'on' ) ) {
-		
-		if ( class_exists( 'EPL_Admin_CSS' ) ) {
-	
-                        $epl_theme_setup_archive_css = EPL_Admin_CSS::get_instance();
-                        
-                        echo $epl_theme_setup_archive_css->archive_css();
-                        
-                }
-	}
-
+        
 	$property_status = $property->get_property_meta( 'property_status' );
 	// Status Removal Do Not Display Withdrawn or OffMarket listings.
 	if ( ! in_array( $property_status, epl_hide_listing_statuses(), true ) ) {
@@ -4087,4 +4064,32 @@ function epl_value_bool_checker( $value ) {
 	}
 }
 
+/**
+ * Load theme specific css from EPL settings.
+ *
+ *
+ * @return bool
+ *
+ * @since 3.6
+ */
+function epl_load_theme_css() {
 
+        if ( epl_get_option( 'theme_setup_css', 'on' ) ) {
+		
+		if ( class_exists( 'EPL_Admin_CSS' ) ) {
+	
+                        $instance = EPL_Admin_CSS::get_instance();
+
+                        if ( is_epl_post_archive() ) {
+                                echo $instance->archive_css();
+                        }
+                        
+                        if ( is_epl_post_single() ) {
+                                echo $instance->single_css();
+                        }
+                        
+                }
+	}
+}
+
+add_action( 'wp_head', 'epl_load_theme_css' );
