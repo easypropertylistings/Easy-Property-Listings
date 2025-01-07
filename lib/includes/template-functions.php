@@ -313,25 +313,17 @@ function epl_property_single_default() {
 	}
 	
 	
-	if ( class_exists( 'EPL_Admin_CSS' ) ) {
-	
-		$epl_theme_setup_single_css = EPL_Admin_CSS::get_instance( $this );
-	
-		return $epl_theme_setup_single_css->single_css();
-		
-	}
-	
-
 	
 	if ( epl_get_option( 'theme_setup_css', 'on' ) ) {
 		
-		// Load EPL_Admin_CSS class.
-		
-		
+		if ( class_exists( 'EPL_Admin_CSS' ) ) {
+	
+                        $epl_theme_setup_single_css = EPL_Admin_CSS::get_instance();
+                        
+                        echo $epl_theme_setup_single_css->single_css();
+                        
+                }
 	}
-	
-	
-	
 	
 	if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
 		epl_get_template_part( 'content-listing-single-compatibility.php' );
@@ -464,6 +456,17 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 
 	if ( is_null( $property ) ) {
 		return;
+	}
+
+        if ( epl_get_option( 'theme_setup_css', 'on' ) ) {
+		
+		if ( class_exists( 'EPL_Admin_CSS' ) ) {
+	
+                        $epl_theme_setup_archive_css = EPL_Admin_CSS::get_instance();
+                        
+                        echo $epl_theme_setup_archive_css->archive_css();
+                        
+                }
 	}
 
 	$property_status = $property->get_property_meta( 'property_status' );
