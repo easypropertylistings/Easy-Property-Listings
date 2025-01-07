@@ -34,5 +34,5 @@ get_header(); ?>
 		</div>
 	</section>
 </div>
-<?php get_sidebar(); ?>
+<?php do_action( 'epl_get_sidebar' ); ?>
 <?php get_footer(); ?>

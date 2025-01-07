@@ -38,6 +38,13 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.6 January 20, 2025 =
+
+- New: Theme setup options for container and sidebar options.
+
+
+
+
 = 3.5.13 October 30, 2024 =
 
 -   Tweak: Target blank added to ical link.

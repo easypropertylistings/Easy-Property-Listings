@@ -53,5 +53,5 @@ get_header(); ?>
 	</div>
 </section>
 <?php
-get_sidebar();
+do_action( 'epl_get_sidebar' );
 get_footer();
