@@ -1005,6 +1005,7 @@ function epl_render_html_fields( $field = array(), $val = '' ) {
  *
  * @since 2.1
  * @since 3.5.3 Updated to return local timestamp.
+ * @since 3.6.0 New: Theme setup container options.
  */
 function epl_get_admin_option_fields() {
 	global $epl_settings;
@@ -1450,6 +1451,90 @@ function epl_get_admin_option_fields() {
 					'default' => 'off',
 					'help'    => __( 'When using iThemes, Genesis frameworks or your listings look good, leave this disabled.', 'easy-property-listings' ),
 				),
+			),
+		),
+		
+		array(
+			'label'  => __( 'Theme Setup: Listing Containers', 'easy-property-listings' ), // EPL_Admin_CSS Class.
+			'class'  => 'core',
+			'id'     => 'theme_setup_containers',
+			'help'   => __( 'These options allow you to configure the front end view of the website single listing page and search results archive template.', 'easy-property-listings' ) . '<hr/>',
+			'fields' => array(
+				
+				array(
+					'name'    => 'theme_setup_css',
+					'label'   => __( 'Enable CSS', 'easy-property-listings' ),
+					'type'    => 'checkbox_option',
+					'opts'    => array(
+						'on' => __( 'Enable', 'easy-property-listings' ),
+					),
+					'default' => 'om',
+					'help'    => __( 'Use this to adjust the container CSS.', 'easy-property-listings' ),
+				),
+				
+				array(
+					'name'    => 'help_section_break',
+					'type'    => 'help',
+					'content' => '<hr/>',
+				),
+		
+				array(
+					'name'    => 'help_theme_setup_containers_title',
+					'type'    => 'help',
+					'content' => '<h3>' . __( 'Archive', 'easy-property-listings' ) . '</h3>',
+				),
+		
+				array(
+					'name'    => 'theme_setup_archive_max_width',
+					'label'   => __( 'Max Width', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '100%',
+				),
+		
+				array(
+					'name'    => 'theme_setup_archive_sidebar',
+					'label'   => __( 'Sidebar', 'easy-property-listings' ),
+					'type'    => 'checkbox_option',
+					'opts'    => array(
+						'on' => __( 'Enable', 'easy-property-listings' ),
+					),
+					'help'    => __( 'Display the sidebar on the search results page.', 'easy-property-listings' ),
+					'default' => 'off',
+				),
+				
+				array(
+					'name'    => 'help_section_break',
+					'type'    => 'help',
+					'content' => '<hr/>',
+				),
+
+				array(
+					'name'    => 'help_theme_setup_containers_title',
+					'type'    => 'help',
+					'content' => '<h3>' . __( 'Single', 'easy-property-listings' ) . '</h3>',
+				),
+		
+				array(
+					'name'    => 'theme_setup_single_max_width',
+					'label'   => __( 'Single Listing', 'easy-property-listings' ),
+					'label'   => __( 'Max Width', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '100%',
+				),
+				
+				array(
+					'name'    => 'theme_setup_single_sidebar',
+					'label'   => __( 'Sidebar', 'easy-property-listings' ),
+					'type'    => 'checkbox_option',
+					'opts'    => array(
+						'on' => __( 'Enable', 'easy-property-listings' ),
+					),
+					'help'    => __( 'Display the sidebar on the single listing page.', 'easy-property-listings' ),
+					'default' => 'off',
+				),
+
 			),
 		),
 

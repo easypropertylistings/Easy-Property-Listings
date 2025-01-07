@@ -64,6 +64,18 @@ function epl_get_default_settings() {
 		'epl_enable_city_field'                => 'no',
 		'epl_enable_country_field'             => 'no',
 		'epl_feeling_lucky'                    => 'off',
+		
+		
+		'theme_setup_css'                      => 'on',
+		
+		'theme_setup_archive_max_width'        => '100%',
+		'theme_setup_archive_sidebar'          => 'off',
+
+		
+		'theme_setup_single_max_width'        => '100%',
+		'theme_setup_single_sidebar'          => 'off',
+		
+		
 		'epl_lucky_disable_single_thumb'       => 'off',
 		'epl_lucky_disable_theme_single_thumb' => 'off',
 		'epl_lucky_disable_archive_thumb'      => 'off',

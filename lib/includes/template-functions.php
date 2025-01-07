@@ -120,9 +120,32 @@ function epl_property_single() {
 		do_action( 'epl_single_template' );
 	} else {
 		epl_property_single_default();
+		epl_get_sidebar();
 	}
 }
 add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
+
+/**
+ * Theme Setup sidebar
+ *
+ * @since 3.6.0
+ *
+ */
+function epl_get_sidebar() {
+	
+	$sidebar_archive = epl_get_option( 'theme_setup_archive_sidebar', 'off' );
+	$sidebar_single  = epl_get_option( 'theme_setup_single_sidebar', 'off' );
+		
+	if ( 'on' === $sidebar_archive && is_epl_post_archive() ) {
+		get_sidebar();
+	}
+	
+	if ( 'on' === $sidebar_single && is_epl_post_single() ) {
+		get_sidebar();
+	}
+
+}
+//add_action( 'epl_get_sidebar', 'epl_get_sidebar' );
 
 /**
  * Featured Image template now loading through filter
@@ -279,10 +302,37 @@ add_action( 'epl_property_widgets_featured_image', 'epl_property_widgets_feature
  * Single Listing Templates
  *
  * @since      1.0
+ * @since      3.6.0 Support for Container CSS
  */
 function epl_property_single_default() {
 
-	global $epl_settings;
+	global $post, $property, $epl_settings;
+	
+	if ( is_null( $post ) ) {
+		return;
+	}
+	
+	
+	if ( class_exists( 'EPL_Admin_CSS' ) ) {
+	
+		$epl_theme_setup_single_css = EPL_Admin_CSS::get_instance( $this );
+	
+		return $epl_theme_setup_single_css->single_css();
+		
+	}
+	
+
+	
+	if ( epl_get_option( 'theme_setup_css', 'on' ) ) {
+		
+		// Load EPL_Admin_CSS class.
+		
+		
+	}
+	
+	
+	
+	
 	if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
 		epl_get_template_part( 'content-listing-single-compatibility.php' );
 	} else {
@@ -4033,3 +4083,5 @@ function epl_value_bool_checker( $value ) {
 		return false;
 	}
 }
+
+
