@@ -83,7 +83,7 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 *
 		 * @since 3.6.0
 		 */
-		public function render_css_property( $prefix = 'theme_setup_single_css_property_', $key ) {
+		public function render_css_property( $prefix = '', $key ) {
 			
 			$css_property_key = str_replace( $prefix, '', $key );
 			$css_property_key = str_replace( '_', '-', $css_property_key );
@@ -118,14 +118,21 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'padding' ) ); ?>
 				}
 				
-				/*
+				
+				
+				
+				
+				
 				.epl-single-listing .widget-area,
-				#secondary {
+				.epl-single-listing #secondary {
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_', 'max_width' ) ); ?>
+					
+					
 					border: 3px solid orange;
 					margin: auto;
 					max-width: 400px;
 				}
-				*/
+				
 				
 
 				
