@@ -83,9 +83,9 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 *
 		 * @since 3.6.0
 		 */
-		public function render_single_css_name( $key ) {
+		public function render_css_property( $prefix = 'theme_setup_single_css_property_', $key ) {
 			
-			$css_property_key = str_replace( 'theme_setup_single_css_property_', '', $key );
+			$css_property_key = str_replace( $prefix, '', $key );
 			$css_property_key = str_replace( '_', '-', $css_property_key );
 			
 			$value = epl_get_option( $key );
@@ -112,11 +112,10 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			<style>
 				.epl-single-listing .epl-single-default,
 				#primary.epl-single-default {
-					border: 3px solid red;
-					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_max_width' ) ); ?>
-					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_width' ) ); ?>
-					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_margin' ) ); ?>
-					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_padding' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'max_width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'margin' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'padding' ) ); ?>
 				}
 				
 				/*

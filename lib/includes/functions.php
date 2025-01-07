@@ -1554,7 +1554,7 @@ function epl_get_admin_option_fields() {
 				),
 				
 				array(
-					'name'    => 'epl_gallery_enable_image_featured',
+					'name'    => 'theme_setup_single_sidebar',
 					'label'   => __( 'Sidebar', 'easy-property-listings' ),
 					'type'    => 'checkbox_option',
 					'opts'    => array(
@@ -1572,7 +1572,7 @@ function epl_get_admin_option_fields() {
 					'data-show' => array(
 						'relation' => 'OR',
 						'fields'   => array(
-							array( 'epl_gallery_enable_image_featured', '=', 'on' ),
+							array( 'theme_setup_single_sidebar_on', '=', 'on' ),
 						),
 					),
 					'default'   => '',
