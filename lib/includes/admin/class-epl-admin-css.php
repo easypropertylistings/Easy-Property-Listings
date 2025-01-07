@@ -91,7 +91,7 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			$value = epl_get_option( $key );
 			
 		
-			return $css_property_key . ': ' . $value;
+			return $css_property_key . ': ' . $value . ';';
 		}
 
 		/**
@@ -114,6 +114,9 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 				#primary.epl-single-default {
 					border: 3px solid red;
 					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_max_width' ) ); ?>
+					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_width' ) ); ?>
+					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_margin' ) ); ?>
+					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_padding' ) ); ?>
 				}
 				
 				/*
