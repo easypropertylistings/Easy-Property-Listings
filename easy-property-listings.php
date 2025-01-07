@@ -284,12 +284,12 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			require_once EPL_PATH_LIB . 'includes/class-epl-contact.php';
 			require_once EPL_PATH_LIB . 'meta-boxes/meta-box-init.php';
+                        require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-css.php';
 
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-metabox.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
-				require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-css.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-actions.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-license.php';

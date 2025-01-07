@@ -47,25 +47,21 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		/**
 		 * Constructor.
 		 *
-		 * @param EPL_Slider_Config $view The object.
-		 *
 		 * @since 3.6.0
 		 */
-		public function __construct( EPL_Slider_Config $view ) {
-			$this->slider = $view;
+		public function __construct() {
 		}
 
 		/**
 		 * Ensure only one instance of this class is running
 		 *
-		 * @param EPL_Slider_Config $view The object.
-		 *
+		 * @return EPL_Admin_CSS
 		 * @since 3.6.0
 		 */
-		public static function get_instance( $view ) {
+		public static function get_instance() {
 
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof EPL_Admin_CSS ) ) {
-				self::$instance = new EPL_Admin_CSS( $view );
+				self::$instance = new EPL_Admin_CSS();
 			}
 
 			return self::$instance;
@@ -79,7 +75,7 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 * @since 3.6.0
 		 */
 		public function get_option( $key ) {
-			return $this->view->epl_get_option( $key );
+			return epl_get_option( $key );
 		}
 
 		/**
@@ -100,11 +96,38 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			$this->common();
 			?>
 			<style>
-				.epl-single-default {
+				.epl-single-default, .epl-listing-single {
 					max-width: <?php echo esc_attr( $max_width ); ?>
 				}
 
 				
+			</style>
+			<?php
+
+			return ob_get_clean();
+		}
+
+                /**
+		 * Archive Theme Setup CSS
+		 *
+		 * @since 3.6.0
+		 */
+		public function archive_css() {
+			global $post, $property, $epl_settings;
+
+			if ( is_null( $post ) ) {
+				return null;
+			}
+
+			$max_width = $this->get_option( 'theme_setup_archive_max_width' );
+
+			ob_start();
+			$this->common();
+			?>
+			<style>
+				.epl-archive-default {
+					max-width: <?php echo esc_attr( $max_width ); ?>
+				}
 			</style>
 			<?php
 
