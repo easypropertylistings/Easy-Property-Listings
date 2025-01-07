@@ -83,6 +83,22 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 *
 		 * @since 3.6.0
 		 */
+		public function render_single_css_name( $key ) {
+			
+			$css_property_key = str_replace( 'theme_setup_single_css_property_', '', $key );
+			$css_property_key = str_replace( '_', '-', $css_property_key );
+			
+			$value = epl_get_option( $key );
+			
+		
+			return $css_property_key . ': ' . $value;
+		}
+
+		/**
+		 * Single Theme Setup CSS
+		 *
+		 * @since 3.6.0
+		 */
 		public function single_css() {
 			global $post, $property, $epl_settings;
 
@@ -90,18 +106,24 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 				return null;
 			}
 
-			$max_width = $this->get_option( 'theme_setup_single_max_width' );
-
 			ob_start();
 			$this->common();
 			?>
 			<style>
-				.epl-single-default,
+				.epl-single-listing .epl-single-default,
 				#primary.epl-single-default {
-					outline: 3px solid red;
-					max-width: <?php echo esc_attr( $max_width ); ?>;
+					border: 3px solid red;
+					<?php echo esc_attr( $this->render_single_css_name( 'theme_setup_single_css_property_max_width' ) ); ?>
 				}
 				
+				/*
+				.epl-single-listing .widget-area,
+				#secondary {
+					border: 3px solid orange;
+					margin: auto;
+					max-width: 400px;
+				}
+				*/
 				
 
 				

@@ -1522,7 +1522,7 @@ function epl_get_admin_option_fields() {
 				),
 		
 				array(
-					'name'    => 'theme_setup_single_max_width',
+					'name'    => 'theme_setup_single_css_property_max_width',
 					'label'   => __( 'Single Listing', 'easy-property-listings' ),
 					'label'   => __( 'Max Width', 'easy-property-listings' ),
 					'type'    => 'text',
