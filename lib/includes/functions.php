@@ -1543,7 +1543,7 @@ function epl_get_admin_option_fields() {
 				
 				array(
 					'name'      => 'theme_setup_single_sidebar_max_width',
-					'label'     => __( 'Sidebar Max Width', 'epl-gallery' ),
+					'label'     => __( 'Sidebar Max Width', 'easy-property-listings' ),
 					'type'      => 'number',
 					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
 					'data-show' => array(
