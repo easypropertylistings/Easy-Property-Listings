@@ -1490,6 +1490,12 @@ function epl_get_admin_option_fields() {
 					'type'    => 'text',
 					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
 					'default' => '100%',
+                                        'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_css_on', '=', 'on' ),
+						),
+					),
 				),
 		
 				array(
