@@ -83,6 +83,22 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 *
 		 * @since 3.6.0
 		 */
+		public function render_css_property( $prefix = 'theme_setup_single_css_property_', $key ) {
+			
+			$css_property_key = str_replace( $prefix, '', $key );
+			$css_property_key = str_replace( '_', '-', $css_property_key );
+			
+			$value = epl_get_option( $key );
+			
+		
+			return $css_property_key . ': ' . $value . ';';
+		}
+
+		/**
+		 * Single Theme Setup CSS
+		 *
+		 * @since 3.6.0
+		 */
 		public function single_css() {
 			global $post, $property, $epl_settings;
 
@@ -90,15 +106,27 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 				return null;
 			}
 
-			$max_width = $this->get_option( 'theme_setup_single_max_width' );
-
 			ob_start();
 			$this->common();
 			?>
 			<style>
-				.epl-single-default, .epl-listing-single {
-					max-width: <?php echo esc_attr( $max_width ); ?>
+				.epl-single-listing .epl-single-default,
+				#primary.epl-single-default {
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'max_width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'margin' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'padding' ) ); ?>
 				}
+				
+				/*
+				.epl-single-listing .widget-area,
+				#secondary {
+					border: 3px solid orange;
+					margin: auto;
+					max-width: 400px;
+				}
+				*/
+				
 
 				
 			</style>
@@ -125,8 +153,12 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			$this->common();
 			?>
 			<style>
-				.epl-archive-default {
-					max-width: <?php echo esc_attr( $max_width ); ?>
+				.epl-archive-default,
+				#primary.epl-archive-default {
+					margin: 0 auto;
+					margin-top: 2em;
+					outline: 3px solid pink;
+					max-width: <?php echo esc_attr( $max_width ); ?>;
 				}
 			</style>
 			<?php

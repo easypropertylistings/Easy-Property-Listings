@@ -72,7 +72,7 @@ function epl_get_default_settings() {
 		'theme_setup_archive_sidebar'          => 'off',
 
 		
-		'theme_setup_single_max_width'        => '100%',
+		'theme_setup_single_css_property_max_width'        => '100%',
 		'theme_setup_single_sidebar'          => 'off',
 		
 		

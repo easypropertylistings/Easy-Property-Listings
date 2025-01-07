@@ -1522,12 +1522,35 @@ function epl_get_admin_option_fields() {
 				),
 		
 				array(
-					'name'    => 'theme_setup_single_max_width',
-					'label'   => __( 'Single Listing', 'easy-property-listings' ),
+					'name'    => 'theme_setup_single_css_property_max_width',
 					'label'   => __( 'Max Width', 'easy-property-listings' ),
 					'type'    => 'text',
 					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
 					'default' => '100%',
+				),
+				
+				array(
+					'name'    => 'theme_setup_single_css_property_width',
+					'label'   => __( 'Width', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => 'auto',
+				),
+				
+				array(
+					'name'    => 'theme_setup_single_css_property_margin',
+					'label'   => __( 'Margin', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '0',
+				),
+				
+				array(
+					'name'    => 'theme_setup_single_css_property_padding',
+					'label'   => __( 'Padding', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '0',
 				),
 				
 				array(
@@ -1539,6 +1562,20 @@ function epl_get_admin_option_fields() {
 					),
 					'help'    => __( 'Display the sidebar on the single listing page.', 'easy-property-listings' ),
 					'default' => 'off',
+				),
+				
+				array(
+					'name'      => 'theme_setup_single_sidebar_max_width',
+					'label'     => __( 'Sidebar Max Width', 'easy-property-listings' ),
+					'type'      => 'number',
+					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_single_sidebar_on', '=', 'on' ),
+						),
+					),
+					'default'   => '',
 				),
 
 			),
