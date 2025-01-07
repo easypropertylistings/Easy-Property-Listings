@@ -96,9 +96,13 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			$this->common();
 			?>
 			<style>
-				.epl-single-default, .epl-listing-single {
-					max-width: <?php echo esc_attr( $max_width ); ?>
+				.epl-single-default,
+				#primary.epl-single-default {
+					outline: 3px solid red;
+					max-width: <?php echo esc_attr( $max_width ); ?>;
 				}
+				
+				
 
 				
 			</style>
@@ -125,8 +129,12 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			$this->common();
 			?>
 			<style>
-				.epl-archive-default {
-					max-width: <?php echo esc_attr( $max_width ); ?>
+				.epl-archive-default,
+				#primary.epl-archive-default {
+					margin: 0 auto;
+					margin-top: 2em;
+					outline: 3px solid pink;
+					max-width: <?php echo esc_attr( $max_width ); ?>;
 				}
 			</style>
 			<?php
