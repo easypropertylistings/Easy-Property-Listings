@@ -83,7 +83,7 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 *
 		 * @since 3.6.0
 		 */
-		public function render_css_property( $prefix = '', $key ) {
+		public function render_css_property( $prefix = 'theme_setup_single_css_property_', $key = '' ) {
 			
 			$css_property_key = str_replace( $prefix, '', $key );
 			$css_property_key = str_replace( '_', '-', $css_property_key );
