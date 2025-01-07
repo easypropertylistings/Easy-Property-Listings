@@ -41,7 +41,7 @@ There are various ways you can contribute:
 = 3.6 January 20, 2025 =
 
 - New: Theme setup options for container and sidebar options.
-
+- New: Load theme setup css from EPL settings.
 
 
 
