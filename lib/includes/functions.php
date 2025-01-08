@@ -1477,19 +1477,54 @@ function epl_get_admin_option_fields() {
 					'type'    => 'help',
 					'content' => '<hr/>',
 				),
-		
+				
+				// Archive.
+
 				array(
 					'name'    => 'help_theme_setup_containers_title',
 					'type'    => 'help',
-					'content' => '<h3>' . __( 'Archive', 'easy-property-listings' ) . '</h3>',
+					'content' => '<h3>' . __( 'Archive Container', 'easy-property-listings' ) . '</h3>',
+				),
+				
+				array(
+					'name'    => 'theme_setup_archive_css_property_display',
+					'label'   => __( 'Display', 'easy-property-listings' ),
+					'type'    => 'select',
+					'opts'    => array(
+						'grid' => __( 'Grid', 'easy-property-listings' ),
+					),
+					
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => 'grid',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_css', '=', 'on' ),
+						),
+					),
+				),
+				
+				array(
+					'name'    => 'theme_setup_archive_css_property_grid_template_columns',
+					'label'   => __( 'Grid Template Columns', 'easy-property-listings' ),
+					'type'    => 'text',
+					
+					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '1fr 360px',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+						),
+					),
 				),
 		
 				array(
-					'name'    => 'theme_setup_archive_max_width',
+					'name'    => 'theme_setup_archive_css_property_max_width',
 					'label'   => __( 'Max Width', 'easy-property-listings' ),
 					'type'    => 'text',
 					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
-					'default' => '100%',
+					'default' => '75%',
                                         'data-show' => array(
 						'relation' => 'OR',
 						'fields'   => array(
@@ -1497,10 +1532,18 @@ function epl_get_admin_option_fields() {
 						),
 					),
 				),
+				
+				array(
+					'name'    => 'help_section_break',
+					'type'    => 'help',
+					'content' => '<hr/>',
+				),
+				
+				// Archive Sidebar.
 		
 				array(
 					'name'    => 'theme_setup_archive_sidebar',
-					'label'   => __( 'Sidebar', 'easy-property-listings' ),
+					'label'   => __( 'Archive Sidebar', 'easy-property-listings' ),
 					'type'    => 'checkbox_option',
 					'opts'    => array(
 						'on' => __( 'Enable', 'easy-property-listings' ),
@@ -1508,6 +1551,65 @@ function epl_get_admin_option_fields() {
 					'help'    => __( 'Display the sidebar on the search results page.', 'easy-property-listings' ),
 					'default' => 'off',
 				),
+				
+				array(
+					'name'      => 'theme_setup_archive_sidebar_css_property_max_width',
+					'label'     => __( 'Max Width', 'easy-property-listings' ),
+					'type'      => 'text',
+					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_archive_sidebar', '=', 'on' ),
+						),
+					),
+					'default'   => 'auto',
+				),
+				
+				array(
+					'name'      => 'theme_setup_archive_sidebar_css_property_width',
+					'label'     => __( 'Width', 'easy-property-listings' ),
+					'type'      => 'text',
+					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_archive_sidebar', '=', 'on' ),
+						),
+					),
+					'default'   => '25%',
+				),
+				
+				array(
+					'name'      => 'theme_setup_archive_sidebar_css_property_margin',
+					'label'     => __( 'Margin', 'easy-property-listings' ),
+					'type'      => 'text',
+					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_archive_sidebar', '=', 'on' ),
+						),
+					),
+					'default'   => '0',
+				),
+				
+				array(
+					'name'      => 'theme_setup_archive_sidebar_css_property_padding',
+					'label'     => __( 'Padding', 'easy-property-listings' ),
+					'type'      => 'text',
+					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_archive_sidebar', '=', 'on' ),
+						),
+					),
+					'default'   => '0',
+				),
+				
+				
+				// Single.
 				
 				array(
 					'name'    => 'help_section_break',
@@ -1553,9 +1655,17 @@ function epl_get_admin_option_fields() {
 					'default' => '0',
 				),
 				
+				// Single Sidebar.
+				
+				array(
+					'name'    => 'help_section_break',
+					'type'    => 'help',
+					'content' => '<hr/>',
+				),
+				
 				array(
 					'name'    => 'theme_setup_single_sidebar',
-					'label'   => __( 'Sidebar', 'easy-property-listings' ),
+					'label'   => __( 'Single Sidebar', 'easy-property-listings' ),
 					'type'    => 'checkbox_option',
 					'opts'    => array(
 						'on' => __( 'Enable', 'easy-property-listings' ),
@@ -1565,9 +1675,9 @@ function epl_get_admin_option_fields() {
 				),
 				
 				array(
-					'name'      => 'theme_setup_single_sidebar_max_width',
-					'label'     => __( 'Sidebar Max Width', 'easy-property-listings' ),
-					'type'      => 'number',
+					'name'      => 'theme_setup_single_sidebar_css_property_max_width',
+					'label'     => __( 'Max Width', 'easy-property-listings' ),
+					'type'      => 'text',
 					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
 					'data-show' => array(
 						'relation' => 'OR',
@@ -1575,7 +1685,49 @@ function epl_get_admin_option_fields() {
 							array( 'theme_setup_single_sidebar', '=', 'on' ),
 						),
 					),
-					'default'   => '',
+					'default'   => 'auto',
+				),
+				
+				array(
+					'name'      => 'theme_setup_single_sidebar_css_property_width',
+					'label'     => __( 'Width', 'easy-property-listings' ),
+					'type'      => 'text',
+					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_single_sidebar', '=', 'on' ),
+						),
+					),
+					'default'   => '25%',
+				),
+				
+				array(
+					'name'      => 'theme_setup_single_sidebar_css_property_margin',
+					'label'     => __( 'Margin', 'easy-property-listings' ),
+					'type'      => 'text',
+					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_single_sidebar', '=', 'on' ),
+						),
+					),
+					'default'   => '0',
+				),
+				
+				array(
+					'name'      => 'theme_setup_single_sidebar_css_property_padding',
+					'label'     => __( 'Padding', 'easy-property-listings' ),
+					'type'      => 'text',
+					'help'      => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_single_sidebar', '=', 'on' ),
+						),
+					),
+					'default'   => '0',
 				),
 
 			),
