@@ -44,6 +44,8 @@ There are various ways you can contribute:
 - New: Load theme setup css from EPL settings.
 - Tweak: Checkbox single support for settings and extension settings.
 - New: Archive listing and single listing templates updated with new container for theme setup.
+- New: Listing cards now using CSS grid for styling.
+- Tweak: Default 300x200 image crop increased to 600x400 size. Use a plugin like Regenerate Thumbnails Advanced or Force Regenerate Thumbnails to recreate the new size.
 
 
 

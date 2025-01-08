@@ -51,7 +51,7 @@ get_header(); ?>
 			<div class="hentry">
 				<?php do_action( 'epl_property_search_not_found' ); ?>
 			</div>
-			<?php endif; ?>
+		<?php endif; ?>
 	</main>
 	
 	<?php do_action( 'epl_get_sidebar' ); ?>

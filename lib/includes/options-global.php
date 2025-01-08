@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get list of all EPL image sizes
  *
  * @since 3.2.3
+ * @since 3.6.0 Image size increased to 600 x 400.
  */
 function get_epl_image_sizes() {
 	return apply_filters(
@@ -31,8 +32,8 @@ function get_epl_image_sizes() {
 			),
 			array(
 				'id'     => 'epl-image-medium-crop',
-				'height' => 200,
-				'width'  => 300,
+				'height' => 400,
+				'width'  => 600,
 				'crop'   => true,
 			),
 		)

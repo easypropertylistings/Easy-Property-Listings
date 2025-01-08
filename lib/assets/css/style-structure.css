@@ -5,6 +5,7 @@
  * @since	3.1.0
  * @version	3.4.14
  * @version	3.4.38 Updated switch.png to switch.svg
+ * @version	3.6.0 Grid container for cards.
  * @subpackage	Structure CSS
  * @copyright	Copyright (c) 2019, Merv Barrett
  * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -59,12 +60,15 @@
 }
 
 /**********************
-	Theme Setup attempt
+	Theme Setup
 ***********************/
-/**
+
 .epl-archive-default .loop {
 	max-width: 1170px;
 	margin: 0 auto;
+	
+	/* display: grid; */
+	/* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
 }
 @media screen and (max-width: 899px ) {
 	.epl-archive-default .loop {
@@ -72,23 +76,48 @@
 		padding-right: 20px;
 	}
 }
-**/
 
+
+.epl-shortcode .loop-content,
+.epl-template-builder,
+.epl-template-blog,
+.epl-template-default,
+.epl-template-grid,
+.epl-template-featured,
+.epl-template-trending,
+.epl-template-card,
+.epl-shortcode-listing-category,
+.epl-sd-listings-inner,
+.epl-sd-shortcode-content,
+.epl-of-listings,
+.epl-office-team {
+	&:not(.epl-widget) {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1em;
+	}
+}
 /**********************
 	Loop
 ***********************/
+
+.epl-loop-tools-wrap {
+	grid-column: 1 / -1;
+}
 .epl-property-blog {
         float: left;
         margin: 0;
         padding: 0;
         width: 100%;
+	grid-column: 1 / -1;
 }
 .epl-property-blog.hentry,
 .builder-module-content .epl-property-blog.hentry {
+	overflow: hidden;
         margin: 0;
         padding: 0;
-        border: none;
-        box-shadow: none;
+        border: 1px solid #bbb;
+        box-shadow: 0 0 6px #ccc;
         background: transparent;
 }
 .epl-property-blog a {
@@ -97,20 +126,30 @@
 .epl-property-blog.epl-listing-grid-view,
 .epl-property-blog.epl-listing-grid-view-forced {
         clear: none !important;
-        width: 33.3%;
+        width: 100%;
         margin: 0;
         padding: 0;
+	grid-column: initial;
 }
 .epl-property-blog-entry-wrapper {
-        display: block;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+	height: 100%;
+        display: flex;
+	gap: 1em;
         float: none;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
 }
+
+.epl-property-blog.epl-listing-grid-view .epl-property-blog-entry-wrapper,
+.epl-property-blog.epl-listing-grid-view-forced .epl-property-blog-entry-wrapper {
+	flex-direction: column;
+	gap: 0;
+}
+
 .epl-property-blog a.more-link,
 .epl-property-blog a.epl-more-link {
         display: none;
@@ -145,6 +184,9 @@
 }
 .epl-property-blog .property-box-right {
         width: 50%;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
 /* Property Card and Blog*/
 .epl-property-blog.epl-listing-grid-view .property-box,
@@ -1797,35 +1839,7 @@ li.tbhead.current {
 /*****************************
 	EPL Responsive Design
 ******************************/
-@media screen and (max-width: 1200px) {
-        .epl-active-theme-twentyfifteen.epl-archive-default .epl-property-blog.epl-listing-grid-view,
-        .epl-active-theme-twentyfifteen.epl-archive-default .epl-property-blog.epl-listing-grid-view-forced {
-                min-height: 550px;
-        }
-}
-@media screen and (max-width: 1008px) {
-        .list-view .epl-active-theme-twentyfourteen .site-content {
-                margin: 0 20px;
-        }
-}
-@media screen and (max-width: 960px) {
-        .epl-active-theme-twentyfifteen.epl-archive-default .epl-property-blog.epl-listing-grid-view,
-        .epl-active-theme-twentyfifteen.epl-archive-default .epl-property-blog.epl-listing-grid-view-forced {
-                min-height: 610px;
-        }
-}
-@media screen and (max-width: 879px) {
-        .epl-active-theme-twentyfifteen.epl-archive-default .epl-property-blog.epl-listing-grid-view,
-        .epl-active-theme-twentyfifteen.epl-archive-default .epl-property-blog.epl-listing-grid-view-forced {
-                min-height: 540px;
-        }
-}
-@media screen and (max-width: 800px) {
-        .epl-property-blog.epl-listing-grid-view,
-        .epl-property-blog.epl-listing-grid-view-forced {
-                width: 50%;
-        }
-}
+
 @media screen and (max-width: 500px) {
         .epl-container-grid-1,
         .epl-container-grid-2,
@@ -1934,19 +1948,7 @@ li.tbhead.current {
                 float: none;
                 width: 100%;
                 margin: 0 auto;
-                max-width: 300px;
-        }
-        .epl-active-theme-twentytwelve.epl-archive-default .epl-property-blog.epl-listing-grid-view,
-        .epl-active-theme-twentythirteen.epl-archive-default .epl-property-blog.epl-listing-grid-view,
-        .epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog.epl-listing-grid-view,
-        .epl-active-theme-twentyfifteen.epl-archive-default .epl-property-blog.epl-listing-grid-view,
-        .epl-active-theme-twentytwelve.epl-archive-default .epl-property-blog.epl-listing-grid-view-forced,
-        .epl-active-theme-twentythirteen.epl-archive-default .epl-property-blog.epl-listing-grid-view-forced,
-        .epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog.epl-listing-grid-view-forced,
-        .epl-active-theme-twentyfifteen.epl-archive-default .epl-property-blog.epl-listing-grid-view-forced {
-                width: 100%;
-                min-height: 200px;
-                margin-bottom: 2em;
+                max-width: 100%;
         }
         .epl-table .epl-table-column-image,
         .epl-table .epl-table-column-left,

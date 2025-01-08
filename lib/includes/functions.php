@@ -1674,15 +1674,75 @@ function epl_get_admin_option_fields() {
 				),
 				
 				
+				array(
+					'name'    => 'help_section_break',
+					'type'    => 'help',
+					'content' => '<hr/>',
+				),
+				
+				// Archive Loop Cards.
+				
+				array(
+					'name'    => 'help_theme_setup_loop_card_title',
+					'type'    => 'help',
+					'content' => '<h3>' . __( 'Loop Card', 'easy-property-listings' ) . '</h3>',
+				),
 				
 				
-				// Single.
+				array(
+					'name'    => 'theme_setup_loop_card_container_css_property_display',
+					'label'   => __( 'Display', 'easy-property-listings' ),
+					'type'    => 'select',
+					'opts'    => array(
+						'grid' => __( 'Grid', 'easy-property-listings' ),
+						'flex' => __( 'Flexbox', 'easy-property-listings' ),
+					),
+					
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => 'grid',
+				),
+				
+				array(
+					'name'    => 'theme_setup_loop_card_container_css_property_grid_template_columns',
+					'label'   => __( 'Grid Template Columns', 'easy-property-listings' ),
+					'type'    => 'text',
+					
+					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '1fr 360px',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+						),
+					),
+				),
+				
+				array(
+					'name'    => 'theme_setup_loop_card_container_css_property_gap',
+					'label'   => __( 'Gap', 'easy-property-listings' ),
+					'type'    => 'text',
+					
+					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '2em',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+							array( 'theme_setup_archive_css_property_display', '=', 'flex' ),
+						),
+					),
+				),
+				
+				
+				
 				
 				array(
 					'name'    => 'help_section_break',
 					'type'    => 'help',
 					'content' => '<hr/>',
 				),
+				
+				// Single.
 
 				array(
 					'name'    => 'help_theme_setup_containers_title',
@@ -1775,7 +1835,7 @@ function epl_get_admin_option_fields() {
 						'relation' => 'OR',
 						'fields'   => array(
 							array( 'theme_setup_single_css_property_display', '=', 'grid' ),
-							array( 'theme_setup_single_css_property_display', '=', 'flex' ),
+							array( 'theme_setup_archive_css_property_display', '=', 'flex' ),
 						),
 					),
 				),
