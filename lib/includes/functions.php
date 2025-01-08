@@ -1514,7 +1514,7 @@ function epl_get_admin_option_fields() {
 					'data-show' => array(
 						'relation' => 'OR',
 						'fields'   => array(
-							array( 'theme_setup_archive_css_property_display', 'LIKE', 'grid' ),
+							array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
 						),
 					),
 				),
