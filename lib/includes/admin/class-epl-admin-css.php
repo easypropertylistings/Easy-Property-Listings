@@ -83,15 +83,21 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 *
 		 * @since 3.6.0
 		 */
-		public function render_css_property( $prefix = 'theme_setup_single_css_property_', $key = '' ) {
+		public function render_css_property( $prefix, $key ) {
 			
-			$css_property_key = str_replace( $prefix, '', $key );
-			$css_property_key = str_replace( '_', '-', $css_property_key );
+			if ( $prefix && $key ) {
+				$css_property_key = str_replace( $prefix, '', $key );
+				$css_property_key = str_replace( '_', '-', $css_property_key );
+				
+				$value = epl_get_option( $prefix . $key );
+				
+				
+				return $css_property_key . ': ' . $value . ';';
+			} else {
+				return 'initial';
+			}
 			
-			$value = epl_get_option( $key );
 			
-		
-			return $css_property_key . ': ' . $value . ';';
 		}
 
 		/**
@@ -110,27 +116,25 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			$this->common();
 			?>
 			<style>
-				.epl-single-listing .epl-single-default,
-				#primary.epl-single-default {
+				.epl-container .epl-single-default,
+				.epl-container #listing-container-single.epl-single-default {
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'max_width' ) ); ?>
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'width' ) ); ?>
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'margin' ) ); ?>
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'padding' ) ); ?>
+					
+					border: 3px solid turquoise;
 				}
-				
-				
-				
-				
-				
-				
-				.epl-single-listing .widget-area,
-				.epl-single-listing #secondary {
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_', 'max_width' ) ); ?>
+
+				.epl-container .epl-sidebar--single {
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'max_width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'margin' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'padding' ) ); ?>
 					
 					
 					border: 3px solid orange;
-					margin: auto;
-					max-width: 400px;
+
 				}
 				
 				
@@ -154,18 +158,32 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 				return null;
 			}
 
-			$max_width = $this->get_option( 'theme_setup_archive_max_width' );
-
 			ob_start();
 			$this->common();
 			?>
 			<style>
-				.epl-archive-default,
-				#primary.epl-archive-default {
+				
+				.epl-container .epl-archive-default,
+				.epl-container #listing-container-archive.epl-archive-default {
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'display' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'max_width' ) ); ?>
+					
+					
+					
 					margin: 0 auto;
 					margin-top: 2em;
 					outline: 3px solid pink;
-					max-width: <?php echo esc_attr( $max_width ); ?>;
+				}
+				
+				.epl-container .epl-sidebar--archive {
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'max_width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'margin' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'padding' ) ); ?>
+					
+					
+					border: 3px solid orange;
+				
 				}
 			</style>
 			<?php
@@ -184,6 +202,19 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			?>
 
 			<style>
+				
+				.epl-container {
+					display: grid;
+					grid-template-columns: 1fr 360px;
+				}
+				
+				.epl-post-type-archive .ast-container {
+					display: block;
+				}
+				
+				.epl-single-listing .ast-container {
+					display: block;
+				}
 				body .epl-property-blog {
 					-webkit-transition: none;
 					-moz-transition: none;

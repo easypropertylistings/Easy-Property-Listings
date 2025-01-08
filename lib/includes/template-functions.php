@@ -137,11 +137,23 @@ function epl_get_sidebar() {
 	$sidebar_single  = epl_get_option( 'theme_setup_single_sidebar', 'off' );
 		
 	if ( 'on' === $sidebar_archive && is_epl_post_archive() ) {
-		get_sidebar();
+		?>
+		<aside id="epl-sidebar" class="epl-sidebar epl-sidebar--archive">
+			<?php
+			get_sidebar();
+			?>
+		<aside>
+		<?php
 	}
 	
 	if ( 'on' === $sidebar_single && is_epl_post_single() ) {
-		get_sidebar();
+		?>
+		<aside id="epl-sidebar" class="epl-sidebar epl-sidebar--single">
+			<?php
+			get_sidebar();
+			?>
+		<aside>
+		<?php
 	}
 
 }
