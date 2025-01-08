@@ -15,8 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-<section class="epl-container epl-container--archive">
-	<div id="primary" class="site-content content epl-archive-default <?php echo esc_attr( epl_get_active_theme_name() ); ?>" role="main">
+<section id="epl-listing-container-archive" class="epl-container epl-container--archive">
+	<main id="epl-archive" class="site-content content epl-archive-default <?php echo esc_attr( epl_get_active_theme_name() ); ?>" role="main">
 		<?php
 		if ( have_posts() ) :
 			?>
@@ -52,7 +52,7 @@ get_header(); ?>
 				<?php do_action( 'epl_property_search_not_found' ); ?>
 			</div>
 			<?php endif; ?>
-	</div>
+	</main>
 	
 	<?php do_action( 'epl_get_sidebar' ); ?>
 </section>

@@ -83,13 +83,13 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 *
 		 * @since 3.6.0
 		 */
-		public function render_css_property( $prefix, $key ) {
+		public function render_css_property( $prefix, $key, $default = 'initial' ) {
 			
 			if ( $prefix && $key ) {
 				$css_property_key = str_replace( $prefix, '', $key );
 				$css_property_key = str_replace( '_', '-', $css_property_key );
 				
-				$value = epl_get_option( $prefix . $key );
+				$value = epl_get_option( $prefix . $key, $default );
 				
 				
 				return $css_property_key . ': ' . $value . ';';
@@ -98,6 +98,91 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			}
 			
 			
+		}
+		
+		/**
+		 * Common CSS
+		 *
+		 * @since 3.6.0
+		 */
+		public function common() {
+			?>
+		
+			<style>
+				
+				.epl-container {
+					display: grid;
+					grid-template-columns: 1fr 360px;
+				}
+				
+				.epl-post-type-archive .ast-container {
+					display: block;
+				}
+				
+				.epl-single-listing .ast-container {
+					display: block;
+				}
+
+			</style>
+			<?php
+		}
+		
+		/**
+		 * Archive Theme Setup CSS
+		 *
+		 * @since 3.6.0
+		 */
+		public function archive_css() {
+			global $post, $property, $epl_settings;
+		
+			if ( is_null( $post ) ) {
+				return null;
+			}
+		
+			ob_start();
+			$this->common();
+			?>
+			<style>
+				
+				.epl-container--archive {
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'margin', 0 ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'padding', 0 ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'display', 'grid' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'grid_template_columns', '1fr 360px' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'gap', '2em' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'max_width', 'initial' ) ); ?>
+					
+					
+				}
+				
+				
+				
+				.epl-container .epl-archive-default,
+				.epl-container #epl-listing-container-archive.epl-archive-default {
+					
+				
+
+					margin: 0 auto;
+					
+					
+					
+					outline: 3px solid pink;
+				}
+				
+				.epl-container .epl-sidebar--archive {
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'max_width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'width' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'margin' ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'padding' ) ); ?>
+					
+					
+					border: 3px solid orange;
+				
+				}
+			</style>
+			<?php
+		
+			return ob_get_clean();
 		}
 
 		/**
@@ -117,7 +202,7 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			?>
 			<style>
 				.epl-container .epl-single-default,
-				.epl-container #listing-container-single.epl-single-default {
+				.epl-container #epl-listing-container-single.epl-single-default {
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'max_width' ) ); ?>
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'width' ) ); ?>
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'margin' ) ); ?>
@@ -146,92 +231,10 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			return ob_get_clean();
 		}
 
-                /**
-		 * Archive Theme Setup CSS
-		 *
-		 * @since 3.6.0
-		 */
-		public function archive_css() {
-			global $post, $property, $epl_settings;
-
-			if ( is_null( $post ) ) {
-				return null;
-			}
-
-			ob_start();
-			$this->common();
-			?>
-			<style>
-				
-				.epl-container .epl-archive-default,
-				.epl-container #listing-container-archive.epl-archive-default {
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'display' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'max_width' ) ); ?>
-					
-					
-					
-					margin: 0 auto;
-					margin-top: 2em;
-					outline: 3px solid pink;
-				}
-				
-				.epl-container .epl-sidebar--archive {
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'max_width' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'width' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'margin' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'padding' ) ); ?>
-					
-					
-					border: 3px solid orange;
-				
-				}
-			</style>
-			<?php
-
-			return ob_get_clean();
-		}
+               
 
 		
 
-		/**
-		 * Common CSS
-		 *
-		 * @since 3.6.0
-		 */
-		public function common() {
-			?>
-
-			<style>
-				
-				.epl-container {
-					display: grid;
-					grid-template-columns: 1fr 360px;
-				}
-				
-				.epl-post-type-archive .ast-container {
-					display: block;
-				}
-				
-				.epl-single-listing .ast-container {
-					display: block;
-				}
-				body .epl-property-blog {
-					-webkit-transition: none;
-					-moz-transition: none;
-					-o-transition: none;
-					transition: none;
-				}
-				body .epl-property-blog.epl-listing-grid-view {
-					-webkit-transition: none;
-					-moz-transition: none;
-					-o-transition: none;
-					transition: none;
-				}
-				.epl_slider_container-loading {
-					opacity: 0;
-				}
-			</style>
-			<?php
-		}
+		
 	}
 endif;

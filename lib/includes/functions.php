@@ -1487,11 +1487,42 @@ function epl_get_admin_option_fields() {
 				),
 				
 				array(
+					'name'    => 'theme_setup_archive_css_property_margin',
+					'label'   => __( 'Margin', 'easy-property-listings' ),
+					'type'    => 'text',
+					
+					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '0',
+					//'data-show' => array(
+					//	'relation' => 'OR',
+					//	'fields'   => array(
+					//		array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+					//	),
+					//),
+				),
+				
+				array(
+					'name'    => 'theme_setup_archive_css_property_padding',
+					'label'   => __( 'Padding', 'easy-property-listings' ),
+					'type'    => 'text',
+					
+					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '0',
+					//'data-show' => array(
+					//	'relation' => 'OR',
+					//	'fields'   => array(
+					//		array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+					//	),
+					//),
+				),
+				
+				array(
 					'name'    => 'theme_setup_archive_css_property_display',
 					'label'   => __( 'Display', 'easy-property-listings' ),
 					'type'    => 'select',
 					'opts'    => array(
 						'grid' => __( 'Grid', 'easy-property-listings' ),
+						'flex' => __( 'Flexbox', 'easy-property-listings' ),
 					),
 					
 					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
@@ -1511,12 +1542,27 @@ function epl_get_admin_option_fields() {
 					
 					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
 					'default' => '1fr 360px',
-					'data-show' => array(
-						'relation' => 'OR',
-						'fields'   => array(
-							array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
-						),
-					),
+					//'data-show' => array(
+					//	'relation' => 'OR',
+					//	'fields'   => array(
+					//		array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+					//	),
+					//),
+				),
+				
+				array(
+					'name'    => 'theme_setup_archive_css_property_gap',
+					'label'   => __( 'Gap', 'easy-property-listings' ),
+					'type'    => 'text',
+					
+					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '2em',
+					//'data-show' => array(
+					//	'relation' => 'OR',
+					//	'fields'   => array(
+					//		array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+					//	),
+					//),
 				),
 		
 				array(
@@ -1524,7 +1570,7 @@ function epl_get_admin_option_fields() {
 					'label'   => __( 'Max Width', 'easy-property-listings' ),
 					'type'    => 'text',
 					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
-					'default' => '75%',
+					'default' => 'intital',
                                         'data-show' => array(
 						'relation' => 'OR',
 						'fields'   => array(
@@ -1563,7 +1609,7 @@ function epl_get_admin_option_fields() {
 							array( 'theme_setup_archive_sidebar', '=', 'on' ),
 						),
 					),
-					'default'   => 'auto',
+					'default'   => 'initial',
 				),
 				
 				array(
