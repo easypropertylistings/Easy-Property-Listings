@@ -1493,7 +1493,7 @@ function epl_get_admin_option_fields() {
                                         'data-show' => array(
 						'relation' => 'OR',
 						'fields'   => array(
-							array( 'theme_setup_css_on', '=', 'on' ),
+							array( 'theme_setup_css', '=', 'on' ),
 						),
 					),
 				),
@@ -1578,7 +1578,7 @@ function epl_get_admin_option_fields() {
 					'data-show' => array(
 						'relation' => 'OR',
 						'fields'   => array(
-							array( 'theme_setup_single_sidebar_on', '=', 'on' ),
+							array( 'theme_setup_single_sidebar', '=', 'on' ),
 						),
 					),
 					'default'   => '',
