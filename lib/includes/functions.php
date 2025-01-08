@@ -1487,18 +1487,54 @@ function epl_get_admin_option_fields() {
 				),
 				
 				array(
+					'name'    => 'theme_setup_archive_css_property_breakpoint',
+					'label'   => __( 'Breakpoint', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '768px',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_css', '=', 'on' ),
+						),
+					),
+				),
+				
+				array(
+					'name'    => 'theme_setup_archive_css_property_max_width',
+					'label'   => __( 'Max Width', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => 'intital',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_css', '=', 'on' ),
+						),
+					),
+				),
+				
+				array(
+					'name'    => 'theme_setup_archive_css_property_width',
+					'label'   => __( 'Width', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '100%',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_css', '=', 'on' ),
+						),
+					),
+				),
+				
+				array(
 					'name'    => 'theme_setup_archive_css_property_margin',
 					'label'   => __( 'Margin', 'easy-property-listings' ),
 					'type'    => 'text',
 					
 					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
 					'default' => '0',
-					//'data-show' => array(
-					//	'relation' => 'OR',
-					//	'fields'   => array(
-					//		array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
-					//	),
-					//),
 				),
 				
 				array(
@@ -1508,12 +1544,6 @@ function epl_get_admin_option_fields() {
 					
 					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
 					'default' => '0',
-					//'data-show' => array(
-					//	'relation' => 'OR',
-					//	'fields'   => array(
-					//		array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
-					//	),
-					//),
 				),
 				
 				array(
@@ -1542,12 +1572,12 @@ function epl_get_admin_option_fields() {
 					
 					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
 					'default' => '1fr 360px',
-					//'data-show' => array(
-					//	'relation' => 'OR',
-					//	'fields'   => array(
-					//		array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
-					//	),
-					//),
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+						),
+					),
 				),
 				
 				array(
@@ -1557,27 +1587,16 @@ function epl_get_admin_option_fields() {
 					
 					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
 					'default' => '2em',
-					//'data-show' => array(
-					//	'relation' => 'OR',
-					//	'fields'   => array(
-					//		array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
-					//	),
-					//),
-				),
-		
-				array(
-					'name'    => 'theme_setup_archive_css_property_max_width',
-					'label'   => __( 'Max Width', 'easy-property-listings' ),
-					'type'    => 'text',
-					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
-					'default' => 'intital',
-                                        'data-show' => array(
+					'data-show' => array(
 						'relation' => 'OR',
 						'fields'   => array(
-							array( 'theme_setup_css', '=', 'on' ),
+							array( 'theme_setup_archive_css_property_display', '=', 'grid' ),
+							array( 'theme_setup_archive_css_property_display', '=', 'flex' ),
 						),
 					),
 				),
+		
+				
 				
 				array(
 					'name'    => 'help_section_break',
@@ -1655,6 +1674,8 @@ function epl_get_admin_option_fields() {
 				),
 				
 				
+				
+				
 				// Single.
 				
 				array(
@@ -1667,6 +1688,14 @@ function epl_get_admin_option_fields() {
 					'name'    => 'help_theme_setup_containers_title',
 					'type'    => 'help',
 					'content' => '<h3>' . __( 'Single', 'easy-property-listings' ) . '</h3>',
+				),
+				
+				array(
+					'name'    => 'theme_setup_single_css_property_breakpoint',
+					'label'   => __( 'Breakpoint', 'easy-property-listings' ),
+					'type'    => 'text',
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '768px',
 				),
 		
 				array(
@@ -1699,6 +1728,56 @@ function epl_get_admin_option_fields() {
 					'type'    => 'text',
 					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
 					'default' => '0',
+				),
+				
+				array(
+					'name'    => 'theme_setup_single_css_property_display',
+					'label'   => __( 'Display', 'easy-property-listings' ),
+					'type'    => 'select',
+					'opts'    => array(
+						'grid' => __( 'Grid', 'easy-property-listings' ),
+						'flex' => __( 'Flexbox', 'easy-property-listings' ),
+					),
+					
+					'help'    => __( 'Enter in a valid css width. %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => 'grid',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_css', '=', 'on' ),
+						),
+					),
+				),
+				
+				array(
+					'name'    => 'theme_setup_single_css_property_grid_template_columns',
+					'label'   => __( 'Grid Template Columns', 'easy-property-listings' ),
+					'type'    => 'text',
+					
+					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '1fr 360px',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_single_css_property_display', '=', 'grid' ),
+						),
+					),
+				),
+				
+				array(
+					'name'    => 'theme_setup_single_css_property_gap',
+					'label'   => __( 'Gap', 'easy-property-listings' ),
+					'type'    => 'text',
+					
+					'help'    => __( 'Enter in a valid css width. fr %, px, em, rem, vw.', 'easy-property-listings' ),
+					'default' => '2em',
+					'data-show' => array(
+						'relation' => 'OR',
+						'fields'   => array(
+							array( 'theme_setup_single_css_property_display', '=', 'grid' ),
+							array( 'theme_setup_single_css_property_display', '=', 'flex' ),
+						),
+					),
 				),
 				
 				// Single Sidebar.

@@ -83,19 +83,36 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		 *
 		 * @since 3.6.0
 		 */
-		public function render_css_property( $prefix, $key, $default = 'initial' ) {
+		public function render_css_property( $prefix, $key, $default = 'initial', $type = 'full' ) {
 			
-			if ( $prefix && $key ) {
-				$css_property_key = str_replace( $prefix, '', $key );
-				$css_property_key = str_replace( '_', '-', $css_property_key );
-				
-				$value = epl_get_option( $prefix . $key, $default );
-				
-				
-				return $css_property_key . ': ' . $value . ';';
-			} else {
-				return 'initial';
+			if ( 'full' === $type ) {
+				if ( $prefix && $key ) {
+					$css_property_key = str_replace( $prefix, '', $key );
+					$css_property_key = str_replace( '_', '-', $css_property_key );
+					
+					$value = epl_get_option( $prefix . $key, $default );
+					
+					
+					return $css_property_key . ': ' . $value . ';';
+				} else {
+					return 'initial' . ';';
+				}
 			}
+			
+			if ( 'breakpoint' === $type ) {
+				if ( $prefix && $key ) {
+					$css_property_key = str_replace( $prefix, '', $key );
+					$css_property_key = str_replace( '_', '-', $css_property_key );
+					
+					$value = epl_get_option( $prefix . $key, $default );
+					
+					
+					return $value;
+				} else {
+					return '768px';
+				}
+			}
+			
 			
 			
 		}
@@ -110,10 +127,23 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 		
 			<style>
 				
+				.epl-slick-carousel-outer-wrapper,
+				.epl-gallery-grid-wrap,
+				.epl-slider-single-wrapper {
+					
+				}
+				
+				.epl-archive-default,
+				.epl-single-default,
+				.epl-sidebar {
+					min-width: 0;
+				}
+				
 				.epl-container {
 					display: grid;
-					grid-template-columns: 1fr 360px;
+					grid-template-columns: 1fr;
 				}
+
 				
 				.epl-post-type-archive .ast-container {
 					display: block;
@@ -144,40 +174,26 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			?>
 			<style>
 				
-				.epl-container--archive {
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'margin', 0 ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'padding', 0 ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'display', 'grid' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'grid_template_columns', '1fr 360px' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'gap', '2em' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'max_width', 'initial' ) ); ?>
-					
-					
+				@media screen and ( min-width: <?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'breakpoint', '766px', 'breakpoint' ) ); ?> ) {
+					.epl-container--archive {
+						
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'max_width', 'initial' ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'width', '100%' ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'margin', 0 ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'padding', 0 ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'display', 'grid' ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'grid_template_columns', '1fr 360px' ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_css_property_', 'gap', '2em' ) ); ?>
+						
+						
+					}
 				}
-				
-				
-				
-				.epl-container .epl-archive-default,
-				.epl-container #epl-listing-container-archive.epl-archive-default {
-					
-				
 
-					margin: 0 auto;
-					
-					
-					
-					outline: 3px solid pink;
-				}
-				
 				.epl-container .epl-sidebar--archive {
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'max_width' ) ); ?>
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'width' ) ); ?>
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'margin' ) ); ?>
 					<?php echo esc_attr( $this->render_css_property( 'theme_setup_archive_sidebar_css_property_', 'padding' ) ); ?>
-					
-					
-					border: 3px solid orange;
-				
 				}
 			</style>
 			<?php
@@ -201,25 +217,24 @@ if ( ! class_exists( 'EPL_Admin_CSS' ) ) :
 			$this->common();
 			?>
 			<style>
-				.epl-container .epl-single-default,
-				.epl-container #epl-listing-container-single.epl-single-default {
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'max_width' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'width' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'margin' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'padding' ) ); ?>
-					
-					border: 3px solid turquoise;
+				
+				@media screen and ( min-width: <?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'breakpoint', '766px', 'breakpoint' ) ); ?> ) {
+					.epl-container--single {
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'max_width', 'initial' ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'width', '100%' ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'margin', 0 ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'padding', 0 ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'display', 'grid' ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'grid_template_columns', '1fr 360px' ) ); ?>
+						<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_css_property_', 'gap', '2em' ) ); ?>
+					}
 				}
 
 				.epl-container .epl-sidebar--single {
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'max_width' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'width' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'margin' ) ); ?>
-					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'padding' ) ); ?>
-					
-					
-					border: 3px solid orange;
-
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'max_width', 'initial'  ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'width', '100%'  ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'margin', 0 ) ); ?>
+					<?php echo esc_attr( $this->render_css_property( 'theme_setup_single_sidebar_css_property_', 'padding', 0 ) ); ?>
 				}
 				
 				

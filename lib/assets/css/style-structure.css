@@ -231,6 +231,8 @@
 	Single
 ******************************/
 .epl-property-single {
+	margin: 0;
+	padding: 0;
 }
 .epl-property-single h1.entry-title,
 .epl-property-single .property-meta.pricing {

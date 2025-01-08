@@ -522,6 +522,11 @@ width: 100%;
 }
 
 /** Single **/
+
+.epl-property-single {
+	margin: 0;
+	padding: 0;
+}
 .epl-property-single.view-expanded  .item-street,
 .epl-property-single.view-expanded  .page-price-rent {
 	/* display: inline-block; */
