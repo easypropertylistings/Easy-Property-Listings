@@ -43,6 +43,7 @@ There are various ways you can contribute:
 - New: Theme setup options for container and sidebar options.
 - New: Load theme setup css from EPL settings.
 - Tweak: Checkbox single support for settings and extension settings.
+- New: Archive listing and single listing templates updated with new container for theme setup.
 
 
 
