@@ -16,25 +16,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header(); ?>
 <section id="epl-listing-container-single" class="epl-container epl-container--single">
 	<main id="epl-listing" class="site-content content-area epl-single-default <?php echo esc_attr( epl_get_active_theme_name() ); ?>">
-		<section class="content">
-			<div id="content" class="pad" role="main">
-				<?php
-				if ( have_posts() ) :
-					?>
-					<div class="loop">
-						<div class="loop-content <?php echo esc_attr( epl_template_class( 'default', 'single' ) ); ?>">
-							<?php
-							while ( have_posts() ) : // The Loop.
-								the_post();
-								do_action( 'epl_property_single' );
-								comments_template(); // include comments template.
-								endwhile; // end of one post.
-							?>
-						</div>
+		
+		<section id="content" class="pad" role="main">
+			<?php
+			if ( have_posts() ) :
+				?>
+				<div class="loop">
+					<div class="loop-content <?php echo esc_attr( epl_template_class( 'single-default', 'single' ) ); ?>">
+						<?php
+						while ( have_posts() ) : // The Loop.
+							the_post();
+							do_action( 'epl_property_single' );
+							comments_template(); // include comments template.
+							endwhile; // end of one post.
+						?>
 					</div>
-				<?php endif; ?>
-			</div>
+				</div>
+			<?php endif; ?>
 		</section>
+
 	</main>
 	<?php do_action( 'epl_get_sidebar' ); ?>
 </section>
