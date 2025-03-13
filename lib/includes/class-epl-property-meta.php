@@ -494,7 +494,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 			if ( ! empty( $property_lease_price ) ) {
 				if ( 'yes' === $property_lease_display || true === $admin ) {
-
 					return apply_filters( 'epl_get_property_price_lease_display', $property_lease_price );
 				}
 			}
@@ -1108,10 +1107,9 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				}
 			} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 				$price_sticker = '';
-				
+
 				if ( 'sold' !== $this->get_property_meta( 'property_status' ) || 'leased' !== $this->get_property_meta( 'property_status' ) ) {
 					if ( $this->get_epl_settings( 'sticker_new_range' ) >= $diff ) {
-						$price_sticker = '';
 						$price_sticker .= '<span class="status-sticker new">' . $this->get_epl_settings( 'label_new' ) . '</span>';
 					}
 				}
@@ -1207,7 +1205,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0
 		 * @param string $returntype Options i = span, v = value, d = string, l = list item, t = text.
-		 * @return
+		 * @return string
 		 *
 		 * @since 3.5.0 Added filter for empty values.
 		 */
