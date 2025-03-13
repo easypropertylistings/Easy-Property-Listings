@@ -118,26 +118,26 @@ add_action( 'pre_get_posts', 'epl_custom_post_author_archive' );
  *
  * @return string
  * @since 1.0
- * @since 3.5.14 Improvements to return values.
+ * @since 3.5.14 Improvements to author email return values in gravity forms email hook.
  */
 function epl_populate_post_author_email( $value ) {
 
-    if ( is_author() ) {
-        $author = get_queried_object();
-        if ( $author instanceof WP_User ) {
-            return $author->user_email;
-        }
-    }
-
-    global $post;
-    if ( $post instanceof WP_Post ) {
-        $author_email = get_the_author_meta( 'user_email', $post->post_author );
-        if ( ! empty( $author_email ) ) {
-            return $author_email;
-        }
-    }
-
-    return '';
+	if ( is_author() ) {
+		$author = get_queried_object();
+		if ( $author instanceof WP_User ) {
+			return $author->user_email;
+		}
+	}
+	
+	global $post;
+	if ( $post instanceof WP_Post ) {
+		$author_email = get_the_author_meta( 'user_email', $post->post_author );
+		if ( ! empty( $author_email ) ) {
+			return $author_email;
+		}
+	}
+	
+	return '';
 }
 add_filter( 'gform_field_value_author_email', 'epl_populate_post_author_email' );
 

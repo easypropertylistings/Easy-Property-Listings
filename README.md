@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.14 March 13, 2025 =
+
+-   Tweak: Added new label to commercial listings.
+-   Tweak: Improvements to author email return values in gravity forms email hook.
+
 = 3.5.13 October 30, 2024 =
 
 -   Tweak: Target blank added to ical link.
