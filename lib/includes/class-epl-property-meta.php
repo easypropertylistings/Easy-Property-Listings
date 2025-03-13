@@ -1050,6 +1050,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @throws Exception PHP 5.3 notice.
 		 * @since 2.0
 		 * @since 3.5 Added fix for trim when string string is null.
+		 * @since 3.5.14 Added missing new status sticker for commercial listings.
 		 */
 		public function get_price_sticker() {
 			$price_sticker = '';
@@ -1107,14 +1108,24 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				}
 			} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 				$price_sticker = '';
+				
+				if ( 'sold' !== $this->get_property_meta( 'property_status' ) || 'leased' !== $this->get_property_meta( 'property_status' ) ) {
+					if ( $this->get_epl_settings( 'sticker_new_range' ) >= $diff ) {
+						$price_sticker = '';
+						$price_sticker .= '<span class="status-sticker new">' . $this->get_epl_settings( 'label_new' ) . '</span>';
+					}
+				}
+
 				if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 					$price_sticker .= '<span class="status-sticker sold">' . $this->label_sold . '</span>';
 				}
+
 				if ( 'leased' === $this->get_property_meta( 'property_status' ) ) {
 					$price_sticker .= '<span class="status-sticker leased">' . $this->label_leased . '</span>';
 				}
-				if ( 'yes' === $this->get_property_meta( 'property_under_offer' ) && 'sold' !== $this->get_property_meta( 'property_status' ) ) {
 
+				if ( 'yes' === $this->get_property_meta( 'property_under_offer' ) && 'sold' !== $this->get_property_meta( 'property_status' ) ) {
+					$price_sticker  = '';
 					$price_sticker .= '<span class="status-sticker under-offer">' . $this->label_under_offer . '</span>';
 				}
 			}

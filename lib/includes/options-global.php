@@ -118,6 +118,7 @@ add_action( 'pre_get_posts', 'epl_custom_post_author_archive' );
  *
  * @return string
  * @since 1.0
+ * @since 3.5.14 Improvements to return values.
  */
 function epl_populate_post_author_email( $value ) {
 	global $post;
