@@ -120,8 +120,23 @@ add_action( 'pre_get_posts', 'epl_custom_post_author_archive' );
  * @since 1.0
  */
 function epl_populate_post_author_email( $value ) {
-	global $post;
-	$author_email = get_the_author_meta( 'user_email', $post->post_author );
-	return $author_email;
+
+    if ( is_author() ) {
+        $author = get_queried_object();
+        if ( $author instanceof WP_User ) {
+            return $author->user_email;
+        }
+    }
+
+    global $post;
+    if ( $post instanceof WP_Post ) {
+        $author_email = get_the_author_meta( 'user_email', $post->post_author );
+        if ( ! empty( $author_email ) ) {
+            return $author_email;
+        }
+    }
+
+    return '';
 }
 add_filter( 'gform_field_value_author_email', 'epl_populate_post_author_email' );
+
