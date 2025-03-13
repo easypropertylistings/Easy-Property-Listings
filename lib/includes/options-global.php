@@ -128,7 +128,7 @@ function epl_populate_post_author_email( $value ) {
 			return $author->user_email;
 		}
 	}
-	
+
 	global $post;
 	if ( $post instanceof WP_Post ) {
 		$author_email = get_the_author_meta( 'user_email', $post->post_author );
@@ -136,7 +136,7 @@ function epl_populate_post_author_email( $value ) {
 			return $author_email;
 		}
 	}
-	
+
 	return '';
 }
 add_filter( 'gform_field_value_author_email', 'epl_populate_post_author_email' );
