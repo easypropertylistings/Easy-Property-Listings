@@ -766,6 +766,7 @@ function epl_property_get_the_full_address() {
  * @since 3.3.3 Revised.
  * @since 3.4.8 Corrected separator location to appear AFTER the street name and options to control display.
  * @since 3.4.9 Added option allowing passing of $full parameter as false to restrict output to street items only.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_property_the_address( $full = true, $street_separator = true, $separator_symbol = ',' ) {
 
@@ -792,18 +793,18 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 			if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 				if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
 					?>
-					<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+					<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 					<?php
 					if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-						echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+						echo '<span class="item-separator">' . esc_html( $epl_property_address_separator ) . '</span>';
 					}
 				}
 			} else {
 				?>
-				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+				<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 				<?php
 				if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+					echo '<span class="item-separator">' . esc_html( $epl_property_address_separator ) . '</span>';
 				}
 			}
 			?>
@@ -811,19 +812,19 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 			<?php
 			if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
 				?>
-				<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ); ?></span>
+				<span class="item-city"><?php echo esc_html( $property->get_property_meta( 'property_address_city' ) ); ?></span>
 				<?php
 				if ( true === $epl_property_address_separator_city && strlen( trim( $property->get_property_meta( 'property_address_city' ) ) ) ) {
-					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+					echo '<span class="item-separator">' . esc_html( $epl_property_address_separator ) . '</span>';
 				}
 			}
 			?>
-			<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ); ?></span>
-			<span class="item-pcode"><?php echo esc_attr( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
+			<span class="item-state"><?php echo esc_html( $property->get_property_meta( 'property_address_state' ) ); ?></span>
+			<span class="item-pcode"><?php echo esc_html( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
 			<?php
 			if ( 'yes' === $property->get_epl_settings( 'epl_enable_country_field' ) ) {
 				?>
-				<span class="item-country"><?php echo esc_attr( $property->get_property_meta( 'property_address_country' ) ); ?></span>
+				<span class="item-country"><?php echo esc_html( $property->get_property_meta( 'property_address_country' ) ); ?></span>
 				<?php
 			}
 			?>
@@ -840,6 +841,7 @@ add_action( 'epl_property_address', 'epl_property_the_address', 10, 3 );
  *
  * @since 1.3
  * @since 3.1.18 Revised.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_property_suburb() {
 	global $property;
@@ -849,15 +851,15 @@ function epl_property_suburb() {
 
 		<span class="entry-title-sub">
 			<?php if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) { ?>
-				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+				<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 			<?php } else { ?>
 				<?php $prop_addr_city = $property->get_property_meta( 'property_address_city' ); ?>
 				<?php if ( ! empty( $prop_addr_city ) ) { ?>
-					<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ) . ' '; ?></span>
+					<span class="item-city"><?php echo esc_html( $property->get_property_meta( 'property_address_city' ) ) . ' '; ?></span>
 				<?php } ?>
 
-				<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ) . ' '; ?></span>
-				<span class="item-pcode"><?php echo esc_attr( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
+				<span class="item-state"><?php echo esc_html( $property->get_property_meta( 'property_address_state' ) ) . ' '; ?></span>
+				<span class="item-pcode"><?php echo esc_html( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
 			<?php } ?>
 		</span>
 
@@ -865,7 +867,7 @@ function epl_property_suburb() {
 	} else {
 		?>
 		<span class="entry-title-sub">
-			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+			<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 		</span>
 		<?php
 	}
@@ -1104,8 +1106,9 @@ add_action( 'epl_property_heading', 'epl_property_heading' );
 /**
  * Property Heading
  *
- * @since      1.0 @hooked property_secondary_heading
- * @since      3.4.41 Fix: Added land category.
+ * @since 1.0 @hooked property_secondary_heading
+ * @since 3.4.41 Fix: Added land category.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_property_secondary_heading() {
 	global $property;
@@ -1127,7 +1130,7 @@ function epl_property_secondary_heading() {
 	}
 
 	if ( 'sold' === $property->get_property_meta( 'property_status' ) ) {
-		echo ' <span class="sold-status">' . esc_attr( $property->label_sold ) . '</span>';
+		echo ' <span class="sold-status">' . esc_html( $property->label_sold ) . '</span>';
 	}
 	echo ' <span class="suburb"> - ' . wp_kses_post( $property->get_property_meta( 'property_address_suburb' ) ) . ' </span>';
 	echo ' <span class="state">' . wp_kses_post( $property->get_property_meta( 'property_address_state' ) ) . '</span>';
@@ -1288,6 +1291,7 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
  * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @since 3.5.0  New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
  * @since 3.5.2  Tweak: Removed additional property category appearing in additional features list.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  *
  * @hooked property_tab_section
  */
@@ -1657,7 +1661,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 			// Suburb.
 			if ( 'on' === $d_suburb && 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) {
 				?>
-				<div class="property-meta suburb-name"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
+				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
 			<?php } ?>
 
 			<?php
@@ -1671,7 +1675,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 			// Suburb.
 			if ( 'on' === $d_suburb && 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) {
 				?>
-				<div class="property-meta suburb-name"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
+				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
 			<?php } ?>
 			<?php
 		}
@@ -1683,7 +1687,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 			// Suburb.
 			if ( 'on' === $d_suburb ) {
 				?>
-				<div class="property-meta suburb-name"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
+				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
 			<?php } ?>
 
 			<?php
@@ -1927,6 +1931,7 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  * @since 3.4.44 Get shortcode attributes as parameter.
  * @since 3.5 Added accessibility labels to select elements.
  * @since 3.5.7 Instance ID default to 1 to enable sorting. The $attributes option is required.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_sorting_tool( $attributes = array() ) {
 
@@ -1960,7 +1965,7 @@ function epl_sorting_tool( $attributes = array() ) {
 				}
 				?>
 				<option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
-					<?php echo esc_attr( $sorter['label'] ); ?>
+					<?php echo esc_html( $sorter['label'] ); ?>
 				</option>
 				<?php
 			}
@@ -1975,6 +1980,7 @@ add_action( 'epl_sorting_tool', 'epl_sorting_tool' );
  * Displays the Sorting tabs
  *
  * @since 3.3
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_sorting_tabs() {
 	$sortby = '';
@@ -1998,7 +2004,7 @@ function epl_sorting_tabs() {
 				?>
 					<li class="epl-sortby-list <?php echo esc_attr( $class ); ?>">
 						<a href="<?php echo esc_url( $href ); ?>">
-						<?php echo esc_attr( $sorter['label'] ); ?>
+							<?php echo esc_html( $sorter['label'] ); ?>
 						</a>
 					</li>
 					<?php
@@ -3222,6 +3228,7 @@ add_filter( 'comments_array', 'epl_filter_listing_comments_array', 10, 2 );
  *
  * @since 3.0.0
  * @since 3.5.2 Added filter epl_archive_title to alter archive title.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_archive_title_callback() {
 	the_post();
@@ -3241,7 +3248,7 @@ function epl_archive_title_callback() {
 
 	if ( is_paged() ) {
 		// Translators: title, page number.
-		printf( '%s &ndash; Page %d', esc_attr( $title ), esc_attr( get_query_var( 'paged' ) ) );
+		printf( '%s &ndash; Page %d', esc_html( $title ), esc_attr( get_query_var( 'paged' ) ) );
 	} else {
 		echo wp_kses_post( apply_filters( 'epl_archive_title_default', $title ) );
 	}

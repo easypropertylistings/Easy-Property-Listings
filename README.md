@@ -42,6 +42,7 @@ There are various ways you can contribute:
 
 -   Tweak: Added new label to commercial listings.
 -   Tweak: Improvements to author email return values in gravity forms email hook.
+-   Tweak: Corrected escaping function to esc_html in several functions.
 
 = 3.5.13 October 30, 2024 =
 
