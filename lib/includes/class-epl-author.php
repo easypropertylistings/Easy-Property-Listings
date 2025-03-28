@@ -60,6 +60,14 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 * @var string $office_phone User office phone.
 		 */
 		public $office_phone;
+		
+		/**
+		 * The user website
+		 *
+		 * @since 3.5.15
+		 * @var string $website User website.
+		 */
+		public $website;
 
 		/**
 		 * The user Facebook URL
@@ -184,6 +192,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 			$this->name         = get_the_author_meta( 'display_name', $this->author_id );
 			$this->mobile       = get_the_author_meta( 'mobile', $this->author_id );
 			$this->office_phone = get_the_author_meta( 'office_phone', $this->author_id );
+			$this->website      = get_the_author_meta( 'website', $this->author_id );
 			$this->facebook     = get_the_author_meta( 'facebook', $this->author_id );
 			$this->linkedin     = get_the_author_meta( 'linkedin', $this->author_id );
 			$this->google       = get_the_author_meta( 'google', $this->author_id );
@@ -831,6 +840,17 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		public function get_author_office_phone() {
 			if ( ! empty( $this->office_phone ) ) {
 				return apply_filters( 'epl_author_office_phone', $this->office_phone, $this );
+			}
+		}
+		
+		/**
+		 * Author website
+		 *
+		 * @since 3.5.15
+		 */
+		public function get_author_website() {
+			if ( ! empty( $this->website ) ) {
+				return apply_filters( 'epl_author_website', $this->wesbite, $this );
 			}
 		}
 
