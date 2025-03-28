@@ -184,8 +184,10 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		/**
 		 * Get things started
 		 *
-		 * @since 1.3.0
 		 * @param string $author_id The author WordPress user ID.
+		 *
+		 * @since 1.3.0
+		 * @since 3.5.15 Added website (url)
 		 */
 		public function __construct( $author_id ) {
 			$this->author_id    = $author_id;
@@ -292,7 +294,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 * @since 3.5.15
 		 */
 		public function get_website() {
-			if ( ! empty( $this->email ) ) {
+			if ( ! empty( $this->website ) ) {
 				return apply_filters( 'epl_author_website', $this->website, $this );
 			}
 		}
@@ -315,16 +317,16 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		
 				if ( 'i' === $style ) {
 					$html = '
-						<a class="epl-author-icon author-icon email-icon-24"
-							href="mailto:' . $this->get_email() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Email', 'easy-property-listings' ) . '">' .
-							apply_filters( 'epl_author_icon_email', __( 'Email', 'easy-property-listings' ) ) .
+						<a class="epl-author-icon author-icon website-icon-24"
+							href="mailto:' . $this->get_website() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Website', 'easy-property-listings' ) . '">' .
+							apply_filters( 'epl_author_icon_website', __( 'Website', 'easy-property-listings' ) ) .
 							'</a>';
 				} else {
-					$svg  = '<svg viewBox="0 0 100 100" class="epl-icon-svg-email"><use xlink:href="#epl-icon-svg-email"></use></svg>';
+					$svg  = '<svg viewBox="0 0 100 100" class="epl-icon-svg-website"><use xlink:href="#epl-icon-svg-website"></use></svg>';
 					$html =
-						'<div class="epl-icon-svg-container epl-icon-container-email">
-							<a class="epl-author-icon-svg author-icon-svg email-icon"
-								href="mailto:' . $this->get_email() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Email', 'easy-property-listings' ) . '">' . $svg .
+						'<div class="epl-icon-svg-container epl-icon-container-website">
+							<a class="epl-author-icon-svg author-icon-svg website-icon"
+								href="mailto:' . $this->get_website() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Website', 'easy-property-listings' ) . '">' . $svg .
 							'</a>
 						</div>';
 				}
