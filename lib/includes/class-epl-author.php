@@ -318,7 +318,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon website-icon-24"
-							href="mailto:' . $this->get_website() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Website', 'easy-property-listings' ) . '">' .
+							href="' . $this->get_website() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Website', 'easy-property-listings' ) . '">' .
 							apply_filters( 'epl_author_icon_website', __( 'Website', 'easy-property-listings' ) ) .
 							'</a>';
 				} else {
@@ -326,7 +326,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-website">
 							<a class="epl-author-icon-svg author-icon-svg website-icon"
-								href="mailto:' . $this->get_website() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Website', 'easy-property-listings' ) . '">' . $svg .
+								href="' . $this->get_website() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Website', 'easy-property-listings' ) . '">' . $svg .
 							'</a>
 						</div>';
 				}
