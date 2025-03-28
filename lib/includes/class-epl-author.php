@@ -192,7 +192,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 			$this->name         = get_the_author_meta( 'display_name', $this->author_id );
 			$this->mobile       = get_the_author_meta( 'mobile', $this->author_id );
 			$this->office_phone = get_the_author_meta( 'office_phone', $this->author_id );
-			$this->website      = get_the_author_meta( 'website', $this->author_id );
+			$this->website      = get_the_author_meta( 'url', $this->author_id );
 			$this->facebook     = get_the_author_meta( 'facebook', $this->author_id );
 			$this->linkedin     = get_the_author_meta( 'linkedin', $this->author_id );
 			$this->google       = get_the_author_meta( 'google', $this->author_id );
@@ -283,6 +283,53 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 				}
 			}
 			$html = apply_filters( 'epl_author_email_html', $html, $this );
+			return $html;
+		}
+		
+		/**
+		 * Get website
+		 *
+		 * @since 3.5.15
+		 */
+		public function get_website() {
+			if ( ! empty( $this->email ) ) {
+				return apply_filters( 'epl_author_website', $this->website, $this );
+			}
+		}
+		
+		/**
+		 * Author website html Box
+		 *
+		 * @param string $html String of html.
+		 * @param string $style Option of returntype.
+		 *
+		 * @return mixed|string|void
+		 *
+		 * @since 3.5.15
+		 */
+		public function get_website_html( $html = '', $style = 'i' ) {
+		
+			if ( ! empty( $this->website ) ) {
+		
+				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+		
+				if ( 'i' === $style ) {
+					$html = '
+						<a class="epl-author-icon author-icon email-icon-24"
+							href="mailto:' . $this->get_email() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Email', 'easy-property-listings' ) . '">' .
+							apply_filters( 'epl_author_icon_email', __( 'Email', 'easy-property-listings' ) ) .
+							'</a>';
+				} else {
+					$svg  = '<svg viewBox="0 0 100 100" class="epl-icon-svg-email"><use xlink:href="#epl-icon-svg-email"></use></svg>';
+					$html =
+						'<div class="epl-icon-svg-container epl-icon-container-email">
+							<a class="epl-author-icon-svg author-icon-svg email-icon"
+								href="mailto:' . $this->get_email() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Email', 'easy-property-listings' ) . '">' . $svg .
+							'</a>
+						</div>';
+				}
+			}
+			$html = apply_filters( 'epl_author_website_html', $html, $this );
 			return $html;
 		}
 
@@ -840,17 +887,6 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		public function get_author_office_phone() {
 			if ( ! empty( $this->office_phone ) ) {
 				return apply_filters( 'epl_author_office_phone', $this->office_phone, $this );
-			}
-		}
-		
-		/**
-		 * Author website
-		 *
-		 * @since 3.5.15
-		 */
-		public function get_author_website() {
-			if ( ! empty( $this->website ) ) {
-				return apply_filters( 'epl_author_website', $this->wesbite, $this );
 			}
 		}
 
