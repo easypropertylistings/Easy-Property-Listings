@@ -38,7 +38,7 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.14 March 28, 2025 =
+= 3.5.15 March 28, 2025 =
 
 -   New: Author website field added to global $epl_author.
 
