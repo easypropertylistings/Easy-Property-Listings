@@ -38,7 +38,16 @@ There are various ways you can contribute:
 
 ## Change Log
 
-Fix: Sold price not displaying in admin.
+= 3.5.15 June 11, 2025 =
+
+-   Fix: Sold price not displaying in admin.
+
+= 3.5.14 March 13, 2025 =
+
+-   Tweak: Added new label to commercial listings.
+-   Tweak: Improvements to author email return values in gravity forms email hook.
+-   Tweak: Corrected escaping function to esc_html in several functions.
+
 
 = 3.5.13 October 30, 2024 =
 
