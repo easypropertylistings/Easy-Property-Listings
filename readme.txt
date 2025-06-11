@@ -8,7 +8,8 @@ Requires PHP: 7.1
 Requires at least: 3.9
 Tested up to: 6.8.1
 Stable Tag: 3.5.15
-License: GNU Version 2 or Any Later Version
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management and works with any theme.
 
