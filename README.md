@@ -38,6 +38,8 @@ There are various ways you can contribute:
 
 ## Change Log
 
+Fix: Sold price not displaying in admin.
+
 = 3.5.13 October 30, 2024 =
 
 -   Tweak: Target blank added to ical link.

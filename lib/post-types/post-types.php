@@ -498,7 +498,7 @@ add_action( 'epl_manage_listing_column_geo', 'epl_manage_listing_column_geo_call
  * @since 3.4.0  Now using epl_get_option function.
  * @since 3.5    Set the bar value to integer.
  * @since 3.5.11 Removed unnecessary uppercase function for status in admin columns.
- * @since 3.7    Fix: Sold price not displaying in admin.
+ * @since 3.5.15 Fix: Sold price not displaying in admin.
  */
 function epl_manage_listing_column_price_callback() {
 	global $post, $property;
