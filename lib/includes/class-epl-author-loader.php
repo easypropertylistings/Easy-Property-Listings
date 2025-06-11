@@ -60,6 +60,14 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 * @var string $office_phone User office phone.
 		 */
 		public $office_phone;
+		
+		/**
+		 * The user website
+		 *
+		 * @since 3.5.15
+		 * @var string $website User website.
+		 */
+		public $website;
 
 		/**
 		 * The user Facebook URL
