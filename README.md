@@ -40,7 +40,7 @@ There are various ways you can contribute:
 
 = 3.5.15 March 28, 2025 =
 
--   New: Author website field added to global $epl_author.
+-   New: Author website field added to global $epl_author and helper functions added.
 
 = 3.5.14 March 13, 2025 =
 
