@@ -994,6 +994,9 @@ h3.epl-welcome-sub-heading {
 	float: right;
 }
 /* Inspection Markup */
+.epl-inspection-markup{
+        display: none;
+}
 .epl-inspection-markup-inner {
         display: flex;
         justify-content: flex-start;
