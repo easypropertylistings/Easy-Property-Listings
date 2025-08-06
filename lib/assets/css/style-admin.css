@@ -2536,7 +2536,7 @@ input.epl-radio-switch-input--yes-no + label::after {
         line-height: 60px;
 }
 input.epl-radio-switch-input--yes-no + label::before {
-        background-color: #dddddd;
+        background-color: #666666;
         content: attr(data-off);
         -webkit-transition: -webkit-transform 0.5s;
         -moz-transition: -moz-transform 0.5s;
@@ -2579,4 +2579,34 @@ input.epl-radio-switch-input--yes-no:checked + label::after {
         -ms-transform: rotateY(0);
         -o-transform: rotateY(0);
         transform: rotateY(0);
+}
+
+/** Image management class **/
+.epl-listing-attachments-list{
+        display: flex;
+        flex-wrap: wrap;
+}
+.epl-listing-attachments-list-item {
+    margin: 5px;
+    position: relative;
+    box-shadow: 0 0 2px #ccc;
+    padding: 5px;
+}
+.epl-listing-attachment-tools{
+        display: none;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.7);
+        width: calc(100% - 10px);
+        padding: 2px 5px;
+        box-sizing: border-box;
+        justify-content: space-between;
+}
+.epl-listing-attachments-list-item:hover .epl-listing-attachment-tools {
+    display: flex;
+    bottom: 0;
+    justify-content: space-between;
+}
+.epl-listing-attachment-tools a {
+    color: #eee;
+    text-decoration: none;
 }

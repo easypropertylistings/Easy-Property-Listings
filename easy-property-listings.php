@@ -306,7 +306,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'includes/admin/help.php';
 				require_once EPL_PATH_LIB . 'includes/admin/help-single.php';
 				require_once EPL_PATH_LIB . 'includes/admin/listing-elements-gui.php';
-				// require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-images.php'; // Image management pending.
+				require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-images.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 			}
