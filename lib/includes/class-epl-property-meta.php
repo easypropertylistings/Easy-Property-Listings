@@ -494,7 +494,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 			if ( ! empty( $property_lease_price ) ) {
 				if ( 'yes' === $property_lease_display || true === $admin ) {
-
 					return apply_filters( 'epl_get_property_price_lease_display', $property_lease_price );
 				}
 			}
@@ -1050,6 +1049,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @throws Exception PHP 5.3 notice.
 		 * @since 2.0
 		 * @since 3.5 Added fix for trim when string string is null.
+		 * @since 3.5.14 Added missing new status sticker for commercial listings.
 		 */
 		public function get_price_sticker() {
 			$price_sticker = '';
@@ -1107,14 +1107,23 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				}
 			} elseif ( 'commercial' === $this->post_type || 'commercial_land' === $this->post_type ) {
 				$price_sticker = '';
+
+				if ( 'sold' !== $this->get_property_meta( 'property_status' ) || 'leased' !== $this->get_property_meta( 'property_status' ) ) {
+					if ( $this->get_epl_settings( 'sticker_new_range' ) >= $diff ) {
+						$price_sticker .= '<span class="status-sticker new">' . $this->get_epl_settings( 'label_new' ) . '</span>';
+					}
+				}
+
 				if ( 'sold' === $this->get_property_meta( 'property_status' ) ) {
 					$price_sticker .= '<span class="status-sticker sold">' . $this->label_sold . '</span>';
 				}
+
 				if ( 'leased' === $this->get_property_meta( 'property_status' ) ) {
 					$price_sticker .= '<span class="status-sticker leased">' . $this->label_leased . '</span>';
 				}
-				if ( 'yes' === $this->get_property_meta( 'property_under_offer' ) && 'sold' !== $this->get_property_meta( 'property_status' ) ) {
 
+				if ( 'yes' === $this->get_property_meta( 'property_under_offer' ) && 'sold' !== $this->get_property_meta( 'property_status' ) ) {
+					$price_sticker  = '';
 					$price_sticker .= '<span class="status-sticker under-offer">' . $this->label_under_offer . '</span>';
 				}
 			}
@@ -1196,7 +1205,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0
 		 * @param string $returntype Options i = span, v = value, d = string, l = list item, t = text.
-		 * @return
+		 * @return string
 		 *
 		 * @since 3.5.0 Added filter for empty values.
 		 */
@@ -1957,9 +1966,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get New Construction
 		 *
-		 * @since 2.0
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 2.0
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_new_construction( $returntype = 'i' ) {
 
@@ -2003,9 +2015,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get Holiday Rental
 		 *
-		 * @since 3.2
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 3.2
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_holiday_rental( $returntype = 'i' ) {
 
@@ -2047,9 +2062,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get Furnished
 		 *
-		 * @since 3.2
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 3.2
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_furnished( $returntype = 'i' ) {
 
@@ -2093,9 +2111,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get Pets
 		 *
-		 * @since 3.3
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 3.3
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_pets( $returntype = 'i' ) {
 
@@ -2139,9 +2160,12 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get Featured
 		 *
-		 * @since 3.3
 		 * @param string $returntype Options i = span, v = raw value, t = text, d = string, l = list item.
+		 *
 		 * @return string
+		 *
+		 * @since 3.3
+		 * @since 3.5.13 Using value bool checker function.
 		 */
 		public function get_property_featured( $returntype = 'i' ) {
 
