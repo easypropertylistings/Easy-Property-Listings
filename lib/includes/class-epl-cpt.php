@@ -1042,7 +1042,7 @@ class EPL_CPT {
 			// Check if we're viewing this post type.
 			if ( isset( $vars['post_type'] ) && $this->post_type_name === $vars['post_type'] ) {
 
-				// find the meta key we want to order posts by.
+				// Find the meta key we want to order posts by.
 				if ( isset( $vars['orderby'] ) && $meta_key === $vars['orderby'] ) {
 
 					// Merge the query vars with our custom variables.
