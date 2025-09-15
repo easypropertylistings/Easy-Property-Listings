@@ -36,53 +36,11 @@ function epl_load_core_templates( $template ) {
 			return $template;
 	}
 
-	if ( current_theme_supports( 'block-templates' ) || wp_is_block_theme() ) {
-
-		if ( class_exists( 'EPL_Block_Templates_Controller' ) ) {
-				$controller               = new EPL_Block_Templates_Controller();
-				$template_slug            = '';
-				$default_archive_template = 'archive-listing';
-				$default_single_template  = 'single-listing';
-
-			if ( is_epl_post_single() ) {
-
-				$template_slug = 'single-' . str_replace( '_', '-', get_post_type() );
-
-				if ( $controller->block_template_is_available( $template_slug ) ) {
-                                        return $template;
-				}
-
-			} elseif( is_singular( 'directory' ) ) {
-
-                                $template_slug = 'single-' . str_replace( '_', '-', get_post_type() );
-
-				if ( $controller->block_template_is_available( $template_slug ) ) {
-                                        return $template;
-				}
-                                
-                        } elseif ( is_epl_post_archive() ) {
-
-                                $template_slug = 'archive-' . str_replace( '_', '-', get_post_type() );
-				if ( $controller->block_template_is_available( $template_slug ) ) {
-                                        return $template;
-				}
-			} elseif ( is_tax( 'location' ) || is_tax( 'tax_feature' ) || is_tax( 'tax_business_listing' ) ) {
-
-                                $term          = get_queried_object();
-                                $template_slug = 'taxonomy-' . $term->taxonomy;
-				if ( $controller->block_template_is_available( $template_slug ) ) {
-                                        return $template;
-				}
-			} elseif ( is_post_type_archive( 'directory' ) ) {
-
-                                $template_slug = 'archive-' . str_replace( '_', '-', get_post_type() );
-				if ( $controller->block_template_is_available( $template_slug ) ) {
-                                        return $template;
-				}
-			}
-		}
-	}
-		$post_tpl = '';
+        if ( current_theme_supports( 'block-templates' ) || wp_is_block_theme() ) {
+                return $template;
+        }
+        
+        $post_tpl = '';
 	if ( is_epl_post_single() ) {
 
 			$common_tpl = apply_filters( 'epl_common_single_template', 'single-listing.php' );

@@ -345,6 +345,21 @@ if ( ! class_exists( 'EPL_Block_Template_Utils' ) ) :
 		}
 
 		/**
+		 * Checks to see if they are using a compatible version of WP for block templates.
+		 *
+		 * @param string $template_type Optional. Template type: `wp_template` or `wp_template_part`.
+		 * @return boolean
+		 */
+		public static function supports_block_templates( $template_type = 'wp_template' ) {
+			if ( 'wp_template_part' === $template_type && ( wp_is_block_theme() || current_theme_supports( 'block-template-parts' ) ) ) {
+				return true;
+			} elseif ( 'wp_template' === $template_type && wp_is_block_theme() ) {
+				return true;
+			}
+			return false;
+		}
+
+		/**
 		 * Check if current page requires EPL template
 		 *
 		 * @since 3.6.0
@@ -380,57 +395,137 @@ if ( ! class_exists( 'EPL_Block_Template_Utils' ) ) :
 		}
 
 		/**
-		 * Get default template content
+		 * Gets the templates saved in the database.
+		 * Based on WooCommerce's implementation.
 		 *
-		 * @since 3.6.0
-		 * @param string $template_slug Template slug.
-		 * @return string
+		 * @param array  $slugs An array of slugs to retrieve templates for.
+		 * @param string $template_type wp_template or wp_template_part.
+		 *
+		 * @return \WP_Block_Template[] An array of found templates.
 		 */
-		public static function get_default_template_content( $template_slug ) {
-			// Basic HTML structure for different template types
-			if ( strpos( $template_slug, 'single-' ) === 0 ) {
-				return '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+		public static function get_block_templates_from_db( $slugs = array(), $template_type = 'wp_template' ) {
+			$check_query_args = array(
+				'post_type'      => $template_type,
+				'posts_per_page' => -1,
+				'no_found_rows'  => true,
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'wp_theme',
+						'field'    => 'name',
+						'terms'    => array( 'epl-block-templates', get_stylesheet() ),
+					),
+				),
+			);
 
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group" style="margin-top:0;margin-bottom:0">
-	<!-- wp:post-title {"level":1} /-->
-	
-	<!-- wp:post-content /-->
-</main>
-<!-- /wp:group -->
-
-<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->';
+			if ( is_array( $slugs ) && count( $slugs ) > 0 ) {
+				$check_query_args['post_name__in'] = $slugs;
 			}
 
-			if ( strpos( $template_slug, 'archive-' ) === 0 ) {
-				return '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+			$check_query = new \WP_Query( $check_query_args );
+			$saved_templates = $check_query->posts;
 
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group" style="margin-top:0;margin-bottom:0">
-	<!-- wp:query-title {"type":"archive"} /-->
-	
-	<!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"property","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
-	<div class="wp-block-query">
-		<!-- wp:post-template -->
-			<!-- wp:post-title {"isLink":true} /-->
-			<!-- wp:post-excerpt /-->
-		<!-- /wp:post-template -->
-		
-		<!-- wp:query-pagination -->
-			<!-- wp:query-pagination-previous /-->
-			<!-- wp:query-pagination-numbers /-->
-			<!-- wp:query-pagination-next /-->
-		<!-- /wp:query-pagination -->
-	</div>
-	<!-- /wp:query -->
-</main>
-<!-- /wp:group -->
-
-<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->';
-			}
-
-			return '';
+			return array_map(
+				function ( $saved_template ) {
+					return self::build_template_result_from_post( $saved_template );
+				},
+				$saved_templates
+			);
 		}
+
+		/**
+		 * Build a unified template object based a post Object.
+		 * Based on WordPress core function but modified for plugins.
+		 *
+		 * @param \WP_Post $post Template post.
+		 *
+		 * @return \WP_Block_Template|\WP_Error Template.
+		 */
+		public static function build_template_result_from_post( $post ) {
+			$terms = get_the_terms( $post, 'wp_theme' );
+
+			if ( is_wp_error( $terms ) ) {
+				return $terms;
+			}
+
+			if ( ! $terms ) {
+				return new \WP_Error( 'template_missing_theme', __( 'No theme is defined for this template.', 'easy-property-listings' ) );
+			}
+
+			$theme = $terms[0]->name;
+			$has_theme_file = true;
+
+			// For EPL templates, force the correct theme and ID
+			if ( strpos( $post->post_name, 'single-' ) === 0 || strpos( $post->post_name, 'archive-' ) === 0 || strpos( $post->post_name, 'taxonomy-' ) === 0 ) {
+				$theme = 'epl-block-templates';
+			}
+
+			$template                 = new \WP_Block_Template();
+			$template->wp_id          = $post->ID;
+			$template->id             = $theme . '//' . $post->post_name;
+			$template->theme          = $theme;
+			$template->content        = $post->post_content;
+			$template->slug           = $post->post_name;
+			$template->source         = 'custom';
+			$template->type           = $post->post_type;
+			$template->description    = $post->post_excerpt;
+			$template->title          = $post->post_title;
+			$template->status         = $post->post_status;
+			$template->has_theme_file = $has_theme_file;
+			$template->is_custom      = true;
+			$template->post_types     = array();
+
+			if ( 'wp_template_part' === $post->post_type ) {
+				$type_terms = get_the_terms( $post, 'wp_template_part_area' );
+				if ( ! is_wp_error( $type_terms ) && false !== $type_terms ) {
+					$template->area = $type_terms[0]->name;
+				}
+			}
+
+			// Check if this is an EPL template
+			if ( 'epl-block-templates' === $theme ) {
+				$template->origin = 'plugin';
+			}
+
+			return $template;
+		}
+
+		/**
+		 * Removes templates from the theme or EPL which have the same slug
+		 * as template saved in the database with the EPL theme.
+		 *
+		 * @param \WP_Block_Template[]|\stdClass[] $templates List of templates to run the filter on.
+		 *
+		 * @return array List of templates with duplicates removed. The customised alternative is preferred over the theme default.
+		 */
+		public static function remove_templates_with_custom_alternative( $templates ) {
+			// Get the slugs of all templates that have been customised and saved in the database.
+			$customised_template_slugs = array_column(
+				array_filter(
+					$templates,
+					function ( $template ) {
+						return 'custom' === $template->source;
+					}
+				),
+				'slug'
+			);
+
+			// Remove plugin/theme templates that have a custom alternative
+			return array_values(
+				array_filter(
+					$templates,
+					function ( $template ) use ( $customised_template_slugs ) {
+						// Keep custom templates
+						if ( 'custom' === $template->source ) {
+							return true;
+						}
+						// Remove plugin/theme templates if a custom version exists
+						return ! in_array( $template->slug, $customised_template_slugs, true );
+					}
+				)
+			);
+		}
+
+		
 	}
 
 endif;
