@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<section class="content">
 		<div id="content" class="pad" role="main">
 			<?php
+                        
 			if ( have_posts() ) :
 				?>
 				<div class="loop">

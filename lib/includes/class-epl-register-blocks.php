@@ -53,7 +53,14 @@ if ( ! class_exists( 'EPL_Register_Blocks' ) ) :
                 }
 
                 public function single_block( $attributes, $content ) {
+                    global $wp_query, $post;
+
                     ob_start();
+
+                    if ( is_singular() && ! have_posts() ) {
+                        $wp_query->setup_postdata( $post );
+                    }
+
                     epl_get_template_part( 'fse/single-listing.php' );
                     return ob_get_clean();
                 }
