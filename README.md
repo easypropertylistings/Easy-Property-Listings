@@ -40,7 +40,7 @@ There are various ways you can contribute:
 
 = 3.5.16 October 28, 2025 =
 
--   Tweak: Removed space after Status: in tools sorter.
+-   Tweak: Removed space after Status: in tools sorter. Added : colon to suburb for consistency.
 
 = 3.5.15 June 11, 2025 =
 
