@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.16 October 28, 2025 =
+
+-   Tweak: Removed space after Status: in tools sorter.
+
 = 3.5.15 June 11, 2025 =
 
 -   New: Author website field added to global $epl_author and helper functions added.

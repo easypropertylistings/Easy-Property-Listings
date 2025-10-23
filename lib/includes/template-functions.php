@@ -1717,6 +1717,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
  *
  * @since      2.0
  * @since      3.4.44 Option to sort by title.
+ * @since      3.5.16 Tweak: Removed space after Status: in tools sorter.
  */
 function epl_sorting_options( $post_type = null ) {
 	// phpcs:disable WordPress.Security.NonceVerification
@@ -1761,7 +1762,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'status_asc',
-				'label'   => __( 'Status : Current First', 'easy-property-listings' ),
+				'label'   => __( 'Status: Current First', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_status',
 				'order'   => 'ASC',
@@ -1770,7 +1771,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'status_desc',
-				'label'   => __( 'Status : Sold/Leased First', 'easy-property-listings' ),
+				'label'   => __( 'Status: Sold/Leased First', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_status',
 				'order'   => 'DESC',
