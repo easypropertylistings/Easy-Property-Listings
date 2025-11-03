@@ -1717,6 +1717,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
  *
  * @since      2.0
  * @since      3.4.44 Option to sort by title.
+ * @since      3.5.16 Tweak: Removed space after Status: in tools sorter. Added : colon to suburb for consistency.
  */
 function epl_sorting_options( $post_type = null ) {
 	// phpcs:disable WordPress.Security.NonceVerification
@@ -1761,7 +1762,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'status_asc',
-				'label'   => __( 'Status : Current First', 'easy-property-listings' ),
+				'label'   => __( 'Status: Current First', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_status',
 				'order'   => 'ASC',
@@ -1770,7 +1771,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'status_desc',
-				'label'   => __( 'Status : Sold/Leased First', 'easy-property-listings' ),
+				'label'   => __( 'Status: Sold/Leased First', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_status',
 				'order'   => 'DESC',
@@ -1779,7 +1780,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'location_asc',
-				'label'   => epl_labels( 'label_suburb' ) . __( ' A-Z', 'easy-property-listings' ),
+				'label'   => epl_labels( 'label_suburb' ) . __( ': A-Z', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_address_suburb',
 				'order'   => 'ASC',
@@ -1788,7 +1789,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'location_desc',
-				'label'   => epl_labels( 'label_suburb' ) . __( ' Z-A', 'easy-property-listings' ),
+				'label'   => epl_labels( 'label_suburb' ) . __( ': Z-A', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_address_suburb',
 				'order'   => 'DESC',
