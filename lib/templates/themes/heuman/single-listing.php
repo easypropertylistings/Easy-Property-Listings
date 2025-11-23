@@ -28,7 +28,7 @@ get_header(); ?>
 				<div class="post-inner group">
 
 					<h1 class="post-title"><?php the_title(); ?></h1>
-					<p class="post-byline"><?php esc_html_e( 'by', 'easy-property-listings' ); ?> <?php wp_kses_post( the_author_posts_link() ); ?> &middot; <?php the_time( get_option( 'date_format' ) ); ?></p>
+					<p class="post-byline"><?php esc_html_e( 'by', 'easy-property-listings' ); ?> <?php echo wp_kses_post( the_author_posts_link() ); ?> &middot; <?php the_time( get_option( 'date_format' ) ); ?></p>
 
 					<?php do_action( 'epl_property_single' ); ?>
 
