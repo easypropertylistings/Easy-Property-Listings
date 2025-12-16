@@ -38,7 +38,7 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 			foreach ( $ext_field_groups['fields'] as $ext_field_group ) {
 				foreach ( $ext_field_group['fields'] as $field ) {
 					if ( 'radio' === $field['type'] || 'checkbox' === $field['type'] ) {
-                                                
+
 						if ( ! isset( $_REQUEST[ $field['name'] ] ) ) {
 							$_REQUEST[ $field['name'] ] = '';
 						} else {

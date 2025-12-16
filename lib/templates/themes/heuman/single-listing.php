@@ -6,7 +6,6 @@
  * @subpackage Templates/Themes/Heuman
  * @since 1.0
  * @since 3.5.16 Fix: Missing echo for author in single template for Heuman theme. Discovered and patched by DAnn2012.
-
  */
 
 // Exit if accessed directly.
