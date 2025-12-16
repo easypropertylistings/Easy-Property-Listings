@@ -2362,8 +2362,9 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 /**
  * Output iCal clickable dates. Use the epl_ical_args filter to alter the labels.
  *
- * @since      2.0
- * @since      3.5.7 Different subject for auction.
+ * @since 2.0
+ * @since 3.5.7 Different subject for auction.
+ * @since 3.5.16 Triple equals for auction value.
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
@@ -2388,7 +2389,7 @@ function epl_process_event_cal_request() {
 
 						$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
 
-						if ( isset( $_GET['event_type'] ) && 'auction' == sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
+						if ( isset( $_GET['event_type'] ) && 'auction' === sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
 							$subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
 						}
 
