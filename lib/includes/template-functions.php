@@ -3432,17 +3432,26 @@ function epl_contact_capture_action() {
 
 	$success = array(
 		'status' => 'success',
-		'msg'    => apply_filters( 'epl_contact_capture_success_msg', __( 'Form submitted successfully', 'easy-property-listings' ) ),
+		'msg'    => apply_filters(
+			'epl_contact_capture_success_msg',
+			__( 'Your enquiry has been submitted.', 'easy-property-listings' )
+		),
 	);
 
 	$fail = array(
 		'status' => 'fail',
-		'msg'    => apply_filters( 'epl_contact_capture_fail_msg', __( 'Some issues with form submitted', 'easy-property-listings' ) ),
+		'msg'    => apply_filters(
+			'epl_contact_capture_fail_msg',
+			__( 'There was a problem with your submission.', 'easy-property-listings' )
+		),
 	);
 
 	if (
 		! isset( $_POST['epl_contact_widget'] ) ||
-		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['epl_contact_widget'] ) ), 'epl_contact_widget' )
+		! wp_verify_nonce(
+			sanitize_text_field( wp_unslash( $_POST['epl_contact_widget'] ) ),
+			'epl_contact_widget'
+		)
 	) {
 		wp_die( wp_json_encode( $fail ) );
 	}
@@ -3456,72 +3465,114 @@ function epl_contact_capture_action() {
 			wp_json_encode(
 				array(
 					'status' => 'fail',
-					'msg'    => __(
-						'Email is required',
-						'easy-property-listings'
-					),
+					'msg'    => __( 'Email is required.', 'easy-property-listings' ),
 				)
 			)
 		);
 	}
 
-	$contact = new EPL_contact( sanitize_text_field( wp_unslash( $_POST['epl_contact_email'] ) ) );
-	$fname   = isset( $_POST['epl_contact_first_name'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_first_name'] ) ) : '';
-	$lname   = isset( $_POST['epl_contact_last_name'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_last_name'] ) ) : '';
-	$phone   = isset( $_POST['epl_contact_phone'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_phone'] ) ) : '';
-	$title   = isset( $_POST['epl_contact_title'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_title'] ) ) : '';
-	$title   = trim( $title );
-	if ( empty( $title ) && ( ! empty( $fname ) || ! empty( $lname ) ) ) {
+	$email = sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) );
+
+	$fname = isset( $_POST['epl_contact_first_name'] )
+		? sanitize_text_field( wp_unslash( $_POST['epl_contact_first_name'] ) )
+		: '';
+
+	$lname = isset( $_POST['epl_contact_last_name'] )
+		? sanitize_text_field( wp_unslash( $_POST['epl_contact_last_name'] ) )
+		: '';
+
+	$phone = isset( $_POST['epl_contact_phone'] )
+		? sanitize_text_field( wp_unslash( $_POST['epl_contact_phone'] ) )
+		: '';
+
+	$title = isset( $_POST['epl_contact_title'] )
+		? sanitize_text_field( wp_unslash( $_POST['epl_contact_title'] ) )
+		: '';
+
+	$title = trim( $title );
+
+	if ( empty( $title ) && ( $fname || $lname ) ) {
 		$title = $fname . ' ' . $lname;
 	}
 
-	if ( empty( $title ) && ( ! empty( $_POST['epl_contact_email'] ) ) ) {
-		$title = sanitize_text_field( wp_unslash( $_POST['epl_contact_email'] ) );
+	if ( empty( $title ) ) {
+		$title = $email;
 	}
 
-	$contact_listing_id = isset( $_POST['epl_contact_listing_id'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_listing_id'] ) ) : false;
+	$contact_listing_id = isset( $_POST['epl_contact_listing_id'] )
+		? intval( $_POST['epl_contact_listing_id'] )
+		: false;
 
-	$contact_listing_note = isset( $_POST['epl_contact_note'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_note'] ) ) : false;
-	if ( empty( $contact->ID ) ) {
-
-		$contact_data = array(
-			'name'  => $title,
-			'email' => sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) ),
+	if ( $contact_listing_id && 'property' !== get_post_type( $contact_listing_id ) ) {
+		wp_die(
+			wp_json_encode(
+				array(
+					'status' => 'fail',
+					'msg'    => __( 'Invalid listing.', 'easy-property-listings' ),
+				)
+			)
 		);
-		if ( $contact->create( $contact_data ) ) {
-			$contact->update_meta( 'contact_first_name', $fname );
-			$contact->update_meta( 'contact_last_name', $lname );
-			$contact->update_meta( 'contact_phones', array( 'phone' => $phone ) );
-			$contact->update_meta( 'contact_category', 'widget' );
-			$contact->attach_listing( $contact_listing_id );
-			$contact->add_note( $contact_listing_note, 'note', $contact_listing_id );
-			wp_die( wp_json_encode( $success ) );
-		} else {
-			wp_die( wp_json_encode( $fail ) );
-		}
-	} else {
+	}
 
-		if ( $contact->update( array( 'name' => $title ) ) ) {
+	$contact_listing_note = isset( $_POST['epl_contact_note'] )
+		? sanitize_textarea_field( wp_unslash( $_POST['epl_contact_note'] ) )
+		: '';
+
+	$contact = new EPL_contact( $email );
+
+	if ( ! empty( $contact->ID ) ) {
+
+		if ( $contact_listing_note ) {
 			$contact->add_note(
-				sanitize_textarea_field( wp_unslash( $_POST['epl_contact_note'] ) ),
+				$contact_listing_note,
 				'note',
 				$contact_listing_id
 			);
-			$contact->attach_listing( $contact_listing_id );
-			wp_die( wp_json_encode( $success ) );
-		} else {
-			wp_die( wp_json_encode( $fail ) );
 		}
+
+		if ( $contact_listing_id ) {
+			$contact->attach_listing( $contact_listing_id );
+		}
+
+		wp_die( wp_json_encode( $success ) );
 	}
+
+	$contact_data = array(
+		'name'  => $title,
+		'email' => $email,
+	);
+
+	if ( $contact->create( $contact_data ) ) {
+
+		$contact->update_meta( 'contact_first_name', $fname );
+		$contact->update_meta( 'contact_last_name', $lname );
+		$contact->update_meta(
+			'contact_phones',
+			array( 'phone' => $phone )
+		);
+		$contact->update_meta( 'contact_category', 'widget' );
+
+		if ( $contact_listing_id ) {
+			$contact->attach_listing( $contact_listing_id );
+		}
+
+		if ( $contact_listing_note ) {
+			$contact->add_note(
+				$contact_listing_note,
+				'note',
+				$contact_listing_id
+			);
+		}
+
+		wp_die( wp_json_encode( $success ) );
+	}
+
+	wp_die( wp_json_encode( $fail ) );
 }
+
 add_action( 'wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action' );
 add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action' );
+
 
 /**
  * Get Post ID from Unique ID
