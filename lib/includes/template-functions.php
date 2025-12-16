@@ -3426,7 +3426,8 @@ add_action( 'epl_archive_author', 'epl_archive_author_callback' );
 /**
  * Contact capture action and messages
  *
- * @since      3.3
+ * @since 3.3
+ * @since 3.5.16 Fix: Vulnerability in contact form shortcode.
  */
 function epl_contact_capture_action() {
 
@@ -3569,7 +3570,6 @@ function epl_contact_capture_action() {
 
 	wp_die( wp_json_encode( $fail ) );
 }
-
 add_action( 'wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action' );
 add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action' );
 

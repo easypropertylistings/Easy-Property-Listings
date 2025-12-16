@@ -9,7 +9,7 @@
  * @since       2.0
  * @since       3.4.44 Added field type class for field wrapper and custom wrapper class support through wrapper_class.
  * @since       3.5 Unique IDs for all field wrappers.
- * @since       3.5.16 added epl_extension_settings_fieldsfilter for active tab.
+ * @since       3.5.16 added epl_extension_settings_fields filter for active tab.
  */
 
 // Exit if accessed directly.

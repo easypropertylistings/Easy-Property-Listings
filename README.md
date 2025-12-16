@@ -38,9 +38,14 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.16 October 28, 2025 =
+= 3.5.16 December 16. 2025 =
 
+-   New: Unified image management featured for use in extensions.
+-   Tweak: Added epl_extension_settings_fields filter for active tab.
+-   Tweak: Support for search range sliders with range value options in field sliders like this example: 0-200.
 -   Tweak: Removed space after Status: in tools sorter. Added : colon to suburb for consistency.
+-   Fix: Missing echo for author in single template for Heuman theme. Discovered and patched by DAnn2012.
+-   Fix: Vulnerability in contact form shortcode.
 
 = 3.5.15 June 11, 2025 =
 
