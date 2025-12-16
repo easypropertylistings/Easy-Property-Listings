@@ -3520,7 +3520,7 @@ function epl_contact_capture_action() {
 		? sanitize_textarea_field( wp_unslash( $_POST['epl_contact_note'] ) )
 		: '';
 
-	$contact = new EPL_contact( $email );
+	$contact = new EPL_Contact( $email );
 
 	if ( ! empty( $contact->ID ) ) {
 
