@@ -76,11 +76,12 @@ function epl_admin_enqueue_scripts( $screen ) {
 		'google_api_error'      => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
 		'google_api_key'        => epl_get_option( 'epl_google_api_key' ),
 		'google_map_disabled'   => epl_get_option( 'epl_disable_google_api' ),
-		'display_address_note'  => esc_html( $display_address_note ),
+		'display_address_note'   => esc_html( $display_address_note ),
+                'add_images_button_text' => __( 'Add Images', 'easy-property-listings' ),
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
-        //wp_register_script( 'wp-color-picker-alpha', $current_dir_path . '/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), EPL_PROPERTY_VER, false );
+        wp_register_script( 'wp-color-picker-alpha', $current_dir_path . '/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), EPL_PROPERTY_VER, false );
 
 	wp_localize_script( 'epl-admin-scripts', 'epl_admin_vars', $js_vars );
 
