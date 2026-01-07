@@ -414,3 +414,6 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 == Changelog ==
 
 Discover [What's New](https://easypropertylistings.com.au/whats-new/?utm_source=readme&utm_medium=whats_new_tab&utm_content=new&utm_campaign=epl_whats_new) with [Easy Property Listings](https://easypropertylistings.com.au/?utm_source=readme&utm_medium=whats_new_tab&utm_content=home&utm_campaign=link_home). The [change log](https://easypropertylistings.com.au/change-log/?utm_source=readme&utm_medium=change_log_tab&utm_content=changes&utm_campaign=epl_change_log) can now be found [here at Easy Property Listings](https://easypropertylistings.com.au/change-log/?utm_source=readme&utm_medium=change_log_tab&utm_content=changes&utm_campaign=epl_change_log).
+
+
+restore 3.6
