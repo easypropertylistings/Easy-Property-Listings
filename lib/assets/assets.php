@@ -78,8 +78,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 		'google_api_key'         => epl_get_option( 'epl_google_api_key' ),
 		'google_map_disabled'    => epl_get_option( 'epl_disable_google_api' ),
 		'display_address_note'   => esc_html( $display_address_note ),
-    'add_images_button_text' => __( 'Add Images', 'easy-property-listings' ),
-		'inspection_times'       => __( 'Edit Inspection Times', 'easy-property-listings' ),
+		'add_images_button_text' => __( 'Add Images', 'easy-property-listings' ),
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
