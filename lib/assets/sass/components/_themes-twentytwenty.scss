@@ -1,0 +1,15 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Themes (Twenty Twenty)
+//---------------------------------------------
+
+/* Twenty Twenty */
+.epl-template-twentytwenty {
+}
+.singular .epl-template-twentytwenty .entry-header {
+	background: transparent;
+}
+.epl-template-twentytwenty .entry-content {
+	max-width: 100%;
+}

@@ -1,0 +1,25 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Themes (Twenty Sixteen)
+//---------------------------------------------
+
+/* Twenty Sixteen */
+.site-content .site-content.epl-active-theme-twentysixteen {
+	padding: 0;
+}
+.epl-active-theme-twentysixteen .epl-property-blog a,
+.epl-active-theme-twentysixteen .epl-property-blog .entry-title a,
+.epl-shortcode .epl-property-blog a,
+.epl-shortcode .epl-property-blog .entry-title a {
+	box-shadow: none;
+}
+.no-sidebar .epl-active-theme-twentysixteen .epl-property-blog .entry-header,
+.no-sidebar .epl-active-theme-twentysixteen .epl-property-blog .entry-content,
+.no-sidebar .epl-active-theme-twentysixteen .epl-property-blog .entry-footer,
+.no-sidebar .epl-shortcode .epl-property-blog .entry-header,
+.no-sidebar .epl-shortcode .epl-property-blog .entry-content,
+.no-sidebar .epl-shortcode .epl-property-blog .entry-footer {
+	margin-right: 0;
+	margin-left: 0;
+}

@@ -1,0 +1,95 @@
+@use "../abstracts" as *;
+
+/** Columns **/
+.epl-row-2-column .epl-row-left,
+.epl-row-2-column .epl-row-right,
+.epl-row-3-column .epl-row-left,
+.epl-row-3-column .epl-row-middle,
+.epl-row-3-column .epl-row-right {
+	margin: 0;
+	padding: 0;
+	float: left;
+	text-align: left;
+}
+.epl-row-2-column .epl-row-left {
+	width: 75%;
+	float: left;
+}
+.epl-row-2-column .epl-row-right {
+	width: 25%;
+	float: right;
+	text-align: right;
+}
+.epl-row-3-column .epl-row-left {
+	width: 33.33%;
+	float: left;
+	text-align: left;
+}
+.epl-row-3-column .epl-row-middle {
+	width: 33.33%;
+	float: left;
+	text-align: center;
+}
+.epl-row-3-column .epl-row-right {
+	width: 33.33%;
+	float: left;
+	text-align: right;
+}
+
+/** Grid Columns **/
+.epl-listing-grid-view .epl-row-2-column .epl-row-left,
+.epl-listing-grid-view .epl-row-2-column .epl-row-right,
+.epl-listing-grid-view .epl-row-3-column .epl-row-left,
+.epl-listing-grid-view .epl-row-3-column .epl-row-middle,
+.epl-listing-grid-view .epl-row-3-column .epl-row-right,
+.epl-listing-grid-view-forced .epl-row-2-column .epl-row-left,
+.epl-listing-grid-view-forced .epl-row-2-column .epl-row-right,
+.epl-listing-grid-view-forced .epl-row-3-column .epl-row-left,
+.epl-listing-grid-view-forced .epl-row-3-column .epl-row-middle,
+.epl-listing-grid-view-forced .epl-row-3-column .epl-row-right {
+	width: 100%;
+	float: none;
+	text-align: left;
+}
+.epl-listing-grid-view .epl-row-3-column .epl-row-right,
+.epl-listing-grid-view-forced .epl-row-3-column .epl-row-right {
+	width: 100%;
+	float: none;
+	text-align: center;
+}
+
+/** Grid Responsive **/
+@media screen and (max-width: 767px) {
+	.epl-row-3-column .epl-row-left,
+	.epl-row-3-column .epl-row-middle {
+		width: 50%;
+		text-align: left;
+	}
+	.epl-row-3-column .epl-row-middle {
+		text-align: right;
+	}
+	.epl-row-3-column .epl-row-right {
+		width: 100%;
+		text-align: left;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.epl-row-2-column .epl-row-left {
+		margin-bottom: 0.3em;
+	}
+	.epl-row-2-column .epl-row-right {
+		text-align: left;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.epl-row-2-column .epl-row-left,
+	.epl-row-2-column .epl-row-right,
+	.epl-row-3-column .epl-row-left,
+	.epl-row-3-column .epl-row-middle,
+	.epl-row-3-column .epl-row-right {
+		width: 100%;
+		text-align: left;
+	}
+}

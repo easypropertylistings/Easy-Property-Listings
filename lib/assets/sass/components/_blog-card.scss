@@ -1,0 +1,15 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Loop Card - Slim
+//---------------------------------------------
+
+.epl-property-blog-card {
+	&.hentry {
+		width: 25%;
+		float: left;
+		clear: none;
+		padding: 0;
+		margin: 0;
+	}
+}

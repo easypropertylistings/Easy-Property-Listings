@@ -1,0 +1,26 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Themes (Twenty Twelve)
+//---------------------------------------------
+
+.epl-active-theme-twentytwelve,
+.epl-active-theme-twentythirteen,
+.epl-active-theme-twentyfourteen,
+.epl-active-theme-twentyfifteen,
+.epl-active-theme-twentytwelve,
+.epl-active-theme-twentythirteen
+	.epl-active-theme-twentyfourteen
+	.epl-active-theme-twentyfifteen {
+	.epl-listing-grid-view-forced {
+		.epl-inspection-times {
+			display: none;
+		}
+	}
+}
+
+/* Twenty Twelve */
+.epl-active-theme-twentytwelve {
+}
+.epl-active-theme-twentytwelve .entry-content {
+}

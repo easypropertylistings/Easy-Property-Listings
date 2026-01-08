@@ -1,53 +1,61 @@
 <?php
 /**
- * Loop Property Template: Slim home open list
+ * Loop Property Template: Default
  *
  * @package     EPL
- * @subpackage  Templates/LoopListingBlogSlim
- * @copyright   Copyright (c) 2020, Merv Barrett
+ * @subpackage  Templates/LoopListingBlogDefault
+ * @copyright   Copyright (c) 2019, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
- * @since       3.6 Using epl image size instead of thumbnail.
  */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+global $property;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-post epl-property-blog epl-property-blog-slim epl-clearfix' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-post epl-property-blog epl-clearfix' ); ?> <?php do_action( 'epl_archive_listing_atts' ); ?>>
 	<div class="epl-property-blog-entry-wrapper">
-		<?php do_action( 'epl_property_loop_before_content' ); ?>
+		
+		<h1>2026</h1>
+		
+		
+		
+		
+		
+		<?php do_action( 'epl_property_before_content' ); ?>
 			<?php if ( has_post_thumbnail() ) : ?>
-				<div class="property-box slim property-box-left property-box-left-slim property-featured-image-wrapper">
+				<div class="property-box property-box-left property-featured-image-wrapper">
 					<?php do_action( 'epl_property_archive_featured_image' ); ?>
+					<!-- Home Open -->
+					<?php do_action( 'epl_property_inspection_times' ); ?>
 				</div>
 			<?php endif; ?>
 
-			<div class="property-box slim property-box-right property-box-right-slim property-content">
+			<div class="property-box property-box-right property-content">
 				<!-- Heading -->
 				<h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php do_action( 'epl_property_heading' ); ?></a></h3>
-
+				<div class="entry-content">
+					<?php epl_the_excerpt(); ?>
+				</div>
 				<!-- Address -->
 				<div class="property-address">
 					<a href="<?php the_permalink(); ?>">
-						<?php do_action( 'epl_property_tab_address' ); ?>
+						<?php do_action( 'epl_property_address' ); ?>
 					</a>
 				</div>
-
-				<!-- Home Open -->
-				<?php do_action( 'epl_property_inspection_times' ); ?>
-
 				<!-- Property Featured Icons -->
 				<div class="property-feature-icons">
 					<?php do_action( 'epl_property_icons' ); ?>
 				</div>
-
+				<!-- Price -->
 				<div class="price">
 					<?php do_action( 'epl_property_price' ); ?>
 				</div>
 			</div>
-		<?php do_action( 'epl_property_loop_after_content' ); ?>
+		<?php do_action( 'epl_property_after_content' ); ?>
 	</div>
 </div>

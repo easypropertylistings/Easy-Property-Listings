@@ -1,0 +1,129 @@
+@use "../abstracts" as *;
+
+/*********************************************
+Reset CSS Classes
+*********************************************/
+
+/** Standard Classes **/
+.epl-center {
+	margin: 0 auto;
+}
+.epl-left,
+.epl-middle,
+.epl-single {
+	float: left;
+}
+.epl-right {
+	float: right;
+}
+.epl-list-hidden {
+	display: none;
+}
+.epl-listing-grid-view .epl-list-hidden,
+.epl-listing-grid-view-forced .epl-list-hidden {
+	display: block;
+}
+.epl-grid-hidden {
+	display: block;
+}
+.epl-listing-grid-view .epl-grid-hidden,
+.epl-listing-grid-view-forced .epl-grid-hidden {
+	display: none;
+}
+
+/** Content and Sidebar **/
+.epl-block-outer-wrapper {
+	margin-left: 0;
+	margin-right: 0;
+	min-height: 1px;
+	overflow: hidden;
+	padding-left: 0;
+	padding-right: 0;
+}
+/** Content with Sidebar **/
+.epl-element-outer-wrapper {
+	float: left !important;
+	width: 70%;
+	margin-left: 0;
+	margin-right: -100%;
+}
+.epl-element {
+	overflow: hidden;
+	margin-bottom: 2em !important;
+}
+
+.epl-left .epl-element {
+	margin-right: 3em;
+}
+
+/*** Absolute Positioning ***/
+.epl-property-box-with-fixed-elements {
+	/** needs a fixed height **/
+	position: relative;
+	min-height: 220px;
+}
+.epl-property-box-fixed-bottom-container {
+	position: absolute;
+	bottom: 0;
+	/** needs a min-height **/
+	min-height: 70px;
+	left: 0;
+}
+.epl-element-fixed-bottom-left {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.epl-element-fixed-bottom-right {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+.epl-element-fixed-bottom-left,
+.epl-element-fixed-bottom-right {
+	margin: 1em;
+}
+.epl-element-fixed-bottom-left {
+	left: 345px;
+}
+.epl-listing-grid-view .epl-element-fixed-bottom-left,
+.epl-listing-grid-view-forced .epl-element-fixed-bottom-left {
+	left: 0;
+}
+
+/*** Grid - Absolute Positioning ***/
+.epl-listing-grid-view.epl-property-box-with-fixed-elements,
+.epl-listing-grid-view-forced.epl-property-box-with-fixed-elements {
+	min-height: 0;
+}
+.epl-listing-grid-view .epl-element-fixed-bottom-left,
+.epl-listing-grid-view .epl-element-fixed-bottom-right,
+.epl-listing-grid-view-forced .epl-element-fixed-bottom-left,
+.epl-listing-grid-view-forced .epl-element-fixed-bottom-right {
+	position: static;
+}
+
+/** Below 767px **/
+@media screen and (max-width: 767px) {
+	.epl-property-box-with-fixed-elements {
+		/** needs a fixed height **/
+		height: auto;
+	}
+	.epl-element-fixed-bottom-left,
+	.epl-element-fixed-bottom-right {
+		position: relative;
+	}
+	.epl-element-fixed-bottom-left {
+		left: 0;
+	}
+
+	.epl-element-outer-wrapper,
+	.epl-sidebar-outer-wrapper {
+		float: none !important;
+		width: auto;
+		margin: 0;
+	}
+	.epl-left .epl-element {
+		margin-right: 0;
+	}
+}

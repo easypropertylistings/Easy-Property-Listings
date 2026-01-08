@@ -1,0 +1,19 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Sidebar
+//---------------------------------------------
+
+/** Sidebar **/
+.epl-sidebar-outer-wrapper {
+	float: left !important;
+	width: 30%;
+	margin-left: 70%;
+	margin-right: -100%;
+}
+.epl-sidebar {
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}

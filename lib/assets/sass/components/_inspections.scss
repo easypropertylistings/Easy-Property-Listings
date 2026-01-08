@@ -1,0 +1,74 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Extensions
+//---------------------------------------------
+
+/* Author Directory Page */
+.epl-sd-location-profile .epl-location-profile-card.hentry {
+	width: 100%;
+	margin-right: 1em;
+	float: left;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-header,
+.epl-sd-location-profile .epl-location-profile-card .entry-content {
+	box-sizing: border-box;
+	float: left;
+	clear: none;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-header {
+	width: 30%;
+}
+.epl-sd-location-profile .epl-location-profile-card .entry-content {
+	width: 70%;
+}
+.epl-location-profile-widget-image {
+	padding-right: 1em;
+}
+.epl-sd-location-profile .epl-location-profile-card {
+	width: 100%;
+	margin-right: 1em;
+	float: left;
+}
+.directory-page-dynamic .bond {
+	display: none;
+}
+
+.epl-listing-grid-view .epl-inspection-times,
+.epl-listing-grid-view-forced .epl-inspection-times {
+	display: none;
+}
+.epl-inspection-times {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.epl-property-single .epl-inspection-times {
+	padding: 0;
+}
+.epl-inspection-times ul.home-open-wrapper {
+	margin: 0.5em 0;
+	list-style-type: none;
+}
+.epl-inspection-times ul.home-open-wrapper li {
+	line-height: 1.2;
+	margin-left: 0;
+}
+.epl-inspection-times .epl-inspection-times-label {
+	margin: 0.5em 0 0;
+	display: block;
+}
+
+@media screen and (max-width: 500px) {
+	.directory-page-dynamic .directory-section .hentry {
+		width: 31%;
+	}
+	.epl-sd-location-profile .epl-location-profile-card.hentry {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 400px) {
+	.epl-sd-location-profile .epl-location-profile-card .entry-header,
+	.epl-sd-location-profile .epl-location-profile-card .entry-content {
+		width: 100%;
+	}
+}

@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.6 January 30. 2026 =
+
+-   New: Full CSS re-write to scss.
+-   Tweak: Default image size increased to 600x400 up from 300x200. Use a thumbnail regeneration plugin to resize images to the new size.
+
 = 3.5.16 December 16. 2025 =
 
 -   New: Unified image management featured for use in extensions.

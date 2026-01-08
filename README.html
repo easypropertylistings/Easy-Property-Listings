@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="easypropertylistingshttps:easypropertylistings.com.au"><a href="https://easypropertylistings.com.au/">Easy Property Listings</a></h1>
+
+<p><img src="https://img.shields.io/wordpress/plugin/v/easy-property-listings.svg" alt="Plugin Version" /> <img src="https://img.shields.io/wordpress/plugin/dt/easy-property-listings.svg?cacheSeconds=3600" alt="Total Downloads" /> <img src="https://img.shields.io/wordpress/plugin/r/easy-property-listings.svg?cacheSeconds=3600" alt="Plugin Rating" /> <img src="https://img.shields.io/wordpress/v/easy-property-listings.svg?cacheSeconds=3600" alt="WordPress Compatibility" /> <a href="https://github.com/easypropertylistings/Easy-Property-Listings/blob/master/license.txt"><img src="https://img.shields.io/badge/license-GPL--2.0%2B-red.svg" alt="License" /></a></p>
+
+<h3 id="welcometoourgithubrepository">Welcome to our GitHub Repository</h3>
+
+<p>Properties listed for rent or sale is something that not a single one of the large WordPress real estate plugins has ever gotten really right. This plugin aims to fix that. Instead of focusing on providing every single feature under the sun, Easy Property Listings tries to provide only the ones that you really need. It aims to make real estate websites through WordPress easy, and complete.</p>
+
+<p>More information can be found at <a href="https://easypropertylistings.com.au/">easypropertylistings.com.au</a>.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>For detailed setup instructions, visit the official <a href="https://codex.easypropertylistings.com.au/">Documentation</a> page.</p>
+
+<ol>
+<li>You can clone the GitHub repository: <code>https://github.com/easypropertylistings/Easy-Property-Listings.git</code></li>
+<li>Or download it directly as a ZIP file: <code>https://github.com/easypropertylistings/Easy-Property-Listings/archive/master.zip</code></li>
+</ol>
+
+<p>This will download the latest developer copy of Easy Property Listings.</p>
+
+<h2 id="bugs">Bugs</h2>
+
+<p>If you find an issue, let us know <a href="https://github.com/easypropertylistings/Easy-Property-Listings/issues?state=open">here</a>!</p>
+
+<h2 id="support">Support</h2>
+
+<p>This is a developer&#8217;s portal for Easy Property Listings and should <em>not</em> be used for support. Please open a <a href="https://easypropertylistings.com.au/support-ticket/">support ticket</a>.</p>
+
+<h2 id="contributions">Contributions</h2>
+
+<p>Anyone is welcome to contribute to Easy Property Listings. Please read the <a href="https://github.com/easypropertylistings/Easy-Property-Listings/blob/master/CONTRIBUTING.md">guidelines for contributing</a> to this repository.</p>
+
+<p>There are various ways you can contribute:</p>
+
+<ol>
+<li>Raise an <a href="https://github.com/easypropertylistings/Easy-Property-Listings/issues">Issue</a> on GitHub</li>
+<li>Send us a Pull Request with your bug fixes and/or new features</li>
+<li>Translate Easy Property Listings into different languages</li>
+<li>Provide feedback and suggestions on <a href="https://github.com/easypropertylistings/Easy-Property-Listings/issues?direction=desc&amp;labels=Enhancement&amp;page=1&amp;sort=created&amp;state=open">enhancements</a></li>
+</ol>
+
+<h2 id="changelog">Change Log</h2>
+
+<p>= 3.6 January 30. 2026 =</p>
+
+<ul>
+<li>New: Full CSS re-write to scss.</li>
+<li>Tweak: Default image size increased to 600x400 up from 300x200. Use a thumbnail regeneration plugin to resize images to the new size.</li>
+</ul>
+
+<p>= 3.5.16 December 16. 2025 =</p>
+
+<ul>
+<li>New: Unified image management featured for use in extensions.</li>
+<li>Tweak: Added epl_extension_settings_fields filter for active tab.</li>
+<li>Tweak: Support for search range sliders with range value options in field sliders like this example: 0&#8211;200.</li>
+<li>Tweak: Removed space after Status: in tools sorter. Added : colon to suburb for consistency.</li>
+<li>Fix: Missing echo for author in single template for Heuman theme. Discovered and patched by DAnn2012.</li>
+<li>Fix: Vulnerability in contact form shortcode.</li>
+</ul>
+
+<p>= 3.5.15 June 11, 2025 =</p>
+
+<ul>
+<li>New: Author website field added to global $epl_author and helper functions added.</li>
+<li>Fix: Sold price not displaying in admin.</li>
+</ul>
+
+<p>= 3.5.14 March 13, 2025 =</p>
+
+<ul>
+<li>Tweak: Added new label to commercial listings.</li>
+<li>Tweak: Improvements to author email return values in gravity forms email hook.</li>
+<li>Tweak: Corrected escaping function to esc_html in several functions.</li>
+</ul>
+
+<p>= 3.5.13 October 30, 2024 =</p>
+
+<ul>
+<li>Tweak: Target blank added to ical link.</li>
+<li>Fix: Search setting page name to null for ajax results issue.</li>
+</ul>
+
+<p>= 3.5.12 October 11, 2024 =</p>
+
+<ul>
+<li>Fix: Typo in frontend scripts.</li>
+</ul>
+
+<p>= 3.5.11 October 2, 2024 =</p>
+
+<ul>
+<li>New: Pass the original template name in the epl_get_template_part filter.</li>
+<li>Tweak: Removed unnecessary uppercase function for status in admin columns.</li>
+<li>Fix: WordPress pagination not using return value in write context.</li>
+</ul>
+
+<p>= 3.5.10 September 3, 2024 =</p>
+
+<ul>
+<li>New: Icon support added to search fields for easier adding of icons to input and select fields.</li>
+<li>New: Helper function epl_get_agent_id_by_login to get the user ID by login.</li>
+<li>Fix: Tools Import function adjusted with more checked before performing the settings import.</li>
+<li>Fix: Agent count throwing warning when agent is not there.</li>
+<li>Fix: REST error when meta field group fields are empty.</li>
+<li>Fix: Warning when meta field group is unset using filter.</li>
+<li>Fix: Warning for trim when home_open is null.</li>
+</ul>
+
+<p>= 3.5.9 August 12, 2024 =</p>
+
+<ul>
+<li>Tweak: Globally load hooks and frontend functions to allow page builders like Elementor to access them in the editor.</li>
+</ul>
+
+<p>= 3.5.8 August 7, 2024 =</p>
+
+<ul>
+<li>New: Added REST API support for custom meta fields.</li>
+<li>New: Google Map loader function.</li>
+<li>Tweak: Changed google maps version to 3.55 to remove markers warning.</li>
+</ul>
+
+<p>= 3.5.7 June 10, 2024 =</p>
+
+<ul>
+<li>New: Filters for commercial and rural features: epl_property_commercial_features_list and epl_property_rural_features_list filters.</li>
+<li>New: WordPress timezone functions added for compatibility as they are not available prior to WordPress 5.3.0.</li>
+<li>Tweak: Different subject for auction ical event use the epl_ical_args filter to alter the labels.</li>
+<li>Tweak: Updated to allow passing of extra details to ical through the epl_ical_args filter.</li>
+<li>Tweak: Shortcode instance_id set to 1 to better enable sorting. When using epl_sorting_tool hook $attributes is required.</li>
+</ul>
+
+<p>= 3.5.6 April 11, 2024 =</p>
+
+<ul>
+<li>Fix: [listing_search] shortcode the status variable was being overwritten when the status option was passed to the shortcode causing state values to not display.</li>
+</ul>
+
+<p>= 3.5.5 April 10, 2024 =</p>
+
+<ul>
+<li>Fix: [listing_search] shortcode passing the status database error due to double escaping.</li>
+<li>Fix: [listing_feature], [listing_category], [listing_open], [listing_location], [listing_auction] shortcodes sorting not working.</li>
+</ul>
+
+<p>= 3.5.4 April 3, 2024 =</p>
+
+<ul>
+<li>New: Display map position warning note when display address is unchecked.</li>
+<li>Tweak: Sanitisation check on global page constant.</li>
+<li>Fix: Admin css help text wrapping with textarea field.</li>
+<li>Fix: Check user permissions on coordinate generation.</li>
+<li>Fix: Contacts bulk processing nonce &amp; permission confirmation before processing.</li>
+<li>Fix: Contact form submission sanitise entries.</li>
+<li>Fix: [listing_advanced] Shortcode _min and _max option not working correctly.</li>
+</ul>
+
+<p>= 3.5.3 March 20, 2024 =</p>
+
+<ul>
+<li>New: Added counter class for number of agents in agent wrapper and a total count class.</li>
+<li>New: Display linked agent name in admin agents post type columns. The username will display unlinked if there is no associated user profile.</li>
+<li>New: Filter: epl_template_part_find to filter find array as well as final template.</li>
+<li>New: Search Filter epl_search_should_load_default_template to disable default template and epl_search_load_template action to add custom search template.</li>
+<li>New: Function epl_get_local_timestamp to get local time.</li>
+<li>Fix: Inspection times deprecation warning.</li>
+<li>Fix: Inspection issue where the users current time was reporting incorrect value due to timezone.</li>
+<li>Fix: Sorting not working for pagination on shortcode.</li>
+<li>Fix: Missing currency prefix in range slider for [listing_search] shortcode.</li>
+<li>Fix: Security patch. Ajax nonce in JS variables.</li>
+<li>Fix: Security patch. Prepared statement for SQL status variable.</li>
+<li>Fix: Security patch. Removed no private access &amp; added nonce for mapping coordinates.</li>
+</ul>
+
+<p>= 3.5.2 February 12, 2024 =</p>
+
+<ul>
+<li>New: Added epl_archive_title_post_type archive page title post type filter.</li>
+<li>Tweak: Author Tabs now pass the $epl_author so it can be passed to the tabs filter.</li>
+<li>Tweak: Google Maps now load asynchronous.</li>
+<li>Tweak: Added check to identify 0 values so that it&#8217;s not ignored by empty check when using epl_get_option function.</li>
+<li>Tweak: Removed additional property category appearing in additional features list.</li>
+</ul>
+
+<p>= 3.5.1 January 31, 2024 =</p>
+
+<ul>
+<li>New: Filters added for Staff Directory search: epl_search_user_args and epl_search_user_results filters.</li>
+<li>New: Author box wrapper class epl-author-box-wrapper added to contain author boxes.</li>
+<li>New: Session epl_wp_session_delimiter filter for changing the default cookie session delimiter.</li>
+<li>Tweak: Dynamic class name for item based on taxonomy when using the epl_get_the_term_list function.</li>
+<li>Tweak: View Listings added from archive page.</li>
+<li>Fix: Shortcode pagination when permalinks are plain.</li>
+</ul>
+
+<p>= 3.5 November 8, 2023 =</p>
+
+<ul>
+<li>New: Hook Replaced: epl_property_tab_section replaced with epl_property_features, the older hook is kept for backward compatibility.</li>
+<li>New: Filters added to alter an empty value if required: epl_get_year_built_empty_value, epl_get_property_bed_empty_value, epl_get_property_bath_empty_value, epl_get_property_rooms_empty_value, epl_get_parking_spaces_empty_value, epl_get_property_garage_empty_value, epl_get_property_carport_empty_value, epl_get_air_conditioning_empty_value, epl_get_property_pool_empty_value, epl_get_security_system_empty_value</li>
+<li>New: Using the global status function to get status labels.</li>
+<li>New: Prefixed Google Maps API key script name to: epl-google-map-v-3.</li>
+<li>New: Edit Listing google maps error message added.</li>
+<li>New: Display hidden fields in admin when editing listings.</li>
+<li>New: Additional args for custom template action: epl<em>loop_template</em>{$post_type}, epl_loop_template.</li>
+<li>New: Search shortcode and widgets. Support for instance ID, fallback generates unique instance ID automatically. Allowing multiple search with tabs on the same page to not clash with each other.</li>
+<li>New: Added support for &#8216;status&#8217; in search shortcodes.</li>
+<li>New: Support for conditional fields in extension settings.</li>
+<li>New: Support for number type field for widget settings.</li>
+<li>New: Edit Listing when you manually edit the map coordinates the map preview will update.</li>
+<li>New: Helper Function: epl_get_property_meta_label allowing you to get the meta value as label.</li>
+<li>New: [listing_results] Shortcode to display listing search results in page builders and themes. This shortcode will load the search results loop. For use in Page Builders like Elementor, Divi, WP Bakery, Visual Composer.</li>
+<li>New: Twitter X icon added to SVG and sprites PNG.</li>
+<li>New: Filter: epl_map_display_defaults to alter the default map display options.</li>
+<li>New: Czech translation of plugin by RadZah.</li>
+<li>New: Czech currency support to properly format price.</li>
+<li>New: Unique IDs for all field wrappers.</li>
+<li>Tweak: Welcome screen removed and images to minimise translation requirements. Visit https://easypropertylistings.com.au/whats-new/ instead.</li>
+<li>Tweak: [listing_map] Shortcode Added width, height and zoom options and allowed usage on any page.</li>
+<li>Tweak: Shortcode results message allow basic html.</li>
+<li>Tweak: Shortcodes, make sure meta_query in arg is defined as array, prior to usage.</li>
+<li>Tweak: Added accessibility labels to select elements.</li>
+<li>Tweak: Escaping additional widget elements.</li>
+<li>Tweak: Correct spelling of Separate.</li>
+<li>Tweak: Additional PHP 8.2 code improvements.</li>
+<li>Tweak: Prevent importing non text files in settings.</li>
+<li>Fix: Removed referenced to builder functions.</li>
+<li>Fix: Contacts, PHP 8.2 fix paginated link warnings when phone, name, email is empty.</li>
+<li>Fix: Availability time is only shown when there is a date.</li>
+<li>Fix: Toolbar items function missing arguments.</li>
+<li>Fix: Notice error on add-ons page.</li>
+<li>Fix: Improvements to settings imports if file is incorrectly uploaded.</li>
+<li>Fix: Price Sticker, inspections code trim string when is null.</li>
+<li>Fix: PHP 8.2 Automatic conversion of false to array is deprecated fix.</li>
+<li>Fix: Floor plans, energy certificate, external links and min web labels using esc_html instead of esc_attr.</li>
+</ul>
+
+<p>= 3.4.48 August 29, 2023 =</p>
+
+<ul>
+<li>New: Support for Namibian dollar.</li>
+<li>New: Field type textarea_html which works like the editor field type but without loading the MCE buttons.</li>
+<li>Tweak: Removed duplicate ID from social SVG.</li>
+<li>Tweak: Shortcode results not found classes passed for each shortcode type.</li>
+<li>Tweak: Search not found container added for easier styling.</li>
+<li>Tweak: Accessibility label added for select field.</li>
+<li>Fix: Class name is now unique for [listing_open], [listing_location], [listing_auction], [listing_category], [listing_feature] shortcodes.</li>
+<li>Fix: Price formatting anomaly as per settings in price slider.</li>
+<li>Fix: Missing space between classes names for shortcode open &amp; location.</li>
+<li>Fix: PHP 8.1 warning when no user role set for user.</li>
+</ul>
+
+<p>= 3.4.47 August 3, 2023 =</p>
+
+<ul>
+<li>Tweak: Additional options added to alter the default behaviour of the accordion feature. Custom classes supported to enable accordions.</li>
+</ul>
+
+<p>= 3.4.46 July 6, 2023 =</p>
+
+<ul>
+<li>Fix: Support for arguments with epl_the_excerpt when in theme compatibility mode.</li>
+</ul>
+
+<p>= 3.4.45 July 1, 2023 =</p>
+
+<ul>
+<li>New: Deleted status added for REAXML support.</li>
+<li>Tweak: Reordered status options in edit post and admin search filtering.</li>
+<li>Tweak: Pass user provided attributes to the [listing_search] Shortcode template.</li>
+<li>Fix: JS Issue - Assignment to constant variable.</li>
+<li>Fix: Compatibility mode accidentally styling in admin area.</li>
+</ul>
+
+<p>= 3.4.44 April 4, 2023 =</p>
+
+<ul>
+<li>New: Added filter epl_maybe_delete_inspection for deciding whether to remove inspection entry.</li>
+<li>New: Added field type class for field wrapper and custom wrapper class support through wrapper_class.</li>
+<li>New: Range slider epl_get_range_slider_label_html filter to allow changing html for range slider with {range_start} {range_sep} {range_end} components.</li>
+<li>New: Changed jQuery target #epl-sort-listings to .epl-sort-listings to support multiple instances of sorting dropdown on page.</li>
+<li>New: Filter for land category epl_get_property_land_category was incorrect.</li>
+<li>New: Added help field type in meta boxes fields that will render html.</li>
+<li>New: Support for YouTube shorts.</li>
+<li>New: Added support for YouTube shorts and epl_property_video_url filter for video URL.</li>
+<li>New: Option to sort by title.</li>
+<li>New: Added epl_get_shortcode_list filter.</li>
+<li>New: Added epl_any_label_status_filter and epl_current_label_status_filter filters for any and current status labels.</li>
+<li>Tweak: Option sortby based on instance_id now.</li>
+<li>Tweak: Parking Comments label before value.</li>
+<li>Tweak: Added check for empty videos.</li>
+<li>Tweak: Unique ID for sort dropdown per instance.</li>
+<li>Tweak: Get shortcode attributes as parameter.</li>
+<li>Fix: Missing commercial auction listings in listing_action shortcode.</li>
+<li>Fix: Warning for preg_replace when value is empty.</li>
+<li>Fix: Warning for wp_kses_post when empty link.</li>
+<li>Fix: Notice when $post is null.</li>
+<li>Fix: Appended dash sign for field sliders.</li>
+<li>Fix: Error if area is non numeric in land or building values when using imported data.</li>
+<li>Fix: PHP 8.1 and 8.2 improvements.</li>
+<li>Fix: Fixed callback error for google maps.</li>
+</ul>
+
+<p>= 3.4.43 January 9, 2023 =</p>
+
+<ul>
+<li>Fix: Avada theme archive listing template updated.</li>
+</ul>
+
+<p>= 3.4.42 December 20, 2022 =</p>
+
+<ul>
+<li>Fix: Avada single listing template updated.</li>
+</ul>
+
+<p>= 3.4.41 July 26, 2022 =</p>
+
+<ul>
+<li>Fix: Only the default template was loading in shortcodes.</li>
+<li>Fix: Added land category to the epl_property_secondary_heading hook.</li>
+</ul>
+
+<p>= 3.4.40 May 06, 2022 =</p>
+
+<ul>
+<li>Fix: Search category options fixed for the all search tab.</li>
+<li>Fix: Search address options fixed for the all search tab.</li>
+<li>Fix: Order corrected to display the newest first in dashboard activity widget.</li>
+<li>Tweak: Search selection results will be sorted in a-z order.</li>
+</ul>
+
+<p>= 3.4.39 February 24, 2022 =</p>
+
+<ul>
+<li>Tweak: Adjustment to the $epl_author class to allow override and extending.</li>
+<li>Tweak: Added stroke and stroke-width to SVG allowed tags.</li>
+<li>Fix: Added missing arguments variable in epl_no_property_featured_image action.</li>
+<li>Fix: Using correctly spelt get_additional_commercial_features_html function.</li>
+</ul>
+
+<p>= 3.4.38 February 07, 2022 =</p>
+
+<ul>
+<li>New: Shortcode template fallback. If a template file does not exist then the default will load instead of producing an error.</li>
+<li>New: Updated switch.png graphic to switch.svg for lossless scaling.</li>
+<li>New: Finnish Translation Added. Thanks to Eevastiina Hyvönen.</li>
+<li>New: Updated frontend scripts.</li>
+<li>New: Filter added for energy certificate: epl_energy_certificate_keys</li>
+<li>New: Filter added for external link: epl_external_link_keys</li>
+<li>New: Filter added for floor plans: epl_floorplan_keys</li>
+<li>New: Filter added for mini web: epl_mini_web_keys</li>
+<li>New: Filter added for widget read more: epl_property_widget_read_more</li>
+<li>New: Rental pricing. Using label_poa for no rental price.</li>
+<li>New: Added epl_price_rent_period filter.</li>
+<li>New: Added filter epl_pa_price for P.A label.</li>
+<li>New: Support for 3rd and 4th listing agents on commercial listings.</li>
+<li>New: Additional parameters default_template to pass the default template which will be used if the template is not found.</li>
+<li>New: Support for external/local hosted video formats like mp4, mov etc.</li>
+<li>New: Added custom body class epl-search-results for search results.</li>
+<li>New: Added filter epl_number_suffix for suffix.</li>
+<li>New: Added epl_get_property_available_date_time_separator filter for date/time separator.</li>
+<li>New: Added epl_get_property_auction_date_time_separator filter for date/time separator.</li>
+<li>Tweak: Admin area CSS. thumbnail aligned to the right for file type meta fields.</li>
+<li>Tweak: Added filter epl_property_featured_image_args to control all parameters &amp; epl_no_property_featured_image action.</li>
+<li>Tweak: Added filter epl_property_archive_featured_image to control all parameters &amp; epl_no_archive_featured_image action if no featured image.</li>
+<li>Fix: [listing_element] shortcode fatal error with global $property.</li>
+<li>Fix: Removed un-needed slider-handle.png requirements.</li>
+<li>Fix: Contacts system, bulk delete action not working.</li>
+<li>Fix: Don&#8217;t display land area when it&#8217;s &lt; 0.</li>
+<li>Fix: For required parameter $field follows optional parameter $tag.</li>
+<li>Fix: jQuery error and sort function in some cases.</li>
+</ul>
+
+<p>= 3.4.37 September 11, 2021 =</p>
+
+<ul>
+<li>Tweak: WordPress 5.8.1 introduced a CSS tweak the broke the flow of the admin fields on the listing entry screen.</li>
+</ul>
+
+<p>= 3.4.36 March 25, 2021 =</p>
+
+<ul>
+<li>New: Additional action support for listing templates. Actions are: epl<em>loop_template</em>{post_type}, epl_loop_template_listing.</li>
+<li>Fix: Corrected issue with multi select where values are numbers.</li>
+</ul>
+
+<p>= 3.4.35 December 23, 2020 =</p>
+
+<ul>
+<li>Tweak: Added support for WordPress 5.6 blocks rendering.</li>
+<li>Tweak: Support for true/false values in features checklist.</li>
+<li>Fix: [listing_advanced] not marked as EPL shortcode in WP_Query object.</li>
+<li>Fix: Incorrect meta key in carport function.</li>
+<li>Fix: Hidden field rendering.</li>
+</ul>
+
+<p>= 3.4.34 October 1, 2020 =</p>
+
+<ul>
+<li>Fix: Admin columns output escaping.</li>
+<li>Tweak: Added hidden empty field for checkboxes so that they always show up in $_POST data while saving.</li>
+</ul>
+
+<p>= 3.4.33 September 24, 2020 =</p>
+
+<ul>
+<li>Tweak: Search results not found filter epl_property_search_not_found_title allows basic html to be passed.</li>
+</ul>
+
+<p>= 3.4.32 September 23, 2020 =</p>
+
+<ul>
+<li>Fix: Further enhancements to loading SVG icons as many themes are missing wp_body_open. SVG&#8217;s now fallback to load in the footer.</li>
+</ul>
+
+<p>= 3.4.31 September 17, 2020 =</p>
+
+<ul>
+<li>Fix: SVG Icons preventing favicon from loading in some themes. SVG&#8217;s are now loading in body tag using wp_body_open hook introduced in WordPress 5.2.</li>
+</ul>
+
+<p>= 3.4.30 September 4, 2020 =</p>
+
+<ul>
+<li>Fix: Depreciated JS ready function.</li>
+<li>New: Render password field support.</li>
+<li>Fix: Search only variables can be passed via reference.</li>
+<li>Fix: Archive featured image filter missing parameter filter. Increased from 3 to 4.</li>
+<li>Fix: Property Features title set to pass basic html.</li>
+<li>Fix: Admin commercial options now using epl_get_meta_field_label for dynamic labels.</li>
+</ul>
+
+<p>= 3.4.29 June 17, 2020 =</p>
+
+<ul>
+<li>New: Converted render field function to class for with control and flexibility.</li>
+<li>New: Custom body classes epl-single-listing for single and epl-post-type-archive for search results pages.</li>
+<li>Tweak: Meta box tabs and conditional fields.</li>
+<li>Tweak: Render HTML class &amp; style for tabs.</li>
+<li>Fix: Issue when changing select into a select_multiple field was not saving.</li>
+<li>Fix: Json rendering in data-attributes.</li>
+<li>Fix: Hidden field type.</li>
+<li>Fix: Search widget was not rendering in page builders.</li>
+<li>Fix: Admin css on mobile.</li>
+</ul>
+
+<p>= 3.4.28 May 25, 2020 =</p>
+
+<ul>
+<li>New: Option added to number formatting function to trim decimal numbers.</li>
+<li>New: Admin filter epl_land_value_decimal_format for land value decimal formatting.</li>
+<li>New: Globally loading shortcodes and widgets in order to allow page builders to use widgets. Additionally this will now render shortcodes when using front-end page builders.</li>
+<li>New: Helper action epl_property_status used to output the listing status in templates.</li>
+<li>Tweak: Enhancements to the new stickers function.</li>
+<li>Tweak. Altered land formatting in admin to remove decimals from land values unless they have decimal places.</li>
+</ul>
+
+<p>= 3.4.27 May 22, 2020 =</p>
+
+<ul>
+<li>New: Removed change log from plugin, this change was made to aid translators in translating the plugin to 100% and not need to translate the long change log items.</li>
+<li>New: Added sticker support to allow the disabling of image stickers to the epl_property_archive_featured_image function.</li>
+<li>New: Added filter epl_inspection_link to handle inspection time link. Allowing handling of non date inspection values in the get_property_inspection_times function.</li>
+<li>New: Added prefix support to epl_get_the_address helper function.</li>
+<li>New: Stickers helper function epl_stickers which renders stickers, based on meta values, an alternative to the epl_price_stickers function.</li>
+<li>Tweak: Helper class epl-grid-hidden block display on list mode.</li>
+<li>Tweak: Better support for various YouTube style links.</li>
+<li>Fix: Escaping issue and formatting for land size in admin.</li>
+<li>Fix: Dashboard activity widget comment positioning.</li>
+<li>Fix: Translation issue with rent period.</li>
+<li>Fix: Issue with excerpt length option not working correctly with some themes.</li>
+<li>Fix: Depreciated epl_excerpt_length function and filter. Retained function for compatibility.</li>
+<li>Fix: No spaces between classes when both class &amp; template attributes are set.</li>
+</ul>
+
+<p>= 3.4.26 April 15, 2020 =</p>
+
+<ul>
+<li>New: Added Avada theme support.</li>
+<li>Tweak: Re-ordered commercial authority options.</li>
+<li>Tweak: Minor function optimisations.</li>
+</ul>
+
+<p>= 3.4.25 March 31, 2020 =</p>
+
+<ul>
+<li>New: Filters added to floorplan, external link, mini web and energy certificate that allow you to disable then through a filter, great for extensions to control the default button. eg set the epl_show_property_energy_certificate to false to disable button rendering.</li>
+</ul>
+
+<p>= 3.4.24 March 20, 2020 =</p>
+
+<ul>
+<li>New: Read More button action hook epl_button_read_more to use in templates accepts a passed $label.</li>
+<li>Tweak: Corrected Floor Plan spelling into 2 words.</li>
+<li>Tweak: Refactored mini web url output by adding, epl_button_label_mini_web filters for labels.</li>
+<li>Tweak: Added full image size as option with selecting image sizes using epl_get_thumbnail_sizes function.</li>
+<li>Fix: Floor plan label filter was incorrect. Filters are now epl_button_label_floorplan &amp; epl_button_label_floorplan_2.</li>
+</ul>
+
+<p>= 3.4.23 March 18, 2020 =</p>
+
+<ul>
+<li>Tweak: Added land unit filter epl_property_land_area_unit_label to admin area when viewing listings.</li>
+<li>Tweak: Altered the admin output of property category to use the label instead of value.</li>
+<li>Tweak: Removed compatibility template for loop as we are passing the class using post_class filter. If you were using loop-listing-blog-default-compatibility.php in your template remove -compatibility from the filename.</li>
+<li>Tweak: Ordered the additional featured items to a-z order.</li>
+<li>Fix: Security function check.</li>
+</ul>
+
+<p>= 3.4.22 February 26, 2020 =</p>
+
+<ul>
+<li>Fix: For attribute added for checkbox labels in search.</li>
+</ul>
+
+<p>= 3.4.21 January 22, 2020 =</p>
+
+<ul>
+<li>Tweak: Corrected the new parking filter.</li>
+</ul>
+
+<p>= 3.4.20 January 22, 2020 =</p>
+
+<ul>
+<li>New: Filter epl_total_parking_spaces added to the parking spaces function allowing you to alter the total value of the parking icons.</li>
+<li>New: Helper epl_get_post_id_from_unique_id function to get the WordPress post id from the property_unique_id field.</li>
+<li>Tweak: Better flushing of permalinks when settings are saved or on install.</li>
+</ul>
+
+<p>= 3.4.19 December 19, 2019 =</p>
+
+<ul>
+<li>New: Added epl_recent_property_widget_default_args and epl_recent_property_widget_query filters for defaults and query args making targeting widget query easier in pre_get_posts.</li>
+<li>Tweak: Updated to new html structure for fields using html lists in new custom post types for extensions.</li>
+<li>Tweak: Removed article wrapper from Divi Template.</li>
+</ul>
+
+<p>= 3.4.18 December 10, 2019 =</p>
+
+<ul>
+<li>Tweak: Added a wrapper css class epl-section-map to the default map output wrapper.</li>
+<li>Fix: Internal help page video link was not working correctly for Adding Listing.</li>
+</ul>
+
+<p>= 3.4.17 December 2, 2019 =</p>
+
+<ul>
+<li>Tweak: Moved Readme widget option to appear before the Read me label.</li>
+<li>Tweak: Wrapper for wp_doing_ajax with fallback for 3.7 versions of WordPress or lower.</li>
+<li>Fix: SVG filtering now allows circle tag correcting issue with LinkedIn icon missing a dot.</li>
+<li>Fix: Empty values not getting saved for decimals and numbers.</li>
+</ul>
+
+<p>= 3.4.16 November 25, 2019 =</p>
+
+<ul>
+<li>Fix: Added check for post type in epl_admin_posts_filter to avoid conflict with other plugins like ninja forms.</li>
+<li>Fix: Filter by property author now shows results for both primary and secondary author.</li>
+</ul>
+
+<p>= 3.4.15 November 21, 2019 =</p>
+
+<ul>
+<li>New: Migrated from PHP Session to WP Session to prevent WordPress &gt; Tools &gt; Site Health REST API error.</li>
+<li>Fix: City label missing translation string.</li>
+</ul>
+
+<p>= 3.4.14 November 13, 2019 =</p>
+
+<ul>
+<li>New: Support for WordPress 5.3 TwentyTwenty theme.</li>
+<li>Fix: Custom additional features hook corrected as custom features were outputting incorrectly.</li>
+</ul>
+
+<p>= 3.4.13 November 11, 2019 =</p>
+
+<ul>
+<li>Tweak: Listing widget: Custom template display, file extension no longer required and file name format enforced to the format widget-content-listing-{template_name}.php</li>
+<li>Tweak: CSS convert helper grid class to inline-block instead of float left.</li>
+<li>Fix: Search was not searching correctly when no post type was set.</li>
+<li>Fix: Listing Widget bed/bath only icons SVG output.</li>
+</ul>
+
+<p>= 3.4.12 November 1, 2019 =</p>
+
+<ul>
+<li>Fix: Loading admin css and js on appearance &gt; widgets screens.</li>
+</ul>
+
+<p>= 3.4.11 October 30, 2019 =</p>
+
+<ul>
+<li>Fix: Empty check in date function to prevent notice errors during listing imports.</li>
+<li>Fix: Index check in iCal function and additional check to avoid notices.</li>
+</ul>
+
+<p>= 3.4.10 October 23, 2019 =</p>
+
+<ul>
+<li>Fix: Shortcodes [listing_category] and [listing_advanced] when using numbers to filter ranges. e.g. category_compare=&#8220;BETWEEN&#8221; and NOT_BETWEEN.</li>
+<li>Fix: Issue with listings dashboard widget when no post types are active.</li>
+</ul>
+
+<p>= 3.4.9 September 17, 2019 =</p>
+
+<ul>
+<li>New: Added the listing URL to the iCal card.</li>
+<li>New: Enhanced the epl_property_address action hook to support multiple address parameters to easier control output in templates.</li>
+<li>New: Enhanced the epl_property_category action hook to support tag and class that is passed through in templates.</li>
+<li>Fix: iCal inspection time cards were trimming the description.</li>
+</ul>
+
+<p>= 3.4.8 September 16, 2019 =</p>
+
+<ul>
+<li>Tweak: Added filter to optionally control separator output to appear after suburb with epl_property_address_separator_suburb or after the city with the epl_property_address_separator_city filter.</li>
+<li>Fix: Correction to address separator placement that appeared after suburb in some cases.</li>
+<li>Fix: Passing the third link parameter to the feature image through a hook has been corrected.</li>
+</ul>
+
+<p>= 3.4.7 September 16, 2019 =</p>
+
+<ul>
+<li>Tweak: Whitelist use tag for SVG usage.</li>
+<li>Fix: Correct business listing type pricing display, behaves like listing for sale.</li>
+</ul>
+
+<p>= 3.4.6 September 9, 2019 =</p>
+
+<ul>
+<li>Tweak: Support for polygon tag in SVG icons.</li>
+<li>Fix: Price display error in admin columns on commercial listings types that were set to both sale and lease.</li>
+<li>Fix: Home open title appearing in admin columns when imported data was empty.</li>
+</ul>
+
+<p>= 3.4.5 September 5, 2019 =</p>
+
+<ul>
+<li>Fix: Editor custom field type stripping html.</li>
+<li>Fix: Remove strict type for checkbox &amp; select multiple field types which prevented saving number type array options.</li>
+</ul>
+
+<p>= 3.4.4 September 4, 2019 =</p>
+
+<ul>
+<li>Fix: Checkbox array options not saving correctly in extensions settings.</li>
+<li>Fix: Removed default template check for loop and single templates as this caused incorrect templates to load in some cases.</li>
+</ul>
+
+<p>= 3.4.3 August 29, 2019 =</p>
+
+<ul>
+<li>Fix: Displaying of Geo and Unique ID columns in admin.</li>
+</ul>
+
+<p>= 3.4.2 August 27, 2019 =</p>
+
+<ul>
+<li>Fix: Issue when using WordPress default pagination, output corrected.</li>
+</ul>
+
+<p>= 3.4.1 August 25, 2019 =</p>
+
+<ul>
+<li>New: Hidden meta fields for currency support, and floor plan modified date time.</li>
+<li>Tweak: Support for meta fields file type to support as an array of data.</li>
+<li>Tweak: Allow embeds and scripts in meta fields like floor plans and energy certificates to support an array of data which is handy during data import.</li>
+<li>Tweak: Corrected undefined variables in widgets since WordPress 5.2.2.</li>
+<li>Tweak: Admin contacts added wrapper classes to contact values.</li>
+<li>Fix: Currency support for search widget price sliders.</li>
+<li>Fix: Commercial search fix, widget select type field fix: not saving.</li>
+<li>Fix: Agent search suggestions in admin.</li>
+<li>Fix: Reports graph date display issues.</li>
+<li>Fix: Search templates will no longer ignore custom fields added using filters.</li>
+<li>Fix: When adding dynamic content to a listing using the WordPress editor default WordPress behaviour is restored allowing page builder content to display correctly.</li>
+</ul>
+
+<p>= 3.4 August 16, 2019 =</p>
+
+<ul>
+<li>MAJOR Security Update Release. Important to update to the latest version to protect your website. Easy Property Listings has been reviewed and approved by the WordPress plugin team.</li>
+<li>WordPress standards coding applied to all plugin files and code.</li>
+<li>This is a critical update to Easy Property Listings plugin that is focused on security enhancements. Update you site to this version.</li>
+<li>New: Reset settings to default values tool page added viewable with &amp;dev=true added to tools page URL.</li>
+<li>New: Added autocomplete option to meta-fields array.</li>
+<li>Tweak: Internal code documentation enhanced.</li>
+<li>Tweak: Admin, structure, style, enhanced, legacy CSS optimisations.</li>
+<li>Tweak: JS enhancements, improvements and optimisations.</li>
+<li>Tweak: Removed depreciated author meta compatibility file.</li>
+<li>Tweak: Removed depreciated listing meta compatibility file.</li>
+<li>Tweak: Removed depreciated extensions compatibility file.</li>
+<li>Tweak: Ability to arrange EPL - Search Widget options dashboard field order.</li>
+<li>Tweak: Wording alteration for Inspection Times - removed (one per line).</li>
+<li>Tweak: Removed subscriber user type from Dashboard filtering by User.</li>
+<li>Tweak: Now using WordPress jQuery touch punch JS script.</li>
+<li>Tweak: Removed cURL php requirement and instead use WordPress helper function.</li>
+<li>Tweak: Additional CSS classes added to SVG icons.</li>
+<li>Tweak: Fix bath and car svg wrapper class name.</li>
+<li>Tweak: Author box will no longer display bio tab is user bio is empty.</li>
+<li>Fix: Minimised scripts and css in admin areas to EPL pages.</li>
+<li>Fix: Versioning added to epl js scripts.</li>
+<li>Fix: Upgrade database on new installs message no longer displaying as no action is required.</li>
+<li>Fix: Business listing type pricing.</li>
+<li>Fix: Translation strings corrected in several places across the entire plugin. Internal translation guides added.</li>
+<li>Fix: jQuery UI CSS now loading minified version in production mode.</li>
+<li>Fix: [listing_element] shortcode will now display shortcode values when using frontend GUI builder.</li>
+<li>Fix: Loading custom CSS using the style-single.css now works correctly.</li>
+<li>Fix: XSS security flaw.</li>
+<li>Important Security Update.</li>
+</ul>
+
+<p>= 3.3.3 June 13, 2019 =</p>
+
+<ul>
+<li>New: Shortcode [listing_meta_doc] for custom field documentation output.</li>
+<li>Tweak: CSS tweaked for list/grid mode preventing bullets appearing on some themes.</li>
+<li>Tweak: Added fallback function for reporting if PHP module not enabled on some servers.</li>
+<li>Tweak: New installations will no longer see database upgrade notice as it is not required.</li>
+<li>Tweak: Improvements to property_price_global function.</li>
+<li>Tweak: Code optimisation and added internal documentation to functions missing notes.</li>
+<li>Tweak: When importing listings a helper function would in some cases trigger a notice error.</li>
+<li>Tweak: Attached files would in some cases produce an error on imported listings with no files attached in the dashboard.</li>
+<li>Fix: Reporting graphs were some times blank when viewing last year then this year.</li>
+<li>Fix: Reworked database upgrade process for larger workloads processing 200 records at a time to prevent server timeouts.</li>
+<li>Fix: Missing post wrapper classes for iThemes builder and Heuman theme when using Listing Template extensions and masonry effect.</li>
+<li>Fix: Using default WordPress pagination with shortcodes corrected as they have all been enhanced to support multiple shortcodes on one page using the instance_id= option.</li>
+<li>Fix: Pagination corrected for shortcodes when using on the site home page.</li>
+<li>Fix: Commercial and Business listing types were not obeying the hide suburb option in some cases.</li>
+</ul>
+
+<p>= 3.3.2 May 31, 2019 =</p>
+
+<ul>
+<li>Tweak: Added epl-clearfix to shortcode template to better clear when using page builder plugins.</li>
+<li>Fix: New search feature corrected when no post type is set.</li>
+</ul>
+
+<p>= 3.3.1 May 27, 2019 =</p>
+
+<ul>
+<li>Tweak: Grid CSS tweaked when using Enhanced CSS option with some themes.</li>
+<li>Tweak: Altered the options to the new [listing_element] shortcode for easier use and documentation.</li>
+<li>Fix: Warning and notice errors when using the new [listing_advanced] shortcode with no options.</li>
+<li>Fix: Error when using the new [listing_element] shortcode.</li>
+</ul>
+
+<p>= 3.3 May 22, 2019 =</p>
+
+<ul>
+<li>New: Gutenberg support along with the REST WordPress API. Using the WordPress classic plugin will disable Gutenberg and Easy Property Listings or define constants.</li>
+<li>New: Shortcode [listing_advanced] that is a super powered shortcode with a million possible filters possible.</li>
+<li>New: Shortcode [listing_element] for use with page builder systems to output variables, meta fields, action hooks, excerpt, onto templates.</li>
+<li>New: Re-created Social SVG and PNG Icons.</li>
+<li>New: Production/Development mode option to enable or disable minimised CSS and JS files.</li>
+<li>New: Enhanced CSS implemented to enable better listing grid wrapping along with a large number of helper classes to construct custom templates for listings. Enabled on new installations. When upgrading the enhanced CSS is disabled. Enable and disable from Advanced Settings.</li>
+<li>New: Tools page holding Import and Export options along with the Upgrade screen.</li>
+<li>New: Export Easy Property Listings settings and import them into another site on the Tools page.</li>
+<li>New: Shortcodes [listing], [listing_category] and [listing_advanced] all support agent option for filtering by either primary or secondary agents.</li>
+<li>New: Shortcodes now support default sorting by status with the sortby=status option.</li>
+<li>New: Search results URL will now only contain commands that are being searched, making the URL a whole lot shorter.</li>
+<li>New: Upgrade notice that will copy the listing pricing for all listing types into a unified price search.</li>
+<li>New: Unified price search slider usable in the EPL - Listing Search widget and [listing_search] shortcode.</li>
+<li>New: Able to add a functions.php, functions-single.php and functions-archive.php files to the active_child_theme/easypropertylistings where you can store code and filter customisations.</li>
+<li>New: Able to add style-single.css and style-archive.css to the active_child_theme/easypropertylistings where you can store CSS customisations along with the already implemented style.css file.</li>
+<li>New: Implemented a Featured listing system that will allow you to set your listings as featured from the listing administration page. With the update to the EPL Importer add-on listings that you mark as featured will stay featured when updated from external sources.</li>
+<li>New: Major tweaks to the custom fields screens allowing for a smaller data entry screen when adding your listing details.</li>
+<li>New: Contacts now allow you to bulk select and delete contacts.</li>
+<li>New: Contacts summary search.</li>
+<li>New: Contact widget now has a hidden field to prevent bots from entering form details.</li>
+<li>New: Contact shortcode renamed to [listing_contact] instead of [epl_contact_form]. Retained old shortcode name for backward compatibility.</li>
+<li>New: EPL - Contact form completely re-built with better handling of success and error messages to the user.</li>
+<li>New: Added a notice to the frontend explaining where the map should go when a Google Maps API key is not set and re-built the JS to avoid any issues when the API key is not added.</li>
+<li>New: Easier to add additional custom stickers to listings with the epl_property_stickers hook.</li>
+<li>New: Address function for use in custom templates epl_the_address, epl_get_the_address.</li>
+<li>New: Status functions for use in custom templates epl_the_status, epl_get_the_status.</li>
+<li>New: Under Offer functions for use in custom templates epl_the_under_offer, epl_get_the_under_offer.</li>
+<li>New: Enabled Mini Website URL meta field as a number of REAXML providers are now using 3D Tours along with support for custom button titles.</li>
+<li>New: Able to configure sorting dropdown as tabs.</li>
+<li>New: EPL - Author widget supports single or multiple users with user searching capabilities. Allowing you to use the widget and set a specific agent or WordPress user.</li>
+<li>New: Floor plan uploader now support a custom label added to the listing entry screen. Label filter is still in place.</li>
+<li>New: External Links now 3 are now supported with a custom label. Label filter is still in place.</li>
+<li>New: Mini Website URL, 2 are supported with a custom label. Label filter is still in place.</li>
+<li>New: Energy Certificate supports a custom label. Label filter is still in place.</li>
+<li>New: Map Icon with filter for customising.</li>
+<li>New: Listing Map Icon for when the location is not exact, IE when the user selects to not display the full address.</li>
+<li>New: Users profiles now have Instagram, Pinterest and YouTube links and social icons added.</li>
+<li>New: Pets icons and function to handle output with the get_property_pets function.</li>
+<li>New: Rebuilt several functions which now allow for greater filtered output. Rebuilt functions are: get_property_year_built, get_property_bed, get_property_bath, get_property_rooms, get_property_parking, get_property_garage, get_property_carport, get_property_air_conditioning, get_property_pool, get_property_security_system, get_property_land_value, get_property_building_area_value, get_property_energy_rating, get_property_new_construction, get_property_holiday_rental, get_property_furnished. (New Functions) get_property_pets, get_property_featured.</li>
+<li>New: Rental Leased Date custom field.</li>
+<li>New: Ability to apply multiple templates using the epl_property_single_default filter to the single listing template loading queue.</li>
+<li>New: Ability to apply multiple templates using the epl_property_blog_template filter to the loop listing template loading queue.</li>
+<li>New: Specify the default return type of the property listing icons. Basically using the epl_icons_return_type filter you can force all icons to output text instead of an icon. Or configure a completely custom output.</li>
+<li>New: Improvements to video link handling with YouTube and Vimeo support.</li>
+<li>New: Video hook implemented into templates. Before we were using the epl_property_content_after hook where we have now added a better named epl_property_video action hook.</li>
+<li>New: Random sorting option added to [listing_category], [listing]</li>
+<li>New: Search by linked contacts — search_linked_contact.</li>
+<li>New: YouTube User Profile link.</li>
+<li>New: Office Phone added to user profile and outputs on author profile and widget.</li>
+<li>New: Default and custom classes added to meta field generator used in admin edit listing screens.</li>
+<li>New: Added Portugal Portuguese language partial translation by Fábio Nunes.</li>
+<li>New: Disable REST support and Gutenberg by defining new constants for post types. EPL_BUSINESS_DISABLE_REST, EPL_COMMERCIAL_DISABLE_REST, EPL_COMMERCIAL_LAND_DISABLE_REST, EPL_LAND_DISABLE_REST, EPL_PROPERTY_DISABLE_REST, EPL_RENTAL_DISABLE_REST, EPL_RURAL_DISABLE_REST.</li>
+<li>New: Disable REST support and Gutenberg by defining new constants for taxonomies. EPL_BUSINESS_CAT_DISABLE_REST, EPL_FEATURES_DISABLE_REST, EPL_LOCATION_DISABLE_REST.</li>
+<li>New: Pakistani Rupee currency.</li>
+<li>New: Better support for hidden admin custom fields.</li>
+<li>Tweak: Filters to alter the default Mobile and Office labels epl_author_widget_label_office, epl_author_widget_label_mobile.</li>
+<li>Tweak: Custom classes in admin screens added to some meta fields for example usage.</li>
+<li>Tweak: Dashboard activity widget improved CSS display with icons denoting comment type.</li>
+<li>Tweak: Rebuilt JS validation engine to better handle numeric numbers and the date system to optimise and streamline listing entry.</li>
+<li>Tweak: Rebuilt mapping JS to avoid issues with websites missing Google Maps API keys.</li>
+<li>Tweak: Moved several old functions to compatibility functions for future removal. Functions moved are epl_the_property_address, epl_display_label_postcode, epl_display_label_bond, epl_display_label_suburb.</li>
+<li>Tweak: Inspection times function altered to allow disabling of iCal function.</li>
+<li>Tweak: Added additional inspection time filters which allow you to filter the label further in templates where needed.</li>
+<li>Tweak: Auction get_property_auction function greatly improved with better date formatting for different country formats.</li>
+<li>Tweak: Property Available get_property_available function greatly improved with better date formatting for different country formats.</li>
+<li>Tweak: Improvements to search and global price search slider options now available.</li>
+<li>Tweak: Parse EPL shortcodes for meta queries improved.</li>
+<li>Tweak: Completely re-worked the icons system for listings which makes it easier to customise with hooks and filters and add additional icons and adjust the order.</li>
+<li>Tweak: Reworked the Additional features output allowing further control over output of features along with adjusting the order and output style. Use the epl<em>property_general_features_list filter to alter the order and what is included. Also add your own customised feature list output with the dynamic epl_property_general_feature</em>{new_one} filter.</li>
+<li>Tweak: Total rebuild of the sorting and tools code allowing additional tools to be hooked in and rework the existing tools.</li>
+<li>Tweak: Code optimisations of gallery functions.</li>
+<li>Tweak: Widget templates to handle the Inspection time and iCal options.</li>
+<li>Tweak: Selecting secondary agents works better now on the edit listing pages.</li>
+<li>Tweak: epl_property_widget Options for Inspection times and iCal links to EPL - Listing Widget.</li>
+<li>Tweak: Acre to Acres tweak - Implement formatting for measurements.</li>
+<li>Tweak: Pagination and multiple shortcodes on the same page working correctly.</li>
+<li>Tweak: Removed Google Plus from Users as it no longer exists.</li>
+<li>Tweak: Removed redundant before and after hooks on the manage listing screens.</li>
+<li>Tweak: All shortcodes now include a filter to alter the default options. epl_shortcode_listing_auction_args, epl_shortcode_listing_category_args, epl_shortcode_listing_open_args, epl_shortcode_listing_feature_args, epl_shortcode_listing_location_args, epl_shortcode_listing_args</li>
+<li>Tweak: Replaced grid/list icon with a better quality one.</li>
+<li>Tweak: Replaced all internal icons.</li>
+<li>Tweak: Several older functions moved to depreciated functions for future removal.</li>
+<li>Tweak: Converted floor plan button into button element instead of link with button styling. This makes all buttons consistent.</li>
+<li>Tweak: When using custom image sizes we&#8217;ve improved the admin image sizes to not exceed the column sizes when managing listings from the dashboard.</li>
+<li>Tweak: Floor plan opens link in another window by default to match other buttons.</li>
+<li>Tweak: Contacts system better displays contact information. IE hiding empty fields when nothing is set.</li>
+<li>Tweak: Default sorting is now using the hidden and automatically generated property_price_global value which allows sorting taxonomy filtered listings.</li>
+<li>Tweak: Custom taxonomy features now output a class to the list item for css targeting.</li>
+<li>Tweak: Unique IDs applied to the SVG icons as they were duplicated for each icon.</li>
+<li>Fix: SVG Listing icons filter epl_svg_icons corrected and will now correctly load customised SVG icons.</li>
+<li>Fix: SVG Social icons filter epl_svg_social_icons corrected and will now correctly load customised SVG icons.</li>
+<li>Fix: Archive image hook epl_property_archive_featured_image third option for link now working.</li>
+<li>Fix: Widget image hook epl_property_widgets_featured_image third option for link now working.</li>
+<li>Fix: Images no longer overlap in admin when the image filter is used to alter the default image sizes.</li>
+<li>Fix: [listing_auction] shortcode now correctly lists set auctions.</li>
+<li>Fix: [listing_open] shortcode now correctly lists listings that have an inspection set.</li>
+<li>Fix: Home Open label improved as sometimes empty data is imported and the label appears where it should not.</li>
+<li>Fix: [listing_search] enabling the multiple select option now works better.</li>
+<li>Fix: Several typcasting fixes to various functions to prevent any issues with data that is not entirely empty.</li>
+<li>Fix: Features list output class name fix for bathrooms, building size and furnished.</li>
+<li>Fix: Improvements to compatibility mode that prevents YoastSEO outputting multiple times on the page. This will also correct any other plugins with a similar issue.</li>
+<li>Fix: Adding of contacts with no summary is now possible.</li>
+<li>Fix: When checkbox option defaults were set to on user was unable to save option, corrected the behaviour.</li>
+</ul>
+
+<p>= 3.2.3 November 22, 2018 =</p>
+
+<ul>
+<li>New: WordPress 5 TwentyNineteen theme support.</li>
+</ul>
+
+<p>= 3.2.2 May 23, 2018 =</p>
+
+<ul>
+<li>New: Added business category taxonomy slug filter.</li>
+<li>New: Added DEFINED FILTERS to taxonomy slug Additional Filters added to Taxonomies. Business Categories</li>
+<li>New: Filter epl_property_featured_image_link allow user or extension to enable or disable link behaviour on featured image.</li>
+<li>New: Filter epl_property_archive_featured_image_link allow user or extension to enable or disable link behaviour on archive image.</li>
+<li>New: Added a epl_property_gallery_shortcode filter.</li>
+<li>Tweak: Renamed business_listing category slug to business-category permalinks will automatically re-fresh on update.</li>
+<li>Tweak: Removed business category from EPL meta-boxes, use the hierarchal taxonomy to manage categories and sub categories when editing business listings.</li>
+<li>Tweak: Added widget names to code for filter and ensure backward compatibility.</li>
+<li>Tweak: Implemented responsive breakpoints in epl-container-grid css class.</li>
+<li>Fix: Business Search Categories in Listing Search widget and shortcode.</li>
+<li>Fix: Enhanced for PHP 7.2 and removed create_function depreciated notice.</li>
+</ul>
+
+<p>= 3.2.1 March 24, 2018 =</p>
+
+<ul>
+<li>Tweak: Implemented a minimum width to Property Features info columns for better responsive formatting.</li>
+<li>Tweak: Changed Energy Efficiency rating to text field to support EU requirements.</li>
+<li>Tweak: Renamed EER (Energy Efficiency Rating) to Energy Rating, adjustable with epl_get_property_energy_rating_label filter.</li>
+</ul>
+
+<p>= 3.2 March 22, 2018 =</p>
+
+<ul>
+<li>New: Refactored meta-boxes to allow for better translations of additional features options on frontend.</li>
+<li>New: Search fields allow for placeholder to be defined for each search field.</li>
+<li>New: Ability to sort be featured image in the dashboard when managing listings allowing user to sort columns by listings without a featured image set.</li>
+<li>New: Search by listing features now possible when using EPL - Listing Search widget or [listing_search] shortcode.</li>
+<li>New: Placeholders set for Land Min Area and Max Area.</li>
+<li>New: Adjustments to taxonomy searching allowing search of features and locations or additional custom taxonomies.</li>
+<li>New: Removed changelog entries from plugin core files to greatly reduce translation requirements for plugin and translation will be far easier for translators now.</li>
+<li>New: Change log items are parsed from readme.txt file which removes the need to translate over 700 change log entries.</li>
+<li>New: Added a new CSS class epl-property-features to the listing features column.</li>
+<li>New: Searching by features taxonomy now possible with [listing_search] shortcode and EPL - Listing Search widget.</li>
+<li>New: Search Query Filter epl_search_query_pre_parse allows altering of query after its ready to be processed. I.e. after query is setup but before parsing it.</li>
+<li>New: Search Query Filter epl_search_get_data allows filtering of $_GET &amp; $_POST data which is fed to epl search class.</li>
+<li>New: Search Query Filter epl_search_post_data allows filtering of $_GET &amp; $_POST data which is fed to epl search class.</li>
+<li>New: Search Query Filter epl_preprocess_search_tax_query filter to alter taxonomy query.</li>
+<li>New: Search results template filter epl_common_search_template allowing using an alternative template for search results.</li>
+<li>New: Filter for epl_get_unique_post_meta_values to adjust data parsing.</li>
+<li>New: Selection to set default country for map coordinate generation when adding listings.</li>
+<li>New: Implementation to support beta releases of extensions, enabled when EPL_BETA_VERSIONS is true.</li>
+<li>New: Added additional filters for epl_author_mobile, epl_author_id, epl_author_slogan, epl_author_position, epl_author_name and epl_author_contact_form.</li>
+<li>New: Implemented support for energy rating value on listings as it is mandatory in some regions. New meta field is property_energy_rating.</li>
+<li>New: Added Energy Certificate link to listings which allows for an image upload and button output. Field is property_energy_certificate.</li>
+<li>New: Ability to display offmarket and withdrawn listings on archive pages through the epl_hide_listing_statuses filter.</li>
+<li>New: Migrated Author details tab into a new template file content-author-box-tab-details.php that can be overridden in active_theme/easypropertylistings folder which enables easier editing of the details tab contents.</li>
+<li>New: Filters added for listing admin columns allowing other plugins to hook in correctly to listing dashboard columns and display additional info like Yoast SEO, Post Counter and many other WordPress plugins: epl_post_type_business_admin_columns, epl_post_type_commercial_admin_columns, epl_post_type_commercial_land_admin_columns, epl_post_type_land_admin_columns, epl_post_type_property_admin_columns, epl_post_type_rental_admin_columns, epl_post_type_rural_admin_columns.</li>
+<li>New: Implemented a filter epl_common_search_template to allow altering of search results template. Default is archive-listing.php and can be overridden by creating a search-listing.php or by post type search-{post_type_name}.php.</li>
+<li>New: Ability to search for primary listing agent when adding a listing, secondary agent already has this functionallity.</li>
+<li>New: Added additional options to the image functions which allow disabling of the image links to epl_property_featured_image, epl_property_archive_featured_image, epl_property_widgets_featured_image.</li>
+<li>New: Added options for SVG icons for listing icons and author social icons. Enable from Settings.</li>
+<li>New: SVG assets added using inline allowing for icon styling using CSS.</li>
+<li>New: Implemented filters to replace or add additional SVG icons Filters are epl_svg_icons and epl_svg_social_icons.</li>
+<li>New: Enhanced author class with additional get variables to return the formatted value without html content.</li>
+<li>New: Added options to return text values to each of the get_property functions. Allowing return of a text result instead of a formatted list item.</li>
+<li>New: Filters added to adjust the return format of each get_property function: epl_get_property_year_built_return_type, epl_get_property_bedrooms_return_type, epl_get_property_bathrooms_return_type, epl_get_property_rooms_return_type, epl_get_property_parking_spaces_return_type, epl_get_property_garage_return_type, epl_get_property_carport_return_type, epl_get_property_air_conditioning_return_type, epl_get_property_pool_return_type, epl_get_property_security_system_return_type, epl_get_property_new_construction_return_type, epl_get_property_holiday_rental_return_type.</li>
+<li>New: Added functions for get_property_furnished and get_property_holiday_rental.</li>
+<li>New: House Category now displays in admin column for quick identification of the listing type.</li>
+<li>Tweak: Removed screenshots to reduce plugin size.</li>
+<li>Tweak: Removed Whats New page descriptions to significantly reduce translation requirements for translators.</li>
+<li>Tweak: Admin Getting Started CSS enhancements.</li>
+<li>Tweak: Adjustment to the handling of the primary and secondary listing agents on listings. When a primary agent details are entered this will be the listing agent displayed. If the primary agent for a listing is not set then the Author will be the primary agent displayed.</li>
+<li>Tweak: Added option to use a seperate template for search results.</li>
+<li>Tweak: Corrected building size css class name from land-size to building-size.</li>
+<li>Tweak: Extension updater class cache improvements implemented.</li>
+<li>Tweak: Updates to licensing system to support beta releases of extension versions.</li>
+<li>Tweak: Class check to ensure that the EPL_Author_Meta is already defined, class will not load in error.</li>
+<li>Tweak: Field type checkbox_single altered so that the label is not displayed twice when adding a custom field.</li>
+<li>Tweak: Altered the plugin loading order for better WPML support.</li>
+<li>Tweak: Better support to search multiple post types.</li>
+<li>Tweak: Search better supports multiple post types in an array: epl_get_unique_post_meta_values(&#8216;property_bedroom&#8217;,&#8216;current&#8217;, array(&#8216;property&#8217;,&#8216;rental&#8217;) ).</li>
+<li>Tweak: Sorting option better allows sorting options based on post types by passing post type.</li>
+<li>Tweak: Contact form CSS added for better formatting.</li>
+<li>Tweak: Adjusted admin images padding.</li>
+<li>Tweak: Added date picker to Listed Date and Commercial End Lease date fields.</li>
+<li>Fix: Translations added for Admin on commercial listings (Return, Outgoings, Lease End )</li>
+<li>Fix: Sorting by rental price corrected in admin for Rental listings.</li>
+<li>Fix: Land details missing on Commercial Land listing type.</li>
+<li>Fix: Select form render multiple selections for search.</li>
+<li>Fix: Price bar graph in admin when no price set.</li>
+<li>Fix: Translation issues for search drop downs.</li>
+<li>Fix: Location taxonomy search redirection.</li>
+<li>Fix: Sorting by Unique ID in Dashboard manage listings.</li>
+<li>Fix: Carport label filter name corrected to epl_get_property_carport_label.</li>
+<li>Fix: Added land size to commercial land.</li>
+</ul>
+
+<p>= 3.1.19 July 12, 2017 =</p>
+
+<ul>
+<li>New: Filter added to allow filtering of property meta with epl<em>meta_filter</em>{property_meta_key_name}.</li>
+<li>Tweak: Allow Full URL for user profile, Twitter, Facebook, Google Plus accounts.</li>
+<li>Fix: Corrected the epl_property_sub_title_commercial_features filter to allow altering.</li>
+<li>Fix: Corrected the epl_property_sub_title_rural_features filter to allow altering.</li>
+<li>Fix: Corrected the epl_switch_views_sorting_title_sort filter to allow altering.</li>
+<li>Fix: Corrected the epl_switch_views_sorting_title_list filter to allow altering.</li>
+<li>Fix: Corrected the epl_switch_views_sorting_title_grid filter to allow altering.</li>
+</ul>
+
+<p>= 3.1.18 July 7, 2017 =</p>
+
+<ul>
+<li>Fix: Corrected Commercial and Business epl_property_suburb function to only display suburb.</li>
+</ul>
+
+<p>= 3.1.17 June 15, 2017 =</p>
+
+<ul>
+<li>Fix: Geocoding Address with only partial address details will now generate coordinates.</li>
+<li>Fix: Sorting rentals after performing search would sometimes return no results.</li>
+</ul>
+
+<p>= 3.1.16 May 25, 2017 =</p>
+
+<ul>
+<li>New: Rebuilt search CSS containers for easier formatting with exact widths.</li>
+<li>New: Filter epl_property_category_value for altering house category.</li>
+<li>New: Add Listing Status and Under Offer to post class.</li>
+<li>New: Added Commercial Type to post class.</li>
+<li>Tweak: Ability to display multiple categories on listings.</li>
+<li>Fix: Corrected returning of none and added value to get_property_category, get_property_land_category, get_property_commercial_category and get_property_rural_category functions.</li>
+<li>Fix: Rental sorting error in listing shortcodes.</li>
+<li>Fix: Author widget on pages with sorting.</li>
+</ul>
+
+<p>= 3.1.15 May 17, 2017 =</p>
+
+<ul>
+<li>Fix: Car searching Any will now return listings with no carport or garage.</li>
+</ul>
+
+<p>= 3.1.14 May 9, 2017 =</p>
+
+<ul>
+<li>Tweak: Allow author box to be used on non Easy Property Listings posts without error.</li>
+<li>Tweak: Removed Brazilian Portuguese from plugin as language package is now served from WordPress.org</li>
+</ul>
+
+<p>= 3.1.12 April 27, 2017 =</p>
+
+<ul>
+<li>New: Filter epl_property_land_area_unit_label for Land Unit Label Filter.</li>
+<li>New: Filter epl_property_building_area_unit_label for Building Unit Label Filter.</li>
+<li>New: Filter epl_the_property_feature_list_before before the features list.</li>
+<li>New: Filter epl_the_property_feature_list_before_common_features before the common features list.</li>
+<li>New: Filter epl_the_property_feature_list_before_additional_features before the additional features list.</li>
+<li>New: Filter epl_the_property_feature_list_after for after the output of the features list.</li>
+<li>Tweak: Property, Rural, Commercial Category output to secondary heading.</li>
+<li>Tweak: Altered land sqm output to m2.</li>
+<li>Tweak: Shortcode [listing_auction] now only displays auction listings.</li>
+<li>Fix: Property Category now outputs to feature list.</li>
+<li>Fix: Rural Category now outputs to feature list.</li>
+<li>Fix: Commercial Category now outputs to feature list.</li>
+<li>Fix: Empty Commercial Features heading no longer outputs heading if values are empty.</li>
+<li>Fix: Empty Rural Features heading no longer outputs heading if values are empty.</li>
+</ul>
+
+<p>= 3.1.11 April 6, 2017 =</p>
+
+<ul>
+<li>Fix: Property ID search in admin.</li>
+<li>New: Brazilian Portuguese Translation thanks to Dijo.</li>
+<li>New: Added epl_button_target_floorplan filter.</li>
+</ul>
+
+<p>= 3.1.10 March 27, 2017 =</p>
+
+<ul>
+<li>New: Filter added epl_ical_args for iCal output.</li>
+<li>Tweak: Ability to search by property ID when managing listings from the Dashboard.</li>
+<li>Tweak: Added Sortable column Unique ID.</li>
+</ul>
+
+<p>= 3.1.9 March 23, 2017 =</p>
+
+<ul>
+<li>Tweak: Allowed Authors and Contributors to access help screens.</li>
+</ul>
+
+<p>= 3.1.8 March 22, 2017 =</p>
+
+<ul>
+<li>Fix: Corrected Listing not found filters used in archive templates with a new epl_property_search_not_found hook.</li>
+<li>Tweak: Translations updated.</li>
+</ul>
+
+<p>= 3.1.7 March 22, 2017 =</p>
+
+<ul>
+<li>New: Added epl_template_class to templates and added its context for Listing Templates extension.</li>
+<li>New: Auction Date processing function for import scripts.</li>
+<li>New: REAXML convert date/time to adjust for timezone for import scripts.</li>
+<li>Tweak: Wording for delete settings adjusted to reflect radio option.</li>
+<li>Fix: Corrected missing Property Features title and filter.</li>
+</ul>
+
+<p>= 3.1.6 March 10, 2017 =</p>
+
+<ul>
+<li>New: Hierarchical Features Taxonomy EPL_FEATURES_HIERARCHICAL Constant.</li>
+<li>New: Filter for Commercial For Sale and Lease label epl_commercial_for_sale_and_lease_label when both option selected.</li>
+<li>New: Added filters for shortcodes to adjust no results messages. Filters epl_shortcode_results_message_title_open for [listing_open] shortcode and epl_shortcode_results_message_title for all other shortcodes.</li>
+<li>Tweak: Additional case values for importing additional features now accepts YES, yes, Y, y, on, NO, no, N, n, off.</li>
+<li>New: Common features filter epl_property_common_features_list added.</li>
+<li>Tweak: Corrected spelling of meta box group ids for commercial_features and files_n_links.</li>
+<li>Tweak: Author widget will no longer display if hide author box on a listing is ticked.</li>
+<li>Tweak: Filter for epl template class.</li>
+<li>Fix: Commercial listing lease price text display when both option selected.</li>
+<li>Fix: Property Features title filter epl_property_sub_title_property_features enabling title modification.</li>
+<li>Fix: Post type archive called incorrectly in some cases.</li>
+<li>Fix: PHP 7.1 support.</li>
+<li>Fix: Class adjustment for taxonomy search.</li>
+</ul>
+
+<p>= 3.1.5 January 18, 2017 =</p>
+
+<ul>
+<li>New: Added a Google Maps API key notification to Easy Property Listings &gt; Settings when no key is set.</li>
+<li>Tweak: Internal shortcode option documentation.</li>
+<li>Fix: Shortcode offset feature breaking pagination. Note when using offset, pagination is disabled: [listing] , [listing_category], [listing_feature], [listing_location]</li>
+<li>Fix: Corrected the default option when using select fields.</li>
+</ul>
+
+<p>= 3.1.4 January 16, 2017 =</p>
+
+<ul>
+<li>New: Added offset option to the following shortcodes that allows you to place multiple shortcodes on a single page and prevent displaying duplicate listings. Added to the following shortcodes: [listing] , [listing_category], [listing_feature], [listing_location]</li>
+<li>Tweak: Optimisations to secondary author display by removing duplicate code.</li>
+<li>Tweak: Improvements to extension license updater and notifications on license status.</li>
+<li>Tweak: Performance improvements to admin functions.</li>
+<li>Tweak: Translations adjustment to load textdomain after all plugins initialised.</li>
+</ul>
+
+<p>= 3.1.3 January 3, 2017 =</p>
+
+<ul>
+<li>Fix: Contact linking when editing listings with invalid contact ID.</li>
+<li>Fix: Shortcode sorting for Current/Sold.</li>
+<li>Fix: Commercial Lease price display.</li>
+<li>Tweak: Output Ensuite to features list.</li>
+</ul>
+
+<p>= 3.1.2 December 13, 2016 =</p>
+
+<ul>
+<li>Fix: Corrected the address display of the Commercial and Business listing types.</li>
+<li>Fix: Extension updater class to provide automatic updates.</li>
+<li>Tweak: Visiting the plugins page now caches plugin updates.</li>
+</ul>
+
+<p>= 3.1.1 December 6, 2016 =</p>
+
+<ul>
+<li>Fix: [listing] shortcode with author option correctly filters by username.</li>
+<li>Fix: Listing search undefined result when using custom search options.</li>
+</ul>
+
+<p>= 3.1 November 28, 2016 =</p>
+
+<ul>
+<li>New: Rebuilt templates including additional wrapper for better grid layout.</li>
+<li>New: Added legacy CSS option to prevent using new stylesheets when updating to 3.1 ensuring your listing display remains consistent.</li>
+<li>New: Enhanced grid wrapper CSS to better display listings in a grid format and improved CSS by splitting global style.css with style-structure.css allowing for better compatibility with themes.</li>
+<li>New: Class based front JS scripts for enhanced compatibility.</li>
+<li>New: Implemented cron checking in extension license handler and updated license updater EDD code.</li>
+<li>New: Added filter for epl_get_contacts_args to enable contact form field changes.</li>
+<li>New: Added epl_get_next_contact_link_query filter to adjust contact query.</li>
+<li>New: Added epl_contact_access filter to adjust contact system access by user level.</li>
+<li>New: Contextual help tab on listing pages.</li>
+<li>New: Added epl_author_description_html filter to adjust the author description.</li>
+<li>New: Cron added to handle scheduled events like license checking and updating.</li>
+<li>New: Auction epl_auction_feed_format date format filter added.</li>
+<li>New: Added epl_get_property_com_rent to allow commercial rent price formatting.</li>
+<li>New: Search radio option and checkbox added.</li>
+<li>New: Refactored search into class based code.</li>
+<li>New: Commercial search added (beta) disabled by default.</li>
+<li>New: Conditional post types added for checking on enabled listing types.</li>
+<li>New: Support for DIVI theme framework.</li>
+<li>New: Added epl_meta_commercial_category_value to adjust commercial category.</li>
+<li>New: Parse EPL shortcodes for meta queries.</li>
+<li>New: Widget template no image added.</li>
+<li>New: Sorting order function added.</li>
+<li>New: Pagination option added to all listing shortcodes pagination = &#8216;on&#8217; default.</li>
+<li>New: [listing_category] shortcode added compare option. category_compare = &#8216;IN&#8217; usage is based on SQL query options. &#8216;IN&#8217;,&#8216;NOT IN&#8217;,&#8216;BETWEEN&#8217;,&#8216;NOT BETWEEN&#8217;</li>
+<li>New: Wrapper added to templates to improve display and provide even grid spacing.</li>
+<li>New: Added search address to separate from ID search.</li>
+<li>New: No image icon for listing attachments.</li>
+<li>New: Display lease price if nothing selected.</li>
+<li>New: Added epl_get_property_price_lease_display filter to control lease price display.</li>
+<li>New: License checker for updates set to daily and constant added to improve plugin page performance and reduce the update checker frequency.</li>
+<li>New: Load custom stylesheet from active_theme/easypropertylistings/style.css</li>
+<li>New: Added Pet Friendly options.</li>
+<li>New: Search frontend radio option epl_frontend_search_field_radio.</li>
+<li>New: Search frontend multiple checkbox option epl_frontend_search_field_checkbox_multiple.</li>
+<li>New: Search placeholders added to text fields.</li>
+<li>New: Correctly wrap epl_the_excerpt.</li>
+<li>New: Divi theme support.</li>
+<li>New: Select multiple added as custom field ability.</li>
+<li>New: Custom field option checkbox_option.</li>
+<li>New: Pet Friendly option added to rentals.</li>
+<li>New: Open Parking spaces added to listings.</li>
+<li>New: Prefixed additional css in templates for better styling.</li>
+<li>Tweak: License handler using https.</li>
+<li>Tweak: Improvements to contact actions.</li>
+<li>Tweak: License styling improved for better WordPRess UX.</li>
+<li>Tweak: LinkedIn link adjusted for worldwide usage.</li>
+<li>Tweak: get_property_meta improved.</li>
+<li>Tweak: Commercial leased sticker corrected.</li>
+<li>Tweak: property_land_area adjustment for numerical value.</li>
+<li>Tweak: Commercial and land category correctly displaying.</li>
+<li>Tweak: On activation the Property post type is enabled by default.</li>
+<li>Tweak: Improvements to listing widget.</li>
+<li>Tweak: Inspection time and date format improved.</li>
+<li>Tweak: File option added to external links for floor plans.</li>
+<li>Tweak: Template wrappers prefixed for details, property meta, icons, address, content.</li>
+<li>Tweak: Languages moved for better compatibility with translation plugins.</li>
+<li>Tweak: Listing search widget status label.</li>
+<li>Tweak: Reset page sorting when performing a search on a sub page with a widget or shortcode.</li>
+<li>Tweak: Adjusted price and rental search ranges.</li>
+<li>Tweak: Translation fix for rent period.</li>
+<li>Tweak: Numerous changes to CSS to improve listing display and responsiveness.</li>
+<li>Tweak: Settings checkbox options display correctly.</li>
+<li>Tweak: Improvements to author box functions for multi-author.</li>
+<li>Tweak: LinkedIn author link adjusted.</li>
+<li>Fix: Conditional tags when lo listing types are activated.</li>
+<li>Fix: Improved onclick links in external, web links to conform with new JS class.</li>
+<li>Fix: Commercial car spaces displaying incorrectly.</li>
+<li>Fix: Conditional tags improved.</li>
+</ul>
+
+<p>= 3.0.4 May 4, 2016 =</p>
+
+<ul>
+<li>Fix: Internal help videos gzip error, using iframe instead.</li>
+<li>Fix: Corrected incorrect stray tags on internal welcome page.</li>
+</ul>
+
+<p>= 3.0.3 May 2, 2016 =</p>
+
+<ul>
+<li>New: Setting to disable Google Maps API if already added by theme or other plugin.</li>
+<li>New: Ability to set a Google Maps API Key.</li>
+<li>Fix: Renamed misspelled Property on linked contact.</li>
+<li>Fix: Trailing ul tag on search widget.</li>
+<li>Fix: Implemented better timezone support for open for inspection. Requires WordPress 3.9.</li>
+<li>Tweak: Tighter spacing on dropdown contact list.</li>
+<li>Tweak: Updated translations file.</li>
+<li>Tweak: Capital c for contact post type.</li>
+<li>Tweak: Dashboard activity widget improved CSS display.</li>
+<li>Tweak: Dashboard activity comments better labeled.</li>
+<li>Tweak: Internal links to documentation corrected.</li>
+</ul>
+
+<p>= 3.0.2 April 10, 2016 =</p>
+
+<ul>
+<li>Fix: Featured Listing removed redundant no option.</li>
+</ul>
+
+<p>= 3.0.1 April 8, 2016 =</p>
+
+<ul>
+<li>Tweak: Versioning to all CSS and JS.</li>
+<li>New: Arabic translation.</li>
+<li>Tweak: Updated German Translation.</li>
+<li>Tweak: Updated French Translation.</li>
+<li>Tweak: Updated Dutch Translation.</li>
+<li>Fix: Search by Address and Property ID correctly searches the listing Title. In order to search by property ID, add the property ID to the listing title.</li>
+<li>New: Customise the EPL - Contact Form Widget Submit Label.</li>
+<li>Tweak: Added Form styling to contact form.</li>
+<li>Tweak: Corrected additional translation strings with contact form labels.</li>
+<li>Tweak: Corrected spacing in extension plugin updates.</li>
+<li>Tweak: Renamed EPL - Contact Form Subscribe label to Submit.</li>
+</ul>
+
+<p>= 3.0 March 30, 2016 =</p>
+
+<ul>
+<li>Tweak: Textdomain and languages files renamed. Changed from epl to easy-property-listings for the WordPress.org translation initiative.</li>
+<li>New: Every epl_action present in the $_GET or $_POST is called using WordPress do_action function in init.</li>
+<li>Tweak: Radio options when adding listings converted to checkboxes to slim down the admin pages.</li>
+<li>Fix: Ducted Heating additional features now displays in feature list.</li>
+<li>Fix: Fully fenced option now displays in feature list.</li>
+<li>Tweak: Optimise Admin Listing queries.</li>
+<li>Tweak: Removed double display of Under Offer in admin listing list.</li>
+<li>Tweak: Leased rental listings now display the weekly rent amount in admin.</li>
+<li>Tweak: Commercial Lease listing details improved in admin list.</li>
+<li>Tweak: Sold price displays in admin.</li>
+<li>Fix: Date Available fix for year.</li>
+<li>New: epl_get_property_available filter allows customising date format.</li>
+<li>Tweak: External links function improved.</li>
+<li>Tweak: Added additional plugin file security access to prevent file reading outside of WordPress.</li>
+<li>Fix: Number Formatting function PHP warning fixed.</li>
+<li>Fix: is_epl_post function to prevent error when no posts are activated.</li>
+<li>Tweak: Commercial auction listing support.</li>
+<li>New: Contacts and form system for managing listing leads and history of contact.</li>
+<li>New: contact_capture shortcode // Needs Author id of page and URL.</li>
+<li>New: Contact System for Lead Generation and Capture.</li>
+<li>New: Form API supports editor.</li>
+<li>New: Dashboard Widget Listing and Contact Activity Feed.</li>
+<li>New: Date Picker updated JS for improved usage and improved compatibility with themes and plugins.</li>
+<li>Tweak: Code Docblocks created for http://docs.easypropertylistings.com.au code reference.</li>
+<li>New: Link a contact with a listing and display details and quick access to contact.</li>
+<li>New: Error tracking and debug logging helper functions.</li>
+<li>New: Form API supports sections breaks.</li>
+<li>New: Contextual help tab added to Add/Edit Listing page.</li>
+<li>New: Inspection date format now customisable from settings.</li>
+<li>Tweak: Extension license updater updated.</li>
+<li>Tweak: Added additional map CSS classes to improve Google Map output with some themes.</li>
+<li>New: Adjustable Map pin when editing a listing and setting coordinates. Drag the map pin to adujst the position.</li>
+<li>Tweak: Imported values of 0 no longer display on commercial listings.</li>
+<li>Tweak: epl_render_html_fields allows for css class set in the field array of meta-boxes.</li>
+<li>Tweak: Commercial authority default type is now For Sale instead of Auction.</li>
+<li>Tweak: Converted Radio options to tick boxes to reduce space.</li>
+<li>Tweak: Commercial auction listing support.</li>
+<li>Tweak: Bedrooms allow studio option.</li>
+<li>Tweak: Applied thousands separator to land sizes using settings.</li>
+<li>Tweak: Allow for .00 and .0 when adding listing prices.</li>
+<li>Tweak: Toilet supports decimal.</li>
+<li>Tweak: Additional Features increased to three columns to minimise space with single checkboxes.</li>
+<li>Tweak: Listing price, sale, and rental price now supports decimal values when saving.</li>
+<li>Tweak: Bond supports decimal figures.</li>
+<li>Tweak: Translation strings fixed.</li>
+<li>Tweak: m2 html character added.</li>
+<li>Tweak: Listings with prices set to 0 like bond no longer display in admin.</li>
+<li>Fix: Rental listing when using price text the rental period no longer displays in admin.</li>
+<li>Tweak: Pagination loading globally for use in admin.</li>
+<li>New: Pagination enhanced to enable adjustment of output.</li>
+<li>Fix: Old function in metaboxes removed as it inadvertently caused additional unnecessary queries.</li>
+<li>New: Generate visual reports on your listing KPI status so you can track your listings and sales.</li>
+<li>Tweak: [listing_search] shortcode using new API and allows for custom templates. Place the template in themes/your_theme/easypropertylistings/templates/ folder.</li>
+<li>Tweak: Enhanced Search Object thanks to codewp allows widget template override.</li>
+<li>New: Search Widget and [listing_search] shortcode allows for property status option.</li>
+<li>New: Search template now editable using epl_get_template_part.</li>
+<li>New: Search widget and [listing_search] shortcode order option added to allow adjusting of field order.</li>
+<li>New: Second agent field allows for searching users.</li>
+<li>New: Search upgraded to object thanks to codewp.</li>
+<li>New: Search for second listing author on listings.</li>
+<li>New: Search widget and [listing_search] shortcode status search option added.</li>
+<li>New: Search widget and [listing_search] shortcode support any registered post types.</li>
+<li>New: Search widget and [listing_search] shortcode support single drop down selection for price, land, building.</li>
+<li>Fix: Session start less likely to cause issues with certain server configurations.</li>
+<li>Fix: listing_open shortcode no longer displays sold or leased listings.</li>
+<li>New: Additional customisation of shortcode-listing.php template part.</li>
+<li>Tweak: Listing Shortcode adjusted for better processing of options.</li>
+<li>New: [listing_auction] shortcode.</li>
+<li>New: Contact shortcode. [epl_contact_form]</li>
+<li>New: Contact Form Widget.</li>
+<li>New: Sort by location A-Z added to front end listing filter.</li>
+<li>Tweak: iThemes Builder archive-listing.php and single-listing.php templates updated to improve render_content theme function.</li>
+<li>New: Allow extensions to use core templates for output.</li>
+<li>Fix: Added translation string for P.A. label.</li>
+<li>Fix: Translation of land size unit.</li>
+<li>Tweak: LinkedIn will use full URL or fallback.</li>
+<li>New: Default embedded video width adjustable from settings.</li>
+<li>New: Video links now support additional formats like Vimeo using the WordPress wp_oembed.</li>
+<li>New: Listing widget now loadable using epl_get_template_part thanks to codewp.</li>
+<li>Tweak: Widget descriptions added to widget management.</li>
+<li>Fix: Stray ul tag with search widget tabbing.</li>
+<li>Tweak: Improved get_additional_features_html function for additional features and added epl_get_additional_features_html filter</li>
+<li>New: Contact tags taxonomy added for creating your own contact tags.</li>
+<li>Tweak: Listing heading function enhanced for other post types.</li>
+<li>Tweak: Building value now accepts decimal.</li>
+<li>New: Support for Twenty Sixteen theme.</li>
+<li>Tweak: Active theme function enhanced for older WordPress versions.</li>
+<li>New: Templates added for Twenty Fourteen Theme to improve display.</li>
+<li>New: Archive title action added for easier implementation and filters to adjust output.</li>
+<li>New: epl_feedsync_format_strip_currency function to strip currency during import with epl_feedsync_format_strip_currency_symbol filter to modify string replacement search.</li>
+<li>New: epl_archive_title_search_result Filter, default “Search Result”.</li>
+<li>New: epl_archive_title_fallback Filter, default “Listing”.</li>
+<li>New: epl_archive_title_default Filter.</li>
+<li>New: epl_get_active_theme Filter.</li>
+<li>New: epl_active_theme Filter.</li>
+<li>New: epl_active_theme_name Filter.</li>
+<li>New: epl_active_theme_prefix Filter.</li>
+<li>New: epl_archive_title_fallback Filer.</li>
+<li>Tweak: epl_strip_tags function added filter to adjust HTML tag stripping.</li>
+<li>New: epl_contact_form_description_allowed_tags Filter.</li>
+<li>New: epl_get_property_feature_taxonomy filter allowing adjustment of listing features.</li>
+<li>New: epl_get_property_auction filter allows adjustment of auction date format.</li>
+<li>New: epl_get_property_auction_label filter to adjust the Auction label.</li>
+<li>New: epl_get_property_price_display Filter.</li>
+<li>New: epl_get_property_price_sold_display Filter.</li>
+<li>New: epl_get_property_price_sold_date Filter.</li>
+<li>New: epl_get_property_rent Filter.</li>
+<li>New: epl_get_property_bond Filter.</li>
+<li>New: epl_get_property_land_category Filter.</li>
+<li>New: epl_commercial_auction_label Filter.</li>
+<li>New: epl_get_property_auction_date Filter.</li>
+<li>New: epl_get_price_plain_value Filter.</li>
+<li>New: epl_get_price Filter.</li>
+<li>New: epl_get_price_sticker Filter.</li>
+<li>New: epl_get_price_in_list Filter.</li>
+<li>New: epl_get_property_commercial_category Filter.</li>
+<li>New: epl_get_property_year_built_label Filter.</li>
+<li>New: epl_get_property_year_built Filter.</li>
+<li>New: epl_get_property_bath_label Filter.</li>
+<li>New: epl_get_property_bathrooms_label Filter.</li>
+<li>New: epl_get_property_bath Filter.</li>
+<li>New: epl_get_property_bed_label Filter.</li>
+<li>New: epl_get_property_bedrooms_label Filter.</li>
+<li>New: epl_get_property_bed Filter.</li>
+<li>New: epl_get_property_rooms_label Filter.</li>
+<li>New: epl_get_property_rooms Filter.</li>
+<li>New: epl_get_parking_spaces_label Filter.</li>
+<li>New: epl_get_property_parking Filter.</li>
+<li>New: epl_get_property_garage_label Filter.</li>
+<li>New: epl_get_property_garage Filter.</li>
+<li>New: epl_get_property_carport_label Filter.</li>
+<li>New: epl_get_property_carport Filter.</li>
+<li>New: epl_get_property_air_conditioning_label Filter.</li>
+<li>New: epl_get_property_air_conditioning Filter.</li>
+<li>New: epl_get_property_pool_label Filter.</li>
+<li>New: epl_get_property_pool Filter.</li>
+<li>New: epl_get_property_security_system_label Filter.</li>
+<li>New: epl_get_property_security_system Filter.</li>
+<li>New: epl_get_property_land_area_label Filter.</li>
+<li>New: epl_get_property_land_value Filter.</li>
+<li>New: epl_get_property_building_area_label Filter.</li>
+<li>New: epl_get_property_building_area_value Filter.</li>
+<li>New: epl_get_property_new_construction_label Filter.</li>
+<li>New: epl_get_property_new_construction Filter.</li>
+<li>New: epl_get_property_com_car_spaces_label Filter.</li>
+<li>New: Dynamic additional features epl<em>get</em>{meta_key}_label Filter.</li>
+<li>New: epl_get_additional_features_html Filter.</li>
+<li>New: epl_get_additional_rural_features_html Filter.</li>
+<li>New: epl_get_additional_commerical_features_html Filter.</li>
+<li>New: epl_get_features_from_taxonomy Filter.</li>
+<li>New: epl_checkbox_single_check_options Filter.</li>
+<li>New: epl_property_sub_title_plus_outgoings_label Filter.</li>
+<li>New: epl_property_sub_title_available_from_label Filter.</li>
+<li>New: epl_property_sub_title_available_now_label Filer.</li>
+<li>New: epl_get_formatted_property_address filter.</li>
+<li>New: epl_get_property_category filter.</li>
+<li>New: epl_get_property_tax.</li>
+<li>New: epl_property_sub_title_property_features filter for Property Features label.</li>
+<li>New: epl_property_sub_title_plus_outgoings filter for Plus Outgoings label.</li>
+<li>New: epl_property_sub_title_commercial_features filter for Commercial Features label.</li>
+<li>New: epl_property_sub_title_rural_features filter for Rural Features label.</li>
+<li>New: epl_switch_views_sorting_title_sort filter for Sort label.</li>
+<li>New: epl_switch_views_sorting_title_list filter for List label.</li>
+<li>New: epl_switch_views_sorting_title_grid filter for Grid label.</li>
+<li>New: epl_pagination_before_page_numbers filter.</li>
+<li>New: epl_pagination_after_page_numbers filter.</li>
+<li>New: epl_pagination_single_content_text Filter</li>
+<li>New: epl_pagination_single_tag Filter.</li>
+<li>New: epl_pagination_single Filter.</li>
+<li>New: epl_pagination_single_dot_tag Filter.</li>
+<li>New: epl_pagination_single_dot_content Filter.</li>
+<li>New: epl_pagination_single_dot_attributes Filter.</li>
+<li>New: epl_pagination_single_dot Filter.</li>
+</ul>
+
+<p>= 2.3.1 October 5, 2015 =</p>
+
+<ul>
+<li>New: Added a hidden field property_images_mod_date for image mod time in preparation for importer plugin.</li>
+<li>Tweak: Added categories to search for business, rural, land, commercial, commercial_land post types.</li>
+<li>Tweak: Adjusted z-index of sticker label.</li>
+<li>Tweak: Hide address separator when address is empty.</li>
+<li>Fix: Search price fix for commercial, commercial_land, and business.</li>
+<li>Fix: POA label now obeys custom label setting.</li>
+</ul>
+
+<p>= 2.3 September 17, 2015 =</p>
+
+<ul>
+<li>New: Custom Post Type API. Makes it easy to create and register new custom post types.</li>
+<li>New: Custom Meta Box API. Creating custom fields and being able to configure custom meta fields on existing and new post types.</li>
+<li>New: Custom Forms API. Will give the ability to create forms and submissions for the coming CRM. (Customer Relationship Manager).</li>
+<li>New: Ordering of extension dynamic custom fields now possible.</li>
+<li>New: Archive template attributes class dynamically added depending on template in use.</li>
+<li>New: A number of helper functions have been added to better integrate additional custom post types.</li>
+<li>New: Button meta field for use in extensions and custom fields.</li>
+<li>New: Adjustments to video output function.</li>
+<li>New: Features taxonomy now use archive template instead of blog post view.</li>
+<li>New: Filters to adjust the Search not found text epl_property_search_not_found_title and epl_property_search_not_found_message.</li>
+<li>Tweak: Restored get_property_suburb function which was used in Listing Templates.</li>
+<li>Tweak: Better author linking and real estate agent user output.</li>
+<li>Tweak: Improvements for other extensions to hook into and use maps.</li>
+<li>Tweak: Template fallback functions for improved custom template usage.</li>
+<li>Tweak: Swedish translations updated.</li>
+<li>Tweak: Translation file updated.</li>
+<li>Fix: New Construction class corrected to new_construction instead of pool.</li>
+<li>Fix: Fix: Property ID searching improved. If you have a-z characters in your id include them in the title. E.g. aaa222 - 9 Somewhere Street, Brooklyn NY.</li>
+</ul>
+
+<p>= 2.2.7 September 9, 2015 =</p>
+
+<ul>
+<li>Tweak: Compatibility for Listing Templates extension.</li>
+</ul>
+
+<p>= 2.2.6 August 22, 2015 =</p>
+
+<ul>
+<li>Fix: Updated extension licensing updater to use https. Update required in order to be able to auto-update your extensions as Easy Property Listings has moved to https.</li>
+</ul>
+
+<p>= 2.2.5 August 20, 2015 =</p>
+
+<ul>
+<li>Fix: Widget construct fixes for WordPress 4.3.</li>
+<li>Tweak: Un-install function.</li>
+<li>Tweak: Plugin page link to settings.</li>
+<li>Tweak: Languages updated.</li>
+</ul>
+
+<p>= 2.2.4 August 05, 2015 =</p>
+
+<ul>
+<li>Tweak: Improvements to Commercial/Commercial Land/Business pricing when set to Lease type to display free form price text.</li>
+<li>Tweak: Bar graph in dashboard will no longer cover address if set to low.</li>
+<li>Tweak: Added sticker CSS styling for single listing.</li>
+<li>Fix: Search Widget/Shortcode display house category value instead of key.</li>
+<li>Fix: Search Widget/Shortcode Property ID correctly searches numeric listing ID.</li>
+<li>Fix: Search Widget/Shortcode excluded non searchable fields from land, commercial, commercial land and business post types.</li>
+</ul>
+
+<p>= 2.2.3 July 27, 2015 =</p>
+
+<ul>
+<li>Tweak: Adjusted new sorter function to work on lower than PHP version 5.3.</li>
+<li>Tweak: Moved old template functions to theme compatibility, will be removed in future version.</li>
+<li>Tweak: Set sorter list style to none to prevent some themes from displaying a list bullet.</li>
+</ul>
+
+<p>= 2.2.2 July 25, 2015 =</p>
+
+<ul>
+<li>Tweak: CSS tweak for image size to retain proportion on certain themes.</li>
+<li>Tweak: Adjusted position of show/hide suburb on Commercial/Business listing types.</li>
+<li>Fix: Archive image correctly loading 300x200 image.</li>
+<li>Fix: Listing address display settings fixed.</li>
+</ul>
+
+<p>= 2.2.1 July 24, 2015 =</p>
+
+<ul>
+<li>Tweak: Set padding for search tabs for better display on some themes.</li>
+<li>Fix: Search function fix checking for empty option when using custom filters.</li>
+</ul>
+
+<p>= 2.2 July 24, 2015 =</p>
+
+<ul>
+<li>New: Search shortcode and widget rebuilt to enable adding additional fields through filters and hooks.</li>
+<li>New: Search shortcode and widget added additional search fields for City, State, Postcode and Country.</li>
+<li>New: Search shortcode and widget allows for optional multi select of house category.</li>
+<li>New: Search shortcode and widget improved responsive CSS.</li>
+<li>New: Grid styles included in main CSS for use in extensions.</li>
+<li>New: Upload button added for use in custom plug-ins and extensions to upload files.</li>
+<li>New: Filter to adjust tour labels.</li>
+<li>New: Filters to adjust Floor Plan labels.</li>
+<li>New: Filters to adjust External Link labels.</li>
+<li>New: Sold prices now display when set on front end and manage listings pages.</li>
+<li>New: Label function for returning meta labels.</li>
+<li>New: Ads on settings no longer display when there is an activated extension present.</li>
+<li>New: Locked and help cases options for use in extensions and custom plugins.</li>
+<li>New: Theme compatibility mode which enables all themes to display correctly with options to disable featured images for themes that automatically add featured images.</li>
+<li>New: City setting to allow addresses in countries that need more than a suburb Label is customisable from settings.</li>
+<li>New: Country setting to allow the country to display with the listing address.</li>
+<li>New: Able to adjust or add more registered thumbnail sizes through a filter.</li>
+<li>New: Function to get all the values associated with a specific post meta key.</li>
+<li>New: Replaced the_post_thumbnail on archive pages and shortcodes with a customisable hook allowing for additional customisation with themes.</li>
+<li>New: Specific templates for theme compatibility mode for archive and single listings.</li>
+<li>New: Template loading system allowing for additional templates to be added to shortcodes and widgets from themes, custom plug-ins and extensions. This allows you to create an unlimited number of templates and load them from your theme.</li>
+<li>New: Sorter allows for sorting by current/sold leased.</li>
+<li>New: Ability to add additional sorter via filter.</li>
+<li>New: Post counter function for use in extensions and custom plug-ins.</li>
+<li>New: User fields re-built which allows for adding on new fields through filter.</li>
+<li>New: Help meta type allowing for better internal documentation in extensions.</li>
+<li>New: City meta field added to all listing types when enabled.</li>
+<li>New: Rental display or hide rental price.</li>
+<li>New: Check-box single field type.</li>
+<li>New: Actions added to enable extensions to better hook into listings types and optimised functions for admin column details.</li>
+<li>New: Dashboard widget now displays other extensions content counts.</li>
+<li>New: Listing widget now allows for additional selectable templates to be added through custom plug-ins, hooks and themes.</li>
+<li>New: Replaced widget image with a dynamic action.</li>
+<li>New: Filter added for Gravatar image.</li>
+<li>New: Replaced widget and author box image functions with actions.</li>
+<li>New: Uninstall function to remove all Easy Property Listings content.</li>
+<li>New: Get option function.</li>
+<li>New: When saving settings on extensions sub tabs you are no longer taken to the first tab.</li>
+<li>New: Customisable state label.</li>
+<li>Tweak: Improved under offer, sold and leased labels.</li>
+<li>Tweak: Improved install function to reduce code and allow for new settings to be added.</li>
+<li>Tweak: Removed redundant code and streamlined templates.</li>
+<li>Tweak: Improved reset query function.</li>
+<li>Tweak: Removed old functions improving plugin code.</li>
+<li>Tweak: Rebuilt address function to allow for city and country.</li>
+<li>Tweak: Improved sorter function in all shortcodes.</li>
+<li>Tweak: Improvements to Commercial and Business listing types to better comply with REAXML format with business takings, franchise, terms and commercial outgoings.</li>
+<li>Tweak: Reorganised settings page.</li>
+<li>Tweak: Translations updated and additional tags added.</li>
+<li>Tweak: Search button default label changed from &#8220;Find Me A Property!&#8221; to &#8220;Search&#8221;.</li>
+<li>Tweak: Applied custom suburb label to EPL - Listing Widget.</li>
+<li>Fix: Listings house categories correctly display labels instead of values.</li>
+<li>Fix: Listings with carport, garage or values set to zero no longer display.</li>
+<li>Fix: Shortcode compatibility for WordPress 3.3 thanks to codewp.</li>
+<li>Fix: Saving listing when in debug mode and ticking hide map or hide author box.</li>
+<li>Fix: New Zealand currency now displays a dollar sign.</li>
+</ul>
+
+<p>= 2.1.11 June 5, 2015 =</p>
+
+<ul>
+<li>Tweak: Removed sub titles &#8220;Property Manager&#8221; and &#8220;Real Estate Agent&#8221; from the single listing template for better language support and to facilitate the hiding of the author box.</li>
+<li>Tweak: Added epl- prefix to all author-box and widget css.</li>
+<li>Tweak: Renamed author-box container with epl-author-box-container as it was harder to target the author box content and adjusted JS for tabs.</li>
+<li>Tweak: Improved author box responsive CSS.</li>
+<li>Tweak: Updated extension updater for multisite and other improvements.</li>
+<li>Tweak: Leased label when adding a property will use custom label.</li>
+<li>Tweak: Wrapper class for property category.</li>
+<li>Fix: Undefined status if importing listings not using current status.</li>
+<li>Fix: When user selects grid/list option and pages the user selected view is retained.</li>
+<li>Fix: [listing post_type=&#8220;rental&#8221;] shortcode price sorting for rental.</li>
+<li>New: Author box is now able to be hidden on a per listing basis.</li>
+<li>New: Added filters for author box social links.</li>
+<li>New: Inspection filter to adjust the inspection date/time format.</li>
+<li>New: Several author widget filters added to enable additional content through extensions or custom functions.</li>
+<li>New: Sold, leased, under offer label filter which uses the label setting and label changes dashboard widget, admin category filters and search widget.</li>
+<li>New: Sold label making Sold STC possible or other Sold label variant.</li>
+<li>New: Danish language thanks to pascal.</li>
+<li>New: German language thanks to ChriKn.</li>
+<li>New: Ukrainian language thanks to Alex.</li>
+<li>New: Swedish language thanks to Roland J.</li>
+</ul>
+
+<p>= 2.1.10 May 31, 2015 =</p>
+
+<ul>
+<li>New: Email field validation added.</li>
+<li>New: Added status classes to widgets for better targeting of CSS styles.</li>
+<li>Tweak: Improved video embed and added a filter to adjust video container size.</li>
+<li>Tweak: Improved CSS wrappers for listing widget and added dynamic class depending on widget display style.</li>
+<li>Tweak: Added additional classes to Listing Widget list variant style list items.</li>
+<li>Fix: Additional paging issues fixed in listing widget for other options.</li>
+<li>Fix: Widget leased selection displays rentals correctly.</li>
+</ul>
+
+<p>= 2.1.9 May 27, 2015 =</p>
+
+<ul>
+<li>Fix: Fixed paging issues in listing widget.</li>
+<li>Fix: Fix shortcodes when using multiple listing post types.</li>
+</ul>
+
+<p>= 2.1.8 May 16, 2015 =</p>
+
+<ul>
+<li>New: Ability to disable all plugin CSS from Advanced Settings section.</li>
+<li>New: Search widget and shortcode now have the option to turn of Location search.</li>
+<li>New: Search widget and shortcode now have filters to control the display of &#8220;Any&#8221;. Each field has a unique filter which will allow you to hide the label using CSS and for example change the Location &#8220;Any&#8221; label to &#8220;Location&#8221; this will allow you to create super slim search boxes.</li>
+<li>New: Added translation Belgian (Dutch) thanks to pascal.beyens</li>
+<li>New: Polish translation thanks to Weronika.urbanczyk</li>
+<li>New: Two mew shortcode templates table and table_open usable with shortcodes to provide a slim list of listings. Example usage is [listing_open template=&#8220;table&#8221;] or [listing template=&#8220;table_open&#8221;]. You can copy these new templates into your theme/easypropertylistings folder to further customize.</li>
+<li>New: Added currency support for Qatar Riyal (QAR), United Arab Emirates (AED), Ukrainian Hryvnia (UAH), Vietnamese đồng (VND)</li>
+<li>New: checkbox_single ability for plugin and extensions.</li>
+<li>New: Ability to disable map on each listing.</li>
+<li>Tweak: Updated currency symbols for: Israeli Shekel, Thai Baht, Indian Rupee, Turkish Lira, Iranian Rial.</li>
+<li>Tweak: Improved CSS and added additional classes with epl- prefix in templates and search.</li>
+<li>Tweak: Improved CSS for Location Profiles and Staff Directory extensions.</li>
+<li>Tweak: Added filters for commercial titles to allow you to change &#8220;For Lease&#8221; and &#8220;For Sale&#8221; using epl_commercial_for_lease_label, and epl_commercial_for_sale_label filters.</li>
+<li>Tweak: Additional CSS classes for Land, Commercial and Rural special features.</li>
+<li>Tweak: Gallery CSS classes added.</li>
+<li>Tweak: Improved table shortcodes CSS and styling for better full display and responsive widths.</li>
+<li>Fix: New/Open Sticker now appear on listings with the price display set to no.</li>
+<li>Fix: Translations work correctly for categories.</li>
+</ul>
+
+<p>= 2.1.7 May 6, 2015 =</p>
+
+<ul>
+<li>New: listing_search shortcode now has style option for adjusting the width. You can add style=&#8220;slim&#8221; or style=&#8220;wide&#8221; to the shortcode to adjust the appearance.</li>
+<li>New: Listing Search widget now has style options for adjusting the width.</li>
+<li>Tweak: Updated translation epl.pot and added missing sqm translation element.</li>
+<li>Tweak: Allowed for hundredths decimal in bathrooms field.</li>
+<li>Tweak: Floor plan button CSS.</li>
+<li>Tweak: Address and price responsive CSS.</li>
+<li>Fix: Auction listing price set to no displays auction date correctly.</li>
+<li>Fix: Fix: Author position css class.</li>
+</ul>
+
+<p>= 2.1.6 May 1, 2015 =</p>
+
+<ul>
+<li>Fix: Fancy pagination paging works correctly when shortcodes used on home page.</li>
+<li>Fix: Wrapped new pagination feature in esc_url to prevent vulnerability.</li>
+<li>Fix: Corrected sorting by price when using shortcodes. Note: Rental sorting works on post_type=&#8220;rental&#8221; in all shortcodes.</li>
+<li>Tweak: Added rental rate view for text entry of rental rates for REAXML compatibility.</li>
+<li>Tweak: Corrected admin display columns and edit listing pages for better display on mobile devices.</li>
+</ul>
+
+<p>= 2.1.5 April 25, 2015 =</p>
+
+<ul>
+<li>Tweak: Commercial listing: Ability to set commercial lease rate to a decimal value using the epl_price_number_format_commercial_lease filter.</li>
+<li>Tweak: Updated epl.pot translation file.</li>
+<li>Tweak: Removed horizontal line elements in the help section to match WordPress 4.2 admin page styles.</li>
+<li>Tweak: Rental Listing: Added epl_property_bond_position filter to adjust the position of the Bond/Deposit to appear either before or after the value.</li>
+<li>Tweak: Rental Listing: Removed CSS padding before bond value.</li>
+<li>Fix: Rental Listing: Adjusting the Bond/Deposit label will now show your custom label in the Rental Price box.</li>
+<li>Fix: Rural Listing: Undefined label_leased variable.</li>
+<li>Note: Confirmed Easy Property Listings is not vulnerable to recent WordPress exploit.</li>
+<li>New: Added setting to show/hide Listing Unique ID column when managing listings.</li>
+</ul>
+
+<p>= 2.1.4 April 22, 2015 =</p>
+
+<ul>
+<li>Tweak: Pagination optimised and no longer loads in admin.</li>
+<li>Tweak: New filter epl_price_number_format added for decimal rental rates.</li>
+<li>Tweak: Customise bond label from settings.</li>
+<li>Tweak: Added filter epl_floorplan_button_label_filter to adjust Floor Plan button label.</li>
+</ul>
+
+<p>= 2.1.3 April 17, 2015 =</p>
+
+<ul>
+<li>Fix: Author box upgraded to allow for custom tabs.</li>
+<li>Fix: Author box upgraded to allow for better staff directory integration with author box and widget.</li>
+<li>Fix: Added CSS class for author archive pages.</li>
+<li>Fix: Improved CSS classes for author box with better responsive support.</li>
+<li>Fix: Added additional filters for author contact information.</li>
+<li>Fix: Added secondary global author function for simpler integration for extensions like the Staff Directory.</li>
+<li>Fix: Changes to author templates and restored author position variable.</li>
+<li>Fix: Further improved max and min graph values when in listing admin.</li>
+</ul>
+
+<p>= 2.1.2 April 11, 2015 =</p>
+
+<ul>
+<li>Fix: Improved Responsive CSS for grid style.</li>
+<li>Fix: Twenty Fifteen, Twenty Fourteen, Twenty Thirteen, Twenty Twelve CSS styles for better display.</li>
+<li>New: Added CSS class theme name output to archive and single templates.</li>
+</ul>
+
+<p>= 2.1.1 April 10, 2015 =</p>
+
+<ul>
+<li>Fix: Max price defaults set for graph calculations when upgrading from pre 2.0 version.</li>
+</ul>
+
+<p>= 2.1 April 9, 2015 =</p>
+
+<ul>
+<li>New: Fancy pagination option which can be enabled in settings.</li>
+<li>New: Coordinates now added to listing if not set prior.</li>
+<li>New: Ability to select larger listing image sizes in admin.</li>
+<li>New: Added date picker for available date on rental listing.</li>
+<li>New: Added date picker for sold date.</li>
+<li>New: New function that combines all meta box options into one global function for admin pages.</li>
+<li>New: Display second agent name in admin listing lists.</li>
+<li>New: Additional admin option to filter by agent/author.</li>
+<li>New: Shortcode [listing_location] to display listings by specific location.</li>
+<li>New: The following shortcodes can now be filtered by location taxonomy: [listing location=&#8220;perth&#8221;], [listing_open location=&#8220;sydney&#8221;], [listing_category location=&#8220;melbourne&#8221;], [listing_category location=&#8220;brisbane&#8221;], [listing_feature feature=&#8220;terrace&#8221; location=&#8220;new-york&#8221;]</li>
+<li>New: The following shortcodes can now be sorted by price, date and ordered by ASC and DESC [listing sortby=&#8220;price&#8221; sort_order=&#8220;ASC&#8221;].</li>
+<li>New: Sorter added to shortcodes which can be enabled by adding tools_top=&#8220;on&#8221; to your shortcode options.</li>
+<li>New: Template added in table format for use in shortcodes template=&#8220;table&#8221;.</li>
+<li>New: Function to get all active post types.</li>
+<li>New: Ability to register additional custom post types.</li>
+<li>New: Extensions now have additional help text ability.</li>
+<li>New: All menus now use global function to render fields.</li>
+<li>New: Improved template output and added additional CSS wrappers for some theme and HTML5 themes.</li>
+<li>New: Commercial rental lease duration now selectable.</li>
+<li>New: Rooms field added to set the number of rooms that the listing has.</li>
+<li>New: Date listed field added to all listing types.</li>
+<li>New: Year built field added to property, rental, rural listing types.</li>
+<li>New: Media upload function for use in extensions.</li>
+<li>New: Ability to customise Under Offer and Leased labels in settings.</li>
+<li>New: Lease type label loaded from drop-down select. So you can have NNN, P.A., Full Service, Gross Lease Rates, on commercial listing types. Also has a filter to enable customisation of the options.</li>
+<li>New: Disable links in the feature list.</li>
+<li>Fix: Text domain fixes on template files.</li>
+<li>Fix: Finnish translation file renamed.</li>
+<li>Fix: FeedSync date processor strptime function corrected.</li>
+<li>Fix: Bug in parking search field. Was only searching carports and not garages. Now searches both.</li>
+<li>Fix: New label now appears on listings not just with an inspection time saved.</li>
+<li>Tweak: Optimised loading of admin scripts and styles to pages where required.</li>
+<li>Tweak: Added version to CSS and JS so new versions are automatically used when plugin is updated.</li>
+<li>Tweak: Tidy up of admin CSS.</li>
+<li>Tweak: Video in author box now responsive.</li>
+<li>Tweak: Increased characters possible in address block fields from 40 to 80 characters and heading block to 200.</li>
+<li>Tweak: Coordinates now correctly being used to generate map.</li>
+<li>Tweak: Inspection times improved style in admin.</li>
+<li>Tweak: Commercial rental rate now accepts decimal numbers.</li>
+<li>Tweak: Improved google map output.</li>
+<li>Tweak: Improved default settings on upgrade, install and multisite.</li>
+<li>Tweak: Scripts improve site speed.</li>
+<li>Tweak: Dashboard widget improved query.</li>
+<li>Tweak: Front end CSS tweaks for better responsiveness.</li>
+</ul>
+
+<p>= 2.0.4: February 12, 2015 =</p>
+
+<ul>
+<li>Fix: Bulgarian Translation (Thanks to Slavcho Aangeliev)</li>
+<li>Tweak: Finnish translation updated</li>
+</ul>
+
+<p>= 2.0.3: February 9, 2015 =</p>
+
+<ul>
+<li>Fix: Manually entered inspection time corrected from pM to PM</li>
+<li>New: French translation (Thanks to Thomas Grimaud)</li>
+<li>New: Finnish translation (Thanks to Turo)</li>
+</ul>
+
+<p>= 2.0.2: February 2, 2015 =</p>
+
+<ul>
+<li>Fix: Added fall-back diff() function which is not present in PHP 5.2 or earlier used with the New label.</li>
+<li>Fix: Some Labels in settings were not saving correctly particularly the search widget labels.</li>
+<li>Fix: Restored missing author profile contact form tab on author box.</li>
+<li>Tweak: Added CSS version to admin CSS and front end CSS.</li>
+</ul>
+
+<p>= 2.0.1: January 29, 2015 =</p>
+
+<ul>
+<li>Fix: Attempted Twenty 15 CSS Fix but causes issues with other themes. Manual fix: Copy CSS from style-front.css to correct, margins and grid/sorter.</li>
+<li>Fix: Restored Display of Inspection Label for properties with scheduled inspection times.</li>
+<li>Fix: Search Widget security fix and performance improvements.</li>
+</ul>
+
+<p>= 2.0: January 27, 2015 =</p>
+
+<ul>
+<li>New: Extension validator.</li>
+<li>New: Depreciated listing-meta.php into compatibility folder.</li>
+<li>New: Depreciated author-meta.php into compatibility folder.</li>
+<li>New: Global variables: $property, $epl_author and $epl_settings.</li>
+<li>New: Added filters for fields and groups in /lib/meta-boxes.php</li>
+<li>New: Property custom meta re-written into class. This was the big change to 2.0 where we completely re-wrote the output of the meta values which are now accessible using global $property variable and easy template actions.</li>
+<li>New: Property meta can now can be output using new actions for easy and quick custom template creation.</li>
+<li>New: Reconstructed templates for single, archive &amp; author pages</li>
+<li>Tweak: Removed unused price script</li>
+<li>Fix: Fixed warning related to static instance in strict standard modes</li>
+<li>New: API for extensions now support WordPress editor with validation.</li>
+<li>New: jQuery date time picker formatting added to improve support for auction and sold listing, support for 30+ languages support.</li>
+<li>New: Inspection time auto-formats REAXML date eg &#8220;13-Dec-2014 11:00am to 11:45am&#8221; and will no longer show past inspection times.</li>
+<li>New: Inspection time support multiple dates written one per line.</li>
+<li>Tweak: CSS improved with better commenting and size reduction.</li>
+<li>New: Dashboard widget now lists all listing status so at a glance you can see your property stock.</li>
+<li>New: Display: To enable grid, list and sorter your custom archive-listing.php template requires the new action hook &#8216;epl_template_before_property_loop&#8217; before the WordPress loop.</li>
+<li>New: Display: Utility hook action hook added &#8216;epl_template_after_property_loop&#8217; for future updates.</li>
+<li>New: Display: List and grid view with optional masonry effect.</li>
+<li>New: Display: Sorter added for price high/low and date newest/oldest.</li>
+<li>New: Auction Date formats nicely. EG &#8220;Auction Saturday 28th December at 2:00pm&#8221;.</li>
+<li>New: Tabbed extensions page support in admin for advanced extensions like &#8220;Listing Alerts&#8221;.</li>
+<li>New: Multiple author support in Author Box.</li>
+<li>New: Search Widget - Supports multiple listing types, hold Ctrl to enable tabbed front end display.</li>
+<li>New: Search Widget - Labels are configurable from the Display settings allowing you to set for example: &#8220;Property&#8221; to &#8220;Buy&#8221; and &#8220;Rental&#8221; to &#8220;Rent&#8221; and use a single widget to search multiple types.</li>
+<li>New: Search Widget and shortcode supports search by property ID, post Title, Land Area and Building Area.</li>
+<li>New: Search Widget - removed extra fields from land, added labels for each property type to be shown as tab heading in search widget</li>
+<li>Fix: Search Widget - Optimized total queries due to search widget from 1500 + to <sub>40</sub></li>
+<li>New: Author variables accessible using new CLASS.</li>
+<li>New: Search short code supports array of property types.</li>
+<li>New: REAXML date format function to format date correctly when using WP All Import Pro. Usage [epl_feedsync_format_date({./@modTime})].</li>
+<li>New: REAXML Unit and lot formatting function for usage in the title when using WP All Import Pro. Usage [epl_feedsync_filter_sub_number({address[1]/subNumber[1]})].</li>
+<li>New: Global $epl_settings settings variable adds new default values on plugin update.</li>
+<li>New: Display: Added customisable label for rental Bond/Deposit.</li>
+<li>New: Template functions completely re-written and can now be output using actions.</li>
+<li>New: Added NEW sticker with customisable label and ability to set how long a listing displays the new label.</li>
+<li>Tweak: Compatibility fixes</li>
+<li>New: Bar Graph API added.</li>
+<li>New: Graph in admin allows you to set the max bar graph value. Default are (2,000,000 sale) and (2,000 rental).</li>
+<li>New: Graph visually displays price and status.</li>
+<li>New: Price graph now appears in admin pages quickly highlighting price and status visually.</li>
+<li>New: Meta Fields: Support for unit number, lot number (land).</li>
+<li>New: South African ZAR currency support.</li>
+<li>Fix: Corrected Commercial Features ID Spelling</li>
+<li>Tweak: YouTube video src to id function is replaced with better method which handles multiple YouTube video formats including shortened &amp; embedded format</li>
+<li>New: Adding Sold Date processing</li>
+<li>Tweak: Updated shortcode templates</li>
+<li>Tweak: Global $epl_author.</li>
+<li>Tweak: Fixed content/ into EPL_PATH_TEMPLATES_CONTENT</li>
+<li>New: Support for older extensions added</li>
+<li>New: Extension offers in menus general tab</li>
+<li>Tweak: Renamed user profile options section to &#8220;Easy Property Listings: Author Box Profile&#8221;.</li>
+<li>Tweak: Added better Bond/Deposit for rentals labels.</li>
+<li>Fix: Deprecated author-meta.php in compatibility folder, class-author-meta.php has been created which will be used in place of author-meta.php &amp; its variables in all author templates</li>
+<li>New: Added template functions for author meta class, modified templates lib/templates/content/content-author-box-simple-card.php lib/templates/content/content-author-box-simple-grav.php lib/templates/content/content-author-box.php to use the template functions based on author meta class instead of variables from author-meta.php</li>
+<li>New: author-meta.php depreciated and moved to compatibility directory. Variables globally available using $epl_author variable.</li>
+<li>Tweak: listing-meta.php depreciated and moved to compatibility directory. Variables globally available with $property variable.</li>
+<li>Tweak: Added &#8220;Listing not Found&#8221; to default templates when search performed with no results.</li>
+<li>Tweak: Improved Google maps address output for addresses containing # and /.</li>
+<li>Fix: Listing Pages now have better responsive support for small screen devices like iPhone.</li>
+<li>Fix: Default templates for Genesis and TwentyTwelve now show &#8220;Listing Not Found&#8221; when a search result returns empty.</li>
+<li>Fix: Purged translations in epl.pot file.</li>
+<li>Fix: Search Widget and short code drastically reduces database queries.</li>
+<li>New: Templates are now able to be saved in active theme folder /easypropertylistings and edited. Plugin will use these first and fall back to plugin if not located in theme folder.</li>
+<li>Fix: Extensions Notification and checker updated</li>
+<li>New: updated author templates to use new author meta class</li>
+<li>Fix: Added prefix to CSS tab-content class. Now epl-tab-content for compatibility.</li>
+<li>New: Update user.php</li>
+<li>Tweak: Improved internal documentation and updated screens.</li>
+<li>Tweak: Improved descriptions on author pages.</li>
+<li>Tweak: Better permalink flushing on activation, deactivation and install.</li>
+<li>Tweak: Extensive changes to admin descriptions and labels.</li>
+<li>Tweak: Optimising the php loading of files and scripts.</li>
+<li>New: Define EPL_RUNNING added for extensions to check if plugin is active.</li>
+<li>New: New options added to setting array when plugin is updated.</li>
+<li>New: Old functions and files moved to plug-in /compatibility folder to ensure old code still works.</li>
+<li>New: Meta Location Label.</li>
+<li>New: Service banners on settings page.</li>
+<li>New: Saving version number so when updating new settings are added.</li>
+<li>New: iCal functionality for REAXML formatted inspection dates. Further improvements coming for manual date entry.</li>
+<li>New: Extensions options pages now with tabs for easier usage.</li>
+<li>New: Added ID classes to admin pages and meta fields.</li>
+<li>New: Filters to adjust land and building sizes from number to select fields.</li>
+<li>Tweak: Moved old extensions options page to compatibility folder so older extensions still work as expected.</li>
+<li>New: Search Widget - Added filter for land min &amp; max fields in listing search widget</li>
+<li>New: Search Widget - Added filter for building min &amp; max fields in listing search widget</li>
+<li>Fix: For session start effecting certain themes</li>
+<li>New: Land sizes now allow up to 5 decimal places</li>
+<li>New: Search Widget - Custom submit label</li>
+<li>New: Search Widget - Can search by title in property ID / Address field</li>
+<li>New: Added Russian Translation</li>
+</ul>
+
+<p>= 1.2.1: September 23, 2014 =</p>
+
+<ul>
+<li>Fix: Search Widget not working on page 2 of archive page in some instances.</li>
+<li>Fix: Property feature list Toilet and New Construction now display in list when ticked.</li>
+<li>Fix: EPL - Listing widget was not displaying featured listings.</li>
+<li>Fix: Allowed to filter by commercial_listing_type in [listing_category] shortcode.</li>
+<li>Fix: Updated templates to display Search Results when performing search.</li>
+<li>Fix: No longer show Bond when viewing rental list in admin.</li>
+<li>Fix: Open for inspection sticker now appears on rental properties.</li>
+<li>New: Added initial Dutch translation.</li>
+</ul>
+
+<p>= 1.2: September 8, 2014 =</p>
+
+<ul>
+<li>New: Plug in Activation process flushes permalinks.</li>
+<li>New: Plug in deactivation flushes permalinks.</li>
+<li>New: Shortcode [listing_search]</li>
+<li>New: Shortcode [listing_feature]</li>
+<li>New: Shortcode [listing_open] replaces [home_open] shortcode. Retained [home_open] for backward compatibility, however adjust your site.</li>
+<li>New: Listing shortcodes allow for default template display if registered by adding template=&#8220;slim&#8221; to the shortcode.</li>
+<li>New: Translation support now correctly loads text domain epl.</li>
+<li>New: Added translation tags to all test elements for better translation support.</li>
+<li>New: Updated source epl.pot translation file for translations.</li>
+<li>New: Added very rough Italian translation.</li>
+<li>New: Wrapped Featured image in action to allow for easy removal and/or replacement.</li>
+<li>New: Added new CSS classes to widgets for consistent usage.</li>
+<li>New: Added options to hide/ show various options to EPL - Listing widget: Property Headline, Excerpt, Suburb/Location Label, Street Address, Price, Read More Button.</li>
+<li>New: Added customisable &#8220;Read More&#8221; label to EPL - Listing widget.</li>
+<li>New: Added excerpt to EPL - Listing widget.</li>
+<li>New: Added options to remove search options from EPL - Listing Search widget.</li>
+<li>New: Added consistent CSS classes to shortcodes for responsive shortcode.</li>
+<li>New: Date processing function for use with WP All Import when importing REAXML files. Some imports set the current date instead of the date from the REAXML file. Usage in WP All Import Post Date is: [epl_feedsync_format_date({./@modTime})]</li>
+<li>New: Added additional CSS classes to template files.</li>
+<li>New: Added WordPress editor support in admin for use with extensions.</li>
+<li>New: Added textarea support in admin for use with extensions.</li>
+<li>New: Filters added for all select options on add listing pages which allows for full customisation through simple function.</li>
+<li>New: Added rent period, Day, Daily, Month, Monthly to rental listing types.</li>
+<li>New: Added property_office_id meta field.</li>
+<li>New: Added property_address_country meta field.</li>
+<li>New: Added filter epl_listing_meta_boxes which allows additional meta boxes to be added through filter.</li>
+<li>New: Added mini map to listing edit screen. Will display mini map in address block when pressing green coordinates button.</li>
+<li>Tweak: Admin CSS tweaks to define sections in admin.</li>
+<li>Tweak: Added additional CSS classes to admin menu pages to extensions can be better distinguished when installed and activated.</li>
+<li>Tweak: Added defaults to widgets to prevent errors when debug is on.</li>
+<li>Tweak: Allowed for decimal in bathrooms to allow for 1/2 baths eg 1.5.</li>
+<li>Fix: Undefined errors when debug is active.</li>
+<li>Fix: CSS for TwentyThirteen style CSS using .sidebar container.</li>
+<li>Fix: CSS for responsive shortcode.</li>
+<li>Fix: Registering custom template actions now works correctly.</li>
+<li>Fix: Changed property not found wording when using search widget and listing not found.</li>
+<li>Fix: Updated admin columns for commercial_land listing type to match other listing type.</li>
+<li>Fix: Swapped bedrooms/bathroom label on hover.</li>
+</ul>
+
+<p>= 1.1.1: July 7, 2014 =</p>
+
+<ul>
+<li>New: Internationalisation support to enable customizing of post types: slug, archive, rewrite, labels, listing categories for meta_types.</li>
+<li>New: Created filters for listing meta select fields: property_category, property_rural_category, property_commercial_category, property_land_category</li>
+<li>New: Created filters for each of the seven custom post types: labels, supports, slug, archive, rewrite, seven custom post types</li>
+<li>New: Shortcode [listing_category] This shortcode allows for you to output a list of listings by type and filter them by any available meta key and value.</li>
+<li>Tweak: Updated search widget for filtered property_categories</li>
+<li>Fix: Listing categories were showing key, now showing value.</li>
+<li>Fix: Settings were not showing up after saving, second refresh required setting variable to reload.</li>
+</ul>
+
+<p>= 1.1: June 27, 2014 =</p>
+
+<ul>
+<li>First official release!</li>
+</ul>
+
+</body>
+</html>
+

@@ -1,0 +1,67 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Buttons
+//---------------------------------------------
+
+/* Buttons */
+.epl-button-wrapper {
+	margin: 0.5em 0;
+}
+.epl-button-wrapper form {
+	display: inline-block;
+}
+.epl-button {
+	display: inline-block;
+	margin-bottom: 0;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	background: #eeeeee;
+	color: #888888;
+	border: 1px solid transparent;
+	text-decoration: none;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-weight: normal;
+}
+.epl-button:hover {
+	color: #ffffff;
+	background: #888888;
+	border: 1px solid transparent;
+	text-decoration: none;
+}
+.epl-button a,
+.epl-button input[type="submit"],
+.epl-button input[type="button"] {
+	color: #aaaaaa;
+	cursor: pointer;
+	padding: 0;
+	margin: 0;
+	border: 1px solid transparent;
+	background: transparent none;
+	font-weight: 400;
+	text-decoration: none;
+	text-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.epl-button:hover input[type="submit"],
+.epl-button:hover input[type="button"] {
+	color: #ffffff;
+	text-decoration: none;
+	background: #888888;
+}
+
+.epl-floor-plan-button-wrapper {
+	display: inline-block;
+	margin-right: 0.05em;
+}
