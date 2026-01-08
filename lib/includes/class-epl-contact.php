@@ -696,8 +696,8 @@ class EPL_Contact {
 	/**
 	 * Update Contact Meta
 	 *
-	 * @param string $key Meta key name.
-	 * @param string $value Meta value.
+	 * @param string       $key   Meta key name.
+	 * @param string|array $value Meta value.
 	 * @return bool|int
 	 * @since  3.0
 	 */

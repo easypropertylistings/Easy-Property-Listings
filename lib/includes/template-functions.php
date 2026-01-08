@@ -766,6 +766,7 @@ function epl_property_get_the_full_address() {
  * @since 3.3.3 Revised.
  * @since 3.4.8 Corrected separator location to appear AFTER the street name and options to control display.
  * @since 3.4.9 Added option allowing passing of $full parameter as false to restrict output to street items only.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_property_the_address( $full = true, $street_separator = true, $separator_symbol = ',' ) {
 
@@ -792,18 +793,18 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 			if ( 'commercial' === $property->post_type || 'business' === $property->post_type ) {
 				if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) || 'yes' === $property->get_property_meta( 'property_address_display' ) ) {
 					?>
-					<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+					<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 					<?php
 					if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-						echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+						echo '<span class="item-separator">' . esc_html( $epl_property_address_separator ) . '</span>';
 					}
 				}
 			} else {
 				?>
-				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+				<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 				<?php
 				if ( true === $epl_property_address_separator_suburb && strlen( trim( $property->get_property_meta( 'property_address_suburb' ) ) ) ) {
-					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+					echo '<span class="item-separator">' . esc_html( $epl_property_address_separator ) . '</span>';
 				}
 			}
 			?>
@@ -811,19 +812,19 @@ function epl_property_the_address( $full = true, $street_separator = true, $sepa
 			<?php
 			if ( 'yes' === $property->get_epl_settings( 'epl_enable_city_field' ) ) {
 				?>
-				<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ); ?></span>
+				<span class="item-city"><?php echo esc_html( $property->get_property_meta( 'property_address_city' ) ); ?></span>
 				<?php
 				if ( true === $epl_property_address_separator_city && strlen( trim( $property->get_property_meta( 'property_address_city' ) ) ) ) {
-					echo '<span class="item-separator">' . esc_attr( $epl_property_address_separator ) . '</span>';
+					echo '<span class="item-separator">' . esc_html( $epl_property_address_separator ) . '</span>';
 				}
 			}
 			?>
-			<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ); ?></span>
-			<span class="item-pcode"><?php echo esc_attr( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
+			<span class="item-state"><?php echo esc_html( $property->get_property_meta( 'property_address_state' ) ); ?></span>
+			<span class="item-pcode"><?php echo esc_html( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
 			<?php
 			if ( 'yes' === $property->get_epl_settings( 'epl_enable_country_field' ) ) {
 				?>
-				<span class="item-country"><?php echo esc_attr( $property->get_property_meta( 'property_address_country' ) ); ?></span>
+				<span class="item-country"><?php echo esc_html( $property->get_property_meta( 'property_address_country' ) ); ?></span>
 				<?php
 			}
 			?>
@@ -840,6 +841,7 @@ add_action( 'epl_property_address', 'epl_property_the_address', 10, 3 );
  *
  * @since 1.3
  * @since 3.1.18 Revised.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_property_suburb() {
 	global $property;
@@ -849,15 +851,15 @@ function epl_property_suburb() {
 
 		<span class="entry-title-sub">
 			<?php if ( 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) { ?>
-				<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+				<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 			<?php } else { ?>
 				<?php $prop_addr_city = $property->get_property_meta( 'property_address_city' ); ?>
 				<?php if ( ! empty( $prop_addr_city ) ) { ?>
-					<span class="item-city"><?php echo esc_attr( $property->get_property_meta( 'property_address_city' ) ) . ' '; ?></span>
+					<span class="item-city"><?php echo esc_html( $property->get_property_meta( 'property_address_city' ) ) . ' '; ?></span>
 				<?php } ?>
 
-				<span class="item-state"><?php echo esc_attr( $property->get_property_meta( 'property_address_state' ) ) . ' '; ?></span>
-				<span class="item-pcode"><?php echo esc_attr( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
+				<span class="item-state"><?php echo esc_html( $property->get_property_meta( 'property_address_state' ) ) . ' '; ?></span>
+				<span class="item-pcode"><?php echo esc_html( $property->get_property_meta( 'property_address_postal_code' ) ); ?></span>
 			<?php } ?>
 		</span>
 
@@ -865,7 +867,7 @@ function epl_property_suburb() {
 	} else {
 		?>
 		<span class="entry-title-sub">
-			<span class="item-suburb"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
+			<span class="item-suburb"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></span>
 		</span>
 		<?php
 	}
@@ -1104,8 +1106,9 @@ add_action( 'epl_property_heading', 'epl_property_heading' );
 /**
  * Property Heading
  *
- * @since      1.0 @hooked property_secondary_heading
- * @since      3.4.41 Fix: Added land category.
+ * @since 1.0 @hooked property_secondary_heading
+ * @since 3.4.41 Fix: Added land category.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_property_secondary_heading() {
 	global $property;
@@ -1127,7 +1130,7 @@ function epl_property_secondary_heading() {
 	}
 
 	if ( 'sold' === $property->get_property_meta( 'property_status' ) ) {
-		echo ' <span class="sold-status">' . esc_attr( $property->label_sold ) . '</span>';
+		echo ' <span class="sold-status">' . esc_html( $property->label_sold ) . '</span>';
 	}
 	echo ' <span class="suburb"> - ' . wp_kses_post( $property->get_property_meta( 'property_address_suburb' ) ) . ' </span>';
 	echo ' <span class="state">' . wp_kses_post( $property->get_property_meta( 'property_address_state' ) ) . '</span>';
@@ -1288,6 +1291,7 @@ add_action( 'epl_property_content_after', 'epl_property_video_callback', 10, 1 )
  * @since 3.4.30 Fix: Property Features title set to pass basic html.
  * @since 3.5.0  New: epl_property_tab_section hook is replaced with epl_property_features, older hook is kept for backward compatibility.
  * @since 3.5.2  Tweak: Removed additional property category appearing in additional features list.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  *
  * @hooked property_tab_section
  */
@@ -1657,7 +1661,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 			// Suburb.
 			if ( 'on' === $d_suburb && 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) {
 				?>
-				<div class="property-meta suburb-name"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
+				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
 			<?php } ?>
 
 			<?php
@@ -1671,7 +1675,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 			// Suburb.
 			if ( 'on' === $d_suburb && 'yes' === $property->get_property_meta( 'property_com_display_suburb' ) ) {
 				?>
-				<div class="property-meta suburb-name"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
+				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
 			<?php } ?>
 			<?php
 		}
@@ -1683,7 +1687,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 			// Suburb.
 			if ( 'on' === $d_suburb ) {
 				?>
-				<div class="property-meta suburb-name"><?php echo esc_attr( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
+				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
 			<?php } ?>
 
 			<?php
@@ -1713,6 +1717,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
  *
  * @since      2.0
  * @since      3.4.44 Option to sort by title.
+ * @since      3.5.16 Tweak: Removed space after Status: in tools sorter. Added : colon to suburb for consistency.
  */
 function epl_sorting_options( $post_type = null ) {
 	// phpcs:disable WordPress.Security.NonceVerification
@@ -1757,7 +1762,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'status_asc',
-				'label'   => __( 'Status : Current First', 'easy-property-listings' ),
+				'label'   => __( 'Status: Current First', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_status',
 				'order'   => 'ASC',
@@ -1766,7 +1771,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'status_desc',
-				'label'   => __( 'Status : Sold/Leased First', 'easy-property-listings' ),
+				'label'   => __( 'Status: Sold/Leased First', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_status',
 				'order'   => 'DESC',
@@ -1775,7 +1780,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'location_asc',
-				'label'   => epl_labels( 'label_suburb' ) . __( ' A-Z', 'easy-property-listings' ),
+				'label'   => epl_labels( 'label_suburb' ) . __( ': A-Z', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_address_suburb',
 				'order'   => 'ASC',
@@ -1784,7 +1789,7 @@ function epl_sorting_options( $post_type = null ) {
 			),
 			array(
 				'id'      => 'location_desc',
-				'label'   => epl_labels( 'label_suburb' ) . __( ' Z-A', 'easy-property-listings' ),
+				'label'   => epl_labels( 'label_suburb' ) . __( ': Z-A', 'easy-property-listings' ),
 				'type'    => 'meta',
 				'key'     => 'property_address_suburb',
 				'order'   => 'DESC',
@@ -1927,6 +1932,7 @@ add_action( 'epl_switch_views', 'epl_switch_views' );
  * @since 3.4.44 Get shortcode attributes as parameter.
  * @since 3.5 Added accessibility labels to select elements.
  * @since 3.5.7 Instance ID default to 1 to enable sorting. The $attributes option is required.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_sorting_tool( $attributes = array() ) {
 
@@ -1960,7 +1966,7 @@ function epl_sorting_tool( $attributes = array() ) {
 				}
 				?>
 				<option <?php selected( $sortbyinstance, $sorter_id ); ?> value="<?php echo esc_attr( $sorter['id'] ); ?>">
-					<?php echo esc_attr( $sorter['label'] ); ?>
+					<?php echo esc_html( $sorter['label'] ); ?>
 				</option>
 				<?php
 			}
@@ -1975,6 +1981,7 @@ add_action( 'epl_sorting_tool', 'epl_sorting_tool' );
  * Displays the Sorting tabs
  *
  * @since 3.3
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_sorting_tabs() {
 	$sortby = '';
@@ -1998,7 +2005,7 @@ function epl_sorting_tabs() {
 				?>
 					<li class="epl-sortby-list <?php echo esc_attr( $class ); ?>">
 						<a href="<?php echo esc_url( $href ); ?>">
-						<?php echo esc_attr( $sorter['label'] ); ?>
+							<?php echo esc_html( $sorter['label'] ); ?>
 						</a>
 					</li>
 					<?php
@@ -2355,8 +2362,9 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 /**
  * Output iCal clickable dates. Use the epl_ical_args filter to alter the labels.
  *
- * @since      2.0
- * @since      3.5.7 Different subject for auction.
+ * @since 2.0
+ * @since 3.5.7 Different subject for auction.
+ * @since 3.5.16 Triple equals for auction value.
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
@@ -2381,7 +2389,7 @@ function epl_process_event_cal_request() {
 
 						$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
 
-						if ( isset( $_GET['event_type'] ) && 'auction' == sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
+						if ( isset( $_GET['event_type'] ) && 'auction' === sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
 							$subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
 						}
 
@@ -3222,6 +3230,7 @@ add_filter( 'comments_array', 'epl_filter_listing_comments_array', 10, 2 );
  *
  * @since 3.0.0
  * @since 3.5.2 Added filter epl_archive_title to alter archive title.
+ * @since 3.5.14 Corrected escaping function to esc_html.
  */
 function epl_archive_title_callback() {
 	the_post();
@@ -3241,7 +3250,7 @@ function epl_archive_title_callback() {
 
 	if ( is_paged() ) {
 		// Translators: title, page number.
-		printf( '%s &ndash; Page %d', esc_attr( $title ), esc_attr( get_query_var( 'paged' ) ) );
+		printf( '%s &ndash; Page %d', esc_html( $title ), esc_attr( get_query_var( 'paged' ) ) );
 	} else {
 		echo wp_kses_post( apply_filters( 'epl_archive_title_default', $title ) );
 	}
@@ -3418,23 +3427,33 @@ add_action( 'epl_archive_author', 'epl_archive_author_callback' );
 /**
  * Contact capture action and messages
  *
- * @since      3.3
+ * @since 3.3
+ * @since 3.5.16 Fix: Vulnerability in contact form shortcode.
  */
 function epl_contact_capture_action() {
 
 	$success = array(
 		'status' => 'success',
-		'msg'    => apply_filters( 'epl_contact_capture_success_msg', __( 'Form submitted successfully', 'easy-property-listings' ) ),
+		'msg'    => apply_filters(
+			'epl_contact_capture_success_msg',
+			__( 'Your enquiry has been submitted.', 'easy-property-listings' )
+		),
 	);
 
 	$fail = array(
 		'status' => 'fail',
-		'msg'    => apply_filters( 'epl_contact_capture_fail_msg', __( 'Some issues with form submitted', 'easy-property-listings' ) ),
+		'msg'    => apply_filters(
+			'epl_contact_capture_fail_msg',
+			__( 'There was a problem with your submission.', 'easy-property-listings' )
+		),
 	);
 
 	if (
 		! isset( $_POST['epl_contact_widget'] ) ||
-		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['epl_contact_widget'] ) ), 'epl_contact_widget' )
+		! wp_verify_nonce(
+			sanitize_text_field( wp_unslash( $_POST['epl_contact_widget'] ) ),
+			'epl_contact_widget'
+		)
 	) {
 		wp_die( wp_json_encode( $fail ) );
 	}
@@ -3448,72 +3467,113 @@ function epl_contact_capture_action() {
 			wp_json_encode(
 				array(
 					'status' => 'fail',
-					'msg'    => __(
-						'Email is required',
-						'easy-property-listings'
-					),
+					'msg'    => __( 'Email is required.', 'easy-property-listings' ),
 				)
 			)
 		);
 	}
 
-	$contact = new EPL_contact( sanitize_text_field( wp_unslash( $_POST['epl_contact_email'] ) ) );
-	$fname   = isset( $_POST['epl_contact_first_name'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_first_name'] ) ) : '';
-	$lname   = isset( $_POST['epl_contact_last_name'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_last_name'] ) ) : '';
-	$phone   = isset( $_POST['epl_contact_phone'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_phone'] ) ) : '';
-	$title   = isset( $_POST['epl_contact_title'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_title'] ) ) : '';
-	$title   = trim( $title );
-	if ( empty( $title ) && ( ! empty( $fname ) || ! empty( $lname ) ) ) {
+	$email = sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) );
+
+	$fname = isset( $_POST['epl_contact_first_name'] )
+		? sanitize_text_field( wp_unslash( $_POST['epl_contact_first_name'] ) )
+		: '';
+
+	$lname = isset( $_POST['epl_contact_last_name'] )
+		? sanitize_text_field( wp_unslash( $_POST['epl_contact_last_name'] ) )
+		: '';
+
+	$phone = isset( $_POST['epl_contact_phone'] )
+		? sanitize_text_field( wp_unslash( $_POST['epl_contact_phone'] ) )
+		: '';
+
+	$title = isset( $_POST['epl_contact_title'] )
+		? sanitize_text_field( wp_unslash( $_POST['epl_contact_title'] ) )
+		: '';
+
+	$title = trim( $title );
+
+	if ( empty( $title ) && ( $fname || $lname ) ) {
 		$title = $fname . ' ' . $lname;
 	}
 
-	if ( empty( $title ) && ( ! empty( $_POST['epl_contact_email'] ) ) ) {
-		$title = sanitize_text_field( wp_unslash( $_POST['epl_contact_email'] ) );
+	if ( empty( $title ) ) {
+		$title = $email;
 	}
 
-	$contact_listing_id = isset( $_POST['epl_contact_listing_id'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_listing_id'] ) ) : false;
+	$contact_listing_id = isset( $_POST['epl_contact_listing_id'] )
+		? intval( $_POST['epl_contact_listing_id'] )
+		: false;
 
-	$contact_listing_note = isset( $_POST['epl_contact_note'] ) ?
-	sanitize_text_field( wp_unslash( $_POST['epl_contact_note'] ) ) : false;
-	if ( empty( $contact->ID ) ) {
-
-		$contact_data = array(
-			'name'  => $title,
-			'email' => sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) ),
+	if ( $contact_listing_id && 'property' !== get_post_type( $contact_listing_id ) ) {
+		wp_die(
+			wp_json_encode(
+				array(
+					'status' => 'fail',
+					'msg'    => __( 'Invalid listing.', 'easy-property-listings' ),
+				)
+			)
 		);
-		if ( $contact->create( $contact_data ) ) {
-			$contact->update_meta( 'contact_first_name', $fname );
-			$contact->update_meta( 'contact_last_name', $lname );
-			$contact->update_meta( 'contact_phones', array( 'phone' => $phone ) );
-			$contact->update_meta( 'contact_category', 'widget' );
-			$contact->attach_listing( $contact_listing_id );
-			$contact->add_note( $contact_listing_note, 'note', $contact_listing_id );
-			wp_die( wp_json_encode( $success ) );
-		} else {
-			wp_die( wp_json_encode( $fail ) );
-		}
-	} else {
+	}
 
-		if ( $contact->update( array( 'name' => $title ) ) ) {
+	$contact_listing_note = isset( $_POST['epl_contact_note'] )
+		? sanitize_textarea_field( wp_unslash( $_POST['epl_contact_note'] ) )
+		: '';
+
+	$contact = new EPL_Contact( $email );
+
+	if ( ! empty( $contact->ID ) ) {
+
+		if ( $contact_listing_note ) {
 			$contact->add_note(
-				sanitize_textarea_field( wp_unslash( $_POST['epl_contact_note'] ) ),
+				$contact_listing_note,
 				'note',
 				$contact_listing_id
 			);
-			$contact->attach_listing( $contact_listing_id );
-			wp_die( wp_json_encode( $success ) );
-		} else {
-			wp_die( wp_json_encode( $fail ) );
 		}
+
+		if ( $contact_listing_id ) {
+			$contact->attach_listing( $contact_listing_id );
+		}
+
+		wp_die( wp_json_encode( $success ) );
 	}
+
+	$contact_data = array(
+		'name'  => $title,
+		'email' => $email,
+	);
+
+	if ( $contact->create( $contact_data ) ) {
+
+		$contact->update_meta( 'contact_first_name', $fname );
+		$contact->update_meta( 'contact_last_name', $lname );
+		$contact->update_meta(
+			'contact_phones',
+			array( 'phone' => $phone )
+		);
+		$contact->update_meta( 'contact_category', 'widget' );
+
+		if ( $contact_listing_id ) {
+			$contact->attach_listing( $contact_listing_id );
+		}
+
+		if ( $contact_listing_note ) {
+			$contact->add_note(
+				$contact_listing_note,
+				'note',
+				$contact_listing_id
+			);
+		}
+
+		wp_die( wp_json_encode( $success ) );
+	}
+
+	wp_die( wp_json_encode( $fail ) );
 }
 add_action( 'wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action' );
 add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action' );
+
 
 /**
  * Get Post ID from Unique ID

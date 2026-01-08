@@ -203,8 +203,8 @@ function epl_listing_has_fourth_agent() {
  * @since 3.4.38
  */
 function epl_listing_is_agent_available( $agent_key = 'property_second_agent' ) {
-	$exists                = false;
-	$agent = get_property_meta( $agent_key );
+	$exists = false;
+	$agent  = get_property_meta( $agent_key );
 	if ( ! empty( $agent ) ) {
 		$agent_author = get_user_by( 'login', sanitize_user( $agent ) );
 		if ( false !== $agent_author ) {
