@@ -17,13 +17,20 @@
 // ------------------- Theme Setup -----------------------//
 @use "components/theme-setup";
 
+// ------------------- Archive Listing -----------------------//
+@use "components/archive-listing";
+
 // ------------------- Loop Card Templates -----------------------//
-@use "components/blog";
-@use "components/blog-slim";
-@use "components/blog-card";
+@use "components/listing-blog";
+@use "components/listing-blog-slim";
+@use "components/listing-blog-card";
+@use "components/listing-blog-table";
 
 // ------------------- Single Template -----------------------//
-@use "components/single";
+@use "components/listing-single";
+
+// ------------------- Listing Elements -----------------------//
+@use "components/listing-elements";
 
 // ------------------- Listing Features -----------------------//
 @use "components/sidebar";
@@ -31,7 +38,6 @@
 @use "components/stickers";
 
 @use "components/icons";
-@use "components/icons-svg";
 
 @use "components/buttons";
 @use "components/video";
@@ -47,7 +53,8 @@
 @use "components/author";
 @use "components/author-box";
 
-@use "components/search";
+@use "components/search-initial"; // merge and delete.
+//@use "components/search";
 @use "components/search-popout";
 
 @use "components/extensions";

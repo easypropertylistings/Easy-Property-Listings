@@ -4,8 +4,14 @@
 // Icons
 //---------------------------------------------
 
+.epl-icons,
 .property-feature-icons {
-	margin: 0.5em 0;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	align-items: center;
 }
 .property-feature-icons .icon {
 	padding: 0 10px 4px 25px;
@@ -84,4 +90,46 @@
 
 .widget_epl_author .entry-content h5.epl-author-title {
 	margin: 0.5em 0;
+}
+
+//---------------------------------------------
+// SVG Icons
+//---------------------------------------------
+
+.epl-icon-svg-container {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	flex-wrap: nowrap;
+	gap: 0.25em;
+	align-items: center;
+}
+.epl-icon-svg,
+.epl-author-icon-svg {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+.epl-icon-svg-container .icon-value {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	line-height: 30px;
+	vertical-align: top;
+}
+.epl-icon-color-frame {
+	fill: #999999;
+}
+.epl-icon-color-base {
+	fill: rgb(52, 100, 184);
+}
+.epl-icon-color-highlight {
+	fill: orange;
+}
+.epl-icon-color-alternate {
+	fill: rgb(78, 169, 234);
+}
+.epl-icon-color-hollow {
+	fill: #ffffff;
 }

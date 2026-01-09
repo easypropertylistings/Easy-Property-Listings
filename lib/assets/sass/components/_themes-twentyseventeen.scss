@@ -18,3 +18,10 @@
 	box-shadow: none;
 	border-bottom: none;
 }
+
+/* Search Widget Responsive */
+@media screen and (max-width: 860px) {
+	.epl-active-theme-twentyseventeen .epl-property-blog.epl-listing-grid-view {
+		width: 100%;
+	}
+}

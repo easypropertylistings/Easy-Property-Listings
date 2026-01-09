@@ -45,6 +45,18 @@ get_header(); ?>
 			</div>
 			
 			<div class="epl-scss-test-wrapper">
+				<h2>Table</h2>
+				<?php echo do_shortcode( '[listing limit=3 template=table pagination=off]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Table Open</h2>
+				<?php echo do_shortcode( '[listing limit=3 template=table-open pagination=off]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
 				<h2>Search</h2>
 				<?php echo do_shortcode( '[listing_search]' ) ;?>
 			

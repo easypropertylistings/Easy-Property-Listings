@@ -1,12 +1,13 @@
 <?php
 /**
- * Loop Property Template: Default
+ * Loop Property Template: Slim home open list
  *
  * @package     EPL
- * @subpackage  Templates/LoopListingBlogDefault
- * @copyright   Copyright (c) 2026, Merv Barrett
+ * @subpackage  Templates/LoopListingBlogSlim
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       3.6
+ * @since       1.0
+ * @since       3.6 Using epl image size instead of thumbnail.
  */
 
 // Exit if accessed directly.
@@ -17,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $property;
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-post epl-property-blog' ); ?> <?php do_action( 'epl_archive_listing_atts' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'epl-listing-post epl-property-blog epl-property-blog-slim' ); ?> <?php do_action( 'epl_archive_listing_atts' ); ?>>
 	<div class="epl-property-blog-entry-wrapper">
 
 		<?php do_action( 'epl_property_before_content' ); ?>
@@ -60,17 +61,6 @@ global $property;
 					<?php
 				}
 				?>
-
-				<?php
-				$element_excerpt = true;
-				if ( $element_excerpt ) {
-					?>
-					<div class="epl-listing-meta epl-listing-meta--excerpt">
-						<?php epl_the_excerpt(); ?>
-					</div>
-					<?php
-				}
-				?>
 				
 				<?php
 				$element_address = true;
@@ -83,6 +73,17 @@ global $property;
 				}
 				?>
 				
+				<?php
+				$element_inspection = true;
+				if ( $element_inspection ) {
+					?>
+					<div class="epl-listing-meta epl-listing-meta--inspection">
+						<?php do_action( 'epl_property_inspection_times' ); ?>
+					</div>
+					<?php
+				}
+				?>
+
 				<?php
 				$element_price = true;
 				if ( $element_price ) {

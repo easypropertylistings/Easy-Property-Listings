@@ -92,10 +92,7 @@ Reset CSS Classes
 }
 
 /*** Grid - Absolute Positioning ***/
-.epl-listing-grid-view.epl-property-box-with-fixed-elements,
-.epl-listing-grid-view-forced.epl-property-box-with-fixed-elements {
-	min-height: 0;
-}
+
 .epl-listing-grid-view .epl-element-fixed-bottom-left,
 .epl-listing-grid-view .epl-element-fixed-bottom-right,
 .epl-listing-grid-view-forced .epl-element-fixed-bottom-left,
@@ -105,10 +102,6 @@ Reset CSS Classes
 
 /** Below 767px **/
 @media screen and (max-width: 767px) {
-	.epl-property-box-with-fixed-elements {
-		/** needs a fixed height **/
-		height: auto;
-	}
 	.epl-element-fixed-bottom-left,
 	.epl-element-fixed-bottom-right {
 		position: relative;

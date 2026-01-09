@@ -7,6 +7,15 @@
 /* Buttons */
 .epl-button-wrapper {
 	margin: 0.5em 0;
+
+	display: $epl-button__wrapper--display;
+	margin: $epl-button__wrapper--margin;
+	padding: $epl-button__wrapper--padding;
+	justify-content: $epl-button__wrapper--justify-content;
+	align-items: $epl-button__wrapper--align-items;
+	flex-wrap: $epl-button__wrapper--flex-wrap;
+	flex-direction: $epl-button__wrapper--flex-direction;
+	gap: $epl-button__wrapper--gap;
 }
 .epl-button-wrapper form {
 	display: inline-block;
@@ -64,4 +73,158 @@
 .epl-floor-plan-button-wrapper {
 	display: inline-block;
 	margin-right: 0.05em;
+}
+
+a.epl-button,
+.epl-button,
+.epl-map-btn,
+button.epl-button,
+.epl-link--comparables,
+body input[type="submit"].epl-button,
+body input[type="button"].epl-button {
+	display: $epl-button--display;
+	margin: $epl-button--margin;
+	padding: $epl-button--padding;
+	background: $epl-button--background;
+	border-radius: $epl-button--border-radius;
+	border: $epl-button--border;
+	border-color: $epl-button--border-color;
+	border-style: $epl-button--border-style;
+	box-shadow: $epl-button--box-shadow;
+	color: $epl-button--font-color;
+
+	font-size: $epl-button--font-size;
+	font-weight: $epl-button--font-weight;
+
+	letter-spacing: $epl-button--letter-spacing;
+	text-transform: $epl-button--text-transform;
+	text-decoration: $epl-button--text-decoration;
+	text-align: $epl-button--text-align;
+	line-height: $epl-button--line-height;
+	white-space: initial;
+
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+
+	&:hover {
+		background: $epl-button__hover--background;
+		color: $epl-button__hover--color;
+
+		border: $epl-button__hover--border;
+		border-style: $epl-button__hover--border-style;
+		border-radius: $epl-button__hover--border-radius;
+
+		box-shadow: $epl-button__hover--box-shadow;
+		text-transform: $epl-button__hover--text-transform;
+		text-decoration: $epl-button__hover--text-decoration;
+	}
+
+	&:focus {
+		background: $epl-button__focus--background;
+		color: $epl-button__focus--color;
+
+		border: $epl-button__focus--border;
+		border-style: $epl-button__focus--border-style;
+		border-radius: $epl-button__focus--border-radius;
+
+		box-shadow: $epl-button__focus--box-shadow;
+		text-transform: $epl-button__focus--text-transform;
+		text-decoration: $epl-button__focus--text-decoration;
+		outline: none !important;
+	}
+
+	&--on-dark {
+		background: $epl-color-secondary;
+		color: $epl-color-primary;
+		border-color: $epl-color-white;
+		&:hover {
+			background: $epl-color-white;
+			color: $epl-color-secondary;
+			border-color: $epl-color-secondary;
+		}
+		&:focus {
+			background: $epl-color-white;
+			color: $epl-color-secondary;
+			border-color: $epl-color-secondary;
+		}
+	}
+
+	&--block {
+		display: block;
+	}
+
+	&--invert {
+		background: $epl-button--invert--background;
+		color: $epl-button--invert--color;
+		border-color: $epl-button--invert--border-color;
+		&:hover {
+			background: $epl-button--invert__hover--background;
+			color: $epl-button--invert__hover--color;
+			border-color: $epl-button--invert__hover--border-color;
+		}
+		&:focus {
+			background: $epl-button--invert__focus--background;
+			border-color: $epl-button--invert__focus--color;
+			color: $epl-button--invert__focus--border-color;
+		}
+	}
+
+	&--text {
+		background: $epl-color-transparent;
+		color: $epl-color-primary !important;
+		padding: 0.3em;
+		border-radius: 0.3em;
+		&:hover,
+		&:focus {
+			background: $epl-color-tint;
+			padding: 0.3em;
+			border-radius: 0.3em;
+		}
+	}
+
+	&--outline {
+		background: $epl-button--outline--background;
+		color: $epl-button--outline--color;
+		border-color: $epl-button--outline--border-color;
+		border-style: $epl-button--outline--border-style;
+		&:hover {
+			background: $epl-button--outline__hover--background;
+			color: $epl-button--outline__hover--color;
+			border: $epl-button--border;
+			border-color: $epl-button--outline__hover--border-color;
+			border-style: $epl-button--outline__hover--border-style;
+		}
+
+		&:focus {
+			background: $epl-button--outline__focus--background;
+			color: $epl-button--outline__focus--color;
+			border-color: $epl-button--outline__focus--border-color;
+			border-style: $epl-button--outline__focus--border-style;
+		}
+
+		&.epl-button--on-dark {
+		}
+	}
+
+	&--alternate {
+		background: $epl-button--alternate--background;
+		color: $epl-button--alternate--color;
+		border-color: $epl-button--alternate--border-color;
+		&:hover {
+			background: $epl-button--alternate__hover--background;
+			color: $epl-button--alternate__hover--color;
+			border-color: $epl-button--alternate__hover--border-color;
+		}
+		&:focus {
+			background: $epl-button--alternate__focus--background;
+			border-color: $epl-button--alternate__focus--color;
+			color: $epl-button--alternate__focus--border-color;
+		}
+	}
+
+	&--wide {
+		padding-left: 2em;
+		padding-right: 2em;
+	}
 }
