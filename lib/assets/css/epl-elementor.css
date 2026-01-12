@@ -1,0 +1,526 @@
+/**
+ * EPL Elementor Widgets Styles
+ *
+ * @package EPL
+ * @since 3.6.0
+ */
+
+/* Grid Layout */
+.epl-listing-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--epl-grid-cols, 3), 1fr);
+}
+
+.epl-listing-grid.epl-grid-cols-1 {
+	--epl-grid-cols: 1;
+}
+
+.epl-listing-grid.epl-grid-cols-2 {
+	--epl-grid-cols: 2;
+}
+
+.epl-listing-grid.epl-grid-cols-3 {
+	--epl-grid-cols: 3;
+}
+
+.epl-listing-grid.epl-grid-cols-4 {
+	--epl-grid-cols: 4;
+}
+
+.epl-listing-grid.epl-grid-cols-5 {
+	--epl-grid-cols: 5;
+}
+
+.epl-listing-grid.epl-grid-cols-6 {
+	--epl-grid-cols: 6;
+}
+
+/* Responsive Grid */
+@media (max-width: 1024px) {
+	.epl-listing-grid.epl-grid-cols-5,
+	.epl-listing-grid.epl-grid-cols-6 {
+		--epl-grid-cols: 4;
+	}
+}
+
+@media (max-width: 768px) {
+	.epl-listing-grid.epl-grid-cols-3,
+	.epl-listing-grid.epl-grid-cols-4,
+	.epl-listing-grid.epl-grid-cols-5,
+	.epl-listing-grid.epl-grid-cols-6 {
+		--epl-grid-cols: 2;
+	}
+}
+
+@media (max-width: 480px) {
+	.epl-listing-grid {
+		--epl-grid-cols: 1 !important;
+	}
+}
+
+/* Property Icons Layout */
+.epl-property-icons {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.epl-property-icons.epl-icons-horizontal {
+	flex-direction: row;
+}
+
+.epl-property-icons.epl-icons-vertical {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.epl-property-icons .epl-icon-item {
+	display: inline-flex;
+	align-items: center;
+}
+
+.epl-property-icons .epl-icon-item i {
+	flex-shrink: 0;
+}
+
+.epl-property-icons .epl-icon-value {
+	font-weight: 600;
+}
+
+.epl-property-icons .epl-icon-label {
+	opacity: 0.8;
+}
+
+/* Legacy EPL icons support */
+.epl-property-icons.epl-icons-horizontal .property-meta {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.epl-property-icons.epl-icons-vertical .property-meta {
+	display: block;
+	margin-bottom: 8px;
+}
+
+/* Elementor Editor Placeholder */
+.epl-elementor-placeholder {
+	background: #f7f7f7;
+	border: 1px dashed #ccc;
+	padding: 20px;
+	text-align: center;
+	color: #666;
+	font-style: italic;
+}
+
+/* Property Image */
+.epl-property-image {
+	position: relative;
+	overflow: hidden;
+	display: block;
+	width: 100%;
+}
+
+.epl-property-image img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	transition: transform 0.3s ease;
+}
+
+.epl-property-image a {
+	display: block;
+	position: relative;
+}
+
+/* Image Hover Effect */
+.epl-has-overlay:hover img {
+	transform: scale(1.05);
+}
+
+/* Overlay */
+.epl-property-image .epl-image-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+
+.epl-property-image .epl-image-overlay i,
+.epl-property-image .epl-image-overlay svg {
+	font-size: 32px;
+	width: 32px;
+	height: 32px;
+}
+
+.epl-has-overlay:hover .epl-image-overlay {
+	opacity: 1;
+}
+
+/* Sticker Wrapper */
+.epl-property-image .epl-sticker-wrapper {
+	position: absolute;
+	z-index: 10;
+}
+
+/* Sticker Positions */
+.epl-sticker-top-left .epl-sticker-wrapper {
+	top: 10px;
+	left: 10px;
+}
+
+.epl-sticker-top-right .epl-sticker-wrapper {
+	top: 10px;
+	right: 10px;
+}
+
+.epl-sticker-bottom-left .epl-sticker-wrapper {
+	bottom: 10px;
+	left: 10px;
+}
+
+.epl-sticker-bottom-right .epl-sticker-wrapper {
+	bottom: 10px;
+	right: 10px;
+}
+
+/* Sticker Styles */
+.epl-property-image .status-sticker {
+	display: inline-block;
+	padding: 5px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	background: #333;
+	color: #fff;
+	border-radius: 3px;
+}
+
+.epl-property-image .status-sticker.sold {
+	background: #e74c3c;
+}
+
+.epl-property-image .status-sticker.leased {
+	background: #27ae60;
+}
+
+.epl-property-image .status-sticker.under-offer {
+	background: #f39c12;
+}
+
+/* No Image Placeholder */
+.epl-property-image .epl-no-image {
+	background: #f0f0f0;
+	padding: 40px 20px;
+	text-align: center;
+	color: #999;
+	min-height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Agent Box */
+.epl-agent-box {
+	clear: both;
+}
+
+.epl-agent-vertical {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.epl-agent-horizontal {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.epl-agent-horizontal .epl-agent-details {
+	flex: 1;
+}
+
+/* Agent Photo */
+.epl-agent-photo {
+	flex-shrink: 0;
+	margin-bottom: 15px;
+}
+
+.epl-agent-horizontal .epl-agent-photo {
+	margin-bottom: 0;
+}
+
+.epl-agent-photo img {
+	display: block;
+	object-fit: cover;
+}
+
+/* Agent Details */
+.epl-agent-details {
+	flex: 1;
+}
+
+.epl-agent-name {
+	font-size: 1.2em;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.epl-agent-name a {
+	text-decoration: none;
+}
+
+.epl-agent-name a:hover {
+	text-decoration: underline;
+}
+
+.epl-agent-position {
+	color: #666;
+	margin-bottom: 10px;
+}
+
+/* Agent Contact */
+.epl-agent-contact {
+	margin: 10px 0;
+}
+
+.epl-agent-contact > div {
+	margin-bottom: 5px;
+}
+
+.epl-agent-label {
+	font-weight: 500;
+}
+
+.epl-agent-contact a {
+	text-decoration: none;
+}
+
+.epl-agent-contact a:hover {
+	text-decoration: underline;
+}
+
+/* Agent Social */
+.epl-agent-social {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 10px 0;
+}
+
+.epl-agent-vertical .epl-agent-social {
+	justify-content: center;
+}
+
+.epl-agent-social a {
+	text-decoration: none;
+	transition: opacity 0.2s;
+}
+
+.epl-agent-social a:hover {
+	opacity: 0.7;
+}
+
+/* Agent Bio */
+.epl-agent-bio {
+	margin-top: 15px;
+	line-height: 1.6;
+}
+
+/* Features Title */
+.epl-features-title {
+	margin-bottom: 10px;
+}
+
+/* Search Widget */
+.epl-search-widget .epl-search-title {
+	margin-bottom: 15px;
+}
+
+/* Agents Loop - Grid Layout */
+.epl-agents-loop {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.epl-agents-loop-grid {
+	display: grid;
+}
+
+.epl-agents-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.epl-agents-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.epl-agents-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.epl-agents-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.epl-agents-loop-list {
+	flex-direction: column;
+}
+
+.epl-agent-item {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Agent Card (default rendering in loop) */
+.epl-agent-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 20px;
+}
+
+.epl-agent-card .epl-agent-photo {
+	margin-bottom: 15px;
+}
+
+.epl-agent-card .epl-agent-info {
+	flex: 1;
+}
+
+/* Agents Tabs Layout */
+.epl-agents-tabs {
+	display: flex;
+	flex-direction: column;
+}
+
+.epl-agents-tabs-vertical {
+	flex-direction: row;
+}
+
+.epl-tab-buttons {
+	display: flex;
+	gap: 0;
+}
+
+.epl-agents-tabs-horizontal .epl-tab-buttons {
+	flex-direction: row;
+	border-bottom: 1px solid #ddd;
+}
+
+.epl-agents-tabs-vertical .epl-tab-buttons {
+	flex-direction: column;
+	border-right: 1px solid #ddd;
+	min-width: 150px;
+}
+
+.epl-tab-button {
+	padding: 12px 20px;
+	border: none;
+	background: #f5f5f5;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+
+.epl-tab-button:hover {
+	background: #eee;
+}
+
+.epl-tab-button.active {
+	background: #fff;
+	font-weight: 600;
+}
+
+.epl-agents-tabs-horizontal .epl-tab-button {
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+}
+
+.epl-agents-tabs-horizontal .epl-tab-button.active {
+	border-bottom-color: #333;
+}
+
+.epl-agents-tabs-vertical .epl-tab-button {
+	border-right: 2px solid transparent;
+	margin-right: -1px;
+	text-align: left;
+}
+
+.epl-agents-tabs-vertical .epl-tab-button.active {
+	border-right-color: #333;
+}
+
+.epl-tab-contents {
+	flex: 1;
+}
+
+.epl-tab-content {
+	display: none;
+	padding: 20px;
+}
+
+.epl-tab-content.active {
+	display: block;
+}
+
+/* Agent Contact Layout */
+.epl-agent-contact.epl-contact-stacked {
+	display: flex;
+	flex-direction: column;
+}
+
+.epl-agent-contact.epl-contact-inline {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.epl-contact-item {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.epl-contact-label {
+	font-weight: 500;
+}
+
+/* Agent Social */
+.epl-agent-social {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* Empty State */
+.epl-agents-empty {
+	padding: 20px;
+	text-align: center;
+	color: #666;
+	font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.epl-agents-cols-3,
+	.epl-agents-cols-4 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+	.epl-agents-tabs-vertical {
+		flex-direction: column;
+	}
+	
+	.epl-agents-tabs-vertical .epl-tab-buttons {
+		flex-direction: row;
+		border-right: none;
+		border-bottom: 1px solid #ddd;
+		min-width: auto;
+	}
+}
+
+@media (max-width: 480px) {
+	.epl-agents-cols-2,
+	.epl-agents-cols-3,
+	.epl-agents-cols-4 {
+		grid-template-columns: 1fr;
+	}
+}
