@@ -2362,8 +2362,9 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 /**
  * Output iCal clickable dates. Use the epl_ical_args filter to alter the labels.
  *
- * @since      2.0
- * @since      3.5.7 Different subject for auction.
+ * @since 2.0
+ * @since 3.5.7 Different subject for auction.
+ * @since 3.5.16 Triple equals for auction value.
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
@@ -2388,7 +2389,7 @@ function epl_process_event_cal_request() {
 
 						$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
 
-						if ( isset( $_GET['event_type'] ) && 'auction' == sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
+						if ( isset( $_GET['event_type'] ) && 'auction' === sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
 							$subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
 						}
 
@@ -3426,7 +3427,8 @@ add_action( 'epl_archive_author', 'epl_archive_author_callback' );
 /**
  * Contact capture action and messages
  *
- * @since      3.3
+ * @since 3.3
+ * @since 3.5.16 Fix: Vulnerability in contact form shortcode.
  */
 function epl_contact_capture_action() {
 
@@ -3518,7 +3520,7 @@ function epl_contact_capture_action() {
 		? sanitize_textarea_field( wp_unslash( $_POST['epl_contact_note'] ) )
 		: '';
 
-	$contact = new EPL_contact( $email );
+	$contact = new EPL_Contact( $email );
 
 	if ( ! empty( $contact->ID ) ) {
 
@@ -3569,7 +3571,6 @@ function epl_contact_capture_action() {
 
 	wp_die( wp_json_encode( $fail ) );
 }
-
 add_action( 'wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action' );
 add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action' );
 

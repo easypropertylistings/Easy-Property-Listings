@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.5.15\n"
+"Project-Id-Version: Easy Property Listings 3.5.16\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2025-06-11 07:49:10+00:00\n"
+"POT-Creation-Date: 2025-12-16 03:31:34+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +28,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-6: README.md\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
-#: lib/assets/assets.php:66
+#: lib/assets/assets.php:67
 #. Translators: %1$s: is Location Label, %2$ is the link start, and  %3$s is
 #. the link end.
 msgid ""
@@ -36,10 +36,14 @@ msgid ""
 "positioning. Refer to the %2$s codex %3$s for further details."
 msgstr ""
 
-#: lib/assets/assets.php:76
+#: lib/assets/assets.php:77
 msgid ""
 "Ensure you have set a Google Maps API Key from Dashboard > Easy Property "
 "Listings > Settings"
+msgstr ""
+
+#: lib/assets/assets.php:81
+msgid "Add Images"
 msgstr ""
 
 #: lib/compatibility/functions-compat.php:354
@@ -267,7 +271,7 @@ msgstr ""
 
 #: lib/includes/admin/admin-functions.php:523
 #: lib/includes/admin/admin-functions.php:593
-#: lib/includes/admin/menus/menu-extensions.php:29
+#: lib/includes/admin/menus/menu-extensions.php:30
 #: lib/includes/admin/menus/menu-general.php:24
 #: lib/includes/admin/menus/menu-licenses.php:30
 msgid "Sorry, your nonce did not verify."
@@ -331,11 +335,33 @@ msgstr ""
 msgid "Alert"
 msgstr ""
 
+#: lib/includes/admin/class-epl-admin-images.php:36
+msgid "Slider Images"
+msgstr ""
+
+#: lib/includes/admin/class-epl-admin-images.php:37
+msgid "Add to Slider"
+msgstr ""
+
+#: lib/includes/admin/class-epl-admin-images.php:352
+msgid "Attachment Thumbnail"
+msgstr ""
+
+#: lib/includes/admin/class-epl-admin-images.php:363
+msgid "Add images to the slider using add media button."
+msgstr ""
+
+#: lib/includes/admin/class-epl-admin-images.php:371
+msgid ""
+"Drag to reorder images and use the switch to remove images from the slider. "
+"Update the post to save changes."
+msgstr ""
+
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:70
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:234
 #: lib/includes/class-epl-author.php:274 lib/includes/class-epl-author.php:282
 #: lib/includes/class-epl-author.php:321 lib/includes/class-epl-author.php:329
-#: lib/includes/functions.php:2109 lib/includes/template-functions.php:2119
+#: lib/includes/functions.php:2109 lib/includes/template-functions.php:2120
 #: lib/post-types/post-type-contact.php:38
 #: lib/post-types/post-type-contact.php:39
 msgid "Contact"
@@ -550,7 +576,7 @@ msgstr ""
 #: lib/includes/admin/help-single.php:52
 #: lib/includes/admin/menus/class-epl-welcome.php:363
 #: lib/includes/admin/menus/menu-help.php:131
-#: lib/includes/template-functions.php:1800
+#: lib/includes/template-functions.php:1801
 #: lib/meta-boxes/meta-box-init.php:1444 lib/meta-boxes/meta-box-init.php:1459
 #: lib/meta-boxes/meta-box-init.php:1474 lib/meta-boxes/meta-box-init.php:1516
 #: lib/meta-boxes/meta-box-init.php:1531 lib/meta-boxes/meta-box-init.php:1547
@@ -1884,17 +1910,17 @@ msgstr ""
 msgid "These add-ons extend the functionality of Easy Property Listings."
 msgstr ""
 
-#: lib/includes/admin/menus/menu-extensions.php:97
+#: lib/includes/admin/menus/menu-extensions.php:100
 msgid "Extensions Settings"
 msgstr ""
 
-#: lib/includes/admin/menus/menu-extensions.php:98
+#: lib/includes/admin/menus/menu-extensions.php:101
 msgid ""
 "Configure your extension settings here. Visit the main settings page for "
 "more extension settings."
 msgstr ""
 
-#: lib/includes/admin/menus/menu-extensions.php:204
+#: lib/includes/admin/menus/menu-extensions.php:207
 #: lib/includes/admin/menus/menu-general.php:166
 #: lib/includes/admin/menus/menu-licenses.php:185
 msgid "Save Changes"
@@ -2344,7 +2370,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:745
-#: lib/includes/template-functions.php:3246
+#: lib/includes/template-functions.php:3248
 #: lib/shortcodes/class-epl-listing-elements.php:77
 msgid "Listing"
 msgstr ""
@@ -2512,7 +2538,7 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:846
 #: lib/includes/class-epl-property-meta.php:911
 #: lib/includes/class-epl-property-meta.php:961 lib/includes/functions.php:2360
-#: lib/includes/functions.php:2398 lib/includes/template-functions.php:2391
+#: lib/includes/functions.php:2398 lib/includes/template-functions.php:2393
 #: lib/widgets/widget-admin-dashboard.php:185
 #: lib/widgets/widget-admin-dashboard.php:239
 msgid "Auction"
@@ -2554,8 +2580,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:978
 #: lib/includes/class-epl-property-meta.php:984
 #: lib/includes/class-epl-property-meta.php:1182
-#: lib/includes/functions.php:2397 lib/includes/template-functions.php:3695
-#: lib/includes/template-functions.php:3727
+#: lib/includes/functions.php:2397 lib/includes/template-functions.php:3748
+#: lib/includes/template-functions.php:3780
 msgid "For Sale"
 msgstr ""
 
@@ -2571,8 +2597,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1026
 #: lib/includes/class-epl-property-meta.php:1195
 #: lib/includes/class-epl-property-meta.php:1197
-#: lib/includes/template-functions.php:3675
-#: lib/includes/template-functions.php:3738
+#: lib/includes/template-functions.php:3728
+#: lib/includes/template-functions.php:3791
 msgid "For Lease"
 msgstr ""
 
@@ -3258,12 +3284,12 @@ msgstr ""
 msgid "Listing view type"
 msgstr ""
 
-#: lib/includes/functions.php:1288 lib/includes/template-functions.php:1913
+#: lib/includes/functions.php:1288 lib/includes/template-functions.php:1914
 #: lib/widgets/class-epl-widget-recent-property.php:435
 msgid "List"
 msgstr ""
 
-#: lib/includes/functions.php:1289 lib/includes/template-functions.php:1915
+#: lib/includes/functions.php:1289 lib/includes/template-functions.php:1916
 msgid "Grid"
 msgstr ""
 
@@ -3866,101 +3892,105 @@ msgstr ""
 msgid "Rural Features"
 msgstr ""
 
-#: lib/includes/template-functions.php:1732
+#: lib/includes/template-functions.php:1733
 msgid "Price: High to Low"
 msgstr ""
 
-#: lib/includes/template-functions.php:1740
+#: lib/includes/template-functions.php:1741
 msgid "Price: Low to High"
 msgstr ""
 
-#: lib/includes/template-functions.php:1749
+#: lib/includes/template-functions.php:1750
 msgid "Date: Newest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1757
+#: lib/includes/template-functions.php:1758
 msgid "Date: Oldest First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1764
-msgid "Status : Current First"
+#: lib/includes/template-functions.php:1765
+msgid "Status: Current First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1773
-msgid "Status : Sold/Leased First"
+#: lib/includes/template-functions.php:1774
+msgid "Status: Sold/Leased First"
 msgstr ""
 
-#: lib/includes/template-functions.php:1782
-msgid " A-Z"
+#: lib/includes/template-functions.php:1783
+msgid ": A-Z"
 msgstr ""
 
-#: lib/includes/template-functions.php:1791
-msgid " Z-A"
+#: lib/includes/template-functions.php:1792
+msgid ": Z-A"
 msgstr ""
 
-#: lib/includes/template-functions.php:1952
+#: lib/includes/template-functions.php:1953
 msgid "Sort Listings"
 msgstr ""
 
-#: lib/includes/template-functions.php:1954
+#: lib/includes/template-functions.php:1955
 msgid "Sort"
 msgstr ""
 
-#: lib/includes/template-functions.php:2116
+#: lib/includes/template-functions.php:2117
 msgid "About"
 msgstr ""
 
-#: lib/includes/template-functions.php:2117
+#: lib/includes/template-functions.php:2118
 msgid "Bio"
 msgstr ""
 
-#: lib/includes/template-functions.php:2118
+#: lib/includes/template-functions.php:2119
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:3021
+#: lib/includes/template-functions.php:3023
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:3239
+#: lib/includes/template-functions.php:3241
 #. Translators: term name.
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:3241
+#: lib/includes/template-functions.php:3243
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:3323
+#: lib/includes/template-functions.php:3325
 #. Translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3326
+#: lib/includes/template-functions.php:3328
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3343
+#: lib/includes/template-functions.php:3345
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:3344
+#: lib/includes/template-functions.php:3346
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3434
-msgid "Form submitted successfully"
-msgstr ""
-
 #: lib/includes/template-functions.php:3439
-msgid "Some issues with form submitted"
+msgid "Your enquiry has been submitted."
 msgstr ""
 
-#: lib/includes/template-functions.php:3458
-msgid "Email is required"
+#: lib/includes/template-functions.php:3447
+msgid "There was a problem with your submission."
 msgstr ""
 
-#: lib/includes/template-functions.php:3716
+#: lib/includes/template-functions.php:3470
+msgid "Email is required."
+msgstr ""
+
+#: lib/includes/template-functions.php:3513
+msgid "Invalid listing."
+msgstr ""
+
+#: lib/includes/template-functions.php:3769
 msgid "For Sale & Lease"
 msgstr ""
 
@@ -5365,7 +5395,7 @@ msgstr ""
 
 #: lib/templates/content/content-listing-single-compatibility.php:96
 #: lib/templates/content/content-listing-single.php:122
-#: lib/templates/themes/heuman/single-listing.php:43
+#: lib/templates/themes/heuman/single-listing.php:44
 msgid "Pages:"
 msgstr ""
 
@@ -5383,21 +5413,21 @@ msgstr ""
 msgid "Office"
 msgstr ""
 
-#: lib/templates/themes/avada/single-listing.php:22
+#: lib/templates/themes/avada/single-listing.php:23
 #: lib/templates/themes/twentyseventeen/single-listing.php:33
 msgid "Previous"
 msgstr ""
 
-#: lib/templates/themes/avada/single-listing.php:23
+#: lib/templates/themes/avada/single-listing.php:24
 #: lib/templates/themes/twentyseventeen/single-listing.php:34
 msgid "Next"
 msgstr ""
 
-#: lib/templates/themes/heuman/single-listing.php:31
+#: lib/templates/themes/heuman/single-listing.php:32
 msgid "by"
 msgstr ""
 
-#: lib/templates/themes/heuman/single-listing.php:58
+#: lib/templates/themes/heuman/single-listing.php:59
 msgid "Tags:"
 msgstr ""
 

@@ -26,10 +26,9 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 	 *
 	 * @since 3.4.39
 	 */
-	
 	class EPL_Author_Loader {
 
-                /**
+		/**
 		 * The user ID
 		 *
 		 * @since 3.4.44
@@ -60,7 +59,7 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 * @var string $office_phone User office phone.
 		 */
 		public $office_phone;
-		
+
 		/**
 		 * The user website
 		 *
@@ -181,7 +180,7 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 */
 		public $description;
 
-                /**
+		/**
 		 * Staff ID
 		 *
 		 * @since 3.4.44
@@ -189,39 +188,39 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 */
 		public $staff_id;
 
-                /**
+		/**
 		 * Directory
 		 *
 		 * @since 3.4.44
-                */
+		 */
 		public $directory;
 
-                /**
+		/**
 		 * First Name
 		 *
 		 * @since 3.4.44
-                */
+		 */
 		public $first_name;
 
-                /**
+		/**
 		 * Last Name
 		 *
 		 * @since 3.4.44
-                */
+		 */
 		public $last_name;
 
-                /**
+		/**
 		 * Secondary Email
 		 *
 		 * @since 3.4.44
-                */
+		 */
 		public $secondary_email;
 
-                /**
+		/**
 		 * Whatsapp
 		 *
 		 * @since 3.4.44
-                */
+		 */
 		public $whatsapp;
 
 		/**

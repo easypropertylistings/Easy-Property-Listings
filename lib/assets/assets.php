@@ -50,9 +50,10 @@ function epl_get_admin_screens() {
  * @since 1.0.0
  * @since 3.4.44 Fixed callback error for google maps.
  * @since 3.5    Renamed Google Maps script name to: epl-google-map-v-3. Display hidden fields. Added Google maps error message.
- * @since 3.5.2  New: Google Maps load asynchoronously.
+ * @since 3.5.2  New: Google Maps load Asynchronous.
  * @since 3.5.4  Display warning note when display address is unchecked.
- * @since 3.5.8  Using version 3.55 of gmap to avoid deprication notice for markers.
+ * @since 3.5.8  Using version 3.55 of gmap to avoid Deprecation notice for markers.
+ * @since 3.5.16 New: Unified image management featured for use in extensions.
  *
  * @return void
  */
@@ -70,17 +71,18 @@ function epl_admin_enqueue_scripts( $screen ) {
 	);
 
 	$js_vars = array(
-		'default_map_address'   => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
-		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),
-		'display_hidden_fields' => epl_get_option( 'display_hidden_fields', 0 ),
-		'google_api_error'      => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
-		'google_api_key'        => epl_get_option( 'epl_google_api_key' ),
-		'google_map_disabled'   => epl_get_option( 'epl_disable_google_api' ),
-		'display_address_note'  => esc_html( $display_address_note ),
+		'default_map_address'    => apply_filters( 'epl_default_map_address', epl_get_option( 'epl_default_country', 'Australia' ) ),
+		'ajax_nonce'             => wp_create_nonce( 'epl_ajax_nonce' ),
+		'display_hidden_fields'  => epl_get_option( 'display_hidden_fields', 0 ),
+		'google_api_error'       => __( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings', 'easy-property-listings' ),
+		'google_api_key'         => epl_get_option( 'epl_google_api_key' ),
+		'google_map_disabled'    => epl_get_option( 'epl_disable_google_api' ),
+		'display_address_note'   => esc_html( $display_address_note ),
+		'add_images_button_text' => __( 'Add Images', 'easy-property-listings' ),
 	);
 
 	wp_register_script( 'epl-admin-scripts', $current_dir_path . '/js/jquery-admin-scripts' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
-        //wp_register_script( 'wp-color-picker-alpha', $current_dir_path . '/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), EPL_PROPERTY_VER, false );
+		wp_register_script( 'wp-color-picker-alpha', $current_dir_path . '/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), EPL_PROPERTY_VER, false );
 
 	wp_localize_script( 'epl-admin-scripts', 'epl_admin_vars', $js_vars );
 

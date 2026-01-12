@@ -41,7 +41,7 @@ get_header(); ?>
 						if ( 0 === $i % 2 ) {
 							echo '</div><div class="post-row">';
 						} $i++;
-endwhile;
+					endwhile;
 					echo '</div>';
 					?>
 				<?php do_action( 'epl_property_loop_end' ); ?>
