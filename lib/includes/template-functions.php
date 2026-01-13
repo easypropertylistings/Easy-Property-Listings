@@ -3475,6 +3475,18 @@ function epl_contact_capture_action() {
 
 	$email = sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) );
 
+	// check if email is not valid, skip further processing
+	if( !is_email( $email ) ) {
+		wp_die(
+				wp_json_encode(
+					array(
+						'status' => 'fail',
+						'msg'    => __( 'Invalid email.', 'easy-property-listings' ),
+					)
+				)
+			);
+	}
+
 	$fname = isset( $_POST['epl_contact_first_name'] )
 		? sanitize_text_field( wp_unslash( $_POST['epl_contact_first_name'] ) )
 		: '';
