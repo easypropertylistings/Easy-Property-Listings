@@ -3429,6 +3429,7 @@ add_action( 'epl_archive_author', 'epl_archive_author_callback' );
  *
  * @since 3.3
  * @since 3.5.16 Fix: Vulnerability in contact form shortcode.
+ * @since 3.5.17 Tweak: Contact form email address validation check.
  */
 function epl_contact_capture_action() {
 
@@ -3475,16 +3476,16 @@ function epl_contact_capture_action() {
 
 	$email = sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) );
 
-	// check if email is not valid, skip further processing
-	if( !is_email( $email ) ) {
+	// Check if email is not valid, skip further processing and display message.
+	if( ! is_email( $email ) ) {
 		wp_die(
-				wp_json_encode(
-					array(
-						'status' => 'fail',
-						'msg'    => __( 'Invalid email.', 'easy-property-listings' ),
-					)
+			wp_json_encode(
+				array(
+					'status' => 'fail',
+					'msg'    => __( 'Invalid email.', 'easy-property-listings' ),
 				)
-			);
+			)
+		);
 	}
 
 	$fname = isset( $_POST['epl_contact_first_name'] )
