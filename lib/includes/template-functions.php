@@ -3429,7 +3429,7 @@ add_action( 'epl_archive_author', 'epl_archive_author_callback' );
  *
  * @since 3.3
  * @since 3.5.16 Fix: Vulnerability in contact form shortcode.
- * @since 3.5.17 Tweak: Contact form email address validation check.
+ * @since 3.5.17 Tweak: Contact form email address validation check and message.
  */
 function epl_contact_capture_action() {
 

@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.17 January 13. 2026 =
+
+-   Tweak: Contact form email address validation check and message.
+
 = 3.5.16 December 16. 2025 =
 
 -   New: Unified image management featured for use in extensions.
