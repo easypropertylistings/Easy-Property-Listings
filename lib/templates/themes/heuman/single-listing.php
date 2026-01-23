@@ -5,6 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/Heuman
  * @since 1.0
+ * @since 3.5.16 Fix: Missing echo for author in single template for Heuman theme. Discovered and patched by DAnn2012.
  */
 
 // Exit if accessed directly.
@@ -28,7 +29,7 @@ get_header(); ?>
 				<div class="post-inner group">
 
 					<h1 class="post-title"><?php the_title(); ?></h1>
-					<p class="post-byline"><?php esc_html_e( 'by', 'easy-property-listings' ); ?> <?php wp_kses_post( the_author_posts_link() ); ?> &middot; <?php the_time( get_option( 'date_format' ) ); ?></p>
+					<p class="post-byline"><?php esc_html_e( 'by', 'easy-property-listings' ); ?> <?php echo wp_kses_post( the_author_posts_link() ); ?> &middot; <?php the_time( get_option( 'date_format' ) ); ?></p>
 
 					<?php do_action( 'epl_property_single' ); ?>
 

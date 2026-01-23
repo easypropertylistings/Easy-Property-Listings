@@ -9,6 +9,7 @@
  * @since       2.0
  * @since       3.4.44 Added field type class for field wrapper and custom wrapper class support through wrapper_class.
  * @since       3.5 Unique IDs for all field wrappers.
+ * @since       3.5.16 added epl_extension_settings_fields filter for active tab.
  */
 
 // Exit if accessed directly.
@@ -33,9 +34,11 @@ if ( isset( $_REQUEST['action'] ) && 'epl_settings' === $_REQUEST['action'] ) {
 		if ( array_key_exists( $active_tab, $epl_extensions ) ) {
 			$epl_settings     = get_option( 'epl_settings' );
 			$ext_field_groups = $epl_extensions[ $active_tab ];
+			$ext_field_groups = apply_filters( 'epl_extension_settings_fields', $ext_field_groups, $active_tab );
 			foreach ( $ext_field_groups['fields'] as $ext_field_group ) {
 				foreach ( $ext_field_group['fields'] as $field ) {
 					if ( 'radio' === $field['type'] || 'checkbox' === $field['type'] ) {
+
 						if ( ! isset( $_REQUEST[ $field['name'] ] ) ) {
 							$_REQUEST[ $field['name'] ] = '';
 						} else {

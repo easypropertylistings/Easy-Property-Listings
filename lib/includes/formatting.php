@@ -65,9 +65,9 @@ function epl_format_amount( $amount, $decimals = false, $preserve_format = false
 	$decimal_sep   = epl_get_decimal_separator();
 	$formatted     = '';
 
-        if ( empty( $amount ) ) {
-                return $amount;
-        }
+	if ( empty( $amount ) ) {
+		return $amount;
+	}
 
 	// Format the amount.
 	$sep_found = strpos( $amount, $decimal_sep );
@@ -91,7 +91,6 @@ function epl_format_amount( $amount, $decimals = false, $preserve_format = false
 
 	$decimals = apply_filters( 'epl_format_amount_decimals', $decimals ? 2 : 0, $amount );
 	if ( is_numeric( $amount ) ) {
-
 		$formatted = number_format( $amount, $decimals, $decimal_sep, $thousands_sep );
 	}
 

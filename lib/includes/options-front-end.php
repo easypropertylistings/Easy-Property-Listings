@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  **/
 function epl_property_new_excerpt_more( $more ) {
 	global $post;
-        if ( is_null( $post ) ) {
+	if ( is_null( $post ) ) {
 		return $more;
 	}
 	return '...<a href="' . get_permalink( $post->ID ) . '" class="epl-more-link">' . __( 'Read More', 'easy-property-listings' ) . '&rarr;</a>';
