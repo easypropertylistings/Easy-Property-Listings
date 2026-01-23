@@ -7,7 +7,7 @@ Tags: real estate, property, listings, rental, reports
 Requires PHP: 7.1
 Requires at least: 3.9
 Tested up to: 6.9
-Stable Tag: 3.5.16
+Stable Tag: 3.5.17
 License: GPLv2 or later
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management and works with any theme.
