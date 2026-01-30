@@ -2206,7 +2206,6 @@ Reset CSS Classes
 
 a.epl-button,
 .epl-button,
-.epl-map-btn,
 button.epl-button,
 .epl-link--comparables,
 body input[type=submit].epl-button,
@@ -2235,7 +2234,6 @@ body input[type=button].epl-button {
 }
 a.epl-button:hover,
 .epl-button:hover,
-.epl-map-btn:hover,
 button.epl-button:hover,
 .epl-link--comparables:hover,
 body input[type=submit].epl-button:hover,
@@ -2251,7 +2249,6 @@ body input[type=button].epl-button:hover {
 }
 a.epl-button:focus,
 .epl-button:focus,
-.epl-map-btn:focus,
 button.epl-button:focus,
 .epl-link--comparables:focus,
 body input[type=submit].epl-button:focus,
@@ -2268,7 +2265,6 @@ body input[type=button].epl-button:focus {
 }
 a.epl-button--on-dark,
 .epl-button--on-dark,
-.epl-map-btn--on-dark,
 button.epl-button--on-dark,
 .epl-link--comparables--on-dark,
 body input[type=submit].epl-button--on-dark,
@@ -2279,7 +2275,6 @@ body input[type=button].epl-button--on-dark {
 }
 a.epl-button--on-dark:hover,
 .epl-button--on-dark:hover,
-.epl-map-btn--on-dark:hover,
 button.epl-button--on-dark:hover,
 .epl-link--comparables--on-dark:hover,
 body input[type=submit].epl-button--on-dark:hover,
@@ -2290,7 +2285,6 @@ body input[type=button].epl-button--on-dark:hover {
 }
 a.epl-button--on-dark:focus,
 .epl-button--on-dark:focus,
-.epl-map-btn--on-dark:focus,
 button.epl-button--on-dark:focus,
 .epl-link--comparables--on-dark:focus,
 body input[type=submit].epl-button--on-dark:focus,
@@ -2301,7 +2295,6 @@ body input[type=button].epl-button--on-dark:focus {
 }
 a.epl-button--block,
 .epl-button--block,
-.epl-map-btn--block,
 button.epl-button--block,
 .epl-link--comparables--block,
 body input[type=submit].epl-button--block,
@@ -2310,7 +2303,6 @@ body input[type=button].epl-button--block {
 }
 a.epl-button--invert,
 .epl-button--invert,
-.epl-map-btn--invert,
 button.epl-button--invert,
 .epl-link--comparables--invert,
 body input[type=submit].epl-button--invert,
@@ -2321,7 +2313,6 @@ body input[type=button].epl-button--invert {
 }
 a.epl-button--invert:hover,
 .epl-button--invert:hover,
-.epl-map-btn--invert:hover,
 button.epl-button--invert:hover,
 .epl-link--comparables--invert:hover,
 body input[type=submit].epl-button--invert:hover,
@@ -2332,7 +2323,6 @@ body input[type=button].epl-button--invert:hover {
 }
 a.epl-button--invert:focus,
 .epl-button--invert:focus,
-.epl-map-btn--invert:focus,
 button.epl-button--invert:focus,
 .epl-link--comparables--invert:focus,
 body input[type=submit].epl-button--invert:focus,
@@ -2343,7 +2333,6 @@ body input[type=button].epl-button--invert:focus {
 }
 a.epl-button--text,
 .epl-button--text,
-.epl-map-btn--text,
 button.epl-button--text,
 .epl-link--comparables--text,
 body input[type=submit].epl-button--text,
@@ -2356,8 +2345,6 @@ body input[type=button].epl-button--text {
 a.epl-button--text:hover, a.epl-button--text:focus,
 .epl-button--text:hover,
 .epl-button--text:focus,
-.epl-map-btn--text:hover,
-.epl-map-btn--text:focus,
 button.epl-button--text:hover,
 button.epl-button--text:focus,
 .epl-link--comparables--text:hover,
@@ -2372,7 +2359,6 @@ body input[type=button].epl-button--text:focus {
 }
 a.epl-button--outline,
 .epl-button--outline,
-.epl-map-btn--outline,
 button.epl-button--outline,
 .epl-link--comparables--outline,
 body input[type=submit].epl-button--outline,
@@ -2384,7 +2370,6 @@ body input[type=button].epl-button--outline {
 }
 a.epl-button--outline:hover,
 .epl-button--outline:hover,
-.epl-map-btn--outline:hover,
 button.epl-button--outline:hover,
 .epl-link--comparables--outline:hover,
 body input[type=submit].epl-button--outline:hover,
@@ -2397,7 +2382,6 @@ body input[type=button].epl-button--outline:hover {
 }
 a.epl-button--outline:focus,
 .epl-button--outline:focus,
-.epl-map-btn--outline:focus,
 button.epl-button--outline:focus,
 .epl-link--comparables--outline:focus,
 body input[type=submit].epl-button--outline:focus,
@@ -2409,7 +2393,6 @@ body input[type=button].epl-button--outline:focus {
 }
 a.epl-button--alternate,
 .epl-button--alternate,
-.epl-map-btn--alternate,
 button.epl-button--alternate,
 .epl-link--comparables--alternate,
 body input[type=submit].epl-button--alternate,
@@ -2420,7 +2403,6 @@ body input[type=button].epl-button--alternate {
 }
 a.epl-button--alternate:hover,
 .epl-button--alternate:hover,
-.epl-map-btn--alternate:hover,
 button.epl-button--alternate:hover,
 .epl-link--comparables--alternate:hover,
 body input[type=submit].epl-button--alternate:hover,
@@ -2431,7 +2413,6 @@ body input[type=button].epl-button--alternate:hover {
 }
 a.epl-button--alternate:focus,
 .epl-button--alternate:focus,
-.epl-map-btn--alternate:focus,
 button.epl-button--alternate:focus,
 .epl-link--comparables--alternate:focus,
 body input[type=submit].epl-button--alternate:focus,
@@ -2442,7 +2423,6 @@ body input[type=button].epl-button--alternate:focus {
 }
 a.epl-button--wide,
 .epl-button--wide,
-.epl-map-btn--wide,
 button.epl-button--wide,
 .epl-link--comparables--wide,
 body input[type=submit].epl-button--wide,
@@ -3937,5 +3917,3 @@ ul.epl-striped > *:nth-child(2n+1) {
 .epl-template-twentytwenty .entry-content {
   max-width: 100%;
 }
-
-/*# sourceMappingURL=style-compiled.css.map */
