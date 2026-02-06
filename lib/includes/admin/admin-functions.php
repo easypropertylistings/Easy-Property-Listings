@@ -628,6 +628,22 @@ add_action( 'admin_notices', 'epl_upgrade_admin_notice' );
  */
 function epl_upgrade_db() {
 
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die(
+			wp_json_encode(
+				array(
+					'status' => 'fail',
+					'msg'    => esc_html__(
+						'Unauthorized',
+						'easy-property-listings'
+					),
+				)
+			)
+		);
+	}
+
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
 	if ( ! isset( $_POST['upgrade_to'] ) ) {
 		wp_die(
 			wp_json_encode(

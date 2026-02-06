@@ -395,6 +395,16 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		function save_image_order() {
 			
 			if ( is_admin() ) {
+				// Verify nonce
+				if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'epl_ajax_nonce' ) ) {
+					wp_send_json_error( 'Invalid nonce' );
+				}
+
+				// Verify capability
+				if ( ! current_user_can( 'edit_posts' ) ) {
+					wp_send_json_error( 'Unauthorized' );
+				}
+
 				if ( isset( $_POST['id'] ) && intval( $_POST['id'] ) > 0 ) {
 					$order = sanitize_text_field( $_POST['order'] );
 					
@@ -429,6 +439,15 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 			$post_id        = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
 	
 			if ( is_admin() && !empty( $image_id ) && !empty( $post_id ) ) {
+				// Verify nonce
+				if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'epl_ajax_nonce' ) ) {
+					wp_die( 'Invalid nonce' );
+				}
+
+				// Verify capability
+				if ( ! current_user_can( 'edit_post', $post_id ) ) {
+					wp_die( 'Unauthorized' );
+				}
 				
 				// Get current parent images to check if this is a custom image
 				$parent_attachments = $this->get_parent_images( get_post( $post_id ) );
