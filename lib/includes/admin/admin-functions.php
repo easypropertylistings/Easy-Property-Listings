@@ -625,6 +625,7 @@ add_action( 'admin_notices', 'epl_upgrade_admin_notice' );
  * Upgrade EPL Database to 3.3
  *
  * @since 3.3.0
+ * @since 3.5.18 Added nonce check.
  */
 function epl_upgrade_db() {
 
