@@ -1,0 +1,30 @@
+/**
+ * Pagination Component Styles
+ */
+
+.epl-pagination {
+	margin-top: 20px;
+	padding: 16px;
+	background: $epl-white;
+	border: 1px solid $epl-border;
+	border-radius: 4px;
+
+	.epl-pagination-info {
+		color: $epl-gray;
+		font-size: 13px;
+	}
+
+	.epl-pagination-button {
+		min-width: 36px;
+		height: 36px;
+
+		&.epl-pagination-number {
+			padding: 0 12px;
+		}
+	}
+
+	.epl-pagination-ellipsis {
+		padding: 0 8px;
+		color: $epl-gray;
+	}
+}

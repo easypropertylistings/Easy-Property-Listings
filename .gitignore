@@ -2,8 +2,8 @@
 .idea
 .nova
 
-# Grunt
-/node_modules/
+# Grunt / Node
+**/node_modules/
 
 # OS X metadata
 .DS_Store

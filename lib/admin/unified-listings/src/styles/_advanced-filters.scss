@@ -1,0 +1,135 @@
+
+// Advanced Filters Toggle Button
+.epl-advanced-filters-toggle {
+	border: 1px solid var(--epl-border);
+	border-radius: var(--epl-radius);
+	height: 36px;
+	width: 36px;
+	padding: 0;
+	color: var(--epl-text-secondary);
+	background: var(--epl-bg-white);
+	transition: all var(--epl-transition);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		border-color: var(--epl-text-secondary);
+		color: var(--epl-text-primary);
+		background: var(--epl-bg-hover);
+	}
+
+	&.has-active-filters {
+		background: var(--epl-primary-light);
+		border-color: var(--epl-primary);
+		color: var(--epl-primary);
+	}
+}
+
+// Advanced Filters Modal
+.epl-advanced-filters-modal {
+	.components-modal__content {
+		min-width: 480px;
+		max-width: 560px;
+		max-height: 80vh;
+		overflow-y: auto;
+		padding-bottom: 80px; // Space for footer
+	}
+
+	.epl-filter-section {
+		margin-bottom: 20px;
+		padding-bottom: 16px;
+		border-bottom: 1px solid var(--epl-border-light);
+
+		&:last-of-type {
+			border-bottom: none;
+		}
+
+		h4 {
+			margin: 0 0 12px;
+			font-size: 13px;
+			font-weight: 600;
+			color: var(--epl-text-primary);
+		}
+
+		.components-base-control {
+			margin-bottom: 0;
+		}
+
+		// Fix combobox dropdown to scroll
+		.components-combobox-control__suggestions-container {
+			max-height: 200px;
+			overflow-y: auto;
+		}
+	}
+
+	.epl-modal-footer {
+		position: sticky;
+		bottom: -80px;
+		margin: 24px -24px -80px;
+		padding: 16px 24px;
+		background: var(--epl-bg-white);
+		border-top: 1px solid var(--epl-border);
+	}
+}
+
+// View Settings Modal - increase width
+.epl-view-settings-modal {
+	.components-modal__content {
+		min-width: 680px;
+		max-width: 780px;
+	}
+}
+
+// Quick Edit Modal
+.epl-quick-edit-modal {
+	.components-modal__content {
+		min-width: 400px;
+		max-width: 480px;
+	}
+
+	.epl-quick-edit-title {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding-bottom: 16px;
+		margin-bottom: 16px;
+		border-bottom: 1px solid var(--epl-border);
+
+		strong {
+			font-size: 14px;
+		}
+
+		.epl-quick-edit-id {
+			color: var(--epl-text-secondary);
+			font-size: 12px;
+		}
+	}
+
+	.epl-quick-edit-error {
+		background: var(--epl-danger-light);
+		color: var(--epl-danger);
+		padding: 10px 12px;
+		border-radius: var(--epl-radius);
+		margin-bottom: 16px;
+	}
+
+	.epl-quick-edit-fields {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		.components-base-control {
+			margin-bottom: 0;
+		}
+	}
+
+	.epl-quick-edit-footer {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+		margin-top: 24px;
+		padding-top: 16px;
+		border-top: 1px solid var(--epl-border);
+	}
+}
