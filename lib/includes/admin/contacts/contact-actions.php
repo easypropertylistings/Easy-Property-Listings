@@ -547,6 +547,10 @@ function epl_contact_category_update() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
+	if ( ! epl_contact_access() ) {
+		wp_die( 'Unauthorized' );
+	}
+
 	if ( ! empty( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 && ! empty( $_POST['type'] ) ) {
 
 		$contact = new EPL_Contact( sanitize_text_field( wp_unslash( $_POST['contact_id'] ) ) );
@@ -565,6 +569,10 @@ add_action( 'wp_ajax_epl_contact_category_update', 'epl_contact_category_update'
 function epl_contact_tag_add() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+	if ( ! epl_contact_access() ) {
+		wp_die( 'Unauthorized' );
+	}
 
 	if ( ( ! empty( $_POST['term_id'] ) ) ) {
 
@@ -607,6 +615,10 @@ add_action( 'wp_ajax_contact_tags_update', 'epl_contact_tag_add' );
 function epl_contact_tag_remove() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+	if ( ! epl_contact_access() ) {
+		wp_die( 'Unauthorized' );
+	}
 
 	if ( ! empty( $_POST['term_id'] ) && ! empty( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 && (int) $_POST['term_id'] > 0 ) {
 
