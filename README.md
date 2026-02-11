@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.18 February 6. 2027 =
+
+-   Fix: Security patches.
+
 = 3.5.17 January 13. 2026 =
 
 -   Tweak: Contact form email address validation check and message.

@@ -542,6 +542,7 @@ add_action( 'epl_new-contact', 'epl_new_contact', 10, 1 );
  * Update contact category
  *
  * @since 3.0
+ * @since 3.5.18 Fix security issues.
  */
 function epl_contact_category_update() {
 
@@ -565,6 +566,7 @@ add_action( 'wp_ajax_epl_contact_category_update', 'epl_contact_category_update'
  * Add/Update contact tags
  *
  * @since 3.0
+ * @since 3.5.18 Fix security issues.
  */
 function epl_contact_tag_add() {
 
@@ -611,6 +613,7 @@ add_action( 'wp_ajax_contact_tags_update', 'epl_contact_tag_add' );
  * Delete contact tags
  *
  * @since 3.0
+ * @since 3.5.18 Fix security issues.
  */
 function epl_contact_tag_remove() {
 
