@@ -107,7 +107,6 @@ function epl_reports_tab_reports() {
 	}
 
 	do_action( 'epl_reports_view_' . $current_view );
-
 }
 add_action( 'epl_reports_tab_reports', 'epl_reports_tab_reports' );
 

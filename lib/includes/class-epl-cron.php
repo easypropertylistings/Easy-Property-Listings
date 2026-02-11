@@ -89,6 +89,5 @@ class EPL_Cron {
 			wp_schedule_event( current_time( 'timestamp' ), 'daily', 'epl_daily_scheduled_events' );
 		}
 	}
-
 }
 $epl_cron = new EPL_Cron();

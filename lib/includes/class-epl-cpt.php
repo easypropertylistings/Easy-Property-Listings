@@ -581,7 +581,6 @@ class EPL_CPT {
 
 		// Create array used when registering taxonomies.
 		$this->taxonomy_settings[ $taxonomy_name ] = $options;
-
 	}
 
 	/**
@@ -937,7 +936,6 @@ class EPL_CPT {
 	public function populate_column( $column_name, $function ) {
 
 		$this->custom_populate_columns[ $column_name ] = $function;
-
 	}
 
 	/**
@@ -994,7 +992,6 @@ class EPL_CPT {
 
 		// Run filter to sort columns when requested.
 		$this->add_filter( 'request', array( &$this, 'sort_columns' ) );
-
 	}
 
 	/**

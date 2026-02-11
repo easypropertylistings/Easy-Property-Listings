@@ -41,7 +41,6 @@ function epl_get_option( $key = '', $default = false ) {
 
 	$value = apply_filters( 'epl_get_option', $value, $key, $default );
 	return apply_filters( 'epl_get_option_' . $key, $value, $key, $default );
-
 }
 
 /**
@@ -985,7 +984,6 @@ function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Au
 	$schedule_date = new DateTime( $date_time, new DateTimeZone( $new_timezone ) );
 	$schedule_date->setTimeZone( new DateTimeZone( $old_time_zone ) );
 	return $schedule_date->format( $format );
-
 }
 
 /**
@@ -2605,7 +2603,7 @@ function epl_generate_unique_tab_counter() {
 		$epl_search_shortcode_counter = 0;
 	}
 
-	$epl_search_shortcode_counter++;
+	++$epl_search_shortcode_counter;
 	return $epl_search_shortcode_counter;
 }
 
@@ -2623,7 +2621,7 @@ function epl_generate_search_instance_counter() {
 		$epl_search_instance_counter = 0;
 	}
 
-	$epl_search_instance_counter++;
+	++$epl_search_instance_counter;
 	return $epl_search_instance_counter;
 }
 

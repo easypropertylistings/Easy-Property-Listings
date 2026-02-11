@@ -99,7 +99,6 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 		$this->read_data();
 
 		$this->set_cookie();
-
 	}
 
 	/**

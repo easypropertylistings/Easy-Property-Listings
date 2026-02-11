@@ -99,7 +99,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 				);
 			}
 
-			$i++;
+			++$i;
 		}
 
 		foreach ( $report_dates as $report_date ) {
@@ -169,7 +169,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 						$date                    = mktime( 0, 0, 0, $i, $d, $y ) * 1000;
 						$sales_data[]            = array( $date, $sales );
 						$current_listings_data[] = array( $date, $current_listings );
-						$d++;
+						++$d;
 
 					}
 				} else {
@@ -196,11 +196,11 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 
 				}
 
-				$i++;
+				++$i;
 
 			}
 
-			$y++;
+			++$y;
 		}
 	}
 
@@ -286,7 +286,6 @@ function epl_parse_report_dates( $data ) {
 	$dates = epl_get_report_dates();
 	$view  = epl_get_reporting_view();
 	wp_safe_redirect( add_query_arg( $dates, admin_url( 'admin.php?page=epl-reports&view=' . esc_attr( $view ) ) ) );
-
 }
 add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
 
@@ -453,18 +452,18 @@ function epl_get_report_dates() {
 
 			if ( 1 === $month && 1 === $day ) {
 
-				$year--;
+				--$year;
 				$month = 12;
 				$day   = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
 			} elseif ( $month > 1 && 1 === $day ) {
 
-				$month--;
+				--$month;
 				$day = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
 			} else {
 
-				$day--;
+				--$day;
 
 			}
 

@@ -34,7 +34,6 @@ class EPL_Listing_Elements {
 		add_action( 'epl_suburb_profile', array( $this, 'epl_suburb_profile' ) );
 		add_action( 'epl_listing_address', array( $this, 'epl_formatted_address' ) );
 		add_shortcode( 'epl_listing_excerpt', array( $this, 'epl_the_excerpt' ) );
-
 	}
 
 	/**
@@ -177,7 +176,6 @@ class EPL_Listing_Elements {
 		}
 
 		return $return;
-
 	}
 
 	/**
@@ -212,7 +210,6 @@ class EPL_Listing_Elements {
 		global $property;
 		return esc_html( epl_get_the_excerpt() );
 	}
-
 }
 
 new EPL_Listing_Elements();

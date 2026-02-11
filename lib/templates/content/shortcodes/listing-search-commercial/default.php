@@ -71,7 +71,7 @@ if ( ! empty( $selected_post_types ) ) :
 			}
 			$post_type_label = isset( $epl_settings[ 'widget_label_' . $post_type ] ) ? $epl_settings[ 'widget_label_' . $post_type ] : $post_type;
 			echo '<li data-tab="epl_ps_tab_' . esc_attr( $tabcounter ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
-			$tabcounter++;
+			++$tabcounter;
 
 		endforeach;
 		echo '</ul>';
@@ -136,7 +136,7 @@ if ( ! empty( $selected_post_types ) ) :
 			</form>
 			</div>
 		<?php
-		$tabcounter++;
+		++$tabcounter;
 	endforeach;
 	?>
 	</div>

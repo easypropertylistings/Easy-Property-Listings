@@ -33,7 +33,7 @@ get_header(); ?>
 					} elseif ( is_tag() ) { // translators: Tag Archive.
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), single_tag_title( '', false ) );
 					} elseif ( is_tax() ) { // translators: Tag Archive.
-						$term = get_queried_object(); 
+						$term  = get_queried_object();
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), $term->name );
 					} elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // translators: Post Type Archive.
 						$title = post_type_archive_title( '', false );

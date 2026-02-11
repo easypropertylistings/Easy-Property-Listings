@@ -109,7 +109,7 @@ function epl_admin_sidebar() {
 	$i               = 0;
 	foreach ( $service_banners as $banner ) {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
-		$i ++;
+		++$i;
 	}
 	?>
 	<div class="epl-admin-offer" style="margin-bottom: 1em;">
@@ -148,7 +148,7 @@ function epl_dashboard_widget_offer() {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '">
 			<img style="margin-right: 0.5em" width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
 		      </a>';
-		$i ++;
+		++$i;
 	}
 	?>
 
@@ -206,7 +206,7 @@ function epl_dashboard_widget_offer_post_types() {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '">
 			<img style="display: block; float: left; margin: 0.5em 0.5em 0.5em 0" width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
 		      </a>';
-		$i ++;
+		++$i;
 	}
 	?>
 	<?php
@@ -450,7 +450,6 @@ function epl_settings_reset() {
 	<?php
 
 	do_action( 'epl_post_settings_reset_fields' );
-
 }
 
 /**

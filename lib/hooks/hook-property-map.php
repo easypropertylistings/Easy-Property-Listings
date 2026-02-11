@@ -71,7 +71,8 @@ add_action( 'epl_property_map', 'epl_property_map_default_callback' );
  *
  * @since 3.3.0
  */
-function epl_map_api_key_warning() { ?>
+function epl_map_api_key_warning() {
+	?>
 
 	<div class="epl-danger epl-warning-map-key">
 		<p><?php esc_html_e( 'Ensure you have set a Google Maps API Key from Dashboard > Easy Property Listings > Settings.', 'easy-property-listings' ); ?>

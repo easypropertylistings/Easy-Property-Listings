@@ -248,7 +248,6 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 					$this->object = new EPL_Author( $author_id );
 			}
 			$this->import_class_properties();
-
 		}
 
 		/**

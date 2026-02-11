@@ -123,7 +123,6 @@ function epl_load_svg_listing_icons_head() {
 
 		echo wp_kses( $svg_icons, $allowed_tags );
 	}
-
 }
 
 
@@ -434,6 +433,5 @@ function epl_init_svgs() {
 	 */
 	add_action( 'wp_body_open', 'epl_load_svg_social_icons_head', 10 );
 	add_action( 'wp_footer', 'epl_load_svg_social_icons_head', 900 );
-
 }
 add_action( 'wp', 'epl_init_svgs' );

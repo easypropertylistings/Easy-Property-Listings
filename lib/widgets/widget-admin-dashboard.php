@@ -32,7 +32,6 @@ function epl_add_dashboard_widgets() {
 		__( 'Easy Property Listings Activities', 'easy-property-listings' ),
 		'epl_dashboard_activity_widget'
 	);
-
 }
 add_action( 'wp_dashboard_setup', 'epl_add_dashboard_widgets' );
 
@@ -63,7 +62,7 @@ function epl_status_dashboard_widget_callback() {
 
 					</li>
 					<?php
-					$counter++;
+					++$counter;
 			}
 		}
 		?>

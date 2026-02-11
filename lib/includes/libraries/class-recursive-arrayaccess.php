@@ -85,9 +85,8 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 * @param mixed $offset An offset to check for.
 	 *
 	 * @return boolean true on success or false on failure.
-         * 
 	 */
-        #[\ReturnTypeWillChange]
+		#[\ReturnTypeWillChange]
 	public function offsetExists( $offset ) {
 		return isset( $this->container[ $offset ] );
 	}
@@ -101,7 +100,7 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 *
 	 * @return mixed Can return all value types.
 	 */
-        #[\ReturnTypeWillChange]
+		#[\ReturnTypeWillChange]
 	public function offsetGet( $offset ) {
 		return isset( $this->container[ $offset ] ) ? $this->container[ $offset ] : null;
 	}
@@ -116,7 +115,7 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 *
 	 * @return void
 	 */
-        #[\ReturnTypeWillChange]
+		#[\ReturnTypeWillChange]
 	public function offsetSet( $offset, $data ) {
 		if ( is_array( $data ) ) {
 			$data = new self( $data );
@@ -139,7 +138,7 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 *
 	 * @return void
 	 */
-        #[\ReturnTypeWillChange]
+		#[\ReturnTypeWillChange]
 	public function offsetUnset( $offset ) {
 		unset( $this->container[ $offset ] );
 	}

@@ -207,7 +207,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 					}
 				}
 			}
-
 		}
 
 		/**
@@ -1491,7 +1490,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 					break;
 			}
 			return apply_filters( 'epl_get_property_parking', $return, $returntype, $value, $label );
-
 		}
 
 		/**
@@ -1656,7 +1654,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				}
 				return apply_filters( 'epl_get_property_air_conditioning', $return, $returntype, $value, $label );
 			}
-
 		}
 
 		/**

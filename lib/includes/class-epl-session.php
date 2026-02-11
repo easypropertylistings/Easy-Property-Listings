@@ -106,7 +106,6 @@ class EPL_Session {
 		} else {
 			add_action( 'init', array( $this, 'init' ), -1 );
 		}
-
 	}
 
 	/**
@@ -311,7 +310,6 @@ class EPL_Session {
 		}
 
 		return apply_filters( 'epl_start_session', $start_session );
-
 	}
 
 	/**
@@ -325,7 +323,8 @@ class EPL_Session {
 	public function get_blacklist() {
 
 		$blacklist = apply_filters(
-			'epl_session_start_uri_blacklist', array(
+			'epl_session_start_uri_blacklist',
+			array(
 				'feed',
 				'feed/rss',
 				'feed/rss2',
@@ -360,5 +359,4 @@ class EPL_Session {
 			session_start();
 		}
 	}
-
 }

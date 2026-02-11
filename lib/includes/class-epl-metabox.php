@@ -73,7 +73,6 @@ class EPL_METABOX {
 
 		// Save meta boxes.
 		$this->add_action( 'save_post', array( &$this, 'save_meta_box' ) );
-
 	}
 
 	/**

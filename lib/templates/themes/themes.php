@@ -101,7 +101,6 @@ function epl_load_core_templates( $template ) {
 		}
 	}
 	return $template;
-
 }
 add_filter( 'template_include', 'epl_load_core_templates' );
 

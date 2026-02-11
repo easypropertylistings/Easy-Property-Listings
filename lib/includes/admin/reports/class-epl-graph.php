@@ -180,7 +180,7 @@ class EPL_Graph {
 							<?php endif; ?>
 						},
 							<?php
-							$yaxis_count++;
+							++$yaxis_count;
 							endforeach;
 						?>
 					],

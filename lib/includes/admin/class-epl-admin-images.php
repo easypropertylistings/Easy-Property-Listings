@@ -439,7 +439,6 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 				/>
 			</div> 
 			<?php
-
 		}
 
 		/**
@@ -596,7 +595,6 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 					update_post_meta( $parent->ID, $order_meta_key, $order . ',' . $post_ID );
 				}
 			}
-
 		}
 	}
 endif;

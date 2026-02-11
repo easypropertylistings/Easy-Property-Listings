@@ -906,7 +906,7 @@ function epl_add_contact_screen_options() {
 		'option'  => 'contacts_per_page',
 	);
 	add_screen_option( $option, $args );
-	include_once dirname( __FILE__ ) . '/class-epl-contact-reports-table.php';
+	include_once __DIR__ . '/class-epl-contact-reports-table.php';
 	$epl_contacts_table = new EPL_Contact_Reports_Table();
 }
 

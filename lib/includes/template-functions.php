@@ -71,7 +71,7 @@ add_action( 'the_post', 'epl_reset_property_object' );
  */
 function epl_create_property_object() {
 
-	global $post,$property,$epl_author,$epl_author_secondary, $epl_author_third, $epl_author_fourth;
+	global $post, $property, $epl_author, $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 
 	if ( is_author() ) {
 		$author_id  = get_query_var( 'author' );
@@ -167,7 +167,6 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 	} else {
 		do_action( 'epl_no_property_featured_image', $args );
 	}
-
 }
 add_action( 'epl_property_featured_image', 'epl_property_featured_image', 10, 3 );
 add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
@@ -224,7 +223,6 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 	} else {
 		do_action( 'epl_no_archive_featured_image', $args );
 	}
-
 }
 add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 4 );
 
@@ -674,7 +672,7 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
 		return;
 	}
 
-	global $property,$epl_author,$epl_author_secondary,$epl_author_third, $epl_author_fourth;
+	global $property, $epl_author, $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	if ( is_null( $epl_author ) ) {
 		return;
 	}
@@ -1021,7 +1019,7 @@ function epl_property_available_dates() {
 		! empty( $date_avail )
 		&& 'leased' !== $property->get_property_meta( 'property_status' ) ) {
 		// Rental Specifics.
-		echo '<div class="property-meta date-available">' . wp_kses_post( apply_filters( 'epl_property_sub_title_available_from_label', __( 'Available from', 'easy-property-listings' ) ) ) . ' ', wp_kses_post( $property->get_property_available() ) , '</div>';
+		echo '<div class="property-meta date-available">' . wp_kses_post( apply_filters( 'epl_property_sub_title_available_from_label', __( 'Available from', 'easy-property-listings' ) ) ) . ' ', wp_kses_post( $property->get_property_available() ), '</div>';
 	}
 }
 add_action( 'epl_property_available_dates', 'epl_property_available_dates' );
@@ -1271,7 +1269,6 @@ function epl_property_video_callback( $width = 600 ) {
 	if ( '' !== $property_video_url ) {
 		echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
 	}
-
 }
 add_action( 'epl_property_video', 'epl_property_video_callback', 10, 1 );
 
@@ -1825,7 +1822,6 @@ function epl_tools_utility_wrapper( $attributes = array() ) {
 
 	// Wrapper End.
 	do_action( 'epl_archive_utility_wrap_end', $attributes );
-
 }
 add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
 
@@ -2679,7 +2675,7 @@ function epl_hide_map_from_front() {
 	$epl_posts = epl_get_active_post_types();
 	$epl_posts = array_keys( $epl_posts );
 
-	global $post,$property;
+	global $post, $property;
 
 	if ( is_single() && in_array( $post->post_type, $epl_posts, true ) ) {
 
@@ -2715,7 +2711,7 @@ function epl_hide_author_box_from_front() {
 	$epl_posts = epl_get_active_post_types();
 	$epl_posts = array_keys( $epl_posts );
 
-	global $post,$property;
+	global $post, $property;
 
 	if ( is_single() && in_array( $post->post_type, $epl_posts, true ) ) {
 
@@ -2828,7 +2824,6 @@ function epl_apply_feeling_lucky_config() {
 			add_action( 'epl_compatibility_archive_class', 'epl_compatibility_archive_class_callback' );
 		}
 	}
-
 }
 add_action( 'wp', 'epl_apply_feeling_lucky_config', 1 );
 
@@ -3163,7 +3158,6 @@ function epl_get_inspection_time_format() {
 	}
 
 	return apply_filters( 'epl_inspection_time_format', $time_format );
-
 }
 
 /**
@@ -3329,7 +3323,6 @@ function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 	}
 
 	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $title ) . '</h3>';
-
 }
 add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_callback' );
 
@@ -3477,7 +3470,7 @@ function epl_contact_capture_action() {
 	$email = sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) );
 
 	// Check if email is not valid, skip further processing and display message.
-	if( ! is_email( $email ) ) {
+	if ( ! is_email( $email ) ) {
 		wp_die(
 			wp_json_encode(
 				array(
@@ -3676,13 +3669,12 @@ function epl_stickers( $options = array(), $stickers = array() ) {
 			?>
 		</<?php echo esc_attr( $options['sticker_tag'] ); ?>>
 			<?php
-				$sticker_counts++;
+				++$sticker_counts;
 	}
 
 	if ( $options['wrap'] ) {
 		echo '</' . esc_attr( $options['wrapper_tag'] ) . '>';
 	}
-
 }
 
 /**
@@ -3904,11 +3896,11 @@ function epl_sticker_is_condition_valid( $condition, $compare = '=' ) {
 		if ( is_array( $value ) ) {
 
 			if ( in_array( get_property_meta( $key ), $value, true ) ) {
-				$condition_met++;
+				++$condition_met;
 			}
 		} else {
 			if ( get_property_meta( $key ) === $value ) {
-				$condition_met++;
+				++$condition_met;
 			}
 		}
 	}

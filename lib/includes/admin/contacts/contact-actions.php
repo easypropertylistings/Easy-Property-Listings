@@ -94,7 +94,6 @@ function epl_edit_contact( $args ) {
 	}
 
 	return $output;
-
 }
 add_action( 'epl_edit-contact', 'epl_edit_contact', 10, 1 );
 
@@ -171,7 +170,6 @@ function epl_contact_delete( $args ) {
 
 	wp_safe_redirect( $redirect );
 	exit;
-
 }
 add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
 
@@ -258,7 +256,6 @@ function epl_contact_save_note( $args ) {
 	}
 
 	return false;
-
 }
 add_action( 'epl_add-contact-note', 'epl_contact_save_note', 10, 1 );
 
@@ -346,7 +343,6 @@ function epl_contact_save_listing( $args ) {
 	}
 
 	return false;
-
 }
 add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
 
@@ -404,7 +400,6 @@ function epl_contact_assign_existing_listing( $args ) {
 	}
 
 	return false;
-
 }
 add_action( 'epl_add-existing-contact-listing', 'epl_contact_assign_existing_listing', 10, 1 );
 
@@ -462,7 +457,6 @@ function epl_meta_contact( $args ) {
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
 	wp_safe_redirect( $redirect );
 	exit;
-
 }
 add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
 
@@ -534,7 +528,6 @@ function epl_new_contact( $args ) {
 		$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . esc_attr( $contact_id ) );
 		wp_safe_redirect( $redirect );
 	exit;
-
 }
 add_action( 'epl_new-contact', 'epl_new_contact', 10, 1 );
 

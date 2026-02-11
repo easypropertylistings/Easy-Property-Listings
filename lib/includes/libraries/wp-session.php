@@ -11,7 +11,9 @@
  */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Return the current cache expire setting.
@@ -135,10 +137,10 @@ function wp_session_cleanup() {
 	if ( ! defined( 'WP_INSTALLING' ) ) {
 		$expiration_keys = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE '_wp_session_expires_%'" );
 
-		$now = current_time( 'timestamp' );
+		$now              = current_time( 'timestamp' );
 		$expired_sessions = array();
 
-		foreach( $expiration_keys as $expiration ) {
+		foreach ( $expiration_keys as $expiration ) {
 
 			// If the session has expired
 			if ( $now > intval( $expiration->option_value ) ) {
@@ -158,7 +160,7 @@ function wp_session_cleanup() {
 		// Delete all expired sessions in a single query
 		if ( ! empty( $expired_sessions ) ) {
 			$option_names = implode( "','", $expired_sessions );
-			$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name IN ('$option_names')"  );
+			$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name IN ('$option_names')" );
 		}
 	}
 
