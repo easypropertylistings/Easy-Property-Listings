@@ -207,7 +207,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 					}
 				}
 			}
-
 		}
 
 		/**
@@ -297,14 +296,14 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 							if ( ! empty( $element ) ) {
 
-								if ( in_array( $key, $not_date ) ) {
+								if ( in_array( $key, $not_date, true ) ) {
 
-									// handle inspections that are not date.
+									// Handle inspections that are not date.
 									$return .= $element;
 
 								} else {
 
-									$href = get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element ) ) . '&propid=' . $this->post->ID;
+									$href = get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element, ENT_QUOTES, 'UTF-8' ) ) . '&propid=' . $this->post->ID;
 
 									$href = apply_filters( 'epl_inspection_link', $href );
 
@@ -412,7 +411,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 								$this->meta['property_auction'][0] = $epl_date->format( $primary_feed_format );
 							}
 						}
-						return apply_filters( 'epl_get_property_auction', date( $format, strtotime( $this->meta['property_auction'][0] ) ) );
+						return apply_filters( 'epl_get_property_auction', gmdate( $format, strtotime( $this->meta['property_auction'][0] ) ) );
 					}
 				}
 			}
@@ -603,10 +602,10 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 						$av_date = ( isset( $av_date_array['year'] ) && isset( $av_date_array['month'] ) && isset( $av_date_array['day'] ) ) ?
 							$av_date_array['year'] . '-' . $av_date_array['month'] . '-' . $av_date_array['day'] : $this->meta['property_date_available'][0];
-						if ( current_time( 'timestamp' ) > strtotime( $av_date ) ) {
+						if ( current_time( 'timestamp' ) > strtotime( $av_date ) ) { // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
 							return apply_filters( 'epl_property_sub_title_available_now_label', __( 'now', 'easy-property-listings' ) );
 						} else {
-							return apply_filters( 'epl_get_property_available', date( $format, strtotime( $av_date ) ) );
+							return apply_filters( 'epl_get_property_available', gmdate( $format, strtotime( $av_date ) ) );
 						}
 					}
 				}
@@ -617,13 +616,13 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * Land category
 		 *
 		 * @param string $tag HTML wrapper type, default div.
-		 * @param string $class name, default land-category.
+		 * @param string $class_name name, default land-category.
 		 * @return string
 		 *
 		 * @since 2.0.0
 		 * @since 3.4.42 Fix: Filter name was incorrect changed to epl_get_property_land_category.
 		 */
-		public function get_property_land_category( $tag = 'div', $class = 'land-category' ) {
+		public function get_property_land_category( $tag = 'div', $class_name = 'land-category' ) {
 			if ( ! in_array( $this->post_type, array( 'land', 'commercial_land' ), true ) ) {
 				return null;
 			}
@@ -635,7 +634,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			} elseif ( 'none' === $tag || 'value' === $tag ) {
 				$land_category = $land_category;
 			} else {
-				$land_category = '<' . $tag . ' class="' . $class . '">' . $land_category . '</' . $tag . '>';
+				$land_category = '<' . $tag . ' class="' . $class_name . '">' . $land_category . '</' . $tag . '>';
 			}
 			return apply_filters( 'epl_get_property_land_category', $land_category );
 		}
@@ -687,10 +686,10 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0
 		 * @param string $tag HTML wrapper type, default div.
-		 * @param string $class name, default property-category.
+		 * @param string $class_name name, default property-category.
 		 * @return string
 		 */
-		public function get_property_category( $tag = 'div', $class = 'property-category' ) {
+		public function get_property_category( $tag = 'div', $class_name = 'property-category' ) {
 
 			$property_category = epl_listing_meta_property_category_value( $this->get_property_meta( 'property_category' ) );
 
@@ -699,7 +698,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			} elseif ( 'none' === $tag || 'value' === $tag ) {
 				$property_category = $property_category;
 			} else {
-				$property_category = '<' . $tag . ' class="' . $class . '">' . $property_category . '</' . $tag . '>';
+				$property_category = '<' . $tag . ' class="' . $class_name . '">' . $property_category . '</' . $tag . '>';
 			}
 			return apply_filters( 'epl_get_property_category', $property_category );
 		}
@@ -709,10 +708,10 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0
 		 * @param string $tag HTML wrapper type, default div.
-		 * @param string $class name, default commercial-category.
+		 * @param string $class_name name, default commercial-category.
 		 * @return string
 		 */
-		public function get_property_commercial_category( $tag = 'div', $class = 'commercial-category' ) {
+		public function get_property_commercial_category( $tag = 'div', $class_name = 'commercial-category' ) {
 			$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta( 'property_commercial_category' ) );
 
 			if ( empty( $property_commercial_category ) ) {
@@ -720,7 +719,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			} elseif ( 'none' === $tag || 'value' === $tag ) {
 				$property_commercial_category = $property_commercial_category;
 			} else {
-				$property_commercial_category = '<' . $tag . ' class="' . $class . '">' . $property_commercial_category . '</' . $tag . '>';
+				$property_commercial_category = '<' . $tag . ' class="' . $class_name . '">' . $property_commercial_category . '</' . $tag . '>';
 			}
 			return apply_filters( 'epl_get_property_commercial_category', $property_commercial_category );
 		}
@@ -730,10 +729,10 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 3.1.12
 		 * @param string $tag HTML wrapper type, default div.
-		 * @param string $class name, default rural-category.
+		 * @param string $class_name name, default rural-category.
 		 * @return string
 		 */
-		public function get_property_rural_category( $tag = 'div', $class = 'rural-category' ) {
+		public function get_property_rural_category( $tag = 'div', $class_name = 'rural-category' ) {
 			$property_rural_category = epl_listing_load_meta_rural_category_value( $this->get_property_meta( 'property_rural_category' ) );
 
 			if ( empty( $property_rural_category ) ) {
@@ -741,7 +740,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			} elseif ( 'none' === $tag || 'value' === $tag ) {
 				$property_rural_category = $property_rural_category;
 			} else {
-				$property_rural_category = '<' . $tag . ' class="' . $class . '">' . $property_rural_category . '</' . $tag . '>';
+				$property_rural_category = '<' . $tag . ' class="' . $class_name . '">' . $property_rural_category . '</' . $tag . '>';
 			}
 			return apply_filters( 'epl_get_property_rural_category', $property_rural_category );
 		}
@@ -1491,7 +1490,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 					break;
 			}
 			return apply_filters( 'epl_get_property_parking', $return, $returntype, $value, $label );
-
 		}
 
 		/**
@@ -1656,7 +1654,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				}
 				return apply_filters( 'epl_get_property_air_conditioning', $return, $returntype, $value, $label );
 			}
-
 		}
 
 		/**

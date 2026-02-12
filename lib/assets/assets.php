@@ -214,7 +214,6 @@ function epl_wp_enqueue_scripts() {
 
 	wp_localize_script( 'epl-front-scripts', 'epl_frontend_vars', $js_vars );
 	wp_enqueue_script( 'epl-front-scripts' );
-
 }
 add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
 
@@ -285,5 +284,4 @@ function epl_get_range_slider_label_html() {
 	$html = ob_get_clean();
 
 	return apply_filters( 'epl_get_range_slider_label_html', $html );
-
 }

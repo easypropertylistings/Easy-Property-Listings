@@ -204,16 +204,16 @@ class EPL_CPT {
 	 *
 	 * Helper function to get an object variable.
 	 *
-	 * @param string $var The variable you would like to retrieve.
+	 * @param string $variable The variable you would like to retrieve.
 	 * @return mixed Returns the value on success, boolean false whe it fails.
 	 */
-	public function get( $var ) {
+	public function get( $variable ) {
 
 		// If the variable exists.
-		if ( $this->$var ) {
+		if ( $this->$variable ) {
 
 			// On success return the value.
-			return $this->$var;
+			return $this->$variable;
 
 		} else {
 
@@ -228,10 +228,10 @@ class EPL_CPT {
 	 * Helper function used to set an object variable. Can overwrite existsing
 	 * variables or create new ones. Cannot overwrite reserved variables.
 	 *
-	 * @param mixed $var The variable you would like to create/overwrite.
+	 * @param mixed $variable The variable you would like to create/overwrite.
 	 * @param mixed $value The value you would like to set to the variable.
 	 */
-	public function set( $var, $value ) {
+	public function set( $variable, $value ) {
 
 		// An array of reserved variables that cannot be overwritten.
 		$reserved = array(
@@ -245,10 +245,10 @@ class EPL_CPT {
 		);
 
 		// If the variable is not a reserved variable.
-		if ( ! in_array( $var, $reserved, true ) ) {
+		if ( ! in_array( $variable, $reserved, true ) ) {
 
 			// Write variable and value.
-			$this->$var = $value;
+			$this->$variable = $value;
 		}
 	}
 
@@ -258,14 +258,14 @@ class EPL_CPT {
 	 * Helper function to add add_action WordPress filters.
 	 *
 	 * @param string  $action Name of the action.
-	 * @param string  $function Function to hook that will run on action.
+	 * @param string  $callback Function to hook that will run on action.
 	 * @param int     $priority Order in which to execute the function, relation to other functions hooked to this action.
 	 * @param integer $accepted_args The number of arguments the function accepts.
 	 */
-	public function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
+	public function add_action( $action, $callback, $priority = 10, $accepted_args = 1 ) {
 
 		// Pass variables into WordPress add_action function.
-		add_action( $action, $function, $priority, $accepted_args );
+		add_action( $action, $callback, $priority, $accepted_args );
 	}
 
 	/**
@@ -276,14 +276,14 @@ class EPL_CPT {
 	 * @see http://codex.wordpress.org/Function_Reference/add_filter
 	 *
 	 * @param  string $action           Name of the action to hook to, e.g 'init'.
-	 * @param  string $function         Function to hook that will run on @action.
+	 * @param  string $callback         Function to hook that will run on @action.
 	 * @param  int    $priority         Order in which to execute the function, relation to other function hooked to this action.
 	 * @param  int    $accepted_args    The number of arguements the function accepts.
 	 */
-	public function add_filter( $action, $function, $priority = 10, $accepted_args = 1 ) {
+	public function add_filter( $action, $callback, $priority = 10, $accepted_args = 1 ) {
 
 		// Pass variables into WordPress add_action function.
-		add_filter( $action, $function, $priority, $accepted_args );
+		add_filter( $action, $callback, $priority, $accepted_args );
 	}
 
 	/**
@@ -455,7 +455,7 @@ class EPL_CPT {
 		);
 
 		// Merge user submitted options with defaults.
-		$options = array_replace_recursive( $defaults, $this->options );
+		$options = epl_array_replace_recursive( $defaults, $this->options );
 
 		// Set the object options as full options passed.
 		$this->options = $options;
@@ -574,14 +574,13 @@ class EPL_CPT {
 		);
 
 		// Merge default options with user submitted options.
-		$options = array_replace_recursive( $defaults, $options );
+		$options = epl_array_replace_recursive( $defaults, $options );
 
 		// Add the taxonomy to the object array, this is used to add columns and filters to admin panel.
 		$this->taxonomies[] = $taxonomy_name;
 
 		// Create array used when registering taxonomies.
 		$this->taxonomy_settings[ $taxonomy_name ] = $options;
-
 	}
 
 	/**
@@ -932,12 +931,11 @@ class EPL_CPT {
 	 * Define what and how to populate a speicific admin column.
 	 *
 	 * @param string $column_name The name of the column to populate.
-	 * @param string $function An anonyous function to run when populating the column.
+	 * @param string $callback An anonyous function to run when populating the column.
 	 */
-	public function populate_column( $column_name, $function ) {
+	public function populate_column( $column_name, $callback ) {
 
-		$this->custom_populate_columns[ $column_name ] = $function;
-
+		$this->custom_populate_columns[ $column_name ] = $callback;
 	}
 
 	/**
@@ -994,7 +992,6 @@ class EPL_CPT {
 
 		// Run filter to sort columns when requested.
 		$this->add_filter( 'request', array( &$this, 'sort_columns' ) );
-
 	}
 
 	/**

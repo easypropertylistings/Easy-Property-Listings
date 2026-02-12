@@ -141,4 +141,3 @@ function epl_populate_post_author_email( $value ) {
 	return '';
 }
 add_filter( 'gform_field_value_author_email', 'epl_populate_post_author_email' );
-

@@ -59,12 +59,12 @@ function epl_shortcode_listing_tax_feature_callback( $atts ) {
 		$atts
 	);
 
-	$post_type  = $attributes['post_type'];
-	$status     = $attributes['status'];
-	$limit      = $attributes['limit'];
-	$feature    = $attributes['feature'];
-	$feature_id = $attributes['feature_id'];
-	$offset     = $attributes['offset'];
+	$post_type    = $attributes['post_type'];
+	$status       = $attributes['status'];
+	$limit        = $attributes['limit'];
+	$feature      = $attributes['feature'];
+	$feature_id   = $attributes['feature_id'];
+	$offset       = $attributes['offset'];
 	$template     = $attributes['template'];
 	$location     = $attributes['location'];
 	$tools_top    = $attributes['tools_top'];
