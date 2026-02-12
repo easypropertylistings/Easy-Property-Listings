@@ -323,7 +323,6 @@ function epl_get_price_array( $post_type = 'property', $transaction = 'default' 
 	}
 
 	return $price_array;
-
 }
 
 /**
@@ -353,7 +352,6 @@ function epl_get_price_meta_key( $post_type = 'property', $transaction = 'defaul
 
 	// use this filter to change property price meta key on the basis of post type & transaction.
 	return apply_filters( 'epl_price_meta_key', $price_meta_key, $post_type, $transaction );
-
 }
 
 /**
@@ -900,21 +898,20 @@ function epl_search_get_defaults() {
 		$defaults[ $field['key'] ] = $field['default'];
 	}
 	return $defaults;
-
 }
 
 /**
  * Render widget field blocks -- for backend form
  *
  * @param array     $field Array of field type for the switch.
- * @param WP_Widget $object Array of object.
+ * @param WP_Widget $obj Array of object.
  * @param string    $value Value.
  *
  * @since 3.5 Added number field type.
  *
  * @since 2.2
  */
-function epl_widget_render_backend_field( $field, $object, $value = '' ) {
+function epl_widget_render_backend_field( $field, $obj, $value = '' ) {
 
 	switch ( $field['type'] ) {
 
@@ -1083,7 +1080,6 @@ function epl_search( &$query, array $data = array(), $get_posts = false ) {
 	if ( $get_posts ) {
 		return $epl_search->get_posts();
 	}
-
 }
 
 /**
@@ -1295,7 +1291,6 @@ function epl_get_available_terms( $tax = 'location', $post_type = '', $property_
  */
 function epl_get_available_locations( $post_type = '', $property_status = '' ) {
 	return epl_get_available_terms( 'location', $post_type, $property_status );
-
 }
 
 /**
@@ -1524,7 +1519,6 @@ function epl_get_owners() {
 		$c_array[ $contact ] = $contact_object->name;
 	}
 	return $c_array;
-
 }
 
 /**

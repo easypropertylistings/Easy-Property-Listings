@@ -116,7 +116,6 @@ function epl_admin_menu() {
 	$menu_slug  = 'epl-tools';
 	$function   = 'epl_menu_tools';
 	add_submenu_page( $main_menu_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-
 }
 
 /**

@@ -88,7 +88,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		/**
 		 * Get config
 		 *
-		 * @param array $key Config.
+		 * @param string $key Config key.
 		 *
 		 * @since 3.5.16
 		 */
@@ -134,7 +134,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 
 			$post = get_post( $post_id );
 
-			if ( ! is_epl_post( $post->post_type ) ) {
+			if ( ! $post || ! is_epl_post( $post->post_type ) ) {
 				return;
 			}
 
@@ -163,8 +163,14 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 
 			$prefix             = $this->get_config( 'prefix' );
 			$enabled_thumbs_key = $prefix . 'enabled_thumbs';
+
+			// Verify nonce.
+			if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'update-post_' . $post_id ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified here.
+				return;
+			}
+
 			// Only process if this extension's data exists in POST.
-			if ( ! isset( $_POST[ $enabled_thumbs_key ] ) ) {
+			if ( ! isset( $_POST[ $enabled_thumbs_key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce already verified above.
 				return;
 			}
 
@@ -172,8 +178,8 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 			update_post_meta( $post_id, $prefix . 'selection_made', true );
 
 			// Save enabled thumbnails.
-			if ( ! empty( $_POST[ $enabled_thumbs_key ] ) ) {
-				$enabled_thumbs = array_map( 'absint', $_POST[ $enabled_thumbs_key ] );
+			if ( ! empty( $_POST[ $enabled_thumbs_key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce already verified above.
+				$enabled_thumbs = array_map( 'absint', wp_unslash( $_POST[ $enabled_thumbs_key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				$enabled_thumbs = array_filter( $enabled_thumbs );
 				update_post_meta( $post_id, $enabled_thumbs_key, $enabled_thumbs );
 			} else {
@@ -190,11 +196,8 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 */
 		public function is_external_link( $url ) {
 
-			$s = get_option( 'siteurl' );
-			if ( substr( $url, 0, strlen( $s ) !== $s ) ) {
-				return true;
-			}
-			return false;
+			$site = home_url();
+			return strpos( (string) $url, $site ) !== 0;
 		}
 
 		/**
@@ -308,7 +311,8 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 				foreach ( $post_not_in as $current_not_in ) {
 
 					if ( ! empty( $args['post__in'] ) ) {
-						if ( ( $key = array_search( $current_not_in, $args['post__in'] ) ) !== false ) {
+						$key = array_search( $current_not_in, $args['post__in'], true );
+						if ( false !== $key ) {
 							unset( $args['post__in'][ $key ] );
 						}
 					}
@@ -335,7 +339,8 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 				$featured_image = get_post_thumbnail_id( $post->ID );
 
 				if ( ! empty( $args['post__in'] ) ) {
-					if ( ( $key = array_search( $featured_image, $args['post__in'], true ) ) !== false ) {
+					$key = array_search( $featured_image, $args['post__in'], true );
+					if ( false !== $key ) {
 						unset( $args['post__in'][ $key ] );
 					}
 				} else {
@@ -345,10 +350,8 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 				if ( ! empty( $args['post__in'] ) ) {
 					$attachments = get_posts( $args );
 				}
-			} else {
-				if ( ! empty( $args['post__in'] ) ) {
-					$attachments = get_posts( $args );
-				}
+			} elseif ( ! empty( $args['post__in'] ) ) {
+				$attachments = get_posts( $args );
 			}
 
 			if ( empty( $attachments ) ) {
@@ -377,7 +380,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 							$checked = $initial ? 'checked=checked' : '';
 
 							if ( ! empty( $enabled ) ) {
-								$checked = in_array( $attachment->ID, $enabled ) ? 'checked=checked' : '';
+								$checked = in_array( $attachment->ID, $enabled, true ) ? 'checked=checked' : '';
 							}
 
 							// Get thumbnail details.
@@ -439,7 +442,6 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 				/>
 			</div> 
 			<?php
-
 		}
 
 		/**
@@ -464,36 +466,42 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 */
 		public function save_image_order() {
 
-			if ( is_admin() ) {
-				// Verify nonce.
-				if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'epl_ajax_nonce' ) ) {
-					wp_send_json_error( 'Invalid nonce' );
-				}
+			// Verify nonce.
+			check_ajax_referer( 'epl_ajax_nonce', 'nonce' );
 
-				// Verify capability.
-				if ( ! current_user_can( 'edit_posts' ) ) {
-					wp_send_json_error( 'Unauthorized' );
-				}
-
-				if ( isset( $_POST['id'] ) && intval( $_POST['id'] ) > 0 ) {
-					$order = sanitize_text_field( $_POST['order'] );
-
-					// Get extension from POST data to determine correct order meta key.
-					$extension = isset( $_POST['extension'] ) ? sanitize_text_field( $_POST['extension'] ) : 'slider';
-
-					// Find the registered extension instance.
-					$order_meta_key = 'epl_slides_order'; // Default fallback.
-					if ( isset( self::$registered_extensions[ $extension ] ) ) {
-						$order_meta_key = self::$registered_extensions[ $extension ]->get_config( 'order_meta_key' );
-					} else {
-						// Fallback: construct meta key based on extension.
-						$order_meta_key = 'epl_' . $extension . '_order';
-					}
-
-					update_post_meta( intval( $_POST['id'] ), $order_meta_key, esc_attr( $order ) );
-				}
+			// Parse and validate post ID.
+			$post_id = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+			if ( ! $post_id ) {
+				wp_send_json_error( array( 'message' => 'Missing ID' ), 400 );
 			}
-			die( $order );
+
+			// Verify capability for this specific post.
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				wp_send_json_error( array( 'message' => 'Unauthorized' ), 403 );
+			}
+
+			// Validate post type is EPL.
+			$post = get_post( $post_id );
+			if ( ! $post || ! is_epl_post( $post->post_type ) ) {
+				wp_send_json_error( array( 'message' => 'Invalid post type' ), 400 );
+			}
+
+			// Validate extension against registered extensions.
+			$extension = isset( $_POST['extension'] ) ? sanitize_key( wp_unslash( $_POST['extension'] ) ) : 'slider';
+			if ( ! isset( self::$registered_extensions[ $extension ] ) ) {
+				wp_send_json_error( array( 'message' => 'Invalid extension' ), 400 );
+			}
+
+			$order_meta_key = self::$registered_extensions[ $extension ]->get_config( 'order_meta_key' );
+
+			// Sanitize order as CSV of integers.
+			$order_raw = isset( $_POST['order'] ) ? wp_unslash( $_POST['order'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitized below.
+			$order_ids = array_filter( array_map( 'absint', explode( ',', (string) $order_raw ) ) );
+			$order     = implode( ',', $order_ids );
+
+			update_post_meta( $post_id, $order_meta_key, $order );
+
+			wp_send_json_success( array( 'order' => $order ) );
 		}
 
 		/**
@@ -503,72 +511,89 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 */
 		public function unattach_image() {
 
-			$prefix   = wp_unslash( $_POST['prefix'] );
-			$prefix   = ! empty( $prefix ) ? sanitize_text_field( $prefix ) : $this->get_config( 'prefix' );
-			$image_id = isset( $_POST['img_id'] ) ? absint( $_POST['img_id'] ) : 0;
+			// Verify nonce first, before reading any POST data.
+			check_ajax_referer( 'epl_ajax_nonce', 'nonce' );
+
+			// Parse and validate required IDs.
 			$post_id  = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+			$image_id = isset( $_POST['img_id'] ) ? absint( $_POST['img_id'] ) : 0;
 
-			if ( is_admin() && ! empty( $image_id ) && ! empty( $post_id ) ) {
-				// Verify nonce.
-				if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'epl_ajax_nonce' ) ) {
-					wp_die( 'Invalid nonce' );
-				}
+			if ( ! $post_id || ! $image_id ) {
+				wp_send_json_error( array( 'message' => 'Missing data' ), 400 );
+			}
 
-				// Verify capability.
-				if ( ! current_user_can( 'edit_post', $post_id ) ) {
-					wp_die( 'Unauthorized' );
-				}
+			// Validate post type is EPL.
+			$post = get_post( $post_id );
+			if ( ! $post || ! is_epl_post( $post->post_type ) ) {
+				wp_send_json_error( array( 'message' => 'Invalid post type' ), 400 );
+			}
 
-				// Get current parent images to check if this is a custom image.
-				$parent_attachments = $this->get_parent_images( get_post( $post_id ) );
-				$is_custom_image    = ! in_array( $image_id, $parent_attachments );
+			// Verify capability for this specific post.
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				wp_send_json_error( array( 'message' => 'Unauthorized' ), 403 );
+			}
 
-				// Only detach if it's actually a child of this post.
-				if ( ! $is_custom_image ) {
-					wp_update_post(
-						array(
-							'ID'          => $image_id,
-							'post_parent' => 0,
-						)
-					);
-				}
+			// Validate prefix against registered extension prefixes.
+			$prefix_input     = isset( $_POST['prefix'] ) ? sanitize_key( wp_unslash( $_POST['prefix'] ) ) : '';
+			$allowed_prefixes = array();
+			foreach ( self::$registered_extensions as $ext ) {
+				$allowed_prefixes[] = $ext->get_config( 'prefix' );
+			}
 
-				// Remove from enabled thumbs (this handles both custom and parent images).
-				$enabled = get_post_meta( $post_id, $prefix . 'enabled_thumbs', true );
-				if ( ! empty( $enabled ) ) {
-					$key = array_search( $image_id, $enabled );
-					if ( false !== $key ) {
-						unset( $enabled[ $key ] );
-						// Re-index array to prevent gaps.
-						$enabled = array_values( $enabled );
-						update_post_meta( $post_id, $prefix . 'enabled_thumbs', $enabled );
-					}
-				}
+			if ( ! empty( $prefix_input ) && in_array( $prefix_input, $allowed_prefixes, true ) ) {
+				$prefix = $prefix_input;
+			} else {
+				$prefix = $this->get_config( 'prefix' );
+			}
 
-				// Remove from slide order.
-				// Get extension to determine correct order meta key.
-				$extension      = isset( $_POST['extension'] ) ? sanitize_text_field( $_POST['extension'] ) : 'slider';
-				$order_meta_key = 'epl_slides_order'; // Default fallback.
-				if ( isset( self::$registered_extensions[ $extension ] ) ) {
-					$order_meta_key = self::$registered_extensions[ $extension ]->get_config( 'order_meta_key' );
-				} else {
-					// Fallback: construct meta key based on extension.
-					$order_meta_key = 'epl_' . $extension . '_order';
-				}
+			// Get current parent images to check if this is a custom image.
+			$parent_attachments = $this->get_parent_images( $post );
+			$is_custom_image    = ! in_array( $image_id, $parent_attachments, true );
 
-				$order = get_post_meta( $post_id, $order_meta_key, true );
-				if ( ! empty( $order ) ) {
-					$order_array = is_array( $order ) ? $order : explode( ',', $order );
-					$key         = array_search( $image_id, $order_array );
-					if ( false !== $key ) {
-						unset( $order_array[ $key ] );
-						// Re-index array and update.
-						$order_array = array_values( $order_array );
-						update_post_meta( $post_id, $order_meta_key, implode( ',', $order_array ) );
-					}
+			// Only detach if it's actually a child of this post.
+			if ( ! $is_custom_image ) {
+				wp_update_post(
+					array(
+						'ID'          => $image_id,
+						'post_parent' => 0,
+					)
+				);
+			}
+
+			// Remove from enabled thumbs (this handles both custom and parent images).
+			$enabled = get_post_meta( $post_id, $prefix . 'enabled_thumbs', true );
+			if ( ! empty( $enabled ) ) {
+				$key = array_search( $image_id, $enabled, true );
+				if ( false !== $key ) {
+					unset( $enabled[ $key ] );
+					// Re-index array to prevent gaps.
+					$enabled = array_values( $enabled );
+					update_post_meta( $post_id, $prefix . 'enabled_thumbs', $enabled );
 				}
 			}
-			die;
+
+			// Remove from slide order.
+			// Validate extension against registered extensions.
+			$extension = isset( $_POST['extension'] ) ? sanitize_key( wp_unslash( $_POST['extension'] ) ) : 'slider';
+			if ( ! isset( self::$registered_extensions[ $extension ] ) ) {
+				wp_send_json_error( array( 'message' => 'Invalid extension' ), 400 );
+			}
+
+			$order_meta_key = self::$registered_extensions[ $extension ]->get_config( 'order_meta_key' );
+
+			$order = get_post_meta( $post_id, $order_meta_key, true );
+			if ( ! empty( $order ) ) {
+				$order_array = is_array( $order ) ? $order : explode( ',', $order );
+				$key         = array_search( $image_id, $order_array, true );
+				if ( false !== $key ) {
+					unset( $order_array[ $key ] );
+					// Re-index array and update.
+					$order_array = array_values( $order_array );
+					update_post_meta( $post_id, $order_meta_key, implode( ',', $order_array ) );
+				}
+			}
+
+			wp_send_json_success();
 		}
 
 		/**
@@ -596,7 +621,6 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 					update_post_meta( $parent->ID, $order_meta_key, $order . ',' . $post_ID );
 				}
 			}
-
 		}
 	}
 endif;
