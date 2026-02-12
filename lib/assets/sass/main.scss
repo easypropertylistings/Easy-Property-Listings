@@ -53,8 +53,8 @@
 @use "components/author";
 @use "components/author-box";
 
-@use "components/search-initial"; // merge and delete.
-//@use "components/search";
+//@use "components/search-initial"; // merge and delete.
+@use "components/search";
 @use "components/search-popout";
 
 @use "components/extensions";

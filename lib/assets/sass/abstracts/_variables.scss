@@ -264,7 +264,7 @@ $epl-property-blog__footer__hover--opacity: 1;
 $epl-row__link: "";
 $epl-row__link--background: transparent;
 $epl-row__link--color: transparent !important;
-$epl-row__link--font-size: 1em;
+$epl-row__link--font-size: 0;
 $epl-row__link--text-transform: none;
 $epl-row__link--text-indent: 0;
 $epl-row__link--text-align: center;
@@ -276,7 +276,7 @@ $epl-row__link--hover: "";
 $epl-row__link--hover--background: $epl-color-transparent; //rgba(216, 222, 202, 0.58)
 $epl-row__link--hover--color: $epl-color-primary;
 $epl-row__link--hover--opacity: 1;
-$epl-row__link--hover--font-size: 1.5em;
+$epl-row__link--hover--font-size: 0;
 
 // ----------------------------------------------- //
 // Pagination                                      //
@@ -537,8 +537,8 @@ $epl-search__input--gap: 0.5em;
 $epl-search__input--margin: 0;
 $epl-search__input--padding: 0 0.5em;
 $epl-search__input--min-height: initial;
-$epl-search__input--min-width: 180px;
-$epl-search__input--height: 44px;
+$epl-search__input--min-width: auto;
+$epl-search__input--height: 35px;
 $epl-search__input--line-height: $epl-search__input--height;
 
 $epl-search__input--background: $epl-color-white;
