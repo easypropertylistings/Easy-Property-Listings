@@ -37,8 +37,8 @@ get_header(); ?>
 						/* translators: %s: post type name */
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), single_tag_title( '', false ) );
 					} elseif ( is_tax() ) { // Tag Archive.
+						$term = get_queried_object();
 						/* translators: %s: post type name */
-						$term  = get_queried_object();
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), $term->name );
 					} elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // Post Type Archive.
 						$title = post_type_archive_title( '', false );

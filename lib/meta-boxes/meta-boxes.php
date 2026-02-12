@@ -269,7 +269,7 @@ function epl_save_meta_boxes( $post_ID ) {
 													$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 
 													if ( false !== strpos( $meta_value, 'T' ) ) {
-														$meta_value = date( 'Y-m-d\TH:i', strtotime( $meta_value ) );
+														$meta_value = gmdate( 'Y-m-d\TH:i', strtotime( $meta_value ) );
 													} else {
 														$meta_value = DateTime::createFromFormat( 'Y-m-d-H:i:s', $meta_value );
 
@@ -289,7 +289,7 @@ function epl_save_meta_boxes( $post_ID ) {
 													$meta_value = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 
 													if ( false !== strpos( $meta_value, 'T' ) ) {
-														$meta_value = date( 'Y-m-d\TH:i', strtotime( $meta_value ) );
+														$meta_value = gmdate( 'Y-m-d\TH:i', strtotime( $meta_value ) );
 													} else {
 														$meta_value = DateTime::createFromFormat( 'Y-m-d', $meta_value );
 

@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function epl_fancy_pagination( $args = array() ) {
 	if ( ! is_array( $args ) ) {
-		$argv = func_get_args();
+		$argv = func_get_args(); // phpcs:ignore PHPCompatibility.FunctionUse.ArgumentFunctionsReportCurrentValue.NeedsInspection
 
 		$args = array();
 		foreach ( array( 'before', 'after', 'options' ) as $i => $key ) {

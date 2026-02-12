@@ -86,8 +86,8 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 *
 	 * @return boolean true on success or false on failure.
 	 */
-		#[\ReturnTypeWillChange]
-	public function offsetExists( $offset ) {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound, Squiz.Commenting.FunctionComment.Missing
+	public function offsetExists( $offset ) { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return isset( $this->container[ $offset ] );
 	}
 
@@ -100,8 +100,8 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 *
 	 * @return mixed Can return all value types.
 	 */
-		#[\ReturnTypeWillChange]
-	public function offsetGet( $offset ) {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound, Squiz.Commenting.FunctionComment.Missing, Squiz.Commenting.FunctionComment.Missing
+	public function offsetGet( $offset ) { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return isset( $this->container[ $offset ] ) ? $this->container[ $offset ] : null;
 	}
 
@@ -115,8 +115,8 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 *
 	 * @return void
 	 */
-		#[\ReturnTypeWillChange]
-	public function offsetSet( $offset, $data ) {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound, Squiz.Commenting.FunctionComment.Missing, Squiz.Commenting.FunctionComment.Missing
+	public function offsetSet( $offset, $data ) { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		if ( is_array( $data ) ) {
 			$data = new self( $data );
 		}
@@ -138,8 +138,8 @@ class Recursive_ArrayAccess implements ArrayAccess {
 	 *
 	 * @return void
 	 */
-		#[\ReturnTypeWillChange]
-	public function offsetUnset( $offset ) {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound, Squiz.Commenting.FunctionComment.Missing, Squiz.Commenting.FunctionComment.Missing
+	public function offsetUnset( $offset ) { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		unset( $this->container[ $offset ] );
 	}
 }

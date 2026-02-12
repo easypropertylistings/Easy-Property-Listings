@@ -20,14 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Looks to see if the specified setting exists, returns default if not
  *
  * @param string $key Meta key.
- * @param bool   $default Returns default if not set.
+ * @param bool   $default_val Returns default if not set.
  *
  * @return mixed
  *
  * @since 2.2
  * @since 3.5.2 Added check to identify 0 values so that it's not ignored by empty check.
  */
-function epl_get_option( $key = '', $default = false ) {
+function epl_get_option( $key = '', $default_val = false ) {
 
 	global $epl_settings;
 
@@ -36,11 +36,11 @@ function epl_get_option( $key = '', $default = false ) {
 			$value = 0;
 	} else {
 		// Preserve empty check for rest of the values to preserve the behaviour: if value empty, then return default.
-		$value = ! empty( $epl_settings[ $key ] ) ? $epl_settings[ $key ] : $default;
+		$value = ! empty( $epl_settings[ $key ] ) ? $epl_settings[ $key ] : $default_val;
 	}
 
-	$value = apply_filters( 'epl_get_option', $value, $key, $default );
-	return apply_filters( 'epl_get_option_' . $key, $value, $key, $default );
+	$value = apply_filters( 'epl_get_option', $value, $key, $default_val );
+	return apply_filters( 'epl_get_option_' . $key, $value, $key, $default_val );
 }
 
 /**
@@ -119,10 +119,8 @@ function epl_get_thumbnail_sizes() {
 		if ( in_array( $s, array( 'thumbnail', 'medium', 'large' ), true ) ) {
 			$sizes[ $s ][0] = get_option( $s . '_size_w' );
 			$sizes[ $s ][1] = get_option( $s . '_size_h' );
-		} else {
-			if ( isset( $_wp_additional_image_sizes ) && isset( $_wp_additional_image_sizes[ $s ] ) ) {
-				$sizes[ $s ] = array( $_wp_additional_image_sizes[ $s ]['width'], $_wp_additional_image_sizes[ $s ]['height'] );
-			}
+		} elseif ( isset( $_wp_additional_image_sizes ) && isset( $_wp_additional_image_sizes[ $s ] ) ) {
+			$sizes[ $s ] = array( $_wp_additional_image_sizes[ $s ]['width'], $_wp_additional_image_sizes[ $s ]['height'] );
 		}
 	}
 	return $sizes;
@@ -378,10 +376,10 @@ function epl_labels( $key ) {
  * @param string $before   Optional. Markup to prepend to the title. Default empty.
  * @param string $after    Optional. Markup to append to the title. Default empty.
  * @param bool   $country  Optional. Whether to echo or return country. Default false for country.
- * @param bool   $echo     Optional. Whether to echo or return the title. Default true for echo.
- * @return string|void Current post title if $echo is false.
+ * @param bool   $echo_output     Optional. Whether to echo or return the title. Default true for echo.
+ * @return string|void Current post title if $echo_output is false.
  */
-function epl_the_address( $before = '', $after = '', $country = false, $echo = true ) {
+function epl_the_address( $before = '', $after = '', $country = false, $echo_output = true ) {
 	$address = epl_get_the_address();
 
 	if ( strlen( $address ) === 0 ) {
@@ -390,7 +388,7 @@ function epl_the_address( $before = '', $after = '', $country = false, $echo = t
 
 		$address = $before . $address . $after;
 
-	if ( $echo ) {
+	if ( $echo_output ) {
 		echo wp_kses_post( $address );
 	} else {
 		return $address;
@@ -486,10 +484,10 @@ function epl_get_the_address( $address_args = array(), $sep = array(), $country 
  *
  * @param string $before Output string before.
  * @param string $after Output string after.
- * @param bool   $echo Echo the result.
+ * @param bool   $echo_output Echo the result.
  * @return string/list for values
  */
-function epl_the_status( $before = '', $after = '', $echo = true ) {
+function epl_the_status( $before = '', $after = '', $echo_output = true ) {
 	$status = epl_get_the_status();
 
 	$status_opts = epl_get_property_status_opts();
@@ -500,7 +498,7 @@ function epl_the_status( $before = '', $after = '', $echo = true ) {
 
 	$status = $before . $status_opts[ $status ] . $after;
 
-	if ( $echo ) {
+	if ( $echo_output ) {
 		echo wp_kses_post( $status );
 	} else {
 		return $status;
@@ -551,7 +549,7 @@ function epl_get_property_meta( $post_ID = '', $meta_key = '' ) {
 	if ( ! empty( $meta_key ) ) {
 		$meta_value = trim( get_post_meta( $post_ID, $meta_key, true ) );
 	} else {
-		$meta_value = get_post_meta( $post_ID, $meta_key );
+		$meta_value = get_post_meta( $post_ID, $meta_key, false );
 	}
 	return apply_filters( 'epl_get_property_meta_filter', $meta_value );
 }
@@ -613,10 +611,10 @@ function epl_meta_location_label() {
  *
  * @param string $before Optional. Markup to prepend to the formatted Under Offer label. Default empty.
  * @param string $after  Optional. Markup to append to the formatted Under Offer label. Default empty.
- * @param bool   $echo   Optional. Whether to echo or return the formatted Under Offer label. Default true for echo.
- * @return string|void Current post title if $echo is false.
+ * @param bool   $echo_output   Optional. Whether to echo or return the formatted Under Offer label. Default true for echo.
+ * @return string|void Current post title if $echo_output is false.
  */
-function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
+function epl_the_under_offer( $before = '', $after = '', $echo_output = true ) {
 	$under_offer = epl_get_the_under_offer();
 
 	$under_offer_label = epl_meta_under_offer_label();
@@ -631,7 +629,7 @@ function epl_the_under_offer( $before = '', $after = '', $echo = true ) {
 
 	$under_offer = $before . $under_offer_label . $after;
 
-	if ( $echo ) {
+	if ( $echo_output ) {
 		echo wp_kses_post( $under_offer );
 	} else {
 		return $under_offer;
@@ -896,7 +894,7 @@ function epl_feedsync_format_date( $date ) {
 		$date .= ' ' . $tempdate[3];
 	}
 
-	return date( 'Y-m-d H:i:s', strtotime( $date ) );
+	return gmdate( 'Y-m-d H:i:s', strtotime( $date ) );
 }
 
 /**
@@ -914,7 +912,7 @@ function epl_feedsync_format_date( $date ) {
 function epl_feedsync_format_date_auction( $date, $time ) {
 
 	$date = str_replace( '/', '-', $date ); // Convert to european date format for strtotime function.
-	return date( 'Y-M-d H:i:s', strtotime( $date . ' ' . $time ) );
+	return gmdate( 'Y-M-d H:i:s', strtotime( $date . ' ' . $time ) );
 }
 
 /**
@@ -972,7 +970,7 @@ function epl_feedsync_format_strip_currency( $value ) {
 function epl_feedsync_switch_date_time( $date_time = false, $old_time_zone = 'Australia/Perth', $new_timezone = 'Australia/Sydney', $format = 'Y-m-d H:i:s' ) {
 
 	if ( ! $date_time ) {
-		$date_time = date( 'Y-m-d H:i:s', epl_get_local_timestamp() );
+		$date_time = gmdate( 'Y-m-d H:i:s', epl_get_local_timestamp() );
 	}
 	if ( ! $old_time_zone ) {
 		$old_time_zone = 'Australia/Perth';
@@ -1559,9 +1557,9 @@ function epl_get_admin_option_fields() {
 					'type'  => 'radio',
 					'opts'  => array(
 
-						'd-M-Y'                         => date( 'd-M-Y', epl_get_local_timestamp() ),
-						'l, dS F'                       => date( 'l, dS F', epl_get_local_timestamp() ),
-						'D d M'                         => date( 'D d M', epl_get_local_timestamp() ),
+						'd-M-Y'                         => gmdate( 'd-M-Y', epl_get_local_timestamp() ),
+						'l, dS F'                       => gmdate( 'l, dS F', epl_get_local_timestamp() ),
+						'D d M'                         => gmdate( 'D d M', epl_get_local_timestamp() ),
 						'custom_inspection_date_format' => __( 'Custom', 'easy-property-listings' ),
 
 					),
@@ -1577,9 +1575,9 @@ function epl_get_admin_option_fields() {
 					'type'  => 'radio',
 					'opts'  => array(
 
-						'h:i A'                         => date( 'h:i A', epl_get_local_timestamp() ),
-						'h:i a'                         => date( 'h:i a', epl_get_local_timestamp() ),
-						'H:i'                           => date( 'h:i', epl_get_local_timestamp() ) . __( ' ( 24 Hours Format ) ', 'easy-property-listings' ),
+						'h:i A'                         => gmdate( 'h:i A', epl_get_local_timestamp() ),
+						'h:i a'                         => gmdate( 'h:i a', epl_get_local_timestamp() ),
+						'H:i'                           => gmdate( 'h:i', epl_get_local_timestamp() ) . __( ' ( 24 Hours Format ) ', 'easy-property-listings' ),
 						'custom_inspection_time_format' => __( 'Custom', 'easy-property-listings' ),
 
 					),
@@ -1928,8 +1926,8 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 
 				$sold_key = 'leased' === $status ? 'property_date_available' : 'property_sold_date';
 
-				$sold_date_end   = date( 'Y-m-d', strtotime( $year . '-' . $month_num . '-' . $day ) );
-				$sold_date_start = true === $day_by_day ? $sold_date_end : date( 'Y-m-01', strtotime( $year . '-' . $month_num . '-' . $day ) );
+				$sold_date_end   = gmdate( 'Y-m-d', strtotime( $year . '-' . $month_num . '-' . $day ) );
+				$sold_date_start = true === $day_by_day ? $sold_date_end : gmdate( 'Y-m-01', strtotime( $year . '-' . $month_num . '-' . $day ) );
 
 				$args['meta_query'][] = array(
 					'key'     => $sold_key,
@@ -1941,7 +1939,7 @@ function epl_get_sales_by_date( $day = null, $month_num = null, $year = null, $h
 			} else {
 
 				$sold_key  = 'leased' === $status ? 'property_date_available' : 'property_sold_date';
-				$sold_date = date( 'Y-m-d', strtotime( $year . '-' . $month_num . '-' . $day ) );
+				$sold_date = gmdate( 'Y-m-d', strtotime( $year . '-' . $month_num . '-' . $day ) );
 
 				$args['meta_query'][] = array(
 					'key'   => $sold_key,
@@ -2562,16 +2560,16 @@ add_action( 'wp', 'epl_single_and_archive_functions', 99 );
  * Recursive array map for multi dimensional array
  *
  * @param string $callback Callback.
- * @param array  $array Array.
+ * @param array  $input_array Array.
  *
  * @return array
  * @since 3.3.5
  */
-function epl_array_map_recursive( $callback, $array ) {
+function epl_array_map_recursive( $callback, $input_array ) {
 	$func = function ( $item ) use ( &$func, &$callback ) { //phpcs:ignore
 		return is_array( $item ) ? array_map( $func, $item ) : call_user_func( $callback, $item );
 	};
-	return array_map( $func, $array );
+	return array_map( $func, $input_array );
 }
 
 /**

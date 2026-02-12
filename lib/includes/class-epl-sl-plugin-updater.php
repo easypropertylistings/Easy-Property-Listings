@@ -78,7 +78,7 @@ class EPL_SL_Plugin_Updater {
 	private $cache_key = '';
 
 		/**
-		 * beta
+		 * Beta
 		 *
 		 * @var bool cache_key.
 		 */
@@ -179,8 +179,7 @@ class EPL_SL_Plugin_Updater {
 				$_transient_data->response[ $this->name ] = $version_info;
 
 			}
-
-			$_transient_data->last_checked           = current_time( 'timestamp' );
+			$_transient_data->last_checked           = time();
 			$_transient_data->checked[ $this->name ] = $this->version;
 
 		}
@@ -245,7 +244,7 @@ class EPL_SL_Plugin_Updater {
 				$update_cache->response[ $this->name ] = $version_info;
 			}
 
-			$update_cache->last_checked           = current_time( 'timestamp' );
+			$update_cache->last_checked           = time();
 			$update_cache->checked[ $this->name ] = $this->version;
 
 			set_site_transient( 'update_plugins', $update_cache );
@@ -553,7 +552,7 @@ class EPL_SL_Plugin_Updater {
 			$cache_key = $this->cache_key;
 		}
 		$cache = get_option( $cache_key );
-		if ( empty( $cache['timeout'] ) || current_time( 'timestamp' ) > $cache['timeout'] ) {
+		if ( empty( $cache['timeout'] ) || time() > $cache['timeout'] ) {
 			return false; // Cache is expired.
 		}
 		return json_decode( $cache['value'] );
@@ -571,7 +570,7 @@ class EPL_SL_Plugin_Updater {
 			$cache_key = $this->cache_key;
 		}
 		$data = array(
-			'timeout' => strtotime( '+3 hours', current_time( 'timestamp' ) ),
+			'timeout' => strtotime( '+3 hours', time() ),
 			'value'   => wp_json_encode( $value ),
 		);
 		update_option( $cache_key, $data, 'no' );

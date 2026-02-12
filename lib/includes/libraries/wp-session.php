@@ -10,9 +10,16 @@
  * @since   3.7.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
+
+if ( ! defined( 'PHP_SESSION_ACTIVE' ) ) {
+	define( 'PHP_SESSION_ACTIVE', 2 );
+}
+if ( ! defined( 'PHP_SESSION_NONE' ) ) {
+	define( 'PHP_SESSION_NONE', 1 );
 }
 
 /**
@@ -36,7 +43,7 @@ function wp_session_commit() {
 /**
  * Load a JSON-encoded string into the current session.
  *
- * @param string $data
+ * @param string $data Session data.
  */
 function wp_session_decode( $data ) {
 	$wp_session = WP_Session::get_instance();
@@ -58,7 +65,7 @@ function wp_session_encode() {
 /**
  * Regenerate the session ID.
  *
- * @param bool $delete_old_session
+ * @param bool $delete_old_session Delete old session.
  *
  * @return bool
  */
@@ -94,10 +101,10 @@ function wp_session_status() {
 	$wp_session = WP_Session::get_instance();
 
 	if ( $wp_session->session_started() ) {
-		return PHP_SESSION_ACTIVE;
+		return defined( 'PHP_SESSION_ACTIVE' ) ? PHP_SESSION_ACTIVE : 2; // phpcs:ignore PHPCompatibility.Constants.NewConstants.php_session_activeFound
 	}
 
-	return PHP_SESSION_NONE;
+	return defined( 'PHP_SESSION_NONE' ) ? PHP_SESSION_NONE : 1; // phpcs:ignore PHPCompatibility.Constants.NewConstants.php_session_noneFound
 }
 
 /**
@@ -137,15 +144,15 @@ function wp_session_cleanup() {
 	if ( ! defined( 'WP_INSTALLING' ) ) {
 		$expiration_keys = $wpdb->get_results( "SELECT option_name, option_value FROM $wpdb->options WHERE option_name LIKE '_wp_session_expires_%'" );
 
-		$now              = current_time( 'timestamp' );
+		$now              = time();
 		$expired_sessions = array();
 
 		foreach ( $expiration_keys as $expiration ) {
 
-			// If the session has expired
+			// If the session has expired.
 			if ( $now > intval( $expiration->option_value ) ) {
 
-				// Get the session ID by parsing the option_name
+				// Get the session ID by parsing the option_name.
 				$session_id = substr( $expiration->option_name, 20 );
 
 				if ( (int) -1 === (int) $session_id || ! preg_match( '/^[a-f0-9]{32}$/', $session_id ) ) {
@@ -157,10 +164,10 @@ function wp_session_cleanup() {
 			}
 		}
 
-		// Delete all expired sessions in a single query
+		// Delete all expired sessions in a single query.
 		if ( ! empty( $expired_sessions ) ) {
 			$option_names = implode( "','", $expired_sessions );
-			$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name IN ('$option_names')" );
+			$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name IN ('$option_names')" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		}
 	}
 
@@ -174,7 +181,7 @@ add_action( 'wp_session_garbage_collection', 'wp_session_cleanup' );
  */
 function wp_session_register_garbage_collection() {
 	if ( ! wp_next_scheduled( 'wp_session_garbage_collection' ) ) {
-		wp_schedule_event( current_time( 'timestamp' ), 'twicedaily', 'wp_session_garbage_collection' );
+		wp_schedule_event( time(), 'twicedaily', 'wp_session_garbage_collection' );
 	}
 }
 add_action( 'wp', 'wp_session_register_garbage_collection' );

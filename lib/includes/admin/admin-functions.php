@@ -26,7 +26,7 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	 * @since 3.3.3
 	 */
 	function cal_days_in_month( $calendar, $month, $year ) {
-		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
+		return gmdate( 't', mktime( 0, 0, 0, $month, 1, $year ) );
 	}
 }
 
@@ -570,8 +570,11 @@ function epl_export_settings() {
  * @since 3.5.10
  */
 function epl_import_settings() {
+	if ( ! isset( $_FILES['epl_import'] ) ) {
+		return;
+	}
 	$upload_overrides = array( 'test_form' => false );
-	$movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides );
+	$movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- handled by wp_handle_upload.
 
 	if ( $movefile && ! isset( $movefile['error'] ) ) {
 		$imported_data  = epl_remote_url_get( $movefile['url'] );
@@ -605,7 +608,7 @@ function epl_upgrade_admin_notice() {
 
 	$upgraded_to = get_option( 'epl_db_upgraded_to' );
 
-	if ( ! empty( $upgraded_to ) && $upgraded_to < 3.3 && current_user_can( 'administrator' ) ) :
+	if ( ! empty( $upgraded_to ) && $upgraded_to < 3.3 && current_user_can( 'manage_options' ) ) :
 
 		$head = esc_html__( 'It looks like you upgraded to latest version of Easy Property Listings', 'easy-property-listings' );
 
@@ -777,9 +780,9 @@ function epl_upgrade_db_to_3_3() {
  * @since 3.3.0
  * @param int   $post_id The post id.
  * @param array $post The post object.
- * @param array $update Update.
+ * @param array $_update Update.
  */
-function epl_sync_property_price_global( $post_id, $post, $update ) {
+function epl_sync_property_price_global( $post_id, $post, $_update ) {
 
 	if ( is_epl_post() ) {
 
@@ -811,10 +814,10 @@ add_action( 'save_post', 'epl_sync_property_price_global', 40, 3 );
  * @since 3.3.0
  * @param array  $avatar Update.
  * @param string $id_or_email User ID or email address.
- * @param array  $args Update.
+ * @param array  $_args Update.
  * @return array|string $avatar
  */
-function epl_get_avatar_filter( $avatar, $id_or_email, $args ) {
+function epl_get_avatar_filter( $avatar, $id_or_email, $_args ) {
 
 	if ( ! is_object( $id_or_email ) ) {
 		return $avatar;

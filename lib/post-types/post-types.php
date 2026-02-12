@@ -394,7 +394,7 @@ function epl_manage_listing_column_listing_callback() {
 		$home_open          = array_filter( explode( "\n", $home_open ) );
 			$home_open_list = '<ul class="epl_meta_home_open">';
 		foreach ( $home_open as $num => $item ) {
-			$home_open_list .= '<li>' . htmlspecialchars( $item ) . '</li>';
+			$home_open_list .= '<li>' . htmlspecialchars( $item, ENT_QUOTES, 'UTF-8' ) . '</li>';
 		}
 			$home_open_list .= '</ul>';
 		echo '<div class="epl_meta_home_open_label"><span class="home-open"><strong>' . esc_html( epl_labels( 'label_home_open' ) ) . '</strong></span>', wp_kses_post( $home_open_list ), '</div>';

@@ -192,6 +192,7 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 * Directory
 		 *
 		 * @since 3.4.44
+		 * @var string Directory.
 		 */
 		public $directory;
 
@@ -199,6 +200,7 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 * First Name
 		 *
 		 * @since 3.4.44
+		 * @var string First Name.
 		 */
 		public $first_name;
 
@@ -206,6 +208,7 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 * Last Name
 		 *
 		 * @since 3.4.44
+		 * @var string Last Name.
 		 */
 		public $last_name;
 
@@ -213,6 +216,7 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 * Secondary Email
 		 *
 		 * @since 3.4.44
+		 * @var string Secondary Email.
 		 */
 		public $secondary_email;
 
@@ -220,6 +224,7 @@ if ( ! class_exists( 'EPL_Author_Loader' ) ) :
 		 * Whatsapp
 		 *
 		 * @since 3.4.44
+		 * @var string Whatsapp.
 		 */
 		public $whatsapp;
 

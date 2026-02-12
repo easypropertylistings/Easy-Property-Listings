@@ -147,7 +147,8 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 */
 	protected function set_cookie() {
 		$delimiter = $this->get_session_delimiter( '||' );
-		@setcookie( WP_SESSION_COOKIE, $this->session_id . $delimiter . $this->expires . $delimiter . $this->exp_variant, $this->expires, COOKIEPATH, COOKIE_DOMAIN );
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		@setcookie( WP_SESSION_COOKIE, $this->session_id . $delimiter . $this->expires . $delimiter . $this->exp_variant, $this->expires, ( defined( 'COOKIEPATH' ) ? COOKIEPATH : '/' ), ( defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : '' ) );
 	}
 
 	/**
@@ -209,7 +210,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 * @return string
 	 */
 	public function json_out() {
-		return json_encode( $this->container );
+		return wp_json_encode( $this->container );
 	}
 
 	/**
@@ -270,9 +271,7 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 		$this->container = array();
 	}
 
-	/*****************************************************************/
-	/*                     Iterator Implementation                   */
-	/*****************************************************************/
+	// Iterator Implementation.
 
 	/**
 	 * Current position of the array.
@@ -281,8 +280,8 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return mixed
 	 */
-	#[\ReturnTypeWillChange]
-	public function current() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function current() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return current( $this->container );
 	}
 
@@ -293,8 +292,8 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return mixed
 	 */
-	#[\ReturnTypeWillChange]
-	public function key() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function key() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return key( $this->container );
 	}
 
@@ -305,8 +304,8 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return void
 	 */
-	#[\ReturnTypeWillChange]
-	public function next() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function next() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		next( $this->container );
 	}
 
@@ -317,8 +316,8 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return void
 	 */
-	#[\ReturnTypeWillChange]
-	public function rewind() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function rewind() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		reset( $this->container );
 	}
 
@@ -329,14 +328,12 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return bool
 	 */
-	#[\ReturnTypeWillChange]
-	public function valid() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function valid() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return $this->offsetExists( $this->key() );
 	}
 
-	/*****************************************************************/
-	/*                    Countable Implementation                   */
-	/*****************************************************************/
+	// Countable Implementation.
 
 	/**
 	 * Get the count of elements in the container array.
@@ -345,8 +342,8 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 *
 	 * @return int
 	 */
-	#[\ReturnTypeWillChange]
-	public function count() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function count() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return count( $this->container );
 	}
 }

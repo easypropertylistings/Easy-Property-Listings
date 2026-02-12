@@ -81,14 +81,14 @@ class EPL_METABOX {
 	 * Helper function to add add_action WordPress filters.
 	 *
 	 * @param string  $action Name of the action.
-	 * @param string  $function Function to hook that will run on action.
+	 * @param string  $callback_function Function to hook that will run on action.
 	 * @param int     $priority Order in which to execute the function, relation to other functions hooked to this action.
 	 * @param integer $accepted_args The number of arguments the function accepts.
 	 */
-	public function add_action( $action, $function, $priority = 10, $accepted_args = 1 ) {
+	public function add_action( $action, $callback_function, $priority = 10, $accepted_args = 1 ) {
 
 		// Pass variables into WordPress add_action function.
-		add_action( $action, $function, $priority, $accepted_args );
+		add_action( $action, $callback_function, $priority, $accepted_args );
 	}
 
 	/**
@@ -99,14 +99,14 @@ class EPL_METABOX {
 	 * @see http://codex.wordpress.org/Function_Reference/add_filter
 	 *
 	 * @param  string $action           Name of the action to hook to, e.g 'init'.
-	 * @param  string $function         Function to hook that will run on @action.
+	 * @param  string $callback_function         Function to hook that will run on @action.
 	 * @param  int    $priority         Order in which to execute the function, relation to other function hooked to this action.
 	 * @param  int    $accepted_args    The number of arguements the function accepts.
 	 */
-	public function add_filter( $action, $function, $priority = 10, $accepted_args = 1 ) {
+	public function add_filter( $action, $callback_function, $priority = 10, $accepted_args = 1 ) {
 
 		// Pass variables into WordPress add_action function.
-		add_filter( $action, $function, $priority, $accepted_args );
+		add_filter( $action, $callback_function, $priority, $accepted_args );
 	}
 
 	/**
@@ -419,7 +419,7 @@ class EPL_METABOX {
 											} elseif ( 'auction-date' === $field['type'] && ! empty( $_POST[ $field['name'] ] ) ) {
 												$epl_date = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 												if ( strpos( $epl_date, 'T' ) !== false ) {
-													$epl_date = date( 'Y-m-d\TH:i', strtotime( $epl_date ) );
+													$epl_date = gmdate( 'Y-m-d\TH:i', strtotime( $epl_date ) );
 												} else {
 													$epl_date = DateTime::createFromFormat( 'Y-m-d-H:i:s', $epl_date );
 
@@ -431,7 +431,7 @@ class EPL_METABOX {
 											} elseif ( 'sold-date' === $field['type'] && ! empty( $_POST[ $field['name'] ] ) ) {
 												$epl_date = sanitize_text_field( wp_unslash( $_POST[ $field['name'] ] ) );
 												if ( strpos( $epl_date, 'T' ) !== false ) {
-													$epl_date = date( 'Y-m-d\TH:i', strtotime( $epl_date ) );
+													$epl_date = gmdate( 'Y-m-d\TH:i', strtotime( $epl_date ) );
 												} else {
 													$epl_date = DateTime::createFromFormat( 'Y-m-d', $epl_date );
 

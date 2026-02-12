@@ -48,8 +48,6 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	/**
 	 * Retrieve the current session instance.
 	 *
-	 * @param bool $session_id Session ID from which to populate data.
-	 *
 	 * @return bool|WP_Session
 	 */
 	public static function get_instance() {
@@ -65,7 +63,6 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 * Will rebuild the session collection from the given session ID if it exists. Otherwise, will
 	 * create a new session with that ID.
 	 *
-	 * @param $session_id
 	 * @uses apply_filters Calls `wp_session_expiration` to determine how long until sessions expire.
 	 *
 	 * @since 3.5.3 Updated to return local timestamp.
@@ -81,7 +78,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 
 		$this->read_data();
 
-		setcookie( WP_SESSION_COOKIE, $this->session_id, $this->expires, COOKIEPATH, COOKIE_DOMAIN );
+		setcookie( WP_SESSION_COOKIE, $this->session_id, $this->expires, ( defined( 'COOKIEPATH' ) ? COOKIEPATH : '/' ), ( defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : '' ) );
 	}
 
 	/**
@@ -146,13 +143,13 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 * @return string
 	 */
 	public function json_out() {
-		return json_encode( $this->container );
+		return wp_json_encode( $this->container );
 	}
 
 	/**
 	 * Decodes a JSON string and, if the object is an array, overwrites the session container with its contents.
 	 *
-	 * @param string $data
+	 * @param string $data JSON-encoded string to decode.
 	 *
 	 * @return bool
 	 */
@@ -183,7 +180,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 
 		$this->session_id = $this->generate_id();
 
-		setcookie( WP_SESSION_COOKIE, $this->session_id, epl_get_local_timestamp() + $this->expires, COOKIEPATH, COOKIE_DOMAIN );
+		setcookie( WP_SESSION_COOKIE, $this->session_id, epl_get_local_timestamp() + $this->expires, ( defined( 'COOKIEPATH' ) ? COOKIEPATH : '/' ), ( defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : '' ) );
 	}
 
 	/**
@@ -211,9 +208,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 		$this->container = array();
 	}
 
-	/*****************************************************************/
-	/*                   ArrayAccess Implementation                  */
-	/*****************************************************************/
+	// ArrayAccess Implementation.
 
 	/**
 	 * Whether a offset exists
@@ -224,7 +219,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return boolean true on success or false on failure.
 	 */
-	public function offsetExists( $offset ) {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function offsetExists( $offset ) { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return isset( $this->container[ $offset ] );
 	}
 
@@ -237,7 +233,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return mixed Can return all value types.
 	 */
-	public function offsetGet( $offset ) {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function offsetGet( $offset ) { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return isset( $this->container[ $offset ] ) ? $this->container[ $offset ] : null;
 	}
 
@@ -251,7 +248,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return void
 	 */
-	public function offsetSet( $offset, $value ) {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function offsetSet( $offset, $value ) { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		if ( is_null( $offset ) ) {
 			$this->container[] = $value;
 		} else {
@@ -268,13 +266,12 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return void
 	 */
-	public function offsetUnset( $offset ) {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function offsetUnset( $offset ) { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		unset( $this->container[ $offset ] );
 	}
 
-	/*****************************************************************/
-	/*                     Iterator Implementation                   */
-	/*****************************************************************/
+	// Iterator Implementation.
 
 	/**
 	 * Current position of the array.
@@ -283,7 +280,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return mixed
 	 */
-	public function current() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function current() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return current( $this->container );
 	}
 
@@ -294,7 +292,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return mixed
 	 */
-	public function key() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function key() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return key( $this->container );
 	}
 
@@ -305,7 +304,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return void
 	 */
-	public function next() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function next() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		next( $this->container );
 	}
 
@@ -316,7 +316,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return void
 	 */
-	public function rewind() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function rewind() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		reset( $this->container );
 	}
 
@@ -327,13 +328,12 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return bool
 	 */
-	public function valid() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function valid() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return $this->offsetExists( $this->key() );
 	}
 
-	/*****************************************************************/
-	/*                    Countable Implementation                   */
-	/*****************************************************************/
+	// Countable Implementation.
 
 	/**
 	 * Get the count of elements in the container array.
@@ -342,7 +342,8 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 *
 	 * @return int
 	 */
-	public function count() {
+	#[\ReturnTypeWillChange] // phpcs:ignore PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+	public function count() { // phpcs:ignore Squiz.Commenting.FunctionComment.Missing
 		return count( $this->container );
 	}
 }

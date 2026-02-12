@@ -129,7 +129,7 @@ class EPL_FORM_BUILDER {
 	 * Call default & user submitted callbacks for this form upon form submission
 	 *
 	 * @since 2.3
-	 * @return null
+	 * @return void
 	 */
 	public function __destruct() {
 		$this->callbacks();
