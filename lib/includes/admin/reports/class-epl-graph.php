@@ -129,7 +129,6 @@ class EPL_Graph {
 	/**
 	 * Build the graph and return it as a string
 	 *
-	 * @var array
 	 * @since 3.0
 	 * @return string
 	 */

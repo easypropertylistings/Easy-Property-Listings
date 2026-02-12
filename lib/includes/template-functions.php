@@ -3804,7 +3804,7 @@ function epl_get_stickers_array( $sticker_keys = array() ) {
 	/**
 	 * Hook into this array to add / remove stickers based on conditions.
 	 *
-	 * @var callable
+	 * @var callable $stickers
 	 */
 	$stickers = apply_filters( 'epl_available_stickers', $stickers );
 
