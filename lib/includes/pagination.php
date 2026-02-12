@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function epl_fancy_pagination( $args = array() ) {
 	if ( ! is_array( $args ) ) {
-		$argv = func_get_args();
+		$argv = func_get_args(); // phpcs:ignore PHPCompatibility.FunctionUse.ArgumentFunctionsReportCurrentValue.NeedsInspection
 
 		$args = array();
 		foreach ( array( 'before', 'after', 'options' ) as $i => $key ) {
@@ -166,7 +166,7 @@ function epl_fancy_pagination( $args = array() ) {
 							'class' => 'smaller page',
 						)
 					);
-					$larger_page_start++;
+					++$larger_page_start;
 				}
 			}
 
@@ -203,7 +203,7 @@ function epl_fancy_pagination( $args = array() ) {
 							'class' => 'larger page',
 						)
 					);
-					$larger_page_end++;
+					++$larger_page_end;
 				}
 			}
 
@@ -373,7 +373,7 @@ function epl_get_next_page_link( $query ) {
 				$page = 1;
 			}
 
-			$page++;
+			++$page;
 
 			$link = epl_add_or_update_params( $link, 'paged', $page );
 		}
@@ -433,7 +433,7 @@ function epl_get_prev_page_link( $query ) {
 				$page = 1;
 			}
 
-			$page--;
+			--$page;
 
 			$link = epl_add_or_update_params( $link, 'paged', $page );
 		}

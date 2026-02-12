@@ -221,7 +221,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				$this->file,
 				$args
 			);
-
 		}
 
 		/**
@@ -630,7 +629,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			}
 
 			delete_transient( 'epl_license_error' );
-
 		}
 
 		/**
@@ -653,7 +651,6 @@ if ( ! class_exists( 'EPL_License' ) ) :
 				echo '&nbsp;<strong><a href="' . esc_url( add_query_arg( array( 'page' => 'epl-licenses' ), admin_url( 'admin.php' ) ) ) . '">' . esc_html__( 'Enter valid license key for automatic updates.', 'easy-property-listings' ) . '</a></strong>';
 				$showed_imissing_key_message[ $this->item_shortname ] = true;
 			}
-
 		}
 
 		/**
