@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Easy Property Listings 3.5.18\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2026-02-12 05:01:51+00:00\n"
+"POT-Creation-Date: 2026-02-12 05:38:40+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -270,7 +270,7 @@ msgid "Processing..."
 msgstr ""
 
 #: lib/includes/admin/admin-functions.php:522
-#: lib/includes/admin/admin-functions.php:595
+#: lib/includes/admin/admin-functions.php:596
 #: lib/includes/admin/menus/menu-extensions.php:30
 #: lib/includes/admin/menus/menu-general.php:24
 #: lib/includes/admin/menus/menu-licenses.php:30
@@ -289,53 +289,53 @@ msgstr ""
 msgid "The file you uploaded does not appear to be a valid import file."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:613
+#: lib/includes/admin/admin-functions.php:615
 msgid "It looks like you upgraded to latest version of Easy Property Listings"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:615
+#: lib/includes/admin/admin-functions.php:617
 msgid ""
 "For better performance, we need to upgrade the database. You can upgrade "
 "the database by visiting tools page"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:620
+#: lib/includes/admin/admin-functions.php:622
 msgid "Take me to the upgrade tool"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:639
+#: lib/includes/admin/admin-functions.php:641
 msgid "Unauthorized"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:655
+#: lib/includes/admin/admin-functions.php:657
 msgid "Some error occured"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:757
+#: lib/includes/admin/admin-functions.php:759
 #. Translators: %s is a string of listing post ids.
 msgid "Database upgrade in process, following listings updated : %s. Please wait..."
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:770
+#: lib/includes/admin/admin-functions.php:772
 msgid "Database upgraded successfully"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:830
-#: lib/includes/admin/admin-functions.php:843
-#: lib/includes/admin/admin-functions.php:851
+#: lib/includes/admin/admin-functions.php:837
+#: lib/includes/admin/admin-functions.php:850
+#: lib/includes/admin/admin-functions.php:858
 msgid "Note"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:835
+#: lib/includes/admin/admin-functions.php:842
 #: lib/includes/class-epl-contact.php:738
 msgid "Call"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:839
+#: lib/includes/admin/admin-functions.php:846
 msgid "Mail"
 msgstr ""
 
-#: lib/includes/admin/admin-functions.php:847
+#: lib/includes/admin/admin-functions.php:854
 msgid "Alert"
 msgstr ""
 
@@ -347,15 +347,15 @@ msgstr ""
 msgid "Add to Slider"
 msgstr ""
 
-#: lib/includes/admin/class-epl-admin-images.php:416
+#: lib/includes/admin/class-epl-admin-images.php:420
 msgid "Attachment Thumbnail"
 msgstr ""
 
-#: lib/includes/admin/class-epl-admin-images.php:427
+#: lib/includes/admin/class-epl-admin-images.php:431
 msgid "Add images to the slider using add media button."
 msgstr ""
 
-#: lib/includes/admin/class-epl-admin-images.php:435
+#: lib/includes/admin/class-epl-admin-images.php:439
 msgid ""
 "Drag to reorder images and use the switch to remove images from the slider. "
 "Update the post to save changes."
@@ -2177,7 +2177,7 @@ msgstr ""
 
 #: lib/includes/admin/reports/graphing.php:245
 #: lib/includes/admin/reports/graphing.php:255
-#. translators: status label.
+#. Translators: status label.
 msgid "Total %s listings period shown : "
 msgstr ""
 
@@ -5295,7 +5295,7 @@ msgstr ""
 #. translators: %s: post type name
 #. translators: Category Archive.
 #. translators: Tag Archive.
-#. translators: %s: taxonomy term name
+#. Translators: %s: taxonomy term name
 #. translators: Year-Specific Archive.
 #. translators: Month-Specific Archive.
 #. translators: Day-Specific Archive.
