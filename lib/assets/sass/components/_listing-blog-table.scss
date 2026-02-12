@@ -1,0 +1,94 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Table
+//---------------------------------------------
+
+/** Table **/
+.epl-table,
+.epl-table.hentry {
+	display: grid;
+	grid-template-columns: 100px 1fr;
+	font-size: 1em;
+	border-bottom: 1px solid #ddd;
+	align-items: center;
+	gap: 0;
+	grid-column: 1 / -1;
+}
+.epl-table .epl-table-column-image,
+.epl-table .epl-table-column-content,
+.epl-table .epl-table-box {
+	box-sizing: border-box;
+}
+
+.epl-table .epl-table-column-content {
+	display: flex;
+	margin: 0;
+	padding: 1em;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1em;
+}
+.epl-table .epl-table-column-image {
+	width: 100%;
+	height: 100%;
+}
+.epl-table .epl-archive-entry-image {
+	width: 100%;
+	height: 100%;
+}
+.epl-table .epl-archive-entry-image a {
+	width: 100%;
+	height: 100%;
+}
+.epl-table .epl-table-column-image img {
+	max-width: 100%;
+	display: block;
+}
+.epl-table .epl-table-column-content {
+	width: 100%;
+}
+.epl-table .epl-table-column-left {
+	width: 40%;
+}
+.epl-table .epl-table-column-middle {
+	width: 30%;
+}
+.epl-table .epl-table-column-right {
+	width: 25%;
+}
+
+.epl-table .property-address .entry-title-sub {
+	display: inline-block;
+}
+.epl-table .epl-inspection-times,
+.epl-table .home-open-wrapper {
+	margin: 0;
+	padding: 0;
+}
+.epl-table .home-open-wrapper {
+	list-style: none;
+}
+.epl-table .epl-inspection-times .epl-inspection-times-label {
+	display: none;
+}
+.epl-table .icon.pool,
+.epl-table .icon.air {
+	display: none;
+}
+.epl-table.epl-listing-grid-view .price,
+.epl-table.epl-listing-grid-view-forced .price {
+	float: left;
+	text-align: left;
+}
+
+@media screen and (max-width: 500px) {
+	.epl-table .epl-table-column-image,
+	.epl-table .epl-table-column-left,
+	.epl-table .epl-table-column-middle,
+	.epl-table .epl-table-column-right {
+		width: 100%;
+		float: left;
+		text-align: left;
+	}
+}

@@ -1,0 +1,28 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Inspections
+//---------------------------------------------
+
+.epl-inspection-times {
+	margin: 0;
+	padding: 0;
+}
+.epl-property-single .epl-inspection-times {
+	padding: 0;
+}
+.epl-inspection-times ul.home-open-wrapper {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.epl-inspection-times ul.home-open-wrapper li {
+	line-height: 1.2;
+	margin-left: 0;
+}
+.epl-inspection-times .epl-inspection-times-label {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	display: block;
+}

@@ -1,0 +1,45 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Themes (Twenty Twelve)
+//---------------------------------------------
+
+/* Twenty Fifteen */
+.epl-active-theme-twentyfifteen.epl-archive-default,
+.epl-active-theme-twentyfifteen.epl-single-default {
+	margin: 0;
+	width: 100%;
+}
+
+.epl-active-theme-twentyfifteen.epl-archive-default .property-address {
+	line-height: 1.5;
+	margin-bottom: 1em;
+}
+.epl-active-theme-twentyfifteen.epl-archive-default .loop {
+	padding-top: 8.3333%;
+}
+.epl-active-theme-twentyfifteen.epl-archive-default .archive-header,
+.epl-active-theme-twentyfifteen .epl-pagination {
+	padding: 3.8461% 7.6923%;
+	margin: 0 9.9333%;
+	background: #ffffff;
+	border-bottom: 0;
+	border-left: 7px solid #333;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.epl-active-theme-twentyfifteen .epl-pagination {
+	margin-bottom: 2em;
+}
+.epl-active-theme-twentyfifteen.epl-single-default .epl-property-single {
+	margin: 0 8.3333%;
+	padding: 8.3333% 0 0;
+}
+.epl-active-theme-twentyfifteen.epl-single-default .loop-content {
+	padding: 8.3333% 0;
+}
+
+.epl-active-theme-twentyfifteen .epl-inspection-times ul {
+	list-style: none;
+	margin: 0;
+	font-size: 0.8em;
+}

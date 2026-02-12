@@ -188,6 +188,12 @@ function epl_wp_enqueue_scripts() {
 			wp_enqueue_style( 'epl-theme-style-single', get_stylesheet_directory_uri() . '/easypropertylistings/style-single.css', false, EPL_PROPERTY_VER );
 		}
 	}
+	
+	// Placeholder for scss loading.
+	wp_enqueue_style( 'epl-style-compiled', $current_dir_path . '/css/style-compiled' . $suffix . '.css', false, EPL_PROPERTY_VER );
+	
+	
+	
 
 	$js_vars = array(
 		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),

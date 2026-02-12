@@ -1,0 +1,60 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Themes (Twenty Twelve)
+//---------------------------------------------
+
+/* Twenty Twelve */
+.epl-active-theme-twentytwelve {
+}
+.epl-active-theme-twentytwelve .entry-content {
+}
+
+/* Twenty Fourteen */
+.epl-active-theme-twentyfourteen.epl-archive-default .page-header,
+.epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog,
+.epl-active-theme-twentyfourteen.epl-archive-default
+	.epl-switching-sorting-wrap {
+	max-width: 774px;
+	margin: 0 auto;
+	float: none;
+	border-bottom: none;
+}
+.epl-active-theme-twentyfourteen.epl-archive-default
+	.epl-property-blog.epl-listing-grid-view,
+.epl-active-theme-twentyfourteen.epl-archive-default
+	.epl-property-blog.epl-listing-grid-view-forced {
+	margin: 0;
+	float: left;
+}
+.epl-active-theme-twentyfourteen.epl-archive-default
+	.epl-switching-sorting-wrap {
+	margin: 0 auto;
+}
+.list-view .epl-active-theme-twentyfourteen .site-content {
+	margin-left: 222px;
+}
+.list-view .epl-active-theme-twentyfourteen .site-content .epl-property-blog {
+	border-bottom: none;
+}
+.full-width
+	.epl-active-theme-twentyfourteen
+	.site-content
+	.hentry.epl-listing-single:first-child {
+	margin-top: 0;
+}
+
+@media screen and (max-width: 1008px) {
+	.list-view .epl-active-theme-twentyfourteen .site-content {
+		margin: 0 20px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.epl-active-theme-twentyfourteen.epl-archive-default .page-header,
+	.epl-active-theme-twentyfourteen.epl-archive-default .epl-property-blog,
+	.epl-active-theme-twentyfourteen.epl-archive-default
+		.epl-switching-sorting-wrap {
+		max-width: 300px;
+	}
+}

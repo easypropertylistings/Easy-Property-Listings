@@ -38,6 +38,12 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.6 February XX. 2026 =
+
+-   New: Full CSS re-write to scss.
+-   Tweak: Default image size increased to 600x400 up from 300x200. Use a thumbnail regeneration plugin to resize images to the new size.
+-   Tweak: Default shortcode limit set to 12 instead of 10.
+
 = 3.5.18 February 12. 2026 =
 
 -   Fix: Admin JS code that prevented loading due to map.
