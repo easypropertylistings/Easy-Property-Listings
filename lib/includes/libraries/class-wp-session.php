@@ -208,6 +208,8 @@ final class WP_Session extends Recursive_ArrayAccess implements Iterator, Counta
 	 * Output the current container contents as a JSON-encoded string.
 	 *
 	 * @return string
+	 *
+	 * @since 3.5.18 Using wp json out function.
 	 */
 	public function json_out() {
 		return wp_json_encode( $this->container );

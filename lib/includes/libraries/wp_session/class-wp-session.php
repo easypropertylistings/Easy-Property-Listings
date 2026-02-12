@@ -66,6 +66,7 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 * @uses apply_filters Calls `wp_session_expiration` to determine how long until sessions expire.
 	 *
 	 * @since 3.5.3 Updated to return local timestamp.
+	 * @since 3.5.18 Cookie path improvements.
 	 */
 	private function __construct() {
 		if ( isset( $_COOKIE[ WP_SESSION_COOKIE ] ) ) {
@@ -141,6 +142,9 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 * Output the current container contents as a JSON-encoded string.
 	 *
 	 * @return string
+	 *
+	 * @since 3.5.3
+	 * @since 3.5.18 Using wp_json_encode.
 	 */
 	public function json_out() {
 		return wp_json_encode( $this->container );
@@ -168,6 +172,9 @@ class WP_Session implements ArrayAccess, Iterator, Countable {
 	 * Regenerate the current session's ID.
 	 *
 	 * @param bool $delete_old Flag whether or not to delete the old session data from the server.
+	 *
+	 * @since 3.5.3
+	 * @since 3.5.18 Updated cookie path.
 	 */
 	public function regenerate_id( $delete_old = false ) {
 		if ( $delete_old ) {

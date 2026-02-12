@@ -568,6 +568,7 @@ function epl_export_settings() {
  * Import the settings.
  *
  * @since 3.5.10
+ * @since 3.5.18 Check for data before continue.
  */
 function epl_import_settings() {
 	if ( ! isset( $_FILES['epl_import'] ) ) {
@@ -603,6 +604,7 @@ function epl_reset_settings() {
  * Upgrade Database Notice
  *
  * @since 3.3.0
+ * @since 3.5.18 Check user can manage options.
  */
 function epl_upgrade_admin_notice() {
 
@@ -777,10 +779,12 @@ function epl_upgrade_db_to_3_3() {
 /**
  * Update the property_price_global when saving or updating an EPL post
  *
- * @since 3.3.0
  * @param int   $post_id The post id.
  * @param array $post The post object.
  * @param array $_update Update.
+ *
+ * @since 3.3.0
+ * @since 3.5.18 Private variable $_update.
  */
 function epl_sync_property_price_global( $post_id, $post, $_update ) {
 
@@ -811,11 +815,14 @@ add_action( 'save_post', 'epl_sync_property_price_global', 40, 3 );
 /**
  * Filter the contacts comments
  *
- * @since 3.3.0
  * @param array  $avatar Update.
  * @param string $id_or_email User ID or email address.
- * @param array  $_args Update.
+ * @param array  $_args Arguments.
+ *
  * @return array|string $avatar
+ *
+ * @since 3.3.0
+ * @since 3.5.18 Private variable $_args.
  */
 function epl_get_avatar_filter( $avatar, $id_or_email, $_args ) {
 

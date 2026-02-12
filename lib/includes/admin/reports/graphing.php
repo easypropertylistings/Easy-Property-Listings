@@ -241,7 +241,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								// translators: status label.
+								// Translators: status label.
 								printf( esc_html__( 'Total %s listings period shown : ', 'easy-property-listings' ), esc_attr( ucfirst( $current_status ) ) );
 
 								echo esc_attr( epl_format_amount( $current_listings_totals ) );
@@ -251,7 +251,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								// translators: status label.
+								// Translators: status label.
 								printf( esc_html__( 'Total %s listings period shown : ', 'easy-property-listings' ), esc_attr( ucfirst( $sold_status ) ) );
 
 								echo esc_attr( epl_format_amount( $sales_totals ) );

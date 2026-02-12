@@ -124,6 +124,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 * @param string $post_id Post ID.
 		 *
 		 * @since 3.5.16
+		 * @since 3.5.18 Check for post object.
 		 */
 		public static function save_all_extensions_data( $post_id ) {
 
@@ -158,6 +159,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 * @param string $post_id Post ID.
 		 *
 		 * @since 3.5.16
+		 * @since 3.5.18 Added nonce check.
 		 */
 		public function process_save_data( $post_id ) {
 
@@ -193,6 +195,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 * @param string $url External link URL.
 		 *
 		 * @since 3.5.16
+		 * @since 3.5.18 Adjusted to use home_url.
 		 */
 		public function is_external_link( $url ) {
 
@@ -242,6 +245,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 * @param object $post Global post object.
 		 *
 		 * @since 3.5.16
+		 * @since 3.5.18 Array search improvements and better checks for attachments.
 		 */
 		public function epl_images_management_callback( $post ) {
 
@@ -462,7 +466,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 * Save Image Order
 		 *
 		 * @since 3.5.16
-		 * @since 3.5.18 Nonce added.
+		 * @since 3.5.18 Nonce added and fixes to checks and sanitisation.
 		 */
 		public function save_image_order() {
 
@@ -494,7 +498,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 
 			$order_meta_key = self::$registered_extensions[ $extension ]->get_config( 'order_meta_key' );
 
-			// Sanitize order as CSV of integers.
+			// Sanitise order as CSV of integers.
 			$order_raw = isset( $_POST['order'] ) ? wp_unslash( $_POST['order'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitized below.
 			$order_ids = array_filter( array_map( 'absint', explode( ',', (string) $order_raw ) ) );
 			$order     = implode( ',', $order_ids );
@@ -508,6 +512,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 * Detach Images
 		 *
 		 * @since 3.5.16
+		 * @since 3.5.18 Nonce added and fixes to checks and sanitisation.
 		 */
 		public function unattach_image() {
 

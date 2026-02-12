@@ -63,12 +63,12 @@ class EPL_Advanced_Shortcode_Listing {
 	 */
 	public $meta_key_price = 'property_price';
 
-		/**
-		 * Query object.
-		 *
-		 * @since 3.3.0
-		 * @var object $query_open instance of WP_Query object.
-		 */
+	/**
+	 * Query object.
+	 *
+	 * @since 3.3.0
+	 * @var object $query_open instance of WP_Query object.
+	 */
 	public $query_open;
 
 	/**

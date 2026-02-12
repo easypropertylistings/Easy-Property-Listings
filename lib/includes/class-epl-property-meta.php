@@ -298,7 +298,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 								if ( in_array( $key, $not_date, true ) ) {
 
-									// handle inspections that are not date.
+									// Handle inspections that are not date.
 									$return .= $element;
 
 								} else {
