@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.19 February 13. 2026 =
+
+-   Fix: Fatal error with widgets and customizer.
+
 = 3.5.18 February 12. 2026 =
 
 -   Fix: Admin JS code that prevented loading due to map.
