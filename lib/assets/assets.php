@@ -189,11 +189,11 @@ function epl_wp_enqueue_scripts() {
 		}
 	}
 	
-	// Placeholder for scss loading.
-	wp_enqueue_style( 'epl-style-compiled', $current_dir_path . '/css/style-compiled' . $suffix . '.css', false, EPL_PROPERTY_VER );
-	
-	
-	
+	// Placeholder for 3.6 scss loading.
+	$compiled_scss = false;
+	if ( $compiled_scss ){
+		wp_enqueue_style( 'epl-style-compiled', $current_dir_path . '/css/style-compiled' . $suffix . '.css', false, EPL_PROPERTY_VER );
+	}
 
 	$js_vars = array(
 		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),
