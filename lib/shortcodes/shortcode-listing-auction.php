@@ -30,7 +30,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.4.44 Fix: Missing commercial auction listings in shortcode.
  * @since 3.4.48 Fixed class name. Passing shortcode results message shortcode type.
  * @since 3.5.5 Sorting not working.
- * @since 3.6 Default limit set to 12 instead of 10.
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -42,7 +41,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		array(
 			'post_type'    => $property_types, // Post Type.
 			'status'       => array( 'current', 'sold', 'leased' ),
-			'limit'        => '12',   // Number of maximum posts to show.
+			'limit'        => '10',   // Number of maximum posts to show.
 			'template'     => false,  // Template can be set to "slim" for home open style template.
 			'location'     => '',     // Location slug. Should be a name like sorrento.
 			'tools_top'    => 'off',  // Tools before the loop like Sorter and Grid on or off.

@@ -137,7 +137,6 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Get default options.
 	 *
 	 * @since 3.3
-	 * @since 3.6 Default limit set to 12 instead of 10.
 	 */
 	public function get_default_args() {
 
@@ -166,7 +165,7 @@ class EPL_Advanced_Shortcode_Listing {
 			'commercial_listing_type' => '', // Listing Type, sale lease and both.
 			'feature'                 => '', // Feature slug.
 			'feature_id'              => '', // Feature ID.
-			'limit'                   => '12', // Number of maximum posts to show.
+			'limit'                   => '10', // Number of maximum posts to show.
 			'offset'                  => '', // Offset posts. When used, pagination is disabled.
 			'author'                  => '', // Author of listings.
 			'agent'                   => '', // listings by agent.

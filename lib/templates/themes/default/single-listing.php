@@ -5,7 +5,6 @@
  * @package EPL
  * @subpackage Templates/Themes/Default
  * @since 1.0
- * @since 3.6 Wrapper class to specific to single.
  */
 
 // Exit if accessed directly.
@@ -21,7 +20,7 @@ get_header(); ?>
 			if ( have_posts() ) :
 				?>
 				<div class="loop">
-					<div class="loop-content <?php echo esc_attr( epl_template_class( 'single-loop-default', 'single' ) ); ?>">
+					<div class="loop-content <?php echo esc_attr( epl_template_class( 'default', 'single' ) ); ?>">
 						<?php
 						while ( have_posts() ) : // The Loop.
 							the_post();
@@ -35,5 +34,5 @@ get_header(); ?>
 		</div>
 	</section>
 </div>
-<?php // get_sidebar(); ?>
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

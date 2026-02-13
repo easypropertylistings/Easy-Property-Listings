@@ -31,7 +31,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.5 support for third and fourth agents.
  * @since 3.4.48 Fixed class name.
  * @since 3.5.5 Sorting not working.
- * @since 3.6 Default limit set to 12 instead of 10.
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -47,7 +46,7 @@ function epl_shortcode_listing_category_callback( $atts ) {
 			'category_key'            => '',     // Meta field key.
 			'category_value'          => '',     // Meta field value.
 			'category_compare'        => 'IN',   // Compare using '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'EXISTS', 'NOT EXISTS', 'IN','NOT IN','BETWEEN','NOT BETWEEN'.
-			'limit'                   => '12',   // Number of maximum posts to show.
+			'limit'                   => '10',   // Number of maximum posts to show.
 			'offset'                  => '',     // Offset posts. When used, pagination is disabled.
 			'author'                  => '',     // Author of listings.
 			'agent'                   => '',     // Agent of listings.

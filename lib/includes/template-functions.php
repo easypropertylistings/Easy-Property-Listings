@@ -135,7 +135,6 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  * @since      3.4.8 Corrected missing parameter count to 3.
  * @since      3.4.38 Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
  * @since      3.4.39 Added missing arguments variable to epl_no_property_featured_image action.
- * @since      3.6    Removed it-featured-image class.
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
@@ -154,7 +153,7 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
-			<div class="epl-featured-image">
+			<div class="epl-featured-image it-featured-image">
 				<?php if ( true === $args['link'] ) { ?>
 					<a href="<?php the_permalink(); ?>">
 				<?php } ?>
@@ -2303,11 +2302,10 @@ function epl_template_path() {
 /**
  * Outputs a wrapper div before the first button
  *
- * @since 1.3
- * @since 3.6 removed epl-clearfix class.
+ * @since      1.3
  */
 function epl_buttons_wrapper_before() {
-	echo '<div class="epl-button-wrapper">';
+	echo '<div class="epl-button-wrapper epl-clearfix">';
 }
 
 /**
