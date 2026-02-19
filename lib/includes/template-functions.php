@@ -2364,48 +2364,85 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
-	if ( isset( $_GET['propid'] ) && isset( $_GET['epl_cal_dl'] ) && 1 === (int) $_GET['epl_cal_dl'] && intval( $_GET['propid'] ) > 0 ) {
-		if ( isset( $_GET['cal'] ) ) {
-			$type = sanitize_text_field( wp_unslash( $_GET['cal'] ) );
-			switch ( $type ) {
-				case 'ical':
-					$item = base64_decode( sanitize_text_field( wp_unslash( $_GET['dt'] ) ) ); //phpcs:ignore
-					if ( is_numeric( $item[0] ) ) {
-						$post_id   = isset( $_GET['propid'] ) ? intval( $_GET['propid'] ) : 0;
-						$timearr   = explode( ' ', $item );
-						$starttime = current( $timearr );
-						if ( isset( $timearr[1] ) ) {
-							$starttime .= ' ' . $timearr[1];
-						}
-						$endtime = current( $timearr ) . ' ' . end( $timearr );
-						$post    = get_post( $post_id );
-						if ( is_null( $post ) ) {
-							return;
-						}
+	if ( ! isset( $_GET['propid'], $_GET['epl_cal_dl'], $_GET['cal'], $_GET['dt'] ) || 1 !== (int) $_GET['epl_cal_dl'] ) {
+		return;
+	}
 
-						$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+	$post_id = absint( wp_unslash( $_GET['propid'] ) );
+	if ( $post_id <= 0 || 'ical' !== sanitize_text_field( wp_unslash( $_GET['cal'] ) ) ) {
+		return;
+	}
 
-						if ( isset( $_GET['event_type'] ) && 'auction' === sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
-							$subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
-						}
+	$item = base64_decode( sanitize_text_field( wp_unslash( $_GET['dt'] ) ), true ); //phpcs:ignore
+	if ( false === $item ) {
+		return;
+	}
 
-						$address      = '';
-						$prop_sub_num = get_post_meta( $post_id, 'property_address_sub_number', true );
-						if ( ! empty( $prop_sub_num ) ) {
-							$address .= get_post_meta( $post_id, 'property_address_sub_number', true ) . '/';
-						}
-						$address .= get_post_meta( $post_id, 'property_address_street_number', true ) . ' ';
-						$address .= get_post_meta( $post_id, 'property_address_street', true ) . ' ';
-						$address .= get_post_meta( $post_id, 'property_address_suburb', true ) . ', ';
-						$address .= get_post_meta( $post_id, 'property_address_state', true ) . ' ';
-						$address .= get_post_meta( $post_id, 'property_address_postal_code', true );
+	$item = trim( html_entity_decode( $item, ENT_QUOTES, 'UTF-8' ) );
+	if ( '' === $item || ! isset( $item[0] ) || ! is_numeric( $item[0] ) ) {
+		return;
+	}
 
-						epl_create_ical_file( $starttime, $endtime, $subject, wp_strip_all_tags( $post->post_content ), $address, $post_id );
-					}
-					break;
-			}
+	$post = get_post( $post_id );
+	if ( is_null( $post ) || 'publish' !== $post->post_status || ! in_array( $post->post_type, epl_get_core_post_types(), true ) || post_password_required( $post_id ) ) {
+		return;
+	}
+
+	$inspection_time = get_post_meta( $post_id, 'property_inspection_times', true );
+	if ( ! is_string( $inspection_time ) || '' === trim( $inspection_time ) ) {
+		return;
+	}
+
+	$is_valid_inspection = false;
+	$list                = array_filter( explode( "\n", trim( $inspection_time ) ) );
+	foreach ( $list as $inspection_item ) {
+		$inspection_item = trim( $inspection_item );
+		if ( '' === $inspection_item || ! isset( $inspection_item[0] ) || ! is_numeric( $inspection_item[0] ) ) {
+			continue;
+		}
+
+		$timearr  = explode( ' ', $inspection_item );
+		$endtime  = current( $timearr ) . ' ' . end( $timearr );
+		$expired  = strtotime( $endtime ) < epl_get_local_timestamp();
+		$expired  = apply_filters( 'epl_maybe_delete_inspection', $expired, $endtime, $inspection_item );
+		if ( $expired ) {
+			continue;
+		}
+
+		if ( $inspection_item === $item ) {
+			$is_valid_inspection = true;
+			break;
 		}
 	}
+
+	if ( ! $is_valid_inspection ) {
+		return;
+	}
+
+	$timearr   = explode( ' ', $item );
+	$starttime = current( $timearr );
+	if ( isset( $timearr[1] ) ) {
+		$starttime .= ' ' . $timearr[1];
+	}
+	$endtime = current( $timearr ) . ' ' . end( $timearr );
+
+	$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+	if ( isset( $_GET['event_type'] ) && 'auction' === sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
+		$subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+	}
+
+	$address      = '';
+	$prop_sub_num = get_post_meta( $post_id, 'property_address_sub_number', true );
+	if ( ! empty( $prop_sub_num ) ) {
+		$address .= get_post_meta( $post_id, 'property_address_sub_number', true ) . '/';
+	}
+	$address .= get_post_meta( $post_id, 'property_address_street_number', true ) . ' ';
+	$address .= get_post_meta( $post_id, 'property_address_street', true ) . ' ';
+	$address .= get_post_meta( $post_id, 'property_address_suburb', true ) . ', ';
+	$address .= get_post_meta( $post_id, 'property_address_state', true ) . ' ';
+	$address .= get_post_meta( $post_id, 'property_address_postal_code', true );
+
+	epl_create_ical_file( $starttime, $endtime, $subject, wp_strip_all_tags( $post->post_content ), $address, $post_id );
 }
 add_action( 'init', 'epl_process_event_cal_request' );
 
