@@ -2361,6 +2361,7 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
  * @since 2.0
  * @since 3.5.7 Different subject for auction.
  * @since 3.5.16 Triple equals for auction value.
+ * @since 3.5.20 ical access issue.
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
