@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<li class="tab-link <?php echo esc_attr( $current_class ); ?>" data-tab="tab-<?php echo esc_attr( $counter ); ?>"><?php echo esc_html( $author_tab['label'] ); ?></li>
 			<?php
-			$counter ++;
+			++$counter;
 		}
 		?>
 	</ul>
@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				?>
 			</div>
 			<?php
-			$counter ++;
+			++$counter;
 		}
 		?>
 	</div>

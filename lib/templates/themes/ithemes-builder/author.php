@@ -26,14 +26,15 @@ function render_content() {
 				<?php echo wp_kses_post( epl_property_author_box() ); ?>
 				<h4 class="loop-title">
 					<?php
-						the_post();
+					the_post();
 
 					if ( is_category() ) { // translators: Category Archive.
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), single_cat_title( '', false ) );
 					} elseif ( is_tag() ) { // translators: Tag Archive.
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), single_tag_title( '', false ) );
 					} elseif ( is_tax() ) { // translators: Tag Archive.
-						$term  = get_queried_object();
+						$term = get_queried_object();
+						/* Translators: %s: taxonomy term name */
 						$title = sprintf( __( 'Archive for %s', 'easy-property-listings' ), $term->name );
 					} elseif ( function_exists( 'is_post_type_archive' ) && is_post_type_archive() && function_exists( 'post_type_archive_title' ) ) { // translators: Post Type Archive.
 						$title = post_type_archive_title( '', false );
@@ -52,7 +53,7 @@ function render_content() {
 					}
 
 					if ( is_paged() ) {
-						// translators: title and page number.
+						// Translators: title and page number.
 						printf( '%s &ndash; Page %d', esc_attr( $title ), esc_attr( get_query_var( 'paged' ) ) );
 					} else {
 						echo esc_attr( $title );

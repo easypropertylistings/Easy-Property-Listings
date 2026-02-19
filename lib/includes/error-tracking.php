@@ -107,15 +107,15 @@ function epl_unset_error( $error_id ) {
 /**
  * Pretty var dump
  *
- * @param string $var ID of the variable.
- * @param bool   $die Die or not.
+ * @param string $variable  ID of the variable.
+ * @param bool   $terminate Die or not.
  * @since 3.0
  */
-function epl_var_dump( $var, $die = false ) {
+function epl_var_dump( $variable, $terminate = false ) {
 	echo '<pre class="epl_var_dump">';
-	var_dump( $var ); //phpcs:ignore
+	var_dump( $variable ); //phpcs:ignore
 	echo '</pre>';
-	if ( $die ) {
+	if ( $terminate ) {
 		die();
 	}
 }
@@ -123,15 +123,15 @@ function epl_var_dump( $var, $die = false ) {
 /**
  * Pretty print_r
  *
- * @param array $var Array to be printed.
- * @param bool  $die Die or not.
+ * @param array $variable  Array to be printed.
+ * @param bool  $terminate Die or not.
  * @since 3.0
  */
-function epl_print_r( $var, $die = false ) {
+function epl_print_r( $variable, $terminate = false ) {
 	echo '<pre class="epl_print_r">';
-	print_r( $var );//phpcs:ignore
+	print_r( $variable );//phpcs:ignore
 	echo '</pre>';
-	if ( $die ) {
+	if ( $terminate ) {
 		die();
 	}
 }

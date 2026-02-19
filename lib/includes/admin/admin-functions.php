@@ -26,7 +26,7 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	 * @since 3.3.3
 	 */
 	function cal_days_in_month( $calendar, $month, $year ) {
-		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
+		return gmdate( 't', mktime( 0, 0, 0, $month, 1, $year ) );
 	}
 }
 
@@ -109,7 +109,7 @@ function epl_admin_sidebar() {
 	$i               = 0;
 	foreach ( $service_banners as $banner ) {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
-		$i ++;
+		++$i;
 	}
 	?>
 	<div class="epl-admin-offer" style="margin-bottom: 1em;">
@@ -148,7 +148,7 @@ function epl_dashboard_widget_offer() {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '">
 			<img style="margin-right: 0.5em" width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
 		      </a>';
-		$i ++;
+		++$i;
 	}
 	?>
 
@@ -206,7 +206,7 @@ function epl_dashboard_widget_offer_post_types() {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '">
 			<img style="display: block; float: left; margin: 0.5em 0.5em 0.5em 0" width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
 		      </a>';
-		$i ++;
+		++$i;
 	}
 	?>
 	<?php
@@ -450,7 +450,6 @@ function epl_settings_reset() {
 	<?php
 
 	do_action( 'epl_post_settings_reset_fields' );
-
 }
 
 /**
@@ -569,10 +568,14 @@ function epl_export_settings() {
  * Import the settings.
  *
  * @since 3.5.10
+ * @since 3.5.18 Check for data before continue.
  */
 function epl_import_settings() {
+	if ( ! isset( $_FILES['epl_import'] ) ) {
+		return;
+	}
 	$upload_overrides = array( 'test_form' => false );
-	$movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides );
+	$movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- handled by wp_handle_upload.
 
 	if ( $movefile && ! isset( $movefile['error'] ) ) {
 		$imported_data  = epl_remote_url_get( $movefile['url'] );
@@ -601,12 +604,13 @@ function epl_reset_settings() {
  * Upgrade Database Notice
  *
  * @since 3.3.0
+ * @since 3.5.18 Check user can manage options.
  */
 function epl_upgrade_admin_notice() {
 
 	$upgraded_to = get_option( 'epl_db_upgraded_to' );
 
-	if ( ! empty( $upgraded_to ) && $upgraded_to < 3.3 && current_user_can( 'administrator' ) ) :
+	if ( ! empty( $upgraded_to ) && $upgraded_to < 3.3 && current_user_can( 'manage_options' ) ) :
 
 		$head = esc_html__( 'It looks like you upgraded to latest version of Easy Property Listings', 'easy-property-listings' );
 
@@ -775,12 +779,14 @@ function epl_upgrade_db_to_3_3() {
 /**
  * Update the property_price_global when saving or updating an EPL post
  *
- * @since 3.3.0
  * @param int   $post_id The post id.
  * @param array $post The post object.
- * @param array $update Update.
+ * @param array $_update Update.
+ *
+ * @since 3.3.0
+ * @since 3.5.18 Private variable $_update.
  */
-function epl_sync_property_price_global( $post_id, $post, $update ) {
+function epl_sync_property_price_global( $post_id, $post, $_update ) {
 
 	if ( is_epl_post() ) {
 
@@ -809,13 +815,16 @@ add_action( 'save_post', 'epl_sync_property_price_global', 40, 3 );
 /**
  * Filter the contacts comments
  *
- * @since 3.3.0
  * @param array  $avatar Update.
  * @param string $id_or_email User ID or email address.
- * @param array  $args Update.
+ * @param array  $_args Arguments.
+ *
  * @return array|string $avatar
+ *
+ * @since 3.3.0
+ * @since 3.5.18 Private variable $_args.
  */
-function epl_get_avatar_filter( $avatar, $id_or_email, $args ) {
+function epl_get_avatar_filter( $avatar, $id_or_email, $_args ) {
 
 	if ( ! is_object( $id_or_email ) ) {
 		return $avatar;

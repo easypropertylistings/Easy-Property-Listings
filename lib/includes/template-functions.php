@@ -71,7 +71,7 @@ add_action( 'the_post', 'epl_reset_property_object' );
  */
 function epl_create_property_object() {
 
-	global $post,$property,$epl_author,$epl_author_secondary, $epl_author_third, $epl_author_fourth;
+	global $post, $property, $epl_author, $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 
 	if ( is_author() ) {
 		$author_id  = get_query_var( 'author' );
@@ -167,7 +167,6 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 	} else {
 		do_action( 'epl_no_property_featured_image', $args );
 	}
-
 }
 add_action( 'epl_property_featured_image', 'epl_property_featured_image', 10, 3 );
 add_action( 'epl_single_featured_image', 'epl_property_featured_image', 10, 3 );
@@ -224,7 +223,6 @@ function epl_property_archive_featured_image( $image_size = 'epl-image-medium-cr
 	} else {
 		do_action( 'epl_no_archive_featured_image', $args );
 	}
-
 }
 add_action( 'epl_property_archive_featured_image', 'epl_property_archive_featured_image', 10, 4 );
 
@@ -393,8 +391,8 @@ function epl_hide_listing_statuses() {
  * Allows the use of one function where we can then select a different template
  * when needed
  *
- * @param string $template The template.
- * @param string $default  Optional template name.
+ * @param string $template      The template.
+ * @param string $default_value Optional template name.
  *
  * @since 1.0.0
  * @since 3.4.4 Removed default template check for loop templates as this caused incorrect templates to load in some cases.
@@ -403,7 +401,7 @@ function epl_hide_listing_statuses() {
  * @since 3.4.38 New: Additional parameters default to pass the default template which will be used if the template is not found.
  * @since 3.5 New: Additional args for custom template action : epl_loop_template_{$post_type}, epl_loop_template.
  */
-function epl_property_blog( $template = '', $default = 'default' ) {
+function epl_property_blog( $template = '', $default_value = 'default' ) {
 
 	if ( empty( $template ) || 'blog' === $template ) {
 		$template = 'default';
@@ -446,7 +444,7 @@ function epl_property_blog( $template = '', $default = 'default' ) {
 		if ( ! $action_exists ) {
 			$tpl_name = 'loop-listing-blog-' . $template . '.php';
 			$tpl_name = apply_filters( 'epl_property_blog_template', $tpl_name, get_defined_vars() );
-			epl_get_template_part( $tpl_name, array(), 'loop-listing-blog-' . $default . '.php' );
+			epl_get_template_part( $tpl_name, array(), 'loop-listing-blog-' . $default_value . '.php' );
 		}
 	} // End Status Removal.
 }
@@ -674,7 +672,7 @@ function epl_property_author_box_simple_card_tall( $d_image, $d_icons, $d_bio, $
 		return;
 	}
 
-	global $property,$epl_author,$epl_author_secondary,$epl_author_third, $epl_author_fourth;
+	global $property, $epl_author, $epl_author_secondary, $epl_author_third, $epl_author_fourth;
 	if ( is_null( $epl_author ) ) {
 		return;
 	}
@@ -1021,7 +1019,7 @@ function epl_property_available_dates() {
 		! empty( $date_avail )
 		&& 'leased' !== $property->get_property_meta( 'property_status' ) ) {
 		// Rental Specifics.
-		echo '<div class="property-meta date-available">' . wp_kses_post( apply_filters( 'epl_property_sub_title_available_from_label', __( 'Available from', 'easy-property-listings' ) ) ) . ' ', wp_kses_post( $property->get_property_available() ) , '</div>';
+		echo '<div class="property-meta date-available">' . wp_kses_post( apply_filters( 'epl_property_sub_title_available_from_label', __( 'Available from', 'easy-property-listings' ) ) ) . ' ', wp_kses_post( $property->get_property_available() ), '</div>';
 	}
 }
 add_action( 'epl_property_available_dates', 'epl_property_available_dates' );
@@ -1140,20 +1138,20 @@ add_action( 'epl_property_secondary_heading', 'epl_property_secondary_heading' )
 /**
  * Property Category
  *
- * @param string $tag The div tag.
- * @param string $class The css class name.
+ * @param string $tag       The div tag.
+ * @param string $classname The css class name.
  *
  * @since 1.0.0
  * @since 3.4.9 Removed passed 'value' option, added epl_property_category hook and passing of tag and class.
  */
-function epl_property_category( $tag = 'div', $class = 'property-category' ) {
+function epl_property_category( $tag = 'div', $classname = 'property-category' ) {
 	global $property;
 
 	if ( empty( $tag ) ) {
 		$tag = 'div';
 	}
 
-	echo wp_kses_post( $property->get_property_category( $tag, $class ) );
+	echo wp_kses_post( $property->get_property_category( $tag, $classname ) );
 }
 add_action( 'epl_property_category', 'epl_property_category', 10, 2 );
 
@@ -1271,7 +1269,6 @@ function epl_property_video_callback( $width = 600 ) {
 	if ( '' !== $property_video_url ) {
 		echo epl_get_video_html( $property_video_url, $video_width ); //phpcs:ignore
 	}
-
 }
 add_action( 'epl_property_video', 'epl_property_video_callback', 10, 1 );
 
@@ -1825,7 +1822,6 @@ function epl_tools_utility_wrapper( $attributes = array() ) {
 
 	// Wrapper End.
 	do_action( 'epl_archive_utility_wrap_end', $attributes );
-
 }
 add_action( 'epl_property_loop_start', 'epl_tools_utility_wrapper', 10 );
 
@@ -2344,12 +2340,12 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 	}
 
 	$description = str_replace( "\n", "\\n", str_replace( ';', '\;', str_replace( ',', '\,', $description ) ) );
-	$uid         = $post_id . current_time( 'timestamp' );
+	$uid         = $post_id . time();
 	$url         = get_permalink( $post_id );
 	$prodid      = '-//' . get_bloginfo( 'name' ) . '/EPL//NONSGML v1.0//EN';
 	$args        = get_defined_vars();
 	$args        = apply_filters( 'epl_ical_args', $args );
-	$data        = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:" . $args['prodid'] . "\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . date( 'Ymd\THis', strtotime( $args['start'] ) ) . "\nDTEND:" . date( 'Ymd\THis', strtotime( $args['end'] ) ) . "\nLOCATION:" . $args['location'] . "\nURL:" . $args['url'] . "\nTRANSP:OPAQUE\nSEQUENCE:0\nUID:" . $args['uid'] . "\nDTSTAMP:" . date( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $args['name'] . "\nDESCRIPTION:" . $args['description'] . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
+	$data        = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:" . $args['prodid'] . "\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . gmdate( 'Ymd\THis', strtotime( $args['start'] ) ) . "\nDTEND:" . gmdate( 'Ymd\THis', strtotime( $args['end'] ) ) . "\nLOCATION:" . $args['location'] . "\nURL:" . $args['url'] . "\nTRANSP:OPAQUE\nSEQUENCE:0\nUID:" . $args['uid'] . "\nDTSTAMP:" . gmdate( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $args['name'] . "\nDESCRIPTION:" . $args['description'] . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
 
 	header( 'Content-type:text/calendar' );
 	header( 'Content-Disposition: attachment; filename="' . $name . '.ics"' );
@@ -2523,20 +2519,20 @@ function the_property_meta( $key ) {
  *
  * @since      2.1
  *
- * @param      boolean $class    The class.
+ * @param      boolean $classname The class.
  * @param      string  $context  The context.
  *
  * @return mixed|void
  */
-function epl_template_class( $class = false, $context = 'single' ) {
+function epl_template_class( $classname = false, $context = 'single' ) {
 
-	if ( $class ) {
-		$class = 'epl-template-' . $class;
+	if ( $classname ) {
+		$classname = 'epl-template-' . $classname;
 	} else {
-		$class = 'epl-template-blog';
+		$classname = 'epl-template-blog';
 	}
 
-	return apply_filters( 'epl_template_class', $class, $context );
+	return apply_filters( 'epl_template_class', $classname, $context );
 }
 
 /**
@@ -2679,7 +2675,7 @@ function epl_hide_map_from_front() {
 	$epl_posts = epl_get_active_post_types();
 	$epl_posts = array_keys( $epl_posts );
 
-	global $post,$property;
+	global $post, $property;
 
 	if ( is_single() && in_array( $post->post_type, $epl_posts, true ) ) {
 
@@ -2715,7 +2711,7 @@ function epl_hide_author_box_from_front() {
 	$epl_posts = epl_get_active_post_types();
 	$epl_posts = array_keys( $epl_posts );
 
-	global $post,$property;
+	global $post, $property;
 
 	if ( is_single() && in_array( $post->post_type, $epl_posts, true ) ) {
 
@@ -2828,7 +2824,6 @@ function epl_apply_feeling_lucky_config() {
 			add_action( 'epl_compatibility_archive_class', 'epl_compatibility_archive_class_callback' );
 		}
 	}
-
 }
 add_action( 'wp', 'epl_apply_feeling_lucky_config', 1 );
 
@@ -3031,13 +3026,13 @@ function epl_get_the_excerpt( $post = null ) {
  *
  * @since      2.2
  *
- * @param      string $str    The string.
- * @param      string $class  The class.
+ * @param      string $str       The string.
+ * @param      string $classname The class.
  *
  * @return     string
  */
-function epl_syntax_highlight( $str = '', $class = '' ) {
-	return '<pre><code class="' . $class . '">' . htmlentities( $str ) . '</code></pre>';
+function epl_syntax_highlight( $str = '', $classname = '' ) {
+	return '<pre><code class="' . $classname . '">' . htmlentities( $str, ENT_QUOTES, 'UTF-8' ) . '</code></pre>';
 }
 
 /**
@@ -3163,7 +3158,6 @@ function epl_get_inspection_time_format() {
 	}
 
 	return apply_filters( 'epl_inspection_time_format', $time_format );
-
 }
 
 /**
@@ -3183,9 +3177,9 @@ function epl_inspection_format( $inspection_date ) {
 	$date_format = epl_get_inspection_date_format();
 	$time_format = epl_get_inspection_time_format();
 
-	$date       = isset( $inspection_date[0] ) ? date( $date_format, strtotime( $inspection_date[0] ) ) : '';
-	$time_start = isset( $inspection_date[1] ) ? date( $time_format, strtotime( $inspection_date[1] ) ) : '';
-	$time_end   = isset( $inspection_date[3] ) ? date( $time_format, strtotime( $inspection_date[3] ) ) : '';
+	$date       = isset( $inspection_date[0] ) ? gmdate( $date_format, strtotime( $inspection_date[0] ) ) : '';
+	$time_start = isset( $inspection_date[1] ) ? gmdate( $time_format, strtotime( $inspection_date[1] ) ) : '';
+	$time_end   = isset( $inspection_date[3] ) ? gmdate( $time_format, strtotime( $inspection_date[3] ) ) : '';
 
 	return "{$date} {$time_start} to {$time_end}";
 }
@@ -3329,7 +3323,6 @@ function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 	}
 
 	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $title ) . '</h3>';
-
 }
 add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_callback' );
 
@@ -3477,7 +3470,7 @@ function epl_contact_capture_action() {
 	$email = sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) );
 
 	// Check if email is not valid, skip further processing and display message.
-	if( ! is_email( $email ) ) {
+	if ( ! is_email( $email ) ) {
 		wp_die(
 			wp_json_encode(
 				array(
@@ -3676,13 +3669,12 @@ function epl_stickers( $options = array(), $stickers = array() ) {
 			?>
 		</<?php echo esc_attr( $options['sticker_tag'] ); ?>>
 			<?php
-				$sticker_counts++;
+				++$sticker_counts;
 	}
 
 	if ( $options['wrap'] ) {
 		echo '</' . esc_attr( $options['wrapper_tag'] ) . '>';
 	}
-
 }
 
 /**
@@ -3812,7 +3804,7 @@ function epl_get_stickers_array( $sticker_keys = array() ) {
 	/**
 	 * Hook into this array to add / remove stickers based on conditions.
 	 *
-	 * @var callable
+	 * @var callable $stickers
 	 */
 	$stickers = apply_filters( 'epl_available_stickers', $stickers );
 
@@ -3904,11 +3896,11 @@ function epl_sticker_is_condition_valid( $condition, $compare = '=' ) {
 		if ( is_array( $value ) ) {
 
 			if ( in_array( get_property_meta( $key ), $value, true ) ) {
-				$condition_met++;
+				++$condition_met;
 			}
 		} else {
 			if ( get_property_meta( $key ) === $value ) {
-				$condition_met++;
+				++$condition_met;
 			}
 		}
 	}
