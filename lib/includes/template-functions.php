@@ -2402,10 +2402,10 @@ function epl_process_event_cal_request() {
 			continue;
 		}
 
-		$timearr  = explode( ' ', $inspection_item );
-		$endtime  = current( $timearr ) . ' ' . end( $timearr );
-		$expired  = strtotime( $endtime ) < epl_get_local_timestamp();
-		$expired  = apply_filters( 'epl_maybe_delete_inspection', $expired, $endtime, $inspection_item );
+		$timearr = explode( ' ', $inspection_item );
+		$endtime = current( $timearr ) . ' ' . end( $timearr );
+		$expired = strtotime( $endtime ) < epl_get_local_timestamp();
+		$expired = apply_filters( 'epl_maybe_delete_inspection', $expired, $endtime, $inspection_item );
 		if ( $expired ) {
 			continue;
 		}
