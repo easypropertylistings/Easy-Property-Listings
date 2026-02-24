@@ -40,7 +40,7 @@ get_header(); ?>
 						<?php
 						if ( 0 === $i % 2 ) {
 							echo '</div><div class="post-row">';
-						} $i++;
+						} ++$i;
 					endwhile;
 					echo '</div>';
 					?>

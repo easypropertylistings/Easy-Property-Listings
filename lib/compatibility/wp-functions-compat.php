@@ -98,3 +98,42 @@ if ( ! function_exists( 'current_datetime' ) ) {
 		return new DateTimeImmutable( 'now', wp_timezone() );
 	}
 }
+
+if ( ! function_exists( 'epl_array_replace_recursive' ) ) {
+	/**
+	 * EPL Array Replace Recursive
+	 *
+	 * @param array $data The array in which elements are replaced.
+	 * @param array $array1 The array from which elements will be extracted.
+	 * @return array Returns an array.
+	 */
+	function epl_array_replace_recursive( $data, $array1 ) {
+		if ( function_exists( 'array_replace_recursive' ) ) {
+			return call_user_func_array( 'array_replace_recursive', func_get_args() );
+		}
+
+		// Handle infinite arguments.
+		$args = func_get_args();
+		$data = array_shift( $args );
+
+		if ( ! is_array( $data ) ) {
+			return $data;
+		}
+
+		if ( ! empty( $args ) ) {
+			foreach ( $args as $array1 ) {
+				if ( ! is_array( $array1 ) ) {
+					continue;
+				}
+				foreach ( $array1 as $key => $value ) {
+					if ( is_array( $value ) && isset( $data[ $key ] ) && is_array( $data[ $key ] ) ) {
+						$data[ $key ] = epl_array_replace_recursive( $data[ $key ], $value );
+					} else {
+						$data[ $key ] = $value;
+					}
+				}
+			}
+		}
+		return $data;
+	}
+}

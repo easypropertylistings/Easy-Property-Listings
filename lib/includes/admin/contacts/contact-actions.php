@@ -94,7 +94,6 @@ function epl_edit_contact( $args ) {
 	}
 
 	return $output;
-
 }
 add_action( 'epl_edit-contact', 'epl_edit_contact', 10, 1 );
 
@@ -171,7 +170,6 @@ function epl_contact_delete( $args ) {
 
 	wp_safe_redirect( $redirect );
 	exit;
-
 }
 add_action( 'epl_delete-contact', 'epl_contact_delete', 10, 1 );
 
@@ -258,7 +256,6 @@ function epl_contact_save_note( $args ) {
 	}
 
 	return false;
-
 }
 add_action( 'epl_add-contact-note', 'epl_contact_save_note', 10, 1 );
 
@@ -346,7 +343,6 @@ function epl_contact_save_listing( $args ) {
 	}
 
 	return false;
-
 }
 add_action( 'epl_add-contact-listing', 'epl_contact_save_listing', 10, 1 );
 
@@ -404,7 +400,6 @@ function epl_contact_assign_existing_listing( $args ) {
 	}
 
 	return false;
-
 }
 add_action( 'epl_add-existing-contact-listing', 'epl_contact_assign_existing_listing', 10, 1 );
 
@@ -462,7 +457,6 @@ function epl_meta_contact( $args ) {
 	$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . $contact_id );
 	wp_safe_redirect( $redirect );
 	exit;
-
 }
 add_action( 'epl_meta-contact', 'epl_meta_contact', 10, 1 );
 
@@ -534,7 +528,6 @@ function epl_new_contact( $args ) {
 		$redirect = admin_url( 'admin.php?page=epl-contacts&view=meta&id=' . esc_attr( $contact_id ) );
 		wp_safe_redirect( $redirect );
 	exit;
-
 }
 add_action( 'epl_new-contact', 'epl_new_contact', 10, 1 );
 
@@ -542,10 +535,15 @@ add_action( 'epl_new-contact', 'epl_new_contact', 10, 1 );
  * Update contact category
  *
  * @since 3.0
+ * @since 3.5.18 Fix security issues.
  */
 function epl_contact_category_update() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+	if ( ! epl_contact_access() ) {
+		wp_die( 'Unauthorized' );
+	}
 
 	if ( ! empty( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 && ! empty( $_POST['type'] ) ) {
 
@@ -561,10 +559,15 @@ add_action( 'wp_ajax_epl_contact_category_update', 'epl_contact_category_update'
  * Add/Update contact tags
  *
  * @since 3.0
+ * @since 3.5.18 Fix security issues.
  */
 function epl_contact_tag_add() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+	if ( ! epl_contact_access() ) {
+		wp_die( 'Unauthorized' );
+	}
 
 	if ( ( ! empty( $_POST['term_id'] ) ) ) {
 
@@ -603,10 +606,15 @@ add_action( 'wp_ajax_contact_tags_update', 'epl_contact_tag_add' );
  * Delete contact tags
  *
  * @since 3.0
+ * @since 3.5.18 Fix security issues.
  */
 function epl_contact_tag_remove() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+	if ( ! epl_contact_access() ) {
+		wp_die( 'Unauthorized' );
+	}
 
 	if ( ! empty( $_POST['term_id'] ) && ! empty( $_POST['contact_id'] ) && (int) $_POST['contact_id'] > 0 && (int) $_POST['term_id'] > 0 ) {
 

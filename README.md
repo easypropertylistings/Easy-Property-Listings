@@ -38,6 +38,21 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.20 February 19. 2026 =
+
+-   Fix: iCal access issue.
+
+= 3.5.19 February 13. 2026 =
+
+-   Fix: Fatal error with widgets and customizer.
+
+= 3.5.18 February 12. 2026 =
+
+-   Fix: Admin JS code that prevented loading due to map.
+-   Fix: Cookie path improvements.
+-   Fix: Security patches.
+-   Fix: Plugin wide code syntax improvements.
+
 = 3.5.17 January 13. 2026 =
 
 -   Tweak: Contact form email address validation check and message.

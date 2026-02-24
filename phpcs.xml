@@ -9,8 +9,16 @@
 			<property name="text_domain" value="easy-property-listings,default" />
 		</properties>
 	</rule>
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>easy-property-listings.php</exclude-pattern>
+	</rule>
 
-	<rule ref="PHPCompatibility"/>
+	<rule ref="PHPCompatibility">
+		<exclude name="PHPCompatibility.FunctionUse.ArgumentFunctionsUsage"/>
+	</rule>
+	<rule ref="PHPCompatibility.Classes.NewClasses.datetimeimmutableFound">
+		<exclude-pattern>lib/compatibility/wp-functions-compat.php</exclude-pattern>
+	</rule>
 	<config name="testVersion" value="5.2-"/>
 
 	<arg name="extensions" value="php" />
@@ -28,4 +36,5 @@
 	<exclude-pattern>*/apigen/*</exclude-pattern>
 	<exclude-pattern>*/epl-apidocs/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>lib/updates/*</exclude-pattern>
 </ruleset>

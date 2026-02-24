@@ -370,7 +370,6 @@ class EPL_SEARCH {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -437,7 +436,6 @@ class EPL_SEARCH {
 			return true;
 		}
 		return false;
-
 	}
 
 	/**
@@ -449,7 +447,6 @@ class EPL_SEARCH {
 	protected function multiple_relation( $query_field ) {
 
 		return isset( $query_field['query']['relation'] ) ? $query_field['query']['relation'] : 'OR';
-
 	}
 
 	/**
@@ -486,7 +483,6 @@ class EPL_SEARCH {
 				$this->meta_query[] = $this_meta_query;
 			}
 		}
-
 	}
 
 	/**

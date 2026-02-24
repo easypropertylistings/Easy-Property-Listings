@@ -323,7 +323,6 @@ function epl_get_price_array( $post_type = 'property', $transaction = 'default' 
 	}
 
 	return $price_array;
-
 }
 
 /**
@@ -353,7 +352,6 @@ function epl_get_price_meta_key( $post_type = 'property', $transaction = 'defaul
 
 	// use this filter to change property price meta key on the basis of post type & transaction.
 	return apply_filters( 'epl_price_meta_key', $price_meta_key, $post_type, $transaction );
-
 }
 
 /**
@@ -900,21 +898,22 @@ function epl_search_get_defaults() {
 		$defaults[ $field['key'] ] = $field['default'];
 	}
 	return $defaults;
-
 }
 
 /**
  * Render widget field blocks -- for backend form
  *
  * @param array     $field Array of field type for the switch.
- * @param WP_Widget $object Array of object.
+ * @param WP_Widget $obj Array of object.
  * @param string    $value Value.
  *
- * @since 3.5 Added number field type.
  *
  * @since 2.2
+ * @since 3.5 Added number field type.
+ * @since 3.5.18 Variable renamed.
+ * @since 3.5.19 Fix: Fatal error with widgets and customizer.
  */
-function epl_widget_render_backend_field( $field, $object, $value = '' ) {
+function epl_widget_render_backend_field( $field, $obj, $value = '' ) {
 
 	switch ( $field['type'] ) {
 
@@ -923,8 +922,8 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 			?>
 			<p>
 				<input
-					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); ?>"
+					id="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>"
+					name="<?php echo esc_attr( $obj->get_field_name( $field['key'] ) ); ?>"
 					type="checkbox"
 						<?php
 						if ( isset( $value ) && esc_attr( $value ) === 'on' ) {
@@ -932,7 +931,7 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 						}
 						?>
 				/>
-				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
+				<label for="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>">
 					<?php echo esc_attr( $field['label'] ); ?>
 				</label>
 			</p>
@@ -944,13 +943,13 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 		case 'text':
 			?>
 			<p>
-				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
+				<label for="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>">
 					<?php echo esc_attr( $field['label'] ); ?>
 				</label>
 				<input
 					class="widefat"
-					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); ?>"
+					id="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>"
+					name="<?php echo esc_attr( $obj->get_field_name( $field['key'] ) ); ?>"
 					type="text"
 					value="<?php echo esc_attr( $value ); ?>"
 				/>
@@ -963,15 +962,15 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 		case 'textarea':
 			?>
 			<p>
-				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
+				<label for="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>">
 					<?php echo esc_attr( $field['label'] ); ?>
 				</label>
 				<textarea
 					class="widefat"
 					rows="10"
 					cols="20"
-					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); ?>"
+					id="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>"
+					name="<?php echo esc_attr( $obj->get_field_name( $field['key'] ) ); ?>"
 					><?php echo esc_attr( $value ); ?></textarea>
 			</p>
 			<?php
@@ -981,17 +980,17 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 		// Select.
 		case 'select':
 			$is_multiple = isset( $field['multiple'] ) ? ' multiple ' : ' ';
-			$name        = isset( $field['multiple'] ) ? $object->get_field_name( $field['key'] ) . '[]' : '';
+			$name        = isset( $field['multiple'] ) ? $obj->get_field_name( $field['key'] ) . '[]' : '';
 			?>
 			<p>
-				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
+				<label for="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>">
 					<?php echo esc_attr( $field['label'] ); ?>
 				</label>
 
 				<select
 					<?php echo esc_attr( $is_multiple ); ?>
 					class="widefat"
-					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
+					id="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>"
 					name="<?php echo esc_attr( $name ); ?>">
 
 					<?php
@@ -1020,13 +1019,13 @@ function epl_widget_render_backend_field( $field, $object, $value = '' ) {
 		case 'number':
 			?>
 			<p>
-				<label for="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>">
+				<label for="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>">
 					<?php echo esc_attr( $field['label'] ); ?>
 				</label>
 				<input
 					class="widefat"
-					id="<?php echo esc_attr( $object->get_field_id( $field['key'] ) ); ?>"
-					name="<?php echo esc_attr( $object->get_field_name( $field['key'] ) ); ?>"
+					id="<?php echo esc_attr( $obj->get_field_id( $field['key'] ) ); ?>"
+					name="<?php echo esc_attr( $obj->get_field_name( $field['key'] ) ); ?>"
 					type="number"
 					value="<?php echo esc_attr( $value ); ?>"
 				/>
@@ -1083,7 +1082,6 @@ function epl_search( &$query, array $data = array(), $get_posts = false ) {
 	if ( $get_posts ) {
 		return $epl_search->get_posts();
 	}
-
 }
 
 /**
@@ -1295,7 +1293,6 @@ function epl_get_available_terms( $tax = 'location', $post_type = '', $property_
  */
 function epl_get_available_locations( $post_type = '', $property_status = '' ) {
 	return epl_get_available_terms( 'location', $post_type, $property_status );
-
 }
 
 /**
@@ -1524,7 +1521,6 @@ function epl_get_owners() {
 		$c_array[ $contact ] = $contact_object->name;
 	}
 	return $c_array;
-
 }
 
 /**

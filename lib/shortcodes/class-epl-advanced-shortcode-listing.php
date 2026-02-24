@@ -63,7 +63,7 @@ class EPL_Advanced_Shortcode_Listing {
 	 */
 	public $meta_key_price = 'property_price';
 
-        /**
+	/**
 	 * Query object.
 	 *
 	 * @since 3.3.0
@@ -354,10 +354,9 @@ class EPL_Advanced_Shortcode_Listing {
 					'compare' => 'IN',
 				);
 
-				if( 
-					in_array( 'commercial', $this->attributes['post_type'], true ) ||
+				if ( in_array( 'commercial', $this->attributes['post_type'], true ) ||
 					in_array( 'commercial_land', $this->attributes['post_type'], true ) ||
-					in_array( 'business', $this->attributes['post_type'], true ) 
+					in_array( 'business', $this->attributes['post_type'], true )
 				) {
 
 					$agent_meta_query[] = array(
