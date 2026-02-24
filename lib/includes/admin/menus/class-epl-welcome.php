@@ -95,7 +95,7 @@ class EPL_Welcome {
 		// Badge for welcome page.
 		$badge_url = EPL_PLUGIN_URL . 'lib/assets/images/epl-wp-badge.png';
 		?>
-		<style type="text/css" media="screen">
+		<style>
 		/*<![CDATA[*/
 		.epl-badge {
 			padding-top: 150px;

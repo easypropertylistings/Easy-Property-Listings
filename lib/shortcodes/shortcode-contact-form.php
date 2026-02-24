@@ -82,7 +82,7 @@ function epl_contact_capture_form_callback( $form_data, $request ) {
 		return;
 	}
 
-	$contact = new EPL_contact( $request['epl_contact_email'] );
+	$contact = new EPL_Contact( $request['epl_contact_email'] );
 	$fname   = isset( $request['epl_contact_first_name'] ) ? sanitize_text_field( $request['epl_contact_first_name'] ) : '';
 	$lname   = isset( $request['epl_contact_last_name'] ) ? sanitize_text_field( $request['epl_contact_last_name'] ) : '';
 	$phone   = isset( $request['epl_contact_phone'] ) ? sanitize_text_field( $request['epl_contact_phone'] ) : '';

@@ -1476,7 +1476,7 @@ function epl_contact_save_note_note_tab( $args ) {
 	}
 	do_action( 'epl_pre_insert_contact_note', $contact_id, $contact_note, $listing_id, $note_type );
 
-	$contact     = new EPL_contact( $contact_id );
+	$contact     = new EPL_Contact( $contact_id );
 	$note_object = $contact->add_note( $contact_note, $note_type, $listing_id );
 
 	if ( ! empty( $note_object ) && ! empty( $contact->ID ) ) {

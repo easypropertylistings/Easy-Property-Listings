@@ -38,6 +38,19 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.17 January 13. 2026 =
+
+-   Tweak: Contact form email address validation check and message.
+
+= 3.5.16 December 16. 2025 =
+
+-   New: Unified image management featured for use in extensions.
+-   Tweak: Added epl_extension_settings_fields filter for active tab.
+-   Tweak: Support for search range sliders with range value options in field sliders like this example: 0-200.
+-   Tweak: Removed space after Status: in tools sorter. Added : colon to suburb for consistency.
+-   Fix: Missing echo for author in single template for Heuman theme. Discovered and patched by DAnn2012.
+-   Fix: Vulnerability in contact form shortcode.
+
 = 3.5.15 June 11, 2025 =
 
 -   New: Author website field added to global $epl_author and helper functions added.
