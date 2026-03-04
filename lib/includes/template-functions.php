@@ -2361,6 +2361,7 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
  * @since 2.0
  * @since 3.5.7 Different subject for auction.
  * @since 3.5.16 Triple equals for auction value.
+ * @since 3.5.20 ical access issue.
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
@@ -2401,10 +2402,10 @@ function epl_process_event_cal_request() {
 			continue;
 		}
 
-		$timearr  = explode( ' ', $inspection_item );
-		$endtime  = current( $timearr ) . ' ' . end( $timearr );
-		$expired  = strtotime( $endtime ) < epl_get_local_timestamp();
-		$expired  = apply_filters( 'epl_maybe_delete_inspection', $expired, $endtime, $inspection_item );
+		$timearr = explode( ' ', $inspection_item );
+		$endtime = current( $timearr ) . ' ' . end( $timearr );
+		$expired = strtotime( $endtime ) < epl_get_local_timestamp();
+		$expired = apply_filters( 'epl_maybe_delete_inspection', $expired, $endtime, $inspection_item );
 		if ( $expired ) {
 			continue;
 		}

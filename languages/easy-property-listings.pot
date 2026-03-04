@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.5.19\n"
+"Project-Id-Version: Easy Property Listings 3.5.20\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2026-02-13 05:45:46+00:00\n"
+"POT-Creation-Date: 2026-02-19 09:18:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2374,7 +2374,7 @@ msgid "Admin Note"
 msgstr ""
 
 #: lib/includes/class-epl-contact.php:740
-#: lib/includes/template-functions.php:3242
+#: lib/includes/template-functions.php:3280
 #: lib/shortcodes/class-epl-listing-elements.php:76
 msgid "Listing"
 msgstr ""
@@ -2542,7 +2542,7 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:845
 #: lib/includes/class-epl-property-meta.php:910
 #: lib/includes/class-epl-property-meta.php:960 lib/includes/functions.php:2356
-#: lib/includes/functions.php:2394 lib/includes/template-functions.php:2389
+#: lib/includes/functions.php:2394 lib/includes/template-functions.php:2432
 #: lib/widgets/widget-admin-dashboard.php:184
 #: lib/widgets/widget-admin-dashboard.php:238
 msgid "Auction"
@@ -2584,8 +2584,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:977
 #: lib/includes/class-epl-property-meta.php:983
 #: lib/includes/class-epl-property-meta.php:1181
-#: lib/includes/functions.php:2393 lib/includes/template-functions.php:3753
-#: lib/includes/template-functions.php:3785
+#: lib/includes/functions.php:2393 lib/includes/template-functions.php:3791
+#: lib/includes/template-functions.php:3823
 msgid "For Sale"
 msgstr ""
 
@@ -2601,8 +2601,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1025
 #: lib/includes/class-epl-property-meta.php:1194
 #: lib/includes/class-epl-property-meta.php:1196
-#: lib/includes/template-functions.php:3733
-#: lib/includes/template-functions.php:3796
+#: lib/includes/template-functions.php:3771
+#: lib/includes/template-functions.php:3834
 msgid "For Lease"
 msgstr ""
 
@@ -3948,57 +3948,57 @@ msgstr ""
 msgid "Video"
 msgstr ""
 
-#: lib/includes/template-functions.php:3018
+#: lib/includes/template-functions.php:3056
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
-#: lib/includes/template-functions.php:3235
+#: lib/includes/template-functions.php:3273
 #. Translators: term name.
 msgid "Property in %s"
 msgstr ""
 
-#: lib/includes/template-functions.php:3237
+#: lib/includes/template-functions.php:3275
 msgid "Search Result"
 msgstr ""
 
-#: lib/includes/template-functions.php:3319
+#: lib/includes/template-functions.php:3357
 #. Translators: title, page number.
 msgid "Nothing found, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3322
+#: lib/includes/template-functions.php:3360
 msgid "Nothing currently scheduled for inspection, please check back later."
 msgstr ""
 
-#: lib/includes/template-functions.php:3338
+#: lib/includes/template-functions.php:3376
 msgid "Listing not Found"
 msgstr ""
 
-#: lib/includes/template-functions.php:3339
+#: lib/includes/template-functions.php:3377
 msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
-#: lib/includes/template-functions.php:3433
+#: lib/includes/template-functions.php:3471
 msgid "Your enquiry has been submitted."
 msgstr ""
 
-#: lib/includes/template-functions.php:3441
+#: lib/includes/template-functions.php:3479
 msgid "There was a problem with your submission."
 msgstr ""
 
-#: lib/includes/template-functions.php:3464
+#: lib/includes/template-functions.php:3502
 msgid "Email is required."
 msgstr ""
 
-#: lib/includes/template-functions.php:3478
+#: lib/includes/template-functions.php:3516
 msgid "Invalid email."
 msgstr ""
 
-#: lib/includes/template-functions.php:3519
+#: lib/includes/template-functions.php:3557
 msgid "Invalid listing."
 msgstr ""
 
-#: lib/includes/template-functions.php:3774
+#: lib/includes/template-functions.php:3812
 msgid "For Sale & Lease"
 msgstr ""
 

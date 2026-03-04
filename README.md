@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.20 February 19. 2026 =
+
+-   Fix: iCal access issue.
+
 = 3.5.19 February 13. 2026 =
 
 -   Fix: Fatal error with widgets and customizer.
