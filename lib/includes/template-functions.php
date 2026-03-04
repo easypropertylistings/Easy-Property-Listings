@@ -2343,12 +2343,16 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 	$uid         = $post_id . time();
 	$url         = get_permalink( $post_id );
 	$prodid      = '-//' . get_bloginfo( 'name' ) . '/EPL//NONSGML v1.0//EN';
+	$file_name   = sanitize_file_name( $name );
+	if ( '' === $file_name ) {
+		$file_name = 'event';
+	}
 	$args        = get_defined_vars();
 	$args        = apply_filters( 'epl_ical_args', $args );
 	$data        = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:" . $args['prodid'] . "\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . gmdate( 'Ymd\THis', strtotime( $args['start'] ) ) . "\nDTEND:" . gmdate( 'Ymd\THis', strtotime( $args['end'] ) ) . "\nLOCATION:" . $args['location'] . "\nURL:" . $args['url'] . "\nTRANSP:OPAQUE\nSEQUENCE:0\nUID:" . $args['uid'] . "\nDTSTAMP:" . gmdate( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $args['name'] . "\nDESCRIPTION:" . $args['description'] . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
 
 	header( 'Content-type:text/calendar' );
-	header( 'Content-Disposition: attachment; filename="' . $name . '.ics"' );
+	header( 'Content-Disposition: attachment; filename="' . $file_name . '.ics"' );
 	Header( 'Content-Length: ' . strlen( $data ) );
 	Header( 'Connection: close' );
 	echo $data; //phpcs:ignore
@@ -2381,6 +2385,14 @@ function epl_process_event_cal_request() {
 
 	$item = trim( html_entity_decode( $item, ENT_QUOTES, 'UTF-8' ) );
 	if ( '' === $item || ! isset( $item[0] ) || ! is_numeric( $item[0] ) ) {
+		return;
+	}
+
+	$token = isset( $_GET['k'] ) ? sanitize_text_field( wp_unslash( $_GET['k'] ) ) : '';
+	$valid = ! empty( $token ) && hash_equals( epl_get_ical_download_token( $post_id, $item ), $token );
+
+	$allow_legacy_access = apply_filters( 'epl_allow_legacy_ical_access', false, $post_id, $item );
+	if ( ! $valid && ! $allow_legacy_access && ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
 
@@ -2443,7 +2455,10 @@ function epl_process_event_cal_request() {
 	$address .= get_post_meta( $post_id, 'property_address_state', true ) . ' ';
 	$address .= get_post_meta( $post_id, 'property_address_postal_code', true );
 
-	epl_create_ical_file( $starttime, $endtime, $subject, wp_strip_all_tags( $post->post_content ), $address, $post_id );
+	$description = wp_strip_all_tags( $post->post_content );
+	$description = apply_filters( 'epl_ical_description', $description, $post_id, $post, $item );
+
+	epl_create_ical_file( $starttime, $endtime, $subject, $description, $address, $post_id );
 }
 add_action( 'init', 'epl_process_event_cal_request' );
 
