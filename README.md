@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.21 March 4. 2026 =
+
+-   New: Generate signed token for inspection iCal links.
+
 = 3.5.20 February 19. 2026 =
 
 -   Fix: iCal access issue.

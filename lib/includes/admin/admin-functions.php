@@ -354,12 +354,27 @@ function epl_serialize( $data ) {
 }
 
 /**
- * Un-serialize Variable
+ * Safely unserialize base64 encoded data.
  *
- * @param string $data String of data to serialize.
+ * This helper decodes a base64 encoded string and attempts to unserialize it
+ * while applying several validation steps to reduce security risks.
  *
- * @return mixed un-serialized string.
+ * Security improvements:
+ * - Uses strict base64 decoding to prevent malformed input.
+ * - Validates that the decoded value is actually a serialized string before
+ *   attempting to unserialize it.
+ * - Prevents object injection by disabling object instantiation via the
+ *   `allowed_classes => false` option.
+ *
+ * If the input cannot be decoded or is not a valid serialized value, the
+ * function safely returns false instead of attempting to unserialize it.
+ *
  * @since  3.3.0
+ * @since  3.5.21 Hardened unserialize handling by enforcing strict base64 decoding, validating serialized input, and disabling object instantiation.
+ *
+ * @param string $data Base64 encoded serialized data.
+ * @return mixed|false Returns the unserialized value on success, or false if the
+ *                     input is invalid or cannot be safely unserialized.
  */
 function epl_unserialize( $data ) {
 	$decoded_data = base64_decode( trim( (string) $data ), true );
@@ -372,9 +387,10 @@ function epl_unserialize( $data ) {
 }
 
 /**
- * Import Tools Settings Screen
+ * Import/Export Tools Settings Screen
  *
  * @since 3.3
+ * @since 3.5.21 Added nonce protection to the export request to prevent CSRF.
  */
 function epl_settings_import_export() {
 
@@ -491,6 +507,7 @@ function epl_settings_upgrade_tab() {
  * @since 3.3.0
  * @since 3.5 Fixed import function.
  * @since 3.5.10 Fix: Tools Import function adjusted with more checked before performing the settings import.
+ * @since 3.5.21 Hardened tools request handling with capability checks, stricter sanitization, action allowlisting, and export nonce verification.
  */
 function epl_handle_tools_form() {
 	$page = isset( $_REQUEST['page'] ) ? sanitize_key( wp_unslash( $_REQUEST['page'] ) ) : '';
@@ -539,7 +556,7 @@ add_action( 'admin_init', 'epl_handle_tools_form' );
 /**
  * Verify nonce for export tools action.
  *
- * @since 3.5.10
+ * @since 3.5.20
  */
 function epl_verify_export_nonce() {
 	if (
@@ -568,6 +585,7 @@ function epl_verify_nonce() {
  * Validate the import file.
  *
  * @since 3.5.10
+ * @since 3.5.21 Added stricter import upload validation (uploaded file checks, size limits, and file type/extension verification).
  */
 function epl_validate_import_file() {
 
@@ -623,6 +641,7 @@ function epl_export_settings() {
  *
  * @since 3.5.10
  * @since 3.5.18 Check for data before continue.
+ * @since 3.5.21 Hardened import processing by reading from the uploaded temp file, validating file contents, and verifying unserialized data before updating options.
  */
 function epl_import_settings() {
 	if ( ! isset( $_FILES['epl_import']['tmp_name'] ) ) {
