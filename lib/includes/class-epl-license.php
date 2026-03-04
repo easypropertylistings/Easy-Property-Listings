@@ -583,6 +583,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 *
 		 * @access  public
 		 * @return  void
+		 * @since  3.5.21 Fix: License notice message sanitization adjusted to run after sprintf(). Thanks DAnn2012.
 		 */
 		public function notices() {
 
