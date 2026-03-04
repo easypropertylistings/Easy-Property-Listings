@@ -360,12 +360,12 @@ endif;
 function epl_get_next_page_link( $query ) {
 	$link = next_posts( $query->max_num_pages, false );
 
-	if ( $query->get( 'is_epl_shortcode' ) &&
-		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
+	if ( ($query->get( 'is_epl_shortcode' ) &&
+		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) || $query->is_epl_search ) {
 
 		$permalink_structure = get_option( 'permalink_structure' );
 
-		if ( empty( $permalink_structure ) ) {
+		if ( empty( $permalink_structure ) || $query->is_epl_search ) {
 
 			$page = $query->get( 'paged' );
 
@@ -421,11 +421,11 @@ function epl_get_prev_page_link( $query ) {
 
 	$link = previous_posts( false );
 
-	if ( $query->get( 'is_epl_shortcode' ) &&
-		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
+	if ( ($query->get( 'is_epl_shortcode' ) &&
+		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) || $query->is_epl_search ) {
 			$permalink_structure = get_option( 'permalink_structure' );
 
-		if ( empty( $permalink_structure ) ) {
+		if ( empty( $permalink_structure ) || $query->is_epl_search ) {
 
 			$page = $query->get( 'paged' );
 
@@ -453,7 +453,7 @@ function epl_get_prev_page_link( $query ) {
  */
 function epl_prev_post_link( $query, $label = null ) {
 
-	global $paged;
+	$paged    = $query->get( 'paged' );
 
 	if ( $paged > 1 ) {
 

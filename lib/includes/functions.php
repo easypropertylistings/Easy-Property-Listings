@@ -142,6 +142,24 @@ function epl_remote_url_get( $url ) {
 }
 
 /**
+ * Generate signed token for inspection iCal links.
+ *
+ * @param int    $post_id Post ID.
+ * @param string $inspection_time Inspection date/time string.
+ *
+ * @return string
+ * @since 3.6.0
+ */
+function epl_get_ical_download_token( $post_id, $inspection_time ) {
+	$post_id         = absint( $post_id );
+	$inspection_time = trim( (string) $inspection_time );
+	$payload         = $post_id . '|' . $inspection_time;
+	$secret          = apply_filters( 'epl_ical_token_secret', wp_salt( 'nonce' ) );
+
+	return hash_hmac( 'sha256', $payload, $secret );
+}
+
+/**
  * Register post type to EPL and WordPress
  *
  * @param string $post_type Post type name.

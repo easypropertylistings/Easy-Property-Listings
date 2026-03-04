@@ -362,7 +362,13 @@ function epl_serialize( $data ) {
  * @since  3.3.0
  */
 function epl_unserialize( $data ) {
-	return unserialize( base64_decode( $data ) ); //phpcs:ignore
+	$decoded_data = base64_decode( trim( (string) $data ), true );
+
+	if ( false === $decoded_data || ! is_serialized( $decoded_data ) ) {
+		return false;
+	}
+
+	return unserialize( $decoded_data, array( 'allowed_classes' => false ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
 }
 
 /**
@@ -410,7 +416,18 @@ function epl_settings_import_export() {
 
 	$tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'tools';
 
-	echo "<a class='button button-primary' href='" . esc_url( '?page=epl-tools&tab=$tab&action=export&epl_tools_submit=true' ) . "'>" . esc_html__( 'Download File', 'easy-property-listings' ) . '</a>';
+	$export_url = add_query_arg(
+		array(
+			'page'             => 'epl-tools',
+			'tab'              => $tab,
+			'action'           => 'export',
+			'epl_tools_submit' => 'true',
+		),
+		admin_url( 'admin.php' )
+	);
+	$export_url = wp_nonce_url( $export_url, 'epl_tools_export', 'epl_tools_export_nonce' );
+
+	echo "<a class='button button-primary' href='" . esc_url( $export_url ) . "'>" . esc_html__( 'Download File', 'easy-property-listings' ) . '</a>';
 	?>
 	<span style="color:#f00"><?php esc_html_e( 'The following settings are exported. Easy Property Listings settings screen and any Extension settings', 'easy-property-listings' ); ?></span>
 	<?php
@@ -476,7 +493,12 @@ function epl_settings_upgrade_tab() {
  * @since 3.5.10 Fix: Tools Import function adjusted with more checked before performing the settings import.
  */
 function epl_handle_tools_form() {
-	if ( ! isset( $_GET['page'] ) || 'epl-tools' !== $_GET['page'] || ! isset( $_REQUEST['epl_tools_submit'] ) ) {
+	$page = isset( $_REQUEST['page'] ) ? sanitize_key( wp_unslash( $_REQUEST['page'] ) ) : '';
+	if ( 'epl-tools' !== $page || ! isset( $_REQUEST['epl_tools_submit'] ) ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
 
@@ -484,14 +506,19 @@ function epl_handle_tools_form() {
 		return;
 	}
 
-	$action = sanitize_text_field( wp_unslash( $_REQUEST['action'] ) );
+	$action = sanitize_key( wp_unslash( $_REQUEST['action'] ) );
+	if ( ! in_array( $action, array( 'export', 'import', 'reset' ), true ) ) {
+		return;
+	}
+
+	if ( 'export' === $action ) {
+		epl_verify_export_nonce();
+	}
 
 	if ( 'import' === $action ) {
 		epl_verify_nonce();
 		epl_validate_import_file();
 	}
-
-	$post_data = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
 
 	switch ( $action ) {
 		case 'export':
@@ -508,6 +535,20 @@ function epl_handle_tools_form() {
 	}
 }
 add_action( 'admin_init', 'epl_handle_tools_form' );
+
+/**
+ * Verify nonce for export tools action.
+ *
+ * @since 3.5.10
+ */
+function epl_verify_export_nonce() {
+	if (
+		! isset( $_GET['epl_tools_export_nonce'] ) ||
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['epl_tools_export_nonce'] ) ), 'epl_tools_export' )
+	) {
+		wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
+	}
+}
 
 /**
  * Verify nonce for the tools form.
@@ -534,11 +575,24 @@ function epl_validate_import_file() {
 		wp_die( esc_html__( 'Missing import file. Please provide an import file.', 'easy-property-listings' ) );
 	}
 
+	$file_name = sanitize_file_name( wp_unslash( $_FILES['epl_import']['name'] ) );
+	$tmp_name  = isset( $_FILES['epl_import']['tmp_name'] ) ? wp_unslash( $_FILES['epl_import']['tmp_name'] ) : '';
+	$file_size = isset( $_FILES['epl_import']['size'] ) ? (int) $_FILES['epl_import']['size'] : 0;
+
 	if ( isset( $_FILES['epl_import']['error'] ) && $_FILES['epl_import']['error'] > 0 ) {
 		wp_die( esc_html__( 'Error uploading the import file.', 'easy-property-listings' ) );
 	}
 
-	if ( empty( $_FILES['epl_import']['type'] ) || ! in_array( strtolower( $_FILES['epl_import']['type'] ), array( 'text/plain' ), true ) ) {
+	if ( empty( $tmp_name ) || ! is_uploaded_file( $tmp_name ) || ! is_readable( $tmp_name ) ) {
+		wp_die( esc_html__( 'Invalid import upload.', 'easy-property-listings' ) );
+	}
+
+	if ( $file_size <= 0 || $file_size > wp_max_upload_size() ) {
+		wp_die( esc_html__( 'The selected import file size is not valid.', 'easy-property-listings' ) );
+	}
+
+	$file_check = wp_check_filetype_and_ext( $tmp_name, $file_name, array( 'txt' => 'text/plain' ) );
+	if ( empty( $file_check['ext'] ) || 'txt' !== strtolower( $file_check['ext'] ) ) {
 		wp_die( esc_html__( 'The file you uploaded does not appear to be a valid import file.', 'easy-property-listings' ) );
 	}
 }
@@ -571,19 +625,28 @@ function epl_export_settings() {
  * @since 3.5.18 Check for data before continue.
  */
 function epl_import_settings() {
-	if ( ! isset( $_FILES['epl_import'] ) ) {
+	if ( ! isset( $_FILES['epl_import']['tmp_name'] ) ) {
 		return;
 	}
-	$upload_overrides = array( 'test_form' => false );
-	$movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- handled by wp_handle_upload.
 
-	if ( $movefile && ! isset( $movefile['error'] ) ) {
-		$imported_data  = epl_remote_url_get( $movefile['url'] );
-		$imported_data  = epl_unserialize( $imported_data );
-		$options_backup = get_option( 'epl_settings' );
-		update_option( 'epl_settings_backup', $options_backup );
-		$status = update_option( 'epl_settings', $imported_data );
+	$tmp_name = wp_unslash( $_FILES['epl_import']['tmp_name'] );
+	if ( ! is_readable( $tmp_name ) ) {
+		wp_die( esc_html__( 'Unable to read import file.', 'easy-property-listings' ) );
 	}
+
+	$imported_raw_data = file_get_contents( $tmp_name ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	if ( false === $imported_raw_data || '' === $imported_raw_data ) {
+		wp_die( esc_html__( 'Unable to read import file.', 'easy-property-listings' ) );
+	}
+
+	$imported_data = epl_unserialize( $imported_raw_data );
+	if ( ! is_array( $imported_data ) ) {
+		wp_die( esc_html__( 'The import file data is invalid.', 'easy-property-listings' ) );
+	}
+
+	$options_backup = get_option( 'epl_settings' );
+	update_option( 'epl_settings_backup', $options_backup );
+	update_option( 'epl_settings', $imported_data );
 }
 
 /**
