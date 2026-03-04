@@ -583,6 +583,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 *
 		 * @access  public
 		 * @return  void
+		 * @since  3.5.21 Fix: License notice message sanitization adjusted to run after sprintf(). Thanks DAnn2012.
 		 */
 		public function notices() {
 
@@ -614,7 +615,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 					default:
 						// translators: error.
-						$message = sprintf( wp_kses_post( __( 'There was a problem activating your license key, please try again or contact support. Error code: %s', 'easy-property-listings' ) ), $license_error->error );
+						$message = wp_kses_post( sprintf( __( 'There was a problem activating your license key, please try again or contact support. Error code: %s', 'easy-property-listings' ), $license_error->error ) );
 						break;
 
 				}

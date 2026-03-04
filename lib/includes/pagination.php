@@ -356,6 +356,7 @@ endif;
  * @since 3.3.3
  * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
  * @since 3.5.3 Fixed sorting not working for pagination on shortcode.
+ * @since 3.5.21 Tweak for epl-search-builder ajax pagination.
  */
 function epl_get_next_page_link( $query ) {
 	$link = next_posts( $query->max_num_pages, false );
@@ -416,6 +417,7 @@ function epl_next_post_link( $query, $label = null ) {
  * @since 3.3.3
  * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
  * @since 3.5.3 Fixed sorting not working for pagination on shortcode.
+ * @since 3.5.21 Tweak for epl-search-builder ajax pagination.
  */
 function epl_get_prev_page_link( $query ) {
 
@@ -446,14 +448,16 @@ function epl_get_prev_page_link( $query ) {
 /**
  * Prev page Link
  *
- * @since 3.3.3
  * @param  WP_Query $query WP Query object.
  * @param  string   $label Pagination 'previous' label.
  * @return string
+ *
+ * @since 3.3.3
+ * @since 3.5.21 Tweak for epl-search-builder ajax pagination.
  */
 function epl_prev_post_link( $query, $label = null ) {
 
-	$paged    = $query->get( 'paged' );
+	$paged = $query->get( 'paged' );
 
 	if ( $paged > 1 ) {
 

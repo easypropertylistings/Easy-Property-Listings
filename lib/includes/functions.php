@@ -148,7 +148,7 @@ function epl_remote_url_get( $url ) {
  * @param string $inspection_time Inspection date/time string.
  *
  * @return string
- * @since 3.6.0
+ * @since 3.5.21
  */
 function epl_get_ical_download_token( $post_id, $inspection_time ) {
 	$post_id         = absint( $post_id );

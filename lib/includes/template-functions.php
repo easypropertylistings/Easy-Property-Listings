@@ -2332,6 +2332,7 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
  * @since 2.0.0
  * @since 3.4.9 Corrected issue where output was trimmed, added better unique ID and URL to output.
  * @since 3.5.7 Updated to allow passing of extra details to ical.
+ * @since 3.5.21 Sanitized generated iCal filename and added fallback filename handling.
  */
 function epl_create_ical_file( $start = '', $end = '', $name = '', $description = '', $location = '', $post_id = null ) {
 
@@ -2366,6 +2367,7 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
  * @since 3.5.7 Different subject for auction.
  * @since 3.5.16 Triple equals for auction value.
  * @since 3.5.20 ical access issue.
+ * @since 3.5.21 Added signed token validation for iCal download requests and introduced filterable iCal event description.
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;

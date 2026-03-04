@@ -250,6 +250,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @since 3.5.3  Fix: Deprecation warning - Make sure inspection time is not null before passing through trim.
 		 * @since 3.5.3  Update to use local timestamp.
 		 * @since 3.5.13 Tweak: Target blank added to ical link.
+		 * @since 3.5.21 Added a signed token to the iCal inspection link and switched URL generation to add_query_arg().
 		 */
 		public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 			if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {

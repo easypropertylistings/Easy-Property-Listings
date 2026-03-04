@@ -38,6 +38,22 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.21 March 4. 2026 =
+
+-   Security: Hardened unserialize handling to prevent object injection.
+-   Security: Added nonce protection to tools export URL.
+-   Security: Hardened tools request handling with capability checks and action allowlisting.
+-   Security: Improved settings import validation and processing of uploaded files.
+-   Security: Added signed token validation to inspection iCal download links.
+-   Security: Sanitized generated iCal filenames and added fallback filename handling.
+-   Security: Hardened iCal request processing and validation.
+-   Fix: Ensure SVG icons load when using Divi custom headers by detecting Divi and using the et_body_top hook.
+-   Fix: License notice message sanitization adjusted to run after sprintf(). Thanks DAnn2012.
+-   New: Generate signed token for inspection iCal links.
+-   Dev: Added `epl_ical_description` filter for iCal event description.
+-   Dev: Added `epl_allow_legacy_ical_access` filter for controlled legacy iCal access.
+-   Tweak: epl-search-builder ajax pagination improvements.
+
 = 3.5.20 February 19. 2026 =
 
 -   Fix: iCal access issue.
