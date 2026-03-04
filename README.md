@@ -53,6 +53,7 @@ There are various ways you can contribute:
 -   Dev: Added `epl_ical_description` filter for iCal event description.
 -   Dev: Added `epl_allow_legacy_ical_access` filter for controlled legacy iCal access.
 -   Tweak: epl-search-builder ajax pagination improvements.
+-   Tweak: iCal description now uses the excerpt instead of full content.
 
 = 3.5.20 February 19. 2026 =
 
