@@ -424,10 +424,16 @@ function epl_init_svgs() {
 	 *
 	 * We only switch away from wp_body_open if we're confident Divi is actually active.
 	 */
-	$theme    = wp_get_theme();
-	$template = strtolower( (string) $theme->get_template() );
-	$name     = strtolower( (string) $theme->get( 'Name' ) );
-
+	$theme    = null;
+	$template = '';
+	$name     = '';
+	
+	if ( function_exists( 'wp_get_theme' ) ) {
+		$theme    = wp_get_theme();
+		$template = strtolower( (string) $theme->get_template() );
+		$name     = strtolower( (string) $theme->get( 'Name' ) );
+	}
+	
 	$is_divi = (
 		'divi' === $template ||
 		false !== strpos( $name, 'divi' ) ||
@@ -435,7 +441,7 @@ function epl_init_svgs() {
 		function_exists( 'et_setup_theme' ) ||
 		function_exists( 'et_divi_load_scripts_styles' )
 	);
-
+	
 	$is_divi = apply_filters( 'epl_is_divi_theme', $is_divi );
 
 	/**
