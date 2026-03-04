@@ -2457,7 +2457,7 @@ function epl_process_event_cal_request() {
 	$address .= get_post_meta( $post_id, 'property_address_state', true ) . ' ';
 	$address .= get_post_meta( $post_id, 'property_address_postal_code', true );
 
-	$description = wp_strip_all_tags( $post->post_content );
+	$description = wp_strip_all_tags( get_the_excerpt( $post ) );
 	$description = apply_filters( 'epl_ical_description', $description, $post_id, $post, $item );
 
 	epl_create_ical_file( $starttime, $endtime, $subject, $description, $address, $post_id );
