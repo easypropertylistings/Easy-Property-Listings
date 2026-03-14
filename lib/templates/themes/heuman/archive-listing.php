@@ -28,8 +28,8 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
+			<?php do_action( 'epl_property_loop_start' ); ?>
 			<div class="post-list group <?php echo esc_attr( epl_template_class( 'heuman', 'archive' ) ); ?>">
-				<?php do_action( 'epl_property_loop_start' ); ?>
 					<?php
 					$i = 1;
 					echo '<div class="post-row">';
@@ -44,8 +44,8 @@ get_header(); ?>
 					endwhile;
 					echo '</div>';
 					?>
-				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div><!--/.post-list-->
+			<?php do_action( 'epl_property_loop_end' ); ?>
 
 			<?php get_template_part( 'inc/pagination' ); ?>
 			<?php do_action( 'epl_property_loop_end' ); ?>
