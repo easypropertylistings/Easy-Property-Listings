@@ -959,10 +959,23 @@ add_filter( 'pre_get_avatar', 'epl_get_avatar_filter', 10, 5 );
  */
 function epl_update_featured_listing() {
 
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
 	$id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : 0;
 
 	if ( $id <= 0 ) {
 		return;
+	}
+
+	if ( ! current_user_can( 'edit_post', $id ) ) {
+		wp_die(
+			wp_json_encode(
+				array(
+					'status'   => 'unauthorized',
+					'featured' => 'no',
+				)
+			)
+		);
 	}
 
 	$featured    = get_post_meta( $id, 'property_featured', true );
