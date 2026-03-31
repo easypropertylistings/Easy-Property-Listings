@@ -332,6 +332,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-results.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-meta-doc.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-author-box.php';
 
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
