@@ -794,6 +794,8 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0.0
 		 * @since 3.4.38 Using label_poa for no rental price. Added epl_price_rent_period filter. Added filter epl_pa_price for P.A label.
+		 * @since 3.5.22 Applying string to lower case on the yes values.
+		 *
 		 * @return string
 		 */
 		public function get_price_plain_value() {
@@ -2221,6 +2223,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @return mixed Value wrapped in a list item
 		 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
 		 * @since 3.4.44 Parking Comments Label before value.
+		 * @since 3.5.22 Added support for Yes, No syntax values.
 		 */
 		public function get_additional_features_html( $metakey ) {
 
@@ -2239,6 +2242,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					case 1:
 					case 'yes':
+					case 'Yes':
 					case 'YES':
 					case 'Y':
 					case 'y':
@@ -2249,6 +2253,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					case 0:
 					case 'no':
+					case 'No':
 					case 'NO':
 					case 'N':
 					case 'n':
@@ -2259,9 +2264,9 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					default:
 						if ( 'property_com_parking_comments' === $metakey ) {
-								$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' ' . $metavalue . '</li>';
+							$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' ' . $metavalue . '</li>';
 						} else {
-								$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
+							$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
 						}
 
 						break;
