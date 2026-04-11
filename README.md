@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.22 April 11. 2026 =
+
+-   Tweak: Added support for Yes, No syntax values.
+-   Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
+
 = 3.5.21 March 4. 2026 =
 
 -   Security: Hardened unserialize handling to prevent object injection.
