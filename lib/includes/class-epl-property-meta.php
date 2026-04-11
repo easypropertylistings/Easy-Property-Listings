@@ -214,10 +214,13 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * Usage is $property->get_property_meta('meta_key') with the global $property variable defined
 		 *
-		 * @since 2.0
 		 * @param  string $meta_key The meta key to get the value.
 		 * @param  bool   $allowzero Return a 0 value or if false and a value of 0 return nothing. Default True.
+		 *
 		 * @return string|integer   Return the value of the meta key, string, or integer.
+		 *
+		 * @since 2.0
+		 * @since 3.5.22 Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
 		 */
 		public function get_property_meta( $meta_key, $allowzero = true ) {
 			$value = null;
@@ -233,7 +236,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				}
 			}
 
-			// Normalize yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
+			// Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
 			$boolean_meta_keys = array(
 				'property_price_display',
 				'property_rent_display',
