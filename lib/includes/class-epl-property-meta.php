@@ -164,7 +164,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get things going
 		 *
-		 * @param array $post Post object.
+		 * @param object $post Post object.
 		 * @since 2.0
 		 */
 		public function __construct( $post ) {
