@@ -233,6 +233,19 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				}
 			}
 
+			// Normalize yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
+			$boolean_meta_keys = array(
+				'property_price_display',
+				'property_rent_display',
+				'property_under_offer',
+				'property_address_display',
+				'property_com_display_suburb',
+				'property_featured',
+			);
+			if ( is_string( $value ) && in_array( $meta_key, $boolean_meta_keys, true ) ) {
+				$value = strtolower( $value );
+			}
+
 			return apply_filters( 'epl_meta_filter_' . $meta_key, $value );
 		}
 
