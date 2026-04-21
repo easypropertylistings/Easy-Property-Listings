@@ -22,7 +22,7 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	 * @param int    $month The month.
 	 * @param int    $year The year.
 	 *
-	 * @return false|string
+	 * @return string
 	 * @since 3.3.3
 	 */
 	function cal_days_in_month( $calendar, $month, $year ) {
@@ -956,6 +956,7 @@ add_filter( 'pre_get_avatar', 'epl_get_avatar_filter', 10, 5 );
  * Update a featured listing when pressing the star icon
  *
  * @since 3.3.0
+ * @since 3.5.23 Fix: Broken Access Control in epl_update_featured_listing (CVE-2025-64242).
  */
 function epl_update_featured_listing() {
 

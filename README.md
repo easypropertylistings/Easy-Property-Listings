@@ -38,12 +38,17 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.22 April 11. 2026 =
+= 3.5.23 April 21, 2026 =
+
+-   Fix: Broken Access Control in epl_update_featured_listing (CVE-2025-64242) & UI Toggle Bug thanks @jhimross.
+-   Fix: Transient set to null produced errors with other plugins when saving a license key.
+
+= 3.5.22 April 11, 2026 =
 
 -   Tweak: Added support for Yes, No syntax values.
 -   Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
 
-= 3.5.21 March 4. 2026 =
+= 3.5.21 March 4, 2026 =
 
 -   Security: Hardened unserialize handling to prevent object injection.
 -   Security: Added nonce protection to tools export URL.
@@ -60,26 +65,26 @@ There are various ways you can contribute:
 -   Tweak: epl-search-builder ajax pagination improvements.
 -   Tweak: iCal description now uses the excerpt instead of full content.
 
-= 3.5.20 February 19. 2026 =
+= 3.5.20 February 19, 2026 =
 
 -   Fix: iCal access issue.
 
-= 3.5.19 February 13. 2026 =
+= 3.5.19 February 13, 2026 =
 
 -   Fix: Fatal error with widgets and customizer.
 
-= 3.5.18 February 12. 2026 =
+= 3.5.18 February 12, 2026 =
 
 -   Fix: Admin JS code that prevented loading due to map.
 -   Fix: Cookie path improvements.
 -   Fix: Security patches.
 -   Fix: Plugin wide code syntax improvements.
 
-= 3.5.17 January 13. 2026 =
+= 3.5.17 January 13, 2026 =
 
 -   Tweak: Contact form email address validation check and message.
 
-= 3.5.16 December 16. 2025 =
+= 3.5.16 December 16, 2025 =
 
 -   New: Unified image management featured for use in extensions.
 -   Tweak: Added epl_extension_settings_fields filter for active tab.
