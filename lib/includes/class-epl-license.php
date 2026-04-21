@@ -293,19 +293,19 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 			// Tell WordPress to look for updates.
 			$transient = get_site_transient( 'update_plugins' );
-			
+
 			if ( ! is_object( $transient ) ) {
 				$transient = new stdClass();
 			}
-			
+
 			$transient->response = isset( $transient->response ) && is_array( $transient->response )
 				? $transient->response
 				: array();
-			
+
 			$transient->checked = isset( $transient->checked ) && is_array( $transient->checked )
 				? $transient->checked
 				: array();
-			
+
 			set_site_transient( 'update_plugins', $transient );
 
 			// Decode license data.
