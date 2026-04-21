@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.5.21\n"
+"Project-Id-Version: Easy Property Listings 3.5.23\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2026-04-11 03:41:57+00:00\n"
+"POT-Creation-Date: 2026-04-21 03:26:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3315,7 +3315,7 @@ msgid "Once Weekly"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:526
-#: lib/includes/class-epl-license.php:526
+#: lib/includes/class-epl-license.php:543
 #. Translators: item name.
 msgid ""
 "No valid license key has been entered, so automatic updates for %1$s have "
@@ -3324,7 +3324,7 @@ msgid ""
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:543
-#: lib/includes/class-epl-license.php:543
+#: lib/includes/class-epl-license.php:560
 #. Translators: item name.
 msgid ""
 "Your license key for %1$s has expired. <a href=\"%2$s\" "
@@ -3333,7 +3333,7 @@ msgid ""
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:557
-#: lib/includes/class-epl-license.php:557
+#: lib/includes/class-epl-license.php:574
 #. translators: item name.
 msgid ""
 "Your maximum usage limit for license key of %s has been reached. Please use "
@@ -3341,7 +3341,7 @@ msgid ""
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:571
-#: lib/includes/class-epl-license.php:571
+#: lib/includes/class-epl-license.php:588
 #. translators: item name.
 msgid ""
 "The license you entered for %s does not belong to it. Please use a "
@@ -3349,22 +3349,22 @@ msgid ""
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:605
-#: lib/includes/class-epl-license.php:605
+#: lib/includes/class-epl-license.php:622
 msgid "This license does not belong to the product you have entered it for."
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:609
-#: lib/includes/class-epl-license.php:609
+#: lib/includes/class-epl-license.php:626
 msgid "This license does not have any activations left"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:613
-#: lib/includes/class-epl-license.php:613
+#: lib/includes/class-epl-license.php:630
 msgid "This license key is expired. Please renew it."
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:618
-#: lib/includes/class-epl-license.php:618
+#: lib/includes/class-epl-license.php:635
 #. translators: error.
 msgid ""
 "There was a problem activating your license key, please try again or "
@@ -3372,14 +3372,14 @@ msgid ""
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-license.php:652
-#: lib/includes/class-epl-license.php:652
+#: lib/includes/class-epl-license.php:669
 msgid "Enter valid license key for automatic updates."
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:460
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:855
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:920
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:970
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:473
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:868
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:933
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:983
 #: .claude/worktrees/strange-montalcini/lib/includes/functions.php:2374
 #: .claude/worktrees/strange-montalcini/lib/includes/functions.php:2412
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:2446
@@ -3395,25 +3395,25 @@ msgstr ""
 msgid "Auction"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:616
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:629
 #: lib/includes/class-epl-property-meta.php:632
 msgid "now"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:781
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:783
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:794
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:796
 #: lib/includes/class-epl-property-meta.php:797
 #: lib/includes/class-epl-property-meta.php:799
 msgid "Inc. GST"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:785
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:798
 #: lib/includes/class-epl-property-meta.php:801
 msgid "GST"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:813
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:922
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:826
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:935
 #: .claude/worktrees/strange-montalcini/lib/includes/functions.php:1196
 #: .claude/worktrees/strange-montalcini/lib/includes/install.php:47
 #: lib/includes/class-epl-property-meta.php:831
@@ -3422,16 +3422,16 @@ msgstr ""
 msgid "POA"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:842
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:954
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:855
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:967
 #: lib/includes/class-epl-property-meta.php:860
 #: lib/includes/class-epl-property-meta.php:972
 msgid "TBA"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:849
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:963
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1187
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:862
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:976
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1200
 #: .claude/worktrees/strange-montalcini/lib/includes/functions.php:831
 #: lib/includes/class-epl-property-meta.php:867
 #: lib/includes/class-epl-property-meta.php:981
@@ -3439,12 +3439,12 @@ msgstr ""
 msgid "P.A."
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:857
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:860
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:975
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:987
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:993
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1191
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:870
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:873
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:988
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1000
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1006
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1204
 #: .claude/worktrees/strange-montalcini/lib/includes/functions.php:2411
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3808
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3840
@@ -3459,18 +3459,18 @@ msgstr ""
 msgid "For Sale"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:869
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:871
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:873
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:876
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:981
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1004
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1007
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1012
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1030
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1035
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1204
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1206
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:882
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:884
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:886
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:889
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:994
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1017
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1020
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1025
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1043
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1048
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1217
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1219
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3788
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3851
 #: lib/includes/class-epl-property-meta.php:887
@@ -3490,24 +3490,24 @@ msgstr ""
 msgid "For Lease"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1224
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1237
 #: lib/includes/class-epl-property-meta.php:1242
 msgid "Built"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1275
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1288
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:276
 #: lib/includes/class-epl-property-meta.php:1293
 #: lib/meta-boxes/meta-box-init.php:276
 msgid "Bedrooms"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1284
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1297
 #: lib/includes/class-epl-property-meta.php:1302
 msgid "bed"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1336
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1349
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:284
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:642
 #: lib/includes/class-epl-property-meta.php:1354
@@ -3515,12 +3515,12 @@ msgstr ""
 msgid "Bathrooms"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1345
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1358
 #: lib/includes/class-epl-property-meta.php:1363
 msgid "bath"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1398
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1411
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:326
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:177
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:661
@@ -3530,22 +3530,22 @@ msgstr ""
 msgid "Rooms"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1461
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1474
 #: lib/includes/class-epl-property-meta.php:1479
 msgid "Parking Spaces"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1517
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1530
 #: lib/includes/class-epl-property-meta.php:1535
 msgid "garage"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1569
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1582
 #: lib/includes/class-epl-property-meta.php:1587
 msgid "carport"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1620
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1633
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:361
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:830
 #: lib/includes/class-epl-property-meta.php:1638
@@ -3553,7 +3553,7 @@ msgstr ""
 msgid "Air Conditioning"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1681
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1694
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:352
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:845
 #: lib/includes/class-epl-property-meta.php:1699
@@ -3561,13 +3561,13 @@ msgstr ""
 msgid "Pool"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1742
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1755
 #: lib/includes/class-epl-property-meta.php:1760
 msgid "Alarm System"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1798
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1870
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1811
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1883
 #: .claude/worktrees/strange-montalcini/lib/post-types/post-types.php:384
 #: lib/includes/class-epl-property-meta.php:1816
 #: lib/includes/class-epl-property-meta.php:1888
@@ -3575,21 +3575,21 @@ msgstr ""
 msgid "m&#178;"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1811
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1823
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1824
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1836
 #: lib/includes/class-epl-property-meta.php:1829
 #: lib/includes/class-epl-property-meta.php:1841
 msgid "Land is"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1883
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1895
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1896
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1908
 #: lib/includes/class-epl-property-meta.php:1901
 #: lib/includes/class-epl-property-meta.php:1913
 msgid "Floor Area is"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1943
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1956
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:428
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:785
 #: lib/includes/class-epl-property-meta.php:1961
@@ -3597,35 +3597,35 @@ msgstr ""
 msgid "Energy Rating"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:1991
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2004
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:342
 #: lib/includes/class-epl-property-meta.php:2009
 #: lib/meta-boxes/meta-box-init.php:342
 msgid "New Construction"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2034
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2047
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:1136
 #: lib/includes/class-epl-property-meta.php:2052
 #: lib/meta-boxes/meta-box-init.php:1136
 msgid "Holiday Rental"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2087
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2100
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:1127
 #: lib/includes/class-epl-property-meta.php:2105
 #: lib/meta-boxes/meta-box-init.php:1127
 msgid "Furnished"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2136
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2149
 #: .claude/worktrees/strange-montalcini/lib/meta-boxes/meta-box-init.php:379
 #: lib/includes/class-epl-property-meta.php:2154
 #: lib/meta-boxes/meta-box-init.php:379
 msgid "Pet Friendly"
 msgstr ""
 
-#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2185
+#: .claude/worktrees/strange-montalcini/lib/includes/class-epl-property-meta.php:2198
 #: .claude/worktrees/strange-montalcini/lib/post-types/post-type-business.php:97
 #: .claude/worktrees/strange-montalcini/lib/post-types/post-type-commercial-land.php:97
 #: .claude/worktrees/strange-montalcini/lib/post-types/post-type-commercial.php:97
