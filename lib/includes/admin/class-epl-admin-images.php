@@ -148,11 +148,11 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 
 			$attachments = get_posts(
 				array(
-					'post_type'      => 'attachment',
-					'post__in'       => $all_images,
-					'numberposts'    => -1,
-					'fields'         => 'ids',
-					'meta_query'     => array(
+					'post_type'   => 'attachment',
+					'post__in'    => $all_images,
+					'numberposts' => -1,
+					'fields'      => 'ids',
+					'meta_query'  => array(
 						array(
 							'key'     => '_epl_media_object_id',
 							'compare' => 'EXISTS',
@@ -400,14 +400,14 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 				$args['post__not_in'] = $post_not_in;
 			}
 
-			$order_meta = get_post_meta( $post->ID, $this->get_config( 'order_meta_key' ), true );
+			$order_meta       = get_post_meta( $post->ID, $this->get_config( 'order_meta_key' ), true );
 			$has_manual_order = is_array( $order_meta ) ? ! empty( $order_meta ) : ( '' !== $order_meta );
 
 			if ( $has_manual_order ) {
 
-				$ordered_posts = is_array( $order_meta ) ? $order_meta : explode( ',', $order_meta );
-				$ordered_posts = array_map( 'absint', $ordered_posts );
-				$ordered_posts = array_filter( $ordered_posts );
+				$ordered_posts    = is_array( $order_meta ) ? $order_meta : explode( ',', $order_meta );
+				$ordered_posts    = array_map( 'absint', $ordered_posts );
+				$ordered_posts    = array_filter( $ordered_posts );
 				$unordered_posts  = array_diff( $all_images, $ordered_posts );
 				$all_images       = array_merge( $ordered_posts, $unordered_posts );
 				$args['post__in'] = $all_images;
@@ -415,8 +415,8 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 			} else {
 				$ordered_posts = $this->get_original_image_order( $post, $all_images );
 				if ( ! empty( $ordered_posts ) ) {
-					$unordered_posts = array_diff( $all_images, $ordered_posts );
-					$all_images      = array_merge( $ordered_posts, $unordered_posts );
+					$unordered_posts  = array_diff( $all_images, $ordered_posts );
+					$all_images       = array_merge( $ordered_posts, $unordered_posts );
 					$args['post__in'] = $all_images;
 					$args['orderby']  = 'post__in';
 				}
