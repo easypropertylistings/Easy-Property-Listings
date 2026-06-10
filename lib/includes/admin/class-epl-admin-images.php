@@ -131,7 +131,12 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		private function get_original_image_order( $post, $all_images ) {
 
 			$original_order = array();
-			$order_meta     = get_post_meta( $post->ID, 'property_images_original_order', true );
+
+			if ( empty( $all_images ) ) {
+				return $original_order;
+			}
+
+			$order_meta = get_post_meta( $post->ID, 'property_images_original_order', true );
 
 			if ( empty( $order_meta ) ) {
 				return $original_order;
