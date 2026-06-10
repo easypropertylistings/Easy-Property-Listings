@@ -483,24 +483,24 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 
 								<span class="epl-slider-unattach">
 									<div class="epl-radio-switch">
-									<input 
-										id="epl-<?php echo esc_attr( $extension ); ?>-cmn-toggle-<?php echo esc_attr( $attachment->ID ); ?>" 
-										class="epl-radio-switch-input epl-radio-switch-input--yes-no" 
-										name="<?php echo esc_attr( $prefix ); ?>enabled_thumbs[]" 
-										<?php echo esc_attr( $checked ); ?> 
-										value="<?php echo esc_attr( $attachment->ID ); ?>" 
-										type="checkbox"
-									/>
-									<label for="epl-<?php echo esc_attr( $extension ); ?>-cmn-toggle-<?php echo esc_attr( $attachment->ID ); ?>"></label>
+										<input
+											id="epl-<?php echo esc_attr( $extension ); ?>-cmn-toggle-<?php echo esc_attr( $attachment->ID ); ?>"
+											class="epl-radio-switch-input epl-radio-switch-input--yes-no"
+											name="<?php echo esc_attr( $prefix ); ?>enabled_thumbs[]"
+											<?php echo esc_attr( $checked ); ?>
+											value="<?php echo esc_attr( $attachment->ID ); ?>"
+											type="checkbox"
+										/>
+										<label for="epl-<?php echo esc_attr( $extension ); ?>-cmn-toggle-<?php echo esc_attr( $attachment->ID ); ?>"></label>
 									</div>
 								</span>
 
 								<div class="epl-<?php echo esc_attr( $extension ); ?>-slide-tools epl-listing-attachment-tools">
 									<a target="_blank" href="<?php echo esc_url( admin_url( 'post.php?post=' . $attachment->ID . '&action=edit' ) ); ?>">
-									<span class="epl-<?php echo esc_attr( $extension ); ?>-edit-attach dashicons dashicons-edit"></span>
+										<span class="epl-<?php echo esc_attr( $extension ); ?>-edit-attach dashicons dashicons-edit"></span>
 									</a>
 									<a href="#" class="epl-slider-<?php echo esc_attr( $extension ); ?>-delete-attach epl-listing-attachment-tools-delete-attach">
-									<span class="dashicons dashicons-trash"></span>
+										<span class="dashicons dashicons-trash"></span>
 									</a>
 								</div>
 
