@@ -237,6 +237,10 @@ Use any theme you want which means you can use your creativity and build beautif
 * Supports REAXML, JUPIX and worldwide MLS systems.
 * Hundreds of filters to modify the default behaviour of the plugin.
 
+**Automatically Sync Your Website with FeedSync**
+
+Your CRM already pushes your listings to REA, Domain and other portals automatically. [FeedSync](https://feedsync.com.au/?utm_source=epl_readme&utm_medium=description_tab&utm_content=feedsync_main&utm_campaign=epl_feedsync) does the same thing for your WordPress website, so it updates itself the moment your listings change. It takes the same REAXML feed your portals already receive and keeps Easy Property Listings in sync, which means your website stops being the one place you have to update by hand. Set it once and your site stays current on its own.
+
 **Extensions and add-ons**
 
 You get cool optional [extensions](https://easypropertylistings.com.au/extensions/?utm_source=readme&utm_medium=description_tab&utm_content=extensions_link&utm_campaign=epl_extensions) which means you can grow your site and content and offer additional options to your clients and customers with features they will love.
