@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.24 June 20, 2026 =
+
+-   New: Get the original attachment order from listing metadata function.
+
 = 3.5.23 April 21, 2026 =
 
 -   Fix: Broken Access Control in epl_update_featured_listing (CVE-2025-64242) & UI Toggle Bug thanks @jhimross.
