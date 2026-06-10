@@ -40,7 +40,7 @@ There are various ways you can contribute:
 
 = 3.5.24 June 20, 2026 =
 
--   New: Get the original attachment order from listing metadata function.
+-   New/Fix: Get the original attachment order from listing metadata function for image ordering with [FeedSync service](https://feedsync.com.au).
 
 = 3.5.23 April 21, 2026 =
 
