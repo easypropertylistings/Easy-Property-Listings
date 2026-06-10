@@ -121,10 +121,12 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		/**
 		 * Get the original attachment order from listing metadata.
 		 *
-		 * @param object $post Current listing post object.
+		 * @param object $post       Current listing post object.
 		 * @param array  $all_images Attachment IDs to consider.
 		 *
 		 * @return array Ordered attachment IDs.
+		 *
+		 * @since 3.5.24
 		 */
 		private function get_original_image_order( $post, $all_images ) {
 
@@ -321,6 +323,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 *
 		 * @since 3.5.16
 		 * @since 3.5.18 Array search improvements and better checks for attachments.
+		 * @since 3.5.24 Support for getting original image order.
 		 */
 		public function epl_images_management_callback( $post ) {
 
