@@ -36,12 +36,14 @@ function epl_reset_property_object( $post ) {
 	global $property;
 	$property = new EPL_Property_Meta( $post );
 	$ID       = epl_listing_has_primary_agent(); //phpcs:ignore
+        
 	if ( $ID ) {
 		$epl_author = new EPL_Author_meta( $ID ); //phpcs:ignore
 
 	} else {
 		$epl_author = new EPL_Author_meta( $post->post_author );
 	}
+
 
 	$SEC_ID = epl_listing_has_secondary_author();
 
@@ -2260,6 +2262,22 @@ function epl_property_gallery() {
 	$d_gallery_n = epl_get_option( 'display_gallery_n' );
 
 	if ( 1 !== $d_gallery ) {
+		return;
+	}
+
+	/**
+	 * Allow an extension to fully supply the gallery HTML (e.g. CDN-hosted images
+	 * that are not in the WP media library). Return a string to short-circuit the
+	 * default attachment-based gallery; return null to leave default behaviour.
+	 *
+	 * @since 3.5.24
+	 *
+	 * @param string|null $custom  Custom gallery HTML, or null for default.
+	 * @param int         $post_id Current listing ID.
+	 */
+	$custom = apply_filters( 'epl_property_gallery_html', null, get_the_ID() );
+	if ( null !== $custom ) {
+		echo $custom; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return;
 	}
 
