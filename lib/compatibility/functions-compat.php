@@ -162,7 +162,7 @@ if ( ! is_admin() ) {
  */
 function epl_property_blog_default() {
 
-	global $property,$epl_settings;
+	global $property, $epl_settings;
 	$property_status = $property->get_property_meta( 'property_status' );
 
 	// Status Removal Do Not Display Withdrawn or OffMarket listings.
@@ -189,7 +189,7 @@ function epl_property_blog_default() {
  * @since   1.3
  */
 function epl_property_blog_slim() {
-	global $property,$epl_settings;
+	global $property, $epl_settings;
 	if ( is_null( $property ) ) {
 		return;
 	}
@@ -217,7 +217,7 @@ function epl_property_blog_slim() {
  * @since 2.1.6
  */
 function epl_property_blog_table() {
-	global $property,$epl_settings;
+	global $property, $epl_settings;
 	if ( is_null( $property ) ) {
 		return;
 	}
@@ -247,7 +247,7 @@ function epl_property_blog_table() {
  * @since 2.1.8
  */
 function epl_property_blog_table_open() {
-	global $property,$epl_settings;
+	global $property, $epl_settings;
 	if ( is_null( $property ) ) {
 		return;
 	}
@@ -392,7 +392,7 @@ function epl_property_sold_leased() {
  * @param string $icons styling switch.
  */
 function epl_property_author_card( $display, $image, $title, $icons ) {
-	global $property,$epl_author;
+	global $property, $epl_author;
 	if ( is_null( $epl_author ) ) {
 		return;
 	}

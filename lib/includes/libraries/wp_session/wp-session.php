@@ -6,9 +6,20 @@
  * for storing user session information.
  *
  * @package WordPress
- * @subpackage Session
  * @since   3.6.0
  */
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+if ( ! defined( 'PHP_SESSION_ACTIVE' ) ) {
+	define( 'PHP_SESSION_ACTIVE', 2 );
+}
+if ( ! defined( 'PHP_SESSION_NONE' ) ) {
+	define( 'PHP_SESSION_NONE', 1 );
+}
 
 /**
  * Return the current cache expire setting.
@@ -31,7 +42,7 @@ function wp_session_commit() {
 /**
  * Load a JSON-encoded string into the current session.
  *
- * @param string $data
+ * @param string $data JSON-encoded string to load.
  */
 function wp_session_decode( $data ) {
 	$wp_session = WP_Session::get_instance();
@@ -53,7 +64,7 @@ function wp_session_encode() {
 /**
  * Regenerate the session ID.
  *
- * @param bool $delete_old_session
+ * @param bool $delete_old_session Whether to delete the old session.
  *
  * @return bool
  */
@@ -91,10 +102,10 @@ function wp_session_status() {
 	$wp_session = WP_Session::get_instance();
 
 	if ( $wp_session->session_started() ) {
-		return PHP_SESSION_ACTIVE;
+		return defined( 'PHP_SESSION_ACTIVE' ) ? PHP_SESSION_ACTIVE : 2; // phpcs:ignore PHPCompatibility.Constants.NewConstants.php_session_activeFound
 	}
 
-	return PHP_SESSION_NONE;
+	return defined( 'PHP_SESSION_NONE' ) ? PHP_SESSION_NONE : 1; // phpcs:ignore PHPCompatibility.Constants.NewConstants.php_session_noneFound
 }
 
 /**

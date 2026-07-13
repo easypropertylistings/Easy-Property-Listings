@@ -71,15 +71,15 @@ function epl_reports_default_views() {
  *
  * Checks the $_GET['view'] parameter to ensure it exists within the default allowed views.
  *
- * @param string $default Default view to use.
+ * @param string $default_value Default view to use.
  *
  * @since 3.0
  * @return string $view Report View
  */
-function epl_get_reporting_view( $default = 'property' ) {
+function epl_get_reporting_view( $default_value = 'property' ) {
 
 	if ( ! isset( $_GET['view'] ) || ! in_array( $_GET['view'], array_keys( epl_reports_default_views() ), true ) ) {
-		$view = $default;
+		$view = $default_value;
 	} else {
 		$view = sanitize_text_field( wp_unslash( $_GET['view'] ) );
 	}
@@ -107,7 +107,6 @@ function epl_reports_tab_reports() {
 	}
 
 	do_action( 'epl_reports_view_' . $current_view );
-
 }
 add_action( 'epl_reports_tab_reports', 'epl_reports_tab_reports' );
 

@@ -43,7 +43,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<?php do_action( 'epl_author_widget_before_contact' ); ?>
 			<div class="epl-author-contact author-contact">
-				<?php if ( ! empty( $epl_author->get_author_mobile() ) ) { ?>
+				<?php
+				$mobile = $epl_author->get_author_mobile();
+				if ( ! empty( $mobile ) ) {
+					?>
 					<span class="label-mobile">
 						<?php
 							$label_mobile = apply_filters( 'epl_author_widget_label_mobile', __( 'Mobile', 'easy-property-listings' ) );
@@ -55,7 +58,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 
 			<div class="epl-author-contact author-contact author-contact-office-phone">
-				<?php if ( ! empty( $epl_author->get_author_office_phone() ) ) { ?>
+				<?php
+				$office = $epl_author->get_author_office_phone();
+				if ( ! empty( $office ) ) {
+					?>
 					<span class="label-office-phone">
 						<?php
 						$label_office = apply_filters( 'epl_author_widget_label_office', esc_html__( 'Office', 'easy-property-listings' ) );

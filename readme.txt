@@ -4,10 +4,10 @@ Plugin URI: https://easypropertylistings.com.au/
 Contributors: mervb1
 Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, reports
-Requires PHP: 7.1
+Requires PHP: 7.4
 Requires at least: 3.9
-Tested up to: 6.9
-Stable Tag: 3.5.17
+Tested up to: 7.0.0
+Stable Tag: 3.5.24
 License: GPLv2 or later
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management and works with any theme.
@@ -236,6 +236,10 @@ Use any theme you want which means you can use your creativity and build beautif
 * Custom labels for everything and full translation support.
 * Supports REAXML, JUPIX and worldwide MLS systems.
 * Hundreds of filters to modify the default behaviour of the plugin.
+
+**Automatically Sync Your Website with FeedSync**
+
+Your CRM already pushes your listings to REA, Domain and other portals automatically. [FeedSync](https://feedsync.com.au/?utm_source=epl_readme&utm_medium=description_tab&utm_content=feedsync_main&utm_campaign=epl_feedsync) does the same thing for your WordPress website, so it updates itself the moment your listings change. It takes the same REAXML feed your portals already receive and keeps Easy Property Listings in sync, which means your website stops being the one place you have to update by hand. Set it once and your site stays current on its own.
 
 **Extensions and add-ons**
 

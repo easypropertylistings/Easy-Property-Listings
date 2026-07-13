@@ -219,4 +219,3 @@ function epl_contact_access() {
 	$return  = current_user_can( $allowed ) ? true : false;
 	return apply_filters( 'epl_contact_access', $return );
 }
-

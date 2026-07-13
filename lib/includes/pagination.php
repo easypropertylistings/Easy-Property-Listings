@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function epl_fancy_pagination( $args = array() ) {
 	if ( ! is_array( $args ) ) {
-		$argv = func_get_args();
+		$argv = func_get_args(); // phpcs:ignore PHPCompatibility.FunctionUse.ArgumentFunctionsReportCurrentValue.NeedsInspection
 
 		$args = array();
 		foreach ( array( 'before', 'after', 'options' ) as $i => $key ) {
@@ -166,7 +166,7 @@ function epl_fancy_pagination( $args = array() ) {
 							'class' => 'smaller page',
 						)
 					);
-					$larger_page_start++;
+					++$larger_page_start;
 				}
 			}
 
@@ -203,7 +203,7 @@ function epl_fancy_pagination( $args = array() ) {
 							'class' => 'larger page',
 						)
 					);
-					$larger_page_end++;
+					++$larger_page_end;
 				}
 			}
 
@@ -356,16 +356,17 @@ endif;
  * @since 3.3.3
  * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
  * @since 3.5.3 Fixed sorting not working for pagination on shortcode.
+ * @since 3.5.21 Tweak for epl-search-builder ajax pagination.
  */
 function epl_get_next_page_link( $query ) {
 	$link = next_posts( $query->max_num_pages, false );
 
-	if ( $query->get( 'is_epl_shortcode' ) &&
-		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
+	if ( ($query->get( 'is_epl_shortcode' ) &&
+		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) || $query->is_epl_search ) {
 
 		$permalink_structure = get_option( 'permalink_structure' );
 
-		if ( empty( $permalink_structure ) ) {
+		if ( empty( $permalink_structure ) || $query->is_epl_search ) {
 
 			$page = $query->get( 'paged' );
 
@@ -373,7 +374,7 @@ function epl_get_next_page_link( $query ) {
 				$page = 1;
 			}
 
-			$page++;
+			++$page;
 
 			$link = epl_add_or_update_params( $link, 'paged', $page );
 		}
@@ -416,16 +417,17 @@ function epl_next_post_link( $query, $label = null ) {
  * @since 3.3.3
  * @since 3.5.1 Fixed shortcode pagination when permalinks are plain.
  * @since 3.5.3 Fixed sorting not working for pagination on shortcode.
+ * @since 3.5.21 Tweak for epl-search-builder ajax pagination.
  */
 function epl_get_prev_page_link( $query ) {
 
 	$link = previous_posts( false );
 
-	if ( $query->get( 'is_epl_shortcode' ) &&
-		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) {
+	if ( ($query->get( 'is_epl_shortcode' ) &&
+		in_array( $query->get( 'epl_shortcode_name' ), epl_get_shortcode_list(), true ) ) || $query->is_epl_search ) {
 			$permalink_structure = get_option( 'permalink_structure' );
 
-		if ( empty( $permalink_structure ) ) {
+		if ( empty( $permalink_structure ) || $query->is_epl_search ) {
 
 			$page = $query->get( 'paged' );
 
@@ -433,7 +435,7 @@ function epl_get_prev_page_link( $query ) {
 				$page = 1;
 			}
 
-			$page--;
+			--$page;
 
 			$link = epl_add_or_update_params( $link, 'paged', $page );
 		}
@@ -446,14 +448,16 @@ function epl_get_prev_page_link( $query ) {
 /**
  * Prev page Link
  *
- * @since 3.3.3
  * @param  WP_Query $query WP Query object.
  * @param  string   $label Pagination 'previous' label.
  * @return string
+ *
+ * @since 3.3.3
+ * @since 3.5.21 Tweak for epl-search-builder ajax pagination.
  */
 function epl_prev_post_link( $query, $label = null ) {
 
-	global $paged;
+	$paged = $query->get( 'paged' );
 
 	if ( $paged > 1 ) {
 

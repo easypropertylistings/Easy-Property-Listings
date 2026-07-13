@@ -163,7 +163,7 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 	 * @return array
 	 * @since 1.0
 	 * @since 3.4.45 Added deleted status.
-         * @since 3.5.0 Using the global function to get status labels.
+	 * @since 3.5.0 Using the global function to get status labels.
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance          = $old_instance;
@@ -310,11 +310,11 @@ class EPL_Widget_Recent_Property extends WP_Widget {
 						'epl_widget_listing_property_status',
 						array(
 							'current'   => epl_get_the_status_label( 'current' ),
-                                                        'sold'      => epl_get_the_status_label( 'sold' ),
-                                                        'leased'    => epl_get_the_status_label( 'leased' ),
-                                                        'withdrawn' => epl_get_the_status_label( 'withdrawn' ),
-                                                        'offmarket' => epl_get_the_status_label( 'offmarket' ),
-                                                        'deleted'   => epl_get_the_status_label( 'deleted' ),
+							'sold'      => epl_get_the_status_label( 'sold' ),
+							'leased'    => epl_get_the_status_label( 'leased' ),
+							'withdrawn' => epl_get_the_status_label( 'withdrawn' ),
+							'offmarket' => epl_get_the_status_label( 'offmarket' ),
+							'deleted'   => epl_get_the_status_label( 'deleted' ),
 						)
 					);
 				if ( count( $options ) ) {

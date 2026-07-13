@@ -81,7 +81,7 @@ $tabcounter      = 1;
 					$post_type_label = epl_get_option( 'widget_label_all', 'All' );
 				}
 				echo '<li data-tab="epl_ps_tab_' . esc_attr( $global_counters[ $tabcounter ] ) . '" class="tab-link ' . esc_attr( $is_sb_current ) . '">' . esc_attr( $post_type_label ) . '</li>';
-				$tabcounter++;
+				++$tabcounter;
 
 			endforeach;
 			echo '</ul>';
@@ -148,7 +148,7 @@ $tabcounter      = 1;
 				</form>
 				</div>
 			<?php
-			$tabcounter++;
+			++$tabcounter;
 		endforeach;
 		?>
 		</div>

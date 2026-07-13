@@ -73,7 +73,7 @@ class EPL_Cron {
 	 */
 	private function weekly_events() {
 		if ( ! wp_next_scheduled( 'epl_weekly_scheduled_events' ) ) {
-			wp_schedule_event( current_time( 'timestamp' ), 'weekly', 'epl_weekly_scheduled_events' );
+			wp_schedule_event( time(), 'weekly', 'epl_weekly_scheduled_events' );
 		}
 	}
 
@@ -86,9 +86,8 @@ class EPL_Cron {
 	 */
 	private function daily_events() {
 		if ( ! wp_next_scheduled( 'epl_daily_scheduled_events' ) ) {
-			wp_schedule_event( current_time( 'timestamp' ), 'daily', 'epl_daily_scheduled_events' );
+			wp_schedule_event( time(), 'daily', 'epl_daily_scheduled_events' );
 		}
 	}
-
 }
 $epl_cron = new EPL_Cron();

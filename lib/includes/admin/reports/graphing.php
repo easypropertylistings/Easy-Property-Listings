@@ -99,7 +99,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 				);
 			}
 
-			$i++;
+			++$i;
 		}
 
 		foreach ( $report_dates as $report_date ) {
@@ -169,7 +169,7 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 						$date                    = mktime( 0, 0, 0, $i, $d, $y ) * 1000;
 						$sales_data[]            = array( $date, $sales );
 						$current_listings_data[] = array( $date, $current_listings );
-						$d++;
+						++$d;
 
 					}
 				} else {
@@ -196,11 +196,11 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 
 				}
 
-				$i++;
+				++$i;
 
 			}
 
-			$y++;
+			++$y;
 		}
 	}
 
@@ -241,8 +241,8 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								// translators: status label.
-								echo sprintf( esc_html__( 'Total %s listings period shown : ', 'easy-property-listings' ), esc_attr( ucfirst( $current_status ) ) );
+								// Translators: status label.
+								printf( esc_html__( 'Total %s listings period shown : ', 'easy-property-listings' ), esc_attr( ucfirst( $current_status ) ) );
 
 								echo esc_attr( epl_format_amount( $current_listings_totals ) );
 							?>
@@ -251,8 +251,8 @@ function epl_reports_graph( $sold_status = 'sold', $current_status = 'current', 
 					<p class="epl_graph_totals">
 						<strong>
 							<?php
-								// translators: status label.
-								echo sprintf( esc_html__( 'Total %s listings period shown : ', 'easy-property-listings' ), esc_attr( ucfirst( $sold_status ) ) );
+								// Translators: status label.
+								printf( esc_html__( 'Total %s listings period shown : ', 'easy-property-listings' ), esc_attr( ucfirst( $sold_status ) ) );
 
 								echo esc_attr( epl_format_amount( $sales_totals ) );
 							?>
@@ -286,7 +286,6 @@ function epl_parse_report_dates( $data ) {
 	$dates = epl_get_report_dates();
 	$view  = epl_get_reporting_view();
 	wp_safe_redirect( add_query_arg( $dates, admin_url( 'admin.php?page=epl-reports&view=' . esc_attr( $view ) ) ) );
-
 }
 add_action( 'epl_filter_reports', 'epl_parse_report_dates' );
 
@@ -321,7 +320,7 @@ function epl_reports_graph_controls() {
 	$view    = epl_get_reporting_view();
 
 	if ( empty( $dates['day_end'] ) ) {
-		$dates['day_end'] = cal_days_in_month( CAL_GREGORIAN, date( 'n' ), date( 'Y' ) );
+		$dates['day_end'] = cal_days_in_month( CAL_GREGORIAN, gmdate( 'n' ), gmdate( 'Y' ) );
 	}
 
 	?>
@@ -351,7 +350,7 @@ function epl_reports_graph_controls() {
 						<?php endfor; ?>
 					</select>
 					<select aria-label="<?php esc_attr_e( 'Year', 'easy-property-listings' ); ?>"  id="epl-graphs-year-start" name="year">
-						<?php $curr_year = date( 'Y' ); ?>
+						<?php $curr_year = gmdate( 'Y' ); ?>
 
 						<?php for ( $i = 2007; $i <= $curr_year; $i++ ) : ?>
 							<option value="<?php echo absint( $i ); ?>" <?php selected( $i, $dates['year'] ); ?>><?php echo esc_attr( $i ); ?></option>
@@ -400,13 +399,13 @@ function epl_get_report_dates() {
 
 	$dates = array();
 
-	$current_time = current_time( 'timestamp' );
+	$current_time = current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
 
 	$dates['range'] = isset( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : 'this_month';
 
 	if ( 'custom' !== $dates['range'] ) {
-		$dates['year']     = isset( $_GET['year'] ) ? sanitize_text_field( wp_unslash( $_GET['year'] ) ) : date( 'Y' );
-		$dates['year_end'] = isset( $_GET['year_end'] ) ? sanitize_text_field( wp_unslash( $_GET['year_end'] ) ) : date( 'Y' );
+		$dates['year']     = isset( $_GET['year'] ) ? sanitize_text_field( wp_unslash( $_GET['year'] ) ) : gmdate( 'Y' );
+		$dates['year_end'] = isset( $_GET['year_end'] ) ? sanitize_text_field( wp_unslash( $_GET['year_end'] ) ) : gmdate( 'Y' );
 		$dates['m_start']  = isset( $_GET['m_start'] ) ? sanitize_text_field( wp_unslash( $_GET['m_start'] ) ) : 1;
 		$dates['m_end']    = isset( $_GET['m_end'] ) ? sanitize_text_field( wp_unslash( $_GET['m_end'] ) ) : 12;
 		$dates['day']      = isset( $_GET['day'] ) ? sanitize_text_field( wp_unslash( $_GET['day'] ) ) : 1;
@@ -417,54 +416,54 @@ function epl_get_report_dates() {
 	switch ( $dates['range'] ) :
 
 		case 'this_month':
-			$dates['m_start']  = date( 'n', $current_time );
-			$dates['m_end']    = date( 'n', $current_time );
+			$dates['m_start']  = gmdate( 'n', $current_time );
+			$dates['m_end']    = gmdate( 'n', $current_time );
 			$dates['day']      = 1;
 			$dates['day_end']  = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
-			$dates['year']     = date( 'Y' );
-			$dates['year_end'] = date( 'Y' );
+			$dates['year']     = gmdate( 'Y' );
+			$dates['year_end'] = gmdate( 'Y' );
 			break;
 
 		case 'last_month':
-			if ( date( 'n' ) === 1 ) {
+			if ( gmdate( 'n' ) === 1 ) {
 				$dates['m_start']  = 12;
 				$dates['m_end']    = 12;
-				$dates['year']     = date( 'Y', $current_time ) - 1;
-				$dates['year_end'] = date( 'Y', $current_time ) - 1;
+				$dates['year']     = gmdate( 'Y', $current_time ) - 1;
+				$dates['year_end'] = gmdate( 'Y', $current_time ) - 1;
 			} else {
-				$dates['m_start']  = date( 'n' ) - 1;
-				$dates['m_end']    = date( 'n' ) - 1;
+				$dates['m_start']  = gmdate( 'n' ) - 1;
+				$dates['m_end']    = gmdate( 'n' ) - 1;
 				$dates['year_end'] = $dates['year'];
 			}
 			$dates['day_end'] = cal_days_in_month( CAL_GREGORIAN, $dates['m_end'], $dates['year'] );
 			break;
 
 		case 'today':
-			$dates['day']     = date( 'd', $current_time );
-			$dates['m_start'] = date( 'n', $current_time );
-			$dates['m_end']   = date( 'n', $current_time );
-			$dates['year']    = date( 'Y', $current_time );
+			$dates['day']     = gmdate( 'd', $current_time );
+			$dates['m_start'] = gmdate( 'n', $current_time );
+			$dates['m_end']   = gmdate( 'n', $current_time );
+			$dates['year']    = gmdate( 'Y', $current_time );
 			break;
 
 		case 'yesterday':
-			$year  = date( 'Y', $current_time );
-			$month = date( 'n', $current_time );
-			$day   = date( 'd', $current_time );
+			$year  = gmdate( 'Y', $current_time );
+			$month = gmdate( 'n', $current_time );
+			$day   = gmdate( 'd', $current_time );
 
 			if ( 1 === $month && 1 === $day ) {
 
-				$year--;
+				--$year;
 				$month = 12;
 				$day   = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
 			} elseif ( $month > 1 && 1 === $day ) {
 
-				$month--;
+				--$month;
 				$day = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
 			} else {
 
-				$day--;
+				--$day;
 
 			}
 
@@ -477,21 +476,21 @@ function epl_get_report_dates() {
 
 		case 'this_week':
 		case 'last_week':
-			$base_time = 'this_week' === $dates['range'] ? current_time( 'mysql' ) : date( 'Y-n-d h:i:s', current_time( 'timestamp' ) - WEEK_IN_SECONDS );
+			$base_time = 'this_week' === $dates['range'] ? current_time( 'mysql' ) : gmdate( 'Y-n-d h:i:s', current_time( 'timestamp' ) - WEEK_IN_SECONDS ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
 			$start_end = get_weekstartend( $base_time, get_option( 'start_of_week' ) );
 
-			$dates['day']     = date( 'd', $start_end['start'] );
-			$dates['m_start'] = date( 'n', $start_end['start'] );
-			$dates['year']    = date( 'Y', $start_end['start'] );
+			$dates['day']     = gmdate( 'd', $start_end['start'] );
+			$dates['m_start'] = gmdate( 'n', $start_end['start'] );
+			$dates['year']    = gmdate( 'Y', $start_end['start'] );
 
-			$dates['day_end']  = date( 'd', $start_end['end'] );
-			$dates['m_end']    = date( 'n', $start_end['end'] );
-			$dates['year_end'] = date( 'Y', $start_end['end'] );
+			$dates['day_end']  = gmdate( 'd', $start_end['end'] );
+			$dates['m_end']    = gmdate( 'n', $start_end['end'] );
+			$dates['year_end'] = gmdate( 'Y', $start_end['end'] );
 			break;
 
 		case 'this_quarter':
-			$month_now         = date( 'n', $current_time );
-			$dates['year']     = date( 'Y', $current_time );
+			$month_now         = gmdate( 'n', $current_time );
+			$dates['year']     = gmdate( 'Y', $current_time );
 			$dates['year_end'] = $dates['year'];
 
 			if ( $month_now <= 3 ) {
@@ -521,31 +520,31 @@ function epl_get_report_dates() {
 			break;
 
 		case 'last_quarter':
-			$month_now = date( 'n' );
+			$month_now = gmdate( 'n' );
 
 			if ( $month_now <= 3 ) {
 
 				$dates['m_start'] = 10;
 				$dates['m_end']   = 12;
-				$dates['year']    = date( 'Y', $current_time ) - 1; // Previous year.
+				$dates['year']    = gmdate( 'Y', $current_time ) - 1; // Previous year.
 
 			} elseif ( $month_now <= 6 ) {
 
 				$dates['m_start'] = 1;
 				$dates['m_end']   = 3;
-				$dates['year']    = date( 'Y', $current_time );
+				$dates['year']    = gmdate( 'Y', $current_time );
 
 			} elseif ( $month_now <= 9 ) {
 
 				$dates['m_start'] = 4;
 				$dates['m_end']   = 6;
-				$dates['year']    = date( 'Y', $current_time );
+				$dates['year']    = gmdate( 'Y', $current_time );
 
 			} else {
 
 				$dates['m_start'] = 7;
 				$dates['m_end']   = 9;
-				$dates['year']    = date( 'Y', $current_time );
+				$dates['year']    = gmdate( 'Y', $current_time );
 
 			}
 
@@ -559,7 +558,7 @@ function epl_get_report_dates() {
 			$dates['day']      = 1;
 			$dates['m_start']  = 1;
 			$dates['m_end']    = 12;
-			$dates['year']     = date( 'Y', $current_time );
+			$dates['year']     = gmdate( 'Y', $current_time );
 			$dates['year_end'] = $dates['year'];
 
 			break;
@@ -568,8 +567,8 @@ function epl_get_report_dates() {
 			$dates['day']      = 1;
 			$dates['m_start']  = 1;
 			$dates['m_end']    = 12;
-			$dates['year']     = date( 'Y', $current_time ) - 1;
-			$dates['year_end'] = date( 'Y', $current_time ) - 1;
+			$dates['year']     = gmdate( 'Y', $current_time ) - 1;
+			$dates['year_end'] = gmdate( 'Y', $current_time ) - 1;
 			break;
 	//phpcs:disable
 	endswitch;

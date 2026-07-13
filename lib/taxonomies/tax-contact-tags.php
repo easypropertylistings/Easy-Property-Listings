@@ -92,7 +92,6 @@ function epl_edit_contact_tag_bgcolor_field( $taxonomy ) {
 				<input type="color" class="epl_contact_tag_bgcolor" name="epl_contact_tag_bgcolor" id="epl_contact_tag_bgcolor" value="' . esc_html( $bg_color ) . '" /><br />
 			</td>
 		</tr>';
-
 }
 add_action( 'contact_tag_edit_form_fields', 'epl_edit_contact_tag_bgcolor_field' );
 

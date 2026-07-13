@@ -153,7 +153,7 @@ $epl_settings = get_option( 'epl_settings' );
 						</li>
 						<?php
 					}
-					$counter++;
+					++$counter;
 				}
 							echo '
 						</ul>
@@ -173,7 +173,7 @@ $epl_settings = get_option( 'epl_settings' );
 
 						<div class="<?php echo esc_attr( $current_class ); ?> epl-fields-single-menu" id="<?php echo 'tab-menu-' . esc_attr( sanitize_title( $field_group['label'] ) ); ?>">
 							<?php foreach ( $field_group['fields'] as $field ) { ?>
-							<div id="epl-field-<?php echo esc_attr( $field['name'] ); ?>" class="epl-field epl-field-<?php echo esc_attr( $field['type'] ); ?> epl-field-<?php echo esc_attr( $field['name'] ); ?> <?php !empty( $field['wrapper_class'] ) ? esc_attr( $field['wrapper_class'] ) : ''; ?>">
+							<div id="epl-field-<?php echo esc_attr( $field['name'] ); ?>" class="epl-field epl-field-<?php echo esc_attr( $field['type'] ); ?> epl-field-<?php echo esc_attr( $field['name'] ); ?> <?php echo ! empty( $field['wrapper_class'] ) ? esc_attr( $field['wrapper_class'] ) : ''; ?>">
 								<div class="epl-help-entry-header">
 									<div class="epl_help_entry_content"></div>
 								</div>
@@ -184,7 +184,8 @@ $epl_settings = get_option( 'epl_settings' );
 								<?php } ?>
 								<div class="<?php echo 'help' === $field['type'] ? 'epl-full' : 'epl-half-right'; ?>">
 									<?php
-									$val = isset( $field['default'] ) ? $field['default'] : '';
+									$default_val = isset( $field['default'] ) ? $field['default'] : '';
+									$val         = $default_val;
 									if ( isset( $epl_settings[ $field['name'] ] ) ) {
 										$val = $epl_settings[ $field['name'] ];
 									}
@@ -194,7 +195,7 @@ $epl_settings = get_option( 'epl_settings' );
 							</div>
 							<?php } ?>
 						</div>
-						<?php $counter++; ?>
+						<?php ++$counter; ?>
 					<?php } ?>
 					</div>
 				<?php } ?>

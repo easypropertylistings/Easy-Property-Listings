@@ -87,21 +87,21 @@ class EPL_FORM_BUILDER {
 	 */
 	public $form_attributes = array();
 
-        /**
-	 * Holds the nonce key
-	 *
-	 * @var array $nonce_key nonce key.
-	 * @since 2.3
-	 */
-        public $nonce_key;
+		/**
+		 * Holds the nonce key
+		 *
+		 * @var array $nonce_key nonce key.
+		 * @since 2.3
+		 */
+		public $nonce_key;
 
-        /**
-	 * Holds the nonce value
-	 *
-	 * @var array $nonce_value nonce value.
-	 * @since 2.3
-	 */
-        public $nonce_value;
+		/**
+		 * Holds the nonce value
+		 *
+		 * @var array $nonce_value nonce value.
+		 * @since 2.3
+		 */
+		public $nonce_value;
 
 	/**
 	 * Get things going
@@ -123,14 +123,13 @@ class EPL_FORM_BUILDER {
 
 		// Set form defaults.
 		$this->set_defaults();
-
 	}
 
 	/**
 	 * Call default & user submitted callbacks for this form upon form submission
 	 *
 	 * @since 2.3
-	 * @return null
+	 * @return void
 	 */
 	public function __destruct() {
 		$this->callbacks();
@@ -334,7 +333,7 @@ class EPL_FORM_BUILDER {
 	 * The public function can be used to configure the attributes of form
 	 *
 	 * @param string|array $key Meta key.
-	 * @param string $value Field value.
+	 * @param string       $value Field value.
 	 *
 	 * @since 2.3
 	 */
@@ -777,7 +776,6 @@ class EPL_FORM_BUILDER {
 		$html          .= esc_attr( $value );
 		$html          .= '</textarea>';
 		echo apply_filters( $this->prefix . 'form_' . $field['type'] . '_tag', $html, $field );
-
 	}
 
 	/**

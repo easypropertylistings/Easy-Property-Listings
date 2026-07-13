@@ -164,7 +164,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get things going
 		 *
-		 * @param array $post Post object.
+		 * @param object $post Post object.
 		 * @since 2.0
 		 */
 		public function __construct( $post ) {
@@ -207,7 +207,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 					}
 				}
 			}
-
 		}
 
 		/**
@@ -215,10 +214,13 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * Usage is $property->get_property_meta('meta_key') with the global $property variable defined
 		 *
-		 * @since 2.0
 		 * @param  string $meta_key The meta key to get the value.
 		 * @param  bool   $allowzero Return a 0 value or if false and a value of 0 return nothing. Default True.
+		 *
 		 * @return string|integer   Return the value of the meta key, string, or integer.
+		 *
+		 * @since 2.0
+		 * @since 3.5.22 Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
 		 */
 		public function get_property_meta( $meta_key, $allowzero = true ) {
 			$value = null;
@@ -232,6 +234,19 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 						$value = maybe_unserialize( $this->meta[ $meta_key ][0] );
 					}
 				}
+			}
+
+			// Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
+			$boolean_meta_keys = array(
+				'property_price_display',
+				'property_rent_display',
+				'property_under_offer',
+				'property_address_display',
+				'property_com_display_suburb',
+				'property_featured',
+			);
+			if ( is_string( $value ) && in_array( $meta_key, $boolean_meta_keys, true ) ) {
+				$value = strtolower( $value );
 			}
 
 			return apply_filters( 'epl_meta_filter_' . $meta_key, $value );
@@ -251,6 +266,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @since 3.5.3  Fix: Deprecation warning - Make sure inspection time is not null before passing through trim.
 		 * @since 3.5.3  Update to use local timestamp.
 		 * @since 3.5.13 Tweak: Target blank added to ical link.
+		 * @since 3.5.21 Added a signed token to the iCal inspection link and switched URL generation to add_query_arg().
 		 */
 		public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 			if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -297,14 +313,23 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 							if ( ! empty( $element ) ) {
 
-								if ( in_array( $key, $not_date ) ) {
+								if ( in_array( $key, $not_date, true ) ) {
 
-									// handle inspections that are not date.
+									// Handle inspections that are not date.
 									$return .= $element;
 
 								} else {
 
-									$href = get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element ) ) . '&propid=' . $this->post->ID;
+									$href = add_query_arg(
+										array(
+											'epl_cal_dl' => 1,
+											'cal'        => 'ical',
+											'dt'         => base64_encode( htmlspecialchars( $element, ENT_QUOTES, 'UTF-8' ) ), // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+											'propid'     => $this->post->ID,
+											'k'          => epl_get_ical_download_token( $this->post->ID, $element ),
+										),
+										home_url( '/' )
+									);
 
 									$href = apply_filters( 'epl_inspection_link', $href );
 
@@ -412,7 +437,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 								$this->meta['property_auction'][0] = $epl_date->format( $primary_feed_format );
 							}
 						}
-						return apply_filters( 'epl_get_property_auction', date( $format, strtotime( $this->meta['property_auction'][0] ) ) );
+						return apply_filters( 'epl_get_property_auction', gmdate( $format, strtotime( $this->meta['property_auction'][0] ) ) );
 					}
 				}
 			}
@@ -603,10 +628,10 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 						$av_date = ( isset( $av_date_array['year'] ) && isset( $av_date_array['month'] ) && isset( $av_date_array['day'] ) ) ?
 							$av_date_array['year'] . '-' . $av_date_array['month'] . '-' . $av_date_array['day'] : $this->meta['property_date_available'][0];
-						if ( current_time( 'timestamp' ) > strtotime( $av_date ) ) {
+						if ( current_time( 'timestamp' ) > strtotime( $av_date ) ) { // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested
 							return apply_filters( 'epl_property_sub_title_available_now_label', __( 'now', 'easy-property-listings' ) );
 						} else {
-							return apply_filters( 'epl_get_property_available', date( $format, strtotime( $av_date ) ) );
+							return apply_filters( 'epl_get_property_available', gmdate( $format, strtotime( $av_date ) ) );
 						}
 					}
 				}
@@ -617,13 +642,13 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * Land category
 		 *
 		 * @param string $tag HTML wrapper type, default div.
-		 * @param string $class name, default land-category.
+		 * @param string $class_name name, default land-category.
 		 * @return string
 		 *
 		 * @since 2.0.0
 		 * @since 3.4.42 Fix: Filter name was incorrect changed to epl_get_property_land_category.
 		 */
-		public function get_property_land_category( $tag = 'div', $class = 'land-category' ) {
+		public function get_property_land_category( $tag = 'div', $class_name = 'land-category' ) {
 			if ( ! in_array( $this->post_type, array( 'land', 'commercial_land' ), true ) ) {
 				return null;
 			}
@@ -635,7 +660,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			} elseif ( 'none' === $tag || 'value' === $tag ) {
 				$land_category = $land_category;
 			} else {
-				$land_category = '<' . $tag . ' class="' . $class . '">' . $land_category . '</' . $tag . '>';
+				$land_category = '<' . $tag . ' class="' . $class_name . '">' . $land_category . '</' . $tag . '>';
 			}
 			return apply_filters( 'epl_get_property_land_category', $land_category );
 		}
@@ -687,10 +712,10 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0
 		 * @param string $tag HTML wrapper type, default div.
-		 * @param string $class name, default property-category.
+		 * @param string $class_name name, default property-category.
 		 * @return string
 		 */
-		public function get_property_category( $tag = 'div', $class = 'property-category' ) {
+		public function get_property_category( $tag = 'div', $class_name = 'property-category' ) {
 
 			$property_category = epl_listing_meta_property_category_value( $this->get_property_meta( 'property_category' ) );
 
@@ -699,7 +724,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			} elseif ( 'none' === $tag || 'value' === $tag ) {
 				$property_category = $property_category;
 			} else {
-				$property_category = '<' . $tag . ' class="' . $class . '">' . $property_category . '</' . $tag . '>';
+				$property_category = '<' . $tag . ' class="' . $class_name . '">' . $property_category . '</' . $tag . '>';
 			}
 			return apply_filters( 'epl_get_property_category', $property_category );
 		}
@@ -709,10 +734,10 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0
 		 * @param string $tag HTML wrapper type, default div.
-		 * @param string $class name, default commercial-category.
+		 * @param string $class_name name, default commercial-category.
 		 * @return string
 		 */
-		public function get_property_commercial_category( $tag = 'div', $class = 'commercial-category' ) {
+		public function get_property_commercial_category( $tag = 'div', $class_name = 'commercial-category' ) {
 			$property_commercial_category = epl_listing_load_meta_commercial_category_value( $this->get_property_meta( 'property_commercial_category' ) );
 
 			if ( empty( $property_commercial_category ) ) {
@@ -720,7 +745,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			} elseif ( 'none' === $tag || 'value' === $tag ) {
 				$property_commercial_category = $property_commercial_category;
 			} else {
-				$property_commercial_category = '<' . $tag . ' class="' . $class . '">' . $property_commercial_category . '</' . $tag . '>';
+				$property_commercial_category = '<' . $tag . ' class="' . $class_name . '">' . $property_commercial_category . '</' . $tag . '>';
 			}
 			return apply_filters( 'epl_get_property_commercial_category', $property_commercial_category );
 		}
@@ -730,10 +755,10 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 3.1.12
 		 * @param string $tag HTML wrapper type, default div.
-		 * @param string $class name, default rural-category.
+		 * @param string $class_name name, default rural-category.
 		 * @return string
 		 */
-		public function get_property_rural_category( $tag = 'div', $class = 'rural-category' ) {
+		public function get_property_rural_category( $tag = 'div', $class_name = 'rural-category' ) {
 			$property_rural_category = epl_listing_load_meta_rural_category_value( $this->get_property_meta( 'property_rural_category' ) );
 
 			if ( empty( $property_rural_category ) ) {
@@ -741,7 +766,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 			} elseif ( 'none' === $tag || 'value' === $tag ) {
 				$property_rural_category = $property_rural_category;
 			} else {
-				$property_rural_category = '<' . $tag . ' class="' . $class . '">' . $property_rural_category . '</' . $tag . '>';
+				$property_rural_category = '<' . $tag . ' class="' . $class_name . '">' . $property_rural_category . '</' . $tag . '>';
 			}
 			return apply_filters( 'epl_get_property_rural_category', $property_rural_category );
 		}
@@ -785,6 +810,8 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0.0
 		 * @since 3.4.38 Using label_poa for no rental price. Added epl_price_rent_period filter. Added filter epl_pa_price for P.A label.
+		 * @since 3.5.22 Applying string to lower case on the yes values.
+		 *
 		 * @return string
 		 */
 		public function get_price_plain_value() {
@@ -1491,7 +1518,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 					break;
 			}
 			return apply_filters( 'epl_get_property_parking', $return, $returntype, $value, $label );
-
 		}
 
 		/**
@@ -1656,7 +1682,6 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 				}
 				return apply_filters( 'epl_get_property_air_conditioning', $return, $returntype, $value, $label );
 			}
-
 		}
 
 		/**
@@ -2214,6 +2239,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @return mixed Value wrapped in a list item
 		 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
 		 * @since 3.4.44 Parking Comments Label before value.
+		 * @since 3.5.22 Added support for Yes, No syntax values.
 		 */
 		public function get_additional_features_html( $metakey ) {
 
@@ -2232,6 +2258,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					case 1:
 					case 'yes':
+					case 'Yes':
 					case 'YES':
 					case 'Y':
 					case 'y':
@@ -2242,6 +2269,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					case 0:
 					case 'no':
+					case 'No':
 					case 'NO':
 					case 'N':
 					case 'n':
@@ -2252,9 +2280,9 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					default:
 						if ( 'property_com_parking_comments' === $metakey ) {
-								$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' ' . $metavalue . '</li>';
+							$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' ' . $metavalue . '</li>';
 						} else {
-								$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
+							$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
 						}
 
 						break;

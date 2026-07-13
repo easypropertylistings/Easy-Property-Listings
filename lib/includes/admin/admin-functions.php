@@ -22,11 +22,11 @@ if ( ! function_exists( 'cal_days_in_month' ) ) {
 	 * @param int    $month The month.
 	 * @param int    $year The year.
 	 *
-	 * @return false|string
+	 * @return string
 	 * @since 3.3.3
 	 */
 	function cal_days_in_month( $calendar, $month, $year ) {
-		return date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
+		return gmdate( 't', mktime( 0, 0, 0, $month, 1, $year ) );
 	}
 }
 
@@ -109,7 +109,7 @@ function epl_admin_sidebar() {
 	$i               = 0;
 	foreach ( $service_banners as $banner ) {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '"><img width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/></a><br/><br/>';
-		$i ++;
+		++$i;
 	}
 	?>
 	<div class="epl-admin-offer" style="margin-bottom: 1em;">
@@ -148,7 +148,7 @@ function epl_dashboard_widget_offer() {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '">
 			<img style="margin-right: 0.5em" width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
 		      </a>';
-		$i ++;
+		++$i;
 	}
 	?>
 
@@ -206,7 +206,7 @@ function epl_dashboard_widget_offer_post_types() {
 		echo '<a target="_blank" href="' . esc_url( $banner['url'] ) . '">
 			<img style="display: block; float: left; margin: 0.5em 0.5em 0.5em 0" width="' . esc_attr( $banner['width'] ) . '" src="' . esc_url( plugins_url( 'lib/assets/images/' . $banner['img'], EPL_PLUGIN_FILE ) ) . '" alt="' . esc_attr( $banner['alt'] ) . '"/>
 		      </a>';
-		$i ++;
+		++$i;
 	}
 	?>
 	<?php
@@ -354,21 +354,43 @@ function epl_serialize( $data ) {
 }
 
 /**
- * Un-serialize Variable
+ * Safely unserialize base64 encoded data.
  *
- * @param string $data String of data to serialize.
+ * This helper decodes a base64 encoded string and attempts to unserialize it
+ * while applying several validation steps to reduce security risks.
  *
- * @return mixed un-serialized string.
+ * Security improvements:
+ * - Uses strict base64 decoding to prevent malformed input.
+ * - Validates that the decoded value is actually a serialized string before
+ *   attempting to unserialize it.
+ * - Prevents object injection by disabling object instantiation via the
+ *   `allowed_classes => false` option.
+ *
+ * If the input cannot be decoded or is not a valid serialized value, the
+ * function safely returns false instead of attempting to unserialize it.
+ *
  * @since  3.3.0
+ * @since  3.5.21 Hardened unserialize handling by enforcing strict base64 decoding, validating serialized input, and disabling object instantiation.
+ *
+ * @param string $data Base64 encoded serialized data.
+ * @return mixed|false Returns the unserialized value on success, or false if the
+ *                     input is invalid or cannot be safely unserialized.
  */
 function epl_unserialize( $data ) {
-	return unserialize( base64_decode( $data ) ); //phpcs:ignore
+	$decoded_data = base64_decode( trim( (string) $data ), true );
+
+	if ( false === $decoded_data || ! is_serialized( $decoded_data ) ) {
+		return false;
+	}
+
+	return unserialize( $decoded_data, array( 'allowed_classes' => false ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
 }
 
 /**
- * Import Tools Settings Screen
+ * Import/Export Tools Settings Screen
  *
  * @since 3.3
+ * @since 3.5.21 Added nonce protection to the export request to prevent CSRF.
  */
 function epl_settings_import_export() {
 
@@ -410,7 +432,18 @@ function epl_settings_import_export() {
 
 	$tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'tools';
 
-	echo "<a class='button button-primary' href='" . esc_url( '?page=epl-tools&tab=$tab&action=export&epl_tools_submit=true' ) . "'>" . esc_html__( 'Download File', 'easy-property-listings' ) . '</a>';
+	$export_url = add_query_arg(
+		array(
+			'page'             => 'epl-tools',
+			'tab'              => $tab,
+			'action'           => 'export',
+			'epl_tools_submit' => 'true',
+		),
+		admin_url( 'admin.php' )
+	);
+	$export_url = wp_nonce_url( $export_url, 'epl_tools_export', 'epl_tools_export_nonce' );
+
+	echo "<a class='button button-primary' href='" . esc_url( $export_url ) . "'>" . esc_html__( 'Download File', 'easy-property-listings' ) . '</a>';
 	?>
 	<span style="color:#f00"><?php esc_html_e( 'The following settings are exported. Easy Property Listings settings screen and any Extension settings', 'easy-property-listings' ); ?></span>
 	<?php
@@ -450,7 +483,6 @@ function epl_settings_reset() {
 	<?php
 
 	do_action( 'epl_post_settings_reset_fields' );
-
 }
 
 /**
@@ -475,9 +507,15 @@ function epl_settings_upgrade_tab() {
  * @since 3.3.0
  * @since 3.5 Fixed import function.
  * @since 3.5.10 Fix: Tools Import function adjusted with more checked before performing the settings import.
+ * @since 3.5.21 Hardened tools request handling with capability checks, stricter sanitization, action allowlisting, and export nonce verification.
  */
 function epl_handle_tools_form() {
-	if ( ! isset( $_GET['page'] ) || 'epl-tools' !== $_GET['page'] || ! isset( $_REQUEST['epl_tools_submit'] ) ) {
+	$page = isset( $_REQUEST['page'] ) ? sanitize_key( wp_unslash( $_REQUEST['page'] ) ) : '';
+	if ( 'epl-tools' !== $page || ! isset( $_REQUEST['epl_tools_submit'] ) ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
 
@@ -485,14 +523,19 @@ function epl_handle_tools_form() {
 		return;
 	}
 
-	$action = sanitize_text_field( wp_unslash( $_REQUEST['action'] ) );
+	$action = sanitize_key( wp_unslash( $_REQUEST['action'] ) );
+	if ( ! in_array( $action, array( 'export', 'import', 'reset' ), true ) ) {
+		return;
+	}
+
+	if ( 'export' === $action ) {
+		epl_verify_export_nonce();
+	}
 
 	if ( 'import' === $action ) {
 		epl_verify_nonce();
 		epl_validate_import_file();
 	}
-
-	$post_data = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
 
 	switch ( $action ) {
 		case 'export':
@@ -509,6 +552,20 @@ function epl_handle_tools_form() {
 	}
 }
 add_action( 'admin_init', 'epl_handle_tools_form' );
+
+/**
+ * Verify nonce for export tools action.
+ *
+ * @since 3.5.20
+ */
+function epl_verify_export_nonce() {
+	if (
+		! isset( $_GET['epl_tools_export_nonce'] ) ||
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['epl_tools_export_nonce'] ) ), 'epl_tools_export' )
+	) {
+		wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
+	}
+}
 
 /**
  * Verify nonce for the tools form.
@@ -528,6 +585,7 @@ function epl_verify_nonce() {
  * Validate the import file.
  *
  * @since 3.5.10
+ * @since 3.5.21 Added stricter import upload validation (uploaded file checks, size limits, and file type/extension verification).
  */
 function epl_validate_import_file() {
 
@@ -535,11 +593,24 @@ function epl_validate_import_file() {
 		wp_die( esc_html__( 'Missing import file. Please provide an import file.', 'easy-property-listings' ) );
 	}
 
+	$file_name = sanitize_file_name( wp_unslash( $_FILES['epl_import']['name'] ) );
+	$tmp_name  = isset( $_FILES['epl_import']['tmp_name'] ) ? wp_unslash( $_FILES['epl_import']['tmp_name'] ) : '';
+	$file_size = isset( $_FILES['epl_import']['size'] ) ? (int) $_FILES['epl_import']['size'] : 0;
+
 	if ( isset( $_FILES['epl_import']['error'] ) && $_FILES['epl_import']['error'] > 0 ) {
 		wp_die( esc_html__( 'Error uploading the import file.', 'easy-property-listings' ) );
 	}
 
-	if ( empty( $_FILES['epl_import']['type'] ) || ! in_array( strtolower( $_FILES['epl_import']['type'] ), array( 'text/plain' ), true ) ) {
+	if ( empty( $tmp_name ) || ! is_uploaded_file( $tmp_name ) || ! is_readable( $tmp_name ) ) {
+		wp_die( esc_html__( 'Invalid import upload.', 'easy-property-listings' ) );
+	}
+
+	if ( $file_size <= 0 || $file_size > wp_max_upload_size() ) {
+		wp_die( esc_html__( 'The selected import file size is not valid.', 'easy-property-listings' ) );
+	}
+
+	$file_check = wp_check_filetype_and_ext( $tmp_name, $file_name, array( 'txt' => 'text/plain' ) );
+	if ( empty( $file_check['ext'] ) || 'txt' !== strtolower( $file_check['ext'] ) ) {
 		wp_die( esc_html__( 'The file you uploaded does not appear to be a valid import file.', 'easy-property-listings' ) );
 	}
 }
@@ -569,18 +640,32 @@ function epl_export_settings() {
  * Import the settings.
  *
  * @since 3.5.10
+ * @since 3.5.18 Check for data before continue.
+ * @since 3.5.21 Hardened import processing by reading from the uploaded temp file, validating file contents, and verifying unserialized data before updating options.
  */
 function epl_import_settings() {
-	$upload_overrides = array( 'test_form' => false );
-	$movefile         = wp_handle_upload( $_FILES['epl_import'], $upload_overrides );
-
-	if ( $movefile && ! isset( $movefile['error'] ) ) {
-		$imported_data  = epl_remote_url_get( $movefile['url'] );
-		$imported_data  = epl_unserialize( $imported_data );
-		$options_backup = get_option( 'epl_settings' );
-		update_option( 'epl_settings_backup', $options_backup );
-		$status = update_option( 'epl_settings', $imported_data );
+	if ( ! isset( $_FILES['epl_import']['tmp_name'] ) ) {
+		return;
 	}
+
+	$tmp_name = wp_unslash( $_FILES['epl_import']['tmp_name'] );
+	if ( ! is_readable( $tmp_name ) ) {
+		wp_die( esc_html__( 'Unable to read import file.', 'easy-property-listings' ) );
+	}
+
+	$imported_raw_data = file_get_contents( $tmp_name ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	if ( false === $imported_raw_data || '' === $imported_raw_data ) {
+		wp_die( esc_html__( 'Unable to read import file.', 'easy-property-listings' ) );
+	}
+
+	$imported_data = epl_unserialize( $imported_raw_data );
+	if ( ! is_array( $imported_data ) ) {
+		wp_die( esc_html__( 'The import file data is invalid.', 'easy-property-listings' ) );
+	}
+
+	$options_backup = get_option( 'epl_settings' );
+	update_option( 'epl_settings_backup', $options_backup );
+	update_option( 'epl_settings', $imported_data );
 }
 
 /**
@@ -601,12 +686,13 @@ function epl_reset_settings() {
  * Upgrade Database Notice
  *
  * @since 3.3.0
+ * @since 3.5.18 Check user can manage options.
  */
 function epl_upgrade_admin_notice() {
 
 	$upgraded_to = get_option( 'epl_db_upgraded_to' );
 
-	if ( ! empty( $upgraded_to ) && $upgraded_to < 3.3 && current_user_can( 'administrator' ) ) :
+	if ( ! empty( $upgraded_to ) && $upgraded_to < 3.3 && current_user_can( 'manage_options' ) ) :
 
 		$head = esc_html__( 'It looks like you upgraded to latest version of Easy Property Listings', 'easy-property-listings' );
 
@@ -625,8 +711,25 @@ add_action( 'admin_notices', 'epl_upgrade_admin_notice' );
  * Upgrade EPL Database to 3.3
  *
  * @since 3.3.0
+ * @since 3.5.18 Added nonce check.
  */
 function epl_upgrade_db() {
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die(
+			wp_json_encode(
+				array(
+					'status' => 'fail',
+					'msg'    => esc_html__(
+						'Unauthorized',
+						'easy-property-listings'
+					),
+				)
+			)
+		);
+	}
+
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
 	if ( ! isset( $_POST['upgrade_to'] ) ) {
 		wp_die(
@@ -758,12 +861,14 @@ function epl_upgrade_db_to_3_3() {
 /**
  * Update the property_price_global when saving or updating an EPL post
  *
- * @since 3.3.0
  * @param int   $post_id The post id.
  * @param array $post The post object.
- * @param array $update Update.
+ * @param array $_update Update.
+ *
+ * @since 3.3.0
+ * @since 3.5.18 Private variable $_update.
  */
-function epl_sync_property_price_global( $post_id, $post, $update ) {
+function epl_sync_property_price_global( $post_id, $post, $_update ) {
 
 	if ( is_epl_post() ) {
 
@@ -792,13 +897,16 @@ add_action( 'save_post', 'epl_sync_property_price_global', 40, 3 );
 /**
  * Filter the contacts comments
  *
- * @since 3.3.0
  * @param array  $avatar Update.
  * @param string $id_or_email User ID or email address.
- * @param array  $args Update.
+ * @param array  $_args Arguments.
+ *
  * @return array|string $avatar
+ *
+ * @since 3.3.0
+ * @since 3.5.18 Private variable $_args.
  */
-function epl_get_avatar_filter( $avatar, $id_or_email, $args ) {
+function epl_get_avatar_filter( $avatar, $id_or_email, $_args ) {
 
 	if ( ! is_object( $id_or_email ) ) {
 		return $avatar;
@@ -848,13 +956,27 @@ add_filter( 'pre_get_avatar', 'epl_get_avatar_filter', 10, 5 );
  * Update a featured listing when pressing the star icon
  *
  * @since 3.3.0
+ * @since 3.5.23 Fix: Broken Access Control in epl_update_featured_listing (CVE-2025-64242).
  */
 function epl_update_featured_listing() {
+
+	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
 
 	$id = isset( $_POST['id'] ) ? intval( $_POST['id'] ) : 0;
 
 	if ( $id <= 0 ) {
 		return;
+	}
+
+	if ( ! current_user_can( 'edit_post', $id ) ) {
+		wp_die(
+			wp_json_encode(
+				array(
+					'status'   => 'unauthorized',
+					'featured' => 'no',
+				)
+			)
+		);
 	}
 
 	$featured    = get_post_meta( $id, 'property_featured', true );

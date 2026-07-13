@@ -11,7 +11,7 @@
  * @since       3.4.15
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -72,7 +72,7 @@ class EPL_Session {
 
 			}
 
-			// Use PHP SESSION (must be enabled via the EPL_USE_PHP_SESSIONS constant)
+			// Use PHP SESSION (must be enabled via the EPL_USE_PHP_SESSIONS constant).
 			add_action( 'init', array( $this, 'maybe_start_session' ), -2 );
 
 		} else {
@@ -81,7 +81,7 @@ class EPL_Session {
 				return;
 			}
 
-			// Use WP_Session (default)
+			// Use WP_Session (default).
 			if ( ! defined( 'WP_SESSION_COOKIE' ) ) {
 				define( 'WP_SESSION_COOKIE', 'epl_wp_session' );
 			}
@@ -106,14 +106,13 @@ class EPL_Session {
 		} else {
 			add_action( 'init', array( $this, 'init' ), -1 );
 		}
-
 	}
 
 	/**
 	 * Setup the WP_Session instance
 	 *
 	 * @since 3.4.15
-	 * @return void
+	 * @return array|WP_Session
 	 */
 	public function init() {
 
@@ -142,7 +141,7 @@ class EPL_Session {
 	 * Retrieve a session variable
 	 *
 	 * @since 3.4.15
-	 * @param string $key Session key
+	 * @param string $key Session key.
 	 * @return mixed Session variable
 	 */
 	public function get( $key ) {
@@ -188,8 +187,8 @@ class EPL_Session {
 	 *
 	 * @since 3.4.15
 	 *
-	 * @param string           $key Session key
-	 * @param int|string|array $value Session variable
+	 * @param string           $key Session key.
+	 * @param int|string|array $value Session variable.
 	 * @return mixed Session variable
 	 */
 	public function set( $key, $value ) {
@@ -214,7 +213,7 @@ class EPL_Session {
 	 * Force the cookie expiration variant time to 23 hours
 	 *
 	 * @since 3.4.15
-	 * @param int $exp Default expiration (1 hour)
+	 * @param int $exp Default expiration (1 hour).
 	 * @return int
 	 */
 	public function set_expiration_variant_time( $exp ) {
@@ -225,7 +224,7 @@ class EPL_Session {
 	 * Force the cookie expiration time to 24 hours
 	 *
 	 * @since 3.4.15
-	 * @param int $exp Default expiration (1 hour)
+	 * @param int $exp Default expiration (1 hour).
 	 * @return int Cookie expiration time
 	 */
 	public function set_expiration_time( $exp ) {
@@ -235,24 +234,24 @@ class EPL_Session {
 	/**
 	 * Starts a new session if one hasn't started yet.
 	 *
-	 * @return boolean
 	 * Checks to see if the server supports PHP sessions
 	 * or if the EPL_USE_PHP_SESSIONS constant is defined
 	 *
 	 * @since 3.4.15
 	 * @author Daniel J Griffiths
-	 * @return boolean $ret True if we are using PHP sessions, false otherwise
+	 * @author Daniel J Griffiths
+	 * @return boolean $ret True if we are using PHP sessions, false otherwise.
 	 */
 	public function use_php_sessions() {
 
 		$ret = false;
 
-		// If the database variable is already set, no need to run autodetection
+		// If the database variable is already set, no need to run autodetection.
 		$epl_use_php_sessions = (bool) get_option( 'epl_use_php_sessions' );
 
 		if ( ! $epl_use_php_sessions ) {
 
-			// Attempt to detect if the server supports PHP sessions
+			// Attempt to detect if the server supports PHP sessions.
 			if ( function_exists( 'session_start' ) ) {
 
 				$this->set( 'epl_use_php_sessions', 1 );
@@ -261,7 +260,7 @@ class EPL_Session {
 
 					$ret = true;
 
-					// Set the database option
+					// Set the database option.
 					update_option( 'epl_use_php_sessions', true );
 
 				}
@@ -270,7 +269,7 @@ class EPL_Session {
 			$ret = $epl_use_php_sessions;
 		}
 
-		// Enable or disable PHP Sessions based on the EPL_USE_PHP_SESSIONS constant
+		// Enable or disable PHP Sessions based on the EPL_USE_PHP_SESSIONS constant.
 		if ( defined( 'EPL_USE_PHP_SESSIONS' ) && EPL_USE_PHP_SESSIONS ) {
 			$ret = true;
 		} elseif ( defined( 'EPL_USE_PHP_SESSIONS' ) && ! EPL_USE_PHP_SESSIONS ) {
@@ -296,7 +295,7 @@ class EPL_Session {
 			$uri       = ltrim( $_SERVER['REQUEST_URI'], '/' );
 			$uri       = untrailingslashit( $uri );
 
-			if ( in_array( $uri, $blacklist ) ) {
+			if ( in_array( $uri, $blacklist, true ) ) {
 				$start_session = false;
 			}
 
@@ -305,13 +304,12 @@ class EPL_Session {
 			}
 
 			if ( false !== strpos( $uri, 'wp_scrape_key' ) ) {
-				// Starting sessions while saving the file editor can break the save process, so don't start
+				// Starting sessions while saving the file editor can break the save process, so don't start.
 				$start_session = false;
 			}
 		}
 
 		return apply_filters( 'epl_start_session', $start_session );
-
 	}
 
 	/**
@@ -325,7 +323,8 @@ class EPL_Session {
 	public function get_blacklist() {
 
 		$blacklist = apply_filters(
-			'epl_session_start_uri_blacklist', array(
+			'epl_session_start_uri_blacklist',
+			array(
 				'feed',
 				'feed/rss',
 				'feed/rss2',
@@ -335,7 +334,7 @@ class EPL_Session {
 			)
 		);
 
-		// Look to see if WordPress is in a sub folder or this is a network site that uses sub folders
+		// Look to see if WordPress is in a sub folder or this is a network site that uses sub folders.
 		$folder = str_replace( network_home_url(), '', get_site_url() );
 
 		if ( ! empty( $folder ) ) {
@@ -360,5 +359,4 @@ class EPL_Session {
 			session_start();
 		}
 	}
-
 }

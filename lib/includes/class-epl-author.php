@@ -60,7 +60,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 * @var string $office_phone User office phone.
 		 */
 		public $office_phone;
-		
+
 		/**
 		 * The user website
 		 *
@@ -287,7 +287,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 			$html = apply_filters( 'epl_author_email_html', $html, $this );
 			return $html;
 		}
-		
+
 		/**
 		 * Get website
 		 *
@@ -298,7 +298,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 				return apply_filters( 'epl_author_website', $this->website, $this );
 			}
 		}
-		
+
 		/**
 		 * Author website html Box
 		 *
@@ -310,11 +310,11 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 * @since 3.5.15
 		 */
 		public function get_website_html( $html = '', $style = 'i' ) {
-		
+
 			if ( ! empty( $this->website ) ) {
-		
+
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
-		
+
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon website-icon-24"

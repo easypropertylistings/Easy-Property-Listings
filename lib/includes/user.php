@@ -87,7 +87,8 @@ function epl_get_custom_user_profile_fields() {
  * @param array $user Array of user.
  * @since 1.0
  */
-function epl_add_custom_user_profile_fields( $user ) { ?>
+function epl_add_custom_user_profile_fields( $user ) {
+	?>
 
 	<h3><?php esc_html_e( 'Easy Property Listings: Author Box Profile', 'easy-property-listings' ); ?></h3>
 	<p><?php esc_html_e( 'The following details will appear in your author box and widgets.', 'easy-property-listings' ); ?></p>

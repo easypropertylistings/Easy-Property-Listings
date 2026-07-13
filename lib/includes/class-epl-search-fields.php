@@ -39,7 +39,6 @@ class EPL_Search_Fields {
 		add_action( 'epl_frontend_search_field_hidden', array( $this, 'render_hidden' ), 10, 5 );
 		add_action( 'epl_frontend_search_field_radio', array( $this, 'render_radio' ), 10, 5 );
 		add_action( 'epl_frontend_search_field_checkbox_multiple', array( $this, 'render_checkbox_multiple' ), 10, 5 );
-
 	}
 
 	/**
@@ -227,7 +226,7 @@ class EPL_Search_Fields {
 					<?php
 					if ( isset( $field['options'] ) && ! empty( $field['options'] ) ) {
 						foreach ( $field['options'] as $k => $v ) {
-							$selected = in_array( $k, (array) $value ) ? true : false;
+							$selected = in_array( $k, (array) $value, true ) ? true : false;
 							echo '<option value="' . esc_attr( $k ) . '"' . selected( $selected, true, false ) . '>' . esc_attr( $v ) . '</option>';
 						}
 					}
@@ -362,7 +361,6 @@ class EPL_Search_Fields {
 		if ( isset( $field['wrap_end'] ) ) {
 			echo '</div>';
 		}
-
 	}
 
 	/**
@@ -417,5 +415,4 @@ class EPL_Search_Fields {
 			echo '</div>';
 		}
 	}
-
 }

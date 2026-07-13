@@ -103,7 +103,7 @@ function epl_load_core_templates( $template ) {
 			}
 		}
 	}
-		return $template;
+	return $template;
 }
 add_filter( 'template_include', 'epl_load_core_templates' );
 
@@ -170,16 +170,16 @@ add_action( 'epl_render_archive_post', 'epl_render_archive_post' );
 /**
  * Add extra class for twentysixteen theme
  *
- * @param string $class Class name.
+ * @param string $class_name Class name.
  * @return string
  *
  * @since 3.0.0
  */
-function epl_active_theme_name_twentysixteen( $class ) {
+function epl_active_theme_name_twentysixteen( $class_name ) {
 
 	if ( epl_get_active_theme() === 'twentysixteen' && ! is_single() ) {
-			$class = $class . ' content-area';
+		$class_name = $class_name . ' content-area';
 	}
-		return $class;
+	return $class_name;
 }
 add_filter( 'epl_active_theme_name', 'epl_active_theme_name_twentysixteen' );

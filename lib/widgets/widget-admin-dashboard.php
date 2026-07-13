@@ -32,7 +32,6 @@ function epl_add_dashboard_widgets() {
 		__( 'Easy Property Listings Activities', 'easy-property-listings' ),
 		'epl_dashboard_activity_widget'
 	);
-
 }
 add_action( 'wp_dashboard_setup', 'epl_add_dashboard_widgets' );
 
@@ -63,7 +62,7 @@ function epl_status_dashboard_widget_callback() {
 
 					</li>
 					<?php
-					$counter++;
+					++$counter;
 			}
 		}
 		?>
@@ -116,7 +115,7 @@ function epl_get_plural( $count, $singular ) {
 		default:
 			$singular = ucwords( str_replace( 'epl', '', str_replace( '-', ' ', str_replace( '_', ' ', $singular ) ) ) );
 			// translators: count.
-			$return = sprintf( _n( '%s ' . $singular, '%s ' . $singular, $count, 'easy-property-listings' ), $count );
+			$return = sprintf( _n( '%1$s %2$s', '%1$s %2$s', $count, 'easy-property-listings' ), $count, $singular );
 			break;
 	}
 
@@ -425,18 +424,18 @@ function epl_dashboard_recent_posts( $args ) {
 
 		echo '<ul>';
 
-		$today    = date( 'Y-m-d', current_time( 'timestamp' ) );
-		$tomorrow = date( 'Y-m-d', strtotime( '+1 day', current_time( 'timestamp' ) ) );
+		$today    = current_datetime()->format( 'Y-m-d' );
+		$tomorrow = current_datetime()->modify( '+1 day' )->format( 'Y-m-d' );
 
 		while ( $posts->have_posts() ) {
 			$posts->the_post();
 
 			$time = get_the_time( 'U' );
-			if ( date( 'Y-m-d', $time ) === $today ) {
+			if ( gmdate( 'Y-m-d', $time ) === $today ) {
 				$relative = esc_html__( 'Today', 'easy-property-listings' );
-			} elseif ( date( 'Y-m-d', $time ) === $tomorrow ) {
+			} elseif ( gmdate( 'Y-m-d', $time ) === $tomorrow ) {
 				$relative = esc_html__( 'Tomorrow', 'easy-property-listings' );
-			} elseif ( date( 'Y', $time ) !== date( 'Y', current_time( 'timestamp' ) ) ) {
+			} elseif ( gmdate( 'Y', $time ) !== current_datetime()->format( 'Y' ) ) {
 				/* translators: date and time format for recent posts on the dashboard, from a different calendar year, see http://php.net/date */
 				$relative = date_i18n( esc_html__( 'M jS Y', 'easy-property-listings' ), $time );
 			} else {

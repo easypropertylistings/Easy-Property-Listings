@@ -327,7 +327,6 @@ class EPL_Render_Fields {
 		}
 
 		return $atts_html;
-
 	}
 
 	/**
@@ -341,7 +340,6 @@ class EPL_Render_Fields {
 
 		$name_arrays = apply_filters( 'epl_form_field_name_arrays', array( 'select_multiple', 'checkbox' ) );
 		return in_array( $field['type'], $name_arrays, true ) ? true : false;
-
 	}
 
 	/**

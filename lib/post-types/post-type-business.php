@@ -132,7 +132,7 @@ if ( is_admin() ) {
 	 * @param int    $post_id post id.
 	 */
 	function epl_manage_business_columns_value( $column, $post_id ) {
-		global $post,$property;
+		global $post, $property;
 		switch ( $column ) {
 
 			// If displaying the 'Featured Star' column.
@@ -187,7 +187,6 @@ if ( is_admin() ) {
 			default:
 				break;
 		}
-
 	}
 	add_action( 'manage_business_posts_custom_column', 'epl_manage_business_columns_value', 10, 2 );
 

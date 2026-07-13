@@ -31,6 +31,5 @@ function epl_shortcode_listing_advanced_callback( $atts ) {
 	$shortcode = new EPL_Advanced_Shortcode_Listing( $atts );
 
 	return $shortcode->render();
-
 }
 add_shortcode( 'listing_advanced', 'epl_shortcode_listing_advanced_callback' );

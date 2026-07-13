@@ -21,7 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string $address The listing address.
  * @return void
  */
-function epl_admin_listing_map( $address ) { ?>
+function epl_admin_listing_map( $address ) {
+	?>
 	<div id='epl_admin_map_canvas' data-address="<?php echo esc_attr( $address ); ?>"></div>
 	<?php
 }

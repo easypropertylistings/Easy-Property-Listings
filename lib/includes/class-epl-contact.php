@@ -135,7 +135,6 @@ class EPL_Contact {
 			return false;
 		}
 		$this->setup_contact( $contact );
-
 	}
 
 	/**
@@ -230,7 +229,6 @@ class EPL_Contact {
 		}
 
 		return false;
-
 	}
 
 	/**
@@ -570,7 +568,6 @@ class EPL_Contact {
 		do_action( 'epl_contact_post_remove_listing', $listing_removed, $listing_id, $this->ID );
 
 		return $listing_removed;
-
 	}
 
 
@@ -620,7 +617,6 @@ class EPL_Contact {
 		);
 
 		return get_comments( $args );
-
 	}
 
 	/**
@@ -681,7 +677,6 @@ class EPL_Contact {
 
 		// Return the note object.
 		return get_comment( $note_id );
-
 	}
 
 	/**

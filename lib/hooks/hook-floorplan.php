@@ -65,7 +65,6 @@ function epl_button_floor_plan() {
 
 		}
 	}
-
 }
 
 add_action( 'epl_buttons_single_property', 'epl_button_floor_plan' );

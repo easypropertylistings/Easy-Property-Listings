@@ -72,7 +72,6 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 				'ajax'     => false,
 			)
 		);
-
 	}
 
 	/**
@@ -240,7 +239,6 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 		);
 
 		return apply_filters( 'epl_report_contact_columns', $columns );
-
 	}
 
 	/**
@@ -526,6 +524,5 @@ class EPL_Contact_Reports_Table extends WP_List_Table {
 			</div>
 			<?php
 		}
-
 	}
 }

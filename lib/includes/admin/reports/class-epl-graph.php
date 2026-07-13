@@ -129,7 +129,6 @@ class EPL_Graph {
 	/**
 	 * Build the graph and return it as a string
 	 *
-	 * @var array
 	 * @since 3.0
 	 * @return string
 	 */
@@ -180,7 +179,7 @@ class EPL_Graph {
 							<?php endif; ?>
 						},
 							<?php
-							$yaxis_count++;
+							++$yaxis_count;
 							endforeach;
 						?>
 					],
