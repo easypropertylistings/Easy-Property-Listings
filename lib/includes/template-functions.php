@@ -1082,7 +1082,7 @@ function epl_get_property_heading( $listing = null ) {
 
 	if ( $property ) {
 		$property_heading = $property->get_property_meta( 'property_heading' );
-		if ( strlen( trim( $property_heading ) ) ) {
+		if ( is_scalar( $property_heading ) && '' !== trim( (string) $property_heading ) ) {
 			return $property_heading;
 		}
 		return get_the_title( $property->post->ID );
@@ -1168,10 +1168,11 @@ add_action( 'epl_property_category', 'epl_property_category', 10, 2 );
 function epl_get_video_host( $url ) {
 
 	$host = 'unknown';
+	$url  = is_string( $url ) ? $url : '';
 
-	if ( strpos( $url, 'youtu' ) > 0 ) {
+	if ( false !== strpos( $url, 'youtu' ) ) {
 		$host = 'youtube';
-	} elseif ( strpos( $url, 'vimeo' ) > 0 ) {
+	} elseif ( false !== strpos( $url, 'vimeo' ) ) {
 		$host = 'vimeo';
 	}
 

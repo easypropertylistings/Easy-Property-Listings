@@ -38,6 +38,13 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.6.0 July 13, 2026 =
+
+-   New: Full Site Editing templates for EPL listing and Staff Directory archives and single pages.
+-   New: Server-rendered Site Editor previews for EPL template blocks.
+-   Fix: EPL search, feature and business-category archives now use EPL layouts in block themes.
+-   Fix: Preserve classic-theme rendering and guard block APIs on older WordPress versions.
+
 = 3.5.24 June 20, 2026 =
 
 -   New/Fix: Get the original attachment order from listing metadata function for image ordering with [FeedSync service](https://feedsync.com.au).

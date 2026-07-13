@@ -92,6 +92,70 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		$this->add_control( 'auction', $this->switcher_args( esc_html__( 'Auction Only', 'easy-property-listings' ) ) );
 		$this->end_controls_section();
 
+		$this->start_controls_section( 'section_dynamic_filters', array( 'label' => esc_html__( 'Dynamic Meta Filters', 'easy-property-listings' ) ) );
+		$this->add_control(
+			'dynamic_filters_note',
+			array(
+				'type'            => \Elementor\Controls_Manager::RAW_HTML,
+				'raw'             => esc_html__( 'These filters are passed to epl_parse_atts(). Each filter creates a named clause using the meta key plus “_clause”, which can be referenced by Advanced Orderby Clauses.', 'easy-property-listings' ),
+				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+			)
+		);
+		$filter_repeater = new \Elementor\Repeater();
+		$filter_repeater->add_control(
+			'meta_key',
+			array(
+				'label'       => esc_html__( 'Meta Key', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'label_block' => true,
+				'placeholder' => 'property_bedrooms',
+				'description' => esc_html__( 'Enter the meta key without the leading underscore.', 'easy-property-listings' ),
+			)
+		);
+		$filter_repeater->add_control(
+			'compare',
+			array(
+				'label'   => esc_html__( 'Compare', 'easy-property-listings' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'equal',
+				'options' => array(
+					'equal'       => esc_html__( 'Equal', 'easy-property-listings' ),
+					'min'         => esc_html__( 'Minimum (>=)', 'easy-property-listings' ),
+					'max'         => esc_html__( 'Maximum (<=)', 'easy-property-listings' ),
+					'not_equal'   => esc_html__( 'Not Equal', 'easy-property-listings' ),
+					'like'        => esc_html__( 'Like', 'easy-property-listings' ),
+					'not_like'    => esc_html__( 'Not Like', 'easy-property-listings' ),
+					'exists'      => esc_html__( 'Exists', 'easy-property-listings' ),
+					'not_exists'  => esc_html__( 'Not Exists', 'easy-property-listings' ),
+					'between'     => esc_html__( 'Between', 'easy-property-listings' ),
+					'not_between' => esc_html__( 'Not Between', 'easy-property-listings' ),
+					'in'          => esc_html__( 'In', 'easy-property-listings' ),
+					'not_in'      => esc_html__( 'Not In', 'easy-property-listings' ),
+				),
+			)
+		);
+		$filter_repeater->add_control(
+			'value',
+			array(
+				'label'       => esc_html__( 'Value', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'label_block' => true,
+				'placeholder' => esc_html__( 'Use commas for Between and In comparisons', 'easy-property-listings' ),
+				'condition'   => array( 'compare!' => array( 'exists', 'not_exists' ) ),
+			)
+		);
+		$this->add_control(
+			'dynamic_filters',
+			array(
+				'label'       => esc_html__( 'Meta Filters', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::REPEATER,
+				'fields'      => $filter_repeater->get_controls(),
+				'default'     => array(),
+				'title_field' => '<# var key = (meta_key || "Meta filter").replace(/^_+/, ""); #>{{{ key }}} <small>{{{ compare || "equal" }}}</small>',
+			)
+		);
+		$this->end_controls_section();
+
 		$this->start_controls_section( 'section_order', array( 'label' => esc_html__( 'Ordering', 'easy-property-listings' ) ) );
 		$this->add_control(
 			'sortby',
@@ -156,6 +220,32 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 			$value = isset( $settings[ $key ] ) ? $settings[ $key ] : '';
 			$atts[ $key ] = is_array( $value ) ? implode( ',', array_filter( $value, 'strlen' ) ) : $value;
 		}
+
+		$compare_suffixes = array(
+			'equal'       => '',
+			'min'         => '_min',
+			'max'         => '_max',
+			'not_equal'   => '_not_equal',
+			'like'        => '_like',
+			'not_like'    => '_not_like',
+			'exists'      => '_exists',
+			'not_exists'  => '_not_exists',
+			'between'     => '_between',
+			'not_between' => '_not_between',
+			'in'          => '_in',
+			'not_in'      => '_not_in',
+		);
+
+		foreach ( isset( $settings['dynamic_filters'] ) ? (array) $settings['dynamic_filters'] : array() as $filter ) {
+			$meta_key = isset( $filter['meta_key'] ) ? ltrim( sanitize_key( $filter['meta_key'] ), '_' ) : '';
+			$compare  = isset( $filter['compare'] ) ? sanitize_key( $filter['compare'] ) : 'equal';
+			if ( '' === $meta_key || ! isset( $compare_suffixes[ $compare ] ) ) {
+				continue;
+			}
+			$attribute          = '_' . $meta_key . $compare_suffixes[ $compare ];
+			$atts[ $attribute ] = in_array( $compare, array( 'exists', 'not_exists' ), true ) ? '' : (string) ( $filter['value'] ?? '' );
+		}
+
 		return apply_filters( 'epl_elementor_listing_advanced_atts', $atts, $settings, $this );
 	}
 

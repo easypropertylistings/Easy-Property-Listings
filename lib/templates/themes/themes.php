@@ -36,9 +36,9 @@ function epl_load_core_templates( $template ) {
 			return $template;
 	}
 
-        if ( current_theme_supports( 'block-templates' ) || wp_is_block_theme() ) {
-                return $template;
-        }
+	if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+		return $template;
+	}
         
         $post_tpl = '';
 	if ( is_epl_post_single() ) {

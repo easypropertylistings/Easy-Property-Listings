@@ -2201,14 +2201,14 @@ function epl_parse_atts( $atts ) {
 		'_min'         => '>=',
 		'_max'         => '<=',
 		'_not_equal'   => '!=',
-		'_like'        => 'LIKE',
 		'_not_like'    => 'NOT LIKE',
-		'_exists'      => 'EXISTS',
+		'_like'        => 'LIKE',
 		'_not_exists'  => 'NOT EXISTS',
-		'_in'          => 'IN',
+		'_exists'      => 'EXISTS',
 		'_not_in'      => 'NOT IN',
-		'_between'     => 'BETWEEN',
+		'_in'          => 'IN',
 		'_not_between' => 'NOT BETWEEN',
+		'_between'     => 'BETWEEN',
 	);
 
 	foreach ( $atts as $key   => &$value ) {
@@ -2252,6 +2252,11 @@ function epl_parse_atts( $atts ) {
 					if ( in_array( $look_for, array( '_exists', '_not_exists' ), true ) ) {
 						unset( $this_query['value'] );
 					}
+
+					// Suffixes such as `_not_like` also end in `_like`. Stop after
+					// the first (most specific) match so negative operators are not
+					// reinterpreted as their positive counterparts.
+					break;
 				}
 			}
 			$this_query['key']                       = $key;
