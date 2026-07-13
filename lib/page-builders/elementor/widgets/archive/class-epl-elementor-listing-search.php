@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Listing_Search extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -72,56 +73,16 @@ class EPL_Elementor_Listing_Search extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => esc_html__( 'Content', 'easy-property-listings' ),
+				'label' => esc_html__( 'Search Form', 'easy-property-listings' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
 
-		$this->add_control(
-			'post_type',
-			array(
-				'label'    => esc_html__( 'Post Type', 'easy-property-listings' ),
-				'type'     => \Elementor\Controls_Manager::SELECT,
-				'options'  => array_merge(
-					array( '' => esc_html__( 'All', 'easy-property-listings' ) ),
-					EPL_Elementor::get_post_types()
-				),
-				'default'  => '',
-			)
-		);
-
-		$this->add_control(
-			'show_title',
-			array(
-				'label'        => esc_html__( 'Show Title', 'easy-property-listings' ),
-				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'easy-property-listings' ),
-				'label_off'    => esc_html__( 'No', 'easy-property-listings' ),
-				'return_value' => 'yes',
-				'default'      => '',
-			)
-		);
-
-		$this->add_control(
-			'title',
-			array(
-				'label'     => esc_html__( 'Title', 'easy-property-listings' ),
-				'type'      => \Elementor\Controls_Manager::TEXT,
-				'default'   => esc_html__( 'Search Listings', 'easy-property-listings' ),
-				'condition' => array(
-					'show_title' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'button_text',
-			array(
-				'label'   => esc_html__( 'Button Text', 'easy-property-listings' ),
-				'type'    => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Search', 'easy-property-listings' ),
-			)
-		);
+		// The WordPress widget, shortcode and extensions all use this schema.
+		// Consuming it here keeps Elementor in sync when EPL adds or filters fields.
+		foreach ( epl_search_widget_fields() as $field ) {
+			$this->register_search_control( $field );
+		}
 
 		$this->end_controls_section();
 
@@ -140,7 +101,7 @@ class EPL_Elementor_Listing_Search extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Button Color', 'easy-property-listings' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .epl-search-submit' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .epl-search-btn' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -151,7 +112,7 @@ class EPL_Elementor_Listing_Search extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Button Text Color', 'easy-property-listings' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .epl-search-submit' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .epl-search-btn' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -164,42 +125,80 @@ class EPL_Elementor_Listing_Search extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$atts     = array();
+
+		foreach ( epl_search_widget_fields() as $field ) {
+			$key = $field['key'];
+			if ( array_key_exists( $key, $settings ) ) {
+				$atts[ $key ] = $settings[ $key ];
+			}
+		}
 
 		echo '<div class="epl-search-widget">';
 
-		if ( 'yes' === $settings['show_title'] && ! empty( $settings['title'] ) ) {
-			echo '<h3 class="epl-search-title">' . esc_html( $settings['title'] ) . '</h3>';
+		if ( ! empty( $atts['title'] ) ) {
+			echo '<h3 class="epl-search-title">' . esc_html( $atts['title'] ) . '</h3>';
 		}
 
-		$atts = array(
-			'show_label' => 'on',
-		);
-
-		if ( ! empty( $settings['post_type'] ) ) {
-			$atts['post_type'] = $settings['post_type'];
-		}
-
-		if ( ! empty( $settings['button_text'] ) ) {
-			$atts['submit_label'] = $settings['button_text'];
-		}
-
-		// Use EPL's search form shortcode.
-		echo do_shortcode( '[listing_search ' . $this->build_shortcode_atts( $atts ) . ']' );
+		// Call the [listing_search] callback directly: no shortcode string to
+		// break on brackets/quotes in user values, and no double escaping.
+		echo epl_shortcode_listing_search_callback( $atts ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in template.
 
 		echo '</div>';
 	}
 
 	/**
-	 * Build shortcode attributes string.
+	 * Convert a canonical EPL WordPress-widget field to an Elementor control.
 	 *
-	 * @param array $atts Attributes array.
-	 * @return string
+	 * @param array $field EPL search widget field definition.
 	 */
-	private function build_shortcode_atts( $atts ) {
-		$output = '';
-		foreach ( $atts as $key => $value ) {
-			$output .= $key . '="' . esc_attr( $value ) . '" ';
+	private function register_search_control( $field ) {
+		if ( empty( $field['key'] ) || empty( $field['type'] ) ) {
+			return;
 		}
-		return trim( $output );
+
+		$key     = sanitize_key( $field['key'] );
+		$default = isset( $field['default'] ) ? $field['default'] : '';
+		$args    = array(
+			'label'       => isset( $field['label'] ) ? $field['label'] : $key,
+			'default'     => $default,
+			'description' => isset( $field['help'] ) ? wp_strip_all_tags( $field['help'] ) : '',
+		);
+
+		switch ( $field['type'] ) {
+			case 'checkbox':
+				$args['type']         = \Elementor\Controls_Manager::SWITCHER;
+				$args['label_on']     = esc_html__( 'Yes', 'easy-property-listings' );
+				$args['label_off']    = esc_html__( 'No', 'easy-property-listings' );
+				$args['return_value'] = 'on';
+				break;
+
+			case 'select':
+				$args['type']        = ! empty( $field['multiple'] ) ? \Elementor\Controls_Manager::SELECT2 : \Elementor\Controls_Manager::SELECT;
+				$args['options']     = isset( $field['options'] ) ? $field['options'] : array();
+				$args['multiple']    = ! empty( $field['multiple'] );
+				$args['label_block'] = true;
+				break;
+
+			case 'number':
+				$args['type'] = \Elementor\Controls_Manager::NUMBER;
+				break;
+
+			case 'textarea':
+				$args['type'] = \Elementor\Controls_Manager::TEXTAREA;
+				break;
+
+			case 'hidden':
+				$args['type'] = \Elementor\Controls_Manager::HIDDEN;
+				break;
+
+			case 'text':
+			default:
+				$args['type']        = \Elementor\Controls_Manager::TEXT;
+				$args['label_block'] = true;
+				break;
+		}
+
+		$this->add_control( $key, $args );
 	}
 }

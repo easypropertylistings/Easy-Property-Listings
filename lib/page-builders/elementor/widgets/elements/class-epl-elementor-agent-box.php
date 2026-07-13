@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -54,7 +55,7 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 	 * @return array
 	 */
 	public function get_categories() {
-		return array( 'epl-elements' );
+		return array( 'epl-staff', 'epl-elements' );
 	}
 
 	/**
@@ -523,42 +524,38 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		// In editor mode, try to get a preview property if none available.
+		$property  = EPL_Elementor::setup_listing_context();
 		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
-
-		if ( ! $property && $is_editor ) {
-			$property = EPL_Elementor::get_preview_property();
-		}
 
 		if ( ! $property ) {
 			if ( $is_editor ) {
 				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Agent Box - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
 		$settings = $this->get_settings_for_display();
 
-		// Get the listing author.
-		$author_id  = $property->post->post_author;
-		$epl_author = new EPL_Author_Loader( $author_id );
+		// Always resolve against this listing. Elementor nested loops can leave
+		// the core global author pointing at the previous loop item.
+		$agent = EPL_Elementor::get_listing_agent( $property );
+
+		if ( ! $agent ) {
+			EPL_Elementor::restore_listing_context();
+			return;
+		}
+
+		$author_id = $agent->author_id;
 
 		$layout_class = 'horizontal' === $settings['layout'] ? 'epl-agent-horizontal' : 'epl-agent-vertical';
 
 		echo '<div class="epl-agent-box ' . esc_attr( $layout_class ) . '">';
 
-		// Photo.
 		if ( 'yes' === $settings['show_photo'] ) {
 			$photo_size = isset( $settings['photo_size']['size'] ) ? intval( $settings['photo_size']['size'] ) : 150;
 			echo '<div class="epl-agent-photo">';
-			echo get_avatar( $epl_author->email, $photo_size );
+			echo wp_kses_post( EPL_Elementor::get_agent_image( $agent, $photo_size ) );
 			echo '</div>';
 		}
 
@@ -566,10 +563,10 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 
 		// Name.
 		if ( 'yes' === $settings['show_name'] ) {
-			$display_name = get_the_author_meta( 'display_name', $author_id );
+			$display_name = $agent->get_author_name();
 			echo '<div class="epl-agent-name">';
 			if ( 'yes' === $settings['link_name'] ) {
-				$permalink = get_author_posts_url( $author_id );
+				$permalink = apply_filters( 'epl_author_profile_link', get_author_posts_url( $author_id ), $agent );
 				echo '<a href="' . esc_url( $permalink ) . '">' . esc_html( $display_name ) . '</a>';
 			} else {
 				echo esc_html( $display_name );
@@ -579,7 +576,7 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 
 		// Position.
 		if ( 'yes' === $settings['show_position'] ) {
-			$position = $epl_author->get_author_position();
+			$position = $agent->get_author_position();
 			if ( ! empty( $position ) ) {
 				echo '<div class="epl-agent-position">' . esc_html( $position ) . '</div>';
 			}
@@ -590,7 +587,7 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 
 		// Mobile.
 		if ( 'yes' === $settings['show_mobile'] ) {
-			$mobile = $epl_author->get_author_mobile();
+			$mobile = $agent->get_author_mobile();
 			if ( ! empty( $mobile ) ) {
 				echo '<div class="epl-agent-mobile">';
 				echo '<span class="epl-agent-label">' . esc_html__( 'Mobile:', 'easy-property-listings' ) . '</span> ';
@@ -601,7 +598,7 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 
 		// Office Phone.
 		if ( 'yes' === $settings['show_office_phone'] ) {
-			$office_phone = $epl_author->get_author_office_phone();
+			$office_phone = $agent->get_author_office_phone();
 			if ( ! empty( $office_phone ) ) {
 				echo '<div class="epl-agent-office-phone">';
 				echo '<span class="epl-agent-label">' . esc_html__( 'Office:', 'easy-property-listings' ) . '</span> ';
@@ -612,7 +609,7 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 
 		// Email.
 		if ( 'yes' === $settings['show_email'] ) {
-			$email = $epl_author->email;
+			$email = $agent->email;
 			if ( ! empty( $email ) ) {
 				echo '<div class="epl-agent-email">';
 				echo '<span class="epl-agent-label">' . esc_html__( 'Email:', 'easy-property-listings' ) . '</span> ';
@@ -626,31 +623,27 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 		// Social Icons.
 		if ( 'yes' === $settings['show_social_icons'] ) {
 			$social_icons = array( 'facebook', 'twitter', 'instagram', 'linkedin', 'youtube', 'pinterest' );
-			$has_social   = false;
 
-			ob_start();
-			echo '<div class="epl-agent-social">';
+			// The loader proxies methods via __call, which method_exists() cannot
+			// see — check against the wrapped author object instead.
+			$author_object = $agent instanceof EPL_Author_Loader ? $agent->object : $agent;
+
+			$social_html = '';
 			foreach ( $social_icons as $social ) {
 				$method = 'get_' . $social . '_html';
-				if ( method_exists( $epl_author, $method ) ) {
-					$html = call_user_func( array( $epl_author, $method ) );
-					if ( ! empty( $html ) ) {
-						echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						$has_social = true;
-					}
+				if ( $author_object && is_callable( array( $author_object, $method ) ) ) {
+					$social_html .= (string) call_user_func( array( $author_object, $method ) );
 				}
 			}
-			echo '</div>';
-			$social_html = ob_get_clean();
 
-			if ( $has_social ) {
-				echo $social_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			if ( '' !== trim( $social_html ) ) {
+				echo '<div class="epl-agent-social">' . wp_kses_post( $social_html ) . '</div>';
 			}
 		}
 
 		// Bio.
 		if ( 'yes' === $settings['show_bio'] ) {
-			$bio = $epl_author->get_description_html();
+			$bio = $agent->get_description_html();
 			if ( ! empty( $bio ) ) {
 				echo '<div class="epl-agent-bio">' . wp_kses_post( $bio ) . '</div>';
 			}
@@ -658,5 +651,7 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 
 		echo '</div>'; // End details.
 		echo '</div>'; // End agent-box.
+
+		EPL_Elementor::restore_listing_context();
 	}
 }

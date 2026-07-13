@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Gallery extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -96,29 +97,21 @@ class EPL_Elementor_Property_Gallery extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		// In editor mode, try to get a preview property if none available.
+		$property  = EPL_Elementor::setup_listing_context();
 		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
-
-		if ( ! $property && $is_editor ) {
-			$property = EPL_Elementor::get_preview_property();
-		}
 
 		if ( ! $property ) {
 			if ( $is_editor ) {
 				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Gallery - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
 		echo '<div class="epl-property-gallery">';
 		do_action( 'epl_property_gallery' );
 		echo '</div>';
+
+		EPL_Elementor::restore_listing_context();
 	}
 }

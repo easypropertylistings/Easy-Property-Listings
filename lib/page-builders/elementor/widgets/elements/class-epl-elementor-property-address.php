@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -213,24 +214,14 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		// In editor mode, try to get a preview property if none available.
+		$property  = EPL_Elementor::setup_listing_context();
 		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
-
-		if ( ! $property && $is_editor ) {
-			$property = EPL_Elementor::get_preview_property();
-		}
 
 		if ( ! $property ) {
 			if ( $is_editor ) {
 				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Address - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
@@ -250,40 +241,12 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 		}
 
 		if ( 'yes' === $settings['show_suburb_profile'] ) {
-			echo esc_html( $property->get_suburb_profile() );
+			// Suburb only, respecting commercial/business suburb display rules.
+			do_action( 'epl_property_suburb' );
 		} else {
-			// Construct full address: Street, Suburb, State Postcode.
-			$address_parts = array();
-
-			// Street Address.
-			$street = $property->get_formatted_property_address( false );
-			if ( ! empty( $street ) ) {
-				$address_parts[] = $street;
-			}
-
-			// Suburb.
-			$suburb = $property->get_property_meta( 'property_address_suburb' );
-			if ( empty( $suburb ) ) {
-				$suburb = $property->get_suburb_profile();
-			}
-			if ( ! empty( $suburb ) ) {
-				$address_parts[] = $suburb;
-			}
-
-			// State & Postcode.
-			$state     = $property->get_property_meta( 'property_address_state' );
-			$postcode  = $property->get_property_meta( 'property_address_postal_code' );
-			$state_zip = trim( $state . ' ' . $postcode );
-
-			if ( ! empty( $state_zip ) ) {
-				$address_parts[] = $state_zip;
-			}
-
-			if ( ! empty( $address_parts ) ) {
-				echo esc_html( implode( ', ', $address_parts ) );
-			} else {
-				do_action( 'epl_property_address' ); // Fallback.
-			}
+			// Full address. Core respects the property_address_display option,
+			// commercial suburb display and the city/country field settings.
+			do_action( 'epl_property_address' );
 		}
 
 		if ( 'yes' === $settings['link_to_listing'] ) {
@@ -291,5 +254,7 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 		}
 
 		echo '</div>';
+
+		EPL_Elementor::restore_listing_context();
 	}
 }

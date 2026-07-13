@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Agent_Social extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -47,7 +48,7 @@ class EPL_Elementor_Agent_Social extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return array( 'epl-elements' );
+		return array( 'epl-staff', 'epl-elements' );
 	}
 
 	/**
@@ -303,7 +304,7 @@ class EPL_Elementor_Agent_Social extends \Elementor\Widget_Base {
 
 				if ( ! empty( $url ) ) {
 					$label = ucfirst( $network );
-					
+
 					// Add Repeater element attributes for styling matching {{CURRENT_ITEM}}.
 					$repeater_setting_key = $this->get_repeater_setting_key( 'social_icon', 'social_icon_list', $index );
 					$this->add_render_attribute( $repeater_setting_key, 'class', 'epl-social-icon' );
@@ -332,26 +333,21 @@ class EPL_Elementor_Agent_Social extends \Elementor\Widget_Base {
 	 * @return EPL_Author_Loader|null
 	 */
 	private function get_current_agent() {
-		global $epl_current_agent, $property, $post;
+		global $epl_current_agent;
 
 		if ( ! empty( $epl_current_agent ) ) {
 			return $epl_current_agent;
 		}
 
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		if ( ! $property ) {
-			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-				$property = EPL_Elementor::get_preview_property();
-			}
-		}
+		$property = EPL_Elementor::setup_listing_context();
 
 		if ( $property ) {
-			return new EPL_Author_Loader( $property->post->post_author );
+			$author = EPL_Elementor::get_listing_agent( $property );
+			EPL_Elementor::restore_listing_context();
+			return $author;
 		}
 
+		EPL_Elementor::restore_listing_context();
 		return null;
 	}
 }

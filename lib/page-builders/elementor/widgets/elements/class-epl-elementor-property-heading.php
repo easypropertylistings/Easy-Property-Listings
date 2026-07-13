@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Heading extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -161,30 +162,35 @@ class EPL_Elementor_Property_Heading extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
+		$property  = EPL_Elementor::setup_listing_context();
+		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
 
 		if ( ! $property ) {
-			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Heading - No listing data available in editor.', 'easy-property-listings' ) . '</div>';
+			if ( $is_editor ) {
+				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Heading - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
 		$settings = $this->get_settings_for_display();
-		$tag      = $settings['html_tag'];
+		$tag      = \Elementor\Utils::validate_html_tag( $settings['html_tag'] );
 		$heading  = $property->get_property_meta( 'property_heading' );
 
+		// Match core behaviour: fall back to the post title when no heading is set.
 		if ( empty( $heading ) ) {
+			$heading = get_the_title( $property->post->ID );
+		}
+
+		if ( empty( $heading ) ) {
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
 		echo '<' . esc_attr( $tag ) . ' class="epl-property-heading">';
 		echo esc_html( $heading );
 		echo '</' . esc_attr( $tag ) . '>';
+
+		EPL_Elementor::restore_listing_context();
 	}
 }

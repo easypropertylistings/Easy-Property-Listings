@@ -1,6 +1,6 @@
 <?php
 /**
- * Elementor Agents Loop Widget
+ * Elementor Listing Agents Widget
  *
  * @package     EPL
  * @subpackage  PageBuilders/Elementor/Widgets/Elements
@@ -13,14 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * EPL_Elementor_Agents_Loop Class
+ * EPL_Elementor_Listing_Agents Class
  *
- * Container widget that loops through all agents assigned to a listing.
- * Uses a saved Elementor template to render each agent.
+ * Renders agents assigned to a listing with a dedicated EPL Agent Template.
  *
  * @since 3.6.0
  */
-class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
+class EPL_Elementor_Listing_Agents extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -28,7 +28,7 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'epl-agents-loop';
+		return 'epl-listing-agents';
 	}
 
 	/**
@@ -37,7 +37,7 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Agents Loop', 'easy-property-listings' );
+		return esc_html__( 'EPL Listing Agents', 'easy-property-listings' );
 	}
 
 	/**
@@ -64,8 +64,15 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 	 * @return array
 	 */
 	public function get_keywords() {
-		return array( 'agent', 'agents', 'author', 'loop', 'epl' );
+		return array( 'agent', 'agents', 'author', 'listing', 'template', 'epl' );
 	}
+
+	/**
+	 * Template IDs currently being rendered, used as a recursion guard.
+	 *
+	 * @var array
+	 */
+	private static $rendering_templates = array();
 
 	/**
 	 * Get available Elementor templates.
@@ -83,6 +90,13 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 			'post_status'    => 'publish',
 			'orderby'        => 'title',
 			'order'          => 'ASC',
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				array(
+					'key'     => '_elementor_template_type',
+					'value'   => EPL_Elementor_Agent_Document::TYPE,
+					'compare' => '=',
+				),
+			),
 		);
 
 		$template_query = new \WP_Query( $args );
@@ -130,7 +144,7 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'options'     => $this->get_elementor_templates(),
 				'default'     => '',
-				'description' => esc_html__( 'Select an Elementor template to render for each agent.', 'easy-property-listings' ),
+				'description' => esc_html__( 'Only dedicated EPL Agent Templates can be used here.', 'easy-property-listings' ),
 				'condition'   => array(
 					'render_type' => 'template',
 				),
@@ -144,8 +158,8 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 				'raw'             => sprintf(
 					'<p style="color:#666;font-size:12px;">%s <a href="%s" target="_blank">%s</a></p>',
 					esc_html__( 'No template?', 'easy-property-listings' ),
-					esc_url( admin_url( 'edit.php?post_type=elementor_library' ) ),
-					esc_html__( 'Create one in Templates → Saved Templates', 'easy-property-listings' )
+					esc_url( \Elementor\Plugin::$instance->documents->get_create_new_post_url( 'elementor_library', EPL_Elementor_Agent_Document::TYPE ) ),
+					esc_html__( 'Create an EPL Agent Template', 'easy-property-listings' )
 				),
 				'content_classes' => 'elementor-panel-alert',
 				'condition'       => array(
@@ -168,12 +182,12 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 		$this->add_control(
 			'agents_count',
 			array(
-				'label'     => esc_html__( 'Max Agents', 'easy-property-listings' ),
-				'type'      => \Elementor\Controls_Manager::NUMBER,
-				'min'       => 1,
-				'max'       => 10,
-				'step'      => 1,
-				'default'   => 4,
+				'label'   => esc_html__( 'Max Agents', 'easy-property-listings' ),
+				'type'    => \Elementor\Controls_Manager::NUMBER,
+				'min'     => 1,
+				'max'     => 10,
+				'step'    => 1,
+				'default' => 4,
 			)
 		);
 
@@ -210,16 +224,21 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'columns',
 			array(
-				'label'     => esc_html__( 'Columns', 'easy-property-listings' ),
-				'type'      => \Elementor\Controls_Manager::SELECT,
-				'options'   => array(
+				'label'          => esc_html__( 'Columns', 'easy-property-listings' ),
+				'type'           => \Elementor\Controls_Manager::SELECT,
+				'options'        => array(
 					'1' => '1',
 					'2' => '2',
 					'3' => '3',
 					'4' => '4',
 				),
-				'default'   => '2',
-				'condition' => array(
+				'default'        => '2',
+				'tablet_default' => '2',
+				'mobile_default' => '1',
+				'selectors'      => array(
+					'{{WRAPPER}} .epl-listing-agents-grid' => '--epl-agent-columns: {{VALUE}};',
+				),
+				'condition'      => array(
 					'display_mode' => 'normal',
 					'layout'       => 'grid',
 				),
@@ -243,8 +262,8 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 					'unit' => 'px',
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .epl-agents-loop-grid' => 'gap: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .epl-agents-loop-list' => 'gap: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .epl-listing-agents-grid' => 'gap: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .epl-listing-agents-list' => 'gap: {{SIZE}}{{UNIT}};',
 				),
 				'condition'  => array(
 					'display_mode' => 'normal',
@@ -381,48 +400,10 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 	 * Get agents assigned to the current listing.
 	 *
 	 * @param EPL_Property_Meta $property The property object.
-	 * @return array Array of agent IDs.
+	 * @return array Array of author loader objects.
 	 */
 	private function get_listing_agents( $property ) {
-		$agents = array();
-
-		// Define all agent keys to check, in order.
-		$all_agent_keys = array(
-			'property_agent',
-			'property_second_agent',
-			'property_third_agent',
-			'property_fourth_agent',
-		);
-
-		foreach ( $all_agent_keys as $index => $key ) {
-			$agent_val = $property->get_property_meta( $key );
-			$agent_id  = 0;
-
-			// Resolve agent value (ID or username).
-			if ( ! empty( $agent_val ) ) {
-				if ( is_numeric( $agent_val ) ) {
-					$agent_id = intval( $agent_val );
-				} elseif ( is_string( $agent_val ) ) {
-					$user = get_user_by( 'login', $agent_val );
-					if ( $user ) {
-						$agent_id = $user->ID;
-					}
-				}
-			}
-
-			// Special handling for primary agent (first key).
-			// If 'property_agent' is empty, fallback to post author.
-			if ( 0 === $index && empty( $agent_id ) && isset( $property->post->post_author ) ) {
-				$agent_id = intval( $property->post->post_author );
-			}
-
-			if ( ! empty( $agent_id ) ) {
-				$agents[] = $agent_id;
-			}
-		}
-
-		// Remove duplicates and re-index.
-		return array_values( array_unique( $agents ) );
+		return EPL_Elementor::get_listing_agents( $property );
 	}
 
 	/**
@@ -433,7 +414,7 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 	 * @return string The tab label.
 	 */
 	private function get_tab_label( $author, $format ) {
-		$name     = get_the_author_meta( 'display_name', $author->author_id );
+		$name     = $author->get_author_name();
 		$position = $author->get_author_position();
 
 		switch ( $format ) {
@@ -461,9 +442,28 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 			epl_get_template_part( 'content-author-box.php', array( 'epl_author' => $epl_current_agent ) );
 		} else {
 			// Render Elementor template.
-			if ( ! empty( $template_id ) ) {
-				echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $template_id, true );
+			$template_id = absint( $template_id );
+
+			if ( empty( $template_id ) ) {
+				return;
 			}
+
+			if ( EPL_Elementor_Agent_Document::TYPE !== get_post_meta( $template_id, '_elementor_template_type', true ) ) {
+				if ( EPL_Elementor::is_editor() ) {
+					echo '<div class="epl-elementor-placeholder">' . esc_html__( 'The selected template is not an EPL Agent Template.', 'easy-property-listings' ) . '</div>';
+				}
+				return;
+			}
+
+			// Guard against infinite recursion when the selected template
+			// contains an Agents Loop widget pointing back at itself.
+			if ( isset( self::$rendering_templates[ $template_id ] ) ) {
+				return;
+			}
+
+			self::$rendering_templates[ $template_id ] = true;
+			echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $template_id, true );
+			unset( self::$rendering_templates[ $template_id ] );
 		}
 	}
 
@@ -471,24 +471,14 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post, $epl_current_agent;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		// In editor mode, try to get a preview property if none available.
+		$property  = EPL_Elementor::setup_listing_context();
 		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
-
-		if ( ! $property && $is_editor ) {
-			$property = EPL_Elementor::get_preview_property();
-		}
 
 		if ( ! $property ) {
 			if ( $is_editor ) {
-				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Agents Loop - No listings found.', 'easy-property-listings' ) . '</div>';
+				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Listing Agents - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
@@ -513,24 +503,15 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 				echo '<small>' . esc_html__( 'Create a template using EPL Agent widgets (Photo, Name, Contact, Social, Bio) and select it above.', 'easy-property-listings' ) . '</small>';
 				echo '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
-		}
-
-		// Ensure template CSS is loaded.
-		if ( 'template' === $render_type && ! empty( $template_id ) && class_exists( '\Elementor\Core\Files\CSS\Post' ) ) {
-			static $printed_templates = array();
-
-			if ( ! isset( $printed_templates[ $template_id ] ) ) {
-				$css_file = new \Elementor\Core\Files\CSS\Post( $template_id );
-				$css_file->print_css();
-				$printed_templates[ $template_id ] = true;
-			}
 		}
 
 		if ( empty( $agents ) ) {
 			if ( ! empty( $settings['empty_message'] ) ) {
 				echo '<div class="epl-agents-empty">' . esc_html( $settings['empty_message'] ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
@@ -539,6 +520,8 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 		} else {
 			$this->render_normal( $agents, $settings, $template_id, $render_type );
 		}
+
+		EPL_Elementor::restore_listing_context();
 	}
 
 	/**
@@ -555,15 +538,16 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 		$layout  = $settings['layout'];
 		$columns = isset( $settings['columns'] ) ? $settings['columns'] : '2';
 
-		$wrapper_class = 'epl-agents-loop epl-agents-loop-' . $layout;
+		$wrapper_class = 'epl-listing-agents epl-listing-agents-' . $layout;
 		if ( 'grid' === $layout ) {
 			$wrapper_class .= ' epl-agents-cols-' . $columns;
 		}
 
 		echo '<div class="' . esc_attr( $wrapper_class ) . '">';
 
-		foreach ( $agents as $agent_id ) {
-			$epl_current_agent = new EPL_Author_Loader( $agent_id );
+		$previous_agent = $epl_current_agent;
+		foreach ( $agents as $agent ) {
+			$epl_current_agent = $agent;
 
 			echo '<div class="epl-agent-item">';
 			$this->render_agent_item( $template_id, $render_type );
@@ -573,7 +557,7 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 		echo '</div>';
 
 		// Reset global.
-		$epl_current_agent = null;
+		$epl_current_agent = $previous_agent;
 	}
 
 	/**
@@ -594,40 +578,44 @@ class EPL_Elementor_Agents_Loop extends \Elementor\Widget_Base {
 
 		echo '<div class="' . esc_attr( $wrapper_class ) . '">';
 
+		// Prefix tab IDs with the widget ID so multiple widgets on the same
+		// page (or the same agent in two widgets) never share DOM IDs.
+		$tab_id_prefix = 'epl-agent-tab-' . $this->get_id() . '-';
+
 		// Tab buttons.
 		echo '<div class="epl-tab-buttons">';
 		$index = 0;
-		foreach ( $agents as $agent_id ) {
-			$author       = new EPL_Author_Loader( $agent_id );
+		foreach ( $agents as $author ) {
 			$label        = $this->get_tab_label( $author, $tab_label );
 			$active_class = ( 0 === $index ) ? ' active' : '';
 
-			echo '<button class="epl-tab-button' . esc_attr( $active_class ) . '" data-tab="epl-agent-tab-' . esc_attr( $agent_id ) . '">';
+			echo '<button class="epl-tab-button' . esc_attr( $active_class ) . '" data-tab="' . esc_attr( $tab_id_prefix . $author->author_id ) . '">';
 			echo esc_html( $label );
 			echo '</button>';
 
-			$index++;
+			++$index;
 		}
 		echo '</div>';
 
 		// Tab content.
 		echo '<div class="epl-tab-contents">';
 		$index = 0;
-		foreach ( $agents as $agent_id ) {
-			$epl_current_agent = new EPL_Author_Loader( $agent_id );
+		$previous_agent = $epl_current_agent;
+		foreach ( $agents as $agent ) {
+			$epl_current_agent = $agent;
 			$active_class      = ( 0 === $index ) ? ' active' : '';
 
-			echo '<div id="epl-agent-tab-' . esc_attr( $agent_id ) . '" class="epl-tab-content' . esc_attr( $active_class ) . '">';
+			echo '<div id="' . esc_attr( $tab_id_prefix . $agent->author_id ) . '" class="epl-tab-content' . esc_attr( $active_class ) . '">';
 			$this->render_agent_item( $template_id, $render_type );
 			echo '</div>';
 
-			$index++;
+			++$index;
 		}
 		echo '</div>';
 
 		echo '</div>';
 
 		// Reset global.
-		$epl_current_agent = null;
+		$epl_current_agent = $previous_agent;
 	}
 }

@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Features extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -81,11 +82,12 @@ class EPL_Elementor_Property_Features extends \Elementor\Widget_Base {
 			'show_title',
 			array(
 				'label'        => esc_html__( 'Show Title', 'easy-property-listings' ),
+				'description'  => esc_html__( 'The features list already includes its own heading; enable this only for an additional custom title.', 'easy-property-listings' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
 				'label_on'     => esc_html__( 'Yes', 'easy-property-listings' ),
 				'label_off'    => esc_html__( 'No', 'easy-property-listings' ),
 				'return_value' => 'yes',
-				'default'      => 'yes',
+				'default'      => '',
 			)
 		);
 
@@ -138,17 +140,14 @@ class EPL_Elementor_Property_Features extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
+		$property  = EPL_Elementor::setup_listing_context();
+		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
 
 		if ( ! $property ) {
-			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Features - No listing data available in editor.', 'easy-property-listings' ) . '</div>';
+			if ( $is_editor ) {
+				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Features - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
@@ -163,5 +162,7 @@ class EPL_Elementor_Property_Features extends \Elementor\Widget_Base {
 		do_action( 'epl_property_features' );
 
 		echo '</div>';
+
+		EPL_Elementor::restore_listing_context();
 	}
 }

@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -243,7 +244,18 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 						'hide_if_empty' => 'yes',
 					),
 				),
-				'title_field' => '<# var iconLabels = {"bed":"Bedrooms","bath":"Bathrooms","parking":"Parking","land":"Land Size","building":"Building Size","rooms":"Rooms","pool":"Pool","ac":"Air Con"}; #>{{{ iconLabels[icon_type] || icon_type }}}',
+				'title_field' => '<# var iconLabels = ' . wp_json_encode(
+					array(
+						'bed'      => esc_html__( 'Bedrooms', 'easy-property-listings' ),
+						'bath'     => esc_html__( 'Bathrooms', 'easy-property-listings' ),
+						'parking'  => esc_html__( 'Parking', 'easy-property-listings' ),
+						'land'     => esc_html__( 'Land Size', 'easy-property-listings' ),
+						'building' => esc_html__( 'Building Size', 'easy-property-listings' ),
+						'rooms'    => esc_html__( 'Rooms', 'easy-property-listings' ),
+						'pool'     => esc_html__( 'Pool', 'easy-property-listings' ),
+						'ac'       => esc_html__( 'Air Conditioning', 'easy-property-listings' ),
+					)
+				) . '; #>{{{ iconLabels[icon_type] || icon_type }}}',
 			)
 		);
 
@@ -283,7 +295,7 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 				),
 			)
 		);
-		
+
 		$this->add_control(
 			'divider_style_heading',
 			array(
@@ -295,7 +307,7 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 				),
 			)
 		);
-		
+
 		$this->add_control(
 			'divider_color',
 			array(
@@ -309,7 +321,7 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 				),
 			)
 		);
-		
+
 		$this->add_responsive_control(
 			'divider_size',
 			array(
@@ -442,24 +454,14 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		// In editor mode, try to get a preview property if none available.
+		$property  = EPL_Elementor::setup_listing_context();
 		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
-
-		if ( ! $property && $is_editor ) {
-			$property = EPL_Elementor::get_preview_property();
-		}
 
 		if ( ! $property ) {
 			if ( $is_editor ) {
 				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Icons - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
@@ -472,6 +474,7 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 		$icon_list     = $settings['icon_list'];
 
 		if ( empty( $icon_list ) ) {
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
@@ -487,11 +490,11 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 			if ( 'yes' === $item['hide_if_empty'] && empty( $icon_data['value'] ) ) {
 				continue;
 			}
-			
+
 			$item['data'] = $icon_data;
 			$visible_items[] = $item;
 		}
-		
+
 		$total_visible = count( $visible_items );
 
 		foreach ( $visible_items as $index => $item ) {
@@ -523,6 +526,8 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 		}
 
 		echo '</div>';
+
+		EPL_Elementor::restore_listing_context();
 	}
 
 	/**
@@ -558,14 +563,16 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 
 			case 'land':
 				$land_value = $property->get_property_meta( 'property_land_area' );
-				$land_unit  = $property->get_property_meta( 'property_land_area_unit' );
+				$land_unit  = $this->format_area_unit( $property->get_property_meta( 'property_land_area_unit' ), $land_value );
+				$land_unit  = apply_filters( 'epl_property_land_area_unit_label', $land_unit );
 				$data['value'] = ! empty( $land_value ) ? $land_value . ( ! empty( $land_unit ) ? ' ' . $land_unit : '' ) : '';
 				$data['label'] = esc_html__( 'Land', 'easy-property-listings' );
 				break;
 
 			case 'building':
 				$building_value = $property->get_property_meta( 'property_building_area' );
-				$building_unit  = $property->get_property_meta( 'property_building_area_unit' );
+				$building_unit  = $this->format_area_unit( $property->get_property_meta( 'property_building_area_unit' ), $building_value );
+				$building_unit  = apply_filters( 'epl_property_building_area_unit_label', $building_unit );
 				$data['value'] = ! empty( $building_value ) ? $building_value . ( ! empty( $building_unit ) ? ' ' . $building_unit : '' ) : '';
 				$data['label'] = esc_html__( 'Building', 'easy-property-listings' );
 				break;
@@ -576,18 +583,38 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 				break;
 
 			case 'pool':
-				$pool = $property->get_property_meta( 'property_pool' );
-				$data['value'] = ( '1' === $pool || 'yes' === strtolower( $pool ) ) ? esc_html__( 'Yes', 'easy-property-listings' ) : '';
+				$pool = strtolower( (string) $property->get_property_meta( 'property_pool' ) );
+				$data['value'] = ( '1' === $pool || epl_value_bool_checker( $pool ) ) ? esc_html__( 'Yes', 'easy-property-listings' ) : '';
 				$data['label'] = esc_html__( 'Pool', 'easy-property-listings' );
 				break;
 
 			case 'ac':
-				$ac = $property->get_property_meta( 'property_air_conditioning' );
-				$data['value'] = ( '1' === $ac || 'yes' === strtolower( $ac ) ) ? esc_html__( 'Yes', 'easy-property-listings' ) : '';
+				$ac = strtolower( (string) $property->get_property_meta( 'property_air_conditioning' ) );
+				$data['value'] = ( '1' === $ac || epl_value_bool_checker( $ac ) ) ? esc_html__( 'Yes', 'easy-property-listings' ) : '';
 				$data['label'] = esc_html__( 'A/C', 'easy-property-listings' );
 				break;
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Convert a stored area unit key to its display label, matching core
+	 * behaviour in EPL_Property_Meta::get_property_land_value().
+	 *
+	 * @param string $unit  Stored unit key (e.g. squareMeter, acre, sqft).
+	 * @param mixed  $value Area value, used for pluralisation.
+	 * @return string
+	 */
+	private function format_area_unit( $unit, $value ) {
+		$unit = (string) $unit;
+
+		if ( 'squareMeter' === $unit ) {
+			$unit = html_entity_decode( __( 'm&#178;', 'easy-property-listings' ), ENT_HTML5, 'UTF-8' );
+		} elseif ( 'acre' === $unit ) {
+			$unit = floatval( $value ) > 1 ? __( 'acres', 'easy-property-listings' ) : __( 'acre', 'easy-property-listings' );
+		}
+
+		return $unit;
 	}
 }

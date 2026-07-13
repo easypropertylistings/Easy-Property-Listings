@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Image extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -353,6 +354,91 @@ class EPL_Elementor_Property_Image extends \Elementor\Widget_Base {
 
 		$this->end_controls_section();
 
+		// Style Section - Hover Effects.
+		$this->start_controls_section(
+			'section_style_hover',
+			array(
+				'label' => esc_html__( 'Hover Effects', 'easy-property-listings' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'enable_hover_effects',
+			array(
+				'label'        => esc_html__( 'Enable Hover Effects', 'easy-property-listings' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'easy-property-listings' ),
+				'label_off'    => esc_html__( 'No', 'easy-property-listings' ),
+				'return_value' => 'yes',
+				'default'      => '',
+			)
+		);
+
+		$this->add_control(
+			'image_hover_zoom',
+			array(
+				'label'      => esc_html__( 'Zoom', 'easy-property-listings' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => array( '%' ),
+				'range'      => array( '%' => array( 'min' => 100, 'max' => 150 ) ),
+				'default'    => array( 'size' => 105, 'unit' => '%' ),
+				'condition'  => array( 'enable_hover_effects' => 'yes' ),
+				'selectors'  => array( '{{WRAPPER}} .epl-property-image' => '--epl-image-hover-scale: {{SIZE}};' ),
+			)
+		);
+
+		$this->add_control(
+			'image_hover_blur',
+			array(
+				'label'      => esc_html__( 'Blur', 'easy-property-listings' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array( 'px' => array( 'min' => 0, 'max' => 20, 'step' => 0.1 ) ),
+				'default'    => array( 'size' => 0, 'unit' => 'px' ),
+				'condition'  => array( 'enable_hover_effects' => 'yes' ),
+				'selectors'  => array( '{{WRAPPER}} .epl-property-image' => '--epl-image-hover-blur: {{SIZE}}{{UNIT}};' ),
+			)
+		);
+
+		foreach (
+			array(
+				'brightness' => array( 'Brightness', 100, 0, 200 ),
+				'contrast'   => array( 'Contrast', 100, 0, 200 ),
+				'saturate'   => array( 'Saturation', 100, 0, 300 ),
+				'grayscale'  => array( 'Grayscale', 0, 0, 100 ),
+				'opacity'    => array( 'Opacity', 100, 0, 100 ),
+			) as $filter => $control
+		) {
+			$this->add_control(
+				'image_hover_' . $filter,
+				array(
+					'label'      => esc_html__( $control[0], 'easy-property-listings' ),
+					'type'       => \Elementor\Controls_Manager::SLIDER,
+					'size_units' => array( '%' ),
+					'range'      => array( '%' => array( 'min' => $control[2], 'max' => $control[3] ) ),
+					'default'    => array( 'size' => $control[1], 'unit' => '%' ),
+					'condition'  => array( 'enable_hover_effects' => 'yes' ),
+					'selectors'  => array( '{{WRAPPER}} .epl-property-image' => '--epl-image-hover-' . $filter . ': {{SIZE}}%;' ),
+				)
+			);
+		}
+
+		$this->add_control(
+			'image_hover_transition',
+			array(
+				'label'      => esc_html__( 'Transition Duration', 'easy-property-listings' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => array( 's' ),
+				'range'      => array( 's' => array( 'min' => 0, 'max' => 3, 'step' => 0.05 ) ),
+				'default'    => array( 'size' => 0.3, 'unit' => 's' ),
+				'condition'  => array( 'enable_hover_effects' => 'yes' ),
+				'selectors'  => array( '{{WRAPPER}} .epl-property-image' => '--epl-image-hover-duration: {{SIZE}}{{UNIT}};' ),
+			)
+		);
+
+		$this->end_controls_section();
+
 		// Style Section - Stickers.
 		$this->start_controls_section(
 			'section_style_stickers',
@@ -414,24 +500,14 @@ class EPL_Elementor_Property_Image extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		// In editor mode, try to get a preview property if none available.
+		$property  = EPL_Elementor::setup_listing_context();
 		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
-
-		if ( ! $property && $is_editor ) {
-			$property = EPL_Elementor::get_preview_property();
-		}
 
 		if ( ! $property ) {
 			if ( $is_editor ) {
 				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Image - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
@@ -441,10 +517,14 @@ class EPL_Elementor_Property_Image extends \Elementor\Widget_Base {
 		$show_stickers    = 'yes' === $settings['show_stickers'];
 		$sticker_position = $settings['sticker_position'];
 		$show_overlay     = 'yes' === $settings['show_overlay'];
+		$hover_effects    = 'yes' === $settings['enable_hover_effects'];
 
 		$wrapper_class = 'epl-property-image epl-sticker-' . $sticker_position;
 		if ( $show_overlay ) {
 			$wrapper_class .= ' epl-has-overlay';
+		}
+		if ( $hover_effects ) {
+			$wrapper_class .= ' epl-has-image-effects';
 		}
 
 		echo '<div class="' . esc_attr( $wrapper_class ) . '">';
@@ -465,31 +545,42 @@ class EPL_Elementor_Property_Image extends \Elementor\Widget_Base {
 				echo '</div>';
 			}
 
-			// Stickers.
-			if ( $show_stickers ) {
-				echo '<div class="epl-sticker-wrapper">';
-				// Output the sticker HTML directly for better control.
-				$property_status = $property->get_property_meta( 'property_status' );
-				$under_offer     = $property->get_property_meta( 'property_under_offer' );
-
-				if ( 'sold' === $property_status ) {
-					echo '<span class="status-sticker sold">' . esc_html( $property->label_sold ) . '</span>';
-				} elseif ( 'leased' === $property_status ) {
-					echo '<span class="status-sticker leased">' . esc_html( $property->label_leased ) . '</span>';
-				} elseif ( 'yes' === $under_offer || '1' === $under_offer ) {
-					echo '<span class="status-sticker under-offer">' . esc_html( $property->label_under_offer ) . '</span>';
-				}
-				echo '</div>';
-			}
+			$this->render_stickers( $property, $show_stickers );
 
 			if ( $link ) {
 				echo '</a>';
 			}
 		} else {
-			// No featured image placeholder.
+			// No featured image placeholder. Stickers still apply.
 			echo '<div class="epl-no-image">' . esc_html__( 'No image available', 'easy-property-listings' ) . '</div>';
+
+			$this->render_stickers( $property, $show_stickers );
 		}
 
 		echo '</div>';
+
+		EPL_Elementor::restore_listing_context();
+	}
+
+	/**
+	 * Render status stickers via core, so New/Open/Sold/Leased/Under Offer
+	 * rules, the sticker range setting and the epl_get_price_sticker filter
+	 * all apply.
+	 *
+	 * @param EPL_Property_Meta $property      Property object.
+	 * @param bool              $show_stickers Whether stickers are enabled.
+	 */
+	private function render_stickers( $property, $show_stickers ) {
+		if ( ! $show_stickers ) {
+			return;
+		}
+
+		$stickers = $property->get_price_sticker();
+
+		if ( empty( $stickers ) ) {
+			return;
+		}
+
+		echo '<div class="epl-sticker-wrapper">' . wp_kses_post( $stickers ) . '</div>';
 	}
 }

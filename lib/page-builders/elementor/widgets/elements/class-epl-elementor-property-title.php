@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Title extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -172,36 +173,23 @@ class EPL_Elementor_Property_Title extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		// In editor mode, try to get a preview property if none available.
-		$is_editor  = \Elementor\Plugin::$instance->editor->is_edit_mode();
-		$is_preview = false;
-
-		if ( ! $property && $is_editor ) {
-			$property   = EPL_Elementor::get_preview_property();
-			$is_preview = true;
-		}
+		$property  = EPL_Elementor::setup_listing_context();
+		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
 
 		if ( ! $property ) {
 			if ( $is_editor ) {
 				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Title - No listings found. Please create a property listing first.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
-		$settings      = $this->get_settings_for_display();
-		$tag           = $settings['html_tag'];
-		$title         = get_the_title( $property->post->ID );
-		$permalink     = get_permalink( $property->post->ID );
-		$preview_class = $is_preview ? ' epl-editor-preview' : '';
+		$settings  = $this->get_settings_for_display();
+		$tag       = \Elementor\Utils::validate_html_tag( $settings['html_tag'] );
+		$title     = get_the_title( $property->post->ID );
+		$permalink = get_permalink( $property->post->ID );
 
-		echo '<' . esc_attr( $tag ) . ' class="epl-property-title' . esc_attr( $preview_class ) . '">';
+		echo '<' . esc_attr( $tag ) . ' class="epl-property-title">';
 
 		if ( 'yes' === $settings['link_to_listing'] ) {
 			echo '<a href="' . esc_url( $permalink ) . '">';
@@ -212,5 +200,7 @@ class EPL_Elementor_Property_Title extends \Elementor\Widget_Base {
 		}
 
 		echo '</' . esc_attr( $tag ) . '>';
+
+		EPL_Elementor::restore_listing_context();
 	}
 }

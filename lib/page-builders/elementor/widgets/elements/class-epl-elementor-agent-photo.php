@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Agent_Photo extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -46,7 +47,7 @@ class EPL_Elementor_Agent_Photo extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return array( 'epl-elements' );
+		return array( 'epl-staff', 'epl-elements' );
 	}
 
 	/**
@@ -168,7 +169,7 @@ class EPL_Elementor_Agent_Photo extends \Elementor\Widget_Base {
 		$settings   = $this->get_settings_for_display();
 		$size       = isset( $settings['photo_size']['size'] ) ? intval( $settings['photo_size']['size'] ) : 150;
 		$link       = 'yes' === $settings['link_to_author'];
-		$permalink  = get_author_posts_url( $author->author_id );
+		$permalink  = apply_filters( 'epl_author_profile_link', get_author_posts_url( $author->author_id ), $author );
 
 		echo '<div class="epl-agent-photo">';
 
@@ -176,7 +177,7 @@ class EPL_Elementor_Agent_Photo extends \Elementor\Widget_Base {
 			echo '<a href="' . esc_url( $permalink ) . '">';
 		}
 
-		echo get_avatar( $author->email, $size );
+		echo wp_kses_post( EPL_Elementor::get_agent_image( $author, $size ) );
 
 		if ( $link ) {
 			echo '</a>';
@@ -191,7 +192,7 @@ class EPL_Elementor_Agent_Photo extends \Elementor\Widget_Base {
 	 * @return EPL_Author_Loader|null
 	 */
 	private function get_current_agent() {
-		global $epl_current_agent, $property, $post;
+		global $epl_current_agent;
 
 		// First check if we're in an agents loop.
 		if ( ! empty( $epl_current_agent ) ) {
@@ -199,21 +200,15 @@ class EPL_Elementor_Agent_Photo extends \Elementor\Widget_Base {
 		}
 
 		// Fallback to primary author.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		if ( ! $property ) {
-			// Try preview property in editor.
-			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-				$property = EPL_Elementor::get_preview_property();
-			}
-		}
+		$property = EPL_Elementor::setup_listing_context();
 
 		if ( $property ) {
-			return new EPL_Author_Loader( $property->post->post_author );
+			$author = EPL_Elementor::get_listing_agent( $property );
+			EPL_Elementor::restore_listing_context();
+			return $author;
 		}
 
+		EPL_Elementor::restore_listing_context();
 		return null;
 	}
 }

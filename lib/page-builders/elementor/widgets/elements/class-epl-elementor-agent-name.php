@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Agent_Name extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -46,7 +47,7 @@ class EPL_Elementor_Agent_Name extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return array( 'epl-elements' );
+		return array( 'epl-staff', 'epl-elements' );
 	}
 
 	/**
@@ -174,10 +175,10 @@ class EPL_Elementor_Agent_Name extends \Elementor\Widget_Base {
 		}
 
 		$settings     = $this->get_settings_for_display();
-		$tag          = $settings['html_tag'];
+		$tag          = \Elementor\Utils::validate_html_tag( $settings['html_tag'] );
 		$link         = 'yes' === $settings['link_to_author'];
-		$display_name = get_the_author_meta( 'display_name', $author->author_id );
-		$permalink    = get_author_posts_url( $author->author_id );
+		$display_name = $author->get_author_name();
+		$permalink    = apply_filters( 'epl_author_profile_link', get_author_posts_url( $author->author_id ), $author );
 
 		echo '<' . esc_attr( $tag ) . ' class="epl-agent-name">';
 
@@ -196,26 +197,21 @@ class EPL_Elementor_Agent_Name extends \Elementor\Widget_Base {
 	 * @return EPL_Author_Loader|null
 	 */
 	private function get_current_agent() {
-		global $epl_current_agent, $property, $post;
+		global $epl_current_agent;
 
 		if ( ! empty( $epl_current_agent ) ) {
 			return $epl_current_agent;
 		}
 
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		if ( ! $property ) {
-			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-				$property = EPL_Elementor::get_preview_property();
-			}
-		}
+		$property = EPL_Elementor::setup_listing_context();
 
 		if ( $property ) {
-			return new EPL_Author_Loader( $property->post->post_author );
+			$author = EPL_Elementor::get_listing_agent( $property );
+			EPL_Elementor::restore_listing_context();
+			return $author;
 		}
 
+		EPL_Elementor::restore_listing_context();
 		return null;
 	}
 }

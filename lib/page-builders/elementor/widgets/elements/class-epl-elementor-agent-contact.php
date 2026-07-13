@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Agent_Contact extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -47,7 +48,7 @@ class EPL_Elementor_Agent_Contact extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return array( 'epl-elements' );
+		return array( 'epl-staff', 'epl-elements' );
 	}
 
 	/**
@@ -206,6 +207,15 @@ class EPL_Elementor_Agent_Contact extends \Elementor\Widget_Base {
 	}
 
 	/**
+	 * Get style dependencies so the Font Awesome icons always load.
+	 *
+	 * @return array
+	 */
+	public function get_style_depends() {
+		return array( 'elementor-icons-fa-solid' );
+	}
+
+	/**
 	 * Render widget output.
 	 */
 	protected function render() {
@@ -277,26 +287,21 @@ class EPL_Elementor_Agent_Contact extends \Elementor\Widget_Base {
 	 * @return EPL_Author_Loader|null
 	 */
 	private function get_current_agent() {
-		global $epl_current_agent, $property, $post;
+		global $epl_current_agent;
 
 		if ( ! empty( $epl_current_agent ) ) {
 			return $epl_current_agent;
 		}
 
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		if ( ! $property ) {
-			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-				$property = EPL_Elementor::get_preview_property();
-			}
-		}
+		$property = EPL_Elementor::setup_listing_context();
 
 		if ( $property ) {
-			return new EPL_Author_Loader( $property->post->post_author );
+			$author = EPL_Elementor::get_listing_agent( $property );
+			EPL_Elementor::restore_listing_context();
+			return $author;
 		}
 
+		EPL_Elementor::restore_listing_context();
 		return null;
 	}
 }

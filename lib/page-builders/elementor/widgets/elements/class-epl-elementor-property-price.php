@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Price extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -149,28 +150,29 @@ class EPL_Elementor_Property_Price extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		// In editor mode, try to get a preview property if none available.
+		$property  = EPL_Elementor::setup_listing_context();
 		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
-
-		if ( ! $property && $is_editor ) {
-			$property = EPL_Elementor::get_preview_property();
-		}
 
 		if ( ! $property ) {
 			if ( $is_editor ) {
 				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Price - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
 		$settings = $this->get_settings_for_display();
+
+		// Use EPL's native price action. Buffer it so the prefix is only
+		// output when there is an actual price to show.
+		ob_start();
+		do_action( 'epl_property_price' );
+		$price_html = ob_get_clean();
+
+		if ( '' === trim( $price_html ) ) {
+			EPL_Elementor::restore_listing_context();
+			return;
+		}
 
 		echo '<div class="epl-property-price">';
 
@@ -178,9 +180,10 @@ class EPL_Elementor_Property_Price extends \Elementor\Widget_Base {
 			echo '<span class="epl-price-prefix">' . esc_html( $settings['price_prefix'] ) . ' </span>';
 		}
 
-		// Use EPL's native price action.
-		do_action( 'epl_property_price' );
+		echo $price_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in core callback.
 
 		echo '</div>';
+
+		EPL_Elementor::restore_listing_context();
 	}
 }

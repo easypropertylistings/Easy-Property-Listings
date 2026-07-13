@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Agent_Bio extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -47,7 +48,7 @@ class EPL_Elementor_Agent_Bio extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return array( 'epl-elements' );
+		return array( 'epl-staff', 'epl-elements' );
 	}
 
 	/**
@@ -158,16 +159,18 @@ class EPL_Elementor_Agent_Bio extends \Elementor\Widget_Base {
 		}
 
 		$settings   = $this->get_settings_for_display();
-		$bio        = $author->get_description_html();
 		$word_limit = intval( $settings['word_limit'] );
+
+		// When trimming, work from the raw description so the core "Read More"
+		// link markup is not stripped into the counted words.
+		if ( $word_limit > 0 ) {
+			$bio = wp_trim_words( wp_strip_all_tags( (string) $author->get_description() ), $word_limit, '&hellip;' );
+		} else {
+			$bio = $author->get_description_html();
+		}
 
 		if ( empty( $bio ) ) {
 			return;
-		}
-
-		// Apply word limit if set.
-		if ( $word_limit > 0 ) {
-			$bio = wp_trim_words( wp_strip_all_tags( $bio ), $word_limit, '...' );
 		}
 
 		echo '<div class="epl-agent-bio">' . wp_kses_post( $bio ) . '</div>';
@@ -179,26 +182,21 @@ class EPL_Elementor_Agent_Bio extends \Elementor\Widget_Base {
 	 * @return EPL_Author_Loader|null
 	 */
 	private function get_current_agent() {
-		global $epl_current_agent, $property, $post;
+		global $epl_current_agent;
 
 		if ( ! empty( $epl_current_agent ) ) {
 			return $epl_current_agent;
 		}
 
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
-
-		if ( ! $property ) {
-			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-				$property = EPL_Elementor::get_preview_property();
-			}
-		}
+		$property = EPL_Elementor::setup_listing_context();
 
 		if ( $property ) {
-			return new EPL_Author_Loader( $property->post->post_author );
+			$author = EPL_Elementor::get_listing_agent( $property );
+			EPL_Elementor::restore_listing_context();
+			return $author;
 		}
 
+		EPL_Elementor::restore_listing_context();
 		return null;
 	}
 }

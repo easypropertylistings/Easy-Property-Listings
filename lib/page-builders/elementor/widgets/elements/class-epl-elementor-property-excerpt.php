@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.6.0
  */
 class EPL_Elementor_Property_Excerpt extends \Elementor\Widget_Base {
+	use EPL_Elementor_Dynamic_Widget;
 
 	/**
 	 * Get widget name.
@@ -150,17 +151,14 @@ class EPL_Elementor_Property_Excerpt extends \Elementor\Widget_Base {
 	 * Render widget output.
 	 */
 	protected function render() {
-		global $property, $post;
-
-		// Initialize property object from current post if not available.
-		if ( ! $property && $post && is_epl_post( $post->post_type ) ) {
-			$property = new EPL_Property_Meta( $post );
-		}
+		$property  = EPL_Elementor::setup_listing_context();
+		$is_editor = \Elementor\Plugin::$instance->editor->is_edit_mode();
 
 		if ( ! $property ) {
-			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
-				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Excerpt - No listing data available in editor.', 'easy-property-listings' ) . '</div>';
+			if ( $is_editor ) {
+				echo '<div class="epl-elementor-placeholder">' . esc_html__( 'Property Excerpt - No listings found.', 'easy-property-listings' ) . '</div>';
 			}
+			EPL_Elementor::restore_listing_context();
 			return;
 		}
 
@@ -170,5 +168,7 @@ class EPL_Elementor_Property_Excerpt extends \Elementor\Widget_Base {
 		echo '<div class="epl-property-excerpt">';
 		echo esc_html( wp_trim_words( get_the_excerpt( $property->post->ID ), $length ) );
 		echo '</div>';
+
+		EPL_Elementor::restore_listing_context();
 	}
 }
