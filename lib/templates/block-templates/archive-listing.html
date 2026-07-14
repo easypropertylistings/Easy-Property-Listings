@@ -1,9 +1,47 @@
 <!-- wp:template-part {"slug":"header"} /-->
 
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)">
-	<!-- wp:query-title {"type":"archive"} /-->
-	<!-- wp:epl/archive /-->
+<!-- wp:group {"tagName":"main","className":"epl-listings-archive","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained","contentSize":"1280px"}} -->
+<main class="wp-block-group epl-listings-archive" style="margin-top:var(--wp--preset--spacing--60)">
+	<!-- wp:epl/archive-element {"element":"archive-title"} /-->
+
+	<!-- wp:query {"query":{"perPage":6,"pages":0,"offset":0,"postType":"property","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"namespace":"epl/listings-query","className":"epl-listings-query"} -->
+	<div class="wp-block-query epl-listings-query">
+		<!-- wp:epl/archive-element {"element":"loop-start"} /-->
+
+		<!-- wp:post-template {"style":{"spacing":{"blockGap":"32px"}},"layout":{"type":"grid","columnCount":3}} -->
+			<!-- wp:group {"className":"epl-pattern-card epl-pattern-card-grid","style":{"spacing":{"blockGap":"0"},"color":{"background":"#ffffff","text":"#143d36"},"border":{"radius":"0px","width":"1px","color":"#dfe5ec"},"shadow":"0 8px 28px rgba(20,61,54,0.08)"},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group epl-pattern-card epl-pattern-card-grid has-border-color has-text-color has-background" style="border-color:#dfe5ec;border-width:1px;border-radius:0;color:#143d36;background-color:#ffffff;box-shadow:0 8px 28px rgba(20,61,54,0.08)">
+				<!-- wp:group {"className":"epl-pattern-card-media","layout":{"type":"constrained"}} -->
+				<div class="wp-block-group epl-pattern-card-media">
+					<!-- wp:epl/property-element {"element":"image","imageSize":"large","showStickers":false} /-->
+					<!-- wp:epl/property-element {"element":"status","style":{"spacing":{"margin":{"top":"16px","left":"0px"},"padding":{"top":"0.52em","right":"0.82em","bottom":"0.52em","left":"0.82em"}},"color":{"text":"#ffffff"},"typography":{"fontSize":"1rem","fontStyle":"normal","fontWeight":"500","lineHeight":"1"}}} /-->
+				</div>
+				<!-- /wp:group -->
+
+				<!-- wp:group {"className":"epl-pattern-card-content","style":{"spacing":{"padding":{"top":"24px","right":"24px","bottom":"24px","left":"24px"},"blockGap":"12px"}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group epl-pattern-card-content" style="padding-top:24px;padding-right:24px;padding-bottom:24px;padding-left:24px">
+					<!-- wp:epl/property-element {"element":"title","style":{"typography":{"fontSize":"1rem","fontStyle":"normal","fontWeight":"700","lineHeight":"1.35","textDecoration":"none"}}} /-->
+					<!-- wp:epl/property-element {"element":"price","style":{"color":{"text":"#ef3123"},"typography":{"fontSize":"1rem","fontStyle":"normal","fontWeight":"700","lineHeight":"1.3"}}} /-->
+					<!-- wp:epl/property-element {"element":"icons","style":{"typography":{"fontSize":"0.9rem"}}} /-->
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:epl/archive-element {"element":"loop-end"} /-->
+
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph --><p>No listings found.</p><!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+	</div>
+	<!-- /wp:query -->
 </main>
 <!-- /wp:group -->
 

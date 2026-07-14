@@ -32,11 +32,20 @@ function epl_load_core_templates( $template ) {
 
 		$template_path = epl_get_content_path();
 
-	if ( isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
-			return $template;
+	$is_block_theme = function_exists( 'wp_is_block_theme' ) && wp_is_block_theme();
+
+	// The legacy Theme Compatibility shortcut must not bypass the explicit
+	// Block Templates setting on a block theme.
+	if ( ( ! $is_block_theme || epl_block_templates_enabled() ) && isset( $epl_settings['epl_feeling_lucky'] ) && 'on' === $epl_settings['epl_feeling_lucky'] ) {
+		return $template;
 	}
 
-	if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+	// When EPL Block Templates are enabled, let WordPress resolve the FSE
+	// hierarchy (including any Site Editor customisations). When disabled, EPL
+	// deliberately takes EPL routes back through its established PHP hierarchy
+	// so theme overrides such as easypropertylistings/content-listing-single.php
+	// remain the active rendering path even on a block theme.
+	if ( $is_block_theme && epl_block_templates_enabled() ) {
 		return $template;
 	}
         

@@ -350,6 +350,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			// Block Templates for FSE support.
 			require_once EPL_PATH_LIB . 'includes/class-epl-block-template-utils.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-block-templates-controller.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-block-element-renderer.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-register-blocks.php';
 			// Page Builders Integration.
 			require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor.php';

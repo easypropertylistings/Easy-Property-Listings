@@ -44,6 +44,23 @@ function epl_get_option( $key = '', $default_val = false ) {
 }
 
 /**
+ * Whether EPL's registered block templates may take part in the FSE hierarchy.
+ *
+ * This deliberately reads the stored setting instead of the global settings
+ * cache: block-template registration happens very early in the request.
+ * Existing installations are migrated to opt out, while fresh installs opt in.
+ *
+ * @return bool
+ * @since 3.6.0
+ */
+function epl_block_templates_enabled() {
+	$settings = get_option( 'epl_settings', array() );
+	$enabled  = is_array( $settings ) && isset( $settings['epl_block_templates'] ) && 'on' === $settings['epl_block_templates'];
+
+	return (bool) apply_filters( 'epl_block_templates_enabled', $enabled, $settings );
+}
+
+/**
  * Determine if Divi framework is loaded
  *
  * @since 3.1
@@ -1452,6 +1469,18 @@ function epl_get_admin_option_fields() {
 			'id'     => 'theme_setup',
 			'help'   => __( 'The following settings will use your theme templates to generate your listing pages. If your listings appear too wide or your sidebar is in the wrong place enable theme compatibility. When this is enabled you can use the included shortcodes like [listing post_type="property" tools_top="on"] to display your listings with sorting and grid options.', 'easy-property-listings' ) . '<hr/>',
 			'fields' => array(
+
+				array(
+					'name'    => 'epl_block_templates',
+					'label'   => __( 'EPL Block Templates', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'on'  => __( 'Enable', 'easy-property-listings' ),
+						'off' => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 'off',
+					'help'    => __( 'Enable EPL’s Site Editor templates for listing archives and single listings. Existing sites are disabled by default so their current FSE/theme templates remain unchanged.', 'easy-property-listings' ),
+				),
 
 				array(
 					'name'    => 'epl_feeling_lucky',

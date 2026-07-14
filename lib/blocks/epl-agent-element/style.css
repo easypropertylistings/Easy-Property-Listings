@@ -1,0 +1,17 @@
+.epl-agent-element-photo img,
+.epl-agent-photo {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.epl-agent-element-contact,
+.epl-agent-element-social {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.epl-agent-element-contact a,
+.epl-agent-element-social a {
+	display: inline-block;
+}

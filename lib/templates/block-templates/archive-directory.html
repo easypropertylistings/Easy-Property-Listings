@@ -2,7 +2,8 @@
 
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)">
-	<!-- wp:epl/archive-directory /-->
+	<!-- wp:query-title {"type":"archive"} /-->
+	<!-- wp:query {"query":{"inherit":true},"namespace":"epl/staff-query"} --><div class="wp-block-query"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} --><!-- wp:epl/agent-element {"element":"photo","imageSize":"medium"} /--><!-- wp:epl/agent-element {"element":"name"} /--><!-- wp:epl/agent-element {"element":"position"} /--><!-- wp:epl/agent-element {"element":"contact"} /--><!-- /wp:post-template --><!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} --><!-- wp:query-pagination-previous /--><!-- wp:query-pagination-numbers /--><!-- wp:query-pagination-next /--><!-- /wp:query-pagination --><!-- wp:query-no-results --><!-- wp:paragraph --><p>No staff found.</p><!-- /wp:paragraph --><!-- /wp:query-no-results --></div><!-- /wp:query -->
 </main>
 <!-- /wp:group -->
 
