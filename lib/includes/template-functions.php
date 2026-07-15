@@ -3390,13 +3390,30 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
-	$title = apply_filters( 'epl_shortcode_results_message_title', __( 'Nothing found, please check back later.', 'easy-property-listings' ) );
+	$title = apply_filters( 'epl_shortcode_results_message_title', __( 'Currently no properties matching your search critera', 'easy-property-listings' ) );
 
 	if ( 'open' === $shortcode ) {
 		$title = apply_filters( 'epl_shortcode_results_message_title_open', __( 'Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ) );
 	}
 
-	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $title ) . '</h3>';
+	// Option.
+	$url     = get_bloginfo( 'wpurl' ) . '/';
+	$string  = sprintf(
+		// Translators: %s is a link.
+		__( 'Please click <a href="%s">here</a> to go back home.', 'easy-property-listings' ),
+		esc_url( $url )
+	);
+
+	?>
+
+	<div class="epl-search-not-found-title">
+		<h3 class="entry-title"><?php echo wp_kses_post( $title ); ?></h3>
+	</div>
+		
+	<div class="epl-search-not-found-message">
+		<p><?php echo wp_kses_post( $string ); ?></p>
+	</div>
+	<?php
 }
 add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_callback' );
 
@@ -4171,4 +4188,19 @@ function epl_value_bool_checker( $value ) {
 	} else {
 		return false;
 	}
+}
+
+/**
+ * Custom Meta: Return Value of Commercial Authority Value
+ *
+ * @param string $key Meta key.
+ * @return array the categories in array
+ *
+ * @since 3.7.0
+ */
+function epl_property_com_authority_value( $key ) {
+	$array = epl_get_property_com_authority_opts();
+	$value = array_key_exists( $key, $array ) && ! empty( $array[ $key ] ) ? $array[ $key ] : '';
+
+	return $value;
 }
