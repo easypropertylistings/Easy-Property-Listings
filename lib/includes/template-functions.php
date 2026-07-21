@@ -36,12 +36,14 @@ function epl_reset_property_object( $post ) {
 	global $property;
 	$property = new EPL_Property_Meta( $post );
 	$ID       = epl_listing_has_primary_agent(); //phpcs:ignore
+        
 	if ( $ID ) {
 		$epl_author = new EPL_Author_meta( $ID ); //phpcs:ignore
 
 	} else {
 		$epl_author = new EPL_Author_meta( $post->post_author );
 	}
+
 
 	$SEC_ID = epl_listing_has_secondary_author();
 
@@ -1080,7 +1082,7 @@ function epl_get_property_heading( $listing = null ) {
 
 	if ( $property ) {
 		$property_heading = $property->get_property_meta( 'property_heading' );
-		if ( strlen( trim( $property_heading ) ) ) {
+		if ( is_scalar( $property_heading ) && '' !== trim( (string) $property_heading ) ) {
 			return $property_heading;
 		}
 		return get_the_title( $property->post->ID );
@@ -1166,10 +1168,11 @@ add_action( 'epl_property_category', 'epl_property_category', 10, 2 );
 function epl_get_video_host( $url ) {
 
 	$host = 'unknown';
+	$url  = is_string( $url ) ? $url : '';
 
-	if ( strpos( $url, 'youtu' ) > 0 ) {
+	if ( false !== strpos( $url, 'youtu' ) ) {
 		$host = 'youtube';
-	} elseif ( strpos( $url, 'vimeo' ) > 0 ) {
+	} elseif ( false !== strpos( $url, 'vimeo' ) ) {
 		$host = 'vimeo';
 	}
 
@@ -2260,6 +2263,22 @@ function epl_property_gallery() {
 	$d_gallery_n = epl_get_option( 'display_gallery_n' );
 
 	if ( 1 !== $d_gallery ) {
+		return;
+	}
+
+	/**
+	 * Allow an extension to fully supply the gallery HTML (e.g. CDN-hosted images
+	 * that are not in the WP media library). Return a string to short-circuit the
+	 * default attachment-based gallery; return null to leave default behaviour.
+	 *
+	 * @since 3.5.24
+	 *
+	 * @param string|null $custom  Custom gallery HTML, or null for default.
+	 * @param int         $post_id Current listing ID.
+	 */
+	$custom = apply_filters( 'epl_property_gallery_html', null, get_the_ID() );
+	if ( null !== $custom ) {
+		echo $custom; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return;
 	}
 
@@ -3371,13 +3390,30 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
-	$title = apply_filters( 'epl_shortcode_results_message_title', __( 'Nothing found, please check back later.', 'easy-property-listings' ) );
+	$title = apply_filters( 'epl_shortcode_results_message_title', __( 'Currently no properties matching your search critera', 'easy-property-listings' ) );
 
 	if ( 'open' === $shortcode ) {
 		$title = apply_filters( 'epl_shortcode_results_message_title_open', __( 'Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ) );
 	}
 
-	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $title ) . '</h3>';
+	// Option.
+	$url     = get_bloginfo( 'wpurl' ) . '/';
+	$string  = sprintf(
+		// Translators: %s is a link.
+		__( 'Please click <a href="%s">here</a> to go back home.', 'easy-property-listings' ),
+		esc_url( $url )
+	);
+
+	?>
+
+	<div class="epl-search-not-found-title">
+		<h3 class="entry-title"><?php echo wp_kses_post( $title ); ?></h3>
+	</div>
+		
+	<div class="epl-search-not-found-message">
+		<p><?php echo wp_kses_post( $string ); ?></p>
+	</div>
+	<?php
 }
 add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_callback' );
 
@@ -3473,11 +3509,143 @@ function epl_archive_author_callback() {
 add_action( 'epl_archive_author', 'epl_archive_author_callback' );
 
 /**
- * Contact capture action and messages
+ * Check whether the current user can write contact-capture data.
+ *
+ * Contact capture writes private CRM records and listing metadata, so a public
+ * nonce is not sufficient authorization. Use the same configurable capability
+ * as the EPL contacts admin screen.
+ *
+ * @return bool
+ * @since 3.6.1
+ */
+function epl_contact_capture_user_can_manage() {
+	$capability = epl_get_option( 'min_contact_access', 'manage_options' );
+	$capability = is_string( $capability ) && ! empty( $capability ) ? $capability : 'manage_options';
+	$allowed    = current_user_can( $capability );
+
+	return apply_filters( 'epl_contact_capture_user_can_manage', $allowed, $capability );
+}
+
+/**
+ * Validate and persist an authorized contact-capture request.
+ *
+ * This is shared by the AJAX handler and the form builder callback so direct
+ * form POSTs cannot bypass the AJAX authorization checks.
+ *
+ * @param array $request Submitted request data.
+ * @return true|WP_Error
+ * @since 3.6.1
+ */
+function epl_process_contact_capture_request( $request ) {
+	if ( ! epl_contact_capture_user_can_manage() ) {
+		return new WP_Error( 'epl_contact_capture_forbidden', __( 'You are not allowed to manage contacts.', 'easy-property-listings' ) );
+	}
+
+	if ( ! is_array( $request ) || ! empty( $request['epl_contact_anti_spam'] ) ) {
+		return new WP_Error( 'epl_contact_capture_invalid', __( 'There was a problem with your submission.', 'easy-property-listings' ) );
+	}
+
+	$email = isset( $request['epl_contact_email'] ) ? sanitize_email( wp_unslash( $request['epl_contact_email'] ) ) : '';
+	if ( empty( $email ) ) {
+		return new WP_Error( 'epl_contact_capture_email_required', __( 'Email is required.', 'easy-property-listings' ) );
+	}
+
+	if ( ! is_email( $email ) ) {
+		return new WP_Error( 'epl_contact_capture_invalid_email', __( 'Invalid email.', 'easy-property-listings' ) );
+	}
+
+	$fname = isset( $request['epl_contact_first_name'] )
+		? sanitize_text_field( wp_unslash( $request['epl_contact_first_name'] ) )
+		: '';
+
+	$lname = isset( $request['epl_contact_last_name'] )
+		? sanitize_text_field( wp_unslash( $request['epl_contact_last_name'] ) )
+		: '';
+
+	$phone = isset( $request['epl_contact_phone'] )
+		? sanitize_text_field( wp_unslash( $request['epl_contact_phone'] ) )
+		: '';
+
+	$title = isset( $request['epl_contact_title'] )
+		? sanitize_text_field( wp_unslash( $request['epl_contact_title'] ) )
+		: '';
+
+	$title = trim( $title );
+	if ( empty( $title ) && ( $fname || $lname ) ) {
+		$title = trim( $fname . ' ' . $lname );
+	}
+	if ( empty( $title ) ) {
+		$title = $email;
+	}
+
+	$contact_listing_id = isset( $request['epl_contact_listing_id'] ) ? absint( $request['epl_contact_listing_id'] ) : 0;
+	if ( $contact_listing_id ) {
+		$listing      = get_post( $contact_listing_id );
+		$listing_type = $listing instanceof WP_Post ? $listing->post_type : '';
+		$valid_types  = array_keys( epl_get_post_types() );
+
+		if (
+			! $listing instanceof WP_Post ||
+			! in_array( $listing_type, $valid_types, true ) ||
+			! current_user_can( 'edit_post', $contact_listing_id )
+		) {
+			return new WP_Error( 'epl_contact_capture_invalid_listing', __( 'Invalid listing.', 'easy-property-listings' ) );
+		}
+	}
+
+	$contact_listing_note = isset( $request['epl_contact_note'] )
+		? sanitize_textarea_field( wp_unslash( $request['epl_contact_note'] ) )
+		: '';
+
+	$contact = new EPL_Contact( $email );
+	if ( ! empty( $contact->ID ) ) {
+		if ( ! current_user_can( 'edit_post', $contact->ID ) ) {
+			return new WP_Error( 'epl_contact_capture_invalid_contact', __( 'You are not allowed to edit this contact.', 'easy-property-listings' ) );
+		}
+
+		if ( $contact_listing_note ) {
+			$contact->add_note( $contact_listing_note, 'note', $contact_listing_id );
+		}
+
+		if ( $contact_listing_id ) {
+			$contact->attach_listing( $contact_listing_id );
+		}
+
+		return true;
+	}
+
+	$contact_data = array(
+		'name'  => $title,
+		'email' => $email,
+	);
+
+	if ( ! $contact->create( $contact_data ) ) {
+		return new WP_Error( 'epl_contact_capture_create_failed', __( 'There was a problem with your submission.', 'easy-property-listings' ) );
+	}
+
+	$contact->update_meta( 'contact_first_name', $fname );
+	$contact->update_meta( 'contact_last_name', $lname );
+	$contact->update_meta( 'contact_phones', array( 'phone' => $phone ) );
+	$contact->update_meta( 'contact_category', 'widget' );
+
+	if ( $contact_listing_id ) {
+		$contact->attach_listing( $contact_listing_id );
+	}
+
+	if ( $contact_listing_note ) {
+		$contact->add_note( $contact_listing_note, 'note', $contact_listing_id );
+	}
+
+	return true;
+}
+
+/**
+ * Contact capture action and messages.
  *
  * @since 3.3
  * @since 3.5.16 Fix: Vulnerability in contact form shortcode.
  * @since 3.5.17 Tweak: Contact form email address validation check and message.
+ * @since 3.6.1 Removed unauthenticated access and added capability checks.
  */
 function epl_contact_capture_action() {
 
@@ -3497,144 +3665,23 @@ function epl_contact_capture_action() {
 		),
 	);
 
-	if (
-		! isset( $_POST['epl_contact_widget'] ) ||
-		! wp_verify_nonce(
-			sanitize_text_field( wp_unslash( $_POST['epl_contact_widget'] ) ),
-			'epl_contact_widget'
-		)
-	) {
-		wp_die( wp_json_encode( $fail ) );
+	if ( false === check_ajax_referer( 'epl_contact_widget', 'epl_contact_widget', false ) ) {
+		wp_send_json( $fail, 403 );
 	}
 
-	if ( ! empty( $_POST['epl_contact_anti_spam'] ) ) {
-		wp_die( wp_json_encode( $fail ) );
+	if ( ! epl_contact_capture_user_can_manage() ) {
+		wp_send_json( $fail, 403 );
 	}
 
-	if ( empty( $_POST['epl_contact_email'] ) ) {
-		wp_die(
-			wp_json_encode(
-				array(
-					'status' => 'fail',
-					'msg'    => __( 'Email is required.', 'easy-property-listings' ),
-				)
-			)
-		);
+	$result = epl_process_contact_capture_request( $_POST );
+	if ( is_wp_error( $result ) ) {
+		$fail['msg'] = $result->get_error_message();
+		wp_send_json( $fail, 400 );
 	}
 
-	$email = sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) );
-
-	// Check if email is not valid, skip further processing and display message.
-	if ( ! is_email( $email ) ) {
-		wp_die(
-			wp_json_encode(
-				array(
-					'status' => 'fail',
-					'msg'    => __( 'Invalid email.', 'easy-property-listings' ),
-				)
-			)
-		);
-	}
-
-	$fname = isset( $_POST['epl_contact_first_name'] )
-		? sanitize_text_field( wp_unslash( $_POST['epl_contact_first_name'] ) )
-		: '';
-
-	$lname = isset( $_POST['epl_contact_last_name'] )
-		? sanitize_text_field( wp_unslash( $_POST['epl_contact_last_name'] ) )
-		: '';
-
-	$phone = isset( $_POST['epl_contact_phone'] )
-		? sanitize_text_field( wp_unslash( $_POST['epl_contact_phone'] ) )
-		: '';
-
-	$title = isset( $_POST['epl_contact_title'] )
-		? sanitize_text_field( wp_unslash( $_POST['epl_contact_title'] ) )
-		: '';
-
-	$title = trim( $title );
-
-	if ( empty( $title ) && ( $fname || $lname ) ) {
-		$title = $fname . ' ' . $lname;
-	}
-
-	if ( empty( $title ) ) {
-		$title = $email;
-	}
-
-	$contact_listing_id = isset( $_POST['epl_contact_listing_id'] )
-		? intval( $_POST['epl_contact_listing_id'] )
-		: false;
-
-	if ( $contact_listing_id && 'property' !== get_post_type( $contact_listing_id ) ) {
-		wp_die(
-			wp_json_encode(
-				array(
-					'status' => 'fail',
-					'msg'    => __( 'Invalid listing.', 'easy-property-listings' ),
-				)
-			)
-		);
-	}
-
-	$contact_listing_note = isset( $_POST['epl_contact_note'] )
-		? sanitize_textarea_field( wp_unslash( $_POST['epl_contact_note'] ) )
-		: '';
-
-	$contact = new EPL_Contact( $email );
-
-	if ( ! empty( $contact->ID ) ) {
-
-		if ( $contact_listing_note ) {
-			$contact->add_note(
-				$contact_listing_note,
-				'note',
-				$contact_listing_id
-			);
-		}
-
-		if ( $contact_listing_id ) {
-			$contact->attach_listing( $contact_listing_id );
-		}
-
-		wp_die( wp_json_encode( $success ) );
-	}
-
-	$contact_data = array(
-		'name'  => $title,
-		'email' => $email,
-	);
-
-	if ( $contact->create( $contact_data ) ) {
-
-		$contact->update_meta( 'contact_first_name', $fname );
-		$contact->update_meta( 'contact_last_name', $lname );
-		$contact->update_meta(
-			'contact_phones',
-			array( 'phone' => $phone )
-		);
-		$contact->update_meta( 'contact_category', 'widget' );
-
-		if ( $contact_listing_id ) {
-			$contact->attach_listing( $contact_listing_id );
-		}
-
-		if ( $contact_listing_note ) {
-			$contact->add_note(
-				$contact_listing_note,
-				'note',
-				$contact_listing_id
-			);
-		}
-
-		wp_die( wp_json_encode( $success ) );
-	}
-
-	wp_die( wp_json_encode( $fail ) );
+	wp_send_json( $success );
 }
 add_action( 'wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action' );
-add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action' );
-
 
 /**
  * Get Post ID from Unique ID
@@ -4152,4 +4199,19 @@ function epl_value_bool_checker( $value ) {
 	} else {
 		return false;
 	}
+}
+
+/**
+ * Custom Meta: Return Value of Commercial Authority Value
+ *
+ * @param string $key Meta key.
+ * @return array the categories in array
+ *
+ * @since 3.7.0
+ */
+function epl_property_com_authority_value( $key ) {
+	$array = epl_get_property_com_authority_opts();
+	$value = array_key_exists( $key, $array ) && ! empty( $array[ $key ] ) ? $array[ $key ] : '';
+
+	return $value;
 }
