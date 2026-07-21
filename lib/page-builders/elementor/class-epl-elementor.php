@@ -57,6 +57,12 @@ class EPL_Elementor {
 	 */
 	private $widgets_path;
 
+	/** @var array<string,WP_Query> Queries produced by Elementor Loop Grid widgets. */
+	private $loop_grid_queries = array();
+
+	/** @var array Settings from the Loop Grid currently being rendered. */
+	private $active_loop_grid_settings = array();
+
 	/**
 	 * Constructor
 	 *
@@ -88,6 +94,13 @@ class EPL_Elementor {
 		add_action( 'elementor/query/epl_listings', array( $this, 'elementor_listings_query' ), 10, 2 );
 		add_action( 'elementor/query/epl_staff', array( $this, 'elementor_staff_query' ), 10, 2 );
 		add_filter( 'elementor/query/query_args', array( $this, 'elementor_loop_query_args' ), 20, 2 );
+		add_filter( 'elementor/query/get_query_args/current_query', array( $this, 'elementor_current_query_args' ), 20 );
+		add_action( 'elementor/frontend/widget/before_render', array( $this, 'begin_loop_grid_render' ) );
+		add_action( 'elementor/frontend/widget/after_render', array( $this, 'end_loop_grid_render' ) );
+		add_action( 'elementor/query/query_results', array( $this, 'capture_loop_grid_query' ), 20, 2 );
+		add_action( 'elementor/element/loop-grid/section_pagination/before_section_end', array( $this, 'register_loop_grid_pagination_provider' ) );
+		add_filter( 'elementor/widget/render_content', array( $this, 'render_loop_grid_epl_pagination' ), 20, 2 );
+		add_filter( 'pre_handle_404', array( $this, 'allow_epl_loop_grid_page' ), 20, 2 );
 		add_filter( 'elementor/theme/need_override_location', array( $this, 'override_staff_directory_location' ), 20, 3 );
 
 		// Elementor can clear Theme Builder conditions while an Archive document
@@ -238,6 +251,7 @@ class EPL_Elementor {
 		$archive_widgets = array(
 			'EPL_Elementor_Listing_Advanced',
 			'EPL_Elementor_Listing_Search',
+			'EPL_Elementor_Pagination',
 		);
 
 		// Elementor's Loop Grid is a Pro feature. Free users get an EPL-native
@@ -302,6 +316,7 @@ class EPL_Elementor {
 			'class-epl-elementor-listing-advanced.php',
 			'class-epl-elementor-listings.php',
 			'class-epl-elementor-listing-search.php',
+			'class-epl-elementor-pagination.php',
 		);
 
 		foreach ( $archives as $file ) {
@@ -450,7 +465,11 @@ class EPL_Elementor {
 			$property = new EPL_Property_Meta( $post );
 		}
 
-		if ( ! $property && self::is_editor() ) {
+		// Nested Loop Item documents can temporarily expose the Archive document
+		// or a regular post as the global post while Elementor builds its editor
+		// canvas. In that case a stale global property must not suppress the EPL
+		// preview fallback.
+		if ( ( self::is_editor() || self::is_epl_elementor_document_context() ) && ( ! $post || ! is_epl_post( $post->post_type ) ) ) {
 			$preview = self::get_preview_property();
 
 			if ( $preview ) {
@@ -497,7 +516,55 @@ class EPL_Elementor {
 	 * @return bool
 	 */
 	public static function is_editor() {
-		return isset( \Elementor\Plugin::$instance->editor ) && \Elementor\Plugin::$instance->editor->is_edit_mode();
+		$is_edit_mode       = isset( \Elementor\Plugin::$instance->editor ) && \Elementor\Plugin::$instance->editor->is_edit_mode();
+		$is_preview         = isset( \Elementor\Plugin::$instance->preview ) && \Elementor\Plugin::$instance->preview->is_preview_mode();
+		$is_preview_request = isset( $_GET['elementor-preview'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only preview detection.
+		$ajax_action       = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only editor request detection.
+		$is_elementor_ajax = wp_doing_ajax() && 0 === strpos( $ajax_action, 'elementor' );
+
+		return $is_edit_mode || $is_preview || $is_preview_request || $is_elementor_ajax;
+	}
+
+	/**
+	 * Detect an EPL Loop Item while Elementor renders a nested document.
+	 *
+	 * Elementor does not consistently expose edit/preview mode while a Loop Item
+	 * is rendered inside an Archive document. Inspect the active Elementor
+	 * documents so dynamic EPL widgets can still receive preview listing data.
+	 *
+	 * @return bool
+	 */
+	private static function is_epl_elementor_document_context() {
+		$document_ids = array();
+		$current_post = get_post();
+
+		if ( $current_post && 'elementor_library' === $current_post->post_type ) {
+			$document_ids[] = (int) $current_post->ID;
+		}
+
+		if ( isset( \Elementor\Plugin::$instance->documents ) ) {
+			$current_document = \Elementor\Plugin::$instance->documents->get_current();
+			if ( $current_document ) {
+				$document_ids[] = (int) $current_document->get_main_id();
+			}
+		}
+
+		foreach ( array_unique( array_filter( $document_ids ) ) as $document_id ) {
+			$data = (string) get_post_meta( $document_id, '_elementor_data', true );
+			if ( 'listing' === self::get_epl_template_context( $document_id ) ) {
+				return true;
+			}
+
+			if ( preg_match_all( '/"template_id":(?:"?)(\d+)(?:"?)/', $data, $matches ) ) {
+				foreach ( $matches[1] as $template_id ) {
+					if ( 'listing' === self::get_epl_template_context( absint( $template_id ) ) ) {
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -692,10 +759,8 @@ class EPL_Elementor {
 			return $query_args;
 		}
 
-		$source        = (string) $widget->get_settings( 'post_query_post_type' );
-		$is_edit_mode  = isset( \Elementor\Plugin::$instance->editor ) && \Elementor\Plugin::$instance->editor->is_edit_mode();
-		$is_preview    = isset( \Elementor\Plugin::$instance->preview ) && \Elementor\Plugin::$instance->preview->is_preview_mode();
-		$is_editor     = $is_edit_mode || $is_preview;
+		$source    = (string) $widget->get_settings( 'post_query_post_type' );
+		$is_editor = self::is_editor();
 
 		// Elementor resolves "Current Query" from the global query. Inside the
 		// Theme Builder editor that global points at the elementor_library archive
@@ -724,12 +789,302 @@ class EPL_Elementor {
 	}
 
 	/**
+	 * Supply representative listings for a Current Query Loop Grid in the editor.
+	 *
+	 * Elementor returns early for Current Query and therefore does not run its
+	 * general elementor/query/query_args filter. Its Theme Builder preview query
+	 * normally contains one post, irrespective of the Loop Grid item count.
+	 *
+	 * @param array $query_args Current global query variables.
+	 * @return array
+	 */
+	public function elementor_current_query_args( $query_args ) {
+		// Prefer the live widget model. This includes unsaved editor changes and
+		// avoids stale document/element caches. Parsing the saved archive remains
+		// a fallback for render paths that do not fire Elementor's widget hooks.
+		$loop_settings = $this->active_loop_grid_settings;
+		if ( empty( $loop_settings ) ) {
+			$loop_settings = self::get_current_epl_loop_grid_settings();
+		}
+		if ( empty( $loop_settings ) ) {
+			return $query_args;
+		}
+
+		$posts_per_page = isset( $loop_settings['posts_per_page'] ) ? absint( $loop_settings['posts_per_page'] ) : 3;
+		$posts_per_page = max( 1, $posts_per_page );
+
+		// Elementor's Current Query source copies the archive's main query and
+		// returns before its normal Loop Grid query filters run. That also copies
+		// the site's Reading setting (commonly 8 or 10 posts), silently ignoring
+		// the Loop Grid's Items Per Page control. Keep the real archive filters on
+		// the frontend, but make the saved widget value authoritative.
+		if ( ! self::is_editor() ) {
+			$query_args['posts_per_page']     = $posts_per_page;
+			$query_args['epl_elementor_loop'] = true;
+			if ( ! empty( $loop_settings['_epl_widget_id'] ) ) {
+				$query_args['instance_id']        = 'elementor-' . sanitize_key( $loop_settings['_epl_widget_id'] );
+				$query_args['is_epl_shortcode']   = true;
+				$query_args['epl_shortcode_name'] = 'listing_advanced';
+			}
+			return $query_args;
+		}
+
+		return array(
+			'post_type'           => self::get_archive_preview_post_types(),
+			'post_status'         => 'publish',
+			'posts_per_page'      => $posts_per_page,
+			'paged'               => 1,
+			'orderby'             => 'date',
+			'order'               => 'DESC',
+			'ignore_sticky_posts' => true,
+			'epl_elementor_loop'  => true,
+		);
+	}
+
+	/** Capture live Loop Grid settings immediately before its query is created. */
+	public function begin_loop_grid_render( $widget ) {
+		if ( ! $widget || 'loop-grid' !== $widget->get_name() ) {
+			return;
+		}
+		$template_id = absint( $widget->get_settings( 'template_id' ) );
+		if ( $template_id && 'listing' === self::get_epl_template_context( $template_id ) ) {
+			$this->active_loop_grid_settings = $widget->get_settings_for_display();
+			$this->active_loop_grid_settings['_epl_widget_id'] = $widget->get_id();
+		}
+	}
+
+	/** Clear live Loop Grid state after rendering to avoid affecting another query. */
+	public function end_loop_grid_render( $widget ) {
+		if ( $widget && 'loop-grid' === $widget->get_name() ) {
+			$this->active_loop_grid_settings = array();
+		}
+	}
+
+	/**
+	 * Add an EPL renderer choice to Elementor Pro's native Loop Grid pagination.
+	 *
+	 * Elementor remains the default and retains all of its AJAX/load-more modes.
+	 * EPL pagination is available for the numbered pagination modes.
+	 *
+	 * @param \Elementor\Element_Base $element Loop Grid element.
+	 */
+	public function register_loop_grid_pagination_provider( $element ) {
+		$element->add_control(
+			'epl_pagination_provider',
+			array(
+				'label'     => esc_html__( 'Pagination Renderer', 'easy-property-listings' ),
+				'type'      => \Elementor\Controls_Manager::SELECT,
+				'default'   => 'elementor',
+				'options'   => array(
+					'elementor' => esc_html__( 'Elementor', 'easy-property-listings' ),
+					'epl'       => esc_html__( 'EPL', 'easy-property-listings' ),
+				),
+				'condition' => array(
+					'pagination_type!' => array( '', 'load_more_on_click', 'load_more_infinite_scroll' ),
+				),
+			)
+		);
+		$element->add_control(
+			'epl_pagination_style',
+			array(
+				'label'     => esc_html__( 'EPL Pagination Type', 'easy-property-listings' ),
+				'type'      => \Elementor\Controls_Manager::SELECT,
+				'default'   => 'default',
+				'options'   => array(
+					'fancy'   => esc_html__( 'Fancy', 'easy-property-listings' ),
+					'default' => esc_html__( 'WordPress Default', 'easy-property-listings' ),
+				),
+				'condition' => array(
+					'epl_pagination_provider' => 'epl',
+				),
+			)
+		);
+	}
+
+	/**
+	 * Retain the exact query Elementor used so EPL pagination cannot drift from it.
+	 *
+	 * @param WP_Query              $query  Elementor query.
+	 * @param \Elementor\Widget_Base $widget Elementor widget.
+	 */
+	public function capture_loop_grid_query( $query, $widget ) {
+		if ( $query instanceof WP_Query && $widget && 'loop-grid' === $widget->get_name() ) {
+			$this->loop_grid_queries[ $widget->get_id() ] = $query;
+		}
+	}
+
+	/**
+	 * Replace Loop Grid's native numbered navigation with EPL navigation on demand.
+	 *
+	 * @param string                 $content Rendered widget HTML.
+	 * @param \Elementor\Widget_Base $widget  Elementor widget.
+	 * @return string
+	 */
+	public function render_loop_grid_epl_pagination( $content, $widget ) {
+		if ( ! $widget || 'loop-grid' !== $widget->get_name() ) {
+			return $content;
+		}
+		$integrated_epl = 'epl' === $widget->get_settings( 'epl_pagination_provider' );
+		$standalone_epl = self::current_document_has_epl_pagination_widget();
+		if ( ! $integrated_epl && ! $standalone_epl ) {
+			return $content;
+		}
+
+		$query = $this->loop_grid_queries[ $widget->get_id() ] ?? null;
+		if ( ! $query instanceof WP_Query ) {
+			return $content;
+		}
+
+		// Native numbered pagination is removed only after Elementor has used its
+		// settings to calculate the correct current page and query offset.
+		$content = preg_replace( '#\s*<div class="e-load-more-anchor"[^>]*></div>\s*<nav class="elementor-pagination".*?</nav>#s', '', $content );
+		if ( $standalone_epl ) {
+			return $content;
+		}
+		ob_start();
+		$pagination_style = $widget->get_settings( 'epl_pagination_style' );
+		self::render_loop_grid_epl_navigation( $query, $widget->get_id(), $pagination_style ? $pagination_style : 'default' );
+		return $content . ob_get_clean();
+	}
+
+	/** Whether the active Elementor archive already contains EPL Pagination. */
+	private static function current_document_has_epl_pagination_widget() {
+		$document_id = get_the_ID();
+		if ( isset( \Elementor\Plugin::$instance->documents ) ) {
+			$document = \Elementor\Plugin::$instance->documents->get_current();
+			if ( $document ) {
+				$document_id = $document->get_main_id();
+			}
+		}
+		$data = $document_id ? (string) get_post_meta( $document_id, '_elementor_data', true ) : '';
+		return false !== strpos( $data, '"widgetType":"epl-pagination"' );
+	}
+
+	/**
+	 * Render canonical EPL navigation for an Elementor Loop Grid.
+	 *
+	 * @param WP_Query $query     Loop Grid query.
+	 * @param string   $widget_id Elementor widget ID.
+	 */
+	public static function render_loop_grid_epl_navigation( $query, $widget_id, $pagination_style = '' ) {
+		if ( ! $query instanceof WP_Query || $query->max_num_pages < 2 ) {
+			return;
+		}
+		$original = array(
+			'instance_id'        => $query->get( 'instance_id' ),
+			'is_epl_shortcode'   => $query->get( 'is_epl_shortcode' ),
+			'epl_shortcode_name' => $query->get( 'epl_shortcode_name' ),
+		);
+		$query->set( 'instance_id', 'elementor-' . sanitize_key( $widget_id ) );
+		$query->set( 'is_epl_shortcode', true );
+		$query->set( 'epl_shortcode_name', 'listing_advanced' );
+		self::render_epl_pagination( $query, $pagination_style );
+		foreach ( $original as $key => $value ) {
+			$query->set( $key, $value );
+		}
+	}
+
+	/**
+	 * Render EPL pagination while optionally overriding its global style setting.
+	 *
+	 * @param WP_Query $query            Query being paginated.
+	 * @param string   $pagination_style Either "fancy", "default", or empty to
+	 *                                   follow the global EPL setting.
+	 */
+	public static function render_epl_pagination( $query, $pagination_style = '' ) {
+		$style_filter = null;
+		if ( in_array( $pagination_style, array( 'fancy', 'default' ), true ) ) {
+			$style_filter = static function () use ( $pagination_style ) {
+				return 'fancy' === $pagination_style ? 1 : 0;
+			};
+			add_filter( 'epl_get_option_use_fancy_navigation', $style_filter, PHP_INT_MAX );
+		}
+
+		do_action( 'epl_pagination', array( 'query' => $query ) );
+
+		if ( $style_filter ) {
+			remove_filter( 'epl_get_option_use_fancy_navigation', $style_filter, PHP_INT_MAX );
+		}
+	}
+
+	/** Return the most recently rendered Loop Grid query for a following widget. */
+	public function get_last_loop_grid_query() {
+		if ( empty( $this->loop_grid_queries ) ) {
+			return array();
+		}
+		$widget_id = array_key_last( $this->loop_grid_queries );
+		return array( 'widget_id' => $widget_id, 'query' => $this->loop_grid_queries[ $widget_id ] );
+	}
+
+	/** Prevent the archive main-query page size from 404ing an EPL Loop Grid page. */
+	public function allow_epl_loop_grid_page( $preempt, $query ) {
+		$instance_id = isset( $_GET['pagination_id'] ) ? sanitize_text_field( wp_unslash( $_GET['pagination_id'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Public pagination state.
+		if ( 0 !== strpos( $instance_id, 'elementor-' ) || ! is_post_type_archive( epl_get_core_post_types() ) ) {
+			return $preempt;
+		}
+		return true;
+	}
+
+	/**
+	 * Find the EPL Loop Grid settings in the active Elementor document.
+	 *
+	 * @return array
+	 */
+	private static function get_current_epl_loop_grid_settings() {
+		$document_ids = array();
+		$current_post = get_post();
+
+		if ( $current_post && 'elementor_library' === $current_post->post_type ) {
+			$document_ids[] = (int) $current_post->ID;
+		}
+
+		if ( isset( \Elementor\Plugin::$instance->documents ) ) {
+			$current_document = \Elementor\Plugin::$instance->documents->get_current();
+			if ( $current_document ) {
+				$document_ids[] = (int) $current_document->get_main_id();
+			}
+		}
+
+		foreach ( array_unique( array_filter( $document_ids ) ) as $document_id ) {
+			$elements = json_decode( (string) get_post_meta( $document_id, '_elementor_data', true ), true );
+			$stack    = is_array( $elements ) ? $elements : array();
+
+			while ( $stack ) {
+				$element = array_pop( $stack );
+				if ( ! is_array( $element ) ) {
+					continue;
+				}
+
+				if ( 'loop-grid' === ( $element['widgetType'] ?? '' ) ) {
+					$settings    = isset( $element['settings'] ) && is_array( $element['settings'] ) ? $element['settings'] : array();
+					$template_id = isset( $settings['template_id'] ) ? absint( $settings['template_id'] ) : 0;
+					if ( $template_id && 'listing' === self::get_epl_template_context( $template_id ) ) {
+						$settings['_epl_widget_id'] = isset( $element['id'] ) ? sanitize_key( $element['id'] ) : '';
+						return $settings;
+					}
+				}
+
+				if ( ! empty( $element['elements'] ) && is_array( $element['elements'] ) ) {
+					$stack = array_merge( $stack, $element['elements'] );
+				}
+			}
+		}
+
+		return array();
+	}
+
+	/**
 	 * Determine whether a Loop Item is for listings or Staff Directory posts.
 	 *
 	 * @param int $template_id Elementor template ID.
 	 * @return string "listing", "staff", or an empty string.
 	 */
 	private static function get_epl_template_context( $template_id ) {
+		$stored_context = (string) get_post_meta( $template_id, '_epl_elementor_template_context', true );
+		if ( in_array( $stored_context, array( 'listing', 'staff' ), true ) ) {
+			return $stored_context;
+		}
+
 		$data = (string) get_post_meta( $template_id, '_elementor_data', true );
 		if ( false !== strpos( $data, '"widgetType":"epl-property-' ) || false !== strpos( $data, '"widgetType":"epl-listing-agents"' ) ) {
 			return 'listing';
@@ -851,15 +1206,19 @@ class EPL_Elementor {
 			}
 		}
 
-		// Get EPL post types.
-		$post_types = epl_get_core_post_types();
+		// Prefer the listing type selected by the active Archive document. Editing
+		// a Loop Item directly has no archive condition, so this naturally falls
+		// back to every core EPL listing type.
+		$post_types = self::get_archive_preview_post_types();
 
 		if ( empty( $post_types ) ) {
 			$preview_property = false;
 			return false;
 		}
 
-		// Query for a published listing.
+		// Prefer a listing with a featured image so image-led Loop Items produce a
+		// useful preview while Elementor switches templates. Fall back to any EPL
+		// listing below for sites whose listings do not use featured images.
 		$args = array(
 			'post_type'      => $post_types,
 			'post_status'    => 'publish',
@@ -867,9 +1226,19 @@ class EPL_Elementor {
 			'orderby'        => 'date',
 			'order'          => 'DESC',
 			'no_found_rows'  => true,
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Single editor-preview record only.
+				array(
+					'key'     => '_thumbnail_id',
+					'compare' => 'EXISTS',
+				),
+			),
 		);
 
 		$query = new WP_Query( $args );
+		if ( ! $query->have_posts() ) {
+			unset( $args['meta_query'] );
+			$query = new WP_Query( $args );
+		}
 
 		if ( $query->have_posts() ) {
 			$preview_property = new EPL_Property_Meta( $query->posts[0] );

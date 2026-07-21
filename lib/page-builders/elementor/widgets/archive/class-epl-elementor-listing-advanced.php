@@ -63,7 +63,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 			)
 		);
 		$this->add_control( 'limit', array( 'label' => esc_html__( 'Listings Per Page', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 1, 'max' => 100, 'default' => 10 ) );
-		$this->add_control( 'offset', array( 'label' => esc_html__( 'Offset', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 0, 'default' => 0, 'description' => esc_html__( 'Using an offset disables pagination.', 'easy-property-listings' ) ) );
+		$this->add_control( 'offset', array( 'label' => esc_html__( 'Offset', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 0, 'default' => 0 ) );
 		$this->add_control( 'post__in', array( 'label' => esc_html__( 'Include Listing IDs', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::TEXT, 'label_block' => true, 'description' => esc_html__( 'Comma-separated post IDs.', 'easy-property-listings' ) ) );
 		$this->add_control( 'post__not_in', array( 'label' => esc_html__( 'Exclude Listing IDs', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::TEXT, 'label_block' => true, 'description' => esc_html__( 'Comma-separated post IDs.', 'easy-property-listings' ) ) );
 		$this->end_controls_section();
@@ -187,7 +187,31 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		}
 		$this->add_control( 'tools_top', $this->switcher_args( esc_html__( 'Archive Tools Above', 'easy-property-listings' ), 'on', 'off' ) );
 		$this->add_control( 'tools_bottom', $this->switcher_args( esc_html__( 'Archive Tools Below', 'easy-property-listings' ), 'on', 'off' ) );
-		$this->add_control( 'pagination', $this->switcher_args( esc_html__( 'Pagination', 'easy-property-listings' ), 'on', 'off', 'on' ) );
+		$this->add_control(
+			'pagination',
+			array(
+				'label'   => esc_html__( 'Pagination', 'easy-property-listings' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'epl',
+				'options' => array(
+					'off' => esc_html__( 'None', 'easy-property-listings' ),
+					'epl' => esc_html__( 'EPL', 'easy-property-listings' ),
+				),
+			)
+		);
+		$this->add_control(
+			'epl_pagination_style',
+			array(
+				'label'     => esc_html__( 'EPL Pagination Type', 'easy-property-listings' ),
+				'type'      => \Elementor\Controls_Manager::SELECT,
+				'default'   => 'default',
+				'options'   => array(
+					'fancy'   => esc_html__( 'Fancy', 'easy-property-listings' ),
+					'default' => esc_html__( 'WordPress Default', 'easy-property-listings' ),
+				),
+				'condition' => array( 'pagination' => 'epl' ),
+			)
+		);
 		$this->add_responsive_control( 'columns', array( 'label' => esc_html__( 'Columns', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '3', 'tablet_default' => '2', 'mobile_default' => '1', 'options' => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ), 'selectors' => array( '{{WRAPPER}} .epl-elementor-advanced-grid' => '--epl-elementor-advanced-columns: {{VALUE}};' ) ) );
 		$this->end_controls_section();
 
@@ -204,17 +228,23 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 
 		if ( 'elementor' !== $settings['renderer'] || empty( $settings['elementor_template_id'] ) || ! $this->get_elementor_loop_templates() ) {
 			echo $shortcode->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- EPL templates escape their output.
-			return;
+		} else {
+			$this->render_elementor_template( $shortcode, absint( $settings['elementor_template_id'] ) );
 		}
 
-		$this->render_elementor_template( $shortcode, absint( $settings['elementor_template_id'] ) );
+		$pagination = empty( $settings['offset'] ) && 'off' !== ( $settings['pagination'] ?? 'epl' ) ? 'epl' : 'off';
+		$pagination_style = ! empty( $settings['epl_pagination_style'] ) ? $settings['epl_pagination_style'] : 'default';
+		$this->render_pagination( $shortcode->query_open, $pagination, $pagination_style );
 	}
 
 	private function build_shortcode_attributes( $settings ) {
-		$keys = array( 'post_type', 'status', 'commercial_listing_type', 'feature', 'feature_id', 'limit', 'offset', 'author', 'agent', 'featured', 'open_house', 'auction', 'template', 'location', 'location_id', 'tools_top', 'tools_bottom', 'sortby', 'orderby_clause', 'sort_order', 'pagination', 'post__in', 'post__not_in' );
+		$keys = array( 'post_type', 'status', 'commercial_listing_type', 'feature', 'feature_id', 'limit', 'offset', 'author', 'agent', 'featured', 'open_house', 'auction', 'template', 'location', 'location_id', 'tools_top', 'tools_bottom', 'sortby', 'orderby_clause', 'sort_order', 'post__in', 'post__not_in' );
 		$atts = array(
 			'instance_id' => 'elementor-' . $this->get_id(),
 			'class'       => 'epl-elementor-advanced-grid',
+			// Pagination is rendered below so EPL and Elementor providers share the
+			// exact same query and never produce duplicate navigation.
+			'pagination'  => 'off',
 		);
 		foreach ( $keys as $key ) {
 			$value = isset( $settings[ $key ] ) ? $settings[ $key ] : '';
@@ -279,11 +309,16 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		if ( 'on' === $shortcode->attributes['tools_bottom'] ) {
 			do_action( 'epl_property_loop_end' );
 		}
-		if ( 'on' === $shortcode->attributes['pagination'] ) {
-			epl_pagination( array( 'query' => $query ) );
-		}
 		wp_reset_postdata();
 		$property = $original_property; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Restore caller context.
+	}
+
+	/** Render the selected navigation provider for this widget's private query. */
+	private function render_pagination( $query, $provider, $pagination_style = 'default' ) {
+		if ( ! $query instanceof WP_Query || $query->max_num_pages < 2 || 'off' === $provider ) {
+			return;
+		}
+		EPL_Elementor::render_epl_pagination( $query, $pagination_style );
 	}
 
 	private function get_elementor_loop_templates() {
