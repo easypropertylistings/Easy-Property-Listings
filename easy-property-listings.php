@@ -295,6 +295,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
+				require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-feedsync-ads.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-metabox.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
