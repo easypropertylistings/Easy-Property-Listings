@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: https://www.realestateconnected.com.au/
- * Version: 3.5.24
+ * Version: 3.6.0
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.5.24
+ * @version 3.6.0
  */
 
 // Exit if accessed directly.
@@ -126,7 +126,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.5.24' );
+				define( 'EPL_PROPERTY_VER', '3.6.0' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -295,6 +295,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
+				require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-feedsync-ads.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-metabox.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
@@ -350,6 +351,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			// Block Templates for FSE support.
 			require_once EPL_PATH_LIB . 'includes/class-epl-block-template-utils.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-block-templates-controller.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-block-element-renderer.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-register-blocks.php';
 			// Page Builders Integration.
 			require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor.php';

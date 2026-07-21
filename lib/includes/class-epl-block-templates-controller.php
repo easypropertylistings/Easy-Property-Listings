@@ -38,13 +38,16 @@ if ( ! class_exists( 'EPL_Block_Templates_Controller' ) ) :
 		 * @since 3.6.0
 		 */
 		public function init() {
-			if ( ! EPL_Block_Template_Utils::supports_block_templates() ) {
+			if ( ! epl_block_templates_enabled() || ! EPL_Block_Template_Utils::supports_block_templates() ) {
 				return;
 			}
 
 			add_filter( 'get_block_templates', array( $this, 'add_block_templates_with_epl_slug' ), 10, 3 );
 			add_filter( 'pre_get_block_file_template', array( $this, 'get_block_file_template' ), 10, 3 );
 			add_filter( 'get_block_template', array( $this, 'add_block_template_object' ), 10, 3 );
+			foreach ( array( 'archive', 'home', 'index', 'search' ) as $template_type ) {
+				add_filter( $template_type . '_template_hierarchy', array( $this, 'add_epl_search_template_to_hierarchy' ) );
+			}
 			add_action( 'init', array( $this, 'register_block_templates' ), 20 );
 		}
 
@@ -60,6 +63,10 @@ if ( ! class_exists( 'EPL_Block_Templates_Controller' ) ) :
 			}
 
 			$template_files = EPL_Block_Template_Utils::get_template_files( 'block-templates' );
+
+			if ( ! function_exists( 'register_block_template' ) ) {
+				return;
+			}
 
 			foreach ( $template_files as $template_file ) {
 				$template_content = EPL_Block_Template_Utils::get_template_content( $template_file['slug'] );
@@ -80,6 +87,20 @@ if ( ! class_exists( 'EPL_Block_Templates_Controller' ) ) :
 		}
 
 		/**
+		 * Prefer the EPL search template for an EPL search request.
+		 *
+		 * @param string[] $templates Search template hierarchy.
+		 * @return string[]
+		 */
+		public function add_epl_search_template_to_hierarchy( $templates ) {
+			if ( function_exists( 'epl_is_search' ) && epl_is_search() ) {
+				array_unshift( $templates, 'search-listing.php' );
+			}
+
+			return array_values( array_unique( $templates ) );
+		}
+
+		/**
 		 * Add database templates with EPL slug pattern
 		 *
 		 * @since 3.6.0
@@ -89,6 +110,13 @@ if ( ! class_exists( 'EPL_Block_Templates_Controller' ) ) :
 		 * @return WP_Block_Template[]
 		 */
 		public function add_block_templates_with_epl_slug( $templates, $query, $template_type ) {
+			// Files in block-templates are full templates, never template parts.
+			// Registering them for wp_template_part creates a duplicate editor item
+			// whose changes cannot affect the frontend template hierarchy.
+			if ( 'wp_template' !== $template_type ) {
+				return $templates;
+			}
+
 			$slugs = isset( $query['slug__in'] ) ? $query['slug__in'] : array();
                         
 			if ( ! EPL_Block_Template_Utils::supports_block_templates( $template_type ) ) {
@@ -287,7 +315,7 @@ if ( ! class_exists( 'EPL_Block_Templates_Controller' ) ) :
 		 * @return WP_Block_Template|null
 		 */
 		public function get_block_file_template( $template, $id, $template_type ) {
-			if ( ! in_array( $template_type, array( 'wp_template', 'wp_template_part' ), true ) ) {
+			if ( 'wp_template' !== $template_type ) {
 				return $template;
 			}
 

@@ -63,7 +63,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 			)
 		);
 		$this->add_control( 'limit', array( 'label' => esc_html__( 'Listings Per Page', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 1, 'max' => 100, 'default' => 10 ) );
-		$this->add_control( 'offset', array( 'label' => esc_html__( 'Offset', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 0, 'default' => 0, 'description' => esc_html__( 'Using an offset disables pagination.', 'easy-property-listings' ) ) );
+		$this->add_control( 'offset', array( 'label' => esc_html__( 'Offset', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 0, 'default' => 0 ) );
 		$this->add_control( 'post__in', array( 'label' => esc_html__( 'Include Listing IDs', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::TEXT, 'label_block' => true, 'description' => esc_html__( 'Comma-separated post IDs.', 'easy-property-listings' ) ) );
 		$this->add_control( 'post__not_in', array( 'label' => esc_html__( 'Exclude Listing IDs', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::TEXT, 'label_block' => true, 'description' => esc_html__( 'Comma-separated post IDs.', 'easy-property-listings' ) ) );
 		$this->end_controls_section();
@@ -90,6 +90,70 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		$this->add_control( 'featured', $this->switcher_args( esc_html__( 'Featured Only', 'easy-property-listings' ) ) );
 		$this->add_control( 'open_house', $this->switcher_args( esc_html__( 'Open for Inspection Only', 'easy-property-listings' ) ) );
 		$this->add_control( 'auction', $this->switcher_args( esc_html__( 'Auction Only', 'easy-property-listings' ) ) );
+		$this->end_controls_section();
+
+		$this->start_controls_section( 'section_dynamic_filters', array( 'label' => esc_html__( 'Dynamic Meta Filters', 'easy-property-listings' ) ) );
+		$this->add_control(
+			'dynamic_filters_note',
+			array(
+				'type'            => \Elementor\Controls_Manager::RAW_HTML,
+				'raw'             => esc_html__( 'These filters are passed to epl_parse_atts(). Each filter creates a named clause using the meta key plus “_clause”, which can be referenced by Advanced Orderby Clauses.', 'easy-property-listings' ),
+				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+			)
+		);
+		$filter_repeater = new \Elementor\Repeater();
+		$filter_repeater->add_control(
+			'meta_key',
+			array(
+				'label'       => esc_html__( 'Meta Key', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'label_block' => true,
+				'placeholder' => 'property_bedrooms',
+				'description' => esc_html__( 'Enter the meta key without the leading underscore.', 'easy-property-listings' ),
+			)
+		);
+		$filter_repeater->add_control(
+			'compare',
+			array(
+				'label'   => esc_html__( 'Compare', 'easy-property-listings' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'equal',
+				'options' => array(
+					'equal'       => esc_html__( 'Equal', 'easy-property-listings' ),
+					'min'         => esc_html__( 'Minimum (>=)', 'easy-property-listings' ),
+					'max'         => esc_html__( 'Maximum (<=)', 'easy-property-listings' ),
+					'not_equal'   => esc_html__( 'Not Equal', 'easy-property-listings' ),
+					'like'        => esc_html__( 'Like', 'easy-property-listings' ),
+					'not_like'    => esc_html__( 'Not Like', 'easy-property-listings' ),
+					'exists'      => esc_html__( 'Exists', 'easy-property-listings' ),
+					'not_exists'  => esc_html__( 'Not Exists', 'easy-property-listings' ),
+					'between'     => esc_html__( 'Between', 'easy-property-listings' ),
+					'not_between' => esc_html__( 'Not Between', 'easy-property-listings' ),
+					'in'          => esc_html__( 'In', 'easy-property-listings' ),
+					'not_in'      => esc_html__( 'Not In', 'easy-property-listings' ),
+				),
+			)
+		);
+		$filter_repeater->add_control(
+			'value',
+			array(
+				'label'       => esc_html__( 'Value', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'label_block' => true,
+				'placeholder' => esc_html__( 'Use commas for Between and In comparisons', 'easy-property-listings' ),
+				'condition'   => array( 'compare!' => array( 'exists', 'not_exists' ) ),
+			)
+		);
+		$this->add_control(
+			'dynamic_filters',
+			array(
+				'label'       => esc_html__( 'Meta Filters', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::REPEATER,
+				'fields'      => $filter_repeater->get_controls(),
+				'default'     => array(),
+				'title_field' => '<# var key = (meta_key || "Meta filter").replace(/^_+/, ""); #>{{{ key }}} <small>{{{ compare || "equal" }}}</small>',
+			)
+		);
 		$this->end_controls_section();
 
 		$this->start_controls_section( 'section_order', array( 'label' => esc_html__( 'Ordering', 'easy-property-listings' ) ) );
@@ -123,7 +187,31 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		}
 		$this->add_control( 'tools_top', $this->switcher_args( esc_html__( 'Archive Tools Above', 'easy-property-listings' ), 'on', 'off' ) );
 		$this->add_control( 'tools_bottom', $this->switcher_args( esc_html__( 'Archive Tools Below', 'easy-property-listings' ), 'on', 'off' ) );
-		$this->add_control( 'pagination', $this->switcher_args( esc_html__( 'Pagination', 'easy-property-listings' ), 'on', 'off', 'on' ) );
+		$this->add_control(
+			'pagination',
+			array(
+				'label'   => esc_html__( 'Pagination', 'easy-property-listings' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'epl',
+				'options' => array(
+					'off' => esc_html__( 'None', 'easy-property-listings' ),
+					'epl' => esc_html__( 'EPL', 'easy-property-listings' ),
+				),
+			)
+		);
+		$this->add_control(
+			'epl_pagination_style',
+			array(
+				'label'     => esc_html__( 'EPL Pagination Type', 'easy-property-listings' ),
+				'type'      => \Elementor\Controls_Manager::SELECT,
+				'default'   => 'default',
+				'options'   => array(
+					'fancy'   => esc_html__( 'Fancy', 'easy-property-listings' ),
+					'default' => esc_html__( 'WordPress Default', 'easy-property-listings' ),
+				),
+				'condition' => array( 'pagination' => 'epl' ),
+			)
+		);
 		$this->add_responsive_control( 'columns', array( 'label' => esc_html__( 'Columns', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '3', 'tablet_default' => '2', 'mobile_default' => '1', 'options' => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ), 'selectors' => array( '{{WRAPPER}} .epl-elementor-advanced-grid' => '--epl-elementor-advanced-columns: {{VALUE}};' ) ) );
 		$this->end_controls_section();
 
@@ -140,22 +228,54 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 
 		if ( 'elementor' !== $settings['renderer'] || empty( $settings['elementor_template_id'] ) || ! $this->get_elementor_loop_templates() ) {
 			echo $shortcode->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- EPL templates escape their output.
-			return;
+		} else {
+			$this->render_elementor_template( $shortcode, absint( $settings['elementor_template_id'] ) );
 		}
 
-		$this->render_elementor_template( $shortcode, absint( $settings['elementor_template_id'] ) );
+		$pagination = empty( $settings['offset'] ) && 'off' !== ( $settings['pagination'] ?? 'epl' ) ? 'epl' : 'off';
+		$pagination_style = ! empty( $settings['epl_pagination_style'] ) ? $settings['epl_pagination_style'] : 'default';
+		$this->render_pagination( $shortcode->query_open, $pagination, $pagination_style );
 	}
 
 	private function build_shortcode_attributes( $settings ) {
-		$keys = array( 'post_type', 'status', 'commercial_listing_type', 'feature', 'feature_id', 'limit', 'offset', 'author', 'agent', 'featured', 'open_house', 'auction', 'template', 'location', 'location_id', 'tools_top', 'tools_bottom', 'sortby', 'orderby_clause', 'sort_order', 'pagination', 'post__in', 'post__not_in' );
+		$keys = array( 'post_type', 'status', 'commercial_listing_type', 'feature', 'feature_id', 'limit', 'offset', 'author', 'agent', 'featured', 'open_house', 'auction', 'template', 'location', 'location_id', 'tools_top', 'tools_bottom', 'sortby', 'orderby_clause', 'sort_order', 'post__in', 'post__not_in' );
 		$atts = array(
 			'instance_id' => 'elementor-' . $this->get_id(),
 			'class'       => 'epl-elementor-advanced-grid',
+			// Pagination is rendered below so EPL and Elementor providers share the
+			// exact same query and never produce duplicate navigation.
+			'pagination'  => 'off',
 		);
 		foreach ( $keys as $key ) {
 			$value = isset( $settings[ $key ] ) ? $settings[ $key ] : '';
 			$atts[ $key ] = is_array( $value ) ? implode( ',', array_filter( $value, 'strlen' ) ) : $value;
 		}
+
+		$compare_suffixes = array(
+			'equal'       => '',
+			'min'         => '_min',
+			'max'         => '_max',
+			'not_equal'   => '_not_equal',
+			'like'        => '_like',
+			'not_like'    => '_not_like',
+			'exists'      => '_exists',
+			'not_exists'  => '_not_exists',
+			'between'     => '_between',
+			'not_between' => '_not_between',
+			'in'          => '_in',
+			'not_in'      => '_not_in',
+		);
+
+		foreach ( isset( $settings['dynamic_filters'] ) ? (array) $settings['dynamic_filters'] : array() as $filter ) {
+			$meta_key = isset( $filter['meta_key'] ) ? ltrim( sanitize_key( $filter['meta_key'] ), '_' ) : '';
+			$compare  = isset( $filter['compare'] ) ? sanitize_key( $filter['compare'] ) : 'equal';
+			if ( '' === $meta_key || ! isset( $compare_suffixes[ $compare ] ) ) {
+				continue;
+			}
+			$attribute          = '_' . $meta_key . $compare_suffixes[ $compare ];
+			$atts[ $attribute ] = in_array( $compare, array( 'exists', 'not_exists' ), true ) ? '' : (string) ( $filter['value'] ?? '' );
+		}
+
 		return apply_filters( 'epl_elementor_listing_advanced_atts', $atts, $settings, $this );
 	}
 
@@ -189,11 +309,16 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		if ( 'on' === $shortcode->attributes['tools_bottom'] ) {
 			do_action( 'epl_property_loop_end' );
 		}
-		if ( 'on' === $shortcode->attributes['pagination'] ) {
-			epl_pagination( array( 'query' => $query ) );
-		}
 		wp_reset_postdata();
 		$property = $original_property; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Restore caller context.
+	}
+
+	/** Render the selected navigation provider for this widget's private query. */
+	private function render_pagination( $query, $provider, $pagination_style = 'default' ) {
+		if ( ! $query instanceof WP_Query || $query->max_num_pages < 2 || 'off' === $provider ) {
+			return;
+		}
+		EPL_Elementor::render_epl_pagination( $query, $pagination_style );
 	}
 
 	private function get_elementor_loop_templates() {

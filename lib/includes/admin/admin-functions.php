@@ -677,7 +677,13 @@ function epl_reset_settings() {
 	if ( ! isset( $_GET['_reset_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_reset_wpnonce'] ) ), 'epl_reset_settings' ) ) {
 		wp_die( esc_html__( 'Sorry, your nonce did not verify.', 'easy-property-listings' ) );
 	} else {
+		$previous_settings = get_option( 'epl_settings', array() );
 		$epl_settings = epl_get_default_settings();
+		// Resetting unrelated EPL settings must not unexpectedly change which
+		// template hierarchy the site uses.
+		$epl_settings['epl_block_templates'] = is_array( $previous_settings ) && isset( $previous_settings['epl_block_templates'] )
+			? $previous_settings['epl_block_templates']
+			: 'off';
 		update_option( 'epl_settings', $epl_settings );
 	}
 }

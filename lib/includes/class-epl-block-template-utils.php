@@ -273,10 +273,11 @@ if ( ! class_exists( 'EPL_Block_Template_Utils' ) ) :
 				'archive-rental'         => __( 'Rental Archive', 'easy-property-listings' ),
 				'archive-land'           => __( 'Land Archive', 'easy-property-listings' ),
 				'archive-commercial'     => __( 'Commercial Property Archive', 'easy-property-listings' ),
-				'archive-commercial_land'=> __( 'Commercial Land Archive', 'easy-property-listings' ),
+				'archive-commercial_land' => __( 'Commercial Land Archive', 'easy-property-listings' ),
 				'archive-rural'          => __( 'Rural Property Archive', 'easy-property-listings' ),
 				'archive-business'       => __( 'Business Archive', 'easy-property-listings' ),
 				'archive-listing'        => __( 'Listing Archive', 'easy-property-listings' ),
+				'search-listing'         => __( 'Listing Search Results', 'easy-property-listings' ),
 
 				// Taxonomy templates
 				'taxonomy-location'      => __( 'Location Archive', 'easy-property-listings' ),
@@ -320,6 +321,8 @@ if ( ! class_exists( 'EPL_Block_Template_Utils' ) ) :
 				'archive-land'           => __( 'Template for displaying land archive pages.', 'easy-property-listings' ),
 				'taxonomy-location'      => __( 'Template for displaying location-based listings.', 'easy-property-listings' ),
 				'taxonomy-tax_feature'   => __( 'Template for displaying feature-based listings.', 'easy-property-listings' ),
+				'taxonomy-tax_business_listing' => __( 'Template for displaying business-category listings.', 'easy-property-listings' ),
+				'search-listing'         => __( 'Template for displaying EPL listing search results.', 'easy-property-listings' ),
 			);
 
 			return isset( $descriptions[ $template_slug ] ) ? $descriptions[ $template_slug ] : '';
@@ -351,6 +354,10 @@ if ( ! class_exists( 'EPL_Block_Template_Utils' ) ) :
 		 * @return boolean
 		 */
 		public static function supports_block_templates( $template_type = 'wp_template' ) {
+			if ( ! function_exists( 'wp_is_block_theme' ) ) {
+				return false;
+			}
+
 			if ( 'wp_template_part' === $template_type && ( wp_is_block_theme() || current_theme_supports( 'block-template-parts' ) ) ) {
 				return true;
 			} elseif ( 'wp_template' === $template_type && wp_is_block_theme() ) {

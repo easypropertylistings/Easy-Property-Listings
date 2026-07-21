@@ -2,7 +2,10 @@
 
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)">
-	<!-- wp:epl/single-directory /-->
+	<!-- wp:columns {"verticalAlignment":"center"} --><div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"35%"} --><div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%"><!-- wp:epl/agent-element {"element":"photo","imageSize":"large","link":false} /--></div><!-- /wp:column --><!-- wp:column {"verticalAlignment":"center","width":"65%"} --><div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%"><!-- wp:epl/agent-element {"element":"name","link":false,"style":{"typography":{"fontSize":"2.5rem","fontStyle":"normal","fontWeight":"700"}}} /--><!-- wp:epl/agent-element {"element":"position"} /--><!-- wp:epl/agent-element {"element":"contact"} /--><!-- wp:epl/agent-element {"element":"social"} /--></div><!-- /wp:column --></div><!-- /wp:columns -->
+	<!-- wp:epl/agent-element {"element":"bio"} /-->
+	<!-- wp:heading --><h2 class="wp-block-heading">My Listings</h2><!-- /wp:heading -->
+	<!-- wp:epl/agent-element {"element":"listings"} /-->
 </main>
 <!-- /wp:group -->
 

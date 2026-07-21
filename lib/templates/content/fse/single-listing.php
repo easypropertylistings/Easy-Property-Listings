@@ -17,18 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<section class="content">
 		<div id="content" class="pad" role="main">
 			<?php
-                        
-			if ( have_posts() ) :
+			global $post;
+
+			if ( $post instanceof WP_Post ) :
+				setup_postdata( $post );
+				do_action( 'the_post', $post );
 				?>
 				<div class="loop">
 					<div class="loop-content <?php echo esc_attr( epl_template_class( 'default', 'single' ) ); ?>">
-						<?php
-						while ( have_posts() ) : // The Loop.
-							the_post();
-							do_action( 'epl_property_single' );
-							comments_template(); // include comments template.
-							endwhile; // end of one post.
-						?>
+						<?php do_action( 'epl_property_single' ); ?>
 					</div>
 				</div>
 			<?php endif; ?>
