@@ -431,7 +431,7 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 				'range'      => array(
 					'px' => array(
 						'min' => 0,
-						'max' => 50,
+						'max' => 200,
 					),
 				),
 				'default'    => array(

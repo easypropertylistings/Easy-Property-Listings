@@ -60,7 +60,10 @@
 }
 
 /* Price */
-.epl-property-price {
+.epl-property-price .bond {
+	margin-left: 10px;
+	padding-left: 10px;
+	border-left: 1px solid #ddd;
 }
 
 /* Property Icons Layout */
