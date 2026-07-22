@@ -387,6 +387,27 @@ class EPL_Elementor {
 			});
 			'
 		);
+
+		// Sync dual-view Listing Advanced grids with EPL's grid/list switch. The
+		// switch is client-side only (it flips a CSS class, no re-render), so we
+		// mirror the selected view onto our own grid container. The initial state
+		// is set server-side to avoid a flash of the wrong view on load.
+		wp_add_inline_script(
+			'epl-elementor-tabs',
+			'
+			document.addEventListener("click", function(e) {
+				var toggle = e.target.closest(".epl-switch-view ul li[data-view]");
+				if (!toggle) {
+					return;
+				}
+				var isList = "list" === toggle.getAttribute("data-view");
+				document.querySelectorAll(".epl-elementor-advanced-grid.epl-ea-dual-view").forEach(function(grid) {
+					grid.classList.toggle("is-list-view", isList);
+					grid.classList.toggle("is-grid-view", !isList);
+				});
+			});
+			'
+		);
 	}
 
 	/**

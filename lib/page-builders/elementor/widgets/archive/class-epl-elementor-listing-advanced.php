@@ -184,6 +184,41 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		);
 		if ( $templates ) {
 			$this->add_control( 'elementor_template_id', array( 'label' => esc_html__( 'Loop Template', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SELECT2, 'options' => $templates, 'label_block' => true, 'condition' => array( 'renderer' => 'elementor' ) ) );
+			$this->add_control(
+				'list_template_id',
+				array(
+					'label'       => esc_html__( 'List View Loop Template', 'easy-property-listings' ),
+					'type'        => \Elementor\Controls_Manager::SELECT2,
+					'options'     => $templates,
+					'label_block' => true,
+					'description' => esc_html__( 'Optional. When set, this template is shown while the archive is in List view; the Loop Template above is used for Grid view. Requires Archive Tools (the grid/list switch) to be enabled so visitors can toggle.', 'easy-property-listings' ),
+					'condition'   => array( 'renderer' => 'elementor' ),
+				)
+			);
+			$this->add_control(
+				'editor_preview_view',
+				array(
+					'label'       => esc_html__( 'Editor Preview View', 'easy-property-listings' ),
+					'type'        => \Elementor\Controls_Manager::CHOOSE,
+					'default'     => 'grid',
+					'options'     => array(
+						'grid' => array(
+							'title' => esc_html__( 'Grid', 'easy-property-listings' ),
+							'icon'  => 'eicon-gallery-grid',
+						),
+						'list' => array(
+							'title' => esc_html__( 'List', 'easy-property-listings' ),
+							'icon'  => 'eicon-editor-list-ul',
+						),
+					),
+					'toggle'      => false,
+					'description' => esc_html__( 'Preview only — choose which template shows on the editor canvas. The live site uses the visitor’s grid/list selection.', 'easy-property-listings' ),
+					'condition'   => array(
+						'renderer'          => 'elementor',
+						'list_template_id!' => '',
+					),
+				)
+			);
 		}
 		$this->add_control( 'tools_top', $this->switcher_args( esc_html__( 'Archive Tools Above', 'easy-property-listings' ), 'on', 'off' ) );
 		$this->add_control( 'tools_bottom', $this->switcher_args( esc_html__( 'Archive Tools Below', 'easy-property-listings' ), 'on', 'off' ) );
@@ -212,7 +247,28 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 				'condition' => array( 'pagination' => 'epl' ),
 			)
 		);
-		$this->add_responsive_control( 'columns', array( 'label' => esc_html__( 'Columns', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '3', 'tablet_default' => '2', 'mobile_default' => '1', 'options' => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ), 'selectors' => array( '{{WRAPPER}} .epl-elementor-advanced-grid' => '--epl-elementor-advanced-columns: {{VALUE}};' ) ) );
+		$this->add_responsive_control( 'columns', array( 'label' => esc_html__( 'Grid Columns', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '3', 'tablet_default' => '2', 'mobile_default' => '1', 'options' => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ), 'selectors' => array( '{{WRAPPER}} .epl-elementor-advanced-grid' => '--epl-elementor-advanced-columns: {{VALUE}};' ) ) );
+		if ( $templates ) {
+			$this->add_responsive_control(
+				'list_columns',
+				array(
+					'label'          => esc_html__( 'List Columns', 'easy-property-listings' ),
+					'type'           => \Elementor\Controls_Manager::SELECT,
+					'default'        => '1',
+					'tablet_default' => '1',
+					'mobile_default' => '1',
+					'options'        => array( '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6' ),
+					'description'    => esc_html__( 'Columns used while the archive is in List view.', 'easy-property-listings' ),
+					'selectors'      => array(
+						'{{WRAPPER}} .epl-elementor-advanced-grid.epl-ea-dual-view.is-list-view' => '--epl-elementor-advanced-columns: {{VALUE}};',
+					),
+					'condition'      => array(
+						'renderer'          => 'elementor',
+						'list_template_id!' => '',
+					),
+				)
+			);
+		}
 		$this->end_controls_section();
 
 		$this->start_controls_section( 'section_grid_style', array( 'label' => esc_html__( 'Grid', 'easy-property-listings' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ) );
@@ -229,7 +285,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		if ( 'elementor' !== $settings['renderer'] || empty( $settings['elementor_template_id'] ) || ! $this->get_elementor_loop_templates() ) {
 			echo $shortcode->render(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- EPL templates escape their output.
 		} else {
-			$this->render_elementor_template( $shortcode, absint( $settings['elementor_template_id'] ) );
+			$this->render_elementor_template( $shortcode, absint( $settings['elementor_template_id'] ), absint( $settings['list_template_id'] ?? 0 ), $settings['editor_preview_view'] ?? 'grid' );
 		}
 
 		$pagination = empty( $settings['offset'] ) && 'off' !== ( $settings['pagination'] ?? 'epl' ) ? 'epl' : 'off';
@@ -279,7 +335,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		return apply_filters( 'epl_elementor_listing_advanced_atts', $atts, $settings, $this );
 	}
 
-	private function render_elementor_template( $shortcode, $template_id ) {
+	private function render_elementor_template( $shortcode, $template_id, $list_template_id = 0, $editor_view = 'grid' ) {
 		$query = $shortcode->query_open;
 		if ( ! $query->have_posts() ) {
 			if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
@@ -292,17 +348,42 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 
 		global $property;
 		$original_property = isset( $property ) ? $property : null;
-		$with_css          = true;
+
+		// A distinct list template turns on dual rendering: each item outputs both
+		// templates and the grid/list switch toggles which one is visible via CSS.
+		$dual_view    = $list_template_id && $list_template_id !== $template_id;
+		$grid_classes = 'epl-elementor-advanced-grid';
+		if ( $dual_view ) {
+			// In the editor the canvas has no visitor toggle, so the dedicated
+			// preview control decides which template is shown; the live site
+			// resolves from the visitor's saved preference.
+			$view          = \Elementor\Plugin::$instance->editor->is_edit_mode()
+				? ( 'list' === $editor_view ? 'list' : 'grid' )
+				: $this->get_initial_view();
+			$grid_classes .= ' epl-ea-dual-view ' . ( 'list' === $view ? 'is-list-view' : 'is-grid-view' );
+		}
+
+		// Elementor only needs a template's CSS printed once per page.
+		$css_loaded = array();
+
 		if ( 'on' === $shortcode->attributes['tools_top'] ) {
 			do_action( 'epl_property_loop_start', $shortcode->attributes );
 		}
-		echo '<div class="epl-elementor-advanced-grid">';
+		echo '<div class="' . esc_attr( $grid_classes ) . '">';
 		while ( $query->have_posts() ) {
 			$query->the_post();
 			$property = new EPL_Property_Meta( get_post() ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- EPL loop context restored below.
 			echo '<div class="epl-elementor-advanced-item">';
-			echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $template_id, $with_css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor-rendered template.
-			$with_css = false;
+			if ( $dual_view ) {
+				echo '<div class="epl-ea-view epl-ea-view--grid">';
+				$this->render_loop_item( $template_id, $css_loaded );
+				echo '</div>';
+				echo '<div class="epl-ea-view epl-ea-view--list">';
+				$this->render_loop_item( $list_template_id, $css_loaded );
+				echo '</div>';
+			} else {
+				$this->render_loop_item( $template_id, $css_loaded );
+			}
 			echo '</div>';
 		}
 		echo '</div>';
@@ -311,6 +392,38 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		}
 		wp_reset_postdata();
 		$property = $original_property; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Restore caller context.
+	}
+
+	/**
+	 * Render a single Elementor loop item, printing each template's CSS only once.
+	 *
+	 * @param int   $template_id Elementor loop-item template ID.
+	 * @param array $css_loaded  Map of template IDs whose CSS has already printed.
+	 */
+	private function render_loop_item( $template_id, &$css_loaded ) {
+		$with_css                   = empty( $css_loaded[ $template_id ] );
+		$css_loaded[ $template_id ] = true;
+		echo \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $template_id, $with_css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor-rendered template.
+	}
+
+	/**
+	 * Initial grid/list view for a dual-view widget.
+	 *
+	 * Mirrors the front-end switch logic: the visitor's saved preference cookie
+	 * wins, otherwise the site's default archive view setting, otherwise list.
+	 * Resolved server-side so the correct template shows without a flash.
+	 *
+	 * @return string Either 'grid' or 'list'.
+	 */
+	private function get_initial_view() {
+		if ( isset( $_COOKIE['preferredView'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display preference.
+			$view = sanitize_key( wp_unslash( $_COOKIE['preferredView'] ) );
+			if ( in_array( $view, array( 'list', 'grid' ), true ) ) {
+				return $view;
+			}
+		}
+
+		return 'grid' === epl_get_option( 'display_archive_view_type', 'list' ) ? 'grid' : 'list';
 	}
 
 	/** Render the selected navigation provider for this widget's private query. */

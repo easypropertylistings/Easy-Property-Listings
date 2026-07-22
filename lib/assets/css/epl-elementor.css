@@ -59,6 +59,33 @@
 	height: 100%;
 }
 
+/* Dual view: a separate Grid and List loop template toggled by the archive switch. */
+.epl-ea-view,
+.epl-ea-view > .elementor {
+	height: 100%;
+	min-width: 0;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.epl-ea-dual-view .epl-ea-view--list {
+	display: none;
+}
+
+.epl-ea-dual-view.is-list-view .epl-ea-view--grid {
+	display: none;
+}
+
+.epl-ea-dual-view.is-list-view .epl-ea-view--list {
+	display: block;
+}
+
+/* Fallback single column for List view; the widget's List Columns control
+   overrides this via a higher-specificity, {{WRAPPER}}-scoped selector. */
+.epl-elementor-advanced-grid.epl-ea-dual-view.is-list-view {
+	--epl-elementor-advanced-columns: 1;
+}
+
 /* Price */
 .epl-property-price .bond {
 	margin-left: 10px;
@@ -121,6 +148,9 @@
 }
 
 /* Property Image */
+.elementor-widget-epl-property-image {
+	overflow: hidden;
+}
 .epl-property-image {
 	position: relative;
 	overflow: hidden;
