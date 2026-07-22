@@ -8,7 +8,10 @@
 /* Elementor Free EPL Listings fallback. */
 .epl-elementor-listings-grid {
 	display: grid;
-	grid-template-columns: repeat(var(--epl-elementor-listings-columns, 3), minmax(0, 1fr));
+	grid-template-columns: repeat(
+		var(--epl-elementor-listings-columns, 3),
+		minmax(0, 1fr)
+	);
 }
 
 .epl-elementor-listings-item,
@@ -30,7 +33,10 @@
 /* Advanced widget with Elementor Loop Item renderer. */
 .epl-elementor-advanced-grid {
 	display: grid;
-	grid-template-columns: repeat(var(--epl-elementor-advanced-columns, 3), minmax(0, 1fr));
+	grid-template-columns: repeat(
+		var(--epl-elementor-advanced-columns, 3),
+		minmax(0, 1fr)
+	);
 }
 
 .epl-elementor-advanced-item,
@@ -255,7 +261,6 @@
 /* Agent Photo */
 .elementor-widget .epl-agent-photo {
 	flex-shrink: 0;
-	margin-bottom: 15px;
 }
 
 .elementor-widget .epl-agent-horizontal .epl-agent-photo {
@@ -400,11 +405,21 @@
 	display: grid;
 }
 
-.elementor-widget-epl-listing-agents .epl-listing-agents-grid { grid-template-columns: repeat(var(--epl-agent-columns, 2), minmax(0, 1fr)); }
-.elementor-widget-epl-listing-agents .epl-agents-cols-1 { --epl-agent-columns: 1; }
-.elementor-widget-epl-listing-agents .epl-agents-cols-2 { --epl-agent-columns: 2; }
-.elementor-widget-epl-listing-agents .epl-agents-cols-3 { --epl-agent-columns: 3; }
-.elementor-widget-epl-listing-agents .epl-agents-cols-4 { --epl-agent-columns: 4; }
+.elementor-widget-epl-listing-agents .epl-listing-agents-grid {
+	grid-template-columns: repeat(var(--epl-agent-columns, 2), minmax(0, 1fr));
+}
+.elementor-widget-epl-listing-agents .epl-agents-cols-1 {
+	--epl-agent-columns: 1;
+}
+.elementor-widget-epl-listing-agents .epl-agents-cols-2 {
+	--epl-agent-columns: 2;
+}
+.elementor-widget-epl-listing-agents .epl-agents-cols-3 {
+	--epl-agent-columns: 3;
+}
+.elementor-widget-epl-listing-agents .epl-agents-cols-4 {
+	--epl-agent-columns: 4;
+}
 
 .elementor-widget-epl-listing-agents .epl-listing-agents-list {
 	flex-direction: column;
@@ -431,12 +446,16 @@
 	gap: 0;
 }
 
-.elementor-widget-epl-listing-agents .epl-agents-tabs-horizontal .epl-tab-buttons {
+.elementor-widget-epl-listing-agents
+	.epl-agents-tabs-horizontal
+	.epl-tab-buttons {
 	flex-direction: row;
 	border-bottom: 1px solid #ddd;
 }
 
-.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical .epl-tab-buttons {
+.elementor-widget-epl-listing-agents
+	.epl-agents-tabs-vertical
+	.epl-tab-buttons {
 	flex-direction: column;
 	border-right: 1px solid #ddd;
 	min-width: 150px;
@@ -459,12 +478,16 @@
 	font-weight: 600;
 }
 
-.elementor-widget-epl-listing-agents .epl-agents-tabs-horizontal .epl-tab-button {
+.elementor-widget-epl-listing-agents
+	.epl-agents-tabs-horizontal
+	.epl-tab-button {
 	border-bottom: 2px solid transparent;
 	margin-bottom: -1px;
 }
 
-.elementor-widget-epl-listing-agents .epl-agents-tabs-horizontal .epl-tab-button.active {
+.elementor-widget-epl-listing-agents
+	.epl-agents-tabs-horizontal
+	.epl-tab-button.active {
 	border-bottom-color: #333;
 }
 
@@ -474,7 +497,9 @@
 	text-align: left;
 }
 
-.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical .epl-tab-button.active {
+.elementor-widget-epl-listing-agents
+	.epl-agents-tabs-vertical
+	.epl-tab-button.active {
 	border-right-color: #333;
 }
 
@@ -532,7 +557,9 @@
 		flex-direction: column;
 	}
 
-	.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical .epl-tab-buttons {
+	.elementor-widget-epl-listing-agents
+		.epl-agents-tabs-vertical
+		.epl-tab-buttons {
 		flex-direction: row;
 		border-right: none;
 		border-bottom: 1px solid #ddd;

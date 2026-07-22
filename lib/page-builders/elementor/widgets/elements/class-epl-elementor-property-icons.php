@@ -421,6 +421,28 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 				),
 			)
 		);
+		
+		$this->add_responsive_control(
+			'minimum_height',
+			array(
+				'label'      => esc_html__( 'Minimum Height', 'easy-property-listings' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 50,
+					),
+				),
+				'default'    => array(
+					'size' => 25,
+					'unit' => 'px',
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .epl-property-icons' => 'min-height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
 
 		$this->add_responsive_control(
 			'alignment',
