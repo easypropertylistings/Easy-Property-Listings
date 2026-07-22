@@ -230,3 +230,78 @@ function epl_listing_has_primary_agent() {
 	}
 	return $exists;
 }
+
+/**
+ * Check for floor plans
+ *
+ * @since 3.7.0
+ */
+function epl_listing_has_floor_plans() {
+	
+
+	$keys = array( 'property_floorplan', 'property_floorplan_2' );
+	
+	foreach ( $keys as $key ) {
+	
+		$link       = get_post_meta( get_the_ID(), $key, true );
+		$count      = 'property_floorplan' === $key ? '' : substr( $key, -1 );
+		$default    = __( 'Floor Plan ', 'epl-pro' ) . $count;
+		$meta_label = get_post_meta( get_the_ID(), $key . '_label', true );
+		$meta_label = empty( $meta_label ) ? $default : $meta_label;
+	
+		if ( is_array( $link ) ) { // Fallback if meta data is saved as an array.
+	
+			if ( ! empty( $link['image_url_or_path'] ) ) {
+				$link = $link['image_url_or_path'];
+			} else {
+				$link = '';
+			}
+		}
+
+		if ( ! empty( $link ) ) { 
+			return true;
+		}
+	}
+	
+	return false;
+}
+
+/**
+ * Check for video
+ *
+ * @since 3.7.0
+ */
+function epl_property_has_video() {
+	
+	global $property;
+	
+	$video = $property->get_property_meta( 'property_video_url' );
+
+	if ( '' !== $video ) {
+		return true;
+	}
+	
+	return false;
+}
+
+/**
+ * Has inspection helper
+ *
+ * @since 3.7.0
+ */
+function epl_listing_has_inspection_times() {
+	global $property;
+	
+	$property_inspection_times = $property->get_property_inspection_times();
+	$label_home_open           = '';
+	
+	if ( $property_inspection_times ) {
+		$property_inspection_times = trim( $property_inspection_times );
+	}
+
+	if ( ! empty( $property_inspection_times ) ) {
+		return true;
+	}
+	return false;
+	
+}
