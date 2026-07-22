@@ -91,14 +91,34 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'show_suburb_profile',
+			'display_mode',
 			array(
-				'label'        => esc_html__( 'Show Suburb Only', 'easy-property-listings' ),
-				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'easy-property-listings' ),
-				'label_off'    => esc_html__( 'No', 'easy-property-listings' ),
-				'return_value' => 'yes',
-				'default'      => '',
+				'label'       => esc_html__( 'Display', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::SELECT,
+				'default'     => 'full',
+				'options'     => array(
+					'full'   => esc_html__( 'Full Address', 'easy-property-listings' ),
+					'suburb' => esc_html__( 'Suburb Only', 'easy-property-listings' ),
+					'street' => esc_html__( 'Street Only', 'easy-property-listings' ),
+					'custom' => esc_html__( 'Custom Parts', 'easy-property-listings' ),
+				),
+				'description' => esc_html__( 'Full address, suburb only, street only, or choose your own combination of address parts.', 'easy-property-listings' ),
+			)
+		);
+
+		$this->add_control(
+			'address_parts',
+			array(
+				'label'       => esc_html__( 'Address Parts', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::SELECT2,
+				'multiple'    => true,
+				'label_block' => true,
+				'options'     => self::get_address_part_options(),
+				'default'     => array( 'sub_number', 'street_number', 'street' ),
+				'description' => esc_html__( 'Select which address components to display. Parts always output in natural address order regardless of selection order.', 'easy-property-listings' ),
+				'condition'   => array(
+					'display_mode' => 'custom',
+				),
 			)
 		);
 
@@ -160,6 +180,22 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'icon_color',
+			array(
+				'label'     => esc_html__( 'Icon Color', 'easy-property-listings' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .epl-icon-wrapper i'        => 'color: {{VALUE}};',
+					'{{WRAPPER}} .epl-icon-wrapper svg'      => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .epl-icon-wrapper svg path' => 'fill: {{VALUE}};',
+				),
+				'condition' => array(
+					'show_icon' => 'yes',
+				),
+			)
+		);
+
 		$this->add_responsive_control(
 			'icon_size',
 			array(
@@ -207,6 +243,29 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_responsive_control(
+			'minimum_height',
+			array(
+				'label'      => esc_html__( 'Minimum Height', 'easy-property-listings' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'default'    => array(
+					'size' => 25,
+					'unit' => 'px',
+				),
+				'description' => esc_html__( 'Keeps the container from collapsing (e.g. suburb-only) so cards stay aligned in a grid.', 'easy-property-listings' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .epl-property-address' => 'min-height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -240,13 +299,31 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 			echo '<a href="' . esc_url( get_permalink( $property->post->ID ) ) . '">';
 		}
 
-		if ( 'yes' === $settings['show_suburb_profile'] ) {
-			// Suburb only, respecting commercial/business suburb display rules.
-			do_action( 'epl_property_suburb' );
-		} else {
-			// Full address. Core respects the property_address_display option,
-			// commercial suburb display and the city/country field settings.
-			do_action( 'epl_property_address' );
+		$display_mode = isset( $settings['display_mode'] ) ? $settings['display_mode'] : 'full';
+
+		// Backward compatibility with earlier builds that used a "Show Suburb Only" switch.
+		if ( 'full' === $display_mode && isset( $settings['show_suburb_profile'] ) && 'yes' === $settings['show_suburb_profile'] ) {
+			$display_mode = 'suburb';
+		}
+
+		switch ( $display_mode ) {
+			case 'suburb':
+				// Suburb only, respecting commercial/business suburb display rules.
+				do_action( 'epl_property_suburb' );
+				break;
+
+			case 'street':
+			case 'custom':
+				// Selected address parts only.
+				echo wp_kses_post( $this->get_address_parts_html( $display_mode, $settings ) );
+				break;
+
+			case 'full':
+			default:
+				// Full address. Core respects the property_address_display option,
+				// commercial suburb display and the city/country field settings.
+				do_action( 'epl_property_address' );
+				break;
 		}
 
 		if ( 'yes' === $settings['link_to_listing'] ) {
@@ -256,5 +333,95 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 		echo '</div>';
 
 		EPL_Elementor::restore_listing_context();
+	}
+
+	/**
+	 * Available address parts and their control labels.
+	 *
+	 * @since 3.6.0
+	 *
+	 * @return array Machine key => translated label.
+	 */
+	public static function get_address_part_options() {
+		return array(
+			'sub_number'    => esc_html__( 'Unit / Sub Number', 'easy-property-listings' ),
+			'lot_number'    => esc_html__( 'Lot Number', 'easy-property-listings' ),
+			'street_number' => esc_html__( 'Street Number', 'easy-property-listings' ),
+			'street'        => esc_html__( 'Street Name', 'easy-property-listings' ),
+			'suburb'        => esc_html__( 'Suburb', 'easy-property-listings' ),
+			'city'          => esc_html__( 'City', 'easy-property-listings' ),
+			'state'         => esc_html__( 'State', 'easy-property-listings' ),
+			'postal_code'   => esc_html__( 'Postal Code', 'easy-property-listings' ),
+			'country'       => esc_html__( 'Country', 'easy-property-listings' ),
+		);
+	}
+
+	/**
+	 * Build the address output from the selected parts.
+	 *
+	 * Mirrors the Template Builder behaviour: parts are emitted in their natural
+	 * address order (not selection order), each followed by its default separator,
+	 * with the trailing separator on the final part stripped. Street level parts
+	 * still respect the property_address_display privacy option and country is
+	 * only output when explicitly selected, both enforced by epl_get_the_address().
+	 *
+	 * @since 3.6.0
+	 *
+	 * @param string $mode     Either 'street' (preset) or 'custom' (user selection).
+	 * @param array  $settings Widget settings.
+	 * @return string Escaped address HTML/text.
+	 */
+	protected function get_address_parts_html( $mode, $settings ) {
+
+		// Canonical part order and default separators (matches epl_get_the_address()).
+		$all_parts = array(
+			'sub_number'    => '/',
+			'lot_number'    => ' ',
+			'street_number' => ' ',
+			'street'        => ', ',
+			'suburb'        => ' ',
+			'city'          => ' ',
+			'state'         => ' ',
+			'postal_code'   => ' ',
+			'country'       => ' ',
+		);
+
+		if ( 'street' === $mode ) {
+			$parts = array( 'sub_number', 'lot_number', 'street_number', 'street' );
+		} else {
+			$parts = ( isset( $settings['address_parts'] ) && is_array( $settings['address_parts'] ) )
+				? $settings['address_parts']
+				: array();
+		}
+
+		if ( empty( $parts ) ) {
+			return '';
+		}
+
+		// Build args in canonical order, keeping only the enabled parts.
+		$address_args = array();
+		foreach ( $all_parts as $part => $separator ) {
+			if ( in_array( $part, $parts, true ) ) {
+				$address_args[ $part ] = $separator;
+			}
+		}
+
+		if ( empty( $address_args ) ) {
+			return '';
+		}
+
+		// Strip the trailing separator on the final part.
+		$keys     = array_keys( $address_args );
+		$last_key = end( $keys );
+		if ( $last_key ) {
+			$address_args[ $last_key ] = '';
+		}
+
+		// Country is only output when explicitly selected.
+		$show_country = isset( $address_args['country'] );
+
+		$address = epl_get_the_address( array_keys( $address_args ), $address_args, $show_country );
+
+		return trim( (string) $address );
 	}
 }

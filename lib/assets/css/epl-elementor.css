@@ -59,6 +59,10 @@
 	height: 100%;
 }
 
+/* Price */
+.epl-property-price {
+}
+
 /* Property Icons Layout */
 .epl-property-icons {
 	display: flex;
