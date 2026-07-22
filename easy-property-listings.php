@@ -356,6 +356,9 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			// Page Builders Integration.
 			require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor.php';
 
+                        //integrations
+                        require_once EPL_PATH_LIB . 'integrations/gravity-form.php';
+
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
 				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';
 			}
