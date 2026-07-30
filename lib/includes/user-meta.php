@@ -8,7 +8,7 @@
  *
  * @package     EPL
  * @subpackage  Includes/UserMeta
- * @copyright   Copyright (c) 2026, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.5.25
  */
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function epl_get_user_link_meta_keys() {
 	return apply_filters(
 		'epl_user_link_meta_keys',
-		array( 'facebook', 'twitter', 'linkedin', 'google', 'instagram', 'pinterest', 'youtube', 'skype', 'video' )
+		array( 'user_url', 'facebook', 'twitter', 'linkedin', 'google', 'instagram', 'pinterest', 'youtube', 'skype', 'video' )
 	);
 }
 
