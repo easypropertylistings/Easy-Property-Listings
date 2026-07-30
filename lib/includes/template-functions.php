@@ -3602,7 +3602,7 @@ function epl_process_contact_capture_request( $request ) {
 	if ( $contact_listing_id ) {
 		$listing      = get_post( $contact_listing_id );
 		$listing_type = $listing instanceof WP_Post ? $listing->post_type : '';
-		$valid_types  = array_keys( epl_get_post_types() );
+		$valid_types  = array_unique( array_merge( array_keys( epl_get_post_types() ), epl_all_post_types() ) );
 
 		if (
 			! $listing instanceof WP_Post ||
@@ -3616,15 +3616,19 @@ function epl_process_contact_capture_request( $request ) {
 		? sanitize_textarea_field( wp_unslash( $request['epl_contact_note'] ) )
 		: '';
 
+	// Always log an activity for the submission so the agent sees the enquiry
+	// and, when present, the listing it was submitted on.
+	$activity_note = '' !== $contact_listing_note
+		? $contact_listing_note
+		: __( 'Enquiry submitted via contact form.', 'easy-property-listings' );
+
 	$contact = new EPL_Contact( $email );
 	if ( ! empty( $contact->ID ) ) {
-		if ( $contact_listing_note ) {
-			$contact->add_note( $contact_listing_note, 'note', $contact_listing_id );
-		}
-
 		if ( $contact_listing_id ) {
 			$contact->attach_listing( $contact_listing_id );
 		}
+
+		$contact->add_note( $activity_note, 'note', $contact_listing_id );
 
 		return true;
 	}
@@ -3647,9 +3651,7 @@ function epl_process_contact_capture_request( $request ) {
 		$contact->attach_listing( $contact_listing_id );
 	}
 
-	if ( $contact_listing_note ) {
-		$contact->add_note( $contact_listing_note, 'note', $contact_listing_id );
-	}
+	$contact->add_note( $activity_note, 'note', $contact_listing_id );
 
 	return true;
 }

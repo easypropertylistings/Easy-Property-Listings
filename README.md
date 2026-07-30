@@ -46,6 +46,9 @@ There are various ways you can contribute:
 -   New: Per-IP rate limiting on anonymous contact capture submissions to prevent spam and database write amplification.
 -   New: Added `epl_contact_capture_rate_limit_max` and `epl_contact_capture_rate_limit_window` filters to tune or disable contact capture throttling.
 -   New: Added `epl_contact_capture_user_can_manage` filter to control which users are exempt from contact capture throttling.
+-   New: Contact capture form now accepts an explicit `listing_id` attribute, eg. `[listing_contact listing_id="123"]`.
+-   Fix: Contact activity notes were hidden on WordPress 7.0 (core 6.9) due to the new reserved `note` comment type; EPL now requests the type explicitly so CRM activities display again.
+-   Fix: Contact capture now always logs an activity with the enquired listing so agents see every form submission, even when no message is entered.
 -   Tweak: Contact capture AJAX and direct form submissions now share a single validation path so direct POSTs cannot bypass request checks.
 
 = 3.5.24 June 20, 2026 =
