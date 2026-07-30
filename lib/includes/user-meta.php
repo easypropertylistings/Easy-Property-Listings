@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function epl_get_user_link_meta_keys() {
 	return apply_filters(
 		'epl_user_link_meta_keys',
-		array( 'user_url', 'facebook', 'twitter', 'linkedin', 'google', 'instagram', 'pinterest', 'youtube', 'skype', 'video' )
+		array( 'facebook', 'twitter', 'linkedin', 'google', 'instagram', 'pinterest', 'youtube', 'skype', 'video' )
 	);
 }
 
