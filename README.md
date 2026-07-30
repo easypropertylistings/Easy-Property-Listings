@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.25 July 30, 2026 =
+
+-   Fix: Security fixes for user social icons.
+-   Fix: Security fixes for user contacts submission.
+
 = 3.5.24 June 20, 2026 =
 
 -   New/Fix: Get the original attachment order from listing metadata function for image ordering with [FeedSync service](https://feedsync.com.au).
