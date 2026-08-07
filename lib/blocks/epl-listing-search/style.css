@@ -1,0 +1,6 @@
+.editor-styles-wrapper .epl-block-listing-search a,
+.editor-styles-wrapper .epl-block-listing-search button,
+.editor-styles-wrapper .epl-block-listing-search input,
+.editor-styles-wrapper .epl-block-listing-search select {
+	pointer-events: none;
+}

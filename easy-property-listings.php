@@ -100,6 +100,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->render_fields = new EPL_Render_Fields();
 				self::$instance->search_fields->init();
 
+				// Initialize Block Templates Controller for FSE support.
+				if ( class_exists( 'EPL_Block_Templates_Controller' ) ) {
+					new EPL_Block_Templates_Controller();
+				}
+
+				// Register EPL block category.
+				add_action( 'block_categories_all', array( self::$instance, 'register_block_category' ), 10, 2 );
+
 				define( 'EPL_RUNNING', true );
 			}
 			return self::$instance;
@@ -288,6 +296,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
+				require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-feedsync-ads.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-metabox.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
@@ -340,6 +349,17 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-render-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-rest-api.php';
 
+			// Block Templates for FSE support.
+			require_once EPL_PATH_LIB . 'includes/class-epl-block-template-utils.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-block-templates-controller.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-block-element-renderer.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-register-blocks.php';
+			// Page Builders Integration.
+			require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor.php';
+
+                        //integrations
+                        require_once EPL_PATH_LIB . 'integrations/gravity-form.php';
+
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
 				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';
 			}
@@ -375,6 +395,27 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				// Load the default language files.
 				load_plugin_textdomain( 'easy-property-listings', false, $epl_lang_dir );
 			}
+		}
+
+		/**
+		 * Register EPL block category
+		 *
+		 * @param array   $categories Existing block categories.
+		 * @param WP_Post $post Current post object.
+		 * @return array Modified block categories.
+		 * @since 3.6.0
+		 */
+		public function register_block_category( $categories, $post ) {
+			return array_merge(
+				array(
+					array(
+						'slug'  => 'epl',
+						'title' => __( 'Easy Property Listings', 'easy-property-listings' ),
+						'icon'  => 'building',
+					),
+				),
+				$categories
+			);
 		}
 	}
 endif; // End if class_exists check.
