@@ -1,0 +1,14 @@
+/**
+ * Bulk Actions Component Styles
+ */
+
+.epl-bulk-actions {
+	.epl-bulk-selection {
+		font-weight: 500;
+		color: $epl-primary-dark;
+	}
+
+	.components-select-control__input {
+		min-width: 150px;
+	}
+}

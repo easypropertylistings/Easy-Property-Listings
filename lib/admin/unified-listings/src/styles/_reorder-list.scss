@@ -1,0 +1,93 @@
+
+// Reorderable List Styles
+.epl-reorder-list {
+	margin-bottom: 24px;
+}
+
+.epl-active-columns,
+.epl-available-columns {
+	margin-bottom: 24px;
+
+	h4 {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--epl-text-secondary);
+		margin: 0 0 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+}
+
+.epl-reorder-row {
+	display: flex;
+	align-items: center;
+	padding: 8px 12px;
+	background: var(--epl-bg-white);
+	border: 1px solid var(--epl-border-light);
+	border-radius: var(--epl-radius);
+	margin-bottom: 8px;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+	&:hover {
+		border-color: var(--epl-border);
+		box-shadow: var(--epl-shadow-sm);
+	}
+
+	.epl-reorder-controls {
+		display: flex;
+		gap: 2px;
+		margin-right: 12px;
+		min-width: 60px; // Ensure alignment
+
+		&--placeholder {
+			// Helps align available items with active items visually
+		}
+
+		.components-button {
+			padding: 0;
+			min-width: 24px;
+			height: 24px;
+			color: var(--epl-text-secondary);
+			
+			&:hover:not(:disabled) {
+				color: var(--epl-primary);
+				background: var(--epl-bg-hover);
+			}
+		}
+	}
+
+	.epl-reorder-label {
+		flex: 1;
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--epl-text-primary);
+	}
+
+	.epl-reorder-toggle {
+		margin-left: 12px;
+		
+		// Reset margin on toggle component
+		.components-form-toggle {
+			margin-right: 0;
+		}
+		
+		.components-base-control__field {
+			margin: 0 !important;
+		}
+	}
+}
+
+.epl-available-columns {
+	opacity: 0.8;
+	
+	.epl-reorder-row {
+		border-style: dashed;
+		background: var(--epl-bg-light);
+		
+		&:hover {
+			border-style: solid;
+			background: var(--epl-bg-white);
+			opacity: 1;
+		}
+	}
+}

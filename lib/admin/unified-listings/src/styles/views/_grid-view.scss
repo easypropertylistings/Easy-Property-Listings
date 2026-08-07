@@ -1,0 +1,186 @@
+/**
+ * Grid View Styles
+ */
+
+.epl-grid-view {
+	position: relative;
+}
+
+.epl-grid-container {
+	display: grid;
+	grid-template-columns: repeat(var(--cards-per-row, 4), 1fr);
+	gap: 20px;
+	padding: 20px;
+}
+
+.epl-property-card {
+	border: 1px solid $epl-border;
+	border-radius: 8px;
+	overflow: hidden;
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+	&:hover {
+		box-shadow: $epl-shadow;
+		transform: translateY(-2px);
+	}
+
+	&.is-selected {
+		border-color: $epl-primary;
+		box-shadow: 0 0 0 2px rgba($epl-primary, 0.2);
+	}
+
+	.epl-card-image-container {
+		position: relative;
+		aspect-ratio: 16 / 10;
+		background: $epl-gray-light;
+	}
+
+	.epl-card-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.epl-card-no-image {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $epl-gray;
+		font-size: 12px;
+	}
+
+	.epl-card-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	.epl-card-checkbox {
+		background: $epl-white;
+		border-radius: 4px;
+		padding: 2px;
+		box-shadow: $epl-shadow;
+	}
+
+	.epl-card-status {
+		font-size: 10px;
+		padding: 4px 8px;
+	}
+
+	.epl-card-featured {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		font-size: 18px;
+		color: #f0b849;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+	}
+
+	.epl-card-body {
+		padding: 16px;
+	}
+
+	.epl-card-type {
+		font-size: 11px;
+		color: $epl-gray;
+		text-transform: uppercase;
+		margin-bottom: 4px;
+	}
+
+	.epl-card-title {
+		margin: 0 0 8px;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.3;
+
+		a {
+			color: $epl-gray-dark;
+			text-decoration: none;
+
+			&:hover {
+				color: $epl-primary;
+			}
+		}
+	}
+
+	.epl-card-address {
+		margin: 0 0 12px;
+		font-size: 12px;
+		color: $epl-gray;
+	}
+
+	.epl-card-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 12px;
+	}
+
+	.epl-card-price {
+		font-weight: 600;
+		color: $epl-primary-dark;
+	}
+
+	.epl-card-features {
+		font-size: 12px;
+		color: $epl-gray;
+
+		.epl-feature {
+			&:not(:last-child)::after {
+				content: ' · ';
+			}
+		}
+	}
+
+	.epl-card-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 12px;
+		border-top: 1px solid $epl-border;
+	}
+
+	.epl-card-author {
+		font-size: 12px;
+		color: $epl-gray;
+	}
+
+	.epl-card-actions {
+		display: flex;
+		gap: 4px;
+		opacity: 0;
+		transition: opacity 0.15s ease;
+	}
+
+	&:hover .epl-card-actions {
+		opacity: 1;
+	}
+}
+
+// Responsive grid
+@media screen and (max-width: 1200px) {
+	.epl-grid-container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.epl-grid-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.epl-grid-container {
+		grid-template-columns: 1fr;
+	}
+}

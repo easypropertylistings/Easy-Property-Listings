@@ -317,6 +317,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				require_once EPL_PATH_LIB . 'includes/admin/help-single.php';
 				require_once EPL_PATH_LIB . 'includes/admin/listing-elements-gui.php';
 				require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-images.php';
+			require_once EPL_PATH_LIB . 'includes/admin/unified-listings-page.php';
+			require_once EPL_PATH_LIB . 'includes/admin/dashboard-page.php';
 			} else {
 				require_once EPL_PATH_LIB . 'templates/themes/themes.php';
 			}
@@ -348,6 +350,8 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-render-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-rest-api.php';
+			require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-listings-rest.php';
+			require_once EPL_PATH_LIB . 'includes/admin/class-epl-dashboard-rest.php';
 
 			// Block Templates for FSE support.
 			require_once EPL_PATH_LIB . 'includes/class-epl-block-template-utils.php';
