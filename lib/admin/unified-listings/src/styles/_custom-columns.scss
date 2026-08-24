@@ -1,0 +1,133 @@
+
+// Address Column Restructuring
+.epl-address {
+    // Hide original span logic if any persists
+}
+
+.epl-address-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+
+    .epl-address-link {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--epl-primary);
+        text-decoration: none;
+        line-height: 1.4;
+
+        &:hover {
+            color: var(--epl-primary-hover);
+            text-decoration: underline;
+        }
+    }
+
+    .epl-address-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        color: var(--epl-text-secondary);
+        
+        // Separator between items
+        & > span:not(:last-child)::after {
+            content: "•";
+            display: inline-block;
+            margin-left: 8px;
+            color: var(--epl-text-muted);
+            font-weight: 400;
+        }
+    }
+
+    .epl-post-type {
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+    }
+
+    .epl-status-indicator {
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 12px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        
+        &--current { background: var(--epl-success-light); color: var(--epl-success); }
+        &--sold, &--leased { background: var(--epl-primary-light); color: var(--epl-primary); }
+        &--withdrawn, &--offmarket { background: var(--epl-warning-light); color: var(--epl-warning); }
+        &--deleted { background: var(--epl-danger-light); color: var(--epl-danger); }
+    }
+}
+
+// Checkbox Column with ID
+.epl-col-checkbox {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.epl-checkbox-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    
+    .components-checkbox-control {
+        margin-bottom: 0;
+    }
+
+    &:hover .epl-row-id {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.epl-row-id {
+    font-size: 10px;
+    color: var(--epl-text-muted);
+    font-family: monospace;
+    line-height: 1;
+    margin-top: 2px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+// Featured Column (Icon Only)
+.epl-featured-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .epl-featured-toggle_icon {
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        color: var(--epl-text-muted); // Default outline color
+        transition: transform var(--epl-transition), color var(--epl-transition);
+        
+        // Star outline by default in our logic is handled by icon switching
+        // But if we use starEmpty, it inherits color.
+        
+        svg {
+            display: block; // Fix mysterious spacing
+        }
+        
+        &:hover {
+            transform: scale(1.1);
+            color: #d4a017; // Goldenish on hover
+        }
+    
+        // When active/featured
+        .is-featured & {
+             // We don't rely on parent class for icon content, but for color
+        }
+    }
+    
+    &.is-featured .epl-featured-toggle_icon {
+        color: #f0b849; // Golden color for filled star
+    }
+}

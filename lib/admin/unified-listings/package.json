@@ -1,0 +1,27 @@
+{
+	"name": "epl-unified-listings",
+	"version": "1.0.0",
+	"description": "Easy Property Listings - Unified Admin Listings Interface",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
+		"format": "wp-scripts format"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.0.0"
+	},
+	"dependencies": {
+		"@wordpress/api-fetch": "^6.0.0",
+		"@wordpress/components": "^27.0.0",
+		"@wordpress/data": "^9.0.0",
+		"@wordpress/element": "^5.0.0",
+		"@wordpress/i18n": "^4.0.0",
+		"@wordpress/icons": "^9.0.0",
+		"@wordpress/date": "^4.0.0",
+		"@wordpress/notices": "^4.0.0",
+		"@wordpress/url": "^3.0.0"
+	}
+}

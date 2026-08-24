@@ -1,0 +1,29 @@
+/**
+ * Header Component Styles
+ */
+
+.epl-listings-header {
+	margin-bottom: 10px;
+
+	.epl-listings-title {
+		margin: 0;
+		font-size: 23px;
+		font-weight: 400;
+		line-height: 1.3;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.epl-listings-count {
+		font-size: 14px;
+		color: $epl-gray;
+		font-weight: 400;
+	}
+
+	.epl-settings-button {
+		&:hover {
+			color: $epl-primary;
+		}
+	}
+}

@@ -1,0 +1,31 @@
+/**
+ * Filter Bar Component Styles
+ */
+
+.epl-filter-bar {
+	.epl-search-wrapper {
+		max-width: 300px;
+	}
+
+	.epl-search-control {
+		.components-search-control__input {
+			height: 36px;
+		}
+	}
+
+	.epl-filter-select {
+		min-width: 150px;
+
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
+
+	.epl-clear-filters {
+		color: $epl-danger;
+
+		&:hover {
+			color: darken($epl-danger, 10%);
+		}
+	}
+}
