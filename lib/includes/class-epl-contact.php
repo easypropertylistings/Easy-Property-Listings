@@ -602,6 +602,7 @@ class EPL_Contact {
 	 * @param string $order Order option.
 	 *
 	 * @return array The notes requested
+	 * @since 3.5.25 Request the 'note' comment type explicitly for WordPress 6.9+ compatibility.
 	 */
 	public function get_notes( $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
 
@@ -614,6 +615,9 @@ class EPL_Contact {
 			'number'     => $length,
 			'orderby'    => $orderby,
 			'order'      => $order,
+			// WP 6.9 excludes the reserved 'note' comment type unless 'all'/'note'
+			// is requested; contact activities are stored as 'note', so opt in.
+			'type'       => 'all',
 		);
 
 		return get_comments( $args );
@@ -623,6 +627,7 @@ class EPL_Contact {
 	 * Get the total number of notes we have after parsing
 	 *
 	 * @since  3.0
+	 * @since  3.5.25 Request the 'note' comment type explicitly for WordPress 6.9+ compatibility.
 	 * @return int The number of notes for the contact.
 	 */
 	public function get_notes_count() {
@@ -632,6 +637,8 @@ class EPL_Contact {
 				'meta_key'   => 'epl_contact_id',
 				'meta_value' => $this->ID,
 				'count'      => true,
+				// See get_notes(): WP 6.9 hides the reserved 'note' type by default.
+				'type'       => 'all',
 			)
 		);
 	}

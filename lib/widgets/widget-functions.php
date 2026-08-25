@@ -1332,12 +1332,16 @@ function epl_preprocess_search_meta_query( $meta_query, $form_fields ) {
  *
  * @return mixed|void
  * @since  3.0
+ * @since  3.5.25 Support an explicit listing_id attribute and guard the single-listing lookup.
  */
 function epl_contact_capture_get_widget_fields( $atts ) {
 	$property_id = 0;
-	if ( is_epl_post_single() ) {
+	if ( isset( $atts['listing_id'] ) && absint( $atts['listing_id'] ) > 0 ) {
+		// Listing bound explicitly, eg. [listing_contact listing_id="123"].
+		$property_id = absint( $atts['listing_id'] );
+	} elseif ( is_epl_post_single() ) {
 		global $property;
-		$property_id = $property->post->ID;
+		$property_id = isset( $property->post->ID ) ? absint( $property->post->ID ) : 0;
 	}
 	$fields = array(
 		array(
@@ -1422,6 +1426,7 @@ function epl_contact_capture_get_widget_fields( $atts ) {
  * Contacts widget form get defaults
  *
  * @since  3.0
+ * @since  3.5.25 Added the listing_id default so the shortcode attribute is preserved.
  */
 function epl_contact_capture_get_widget_defaults() {
 	$fields   = epl_contact_capture_widget_form_fields();
@@ -1433,6 +1438,8 @@ function epl_contact_capture_get_widget_defaults() {
 			$defaults[ $field['key'] ] = isset( $field['default'] ) ? $field['default'] : '';
 		}
 	}
+	// Allow a listing to be bound explicitly, eg. [listing_contact listing_id="123"].
+	$defaults['listing_id'] = 0;
 	return apply_filters( 'epl_contact_capture_get_widget_defaults', $defaults );
 }
 

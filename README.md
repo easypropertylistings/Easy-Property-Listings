@@ -44,6 +44,19 @@ There are various ways you can contribute:
 -   New: Server-rendered Site Editor previews for EPL template blocks.
 -   Fix: EPL search, feature and business-category archives now use EPL layouts in block themes.
 -   Fix: Preserve classic-theme rendering and guard block APIs on older WordPress versions.
+-   
+= 3.5.25 July 30, 2026 =
+
+-   Fix: Authenticated (Subscriber+) Stored Cross-Site Scripting via user contact methods (CVE-2026-16684); author box social/contact profile links, bio and video URL are now escaped on output, with matching sanitization at the user meta layer. Thanks Wordfence PRISM.
+-   Fix: Pinterest author icon (SVG variant) linked to the Instagram URL instead of Pinterest.
+-   Fix: Broken Access Control hardening of the contact capture form (`[listing_contact]` / `[epl_contact_form]`); submissions now run through a shared validation and persistence handler with nonce, honeypot and input sanitization. Thanks Samuel Pagès Chartier.
+-   New: Per-IP rate limiting on anonymous contact capture submissions to prevent spam and database write amplification.
+-   New: Added `epl_contact_capture_rate_limit_max` and `epl_contact_capture_rate_limit_window` filters to tune or disable contact capture throttling.
+-   New: Added `epl_contact_capture_user_can_manage` filter to control which users are exempt from contact capture throttling.
+-   New: Contact capture form now accepts an explicit `listing_id` attribute, eg. `[listing_contact listing_id="123"]`.
+-   Fix: Contact activity notes were hidden on WordPress 7.0 (core 6.9) due to the new reserved `note` comment type; EPL now requests the type explicitly so CRM activities display again.
+-   Fix: Contact capture now always logs an activity with the enquired listing so agents see every form submission, even when no message is entered.
+-   Tweak: Contact capture AJAX and direct form submissions now share a single validation path so direct POSTs cannot bypass request checks.
 
 = 3.5.24 June 20, 2026 =
 

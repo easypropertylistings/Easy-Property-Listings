@@ -214,7 +214,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		/**
 		 * Get the global property object
 		 *
-		 * @param array $property Array of property object.
+		 * @param string $property Name of the property to retrieve.
 		 *
 		 * @return bool|mixed $return Array of values.
 		 * @since 1.3.0
@@ -254,6 +254,45 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		}
 
 		/**
+		 * Escape a social/contact profile URL for use in an href attribute.
+		 *
+		 * Non http(s) schemes used by the contact methods (mailto, skype, tel) are
+		 * whitelisted explicitly, everything else falls back to the WordPress
+		 * allowed protocol list. Values that sanitise away to nothing are returned
+		 * as an empty string so the caller can skip rendering the link entirely.
+		 *
+		 * @param string $url The raw profile URL.
+		 *
+		 * @return string
+		 * @since 3.5.25
+		 */
+		protected function esc_profile_url( $url ) {
+
+			if ( ! is_string( $url ) || '' === $url ) {
+				return '';
+			}
+
+			$protocols = function_exists( 'epl_get_profile_link_protocols' )
+				? epl_get_profile_link_protocols()
+				: array_values( array_unique( array_merge( wp_allowed_protocols(), array( 'skype' ) ) ) );
+
+			return esc_url( $url, $protocols );
+		}
+
+		/**
+		 * Build an escaped title attribute for a contact icon.
+		 *
+		 * @param string $prefix Leading label, eg. "Follow".
+		 * @param string $suffix Trailing label, eg. "on Facebook".
+		 *
+		 * @return string
+		 * @since 3.5.25
+		 */
+		protected function get_icon_title( $prefix, $suffix ) {
+			return esc_attr( $prefix . ' ' . $this->get_author_name() . ' ' . $suffix );
+		}
+
+		/**
 		 * Author Email html Box
 		 *
 		 * @param string $html String of html.
@@ -261,17 +300,21 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|string|void
 		 * @since 1.3.0
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_email_html( $html = '', $style = 'i' ) {
 
-			if ( ! empty( $this->email ) ) {
+			$href = esc_url( 'mailto:' . $this->get_email(), array( 'mailto' ) );
+
+			if ( ! empty( $this->email ) && '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Contact', 'easy-property-listings' ), __( 'by Email', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon email-icon-24"
-							href="mailto:' . $this->get_email() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Email', 'easy-property-listings' ) . '">' .
+							href="' . $href . '" title="' . $title . '">' .
 							apply_filters( 'epl_author_icon_email', __( 'Email', 'easy-property-listings' ) ) .
 							'</a>';
 				} else {
@@ -279,7 +322,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-email">
 							<a class="epl-author-icon-svg author-icon-svg email-icon"
-								href="mailto:' . $this->get_email() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Email', 'easy-property-listings' ) . '">' . $svg .
+								href="' . $href . '" title="' . $title . '">' . $svg .
 							'</a>
 						</div>';
 				}
@@ -308,17 +351,21 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 * @return mixed|string|void
 		 *
 		 * @since 3.5.15
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_website_html( $html = '', $style = 'i' ) {
 
-			if ( ! empty( $this->website ) ) {
+			$href = $this->esc_profile_url( $this->get_website() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Contact', 'easy-property-listings' ), __( 'by Website', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon website-icon-24"
-							href="' . $this->get_website() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Website', 'easy-property-listings' ) . '">' .
+							href="' . $href . '" title="' . $title . '">' .
 							apply_filters( 'epl_author_icon_website', __( 'Website', 'easy-property-listings' ) ) .
 							'</a>';
 				} else {
@@ -326,7 +373,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-website">
 							<a class="epl-author-icon-svg author-icon-svg website-icon"
-								href="' . $this->get_website() . '" title="' . __( 'Contact', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'by Website', 'easy-property-listings' ) . '">' . $svg .
+								href="' . $href . '" title="' . $title . '">' . $svg .
 							'</a>
 						</div>';
 				}
@@ -432,19 +479,23 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 * @return mixed|string|void
 		 * @since 1.3.0
 		 * @since 3.5.0 Switched to Twitter X icon.
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_twitter_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( '' !== $this->get_twitter() ) {
+			$href = $this->esc_profile_url( $this->get_twitter() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Follow', 'easy-property-listings' ), __( 'on Twitter', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon twitter-icon-24"
-							href="' . $this->get_twitter() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Twitter', 'easy-property-listings' ) . '"' . $link_target . '>' .
+							href="' . $href . '" title="' . $title . '"' . $link_target . '>' .
 							apply_filters( 'epl_author_icon_twitter', __( 'Twitter', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
@@ -452,7 +503,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-twitter">
 							<a class="epl-author-icon-svg author-icon-svg twitter-icon"
-								href="' . $this->get_twitter() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Twitter', 'easy-property-listings' ) . '"' . $link_target . '>' . $svg .
+								href="' . $href . '" title="' . $title . '"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -469,19 +520,23 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|string|void
 		 * @since 3.3.0
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_instagram_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( '' !== $this->get_instagram() ) {
+			$href = $this->esc_profile_url( $this->get_instagram() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Follow', 'easy-property-listings' ), __( 'on Instagram', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon instagram-icon-24"
-							href="' . $this->get_instagram() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Instagram', 'easy-property-listings' ) . '"' . $link_target . '>' .
+							href="' . $href . '" title="' . $title . '"' . $link_target . '>' .
 							apply_filters( 'epl_author_icon_instagram', __( 'Instagram', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
@@ -489,7 +544,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-instagram">
 							<a class="epl-author-icon-svg author-icon-svg instagram-icon"
-								href="' . $this->get_instagram() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Instagram', 'easy-property-listings' ) . '"' . $link_target . '>' . $svg .
+								href="' . $href . '" title="' . $title . '"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -506,19 +561,23 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|string|void
 		 * @since 3.3.0
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_youtube_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( '' !== $this->get_youtube() ) {
+			$href = $this->esc_profile_url( $this->get_youtube() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Follow', 'easy-property-listings' ), __( 'on YouTube', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon youtube-icon-24"
-							href="' . $this->get_youtube() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on YouTube', 'easy-property-listings' ) . '"' . $link_target . '>' .
+							href="' . $href . '" title="' . $title . '"' . $link_target . '>' .
 							apply_filters( 'epl_author_icon_youtube', __( 'YouTube', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
@@ -526,7 +585,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-youtube">
 							<a class="epl-author-icon-svg author-icon-svg youtube-icon"
-								href="' . $this->get_youtube() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on YouTube', 'easy-property-listings' ) . '"' . $link_target . '>' . $svg .
+								href="' . $href . '" title="' . $title . '"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -543,19 +602,23 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|string|void
 		 * @since 3.3.0
+		 * @since 3.5.25 Escaped the href and title attributes. Fixed the SVG variant linking to Instagram.
 		 */
 		public function get_pinterest_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( '' !== $this->get_pinterest() ) {
+			$href = $this->esc_profile_url( $this->get_pinterest() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Follow', 'easy-property-listings' ), __( 'on Pinterest', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon pinterest-icon-24"
-							href="' . $this->get_pinterest() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Pinterest', 'easy-property-listings' ) . '"' . $link_target . '>' .
+							href="' . $href . '" title="' . $title . '"' . $link_target . '>' .
 							apply_filters( 'epl_author_icon_pinterest', __( 'Pinterest', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
@@ -563,7 +626,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-pinterest">
 							<a class="epl-author-icon-svg author-icon-svg pinterest-icon"
-								href="' . $this->get_instagram() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Pinterest', 'easy-property-listings' ) . '"' . $link_target . '>' . $svg .
+								href="' . $href . '" title="' . $title . '"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -605,19 +668,23 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @since 1.3.0
 		 * @since 3.3.0 Depreciated as Google Plus no longer exists.
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_google_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( '' !== $this->get_google() ) {
+			$href = $this->esc_profile_url( $this->get_google() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Follow', 'easy-property-listings' ), __( 'on Google', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon google-icon-24"
-							href="' . $this->get_google() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Google', 'easy-property-listings' ) . '"' . $link_target . '>' .
+							href="' . $href . '" title="' . $title . '"' . $link_target . '>' .
 							apply_filters( 'epl_author_icon_google', __( 'Google', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
@@ -625,7 +692,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-google-plus">
 							<a class="epl-author-icon-svg author-icon-svg google-plus-icon"
-								href="' . $this->get_google() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Google', 'easy-property-listings' ) . '"' . $link_target . '>' . $svg .
+								href="' . $href . '" title="' . $title . '"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -665,19 +732,23 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|string|void
 		 * @since 1.3.0
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_facebook_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( '' !== $this->get_facebook() ) {
+			$href = $this->esc_profile_url( $this->get_facebook() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Follow', 'easy-property-listings' ), __( 'on Facebook', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 					$html = '
 						<a class="epl-author-icon author-icon facebook-icon-24"
-							href="' . $this->get_facebook() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Facebook', 'easy-property-listings' ) . '"' . $link_target . '>' .
+							href="' . $href . '" title="' . $title . '"' . $link_target . '>' .
 							apply_filters( 'epl_author_icon_facebook', __( 'Facebook', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
@@ -685,7 +756,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-facebook">
 							<a class="epl-author-icon-svg author-icon-svg facebook-icon"
-								href="' . $this->get_facebook() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Facebook', 'easy-property-listings' ) . '"' . $link_target . '>' . $svg .
+								href="' . $href . '" title="' . $title . '"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -725,20 +796,24 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|string|void
 		 * @since 1.3.0
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_linkedin_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( '' !== $this->get_linkedin() ) {
+			$href = $this->esc_profile_url( $this->get_linkedin() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Follow', 'easy-property-listings' ), __( 'on LinkedIn', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 
 					$html = '
 						<a class="epl-author-icon author-icon linkedin-icon-24"
-							href="' . $this->get_linkedin() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on LinkedIn', 'easy-property-listings' ) . '"' . $link_target . '>' .
+							href="' . $href . '" title="' . $title . '"' . $link_target . '>' .
 							apply_filters( 'epl_author_icon_linkedin', __( 'LinkedIn', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
@@ -746,7 +821,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-linkedin">
 							<a class="epl-author-icon-svg author-icon-svg linkedin-icon"
-								href="' . $this->get_linkedin() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on LinkedIn', 'easy-property-listings' ) . '"' . $link_target . '>' . $svg .
+								href="' . $href . '" title="' . $title . '"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -785,20 +860,24 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|string|void
 		 * @since 1.3.0
+		 * @since 3.5.25 Escaped the href and title attributes.
 		 */
 		public function get_skype_html( $html = '', $style = 'i' ) {
 
 			$link_target = defined( 'EPL_SOCIAL_LINK_TARGET_BLANK' ) && EPL_SOCIAL_LINK_TARGET_BLANK ? 'target="_blank" ' : '';
 
-			if ( '' !== $this->get_skype() ) {
+			$href = $this->esc_profile_url( $this->get_skype() );
+
+			if ( '' !== $href ) {
 
 				$style = 'i' === $style && 'on' === epl_get_option( 'epl_icons_svg_author' ) ? 's' : $style;
+				$title = $this->get_icon_title( __( 'Follow', 'easy-property-listings' ), __( 'on Skype', 'easy-property-listings' ) );
 
 				if ( 'i' === $style ) {
 
 					$html = '
 						<a class="epl-author-icon author-icon skype-icon-24"
-							href="' . $this->get_skype() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Skype', 'easy-property-listings' ) . '"' . $link_target . '>' .
+							href="' . $href . '" title="' . $title . '"' . $link_target . '>' .
 							apply_filters( 'epl_author_icon_skype', __( 'Skype', 'easy-property-listings' ) ) .
 						'</a>';
 				} else {
@@ -806,7 +885,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 					$html =
 						'<div class="epl-icon-svg-container epl-icon-container-skype">
 							<a class="epl-author-icon-svg author-icon-svg skype-icon"
-								href="' . $this->get_skype() . '" title="' . __( 'Follow', 'easy-property-listings' ) . ' ' . $this->get_author_name() . ' ' . __( 'on Skype', 'easy-property-listings' ) . '"' . $link_target . '>' . $svg .
+								href="' . $href . '" title="' . $title . '"' . $link_target . '>' . $svg .
 							'</a>
 						</div>';
 				}
@@ -822,11 +901,16 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|void
 		 * @since 1.3.0
+		 * @since 3.5.25 The profile video URL is sanitised before it is embedded.
 		 */
 		public function get_video_html( $html = '' ) {
 			if ( ! empty( $this->video ) ) {
 				$video = apply_filters( 'epl_author_video_html', $this->video, $this );
-				$html  = wp_oembed_get( $video );
+				$video = esc_url_raw( $video, array( 'http', 'https' ) );
+
+				if ( '' !== $video ) {
+					$html = wp_oembed_get( $video );
+				}
 			}
 			return apply_filters( 'epl_author_video', $html, $this );
 		}
@@ -849,6 +933,7 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 		 *
 		 * @return mixed|void
 		 * @since 1.3.0
+		 * @since 3.5.25 The bio is run through wp_kses_post() and the permalink through esc_url().
 		 */
 		public function get_description_html( $html = '' ) {
 
@@ -859,9 +944,9 @@ if ( ! class_exists( 'EPL_Author' ) ) :
 				$permalink = apply_filters( 'epl_author_profile_link', get_author_posts_url( $this->author_id ), $this );
 
 				$html = '
-				<div class="epl-author-content author-content">' . $this->get_description() . '</div>
+				<div class="epl-author-content author-content">' . wp_kses_post( $desc_html ) . '</div>
 					<span class="bio-more">
-						<a href="' . $permalink . '">' .
+						<a href="' . esc_url( $permalink ) . '">' .
 							apply_filters( 'epl_author_read_more_label', __( 'Read More', 'easy-property-listings' ) ) . '
 						</a>
 					</span>
