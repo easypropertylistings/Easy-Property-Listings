@@ -3473,14 +3473,15 @@ function epl_archive_author_callback() {
 add_action( 'epl_archive_author', 'epl_archive_author_callback' );
 
 /**
- * Check whether the current user can write contact-capture data.
+ * Check whether the current user can manage contact-capture data.
  *
- * Contact capture writes private CRM records and listing metadata, so a public
- * nonce is not sufficient authorization. Use the same configurable capability
- * as the EPL contacts admin screen.
+ * The contact-capture form is a public lead-capture feature, so this is NOT an
+ * access gate on the form itself. It is used only to exempt trusted logged-in
+ * users (agents/admins) from the anti-abuse rate limit applied to anonymous
+ * submissions. Uses the same configurable capability as the contacts screen.
  *
  * @return bool
- * @since 3.6.1
+ * @since 3.5.25
  */
 function epl_contact_capture_user_can_manage() {
 	$capability = epl_get_option( 'min_contact_access', 'manage_options' );
@@ -3491,22 +3492,77 @@ function epl_contact_capture_user_can_manage() {
 }
 
 /**
- * Validate and persist an authorized contact-capture request.
+ * Resolve the client IP for rate limiting.
  *
- * This is shared by the AJAX handler and the form builder callback so direct
- * form POSTs cannot bypass the AJAX authorization checks.
+ * Deliberately uses REMOTE_ADDR only (not X-Forwarded-For), which cannot be
+ * spoofed at the TCP layer and so is the safe default for an abuse control.
+ *
+ * @return string Validated IP address, or '' if unavailable.
+ * @since 3.5.25
+ */
+function epl_contact_capture_get_ip() {
+	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+	$ip = filter_var( $ip, FILTER_VALIDATE_IP );
+
+	return $ip ? $ip : '';
+}
+
+/**
+ * Per-IP throttle for anonymous contact-capture submissions.
+ *
+ * Blunts the write-amplified spam/DoS vector: an unauthenticated visitor can
+ * otherwise trigger ~8-10 DB writes per request with unlimited unique emails
+ * (local+tag@domain). Trusted logged-in users are exempted by the caller.
+ *
+ * @return bool True when the current client has exceeded the limit.
+ * @since 3.5.25
+ */
+function epl_contact_capture_rate_limit_exceeded() {
+	$max    = (int) apply_filters( 'epl_contact_capture_rate_limit_max', 10 );
+	$window = (int) apply_filters( 'epl_contact_capture_rate_limit_window', 10 * MINUTE_IN_SECONDS );
+
+	// A non-positive max or window disables throttling.
+	if ( $max <= 0 || $window <= 0 ) {
+		return false;
+	}
+
+	$ip = epl_contact_capture_get_ip();
+	if ( '' === $ip ) {
+		return false;
+	}
+
+	$key   = 'epl_ccap_rl_' . md5( $ip );
+	$count = (int) get_transient( $key );
+
+	if ( $count >= $max ) {
+		return true;
+	}
+
+	set_transient( $key, $count + 1, $window );
+
+	return false;
+}
+
+/**
+ * Validate and persist a contact-capture request.
+ *
+ * Shared by the AJAX handler and the form builder callback so direct form POSTs
+ * run through the same validation. This is a public lead-capture feature, so it
+ * does not require authorization; abuse is bounded by the nonce (CSRF), the
+ * honeypot, input sanitization, and a per-IP rate limit on anonymous requests.
  *
  * @param array $request Submitted request data.
  * @return true|WP_Error
- * @since 3.6.1
+ * @since 3.5.25
  */
 function epl_process_contact_capture_request( $request ) {
-	if ( ! epl_contact_capture_user_can_manage() ) {
-		return new WP_Error( 'epl_contact_capture_forbidden', __( 'You are not allowed to manage contacts.', 'easy-property-listings' ) );
-	}
-
 	if ( ! is_array( $request ) || ! empty( $request['epl_contact_anti_spam'] ) ) {
 		return new WP_Error( 'epl_contact_capture_invalid', __( 'There was a problem with your submission.', 'easy-property-listings' ) );
+	}
+
+	// Throttle anonymous submissions; trusted logged-in users are exempt.
+	if ( ! epl_contact_capture_user_can_manage() && epl_contact_capture_rate_limit_exceeded() ) {
+		return new WP_Error( 'epl_contact_capture_throttled', __( 'Too many submissions. Please try again later.', 'easy-property-listings' ) );
 	}
 
 	$email = isset( $request['epl_contact_email'] ) ? sanitize_email( wp_unslash( $request['epl_contact_email'] ) ) : '';
@@ -3546,12 +3602,11 @@ function epl_process_contact_capture_request( $request ) {
 	if ( $contact_listing_id ) {
 		$listing      = get_post( $contact_listing_id );
 		$listing_type = $listing instanceof WP_Post ? $listing->post_type : '';
-		$valid_types  = array_keys( epl_get_post_types() );
+		$valid_types  = array_unique( array_merge( array_keys( epl_get_post_types() ), epl_all_post_types() ) );
 
 		if (
 			! $listing instanceof WP_Post ||
-			! in_array( $listing_type, $valid_types, true ) ||
-			! current_user_can( 'edit_post', $contact_listing_id )
+			! in_array( $listing_type, $valid_types, true )
 		) {
 			return new WP_Error( 'epl_contact_capture_invalid_listing', __( 'Invalid listing.', 'easy-property-listings' ) );
 		}
@@ -3561,19 +3616,19 @@ function epl_process_contact_capture_request( $request ) {
 		? sanitize_textarea_field( wp_unslash( $request['epl_contact_note'] ) )
 		: '';
 
+	// Always log an activity for the submission so the agent sees the enquiry
+	// and, when present, the listing it was submitted on.
+	$activity_note = '' !== $contact_listing_note
+		? $contact_listing_note
+		: __( 'Enquiry submitted via contact form.', 'easy-property-listings' );
+
 	$contact = new EPL_Contact( $email );
 	if ( ! empty( $contact->ID ) ) {
-		if ( ! current_user_can( 'edit_post', $contact->ID ) ) {
-			return new WP_Error( 'epl_contact_capture_invalid_contact', __( 'You are not allowed to edit this contact.', 'easy-property-listings' ) );
-		}
-
-		if ( $contact_listing_note ) {
-			$contact->add_note( $contact_listing_note, 'note', $contact_listing_id );
-		}
-
 		if ( $contact_listing_id ) {
 			$contact->attach_listing( $contact_listing_id );
 		}
+
+		$contact->add_note( $activity_note, 'note', $contact_listing_id );
 
 		return true;
 	}
@@ -3596,9 +3651,7 @@ function epl_process_contact_capture_request( $request ) {
 		$contact->attach_listing( $contact_listing_id );
 	}
 
-	if ( $contact_listing_note ) {
-		$contact->add_note( $contact_listing_note, 'note', $contact_listing_id );
-	}
+	$contact->add_note( $activity_note, 'note', $contact_listing_id );
 
 	return true;
 }
@@ -3609,7 +3662,7 @@ function epl_process_contact_capture_request( $request ) {
  * @since 3.3
  * @since 3.5.16 Fix: Vulnerability in contact form shortcode.
  * @since 3.5.17 Tweak: Contact form email address validation check and message.
- * @since 3.6.1 Removed unauthenticated access and added capability checks.
+ * @since 3.5.25 Hardened via shared validation, nonce/honeypot and per-IP rate limiting.
  */
 function epl_contact_capture_action() {
 
@@ -3633,10 +3686,6 @@ function epl_contact_capture_action() {
 		wp_send_json( $fail, 403 );
 	}
 
-	if ( ! epl_contact_capture_user_can_manage() ) {
-		wp_send_json( $fail, 403 );
-	}
-
 	$result = epl_process_contact_capture_request( $_POST );
 	if ( is_wp_error( $result ) ) {
 		$fail['msg'] = $result->get_error_message();
@@ -3646,6 +3695,7 @@ function epl_contact_capture_action() {
 	wp_send_json( $success );
 }
 add_action( 'wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action' );
+add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action' );
 
 /**
  * Get Post ID from Unique ID

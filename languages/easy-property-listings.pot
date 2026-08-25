@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Easy Property Listings package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.5.24\n"
+"Project-Id-Version: Easy Property Listings 3.5.25\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2026-06-10 04:16:51+00:00\n"
+"POT-Creation-Date: 2026-07-30 04:00:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,7 +66,7 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/widgets/class-epl-widget-recent-property.php:62
 #: .claude/worktrees/strange-montalcini/lib/widgets/class-epl-widget-recent-property.php:264
 #: lib/compatibility/functions-compat.php:443
-#: lib/includes/class-epl-author.php:865 lib/includes/options-front-end.php:32
+#: lib/includes/class-epl-author.php:950 lib/includes/options-front-end.php:32
 #: lib/includes/template-functions.php:586
 #: lib/widgets/class-epl-widget-recent-property.php:62
 #: lib/widgets/class-epl-widget-recent-property.php:264
@@ -438,7 +438,7 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/includes/admin/admin-functions.php:924
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-contact.php:738
 #: lib/includes/admin/admin-functions.php:924
-#: lib/includes/class-epl-contact.php:738
+#: lib/includes/class-epl-contact.php:745
 msgid "Call"
 msgstr ""
 
@@ -491,8 +491,7 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/post-types/post-type-contact.php:39
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:70
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:233
-#: lib/includes/class-epl-author.php:274 lib/includes/class-epl-author.php:282
-#: lib/includes/class-epl-author.php:321 lib/includes/class-epl-author.php:329
+#: lib/includes/class-epl-author.php:312 lib/includes/class-epl-author.php:363
 #: lib/includes/functions.php:2123 lib/includes/template-functions.php:2116
 #: lib/post-types/post-type-contact.php:38
 #: lib/post-types/post-type-contact.php:39
@@ -812,7 +811,7 @@ msgstr ""
 #: lib/meta-boxes/meta-box-init.php:1474 lib/meta-boxes/meta-box-init.php:1516
 #: lib/meta-boxes/meta-box-init.php:1531 lib/meta-boxes/meta-box-init.php:1547
 #: lib/widgets/class-epl-widget-recent-property.php:282
-#: lib/widgets/widget-functions.php:36 lib/widgets/widget-functions.php:1448
+#: lib/widgets/widget-functions.php:36 lib/widgets/widget-functions.php:1455
 msgid "Title"
 msgstr ""
 
@@ -1011,7 +1010,7 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1344
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1459
 #: lib/includes/admin/contacts/contacts.php:239
-#: lib/widgets/widget-functions.php:1344 lib/widgets/widget-functions.php:1459
+#: lib/widgets/widget-functions.php:1348 lib/widgets/widget-functions.php:1466
 msgid "First Name"
 msgstr ""
 
@@ -1019,14 +1018,14 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1351
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1465
 #: lib/includes/admin/contacts/contacts.php:246
-#: lib/widgets/widget-functions.php:1351 lib/widgets/widget-functions.php:1465
+#: lib/widgets/widget-functions.php:1355 lib/widgets/widget-functions.php:1472
 msgid "Last Name"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/admin/contacts/contacts.php:253
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1358
 #: lib/includes/admin/contacts/contacts.php:253
-#: lib/widgets/widget-functions.php:1358
+#: lib/widgets/widget-functions.php:1362
 msgid "Email *"
 msgstr ""
 
@@ -1036,7 +1035,7 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1477
 #: lib/includes/admin/contacts/contacts.php:260
 #: lib/includes/admin/contacts/contacts.php:462
-#: lib/widgets/widget-functions.php:1365 lib/widgets/widget-functions.php:1477
+#: lib/widgets/widget-functions.php:1369 lib/widgets/widget-functions.php:1484
 msgid "Phone"
 msgstr ""
 
@@ -1070,15 +1069,15 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-contact.php:739
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1471
 #: lib/includes/admin/contacts/contacts.php:471
-#: lib/includes/class-epl-author.php:275 lib/includes/class-epl-contact.php:739
-#: lib/widgets/widget-functions.php:1471
+#: lib/includes/class-epl-author.php:318 lib/includes/class-epl-contact.php:746
+#: lib/widgets/widget-functions.php:1478
 msgid "Email"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/admin/contacts/contacts.php:480
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:322
 #: lib/includes/admin/contacts/contacts.php:480
-#: lib/includes/class-epl-author.php:322
+#: lib/includes/class-epl-author.php:369
 msgid "Website"
 msgstr ""
 
@@ -1111,7 +1110,7 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:681
 #: .claude/worktrees/strange-montalcini/lib/includes/user.php:31
 #: lib/includes/admin/contacts/contacts.php:532
-#: lib/includes/class-epl-author.php:681 lib/includes/user.php:31
+#: lib/includes/class-epl-author.php:752 lib/includes/user.php:31
 msgid "Facebook"
 msgstr ""
 
@@ -1119,7 +1118,7 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:448
 #: .claude/worktrees/strange-montalcini/lib/includes/user.php:30
 #: lib/includes/admin/contacts/contacts.php:539
-#: lib/includes/class-epl-author.php:448 lib/includes/user.php:30
+#: lib/includes/class-epl-author.php:499 lib/includes/user.php:30
 msgid "Twitter"
 msgstr ""
 
@@ -3032,13 +3031,13 @@ msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:274
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:282
-#: lib/includes/class-epl-author.php:274 lib/includes/class-epl-author.php:282
+#: lib/includes/class-epl-author.php:312
 msgid "by Email"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:321
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:329
-#: lib/includes/class-epl-author.php:321 lib/includes/class-epl-author.php:329
+#: lib/includes/class-epl-author.php:363
 msgid "by Website"
 msgstr ""
 
@@ -3058,96 +3057,92 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:749
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:801
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:809
-#: lib/includes/class-epl-author.php:447 lib/includes/class-epl-author.php:455
-#: lib/includes/class-epl-author.php:484 lib/includes/class-epl-author.php:492
-#: lib/includes/class-epl-author.php:521 lib/includes/class-epl-author.php:529
-#: lib/includes/class-epl-author.php:558 lib/includes/class-epl-author.php:566
-#: lib/includes/class-epl-author.php:620 lib/includes/class-epl-author.php:628
-#: lib/includes/class-epl-author.php:680 lib/includes/class-epl-author.php:688
-#: lib/includes/class-epl-author.php:741 lib/includes/class-epl-author.php:749
-#: lib/includes/class-epl-author.php:801 lib/includes/class-epl-author.php:809
+#: lib/includes/class-epl-author.php:493 lib/includes/class-epl-author.php:534
+#: lib/includes/class-epl-author.php:575 lib/includes/class-epl-author.php:616
+#: lib/includes/class-epl-author.php:682 lib/includes/class-epl-author.php:746
+#: lib/includes/class-epl-author.php:810 lib/includes/class-epl-author.php:874
 msgid "Follow"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:447
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:455
-#: lib/includes/class-epl-author.php:447 lib/includes/class-epl-author.php:455
+#: lib/includes/class-epl-author.php:493
 msgid "on Twitter"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:484
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:492
-#: lib/includes/class-epl-author.php:484 lib/includes/class-epl-author.php:492
+#: lib/includes/class-epl-author.php:534
 msgid "on Instagram"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:485
 #: .claude/worktrees/strange-montalcini/lib/includes/user.php:33
-#: lib/includes/class-epl-author.php:485 lib/includes/user.php:33
+#: lib/includes/class-epl-author.php:540 lib/includes/user.php:33
 msgid "Instagram"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:521
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:529
-#: lib/includes/class-epl-author.php:521 lib/includes/class-epl-author.php:529
+#: lib/includes/class-epl-author.php:575
 msgid "on YouTube"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:522
-#: lib/includes/class-epl-author.php:522
+#: lib/includes/class-epl-author.php:581
 msgid "YouTube"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:558
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:566
-#: lib/includes/class-epl-author.php:558 lib/includes/class-epl-author.php:566
+#: lib/includes/class-epl-author.php:616
 msgid "on Pinterest"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:559
 #: .claude/worktrees/strange-montalcini/lib/includes/user.php:34
-#: lib/includes/class-epl-author.php:559 lib/includes/user.php:34
+#: lib/includes/class-epl-author.php:622 lib/includes/user.php:34
 msgid "Pinterest"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:620
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:628
-#: lib/includes/class-epl-author.php:620 lib/includes/class-epl-author.php:628
+#: lib/includes/class-epl-author.php:682
 msgid "on Google"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:621
-#: lib/includes/class-epl-author.php:621
+#: lib/includes/class-epl-author.php:688
 msgid "Google"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:680
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:688
-#: lib/includes/class-epl-author.php:680 lib/includes/class-epl-author.php:688
+#: lib/includes/class-epl-author.php:746
 msgid "on Facebook"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:741
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:749
-#: lib/includes/class-epl-author.php:741 lib/includes/class-epl-author.php:749
+#: lib/includes/class-epl-author.php:810
 msgid "on LinkedIn"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:742
 #: .claude/worktrees/strange-montalcini/lib/includes/user.php:32
-#: lib/includes/class-epl-author.php:742 lib/includes/user.php:32
+#: lib/includes/class-epl-author.php:817 lib/includes/user.php:32
 msgid "LinkedIn"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:801
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:809
-#: lib/includes/class-epl-author.php:801 lib/includes/class-epl-author.php:809
+#: lib/includes/class-epl-author.php:874
 msgid "on Skype"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-author.php:802
 #: .claude/worktrees/strange-montalcini/lib/includes/user.php:29
-#: lib/includes/class-epl-author.php:802 lib/includes/user.php:29
+#: lib/includes/class-epl-author.php:881 lib/includes/user.php:29
 msgid "Skype"
 msgstr ""
 
@@ -3158,19 +3153,19 @@ msgid "Can't get property %s"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-contact.php:736
-#: lib/includes/class-epl-contact.php:736
+#: lib/includes/class-epl-contact.php:743
 msgid "User Activity"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-contact.php:737
-#: lib/includes/class-epl-contact.php:737
+#: lib/includes/class-epl-contact.php:744
 msgid "Admin Note"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/class-epl-contact.php:740
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3297
 #: .claude/worktrees/strange-montalcini/lib/shortcodes/class-epl-listing-elements.php:76
-#: lib/includes/class-epl-contact.php:740
+#: lib/includes/class-epl-contact.php:747
 #: lib/includes/template-functions.php:3297
 #: lib/shortcodes/class-epl-listing-elements.php:76
 msgid "Listing"
@@ -3454,8 +3449,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1005
 #: lib/includes/class-epl-property-meta.php:1011
 #: lib/includes/class-epl-property-meta.php:1209
-#: lib/includes/functions.php:2411 lib/includes/template-functions.php:3808
-#: lib/includes/template-functions.php:3840
+#: lib/includes/functions.php:2411 lib/includes/template-functions.php:3869
+#: lib/includes/template-functions.php:3901
 msgid "For Sale"
 msgstr ""
 
@@ -3485,8 +3480,8 @@ msgstr ""
 #: lib/includes/class-epl-property-meta.php:1053
 #: lib/includes/class-epl-property-meta.php:1222
 #: lib/includes/class-epl-property-meta.php:1224
-#: lib/includes/template-functions.php:3788
-#: lib/includes/template-functions.php:3851
+#: lib/includes/template-functions.php:3849
+#: lib/includes/template-functions.php:3912
 msgid "For Lease"
 msgstr ""
 
@@ -5344,32 +5339,34 @@ msgid "Listing not found, expand your search criteria and try again."
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3488
-#: lib/includes/template-functions.php:3488
+#: lib/includes/template-functions.php:3673
 msgid "Your enquiry has been submitted."
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3496
-#: lib/includes/template-functions.php:3496
+#: lib/includes/template-functions.php:3560
+#: lib/includes/template-functions.php:3642
+#: lib/includes/template-functions.php:3681
 msgid "There was a problem with your submission."
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3519
-#: lib/includes/template-functions.php:3519
+#: lib/includes/template-functions.php:3570
 msgid "Email is required."
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3533
-#: lib/includes/template-functions.php:3533
+#: lib/includes/template-functions.php:3574
 msgid "Invalid email."
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3574
-#: lib/includes/template-functions.php:3574
+#: lib/includes/template-functions.php:3611
 msgid "Invalid listing."
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/includes/template-functions.php:3829
-#: lib/includes/template-functions.php:3829
+#: lib/includes/template-functions.php:3890
 msgid "For Sale & Lease"
 msgstr ""
 
@@ -7216,7 +7213,7 @@ msgstr ""
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1454
 #: lib/templates/content/content-listing-single-compatibility.php:53
 #: lib/templates/content/content-listing-single.php:80
-#: lib/widgets/widget-functions.php:1454
+#: lib/widgets/widget-functions.php:1461
 msgid "Description"
 msgstr ""
 
@@ -7674,7 +7671,7 @@ msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:228
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1503
-#: lib/widgets/widget-functions.php:228 lib/widgets/widget-functions.php:1503
+#: lib/widgets/widget-functions.php:228 lib/widgets/widget-functions.php:1510
 msgid "Submit Label"
 msgstr ""
 
@@ -7778,35 +7775,43 @@ msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1372
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1484
-#: lib/widgets/widget-functions.php:1372 lib/widgets/widget-functions.php:1484
+#: lib/widgets/widget-functions.php:1376 lib/widgets/widget-functions.php:1491
 msgid "Subject"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1379
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1490
-#: lib/widgets/widget-functions.php:1379 lib/widgets/widget-functions.php:1490
+#: lib/widgets/widget-functions.php:1383 lib/widgets/widget-functions.php:1497
 msgid "Message"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1403
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1505
-#: lib/widgets/widget-functions.php:1403 lib/widgets/widget-functions.php:1505
+#: lib/widgets/widget-functions.php:1407 lib/widgets/widget-functions.php:1512
 msgid "Submit"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1450
-#: lib/widgets/widget-functions.php:1450
+#: lib/widgets/widget-functions.php:1457
 msgid "Contact Form"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1496
-#: lib/widgets/widget-functions.php:1496
+#: lib/widgets/widget-functions.php:1503
 msgid "Anti Spam"
 msgstr ""
 
 #: .claude/worktrees/strange-montalcini/lib/widgets/widget-functions.php:1550
-#: lib/widgets/widget-functions.php:1550
+#: lib/widgets/widget-functions.php:1557
 msgid "Price Search"
+msgstr ""
+
+#: lib/includes/template-functions.php:3565
+msgid "Too many submissions. Please try again later."
+msgstr ""
+
+#: lib/includes/template-functions.php:3623
+msgid "Enquiry submitted via contact form."
 msgstr ""
 
 #. Plugin URI of the plugin/theme

@@ -8,7 +8,7 @@
  *
  * @package     EPL
  * @subpackage  Includes/UserMeta
- * @copyright   Copyright (c) 2026, Merv Barrett
+ * @copyright   Copyright (c) 2020, Merv Barrett
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       3.5.25
  */

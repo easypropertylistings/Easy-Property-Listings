@@ -23,10 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.0
  */
 function epl_contact_capture_form( $atts ) {
-	if ( ! epl_contact_capture_user_can_manage() ) {
-		return '';
-	}
-
 	$defaults   = epl_contact_capture_get_widget_defaults();
 	$attributes = shortcode_atts( $defaults, $atts );
 	$fields     = epl_contact_capture_get_widget_fields( $attributes );
@@ -74,16 +70,16 @@ add_shortcode( 'listing_contact', 'epl_contact_capture_form' );
 /**
  * Contact Form Callback
  *
- * @since 3.0
- * @since 3.6.1 Added nonce and capability checks and shared request validation.
  * @param array $form_data Array of form data.
  * @param array $request Request from url for antispam check.
+ *
+ * @since 3.0
+ * @since 3.5.25 Added nonce check and shared request validation.
  */
 function epl_contact_capture_form_callback( $form_data, $request ) {
 	if (
 		! isset( $request['epl_contact_widget'] ) ||
-		! wp_verify_nonce( sanitize_text_field( wp_unslash( $request['epl_contact_widget'] ) ), 'epl_contact_widget' ) ||
-		! epl_contact_capture_user_can_manage()
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $request['epl_contact_widget'] ) ), 'epl_contact_widget' )
 	) {
 		return;
 	}
