@@ -1,0 +1,345 @@
+[
+ {
+  "id": "1000010",
+  "elType": "container",
+  "settings": {
+   "content_width": "full",
+   "width": {
+    "unit": "%",
+    "size": 100
+   },
+   "flex_direction": "column",
+   "background_background": "classic",
+   "background_color": "#ffffff",
+   "border_radius": {
+    "unit": "px",
+    "top": "0",
+    "right": "0",
+    "bottom": "0",
+    "left": "0",
+    "isLinked": true
+   },
+   "box_shadow_box_shadow": {
+    "horizontal": 0,
+    "vertical": 4,
+    "blur": 24,
+    "spread": 0,
+    "color": "rgba(17,17,17,0.08)"
+   },
+   "overflow": "hidden",
+   "min_height": {
+    "unit": "%",
+    "size": 100
+   },
+   "flex_gap": {
+    "column": "0",
+    "row": "0",
+    "isLinked": true,
+    "unit": "px",
+    "size": 0
+   },
+   "border_border": "solid",
+   "border_width": {
+    "unit": "px",
+    "top": "1",
+    "right": "1",
+    "bottom": "1",
+    "left": "1",
+    "isLinked": true
+   },
+   "border_color": "#E7E3E3"
+  },
+  "elements": [
+   {
+    "id": "1000003",
+    "elType": "container",
+    "settings": {
+     "content_width": "full",
+     "width": {
+      "unit": "%",
+      "size": 100
+     },
+     "flex_direction": "column",
+     "padding": {
+      "unit": "px",
+      "top": "0",
+      "right": "0",
+      "bottom": "0",
+      "left": "0",
+      "isLinked": false
+     },
+     "overflow": "hidden"
+    },
+    "elements": [
+     {
+      "id": "1000001",
+      "elType": "widget",
+      "settings": {
+       "show_stickers": "",
+       "image_width": {
+        "unit": "%",
+        "size": 100
+       },
+       "image_height": {
+        "unit": "px",
+        "size": 230
+       }
+      },
+      "elements": [],
+      "widgetType": "epl-property-image"
+     },
+     {
+      "id": "1000000",
+      "elType": "widget",
+      "settings": {
+       "current_sale_label": "For Sale",
+       "current_rental_label": "For Rent",
+       "background_color": "#181820",
+       "text_color": "#ffffff",
+       "padding": {
+        "unit": "px",
+        "top": "6",
+        "right": "14",
+        "bottom": "6",
+        "left": "14",
+        "isLinked": false
+       },
+       "border_radius": {
+        "unit": "px",
+        "top": "20",
+        "right": "20",
+        "bottom": "20",
+        "left": "20",
+        "isLinked": false
+       },
+       "typography_typography": "custom",
+       "typography_font_size": {
+        "unit": "px",
+        "size": 11
+       },
+       "typography_font_weight": "700",
+       "typography_text_transform": "uppercase",
+       "typography_letter_spacing": {
+        "unit": "px",
+        "size": 0.5
+       },
+       "_position": "absolute",
+       "_offset_orientation_h": "end",
+       "_offset_x_end": {
+        "unit": "px",
+        "size": 14
+       },
+       "_offset_y": {
+        "unit": "px",
+        "size": 14
+       },
+       "current_sale_background": "#181820",
+       "current_rental_background": "#181820",
+       "current_com_sale_background": "#181820",
+       "current_com_lease_background": "#181820",
+       "current_com_both_background": "#181820",
+       "under_offer_background": "#181820",
+       "sold_background": "#181820",
+       "leased_background": "#181820",
+       "withdrawn_background": "#181820",
+       "offmarket_background": "#181820",
+       "deleted_background": "#181820",
+       "current_com_sale_label": "For Sale",
+       "current_com_lease_label": "For Lease",
+       "current_com_both_label": "For Sale / Lease",
+       "under_offer_label": "Under Offer",
+       "sold_label": "Sold",
+       "leased_label": "Leased",
+       "withdrawn_label": "Withdrawn",
+       "offmarket_label": "Off Market",
+       "deleted_label": "Deleted"
+      },
+      "elements": [],
+      "widgetType": "epl-property-status"
+     },
+     {
+      "id": "1000002",
+      "elType": "widget",
+      "settings": {
+       "price_color": "#ffffff",
+       "typography_typography": "custom",
+       "typography_font_size": {
+        "unit": "px",
+        "size": 21
+       },
+       "typography_font_weight": "800",
+       "typography_line_height": {
+        "unit": "em",
+        "size": 1.25
+       },
+       "_element_width": "initial",
+       "_element_custom_width": {
+        "unit": "%",
+        "size": 100
+       },
+       "_padding": {
+        "unit": "px",
+        "top": "46",
+        "right": "16",
+        "bottom": "14",
+        "left": "16",
+        "isLinked": false
+       },
+       "_background_background": "gradient",
+       "_background_color": "rgba(0,0,0,0)",
+       "_background_color_stop": {
+        "unit": "%",
+        "size": 0
+       },
+       "_background_color_b": "rgba(0,0,0,0.78)",
+       "_background_color_b_stop": {
+        "unit": "%",
+        "size": 100
+       },
+       "_background_gradient_angle": {
+        "unit": "deg",
+        "size": 180
+       },
+       "_position": "absolute",
+       "_offset_x": {
+        "unit": "px",
+        "size": 0
+       },
+       "_offset_orientation_v": "end",
+       "_offset_y": {
+        "unit": "px",
+        "size": 0
+       }
+      },
+      "elements": [],
+      "widgetType": "epl-property-price"
+     }
+    ],
+    "isInner": true
+   },
+   {
+    "id": "100000f",
+    "elType": "container",
+    "settings": {
+     "content_width": "full",
+     "width": {
+      "unit": "%",
+      "size": 100
+     },
+     "flex_direction": "column",
+     "padding": {
+      "unit": "px",
+      "top": "16",
+      "right": "16",
+      "bottom": "16",
+      "left": "16",
+      "isLinked": false
+     },
+     "_flex_size": "grow",
+     "flex_gap": {
+      "column": "0",
+      "row": "0",
+      "isLinked": true,
+      "unit": "px",
+      "size": 0
+     }
+    },
+    "elements": [
+     {
+      "id": "1000004",
+      "elType": "widget",
+      "settings": {
+       "text_color": "#161616",
+       "typography_typography": "custom",
+       "typography_font_size": {
+        "unit": "px",
+        "size": 14
+       },
+       "typography_font_weight": "700",
+       "typography_line_height": {
+        "unit": "em",
+        "size": 1.35
+       },
+       "_margin": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "8",
+        "left": "0",
+        "isLinked": false
+       },
+       "_padding": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": true
+       }
+      },
+      "elements": [],
+      "widgetType": "epl-property-title"
+     },
+     {
+      "id": "1000006",
+      "elType": "widget",
+      "settings": {
+       "icon_list": [
+        {
+         "_id": "7c1ad5a"
+        },
+        {
+         "icon_type": "bath",
+         "selected_icon": {
+          "value": "fas fa-bath",
+          "library": "fa-solid"
+         },
+         "_id": "51f61d7"
+        },
+        {
+         "icon_type": "parking",
+         "selected_icon": {
+          "value": "fas fa-car",
+          "library": "fa-solid"
+         },
+         "_id": "a9c1f69"
+        },
+        {
+         "icon_type": "land",
+         "selected_icon": {
+          "value": "fas fa-vector-square",
+          "library": "fa-solid"
+         },
+         "_id": "18aa2ad"
+        }
+       ],
+       "icon_color": "#4b5563",
+       "text_color": "#374151",
+       "icon_size": {
+        "unit": "px",
+        "size": 15
+       },
+       "item_spacing": {
+        "unit": "px",
+        "size": 18
+       },
+       "_margin": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "14",
+        "left": "0",
+        "isLinked": false
+       },
+       "divider_text": "|"
+      },
+      "elements": [],
+      "widgetType": "epl-property-icons"
+     }
+    ],
+    "isInner": true
+   }
+  ],
+  "isInner": false
+ }
+]
