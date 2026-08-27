@@ -172,7 +172,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		$renderers = array( 'epl' => esc_html__( 'EPL Template', 'easy-property-listings' ) );
 		$templates = $this->get_elementor_loop_templates();
 		if ( $templates ) {
-			$renderers['elementor'] = esc_html__( 'Elementor Loop Template', 'easy-property-listings' );
+			$renderers['elementor'] = esc_html__( 'Elementor Loop / EPL Card Template', 'easy-property-listings' );
 		}
 		$this->add_control( 'renderer', array( 'label' => esc_html__( 'Renderer', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => 'epl', 'options' => $renderers ) );
 		$this->add_control(
@@ -183,7 +183,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 			)
 		);
 		if ( $templates ) {
-			$this->add_control( 'elementor_template_id', array( 'label' => esc_html__( 'Loop Template', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SELECT2, 'options' => $templates, 'label_block' => true, 'condition' => array( 'renderer' => 'elementor' ) ) );
+			$this->add_control( 'elementor_template_id', array( 'label' => esc_html__( 'Loop / Card Template', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SELECT2, 'options' => $templates, 'label_block' => true, 'condition' => array( 'renderer' => 'elementor' ) ) );
 			$this->add_control(
 				'list_template_id',
 				array(
@@ -434,16 +434,26 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		EPL_Elementor::render_epl_pagination( $query, $pagination_style );
 	}
 
+	/**
+	 * Elementor Loop Grid templates (Pro, when available) plus EPL Listing
+	 * Card templates (always) — both render identically via render_loop_item().
+	 */
 	private function get_elementor_loop_templates() {
-		$widgets_manager = isset( \Elementor\Plugin::$instance->widgets_manager ) ? \Elementor\Plugin::$instance->widgets_manager : null;
-		if ( ! $widgets_manager || ! $widgets_manager->get_widget_types( 'loop-grid' ) ) {
-			return array();
-		}
-		$posts = get_posts( array( 'post_type' => 'elementor_library', 'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'meta_key' => '_elementor_template_type', 'meta_value' => 'loop-item' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
 		$options = array();
-		foreach ( $posts as $post ) {
+
+		$widgets_manager = isset( \Elementor\Plugin::$instance->widgets_manager ) ? \Elementor\Plugin::$instance->widgets_manager : null;
+		if ( $widgets_manager && $widgets_manager->get_widget_types( 'loop-grid' ) ) {
+			$pro_posts = get_posts( array( 'post_type' => 'elementor_library', 'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'meta_key' => '_elementor_template_type', 'meta_value' => 'loop-item' ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+			foreach ( $pro_posts as $post ) {
+				$options[ $post->ID ] = $post->post_title;
+			}
+		}
+
+		$card_posts = get_posts( array( 'post_type' => 'elementor_library', 'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'meta_key' => '_elementor_template_type', 'meta_value' => EPL_Elementor_Loop_Card_Document::TYPE ) ); // phpcs:ignore WordPress.DB.SlowDBQuery
+		foreach ( $card_posts as $post ) {
 			$options[ $post->ID ] = $post->post_title;
 		}
+
 		return $options;
 	}
 

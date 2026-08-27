@@ -1783,6 +1783,98 @@ function epl_get_admin_option_fields() {
 
 	);
 
+	if ( did_action( 'elementor/loaded' ) ) {
+		// One "archive page" dropdown per active listing type, so each type can
+		// use its own Elementor archive design. Blank = fall back to the single
+		// site-wide "Listings Archive Page" chosen above.
+		$epl_archive_type_fields = array();
+		$epl_archive_type_opts   = array( '' => __( 'Use Default', 'easy-property-listings' ) ) + $opts_pages;
+
+		foreach ( epl_get_active_post_types() as $epl_archive_type => $epl_archive_type_label ) {
+			$epl_archive_type_fields[] = array(
+				'name'    => 'epl_archive_page_id_' . $epl_archive_type,
+				/* translators: %s: listing type label, e.g. Residential. */
+				'label'   => sprintf( __( '%s Archive Page', 'easy-property-listings' ), $epl_archive_type_label ),
+				'type'    => 'select',
+				'opts'    => $epl_archive_type_opts,
+				'default' => '',
+			);
+		}
+
+		$fields[] = array(
+			'label'  => __( 'Elementor Templates', 'easy-property-listings' ),
+			'class'  => 'core',
+			'id'     => 'elementor-templates',
+			'help'   => __( 'For Elementor users only. These settings let you design your listings archive, single listing pages and listing cards visually in Elementor instead of using EPL\'s built-in PHP templates. If your theme (or Gutenberg\'s own Site Editor) already handles your archive pages the way you want, you can ignore this whole section — nothing here changes anything unless you explicitly turn it on below.', 'easy-property-listings' ) . '<hr/>',
+			'fields' => array_merge( array(
+				array(
+					'type'    => 'help',
+					'name'    => 'epl_elementor_templates_help',
+					'content' => sprintf(
+						'<p>%1$s</p><p><a class="button" href="%2$s" target="_blank">%3$s</a> &nbsp; <a class="button" href="%4$s" target="_blank">%5$s</a></p>',
+						__( 'Listing Card templates are picked per-widget — add the EPL Archive Results or EPL Listing Advanced widget to a page and choose your card from its own "Listing Card" dropdown.', 'easy-property-listings' ),
+						esc_url( admin_url( 'edit.php?post_type=elementor_library&elementor_library_type=epl-single' ) ),
+						esc_html__( 'View Single Listing Templates', 'easy-property-listings' ),
+						esc_url( admin_url( 'edit.php?post_type=elementor_library&elementor_library_type=epl-loop-card' ) ),
+						esc_html__( 'View Listing Card Templates', 'easy-property-listings' )
+					),
+				),
+
+				array(
+					'name'    => 'epl_archive_page_enabled',
+					'label'   => __( 'Use An Elementor Page As The Archive', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'yes' => __( 'Enable', 'easy-property-listings' ),
+						'no'  => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 'no',
+					'help'    => __( 'Turn this on only if you\'ve built (or plan to build) your own archive page in Elementor and want EPL to show it instead of its default archive template. Leave it disabled if you\'re using your theme or Gutenberg\'s Site Editor to design archive pages — those already work without this setting, and everything below is ignored while this is off.', 'easy-property-listings' ),
+				),
+
+				array(
+					'name'    => 'epl_archive_page_id',
+					'label'   => __( 'Listings Archive Page', 'easy-property-listings' ),
+					'type'    => 'select',
+					'opts'    => $opts_pages,
+					'default' => '',
+					'help'    => __( 'The page you designed in Elementor to act as the listings archive. It must contain an EPL Archive Results widget somewhere on it (add EPL Listing Search above it for a search bar, and EPL Pagination below it for page numbers) — otherwise visitors will just see an empty page. EPL shows this page, inside your normal theme header/footer, everywhere it would normally show its own archive template; the real query, pagination and page URL are always kept intact.', 'easy-property-listings' ),
+				),
+
+				array(
+					'type'    => 'help',
+					'name'    => 'epl_archive_page_per_type_help',
+					'content' => '<hr/><p><strong>' . esc_html__( 'Per Listing Type Archive Pages', 'easy-property-listings' ) . '</strong><br/>'
+						. esc_html__( 'Optional. The page above is used for every listing type by default. Set a different page here for any listing type that needs its own archive design — for example a different layout for Rural than for Residential. Leave a listing type on "Use Default" to keep using the page above.', 'easy-property-listings' ) . '</p>',
+				),
+			),
+			$epl_archive_type_fields,
+			array(
+				array(
+					'name'    => 'epl_archive_page_apply_search',
+					'label'   => __( 'Apply To Search Results', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'yes' => __( 'Enable', 'easy-property-listings' ),
+						'no'  => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 'yes',
+				),
+
+				array(
+					'name'    => 'epl_archive_page_apply_taxonomy',
+					'label'   => __( 'Apply To Location/Feature Archives', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'yes' => __( 'Enable', 'easy-property-listings' ),
+						'no'  => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 'yes',
+				),
+			) ),
+		);
+	}
+
 	if ( defined( 'EPL_BETA_VERSIONS' ) && true === EPL_BETA_VERSIONS ) {
 		$fields[] = array(
 			'label'  => __( 'Beta Versions', 'easy-property-listings' ),

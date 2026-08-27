@@ -611,3 +611,28 @@
 		grid-template-columns: 1fr;
 	}
 }
+
+/**
+ * EPL Single Listing template, EPL Listing Card and Archive Page wrappers.
+ */
+.epl-elementor-single-template {
+	width: 100%;
+}
+
+.epl-elementor-archive-page {
+	width: 100%;
+}
+
+.epl-elementor-listings-item .epl-elementor-single-template,
+.epl-elementor-advanced-item .epl-elementor-single-template {
+	height: 100%;
+}
+
+.epl-elementor-listing-results-preview .epl-elementor-editor-notice {
+	margin: 0 0 15px;
+	padding: 8px 12px;
+	background: #f4f4f4;
+	border-left: 3px solid #d5d8dc;
+	font-size: 12px;
+	color: #666;
+}

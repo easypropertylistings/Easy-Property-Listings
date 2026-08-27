@@ -138,18 +138,59 @@ class EPL_Elementor_Listings extends \Elementor\Widget_Base {
 			)
 		);
 		$this->add_control(
+			'renderer',
+			array(
+				'label'   => esc_html__( 'Renderer', 'easy-property-listings' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'epl',
+				'options' => array(
+					'epl'  => esc_html__( 'EPL Template', 'easy-property-listings' ),
+					'card' => esc_html__( 'EPL Card Template', 'easy-property-listings' ),
+				),
+			)
+		);
+
+		$this->add_control(
 			'template',
 			array(
-				'label'   => esc_html__( 'EPL Template', 'easy-property-listings' ),
-				'type'    => \Elementor\Controls_Manager::SELECT,
-				'default' => 'default',
-				'options' => array(
+				'label'     => esc_html__( 'EPL Template', 'easy-property-listings' ),
+				'type'      => \Elementor\Controls_Manager::SELECT,
+				'default'   => 'default',
+				'options'   => array(
 					'default'    => esc_html__( 'Default', 'easy-property-listings' ),
 					'card'       => esc_html__( 'Card', 'easy-property-listings' ),
 					'slim'       => esc_html__( 'Slim', 'easy-property-listings' ),
 					'table'      => esc_html__( 'Table', 'easy-property-listings' ),
 					'table-open' => esc_html__( 'Table with Inspection', 'easy-property-listings' ),
 				),
+				'condition' => array( 'renderer' => 'epl' ),
+			)
+		);
+
+		$this->add_control(
+			'card_template_id',
+			array(
+				'label'       => esc_html__( 'Listing Card', 'easy-property-listings' ),
+				'type'        => \Elementor\Controls_Manager::SELECT,
+				'options'     => $this->get_elementor_card_templates(),
+				'default'     => '',
+				'description' => esc_html__( 'Only EPL Listing Card templates can be used here.', 'easy-property-listings' ),
+				'condition'   => array( 'renderer' => 'card' ),
+			)
+		);
+
+		$this->add_control(
+			'card_template_help',
+			array(
+				'type'            => \Elementor\Controls_Manager::RAW_HTML,
+				'raw'             => sprintf(
+					'<p style="color:#666;font-size:12px;">%s <a href="%s" target="_blank">%s</a></p>',
+					esc_html__( 'No template?', 'easy-property-listings' ),
+					esc_url( \Elementor\Plugin::$instance->documents->get_create_new_post_url( 'elementor_library', EPL_Elementor_Loop_Card_Document::TYPE ) ),
+					esc_html__( 'Create an EPL Listing Card', 'easy-property-listings' )
+				),
+				'content_classes' => 'elementor-panel-alert',
+				'condition'       => array( 'renderer' => 'card' ),
 			)
 		);
 		$this->add_responsive_control(
@@ -222,6 +263,8 @@ class EPL_Elementor_Listings extends \Elementor\Widget_Base {
 
 		global $property;
 		$original_property = isset( $property ) ? $property : null;
+		$use_card          = 'card' === $settings['renderer'] && ! empty( $settings['card_template_id'] );
+		$card_template_id  = $use_card ? absint( $settings['card_template_id'] ) : 0;
 		$template          = ! empty( $settings['template'] ) ? sanitize_key( $settings['template'] ) : 'default';
 
 		echo '<div class="epl-elementor-listings">';
@@ -230,7 +273,11 @@ class EPL_Elementor_Listings extends \Elementor\Widget_Base {
 			$query->the_post();
 			$property = new EPL_Property_Meta( get_post() ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- EPL template context restored below.
 			echo '<div class="epl-elementor-listings-item">';
-			epl_property_blog( $template );
+			// A chosen card can be deleted after the fact; fall back to the PHP
+			// template rather than rendering an empty listing.
+			if ( ! $use_card || ! EPL_Elementor_Template_Router::render_card( $card_template_id ) ) {
+				epl_property_blog( $template );
+			}
 			echo '</div>';
 		}
 		echo '</div>';
@@ -242,6 +289,35 @@ class EPL_Elementor_Listings extends \Elementor\Widget_Base {
 
 		wp_reset_postdata();
 		$property = $original_property; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Restore caller context.
+	}
+
+	/** Get published EPL Listing Card documents. */
+	private function get_elementor_card_templates() {
+		$templates = array(
+			'' => esc_html__( '— Select Listing Card —', 'easy-property-listings' ),
+		);
+
+		$template_query = new \WP_Query(
+			array(
+				'post_type'      => 'elementor_library',
+				'posts_per_page' => -1,
+				'post_status'    => 'publish',
+				'orderby'        => 'title',
+				'order'          => 'ASC',
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- elementor_library is small; matches existing EPL Elementor queries.
+					array(
+						'key'   => '_elementor_template_type',
+						'value' => EPL_Elementor_Loop_Card_Document::TYPE,
+					),
+				),
+			)
+		);
+
+		foreach ( $template_query->posts as $post ) {
+			$templates[ $post->ID ] = $post->post_title;
+		}
+
+		return $templates;
 	}
 
 	/** Build either the archive query or an EPL-aware custom query. */

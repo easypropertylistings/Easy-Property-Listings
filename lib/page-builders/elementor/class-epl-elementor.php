@@ -71,6 +71,11 @@ class EPL_Elementor {
 	public function __construct() {
 		$this->widgets_path = EPL_PATH_LIB . 'page-builders/elementor/widgets/';
 		require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor-agent-document.php';
+		require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor-listing-document.php';
+		require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor-single-document.php';
+		require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor-loop-card-document.php';
+		require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor-template-router.php';
+		require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor-template-seeder.php';
 
 		// Check Elementor version.
 		if ( ! $this->is_compatible() ) {
@@ -89,6 +94,7 @@ class EPL_Elementor {
 
 		// Enqueue styles.
 		add_action( 'elementor/frontend/after_enqueue_styles', array( $this, 'frontend_styles' ) );
+		add_action( 'elementor/editor/after_enqueue_scripts', array( $this, 'editor_scripts' ) );
 
 		// Give Elementor Pro Loop Grid users a documented EPL query ID.
 		add_action( 'elementor/query/epl_listings', array( $this, 'elementor_listings_query' ), 10, 2 );
@@ -109,6 +115,13 @@ class EPL_Elementor {
 		add_action( 'added_post_meta', array( $this, 'track_archive_conditions' ), 10, 4 );
 		add_action( 'updated_post_meta', array( $this, 'track_archive_conditions' ), 10, 4 );
 		add_action( 'deleted_post_meta', array( $this, 'track_archive_conditions' ), 10, 4 );
+
+		// Free-Elementor Theme Builder equivalent: single listing templates,
+		// default listing cards, and archive pages.
+		new EPL_Elementor_Template_Router();
+
+		// Install the design templates that ship with the plugin.
+		new EPL_Elementor_Template_Seeder();
 	}
 
 	/**
@@ -118,6 +131,8 @@ class EPL_Elementor {
 	 */
 	public function register_documents( $documents_manager ) {
 		$documents_manager->register_document_type( EPL_Elementor_Agent_Document::TYPE, EPL_Elementor_Agent_Document::get_class_full_name() );
+		$documents_manager->register_document_type( EPL_Elementor_Single_Document::TYPE, EPL_Elementor_Single_Document::get_class_full_name() );
+		$documents_manager->register_document_type( EPL_Elementor_Loop_Card_Document::TYPE, EPL_Elementor_Loop_Card_Document::get_class_full_name() );
 	}
 
 	/**
@@ -251,6 +266,7 @@ class EPL_Elementor {
 		$archive_widgets = array(
 			'EPL_Elementor_Listing_Advanced',
 			'EPL_Elementor_Listing_Search',
+			'EPL_Elementor_Listing_Results',
 			'EPL_Elementor_Pagination',
 		);
 
@@ -316,6 +332,7 @@ class EPL_Elementor {
 			'class-epl-elementor-listing-advanced.php',
 			'class-epl-elementor-listings.php',
 			'class-epl-elementor-listing-search.php',
+			'class-epl-elementor-listing-results.php',
 			'class-epl-elementor-pagination.php',
 		);
 
@@ -406,6 +423,147 @@ class EPL_Elementor {
 					grid.classList.toggle("is-grid-view", !isList);
 				});
 			});
+			'
+		);
+	}
+
+	/**
+	 * Editor Scripts
+	 *
+	 * Two independent editor-only fixes, both injected as a single inline
+	 * script on the real `elementor-editor` script:
+	 *
+	 * 1. Works around an Elementor editor bug where a responsive control that
+	 *    also has a `condition` (e.g. `grid_columns` on the Archive Results
+	 *    widget) can get stuck with a stale inline `display: none;` on its
+	 *    wrapper — set once during the control's initial render and never
+	 *    cleared afterwards, even once its condition is satisfied and
+	 *    Elementor's own Conditions module has correctly removed the
+	 *    `elementor-hidden-control` class. A responsive control with no
+	 *    `condition` (e.g. `grid_gap`) never has this problem: Elementor's
+	 *    device-tab switcher shows/hides those purely via CSS classes, never
+	 *    inline styles, so an inline `display: none;` with the hidden-control
+	 *    class absent is always this bug, never a legitimate state — safe to
+	 *    clear unconditionally, for any widget's controls, not just EPL's own.
+	 *
+	 * 2. Narrows the editing canvas to roughly a single card's width while
+	 *    editing an EPL Listing Card document, per its own "Editing Preview
+	 *    Width" document setting — see EPL_Elementor_Loop_Card_Document.
+	 *
+	 * @since 3.7.0
+	 */
+	public function editor_scripts() {
+		wp_register_script( 'epl-elementor-editor-fixes', '', array( 'elementor-editor' ), EPL_PROPERTY_VER, true );
+		wp_enqueue_script( 'epl-elementor-editor-fixes' );
+		wp_add_inline_script(
+			'epl-elementor-editor-fixes',
+			'
+			( function () {
+				function isStuckHidden( el ) {
+					return el.style.display === "none" && ! el.classList.contains( "elementor-hidden-control" );
+				}
+
+				function sweep( root ) {
+					root.querySelectorAll( ".elementor-control" ).forEach( function ( el ) {
+						if ( isStuckHidden( el ) ) {
+							el.style.removeProperty( "display" );
+						}
+					} );
+				}
+
+				function watch( panel ) {
+					sweep( panel );
+
+					new MutationObserver( function ( mutations ) {
+						mutations.forEach( function ( mutation ) {
+							if ( "attributes" === mutation.type ) {
+								if ( mutation.target.classList && mutation.target.classList.contains( "elementor-control" ) && isStuckHidden( mutation.target ) ) {
+									mutation.target.style.removeProperty( "display" );
+								}
+								return;
+							}
+
+							mutation.addedNodes.forEach( function ( node ) {
+								if ( 1 === node.nodeType ) {
+									sweep( node );
+								}
+							} );
+						} );
+					} ).observe( panel, {
+						childList: true,
+						subtree: true,
+						attributes: true,
+						attributeFilter: [ "style", "class" ],
+					} );
+				}
+
+				elementor.on( "panel:init", function () {
+					var panel = document.getElementById( "elementor-panel" );
+					if ( panel ) {
+						watch( panel );
+					}
+				} );
+			} )();
+
+			// An EPL Listing Card document is a single card, meant to sit
+			// narrow inside a grid — left alone it renders full page width in
+			// the editor, which makes it hard to judge how it will actually
+			// look. When editing this document type, narrow the preview
+			// canvas to the "Editing Preview Width" document setting
+			// (default 320px) and frame it like an isolated card on a grey
+			// backdrop. Purely an editor affordance — never touches front-end
+			// output, and every other document type renders full width as
+			// before.
+			( function () {
+				function applyPreviewWidth() {
+					var config = elementor.config && elementor.config.document;
+					if ( ! config || "epl-loop-card" !== config.type ) {
+						return;
+					}
+
+					var iframe = document.getElementById( "elementor-preview-iframe" );
+					var doc = iframe && iframe.contentDocument;
+					if ( ! doc || ! doc.head ) {
+						return;
+					}
+
+					var width = 320;
+					if ( elementor.settings && elementor.settings.page && elementor.settings.page.model ) {
+						var configured = parseInt( elementor.settings.page.model.get( "epl_card_preview_width" ), 10 );
+						if ( configured ) {
+							width = configured;
+						}
+					}
+
+					var style = doc.getElementById( "epl-card-preview-style" );
+					if ( ! style ) {
+						style = doc.createElement( "style" );
+						style.id = "epl-card-preview-style";
+						doc.head.appendChild( style );
+					}
+
+					// The card document still renders through the active theme
+					// normal single-post wrapper (header, page title, footer) —
+					// there is no bare data-elementor-type directly under body
+					// to key off. Hide that surrounding chrome and narrow the
+					// actual Elementor wrapper wherever it sits in the tree
+					// instead.
+					style.textContent = (
+						"body { background: #e4e4e4 !important; }" +
+						"#site-header, #site-footer, .page-header, .site-header, .site-footer { display: none !important; }" +
+						"[data-elementor-type] { max-width: " + width + "px !important; margin: 40px auto !important; float: none !important; " +
+						"background: #fff !important; box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 12px 28px rgba(0,0,0,.15) !important; }"
+					);
+				}
+
+				elementor.on( "preview:loaded", function () {
+					applyPreviewWidth();
+
+					if ( elementor.settings && elementor.settings.page && elementor.settings.page.model ) {
+						elementor.settings.page.model.on( "change:epl_card_preview_width", applyPreviewWidth );
+					}
+				} );
+			} )();
 			'
 		);
 	}
@@ -1104,6 +1262,14 @@ class EPL_Elementor {
 		$stored_context = (string) get_post_meta( $template_id, '_epl_elementor_template_context', true );
 		if ( in_array( $stored_context, array( 'listing', 'staff' ), true ) ) {
 			return $stored_context;
+		}
+
+		// A brand-new EPL Single Listing / Listing Card document has no
+		// content yet to sniff below, but its type alone already implies
+		// listing context (its own save() sets the meta above afterwards).
+		$template_type = get_post_meta( $template_id, '_elementor_template_type', true );
+		if ( in_array( $template_type, array( EPL_Elementor_Single_Document::TYPE, EPL_Elementor_Loop_Card_Document::TYPE ), true ) ) {
+			return 'listing';
 		}
 
 		$data = (string) get_post_meta( $template_id, '_elementor_data', true );
