@@ -20,11 +20,11 @@ class EPL_Elementor_Pagination extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'EPL Pagination', 'easy-property-listings' );
+		return esc_html__( 'Pagination', 'easy-property-listings' );
 	}
 
 	public function get_icon() {
-		return 'eicon-pagination';
+		return 'eicon-post-navigation';
 	}
 
 	public function get_categories() {

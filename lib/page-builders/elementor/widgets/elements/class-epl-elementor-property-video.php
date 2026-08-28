@@ -35,7 +35,7 @@ class EPL_Elementor_Property_Video extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Video', 'easy-property-listings' );
+		return esc_html__( 'Video', 'easy-property-listings' );
 	}
 
 	/**

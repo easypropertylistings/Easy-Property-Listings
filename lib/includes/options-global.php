@@ -32,8 +32,8 @@ function get_epl_image_sizes() {
 			),
 			array(
 				'id'     => 'epl-image-medium-crop',
-				'height' => 400,
 				'width'  => 600,
+				'height' => 400,
 				'crop'   => true,
 			),
 		)

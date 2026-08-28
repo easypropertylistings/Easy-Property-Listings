@@ -34,7 +34,7 @@ class EPL_Elementor_Agent_Position extends \Elementor\Widget_Base {
 	 * Get widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Agent Position', 'easy-property-listings' );
+		return esc_html__( 'Position', 'easy-property-listings' );
 	}
 
 	/**
@@ -48,7 +48,7 @@ class EPL_Elementor_Agent_Position extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return array( 'epl-staff', 'epl-elements' );
+		return array( 'epl-staff', 'epl-author' );
 	}
 
 	/**

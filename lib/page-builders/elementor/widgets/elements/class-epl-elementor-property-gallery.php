@@ -35,7 +35,7 @@ class EPL_Elementor_Property_Gallery extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Gallery', 'easy-property-listings' );
+		return esc_html__( 'Gallery', 'easy-property-listings' );
 	}
 
 	/**

@@ -37,7 +37,7 @@ class EPL_Elementor_Property_Heading extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Heading', 'easy-property-listings' );
+		return esc_html__( 'Heading', 'easy-property-listings' );
 	}
 
 	/**

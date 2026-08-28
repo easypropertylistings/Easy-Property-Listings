@@ -37,7 +37,7 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Icons', 'easy-property-listings' );
+		return esc_html__( 'Icons', 'easy-property-listings' );
 	}
 
 	/**

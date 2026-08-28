@@ -35,7 +35,7 @@ class EPL_Elementor_Property_Image extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Image', 'easy-property-listings' );
+		return esc_html__( 'Featured Image', 'easy-property-listings' );
 	}
 
 	/**

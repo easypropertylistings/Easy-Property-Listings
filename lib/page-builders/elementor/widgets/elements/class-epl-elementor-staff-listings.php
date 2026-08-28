@@ -20,7 +20,7 @@ class EPL_Elementor_Staff_Listings extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'EPL Staff Listings', 'easy-property-listings' );
+		return esc_html__( 'Staff Listings', 'easy-property-listings' );
 	}
 
 	public function get_icon() {

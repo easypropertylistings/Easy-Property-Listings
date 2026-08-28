@@ -20,11 +20,11 @@ class EPL_Elementor_Property_Meta extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'EPL Property Meta', 'easy-property-listings' );
+		return esc_html__( 'Custom Field', 'easy-property-listings' );
 	}
 
 	public function get_icon() {
-		return 'eicon-database';
+		return 'eicon-meta-data';
 	}
 
 	public function get_categories() {

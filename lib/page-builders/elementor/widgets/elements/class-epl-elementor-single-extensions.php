@@ -35,7 +35,7 @@ class EPL_Elementor_Single_Extensions extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Single Extensions', 'easy-property-listings' );
+		return esc_html__( 'Single Extensions', 'easy-property-listings' );
 	}
 
 	/**
@@ -44,7 +44,7 @@ class EPL_Elementor_Single_Extensions extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_icon() {
-		return 'eicon-plug';
+		return 'eicon-kit-plugins';
 	}
 
 	/**

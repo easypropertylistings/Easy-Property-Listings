@@ -35,7 +35,7 @@ class EPL_Elementor_Property_Inspection extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Inspection Times', 'easy-property-listings' );
+		return esc_html__( 'Inspection Times', 'easy-property-listings' );
 	}
 
 	/**

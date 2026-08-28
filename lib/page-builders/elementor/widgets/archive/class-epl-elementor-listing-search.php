@@ -35,7 +35,7 @@ class EPL_Elementor_Listing_Search extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Listing Search', 'easy-property-listings' );
+		return esc_html__( 'Listing Search', 'easy-property-listings' );
 	}
 
 	/**
@@ -44,7 +44,7 @@ class EPL_Elementor_Listing_Search extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_icon() {
-		return 'eicon-search';
+		return 'eicon-form-vertical';
 	}
 
 	/**

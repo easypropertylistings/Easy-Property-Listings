@@ -35,7 +35,7 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Status', 'easy-property-listings' );
+		return esc_html__( 'Status', 'easy-property-listings' );
 	}
 
 	/**
@@ -44,7 +44,7 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_icon() {
-		return 'eicon-info-circle';
+		return 'eicon-post-info';
 	}
 
 	/**

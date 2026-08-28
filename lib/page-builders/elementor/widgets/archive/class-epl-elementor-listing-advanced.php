@@ -20,7 +20,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'EPL Listing Advanced', 'easy-property-listings' );
+		return esc_html__( 'Listings Loop', 'easy-property-listings' );
 	}
 
 	public function get_icon() {

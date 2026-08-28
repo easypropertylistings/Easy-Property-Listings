@@ -35,7 +35,7 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Address', 'easy-property-listings' );
+		return esc_html__( 'Address', 'easy-property-listings' );
 	}
 
 	/**
@@ -44,7 +44,7 @@ class EPL_Elementor_Property_Address extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_icon() {
-		return 'eicon-map-pin';
+		return 'eicon-animation-text';
 	}
 
 	/**

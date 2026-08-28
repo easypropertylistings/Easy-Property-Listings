@@ -33,7 +33,7 @@ class EPL_Elementor_Agent_Photo extends \Elementor\Widget_Base {
 	 * Get widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Agent Photo', 'easy-property-listings' );
+		return esc_html__( 'Photo', 'easy-property-listings' );
 	}
 
 	/**
@@ -47,7 +47,7 @@ class EPL_Elementor_Agent_Photo extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return array( 'epl-staff', 'epl-elements' );
+		return array( 'epl-staff', 'epl-author' );
 	}
 
 	/**

@@ -35,7 +35,7 @@ class EPL_Elementor_Property_Map extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Map', 'easy-property-listings' );
+		return esc_html__( 'Map', 'easy-property-listings' );
 	}
 
 	/**

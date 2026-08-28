@@ -35,7 +35,7 @@ class EPL_Elementor_Property_Buttons extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Buttons', 'easy-property-listings' );
+		return esc_html__( 'Buttons', 'easy-property-listings' );
 	}
 
 	/**

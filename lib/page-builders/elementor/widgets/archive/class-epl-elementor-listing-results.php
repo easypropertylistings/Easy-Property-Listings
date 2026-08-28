@@ -45,7 +45,7 @@ class EPL_Elementor_Listing_Results extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Archive Results', 'easy-property-listings' );
+		return esc_html__( 'Listings Results', 'easy-property-listings' );
 	}
 
 	/**
