@@ -151,6 +151,9 @@
 .elementor-widget-epl-property-image {
 	overflow: hidden;
 }
+.elementor-widget-epl-property-image > * {
+	overflow: hidden;
+}
 .epl-property-image {
 	position: relative;
 	overflow: hidden;
