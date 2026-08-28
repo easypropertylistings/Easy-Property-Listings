@@ -480,6 +480,18 @@ class EPL_Elementor_Property_Image extends \Elementor\Widget_Base {
 				'selector' => '{{WRAPPER}} .epl-property-image .epl-sticker-wrapper .status-sticker',
 			)
 		);
+		
+		$this->add_responsive_control(
+			'sticker_gap',
+			array(
+				'label'      => esc_html__( 'Gap', 'easy-property-listings' ),
+				'type'       => \Elementor\Controls_Manager::NUMBER,
+				'default'    => 10,
+				'selectors'  => array(
+					'{{WRAPPER}} .epl-property-image .epl-sticker-wrapper' => 'gap: {{VALUE}}px;',
+				),
+			)
+		);
 
 		$this->add_responsive_control(
 			'sticker_padding',

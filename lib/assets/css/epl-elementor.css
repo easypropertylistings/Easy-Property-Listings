@@ -216,6 +216,8 @@
 .epl-property-image .epl-sticker-wrapper {
 	position: absolute;
 	z-index: 10;
+	display: flex;
+	gap: 10px;
 }
 
 /* Sticker Positions */

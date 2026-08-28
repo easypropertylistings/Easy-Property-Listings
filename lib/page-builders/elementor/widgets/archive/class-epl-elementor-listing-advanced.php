@@ -62,7 +62,7 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 				'options' => epl_get_property_com_listing_type_opts(), 'multiple' => true, 'label_block' => true,
 			)
 		);
-		$this->add_control( 'limit', array( 'label' => esc_html__( 'Listings Per Page', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 1, 'max' => 100, 'default' => 10 ) );
+		$this->add_control( 'limit', array( 'label' => esc_html__( 'Listings Per Page', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 1, 'max' => 100, 'default' => 12 ) );
 		$this->add_control( 'offset', array( 'label' => esc_html__( 'Offset', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 0, 'default' => 0 ) );
 		$this->add_control( 'post__in', array( 'label' => esc_html__( 'Include Listing IDs', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::TEXT, 'label_block' => true, 'description' => esc_html__( 'Comma-separated post IDs.', 'easy-property-listings' ) ) );
 		$this->add_control( 'post__not_in', array( 'label' => esc_html__( 'Exclude Listing IDs', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::TEXT, 'label_block' => true, 'description' => esc_html__( 'Comma-separated post IDs.', 'easy-property-listings' ) ) );
@@ -274,6 +274,24 @@ class EPL_Elementor_Listing_Advanced extends \Elementor\Widget_Base {
 		$this->start_controls_section( 'section_grid_style', array( 'label' => esc_html__( 'Grid', 'easy-property-listings' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ) );
 		$this->add_responsive_control( 'column_gap', array( 'label' => esc_html__( 'Column Gap', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => array( 'px', 'em', 'rem' ), 'default' => array( 'size' => 24, 'unit' => 'px' ), 'selectors' => array( '{{WRAPPER}} .epl-elementor-advanced-grid' => 'column-gap: {{SIZE}}{{UNIT}};' ) ) );
 		$this->add_responsive_control( 'row_gap', array( 'label' => esc_html__( 'Row Gap', 'easy-property-listings' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => array( 'px', 'em', 'rem' ), 'default' => array( 'size' => 32, 'unit' => 'px' ), 'selectors' => array( '{{WRAPPER}} .epl-elementor-advanced-grid' => 'row-gap: {{SIZE}}{{UNIT}};' ) ) );
+		$this->end_controls_section();
+		
+		$this->start_controls_section( 'section_style', array( 'label' => esc_html__( 'Pagination', 'easy-property-listings' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ) );
+		$this->add_responsive_control(
+			'align',
+			array(
+				'label'     => esc_html__( 'Alignment', 'easy-property-listings' ),
+				'type'      => \Elementor\Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array( 'title' => esc_html__( 'Left', 'easy-property-listings' ), 'icon' => 'eicon-text-align-left' ),
+					'center' => array( 'title' => esc_html__( 'Center', 'easy-property-listings' ), 'icon' => 'eicon-text-align-center' ),
+					'right'  => array( 'title' => esc_html__( 'Right', 'easy-property-listings' ), 'icon' => 'eicon-text-align-right' ),
+				),
+				'default'   => 'center',
+				'selectors' => array( '{{WRAPPER}}' => 'text-align: {{VALUE}};' ),
+			)
+		);
+		$this->add_group_control( \Elementor\Group_Control_Typography::get_type(), array( 'name' => 'typography', 'selector' => '{{WRAPPER}} .epl-pagination a, {{WRAPPER}} .epl-pagination span, {{WRAPPER}} .epl-paginate-default-wrapper a' ) );
 		$this->end_controls_section();
 	}
 
