@@ -22,8 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div id="left-area">
 			<?php
 			if ( have_posts() ) :
-				?>
 				<?php do_action( 'epl_property_loop_start' ); ?>
+				?>
 				<?php
 				while ( have_posts() ) :
 					the_post();

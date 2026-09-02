@@ -2573,6 +2573,9 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
  */
 function get_property_meta( $key ) {
 	global $property;
+	if ( ! $property ) {
+		return '';
+	}
 	return $property->get_property_meta( $key );
 }
 
@@ -2585,6 +2588,9 @@ function get_property_meta( $key ) {
  */
 function the_property_meta( $key ) {
 	global  $property;
+	if ( ! $property ) {
+		return;
+	}
 	echo wp_kses_post( $property->get_property_meta( $key ) );
 }
 
