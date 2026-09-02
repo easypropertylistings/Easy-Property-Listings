@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.5 support for third and fourth agents.
  * @since 3.4.48 Fixed class name.
  * @since 3.5.5 Sorting not working.
+ * @since 3.6 Moved tools top and bottom to outside the wrapper. Added a shortcode class.
  */
 function epl_shortcode_listing_category_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -253,23 +254,27 @@ function epl_shortcode_listing_category_callback( $atts ) {
 
 	$query_open = new WP_Query( $args );
 	if ( $query_open->have_posts() ) { ?>
-		<div class="loop epl-shortcode">
+		<div class="loop epl-shortcode epl-shortcode--listing-category">
+			<?php
+			if ( 'on' === $tools_top ) {
+				do_action( 'epl_property_loop_start', $attributes );
+			}
+			?>
 			<div class="loop-content epl-shortcode-listing-category <?php echo ' ' . esc_attr( epl_template_class( $template, 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
-				if ( 'on' === $tools_top ) {
-					do_action( 'epl_property_loop_start', $attributes );
-				}
 				while ( $query_open->have_posts() ) {
 					$query_open->the_post();
 
 					$template = str_replace( '_', '-', $template );
 					epl_property_blog( $template );
 				}
-				if ( 'on' === $tools_bottom ) {
-					do_action( 'epl_property_loop_end' );
-				}
 				?>
 			</div>
+			<?php
+			if ( 'on' === $tools_bottom ) {
+				do_action( 'epl_property_loop_end' );
+			}
+			?>
 			<div class="loop-footer">
 				<?php
 				if ( 'on' === $pagination ) {

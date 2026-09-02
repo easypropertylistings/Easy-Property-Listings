@@ -124,7 +124,10 @@ class EPL_Advanced_Shortcode_Listing {
 	 */
 	public function get_meta_key_price() {
 
-		if ( is_string( $this->attributes['post_type'] ) && 'rental' === $this->attributes['post_type'] ) {
+		$post_types = (array) $this->attributes['post_type'];
+		if ( count( $post_types ) > 1 ) {
+			$this->meta_key_price = 'property_price_global';
+		} elseif ( 1 === count( $post_types ) && is_epl_rental_post( reset( $post_types ) ) ) {
 			$this->meta_key_price = 'property_rent';
 		} else {
 			$this->meta_key_price = 'property_price';

@@ -119,6 +119,88 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		}
 
 		/**
+		 * Get the original attachment order from listing metadata.
+		 *
+		 * @param object $post       Current listing post object.
+		 * @param array  $all_images Attachment IDs to consider.
+		 *
+		 * @return array Ordered attachment IDs.
+		 *
+		 * @since 3.5.24
+		 */
+		private function get_original_image_order( $post, $all_images ) {
+
+			$original_order = array();
+
+			if ( empty( $all_images ) ) {
+				return $original_order;
+			}
+
+			$order_meta = get_post_meta( $post->ID, 'property_images_original_order', true );
+
+			if ( empty( $order_meta ) ) {
+				return $original_order;
+			}
+
+			if ( is_array( $order_meta ) ) {
+				$order_values = $order_meta;
+			} else {
+				$order_values = explode( ',', $order_meta );
+			}
+
+			$order_values = array_filter( array_map( 'trim', $order_values ), 'strlen' );
+			if ( empty( $order_values ) ) {
+				return $original_order;
+			}
+
+			$attachments = get_posts(
+				array(
+					'post_type'   => 'attachment',
+					'post__in'    => $all_images,
+					'numberposts' => -1,
+					'fields'      => 'ids',
+					'meta_query'  => array(  // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- bounded by post__in below, admin-only.
+						array(
+							'key'     => '_epl_media_object_id',
+							'compare' => 'EXISTS',
+						),
+					),
+				)
+			);
+
+			if ( empty( $attachments ) ) {
+				return $original_order;
+			}
+
+			$attachments_by_media_id = array();
+			foreach ( $attachments as $attachment_id ) {
+				$media_object_id = get_post_meta( $attachment_id, '_epl_media_object_id', true );
+
+				if ( '' === $media_object_id ) {
+					continue;
+				}
+
+				$attachments_by_media_id[ (string) $media_object_id ][] = $attachment_id;
+			}
+
+			foreach ( $order_values as $media_object_id ) {
+				if ( ! isset( $attachments_by_media_id[ $media_object_id ] ) ) {
+					continue;
+				}
+
+				foreach ( $attachments_by_media_id[ $media_object_id ] as $attachment_id ) {
+					if ( in_array( $attachment_id, $original_order, true ) ) {
+						continue;
+					}
+
+					$original_order[] = $attachment_id;
+				}
+			}
+
+			return $original_order;
+		}
+
+		/**
 		 * Static method to handle saving for all registered extensions
 		 *
 		 * @param string $post_id Post ID.
@@ -246,6 +328,7 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 		 *
 		 * @since 3.5.16
 		 * @since 3.5.18 Array search improvements and better checks for attachments.
+		 * @since 3.5.24 Support for getting original image order.
 		 */
 		public function epl_images_management_callback( $post ) {
 
@@ -325,17 +408,26 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 				$args['post__not_in'] = $post_not_in;
 			}
 
-			if ( get_post_meta( $post->ID, $this->get_config( 'order_meta_key' ), true ) !== '' ) {
+			$order_meta       = get_post_meta( $post->ID, $this->get_config( 'order_meta_key' ), true );
+			$has_manual_order = is_array( $order_meta ) ? ! empty( $order_meta ) : ( '' !== $order_meta );
 
-				$ordered_posts = get_post_meta( $post->ID, $this->get_config( 'order_meta_key' ), true );
+			if ( $has_manual_order ) {
 
-				if ( ! is_array( $ordered_posts ) ) {
-					$ordered_posts = explode( ',', $ordered_posts );
-				}
+				$ordered_posts    = is_array( $order_meta ) ? $order_meta : explode( ',', $order_meta );
+				$ordered_posts    = array_map( 'absint', $ordered_posts );
+				$ordered_posts    = array_filter( $ordered_posts );
 				$unordered_posts  = array_diff( $all_images, $ordered_posts );
 				$all_images       = array_merge( $ordered_posts, $unordered_posts );
 				$args['post__in'] = $all_images;
 				$args['orderby']  = 'post__in';
+			} else {
+				$ordered_posts = $this->get_original_image_order( $post, $all_images );
+				if ( ! empty( $ordered_posts ) ) {
+					$unordered_posts  = array_diff( $all_images, $ordered_posts );
+					$all_images       = array_merge( $ordered_posts, $unordered_posts );
+					$args['post__in'] = $all_images;
+					$args['orderby']  = 'post__in';
+				}
 			}
 
 			if ( has_post_thumbnail( $post->ID ) ) {
@@ -396,24 +488,24 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 
 								<span class="epl-slider-unattach">
 									<div class="epl-radio-switch">
-									<input 
-										id="epl-<?php echo esc_attr( $extension ); ?>-cmn-toggle-<?php echo esc_attr( $attachment->ID ); ?>" 
-										class="epl-radio-switch-input epl-radio-switch-input--yes-no" 
-										name="<?php echo esc_attr( $prefix ); ?>enabled_thumbs[]" 
-										<?php echo esc_attr( $checked ); ?> 
-										value="<?php echo esc_attr( $attachment->ID ); ?>" 
-										type="checkbox"
-									/>
-									<label for="epl-<?php echo esc_attr( $extension ); ?>-cmn-toggle-<?php echo esc_attr( $attachment->ID ); ?>"></label>
+										<input
+											id="epl-<?php echo esc_attr( $extension ); ?>-cmn-toggle-<?php echo esc_attr( $attachment->ID ); ?>"
+											class="epl-radio-switch-input epl-radio-switch-input--yes-no"
+											name="<?php echo esc_attr( $prefix ); ?>enabled_thumbs[]"
+											<?php echo esc_attr( $checked ); ?>
+											value="<?php echo esc_attr( $attachment->ID ); ?>"
+											type="checkbox"
+										/>
+										<label for="epl-<?php echo esc_attr( $extension ); ?>-cmn-toggle-<?php echo esc_attr( $attachment->ID ); ?>"></label>
 									</div>
 								</span>
 
 								<div class="epl-<?php echo esc_attr( $extension ); ?>-slide-tools epl-listing-attachment-tools">
 									<a target="_blank" href="<?php echo esc_url( admin_url( 'post.php?post=' . $attachment->ID . '&action=edit' ) ); ?>">
-									<span class="epl-<?php echo esc_attr( $extension ); ?>-edit-attach dashicons dashicons-edit"></span>
+										<span class="epl-<?php echo esc_attr( $extension ); ?>-edit-attach dashicons dashicons-edit"></span>
 									</a>
 									<a href="#" class="epl-slider-<?php echo esc_attr( $extension ); ?>-delete-attach epl-listing-attachment-tools-delete-attach">
-									<span class="dashicons dashicons-trash"></span>
+										<span class="dashicons dashicons-trash"></span>
 									</a>
 								</div>
 
@@ -423,7 +515,10 @@ if ( ! class_exists( 'EPL_Admin_Images' ) ) :
 
 					</ul>
 					<div class="epl-clearfix"></div>
-					<?php echo $this->extension_messages( $post ); ?>
+					<?php
+					// Output is HTML markup generated by extension callbacks hooked to epl_image_extension_messages; each callback escapes its own output.
+					echo $this->extension_messages( $post ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					?>
 
 				<?php else : ?>
 
