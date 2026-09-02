@@ -1,0 +1,27 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Themes (Twenty Seventeen)
+//---------------------------------------------
+
+/* Twenty Seventeen */
+.epl-active-theme-twentyseventeen {
+}
+.post-type-archive .epl-active-theme-twentyseventeen {
+}
+.epl-active-theme-twentyseventeen .epl-property-blog.epl-listing-grid-view {
+	width: 50%;
+}
+.epl-active-theme-twentyseventeen .loop {
+}
+.entry-content .epl-archive-entry-image a {
+	box-shadow: none;
+	border-bottom: none;
+}
+
+/* Search Widget Responsive */
+@media screen and (max-width: 860px) {
+	.epl-active-theme-twentyseventeen .epl-property-blog.epl-listing-grid-view {
+		width: 100%;
+	}
+}

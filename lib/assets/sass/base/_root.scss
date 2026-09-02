@@ -1,0 +1,151 @@
+@use "../abstracts" as *;
+
+:root {
+	interpolate-size: allow-keywords;
+	// ----------------------------------------------- //
+	// 		      Colors                       //
+	// ----------------------------------------------- //
+
+	// ---- Mixes ---- //
+	--epl-color-white-opacity-75: rgba(255, 255, 255, 0.75);
+	--epl-color-white-opacity-50: rgba(255, 255, 255, 0.5);
+	--epl-color-white-opacity-25: rgba(255, 255, 255, 0.25);
+	--epl-color-white-opacity-10: rgba(255, 255, 255, 0.1);
+
+	--epl-color-grey-cd: #cdcdcd;
+	--epl-color-grey-df: #dfdfdf;
+	--epl-color-grey-e1: #e1e1e1;
+	--epl-color-grey-e2: #e2e2e2;
+	--epl-color-grey-e5: #e5e5e5;
+	--epl-color-grey-e7: #e7e7e7;
+	--epl-color-grey-e9: #e9e9e9;
+	--epl-color-grey-ef: #efefef;
+	--epl-color-grey-f0: #f0f0f0;
+	--epl-color-grey-f3: #f3f3f3;
+	--epl-color-grey-f4: #f4f4f4;
+	--epl-color-grey-f5: #f5f5f5;
+	--epl-color-grey-f6: #f6f6f6;
+	--epl-color-grey-f7: #f7f7f7;
+	--epl-color-grey-f8: #f8f8f8;
+	--epl-color-grey-f9: #f9f9f9;
+	--epl-color-grey-fa: #fafafa;
+	--epl-color-grey-fb: #fbfbfb;
+	--epl-color-grey-fc: #fcfcfc;
+	--epl-color-grey-fd: #fdfdfd;
+	--epl-color-grey-fe: #fefefe;
+	--epl-color-grey-ff: #ffffff;
+	--epl-color-grey-ab: #ababab;
+	--epl-color-grey-b1: #b1b1b1;
+	--epl-color-grey-99: #999999;
+	--epl-color-grey-91: #919294;
+	--epl-color-grey-89: #898989;
+	--epl-color-grey-7f: #7f7f7f;
+
+	--epl-color-silver: #c0c0c0;
+
+	// ----------------------------------------------- //
+	// 		  Project Colors                   //
+	// ----------------------------------------------- //
+
+	--epl-color-black: #000000;
+	--epl-color-white: #ffffff;
+	--epl-color-grey: #002461;
+	--epl-color-page: #f7f7f7;
+
+	--epl-color-black-10: rgba(0, 0, 0, 0.1);
+	--epl-color-black-20: rgba(0, 0, 0, 0.2);
+	--epl-color-black-30: rgba(0, 0, 0, 0.3);
+	--epl-color-black-40: rgba(0, 0, 0, 0.4);
+	--epl-color-black-50: rgba(0, 0, 0, 0.5);
+	--epl-color-black-60: rgba(0, 0, 0, 0.6);
+	--epl-color-black-70: rgba(0, 0, 0, 0.7);
+	--epl-color-black-80: rgba(0, 0, 0, 0.8);
+	--epl-color-black-90: rgba(0, 0, 0, 0.9);
+
+	--epl-color-primary: #000000; // Text color.
+	--epl-color-primary-light: var(--epl-color-primary); // Text color.
+	--epl-color-primary-opacity: var(--epl-color-primary); // Text color.
+
+	--epl-color-secondary: #36454f;
+	--epl-color-secondary-light: var(--epl-color-secondary);
+	--epl-color-secondary-opacity: var(--epl-color-secondary);
+
+	--epl-color-tertiary: #000000;
+	--epl-color-tertiary-light: var(--epl-color-tertiary);
+	--epl-color-tertiary-opacity: #af268c55;
+
+	--epl-color-quaternary: #36454f;
+	--epl-color-quaternary-light: var(--epl-color-quaternary);
+	--epl-color-quaternary-opacity: var(--epl-color-quaternary);
+
+	--epl-color-accent: #c3d941;
+	--epl-color-accent-light: var(--epl-color-accent);
+	--epl-color-accent-opacity: var(--epl-color-accent);
+
+	--epl-color-alternate: #c3d941;
+	--epl-color-alternate-light: var(--epl-color-alternate);
+	--epl-color-alternate-opacity: var(--epl-color-alternate);
+
+	--epl-color-tint: #f3f3f4; // linear-gradient(180deg, #ffffff 0%, #e8eefc 100%);
+	--epl-color-tint-dark: #c3c7cc; // linear-gradient(180deg, #ffffff 0%, #e8eefc 100%);
+	--epl-color-tint-light: var(--epl-color-tint);
+	--epl-color-tint-opacity: var(--epl-color-tint);
+
+	// Gradient.
+	--epl-color-gradient: linear-gradient(
+		0deg,
+		var(--epl-color-tint) 39%,
+		var(--epl-color-white) 94%
+	);
+
+	--epl-color-grey: #f5f5f5;
+	--epl-color-grey-dark: #6b6e71;
+	--epl-color-grey-dark-opacity: #6b6e71dd;
+	--epl-color-grey-medium: #808285;
+	--epl-color-grey-light: #79797926;
+	--epl-color-grey-lighter: #79797926;
+
+	--epl-color-primary-100: rgba(13, 13, 13, 1);
+	--epl-color-primary-70: rgba(13, 13, 13, 0.7);
+	--epl-color-primary-50: rgba(13, 13, 13, 0.5);
+	--epl-color-primary-30: rgba(13, 13, 13, 0.3);
+	--epl-color-primary-10: rgba(13, 13, 13, 0.3);
+
+	--epl-color-secondary-100: rgba(37, 46, 100, 1);
+	--epl-color-secondary-70: rgba(37, 46, 100, 0.7);
+	--epl-color-secondary-50: rgba(37, 46, 100, 0.5);
+	--epl-color-secondary-30: rgba(37, 46, 100, 0.3);
+	--epl-color-secondary-10: rgba(37, 46, 100, 0.3);
+
+	--epl-color-accent-100: rgba(102, 109, 147, 1);
+	--epl-color-accent-70: rgba(102, 109, 147, 0.7);
+	--epl-color-accent-50: rgba(102, 109, 147, 0.5);
+	--epl-color-accent-30: rgba(102, 109, 147, 0.3);
+	--epl-color-accent-10: rgba(102, 109, 147, 0.3);
+
+	// ----------------------------------------------- //
+	// 		      Fonts                        //
+	// ----------------------------------------------- //
+
+	//--epl-font-family-primary: var(--e-global-typography-6efa082-font-family), Sans-serif; // Body.
+	// --epl-font-family-primary: 'Overpass', Sans-serif; // Body.
+
+	--epl-font-family-primary: "Poppins", Sans-serif; // Body / Text.
+
+	--epl-font-family-secondary: "Posterama 2001", Sans-serif; // Headings.
+
+	--epl-font-family-tertiary: "Poppins", Sans-serif;
+
+	--epl-font-family-quaternary: "Poppins", Sans-serif;
+
+	// --epl-font-family-tertiary: var(--e-global-typography-6efa082-font-family), Sans-serif; // Display.
+
+	//--epl-font-family-alternate: 'GT-America-Standard', sans-serif;
+	//--epl-font-family-thin: 'Gordita Thin', 'Arial', sans-serif;
+	//--epl-font-family-light: 'Gordita Light', 'Arial', sans-serif;
+	//--epl-font-family-regular: 'Gordita Regular', 'Arial', sans-serif;
+	//--epl-font-family-medium: 'Gordita Medium', 'Arial', sans-serif;
+	//--epl-font-family-bold: 'Gordita Bold', 'Arial', sans-serif;
+	//--epl-font-family-black: 'Gordita Black', 'Arial', sans-serif;
+	//--epl-font-family-ultra: 'Gordita Ultra', 'Arial', sans-serif;
+}

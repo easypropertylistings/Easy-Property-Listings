@@ -1,0 +1,26 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Elements
+//---------------------------------------------
+
+.epl-listing-meta {
+}
+.epl-listing-meta {
+	&.epl-listing-meta--heading {
+		margin: 0;
+		padding: 0;
+	}
+
+	&.epl-listing-meta--price {
+		font-weight: bold;
+	}
+
+	&.epl-listing-meta--excerpt {
+		flex: 1;
+		p {
+			margin: 0;
+			padding: 0;
+		}
+	}
+}

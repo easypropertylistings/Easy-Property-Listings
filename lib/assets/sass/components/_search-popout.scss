@@ -1,0 +1,47 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Search Popdown
+//---------------------------------------------
+/**************************************
+	Search Popdown
+**************************************/
+.epl-popup-box::before {
+	border-bottom: 7px solid rgba(0, 0, 0, 0.2);
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	content: "";
+	display: inline-block;
+	left: 12px;
+	position: absolute;
+	top: -7px;
+}
+.epl-popup-box::after {
+	border-bottom: 6px solid #fafafa;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	content: "";
+	display: inline-block;
+	left: 13px;
+	position: absolute;
+	top: -6px;
+}
+.epl-popup-box {
+	display: none;
+	background: #fff none repeat scroll 0 0;
+	border: 1px solid #ddd;
+	box-shadow: -1px 3px 2px 2px #ddd;
+	font-weight: bold;
+	margin: 6px 0;
+	padding: 10px;
+	position: absolute;
+	min-width: 160px;
+	z-index: 9999;
+}
+.epl-popup-box > li {
+	cursor: pointer;
+}
+.epl-popup-box > li:hover {
+	background: #0073aa !important;
+	color: white;
+}
