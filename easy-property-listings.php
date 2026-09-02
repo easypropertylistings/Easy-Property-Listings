@@ -5,7 +5,7 @@
  * Description:  Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Easy Property Listing is one of the most dynamic and feature rich Real Estate plugin for WordPress available on the market today. Built for scale, contact generation and works with any theme!
  * Author: Merv Barrett
  * Author URI: https://www.realestateconnected.com.au/
- * Version: 3.5.19
+ * Version: 3.6.90
  * Text Domain: easy-property-listings
  * Domain Path: languages
  *
@@ -25,7 +25,7 @@
  * @package EPL
  * @category Core
  * @author Merv Barrett
- * @version 3.5.19
+ * @version 3.6.90
  */
 
 // Exit if accessed directly.
@@ -100,6 +100,14 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				self::$instance->render_fields = new EPL_Render_Fields();
 				self::$instance->search_fields->init();
 
+				// Initialize Block Templates Controller for FSE support.
+				if ( class_exists( 'EPL_Block_Templates_Controller' ) ) {
+					new EPL_Block_Templates_Controller();
+				}
+
+				// Register EPL block category.
+				add_action( 'block_categories_all', array( self::$instance, 'register_block_category' ), 10, 2 );
+
 				define( 'EPL_RUNNING', true );
 			}
 			return self::$instance;
@@ -118,7 +126,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 		public function setup_constants() {
 			// Plugin version.
 			if ( ! defined( 'EPL_PROPERTY_VER' ) ) {
-				define( 'EPL_PROPERTY_VER', '3.5.19' );
+				define( 'EPL_PROPERTY_VER', '3.56.90' );
 			}
 			// Plugin DB version.
 			if ( ! defined( 'EPL_PROPERTY_DB_VER' ) ) {
@@ -271,6 +279,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-property-search.php';
 			require_once EPL_PATH_LIB . 'widgets/class-epl-widget-contact-capture.php';
 
+			require_once EPL_PATH_LIB . 'includes/user-meta.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-property-meta.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-author.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-author-loader.php';
@@ -287,6 +296,7 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 
 			if ( is_admin() ) {
 				require_once EPL_PATH_LIB . 'includes/admin/plugins.php';
+				require_once EPL_PATH_LIB . 'includes/admin/class-epl-admin-feedsync-ads.php';
 				require_once EPL_PATH_LIB . 'includes/class-epl-metabox.php';
 				require_once EPL_PATH_LIB . 'post-types/post-types.php';
 				require_once EPL_PATH_LIB . 'includes/admin/admin-functions.php';
@@ -332,12 +342,24 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-auction.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-results.php';
 			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-meta-doc.php';
+			require_once EPL_PATH_LIB . 'shortcodes/shortcode-listing-author-box.php';
 
 			require_once EPL_PATH_LIB . 'includes/install.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-search.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-render-fields.php';
 			require_once EPL_PATH_LIB . 'includes/class-epl-rest-api.php';
+
+			// Block Templates for FSE support.
+			require_once EPL_PATH_LIB . 'includes/class-epl-block-template-utils.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-block-templates-controller.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-block-element-renderer.php';
+			require_once EPL_PATH_LIB . 'includes/class-epl-register-blocks.php';
+			// Page Builders Integration.
+			require_once EPL_PATH_LIB . 'page-builders/elementor/class-epl-elementor.php';
+
+                        //integrations
+                        require_once EPL_PATH_LIB . 'integrations/gravity-form.php';
 
 			if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/functions.php' ) ) {
 				include_once get_stylesheet_directory() . '/easypropertylistings/functions.php';
@@ -374,6 +396,27 @@ if ( ! class_exists( 'Easy_Property_Listings' ) ) :
 				// Load the default language files.
 				load_plugin_textdomain( 'easy-property-listings', false, $epl_lang_dir );
 			}
+		}
+
+		/**
+		 * Register EPL block category
+		 *
+		 * @param array   $categories Existing block categories.
+		 * @param WP_Post $post Current post object.
+		 * @return array Modified block categories.
+		 * @since 3.6.0
+		 */
+		public function register_block_category( $categories, $post ) {
+			return array_merge(
+				array(
+					array(
+						'slug'  => 'epl',
+						'title' => __( 'Easy Property Listings', 'easy-property-listings' ),
+						'icon'  => 'building',
+					),
+				),
+				$categories
+			);
 		}
 	}
 endif; // End if class_exists check.

@@ -6,6 +6,7 @@
  * @subpackage Templates/Themes/Divi
  * @since 1.0
  * @since 3.4.19 Removed article wrapper
+ * @since 3.6.0 Moved tools top and bottom outside of the listing wrapper.
  */
 
 // Exit if accessed directly.

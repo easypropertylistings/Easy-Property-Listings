@@ -8,6 +8,7 @@
  * @subpackage Twenty_Seventeen
  * @since 1.0
  * @version 1.0
+ * @since 3.6.0 Moved tools top and bottom outside of the listing wrapper.
  */
 
 get_header(); ?>
@@ -47,9 +48,9 @@ get_header(); ?>
 			else :
 
 				?>
-			<div class="hentry">
-				<?php do_action( 'epl_property_search_not_found' ); ?>
-			</div>
+				<div class="hentry">
+					<?php do_action( 'epl_property_search_not_found' ); ?>
+				</div>
 				<?php
 
 		endif;

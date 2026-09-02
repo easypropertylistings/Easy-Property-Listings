@@ -36,12 +36,14 @@ function epl_reset_property_object( $post ) {
 	global $property;
 	$property = new EPL_Property_Meta( $post );
 	$ID       = epl_listing_has_primary_agent(); //phpcs:ignore
+        
 	if ( $ID ) {
 		$epl_author = new EPL_Author_meta( $ID ); //phpcs:ignore
 
 	} else {
 		$epl_author = new EPL_Author_meta( $post->post_author );
 	}
+
 
 	$SEC_ID = epl_listing_has_secondary_author();
 
@@ -135,7 +137,6 @@ add_action( 'epl_property_single', 'epl_property_single', 10, 1 );
  * @since      3.4.8 Corrected missing parameter count to 3.
  * @since      3.4.38 Added filter epl_property_featured_image_args to control all parameters & epl_no_property_featured_image action.
  * @since      3.4.39 Added missing arguments variable to epl_no_property_featured_image action.
- * @since      3.6    Removed it-featured-image class.
  */
 function epl_property_featured_image( $image_size = 'index_thumbnail', $image_class = 'index-thumbnail', $link = true ) {
 
@@ -154,7 +155,7 @@ function epl_property_featured_image( $image_size = 'index_thumbnail', $image_cl
 
 	if ( has_post_thumbnail() ) { ?>
 		<div class="entry-image">
-			<div class="epl-featured-image">
+			<div class="epl-featured-image it-featured-image">
 				<?php if ( true === $args['link'] ) { ?>
 					<a href="<?php the_permalink(); ?>">
 				<?php } ?>
@@ -1081,7 +1082,7 @@ function epl_get_property_heading( $listing = null ) {
 
 	if ( $property ) {
 		$property_heading = $property->get_property_meta( 'property_heading' );
-		if ( strlen( trim( $property_heading ) ) ) {
+		if ( is_scalar( $property_heading ) && '' !== trim( (string) $property_heading ) ) {
 			return $property_heading;
 		}
 		return get_the_title( $property->post->ID );
@@ -1167,10 +1168,11 @@ add_action( 'epl_property_category', 'epl_property_category', 10, 2 );
 function epl_get_video_host( $url ) {
 
 	$host = 'unknown';
+	$url  = is_string( $url ) ? $url : '';
 
-	if ( strpos( $url, 'youtu' ) > 0 ) {
+	if ( false !== strpos( $url, 'youtu' ) ) {
 		$host = 'youtube';
-	} elseif ( strpos( $url, 'vimeo' ) > 0 ) {
+	} elseif ( false !== strpos( $url, 'vimeo' ) ) {
 		$host = 'vimeo';
 	}
 
@@ -2264,6 +2266,22 @@ function epl_property_gallery() {
 		return;
 	}
 
+	/**
+	 * Allow an extension to fully supply the gallery HTML (e.g. CDN-hosted images
+	 * that are not in the WP media library). Return a string to short-circuit the
+	 * default attachment-based gallery; return null to leave default behaviour.
+	 *
+	 * @since 3.5.24
+	 *
+	 * @param string|null $custom  Custom gallery HTML, or null for default.
+	 * @param int         $post_id Current listing ID.
+	 */
+	$custom = apply_filters( 'epl_property_gallery_html', null, get_the_ID() );
+	if ( null !== $custom ) {
+		echo $custom; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		return;
+	}
+
 	$attachments = get_children(
 		array(
 			'post_parent'    => get_the_ID(),
@@ -2303,11 +2321,10 @@ function epl_template_path() {
 /**
  * Outputs a wrapper div before the first button
  *
- * @since 1.3
- * @since 3.6 removed epl-clearfix class.
+ * @since      1.3
  */
 function epl_buttons_wrapper_before() {
-	echo '<div class="epl-button-wrapper">';
+	echo '<div class="epl-button-wrapper epl-clearfix">';
 }
 
 /**
@@ -2334,6 +2351,7 @@ add_action( 'epl_buttons_single_property', 'epl_buttons_wrapper_after', 99 );
  * @since 2.0.0
  * @since 3.4.9 Corrected issue where output was trimmed, added better unique ID and URL to output.
  * @since 3.5.7 Updated to allow passing of extra details to ical.
+ * @since 3.5.21 Sanitized generated iCal filename and added fallback filename handling.
  */
 function epl_create_ical_file( $start = '', $end = '', $name = '', $description = '', $location = '', $post_id = null ) {
 
@@ -2345,12 +2363,16 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
 	$uid         = $post_id . time();
 	$url         = get_permalink( $post_id );
 	$prodid      = '-//' . get_bloginfo( 'name' ) . '/EPL//NONSGML v1.0//EN';
+	$file_name   = sanitize_file_name( $name );
+	if ( '' === $file_name ) {
+		$file_name = 'event';
+	}
 	$args        = get_defined_vars();
 	$args        = apply_filters( 'epl_ical_args', $args );
 	$data        = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:" . $args['prodid'] . "\nMETHOD:PUBLISH\nBEGIN:VEVENT\nDTSTART:" . gmdate( 'Ymd\THis', strtotime( $args['start'] ) ) . "\nDTEND:" . gmdate( 'Ymd\THis', strtotime( $args['end'] ) ) . "\nLOCATION:" . $args['location'] . "\nURL:" . $args['url'] . "\nTRANSP:OPAQUE\nSEQUENCE:0\nUID:" . $args['uid'] . "\nDTSTAMP:" . gmdate( 'Ymd\THis\Z' ) . "\nSUMMARY:" . $args['name'] . "\nDESCRIPTION:" . $args['description'] . "\nPRIORITY:1\nCLASS:PUBLIC\nBEGIN:VALARM\nTRIGGER:-PT10080M\nACTION:DISPLAY\nDESCRIPTION:Reminder\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR\n";
 
 	header( 'Content-type:text/calendar' );
-	header( 'Content-Disposition: attachment; filename="' . $name . '.ics"' );
+	header( 'Content-Disposition: attachment; filename="' . $file_name . '.ics"' );
 	Header( 'Content-Length: ' . strlen( $data ) );
 	Header( 'Connection: close' );
 	echo $data; //phpcs:ignore
@@ -2363,51 +2385,101 @@ function epl_create_ical_file( $start = '', $end = '', $name = '', $description 
  * @since 2.0
  * @since 3.5.7 Different subject for auction.
  * @since 3.5.16 Triple equals for auction value.
+ * @since 3.5.20 ical access issue.
+ * @since 3.5.21 Added signed token validation for iCal download requests and introduced filterable iCal event description. iCal description now uses the excerpt instead of full content.
  */
 function epl_process_event_cal_request() {
 	global $epl_settings;
-	if ( isset( $_GET['propid'] ) && isset( $_GET['epl_cal_dl'] ) && 1 === (int) $_GET['epl_cal_dl'] && intval( $_GET['propid'] ) > 0 ) {
-		if ( isset( $_GET['cal'] ) ) {
-			$type = sanitize_text_field( wp_unslash( $_GET['cal'] ) );
-			switch ( $type ) {
-				case 'ical':
-					$item = base64_decode( sanitize_text_field( wp_unslash( $_GET['dt'] ) ) ); //phpcs:ignore
-					if ( is_numeric( $item[0] ) ) {
-						$post_id   = isset( $_GET['propid'] ) ? intval( $_GET['propid'] ) : 0;
-						$timearr   = explode( ' ', $item );
-						$starttime = current( $timearr );
-						if ( isset( $timearr[1] ) ) {
-							$starttime .= ' ' . $timearr[1];
-						}
-						$endtime = current( $timearr ) . ' ' . end( $timearr );
-						$post    = get_post( $post_id );
-						if ( is_null( $post ) ) {
-							return;
-						}
+	if ( ! isset( $_GET['propid'], $_GET['epl_cal_dl'], $_GET['cal'], $_GET['dt'] ) || 1 !== (int) $_GET['epl_cal_dl'] ) {
+		return;
+	}
 
-						$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+	$post_id = absint( wp_unslash( $_GET['propid'] ) );
+	if ( $post_id <= 0 || 'ical' !== sanitize_text_field( wp_unslash( $_GET['cal'] ) ) ) {
+		return;
+	}
 
-						if ( isset( $_GET['event_type'] ) && 'auction' === sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
-							$subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
-						}
+	$item = base64_decode( sanitize_text_field( wp_unslash( $_GET['dt'] ) ), true ); //phpcs:ignore
+	if ( false === $item ) {
+		return;
+	}
 
-						$address      = '';
-						$prop_sub_num = get_post_meta( $post_id, 'property_address_sub_number', true );
-						if ( ! empty( $prop_sub_num ) ) {
-							$address .= get_post_meta( $post_id, 'property_address_sub_number', true ) . '/';
-						}
-						$address .= get_post_meta( $post_id, 'property_address_street_number', true ) . ' ';
-						$address .= get_post_meta( $post_id, 'property_address_street', true ) . ' ';
-						$address .= get_post_meta( $post_id, 'property_address_suburb', true ) . ', ';
-						$address .= get_post_meta( $post_id, 'property_address_state', true ) . ' ';
-						$address .= get_post_meta( $post_id, 'property_address_postal_code', true );
+	$item = trim( html_entity_decode( $item, ENT_QUOTES, 'UTF-8' ) );
+	if ( '' === $item || ! isset( $item[0] ) || ! is_numeric( $item[0] ) ) {
+		return;
+	}
 
-						epl_create_ical_file( $starttime, $endtime, $subject, wp_strip_all_tags( $post->post_content ), $address, $post_id );
-					}
-					break;
-			}
+	$token = isset( $_GET['k'] ) ? sanitize_text_field( wp_unslash( $_GET['k'] ) ) : '';
+	$valid = ! empty( $token ) && hash_equals( epl_get_ical_download_token( $post_id, $item ), $token );
+
+	$allow_legacy_access = apply_filters( 'epl_allow_legacy_ical_access', false, $post_id, $item );
+	if ( ! $valid && ! $allow_legacy_access && ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$post = get_post( $post_id );
+	if ( is_null( $post ) || 'publish' !== $post->post_status || ! in_array( $post->post_type, epl_get_core_post_types(), true ) || post_password_required( $post_id ) ) {
+		return;
+	}
+
+	$inspection_time = get_post_meta( $post_id, 'property_inspection_times', true );
+	if ( ! is_string( $inspection_time ) || '' === trim( $inspection_time ) ) {
+		return;
+	}
+
+	$is_valid_inspection = false;
+	$list                = array_filter( explode( "\n", trim( $inspection_time ) ) );
+	foreach ( $list as $inspection_item ) {
+		$inspection_item = trim( $inspection_item );
+		if ( '' === $inspection_item || ! isset( $inspection_item[0] ) || ! is_numeric( $inspection_item[0] ) ) {
+			continue;
+		}
+
+		$timearr = explode( ' ', $inspection_item );
+		$endtime = current( $timearr ) . ' ' . end( $timearr );
+		$expired = strtotime( $endtime ) < epl_get_local_timestamp();
+		$expired = apply_filters( 'epl_maybe_delete_inspection', $expired, $endtime, $inspection_item );
+		if ( $expired ) {
+			continue;
+		}
+
+		if ( $inspection_item === $item ) {
+			$is_valid_inspection = true;
+			break;
 		}
 	}
+
+	if ( ! $is_valid_inspection ) {
+		return;
+	}
+
+	$timearr   = explode( ' ', $item );
+	$starttime = current( $timearr );
+	if ( isset( $timearr[1] ) ) {
+		$starttime .= ' ' . $timearr[1];
+	}
+	$endtime = current( $timearr ) . ' ' . end( $timearr );
+
+	$subject = $epl_settings['label_home_open'] . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+	if ( isset( $_GET['event_type'] ) && 'auction' === sanitize_text_field( wp_unslash( $_GET['event_type'] ) ) ) {
+		$subject = __( 'Auction', 'easy-property-listings' ) . ' - ' . get_post_meta( $post_id, 'property_heading', true );
+	}
+
+	$address      = '';
+	$prop_sub_num = get_post_meta( $post_id, 'property_address_sub_number', true );
+	if ( ! empty( $prop_sub_num ) ) {
+		$address .= get_post_meta( $post_id, 'property_address_sub_number', true ) . '/';
+	}
+	$address .= get_post_meta( $post_id, 'property_address_street_number', true ) . ' ';
+	$address .= get_post_meta( $post_id, 'property_address_street', true ) . ' ';
+	$address .= get_post_meta( $post_id, 'property_address_suburb', true ) . ', ';
+	$address .= get_post_meta( $post_id, 'property_address_state', true ) . ' ';
+	$address .= get_post_meta( $post_id, 'property_address_postal_code', true );
+
+	$description = wp_strip_all_tags( get_the_excerpt( $post ) );
+	$description = apply_filters( 'epl_ical_description', $description, $post_id, $post, $item );
+
+	epl_create_ical_file( $starttime, $endtime, $subject, $description, $address, $post_id );
 }
 add_action( 'init', 'epl_process_event_cal_request' );
 
@@ -2501,6 +2573,9 @@ function epl_get_the_term_list( $id, $taxonomy, $before = '', $sep = '', $after 
  */
 function get_property_meta( $key ) {
 	global $property;
+	if ( ! $property ) {
+		return '';
+	}
 	return $property->get_property_meta( $key );
 }
 
@@ -2513,6 +2588,9 @@ function get_property_meta( $key ) {
  */
 function the_property_meta( $key ) {
 	global  $property;
+	if ( ! $property ) {
+		return;
+	}
 	echo wp_kses_post( $property->get_property_meta( $key ) );
 }
 
@@ -3318,13 +3396,30 @@ function epl_add_orderby_args( $args, $type = '', $name = '' ) {
  */
 function epl_shortcode_results_message_callback( $shortcode = 'default' ) {
 
-	$title = apply_filters( 'epl_shortcode_results_message_title', __( 'Nothing found, please check back later.', 'easy-property-listings' ) );
+	$title = apply_filters( 'epl_shortcode_results_message_title', __( 'Currently no properties matching your search critera', 'easy-property-listings' ) );
 
 	if ( 'open' === $shortcode ) {
 		$title = apply_filters( 'epl_shortcode_results_message_title_open', __( 'Nothing currently scheduled for inspection, please check back later.', 'easy-property-listings' ) );
 	}
 
-	echo '<h3 class="epl-alert epl-shortcode-results-message epl-shortcode-results-message-' . esc_attr( $shortcode ) . '">' . wp_kses_post( $title ) . '</h3>';
+	// Option.
+	$url     = get_bloginfo( 'wpurl' ) . '/';
+	$string  = sprintf(
+		// Translators: %s is a link.
+		__( 'Please click <a href="%s">here</a> to go back home.', 'easy-property-listings' ),
+		esc_url( $url )
+	);
+
+	?>
+
+	<div class="epl-search-not-found-title">
+		<h3 class="entry-title"><?php echo wp_kses_post( $title ); ?></h3>
+	</div>
+		
+	<div class="epl-search-not-found-message">
+		<p><?php echo wp_kses_post( $string ); ?></p>
+	</div>
+	<?php
 }
 add_action( 'epl_shortcode_results_message', 'epl_shortcode_results_message_callback' );
 
@@ -3420,11 +3515,196 @@ function epl_archive_author_callback() {
 add_action( 'epl_archive_author', 'epl_archive_author_callback' );
 
 /**
- * Contact capture action and messages
+ * Check whether the current user can manage contact-capture data.
+ *
+ * The contact-capture form is a public lead-capture feature, so this is NOT an
+ * access gate on the form itself. It is used only to exempt trusted logged-in
+ * users (agents/admins) from the anti-abuse rate limit applied to anonymous
+ * submissions. Uses the same configurable capability as the contacts screen.
+ *
+ * @return bool
+ * @since 3.5.25
+ */
+function epl_contact_capture_user_can_manage() {
+	$capability = epl_get_option( 'min_contact_access', 'manage_options' );
+	$capability = is_string( $capability ) && ! empty( $capability ) ? $capability : 'manage_options';
+	$allowed    = current_user_can( $capability );
+
+	return apply_filters( 'epl_contact_capture_user_can_manage', $allowed, $capability );
+}
+
+/**
+ * Resolve the client IP for rate limiting.
+ *
+ * Deliberately uses REMOTE_ADDR only (not X-Forwarded-For), which cannot be
+ * spoofed at the TCP layer and so is the safe default for an abuse control.
+ *
+ * @return string Validated IP address, or '' if unavailable.
+ * @since 3.5.25
+ */
+function epl_contact_capture_get_ip() {
+	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+	$ip = filter_var( $ip, FILTER_VALIDATE_IP );
+
+	return $ip ? $ip : '';
+}
+
+/**
+ * Per-IP throttle for anonymous contact-capture submissions.
+ *
+ * Blunts the write-amplified spam/DoS vector: an unauthenticated visitor can
+ * otherwise trigger ~8-10 DB writes per request with unlimited unique emails
+ * (local+tag@domain). Trusted logged-in users are exempted by the caller.
+ *
+ * @return bool True when the current client has exceeded the limit.
+ * @since 3.5.25
+ */
+function epl_contact_capture_rate_limit_exceeded() {
+	$max    = (int) apply_filters( 'epl_contact_capture_rate_limit_max', 10 );
+	$window = (int) apply_filters( 'epl_contact_capture_rate_limit_window', 10 * MINUTE_IN_SECONDS );
+
+	// A non-positive max or window disables throttling.
+	if ( $max <= 0 || $window <= 0 ) {
+		return false;
+	}
+
+	$ip = epl_contact_capture_get_ip();
+	if ( '' === $ip ) {
+		return false;
+	}
+
+	$key   = 'epl_ccap_rl_' . md5( $ip );
+	$count = (int) get_transient( $key );
+
+	if ( $count >= $max ) {
+		return true;
+	}
+
+	set_transient( $key, $count + 1, $window );
+
+	return false;
+}
+
+/**
+ * Validate and persist a contact-capture request.
+ *
+ * Shared by the AJAX handler and the form builder callback so direct form POSTs
+ * run through the same validation. This is a public lead-capture feature, so it
+ * does not require authorization; abuse is bounded by the nonce (CSRF), the
+ * honeypot, input sanitization, and a per-IP rate limit on anonymous requests.
+ *
+ * @param array $request Submitted request data.
+ * @return true|WP_Error
+ * @since 3.5.25
+ */
+function epl_process_contact_capture_request( $request ) {
+	if ( ! is_array( $request ) || ! empty( $request['epl_contact_anti_spam'] ) ) {
+		return new WP_Error( 'epl_contact_capture_invalid', __( 'There was a problem with your submission.', 'easy-property-listings' ) );
+	}
+
+	// Throttle anonymous submissions; trusted logged-in users are exempt.
+	if ( ! epl_contact_capture_user_can_manage() && epl_contact_capture_rate_limit_exceeded() ) {
+		return new WP_Error( 'epl_contact_capture_throttled', __( 'Too many submissions. Please try again later.', 'easy-property-listings' ) );
+	}
+
+	$email = isset( $request['epl_contact_email'] ) ? sanitize_email( wp_unslash( $request['epl_contact_email'] ) ) : '';
+	if ( empty( $email ) ) {
+		return new WP_Error( 'epl_contact_capture_email_required', __( 'Email is required.', 'easy-property-listings' ) );
+	}
+
+	if ( ! is_email( $email ) ) {
+		return new WP_Error( 'epl_contact_capture_invalid_email', __( 'Invalid email.', 'easy-property-listings' ) );
+	}
+
+	$fname = isset( $request['epl_contact_first_name'] )
+		? sanitize_text_field( wp_unslash( $request['epl_contact_first_name'] ) )
+		: '';
+
+	$lname = isset( $request['epl_contact_last_name'] )
+		? sanitize_text_field( wp_unslash( $request['epl_contact_last_name'] ) )
+		: '';
+
+	$phone = isset( $request['epl_contact_phone'] )
+		? sanitize_text_field( wp_unslash( $request['epl_contact_phone'] ) )
+		: '';
+
+	$title = isset( $request['epl_contact_title'] )
+		? sanitize_text_field( wp_unslash( $request['epl_contact_title'] ) )
+		: '';
+
+	$title = trim( $title );
+	if ( empty( $title ) && ( $fname || $lname ) ) {
+		$title = trim( $fname . ' ' . $lname );
+	}
+	if ( empty( $title ) ) {
+		$title = $email;
+	}
+
+	$contact_listing_id = isset( $request['epl_contact_listing_id'] ) ? absint( $request['epl_contact_listing_id'] ) : 0;
+	if ( $contact_listing_id ) {
+		$listing      = get_post( $contact_listing_id );
+		$listing_type = $listing instanceof WP_Post ? $listing->post_type : '';
+		$valid_types  = array_unique( array_merge( array_keys( epl_get_post_types() ), epl_all_post_types() ) );
+
+		if (
+			! $listing instanceof WP_Post ||
+			! in_array( $listing_type, $valid_types, true )
+		) {
+			return new WP_Error( 'epl_contact_capture_invalid_listing', __( 'Invalid listing.', 'easy-property-listings' ) );
+		}
+	}
+
+	$contact_listing_note = isset( $request['epl_contact_note'] )
+		? sanitize_textarea_field( wp_unslash( $request['epl_contact_note'] ) )
+		: '';
+
+	// Always log an activity for the submission so the agent sees the enquiry
+	// and, when present, the listing it was submitted on.
+	$activity_note = '' !== $contact_listing_note
+		? $contact_listing_note
+		: __( 'Enquiry submitted via contact form.', 'easy-property-listings' );
+
+	$contact = new EPL_Contact( $email );
+	if ( ! empty( $contact->ID ) ) {
+		if ( $contact_listing_id ) {
+			$contact->attach_listing( $contact_listing_id );
+		}
+
+		$contact->add_note( $activity_note, 'note', $contact_listing_id );
+
+		return true;
+	}
+
+	$contact_data = array(
+		'name'  => $title,
+		'email' => $email,
+	);
+
+	if ( ! $contact->create( $contact_data ) ) {
+		return new WP_Error( 'epl_contact_capture_create_failed', __( 'There was a problem with your submission.', 'easy-property-listings' ) );
+	}
+
+	$contact->update_meta( 'contact_first_name', $fname );
+	$contact->update_meta( 'contact_last_name', $lname );
+	$contact->update_meta( 'contact_phones', array( 'phone' => $phone ) );
+	$contact->update_meta( 'contact_category', 'widget' );
+
+	if ( $contact_listing_id ) {
+		$contact->attach_listing( $contact_listing_id );
+	}
+
+	$contact->add_note( $activity_note, 'note', $contact_listing_id );
+
+	return true;
+}
+
+/**
+ * Contact capture action and messages.
  *
  * @since 3.3
  * @since 3.5.16 Fix: Vulnerability in contact form shortcode.
  * @since 3.5.17 Tweak: Contact form email address validation check and message.
+ * @since 3.5.25 Hardened via shared validation, nonce/honeypot and per-IP rate limiting.
  */
 function epl_contact_capture_action() {
 
@@ -3444,144 +3724,20 @@ function epl_contact_capture_action() {
 		),
 	);
 
-	if (
-		! isset( $_POST['epl_contact_widget'] ) ||
-		! wp_verify_nonce(
-			sanitize_text_field( wp_unslash( $_POST['epl_contact_widget'] ) ),
-			'epl_contact_widget'
-		)
-	) {
-		wp_die( wp_json_encode( $fail ) );
+	if ( false === check_ajax_referer( 'epl_contact_widget', 'epl_contact_widget', false ) ) {
+		wp_send_json( $fail, 403 );
 	}
 
-	if ( ! empty( $_POST['epl_contact_anti_spam'] ) ) {
-		wp_die( wp_json_encode( $fail ) );
+	$result = epl_process_contact_capture_request( $_POST );
+	if ( is_wp_error( $result ) ) {
+		$fail['msg'] = $result->get_error_message();
+		wp_send_json( $fail, 400 );
 	}
 
-	if ( empty( $_POST['epl_contact_email'] ) ) {
-		wp_die(
-			wp_json_encode(
-				array(
-					'status' => 'fail',
-					'msg'    => __( 'Email is required.', 'easy-property-listings' ),
-				)
-			)
-		);
-	}
-
-	$email = sanitize_email( wp_unslash( $_POST['epl_contact_email'] ) );
-
-	// Check if email is not valid, skip further processing and display message.
-	if ( ! is_email( $email ) ) {
-		wp_die(
-			wp_json_encode(
-				array(
-					'status' => 'fail',
-					'msg'    => __( 'Invalid email.', 'easy-property-listings' ),
-				)
-			)
-		);
-	}
-
-	$fname = isset( $_POST['epl_contact_first_name'] )
-		? sanitize_text_field( wp_unslash( $_POST['epl_contact_first_name'] ) )
-		: '';
-
-	$lname = isset( $_POST['epl_contact_last_name'] )
-		? sanitize_text_field( wp_unslash( $_POST['epl_contact_last_name'] ) )
-		: '';
-
-	$phone = isset( $_POST['epl_contact_phone'] )
-		? sanitize_text_field( wp_unslash( $_POST['epl_contact_phone'] ) )
-		: '';
-
-	$title = isset( $_POST['epl_contact_title'] )
-		? sanitize_text_field( wp_unslash( $_POST['epl_contact_title'] ) )
-		: '';
-
-	$title = trim( $title );
-
-	if ( empty( $title ) && ( $fname || $lname ) ) {
-		$title = $fname . ' ' . $lname;
-	}
-
-	if ( empty( $title ) ) {
-		$title = $email;
-	}
-
-	$contact_listing_id = isset( $_POST['epl_contact_listing_id'] )
-		? intval( $_POST['epl_contact_listing_id'] )
-		: false;
-
-	if ( $contact_listing_id && 'property' !== get_post_type( $contact_listing_id ) ) {
-		wp_die(
-			wp_json_encode(
-				array(
-					'status' => 'fail',
-					'msg'    => __( 'Invalid listing.', 'easy-property-listings' ),
-				)
-			)
-		);
-	}
-
-	$contact_listing_note = isset( $_POST['epl_contact_note'] )
-		? sanitize_textarea_field( wp_unslash( $_POST['epl_contact_note'] ) )
-		: '';
-
-	$contact = new EPL_Contact( $email );
-
-	if ( ! empty( $contact->ID ) ) {
-
-		if ( $contact_listing_note ) {
-			$contact->add_note(
-				$contact_listing_note,
-				'note',
-				$contact_listing_id
-			);
-		}
-
-		if ( $contact_listing_id ) {
-			$contact->attach_listing( $contact_listing_id );
-		}
-
-		wp_die( wp_json_encode( $success ) );
-	}
-
-	$contact_data = array(
-		'name'  => $title,
-		'email' => $email,
-	);
-
-	if ( $contact->create( $contact_data ) ) {
-
-		$contact->update_meta( 'contact_first_name', $fname );
-		$contact->update_meta( 'contact_last_name', $lname );
-		$contact->update_meta(
-			'contact_phones',
-			array( 'phone' => $phone )
-		);
-		$contact->update_meta( 'contact_category', 'widget' );
-
-		if ( $contact_listing_id ) {
-			$contact->attach_listing( $contact_listing_id );
-		}
-
-		if ( $contact_listing_note ) {
-			$contact->add_note(
-				$contact_listing_note,
-				'note',
-				$contact_listing_id
-			);
-		}
-
-		wp_die( wp_json_encode( $success ) );
-	}
-
-	wp_die( wp_json_encode( $fail ) );
+	wp_send_json( $success );
 }
 add_action( 'wp_ajax_epl_contact_capture_action', 'epl_contact_capture_action' );
 add_action( 'wp_ajax_nopriv_epl_contact_capture_action', 'epl_contact_capture_action' );
-
 
 /**
  * Get Post ID from Unique ID
@@ -4099,4 +4255,19 @@ function epl_value_bool_checker( $value ) {
 	} else {
 		return false;
 	}
+}
+
+/**
+ * Custom Meta: Return Value of Commercial Authority Value
+ *
+ * @param string $key Meta key.
+ * @return array the categories in array
+ *
+ * @since 3.7.0
+ */
+function epl_property_com_authority_value( $key ) {
+	$array = epl_get_property_com_authority_opts();
+	$value = array_key_exists( $key, $array ) && ! empty( $array[ $key ] ) ? $array[ $key ] : '';
+
+	return $value;
 }

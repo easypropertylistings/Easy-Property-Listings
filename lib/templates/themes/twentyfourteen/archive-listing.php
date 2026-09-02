@@ -5,6 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/TwentyFourteen
  * @since 3.0
+ * @since 3.6.0 Moved tools top and bottom outside of the listing wrapper.
  */
 
 get_header(); ?>

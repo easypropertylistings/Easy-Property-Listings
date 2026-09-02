@@ -18,6 +18,11 @@
 		flex-wrap: $epl-search-form__form--flex-wrap;
 		gap: $epl-search-form__form--gap;
 	}
+	
+	.epl-search-row-half {
+		width: auto;
+		flex-basis: calc(50% - ($epl-search-form__form--gap / 2) );
+	}
 
 	.field,
 	.field-width {

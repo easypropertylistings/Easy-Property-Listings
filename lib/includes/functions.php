@@ -44,6 +44,23 @@ function epl_get_option( $key = '', $default_val = false ) {
 }
 
 /**
+ * Whether EPL's registered block templates may take part in the FSE hierarchy.
+ *
+ * This deliberately reads the stored setting instead of the global settings
+ * cache: block-template registration happens very early in the request.
+ * Existing installations are migrated to opt out, while fresh installs opt in.
+ *
+ * @return bool
+ * @since 3.6.0
+ */
+function epl_block_templates_enabled() {
+	$settings = get_option( 'epl_settings', array() );
+	$enabled  = is_array( $settings ) && isset( $settings['epl_block_templates'] ) && 'on' === $settings['epl_block_templates'];
+
+	return (bool) apply_filters( 'epl_block_templates_enabled', $enabled, $settings );
+}
+
+/**
  * Determine if Divi framework is loaded
  *
  * @since 3.1
@@ -139,6 +156,24 @@ function epl_remote_url_get( $url ) {
 
 	$response = wp_remote_get( $url );
 	return wp_remote_retrieve_body( $response );
+}
+
+/**
+ * Generate signed token for inspection iCal links.
+ *
+ * @param int    $post_id Post ID.
+ * @param string $inspection_time Inspection date/time string.
+ *
+ * @return string
+ * @since 3.5.21
+ */
+function epl_get_ical_download_token( $post_id, $inspection_time ) {
+	$post_id         = absint( $post_id );
+	$inspection_time = trim( (string) $inspection_time );
+	$payload         = $post_id . '|' . $inspection_time;
+	$secret          = apply_filters( 'epl_ical_token_secret', wp_salt( 'nonce' ) );
+
+	return hash_hmac( 'sha256', $payload, $secret );
 }
 
 /**
@@ -1436,6 +1471,18 @@ function epl_get_admin_option_fields() {
 			'fields' => array(
 
 				array(
+					'name'    => 'epl_block_templates',
+					'label'   => __( 'EPL Block Templates', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'on'  => __( 'Enable', 'easy-property-listings' ),
+						'off' => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 'off',
+					'help'    => __( 'Enable EPL’s Site Editor templates for listing archives and single listings. Existing sites are disabled by default so their current FSE/theme templates remain unchanged.', 'easy-property-listings' ),
+				),
+
+				array(
 					'name'    => 'epl_feeling_lucky',
 					'label'   => __( 'Theme Compatibility', 'easy-property-listings' ),
 					'type'    => 'radio',
@@ -1735,6 +1782,98 @@ function epl_get_admin_option_fields() {
 		),
 
 	);
+
+	if ( did_action( 'elementor/loaded' ) ) {
+		// One "archive page" dropdown per active listing type, so each type can
+		// use its own Elementor archive design. Blank = fall back to the single
+		// site-wide "Listings Archive Page" chosen above.
+		$epl_archive_type_fields = array();
+		$epl_archive_type_opts   = array( '' => __( 'Use Default', 'easy-property-listings' ) ) + $opts_pages;
+
+		foreach ( epl_get_active_post_types() as $epl_archive_type => $epl_archive_type_label ) {
+			$epl_archive_type_fields[] = array(
+				'name'    => 'epl_archive_page_id_' . $epl_archive_type,
+				/* translators: %s: listing type label, e.g. Residential. */
+				'label'   => sprintf( __( '%s Archive Page', 'easy-property-listings' ), $epl_archive_type_label ),
+				'type'    => 'select',
+				'opts'    => $epl_archive_type_opts,
+				'default' => '',
+			);
+		}
+
+		$fields[] = array(
+			'label'  => __( 'Elementor Templates', 'easy-property-listings' ),
+			'class'  => 'core',
+			'id'     => 'elementor-templates',
+			'help'   => __( 'For Elementor users only. These settings let you design your listings archive, single listing pages and listing cards visually in Elementor instead of using EPL\'s built-in PHP templates. If your theme (or Gutenberg\'s own Site Editor) already handles your archive pages the way you want, you can ignore this whole section — nothing here changes anything unless you explicitly turn it on below.', 'easy-property-listings' ) . '<hr/>',
+			'fields' => array_merge( array(
+				array(
+					'type'    => 'help',
+					'name'    => 'epl_elementor_templates_help',
+					'content' => sprintf(
+						'<p>%1$s</p><p><a class="button" href="%2$s" target="_blank">%3$s</a> &nbsp; <a class="button" href="%4$s" target="_blank">%5$s</a></p>',
+						__( 'Listing Card templates are picked per-widget — add the EPL Archive Results or EPL Listing Advanced widget to a page and choose your card from its own "Listing Card" dropdown.', 'easy-property-listings' ),
+						esc_url( admin_url( 'edit.php?post_type=elementor_library&elementor_library_type=epl-single' ) ),
+						esc_html__( 'View Single Listing Templates', 'easy-property-listings' ),
+						esc_url( admin_url( 'edit.php?post_type=elementor_library&elementor_library_type=epl-loop-card' ) ),
+						esc_html__( 'View Listing Card Templates', 'easy-property-listings' )
+					),
+				),
+
+				array(
+					'name'    => 'epl_archive_page_enabled',
+					'label'   => __( 'Use An Elementor Page As The Archive', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'yes' => __( 'Enable', 'easy-property-listings' ),
+						'no'  => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 'no',
+					'help'    => __( 'Turn this on only if you\'ve built (or plan to build) your own archive page in Elementor and want EPL to show it instead of its default archive template. Leave it disabled if you\'re using your theme or Gutenberg\'s Site Editor to design archive pages — those already work without this setting, and everything below is ignored while this is off.', 'easy-property-listings' ),
+				),
+
+				array(
+					'name'    => 'epl_archive_page_id',
+					'label'   => __( 'Listings Archive Page', 'easy-property-listings' ),
+					'type'    => 'select',
+					'opts'    => $opts_pages,
+					'default' => '',
+					'help'    => __( 'The page you designed in Elementor to act as the listings archive. It must contain an EPL Archive Results widget somewhere on it (add EPL Listing Search above it for a search bar, and EPL Pagination below it for page numbers) — otherwise visitors will just see an empty page. EPL shows this page, inside your normal theme header/footer, everywhere it would normally show its own archive template; the real query, pagination and page URL are always kept intact.', 'easy-property-listings' ),
+				),
+
+				array(
+					'type'    => 'help',
+					'name'    => 'epl_archive_page_per_type_help',
+					'content' => '<hr/><p><strong>' . esc_html__( 'Per Listing Type Archive Pages', 'easy-property-listings' ) . '</strong><br/>'
+						. esc_html__( 'Optional. The page above is used for every listing type by default. Set a different page here for any listing type that needs its own archive design — for example a different layout for Rural than for Residential. Leave a listing type on "Use Default" to keep using the page above.', 'easy-property-listings' ) . '</p>',
+				),
+			),
+			$epl_archive_type_fields,
+			array(
+				array(
+					'name'    => 'epl_archive_page_apply_search',
+					'label'   => __( 'Apply To Search Results', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'yes' => __( 'Enable', 'easy-property-listings' ),
+						'no'  => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 'yes',
+				),
+
+				array(
+					'name'    => 'epl_archive_page_apply_taxonomy',
+					'label'   => __( 'Apply To Location/Feature Archives', 'easy-property-listings' ),
+					'type'    => 'radio',
+					'opts'    => array(
+						'yes' => __( 'Enable', 'easy-property-listings' ),
+						'no'  => __( 'Disable', 'easy-property-listings' ),
+					),
+					'default' => 'yes',
+				),
+			) ),
+		);
+	}
 
 	if ( defined( 'EPL_BETA_VERSIONS' ) && true === EPL_BETA_VERSIONS ) {
 		$fields[] = array(
@@ -2183,14 +2322,14 @@ function epl_parse_atts( $atts ) {
 		'_min'         => '>=',
 		'_max'         => '<=',
 		'_not_equal'   => '!=',
-		'_like'        => 'LIKE',
 		'_not_like'    => 'NOT LIKE',
-		'_exists'      => 'EXISTS',
+		'_like'        => 'LIKE',
 		'_not_exists'  => 'NOT EXISTS',
-		'_in'          => 'IN',
+		'_exists'      => 'EXISTS',
 		'_not_in'      => 'NOT IN',
-		'_between'     => 'BETWEEN',
+		'_in'          => 'IN',
 		'_not_between' => 'NOT BETWEEN',
+		'_between'     => 'BETWEEN',
 	);
 
 	foreach ( $atts as $key   => &$value ) {
@@ -2234,6 +2373,11 @@ function epl_parse_atts( $atts ) {
 					if ( in_array( $look_for, array( '_exists', '_not_exists' ), true ) ) {
 						unset( $this_query['value'] );
 					}
+
+					// Suffixes such as `_not_like` also end in `_like`. Stop after
+					// the first (most specific) match so negative operators are not
+					// reinterpreted as their positive counterparts.
+					break;
 				}
 			}
 			$this_query['key']                       = $key;

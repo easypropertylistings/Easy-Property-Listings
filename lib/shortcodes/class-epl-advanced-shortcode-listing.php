@@ -124,7 +124,10 @@ class EPL_Advanced_Shortcode_Listing {
 	 */
 	public function get_meta_key_price() {
 
-		if ( is_string( $this->attributes['post_type'] ) && 'rental' === $this->attributes['post_type'] ) {
+		$post_types = (array) $this->attributes['post_type'];
+		if ( count( $post_types ) > 1 ) {
+			$this->meta_key_price = 'property_price_global';
+		} elseif ( 1 === count( $post_types ) && is_epl_rental_post( reset( $post_types ) ) ) {
 			$this->meta_key_price = 'property_rent';
 		} else {
 			$this->meta_key_price = 'property_price';
@@ -137,7 +140,6 @@ class EPL_Advanced_Shortcode_Listing {
 	 * Get default options.
 	 *
 	 * @since 3.3
-	 * @since 3.6 Default limit set to 12 instead of 10.
 	 */
 	public function get_default_args() {
 
@@ -166,7 +168,7 @@ class EPL_Advanced_Shortcode_Listing {
 			'commercial_listing_type' => '', // Listing Type, sale lease and both.
 			'feature'                 => '', // Feature slug.
 			'feature_id'              => '', // Feature ID.
-			'limit'                   => '12', // Number of maximum posts to show.
+			'limit'                   => '10', // Number of maximum posts to show.
 			'offset'                  => '', // Offset posts. When used, pagination is disabled.
 			'author'                  => '', // Author of listings.
 			'agent'                   => '', // listings by agent.

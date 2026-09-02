@@ -97,6 +97,13 @@
 		padding: $epl-property-blog__entry-wrapper--padding;
 		overflow: hidden;
 		height: 100%;
+		
+		@media screen and ( max-width: 820px ) {
+			grid-template-columns: 300px 1fr;
+		}
+		@media screen and ( max-width: 600px ) {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.epl-row {

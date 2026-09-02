@@ -119,6 +119,48 @@ function epl_admin_enqueue_scripts( $screen ) {
 add_action( 'admin_enqueue_scripts', 'epl_admin_enqueue_scripts' );
 
 /**
+ * Enqueue EPL presentation styles in frontend or block-editor context.
+ *
+ * @param bool $editor_context Whether styles are being loaded for an editor preview.
+ * @return void
+ * @since 3.6.0
+ */
+function epl_enqueue_front_styles( $editor_context = false ) {
+	$mode             = epl_get_option( 'epl_plugin_mode', 'development' );
+	$suffix           = 'production' === $mode ? '.min' : '';
+	$current_dir_path = plugins_url( '', __FILE__ );
+
+	if ( 'on' === epl_get_option( 'epl_use_core_css', 'off' ) ) {
+		return;
+	}
+
+	if ( 'on' === epl_get_option( 'epl_css_legacy', 'off' ) ) {
+		wp_enqueue_style( 'epl-front-styles', $current_dir_path . '/css/style-legacy' . $suffix . '.css', array(), EPL_PROPERTY_VER );
+	} else {
+		wp_enqueue_style( 'epl-css-lib', $current_dir_path . '/css/style-structure' . $suffix . '.css', array(), EPL_PROPERTY_VER );
+		wp_enqueue_style( 'epl-style', $current_dir_path . '/css/style' . $suffix . '.css', array(), EPL_PROPERTY_VER );
+	}
+
+	if ( 'on' === epl_get_option( 'epl_css_enhanced', 'off' ) ) {
+		wp_enqueue_style( 'epl-style-enhanced', $current_dir_path . '/css/style-enhanced' . $suffix . '.css', array(), EPL_PROPERTY_VER );
+	}
+
+	wp_enqueue_style( 'epl-field-sliders', $current_dir_path . '/css/field-slider' . $suffix . '.css', array(), EPL_PROPERTY_VER );
+
+	if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/style.css' ) ) {
+		wp_enqueue_style( 'epl-theme-style', get_stylesheet_directory_uri() . '/easypropertylistings/style.css', array(), EPL_PROPERTY_VER );
+	}
+
+	if ( ( $editor_context || is_epl_post_archive() ) && file_exists( get_stylesheet_directory() . '/easypropertylistings/style-archive.css' ) ) {
+		wp_enqueue_style( 'epl-theme-style-archive', get_stylesheet_directory_uri() . '/easypropertylistings/style-archive.css', array(), EPL_PROPERTY_VER );
+	}
+
+	if ( ( $editor_context || is_epl_post_single() ) && file_exists( get_stylesheet_directory() . '/easypropertylistings/style-single.css' ) ) {
+		wp_enqueue_style( 'epl-theme-style-single', get_stylesheet_directory_uri() . '/easypropertylistings/style-single.css', array(), EPL_PROPERTY_VER );
+	}
+}
+
+/**
  * Load and enqueue front end scripts and stylesheets.
  *
  * @since 1.0
@@ -149,51 +191,7 @@ function epl_wp_enqueue_scripts() {
 		}
 	}
 
-	// All CSS including Structural.
-	if ( 'on' === epl_get_option( 'epl_use_core_css', 'off' ) ) {
-		// Dont use css.
-	} else {
-
-		// Legacy CSS: on is to enable visual css, default off.
-		if ( epl_get_option( 'epl_css_legacy', 'off' ) === 'on' ) {
-
-			wp_enqueue_style( 'epl-front-styles', $current_dir_path . '/css/style-legacy' . $suffix . '.css', false, EPL_PROPERTY_VER );
-
-		} else {
-			// Structural CSS.
-			wp_enqueue_style( 'epl-css-lib', $current_dir_path . '/css/style-structure' . $suffix . '.css', false, EPL_PROPERTY_VER );
-			wp_enqueue_style( 'epl-style', $current_dir_path . '/css/style' . $suffix . '.css', false, EPL_PROPERTY_VER );
-		}
-
-		// Enhanced CSS: on is to enable visual css, default on for new installations.
-		if ( epl_get_option( 'epl_css_enhanced', 'off' ) === 'on' ) {
-			wp_enqueue_style( 'epl-style-enhanced', $current_dir_path . '/css/style-enhanced' . $suffix . '.css', false, EPL_PROPERTY_VER );
-		}
-
-		wp_enqueue_style( 'epl-field-sliders', $current_dir_path . '/css/field-slider' . $suffix . '.css', false, EPL_PROPERTY_VER );
-
-		/**
-		 * Load theme specific stylesheet for epl, if exists
-		 * Loaded at the end to override any styles in plugin
-		 */
-		if ( file_exists( get_stylesheet_directory() . '/easypropertylistings/style.css' ) ) {
-			wp_enqueue_style( 'epl-theme-style', get_stylesheet_directory_uri() . '/easypropertylistings/style.css', false, EPL_PROPERTY_VER );
-		}
-
-		if ( is_epl_post_archive() && file_exists( get_stylesheet_directory() . '/easypropertylistings/style-archive.css' ) ) {
-			wp_enqueue_style( 'epl-theme-style-archive', get_stylesheet_directory_uri() . '/easypropertylistings/style-archive.css', false, EPL_PROPERTY_VER );
-		}
-
-		if ( is_epl_post_single() && file_exists( get_stylesheet_directory() . '/easypropertylistings/style-single.css' ) ) {
-			wp_enqueue_style( 'epl-theme-style-single', get_stylesheet_directory_uri() . '/easypropertylistings/style-single.css', false, EPL_PROPERTY_VER );
-		}
-	}
-	
-	// Placeholder for 3.6 scss loading.
-	$compiled_scss = false;
-	if ( $compiled_scss ){
-		wp_enqueue_style( 'epl-style-compiled', $current_dir_path . '/css/style-compiled' . $suffix . '.css', false, EPL_PROPERTY_VER );
-	}
+	epl_enqueue_front_styles();
 
 	$js_vars = array(
 		'ajax_nonce'            => wp_create_nonce( 'epl_ajax_nonce' ),

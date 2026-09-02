@@ -228,6 +228,9 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 *
 		 * @access  public
 		 * @return  void
+		 *
+		 * @since 1.0.0
+		 * @since 3.5.23 Fix: Transient set to null produced errors with other plugins when saving a license key.
 		 */
 		public function activate_license() {
 
@@ -289,7 +292,21 @@ if ( ! class_exists( 'EPL_License' ) ) :
 			}
 
 			// Tell WordPress to look for updates.
-			set_site_transient( 'update_plugins', null );
+			$transient = get_site_transient( 'update_plugins' );
+
+			if ( ! is_object( $transient ) ) {
+				$transient = new stdClass();
+			}
+
+			$transient->response = isset( $transient->response ) && is_array( $transient->response )
+				? $transient->response
+				: array();
+
+			$transient->checked = isset( $transient->checked ) && is_array( $transient->checked )
+				? $transient->checked
+				: array();
+
+			set_site_transient( 'update_plugins', $transient );
 
 			// Decode license data.
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
@@ -583,6 +600,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 		 *
 		 * @access  public
 		 * @return  void
+		 * @since  3.5.21 Fix: License notice message sanitization adjusted to run after sprintf(). Thanks DAnn2012.
 		 */
 		public function notices() {
 
@@ -614,7 +632,7 @@ if ( ! class_exists( 'EPL_License' ) ) :
 
 					default:
 						// translators: error.
-						$message = sprintf( wp_kses_post( __( 'There was a problem activating your license key, please try again or contact support. Error code: %s', 'easy-property-listings' ) ), $license_error->error );
+						$message = wp_kses_post( sprintf( __( 'There was a problem activating your license key, please try again or contact support. Error code: %s', 'easy-property-listings' ), $license_error->error ) );
 						break;
 
 				}

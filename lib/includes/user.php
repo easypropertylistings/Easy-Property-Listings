@@ -84,7 +84,7 @@ function epl_get_custom_user_profile_fields() {
  * Add Additional options to the author profiles for use in
  * the author profile box
  *
- * @param array $user Array of user.
+ * @param WP_User $user The user being edited.
  * @since 1.0
  */
 function epl_add_custom_user_profile_fields( $user ) {
@@ -102,7 +102,7 @@ function epl_add_custom_user_profile_fields( $user ) {
 				<tr>
 					<th>
 						<label for="<?php echo esc_attr( $user_field['name'] ); ?>">
-							<?php echo esc_attr( $user_field['label'] ); ?>
+							<?php echo esc_html( $user_field['label'] ); ?>
 						</label>
 					</th>
 					<td>
@@ -110,7 +110,7 @@ function epl_add_custom_user_profile_fields( $user ) {
 							type="text"
 							name="<?php echo esc_attr( $user_field['name'] ); ?>"
 							id="<?php echo esc_attr( $user_field['name'] ); ?>"
-							value="<?php echo wp_kses_post( get_the_author_meta( $user_field['name'], $user->ID ) ); ?>"
+							value="<?php echo esc_attr( get_the_author_meta( $user_field['name'], $user->ID ) ); ?>"
 							class="regular-text"
 						/><br />
 						<span class="description">

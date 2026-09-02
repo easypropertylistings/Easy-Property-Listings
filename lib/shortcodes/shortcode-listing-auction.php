@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.4.44 Fix: Missing commercial auction listings in shortcode.
  * @since 3.4.48 Fixed class name. Passing shortcode results message shortcode type.
  * @since 3.5.5 Sorting not working.
- * @since 3.6 Default limit set to 12 instead of 10.
+ * @since 3.6 Moved tools top and bottom to outside the wrapper. Added a shortcode class.
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -42,7 +42,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 		array(
 			'post_type'    => $property_types, // Post Type.
 			'status'       => array( 'current', 'sold', 'leased' ),
-			'limit'        => '12',   // Number of maximum posts to show.
+			'limit'        => '10',   // Number of maximum posts to show.
 			'template'     => false,  // Template can be set to "slim" for home open style template.
 			'location'     => '',     // Location slug. Should be a name like sorrento.
 			'tools_top'    => 'off',  // Tools before the loop like Sorter and Grid on or off.
@@ -157,22 +157,26 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	}
 
 	if ( $query_open->have_posts() ) { ?>
-		<div class="loop epl-shortcode">
+		<div class="loop epl-shortcode epl-shortcode--listing-auction">
+			<?php
+			if ( 'on' === $attributes['tools_top'] ) {
+				do_action( 'epl_property_loop_start', $attributes );
+			}
+			?>
 			<div class="loop-content epl-shortcode-listing-auction <?php echo ' ' . esc_attr( epl_template_class( $attributes['template'], 'archive' ) ) . ' ' . esc_attr( $attributes['class'] ); ?>">
 				<?php
-				if ( 'on' === $attributes['tools_top'] ) {
-					do_action( 'epl_property_loop_start', $attributes );
-				}
 				while ( $query_open->have_posts() ) {
 					$query_open->the_post();
 					$template = str_replace( '_', '-', $attributes['template'] );
 					epl_property_blog( $template );
 				}
-				if ( 'on' === $attributes['tools_bottom'] ) {
-					do_action( 'epl_property_loop_end' );
-				}
 				?>
 			</div>
+			<?php
+			if ( 'on' === $attributes['tools_bottom'] ) {
+				do_action( 'epl_property_loop_end' );
+			}
+			?>
 			<div class="loop-footer">
 				<?php
 				if ( 'on' === $attributes['pagination'] ) {

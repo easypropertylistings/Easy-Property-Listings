@@ -9,6 +9,9 @@
 	left: 0;
 	top: 20px;
 	z-index: 9;
+	
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .status-sticker {
@@ -20,6 +23,7 @@
 
 .epl-property-single .status-sticker,
 .epl-property-blog .status-sticker {
+	display: inline-block;
 	background: #f00;
 	color: #fff;
 }

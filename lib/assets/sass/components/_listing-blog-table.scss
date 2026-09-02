@@ -78,8 +78,14 @@
 }
 .epl-table.epl-listing-grid-view .price,
 .epl-table.epl-listing-grid-view-forced .price {
-	float: left;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
 	text-align: left;
+}
+.epl-table.epl-listing-grid-view .bond,
+.epl-table.epl-listing-grid-view-forced .bond {
+	padding: 0;
 }
 
 @media screen and (max-width: 500px) {
