@@ -1,7 +1,6 @@
 # Editors
 .idea
 .nova
-*.toml
 
 # Grunt
 /node_modules/
@@ -17,4 +16,3 @@ Thumbs.db
 
 package-lock.json
 config.codekit3
-/.claude

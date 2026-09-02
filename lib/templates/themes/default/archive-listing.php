@@ -5,6 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/Default
  * @since 1.0
+ * @since 3.6 Tools moved outside of loop wrapper.
  */
 
 // Exit if accessed directly.
@@ -15,6 +16,59 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header(); ?>
 <section id="primary" class="site-content content epl-archive-default <?php echo esc_attr( epl_get_active_theme_name() ); ?>">
 	<div id="content" role="main">
+		
+		
+		
+		<?php
+		/**
+		 * TODO: Remove Test code
+		**/
+		
+			?>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Default</h2>
+				<?php echo do_shortcode( '[listing limit=1 pagination=off]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Slim</h2>
+				<?php echo do_shortcode( '[listing limit=1 template=slim pagination=off]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Card</h2>
+				<?php echo do_shortcode( '[listing limit=1 template=card pagination=off]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Table</h2>
+				<?php echo do_shortcode( '[listing limit=3 template=table pagination=off]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Table Open</h2>
+				<?php echo do_shortcode( '[listing limit=3 template=table-open pagination=off]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Search</h2>
+				<?php echo do_shortcode( '[listing_search]' ) ;?>
+			
+			</div>
+			
+			<?php
+		
+		
+		
+		?>
+		
+		
 		<?php
 		if ( have_posts() ) :
 			?>
@@ -26,7 +80,7 @@ get_header(); ?>
 				</header>
 
 				<?php do_action( 'epl_property_loop_start' ); ?>
-				<div class="entry-content loop-content <?php echo esc_attr( epl_template_class( 'default', 'archive' ) ); ?>">
+				<div class="entry-content loop-content epl-template-blog <?php echo esc_attr( epl_template_class( 'default', 'archive' ) ); ?>">
 					<?php
 					while ( have_posts() ) : // The Loop.
 							the_post();
@@ -53,5 +107,5 @@ get_header(); ?>
 	</div>
 </section>
 <?php
-get_sidebar();
+// get_sidebar();
 get_footer();

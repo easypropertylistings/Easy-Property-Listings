@@ -158,6 +158,9 @@ function epl_enqueue_front_styles( $editor_context = false ) {
 	if ( ( $editor_context || is_epl_post_single() ) && file_exists( get_stylesheet_directory() . '/easypropertylistings/style-single.css' ) ) {
 		wp_enqueue_style( 'epl-theme-style-single', get_stylesheet_directory_uri() . '/easypropertylistings/style-single.css', array(), EPL_PROPERTY_VER );
 	}
+	
+	// Placeholder for scss loading.
+	wp_enqueue_style( 'epl-style-compiled', $current_dir_path . '/css/style-compiled' . $suffix . '.css', false, EPL_PROPERTY_VER );
 }
 
 /**
