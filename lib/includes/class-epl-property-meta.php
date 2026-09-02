@@ -164,7 +164,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		/**
 		 * Get things going
 		 *
-		 * @param array $post Post object.
+		 * @param object $post Post object.
 		 * @since 2.0
 		 */
 		public function __construct( $post ) {
@@ -214,10 +214,13 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * Usage is $property->get_property_meta('meta_key') with the global $property variable defined
 		 *
-		 * @since 2.0
 		 * @param  string $meta_key The meta key to get the value.
 		 * @param  bool   $allowzero Return a 0 value or if false and a value of 0 return nothing. Default True.
+		 *
 		 * @return string|integer   Return the value of the meta key, string, or integer.
+		 *
+		 * @since 2.0
+		 * @since 3.5.22 Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
 		 */
 		public function get_property_meta( $meta_key, $allowzero = true ) {
 			$value = null;
@@ -231,6 +234,19 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 						$value = maybe_unserialize( $this->meta[ $meta_key ][0] );
 					}
 				}
+			}
+
+			// Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
+			$boolean_meta_keys = array(
+				'property_price_display',
+				'property_rent_display',
+				'property_under_offer',
+				'property_address_display',
+				'property_com_display_suburb',
+				'property_featured',
+			);
+			if ( is_string( $value ) && in_array( $meta_key, $boolean_meta_keys, true ) ) {
+				$value = strtolower( $value );
 			}
 
 			return apply_filters( 'epl_meta_filter_' . $meta_key, $value );
@@ -250,6 +266,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @since 3.5.3  Fix: Deprecation warning - Make sure inspection time is not null before passing through trim.
 		 * @since 3.5.3  Update to use local timestamp.
 		 * @since 3.5.13 Tweak: Target blank added to ical link.
+		 * @since 3.5.21 Added a signed token to the iCal inspection link and switched URL generation to add_query_arg().
 		 */
 		public function get_property_inspection_times( $ical = true, $meta_key = 'property_inspection_times' ) {
 			if ( 'leased' === $this->get_property_meta( 'property_status' ) || 'sold' === $this->get_property_meta( 'property_status' ) ) {
@@ -303,7 +320,16 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 								} else {
 
-									$href = get_bloginfo( 'url' ) . '?epl_cal_dl=1&cal=ical&dt=' . base64_encode( htmlspecialchars( $element, ENT_QUOTES, 'UTF-8' ) ) . '&propid=' . $this->post->ID;
+									$href = add_query_arg(
+										array(
+											'epl_cal_dl' => 1,
+											'cal'        => 'ical',
+											'dt'         => base64_encode( htmlspecialchars( $element, ENT_QUOTES, 'UTF-8' ) ), // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+											'propid'     => $this->post->ID,
+											'k'          => epl_get_ical_download_token( $this->post->ID, $element ),
+										),
+										home_url( '/' )
+									);
 
 									$href = apply_filters( 'epl_inspection_link', $href );
 
@@ -784,6 +810,8 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 *
 		 * @since 2.0.0
 		 * @since 3.4.38 Using label_poa for no rental price. Added epl_price_rent_period filter. Added filter epl_pa_price for P.A label.
+		 * @since 3.5.22 Applying string to lower case on the yes values.
+		 *
 		 * @return string
 		 */
 		public function get_price_plain_value() {
@@ -2211,6 +2239,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 		 * @return mixed Value wrapped in a list item
 		 * @since 3.4.35 Tweak: Support for true/false values in features checklist.
 		 * @since 3.4.44 Parking Comments Label before value.
+		 * @since 3.5.22 Added support for Yes, No syntax values.
 		 */
 		public function get_additional_features_html( $metakey ) {
 
@@ -2229,6 +2258,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					case 1:
 					case 'yes':
+					case 'Yes':
 					case 'YES':
 					case 'Y':
 					case 'y':
@@ -2239,6 +2269,7 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					case 0:
 					case 'no':
+					case 'No':
 					case 'NO':
 					case 'N':
 					case 'n':
@@ -2249,9 +2280,9 @@ if ( ! class_exists( 'EPL_Property_Meta' ) ) :
 
 					default:
 						if ( 'property_com_parking_comments' === $metakey ) {
-								$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' ' . $metavalue . '</li>';
+							$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . ' ' . $metavalue . '</li>';
 						} else {
-								$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
+							$return = '<li class="' . $this->get_class_from_metakey( $metakey ) . '">' . $metavalue . ' ' . apply_filters( 'epl_get_' . $metakey . '_label', $this->get_label_from_metakey( $metakey ) ) . '</li>';
 						}
 
 						break;

@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return false|string
  * @since 3.5.0
+ * @since 3.6.0 Moved tools top and bottom outside of the wrapper.
  */
 function epl_listing_results_loop_callback( $atts ) {
 
@@ -40,13 +41,15 @@ function epl_listing_results_loop_callback( $atts ) {
 
 		if ( have_posts() ) :
 			?>
-
+			
+			<?php
+			if ( 'on' === $attributes['tools_top'] ) {
+				do_action( 'epl_property_loop_start', $attributes );
+			}
+			?>
+			
 			<div class="epl-template-blog">
-				<?php
-				if ( 'on' === $attributes['tools_top'] ) {
-					do_action( 'epl_property_loop_start', $attributes );
-				}
-				?>
+				
 
 				<?php
 				while ( have_posts() ) :
@@ -55,12 +58,14 @@ function epl_listing_results_loop_callback( $atts ) {
 					<?php do_action( 'epl_property_blog' ); ?>
 				<?php endwhile; ?>
 
-				<?php
-				if ( 'on' === $attributes['tools_bottom'] ) {
-					do_action( 'epl_property_loop_end' );
-				}
-				?>
+				
 			</div>
+			
+			<?php
+			if ( 'on' === $attributes['tools_bottom'] ) {
+				do_action( 'epl_property_loop_end' );
+			}
+			?>
 
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->

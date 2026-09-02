@@ -411,6 +411,7 @@ function epl_get_svg_allowed_tags() {
  * Initiate EPL listings & social Svgs.
  *
  * @since 3.4.32
+ * @since 3.5.21 Divi support for SVG icons when using Divi custom header.
  */
 function epl_init_svgs() {
 
@@ -419,19 +420,50 @@ function epl_init_svgs() {
 	$epl_social_svgs_loaded  = false;
 
 	/**
-	 * Load SVG using wp_body_open introduced in wp 5.2
+	 * Detect Divi.
 	 *
-	 * @since 3.4.31
+	 * We only switch away from wp_body_open if we're confident Divi is actually active.
 	 */
-	add_action( 'wp_body_open', 'epl_load_svg_listing_icons_head', 10 );
-	add_action( 'wp_footer', 'epl_load_svg_listing_icons_head', 900 );
+	$theme    = null;
+	$template = '';
+	$name     = '';
+	
+	if ( function_exists( 'wp_get_theme' ) ) {
+		$theme    = wp_get_theme();
+		$template = strtolower( (string) $theme->get_template() );
+		$name     = strtolower( (string) $theme->get( 'Name' ) );
+	}
+	
+	$is_divi = (
+		'divi' === $template ||
+		false !== strpos( $name, 'divi' ) ||
+		defined( 'ET_BUILDER_VERSION' ) ||
+		function_exists( 'et_setup_theme' ) ||
+		function_exists( 'et_divi_load_scripts_styles' )
+	);
+	
+	$is_divi = apply_filters( 'epl_is_divi_theme', $is_divi );
 
 	/**
-	 * Load Social SVG using wp_body_open introduced in wp 5.2
-	 *
-	 * @since 3.4.31
+	 * Hook strategy:
+	 * - Default: wp_body_open + wp_footer fallback
+	 * - Divi: et_body_top + wp_footer fallback (avoid wp_body_open swallowing output but still setting globals)
 	 */
-	add_action( 'wp_body_open', 'epl_load_svg_social_icons_head', 10 );
+	if ( $is_divi ) {
+
+		// Divi body-top hook.
+		add_action( 'et_body_top', 'epl_load_svg_listing_icons_head', 10 );
+		add_action( 'et_body_top', 'epl_load_svg_social_icons_head', 10 );
+
+	} else {
+
+		// Standard WP hook.
+		add_action( 'wp_body_open', 'epl_load_svg_listing_icons_head', 10 );
+		add_action( 'wp_body_open', 'epl_load_svg_social_icons_head', 10 );
+	}
+
+	// Always keep footer fallback.
+	add_action( 'wp_footer', 'epl_load_svg_listing_icons_head', 900 );
 	add_action( 'wp_footer', 'epl_load_svg_social_icons_head', 900 );
 }
 add_action( 'wp', 'epl_init_svgs' );

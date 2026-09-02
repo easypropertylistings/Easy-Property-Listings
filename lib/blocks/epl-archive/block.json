@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "epl/archive",
+	"title": "EPL Archive",
+	"category": "epl",
+	"icon": "index-card",
+	"description": "Render EPL archive via PHP action.",
+	"editorScript": "file:./index.js",
+	"attributes": {
+		"postType": {
+			"type": "string",
+			"default": "property"
+		}
+	},
+	"supports": {
+		"html": false,
+		"inserter": false,
+		"reusable": false
+	},
+	"textdomain": "easy-property-listings"
+}

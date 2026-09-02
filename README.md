@@ -38,24 +38,79 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.6 February XX. 2026 =
+= 3.6.0 September 5, 2026 =
 
--   New: Full CSS re-write to scss.
--   Tweak: Default image size increased to 600x400 up from 300x200. Use a thumbnail regeneration plugin to resize images to the new size.
--   Tweak: Default shortcode limit set to 12 instead of 10.
+-   New: Full Site Editing templates for EPL listing and Staff Directory archives and single pages.
+-   New: Elementor widgets added to allow for full customisation of listing cards, single listing pages and search results within Elementor.
+-   New: Server-rendered Site Editor previews for EPL template blocks.
+-   Tweak: Base epl-image-medium-crop image size increased from 300x200 to 600x400. Force regenerate thumbnails process required for past listings.
+-   Fix: EPL search, feature and business-category archives now use EPL layouts in block themes.
+-   Fix: Preserve classic-theme rendering and guard block APIs on older WordPress versions.
 
-= 3.5.18 February 12. 2026 =
+-   = 3.5.25 July 30, 2026 =
+
+-   Fix: Authenticated (Subscriber+) Stored Cross-Site Scripting via user contact methods (CVE-2026-16684); author box social/contact profile links, bio and video URL are now escaped on output, with matching sanitization at the user meta layer. Thanks Wordfence PRISM.
+-   Fix: Pinterest author icon (SVG variant) linked to the Instagram URL instead of Pinterest.
+-   Fix: Broken Access Control hardening of the contact capture form (`[listing_contact]` / `[epl_contact_form]`); submissions now run through a shared validation and persistence handler with nonce, honeypot and input sanitization. Thanks Samuel Pagès Chartier.
+-   New: Per-IP rate limiting on anonymous contact capture submissions to prevent spam and database write amplification.
+-   New: Added `epl_contact_capture_rate_limit_max` and `epl_contact_capture_rate_limit_window` filters to tune or disable contact capture throttling.
+-   New: Added `epl_contact_capture_user_can_manage` filter to control which users are exempt from contact capture throttling.
+-   New: Contact capture form now accepts an explicit `listing_id` attribute, eg. `[listing_contact listing_id="123"]`.
+-   Fix: Contact activity notes were hidden on WordPress 7.0 (core 6.9) due to the new reserved `note` comment type; EPL now requests the type explicitly so CRM activities display again.
+-   Fix: Contact capture now always logs an activity with the enquired listing so agents see every form submission, even when no message is entered.
+-   Tweak: Contact capture AJAX and direct form submissions now share a single validation path so direct POSTs cannot bypass request checks.
+
+= 3.5.24 June 20, 2026 =
+
+-   New/Fix: Get the original attachment order from listing metadata function for image ordering with [FeedSync service](https://feedsync.com.au).
+
+= 3.5.23 April 21, 2026 =
+
+-   Fix: Broken Access Control in epl_update_featured_listing (CVE-2025-64242) & UI Toggle Bug thanks @jhimross.
+-   Fix: Transient set to null produced errors with other plugins when saving a license key.
+
+= 3.5.22 April 11, 2026 =
+
+-   Tweak: Added support for Yes, No syntax values.
+-   Normalise yes/no meta values to lowercase for case-insensitive REAXML feed compatibility.
+
+= 3.5.21 March 4, 2026 =
+
+-   Security: Hardened unserialize handling to prevent object injection.
+-   Security: Added nonce protection to tools export URL.
+-   Security: Hardened tools request handling with capability checks and action allowlisting.
+-   Security: Improved settings import validation and processing of uploaded files.
+-   Security: Added signed token validation to inspection iCal download links.
+-   Security: Sanitized generated iCal filenames and added fallback filename handling.
+-   Security: Hardened iCal request processing and validation.
+-   Fix: Ensure SVG icons load when using Divi custom headers by detecting Divi and using the et_body_top hook.
+-   Fix: License notice message sanitization adjusted to run after sprintf(). Thanks DAnn2012.
+-   New: Generate signed token for inspection iCal links.
+-   Dev: Added `epl_ical_description` filter for iCal event description.
+-   Dev: Added `epl_allow_legacy_ical_access` filter for controlled legacy iCal access.
+-   Tweak: epl-search-builder ajax pagination improvements.
+-   Tweak: iCal description now uses the excerpt instead of full content.
+
+= 3.5.20 February 19, 2026 =
+
+-   Fix: iCal access issue.
+
+= 3.5.19 February 13, 2026 =
+
+-   Fix: Fatal error with widgets and customizer.
+
+= 3.5.18 February 12, 2026 =
 
 -   Fix: Admin JS code that prevented loading due to map.
 -   Fix: Cookie path improvements.
 -   Fix: Security patches.
 -   Fix: Plugin wide code syntax improvements.
 
-= 3.5.17 January 13. 2026 =
+= 3.5.17 January 13, 2026 =
 
 -   Tweak: Contact form email address validation check and message.
 
-= 3.5.16 December 16. 2025 =
+= 3.5.16 December 16, 2025 =
 
 -   New: Unified image management featured for use in extensions.
 -   Tweak: Added epl_extension_settings_fields filter for active tab.

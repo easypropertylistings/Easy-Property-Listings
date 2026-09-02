@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get list of all EPL image sizes
  *
  * @since 3.2.3
- * @since 3.6 Increased default image to 600x400
+ * @since 3.6.0 Base size increased from 300x200 to 600x400. Force regenerate thumbnails process required.
  */
 function get_epl_image_sizes() {
 	return apply_filters(
@@ -26,8 +26,8 @@ function get_epl_image_sizes() {
 		array(
 			array(
 				'id'     => 'admin-list-thumb',
-				'width'  => 100,
 				'height' => 100,
+				'width'  => 100,
 				'crop'   => true,
 			),
 			array(

@@ -1,0 +1,110 @@
+/* Editor feedback only. This is not part of a listing's visual design. */
+.epl-block-placeholder {
+	box-sizing: border-box;
+	padding: 1rem;
+	border: 1px dashed currentColor;
+	opacity: .7;
+}
+
+/* Keep responsive media safe when a theme does not provide an image reset. */
+.epl-property-element-image img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* Optional image behavior. All effect values are supplied by block attributes. */
+.epl-property-element-image.epl-has-image-effects {
+	overflow: hidden;
+}
+
+.epl-property-element-image.epl-has-image-effects .epl-blog-image > img {
+	transition: transform var(--epl-image-hover-duration) ease,
+		filter var(--epl-image-hover-duration) ease,
+		opacity var(--epl-image-hover-duration) ease;
+}
+
+.epl-property-element-image.epl-has-image-effects:hover .epl-blog-image > img {
+	transform: scale(calc(var(--epl-image-hover-scale) / 100));
+	filter: blur(var(--epl-image-hover-blur))
+		brightness(var(--epl-image-hover-brightness))
+		contrast(var(--epl-image-hover-contrast))
+		saturate(var(--epl-image-hover-saturate))
+		grayscale(var(--epl-image-hover-grayscale));
+	opacity: var(--epl-image-hover-opacity);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.epl-property-element-image.epl-has-image-effects .epl-blog-image > img {
+		transition: none;
+	}
+}
+
+.epl-property-element-status.epl-property-status-label {
+	display: inline-block;
+}
+
+/* Component mechanics. Visual values belong to block and pattern attributes. */
+.epl-property-element-meta {
+	display: flex;
+	align-items: center;
+}
+
+.epl-pattern-card {
+	position: relative;
+	overflow: hidden;
+}
+
+.epl-pattern-card-media {
+	position: relative;
+	overflow: hidden;
+}
+
+/* On single templates, keep the positioning context equal to the rendered
+ * image bounds instead of the full-width outer template container. */
+.epl-single-listing-media {
+	width: fit-content;
+	max-width: 100%;
+	margin-inline: auto;
+}
+
+.epl-pattern-card-media .epl-property-element-image,
+.epl-pattern-card-media .epl-archive-entry-image,
+.epl-pattern-card-media .epl-blog-image {
+	height: 100%;
+}
+
+.epl-pattern-card-media .epl-property-element-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* The overlay is an explicit part of EPL's card patterns. Its appearance is
+ * controlled by the status block and the pattern's serialized attributes. */
+.epl-pattern-card-media .epl-property-element-status {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	z-index: 3;
+}
+
+/* ServerSideRender adds one editor-only wrapper around the status block. */
+.editor-styles-wrapper .epl-pattern-card-media .epl-property-element-editor-status {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	z-index: 3;
+}
+
+.editor-styles-wrapper .epl-pattern-card-media .epl-property-element-editor-status .epl-property-element-status {
+	position: static;
+	display: block;
+	width: max-content;
+}
+
+.epl-pattern-card-content .property-feature-icons {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}

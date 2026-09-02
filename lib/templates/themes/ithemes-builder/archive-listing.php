@@ -5,6 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/iThemes
  * @since 1.0
+ * @since 3.6.0 Moved tools top and bottom outside of the listing wrapper.
  */
 
 // Exit if accessed directly.
@@ -25,16 +26,16 @@ function epl_archive_render_content() {
 				</h4>
 			</div>
 
+			<?php do_action( 'epl_property_loop_start' ); ?>
 			<div class="loop-content <?php echo esc_attr( epl_template_class( 'builder', 'archive' ) ); ?>">
-				<?php do_action( 'epl_property_loop_start' ); ?>
 				<?php
 				while ( have_posts() ) : // The Loop.
 						the_post();
 						do_action( 'epl_property_blog' );
 					endwhile; // end of one post.
 				?>
-				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div>
+			<?php do_action( 'epl_property_loop_end' ); ?>
 
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->
