@@ -30,6 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.4.44 Fix: Missing commercial auction listings in shortcode.
  * @since 3.4.48 Fixed class name. Passing shortcode results message shortcode type.
  * @since 3.5.5 Sorting not working.
+ * @since 3.6 Moved tools top and bottom to outside the wrapper. Added a shortcode class.
  */
 function epl_shortcode_listing_auction_callback( $atts ) {
 	$property_types = epl_get_active_post_types();
@@ -156,7 +157,7 @@ function epl_shortcode_listing_auction_callback( $atts ) {
 	}
 
 	if ( $query_open->have_posts() ) { ?>
-		<div class="loop epl-shortcode">
+		<div class="loop epl-shortcode epl-shortcode--listing-auction">
 			<?php
 			if ( 'on' === $attributes['tools_top'] ) {
 				do_action( 'epl_property_loop_start', $attributes );

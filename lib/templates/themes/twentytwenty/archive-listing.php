@@ -19,8 +19,7 @@ get_header();
 		<header class="archive-header has-text-align-center header-footer-group">
 
 			<div class="archive-header-inner section-inner medium">
-					<h1 class="archive-title"><?php do_action( 'epl_the_archive_title' ); ?></h1>
-
+				<h1 class="archive-title"><?php do_action( 'epl_the_archive_title' ); ?></h1>
 			</div><!-- .archive-header-inner -->
 
 		</header><!-- .archive-header -->
