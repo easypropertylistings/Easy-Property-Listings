@@ -6,6 +6,7 @@
  * @subpackage Templates/Themes/Divi
  * @since 1.0
  * @since 3.4.19 Removed article wrapper
+ * @since 3.6.0 Moved tools top and bottom outside of the listing wrapper.
  */
 
 // Exit if accessed directly.
@@ -22,8 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div id="left-area">
 			<?php
 			if ( have_posts() ) :
-				<?php do_action( 'epl_property_loop_start' ); ?>
 				?>
+				<?php do_action( 'epl_property_loop_start' ); ?>
 				<?php
 				while ( have_posts() ) :
 					the_post();

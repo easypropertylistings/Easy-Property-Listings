@@ -5,6 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/TwentyTwenty
  * @since 3.4.14
+ * @since 3.6.0 Moved tools top and bottom outside of the listing wrapper.
  */
 
 get_header();
@@ -26,16 +27,16 @@ get_header();
 
 		<div class="section-inner medium loop pad">
 
+			<?php do_action( 'epl_property_loop_start' ); ?>
 			<div class="loop-content <?php echo esc_attr( epl_template_class( 'twentytwenty', 'archive' ) ); ?>">
-				<?php do_action( 'epl_property_loop_start' ); ?>
 				<?php
 				while ( have_posts() ) : // The Loop.
 						the_post();
 						do_action( 'epl_property_blog' );
 					endwhile; // end of one post.
 				?>
-				<?php do_action( 'epl_property_loop_end' ); ?>
 			</div>
+			<?php do_action( 'epl_property_loop_end' ); ?>
 
 			<div class="loop-footer">
 				<!-- Previous/Next page navigation -->

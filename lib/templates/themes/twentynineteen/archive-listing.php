@@ -7,6 +7,7 @@
  * @package WordPress
  * @subpackage Twenty_Nineteen
  * @since 1.0.0
+ * @since 3.6.0 Moved tools top and bottom outside of the listing wrapper.
  */
 
 get_header();

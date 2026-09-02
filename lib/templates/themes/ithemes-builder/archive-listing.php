@@ -5,6 +5,7 @@
  * @package EPL
  * @subpackage Templates/Themes/iThemes
  * @since 1.0
+ * @since 3.6.0 Moved tools top and bottom outside of the listing wrapper.
  */
 
 // Exit if accessed directly.
