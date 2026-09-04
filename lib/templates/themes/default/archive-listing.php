@@ -57,8 +57,26 @@ get_header(); ?>
 			</div>
 			
 			<div class="epl-scss-test-wrapper">
-				<h2>Search</h2>
+				<h2>Search (default)</h2>
 				<?php echo do_shortcode( '[listing_search]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Search (wide)</h2>
+				<?php echo do_shortcode( '[listing_search style=wide]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Search (slim)</h2>
+				<?php echo do_shortcode( '[listing_search style=slim]' ) ;?>
+			
+			</div>
+			
+			<div class="epl-scss-test-wrapper">
+				<h2>Search (fixed)</h2>
+				<?php echo do_shortcode( '[listing_search style=fixed]' ) ;?>
 			
 			</div>
 			
