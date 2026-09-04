@@ -1633,9 +1633,14 @@ Reset CSS Classes
   display: flex;
   margin: 0;
   padding: 1em;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 1em;
+}
+@media screen and (max-width: 500px) {
+  .epl-table .epl-table-column-content {
+    flex-wrap: wrap;
+  }
 }
 
 .epl-table .epl-table-column-image {
