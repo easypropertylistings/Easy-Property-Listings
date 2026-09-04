@@ -206,6 +206,11 @@
 		flex-wrap: $epl-search-other--flex-wrap;
 		gap: $epl-search-other--gap;
 		line-height: $epl-search-other--line-height;
+		align-items: $epl-search-other--align-items;
+
+		.epl-search-row-half {
+			flex-basis: auto;
+		}
 	}
 	.epl-search-row-checkbox {
 		display: flex;

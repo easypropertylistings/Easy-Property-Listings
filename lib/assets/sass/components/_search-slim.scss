@@ -1,0 +1,38 @@
+@use "../abstracts" as *;
+
+//---------------------------------------------
+// Search Slim
+//---------------------------------------------
+
+.epl-search-slim {
+	.epl-property_location,
+	.epl-property_category,
+	.epl-search-row-half,
+	.epl-search-submit-row {
+		flex-basis: calc(20% - ($epl-search-form__form--gap * 4 / 5));
+
+		@media screen and (max-width: 800px) {
+			flex-basis: calc(33.33% - ($epl-search-form__form--gap * 2 / 3));
+		}
+		@media screen and (max-width: 600px) {
+			flex-basis: calc(50% - ($epl-search-form__form--gap * 1 / 2));
+		}
+		@media screen and (max-width: 340px) {
+			flex-basis: 100%;
+		}
+	}
+	.epl-search-other {
+		flex-basis: calc(40% - ($epl-search-form__form--gap * 4 / 5));
+		@media screen and (max-width: 600px) {
+			flex-basis: calc(50% - ($epl-search-form__form--gap * 1 / 2));
+		}
+		@media screen and (max-width: 340px) {
+			flex-basis: 100%;
+		}
+	}
+
+	.epl-search-submit-row {
+		flex-basis: calc(20% - ($epl-search-form__form--gap * 4 / 5));
+		margin-left: auto;
+	}
+}
