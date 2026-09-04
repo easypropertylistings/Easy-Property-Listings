@@ -18,10 +18,10 @@
 		flex-wrap: $epl-search-form__form--flex-wrap;
 		gap: $epl-search-form__form--gap;
 	}
-	
+
 	.epl-search-row-half {
 		width: auto;
-		flex-basis: calc(50% - ($epl-search-form__form--gap / 2) );
+		flex-basis: calc(50% - ($epl-search-form__form--gap / 2));
 	}
 
 	.field,
@@ -205,6 +205,7 @@
 		justify-content: $epl-search-other--justify-content;
 		flex-wrap: $epl-search-other--flex-wrap;
 		gap: $epl-search-other--gap;
+		line-height: $epl-search-other--line-height;
 	}
 	.epl-search-row-checkbox {
 		display: flex;
