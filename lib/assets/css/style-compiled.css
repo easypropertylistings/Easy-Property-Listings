@@ -3594,6 +3594,70 @@ li.tbhead.current {
   margin-left: auto;
 }
 
+.epl-search-fixed .epl-property_location,
+.epl-search-fixed .epl-property_category,
+.epl-search-fixed .epl-search-row-half,
+.epl-search-fixed .epl-search-submit-row {
+  flex-basis: calc(14.28% - 0.8571428571em);
+}
+@media screen and (max-width: 1000px) {
+  .epl-search-fixed .epl-property_location,
+  .epl-search-fixed .epl-property_category,
+  .epl-search-fixed .epl-search-row-half,
+  .epl-search-fixed .epl-search-submit-row {
+    flex-basis: calc(20% - 0.8em);
+  }
+}
+@media screen and (max-width: 800px) {
+  .epl-search-fixed .epl-property_location,
+  .epl-search-fixed .epl-property_category,
+  .epl-search-fixed .epl-search-row-half,
+  .epl-search-fixed .epl-search-submit-row {
+    flex-basis: calc(25% - 0.75em);
+  }
+}
+@media screen and (max-width: 600px) {
+  .epl-search-fixed .epl-property_location,
+  .epl-search-fixed .epl-property_category,
+  .epl-search-fixed .epl-search-row-half,
+  .epl-search-fixed .epl-search-submit-row {
+    flex-basis: calc(33.33% - 0.6666666667em);
+  }
+}
+@media screen and (max-width: 500px) {
+  .epl-search-fixed .epl-property_location,
+  .epl-search-fixed .epl-property_category,
+  .epl-search-fixed .epl-search-row-half,
+  .epl-search-fixed .epl-search-submit-row {
+    flex-basis: calc(50% - 0.5em);
+  }
+}
+@media screen and (max-width: 340px) {
+  .epl-search-fixed .epl-property_location,
+  .epl-search-fixed .epl-property_category,
+  .epl-search-fixed .epl-search-row-half,
+  .epl-search-fixed .epl-search-submit-row {
+    flex-basis: 100%;
+  }
+}
+.epl-search-fixed .epl-search-other {
+  flex-basis: calc(40% - 0.8em);
+}
+@media screen and (max-width: 600px) {
+  .epl-search-fixed .epl-search-other {
+    flex-basis: calc(66.66% - 0.5em);
+  }
+}
+@media screen and (max-width: 340px) {
+  .epl-search-fixed .epl-search-other {
+    flex-basis: 100%;
+  }
+}
+.epl-search-fixed .epl-search-submit-row {
+  flex-basis: calc(20% - 0.8em);
+  margin-left: auto;
+}
+
 .epl-popup-box::before {
   border-bottom: 7px solid rgba(0, 0, 0, 0.2);
   border-left: 7px solid transparent;
