@@ -7,6 +7,11 @@
  * @since 3.0
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 get_header(); ?>
 
 	<section id="primary" class="content-area epl-archive-default <?php echo esc_attr( epl_get_active_theme_name() ); ?>">

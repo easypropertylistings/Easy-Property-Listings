@@ -660,7 +660,12 @@ function epl_contact_action_menus( $contact ) {
 					<input type="text" id="contact-tag-hint" value=""/>
 					<ul class="epl-contact_tags_suggestions">
 						<?php
-							$contact_tags = get_terms( 'epl_contact_tag', array( 'hide_empty' => false ) );
+							$contact_tags = get_terms(
+								array(
+									'taxonomy'   => 'epl_contact_tag',
+									'hide_empty' => false,
+								)
+							);
 						if ( ! empty( $contact_tags ) ) {
 
 							foreach ( $contact_tags as $contact_tag ) {
@@ -1344,11 +1349,10 @@ function epl_search_contact() {
 
 	$u_name       = isset( $_POST['user_name'] ) ? sanitize_text_field( wp_unslash( $_POST['user_name'] ) ) : '';
 	$search_array = array(
-		'showposts'        => 6,
-		'post_type'        => 'epl_contact',
-		'post_password'    => '',
-		'suppress_filters' => true,
-		'meta_query'       => array(
+		'showposts'     => 6,
+		'post_type'     => 'epl_contact',
+		'post_password' => '',
+		'meta_query'    => array(
 			'relation' => 'OR',
 			array(
 				'key'     => 'contact_first_name',
