@@ -13,6 +13,7 @@ exclude:
     - node_modules/
     - epl-apidocs/
     - apigen/
+    - .claude/
 
 # character set of source files; if you use only one across your files, we recommend you name it
 charset: [UTF-8]
