@@ -6,7 +6,7 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, reports
 Requires PHP: 7.4
 Requires at least: 6.0
-Tested up to: 7.0.2
+Tested up to: 7.1
 Stable Tag: 3.5.26
 License: GPLv2 or later
 
