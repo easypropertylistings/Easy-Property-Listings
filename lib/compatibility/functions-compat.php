@@ -435,7 +435,7 @@ function epl_property_author_card( $display, $image, $title, $icons ) {
 						?>
 							<div class="property-meta property-feature-icons"><?php epl_property_icons(); ?></div>
 						<?php } elseif ( 'bb' === $icons ) { ?>
-							<div class="property-meta property-feature-icons"><?php echo wp_kses( epl_get_property_bb_icons() ); ?></div>
+							<div class="property-meta property-feature-icons"><?php echo wp_kses( epl_get_property_bb_icons(), array_merge( wp_kses_allowed_html( 'post' ), epl_get_svg_allowed_tags() ) ); ?></div>
 						<?php } ?>
 
 					<div class="property-meta price"><?php epl_property_price(); ?></div>

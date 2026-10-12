@@ -700,11 +700,10 @@ class EPL_Render_Fields {
 
 		$content = isset( $field['content'] ) ? $field['content'] : '';
 		$help_id = isset( $field['name'] ) ? sanitize_key( $field['name'] ) : '';
-		//phpcs:ignore
-		echo '<div class="epl-help-container">
-                        ' . $this->get_opening_field_tag( 'div', $field ) . '
-				' . wp_kses_post( $content ) . '
-			</div></div>';
+		echo '<div class="epl-help-container">';
+		echo $this->get_opening_field_tag( 'div', $field ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Attributes are escaped in get_opening_field_tag().
+		echo wp_kses_post( $content );
+		echo '</div></div>';
 	}
 
 	/**

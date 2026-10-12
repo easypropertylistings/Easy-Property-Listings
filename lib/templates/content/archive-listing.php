@@ -9,4 +9,9 @@
  * @since       1.0
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 do_action( 'epl_render_archive_post' );

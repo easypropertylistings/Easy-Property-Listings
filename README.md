@@ -38,6 +38,21 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.26 October 12, 2026 =
+
+-   Fix: Unauthenticated Reflected Cross-Site Scripting via the `epl_action` request parameter and the search widget select field; `data-min` and `data-max` attributes are now escaped on output. Thanks Patchstack.
+-   Fix: The `epl_action` and `epl-action` request parameters now only dispatch an allow-list of actions for logged in users, instead of firing any `epl_*` hook with the raw request.
+-   New: Added `epl_allowed_request_actions` filter to register additional request actions.
+-   Fix: Search widget available terms query now escapes taxonomy, post type and listing status values with `$wpdb->prepare()`.
+-   Fix: Escaped bed and bath icon output in the listing widget templates and the legacy author card.
+-   Fix: Legacy author card called `wp_kses()` with a missing argument.
+-   Fix: Replaced deprecated `get_terms()` taxonomy parameter usage.
+-   Fix: Contact search no longer suppresses query filters.
+-   Fix: Added direct file access protection to theme compatibility templates.
+-   Tweak: Added License and License URI plugin headers and corrected Domain Path.
+-   Tweak: Tested up to WordPress 7.1.
+-   Tweak: Added security vulnerability reporting contact to the readme and `SECURITY.md`.
+
 = 3.5.25 July 30, 2026 =
 
 -   Fix: Authenticated (Subscriber+) Stored Cross-Site Scripting via user contact methods (CVE-2026-16684); author box social/contact profile links, bio and video URL are now escaped on output, with matching sanitization at the user meta layer. Thanks Wordfence PRISM.

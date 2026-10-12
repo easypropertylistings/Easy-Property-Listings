@@ -26,7 +26,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 		<div class="epl-contact-all-tags-container">
 				<?php
-				$contact_tags = get_terms( 'epl_contact_tag', array( 'hide_empty' => false ) );
+				$contact_tags = get_terms(
+					array(
+						'taxonomy'   => 'epl_contact_tag',
+						'hide_empty' => false,
+					)
+				);
 				if ( ! empty( $contact_tags ) ) {
 					if ( ! is_wp_error( $contact_tags ) ) {
 						foreach ( $contact_tags as $term ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride

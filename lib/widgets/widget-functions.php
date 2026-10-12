@@ -1239,9 +1239,13 @@ add_filter( 'posts_where', 'epl_listings_where', 10, 2 );
  * @param  string $post_type Post type name.
  * @param  string $property_status Listing status.
  * @return mixed terms which is filterable with epl_get_available_terms.
+ *
+ * @since 3.5.26 Query values are escaped with $wpdb->prepare().
  */
 function epl_get_available_terms( $tax = 'location', $post_type = '', $property_status = '' ) {
 	global $wpdb;
+
+	$query_args          = array( $tax );
 	$available_loc_query = "
 	SELECT DISTINCT (
 		tt.term_id
@@ -1250,13 +1254,15 @@ function epl_get_available_terms( $tax = 'location', $post_type = '', $property_
 	LEFT JOIN {$wpdb->prefix}postmeta pm ON ( p.ID = pm.post_id )
 	LEFT JOIN {$wpdb->prefix}term_relationships tr ON ( p.ID = tr.object_id )
 	LEFT JOIN {$wpdb->prefix}term_taxonomy tt ON ( tr.term_taxonomy_id = tt.term_taxonomy_id ) WHERE
-	tt.taxonomy 			= '{$tax}'
+	tt.taxonomy 			= %s
 	AND p.post_status 		= 'publish'";
 
-	if ( is_array( $post_type ) ) {
-		$available_loc_query .= " AND p.post_type IN ('" . implode( "','", $post_type ) . "')";
+	if ( is_array( $post_type ) && ! empty( $post_type ) ) {
+		$available_loc_query .= ' AND p.post_type IN (' . implode( ',', array_fill( 0, count( $post_type ), '%s' ) ) . ')';
+		$query_args           = array_merge( $query_args, array_values( $post_type ) );
 	} else {
-		$available_loc_query .= " AND p.post_type 		= '{$post_type}'";
+		$available_loc_query .= ' AND p.post_type 		= %s';
+		$query_args[]         = is_array( $post_type ) ? '' : (string) $post_type;
 	}
 
 	if ( ! empty( $property_status ) ) {
@@ -1264,13 +1270,14 @@ function epl_get_available_terms( $tax = 'location', $post_type = '', $property_
 		if ( count( $property_status ) ) {
 			$available_loc_query .= "
 			AND pm.meta_key 		= 'property_status'
-			AND pm.meta_value 		IN ('" . implode( "','", $property_status ) . "')";
+			AND pm.meta_value 		IN (" . implode( ',', array_fill( 0, count( $property_status ), '%s' ) ) . ')';
+			$query_args           = array_merge( $query_args, $property_status );
 		}
 	}
-	$available_locs = $wpdb->get_col( $available_loc_query );
+	$available_locs = $wpdb->get_col( $wpdb->prepare( $available_loc_query, $query_args ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
 	$terms          = get_terms(
-		$tax,
 		array(
+			'taxonomy'   => $tax,
 			'hide_empty' => true,
 			'include'    => $available_locs,
 		)

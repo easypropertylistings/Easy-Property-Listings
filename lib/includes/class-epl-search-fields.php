@@ -137,6 +137,7 @@ class EPL_Search_Fields {
 	 *
 	 * @since  3.0
 	 * @since  3.5.10 Icon support added.
+	 * @since  3.5.26 Escape data-min and data-max attributes at output.
 	 */
 	public function render_select( array $field, $config = '', $value = '', $post_type = '', $property_status = '' ) {
 
@@ -144,14 +145,14 @@ class EPL_Search_Fields {
 			echo '<div class="' . esc_attr( $field['wrap_start'] ) . '">';
 		}
 
-		$min_max_atts = '';
+		$has_min_max = false;
 
-		if ( isset( $field['query']['type'] ) && 'numeric' === $field['query']['type'] ) {
-			current( $field['options'] );
+		if ( isset( $field['query']['type'] ) && 'numeric' === $field['query']['type'] && ! empty( $field['options'] ) && is_array( $field['options'] ) ) {
+			reset( $field['options'] );
 			$opt_min = key( $field['options'] );
 			end( $field['options'] );
-			$opt_max      = key( $field['options'] );
-			$min_max_atts = ' data-min="' . $opt_min . '" data-max="' . $opt_max . '" ';
+			$opt_max     = key( $field['options'] );
+			$has_min_max = true;
 		}
 
 		?>
@@ -166,7 +167,10 @@ class EPL_Search_Fields {
 				<select
 					name="<?php echo esc_attr( $field['meta_key'] ); ?>"
 					id="<?php echo esc_attr( $field['meta_key'] ); ?>"
-					<?php echo $min_max_atts; //phpcs:ignore ?>
+					<?php if ( $has_min_max ) : ?>
+						data-min="<?php echo esc_attr( $opt_min ); ?>"
+						data-max="<?php echo esc_attr( $opt_max ); ?>"
+					<?php endif; ?>
 					class="in-field field-width <?php echo esc_attr( $field['meta_key'] ); ?>">
 					<option value="">
 						<?php echo esc_attr( apply_filters( 'epl_search_widget_option_label_' . $field['option_filter'], __( 'Any', 'easy-property-listings' ) ) ); ?>

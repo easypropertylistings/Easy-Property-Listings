@@ -6,8 +6,8 @@ Donate link: https://easypropertylistings.com.au/support-the-site/
 Tags: real estate, property, listings, rental, reports
 Requires PHP: 7.4
 Requires at least: 6.0
-Tested up to: 7.0.2
-Stable Tag: 3.5.25
+Tested up to: 7.1
+Stable Tag: 3.5.26
 License: GPLv2 or later
 
 Fast. Flexible. Forward-thinking solution for real estate agents using WordPress. Built for scale, listing management and works with any theme.
@@ -404,6 +404,10 @@ Yes, through the addition of one or more of the add-on integrations, you can qui
 * [1form](https://easypropertylistings.com.au/extensions/1form/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_1form)
 * [Inspect Real Estate](https://easypropertylistings.com.au/extensions/inspect-real-estate/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_inspect_real_estate)
 * [Rate My Agent](https://easypropertylistings.com.au/extensions/rate-my-agent/?utm_source=readme&utm_medium=faq_tab&utm_content=extensions_link&utm_campaign=epl_extension_rate_my_agent)
+
+= How do I report a security vulnerability? =
+
+Please report security issues privately by email to support@easypropertylistings.com.au. We will acknowledge your report, work with you on a fix and credit you in the change log. Please do not post security issues in the public support forum.
 
 == Screenshots ==
 

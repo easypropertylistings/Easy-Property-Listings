@@ -868,12 +868,13 @@ class EPL_CPT {
 
 					// Get taxonomy terms and order by name.
 					$args = array(
+						'taxonomy'   => $tax_slug,
 						'orderby'    => 'name',
 						'hide_empty' => false,
 					);
 
 					// Get taxonomy terms.
-					$terms = get_terms( $tax_slug, $args );
+					$terms = get_terms( $args );
 
 					// If we have terms.
 					if ( $terms ) {
