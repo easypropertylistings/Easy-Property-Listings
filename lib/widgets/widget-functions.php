@@ -1240,7 +1240,7 @@ add_filter( 'posts_where', 'epl_listings_where', 10, 2 );
  * @param  string $property_status Listing status.
  * @return mixed terms which is filterable with epl_get_available_terms.
  *
- * @since 3.5.26 Query values are escaped with $wpdb->prepare().
+ * @since 3.5.26 Query values are now escaped with a prepared statement.
  */
 function epl_get_available_terms( $tax = 'location', $post_type = '', $property_status = '' ) {
 	global $wpdb;
