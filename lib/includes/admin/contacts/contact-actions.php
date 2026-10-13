@@ -956,12 +956,17 @@ add_action( 'epl_contact_recent_activities', 'epl_contact_recent_activities' );
  * @param string $orderby Order by.
  * @param string $order Order ASC or DESC.
  * @since 3.0
+ * @since 3.5.27 Require contact access for AJAX requests.
  */
 function epl_contact_get_activities_html( $contact, $number = 10, $paged = 1, $orderby = 'comment_date', $order = 'DESC' ) {
 
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
 		check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+		if ( ! epl_contact_access() ) {
+			wp_die( 'Unauthorized' );
+		}
 
 		$contact = isset( $_POST['contact'] ) ? sanitize_text_field( wp_unslash( $_POST['contact'] ) ) : '';
 		$number  = isset( $_POST['number'] ) ? sanitize_text_field( wp_unslash( $_POST['number'] ) ) : '';
@@ -1031,12 +1036,18 @@ add_action( 'wp_ajax_epl_contact_get_activity_table', 'epl_contact_get_activitie
  * @param string $orderby Order by.
  * @param string $order Order ASC or DESC.
  * @since 3.0
+ * @since 3.5.27 Require contact access for AJAX requests.
  */
 function epl_contact_get_listings_html( $contact, $number = 10, $paged = 1, $orderby = 'post_date', $order = 'DESC' ) {
 
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 
 		check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+		if ( ! epl_contact_access() ) {
+			wp_die( 'Unauthorized' );
+		}
+
 		$contact = isset( $_POST['contact'] ) ? sanitize_text_field( wp_unslash( $_POST['contact'] ) ) : '';
 		$number  = isset( $_POST['number'] ) ? sanitize_text_field( wp_unslash( $_POST['number'] ) ) : '';
 		$paged   = isset( $_POST['paged'] ) ? sanitize_text_field( wp_unslash( $_POST['paged'] ) ) : '';
@@ -1342,10 +1353,15 @@ add_action( 'epl_before_meta_field_property_owner', 'epl_before_meta_field_prope
  * Search Contact
  *
  * @since 3.0
+ * @since 3.5.27 Require contact access.
  */
 function epl_search_contact() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+	if ( ! epl_contact_access() ) {
+		wp_die( 'Unauthorized' );
+	}
 
 	$u_name       = isset( $_POST['user_name'] ) ? sanitize_text_field( wp_unslash( $_POST['user_name'] ) ) : '';
 	$search_array = array(
@@ -1384,10 +1400,15 @@ add_action( 'wp_ajax_epl_search_contact', 'epl_search_contact' );
  * Search Listing
  *
  * @since 3.0
+ * @since 3.5.27 Require contact access.
  */
 function epl_search_contact_listing() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+	if ( ! epl_contact_access() ) {
+		wp_die( 'Unauthorized' );
+	}
 	$search_term  = isset( $_POST['s'] ) ? sanitize_text_field( wp_unslash( $_POST['s'] ) ) : '';
 	$search_array = array(
 		's'           => $search_term,
@@ -1418,10 +1439,15 @@ add_action( 'wp_ajax_epl_search_contact_listing', 'epl_search_contact_listing' )
  * @since 3.0
  * @since  3.4.1 removed wp_kses_post filter to support data atts in output
  * @since  3.5.1 Added filter for args & results.
+ * @since 3.5.27 Require the edit_posts capability.
  */
 function epl_search_user() {
 
 	check_ajax_referer( 'epl_ajax_nonce', '_epl_nonce' );
+
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		wp_die( 'Unauthorized' );
+	}
 
 	$search_term = isset( $_REQUEST['user_name'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['user_name'] ) ) : '';
 

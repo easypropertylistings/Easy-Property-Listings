@@ -38,6 +38,13 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.27 October 13, 2026 =
+
+-   Fix: Unauthenticated information disclosure via the REST API; listing meta fields hidden by the display settings (price, sold price, rent, street address and map coordinates) and internal fields such as the linked owner contact are now only returned to users who can edit the listing. Thanks Usama Arshad and WPScan.
+-   Fix: Subscriber-level disclosure of CRM contact records; the contact activity table, contact listing table, contact search and contact listing search AJAX actions now require contact access, matching their write actions. Thanks Usama Arshad and WPScan.
+-   Fix: User search AJAX action now requires the `edit_posts` capability.
+-   New: Added `epl_rest_api_private_meta_keys` filter to adjust which listing meta fields are hidden from the public REST API.
+
 = 3.5.26 October 12, 2026 =
 
 -   Fix: Unauthenticated Reflected Cross-Site Scripting via the `epl_action` request parameter and the search widget select field; `data-min` and `data-max` attributes are now escaped on output. Thanks Patchstack.
