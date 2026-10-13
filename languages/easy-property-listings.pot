@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Property Listings 3.5.26\n"
+"Project-Id-Version: Easy Property Listings 3.5.27\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/easy-property-listings\n"
-"POT-Creation-Date: 2026-10-12 16:11:17+00:00\n"
+"POT-Creation-Date: 2026-10-13 08:49:10+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -430,8 +430,8 @@ msgid "Background Info"
 msgstr ""
 
 #: lib/includes/admin/contacts/class-epl-contact-reports-table.php:236
-#: lib/includes/admin/contacts/contact-actions.php:982
-#: lib/includes/admin/contacts/contact-actions.php:1064
+#: lib/includes/admin/contacts/contact-actions.php:987
+#: lib/includes/admin/contacts/contact-actions.php:1075
 msgid "Type"
 msgstr ""
 
@@ -465,7 +465,7 @@ msgstr ""
 #: lib/includes/admin/contacts/contact-actions.php:201
 #: lib/includes/admin/contacts/contact-actions.php:289
 #: lib/includes/admin/contacts/contact-actions.php:425
-#: lib/includes/admin/contacts/contact-actions.php:1480
+#: lib/includes/admin/contacts/contact-actions.php:1506
 msgid "Cheatin' eh?!"
 msgstr ""
 
@@ -490,12 +490,12 @@ msgid "Invalid Contact ID"
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:186
-#: lib/includes/admin/contacts/contact-actions.php:1468
+#: lib/includes/admin/contacts/contact-actions.php:1494
 msgid "You do not have permission to save note."
 msgstr ""
 
 #: lib/includes/admin/contacts/contact-actions.php:205
-#: lib/includes/admin/contacts/contact-actions.php:1483
+#: lib/includes/admin/contacts/contact-actions.php:1509
 msgid "A note is required"
 msgstr ""
 
@@ -569,11 +569,11 @@ msgstr ""
 msgid "Activities"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:983
+#: lib/includes/admin/contacts/contact-actions.php:988
 msgid "Comment"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:984
+#: lib/includes/admin/contacts/contact-actions.php:989
 #: lib/post-types/post-type-business.php:106
 #: lib/post-types/post-type-commercial-land.php:107
 #: lib/post-types/post-type-commercial.php:107
@@ -584,15 +584,15 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1011
+#: lib/includes/admin/contacts/contact-actions.php:1016
 msgid "No Activities"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1016
+#: lib/includes/admin/contacts/contact-actions.php:1021
 msgid "Load More"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1065
+#: lib/includes/admin/contacts/contact-actions.php:1076
 #: lib/includes/admin/contacts/contacts.php:439
 #: lib/includes/admin/help-single.php:52
 #: lib/includes/admin/menus/class-epl-welcome.php:363
@@ -606,7 +606,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1066
+#: lib/includes/admin/contacts/contact-actions.php:1077
 #: lib/post-types/post-type-business.php:104
 #: lib/post-types/post-type-commercial-land.php:104
 #: lib/post-types/post-type-commercial.php:104
@@ -618,77 +618,77 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1085
+#: lib/includes/admin/contacts/contact-actions.php:1096
 msgid "No Listings Found"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1106
+#: lib/includes/admin/contacts/contact-actions.php:1117
 msgid "No Listing"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1122
+#: lib/includes/admin/contacts/contact-actions.php:1133
 msgid "Add Activity"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1146
-#: lib/includes/admin/contacts/contact-actions.php:1280
+#: lib/includes/admin/contacts/contact-actions.php:1157
+#: lib/includes/admin/contacts/contact-actions.php:1291
 msgid "Add"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1180
+#: lib/includes/admin/contacts/contact-actions.php:1191
 msgid "Add Listing"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1194
+#: lib/includes/admin/contacts/contact-actions.php:1205
 #: lib/meta-boxes/meta-box-init.php:837
 msgid "Lot"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1202
+#: lib/includes/admin/contacts/contact-actions.php:1213
 #: lib/includes/functions.php:711 lib/meta-boxes/meta-box-init.php:845
 msgid "Unit"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1210
+#: lib/includes/admin/contacts/contact-actions.php:1221
 #: lib/includes/admin/contacts/contacts.php:569
 #: lib/meta-boxes/meta-box-init.php:853
 msgid "Street Number"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1217
+#: lib/includes/admin/contacts/contact-actions.php:1228
 #: lib/includes/admin/contacts/contacts.php:576
 #: lib/meta-boxes/meta-box-init.php:860
 msgid "Street Name"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1245
+#: lib/includes/admin/contacts/contact-actions.php:1256
 #: lib/includes/admin/contacts/contacts.php:604
 #: lib/meta-boxes/meta-box-init.php:906 lib/widgets/widget-functions.php:127
 #: lib/widgets/widget-functions.php:467
 msgid "Country"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1251
+#: lib/includes/admin/contacts/contact-actions.php:1262
 msgid "Full Address"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1256
+#: lib/includes/admin/contacts/contact-actions.php:1267
 #: lib/meta-boxes/meta-box-init.php:129
 #: lib/widgets/class-epl-widget-recent-property.php:287
 msgid "Listing Type"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1264
+#: lib/includes/admin/contacts/contact-actions.php:1275
 #: lib/widgets/class-epl-widget-recent-property.php:306
 msgid "Listing Status"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1334
+#: lib/includes/admin/contacts/contact-actions.php:1345
 #: lib/post-types/post-type-contact.php:46
 msgid "View Contact"
 msgstr ""
 
-#: lib/includes/admin/contacts/contact-actions.php:1486
+#: lib/includes/admin/contacts/contact-actions.php:1512
 msgid "An error occured"
 msgstr ""
 
