@@ -38,6 +38,11 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.28 October 14, 2026 =
+
+-   Fix: REST API listing meta for users who cannot edit the listing is now an allow-list of fields the listing displays, instead of removing known hidden fields. Fields hidden by site settings (bond, country and city) and by listing settings are withheld, and fields added by extensions are no longer public unless allowed. Thanks Usama Arshad and WPScan.
+-   New: Added `epl_rest_api_public_meta_keys` filter to make additional listing meta fields public in the REST API.
+
 = 3.5.27 October 13, 2026 =
 
 -   Fix: Unauthenticated information disclosure via the REST API; listing meta fields hidden by the display settings (price, sold price, rent, street address and map coordinates) and internal fields such as the linked owner contact are now only returned to users who can edit the listing. Thanks Usama Arshad and WPScan.
