@@ -41,6 +41,7 @@ There are various ways you can contribute:
 = 3.5.29 October 15, 2026 =
 
 -   Fix: PHP 8.1 deprecation notice `preg_replace(): Passing null to parameter #3` when a listing has no suburb or state, in the listing widget address, the secondary heading and `the_property_meta()`.
+-   Fix: Google Maps API was loaded on the admin listing, settings and extensions screens even when Google Maps is disabled in settings.
 
 = 3.5.28 October 14, 2026 =
 
