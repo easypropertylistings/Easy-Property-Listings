@@ -54,7 +54,6 @@ function epl_get_admin_screens() {
  * @since 3.5.4  Display warning note when display address is unchecked.
  * @since 3.5.8  Using version 3.55 of gmap to avoid Deprecation notice for markers.
  * @since 3.5.16 New: Unified image management featured for use in extensions.
- * @since 3.5.29 Fix: Google Maps is no longer loaded in admin when disabled in settings.
  *
  * @return void
  */
@@ -95,9 +94,7 @@ function epl_admin_enqueue_scripts( $screen ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 		}
 
-		if ( epl_get_option( 'epl_disable_google_api' ) !== 'on' ) {
-			wp_enqueue_script( 'epl-google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
-		}
+		wp_enqueue_script( 'epl-google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 
 		wp_enqueue_style( 'epl-jquery-validation-engine-style', $current_dir_path . '/css/validationEngine-jquery' . $suffix . '.css', false, EPL_PROPERTY_VER );
 		wp_enqueue_script( 'epl-jquery-validation-engine-lang-scripts', $current_dir_path . '/js/jquery-validationEngine-en' . $suffix . '.js', array( 'jquery' ), EPL_PROPERTY_VER, false );
