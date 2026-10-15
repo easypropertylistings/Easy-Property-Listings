@@ -1131,8 +1131,8 @@ function epl_property_secondary_heading() {
 	if ( 'sold' === $property->get_property_meta( 'property_status' ) ) {
 		echo ' <span class="sold-status">' . esc_html( $property->label_sold ) . '</span>';
 	}
-	echo ' <span class="suburb"> - ' . esc_html( $property->get_property_meta( 'property_address_suburb' ) ) . ' </span>';
-	echo ' <span class="state">' . esc_html( $property->get_property_meta( 'property_address_state' ) ) . '</span>';
+	echo ' <span class="suburb"> - ' . wp_kses_post( $property->get_property_meta( 'property_address_suburb' ) ?? '' ) . ' </span>';
+	echo ' <span class="state">' . wp_kses_post( $property->get_property_meta( 'property_address_state' ) ?? '' ) . '</span>';
 }
 add_action( 'epl_property_secondary_heading', 'epl_property_secondary_heading' );
 
@@ -1700,7 +1700,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 			// Suburb.
 			if ( 'on' === $d_suburb ) {
 				?>
-				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
+				<div class="property-meta suburb-name"><?php echo wp_kses_post( $property->get_property_meta( 'property_address_suburb' ) ?? '' ); ?></div>
 			<?php } ?>
 			<?php
 		}
