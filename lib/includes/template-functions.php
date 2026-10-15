@@ -1107,6 +1107,7 @@ add_action( 'epl_property_heading', 'epl_property_heading' );
  * @since 1.0 @hooked property_secondary_heading
  * @since 3.4.41 Fix: Added land category.
  * @since 3.5.14 Corrected escaping function to esc_html.
+ * @since 3.5.29 Fix PHP 8.1 deprecation when the meta value is empty.
  */
 function epl_property_secondary_heading() {
 	global $property;
@@ -1130,8 +1131,8 @@ function epl_property_secondary_heading() {
 	if ( 'sold' === $property->get_property_meta( 'property_status' ) ) {
 		echo ' <span class="sold-status">' . esc_html( $property->label_sold ) . '</span>';
 	}
-	echo ' <span class="suburb"> - ' . wp_kses_post( $property->get_property_meta( 'property_address_suburb' ) ) . ' </span>';
-	echo ' <span class="state">' . wp_kses_post( $property->get_property_meta( 'property_address_state' ) ) . '</span>';
+	echo ' <span class="suburb"> - ' . esc_html( $property->get_property_meta( 'property_address_suburb' ) ) . ' </span>';
+	echo ' <span class="state">' . esc_html( $property->get_property_meta( 'property_address_state' ) ) . '</span>';
 }
 add_action( 'epl_property_secondary_heading', 'epl_property_secondary_heading' );
 
@@ -1647,6 +1648,7 @@ function epl_get_property_price() {
  *
  * @param      string $d_suburb  The d suburb.
  * @param      string $d_street  The d street.
+ * @since 3.5.29 Fix PHP 8.1 deprecation when the meta value is empty.
  */
 function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 	global $property;
@@ -1698,7 +1700,7 @@ function epl_widget_listing_address( $d_suburb = '', $d_street = '' ) {
 			// Suburb.
 			if ( 'on' === $d_suburb ) {
 				?>
-				<div class="property-meta suburb-name"><?php echo wp_kses_post( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
+				<div class="property-meta suburb-name"><?php echo esc_html( $property->get_property_meta( 'property_address_suburb' ) ); ?></div>
 			<?php } ?>
 			<?php
 		}
@@ -2563,10 +2565,11 @@ function get_property_meta( $key ) {
  * @since 2.1
  *
  * @param string $key    The key.
+ * @since 3.5.29 Fix PHP 8.1 deprecation when the meta value is empty.
  */
 function the_property_meta( $key ) {
 	global  $property;
-	echo wp_kses_post( $property->get_property_meta( $key ) );
+	echo wp_kses_post( $property->get_property_meta( $key ) ?? '' );
 }
 
 /**
