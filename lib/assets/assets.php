@@ -94,6 +94,11 @@ function epl_admin_enqueue_scripts( $screen ) {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 		}
 
+		// Intentionally ignores the "Google Maps API: Disable" setting (epl_disable_google_api).
+		// That setting is for sites where the theme or another plugin already loads Google Maps
+		// on the front end. Those rarely load it in admin, so EPL always loads it here to keep the
+		// listing edit map, pin and coordinates lookup working. Map add-ons that replace Google
+		// (e.g. OpenStreetMap) should dequeue 'epl-google-map-v-3' themselves.
 		wp_enqueue_script( 'epl-google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 
 		wp_enqueue_style( 'epl-jquery-validation-engine-style', $current_dir_path . '/css/validationEngine-jquery' . $suffix . '.css', false, EPL_PROPERTY_VER );
@@ -144,6 +149,7 @@ function epl_wp_enqueue_scripts() {
 			$googleapiurl = $googleapiurl . '&key=' . epl_get_option( 'epl_google_api_key' );
 		}
 
+		// Front end only. Admin always loads Google Maps, see epl_admin_enqueue_scripts().
 		if ( epl_get_option( 'epl_disable_google_api' ) !== 'on' ) {
 			wp_enqueue_script( 'epl-google-map-v-3', $googleapiurl, array(), EPL_PROPERTY_VER, false );
 		}

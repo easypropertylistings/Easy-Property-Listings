@@ -38,6 +38,10 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.29 October 15, 2026 =
+
+-   Fix: PHP 8.1 deprecation notice `preg_replace(): Passing null to parameter #3` when a listing has no suburb or state, in the listing widget address, the secondary heading and `the_property_meta()`.
+
 = 3.5.28 October 14, 2026 =
 
 -   Fix: REST API listing meta for users who cannot edit the listing is now an allow-list of fields the listing displays, instead of removing known hidden fields. Fields hidden by site settings (bond, country and city) and by listing settings are withheld, and fields added by extensions are no longer public unless allowed. Thanks Usama Arshad and WPScan.
