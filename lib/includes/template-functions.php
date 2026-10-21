@@ -1063,6 +1063,7 @@ add_action( 'epl_property_inspection_times', 'epl_property_inspection_times' );
  * @param mixed $listing listing instance.
  *
  * @since 2.3.1
+ * @since 3.5.29 Fix PHP 8.1 deprecation when the listing has no heading.
  *
  * @return string listing heading or title
  */
@@ -1080,6 +1081,9 @@ function epl_get_property_heading( $listing = null ) {
 
 	if ( $property ) {
 		$property_heading = $property->get_property_meta( 'property_heading' );
+		if ( null === $property_heading ) {
+			$property_heading = '';
+		}
 		if ( strlen( trim( $property_heading ) ) ) {
 			return $property_heading;
 		}
