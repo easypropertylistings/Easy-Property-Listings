@@ -57,6 +57,20 @@ class EPL_Widget_Property_Gallery extends WP_Widget {
 
 		$title       = apply_filters( 'widget_title', $instance['title'] );
 		$d_columns   = $instance['d_columns'];
+
+		// Allow an extension to supply gallery HTML (e.g. CDN-hosted images not in
+		// the media library). Mirrors epl_property_gallery().
+		$custom = apply_filters( 'epl_property_gallery_html', null, get_the_ID() );
+		if ( null !== $custom ) {
+			echo $before_widget;
+			if ( $title ) {
+				echo $before_title . esc_html( $title ) . $after_title;
+			}
+			echo $custom;
+			echo $after_widget;
+			return;
+		}
+
 		$attachments = get_children(
 			array(
 				'post_parent'    => get_the_ID(),

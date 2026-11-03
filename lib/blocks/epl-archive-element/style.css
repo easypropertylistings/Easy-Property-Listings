@@ -1,0 +1,12 @@
+/* Lifecycle hooks and alternate Query branches remain available in List View
+ * without cluttering the visual Site Editor preview. */
+.editor-styles-wrapper .epl-archive-element-editor-loop-end,
+.editor-styles-wrapper .epl-listings-query .wp-block-query-no-results {
+	display: none;
+}
+.epl-block-toolbar-preview {
+	display: flex;
+	gap: .75rem;
+	align-items: center;
+	justify-content: flex-end;
+}

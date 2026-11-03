@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "epl/single-directory",
+	"title": "EPL Single Directory",
+	"category": "epl",
+	"icon": "index-card",
+	"description": "Render EPL single directory via PHP action.",
+	"editorScript": "file:./index.js",
+	"supports": {
+		"html": false,
+		"inserter": false,
+		"reusable": false
+	},
+	"textdomain": "easy-property-listings"
+}

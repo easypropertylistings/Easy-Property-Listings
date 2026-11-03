@@ -109,6 +109,11 @@ function epl_get_default_settings() {
 function epl_install() {
 	global $wpdb, $epl_options, $wp_version;
 
+	// This is intentionally determined before the version option is created.
+	// Re-activating an existing site must never silently opt it into a new FSE
+	// template hierarchy.
+	$is_new_install = false === get_option( 'epl_version', false );
+
 	// Add default EPL Settings.
 	$epl_settings = epl_settings();
 
@@ -126,6 +131,13 @@ function epl_install() {
 	} else {
 		// first time install . load with default values.
 		$epl_settings = $new_fields_defaults;
+	}
+
+	// Block templates are opt-in for established sites and enabled for a truly
+	// fresh installation. Keep this out of the generic defaults above because
+	// those defaults are also merged when an existing plugin is reactivated.
+	if ( ! isset( $epl_settings['epl_block_templates'] ) ) {
+		$epl_settings['epl_block_templates'] = $is_new_install ? 'on' : 'off';
 	}
 	update_option( 'epl_settings', $epl_settings );
 
@@ -211,6 +223,16 @@ add_action( 'admin_init', 'epl_after_install' );
  */
 function epl_plugin_updates() {
 	$current_version = get_option( 'epl_version' );
+	$epl_settings    = get_option( 'epl_settings', array() );
+	$epl_settings    = is_array( $epl_settings ) ? $epl_settings : array();
+
+	// This setting was introduced after block-template support. Backfill it on
+	// every established installation that has not made a choice yet, including
+	// sites that already recorded a 3.6 database version before this migration.
+	if ( ! isset( $epl_settings['epl_block_templates'] ) ) {
+		$epl_settings['epl_block_templates'] = 'off';
+		update_option( 'epl_settings', $epl_settings );
+	}
 
 	if ( version_compare( $current_version, '1.3', '<' ) ) {
 		include EPL_PATH_UPDATES . 'epl-1.3.1.php';
@@ -260,6 +282,9 @@ function epl_plugin_updates() {
 		include EPL_PATH_UPDATES . 'epl-3.3.php';
 		flush_rewrite_rules();
 		update_option( 'epl_version', '3.3' );
+	}
+	if ( version_compare( $current_version, '3.6', '<' ) ) {
+		update_option( 'epl_version', '3.6' );
 	}
 }
 add_action( 'admin_init', 'epl_plugin_updates' );
