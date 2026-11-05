@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "epl/archive-element",
+	"version": "3.6.0",
+	"title": "EPL Archive Element",
+	"category": "epl",
+	"icon": "archive",
+	"description": "Render an EPL archive lifecycle hook or default listing template.",
+	"textdomain": "easy-property-listings",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./style.css",
+	"usesContext": ["postId", "postType", "queryId", "query", "enhancedPagination"],
+	"attributes": {
+		"element": { "type": "string", "default": "loop-start" },
+		"previewPostType": { "type": "string", "default": "property" },
+		"showViewSwitch": { "type": "boolean", "default": true },
+		"showSorting": { "type": "boolean", "default": true },
+		"showAdditionalTools": { "type": "boolean", "default": true },
+		"instanceId": { "type": "string", "default": "1" }
+	},
+	"supports": {
+		"anchor": true,
+		"align": ["wide", "full"],
+		"color": { "text": true, "background": true, "link": true },
+		"spacing": { "margin": true, "padding": true },
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalDefaultControls": { "fontFamily": true, "fontSize": true, "fontAppearance": true }
+		},
+		"border": { "color": true, "radius": true, "style": true, "width": true },
+		"html": false
+	}
+}

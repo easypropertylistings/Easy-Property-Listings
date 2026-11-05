@@ -1,0 +1,549 @@
+/**
+ * EPL Elementor Widgets Styles
+ *
+ * @package EPL
+ * @since 3.6.0
+ */
+
+/* Elementor Free EPL Listings fallback. */
+.epl-elementor-listings-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--epl-elementor-listings-columns, 3), minmax(0, 1fr));
+}
+
+.epl-elementor-listings-item,
+.epl-elementor-listings-item > .epl-property-blog,
+.epl-elementor-listings-item > .epl-property-blog-card,
+.epl-elementor-listings-item > .epl-table {
+	box-sizing: border-box;
+	float: none;
+	clear: none;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+}
+
+.epl-elementor-listings-item > .epl-property-blog {
+	height: 100%;
+}
+
+/* Advanced widget with Elementor Loop Item renderer. */
+.epl-elementor-advanced-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--epl-elementor-advanced-columns, 3), minmax(0, 1fr));
+}
+
+.epl-elementor-advanced-item,
+.epl-elementor-advanced-item > .elementor,
+.epl-elementor-advanced-grid > .epl-property-blog,
+.epl-elementor-advanced-grid > .epl-property-blog-card,
+.epl-elementor-advanced-grid > .epl-table {
+	min-width: 0;
+	box-sizing: border-box;
+	float: none;
+	clear: none;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+}
+
+.epl-elementor-advanced-item,
+.epl-elementor-advanced-item > .elementor,
+.epl-elementor-advanced-grid > .epl-property-blog {
+	height: 100%;
+}
+
+/* Property Icons Layout */
+.epl-property-icons {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.epl-property-icons.epl-icons-horizontal {
+	flex-direction: row;
+}
+
+.epl-property-icons.epl-icons-vertical {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.epl-property-icons .epl-icon-item {
+	display: inline-flex;
+	align-items: center;
+}
+
+.epl-property-icons .epl-icon-item i {
+	flex-shrink: 0;
+}
+
+.epl-property-icons .epl-icon-value {
+	font-weight: 600;
+}
+
+.epl-property-icons .epl-icon-label {
+	opacity: 0.8;
+}
+
+/* Legacy EPL icons support */
+.epl-property-icons.epl-icons-horizontal .property-meta {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.epl-property-icons.epl-icons-vertical .property-meta {
+	display: block;
+	margin-bottom: 8px;
+}
+
+/* Elementor Editor Placeholder */
+.epl-elementor-placeholder {
+	background: #f7f7f7;
+	border: 1px dashed #ccc;
+	padding: 20px;
+	text-align: center;
+	color: #666;
+	font-style: italic;
+}
+
+/* Property Image */
+.epl-property-image {
+	position: relative;
+	overflow: hidden;
+	display: block;
+	width: 100%;
+}
+
+.epl-property-image img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	transition: transform var(--epl-image-hover-duration, 0.3s) ease,
+		filter var(--epl-image-hover-duration, 0.3s) ease,
+		opacity var(--epl-image-hover-duration, 0.3s) ease;
+}
+
+.epl-property-image a {
+	display: block;
+	position: relative;
+}
+
+/* Optional image effects are independent from the overlay and composable. */
+.epl-has-image-effects:hover img {
+	transform: scale(calc(var(--epl-image-hover-scale, 100) / 100));
+	filter: blur(var(--epl-image-hover-blur, 0))
+		brightness(var(--epl-image-hover-brightness, 100%))
+		contrast(var(--epl-image-hover-contrast, 100%))
+		saturate(var(--epl-image-hover-saturate, 100%))
+		grayscale(var(--epl-image-hover-grayscale, 0%));
+	opacity: var(--epl-image-hover-opacity, 100%);
+}
+
+/* Overlay */
+.epl-property-image .epl-image-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+
+.epl-property-image .epl-image-overlay i,
+.epl-property-image .epl-image-overlay svg {
+	font-size: 32px;
+	width: 32px;
+	height: 32px;
+}
+
+.epl-has-overlay:hover .epl-image-overlay {
+	opacity: 1;
+}
+
+/* Sticker Wrapper */
+.epl-property-image .epl-sticker-wrapper {
+	position: absolute;
+	z-index: 10;
+}
+
+/* Sticker Positions */
+.epl-sticker-top-left .epl-sticker-wrapper {
+	top: 10px;
+	left: 10px;
+}
+
+.epl-sticker-top-right .epl-sticker-wrapper {
+	top: 10px;
+	right: 10px;
+}
+
+.epl-sticker-bottom-left .epl-sticker-wrapper {
+	bottom: 10px;
+	left: 10px;
+}
+
+.epl-sticker-bottom-right .epl-sticker-wrapper {
+	bottom: 10px;
+	right: 10px;
+}
+
+/* Sticker Styles */
+.epl-property-image .status-sticker {
+	display: inline-block;
+	padding: 5px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	background: #333;
+	color: #fff;
+	border-radius: 3px;
+}
+
+.epl-property-image .status-sticker.sold {
+	background: #e74c3c;
+}
+
+.epl-property-image .status-sticker.leased {
+	background: #27ae60;
+}
+
+.epl-property-image .status-sticker.under-offer {
+	background: #f39c12;
+}
+
+/* No Image Placeholder */
+.epl-property-image .epl-no-image {
+	background: #f0f0f0;
+	padding: 40px 20px;
+	text-align: center;
+	color: #999;
+	min-height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Agent Box */
+.elementor-widget .epl-agent-box {
+	width: 100%;
+}
+
+.elementor-widget .epl-agent-vertical {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.elementor-widget .epl-agent-horizontal {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.elementor-widget .epl-agent-horizontal .epl-agent-details {
+	flex: 1;
+}
+
+/* Agent Photo */
+.elementor-widget .epl-agent-photo {
+	flex-shrink: 0;
+	margin-bottom: 15px;
+}
+
+.elementor-widget .epl-agent-horizontal .epl-agent-photo {
+	margin-bottom: 0;
+}
+
+.elementor-widget .epl-agent-photo img {
+	display: block;
+	object-fit: cover;
+}
+
+/* Agent Details */
+.elementor-widget .epl-agent-details {
+	flex: 1;
+}
+
+.elementor-widget .epl-agent-name {
+	font-size: 1.2em;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.elementor-widget .epl-agent-name a {
+	text-decoration: none;
+}
+
+.elementor-widget .epl-agent-name a:hover {
+	text-decoration: underline;
+}
+
+.elementor-widget .epl-agent-position {
+	color: #666;
+	margin-bottom: 10px;
+}
+
+/* Agent Contact */
+.elementor-widget .epl-agent-contact {
+	margin: 10px 0;
+}
+
+.elementor-widget .epl-agent-contact > div {
+	margin-bottom: 5px;
+}
+
+.elementor-widget .epl-agent-label {
+	font-weight: 500;
+}
+
+.elementor-widget .epl-agent-contact a {
+	text-decoration: none;
+}
+
+.elementor-widget .epl-agent-contact a:hover {
+	text-decoration: underline;
+}
+
+/* Agent Social */
+.elementor-widget .epl-agent-social {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 10px 0;
+}
+
+.elementor-widget .epl-agent-vertical .epl-agent-social {
+	justify-content: center;
+}
+
+.elementor-widget .epl-agent-social a {
+	text-decoration: none;
+	transition: opacity 0.2s;
+}
+
+.elementor-widget .epl-agent-social a:hover {
+	opacity: 0.7;
+}
+
+/* Agent Bio */
+.elementor-widget .epl-agent-bio {
+	margin-top: 15px;
+	line-height: 1.6;
+}
+
+/* Features Title */
+.epl-features-title {
+	margin-bottom: 10px;
+}
+
+.epl-property-status-label {
+	display: inline-block;
+}
+
+.epl-property-meta-content,
+.epl-property-meta-icon {
+	display: inline-flex;
+	align-items: center;
+}
+
+.epl-property-meta-icon {
+	flex-shrink: 0;
+	font-size: 1em;
+	line-height: 1;
+}
+
+.epl-property-meta-icon i {
+	color: currentColor;
+}
+
+.epl-property-meta-icon svg {
+	display: block;
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.epl-property-taxonomy-label {
+	display: inline-block;
+	font-weight: 600;
+	margin-right: 0.4em;
+}
+
+.epl-property-taxonomy-list {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Search Widget */
+.epl-search-widget .epl-search-title {
+	margin-bottom: 15px;
+}
+
+/* Listing Agents - Grid Layout */
+.elementor-widget-epl-listing-agents .epl-listing-agents {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.elementor-widget-epl-listing-agents .epl-listing-agents-grid {
+	display: grid;
+}
+
+.elementor-widget-epl-listing-agents .epl-listing-agents-grid { grid-template-columns: repeat(var(--epl-agent-columns, 2), minmax(0, 1fr)); }
+.elementor-widget-epl-listing-agents .epl-agents-cols-1 { --epl-agent-columns: 1; }
+.elementor-widget-epl-listing-agents .epl-agents-cols-2 { --epl-agent-columns: 2; }
+.elementor-widget-epl-listing-agents .epl-agents-cols-3 { --epl-agent-columns: 3; }
+.elementor-widget-epl-listing-agents .epl-agents-cols-4 { --epl-agent-columns: 4; }
+
+.elementor-widget-epl-listing-agents .epl-listing-agents-list {
+	flex-direction: column;
+}
+
+.elementor-widget-epl-listing-agents .epl-agent-item {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+/* Agents Tabs Layout */
+.elementor-widget-epl-listing-agents .epl-agents-tabs {
+	display: flex;
+	flex-direction: column;
+}
+
+.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical {
+	flex-direction: row;
+}
+
+.elementor-widget-epl-listing-agents .epl-tab-buttons {
+	display: flex;
+	gap: 0;
+}
+
+.elementor-widget-epl-listing-agents .epl-agents-tabs-horizontal .epl-tab-buttons {
+	flex-direction: row;
+	border-bottom: 1px solid #ddd;
+}
+
+.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical .epl-tab-buttons {
+	flex-direction: column;
+	border-right: 1px solid #ddd;
+	min-width: 150px;
+}
+
+.elementor-widget-epl-listing-agents .epl-tab-button {
+	padding: 12px 20px;
+	border: none;
+	background: #f5f5f5;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+
+.elementor-widget-epl-listing-agents .epl-tab-button:hover {
+	background: #eee;
+}
+
+.elementor-widget-epl-listing-agents .epl-tab-button.active {
+	background: #fff;
+	font-weight: 600;
+}
+
+.elementor-widget-epl-listing-agents .epl-agents-tabs-horizontal .epl-tab-button {
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+}
+
+.elementor-widget-epl-listing-agents .epl-agents-tabs-horizontal .epl-tab-button.active {
+	border-bottom-color: #333;
+}
+
+.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical .epl-tab-button {
+	border-right: 2px solid transparent;
+	margin-right: -1px;
+	text-align: left;
+}
+
+.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical .epl-tab-button.active {
+	border-right-color: #333;
+}
+
+.elementor-widget-epl-listing-agents .epl-tab-contents {
+	flex: 1;
+}
+
+.elementor-widget-epl-listing-agents .epl-tab-content {
+	display: none;
+	padding: 20px;
+}
+
+.elementor-widget-epl-listing-agents .epl-tab-content.active {
+	display: block;
+}
+
+/* Agent Contact Layout */
+.epl-agent-contact.epl-contact-stacked {
+	display: flex;
+	flex-direction: column;
+}
+
+.epl-agent-contact.epl-contact-inline {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.epl-contact-item {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.epl-contact-label {
+	font-weight: 500;
+}
+
+/* Empty State */
+.epl-agents-empty {
+	padding: 20px;
+	text-align: center;
+	color: #666;
+	font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.elementor-widget-epl-listing-agents .epl-agents-cols-3,
+	.elementor-widget-epl-listing-agents .epl-agents-cols-4 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical {
+		flex-direction: column;
+	}
+
+	.elementor-widget-epl-listing-agents .epl-agents-tabs-vertical .epl-tab-buttons {
+		flex-direction: row;
+		border-right: none;
+		border-bottom: 1px solid #ddd;
+		min-width: auto;
+	}
+}
+
+@media (max-width: 480px) {
+	.elementor-widget-epl-listing-agents .epl-agents-cols-2,
+	.elementor-widget-epl-listing-agents .epl-agents-cols-3,
+	.elementor-widget-epl-listing-agents .epl-agents-cols-4 {
+		grid-template-columns: 1fr;
+	}
+}
