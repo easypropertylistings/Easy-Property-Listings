@@ -245,7 +245,7 @@ function epl_listing_has_floor_plans() {
 	
 		$link       = get_post_meta( get_the_ID(), $key, true );
 		$count      = 'property_floorplan' === $key ? '' : substr( $key, -1 );
-		$default    = __( 'Floor Plan ', 'epl-pro' ) . $count;
+		$default    = __( 'Floor Plan ', 'easy-property-listings' ) . $count;
 		$meta_label = get_post_meta( get_the_ID(), $key . '_label', true );
 		$meta_label = empty( $meta_label ) ? $default : $meta_label;
 	
