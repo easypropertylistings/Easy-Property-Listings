@@ -1135,9 +1135,18 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		$type = epl_get_core_post_types();
 	}
 
-	$type     = (array) $type;
-	$type     = array_map( 'sanitize_text_field', $type );
-	$type_str = " ( '" . implode( "','", $type ) . "' ) ";
+	$type = (array) $type;
+	$type = array_map( 'sanitize_text_field', $type );
+
+	// Keep only registered post types and bind each as a prepared placeholder, so
+	// the post_type value can never break out of the IN() list (SQL injection).
+	$type = array_values( array_filter( $type, 'post_type_exists' ) );
+
+	if ( empty( $type ) ) {
+		$type = epl_get_core_post_types();
+	}
+
+	$type_placeholders = implode( ', ', array_fill( 0, count( $type ), '%s' ) );
 
 	global $wpdb;
 
@@ -1148,10 +1157,11 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		WHERE pm.`meta_key` = %s
 		AND p.`post_status` = %s
 		AND p.`post_type`
-		IN $type_str
+		IN ( {$type_placeholders} )
 		AND pm.`meta_value` != ''";
 
-	$results = $wpdb->get_results( $wpdb->prepare( $query, $key, $status ) );
+	$prepare_args = array_merge( array( $key, $status ), $type );
+	$results      = $wpdb->get_results( $wpdb->prepare( $query, $prepare_args ) );
 
 	if ( ! empty( $results ) ) {
 

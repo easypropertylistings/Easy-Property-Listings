@@ -3169,39 +3169,49 @@ function epl_esc_attr( $value ) {
 function epl_get_post_count( $type, $meta_key, $meta_value, $author_id = '' ) {
 	global $wpdb;
 
-	$sql = "
-		SELECT count( Distinct p.ID ) AS count
-		FROM {$wpdb->prefix}posts AS p
-		INNER JOIN $wpdb->postmeta pm  ON (p.ID = pm.post_id)
-		INNER JOIN $wpdb->postmeta pm2  ON (p.ID = pm2.post_id)
-		WHERE p.post_status = 'publish' ";
+	$where        = array( "p.post_status = 'publish'" );
+	$prepare_args = array();
 
 	if ( empty( $type ) ) {
-		$epl_posts = epl_get_active_post_types();
-		$epl_posts = '"' . implode( '","', array_keys( $epl_posts ) ) . '"';
+		$epl_posts = array_keys( epl_get_active_post_types() );
 
-		$sql .= " AND p.post_type IN ( {$epl_posts} )";
+		if ( empty( $epl_posts ) ) {
+			$epl_posts = epl_get_core_post_types();
+		}
+
+		$placeholders = implode( ', ', array_fill( 0, count( $epl_posts ), '%s' ) );
+		$where[]      = "p.post_type IN ( {$placeholders} )";
+		$prepare_args = array_merge( $prepare_args, array_values( $epl_posts ) );
 	} else {
-		$sql .= " AND p.post_type = '{$type}'";
+		$where[]        = 'p.post_type = %s';
+		$prepare_args[] = $type;
 	}
 
 	if ( ! empty( $author_id ) ) {
-		$user_info = get_userdata( $author_id );
-		$sql      .= " AND (
-			p.post_author =  $author_id
-			OR (
-				pm2.meta_key 	= 'property_second_agent'
-				AND
-				pm2.meta_value 	= '$user_info->user_login'
-			)
-		)";
+		$author_id  = absint( $author_id );
+		$user_info  = get_userdata( $author_id );
+		$user_login = $user_info ? $user_info->user_login : '';
+
+		$where[]        = '( p.post_author = %d OR ( pm2.meta_key = %s AND pm2.meta_value = %s ) )';
+		$prepare_args[] = $author_id;
+		$prepare_args[] = 'property_second_agent';
+		$prepare_args[] = $user_login;
 	}
-	$sql  .= "
-		AND p.ID = pm.post_id
-		AND pm.meta_key = '{$meta_key}'
-		AND pm.meta_value = '{$meta_value}'
-	";
-	$count = $wpdb->get_row( $sql ); //phpcs:ignore
+
+	$where[]        = 'p.ID = pm.post_id';
+	$where[]        = 'pm.meta_key = %s';
+	$prepare_args[] = $meta_key;
+	$where[]        = 'pm.meta_value = %s';
+	$prepare_args[] = $meta_value;
+
+	$sql = "
+		SELECT count( Distinct p.ID ) AS count
+		FROM {$wpdb->posts} AS p
+		INNER JOIN {$wpdb->postmeta} pm  ON (p.ID = pm.post_id)
+		INNER JOIN {$wpdb->postmeta} pm2  ON (p.ID = pm2.post_id)
+		WHERE " . implode( ' AND ', $where );
+
+	$count = $wpdb->get_row( $wpdb->prepare( $sql, $prepare_args ) ); //phpcs:ignore
 	return $count->count;
 }
 
