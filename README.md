@@ -38,6 +38,13 @@ There are various ways you can contribute:
 
 ## Change Log
 
+= 3.5.29 November 5, 2026 =
+
+-   Fix: SQL injection via the `post_type` attribute of the `[listing_search]` shortcode, exploitable by Contributor-level users. The post_type value is now restricted to registered post types and bound with prepared statements in `epl_get_unique_post_meta_values()`, `epl_get_meta_values()` and `epl_get_post_count()`. Thanks Wordfence Intelligence.
+-   Fix: PHP 8.1 deprecation notice `preg_replace(): Passing null to parameter #3` when a listing has no suburb or state, in the listing widget address, the secondary heading and `the_property_meta()`.
+-   Fix: PHP 8.1 deprecation notice `trim(): Passing null to parameter #1` in `epl_get_property_heading()` when a listing has no heading.
+-   Fix: The "Floor Plan" meta label now uses the `easy-property-listings` text domain so it can be translated.
+
 = 3.5.28 October 14, 2026 =
 
 -   Fix: REST API listing meta for users who cannot edit the listing is now an allow-list of fields the listing displays, instead of removing known hidden fields. Fields hidden by site settings (bond, country and city) and by listing settings are withheld, and fields added by extensions are no longer public unless allowed. Thanks Usama Arshad and WPScan.
