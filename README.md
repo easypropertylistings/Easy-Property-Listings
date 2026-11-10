@@ -38,7 +38,7 @@ There are various ways you can contribute:
 
 ## Change Log
 
-= 3.5.29 November 5, 2026 =
+= 3.5.29 November 10, 2026 =
 
 -   Fix: SQL injection via the `post_type` attribute of the `[listing_search]` shortcode, exploitable by Contributor-level users. The post_type value is now restricted to registered post types and bound with prepared statements in `epl_get_unique_post_meta_values()`, `epl_get_meta_values()` and `epl_get_post_count()`. Thanks Wordfence Intelligence.
 -   Fix: PHP 8.1 deprecation notice `preg_replace(): Passing null to parameter #3` when a listing has no suburb or state, in the listing widget address, the secondary heading and `the_property_meta()`.
