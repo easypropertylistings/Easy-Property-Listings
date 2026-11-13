@@ -1877,7 +1877,8 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 
 	$type     = (array) $type;
 	$type     = array_map( 'sanitize_text_field', $type );
-	$type_str = " ( '" . implode( "','", $type ) . "' ) ";
+	$type_placeholders = implode( ',', array_fill( 0, count( $type ), '%s' ) );
+	$type_str          = " ( $type_placeholders ) ";
 
 	$query = "
 	SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
@@ -1904,7 +1905,7 @@ function epl_get_unique_post_meta_values( $key = '', $type = '', $status = 'publ
 		}
 	}
 
-	$res = $wpdb->get_col( $wpdb->prepare( $query, $key, $status ) ); // phpcs:ignore
+	$res = $wpdb->get_col( $wpdb->prepare( $query, array_merge( array( $key, $status ), $type ) ) ); // phpcs:ignore
 	$res = array_filter( $res );
 
 	foreach ( $res as $key => &$elem ) {

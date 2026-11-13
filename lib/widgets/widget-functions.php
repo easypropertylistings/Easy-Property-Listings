@@ -1137,7 +1137,8 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 
 	$type     = (array) $type;
 	$type     = array_map( 'sanitize_text_field', $type );
-	$type_str = " ( '" . implode( "','", $type ) . "' ) ";
+	$type_placeholders = implode( ',', array_fill( 0, count( $type ), '%s' ) );
+	$type_str          = " ( $type_placeholders ) ";
 
 	global $wpdb;
 
@@ -1151,7 +1152,7 @@ function epl_get_meta_values( $key = '', $type = 'post', $status = 'publish' ) {
 		IN $type_str
 		AND pm.`meta_value` != ''";
 
-	$results = $wpdb->get_results( $wpdb->prepare( $query, $key, $status ) );
+	$results = $wpdb->get_results( $wpdb->prepare( $query, array_merge( array( $key, $status ), $type ) ) );
 
 	if ( ! empty( $results ) ) {
 
