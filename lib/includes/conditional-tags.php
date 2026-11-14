@@ -296,8 +296,8 @@ function epl_listing_has_floor_plans() {
  *
  * @since 3.6
  */
-function epl_property_has_video() {
-	return (bool) apply_filters( 'epl_property_has_video', epl_listing_has_any_meta( array( 'property_video_url' ) ) );
+function epl_listing_has_video() {
+	return (bool) apply_filters( 'epl_listing_has_video', epl_listing_has_any_meta( array( 'property_video_url' ) ) );
 }
 
 /**

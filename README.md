@@ -57,7 +57,7 @@ There are various ways you can contribute:
 -   New: Filter `epl_lazy_session`.
 -   Fix: Deleting a contact without ticking the confirm box redirected to a page that returned an error (403) instead of showing "Please confirm you want to delete this contact".
 -   Fix: Saving an empty contact note caused a PHP fatal error.
--   New: Template conditional functions `epl_listing_has_floor_plans()`, `epl_property_has_video()`, `epl_listing_has_inspection_times()` (upcoming times only), `epl_listing_has_auction_date()` and `epl_listing_has_links()` (any single listing button: external links, floor plans, mini web, energy certificate or video), each with a filter of the same name, plus `epl_listing_has_any_meta( $keys )`. All return false outside a listing.
+-   New: Template conditional functions `epl_listing_has_floor_plans()`, `epl_listing_has_video()`, `epl_listing_has_inspection_times()` (upcoming times only), `epl_listing_has_auction_date()` and `epl_listing_has_links()` (any single listing button: external links, floor plans, mini web, energy certificate or video), each with a filter of the same name, plus `epl_listing_has_any_meta( $keys )`. All return false outside a listing.
 -   New: Functions `epl_get_listing_status()` and `epl_get_listing_status_label()` (For Sale, Auction, Sold, For Rent, Leased, and Buy, Lease or Buy or Lease for commercial; labels can be overridden) with filters of the same name, and `epl_get_property_com_authority_label( $key )`.
 -   New: `epl-status-auction` listing class for listings with an auction authority.
 -   New: Gravity Forms fields can be filled with `author_email_secondary`, `primary_agent_email`, `primary_agent_name`, `property_unique_id` and `property_office_id`, as well as `author_email`.
