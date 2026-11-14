@@ -30,7 +30,7 @@ class EPL_Elementor_Staff_Listings extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Staff Listings', 'easy-property-listings' );
+		return esc_html__( 'Staff Listings', 'easy-property-listings' );
 	}
 
 	/**

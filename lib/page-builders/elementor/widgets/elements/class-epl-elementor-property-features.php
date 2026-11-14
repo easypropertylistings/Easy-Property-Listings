@@ -37,7 +37,7 @@ class EPL_Elementor_Property_Features extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Features', 'easy-property-listings' );
+		return esc_html__( 'Feature List', 'easy-property-listings' );
 	}
 
 	/**

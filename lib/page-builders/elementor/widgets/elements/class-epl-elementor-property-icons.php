@@ -39,7 +39,7 @@ class EPL_Elementor_Property_Icons extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Icons', 'easy-property-listings' );
+		return esc_html__( 'Icons', 'easy-property-listings' );
 	}
 
 	/**

@@ -36,7 +36,7 @@ class EPL_Elementor_Agent_Contact extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Agent Contact', 'easy-property-listings' );
+		return esc_html__( 'Contact', 'easy-property-listings' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ class EPL_Elementor_Agent_Contact extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_categories() {
-		return array( 'epl-staff', 'epl-elements' );
+		return array( 'epl-staff', 'epl-author' );
 	}
 
 	/**

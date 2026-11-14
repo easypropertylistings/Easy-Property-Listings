@@ -202,6 +202,14 @@ class EPL_Elementor {
 		);
 
 		$elements_manager->add_category(
+			'epl-author',
+			array(
+				'title' => esc_html__( 'EPL Author (Beta)', 'easy-property-listings' ),
+				'icon'  => 'eicon-person',
+			)
+		);
+
+		$elements_manager->add_category(
 			'epl-staff',
 			array(
 				'title' => esc_html__( 'EPL Staff Directory (Beta)', 'easy-property-listings' ),

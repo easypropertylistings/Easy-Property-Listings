@@ -30,7 +30,7 @@ class EPL_Elementor_Property_Taxonomy extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Taxonomy', 'easy-property-listings' );
+		return esc_html__( 'Taxonomy', 'easy-property-listings' );
 	}
 
 	/**
@@ -39,7 +39,7 @@ class EPL_Elementor_Property_Taxonomy extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_icon() {
-		return 'eicon-tags';
+		return 'eicon-meta-data';
 	}
 
 	/**

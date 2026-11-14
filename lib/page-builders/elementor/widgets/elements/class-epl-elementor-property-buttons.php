@@ -37,7 +37,7 @@ class EPL_Elementor_Property_Buttons extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Buttons', 'easy-property-listings' );
+		return esc_html__( 'Buttons', 'easy-property-listings' );
 	}
 
 	/**

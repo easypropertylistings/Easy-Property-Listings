@@ -39,7 +39,7 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Agent Box', 'easy-property-listings' );
+		return esc_html__( 'Author Box', 'easy-property-listings' );
 	}
 
 	/**
@@ -59,7 +59,7 @@ class EPL_Elementor_Agent_Box extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_categories() {
-		return array( 'epl-staff', 'epl-elements' );
+		return array( 'epl-staff', 'epl-author' );
 	}
 
 	/**

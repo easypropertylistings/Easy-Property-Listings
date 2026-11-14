@@ -30,7 +30,7 @@ class EPL_Elementor_Pagination extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Pagination', 'easy-property-listings' );
+		return esc_html__( 'Pagination', 'easy-property-listings' );
 	}
 
 	/**
@@ -39,7 +39,7 @@ class EPL_Elementor_Pagination extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_icon() {
-		return 'eicon-pagination';
+		return 'eicon-post-navigation';
 	}
 
 	/**

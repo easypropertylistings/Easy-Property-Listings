@@ -30,7 +30,7 @@ class EPL_Elementor_Property_Meta extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Meta', 'easy-property-listings' );
+		return esc_html__( 'Custom Field', 'easy-property-listings' );
 	}
 
 	/**
@@ -39,7 +39,7 @@ class EPL_Elementor_Property_Meta extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_icon() {
-		return 'eicon-database';
+		return 'eicon-meta-data';
 	}
 
 	/**

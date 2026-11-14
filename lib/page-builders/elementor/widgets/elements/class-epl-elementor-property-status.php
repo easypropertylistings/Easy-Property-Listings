@@ -37,7 +37,7 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Property Status', 'easy-property-listings' );
+		return esc_html__( 'Status', 'easy-property-listings' );
 	}
 
 	/**
@@ -47,7 +47,7 @@ class EPL_Elementor_Property_Status extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_icon() {
-		return 'eicon-info-circle';
+		return 'eicon-post-info';
 	}
 
 	/**

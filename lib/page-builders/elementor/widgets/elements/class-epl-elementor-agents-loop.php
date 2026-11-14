@@ -39,7 +39,7 @@ class EPL_Elementor_Listing_Agents extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_title() {
-		return esc_html__( 'EPL Listing Agents', 'easy-property-listings' );
+		return esc_html__( 'Agents', 'easy-property-listings' );
 	}
 
 	/**
@@ -59,7 +59,7 @@ class EPL_Elementor_Listing_Agents extends \Elementor\Widget_Base {
 	 * @since 3.6.0 New: Elementor widgets (beta).
 	 */
 	public function get_categories() {
-		return array( 'epl-elements' );
+		return array( 'epl-author' );
 	}
 
 	/**
