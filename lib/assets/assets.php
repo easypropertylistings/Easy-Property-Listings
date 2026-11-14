@@ -221,6 +221,7 @@ add_action( 'wp_enqueue_scripts', 'epl_wp_enqueue_scripts' );
  * Load and enqueue admin styles.
  *
  * @since 1.0
+ * @since 3.6 The thumbnail column stays at most 320 pixels wide now that the medium crop is 600x400.
  */
 function epl_admin_styles() {
 
@@ -236,7 +237,8 @@ function epl_admin_styles() {
 
 	foreach ( $sizes as $size ) {
 		if ( $size['id'] === $active_size ) {
-			$width = $size['width'] + 20 . 'px';  // Add 20 pixels for padding.
+			// Shown at most 300 pixels wide, so the 600x400 medium crop keeps the column it had at 300x200.
+			$width = min( (int) $size['width'], 300 ) + 20 . 'px';  // Add 20 pixels for padding.
 			break;
 		}
 	}

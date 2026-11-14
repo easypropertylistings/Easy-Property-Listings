@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Get list of all EPL image sizes
  *
  * @since 3.2.3
+ * @since 3.6 The medium crop (epl-image-medium-crop) doubled from 300x200 to 600x400, for sharp images on high resolution screens and wider cards. Images uploaded before need their thumbnails regenerated to get the new size; until then the existing 300x200 files are used.
  */
 function get_epl_image_sizes() {
 	return apply_filters(
@@ -31,8 +32,8 @@ function get_epl_image_sizes() {
 			),
 			array(
 				'id'     => 'epl-image-medium-crop',
-				'height' => 200,
-				'width'  => 300,
+				'height' => 400,
+				'width'  => 600,
 				'crop'   => true,
 			),
 		)
@@ -41,7 +42,7 @@ function get_epl_image_sizes() {
 
 /**
  * Register image sizes for the admin list of property
- * and a hard cropped 300x200 px image for use in widgets
+ * and a hard cropped 600x400 px image for use in archives and widgets
  *
  * @since 1.0
  */
@@ -62,12 +63,13 @@ add_action( 'after_setup_theme', 'epl_image_sizes' );
  *
  * @return array
  * @since 1.0
+ * @since 3.6 Label says 600x400, the new medium crop size.
  */
 function epl_image_size_names_choose( $epl_sizes ) {
 	return array_merge(
 		$epl_sizes,
 		array(
-			'epl-image-medium-crop' => __( 'Medium 300x200 hard Crop', 'easy-property-listings' ),
+			'epl-image-medium-crop' => __( 'Medium 600x400 hard Crop', 'easy-property-listings' ),
 		)
 	);
 }
