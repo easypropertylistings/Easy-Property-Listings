@@ -1101,6 +1101,25 @@ function epl_search_pre_get_posts( $query ) {
 add_action( 'pre_get_posts', 'epl_search_pre_get_posts' );
 
 /**
+ * Can the listing search show this post type?
+ *
+ * True when the post type is registered and visitors can view it, so a
+ * switched off listing type (rentals turned off) or a private one (contacts)
+ * is left out of the search.
+ *
+ * @since 3.6 New: so the search skips switched off and private post types.
+ *
+ * @param string $post_type Post type name from the search request.
+ *
+ * @return bool
+ */
+function epl_search_can_show_post_type( $post_type ) {
+	$can_show = is_string( $post_type ) && post_type_exists( $post_type ) && is_post_type_viewable( $post_type );
+
+	return (bool) apply_filters( 'epl_search_can_show_post_type', $can_show, $post_type );
+}
+
+/**
  * Is Property Search
  *
  * @since  2.3.1

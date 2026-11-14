@@ -268,11 +268,24 @@ class EPL_SEARCH {
 	 * Set post type for query
 	 *
 	 * @since 3.4.12 Added support for 'all' post type.
+	 * @since 3.6 Fix: only searches post types the site shows to visitors. A listing type that's switched off no longer gives PHP warnings (it finds nothing), and private ones like contacts can't be searched from the URL.
 	 */
 	protected function set_post_type() {
 		if ( isset( $this->get_data['post_type'] ) && ! empty( $this->get_data['post_type'] ) && 'all' !== $this->get_data['post_type'] ) {
-			$this->query->set( 'post_type', $this->get_data['post_type'] );
-			$this->post_type = $this->get_data['post_type'];
+			$post_type = $this->get_data['post_type'];
+			$allowed   = array_values( array_filter( (array) $post_type, 'epl_search_can_show_post_type' ) );
+
+			if ( empty( $allowed ) ) {
+				// Nothing the visitor can see: search the active listing types, find nothing.
+				$allowed = array_keys( epl_get_active_post_types() );
+				$this->query->set( 'post__in', array( 0 ) );
+			} elseif ( ! is_array( $post_type ) ) {
+				$allowed = $allowed[0];
+			}
+
+			$this->query->set( 'post_type', $allowed );
+			$this->post_type             = $allowed;
+			$this->get_data['post_type'] = $allowed;
 		} else {
 			$epl_post_types = epl_get_active_post_types();
 			if ( ! empty( $epl_post_types ) ) {
